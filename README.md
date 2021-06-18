@@ -4,10 +4,10 @@
   </a>
 </p>
 <h1 align="center">
-  Parity Website Theme
+  Substrate Docs
 </h1>
 <h3 align="center">
-  Teamplate Designed for Parity Technologies, & related websites. 
+  Work-In-Progress Substrate Docs for DevHub Team. 
 </h3>
 
 Important Convention Note
