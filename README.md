@@ -13,8 +13,9 @@
 Important Convention Note
 > Always create your own branch to work on the site. Use `develop` for testing.  Both Netlify flags towards the bottom display status of `develop` and `main` site.  `main` is production ONLY and deployed by dedicated Dev or Comms team through Forestry.
 
-### Status [Staging](#) 
+### Status [Staging](https://substrate-docs-staging.netlify.app) 
 (Password protected; ask Parity WebDev Team for details)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/65f522fe-eefa-434b-bdb3-6345d363c177/deploy-status)](https://app.netlify.com/sites/ecstatic-babbage-c109a3/deploys)
 
 
 ## 🚀 Quick start
