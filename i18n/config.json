@@ -2,25 +2,17 @@
   {
     "code": "en",
     "hrefLang": "en-US",
-    "name": "English",
+    "name": "English-US",
     "localName": "English",
     "langDir": "ltr",
     "dateFormat": "MM/DD/YYYY"
   },
   {
-    "code": "de",
-    "hrefLang": "de-DE",
-    "name": "German",
-    "localName": "Deutsch",
+    "code": "zh-CN",
+    "hrefLang": "zh-CN",
+    "name": "Chinese-Simplified",
+    "localName": "Chinese",
     "langDir": "ltr",
-    "dateFormat": "DD.MM.YYYY"
-  },
-  {
-    "code": "es",
-    "hrefLang": "es-ES",
-    "name": "Spanish",
-    "localName": "Español",
-    "langDir": "ltr",
-    "dateFormat": "DD.MM.YYYY"
+    "dateFormat": "YYYY.MM.DD"
   }
 ]

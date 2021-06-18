@@ -1,4 +1,68 @@
-# gatsby-starter-theme-i18n
+<p align="center">
+  <a href="https://www.parity.io">
+    <img alt="Parity Logo" src="https://www.parity.io/assets/img/logos/logo-parity-dark.png" width="60" />
+  </a>
+</p>
+<h1 align="center">
+  Parity Website Theme
+</h1>
+<h3 align="center">
+  Teamplate Designed for Parity Technologies, & related websites. 
+</h3>
 
-Default example for `gatsby-theme-i18n` adding dedicated pages for normal pages and blog posts.
-More information here: [gatsby-theme-i18n source code](https://github.com/gatsbyjs/themes/tree/master/packages/gatsby-theme-i18n)
+Important Convention Note
+> Always create your own branch to work on the site. Use `develop` for testing.  Both Netlify flags towards the bottom display status of `develop` and `main` site.  `main` is production ONLY and deployed by dedicated Dev or Comms team through Forestry.
+
+### Status [Staging](#) 
+(Password protected; ask Parity WebDev Team for details)
+
+
+## 🚀 Quick start
+
+
+
+1.  **Clone the Repo**
+
+    ```shell
+    # create a new folder to get going
+    git clone https://github.com/paritytechmarcomms/gatsby-theme-parity-events.git
+    ```
+
+2.  **Get Setup**
+
+    Navigate into your new site’s directory and install all dependencies.
+
+    ```shell
+    cd substrate-docs/
+    yarn install
+    ```
+    
+2.  **Fire the engine**
+
+    Navigate into your new site’s directory and use the following command to start the development server locally.
+
+    ```shell
+    cd substrate-docs/
+    yarn dev
+    ```
+
+3.  **Open the code and start customizing!**
+
+    Your site is now running at http://localhost:8000!
+    And your GraphiQL data layer is running at http://localhost:8000/__graphql
+
+    Edit to see your site update in real-time!
+
+4.  **Learn more about GatbsyJS**
+
+    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+
+    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+
+    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+
+    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+
+    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+
+    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)

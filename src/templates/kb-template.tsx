@@ -1,19 +1,19 @@
-import * as React from "react"
-import { graphql } from "gatsby"
-import { MDXRenderer } from "gatsby-plugin-mdx"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import * as React from 'react'
+import { graphql } from 'gatsby'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
+import Layout from '../components/Layout'
+import SEO from '../components/SEO'
 
 const BlogTemplate = ({ data, pageContext }) => {
   return (
     <Layout>
-      <SEO title={data.mdx.frontmatter.title} />
+      <SEO title={data.mdx ? data.mdx.frontmatter.title : null} />
       <h1>Data</h1>
       <div>
         {data.mdx ? (
           <MDXRenderer>{data.mdx.body}</MDXRenderer>
         ) : (
-          <div>This page hasn't been translated yet</div>
+          <div>This page hasn&apos;t been translated yet</div>
         )}
       </div>
       <h1>Context</h1>
@@ -25,7 +25,7 @@ const BlogTemplate = ({ data, pageContext }) => {
 export default BlogTemplate
 
 export const query = graphql`
-  query($locale: String!, $slug: String!) {
+  query ($locale: String!, $slug: String!) {
     mdx(
       fields: { locale: { eq: $locale } }
       frontmatter: { slug: { eq: $slug } }

@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind aspect-ratio;
+
+@layer base {
+  * {
+    scroll-behavior: smooth;
+  }
+
+  html {
+    @apply bg-white antialiased;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white font-body text-base;
+    background: transparent;
+  }
+
+  main.main-container {
+    min-height: calc(100vh - 394px);
+  }
+
+  .container {
+    @apply px-4;
+  }
+
+  /* Headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-body font-bold leading-tight;
+  }
+
+  h1 {
+    @apply mb-3 text-5xl tracking-tighter;
+  }
+
+  h2 {
+    @apply mb-4 text-4xl tracking-tight;
+  }
+
+  h3 {
+    @apply mb-5 text-3xl tracking-tight;
+  }
+
+  h4 {
+    @apply mb-6 text-2xl;
+  }
+
+  h5 {
+    @apply text-xl;
+  }
+
+  h6 {
+    @apply mb-10 text-lg;
+  }
+
+  /* Paragraphs */
+  p {
+    @apply mb-6 font-normal;
+  }
+
+  strong {
+    @apply font-medium;
+  }
+
+  /* Blockquotes */
+  blockquote {
+    @apply mb-4 px-8 font-body italic text-xl;
+  }
+
+  /* Horizontal Rules */
+  hr {
+    @apply mb-6 border-t;
+  }
+
+  /* Lists */
+  dl,
+  ol,
+  ul {
+    @apply mb-0 list-outside;
+  }
+
+  li {
+    @apply mb-1 font-normal;
+  }
+
+  /* Definition Lists */
+  dl {
+    dt {
+      @apply font-semibold;
+    }
+
+    dd {
+      @apply ml-6;
+    }
+  }
+
+  /* Ordered Lists */
+  ol {
+    @apply list-decimal;
+  }
+
+  /* Unordered Lists */
+  ul {
+    @apply list-disc;
+  }
+
+  /* Anchors */
+  a {
+    @apply cursor-pointer;
+  }
+}

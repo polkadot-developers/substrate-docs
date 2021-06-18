@@ -1,20 +1,23 @@
-import * as React from "react"
-import { graphql } from "gatsby"
-import { LocalizedLink, LocalesList } from "gatsby-theme-i18n"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import * as React from 'react'
+import { graphql } from 'gatsby'
+import { LocalizedLink, LocalesList } from 'gatsby-theme-i18n'
+import Layout from '../components/Layout'
+import SEO from '../components/SEO'
+import { useIntl } from 'react-intl'
 
 const Index = ({ data }) => {
+  const intl = useIntl()
+
   return (
     <Layout>
       <SEO title="Home" />
-      <h1>Hello World</h1>
+      <h1 className="mt-28">{intl.formatMessage({ id: 'helloWorld' })}</h1>
       <p>This is in the Index page.</p>
       <p>
         <LocalizedLink to="/page-2/">Link to second page</LocalizedLink>
       </p>
       <p>
-        <LocalizedLink to="/page-2/" language="de">
+        <LocalizedLink to="/page-2/" language="zh">
           Link to second page (german version)
         </LocalizedLink>
       </p>
@@ -41,7 +44,7 @@ const Index = ({ data }) => {
 export default Index
 
 export const query = graphql`
-  query($locale: String!) {
+  query ($locale: String!) {
     allFile(
       filter: {
         sourceInstanceName: { eq: "blog" }

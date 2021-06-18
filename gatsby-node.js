@@ -1,11 +1,11 @@
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
 
-  const blogTemplate = require.resolve(`./src/templates/blog-template.js`)
+  const blogTemplate = require.resolve(`./src/templates/kb-template.tsx`)
 
   const result = await graphql(`
     {
-      blog: allFile(filter: { sourceInstanceName: { eq: "blog" } }) {
+      blog: allFile(filter: { sourceInstanceName: { eq: "kb" } }) {
         nodes {
           childMdx {
             frontmatter {
