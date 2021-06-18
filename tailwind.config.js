@@ -130,4 +130,4 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-};
+}

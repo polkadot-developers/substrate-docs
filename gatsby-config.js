@@ -49,20 +49,20 @@ module.exports = {
         name: `kb`,
       },
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/docs/v3/how-to-guides`,
-        name: `htg`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/docs//v3/tutorials`,
-        name: `tuts`,
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     path: `${__dirname}/docs/v3/how-to-guides`,
+    //     name: `htg`,
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     path: `${__dirname}/docs//v3/tutorials`,
+    //     name: `tuts`,
+    //   },
+    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -128,6 +128,18 @@ module.exports = {
           require('tailwindcss'),
           require('./tailwind.config.js'),
         ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Substrate Documentation`,
+        short_name: `Substrate Docs`,
+        start_url: `/`,
+        background_color: `#000000`,
+        theme_color: `#26E0A2`,
+        display: `standalone`,
+        icon: `src/images/favicon.png`,
       },
     },
     'gatsby-plugin-offline',
