@@ -1,7 +1,7 @@
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
 
-  const blogTemplate = require.resolve(`./src/templates/kb-template.tsx`)
+  const kbTemplate = require.resolve(`./src/templates/kb-template.tsx`)
 
   const result = await graphql(`
     {
@@ -22,14 +22,14 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return
   }
 
-  const blogPosts = result.data.blog.nodes
+  const allKBDocs = result.data.blog.nodes
 
-  blogPosts.forEach(({ childMdx: node }) => {
+  allKBDocs.forEach(({ childMdx: node }) => {
     createPage({
-      path: node.frontmatter.slug,
-      component: blogTemplate,
+      path: `/v3${node.frontmatter.slug}`,
+      component: kbTemplate,
       context: {
-        slug: node.frontmatter.slug,
+        slug: `${node.frontmatter.slug}`,
       },
     })
   })

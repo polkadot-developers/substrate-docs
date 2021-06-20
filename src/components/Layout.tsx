@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
   return (
     <React.Fragment>
       <Header />
-      <main className="container min-h-screen">
+      <main className="min-h-screen">
         <MDXProvider components={components}>{children}</MDXProvider>
       </main>
       <Footer />

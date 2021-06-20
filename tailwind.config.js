@@ -10,6 +10,7 @@ module.exports = {
       md: '768px',
       lg: '1024px',
       xl: '1280px',
+      '2xl': '1536px',
     },
     letterSpacing: {
       tightest: '-.075em',
@@ -25,6 +26,7 @@ module.exports = {
       colors: {
         substrateGreen: '#26E0A2',
         substrateBlue: '#4E73F2',
+        lightGray: '#FAFAFA',
         parityPink: '#FF1864',
         parityRed: '#CC1350',
         parityGray: '#eff1f0',
@@ -126,8 +128,6 @@ module.exports = {
       },
     },
   },
-  variants: {
-    extend: {},
-  },
+  variants: ['responsive', 'group-hover', 'hover', 'focus', 'active'],
   plugins: [],
 }
