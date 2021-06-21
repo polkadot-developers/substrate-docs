@@ -14,7 +14,7 @@ export default function SlideDownNav({ section }: SlideDownNavProps) {
     <>
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between px-20 py-4 bg-lightGray"
+        className="flex items-center justify-between px-20 lg:px-4 py-4 bg-lightGray lg:bg-white"
       >
         <div className="font-medium">{section.name}</div>
         <img
@@ -31,7 +31,7 @@ export default function SlideDownNav({ section }: SlideDownNavProps) {
             return (
               <div
                 key={index}
-                className="text-gray-600 text-sm px-20 py-2 hover:text-substrateBlue hover:bg-substrateBlue hover:bg-opacity-10"
+                className="text-gray-600 text-sm px-20 lg:px-6 py-2 hover:text-substrateBlue hover:bg-substrateBlue hover:bg-opacity-10"
               >
                 <LocalizedLink to={`/v3${item.link}`}>
                   {item.title}

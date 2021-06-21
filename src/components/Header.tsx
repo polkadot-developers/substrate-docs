@@ -78,7 +78,7 @@ export default function Header() {
 
   return (
     <header className="container">
-      <div className="h-12 mt-4 flex items-center justify-between">
+      <div className="h-24 flex items-center justify-between">
         <div className="w-40">
           <LocalizedLink to="/">
             <img src={logo} alt="Substrate Logo" />
