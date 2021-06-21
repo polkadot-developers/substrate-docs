@@ -30,7 +30,7 @@ const BlogTemplate = ({ data }) => {
             </div>
           </div>
           <div className="hidden lg:inline-block lg:flex-none">
-            <DocsSideBar />
+            <DocsSideBar headings={data.mdx.headings} />
           </div>
         </div>
       </div>
@@ -54,6 +54,10 @@ export const query = graphql`
         title
       }
       body
+      headings {
+        value
+        depth
+      }
     }
   }
 `
