@@ -3,6 +3,8 @@ import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
+import { kbSideBar } from '../sidebar/kbSideBar'
+import { globalDocsNav } from '../sidebar/globalDocsNav'
 import DocsNavMobile from '../components/DocsNavMobile'
 import DocsSideBar from '../components/DocsSideBar'
 import DocsNav from '../components/DocsNav'
@@ -11,15 +13,23 @@ const BlogTemplate = ({ data }) => {
   return (
     <Layout>
       <SEO title={data.mdx ? data.mdx.frontmatter.title : null} />
-      <div className="lg:border-t lg:border-gray-200">
+      <div className="mb-24">
         <div className="lg:container lg:flex">
           <div className="lg:hidden">
-            <DocsNavMobile templateId={'Knowledgebase'} />
+            <DocsNavMobile
+              sideNav={kbSideBar}
+              globalNav={globalDocsNav}
+              templateId={'Knowledgebase'}
+            />
           </div>
           <div className="hidden lg:inline-block lg:flex-none">
-            <DocsNav templateId={'Knowledgebase'} />
+            <DocsNav
+              sideNav={kbSideBar}
+              globalNav={globalDocsNav}
+              templateId={'Knowledgebase'}
+            />
           </div>
-          <div className="lg:mx-12 lg:flex-grow">
+          <article className="lg:px-12 lg:flex-grow lg:border-l lg:border-r lg:border-gray-200">
             <h1 className="pt-20">{data.mdx.frontmatter.title}</h1>
             <div>
               {data.mdx ? (
@@ -28,7 +38,7 @@ const BlogTemplate = ({ data }) => {
                 <div>This page hasn&apos;t been translated yet</div>
               )}
             </div>
-          </div>
+          </article>
           <div className="hidden lg:inline-block lg:flex-none">
             <DocsSideBar headings={data.mdx.headings} />
           </div>

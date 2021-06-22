@@ -26,7 +26,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   allKBDocs.forEach(({ childMdx: node }) => {
     createPage({
-      path: `/v3${node.frontmatter.slug}`,
+      path: `${node.frontmatter.slug}`,
       component: kbTemplate,
       context: {
         slug: `${node.frontmatter.slug}`,

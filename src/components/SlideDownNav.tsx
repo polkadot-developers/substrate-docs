@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { IkbSideBar } from '../sidebar/kbSideBar'
 import { LocalizedLink } from 'gatsby-theme-i18n'
 import arrowIcon from '../images/nav-icon-arrow-down.svg'
@@ -9,12 +9,18 @@ interface SlideDownNavProps {
 
 export default function SlideDownNav({ section }: SlideDownNavProps) {
   const [isOpen, setIsOpen] = useState(false)
-
+  useEffect(() => {
+    section.items.map(item => {
+      if (item.link === location.pathname) {
+        setIsOpen(!isOpen)
+      }
+    })
+  }, [])
   return (
     <>
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between px-20 lg:px-4 py-4 bg-lightGray lg:bg-white"
+        className="flex items-center justify-between px-20 lg:px-4 py-4 bg-lightGray lg:bg-white cursor-pointer"
       >
         <div className="font-medium">{section.name}</div>
         <img
@@ -31,11 +37,13 @@ export default function SlideDownNav({ section }: SlideDownNavProps) {
             return (
               <div
                 key={index}
-                className="text-gray-600 text-sm px-20 lg:px-6 py-2 hover:text-substrateBlue hover:bg-substrateBlue hover:bg-opacity-10"
+                className={`text-gray-600 text-sm px-20 lg:px-6 py-2 hover:text-substrateBlue hover:bg-substrateBlue hover:bg-opacity-10 ${
+                  item.link === location.pathname
+                    ? `text-substrateBlue bg-substrateBlue bg-opacity-10`
+                    : ` `
+                }`}
               >
-                <LocalizedLink to={`/v3${item.link}`}>
-                  {item.title}
-                </LocalizedLink>
+                <LocalizedLink to={item.link}>{item.title}</LocalizedLink>
               </div>
             )
           })}

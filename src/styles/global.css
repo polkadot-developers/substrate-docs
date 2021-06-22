@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @tailwind aspect-ratio;
+@tailwind variants;
 
 @layer base {
   * {

@@ -6,24 +6,20 @@ interface DocsSideBarProps {
 
 export default function DocsSideBar({ headings }: DocsSideBarProps) {
   return (
-    <div className="w-60 h-full py-5 text-sm">
+    <div className="w-60 sticky top-24 h-screen py-5 pl-4 text-sm overflow-y-auto">
       <p className="font-bold">ON THIS PAGE</p>
       {headings.map((item: { value: string; depth: number }, index: number) => {
-        const link = item.value
-          .toLowerCase()
-          .replace(/[^a-z0-9 ]/g, '')
-          .replace(/[ ]/g, '-')
+        const link = item.value.replace(/[ ]/g, '-')
 
-        console.log(link)
         return item.depth === 2 ? (
-          <div className="py-2">
-            <a key={index} href={`#${link}`} className="font-bold">
+          <div key={index} className="py-2">
+            <a href={`#${link}`} className="font-bold">
               {item.value}
             </a>
           </div>
         ) : item.depth === 3 ? (
-          <div className="py-1">
-            <a key={index} href={`#${link}`} className="pl-4">
+          <div key={index} className="py-1">
+            <a href={`#${link}`} className="pl-4">
               {item.value}
             </a>
           </div>
