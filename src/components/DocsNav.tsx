@@ -30,7 +30,7 @@ export default function DocsNav({
       <div className="pl-4 pt-10 pb-4">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="bg-black hover:bg-substrateGreen p-3 rounded-lg focus:outline-none focus:ring-1 focus:ring-substrateGreen"
+          className="bg-black p-3 rounded-lg opacity-90 hover:opacity-100 focus:outline-none"
         >
           <img
             className={`${

@@ -7,7 +7,7 @@ export default function DocsButton() {
   const intl = useIntl()
   return (
     <LocalizedLink to="/v3/docs/">
-      <button className="flex items-center justify-center bg-black text-white text-sm py-2 w-20 rounded focus:outline-none focus:ring-1 focus:ring-substrateGreen">
+      <button className="flex items-center justify-center bg-black text-white text-sm py-2 w-20 rounded opacity-90 hover:opacity-100 focus:outline-none">
         <img src={docsIcon} alt="Substrate Docs Icon" />
         <span className="pl-2">{intl.formatMessage({ id: 'nav-docs' })}</span>
       </button>

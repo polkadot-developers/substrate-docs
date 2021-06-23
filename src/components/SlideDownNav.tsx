@@ -24,9 +24,7 @@ export default function SlideDownNav({ section }: SlideDownNavProps) {
       >
         <div className="font-medium">{section.name}</div>
         <img
-          className={`transform duration-300 ease-in-out ${
-            isOpen ? '-rotate-180' : null
-          }`}
+          className={`transform ease-in-out ${isOpen ? '-rotate-180' : null}`}
           src={arrowIcon}
           alt="Substrate Documentation Icon"
         />
@@ -35,16 +33,17 @@ export default function SlideDownNav({ section }: SlideDownNavProps) {
         {isOpen &&
           section.items.map((item, index) => {
             return (
-              <div
-                key={index}
-                className={`text-gray-600 text-sm px-20 lg:px-6 py-2 hover:text-substrateBlue hover:bg-substrateBlue hover:bg-opacity-10 ${
-                  item.link === location.pathname
-                    ? `text-substrateBlue bg-substrateBlue bg-opacity-10`
-                    : ` `
-                }`}
-              >
-                <LocalizedLink to={item.link}>{item.title}</LocalizedLink>
-              </div>
+              <LocalizedLink key={index} to={item.link}>
+                <div
+                  className={`text-gray-600 text-sm px-20 lg:px-6 py-2 hover:text-substrateBlue hover:bg-substrateBlue hover:bg-opacity-10 ${
+                    item.link === location.pathname
+                      ? `text-substrateBlue bg-substrateBlue bg-opacity-10`
+                      : ` `
+                  }`}
+                >
+                  {item.title}
+                </div>
+              </LocalizedLink>
             )
           })}
       </div>

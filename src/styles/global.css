@@ -5,10 +5,7 @@
 @tailwind variants;
 
 @layer base {
-  * {
-    scroll-behavior: smooth;
-  }
-
+  
   html {
     @apply bg-white antialiased;
     scroll-behavior: smooth;
@@ -84,7 +81,7 @@
   dl,
   ol,
   ul {
-    @apply mb-0 list-outside;
+    @apply mb-0 ml-2 list-outside;
   }
 
   li {
