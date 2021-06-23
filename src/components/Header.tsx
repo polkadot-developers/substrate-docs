@@ -1,84 +1,163 @@
 import React, { useState, useEffect } from 'react'
-import MobileMenu from './MobileMenu'
+import MobileMenu from './MobileMenus/MobileMenu'
 import DocsButton from './DocsButton'
 import logo from '../images/substrate-logo-light.svg'
 import arrowIcon from '../images/nav-icon-arrow-down.svg'
 import { LocalizedLink, useLocalization } from 'gatsby-theme-i18n'
 import { useIntl } from 'react-intl'
+import LanguageSwitcher from './LanguageSwitcher'
+import TechSubMenu from './SubMenus/TechSubMenu'
+import SubMenu from './SubMenu'
 
 export default function Header() {
   const intl = useIntl()
   const { locale, config } = useLocalization()
-  const [isOpen, setIsOpen] = useState(false)
-  const toggleMenu = () => setIsOpen(!isOpen)
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false)
+  const toggleMenu = () => setIsMobileNavOpen(!isMobileNavOpen)
   const navItems = [
     {
       name: `${intl.formatMessage({ id: 'nav-technology' })}`,
-      link: '#',
       subMenu: [
-        `${intl.formatMessage({ id: 'nav-overview' })}`,
-        `${intl.formatMessage({ id: 'nav-modular' })}`,
-        `${intl.formatMessage({ id: 'nav-scalable' })}`,
-        `${intl.formatMessage({ id: 'nav-interoperable' })}`,
-        `${intl.formatMessage({ id: 'nav-flexible' })}`,
-        `${intl.formatMessage({ id: 'nav-sovereign' })}`,
-        `${intl.formatMessage({ id: 'nav-secure' })}`,
-        `${intl.formatMessage({ id: 'nav-opensource' })}`,
-        `${intl.formatMessage({ id: 'nav-white-papers' })}`,
+        {
+          linkTitle: `${intl.formatMessage({ id: 'nav-overview' })}`,
+          link: `#`,
+        },
+        {
+          linkTitle: `${intl.formatMessage({ id: 'nav-modular' })}`,
+          link: `#`,
+        },
+        {
+          linkTitle: `${intl.formatMessage({ id: 'nav-scalable' })}`,
+          link: `#`,
+        },
+        {
+          linkTitle: `${intl.formatMessage({ id: 'nav-interoperable' })}`,
+          link: `#`,
+        },
+        {
+          linkTitle: `${intl.formatMessage({ id: 'nav-flexible' })}`,
+          link: `#`,
+        },
+        {
+          linkTitle: `${intl.formatMessage({ id: 'nav-sovereign' })}`,
+          link: `#`,
+        },
+        {
+          linkTitle: `${intl.formatMessage({ id: 'nav-secure' })}`,
+          link: `#`,
+        },
       ],
     },
     {
       name: `${intl.formatMessage({ id: 'nav-developers' })}`,
-      link: '#',
       subMenu: [
-        `${intl.formatMessage({ id: 'nav-overview' })}`,
-        `${intl.formatMessage({ id: 'nav-docs' })}`,
-        `${intl.formatMessage({ id: 'nav-how-to-guides' })}`,
-        `${intl.formatMessage({ id: 'nav-tutorials' })}`,
-        `${intl.formatMessage({ id: 'nav-rust-docs' })}`,
-        `${intl.formatMessage({ id: 'nav-marketplace' })}`,
-        `${intl.formatMessage({ id: 'nav-playground' })}`,
-        `${intl.formatMessage({ id: 'nav-light-clients' })}`,
+        {
+          linkTitle: `${intl.formatMessage({ id: 'nav-overview' })}`,
+          link: `#`,
+        },
+        {
+          linkTitle: `${intl.formatMessage({ id: 'nav-docs' })}`,
+          link: `/v3/docs/`,
+        },
+        {
+          linkTitle: `${intl.formatMessage({ id: 'nav-how-to-guides' })}`,
+          link: `/how-to-guides/`,
+        },
+        {
+          linkTitle: `${intl.formatMessage({ id: 'nav-tutorials' })}`,
+          link: `/tutorials/`,
+        },
+        {
+          linkTitle: `${intl.formatMessage({ id: 'nav-rust-docs' })}`,
+          link: `#`,
+        },
+        {
+          linkTitle: `${intl.formatMessage({ id: 'nav-marketplace' })}`,
+          link: `#`,
+        },
+        {
+          linkTitle: `${intl.formatMessage({ id: 'nav-playground' })}`,
+          link: `#`,
+        },
+        {
+          linkTitle: `${intl.formatMessage({ id: 'nav-light-clients' })}`,
+          link: `/light-clients`,
+        },
       ],
     },
     {
       name: `${intl.formatMessage({ id: 'nav-vision' })}`,
-      link: '#',
       subMenu: [
-        `${intl.formatMessage({ id: 'nav-overview' })}`,
-        `${intl.formatMessage({ id: 'nav-web3' })} & ${intl.formatMessage({
-          id: 'nav-substrate',
-        })}`,
-        `${intl.formatMessage({ id: 'nav-substrate' })} & ${intl.formatMessage({
-          id: 'nav-polkadot',
-        })}`,
-        `${intl.formatMessage({ id: 'nav-substrate' })} & ${intl.formatMessage({
-          id: 'nav-ethereum',
-        })}`,
+        {
+          linkTitle: `${intl.formatMessage({ id: 'nav-overview' })}`,
+          link: `#`,
+        },
+        {
+          linkTitle: `${intl.formatMessage({
+            id: 'nav-web3',
+          })} & ${intl.formatMessage({
+            id: 'nav-substrate',
+          })}`,
+          link: `#`,
+        },
+        {
+          linkTitle: `${intl.formatMessage({
+            id: 'nav-substrate',
+          })} & ${intl.formatMessage({
+            id: 'nav-polkadot',
+          })}`,
+          link: `#`,
+        },
+        {
+          linkTitle: `${intl.formatMessage({
+            id: 'nav-substrate',
+          })} & ${intl.formatMessage({
+            id: 'nav-ethereum',
+          })}`,
+          link: `#`,
+        },
       ],
     },
     {
       name: `${intl.formatMessage({ id: 'nav-ecosystem' })}`,
-      link: '#',
       subMenu: [
-        `${intl.formatMessage({ id: 'nav-overview' })}`,
-        `${intl.formatMessage({ id: 'nav-builders' })}`,
-        `${intl.formatMessage({ id: 'nav-opportunities' })}`,
-        `${intl.formatMessage({ id: 'nav-resources' })}`,
-        `${intl.formatMessage({ id: 'nav-connect' })}`,
+        {
+          linkTitle: `${intl.formatMessage({ id: 'nav-overview' })}`,
+          link: `#`,
+        },
+        {
+          linkTitle: `${intl.formatMessage({ id: 'nav-builders' })}`,
+          link: `#`,
+        },
+        {
+          linkTitle: `${intl.formatMessage({ id: 'nav-opportunities' })}`,
+          link: `#`,
+        },
+        {
+          linkTitle: `${intl.formatMessage({ id: 'nav-resources' })}`,
+          link: `#`,
+        },
+        {
+          linkTitle: `${intl.formatMessage({ id: 'nav-connect' })}`,
+          link: `#`,
+        },
       ],
     },
   ]
 
   useEffect(() => {
-    isOpen
+    isMobileNavOpen
       ? (document.body.style.overflow = `hidden`)
       : (document.body.style.overflow = `unset`)
-  }, [isOpen])
+  }, [isMobileNavOpen])
+  const techMenu = navItems[0]
+  const devMenu = navItems[1]
+  const visionMenu = navItems[2]
+  const ecoMenu = navItems[3]
 
   return (
     <header className="sticky top-0 bg-white z-10 border-b border-gray-200">
-      <div className="container px-12">
+      <div className="container lg:px-12">
         <div className="h-24 flex items-center justify-between">
           <div className="w-40">
             <LocalizedLink to="/">
@@ -102,7 +181,7 @@ export default function Header() {
               />
             </svg>
           </div>
-          {isOpen && (
+          {isMobileNavOpen && (
             <MobileMenu
               toggleMenu={toggleMenu}
               navItems={navItems}
@@ -115,16 +194,10 @@ export default function Header() {
           {/* ------------------ */}
           <nav className="hidden lg:flex lg:items-center  w-full">
             <div className="w-2/3 flex justify-evenly">
-              {navItems.map((item, index) => (
-                <div key={index}>
-                  <span className="font-medium">{item.name}</span>
-                  <img
-                    className="inline-block pl-2 pt-1"
-                    src={arrowIcon}
-                    alt="Substrate Navigation Icon"
-                  />
-                </div>
-              ))}
+              <SubMenu menuData={techMenu} />
+              <SubMenu menuData={devMenu} />
+              <SubMenu menuData={visionMenu} />
+              <SubMenu menuData={ecoMenu} />
             </div>
             <div className=" w-1/2 flex items-center justify-end">
               <div className="flex items-center border-b-2 border-gray-300">
@@ -153,12 +226,7 @@ export default function Header() {
               <div className="pl-8">
                 <DocsButton />
               </div>
-              <div className="flex items-center pl-8">
-                <ul className="list-none uppercase">
-                  <li>{locale}</li>
-                </ul>
-                <img className="pl-1" src={arrowIcon} alt="Navigation Arrow" />
-              </div>
+              <LanguageSwitcher currentLang={locale} langConfig={config} />
             </div>
           </nav>
         </div>

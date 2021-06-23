@@ -30,18 +30,22 @@ const BlogTemplate = ({ data }) => {
             />
           </div>
           <article className="lg:px-12 lg:flex-grow lg:border-l lg:border-r lg:border-gray-200">
-            <h1 className="pt-20">{data.mdx.frontmatter.title}</h1>
             <div>
               {data.mdx ? (
-                <MDXRenderer>{data.mdx.body}</MDXRenderer>
+                <div>
+                  <h1 className="pt-20">{data.mdx.frontmatter.title}</h1>
+                  <MDXRenderer>{data.mdx.body}</MDXRenderer>
+                </div>
               ) : (
                 <div>This page hasn&apos;t been translated yet</div>
               )}
             </div>
           </article>
-          <div className="hidden lg:inline-block lg:flex-none">
-            <DocsSideBar headings={data.mdx.headings} />
-          </div>
+          {data.mdx ? (
+            <div className="hidden lg:inline-block lg:flex-none">
+              <DocsSideBar headings={data.mdx.headings} />
+            </div>
+          ) : null}
         </div>
       </div>
 

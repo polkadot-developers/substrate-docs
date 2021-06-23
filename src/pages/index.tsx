@@ -17,7 +17,7 @@ const Index = ({ data }) => {
         <LocalizedLink to="/page-2/">Link to second page</LocalizedLink>
       </p>
       <p>
-        <LocalizedLink to="/page-2/" language="zh">
+        <LocalizedLink to="/page-2/" language="zh-CN">
           Link to second page (german version)
         </LocalizedLink>
       </p>

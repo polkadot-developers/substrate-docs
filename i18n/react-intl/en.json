@@ -11,7 +11,7 @@
   "nav-interoperable": "Interoperable",
   "nav-flexible": "Flexible",
   "nav-sovereign": "Sovereign",
-  "nav-secure": "nav-secure",
+  "nav-secure": "Secure",
   "nav-opensource": "Open Source",
   "nav-white-papers": "White Papers",
   "nav-developers": "Developers",
@@ -33,5 +33,6 @@
   "nav-resources": "Resources",
   "nav-connect": "Connect",
   "nav-overview": "Overview", 
-  "nav-search": "Search"
+  "nav-search": "Search",
+  "nav-language": "Language"
 }
