@@ -75,10 +75,10 @@ export default function DocsNav({
                   className="px-20 lg:px-4 py-4 bg-lightGray lg:bg-white"
                 >
                   <LocalizedLink
-                    className="flex items-center justify-between"
+                    className="flex items-center justify-between hover:no-underline"
                     to={`/${link}`}
                   >
-                    <div className="font-medium">{navItem}</div>
+                    <div className="font-medium text-black">{navItem}</div>
                     <img
                       className="transform -rotate-90"
                       src={arrowIcon}

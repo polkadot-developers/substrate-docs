@@ -35,7 +35,11 @@ export default function coSubMenu({
       <div className="px-6 pt-10">
         {navItems[3].subMenu.map((item, index) => {
           return (
-            <LocalizedLink key={index} to={item.link}>
+            <LocalizedLink
+              className="text-black hover:no-underline"
+              key={index}
+              to={item.link}
+            >
               <div className="pb-6 focus:outline-none focus:bg-substrateBlueBg">
                 <span className="text-lg font-medium">{item.linkTitle}</span>
               </div>

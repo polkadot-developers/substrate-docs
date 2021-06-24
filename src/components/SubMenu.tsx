@@ -39,7 +39,7 @@ export default function SubMenu({ menuData, width }: SubMenuProps) {
               console.log(item)
               return (
                 <LocalizedLink
-                  className="hover:text-substrateBlue"
+                  className="text-black hover:text-substrateBlue"
                   key={index}
                   to={item.link}
                 >

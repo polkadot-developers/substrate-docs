@@ -29,11 +29,11 @@ const BlogTemplate = ({ data }) => {
               templateId={'Knowledgebase'}
             />
           </div>
-          <article className="lg:px-12 lg:flex-grow lg:border-l lg:border-r lg:border-gray-200">
+          <article className="px-4 lg:px-16 lg:flex-grow lg:border-l lg:border-r lg:border-gray-200">
             <div>
               {data.mdx ? (
-                <div>
-                  <h1 className="pt-20">{data.mdx.frontmatter.title}</h1>
+                <div className="pt-10">
+                  <h1>{data.mdx.frontmatter.title}</h1>
                   <MDXRenderer>{data.mdx.body}</MDXRenderer>
                 </div>
               ) : (

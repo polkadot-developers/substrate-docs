@@ -13,13 +13,16 @@ export default function DocsSideBar({ headings }: DocsSideBarProps) {
 
         return item.depth === 2 ? (
           <div key={index} className="py-2">
-            <a href={`#${link}`} className="font-bold">
+            <a
+              href={`#${link}`}
+              className="font-bold text-black hover:no-underline"
+            >
               {item.value}
             </a>
           </div>
         ) : item.depth === 3 ? (
           <div key={index} className="py-1">
-            <a href={`#${link}`} className="pl-4">
+            <a href={`#${link}`} className="pl-4 text-black hover:no-underline">
               {item.value}
             </a>
           </div>
