@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react'
 import MobileMenu from './MobileMenus/MobileMenu'
 import DocsButton from './DocsButton'
 import logo from '../images/substrate-logo-light.svg'
-import arrowIcon from '../images/nav-icon-arrow-down.svg'
 import { LocalizedLink, useLocalization } from 'gatsby-theme-i18n'
 import { useIntl } from 'react-intl'
 import LanguageSwitcher from './LanguageSwitcher'
-import TechSubMenu from './SubMenus/TechSubMenu'
 import SubMenu from './SubMenu'
 
 export default function Header() {
@@ -194,10 +192,10 @@ export default function Header() {
           {/* ------------------ */}
           <nav className="hidden lg:flex lg:items-center  w-full">
             <div className="w-2/3 flex justify-evenly">
-              <SubMenu menuData={techMenu} />
-              <SubMenu menuData={devMenu} />
-              <SubMenu menuData={visionMenu} />
-              <SubMenu menuData={ecoMenu} />
+              <SubMenu menuData={techMenu} width={`w-40`} />
+              <SubMenu menuData={devMenu} width={`w-44`} />
+              <SubMenu menuData={visionMenu} width={`w-60`} />
+              <SubMenu menuData={ecoMenu} width={`w-40`} />
             </div>
             <div className=" w-1/2 flex items-center justify-end">
               <div className="flex items-center border-b-2 border-gray-300">

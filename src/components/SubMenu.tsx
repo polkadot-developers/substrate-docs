@@ -4,9 +4,10 @@ import arrowIcon from '../images/nav-icon-arrow-down.svg'
 
 interface SubMenuProps {
   menuData: { name: string; subMenu: { linkTitle: string; link: string }[] }
+  width?: string
 }
 
-export default function SubMenu({ menuData }: SubMenuProps) {
+export default function SubMenu({ menuData, width }: SubMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
   const { name, subMenu } = menuData
   return (
@@ -23,13 +24,12 @@ export default function SubMenu({ menuData }: SubMenuProps) {
         />
       </button>
       <div
-        className={`
+        className={` ${width}
         ${
           isOpen
             ? `absolute mt-2 -m-1 animate-fade-in-down`
             : 'hidden animate-fade-out'
-        } 
-        ${name === 'Vision' ? 'w-60' : name === 'Developers' ? 'w-44' : null}`}
+        }`}
       >
         <ul className="list-none bg-white px-6 pt-6 rounded-md shadow-lg ring-1 ring-black ring-opacity-40">
           {isOpen &&
