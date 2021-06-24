@@ -3,11 +3,7 @@ title: Getting Started on Windows
 slug: /v3/docs/knowledgebase/getting-started/windows-users
 ---
 
-> NOTE: Native development of substrate is _not_ very well supported! It is _highly_ recommend to
-> use [Windows Subsystem Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) (WSL)
-> and follow the instructions for [Ubuntu/Debian](index#ubuntudebian). 
 
-> Substrate development is easiest on Unix-based operating systems like macOS or Linux. The examples
 in the Substrate [Tutorials](../../../../tutorials) and [Recipes](https://substrate.dev/recipes/)
 use Unix-style terminals to demonstrate how to interact with Substrate from the command line.
 
@@ -27,10 +23,6 @@ If you do decide to try and use a Windows computer to _natively_ build Substrate
 
      - Download from: https://www.rust-lang.org/tools/install.
      - Run the installation file: `rustup-init.exe`.
-
-       > Note that it should **not** prompt you to install `vs_buildtools` since you did it in
-       > step 1.
-
      - Choose "Default Installation."
      - To get started, you need Cargo's bin directory (`%USERPROFILE%\.cargo\bin`) in your PATH
        environment variable. Future applications will automatically have the correct environment,
@@ -48,7 +40,7 @@ If you do decide to try and use a Windows computer to _natively_ build Substrate
 
 5. Install OpenSSL with `vcpkg` using PowerShell:
 
-   ```bash
+   ```powershell
    mkdir C:\Tools
    cd C:\Tools
    git clone https://github.com/Microsoft/vcpkg.git --depth=1

@@ -29,7 +29,7 @@ const BlogTemplate = ({ data }) => {
               templateId={'Knowledgebase'}
             />
           </div>
-          <article className="px-4 lg:px-16 lg:flex-grow lg:border-l lg:border-r lg:border-gray-200">
+          <article className="px-4 break-normal whitespace-pre overflow-x-scroll lg:px-16 lg:flex-grow lg:border-l lg:border-r lg:border-gray-200">
             <div>
               {data.mdx ? (
                 <div className="pt-10">

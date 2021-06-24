@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { ReactChildren } from 'react'
 import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-const SEO = ({ description, title, children }) => {
+interface SEOProps {
+  description?: string
+  title?: string
+  children?: ReactChildren
+}
+
+const SEO = ({ description, title, children }: SEOProps) => {
   const { site } = useStaticQuery(
     graphql`
       query {

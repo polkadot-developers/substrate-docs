@@ -33,7 +33,11 @@ export default function SlideDownNav({ section }: SlideDownNavProps) {
         {isOpen &&
           section.items.map((item, index) => {
             return (
-              <LocalizedLink key={index} to={item.link}>
+              <LocalizedLink
+                className="hover:no-underline"
+                key={index}
+                to={item.link}
+              >
                 <div
                   className={`text-gray-600 text-sm px-20 lg:px-6 py-2 hover:text-substrateBlue hover:bg-substrateBlue hover:bg-opacity-10 ${
                     item.link === location.pathname
