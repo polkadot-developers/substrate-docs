@@ -50,7 +50,7 @@ const MobileMenu = ({
         </div>
       </div>
       <div className="bg-white h-screen z-20">
-        <div className="mt-12">
+        <div className="py-8">
           {navItems.map((item, index: number) => {
             return (
               <div

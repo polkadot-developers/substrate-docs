@@ -14,7 +14,7 @@ const BlogTemplate = ({ data }) => {
     <Layout>
       <SEO title={data.mdx ? data.mdx.frontmatter.title : null} />
       <div className="mb-24">
-        <div className="lg:container lg:flex">
+        <div className="flex flex-col lg:container lg:flex-row">
           <div className="lg:hidden">
             <DocsNavMobile
               sideNav={kbSideBar}

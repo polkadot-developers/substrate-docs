@@ -155,7 +155,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 bg-white z-10 border-b border-gray-200">
-      <div className="container lg:px-12">
+      <div className="container xl:px-12">
         <div className="h-24 flex items-center justify-between">
           <div className="w-40">
             <LocalizedLink to="/">
