@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { LocalizedLink } from 'gatsby-theme-i18n'
 import arrowIcon from '../images/nav-icon-arrow-down.svg'
+import useComponentVisible from './Hooks/use-component-visible'
 
 interface SubMenuProps {
   menuData: { name: string; subMenu: { linkTitle: string; link: string }[] }
@@ -8,12 +9,13 @@ interface SubMenuProps {
 }
 
 export default function SubMenu({ menuData, width }: SubMenuProps) {
-  const [isOpen, setIsOpen] = useState(false)
+  const { ref, isComponentVisible, setIsComponentVisible } =
+    useComponentVisible(false)
   const { name, subMenu } = menuData
   return (
-    <div className="relative">
+    <div className="relative" ref={ref}>
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => setIsComponentVisible(!isComponentVisible)}
         className="opacity-90 hover:opacity-100 focus:outline-none"
       >
         <span className="font-medium">{name}</span>
@@ -26,13 +28,13 @@ export default function SubMenu({ menuData, width }: SubMenuProps) {
       <div
         className={` ${width}
         ${
-          isOpen
+          isComponentVisible
             ? `absolute mt-2 -m-1 animate-fade-in-down`
             : 'hidden animate-fade-out'
         }`}
       >
         <ul className="list-none bg-white px-6 pt-6 rounded-md shadow-lg ring-1 ring-black ring-opacity-40">
-          {isOpen &&
+          {isComponentVisible &&
             subMenu.map((item, index) => {
               console.log(item)
               return (

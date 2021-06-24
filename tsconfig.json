@@ -9,6 +9,7 @@
       "isolatedModules": true,
       "esModuleInterop": true,
       "noUnusedLocals": false,
+      "strictNullChecks": false,
       "resolveJsonModule": true
     },
     "include": ["**/*.ts", "**/*.tsx", "decs.d.ts"],
