@@ -46,6 +46,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       component: kbTemplate,
       context: {
         slug: `${node.frontmatter.slug}`,
+        version: `3.0`,
       },
     })
   })
@@ -57,6 +58,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       component: kbTemplate,
       context: {
         slug: `${node.frontmatter.slug}`,
+        version: `4.0`,
       },
     })
   })

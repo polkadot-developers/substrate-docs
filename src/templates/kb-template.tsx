@@ -8,8 +8,10 @@ import { globalDocsNav } from '../sidebar/globalDocsNav'
 import DocsNavMobile from '../components/DocsNavMobile'
 import DocsSideBar from '../components/DocsSideBar'
 import DocsNav from '../components/DocsNav'
+import VersionControl from '../components/VersionControl'
 
-const BlogTemplate = ({ data }) => {
+const BlogTemplate = ({ data, pageContext }) => {
+  const { slug, version } = pageContext
   return (
     <Layout>
       <SEO title={data.mdx ? data.mdx.frontmatter.title : null} />
@@ -33,6 +35,7 @@ const BlogTemplate = ({ data }) => {
             <div>
               {data.mdx ? (
                 <div className="pt-10">
+                  <VersionControl version={version} slug={slug} />
                   <h1>{data.mdx.frontmatter.title}</h1>
                   <MDXRenderer>{data.mdx.body}</MDXRenderer>
                 </div>

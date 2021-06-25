@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import Prism from 'prism-react-renderer/prism'
-import copyIcon from '../images/copy-icon.svg'
 import theme from 'prism-react-renderer/themes/dracula'
 ;(typeof global !== 'undefined' ? global : window).Prism = Prism
 require('prismjs/components/prism-rust')
