@@ -23,7 +23,7 @@ const config = {
   colors: ['#26E0A2', '#4E73F2', '#000000'],
 }
 
-const ConfettiWrapper = props => (
+const ConfettiWrapper = (props: any) => (
   <div className="absolute right-0 bottom-0" {...props} />
 )
 

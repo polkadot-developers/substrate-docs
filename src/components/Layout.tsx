@@ -1,13 +1,21 @@
 import * as React from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import { MdxLink } from 'gatsby-theme-i18n'
-import Message from '../components/Docs/Message'
+import {
+  Message,
+  PreviousButton,
+  NextButton,
+  RelatedMaterialBlock,
+} from './Docs'
 import Header from './Header'
 import Footer from './Footer'
 
 const components = {
   a: MdxLink,
   Message,
+  PreviousButton,
+  NextButton,
+  RelatedMaterialBlock,
 }
 
 const Layout = ({ children }) => {

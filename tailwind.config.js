@@ -30,6 +30,7 @@ module.exports = {
         mdxYellow: '#FFEED6',
         mdxGreen: '#D6FACA',
         mdxRed: '#FFE1D9',
+        mdxLightBg: '#FAFBFC',
         lightGray: '#FAFAFA',
         parityPink: '#FF1864',
         parityRed: '#CC1350',

@@ -11,8 +11,14 @@ const Index = ({ data }) => {
   return (
     <Layout>
       <SEO title="Home" />
-      <h1 className="mt-28">{intl.formatMessage({ id: 'helloWorld' })}</h1>
-      <p>This is in the Index page.</p>
+      <div className="mt-80 container flex justify-center items-center">
+        <span className="mt-28 text-8xl">
+          {intl.formatMessage({ id: 'helloSubstrate' })}
+        </span>
+        <span className="mt-28 text-8xl animate-pulse">!!!</span>
+      </div>
+
+      {/* <p>This is in the Index page.</p>
       <p>
         <LocalizedLink to="/page-2/">Link to second page</LocalizedLink>
       </p>
@@ -36,7 +42,7 @@ const Index = ({ data }) => {
         ))}
       </ul>
       <h2>Overview of languages</h2>
-      <LocalesList />
+      <LocalesList /> */}
     </Layout>
   )
 }

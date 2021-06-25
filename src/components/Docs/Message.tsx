@@ -7,7 +7,7 @@ interface MessageProps {
   text: string
 }
 
-export default function Message({ type, text }: MessageProps) {
+export function Message({ type, text }: MessageProps) {
   return (
     <div
       className={`px-4 pb-2 mb-8 border-t-8 rounded-lg ${

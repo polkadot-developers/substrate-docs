@@ -111,6 +111,6 @@
 
   /* Anchors */
   a {
-    @apply cursor-pointer text-substrateBlue hover:underline;
+    @apply cursor-pointer text-substrateBlue;
   }
 }
