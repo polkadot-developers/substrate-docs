@@ -5,11 +5,28 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   const result = await graphql(`
     {
-      blog: allFile(filter: { sourceInstanceName: { eq: "kb" } }) {
+      docsV3: allFile(
+        filter: { sourceInstanceName: { eq: "kbV3" } }
+        sort: { order: DESC, fields: id }
+      ) {
         nodes {
           childMdx {
             frontmatter {
               slug
+              id
+            }
+          }
+        }
+      }
+      docsV4: allFile(
+        filter: { sourceInstanceName: { eq: "kbV4" } }
+        sort: { order: DESC, fields: id }
+      ) {
+        nodes {
+          childMdx {
+            frontmatter {
+              slug
+              id
             }
           }
         }
@@ -22,9 +39,19 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return
   }
 
-  const allKBDocs = result.data.blog.nodes
+  const allV3 = result.data.docsV3.nodes
+  allV3.forEach(({ childMdx: node }) => {
+    createPage({
+      path: `${node.frontmatter.slug}`,
+      component: kbTemplate,
+      context: {
+        slug: `${node.frontmatter.slug}`,
+      },
+    })
+  })
 
-  allKBDocs.forEach(({ childMdx: node }) => {
+  const allV4 = result.data.docsV4.nodes
+  allV4.forEach(({ childMdx: node }) => {
     createPage({
       path: `${node.frontmatter.slug}`,
       component: kbTemplate,

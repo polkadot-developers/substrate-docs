@@ -14,7 +14,7 @@ const BlogTemplate = ({ data }) => {
     <Layout>
       <SEO title={data.mdx ? data.mdx.frontmatter.title : null} />
       <div className="mb-24">
-        <div className="flex flex-col lg:container lg:flex-row">
+        <div className="flex flex-col lg:container lg:flex-row ">
           <div className="lg:hidden">
             <DocsNavMobile
               sideNav={kbSideBar}
@@ -29,7 +29,7 @@ const BlogTemplate = ({ data }) => {
               templateId={'Knowledgebase'}
             />
           </div>
-          <article className="px-4 break-normal whitespace-pre overflow-x-scroll lg:px-16 lg:flex-grow lg:border-l lg:border-r lg:border-gray-200">
+          <article className="markdown-body px-4 lg:px-16 lg:flex-grow lg:border-l lg:border-r lg:border-gray-200">
             <div>
               {data.mdx ? (
                 <div className="pt-10">

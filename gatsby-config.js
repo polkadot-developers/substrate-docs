@@ -45,8 +45,15 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/docs/v3/knowledgebase`,
-        name: `kb`,
+        path: `${__dirname}/v3/docs`,
+        name: `kbV3`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/v4/docs`,
+        name: `kbV4`,
       },
     },
     // {

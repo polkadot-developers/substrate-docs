@@ -26,7 +26,7 @@ export default function DocsNav({
   return (
     <nav
       className={`bg-lightGray w-screen overflow-y-auto ${
-        isOpen ? 'absolute top-24 h-screen overflow-y-auto' : null
+        isOpen ? 'absolute top-24 h-screen overflow-y-auto z-10' : null
       }`}
     >
       <div
