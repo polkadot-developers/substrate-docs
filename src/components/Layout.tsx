@@ -18,7 +18,11 @@ const components = {
   RelatedMaterialBlock,
 }
 
-const Layout = ({ children }) => {
+interface LayoutProps {
+  children: HTMLElement
+}
+
+const Layout = ({ children }: LayoutProps) => {
   return (
     <React.Fragment>
       <Header />
