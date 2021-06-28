@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import MobileMenu from './MobileMenus/MobileMenu'
 import DocsButton from './DocsButton'
-import logo from '../images/substrate-logo-light.svg'
+import logoBlack from '../images/substrate-logo-light.svg'
+import logoWhite from '../images/substrate-logo-dark.svg'
 import { LocalizedLink, useLocalization } from 'gatsby-theme-i18n'
 import { useIntl } from 'react-intl'
 import LanguageSwitcher from './LanguageSwitcher'
 import SubMenu from './SubMenu'
+import ThemeToggle from './ThemeToggle'
 
 export default function Header() {
   const intl = useIntl()
@@ -142,45 +144,62 @@ export default function Header() {
       ],
     },
   ]
-
+  const techMenu = navItems[0]
+  const devMenu = navItems[1]
+  const visionMenu = navItems[2]
+  const ecoMenu = navItems[3]
   useEffect(() => {
     isMobileNavOpen
       ? (document.body.style.overflow = `hidden`)
       : (document.body.style.overflow = `unset`)
   }, [isMobileNavOpen])
-  const techMenu = navItems[0]
-  const devMenu = navItems[1]
-  const visionMenu = navItems[2]
-  const ecoMenu = navItems[3]
 
+  const [theme, setTheme] = useState<string>('')
+  useEffect(() => {
+    if (
+      localStorage.theme === 'dark' ||
+      (!('theme' in localStorage) &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      document.documentElement.classList.add('dark')
+      localStorage.theme = 'dark'
+      setTheme('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+      setTheme('light')
+    }
+  }, [])
   return (
-    <header className="sticky top-0 bg-white z-10 border-b border-gray-200">
+    <header className="sticky top-0 z-10 border-b bg-white dark:bg-black border-gray-200 dark:border-gray-700">
       <div className="container xl:px-12">
         <div className="h-24 flex items-center justify-between">
-          <div className="w-40">
+          <div className="w-40 relative">
             <LocalizedLink to="/">
-              <img src={logo} alt="Substrate Logo" />
+              {theme === 'light' ? (
+                <img src={logoBlack} alt="Substrate Logo" />
+              ) : (
+                <img src={logoWhite} alt="Substrate Logo" />
+              )}
             </LocalizedLink>
+            <ThemeToggle theme={theme} setTheme={setTheme} />
           </div>
           {/* ------------------ */}
           {/* Mobile Navigation */}
           {/* ------------------ */}
           <div className="lg:hidden" onClick={() => toggleMenu()}>
             <svg
+              className="fill-current text-black dark:text-white"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="16"
               viewBox="0 0 24 16"
-              fill="none"
             >
-              <path
-                d="M0 14.6667C0 15.403 0.596954 16 1.33333 16H22.6667C23.403 16 24 15.403 24 14.6667C24 13.9303 23.403 13.3333 22.6667 13.3333H1.33333C0.596954 13.3333 0 13.9303 0 14.6667ZM0 8C0 8.73638 0.596954 9.33333 1.33333 9.33333H22.6667C23.403 9.33333 24 8.73638 24 8C24 7.26362 23.403 6.66667 22.6667 6.66667H1.33333C0.596954 6.66667 0 7.26362 0 8ZM1.33333 0C0.596954 0 0 0.596954 0 1.33333C0 2.06971 0.596954 2.66667 1.33333 2.66667H22.6667C23.403 2.66667 24 2.06971 24 1.33333C24 0.596954 23.403 0 22.6667 0H1.33333Z"
-                fill="black"
-              />
+              <path d="M0 14.6667C0 15.403 0.596954 16 1.33333 16H22.6667C23.403 16 24 15.403 24 14.6667C24 13.9303 23.403 13.3333 22.6667 13.3333H1.33333C0.596954 13.3333 0 13.9303 0 14.6667ZM0 8C0 8.73638 0.596954 9.33333 1.33333 9.33333H22.6667C23.403 9.33333 24 8.73638 24 8C24 7.26362 23.403 6.66667 22.6667 6.66667H1.33333C0.596954 6.66667 0 7.26362 0 8ZM1.33333 0C0.596954 0 0 0.596954 0 1.33333C0 2.06971 0.596954 2.66667 1.33333 2.66667H22.6667C23.403 2.66667 24 2.06971 24 1.33333C24 0.596954 23.403 0 22.6667 0H1.33333Z" />
             </svg>
           </div>
           {isMobileNavOpen && (
             <MobileMenu
+              theme={theme}
               toggleMenu={toggleMenu}
               navItems={navItems}
               currentLang={locale}
@@ -200,7 +219,7 @@ export default function Header() {
             <div className=" w-1/2 flex items-center justify-end">
               <div className="flex items-center border-b-2 border-gray-300">
                 <input
-                  className=" text-normal focus:outline-none"
+                  className=" text-normal dark:bg-black focus:outline-none"
                   type="search"
                   name="search"
                   placeholder="Search Docs"

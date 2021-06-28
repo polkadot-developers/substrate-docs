@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
 import { LocalizedLink } from 'gatsby-theme-i18n'
 import LanguageSwitcher from '../LanguageSwitcher'
-import TechSubMenu from './TechSubMenu'
-import DevSubMenu from './DevSubMenu'
-import VisionSubMenu from './VisionSubMenu'
-import EcoSubMenu from './EcoSubMenu'
-import logo from '../../images/substrate-logo-light.svg'
-import arrowIcon from '../../images/nav-icon-arrow.svg'
-import closeIcon from '../../images/close-icon.svg'
+import MobileSubMenu from './MobileSubMenu'
+import logoBlack from '../../images/substrate-logo-light.svg'
+import logoWhite from '../../images/substrate-logo-dark.svg'
 
 interface MobileMenuProps {
+  theme: string
   toggleMenu: () => void
   navItems: { name: string; subMenu: { linkTitle: string; link: string }[] }[]
   currentLang: string
@@ -24,6 +21,7 @@ interface MobileMenuProps {
 }
 
 const MobileMenu = ({
+  theme,
   toggleMenu,
   navItems,
   currentLang,
@@ -33,36 +31,47 @@ const MobileMenu = ({
   const [isDevMenuOpen, setIsDevMenuOpen] = useState(false)
   const [isVisionMenuOpen, setIsVisionMenuOpen] = useState(false)
   const [isEcoMenuOpen, setIsEcoMenuOpen] = useState(false)
-  console.log(isTechMenuOpen)
-  console.log(currentLang)
+
   return (
-    <nav className="lg:hidden absolute inset-0 bg-white z-10 animate-fade-in-right">
+    <nav className="lg:hidden absolute inset-0 bg-white dark:bg-black z-10 animate-fade-in-right">
       <div className="h-24 px-4 flex items-center justify-between">
         <div>
           <div className="w-40">
             <LocalizedLink to="/">
-              <img src={logo} alt="Substrate Logo" />
+              {theme === 'light' ? (
+                <img src={logoBlack} alt="Substrate Logo" />
+              ) : (
+                <img src={logoWhite} alt="Substrate Logo" />
+              )}
             </LocalizedLink>
           </div>
         </div>
         <div onClick={() => toggleMenu()} className="h-auto">
-          <img src={closeIcon} alt="Substrate Menu Close Icon" />
+          <svg
+            className="fill-current text-Black dark:text-white"
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M18.9929 3.02143C19.5491 2.4652 19.5491 1.56337 18.9929 1.00714C18.4366 0.450913 17.5348 0.450913 16.9786 1.00714L10 7.98571L3.02143 1.00714C2.4652 0.450912 1.56337 0.450913 1.00714 1.00714C0.450913 1.56337 0.450913 2.4652 1.00714 3.02143L7.98571 10L1.00714 16.9786C0.450912 17.5348 0.450913 18.4366 1.00714 18.9929C1.56337 19.5491 2.4652 19.5491 3.02143 18.9929L10 12.0143L16.9786 18.9929C17.5348 19.5491 18.4366 19.5491 18.9929 18.9929C19.5491 18.4366 19.5491 17.5348 18.9929 16.9786L12.0143 10L18.9929 3.02143Z" />
+          </svg>
         </div>
       </div>
-      <div className="bg-white h-screen z-20">
+      <div className="bg-white dark:bg-black h-screen z-20">
         <div className="py-8">
           {navItems.map((item, index: number) => {
             return (
               <div
                 key={index}
                 onClick={() => {
-                  item.name === 'Technology'
+                  index === 0
                     ? setIsTechMenuOpen(!isTechMenuOpen)
-                    : item.name === 'Vision'
+                    : index === 2
                     ? setIsVisionMenuOpen(!isVisionMenuOpen)
-                    : item.name === 'Developers'
+                    : index === 1
                     ? setIsDevMenuOpen(!isDevMenuOpen)
-                    : item.name === 'Ecosystem'
+                    : index === 3
                     ? setIsEcoMenuOpen(!isEcoMenuOpen)
                     : null
                 }}
@@ -70,7 +79,20 @@ const MobileMenu = ({
               >
                 <div className="px-4 flex items-center justify-between focus:outline-none">
                   <div className="text-2xl">{item.name}</div>
-                  <img src={arrowIcon} alt="Navigation Arrow" />
+                  <svg
+                    className="fill-current text-black dark:text-white"
+                    width="7"
+                    height="13"
+                    viewBox="0 0 7 13"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 12L6 6.5L1 1"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </div>
               </div>
             )
@@ -78,7 +100,7 @@ const MobileMenu = ({
         </div>
         <div className="pt-2 mx-4 flex justify-between border-b-2 border-gray-300">
           <input
-            className="h-10 text-normal focus:outline-none"
+            className="h-10 dark:bg-black text-normal focus:outline-none"
             type="search"
             name="search"
             placeholder="Search Docs"
@@ -102,31 +124,31 @@ const MobileMenu = ({
         <LanguageSwitcher currentLang={currentLang} langConfig={langConfig} />
       </div>
       {isTechMenuOpen && (
-        <TechSubMenu
+        <MobileSubMenu
           toggleMobileNav={toggleMenu}
           toggleSubMenu={() => setIsTechMenuOpen(!isTechMenuOpen)}
-          navItems={navItems}
+          navItem={navItems[0]}
         />
       )}
       {isDevMenuOpen && (
-        <DevSubMenu
+        <MobileSubMenu
           toggleMobileNav={toggleMenu}
           toggleSubMenu={() => setIsDevMenuOpen(!isDevMenuOpen)}
-          navItems={navItems}
+          navItem={navItems[1]}
         />
       )}
       {isVisionMenuOpen && (
-        <VisionSubMenu
+        <MobileSubMenu
           toggleMobileNav={toggleMenu}
           toggleSubMenu={() => setIsVisionMenuOpen(!isVisionMenuOpen)}
-          navItems={navItems}
+          navItem={navItems[2]}
         />
       )}
       {isEcoMenuOpen && (
-        <EcoSubMenu
+        <MobileSubMenu
           toggleMobileNav={toggleMenu}
           toggleSubMenu={() => setIsEcoMenuOpen(!isEcoMenuOpen)}
-          navItems={navItems}
+          navItem={navItems[3]}
         />
       )}
     </nav>

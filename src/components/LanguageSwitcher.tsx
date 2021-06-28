@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { LocalizedLink } from 'gatsby-theme-i18n'
-import arrowIcon from '../images/nav-icon-arrow-down.svg'
 
 interface LanguageSwitcherProps {
   currentLang: string
@@ -48,7 +47,7 @@ export default function LanguageSwitcher({
           <div
             className={`${
               isMenuOpen
-                ? 'absolute -ml-1 w-20 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-40'
+                ? 'absolute -ml-1 w-20 bg-white dark:bg-black rounded-md shadow-lg ring-1 ring-black dark:ring-white ring-opacity-40'
                 : 'hidden'
             }`}
           >
@@ -59,7 +58,7 @@ export default function LanguageSwitcher({
                   to={currentLink}
                   language={lang.code}
                 >
-                  <div className="my-2 mx-4 hover:text-substrateBlue">
+                  <div className="my-2 mx-4 text-black dark:text-white hover:text-substrateBlue dark:hover:text-substrateGreen">
                     {lang.code}
                   </div>
                 </LocalizedLink>
@@ -67,7 +66,31 @@ export default function LanguageSwitcher({
             })}
           </div>
         </div>
-        <img src={arrowIcon} alt="Navigation Arrow" />
+        <svg
+          className="fill-current text-black dark:text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="-5 -8 24 24"
+          width="16"
+          height="16"
+          preserveAspectRatio="xMinYMin"
+        >
+          <path d="M7.071 5.314l4.95-4.95a1 1 0 1 1 1.414 1.414L7.778 7.435a1 1 0 0 1-1.414 0L.707 1.778A1 1 0 1 1 2.121.364l4.95 4.95z"></path>
+        </svg>
+        {/* <svg
+          className="fill-current text-black dark:text-white"
+          width="11"
+          height="6"
+          viewBox="0 0 11 6"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0.839844 1L5.33984 5L9.83984 1"
+            stroke="black"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg> */}
       </div>
     </div>
   )

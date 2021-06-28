@@ -9,24 +9,6 @@ require('prismjs/components/prism-solidity')
 require('prismjs/components/prism-bash')
 require('prismjs/components/prism-powershell')
 
-const config = {
-  angle: 90,
-  spread: 360,
-  startVelocity: 40,
-  elementCount: 70,
-  dragFriction: 0.12,
-  duration: 3000,
-  stagger: 3,
-  width: '10px',
-  height: '10px',
-  perspective: '500px',
-  colors: ['#26E0A2', '#4E73F2', '#000000'],
-}
-
-const ConfettiWrapper = (props: any) => (
-  <div className="absolute right-0 bottom-0" {...props} />
-)
-
 const Code = ({ codeString, language }: any) => {
   const [isCopied, setIsCopied] = useState(false)
   const copyToClipboard = (str: string) => {
@@ -63,7 +45,7 @@ const Code = ({ codeString, language }: any) => {
                 >
                   <div className="flex items-center px-4 py-1 rounded-t bg-substrateGreen">
                     <div className="pr-2 font-body text-black text-xs uppercase tracking-tight">
-                      {isCopied ? '🎉 Copied!' : 'Copy'}
+                      {isCopied ? 'Copied!' : 'Copy'}
                     </div>
                     <svg
                       width="10"
@@ -79,9 +61,6 @@ const Code = ({ codeString, language }: any) => {
                     </svg>
                   </div>
                 </button>
-                <ConfettiWrapper>
-                  <Confetti active={isCopied} config={config} />
-                </ConfettiWrapper>
                 {tokens.map((line, i) => (
                   <div key={i}>
                     <div {...getLineProps({ line, key: i })}>

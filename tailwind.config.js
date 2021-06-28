@@ -1,6 +1,7 @@
 module.exports = {
+  mode: 'jit',
+  darkMode: 'class', // or 'media' or 'class'
   purge: ['./src/**/*.js', './src/**/*.jsx', './src/**/*.ts', './src/**/*.tsx'],
-  darkMode: false, // or 'media' or 'class'
   theme: {
     container: {
       center: true,
@@ -31,6 +32,7 @@ module.exports = {
         mdxGreen: '#D6FACA',
         mdxRed: '#FFE1D9',
         mdxLightBg: '#FAFBFC',
+        bgDark: '#20292A',
         lightGray: '#FAFAFA',
         parityPink: '#FF1864',
         parityRed: '#CC1350',

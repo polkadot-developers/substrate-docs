@@ -6,7 +6,7 @@ import {
   PreviousButton,
   NextButton,
   RelatedMaterialBlock,
-} from './Docs'
+} from './DocsComponents'
 import Header from './Header'
 import Footer from './Footer'
 

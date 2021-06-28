@@ -31,7 +31,7 @@ const BlogTemplate = ({ data, pageContext }) => {
               templateId={'Knowledgebase'}
             />
           </div>
-          <article className="markdown-body px-4 lg:px-16 lg:flex-grow lg:border-l lg:border-r lg:border-gray-200">
+          <article className="markdown-body px-4 lg:px-16 lg:flex-grow lg:border-l lg:border-r lg:border-gray-200 dark:lg:border-gray-700">
             <div>
               {data.mdx ? (
                 <div className="pt-10">

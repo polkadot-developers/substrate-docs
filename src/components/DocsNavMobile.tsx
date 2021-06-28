@@ -25,19 +25,19 @@ export default function DocsNav({
 
   return (
     <nav
-      className={`bg-lightGray w-screen overflow-y-auto ${
+      className={`bg-lightGray dark:bg-gray-900 w-screen overflow-y-auto ${
         isOpen ? 'absolute top-24 h-screen overflow-y-auto z-10' : null
       }`}
     >
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="flex justify-center items-center py-4 border-t border-b border-gray-200"
+        className="flex justify-center items-center py-4 border-t border-b border-gray-200 dark:border-gray-700"
       >
         <svg
+          className="fill-current text-substrateGreen"
           width="16"
           height="20"
           viewBox="0 0 16 20"
-          fill="#26E0A2"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path d="M4.30679 15C3.96693 15 3.69141 15.2798 3.69141 15.625C3.69141 15.9702 3.96693 16.25 4.30679 16.25H6.76832C7.1082 16.25 7.38371 15.9702 7.38371 15.625C7.38371 15.2798 7.1082 15 6.76832 15H4.30679Z" />
@@ -48,13 +48,18 @@ export default function DocsNav({
         <span className="pl-2 font-bold">
           {intl.formatMessage({ id: 'nav-docs' })}
         </span>
-        <img
-          className={`transform duration-300 ease-in-out ml-2 ${
-            isOpen ? null : '-rotate-180'
+        <svg
+          className={`ml-2 fill-current text-black dark:text-white transform ${
+            isOpen ? null : 'rotate-180'
           }`}
-          src={arrowIcon}
-          alt="Substrate Documentation Icon"
-        />
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="-5 -8 24 24"
+          width="16"
+          height="16"
+          preserveAspectRatio="xMinYMin"
+        >
+          <path d="M7.071 5.314l4.95-4.95a1 1 0 1 1 1.414 1.414L7.778 7.435a1 1 0 0 1-1.414 0L.707 1.778A1 1 0 1 1 2.121.364l4.95 4.95z"></path>
+        </svg>
       </div>
       <div>
         {isOpen &&
@@ -66,7 +71,7 @@ export default function DocsNav({
         {isOpen && (
           <>
             <hr className="mt-6" />
-            <div className="flex items-center justify-between px-20 py-4 bg-lightGray">
+            <div className="flex items-center justify-between px-20 py-4 bg-lightGray dark:bg-gray-900">
               <div className="font-light">More Ways to Learn</div>
             </div>
             {globalNav
@@ -75,14 +80,19 @@ export default function DocsNav({
                 return (
                   <div
                     key={index}
-                    className="flex items-center justify-between px-20 py-4 bg-lightGray"
+                    className="flex items-center justify-between px-20 py-4 bg-lightGray dark:bg-gray-900"
                   >
                     <div className="font-medium">{navItem}</div>
-                    <img
-                      className="transform -rotate-90"
-                      src={arrowIcon}
-                      alt="Substrate Documentation Icon"
-                    />
+                    <svg
+                      className={`fill-current text-black dark:text-white transform -rotate-90`}
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="-5 -8 24 24"
+                      width="16"
+                      height="16"
+                      preserveAspectRatio="xMinYMin"
+                    >
+                      <path d="M7.071 5.314l4.95-4.95a1 1 0 1 1 1.414 1.414L7.778 7.435a1 1 0 0 1-1.414 0L.707 1.778A1 1 0 1 1 2.121.364l4.95 4.95z"></path>
+                    </svg>
                   </div>
                 )
               })}
