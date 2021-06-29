@@ -8,6 +8,7 @@ import DocsNavMobile from '../components/DocsNavMobile'
 import DocsSideBar from '../components/DocsSideBar'
 import DocsNav from '../components/DocsNav'
 import VersionControl from '../components/VersionControl'
+import Message from '../components/DocsComponents/Message'
 
 const DocsTemplate = ({ data, pageContext }) => {
   const { slug, version } = pageContext
@@ -111,7 +112,19 @@ const DocsTemplate = ({ data, pageContext }) => {
                   <MDXRenderer>{data.mdx.body}</MDXRenderer>
                 </div>
               ) : (
-                <div>This page hasn&apos;t been translated yet</div>
+                <div>
+                  <h4>
+                    This page has not been translated yet. If you can help
+                    translate the documentation here into another language,
+                    please go to Crowdin and pick a language to get started.
+                    ##LINK HELPFUL DOC##
+                  </h4>
+                  <div className="pt-10">
+                    <VersionControl version={version} slug={slug} />
+                    <h1>{data.englishVersion.frontmatter.title}</h1>
+                    <MDXRenderer>{data.englishVersion.body}</MDXRenderer>
+                  </div>
+                </div>
               )}
             </div>
           </article>
@@ -119,7 +132,11 @@ const DocsTemplate = ({ data, pageContext }) => {
             <div className="hidden lg:inline-block lg:flex-none">
               <DocsSideBar headings={data.mdx.headings} />
             </div>
-          ) : null}
+          ) : (
+            <div className="hidden lg:inline-block lg:flex-none">
+              <DocsSideBar headings={data.englishVersion.headings} />
+            </div>
+          )}
         </div>
       </div>
 
@@ -135,6 +152,20 @@ export const query = graphql`
   query ($locale: String!, $slug: String!) {
     mdx(
       fields: { locale: { eq: $locale } }
+      frontmatter: { slug: { eq: $slug } }
+    ) {
+      frontmatter {
+        slug
+        title
+      }
+      body
+      headings {
+        value
+        depth
+      }
+    }
+    englishVersion: mdx(
+      fields: { locale: { eq: "en" } }
       frontmatter: { slug: { eq: $slug } }
     ) {
       frontmatter {
