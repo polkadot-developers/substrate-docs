@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-import arrowIcon from '../images/nav-icon-arrow-down.svg'
 import SlideDownNav from './SlideDownNav'
 
 interface DocsNavMobileProps {

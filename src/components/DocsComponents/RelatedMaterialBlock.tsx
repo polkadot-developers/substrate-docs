@@ -17,7 +17,7 @@ export function RelatedMaterialBlock({
   return (
     <>
       <div className="flex flex-wrap justify-start">
-        <div className="bg-mdxLightBg p-4 m-4 w-80 h-40 border border-black rounded">
+        <div className="bg-mdxLightBg dark:bg-gray-300 dark:text-black p-4 m-4 w-80 h-40 border border-black dark:border-white rounded">
           <span className="text-lg font-medium">{title}</span>
           <p className="text-base font-light py-2">{text}</p>
           <div>
@@ -27,7 +27,7 @@ export function RelatedMaterialBlock({
             </LocalizedLink>
           </div>
         </div>
-        <div className="bg-mdxLightBg p-4 m-4 w-80 h-40 border border-black rounded">
+        <div className="bg-mdxLightBg dark:bg-gray-300 dark:text-black p-4 m-4 w-80 h-40 border border-black dark:border-white rounded">
           <span className="text-lg font-medium">Pallets</span>
           <p className="text-base font-light py-2">{text}</p>
           <div>
