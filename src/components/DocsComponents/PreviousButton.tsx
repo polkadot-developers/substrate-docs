@@ -1,6 +1,5 @@
 import React from 'react'
 import { LocalizedLink } from 'gatsby-theme-i18n'
-import arrow from '../../images/previous-arrow.svg'
 
 interface PreviousButtonProps {
   text: string

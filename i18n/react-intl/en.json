@@ -35,5 +35,11 @@
   "nav-connect": "Connect",
   "nav-overview": "Overview", 
   "nav-search": "Search",
-  "nav-language": "Language"
+  "nav-language": "Language",
+  
+  "docs-nav-knowledgebase": "Knowledgebase",
+  "docs-nav-tutorials": "Tutorials",
+  "docs-nav-htg": "How-To-Guides",
+  "docs-nav-rustdocs": "Rust Docs",
+  "docs-nav-learningtracks": "Learning Tracks"
 }
