@@ -35,5 +35,27 @@
   "nav-connect": "连接",
   "nav-overview": "概览",
   "nav-search": "搜索",
-  "nav-language": "语"
+  "nav-language": "语",
+
+  "docs-nav-knowledgebase": "知识库",
+  "docs-nav-tutorials": "教程",
+  "docs-nav-htg": "操作指南",
+  "docs-nav-rustdocs": "Rust 文档",
+  "docs-nav-learningtracks": "学习轨迹",
+  "docs-nav-edit": "编辑",
+
+  "docs-menu-getting-started":"入门",
+  "docs-menu-overview":"概览",
+  "docs-menu-architecture":"架构",
+  "docs-menu-installation":"安装",
+  "docs-menu-windows":"Windows 入门",
+  "docs-menu-glossary":"词汇表",
+  "docs-menu-key-concepts":"Substrate 关键概念",
+  "docs-menu-runtime":"运行时",
+  "docs-menu-extrinsics":"Extrinsics",
+  "docs-menu-account-abstractions":"帐户抽象",
+  "docs-menu-transaction-pool":"交易池",
+  "docs-menu-session-keys":"会话密钥",
+  "docs-menu-transaction-weight":"交易权重",
+  "docs-menu-offchain-features":"链下功能"
 }

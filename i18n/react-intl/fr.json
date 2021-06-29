@@ -35,5 +35,27 @@
   "nav-connect": "Connect",
   "nav-overview": "Aperçu",
   "nav-search": "Rechercher",
-  "nav-language": "Langue"
+  "nav-language": "Langue",
+
+  "docs-nav-knowledgebase": "Base de connaissances",
+  "docs-nav-tutorials": "Tutoriels",
+  "docs-nav-htg": "Guides pratiques",
+  "docs-nav-rustdocs": "Rust Docs",
+  "docs-nav-learningtracks": "Parcours d'apprentissage",
+  "docs-nav-edit": "Éditer",
+    
+  "docs-menu-getting-started": "Commencer",
+  "docs-menu-overview": "Aperçu",
+  "docs-menu-architecture": "Architecture",
+  "docs-menu-installation":"Installation",
+  "docs-menu-windows": "Mise en route sous Windows",
+  "docs-menu-glossary": "Glossaire",
+  "docs-menu-key-concepts": "Concepts clés du substrat",
+  "docs-menu-runtime": "Exécution",
+  "docs-menu-extrinsics": "Extrinsèques",
+  "docs-menu-account-abstractions":"Abstractions de compte",
+  "docs-menu-transaction-pool": "Pool de transactions",
+  "docs-menu-session-keys": "Clés de session",
+  "docs-menu-transaction-weight": "Poids de la transaction",
+  "docs-menu-offchain-features": "Fonctionnalités hors chaîne"
 }

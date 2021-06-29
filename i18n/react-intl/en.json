@@ -41,5 +41,21 @@
   "docs-nav-tutorials": "Tutorials",
   "docs-nav-htg": "How-To-Guides",
   "docs-nav-rustdocs": "Rust Docs",
-  "docs-nav-learningtracks": "Learning Tracks"
+  "docs-nav-learningtracks": "Learning Tracks",
+  "docs-nav-edit": "Edit",
+
+  "docs-menu-getting-started":"Getting Started",
+  "docs-menu-overview":"Overview",
+  "docs-menu-architecture":"Architecture",
+  "docs-menu-installation":"Installation",
+  "docs-menu-windows":"Getting Started on Windows",
+  "docs-menu-glossary":"Glossary",
+  "docs-menu-key-concepts":"Substrate Key Concepts",
+  "docs-menu-runtime":"Runtime",
+  "docs-menu-extrinsics":"Extrinsics",
+  "docs-menu-account-abstractions":"Account Abstractions",
+  "docs-menu-transaction-pool":"Transaction Pool",
+  "docs-menu-session-keys":"Session Keys",
+  "docs-menu-transaction-weight":"Transaction Weight",
+  "docs-menu-offchain-features":"Off-Chain Features"
 }
