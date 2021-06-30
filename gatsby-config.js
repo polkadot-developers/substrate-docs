@@ -91,7 +91,6 @@ module.exports = {
         ],
       },
     },
-    `gatsby-transformer-sharp`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-twitter`,
     {
@@ -108,8 +107,27 @@ module.exports = {
         defaultLocale: `./i18n/react-intl/en.json`,
       },
     },
-    `gatsby-plugin-sharp`,
+    `gatsby-plugin-image`,
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          formats: [`auto`, `webp`],
+          placeholder: `tracedSVG`,
+          quality: 100,
+          breakpoints: [640, 768, 1024, 1280],
+          backgroundColor: `transparent`,
+          tracedSVGOptions: {},
+          blurredOptions: {},
+          jpgOptions: {},
+          pngOptions: {},
+          webpOptions: {},
+          avifOptions: {},
+        },
+      },
+    },
     `gatsby-remark-images`,
+    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {

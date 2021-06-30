@@ -8,7 +8,6 @@ import DocsNavMobile from '../components/DocsNavMobile'
 import DocsSideBar from '../components/DocsSideBar'
 import DocsNav from '../components/DocsNav'
 import VersionControl from '../components/VersionControl'
-import Message from '../components/DocsComponents/Message'
 
 const DocsTemplate = ({ data, pageContext }) => {
   const { slug, version } = pageContext

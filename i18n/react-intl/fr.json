@@ -57,5 +57,9 @@
   "docs-menu-transaction-pool": "Pool de transactions",
   "docs-menu-session-keys": "Clés de session",
   "docs-menu-transaction-weight": "Poids de la transaction",
-  "docs-menu-offchain-features": "Fonctionnalités hors chaîne"
+  "docs-menu-offchain-features": "Fonctionnalités hors chaîne",
+
+  "tutorials-beginner":"débutant",
+  "tutorials-intermediate":"intermédiaire",
+  "tutorials-advance":"avance"
 }

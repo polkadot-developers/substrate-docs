@@ -57,5 +57,9 @@
   "docs-menu-transaction-pool":"Transaction Pool",
   "docs-menu-session-keys":"Session Keys",
   "docs-menu-transaction-weight":"Transaction Weight",
-  "docs-menu-offchain-features":"Off-Chain Features"
+  "docs-menu-offchain-features":"Off-Chain Features",
+
+  "tutorials-beginner":"beginner",
+  "tutorials-intermediate":"intermediate",
+  "tutorials-advance":"advance"
 }
