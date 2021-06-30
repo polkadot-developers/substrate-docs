@@ -7,7 +7,6 @@ interface SlideDownNavProps {
 
 export default function SlideDownNav({ section }: SlideDownNavProps) {
   const [isOpen, setIsOpen] = useState(false)
-  console.log(section)
   useEffect(() => {
     section.items.map(item => {
       if (item.link === location.pathname) {

@@ -40,13 +40,15 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
 
   const allV3 = result.data.docsV3.nodes
-  allV3.forEach(({ childMdx: node }) => {
+  allV3.forEach(({ childMdx: node }, index) => {
     createPage({
       path: `${node.frontmatter.slug}`,
       component: kbTemplate,
       context: {
         slug: `${node.frontmatter.slug}`,
         version: `3.0`,
+        prev: index === 0 ? null : allV3[index - 1],
+        next: index === allV3.length - 1 ? null : allV3[index + 1],
       },
     })
   })

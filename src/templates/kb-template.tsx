@@ -11,7 +11,7 @@ import VersionControl from '../components/VersionControl'
 import Message from '../components/Message'
 
 const DocsTemplate = ({ data, pageContext }: any) => {
-  const { slug, version } = pageContext
+  const { slug, version, prev, next } = pageContext
   const intl = useIntl()
   const globalDocsNav = [
     {

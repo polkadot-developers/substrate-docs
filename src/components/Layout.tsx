@@ -6,6 +6,11 @@ import {
   PreviousButton,
   NextButton,
   RelatedMaterialBlock,
+  Objectives,
+  TutorialObjective,
+  SkillsYouNeed,
+  SkillsYouGain,
+  AccentButton,
 } from './DocsComponents'
 import Header from './Header'
 import Footer from './Footer'
@@ -16,6 +21,11 @@ const components = {
   PreviousButton,
   NextButton,
   RelatedMaterialBlock,
+  Objectives,
+  TutorialObjective,
+  SkillsYouNeed,
+  SkillsYouGain,
+  AccentButton,
 }
 
 const Layout = ({ children }: any) => {
