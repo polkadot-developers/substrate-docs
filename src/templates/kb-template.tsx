@@ -8,6 +8,7 @@ import DocsNavMobile from '../components/DocsNavMobile'
 import DocsSideBar from '../components/DocsSideBar'
 import DocsNav from '../components/DocsNav'
 import VersionControl from '../components/VersionControl'
+import Message from '../components/Message'
 
 const DocsTemplate = ({ data, pageContext }: any) => {
   const { slug, version } = pageContext
@@ -133,12 +134,13 @@ const DocsTemplate = ({ data, pageContext }: any) => {
                 </div>
               ) : (
                 <div>
-                  <h4>
-                    This page has not been translated yet. If you can help
-                    translate the documentation here into another language,
-                    please go to Crowdin and pick a language to get started.
-                    ##LINK HELPFUL DOC##
-                  </h4>
+                  <div className="mt-10">
+                    <Message
+                      type={`green`}
+                      title={`TRANSLATIONS NEEDED`}
+                      text={`This page has not been translated yet. If you can help translate the documentation here into another language, please go to Crowdin and pick a language to get started. ##LINK HELPFUL DOC##`}
+                    />
+                  </div>
                   <div className="pt-10">
                     <VersionControl version={version} slug={slug} />
                     <h1>{data.englishVersion.frontmatter.title}</h1>

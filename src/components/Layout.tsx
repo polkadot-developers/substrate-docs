@@ -18,7 +18,7 @@ const components = {
   RelatedMaterialBlock,
 }
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: any) => {
   return (
     <React.Fragment>
       <Header />
