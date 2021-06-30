@@ -9,9 +9,36 @@ import DocsSideBar from '../components/DocsSideBar'
 import DocsNav from '../components/DocsNav'
 import VersionControl from '../components/VersionControl'
 
-const DocsTemplate = ({ data, pageContext }) => {
+const DocsTemplate = ({ data, pageContext }: any) => {
   const { slug, version } = pageContext
   const intl = useIntl()
+  const globalDocsNav = [
+    {
+      section: `${intl.formatMessage({ id: 'docs-nav-knowledgebase' })}`,
+      url: '/v3/docs/',
+      external: false,
+    },
+    {
+      section: `${intl.formatMessage({ id: 'docs-nav-tutorials' })}`,
+      url: '/tutorials/',
+      external: false,
+    },
+    {
+      section: `${intl.formatMessage({ id: 'docs-nav-htg' })}`,
+      url: '/how-to-guides/',
+      external: false,
+    },
+    {
+      section: `${intl.formatMessage({ id: 'docs-nav-rustdocs' })}`,
+      url: '#',
+      external: true,
+    },
+    {
+      section: `${intl.formatMessage({ id: 'docs-nav-learningtracks' })}`,
+      url: '/learning-tracks/',
+      external: false,
+    },
+  ]
   const docsMenu = [
     {
       name: `${intl.formatMessage({ id: 'docs-menu-getting-started' })}`,
@@ -76,13 +103,7 @@ const DocsTemplate = ({ data, pageContext }) => {
       ],
     },
   ]
-  const globalDocsNav = [
-    `${intl.formatMessage({ id: 'docs-nav-knowledgebase' })}`,
-    `${intl.formatMessage({ id: 'docs-nav-tutorials' })}`,
-    `${intl.formatMessage({ id: 'docs-nav-htg' })}`,
-    `${intl.formatMessage({ id: 'docs-nav-rustdocs' })}`,
-    `${intl.formatMessage({ id: 'docs-nav-learningtracks' })}`,
-  ]
+
   return (
     <Layout>
       <SEO title={data.mdx ? data.mdx.frontmatter.title : null} />
@@ -92,14 +113,14 @@ const DocsTemplate = ({ data, pageContext }) => {
             <DocsNavMobile
               sideNav={docsMenu}
               globalNav={globalDocsNav}
-              templateId={'Knowledgebase'}
+              templateId={0}
             />
           </div>
           <div className="hidden lg:inline-block lg:flex-none">
             <DocsNav
               sideNav={docsMenu}
               globalNav={globalDocsNav}
-              templateId={'Knowledgebase'}
+              templateId={0}
             />
           </div>
           <article className="markdown-body px-4 lg:px-16 lg:flex-grow lg:border-l lg:border-r lg:border-gray-200 dark:lg:border-gray-700">

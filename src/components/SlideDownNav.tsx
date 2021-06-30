@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { IkbSideBar } from '../sidebar/kbSideBar'
 import { LocalizedLink } from 'gatsby-theme-i18n'
 
 interface SlideDownNavProps {
-  section: IkbSideBar
+  section: { name: string; items: { title: string; link: string }[] }
 }
 
 export default function SlideDownNav({ section }: SlideDownNavProps) {
   const [isOpen, setIsOpen] = useState(false)
+  console.log(section)
   useEffect(() => {
     section.items.map(item => {
       if (item.link === location.pathname) {
