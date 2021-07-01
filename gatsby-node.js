@@ -21,19 +21,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           }
         }
       }
-      docsV4: allFile(
-        filter: { sourceInstanceName: { eq: "kbV4" } }
-        sort: { order: DESC, fields: id }
-      ) {
-        nodes {
-          childMdx {
-            frontmatter {
-              slug
-              id
-            }
-          }
-        }
-      }
       tutorialOne: allFile(
         filter: {
           sourceInstanceName: { eq: "create-your-first-substrate-chain" }
@@ -67,18 +54,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         version: `3.0`,
         prev: index === 0 ? null : allV3[index - 1],
         next: index === allV3.length - 1 ? null : allV3[index + 1],
-      },
-    })
-  })
-
-  const allV4 = result.data.docsV4.nodes
-  allV4.forEach(({ childMdx: node }) => {
-    createPage({
-      path: `${node.frontmatter.slug}`,
-      component: kbTemplate,
-      context: {
-        slug: `${node.frontmatter.slug}`,
-        version: `4.0`,
       },
     })
   })
