@@ -31,7 +31,7 @@ export default function tutorials({ data }: any) {
             difficulty={`beginner`}
             prerequisites={true}
             version={`V3.0.0`}
-            link={`#`}
+            link={`/v3/tutorials/create-your-first-substrate-chain/`}
           />
           <TutorialCard
             title={`Build a Permissioned Network`}

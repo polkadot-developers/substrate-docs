@@ -58,7 +58,9 @@ export default function DocsNav({
       >
         <div className="flex py-5 bg-lightGray dark:bg-gray-700">
           <span className="pl-4 font-bold">
-            {intl.formatMessage({ id: 'nav-docs' })}
+            {templateId === 0
+              ? `${intl.formatMessage({ id: 'nav-docs' })}`
+              : `${intl.formatMessage({ id: 'nav-tutorials' })}`}
           </span>
         </div>
         <div className="pt-4">

@@ -42,6 +42,7 @@ module.exports = {
         name: `pages`,
       },
     },
+    // SOURCE FOLDERS FOR DOCUMENTATIONS
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -56,20 +57,14 @@ module.exports = {
         name: `kbV4`,
       },
     },
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     path: `${__dirname}/docs/v3/how-to-guides`,
-    //     name: `htg`,
-    //   },
-    // },
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     path: `${__dirname}/docs//v3/tutorials`,
-    //     name: `tuts`,
-    //   },
-    // },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/v3/tutorials/create-your-first-substrate-chain`,
+        name: `create-your-first-substrate-chain`,
+      },
+    },
+    // SOURCE FOLDERS FOR DOCUMENTATIONS
     {
       resolve: `gatsby-source-filesystem`,
       options: {
