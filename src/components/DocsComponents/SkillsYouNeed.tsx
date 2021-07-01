@@ -11,7 +11,7 @@ export function SkillsYouNeed({ data }: SkillsYouNeedProps) {
       {data.map((str, index) => (
         <button
           key={index}
-          className="mx-1 xl:mx-2 my-1 xl:mt-3 px-4 py-1 rounded border border-gray-100 text-substrateBlue font-medium"
+          className="mx-1 xl:mx-2 my-1 xl:mt-3 px-4 py-1 rounded border border-gray-100 text-substrateBlue font-medium cursor-default"
         >
           {str}
         </button>

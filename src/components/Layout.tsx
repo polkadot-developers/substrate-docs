@@ -11,6 +11,8 @@ import {
   SkillsYouNeed,
   SkillsYouGain,
   AccentButton,
+  DarkButton,
+  FastTrackPlayground,
 } from './DocsComponents'
 import Header from './Header'
 import Footer from './Footer'
@@ -26,6 +28,8 @@ const components = {
   SkillsYouNeed,
   SkillsYouGain,
   AccentButton,
+  DarkButton,
+  FastTrackPlayground,
 }
 
 const Layout = ({ children }: any) => {
