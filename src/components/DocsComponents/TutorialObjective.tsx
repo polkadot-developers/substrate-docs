@@ -2,7 +2,7 @@ import React from 'react'
 import { LocalizedLink } from 'gatsby-theme-i18n'
 
 interface TutorialObjectiveProps {
-  data: { textLineOne: string; textLinetwo: string; url: string }
+  data: { textLineOne: string; textLineTwo: string; url: string }
 }
 
 export function TutorialObjective({ data }: TutorialObjectiveProps) {

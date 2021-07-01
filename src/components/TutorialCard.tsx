@@ -1,7 +1,7 @@
 import React from 'react'
 import { LocalizedLink } from 'gatsby-theme-i18n'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import { useIntl } from 'react-intl'
+import DifficultyMeter from './DifficultyMeter'
 
 interface TutorialCardProps {
   title: string
@@ -24,7 +24,6 @@ export default function TutorialCard({
   version,
   link,
 }: TutorialCardProps) {
-  const intl = useIntl()
   const tutImage = getImage(image)
   return (
     <div className="w-80 md:w-96 my-4 mx-3 h-auto rounded-lg border border-black border-opacity-10 dark:bg-gray-800">
@@ -52,40 +51,7 @@ export default function TutorialCard({
             <span className="pl-2 text-sm">{time}</span>
           </div>
           <div className="flex items-center py-2">
-            {difficulty === 'beginner' ? (
-              <>
-                <span className="uppercase tracking-widest">
-                  {intl.formatMessage({ id: 'tutorials-beginner' })}
-                </span>
-                <div className="flex ml-4">
-                  <span className="mx-1 inline-block w-3 h-3 bg-substrateGreen rounded-full"></span>
-                  <span className="mx-1 inline-block w-3 h-3 bg-substrateGreen bg-opacity-20 rounded-full"></span>
-                  <span className="mx-1 inline-block w-3 h-3 bg-substrateGreen bg-opacity-20 rounded-full"></span>
-                </div>
-              </>
-            ) : difficulty === 'intermediate' ? (
-              <>
-                <span className="uppercase tracking-widest">
-                  {intl.formatMessage({ id: 'tutorials-intermediate' })}
-                </span>
-                <div className="flex ml-4">
-                  <span className="mx-1 inline-block w-3 h-3 bg-substrateGreen rounded-full"></span>
-                  <span className="mx-1 inline-block w-3 h-3 bg-substrateGreen rounded-full"></span>
-                  <span className="mx-1 inline-block w-3 h-3 bg-substrateGreen bg-opacity-20 rounded-full"></span>
-                </div>
-              </>
-            ) : difficulty === 'advance' ? (
-              <>
-                <span className="uppercase tracking-widest">
-                  {intl.formatMessage({ id: 'tutorials-advance' })}
-                </span>
-                <div className="flex ml-4">
-                  <span className="mx-1 inline-block w-3 h-3 bg-substrateGreen rounded-full"></span>
-                  <span className="mx-1 inline-block w-3 h-3 bg-substrateGreen rounded-full"></span>
-                  <span className="mx-1 inline-block w-3 h-3 bg-substrateGreen rounded-full"></span>
-                </div>
-              </>
-            ) : null}
+            <DifficultyMeter difficulty={difficulty} />
           </div>
         </div>
         <hr />

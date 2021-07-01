@@ -77,7 +77,7 @@ export default function Header() {
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-playground' })}`,
-          link: `#`,
+          link: `/playground/`,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-light-clients' })}`,

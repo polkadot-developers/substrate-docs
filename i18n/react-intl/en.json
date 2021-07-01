@@ -63,5 +63,17 @@
 
   "tutorials-beginner":"beginner",
   "tutorials-intermediate":"intermediate",
-  "tutorials-advance":"advance"
+  "tutorials-advance":"advance",
+
+  "playground-title":"Set Up Local Environment",
+  "playground-description":"We recommend picking a sandbox, particularly if you're just getting started. Building on Substrate requires different pieces of technology. Using a sandbox allows you to skip preliminary set-up and prerequisites to get to the parts that are important to you.",
+  "playground-github-info":"Before setting up a playground you must login to Github",
+  "playground-github-cta":"Login to Github",
+  "playground-configuration-title":"Select Configuration",
+  "playground-card-one-title":"Node Playground",
+  "playground-card-two-title":"Front-End Template Playground",
+  "playground-card-three-title":"Governance Playground",
+  "playground-card-one-description":"Basic environment and Node Template. A good starting point for any beginner work or tutorial.",
+  "playground-card-tutorials-headline":"Use with these tutorials",
+  "playground-card-cta":"Launch Playground"
 }
