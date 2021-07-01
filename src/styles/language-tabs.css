@@ -1,0 +1,74 @@
+.gatsby-highlight {
+  position: relative;
+  -webkit-overflow-scrolling: touch; 
+}
+
+.gatsby-highlight pre {
+  background-color: #EEF1FE;
+}
+
+.gatsby-highlight pre[class*="language-"] {
+  -webkit-overflow-scrolling: touch;
+  padding: 2rem 1rem;
+  border-radius: 0.25rem;
+}
+.gatsby-highlight pre[class*="language-"]::before {
+  background: black;
+  border-radius: 0 0 0.25rem 0.25rem;
+  color: #EEF1FE;
+  font-family: 'Karla', 'sans-serif';
+  font-size: 10px;
+  letter-spacing: 0.025rem;
+  padding: 0.01rem 0.5rem;
+  position: absolute;
+  right: 16px;
+  text-align: right;
+  text-transform: uppercase;
+  top: 0;
+}
+.gatsby-highlight pre[class~="language-javascript"]::before {
+  content: "js";
+  background: #EEF1FE;
+  color: black;
+}
+.gatsby-highlight pre[class~="language-js"]::before {
+  content: "js";
+  background: #EEF1FE;
+  color: black;
+}
+
+.gatsby-highlight pre[class~="language-html"]::before {
+  content: "html";
+  background: whitec;
+  color: #EEF1FE;
+}
+
+.gatsby-highlight pre[class~="language-css"]::before {
+  content: "css";
+  background: #EEF1FE;
+  color: white;
+}
+
+.gatsby-highlight pre[class~="language-rust"]::before {
+  content: "rust";
+  background: #EEF1FE;
+  color: black;
+}
+
+.gatsby-highlight pre[class~="language-json"]::before {
+  content: "JSON";
+  background: #EEF1FE;
+  color: black;
+}
+
+.gatsby-highlight pre[class~="language-bash"]::before {
+  content: "bash";
+  background: #EEF1FE;
+  color: black;
+}
+
+.gatsby-highlight pre[class~="language-powershell"]::before {
+  content: "PowerShell";
+  background: #EEF1FE;
+  color: black;
+}

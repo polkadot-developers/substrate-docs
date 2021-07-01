@@ -37,7 +37,9 @@ export default function Footer() {
                   key={index}
                   className="mb-4 text-xl font-light opacity-90 hover:opacity-100 cursor-pointer"
                 >
-                  <a href={item.link}>{item.name}</a>
+                  <a className="text-white hover:no-underline" href={item.link}>
+                    {item.name}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -52,7 +54,9 @@ export default function Footer() {
                   key={index}
                   className="mb-4 text-xl font-light opacity-90 hover:opacity-100 cursor-pointer"
                 >
-                  <a href={item.link}>{item.name}</a>
+                  <a className="text-white hover:no-underline" href={item.link}>
+                    {item.name}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -67,7 +71,9 @@ export default function Footer() {
                   key={index}
                   className="mb-4 text-xl font-light opacity-90 hover:opacity-100 cursor-pointer"
                 >
-                  <a href={item.link}>{item.name}</a>
+                  <a className="text-white hover:no-underline" href={item.link}>
+                    {item.name}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -82,7 +88,9 @@ export default function Footer() {
                   key={index}
                   className="pb-4 text-xl font-light opacity-90 hover:opacity-100 cursor-pointer"
                 >
-                  <a href={item.link}>{item.name}</a>
+                  <a className="text-white hover:no-underline" href={item.link}>
+                    {item.name}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -98,7 +106,7 @@ export default function Footer() {
               href="https://www.parity.io/privacy"
               target="_blank"
               rel="noreferrer"
-              className="opacity-90 my-2"
+              className="opacity-90 my-2 text-white hover:no-underline"
             >
               Privacy Policy
             </a>
@@ -106,7 +114,7 @@ export default function Footer() {
               href="https://www.parity.io/terms"
               target="_blank"
               rel="noreferrer"
-              className="opacity-90 my-2"
+              className="opacity-90 my-2 text-white hover:no-underline"
             >
               Terms of Services
             </a>

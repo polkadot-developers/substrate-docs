@@ -1,20 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@tailwind aspect-ratio;
 
 @layer base {
-  * {
-    scroll-behavior: smooth;
-  }
-
   html {
-    @apply bg-white antialiased;
+    @apply bg-white dark:bg-black antialiased;
     scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-white font-body text-base;
+    @apply bg-white dark:bg-black text-black dark:text-white font-body text-base;
     background: transparent;
   }
 
@@ -33,19 +28,19 @@
   h4,
   h5,
   h6 {
-    @apply font-body font-bold leading-tight;
+    @apply font-body font-bold;
   }
 
   h1 {
-    @apply mb-3 text-5xl tracking-tighter;
+    @apply mb-3 text-5xl;
   }
 
   h2 {
-    @apply mb-4 text-4xl tracking-tight;
+    @apply mb-4 text-4xl;
   }
 
   h3 {
-    @apply mb-5 text-3xl tracking-tight;
+    @apply mb-5 text-3xl;
   }
 
   h4 {
@@ -76,14 +71,14 @@
 
   /* Horizontal Rules */
   hr {
-    @apply mb-6 border-t;
+    @apply mb-6 border-t dark:border-gray-700;
   }
 
   /* Lists */
   dl,
   ol,
   ul {
-    @apply mb-0 list-outside;
+    @apply mb-0 ml-2 list-outside;
   }
 
   li {
@@ -113,6 +108,6 @@
 
   /* Anchors */
   a {
-    @apply cursor-pointer;
+    @apply cursor-pointer text-substrateBlue;
   }
 }

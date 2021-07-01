@@ -1,8 +1,14 @@
 ---
 title: Overview
-slug: /v3/docs/
+version: 4.00
+slug: /v4/docs/
+id: 001
+date_published: 2021.06.01
+date_updated: 2021.06.03
 ---
 
+
+# Welcome to Version 4!
 Welcome to the wonderful world of blockchain development with Substrate! This is the Substrate Knowledge Base, the
 official documentation hub for Substrate developers. The purpose of this resource is to help readers understand the intricacies of blockchain development with Substrate. This guide is broken down into several sections that
 explain the principles and design decisions that Substrate is built on as well as the specific skills needed to be an
@@ -24,14 +30,13 @@ to make use of powerful, familiar programming idioms.
 
 Substrate is designed to be used in one of three ways:
 
-1. **With the Substrate Node**: You can run the pre-designed
-   [Substrate Node](https://github.com/paritytech/substrate/tree/master/bin/node) and
-   [configure](https://github.com/paritytech/substrate/blob/master/bin/node/cli/src/chain_spec.rs) its genesis block. In
-   this case, you just need to supply a JSON file and launch your own blockchain. The JSON file allows you to configure
-   the genesis state of the modules that compose the Substrate Node's runtime, such as: Balances, Staking, and Sudo. You
-   can learn more about running a Substrate node in the
-   [Create Your First Substrate Chain](tutorials/create-your-first-substrate-chain) and
-   [Start a Private Network](tutorials/start-a-private-network/index.md) tutorials.
+1. **With the Substrate Node**: You can run the pre-designed [Substrate Node](https://github.com/paritytech/substrate/tree/master/bin/node) and
+[configure](https://github.com/paritytech/substrate/blob/master/bin/node/cli/src/chain_spec.rs) its genesis block. In
+this case, you just need to supply a JSON file and launch your own blockchain. The JSON file allows you to configure
+the genesis state of the modules that compose the Substrate Node's runtime, such as: Balances, Staking, and Sudo. You
+can learn more about running a Substrate node in the
+[Create Your First Substrate Chain](tutorials/create-your-first-substrate-chain) and
+[Start a Private Network](tutorials/start-a-private-network/index.md) tutorials.
 
 2. **With Substrate FRAME**: You can easily create your own custom runtime using [FRAME](knowledgebase/runtime/frame.md)
    (Framework for Runtime Aggregation of Modularized Entities), which is what is used to build the Substrate Node. This
@@ -47,11 +52,11 @@ Substrate is designed to be used in one of three ways:
    construct a new genesis block from your Wasm blob and launch your chain with the existing Rust-based Substrate
    client. If not, then you will need to alter the client's block authoring logic, and potentially even alter the header
    and block serialization formats. In terms of development effort, this is by far the most difficult way to use
-   Substrate, but also gives you the most freedom to innovate.
+   Substrate, but also gives you the most freedom to innqovate.
 
 Substrate allows developers to make choices between technical freedom and ease of development in every step of their design decisions. The diagram below illustrates the nature of this flexibility.
 
-![Technical Freedom vs Development Ease](assets/technical-freedom.png)
+![Technical Freedom vs Development Ease](../../../src/images/technical-freedom.png)
 
 ## Next Steps
 

@@ -1,0 +1,129 @@
+---
+title: Components Overview
+slug: /components
+---
+
+## Announcement Bars
+
+<Message
+  type={`yellow`}
+  title={`Information`}
+  text={`Solang: a language resembling Solidity, aiming for source file compatibility 
+with the Ethereum EVM Solidity compiler Solang: a language resembling Solidity, aiming for source file compatibility 
+with the Ethereum EVM Solidity compiler`}
+/>
+
+<Message
+  type={`green`}
+  title={`Advice`}
+  text={`Solang: a language resembling Solidity, aiming for source file compatibility 
+with the Ethereum EVM Solidity compiler Solang: a language resembling Solidity, aiming for source file compatibility 
+with the Ethereum EVM Solidity compiler`}
+/>
+
+<Message
+  type={`red`}
+  title={`Warning`}
+  text={`Solang: a language resembling Solidity, aiming for source file compatibility 
+with the Ethereum EVM Solidity compiler Solang: a language resembling Solidity, aiming for source file compatibility 
+with the Ethereum EVM Solidity compiler`}
+/>
+
+## Buttons
+
+<PreviousButton text={`Smart Contracts`} link={`#`} />
+<NextButton text={`Substrate Runtime`} link={`#`} />
+
+## Related Material
+
+A Substrate node in the Create Your First Substrate Chain» and Start a Private Network tutorials.
+
+<RelatedMaterialBlock
+  title={`Smart Contracts`}
+  text={`just need to supply a JSON file and launch your own blockchain. `}
+  linkText={`#`}
+  link={`Go To Smart Contracts`}
+/>
+
+## Document Objectives
+
+Use this component if you'd like to have some key objectives defined in the beginning of your document.
+
+<Objectives
+  data={[
+    {
+      title: 'Goal',
+      description: 'Learn the steps for integrating a pallet to your runtime',
+    },
+    {
+      title: 'Use Cases',
+      description:
+        'Including a pallet that implements an event and a call for runtime.',
+    },
+    {
+      title: 'Overview',
+      description:
+        'This guide is an extension to the "Add a Pallet to Your Runtime" tutorial, intended as a ressource for developers new to Substrate looking to quickly integrate a pallet to their runtime.',
+    },
+  ]}
+/>
+
+## Tutorial Components
+
+### Skills You Need and Gain
+
+With the following components, pass an array of strings and it'll generate all the tag styles for you.
+
+<SkillsYouNeed data={['Javascript', 'Rust', 'Runtime Substrate Code']} />
+<SkillsYouGain
+  data={['Smart Contract Development', 'Runtime Pallets', 'Repository']}
+/>
+
+### Tutorial Breakdown
+
+#### What You Will Be Doing
+
+Before we even get started, lets' layout what we are going to do over the course of this turorial. We will:
+
+<TutorialObjective
+  data={{
+    textLineOne:
+      '1. Set up your computer to be able to develop with Substrate.',
+    textLineTwo: 'Smart contract chain with focus on community governance',
+    url: '#',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '2. Use a node template project to run a Substrate-based blockchain.',
+    textLineTwo: 'Smart contract chain with focus on community governance',
+    url: '#',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '3. Use a front-end template project to interact with the template node.',
+    textLineTwo: 'Smart contract chain with focus on community governance',
+    url: '#',
+  }}
+/>
+<AccentButton text={`Start this tutorial`} link={`#`} />
+
+## Playground Components
+
+### Button
+I know everything - go straight to Playground
+
+<DarkButton text={`Use Playground`} link={``} />
+
+### Widget
+
+<FastTrackPlayground
+  title={`Skip this step with Playground`}
+  description={`Set up a local sandbox environment 
+to skip over set-up and get straight to hacking. Utilize the power of Playground right away.`}
+  playgroundLink={`#`}
+/>
+ 

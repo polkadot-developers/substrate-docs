@@ -1,6 +1,7 @@
 module.exports = {
+  mode: 'jit',
+  darkMode: 'class', // or 'media' or 'class'
   purge: ['./src/**/*.js', './src/**/*.jsx', './src/**/*.ts', './src/**/*.tsx'],
-  darkMode: false, // or 'media' or 'class'
   theme: {
     container: {
       center: true,
@@ -10,6 +11,7 @@ module.exports = {
       md: '768px',
       lg: '1024px',
       xl: '1280px',
+      '2xl': '1536px',
     },
     letterSpacing: {
       tightest: '-.075em',
@@ -25,6 +27,13 @@ module.exports = {
       colors: {
         substrateGreen: '#26E0A2',
         substrateBlue: '#4E73F2',
+        substrateBlueBg: '#EEF1FE',
+        mdxYellow: '#FFEED6',
+        mdxGreen: '#D6FACA',
+        mdxRed: '#FFE1D9',
+        mdxLightBg: '#FAFBFC',
+        bgDark: '#20292A',
+        lightGray: '#FAFAFA',
         parityPink: '#FF1864',
         parityRed: '#CC1350',
         parityGray: '#eff1f0',
@@ -76,6 +85,16 @@ module.exports = {
             transform: 'translateX(0)',
           },
         },
+        'fade-out-left': {
+          '0%': {
+            opacity: '1',
+            transform: 'translateX(0)',
+          },
+          '100%': {
+            opacity: '0',
+            transform: 'translateX(500px)',
+          },
+        },
         'fade-out-down': {
           from: {
             opacity: '1',
@@ -118,6 +137,7 @@ module.exports = {
       animation: {
         'fade-in-down': 'fade-in-down 0.5s ease-out',
         'fade-in-right': 'fade-in-right 0.3s ease-out',
+        'fade-out-left': 'fade-out-left 0.3s ease-out',
         'fade-out-down': 'fade-out-down 0.5s ease-out',
         'fade-in-up': 'fade-in-up 0.5s ease-out',
         'fade-out-up': 'fade-out-up 0.5s ease-out',
@@ -126,8 +146,6 @@ module.exports = {
       },
     },
   },
-  variants: {
-    extend: {},
-  },
+  variants: ['responsive', 'group-hover', 'hover', 'focus', 'active'],
   plugins: [],
 }

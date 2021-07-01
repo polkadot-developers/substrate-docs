@@ -1,15 +1,50 @@
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
 
-  const blogTemplate = require.resolve(`./src/templates/kb-template.tsx`)
+  const kbTemplate = require.resolve(`./src/templates/kb-template.tsx`)
+  const tutorialOneTemplate = require.resolve(
+    `./src/templates/tut-templates/create-your-first-substrate-chain.tsx`
+  )
 
   const result = await graphql(`
     {
-      blog: allFile(filter: { sourceInstanceName: { eq: "kb" } }) {
+      docsV3: allFile(
+        filter: { sourceInstanceName: { eq: "kbV3" } }
+        sort: { order: DESC, fields: id }
+      ) {
         nodes {
           childMdx {
             frontmatter {
               slug
+              id
+            }
+          }
+        }
+      }
+      docsV4: allFile(
+        filter: { sourceInstanceName: { eq: "kbV4" } }
+        sort: { order: DESC, fields: id }
+      ) {
+        nodes {
+          childMdx {
+            frontmatter {
+              slug
+              id
+            }
+          }
+        }
+      }
+      tutorialOne: allFile(
+        filter: {
+          sourceInstanceName: { eq: "create-your-first-substrate-chain" }
+        }
+        sort: { order: DESC, fields: id }
+      ) {
+        nodes {
+          childMdx {
+            frontmatter {
+              slug
+              id
             }
           }
         }
@@ -22,14 +57,40 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return
   }
 
-  const blogPosts = result.data.blog.nodes
-
-  blogPosts.forEach(({ childMdx: node }) => {
+  const allV3 = result.data.docsV3.nodes
+  allV3.forEach(({ childMdx: node }, index) => {
     createPage({
-      path: node.frontmatter.slug,
-      component: blogTemplate,
+      path: `${node.frontmatter.slug}`,
+      component: kbTemplate,
       context: {
-        slug: node.frontmatter.slug,
+        slug: `${node.frontmatter.slug}`,
+        version: `3.0`,
+        prev: index === 0 ? null : allV3[index - 1],
+        next: index === allV3.length - 1 ? null : allV3[index + 1],
+      },
+    })
+  })
+
+  const allV4 = result.data.docsV4.nodes
+  allV4.forEach(({ childMdx: node }) => {
+    createPage({
+      path: `${node.frontmatter.slug}`,
+      component: kbTemplate,
+      context: {
+        slug: `${node.frontmatter.slug}`,
+        version: `4.0`,
+      },
+    })
+  })
+
+  const tutorialOne = result.data.tutorialOne.nodes
+  tutorialOne.forEach(({ childMdx: node }) => {
+    createPage({
+      path: `${node.frontmatter.slug}`,
+      component: tutorialOneTemplate,
+      context: {
+        slug: `${node.frontmatter.slug}`,
+        version: `3.0`,
       },
     })
   })

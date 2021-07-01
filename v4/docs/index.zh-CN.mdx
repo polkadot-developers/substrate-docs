@@ -1,0 +1,79 @@
+---
+title: 概述
+version: 4.00
+slug: /v4/docs/
+id: 001
+date_published: 2021.06.01
+date_updated: 2021.06.03
+---
+
+# Welcome to Version 4!
+欢迎来到 Substrate 区块链开发的精彩世界！这是基材知识库，
+Substrate 开发人员的官方文档中心。此资源的目的是帮助读者了解使用 Substrate 进行区块链开发的复杂性。本指南分为几个部分
+解释构建 Substrate 的原则和设计决策，以及成为一名工程师所需的特定技能
+有效的 Substrate 区块链开发人员。
+
+> **需要一些专业知识**
+>
+> 为了充分利用 Substrate，您应该对计算机科学和基本区块链有很好的了解
+> 概念。头、块、客户端、哈希、交易和签名等术语应该很熟悉。基材是
+> 建立在 Rust 编程语言之上，它利用新颖的设计模式来实现代码的开发
+> 安全快捷。虽然您不需要了解 Rust 即可开始使用 Substrate，但对 Rust 有一个很好的理解
+> 让您成为更好的 Substrate 开发人员。查看[优秀资源](https://www.rust-lang.org/learn)
+> 由 Rust 社区提供，用于培养您的 Rust 开发技能。
+
+Substrate 采用模块化方法进行区块链开发，并定义了一组丰富的原语，允许开发人员
+使用强大的、熟悉的编程习语。
+
+＃＃用法
+
+Substrate 旨在以三种方式之一使用：
+
+1. **使用 Substrate Node**：您可以运行预先设计的 [Substrate Node](https://github.com/paritytech/substrate/tree/master/bin/node) 和
+[配置](https://github.com/paritytech/substrate/blob/master/bin/node/cli/src/chain_spec.rs) 其创世区块。在
+在这种情况下，您只需要提供一个 JSON 文件并启动您自己的区块链。 JSON 文件允许您配置
+组成 Substrate 节点运行时的模块的创世状态，例如：Balances、Staking 和 Sudo。你
+可以了解有关运行 Substrate 节点的更多信息
+[创建您的第一个基材链](tutorials/create-your-first-substrate-chain) 和
+[启动专用网络](tutorials/start-a-private-network/index.md) 教程。
+
+2. **使用 Substrate FRAME**：您可以使用 [FRAME](knowledgebase/runtime/frame.md) 轻松创建自己的自定义运行时
+   （模块化实体的运行时聚合框架），用于构建 Substrate 节点。这
+   为您提供对区块链逻辑的大量自由，并允许您配置数据类型、选择
+   从模块库（称为“托盘”），甚至添加您自己的自定义托盘。这
+   [Substrate Developer Hub 节点模板](https://github.com/substrate-developer-hub/substrate-node-template) 是一个
+   此类项目的有用起点。要了解更多信息，请参阅教程
+   [构建一个 dApp](tutorials/build-a-dapp) 和 [添加一个 Pallet](tutorials/add-a-pallet)。
+
+3. **With Substrate Core**：可以忽略整个FRAME系统，运行时可以从
+   挠。这可以用可以针对 [WebAssembly](https://webassembly.org/) 的任何语言来完成。如果运行时
+   可以做到兼容Substrate节点的抽象区块创作逻辑，那么你就可以简单的
+   从你的 Wasm blob 构建一个新的创世区块，并使用现有的基于 Rust 的 Substrate 启动你的链
+   客户。如果没有，那么您将需要更改客户端的块创作逻辑，甚至可能更改标题
+   和块序列化格式。就开发工作而言，这是迄今为止最难使用的方法
+   Substrate，同时也给了你最大的创新自由。
+
+Substrate 允许开发人员在其设计决策的每一步中在技术自由和易于开发之间做出选择。下图说明了这种灵活性的性质。
+
+![技术自由与开发轻松](../../../src/images/technical-freedom.png)
+
+＃＃ 下一步
+
+＃＃＃ 学到更多
+
+- 请参阅[FRAME 系统运行时开发]（知识库/运行时）的开发人员文档。
+- 了解如何使用以下工具为任何基于 Substrate 的链创建富客户端应用程序
+  [Polkadot-JS](knowledgebase/integrate/polkadot-js) 系列库。
+- 深入研究高级主题，例如 Substrate 的 [SCALE encoding](knowledgebase/advanced/codec)，
+  [共识机制]（知识库/高级/共识），[密码学]（知识库/高级/密码学），以及
+  [存储实现]（知识库/高级/存储）。
+
+＃＃＃ 例子
+
+- 按照我们的 [教程](../../tutorials) 了解如何使用 Substrate 和 FRAME 构建和运行区块链。
+- 参考 [Substrate Recipes](https://substrate.dev/recipes/) 找到完整的工作示例来演示
+  常见问题的解决方案。
+
+＃＃＃ 参考
+
+- 查看随 Substrate 代码库一起提供的 [Rust 参考文档](https://substrate.dev/rustdocs)。
