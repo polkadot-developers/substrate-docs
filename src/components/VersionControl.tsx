@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import React from 'react'
+// import { LocalizedLink } from 'gatsby-theme-i18n'
 import { useIntl } from 'react-intl'
-import useComponentVisible from './Hooks/use-component-visible'
+// import useComponentVisible from './Hooks/use-component-visible'
 
 interface VersionControlProps {
   version: string
