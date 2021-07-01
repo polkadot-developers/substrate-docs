@@ -43,6 +43,9 @@
   "docs-nav-rustdocs": "Rust 文档",
   "docs-nav-learningtracks": "学习轨迹",
   "docs-nav-edit": "编辑",
+  "docs-nav-next": "下一个",
+  "docs-nav-back": "后退",
+
 
   "docs-menu-getting-started":"入门",
   "docs-menu-overview":"概览",

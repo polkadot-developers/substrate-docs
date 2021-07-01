@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import Layout from '../components/Layout'
@@ -8,10 +8,14 @@ import DocsNavMobile from '../components/DocsNavMobile'
 import DocsSideBar from '../components/DocsSideBar'
 import DocsNav from '../components/DocsNav'
 import VersionControl from '../components/VersionControl'
-import Message from '../components/Message'
+import { BottomButtons, Message } from '../components/DocsComponents'
 
+// interface buttonProps {
+//   title: string
+//   link: string
+// }
 const DocsTemplate = ({ data, pageContext }: any) => {
-  const { slug, version, prev, next } = pageContext
+  const { slug, version } = pageContext
   const intl = useIntl()
   const globalDocsNav = [
     {
@@ -105,6 +109,33 @@ const DocsTemplate = ({ data, pageContext }: any) => {
     },
   ]
 
+  // const [nextButton, setNextButton] = useState<buttonProps | null>({
+  //   title: '',
+  //   link: '',
+  // })
+  // const [prevButton, setPrevButton] = useState<buttonProps | null>({
+  //   title: '',
+  //   link: '',
+  // })
+  // useEffect(() => {
+  //   docsMenu.forEach(menuItems => {
+  //     menuItems.items.map((item, index) => {
+  //       if (item.link === slug) {
+  //         if (index === 0) {
+  //           setNextButton(menuItems.items[index + 1])
+  //           setPrevButton(null)
+  //         } else if (index === menuItems.items.length - 1) {
+  //           setPrevButton(menuItems.items[index - 1])
+  //           setNextButton(null)
+  //         } else {
+  //           setNextButton(menuItems.items[index + 1])
+  //           setPrevButton(menuItems.items[index - 1])
+  //         }
+  //       }
+  //     })
+  //   })
+  // }, [])
+
   return (
     <Layout>
       <SEO title={data.mdx ? data.mdx.frontmatter.title : null} />
@@ -149,6 +180,25 @@ const DocsTemplate = ({ data, pageContext }: any) => {
                 </div>
               )}
             </div>
+            <div className="text-xs text-right py-12">
+              Last updated on 03/16/2021
+            </div>
+            <BottomButtons menu={docsMenu} pageSlug={slug} />
+            {/* <div
+              className={`flex flex-col items-center xl:flex-row ${
+                prevButton === null ? 'xl:justify-end' : 'xl:justify-between'
+              }`}
+            >
+              {prevButton === null ? null : (
+                <PreviousButton
+                  text={prevButton.title}
+                  link={prevButton.link}
+                />
+              )}
+              {nextButton === null ? null : (
+                <NextButton text={nextButton.title} link={nextButton.link} />
+              )}
+            </div> */}
           </article>
           {data.mdx ? (
             <div className="hidden lg:inline-block lg:flex-none">

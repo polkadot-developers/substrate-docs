@@ -43,6 +43,9 @@
   "docs-nav-rustdocs": "Rust Docs",
   "docs-nav-learningtracks": "Parcours d'apprentissage",
   "docs-nav-edit": "Éditer",
+  "docs-nav-next": "Next",
+  "docs-nav-back": "Back",
+
     
   "docs-menu-getting-started": "Commencer",
   "docs-menu-overview": "Aperçu",
