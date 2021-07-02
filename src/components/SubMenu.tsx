@@ -40,7 +40,6 @@ export default function SubMenu({ menuData, width }: SubMenuProps) {
         <ul className="list-none bg-white dark:bg-black px-6 pt-6 rounded-md shadow-lg ring-1 ring-black dark:ring-white ring-opacity-40">
           {isComponentVisible &&
             subMenu.map((item, index) => {
-              console.log(item)
               return (
                 <LocalizedLink
                   className="text-black dark:text-white hover:text-substrateBlue dark:hover:text-substrateGreen"

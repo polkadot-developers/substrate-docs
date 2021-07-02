@@ -53,18 +53,11 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/v4/docs`,
-        name: `kbV4`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
         path: `${__dirname}/v3/tutorials/create-your-first-substrate-chain`,
         name: `create-your-first-substrate-chain`,
       },
     },
-    // SOURCE FOLDERS FOR DOCUMENTATIONS
+    //*********************************//
     {
       resolve: `gatsby-source-filesystem`,
       options: {

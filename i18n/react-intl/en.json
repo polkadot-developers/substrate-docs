@@ -43,6 +43,8 @@
   "docs-nav-rustdocs": "Rust Docs",
   "docs-nav-learningtracks": "Learning Tracks",
   "docs-nav-edit": "Edit",
+  "docs-nav-next": "Next",
+  "docs-nav-back": "Back",
 
   "docs-menu-getting-started":"Getting Started",
   "docs-menu-overview":"Overview",
@@ -61,5 +63,20 @@
 
   "tutorials-beginner":"beginner",
   "tutorials-intermediate":"intermediate",
-  "tutorials-advance":"advance"
+  "tutorials-advance":"advance",
+
+  "playground-title":"Set Up Local Environment",
+  "playground-description":"We recommend picking a sandbox, particularly if you're just getting started. Building on Substrate requires different pieces of technology. Using a sandbox allows you to skip preliminary set-up and prerequisites to get to the parts that are important to you.",
+  "playground-github-info":"Before setting up a playground you must login to Github",
+  "playground-github-cta":"Login to Github",
+  "playground-configuration-title":"Select Configuration",
+  "playground-card-one-title":"Node Playground",
+  "playground-card-two-title":"Front-End Template Playground",
+  "playground-card-three-title":"Governance Playground",
+  "playground-card-one-description":"Basic environment and Node Template. A good starting point for any beginner work or tutorial.",
+  "playground-card-tutorials-headline":"Use with these tutorials",
+  "playground-card-cta":"Launch Playground",
+  "playground-substrate-playground":"Substrate & Playground",
+  "playground-substrate-paragraph-one":"Though Substrate makes it very easy to build blockchains ready for Polkadot, blockchains in the Polkadot network don’t need to be built with Substrate.",
+  "playground-substrate-paragraph-two":"And even if you don’t want your blockchain to connect to Polkadot, you will still find Substrate a very useful framework for creating a state-of-the-art blockchain." 
 }

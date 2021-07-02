@@ -1,15 +1,17 @@
 import React from 'react'
 import { LocalizedLink } from 'gatsby-theme-i18n'
+import { useIntl } from 'react-intl'
 
 interface PreviousButtonProps {
   text: string
   link: string
 }
 export function PreviousButton({ text, link }: PreviousButtonProps) {
+  const intl = useIntl()
   return (
     <>
-      <LocalizedLink className="inline-block" to={link}>
-        <div className="flex items-center justify-center w-80 h-16 rounded-lg border-2 border-black dark:border-white hover:no-underline">
+      <LocalizedLink className="inline-block  m-2" to={link}>
+        <div className="flex items-center justify-center px-8 h-16 rounded-lg border-2 border-black dark:border-white hover:no-underline">
           <svg
             className="fill-current text-black dark:text-white"
             width="16"
@@ -24,7 +26,7 @@ export function PreviousButton({ text, link }: PreviousButtonProps) {
             />
           </svg>
           <button className="text-lg text-black dark:text-white font-bold pl-4 focus:outline-none hover:no-underline">
-            Back - {text}
+            {intl.formatMessage({ id: 'docs-nav-back' })} - {text}
           </button>
         </div>
       </LocalizedLink>

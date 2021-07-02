@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import Layout from '../components/Layout'
@@ -8,10 +8,10 @@ import DocsNavMobile from '../components/DocsNavMobile'
 import DocsSideBar from '../components/DocsSideBar'
 import DocsNav from '../components/DocsNav'
 import VersionControl from '../components/VersionControl'
-import Message from '../components/Message'
+import { BottomButtons, Message } from '../components/DocsComponents'
 
 const DocsTemplate = ({ data, pageContext }: any) => {
-  const { slug, version, prev, next } = pageContext
+  const { slug, version } = pageContext
   const intl = useIntl()
   const globalDocsNav = [
     {
@@ -149,6 +149,10 @@ const DocsTemplate = ({ data, pageContext }: any) => {
                 </div>
               )}
             </div>
+            <div className="text-xs text-right py-12">
+              Last updated on 03/16/2021
+            </div>
+            <BottomButtons menu={docsMenu} pageSlug={slug} />
           </article>
           {data.mdx ? (
             <div className="hidden lg:inline-block lg:flex-none">
