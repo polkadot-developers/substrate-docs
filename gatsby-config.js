@@ -57,7 +57,7 @@ module.exports = {
         name: `create-your-first-substrate-chain`,
       },
     },
-    // SOURCE FOLDERS FOR DOCUMENTATIONS
+    //*********************************//
     {
       resolve: `gatsby-source-filesystem`,
       options: {
