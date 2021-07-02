@@ -75,5 +75,8 @@
   "playground-card-three-title":"Governance Playground",
   "playground-card-one-description":"Basic environment and Node Template. A good starting point for any beginner work or tutorial.",
   "playground-card-tutorials-headline":"Use with these tutorials",
-  "playground-card-cta":"Launch Playground"
+  "playground-card-cta":"Launch Playground",
+  "playground-substrate-playground":"Substrate & Playground",
+  "playground-substrate-paragraph-one":"Though Substrate makes it very easy to build blockchains ready for Polkadot, blockchains in the Polkadot network don’t need to be built with Substrate.",
+  "playground-substrate-paragraph-two":"And even if you don’t want your blockchain to connect to Polkadot, you will still find Substrate a very useful framework for creating a state-of-the-art blockchain." 
 }

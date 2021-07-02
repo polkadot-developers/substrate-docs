@@ -1,4 +1,6 @@
 import React from 'react'
+import { graphql } from 'gatsby'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { useIntl } from 'react-intl'
 import Layout from '../components/Layout'
 import { DarkButton } from '../components/Buttons'
@@ -7,8 +9,9 @@ import iconOne from '../images/box-icon.svg'
 import iconTwo from '../images/lightening-icon.svg'
 import iconThree from '../images/squiqqly-lines.svg'
 
-export default function playground() {
+export default function playground({ data }: any) {
   const intl = useIntl()
+  const image = getImage(data.playgroundSnapshot)
   return (
     <Layout>
       <section className="container px-4 py-20 text-center">
@@ -27,8 +30,8 @@ export default function playground() {
           link={`https://www.github.com`}
         />
       </section>
-      <section className="container px-4">
-        <div className="text-2xl md:text-6xl my-8 font-bold text-center">
+      <section className="container px-4 mb-28">
+        <div className="text-xl md:text-4xl my-8 font-bold text-center">
           {intl.formatMessage({ id: 'playground-configuration-title' })}
         </div>
         <div className="flex flex-col lg:flex-row lg:justify-center items-center">
@@ -97,6 +100,36 @@ export default function playground() {
           />
         </div>
       </section>
+      <section className="container px-4  mb-28">
+        <div className="flex flex-col md:flex-row items-center">
+          <GatsbyImage
+            className="mx-auto md:w-1/2"
+            image={image}
+            alt="Substrate Playground Screenshot"
+          />
+          <div className="md:w-1/2 md:pl-20">
+            <div className="text-xl md:text-4xl my-8 font-bold text-center md:text-left">
+              {intl.formatMessage({ id: 'playground-substrate-playground' })}
+            </div>
+            <p>
+              {intl.formatMessage({ id: 'playground-substrate-paragraph-one' })}
+            </p>
+            <p>
+              {intl.formatMessage({ id: 'playground-substrate-paragraph-two' })}
+            </p>
+          </div>
+        </div>
+      </section>
     </Layout>
   )
 }
+export const pageQuery = graphql`
+  {
+    playgroundSnapshot: file(name: { eq: "playground-snapshot" }) {
+      id
+      childImageSharp {
+        gatsbyImageData
+      }
+    }
+  }
+`
