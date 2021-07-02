@@ -85,7 +85,7 @@ export default function Header() {
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-marketplace' })}`,
-          link: `#`,
+          link: `https://substrate-market-staging.netlify.app/`,
           external: true,
         },
         {
