@@ -4,7 +4,10 @@ import { LocalizedLink } from 'gatsby-theme-i18n'
 interface MobileSubMenuProps {
   toggleMobileNav: () => void
   toggleSubMenu: () => void
-  navItem: { name: string; subMenu: { linkTitle: string; link: string }[] }
+  navItem: {
+    name: string
+    subMenu: { linkTitle: string; link: string; external: boolean }[]
+  }
 }
 export default function TechSubMenu({
   toggleMobileNav,
@@ -45,17 +48,31 @@ export default function TechSubMenu({
       </div>
       <div className="px-6 pt-10">
         {navItem.subMenu.map((item, index) => {
-          return (
-            <LocalizedLink
-              className="text-black dark:text-white hover:no-underline"
-              key={index}
-              to={item.link}
-            >
-              <div className="pb-6 focus:outline-none focus:bg-substrateBlueBg">
-                <span className="text-lg font-medium">{item.linkTitle}</span>
-              </div>
-            </LocalizedLink>
-          )
+          if (item.external) {
+            return (
+              <a
+                className="text-black dark:text-white hover:no-underline"
+                key={index}
+                href={item.link}
+              >
+                <div className="pb-6 focus:outline-none focus:bg-substrateBlueBg">
+                  <span className="text-lg font-medium">{item.linkTitle}</span>
+                </div>
+              </a>
+            )
+          } else {
+            return (
+              <LocalizedLink
+                className="text-black dark:text-white hover:no-underline"
+                key={index}
+                to={item.link}
+              >
+                <div className="pb-6 focus:outline-none focus:bg-substrateBlueBg">
+                  <span className="text-lg font-medium">{item.linkTitle}</span>
+                </div>
+              </LocalizedLink>
+            )
+          }
         })}
       </div>
     </div>

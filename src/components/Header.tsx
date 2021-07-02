@@ -21,30 +21,37 @@ export default function Header() {
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-overview' })}`,
           link: `#`,
+          external: true,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-modular' })}`,
           link: `#`,
+          external: true,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-scalable' })}`,
           link: `#`,
+          external: true,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-interoperable' })}`,
           link: `#`,
+          external: true,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-flexible' })}`,
           link: `#`,
+          external: true,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-sovereign' })}`,
           link: `#`,
+          external: true,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-secure' })}`,
           link: `#`,
+          external: true,
         },
       ],
     },
@@ -54,34 +61,42 @@ export default function Header() {
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-overview' })}`,
           link: `#`,
+          external: false,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-docs' })}`,
           link: `/v3/docs/`,
+          external: false,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-how-to-guides' })}`,
           link: `/how-to-guides/`,
+          external: false,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-tutorials' })}`,
           link: `/tutorials/`,
+          external: false,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-rust-docs' })}`,
-          link: `#`,
+          link: `https://substrate.dev/rustdocs/v3.0.0-monthly-2021-07/sc_service/index.html`,
+          external: true,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-marketplace' })}`,
           link: `#`,
+          external: true,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-playground' })}`,
           link: `/playground/`,
+          external: false,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-light-clients' })}`,
           link: `/light-clients`,
+          external: false,
         },
       ],
     },
@@ -91,6 +106,7 @@ export default function Header() {
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-overview' })}`,
           link: `#`,
+          external: true,
         },
         {
           linkTitle: `${intl.formatMessage({
@@ -99,6 +115,7 @@ export default function Header() {
             id: 'nav-substrate',
           })}`,
           link: `#`,
+          external: true,
         },
         {
           linkTitle: `${intl.formatMessage({
@@ -107,6 +124,7 @@ export default function Header() {
             id: 'nav-polkadot',
           })}`,
           link: `#`,
+          external: true,
         },
         {
           linkTitle: `${intl.formatMessage({
@@ -115,6 +133,7 @@ export default function Header() {
             id: 'nav-ethereum',
           })}`,
           link: `#`,
+          external: true,
         },
       ],
     },
@@ -124,22 +143,27 @@ export default function Header() {
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-overview' })}`,
           link: `#`,
+          external: true,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-builders' })}`,
           link: `#`,
+          external: true,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-opportunities' })}`,
           link: `#`,
+          external: true,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-resources' })}`,
           link: `#`,
+          external: true,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-connect' })}`,
           link: `#`,
+          external: true,
         },
       ],
     },
