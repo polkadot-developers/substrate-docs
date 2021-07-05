@@ -16,7 +16,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
   const globalDocsNav = [
     {
       section: `${intl.formatMessage({ id: 'docs-nav-knowledgebase' })}`,
-      url: '/v3/docs/',
+      url: '/v3/docs/getting-started/overview',
       external: false,
     },
     {

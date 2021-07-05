@@ -57,7 +57,7 @@ export default function Header() {
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-docs' })}`,
-          link: `/v3/docs/`,
+          link: `/v3/docs/getting-started/overview`,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-how-to-guides' })}`,

@@ -1,7 +1,8 @@
 ---
 title: Installation
-slug: /v3/docs/knowledgebase/getting-started/
+slug: /v3/docs/getting-started/installation
 ---
+
 This page will guide you through the **2 steps** needed to prepare a computer for **Substrate** development.
 Since Substrate is built with [the Rust programming language](https://www.rust-lang.org/), the first
 thing you will need to do is prepare the computer for Rust development - these steps will vary based
@@ -9,10 +10,10 @@ on the computer's operating system. Once Rust is configured, you will use its to
 with Rust projects; the commands for Rust's toolchains will be the same for all supported,
 Unix-based operating systems.
 
-## 1. Build Dependencies 
+## 1. Build Dependencies
 
 Substrate development is easiest on Unix-based operating systems like macOS or Linux. The examples
-in the Substrate [Tutorials](../../../../tutorials) and [Recipes](https://substrate.dev/recipes/)
+in the Substrate [Tutorials](/tutorials) and [Recipes](https://substrate.dev/recipes/)
 use Unix-style terminals to demonstrate how to interact with Substrate from the command line.
 
 
@@ -55,12 +56,12 @@ sudo zypper install clang curl git openssl-devel llvm-devel libudev-devel
 
 > NOTE: The Apple M1 ARM system on a chip is not very well supported yet by rust,
 > and thus you very likely will run into build errors stemming from this.
-> There are reports that using substrate dependancies newer than the June 2021 
+> There are reports that using substrate dependancies newer than the June 2021
 > monthly release are able to work without issue.
-> 
+>
 > Here is the [node template `monthly-2021-05`](https://github.com/substrate-developer-hub/substrate-node-template/tree/v3.0.0%2Bmonthly-2021-05)
 > that you should use as a base for building on M1s.
-> 
+>
 > If you decide not to use a monthly release, see
 > [this community contributed script (and discussion)](https://github.com/substrate-developer-hub/substrate-node-template/issues/179#issuecomment-843522331)
 > for details on extra configuration steps to get things working on `v3.0.0` and below.
@@ -75,7 +76,7 @@ Open the Terminal application and execute the following commands:
 brew update
 brew install openssl
 ```
-### Windows 
+### Windows
 
 > **Note:** Native development of Substrate is _not_ very well supported! It is _highly_ recommend to
 > use [Windows Subsystem Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) (WSL)
@@ -116,14 +117,14 @@ rustup update nightly
 rustup target add wasm32-unknown-unknown --toolchain nightly
 ```
 
-## Test Your Set-Up!
+## Test Your Set-Up
 
 Now the best way to ensure that you have successfully prepared a computer for Substrate
 development is to follow the steps in our first tutorial:
 
-**\> [Create Your First Substrate Chain](../../tutorials/create-your-first-substrate-chain/) <**
+**\> [Create Your First Substrate Chain](/tutorials/create-your-first-substrate-chain) <**
 
---- 
+---
 
 > **For more details on _why_ these dependancies are used, and for *troubleshooting* errors building the template, read on.**
 
@@ -131,8 +132,8 @@ development is to follow the steps in our first tutorial:
 
 ## Troubleshooting Substrate Builds
 
-Sometimes you can't get the [substrate developer hub](https://github.com/substrate-developer-hub/) templates to compile out of
-the box. Here are some tips to help you work through that.
+Sometimes you can't get the [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
+to compile out of the box. Here are some tips to help you work through that.
 
 ### Rust Configuration Check
 
@@ -175,7 +176,7 @@ section.
 
 ### WebAssembly Compilation
 
-Substrate uses [WebAssembly](https://webassembly.org/) (Wasm) to produce portable blockchain
+Substrate uses [WebAssembly](https://webassembly.org) (Wasm) to produce portable blockchain
 runtimes. You will need to configure your Rust compiler to use
 [`nightly` builds](https://doc.rust-lang.org/book/appendix-07-nightly-rust.html) to allow you to
 compile Substrate runtime code to the Wasm target.

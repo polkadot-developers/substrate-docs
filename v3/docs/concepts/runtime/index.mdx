@@ -1,18 +1,18 @@
 ---
 title: Runtime
-slug: /v3/docs/knowledgebase/runtime
+slug: /v3/docs/concepts/runtime
 ---
 
 The runtime of a blockchain is the business logic that defines its behavior. In Substrate-based
 chains, the runtime is referred to as the
-"[state transition function](../../knowledgebase/getting-started/glossary#state-transition-function-stf)";
+"[state transition function](../../getting-started/glossary#state-transition-function-stf)";
 it is where Substrate developers define the storage items that are used to represent the
-blockchain's [state](../../knowledgebase/getting-started/glossary#state) as well as the
-[functions](../../knowledgebase/learn-substrate/extrinsics) that allow blockchain users to make
+blockchain's [state](../../getting-started/glossary#state) as well as the
+[functions](../extrinsics) that allow blockchain users to make
 changes to this state.
 
 In order to provide its defining forkless runtime upgrade capabilities, Substrate uses runtimes that
-are built as [WebAssembly (Wasm)](../../knowledgebase/getting-started/glossary#webassembly-wasm)
+are built as [WebAssembly (Wasm)](../../getting-started/glossary#webassembly-wasm)
 bytecode. Substrate also defines the
 core primitives that the runtime must
 implement.
@@ -51,20 +51,20 @@ They are:
 
 ## FRAME Primitives
 
-The core Substrate codebase ships with [FRAME](../../knowledgebase/runtime/frame), Parity's system
+The core Substrate codebase ships with [FRAME](../../runtime/frame), Parity's system
 for Substrate runtime development that is used for chains like
 [Kusama](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/lib.rs) and
 [Polkadot](https://github.com/paritytech/polkadot/blob/master/runtime/polkadot/src/lib.rs). FRAME
 defines additional runtime primitives and
 provides a framework that makes it easy to construct a runtime by composing modules, called
-[pallets](../../knowledgebase/runtime/pallets). Each pallet encapsulates domain-specific logic that is expressed as a set of a
-[storage items](../../knowledgebase/runtime/storage), [events](../../knowledgebase/runtime/events),
-[errors](../../knowledgebase/runtime/errors) and
-[dispatchable functions](../../knowledgebase/getting-started/glossary#dispatch). FRAME developers
-can [create their own pallets](../../knowledgebase/runtime/pallets) and reuse existing pallets,
-including [over 50 that ship with Substrate](../../knowledgebase/runtime/frame#prebuilt-pallets).
+[pallets](../../runtime/pallets). Each pallet encapsulates domain-specific logic that is expressed as a set of a
+[storage items](../../runtime/storage), [events](../../runtime/events),
+[errors](../../runtime/errors) and
+[dispatchable functions](../../getting-started/glossary#dispatch). FRAME developers
+can [create their own pallets](../../runtime/pallets) and reuse existing pallets,
+including [over 50 that ship with Substrate](../../runtime/frame#prebuilt-pallets).
 
-![Runtime Composition](assets/frame-runtime.png)
+![Runtime Composition](../../../../src/images/docs/concepts/frame-runtime.png)
 
 There are an additional set of primitives that are assumed about a runtime built with the Substrate
 FRAME. These are:
@@ -93,10 +93,10 @@ Substrate based blockchains.
 
 ### Learn More
 
-- Learn about the [Substrate FRAME](../../knowledgebase/runtime/frame).
+- Learn about the [Substrate FRAME](../../runtime/frame).
 - Follow a
-  [tutorial to develop your first Substrate chain](../../tutorials/create-your-first-substrate-chain/).
-- Follow a [tutorial to add a pallet to your Substrate runtime](../../tutorials/add-a-pallet/).
+  [tutorial to develop your first Substrate chain](/tutorials/create-your-first-substrate-chain/).
+- Follow a [tutorial to add a pallet to your Substrate runtime](/tutorials/add-a-pallet/).
 
 ### References
 

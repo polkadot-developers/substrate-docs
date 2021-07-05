@@ -16,17 +16,17 @@ const DocsTemplate = ({ data, pageContext }: any) => {
   const globalDocsNav = [
     {
       section: `${intl.formatMessage({ id: 'docs-nav-knowledgebase' })}`,
-      url: '/v3/docs/',
+      url: '/v3/docs/getting-started/overview',
       external: false,
     },
     {
       section: `${intl.formatMessage({ id: 'docs-nav-tutorials' })}`,
-      url: '/tutorials/',
+      url: '/tutorials',
       external: false,
     },
     {
       section: `${intl.formatMessage({ id: 'docs-nav-htg' })}`,
-      url: '/how-to-guides/',
+      url: '/how-to-guides',
       external: false,
     },
     {
@@ -36,7 +36,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
     },
     {
       section: `${intl.formatMessage({ id: 'docs-nav-learningtracks' })}`,
-      url: '/learning-tracks/',
+      url: '/learning-tracks',
       external: false,
     },
   ]
@@ -46,23 +46,23 @@ const DocsTemplate = ({ data, pageContext }: any) => {
       items: [
         {
           title: `${intl.formatMessage({ id: 'docs-menu-overview' })}`,
-          link: '/v3/docs/',
+          link: '/v3/docs/getting-started/overview',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-architecture' })}`,
-          link: '/v3/docs/knowledgebase/getting-started/architecture',
+          link: '/v3/docs/getting-started/architecture',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-installation' })}`,
-          link: '/v3/docs/knowledgebase/getting-started/',
+          link: '/v3/docs/getting-started/installation',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-windows' })}`,
-          link: '/v3/docs/knowledgebase/getting-started/windows-users',
+          link: '/v3/docs/getting-started/windows-users',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-glossary' })}`,
-          link: '/v3/docs/knowledgebase/getting-started/glossary',
+          link: '/v3/docs/getting-started/glossary',
         },
       ],
     },
@@ -71,35 +71,35 @@ const DocsTemplate = ({ data, pageContext }: any) => {
       items: [
         {
           title: `${intl.formatMessage({ id: 'docs-menu-runtime' })}`,
-          link: '/v3/docs/knowledgebase/runtime',
+          link: '/v3/docs/concepts/runtime',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-extrinsics' })}`,
-          link: '/v3/docs/knowledgebase/learn-substrate/extrinsics',
+          link: '/v3/docs/concepts/extrinsics',
         },
         {
           title: `${intl.formatMessage({
             id: 'docs-menu-account-abstractions',
           })}`,
-          link: '/v3/docs/knowledgebase/learn-substrate/account-abstractions',
+          link: '/v3/docs/concepts/account-abstractions',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-transaction-pool' })}`,
-          link: '/v3/docs/knowledgebase/learn-substrate/learn-substrate/tx-pool',
+          link: '/v3/docs/concepts/tx-pool',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-session-keys' })}`,
-          link: '/v3/docs/knowledgebase/learn-substrate/learn-substrate/session-keys',
+          link: '/v3/docs/concepts/session-keys',
         },
         {
           title: `${intl.formatMessage({
             id: 'docs-menu-transaction-weight',
           })}`,
-          link: '/v3/docs/knowledgebase/learn-substrate/learn-substrate/weight',
+          link: '/v3/docs/concepts/weight',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-offchain-features' })}`,
-          link: '/v3/docs/knowledgebase/learn-substrate/off-chain-features',
+          link: '/v3/docs/concepts/off-chain-features',
         },
       ],
     },

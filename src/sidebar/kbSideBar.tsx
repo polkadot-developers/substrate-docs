@@ -9,23 +9,23 @@ export const kbSideBar: IkbSideBar = [
     items: [
       {
         title: 'Overview',
-        link: '/v3/docs/',
+        link: '/v3/docs/getting-started/overview',
       },
       {
         title: 'Architecture',
-        link: '/v3/docs/knowledgebase/getting-started/architecture',
+        link: '/v3/docs/getting-started/architecture',
       },
       {
         title: 'Installation',
-        link: '/v3/docs/knowledgebase/getting-started/',
+        link: '/v3/docs/getting-started/installation',
       },
       {
         title: 'Getting Started on Windows',
-        link: '/v3/docs/knowledgebase/getting-started/windows-users',
+        link: '/v3/docs/getting-started/windows-users',
       },
       {
         title: 'Glossary',
-        link: '/v3/docs/knowledgebase/getting-started/glossary',
+        link: '/v3/docs/getting-started/glossary',
       },
     ],
   },
@@ -34,31 +34,31 @@ export const kbSideBar: IkbSideBar = [
     items: [
       {
         title: 'Runtime',
-        link: '/v3/docs/knowledgebase/runtime',
+        link: '/v3/docs/concepts/runtime',
       },
       {
         title: 'Extrinsics',
-        link: '/v3/docs/knowledgebase/learn-substrate/extrinsics',
+        link: '/v3/docs/concepts/extrinsics',
       },
       {
         title: 'Account Abstractions',
-        link: '/v3/docs/knowledgebase/learn-substrate/account-abstractions',
+        link: '/v3/docs/concepts/account-abstractions',
       },
       {
         title: 'Transaction Pool',
-        link: '/v3/docs/knowledgebase/learn-substrate/learn-substrate/tx-pool',
+        link: '/v3/docs/concepts/tx-pool',
       },
       {
         title: 'Session Keys',
-        link: '/v3/docs/knowledgebase/learn-substrate/learn-substrate/session-keys',
+        link: '/v3/docs/concepts/session-keys',
       },
       {
         title: 'Transaction Weight',
-        link: '/v3/docs/knowledgebase/learn-substrate/learn-substrate/weight',
+        link: '/v3/docs/concepts/weight',
       },
       {
         title: 'Off-Chain Features',
-        link: '/v3/docs/knowledgebase/learn-substrate/off-chain-features',
+        link: '/v3/docs/concepts/off-chain-features',
       },
     ],
   },
