@@ -2,21 +2,27 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
 
   const kbTemplate = require.resolve(`./src/templates/kb-template.tsx`)
+  const htgTemplate = require.resolve(`./src/templates/htg-template.tsx`)
   const tutorialOneTemplate = require.resolve(
     `./src/templates/tut-templates/create-your-first-substrate-chain.tsx`
   )
 
   const result = await graphql(`
     {
-      docsV3: allFile(
-        filter: { sourceInstanceName: { eq: "kbV3" } }
-        sort: { order: DESC, fields: id }
-      ) {
+      docsV3: allFile(filter: { sourceInstanceName: { eq: "kbV3" } }) {
         nodes {
           childMdx {
             frontmatter {
               slug
-              id
+            }
+          }
+        }
+      }
+      htg: allFile(filter: { sourceInstanceName: { eq: "htg" } }) {
+        nodes {
+          childMdx {
+            frontmatter {
+              slug
             }
           }
         }
@@ -25,13 +31,11 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         filter: {
           sourceInstanceName: { eq: "create-your-first-substrate-chain" }
         }
-        sort: { order: DESC, fields: id }
       ) {
         nodes {
           childMdx {
             frontmatter {
               slug
-              id
             }
           }
         }
@@ -45,15 +49,25 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
 
   const allV3 = result.data.docsV3.nodes
-  allV3.forEach(({ childMdx: node }, index) => {
+  allV3.forEach(({ childMdx: node }) => {
     createPage({
       path: `${node.frontmatter.slug}`,
       component: kbTemplate,
       context: {
         slug: `${node.frontmatter.slug}`,
         version: `3.0`,
-        prev: index === 0 ? null : allV3[index - 1],
-        next: index === allV3.length - 1 ? null : allV3[index + 1],
+      },
+    })
+  })
+
+  const htgPages = result.data.htg.nodes
+  htgPages.forEach(({ childMdx: node }) => {
+    createPage({
+      path: `${node.frontmatter.slug}`,
+      component: htgTemplate,
+      context: {
+        slug: `${node.frontmatter.slug}`,
+        version: `3.0`,
       },
     })
   })

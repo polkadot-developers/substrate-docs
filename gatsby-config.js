@@ -53,6 +53,13 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        path: `${__dirname}/v3/how-to-guides`,
+        name: `htg`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         path: `${__dirname}/v3/tutorials/create-your-first-substrate-chain`,
         name: `create-your-first-substrate-chain`,
       },
