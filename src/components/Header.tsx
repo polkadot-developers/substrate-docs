@@ -65,22 +65,22 @@ export default function Header() {
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-docs' })}`,
-          link: `/v3/docs/`,
+          link: `/v3/docs/getting-started/overview`,
           external: false,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-how-to-guides' })}`,
-          link: `/how-to-guides/`,
+          link: `/how-to-guides`,
           external: false,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-tutorials' })}`,
-          link: `/tutorials/`,
+          link: `/tutorials`,
           external: false,
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-rust-docs' })}`,
-          link: `https://substrate.dev/rustdocs/v3.0.0-monthly-2021-07/sc_service/index.html`,
+          link: `https://substrate.dev/rustdocs/latest/sc_service/index.html`,
           external: true,
         },
         {

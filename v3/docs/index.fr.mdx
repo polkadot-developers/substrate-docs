@@ -1,10 +1,7 @@
 ---
-title: Aperçu
-version: 3.00
-slug: /v3/docs/
 id: 001
-date_published: 2021.06.01
-date_updated: 2021.06.03
+title: Aperçu
+slug: /v3/docs/getting-started/overview
 ---
 
 Bienvenue dans le monde merveilleux du développement blockchain avec Substrate ! Il s'agit de la base de connaissances des substrats, la
@@ -18,7 +15,7 @@ développeur de blockchain de substrat efficace.
 > notions. La terminologie comme en-tête, bloc, client, hachage, transaction et signature doit être familière. Le substrat est
 > construit sur le langage de programmation Rust, qui utilise de nouveaux modèles de conception pour permettre le développement de code qui est
 > sûr et rapide. Bien que vous n'ayez pas besoin de connaître Rust pour commencer avec Substrate, une bonne compréhension de Rust
-> vous permettre de devenir un meilleur développeur de substrats. Consultez [les excellentes ressources] (https://www.rust-lang.org/learn)
+> vous permettre de devenir un meilleur développeur de substrats. Consultez [les excellentes ressources](https://www.rust-lang.org/learn)
 > fourni par la communauté Rust pour développer vos compétences en développement Rust.
 
 Substrat adopte une approche modulaire du développement de la blockchain et définit un riche ensemble de primitives qui permet aux développeurs
@@ -33,46 +30,46 @@ Le substrat est conçu pour être utilisé de l'une des trois manières suivante
 dans ce cas, il vous suffit de fournir un fichier JSON et de lancer votre propre blockchain. Le fichier JSON permet de configurer
 l'état de genèse des modules qui composent l'exécution du nœud de substrat, tels que : Balances, Staking et Sudo. Toi
 pouvez en savoir plus sur l'exécution d'un nœud de substrat dans le
-[Créez votre première chaîne de substrats] (tutoriels/create-your-first-substrate-chain) et
+[Créez votre première chaîne de substrats](tutoriels/create-your-first-substrate-chain) et
 [Démarrer un réseau privé](tutoriels/start-a-private-network/index.md) tutoriels.
 
 2. **Avec Substrate FRAME** : vous pouvez facilement créer votre propre environnement d'exécution personnalisé à l'aide de [FRAME](knowledgebase/runtime/frame.md)
-   (Framework for Runtime Aggregation of Modularized Entities), qui est utilisé pour construire le nœud de substrat. Cette
-   vous offre une grande liberté sur la logique de votre blockchain, et vous permet de configurer les types de données, sélectionnez
-   à partir d'une bibliothèque de modules (appelés "palettes"), et même ajouter vos propres palettes personnalisées. le
-   [Modèle de nœud de hub de développeur de substrat] (https://github.com/substrate-developer-hub/substrate-node-template) est un
-   point de départ utile pour des projets comme celui-ci. Pour en savoir plus, consultez les tutoriels pour
-   [Créer une dApp](tutoriels/build-a-dapp) et [Ajouter une palette](tutoriels/ajouter-une-palette).
+(Framework for Runtime Aggregation of Modularized Entities), qui est utilisé pour construire le nœud de substrat. Cette
+vous offre une grande liberté sur la logique de votre blockchain, et vous permet de configurer les types de données, sélectionnez
+à partir d'une bibliothèque de modules (appelés "palettes"), et même ajouter vos propres palettes personnalisées. le
+[Modèle de nœud de hub de développeur de substrat](https://github.com/substrate-developer-hub/substrate-node-template) est un
+point de départ utile pour des projets comme celui-ci. Pour en savoir plus, consultez les tutoriels pour
+[Créer une dApp](tutoriels/build-a-dapp) et [Ajouter une palette](tutoriels/ajouter-une-palette).
 
 3. **Avec Substrate Core** : L'ensemble du système FRAME peut être ignoré et le runtime peut être conçu et mis en œuvre à partir de
-   rayure. Cela peut être fait dans _n'importe quelle langue_ pouvant cibler [WebAssembly](https://webassembly.org/). Si le temps d'exécution
-   peut être rendu compatible avec la logique de création de bloc abstrait du nœud de substrat, alors vous pouvez simplement
-   construisez un nouveau bloc de genèse à partir de votre blob Wasm et lancez votre chaîne avec le substrat à base de rouille existant
-   client. Sinon, vous devrez modifier la logique de création de blocs du client, et potentiellement même modifier l'en-tête
-   et bloquer les formats de sérialisation. En termes d'effort de développement, c'est de loin la manière la plus difficile d'utiliser
-   Substrat, mais vous donne également le plus de liberté pour innqovate.
+rayure. Cela peut être fait dans _n'importe quelle langue_ pouvant cibler [WebAssembly](https://webassembly.org/). Si le temps d'exécution
+peut être rendu compatible avec la logique de création de bloc abstrait du nœud de substrat, alors vous pouvez simplement
+construisez un nouveau bloc de genèse à partir de votre blob Wasm et lancez votre chaîne avec le substrat à base de rouille existant
+client. Sinon, vous devrez modifier la logique de création de blocs du client, et potentiellement même modifier l'en-tête
+et bloquer les formats de sérialisation. En termes d'effort de développement, c'est de loin la manière la plus difficile d'utiliser
+Substrat, mais vous donne également le plus de liberté pour innqovate.
 
 Substrate permet aux développeurs de faire des choix entre liberté technique et facilité de développement à chaque étape de leurs décisions de conception. Le schéma ci-dessous illustre la nature de cette flexibilité.
 
-![Liberté technique vs facilité de développement](../../../src/images/technical-freedom.png)
+![Liberté technique vs facilité de développement](../../src/images/docs/getting-started/technical-freedom.png)
 
 ## Prochaines étapes
 
 ### Apprendre encore plus
 
-- Reportez-vous à la documentation du développeur pour le [système FRAME pour le développement d'exécution] (base de connaissances/exécution).
+- Reportez-vous à la documentation du développeur pour le [système FRAME pour le développement d'exécution](basedeconnaissances/exécution).
 - Apprenez à créer des applications clientes riches pour n'importe quelle chaîne basée sur des substrats en utilisant le
-  [Polkadot-JS](knowledgebase/integrate/polkadot-js) famille de bibliothèques.
+[Polkadot-JS](knowledgebase/integrate/polkadot-js) famille de bibliothèques.
 - Plongez dans des sujets avancés, comme [encodage SCALE] de Substrate (base de connaissances/avancé/codec),
-  [mécanismes de consensus](base de connaissances/avancé/consensus), [cryptographie](base de connaissances/avancé/cryptographie), et
-  [mise en œuvre du stockage](base de connaissances/avancée/stockage).
+[mécanismes de consensus](basedeconnaissances/avancé/consensus), [cryptographie](basedeconnaissances/avancé/cryptographie), et
+[mise en œuvre du stockage](basedeconnaissances/avancée/stockage).
 
 ### Exemples
 
 - Suivez nos [tutoriels](../../tutorials) pour en savoir plus sur la création et l'exécution de blockchains avec Substrate et FRAME.
-- Reportez-vous à [Substrate Recipes] (https://substrate.dev/recipes/) pour trouver des exemples de travail complets qui démontrent
-  des solutions aux problèmes communs.
+- Reportez-vous à [Substrate Recipes](https://substrate.dev/recipes/) pour trouver des exemples de travail complets qui démontrent
+des solutions aux problèmes communs.
 
 ### Les références
 
-- Consultez la [Documentation de référence sur Rust] (https://substrate.dev/rustdocs) fournie avec la base de code Substrate.
+- Consultez la [Documentation de référence sur Rust](https://substrate.dev/rustdocs) fournie avec la base de code Substrate.
