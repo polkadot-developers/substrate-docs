@@ -264,6 +264,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
       ],
     },
   ] 
+  
   return (
     <Layout>
       <SEO title={data.mdx ? data.mdx.frontmatter.title : null} />
