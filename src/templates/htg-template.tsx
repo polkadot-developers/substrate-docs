@@ -70,7 +70,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
       name: `${intl.formatMessage({ id: 'docs-menu-key-concepts' })}`,
       items: [
         {
-          title: `${intl.formatMessage({ id: 'docs-menu-runtime' })}`,
+          title: `${intl.formatMessage({ id: 'docs-menu-gs-runtime' })}`,
           link: '/v3/docs/knowledgebase/runtime',
         },
         {

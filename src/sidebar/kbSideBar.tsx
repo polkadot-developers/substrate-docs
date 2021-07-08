@@ -127,4 +127,91 @@ export const kbSideBar: IkbSideBar = [
       },
     ],
   },
+  {
+    name: 'Smart Contracts',
+    items: [
+      {
+        title: 'Overview',
+        link: '/v3/docs/knowledgebase/smartcontracts/overview',
+      },
+      {
+        title: '"Contracts Pallet',
+        link: '/v3/docs/knowledgebase/smartcontracts/contracts-pallet',
+      },
+      {
+        title: 'EVM Pallet',
+        link: '/v3/docs/knowledgebase/smartcontracts/evm-pallet',
+      },
+    ],
+  },
+    {
+      name: 'Integrate',
+      item: [
+      {
+        title: 'Polkadot-JS',
+        link: '/v3/docs/knowledgebase/integrate/polkadotjs',
+      },
+      {
+        title: 'Client Libraries',
+        link: '/v3/docs/knowledgebase/integrate/client-libraries',
+      },
+      {
+        title: 'Subkey',
+        link: '/v3/docs/knowledgebase/runtime/subkey',
+      },
+      {
+        title: 'Memory Profiling',
+        link: '/v3/docs/knowledgebase/runtime/memory-profiling',
+      },
+      {
+        title: 'Chain Specification',
+        link: '/v3/docs/knowledgebase/runtime/chain-specs',
+      },
+    ],
+  },
+    {
+      name: 'Advanced',
+      item: [
+      {
+        title: 'Account Info',
+        link: '/v3/docs/knowledgebase/advanced/account-info',
+      },
+      {
+        title: 'Errors',
+        link: '/v3/docs/knowledgebase/advanced/errors',
+      },
+      {
+        title: 'SCALE Codec',
+        link: '/v3/docs/knowledgebase/advanced/scale-codec',
+      },
+      {
+        title: 'Consensus',
+        link: '/v3/docs/knowledgebase/advanced/consensus',
+      },
+      {
+        title: 'Block Import',
+        link: '/v3/docs/knowledgebase/advanced/block-import',
+      },
+      {
+        title: 'Executor',
+        link: '/v3/docs/knowledgebase/advanced/executor',
+      },
+      {
+        title: 'Cryptography',
+        link: '/v3/docs/knowledgebase/advanced/cryptography',
+      },
+      {
+        title: 'Storage',
+        link: '/v3/docs/knowledgebase/advanced/storage',
+      },
+      {
+        title: 'SS58 Address Format',
+        link: '/v3/docs/knowledgebase/advanced/SS58',
+      },
+      {
+        title: 'Hash Collections',
+        link: '/v3/docs/knowledgebase/advanced/hash-collections',
+      },
+    ],
+  },
 ]

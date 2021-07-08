@@ -70,7 +70,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
       name: `${intl.formatMessage({ id: 'docs-menu-key-concepts' })}`,
       items: [
         {
-          title: `${intl.formatMessage({ id: 'docs-menu-runtime' })}`,
+          title: `${intl.formatMessage({ id: 'docs-menu-gs-runtime' })}`,
           link: '/v3/docs/concepts/runtime',
         },
         {
@@ -103,8 +103,167 @@ const DocsTemplate = ({ data, pageContext }: any) => {
         },
       ],
     },
-  ]
-
+    {
+      name: `${intl.formatMessage({ id: 'docs-menu-runtime' })}`,
+      items: [
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-pallets' })}`,
+          link: '/v3/docs/knowledgebase/runtime/pallets',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-frame' })}`,
+          link: '/v3/docs/knowledgebase/runtime/frame',
+        },
+        {
+          title: `${intl.formatMessage({
+            id: 'docs-menu-macros',
+          })}`,
+          link: '/v3/docs/knowledgebase/runtime/macros',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-metadata' })}`,
+          link: '/v3/docs/knowledgebase/runtime/metadata',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-storage' })}`,
+          link: '/v3/docs/knowledgebase/runtime/storage',
+        },
+        {
+          title: `${intl.formatMessage({
+            id: 'docs-menu-origins',
+          })}`,
+          link: '/v3/docs/knowledgebase/runtime/origins',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-execution' })}`,
+          link: '/v3/docs/knowledgebase/runtime/execution',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-events' })}`,
+          link: '/v3/docs/knowledgebase/runtime/events',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-errors' })}`,
+          link: '/v3/docs/knowledgebase/runtime/errors',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-weights-and-fees' })}`,
+          link: '/v3/docs/knowledgebase/runtime/weights-and-fees',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-benchmarking' })}`,
+          link: '/v3/docs/knowledgebase/runtime/benchmarking',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-debugging' })}`,
+          link: '/v3/docs/knowledgebase/runtime/debugging',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-testing' })}`,
+          link: '/v3/docs/knowledgebase/runtime/testing',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-randomness' })}`,
+          link: '/v3/docs/knowledgebase/runtime/randomness',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-upgrades' })}`,
+          link: '/v3/docs/knowledgebase/runtime/upgrades',
+        },
+      ],
+    },
+    {
+      name: `${intl.formatMessage({ id: 'docs-menu-smart-contracts' })}`,
+      items: [
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-sc-overview' })}`,
+          link: '/v3/docs/knowledgebase/smartcontracts/overview',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-contracts-pallet' })}`,
+          link: '/v3/docs/knowledgebase/smartcontracts/contracts-pallet',
+        },
+        {
+          title: `${intl.formatMessage({
+            id: 'docs-menu-evm-pallet',
+          })}`,
+          link: '/v3/docs/knowledgebase/smartcontracts/evm-pallet',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-sc-faq' })}`,
+          link: '/v3/docs/knowledgebase/smartcontracts/sc-faq',
+        },
+      ],
+    },
+    {
+      name: `${intl.formatMessage({ id: 'docs-menu-integrate' })}`,
+      items: [
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-polkadot-js' })}`,
+          link: '/v3/docs/knowledgebase/integrate/polkadot-js',
+        },
+        {
+          title: `${intl.formatMessage({
+            id: 'docs-menu-client-libraries',
+          })}`,
+          link: '/v3/docs/knowledgebase/integrate/client-libraries',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-subkey' })}`,
+          link: '/v3/docs/knowledgebase/integrate/subkey',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-memory-profiling' })}`,
+          link: '/v3/docs/knowledgebase/integrate/memory-profiling',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-chain-specs' })}`,
+          link: '/v3/docs/knowledgebase/integrate/chain-specs',
+        },
+      ],
+    },
+    {
+      name: `${intl.formatMessage({ id: 'docs-menu-advanced' })}`,
+      items: [
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-account-info' })}`,
+          link: '/v3/docs/knowledgebase/advanced/account-info',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-scale-codec' })}`,
+          link: '/v3/docs/knowledgebase/advanced/scale-codec',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-consensus' })}`,
+          link: '/v3/docs/knowledgebase/advanced/consensus',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-block-import' })}`,
+          link: '/v3/docs/knowledgebase/advanced/block-import',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-executor' })}`,
+          link: '/v3/docs/knowledgebase/advanced/executor',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-cryptography' })}`,
+          link: '/v3/docs/knowledgebase/advanced/cryptography',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-storage' })}`,
+          link: '/v3/docs/knowledgebase/advanced/storage',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-ss58' })}`,
+          link: '/v3/docs/knowledgebase/advanced/ss58',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'docs-menu-hash-collections' })}`,
+          link: '/v3/docs/knowledgebase/advanced/hash-collections',
+        },
+      ],
+    },
+  ] 
   return (
     <Layout>
       <SEO title={data.mdx ? data.mdx.frontmatter.title : null} />

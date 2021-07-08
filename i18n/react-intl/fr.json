@@ -54,7 +54,7 @@
   "docs-menu-windows": "Mise en route sous Windows",
   "docs-menu-glossary": "Glossaire",
   "docs-menu-key-concepts": "Concepts clés du substrat",
-  "docs-menu-runtime": "Exécution",
+  "docs-menu-gs-runtime": "Exécution",
   "docs-menu-extrinsics": "Extrinsèques",
   "docs-menu-account-abstractions":"Abstractions de compte",
   "docs-menu-transaction-pool": "Pool de transactions",
