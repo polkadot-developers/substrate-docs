@@ -1,0 +1,126 @@
+---
+title: Create and Use a Struct in Storage
+slug: /v3/how-to-guides/pallet-design/storage-value
+keywords: pallet design, intermediate, runtime
+---
+
+# Create and use a struct in storage
+
+_Learn how to write a struct to manage your storage values._
+
+## Goal
+
+Create a struct in [`StorageValue`][storagevalue-rustdocs] and use it on `on_initialize`.
+
+## Use cases
+
+Keep track of different accounts and balances for testing a pallet.
+
+## Overview
+
+Creating a struct of similarly grouped storage items is a neat way to keep track of them. 
+They can be easier to reference than keeping individual `StorageValue` items separate this way. 
+In addition, they can be used to ease testing and genesis configuration. 
+
+This guide steps through the procedure of creating a struct in storage which:
+- keeps track of an initial amount (`issuance`)
+- keeps track of the account that receives that amount (`minter`)
+- keeps track of an account that can burn some amount (`burner`)
+- is (partially) used in `on_initialize`
+
+## Steps
+
+### 1. Create a your struct 
+
+Call it `MetaData` and declare its different types: 
+
+```rust
+#[derive(Clone, Encode, Decode, Eq, PartialEq, RuntimeDebug, Default)]
+pub struct MetaData<AccountId, Balance> {
+	issuance: Balance,
+	minter: AccountId,
+	burner: AccountId,
+}
+```
+
+### 2. Declare the struct as a storage item
+
+Use `StorageValue` to declare the struct as a new single item in storage:
+
+```rust
+#[pallet::storage]
+	#[pallet::getter(fn meta_data)]
+	pub(super) type MetaDataStore<T: Config> = StorageValue<_, MetaData<T::AccountId, T::Balance>, ValueQuery>;
+```
+
+### 3. Configure `GenesisConfig` and `GenesisBuild`
+
+#### `GenesisConfig`
+
+Use `#[pallet::genesis_config]` to declare the admin account that you'll use in your to 
+initialize values from your `MetaData` struct:
+
+```rust
+// Declare `admin` as type `T::AccountId`.
+#[pallet::genesis_config]
+	pub struct GenesisConfig<T: Config> {
+		pub admin: T::AccountId,
+	}
+// Give it a default value.
+#[cfg(feature = "std")]
+	impl<T: Config> Default for GenesisConfig<T> {
+		fn default() -> Self {
+			Self {
+				admin: Default::default(),
+			}
+		}
+	}
+```
+
+#### `GenesisBuild`
+
+Use `#[pallet::genesis_build]` to initialize the values of your struct, using `admin` to initialize the values
+of type `T::AccountId`:   
+
+```rust
+#[pallet::genesis_build]
+	impl<T: Config> GenesisBuild<T> for GenesisConfig<T> {
+		fn build(&self) {
+			MetaDataStore::<T>::put(MetaData {
+				issuance: Zero::zero(),
+				minter: self.admin.clone(),
+				burner: self.admin.clone(),
+			});
+		}
+	}
+```
+
+### 4. Use the struct in `on_initialize()`
+
+Assign an amount to the `issuance` field of `MetaData` to be initialized when the chain is launched:
+
+```rust
+fn on_initialize(_n: T::BlockNumber) -> Weight {
+			let mut meta = MetaDataStore::<T>::get();
+			let value: T::Balance = 50u8.into();
+			meta.issuance = meta.issuance.saturating_add(value);
+            // Add the amount to the `minter` account in storage.
+			Accounts::<T>::mutate(&meta.minter, |bal| {
+				*bal = bal.saturating_add(value);
+			});
+			
+		}
+```
+
+## Examples
+
+- [`reward-coin`](https://github.com/sacha-l/substrate-how-to-guides/blob/dc3e1d6c79198558f465fbbdbbda03a4237eacf3/how-to-substrate/example-code/template-node/pallets/reward-coin/src/lib.rs#L24-L28)
+
+## Resources
+#### How-to guides
+- [Configure a runtime constant](../basics/configurable-constants)
+
+#### Rust docs
+- [`Default::default()`](https://substrate.dev/rustdocs/v3.0.0/sp_std/default/trait.Default.html)
+
+[storagevalue-rustdocs]: https://crates.parity.io/frame_support/storage/trait.StorageValue.html

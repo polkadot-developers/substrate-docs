@@ -103,6 +103,33 @@
   "docs-menu-ss58": "SS58 Address Format",
   "docs-menu-hash-collections": "Hash Collections",
 
+  "docs-nav-htg-basics": "Basics",
+  "htg-basics-pallet-integration": "Pallet Integration", 
+  "htg-basics-instantiable-pallets": "Instantiable Pallets",
+  "htg-basics-configurable-constants": "Configurable Constants",
+  "htg-basics-genesis": "Genesis Configuration",
+  "htg-basics-helper-functions": "Helper Functions",
+  "htg-basics-mint-token": "Primitive Token Mint",
+  "htg-basics-weights": "Calculating Transaction Weights",
+
+
+  "docs-nav-htg-pallet-design": "Pallet Design",
+  "htg-pallet-design-storage-value": "Storage Value Struct",
+
+  "docs-nav-htg-weights": "Weights",
+  "htg-weights-calculate-fees": "Calculating Fees",
+
+  
+  "docs-nav-htg-testing": "Testing",
+  "docs-nav-htg-storage-migrations": "Storage Migrations",
+  "docs-nav-htg-consensus": "Consensus",
+  "docs-nav-htg-tools": "Tools",
+
+
+
+
+
+
 
   "tutorials-beginner":"beginner",
   "tutorials-intermediate":"intermediate",
