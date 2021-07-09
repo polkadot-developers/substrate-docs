@@ -115,7 +115,7 @@
 
   "docs-nav-htg-pallet-design": "Pallet Design",
   "htg-pallet-design-add-contracts": "Integrate the Contracts Pallet",
-  "htg-pallet-design-lockable-currency": "Intantiable Pallets",
+  "htg-pallet-design-lockable-currency": "Implement a Lockable Currency",
   "htg-pallet-design-randomness": "Implementing Randomness",
   "htg-pallet-design-crowdfund": "Simple Crowdfund",
   "htg-pallet-design-storage-value": "Storage Value Struct",

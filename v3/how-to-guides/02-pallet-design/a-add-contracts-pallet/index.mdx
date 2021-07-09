@@ -17,10 +17,14 @@ to support Wasm smart contracts. You can follow similar patterns to add addition
 however you should note that each pallet is a little different in terms of the specific configuration settings 
 needed to use it correctly.
 
-:::note 
-You should already have the latest version of the Substrate Node Template compiled on your computer to follow this guide. 
-If you haven't already done so, refer to [this tutorial][create-first-chain-tutorial].
-:::
+<Message
+  type={`green`}
+  title={`Advice`}
+  text={`You should already have the latest version of the 
+  Substrate Node Template compiled on your computer to follow this guide. 
+If you haven't already done so, refer to 
+[this tutorial][create-first-chain-tutorial].`}
+/>
 
 ## Steps
 
@@ -101,9 +105,13 @@ Ceate an instance of the Contracts pallet in `construct_macro!` inside `runtime/
 
 ### 3. Add API dependencies
 
-:::info
-Some pallets, including the Contracts pallet, expose custom runtime APIs and RPC endpoints. In the case of the Contracts pallet, this enables reading contracts state from off chain.
-:::
+<Message
+  type={`red`}
+  title={`Warning`}
+  text={`Some pallets, including the Contracts pallet, expose custom runtime APIs and RPC endpoints. 
+  In the case of the Contracts pallet, 
+  this enables reading contracts state from off chain.`}
+/>
 
 In this guide, we want to use the Contracts pallet to make calls to our node's storage without making a transaction. 
 
@@ -135,10 +143,12 @@ To be able to call the runtime API, we must add the RPC to the node's service.
 
 In `node/Cargo.toml`, add the dendencies for `pallet-contracts` and `pallet-contracts-rpc`.
 
-:::note Unsure what version to include? 
-
-Use the latest version as indicated on [crates.io][pallet-crates].
-:::
+<Message
+  type={`green`}
+  title={`Advice`}
+  text={`Unsure what version to include? Use the latest version as 
+  indicated on [crates.io][pallet-crates].`}
+/>
 
 This RPC does not contain access to the Contracts pallet by default. To interact with this pallet, we have to **extend the existing RPC and add the Contracts pallet** along with its API.
 

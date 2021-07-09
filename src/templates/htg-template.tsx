@@ -116,11 +116,11 @@ const DocsTemplate = ({ data, pageContext }: any) => {
       name: `${intl.formatMessage({ id: 'docs-nav-htg-testing' })}`,
       items: [
         {
-          title: `${intl.formatMessage({ id: 'htg-testing-basics' })}`,
+          title: `${intl.formatMessage({ id: 'htg-testing-basics', })}`,
           link: '/v3/how-to-guides/testing/basics',
         },
         {
-          title: `${intl.formatMessage({ id: 'htg-testing-transfer-function' })}`,
+          title: `${intl.formatMessage({ id: 'htg-testing-transfer-function', })}`,
           link: '/v3/how-to-guides/testing/transfer-function',
         },
       ],
