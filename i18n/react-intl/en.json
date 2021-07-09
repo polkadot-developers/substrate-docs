@@ -114,6 +114,10 @@
 
 
   "docs-nav-htg-pallet-design": "Pallet Design",
+  "htg-pallet-design-add-contracts": "Integrate the Contracts Pallet",
+  "htg-pallet-design-lockable-currency": "Intantiable Pallets",
+  "htg-pallet-design-randomness": "Implementing Randomness",
+  "htg-pallet-design-crowdfund": "Simple Crowdfund",
   "htg-pallet-design-storage-value": "Storage Value Struct",
 
   "docs-nav-htg-weights": "Weights",
@@ -121,15 +125,19 @@
 
   
   "docs-nav-htg-testing": "Testing",
+  "htg-testing-basics": "Setting up Tests for Your Pallet",
+  "htg-testing-transfer-function": "Testing a Transfer Function",
+  
   "docs-nav-htg-storage-migrations": "Storage Migrations",
+  "htg-sm-nicks": "Basic Storage Migration",
+  "htg-sm-steps": "Trigger a Storage Migration",
+  "htg-sm-tests": "Migration Tests",
+
   "docs-nav-htg-consensus": "Consensus",
+  "htg-consensus-pow": "Add PoW Consensus",
+
   "docs-nav-htg-tools": "Tools",
-
-
-
-
-
-
+  "htg-tools-try-runtime": "Integrate Try-runtime",
 
   "tutorials-beginner":"beginner",
   "tutorials-intermediate":"intermediate",

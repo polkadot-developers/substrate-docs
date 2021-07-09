@@ -51,7 +51,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
         },
         {
           title: `${intl.formatMessage({ id: 'htg-basics-instantiable-pallets' })}`,
-          link: '/v3/how-to-guides/basics/pallet-integration',
+          link: '/v3/how-to-guides/basics/instantiable-pallets'
         },
         {
           title: `${intl.formatMessage({ id: 'htg-basics-configurable-constants' })}`,
@@ -62,7 +62,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
           link: '/v3/how-to-guides/basics/genesis',
         },
         {
-          title: `${intl.formatMessage({ id: 'htg-basics-helper-functions' })}`,
+          title: `${intl.formatMessage({ id: 'htg-basics-helper-functions', })}`,
           link: '/v3/how-to-guides/basics/helper-functions',
         },
         {
@@ -79,6 +79,22 @@ const DocsTemplate = ({ data, pageContext }: any) => {
     {
       name: `${intl.formatMessage({ id: 'docs-nav-htg-pallet-design' })}`,
       items: [
+        {
+          title: `${intl.formatMessage({ id: 'htg-pallet-design-add-contracts' })}`,
+          link: '/v3/how-to-guides/pallet-design/contracts-pallet',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'htg-pallet-design-lockable-currency' })}`,
+          link: '/v3/how-to-guides/pallet-design/lockable-currency',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'htg-pallet-design-randomness' })}`,
+          link: '/v3/how-to-guides/pallet-design/randomness',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'htg-pallet-design-crowdfund' })}`,
+          link: '/v3/how-to-guides/pallet-design/crowdfund',
+        },
         {
           title: `${intl.formatMessage({ id: 'htg-pallet-design-storage-value' })}`,
           link: '/v3/how-to-guides/pallet-design/storage-value',
@@ -100,8 +116,12 @@ const DocsTemplate = ({ data, pageContext }: any) => {
       name: `${intl.formatMessage({ id: 'docs-nav-htg-testing' })}`,
       items: [
         {
-          title: `${intl.formatMessage({ id: 'htg-weights-testing' })}`,
-          link: '/v3/how-to-guides/weights/testing',
+          title: `${intl.formatMessage({ id: 'htg-testing-basics' })}`,
+          link: '/v3/how-to-guides/testing/basics',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'htg-testing-transfer-function' })}`,
+          link: '/v3/how-to-guides/testing/transfer-function',
         },
       ],
     },
@@ -110,8 +130,16 @@ const DocsTemplate = ({ data, pageContext }: any) => {
       name: `${intl.formatMessage({ id: 'docs-nav-htg-storage-migrations' })}`,
       items: [
         {
-          title: `${intl.formatMessage({ id: 'htg-sm' })}`,
-          link: '/v3/how-to-guides/sm',
+          title: `${intl.formatMessage({ id: 'htg-sm-nicks' })}`,
+          link: '/v3/how-to-guides/storage-migrations/basics',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'htg-sm-steps' })}`,
+          link: '/v3/how-to-guides/storage-migrations/trigger-with-apps',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'htg-sm-tests' })}`,
+          link: '/v3/how-to-guides/storage-migrations/tests',
         },
       ],
     },
@@ -120,8 +148,8 @@ const DocsTemplate = ({ data, pageContext }: any) => {
       name: `${intl.formatMessage({ id: 'docs-nav-htg-consensus' })}`,
       items: [
         {
-          title: `${intl.formatMessage({ id: 'htg-consensus-' })}`,
-          link: '/v3/how-to-guides/consensus',
+          title: `${intl.formatMessage({ id: 'htg-consensus-pow' })}`,
+          link: '/v3/how-to-guides/consensus/pow',
         },
       ],
     },
@@ -131,7 +159,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
       items: [
         {
           title: `${intl.formatMessage({ id: 'htg-tools' })}`,
-          link: '/v3/how-to-guides/weights/calculate-fees',
+          link: '/v3/how-to-guides/tools/try-runtime',
         },
       ],
     },
