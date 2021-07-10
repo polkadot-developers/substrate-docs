@@ -112,7 +112,6 @@
   "htg-basics-mint-token": "Primitive Token Mint",
   "htg-basics-weights": "Calculating Transaction Weights",
 
-
   "docs-nav-htg-pallet-design": "Pallet Design",
   "htg-pallet-design-add-contracts": "Integrate the Contracts Pallet",
   "htg-pallet-design-lockable-currency": "Implement a Lockable Currency",
@@ -122,7 +121,6 @@
 
   "docs-nav-htg-weights": "Weights",
   "htg-weights-calculate-fees": "Calculating Fees",
-
   
   "docs-nav-htg-testing": "Testing",
   "htg-testing-basics": "Setting up Tests for Your Pallet",
