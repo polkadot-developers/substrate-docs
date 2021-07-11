@@ -103,6 +103,40 @@
   "docs-menu-ss58": "SS58 Address Format",
   "docs-menu-hash-collections": "Hash Collections",
 
+  "docs-nav-htg-basics": "Basics",
+  "htg-basics-pallet-integration": "Pallet Integration", 
+  "htg-basics-instantiable-pallets": "Instantiable Pallets",
+  "htg-basics-configurable-constants": "Configurable Constants",
+  "htg-basics-genesis": "Genesis Configuration",
+  "htg-basics-helper-functions": "Helper Functions",
+  "htg-basics-mint-token": "Primitive Token Mint",
+  "htg-basics-weights": "Calculating Transaction Weights",
+
+  "docs-nav-htg-pallet-design": "Pallet Design",
+  "htg-pallet-design-add-contracts": "Integrate the Contracts Pallet",
+  "htg-pallet-design-lockable-currency": "Implement a Lockable Currency",
+  "htg-pallet-design-randomness": "Implementing Randomness",
+  "htg-pallet-design-crowdfund": "Simple Crowdfund",
+  "htg-pallet-design-storage-value": "Storage Value Struct",
+
+  "docs-nav-htg-weights": "Weights",
+  "htg-weights-calculate-fees": "Calculating Fees",
+  
+  "docs-nav-htg-testing": "Testing",
+  "htg-testing-basics": "Setting up Tests for Your Pallet",
+  "htg-testing-transfer-function": "Testing a Transfer Function",
+  
+  "docs-nav-htg-storage-migrations": "Storage Migrations",
+  "htg-sm-nicks": "Basic Storage Migration",
+  "htg-sm-steps": "Trigger a Storage Migration",
+  "htg-sm-tests": "Migration Tests",
+
+  "docs-nav-htg-consensus": "Consensus",
+  "htg-consensus-pow": "Add PoW Consensus",
+
+  "docs-nav-htg-tools": "Tools",
+  "htg-tools-try-runtime": "Integrate Try-runtime",
+  
   "tutorials-beginner":"débutant",
   "tutorials-intermediate":"intermédiaire",
   "tutorials-advance":"avance"
