@@ -68,14 +68,14 @@ as the `call` parameter and provide the Wasm binary as before. Leave the "with w
 option deactivated. Once all the other fields have been filled in, use a block number about 10
 blocks (1 minute) in the future to fill in the `when` parameter and quickly submit the transaction.
 
-![Scheduled Upgrade Panel](assets/tutorials/forkless-upgrade/scheduled-upgrade.png)
+![Scheduled Upgrade Panel](../../../../src/images/tutorials/04-forkless-upgrade/scheduled-upgrade.png)
 
 
 You can use the template node's command line output or the
 [Polkadot JS Apps UI block explorer](https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944)
 to watch as this scheuled call takes place.
 
-![Scheduled Success Runtime Upgrade Version 102](assets/tutorials/forkless-upgrade/scheduled-upgrade-success.png)
+![Scheduled Success Runtime Upgrade Version 102](../../../../src/images/tutorials/04-forkless-upgrade/scheduled-upgrade-success.png)
 
 After the target block has been included in the chain, the version number in the upper-left-hand
 corner of Polkadot JS Apps UI should reflect that the runtime version is now `102`.
