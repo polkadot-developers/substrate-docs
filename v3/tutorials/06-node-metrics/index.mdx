@@ -73,11 +73,11 @@ Prometheus->Grafana: `substrate_peers_count (1582023828, 5), (1582023847, 4) [..
 ## Start a Substrate Template Node
 
 > Before you continue here, you should complete the
-[create your first substrate chain](create-your-first-substrate-chain/index.md)
-tutorial. The same substrate version, conventions for
-directory structure, and bin names are used here.
-You can of course use your own custom substrate node instead of the template,
-just edit the commands shown as needed.
+> [create your first substrate chain](create-your-first-substrate-chain/index.md)
+> tutorial. The same substrate version, conventions for
+> directory structure, and bin names are used here.
+> You can of course use your own custom substrate node instead of the template,
+> just edit the commands shown as needed.
 
 Substrate exposes an endpoint which serves metrics in the [Prometheus exposition
 format](https://prometheus.io/docs/concepts/data_model/) available on port
@@ -107,7 +107,7 @@ it to the targets array. If you modify the default, here is what will be differe
 # Here it's Prometheus itself.
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-  - job_name: "substrate_node"
+  - job_name: 'substrate_node'
 
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
@@ -118,7 +118,7 @@ scrape_configs:
     scrape_interval: 5s
 
     static_configs:
-      - targets: ["localhost:9615"]
+      - targets: ['localhost:9615']
 ```
 
 > **NOTE:** you want to have `scrape_interval` _less than_ the block time
@@ -189,18 +189,29 @@ Hit `Save & Test` to ensure that you have the data source set correctly. Now you
 
 If you would like a basic dashboard to start [here is a template example](../../../../src/images/tutorials/06-visualize-node-metrics/Substrate-Node-Template-Metrics.json) that you can `Import` in Grafana to get basic information about your node:
 
-<br>
-<center><img src="../../../../src/images/tutorials/06-visualize-node-metrics/grafana.png" alt="grafana dashboard" width="50%"/></center>
-<br>
+```html
+<br />
+<center>
+  <img
+    src="../../../../src/images/tutorials/06-visualize-node-metrics/grafana.png"
+    alt="grafana dashboard"
+    width="50%"
+  />
+</center>
+<br />
 
-If you create your own, the [prometheus docs for grafana](https://prometheus.io/docs/visualization/grafana/)
-may be helpful.
+If you create your own, the [prometheus docs for
+grafana](https://prometheus.io/docs/visualization/grafana/) may be helpful.
 
-<b>If you do create one, consider uploading it to the
-[community list of dashboards](https://grafana.com/grafana/dashboards) and letting
-the substrate builder community know it exists by listing in on
-[Awesome Substrate](https://github.com/substrate-developer-hub/awesome-substrate)!
-Here is ours on [the grafana public dashboards](https://grafana.com/grafana/dashboards/13759/)</b>
+<b>
+  If you do create one, consider uploading it to the [community list of
+  dashboards](https://grafana.com/grafana/dashboards) and letting the substrate
+  builder community know it exists by listing in on [Awesome
+  Substrate](https://github.com/substrate-developer-hub/awesome-substrate)! Here
+  is ours on [the grafana public
+  dashboards](https://grafana.com/grafana/dashboards/13759/)
+</b>
+```
 
 ## Next Steps
 
@@ -222,4 +233,4 @@ Here is ours on [the grafana public dashboards](https://grafana.com/grafana/dash
 
 - Visit the source code for
   [Substrate Prometheus Exporter](https://github.com/paritytech/substrate/tree/master/utils/prometheus).
-- See the [docs for prometheus in substrate](https://substrate.dev/rustdocs/v3.0.0/prometheus/index.html).
+- [See the [docs for prometheus in substrate](https://substrate.dev/rustdocs/v3.0.0/prometheus/index.html).

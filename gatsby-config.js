@@ -66,13 +66,13 @@ module.exports = {
         name: `create-your-first-substrate-chain`,
       },
     },
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     path: `${__dirname}/v3/tutorials/02-proof-of-existence`,
-    //     name: `proof-of-existence`,
-    //   },
-    // },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/v3/tutorials/02-proof-of-existence`,
+        name: `proof-of-existence`,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -94,13 +94,13 @@ module.exports = {
         name: `private-network`,
       },
     },
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     path: `${__dirname}/v3/tutorials/06-node-metrics`,
-    //     name: `node-metrics`,
-    //   },
-    // },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/v3/tutorials/06-node-metrics`,
+        name: `node-metrics`,
+      },
+    },
     //*********************************//
     {
       resolve: `gatsby-source-filesystem`,
