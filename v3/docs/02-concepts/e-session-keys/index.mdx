@@ -1,6 +1,6 @@
 ---
 title: Session Keys
-slug: /v3/docs/knowledgebase/learn-substrate/session-keys
+slug: /v3/docs/concepts/session-keys
 ---
 
 Session keys are "hot keys" that are used by validators to sign consensus-related messages. They are
@@ -15,12 +15,12 @@ Controller key. Then, they inform the chain that this key represents their Contr
 publishing the Session certificate in a transaction on the chain.
 
 Substrate provides the
-[Session pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_session/index.html), which allows
+[Session pallet](https://substrate.dev/rustdocs/latest/pallet_session), which allows
 validators to manage their session keys.
 
 ## Use
 
-Session keys are used by validators to sign consensus-related messages. [`SessionKeys`](https://substrate.dev/rustdocs/v3.0.0/sp_session/trait.SessionKeys.html) is a generic,
+Session keys are used by validators to sign consensus-related messages. [`SessionKeys`](https://substrate.dev/rustdocs/latest/sp_session/trait.SessionKeys.html) is a generic,
 indexable type that is made concrete in the runtime.
 
 You can declare any number of Session keys. For example, the default Substrate node uses four. Other
@@ -60,7 +60,7 @@ mod app {
 > Refer to the runtime for the most up-to-date implementation.
 
 The default Substrate node implements Session keys in the
-[Session pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_session/).
+[Session pallet](https://substrate.dev/rustdocs/latest/pallet_session/).
 
 ### Strongly Typed Wrappers
 
@@ -72,8 +72,8 @@ used for their intended purpose.
 ## Generation
 
 As a node operator, you can generate keys using the RPC call
-[`author_rotateKeys`](https://substrate.dev/rustdocs/v3.0.0/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys).
-You will then need to register the new keys on chain using a [`session.setKeys`](https://substrate.dev/rustdocs/v3.0.0/pallet_session/struct.Module.html#method.set_keys) transaction.
+[`author_rotateKeys`](https://substrate.dev/rustdocs/latest/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys).
+You will then need to register the new keys on chain using a [`session.setKeys`](https://substrate.dev/rustdocs/latest/pallet_session/struct.Module.html#method.set_keys) transaction.
 
 > **Note:** for increased security, session keys should be changed every session. This can be done by creating a certificate via signing a session public key
 > and broadcasting it via an extrinsic.
@@ -86,16 +86,16 @@ behavior.
 ### Examples
 
 - Follow our
-  [tutorial to create a local network and generate keys](../../tutorials/start-a-private-network/).
+  [tutorial to create a local network and generate keys](/tutorials/start-a-private-network/).
 
 ### References
 
 - Visit the reference docs for the
-  [session keys runtime API](https://substrate.dev/rustdocs/v3.0.0/sp_session/trait.SessionKeys.html).
+  [session keys runtime API](https://substrate.dev/rustdocs/latest/sp_session/trait.SessionKeys.html).
 
 - Take a look at the default
-  [session keys in the Substrate node runtime](https://substrate.dev/rustdocs/v3.0.0/node_runtime/struct.SessionKeys.html).
+  [session keys in the Substrate node runtime](https://substrate.dev/rustdocs/latest/node_runtime/struct.SessionKeys.html).
 
 - Take a look at
-  [`substrate_application_crypto`](https://substrate.dev/rustdocs/v3.0.0/sp_application_crypto/index.html),
+  [`substrate_application_crypto`](https://substrate.dev/rustdocs/latest/sp_application_crypto),
   used for constructing application specific strongly typed crypto wrappers.

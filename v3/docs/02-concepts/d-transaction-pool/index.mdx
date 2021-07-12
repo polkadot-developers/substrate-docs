@@ -1,6 +1,6 @@
 ---
 title: Transaction Pool
-slug: /v3/docs/knowledgebase/learn-substrate/tx-pool
+slug: /v3/docs/concepts/tx-pool
 ---
 
 The transaction pool contains all transactions (signed and unsigned) broadcasted to the network that
@@ -35,7 +35,7 @@ propagation and block inclusion.
 ## Transaction Dependencies
 
 The `ValidTransaction`
-[struct](https://substrate.dev/rustdocs/v3.0.0/sp_runtime/transaction_validity/struct.ValidTransaction.html)
+[struct](https://substrate.dev/rustdocs/latest/sp_runtime/transaction_validity/struct.ValidTransaction.html)
 defines the `requires` and `provides` parameters to build a dependency graph of transactions.
 Together with `priority` (discussed below), this dependency graph allows the pool to produce a valid
 linear ordering of transactions.
@@ -56,7 +56,7 @@ dependency (ordering) schemes.
 ## Transaction Priority
 
 Transaction `priority` in the `ValidTransaction`
-[struct](https://substrate.dev/rustdocs/v3.0.0/sp_runtime/transaction_validity/struct.ValidTransaction.html)
+[struct](https://substrate.dev/rustdocs/latest/sp_runtime/transaction_validity/struct.ValidTransaction.html)
 determines the ordering of transactions that are in the ready queue. If a node is the next block
 author, it will order transactions from high to low priority in the next block until it reaches the
 weight or length limit of the block.
