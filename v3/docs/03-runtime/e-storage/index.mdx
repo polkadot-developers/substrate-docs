@@ -1,6 +1,6 @@
 ---
 title: Storage
-slug: /v3/docs/knowledgebase/runtime/storage
+slug: /v3/docs/runtime/storage
 ---
 
 Runtime storage allows you to store data in your blockchain that is persisted between blocks and can
@@ -17,12 +17,12 @@ interfaces. Please refer to [the advanced storage documentation](../advanced/sto
 
  In Substrate, any pallet can introduce new storage items that will become part of your blockchain’s state. These storage items can be simple single value items, or more complex storage maps. The type of storage items you choose to implement depends entirely on their intended role within your runtime logic.
 
-FRAME's [`Storage pallet`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/index.html) gives runtime developers access to Substrate's flexible storage APIs, which can support any value that is encodable
+FRAME's [`Storage pallet`](https://substrate.dev/rustdocs/latest/frame_support/storage) gives runtime developers access to Substrate's flexible storage APIs, which can support any value that is encodable
 by [Parity's SCALE codec](../advanced/codec). These include:
 
-- [Storage Value](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageValue.html) - used to store any single value, such as a `u64`.
-- [Storage Map](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageMap.html) - used to store a key-value hash map, such as a balance-to-account mapping.
-- [Storage Double Map](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageDoubleMap.html) - used as an implementation of a storage map with two keys to provide the ability to efficiently removing
+- [Storage Value](https://substrate.dev/rustdocs/latest/frame_support/storage/trait.StorageValue.html) - used to store any single value, such as a `u64`.
+- [Storage Map](https://substrate.dev/rustdocs/latest/frame_support/storage/trait.StorageMap.html) - used to store a key-value hash map, such as a balance-to-account mapping.
+- [Storage Double Map](https://substrate.dev/rustdocs/latest/frame_support/storage/trait.StorageDoubleMap.html) - used as an implementation of a storage map with two keys to provide the ability to efficiently removing
   all entries that have a common first key.
 - Storage N Map - used to store a hash map with any arbitrary number of keys, it can be used as a basis to build a Triple Storage Map, a Quadruple Storage Map and so on.
 
@@ -39,7 +39,7 @@ will stop producing blocks, which means that it will stop functioning.
 > incur costs that may outweigh the optimization in storage reads.
 
 Refer to the Storage Value documentation for
-[a comprehensive list of the methods that Storage Value exposes](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageValue.html#required-methods).
+[a comprehensive list of the methods that Storage Value exposes](https://substrate.dev/rustdocs/latest/frame_support/storage/trait.StorageValue.html#required-methods).
 
 ### Storage Map
 
@@ -49,7 +49,7 @@ implemented as key-value hash maps. In order to give runtime engineers increased
 which hashing algorithms suits their use case the best for generating a map's keys. This is covered in the section on [hashing algorithms](#hashing-algorithms).
 
 Refer to the Storage Map documentation for
-[a comprehensive list of the methods that Storage Map exposes](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageMap.html#required-methods).
+[a comprehensive list of the methods that Storage Map exposes](https://substrate.dev/rustdocs/latest/frame_support/storage/trait.StorageMap.html#required-methods).
 
 ### Double Storage Map
 
@@ -84,23 +84,23 @@ Storage Double Maps, the `iter()` and `drain()` methods require the first key as
 
 - `iter()` - enumerate all elements in the map in no particular order. If you alter the map while
   doing this, you'll get undefined results. See the docs:
-  [`IterableStorageMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.IterableStorageMap.html#tymethod.iter),
-  [`IterableStorageDoubleMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter) and
+  [`IterableStorageMap`](https://substrate.dev/rustdocs/latest/frame_support/storage/trait.IterableStorageMap.html#tymethod.iter),
+  [`IterableStorageDoubleMap`](https://substrate.dev/rustdocs/latest/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter) and
   `IterableStorageNMap`.
 - `drain()` - remove all elements from the map and iterate through them in no particular order. If you
   add elements to the map while doing this, you'll get undefined results. See the docs:
-  [`IterableStorageMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain),
-  [`IterableStorageDoubleMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain) and
+  [`IterableStorageMap`](https://substrate.dev/rustdocs/latest/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain),
+  [`IterableStorageDoubleMap`](https://substrate.dev/rustdocs/latest/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain) and
   `IterableStorageNMap`.
 - `translate()` - use the provided function to translate all elements of the map, in no particular
   order. To remove an element from the map, return `None` from the translation function. See the docs:
-  [`IterableStorageMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate),
-  [`IterableStorageDoubleMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.translate) and
+  [`IterableStorageMap`](https://substrate.dev/rustdocs/latest/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate),
+  [`IterableStorageDoubleMap`](https://substrate.dev/rustdocs/latest/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.translate) and
   `IterableStorageNMap`.
 
 ## Declaring Storage Items
 
-Runtime storage items are created in the [`decl_storage` macro](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_storage.html) in any FRAME-like pallet. Here is an example of declaring the 3 different types of storage items:
+Runtime storage items are created in the [`decl_storage` macro](https://substrate.dev/rustdocs/latest/frame_support/macro.decl_storage.html) in any FRAME-like pallet. Here is an example of declaring the 3 different types of storage items:
 
 ```rust
 decl_storage! {
@@ -277,9 +277,9 @@ those that are transparent:
 
 | Hasher                                                                                     | Cryptographic | Transparent |
 | ------------------------------------------------------------------------------------------ | ------------- | ----------- |
-| [Blake2 128 Concat](https://substrate.dev/rustdocs/v3.0.0/frame_support/struct.Blake2_128Concat.html)   | X             | X           |
-| [TwoX 64 Concat](https://substrate.dev/rustdocs/v3.0.0/frame_support/struct.Twox64Concat.html)          |               | X           |
-| [Identity](https://substrate.dev/rustdocs/v3.0.0/frame_support/struct.Identity.html)                    |               | X           |
+| [Blake2 128 Concat](https://substrate.dev/rustdocs/latest/frame_support/struct.Blake2_128Concat.html)   | X             | X           |
+| [TwoX 64 Concat](https://substrate.dev/rustdocs/latest/frame_support/struct.Twox64Concat.html)          |               | X           |
+| [Identity](https://substrate.dev/rustdocs/latest/frame_support/struct.Identity.html)                    |               | X           |
 
 
 The Identity hasher encapsulates a hashing algorithm that has an output equal to its input (the
@@ -292,19 +292,19 @@ Substrate's runtime storage APIs include capabilities to initialize storage item
 block of your blockchain. The genesis storage configuration APIs expose a number of mechanisms for
 initializing storage, all of which have entry points in the `decl_storage` macro. These mechanisms
 all result in the creation of a `GenesisConfig` data type that implements
-the [`BuildModuleGenesisStorage` trait](https://substrate.dev/rustdocs/v3.0.0/sp_runtime/trait.BuildModuleGenesisStorage.html)
+the [`BuildModuleGenesisStorage` trait](https://substrate.dev/rustdocs/latest/sp_runtime/trait.BuildModuleGenesisStorage.html)
 and will be added to the pallet that contains the storage items.
-Storage items that are tagged for genesis configuration, such as [`Struct pallet_balances::GenesisConfig`](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/pallet/struct.GenesisConfig.html)) for example, will have a corresponding attribute on this
+Storage items that are tagged for genesis configuration, such as [`Struct pallet_balances::GenesisConfig`](https://substrate.dev/rustdocs/latest/pallet_balances/pallet/struct.GenesisConfig.html)) for example, will have a corresponding attribute on this
 data type.
 
 In order to consume a pallet's genesis configuration capabilities, you must include the
 `Config` element when adding the pallet to your runtime.
 All the `GenesisConfig` types for the pallets that inform a runtime will be aggregated into a single
 `GenesisConfig` type for that runtime, which implements
-the [`BuildStorage` trait](https://substrate.dev/rustdocs/v3.0.0/sp_runtime/trait.BuildStorage.html). For example, in [`Struct node_template_runtime::GenesisConfig`](https://substrate.dev/rustdocs/v3.0.0/node_template_runtime/struct.GenesisConfig.html),
+the [`BuildStorage` trait](https://substrate.dev/rustdocs/latest/sp_runtime/trait.BuildStorage.html). For example, in [`Struct node_template_runtime::GenesisConfig`](https://substrate.dev/rustdocs/latest/node_template_runtime/struct.GenesisConfig.html),
 each attribute on this type corresponds to a `GenesisConfig` from the runtime's pallets that have a `Config` element.
 Ultimately, the runtime's `GenesisConfig` is exposed by way of
-the [`ChainSpec` trait](https://substrate.dev/rustdocs/v3.0.0/sc_chain_spec/trait.ChainSpec.html).
+the [`ChainSpec` trait](https://substrate.dev/rustdocs/latest/sc_chain_spec/trait.ChainSpec.html).
 
 For a complete
 and concrete example of using Substrate's genesis storage configuration capabilities, refer to the
@@ -484,7 +484,7 @@ Remember, the fundamental principle of blockchain runtime storage is to minimize
 _consensus-critical_ data should be stored in your runtime. When possible, use techniques like
 hashing to reduce the amount of data you must store. For instance, many of Substrate's governance
 capabilities (e.g.
-the Democracy pallet's [`propose` dispatchable](https://substrate.dev/rustdocs/v3.0.0/pallet_democracy/enum.Call.html#variant.propose))
+the Democracy pallet's [`propose` dispatchable](https://substrate.dev/rustdocs/latest/pallet_democracy/enum.Call.html#variant.propose))
 allow network participants to vote on the _hash_ of a dispatchable call, which is always bounded in
 size, as opposed to the call itself, which may be unbounded in length. This is especially true in
 the case of runtime upgrades where the dispatchable call takes an entire runtime Wasm blob as its
@@ -523,7 +523,7 @@ Do not use runtime storage to store intermediate or transient data within the co
 operation that is logically atomic or data that will not be needed if the operation is to fail. This
 does not mean that runtime storage should not be used to track the state of ongoing actions that
 require multiple atomic operations, as in the case of
-[the multi-signature capabilities from the Utility pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_utility/enum.Call.html#variant.as_multi).
+[the multi-signature capabilities from the Utility pallet](https://substrate.dev/rustdocs/latest/pallet_utility/enum.Call.html#variant.as_multi).
 In this case, runtime storage is used to track the signatories on a dispatchable call even though a
 given call may never receive enough signatures to actually be invoked. In this case, each signature
 is considered an atomic event in the ongoing multi-signature operation; the data needed to record a
@@ -535,7 +535,7 @@ been met.
 Creating bounds on the size of storage items is an extremely effective way to control the use of
 runtime storage and one that is used repeatedly throughout the Substrate codebase. In general, any
 storage item whose size is determined by user action should have a bound on it.
-[The multi-signature capabilities from the Utility pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_utility/trait.Config.html#associatedtype.MaxSignatories)
+[The multi-signature capabilities from the Utility pallet](https://substrate.dev/rustdocs/latest/pallet_utility/trait.Config.html#associatedtype.MaxSignatories)
 that were described above are one such example. In this case, the list of signatories associated
 with a multi-signature operation is provided by the multi-signature participants. Because this
 signatory list is [necessary to come to consensus](#what-to-store) on the state of the
@@ -561,11 +561,11 @@ Check out the Substrate Recipes covering various topics on storage:
 ### References
 
 - Visit the reference docs for the
-  [`decl_storage!` macro](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_storage.html) for more
-  details about the available storage declarations.
+  [`decl_storage!` macro](https://substrate.dev/rustdocs/latest/frame_support/macro.decl_storage.html)
+  for more details about the available storage declarations.
+
 - Visit the reference docs for
-  [StorageValue](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageValue.html),
-  [StorageMap](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageMap.html),
-  [StorageDoubleMap](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageDoubleMap.html) and
-  StorageNMap to
-  learn more about their APIs.
+  [StorageValue](https://substrate.dev/rustdocs/latest/frame_support/storage/trait.StorageValue.html),
+  [StorageMap](https://substrate.dev/rustdocs/latest/frame_support/storage/trait.StorageMap.html),
+  [StorageDoubleMap](https://substrate.dev/rustdocs/latest/frame_support/storage/trait.StorageDoubleMap.html)
+  and StorageNMap to learn more about their APIs.

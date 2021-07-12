@@ -108,67 +108,67 @@ const DocsTemplate = ({ data, pageContext }: any) => {
       items: [
         {
           title: `${intl.formatMessage({ id: 'docs-menu-pallets' })}`,
-          link: '/v3/docs/knowledgebase/runtime/pallets',
+          link: '/v3/docs/runtime/pallets',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-frame' })}`,
-          link: '/v3/docs/knowledgebase/runtime/frame',
+          link: '/v3/docs/runtime/frame',
         },
         {
           title: `${intl.formatMessage({
             id: 'docs-menu-macros',
           })}`,
-          link: '/v3/docs/knowledgebase/runtime/macros',
+          link: '/v3/docs/runtime/macros',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-metadata' })}`,
-          link: '/v3/docs/knowledgebase/runtime/metadata',
+          link: '/v3/docs/runtime/metadata',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-storage' })}`,
-          link: '/v3/docs/knowledgebase/runtime/storage',
+          link: '/v3/docs/runtime/storage',
         },
         {
           title: `${intl.formatMessage({
             id: 'docs-menu-origins',
           })}`,
-          link: '/v3/docs/knowledgebase/runtime/origins',
+          link: '/v3/docs/runtime/origins',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-execution' })}`,
-          link: '/v3/docs/knowledgebase/runtime/execution',
+          link: '/v3/docs/runtime/execution',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-events' })}`,
-          link: '/v3/docs/knowledgebase/runtime/events',
+          link: '/v3/docs/runtime/events',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-errors' })}`,
-          link: '/v3/docs/knowledgebase/runtime/errors',
+          link: '/v3/docs/runtime/errors',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-weights-and-fees' })}`,
-          link: '/v3/docs/knowledgebase/runtime/weights-and-fees',
+          link: '/v3/docs/runtime/weights-and-fees',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-benchmarking' })}`,
-          link: '/v3/docs/knowledgebase/runtime/benchmarking',
+          link: '/v3/docs/runtime/benchmarking',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-debugging' })}`,
-          link: '/v3/docs/knowledgebase/runtime/debugging',
+          link: '/v3/docs/runtime/debugging',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-testing' })}`,
-          link: '/v3/docs/knowledgebase/runtime/testing',
+          link: '/v3/docs/runtime/testing',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-randomness' })}`,
-          link: '/v3/docs/knowledgebase/runtime/randomness',
+          link: '/v3/docs/runtime/randomness',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-upgrades' })}`,
-          link: '/v3/docs/knowledgebase/runtime/upgrades',
+          link: '/v3/docs/runtime/upgrades',
         },
       ],
     },

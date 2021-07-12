@@ -1,6 +1,6 @@
 ---
 title: Benchmarking
-slug: /v3/docs/knowledgebase/runtime/benchmarking
+slug: /v3/docs/runtime/benchmarking
 ---
 
 ## What Is Runtime Benchmarking?
@@ -10,7 +10,7 @@ known as the target block time. Given this requirement, Substrate based blockcha
 to execute a limited number of extrinsics per block. The time it takes to execute an extrinsic may
 vary based on the computational complexity, storage complexity, hardware used, and many other
 factors. We use generic measurement called **weight** to represent how many extrinsics can fit into
-one block. This is further explained in the [transaction weight section](../learn-substrate/weight).
+one block. This is further explained in the [transaction weight section](../concepts/weight).
 
 In Substrate, **10^12 Weight = 1 Second**, and i.e 1,000 weight = 1 nanosecond, measured on a
 specific reference hardware<sup>[[1]](#footnote-ref-hardware)</sup>.
@@ -20,7 +20,7 @@ large overhead such a process would introduce. Instead, Substrate expects benchm
 approximate maximum for the worst case scenario of executing an extrinsic. Substrate will charge the
 user assuming this worst case scenario path was taken, and if the extrinsic turns out needing less
 resources, some of the estimated weight and fees can be returned. This is further explained in the
-[Transaction Fees chapter](./fees).
+[Transaction Weights and Fees](weights-and-fees) chapter.
 
 So how do we determine the worst case scenario computation time and weight of our extrinsics?
 
@@ -85,7 +85,7 @@ You can configure your benchmark to run over different varying inputs. For each 
 configure the range of those variables, and use them within the benchmark setup or execution logic.
 
 The full syntax and functionality can be seen in the [`benchmarks!` macro API
-documentation](https://substrate.dev/rustdocs/v3.0.0/frame_benchmarking/macro.benchmarks.html).
+documentation](https://substrate.dev/rustdocs/latest/frame_benchmarking/macro.benchmarks.html).
 
 ### Adding Benchmarking to Your Pallet
 
@@ -308,7 +308,7 @@ With `--steps 20 --repeat 10` in the benchmark input arguments, `b` will walk 20
 1,000, so `b` will start from 1 and increment by about 50. For each value of `b`, we will execute
 the benchmark 10 times and record the benchmark information.
 
-![multi-variables-regression](assets/runtime/benchmarking/multi-variables-regression.png)
+![multi-variables-regression](../../../../src/images/docs/runtime/benchmarking-multi-variables-regression.png)
 
 A more complete command that we use for the Substrate benchmarking output looks like this:
 
@@ -541,7 +541,7 @@ Substrate provides runtime developers with multiple hooks when writing their own
 a block, variable weight needs in `on_finalize` can easily lead to overweight block and should be
 avoided.
 
-![on-finalize-blocktime.png](assets/runtime/benchmarking/on-finalize-blocktime.png)
+![on-finalize-blocktime.png](../../../../src/images/docs/runtime/benchmarking-on-finalize-blocktime.png)
 
 If possible, move the logic to `on_intialize` hook that happens at the beginning of the block. Then
 the number of extrinsics to be included in the block can be adjusted accordingly. Another trick is
