@@ -46,15 +46,21 @@ const DocsTemplate = ({ data, pageContext }: any) => {
       name: `${intl.formatMessage({ id: 'docs-nav-htg-basics' })}`,
       items: [
         {
-          title: `${intl.formatMessage({ id: 'htg-basics-pallet-integration' })}`,
+          title: `${intl.formatMessage({
+            id: 'htg-basics-pallet-integration',
+          })}`,
           link: '/v3/how-to-guides/basics/pallet-integration',
         },
         {
-          title: `${intl.formatMessage({ id: 'htg-basics-instantiable-pallets' })}`,
-          link: '/v3/how-to-guides/basics/instantiable-pallets'
+          title: `${intl.formatMessage({
+            id: 'htg-basics-instantiable-pallets',
+          })}`,
+          link: '/v3/how-to-guides/basics/instantiable-pallets',
         },
         {
-          title: `${intl.formatMessage({ id: 'htg-basics-configurable-constants' })}`,
+          title: `${intl.formatMessage({
+            id: 'htg-basics-configurable-constants',
+          })}`,
           link: '/v3/how-to-guides/basics/configurable-constants',
         },
         {
@@ -62,7 +68,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
           link: '/v3/how-to-guides/basics/genesis',
         },
         {
-          title: `${intl.formatMessage({ id: 'htg-basics-helper-functions', })}`,
+          title: `${intl.formatMessage({ id: 'htg-basics-helper-functions' })}`,
           link: '/v3/how-to-guides/basics/helper-functions',
         },
         {
@@ -80,15 +86,21 @@ const DocsTemplate = ({ data, pageContext }: any) => {
       name: `${intl.formatMessage({ id: 'docs-nav-htg-pallet-design' })}`,
       items: [
         {
-          title: `${intl.formatMessage({ id: 'htg-pallet-design-add-contracts' })}`,
+          title: `${intl.formatMessage({
+            id: 'htg-pallet-design-add-contracts',
+          })}`,
           link: '/v3/how-to-guides/pallet-design/contracts-pallet',
         },
         {
-          title: `${intl.formatMessage({ id: 'htg-pallet-design-lockable-currency' })}`,
+          title: `${intl.formatMessage({
+            id: 'htg-pallet-design-lockable-currency',
+          })}`,
           link: '/v3/how-to-guides/pallet-design/lockable-currency',
         },
         {
-          title: `${intl.formatMessage({ id: 'htg-pallet-design-randomness' })}`,
+          title: `${intl.formatMessage({
+            id: 'htg-pallet-design-randomness',
+          })}`,
           link: '/v3/how-to-guides/pallet-design/randomness',
         },
         {
@@ -96,7 +108,9 @@ const DocsTemplate = ({ data, pageContext }: any) => {
           link: '/v3/how-to-guides/pallet-design/crowdfund',
         },
         {
-          title: `${intl.formatMessage({ id: 'htg-pallet-design-storage-value' })}`,
+          title: `${intl.formatMessage({
+            id: 'htg-pallet-design-storage-value',
+          })}`,
           link: '/v3/how-to-guides/pallet-design/storage-value',
         },
       ],
@@ -111,21 +125,22 @@ const DocsTemplate = ({ data, pageContext }: any) => {
         },
       ],
     },
-     // 4. Testing.
     {
       name: `${intl.formatMessage({ id: 'docs-nav-htg-testing' })}`,
       items: [
         {
-          title: `${intl.formatMessage({ id: 'htg-testing-basics', })}`,
+          title: `${intl.formatMessage({ id: 'htg-testing-basics' })}`,
           link: '/v3/how-to-guides/testing/basics',
         },
         {
-          title: `${intl.formatMessage({ id: 'htg-testing-transfer-function', })}`,
+          title: `${intl.formatMessage({
+            id: 'htg-testing-transfer-function',
+          })}`,
           link: '/v3/how-to-guides/testing/transfer-function',
         },
       ],
     },
-    // 5. Storage Migrations.
+    // 4. Testing.
     {
       name: `${intl.formatMessage({ id: 'docs-nav-htg-storage-migrations' })}`,
       items: [
@@ -143,7 +158,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
         },
       ],
     },
-    // 6. Consenus.
+    // 5. Storage Migrations.
     {
       name: `${intl.formatMessage({ id: 'docs-nav-htg-consensus' })}`,
       items: [
@@ -153,7 +168,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
         },
       ],
     },
-    // 7. Tools.
+    // 6. Consenus.
     {
       name: `${intl.formatMessage({ id: 'docs-nav-htg-tools' })}`,
       items: [
@@ -212,6 +227,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
             <div className="text-xs text-right py-12">
               Last updated on 03/16/2021
             </div>
+            {console.log(slug)}
             <BottomButtons menu={docsMenu} pageSlug={slug} />
           </article>
           {data.mdx ? (
