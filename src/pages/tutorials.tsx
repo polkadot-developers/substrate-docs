@@ -17,7 +17,7 @@ export default function tutorials({ data }: any) {
             title={`Create Your First Substrate Chain`}
             image={data.tutorialOne}
             description={`Launch and interact with your first Substrate chain in this minimal end-to-end guide.`}
-            time={`1 Hour`}
+            time={`< 1 Hour`}
             difficulty={`beginner`}
             prerequisites={true}
             version={`V3.0.0`}
@@ -26,7 +26,7 @@ export default function tutorials({ data }: any) {
           <TutorialCard
             title={`Proof of Existence`}
             image={data.tutorialOne}
-            description={`In this tutorial, you will learn  ...`}
+            description={`Build a customized Substrate chain with its own user interface.`}
             time={`1 Hour`}
             difficulty={`beginner`}
             prerequisites={true}
@@ -36,8 +36,8 @@ export default function tutorials({ data }: any) {
           <TutorialCard
             title={`Permissioned Network`}
             image={data.tutorialOne}
-            description={`In this tutorial, you will learn  ...`}
-            time={`1 Hour`}
+            description={`A comprehensive, end-to-end tutorial for building a permissioned network using node-authorization pallet.`}
+            time={`2 Hours`}
             difficulty={`beginner`}
             prerequisites={true}
             version={`V3.0.0`}
@@ -46,8 +46,8 @@ export default function tutorials({ data }: any) {
           <TutorialCard
             title={`Forkless Upgrades`}
             image={data.tutorialOne}
-            description={`In this tutorial, you will learn  ...`}
-            time={`1 Hour`}
+            description={`Perform a forkless runtime upgrade on a running Substrate network.`}
+            time={`2 Hours`}
             difficulty={`beginner`}
             prerequisites={true}
             version={`V3.0.0`}
@@ -56,8 +56,8 @@ export default function tutorials({ data }: any) {
           <TutorialCard
             title={`Private Network`}
             image={data.tutorialOne}
-            description={`In this tutorial, you will learn  ...`}
-            time={`1 Hour`}
+            description={`Learn to start a private blockchain network using an out-of-the-box Substrate node.`}
+            time={`2 Hours`}
             difficulty={`beginner`}
             prerequisites={true}
             version={`V3.0.0`}
@@ -66,8 +66,8 @@ export default function tutorials({ data }: any) {
           <TutorialCard
             title={`Node Metrics`}
             image={data.tutorialOne}
-            description={`In this tutorial, you will learn  ...`}
-            time={`1 Hour`}
+            description={`Learn how to visualize the metrics that Substrate records using Prometheus.`}
+            time={`< 1 Hour`}
             difficulty={`beginner`}
             prerequisites={true}
             version={`V3.0.0`}
