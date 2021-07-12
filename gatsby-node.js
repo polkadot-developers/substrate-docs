@@ -40,6 +40,39 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           }
         }
       }
+      tutorialThree: allFile(
+        filter: { sourceInstanceName: { eq: "permissioned-network" } }
+      ) {
+        nodes {
+          childMdx {
+            frontmatter {
+              slug
+            }
+          }
+        }
+      }
+      tutorialFour: allFile(
+        filter: { sourceInstanceName: { eq: "forkless-upgrade" } }
+      ) {
+        nodes {
+          childMdx {
+            frontmatter {
+              slug
+            }
+          }
+        }
+      }
+      tutorialFive: allFile(
+        filter: { sourceInstanceName: { eq: "private-network" } }
+      ) {
+        nodes {
+          childMdx {
+            frontmatter {
+              slug
+            }
+          }
+        }
+      }
     }
   `)
 

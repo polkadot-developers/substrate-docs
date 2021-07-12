@@ -41,65 +41,140 @@ const DocsTemplate = ({ data, pageContext }: any) => {
     },
   ]
   const docsMenu = [
+    // 1. Basics.
     {
-      name: `${intl.formatMessage({ id: 'docs-menu-getting-started' })}`,
+      name: `${intl.formatMessage({ id: 'docs-nav-htg-basics' })}`,
       items: [
         {
-          title: `${intl.formatMessage({ id: 'docs-menu-overview' })}`,
-          link: '/v3/docs/',
+          title: `${intl.formatMessage({
+            id: 'htg-basics-pallet-integration',
+          })}`,
+          link: '/v3/how-to-guides/basics/pallet-integration',
         },
         {
-          title: `${intl.formatMessage({ id: 'docs-menu-architecture' })}`,
-          link: '/v3/docs/knowledgebase/getting-started/architecture',
+          title: `${intl.formatMessage({
+            id: 'htg-basics-instantiable-pallets',
+          })}`,
+          link: '/v3/how-to-guides/basics/instantiable-pallets',
         },
         {
-          title: `${intl.formatMessage({ id: 'docs-menu-installation' })}`,
-          link: '/v3/docs/knowledgebase/getting-started/',
+          title: `${intl.formatMessage({
+            id: 'htg-basics-configurable-constants',
+          })}`,
+          link: '/v3/how-to-guides/basics/configurable-constants',
         },
         {
-          title: `${intl.formatMessage({ id: 'docs-menu-windows' })}`,
-          link: '/v3/docs/knowledgebase/getting-started/windows-users',
+          title: `${intl.formatMessage({ id: 'htg-basics-genesis' })}`,
+          link: '/v3/how-to-guides/basics/genesis',
         },
         {
-          title: `${intl.formatMessage({ id: 'docs-menu-glossary' })}`,
-          link: '/v3/docs/knowledgebase/getting-started/glossary',
+          title: `${intl.formatMessage({ id: 'htg-basics-helper-functions' })}`,
+          link: '/v3/how-to-guides/basics/helper-functions',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'htg-basics-mint-token' })}`,
+          link: '/v3/how-to-guides/basics/mint-token',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'htg-basics-weights' })}`,
+          link: '/v3/how-to-guides/basics/weights',
+        },
+      ],
+    },
+    // 2. Pallet Design.
+    {
+      name: `${intl.formatMessage({ id: 'docs-nav-htg-pallet-design' })}`,
+      items: [
+        {
+          title: `${intl.formatMessage({
+            id: 'htg-pallet-design-add-contracts',
+          })}`,
+          link: '/v3/how-to-guides/pallet-design/contracts-pallet',
+        },
+        {
+          title: `${intl.formatMessage({
+            id: 'htg-pallet-design-lockable-currency',
+          })}`,
+          link: '/v3/how-to-guides/pallet-design/lockable-currency',
+        },
+        {
+          title: `${intl.formatMessage({
+            id: 'htg-pallet-design-randomness',
+          })}`,
+          link: '/v3/how-to-guides/pallet-design/randomness',
+        },
+        {
+          title: `${intl.formatMessage({ id: 'htg-pallet-design-crowdfund' })}`,
+          link: '/v3/how-to-guides/pallet-design/crowdfund',
+        },
+        {
+          title: `${intl.formatMessage({
+            id: 'htg-pallet-design-storage-value',
+          })}`,
+          link: '/v3/how-to-guides/pallet-design/storage-value',
+        },
+      ],
+    },
+    // 3. Weights.
+    {
+      name: `${intl.formatMessage({ id: 'docs-nav-htg-weights' })}`,
+      items: [
+        {
+          title: `${intl.formatMessage({ id: 'htg-weights-calculate-fees' })}`,
+          link: '/v3/how-to-guides/weights/calculate-fees',
         },
       ],
     },
     {
-      name: `${intl.formatMessage({ id: 'docs-menu-key-concepts' })}`,
+      name: `${intl.formatMessage({ id: 'docs-nav-htg-testing' })}`,
       items: [
         {
-          title: `${intl.formatMessage({ id: 'docs-menu-runtime' })}`,
-          link: '/v3/docs/knowledgebase/runtime',
-        },
-        {
-          title: `${intl.formatMessage({ id: 'docs-menu-extrinsics' })}`,
-          link: '/v3/docs/knowledgebase/learn-substrate/extrinsics',
+          title: `${intl.formatMessage({ id: 'htg-testing-basics' })}`,
+          link: '/v3/how-to-guides/testing/basics',
         },
         {
           title: `${intl.formatMessage({
-            id: 'docs-menu-account-abstractions',
+            id: 'htg-testing-transfer-function',
           })}`,
-          link: '/v3/docs/knowledgebase/learn-substrate/account-abstractions',
+          link: '/v3/how-to-guides/testing/transfer-function',
+        },
+      ],
+    },
+    // 4. Testing.
+    {
+      name: `${intl.formatMessage({ id: 'docs-nav-htg-storage-migrations' })}`,
+      items: [
+        {
+          title: `${intl.formatMessage({ id: 'htg-sm-nicks' })}`,
+          link: '/v3/how-to-guides/storage-migrations/basics',
         },
         {
-          title: `${intl.formatMessage({ id: 'docs-menu-transaction-pool' })}`,
-          link: '/v3/docs/knowledgebase/learn-substrate/learn-substrate/tx-pool',
+          title: `${intl.formatMessage({ id: 'htg-sm-steps' })}`,
+          link: '/v3/how-to-guides/storage-migrations/trigger-with-apps',
         },
         {
-          title: `${intl.formatMessage({ id: 'docs-menu-session-keys' })}`,
-          link: '/v3/docs/knowledgebase/learn-substrate/learn-substrate/session-keys',
+          title: `${intl.formatMessage({ id: 'htg-sm-tests' })}`,
+          link: '/v3/how-to-guides/storage-migrations/tests',
         },
+      ],
+    },
+    // 5. Storage Migrations.
+    {
+      name: `${intl.formatMessage({ id: 'docs-nav-htg-consensus' })}`,
+      items: [
         {
-          title: `${intl.formatMessage({
-            id: 'docs-menu-transaction-weight',
-          })}`,
-          link: '/v3/docs/knowledgebase/learn-substrate/learn-substrate/weight',
+          title: `${intl.formatMessage({ id: 'htg-consensus-pow' })}`,
+          link: '/v3/how-to-guides/consensus/pow',
         },
+      ],
+    },
+    // 6. Consenus.
+    {
+      name: `${intl.formatMessage({ id: 'docs-nav-htg-tools' })}`,
+      items: [
         {
-          title: `${intl.formatMessage({ id: 'docs-menu-offchain-features' })}`,
-          link: '/v3/docs/knowledgebase/learn-substrate/off-chain-features',
+          title: `${intl.formatMessage({ id: 'htg-tools' })}`,
+          link: '/v3/how-to-guides/tools/try-runtime',
         },
       ],
     },
@@ -152,6 +227,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
             <div className="text-xs text-right py-12">
               Last updated on 03/16/2021
             </div>
+            {console.log(slug)}
             <BottomButtons menu={docsMenu} pageSlug={slug} />
           </article>
           {data.mdx ? (
