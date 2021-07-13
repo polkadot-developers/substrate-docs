@@ -70,7 +70,7 @@ export default function Header() {
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-how-to-guides' })}`,
-          link: `/how-to-guides`,
+          link: `/v3/how-to-guides`,
           external: false,
         },
         {
@@ -80,7 +80,7 @@ export default function Header() {
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-rust-docs' })}`,
-          link: `https://substrate.dev/rustdocs/latest/sc_service/index.html`,
+          link: `https://substrate.dev/rustdocs`,
           external: true,
         },
         {

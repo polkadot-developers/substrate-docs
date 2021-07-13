@@ -135,6 +135,7 @@
   "htg-consensus-pow": "Add PoW Consensus",
 
   "docs-nav-htg-tools": "Tools",
+  "htg-tools": "Tools",
   "htg-tools-try-runtime": "Integrate Try-runtime",
 
   "tutorials-beginner":"beginner",
