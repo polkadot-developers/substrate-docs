@@ -4,22 +4,22 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const kbTemplate = require.resolve(`./src/templates/kb-template.tsx`)
   const htgTemplate = require.resolve(`./src/templates/htg-template.tsx`)
   const tutorialOneTemplate = require.resolve(
-    `./src/templates/tut-templates/create-your-first-substrate-chain.tsx`
+    `./src/templates/tut-template.tsx`
   )
   const tutorialTwoTemplate = require.resolve(
-    `./src/templates/tut-templates/proof-of-existence.tsx`
+    `./src/templates/tut-template.tsx`
   )
   const tutorialThreeTemplate = require.resolve(
-    `./src/templates/tut-templates/permissioned-network.tsx`
+    `./src/templates/tut-template.tsx`
   )
   const tutorialFourTemplate = require.resolve(
-    `./src/templates/tut-templates/forkless-upgrade.tsx`
+    `./src/templates/tut-template.tsx`
   )
   const tutorialFiveTemplate = require.resolve(
-    `./src/templates/tut-templates/private-network.tsx`
+    `./src/templates/tut-template.tsx`
   )
   const tutorialSixTemplate = require.resolve(
-    `./src/templates/tut-templates/node-metrics.tsx`
+    `./src/templates/tut-template.tsx`
   )
 
   const result = await graphql(`
@@ -150,6 +150,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       context: {
         slug: `${node.frontmatter.slug}`,
         version: `3.0`,
+        navMenuSlug: 'firstChain',
       },
     })
   })
@@ -162,6 +163,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       context: {
         slug: `${node.frontmatter.slug}`,
         version: `3.0`,
+        navMenuSlug: 'poe',
       },
     })
   })
@@ -174,6 +176,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       context: {
         slug: `${node.frontmatter.slug}`,
         version: `3.0`,
+        navMenuSlug: 'permissionedNetwork',
       },
     })
   })
@@ -185,6 +188,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       context: {
         slug: `${node.frontmatter.slug}`,
         version: `3.0`,
+        navMenuSlug: 'forklessUpgrade',
       },
     })
   })
@@ -196,6 +200,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       context: {
         slug: `${node.frontmatter.slug}`,
         version: `3.0`,
+        navMenuSlug: 'privateNetwork',
       },
     })
   })
@@ -207,6 +212,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       context: {
         slug: `${node.frontmatter.slug}`,
         version: `3.0`,
+        navMenuSlug: 'nodeMetrics',
       },
     })
   })

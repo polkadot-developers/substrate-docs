@@ -1,64 +1,19 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
-import Layout from '../../components/Layout'
-import SEO from '../../components/SEO'
-import { useIntl } from 'react-intl'
-import DocsNavMobile from '../../components/DocsNavMobile'
-import DocsSideBar from '../../components/DocsSideBar'
-import DocsNav from '../../components/DocsNav'
-import VersionControl from '../../components/VersionControl'
-import { BottomButtons, Message } from '../../components/DocsComponents'
+import Layout from '../components/Layout'
+import SEO from '../components/SEO'
+import DocsNavMobile from '../components/DocsNavMobile'
+import DocsSideBar from '../components/DocsSideBar'
+import DocsNav from '../components/DocsNav'
+import VersionControl from '../components/VersionControl'
+import { BottomButtons, Message } from '../components/DocsComponents'
+import navMenu from '../components/devNavMenu'
 
 const DocsTemplate = ({ data, pageContext }: any) => {
-  const { slug, version } = pageContext
-  const intl = useIntl()
-  const globalDocsNav = [
-    {
-      section: `${intl.formatMessage({ id: 'docs-nav-knowledgebase' })}`,
-      url: '/v3/docs/getting-started/overview',
-      external: false,
-    },
-    {
-      section: `${intl.formatMessage({ id: 'docs-nav-tutorials' })}`,
-      url: '/tutorials/',
-      external: false,
-    },
-    {
-      section: `${intl.formatMessage({ id: 'docs-nav-htg' })}`,
-      url: '/how-to-guides/',
-      external: false,
-    },
-    {
-      section: `${intl.formatMessage({ id: 'docs-nav-rustdocs' })}`,
-      url: '#',
-      external: true,
-    },
-    {
-      section: `${intl.formatMessage({ id: 'docs-nav-learningtracks' })}`,
-      url: '/learning-tracks/',
-      external: false,
-    },
-  ]
-  const docsMenu = [
-    {
-      name: `Proof of Existence`,
-      items: [
-        {
-          title: `Overview`,
-          link: '/v3/tutorials/forkless-upgrades/overview',
-        },
-        {
-          title: `Sudo Upgrade`,
-          link: '/v3/tutorials/forkless-upgrades/sudo-upgrade',
-        },
-        {
-          title: `Schedule an Upgrade`,
-          link: '/v3/tutorials/forkless-upgrades/schedule-an-upgrade',
-        },
-      ],
-    },
-  ]
+  const { slug, version, navMenuSlug } = pageContext
+  const globalDocsNav = navMenu.global()
+  const docsMenu = [navMenu.tuts[navMenuSlug]]
 
   return (
     <Layout>
@@ -120,9 +75,6 @@ const DocsTemplate = ({ data, pageContext }: any) => {
           )}
         </div>
       </div>
-
-      {/* <h1>Context</h1>
-      <pre>{JSON.stringify(pageContext, null, 2)}</pre> */}
     </Layout>
   )
 }

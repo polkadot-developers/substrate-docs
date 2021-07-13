@@ -69,18 +69,18 @@ export default function Header() {
           external: false,
         },
         {
-          linkTitle: `${intl.formatMessage({ id: 'nav-how-to-guides' })}`,
-          link: `/how-to-guides`,
-          external: false,
-        },
-        {
           linkTitle: `${intl.formatMessage({ id: 'nav-tutorials' })}`,
           link: `/tutorials`,
           external: false,
         },
         {
+          linkTitle: `${intl.formatMessage({ id: 'nav-how-to-guides' })}`,
+          link: `/how-to-guides`,
+          external: false,
+        },
+        {
           linkTitle: `${intl.formatMessage({ id: 'nav-rust-docs' })}`,
-          link: `https://substrate.dev/rustdocs/latest/sc_service/index.html`,
+          link: `https://substrate.dev/rustdocs`,
           external: true,
         },
         {
