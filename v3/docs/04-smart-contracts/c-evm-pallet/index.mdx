@@ -1,6 +1,6 @@
 ---
 title: EVM Pallet
-slug: /v3/docs/knowledgebase/smartcontracts/evm-pallet
+slug: /v3/docs/smart-contracts/evm-pallet
 ---
 
 FRAME provides an EVM execution pallet that allows unmodified EVM code to be executed in a
@@ -9,8 +9,7 @@ together with the [Ethereum pallet](https://docs.rs/pallet-ethereum/2.0.0/pallet
 [Dynamic Fee pallet](https://docs.rs/pallet-dynamic-fee/2.0.0/pallet_dynamic_fee/) to enable the creation of runtimes 
 capable of fully emulating Ethereum block production and transaction processing. 
 
-<a class="btn btn-secondary primary-color text-white"
-href="https://substrate.dev/frontier-workshop/">Start the Frontier workshop!</a>
+👉 &nbsp; [Start the Frontier workshop](/tutorials/frontier-workshop)
 
 ## EVM Engine
 
@@ -37,7 +36,7 @@ including gas cost and balance changes.
 Observable differences include:
 
 - The available length of block hashes may not be 256 depending on the configuration of the 
-[System pallet](https://substrate.dev/rustdocs/v3.0.0/frame_system/index.html#system-pallet) in the Substrate runtime.
+[System pallet](https://substrate.dev/rustdocs/latest/frame_system/index.html#system-pallet) in the Substrate runtime.
 - Difficulty and coinbase, which do not make sense in this pallet and is currently hard coded to
   zero.
 
@@ -58,7 +57,7 @@ to support earlier hard fork configurations.
 
 ### Examples
 
-- Follow a [tutorial to add a pallet to your FRAME runtime](../../tutorials/add-a-pallet/).
+- Follow a [tutorial to add a pallet to your FRAME runtime](/tutorials/add-a-pallet/).
 
 ### References
 
