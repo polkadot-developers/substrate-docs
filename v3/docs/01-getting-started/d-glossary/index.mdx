@@ -272,7 +272,7 @@ transactions, which may be
 
 ## Existential Deposit
 
-Within the [Balances pallet](../../knowledgebase/runtime/frame#balances), this is the minimum
+Within the [Balances pallet](../../../v3/docs/runtime/frame#balances), this is the minimum
 balance an account may have. Accounts cannot be created with a balance less than this amount, and if
 an account's balance ever drops below this amount, the Balances pallet will use
 [a FRAME System API](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/struct.Pallet.html#method.dec_ref)
@@ -357,7 +357,7 @@ execution (and thus verification) of all logic. Full clients stand in contrast t
 
 A mechanism for specifying the initial (genesis) [state](#state) of a [blockchain](#blockchain).
 Genesis configuration of Substrate-based chains is accomplished by way of a
-[chain specification](../../knowledgebase/integrate/chain-spec) file, which makes it easy to use a
+[chain specification](../../../v3/docs/toolchains/chain-specs) file, which makes it easy to use a
 single Substrate codebase to underpin multiple independently configured chains.
 
 ## GRANDPA
@@ -425,7 +425,7 @@ it easy to compose a [runtime](#runtime).
 
 Metadata is information about a system, such as a [blockchain](#blockchain), that makes it easier to
 interact with that system. Blockchain [runtimes](#runtime) that are built with [FRAME](#frame)
-expose [lots of helpful metadata](../../knowledgebase/runtime/metadata).
+expose [lots of helpful metadata](../../../v3/docs/runtime/metadata).
 
 ---
 
@@ -454,7 +454,7 @@ are done in a pro-rata manner.
 
 A [FRAME](#frame) primitive that identifies the source of a [dispatched](#dispatch) function call
 into the [runtime](#runtime). The FRAME System module defines
-[three built-in origins](../../knowledgebase/runtime/origin#raw-origins); [pallet](#pallet)
+[three built-in origins](../../../v3/docs/runtime/origins#raw-origins); [pallet](#pallet)
 developers can easily define custom origins, such as those defined by the
 [Collective pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_collective/enum.RawOrigin.html).
 
@@ -546,7 +546,7 @@ In a [blockchain](#blockchain), the state refers to the cryptographically secure
 between blocks and can be used to create new blocks as part of the state transition function. In
 Substrate-based blockchains, state is stored in a [trie](#trie-patricia-merkle-tree), a data structure that supports the
 efficient creation of incremental digests. This trie is exposed to the [runtime](#runtime) as
-[a simple key/value map](../../knowledgebase/advanced/storage) where both keys and values can be
+[a simple key/value map](../../../v3/docs/advanced/storage) where both keys and values can be
 arbitrary byte arrays.
 
 ## State Transition Function (STF)
@@ -559,7 +559,7 @@ The logic of a [blockchain](#blockchain) that determines how the state changes w
 
 [FRAME](#frame) primitives that provide type-safe data persistence capabilities to the
 [runtime](#runtime). Learn more about storage items in the Knowledge Base article for
-[runtime storage](../../knowledgebase/runtime/storage).
+[runtime storage](../../../v3/docs/runtime/storage).
 
 ## Substrate
 
@@ -573,8 +573,8 @@ maintained by [Parity Technologies](https://www.parity.io/).
 
 A type of [extrinsic](#extrinsic) that can be safely gossiped between [nodes](#node) on the network
 thanks to efficient [verification](#cryptographic-primitives) through
-[signatures](../../knowledgebase/learn-substrate/extrinsics#signed-transactions) or
-[signed extensions](../../knowledgebase/learn-substrate/extrinsics#signed-extension).
+[signatures](../../../v3/docs/concepts/extrinsics#signed-transactions) or
+[signed extensions](../../../v3/docs/concepts/extrinsics#signed-extension).
 
 ## Transaction Era
 
