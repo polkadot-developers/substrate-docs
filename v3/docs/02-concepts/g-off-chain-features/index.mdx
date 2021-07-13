@@ -1,6 +1,6 @@
 ---
 title: Off-Chain Features
-slug: /v3/docs/knowledgebase/learn-substrate/off-chain-features
+slug: /v3/docs/concepts/off-chain-features
 ---
 
 ## Overview
@@ -34,27 +34,27 @@ This separation of concerns makes sure that block production is not impacted by 
 off-chain tasks. However, as the off-chain features are declared in the same code as the runtime,
 they can easily access on-chain state for their computations.
 
-![Off-chain Workers](assets/off-chain-workers-v2.png)
+![Off-chain Workers](../../../../src/images/docs/concepts/off-chain-workers-v2.png)
 
 ## Off-Chain Workers
 
 Off-chain workers have access to extended APIs for communicating with the external world:
 
 - Ability to
-  [submit transactions](https://substrate.dev/rustdocs/v3.0.0/sp_runtime/offchain/trait.TransactionPool.html)
+  [submit transactions](https://substrate.dev/rustdocs/latest/sp_runtime/offchain/trait.TransactionPool.html)
   (either signed or unsigned) to the chain to publish computation results [[1]](#example-txs).
 - A fully-featured HTTP client allowing the worker to access and fetch data from external services [[2]](#example-http).
 - Access to the local keystore to sign and verify statements or transactions.
 - An additional, local
-  [key-value database](https://substrate.dev/rustdocs/v3.0.0/sp_runtime/offchain/trait.OffchainStorage.html)
+  [key-value database](https://substrate.dev/rustdocs/latest/sp_runtime/offchain/trait.OffchainStorage.html)
   shared between all off-chain workers [[3]](#example-off-chain-storage).
 - A secure, local entropy source for random number generation.
 - Access to the node's precise
-  [local time](https://substrate.dev/rustdocs/v3.0.0/sp_runtime/offchain/struct.Timestamp.html).
+  [local time](https://substrate.dev/rustdocs/latest/sp_runtime/offchain/struct.Timestamp.html).
 - The ability to sleep and resume work.
 
 OCWs can be initiated from within a special function in your runtime implementation,
-[`fn offchain_worker(block: T::BlockNumber)`](https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.OffchainWorker.html).
+[`fn offchain_worker(block: T::BlockNumber)`](https://substrate.dev/rustdocs/latest/frame_support/traits/trait.OffchainWorker.html).
 communicate results back to the chain, off-chain workers can submit signed or unsigned transactions
 to be included in subsequent blocks.
 
@@ -80,8 +80,6 @@ others and between off-chain and on-chain logics. It can also be read using remo
 (RPC) so it fits the use case of storing indefinitely growing data without over-consuming the
 on-chain storage.
 
-[Check here for a concrete example of using off-chain storage](#example-off-chain-storage).
-
 ## Off-Chain Indexing
 
 Storage in the context of blockchain is mostly about on-chain state. But it is expensive (as it is
@@ -96,8 +94,6 @@ off-chain storage independently from OCWs. Nodes have to opt-in for persistency 
 Unlike OCWs, which are not executed during initial blockchain synchronization, off-chain indexing is
 populating the storage every time a block is processed, so the data is always consistent and will be
 exactly the same for every node with indexing enabled.
-
-[Check here for a concrete example of using off-chain indexing](#example-off-chain-indexing).
 
 ## Learn More
 

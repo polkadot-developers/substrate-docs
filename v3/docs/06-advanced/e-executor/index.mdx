@@ -1,6 +1,6 @@
 ---
 title: Executor
-slug: /v3/docs/knowledgebase/advanced/executor
+slug: /v3/docs/advanced/executor
 ---
 
 The executor is responsible for dispatching and executing calls into the Substrate runtime.
@@ -20,7 +20,7 @@ upgraded. The executor determines which version of the runtime to use when dispa
 Before runtime execution begins, the Substrate client proposes which runtime execution environment
 should be used. This is controlled by the execution strategy, which can be configured for the
 different parts of the blockchain execution process. The strategies are listed in the
-[`ExecutionStrategy` enum](https://substrate.dev/rustdocs/v3.0.0/sp_state_machine/enum.ExecutionStrategy.html):
+[`ExecutionStrategy` enum](https://substrate.dev/rustdocs/latest/sp_state_machine/enum.ExecutionStrategy.html):
 
 - `NativeWhenPossible`: Execute with native build (if available, WebAssembly otherwise).
 - `AlwaysWasm`: Only execute with the WebAssembly build.
@@ -66,7 +66,7 @@ the other way around. Wasm execution can help to ensure that block producers cre
 
 The native runtime will only be used by the executor when it is chosen as the execution strategy and
 it is compatible with the requested runtime version (see
-[Runtime Versioning](https://substrate.dev/docs/en/knowledgebase/runtime/upgrades#runtime-versioning)).
+[Runtime Versioning](../runtime/upgrades#runtime-versioning)).
 For all other execution processes other than block construction, the native runtime is preferred
 since it is more performant. In any situation where the native executable should not be run, the
 canonical Wasm runtime is executed instead.
@@ -80,13 +80,13 @@ canonical Wasm runtime is executed instead.
 ### References
 
 - Check out the different
-  [Execution Strategies](https://substrate.dev/rustdocs/v3.0.0/sc_client_api/execution_extensions/struct.ExecutionStrategies.html).
+  [Execution Strategies](https://substrate.dev/rustdocs/latest/sc_client_api/execution_extensions/struct.ExecutionStrategies.html).
 
 - Take a look at the different
-  [Execution Strategy Options](https://substrate.dev/rustdocs/v3.0.0/sp_state_machine/enum.ExecutionStrategy.html)
+  [Execution Strategy Options](https://substrate.dev/rustdocs/latest/sp_state_machine/enum.ExecutionStrategy.html)
 
 - Review the
-  [Runtime Version definition](https://substrate.dev/rustdocs/v3.0.0/sp_version/struct.RuntimeVersion.html).
+  [Runtime Version definition](https://substrate.dev/rustdocs/latest/sp_version/struct.RuntimeVersion.html).
 
 ## Footnotes
 

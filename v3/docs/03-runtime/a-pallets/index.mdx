@@ -1,6 +1,6 @@
 ---
 title: Pallets
-slug: /v3/docs/knowledgebase/runtime/pallets
+slug: /v3/docs/runtime/pallets
 ---
 
 The following documentation is written for technical audiences, familiar with the Rust programming
@@ -8,7 +8,7 @@ language. It is a top-level entry point for FRAME runtime developement in Substr
 
 > If you are just getting started with Substrate runtime development, we suggest you try
 > our introductory tutorial for
-> [creating your first Substrate chain](../../tutorials/create-your-first-substrate-chain).
+> [creating your first Substrate chain](/tutorials/create-your-first-substrate-chain).
 
 ## What is a Pallet?
 
@@ -20,7 +20,7 @@ target use case. The result: each pallet has its own discrete logic which can mo
 functionality of your blockchain's state transition functions.
 
 
-For example, the [Balances pallet](https://github.com/paritytech/substrate/tree/master/frame/balances), which is included in [FRAME](/knowledgebase/runtime/frame), defines cryptocurrency capabilities for your blockchain. More specifically, it
+For example, the [Balances pallet](https://github.com/paritytech/substrate/tree/master/frame/balances), which is included in [FRAME](./frame), defines cryptocurrency capabilities for your blockchain. More specifically, it
 defines: 
 - **Storage items** that keep track of the tokens a user owns.
 - **Functions** that users can call to transfer
@@ -34,7 +34,9 @@ Substrate runtime engineers can define custom logic for their blockchain by writ
 > **Note:** At the time of writing, FRAME pallets exist in two different flavors &mdash; Version 1 and Version 2. This article first covers the structure of a v1 pallet. Skip to [FRAME v2](./pallets#frame-v2) for the latest structure of a Substrate pallet. Read [here](./macros#frame-v1-vs-v2) for more information on these changes.
 
 ## Skeleton of a Pallet
+
 ### FRAME v1
+
 A Substrate pallet is composed of 5 sections:
 
 ```rust
@@ -67,6 +69,7 @@ decl_storage! { ... }
 decl_module! { ... }
 ```
 > **Note**: Additional sections such as [`decl_error!`](./macros#decl_error) are commonly used however are not a requirement for a minimally working pallet.
+
 #### Example
 
 The [Basic Token recipe](https://substrate.dev/recipes/basic-token.html) provides a good example of a simple FRAME V1 pallet that allows a user to create a `u64` supply of tokens in storage and a `StorageMap` of account IDs and `u64` balances. The primary parts include:
@@ -74,7 +77,9 @@ The [Basic Token recipe](https://substrate.dev/recipes/basic-token.html) provide
 - `decl_event!` defines `Initialized` and `Transfer` events;
 - `decl_module!` defines the pallet's functions, `init()` and `transfer()`; and
 - `decl_module!` also has a `deposit_event()` function, common to all pallets that define behavior that emits an event.
+
 ### FRAME v2
+
 A FRAME v2 pallet is commonly composed of 7 sections:
 
 ```rust

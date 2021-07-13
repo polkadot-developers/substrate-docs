@@ -1,9 +1,9 @@
 ---
 title: Contracts Pallet
-slug: /v3/docs/knowledgebase/smartcontracts/contracts-pallet
+slug: /v3/docs/smart-contracts/contracts-pallet
 ---
 
-The [Contracts pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/index.html) provides
+The [Contracts pallet](https://substrate.dev/rustdocs/latest/pallet_contracts) provides
 the ability for the runtime to deploy and execute [WebAssembly (Wasm)](https://webassembly.org/)
 smart contracts. It uses [ink!](https://paritytech.github.io/ink-docs/), a [Rust](https://www.rust-lang.org/)-based embedded domain specific language
 ([eDSL](https://wiki.haskell.org/Embedded_domain_specific_language)) for writing
@@ -19,8 +19,7 @@ expected, without the need for third party testing platforms. Learn more [here](
 - Because ink! follows Rust standards, tools like [`rustfmt`](https://github.com/rust-lang/rustfmt) 
 and [`rust-analyzer`](https://github.com/rust-analyzer/rust-analyzer) already work out of the box.
 
-<a class="btn btn-secondary primary-color text-white"
-href="https://substrate.dev/substrate-contracts-workshop/">Start the ink! workshop!</a>
+👉 &nbsp; [Start the ink! workshop](/tutorials/substrate-contracts-workshop)
 
 ## Wasm Engine
 
@@ -75,7 +74,7 @@ reverted, and the gas fee is **not** returned to the user. If the contract execu
 remaining gas, it is returned to the user at the end of the transaction.
 
 The Contracts pallet determines the gas price, which is a conversion between the Substrate
-[**weight system**](../learn-substrate/weight) and a single unit of gas. Thus, to execute a transaction, a user must have a free balance
+[**weight system**](../getting-started/weight) and a single unit of gas. Thus, to execute a transaction, a user must have a free balance
 of at least `gas price` \* `gas limit` which can be spent.
 
 ### Storage Rent
@@ -121,11 +120,11 @@ or upgradeable contracts on a Substrate based blockchain.
 ### Examples
 
 - Follow a
-  [tutorial to add this Contracts pallet to your Substrate runtime](../../tutorials/add-contracts-pallet/).
+  [tutorial to add this Contracts pallet to your Substrate runtime](/tutorials/add-contracts-pallet/).
 
 ### References
 
 - Visit the reference docs for the
-  [Contracts pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/index.html).
+  [Contracts pallet](https://substrate.dev/rustdocs/latest/pallet_contracts).
 - Take a look at the [repository for `wasmi`](https://github.com/paritytech/wasmi).
 - Take a look at the [repository for ink!](https://github.com/paritytech/ink).

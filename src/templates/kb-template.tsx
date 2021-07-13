@@ -108,67 +108,67 @@ const DocsTemplate = ({ data, pageContext }: any) => {
       items: [
         {
           title: `${intl.formatMessage({ id: 'docs-menu-pallets' })}`,
-          link: '/v3/docs/knowledgebase/runtime/pallets',
+          link: '/v3/docs/runtime/pallets',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-frame' })}`,
-          link: '/v3/docs/knowledgebase/runtime/frame',
+          link: '/v3/docs/runtime/frame',
         },
         {
           title: `${intl.formatMessage({
             id: 'docs-menu-macros',
           })}`,
-          link: '/v3/docs/knowledgebase/runtime/macros',
+          link: '/v3/docs/runtime/macros',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-metadata' })}`,
-          link: '/v3/docs/knowledgebase/runtime/metadata',
+          link: '/v3/docs/runtime/metadata',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-storage' })}`,
-          link: '/v3/docs/knowledgebase/runtime/storage',
+          link: '/v3/docs/runtime/storage',
         },
         {
           title: `${intl.formatMessage({
             id: 'docs-menu-origins',
           })}`,
-          link: '/v3/docs/knowledgebase/runtime/origins',
+          link: '/v3/docs/runtime/origins',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-execution' })}`,
-          link: '/v3/docs/knowledgebase/runtime/execution',
+          link: '/v3/docs/runtime/execution',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-events' })}`,
-          link: '/v3/docs/knowledgebase/runtime/events',
+          link: '/v3/docs/runtime/events',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-errors' })}`,
-          link: '/v3/docs/knowledgebase/runtime/errors',
+          link: '/v3/docs/runtime/errors',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-weights-and-fees' })}`,
-          link: '/v3/docs/knowledgebase/runtime/weights-and-fees',
+          link: '/v3/docs/runtime/weights-and-fees',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-benchmarking' })}`,
-          link: '/v3/docs/knowledgebase/runtime/benchmarking',
+          link: '/v3/docs/runtime/benchmarking',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-debugging' })}`,
-          link: '/v3/docs/knowledgebase/runtime/debugging',
+          link: '/v3/docs/runtime/debugging',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-testing' })}`,
-          link: '/v3/docs/knowledgebase/runtime/testing',
+          link: '/v3/docs/runtime/testing',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-randomness' })}`,
-          link: '/v3/docs/knowledgebase/runtime/randomness',
+          link: '/v3/docs/runtime/randomness',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-upgrades' })}`,
-          link: '/v3/docs/knowledgebase/runtime/upgrades',
+          link: '/v3/docs/runtime/upgrades',
         },
       ],
     },
@@ -177,21 +177,21 @@ const DocsTemplate = ({ data, pageContext }: any) => {
       items: [
         {
           title: `${intl.formatMessage({ id: 'docs-menu-sc-overview' })}`,
-          link: '/v3/docs/knowledgebase/smartcontracts/overview',
+          link: '/v3/docs/smart-contracts/overview',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-contracts-pallet' })}`,
-          link: '/v3/docs/knowledgebase/smartcontracts/contracts-pallet',
+          link: '/v3/docs/smart-contracts/contracts-pallet',
         },
         {
           title: `${intl.formatMessage({
             id: 'docs-menu-evm-pallet',
           })}`,
-          link: '/v3/docs/knowledgebase/smartcontracts/evm-pallet',
+          link: '/v3/docs/smart-contracts/evm-pallet',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-sc-faq' })}`,
-          link: '/v3/docs/knowledgebase/smartcontracts/sc-faq',
+          link: '/v3/docs/smart-contracts/faq',
         },
       ],
     },
@@ -200,25 +200,25 @@ const DocsTemplate = ({ data, pageContext }: any) => {
       items: [
         {
           title: `${intl.formatMessage({ id: 'docs-menu-polkadot-js' })}`,
-          link: '/v3/docs/knowledgebase/integrate/polkadot-js',
+          link: '/v3/docs/toolchains/polkadot-js',
         },
         {
           title: `${intl.formatMessage({
             id: 'docs-menu-client-libraries',
           })}`,
-          link: '/v3/docs/knowledgebase/integrate/client-libraries',
+          link: '/v3/docs/toolchains/client-libraries',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-subkey' })}`,
-          link: '/v3/docs/knowledgebase/integrate/subkey',
+          link: '/v3/docs/toolchains/subkey',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-memory-profiling' })}`,
-          link: '/v3/docs/knowledgebase/integrate/memory-profiling',
+          link: '/v3/docs/toolchains/memory-profiling',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-chain-specs' })}`,
-          link: '/v3/docs/knowledgebase/integrate/chain-specs',
+          link: '/v3/docs/toolchains/chain-specs',
         },
       ],
     },
@@ -227,39 +227,39 @@ const DocsTemplate = ({ data, pageContext }: any) => {
       items: [
         {
           title: `${intl.formatMessage({ id: 'docs-menu-account-info' })}`,
-          link: '/v3/docs/knowledgebase/advanced/account-info',
+          link: '/v3/docs/advanced/account-info',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-scale-codec' })}`,
-          link: '/v3/docs/knowledgebase/advanced/scale-codec',
+          link: '/v3/docs/advanced/scale-codec',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-consensus' })}`,
-          link: '/v3/docs/knowledgebase/advanced/consensus',
+          link: '/v3/docs/advanced/consensus',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-block-import' })}`,
-          link: '/v3/docs/knowledgebase/advanced/block-import',
+          link: '/v3/docs/advanced/block-import',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-executor' })}`,
-          link: '/v3/docs/knowledgebase/advanced/executor',
+          link: '/v3/docs/advanced/executor',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-cryptography' })}`,
-          link: '/v3/docs/knowledgebase/advanced/cryptography',
+          link: '/v3/docs/advanced/cryptography',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-storage' })}`,
-          link: '/v3/docs/knowledgebase/advanced/storage',
+          link: '/v3/docs/advanced/storage',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-ss58' })}`,
-          link: '/v3/docs/knowledgebase/advanced/ss58',
+          link: '/v3/docs/advanced/ss58',
         },
         {
           title: `${intl.formatMessage({ id: 'docs-menu-hash-collections' })}`,
-          link: '/v3/docs/knowledgebase/advanced/hash-collections',
+          link: '/v3/docs/advanced/hash-collections',
         },
       ],
     },
