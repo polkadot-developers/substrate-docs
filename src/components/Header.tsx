@@ -69,13 +69,13 @@ export default function Header() {
           external: false,
         },
         {
-          linkTitle: `${intl.formatMessage({ id: 'nav-tutorials' })}`,
-          link: `/tutorials`,
+          linkTitle: `${intl.formatMessage({ id: 'nav-how-to-guides' })}`,
+          link: `/v3/how-to-guides`,
           external: false,
         },
         {
-          linkTitle: `${intl.formatMessage({ id: 'nav-how-to-guides' })}`,
-          link: `/how-to-guides`,
+          linkTitle: `${intl.formatMessage({ id: 'nav-tutorials' })}`,
+          link: `/tutorials`,
           external: false,
         },
         {

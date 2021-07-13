@@ -13,7 +13,7 @@ import navMenu from '../components/devNavMenu'
 const DocsTemplate = ({ data, pageContext }: any) => {
   const { slug, version, navMenuSlug } = pageContext
   const globalDocsNav = navMenu.global()
-  const docsMenu = [navMenu.tuts[navMenuSlug]]
+  const docsMenu = [navMenu.tuts[`${navMenuSlug}`]]
 
   return (
     <Layout>
