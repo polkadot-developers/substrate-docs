@@ -21,7 +21,17 @@ export default function tutorials({ data }: any) {
             difficulty={`beginner`}
             prerequisites={false}
             version={`V3.0.0`}
-            link={`/v3/tutorials/create-your-first-substrate-chain/`}
+            link={`/v3/tutorials/create-your-first-substrate-chain`}
+          />
+          <TutorialCard
+            title={`Add Pallets to Runtime and Publish Custom Pallets`}
+            image={data.tutorialOne}
+            description={`Learn to add the Nicks pallet to runtime and publish custom pallets that others can import.`}
+            time={`2 Hours`}
+            difficulty={`beginner`}
+            prerequisites={true}
+            version={`V3.0.0`}
+            link={`/v3/tutorials/add-a-pallet`}
           />
           <TutorialCard
             title={`Proof of Existence`}
@@ -31,7 +41,17 @@ export default function tutorials({ data }: any) {
             difficulty={`beginner`}
             prerequisites={true}
             version={`V3.0.0`}
-            link={`/v3/tutorials/proof-of-existence/overview`}
+            link={`/v3/tutorials/proof-of-existence`}
+          />
+          <TutorialCard
+            title={`Add Contracts Pallet to Runtime`}
+            image={data.tutorialOne}
+            description={`Add the Contracts pallet to your Substrate Node Template.`}
+            time={`2 Hours`}
+            difficulty={`medium`}
+            prerequisites={true}
+            version={`V3.0.0`}
+            link={`/v3/tutorials/add-contracts-pallet`}
           />
           <TutorialCard
             title={`Permissioned Network`}
@@ -41,7 +61,7 @@ export default function tutorials({ data }: any) {
             difficulty={`beginner`}
             prerequisites={true}
             version={`V3.0.0`}
-            link={`/v3/tutorials/permissioned-network/overview`}
+            link={`/v3/tutorials/permissioned-network`}
           />
           <TutorialCard
             title={`Forkless Upgrades`}
@@ -51,7 +71,7 @@ export default function tutorials({ data }: any) {
             difficulty={`beginner`}
             prerequisites={true}
             version={`V3.0.0`}
-            link={`/v3/tutorials/forkless-upgrades/overview`}
+            link={`/v3/tutorials/forkless-upgrades`}
           />
           <TutorialCard
             title={`Private Network`}
@@ -61,7 +81,7 @@ export default function tutorials({ data }: any) {
             difficulty={`beginner`}
             prerequisites={false}
             version={`V3.0.0`}
-            link={`/v3/tutorials/private-network/overview`}
+            link={`/v3/tutorials/private-network`}
           />
           <TutorialCard
             title={`Node Metrics`}
@@ -71,7 +91,7 @@ export default function tutorials({ data }: any) {
             difficulty={`beginner`}
             prerequisites={false}
             version={`V3.0.0`}
-            link={`/v3/tutorials/node-metrics/overview`}
+            link={`/v3/tutorials/node-metrics`}
           />
         </div>
       </div>

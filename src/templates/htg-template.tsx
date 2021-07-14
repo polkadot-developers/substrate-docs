@@ -3,182 +3,17 @@ import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import { useIntl } from 'react-intl'
 import DocsNavMobile from '../components/DocsNavMobile'
 import DocsSideBar from '../components/DocsSideBar'
 import DocsNav from '../components/DocsNav'
 import VersionControl from '../components/VersionControl'
 import { BottomButtons, Message } from '../components/DocsComponents'
+import navMenu from '../components/DevNavMenu'
 
 const DocsTemplate = ({ data, pageContext }: any) => {
   const { slug, version } = pageContext
-  const intl = useIntl()
-  const globalDocsNav = [
-    {
-      section: `${intl.formatMessage({ id: 'docs-nav-knowledgebase' })}`,
-      url: '/v3/docs/',
-      external: false,
-    },
-    {
-      section: `${intl.formatMessage({ id: 'docs-nav-tutorials' })}`,
-      url: '/tutorials/',
-      external: false,
-    },
-    {
-      section: `${intl.formatMessage({ id: 'docs-nav-htg' })}`,
-      url: '/how-to-guides/',
-      external: false,
-    },
-    {
-      section: `${intl.formatMessage({ id: 'docs-nav-rustdocs' })}`,
-      url: '#',
-      external: true,
-    },
-    {
-      section: `${intl.formatMessage({ id: 'docs-nav-learningtracks' })}`,
-      url: '/learning-tracks/',
-      external: false,
-    },
-  ]
-  const docsMenu = [
-    // 1. Basics.
-    {
-      name: `${intl.formatMessage({ id: 'docs-nav-htg-basics' })}`,
-      items: [
-        {
-          title: `${intl.formatMessage({
-            id: 'htg-basics-pallet-integration',
-          })}`,
-          link: '/v3/how-to-guides/basics/pallet-integration',
-        },
-        {
-          title: `${intl.formatMessage({
-            id: 'htg-basics-instantiable-pallets',
-          })}`,
-          link: '/v3/how-to-guides/basics/instantiable-pallets',
-        },
-        {
-          title: `${intl.formatMessage({
-            id: 'htg-basics-configurable-constants',
-          })}`,
-          link: '/v3/how-to-guides/basics/configurable-constants',
-        },
-        {
-          title: `${intl.formatMessage({ id: 'htg-basics-genesis' })}`,
-          link: '/v3/how-to-guides/basics/genesis',
-        },
-        {
-          title: `${intl.formatMessage({ id: 'htg-basics-helper-functions' })}`,
-          link: '/v3/how-to-guides/basics/helper-functions',
-        },
-        {
-          title: `${intl.formatMessage({ id: 'htg-basics-mint-token' })}`,
-          link: '/v3/how-to-guides/basics/mint-token',
-        },
-        {
-          title: `${intl.formatMessage({ id: 'htg-basics-weights' })}`,
-          link: '/v3/how-to-guides/basics/weights',
-        },
-      ],
-    },
-    // 2. Pallet Design.
-    {
-      name: `${intl.formatMessage({ id: 'docs-nav-htg-pallet-design' })}`,
-      items: [
-        {
-          title: `${intl.formatMessage({
-            id: 'htg-pallet-design-add-contracts',
-          })}`,
-          link: '/v3/how-to-guides/pallet-design/contracts-pallet',
-        },
-        {
-          title: `${intl.formatMessage({
-            id: 'htg-pallet-design-lockable-currency',
-          })}`,
-          link: '/v3/how-to-guides/pallet-design/lockable-currency',
-        },
-        {
-          title: `${intl.formatMessage({
-            id: 'htg-pallet-design-randomness',
-          })}`,
-          link: '/v3/how-to-guides/pallet-design/randomness',
-        },
-        {
-          title: `${intl.formatMessage({ id: 'htg-pallet-design-crowdfund' })}`,
-          link: '/v3/how-to-guides/pallet-design/crowdfund',
-        },
-        {
-          title: `${intl.formatMessage({
-            id: 'htg-pallet-design-storage-value',
-          })}`,
-          link: '/v3/how-to-guides/pallet-design/storage-value',
-        },
-      ],
-    },
-    // 3. Weights.
-    {
-      name: `${intl.formatMessage({ id: 'docs-nav-htg-weights' })}`,
-      items: [
-        {
-          title: `${intl.formatMessage({ id: 'htg-weights-calculate-fees' })}`,
-          link: '/v3/how-to-guides/weights/calculate-fees',
-        },
-      ],
-    },
-    {
-      name: `${intl.formatMessage({ id: 'docs-nav-htg-testing' })}`,
-      items: [
-        {
-          title: `${intl.formatMessage({ id: 'htg-testing-basics' })}`,
-          link: '/v3/how-to-guides/testing/basics',
-        },
-        {
-          title: `${intl.formatMessage({
-            id: 'htg-testing-transfer-function',
-          })}`,
-          link: '/v3/how-to-guides/testing/transfer-function',
-        },
-      ],
-    },
-    // 4. Testing.
-    {
-      name: `${intl.formatMessage({ id: 'docs-nav-htg-storage-migrations' })}`,
-      items: [
-        {
-          title: `${intl.formatMessage({ id: 'htg-sm-nicks' })}`,
-          link: '/v3/how-to-guides/storage-migrations/basics',
-        },
-        {
-          title: `${intl.formatMessage({ id: 'htg-sm-steps' })}`,
-          link: '/v3/how-to-guides/storage-migrations/trigger-with-apps',
-        },
-        {
-          title: `${intl.formatMessage({ id: 'htg-sm-tests' })}`,
-          link: '/v3/how-to-guides/storage-migrations/tests',
-        },
-      ],
-    },
-    // 5. Storage Migrations.
-    {
-      name: `${intl.formatMessage({ id: 'docs-nav-htg-consensus' })}`,
-      items: [
-        {
-          title: `${intl.formatMessage({ id: 'htg-consensus-pow' })}`,
-          link: '/v3/how-to-guides/consensus/pow',
-        },
-      ],
-    },
-    // 6. Consenus.
-    {
-      name: `${intl.formatMessage({ id: 'docs-nav-htg-tools' })}`,
-      items: [
-        {
-          title: `${intl.formatMessage({ id: 'htg-tools' })}`,
-          link: '/v3/how-to-guides/tools/try-runtime',
-        },
-      ],
-    },
-  ]
+  const globalDocsNav = navMenu.global()
+  const docsMenu = navMenu.htg()
 
   return (
     <Layout>
@@ -227,7 +62,6 @@ const DocsTemplate = ({ data, pageContext }: any) => {
             <div className="text-xs text-right py-12">
               Last updated on 03/16/2021
             </div>
-            {console.log(slug)}
             <BottomButtons menu={docsMenu} pageSlug={slug} />
           </article>
           {data.mdx ? (
@@ -241,9 +75,6 @@ const DocsTemplate = ({ data, pageContext }: any) => {
           )}
         </div>
       </div>
-
-      {/* <h1>Context</h1>
-      <pre>{JSON.stringify(pageContext, null, 2)}</pre> */}
     </Layout>
   )
 }

@@ -3,24 +3,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   const kbTemplate = require.resolve(`./src/templates/kb-template.tsx`)
   const htgTemplate = require.resolve(`./src/templates/htg-template.tsx`)
-  const tutorialOneTemplate = require.resolve(
-    `./src/templates/tut-templates/create-your-first-substrate-chain.tsx`
-  )
-  const tutorialTwoTemplate = require.resolve(
-    `./src/templates/tut-templates/proof-of-existence.tsx`
-  )
-  const tutorialThreeTemplate = require.resolve(
-    `./src/templates/tut-templates/permissioned-network.tsx`
-  )
-  const tutorialFourTemplate = require.resolve(
-    `./src/templates/tut-templates/forkless-upgrade.tsx`
-  )
-  const tutorialFiveTemplate = require.resolve(
-    `./src/templates/tut-templates/private-network.tsx`
-  )
-  const tutorialSixTemplate = require.resolve(
-    `./src/templates/tut-templates/node-metrics.tsx`
-  )
+  const tutorialTemplate = require.resolve(`./src/templates/tut-template.tsx`)
 
   const result = await graphql(`
     {
@@ -42,79 +25,75 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           }
         }
       }
-      tutorialOne: allFile(
-        filter: {
-          sourceInstanceName: { eq: "create-your-first-substrate-chain" }
-        }
-      ) {
-        nodes {
-          childMdx {
-            frontmatter {
-              slug
-            }
-          }
-        }
-      }
-      tutorialTwo: allFile(
-        filter: { sourceInstanceName: { eq: "proof-of-existence" } }
-      ) {
-        nodes {
-          childMdx {
-            frontmatter {
-              slug
-            }
-          }
-        }
-      }
-      tutorialThree: allFile(
-        filter: { sourceInstanceName: { eq: "permissioned-network" } }
-      ) {
-        nodes {
-          childMdx {
-            frontmatter {
-              slug
-            }
-          }
-        }
-      }
-      tutorialFour: allFile(
-        filter: { sourceInstanceName: { eq: "forkless-upgrade" } }
-      ) {
-        nodes {
-          childMdx {
-            frontmatter {
-              slug
-            }
-          }
-        }
-      }
-      tutorialFive: allFile(
-        filter: { sourceInstanceName: { eq: "private-network" } }
-      ) {
-        nodes {
-          childMdx {
-            frontmatter {
-              slug
-            }
-          }
-        }
-      }
-      tutorialSix: allFile(
-        filter: { sourceInstanceName: { eq: "node-metrics" } }
-      ) {
-        nodes {
-          childMdx {
-            frontmatter {
-              slug
-            }
-          }
-        }
-      }
     }
   `)
 
   if (result.errors) {
     reporter.panicOnBuild(result.errors)
+    return
+  }
+
+  const gqlTpl = `{ res: allFile(
+    filter: { sourceInstanceName: { eq: ">>param1<<" }}
+  ) {
+    nodes {
+      childMdx {
+        frontmatter {
+          slug
+        }
+      }
+    }
+  } }`
+
+  const tutsInfo = [
+    {
+      name: 'create-your-first-substrate-chain',
+      navSlug: 'firstChain',
+      version: '3.0',
+    },
+    {
+      name: 'add-a-pallet',
+      navSlug: 'addPallet',
+      version: '3.0',
+    },
+    {
+      name: 'proof-of-existence',
+      navSlug: 'poe',
+      version: '3.0',
+    },
+    {
+      name: 'permissioned-network',
+      navSlug: 'permissionedNetwork',
+      version: '3.0',
+    },
+    {
+      name: 'forkless-upgrade',
+      navSlug: 'forklessUpgrade',
+      version: '3.0',
+    },
+    {
+      name: 'private-network',
+      navSlug: 'privateNetwork',
+      version: '3.0',
+    },
+    {
+      name: 'node-metrics',
+      navSlug: 'nodeMetrics',
+      version: '3.0',
+    },
+    {
+      name: 'add-contracts-pallet',
+      navSlug: 'addContractsPallet',
+      version: '3.0',
+    },
+  ]
+
+  const tutsGqlResult = await Promise.allSettled(
+    tutsInfo.map(tutInfo => graphql(gqlTpl.replace('>>param1<<', tutInfo.name)))
+  )
+
+  if (tutsGqlResult.some(res => res.errors)) {
+    reporter.panicOnBuild(tutsGqlResult.filter(res => res.errors))
     return
   }
 
@@ -142,72 +121,18 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     })
   })
 
-  const tutorialOne = result.data.tutorialOne.nodes
-  tutorialOne.forEach(({ childMdx: node }) => {
-    createPage({
-      path: `${node.frontmatter.slug}`,
-      component: tutorialOneTemplate,
-      context: {
-        slug: `${node.frontmatter.slug}`,
-        version: `3.0`,
-      },
-    })
-  })
-
-  const tutorialTwo = result.data.tutorialTwo.nodes
-  tutorialTwo.forEach(({ childMdx: node }) => {
-    createPage({
-      path: `${node.frontmatter.slug}`,
-      component: tutorialTwoTemplate,
-      context: {
-        slug: `${node.frontmatter.slug}`,
-        version: `3.0`,
-      },
-    })
-  })
-
-  const tutorialThree = result.data.tutorialThree.nodes
-  tutorialThree.forEach(({ childMdx: node }) => {
-    createPage({
-      path: `${node.frontmatter.slug}`,
-      component: tutorialThreeTemplate,
-      context: {
-        slug: `${node.frontmatter.slug}`,
-        version: `3.0`,
-      },
-    })
-  })
-  const tutorialFour = result.data.tutorialFour.nodes
-  tutorialFour.forEach(({ childMdx: node }) => {
-    createPage({
-      path: `${node.frontmatter.slug}`,
-      component: tutorialFourTemplate,
-      context: {
-        slug: `${node.frontmatter.slug}`,
-        version: `3.0`,
-      },
-    })
-  })
-  const tutorialFive = result.data.tutorialFive.nodes
-  tutorialFive.forEach(({ childMdx: node }) => {
-    createPage({
-      path: `${node.frontmatter.slug}`,
-      component: tutorialFiveTemplate,
-      context: {
-        slug: `${node.frontmatter.slug}`,
-        version: `3.0`,
-      },
-    })
-  })
-  const tutorialSix = result.data.tutorialSix.nodes
-  tutorialSix.forEach(({ childMdx: node }) => {
-    createPage({
-      path: `${node.frontmatter.slug}`,
-      component: tutorialSixTemplate,
-      context: {
-        slug: `${node.frontmatter.slug}`,
-        version: `3.0`,
-      },
+  tutsInfo.forEach((tutInfo, ind) => {
+    const res = tutsGqlResult[`${ind}`].value.data.res.nodes
+    res.forEach(({ childMdx: node }) => {
+      createPage({
+        path: `${node.frontmatter.slug}`,
+        component: tutorialTemplate,
+        context: {
+          slug: `${node.frontmatter.slug}`,
+          version: tutInfo.version,
+          navMenuSlug: tutInfo.navSlug,
+        },
+      })
     })
   })
 }
