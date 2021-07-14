@@ -19,7 +19,7 @@ export default function tutorials({ data }: any) {
             description={`Launch and interact with your first Substrate chain in this minimal end-to-end guide.`}
             time={`< 1 Hour`}
             difficulty={`beginner`}
-            prerequisites={true}
+            prerequisites={false}
             version={`V3.0.0`}
             link={`/v3/tutorials/create-your-first-substrate-chain`}
           />
@@ -76,10 +76,10 @@ export default function tutorials({ data }: any) {
           <TutorialCard
             title={`Private Network`}
             image={data.tutorialOne}
-            description={`Learn to start a private blockchain network using an out-of-the-box Substrate node.`}
+            description={`Learn how to start a private blockchain network using an out-of-the-box Substrate node.`}
             time={`2 Hours`}
             difficulty={`beginner`}
-            prerequisites={true}
+            prerequisites={false}
             version={`V3.0.0`}
             link={`/v3/tutorials/private-network`}
           />
@@ -89,7 +89,7 @@ export default function tutorials({ data }: any) {
             description={`Learn how to visualize the metrics that Substrate records using Prometheus.`}
             time={`< 1 Hour`}
             difficulty={`beginner`}
-            prerequisites={true}
+            prerequisites={false}
             version={`V3.0.0`}
             link={`/v3/tutorials/node-metrics`}
           />

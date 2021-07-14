@@ -4,13 +4,13 @@ slug: /v3/tutorials/proof-of-existence/pallet
 ---
 
 The Substrate Developer Hub Node Template, which is used as the starting point for this tutorial,
-has a FRAME-based [runtime](https://substrate.dev/docs/en/knowledgebase/runtime/).
-[FRAME](https://substrate.dev/docs/en/knowledgebase/runtime/frame) is a library of code that allows
+has a FRAME-based [runtime](../../../v3/docs/concepts/runtime).
+[FRAME](../../../v3/docs/runtime/frame) is a library of code that allows
 you to build a Substrate runtime by composing modules called "pallets". You can think of these
 pallets as individual pieces of logic that define what your blockchain can do! Substrate provides
 you with a number of pre-built pallets for use in FRAME-based runtimes.
 
-![Runtime Composition](assets/frame-runtime.png)
+![Runtime Composition](../../../../src/images/docs/runtime/frame-runtime.png)
 
 To give some examples, FRAME includes:
 - a [Balances](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/)
@@ -117,7 +117,7 @@ Of Existence pallet by providing you with the code blocks that go under each sec
 >
 > You _can_ use `std` features in non-runtime components like `mock.rs` and `tests.rs` using
 > `[dev-dependencies]` _ONLY_. Specifics and examples of this are outside the scope of this
-> tutorial. Learn more about [testing in Substrate here](../../knowledgebase/runtime/tests).
+> tutorial. Learn more about [testing in Substrate here](../../../v3/docs/runtime/tests).
 
 ### 2. Pallet Configuration Trait
 

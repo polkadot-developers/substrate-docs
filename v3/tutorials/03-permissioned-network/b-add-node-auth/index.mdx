@@ -32,7 +32,7 @@ Instead, you can manipulate the connection between a well know node
 and a normal node or between two normal nodes and sub-nodes.
 
 The `node-authorization` pallet integrates an
-[offchain worker](../../knowledgebase/learn-substrate/off-chain-features#off-chain-workers)
+[offchain worker](../../../v3/docs/concepts/off-chain-features#off-chain-workers)
 to configure it's node connections. Make sure to enable offchain worker with
 the right CLI flag as offchain worker is disabled by default for non-authority nodes.
 
@@ -63,7 +63,7 @@ cargo build --release
 ```
 
 > If you do run into issues building, checkout
-> [these helpful tips](../../knowledgebase/getting-started/#2-rust-developer-environment)
+> [these helpful tips](../../../v3/docs/getting-started/installation#2-rust-developer-environment)
 
 Now open the code with your favorite editor, can't wait to make some changes right?
 
@@ -208,12 +208,12 @@ fn testnet_genesis(
 The first element of the tuple is the `OpaquePeerId` and we use `bs58::decode` to convert
 the `PeerId` in human readable format to bytes. The second element of the tuple is `AccountId`
 and represents the owner of this node, here we are using one of the provided endowed accounts
-for demonstration: [Alice and Bob](../../knowledgebase/integrate/subkey#well-known-keys).
+for demonstration: [Alice and Bob](../../../v3/docs/toolchains/subkey#well-known-keys).
 
 <!-- TODO: update to use the `key` embedded CLI tool with the node, reference subkey as option -->
 
 You may wondering where the `12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2` comes from.
-We can use [subkey](../../knowledgebase/integrate/subkey#generating-node-keys) to generate 
+We can use [subkey](../../../v3/docs/toolchains/subkey#generating-node-keys) to generate 
 the above human readable `PeerId`.
 
 ```bash
@@ -221,7 +221,7 @@ subkey generate-node-key
 ```
 
 > Note: `subkey` is a CLI tool that comes bundled with substrate, and you can install it natively too!
->  - [Install Instructions](../../knowledgebase/integrate/subkey#installation)
+>  - [Install Instructions](../../../v3/docs/toolchains/subkey#installation)
 
 The output of the command is like:
 

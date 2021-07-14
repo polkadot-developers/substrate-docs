@@ -8,7 +8,7 @@ Now that the Node Template has been upgraded to include the Scheduler pallet,
 can be used to perform the next runtime upgrade. In the previous section, the
 `sudo_unchecked_weight` function was used to override the weight associated with the `set_code`
 function; in this section, the runtime upgrade will be _scheduled_ so that it can be processed as
-the only [extrinsic](../../knowledgebase/learn-substrate/extrinsics) in a block.
+the only [extrinsic](../../../v3/docs/concepts/extrinsics) in a block.
 
 ## Prepare an Upgraded Runtime
 
@@ -38,7 +38,7 @@ parameter_types! {
 ```
 
 This change increases the value of the Balances pallet's
-[`ExistentialDeposit`](../../knowledgebase/getting-started/glossary#existential-deposit) - the
+[`ExistentialDeposit`](../../../v3/docs/getting-started/glossary#existential-deposit) - the
 minimum balance needed to keep an account alive from the point-of-view of the Balances pallet.
 
 > Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000

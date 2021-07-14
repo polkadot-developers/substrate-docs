@@ -19,7 +19,7 @@ cargo run --release -- --dev --tmp
 > node to prove to yourself that the runtime upgrade is in fact done on an _active_ (dev) network,
 > not a rebuilt or restarted one.
 
-By default, the [well-known Alice account](../../knowledgebase/integrate/subkey#well-known-keys) is
+By default, the [well-known Alice account](../../../v3/docs/toolchains/subkey#well-known-keys) is
 configured as the holder of the Sudo pallet's key in the `development_config` function of the
 template node's
 [chain specification file](https://github.com/substrate-developer-hub/substrate-node-template/blob/v3.0.0/node/src/chain_spec.rs) -
@@ -29,7 +29,7 @@ that Alice's account will be the one used to perform runtime upgrades throughout
 ## Runtime Upgrade Resource Accounting
 
 Dispatchable calls in Substrate are always associated with a
-[weight](../../knowledgebase/learn-substrate/weight), which is used for resource accounting. FRAME's
+[weight](../../../v3/docs/concepts/weight), which is used for resource accounting. FRAME's
 System module bounds extrinsics to a block
 [`BlockLength`](https://substrate.dev/rustdocs/v3.0.0/frame_system/limits/struct.BlockLength.html) and
 [`BlockWeights`](https://substrate.dev/rustdocs/v3.0.0/frame_system/limits/struct.BlockWeights.html) limit.
@@ -39,7 +39,7 @@ intentionally designed to consume the maximum weight that may fit in a block.
 
 > The runtime upgrade should consume the entire block to avoid extrinsics trying to execute
 > on a different version of a runtime when called. Although theoretically one may be able to
-> use [transaction priority](../../knowledgebase/learn-substrate/tx-pool#transaction-priority)
+> use [transaction priority](../../../v3/docs/concepts/tx-pool#transaction-priority)
 > and carefully study the FRAME logic involved to allow for other extrinsics to be dispatched
 > in the same block as the upgrade, it is a very poor idea to try to do this for almost
 > any blockchain: it is worth to spend one block to keep this operation clean and reduce
@@ -47,7 +47,7 @@ intentionally designed to consume the maximum weight that may fit in a block.
 
 The [`set_code` function](https://substrate.dev/rustdocs/v3.0.0/src/frame_system/lib.rs.html#329-337)'s
 weight annotation also specifies that the extrinsic call is in
-[the `Operational` class](../../knowledgebase/runtime/fees#operational-dispatches) of dispatchable
+[the `Operational` class](../../../v3/docs/runtime/weights-and-fees#operational-dispatches) of dispatchable
 function, which identifies it as relating to network _operations_ and impacts the accounting of its
 resources, such as by exempting it from the
 [`TransactionByteFee`](https://substrate.dev/rustdocs/v3.0.0/pallet_transaction_payment/trait.Config.html#associatedtype.TransactionByteFee).
@@ -62,7 +62,7 @@ ability to update the runtime by way of
 [the `set_code` function](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Call.html#variant.set_code),
 are only accessible to this administrator. The Sudo pallet maintains a single
 [storage item](../../knowledgebase/runtime/storage): the ID of the account that has access to the
-pallet's [dispatchable functions](../../knowledgebase/getting-started/glossary#dispatch). The Sudo
+pallet's [dispatchable functions](../../../v3/docs/getting-started/glossary#dispatch). The Sudo
 pallet's `sudo` function allows the holder of this account to invoke a dispatchable as the `Root`
 origin.
 
@@ -181,12 +181,12 @@ Take a moment to review the components of the `RuntimeVersion` struct:
 - `spec_name`: The name of the runtime/chain, e.g. Ethereum.
 - `impl_name`: The name of the client, e.g. OpenEthereum.
 - `authoring_version`: The authorship version for
-  [block authors](../../knowledgebase/getting-started/glossary#author).
+  [block authors](../../../v3/docs/getting-started/glossary#author).
 - `spec_version`: The version of the runtime/chain.
 - `impl_version`: The version of the client.
 - `apis`: The list of supported APIs.
 - `transaction_version`: The version of the
-  [dispatchable function](../../knowledgebase/getting-started/glossary#dispatch) interface.
+  [dispatchable function](../../../v3/docs/getting-started/glossary#dispatch) interface.
 
 In order to upgrade the runtime it is _required_ to _increase_ the `spec_version`; refer to the
 implementation of the
