@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { FormattedDisplayName, useIntl } from 'react-intl'
+import { useIntl } from 'react-intl'
 import Layout from '../components/Layout'
 import TutorialCard from '../components/TutorialCard'
 
