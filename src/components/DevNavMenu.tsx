@@ -433,7 +433,7 @@ DevNavMenu.tuts.firstChain = {
   items: [
     {
       title: `Introduction`,
-      link: '/v3/tutorials/create-your-first-substrate-chain/',
+      link: '/v3/tutorials/create-your-first-substrate-chain',
     },
     {
       title: `Set Up Your Computer`,
@@ -455,7 +455,7 @@ DevNavMenu.tuts.poe = {
   items: [
     {
       title: `Overview`,
-      link: '/v3/tutorials/proof-of-existence/overview',
+      link: '/v3/tutorials/proof-of-existence',
     },
     {
       title: `Prepare to build a dApp`,
@@ -477,7 +477,7 @@ DevNavMenu.tuts.permissionedNetwork = {
   items: [
     {
       title: `Overview`,
-      link: '/v3/tutorials/permissioned-network/overview',
+      link: '/v3/tutorials/permissioned-network',
     },
     {
       title: `Add node-authorization pallet`,
@@ -495,7 +495,7 @@ DevNavMenu.tuts.forklessUpgrade = {
   items: [
     {
       title: `Overview`,
-      link: '/v3/tutorials/forkless-upgrades/overview',
+      link: '/v3/tutorials/forkless-upgrades',
     },
     {
       title: `Sudo Upgrade`,
@@ -513,7 +513,7 @@ DevNavMenu.tuts.privateNetwork = {
   items: [
     {
       title: `Overview`,
-      link: '/v3/tutorials/private-network/overview',
+      link: '/v3/tutorials/private-network',
     },
     {
       title: `Alice and Bob Start Blockchain`,
@@ -539,7 +539,7 @@ DevNavMenu.tuts.nodeMetrics = {
   items: [
     {
       title: `Overview`,
-      link: '/v3/tutorials/node-metrics/overview',
+      link: '/v3/tutorials/node-metrics',
     },
   ],
 }
@@ -549,7 +549,23 @@ DevNavMenu.tuts.addPallet = {
   items: [
     {
       title: `Overview`,
-      link: '/v3/tutorials/add-a-pallet/overview',
+      link: '/v3/tutorials/add-a-pallet',
+    },
+    {
+      title: `Import the Nicks Pallet`,
+      link: '/v3/tutorials/add-a-pallet/import',
+    },
+    {
+      title: `Configure the Nicks Pallet`,
+      link: '/v3/tutorials/add-a-pallet/configure',
+    },
+    {
+      title: `Interact with the Nicks Pallet`,
+      link: '/v3/tutorials/add-a-pallet/interact',
+    },
+    {
+      title: `Publish Your Own Pallet`,
+      link: '/v3/tutorials/add-a-pallet/publish',
     },
   ],
 }
