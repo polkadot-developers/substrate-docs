@@ -108,6 +108,13 @@ module.exports = {
         name: `add-a-pallet`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/v3/tutorials/08-add-contracts-pallet`,
+        name: `add-contracts-pallet`,
+      },
+    },
     //*********************************//
     {
       resolve: `gatsby-source-filesystem`,

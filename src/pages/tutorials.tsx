@@ -24,9 +24,9 @@ export default function tutorials({ data }: any) {
             link={`/v3/tutorials/create-your-first-substrate-chain`}
           />
           <TutorialCard
-            title={`Add Pallets to Your Runtime and Publish Custom Pallets`}
+            title={`Add Pallets to Runtime and Publish Custom Pallets`}
             image={data.tutorialOne}
-            description={`Learn to add the Nicks pallet to your runtime and publish custom pallets that others can import into their runtimes.`}
+            description={`Learn to add the Nicks pallet to runtime and publish custom pallets that others can import.`}
             time={`2 Hours`}
             difficulty={`beginner`}
             prerequisites={true}
@@ -42,6 +42,16 @@ export default function tutorials({ data }: any) {
             prerequisites={true}
             version={`V3.0.0`}
             link={`/v3/tutorials/proof-of-existence`}
+          />
+          <TutorialCard
+            title={`Add Contracts Pallet to Runtime`}
+            image={data.tutorialOne}
+            description={`Add the Contracts pallet to your Substrate Node Template.`}
+            time={`2 Hours`}
+            difficulty={`medium`}
+            prerequisites={true}
+            version={`V3.0.0`}
+            link={`/v3/tutorials/add-contracts-pallet`}
           />
           <TutorialCard
             title={`Permissioned Network`}

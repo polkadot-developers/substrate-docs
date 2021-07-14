@@ -570,4 +570,14 @@ DevNavMenu.tuts.addPallet = {
   ],
 }
 
+DevNavMenu.tuts.addContractsPallet = {
+  name: `Add Contracts Pallet to Runtime`,
+  items: [
+    {
+      title: `Add Contracts Pallet to Runtime`,
+      link: '/v3/tutorials/add-contract-pallet',
+    },
+  ],
+}
+
 export default DevNavMenu

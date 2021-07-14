@@ -81,6 +81,11 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       navSlug: 'nodeMetrics',
       version: '3.0',
     },
+    {
+      name: 'add-contracts-pallet',
+      navSlug: 'addContractsPallet',
+      version: '3.0',
+    },
   ]
 
   const tutsGqlResult = await Promise.allSettled(
