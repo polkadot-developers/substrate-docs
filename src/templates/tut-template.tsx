@@ -8,7 +8,7 @@ import DocsSideBar from '../components/DocsSideBar'
 import DocsNav from '../components/DocsNav'
 import VersionControl from '../components/VersionControl'
 import { BottomButtons, Message } from '../components/DocsComponents'
-import navMenu from '../components/devNavMenu'
+import navMenu from '../components/DevNavMenu'
 
 const DocsTemplate = ({ data, pageContext }: any) => {
   const { slug, version, navMenuSlug } = pageContext

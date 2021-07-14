@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-const devNavMenu = {
+const DevNavMenu = {
   global: () => {
     const intl = useIntl()
     return [
@@ -426,9 +426,9 @@ const devNavMenu = {
   },
 }
 
-devNavMenu.tuts = {}
+DevNavMenu.tuts = {}
 
-devNavMenu.tuts.firstChain = {
+DevNavMenu.tuts.firstChain = {
   name: `Create Your First Substrate Chain`,
   items: [
     {
@@ -450,7 +450,7 @@ devNavMenu.tuts.firstChain = {
   ],
 }
 
-devNavMenu.tuts.poe = {
+DevNavMenu.tuts.poe = {
   name: `Proof of Existence`,
   items: [
     {
@@ -472,7 +472,7 @@ devNavMenu.tuts.poe = {
   ],
 }
 
-devNavMenu.tuts.permissionedNetwork = {
+DevNavMenu.tuts.permissionedNetwork = {
   name: `Start a Permissioned Network`,
   items: [
     {
@@ -490,7 +490,7 @@ devNavMenu.tuts.permissionedNetwork = {
   ],
 }
 
-devNavMenu.tuts.forklessUpgrade = {
+DevNavMenu.tuts.forklessUpgrade = {
   name: `Forkless Runtime Upgrades`,
   items: [
     {
@@ -508,7 +508,7 @@ devNavMenu.tuts.forklessUpgrade = {
   ],
 }
 
-devNavMenu.tuts.privateNetwork = {
+DevNavMenu.tuts.privateNetwork = {
   name: `Start a Private Network`,
   items: [
     {
@@ -534,7 +534,7 @@ devNavMenu.tuts.privateNetwork = {
   ],
 }
 
-devNavMenu.tuts.nodeMetrics = {
+DevNavMenu.tuts.nodeMetrics = {
   name: `Visualizing Node Metrics`,
   items: [
     {
@@ -544,4 +544,4 @@ devNavMenu.tuts.nodeMetrics = {
   ],
 }
 
-export default devNavMenu
+export default DevNavMenu
