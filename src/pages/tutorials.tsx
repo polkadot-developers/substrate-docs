@@ -24,6 +24,16 @@ export default function tutorials({ data }: any) {
             link={`/v3/tutorials/create-your-first-substrate-chain/`}
           />
           <TutorialCard
+            title={`Add Pallets to Your Runtime and Publish Custom Pallets`}
+            image={data.tutorialOne}
+            description={`Learn to add the Nicks pallet to your runtime and publish custom pallets that others can import into their runtimes.`}
+            time={`2 Hours`}
+            difficulty={`beginner`}
+            prerequisites={true}
+            version={`V3.0.0`}
+            link={`/v3/tutorials/add-a-pallet/overview`}
+          />
+          <TutorialCard
             title={`Proof of Existence`}
             image={data.tutorialOne}
             description={`Build a customized Substrate chain with its own user interface.`}
