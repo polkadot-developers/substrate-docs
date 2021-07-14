@@ -544,4 +544,14 @@ DevNavMenu.tuts.nodeMetrics = {
   ],
 }
 
+DevNavMenu.tuts.addPallet = {
+  name: `Add a Pallet in Runtime`,
+  items: [
+    {
+      title: `Overview`,
+      link: '/v3/tutorials/add-a-pallet/overview',
+    },
+  ],
+}
+
 export default DevNavMenu
