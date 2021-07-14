@@ -52,6 +52,11 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       version: '3.0',
     },
     {
+      name: 'add-a-pallet',
+      navSlug: 'addPallet',
+      version: '3.0',
+    },
+    {
       name: 'proof-of-existence',
       navSlug: 'poe',
       version: '3.0',
@@ -74,6 +79,11 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     {
       name: 'node-metrics',
       navSlug: 'nodeMetrics',
+      version: '3.0',
+    },
+    {
+      name: 'add-contracts-pallet',
+      navSlug: 'addContractsPallet',
       version: '3.0',
     },
   ]
