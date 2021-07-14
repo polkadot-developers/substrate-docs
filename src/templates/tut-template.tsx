@@ -62,7 +62,9 @@ const DocsTemplate = ({ data, pageContext }: any) => {
             <div className="text-xs text-right py-12">
               Last updated on 03/16/2021
             </div>
-            <BottomButtons menu={docsMenu} pageSlug={slug} />
+            {docsMenu[0].items.length > 1 ? (
+              <BottomButtons menu={docsMenu} pageSlug={slug} />
+            ) : null}
           </article>
           {data.mdx ? (
             <div className="hidden lg:inline-block lg:flex-none">
