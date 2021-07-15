@@ -14,6 +14,7 @@ import {
   DarkButton,
   FastTrackPlayground,
 } from './DocsComponents'
+import ExternalLink from './DocsComponents/ExternalLink'
 import Header from './Header'
 import Footer from './Footer'
 
@@ -30,6 +31,7 @@ const components = {
   AccentButton,
   DarkButton,
   FastTrackPlayground,
+  ExternalLink,
 }
 
 const Layout = ({ children }: any) => {
