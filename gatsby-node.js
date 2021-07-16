@@ -179,8 +179,11 @@ const createIndex = async (docNodes, cache, type) => {
   for (const node of docNodes) {
     const locale = node.fields.locale
     const slug = node.frontmatter.slug
-    const section = slug.split('/')[2].split('-').join(' ')
-    const category = slug.split('/')[3].split('-').join(' ')
+    console.log(slug)
+    const section = slug.split('/')[2]?.split('-').join(' ')
+    console.log(section)
+    const category = slug.split('/')[3]?.split('-').join(' ')
+    console.log(category)
     const title = node.frontmatter.title
     const keywords = node.frontmatter.keywords
 
