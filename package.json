@@ -36,6 +36,8 @@
     "gatsby-theme-i18n": "^2.0.0",
     "gatsby-theme-i18n-react-intl": "^2.0.0",
     "gatsby-transformer-sharp": "^3.7.1",
+    "graphql-type-json": "^0.3.2",
+    "lunr": "^2.3.9",
     "mdx-utils": "^0.2.0",
     "prism-react-renderer": "^1.2.1",
     "prismjs": "^1.23.0",
@@ -45,9 +47,13 @@
     "react-dom-confetti": "^0.2.0",
     "react-helmet": "^6.1.0",
     "react-intl": "^5.20.2",
-    "sass": "^1.35.1"
+    "remark": "^13.0.0",
+    "sass": "^1.35.1",
+    "strip-markdown": "^4.0.0",
+    "striptags": "^3.2.0"
   },
   "devDependencies": {
+    "@types/lunr": "^2.3.4",
     "@types/mdx-js__react": "^1.5.3",
     "@types/node": "^15.12.2",
     "@types/react": "^17.0.11",
