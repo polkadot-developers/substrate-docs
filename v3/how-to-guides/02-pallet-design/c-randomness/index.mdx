@@ -6,7 +6,7 @@ keywords: pallet design, intermediate, runtime, randomness
 
 ## Goal
 
-Implement randomness for a pallet.
+Implement a randomness function inside a pallet.
 
 ## Use cases
 - NFT applications
@@ -28,20 +28,19 @@ to the configuration trait of a pallet exposing some "random" type.
 
 ### 1. Import `Randomness`
 
-From `frame_support`, import the `Randomness` trait:
+Inside the pallet you want to use, import the `Randomness` trait from `frame_support`,:
 
 ```rust
 use frame_support::traits::Randomness;
 ```
 
-Now you'll have to include it in your pallet's configuration trait:
+Now, include it in your pallet's configuration trait:
 
 ```rust
 #[pallet::config]
-	pub trait frame_system::Config {
-        type MyRandomness: Randomness<H256>; 
-    }
-
+pub trait frame_system::Config {
+    type MyRandomness: Randomness<H256>; 
+}
 ```
 
 Notice that the `Randomness` trait specifies a generic return of type `Output`. Use [`sp_core::H256`][h256-rustdocs] in your pallet
@@ -49,16 +48,20 @@ to satisfy that trait requirement.
 
 <Message
   type={`red`}
-  title={`Warning`}
-  text={` A warning on using this trait:
-From the [documentation][randomness-rustdocs]: *"This gives you something that approximates [real randomness]. At best, this will be 
-randomness which was hard to predict a long time ago, but that has become easy to predict recently.*"`}
+  title={`A warning on using this trait`}
+  text={[
+      'As stated in',
+      <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.Randomness.html"> this trait's documentation</a>,
+      ', at best, this trait can give you randomness which was hard to predict a long time ago ', 
+      'but that has become easy to predict recently. ',
+      'Bear this in mind depending on your use case for it.',
+  ]}
 />
 
 
 ### 2. Create a nonce 
 
-Use a nonce to use as a subject for the `frame_support::traits::Randomness::random(subject: &[u8])` method.
+Use a nonce to serve as a subject for the `frame_support::traits::Randomness::random(subject: &[u8])` method.
 
 There's two steps to including a nonce in your pallet:  
 1. **Create a `Nonce` storage item.** This could be of type `u32` or `u64` (no need for it to be larger).
@@ -78,9 +81,13 @@ updates it. Using this approach it would look like this:
 <Message
   type={`yellow`}
   title={`Information`}
-  text={`Learn more about [wrapping_add][wrappingadd-rustdocs] 
-  and [encode()][encode-rustdocs] in the Rust documentation. 
-  `}
+  text={[
+      'Learn more about ',
+      <ExternalLink url={`https://substrate.dev/rustdocs/v3.0.0/funty/trait.IsInteger.html#tymethod.wrapping_add`}>wrapping_add</ExternalLink>,
+      ' and ', 
+      <ExternalLink url={`https://substrate.dev/rustdocs/v3.0.0/frame_support/dispatch/trait.Encode.html#method.encode`}>encode()</ExternalLink>, 
+      ' in the Rust documentation.', 
+      ]}
 />
 
 ### 3. Use Randomness in a dispatchable
@@ -114,8 +121,8 @@ randomness derived by the `Randomness` trait, by using the [Randomness Collectiv
 
 Using this pallet alongside the `Randomness` trait will significantly improve the entropy being processed by `random()`.
 
-In `runtime/lib.rs`, assuming `pallet_random_collective_flip` is instantiated at `RandomCollectiveFlip`, specify your exposed 
-type:
+In `runtime/src/lib.rs`, assuming `pallet_random_collective_flip` is instantiated in `construct_runtime` as `RandomCollectiveFlip`, specify your exposed 
+type like this:
 
 ```rust
 impl my_pallet::Config for Runtime{
@@ -131,12 +138,10 @@ impl my_pallet::Config for Runtime{
 - [FRAME's Lottery pallet](https://github.com/paritytech/substrate/blob/master/frame/lottery/src/lib.rs#L471)
 
 ## Related material
-
-- [Verifiable Random Functions](https://en.wikipedia.org/wiki/Verifiable_random_function)
+#### Other
+- <ExternalLink url={`https://en.wikipedia.org/wiki/Verifiable_random_function`}>Verifiable Random Functions</ExternalLink>
 
 [randomness-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/randomness
 [randomness-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.Randomness.html
 [h256-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/sp_core/struct.H256.html
-[encode-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/dispatch/trait.Encode.html#method.encode
-[wrappingadd-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/funty/trait.IsInteger.html#tymethod.wrapping_add
 [rcf-pallet-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/pallet_randomness_collective_flip/index.html

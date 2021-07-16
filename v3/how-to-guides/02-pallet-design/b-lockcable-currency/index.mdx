@@ -8,8 +8,8 @@ keywords: pallet design, currency, intermediate, runtime
 Write a pallet that allows users to lock funds.
 
 ## Use cases
-- Staking.
-- Conviction voting. 
+- Staking
+- Conviction voting
 
 ## Overview
 The [`LockableCurrency`][lockable-rustdocs] trait can be very useful in the context of economic systems that enforce accountability by collateralizing fungible resources.
@@ -122,11 +122,7 @@ Call the `remove_lock()` method from `Currency`:
 ```
 
 ## Examples
-- [lockable-currency-pallet](https://github.com/sacha-l/substrate-how-to-guides/blob/main/how-to-substrate/example-code/template-node/pallets/lockable-currency/src/lib.rs#L1-L118)
-
->**Further learning 💡 ** 
-> - **Using `LockIdentifier`.** Use this to define logic within the runtime that schedules locking, unlocking, or extends existing locks.
-> - **Composability.** Use this basic scheme when writing other pallets that borrow useful methods from mainstream traits.
+- [`lockable-currency`](https://github.com/substrate-developer-hub/substrate-how-to-guides/blob/main/example-code/template-node/pallets/lockable-currency/src/lib.rs) example pallet
 
 ## Related material
 #### Rust docs

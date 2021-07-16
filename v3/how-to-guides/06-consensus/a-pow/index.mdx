@@ -4,8 +4,6 @@ slug: /v3/how-to-guides/consensus/pow
 keywords: node, client, consensus, proof-of-work
 ---
 
-[![Try on playground](https://img.shields.io/badge/Playground-Node_Template-brightgreen?logo=Parity%20Substrate)][pow-playground]
-
 ## Goal
 
 To understand how link a POW consensus engine to a service client.
@@ -103,23 +101,23 @@ task_manager
     .spawn_blocking("pow", worker_task);
 ```
 
-### 4. Construct the light client's service.
+### 4. Construct the light client's service
 
-The construction of the [light client][lightclient-parity] service is quite similar to the construction of a `new_full`.
+The construction of the [light client][lightclient-parity] service is quite similar to the construction of the `new_full` function.
+Follow the pattern from the previous step to create `new_light`.
 
 ## Examples
 
-- Basic POW node 
+- [Basic POW example node](https://github.com/substrate-developer-hub/substrate-how-to-guides/tree/main/example-code/consensus-nodes/POW) 
 
 ## Resources
 #### Rust docs
-- [`PowBlockimport`][powblockimport-rustdocs]
 - [POW Algorithm][pow-rustdocs] trait
+- [`PowBlockimport`][powblockimport-rustdocs]
+
 #### Knowledgebase 
-- Knowledgebase article on [inherents][inherents-kb]
+- [Inherents][inherents-kb]
 
-
-[pow-playground]: https://playground.substrate.dev/?deploy=node-template
 [partialcomponents-rustdocs]: https://crates.parity.io/sc_service/struct.PartialComponents.html
 [powblockimport-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/sc_consensus_pow/struct.PowBlockImport.html
 [powblockimport-new-rustdocs]: https://crates.parity.io/sc_consensus_pow/struct.PowBlockImport.html#method.new_full
