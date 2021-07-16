@@ -4,8 +4,6 @@ slug: /v3/how-to-guides/weights/calculate-fees
 keywords: weights, fees, runtime, FRAME v1
 ---
 
-_Learn how to calculate fees from within your runtime._
-
 ## Goal
 
 Customize `WeightToFee` to modify how fees are calculated for your runtime.
@@ -79,20 +77,15 @@ impl pallet_transaction_payment::Config for Runtime {
 
 ## Examples
 
-- [transaction-payment-pallet][transaction-frame]
-- pallet-weights
+- [`transaction-payment-pallet`][transaction-frame]
 
 ## Related material
-#### How-to guides
-- [Conditional weighting struct](./conditional-weight-struct)
-- [Linear weighting struct](./linear-weight-struct)
-- [Quadratic weighting struct](./quadratic-weight-struct)
-
 #### Knowledgebase
+- [Weights](https://substrate.dev/docs/en/knowledgebase/learn-substrate/weight)
+- [Transaction Weights and Fees](https://substrate.dev/docs/en/knowledgebase/runtime/fees)
 
 #### Rust docs
 - [`WeightToFeeCoefficients`](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/type.WeightToFeeCoefficients.html)
-
 - [`WeightToFeeCoefficient`](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/type.WeightToFeeCoefficient.html)
 - [`WeightToFeePolynomial`](https://crates.parity.io/frame_support/weights/trait.WeightToFeePolynomial.html)
 

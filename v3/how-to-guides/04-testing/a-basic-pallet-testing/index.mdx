@@ -43,7 +43,7 @@ use crate as pallet_testing;
 /*--snip--*/
 ```
 
-#### Configure mock runtime
+#### Configure the mock runtime
 
 In `frame_support::construct_runtime!`, replace `pallet_template` with the name of your pallet, in our
 case `pallet_testing`:
@@ -56,7 +56,7 @@ case `pallet_testing`:
 
 #### Implement your pallet for the mock runtime
 
-Replace `impl pallet_template::Config for Test {...}` with the your configuration types and any 
+Replace `impl pallet_template::Config for Test {...}` with your configuration types and any 
 constant values your pallet requires: 
 
 ```rust
@@ -136,18 +136,18 @@ cargo test
 
 ## Examples
 
-- [template pallet tests](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/pallets/template/src/tests.rs#L1-L23)
-- [reward-coin tests](https://github.com/sacha-l/substrate-how-to-guides/blob/main/how-to-substrate/example-code/template-node/pallets/reward-coin/src/tests.rs#L1-L38)
+- tests in [`pallet_template`](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/pallets/template/src/tests.rs#L1-L23)
+- tests in the [`reward-coin`](https://github.com/substrate-developer-hub/substrate-how-to-guides/blob/main/example-code/template-node/pallets/reward-coin/src/tests.rs) example pallet
 
 ## Related material
 
-#### Guides
-- [Testing a transfer function](./test-transfer)
-- [Migration tests](../storage-migrations/migration-tests)
+#### How-to guides
+- [Testing a transfer function](./transfer-function)
+- [Migration tests](../storage-migrations/tests)
 
 #### Knowledgebase
 
-- [Mock runtime][mock-runtime] 
+- [Mock runtime environment][mock-runtime] 
 
 #### Rust docs
 - [`assert_ok!`](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.assert_ok.html)

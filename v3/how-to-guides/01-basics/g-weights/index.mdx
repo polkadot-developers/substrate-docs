@@ -7,9 +7,13 @@ keywords: basics, weights, runtime, FRAME V1
 <Message
   type={`yellow`}
   title={`Information`}
-  text={`This guide shows a basic procedure for confirguring weights. There are more 
-  advanced methods that suit different use cases. For simple functions with fixed amount 
-  of storage reads, this method works well.`}
+  text={[
+  'This guide shows a basic procedure for confirguring weights. There are more ', 
+  'advanced methods that suit different use cases. For simple functions with fixed amounts ', 
+  'of storage reads, this method works well. For any other use cases, see the section ',
+  <a href="../weights/calculate-fees">on weights</a>,
+  '.'
+  ]}
 />
 
 ## Goal
@@ -95,7 +99,7 @@ Ok(Pays::Yes.into())
 - [`WeightData`](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.WeighData.html)
 
 #### Other
-- [Polkadot's Transaction Fees](https://wiki.polkadot.network/docs/en/learn-transaction-fees)
+- <ExternalLink url={`https://wiki.polkadot.network/docs/en/learn-transaction-fees`}>Polkadot's Transaction Fees </ExternalLink>
 
 [weights-kb]: https://substrate.dev/docs/en/knowledgebase/learn-substrate/weight
 [fees-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/fees
