@@ -4,8 +4,6 @@ slug: /v3/how-to-guides/testing/transfer-function
 keywords: testing, runtime, beginner
 ---
 
-_A basic overview to help you write out your checks and balances._
-
 ## Goal
 
 Learn how to write tests and improve the correctness of a `transfer` function.
@@ -83,13 +81,19 @@ Run `cargo test` from your pallet's directory.
 
 ### 3. Check that sending account doesn't go below minimum balance
 
+Inside your `transfer_works` function:
+
+```rust
+assert_noop!(RewardCoin::transfer(Origin::signed(2), 3, 50), Error::<Test>::InsufficientBalance);
+```
+
 ### 4. Check that both tests work together
 
 Use `#[transactional]` to generate a wrapper around both checks:
 
 ```rust
 #[transactional]
-		pub(super) fn transfer(
+	pub(super) fn transfer(
 /*--snip--*/
 ```
 
@@ -107,7 +111,7 @@ Make sure that sending and receiving accounts aren't dust accounts. Use `T::MinB
 
 ## Examples
 
-- [`reward-coin` tests](https://github.com/sacha-l/substrate-how-to-guides/blob/main/how-to-substrate/example-code/template-node/pallets/reward-coin/src/tests.rs#L20-L38)
+- tests in the [`reward-coin`](https://github.com/substrate-developer-hub/substrate-how-to-guides/blob/main/example-code/template-node/pallets/reward-coin/src/tests.rs) example pallet
 
 ## Resources
 

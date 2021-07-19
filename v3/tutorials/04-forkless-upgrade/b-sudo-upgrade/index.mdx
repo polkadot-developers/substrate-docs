@@ -214,7 +214,7 @@ and optimizations are _critical_ for any blockchain.
 As we are _only_ building the runtime, Cargo looks in runtime
 `cargo.toml` file for requirements and only executes these. Notice the
 [`runtime/build.rs` file](https://doc.rust-lang.org/cargo/reference/build-scripts.html) that
-cargo looks for build the Wasm of your runtime that is specified in `runtime/lib.rs`.
+cargo looks for build the Wasm of your runtime that is specified in `runtime/src/lib.rs`.
 
 When the `--release` flag is specified, build artifacts are output to the
 `target/release` directory; when the flag is omitted they will be sent to `target/debug`. Refer to

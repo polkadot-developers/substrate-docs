@@ -134,8 +134,8 @@ NameOf::<T>::translate::<(Vec<u8>, BalanceOf<T>), _>(
 ```
 <Message
   type={`green`}
-  title={`Advice`}
-  text={`remove 'Option' wrapping to make sure 
+  title={`Tip`}
+  text={`Remove 'Option' wrapping to make sure 
   decoding works properly.`}
 />
 
@@ -154,10 +154,8 @@ Go back to the pallet's functions and specify the `migrate_to_v2` function in `o
 
 ```rust 
 fn on_runtime_upgrade() -> frame_support::weights::Weight {
-			migration::migrate_to_v2::<T>()
-		}
-	}
-}
+  migration::migrate_to_v2::<T>()
+  }
 ```
 ### 6. Create a `types.json` file
 
@@ -183,11 +181,9 @@ Put the new storage types in a `types.json` which you will need to trigger the m
 - [Migrating the Nicks pallet][nicks-migration-htg-diff]
 
 ## Resources
-#### How-to guides
-- [Trigger Migration using Polkadot JS](./migration-steps): learn how to trigger the migration on a live chain
 
 #### Rust docs
-- Rust docs for the [`Option` enum](https://doc.rust-lang.org/std/option/)
+- Rust's <ExternalLink url={`https://doc.rust-lang.org/std/option/`}>Option enum</ExternalLink>
 - [`frame_support::storage::migration`](https://crates.parity.io/frame_support/storage/migration/index.html) utility docs
 
 [nicks-frame]: https://github.com/paritytech/substrate/tree/master/frame/nicks
