@@ -58,7 +58,7 @@ export default function LanguageSwitcher({
                   to={currentLink}
                   language={lang.code}
                 >
-                  <div className="my-2 mx-4 text-black dark:text-white hover:text-substrateBlue dark:hover:text-substrateGreen">
+                  <div className="my-2 mx-4 text-black dark:text-white hover:text-substrateGreen dark:hover:text-substrateGreen">
                     {lang.code}
                   </div>
                 </LocalizedLink>

@@ -25,7 +25,15 @@ module.exports = {
     },
     extend: {
       colors: {
-        substrateGreen: '#26E0A2',
+        substrateGreen: {
+          light: '#D4F9EC',
+          DEFAULT: '#24CC85',
+        },
+        substrateGray: {
+          light: '#FBFBFB',
+          DEFAULT: '#F2F2F2',
+        },
+        substrateDark: '#242A35',
         substrateBlue: '#4E73F2',
         substrateBlueBg: '#EEF1FE',
         mdxYellow: '#FFEED6',
