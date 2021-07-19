@@ -72,6 +72,9 @@ module.exports = {
         body: ['Karla', 'sans-serif'],
         quote: ['serif'],
       },
+      transitionProperty: {
+        height: 'height',
+      },
       keyframes: {
         'fade-in-down': {
           '0%': {

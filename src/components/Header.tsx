@@ -6,11 +6,14 @@ import { useIntl } from 'react-intl'
 import LanguageSwitcher from './LanguageSwitcher'
 import SubMenu from './SubMenu'
 import ThemeToggle from './ThemeToggle'
+import useScrollListener from './Hooks/use-scroll-listener'
 
 export default function Header() {
   const intl = useIntl()
+  const scroll = useScrollListener()
   const { locale, config } = useLocalization()
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false)
+  const [menuHeight, setMenuHeight] = useState('h-24')
   const toggleMenu = () => setIsMobileNavOpen(!isMobileNavOpen)
   const navItems = [
     {
@@ -191,10 +194,21 @@ export default function Header() {
       setTheme('light')
     }
   }, [])
+
+  useEffect(() => {
+    if (scroll.y > 100) {
+      setMenuHeight('h-16')
+    } else if (scroll.y < 50) {
+      setMenuHeight('h-24')
+    }
+  }, [scroll.y])
+
   return (
     <header className="sticky top-0 z-10 border-b bg-white dark:bg-black border-gray-200 dark:border-gray-700">
       <div className="container xl:px-12">
-        <div className="h-24 flex items-center justify-between">
+        <div
+          className={`flex items-center justify-between transition-height ease-in-out ${menuHeight}`}
+        >
           <div className="w-40 relative">
             <LocalizedLink to="/">
               <svg
