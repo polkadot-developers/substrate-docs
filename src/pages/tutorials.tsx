@@ -44,16 +44,6 @@ export default function tutorials({ data }: any) {
             link={`/v3/tutorials/proof-of-existence`}
           />
           <TutorialCard
-            title={`Add Contracts Pallet to Runtime`}
-            image={data.tutorialOne}
-            description={`Add the Contracts pallet to your Substrate Node Template.`}
-            time={`2 Hours`}
-            difficulty={`medium`}
-            prerequisites={true}
-            version={`V3.0.0`}
-            link={`/v3/tutorials/add-contracts-pallet`}
-          />
-          <TutorialCard
             title={`Permissioned Network`}
             image={data.tutorialOne}
             description={`A comprehensive, end-to-end tutorial for building a permissioned network using node-authorization pallet.`}
@@ -92,6 +82,16 @@ export default function tutorials({ data }: any) {
             prerequisites={false}
             version={`V3.0.0`}
             link={`/v3/tutorials/node-metrics`}
+          />
+          <TutorialCard
+            title={`Ink! Contracts Workshop`}
+            image={data.tutorialOne}
+            description={`A workshop to configure Substrate node to run Substrate EVM and Solidity contracts.`}
+            time={`3 Hours`}
+            difficulty={`intermediate`}
+            prerequisites={false}
+            version={`V3.0.0`}
+            link={`/v3/tutorials/ink-workshop/pt1`}
           />
         </div>
       </div>
