@@ -190,6 +190,7 @@ use pallet_transaction_payment::CurrencyAdapter;
 /*** Add This Line ***/
 use pallet_contracts::weights::WeightInfo;
 ```
+
 ```rust
 
 // These time units are defined in number of blocks.
@@ -431,7 +432,6 @@ pallet-contracts = { version = '3.0.0',  git = 'https://github.com/paritytech/su
 pallet-contracts-rpc = { version = '3.0.0',  git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
 ```
 
-
 Substrate provides an RPC to interact with our node. However, it does not contain access to the
 Contracts pallet by default. To interact with this pallet, we have to extend the existing RPC and
 add the Contracts pallet along with its API.
@@ -470,6 +470,7 @@ pub fn create_full<C, P>(
 ```
 
 > Note that rpc additions must appear in this section in the expected syntax:
+>
 > ```rust
 > // Extend this RPC with a custom API by using the following syntax.
 >  // `YourRpcStruct` should have a reference to a client, which is needed

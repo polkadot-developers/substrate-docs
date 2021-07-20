@@ -4,7 +4,7 @@ slug: /v3/docs/runtime/pallets
 ---
 
 The following documentation is written for technical audiences, familiar with the Rust programming
-language. It is a top-level entry point for FRAME runtime developement in Substrate. 
+language. It is a top-level entry point for FRAME runtime developement in Substrate.
 
 > If you are just getting started with Substrate runtime development, we suggest you try
 > our introductory tutorial for
@@ -12,22 +12,22 @@ language. It is a top-level entry point for FRAME runtime developement in Substr
 
 ## What is a Pallet?
 
-Pallets are a special kind of Rust module made up of a set of types, trait implementations and functions 
-from which Substrate runtimes can be composed. FRAME not only 
-provides a library of commonly used Substrate pallets but also a framework to build custom domain-specific 
-pallets, giving runtime engineers the flexibility to define their runtime's behaviour according to their 
-target use case. The result: each pallet has its own discrete logic which can modify the features and 
+Pallets are a special kind of Rust module made up of a set of types, trait implementations and functions
+from which Substrate runtimes can be composed. FRAME not only
+provides a library of commonly used Substrate pallets but also a framework to build custom domain-specific
+pallets, giving runtime engineers the flexibility to define their runtime's behaviour according to their
+target use case. The result: each pallet has its own discrete logic which can modify the features and
 functionality of your blockchain's state transition functions.
 
-
 For example, the [Balances pallet](https://github.com/paritytech/substrate/tree/master/frame/balances), which is included in [FRAME](./frame), defines cryptocurrency capabilities for your blockchain. More specifically, it
-defines: 
+defines:
+
 - **Storage items** that keep track of the tokens a user owns.
 - **Functions** that users can call to transfer
-and manage those tokens.
+  and manage those tokens.
 - **APIs** which allow other pallets to make use of those tokens and their capabilities.
 - **Hooks**
-which allow other pallets to trigger function calls when a user's balance changes.
+  which allow other pallets to trigger function calls when a user's balance changes.
 
 Substrate runtime engineers can define custom logic for their blockchain by writing their own pallets and encapsulating their blockchains desired functionality by combining custom pallets with existing FRAME pallets or Substrate modules alike. The following documentation will show you how.
 
@@ -68,11 +68,13 @@ decl_storage! { ... }
 // actions this pallet takes throughout block execution.
 decl_module! { ... }
 ```
+
 > **Note**: Additional sections such as [`decl_error!`](./macros#decl_error) are commonly used however are not a requirement for a minimally working pallet.
 
 #### Example
 
 The [Basic Token recipe](https://substrate.dev/recipes/basic-token.html) provides a good example of a simple FRAME V1 pallet that allows a user to create a `u64` supply of tokens in storage and a `StorageMap` of account IDs and `u64` balances. The primary parts include:
+
 - `decl_storage!` defines `TotalSupply` and `Balances` the pallet's storage items;
 - `decl_event!` defines `Initialized` and `Transfer` events;
 - `decl_module!` defines the pallet's functions, `init()` and `transfer()`; and
@@ -91,15 +93,15 @@ pub mod pallet {
 	use frame_system::pallet_prelude::*;
 }
 
-// 2. Declaration of the Pallet type 
+// 2. Declaration of the Pallet type
 // This is a placeholder to implement traits and methods.
 #[pallet::pallet]
 #[pallet::generate_store(pub(super) trait Store)]
 	pub struct Pallet<T>(PhantomData<T>);
 
 // 3. Runtime Configuration Trait
-// All types and constants go here. 
-// Use #[pallet::constant] and #[pallet::extra_constants] 
+// All types and constants go here.
+// Use #[pallet::constant] and #[pallet::extra_constants]
 // to pass in values to metadata.
 #[pallet::config]
 	pub trait Config: frame_system::Config { ... }
@@ -129,6 +131,7 @@ pub mod pallet {
 	impl<T:Config> Pallet<T> { ... }
 
 ```
+
 > **Note:** Pallets can be composed of as many sections as needed, giving runtime engineers a lot of flexibility ontop of the basic skeletons depicted above. Refer to the [Substrate Runtime Macros](./macros#substrate-runtime-macros) to learn more about adding functionality to a FRAME pallet.
 
 ## Examples
@@ -184,5 +187,6 @@ decl_module! {
 ```
 
 The above example is similar to FRAME's Nicks pallet. For context, see:
+
 - the [FRAME v1 of the Nicks Pallet](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs)
 - the [FRAME v2 of the Nicks Pallet](https://github.com/paritytech/substrate/blob/gui-seminar-pallet-migration-nicks-after/frame/nicks/src/lib.rs)

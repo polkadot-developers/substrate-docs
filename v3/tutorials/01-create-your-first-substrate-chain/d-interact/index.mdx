@@ -15,10 +15,11 @@ Run the following command to start your node:
 ```
 
 Note the flags:
+
 - `--dev` this sets up a developer node [chain specification](../../../v3/docs/toolchains/chain-specs)
 - `--tmp` this saves all active data for the node (keys, blockchain database, networking info, ...)
-and is deleted as soon as you properly terminate your node (using <kbd>ctrl</kbd>+<kbd>c</kbd>). So every time you start with this command, you will have a clean state to work from. If the node is killed, `/tmp` is cleaned automatically on the restart of your
-computer for linux based OSs, and these files can manually be removed if needed.
+  and is deleted as soon as you properly terminate your node (using <kbd>ctrl</kbd>+<kbd>c</kbd>). So every time you start with this command, you will have a clean state to work from. If the node is killed, `/tmp` is cleaned automatically on the restart of your
+  computer for linux based OSs, and these files can manually be removed if needed.
 
 With this command, you should see something like this if your node is running successfully:
 
@@ -60,10 +61,11 @@ If the number after `finalized:` is increasing, your blockchain is producing new
 consensus about the state they describe!
 
 A few notes on the example output above:
+
 - `💾 Database: RocksDb at /tmp/substrateP1jD7H/chains/dev/db` : where chain data is being written
 - `🏷 Local node identity is: 12D3KooWQdU84EJCqDr4aqfhb7dxXU2fzd6i2Rn1XdNtsiM5jvEC`: the node ID
-needed if you intend to connect to other nodes directly (more in the
-[private network tutorial](../start-a-private-network/index))
+  needed if you intend to connect to other nodes directly (more in the
+  [private network tutorial](../start-a-private-network/index))
 
 > While not critical now, please do read all the startup logs for your node, as they help inform you
 > of key configuration information as you continue to learn and move past these first basic tutorials.

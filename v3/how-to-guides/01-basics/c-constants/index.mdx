@@ -25,9 +25,9 @@ dynamic.
 
 ### 1. Define the constants in your pallet
 
-- `MaxAddend` will be the value displayed in metadata. 
-- `ClearFrequency` keeps track of the block numbers and will 
-be used to reset `SingleValue`:
+- `MaxAddend` will be the value displayed in metadata.
+- `ClearFrequency` keeps track of the block numbers and will
+  be used to reset `SingleValue`:
 
 ```rust
 #[pallet::config]
@@ -52,6 +52,7 @@ Using the storage attribute macro, declare `SingleValue` which will be the value
 #[pallet::getter(fn single_value)]
 pub(super) type SingleValue<T: Config> = StorageValue<_, u32, ValueQuery>;
 ```
+
 Define your pallet's events:
 
 ```rust
@@ -75,9 +76,10 @@ pub enum Error<T> {
 	Overflow
 }
 ```
+
 ### 3. Configure `on_finalize`
 
-`SingleValue` is set to 0 every `ClearFrequency` number of blocks in the `on_finalize` function that 
+`SingleValue` is set to 0 every `ClearFrequency` number of blocks in the `on_finalize` function that
 runs at the end of block execution. Specify this logic under the `#[pallet::hooks]` attribute:
 
 ```rust
@@ -153,13 +155,15 @@ impl constant_config::Config for Runtime {
 - [`constant-config` example pallet](https://github.com/substrate-developer-hub/substrate-how-to-guides/blob/main/example-code/template-node/pallets/configurable-constant/src/lib.rs)
 
 ## Resources
+
 #### Tutorials
+
 - [Nick's forkless upgrade tutorial](../../../v3/tutorials/forkless-upgrades/)
 
 #### Rust docs
+
 - [`Get` from `frame_support`][get-trait-rustdocs]
 - [`#[pallet::extra_constants]` macro][extra-constants-rustdocs]
-
 
 [get-trait-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.Get.html
 [extra-constants-rustdocs]: https://crates.parity.io/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional

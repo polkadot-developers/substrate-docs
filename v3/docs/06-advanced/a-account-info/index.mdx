@@ -76,13 +76,13 @@ not destroy these accounts, which is usually triggered when users trying to tran
 existential deposit away.
 
 - **`consumers`** indicates how many times modules depend on this account. An example of using this
-counter is in `Session` pallet when an account setting its session key(s) prior of becoming a
-validator [[1]](#ref-session-set-keys). `providers` has to be greater than zero before `consumer`
-can be incremented. See below.
+  counter is in `Session` pallet when an account setting its session key(s) prior of becoming a
+  validator [[1]](#ref-session-set-keys). `providers` has to be greater than zero before `consumer`
+  can be incremented. See below.
 
 - **`providers`** indicates if an account is active/ready to be depended upon. One usage example
-is that the counter is incremented when a new account is created with more than the existential
-deposit [[2]](#ref-system-created).
+  is that the counter is incremented when a new account is created with more than the existential
+  deposit [[2]](#ref-system-created).
 
   `consumers` and `providers` are designed to be used together. `providers` tells Substrate pallets
   not to store data about that account until it is active (i.e. `providers` > 0), and `consumers`
@@ -96,8 +96,8 @@ deposit [[2]](#ref-system-created).
   account is considered **deactivated** by all on-chain pallets.
 
 - **`sufficients`** indicates if there are any reasons this account is self-sufficient to exist by
-itself. An example of using this counter is in `Assets` pallet when an account has sufficient amount
-of certain assets but not owning any native account balance [[3]](#ref-assets-new-account).
+  itself. An example of using this counter is in `Assets` pallet when an account has sufficient amount
+  of certain assets but not owning any native account balance [[3]](#ref-assets-new-account).
 
 Runtime developers can update these counters via `inc_consumers()`, `dec_consumers()`,
 `inc_providers()`, `dec_providers()`, `inc_sufficients()`, and `dec_sufficients()` exposed by
@@ -107,9 +107,9 @@ There are also three query functions to ease usage on these counters:
 
 - `can_inc_consumer()` to check if an account is ready to be used (`providers` > 0);
 - `can_dec_provider()` to check if an account is no longer referenced in runtime whatsoever
-(`consumers` == 0) before decrementing `providers` to 0; and
+  (`consumers` == 0) before decrementing `providers` to 0; and
 - `is_provider_required()` to check if an account has outstanding consumer references
-(`consumers` > 0).
+  (`consumers` > 0).
 
 Refer to [`frame-system` API doc](https://substrate.dev/rustdocs/latest/frame_system/pallet/struct.Pallet.html#impl-11)
 for details.
@@ -147,16 +147,16 @@ pub struct AccountData<Balance> {
 It contains:
 
 - **Free balance** `free`. The portion of a balance that is not reserved. The free balance is
-usually what matters for most operations.
+  usually what matters for most operations.
 
 - **Reserved balance** `reserved`. Reserved balance still belongs to the account holder, but is
-suspended. Reserved balance can be slashed, but only after all the free balance has been slashed.
-The total balance of an account is the sum of its free balance and reserved balance.
+  suspended. Reserved balance can be slashed, but only after all the free balance has been slashed.
+  The total balance of an account is the sum of its free balance and reserved balance.
 
 - **Frozen balance**, split into `misc_frozen` and `fee_frozen`, represents balance that free
-balance cannot drop below. `fee_frozen` are specifically for transaction fee payment and
-`misc_frozen` for everything else. The actual frozen balance is the max of these two, and they are
-set when accounts are locked for transactions.
+  balance cannot drop below. `fee_frozen` are specifically for transaction fee payment and
+  `misc_frozen` for everything else. The actual frozen balance is the max of these two, and they are
+  set when accounts are locked for transactions.
 
 ## Conclusion
 

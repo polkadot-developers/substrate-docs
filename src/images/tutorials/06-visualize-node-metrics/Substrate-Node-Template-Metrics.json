@@ -81,9 +81,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
+          "calcs": ["last"],
           "fields": "/^Height\\(best\\)$/",
           "values": false
         },
@@ -135,9 +133,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
+          "calcs": ["last"],
           "fields": "",
           "values": false
         },
@@ -193,9 +189,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
+          "calcs": ["last"],
           "fields": "",
           "values": false
         },
@@ -256,9 +250,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
+          "calcs": ["last"],
           "fields": "",
           "values": false
         },
@@ -516,14 +508,7 @@
   "refresh": false,
   "schemaVersion": 26,
   "style": "dark",
-  "tags": [
-    "substrate",
-    "blockchain",
-    "node",
-    "template",
-    "polkadot",
-    "kusama"
-  ],
+  "tags": ["substrate", "blockchain", "node", "template", "polkadot", "kusama"],
   "templating": {
     "list": []
   },

@@ -9,21 +9,21 @@ The `node-authorization` pallet is a build-in pallet in Substrate FRAME, which m
 a configurable set of nodes for a permissioned network.
 Each node is identified by a `PeerId` which is simply a wrapper on `Vec<u8>`.
 Each `PeerId` is owned by an `AccountId` that claims it
-(these are 
+(these are
 [associated in a map](https://substrate.dev/rustdocs/v3.0.0/pallet_node_authorization/struct.Owners.html)
 ). With this pallet, you have two ways to authorize a node which wants to join the network:
 
 1. Join the set of well known nodes between which the connections are allowed.
-    You need to be approved by the governance (or sudo) in the system for this.
-2. Ask for a *paired peer* connection from a specific node.
-    This node can either be a well known node or a normal one.
+   You need to be approved by the governance (or sudo) in the system for this.
+2. Ask for a _paired peer_ connection from a specific node.
+   This node can either be a well known node or a normal one.
 
 A node associated with a `PeerId` must have **one and only one owner**.
 The owner of a well known node is specified when adding it.
-If it's a normal node, *any* user can claim a `PeerId` as its owner.
-To protect against false claims, the maintainer of the node should claim it 
-*before even starting the node* and therefor revealing their `PeerID` to the network that
-*anyone* could subsequently claim.
+If it's a normal node, _any_ user can claim a `PeerId` as its owner.
+To protect against false claims, the maintainer of the node should claim it
+_before even starting the node_ and therefor revealing their `PeerID` to the network that
+_anyone_ could subsequently claim.
 
 The owner of a node can then add and remove connections for their node.
 To be clear, you can't change the connections between well known nodes,
@@ -87,10 +87,11 @@ std = [
     #--snip--
 ]
 ```
-We need to simulate the governance in our simple blockchain, so we just let a `sudo` admin rule, 
-configuring the pallet's interface to `EnsureRoot`. In a production environment we sould want to have 
+
+We need to simulate the governance in our simple blockchain, so we just let a `sudo` admin rule,
+configuring the pallet's interface to `EnsureRoot`. In a production environment we sould want to have
 difference, governance based checking implimented here. More details of this `Config` can be found in
-the pallet's 
+the pallet's
 [reference docs](https://docs.rs/pallet-node-authorization/3.0.0/pallet_node_authorization/trait.Config.html).
 
 **`runtime/src/lib.rs`**
@@ -213,7 +214,7 @@ for demonstration: [Alice and Bob](../../../v3/docs/toolchains/subkey#well-known
 <!-- TODO: update to use the `key` embedded CLI tool with the node, reference subkey as option -->
 
 You may wondering where the `12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2` comes from.
-We can use [subkey](../../../v3/docs/toolchains/subkey#generating-node-keys) to generate 
+We can use [subkey](../../../v3/docs/toolchains/subkey#generating-node-keys) to generate
 the above human readable `PeerId`.
 
 ```bash
@@ -221,7 +222,8 @@ subkey generate-node-key
 ```
 
 > Note: `subkey` is a CLI tool that comes bundled with substrate, and you can install it natively too!
->  - [Install Instructions](../../../v3/docs/toolchains/subkey#installation)
+>
+> - [Install Instructions](../../../v3/docs/toolchains/subkey#installation)
 
 The output of the command is like:
 

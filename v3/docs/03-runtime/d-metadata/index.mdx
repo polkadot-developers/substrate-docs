@@ -51,10 +51,10 @@ You can try the following code snippets to fetch the metadata in this
 [Polkadot-JS App - Javascript page](https://polkadot.js.org/apps/#/js):
 
 ```javascript
-const metadata = await api.rpc.state.getMetadata();
-console.log('version: ' + metadata.version);
-console.log("Magic number: " + metadata.magicNumber);
-console.log("Metadata: " + JSON.stringify(metadata.asLatest.toHuman(), null, 2));
+const metadata = await api.rpc.state.getMetadata()
+console.log('version: ' + metadata.version)
+console.log('Magic number: ' + metadata.magicNumber)
+console.log('Metadata: ' + JSON.stringify(metadata.asLatest.toHuman(), null, 2))
 ```
 
 ### HTTP & WebSocket APIs
@@ -81,7 +81,9 @@ block's hash:
   "id": 1,
   "jsonrpc": "2.0",
   "method": "state_getMetadata",
-  "params": ["0xca15c2f1e1540517697b6b5f2cc6bc0c60876a1a1af604269b7215970798bbed"]
+  "params": [
+    "0xca15c2f1e1540517697b6b5f2cc6bc0c60876a1a1af604269b7215970798bbed"
+  ]
 }
 ```
 
@@ -228,19 +230,27 @@ about the module's storage:
         ]
       },
       {
-        "name": "ExtrinsicCount",
+        "name": "ExtrinsicCount"
         // ..
       },
       {
-        "name": "AllExtrinsicsLen",
+        "name": "AllExtrinsicsLen"
         // ..
       }
     ]
   },
-  "calls": [/*...*/],
-  "events": [/*...*/],
-  "constants": [/*...*/],
-  "errors": [/*...*/],
+  "calls": [
+    /*...*/
+  ],
+  "events": [
+    /*...*/
+  ],
+  "constants": [
+    /*...*/
+  ],
+  "errors": [
+    /*...*/
+  ],
   "index": 0
 }
 ```
@@ -260,7 +270,7 @@ decl_storage! {
 // In FRAME v2.
 #[pallet::config]
 pub trait Config: frame_system::Config {
-	#[pallet::constant] 
+	#[pallet::constant]
 	type Foo: Get<u32>;
 }
 ```
@@ -284,8 +294,8 @@ For example:
 // In FRAME v1.
 decl_module! {
     pub struct Module<T: Config> for enum Call where origin: T::Origin {
-  
-        /// This function does some thing.      
+
+        /// This function does some thing.
         ///
         /// All documentation details go here.
         fn do_something(origin, #[compact] thing: T::Something) {
@@ -298,11 +308,11 @@ decl_module! {
 #[pallet::call]
 	impl<T: Config> Pallet<T> {
 
-		/// This function does some thing.      
+		/// This function does some thing.
     ///
     /// All documentation details go here.
 		pub(super) fn do_something(
-            origin: OriginFor<T>, 
+            origin: OriginFor<T>,
             #[pallet::compact] thing: T::Something
             ) -> DispatchResultWithPostInfo {
       // ... snip
