@@ -36,9 +36,14 @@ The `node-authorization` pallet integrates an
 to configure it's node connections. Make sure to enable offchain worker with
 the right CLI flag as offchain worker is disabled by default for non-authority nodes.
 
-> Your node may not be synced with the latest block, and thus not be aware of and published updates
-> that are reflected in the `node-authorization` chain storage. You may need to disable offchain worker
-> and manually set reachable reserved nodes for your node to sync up with the network if this is the case.
+<Message
+  type={`red`}
+  title={`Warning`}
+  text={
+	  `Your node may not be synced with the latest block, and thus not be aware of and published updates that are reflected in the \`node-authorization\` chain storage. You may need to disable offchain worker
+	  and manually set reachable reserved nodes for your node to sync up with the network if this is the case.`
+  }
+/>
 
 ## Start with the Template
 
@@ -62,10 +67,16 @@ cd substrate-node-template/
 cargo build --release
 ```
 
-> If you do run into issues building, checkout
-> [these helpful tips](../../../v3/docs/getting-started/installation#2-rust-developer-environment)
+<Message
+  type={`green`}
+  title={`Tip`}
+  text={[
+	  'If you do run into issues building, checkout ',
+	  '[these helpful tips](../../../v3/docs/getting-started/installation#2-rust-developer-environment).',
+  ]}
+/>
 
-Now open the code with your favorite editor, can't wait to make some changes right?
+Now open the code with your favorite editor, and let's make some changes.
 
 ## Add the `node-authorization` pallet
 
@@ -221,9 +232,14 @@ the above human readable `PeerId`.
 subkey generate-node-key
 ```
 
-> Note: `subkey` is a CLI tool that comes bundled with substrate, and you can install it natively too!
->
-> - [Install Instructions](../../../v3/docs/toolchains/subkey#installation)
+<Message
+  type={`grey`}
+  title={`Note`}
+  text={[
+	  '`subkey` is a CLI tool that comes bundled with substrate, and you can install it natively too!',
+	 'Refer to the [install Instructions](../../../v3/docs/toolchains/subkey#installation).'
+  	]}
+/>
 
 The output of the command is like:
 
@@ -234,4 +250,11 @@ c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a // This is node
 
 Now all the code changes are finished, we are ready to launch our permissioned network!
 
-> Stuck? The solution with all required changes to the base template can be found [here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/permissioned-network-v3).
+<Message
+  type={`yellow`}
+  title={`Information`}
+  text={[
+	  'Stuck? The solution with all required changes to the base template can be found ',
+	  '[here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/permissioned-network-v3).',
+  ]}
+/>

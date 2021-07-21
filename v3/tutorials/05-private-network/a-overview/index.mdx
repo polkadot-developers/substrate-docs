@@ -14,16 +14,45 @@ compiled on your computer from when you completed the
 [Create Your First Substrate Chain Tutorial](../../tutorials/create-your-first-substrate-chain/).
 If you do not, please complete that tutorial.
 
-> Experienced developers who truly prefer to skip that tutorial, you may install the node template
-> according to the instructions in its readme.
+<Message
+  type={`yellow`}
+  title={`Information`}
+  text={[
+      'Experienced developers who truly prefer to skip that tutorial, you may install the node template ',
+      'according to the instructions in its readme.',
+  ]}
+/>
 
 ## What you will be doing
 
-Before we even get started, let's lay out what we are going to do over the course of this tutorial.
-We will:
+Before we even get started, lets' layout what we are going to do over the course of this turorial. We will:
 
-1. Launch a Substrate blockchain **network** based on a template project.
-2. Generate ed25519 and sr25519 key-pairs for use as a network authority.
-3. Create and edit a chainspec json file.
-
-Sound reasonable? Good, then let's begin!
+<TutorialObjective
+  data={{
+    textLineOne:
+      '1. Launch a Substrate blockchain network based on a template project.',
+      url: '/v3/tutorials/private-network/alice-and-bob',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '2. Generate ed25519 and sr25519 key-pairs for use as a network authority.',
+    url: '/v3/tutorials/private-network/key-generation',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '3. Create and edit a chainspec json file.',
+    url: '/v3/tutorials/private-network/custom-chainspec',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '4. Launch your custom chain.',
+    url: '/v3/tutorials/private-network/launch-custom-chain',
+  }}
+/>
+<AccentButton text={`Sound reasonable? Let's begin!`} link={`/v3/tutorials/private-network/alice-and-bob`} />

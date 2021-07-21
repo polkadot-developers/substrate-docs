@@ -62,8 +62,14 @@ When writing your own pallets in the future, you will likely find the scaffoldin
 in this template pallet useful. But for the purposes of really learning how a pallet
 is constructed, **delete all contents of this file**.
 
-> The following sections will start _from scratch_ and assumes that you have cleared the
-> existing `pallet/template/src/lib.rs` file.
+<Message
+  type={`grey`}
+  title={`Note`}
+  text={
+      `The following sections will start _from scratch_ and assumes that you have cleared the
+      existing \`pallet/template/src/lib.rs\` file.` 
+  }
+/>
 
 ## Write a Pallet from Scratch
 
@@ -105,21 +111,29 @@ pub mod pallet {
 }
 ```
 
-By doing this, we've declared the dependencies and [macros](/docs/en/knowledgebase/runtime/macros) our pallet will require to function.
+By doing this, we've declared the dependencies and [macros](/v3/docs/runtime/macros) our pallet will require to function.
 
 Things like _events_, _storage_, and _callable functions_ may look familiar to you if you have done other
 blockchain development. We will show you what each of these components looks like for a basic Proof
 Of Existence pallet by providing you with the code blocks that go under each section.
 
-> **Critical**: the `no_std` feature is **required** for all pallets! This is because we are building a
-> _runtime_ module that _must_ compile to WASM, and therefore cannot depend on rust's `std`
-> dependencies.
-> If you take a look at the `pallets/template/Cargo.toml` file, you will see that the template already has `std` default feature disabled which is necessary in order to compile the runtime to WASM. Learn more about why this is
-> necessary in the [Add a Pallet](../add-a-pallet) tutorial.
->
-> You _can_ use `std` features in non-runtime components like `mock.rs` and `tests.rs` using
-> `[dev-dependencies]` _ONLY_. Specifics and examples of this are outside the scope of this
-> tutorial. Learn more about [testing in Substrate here](../../../v3/docs/runtime/tests).
+<Message
+  type={`red`}
+  title={`Warning`}
+  text={[
+      'The `no_std` feature is required for all pallets! This is because we are building a',
+      '_runtime_ module that _must_ compile to WASM, and therefore cannot depend on rust\'s `std` dependencies.',
+      'If you take a look at the `pallets/template/Cargo.toml` file, you will see that the template already has',
+      '`std` default feature disabled which is necessary in order to compile the runtime to WASM. Learn more about why this is',
+      'necessary in the [Add a Pallet](../add-a-pallet) tutorial.',
+      'You _can_ use `std` features in non-runtime components like `mock.rs` and `tests.rs` using',
+      '`[dev-dependencies]` _ONLY_. Specifics and examples of this are outside the scope of this',
+      ' tutorial. Learn more about [testing in Substrate here](../../../v3/docs/runtime/tests).',
+  ]}
+/>
+
+
+
 
 ### 2. Pallet Configuration Trait
 
@@ -325,6 +339,12 @@ cargo build --release
 If everything worked out properly, your node should be producing blocks.
 And now it is time to interact with our new Proof of Existence pallet!
 
-> Stuck? There is a full node template
-> [solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/build-a-dapp-v3+1)
-> to use as a reference. Check the commit diff from the base `v3.0.0+1` template for the exact changes.
+<Message
+  type={`yellow`}
+  title={`Information`}
+  text={[
+      'There is a full node template solution',
+      <a href="https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/build-a-dapp-v3+1"> here </a>,
+      'to use as a reference if you\'re stuck. Check the commit diff from the base `v3.0.0+1` template for the exact changes.',
+  ]}
+/>

@@ -58,9 +58,15 @@ The same UI that we used to see blocks being produced can also be used to genera
 is convenient if you do not want to install Subkey. It can be used for production keys, but the
 system should not be connected to the internet when generating such keys.
 
-> A system that generates production keys should not be connected to the internet regardless of what
-> method you choose. It is mentioned here specifically because having an internet connection is
-> generally desired when using a webapp like Polkadot JS Apps.
+<Message
+  type={`red`}
+  title={`Warning`}
+  text={[
+    'A system that generates production keys should not be connected to the internet regardless of what ',
+    'method you choose. It is mentioned here specifically because having an internet connection is ',
+    'generally desired when using a webapp like Polkadot JS Apps. ',
+  ]}
+/> 
 
 On the "Accounts" tab, click "Add account". You do not need to provide a name, although you may if
 you would like to save this account for submitting transaction in addition to validating.

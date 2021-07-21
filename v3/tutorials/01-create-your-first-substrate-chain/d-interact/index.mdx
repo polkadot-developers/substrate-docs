@@ -67,8 +67,15 @@ A few notes on the example output above:
   needed if you intend to connect to other nodes directly (more in the
   [private network tutorial](../start-a-private-network/index))
 
-> While not critical now, please do read all the startup logs for your node, as they help inform you
-> of key configuration information as you continue to learn and move past these first basic tutorials.
+<Message
+  type={`green`}
+  title={`Tip`}
+  text={`While not critical now, please do read all the startup logs for your node, 
+  as they help inform you of key configuration information as you continue to learn and 
+  move past these first basic tutorials.`
+  }
+/>
+
 
 ## Start the Front-End Template
 
@@ -76,8 +83,14 @@ To interact with your local node, we will use
 [the Substrate Developer Hub Front-End Template](https://github.com/substrate-developer-hub/substrate-front-end-template),
 which is a collection of UI components that have been designed with common use cases in mind.
 
-> Be sure to use the correct version of the template for the version of substrate you are using
-> as [major versions](https://semver.org/) are _not_ expected to be interoperable!
+<Message
+  type={`green`}
+  title={`Tip`}
+  text={['Be sure to use the correct version of the template for the version of substrate you are using as ',
+  <a href="https://semver.org/">major versions </a>,
+  'are _not_ expected to be interoperable!',
+  ]}
+/>
 
 You already installed the Front-End Template; let's launch it by executing the following command
 in the root directory of the Front-End Template:

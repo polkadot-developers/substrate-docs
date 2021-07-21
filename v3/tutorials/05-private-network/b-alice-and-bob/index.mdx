@@ -6,16 +6,20 @@ slug: /v3/tutorials/private-network/alice-and-bob
 Before we generate our own keys, and start a truly unique Substrate network, let's learn the
 fundamentals by starting with a pre-defined network specification called `local` with two
 pre-defined (and definitely not private!) keys known as Alice and Bob.
-
-> This portion of the tutorial should be run on a single workstation with a single Substrate binary.
-> If you've followed the tutorial up to this point, you have the correct setup.
+**This portion of the tutorial should be run on a single workstation with a single Substrate binary.**
 
 ## Alice Starts First
 
 Alice (or whomever is playing her) should run these commands from node-template repository root.
 
-> Here we've explicitly shown the `purge-chain` command. In the future we will omit this You should
-> purge old chain data any time you're trying to start a new network.
+<Message
+  type={`yellow`}
+  title={`Information`}
+  text={[
+    'Here we\'ve explicitly shown the `purge-chain` command. In the future we will omit this You should ',
+    'purge old chain data any time you\'re trying to start a new network.',
+  ]}
+/>
 
 ```bash
 # Purge any chain data from previous runs
@@ -51,7 +55,7 @@ Let's look at those flags in detail:
 | `--telemetry-url`                          | Tells the node to send telemetry data to a particular server. The one we've chosen here is hosted by Parity and is available for anyone to use. You may also host your own (beyond the scope of this article) or omit this flag entirely.                                                                                                  |
 | `--validator`                              | Means that we want to participate in block production and finalization rather than just sync the network.                                                                                                                                                                                                                                  |
 
-When the node starts you should see output similar to this.
+When the node starts, you should see output similar to this:
 
 ```
 2021-03-10 17:34:27  Substrate Node
@@ -74,18 +78,17 @@ When the node starts you should see output similar to this.
 2021-03-10 17:34:37  💤 Idle (0 peers), best: #0 (0x9d07…7cce), finalized #0 (0x9d07…7cce), ⬇ 0 ⬆ 0
 ...
 ```
+A coupe things to notice:
 
-> **Notes**
->
-> - `🔨 Initializing Genesis block/state (state: 0xea47…9ba8, header-hash: 0x9d07…7cce)` tells which
->   genesis block the node is using. When you start the next node, verify that these values are
->   equal.
-> - `🏷 Local node identity is: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp` shows the
->   Peer ID that Bob will need when booting from Alice's node. This value was determined by the
->   `--node-key` that was used to start Alice's node.
-
-You'll notice that no blocks are being produced yet. Blocks will start being produced once another
-node joins the network.
+ - `🔨 Initializing Genesis block/state (state: 0xea47…9ba8, header-hash: 0x9d07…7cce)` tells which
+   genesis block the node is using. When you start the next node, verify that these values are
+   equal.
+ - `🏷 Local node identity is: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp` shows the
+   Peer ID that Bob will need when booting from Alice's node. This value was determined by the
+   `--node-key` that was used to start Alice's node.
+   
+ - No blocks are being produced yet. Blocks will start being produced once another
+   node joins the network.
 
 More details about all of these flags and others that I haven't mentioned are available by running
 `./target/release/node-template --help`.
@@ -98,12 +101,18 @@ also a nice graphical user interface called Polkadot-JS Apps, or just "Apps" for
 In your web browser, navigate to
 [https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9945#/explorer](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9945#/explorer).
 
-> Some Ad blockers (e.g. the built-in Shield in Brave browser, pihole, browser extentions, etc.)
-> block the connection to a local node. In case you have any Ad blockers in your browser, make
-> sure to check them and turn them off as needed if you have issues connecting to your local node.
-> Also some browsers, notably Firefox, will not connect to a local node from a https website.
-> An easy work around is to try another browser, like Chromium. Alternatively you can
-> [host this interface locally](https://github.com/polkadot-js/apps#development).
+<Message
+  type={`green`}
+  title={`Tip`}
+  text={[
+	  'Some Ad blockers (e.g. the built-in Shield in Brave browser, pihole, browser extentions, etc.) ',
+	  'block the connection to a local node. In case you have any Ad blockers in your browser, make ',
+	  'sure to check them and turn them off as needed if you have issues connecting to your local node. ',
+	  'Also some browsers, notably Firefox, will not connect to a local node from a https website. ',
+	  'An easy work around is to try another browser, like Chromium. Alternatively you can ',
+    '[host this interface locally](https://github.com/polkadot-js/apps#development).',
+  ]}
+/>
 
 The link provided above includes the `rpc` URL parameter, which instructs the Apps UI to connect to
 the URL that was provided as its value (in this case, your local node). To manually configure Apps
@@ -129,11 +138,15 @@ You should now see something like this example from the **Network** and **Explor
 
 ![No blocks in polkadot-js-apps](../../../../src/images/tutorials/05-private-network/private-network-no-blocks.png)
 
-> **Notes**
->
-> If you do not want to run your hosted version of Polkadot-JS Apps UI while connecting to Substrate
-> node you have deployed remotely, you can configure ssh local port forwarding to forward local
-> request to the `ws-port` listened by the remote host. Instructions are in the [references](#references).
+<Message
+  type={`grey`}
+  title={`Note`}
+  text={[
+    'If you do not want to run your hosted version of Polkadot-JS Apps UI while connecting to Substrate ',
+    'node you have deployed remotely, you can [configure SSH local port forwarding](https://www.booleanworld.com/guide-ssh-port-forwarding-tunnelling/) ',
+    'to forward local request to the `ws-port` listened by the remote host. ',
+  ]}
+/>
 
 ## Bob Joins
 
@@ -168,7 +181,7 @@ Most of these options are already explained above, but there are a few points wo
   - Alice's Peer ID, copied from her log output.
 
 If all is going well, after a few seconds, the nodes should peer together and start producing
-blocks. You should see some lines like the following in the console that started Alice node.
+blocks. You should see some lines like the following in the console that started Alice node:
 
 ```
 ...
@@ -200,10 +213,6 @@ These lines shows that Bob has peered with Alice (**`1 peers`**), they have prod
 
 Looking at the console that started Bob's node, you should see something similar.
 
-> Once you've verified that both nodes are running as expected, you should shut them down. Although
-> this is not strictly required, so long as you don't have conflicting ports and the same chainspec.
-> The next section of this tutorial will include commands to restart new nodes when necessary.
-
-## References
-
-- [Configure ssh local port forwarding](https://www.booleanworld.com/guide-ssh-port-forwarding-tunnelling/)
+Once you've verified that both nodes are running as expected, you should shut them down. Although
+this is not strictly required, so long as you don't have conflicting ports and the same chainspec.
+The next section of this tutorial will include commands to restart new nodes when necessary.
