@@ -5,12 +5,12 @@ slug: /v3/docs/runtime/macros
 
 > **Update:** As of January 2021, FRAME based pallets have upgraded their use of macros. Refer to [this guide](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#upgrade-guidelines) to learn about migrating a v1 pallet to v2.
 
-Substrate uses [Rust macros](https://doc.rust-lang.org/book/ch19-06-macros.html) to aggregate the logic derived from pallets that are implemented for a runtime. 
+Substrate uses [Rust macros](https://doc.rust-lang.org/book/ch19-06-macros.html) to aggregate the logic derived from pallets that are implemented for a runtime.
 These runtime macros allow developers to focus on runtime logic rather than encoding and decoding on-chain
 variables or writing extensive blocks of code to achieve [basic blockchain fundamentals](index#core-primitives). This offloads a lot of the heavy lifting from blockchain development efforts and removes the need to duplicate code.
 
 The purpose of this article is to give a basic overview of Rust macros and explain the Substrate macros
-that runtime engineers most frequently use. 
+that runtime engineers most frequently use.
 
 ## Macro Basics
 
@@ -22,35 +22,37 @@ There are four kinds of macro in Rust:
 - [attribute-like macros](https://doc.rust-lang.org/book/ch19-06-macros.html#attribute-like-macros) (a type of procedural macro)
 - [function-like macros](https://doc.rust-lang.org/book/ch19-06-macros.html#function-like-macros) (a type of procedural macro)
 
-Most Substrate runtime macros are defined using either **declarative macros** or **function-like macros**, with a recent adoption of 
+Most Substrate runtime macros are defined using either **declarative macros** or **function-like macros**, with a recent adoption of
 **attribute-like macros** in FRAME v2 pallets.
 
 > **Tips to learn more about Substrate runtime macros**:
+>
 > - read the [documentation](https://substrate.dev/rustdocs/latest/frame_support#macros) on commonly used macros in FRAME
 > - use [`cargo expand`](https://github.com/dtolnay/cargo-expand) to review a macro's expanded code and understand what's happening under the hood
 > - read more on [macro rules of expression pattern matching](https://danielkeep.github.io/tlborm/book/pim-README.html)
 
 ## Substrate Runtime Macros
 
-The following section is a comprehensive explanation of the macros that runtime engineers most frequently encounter. 
+The following section is a comprehensive explanation of the macros that runtime engineers most frequently encounter.
 Developers who want to know about the implementation details are encouraged to follow the links in
 "Docs and Notes" sub-sections to better understand how each macro expands.
 
-Substrate Primitives and FRAME both rely on a collection of various types of macros. The following sections will go over each in more detail. 
+Substrate Primitives and FRAME both rely on a collection of various types of macros. The following sections will go over each in more detail.
 Here's a general overview of Substrate macros:
 
 **Macros in the FRAME [Support Library](./frame#support-library):**
-- in `frame_support`: 
+
+- in `frame_support`:
   - [function-like](https://substrate.dev/rustdocs/latest/frame_support#macros) macros
   - [derive](https://substrate.dev/rustdocs/latest/frame_support#derives) macros
   - [attribute](https://substrate.dev/rustdocs/latest/frame_support#attributes) macros
 
-
 **Macros in the Substrate [System Library](./frame#system-library):**
-- in `sp_core`: 
+
+- in `sp_core`:
   - [function-like macros](https://substrate.dev/rustdocs/latest/sp_core#macros) macros
   - [derive `RuntimeDebug`](https://substrate.dev/rustdocs/latest/sp_core#derives) macro
-- in `sp_runtime`: 
+- in `sp_runtime`:
   - [function-like](https://substrate.dev/rustdocs/latest/sp_runtime#macros) macros
   - [derive](https://substrate.dev/rustdocs/latest/sp_runtime#derives) macros
 - in `serde`: [function-like](https://substrate.dev/rustdocs/latest/sp_runtime#derives) macros
@@ -58,18 +60,20 @@ Here's a general overview of Substrate macros:
 - in `sp_std`: [function-like](https://substrate.dev/rustdocs/latest/sp_std#macros) macros
 - in `sp_version`: [function-like](https://substrate.dev/rustdocs/latest/sp_version#macros) macros
 
-> **Note**: refer to `#Substrate dependencies` in the `Cargo.toml` file of the 
-[node template runtime](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/runtime/Cargo.toml#L21) 
-to see where these are put to use. 
+> **Note**: refer to `#Substrate dependencies` in the `Cargo.toml` file of the
+> [node template runtime](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/runtime/Cargo.toml#L21)
+> to see where these are put to use.
 
 ## Overview of FRAME Versioning
+
 Here's a comparative overview of FRAME v1 and v2:
-- v1 relies on runtime engineers to write more code to declare traits and types in a way that is closer to learning a DSL (Domain-specific Language). The way macro inputs are structured can make it more difficult to understand what the macro is doing and how to use it. 
+
+- v1 relies on runtime engineers to write more code to declare traits and types in a way that is closer to learning a DSL (Domain-specific Language). The way macro inputs are structured can make it more difficult to understand what the macro is doing and how to use it.
 - v2 is more heavily based on Rust idioms to define types and uses FRAME crates by writing code within the constaints of the macro being used. If all macros were removed, the pallet would still compile as all macro inputs are correct Rust syntax, making it easier to understand where errors are coming from.
 
-> Overall, the big improvements that v2 brings is better developer experience by removing the need to write extra code. The main difference is how concepts are declared to use the [crates that make up FRAME](https://substrate.dev/docs/en/knowledgebase/runtime/frame). Both versions are just different ways to express 
-the logic and types declared inside a pallet. Yet, both serve the same purpose &mdash; which is to aggregate the logic that defines how the 
-runtime is implemented.
+> Overall, the big improvements that v2 brings is better developer experience by removing the need to write extra code. The main difference is how concepts are declared to use the [crates that make up FRAME](https://substrate.dev/docs/en/knowledgebase/runtime/frame). Both versions are just different ways to express
+> the logic and types declared inside a pallet. Yet, both serve the same purpose &mdash; which is to aggregate the logic that defines how the
+> runtime is implemented.
 
 **Things to note:**
 
@@ -77,14 +81,14 @@ runtime is implemented.
 
 - Using instantiable pallets with v2 requires a different approach than for v1. See the guide [here](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#example-for-pallet-with-instance) for more information on how that works.
 
-- In v2, items are defined inside a module, therefore `pub(super)` is used to make those items private but accessible to the `super` namespace (i.e. the crate root namespace). 
+- In v2, items are defined inside a module, therefore `pub(super)` is used to make those items private but accessible to the `super` namespace (i.e. the crate root namespace).
 
-- `RawEvent` is no longer used in v2, all instances of events are declared as `Event`. 
+- `RawEvent` is no longer used in v2, all instances of events are declared as `Event`.
 
-- Use [subsee](https://github.com/ascjones/subsee) as a tool to query metadata. 
-
+- Use [subsee](https://github.com/ascjones/subsee) as a tool to query metadata.
 
 ## FRAME v1 Declarative Macros
+
 ### decl_storage!
 
 **When to Use**
@@ -134,7 +138,6 @@ It takes a succinct statement of:
 
 Replacing it with a new struct type defined by `#name` and have it implement the data type storage
 trait.
-
 
 **Docs and Notes**
 
@@ -249,14 +252,15 @@ is made up of the various attributes that will be used to identify the specific 
 
 **Note:** similar to a derive macro, this macro only expands types and trait implementations by reading the input and its input is _almost_ never touched. The only exception where this macro
 modifies its input (contrary to a derive macro) is:
+
 - **when a generic is replaced with a type**. For example, in `pallet::pallet` the inner types of the item in `pub struct Pallet<..>(_)` is replaced by `PhantomData`
-and in `pallet::storage`, the first generic `_` is replaced with a type that implements the `StorageInstance` trait.
+  and in `pallet::storage`, the first generic `_` is replaced with a type that implements the `StorageInstance` trait.
 - **some item is changed**. For example, when `pallet::type_value` changes the function item into a struct and trait implementation.
 - **some docs are added when none are provided by the user.** For example, if no documentation is provided the macro `pallet::pallet` will modify the input to add documentation above the item `struct Pallet<T>(_);`.
 
 ### #[pallet::config]
 
-**When to Use** 
+**When to Use**
 
 Required to define the pallet's generics.
 
@@ -265,11 +269,12 @@ Required to define the pallet's generics.
 Provides constants that are part of the [`Config` trait](https://substrate.dev/rustdocs/latest/frame_system/pallet/trait.Config.html) and gives information about external tools to use for the runtime.
 
 **Docs**
+
 - [Config trait](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#config-trait-palletconfig-mandatory)
 
 ### #[pallet::constant]
 
-**When to Use** 
+**When to Use**
 
 To pass values of associated types to metadata, which allows the value of the type to be used by external tools and third parties. Note that this attribute is only usable from inside a `#[pallet::config]` item.
 
@@ -283,16 +288,17 @@ For example, we can use `#[pallet::constant]` to put `type MyGetParam` in metada
 
 ```rust
 #[pallet::config]
-pub trait Config: frame_system::Config { 
+pub trait Config: frame_system::Config {
 	#[pallet::constant] // puts attributes in metadata
 	type MyGetParam: Get<u32>;
 }
 ```
 
 **Docs**
+
 - See use in the context of [#[pallet::config]](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#config-trait-palletconfig-mandatory)
 
-### #[pallet::extra_constants] 
+### #[pallet::extra_constants]
 
 **When to Use**
 
@@ -300,7 +306,7 @@ Optionally, for additional constants one may want to pass to metadata.
 
 **What it Does**
 
-It allows to define some additional constants to put into metadata. For example, you could declare a function that returns a value that will be generated to metadata: 
+It allows to define some additional constants to put into metadata. For example, you could declare a function that returns a value that will be generated to metadata:
 
 ```rust
 #[pallet::extra_constants]
@@ -311,9 +317,10 @@ impl<T: Config> Pallet<T> {
 ```
 
 **Docs**
+
 - See [documentation](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional)
 
-### #[pallet::pallet]  
+### #[pallet::pallet]
 
 **When to Use**
 
@@ -321,7 +328,7 @@ Required to declare the pallet struct place holder, to be later used by `constru
 
 **What it Does**
 
-Generates the `Store` trait if the attribute is provided, which contains an associated type for each storage item. It takes the form of a more explicit Rust struct module and can be written as `pub struct Pallet<T>(_);`, with the appropriate `PhantomData` replacing `_` to make it generic. 
+Generates the `Store` trait if the attribute is provided, which contains an associated type for each storage item. It takes the form of a more explicit Rust struct module and can be written as `pub struct Pallet<T>(_);`, with the appropriate `PhantomData` replacing `_` to make it generic.
 
 This is an example of its definition:
 
@@ -332,6 +339,7 @@ pub struct Pallet<T>(PhantomData<T>);
 ```
 
 **Docs**
+
 - See the [macro expansion](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#macro-expansion-1) added to the `struct Pallet<T>` definition
 
 ### #[pallet::hooks]
@@ -344,7 +352,7 @@ Required for declaring pallet hooks.
 
 [`Hooks`](https://crates.parity.io/frame_support/traits/trait.Hooks.html#provided-methods) are made available by using the `Hooks` trait.
 
-For example: 
+For example:
 
 ```rust
 #[pallet::hooks]
@@ -354,6 +362,7 @@ imple<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
 ```
 
 **Docs**
+
 - See the [documentation](https://crates.parity.io/frame_support/attr.pallet.html#hooks-pallethooks-mandatory)
 - See the [macro expansion](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#macro-expansion-2)
 
@@ -362,8 +371,9 @@ imple<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
 **When to Use**
 
 Required, to implement a pallet's dispatchables. Each dispatchable must:
+
 - define a weight with the `#[pallet::weight($expr)]` attribute
-- have its first argument as `origin: OriginFor<T>`, 
+- have its first argument as `origin: OriginFor<T>`,
 - use compact encoding for argument using #[pallet::compact]
 - return `DispatchResultWithPostInfo` or `DispatchResult`
 
@@ -375,9 +385,10 @@ pallet where calls can be voted on.
 `#[pallet::call]` allows to create dispatchable functions which will generate associated items
 from the `impl` code blocks. In other words, it aggregates all dispatchable logic using the [`Call` enum
 (https://substrate.dev/rustdocs/latest/frame_system/pallet/enum.Call.html) which will aggregate all
-dispatchable calls into a single runtime call.  
+dispatchable calls into a single runtime call.
 
 **Docs**
+
 - See the [documentation](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#call-palletcall-mandatory)
 
 ### #[pallet::error]
@@ -391,20 +402,21 @@ Optionally, to define error types to be used in dispatchables.
 Puts error variants documentation into metadata.
 
 **Docs**
+
 - See [documentation](https://crates.parity.io/frame_support/attr.pallet.html#error-palleterror-optional)
 
 ### #[pallet::events]
 
 **When to Use**
 
-Optionally, to define a pallet's event types. 
-
+Optionally, to define a pallet's event types.
 
 **What it Does**
 
 It is similar to errors but it can holds more information. They generate the metadata of the event and add_derive. It uses the `#[pallet::metadata(..)]` attribute to define what metadata to put from the events.
 
-For example: 
+For example:
+
 ```rust
 #[pallet::event]
 #[pallet::metadata(u32 = "SpecialU32")]
@@ -414,25 +426,27 @@ pub enum Event<T: Config> {
 ```
 
 **Docs**
+
 - See [documentation](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#event-palletevent-optional)
 
 ### #[pallet::storage]
 
-**When to Use** 
+**When to Use**
 
 Optionally, as it can be used multiple times.
 
-**What it Does** 
+**What it Does**
 
 To define some abstract storage inside runtime storage.
 
-**Note:** this changes how storage is declared compared to v1. Here, `[pallet::storage]` is using a Rust-like HashMap to do storage, except it takes a Key, Value, 
+**Note:** this changes how storage is declared compared to v1. Here, `[pallet::storage]` is using a Rust-like HashMap to do storage, except it takes a Key, Value,
 Hasher, Prefix, QueryKind and an OnEmpty
-parameter. The prefix generic defines the place where the 
-storage will store its `(key, value)` pairs (i.e. the trie) and defines the pallet and storage Prefix like such: 
+parameter. The prefix generic defines the place where the
+storage will store its `(key, value)` pairs (i.e. the trie) and defines the pallet and storage Prefix like such:
 `concat(twox_128(pallet_prefix), towx_128(storage_prefix))`, replacing `_` with the generated prefix implementations of the pallet and storage names.
 
 **Docs**
+
 - See [macro documentation](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#storage-palletstorage-optional)
 - [`StorageMap` implementation](https://crates.parity.io/frame_support/pallet_prelude/struct.StorageMap.html#implementations)
 - [Rust HashMap syntax](https://doc.rust-lang.org/book/ch08-03-hash-maps.html)
@@ -440,6 +454,7 @@ storage will store its `(key, value)` pairs (i.e. the trie) and defines the pall
 ### Other Attributes
 
 Other FRAME v2 macro attributes include:
+
 - [#[pallet::genesis_config]](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional)
 - [#[pallet::type_value]](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#type-value-pallettype_value-optional)
 - [#[pallet::genesis_build]](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#genesis-build-palletgenesis_build-optional)

@@ -35,8 +35,8 @@ by **"grandpa"** field. That section looks like this using the [two provided dem
 
 ```json
 {
- //-- snip --
- "genesis": {
+  //-- snip --
+  "genesis": {
     "runtime": {
       "frameSystem": {
         //-- snip --
@@ -52,10 +52,10 @@ by **"grandpa"** field. That section looks like this using the [two provided dem
           ["5G9NWJ5P9uk7am24yCKeLZJqXWW6hjuMyRJDmw4ofqxG8Js2", 1],
           ["5CRZoFgJs4zLzCCAGoCUUs2MRmuD5BKAh17pWtb62LMoCi9h", 1]
         ]
-      },
-    //-- snip --
+      }
+      //-- snip --
     }
- }
+  }
 }
 ```
 
@@ -94,5 +94,5 @@ Finally share the `customSpecRaw.json` with your all the other validators in the
 >
 > Because Rust -> Wasm optimized builds aren't "reproducible", each person will get a slightly
 > different Wasm blob which will break consensus if each participant generates the file themselves.
-> For the curious, learn more about this issue in 
+> For the curious, learn more about this issue in
 > [this blog post](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1).

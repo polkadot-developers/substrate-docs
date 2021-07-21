@@ -77,9 +77,9 @@ benchmarks! {
 
 You can see that the benchmark macro:
 
-  1. Sets up the initial state before running the benchmark.
-  2. Measures the execution time, along with the number of and database reads and writes.
-  3. Verifies the final state of the runtime, ensuring that the benchmark executed as expected.
+1. Sets up the initial state before running the benchmark.
+2. Measures the execution time, along with the number of and database reads and writes.
+3. Verifies the final state of the runtime, ensuring that the benchmark executed as expected.
 
 You can configure your benchmark to run over different varying inputs. For each input, you can
 configure the range of those variables, and use them within the benchmark setup or execution logic.
@@ -93,95 +93,95 @@ documentation](https://substrate.dev/rustdocs/latest/frame_benchmarking/macro.be
    `Cargo.toml`](https://github.com/paritytech/substrate/blob/master/frame/example/Cargo.toml), add
    the `frame-benchmarking` crate and the `runtime-benchmarks` feature.
 
-    ```toml
-    [dependencies]
-    # -- snip --
-    frame-benchmarking = { version = "3.1.0", default-features = false, path = "../benchmarking", optional = true }
+   ```toml
+   [dependencies]
+   # -- snip --
+   frame-benchmarking = { version = "3.1.0", default-features = false, path = "../benchmarking", optional = true }
 
-    [features]
-    # -- snip --
-    runtime-benchmarks = ["frame-benchmarking"]
-    ```
+   [features]
+   # -- snip --
+   runtime-benchmarks = ["frame-benchmarking"]
+   ```
 
 2. Create a new sub-module for your benchmarks within your pallet, and create a basic structure
    similar to this:
 
-    ```rust
-    #[cfg(feature = "runtime-benchmarks")]
-    mod benchmarking {
-      use crate::{*, Module as PalletModule};
-      use frame_benchmarking::{benchmarks, account, impl_benchmark_test_suite};
-      use frame_system::RawOrigin;
+   ```rust
+   #[cfg(feature = "runtime-benchmarks")]
+   mod benchmarking {
+     use crate::{*, Module as PalletModule};
+     use frame_benchmarking::{benchmarks, account, impl_benchmark_test_suite};
+     use frame_system::RawOrigin;
 
-      benchmarks!{
-        // Individual benchmarks are placed here
-      }
-    }
-    ```
+     benchmarks!{
+       // Individual benchmarks are placed here
+     }
+   }
+   ```
 
 3. Each benchmark case has up to three sections: a setup section, an execution section, and
    optionally a verification section at the end.
 
-    ```rust
-    benchmarks!{
-      benchmark_name {
-        /* setup initial state */
-      }: {
-        /* the code to be benchmarked */
-      }
-      verify {
-        /* verifying final state */
-      }
-    }
-    ```
+   ```rust
+   benchmarks!{
+     benchmark_name {
+       /* setup initial state */
+     }: {
+       /* the code to be benchmarked */
+     }
+     verify {
+       /* verifying final state */
+     }
+   }
+   ```
 
-    An extremely basic example of a benchmark can be found in the Example pallet:
-    [`example/src/lib.rs`](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs):
+   An extremely basic example of a benchmark can be found in the Example pallet:
+   [`example/src/lib.rs`](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs):
 
-    ```rust
-    // This will measure the execution time of `set_dummy` for b in [1..1000] range.
-    set_dummy {
-      let b in 1 .. 1000;
-    }: set_dummy(RawOrigin::Root, b.into());
-    ```
+   ```rust
+   // This will measure the execution time of `set_dummy` for b in [1..1000] range.
+   set_dummy {
+     let b in 1 .. 1000;
+   }: set_dummy(RawOrigin::Root, b.into());
+   ```
 
-    The name of the benchmark is `set_dummy`. Here `b` is a variable input that passed into the
-    extrinsic `set_dummy` which may affect the extrinsic execution time. `b` will be varied between
-    1 to 1,000, where we will repeat and measure the benchmark at the different values.
+   The name of the benchmark is `set_dummy`. Here `b` is a variable input that passed into the
+   extrinsic `set_dummy` which may affect the extrinsic execution time. `b` will be varied between
+   1 to 1,000, where we will repeat and measure the benchmark at the different values.
 
-    The extrinsic `set_dummy` is called in the execution section, and we do not verify the result at
-    the end.
+   The extrinsic `set_dummy` is called in the execution section, and we do not verify the result at
+   the end.
 
-    You will also see code like this:
+   You will also see code like this:
 
-    ```rust
-    accumulate_dummy {
-      let b in 1 .. 1000;
-      let caller = account("caller", 0, 0);
-    }: _(RawOrigin::Signed(caller), b.into())
-    ```
+   ```rust
+   accumulate_dummy {
+     let b in 1 .. 1000;
+     let caller = account("caller", 0, 0);
+   }: _(RawOrigin::Signed(caller), b.into())
+   ```
 
-    Here you can see we can replace the extrinsic name with `_` when it matches the name of the
-    benchmark.
+   Here you can see we can replace the extrinsic name with `_` when it matches the name of the
+   benchmark.
 
 4. Once you have written your benchmarks, you should make sure they execute properly by testing
    them. You can add this macro at the bottom of your module:
 
-    ```rust
-    impl_benchmark_test_suite!(
-      PalletModule,
-      crate::tests::new_test_ext(),
-      crate::tests::Test,
-    );
-    ```
+   ```rust
+   impl_benchmark_test_suite!(
+     PalletModule,
+     crate::tests::new_test_ext(),
+     crate::tests::Test,
+   );
+   ```
 
-    The `impl_benchmark_test_suite!` takes three input: the Module struct generated by your pallet,
-    a function that generates a test genesis storage (i.e. `new_text_ext()`), and a full runtime
-    struct. These things you should get from your normal pallet unit tests.
+   The `impl_benchmark_test_suite!` takes three input: the Module struct generated by your pallet,
+   a function that generates a test genesis storage (i.e. `new_text_ext()`), and a full runtime
+   struct. These things you should get from your normal pallet unit tests.
 
-    We will use your test environment and execute the benchmarks similar to how they would execute
-    when actually running the benchmarks. If everything passes, then it is likely that things will
-    work when you actually run your benchmarks!
+   We will use your test environment and execute the benchmarks similar to how they would execute
+   when actually running the benchmarks. If everything passes, then it is likely that things will
+   work when you actually run your benchmarks!
 
 ### Add Benchmarking to Your Runtime
 
@@ -190,21 +190,21 @@ benchmarking.
 
 1. Update your runtime `Cargo.toml` file to include the `runtime-benchmarking` features:
 
-    ```toml
-    [dependencies]
-    # -- snip --
-    pallet-you-created = { version = ..., default-features = false, path = ... }
+   ```toml
+   [dependencies]
+   # -- snip --
+   pallet-you-created = { version = ..., default-features = false, path = ... }
 
-    [features]
-    std = [
-      # -- snip --
-      "pallet-you-created/std"
-    ]
-    runtime-benchmarks = [
-      # -- snip --
-      "pallet-you-created/runtime-benchmarks"
-    ]
-    ```
+   [features]
+   std = [
+     # -- snip --
+     "pallet-you-created/std"
+   ]
+   runtime-benchmarks = [
+     # -- snip --
+     "pallet-you-created/runtime-benchmarks"
+   ]
+   ```
 
 2. Add your new pallet to your runtime just as you would any other pallet. If you need more details
    check out our tutorial to [Add a Pallet to Your Runtime Tutorial](../../tutorials/add-a-pallet).
@@ -212,33 +212,33 @@ benchmarking.
 3. Then, in addition to your normal runtime configuration, you also need to update the benchmarking
    section of your runtime:
 
-    ```rust
-    #[cfg(feature = "runtime-benchmarks")]
-    impl frame_benchmarking::Benchmark<Block> for Runtime {
-      fn dispatch_benchmark(
-        config: frame_benchmarking::BenchmarkConfig
-      ) -> Result<Vec<frame_benchmarking::BenchmarkBatch>, sp_runtime::RuntimeString> {
-        let whitelist: Vec<TrackedStorageKey> = vec![
-          // you can whitelist any storage keys you do not want to track here
-        ];
+   ```rust
+   #[cfg(feature = "runtime-benchmarks")]
+   impl frame_benchmarking::Benchmark<Block> for Runtime {
+     fn dispatch_benchmark(
+       config: frame_benchmarking::BenchmarkConfig
+     ) -> Result<Vec<frame_benchmarking::BenchmarkBatch>, sp_runtime::RuntimeString> {
+       let whitelist: Vec<TrackedStorageKey> = vec![
+         // you can whitelist any storage keys you do not want to track here
+       ];
 
-        let mut batches = Vec::<BenchmarkBatch>::new();
-        let params = (&config, &whitelist);
+       let mut batches = Vec::<BenchmarkBatch>::new();
+       let params = (&config, &whitelist);
 
-        // Adding the pallet you will perform thee benchmarking
-        add_benchmark!(params, batches, pallet_you_crated, YourPallet);
+       // Adding the pallet you will perform thee benchmarking
+       add_benchmark!(params, batches, pallet_you_crated, YourPallet);
 
-        // -- snip --
+       // -- snip --
 
-        if batches.is_empty() { return Err("Benchmark not found for this pallet.".into()) }
-        Ok(batches)
-      }
-    }
-    ```
+       if batches.is_empty() { return Err("Benchmark not found for this pallet.".into()) }
+       Ok(batches)
+     }
+   }
+   ```
 
-    This code should already exist within your runtime assuming you use any of our starting
-    templates. There seems to be a lot of code, but we are mainly just setting up the environment
-    where your benchmarking code will run.
+   This code should already exist within your runtime assuming you use any of our starting
+   templates. There seems to be a lot of code, but we are mainly just setting up the environment
+   where your benchmarking code will run.
 
 4. To add our new benchmarks, we simply add a new line with the `add_benchmark!` macro.
 
@@ -437,7 +437,7 @@ analysis](https://en.wikipedia.org/wiki/Least_squares) that is better explained 
 primer.
 
 You can also derive your own coefficients given you have the raw data on each run, say maybe you
-know the computation time will not be a linear but an *O(nlogn)* relationship with the input
+know the computation time will not be a linear but an _O(nlogn)_ relationship with the input
 variable. So you need to determine the coefficient differently.
 
 ### Auto-generated `WeightInfo` Implementation
@@ -458,8 +458,7 @@ pub trait WeightInfo {
 }
 ```
 
-Here, associated function `set_dummy` take a parameter. This is because we have the line `let b in 1
-.. 1000;` in our `set_dummy` benchmarking function, indicating the execution time likely be affected
+Here, associated function `set_dummy` take a parameter. This is because we have the line `let b in 1 .. 1000;` in our `set_dummy` benchmarking function, indicating the execution time likely be affected
 by this parameter.
 
 The generated file implements these associated functions. To integrate them, we can copy the
@@ -551,12 +550,12 @@ up, but not doing fancy computation.
 
 ## Reference
 
-  - [`frame-benchmarking` README](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/README.md)
-  - [Substrate Seminar: Benchmarking Your Substrate
-    Pallet](https://www.youtube.com/watch?v=Qa6sTyUqgek)
-  - [Benchmarking and Weights for a New Pallet](https://hackmd.io/041uMXYXR8y6nBWUnQ6uCQ)
+- [`frame-benchmarking` README](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/README.md)
+- [Substrate Seminar: Benchmarking Your Substrate
+  Pallet](https://www.youtube.com/watch?v=Qa6sTyUqgek)
+- [Benchmarking and Weights for a New Pallet](https://hackmd.io/041uMXYXR8y6nBWUnQ6uCQ)
 
 ## Footnotes
 
-  1. <span id="footnote-ref-hardware">The</span> reference hardware use for benchmarking Substrate
-     is an Intel Core i7-7700K CPU with 64GB of RAM and an NVMe SSD.
+1. <span id="footnote-ref-hardware">The</span> reference hardware use for benchmarking
+   Substrate is an Intel Core i7-7700K CPU with 64GB of RAM and an NVMe SSD.
