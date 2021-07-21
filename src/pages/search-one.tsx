@@ -17,7 +17,7 @@ export default function search({ data }: any) {
   useEffect(() => {
     let results = []
     try {
-      results = index.search(`${query}`).map(result => {
+      results = index.search(`${query}*`).map(result => {
         return {
           slug: result.ref,
           ...store[result.ref],
@@ -34,7 +34,7 @@ export default function search({ data }: any) {
       <SEO title={`Search Page`} />
       <div className="container pt-12">
         <div className="flex flex-col justify-center">
-          <h3>Static - Out of the box</h3>
+          <h3>WildCard - Begining with *</h3>
           <input
             className="border-b border-black placeholder-gray-500 focus:outline-none"
             id="search-input"
