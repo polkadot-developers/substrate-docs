@@ -104,10 +104,10 @@ publicKey: <your raw sr25519 key> (eg. 0x9effc1668ca381c242885516ec9fa2b19c67b66
 <Message
   type={`gray`}
   title={`Note`}
-  text={[
-      'If you generated your keys with the Apps UI you will not know your raw public key. In this case ',
-      'you may use your SS58 address (`5FfBQ3kwXrbdyoqLPvcXRp7ikWydXawpNs2Ceu3WwFdhZ8W4`) instead. ',
-  ]}
+  text=
+      "If you generated your keys with the Apps UI you will not know your raw public key. In this case
+      you may use your SS58 address (`5FfBQ3kwXrbdyoqLPvcXRp7ikWydXawpNs2Ceu3WwFdhZ8W4`) instead.
+      "
 />
 
 You've now successfully inserted your
@@ -126,10 +126,10 @@ publicKey: <your raw ed25519 key> (eg. 0xb48004c6e1625282313b07d1c9950935e86894a
 <Message
   type={`gray`}
   title={`Note`}
-  text={[
-      'If you are following these steps for the _second_ node in the network, you must connect the UI to ',
-      'the second node before inserting the keys. ',
-  ]}
+  text=
+      "If you are following these steps for the _second_ node in the network, you must connect the UI to 
+      the second node before inserting the keys.
+      "
 />
 
 ### Option 2: Use `curl`
@@ -235,11 +235,11 @@ parameter as Bob did previously.
 <Message
   type={`red`}
   title={`Warning`}
-  text={[
-    'Make sure you set the correct node ID! If you didn\'t set the correct node ID gathered from another running with the same chain spec, ',
-    'but only the right IP - you will get errors of the form: ',
-    '`💔 The bootnode you want to connect to at ... provided a different peer ID than the one you expect: ...`',
-  ]}
+  text=
+    "Make sure you set the correct node ID! If you didn\'t set the correct node ID gathered from another running with the same chain spec,
+    but only the right IP - you will get errors of the form: 
+    `💔 The bootnode you want to connect to at ... provided a different peer ID than the one you expect: ...`
+    "
 />
 
 As before, we specify another `base-path`, give it another `name`, and also specify this node as a

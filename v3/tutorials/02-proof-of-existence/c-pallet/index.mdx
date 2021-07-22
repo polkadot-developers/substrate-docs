@@ -120,16 +120,16 @@ Of Existence pallet by providing you with the code blocks that go under each sec
 <Message
   type={`red`}
   title={`Warning`}
-  text={[
-      'The `no_std` feature is required for all pallets! This is because we are building a',
-      '_runtime_ module that _must_ compile to WASM, and therefore cannot depend on rust\'s `std` dependencies.',
-      'If you take a look at the `pallets/template/Cargo.toml` file, you will see that the template already has',
-      '`std` default feature disabled which is necessary in order to compile the runtime to WASM. Learn more about why this is',
-      'necessary in the [Add a Pallet](../add-a-pallet) tutorial.',
-      'You _can_ use `std` features in non-runtime components like `mock.rs` and `tests.rs` using',
-      '`[dev-dependencies]` _ONLY_. Specifics and examples of this are outside the scope of this',
-      ' tutorial. Learn more about [testing in Substrate here](../../../v3/docs/runtime/tests).',
-  ]}
+  text=
+    "The `no_std` feature is required for all pallets! This is because we are building a
+    runtime_ module that _must_ compile to WASM, and therefore cannot depend on rust\'s `std` dependencies.
+    If you take a look at the `pallets/template/Cargo.toml` file, you will see that the template already has
+    `std` default feature disabled which is necessary in order to compile the runtime to WASM. Learn more about why this is
+    necessary in the [Add a Pallet](../add-a-pallet) tutorial.
+    You _can_ use `std` features in non-runtime components like `mock.rs` and `tests.rs` using
+    `[dev-dependencies]` _ONLY_. Specifics and examples of this are outside the scope of this
+    tutorial. Learn more about [testing in Substrate here](../../../v3/docs/runtime/tests).
+    "
 />
 
 
@@ -342,9 +342,9 @@ And now it is time to interact with our new Proof of Existence pallet!
 <Message
   type={`yellow`}
   title={`Information`}
-  text={[
-      'There is a full node template solution',
-      <a href="https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/build-a-dapp-v3+1"> here </a>,
-      'to use as a reference if you\'re stuck. Check the commit diff from the base `v3.0.0+1` template for the exact changes.',
-  ]}
+  text=
+    "There is a full node template solution
+    [here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/build-a-dapp-v3+1)
+    to use as a reference if you're stuck. Check the commit diff from the base `v3.0.0+1` template for the exact changes.
+    "
 />

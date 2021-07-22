@@ -71,12 +71,12 @@ Prometheus->Grafana: `substrate_peers_count (1582023828, 5), (1582023847, 4) [..
 <Message
   type={`green`}
   title={`Advice`}
-  text={[
-    'We suggest for _testing_ that you download the compiled `bin` programs for these apps ',
-    'as apposed to fully installing them or using them in docker. Just `download` for your ',
-    'architecture, and run it from the `working directory` that is convenient for you. ',
-    'The links above provide instruction on this, and this guide assume you do it this way. ',
-  ]}
+  text=
+    "We suggest for _testing_ that you download the compiled `bin` programs for these apps
+    as apposed to fully installing them or using them in docker. Just `download` for your
+    architecture, and run it from the `working directory` that is convenient for you.
+    The links above provide instruction on this, and this guide assume you do it this way.
+    "
 />
 
 ## Start a Substrate Template Node
@@ -84,14 +84,14 @@ Prometheus->Grafana: `substrate_peers_count (1582023828, 5), (1582023847, 4) [..
 <Message
   type={`yellow`}
   title={`Information`}
-  text={[
-    'Before you continue here, you should complete the ',
-    '[create your first substrate chain](create-your-first-substrate-chain/index.md) ',
-    'tutorial. The same substrate version, conventions for ',
-    'directory structure, and bin names are used here. ',
-    'You can of course use your own custom Substrate node instead of the template, ',
-    'just edit the commands shown as needed. ',
-  ]}
+  text=
+    "Before you continue here, you should complete the
+    [create your first substrate chain](create-your-first-substrate-chain/index.md)
+    tutorial. The same substrate version, conventions for 
+    directory structure, and bin names are used here.
+    You can of course use your own custom Substrate node instead of the template, 
+    just edit the commands shown as needed.
+    "
 />
 
 Substrate exposes an endpoint which serves metrics in the [Prometheus exposition
@@ -139,9 +139,8 @@ scrape_configs:
 <Message
   type={`gray`}
   title={`Note`}
-  text={[
-    'You want to have `scrape_interval` _less than_ the block time in order to ensure that you have a data point for every block!',
-  ]}
+  text=
+    "You want to have `scrape_interval` _less than_ the block time in order to ensure that you have a data point for every block!"
 />
 
 Now we can start a Prometheus instance with the prometheus.yml config file. Presuming you downloaded the binary,

@@ -44,12 +44,12 @@ minimum balance needed to keep an account alive from the point-of-view of the Ba
 <Message
   type={`yellow`}
   title={`Information`}
-  text={[
-	  'Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000 ',
-	  'to be reaped - that would require a ',
-	  '[storage migration](../../../v3/docs/runtime/upgrades#storage-migrations), which is out of ',
-	  'scope for this tutorial.',
-  ]}
+  text=
+	  "Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000
+	  to be reaped - that would require a
+	  [storage migration](../../../v3/docs/runtime/upgrades#storage-migrations), which is out of 
+	  scope for this tutorial.
+	  "
 />
 
 ### Build the Upgraded Runtime
@@ -61,10 +61,10 @@ cargo build --release -p node-template-runtime
 <Message
   type={`gray`}
   title={`Note`}
-  text={[
-	  'This will _override_ any privous build artifacts! So if you want to have a copy on hand of ',
-	  'your last runtime Wasm build files, be sure to copy them somewhere else.',
-  ]}
+  text=
+	  "This will _override_ any privous build artifacts! So if you want to have a copy on hand of 
+	  your last runtime Wasm build files, be sure to copy them somewhere else.
+	  "
 />
 
 ## Upgrade the Runtime
