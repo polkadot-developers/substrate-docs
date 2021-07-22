@@ -142,7 +142,7 @@
 }
 
 .markdown-body a:hover {
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
 
 .markdown-body strong {
@@ -250,6 +250,7 @@
 }
 
 .markdown-body blockquote {
+  font-size: 16px;
   margin: 0;
 }
 
