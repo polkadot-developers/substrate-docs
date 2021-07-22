@@ -9,7 +9,7 @@
   }
 
   body {
-    @apply bg-white dark:bg-black text-black dark:text-white font-body text-base;
+    @apply bg-white dark:bg-black text-substrateDark dark:text-white font-body text-base;
     background: transparent;
   }
 
@@ -108,6 +108,6 @@
 
   /* Anchors */
   a {
-    @apply cursor-pointer text-substrateBlue;
+    @apply cursor-pointer text-substratePurple;
   }
 }

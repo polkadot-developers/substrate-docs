@@ -10,9 +10,9 @@ export function NextButton({ text, link }: NextButtonProps) {
   const intl = useIntl()
   return (
     <>
-      <LocalizedLink className="inline-block m-2" to={link}>
-        <div className="flex items-center justify-center px-8 h-16 rounded-lg bg-substrateGreen hover:no-underline">
-          <button className="text-lg text-black font-bold pr-4 focus:outline-none hover:no-underline">
+      <LocalizedLink className="inline-block m-2 hover:no-underline" to={link}>
+        <div className="flex items-center justify-center px-8 h-16 rounded bg-substrateGreen">
+          <button className="text-lg text-black font-bold pr-4 focus:outline-none">
             {intl.formatMessage({ id: 'docs-nav-next' })} - {text}
           </button>
           <svg

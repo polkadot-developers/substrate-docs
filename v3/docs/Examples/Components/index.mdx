@@ -36,6 +36,21 @@ with the Ethereum EVM Solidity compiler`}
   Template according to [the instructions in its readme](https://github.com/substrate-developer-hub/substrate-node-template#getting-started).`}
 />
 
+<Message
+  type={`green`}
+  title={`Further Learning`}
+  text={`
+  - **Safety.** The mint function takes in an amount to 'mint' which is *not good practice* because it implies that
+    users have unlimited access to writing to storage. Safer approaches include: using configuring 'GenesisConfig' or
+    fixing a predetermined maximum value in runtime.
+  - **Weights.** All the weights were set to 10_000 in the above code snippets. Learn more about weight
+    configuration in this [basic guide on weights](./basic-tx-weight-calculations).
+  - **Origins.** One assumption this guide makes is that the origin will always be the sudo user.
+    Origins are a powerful capability in Substrate. Learn more about how they work
+    [here](https://substrate.dev/docs/en/knowledgebase/runtime/origin).
+  `}
+/>
+
 ## Buttons
 
 <PreviousButton text={`Smart Contracts`} link={`#`} />

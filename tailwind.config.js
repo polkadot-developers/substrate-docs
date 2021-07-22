@@ -33,6 +33,7 @@ module.exports = {
           light: '#FBFBFB',
           DEFAULT: '#F2F2F2',
         },
+        substratePurple: '#5A30B4',
         substrateDark: '#242A35',
         substrateBlue: '#4E73F2',
         substrateBlueBg: '#EEF1FE',
@@ -57,6 +58,7 @@ module.exports = {
         twitter: '#00aced',
       },
       height: {
+        docNav: '90vh',
         hero: '70vh',
         googleForm: '1500px',
       },
@@ -74,6 +76,7 @@ module.exports = {
       },
       transitionProperty: {
         height: 'height',
+        width: 'width',
       },
       keyframes: {
         'fade-in-down': {

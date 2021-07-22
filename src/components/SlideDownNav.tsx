@@ -34,7 +34,7 @@ export default function SlideDownNav({ section }: SlideDownNavProps) {
           <path d="M7.071 5.314l4.95-4.95a1 1 0 1 1 1.414 1.414L7.778 7.435a1 1 0 0 1-1.414 0L.707 1.778A1 1 0 1 1 2.121.364l4.95 4.95z"></path>
         </svg>
       </div>
-      <div className="bg-substrateGray-light md:bg-white">
+      <div>
         {isOpen &&
           section.items.map((item, index) => {
             return (
