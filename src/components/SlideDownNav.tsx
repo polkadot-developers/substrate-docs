@@ -18,7 +18,7 @@ export default function SlideDownNav({ section }: SlideDownNavProps) {
     <>
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between px-20 lg:px-4 py-4 bg-substrateGray-light dark:bg-gray-900 lg:bg-white lg:dark:bg-black cursor-pointer"
+        className="flex items-center justify-between px-20 lg:px-4 py-4 bg-substrateGray-light dark:bg-gray-900 cursor-pointer"
       >
         <div className="font-medium">{section.name}</div>
         <svg
