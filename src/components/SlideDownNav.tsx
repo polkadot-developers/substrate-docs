@@ -18,7 +18,7 @@ export default function SlideDownNav({ section }: SlideDownNavProps) {
     <>
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between px-20 lg:px-4 py-4 bg-lightGray dark:bg-gray-900 lg:bg-white dark:lg:bg-black cursor-pointer"
+        className="flex items-center justify-between px-20 lg:px-4 py-4 bg-substrateGray-light dark:bg-gray-900 lg:bg-white lg:dark:bg-black cursor-pointer"
       >
         <div className="font-medium">{section.name}</div>
         <svg
@@ -34,7 +34,7 @@ export default function SlideDownNav({ section }: SlideDownNavProps) {
           <path d="M7.071 5.314l4.95-4.95a1 1 0 1 1 1.414 1.414L7.778 7.435a1 1 0 0 1-1.414 0L.707 1.778A1 1 0 1 1 2.121.364l4.95 4.95z"></path>
         </svg>
       </div>
-      <div>
+      <div className="bg-substrateGray-light md:bg-white">
         {isOpen &&
           section.items.map((item, index) => {
             return (
@@ -44,10 +44,8 @@ export default function SlideDownNav({ section }: SlideDownNavProps) {
                 to={item.link}
               >
                 <div
-                  className={`text-gray-600 dark:text-gray-200 text-sm px-20 lg:px-6 py-2 hover:text-substrateBlue hover:bg-substrateBlue hover:bg-opacity-10 ${
-                    item.link === location.pathname
-                      ? `text-substrateBlue dark:text-white bg-substrateBlue bg-opacity-10`
-                      : ` `
+                  className={`text-gray-600 dark:text-gray-200 text-sm px-20 lg:px-6 py-2 hover:font-bold ${
+                    item.link === location.pathname ? `font-bold` : ` `
                   }`}
                 >
                   {item.title}
