@@ -20,6 +20,7 @@ The first participant can launch her node with:
 # purge chain (only required for new/modified dev chain spec)
 ./target/release/node-template purge-chain --base-path /tmp/node01 --chain local -y
 ```
+
 ```bash
 # start node01
 ./target/release/node-template \
@@ -71,7 +72,7 @@ You should see the console outputs something as follows:
 > Here you must take note of the **node identity**: `12D3KooWJvVUoAa7R8gjCSQ45x69Ahh3HcdVSH1dvpcA52vKawHL`
 > and the **IP address** `127.0.0.1` and p2p port `--port = 30333`. These values are for this specific
 > example, but for your node, they will be different and **required** for other nodes to directly connect
->  to it (without a bootnode in the chain spec, as we removed in the flags before)
+> to it (without a bootnode in the chain spec, as we removed in the flags before)
 
 ## Add Keys to Keystore
 
@@ -132,14 +133,10 @@ for your `curl` request:
 
 ```json
 {
-  "jsonrpc":"2.0",
-  "id":1,
-  "method":"author_insertKey",
-  "params": [
-    "<aura/gran>",
-    "<mnemonic phrase>",
-    "<public key>"
-  ]
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "author_insertKey",
+  "params": ["<aura/gran>", "<mnemonic phrase>", "<public key>"]
 }
 ```
 
@@ -175,6 +172,7 @@ now exists for your `node01`. These are found in the following (default example)
 # Keys are then in `chains/<chain ID>/keystore :
 ls /tmp/node01/chains/local_testnet/keystore
 ```
+
 ```bash
 ## list of keystore files:
 617572619effc1668ca381c242885516ec9fa2b19c67b6684c02a8a3237b6862e5c8cd7e
@@ -184,6 +182,7 @@ ls /tmp/node01/chains/local_testnet/keystore
 cat /tmp/node01/chains/local_testnet/keystore/617572619effc1668ca381c242885516ec9fa2b19c67b6684c02a8a3237b6862e5c8cd7e
 "clip organ olive upper oak void inject side suit toilet stick narrow"
 ```
+
 Notice there are two keystores, as expected as we added two keys to our node.
 This example used [pair 1](keygen#pair-1) from the well known seeds here, and
 will use [pair 2](keygen#pair-2) for our next node, where your keys may differ.
@@ -228,20 +227,21 @@ parameter as Bob did previously.
 As before, we specify another `base-path`, give it another `name`, and also specify this node as a
 `validator`.
 
-> **Block production**: Now you *must* also set the authoring keys in this node, just as we did
+> **Block production**: Now you _must_ also set the authoring keys in this node, just as we did
 > [for the first node](#add-keys-to-keystore). Note that you will need to communicate with your node
 > on the correct `ws-port` (so setting the app UI and submitting `curl` to the right port is critical)
 > A node will not be able to produce blocks if it has not added its Aura key!
 >
-> **Block finalization**: This can *only* happen if more than two-thirds of the validators have added their
+> **Block finalization**: This can _only_ happen if more than two-thirds of the validators have added their
 > GRANDPA keys to their keystores. Since this network was configured with two validators (in the
 > chain spec), block finalization can occur after the second node has added its keys (i.e. 50% < 66%
+>
 > < 100%).
 
-> **Reminder:** All validators must be using *identical chain specifications* in order to peer. You should
+> **Reminder:** All validators must be using _identical chain specifications_ in order to peer. You should
 > see the same genesis block and state root hashes.
 
-Once the second node is running *and* it has an authoring key, you should see both nodes reporting block authoring:
+Once the second node is running _and_ it has an authoring key, you should see both nodes reporting block authoring:
 
 ```bash
 2021-03-18 16:43:10  Substrate Node

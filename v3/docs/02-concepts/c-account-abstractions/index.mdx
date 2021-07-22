@@ -15,13 +15,12 @@ pallet introduces account abstractions that help keep funds as secure as possibl
 
 These abstractions are:
 
-
 - **Stash Key**: a Stash account is meant to hold large amounts of funds. Its private key should be
-    as secure as possible in a cold wallet.
+  as secure as possible in a cold wallet.
 - **Controller Key**: a Controller account signals choices on behalf of the Stash account, like
-    payout preferences, but should only hold a minimal amount of funds to pay transaction fees. Its
-    private key should be secure as it can affect validator settings, but will be used somewhat
-    regularly for validator maintenance.
+  payout preferences, but should only hold a minimal amount of funds to pay transaction fees. Its
+  private key should be secure as it can affect validator settings, but will be used somewhat
+  regularly for validator maintenance.
 - **Session Keys**: these are "hot" keys kept in the validator client and used for signing
   certain validator operations. They should never hold funds.
 
@@ -84,4 +83,3 @@ by the Controller can result in slashing, so it should still be well secured.
 
 - Take a look at the default
   [session keys in the Substrate node runtime](https://substrate.dev/rustdocs/latest/node_runtime/struct.SessionKeys.html).
-

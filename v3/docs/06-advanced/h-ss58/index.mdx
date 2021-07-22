@@ -53,26 +53,26 @@ into the [Polkadot.js API](https://polkadot.js.org/docs/api/).
 
 ```javascript
 // Import Polkadot.js API dependencies.
-const { decodeAddress, encodeAddress } = require("@polkadot/keyring");
-const { hexToU8a, isHex } = require("@polkadot/util");
+const { decodeAddress, encodeAddress } = require('@polkadot/keyring')
+const { hexToU8a, isHex } = require('@polkadot/util')
 
 // Specify an address to test.
-const address = "<addressToTest>";
+const address = '<addressToTest>'
 
 // Check address.
 const isValidSubstrateAddress = () => {
   try {
-    encodeAddress(isHex(address) ? hexToU8a(address) : decodeAddress(address));
+    encodeAddress(isHex(address) ? hexToU8a(address) : decodeAddress(address))
 
-    return true;
+    return true
   } catch (error) {
-    return false;
+    return false
   }
-};
+}
 
 // Query result.
-const isValid = isValidSubstrateAddress();
-console.log(isValid);
+const isValid = isValidSubstrateAddress()
+console.log(isValid)
 ```
 
 ### Community Built

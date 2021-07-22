@@ -19,7 +19,7 @@ The following points touch on the approach for building content for the Substrat
 
 - **Modularity**. Each piece needs to be a standalone guide that has a well-defined and useful focus. Anything external to that mustbe linked in a way that they can adapt to change. Why? They need to be able to handle changes to Substrate in a way that offers a path of least resistance when implementing those changes.
 
-- **Linking**. How-to guides are meant to be focused and in-depth. Any background knowledge or additional references must link readers to other developer hub ressources. 
+- **Linking**. How-to guides are meant to be focused and in-depth. Any background knowledge or additional references must link readers to other developer hub ressources.
 
 - **Examples**. This is the part for _"examples on how to actually put this guide to use or where can I see it put to use"_. Each example links to some existing codebase or pallet. If new code was created for the guide, this should be pushed to the `example-code` folder at the top of this directory.
 
@@ -27,8 +27,9 @@ The following points touch on the approach for building content for the Substrat
 
 - **Avoid repetition.** If there's something that needs to be included in one guide and can be abstracted to a completely separate guide, abstract it and link to it instead of repeating that content. This ties into the modularity aspect too.
 
-### Template 
-Each guide **must** follow the following structure, taking into account all requirements from above:  
+### Template
+
+Each guide **must** follow the following structure, taking into account all requirements from above:
 
 ---
 
@@ -36,12 +37,12 @@ Each guide **must** follow the following structure, taking into account all requ
   data={[
     {
       title: 'Title',
-      description: 'The guide\'s intentions should be clear by just reading the title.',
+      description:
+        "The guide's intentions should be clear by just reading the title.",
     },
     {
       title: 'Goal',
-      description:
-        'What specific goal will this guide achieve?',
+      description: 'What specific goal will this guide achieve?',
     },
     {
       title: 'Use Cases',
@@ -63,23 +64,27 @@ Each guide **must** follow the following structure, taking into account all requ
       description:
         'Code-based examples that make use of this guide. This shows at least one reference of what this guide covers with a working example.This could be a reference to some existing codebase within Substrate or not; or new code that lives in the how-to guide repo.',
     },
-      {
+    {
       title: 'Resources',
       description:
         'A bulleted list of links to similar guides; other devhub ressources; and related material. For example, other how-to guides; tutorials; knowledgebase articles; or Rust docs.',
-    }
+    },
   ]}
 />
 
 ---
-<Message 
-type={`green`}
-title={`Tip`}
-text={ [
+
+<Message
+  type={`green`}
+  title={`Tip`}
+  text={[
     'Copy the markdown template file from',
-    <a href="https://github.com/substrate-developer-hub/substrate-how-to-guides/blob/main/docs/contribute/how-to-template.md"> here </a>,
-    'to easily get started with this template.'
-    ]}
+    <a href="https://github.com/substrate-developer-hub/substrate-how-to-guides/blob/main/docs/contribute/how-to-template.md">
+      {' '}
+      here{' '}
+    </a>,
+    'to easily get started with this template.',
+  ]}
 />
 
 ## Content structure
@@ -87,9 +92,8 @@ text={ [
 The structure of Substrate's how-to guides aims to group guides into categories using a keyword tagging system in the
 front-matter of each guide. For example:
 
-**Simple crowdfund.** 
+**Simple crowdfund.**
 keywords: _runtime, intermediate, pallet design_
-
 
 The current groupings are to help organize the repository of how-to guide content. They reflect the different
 areas of development within Substrate:
@@ -106,25 +110,24 @@ areas of development within Substrate:
 
 <SkillsYouGain
   data={[
-    'basics', 
-    'beginner', 
-    'intermediate', 
-    'advanced', 
-    'FRAME v1', 
-    'runtime', 
-    'pallet design', 
-    'weights', 
-    'fees', 
-    'currency', 
-    'testing', 
-    'storage migration', 
-    'node', 
-    'client', 
-    'consensus', 
-    'proof-of-work'
+    'basics',
+    'beginner',
+    'intermediate',
+    'advanced',
+    'FRAME v1',
+    'runtime',
+    'pallet design',
+    'weights',
+    'fees',
+    'currency',
+    'testing',
+    'storage migration',
+    'node',
+    'client',
+    'consensus',
+    'proof-of-work',
   ]}
 />
-
 
 ## FAQ
 

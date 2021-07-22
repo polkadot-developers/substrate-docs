@@ -24,7 +24,7 @@
   "nav-playground": "Aire de jeux",
   "nav-light-clients": "Clients légers",
   "nav-vision": "Vision",
-  "nav-web3":"Web3",
+  "nav-web3": "Web3",
   "nav-substrate": "Substrat",
   "nav-polkadot": "Polkadot",
   "nav-ethereum": "Ethereum",
@@ -46,17 +46,16 @@
   "docs-nav-next": "Next",
   "docs-nav-back": "Back",
 
-    
   "docs-menu-getting-started": "Commencer",
   "docs-menu-overview": "Aperçu",
   "docs-menu-architecture": "Architecture",
-  "docs-menu-installation":"Installation",
+  "docs-menu-installation": "Installation",
   "docs-menu-windows": "Mise en route sous Windows",
   "docs-menu-glossary": "Glossaire",
   "docs-menu-key-concepts": "Concepts clés du substrat",
   "docs-menu-gs-runtime": "Exécution",
   "docs-menu-extrinsics": "Extrinsèques",
-  "docs-menu-account-abstractions":"Abstractions de compte",
+  "docs-menu-account-abstractions": "Abstractions de compte",
   "docs-menu-transaction-pool": "Pool de transactions",
   "docs-menu-session-keys": "Clés de session",
   "docs-menu-transaction-weight": "Poids de la transaction",
@@ -104,7 +103,7 @@
   "docs-menu-hash-collections": "Hash Collections",
 
   "docs-nav-htg-basics": "Basics",
-  "htg-basics-pallet-integration": "Pallet Integration", 
+  "htg-basics-pallet-integration": "Pallet Integration",
   "htg-basics-instantiable-pallets": "Instantiable Pallets",
   "htg-basics-configurable-constants": "Configurable Constants",
   "htg-basics-genesis": "Genesis Configuration",
@@ -121,11 +120,11 @@
 
   "docs-nav-htg-weights": "Weights",
   "htg-weights-calculate-fees": "Calculating Fees",
-  
+
   "docs-nav-htg-testing": "Testing",
   "htg-testing-basics": "Setting up Tests for Your Pallet",
   "htg-testing-transfer-function": "Testing a Transfer Function",
-  
+
   "docs-nav-htg-storage-migrations": "Storage Migrations",
   "htg-sm-nicks": "Basic Storage Migration",
   "htg-sm-steps": "Trigger a Storage Migration",
@@ -136,8 +135,8 @@
 
   "docs-nav-htg-tools": "Tools",
   "htg-tools-try-runtime": "Integrate Try-runtime",
-  
-  "tutorials-beginner":"débutant",
-  "tutorials-intermediate":"intermédiaire",
-  "tutorials-advance":"avance"
+
+  "tutorials-beginner": "débutant",
+  "tutorials-intermediate": "intermédiaire",
+  "tutorials-advance": "avance"
 }

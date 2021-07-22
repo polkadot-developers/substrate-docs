@@ -24,9 +24,9 @@
   "nav-playground": "游乐场",
   "nav-light-clients": "轻客户端",
   "nav-vision": "愿景",
-  "nav-web3":"Web3",
-  "nav-substrate":"基板",
-  "nav-polkadot":"Polkadot",
+  "nav-web3": "Web3",
+  "nav-substrate": "基板",
+  "nav-polkadot": "Polkadot",
   "nav-ethereum": "以太坊",
   "nav-ecosystem": "生态系统",
   "nav-builders": "Builders",
@@ -46,21 +46,20 @@
   "docs-nav-next": "下一个",
   "docs-nav-back": "后退",
 
-
-  "docs-menu-getting-started":"入门",
-  "docs-menu-overview":"概览",
-  "docs-menu-architecture":"架构",
-  "docs-menu-installation":"安装",
-  "docs-menu-windows":"Windows 入门",
-  "docs-menu-glossary":"词汇表",
-  "docs-menu-key-concepts":"Substrate 关键概念",
-  "docs-menu-gs-runtime":"运行时",
-  "docs-menu-extrinsics":"Extrinsics",
-  "docs-menu-account-abstractions":"帐户抽象",
-  "docs-menu-transaction-pool":"交易池",
-  "docs-menu-session-keys":"会话密钥",
-  "docs-menu-transaction-weight":"交易权重",
-  "docs-menu-offchain-features":"链下功能",
+  "docs-menu-getting-started": "入门",
+  "docs-menu-overview": "概览",
+  "docs-menu-architecture": "架构",
+  "docs-menu-installation": "安装",
+  "docs-menu-windows": "Windows 入门",
+  "docs-menu-glossary": "词汇表",
+  "docs-menu-key-concepts": "Substrate 关键概念",
+  "docs-menu-gs-runtime": "运行时",
+  "docs-menu-extrinsics": "Extrinsics",
+  "docs-menu-account-abstractions": "帐户抽象",
+  "docs-menu-transaction-pool": "交易池",
+  "docs-menu-session-keys": "会话密钥",
+  "docs-menu-transaction-weight": "交易权重",
+  "docs-menu-offchain-features": "链下功能",
 
   "docs-menu-runtime": "Runtime",
   "docs-menu-pallets": "Pallets",
@@ -104,7 +103,7 @@
   "docs-menu-hash-collections": "Hash Collections",
 
   "docs-nav-htg-basics": "Basics",
-  "htg-basics-pallet-integration": "Pallet Integration", 
+  "htg-basics-pallet-integration": "Pallet Integration",
   "htg-basics-instantiable-pallets": "Instantiable Pallets",
   "htg-basics-configurable-constants": "Configurable Constants",
   "htg-basics-genesis": "Genesis Configuration",
@@ -121,11 +120,11 @@
 
   "docs-nav-htg-weights": "Weights",
   "htg-weights-calculate-fees": "Calculating Fees",
-  
+
   "docs-nav-htg-testing": "Testing",
   "htg-testing-basics": "Setting up Tests for Your Pallet",
   "htg-testing-transfer-function": "Testing a Transfer Function",
-  
+
   "docs-nav-htg-storage-migrations": "Storage Migrations",
   "htg-sm-nicks": "Basic Storage Migration",
   "htg-sm-steps": "Trigger a Storage Migration",
@@ -136,8 +135,8 @@
 
   "docs-nav-htg-tools": "Tools",
   "htg-tools-try-runtime": "Integrate Try-runtime",
-  
-  "tutorials-beginner":"初学者",
-  "tutorials-intermediate":"中间的",
-  "tutorials-advance":"进步"
+
+  "tutorials-beginner": "初学者",
+  "tutorials-intermediate": "中间的",
+  "tutorials-advance": "进步"
 }

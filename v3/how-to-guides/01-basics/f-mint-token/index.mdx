@@ -1,6 +1,6 @@
 ---
 title: Primitive Token Mint
-slug:  /v3/how-to-guides/basics/mint-token
+slug: /v3/how-to-guides/basics/mint-token
 keywords: basics, beginner, runtime, tokens
 ---
 
@@ -8,13 +8,13 @@ keywords: basics, beginner, runtime, tokens
   type={`yellow`}
   title={`Information`}
   text={[
-  'This is a beginner recipe intended for novice', 
-  'Substrate developers looking to explore ways to create tokens in Substrate.', 
-  'This approach is not recommended best practice.',
-  'Use this guide to learn how to improve upon your runtime logic\'s', 
-  'capabilities and code quality. See the', 
-  <a href="#examples"> Examples section </a>,
-  'for a practical implementations of this guide.'
+    'This is a beginner recipe intended for novice',
+    'Substrate developers looking to explore ways to create tokens in Substrate.',
+    'This approach is not recommended best practice.',
+    "Use this guide to learn how to improve upon your runtime logic's",
+    'capabilities and code quality. See the',
+    <a href="#examples"> Examples section </a>,
+    'for a practical implementations of this guide.',
   ]}
 />
 
@@ -28,7 +28,7 @@ Give any account the ability to create a token supply in exchange for native tok
 
 ## Overview
 
-This guide will step you through an effective way to mint a token by leveraging the primitive capabilities that 
+This guide will step you through an effective way to mint a token by leveraging the primitive capabilities that
 [StorageMap][storagemap-rustdocs] gives us. To achieve this, this "primitive" approach uses the [blake2_128_concat][blake2-128-concat-rustdocs] `hasher` to map balances to account IDs, similar to how the [Balances][balances-frame] pallet makes use of it to store and keep track of account balances.
 
 ## Steps
@@ -59,14 +59,15 @@ This pallet only keeps track of the balance to account ID mapping. Call it `Bala
 	#[pallet::storage]
 	#[pallet::getter(fn get_balance)]
 	pub(super) type BalanceToAccount<T: Config> = StorageMap<
-		_, 
-		Blake2_128Concat, 
-		T::AccountId, 
+		_,
+		Blake2_128Concat,
+		T::AccountId,
 		T::Balance,
 		ValueQuery
 		>;
 /* --snip-- */
 ```
+
 ### 3. Create your pallet’s functions
 
 We can now bring our attention to creating the intended capabilities of our pallet with the following functions:
@@ -80,23 +81,25 @@ pub(super) fn mint(
 	origin: OriginFor<T>,
 	#[pallet::compact] amount: T::Balance
 ) -> DispatchResultWithPostInfo {
-			
+
 	let sender = ensure_signed(origin)?;
-		
+
 	// Update storage.
 	<BalanceToAccount<T>>::insert(&sender, amount);
 
 	// Emit an event.
 	Self::deposit_event(Event::MintedNewSupply(sender));
-			
+
 	// Return a successful DispatchResultWithPostInfo.
-	Ok(().into())	
+	Ok(().into())
 }
 /* --snip-- */
 ```
 
 (ii) `transfer()`: to allow the minting account to transfer a given balance to another account.
+
 #### Define transfer variables
+
 Start with writing out the variables, using `get_balance` to reference to `StorageMap` of balances previously
 declared in storage:
 
@@ -111,7 +114,9 @@ pub(super) fn transfer(
 			let receiver_balance = Self::get_balance(&to);
 /* --snip-- */
 ```
+
 #### Verify and add error handling
+
 When performing balance updates, use `checked_sub` and `checked_add` to handle potential errors with overflow:
 
 ```rust
@@ -121,8 +126,10 @@ When performing balance updates, use `checked_sub` and `checked_add` to handle p
 		let updated_to_balance = receiver_balance.checked_add(value).expect("Entire supply fits in u64, qed");
 /* --snip-- */
 ```
+
 #### Write to storage
- Once the new balances are calculated, write their values to storage and deposit the event to the current block:
+
+Once the new balances are calculated, write their values to storage and deposit the event to the current block:
 
 ```rust
 			// Write new balances to storage.
@@ -135,37 +142,44 @@ When performing balance updates, use `checked_sub` and `checked_add` to handle p
 /* --snip-- */
 ```
 
-If `checked_sub()` returns `None`, the operation caused an overflow and throws an error. 
+If `checked_sub()` returns `None`, the operation caused an overflow and throws an error.
 
 ### 4. Include your pallet in your runtime
 
 Refer to [this guide](./pallet-integration) if you’re not yet familiar with this procedure.
 
-
 <Message
   type={`green`}
   title={`Further Learning`}
   text={[
-  'The `mint` function takes in an amount to mint which is *not good practice* because it implies that',
-  <strong>Safety.</strong>,
-  'users have unlimited access to writing to storage. Safer approaches include: using configuring `GenesisConfig` or', 
-  'fixing a predetermined maximum value in runtime.',
-  '**Weights.** All the weights were set to 10_000 in the above code snippets. Learn more about weight ',
-  'configuration in this [basic guide on weights](./basic-tx-weight-calculations).',
-  '**Origins.** One assumption this guide makes is that the origin will always be the sudo user.',
-  'Origins are a powerful capability in Substrate. Learn more about how they work',
-  <a href="https://substrate.dev/docs/en/knowledgebase/runtime/origin"> here. </a>,
-  ]} 
-  />
+    'The `mint` function takes in an amount to mint which is *not good practice* because it implies that',
+    <strong>Safety.</strong>,
+    'users have unlimited access to writing to storage. Safer approaches include: using configuring `GenesisConfig` or',
+    'fixing a predetermined maximum value in runtime.',
+    '**Weights.** All the weights were set to 10_000 in the above code snippets. Learn more about weight ',
+    'configuration in this [basic guide on weights](./basic-tx-weight-calculations).',
+    '**Origins.** One assumption this guide makes is that the origin will always be the sudo user.',
+    'Origins are a powerful capability in Substrate. Learn more about how they work',
+    <a href="https://substrate.dev/docs/en/knowledgebase/runtime/origin">
+      {' '}
+      here.{' '}
+    </a>,
+  ]}
+/>
 
 ## Examples
+
 - [mint-token](https://github.com/substrate-developer-hub/substrate-how-to-guides/blob/main/example-code/template-node/pallets/mint-token/src/lib.rs) example pallet
 - [reward-coin](https://github.com/substrate-developer-hub/substrate-how-to-guides/blob/main/example-code/template-node/pallets/reward-coin/src/lib.rs) example pallet
 
 ## Related material
+
 #### How-to guides
+
 - [Configure a runtime constant](./configurable-constants)
+
 #### Rust docs
+
 - [Deposit event method][deposit-event-rustdocs]
 
 [storagemap-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageMap.html
