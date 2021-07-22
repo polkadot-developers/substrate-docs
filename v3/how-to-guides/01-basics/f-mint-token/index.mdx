@@ -7,15 +7,15 @@ keywords: basics, beginner, runtime, tokens
 <Message
   type={`yellow`}
   title={`Information`}
-  text={[
-    'This is a beginner recipe intended for novice',
-    'Substrate developers looking to explore ways to create tokens in Substrate.',
-    'This approach is not recommended best practice.',
-    "Use this guide to learn how to improve upon your runtime logic's",
-    'capabilities and code quality. See the',
-    <a href="#examples"> Examples section </a>,
-    'for a practical implementations of this guide.',
-  ]}
+  text=
+    "This is a beginner guide intended for novice
+    Substrate developers looking to explore ways to create tokens in Substrate.
+    This approach _is not_ recommended best practice.
+    Use this guide to learn how to improve upon your runtime logic's
+    capabilities and code quality. See the
+    [Examples section](#examples)
+    for a practical implementations of this guide.'
+	"
 />
 
 ## Goal
@@ -151,20 +151,16 @@ Refer to [this guide](./pallet-integration) if you’re not yet familiar with th
 <Message
   type={`green`}
   title={`Further Learning`}
-  text={[
-    'The `mint` function takes in an amount to mint which is *not good practice* because it implies that',
-    <strong>Safety.</strong>,
-    'users have unlimited access to writing to storage. Safer approaches include: using configuring `GenesisConfig` or',
-    'fixing a predetermined maximum value in runtime.',
-    '**Weights.** All the weights were set to 10_000 in the above code snippets. Learn more about weight ',
-    'configuration in this [basic guide on weights](./basic-tx-weight-calculations).',
-    '**Origins.** One assumption this guide makes is that the origin will always be the sudo user.',
-    'Origins are a powerful capability in Substrate. Learn more about how they work',
-    <a href="https://substrate.dev/docs/en/knowledgebase/runtime/origin">
-      {' '}
-      here.{' '}
-    </a>,
-  ]}
+  text={`
+  - **Safety.** The mint function takes in an amount to 'mint' which is *not good practice* because it implies that
+    users have unlimited access to writing to storage. Safer approaches include: using configuring 'GenesisConfig' or
+    fixing a predetermined maximum value in runtime.
+  - **Weights.** All the weights were set to 10_000 in the above code snippets. Learn more about weight
+    configuration in this [basic guide on weights](./basic-tx-weight-calculations).
+  - **Origins.** One assumption this guide makes is that the origin will always be the sudo user.
+    Origins are a powerful capability in Substrate. Learn more about how they work
+    [here](https://substrate.dev/docs/en/knowledgebase/runtime/origin).
+  `}
 />
 
 ## Examples

@@ -40,9 +40,15 @@ monitor the
 also use the [`subport` GitHub repository](https://github.com/paritytech/subport/issues/new) to
 create an Issue.
 
-> Please do note that your problem may already solved on stackoverflow or subport,**
-> do a search first for keywords in your error messages and concepts, and if you found them useful
-> as well, comment to let us know that it's a common issue to escalate for a fix.**
+<Message
+  type={`yellow`}
+  title={`Information`}
+  text=
+    "Please do note that your problem may already solved on Stackoverflow or Subport
+    do a search first for keywords in your error messages and concepts, and if you found them useful
+    as well, comment to let us know that it\'s a common issue to escalate for a fix.
+    "
+/>
 
 ## Before You Begin
 
@@ -57,8 +63,22 @@ create an Issue.
      FRAME system for runtime development and guide you through the process of extending the
      capabilities of a FRAME runtime by adding a pallet.
 
-> If you're an experienced developer and wish to skip those
-> tutorials, you can clone the
-> [Node Template repository](https://github.com/substrate-developer-hub/substrate-node-template) and
-> refer to the
-> [documentation for local development](https://github.com/substrate-developer-hub/substrate-node-template#getting-started).
+## What You Will Be Doing
+
+Before we even get started, lets' layout what we are going to do over the course of this turorial. We will:
+
+<TutorialObjective
+  data={{
+    textLineOne:
+      '1.Use a sudo call to include the Schedular pallet in a live runtime.',
+    url: '/v3/tutorials/forkless-upgrades/sudo-upgrade',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '2. Schedule a runtime upgrade.',
+    url: '/v3/tutorials/forkless-upgrades/schedule-an-upgrade',
+  }}
+/>
+<AccentButton text={`Ready? Let's get right to it!`} link={`/v3/tutorials/forkless-upgrades/sudo-upgrade`}/>

@@ -49,16 +49,13 @@ to satisfy that trait requirement.
 <Message
   type={`red`}
   title={`A warning on using this trait`}
-  text={[
-    'As stated in',
-    <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.Randomness.html">
-      {' '}
-      this trait's documentation
-    </a>,
-    ', at best, this trait can give you randomness which was hard to predict a long time ago ',
-    'but that has become easy to predict recently. ',
-    'Bear this in mind depending on your use case for it.',
-  ]}
+  text=
+     "As stated in
+     [this trait's documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.Randomness.html)
+     at best, this trait can give you randomness which was hard to predict a long time ago 
+     but that has become easy to predict recently. 
+     Bear this in mind depending on your use case for it.
+     "
 />
 
 ### 2. Create a nonce
