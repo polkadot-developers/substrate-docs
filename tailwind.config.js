@@ -34,6 +34,7 @@ module.exports = {
           DEFAULT: '#F2F2F2',
         },
         substratePurple: '#5A30B4',
+        substrateYellow: '#FDAB3D',
         substrateDark: '#242A35',
         substrateBlue: '#4E73F2',
         substrateBlueBg: '#EEF1FE',

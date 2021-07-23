@@ -58,7 +58,7 @@ export default function DocsNav({
           }`}
         >
           <LocalizedLink
-            className="flex justify-center items-center py-4 text-black dark:text-white"
+            className="flex justify-center items-center py-4 text-black dark:text-white hover:text-substrateDark"
             to="/"
           >
             <svg

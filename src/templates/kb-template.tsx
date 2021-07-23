@@ -19,7 +19,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
     <Layout>
       <SEO title={data.mdx ? data.mdx.frontmatter.title : null} />
       <div className="mb-24">
-        <div className="flex flex-col lg:flex-row ">
+        <div className="flex flex-col lg:container lg:flex-row ">
           <div className="lg:hidden">
             <DocsNavMobile
               sideNav={docsMenu}
