@@ -9,7 +9,7 @@
   }
 
   body {
-    @apply bg-white dark:bg-black text-black dark:text-white font-body text-base;
+    @apply bg-white dark:bg-black text-substrateDark dark:text-white font-body text-base;
     background: transparent;
   }
 
@@ -106,8 +106,8 @@
     @apply list-disc;
   }
 
-  /* Anchors */
-  a {
-    @apply cursor-pointer text-substrateBlue;
-  }
+  /* Anchor Tags */
+  /* a {
+    @apply cursor-point;
+  }*/
 }

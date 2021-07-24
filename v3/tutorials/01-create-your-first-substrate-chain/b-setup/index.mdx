@@ -13,11 +13,14 @@ continue to the next section to learn more about Substrate and what we are build
 
 You will probably need to do some set-up to prepare your computer for Substrate development.
 
-### Substrate Development
-
-> Before you continue, complete the [official Installation guide](../../../v3/docs/getting-started/installation)/.
-> After `rustup` has been installed and configured, and you've configured the Rust toolchain to default
-> to the latest stable version you can return to these steps.
+<Message
+  type={`red`}
+  title={`Before you continue`}
+  text="Complete the 
+  [official Installation guide](../../../v3/docs/getting-started/installation). 
+  After rustup has been installed and configured, and you/'ve configured the 
+  Rust toolchain to default to the latest stable version you can return to these steps."
+/>
 
 ## Compiling the Node Template
 
@@ -26,23 +29,28 @@ Template, which serves as a good starting point for building on Substrate.
 
 1. Clone the Node Template (version `v3.0.0+monthly-2021-05`).
 
-    ```bash
-    git clone -b v3.0.0+monthly-2021-05 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
-    ```
+   ```bash
+   git clone -b v3.0.0+monthly-2021-05 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+   ```
+
 2. Compile the Node Template
 
-    ```bash
-    cd substrate-node-template
-    # NOTE: you should always use the `--release` flag
-    cargo build --release
-    # ^^ this will take a while!
-    ```
+   ```bash
+   cd substrate-node-template
+   # NOTE: you should always use the `--release` flag
+   cargo build --release
+   # ^^ this will take a while!
+   ```
 
-> **You should start building the node template _before_ moving on!**
->
-> The time required for the compilation step depends on the hardware you're using.
->
-> **Run into issues? Try the [troubleshooting tips](../../../v3/docs/getting-started/installation#troubleshooting-substrate-builds).**
+<Message
+  type={`green`}
+  title={`Tip`}
+  text="You should start building the node template _before_ moving on!
+  The time required for the compilation step depends on the hardware you\'re using.
+  Refer to the
+  [troubleshooting tips page](../../../v3/docs/getting-started/installation#troubleshooting-substrate-builds)
+  if you run into any issues."
+/>
 
 ## Install the Front-End Template
 

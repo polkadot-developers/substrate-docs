@@ -13,11 +13,17 @@ unmodified [Node Template](https://github.com/substrate-developer-hub/substrate-
 cargo run --release -- --dev --tmp
 ```
 
-> **Leave this node running!** Notice that the node will not be restarted as part of this tutorial
-> despite the fact that two runtime upgrades are performed.
-> You will be editing and re-compiling the node's runtime code, but _do not_ stop and restart the
-> node to prove to yourself that the runtime upgrade is in fact done on an _active_ (dev) network,
-> not a rebuilt or restarted one.
+<Message
+  type={`green`}
+  title={`Tip`}
+  text=
+	"**Leave this node running!** Notice that the node will not be restarted as part of this tutorial
+	despite the fact that two runtime upgrades are performed.
+	You will be editing and re-compiling the node\'s runtime code, but _do not_ stop and restart the
+	node to prove to yourself that the runtime upgrade is in fact done on an _active_ (dev) network,
+	not a rebuilt or restarted one.
+	"
+/>
 
 By default, the [well-known Alice account](../../../v3/docs/toolchains/subkey#well-known-keys) is
 configured as the holder of the Sudo pallet's key in the `development_config` function of the
@@ -37,13 +43,19 @@ The `set_code` function in
 [the `System` module](https://github.com/paritytech/substrate/blob/v3.0.0/frame/system/src/lib.rs) is
 intentionally designed to consume the maximum weight that may fit in a block.
 
-> The runtime upgrade should consume the entire block to avoid extrinsics trying to execute
-> on a different version of a runtime when called. Although theoretically one may be able to
-> use [transaction priority](../../../v3/docs/concepts/tx-pool#transaction-priority)
-> and carefully study the FRAME logic involved to allow for other extrinsics to be dispatched
-> in the same block as the upgrade, it is a very poor idea to try to do this for almost
-> any blockchain: it is worth to spend one block to keep this operation clean and reduce
-> chance of error. This study is outside the scope of this tutorial.
+<Message
+  type={`yellow`}
+  title={`Information`}
+  text=
+	"The runtime upgrade should consume the entire block to avoid extrinsics trying to execute
+	on a different version of a runtime when called. Although theoretically one may be able to 
+	use [transaction priority](../../../v3/docs/concepts/tx-pool#transaction-priority)
+	and carefully study the FRAME logic involved to allow for other extrinsics to be dispatched 
+	in the same block as the upgrade, it is a very poor idea to try to do this for almost
+	any blockchain: it is worth to spend one block to keep this operation clean and reduce 
+	chance of error. This study is outside the scope of this tutorial.
+	"
+/>
 
 The [`set_code` function](https://substrate.dev/rustdocs/v3.0.0/src/frame_system/lib.rs.html#329-337)'s
 weight annotation also specifies that the extrinsic call is in
@@ -92,9 +104,9 @@ parameter that is used to specify the (possibly zero) weight to use for the call
 of this tutorial; in the next section, the Scheduler pallet will be used to manage the resources
 consumed by the `set_code` function.
 
-> Here we allow for a block that may take _an indefinite time to compute_ intentionally: to ensure
-> that our runtime upgrade does not fail, no matter how complex the operation is. It could take all
-> the time it needs to succeed or fail.
+Here we allow for a block that may take _an indefinite time to compute_ intentionally. This ensures
+that our runtime upgrade does not fail, no matter how complex the operation is. It could take all
+the time it needs to succeed or fail.
 
 ## Prepare an Upgraded Runtime
 
@@ -203,9 +215,15 @@ Note: keep your node running! You should use a new terminal to compile the runti
 cargo build --release -p node-template-runtime
 ```
 
-> Get stuck? Here is a
-> [solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/runtime-upgrade-v3)
-> to check against. See the `diff` in the commit history for details.
+<Message
+  type={`yellow`}
+  title={`Information`}
+  text=
+	  "Here is a
+	  [solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/runtime-upgrade-v3)
+	  to check against in case you\'re stuck. See the `diff` in the commit history for details.
+	  "
+/>
 
 Here the `--release` flag will result in a longer compile time, but also generate a smaller build
 artifact that is better suited for submitting to the blockchain network: storage minimization
@@ -214,7 +232,7 @@ and optimizations are _critical_ for any blockchain.
 As we are _only_ building the runtime, Cargo looks in runtime
 `cargo.toml` file for requirements and only executes these. Notice the
 [`runtime/build.rs` file](https://doc.rust-lang.org/cargo/reference/build-scripts.html) that
-cargo looks for build the Wasm of your runtime that is specified in `runtime/lib.rs`.
+cargo looks for build the Wasm of your runtime that is specified in `runtime/src/lib.rs`.
 
 When the `--release` flag is specified, build artifacts are output to the
 `target/release` directory; when the flag is omitted they will be sent to `target/debug`. Refer to
@@ -226,11 +244,17 @@ more about building Rust code with Cargo.
 Use this link to open the Polkadot JS Apps UI and automatically configure the UI to connect to the
 local node: https://polkadot.js.org/apps/#/extrinsics?rpc=ws://127.0.0.1:9944.
 
-> Some ad blockers and browser restrictions (e.g. the built-in Shield in Brave browser, and https
-> requirement for socket connection in Firefox) interfere with connecting to a local node. Make sure
-> to check them and, if needed, turn them off. You may not get connecting from a remote IP (like `polkadot.js.org/apps/`)
-> to a local node working. If you are unable to solve this, we encourage you to
-> host your app locally, like [the apps UI](https://github.com/polkadot-js/apps#development).
+<Message
+  type={`green`}
+  title={`Tip`}
+  text=
+	  "Some ad blockers and browser restrictions (e.g. the built-in Shield in Brave browser, and https 
+	  requirement for socket connection in Firefox) interfere with connecting to a local node. Make sure 
+	  to check them and, if needed, turn them off. You may not get connecting from a remote IP (like `polkadot.js.org/apps/`) 
+	  to a local node working. If you are unable to solve this, we encourage you to 
+	  host your app locally, like [the apps UI](https://github.com/polkadot-js/apps#development).
+	  "
+/>
 
 Use Alice's account to invoke the `sudoUncheckedWeight` function and use the `setCode` function from the system
 pallet as its parameter. In order to supply the build artifact that was generated by the previous
@@ -250,13 +274,3 @@ of Polkadot JS Apps UI should reflect that the runtime version is now `101`.
 
 If you still see your node producing blocks in the terminal it's running and reported
 on the UI, you have performed a successful _forkless_ runtime upgrade! Congrats!!!
-
-## Next Steps
-
-<!--
-TODO: add reference to tutorial or recipe on storage migrations when avalible
-https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues/766
--->
-
-- Learn about [storage migrations](../../knowledgebase/runtime/upgrades#storage-migrations) and
-attempt one alongside a runtime upgrade.

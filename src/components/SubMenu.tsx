@@ -46,7 +46,7 @@ export default function SubMenu({ menuData, width }: SubMenuProps) {
               if (item.external) {
                 return (
                   <a
-                    className="text-black dark:text-white hover:no-underline"
+                    className="text-black dark:text-white hover:text-substrateGreen hover:underline"
                     key={index}
                     href={item.link}
                   >
@@ -60,7 +60,7 @@ export default function SubMenu({ menuData, width }: SubMenuProps) {
               } else {
                 return (
                   <LocalizedLink
-                    className="text-black dark:text-white hover:no-underline"
+                    className="text-black dark:text-white hover:text-substrateGreen hover:underline"
                     key={index}
                     to={item.link}
                   >

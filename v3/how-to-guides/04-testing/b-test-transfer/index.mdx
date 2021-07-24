@@ -4,8 +4,6 @@ slug: /v3/how-to-guides/testing/transfer-function
 keywords: testing, runtime, beginner
 ---
 
-_A basic overview to help you write out your checks and balances._
-
 ## Goal
 
 Learn how to write tests and improve the correctness of a `transfer` function.
@@ -23,7 +21,7 @@ steps you through best practices for writing test cases for a basic `transfer` f
 
 ### 1. Outline the `transfer` function
 
-A transfer function has two key elements: subtracting a balance from an account and adding that balance to another account. 
+A transfer function has two key elements: subtracting a balance from an account and adding that balance to another account.
 Here, we'll start by outlining this function:
 
 ```rust
@@ -68,7 +66,7 @@ fn transfer_works() {
 
 #### Configure error handling
 
-To implement some error check, replace `mutate` with `try_mutate` to use `ensure!`. 
+To implement some error check, replace `mutate` with `try_mutate` to use `ensure!`.
 This will check whether _bal is greater or equal to amount_ and throw an error message if not:
 
 ```rust
@@ -83,19 +81,25 @@ Run `cargo test` from your pallet's directory.
 
 ### 3. Check that sending account doesn't go below minimum balance
 
+Inside your `transfer_works` function:
+
+```rust
+assert_noop!(RewardCoin::transfer(Origin::signed(2), 3, 50), Error::<Test>::InsufficientBalance);
+```
+
 ### 4. Check that both tests work together
 
 Use `#[transactional]` to generate a wrapper around both checks:
 
 ```rust
 #[transactional]
-		pub(super) fn transfer(
+	pub(super) fn transfer(
 /*--snip--*/
 ```
 
-### 5. Handle dust accounts 
+### 5. Handle dust accounts
 
-Make sure that sending and receiving accounts aren't dust accounts. Use `T::MinBalance::get()`: 
+Make sure that sending and receiving accounts aren't dust accounts. Use `T::MinBalance::get()`:
 
 ```rust
 /*--snip--*/
@@ -104,14 +108,14 @@ Make sure that sending and receiving accounts aren't dust accounts. Use `T::MinB
 /*--snip--*/
 ```
 
-
 ## Examples
 
-- [`reward-coin` tests](https://github.com/sacha-l/substrate-how-to-guides/blob/main/how-to-substrate/example-code/template-node/pallets/reward-coin/src/tests.rs#L20-L38)
+- tests in the [`reward-coin`](https://github.com/substrate-developer-hub/substrate-how-to-guides/blob/main/example-code/template-node/pallets/reward-coin/src/tests.rs) example pallet
 
 ## Resources
 
 #### Rust docs
+
 - [`assert_ok!`](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.assert_ok.html)
 - [`assert_noop!`](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.assert_noop.html)
 - [`ensure!`](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.ensure.html)

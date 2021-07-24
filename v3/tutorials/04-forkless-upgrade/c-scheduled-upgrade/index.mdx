@@ -41,10 +41,16 @@ This change increases the value of the Balances pallet's
 [`ExistentialDeposit`](../../../v3/docs/getting-started/glossary#existential-deposit) - the
 minimum balance needed to keep an account alive from the point-of-view of the Balances pallet.
 
-> Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000
-> to be reaped - that would require a
-> [storage migration](../../knowledgebase/runtime/upgrades#storage-migrations), which is out of
-> scope for this tutorial.
+<Message
+  type={`yellow`}
+  title={`Information`}
+  text=
+	  "Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000
+	  to be reaped - that would require a
+	  [storage migration](../../../v3/docs/runtime/upgrades#storage-migrations), which is out of 
+	  scope for this tutorial.
+	  "
+/>
 
 ### Build the Upgraded Runtime
 
@@ -52,8 +58,14 @@ minimum balance needed to keep an account alive from the point-of-view of the Ba
 cargo build --release -p node-template-runtime
 ```
 
-> This will _override_ any privous build artifacts! So if you want to have a copy on hand of
-> your last runtime Wasm build files, be sure to copy them somewhere else.
+<Message
+  type={`gray`}
+  title={`Note`}
+  text=
+	  "This will _override_ any privous build artifacts! So if you want to have a copy on hand of 
+	  your last runtime Wasm build files, be sure to copy them somewhere else.
+	  "
+/>
 
 ## Upgrade the Runtime
 
@@ -70,7 +82,6 @@ blocks (1 minute) in the future to fill in the `when` parameter and quickly subm
 
 ![Scheduled Upgrade Panel](../../../../src/images/tutorials/04-forkless-upgrade/scheduled-upgrade.png)
 
-
 You can use the template node's command line output or the
 [Polkadot JS Apps UI block explorer](https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944)
 to watch as this scheuled call takes place.
@@ -83,3 +94,13 @@ corner of Polkadot JS Apps UI should reflect that the runtime version is now `10
 You can then observe the specific changes that were made in the upgrade by using the
 [Polkadot JS Apps UI Chain State](https://polkadot.js.org/apps/#/chainstate/constants?rpc=ws://127.0.0.1:9944)
 app to query the `existentialDeposit` constant value from the Balances pallet.
+
+## Next Steps
+
+<!--
+TODO: add reference to tutorial or recipe on storage migrations when avalible
+https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues/766
+-->
+
+- Learn about [storage migrations](../../knowledgebase/runtime/upgrades#storage-migrations) and
+  attempt one alongside a runtime upgrade.

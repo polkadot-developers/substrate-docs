@@ -26,17 +26,19 @@ $ tar -xf memory-profiler-x86_64-unknown-linux-gnu.tgz
 ```
 
 This will result in three files being unpacked. We're only interested in two of them:
-   * `libmemory_profiler.so` - this is the memory profiler itself that we will hook into Substrate
-   * `memory-profiler-cli` - this is the program we will later use to analyze the profiling data
+
+- `libmemory_profiler.so` - this is the memory profiler itself that we will hook into Substrate
+- `memory-profiler-cli` - this is the program we will later use to analyze the profiling data
 
 ### ...from source
 
 You can also [compile the profiler from source](https://github.com/koute/memory-profiler#building) yourself.
 
 First you need to make sure to have the following installed:
-   * GCC toolchain
-   * Rust nightly (we've tested version `nightly-2021-06-08`)
-   * [Yarn](https://yarnpkg.com) package manager (for building the GUI)
+
+- GCC toolchain
+- Rust nightly (we've tested version `nightly-2021-06-08`)
+- [Yarn](https://yarnpkg.com) package manager (for building the GUI)
 
 Then you should be able to build the profiler like this:
 
@@ -145,7 +147,7 @@ One configuration knob that warrants extra consideration is `MEMORY_PROFILER_CUL
 which controls whenever the profiler will gather short lived allocations.
 
 By default the profiler will gather **every** allocation that's made by the profiled application.
-That is a *lot* of data, and can be on the order of *megabytes* per second. This is great if you
+That is a _lot_ of data, and can be on the order of _megabytes_ per second. This is great if you
 want to only profile for a short period of time, or if you specifically care about diagnosing
 temporary allocations, but it becomes problematic when you want to leave the profiler running for
 longer.
@@ -153,7 +155,7 @@ longer.
 This is where the `MEMORY_PROFILER_CULL_TEMPORARY_ALLOCATIONS` option comes in. When you turn it on
 by setting it to `1` the profiler will omit all of the really short lived allocations and not write
 them out to disk. This significantly cuts down the amount of data that's generated, usually to the
-range of *kilobytes* per second, which makes it possible to leave the profiling running for days at
+range of _kilobytes_ per second, which makes it possible to leave the profiling running for days at
 a time.
 
 ## Analysis
@@ -205,5 +207,5 @@ that you can access you'd like to export the data into another format or inspect
   Although please note that this might have some security implications. Take a look at
   `man perf_event_open` for more details.
 
- - During analysis the whole data file has to be loaded into memory. If you don't have enough RAM
-   and you'll try to load up a big file the analyzer might run out of memory and crash.
+- During analysis the whole data file has to be loaded into memory. If you don't have enough RAM
+  and you'll try to load up a big file the analyzer might run out of memory and crash.

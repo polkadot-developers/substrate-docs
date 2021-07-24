@@ -18,7 +18,7 @@ export default function SlideDownNav({ section }: SlideDownNavProps) {
     <>
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between px-20 lg:px-4 py-4 bg-lightGray dark:bg-gray-900 lg:bg-white dark:lg:bg-black cursor-pointer"
+        className="flex items-center justify-between px-20 lg:px-4 py-4 bg-substrateGray-light dark:bg-gray-900 cursor-pointer"
       >
         <div className="font-medium">{section.name}</div>
         <svg
@@ -44,10 +44,8 @@ export default function SlideDownNav({ section }: SlideDownNavProps) {
                 to={item.link}
               >
                 <div
-                  className={`text-gray-600 dark:text-gray-200 text-sm px-20 lg:px-6 py-2 hover:text-substrateBlue hover:bg-substrateBlue hover:bg-opacity-10 ${
-                    item.link === location.pathname
-                      ? `text-substrateBlue dark:text-white bg-substrateBlue bg-opacity-10`
-                      : ` `
+                  className={`text-gray-600 dark:text-gray-200 text-sm px-20 lg:px-6 py-2 hover:font-bold ${
+                    item.link === location.pathname ? `font-bold` : ` `
                   }`}
                 >
                   {item.title}

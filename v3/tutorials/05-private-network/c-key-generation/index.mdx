@@ -25,6 +25,7 @@ by Aura for block production.
 # subkey command
 subkey generate --scheme sr25519
 ```
+
 ```bash
 # subkey output
 Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song vital leisure` is account:
@@ -41,6 +42,7 @@ GRANDPA for block finalization.
 # subkey command
 subkey inspect --scheme ed25519 "infant salmon buzz patrol maple subject turtle cute legend song vital leisure"
 ```
+
 ```bash
 # subkey output
 Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song vital leisure` is account:
@@ -49,15 +51,22 @@ Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song v
   Account ID:       0x1a0e2bf1e0195a1f5396c5fd209a620a48fe90f6f336d89c89405a0183a857a3
   SS58 Address:     5CesK3uTmn4NGfD3oyGBd1jrp4EfRyYdtqL3ERe9SXv8jUHb
 ```
+
 ## Option 2: Polkadot-JS Apps
 
 The same UI that we used to see blocks being produced can also be used to generate keys. This option
 is convenient if you do not want to install Subkey. It can be used for production keys, but the
 system should not be connected to the internet when generating such keys.
 
-> A system that generates production keys should not be connected to the internet regardless of what
-> method you choose. It is mentioned here specifically because having an internet connection is
-> generally desired when using a webapp like Polkadot JS Apps.
+<Message
+  type={`red`}
+  title={`Warning`}
+  text=
+    "A system that generates production keys should not be connected to the internet regardless of what
+    method you choose. It is mentioned here specifically because having an internet connection is 
+    generally desired when using a webapp like Polkadot JS Apps.
+    "
+/> 
 
 On the "Accounts" tab, click "Add account". You do not need to provide a name, although you may if
 you would like to save this account for submitting transaction in addition to validating.

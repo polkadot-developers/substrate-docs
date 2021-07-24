@@ -1,17 +1,17 @@
 {
-    "compilerOptions": {
-      "module": "commonjs",
-      "target": "esnext",
-      "jsx": "preserve",
-      "lib": ["dom", "esnext"],
-      "strict": true,
-      "noEmit": true,
-      "isolatedModules": true,
-      "esModuleInterop": true,
-      "noUnusedLocals": false,
-      "strictNullChecks": false,
-      "resolveJsonModule": true
-    },
-    "include": ["**/*.ts", "**/*.tsx", "decs.d.ts"],
-    "exclude": ["node_modules", "public", ".cache"]
-  }
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "esnext",
+    "jsx": "preserve",
+    "lib": ["dom", "esnext"],
+    "strict": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "noUnusedLocals": false,
+    "strictNullChecks": false,
+    "resolveJsonModule": true
+  },
+  "include": ["**/*.ts", "**/*.tsx", "decs.d.ts"],
+  "exclude": ["node_modules", "public", ".cache"]
+}

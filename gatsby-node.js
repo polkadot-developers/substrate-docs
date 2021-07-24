@@ -82,8 +82,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       version: '3.0',
     },
     {
-      name: 'add-contracts-pallet',
-      navSlug: 'addContractsPallet',
+      name: 'ink-workshop',
+      navSlug: 'inkWorkshop',
       version: '3.0',
     },
   ]

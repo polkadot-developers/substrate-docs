@@ -31,7 +31,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
             <DocsNav
               sideNav={docsMenu}
               globalNav={globalDocsNav}
-              templateId={0}
+              templateId={2}
             />
           </div>
           <article className="markdown-body px-4 lg:px-16 lg:flex-grow lg:border-l lg:border-r lg:border-gray-200 dark:lg:border-gray-700">

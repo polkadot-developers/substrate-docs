@@ -13,13 +13,14 @@ you with a number of pre-built pallets for use in FRAME-based runtimes.
 ![Runtime Composition](../../../../src/images/docs/runtime/frame-runtime.png)
 
 To give some examples, FRAME includes:
+
 - a [Balances](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/)
-pallet that controls the underlying currency of your blockchain by managing the _balances_ of all the
-accounts in your system.
+  pallet that controls the underlying currency of your blockchain by managing the _balances_ of all the
+  accounts in your system.
 - a [Contracts](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/) pallet, designed to add smart contract functionality to your blockchain.
 - pallets for on-chain governance capabilities such as [Democracy](https://substrate.dev/rustdocs/v3.0.0/pallet_democracy/),
-[Elections](https://substrate.dev/rustdocs/v3.0.0/pallet_elections/), and
-[Collective](https://substrate.dev/rustdocs/v3.0.0/pallet_collective/).
+  [Elections](https://substrate.dev/rustdocs/v3.0.0/pallet_elections/), and
+  [Collective](https://substrate.dev/rustdocs/v3.0.0/pallet_collective/).
 
 The goal of this tutorial is to teach you how to create your own FRAME pallet to include in your
 custom blockchain. The Substrate Developer Hub Node Template comes with a template pallet that we
@@ -61,8 +62,14 @@ When writing your own pallets in the future, you will likely find the scaffoldin
 in this template pallet useful. But for the purposes of really learning how a pallet
 is constructed, **delete all contents of this file**.
 
-> The following sections will start _from scratch_ and assumes that you have cleared the
-> existing `pallet/template/src/lib.rs` file.
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={
+      `The following sections will start _from scratch_ and assumes that you have cleared the
+      existing \`pallet/template/src/lib.rs\` file.` 
+  }
+/>
 
 ## Write a Pallet from Scratch
 
@@ -88,36 +95,45 @@ pub mod pallet {
     #[pallet::config]  // <-- Step 2. code block will replace this.
 
     #[pallet::event]   // <-- Step 3. code block will replace this.
-	
+
     #[pallet::error]   // <-- Step 4. code block will replace this.
-    
+
     #[pallet::pallet]
     #[pallet::generate_store(pub(super) trait Store)]
     pub struct Pallet<T>(_);
-    
+
     #[pallet::storage] // <-- Step 5. code block will replace this.
-    
+
     #[pallet::hooks]
     impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {}
-    
+
     #[pallet::call]   // <-- Step 6. code block will replace this.
 }
 ```
-By doing this, we've declared the dependencies and [macros](/docs/en/knowledgebase/runtime/macros) our pallet will require to function.
+
+By doing this, we've declared the dependencies and [macros](/v3/docs/runtime/macros) our pallet will require to function.
 
 Things like _events_, _storage_, and _callable functions_ may look familiar to you if you have done other
 blockchain development. We will show you what each of these components looks like for a basic Proof
 Of Existence pallet by providing you with the code blocks that go under each section.
 
-> **Critical**: the `no_std` feature is **required** for all pallets! This is because we are building a
-> _runtime_ module that _must_ compile to WASM, and therefore cannot depend on rust's `std`
-> dependencies.
-> If you take a look at the `pallets/template/Cargo.toml` file, you will see that the template already has `std` default feature disabled which is necessary in order to compile the runtime to WASM. Learn more about why this is
-> necessary in the [Add a Pallet](../add-a-pallet) tutorial.
->
-> You _can_ use `std` features in non-runtime components like `mock.rs` and `tests.rs` using
-> `[dev-dependencies]` _ONLY_. Specifics and examples of this are outside the scope of this
-> tutorial. Learn more about [testing in Substrate here](../../../v3/docs/runtime/tests).
+<Message
+  type={`red`}
+  title={`Warning`}
+  text=
+    "The `no_std` feature is required for all pallets! This is because we are building a
+    runtime_ module that _must_ compile to WASM, and therefore cannot depend on rust\'s `std` dependencies.
+    If you take a look at the `pallets/template/Cargo.toml` file, you will see that the template already has
+    `std` default feature disabled which is necessary in order to compile the runtime to WASM. Learn more about why this is
+    necessary in the [Add a Pallet](../add-a-pallet) tutorial.
+    You _can_ use `std` features in non-runtime components like `mock.rs` and `tests.rs` using
+    `[dev-dependencies]` _ONLY_. Specifics and examples of this are outside the scope of this
+    tutorial. Learn more about [testing in Substrate here](../../../v3/docs/runtime/tests).
+    "
+/>
+
+
+
 
 ### 2. Pallet Configuration Trait
 
@@ -185,10 +201,10 @@ update our pallet's dependencies:
 # add `sp-std` in the dependencies section of the toml file
 
 [dependencies]
-# -- snip -- 
+# -- snip --
 sp-std = { default-features = false, version = '3.0.0' }
 # -- snip --
-```  
+```
 
 ### 4. Pallet Errors
 
@@ -215,21 +231,19 @@ To implement this, replace the `#[pallet::error]` line with:
         }
 ```
 
-
-
 ### 5. Pallet Storage
 
 To add a new proof to the blockchain, we will simply store that proof in our pallet's storage. To
 store that value, we will create a [hash map](https://en.wikipedia.org/wiki/Hash_table) from the
-proof to the owner of that proof and the block number the proof was made. We'll be using FRAME's [`StorageMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/types/struct.StorageMap.html) to keep track of this information. 
+proof to the owner of that proof and the block number the proof was made. We'll be using FRAME's [`StorageMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/types/struct.StorageMap.html) to keep track of this information.
 
 To implement this, replace the `#[pallet::storage]` line with:
 
 **`pallet/template/src/lib.rs`**
 
 ```rust
-    #[pallet::storage] 
-    pub(super) type Proofs<T: Config> = StorageMap<_, Blake2_128Concat, Vec<u8>, (T::AccountId, T::BlockNumber), ValueQuery>;   
+    #[pallet::storage]
+    pub(super) type Proofs<T: Config> = StorageMap<_, Blake2_128Concat, Vec<u8>, (T::AccountId, T::BlockNumber), ValueQuery>;
 ```
 
 ### 6. Pallet Callable Functions
@@ -263,8 +277,8 @@ To implement this, replace the `#[pallet::call]` line with:
                 // This function will return an error if the extrinsic is not signed.
                 // https://substrate.dev/docs/en/knowledgebase/runtime/origin
                 let sender = ensure_signed(origin)?;
-            
-                // Verify that the specified proof has not already been claimed.         
+
+                // Verify that the specified proof has not already been claimed.
                 ensure!(!Proofs::<T>::contains_key(&proof), Error::<T>::ProofAlreadyClaimed);
 
                 // Get the block number from the FRAME System module.
@@ -325,6 +339,12 @@ cargo build --release
 If everything worked out properly, your node should be producing blocks.
 And now it is time to interact with our new Proof of Existence pallet!
 
-> Stuck? There is a full node template
-> [solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/build-a-dapp-v3+1)
-> to use as a reference. Check the commit diff from the base `v3.0.0+1` template for the exact changes.
+<Message
+  type={`yellow`}
+  title={`Information`}
+  text=
+    "There is a full node template solution
+    [here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/build-a-dapp-v3+1)
+    to use as a reference if you're stuck. Check the commit diff from the base `v3.0.0+1` template for the exact changes.
+    "
+/>

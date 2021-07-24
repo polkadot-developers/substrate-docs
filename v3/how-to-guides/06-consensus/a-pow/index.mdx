@@ -4,8 +4,6 @@ slug: /v3/how-to-guides/consensus/pow
 keywords: node, client, consensus, proof-of-work
 ---
 
-[![Try on playground](https://img.shields.io/badge/Playground-Node_Template-brightgreen?logo=Parity%20Substrate)][pow-playground]
-
 ## Goal
 
 To understand how link a POW consensus engine to a service client.
@@ -49,7 +47,7 @@ let import_queue = sc_consensus_pow::import_queue(
 
 See the [Rust docs][powblockimport-new-rustdocs] on to configure the `pow_block_import` function.
 
-### 2. Create import queue 
+### 2. Create import queue
 
 Define your node's [inherents][inherents-kb] by using [`InherentDataProviders`][inherents-rustdocs] in a function that defines the providers of your POW system:
 
@@ -103,27 +101,30 @@ task_manager
     .spawn_blocking("pow", worker_task);
 ```
 
-### 4. Construct the light client's service.
+### 4. Construct the light client's service
 
-The construction of the [light client][lightclient-parity] service is quite similar to the construction of a `new_full`.
+The construction of the [light client][lightclient-parity] service is quite similar to the construction of the `new_full` function.
+Follow the pattern from the previous step to create `new_light`.
 
 ## Examples
 
-- Basic POW node 
+- [Basic POW example node](https://github.com/substrate-developer-hub/substrate-how-to-guides/tree/main/example-code/consensus-nodes/POW)
 
 ## Resources
+
 #### Rust docs
-- [`PowBlockimport`][powblockimport-rustdocs]
+
 - [POW Algorithm][pow-rustdocs] trait
-#### Knowledgebase 
-- Knowledgebase article on [inherents][inherents-kb]
+- [`PowBlockimport`][powblockimport-rustdocs]
 
+#### Knowledgebase
 
-[pow-playground]: https://playground.substrate.dev/?deploy=node-template
+- [Inherents][inherents-kb]
+
 [partialcomponents-rustdocs]: https://crates.parity.io/sc_service/struct.PartialComponents.html
 [powblockimport-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/sc_consensus_pow/struct.PowBlockImport.html
 [powblockimport-new-rustdocs]: https://crates.parity.io/sc_consensus_pow/struct.PowBlockImport.html#method.new_full
 [inherents-kb]: https://substrate.dev/docs/en/knowledgebase/learn-substrate/extrinsics#inherents
 [inherents-rustdocs]: https://crates.parity.io/sp_inherents/struct.InherentDataProviders.html
 [lightclient-parity]: https://www.parity.io/what-is-a-light-client/
-[pow-rustdocs]: https://crates.parity.io/sc_consensus_pow/trait.PowAlgorithm.html 
+[pow-rustdocs]: https://crates.parity.io/sc_consensus_pow/trait.PowAlgorithm.html

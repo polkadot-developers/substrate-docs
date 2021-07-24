@@ -27,9 +27,15 @@ to allow you to interact with the Node Template. As long as you have completed t
 [Create Your First Chain](/v3/tutorials/create-your-first-substrate-chain) and [Build a dApp](/v3/tutorials/proof-of-existence)
 tutorials, you should already be prepared to continue with the rest of this tutorial.
 
-> Refer directly to the
-> [front-end setup instructions](/v3/tutorials/create-your-first-substrate-chain/setup#install-the-front-end-template)
-> for the Create Your First Chain Tutorial if necessary.
+<Message
+  type={`yellow`}
+  title={`Information`}
+  text=
+    "Refer directly to the
+    [front-end setup instructions](/v3/tutorials/create-your-first-substrate-chain/setup#install-the-front-end-template)
+    for the Create Your First Chain Tutorial if necessary.
+    "
+/>
 
 To start the Front-End Template, navigate to its directory and run:
 
@@ -138,14 +144,14 @@ refer to the [Substrate runtime](https://github.com/paritytech/substrate/tree/ma
 which includes nearly every pallets in the library of core FRAME pallets.
 
 In the Substrate node runtime `bin/node/runtime/Cargo.toml` file, you will see how to import
-different pallets, and in the `bin/node/runtime/lib.rs` file you will see how to add each pallet to your
+different pallets, and in the `bin/node/runtime/src/lib.rs` file you will see how to add each pallet to your
 runtime. You can generally copy what was done there as a starting point to include a pallet in your
 own runtime.
 
 ### Learn More
 
-- Learn how to add a more complex pallet to the Node Template by completing the
-  [Add the Contracts Pallet](/v3/tutorials/add-contracts-pallet) tutorial.
+- Learn how to add a more complex pallet to the Node Template by going through the
+  [Add the Contracts Pallet](../../../v3/how-to-guides/pallet-design/contracts-pallet) guide.
 - Complete the [Forkless Upgrade a Chain](/v3/tutorials/forkless-upgrade) tutorial to learn how Substrate enables
   forkless runtime upgrades and follow steps to perform two upgrades, each of which is performed by
   way of a distinct upgrade mechanism.

@@ -9,7 +9,7 @@ reasons for choosing smart contract development over runtime development for you
 
 ## Smart Contract Toolkits
 
-Substrate provides two smart contract virtual machines which can be added to your runtime. Each come 
+Substrate provides two smart contract virtual machines which can be added to your runtime. Each come
 with additional tools to ease development depending on your use cases.
 
 ### Contracts Pallet
@@ -22,17 +22,17 @@ Learn more [in this section](contracts-pallet).
 
 ### EVM Pallet
 
-The [**FRAME EVM pallet**](https://docs.rs/pallet_evm/) provides an EVM execution environment for Substrate's Ethereum 
+The [**FRAME EVM pallet**](https://docs.rs/pallet_evm/) provides an EVM execution environment for Substrate's Ethereum
 compatibility layer, known as [Frontier](https://github.com/paritytech/frontier). It allows unmodified EVM
 code to be executed in a Substrate-based blockchain, designed to closely emulate the
 functionality of executing contracts on the Ethereum mainnet within the Substrate runtime.
 Learn more in [this section](evm-pallet).
 
-> **Note:** Substrate is built to enable developers to extend what's provided out of the box. 
-We encourage further development of alternative smart contract platforms on top of the Substrate
-runtime. 
-Use these pre-built pallets to inform how you might design your own system or how you could port over an
-existing system to work on a Substrate-based chain.
+> **Note:** Substrate is built to enable developers to extend what's provided out of the box.
+> We encourage further development of alternative smart contract platforms on top of the Substrate
+> runtime.
+> Use these pre-built pallets to inform how you might design your own system or how you could port over an
+> existing system to work on a Substrate-based chain.
 
 ## Smart Contracts vs. Runtime Development
 
@@ -98,9 +98,9 @@ different parts of your runtime logic such that it will not be abused by malicio
 
 - Provides low level access to your entire blockchain.
 - Removes the overhead of built-in safety for performance,
-giving developers increased flexibility at the cost of increased responsibility.
-- Raises the entry bar for developers, where developers are 
-not only responsible for writing working code but must constantly check to avoid writing broken code.
+  giving developers increased flexibility at the cost of increased responsibility.
+- Raises the entry bar for developers, where developers are
+  not only responsible for writing working code but must constantly check to avoid writing broken code.
 - Has no inherent economic incentives to repel bad actors.
 
 ### Choosing the Right Approach
@@ -121,16 +121,16 @@ take advantage of the existing network. The only costs to you are the fees which
 and maintain your contract.
 
 Setting up your own blockchain, on the other hand has the cost of building a community who find value
-in the service you provide. Or, the additional costs 
+in the service you provide. Or, the additional costs
 associated with establishing a private network with the overhead of a cloud computing based architecture and
 general network maintenance.
 
-It is hard to provide guidance on every possible scenario 
-as each one depends on specific use cases and design decisions. 
+It is hard to provide guidance on every possible scenario
+as each one depends on specific use cases and design decisions.
 In general, runtime development is most favorable for applications that
 require higher degrees of flexibility and adaptability &mdash; for example,
-applications that require accomodating different types of users or layers of 
-governance. The table below is meant to help inform your 
+applications that require accomodating different types of users or layers of
+governance. The table below is meant to help inform your
 decisions on which approach to use based on different situations.
 
 <table>
@@ -142,38 +142,44 @@ decisions on which approach to use based on different situations.
   <tr>
     <td>
       <ul>
-      <li> Privacy Layer </li>
-      <li> Feeless Token </li>
-      <li> Light-Client Bridge </li>
-      <li> Decentralized Exchange </li>
-      <li> Oracles </li>
-      <li> Stable Coin </li>
-      </ul>      
+        <li> Privacy Layer </li>
+        <li> Feeless Token </li>
+        <li> Light-Client Bridge </li>
+        <li> Decentralized Exchange </li>
+        <li> Oracles </li>
+        <li> Stable Coin </li>
+      </ul>
     </td>
     <td>
       <ul>
-      <li>Multi-signature Wallet </li>
-      <li>Data services </li>
-      <li>Simple fundraiser </li>
+        <li>Multi-signature Wallet </li>
+        <li>Data services </li>
+        <li>Simple fundraiser </li>
       </ul>
     </td>
     <td>
       Gaming dApp
-        <ul><li>Small scale (contract)</li>
-        <li> Large scale (runtime)</li></ul>
+      <ul>
+        <li>Small scale (contract)</li>
+        <li> Large scale (runtime)</li>
+      </ul>
       Decentralized Autonomous Organizations (DAO)
-        <ul><li>Community driven (contract)</li>
-        <li>Protocol driven (runtime)</li></ul>
+      <ul>
+        <li>Community driven (contract)</li>
+        <li>Protocol driven (runtime)</li>
+      </ul>
       Treasury
-        <ul><li>Community driven (contract)</li>
-        <li>Protocol driven (runtime)</li></ul>
+      <ul>
+        <li>Community driven (contract)</li>
+        <li>Protocol driven (runtime)</li>
+      </ul>
     </td>
   </tr>
 </table>
 
 > If you are building on Polkadot, you can also
-[deploy smart contracts on its parachain](https://wiki.polkadot.network/docs/en/build-smart-contracts). Check here for
-[comparison between developing on parachain, parathread, and smart contract](https://wiki.polkadot.network/docs/en/build-build-with-polkadot#what-is-the-difference-between-building-a-parachain-a-parathread-or-a-smart-contract).
+> [deploy smart contracts on its parachain](https://wiki.polkadot.network/docs/en/build-smart-contracts). Check here for
+> [comparison between developing on parachain, parathread, and smart contract](https://wiki.polkadot.network/docs/en/build-build-with-polkadot#what-is-the-difference-between-building-a-parachain-a-parathread-or-a-smart-contract).
 
 ### Learn More
 
@@ -181,10 +187,11 @@ decisions on which approach to use based on different situations.
   [Contracts pallet](contracts-pallet).
 - Investigate the [EVM pallet](evm-pallet) to see if it is what you need for your next project.
 - Learn more about [why Rust is an ideal smart contract language](https://paritytech.github.io/ink-docs/why-rust-for-smart-contracts).
+
 ### Examples
 
 - Follow a
-  [tutorial to add the Contracts pallet to your FRAME runtime](/tutorials/add-contracts-pallet).
+  [this guide](../../../v3/how-to-guides/pallet-design/contracts-pallet) to learn how to add the Contracts pallet to your FRAME runtime.
 - Learn how to
   [start developing with the Contracts pallet and ink!](https://substrate.dev/substrate-contracts-workshop/#/).
 
