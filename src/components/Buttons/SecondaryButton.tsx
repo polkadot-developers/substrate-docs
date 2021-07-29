@@ -9,9 +9,8 @@ interface SecondaryButtonProps {
 }
 export function SecondaryButton(props: SecondaryButtonProps) {
   const textSize = () => (props.cta ? `text-xl py-4 px-5` : `text-lg py-2 px-4`)
-  console.log(textSize)
   const styles =
-    'bg-substrateDark transform transition duration-300 ease-in-out text-white font-bold rounded hover:bg-opacity-80'
+    'bg-substrateDark transform transition duration-300 ease-in-out text-white font-bold rounded hover:bg-opacity-80 active:ring-2 active:ring-substrateGreen'
   return (
     <>
       {props.external ? (
