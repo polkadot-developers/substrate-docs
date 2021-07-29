@@ -8,7 +8,7 @@ interface PrimaryButtonProps {
   cta?: boolean
 }
 export function PrimaryButton(props: PrimaryButtonProps) {
-  const textSize = () => (props.cta ? `text-xl py-4 px-8` : `text-lg py-2 px-8`)
+  const textSize = () => (props.cta ? `text-xl py-4 px-8` : `text-lg py-2 px-7`)
   const buttonStyle =
     'bg-substrateGreen font-bold text-white rounded focus:outline-none'
   const hoverStyle =
@@ -16,21 +16,13 @@ export function PrimaryButton(props: PrimaryButtonProps) {
   return (
     <>
       {props.external ? (
-        <a
-          className="flex rounded hover:shadow active:shadow-none"
-          href={props.link}
-          target="_blank"
-          rel="noreferrer"
-        >
+        <a href={props.link} target="_blank" rel="noreferrer">
           <button className={`${buttonStyle} ${textSize()} ${hoverStyle} `}>
             {props.children}
           </button>
-          <div className="flex items-center bg-green-500 w-0 rounded-tr rounded-br transform transition-all group-hover:w-6 group-hover:justify-center">
-            <span className="text-white text-sm">&#10132;</span>
-          </div>
         </a>
       ) : (
-        <LocalizedLink className="" to={props.link}>
+        <LocalizedLink to={props.link}>
           <button className={`${buttonStyle} ${textSize()} ${hoverStyle} `}>
             {props.children}
           </button>

@@ -8,7 +8,7 @@ interface SecondaryButtonProps {
   cta?: boolean
 }
 export function SecondaryButton(props: SecondaryButtonProps) {
-  const textSize = () => (props.cta ? `text-xl py-4 px-5` : `text-lg py-2 px-4`)
+  const textSize = () => (props.cta ? `text-xl py-4 px-8` : `text-lg py-2 px-7`)
   const styles =
     'bg-substrateDark transform transition duration-300 ease-in-out text-white font-bold rounded hover:bg-opacity-80'
   return (
