@@ -161,6 +161,11 @@ module.exports = {
       },
     },
   },
-  variants: ['responsive', 'group-hover', 'hover', 'focus', 'active'],
+  variants: {
+    fill: ['responsive', 'group-hover', 'hover', 'focus', 'active'],
+    extend: {
+      boxSizing: ['hover', 'focus'],
+    },
+  },
   plugins: [],
 }

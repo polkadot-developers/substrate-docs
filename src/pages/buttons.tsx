@@ -17,7 +17,7 @@ const Page2 = () => {
         <div className="w-full flex">
           <div className="w-2/3 m-6">
             <h4>CTA BUTTONS</h4>
-            <div className="flex items-center mt-6">
+            <div className="mt-6">
               <PrimaryButton cta link="#">
                 Primary
               </PrimaryButton>

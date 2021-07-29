@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  /* *,
+  *:after,
+  *:before {
+    @apply box-border;
+  } */
   html {
     @apply bg-white dark:bg-black antialiased;
     scroll-behavior: smooth;
