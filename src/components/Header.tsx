@@ -234,7 +234,6 @@ export default function Header() {
                 />
               </svg>
             </LocalizedLink>
-            <ThemeToggle theme={theme} setTheme={setTheme} />
           </div>
           {/* ------------------ */}
           {/* Mobile Navigation */}
@@ -297,6 +296,7 @@ export default function Header() {
                 <DocsButton />
               </div>
               <LanguageSwitcher currentLang={locale} langConfig={config} />
+              <ThemeToggle theme={theme} setTheme={setTheme} />
             </div>
           </nav>
         </div>
