@@ -6,10 +6,11 @@ import {
   PrimaryButton,
   SecondaryButton,
   TextButton,
+  PrimaryFixedButton,
 } from '../components/Buttons'
 import ExternalLink from '../components/DocsComponents/ExternalLink'
 
-const Page2 = () => {
+const Buttons = () => {
   return (
     <Layout>
       <SEO title="Buttons" />
@@ -120,9 +121,28 @@ const Page2 = () => {
             </ExternalLink>
           </div>
         </div>
+        <div className="m-6">
+          <h4>PRIMARY FIXED WIDTH</h4>
+          <div className="mt-6">
+            <p className="mb-0">10 Characters</p>
+            <PrimaryFixedButton small link="#">
+              Primaryara
+            </PrimaryFixedButton>
+            <br />
+            <p className="mb-0">20 Characters</p>
+            <PrimaryFixedButton medium link="#">
+              Primary Medium ABCDE
+            </PrimaryFixedButton>
+            <br />
+            <p className="mb-0">30 Characters</p>
+            <PrimaryFixedButton large link="#">
+              Primary Very very very Large
+            </PrimaryFixedButton>
+          </div>
+        </div>
       </div>
     </Layout>
   )
 }
 
-export default Page2
+export default Buttons
