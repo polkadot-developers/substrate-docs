@@ -46,12 +46,12 @@ export default function SubMenu({ menuData, width }: SubMenuProps) {
               if (item.external) {
                 return (
                   <a
-                    className="text-black dark:text-white hover:text-substrateGreen hover:underline"
+                    className="text-black dark:text-white"
                     key={index}
                     href={item.link}
                   >
                     <div className="pb-6 focus:outline-none focus:bg-substrateBlueBg">
-                      <span className="text-lg font-medium">
+                      <span className="text-lg font-medium hover:text-substrateGreen hover:underline ">
                         {item.linkTitle}
                       </span>
                     </div>
@@ -60,12 +60,12 @@ export default function SubMenu({ menuData, width }: SubMenuProps) {
               } else {
                 return (
                   <LocalizedLink
-                    className="text-black dark:text-white hover:text-substrateGreen hover:underline"
+                    className="text-black dark:text-white"
                     key={index}
                     to={item.link}
                   >
                     <div className="pb-6 focus:outline-none focus:bg-substrateBlueBg">
-                      <span className="text-lg font-medium">
+                      <span className="text-lg font-medium hover:text-substrateGreen hover:underline">
                         {item.linkTitle}
                       </span>
                     </div>

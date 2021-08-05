@@ -19,7 +19,7 @@ export default function DocsNav({
 
   return (
     <nav
-      className={`sticky top-16 h-docNav bg-substrateGray-light overflow-y-auto ${
+      className={`sticky top-16 h-docNav bg-substrateGray-light dark:bg-gray-900 overflow-y-auto ${
         isOpen
           ? `transition-width transform w-16`
           : `transition-width transform w-60`
@@ -92,7 +92,7 @@ export default function DocsNav({
           </div>
           <div>
             <hr className="mt-6" />
-            <div className="flex items-center justify-between px-20 lg:px-4 py-4 lg:dark:bg-black">
+            <div className="flex items-center justify-between px-20 lg:px-4 py-4 lg:dark:bg-gray-900">
               <span>{intl.formatMessage({ id: 'docs-nav-learn-more' })}</span>
             </div>
             {globalNav
@@ -101,7 +101,7 @@ export default function DocsNav({
                 return (
                   <div
                     key={index}
-                    className="px-20 lg:px-4 py-4 lg:dark:bg-black"
+                    className="px-20 lg:px-4 py-4 lg:dark:bg-gray-900"
                   >
                     {navItem.external ? (
                       <a

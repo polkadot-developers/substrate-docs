@@ -29,7 +29,7 @@ export default function LanguageSwitcher({
       : setCurrentLink(`${currentPath.substr(3)}`)
   })
   return (
-    <div className="flex items-center">
+    <div className="flex items-center px-4">
       <p className="lg:hidden pt-6 pr-6 ">
         {intl.formatMessage({ id: 'nav-language' })}
       </p>

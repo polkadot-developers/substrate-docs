@@ -34,7 +34,7 @@ const MobileMenu = ({
   const [isEcoMenuOpen, setIsEcoMenuOpen] = useState(false)
 
   return (
-    <nav className="lg:hidden absolute inset-0 bg-substrateGray-light dark:bg-black z-10 animate-fade-in-right">
+    <nav className="lg:hidden absolute inset-0 bg-substrateGray-light dark:bg-black z-90 animate-fade-in-right">
       <div className="h-16 px-4 flex items-center justify-between">
         <div>
           <div className="w-32">
@@ -118,7 +118,7 @@ const MobileMenu = ({
         </div>
         <div className="pt-2 mx-4 flex justify-between border-b-2 border-gray-300">
           <input
-            className="h-10 dark:bg-black text-normal focus:outline-none"
+            className="h-10 bg-substrateGray-light dark:bg-black text-normal focus:outline-none"
             type="search"
             name="search"
             placeholder="Search Docs"

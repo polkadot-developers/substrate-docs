@@ -205,7 +205,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-10 border-b bg-white dark:bg-black border-gray-200 dark:border-gray-700">
-      <div className="container xl:px-12">
+      <div className="px-4 xl:px-12">
         <div
           className={`flex items-center justify-between transition-height ease-in-out ${menuHeight}`}
         >
@@ -261,17 +261,17 @@ export default function Header() {
           {/* ------------------ */}
           {/* Desktop Navigation */}
           {/* ------------------ */}
-          <nav className="hidden lg:flex lg:items-center  w-full">
-            <div className="w-2/3 flex justify-evenly">
+          <nav className="hidden lg:flex lg:justify-between lg:items-center  w-full">
+            <div className="w-2/3 max-w-4xl flex justify-evenly">
               <SubMenu menuData={techMenu} width={`w-40`} />
-              <SubMenu menuData={devMenu} width={`w-44`} />
+              <SubMenu menuData={devMenu} width={`w-48`} />
               <SubMenu menuData={visionMenu} width={`w-60`} />
               <SubMenu menuData={ecoMenu} width={`w-40`} />
             </div>
             <div className=" w-1/2 flex items-center justify-end">
-              <div className="flex items-center border-b-2 border-gray-300">
+              <div className="flex items-center xl:border-b-2 xl:border-gray-300">
                 <input
-                  className=" text-normal dark:bg-black focus:outline-none"
+                  className="hidden xl:inline-block text-normal dark:bg-black focus:outline-none"
                   type="search"
                   name="search"
                   placeholder="Search Docs"
