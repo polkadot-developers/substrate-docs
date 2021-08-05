@@ -18,8 +18,8 @@ const DocsTemplate = ({ data, pageContext }: any) => {
   return (
     <Layout>
       <SEO title={data.mdx ? data.mdx.frontmatter.title : null} />
-      <div className="mb-24">
-        <div className="flex flex-col lg:container lg:flex-row ">
+      <div>
+        <div className="flex flex-col lg:flex-row">
           <div className="lg:hidden">
             <DocsNavMobile
               sideNav={docsMenu}
@@ -27,54 +27,54 @@ const DocsTemplate = ({ data, pageContext }: any) => {
               templateId={1}
             />
           </div>
-          <div className="hidden lg:inline-block lg:flex-none">
+          <div className="hidden lg:inline-block lg:flex-none lg:h-auto lg:bg-substrateGray-light lg:dark:bg-gray-900 ">
             <DocsNav
               sideNav={docsMenu}
               globalNav={globalDocsNav}
               templateId={1}
             />
           </div>
-          <article className="markdown-body px-4 lg:px-16 lg:flex-grow lg:border-l lg:border-r lg:border-gray-200 dark:lg:border-gray-700">
+          <article className="max-w-6xl px-4 lg:px-16 lg:pb-24 lg:flex lg:mx-auto">
             <div>
-              {data.mdx ? (
-                <div className="pt-10">
-                  <VersionControl version={version} slug={slug} />
-                  <h1>{data.mdx.frontmatter.title}</h1>
-                  <MDXRenderer>{data.mdx.body}</MDXRenderer>
-                </div>
-              ) : (
-                <div>
-                  <div className="mt-10">
-                    <Message
-                      type={`green`}
-                      title={`TRANSLATIONS NEEDED`}
-                      text={`This page has not been translated yet. If you can help translate the documentation here into another language, please go to Crowdin and pick a language to get started. ##LINK HELPFUL DOC##`}
-                    />
-                  </div>
-                  <div className="pt-10">
+              <div>
+                {data.mdx ? (
+                  <div className="pt-10 markdown-body">
                     <VersionControl version={version} slug={slug} />
-                    <h1>{data.englishVersion.frontmatter.title}</h1>
-                    <MDXRenderer>{data.englishVersion.body}</MDXRenderer>
+                    <h1>{data.mdx.frontmatter.title}</h1>
+                    <MDXRenderer>{data.mdx.body}</MDXRenderer>
                   </div>
-                </div>
-              )}
-            </div>
-            <div className="text-xs text-right py-12">
-              Last updated on 03/16/2021
-            </div>
-            {docsMenu[0].items.length > 1 ? (
+                ) : (
+                  <div>
+                    <div className="mt-10 markdown-body">
+                      <Message
+                        type={`green`}
+                        title={`TRANSLATIONS NEEDED`}
+                        text={`This page has not been translated yet. If you can help translate the documentation here into another language, please go to Crowdin and pick a language to get started. ##LINK HELPFUL DOC##`}
+                      />
+                    </div>
+                    <div className="pt-10">
+                      <VersionControl version={version} slug={slug} />
+                      <h1>{data.englishVersion.frontmatter.title}</h1>
+                      <MDXRenderer>{data.englishVersion.body}</MDXRenderer>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className="text-xs text-right py-12">
+                Last updated on 03/16/2021
+              </div>
               <BottomButtons menu={docsMenu} pageSlug={slug} />
-            ) : null}
+            </div>
+            {data.mdx ? (
+              <div className="hidden xl:inline-block xl:flex-none">
+                <DocsSideBar headings={data.mdx.headings} />
+              </div>
+            ) : (
+              <div className="hidden xl:inline-block xl:flex-none">
+                <DocsSideBar headings={data.englishVersion.headings} />
+              </div>
+            )}
           </article>
-          {data.mdx ? (
-            <div className="hidden lg:inline-block lg:flex-none">
-              <DocsSideBar headings={data.mdx.headings} />
-            </div>
-          ) : (
-            <div className="hidden lg:inline-block lg:flex-none">
-              <DocsSideBar headings={data.englishVersion.headings} />
-            </div>
-          )}
         </div>
       </div>
     </Layout>

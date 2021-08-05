@@ -196,9 +196,9 @@ export default function Header() {
   }, [])
 
   useEffect(() => {
-    if (scroll.y > 100) {
+    if (scroll.y > 15) {
       setMenuHeight('h-16')
-    } else if (scroll.y < 50) {
+    } else if (scroll.y < 1) {
       setMenuHeight('h-24')
     }
   }, [scroll.y])
@@ -262,7 +262,7 @@ export default function Header() {
           {/* Desktop Navigation */}
           {/* ------------------ */}
           <nav className="hidden lg:flex lg:justify-between lg:items-center  w-full">
-            <div className="w-2/3 max-w-4xl flex justify-evenly">
+            <div className="w-2/3 max-w-3xl flex justify-evenly">
               <SubMenu menuData={techMenu} width={`w-40`} />
               <SubMenu menuData={devMenu} width={`w-48`} />
               <SubMenu menuData={visionMenu} width={`w-60`} />

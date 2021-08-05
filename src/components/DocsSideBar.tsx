@@ -6,7 +6,7 @@ interface DocsSideBarProps {
 
 export default function DocsSideBar({ headings }: DocsSideBarProps) {
   return (
-    <div className="w-60 sticky top-16 h-screen py-5 pl-4 text-sm overflow-y-auto">
+    <div className="w-60 sticky top-16 h-screen py-5 pl-12 text-sm overflow-y-auto">
       <p className="font-bold">ON THIS PAGE</p>
       {headings.map((item: { value: string; depth: number }, index: number) => {
         const link = item.value

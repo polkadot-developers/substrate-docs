@@ -19,7 +19,7 @@ export default function DocsNav({
 
   return (
     <nav
-      className={`sticky top-16 h-docNav bg-substrateGray-light dark:bg-gray-900 overflow-y-auto ${
+      className={`sticky top-16 h-docNav overflow-y-auto ${
         isOpen
           ? `transition-width transform w-16`
           : `transition-width transform w-60`
@@ -58,8 +58,8 @@ export default function DocsNav({
           }`}
         >
           <LocalizedLink
-            className="flex justify-center items-center py-4 text-black dark:text-white hover:text-substrateDark"
-            to="/"
+            className="flex justify-start items-center pl-4 py-4 text-black dark:text-white hover:text-substrateDark"
+            to={templateId === 1 ? '/tutorials' : '/'}
           >
             <svg
               className="fill-current text-substrateDark dark:text-white"
@@ -71,7 +71,9 @@ export default function DocsNav({
               <path d="M9.11836 19.1184C9.60528 19.6053 10.3947 19.6053 10.8816 19.1184C11.3683 18.6317 11.3686 17.8429 10.8824 17.3559L4.7875 11.25L18.75 11.25C19.4404 11.25 20 10.6904 20 10C20 9.30965 19.4404 8.75 18.75 8.75L4.7875 8.75L10.8824 2.64415C11.3686 2.1571 11.3683 1.36826 10.8816 0.881648C10.3947 0.39473 9.60527 0.394731 9.11836 0.881648L1.03312e-06 10L9.11836 19.1184Z"></path>
             </svg>
             <span className="pl-4 text-sm font-bold">
-              {intl.formatMessage({ id: 'docs-nav-docs-overview' })}
+              {templateId === 1
+                ? 'Back to Tutorials'
+                : `${intl.formatMessage({ id: 'docs-nav-docs-overview' })}`}
             </span>
           </LocalizedLink>
           <div className="flex py-3 bg-substrateGray dark:bg-gray-700">
