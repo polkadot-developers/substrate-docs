@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import { useLocalization } from 'gatsby-theme-i18n'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
@@ -12,6 +13,8 @@ import navMenu from '../components/DevNavMenu'
 
 const DocsTemplate = ({ data, pageContext }: any) => {
   const { slug, version } = pageContext
+  const { locale } = useLocalization()
+  const docId = 0
   const globalDocsNav = navMenu.global()
   const docsMenu = navMenu.knowledgebase()
 
@@ -24,28 +27,37 @@ const DocsTemplate = ({ data, pageContext }: any) => {
             <DocsNavMobile
               sideNav={docsMenu}
               globalNav={globalDocsNav}
-              templateId={0}
+              templateId={docId}
             />
           </div>
           <div className="hidden lg:inline-block lg:flex-none lg:h-auto lg:bg-substrateGray-light lg:dark:bg-gray-900 ">
             <DocsNav
               sideNav={docsMenu}
               globalNav={globalDocsNav}
-              templateId={0}
+              templateId={docId}
             />
           </div>
           <article className="max-w-6xl px-4 lg:px-16 lg:pb-24 lg:flex lg:mx-auto">
             <div>
               <div>
                 {data.mdx ? (
-                  <div className="pt-10 markdown-body">
-                    <VersionControl version={version} slug={slug} />
-                    <h1>{data.mdx.frontmatter.title}</h1>
-                    <MDXRenderer>{data.mdx.body}</MDXRenderer>
+                  <div className="pt-10">
+                    <VersionControl
+                      version={version}
+                      slug={slug}
+                      // trueSlug={data.mdx.slug}
+                      // templateId={docId}
+                      // currentLang={locale}
+                      absolutePath={data.mdx.fileAbsolutePath}
+                    />
+                    <div className="markdown-body">
+                      <h1>{data.mdx.frontmatter.title}</h1>
+                      <MDXRenderer>{data.mdx.body}</MDXRenderer>
+                    </div>
                   </div>
                 ) : (
                   <div>
-                    <div className="mt-10 markdown-body">
+                    <div className="mt-10">
                       <Message
                         type={`green`}
                         title={`TRANSLATIONS NEEDED`}
@@ -53,9 +65,18 @@ const DocsTemplate = ({ data, pageContext }: any) => {
                       />
                     </div>
                     <div className="pt-10">
-                      <VersionControl version={version} slug={slug} />
-                      <h1>{data.englishVersion.frontmatter.title}</h1>
-                      <MDXRenderer>{data.englishVersion.body}</MDXRenderer>
+                      <VersionControl
+                        version={version}
+                        slug={slug}
+                        // trueSlug={data.englishVersion.slug}
+                        // templateId={docId}
+                        // currentLang={`en`}
+                        absolutePath={data.englishVersion.fileAbsolutePath}
+                      />
+                      <div className="markdown-body">
+                        <h1>{data.englishVersion.frontmatter.title}</h1>
+                        <MDXRenderer>{data.englishVersion.body}</MDXRenderer>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -99,6 +120,9 @@ export const query = graphql`
         value
         depth
       }
+      slug
+      tableOfContents(maxDepth: 3)
+      fileAbsolutePath
     }
     englishVersion: mdx(
       fields: { locale: { eq: "en" } }
@@ -113,6 +137,9 @@ export const query = graphql`
         value
         depth
       }
+      slug
+      tableOfContents(maxDepth: 3)
+      fileAbsolutePath
     }
   }
 `
