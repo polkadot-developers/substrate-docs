@@ -41,9 +41,6 @@ const DocsTemplate = ({ data, pageContext }: any) => {
                     <VersionControl
                       version={version}
                       slug={slug}
-                      // trueSlug={data.mdx.slug}
-                      // templateId={docId}
-                      // currentLang={locale}
                       absolutePath={data.mdx.fileAbsolutePath}
                     />
                     <div className="markdown-body">
@@ -64,9 +61,6 @@ const DocsTemplate = ({ data, pageContext }: any) => {
                       <VersionControl
                         version={version}
                         slug={slug}
-                        // trueSlug={data.englishVersion.slug}
-                        // templateId={docId}
-                        // currentLang={`en`}
                         absolutePath={data.englishVersion.fileAbsolutePath}
                       />
                       <div className="markdown-body">

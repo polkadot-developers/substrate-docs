@@ -6,9 +6,6 @@ import GithubEditButton from './GithubEditButton'
 interface VersionControlProps {
   version: string
   slug: string
-  // trueSlug: string
-  // templateId: number
-  // currentLang: string
   absolutePath: string
 }
 export default function VersionControl({
@@ -55,7 +52,7 @@ export default function VersionControl({
           </div>
         )} */}
       </div>
-      <GithubEditButton version={version} absolutePath={absolutePath} />
+      <GithubEditButton absolutePath={absolutePath} />
     </div>
   )
 }

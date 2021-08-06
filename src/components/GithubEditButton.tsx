@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 
 interface GithuEditButtonProps {
-  version: string
   absolutePath: string
 }
 export default function GithubEditButton(props: GithuEditButtonProps) {
@@ -12,56 +11,17 @@ export default function GithubEditButton(props: GithuEditButtonProps) {
 
   const [url, setUrl] = useState('')
   useEffect(() => {
-    console.log(props.absolutePath.substr(props.absolutePath.indexOf('/v')))
     setUrl(
       `${githubSlug}${props.absolutePath.substr(
         props.absolutePath.indexOf('/v')
       )}`
     )
-  })
-  // const [sectionSlug, setSectionSlug] = useState('')
-  // useEffect(() => {
-  //   if (props.templateId === 0) {
-  //     setSectionSlug('/docs')
-  //   } else if (props.templateId === 1) {
-  //     setSectionSlug('/tutorials')
-  //   } else if (props.templateId === 2) {
-  //     setSectionSlug('/how-to-guides')
-  //   }
-  // }, [])
-
-  // const [versionSlug, setVersionSlug] = useState('')
-  // useEffect(() => {
-  //   if (props.version === '3.0') {
-  //     setVersionSlug('/v3')
-  //   } else if (props.version === '4.0') {
-  //     setVersionSlug('/v4')
-  //   }
-  // }, [])
-
-  // const [localeSlug, setLocaleSlug] = useState('')
-  // useEffect(() => {
-  //   if (props.currentLang === 'en') {
-  //     setLocaleSlug('index.mdx')
-  //   } else {
-  //     setLocaleSlug('')
-  //   }
-  // }, [])
-
-  // const [folderSlug, setFolderSlug] = useState('')
-  // useEffect(() => {
-  //   if (props.trueSlug.indexOf('/index') === -1) {
-  //     setFolderSlug(props.trueSlug)
-  //   } else {
-  //     setFolderSlug(`${props.trueSlug}.mdx`)
-  //   }
-  // }, [])
+  }, [])
 
   return (
     <div className="hidden lg:block lg:pl-2">
       <a
         className="text-sm text-black dark:text-white hover:underline lg:flex lg:items-center "
-        // href={`${githubSlug}${versionSlug}${sectionSlug}/${folderSlug}${localeSlug}`}
         href={url}
         target="_blank"
         rel="noreferrer"
