@@ -83,7 +83,13 @@ const DocsTemplate = ({ data, pageContext }: any) => {
                   />
                 )}
               </div>
-              <BottomButtons menu={docsMenu} pageSlug={slug} />
+              {data.mdx ? (
+                data.mdx.frontmatter.hideNav ? null : (
+                  <BottomButtons menu={docsMenu} pageSlug={slug} />
+                )
+              ) : data.englishVersion.frontmatter.hideNav ? null : (
+                <BottomButtons menu={docsMenu} pageSlug={slug} />
+              )}
             </div>
 
             {data.mdx ? (
@@ -113,6 +119,7 @@ export const query = graphql`
       frontmatter {
         slug
         title
+        hideNav
       }
       body
       headings {
@@ -129,6 +136,7 @@ export const query = graphql`
       frontmatter {
         slug
         title
+        hideNav
       }
       body
       headings {
