@@ -43,6 +43,7 @@ module.exports = {
       },
     },
     // SOURCE FOLDERS FOR DOCUMENTATIONS
+    //*********************************//
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -53,8 +54,65 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/v3/tutorials/create-your-first-substrate-chain`,
+        path: `${__dirname}/v3/how-to-guides`,
+        name: `htg`,
+      },
+    },
+    //TUTORIALS//
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/v3/tutorials/01-create-your-first-substrate-chain`,
         name: `create-your-first-substrate-chain`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/v3/tutorials/02-proof-of-existence`,
+        name: `proof-of-existence`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/v3/tutorials/03-permissioned-network`,
+        name: `permissioned-network`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/v3/tutorials/04-forkless-upgrade`,
+        name: `forkless-upgrade`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/v3/tutorials/05-private-network`,
+        name: `private-network`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/v3/tutorials/06-node-metrics`,
+        name: `node-metrics`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/v3/tutorials/07-add-a-pallet`,
+        name: `add-a-pallet`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/v3/tutorials/08-ink-workshop/Part I`,
+        name: `ink-workshop`,
       },
     },
     //*********************************//

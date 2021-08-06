@@ -25,16 +25,16 @@ export default function DocsNav({
 
   return (
     <nav
-      className={`bg-lightGray dark:bg-gray-900 w-screen overflow-y-auto ${
-        isOpen ? 'absolute top-24 h-screen overflow-y-auto z-10' : null
+      className={`bg-substrateGray-light dark:bg-gray-900 w-screen overflow-auto ${
+        isOpen ? 'h-docNav z-10' : null
       }`}
     >
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="flex justify-center items-center py-4 border-t border-b border-gray-200 dark:border-gray-700"
+        className="flex justify-center items-center py-4 bg-substrateGray dark:bg-gray-900"
       >
         <svg
-          className="fill-current text-substrateGreen"
+          className="fill-current text-black dark:text-white"
           width="16"
           height="20"
           viewBox="0 0 16 20"
@@ -61,7 +61,7 @@ export default function DocsNav({
           <path d="M7.071 5.314l4.95-4.95a1 1 0 1 1 1.414 1.414L7.778 7.435a1 1 0 0 1-1.414 0L.707 1.778A1 1 0 1 1 2.121.364l4.95 4.95z"></path>
         </svg>
       </div>
-      <div>
+      <div className="overflow-auto">
         {isOpen &&
           sideNav.map(
             (
@@ -77,7 +77,7 @@ export default function DocsNav({
         {isOpen && (
           <>
             <hr className="mt-6" />
-            <div className="flex items-center justify-between px-20 py-4 bg-lightGray dark:bg-gray-900">
+            <div className="flex items-center justify-between px-20 py-4 dark:bg-gray-900">
               <div className="font-light">More Ways to Learn</div>
             </div>
             {globalNav
@@ -86,7 +86,7 @@ export default function DocsNav({
                 return (
                   <div
                     key={index}
-                    className="px-20 lg:px-4 py-4 bg-lightGray lg:bg-white dark:lg:bg-black"
+                    className="px-20 lg:px-4 py-4 lg:bg-white lg:dark:bg-black"
                   >
                     {navItem.external ? (
                       <a

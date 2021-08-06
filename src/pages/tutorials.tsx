@@ -14,94 +14,84 @@ export default function tutorials({ data }: any) {
         </div>
         <div className="container mb-40 flex flex-col items-center md:flex-row md:flex-wrap md:justify-center">
           <TutorialCard
-            title={`Build a PoE Decentralized Application`}
-            image={data.tutorialOne}
-            description={`Build a customized Substrate chain with it's own user interface`}
-            time={`1 Hour`}
-            difficulty={`intermediate`}
-            prerequisites={false}
-            version={`V3.0.0`}
-            link={`#`}
-          />
-          <TutorialCard
             title={`Create Your First Substrate Chain`}
             image={data.tutorialOne}
             description={`Launch and interact with your first Substrate chain in this minimal end-to-end guide.`}
+            time={`< 1 Hour`}
+            difficulty={`beginner`}
+            prerequisites={false}
+            version={`V3.0.0`}
+            link={`/v3/tutorials/create-your-first-substrate-chain`}
+          />
+          <TutorialCard
+            title={`Add Pallets to Runtime and Publish Custom Pallets`}
+            image={data.tutorialOne}
+            description={`Learn to add the Nicks pallet to runtime and publish custom pallets that others can import.`}
+            time={`2 Hours`}
+            difficulty={`beginner`}
+            prerequisites={true}
+            version={`V3.0.0`}
+            link={`/v3/tutorials/add-a-pallet`}
+          />
+          <TutorialCard
+            title={`Proof of Existence`}
+            image={data.tutorialOne}
+            description={`Build a customized Substrate chain with its own user interface.`}
             time={`1 Hour`}
             difficulty={`beginner`}
             prerequisites={true}
             version={`V3.0.0`}
-            link={`/v3/tutorials/create-your-first-substrate-chain/`}
+            link={`/v3/tutorials/proof-of-existence`}
           />
           <TutorialCard
-            title={`Build a Permissioned Network`}
+            title={`Permissioned Network`}
             image={data.tutorialOne}
             description={`A comprehensive, end-to-end tutorial for building a permissioned network using node-authorization pallet.`}
-            time={`4 Hour`}
-            difficulty={`advance`}
-            prerequisites={true}
-            version={`V3.0.0`}
-            link={`#`}
-          />
-          <TutorialCard
-            title={`Build a Permissioned Network`}
-            image={data.tutorialOne}
-            description={`A comprehensive, end-to-end tutorial for building a permissioned network using node-authorization pallet.`}
-            time={`4 Hour`}
-            difficulty={`advance`}
-            prerequisites={true}
-            version={`V3.0.0`}
-            link={`#`}
-          />
-          <TutorialCard
-            title={`Create Your First Substrate Chain`}
-            image={data.tutorialOne}
-            description={`Launch and interact with your first Substrate chain in this minimal end-to-end guide.`}
-            time={`1 Hour`}
+            time={`2 Hours`}
             difficulty={`beginner`}
             prerequisites={true}
             version={`V3.0.0`}
-            link={`#`}
+            link={`/v3/tutorials/permissioned-network`}
           />
           <TutorialCard
-            title={`Visualize Node Metrics`}
+            title={`Forkless Upgrades`}
             image={data.tutorialOne}
-            description={`Launch and interact with your first Substrate chain in this minimal end-to-end guide.`}
-            time={`1 Hour`}
+            description={`Perform a forkless runtime upgrade on a running Substrate network.`}
+            time={`2 Hours`}
             difficulty={`beginner`}
             prerequisites={true}
             version={`V3.0.0`}
-            link={`#`}
+            link={`/v3/tutorials/forkless-upgrades`}
           />
           <TutorialCard
-            title={`Visualize Node Metrics`}
+            title={`Private Network`}
             image={data.tutorialOne}
-            description={`Launch and interact with your first Substrate chain in this minimal end-to-end guide.`}
-            time={`1 Hour`}
+            description={`Learn how to start a private blockchain network using an out-of-the-box Substrate node.`}
+            time={`2 Hours`}
             difficulty={`beginner`}
-            prerequisites={true}
+            prerequisites={false}
             version={`V3.0.0`}
-            link={`#`}
+            link={`/v3/tutorials/private-network`}
           />
           <TutorialCard
-            title={`Add The Contracts Pallet To A Runtime`}
+            title={`Node Metrics`}
             image={data.tutorialOne}
-            description={`A comprehensive, end-to-end tutorial for building a permissioned network using node-authorization pallet.`}
-            time={`4 Hour`}
-            difficulty={`advance`}
-            prerequisites={true}
+            description={`Learn how to visualize the metrics that Substrate records using Prometheus.`}
+            time={`< 1 Hour`}
+            difficulty={`beginner`}
+            prerequisites={false}
             version={`V3.0.0`}
-            link={`#`}
+            link={`/v3/tutorials/node-metrics`}
           />
           <TutorialCard
-            title={`Build a PoE Decentralized Application`}
+            title={`Ink! Contracts Workshop`}
             image={data.tutorialOne}
-            description={`Build a customized Substrate chain with it's own user interface`}
-            time={`1 Hour`}
+            description={`A workshop to configure Substrate node to run Substrate EVM and Solidity contracts.`}
+            time={`3 Hours`}
             difficulty={`intermediate`}
             prerequisites={false}
             version={`V3.0.0`}
-            link={`#`}
+            link={`/v3/tutorials/ink-workshop/pt1`}
           />
         </div>
       </div>

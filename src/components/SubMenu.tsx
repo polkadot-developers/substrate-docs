@@ -3,7 +3,10 @@ import { LocalizedLink } from 'gatsby-theme-i18n'
 import useComponentVisible from './Hooks/use-component-visible'
 
 interface SubMenuProps {
-  menuData: { name: string; subMenu: { linkTitle: string; link: string }[] }
+  menuData: {
+    name: string
+    subMenu: { linkTitle: string; link: string; external: boolean }[]
+  }
   width?: string
 }
 
@@ -40,15 +43,35 @@ export default function SubMenu({ menuData, width }: SubMenuProps) {
         <ul className="list-none bg-white dark:bg-black px-6 pt-6 rounded-md shadow-lg ring-1 ring-black dark:ring-white ring-opacity-40">
           {isComponentVisible &&
             subMenu.map((item, index) => {
-              return (
-                <LocalizedLink
-                  className="text-black dark:text-white hover:text-substrateBlue dark:hover:text-substrateGreen"
-                  key={index}
-                  to={item.link}
-                >
-                  <li className="pb-6">{item.linkTitle}</li>
-                </LocalizedLink>
-              )
+              if (item.external) {
+                return (
+                  <a
+                    className="text-black dark:text-white"
+                    key={index}
+                    href={item.link}
+                  >
+                    <div className="pb-6 focus:outline-none focus:bg-substrateBlueBg">
+                      <span className="text-lg font-medium hover:text-substrateGreen hover:underline ">
+                        {item.linkTitle}
+                      </span>
+                    </div>
+                  </a>
+                )
+              } else {
+                return (
+                  <LocalizedLink
+                    className="text-black dark:text-white"
+                    key={index}
+                    to={item.link}
+                  >
+                    <div className="pb-6 focus:outline-none focus:bg-substrateBlueBg">
+                      <span className="text-lg font-medium hover:text-substrateGreen hover:underline">
+                        {item.linkTitle}
+                      </span>
+                    </div>
+                  </LocalizedLink>
+                )
+              }
             })}
         </ul>
       </div>

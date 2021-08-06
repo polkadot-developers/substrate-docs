@@ -4,7 +4,10 @@ import { LocalizedLink } from 'gatsby-theme-i18n'
 interface MobileSubMenuProps {
   toggleMobileNav: () => void
   toggleSubMenu: () => void
-  navItem: { name: string; subMenu: { linkTitle: string; link: string }[] }
+  navItem: {
+    name: string
+    subMenu: { linkTitle: string; link: string; external: boolean }[]
+  }
 }
 export default function TechSubMenu({
   toggleMobileNav,
@@ -12,9 +15,9 @@ export default function TechSubMenu({
   navItem,
 }: MobileSubMenuProps) {
   return (
-    <div className="absolute inset-0 bg-white dark:bg-black h-screen animate-fade-in-right">
-      <div className="bg-substrateBlueBg dark:bg-gray-900">
-        <div className="px-6 h-24 flex items-center justify-between">
+    <div className="absolute inset-0 bg-substrateGray-light dark:bg-black h-screen animate-fade-in-right">
+      <div className="bg-substrateGreen-light dark:bg-gray-900">
+        <div className="px-6 h-16 flex items-center justify-between">
           <div onClick={() => toggleSubMenu()}>
             <svg
               className="fill-current text-black dark:text-white"
@@ -27,9 +30,7 @@ export default function TechSubMenu({
             </svg>
           </div>
 
-          <span className="text-xl text-substrateBlue dark:text-white font-bold">
-            {navItem.name}
-          </span>
+          <span className="text-xl font-bold">{navItem.name}</span>
           <div onClick={() => toggleMobileNav()}>
             <svg
               className="fill-current text-black dark:text-white"
@@ -45,17 +46,31 @@ export default function TechSubMenu({
       </div>
       <div className="px-6 pt-10">
         {navItem.subMenu.map((item, index) => {
-          return (
-            <LocalizedLink
-              className="text-black dark:text-white hover:no-underline"
-              key={index}
-              to={item.link}
-            >
-              <div className="pb-6 focus:outline-none focus:bg-substrateBlueBg">
-                <span className="text-lg font-medium">{item.linkTitle}</span>
-              </div>
-            </LocalizedLink>
-          )
+          if (item.external) {
+            return (
+              <a
+                className="text-black dark:text-white hover:no-underline"
+                key={index}
+                href={item.link}
+              >
+                <div className="pb-6 focus:outline-none focus:bg-substrateBlueBg">
+                  <span className="text-lg font-medium">{item.linkTitle}</span>
+                </div>
+              </a>
+            )
+          } else {
+            return (
+              <LocalizedLink
+                className="text-black dark:text-white hover:no-underline"
+                key={index}
+                to={item.link}
+              >
+                <div className="pb-6 focus:outline-none focus:bg-substrateBlueBg">
+                  <span className="text-lg font-medium">{item.linkTitle}</span>
+                </div>
+              </LocalizedLink>
+            )
+          }
         })}
       </div>
     </div>

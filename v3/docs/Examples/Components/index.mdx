@@ -29,6 +29,28 @@ with the Ethereum EVM Solidity compiler Solang: a language resembling Solidity, 
 with the Ethereum EVM Solidity compiler`}
 />
 
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`Experienced developers may prefer to skip that tutorial and install the Node
+  Template according to [the instructions in its readme](https://github.com/substrate-developer-hub/substrate-node-template#getting-started).`}
+/>
+
+<Message
+  type={`green`}
+  title={`Further Learning`}
+  text={`
+  - **Safety.** The mint function takes in an amount to 'mint' which is *not good practice* because it implies that
+    users have unlimited access to writing to storage. Safer approaches include: using configuring 'GenesisConfig' or
+    fixing a predetermined maximum value in runtime.
+  - **Weights.** All the weights were set to 10_000 in the above code snippets. Learn more about weight
+    configuration in this [basic guide on weights](./basic-tx-weight-calculations).
+  - **Origins.** One assumption this guide makes is that the origin will always be the sudo user.
+    Origins are a powerful capability in Substrate. Learn more about how they work
+    [here](https://substrate.dev/docs/en/knowledgebase/runtime/origin).
+  `}
+/>
+
 ## Buttons
 
 <PreviousButton text={`Smart Contracts`} link={`#`} />
@@ -67,6 +89,12 @@ Use this component if you'd like to have some key objectives defined in the begi
     },
   ]}
 />
+
+## Internal/External Links
+
+[Tutorials](/tutorials)
+
+Here is some text <ExternalLink url={`https://www.substrate.dev`}>Substrate Developers Hub</ExternalLink> and is some more text.
 
 ## Tutorial Components
 
@@ -114,6 +142,7 @@ Before we even get started, lets' layout what we are going to do over the course
 ## Playground Components
 
 ### Button
+
 I know everything - go straight to Playground
 
 <DarkButton text={`Use Playground`} link={``} />
@@ -126,4 +155,3 @@ I know everything - go straight to Playground
 to skip over set-up and get straight to hacking. Utilize the power of Playground right away.`}
   playgroundLink={`#`}
 />
- 

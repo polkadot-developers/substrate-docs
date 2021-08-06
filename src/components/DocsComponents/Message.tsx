@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactMarkdown from 'react-markdown'
 
 interface MessageProps {
   type: string
@@ -16,6 +17,8 @@ export function Message({ type, title, text }: MessageProps) {
           ? 'border-mdxGreen bg-mdxGreen bg-opacity-50'
           : type === 'red'
           ? 'border-mdxRed bg-mdxRed bg-opacity-50'
+          : type === 'gray'
+          ? 'border-gray-200 bg-gray-200 bg-opacity-50'
           : null
       }`}
     >
@@ -46,11 +49,25 @@ export function Message({ type, title, text }: MessageProps) {
               <path d="M8 12C8 12.5667 8.35862 13 8.82759 13L15.1724 13C15.6414 13 16 12.5667 16 12C16 11.4333 15.6414 11 15.1724 11L8.82759 11C8.35862 11 8 11.4333 8 12Z" />
               <path d="M12 8C11.4333 8 11 8.35862 11 8.82759V15.1724C11 15.6414 11.4333 16 12 16C12.5667 16 13 15.6414 13 15.1724V8.82759C13 8.35862 12.5667 8 12 8Z" />
             </svg>
+          ) : type === 'gray' ? (
+            <svg
+              className="fill-current text-black dark:text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="-4 -2 24 24"
+              width="24"
+              height="24"
+              preserveAspectRatio="xMinYMin"
+            >
+              <path d="M10.298 2H3a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V4.961L10.298 2zM3 0h8l5 4v13a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3V3a3 3 0 0 1 3-3z"></path>
+            </svg>
           ) : null}
         </div>
         <h4 className="pl-1 capitalize">{title}</h4>
       </div>
-      <p className="font-light max-w-2xl">{text}</p>
+      <div className="max-w-2xl">
+        {/* eslint-disable-next-line react/no-children-prop */}
+        <ReactMarkdown children={text} />
+      </div>
     </div>
   )
 }

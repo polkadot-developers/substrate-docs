@@ -25,7 +25,17 @@ module.exports = {
     },
     extend: {
       colors: {
-        substrateGreen: '#26E0A2',
+        substrateGreen: {
+          light: '#D4F9EC',
+          DEFAULT: '#24CC85',
+        },
+        substrateGray: {
+          light: '#FBFBFB',
+          DEFAULT: '#F2F2F2',
+        },
+        substratePurple: '#5A30B4',
+        substrateYellow: '#FDAB3D',
+        substrateDark: '#242A35',
         substrateBlue: '#4E73F2',
         substrateBlueBg: '#EEF1FE',
         mdxYellow: '#FFEED6',
@@ -49,6 +59,7 @@ module.exports = {
         twitter: '#00aced',
       },
       height: {
+        docNav: '90vh',
         hero: '70vh',
         googleForm: '1500px',
       },
@@ -63,6 +74,10 @@ module.exports = {
       fontFamily: {
         body: ['Karla', 'sans-serif'],
         quote: ['serif'],
+      },
+      transitionProperty: {
+        height: 'height',
+        width: 'width',
       },
       keyframes: {
         'fade-in-down': {
@@ -146,6 +161,11 @@ module.exports = {
       },
     },
   },
-  variants: ['responsive', 'group-hover', 'hover', 'focus', 'active'],
+  variants: {
+    fill: ['responsive', 'group-hover', 'hover', 'focus', 'active'],
+    extend: {
+      boxSizing: ['hover', 'focus'],
+    },
+  },
   plugins: [],
 }

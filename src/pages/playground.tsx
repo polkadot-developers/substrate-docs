@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { useIntl } from 'react-intl'
 import Layout from '../components/Layout'
-import { DarkButton } from '../components/Buttons'
+import { SecondaryButton } from '../components/Buttons'
 import PlaygroundCard from '../components/PlaygroundCard'
 import iconOne from '../images/box-icon.svg'
 import iconTwo from '../images/lightening-icon.svg'
@@ -24,11 +24,9 @@ export default function playground({ data }: any) {
         <p className="font-medium text-substrateBlue">
           {intl.formatMessage({ id: 'playground-github-info' })}
         </p>
-        <DarkButton
-          external={true}
-          text={`${intl.formatMessage({ id: 'playground-github-cta' })}`}
-          link={`https://www.github.com`}
-        />
+        <SecondaryButton external={true} link={`https://www.github.com`}>
+          {intl.formatMessage({ id: 'playground-github-cta' })}
+        </SecondaryButton>
       </section>
       <section className="container px-4 mb-28">
         <div className="text-xl md:text-4xl my-8 font-bold text-center">

@@ -21,7 +21,7 @@ export default function Footer() {
   const intl = useIntl()
 
   return (
-    <footer className="bg-black">
+    <footer className="bg-substrateDark">
       <div className="container">
         <div className="w-40 py-10">
           <img src={substratelogo} alt="Substrate Logo" />
