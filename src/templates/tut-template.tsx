@@ -7,11 +7,13 @@ import DocsNavMobile from '../components/DocsNavMobile'
 import DocsSideBar from '../components/DocsSideBar'
 import DocsNav from '../components/DocsNav'
 import VersionControl from '../components/VersionControl'
+import LastUpdateGithub from '../components/LastUpdateGithub'
 import { BottomButtons, Message } from '../components/DocsComponents'
 import navMenu from '../components/DevNavMenu'
 
 const DocsTemplate = ({ data, pageContext }: any) => {
   const { slug, version, navMenuSlug } = pageContext
+  const docId = 1
   const globalDocsNav = navMenu.global()
   const docsMenu = [navMenu.tuts[`${navMenuSlug}`]]
 
@@ -24,28 +26,34 @@ const DocsTemplate = ({ data, pageContext }: any) => {
             <DocsNavMobile
               sideNav={docsMenu}
               globalNav={globalDocsNav}
-              templateId={1}
+              templateId={docId}
             />
           </div>
           <div className="hidden lg:inline-block lg:flex-none lg:h-auto lg:bg-substrateGray-light lg:dark:bg-gray-900 ">
             <DocsNav
               sideNav={docsMenu}
               globalNav={globalDocsNav}
-              templateId={1}
+              templateId={docId}
             />
           </div>
           <article className="max-w-6xl px-4 lg:px-16 lg:pb-24 lg:flex lg:mx-auto">
             <div>
               <div>
                 {data.mdx ? (
-                  <div className="pt-10 markdown-body">
-                    <VersionControl version={version} slug={slug} />
-                    <h1>{data.mdx.frontmatter.title}</h1>
-                    <MDXRenderer>{data.mdx.body}</MDXRenderer>
+                  <div className="pt-10">
+                    <VersionControl
+                      version={version}
+                      slug={slug}
+                      absolutePath={data.mdx.fileAbsolutePath}
+                    />
+                    <div className="markdown-body">
+                      <h1>{data.mdx.frontmatter.title}</h1>
+                      <MDXRenderer>{data.mdx.body}</MDXRenderer>
+                    </div>
                   </div>
                 ) : (
                   <div>
-                    <div className="mt-10 markdown-body">
+                    <div className="mt-10">
                       <Message
                         type={`green`}
                         title={`TRANSLATIONS NEEDED`}
@@ -53,15 +61,27 @@ const DocsTemplate = ({ data, pageContext }: any) => {
                       />
                     </div>
                     <div className="pt-10">
-                      <VersionControl version={version} slug={slug} />
-                      <h1>{data.englishVersion.frontmatter.title}</h1>
-                      <MDXRenderer>{data.englishVersion.body}</MDXRenderer>
+                      <VersionControl
+                        version={version}
+                        slug={slug}
+                        absolutePath={data.englishVersion.fileAbsolutePath}
+                      />
+                      <div className="markdown-body">
+                        <h1>{data.englishVersion.frontmatter.title}</h1>
+                        <MDXRenderer>{data.englishVersion.body}</MDXRenderer>
+                      </div>
                     </div>
                   </div>
                 )}
               </div>
               <div className="text-xs text-right py-12">
-                Last updated on 03/16/2021
+                {data.mdx ? (
+                  <LastUpdateGithub absolutePath={data.mdx.fileAbsolutePath} />
+                ) : (
+                  <LastUpdateGithub
+                    absolutePath={data.englishVersion.fileAbsolutePath}
+                  />
+                )}
               </div>
               <BottomButtons menu={docsMenu} pageSlug={slug} />
             </div>
@@ -98,6 +118,8 @@ export const query = graphql`
         value
         depth
       }
+      tableOfContents(maxDepth: 3)
+      fileAbsolutePath
     }
     englishVersion: mdx(
       fields: { locale: { eq: "en" } }
@@ -112,6 +134,8 @@ export const query = graphql`
         value
         depth
       }
+      tableOfContents(maxDepth: 3)
+      fileAbsolutePath
     }
   }
 `
