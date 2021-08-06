@@ -7,6 +7,7 @@ import DocsNavMobile from '../components/DocsNavMobile'
 import DocsSideBar from '../components/DocsSideBar'
 import DocsNav from '../components/DocsNav'
 import VersionControl from '../components/VersionControl'
+import LastUpdateGithub from '../components/LastUpdateGithub'
 import { BottomButtons, Message } from '../components/DocsComponents'
 import navMenu from '../components/DevNavMenu'
 
@@ -72,7 +73,13 @@ const DocsTemplate = ({ data, pageContext }: any) => {
                 )}
               </div>
               <div className="text-xs text-right py-12">
-                Last updated on 03/16/2021
+                {data.mdx ? (
+                  <LastUpdateGithub absolutePath={data.mdx.fileAbsolutePath} />
+                ) : (
+                  <LastUpdateGithub
+                    absolutePath={data.englishVersion.fileAbsolutePath}
+                  />
+                )}
               </div>
               <BottomButtons menu={docsMenu} pageSlug={slug} />
             </div>
