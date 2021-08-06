@@ -1,6 +1,5 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { useLocalization } from 'gatsby-theme-i18n'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
@@ -13,7 +12,6 @@ import navMenu from '../components/DevNavMenu'
 
 const DocsTemplate = ({ data, pageContext }: any) => {
   const { slug, version } = pageContext
-  const { locale } = useLocalization()
   const docId = 0
   const globalDocsNav = navMenu.global()
   const docsMenu = navMenu.knowledgebase()
@@ -120,7 +118,6 @@ export const query = graphql`
         value
         depth
       }
-      slug
       tableOfContents(maxDepth: 3)
       fileAbsolutePath
     }
@@ -137,7 +134,6 @@ export const query = graphql`
         value
         depth
       }
-      slug
       tableOfContents(maxDepth: 3)
       fileAbsolutePath
     }

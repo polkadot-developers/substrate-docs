@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
-import { useLocalization } from 'gatsby-theme-i18n'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
@@ -13,7 +12,6 @@ import navMenu from '../components/DevNavMenu'
 
 const DocsTemplate = ({ data, pageContext }: any) => {
   const { slug, version, navMenuSlug } = pageContext
-  const { locale } = useLocalization()
   const docId = 1
   const globalDocsNav = navMenu.global()
   const docsMenu = [navMenu.tuts[`${navMenuSlug}`]]
@@ -45,9 +43,10 @@ const DocsTemplate = ({ data, pageContext }: any) => {
                     <VersionControl
                       version={version}
                       slug={slug}
-                      trueSlug={data.mdx.slug}
-                      templateId={docId}
-                      currentLang={locale}
+                      // trueSlug={data.mdx.slug}
+                      // templateId={docId}
+                      // currentLang={locale}
+                      absolutePath={data.mdx.fileAbsolutePath}
                     />
                     <div className="markdown-body">
                       <h1>{data.mdx.frontmatter.title}</h1>
@@ -67,9 +66,10 @@ const DocsTemplate = ({ data, pageContext }: any) => {
                       <VersionControl
                         version={version}
                         slug={slug}
-                        trueSlug={data.englishVersion.slug}
-                        templateId={docId}
-                        currentLang={`en`}
+                        // trueSlug={data.englishVersion.slug}
+                        // templateId={docId}
+                        // currentLang={`en`}
+                        absolutePath={data.englishVersion.fileAbsolutePath}
                       />
                       <div className="markdown-body">
                         <h1>{data.englishVersion.frontmatter.title}</h1>
@@ -117,8 +117,8 @@ export const query = graphql`
         value
         depth
       }
-      slug
       tableOfContents(maxDepth: 3)
+      fileAbsolutePath
     }
     englishVersion: mdx(
       fields: { locale: { eq: "en" } }
@@ -133,8 +133,8 @@ export const query = graphql`
         value
         depth
       }
-      slug
       tableOfContents(maxDepth: 3)
+      fileAbsolutePath
     }
   }
 `
