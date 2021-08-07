@@ -6,8 +6,9 @@ interface LastUpdateGithubProps {
 }
 export default function LastUpdateGithub(props: LastUpdateGithubProps) {
   const [date, setDate] = useState('')
-  const [user, setUser] = useState('')
-
+  const [sha, setSHA] = useState('')
+  const [link, setLink] = useState('')
+  console.log(date, sha, link)
   useEffect(() => {
     console.log(props.absolutePath)
     fetch(
@@ -16,12 +17,18 @@ export default function LastUpdateGithub(props: LastUpdateGithubProps) {
       .then(response => response.json())
       .then(resultData => {
         setDate(moment(resultData[0].commit.author.date).format('MMMM d, YYYY'))
-        setUser(resultData[0].author.login)
+        setSHA(resultData[0].sha.slice(0, 7))
+        setLink(resultData[0].html_url)
       })
   }, [])
   return (
     <div>
-      Last Udpated on {date} by {user}
+      Last Updated on {date}
+      <br />
+      Available at{` `}
+      <a className="underline" href={link} target="_blank" rel="noreferrer">
+        {sha}
+      </a>
     </div>
   )
 }

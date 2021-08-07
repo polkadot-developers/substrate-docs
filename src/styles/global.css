@@ -14,7 +14,7 @@
   }
 
   body {
-    @apply bg-white dark:bg-black text-substrateDark dark:text-white font-body text-base;
+    @apply bg-white dark:bg-black text-substrateDark dark:text-white text-base;
     background: transparent;
   }
 
@@ -27,7 +27,10 @@
   }
 
   /* Headings */
-  h1,
+  h1 {
+    @apply font-title font-bold;
+  }
+
   h2,
   h3,
   h4,
@@ -37,7 +40,7 @@
   }
 
   h1 {
-    @apply mb-3 text-5xl;
+    @apply mb-3 text-2xl md:text-4xl xl:text-6xl;
   }
 
   h2 {
@@ -49,7 +52,7 @@
   }
 
   h4 {
-    @apply mb-6 text-2xl;
+    @apply mb-6 text-lg md:text-2xl;
   }
 
   h5 {
