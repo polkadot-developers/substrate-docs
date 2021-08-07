@@ -26,7 +26,7 @@ export default function TutorialCard({
 }: TutorialCardProps) {
   const tutImage = getImage(image)
   return (
-    <div className="w-80 md:w-96 mb-4 mx-3 rounded bg-substrateGray-light">
+    <div className="w-80 md:w-96 mb-4 mx-3 rounded bg-substrateGray-light dark:bg-gray-900">
       <GatsbyImage
         className="h-24 md:h-60 object-cover rounded-t"
         image={tutImage}
