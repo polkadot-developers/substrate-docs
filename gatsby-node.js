@@ -144,7 +144,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable security/detect-non-literal-require */
 const { GraphQLJSONObject } = require(`graphql-type-json`)
-const striptags = require(`striptags`)
 const lunr = require(`lunr`)
 const remark = require('remark')
 const strip = require('strip-markdown')
@@ -179,11 +178,8 @@ const createIndex = async (docNodes, cache, type) => {
   for (const node of docNodes) {
     const locale = node.fields.locale
     const slug = node.frontmatter.slug
-    console.log(slug)
     const section = slug.split('/')[2].split('-').join(' ')
-    console.log(section)
     const category = slug.split('/')[3].split('-').join(' ')
-    console.log(category)
     const title = node.frontmatter.title
     const keywords = node.frontmatter.keywords
 
@@ -192,7 +188,7 @@ const createIndex = async (docNodes, cache, type) => {
       .use(strip)
       .process(node.rawBody, function (err, file) {
         if (err) throw err
-        body = striptags(String(file))
+        body = file
       })
     documents.push({
       slug: slug,

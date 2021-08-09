@@ -48,7 +48,9 @@
     "react-helmet": "^6.1.0",
     "react-intl": "^5.20.2",
     "react-markdown": "^6.0.2",
-    "sass": "^1.35.1"
+    "remark": "13.0.0",
+    "sass": "^1.35.1",
+    "strip-markdown": "4.0.0"
   },
   "devDependencies": {
     "@types/lunr": "^2.3.4",
