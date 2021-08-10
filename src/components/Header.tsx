@@ -3,7 +3,7 @@ import MobileMenu from './MobileMenus/MobileMenu'
 import DocsButton from './DocsButton'
 import { LocalizedLink, useLocalization } from 'gatsby-theme-i18n'
 import { useIntl } from 'react-intl'
-import LanguageSwitcher from './LanguageSwitcher'
+// import LanguageSwitcher from './LanguageSwitcher'
 import SubMenu from './SubMenu'
 import ThemeToggle from './ThemeToggle'
 import useScrollListener from './Hooks/use-scroll-listener'
@@ -84,11 +84,11 @@ export default function Header() {
           link: `https://substrate.dev/rustdocs`,
           external: true,
         },
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-marketplace' })}`,
-          link: `https://substrate-market-staging.netlify.app/`,
-          external: true,
-        },
+        // {
+        //   linkTitle: `${intl.formatMessage({ id: 'nav-marketplace' })}`,
+        //   link: `#`,
+        //   external: true,
+        // },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-playground' })}`,
           link: `/playground/`,
@@ -292,10 +292,10 @@ export default function Header() {
                   </svg>
                 </button>
               </div>
-              <div className="pl-8">
+              <div className="pl-8 pr-6">
                 <DocsButton />
               </div>
-              <LanguageSwitcher currentLang={locale} langConfig={config} />
+              {/* <LanguageSwitcher currentLang={locale} langConfig={config} /> */}
               <ThemeToggle theme={theme} setTheme={setTheme} />
             </div>
           </nav>
