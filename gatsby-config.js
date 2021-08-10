@@ -115,6 +115,13 @@ module.exports = {
         name: `ink-workshop`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/v3/tutorials/09-cumulus-workshop`,
+        name: `cumulus-workshop`,
+      },
+    },
     //*********************************//
     {
       resolve: `gatsby-source-filesystem`,

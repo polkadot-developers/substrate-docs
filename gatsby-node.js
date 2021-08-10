@@ -86,6 +86,11 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       navSlug: 'inkWorkshop',
       version: '3.0',
     },
+    {
+      name: 'cumulus-workshop',
+      navSlug: 'cumulusWorkshop',
+      version: '3.0',
+    },
   ]
 
   const tutsGqlResult = await Promise.allSettled(
