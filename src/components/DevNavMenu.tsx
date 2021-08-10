@@ -544,6 +544,24 @@ DevNavMenu.tuts.nodeMetrics = {
   ],
 }
 
+DevNavMenu.tuts.cumulusWorkshop = {
+  name: `Cumulus Workshop`,
+  items: [
+    {
+      title: `Overview`,
+      link: '/v3/tutorials/cumulus-workshop',
+    },
+    {
+      title: `Compilation`,
+      link: '/v3/tutorials/cumulus-workshop/compilation',
+    },
+    {
+      title: `Relay Chain Chain Specifcation`,
+      link: '/v3/tutorials/cumulus-workshop/relay-spec',
+    },
+  ],
+}
+
 DevNavMenu.tuts.addPallet = {
   name: `Add a Pallet in Runtime`,
   items: [

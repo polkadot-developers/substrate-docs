@@ -98,10 +98,10 @@ export default function tutorials({ data }: any) {
             image={data.tutorialOne}
             description={`A workshop to configure Substrate node as a Parachain`}
             time={`3 Hours`}
-            difficulty={`hard`}
+            difficulty={`advance`}
             prerequisites={true}
             version={`V3.0.0`}
-            link={`/v3/tutorials/cumulus-workshop/`}
+            link={`/v3/tutorials/cumulus-workshop`}
           />
         </div>
       </div>
