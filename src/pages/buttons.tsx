@@ -8,7 +8,7 @@ import {
   TextButton,
   PrimaryFixedButton,
 } from '../components/Buttons'
-import ExternalLink from '../components/DocsComponents/ExternalLink'
+import { ExternalLink } from '../components/DocsComponents'
 
 const Buttons = () => {
   return (
