@@ -13,8 +13,8 @@ import {
   AccentButton,
   DarkButton,
   FastTrackPlayground,
+  ExternalLink,
 } from './DocsComponents'
-import ExternalLink from './DocsComponents/ExternalLink'
 import Header from './Header'
 import Footer from './Footer'
 

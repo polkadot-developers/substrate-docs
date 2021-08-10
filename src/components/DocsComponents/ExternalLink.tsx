@@ -5,7 +5,7 @@ interface ExternalLinkProps {
   children: React.ReactNode
 }
 
-export default function ExternalLink(props: ExternalLinkProps) {
+export function ExternalLink(props: ExternalLinkProps) {
   return (
     <a
       className="inline-block"

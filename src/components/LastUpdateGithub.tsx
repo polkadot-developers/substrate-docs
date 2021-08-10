@@ -23,12 +23,12 @@ export default function LastUpdateGithub(props: LastUpdateGithubProps) {
   }, [])
   return (
     <div>
-      Last Updated on {date}
-      <br />
-      Available at{` `}
+      Last edit:{` `}
       <a className="underline" href={link} target="_blank" rel="noreferrer">
         {sha}
       </a>
+      {` `}
+      on {date}
     </div>
   )
 }
