@@ -93,6 +93,16 @@ export default function tutorials({ data }: any) {
             version={`V3.0.0`}
             link={`/v3/tutorials/ink-workshop/pt1`}
           />
+          <TutorialCard
+            title={`Cumulus Workshop`}
+            image={data.tutorialOne}
+            description={`A workshop to configure Substrate node as a Parachain`}
+            time={`3 Hours`}
+            difficulty={`hard`}
+            prerequisites={true}
+            version={`V3.0.0`}
+            link={`/v3/tutorials/cumulus-workshop/`}
+          />
         </div>
       </div>
     </Layout>

@@ -88,6 +88,66 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return
   }
 
+  const gqlTpl = `{ res: allFile(
+    filter: { sourceInstanceName: { eq: ">>param1<<" }}
+  ) {
+    nodes {
+      childMdx {
+        frontmatter {
+          slug
+        }
+      }
+    }
+  } }`
+
+  const tutsInfo = [
+    {
+      name: 'create-your-first-substrate-chain',
+      navSlug: 'firstChain',
+      version: '3.0',
+    },
+    {
+      name: 'add-a-pallet',
+      navSlug: 'addPallet',
+      version: '3.0',
+    },
+    {
+      name: 'proof-of-existence',
+      navSlug: 'poe',
+      version: '3.0',
+    },
+    {
+      name: 'permissioned-network',
+      navSlug: 'permissionedNetwork',
+      version: '3.0',
+    },
+    {
+      name: 'forkless-upgrade',
+      navSlug: 'forklessUpgrade',
+      version: '3.0',
+    },
+    {
+      name: 'private-network',
+      navSlug: 'privateNetwork',
+      version: '3.0',
+    },
+    {
+      name: 'node-metrics',
+      navSlug: 'nodeMetrics',
+      version: '3.0',
+    },
+    {
+      name: 'ink-workshop',
+      navSlug: 'inkWorkshop',
+      version: '3.0',
+    },
+    {
+      name: 'cumulus-workshop',
+      navSlug: 'cumulusWorkshop',
+      version: '3.0',
+    },
+  ]
+
   const tutsGqlResult = await Promise.allSettled(
     tutsInfo.map(tutInfo => graphql(gqlTpl.replace('>>param1<<', tutInfo.name)))
   )
