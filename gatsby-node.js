@@ -166,6 +166,10 @@ exports.createResolvers = ({ cache, createResolvers }) => {
   })
 }
 
+// TODO: An optimization here is that we have a CI process that spit out the Index in json
+//   file written to the file system upon deployment. So the index can just be reading the file.
+//   Saving further on the processing.
+
 const createIndex = async (docNodes, cache, type) => {
   const cacheKey = `IndexLunr`
   const cached = await cache.get(cacheKey)

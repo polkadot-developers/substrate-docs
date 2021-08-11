@@ -5,6 +5,42 @@ import { Index } from 'lunr'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 
+// The rational here is if multiple words are in the query. It is likely to be a
+//   AND relationship, and we will apply the AND syntax of lunrjs.
+//   So 'randomness design' will becomes '+randomness +design'.
+//   Refer to: https://lunrjs.com/guides/searching.html#term-presence
+const processQuery = query => {
+  // We skip if it satisfy one of the following conditions:
+  if (
+    query.length === 0 || // query is empty string
+    query.split(/\s/).length < 2 || // query is a single word
+    query.match(/[\^~+\-*:]/) !== null // query contains the special character in lunrjs search
+  ) {
+    return query
+  }
+
+  // Adding `+` in front of each token to make multiple words search using AND
+  const result = query
+    .split(/\s/)
+    .filter(t => t.length > 0)
+    .map(t => `+${t}`)
+    .join(' ')
+
+  return result
+}
+
+const searchForQuery = (index, store, query) => {
+  try {
+    return index
+      .search(query)
+      .map(result => ({ slug: result.ref, ...store[result.ref] }))
+  } catch (error) {
+    // Note: In production, we don't want to show error msg, so just return empty result set.
+    // console.error(error)
+    return []
+  }
+}
+
 export default function search({ data }: any) {
   const [query, setQuery] = useState('')
   const [displayedResults, setDisplayedResults] = useState([])
@@ -12,33 +48,13 @@ export default function search({ data }: any) {
   const { store } = data.LunrIndex
 
   useEffect(() => {
-    let resultsA = []
-    try {
-      resultsA = index.search(`${query}`).map(result => {
-        return {
-          slug: result.ref,
-          ...store[result.ref],
-        }
-      })
-    } catch (error) {
-      console.log(error)
+    // Refer to the search doc of lunrjs: https://lunrjs.com/guides/searching.html
+    let results = searchForQuery(index, store, processQuery(query))
+    if (results.len == 0) {
+      results = searchForQuery(index, store, `${query}*`)
     }
-    let resultsB = []
-    try {
-      resultsB = index.search(`${query}*`).map(result => {
-        return {
-          slug: result.ref,
-          ...store[result.ref],
-        }
-      })
-    } catch (error) {
-      console.log(error)
-    }
-    if (resultsA.length === 0) {
-      setDisplayedResults(resultsB)
-    } else {
-      setDisplayedResults(resultsA)
-    }
+
+    setDisplayedResults(results)
   }, [query])
 
   return (
@@ -48,9 +64,10 @@ export default function search({ data }: any) {
         <div className="flex flex-col justify-center">
           <h3>Final Test</h3>
           <p>
-            This iteration uses two sets of results. Results A is out of the box
-            Lunr implementation. And if it returns zero results, we fall back on
-            ResultsB; which is &apos;starts with typed query, e.g. Foo***&apos;
+            This iteration uses two sets of results. If the input is
+            &quot;query&quot;, results A is a search of &quot;query&quot;, and
+            result B is a search of &quot;query*&quot;. If there are multiple
+            words in the query, we return documents that have all terms inside.
           </p>
           <input
             className="border-b border-black placeholder-gray-500 focus:outline-none"
