@@ -8,7 +8,7 @@ export default function LastUpdateGithub(props: LastUpdateGithubProps) {
   const [date, setDate] = useState('')
   const [sha, setSHA] = useState('')
   const [link, setLink] = useState('')
-  console.log(date, sha, link)
+  // console.log(date, sha, link)
   useEffect(() => {
     console.log(props.absolutePath)
     fetch(
