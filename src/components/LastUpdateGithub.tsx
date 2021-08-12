@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 
-interface LastUpdateGithubProps {
-  absolutePath: string
-}
-export default function LastUpdateGithub(props: LastUpdateGithubProps) {
+// interface LastUpdateGithubProps {
+//   absolutePath: string
+// }
+export default function LastUpdateGithub() {
   const [date, setDate] = useState('')
   const [sha, setSHA] = useState('')
   const [link, setLink] = useState('')
-  console.log(date, sha, link)
+  // console.log(date, sha, link)
   useEffect(() => {
-    console.log(props.absolutePath)
+    // console.log(props.absolutePath)
     fetch(
       `https://api.github.com/repos/paritytechmarcomms/gatsby-theme-parity-website/commits?path=blog/2018-year-in-review/index.mdx`
     )
