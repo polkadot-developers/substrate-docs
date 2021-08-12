@@ -33,6 +33,7 @@ module.exports = {
           light: '#FBFBFB',
           DEFAULT: '#F2F2F2',
         },
+        substrateRed: '#F2606A',
         substratePurple: '#5A30B4',
         substrateYellow: '#FDAB3D',
         substrateDark: '#242A35',
