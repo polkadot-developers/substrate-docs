@@ -18,13 +18,13 @@ you with a number of pre-built pallets for use in FRAME-based runtimes.
 
 To give some examples, FRAME includes:
 
-- a [Balances](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/)
+- a [Balances](/rustdocs/latest/pallet_balances/)
   pallet that controls the underlying currency of your blockchain by managing the _balances_ of all the
   accounts in your system.
-- a [Contracts](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/) pallet, designed to add smart contract functionality to your blockchain.
-- pallets for on-chain governance capabilities such as [Democracy](https://substrate.dev/rustdocs/v3.0.0/pallet_democracy/),
-  [Elections](https://substrate.dev/rustdocs/v3.0.0/pallet_elections/), and
-  [Collective](https://substrate.dev/rustdocs/v3.0.0/pallet_collective/).
+- a [Contracts](/rustdocs/latest/pallet_contracts/) pallet, designed to add smart contract functionality to your blockchain.
+- pallets for on-chain governance capabilities such as [Democracy](/rustdocs/latest/pallet_democracy/),
+  [Elections](/rustdocs/latest/pallet_elections/), and
+  [Collective](/rustdocs/latest/pallet_collective/).
 
 The goal of this tutorial is to teach you how to create your own FRAME pallet to include in your
 custom blockchain. The Substrate Developer Hub Node Template comes with a template pallet that we
@@ -195,7 +195,7 @@ To implement this, replace `#[pallet::event]` with:
 
 Notice here that we are using the `Vec<u8>` type, which is _normally_ included in the `std` Rust library. We _cannot_ use `std`!
 So instead, we have included `use sp_std::vec::Vec;` in our `mod pallet`.
-The [sp-std crate](https://substrate.dev/rustdocs/v3.0.0/sp_std/index.html) includes many common
+The [sp-std crate](/rustdocs/latest/sp_std/index.html) includes many common
 things that we desire from `std`, but are `no_std` compatible. To use this though, we _must_
 update our pallet's dependencies:
 
@@ -239,7 +239,7 @@ To implement this, replace the `#[pallet::error]` line with:
 
 To add a new proof to the blockchain, we will simply store that proof in our pallet's storage. To
 store that value, we will create a [hash map](https://en.wikipedia.org/wiki/Hash_table) from the
-proof to the owner of that proof and the block number the proof was made. We'll be using FRAME's [`StorageMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/types/struct.StorageMap.html) to keep track of this information.
+proof to the owner of that proof and the block number the proof was made. We'll be using FRAME's [`StorageMap`](/rustdocs/latest/frame_support/storage/types/struct.StorageMap.html) to keep track of this information.
 
 To implement this, replace the `#[pallet::storage]` line with:
 
