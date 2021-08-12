@@ -251,7 +251,7 @@ Required to declare a pallet consisting of a set of types, functions, and trait 
 
 **What It Does**
 
-This is the [attribute macro](https://crates.parity.io/frame_support/attr.pallet.html) that allows the pallet to be used in `construct_runtime!`. This macro
+This is the [attribute macro](/rustdocs/latest/frame_support/attr.pallet.html) that allows the pallet to be used in `construct_runtime!`. This macro
 is made up of the various attributes that will be used to identify the specific items the pallet requires.
 
 **Note:** similar to a derive macro, this macro only expands types and trait implementations by reading the input and its input is _almost_ never touched. The only exception where this macro
@@ -354,7 +354,7 @@ Required for declaring pallet hooks.
 
 **What it Does**
 
-[`Hooks`](https://crates.parity.io/frame_support/traits/trait.Hooks.html#provided-methods) are made available by using the `Hooks` trait.
+[`Hooks`](/rustdocs/latest/frame_support/traits/trait.Hooks.html#provided-methods) are made available by using the `Hooks` trait.
 
 For example:
 
@@ -367,7 +367,7 @@ imple<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
 
 **Docs**
 
-- See the [documentation](https://crates.parity.io/frame_support/attr.pallet.html#hooks-pallethooks-mandatory)
+- See the [documentation](/rustdocs/latest/frame_support/attr.pallet.html#hooks-pallethooks-mandatory)
 - See the [macro expansion](/rustdocs/latest/frame_support/attr.pallet.html#macro-expansion-2)
 
 ### #[pallet::call]
@@ -407,7 +407,7 @@ Puts error variants documentation into metadata.
 
 **Docs**
 
-- See [documentation](https://crates.parity.io/frame_support/attr.pallet.html#error-palleterror-optional)
+- See [documentation](/rustdocs/latest/frame_support/attr.pallet.html#error-palleterror-optional)
 
 ### #[pallet::events]
 
@@ -452,7 +452,7 @@ storage will store its `(key, value)` pairs (i.e. the trie) and defines the pall
 **Docs**
 
 - See [macro documentation](/rustdocs/latest/frame_support/attr.pallet.html#storage-palletstorage-optional)
-- [`StorageMap` implementation](https://crates.parity.io/frame_support/pallet_prelude/struct.StorageMap.html#implementations)
+- [`StorageMap` implementation](/rustdocs/latest/frame_support/pallet_prelude/struct.StorageMap.html#implementations)
 - [Rust HashMap syntax](https://doc.rust-lang.org/book/ch08-03-hash-maps.html)
 
 ### Other Attributes
