@@ -41,8 +41,8 @@ that Alice's account will be the one used to perform runtime upgrades throughout
 Dispatchable calls in Substrate are always associated with a
 [weight](../../../v3/docs/concepts/weight), which is used for resource accounting. FRAME's
 System module bounds extrinsics to a block
-[`BlockLength`](https://substrate.dev/rustdocs/v3.0.0/frame_system/limits/struct.BlockLength.html) and
-[`BlockWeights`](https://substrate.dev/rustdocs/v3.0.0/frame_system/limits/struct.BlockWeights.html) limit.
+[`BlockLength`](/rustdocs/latest/frame_system/limits/struct.BlockLength.html) and
+[`BlockWeights`](/rustdocs/latest/frame_system/limits/struct.BlockWeights.html) limit.
 The `set_code` function in
 [the `System` module](https://github.com/paritytech/substrate/blob/v3.0.0/frame/system/src/lib.rs) is
 intentionally designed to consume the maximum weight that may fit in a block.
@@ -61,12 +61,12 @@ intentionally designed to consume the maximum weight that may fit in a block.
 	"
 />
 
-The [`set_code` function](https://substrate.dev/rustdocs/v3.0.0/src/frame_system/lib.rs.html#329-337)'s
+The [`set_code` function](/rustdocs/latest/src/frame_system/lib.rs.html#329-337)'s
 weight annotation also specifies that the extrinsic call is in
 [the `Operational` class](../../../v3/docs/runtime/weights-and-fees#operational-dispatches) of dispatchable
 function, which identifies it as relating to network _operations_ and impacts the accounting of its
 resources, such as by exempting it from the
-[`TransactionByteFee`](https://substrate.dev/rustdocs/v3.0.0/pallet_transaction_payment/trait.Config.html#associatedtype.TransactionByteFee).
+[`TransactionByteFee`](/rustdocs/latest/pallet_transaction_payment/trait.Config.html#associatedtype.TransactionByteFee).
 
 ### Use `sudo` to dispatch
 
@@ -75,7 +75,7 @@ capabilities related to the management of a single
 [`sudo` ("superuser do")](https://en.wikipedia.org/wiki/Sudo) administrator. In FRAME, the `Root`
 Origin is used to identify the runtime administrator; some of FRAME's features, including the
 ability to update the runtime by way of
-[the `set_code` function](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Call.html#variant.set_code),
+[the `set_code` function](/rustdocs/latest/frame_system/pallet/enum.Call.html#variant.set_code),
 are only accessible to this administrator. The Sudo pallet maintains a single
 [storage item](../../knowledgebase/runtime/storage): the ID of the account that has access to the
 pallet's [dispatchable functions](../../../v3/docs/getting-started/glossary#dispatch). The Sudo
@@ -101,7 +101,7 @@ fn sudo(origin, call) -> Result {
 ### `sudo` to Override Resource Accounting
 
 In order to work around resource accounting within FRAME's safeguards, the Sudo pallet provides the
-[`sudo_unchecked_weight`](https://substrate.dev/rustdocs/v3.0.0/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
+[`sudo_unchecked_weight`](/rustdocs/latest/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
 function, which provides the same capability as the `sudo` function, but accepts an additional
 parameter that is used to specify the (possibly zero) weight to use for the call. The
 `sudo_unchecked_weight` function is what will be used to invoke the runtime upgrade in this section
@@ -117,7 +117,7 @@ the time it needs to succeed or fail.
 ### Add the `Scheduler` Pallet
 
 Because the template node doesn't come with the
-[Scheduler pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_scheduler/index.html) included in
+[Scheduler pallet](/rustdocs/latest/pallet_scheduler/index.html) included in
 its runtime, the first runtime upgrade performed in this tutorial will add that pallet.
 First, add the Scheduler pallet as a dependency in the template node's runtime Cargo file.
 
@@ -174,9 +174,9 @@ construct_runtime!(
 ```
 
 The final step to preparing an upgraded FRAME runtime is to increment its
-[`spec_version`](https://substrate.dev/rustdocs/v3.0.0/sp_version/struct.RuntimeVersion.html#structfield.spec_version),
+[`spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version),
 which is a member of
-[the `RuntimeVersion` struct](https://substrate.dev/rustdocs/v3.0.0/sp_version/struct.RuntimeVersion.html):
+[the `RuntimeVersion` struct](/rustdocs/latest/sp_version/struct.RuntimeVersion.html):
 
 **`runtime/src/lib.rs`**
 

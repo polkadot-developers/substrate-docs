@@ -81,7 +81,7 @@ export default function Header() {
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-rust-docs' })}`,
-          link: `https://substrate.dev/rustdocs`,
+          link: `/rustdocs`,
           external: true,
         },
         // {

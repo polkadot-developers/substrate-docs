@@ -91,7 +91,7 @@ export default function DocsNav({
                     {navItem.external ? (
                       <a
                         className="flex items-center justify-between hover:no-underline"
-                        href="https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/sc_service/index.html"
+                        href="/rustdocs/latest/sc_service/index.html"
                         target="_blank"
                         rel="noreferrer"
                       >
