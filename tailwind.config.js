@@ -33,6 +33,7 @@ module.exports = {
           light: '#FBFBFB',
           DEFAULT: '#F2F2F2',
         },
+        substrateRed: '#F2606A',
         substratePurple: '#5A30B4',
         substrateYellow: '#FDAB3D',
         substrateDark: '#242A35',
@@ -59,6 +60,7 @@ module.exports = {
         twitter: '#00aced',
       },
       height: {
+        search: '550px',
         docNav: '90vh',
         hero: '70vh',
         googleForm: '1500px',
@@ -72,6 +74,7 @@ module.exports = {
         84: '22rem',
       },
       fontFamily: {
+        title: ['Poppins', 'sans-serif'],
         body: ['Karla', 'sans-serif'],
         quote: ['serif'],
       },
@@ -159,6 +162,8 @@ module.exports = {
         'fade-in': 'fade-in 0.5s ease-out',
         'fade-in-slow': 'fade-in 2s ease-in',
       },
+      backgroundColor: ['checked'],
+      borderColor: ['checked'],
     },
   },
   variants: {
@@ -167,5 +172,5 @@ module.exports = {
       boxSizing: ['hover', 'focus'],
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 }

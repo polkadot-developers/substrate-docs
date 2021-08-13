@@ -1,6 +1,11 @@
 ---
 title: Components Overview
 slug: /components
+version: 3.0 
+section: docs
+category: components
+keywords:
+hideNav: true
 ---
 
 ## Announcement Bars
@@ -63,8 +68,15 @@ A Substrate node in the Create Your First Substrate Chain» and Start a Private 
 <RelatedMaterialBlock
   title={`Smart Contracts`}
   text={`just need to supply a JSON file and launch your own blockchain. `}
-  linkText={`#`}
-  link={`Go To Smart Contracts`}
+  linkText={`Go To Smart Contracts`}
+  link={`#`}
+/>
+
+<RelatedMaterialBlock
+  title={`Pallets`}
+  text={`just need to supply a JSON file and launch your own blockchain. `}
+  linkText={`Go To Pallets`}
+  link={`#`}
 />
 
 ## Document Objectives
@@ -145,11 +157,12 @@ Before we even get started, lets' layout what we are going to do over the course
 
 I know everything - go straight to Playground
 
-<DarkButton text={`Use Playground`} link={``} />
+<DarkButton text={`Use Playground`} link={`#`} />
 
 ### Widget
 
 <FastTrackPlayground
+  header={`Launch a Node Template From Your Browser`}
   title={`Skip this step with Playground`}
   description={`Set up a local sandbox environment 
 to skip over set-up and get straight to hacking. Utilize the power of Playground right away.`}

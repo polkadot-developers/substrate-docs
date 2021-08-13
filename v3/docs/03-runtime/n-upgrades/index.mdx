@@ -1,6 +1,10 @@
 ---
 title: Upgrades
 slug: /v3/docs/runtime/upgrades
+version: 3.0
+section: docs
+category: runtime
+keywords:
 ---
 
 The enablement of forkless runtime upgrades is one of the defining characteristics of the Substrate
@@ -10,7 +14,7 @@ evolving runtime state. This allows network maintainers to leverage the blockcha
 for trustless, decentralized consensus to securely make enhancements to the runtime.
 
 In the FRAME system for runtime development, the System library defines
-[the `set_code` call](https://substrate.dev/rustdocs/latest/frame_system/pallet/enum.Call.html#variant.set_code)
+[the `set_code` call](/rustdocs/latest/frame_system/pallet/enum.Call.html#variant.set_code)
 that is used to update the definition of the runtime. The
 [Forkless Upgrade a Chain tutorial](/tutorials/forkless-upgrade/scheduled-upgrade) describes the details
 of FRAME runtime upgrades and demonstrates two mechanisms for performing them. Both upgrades
@@ -26,7 +30,7 @@ execution environment, it needs to know the `spec_name`, `spec_version` and `aut
 both the native and Wasm runtime.
 
 The runtime provides a
-[runtime version struct](https://substrate.dev/rustdocs/latest/sp_version/struct.RuntimeVersion.html).
+[runtime version struct](/rustdocs/latest/sp_version/struct.RuntimeVersion.html).
 A sample runtime version struct is shown below:
 
 ```rust
@@ -66,7 +70,7 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
   `spec_version` must also be updated.
 
 - `apis` is a list of supported
-  [runtime APIs](https://substrate.dev/rustdocs/latest/sp_api/macro.impl_runtime_apis.html) along
+  [runtime APIs](/rustdocs/latest/sp_api/macro.impl_runtime_apis.html) along
   with their versions.
 
 As mentioned above, the executor always verifies that the native runtime has the same
@@ -84,7 +88,7 @@ RPC endpoint, which accepts an optional block identifier. Most developers buildi
 blockchain will use the [runtime's metadata](metadata) to understand the APIs the runtime exposes
 and the requirements for interacting with these APIs. The runtime's metadata should _only_ change
 when the chain's
-[runtime `spec_version`](https://substrate.dev/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version)
+[runtime `spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version)
 changes.
 
 ## Forkless Runtime Upgrades
@@ -121,7 +125,7 @@ storage migrations fall into a category of storage management broadly referred t
 ### Storage Migrations with FRAME
 
 FRAME storage migrations are implemented by way of
-[the `OnRuntimeUpgrade` trait](https://substrate.dev/rustdocs/latest/frame_support/traits/trait.OnRuntimeUpgrade.html),
+[the `OnRuntimeUpgrade` trait](/rustdocs/latest/frame_support/traits/trait.OnRuntimeUpgrade.html),
 which specifies a single function, `on_runtime_upgrade`. This function provides a hook that allows
 runtime developers to specify logic that will run immediately _after_ a runtime upgrade but _before_
 any [extrinsics or even the `on_initialize` function](execution#executing-a-block) has executed.

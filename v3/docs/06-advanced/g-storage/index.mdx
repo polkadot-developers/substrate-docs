@@ -1,6 +1,10 @@
 ---
 title: Storage
 slug: /v3/docs/advanced/storage
+version: 3.0 
+section: docs
+category: advanced
+keywords:
 ---
 
 Substrate uses a simple key-value data store implemented as a database-backed, modified Merkle tree.
@@ -47,7 +51,7 @@ each block header. This is used to easily verify the state of the blockchain and
 light clients to verify proofs.
 
 This trie only stores content for the canonical chain, not forks. There is a separate
-[`state_db` layer](https://substrate.dev/rustdocs/latest/sc_state_db) that maintains the
+[`state_db` layer](/rustdocs/latest/sc_state_db) that maintains the
 trie state with references counted in memory for all that is non-canonical.
 
 ### Child Trie
@@ -78,9 +82,9 @@ reading to learn how to calculate storage keys for the different types of storag
 To calculate the key for a simple [Storage Value](../runtime/storage#storage-value), take the
 [TwoX 128 hash](https://github.com/Cyan4973/xxHash) of the name of the module that contains the
 Storage Value and append to it the TwoX 128 hash of the name of the Storage Value itself. For
-example, the [Sudo](https://substrate.dev/rustdocs/latest/pallet_sudo) pallet exposes a
+example, the [Sudo](/rustdocs/latest/pallet_sudo) pallet exposes a
 Storage Value item named
-[`Key`](https://substrate.dev/rustdocs/latest/pallet_sudo/struct.Module.html#method.key):
+[`Key`](/rustdocs/latest/pallet_sudo/struct.Module.html#method.key):
 
 ```
 twox_128("Sudo")                   = "0x5c0d1176a568c1f92944340dbfed9e9c"
@@ -187,7 +191,7 @@ example, after you remove the first 32 hexadecimal characters that represent the
 
 ## Runtime Storage API
 
-Substrate's [FRAME Support crate](https://substrate.dev/rustdocs/latest/frame_support)
+Substrate's [FRAME Support crate](/rustdocs/latest/frame_support)
 provides utilities for generating unique, deterministic keys for your runtime's storage items. These
 storage items are placed in the [state trie](#trie-abstraction) and are accessible by
 [querying the trie by key](#querying-storage).
@@ -201,4 +205,4 @@ storage items are placed in the [state trie](#trie-abstraction) and are accessib
 ### References
 
 - Visit the reference docs for
-  [`paritytech/trie`](https://substrate.dev/rustdocs/latest/trie_db/trait.Trie.html).
+  [`paritytech/trie`](/rustdocs/latest/trie_db/trait.Trie.html).

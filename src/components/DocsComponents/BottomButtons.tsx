@@ -42,8 +42,8 @@ export function BottomButtons({ menu, pageSlug }: BottomButtonsProps) {
 
   return (
     <div
-      className={`flex flex-col items-center xl:flex-row ${
-        prevButton === null ? 'xl:justify-end' : 'xl:justify-between'
+      className={`flex flex-col items-center lg:flex-row ${
+        prevButton === null ? 'lg:justify-end' : 'lg:justify-between'
       }`}
     >
       {prevButton === null ? null : (

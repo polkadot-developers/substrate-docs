@@ -9,10 +9,10 @@ export default function tutorials({ data }: any) {
   return (
     <Layout>
       <div className="px-4">
-        <div className="text-2xl md:text-7xl my-8 font-bold text-center">
+        <h1 className="text-center my-8 lg:my-12">
           {intl.formatMessage({ id: 'nav-tutorials' })}
-        </div>
-        <div className="container mb-40 flex flex-col items-center md:flex-row md:flex-wrap md:justify-center">
+        </h1>
+        <div className="mb-40 flex flex-col items-center md:flex-row md:flex-wrap md:justify-center">
           <TutorialCard
             title={`Create Your First Substrate Chain`}
             image={data.tutorialOne}
@@ -25,7 +25,7 @@ export default function tutorials({ data }: any) {
           />
           <TutorialCard
             title={`Add Pallets to Runtime and Publish Custom Pallets`}
-            image={data.tutorialOne}
+            image={data.tutorialTwo}
             description={`Learn to add the Nicks pallet to runtime and publish custom pallets that others can import.`}
             time={`2 Hours`}
             difficulty={`beginner`}
@@ -35,7 +35,7 @@ export default function tutorials({ data }: any) {
           />
           <TutorialCard
             title={`Proof of Existence`}
-            image={data.tutorialOne}
+            image={data.tutorialThree}
             description={`Build a customized Substrate chain with its own user interface.`}
             time={`1 Hour`}
             difficulty={`beginner`}
@@ -45,7 +45,7 @@ export default function tutorials({ data }: any) {
           />
           <TutorialCard
             title={`Permissioned Network`}
-            image={data.tutorialOne}
+            image={data.tutorialFour}
             description={`A comprehensive, end-to-end tutorial for building a permissioned network using node-authorization pallet.`}
             time={`2 Hours`}
             difficulty={`beginner`}
@@ -55,7 +55,7 @@ export default function tutorials({ data }: any) {
           />
           <TutorialCard
             title={`Forkless Upgrades`}
-            image={data.tutorialOne}
+            image={data.tutorialFive}
             description={`Perform a forkless runtime upgrade on a running Substrate network.`}
             time={`2 Hours`}
             difficulty={`beginner`}
@@ -65,7 +65,7 @@ export default function tutorials({ data }: any) {
           />
           <TutorialCard
             title={`Private Network`}
-            image={data.tutorialOne}
+            image={data.tutorialSix}
             description={`Learn how to start a private blockchain network using an out-of-the-box Substrate node.`}
             time={`2 Hours`}
             difficulty={`beginner`}
@@ -100,8 +100,38 @@ export default function tutorials({ data }: any) {
 }
 
 export const pageQuery = graphql`
-  query {
-    tutorialOne: file(name: { eq: "tutorial-placeholder" }) {
+  {
+    tutorialOne: file(name: { eq: "tuts-one" }) {
+      id
+      childImageSharp {
+        gatsbyImageData
+      }
+    }
+    tutorialTwo: file(name: { eq: "tuts-two" }) {
+      id
+      childImageSharp {
+        gatsbyImageData
+      }
+    }
+    tutorialThree: file(name: { eq: "tuts-three" }) {
+      id
+      childImageSharp {
+        gatsbyImageData
+      }
+    }
+    tutorialFour: file(name: { eq: "tuts-four" }) {
+      id
+      childImageSharp {
+        gatsbyImageData
+      }
+    }
+    tutorialFive: file(name: { eq: "tuts-five" }) {
+      id
+      childImageSharp {
+        gatsbyImageData
+      }
+    }
+    tutorialSix: file(name: { eq: "tuts-six" }) {
       id
       childImageSharp {
         gatsbyImageData

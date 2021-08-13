@@ -1,6 +1,10 @@
 ---
 title: Events
 slug: /v3/docs/runtime/events
+version: 3.0 
+section: docs
+category: runtime
+keywords:
 ---
 
 A Substrate runtime module can emit events when it wants to notify external entities about changes
@@ -127,7 +131,7 @@ In FRAME v2, depositing an event adopts a slightly different structure:
 ```
 
 The default behavior of this function is to call
-[`deposit_event`](https://substrate.dev/rustdocs/latest/frame_system/pallet/struct.Pallet.html#method.deposit_event)
+[`deposit_event`](/rustdocs/latest/frame_system/pallet/struct.Pallet.html#method.deposit_event)
 from the FRAME system, which writes the event to storage.
 
 This function places the event in the System module's runtime storage for that block. At the
@@ -169,7 +173,7 @@ runtime events are used:
 
 ### References
 
-- [`decl_event!` macro](https://substrate.dev/rustdocs/latest/frame_support/macro.decl_event.html)
-- [`decl_module!` macro](https://substrate.dev/rustdocs/latest/frame_support/macro.decl_module.html)
-- [`construct_runtime!` macro](https://substrate.dev/rustdocs/latest/frame_support/macro.construct_runtime.html)
-- [`#[frame_support::pallet]` macro](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html)
+- [`decl_event!` macro](/rustdocs/latest/frame_support/macro.decl_event.html)
+- [`decl_module!` macro](/rustdocs/latest/frame_support/macro.decl_module.html)
+- [`construct_runtime!` macro](/rustdocs/latest/frame_support/macro.construct_runtime.html)
+- [`#[frame_support::pallet]` macro](/rustdocs/latest/frame_support/attr.pallet.html)

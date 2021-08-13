@@ -169,6 +169,10 @@
   transition: transform 0.3s ease;
 }
 
+.markdown-body a.md-button:hover::before {
+  transform: scaleX(0);
+}
+
 .markdown-body a:hover::before {
   transform: scaleX(1);
 }

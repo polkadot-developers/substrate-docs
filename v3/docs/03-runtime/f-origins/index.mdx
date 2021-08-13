@@ -1,6 +1,10 @@
 ---
 title: Storage
 slug: /v3/docs/runtime/origins
+version: 3.0 
+section: docs
+category: runtime
+keywords:
 ---
 
 The runtime origin is used by dispatchable functions to check where a call has come from.
@@ -40,7 +44,7 @@ proposal.dispatch(system::RawOrigin::None.into())
 ```
 
 You can look at the source code of the
-[Sudo module](https://substrate.dev/rustdocs/latest/pallet_sudo) for a practical
+[Sudo module](/rustdocs/latest/pallet_sudo) for a practical
 implementation of this.
 
 ## Custom Origins
@@ -68,4 +72,4 @@ Customizing origins allows runtime developers to specify valid origins depending
 ### References
 
 - Visit the reference docs for the
-  [`RawOrigin` enum](https://substrate.dev/rustdocs/latest/frame_system/enum.RawOrigin.html).
+  [`RawOrigin` enum](/rustdocs/latest/frame_system/enum.RawOrigin.html).

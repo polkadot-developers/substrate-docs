@@ -1,3 +1,58 @@
+const tutsInfo = [
+  {
+    name: 'create-your-first-substrate-chain',
+    navSlug: 'firstChain',
+    version: '3.0',
+  },
+  {
+    name: 'add-a-pallet',
+    navSlug: 'addPallet',
+    version: '3.0',
+  },
+  {
+    name: 'proof-of-existence',
+    navSlug: 'poe',
+    version: '3.0',
+  },
+  {
+    name: 'permissioned-network',
+    navSlug: 'permissionedNetwork',
+    version: '3.0',
+  },
+  {
+    name: 'forkless-upgrade',
+    navSlug: 'forklessUpgrade',
+    version: '3.0',
+  },
+  {
+    name: 'private-network',
+    navSlug: 'privateNetwork',
+    version: '3.0',
+  },
+  {
+    name: 'node-metrics',
+    navSlug: 'nodeMetrics',
+    version: '3.0',
+  },
+  {
+    name: 'ink-workshop',
+    navSlug: 'inkWorkshop',
+    version: '3.0',
+  },
+]
+
+const gqlTpl = `{ res: allFile(
+  filter: { sourceInstanceName: { eq: ">>param1<<" }}
+) {
+  nodes {
+    childMdx {
+      frontmatter {
+        slug
+      }
+    }
+  }
+} }`
+
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
 
@@ -32,61 +87,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     reporter.panicOnBuild(result.errors)
     return
   }
-
-  const gqlTpl = `{ res: allFile(
-    filter: { sourceInstanceName: { eq: ">>param1<<" }}
-  ) {
-    nodes {
-      childMdx {
-        frontmatter {
-          slug
-        }
-      }
-    }
-  } }`
-
-  const tutsInfo = [
-    {
-      name: 'create-your-first-substrate-chain',
-      navSlug: 'firstChain',
-      version: '3.0',
-    },
-    {
-      name: 'add-a-pallet',
-      navSlug: 'addPallet',
-      version: '3.0',
-    },
-    {
-      name: 'proof-of-existence',
-      navSlug: 'poe',
-      version: '3.0',
-    },
-    {
-      name: 'permissioned-network',
-      navSlug: 'permissionedNetwork',
-      version: '3.0',
-    },
-    {
-      name: 'forkless-upgrade',
-      navSlug: 'forklessUpgrade',
-      version: '3.0',
-    },
-    {
-      name: 'private-network',
-      navSlug: 'privateNetwork',
-      version: '3.0',
-    },
-    {
-      name: 'node-metrics',
-      navSlug: 'nodeMetrics',
-      version: '3.0',
-    },
-    {
-      name: 'ink-workshop',
-      navSlug: 'inkWorkshop',
-      version: '3.0',
-    },
-  ]
 
   const tutsGqlResult = await Promise.allSettled(
     tutsInfo.map(tutInfo => graphql(gqlTpl.replace('>>param1<<', tutInfo.name)))
@@ -136,3 +136,91 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     })
   })
 }
+
+////////////////////////////////////////////////////////
+//          Lunr Search Resolver and Indexing         //
+////////////////////////////////////////////////////////
+
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable security/detect-non-literal-require */
+const { GraphQLJSONObject } = require(`graphql-type-json`)
+const lunr = require(`lunr`)
+const remark = require('remark')
+const strip = require('strip-markdown')
+
+exports.createResolvers = ({ cache, createResolvers }) => {
+  createResolvers({
+    Query: {
+      LunrIndex: {
+        type: GraphQLJSONObject,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        resolve: (source, args, context, info) => {
+          const docNodes = context.nodeModel.getAllNodes({
+            type: `Mdx`,
+          })
+          return createIndex(docNodes, cache)
+        },
+      },
+    },
+  })
+}
+
+const createIndex = async (docNodes, cache) => {
+  const cacheKey = `IndexLunr`
+  const cached = await cache.get(cacheKey)
+  if (cached) {
+    return cached
+  }
+  const documents = []
+  const store = {}
+
+  for (const node of docNodes) {
+    const locale = node.fields.locale
+    const slug = node.frontmatter.slug
+    const section = node.frontmatter.section
+    const category = node.frontmatter.category
+    const title = node.frontmatter.title
+    const keywords = node.frontmatter.keywords
+
+    var body
+    remark()
+      .use(strip)
+      .process(node.rawBody, function (err, file) {
+        if (err) throw err
+        body = file
+      })
+    documents.push({
+      slug: slug,
+      title: title,
+      section: section,
+      category: category,
+      keywords: keywords,
+      content: body,
+    })
+    // eslint-disable-next-line security/detect-object-injection
+    store[slug] = {
+      title,
+      section,
+      category,
+      keywords,
+      locale,
+    }
+  }
+  const index = lunr(function () {
+    console.log('Updating Lunr Search Index')
+    this.ref(`slug`)
+    this.field(`title`)
+    this.field(`section`)
+    this.field(`category`)
+    this.field(`keywords`)
+    this.field(`content`)
+
+    for (const doc of documents) {
+      this.add(doc)
+    }
+  })
+  const json = { index: index.toJSON(), store }
+  await cache.set(cacheKey, json)
+  return json
+}
+////////////////////////////////////////////////////////

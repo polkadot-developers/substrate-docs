@@ -1,6 +1,10 @@
 ---
 title: Glossary
 slug: /v3/docs/getting-started/glossary
+version: 3.0 
+section: docs
+category: getting started
+keywords:
 ---
 
 This page defines and explains many of the domain-specific terms that are common to the Substrate
@@ -275,9 +279,9 @@ transactions, which may be
 Within the [Balances pallet](../../../v3/docs/runtime/frame#balances), this is the minimum
 balance an account may have. Accounts cannot be created with a balance less than this amount, and if
 an account's balance ever drops below this amount, the Balances pallet will use
-[a FRAME System API](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/struct.Pallet.html#method.dec_ref)
+[a FRAME System API](/rustdocs/latest/frame_system/pallet/struct.Pallet.html#method.dec_ref)
 to drop its references to that account. If all the references to an account are dropped, it
-[may be reaped](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/struct.Pallet.html#method.allow_death).
+[may be reaped](/rustdocs/latest/frame_system/pallet/struct.Pallet.html#method.allow_death).
 
 ---
 
@@ -456,7 +460,7 @@ A [FRAME](#frame) primitive that identifies the source of a [dispatched](#dispat
 into the [runtime](#runtime). The FRAME System module defines
 [three built-in origins](../../../v3/docs/runtime/origins#raw-origins); [pallet](#pallet)
 developers can easily define custom origins, such as those defined by the
-[Collective pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_collective/enum.RawOrigin.html).
+[Collective pallet](/rustdocs/latest/pallet_collective/enum.RawOrigin.html).
 
 ---
 

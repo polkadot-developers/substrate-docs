@@ -17,24 +17,17 @@ export function RelatedMaterialBlock({
   return (
     <>
       <div className="flex flex-wrap justify-start">
-        <div className="bg-mdxLightBg dark:bg-gray-300 dark:text-black p-4 m-4 w-80 h-40 border border-black dark:border-white rounded">
-          <span className="text-lg font-medium">{title}</span>
+        <div className="bg-mdxLightBg dark:bg-gray-300 dark:text-substrateDark px-4 pt-4 pb-6 my-2 w-80 border border-substrateDark-light dark:border-white rounded">
+          <span className="text-2xl font-medium">{title}</span>
           <p className="text-base font-light py-2">{text}</p>
-          <div>
-            <LocalizedLink className="" to={linkText}>
-              <span>{link}</span>
-              <span>{` `}»</span>
+          <div className="md-button inline-block">
+            <LocalizedLink
+              className={`md-button mr-2 transform transition-all duration-300 ease-in-out hover:mr-4 text-lg font-bold border-b-2 border-substrateDark`}
+              to={link}
+            >
+              <span className="text-substrateDark">{linkText}</span>
             </LocalizedLink>
-          </div>
-        </div>
-        <div className="bg-mdxLightBg dark:bg-gray-300 dark:text-black p-4 m-4 w-80 h-40 border border-black dark:border-white rounded">
-          <span className="text-lg font-medium">Pallets</span>
-          <p className="text-base font-light py-2">{text}</p>
-          <div>
-            <LocalizedLink className="" to={linkText}>
-              <span>Go to Pallets</span>
-              <span>{` `}»</span>
-            </LocalizedLink>
+            <span className="">&#10132;</span>
           </div>
         </div>
       </div>

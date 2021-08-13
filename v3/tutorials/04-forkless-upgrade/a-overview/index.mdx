@@ -1,6 +1,11 @@
 ---
 title: Overview
 slug: /v3/tutorials/forkless-upgrades
+hideNav: true
+version: 3.0 
+section: tutorials
+category: forkless upgrades
+keywords:
 ---
 
 One of the defining features of the Substrate blockchain development framework is its support for
@@ -15,7 +20,7 @@ Substrate makes it possible to deploy enhanced runtime capabilities (**including
 without a [hard fork](../../../v3/docs/getting-started/glossary#fork). Because the definition of the
 runtime is itself an element in a Substrate chain's state, network participants may update this
 value by way of an [extrinsic](../../../v3/docs/concepts/extrinsics), specifically
-[the `set_code` function](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Call.html#variant.set_code).
+[the `set_code` function](/rustdocs/latest/frame_system/pallet/enum.Call.html#variant.set_code).
 Since updates to runtime state are bound by the blockchain's consensus mechanisms and cryptographic
 guarantees, network participants can use the blockchain itself to trustlessly distribute updated or
 extended runtime logic without needing to fork the chain or even release a new blockchain client.
@@ -24,10 +29,10 @@ This tutorial will use the Substrate Developer Hub
 [Node Template](https://github.com/substrate-developer-hub/substrate-node-template) to explore two
 mechanisms for forkless upgrades of [FRAME](../../../v3/docs/runtime/frame)-based runtimes.
 First, the
-[`sudo_unchecked_weight`](https://substrate.dev/rustdocs/v3.0.0/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
+[`sudo_unchecked_weight`](/rustdocs/latest/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
 function from the [Sudo pallet](../../../v3/docs/runtime/frame#sudo) will be used to perform an
 upgrade that adds the [Scheduler pallet](../../../v3/docs/runtime/frame#scheduler). Then, the
-[`schedule`](https://substrate.dev/rustdocs/v3.0.0/pallet_scheduler/enum.Call.html#variant.schedule)
+[`schedule`](/rustdocs/latest/pallet_scheduler/enum.Call.html#variant.schedule)
 function from the Scheduler pallet will be used to perform an upgrade that increases the
 [existential (minimum) balance](../../../v3/docs/getting-started/glossary#existential-deposit)
 for network accounts.

@@ -1,6 +1,10 @@
 ---
 title: Account Information
 slug: /v3/docs/advanced/account-info
+version: 3.0 
+section: docs
+category: advanced
+keywords:
 ---
 
 ## Overview
@@ -13,10 +17,10 @@ on-chain, it is important to understand how to use these reference counters in y
 ## `Account` StorageMap
 
 In Substrate, the entry point of account information is stored in
-[`frame-system` pallet](https://substrate.dev/rustdocs/latest/frame_system),
+[`frame-system` pallet](/rustdocs/latest/frame_system),
 extracted below.
 
-[`frame/system/src/lib.rs`](https://substrate.dev/rustdocs/latest/src/frame_system/lib.rs.html#530):
+[`frame/system/src/lib.rs`](/rustdocs/latest/src/frame_system/lib.rs.html#530):
 
 ```rust
 /// The full account information for a particular account ID.
@@ -34,14 +38,14 @@ pub type Account<T: Config> = StorageMap<
 `Account` storage map takes in five type parameters, of which the first argument is used in macro
 expansion. Then it specifies using `Blake2_128Concat` as the hashing algorithm, and mapping
 `T::AccountId` as key over `AccountInfo<T::Index, T::AccountData>` struct. See
-[`StorageMap` API doc](https://substrate.dev/rustdocs/latest/frame_support/storage/types/struct.StorageMap.html#impl)
+[`StorageMap` API doc](/rustdocs/latest/frame_support/storage/types/struct.StorageMap.html#impl)
 for details.
 
 ## `AccountInfo` Structure
 
 Looking further down in the source code, `AccountInfo` struct is defined as:
 
-[`frame/system/src/lib.rs`](https://substrate.dev/rustdocs/latest/src/frame_system/lib.rs.html#788-803):
+[`frame/system/src/lib.rs`](/rustdocs/latest/src/frame_system/lib.rs.html#788-803):
 
 ```rust
 #[derive(Clone, Eq, PartialEq, Default, RuntimeDebug, Encode, Decode)]
@@ -111,14 +115,14 @@ There are also three query functions to ease usage on these counters:
 - `is_provider_required()` to check if an account has outstanding consumer references
   (`consumers` > 0).
 
-Refer to [`frame-system` API doc](https://substrate.dev/rustdocs/latest/frame_system/pallet/struct.Pallet.html#impl-11)
+Refer to [`frame-system` API doc](/rustdocs/latest/frame_system/pallet/struct.Pallet.html#impl-11)
 for details.
 
 ## `AccountData` Trait and Implementation
 
-Back to the `AccountInfo` struct. The last piece of data in `AccountInfo` is `AccountData`. It can be any struct as long as it satisfies the associated type `AccountData` trait bound defined in [`frame-system::pallet::Config` trait](https://substrate.dev/rustdocs/latest/frame_system/pallet/trait.Config.html#associatedtype.AccountData). Out of the box Substrate runtime configures it to be [`AccountData` struct](https://substrate.dev/rustdocs/latest/pallet_balances/struct.AccountData.html) defined in `pallet-balances` as shown below.
+Back to the `AccountInfo` struct. The last piece of data in `AccountInfo` is `AccountData`. It can be any struct as long as it satisfies the associated type `AccountData` trait bound defined in [`frame-system::pallet::Config` trait](/rustdocs/latest/frame_system/pallet/trait.Config.html#associatedtype.AccountData). Out of the box Substrate runtime configures it to be [`AccountData` struct](/rustdocs/latest/pallet_balances/struct.AccountData.html) defined in `pallet-balances` as shown below.
 
-[`frame/balances/src/lib.rs`](https://substrate.dev/rustdocs/latest/src/pallet_balances/lib.rs.html#566-586)
+[`frame/balances/src/lib.rs`](/rustdocs/latest/src/pallet_balances/lib.rs.html#566-586)
 
 ```rust
 pub struct AccountData<Balance> {
@@ -161,11 +165,11 @@ It contains:
 ## Conclusion
 
 By now, you have a clear picture how account data is stored in Substrate. You can dig deeper by
-looking into the [`frame_system::AccountInfo` API doc](https://substrate.dev/rustdocs/latest/frame_system/struct.AccountInfo.html)
-and [`pallet_balances::AccountData` API doc](https://substrate.dev/rustdocs/latest/pallet_balances/struct.AccountData.html).
+looking into the [`frame_system::AccountInfo` API doc](/rustdocs/latest/frame_system/struct.AccountInfo.html)
+and [`pallet_balances::AccountData` API doc](/rustdocs/latest/pallet_balances/struct.AccountData.html).
 
 ## References
 
-- [`pallet_session::Module::set_keys` dispatchable call](https://substrate.dev/rustdocs/latest/src/pallet_session/lib.rs.html#508-571)
-- [`frame_system::Provider` `HandleLifetime` implementation](https://substrate.dev/rustdocs/latest/src/frame_system/lib.rs.html#1549-1561)
-- [`pallet_assets` `new_account` function](https://substrate.dev/rustdocs/latest/src/pallet_assets/functions.rs.html#46-61)
+- [`pallet_session::Module::set_keys` dispatchable call](/rustdocs/latest/src/pallet_session/lib.rs.html#508-571)
+- [`frame_system::Provider` `HandleLifetime` implementation](/rustdocs/latest/src/frame_system/lib.rs.html#1549-1561)
+- [`pallet_assets` `new_account` function](/rustdocs/latest/src/pallet_assets/functions.rs.html#46-61)

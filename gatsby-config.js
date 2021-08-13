@@ -1,6 +1,6 @@
 const {
   NODE_ENV,
-  URL: NETLIFY_SITE_URL = 'https://developers.substrate.io',
+  URL: NETLIFY_SITE_URL = 'https://docs.substrate.io',
   DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
   CONTEXT: NETLIFY_ENV = NODE_ENV,
 } = process.env
@@ -134,6 +134,10 @@ module.exports = {
             name: 'Karla',
             file: 'https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800',
           },
+          {
+            name: 'Poppins',
+            file: 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800',
+          },
         ],
       },
     },
@@ -143,7 +147,7 @@ module.exports = {
       resolve: `gatsby-theme-i18n`,
       options: {
         defaultLang: `en`,
-        locales: `en zh-CN fr`,
+        locales: `en`,
         configPath: require.resolve(`./i18n/config.json`),
       },
     },

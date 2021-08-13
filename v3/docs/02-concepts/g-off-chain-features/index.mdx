@@ -1,6 +1,10 @@
 ---
 title: Off-Chain Features
 slug: /v3/docs/concepts/off-chain-features
+version: 3.0 
+section: docs
+category: concepts
+keywords:
 ---
 
 ## Overview
@@ -41,20 +45,20 @@ they can easily access on-chain state for their computations.
 Off-chain workers have access to extended APIs for communicating with the external world:
 
 - Ability to
-  [submit transactions](https://substrate.dev/rustdocs/latest/sp_runtime/offchain/trait.TransactionPool.html)
+  [submit transactions](/rustdocs/latest/sp_runtime/offchain/trait.TransactionPool.html)
   (either signed or unsigned) to the chain to publish computation results [[1]](#example-txs).
 - A fully-featured HTTP client allowing the worker to access and fetch data from external services [[2]](#example-http).
 - Access to the local keystore to sign and verify statements or transactions.
 - An additional, local
-  [key-value database](https://substrate.dev/rustdocs/latest/sp_runtime/offchain/trait.OffchainStorage.html)
+  [key-value database](/rustdocs/latest/sp_runtime/offchain/trait.OffchainStorage.html)
   shared between all off-chain workers [[3]](#example-off-chain-storage).
 - A secure, local entropy source for random number generation.
 - Access to the node's precise
-  [local time](https://substrate.dev/rustdocs/latest/sp_runtime/offchain/struct.Timestamp.html).
+  [local time](/rustdocs/latest/sp_runtime/offchain/struct.Timestamp.html).
 - The ability to sleep and resume work.
 
 OCWs can be initiated from within a special function in your runtime implementation,
-[`fn offchain_worker(block: T::BlockNumber)`](https://substrate.dev/rustdocs/latest/frame_support/traits/trait.OffchainWorker.html).
+[`fn offchain_worker(block: T::BlockNumber)`](/rustdocs/latest/frame_support/traits/trait.OffchainWorker.html).
 communicate results back to the chain, off-chain workers can submit signed or unsigned transactions
 to be included in subsequent blocks.
 
