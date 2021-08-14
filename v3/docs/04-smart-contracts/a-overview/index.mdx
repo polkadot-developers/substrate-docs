@@ -32,11 +32,15 @@ code to be executed in a Substrate-based blockchain, designed to closely emulate
 functionality of executing contracts on the Ethereum mainnet within the Substrate runtime.
 Learn more in [this section](evm-pallet).
 
-> **Note:** Substrate is built to enable developers to extend what's provided out of the box.
-> We encourage further development of alternative smart contract platforms on top of the Substrate
-> runtime.
-> Use these pre-built pallets to inform how you might design your own system or how you could port over an
-> existing system to work on a Substrate-based chain.
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`Substrate is built to enable developers to extend what's provided out of the box.
+  We encourage further development of alternative smart contract platforms on top of the Substrate
+  runtime.
+  Use these pre-built pallets to inform how you might design your own system or how you could port over an
+  existing system to work on a Substrate-based chain.`}
+/>
 
 ## Smart Contracts vs. Runtime Development
 
@@ -74,7 +78,7 @@ needing to go through all the craziness of proposals, runtime upgrades, etc... I
 as a testing grounds for future runtime changes, but done in a way that isolates your network from
 any of the growing pains or errors which may occur.
 
-**In summary, Substrate Smart Contracts:**:
+**In summary, Substrate Smart Contracts:**
 
 - Are inherently safer to the network.
 - Have built in economic incentives against abuse.
@@ -113,9 +117,9 @@ Substrate runtime development and Smart Contracts each provide tools designed fo
 there is also a clear set of problems suited for only one of the two. To give just one example in
 each category:
 
-- **Runtime Development**: Building a privacy layer on top of transactions in your blockchain.
-- **Smart Contract**: Introducing multi-signature wallets over the currency of your blockchain.
-- **Use Case Specific**: Building a gaming dApp which may need to build up a community of users (leaning towards a
+- **Runtime Development:** Building a privacy layer on top of transactions in your blockchain.
+- **Smart Contract:** Introducing multi-signature wallets over the currency of your blockchain.
+- **Use Case Specific:** Building a gaming dApp which may need to build up a community of users (leaning towards a
   Smart Contract), or may need to scale to millions of transactions a day (leaning more towards Runtime
   Development).
 
@@ -181,9 +185,13 @@ decisions on which approach to use based on different situations.
   </tr>
 </table>
 
-> If you are building on Polkadot, you can also
-> [deploy smart contracts on its parachain](https://wiki.polkadot.network/docs/en/build-smart-contracts). Check here for
-> [comparison between developing on parachain, parathread, and smart contract](https://wiki.polkadot.network/docs/en/build-build-with-polkadot#what-is-the-difference-between-building-a-parachain-a-parathread-or-a-smart-contract).
+<Message
+  type={`green`}
+  title={`Further learning`}
+  text={`If you are building on Polkadot, you can also
+  [deploy smart contracts on its parachain](https://wiki.polkadot.network/docs/en/build-smart-contracts). Check [here](https://wiki.polkadot.network/docs/en/build-build-with-polkadot#what-is-the-difference-between-building-a-parachain-a-parathread-or-a-smart-contract) for
+  a comparison between developing on a parachain, parathread, and smart contract.`}
+/>
 
 ### Learn More
 

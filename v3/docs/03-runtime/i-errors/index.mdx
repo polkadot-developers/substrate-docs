@@ -49,8 +49,12 @@ pub enum Error<T> {
 
 ```
 
-> **Note:** In FRAME v1, in order to emit custom errors from a pallet, the pallet must
-> configure the `Error` type in `decl_module!`. See the [Rust docs](/rustdocs/latest/frame_support/macro.decl_error.html#usage) for more details.
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`In FRAME v1, in order to emit custom errors from a pallet, the pallet must
+  configure the \`Error\` type in \`decl_module!\`. See the [Rust docs](/rustdocs/latest/frame_support/macro.decl_error.html#usage) for more details.`}
+/>
 
 The
 [Pallet Template](https://github.com/substrate-developer-hub/substrate-pallet-template/blob/master/src/lib.rs)

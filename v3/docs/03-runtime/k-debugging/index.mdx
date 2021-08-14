@@ -157,8 +157,12 @@ gets called.
 2020-01-01 tokio-blocking-driver DEBUG runtime  NoneValue        <-- str which holds the name of the ident of the error
 ```
 
-> IMPORTANT: Adding many print functions to the runtime will produce a bigger binary and wasm blob
-> with debug code not needed in production.
+<Message
+  type={`yellow`}
+  title={`Important`}
+  text={`Adding many print functions to the runtime will produce a bigger binary and wasm blob
+  with debug code not needed in production.`}
+/>
 
 ## Substrate's Own `print` Function
 
@@ -199,7 +203,7 @@ The values are printed in the terminal or the standard output if the Error gets 
 2020-01-01 00:00:00 tokio-blocking-driver DEBUG runtime  After storing my_val
 ```
 
-## If Std
+## If `std`
 
 The legacy `print` function allows you to print and have an implementation of the `Printable` trait.
 However, in some legacy cases you may want to do more than print, or not bother with
