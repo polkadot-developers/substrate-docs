@@ -1,73 +1,18 @@
 ---
-title: Visualizing Node Metrics
-slug: /v3/tutorials/node-metrics
+title: Using Grafana and Prometheus with Substrate
+slug: /v3/tutorials/node-metrics/p1
 version: 3.0 
 section: tutorials
 category: node metrics
-keywords:
+keywords: telemetry, metrics
 ---
+## Overview
 
-Recent versions of Substrate expose metrics, such as how many peers your node is
-connected to, how much memory your node is using, etc. To visualize these
-metrics, you can use tools like [Prometheus](https://prometheus.io/) and
-[Grafana](https://grafana.com/).
+In this tutorial you will  learn how to use Grafana and Prometheus to scrape and visualize node metrics.
 
-<Message
-  type={`gray`}
-  title={`Note`}
-  text={`In the past Substrate exposed a Grafana JSON endpoint directly. This has been replaced with a Prometheus metric endpoint.`}
-/>
+## Steps
 
-A possible architecture could look like:
-
-```
-+-----------+                     +-------------+                                                              +---------+
-| Substrate |                     | Prometheus  |                                                              | Grafana |
-+-----------+                     +-------------+                                                              +---------+
-      |               -----------------\ |                                                                          |
-      |               | Every 1 minute |-|                                                                          |
-      |               |----------------| |                                                                          |
-      |                                  |                                                                          |
-      |        GET current metric values |                                                                          |
-      |<---------------------------------|                                                                          |
-      |                                  |                                                                          |
-      | `substrate_peers_count 5`        |                                                                          |
-      |--------------------------------->|                                                                          |
-      |                                  | --------------------------------------------------------------------\    |
-      |                                  |-| Save metric value with corresponding time stamp in local database |    |
-      |                                  | |-------------------------------------------------------------------|    |
-      |                                  |                                         -------------------------------\ |
-      |                                  |                                         | Every time user opens graphs |-|
-      |                                  |                                         |------------------------------| |
-      |                                  |                                                                          |
-      |                                  |       GET values of metric `substrate_peers_count` from time-X to time-Y |
-      |                                  |<-------------------------------------------------------------------------|
-      |                                  |                                                                          |
-      |                                  | `substrate_peers_count (1582023828, 5), (1582023847, 4) [...]`           |
-      |                                  |------------------------------------------------------------------------->|
-      |                                  |                                                                          |
-
-```
-
-<details>
- <summary>Reproduce diagram</summary>
-
-Go to: https://textart.io/sequence
-
-```
-object Substrate Prometheus Grafana
-note left of Prometheus: Every 1 minute
-Prometheus->Substrate: GET current metric values
-Substrate->Prometheus: `substrate_peers_count 5`
-note right of Prometheus: Save metric value with corresponding time stamp in local database
-note left of Grafana: Every time user opens graphs
-Grafana->Prometheus: GET values of metric `substrate_peers_count` from time-X to time-Y
-Prometheus->Grafana: `substrate_peers_count (1582023828, 5), (1582023847, 4) [...]`
-```
-
-</details>
-
-## Install Prometheus and Grafana
+### 1. Install Prometheus and Grafana
 
 1. Install Prometheus [here](https://prometheus.io/docs/prometheus/latest/installation/)
 2. Install Grafana [here](https://grafana.com/get)
@@ -77,13 +22,13 @@ Prometheus->Grafana: `substrate_peers_count (1582023828, 5), (1582023847, 4) [..
   title={`Advice`}
   text=
     "We suggest for _testing_ that you download the compiled `bin` programs for these apps
-    as apposed to fully installing them or using them in docker. Just `download` for your
+    as opposed to fully installing them or using them in docker. Just `download` for your
     architecture, and run it from the `working directory` that is convenient for you.
     The links above provide instruction on this, and this guide assume you do it this way.
     "
 />
 
-## Start a Substrate Template Node
+### 2. Start a Substrate Template Node
 
 <Message
   type={`yellow`}
@@ -113,7 +58,7 @@ be accessed over an interface other than local host with
 ./target/release/node-template --dev --tmp
 ```
 
-## Configure Prometheus to scrape your Substrate node
+### 3. Configure Prometheus to scrape your Substrate node
 
 In the working directory where you installed Prometheus, you will find a `prometheus.yml` configuration file.
 Let's modify this (or create a custom new on) to configure Prometheus to scrape the exposed endpoint by adding
@@ -157,7 +102,7 @@ Now we can start a Prometheus instance with the prometheus.yml config file. Pres
 
 leave this process running.
 
-## Check All Prometheus Metrics
+### 4. Check All Prometheus Metrics
 
 In a new terminal, we can do a quick status check on prometheus:
 
@@ -198,7 +143,7 @@ all available metric data.
   text={`Here you can see the \`HELP\` fields for each metric that is exposed for monitoring via Grafana.`}
 />
 
-## Visualizing Prometheus Metrics with Grafana
+### 5. Visualizing Prometheus Metrics with Grafana
 
 Once you have Grafana running, navigate to it in a browser (**the default is https://localhost:3000/**).
 Log in (default user `admin` and password `admin`) and navigate to the [data sources](http://localhost:3000/datasources) page.
@@ -216,7 +161,7 @@ on it's default port: https://localhost:9090 (unless you customized it).
 
 Hit `Save & Test` to ensure that you have the data source set correctly. Now you can configure a new dashboard!
 
-### Template Grafana Dashboard
+#### Template Grafana Dashboard
 
 If you would like a basic dashboard to start [here is a template example](../../../../src/images/tutorials/06-visualize-node-metrics/Substrate-Node-Template-Metrics.json) that you can `Import` in Grafana to get basic information about your node:
 

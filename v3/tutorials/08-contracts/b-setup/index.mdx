@@ -1,5 +1,5 @@
 ---
-title: Setup
+title: Node Set-up
 slug: /v3/tutorials/add-contracts/pt1
 version: 3.0 
 section: tutorials
@@ -13,10 +13,6 @@ This first part covers setting up your node by including the
 [`pallet-contract`](https://substrate.dev/rustdocs/latest/pallet_contracts/index.html) 
 and [`pallet-contracts-primitives`](https://substrate.dev/rustdocs/latest/pallet_contracts_primitives/index.html) pallets, 
 which we will require in the next part of this tutorial.
-
-## Learning outcomes
-- Include the Contract pallet's dependencies
-- Understand the basics of crate features
 
 ## Steps 
 
@@ -35,7 +31,7 @@ If you do not, please complete that tutorial.
   according to the instructions in its [README](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/README.md).`}
 />
 
-### 2. Modify Node Template
+### 2. Modify the Node Template
 
 We will now modify the `substrate-node-template` to include the Contracts pallet.
 
@@ -142,7 +138,7 @@ the `std` feature. A few lines lower you can see `#[cfg(feature = "std")]` above
 `wasm_binary.rs` import, which is a flag saying to only import the Wasm binary when we have enabled
 the `std` feature.
 
-### 3. Importing the Contracts Pallet Crate
+### 3. Import the Contracts pallet crate
 
 Okay, now that we have covered the basics of crate features, we can actually import the Contracts
 pallet. The Contracts pallet is probably the most complicated pallet in FRAME, so it makes for a

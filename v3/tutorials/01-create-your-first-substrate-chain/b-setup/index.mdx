@@ -1,19 +1,21 @@
 ---
-title: Set Up Your Computer
+title: Set-up Your Computer
 slug: /v3/tutorials/create-your-first-substrate-chain/setup
 version: 3.0 
 section: tutorials
 category: substrate chain
-keywords:
+keywords: 
 ---
 
+## Overview
 Normally, we would teach you more about the Substrate blockchain development framework, however,
 setting up your computer for Substrate development can take a while.
 
-To optimize your time, we will have you start the setup process. While things are compiling, you can
-continue to the next section to learn more about Substrate and what we are building.
+To make the most of your time, we will have you start the set-up process and
+continue to the next section to learn more about Substrate and what we're building while your Substrate node is compiling.
 
-## Prerequisites
+## Steps
+### 1. Prerequisites
 
 You will probably need to do some set-up to prepare your computer for Substrate development.
 
@@ -21,23 +23,23 @@ You will probably need to do some set-up to prepare your computer for Substrate 
   type={`red`}
   title={`Before you continue`}
   text="Complete the 
-  [official Installation guide](../../../v3/docs/getting-started/installation). 
+  [official Installation guide](/v3/docs/getting-started/installation). 
   After rustup has been installed and configured, and you/'ve configured the 
   Rust toolchain to default to the latest stable version you can return to these steps."
 />
 
-## Compiling the Node Template
+### 2. Compiling the Node Template
 
 Once the prerequisites are installed, you can use Git to clone the Substrate Developer Hub Node
 Template, which serves as a good starting point for building on Substrate.
 
-1. Clone the Node Template (version `v3.0.0+monthly-2021-05`).
+i. Clone the Node Template (version `v3.0.0+monthly-2021-05`).
 
    ```bash
    git clone -b v3.0.0+monthly-2021-05 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
    ```
 
-2. Compile the Node Template
+ii. Compile the Node Template
 
    ```bash
    cd substrate-node-template
@@ -56,7 +58,7 @@ Template, which serves as a good starting point for building on Substrate.
   if you run into any issues."
 />
 
-## Install the Front-End Template
+### 3. Install the Front-End Template
 
 This tutorial uses a [ReactJS](https://reactjs.org/) front-end template to allow you to interact
 with the Substrate-based blockchain node that you should have started compiling in the previous
@@ -79,3 +81,7 @@ git clone -b v3.0.0+monthly-2021-05 --depth 1 https://github.com/substrate-devel
 cd substrate-front-end-template
 yarn install
 ```
+
+## Next Steps
+
+- Learn about blockchain basics and the Substrate framework while your node compiles

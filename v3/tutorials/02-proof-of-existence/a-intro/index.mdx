@@ -1,0 +1,85 @@
+---
+title: Build a Proof of Existence dApp
+slug: /v3/tutorials/proof-of-existence
+hideNav: true
+version: 3.0 
+section: tutorials
+category: proof of existence
+keywords:
+---
+
+## Introduction
+
+In this tutorial, you will learn to create a custom
+["Proof of Existence"](https://en.wikipedia.org/wiki/Proof_of_Existence) dApp using the Substrate
+blockchain development framework and the [FRAME](../../../v3/docs/runtime/frame) library. From
+[Wikipedia](https://en.wikipedia.org/wiki/Proof_of_Existence):
+
+> Proof of Existence is an online service that verifies the existence of computer files as of a
+> specific time via timestamped transactions in the bitcoin blockchain.
+
+Rather than uploading the entire file to the blockchain to "prove its existence", users submit a
+[hash of the file](https://en.wikipedia.org/wiki/File_verification), known as a file digest or
+checksum. These hashes are powerful because huge files can be uniquely represented by a small hash
+value, which is efficient for storing on the blockchain. Any user with the original file can prove
+that this file matches the one on the blockchain by simply recomputing the hash of the file and
+comparing it with the hash stored on chain.
+
+![File Hash](../../../../src/images/tutorials/02-proof-of-existence/file-hash.png)
+
+To add to this, blockchains also provide a robust identity system through accounts that map to
+[public keys](https://en.wikipedia.org/wiki/Public-key_cryptography), and associations built on
+top of those keys (see [FRAME's identity pallet](https://github.com/paritytech/substrate/tree/v3.0.0/frame/identity)).
+So when a file digest is stored on the blockchain, we can also record which account uploaded that digest.
+This allows that controller of that account to later prove that they were the original person to claim the file.
+
+This tutorial should take you about **1 hour** to complete. We will be using the
+[Rust programming language](https://www.rust-lang.org/) and [ReactJS](https://reactjs.org/), but you
+do not need to know these to be able to complete this guide. We will provide you with working code
+snippets and explain what all the code does at a high level.
+
+We only expect that:
+
+- You have completed the
+  [Create Your First Substrate Chain Tutorial](../../tutorials/create-your-first-substrate-chain).
+- You are generally familiar with software development, writing code, and running your code.
+- You are open to learning about the bleeding edge of blockchain development.
+
+<Message
+  type={`green`}
+  title={`We're here to help`}
+  text={`If you run into an issue on this tutorial, **we are here to help!** You can
+  [ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) and use the
+  \`substrate\` tag or contact us on [Element](https://matrix.to/#/#substrate-technical:matrix.org).`}
+/>
+
+## What you will be doing
+
+<TutorialObjective
+  data={{
+    textLineOne:
+      '1. Launch a Substrate blockchain based on a node template.',
+    url: '/v3/tutorials/proof-of-existence/prepare',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '2. Add our own custom PoE pallet from scratch and implement our PoE API.',
+    url: '/v3/tutorials/proof-of-existence/pallet',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '3. Add a custom user interface that interacts with our PoE API.',
+    url: '/v3/tutorials/proof-of-existence/front-end',
+  }}
+/>
+
+## Learning outcomes
+- Learn how to think about a Substrate node as a framework to create a decentralized application made of pallets
+- Learn how to create and use a custom FRAME pallet 
+- Learn how to modify the front-end node template to match your node's runtime items
+
+<AccentButton text={`Sounds good? Let's begin!`} link={`/v3/tutorials/proof-of-existence/prepare`} />

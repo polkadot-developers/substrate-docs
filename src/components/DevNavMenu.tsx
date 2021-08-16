@@ -436,7 +436,7 @@ DevNavMenu.tuts.firstChain = {
       link: '/v3/tutorials/create-your-first-substrate-chain',
     },
     {
-      title: `Set Up Your Computer`,
+      title: `Set-up Your Computer`,
       link: '/v3/tutorials/create-your-first-substrate-chain/setup',
     },
     {
@@ -454,7 +454,7 @@ DevNavMenu.tuts.poe = {
   name: `Proof of Existence`,
   items: [
     {
-      title: `Overview`,
+      title: `Introduction`,
       link: '/v3/tutorials/proof-of-existence',
     },
     {
@@ -538,8 +538,12 @@ DevNavMenu.tuts.nodeMetrics = {
   name: `Visualizing Node Metrics`,
   items: [
     {
-      title: `Overview`,
+      title: `Introduction`,
       link: '/v3/tutorials/node-metrics',
+    },
+    {
+      title: `Using Grafana and Prometheus with Substrate`,
+      link: '/v3/tutorials/node-metrics/p1',
     },
   ],
 }
@@ -578,7 +582,7 @@ DevNavMenu.tuts.contractsTutorial = {
       link: '/v3/tutorials/add-contracts',
     },
     {
-      title: `Set-up`,
+      title: `Node Set-up`,
       link: '/v3/tutorials/add-contracts/pt1',
     },
     {
