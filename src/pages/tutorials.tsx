@@ -84,14 +84,14 @@ export default function tutorials({ data }: any) {
             link={`/v3/tutorials/node-metrics`}
           />
           <TutorialCard
-            title={`Ink! Contracts Workshop`}
+            title={`Add the Contracts Pallet`}
             image={data.tutorialOne}
-            description={`A workshop to configure Substrate node to run Substrate EVM and Solidity contracts.`}
+            description={`Allow your blockchain to support Wasm smart contracts by adding and configuring FRAME's Contracts pallet.`}
             time={`3 Hours`}
             difficulty={`intermediate`}
             prerequisites={false}
             version={`V3.0.0`}
-            link={`/v3/tutorials/ink-workshop/pt1`}
+            link={`/v3/tutorials/add-contracts`}
           />
         </div>
       </div>

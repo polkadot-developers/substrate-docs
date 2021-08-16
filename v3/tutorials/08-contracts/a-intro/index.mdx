@@ -1,0 +1,31 @@
+---
+title: Introduction
+slug: /v3/tutorials/add-contracts
+version: 3.0 
+section: tutorials
+category: contracts
+keywords: smart contracts, wasm
+---
+
+The [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
+provides a minimal working runtime which you can use to quickly get started with building your own custom
+blockchain. However, in the attempts to remain minimal, it does not include most of the pallets from
+[FRAME](../../knowledgebase/runtime/frame).
+
+This guide will show you how you can add the
+[Contracts pallet](https://substrate.dev/rustdocs/latest/pallet_contracts/) to your runtime in order to
+allow your blockchain to support Wasm smart contracts. You can follow similar patterns to add
+additional FRAME pallets to your runtime, however you should note that each pallet is a little
+different in terms of the specific configuration settings needed to use it correctly.
+
+## What you will be doing 
+
+1. [Setup](/v3/tutorials/add-contracts/pt1): Install and modify the Node Template to include dependencies for the Contracts pallet.
+2. [Implement the Contracts Pallet](/v3/tutorials/add-contracts/pt2): Add runtime implementation and implement custom runtime API and RPC endpoints.
+3. [Launch your node](/v3/tutorials/add-contracts/pt2#5-start-your-upgraded-chain)
+
+## Learning outcomes
+
+- Include and use a FRAME pallet in a Substrate node
+- Implement the contracts pallet and its runtime API 
+- Configure a node's RPC endpoints 

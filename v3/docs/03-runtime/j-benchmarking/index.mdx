@@ -70,7 +70,7 @@ A Substrate benchmark will look something like this:
 ```rust
 benchmarks! {
   benchmark_name {
-    /* setup initial state */
+    /* set-up initial state */
   }: {
     /* the code to be benchmarked */
   } verify {
@@ -86,7 +86,7 @@ You can see that the benchmark macro:
 3. Verifies the final state of the runtime, ensuring that the benchmark executed as expected.
 
 You can configure your benchmark to run over different varying inputs. For each input, you can
-configure the range of those variables, and use them within the benchmark setup or execution logic.
+configure the range of those variables, and use them within the benchmark set-up or execution logic.
 
 The full syntax and functionality can be seen in the [`benchmarks!` macro API
 documentation](/rustdocs/latest/frame_benchmarking/macro.benchmarks.html).
