@@ -15,14 +15,14 @@ ultimately lowers the overhead costs for participants in your blockchain. In oth
 Substrate exposes a set of layered, modular storage APIs that allow runtime developers to make the storage decisions that suit them
 best. This
 document is intended to provide information and best practices about Substrate's runtime storage
-interfaces. Please refer to [the advanced storage documentation](../advanced/storage) for information about how these interfaces are implemented.
+interfaces. Please refer to [the advanced storage documentation](../../advanced/storage) for information about how these interfaces are implemented.
 
 ## Storage Items
 
 In Substrate, any pallet can introduce new storage items that will become part of your blockchain’s state. These storage items can be simple single value items, or more complex storage maps. The type of storage items you choose to implement depends entirely on their intended role within your runtime logic.
 
 FRAME's [`Storage pallet`](/rustdocs/latest/frame_support/storage) gives runtime developers access to Substrate's flexible storage APIs, which can support any value that is encodable
-by [Parity's SCALE codec](../advanced/codec). These include:
+by [Parity's SCALE codec](../../advanced/scale-codec). These include:
 
 - [Storage Value](/rustdocs/latest/frame_support/storage/trait.StorageValue.html) - used to store any single value, such as a `u64`.
 - [Storage Map](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) - used to store a key-value hash map, such as a balance-to-account mapping.
@@ -60,7 +60,7 @@ Refer to the Storage Map documentation for
 Double Storage Maps are very similar to single Storage Maps except they contain two keys, which is useful for querying values with common keys.
 
 Refer to the documentation on
-[advanced storage](../advanced/storage) to learn more about how different Storage Maps, including Double Storage Maps, are implemented.
+[advanced storage](../../advanced/storage) to learn more about how different Storage Maps, including Double Storage Maps, are implemented.
 
 ### N Storage Map
 
@@ -178,7 +178,7 @@ In FRAME v2, the equivalent extension is derived by the `#[pallet::getter(..)]` 
 
 > **Note:** The optional `get` and `getter` extensions only
 > impact the way that a storage item can be accessed from _within_ Substrate code &mdash; you will always be
-> able to [query the storage of your runtime](../advanced/storage#Querying-Storage) to get the value
+> able to [query the storage of your runtime](../../advanced/storage#Querying-Storage) to get the value
 > of a storage item.
 
 Here is an example that implements a getter method named `some_value` for a Storage Value named
@@ -232,7 +232,7 @@ access storage items. The Polkadot JS team also maintains
 interacting with Substrate-based blockchains, including querying storage.
 
 Refer to
-[the advanced storage documentation](../advanced/storage) to learn more about how to query a Substrate key-value database by using the RPC server.
+[the advanced storage documentation](../../advanced/storage) to learn more about how to query a Substrate key-value database by using the RPC server.
 
 ## Hashing Algorithms
 
@@ -274,7 +274,7 @@ key's original unhashed value and verify it if they'd like (by re-hashing it). T
 Substrate have **deprecated the use of non-transparent hashers** within FRAME-based runtimes, so
 this information is provided primarily for completeness. In fact, it is _necessary_ to use a
 transparent hashing algorithm if you would like to access [iterable map](#iterable-storage-maps)
-capabilities. Learn more about the capabilities that transparent hashing algorithms expose in the [advanced storage documentation](../advanced/storage#storage-map-keys).
+capabilities. Learn more about the capabilities that transparent hashing algorithms expose in the [advanced storage documentation](../../advanced/storage#storage-map-keys).
 
 ### Common Substrate Hashers
 
@@ -554,7 +554,7 @@ requires users to configure a bound on this number that will be included as a
 
 ### Learn More
 
-Read [the advanced storage documentation](../advanced/storage).
+Read [the advanced storage documentation](../../advanced/storage).
 
 ### Examples
 

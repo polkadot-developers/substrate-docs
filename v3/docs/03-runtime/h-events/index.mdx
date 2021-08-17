@@ -87,7 +87,7 @@ construct_runtime!(
 
 ## Depositing an Event
 
-Substrate provides a default implementation of how to deposit an event using macros, which varies slightly depending on [FRAME version adopted](runtime/macros#overview-of-frame-versioning). In FRAME v1:
+Substrate provides a default implementation of how to deposit an event using macros, which varies slightly depending on [FRAME version adopted](../macros#overview-of-frame-versioning). In FRAME v1:
 
 ```rust
 decl_module! {
@@ -139,12 +139,12 @@ beginning of a new block, the System module automatically removes all events tha
 the previous block.
 
 Events deposited using the default implementation will be directly supported by downstream libraries
-like the [Polkadot-JS API](../../../v3/docs/toolchains/polkadot-js), however you can implement your own
+like the [Polkadot-JS API](/v3/docs/toolchains/polkadot-js), however you can implement your own
 `deposit_event` function if you want to handle events differently.
 
 ## Supported Types
 
-Events can emit any type which supports the [Parity SCALE codec](../advanced/codec).
+Events can emit any type which supports the [Parity SCALE codec](../../advanced/scale-codec).
 
 In the case where you want to use Runtime generic types like `AccountId` or `Balances`, you need to
 include a [`where` clause](https://doc.rust-lang.org/rust-by-example/generics/where.html) to define
@@ -154,15 +154,15 @@ those types as shown in the example above.
 
 The Substrate RPC does not directly expose an endpoint for querying events. If you used the default
 implementation, you can see the list of events for the current block by querying the storage of the
-System module. Otherwise, the [Polkadot-JS API](../../../v3/docs/toolchains/polkadot-js) supports a WebSocket
+System module. Otherwise, the [Polkadot-JS API](/v3/docs/toolchains/polkadot-js) supports a WebSocket
 subscription on runtime events.
 
 ## Next Steps
 
 ### Learn More
 
-- Learn more about the [macros](macros) used in Substrate runtime development.
-- Learn more about using the [Polkadot-JS API](../../../v3/docs/toolchains/polkadot-js).
+- Learn more about the [macros](../macros) used in Substrate runtime development.
+- Learn more about using the [Polkadot-JS API](/v3/docs/toolchains/polkadot-js).
 
 ### Examples
 
