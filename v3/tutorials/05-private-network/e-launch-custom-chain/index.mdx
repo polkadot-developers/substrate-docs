@@ -181,7 +181,7 @@ Alternatively, you can insert a key saved to a local file using the `key` comman
 ./target/release/node-template key insert --base-path /tmp/node01 --chain local --key-type <aura/gran> --suri /path/to/key/file
 ```
 
-### 4. Verify Keys in the Keystore (Optional)
+### 3. Verify Keys in the Keystore (Optional)
 
 Optionally, If you would like to check that your keys are now loaded, you can view the keystore files that should
 now exists for your `node01`. These are found in the following (default example) location:
@@ -214,7 +214,7 @@ You can also set a non-standard keystore file for your node with the flags:
   keystore-uri <keystore-uri> - Specify custom URIs to connect to for keystore-services
 -->
 
-### 5. Subsequent Participants Join
+### 4. Subsequent Participants Join
 
 Subsequent validators can now join the network. This can be done by specifying the `--bootnodes`
 parameter as Bob did previously.
@@ -308,16 +308,18 @@ Now blocks should be finalized!
 2021-03-18 16:47:54  🔖 Pre-sealed block for proposal at 48. Hash now 0x23a93d8e6bbbcf9f36e61264cc3a48a426a7f1112ff48df76f0d55b52c181156, previously 0xd9ef428ccd38426a47a9eca181b508630e327b35ef4c468103ce59fa861e60f6.
 ```
 
-Congratulations! You've started your own blockchain!
+Congratulations! You've started your own private blockchain!
 
 In this tutorial you've learned to generate your own keypairs, create a custom chain spec that uses
 those keypairs, and start a private network based on your custom chain spec.
 
-#### Solutions and Helpers
-
-If you would like examples of correct JSON keystore `curl` files with a known working chainspec, see the
-[solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/private-chain-v3), you can use the extra files with your already cloned and compiled node, no need to
-start from scratch.
+<Message
+  type={`green`}
+  title={`Tip`}
+  text={`If you would like examples of correct JSON keystore \`curl\` files with a known working chainspec, see [this
+  solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/private-chain-v3). 
+  You can use the extra files with your already cloned and compiled node, no need to start from scratch.`}
+/>
 
 <!-- TODO link to the followup tutorial about starting a 3 node network using the demo substrate node
 Details in https://github.com/substrate-developer-hub/tutorials/issues/16 -->
