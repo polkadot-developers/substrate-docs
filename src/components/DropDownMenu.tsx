@@ -4,6 +4,7 @@ import SubMenuItem from './SubMenuItem'
 import useComponentVisible from './Hooks/use-component-visible'
 
 interface DropDownMenuProps {
+  index: number
   menuData: {
     name: string
     subMenu: {
@@ -13,10 +14,9 @@ interface DropDownMenuProps {
       items?: { linkTitle: string; link: string; external: boolean }[]
     }[]
   }
-  width?: string
 }
 
-export default function DropDown({ menuData, width }: DropDownMenuProps) {
+export default function DropDown({ menuData, index }: DropDownMenuProps) {
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible(false)
   const { name, subMenu } = menuData
@@ -40,7 +40,17 @@ export default function DropDown({ menuData, width }: DropDownMenuProps) {
         </svg>
       </button>
       <div
-        className={` ${width}
+        className={` ${
+          index === 0
+            ? 'w-44'
+            : index === 1
+            ? 'w-48'
+            : index === 2
+            ? 'w-60'
+            : index === 3
+            ? 'w-56'
+            : 'w-48'
+        }
         ${
           isComponentVisible
             ? `absolute mt-4 -ml-2 animate-fade-in-down`

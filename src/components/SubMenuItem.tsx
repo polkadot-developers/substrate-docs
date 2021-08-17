@@ -22,7 +22,7 @@ export default function SubMenuItem({
   }, [isComponentVisible])
   return (
     <>
-      <li
+      <div
         ref={ref}
         onClick={() => setIsComponentVisible(!isComponentVisible)}
         className={`px-6 py-4 -mb-1 text-black dark:text-white cursor-pointer rounded-md ${
@@ -50,10 +50,10 @@ export default function SubMenuItem({
             />
           </svg>
         </div>
-      </li>
+      </div>
       {isComponentVisible ? (
         <>
-          <ul className="list-none absolute top-0 -right-56 w-56 h-[336px] rounded-tr-md rounded-br-md shadow-lg ring-1 ring-black dark:ring-white bg-white dark:bg-black">
+          <div className="list-none absolute top-0 -right-56 w-56 h-[336px] rounded-tr-md rounded-br-md shadow-lg ring-1 ring-black dark:ring-white bg-white dark:bg-black">
             {data.items.map((eachItem, index) => {
               return (
                 <a
@@ -62,13 +62,13 @@ export default function SubMenuItem({
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <li className="px-6 py-4 m-0 focus:outline-none focus:bg-substrateBlueBg hover:text-substrateGreen hover:underline">
+                  <div className="px-6 py-4 m-0 focus:outline-none focus:bg-substrateBlueBg hover:text-substrateGreen hover:underline">
                     <span className="font-medium">{eachItem.linkTitle}</span>
-                  </li>
+                  </div>
                 </a>
               )
             })}
-          </ul>
+          </div>
         </>
       ) : null}
     </>
