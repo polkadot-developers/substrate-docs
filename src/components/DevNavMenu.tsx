@@ -549,10 +549,10 @@ DevNavMenu.tuts.nodeMetrics = {
 }
 
 DevNavMenu.tuts.addPallet = {
-  name: `Add a Pallet in Runtime`,
+  name: `Add a Pallet to a Runtime`,
   items: [
     {
-      title: `Overview`,
+      title: `Introduction`,
       link: '/v3/tutorials/add-a-pallet',
     },
     {
@@ -568,7 +568,7 @@ DevNavMenu.tuts.addPallet = {
       link: '/v3/tutorials/add-a-pallet/interact',
     },
     {
-      title: `Publish Your Own Pallet`,
+      title: `Publish Your Own Pallet (optional)`,
       link: '/v3/tutorials/add-a-pallet/publish',
     },
   ],
