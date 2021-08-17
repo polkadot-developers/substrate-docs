@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import MobileMenu from './MobileMenus/MobileMenu'
 import DocsButton from './DocsButton'
 import { LocalizedLink, useLocalization } from 'gatsby-theme-i18n'
-import { useIntl } from 'react-intl'
 // import LanguageSwitcher from './LanguageSwitcher'
 import SubMenu from './SubMenu'
 import SearchDocs from './SearchDocs'
@@ -10,7 +9,6 @@ import ThemeToggle from './ThemeToggle'
 import useScrollListener from './Hooks/use-scroll-listener'
 
 export default function Header() {
-  const intl = useIntl()
   const scroll = useScrollListener()
   const { locale, config } = useLocalization()
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false)
@@ -18,70 +16,60 @@ export default function Header() {
   const toggleMenu = () => setIsMobileNavOpen(!isMobileNavOpen)
   const navItems = [
     {
-      name: `${intl.formatMessage({ id: 'nav-technology' })}`,
+      name: `Technology`,
       subMenu: [
         {
-          linkTitle: `${intl.formatMessage({ id: 'nav-overview' })}`,
-          link: `#`,
+          linkTitle: `Overview`,
+          link: `https://www.substrate.io/technology`,
           external: true,
         },
         {
-          linkTitle: `${intl.formatMessage({ id: 'nav-modular' })}`,
-          link: `#`,
+          linkTitle: `Flexible`,
+          link: `https://www.substrate.io/technology/flexible`,
           external: true,
         },
         {
-          linkTitle: `${intl.formatMessage({ id: 'nav-scalable' })}`,
-          link: `#`,
+          linkTitle: `Open`,
+          link: `https://www.substrate.io/technology/open`,
           external: true,
         },
         {
-          linkTitle: `${intl.formatMessage({ id: 'nav-interoperable' })}`,
-          link: `#`,
+          linkTitle: `Interoperable`,
+          link: `https://www.substrate.io/technology/interoperable`,
           external: true,
         },
         {
-          linkTitle: `${intl.formatMessage({ id: 'nav-flexible' })}`,
-          link: `#`,
-          external: true,
-        },
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-sovereign' })}`,
-          link: `#`,
-          external: true,
-        },
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-secure' })}`,
-          link: `#`,
+          linkTitle: `Future-Proof`,
+          link: `https://www.substrate.io/technology/future-proof`,
           external: true,
         },
       ],
     },
     {
-      name: `${intl.formatMessage({ id: 'nav-developers' })}`,
+      name: `Developers`,
       subMenu: [
         {
-          linkTitle: `${intl.formatMessage({ id: 'nav-overview' })}`,
-          link: `#`,
+          linkTitle: `Overview`,
+          link: `/`,
           external: false,
         },
         {
-          linkTitle: `${intl.formatMessage({ id: 'nav-docs' })}`,
+          linkTitle: `Docs`,
           link: `/v3/docs/getting-started/overview`,
           external: false,
         },
         {
-          linkTitle: `${intl.formatMessage({ id: 'nav-how-to-guides' })}`,
+          linkTitle: `How-to Guides`,
           link: `/v3/how-to-guides`,
           external: false,
         },
         {
-          linkTitle: `${intl.formatMessage({ id: 'nav-tutorials' })}`,
+          linkTitle: `Tutorials`,
           link: `/tutorials`,
           external: false,
         },
         {
-          linkTitle: `${intl.formatMessage({ id: 'nav-rust-docs' })}`,
+          linkTitle: `Rust Docs`,
           link: `/rustdocs`,
           external: true,
         },
@@ -91,81 +79,115 @@ export default function Header() {
         //   external: true,
         // },
         {
-          linkTitle: `${intl.formatMessage({ id: 'nav-playground' })}`,
-          link: `/playground/`,
-          external: false,
-        },
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-light-clients' })}`,
-          link: `/light-clients`,
+          linkTitle: `Playground`,
+          link: `/playground`,
           external: false,
         },
       ],
     },
     {
-      name: `${intl.formatMessage({ id: 'nav-vision' })}`,
+      name: `Vision`,
       subMenu: [
         {
-          linkTitle: `${intl.formatMessage({ id: 'nav-overview' })}`,
-          link: `#`,
+          linkTitle: `Substrate & Polkadot`,
+          link: `https://www.substrate.io/vision/substrate-and-polkadot`,
           external: true,
         },
         {
-          linkTitle: `${intl.formatMessage({
-            id: 'nav-web3',
-          })} & ${intl.formatMessage({
-            id: 'nav-substrate',
-          })}`,
-          link: `#`,
+          linkTitle: `Substrate & Ethereum`,
+          link: `https://www.substrate.io/vision/substrate-and-ethereum`,
           external: true,
         },
         {
-          linkTitle: `${intl.formatMessage({
-            id: 'nav-substrate',
-          })} & ${intl.formatMessage({
-            id: 'nav-polkadot',
-          })}`,
-          link: `#`,
-          external: true,
-        },
-        {
-          linkTitle: `${intl.formatMessage({
-            id: 'nav-substrate',
-          })} & ${intl.formatMessage({
-            id: 'nav-ethereum',
-          })}`,
-          link: `#`,
+          linkTitle: `About Us`,
+          link: `https://www.substrate.io/vision/about-us`,
           external: true,
         },
       ],
     },
     {
-      name: `${intl.formatMessage({ id: 'nav-ecosystem' })}`,
+      name: `Ecosystem`,
       subMenu: [
         {
-          linkTitle: `${intl.formatMessage({ id: 'nav-overview' })}`,
-          link: `#`,
+          linkTitle: `Overview`,
+          link: `https://www.substrate.io/ecosystem`,
           external: true,
         },
         {
-          linkTitle: `${intl.formatMessage({ id: 'nav-builders' })}`,
-          link: `#`,
+          linkTitle: `Teams`,
+          link: `https://www.substrate.io/ecosystem/teams`,
           external: true,
         },
         {
-          linkTitle: `${intl.formatMessage({ id: 'nav-opportunities' })}`,
-          link: `#`,
+          linkTitle: `Builders Program`,
+          link: `https://www.substrate.io/ecosystem/substrate-builders-program`,
           external: true,
         },
         {
-          linkTitle: `${intl.formatMessage({ id: 'nav-resources' })}`,
+          linkTitle: `Opportunities`,
           link: `#`,
           external: true,
+          items: [
+            {
+              linkTitle: 'Hackathons',
+              link: 'https://www.substrate.io/ecosystem/opportunities/hackathons',
+              external: true,
+            },
+            {
+              linkTitle: 'Grants',
+              link: 'https://www.substrate.io/ecosystem/opportunities/grants',
+              external: true,
+            },
+            {
+              linkTitle: 'Jobs',
+              link: 'https://www.substrate.io/ecosystem/opportunities/jobs',
+              external: true,
+            },
+          ],
         },
         {
-          linkTitle: `${intl.formatMessage({ id: 'nav-connect' })}`,
+          linkTitle: `Resources`,
           link: `#`,
           external: true,
+          items: [
+            {
+              linkTitle: 'Substrate Seminar',
+              link: 'https://www.substrate.io/ecosystem/resources/substrate-seminar',
+              external: true,
+            },
+            {
+              linkTitle: 'Awesome Substrate',
+              link: 'https://www.substrate.io/ecosystem/resources/awesome-substrate',
+              external: true,
+            },
+            {
+              linkTitle: 'Community Learning Offerings',
+              link: 'https://www.substrate.io/ecosystem/resources/community-learning-offerings',
+              external: true,
+            },
+          ],
+        },
+        {
+          linkTitle: `Connect`,
+          link: `#`,
+          external: true,
+          items: [
+            {
+              linkTitle: 'Contact',
+              link: 'https://www.substrate.io/ecosystem/connect/contact',
+              external: true,
+            },
+            {
+              linkTitle: 'Events',
+              link: 'https://www.substrate.io/ecosystem/connect/events',
+              external: true,
+            },
+            {
+              linkTitle: 'Blog',
+              link: 'https://www.substrate.io/ecosystem/connect/blog',
+              external: true,
+            },
+          ],
         },
       ],
     },
@@ -264,10 +286,10 @@ export default function Header() {
           {/* ------------------ */}
           <nav className="hidden lg:flex lg:justify-between lg:items-center  w-full">
             <div className="w-2/3 max-w-3xl flex justify-evenly">
-              <SubMenu menuData={techMenu} width={`w-40`} />
+              <SubMenu menuData={techMenu} width={`w-44`} />
               <SubMenu menuData={devMenu} width={`w-48`} />
               <SubMenu menuData={visionMenu} width={`w-60`} />
-              <SubMenu menuData={ecoMenu} width={`w-40`} />
+              <SubMenu menuData={ecoMenu} width={`w-56`} />
             </div>
             <div className=" w-1/2 flex items-center justify-end">
               <SearchDocs />

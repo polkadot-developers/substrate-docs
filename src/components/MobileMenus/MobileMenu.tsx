@@ -9,7 +9,12 @@ interface MobileMenuProps {
   toggleMenu: () => void
   navItems: {
     name: string
-    subMenu: { linkTitle: string; link: string; external: boolean }[]
+    subMenu: {
+      linkTitle: string
+      link: string
+      external: boolean
+      items?: { linkTitle: string; link: string; external: boolean }[]
+    }[]
   }[]
   currentLang: string
   langConfig: {
@@ -93,14 +98,15 @@ const MobileMenu = ({ theme, toggleMenu, navItems }: MobileMenuProps) => {
                 <div className="px-4 flex items-center justify-between focus:outline-none">
                   <div className="text-2xl">{item.name}</div>
                   <svg
-                    className="fill-current text-black dark:text-white"
+                    xmlns="http://www.w3.org/2000/svg"
                     width="7"
                     height="13"
                     viewBox="0 0 7 13"
-                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
                   >
                     <path
                       d="M1 12L6 6.5L1 1"
+                      stroke="#242A35"
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"

@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { LocalizedLink } from 'gatsby-theme-i18n'
+import SubMenuItem from './SubMenuItem'
 import useComponentVisible from './Hooks/use-component-visible'
 
 interface SubMenuProps {
   menuData: {
     name: string
-    subMenu: { linkTitle: string; link: string; external: boolean }[]
+    subMenu: {
+      linkTitle: string
+      link: string
+      external: boolean
+      items?: { linkTitle: string; link: string; external: boolean }[]
+    }[]
   }
   width?: string
 }
@@ -14,6 +20,7 @@ export default function SubMenu({ menuData, width }: SubMenuProps) {
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible(false)
   const { name, subMenu } = menuData
+  const [itemNavOpen, setItemNavOpen] = useState(false)
   return (
     <div className="relative" ref={ref}>
       <button
@@ -40,9 +47,20 @@ export default function SubMenu({ menuData, width }: SubMenuProps) {
             : 'hidden animate-fade-out'
         }`}
       >
-        <ul className="list-none bg-white dark:bg-black px-6 pt-6 rounded-md shadow-lg ring-1 ring-black dark:ring-white ring-opacity-40">
+        <ul
+          className={`list-none relative bg-white dark:bg-black px-6 pt-6 shadow-lg ring-1 ring-black dark:ring-white ring-opacity-40 rounded-md ${
+            itemNavOpen ? `rounded-tr-none rounded-br-none` : null
+          }`}
+        >
           {isComponentVisible &&
             subMenu.map((item, index) => {
+              if (item.items) {
+                return (
+                  <div key={index}>
+                    <SubMenuItem data={item} setItemNavOpen={setItemNavOpen} />
+                  </div>
+                )
+              }
               if (item.external) {
                 return (
                   <a
@@ -51,7 +69,7 @@ export default function SubMenu({ menuData, width }: SubMenuProps) {
                     href={item.link}
                   >
                     <div className="pb-6 focus:outline-none focus:bg-substrateBlueBg">
-                      <span className="text-lg font-medium hover:text-substrateGreen hover:underline ">
+                      <span className="text-lg font-medium hover:text-substrateGreen hover:underline">
                         {item.linkTitle}
                       </span>
                     </div>
