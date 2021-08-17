@@ -1,179 +1,22 @@
 import React, { useState, useEffect } from 'react'
-import MobileMenu from './MobileMenus/MobileMenu'
-import DocsButton from './DocsButton'
+import MobileMenu from '../MobileMenus/MobileMenu'
+import DocsButton from '../DocsButton'
 import { LocalizedLink, useLocalization } from 'gatsby-theme-i18n'
-import { useIntl } from 'react-intl'
 // import LanguageSwitcher from './LanguageSwitcher'
-import SubMenu from './SubMenu'
-import SearchDocs from './SearchDocs'
-import ThemeToggle from './ThemeToggle'
-import useScrollListener from './Hooks/use-scroll-listener'
+import DropDownMenu from './DropDownMenu'
+import SearchDocs from '../SearchDocs'
+import ThemeToggle from '../ThemeToggle'
+import MainNav from '../MainNav'
+import useScrollListener from '../Hooks/use-scroll-listener'
 
 export default function Header() {
-  const intl = useIntl()
   const scroll = useScrollListener()
   const { locale, config } = useLocalization()
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false)
   const [menuHeight, setMenuHeight] = useState('h-24')
   const toggleMenu = () => setIsMobileNavOpen(!isMobileNavOpen)
-  const navItems = [
-    {
-      name: `${intl.formatMessage({ id: 'nav-technology' })}`,
-      subMenu: [
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-overview' })}`,
-          link: `#`,
-          external: true,
-        },
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-modular' })}`,
-          link: `#`,
-          external: true,
-        },
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-scalable' })}`,
-          link: `#`,
-          external: true,
-        },
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-interoperable' })}`,
-          link: `#`,
-          external: true,
-        },
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-flexible' })}`,
-          link: `#`,
-          external: true,
-        },
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-sovereign' })}`,
-          link: `#`,
-          external: true,
-        },
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-secure' })}`,
-          link: `#`,
-          external: true,
-        },
-      ],
-    },
-    {
-      name: `${intl.formatMessage({ id: 'nav-developers' })}`,
-      subMenu: [
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-overview' })}`,
-          link: `#`,
-          external: false,
-        },
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-docs' })}`,
-          link: `/v3/docs/getting-started/overview`,
-          external: false,
-        },
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-how-to-guides' })}`,
-          link: `/v3/how-to-guides`,
-          external: false,
-        },
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-tutorials' })}`,
-          link: `/tutorials`,
-          external: false,
-        },
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-rust-docs' })}`,
-          link: `/rustdocs`,
-          external: true,
-        },
-        // {
-        //   linkTitle: `${intl.formatMessage({ id: 'nav-marketplace' })}`,
-        //   link: `#`,
-        //   external: true,
-        // },
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-playground' })}`,
-          link: `/playground/`,
-          external: false,
-        },
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-light-clients' })}`,
-          link: `/light-clients`,
-          external: false,
-        },
-      ],
-    },
-    {
-      name: `${intl.formatMessage({ id: 'nav-vision' })}`,
-      subMenu: [
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-overview' })}`,
-          link: `#`,
-          external: true,
-        },
-        {
-          linkTitle: `${intl.formatMessage({
-            id: 'nav-web3',
-          })} & ${intl.formatMessage({
-            id: 'nav-substrate',
-          })}`,
-          link: `#`,
-          external: true,
-        },
-        {
-          linkTitle: `${intl.formatMessage({
-            id: 'nav-substrate',
-          })} & ${intl.formatMessage({
-            id: 'nav-polkadot',
-          })}`,
-          link: `#`,
-          external: true,
-        },
-        {
-          linkTitle: `${intl.formatMessage({
-            id: 'nav-substrate',
-          })} & ${intl.formatMessage({
-            id: 'nav-ethereum',
-          })}`,
-          link: `#`,
-          external: true,
-        },
-      ],
-    },
-    {
-      name: `${intl.formatMessage({ id: 'nav-ecosystem' })}`,
-      subMenu: [
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-overview' })}`,
-          link: `#`,
-          external: true,
-        },
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-builders' })}`,
-          link: `#`,
-          external: true,
-        },
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-opportunities' })}`,
-          link: `#`,
-          external: true,
-        },
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-resources' })}`,
-          link: `#`,
-          external: true,
-        },
-        {
-          linkTitle: `${intl.formatMessage({ id: 'nav-connect' })}`,
-          link: `#`,
-          external: true,
-        },
-      ],
-    },
-  ]
-  const techMenu = navItems[0]
-  const devMenu = navItems[1]
-  const visionMenu = navItems[2]
-  const ecoMenu = navItems[3]
+  const navItems = MainNav.global()
+
   useEffect(() => {
     isMobileNavOpen
       ? (document.body.style.overflow = `hidden`)
@@ -264,10 +107,13 @@ export default function Header() {
           {/* ------------------ */}
           <nav className="hidden lg:flex lg:justify-between lg:items-center  w-full">
             <div className="w-2/3 max-w-3xl flex justify-evenly">
-              <SubMenu menuData={techMenu} width={`w-40`} />
-              <SubMenu menuData={devMenu} width={`w-48`} />
-              <SubMenu menuData={visionMenu} width={`w-60`} />
-              <SubMenu menuData={ecoMenu} width={`w-40`} />
+              {navItems.map((section, index) => {
+                return (
+                  <div key={index}>
+                    <DropDownMenu index={index} menuData={section} />
+                  </div>
+                )
+              })}
             </div>
             <div className=" w-1/2 flex items-center justify-end">
               <SearchDocs />
