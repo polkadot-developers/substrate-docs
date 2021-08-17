@@ -12,6 +12,8 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "serve": "gatsby serve",
     "forestry:preview": "gatsby develop -p 8080 -H 0.0.0.0",
+    "checklinks": "hyperlink --canonicalroot https://docs.substrate.io/ -ri --skip '/rustdocs' public/index.html | tap-spot",
+    "build-checklinks": "yarn build; yarn checklinks",
     "lint": "npm-run-all lint:**",
     "lint:eslint": "eslint . --ext ts --ext tsx --ext js --ext jsx",
     "lint:tsc": "tsc -p tsconfig.json --noEmit"
@@ -72,9 +74,11 @@
     "eslint-plugin-security": "^1.4.0",
     "eslint-webpack-plugin": "^2.5.4",
     "gatsby-plugin-postcss": "^4.7.1",
+    "hyperlink": "^4.7.0",
     "postcss": "^8.3.4",
     "prettier": "^2.3.1",
     "tailwindcss": "^2.2.7",
+    "tap-spot": "^1.1.1",
     "typescript": "^4.3.2"
   }
 }
