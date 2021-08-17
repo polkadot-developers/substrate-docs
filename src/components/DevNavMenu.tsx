@@ -494,7 +494,7 @@ DevNavMenu.tuts.forklessUpgrade = {
   name: `Forkless Runtime Upgrades`,
   items: [
     {
-      title: `Overview`,
+      title: `Introduction`,
       link: '/v3/tutorials/forkless-upgrades',
     },
     {
