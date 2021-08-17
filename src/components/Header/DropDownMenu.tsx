@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import NavListItem from './NavListItem'
 import SubMenuItem from './SubMenuItem'
-import useComponentVisible from './Hooks/use-component-visible'
+import useComponentVisible from '../Hooks/use-component-visible'
 
 interface DropDownMenuProps {
   index: number
@@ -70,30 +70,15 @@ export default function DropDown({ menuData, index }: DropDownMenuProps) {
                     <SubMenuItem data={item} setItemNavOpen={setItemNavOpen} />
                   </li>
                 )
-              }
-              if (item.external) {
-                return (
-                  <a
-                    className="text-black dark:text-white"
-                    key={index}
-                    href={item.link}
-                  >
-                    <li className="px-6 py-4 m-0 focus:outline-none focus:bg-substrateBlueBg hover:text-substrateGreen hover:underline">
-                      <span className="font-medium">{item.linkTitle}</span>
-                    </li>
-                  </a>
-                )
               } else {
                 return (
-                  <LocalizedLink
-                    className="text-black dark:text-white"
-                    key={index}
-                    to={item.link}
-                  >
-                    <li className="px-6 py-4 m-0 focus:outline-none focus:bg-substrateBlueBg hover:text-substrateGreen hover:underline">
-                      <span className="font-medium">{item.linkTitle}</span>
-                    </li>
-                  </LocalizedLink>
+                  <li key={index}>
+                    <NavListItem
+                      external={item.external}
+                      link={item.link}
+                      title={item.linkTitle}
+                    />
+                  </li>
                 )
               }
             })}

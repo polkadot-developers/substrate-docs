@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
-import useComponentVisible from './Hooks/use-component-visible'
+import useComponentVisible from '../Hooks/use-component-visible'
+import NavListItem from './NavListItem'
 
 interface SubMenuItemProps {
   data: {
@@ -27,7 +28,7 @@ export default function SubMenuItem({
         onClick={() => setIsComponentVisible(!isComponentVisible)}
         className={`px-6 py-4 -mb-1 text-black dark:text-white cursor-pointer rounded-md ${
           isComponentVisible
-            ? 'bg-substrateGreen-light hover:text-black'
+            ? 'bg-substrateGreen-light dark:bg-gray-900 hover:text-black'
             : 'hover:text-substrateGreen hover:underline'
         }`}
       >
@@ -54,18 +55,15 @@ export default function SubMenuItem({
       {isComponentVisible ? (
         <>
           <div className="list-none absolute top-0 -right-56 w-56 h-[336px] rounded-tr-md rounded-br-md shadow-lg ring-1 ring-black dark:ring-white bg-white dark:bg-black">
-            {data.items.map((eachItem, index) => {
+            {data.items.map((item, index) => {
               return (
-                <a
-                  key={index}
-                  href={eachItem.link}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <div className="px-6 py-4 m-0 focus:outline-none focus:bg-substrateBlueBg hover:text-substrateGreen hover:underline">
-                    <span className="font-medium">{eachItem.linkTitle}</span>
-                  </div>
-                </a>
+                <div key={index}>
+                  <NavListItem
+                    external={item.external}
+                    link={item.link}
+                    title={item.linkTitle}
+                  />
+                </div>
               )
             })}
           </div>

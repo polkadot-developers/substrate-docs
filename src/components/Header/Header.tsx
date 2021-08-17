@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import MobileMenu from './MobileMenus/MobileMenu'
-import DocsButton from './DocsButton'
+import MobileMenu from '../MobileMenus/MobileMenu'
+import DocsButton from '../DocsButton'
 import { LocalizedLink, useLocalization } from 'gatsby-theme-i18n'
 // import LanguageSwitcher from './LanguageSwitcher'
 import DropDownMenu from './DropDownMenu'
-import SearchDocs from './SearchDocs'
-import ThemeToggle from './ThemeToggle'
-import MainNav from './MainNav'
-import useScrollListener from './Hooks/use-scroll-listener'
+import SearchDocs from '../SearchDocs'
+import ThemeToggle from '../ThemeToggle'
+import MainNav from '../MainNav'
+import useScrollListener from '../Hooks/use-scroll-listener'
 
 export default function Header() {
   const scroll = useScrollListener()
