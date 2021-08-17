@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import React from 'react'
+import MobileNavItem from './MobileNavItem'
+import MobileDropDown from './MobileDropDown'
 
 interface MobileSubMenuProps {
   toggleMobileNav: () => void
@@ -19,17 +20,6 @@ export default function TechSubMenu({
   toggleSubMenu,
   navItem,
 }: MobileSubMenuProps) {
-  const [subItem, setSubItem] = useState([])
-  useEffect(() => {
-    navItem.subMenu.map(each => {
-      if (each.items) {
-        setSubItem(prevState => ({
-          ...prevState,
-          [each.linkTitle]: false,
-        }))
-      }
-    })
-  }, [])
   return (
     <div className="absolute inset-0 bg-substrateGray-light dark:bg-black h-screen animate-fade-in-right">
       <div className="bg-substrateGreen-light dark:bg-gray-900">
@@ -60,83 +50,27 @@ export default function TechSubMenu({
           </div>
         </div>
       </div>
-      <div className="px-6 pt-10 h-[calc(100vh-100px)] overflow-auto">
+      <div className="pt-7 h-[calc(100vh-100px)] overflow-auto">
         {navItem.subMenu.map((item, index) => {
           if (item.items) {
             return (
               <div key={index}>
-                <div
-                  onClick={() =>
-                    setSubItem(prevState => ({
-                      ...prevState,
-                      [item.linkTitle]: !subItem[item.linkTitle],
-                    }))
-                  }
-                  className="text-black dark:text-white cursor-pointer"
-                >
-                  <div className="pb-6 flex justify-between items-center focus:outline-none ">
-                    <span className="text-lg font-medium">
-                      {item.linkTitle}
-                    </span>
-                    <svg
-                      className={`transform ${
-                        subItem[item.linkTitle] ? '-rotate-90' : 'rotate-90'
-                      }`}
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="7"
-                      height="13"
-                      viewBox="0 0 7 13"
-                      fill="none"
-                    >
-                      <path
-                        d="M1 12L6 6.5L1 1"
-                        stroke="#242A35"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                {subItem[item.linkTitle] ? (
-                  <>
-                    {item.items.map((each, index) => {
-                      return (
-                        <LocalizedLink key={index} to={each.link}>
-                          <p className="font-medium pl-7 mb-0 pb-6">
-                            {each.linkTitle}
-                          </p>
-                        </LocalizedLink>
-                      )
-                    })}
-                  </>
-                ) : null}
+                <MobileDropDown
+                  external={item.external}
+                  title={item.linkTitle}
+                  items={item.items}
+                />
               </div>
-            )
-          }
-          if (item.external) {
-            return (
-              <a
-                className="text-black dark:text-white hover:no-underline focus:bg-transparent"
-                key={index}
-                href={item.link}
-              >
-                <div className="pb-6 focus:outline-none">
-                  <span className="text-lg font-medium">{item.linkTitle}</span>
-                </div>
-              </a>
             )
           } else {
             return (
-              <LocalizedLink
-                className="text-black dark:text-white hover:no-underline focus:bg-transparent"
-                key={index}
-                to={item.link}
-              >
-                <div className="pb-6 focus:outline-none">
-                  <span className="text-lg font-medium">{item.linkTitle}</span>
-                </div>
-              </LocalizedLink>
+              <div key={index}>
+                <MobileNavItem
+                  external={item.external}
+                  link={item.link}
+                  title={item.linkTitle}
+                />
+              </div>
             )
           }
         })}
