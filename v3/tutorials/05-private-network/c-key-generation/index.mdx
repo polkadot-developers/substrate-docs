@@ -7,13 +7,18 @@ category: private network
 keywords:
 ---
 
+## Overview
+
 Now that we know the fundamentals and the command line options, it's time to generate our own keys
 rather than using the well-known Alice and Bob keys. Each person who wants to participate in the
 blockchain should generate their own keys. This page explains several options for generating keys,
 and each participant only needs to choose one such option. Regardless of which option you choose, be
 sure to record all of the output from this section as you will need it later.
 
-## Option 1: Subkey
+## Steps
+### 1. Generating keys
+
+#### Option 1: Subkey
 
 Subkey is a tool that generates keys specifically designed to be used with Substrate.
 
@@ -56,7 +61,7 @@ Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song v
   SS58 Address:     5CesK3uTmn4NGfD3oyGBd1jrp4EfRyYdtqL3ERe9SXv8jUHb
 ```
 
-## Option 2: Polkadot-JS Apps
+#### Option 2: Polkadot-JS Apps
 
 The same UI that we used to see blocks being produced can also be used to generate keys. This option
 is convenient if you do not want to install Subkey. It can be used for production keys, but the
@@ -82,13 +87,13 @@ left.
 Then generate an `ed25519` key which will be used by GRANDPA for block finalization. Again, note
 the mnemonic phrase and ss58 address.
 
-## Option 3: Use Pre-Generated Keys
+#### Option 3: Use Pre-Generated Keys
 
 If you just want to get on with the tutorial, you may use one of the pre-generated keypairs below.
 But realize that these keys should absolutely not be used in production, and are provided only for
 learning purposes.
 
-### Pair 1
+##### Pair 1
 
 | Key           | Value                                                                  |
 | ------------- | ---------------------------------------------------------------------- |
@@ -101,7 +106,7 @@ learning purposes.
 | Public key    | `0xb48004c6e1625282313b07d1c9950935e86894a2e4f21fb1ffee9854d180c781`   |
 | SS58 Address  | `5G9NWJ5P9uk7am24yCKeLZJqXWW6hjuMyRJDmw4ofqxG8Js2`                     |
 
-### Pair 2
+##### Pair 2
 
 | Key           | Value                                                                        |
 | ------------- | ---------------------------------------------------------------------------- |
@@ -113,3 +118,7 @@ learning purposes.
 | **ED25519**   |                                                                              |
 | Public key    | `0x0fe9065f6450c5501df3efa6b13958949cb4b81a2147d68c14ad25366be1ccb4`         |
 | SS58 Address  | `5CRZoFgJs4zLzCCAGoCUUs2MRmuD5BKAh17pWtb62LMoCi9h`                           |
+
+## Next steps 
+1. Create a custom chain specification using your key pairs
+2. Share your custom chain specicification with your network validators

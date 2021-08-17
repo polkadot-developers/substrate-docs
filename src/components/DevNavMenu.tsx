@@ -512,11 +512,11 @@ DevNavMenu.tuts.privateNetwork = {
   name: `Start a Private Network`,
   items: [
     {
-      title: `Overview`,
+      title: `Introduction`,
       link: '/v3/tutorials/private-network',
     },
     {
-      title: `Alice and Bob Start Blockchain`,
+      title: `Start a Chain with Alice and Bob`,
       link: '/v3/tutorials/private-network/alice-and-bob',
     },
     {
@@ -528,7 +528,7 @@ DevNavMenu.tuts.privateNetwork = {
       link: '/v3/tutorials/private-network/custom-chainspec',
     },
     {
-      title: `Creating Your Private Network`,
+      title: `Launch Your Private Network`,
       link: '/v3/tutorials/private-network/launch-custom-chain',
     },
   ],
