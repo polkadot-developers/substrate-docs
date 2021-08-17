@@ -16,7 +16,7 @@ for trustless, decentralized consensus to securely make enhancements to the runt
 In the FRAME system for runtime development, the System library defines
 [the `set_code` call](/rustdocs/latest/frame_system/pallet/enum.Call.html#variant.set_code)
 that is used to update the definition of the runtime. The
-[Forkless Upgrade a Chain tutorial](/tutorials/forkless-upgrade/scheduled-upgrade) describes the details
+[Forkless Upgrade a Chain tutorial](/v3/tutorials/forkless-upgrades/schedule-an-upgrade) describes the details
 of FRAME runtime upgrades and demonstrates two mechanisms for performing them. Both upgrades
 demonstrated in that tutorial are strictly _additive_, which means that they modify the runtime by
 means of _extending_ it as opposed to _updating_ the existing runtime state. In the event that a
@@ -25,7 +25,7 @@ migration".
 
 ## Runtime Versioning
 
-In order for the [executor](../advanced/executor) to be able to select the appropriate runtime
+In order for the [executor](../../advanced/executor) to be able to select the appropriate runtime
 execution environment, it needs to know the `spec_name`, `spec_version` and `authoring_version` of
 both the native and Wasm runtime.
 
@@ -85,7 +85,7 @@ or lower.
 The runtime version is useful for application or integration developers that are building on a FRAME
 runtime. The FRAME runtime system exposes this information by way of the `state.getRuntimeVersion`
 RPC endpoint, which accepts an optional block identifier. Most developers building on a FRAME-based
-blockchain will use the [runtime's metadata](metadata) to understand the APIs the runtime exposes
+blockchain will use the [runtime's metadata](../metadata) to understand the APIs the runtime exposes
 and the requirements for interacting with these APIs. The runtime's metadata should _only_ change
 when the chain's
 [runtime `spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version)
@@ -128,7 +128,7 @@ FRAME storage migrations are implemented by way of
 [the `OnRuntimeUpgrade` trait](/rustdocs/latest/frame_support/traits/trait.OnRuntimeUpgrade.html),
 which specifies a single function, `on_runtime_upgrade`. This function provides a hook that allows
 runtime developers to specify logic that will run immediately _after_ a runtime upgrade but _before_
-any [extrinsics or even the `on_initialize` function](execution#executing-a-block) has executed.
+any [extrinsics or even the `on_initialize` function](../execution#executing-a-block) has executed.
 
 ### Preparing for a Migration
 

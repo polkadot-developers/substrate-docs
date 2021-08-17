@@ -8,14 +8,14 @@ keywords:
 ---
 
 When a block author constructs a block, it must limit the block's execution time. A block body
-consists of a series of [extrinsics](../concepts/extrinsics). Since the resources needed to
+consists of a series of [extrinsics](../../concepts/extrinsics). Since the resources needed to
 execute an extrinsic can vary, Substrate provides a flexible mechanism called "weights" to
 characterize the _time_ it takes to execute an extrinsic. To be economically sustainable and to
 limit spam, some transactions --- primarily those dispatched by users --- require a fee prior to
 transaction execution.
 
 Although an extrinsic's weight is only one component of the fee charged to its sender, it is
-recommended to understand the [weight system](../concepts/weight) before reading this
+recommended to understand the [weight system](../../concepts/weight) before reading this
 document.
 
 ## Fee Calculation
@@ -181,7 +181,7 @@ fn my_dispatchable() {
 Dispatches in this class represent normal user-triggered transactions. These types of dispatches may
 only consume a portion of a block's total weight limit; this portion can be found by examining the
 [`AvailableBlockRatio`](/rustdocs/latest/frame_system/limits/struct.BlockLength.html#method.max_with_normal_ratio).
-Normal dispatches are sent to the [transaction pool](../concepts/tx-pool).
+Normal dispatches are sent to the [transaction pool](../../concepts/tx-pool).
 
 #### Operational Dispatches
 
@@ -195,7 +195,7 @@ Dispatches in this class are given maximum priority and are exempt from paying t
 
 Mandatory dispatches will be included in a block even if they cause the block to surpass its weight
 limit. This dispatch class may only be applied to
-[inherents](../concepts/extrinsics#Inherents) and is intended to represent functions that are
+[inherents](../../concepts/extrinsics#Inherents) and is intended to represent functions that are
 part of the block validation process. Since these kinds of dispatches are always included in a block
 regardless of the function weight, it is critical that the function's validation process prevents
 malicious validators from abusing the function in order to craft blocks that are valid but
@@ -226,7 +226,7 @@ fn handle_users(origin, calls: Vec<User>) {
 
 Depending on the execution logic, a dispatchable may consume less weight than was prescribed
 pre-dispatch. Why this is useful is explained in the
-[weights article](../concepts/weight#post-dispatch-weight-correction). In order to correct
+[weights article](../../concepts/weight#post-dispatch-weight-correction). In order to correct
 weight, the dispatchable declares a different return type and then returns its actual weight:
 
 ```rust
@@ -386,11 +386,11 @@ The entire logic of fees is encapsulated in `pallet-transaction-payment` via a `
 While this module provides a high degree of flexibility, a user can opt to build their custom
 payment module drawing inspiration from Transaction Payment.
 
-Given now you know what Substrate weight system is, how it affect the transaction fee computation, and how to specify them for your dispatchables, the last question is how to find the right weights for your dispatchables. That is what **Substrate Benchmarking** is for. By writing benchmarking functions and running them, the system (`frame-benchmarking`) calls these functions repeatedly with different numerical parameters and empirically determine the weight functions for dispatchables in their worst case scenarios, within a certain limit. [Learn more here](./benchmarking).
+Given now you know what Substrate weight system is, how it affect the transaction fee computation, and how to specify them for your dispatchables, the last question is how to find the right weights for your dispatchables. That is what **Substrate Benchmarking** is for. By writing benchmarking functions and running them, the system (`frame-benchmarking`) calls these functions repeatedly with different numerical parameters and empirically determine the weight functions for dispatchables in their worst case scenarios, within a certain limit. [Learn more here](../benchmarking).
 
 ### Learn More
 
-- Dedicated [weight documentation](../concepts/weight)
+- Dedicated [weight documentation](../../concepts/weight)
 - [Example module](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
 - [SignedExtension](/rustdocs/latest/sp_runtime/traits/trait.SignedExtension.html)
 

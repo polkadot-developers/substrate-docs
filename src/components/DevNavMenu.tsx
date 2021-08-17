@@ -490,7 +490,7 @@ DevNavMenu.tuts.permissionedNetwork = {
   ],
 }
 
-DevNavMenu.tuts.forklessUpgrade = {
+DevNavMenu.tuts.forklessUpgrades = {
   name: `Forkless Runtime Upgrades`,
   items: [
     {
