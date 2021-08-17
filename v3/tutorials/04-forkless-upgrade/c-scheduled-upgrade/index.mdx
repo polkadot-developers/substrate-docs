@@ -7,14 +7,15 @@ category: forkless upgrades
 keywords:
 ---
 
+## Overview
 Now that the Node Template has been upgraded to include the Scheduler pallet,
 [the `schedule` function](/rustdocs/latest/pallet_scheduler/enum.Call.html#variant.schedule)
-can be used to perform the next runtime upgrade. In the previous section, the
+can be used to perform the next runtime upgrade. In the previous part, the
 `sudo_unchecked_weight` function was used to override the weight associated with the `set_code`
 function; in this section, the runtime upgrade will be _scheduled_ so that it can be processed as
 the only [extrinsic](../../../v3/docs/concepts/extrinsics) in a block.
 
-## Prepare an Upgraded Runtime
+### 1. Prepare an Upgraded Runtime
 
 This upgrade is more straightforward than the previous one and only requires updating a single value
 in `runtime/src/lib.rs` aside from the runtime's `spec_version`.
@@ -56,7 +57,7 @@ minimum balance needed to keep an account alive from the point-of-view of the Ba
 	  "
 />
 
-### Build the Upgraded Runtime
+### 2. Build the Upgraded Runtime
 
 ```bash
 cargo build --release -p node-template-runtime
@@ -71,7 +72,7 @@ cargo build --release -p node-template-runtime
 	  "
 />
 
-## Upgrade the Runtime
+### 3. Upgrade the Runtime
 
 In the previous section, the Scheduler pallet was configured with the `Root` origin as its
 [`ScheduleOrigin`](/rustdocs/latest/pallet_scheduler/trait.Config.html#associatedtype.ScheduleOrigin),

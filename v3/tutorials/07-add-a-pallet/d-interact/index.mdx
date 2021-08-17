@@ -7,8 +7,14 @@ category: add a pallet
 keywords:
 ---
 
+## Overview
+
 Now you are ready to compile and run your node that has been enhanced with nickname capabilities
-from the Nicks pallet. Compile the node in release mode with:
+from the [Nicks pallet](/rustdocs/latest/pallet_nicks/index.html). 
+
+## Steps
+### 1. Compile and run the node
+Compile the node in release mode with:
 
 ```bash
 cargo build --release
@@ -24,7 +30,7 @@ After the build succeeds, you can start the node:
 ./target/release/node-template --dev --tmp
 ```
 
-## Start the Front-End
+### 2. Start the Front-End
 
 As in the previous tutorials, this tutorial will use the Substrate Developer Hub Front-End Template
 to allow you to interact with the Node Template. As long as you have completed the
@@ -47,7 +53,7 @@ To start the Front-End Template, navigate to its directory and run:
 yarn start
 ```
 
-## Use the Nicks Pallet
+### 3. Use the Nicks Pallet
 
 You should already be familiar with using the Front-End Template to
 [interact with a pallet](/v3/tutorials/create-your-first-substrate-chain/interact#pallet-interactor-&-events).
@@ -140,7 +146,7 @@ nickname associated with it. Here are some other things you may want to try:
 - Add a nickname for Bob then use Alice's account and the `SUDO` button to forcibly kill Bob's
   nickname. Switch back to Bob's account and dispatch the `clearName` function.
 
-## Adding Other FRAME Pallets
+### 4. Adding Other FRAME Pallets
 
 In this guide, we walked through specifically how to import the Nicks pallet, but as mentioned in
 the beginning of this guide, each pallet will be a little different. Have no fear, you can always
@@ -152,14 +158,17 @@ different pallets, and in the `bin/node/runtime/src/lib.rs` file you will see ho
 runtime. You can generally copy what was done there as a starting point to include a pallet in your
 own runtime.
 
-### Learn More
-
-- Learn how to add a more complex pallet to the Node Template by going through the
-  [Add the Contracts Pallet](../../../v3/how-to-guides/pallet-design/contracts-pallet) guide.
-- Complete the [Forkless Upgrade a Chain](/v3/tutorials/forkless-upgrade) tutorial to learn how Substrate enables
+<Message
+  type={`green`}
+  title={`Further learning`}
+  text={`
+  - Learn how to add a more complex pallet to the Node Template by going through the
+  [Add the Contracts Pallet](/v3/how-to-guides/pallet-design/contracts-pallet) guide.
+  
+  - Complete the [Forkless Upgrade a Chain](/v3/tutorials/forkless-upgrade) tutorial to learn how Substrate enables
   forkless runtime upgrades and follow steps to perform two upgrades, each of which is performed by
-  way of a distinct upgrade mechanism.
+  way of a distinct upgrade mechanism.`}
+/>
 
-### References
+## Next steps 
 
-- [Nicks pallet docs](/rustdocs/latest/pallet_nicks/index.html)

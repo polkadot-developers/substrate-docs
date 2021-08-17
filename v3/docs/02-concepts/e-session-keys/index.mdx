@@ -59,9 +59,13 @@ mod app {
 }
 ```
 
-> This code is just an example of a Substrate node at the
-> [time of writing](https://github.com/substrate-developer-hub/substrate-node-template).
-> Refer to the runtime for the most up-to-date implementation.
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`This code is just an example of a Substrate node at the
+[time of writing](https://github.com/substrate-developer-hub/substrate-node-template).
+Refer to the runtime for the most up-to-date implementation.`}
+/>
 
 The default Substrate node implements Session keys in the
 [Session pallet](/rustdocs/latest/pallet_session/).
@@ -79,8 +83,12 @@ As a node operator, you can generate keys using the RPC call
 [`author_rotateKeys`](/rustdocs/latest/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys).
 You will then need to register the new keys on chain using a [`session.setKeys`](/rustdocs/latest/pallet_session/struct.Module.html#method.set_keys) transaction.
 
-> **Note:** for increased security, session keys should be changed every session. This can be done by creating a certificate via signing a session public key
-> and broadcasting it via an extrinsic.
+<Message
+  type={`yellow`}
+  title={`Important`}
+  text={`For increased security, session keys should be changed every session. This can be done by creating a certificate via signing a session public key
+  and broadcasting it via an extrinsic.`}
+/>
 
 Since session keys are hot keys that must be kept online, the individual keys should **not** be used to
 control funds. All the logic for handling session keys is in the Substrate client, primitives, and

@@ -7,6 +7,8 @@ category: add a pallet
 keywords:
 ---
 
+## Overview
+
 Every pallet has a component called `Config` that is used for configuration. This component is a
 [Rust "trait"](https://doc.rust-lang.org/book/ch10-02-traits.html); traits in Rust are similar to
 interfaces in languages such as C++, Java and Go. FRAME developers must implement this trait for
@@ -71,6 +73,7 @@ pub trait Config: frame_system::Config {
     type MaxLength: Get<u32>;
 }
 ```
+### 1. Implement the Nicks pallet `Config` trait
 
 Just like we used the Balances pallet as a template for importing the Nicks pallet, let's use the
 Balances pallet as an example to help us understand how we can implement the `Config` interface for the
@@ -168,7 +171,7 @@ impl pallet_nicks::Config for Runtime {
 }
 ```
 
-### Adding Nicks to the `construct_runtime!` Macro
+### 2. Adding Nicks to the `construct_runtime!` Macro
 
 Next, we need to add the Nicks pallet to the `construct_runtime!` macro. For this, we need to
 determine the types that the pallet exposes so that we can tell the runtime that they exist. The
@@ -214,3 +217,8 @@ construct_runtime!(
     you need to expose.
     "
 />
+
+## Next steps
+1. Build and launch your node
+2. Use the Front-end Template to interact with the Nicks pallet
+3. Add other FRAME pallets

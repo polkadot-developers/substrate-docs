@@ -35,8 +35,8 @@ const tutsInfo = [
     version: '3.0',
   },
   {
-    name: 'ink-workshop',
-    navSlug: 'inkWorkshop',
+    name: 'add-contracts',
+    navSlug: 'contractsTutorial',
     version: '3.0',
   },
 ]

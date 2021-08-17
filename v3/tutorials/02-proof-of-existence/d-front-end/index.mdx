@@ -7,6 +7,8 @@ category: proof of existence
 keywords:
 ---
 
+## Overview
+
 If you have made it this far, that means you _should_ have a brand new blockchain with custom
 functionality up and running.
 
@@ -21,7 +23,7 @@ The first thing you'll need to do is to clone a copy of the
 git clone -b v3.0.0 --depth 1 https://github.com/substrate-developer-hub/substrate-front-end-template
 ```
 
-### Yarn V2
+#### Yarn V2
 
 The Frontend Template is expected to work with `yarn 2.4.1`.
 To ensure you have the right version, use:
@@ -33,7 +35,8 @@ yarn set version berry
 yarn set version latest
 ```
 
-## Explore the Front-End Template
+## Steps
+### 1. Explore the Front-End Template
 
 To start the Front-End Template, navigate to its directory and run:
 
@@ -52,7 +55,7 @@ You'll see a list of pre-funded accounts, and you can make token transfers betwe
 
 ![Balance Transfer](../../../../src/images/tutorials/02-proof-of-existence/front-end-template-balance-transfer.png)
 
-## Add Your Custom React Component
+### 2. Add your custom react component
 
 In the Front-End Template project, edit the `TemplateModule.js` file in the `/src/` folder:
 
@@ -232,7 +235,7 @@ comments to learn what each part is doing.
       "
 />
 
-## Submit a Proof
+### 3. Submit a proof
 
 Your Front-End Template should reload when you save your changes, and you'll notice our new
 component. Now we're ready to try out our new dApp. Select any file on your computer, and you will
@@ -252,7 +255,7 @@ revoke the claim if you want.
 Remember, only the owner can revoke the claim! If you select another user account at the top, and
 you will see that the revoke option is disabled!
 
-## Next Steps
+## Next steps
 
 This is the end of our journey into creating a Proof of Existence blockchain.
 
@@ -264,6 +267,7 @@ with your blockchain.
 This tutorial chose to omit some of the specific details around development in order to keep this
 experience short and satisfying. However, we want you to keep learning!
 
+### Learn more
 To learn more about building your own pallets, explore the
 [Substrate Recipes](https://substrate.dev/recipes/).
 

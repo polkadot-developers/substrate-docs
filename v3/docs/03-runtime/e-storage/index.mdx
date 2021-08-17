@@ -38,9 +38,13 @@ Large lists incur storage costs just like large `structs`.
 Furthermore, iterating over a large list in your runtime may result in exceeding the block production time. If this occurs your blockchain
 will stop producing blocks, which means that it will stop functioning.
 
-> **Important consideration:** although wrapping related items in a shared `struct` is an excellent way to reduce the number
-> of storage reads, at some point the size of the object will begin to
-> incur costs that may outweigh the optimization in storage reads.
+<Message
+  type={`yellow`}
+  title={`Important`}
+  text={`Although wrapping related items in a shared \`struct\` is an excellent way to reduce the number
+  of storage reads, at some point the size of the object will begin to
+  incur costs that may outweigh the optimization in storage reads.`}
+/>
 
 Refer to the Storage Value documentation for
 [a comprehensive list of the methods that Storage Value exposes](/rustdocs/latest/frame_support/storage/trait.StorageValue.html#required-methods).
@@ -77,10 +81,16 @@ used to track unbounded sets of data (such as account balances), iterating over 
 Furthermore, because accessing the elements of a map requires more database reads than accessing the
 elements of a native list, map iterations are significantly _more_ costly than list iterations in terms of execution time.
 
-> **A note on best practices**: in general, Substrate focuses on "[first principles](#best-practices)" as opposed to hard and fast rules
-> of right and wrong. The information here aims to help you understand _all_ of Substrate's
-> storage capabilities and how to use them in a way that respects the principles around which
-> they were designed. For instance, iterating over storage maps in your runtime is neither right nor wrong &mdash; yet, avoiding it would be considered a better approach with respect to best practices.
+
+<Message
+  type={`green`}
+  title={`A note on best practices`}
+  text={`In general, Substrate focuses on "[first principles](#best-practices)" as opposed to hard and fast rules
+  of right and wrong. The information here aims to help you understand _all_ of Substrate's
+  storage capabilities and how to use them in a way that respects the principles around which
+  they were designed. For instance, iterating over storage maps in your runtime is neither right nor 
+  wrong &mdash; yet, avoiding it would be considered a better approach with respect to best practices.`}
+/>
 
 Substrate's Iterable Storage Map interfaces define the following methods (note that for Iterable
 Storage Double Maps, the `iter()` and `drain()` methods require the first key as a parameter):
@@ -176,10 +186,15 @@ getter method implemented on the module; instead, you will need to use
 [the storage item's `get` method](#methods).
 In FRAME v2, the equivalent extension is derived by the `#[pallet::getter(..)]` macro attribute.
 
-> **Note:** The optional `get` and `getter` extensions only
-> impact the way that a storage item can be accessed from _within_ Substrate code &mdash; you will always be
-> able to [query the storage of your runtime](../advanced/storage#Querying-Storage) to get the value
-> of a storage item.
+
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`The optional \`get\` and \`getter\` extensions only
+  impact the way that a storage item can be accessed from _within_ Substrate code &mdash; you will always be
+  able to [query the storage of your runtime](../advanced/storage#Querying-Storage) to get the value
+  of a storage item.`}
+/>
 
 Here is an example that implements a getter method named `some_value` for a Storage Value named
 `SomeValue`. This pallet would now have access to a `Self::some_value()` method in addition to the
@@ -262,8 +277,13 @@ cannot bombard your system with many small transfers to sequential account numbe
 cryptographic hash algorithm this would create an imbalanced storage structure that would suffer in
 performance.
 
-> **Note:** cryptographic hashing algorithms are more complex and resource-intensive than their
-> non-cryptographic counterparts, which is why it is important for runtime engineers to understand their appropriate usages in order to make the best use of the flexibility Substrate provides.
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`Cryptographic hashing algorithms are more complex and resource-intensive than their
+  non-cryptographic counterparts, which is why it is important for runtime engineers to understand 
+  their appropriate usages in order to make the best use of the flexibility Substrate provides.`}
+/>
 
 ### Transparent Hashing Algorithms
 

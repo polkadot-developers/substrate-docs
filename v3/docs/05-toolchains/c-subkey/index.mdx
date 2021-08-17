@@ -59,8 +59,12 @@ interface to Subkey may change between versions; the commands described below ha
 with the version of Subkey specified by the `cargo install` command in the
 [Build from Source](#build-from-source) section.
 
-> If you follow the steps in this section to compile Subkey with Cargo, the version of Subkey will
-> depend on the branch or commit of Substrate that you have checked out.
+<Message
+  type={`yellow`}
+  title={`Important`}
+  text={`If you follow the steps in this section to compile Subkey with Cargo, the version of Subkey will
+  depend on the branch or commit of Substrate that you have checked out.`}
+/>
 
 Once installed, use the `subkey -h` command to see all the sub-commands and flags available.
 Use `subkey <sub-command> -h` to see help items for ech sub-command.
@@ -264,8 +268,12 @@ Secret phrase `caution juice atom organ advance problem want pledge someone seni
 
 ## HD Key Derivation
 
-> **Remember that passwords and derivation paths are just as important to backup as the seed itself!**
-> See the [password note](#important-password-and-derivation-note) for more information.
+<Message
+  type={`yellow`}
+  title={`Important`}
+  text={`Remember that passwords and derivation paths are just as important to backup as the seed itself!
+  See the [password note](#important-password-and-derivation-note) for more information.`}
+/>
 
 Subkey supports hard and soft hierarchical deterministic (HD) key derivation compliant with
 [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki). HD keys allow you to have a
@@ -348,8 +356,12 @@ Note that the two addresses here match. This is not the case in hard key derivat
 
 ## Password Protected Keys
 
-> **Remember that passwords and derivation paths are just as important to backup as the seed itself!**
-> See the [password note](#important-password-and-derivation-note) for more information.
+<Message
+  type={`yellow`}
+  title={`Important`}
+  text={`Remember that passwords and derivation paths are just as important to backup as the seed itself!
+  See the [password note](#important-password-and-derivation-note) for more information.`}
+/>
 
 To generate a key that is password protected, use the `--password <password>` flag:
 
@@ -412,14 +424,16 @@ The output is identical otherwise.
 
 ## Combine Derivation Paths & Passwords
 
-### IMPORTANT PASSWORD AND DERIVATION NOTE
+<Message
+  type={`yellow`}
+  title={`Important password and derivation note`}
+  text={`Note that the "secret seed" _is not_ password protected. Although it can still recover _an_
+account, the key pair that's derived _is not the same_ account as recovered with _any_ password!
+The same seed with different derivation paths passwords will derive **different keys**!
+**The "Secret phrase" is not sufficient to recover a key pair!**
+Keep your paths and passwords secure, as without it your key pair cannot be recovered!`}
+/>
 
-> Note that the "secret seed" _is not_ password protected. Although it can still recover _an_
-> account, the key pair that's derived _is not the same_ account as recovered with _any_ password!
-> The same seed with different derivation paths passwords will derive **different keys**!
->
-> **The "Secret phrase" is not sufficient to recover a key pair!**
-> Keep your paths and passwords secure, as without it your key pair cannot be recovered!
 
 You can mix and match hard and soft key paths (although it doesn't make much sense to have hard
 paths as children of soft paths). For example:
@@ -532,9 +546,13 @@ _Output:_
 Signature verifies correctly.
 ```
 
-> Note: `echo` appends a newline character to the end of strings. Therefore, if you verify a message
-> that was signed elsewhere, e.g. Polkadot JS, then you will need to use `echo -n` to remove the
-> newline character and verify the correct message.
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`\`echo\` appends a newline character to the end of strings. Therefore, if you verify a message
+  that was signed elsewhere, e.g. Polkadot JS, then you will need to use \`echo -n\` to remove the
+  newline character and verify the correct message.`}
+/>
 
 ## Generating Node Keys
 
@@ -560,13 +578,11 @@ The peer ID is displayed on screen and the actual key is saved in the `<output-f
 
 ## Well-Known Keys
 
-> The common seed used for all development accounts is:
->
-> ```text
-> bottom drive obey lake curtain smoke basket hold race lonely fit walk
-> ```
->
-> Various development accounts are _derived_ from this seed.
+The common seed used for all development accounts is:
+```text
+bottom drive obey lake curtain smoke basket hold race lonely fit walk
+```
+Various development accounts are _derived_ from this seed.
 
 If you've worked with Substrate previously, you have likely encountered the ubiquitous accounts for
 Alice, Bob, and their friends. These keys are not at all private, but are useful for playing with
@@ -602,8 +618,12 @@ generate the account.
 
 ## Further Resources
 
-> REMEMBER: **Passwords and derivation paths are just as important to backup as your seed itself!**
-> See the [password note](#important-password-and-derivation-note) for more information.
+<Message
+  type={`yellow`}
+  title={`Important`}
+  text={`Remember that passwords and derivation paths are just as important to backup as the seed itself!
+  See the [password note](#important-password-and-derivation-note) for more information.`}
+/>
 
 - Learn more by running `subkey help` or see the
   [README](https://github.com/paritytech/substrate/tree/master/bin/utils/subkey).
