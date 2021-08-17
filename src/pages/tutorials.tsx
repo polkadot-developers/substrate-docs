@@ -47,7 +47,7 @@ export default function tutorials({ data }: any) {
             title={`Permissioned Network`}
             image={data.tutorialFour}
             description={`A comprehensive, end-to-end tutorial for building a permissioned network using node-authorization pallet.`}
-            time={`2 Hours`}
+            time={`1 Hour`}
             difficulty={`beginner`}
             prerequisites={true}
             version={`V3.0.0`}

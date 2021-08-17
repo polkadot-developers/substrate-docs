@@ -7,18 +7,23 @@ category: permissioned network
 keywords:
 ---
 
-Before even starting a node, let's make sure everything is compiled for our project.
+## Overview
+
+In this part, we will demonstrate how to launch and add new nodes to our permissioned chain.
+
+Let's first make sure everything compiles:
 
 ```bash
 # from the root dir of your node template:
 cargo build --release
 ```
 
-For this demonstration, we'll launch 4 nodes: 3 with well known nodes that are allowed
-to author and validate blocks, as well as 1 sub-node that is only allowed to read-only
-access to data from a selected well-known node (on it's approval).
+For this demonstration, we'll launch 4 nodes: 3 well known nodes that are allowed
+to author and validate blocks, and 1 sub-node that only has read-only
+access to data from a selected well-known node (upon it's approval).
 
-## Demonstration Node Keys and PeerIDs
+## Steps
+### 1. Obtaining Node Keys and PeerIDs
 
 For Alice's _well known_ node:
 
@@ -88,7 +93,7 @@ making Dave's node as a well known node.
     "
 />
 
-## Alice and Bob Start the Network
+### 2. Alice and Bob Start the Network
 
 Let's start Alice's node first:
 
@@ -175,7 +180,7 @@ peer id of the node as input, you should get the account address of the owner.
 
 ![query_well_known_nodes](../../../../src/images/tutorials/03-permissioned-network/get_well_known_nodes.png)
 
-## Add Another Well Known Node
+### 3. Add Another Well Known Node
 
 Let's start Charlie's node,
 
@@ -235,7 +240,7 @@ by default in a local network.
 
 Now we have 3 well known nodes all validating blocks together!
 
-## Add Dave as a Sub-Node to Charlie
+### 4. Add Dave as a Sub-Node to Charlie
 
 Let's add Dave's node, not as a well-known node, but a "sub-node" of Charlie.
 Dave will _only_ be able to connect to Charlie to access the network.
@@ -259,7 +264,7 @@ Start Dave's node with following command:
 After it was started, there is no available connections. This is a _permissioned network_,
 so first, Charlie needs to configure his node to allow the connection from Dave's node.
 
-In **Developer Extrinsics** page, Charlie submit an `addConnections` extrinsic.
+In the **Developer Extrinsics** page, get Charlie to submit an `addConnections` extrinsic.
 The first PeerId is the peer id in hex of Charlie's node. The connections is a list
 of allowed peer ids for Charlie's node, here we only add Dave's.
 
@@ -274,8 +279,8 @@ Similarly, Dave can add connection from Charlie's node.
 
 ![dave_add_connections](../../../../src/images/tutorials/03-permissioned-network/dave_add_connections.png)
 
-You should now see Dave is catching up blocks and only have one peer which belong to Charlie!
-Restart Dave's node in case it's not connecting with Charley right away.
+You should now see Dave is catching up blocks and only has one peer which belongs to Charlie!
+Restart Dave's node in case it's not connecting with Charlie right away.
 
 <Message
   type={`gray`}
@@ -297,3 +302,8 @@ Restart Dave's node in case it's not connecting with Charley right away.
 You are at the end of this tutorial and are already learned about how to build a
 permissioned network. You can also play with other dispatchable calls like
 `remove_well_known_node`, `remove_connections`.
+
+## Next steps 
+### Learn more 
+- Complete the [Private Network Tutorial](../start-a-private-network/index)
+- Read more about the [Subkey tool](/v3/docs/toolchains/subkey)

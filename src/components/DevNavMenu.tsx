@@ -476,15 +476,15 @@ DevNavMenu.tuts.permissionedNetwork = {
   name: `Start a Permissioned Network`,
   items: [
     {
-      title: `Overview`,
+      title: `Introduction`,
       link: '/v3/tutorials/permissioned-network',
     },
     {
-      title: `Add node-authorization pallet`,
+      title: `Add the node-authorization pallet`,
       link: '/v3/tutorials/permissioned-network/node-authorization-pallet',
     },
     {
-      title: `Launch our Permissioned Network`,
+      title: `Launch your permissioned network`,
       link: '/v3/tutorials/permissioned-network/launch',
     },
   ],
