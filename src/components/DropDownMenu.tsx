@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { LocalizedLink } from 'gatsby-theme-i18n'
 import SubMenuItem from './SubMenuItem'
 import useComponentVisible from './Hooks/use-component-visible'
 
-interface SubMenuProps {
+interface DropDownMenuProps {
   menuData: {
     name: string
     subMenu: {
@@ -16,7 +16,7 @@ interface SubMenuProps {
   width?: string
 }
 
-export default function SubMenu({ menuData, width }: SubMenuProps) {
+export default function DropDown({ menuData, width }: DropDownMenuProps) {
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible(false)
   const { name, subMenu } = menuData
@@ -43,12 +43,12 @@ export default function SubMenu({ menuData, width }: SubMenuProps) {
         className={` ${width}
         ${
           isComponentVisible
-            ? `absolute mt-2 -m-1 animate-fade-in-down`
+            ? `absolute mt-4 -ml-2 animate-fade-in-down`
             : 'hidden animate-fade-out'
         }`}
       >
         <ul
-          className={`list-none relative bg-white dark:bg-black px-6 pt-6 shadow-lg ring-1 ring-black dark:ring-white ring-opacity-40 rounded-md ${
+          className={`list-none relative bg-white dark:bg-black shadow-lg ring-1 ring-substrateDark dark:ring-white rounded-md ${
             itemNavOpen ? `rounded-tr-none rounded-br-none` : null
           }`}
         >
@@ -56,9 +56,9 @@ export default function SubMenu({ menuData, width }: SubMenuProps) {
             subMenu.map((item, index) => {
               if (item.items) {
                 return (
-                  <div key={index}>
+                  <li key={index}>
                     <SubMenuItem data={item} setItemNavOpen={setItemNavOpen} />
-                  </div>
+                  </li>
                 )
               }
               if (item.external) {
@@ -68,11 +68,9 @@ export default function SubMenu({ menuData, width }: SubMenuProps) {
                     key={index}
                     href={item.link}
                   >
-                    <div className="pb-6 focus:outline-none focus:bg-substrateBlueBg">
-                      <span className="text-lg font-medium hover:text-substrateGreen hover:underline">
-                        {item.linkTitle}
-                      </span>
-                    </div>
+                    <li className="px-6 py-4 m-0 focus:outline-none focus:bg-substrateBlueBg hover:text-substrateGreen hover:underline">
+                      <span className="font-medium">{item.linkTitle}</span>
+                    </li>
                   </a>
                 )
               } else {
@@ -82,11 +80,9 @@ export default function SubMenu({ menuData, width }: SubMenuProps) {
                     key={index}
                     to={item.link}
                   >
-                    <div className="pb-6 focus:outline-none focus:bg-substrateBlueBg">
-                      <span className="text-lg font-medium hover:text-substrateGreen hover:underline">
-                        {item.linkTitle}
-                      </span>
-                    </div>
+                    <li className="px-6 py-4 m-0 focus:outline-none focus:bg-substrateBlueBg hover:text-substrateGreen hover:underline">
+                      <span className="font-medium">{item.linkTitle}</span>
+                    </li>
                   </LocalizedLink>
                 )
               }

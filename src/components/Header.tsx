@@ -3,7 +3,7 @@ import MobileMenu from './MobileMenus/MobileMenu'
 import DocsButton from './DocsButton'
 import { LocalizedLink, useLocalization } from 'gatsby-theme-i18n'
 // import LanguageSwitcher from './LanguageSwitcher'
-import SubMenu from './SubMenu'
+import DropDownMenu from './DropDownMenu'
 import SearchDocs from './SearchDocs'
 import ThemeToggle from './ThemeToggle'
 import useScrollListener from './Hooks/use-scroll-listener'
@@ -90,17 +90,7 @@ export default function Header() {
       subMenu: [
         {
           linkTitle: `Substrate & Polkadot`,
-          link: `https://www.substrate.io/vision/substrate-and-polkadot`,
-          external: true,
-        },
-        {
-          linkTitle: `Substrate & Ethereum`,
-          link: `https://www.substrate.io/vision/substrate-and-ethereum`,
-          external: true,
-        },
-        {
-          linkTitle: `About Us`,
-          link: `https://www.substrate.io/vision/about-us`,
+          link: `https://www.substrate.io/vision/`,
           external: true,
         },
       ],
@@ -286,10 +276,10 @@ export default function Header() {
           {/* ------------------ */}
           <nav className="hidden lg:flex lg:justify-between lg:items-center  w-full">
             <div className="w-2/3 max-w-3xl flex justify-evenly">
-              <SubMenu menuData={techMenu} width={`w-44`} />
-              <SubMenu menuData={devMenu} width={`w-48`} />
-              <SubMenu menuData={visionMenu} width={`w-60`} />
-              <SubMenu menuData={ecoMenu} width={`w-56`} />
+              <DropDownMenu menuData={techMenu} width={`w-44`} />
+              <DropDownMenu menuData={devMenu} width={`w-48`} />
+              <DropDownMenu menuData={visionMenu} width={`w-60`} />
+              <DropDownMenu menuData={ecoMenu} width={`w-56`} />
             </div>
             <div className=" w-1/2 flex items-center justify-end">
               <SearchDocs />
