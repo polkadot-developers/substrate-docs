@@ -552,12 +552,56 @@ DevNavMenu.tuts.cumulusWorkshop = {
       link: '/v3/tutorials/cumulus-workshop',
     },
     {
-      title: `Compilation`,
-      link: '/v3/tutorials/cumulus-workshop/compilation',
+      title: `Build Environment & Compilation`,
+      link: '/v3/tutorials/cumulus-workshop/build-env',
     },
     {
-      title: `Relay Chain Chain Specifcation`,
+      title: `Relay Chain Chain Specification`,
       link: '/v3/tutorials/cumulus-workshop/relay-spec',
+    },
+    {
+      title: `Starting the Relay Chain`,
+      link: '/v3/tutorials/cumulus-workshop/relay-start',
+    },
+    {
+      title: `Reserve a Para ID`,
+      link: '/v3/tutorials/cumulus-workshop/para-id',
+    },
+    {
+      title: `Launching a Parachain`,
+      link: '/v3/tutorials/cumulus-workshop/para-launch',
+    },
+    {
+      title: `Parachain Registration`,
+      link: '/v3/tutorials/cumulus-workshop/para-register',
+    },
+    {
+      title: `Interact with a Parachain`,
+      link: '/v3/tutorials/cumulus-workshop/para-interact',
+    },
+    {
+      title: `Connecting Additional Parachain Nodes`,
+      link: '/v3/tutorials/cumulus-workshop/para-nodes',
+    },
+    {
+      title: `Launch a Development Environment with polkadot-launch`,
+      link: '/v3/tutorials/cumulus-workshop/polkadot-launch',
+    },
+    // {
+    //   title: `Launching a Testnet with Docker`,
+    //   link: /v3/tutorials/cumulus-workshop/docker
+    // },
+    {
+      title: `Parachain Node Template`,
+      link: '/v3/tutorials/cumulus-workshop/para-node-template',
+    },
+    {
+      title: `Parachain Pallet Integration`,
+      link: '/v3/tutorials/cumulus-workshop/para-pallets',
+    },
+    {
+      title: `Rococo Testnet Registration`,
+      link: '/v3/tutorials/cumulus-workshop/rococo',
     },
   ],
 }

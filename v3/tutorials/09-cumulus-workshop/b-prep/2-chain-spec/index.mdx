@@ -1,5 +1,5 @@
 ---
-title: Relay Chain Chain Specifcation
+title: Relay Chain Chain Specification
 slug: /v3/tutorials/cumulus-workshop/relay-spec
 ---
 
@@ -34,16 +34,9 @@ use when starting your nodes. Jump to the [Conversion](#_2-convert-to-raw-chain-
 This workshop contains three chain spec files that you can use **without modification** for a
 local test network:
 
-<!-- for some reason these links can't be markdown. See https://github.com/substrate-developer-hub/cumulus-workshop/issues/16 -->
-
-- <a href="shared/chainspecs/rococo-custom-2-raw.json">
-    shared/chainspecs/rococo-custom-2-raw.json
-  </a>
+- [rococo-custom-2-raw.json](v3/tutorials/09-cumulus-workshop/z-FILES/chainspecs/rococo-custom-2-raw.json)
   : A two-validator relay chain with Alice and Bob as authorities. Useful for registering
-  a single parachain. Plain chain spec <a href="shared/chainspecs/rococo-custom-2-plain.json">
-    included
-  </a>
-  .
+  a single parachain. Plain chain spec: [rococo-custom-2-plain.json](v3/tutorials/09-cumulus-workshop/z-FILES/chainspecs/rococo-custom-2-plain.json)
 
 - <a href="shared/chainspecs/rococo-custom-3-raw.json">
     shared/chainspecs/rococo-custom-3-raw.json
@@ -116,14 +109,14 @@ Add your new authority's `AccountId` and `ValidatorId`.
 
 In this runtime configuration, both IDs are the same and are generated from the "stash" account. You
 can generate your own or inspect the
-[well-known development accounts](https://substrate.dev/docs/en/knowledgebase/integrate/subkey#well-known-keys).
+[well-known development accounts](../../../v3/docs/toolchains/subkey#well-known-keys).
 
 The following commands demonstrate how the first part of the `palletSession` section inside the
 spec file can be reproduced. The second part is obtained similarly with `//Bob` and `//Bob//stash`.
 
 > All the keys and addresses needed can be generated using either:
 >
-> - The [`subkey` tool](https://substrate.dev/docs/en/knowledgebase/integrate/subkey) (v2.0.1 and above for BEEFY keys)
+> - The [`subkey` tool](../../../v3/docs/toolchains/subkey) (v2.0.1 and above for BEEFY keys)
 > - The node `key` subcommand. (this can be your `polkadot` or `parachain-collator` binary, based on the latest substrate)
 
 Polkadot **validator authority** address for `//Alice//stash` (`sr25519` cryptography):
@@ -232,11 +225,12 @@ your custom chain spec.
 ### Chain Specification
 
 To learn more beyond what we did and more on what can be configured, check out the
-[**chain spec** KB article](https://substrate.dev/docs/en/knowledgebase/integrate/chain-spec)
+[**chain spec** KB article](../../../v3/docs/toolchains/chain-specs)
 
 <!--
 
-self-note: This part seems appear a bit out of context, and suddently jump to the code implementation
+TODO
+self-note: This part seems appear a bit out of context, and suddenly jump to the code implementation
 level.
 
 ### Session Keys
@@ -250,7 +244,7 @@ This ingests the keys you set in your
 file for you when you _compile your runtime_ based on what you configure
 [in this section](https://github.com/paritytech/polkadot/blob/master/node/service/src/chain_spec.rs#L656) of that file.
 
-The BEEFY key is encoded, this is derived in the [polkadot launch CLI tool](https://github.com/paritytech/polkadot-launch/blob/89e9704c8addd7f4dffa7cc75236393fd8c80bab/src/spec.ts#L68) using the [@polkadot-js/util-crypto](https://github.com/polkadot-js/common/tree/master/packages/util-crypto) node package [here](https://github.com/polkadot-js/common/blob/e7e82443231b75b7a546b462a63385db82a57f36/packages/keyring/src/pair/index.ts#L115) as a [SS58 encoded key](https://substrate.dev/docs/en/knowledgebase/advanced/ss58-address-format) of the form:
+The BEEFY key is encoded, this is derived in the [polkadot launch CLI tool](https://github.com/paritytech/polkadot-launch/blob/89e9704c8addd7f4dffa7cc75236393fd8c80bab/src/spec.ts#L68) using the [@polkadot-js/util-crypto](https://github.com/polkadot-js/common/tree/master/packages/util-crypto) node package [here](https://github.com/polkadot-js/common/blob/e7e82443231b75b7a546b462a63385db82a57f36/packages/keyring/src/pair/index.ts#L115) as a [SS58 encoded key](../../../v3/docs/advanced/ss58) of the form:
 
 ```
 base58encode ( concat ( <address-type>, <address>, <checksum> ) )

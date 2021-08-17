@@ -95,7 +95,7 @@ export default function tutorials({ data }: any) {
           />
           <TutorialCard
             title={`Cumulus Workshop`}
-            image={data.tutorialOne}
+            image={data.tutorialParachains}
             description={`A workshop to configure Substrate node as a Parachain`}
             time={`3 Hours`}
             difficulty={`advance`}
@@ -142,6 +142,12 @@ export const pageQuery = graphql`
       }
     }
     tutorialSix: file(name: { eq: "tuts-six" }) {
+      id
+      childImageSharp {
+        gatsbyImageData
+      }
+    }
+    tutorialParachains: file(name: { eq: "parachains" }) {
       id
       childImageSharp {
         gatsbyImageData
