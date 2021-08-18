@@ -77,7 +77,7 @@ export default function Header() {
         },
         {
           linkTitle: `${intl.formatMessage({ id: 'nav-tutorials' })}`,
-          link: `/tutorials`,
+          link: `/v3/tutorials`,
           external: false,
         },
         {
