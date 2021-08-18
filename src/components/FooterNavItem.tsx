@@ -12,7 +12,7 @@ export default function FooterNavItem({
   link,
   title,
 }: FooterNavItemProps) {
-  const itemStyles = 'text-sm mb-4'
+  const itemStyles = 'text-sm md:text-base mb-4 md:mr-6'
   if (external) {
     return (
       <a href={link}>

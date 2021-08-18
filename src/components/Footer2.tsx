@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import MainNav from './MainNav'
 import { LocalizedLink } from 'gatsby-theme-i18n'
 import FooterNavItem from './FooterNavItem'
@@ -7,11 +7,11 @@ export default function Footer2() {
   const navItems = MainNav.global()
   return (
     <footer className="w-full px-4 bg-substrateDark text-white">
-      <div className="">
-        <div className="w-44 relative py-12">
+      <div className="xl:container lg:flex lg:flex-row-reverse lg:justify-between lg:py-12">
+        <div className="w-44 relative py-12 lg:p-0">
           <LocalizedLink to="/">
             <svg
-              className={`fill-current text-white`}
+              className={`fill-current text-white lg:w-44`}
               data-name="Layer 1"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 419.75 58.11"
@@ -33,18 +33,21 @@ export default function Footer2() {
           </LocalizedLink>
         </div>
         <nav className="">
-          <div className="h-[640px] flex flex-col flex-wrap">
+          <div className="h-[640px] lg:w-full lg:max-w-screen-lg md:h-auto flex flex-col flex-wrap sm:flex-row sm:justify-between">
             {navItems.map((section, index) => {
               return (
-                <div className={`pb-6 w-1/2`} key={index}>
-                  <span className="block text-base mb-4 font-bold text-substrateGreen ">
+                <div
+                  className={`pb-4 w-1/2 sm:w-40 md:w-full lg:w-full md:flex md:items-start`}
+                  key={index}
+                >
+                  <span className="block text-base md:text-lg mb-4 font-bold text-substrateGreen md:w-28">
                     {section.name}
                   </span>
-                  <ul className="list-none ml-0 ">
+                  <ul className="list-none ml-0 md:ml-6 md:mt-0.5 md:flex md:flex-wrap md:w-full lg:w-[716px]">
                     {section.subMenu.map((item, index) => {
                       if (item.items) {
                         return (
-                          <>
+                          <Fragment key={index}>
                             {item.items.map((each, index) => {
                               return (
                                 <div key={index}>
@@ -56,7 +59,7 @@ export default function Footer2() {
                                 </div>
                               )
                             })}
-                          </>
+                          </Fragment>
                         )
                       }
                       return (
