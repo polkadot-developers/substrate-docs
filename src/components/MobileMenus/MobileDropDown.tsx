@@ -19,10 +19,12 @@ export default function MobileDropDown({
     <div>
       <div
         onClick={() => setIsComponentVisible(!isComponentVisible)}
-        className="px-6 py-3 hover:bg-substrateGreen-light text-black dark:text-white cursor-pointer"
+        className={`px-6 py-3 hover:font-bold text-black dark:text-white cursor-pointer ${
+          isComponentVisible ? 'font-bold' : 'font-medium'
+        }`}
       >
         <div className="flex justify-between items-center">
-          <span className="text-lg font-medium">{title}</span>
+          <span className="text-lg">{title}</span>
           <svg
             className={`transform ${
               isComponentVisible ? '-rotate-90' : 'rotate-90'
@@ -46,7 +48,8 @@ export default function MobileDropDown({
       {isComponentVisible ? (
         <>
           {items.map((each, index) => {
-            const itemStyles = 'block font-medium pl-12 mb-0 py-3'
+            const itemStyles =
+              'block font-medium hover:font-bold pl-12 mb-0 py-3'
             if (external) {
               return (
                 <a key={index} href={each.link}>

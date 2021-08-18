@@ -24,7 +24,7 @@ export default function TechSubMenu({
     <div className="absolute inset-0 bg-substrateGray-light dark:bg-black h-screen animate-fade-in-right">
       <div className="bg-substrateGreen-light dark:bg-gray-900">
         <div className="px-6 h-16 flex items-center justify-between">
-          <div onClick={() => toggleSubMenu()}>
+          <div onClick={() => toggleSubMenu()} className="cursor-pointer">
             <svg
               className="fill-current text-black dark:text-white"
               width="20"
@@ -37,7 +37,7 @@ export default function TechSubMenu({
           </div>
 
           <span className="text-xl font-bold">{navItem.name}</span>
-          <div onClick={() => toggleMobileNav()}>
+          <div onClick={() => toggleMobileNav()} className="cursor-pointer">
             <svg
               className="fill-current text-black dark:text-white"
               width="20"
