@@ -1,12 +1,13 @@
 import React from 'react'
 import MainNav from './MainNav'
 import { LocalizedLink } from 'gatsby-theme-i18n'
+import FooterNavItem from './FooterNavItem'
 
 export default function Footer2() {
   const navItems = MainNav.global()
   return (
-    <footer className="h-auto w-full px-4 bg-substrateDark text-white">
-      <div className="xl:container max-w-screen-xl lg:flex lg:flex-row-reverse lg:justify-between">
+    <footer className="w-full px-4 bg-substrateDark text-white">
+      <div className="">
         <div className="w-44 relative py-12">
           <LocalizedLink to="/">
             <svg
@@ -31,38 +32,42 @@ export default function Footer2() {
             </svg>
           </LocalizedLink>
         </div>
-        <nav className="lg:w-full lg:pt-12">
-          <div className="flex flex-wrap md:flex-col md:flex-nowrap justify-between">
+        <nav className="">
+          <div className="h-[640px] flex flex-col flex-wrap">
             {navItems.map((section, index) => {
-              console.log(section)
               return (
-                <div
-                  className="pb-6 w-40 md:flex md:items-center md:w-full "
-                  key={index}
-                >
-                  <span className="block text-lg mb-2 md:mb-0 font-bold text-substrateGreen md:w-28">
+                <div className={`pb-6 w-1/2`} key={index}>
+                  <span className="block text-base mb-4 font-bold text-substrateGreen ">
                     {section.name}
                   </span>
-                  <ul className="list-none ml-0 md:w-2/3 md:flex md:justify-between lg:justify-start">
+                  <ul className="list-none ml-0 ">
                     {section.subMenu.map((item, index) => {
-                      const itemStyles = 'md:mb-0 lg:pl-4'
-                      if (item.external) {
+                      if (item.items) {
                         return (
-                          <a key={index} href={item.link}>
-                            <li className={`${itemStyles}`}>
-                              {item.linkTitle}
-                            </li>
-                          </a>
-                        )
-                      } else {
-                        return (
-                          <LocalizedLink key={index} to={item.link}>
-                            <li className={`${itemStyles}`}>
-                              {item.linkTitle}
-                            </li>
-                          </LocalizedLink>
+                          <>
+                            {item.items.map((each, index) => {
+                              return (
+                                <div key={index}>
+                                  <FooterNavItem
+                                    external={each.external}
+                                    link={each.link}
+                                    title={each.linkTitle}
+                                  />
+                                </div>
+                              )
+                            })}
+                          </>
                         )
                       }
+                      return (
+                        <div key={index}>
+                          <FooterNavItem
+                            external={item.external}
+                            link={item.link}
+                            title={item.linkTitle}
+                          />
+                        </div>
+                      )
                     })}
                   </ul>
                 </div>
