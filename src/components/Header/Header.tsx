@@ -82,7 +82,10 @@ export default function Header() {
           {/* ------------------ */}
           {/* Mobile Navigation */}
           {/* ------------------ */}
-          <div className="lg:hidden" onClick={() => toggleMenu()}>
+          <div
+            className="lg:hidden cursor-pointer"
+            onClick={() => toggleMenu()}
+          >
             <svg
               className="fill-current text-black dark:text-white"
               xmlns="http://www.w3.org/2000/svg"
