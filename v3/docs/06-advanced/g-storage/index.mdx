@@ -73,7 +73,7 @@ instead.
 
 Blockchains that are built with Substrate expose a remote procedure call (RPC) server that can be
 used to query runtime storage. When you use the Substrate RPC to access a storage item, you only
-need to provide [the key](#Key-Value-Database) associated with that item.
+need to provide [the key](#key-value-database) associated with that item.
 [Substrate's runtime storage APIs](/v3/docs/runtime/storage) expose a number of storage item types; keep
 reading to learn how to calculate storage keys for the different types of storage items.
 
@@ -112,7 +112,7 @@ malicious users of your blockchain.
 
 ### Storage Map Keys
 
-Like Storage Values, the keys for [Storage Maps](/v3/docs/runtime/storage#storage-maps) are equal to the
+Like Storage Values, the keys for [Storage Maps](/v3/docs/runtime/storage#storage-map) are equal to the
 TwoX 128 hash of the name of the module that contains the map prepended to the TwoX 128 hash of the
 name of the Storage Map itself. To retrieve an element from a map, simply append the hash of the
 desired map key to the storage key of the Storage Map. For maps with two keys (Storage Double Maps),

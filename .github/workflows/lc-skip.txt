@@ -1,0 +1,23 @@
+# Ignoring rustdocs links as they are supposed to be redirected
+localhost:9000/rustdocs(/.*)?
+
+# These links appear in the docs content, and shouldn't be link-checked
+localhost:3000(/.*)?
+localhost:8000(/.*)?
+
+# Ignoring pre-connect check that returns 404
+https://fonts.gstatic.com
+
+# Ignoring github links due to its rate-limit check that returns status code 429
+https://github.com/.*
+
+# Ignoring those starting from https://docs.substrate.io
+#   In the content, we shouldn't link to the domain name
+#   This ignore-rule ignore links generated in our gatsby logic starting w.
+#   https://docs.substrate.io
+https://docs.substrate.io(/.*)?
+
+# `linkcheck` doesn't know how to check the following anchors, as they are not really a link anchor,
+#  but parameters of webapp logics.
+https://matrix.to/#/.*
+https://polkadot.js.org/apps/.*#/.*

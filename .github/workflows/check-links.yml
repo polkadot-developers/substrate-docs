@@ -9,14 +9,60 @@ on:
     branches: [ main, develop, test-ci ]
 
 jobs:
+  build-website-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Build & push image
+        run: |
+          docker build -t jimmychu0807/substrate-docs .
+          docker push jimmychu0807/substrate-docs
+
   check-links:
+    needs: build-website-image
     runs-on: ubuntu-latest
 
+    services:
+      gatsby-app:
+        image: jimmychu0807/substrate-docs
+        ports:
+          - 9000:9000
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14.x'
-      - name: Build and Check
-        run: yarn build-checklinks
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Download `linkcheck`
+        # ref: https://github.com/filiph/linkcheck
+        run: |
+          pushd ~/
+          wget https://github.com/filiph/linkcheck/releases/download/2.0.19/linkcheck-2.0.19-linux-x64.tar.gz -O linkcheck.tar.gz
+          tar xzf linkcheck.tar.gz
+          pushd
+
+      # Setting up tmate terminal for debugging gh action
+      #   ref: https://github.com/marketplace/actions/debugging-with-tmate
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@v3
+
+      - name: Take a 10s nap to ensure gatsby-app ready
+        run: sleep 10
+
+      - name: Run `linkcheck`
+        run: |
+          ~/linkcheck/linkcheck :9000 -e --skip-file .github/workflows/lc-skip.txt || checkexit=$?
+          if [ $checkexit -le 1 ]; then
+            echo "Successfully exit with linkcheck warning. See above message."
+            exit 0
+          else
+            echo "Please check linkcheck error above."
+            exit 1
+          fi

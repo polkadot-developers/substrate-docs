@@ -208,7 +208,7 @@ the genesis `chain_spec.rs`, where all others mut be added manually via extrinsi
 Remember that we are using `sudo` pallet for our governance, we can make a sudo call
 on `add_well_known_node` dispatch call provided by node-authorization pallet to add
 our node. You can find more avaliable calls in this
-[reference doc](https://docs.rs/pallet-node-authorization/3.0.0/pallet_node_authorization/enum.Call.html).
+[reference doc](/rustdocs/latest/pallet_node_authorization/pallet/enum.Call.html).
 
 Go to **Developer** page, **Sudo** tab, in apps and submit the `nodeAuthorization` -
 `add_well_known_node` call with the peer id in hex of Charlie's node and the
@@ -219,7 +219,7 @@ owner is Charlie, of course. Note Allice is the valid sudo origin for this call.
 After the transaction is included in the block, you should see Charlie's node is
 connected to Alice and Bob's nodes, and starts to sync blocks. Notice the reason
 the three nodes can find each other is
-[mDNS](https://docs.rs/sc-network/0.8.0/sc_network/) discovery mechanism is enabled
+[mDNS](/rustdocs/latest/sc_network/index.html) discovery mechanism is enabled
 by default in a local network.
 
 <Message

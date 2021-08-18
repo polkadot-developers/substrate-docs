@@ -107,7 +107,7 @@ We need to simulate the governance in our simple blockchain, so we just let a `s
 configuring the pallet's interface to `EnsureRoot`. In a production environment we sould want to have
 difference, governance based checking implimented here. More details of this `Config` can be found in
 the pallet's
-[reference docs](https://docs.rs/pallet-node-authorization/3.0.0/pallet_node_authorization/trait.Config.html).
+[reference docs](/rustdocs/latest/pallet_node_authorization/pallet/trait.Config.html).
 
 **`runtime/src/lib.rs`**
 
@@ -163,7 +163,7 @@ construct_runtime!(
 ## Add genesis storage for our pallet
 
 `PeerId` is encoded in bs58 format, so we need a new library
-[bs58](https://docs.rs/bs58/0.3.1/bs58/) in **node/cargo.toml** to decode it to get its bytes.
+[bs58](https://docs.rs/bs58/) in **node/cargo.toml** to decode it to get its bytes.
 
 **`node/cargo.toml`**
 

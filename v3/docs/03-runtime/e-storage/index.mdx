@@ -502,7 +502,7 @@ with a proposal on-chain until _after_ it has been approved. This means that sto
 on proposals that fail. Once a proposal has passed, someone can initiate the actual dispatchable
 call (including all its parameters), which will be hashed and compared to the hash in the proposal.
 Another common pattern for using hashes to minimize data that is stored on-chain is to store the
-pre-image associated with an object in [IPFS](https://ipfs.io/); this means that only the IPFS
+pre-image associated with an object in [IPFS](https://docs.ipfs.io); this means that only the IPFS
 location (a hash that is bounded in size) needs to be stored on-chain.
 
 Hashes are only one mechanism that can be used to control the size of runtime storage. An example of
