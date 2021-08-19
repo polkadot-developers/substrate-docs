@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import { Link } from 'gatsby'
 // import LanguageSwitcher from '../LanguageSwitcher'
 import MobileSubMenu from './MobileSubMenu'
 import SearchDoc from '../SearchDocs'
@@ -16,8 +16,8 @@ interface MobileMenuProps {
       items?: { linkTitle: string; link: string; external: boolean }[]
     }[]
   }[]
-  currentLang: string
-  langConfig: {
+  currentLang?: string
+  langConfig?: {
     code: string
     dataFormat: string
     hrefLang: string
@@ -35,10 +35,10 @@ const MobileMenu = ({ theme, toggleMenu, navItems }: MobileMenuProps) => {
 
   return (
     <nav className="lg:hidden absolute inset-0 bg-substrateGray-light dark:bg-black z-90 animate-fade-in-right">
-      <div className="h-16 px-4 flex items-center justify-between">
+      <div className="h-16 px-6 flex items-center justify-between">
         <div>
           <div className="w-32">
-            <LocalizedLink to="/">
+            <Link to="/">
               <svg
                 className={`fill-current ${
                   theme === 'dark' ? `text-white` : `text-black`
@@ -61,10 +61,10 @@ const MobileMenu = ({ theme, toggleMenu, navItems }: MobileMenuProps) => {
                   d="M419.75,46.09v12H375.19v-12Z"
                 />
               </svg>
-            </LocalizedLink>
+            </Link>
           </div>
         </div>
-        <div onClick={() => toggleMenu()} className="h-auto">
+        <div onClick={() => toggleMenu()} className="h-auto cursor-pointer">
           <svg
             className="fill-current text-Black dark:text-white"
             width="20"
@@ -93,9 +93,9 @@ const MobileMenu = ({ theme, toggleMenu, navItems }: MobileMenuProps) => {
                     ? setIsEcoMenuOpen(!isEcoMenuOpen)
                     : null
                 }}
-                className="py-3 hover:bg-substrateGreen-light dark:hover:bg-gray-700"
+                className="py-3 hover:bg-substrateGreen-light dark:hover:bg-gray-700 font-medium transform transition-all duration-75 ease-in-out hover:font-bold"
               >
-                <div className="px-4 flex items-center justify-between focus:outline-none">
+                <div className="px-6 flex items-center justify-between focus:outline-none cursor-pointer">
                   <div className="text-2xl">{item.name}</div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

@@ -26,9 +26,9 @@ export default function SubMenuItem({
       <div
         ref={ref}
         onClick={() => setIsComponentVisible(!isComponentVisible)}
-        className={`px-6 py-4 -mb-1 text-black dark:text-white cursor-pointer rounded-md ${
+        className={`px-6 py-2 -mb-1 text-black dark:text-white cursor-pointer rounded-md ${
           isComponentVisible
-            ? 'bg-substrateGreen-light dark:bg-gray-900 hover:text-black'
+            ? 'bg-substrateGreen-light underline dark:bg-gray-900 hover:text-black'
             : 'hover:text-substrateGreen hover:underline'
         }`}
       >
@@ -54,7 +54,7 @@ export default function SubMenuItem({
       </div>
       {isComponentVisible ? (
         <>
-          <div className="list-none absolute top-0 -right-56 w-56 h-[336px] rounded-tr-md rounded-br-md shadow-lg ring-1 ring-black dark:ring-white bg-white dark:bg-black">
+          <div className="absolute top-0 -right-56 w-56 h-[256px] py-2 rounded-tr-md rounded-br-md shadow-lg ring-1 ring-black dark:ring-white bg-white dark:bg-black">
             {data.items.map((item, index) => {
               return (
                 <div key={index}>
