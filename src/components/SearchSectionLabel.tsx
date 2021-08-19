@@ -5,6 +5,11 @@ interface LabelProps {
   section: any
   setSection: any
   children: React.ReactNode
+  prevState?: {
+    docs: boolean
+    tuts: boolean
+    htgs: boolean
+  }
 }
 
 export default function SearchSectionLabel({
@@ -15,23 +20,20 @@ export default function SearchSectionLabel({
 }: LabelProps) {
   const handleChange = () => {
     if (index === 0) {
-      setSection({
+      setSection((prevState: LabelProps) => ({
+        ...prevState,
         docs: !section.docs,
-        tuts: false,
-        htgs: false,
-      })
+      }))
     } else if (index === 1) {
-      setSection({
-        docs: false,
+      setSection((prevState: LabelProps) => ({
+        ...prevState,
         tuts: !section.tuts,
-        htgs: false,
-      })
+      }))
     } else if (index === 2) {
-      setSection({
-        docs: false,
-        tuts: false,
+      setSection((prevState: LabelProps) => ({
+        ...prevState,
         htgs: !section.htgs,
-      })
+      }))
     }
   }
   const checked = () => {
@@ -51,7 +53,7 @@ export default function SearchSectionLabel({
         }`}
       >
         <input
-          className="h-4 w-4 rounded bg-white text-substrateDark border-2 focus:ring-0"
+          className="h-4 w-4 rounded bg-white text-substrateDark border-2 focus:ring-0 cursor-pointer"
           type="checkbox"
           checked={checked() || false}
           onChange={() => handleChange()}
