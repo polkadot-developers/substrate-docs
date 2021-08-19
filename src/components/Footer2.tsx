@@ -23,7 +23,7 @@ export default function Footer2() {
   const navItems = MainNav.global()
   return (
     <footer className="w-full px-6 bg-substrateDark text-white">
-      <div className="xl:container lg:flex lg:flex-row-reverse lg:justify-between lg:py-12 border-b-4 border-gray-600">
+      <div className="xl:container lg:flex lg:flex-row-reverse lg:justify-between lg:pt-12 lg:pb-3 border-b-4 border-gray-600">
         <div className="w-44 relative py-12 lg:p-0">
           <Link to="/">
             <svg
@@ -53,13 +53,13 @@ export default function Footer2() {
             {navItems.map((section, index) => {
               return (
                 <div
-                  className={`pb-4 w-1/2 sm:w-40 md:w-full md:flex md:items-start`}
+                  className={`pb-4 w-1/2 sm:w-40 md:w-full lg:w-[800px] xl:w-full md:flex md:items-start`}
                   key={index}
                 >
                   <span className="block text-base md:text-lg mb-4 font-bold text-substrateGreen md:w-28">
                     {section.name}
                   </span>
-                  <ul className="list-none ml-0 md:ml-6 md:mt-0.5 md:flex md:flex-wrap md:w-full lg:w-[716px]">
+                  <ul className="list-none ml-0 md:ml-6 md:mt-0.5 md:flex md:flex-wrap md:w-full lg:w-[800px]">
                     {section.subMenu.map((item, index) => {
                       if (item.items) {
                         return (
@@ -95,7 +95,7 @@ export default function Footer2() {
           </div>
         </nav>
       </div>
-      <div className="h-auto md:flex md:flex-row-reverse md:justify-between md:items-center">
+      <div className="xl:container h-auto md:flex md:flex-row-reverse md:justify-between md:items-center">
         <div className="flex items-center py-4">
           <a
             className="mr-11 md:mr-0 md:ml-9"
