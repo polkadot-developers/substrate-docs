@@ -26,7 +26,7 @@ export default function SubMenuItem({
       <div
         ref={ref}
         onClick={() => setIsComponentVisible(!isComponentVisible)}
-        className={`px-6 py-2 -mb-1 text-black dark:text-white cursor-pointer ${
+        className={`px-6 py-2 text-black dark:text-white cursor-pointer ${
           isComponentVisible
             ? 'bg-substrateGreen-light underline dark:bg-gray-900 hover:text-black'
             : 'hover:text-substrateGreen hover:underline'
