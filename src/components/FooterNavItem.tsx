@@ -12,7 +12,8 @@ export default function FooterNavItem({
   link,
   title,
 }: FooterNavItemProps) {
-  const itemStyles = 'text-sm font-light md:text-base mb-4 md:mr-6'
+  const itemStyles =
+    'text-sm font-light md:text-base mb-4 md:mr-6 hover:underline'
   if (external) {
     return (
       <a href={link}>

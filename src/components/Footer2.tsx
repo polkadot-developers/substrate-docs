@@ -22,9 +22,9 @@ export default function Footer2() {
   `)
   const navItems = MainNav.global()
   return (
-    <footer className="w-full px-6 bg-substrateDark text-white">
-      <div className="xl:container lg:flex lg:flex-row-reverse lg:justify-between lg:pt-12 lg:pb-3 border-b-2 border-gray-600">
-        <div className="w-44 relative py-12 lg:p-0">
+    <footer className="w-full px-6 xl:px-12 2xl:px-28 bg-substrateDark text-white">
+      <div className="lg:flex lg:flex-row-reverse lg:justify-between lg:pt-12 lg:pb-3 border-b-2 border-gray-600">
+        <div className="w-44 lg::h-7 relative py-12 lg:p-0 transform transition-all duration-300 ease-in-out hover:opacity-50">
           <Link to="/">
             <svg
               className={`fill-current text-white lg:w-44`}
@@ -49,17 +49,17 @@ export default function Footer2() {
           </Link>
         </div>
         <nav>
-          <div className="h-[600px] lg:w-full lg:max-w-screen-lg md:h-auto flex flex-col flex-wrap lg:flex-row">
+          <div className="h-[600px] lg:w-full lg:max-w-screen md:h-auto flex flex-col flex-wrap lg:flex-row">
             {navItems.map((section, index) => {
               return (
                 <div
-                  className={`pb-4 w-1/2 sm:w-40 md:w-full lg:w-[800px] xl:w-full md:flex md:items-start`}
+                  className={`pb-4 w-1/2 sm:w-40 md:w-full md:flex md:items-start`}
                   key={index}
                 >
                   <span className="block text-base md:text-lg mb-4 font-semibold text-substrateGreen md:w-28">
                     {section.name}
                   </span>
-                  <ul className="list-none ml-0 md:ml-7 md:mt-0.5 md:flex md:flex-wrap md:w-full lg:w-[800px]">
+                  <ul className="list-none ml-0 md:ml-7 md:mt-0.5 md:flex md:flex-wrap md:w-full">
                     {section.subMenu.map((item, index) => {
                       if (item.items) {
                         return (
@@ -95,10 +95,10 @@ export default function Footer2() {
           </div>
         </nav>
       </div>
-      <div className="xl:container h-auto pb-6 md:flex md:flex-row-reverse md:justify-between md:items-center">
+      <div className="h-auto pb-6 md:flex md:flex-row-reverse md:justify-between md:items-center">
         <div className="flex items-center py-4">
           <a
-            className="mr-11 md:mr-0 md:ml-9"
+            className="mr-11 md:mr-0 md:ml-9 transform transition-all duration-300 ease-in-out hover:opacity-50"
             href={site.siteMetadata.twitter}
             target="_blank"
             rel="noreferrer"
@@ -117,7 +117,7 @@ export default function Footer2() {
             </svg>
           </a>
           <a
-            className="mr-11 md:mr-0 md:ml-9"
+            className="mr-11 md:mr-0 md:ml-9 transform transition-all duration-300 ease-in-out hover:opacity-50"
             href={site.siteMetadata.stackOverflow}
             target="_blank"
             rel="noreferrer"
@@ -142,7 +142,7 @@ export default function Footer2() {
             </svg>
           </a>
           <a
-            className="mr-11 md:mr-0 md:ml-9"
+            className="mr-11 md:mr-0 md:ml-9 transform transition-all duration-300 ease-in-out hover:opacity-50"
             href={site.siteMetadata.element}
             target="_blank"
             rel="noreferrer"
