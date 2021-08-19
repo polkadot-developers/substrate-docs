@@ -54,7 +54,7 @@ export default function Header() {
         <div
           className={`flex items-center justify-between transition-height ease-in-out ${menuHeight}`}
         >
-          <div className="w-40 relative">
+          <div className="w-40 relative transform transition-all duration-75 ease-in-out hover:opacity-50">
             <Link to="/">
               <svg
                 className={`fill-current ${

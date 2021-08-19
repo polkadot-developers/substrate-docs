@@ -154,6 +154,11 @@ const MainNav = {
                 external: true,
               },
               {
+                linkTitle: 'Newsletter',
+                link: 'https://www.substrate.io/newsletter',
+                external: true,
+              },
+              {
                 linkTitle: 'Blog',
                 link: 'https://www.substrate.io/ecosystem/connect/blog',
                 external: true,
