@@ -76,13 +76,13 @@ export default function DropDown({ menuData, index }: DropDownMenuProps) {
             subMenu.map((item, index) => {
               if (item.items) {
                 return (
-                  <li key={index}>
+                  <li key={index} className="m-0">
                     <SubMenuItem data={item} setItemNavOpen={setItemNavOpen} />
                   </li>
                 )
               } else {
                 return (
-                  <li key={index}>
+                  <li key={index} className="m-0">
                     <NavListItem
                       external={item.external}
                       link={item.link}
