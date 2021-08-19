@@ -1,13 +1,30 @@
 import React, { Fragment } from 'react'
+import { graphql } from 'gatsby'
 import MainNav from './MainNav'
 import { LocalizedLink } from 'gatsby-theme-i18n'
 import FooterNavItem from './FooterNavItem'
+import { useStaticQuery } from 'gatsby'
+import { SIGTERM } from 'constants'
 
 export default function Footer2() {
+  const { site } = useStaticQuery(graphql`
+    {
+      site {
+        siteMetadata {
+          github
+          twitter
+          stackOverflow
+          element
+          terms
+          privacy
+        }
+      }
+    }
+  `)
   const navItems = MainNav.global()
   return (
-    <footer className="w-full px-4 bg-substrateDark text-white">
-      <div className="xl:container lg:flex lg:flex-row-reverse lg:justify-between lg:py-12">
+    <footer className="w-full px-6 bg-substrateDark text-white">
+      <div className="xl:container lg:flex lg:flex-row-reverse lg:justify-between lg:py-12 border-b-4 border-gray-600">
         <div className="w-44 relative py-12 lg:p-0">
           <LocalizedLink to="/">
             <svg
@@ -32,8 +49,8 @@ export default function Footer2() {
             </svg>
           </LocalizedLink>
         </div>
-        <nav className="">
-          <div className="h-[640px] lg:w-full lg:max-w-screen-lg md:h-auto flex flex-col flex-wrap sm:flex-row sm:justify-between">
+        <nav>
+          <div className="h-[600px] lg:w-full lg:max-w-screen-lg md:h-auto flex flex-col flex-wrap sm:flex-row sm:justify-between">
             {navItems.map((section, index) => {
               return (
                 <div
@@ -78,6 +95,110 @@ export default function Footer2() {
             })}
           </div>
         </nav>
+      </div>
+      <div className="h-auto">
+        <div className="flex items-center py-4">
+          <a
+            className="mr-11"
+            href={site.siteMetadata.twitter}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M24 4.55705C23.117 4.94905 22.168 5.21305 21.172 5.33205C22.189 4.72305 22.97 3.75805 23.337 2.60805C22.386 3.17205 21.332 3.58205 20.21 3.80305C19.313 2.84605 18.032 2.24805 16.616 2.24805C13.437 2.24805 11.101 5.21405 11.819 8.29305C7.728 8.08805 4.1 6.12805 1.671 3.14905C0.381 5.36205 1.002 8.25705 3.194 9.72305C2.388 9.69705 1.628 9.47605 0.965 9.10705C0.911 11.388 2.546 13.522 4.914 13.997C4.221 14.185 3.462 14.229 2.69 14.081C3.316 16.037 5.134 17.46 7.29 17.5C5.22 19.123 2.612 19.848 0 19.54C2.179 20.937 4.768 21.752 7.548 21.752C16.69 21.752 21.855 14.031 21.543 7.10605C22.505 6.41105 23.34 5.54405 24 4.55705Z"
+                fill="#FBFBFB"
+              />
+            </svg>
+          </a>
+          <a
+            className="mr-11"
+            href={site.siteMetadata.stackOverflow}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <path
+                  d="M18.6941 16.1147H20.9251V25H0.846191V16.1147H3.07718V22.7787H18.6941V16.1147Z"
+                  fill="white"
+                />
+                <path
+                  d="M5.51104 15.4483L16.4632 17.7504L16.9297 15.5695L5.97752 13.2674L5.51104 15.4483ZM6.95105 10.2383L17.0919 14.9435L18.0452 12.9241L7.90429 8.2189L6.95105 10.2383ZM9.77021 5.2706L18.3697 12.399L19.8097 10.6826L11.2102 3.55412L9.77021 5.2706ZM15.3274 0L13.5223 1.33279L20.195 10.2787L22.0001 8.94588L15.3274 0ZM5.30823 20.5574H16.4632V18.336H5.30823V20.5574Z"
+                  fill="white"
+                />
+              </g>
+            </svg>
+          </a>
+          <a
+            className="mr-11"
+            href={site.siteMetadata.element}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9 23.5C9 24.3286 9.67143 25 10.5 25C16.0214 25 20.5 20.5214 20.5 15C20.5 14.1714 19.8286 13.5 19 13.5C18.1714 13.5 17.5 14.1714 17.5 15C17.5 18.8643 14.3643 22 10.5 22C9.67143 22 9 22.6714 9 23.5Z"
+                fill="white"
+              />
+              <path
+                d="M16 1.5C16 0.67143 15.3286 9.53674e-07 14.5 9.53674e-07C8.97857 9.53674e-07 4.5 4.47857 4.5 10C4.5 10.8286 5.17143 11.5 6 11.5C6.82857 11.5 7.5 10.8286 7.5 10C7.5 6.13571 10.6357 3 14.5 3C15.3286 3 16 2.32857 16 1.5Z"
+                fill="white"
+              />
+              <path
+                d="M1.5 8.99999C0.671429 8.99999 0 9.67142 0 10.5C0 16.0214 4.47857 20.5 10 20.5C10.8286 20.5 11.5 19.8286 11.5 19C11.5 18.1714 10.8286 17.5 10 17.5C6.13571 17.5 3 14.3643 3 10.5C3 9.67142 2.32857 8.99999 1.5 8.99999Z"
+                fill="white"
+              />
+              <path
+                d="M23.5 16C24.3286 16 25 15.3286 25 14.5C25 8.97856 20.5214 4.49998 15 4.49998C14.1714 4.49998 13.5 5.17141 13.5 5.99999C13.5 6.82856 14.1714 7.49999 15 7.49999C18.8643 7.49999 22 10.6357 22 14.5C22 15.3286 22.6714 16 23.5 16Z"
+                fill="white"
+              />
+            </svg>
+          </a>
+        </div>
+        <div className="pb-10">
+          <div className="text-xs mb-4">
+            © {new Date().getFullYear()} Parity Technologies{` `}All Rights
+            Reserved{` `}
+          </div>
+          <div className="border border-white">
+            <a
+              className="block"
+              href={site.siteMetadata.privacy}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div className="text-xs mb-4">Privacy Policy</div>
+            </a>
+          </div>
+
+          <a
+            className="block"
+            href={site.siteMetadata.terms}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <div className="text-xs mb-4 ">Terms of Services</div>
+          </a>
+        </div>
       </div>
     </footer>
   )
