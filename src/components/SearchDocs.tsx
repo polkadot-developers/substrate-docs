@@ -69,25 +69,19 @@ export default function SearchDocs() {
   }, [query])
 
   useEffect(() => {
-    const docsResults = searchResults.filter(
-      result => result.section === 'docs'
-    )
-    const tutsResults = searchResults.filter(
-      result => result.section === 'tutorials'
-    )
-    const htgsResults = searchResults.filter(
-      result => result.section === 'how to guides'
-    )
-    setDisplayedResults(searchResults)
-    if (section.docs) {
-      setDisplayedResults(docsResults)
-    }
-    if (section.tuts) {
-      setDisplayedResults(tutsResults)
-    }
-    if (section.htgs) {
-      setDisplayedResults(htgsResults)
-    }
+    const filteredResults = searchResults.filter(result => {
+      if (!section.docs && !section.tuts && !section.htgs) {
+        return result
+      }
+      // if (section.docs) {
+      //   return result.section === 'docs'
+      // } else if (section.tuts) {
+      //   return result.section === 'tutorials'
+      // } else if (section.htgs) {
+      //   return result.section === 'how to guides'
+      // }
+    })
+    setDisplayedResults(filteredResults)
   }, [searchResults, section])
   return (
     <>
