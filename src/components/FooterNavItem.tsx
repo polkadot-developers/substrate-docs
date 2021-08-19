@@ -1,5 +1,5 @@
 import React from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import { Link } from 'gatsby'
 
 interface FooterNavItemProps {
   external: boolean
@@ -21,9 +21,9 @@ export default function FooterNavItem({
     )
   } else {
     return (
-      <LocalizedLink to={link}>
+      <Link to={link}>
         <li className={`${itemStyles}`}>{title}</li>
-      </LocalizedLink>
+      </Link>
     )
   }
 }

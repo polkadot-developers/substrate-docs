@@ -1,10 +1,9 @@
 import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
 import MainNav from './MainNav'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import { Link } from 'gatsby'
 import FooterNavItem from './FooterNavItem'
 import { useStaticQuery } from 'gatsby'
-import { SIGTERM } from 'constants'
 
 export default function Footer2() {
   const { site } = useStaticQuery(graphql`
@@ -26,7 +25,7 @@ export default function Footer2() {
     <footer className="w-full px-6 bg-substrateDark text-white">
       <div className="xl:container lg:flex lg:flex-row-reverse lg:justify-between lg:py-12 border-b-4 border-gray-600">
         <div className="w-44 relative py-12 lg:p-0">
-          <LocalizedLink to="/">
+          <Link to="/">
             <svg
               className={`fill-current text-white lg:w-44`}
               data-name="Layer 1"
@@ -47,14 +46,14 @@ export default function Footer2() {
                 d="M419.75,46.09v12H375.19v-12Z"
               />
             </svg>
-          </LocalizedLink>
+          </Link>
         </div>
         <nav>
-          <div className="h-[600px] lg:w-full lg:max-w-screen-lg md:h-auto flex flex-col flex-wrap sm:flex-row sm:justify-between">
+          <div className="h-[600px] lg:w-full lg:max-w-screen-lg md:h-auto flex flex-col flex-wrap lg:flex-row">
             {navItems.map((section, index) => {
               return (
                 <div
-                  className={`pb-4 w-1/2 sm:w-40 md:w-full lg:w-full md:flex md:items-start`}
+                  className={`pb-4 w-1/2 sm:w-40 md:w-full md:flex md:items-start`}
                   key={index}
                 >
                   <span className="block text-base md:text-lg mb-4 font-bold text-substrateGreen md:w-28">
@@ -96,10 +95,10 @@ export default function Footer2() {
           </div>
         </nav>
       </div>
-      <div className="h-auto">
+      <div className="h-auto md:flex md:flex-row-reverse md:justify-between md:items-center">
         <div className="flex items-center py-4">
           <a
-            className="mr-11"
+            className="mr-11 md:mr-0 md:ml-9"
             href={site.siteMetadata.twitter}
             target="_blank"
             rel="noreferrer"
@@ -118,7 +117,7 @@ export default function Footer2() {
             </svg>
           </a>
           <a
-            className="mr-11"
+            className="mr-11 md:mr-0 md:ml-9"
             href={site.siteMetadata.stackOverflow}
             target="_blank"
             rel="noreferrer"
@@ -143,7 +142,7 @@ export default function Footer2() {
             </svg>
           </a>
           <a
-            className="mr-11"
+            className="mr-11 md:mr-0 md:ml-9"
             href={site.siteMetadata.element}
             target="_blank"
             rel="noreferrer"
@@ -174,30 +173,32 @@ export default function Footer2() {
             </svg>
           </a>
         </div>
-        <div className="pb-10">
-          <div className="text-xs mb-4">
+        <div className="inline-flex flex-col md:flex-row py-6">
+          <div className="text-xs mb-4 md:mb-0 md:pr-8 inline-block">
             © {new Date().getFullYear()} Parity Technologies{` `}All Rights
             Reserved{` `}
           </div>
-          <div className="border border-white">
+          <div className="mb-4 md:mb-0 md:pr-8 inline-block">
             <a
               className="block"
               href={site.siteMetadata.privacy}
               target="_blank"
               rel="noreferrer"
             >
-              <div className="text-xs mb-4">Privacy Policy</div>
+              <div className="text-xs">Privacy Policy</div>
             </a>
           </div>
 
-          <a
-            className="block"
-            href={site.siteMetadata.terms}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <div className="text-xs mb-4 ">Terms of Services</div>
-          </a>
+          <div className="mb-4 md:mb-0 md:pr-8 inline-block">
+            <a
+              className="block"
+              href={site.siteMetadata.terms}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div className="text-xs">Terms of Services</div>
+            </a>
+          </div>
         </div>
       </div>
     </footer>
