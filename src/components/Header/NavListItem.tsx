@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import { Link } from 'gatsby'
 
 interface NavListItemProps {
   external: boolean
@@ -34,7 +34,7 @@ export default function NavListItem({
     )
   } else {
     return (
-      <LocalizedLink to={link}>
+      <Link to={link}>
         <div
           className={`${styles} ${
             isCurrent ? 'text-substrateGreen underline' : 'text-black'
@@ -42,7 +42,7 @@ export default function NavListItem({
         >
           <span>{title}</span>
         </div>
-      </LocalizedLink>
+      </Link>
     )
   }
 }

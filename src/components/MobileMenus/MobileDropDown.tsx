@@ -1,6 +1,6 @@
 import React from 'react'
 import useComponentVisible from '../Hooks/use-component-visible'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import { Link } from 'gatsby'
 
 interface MobileDropDownProps {
   external: boolean
@@ -58,9 +58,9 @@ export default function MobileDropDown({
               )
             } else {
               return (
-                <LocalizedLink key={index} to={each.link}>
+                <Link key={index} to={each.link}>
                   <span className={`${itemStyles}`}>{each.linkTitle}</span>
-                </LocalizedLink>
+                </Link>
               )
             }
           })}

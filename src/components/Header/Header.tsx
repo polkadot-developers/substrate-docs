@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import MobileMenu from '../MobileMenus/MobileMenu'
 import DocsButton from '../DocsButton'
-import { LocalizedLink, useLocalization } from 'gatsby-theme-i18n'
+import { Link } from 'gatsby'
+// import { useLocalization } from 'gatsby-theme-i18n'
 // import LanguageSwitcher from './LanguageSwitcher'
 import DropDownMenu from './DropDownMenu'
 import SearchDocs from '../SearchDocs'
@@ -11,7 +12,7 @@ import useScrollListener from '../Hooks/use-scroll-listener'
 
 export default function Header() {
   const scroll = useScrollListener()
-  const { locale, config } = useLocalization()
+  // const { locale, config } = useLocalization()
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false)
   const [menuHeight, setMenuHeight] = useState('h-24')
   const toggleMenu = () => setIsMobileNavOpen(!isMobileNavOpen)
@@ -54,7 +55,7 @@ export default function Header() {
           className={`flex items-center justify-between transition-height ease-in-out ${menuHeight}`}
         >
           <div className="w-40 relative">
-            <LocalizedLink to="/">
+            <Link to="/">
               <svg
                 className={`fill-current ${
                   theme === 'dark' ? `text-white` : `text-black`
@@ -77,7 +78,7 @@ export default function Header() {
                   d="M419.75,46.09v12H375.19v-12Z"
                 />
               </svg>
-            </LocalizedLink>
+            </Link>
           </div>
           {/* ------------------ */}
           {/* Mobile Navigation */}
@@ -101,8 +102,8 @@ export default function Header() {
               theme={theme}
               toggleMenu={toggleMenu}
               navItems={navItems}
-              currentLang={locale}
-              langConfig={config}
+              // currentLang={locale}
+              // langConfig={config}
             />
           )}
           {/* ------------------ */}
