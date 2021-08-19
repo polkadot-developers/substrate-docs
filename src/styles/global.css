@@ -9,12 +9,12 @@
     @apply box-border;
   } */
   html {
-    @apply bg-white dark:bg-black antialiased;
+    @apply bg-white antialiased;
     scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-white dark:bg-black text-substrateDark dark:text-white text-base;
+    @apply bg-white text-substrateDark  text-base;
     background: transparent;
   }
 
@@ -79,7 +79,7 @@
 
   /* Horizontal Rules */
   hr {
-    @apply mb-6 border-t dark:border-gray-700;
+    @apply mb-6 border-t;
   }
 
   /* Lists */
