@@ -54,7 +54,7 @@ export default function SubMenuItem({
       </div>
       {isComponentVisible ? (
         <>
-          <div className="absolute top-0 -right-56 w-56 h-[256px] py-2 rounded-tr-md rounded-br-md shadow-lg ring-1 ring-black dark:ring-white bg-white dark:bg-black">
+          <div className="absolute top-0 -right-56 w-56 h-[272px] py-4 rounded-tr-md rounded-br-md shadow-lg ring-1 ring-black dark:ring-white bg-white dark:bg-black">
             {data.items.map((item, index) => {
               return (
                 <div key={index}>
