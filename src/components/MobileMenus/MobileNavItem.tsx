@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import { Link } from 'gatsby'
 
 interface MobileNavItemProps {
   external: boolean
@@ -33,11 +33,11 @@ export default function MobileNavItem({
     )
   } else {
     return (
-      <LocalizedLink to={link}>
+      <Link to={link}>
         <div className={`${styles} ${activeStyles()}`}>
           <span>{title}</span>
         </div>
-      </LocalizedLink>
+      </Link>
     )
   }
 }

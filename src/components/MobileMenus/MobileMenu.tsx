@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import { Link } from 'gatsby'
 // import LanguageSwitcher from '../LanguageSwitcher'
 import MobileSubMenu from './MobileSubMenu'
 import SearchDoc from '../SearchDocs'
@@ -16,8 +16,8 @@ interface MobileMenuProps {
       items?: { linkTitle: string; link: string; external: boolean }[]
     }[]
   }[]
-  currentLang: string
-  langConfig: {
+  currentLang?: string
+  langConfig?: {
     code: string
     dataFormat: string
     hrefLang: string
@@ -38,7 +38,7 @@ const MobileMenu = ({ theme, toggleMenu, navItems }: MobileMenuProps) => {
       <div className="h-16 px-6 flex items-center justify-between">
         <div>
           <div className="w-32">
-            <LocalizedLink to="/">
+            <Link to="/">
               <svg
                 className={`fill-current ${
                   theme === 'dark' ? `text-white` : `text-black`
@@ -61,7 +61,7 @@ const MobileMenu = ({ theme, toggleMenu, navItems }: MobileMenuProps) => {
                   d="M419.75,46.09v12H375.19v-12Z"
                 />
               </svg>
-            </LocalizedLink>
+            </Link>
           </div>
         </div>
         <div onClick={() => toggleMenu()} className="h-auto cursor-pointer">
