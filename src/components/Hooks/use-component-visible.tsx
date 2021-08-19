@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 
 function useComponentVisible(initialIsVisible: boolean) {
   const [isComponentVisible, setIsComponentVisible] = useState(initialIsVisible)
+  console.log('State in hook', isComponentVisible)
   const ref = useRef(null)
 
   const handleHideDropdown = (event: KeyboardEvent) => {
