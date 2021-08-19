@@ -25,17 +25,17 @@ export default function DropDown({ menuData, index }: DropDownMenuProps) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setIsComponentVisible(!isComponentVisible)}
-        className="opacity-90 hover:opacity-100 focus:outline-none"
+        className="group focus:outline-none"
       >
         <span
-          className={`font-medium ${
+          className={`font-medium group-hover:text-substrateGreen ${
             isComponentVisible ? 'text-substrateGreen' : null
           }`}
         >
           {name}
         </span>
         <svg
-          className={`inline-block xl:ml-2 fill-current  dark:text-white ${
+          className={`inline-block xl:ml-2 fill-current group-hover:text-substrateGreen dark:text-white ${
             isComponentVisible
               ? 'transform rotate-180 text-substrateGreen'
               : `text-black`
