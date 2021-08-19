@@ -27,9 +27,19 @@ export default function DropDown({ menuData, index }: DropDownMenuProps) {
         onClick={() => setIsComponentVisible(!isComponentVisible)}
         className="opacity-90 hover:opacity-100 focus:outline-none"
       >
-        <span className="font-medium">{name}</span>
+        <span
+          className={`font-medium ${
+            isComponentVisible ? 'text-substrateGreen' : null
+          }`}
+        >
+          {name}
+        </span>
         <svg
-          className="inline-block xl:ml-2 fill-current text-black dark:text-white"
+          className={`inline-block xl:ml-2 fill-current  dark:text-white ${
+            isComponentVisible
+              ? 'transform rotate-180 text-substrateGreen'
+              : `text-black`
+          }`}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="-5 -8 24 24"
           width="16"

@@ -35,7 +35,7 @@ const MainNav = {
         name: `Developers`,
         subMenu: [
           {
-            linkTitle: `Overview`,
+            linkTitle: `Home`,
             link: `/`,
             external: false,
           },
@@ -80,7 +80,7 @@ const MainNav = {
         name: `Ecosystem`,
         subMenu: [
           {
-            linkTitle: `Overview`,
+            linkTitle: `Home`,
             link: `https://www.substrate.io/ecosystem`,
             external: true,
           },
@@ -132,7 +132,7 @@ const MainNav = {
                 external: true,
               },
               {
-                linkTitle: 'Community Learning Offerings',
+                linkTitle: 'Community Resources',
                 link: 'https://www.substrate.io/ecosystem/resources/community-learning-offerings',
                 external: true,
               },
