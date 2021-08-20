@@ -61,12 +61,14 @@ export default function Footer2() {
                   </span>
                   <ul className="list-none ml-0 md:ml-7 md:mt-0.5 md:flex md:flex-wrap md:w-full">
                     {section.subMenu.map((item, index) => {
+                      const itemStyles =
+                        'underline-anchor text-sm font-light md:text-base pb-4 md:mr-6'
                       if (item.items) {
                         return (
                           <Fragment key={index}>
                             {item.items.map((each, index) => {
                               return (
-                                <div key={index}>
+                                <div className={itemStyles} key={index}>
                                   <FooterNavItem
                                     external={each.external}
                                     link={each.link}
@@ -79,7 +81,7 @@ export default function Footer2() {
                         )
                       }
                       return (
-                        <div key={index}>
+                        <div className={itemStyles} key={index}>
                           <FooterNavItem
                             external={item.external}
                             link={item.link}

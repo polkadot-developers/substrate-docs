@@ -12,19 +12,9 @@ export default function FooterNavItem({
   link,
   title,
 }: FooterNavItemProps) {
-  const itemStyles =
-    'text-sm font-light md:text-base mb-4 md:mr-6 hover:underline'
   if (external) {
-    return (
-      <a href={link}>
-        <li className={`${itemStyles}`}>{title}</li>
-      </a>
-    )
+    return <a href={link}>{title}</a>
   } else {
-    return (
-      <Link to={link}>
-        <li className={`${itemStyles}`}>{title}</li>
-      </Link>
-    )
+    return <Link to={link}>{title}</Link>
   }
 }
