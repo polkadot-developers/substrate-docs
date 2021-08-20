@@ -14,7 +14,7 @@ export default function SearchDocs() {
     htgs: false,
   })
   const types = ['Docs', 'Tutorials', 'How-to Guides']
-  const suggestedTerms = ['Runtime', 'Storage', 'Pallet Design', 'Weights']
+  const suggestedTerms = ['Runtime', 'Storage', 'FRAME', 'Weights']
   const toggleModal = () => {
     setIsComponentVisible(!isComponentVisible)
   }
@@ -48,7 +48,6 @@ export default function SearchDocs() {
   }
 
   const searchForQuery = (index: any, store: IStore, query: string) => {
-    // console.log(store)
     try {
       return index.search(query).map((result: IResult) => {
         return { slug: result.ref, ...store[result.ref] }
