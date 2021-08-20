@@ -48,12 +48,12 @@ export default function SearchSectionLabel({
   return (
     <>
       <label
-        className={`inline-flex items-center ${
-          index === 1 || index === 2 ? `sm:pl-16` : null
+        className={`inline-flex items-center cursor-pointer ${
+          index === 1 || index === 2 ? `sm:ml-16` : null
         }`}
       >
         <input
-          className="h-4 w-4 rounded bg-white text-substrateDark border-2 focus:ring-0 cursor-pointer"
+          className="h-4 w-4 rounded bg-white text-substrateDark border-2 focus:ring-0 "
           type="checkbox"
           checked={checked() || false}
           onChange={() => handleChange()}

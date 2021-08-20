@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import { LocalizedLink } from 'gatsby-theme-i18n'
 import { Index } from 'lunr'
+import SearchResult from './SearchResult'
 import SearchSectionLabel from './SearchSectionLabel'
 import useComponentVisible from './Hooks/use-component-visible'
 
@@ -48,6 +48,7 @@ export default function SearchDocs() {
   }
 
   const searchForQuery = (index: any, store: IStore, query: string) => {
+    // console.log(store)
     try {
       return index.search(query).map((result: IResult) => {
         return { slug: result.ref, ...store[result.ref] }
@@ -69,19 +70,30 @@ export default function SearchDocs() {
   }, [query])
 
   useEffect(() => {
-    const filteredResults = searchResults.filter(result => {
-      if (!section.docs && !section.tuts && !section.htgs) {
-        return result
-      }
-      // if (section.docs) {
-      //   return result.section === 'docs'
-      // } else if (section.tuts) {
-      //   return result.section === 'tutorials'
-      // } else if (section.htgs) {
-      //   return result.section === 'how to guides'
-      // }
-    })
-    setDisplayedResults(filteredResults)
+    const selectedSection = Object.entries(section)
+      .filter(keyVal => {
+        const [key, val] = keyVal
+        if (val) {
+          return key
+        }
+      })
+      .map(val => val[0])
+    if (selectedSection.length === 0) {
+      setDisplayedResults(searchResults)
+    } else {
+      const filteredResults = searchResults.filter(result => {
+        return selectedSection.reduce((acc: boolean, currentVal: string) => {
+          let checkedVal: string = currentVal
+          currentVal === 'tuts'
+            ? (checkedVal = 'tutorials')
+            : currentVal === 'htgs'
+            ? (checkedVal = 'how to guides')
+            : null
+          return result.section == checkedVal || acc
+        }, false)
+      })
+      setDisplayedResults(filteredResults)
+    }
   }, [searchResults, section])
   return (
     <>
@@ -174,25 +186,24 @@ export default function SearchDocs() {
                 <div
                   className={`${
                     query.length === 0 ? 'invisible' : 'visible'
-                  } text-sm font-bold mb-3`}
+                  } text-sm font-bold mb-3 animate-fade-in`}
                 >
                   {displayedResults.length} RESULTS
                 </div>
-                <div className="h-80 overflow-y-auto overscroll-contain">
+                <div className="h-80 overflow-auto">
                   {query.length === 0 ? (
                     <div>
                       {suggestedTerms.map((term, index) => (
                         <div
+                          className="cursor-pointer"
                           onClick={() => setQuery(term)}
                           key={index}
-                          className="cursor-pointer group px-4 py-3 mb-2 bg-substrateGray dark:bg-gray-700 hover:bg-substrateGreen rounded"
                         >
-                          <span className="text-xs capitalize group-hover:font-bold group-hover:text-white">
-                            Suggestion
-                          </span>
-                          <p className="mb-0 capitalize group-hover:font-bold group-hover:text-white">
-                            {term}
-                          </p>
+                          <SearchResult
+                            noLink
+                            section={`Suggestion`}
+                            title={term}
+                          />
                         </div>
                       ))}
                     </div>
@@ -202,24 +213,23 @@ export default function SearchDocs() {
                         <div>
                           {displayedResults.map((result, index) => {
                             return (
-                              <LocalizedLink key={index} to={result.slug}>
-                                <div className="group px-4 py-3 mb-2 bg-substrateGray dark:bg-gray-700 hover:bg-substrateGreen rounded animate-fade-in-down">
-                                  <span className="text-xs capitalize group-hover:font-bold group-hover:text-white">
-                                    {result.section}
-                                  </span>
-                                  <p className="mb-0 capitalize group-hover:font-bold group-hover:text-white">
-                                    {result.category} - {result.title}
-                                  </p>
-                                </div>
-                              </LocalizedLink>
+                              <div key={index}>
+                                <SearchResult
+                                  slug={result.slug}
+                                  section={result.section}
+                                  category={result.category}
+                                  title={result.title}
+                                />
+                              </div>
                             )
                           })}
                         </div>
                       ) : (
-                        <div className="cursor-pointer px-4 py-3 mb-2 bg-substrateGray rounded">
-                          <p className="mb-0 capitalize text-substrateRed">
-                            Try another search term
-                          </p>
+                        <div>
+                          <SearchResult
+                            error
+                            title={`Try another search term`}
+                          />
                         </div>
                       )}
                     </div>
@@ -239,11 +249,13 @@ export default function SearchDocs() {
 }
 
 interface IStore {
-  title: string
-  section: string
-  category: string
-  keywords: string[] | null
-  locale: string
+  [key: string]: {
+    title: string
+    section: string
+    category: string
+    keywords: string[] | null
+    locale: string
+  }
 }
 
 interface IResult {
