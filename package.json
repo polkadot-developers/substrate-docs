@@ -57,6 +57,7 @@
     "strip-markdown": "4.0.0"
   },
   "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.2.0",
     "@types/lunr": "^2.3.4",
     "@types/mdx-js__react": "^1.5.3",
     "@types/node": "^15.12.2",
