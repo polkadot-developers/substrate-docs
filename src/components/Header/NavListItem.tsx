@@ -14,7 +14,7 @@ export default function NavListItem({
 }: NavListItemProps) {
   const [isCurrent, setIsCurrent] = useState(false)
   const styles =
-    'px-6 py-2 focus:outline-none focus:bg-substrateBlueBg hover:text-substrateGreen hover:underline dark:text-white font-medium'
+    'whitespace-nowrap pl-6 pr-12 py-2 focus:outline-none focus:bg-substrateBlueBg hover:text-substrateGreen hover:underline dark:text-white font-medium'
   useEffect(() => {
     if (link === location.pathname) {
       setIsCurrent(true)
