@@ -20,8 +20,8 @@ const tutsInfo = [
     version: '3.0',
   },
   {
-    name: 'forkless-upgrade',
-    navSlug: 'forklessUpgrade',
+    name: 'forkless-upgrades',
+    navSlug: 'forklessUpgrades',
     version: '3.0',
   },
   {

@@ -14,7 +14,7 @@ known as the target block time. Given this requirement, Substrate based blockcha
 to execute a limited number of extrinsics per block. The time it takes to execute an extrinsic may
 vary based on the computational complexity, storage complexity, hardware used, and many other
 factors. We use generic measurement called **weight** to represent how many extrinsics can fit into
-one block. This is further explained in the [transaction weight section](../concepts/weight).
+one block. This is further explained in the [transaction weight section](../../concepts/weight).
 
 In Substrate, **10^12 Weight = 1 Second**, and i.e 1,000 weight = 1 nanosecond, measured on a
 specific reference hardware<sup>[[1]](#footnote-ref-hardware)</sup>.
@@ -24,7 +24,7 @@ large overhead such a process would introduce. Instead, Substrate expects benchm
 approximate maximum for the worst case scenario of executing an extrinsic. Substrate will charge the
 user assuming this worst case scenario path was taken, and if the extrinsic turns out needing less
 resources, some of the estimated weight and fees can be returned. This is further explained in the
-[Transaction Weights and Fees](weights-and-fees) chapter.
+[Transaction Weights and Fees](../weights-and-fees) chapter.
 
 So how do we determine the worst case scenario computation time and weight of our extrinsics?
 
@@ -211,7 +211,7 @@ benchmarking.
    ```
 
 2. Add your new pallet to your runtime just as you would any other pallet. If you need more details
-   check out our tutorial to [Add a Pallet to Your Runtime Tutorial](../../tutorials/add-a-pallet).
+   check out our tutorial to [Add a Pallet to Your Runtime Tutorial](/v3/tutorials/add-a-pallet).
 
 3. Then, in addition to your normal runtime configuration, you also need to update the benchmarking
    section of your runtime:

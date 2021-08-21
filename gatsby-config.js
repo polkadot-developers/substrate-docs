@@ -83,8 +83,8 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/v3/tutorials/04-forkless-upgrade`,
-        name: `forkless-upgrade`,
+        path: `${__dirname}/v3/tutorials/04-forkless-upgrades`,
+        name: `forkless-upgrades`,
       },
     },
     {

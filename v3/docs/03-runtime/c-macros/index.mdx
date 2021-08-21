@@ -11,7 +11,7 @@ keywords:
 
 Substrate uses [Rust macros](https://doc.rust-lang.org/book/ch19-06-macros.html) to aggregate the logic derived from pallets that are implemented for a runtime.
 These runtime macros allow developers to focus on runtime logic rather than encoding and decoding on-chain
-variables or writing extensive blocks of code to achieve [basic blockchain fundamentals](index#core-primitives). This offloads a lot of the heavy lifting from blockchain development efforts and removes the need to duplicate code.
+variables or writing extensive blocks of code to achieve [basic blockchain fundamentals](../../concepts/runtime#core-primitives). This offloads a lot of the heavy lifting from blockchain development efforts and removes the need to duplicate code.
 
 The purpose of this article is to give a basic overview of Rust macros and explain the Substrate macros
 that runtime engineers most frequently use.
@@ -48,14 +48,14 @@ Developers who want to know about the implementation details are encouraged to f
 Substrate Primitives and FRAME both rely on a collection of various types of macros. The following sections will go over each in more detail.
 Here's a general overview of Substrate macros:
 
-**Macros in the FRAME [Support Library](./frame#support-library):**
+**Macros in the FRAME [Support Library](../frame#support-library):**
 
 - in `frame_support`:
   - [function-like](/rustdocs/latest/frame_support#macros) macros
   - [derive](/rustdocs/latest/frame_support#derives) macros
   - [attribute](/rustdocs/latest/frame_support#attributes) macros
 
-**Macros in the Substrate [System Library](./frame#system-library):**
+**Macros in the Substrate [System Library](../frame#system-library):**
 
 - in `sp_core`:
   - [function-like macros](/rustdocs/latest/sp_core#macros) macros
@@ -256,7 +256,7 @@ also inserts lifecycle trait implementations for `Module`, e.g.
 
 ## FRAME v2 Macros and Attributes
 
-This sections covers the updates brought by FRAME v2. Refer to the [structure of a pallet](./pallets.md) for more context.
+This sections covers the updates brought by FRAME v2. Refer to the [structure of a pallet](../pallets) for more context.
 
 ### #[frame_support::pallet]
 

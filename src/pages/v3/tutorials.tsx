@@ -1,8 +1,8 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { useIntl } from 'react-intl'
-import Layout from '../components/Layout'
-import TutorialCard from '../components/TutorialCard'
+import Layout from '../../components/Layout'
+import TutorialCard from '../../components/TutorialCard'
 
 export default function tutorials({ data }: any) {
   const intl = useIntl()

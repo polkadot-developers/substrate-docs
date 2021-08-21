@@ -22,7 +22,7 @@ Run the following command to start your node:
 
 Note the flags:
 
-- `--dev` this sets up a developer node [chain specification](../../../v3/docs/toolchains/chain-specs)
+- `--dev` this sets up a developer node [chain specification](/v3/docs/toolchains/chain-specs)
 - `--tmp` this saves all active data for the node (keys, blockchain database, networking info, ...)
   and is deleted as soon as you properly terminate your node (using <kbd>ctrl</kbd>+<kbd>c</kbd>). So every time you start with this command, you will have a clean state to work from. If the node is killed, `/tmp` is cleaned automatically on the restart of your
   computer for linux based OSs, and these files can manually be removed if needed.
@@ -71,7 +71,7 @@ A few notes on the example output above:
 - `💾 Database: RocksDb at /tmp/substrateP1jD7H/chains/dev/db` : where chain data is being written
 - `🏷 Local node identity is: 12D3KooWQdU84EJCqDr4aqfhb7dxXU2fzd6i2Rn1XdNtsiM5jvEC`: the node ID
   needed if you intend to connect to other nodes directly (more in the
-  [private network tutorial](../start-a-private-network/index))
+  [private network tutorial](/v3/tutorials/private-network))
 
 <Message
   type={`green`}
@@ -112,20 +112,20 @@ Once the Front-End Template is running and loaded in your browser at
 top, you will find lots of helpful information about the chain to which you're connected as well as
 an account selector that will let you control the account you use to perform on-chain operations.
 
-![Chain Data & Account Selector](/../../../../src/images/tutorials/01-create-your-first-chain/chain-data.png)
+![Chain Data & Account Selector](../../../../src/images/tutorials/01-create-your-first-chain/chain-data.png)
 
 There is also a table that lists
 [the well-known test accounts](/v3/docs/toolchains/subkey#well-known-keys) that you have
 access to. Some, like Alice and Bob, already have funds!
 
-![Account Table](/../../../../src/images/tutorials/01-create-your-first-chain/accts-prefunded.png)
+![Account Table](../../../../src/images/tutorials/01-create-your-first-chain/accts-prefunded.png)
 
 Beneath the account table there is a Transfer component that you can use to transfer funds from one
 account to another. Take note of the info box that describes the precision used by the Front-End
 Template; you should transfer at least `1000000000000` to make it easy for you to observe the
 changes you're making. Here we give the `dave` development account these funds:
 
-![Balance Transfer](/../../../../src/images/tutorials/01-create-your-first-chain/apps-transfer.png)
+![Balance Transfer](../../../../src/images/tutorials/01-create-your-first-chain/apps-transfer.png)
 
 Notice that the table of accounts is dynamic and that the account balances are updated as soon as
 the transfer is processed.
@@ -147,20 +147,20 @@ a Substrate runtime.
 
 ![Pallet Interactor & Events](../../../../src/images/tutorials/01-create-your-first-chain/interactor-events.png)
 
-[Extrinsics](../../../v3/docs/concepts/extrinsics) are the runtime's callable functions;
+[Extrinsics](/v3/docs/concepts/extrinsics) are the runtime's callable functions;
 if you are already familiar with blockchain concepts, you can think of them as transactions for now.
 The Pallet Interactor allows you to submit
 [unsigned](/v3/docs/concepts/extrinsics#unsigned-transactions) or
 [signed](/v3/docs/concepts/extrinsics#signed-transactions) extrinsics and also
 provides a button that makes it easy to invoke an extrinsic by way of
 [the `sudo` function from the Sudo pallet](/rustdocs/latest/pallet_sudo/enum.Call.html#variant.sudo).
-You can learn more about using the "SUDO" button to invoke privileged extrinsics in the [Add a Pallet](../add-a-pallet) tutorial.
+You can learn more about using the "SUDO" button to invoke privileged extrinsics in the [Add a Pallet](../../add-a-pallet) tutorial.
 
 You can select Query interactions to read
-[the values present in your runtime's storage](../../../v3/docs/runtime/storage). The RPC and
+[the values present in your runtime's storage](/v3/docs/runtime/storage). The RPC and
 Constant options provide additional mechanisms for runtime interaction.
 
-Like many blockchains, Substrate chains use [events](../../../v3/docs/runtime/events) to report
+Like many blockchains, Substrate chains use [events](/v3/docs/runtime/events) to report
 the results of asynchronous operations. If you have already used the Front-End Template to perform a
 balance transfer as described above, you should see an event for the transfer in the Event component
 next to the Pallet Interactor.
@@ -174,8 +174,8 @@ made token transfers among users. We hope you'll continue learning about Substra
 
 Your next step may be:
 
-- Extend the features of the template node in the [Add a Pallet](../add-a-pallet) tutorial.
-- Learn about forkless runtime upgrades in the [Forkless Upgrade a Chain](../forkless-upgrades) tutorial.
+- Extend the features of the template node in the [Add a Pallet](../../add-a-pallet) tutorial.
+- Learn about forkless runtime upgrades in the [Forkless Upgrade a Chain](../../forkless-upgrades) tutorial.
 
 If you've experienced any issues with this tutorial or want to provide feedback, you can
 [ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) and use the

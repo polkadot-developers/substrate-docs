@@ -21,7 +21,7 @@ passing threshold _increases_ as more votes are cast. Negative turnout bias is a
 carries" as, given an apathetic voting body, the referendum will pass by default. A neutral turnout
 bias specifies a simple majority passing threshold. AQB removes the need for strict quorums, which
 are arbitrary and create undesirable governance mechanics. AQB is implemented in the
-[Democracy pallet](../runtime/frame#democracy), which provides the interfaces for a number of
+[Democracy pallet](../../runtime/frame#democracy), which provides the interfaces for a number of
 on-chain bodies (e.g. a [Collective](#council) or any token holder) to call referenda with positive,
 neutral, or negative biases.
 
@@ -53,7 +53,7 @@ overall amount of votes wins. Notably:
 - it is possible to vote "against" a single candidate by voting for all other candidates.
 
 Approval voting is used by the
-[FRAME Elections Phragmen pallet](../runtime/frame#elections-phragmen) that materializes as a
+[FRAME Elections Phragmen pallet](../../runtime/frame#elections-phragmén) that materializes as a
 governing [Council](#council) on a number of Substrate-based chains.
 
 ## Author
@@ -65,7 +65,7 @@ referred to as block "producers". In a proof-of-work chain these nodes are calle
 
 Authorities are the [nodes](#node) who, as a collective, manage [consensus](#consensus) on a
 [blockchain](#blockchain) network. In a [proof-of-stake](#nominated-proof-of-stake-npos) network
-(such as one using [the Staking pallet](../runtime/frame#staking) from [FRAME](#frame)), authorities
+(such as one using [the Staking pallet](../../runtime/frame#staking) from [FRAME](#frame)), authorities
 are determined through a token-weighted nomination/voting system.
 
 > The terms "authorities" and "[validators](#validator)" may sometimes seem to refer the same thing.
@@ -102,7 +102,7 @@ about BABE by referring to its
 A single element of a blockchain that [cryptographically](#cryptographic-primitives) binds a set of
 [extrinsic](#extrinsic) data (the "body") to a "[header](#header)". Blocks are arranged into a tree
 through parent pointers (implemented as a hash of the parent) and the tree is pruned into a list via
-a [fork-choice rule](../advanced/consensus#fork-choice-rules), and optional
+a [fork-choice rule](../../advanced/consensus#fork-choice-rules), and optional
 [finality gadget](#finality).
 
 ## Blockchain
@@ -137,7 +137,7 @@ number of nodes (participants) in the system.
 
 In the context of a [blockchain](#blockchain), consensus is the process nodes use to agree on the
 canonical [fork](#fork) of a chain. Consensus is comprised of [authorship](#author),
-[finality](#finality), and [fork-choice rule](../advanced/consensus#fork-choice-rules). In the
+[finality](#finality), and [fork-choice rule](../../advanced/consensus#fork-choice-rules). In the
 Substrate ecosystem, these three components are cleanly separated from one another, and the term
 consensus often refers specifically to authorship.
 
@@ -179,14 +179,14 @@ primitives are essential to many aspects of the Substrate ecosystem:
 - [Consensus](#consensus): [authorities](#authority) often use digital signature schemes of some
   kind.
 - [Transaction](#transaction) authentication: in [runtimes](#runtime) where transactions and
-  [accounts](../learn-substrate/account-abstractions) are used, accounts are identified and
+  [accounts](../../concepts/account-abstractions) are used, accounts are identified and
   authenticated through the use of cryptography.
 
 ## Council
 
 The term "Council" is used on a number of Substrate-based networks, such as [Kusama](#kusama) and
 [Polkadot](#polkadot) to refer to an instance of
-[the Collective pallet](../runtime/frame#collective) that is used as a part of the network's
+[the Collective pallet](../../runtime/frame#collective) that is used as a part of the network's
 [FRAME](#frame)-based [runtime](#runtime). The Council primarily serves as a body to optimize and
 check/balance the more inclusive referendum system.
 
@@ -196,7 +196,7 @@ check/balance the more inclusive referendum system.
 
 The means by which the [state](#state) of a [blockchain](#blockchain) network is persisted between
 invocations of the [blockchain node](#node) application. There is
-[documentation](../advanced/storage) that explains the implementation of the database backend that
+[documentation](../../advanced/storage) that explains the implementation of the database backend that
 is used by Substrate-based chains.
 
 ## Dev Phrase
@@ -204,11 +204,11 @@ is used by Substrate-based chains.
 A
 [mnemonic phrase](https://en.wikipedia.org/wiki/Mnemonic#For_numerical_sequences_and_mathematical_operations)
 that is intentionally made public. All of the
-[well-known development accounts](../../../v3/docs/toolchains/subkey#well-known-keys) (Alice, Bob, Charlie, Dave,
+[well-known development accounts](/v3/docs/toolchains/subkey#well-known-keys) (Alice, Bob, Charlie, Dave,
 Ferdie, and Eve) are generated from the same dev phrase. The dev phrase is:
 `bottom drive obey lake curtain smoke basket hold race lonely fit walk`.
 
-Many tools in the Substrate ecosystem, such as [`subkey`](../../../v3/docs/toolchains/subkey), allow users to
+Many tools in the Substrate ecosystem, such as [`subkey`](/v3/docs/toolchains/subkey), allow users to
 implicitly specify the dev phrase by only specifying a derivation path such as `//Alice`.
 
 ## Digest
@@ -250,7 +250,7 @@ during block-initialization.
 ## Executor
 
 A means of executing a function call in a given [runtime](#runtime) with a set of dependencies.
-There are two [executor](../advanced/executor) implementations present in
+There are two [executor](../../advanced/executor) implementations present in
 Substrate, _Wasm_ and _Native_.
 
 ### Native Executor
@@ -269,14 +269,14 @@ since it is persisted in the [state](#state) of the Substrate-based chain.
 A piece of data that is bundled into a [block](#block) in order to express something from the
 "external" (i.e. off-chain) world. There are, broadly speaking, two types of extrinsics:
 transactions, which may be
-[signed](../concepts/extrinsics#signed-transactions) or
-[unsigned](../concepts/extrinsics#unsigned-transactions), and
-[inherents](../concepts/extrinsics#inherents), which are inserted by
+[signed](../../concepts/extrinsics#signed-transactions) or
+[unsigned](../../concepts/extrinsics#unsigned-transactions), and
+[inherents](../../concepts/extrinsics#inherents), which are inserted by
 [block authors](#author).
 
 ## Existential Deposit
 
-Within the [Balances pallet](../../../v3/docs/runtime/frame#balances), this is the minimum
+Within the [Balances pallet](/v3/docs/runtime/frame#balances), this is the minimum
 balance an account may have. Accounts cannot be created with a balance less than this amount, and if
 an account's balance ever drops below this amount, the Balances pallet will use
 [a FRAME System API](/rustdocs/latest/frame_system/pallet/struct.Pallet.html#method.dec_ref)
@@ -321,7 +321,7 @@ A piece of data that can be used to prove that a particular block is finalized.
 ## Fork
 
 Forks occur when two [blocks](#block) have the same parent. Forks must be
-[resolved](../advanced/consensus#fork-choice-rules) so that only one canonical chain exists.
+[resolved](../../advanced/consensus#fork-choice-rules) so that only one canonical chain exists.
 
 ## Flaming Fir
 
@@ -331,22 +331,22 @@ development framework.
 
 ## FRAME
 
-[FRAME](../runtime/frame) is Substrate's system for [**runtime**](#runtime) development. The name is
+[FRAME](../../runtime/frame) is Substrate's system for [**runtime**](#runtime) development. The name is
 an acronym for the "Framework for Runtime Aggregation of Modularized Entities". FRAME allows
 developers to create blockchain runtimes by composing modules, called "[pallets](#pallet)". Runtime
 developers interact with FRAME by way of a [macro](#macro) language that makes it easy for
-developers to define custom pallets (e.g. [`decl_event!`](../runtime/macros#decl_event),
-[`decl_error!`](../runtime/macros#decl_error), [`decl_storage!`](../runtime/macros#decl_storage),
-[`decl_module!`](../runtime/macros#decl_module) and compose pallets (e.g.
-[`construct_runtime!`](../runtime/macros#construct_runtime) into a working runtime that can easily
+developers to define custom pallets (e.g. [`decl_event!`](../../runtime/macros#decl_event),
+[`decl_error!`](../../runtime/macros#decl_error), [`decl_storage!`](../../runtime/macros#decl_storage),
+[`decl_module!`](../../runtime/macros#decl_module) and compose pallets (e.g.
+[`construct_runtime!`](../../runtime/macros#construct_runtime) into a working runtime that can easily
 be used to power a Substrate-based blockchain. The convention used in
 [the Substrate codebase](https://github.com/paritytech/substrate/tree/master/frame) is to preface
 FRAME's core modules with `frame_` and the optional pallets with `pallet_*`. For instance, the
-macros mentioned above are all defined in the [`frame_support`](../runtime/frame#support-library)
+macros mentioned above are all defined in the [`frame_support`](../../runtime/frame#support-library)
 module and all FRAME-based runtimes _must_ include the
-[`frame_system`](../runtime/frame#system-library) module. Once the
+[`frame_system`](../../runtime/frame#system-library) module. Once the
 `frame_support::construct_runtime` macro has been used to create a runtime that includes the
-`frame_system` module, optional pallets such as the [Balances](../runtime/frame#balances) pallet may
+`frame_system` module, optional pallets such as the [Balances](../../runtime/frame#balances) pallet may
 be used to extend the runtimes core capabilities.
 
 ## Full Client
@@ -361,7 +361,7 @@ execution (and thus verification) of all logic. Full clients stand in contrast t
 
 A mechanism for specifying the initial (genesis) [state](#state) of a [blockchain](#blockchain).
 Genesis configuration of Substrate-based chains is accomplished by way of a
-[chain specification](../../../v3/docs/toolchains/chain-specs) file, which makes it easy to use a
+[chain specification](/v3/docs/toolchains/chain-specs) file, which makes it easy to use a
 single Substrate codebase to underpin multiple independently configured chains.
 
 ## GRANDPA
@@ -397,7 +397,7 @@ permanence and stability; although Kusama is expected to be more stable than a t
 like [Westend](#westend), it should not be expected to be as stable as an enterprise production
 network like [Polkadot](#polkadot). Unlike Westend, which is maintained by
 [Parity Technologies](https://www.parity.io/), Kusama (like Polkadot) is
-[controlled by its network participants](../runtime/frame#democracy). The level of stability offered
+[controlled by its network participants](../../runtime/frame#democracy). The level of stability offered
 by canary networks like Kusama is intended to encourage meaningful experimentation.
 
 ---
@@ -422,14 +422,14 @@ blockchain users to interact with the blockchain network.
 
 Macros are features of some programming languages,
 [including Rust](https://doc.rust-lang.org/1.7.0/book/macros.html), that allow developers to "write
-code that writes code". [FRAME](#frame) provides a number of [macros](../runtime/macros) that make
+code that writes code". [FRAME](#frame) provides a number of [macros](../../runtime/macros) that make
 it easy to compose a [runtime](#runtime).
 
 ## Metadata
 
 Metadata is information about a system, such as a [blockchain](#blockchain), that makes it easier to
 interact with that system. Blockchain [runtimes](#runtime) that are built with [FRAME](#frame)
-expose [lots of helpful metadata](../../../v3/docs/runtime/metadata).
+expose [lots of helpful metadata](/v3/docs/runtime/metadata).
 
 ---
 
@@ -458,7 +458,7 @@ are done in a pro-rata manner.
 
 A [FRAME](#frame) primitive that identifies the source of a [dispatched](#dispatch) function call
 into the [runtime](#runtime). The FRAME System module defines
-[three built-in origins](../../../v3/docs/runtime/origins#raw-origins); [pallet](#pallet)
+[three built-in origins](/v3/docs/runtime/origins#raw-origins); [pallet](#pallet)
 developers can easily define custom origins, such as those defined by the
 [Collective pallet](/rustdocs/latest/pallet_collective/enum.RawOrigin.html).
 
@@ -550,7 +550,7 @@ In a [blockchain](#blockchain), the state refers to the cryptographically secure
 between blocks and can be used to create new blocks as part of the state transition function. In
 Substrate-based blockchains, state is stored in a [trie](#trie-patricia-merkle-tree), a data structure that supports the
 efficient creation of incremental digests. This trie is exposed to the [runtime](#runtime) as
-[a simple key/value map](../../../v3/docs/advanced/storage) where both keys and values can be
+[a simple key/value map](/v3/docs/advanced/storage) where both keys and values can be
 arbitrary byte arrays.
 
 ## State Transition Function (STF)
@@ -563,7 +563,7 @@ The logic of a [blockchain](#blockchain) that determines how the state changes w
 
 [FRAME](#frame) primitives that provide type-safe data persistence capabilities to the
 [runtime](#runtime). Learn more about storage items in the Knowledge Base article for
-[runtime storage](../../../v3/docs/runtime/storage).
+[runtime storage](/v3/docs/runtime/storage).
 
 ## Substrate
 
@@ -577,8 +577,8 @@ maintained by [Parity Technologies](https://www.parity.io/).
 
 A type of [extrinsic](#extrinsic) that can be safely gossiped between [nodes](#node) on the network
 thanks to efficient [verification](#cryptographic-primitives) through
-[signatures](../../../v3/docs/concepts/extrinsics#signed-transactions) or
-[signed extensions](../../../v3/docs/concepts/extrinsics#signed-extension).
+[signatures](/v3/docs/concepts/extrinsics#signed-transactions) or
+[signed extensions](/v3/docs/concepts/extrinsics#signed-extension).
 
 ## Transaction Era
 

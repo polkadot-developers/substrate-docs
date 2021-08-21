@@ -23,8 +23,8 @@ if the dispatchable function encountered an error.
 Each FRAME pallet may define custom a `DispatchError` by:
 
 - using
-  the [`decl_error!` macro](macros#decl_error) (FRAME v1) or;
-- the [`#[pallet::error]` macro](macros#palleterror) (FRAME v2).
+  the [`decl_error!` macro](../macros#decl_error) (FRAME v1) or;
+- the [`#[pallet::error]` macro](../macros#palleterror) (FRAME v2).
 
 ```rust
 // FRAME v1.
@@ -71,7 +71,7 @@ frame_support::ensure!(param < T::MaxVal::get(), Error::<T>::InvalidParameter);
 
 ### Learn More
 
-- Learn more about the [macros](macros) used in Substrate runtime development.
+- Learn more about the [macros](../macros) used in Substrate runtime development.
 
 ### References
 

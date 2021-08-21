@@ -11,12 +11,12 @@ const DevNavMenu = {
       },
       {
         section: `${intl.formatMessage({ id: 'docs-nav-tutorials' })}`,
-        url: '/tutorials',
+        url: '/v3/tutorials',
         external: false,
       },
       {
         section: `${intl.formatMessage({ id: 'docs-nav-htg' })}`,
-        url: '/how-to-guides',
+        url: '/v3/how-to-guides',
         external: false,
       },
       {
@@ -490,7 +490,7 @@ DevNavMenu.tuts.permissionedNetwork = {
   ],
 }
 
-DevNavMenu.tuts.forklessUpgrade = {
+DevNavMenu.tuts.forklessUpgrades = {
   name: `Forkless Runtime Upgrades`,
   items: [
     {

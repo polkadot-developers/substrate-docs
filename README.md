@@ -14,9 +14,11 @@ Important Convention Note
 
 > Always create your own branch to work on the site. Use `develop` for testing. Both Netlify flags towards the bottom display status of `develop` and `main` site. `main` is production ONLY and deployed by dedicated Dev or Comms team through Forestry.
 
-### Status [Staging](https://substrate-docs-staging.netlify.app)
+### Status
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/65f522fe-eefa-434b-bdb3-6345d363c177/deploy-status)](https://app.netlify.com/sites/ecstatic-babbage-c109a3/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/65f522fe-eefa-434b-bdb3-6345d363c177/deploy-status)](https://app.netlify.com/sites/ecstatic-babbage-c109a3/deploys) ![linkcheck workflow](https://github.com/substrate-developer-hub/substrate-docs/actions/workflows/check-links.yml/badge.svg)
+
+[Staging Site](https://substrate-docs-staging.netlify.app)
 
 ## 🚀 Quick start
 
@@ -64,3 +66,19 @@ Important Convention Note
     - [Plugin Library](https://www.gatsbyjs.com/plugins)
 
     - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/)
+
+## Github Workflow Configuration
+
+### Link Checking ([`check-links.yml`](github/workflows/check-links.yml))
+
+We configured Github workflow to build the site and perform links checking. It build this Gatsby site in production as a docker image and push it to Docker hub at [`jimmychu0807/substrate-docs`](https://hub.docker.com/repository/docker/jimmychu0807/substrate-docs). The image is then launched as a service in the next job `check-links`. [`linkcheck`](https://github.com/filiph/linkcheck) utility is run against the running gatsby site in a docker container to check all the links. [`lc-skip.txt`](.github/workflows/lc-skip.txt) files are configured to skip certain links, with reasons provided.
+
+This workflow is triggered if you push or make a pull request to `main` or `develop` branches. It is configured to only check internal links, as external links are sometimes flaky and out of our control. Another point to note is it checks for link anchor as well. If the link anchor cannot be found, warning is thrown, and can be inspected when viewing the details of the github action log.
+
+**Running link checker locally**
+
+You can run the link checker locally by:
+
+- Download [the `linkcheck` binary](https://github.com/filiph/linkcheck/releases), and put it under $PATH.
+- Run `yarn serve:fresh` in one terminal to build the gatsby site and serve it.
+- Run `yarn checklinks:v2`. If you want to check for external links as well, run `yarn checklinks:v2:e`.

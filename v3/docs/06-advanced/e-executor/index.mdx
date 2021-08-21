@@ -43,7 +43,7 @@ The default execution strategies for the different parts of the blockchain execu
 - Off-Chain Worker: `NativeWhenPossible`
 - Other: `NativeWhenPossible`
 
-Source: [[1]](#footnote-execution-strategies-src01), [[2]](#footnote-execution-strategies-src02)
+Source: [[1]](#footnotes), [[2]](#footnotes)
 
 They can be overridden via the command line argument `--execution-{block-construction, import-block, offchain-worker, other, syncing} <strategy>`, or `--execution <strategy>` to apply the specified strategy to all five aspects. Details can be seen at `substrate --help`. When specifying on cli, the following shorthand strategy names are used:
 
@@ -70,7 +70,7 @@ the other way around. Wasm execution can help to ensure that block producers cre
 
 The native runtime will only be used by the executor when it is chosen as the execution strategy and
 it is compatible with the requested runtime version (see
-[Runtime Versioning](../runtime/upgrades#runtime-versioning)).
+[Runtime Versioning](../../runtime/upgrades#runtime-versioning)).
 For all other execution processes other than block construction, the native runtime is preferred
 since it is more performant. In any situation where the native executable should not be run, the
 canonical Wasm runtime is executed instead.
@@ -79,7 +79,7 @@ canonical Wasm runtime is executed instead.
 
 ### Learn More
 
-- Read more about runtime upgrades in the [Runtime documentation](../runtime/upgrades).
+- Read more about runtime upgrades in the [Runtime documentation](../../runtime/upgrades).
 
 ### References
 

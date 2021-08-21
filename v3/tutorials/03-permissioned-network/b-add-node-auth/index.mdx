@@ -51,6 +51,7 @@ the right CLI flag as offchain worker is disabled by default for non-authority n
 />
 
 ## Steps
+
 ### 1. Build the Node Template
 
 If you already have Node Template cloned, you can just create a
@@ -109,7 +110,7 @@ We need to simulate the governance in our simple blockchain, so we just let a `s
 configuring the pallet's interface to `EnsureRoot`. In a production environment we sould want to have
 difference, governance based checking implemented here. More details of this `Config` can be found in
 the pallet's
-[reference docs](https://docs.rs/pallet-node-authorization/3.0.0/pallet_node_authorization/trait.Config.html).
+[reference docs](/rustdocs/latest/pallet_node_authorization/pallet/trait.Config.html).
 
 **`runtime/src/lib.rs`**
 
@@ -165,7 +166,7 @@ construct_runtime!(
 ### 3. Add genesis storage for our pallet
 
 `PeerId` is encoded in bs58 format, so we need a new library
-[bs58](https://docs.rs/bs58/0.3.1/bs58/) in **node/cargo.toml** to decode it to get its bytes.
+[bs58](https://docs.rs/bs58/) in **node/cargo.toml** to decode it to get its bytes.
 
 **`node/cargo.toml`**
 
@@ -231,7 +232,7 @@ for demonstration: [Alice and Bob](/v3/docs/toolchains/subkey#well-known-keys).
 <!-- TODO: update to use the `key` embedded CLI tool with the node, reference subkey as option -->
 
 You may wondering where the `12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2` comes from.
-We can use [subkey](../../../v3/docs/toolchains/subkey#generating-node-keys) to generate
+We can use [subkey](/v3/docs/toolchains/subkey#generating-node-keys) to generate
 the above human readable `PeerId`.
 
 ```bash
@@ -265,5 +266,6 @@ Now all the code changes are finished, we are ready to launch our permissioned n
 />
 
 ## Next steps
+
 1. Use well-known node keys and Peer IDs to launch your permissioned network
 2. Allow access to other nodes to join the network
