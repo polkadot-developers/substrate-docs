@@ -58,7 +58,7 @@ jobs:
 
       - name: Run `linkcheck`
         run: |
-          ~/linkcheck/linkcheck :9000 -e --skip-file .github/workflows/lc-skip.txt || checkexit=$?
+          ~/linkcheck/linkcheck :9000 --skip-file .github/workflows/lc-skip.txt || checkexit=$?
           if [ $checkexit -le 1 ]; then
             echo "Successfully exit with linkcheck warning. See above message."
             exit 0

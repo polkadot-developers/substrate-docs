@@ -109,7 +109,7 @@ associated with Alice's account as opposed to the `Root` origin.
 
 You will notice that even though the function call was successfully dispatched, a `BadOrigin` error
 was emitted and is visible in the Events pane. This means that Alice's account was still charged
-[fees](/v3/docs/runtime/fees) for the dispatch, but there weren't any state changes
+[fees](/v3/docs/runtime/weights-and-fees) for the dispatch, but there weren't any state changes
 executed because the Nicks pallet follows the important
 [verify-first-write-last](/v3/docs/runtime/storage#verify-first-write-last) pattern. Now
 use the `SUDO` button to dispatch the same call with the same parameter.
@@ -165,7 +165,7 @@ own runtime.
   - Learn how to add a more complex pallet to the Node Template by going through the
   [Add the Contracts Pallet](/v3/how-to-guides/pallet-design/contracts-pallet) guide.
   
-  - Complete the [Forkless Upgrade a Chain](/v3/tutorials/forkless-upgrade) tutorial to learn how Substrate enables
+  - Complete the [Forkless Upgrade a Chain](/v3/tutorials/forkless-upgrades) tutorial to learn how Substrate enables
   forkless runtime upgrades and follow steps to perform two upgrades, each of which is performed by
   way of a distinct upgrade mechanism.`}
 />

@@ -13,8 +13,9 @@
     "serve:fresh": "yarn build; gatsby serve",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "forestry:preview": "gatsby develop -p 8080 -H 0.0.0.0",
-    "checklinks-1": "hyperlink --canonicalroot https://docs.substrate.io -r --skip '200 public/rustdocs' --skip 'fragment-redirect' --skip 'fragment-check' --skip 'preconnect-check https://fonts.gstatic.com' --skip 'external-redirect' public/index.html | tap-spot",
-    "checklinks-2": "linkcheck :9000 -e --skip-file .github/workflows/lc-skip.txt",
+    "checklinks:v1": "hyperlink --canonicalroot https://docs.substrate.io -r --skip '200 public/rustdocs' --skip 'fragment-redirect' --skip 'fragment-check' --skip 'preconnect-check https://fonts.gstatic.com' --skip 'external-redirect' public/index.html | tap-spot",
+    "checklinks:v2": "linkcheck :9000 --skip-file .github/workflows/lc-skip.txt",
+    "checklinks:v2:e": "linkcheck :9000 -e --skip-file .github/workflows/lc-skip.txt",
     "lint": "npm-run-all lint:**",
     "lint:eslint": "eslint . --ext ts --ext tsx --ext js --ext jsx",
     "lint:tsc": "tsc -p tsconfig.json --noEmit"

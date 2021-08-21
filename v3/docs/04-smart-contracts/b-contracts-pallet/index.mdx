@@ -23,7 +23,9 @@ Here are some of ink!'s key features:
 - Because ink! follows Rust standards, tools like [`rustfmt`](https://github.com/rust-lang/rustfmt)
   and [`rust-analyzer`](https://github.com/rust-analyzer/rust-analyzer) already work out of the box.
 
+<!-- Commenting out as the tut doesn't exist for now
 <AccentButton text={`Start the ink! workshop`} link={`/v3/tutorials/substrate-contracts-workshop`} />
+-->
 
 ## Wasm Engine
 
@@ -78,7 +80,7 @@ reverted, and the gas fee is **not** returned to the user. If the contract execu
 remaining gas, it is returned to the user at the end of the transaction.
 
 The Contracts pallet determines the gas price, which is a conversion between the Substrate
-[**weight system**](../getting-started/weight) and a single unit of gas. Thus, to execute a transaction, a user must have a free balance
+[**weight system**](/v3/docs/concepts/weight) and a single unit of gas. Thus, to execute a transaction, a user must have a free balance
 of at least `gas price` \* `gas limit` which can be spent.
 
 ### Storage Rent
@@ -124,7 +126,7 @@ or upgradeable contracts on a Substrate based blockchain.
 ### Examples
 
 - Follow [this
-  how-to guide](../../../v3/how-to-guides/pallet-design/contracts-pallet) to learn how to add the Contracts pallet to your Substrate runtime.
+  how-to guide](/v3/how-to-guides/pallet-design/contracts-pallet) to learn how to add the Contracts pallet to your Substrate runtime.
 
 ### References
 

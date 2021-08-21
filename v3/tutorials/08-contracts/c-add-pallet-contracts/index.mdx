@@ -24,7 +24,7 @@ In this section you will learn how to:
 Every pallet has a configuration trait called `Config` that the runtime must implement.
 
 To figure out what we need to implement for this pallet specifically, you can take a look at the
-FRAME [`pallet_contracts::Config` documentation](https://substrate.dev/rustdocs/latest/pallet_contracts/trait.Config.html).
+FRAME [`pallet_contracts::Config` documentation](/rustdocs/latest/pallet_contracts/trait.Config.html).
 
 For our runtime, the implementation will look like this:
 
@@ -132,7 +132,7 @@ if things don't make sense or you want to gain a deeper understanding.
 Next, we need to add the pallet to the `construct_runtime!` macro. For this, we need to determine
 the types that the pallet exposes so that we can tell our runtime that they exist. The complete
 list of possible types can be found in the
-[`construct_runtime!` macro documentation](https://substrate.dev/rustdocs/latest/frame_support/macro.construct_runtime.html).
+[`construct_runtime!` macro documentation](/rustdocs/latest/frame_support/macro.construct_runtime.html).
 
 If we look at the Contracts pallet in detail, we know it has:
 
@@ -371,17 +371,17 @@ runtime. You can basically copy what was done there to your own runtime.
 ## Next steps
 ### Learn More
 
-- [A minimalist tutorial on writing your runtime pallet in its own package](../../tutorials/build-a-dapp/pallet).
+- [A minimalist tutorial on writing your runtime pallet in its own package](/v3/tutorials/proof-of-existence/pallet).
 - With your node now capable of running smart contracts, go learn about
-  [Substrate ink! smart contracts](../../knowledgebase/smart-contracts/).
+  [Substrate ink! smart contracts](/v3/docs/smart-contracts/overview).
 - [Substrate Recipes](https://substrate.dev/recipes/) offers detailed tutorials about writing
   [Runtime APIs](https://substrate.dev/recipes/runtime-api.html) and
   [Custom RPCs](https://substrate.dev/recipes/custom-rpc.html) like the ones explored in
   this tutorial.
-- Understand the [Chain Spec](../../knowledgebase/integrate/chain-spec) file to customize your Genesis
+- Understand the [Chain Spec](/v3/docs/toolchains/chain-specs) file to customize your Genesis
   Configuration.
 
 ### References
 
-- [FRAME `Contracts` Pallet API](https://substrate.dev/rustdocs/latest/pallet_contracts/index.html)
+- [FRAME `Contracts` Pallet API](/rustdocs/latest/pallet_contracts/index.html)
 
