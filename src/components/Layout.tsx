@@ -16,8 +16,7 @@ import {
   ExternalLink,
 } from './DocsComponents'
 import Header from './Header/Header'
-// import Footer from './Footer'
-import Footer2 from './Footer2'
+import Footer from './Footer'
 
 const components = {
   a: MdxLink,
@@ -42,7 +41,7 @@ const Layout = ({ children }: any) => {
       <main className="min-h-screen">
         <MDXProvider components={components}>{children}</MDXProvider>
       </main>
-      <Footer2 />
+      <Footer />
     </React.Fragment>
   )
 }
