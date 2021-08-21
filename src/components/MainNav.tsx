@@ -51,7 +51,7 @@ const MainNav = {
           },
           {
             linkTitle: `Tutorials`,
-            link: `/tutorials`,
+            link: `/v3/tutorials`,
             external: false,
           },
           {
