@@ -9,12 +9,19 @@ export default function SearchDocs() {
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible(false)
   const [section, setSection] = useState({
-    docs: false,
-    tuts: false,
-    htgs: false,
+    docs: true,
+    tuts: true,
+    htgs: true,
   })
   const types = ['Docs', 'Tutorials', 'How-to Guides']
   const suggestedTerms = ['Runtime', 'Storage', 'FRAME', 'Weights']
+
+  // The order of the key here determine the search result order that which section will display first.
+  const sectionNames = {
+    docs: 'docs',
+    tuts: 'tutorials',
+    htgs: 'how to guides',
+  }
   const toggleModal = () => {
     setIsComponentVisible(!isComponentVisible)
   }
@@ -53,47 +60,44 @@ export default function SearchDocs() {
         return { slug: result.ref, ...store[result.ref] }
       })
     } catch (error) {
-      // console.error(error)
       return []
     }
   }
 
   useEffect(() => {
-    let results = searchForQuery(index, store, processQuery(query))
-    if (results.length == 0) {
-      results = searchForQuery(index, store, `${query}*`)
-    }
-    if (query.length > 0) {
-      setSearchResults(results)
-    }
+    if (query.length === 0) return setSearchResults([])
+
+    const results = searchForQuery(index, store, processQuery(query))
+    setSearchResults(results)
   }, [query])
 
   useEffect(() => {
-    const selectedSection = Object.entries(section)
-      .filter(keyVal => {
-        const [key, val] = keyVal
-        if (val) {
-          return key
-        }
+    const selectedSections = Object.entries(section)
+      .filter(([, val]) => val)
+      .map(([key]) => key)
+
+    const selectedSectionNames = Object.entries(sectionNames)
+      .filter(([key]) => selectedSections.indexOf(key) >= 0)
+      .map(([, val]) => val)
+
+    const filteredResults = searchResults
+      .filter(result => selectedSectionNames.indexOf(result.section) >= 0)
+      .sort((first, second) => {
+        const firstCatOrder = Object.values(sectionNames).indexOf(first.section)
+        const secondCatOrder = Object.values(sectionNames).indexOf(
+          second.section
+        )
+        if (firstCatOrder != secondCatOrder)
+          return firstCatOrder - secondCatOrder
+
+        const firstCatTitle = `${first.category} - ${first.title}`
+        const secondCatTitle = `${second.category} - ${second.title}`
+        return firstCatTitle.localeCompare(secondCatTitle)
       })
-      .map(val => val[0])
-    if (selectedSection.length === 0) {
-      setDisplayedResults(searchResults)
-    } else {
-      const filteredResults = searchResults.filter(result => {
-        return selectedSection.reduce((acc: boolean, currentVal: string) => {
-          let checkedVal: string = currentVal
-          currentVal === 'tuts'
-            ? (checkedVal = 'tutorials')
-            : currentVal === 'htgs'
-            ? (checkedVal = 'how to guides')
-            : null
-          return result.section == checkedVal || acc
-        }, false)
-      })
-      setDisplayedResults(filteredResults)
-    }
+
+    setDisplayedResults(filteredResults)
   }, [searchResults, section])
+
   return (
     <>
       <div
