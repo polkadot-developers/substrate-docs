@@ -137,6 +137,7 @@
     transform-origin: top left;
     transition: transform 0.3s ease;
   }
+  
   .underline-anchor a:hover::before {
     transform: scaleX(1);
   }

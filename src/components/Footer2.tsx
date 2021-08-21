@@ -175,30 +175,30 @@ export default function Footer2() {
             </svg>
           </a>
         </div>
-        <div className="inline-flex flex-col md:flex-row py-6 text-[#DFE3EA] text-xs font-light">
+        <div className="md:underline-anchor inline-flex flex-col md:flex-row py-6 text-[#DFE3EA] text-xs font-light">
           <div className="mb-4 md:mb-0 md:pr-8 inline-block">
             © {new Date().getFullYear()} Parity Technologies{` `}All Rights
             Reserved{` `}
           </div>
-          <div className="mb-4 md:mb-0 md:pr-8 inline-block">
+          <div className="mb-4 md:mb-0 md:mr-8 inline-block">
             <a
               className="block"
               href={site.siteMetadata.privacy}
               target="_blank"
               rel="noreferrer"
             >
-              <div className="">Privacy Policy</div>
+              Privacy Policy
             </a>
           </div>
 
-          <div className="mb-4 md:mb-0 md:pr-8 inline-block">
+          <div className="mb-4 md:mb-0 md:mr-8 inline-block">
             <a
               className="block"
               href={site.siteMetadata.terms}
               target="_blank"
               rel="noreferrer"
             >
-              <div className="">Terms of Services</div>
+              Terms of Services
             </a>
           </div>
         </div>
