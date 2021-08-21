@@ -1,12 +1,18 @@
 import React from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import MobileNavItem from './MobileNavItem'
+import MobileDropDown from './MobileDropDown'
 
 interface MobileSubMenuProps {
   toggleMobileNav: () => void
   toggleSubMenu: () => void
   navItem: {
     name: string
-    subMenu: { linkTitle: string; link: string; external: boolean }[]
+    subMenu: {
+      linkTitle: string
+      link: string
+      external: boolean
+      items?: { linkTitle: string; link: string; external: boolean }[]
+    }[]
   }
 }
 export default function TechSubMenu({
@@ -18,7 +24,7 @@ export default function TechSubMenu({
     <div className="absolute inset-0 bg-substrateGray-light dark:bg-black h-screen animate-fade-in-right">
       <div className="bg-substrateGreen-light dark:bg-gray-900">
         <div className="px-6 h-16 flex items-center justify-between">
-          <div onClick={() => toggleSubMenu()}>
+          <div onClick={() => toggleSubMenu()} className="cursor-pointer">
             <svg
               className="fill-current text-black dark:text-white"
               width="20"
@@ -31,7 +37,7 @@ export default function TechSubMenu({
           </div>
 
           <span className="text-xl font-bold">{navItem.name}</span>
-          <div onClick={() => toggleMobileNav()}>
+          <div onClick={() => toggleMobileNav()} className="cursor-pointer">
             <svg
               className="fill-current text-black dark:text-white"
               width="20"
@@ -44,31 +50,27 @@ export default function TechSubMenu({
           </div>
         </div>
       </div>
-      <div className="px-6 pt-10">
+      <div className="pt-7 h-[calc(100vh-100px)] overflow-auto">
         {navItem.subMenu.map((item, index) => {
-          if (item.external) {
+          if (item.items) {
             return (
-              <a
-                className="text-black dark:text-white hover:no-underline"
-                key={index}
-                href={item.link}
-              >
-                <div className="pb-6 focus:outline-none focus:bg-substrateBlueBg">
-                  <span className="text-lg font-medium">{item.linkTitle}</span>
-                </div>
-              </a>
+              <div key={index}>
+                <MobileDropDown
+                  external={item.external}
+                  title={item.linkTitle}
+                  items={item.items}
+                />
+              </div>
             )
           } else {
             return (
-              <LocalizedLink
-                className="text-black dark:text-white hover:no-underline"
-                key={index}
-                to={item.link}
-              >
-                <div className="pb-6 focus:outline-none focus:bg-substrateBlueBg">
-                  <span className="text-lg font-medium">{item.linkTitle}</span>
-                </div>
-              </LocalizedLink>
+              <div key={index}>
+                <MobileNavItem
+                  external={item.external}
+                  link={item.link}
+                  title={item.linkTitle}
+                />
+              </div>
             )
           }
         })}

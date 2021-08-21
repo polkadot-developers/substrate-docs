@@ -7,9 +7,9 @@ category: permissioned network
 keywords:
 ---
 
-## About `node-authorization` pallet
+## Overview
 
-The `node-authorization` pallet is a build-in pallet in Substrate FRAME, which manages
+The `node-authorization` pallet is a built-in pallet in Substrate's FRAME, which manages
 a configurable set of nodes for a permissioned network.
 Each node is identified by a `PeerId` which is simply a wrapper on `Vec<u8>`.
 Each `PeerId` is owned by an `AccountId` that claims it
@@ -44,15 +44,18 @@ the right CLI flag as offchain worker is disabled by default for non-authority n
   type={`red`}
   title={`Warning`}
   text={
-	  `Your node may not be synced with the latest block, and thus not be aware of and published updates that are reflected in the \`node-authorization\` chain storage. You may need to disable offchain worker
+	  `Your node may not be synced with the latest block, and thus not be aware of and published updates that are 
+	  reflected in the \`node-authorization\` chain storage. You may need to disable offchain worker
 	  and manually set reachable reserved nodes for your node to sync up with the network if this is the case.`
   }
 />
 
-## Start with the Template
+## Steps
+
+### 1. Build the Node Template
 
 If you already have Node Template cloned, you can just create a
-**check out the v3.0.0 branch** from the base template,
+**check out of the v3.0.0 branch** from the base template,
 otherwise, clone this branch of the project:
 
 ```bash
@@ -82,7 +85,7 @@ cargo build --release
 
 Now open the code with your favorite editor, and let's make some changes.
 
-## Add the `node-authorization` pallet
+### 2. Add the `node-authorization` pallet
 
 First we must add the pallet to our runtime dependencies:
 
@@ -105,7 +108,7 @@ std = [
 
 We need to simulate the governance in our simple blockchain, so we just let a `sudo` admin rule,
 configuring the pallet's interface to `EnsureRoot`. In a production environment we sould want to have
-difference, governance based checking implimented here. More details of this `Config` can be found in
+difference, governance based checking implemented here. More details of this `Config` can be found in
 the pallet's
 [reference docs](/rustdocs/latest/pallet_node_authorization/pallet/trait.Config.html).
 
@@ -160,7 +163,7 @@ construct_runtime!(
 );
 ```
 
-## Add genesis storage for our pallet
+### 3. Add genesis storage for our pallet
 
 `PeerId` is encoded in bs58 format, so we need a new library
 [bs58](https://docs.rs/bs58/) in **node/cargo.toml** to decode it to get its bytes.
@@ -241,7 +244,7 @@ subkey generate-node-key
   title={`Note`}
   text=
 	"`subkey` is a CLI tool that comes bundled with substrate, and you can install it natively too! 
-	'Refer to the [install Instructions](/v3/docs/toolchains/subkey#installation).
+	Refer to the [install Instructions](/v3/docs/toolchains/subkey#installation).
   	"
 />
 
@@ -261,3 +264,8 @@ Now all the code changes are finished, we are ready to launch our permissioned n
 		[here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/permissioned-network-v3).',
 		"
 />
+
+## Next steps
+
+1. Use well-known node keys and Peer IDs to launch your permissioned network
+2. Allow access to other nodes to join the network

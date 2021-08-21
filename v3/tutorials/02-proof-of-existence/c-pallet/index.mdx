@@ -7,6 +7,8 @@ category: proof of existence
 keywords:
 ---
 
+## Overview
+
 The Substrate Developer Hub Node Template, which is used as the starting point for this tutorial,
 has a FRAME-based [runtime](/v3/docs/concepts/runtime).
 [FRAME](/v3/docs/runtime/frame) is a library of code that allows
@@ -30,10 +32,20 @@ The goal of this tutorial is to teach you how to create your own FRAME pallet to
 custom blockchain. The Substrate Developer Hub Node Template comes with a template pallet that we
 will use as a starting point to build our own custom runtime logic.
 
-## Substrate Blockchain File Structure
+## Steps
+### 1. Scaffolding with FRAME
+
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={
+      `The following sections will start _from scratch_ and assumes that you have cleared the contents inside
+       \`pallet/template/src/lib.rs\` file.` 
+  }
+/>
 
 Open the Node Template in your favorite code editor, then open the file
-`pallets/template/src/lib.rs`
+`pallets/template/src/lib.rs`.
 
 ```
 substrate-node-template
@@ -63,23 +75,16 @@ substrate-node-template
 
 You will see some pre-written code that acts as a template for a new pallet.
 When writing your own pallets in the future, you will likely find the scaffolding
-in this template pallet useful. But for the purposes of really learning how a pallet
+in this template pallet useful. But for the purposes of learning how a pallet
 is constructed, **delete all contents of this file**.
 
 <Message
-  type={`gray`}
-  title={`Note`}
-  text={
-      `The following sections will start _from scratch_ and assumes that you have cleared the
-      existing \`pallet/template/src/lib.rs\` file.` 
-  }
+  type={`yellow`}
+  title={`Information`}
+  text={`Have a look at [the skeleton of a FRAME pallet](/docs/en/knowledgebase/runtime/pallets#frame-v2) 
+  from the knowledgebase to learn more about the basic structure of a FRAME pallet.`}
 />
 
-## Write a Pallet from Scratch
-
-### 1. Pallet Scaffolding
-
-Have a look at [the skeleton of a FRAME pallet](/v3/docs/runtime/pallets#frame-v2) from the knowledgebase to learn more about the basic structure of a FRAME pallet.
 This tutorial is using the latest version of FRAME so be sure to refer to that. We can start by scaffolding our pallet using the following code:
 
 **`pallet/template/src/lib.rs`**
@@ -156,7 +161,7 @@ covered in greater depth in the [Add a Pallet](../../add-a-pallet) tutorial. To 
 	}
 ```
 
-### 3. Pallet Events
+### 3. Implement pallet Events
 
 Now that we've configured our pallet to emit events, let's go ahead and define those events.
 Our pallet will only emit an event in two circumstances:
@@ -188,7 +193,7 @@ To implement this, replace `#[pallet::event]` with:
 	}
 ```
 
-#### 3.1 Include `sp-std` Library
+#### 3.1 Include `sp-std` library
 
 Notice here that we are using the `Vec<u8>` type, which is _normally_ included in the `std` Rust library. We _cannot_ use `std`!
 So instead, we have included `use sp_std::vec::Vec;` in our `mod pallet`.
@@ -207,7 +212,7 @@ sp-std = { default-features = false, version = '3.0.0' }
 # -- snip --
 ```
 
-### 4. Pallet Errors
+### 4. Include pallet Errors
 
 The events we defined previously indicate when calls to the pallet have completed successfully.
 Similarly, errors indicate when a call has failed, and why it has failed.
@@ -232,7 +237,7 @@ To implement this, replace the `#[pallet::error]` line with:
         }
 ```
 
-### 5. Pallet Storage
+### 5. Implement a `StorageMap` storage item
 
 To add a new proof to the blockchain, we will simply store that proof in our pallet's storage. To
 store that value, we will create a [hash map](https://en.wikipedia.org/wiki/Hash_table) from the
@@ -247,7 +252,7 @@ To implement this, replace the `#[pallet::storage]` line with:
     pub(super) type Proofs<T: Config> = StorageMap<_, Blake2_128Concat, Vec<u8>, (T::AccountId, T::BlockNumber), ValueQuery>;
 ```
 
-### 6. Pallet Callable Functions
+### 6. Implement callable functions
 
 As implied by our pallet's events and errors, we will have two "dispatchable functions" the user can
 call in this FRAME pallet:
@@ -324,7 +329,7 @@ To implement this, replace the `#[pallet::call]` line with:
         }
 ```
 
-## Build Your New Pallet
+### 7. Build Your New Pallet
 
 After you've copied all of the parts of this pallet correctly into your `pallets/template/lib.rs`
 file, you should be able to recompile your node without warning or error. Run this command in the
@@ -349,3 +354,9 @@ And now it is time to interact with our new Proof of Existence pallet!
     to use as a reference if you're stuck. Check the commit diff from the base `v3.0.0+1` template for the exact changes.
     "
 />
+
+## Next steps
+
+1. Install the Substrate Front-end Template
+2. Add a custom React component to interact with your node's runtime 
+3. Submit a proof and check that your dApp works

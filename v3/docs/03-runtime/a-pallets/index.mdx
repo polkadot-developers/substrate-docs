@@ -10,9 +10,13 @@ keywords:
 The following documentation is written for technical audiences, familiar with the Rust programming
 language. It is a top-level entry point for FRAME runtime developement in Substrate.
 
-> If you are just getting started with Substrate runtime development, we suggest you try
-> our introductory tutorial for
-> [creating your first Substrate chain](/v3/tutorials/create-your-first-substrate-chain).
+<Message
+  type={`green`}
+  title={`Tip`}
+  text={`If you are just getting started with Substrate runtime development, we suggest you try
+  our introductory tutorial for
+  [creating your first Substrate chain](/tutorials/create-your-first-substrate-chain).`}
+/>
 
 ## What is a Pallet?
 
@@ -23,7 +27,7 @@ pallets, giving runtime engineers the flexibility to define their runtime's beha
 target use case. The result: each pallet has its own discrete logic which can modify the features and
 functionality of your blockchain's state transition functions.
 
-For example, the [Balances pallet](https://github.com/paritytech/substrate/tree/master/frame/balances), which is included in [FRAME](../frame), defines cryptocurrency capabilities for your blockchain. More specifically, it
+For example, the [Balances pallet](https://github.com/paritytech/substrate/tree/master/frame/balances), which is included in [FRAME](./frame), defines cryptocurrency capabilities for your blockchain. More specifically, it
 defines:
 
 - **Storage items** that keep track of the tokens a user owns.
@@ -35,7 +39,11 @@ defines:
 
 Substrate runtime engineers can define custom logic for their blockchain by writing their own pallets and encapsulating their blockchains desired functionality by combining custom pallets with existing FRAME pallets or Substrate modules alike. The following documentation will show you how.
 
-> **Note:** At the time of writing, FRAME pallets exist in two different flavors &mdash; Version 1 and Version 2. This article first covers the structure of a v1 pallet. Skip to [FRAME v2](#frame-v2) for the latest structure of a Substrate pallet. Read [here](../macros#frame-v1-vs-v2) for more information on these changes.
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`At the time of writing, FRAME pallets exist in two different flavors &mdash; Version 1 and Version 2. This article first covers the structure of a v1 pallet. Skip to [FRAME v2](./pallets#frame-v2) for the latest structure of a Substrate pallet. Read [here](./macros#frame-v1-vs-v2) for more information on these changes.`}
+/>
 
 ## Skeleton of a Pallet
 
@@ -73,7 +81,12 @@ decl_storage! { ... }
 decl_module! { ... }
 ```
 
-> **Note**: Additional sections such as [`decl_error!`](../macros#decl_error) are commonly used however are not a requirement for a minimally working pallet.
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`Additional sections such as [\`decl_error!\`](./macros#decl_error) are commonly 
+  used however are not a requirement for a minimally working pallet.`}
+/>
 
 #### Example
 
@@ -136,7 +149,12 @@ pub mod pallet {
 
 ```
 
-> **Note:** Pallets can be composed of as many sections as needed, giving runtime engineers a lot of flexibility ontop of the basic skeletons depicted above. Refer to the [Substrate Runtime Macros](../macros#substrate-runtime-macros) to learn more about adding functionality to a FRAME pallet.
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`Pallets can be composed of as many sections as needed, giving runtime engineers a lot of flexibility ontop of the basic skeletons depicted above. Refer to the [Substrate Runtime Macros](./macros#substrate-runtime-macros) 
+  to learn more about adding functionality to a FRAME pallet.`}
+/>
 
 ## Examples
 

@@ -6,8 +6,13 @@ section: tutorials
 category: forkless upgrades
 keywords:
 ---
+## Overview
 
-## Start the Template Node
+This part of the tutorial will step you through launching a Substrate chain and initiating a simple 
+runtime upgrade using the [Sudo pallet](/v3/docs/runtime/frame#sudo).
+
+## Steps
+### 1. Start the Template Node
 
 Since forkless runtime upgrades do not require network participants to restart their blockchain
 clients, the first step of this tutorial is to start the template node as-is. Build and start the
@@ -36,7 +41,7 @@ template node's
 this is the configuration that is used when the node is launched with the `--dev` flag. This means
 that Alice's account will be the one used to perform runtime upgrades throughout this tutorial.
 
-## Runtime Upgrade Resource Accounting
+#### Runtime Upgrade Resource Accounting
 
 Dispatchable calls in Substrate are always associated with a
 [weight](/v3/docs/concepts/weight), which is used for resource accounting. FRAME's
@@ -68,7 +73,7 @@ function, which identifies it as relating to network _operations_ and impacts th
 resources, such as by exempting it from the
 [`TransactionByteFee`](/rustdocs/latest/pallet_transaction_payment/trait.Config.html#associatedtype.TransactionByteFee).
 
-### Use `sudo` to dispatch
+### 2. Use `sudo` to dispatch
 
 As the name of the [Sudo pallet](/v3/docs/runtime/frame#sudo) implies, it provides
 capabilities related to the management of a single
@@ -98,7 +103,7 @@ fn sudo(origin, call) -> Result {
 }
 ```
 
-### `sudo` to Override Resource Accounting
+#### `sudo` to Override Resource Accounting
 
 In order to work around resource accounting within FRAME's safeguards, the Sudo pallet provides the
 [`sudo_unchecked_weight`](/rustdocs/latest/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
@@ -112,9 +117,9 @@ Here we allow for a block that may take _an indefinite time to compute_ intentio
 that our runtime upgrade does not fail, no matter how complex the operation is. It could take all
 the time it needs to succeed or fail.
 
-## Prepare an Upgraded Runtime
+### 3. Prepare an Upgraded Runtime
 
-### Add the `Scheduler` Pallet
+#### Add the `Scheduler` Pallet
 
 Because the template node doesn't come with the
 [Scheduler pallet](/rustdocs/latest/pallet_scheduler/index.html) included in
@@ -210,9 +215,13 @@ implementation of the
 and in particular the `can_set_code` function to to see how this requirement and others are enforced
 by runtime logic.
 
-### Build the Upgraded Runtime
+### 4. Build the Upgraded Runtime
 
-Note: keep your node running! You should use a new terminal to compile the runtime:
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`Keep your node running! You should use a new terminal to compile the runtime`}
+/>
 
 ```shell
 # Here we *only* build the runtime, the node has not been changed.
@@ -243,7 +252,7 @@ When the `--release` flag is specified, build artifacts are output to the
 [the official documentation](https://doc.rust-lang.org/cargo/commands/cargo-build.html) to learn
 more about building Rust code with Cargo.
 
-## Upgrade the Runtime
+### 5. Upgrade the Runtime
 
 Use this link to open the Polkadot JS Apps UI and automatically configure the UI to connect to the
 local node: https://polkadot.js.org/apps/#/extrinsics?rpc=ws://127.0.0.1:9944.
@@ -278,3 +287,7 @@ of Polkadot JS Apps UI should reflect that the runtime version is now `101`.
 
 If you still see your node producing blocks in the terminal it's running and reported
 on the UI, you have performed a successful _forkless_ runtime upgrade! Congrats!!!
+
+## Next steps
+1. Upgrade your runtime version
+2. Use the Schedular pallet to schedule your runtime upgrade on your running chain

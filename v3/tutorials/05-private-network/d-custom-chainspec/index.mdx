@@ -4,8 +4,10 @@ slug: /v3/tutorials/private-network/custom-chainspec
 version: 3.0 
 section: tutorials
 category: private network
-keywords:
+keywords: 
 ---
+
+## Overview
 
 Now that each participant has their own keys generated, you're ready to create a custom chain
 specification. We will use this custom chain spec instead of the built-in `local` spec that we used
@@ -14,20 +16,28 @@ previously.
 In this example we will create a two-node network, but the process generalizes to more nodes in a
 straight-forward manner.
 
-## Create a Chain Specification
+##  Steps
+### 1. Create a Chain Specification
 
 Last time around, we used `--chain local` which is a predefined "chain spec" that has Alice and Bob
 specified as validators along with many other useful defaults.
 
 Rather than writing our chain spec completely from scratch, we'll just make a few modifications to
 the one we used before. To start, we need to export the chain spec to a file named
-`customSpec.json`. Remember, further details about all of these commands are available by running
-`node-template --help`.
+`customSpec.json`. 
+
+<Message
+  type={`green`}
+  title={`Tip`}
+  text={`Further details about all of these commands are available by running: \`node-template --help\`.`}
+/>
 
 ```bash
 # Export the local chain spec to json
 ./target/release/node-template build-spec --disable-default-bootnode --chain local > customSpec.json
 ```
+
+### 2. Modify Aura authority nodes
 
 The file we just created contains several fields, and you can learn a lot by exploring them. By far
 the largest field is a single binary blob that is the Wasm binary of our runtime. It is part of what
@@ -74,7 +84,7 @@ by the **"grandpa"** field. That section looks like this using the [two provided
     "
 />
 
-The format for the grandpa data is more complex because the grandpa protocol supports weighted
+The format for the Grandpa data is more complex because the Grandpa protocol supports weighted
 votes. In this case we have given each validator a weight of **1**.
 
 All we need to do is change the authority addresses listed (currently Alice and Bob) to our own
@@ -94,6 +104,7 @@ you like. For additional context, read about
     "
 /> 
 
+### 3. Convert and share the raw chainspec
 Once the chain spec is prepared, convert it to a "raw" chain spec. The raw chain spec contains all
 the same information, but it contains the encoded storage keys that the node will use to reference
 the data in its local storage. Distributing a raw spec ensures that each node will store the data at
@@ -115,3 +126,8 @@ Finally share the `customSpecRaw.json` with your all the other validators in the
     [this blog post](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1).
     "
 />
+
+## Next steps
+1. Launch the chain with the bootnode
+2. Add keys to keystore
+3. Add other participants to your network

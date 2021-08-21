@@ -116,11 +116,16 @@ certain block, the block is deemed final. In most systems, this threshold is 2/3
 been finalized by such a gadget cannot be reverted without external coordination such as a hard
 fork.
 
-> Some consensus systems couple block production and finality, as in, finalization is part of the
-> block production process and a new block `N+1` cannot be authored until block `N` is finalize.
-> Substrate, however, isolates the two processes and allows you to use any block production engine
-> on its own with probabilistic finality or couple it with a finality gadget to have determinsitic
-> finality.
+
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`Some consensus systems couple block production and finality, as in, finalization is part of the
+  block production process and a new block \`N+1\` cannot be authored until block \`N\` is finalize.
+  Substrate, however, isolates the two processes and allows you to use any block production engine
+  on its own with probabilistic finality or couple it with a finality gadget to have determinsitic
+  finality.`}
+/>
 
 In systems that use a finality gadget, the fork choice rule must be modified to consider the results
 of the finality game. For example, instead of taking the longest chain period, a node would take the

@@ -6,10 +6,12 @@ section: tutorials
 category: substrate chain
 keywords:
 ---
+## Overview
 
 Now that your node has finished compiling, let's show you how everything works out of the box.
 
-## Starting Your Node
+## Steps
+### 1. Starting Your Node
 
 Run the following command to start your node:
 
@@ -80,8 +82,7 @@ A few notes on the example output above:
   }
 />
 
-
-## Start the Front-End Template
+### 2. Start the Front-End Template
 
 To interact with your local node, we will use
 [the Substrate Developer Hub Front-End Template](https://github.com/substrate-developer-hub/substrate-front-end-template),
@@ -104,7 +105,7 @@ in the root directory of the Front-End Template:
 yarn start
 ```
 
-## Interact
+### 3. Interact with your node
 
 Once the Front-End Template is running and loaded in your browser at
 [http://localhost:8000/](http://localhost:8000/), take a moment to explore its components. At the
@@ -129,7 +130,7 @@ changes you're making. Here we give the `dave` development account these funds:
 Notice that the table of accounts is dynamic and that the account balances are updated as soon as
 the transfer is processed.
 
-### Runtime Metadata
+### 4. Explore Runtime Metadata
 
 The Front-End Template exposes many helpful features and you should explore all of them while you're
 connected to a local development node. One good way to get started is by clicking the "Show
@@ -138,7 +139,7 @@ Metadata" button at the top of the template page and reviewing
 
 ![Metadata JSON](../../../../src/images/tutorials/01-create-your-first-chain/metadata.png)
 
-### Pallet Interactor & Events
+#### Pallet Interactor & Events
 
 You can use the runtime metadata to discover a runtime's capabilities. The Front-End Template
 provides a helpful Pallet Interactor component that provides several mechanisms for interacting with
@@ -176,7 +177,7 @@ Your next step may be:
 - Extend the features of the template node in the [Add a Pallet](../../add-a-pallet) tutorial.
 - Learn about forkless runtime upgrades in the [Forkless Upgrade a Chain](../../forkless-upgrades) tutorial.
 
-If you experienced any issues with this tutorial or want to provide feedback, You can
+If you've experienced any issues with this tutorial or want to provide feedback, you can
 [ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) and use the
 `substrate` tag or contact us on
 [Element](https://matrix.to/#/#substrate-technical:matrix.org).

@@ -29,11 +29,15 @@ There are four kinds of macro in Rust:
 Most Substrate runtime macros are defined using either **declarative macros** or **function-like macros**, with a recent adoption of
 **attribute-like macros** in FRAME v2 pallets.
 
-> **Tips to learn more about Substrate runtime macros**:
->
-> - read the [documentation](/rustdocs/latest/frame_support#macros) on commonly used macros in FRAME
-> - use [`cargo expand`](https://github.com/dtolnay/cargo-expand) to review a macro's expanded code and understand what's happening under the hood
-> - read more on [macro rules of expression pattern matching](https://danielkeep.github.io/tlborm/book/pim-README.html)
+<Message
+  type={`green`}
+  title={`Tips to learn more about Substrate runtime macros`}
+  text={`
+   - Read the [documentation](/rustdocs/latest/frame_support#macros) on commonly used macros in FRAME.
+   - Use [\`cargo expand\`](https://github.com/dtolnay/cargo-expand) to review a macro's expanded code and understand what's happening under the hood.
+   - Read more on [macro rules of expression pattern matching](https://danielkeep.github.io/tlborm/book/pim-README.html).
+  `}
+/>
 
 ## Substrate Runtime Macros
 
@@ -64,9 +68,14 @@ Here's a general overview of Substrate macros:
 - in `sp_std`: [function-like](/rustdocs/latest/sp_std#macros) macros
 - in `sp_version`: [function-like](/rustdocs/latest/sp_version#macros) macros
 
-> **Note**: refer to `#Substrate dependencies` in the `Cargo.toml` file of the
-> [node template runtime](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/runtime/Cargo.toml#L21)
-> to see where these are put to use.
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`Refer to \`#Substrate dependencies\` in the \`Cargo.toml\` file of the
+  [node template runtime](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/runtime/Cargo.toml#L21)
+  to see where these are put to use.
+  `}
+/>
 
 ## Overview of FRAME Versioning
 
@@ -75,9 +84,15 @@ Here's a comparative overview of FRAME v1 and v2:
 - v1 relies on runtime engineers to write more code to declare traits and types in a way that is closer to learning a DSL (Domain-specific Language). The way macro inputs are structured can make it more difficult to understand what the macro is doing and how to use it.
 - v2 is more heavily based on Rust idioms to define types and uses FRAME crates by writing code within the constaints of the macro being used. If all macros were removed, the pallet would still compile as all macro inputs are correct Rust syntax, making it easier to understand where errors are coming from.
 
-> Overall, the big improvements that v2 brings is better developer experience by removing the need to write extra code. The main difference is how concepts are declared to use the [crates that make up FRAME](https://substrate.dev/docs/en/knowledgebase/runtime/frame). Both versions are just different ways to express
-> the logic and types declared inside a pallet. Yet, both serve the same purpose &mdash; which is to aggregate the logic that defines how the
-> runtime is implemented.
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`Overall, the big improvements that v2 brings is better developer experience by removing the need to write extra code. The main difference is how concepts are declared to use the [crates that make up FRAME](https://substrate.dev/docs/en/knowledgebase/runtime/frame). 
+  Both versions are just different ways to express 
+  the logic and types declared inside a pallet. Yet, both serve the same purpose &mdash; which is to aggregate the logic that defines how the
+  runtime is implemented.
+  `}
+/>
 
 **Things to note:**
 

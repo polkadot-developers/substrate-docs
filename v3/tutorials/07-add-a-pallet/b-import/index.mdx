@@ -7,6 +7,8 @@ category: add a pallet
 keywords:
 ---
 
+## Overview
+
 We will now modify the Substrate Node Template to include the Nicks pallet. This
 pallet allows blockchain users to pay a deposit to reserve a nickname and associate it with an
 account they control.
@@ -36,7 +38,8 @@ substrate-node-template/
 +-- ...
 ```
 
-## Importing a Pallet Crate
+## Steps
+### 1. Importing a Pallet Crate
 
 The first thing you need to do to add the Nicks pallet is to import the `pallet-nicks` crate in your
 runtime's `Cargo.toml` file. If you want a proper primer into Cargo References, please check out
@@ -56,7 +59,7 @@ pallet-balances = { default-features = false, version = '3.0.0', git = 'https://
 This is telling Cargo to find the crate from git repository `paritytech/substrate` with commit
 that is tagged with `monthly-YYYY-MM`. `YYYY` and `MM` are the corresponding year and month.
 
-### Crate Features
+#### Crate Features
 
 One important thing we need to call out with importing pallet crates is making sure to set up the
 crate `features` correctly. In the code snippet above, you will notice that we set
@@ -123,7 +126,7 @@ the `std` feature. A few lines lower you can see `#[cfg(feature = "std")]` above
 `wasm_binary.rs` import, which is a flag saying to only import the Wasm binary when we have enabled
 the `std` feature.
 
-### Importing the Nicks Pallet Crate
+### 2. Importing the Nicks Pallet Crate
 
 Okay, now that we have covered the basics of crate features, we can actually import the Nicks
 pallet. The Nicks pallet is one of the simpler pallets in FRAME, so it makes for a good example of
@@ -179,3 +182,7 @@ Before moving on, check that the new dependencies resolve correctly by running:
 ```bash
 cargo check -p node-template-runtime
 ```
+
+## Next steps 
+1. Implement the Nicks pallet configuration trait
+2. Add the Nicks pallet to your runtime 

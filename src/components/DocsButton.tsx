@@ -6,7 +6,7 @@ export default function DocsButton() {
   const intl = useIntl()
   return (
     <LocalizedLink to="/v3/docs/getting-started/overview">
-      <button className="flex items-center justify-center bg-substrateDark dark:bg-white text-white dark:text-black text-sm py-2 w-20 rounded opacity-90 hover:opacity-100 focus:outline-none">
+      <button className="flex items-center justify-center bg-substrateDark dark:bg-white text-white dark:text-black text-sm py-2 w-20 rounded opacity-100 transform transition duration-300 ease-in-out hover:opacity-80 focus:outline-none">
         {/* <img src={docsIcon} alt="Substrate Docs Icon" /> */}
         <svg
           className="fill-current text-white dark:text-black"

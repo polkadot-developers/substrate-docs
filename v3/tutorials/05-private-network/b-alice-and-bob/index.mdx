@@ -4,15 +4,18 @@ slug: /v3/tutorials/private-network/alice-and-bob
 version: 3.0 
 section: tutorials
 category: private network
-keywords:
+keywords: 
 ---
+
+## Overview
 
 Before we generate our own keys, and start a truly unique Substrate network, let's learn the
 fundamentals by starting with a pre-defined network specification called `local` with two
 pre-defined (and definitely not private!) keys known as Alice and Bob.
 **This portion of the tutorial should be run on a single workstation with a single Substrate binary.**
 
-## Alice Starts First
+## Steps
+### 1. Alice Starts First
 
 Alice (or whomever is playing her) should run these commands from node-template repository root.
 
@@ -82,6 +85,7 @@ When the node starts, you should see output similar to this:
 2021-03-10 17:34:37  💤 Idle (0 peers), best: #0 (0x9d07…7cce), finalized #0 (0x9d07…7cce), ⬇ 0 ⬆ 0
 ...
 ```
+
 A coupe things to notice:
 
  - `🔨 Initializing Genesis block/state (state: 0xea47…9ba8, header-hash: 0x9d07…7cce)` tells which
@@ -97,7 +101,7 @@ A coupe things to notice:
 More details about all of these flags and others that I haven't mentioned are available by running
 `./target/release/node-template --help`.
 
-## Attach a UI
+### 2. Attach a UI
 
 You can tell a lot about your node by watching the output it produces in your terminal. There is
 also a nice graphical user interface called Polkadot-JS Apps, or just "Apps" for short.
@@ -152,7 +156,7 @@ You should now see something like this example from the **Network** and **Explor
     "
 />
 
-## Bob Joins
+### 3. Bob Joins
 
 Now that Alice's node is up and running, Bob can join the network by bootstrapping from her node.
 His command will look very similar.
@@ -220,3 +224,6 @@ Looking at the console that started Bob's node, you should see something similar
 Once you've verified that both nodes are running as expected, you should shut them down. Although
 this is not strictly required, so long as you don't have conflicting ports and the same chainspec.
 The next section of this tutorial will include commands to restart new nodes when necessary.
+
+## Next steps
+1. Generate key pairs for participants in your private network
