@@ -15,10 +15,14 @@ export default function SearchDocs() {
   })
   const types = ['Docs', 'Tutorials', 'How-to Guides']
   const suggestedTerms = ['Runtime', 'Storage', 'FRAME', 'Weights']
+  const sectionNames = {
+    docs: 'docs',
+    tuts: 'tutorials',
+    htgs: 'how to guides',
+  }
   const toggleModal = () => {
     setIsComponentVisible(!isComponentVisible)
   }
-
   const { LunrIndex } = useStaticQuery(graphql`
     {
       LunrIndex
@@ -38,7 +42,6 @@ export default function SearchDocs() {
     ) {
       return query
     }
-
     const result = query
       .split(/\s/)
       .filter(t => t.length > 0)
@@ -62,38 +65,28 @@ export default function SearchDocs() {
     let results = searchForQuery(index, store, processQuery(query))
     if (results.length == 0) {
       results = searchForQuery(index, store, `${query}*`)
-    }
-    if (query.length > 0) {
+    } else {
       setSearchResults(results)
     }
   }, [query])
 
   useEffect(() => {
-    const selectedSection = Object.entries(section)
-      .filter(keyVal => {
-        const [key, val] = keyVal
-        if (val) {
-          return key
-        }
-      })
-      .map(val => val[0])
-    if (selectedSection.length === 0) {
+    const selectedSections = Object.entries(section)
+      .filter(([, val]) => val)
+      .map(([key]) => key)
+    const selectedSectionNames = Object.entries(sectionNames)
+      .filter(([key]) => selectedSections.indexOf(key) >= 0)
+      .map(([, val]) => val)
+    if (selectedSectionNames.length === 0) {
       setDisplayedResults(searchResults)
     } else {
-      const filteredResults = searchResults.filter(result => {
-        return selectedSection.reduce((acc: boolean, currentVal: string) => {
-          let checkedVal: string = currentVal
-          currentVal === 'tuts'
-            ? (checkedVal = 'tutorials')
-            : currentVal === 'htgs'
-            ? (checkedVal = 'how to guides')
-            : null
-          return result.section == checkedVal || acc
-        }, false)
-      })
+      const filteredResults = searchResults.filter(
+        result => selectedSectionNames.indexOf(result.section) >= 0
+      )
       setDisplayedResults(filteredResults)
     }
   }, [searchResults, section])
+
   return (
     <>
       <div
