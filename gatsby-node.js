@@ -42,7 +42,7 @@ const tutsInfo = [
 ]
 
 const gqlTpl = `{ res: allFile(
-  filter: { sourceInstanceName: { eq: ">>param1<<" }}
+  filter: { sourceInstanceName: { eq: ">>param1<<" }, extension: { eq: "mdx" }}
 ) {
   nodes {
     childMdx {
@@ -62,7 +62,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   const result = await graphql(`
     {
-      docsV3: allFile(filter: { sourceInstanceName: { eq: "kbV3" } }) {
+      docsV3: allFile(
+        filter: { sourceInstanceName: { eq: "kbV3" }, extension: { eq: "mdx" } }
+      ) {
         nodes {
           childMdx {
             frontmatter {
@@ -71,7 +73,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           }
         }
       }
-      htg: allFile(filter: { sourceInstanceName: { eq: "htg" } }) {
+      htg: allFile(
+        filter: { sourceInstanceName: { eq: "htg" }, extension: { eq: "mdx" } }
+      ) {
         nodes {
           childMdx {
             frontmatter {
