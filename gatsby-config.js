@@ -19,6 +19,9 @@ module.exports = {
       'Substrate',
       'Web3.0',
       'Parity Technologies',
+      'Technology',
+      'Decentralization',
+      'Build',
     ],
     author: 'Parity/Web3F WebDev Team',
     pressEmail: 'press@parity.io',
@@ -32,6 +35,8 @@ module.exports = {
     stackOverflow: 'https://stackoverflow.com/questions/tagged/substrate',
     privacy: 'https://www.parity.io/privacy/',
     terms: 'https://www.parity.io/terms',
+    youtube: 'https://www.youtube.com/c/ParityTech',
+    crowdcast: 'https://www.crowdcast.io/e/substrate-seminar-2',
   },
   flags: {
     DEV_SSR: false,
