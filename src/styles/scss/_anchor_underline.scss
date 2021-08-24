@@ -52,6 +52,9 @@
   transition: transform 0.3s ease;
 }
 
+.mdx-anchor a.md-button:hover::before {
+  transform: scaleX(0);
+}
 .mdx-anchor a:hover::before {
   transform: scaleX(1);
 }
