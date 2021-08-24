@@ -33,7 +33,7 @@ export default function DifficultyMeter({ difficulty }: DifficultyMeterProps) {
       ) : difficulty === 'advance' ? (
         <>
           <span className="uppercase tracking-widest">
-            {intl.formatMessage({ id: 'tutorials-advance' })}
+            {intl.formatMessage({ id: 'tutorials-advanced' })}
           </span>
           <div className="flex ml-4">
             <span className="mx-1 inline-block w-3 h-3 bg-substrateDark dark:bg-substrateGray rounded-full"></span>

@@ -142,7 +142,7 @@
 
   "tutorials-beginner": "beginner",
   "tutorials-intermediate": "intermediate",
-  "tutorials-advance": "advance",
+  "tutorials-advanced": "advanced",
 
   "playground-title": "Set Up Local Environment",
   "playground-description": "We recommend picking a sandbox, particularly if you're just getting started. Building on Substrate requires different pieces of technology. Using a sandbox allows you to skip preliminary set-up and prerequisites to get to the parts that are important to you.",

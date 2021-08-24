@@ -454,7 +454,7 @@ DevNavMenu.tuts.poe = {
   name: `Proof of Existence`,
   items: [
     {
-      title: `Overview`,
+      title: `Introduction`,
       link: '/v3/tutorials/proof-of-existence',
     },
     {
@@ -476,7 +476,7 @@ DevNavMenu.tuts.permissionedNetwork = {
   name: `Start a Permissioned Network`,
   items: [
     {
-      title: `Overview`,
+      title: `Introduction`,
       link: '/v3/tutorials/permissioned-network',
     },
     {
@@ -494,7 +494,7 @@ DevNavMenu.tuts.forklessUpgrade = {
   name: `Forkless Runtime Upgrades`,
   items: [
     {
-      title: `Overview`,
+      title: `Introduction`,
       link: '/v3/tutorials/forkless-upgrades',
     },
     {
@@ -512,7 +512,7 @@ DevNavMenu.tuts.privateNetwork = {
   name: `Start a Private Network`,
   items: [
     {
-      title: `Overview`,
+      title: `Introduction`,
       link: '/v3/tutorials/private-network',
     },
     {
@@ -548,7 +548,7 @@ DevNavMenu.tuts.cumulusWorkshop = {
   name: `Cumulus Workshop`,
   items: [
     {
-      title: `Overview`,
+      title: `Introduction`,
       link: '/v3/tutorials/cumulus-workshop',
     },
     {
@@ -610,7 +610,7 @@ DevNavMenu.tuts.addPallet = {
   name: `Add a Pallet in Runtime`,
   items: [
     {
-      title: `Overview`,
+      title: `Introduction`,
       link: '/v3/tutorials/add-a-pallet',
     },
     {
