@@ -60,9 +60,7 @@
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   line-height: 1.5;
-  @apply text-black dark:text-white;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
-    sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  @apply font-body text-black dark:text-white;
   font-size: 16px;
   line-height: 1.5;
   word-wrap: break-word;
@@ -145,7 +143,7 @@
   text-decoration: underline;
 } */
 
-.markdown-body a {
+/* .markdown-body a {
   position: relative;
   color: #5a30b4;
   text-decoration: none;
@@ -175,7 +173,7 @@
 
 .markdown-body a:hover::before {
   transform: scaleX(1);
-}
+} */
 
 .markdown-body strong {
   font-weight: 600;

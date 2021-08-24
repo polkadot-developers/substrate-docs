@@ -29,7 +29,7 @@ export function TutorialObjective({ data }: TutorialObjectiveProps) {
           <p className="hidden xl:block font-light">{data.textLineTwo}</p>
         </div>
         <LocalizedLink
-          className="hidden xl:block xl:mt-1 xl:mr-4"
+          className="md-button hidden xl:block xl:mt-1 xl:mr-4"
           to={data.url}
         >
           <button className="w-10 h-10 bg-substrateGreen rounded flex justify-center items-center">

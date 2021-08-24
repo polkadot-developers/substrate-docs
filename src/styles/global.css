@@ -22,9 +22,9 @@
     min-height: calc(100vh - 394px);
   }
 
-  .container {
+  /* .container {
     @apply px-4;
-  }
+  } */
 
   /* Headings */
   h1 {
@@ -114,8 +114,4 @@
     @apply list-disc;
   }
 
-  /* Anchor Tags */
-  /* a {
-    @apply cursor-point;
-  }*/
 }

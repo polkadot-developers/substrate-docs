@@ -29,6 +29,9 @@ module.exports = {
     github: 'https://github.com/paritytech/',
     telegram: 'https://t.me/parity_technologies',
     gitter: 'https://gitter.im/paritytech/parity',
+    stackOverflow: 'https://stackoverflow.com/questions/tagged/substrate',
+    privacy: 'https://www.parity.io/privacy/',
+    terms: 'https://www.parity.io/terms',
   },
   flags: {
     DEV_SSR: false,
