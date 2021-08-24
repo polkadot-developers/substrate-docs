@@ -44,7 +44,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
                       slug={slug}
                       absolutePath={data.mdx.fileAbsolutePath}
                     />
-                    <div className="markdown-body">
+                    <div className="markdown-body mdx-anchor">
                       <h1>{data.mdx.frontmatter.title}</h1>
                       <MDXRenderer>{data.mdx.body}</MDXRenderer>
                     </div>
@@ -64,7 +64,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
                         slug={slug}
                         absolutePath={data.englishVersion.fileAbsolutePath}
                       />
-                      <div className="markdown-body">
+                      <div className="markdown-body mdx-anchor">
                         <h1>{data.englishVersion.frontmatter.title}</h1>
                         <MDXRenderer>{data.englishVersion.body}</MDXRenderer>
                       </div>

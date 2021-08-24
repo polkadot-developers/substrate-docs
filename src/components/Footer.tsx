@@ -175,7 +175,7 @@ export default function Footer() {
             </svg>
           </a>
         </div>
-        <div className="md:underline-anchor inline-flex flex-col md:flex-row py-6 text-[#DFE3EA] text-xs font-light">
+        <div className="underline-anchor inline-flex flex-col md:flex-row py-6 text-[#DFE3EA] text-xs font-light">
           <div className="mb-4 md:mb-0 md:pr-8 inline-block">
             © {new Date().getFullYear()} Parity Technologies{` `}All Rights
             Reserved{` `}

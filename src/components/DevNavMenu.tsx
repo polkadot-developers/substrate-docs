@@ -16,7 +16,7 @@ const DevNavMenu = {
       },
       {
         section: `${intl.formatMessage({ id: 'docs-nav-htg' })}`,
-        url: '/how-to-guides',
+        url: '/v3/how-to-guides',
         external: false,
       },
       {
