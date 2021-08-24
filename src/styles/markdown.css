@@ -59,10 +59,9 @@
 .markdown-body {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  line-height: 1.5;
+  line-height: 1.8;
   @apply font-body text-black dark:text-white;
   font-size: 16px;
-  line-height: 1.5;
   word-wrap: break-word;
 }
 
@@ -714,7 +713,6 @@
 .markdown-body h1,
 .markdown-body h2 {
   padding-bottom: 0.3em;
-  border-bottom: 1px solid #eaecef;
 }
 
 .markdown-body h2 {
