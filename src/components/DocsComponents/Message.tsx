@@ -64,9 +64,8 @@ export function Message({ type, title, text }: MessageProps) {
         </div>
         <h4 className="pl-1 capitalize">{title}</h4>
       </div>
-      <div className="max-w-2xl">
-        {/* eslint-disable-next-line react/no-children-prop */}
-        <ReactMarkdown children={text} />
+      <div>
+        <ReactMarkdown>{text}</ReactMarkdown>
       </div>
     </div>
   )

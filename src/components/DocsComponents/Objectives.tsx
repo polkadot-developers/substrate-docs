@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactMarkdown from 'react-markdown'
 
 interface ObjectivesProps {
   data: { title: string; description: string }[]
@@ -7,14 +8,13 @@ interface ObjectivesProps {
 export function Objectives({ data }: ObjectivesProps) {
   return (
     <>
-      <div className="bg-lightGray dark:bg-gray-800 pb-4">
+      <div className="bg-substrateGray-light dark:bg-gray-800 pb-4 rounded">
         {data.map((item, index) => (
           <div key={index}>
             <div>
-              <h3 className="inline-block px-4">{index + 1}.</h3>
-              <h3 className="inline-block">{item.title}</h3>
+              <h3 className="inline-block px-4">{item.title}</h3>
             </div>
-            <p className="px-4">{item.description}</p>
+            <ReactMarkdown className="px-4">{item.description}</ReactMarkdown>
           </div>
         ))}
       </div>
