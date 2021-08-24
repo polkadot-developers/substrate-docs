@@ -47,7 +47,7 @@ const tutsInfo = [
 ]
 
 const gqlTpl = `{ res: allFile(
-	filter: { sourceInstanceName: { eq: ">>param1<<" }}
+	filter: { sourceInstanceName: { eq: ">>param1<<" }, extension: {eq: "mdx"}}
   ) {
 	nodes {
 	  childMdx {

@@ -7,14 +7,17 @@ category: parachains
 keywords:
 ---
 
-We'll begin by deploying [Parachain Template](https://github.com/substrate-developer-hub/substrate-parachain-template)
+## Overview
+
+We'll begin by deploying <ExternalLink url={`https://github.com/substrate-developer-hub/substrate-parachain-template`}>Parachain Template </ExternalLink>
 with Para ID `2000`. These instructions are written specifically for Para ID 2000.
 
 The `parachain-collator` binary used below comes from compiling the Parachain Template successfully.
 Refer to [Building the Parachain Template](en/1-prep/1-compiling?id=building-the-parachain-template)
 section for details.
 
-## Generate Parachain Genesis State
+## Steps 
+### 1. Generate Parachain Genesis State
 
 To register a parachain, the relay chain needs to know the parachain's genesis state. The collator
 node can export that state to a file for us. The following command will create a file containing the
@@ -24,7 +27,7 @@ parachain's entire genesis state, hex-encoded.
 parachain-collator export-genesis-state --parachain-id 2000 > para-2000-genesis
 ```
 
-## Obtain Wasm Runtime Validation Function
+### 2. Obtain Wasm Runtime Validation Function
 
 The relay chain also needs the parachain-specific runtime validation logic to validate
 parachain blocks. The collator node also has a command to produce this Wasm blob:
@@ -40,7 +43,7 @@ parachain-collator export-genesis-wasm > para-2000-wasm
 > This is for the _genesis_ block only. You cannot, at this time, connect a parachian with any
 > previous state to a relay chain. All parachains must start from block 0 on the relay chain.
 
-## Start the Collator Node
+### 3. Start the Collator Node
 
 We can now start the collator node with the following command. Notice that we need to supply the same
 relay chain spec we used when launching relay chain nodes, at the second half of the command.
@@ -78,7 +81,7 @@ Currently, a parachain node runs both a parachain collator (or full node) tightl
 There is presently no way to run a parachain node without the embedded relay chain node, but it is expected
 that this will become possible for non-collator nodes eventually.
 
-## Is It Working?
+### 4. Checking if it Works
 
 At this point your _collator's logs_ should look something like this:
 
@@ -128,3 +131,6 @@ At this point your _collator's logs_ should look something like this:
 You should see your collator node running (alone) and peering with the already
 running relay chain nodes. It has not start authoring parachain blocks yet.
 Authoring will begin when the collator is actually **registered on the relay chain**.
+
+## Next
+[ TODO ]

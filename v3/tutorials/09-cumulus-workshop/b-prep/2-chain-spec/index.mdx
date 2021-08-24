@@ -7,25 +7,38 @@ category: parachains
 keywords:
 ---
 
-You will need a chain specification (chain spec)
-for your relay chain network. You can use one that is included with this workshop, or create your own.
+## Overview
 
-> **Note**: Keep in mind to always have one or more relay chain validator node running than
-> your connected parachains. For example, if you want to connect two parachains, run three or more
-> relay chain validator nodes.
+You will need a chain specification ([chain spec](/v3/docs/toolchains/chain-specs))
+for your relay chain network. You can use one that is [included with this workshop](/0-files/chainspecs/rococo-custom-2-plain.json), or create your own.
+
+<Message
+  type={`yellow`}
+  title={`Important`}
+  text={`Keep in mind to always have one or more relay chain validator node running than
+  your connected parachains. For example, if you want to connect two parachains, run three or more
+  relay chain validator nodes.`}
+/>
 
 Whichever chain spec file you choose to use we will refer to the file simply as `chain-spec.json`
 in the instructions below. You will need to supply the proper path to the chain spec you are using.
 These _conventionally_ live in a `/res` folder that is published in your node's codebase for others to use. As an example:
 
-- Polkadot includes these **relay chain** chain spec files [here](https://github.com/paritytech/polkadot/tree/master/node/service/res)
-- Cumulus includes these **parachain** chain spec files [here](https://github.com/paritytech/cumulus/tree/master/polkadot-parachains/res)
+- Polkadot includes these **relay chain** chain spec files <ExternalLink url={`https://github.com/paritytech/polkadot/tree/master/node/service/res`}> here </ExternalLink>
+- Cumulus includes these **parachain** chain spec files <ExternalLink url={`https://github.com/paritytech/cumulus/tree/master/polkadot-parachains/res`}> here </ExternalLink>
 
-> If you intend to let others connect to your network, you should have the genesis Wasm and the
-> associated chain spec for your network generated once and distributed to your peers.
->
-> This stems from the [non-deterministic issue](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1)
-> in the way Wasm runtimes are compiled, at least for now.
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`If you intend to let others connect to your network, you should have the genesis Wasm and the
+associated chain spec for your network generated once and distributed to your peers.
+This stems from the [non-deterministic issue](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1\)
+in the way Wasm runtimes are compiled, at least for now.
+`}
+/> 
+
+## Steps 
+### 1. Chain Specification
 
 For just checking if things work, we suggest you use one of the [precompiled raw](#_1a-using-a-prebuilt-chain-spec)
 chain spec we have included for you. If you want to customize your network, jump to [Create Your Chain Spec](#_1b-create-your-own-chain-spec) section.
@@ -33,7 +46,7 @@ chain spec we have included for you. If you want to customize your network, jump
 In either case, if you use a **plain** chain spec (human readable) you want to convert it to a SCALE encoded **raw** chain spec to
 use when starting your nodes. Jump to the [Conversion](#_2-convert-to-raw-chain-spec) section to see how to do that.
 
-## Option 1: Using a Prebuilt Chain Spec
+#### Option 1: Using a Prebuilt Chain Spec
 
 This workshop contains three chain spec files that you can use **without modification** for a
 local test network:
@@ -67,14 +80,14 @@ These specs were created according to the steps in the next section. If you woul
 validators, or to customize the relay chain in some other ways, keep reading, otherwise
 [start your relay chain](en/2-relay-chain/1-launch) with a raw chain spec file.
 
-## Option 2: Create Your Own Chain Spec
+#### Option 2: Create Your Own Chain Spec
 
 As with any Substrate chains, you can always create your own chain spec file. It is generally best
 to start from an existing specification (option 1 above) to minimize chances of error. Once you are
 familiar with the overall flow, use the following steps to customize and generate your own chain
 specs.
 
-### Generate a Plain Chain Spec
+##### Generate a Plain Chain Spec
 
 ```bash
 # Create a base chain spec that we will modify
@@ -107,20 +120,20 @@ in other tutorials (Alice and Bob in the case of the `rococo-custom-plain.json` 
 }
 ```
 
-### Adjust the Chain Spec
+### 2. Adjust the Chain Spec
 
 Add your new authority's `AccountId` and `ValidatorId`.
 
 In this runtime configuration, both IDs are the same and are generated from the "stash" account. You
 can generate your own or inspect the
-[well-known development accounts](../../../v3/docs/toolchains/subkey#well-known-keys).
+[well-known development accounts](/v3/docs/toolchains/subkey#well-known-keys).
 
 The following commands demonstrate how the first part of the `palletSession` section inside the
 spec file can be reproduced. The second part is obtained similarly with `//Bob` and `//Bob//stash`.
 
 > All the keys and addresses needed can be generated using either:
 >
-> - The [`subkey` tool](../../../v3/docs/toolchains/subkey) (v2.0.1 and above for BEEFY keys)
+> - The [`subkey` tool](/v3/docs/toolchains/subkey) (v2.0.1 and above for BEEFY keys)
 > - The node `key` subcommand. (this can be your `polkadot` or `parachain-collator` binary, based on the latest substrate)
 
 Polkadot **validator authority** address for `//Alice//stash` (`sr25519` cryptography):
@@ -202,7 +215,7 @@ case of ECDSA keys (see [the note below](#ss58-encoding-of-key-vs-address) on wh
 Now that you have all the keys you need, append them in the `palletSession` section of you _plain_ spec file.
 You can either create new IDs or use other well known accounts following this same process.
 
-### Convert Plain to Raw Chain Spec
+### 3. Convert Plain to Raw Chain Spec
 
 Now that you've modified your chain spec, you can generate the final raw spec file.
 
@@ -217,7 +230,20 @@ You may get the output warning: `Took active validators from set with wrong size
 The resulting `chain-spec.json` will still be **perfectly usable**, you can ignore this warning for
 now.
 
-## Further Resources
+<Message
+  type={`green`}
+  title={`SS58 Encoding of Key vs. Address`}
+  text={`In the case of sr25519 and ed25519, the account ID matches its public key, hence SS58 encoded
+  account-id address is the same as SS58 public key encoding. In case of ECDSA, we apply blake2 algorithm to the public key to get the address (due to the size
+  difference between 33 vs 32 bytes), so the SS58 encoding is different. 
+  
+  Default serialization / deserialization implementation for public keys is using SS58 encoding,
+  hence every time we use public keys in encoded form we are going to need it's SS58 encoding. A
+  notable case is chain spec JSON file and encoding of session keys (most importantly BEEFY).
+  `}
+/>
+
+## Next steps
 
 The addition of custom session keys in the plain chain spec is not needed for **production chains**,
 as these are generated for you in the included chain spec files in `node/service/res` folder.
@@ -226,10 +252,7 @@ So if all you need to do is configure minor things off of a know base chain spec
 to set the information in `chain-spec.rs`, and generate the binary and finally use the CLI to generate
 your custom chain spec.
 
-### Chain Specification
-
-To learn more beyond what we did and more on what can be configured, check out the
-[**chain spec** KB article](../../../v3/docs/toolchains/chain-specs)
+[next steps TODO]
 
 <!--
 
@@ -259,14 +282,3 @@ worry about the details any more here.
 
 -->
 
-### SS58 Encoding of Key vs. Address
-
-In case of sr25519 and ed25519 crypto, the account ID matches its public key, hence SS58 encoded
-account-id address is the same as SS58 public key encoding.
-
-In case of ECDSA, we apply blake2 algorithm to the public key to get the address (due to the size
-difference between 33 vs 32 bytes), so the SS58 encoding is different.
-
-Default serialization / deserialization implementation for public keys is using SS58 encoding,
-hence every time we use public keys in encoded form we are going to need it's SS58 encoding. A
-notable case is chain spec JSON file and encoding of session keys (most importantly BEEFY).

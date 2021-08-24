@@ -7,6 +7,8 @@ category: parachains
 keywords:
 ---
 
+## Overview
+
 <!-- fIXME - docker for this is presently not maintained. this was simply copied from the compilation page. Needs to be updated to be used! -->
 
 If you intend to use this material for a live workshop you may shorten it by cutting steps off of
@@ -19,8 +21,8 @@ rococo testnet. See [Setting Up The Bootnode](../SettingUpTheBootnode.md) for no
 cloud-based relay chain.
 
 ---
-
-## Using the Docker Images
+## Steps
+### 1. Using the Docker Images
 
 > You may skip this step if you have built the nodes locally
 
@@ -31,7 +33,7 @@ building in the previous section.
 - `joshyorndorff/cumulus-workshop-parachain-collator` is the parachain node.
 
 Because these containers will need to communicate with each other, you will need to handle
-networking. [Networking in Docker](https://docs.docker.com/network/) is beyond the scope of this
+networking. <ExternalLink url={`https://docs.docker.com/network/`}>Networking in Docker</ExternalLink> is beyond the scope of this
 tutorial, and there are many valid options. I'll briefly describe one simple option here that will
 help many beginners get up and running fast.
 

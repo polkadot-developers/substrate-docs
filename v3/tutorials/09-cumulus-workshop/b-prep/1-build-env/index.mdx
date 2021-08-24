@@ -7,6 +7,8 @@ category: parachains
 keywords:
 ---
 
+## Overview
+
 This workshop covers the entire process of launching a relay chain, connecting parachains,
 transferring assets between chains, and developing your own parachain runtimes. Naturally, there
 will be some significant compiling if you intend to build everything yourself.
@@ -14,12 +16,13 @@ will be some significant compiling if you intend to build everything yourself.
 Compiling the Polkadot and parachain template nodes can be avoided if you prefer to use the
 Docker images.
 
-## Setup Local Development Environment
+## Steps 
+### 1. Setup Local Development Environment
 
-Follow the instructions here to [setup a local development environment](../../../v3/docs/getting-started/overview)
+Follow the instructions here to [setup a local development environment](/v3/docs/getting-started/overview)
 for Substrate.
 
-## Building the Polkadot Relay Chain Node
+### 2. Building the Polkadot Relay Chain Node
 
 Clone the Polkadot repository, and build the node. We are using a
 [specific git tag](/#versions-of-software) for this workshop. Perform these steps in your typical
@@ -46,10 +49,10 @@ If the help page is printed, you have succeeded in building a Polkadot node.
 
 For the rest of this workshop, we will refer to this binary simply as `polkadot`.
 
-## Building the Parachain Template
+### 3. Building the Parachain Template
 
-We will use the [**Parachain Template**](https://github.com/substrate-developer-hub/substrate-parachain-template)
-(similar to the [Node Template](https://github.com/substrate-developer-hub/substrate-node-template))
+We will use the <ExternalLink url={`https://github.com/substrate-developer-hub/substrate-parachain-template`}>Parachain Template </ExternalLink>
+(similar to the <ExternalLink url={`https://github.com/substrate-developer-hub/substrate-node-template)`}>Node Template </ExternalLink>
 to launch our first parachain and make cross-chain asset transfers. Later, we will
 use it as the starting point for developing our own parachains. Perform these steps in your typical
 workspace directory.
@@ -74,3 +77,6 @@ cargo build --release
 If the help page is printed, you have succeeded in building a Cumulus-based parachain collator.
 
 For the rest of this workshop we will refer to it simply as `parachain-collator`.
+
+## Next steps
+[todo]

@@ -7,12 +7,15 @@ category: parachains
 keywords:
 ---
 
+## Overview
+
 Before we can attach any cumulus-based parachains, we need to launch a relay chain to connect to.
 This page describes in detail how to start both nodes using the two-validator `rococo-custom-2-raw.json`
 chain spec that ships with this workshop as well as the general instructions for starting additional
 nodes.
 
-## Start Alice's Node
+## Steps
+### 1. Start Alice's Node
 
 ```bash
 # Start Relay `Alice` node
@@ -37,7 +40,7 @@ this:
 🏷 Local node identity is: 12D3KooWGjsmVmZCM1jPtVNp6hRbbkGBK3LADYNniJAKJ19NUYiq
 ```
 
-## Start Bob's Node
+### 2. Start Bob's Node
 
 ```bash
 polkadot \
@@ -56,7 +59,7 @@ Finally he has added a `--bootnodes` flag. This bootnodes flag is not strictly n
 running the entire network on a single local system, but it is necessary when operating over the
 network, so I've chosen to leave it in.
 
-## Starting Additional Validators (Optional)
+### 3. Starting Additional Validators (Optional)
 
 > If you are using the `rococo-custom-2-raw.json` spec, you do not need to start additional nodes.
 
@@ -75,5 +78,8 @@ polkadot \
 ```
 
 If your custom chain spec includes self-generated keys, see the
-[Substrate private network tutorial](../../../v3/tutorials/private-network/launch-custom-chain#add-keys-to-keystore)
+[Substrate private network tutorial](/v3/tutorials/private-network/launch-custom-chain#add-keys-to-keystore)
 for details on inserting these keys.
+
+## Next steps 
+- Reserve your Para ID
