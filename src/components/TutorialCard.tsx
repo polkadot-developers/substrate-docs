@@ -26,15 +26,23 @@ export default function TutorialCard({
 }: TutorialCardProps) {
   const tutImage = getImage(image)
   return (
-    <div className="w-80 md:w-96 mb-4 mx-3 rounded bg-substrateGray-light dark:bg-gray-900">
-      <GatsbyImage
-        className="h-24 md:h-60 object-cover rounded-t"
-        image={tutImage}
-        alt={`Tutorial Image`}
-      />
+    <div className="w-80 md:w-96 mb-8 mx-4 rounded bg-substrateGray-light dark:bg-gray-900">
+      <LocalizedLink to={link}>
+        <div className="inline-block overflow-hidden">
+          <GatsbyImage
+            className="block h-24 md:h-60 object-cover rounded-t transform transition-all duration-300 ease-in-out hover:scale-110"
+            image={tutImage}
+            alt={`Tutorial Image`}
+          />
+        </div>
+      </LocalizedLink>
+
       <div className="px-4">
         <div>
-          <h4 className="my-3 font-bold h-16">{title}</h4>
+          <LocalizedLink to={link}>
+            <h4 className="my-3 font-bold h-16">{title}</h4>
+          </LocalizedLink>
+
           <p className="mb-3 text-sm md:text-base h-16">{description}</p>
         </div>
         <div className="my-4">
@@ -68,7 +76,7 @@ export default function TutorialCard({
       </div>
       <div className="p-4">
         <LocalizedLink to={link}>
-          <button className="w-full lg:w-52 py-3 rounded bg-substrateDark hover:bg-opacity-80 text-white text-lg font-bold focus:outline-none">
+          <button className="w-full lg:w-52 py-3 rounded bg-substrateDark transform transition-all duration-300 ease-in-out hover:bg-opacity-80 text-white text-lg font-bold focus:outline-none">
             Try it now!
           </button>
         </LocalizedLink>

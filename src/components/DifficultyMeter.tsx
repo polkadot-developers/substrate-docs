@@ -10,7 +10,7 @@ export default function DifficultyMeter({ difficulty }: DifficultyMeterProps) {
     <>
       {difficulty === 'beginner' ? (
         <>
-          <span className="uppercase tracking-widest">
+          <span className="text-sm uppercase tracking-widest">
             {intl.formatMessage({ id: 'tutorials-beginner' })}
           </span>
           <div className="flex ml-4">
@@ -21,7 +21,7 @@ export default function DifficultyMeter({ difficulty }: DifficultyMeterProps) {
         </>
       ) : difficulty === 'intermediate' ? (
         <>
-          <span className="uppercase tracking-widest">
+          <span className="text-sm uppercase tracking-widest">
             {intl.formatMessage({ id: 'tutorials-intermediate' })}
           </span>
           <div className="flex ml-4">
@@ -32,7 +32,7 @@ export default function DifficultyMeter({ difficulty }: DifficultyMeterProps) {
         </>
       ) : difficulty === 'advance' ? (
         <>
-          <span className="uppercase tracking-widest">
+          <span className="text-sm uppercase tracking-widest">
             {intl.formatMessage({ id: 'tutorials-advance' })}
           </span>
           <div className="flex ml-4">
