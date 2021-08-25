@@ -15,9 +15,15 @@ https://github.com/.*
 #   In the content, we shouldn't link to the domain name
 #   This ignore-rule ignore links generated in our gatsby logic starting w.
 #   https://docs.substrate.io
+#
 https://docs.substrate.io(/.*)?
 
-# `linkcheck` doesn't know how to check the following anchors, as they are not really a link anchor,
-#  but parameters of webapp logics.
-https://matrix.to/#/.*
-https://polkadot.js.org/apps/.*#/.*
+# www.substrate.io doesn't exist yet
+#
+https://www.substrate.io(/.*)?
+
+# `linkcheck` will report warning on the following anchors, because these pages doesn't
+# really have these anchors, but used as part of the webapp rendering logics.
+#
+# https://matrix.to/#/.*
+# https://polkadot.js.org/apps/.*#/.*
