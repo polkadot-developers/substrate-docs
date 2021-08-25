@@ -14,7 +14,13 @@ export default function SearchDocs() {
     htgs: false,
   })
   const types = ['Docs', 'Tutorials', 'How-to Guides']
-  const suggestedTerms = ['Runtime', 'Storage', 'FRAME', 'Weights']
+  const suggestedTerms = [
+    'Runtime',
+    'Storage',
+    'FRAME',
+    'Weights',
+    'Pallet Design',
+  ]
   const sectionNames = {
     docs: 'docs',
     tuts: 'tutorials',
@@ -118,7 +124,7 @@ export default function SearchDocs() {
           >
             <div
               ref={ref}
-              className="bg-white dark:bg-gray-900 w-full max-w-screen-sm h-auto pt-12 pb-20 px-8 rounded-lg border-2 border-substrateDark shadow-xl"
+              className="bg-white dark:bg-gray-900 w-full max-w-screen-sm h-auto py-10 px-8 rounded-lg border-2 border-substrateDark shadow-xl"
             >
               <div className="flex justify-between mb-6">
                 <div className="flex items-center justify-between w-5/6 pb-0.5 border-b-2 border-substrateGray">
@@ -182,7 +188,7 @@ export default function SearchDocs() {
                 >
                   {displayedResults.length} RESULTS
                 </div>
-                <div className="h-80 overflow-auto">
+                <div className="overflow-y-auto overscroll-contain h-[400px]">
                   {query.length === 0 ? (
                     <div>
                       {suggestedTerms.map((term, index) => (
@@ -200,7 +206,7 @@ export default function SearchDocs() {
                       ))}
                     </div>
                   ) : (
-                    <div className="overflow-auto">
+                    <div>
                       {searchResults.length > 0 ? (
                         <div>
                           {displayedResults.map((result, index) => {

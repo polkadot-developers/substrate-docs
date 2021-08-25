@@ -45,7 +45,7 @@ export default function SearchResult({
       ) : (
         <LocalizedLink to={slug}>
           <div
-            className={`group px-4 pt-2 pb-3 mb-2 bg-substrateGray dark:bg-gray-700  rounded animate-fade-in-down ${
+            className={`group px-4 pt-2 pb-3 mr-3 mb-2 bg-substrateGray dark:bg-gray-700  rounded animate-fade-in-down ${
               error
                 ? ''
                 : `group-hover:font-bold group-hover:text-white hover:bg-substrateGreen`
