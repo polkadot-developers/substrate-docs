@@ -49,50 +49,52 @@ export default function Footer() {
           </Link>
         </div>
         <nav className="p-0 m-0 hidden sm:block lg:w-full lg:max-w-screen md:h-auto">
-          {navItems.map((section, index) => {
-            return (
-              <div
-                className="pb-4 w-1/2 sm:w-40 sm:w-full sm:flex sm:items-start text-base sm:text-lg"
-                key={index}
-              >
-                <span className="block mb-4 font-semibold text-substrateGreen sm:w-28 leading-relaxed -mt-0.5">
-                  {section.name}
-                </span>
-                <ul className="m-0 list-none ml-0 sm:ml-7 sm:flex sm:flex-wrap sm:w-full text-sm sm:text-base">
-                  {section.subMenu.map((item, index) => {
-                    const itemStyles =
-                      'm-0 underline-anchor pb-4 sm:mr-6 leading-relaxed'
-                    if (item.items) {
+          <ul className="m-0 list-none">
+            {navItems.map((section, index) => {
+              return (
+                <li
+                  className="m-0 pb-4 w-1/2 sm:w-full sm:flex sm:items-start text-base sm:text-lg"
+                  key={index}
+                >
+                  <span className="block mb-4 font-semibold text-substrateGreen sm:w-28 leading-relaxed">
+                    {section.name}
+                  </span>
+                  <ul className="m-0 p-0 list-none ml-0 sm:ml-7 sm:flex sm:flex-wrap sm:w-full text-sm sm:text-base sm:mt-0.5">
+                    {section.subMenu.map((item, index) => {
+                      const itemStyles =
+                        'p-0 m-0 underline-anchor pb-4 sm:mr-6 leading-relaxed'
+                      if (item.items) {
+                        return (
+                          <Fragment key={index}>
+                            {item.items.map((each, index) => {
+                              return (
+                                <div className={itemStyles} key={index}>
+                                  <FooterNavItem
+                                    external={each.external}
+                                    link={each.link}
+                                    title={each.linkTitle}
+                                  />
+                                </div>
+                              )
+                            })}
+                          </Fragment>
+                        )
+                      }
                       return (
-                        <Fragment key={index}>
-                          {item.items.map((each, index) => {
-                            return (
-                              <div className={itemStyles} key={index}>
-                                <FooterNavItem
-                                  external={each.external}
-                                  link={each.link}
-                                  title={each.linkTitle}
-                                />
-                              </div>
-                            )
-                          })}
-                        </Fragment>
+                        <div className={itemStyles} key={index}>
+                          <FooterNavItem
+                            external={item.external}
+                            link={item.link}
+                            title={item.linkTitle}
+                          />
+                        </div>
                       )
-                    }
-                    return (
-                      <div className={itemStyles} key={index}>
-                        <FooterNavItem
-                          external={item.external}
-                          link={item.link}
-                          title={item.linkTitle}
-                        />
-                      </div>
-                    )
-                  })}
-                </ul>
-              </div>
-            )
-          })}
+                    })}
+                  </ul>
+                </li>
+              )
+            })}
+          </ul>
         </nav>
       </div>
       <div className="h-auto pb-6 md:flex md:flex-row-reverse md:justify-between md:items-center">
