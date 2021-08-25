@@ -22,12 +22,12 @@ export default function Footer() {
   `)
   const navItems = MainNav.global()
   return (
-    <footer className="w-full px-6 xl:px-12 2xl:px-28 bg-substrateDark text-whitef font-body">
+    <footer className="w-full px-4 xl:px-12 bg-substrateDark text-white font-body">
       <div className="lg:flex lg:flex-row-reverse lg:justify-between lg:pt-12 lg:pb-3 border-b-2 border-gray-600">
-        <div className="w-44 lg::h-7 relative py-12 lg:p-0 transform transition-all duration-300 ease-in-out hover:opacity-50">
+        <div className="w-52 lg:h-7 relative py-12 lg:p-0 transform transition-all duration-300 ease-in-out hover:opacity-50">
           <Link to="/">
             <svg
-              className={`fill-current text-white lg:w-44`}
+              className={`fill-current text-white`}
               data-name="Layer 1"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 419.75 58.11"
@@ -48,53 +48,51 @@ export default function Footer() {
             </svg>
           </Link>
         </div>
-        <nav>
-          <div className="h-[600px] lg:w-full lg:max-w-screen md:h-auto flex flex-col flex-wrap lg:flex-row">
-            {navItems.map((section, index) => {
-              return (
-                <div
-                  className={`pb-4 w-1/2 sm:w-40 md:w-full md:flex md:items-start`}
-                  key={index}
-                >
-                  <span className="block text-base md:text-lg mb-4 font-semibold text-substrateGreen md:w-28">
-                    {section.name}
-                  </span>
-                  <ul className="list-none ml-0 md:ml-7 md:mt-0.5 md:flex md:flex-wrap md:w-full">
-                    {section.subMenu.map((item, index) => {
-                      const itemStyles =
-                        'underline-anchor text-sm md:text-base pb-4 md:mr-6'
-                      if (item.items) {
-                        return (
-                          <Fragment key={index}>
-                            {item.items.map((each, index) => {
-                              return (
-                                <div className={itemStyles} key={index}>
-                                  <FooterNavItem
-                                    external={each.external}
-                                    link={each.link}
-                                    title={each.linkTitle}
-                                  />
-                                </div>
-                              )
-                            })}
-                          </Fragment>
-                        )
-                      }
+        <nav className="p-0 m-0 hidden sm:block lg:w-full lg:max-w-screen md:h-auto">
+          {navItems.map((section, index) => {
+            return (
+              <div
+                className="pb-4 w-1/2 sm:w-40 sm:w-full sm:flex sm:items-start text-base sm:text-lg"
+                key={index}
+              >
+                <span className="block mb-4 font-semibold text-substrateGreen sm:w-28 leading-relaxed -mt-0.5">
+                  {section.name}
+                </span>
+                <ul className="m-0 list-none ml-0 sm:ml-7 sm:flex sm:flex-wrap sm:w-full text-sm sm:text-base">
+                  {section.subMenu.map((item, index) => {
+                    const itemStyles =
+                      'm-0 underline-anchor pb-4 sm:mr-6 leading-relaxed'
+                    if (item.items) {
                       return (
-                        <div className={itemStyles} key={index}>
-                          <FooterNavItem
-                            external={item.external}
-                            link={item.link}
-                            title={item.linkTitle}
-                          />
-                        </div>
+                        <Fragment key={index}>
+                          {item.items.map((each, index) => {
+                            return (
+                              <div className={itemStyles} key={index}>
+                                <FooterNavItem
+                                  external={each.external}
+                                  link={each.link}
+                                  title={each.linkTitle}
+                                />
+                              </div>
+                            )
+                          })}
+                        </Fragment>
                       )
-                    })}
-                  </ul>
-                </div>
-              )
-            })}
-          </div>
+                    }
+                    return (
+                      <div className={itemStyles} key={index}>
+                        <FooterNavItem
+                          external={item.external}
+                          link={item.link}
+                          title={item.linkTitle}
+                        />
+                      </div>
+                    )
+                  })}
+                </ul>
+              </div>
+            )
+          })}
         </nav>
       </div>
       <div className="h-auto pb-6 md:flex md:flex-row-reverse md:justify-between md:items-center">
