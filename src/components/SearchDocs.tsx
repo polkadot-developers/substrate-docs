@@ -65,26 +65,26 @@ export default function SearchDocs() {
     let results = searchForQuery(index, store, processQuery(query))
     if (results.length == 0) {
       results = searchForQuery(index, store, `${query}*`)
-    } else {
-      setSearchResults(results)
     }
+    setSearchResults(results)
   }, [query])
 
   useEffect(() => {
     const selectedSections = Object.entries(section)
       .filter(([, val]) => val)
       .map(([key]) => key)
+
+    if (selectedSections.length === 0) {
+      return setDisplayedResults(searchResults)
+    }
+
     const selectedSectionNames = Object.entries(sectionNames)
       .filter(([key]) => selectedSections.indexOf(key) >= 0)
       .map(([, val]) => val)
-    if (selectedSectionNames.length === 0) {
-      setDisplayedResults(searchResults)
-    } else {
-      const filteredResults = searchResults.filter(
-        result => selectedSectionNames.indexOf(result.section) >= 0
-      )
-      setDisplayedResults(filteredResults)
-    }
+    const filteredResults = searchResults.filter(
+      result => selectedSectionNames.indexOf(result.section) >= 0
+    )
+    setDisplayedResults(filteredResults)
   }, [searchResults, section])
 
   return (
