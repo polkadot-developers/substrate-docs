@@ -19,27 +19,37 @@ difficulty: 1
     "
 />
 
-## Goal
-
-Understand how to calculate transaction weights for a basic dispatch function.
-
-## Use cases
-
-- Assign the correct weight before a function call to storage.
-- Calculate transaction fees.
-
-## Overview
-
-Weights are an important part of Substrate development as they provide information about what the maximum cost a function can be in terms of the block size it will take up. This way, the [weighting system][weights-kb] checks what the cost will be before a function is executed. As runtime engineers, we care a lot about weights. Not only do they help add security checks around the functions we create, but they also force us to think about the computational ressources consumed by a transaction. From that, we can figure out [what fees to charge][fees-kb] users.
-
-This guide will cover how to calculate the maximum weight for a dispatch call; calculate the actual weight after execution; and
-reimburse the difference.
-
-Here's an overview of the traits we'll be implementing:
-
-- [`PaysFee`][paysfee-rustdocs]: to specify whether or not a dispatch pays the fee.
-- [`GetDispatchInfo`][get-dispatchinfo-rustdocs]: carries weight information using the `#[weight]` attribute.
-- [`DispatchResultWithPostInfo`][get-postdispatchinfo-rustdocs]: provides new weight info once the extrinsic function has been executed.
+<Objectives
+  data={[
+    {
+      title: 'Goal',
+      description: 'Understand how to calculate transaction weights for a basic dispatch function.',
+    },
+    {
+      title: 'Use Cases',
+      description:
+        `- Assign the correct weight before a function call to storage.
+         - Calculate transaction fees.`,
+    },
+    {
+      title: 'Overview',
+      description:
+        `Weights are an important part of Substrate development as they provide information about what the maximum cost a function can 
+        be in terms of the block size it will take up. This way, the [weighting system](https://substrate.dev/docs/en/knowledgebase/learn-substrate/weight) 
+        checks what the cost will be before 
+        a function is executed. As runtime engineers, we care a lot about weights. Not only do they help add security checks around the 
+        functions we create, but they also force us to think about the computational ressources consumed by a transaction. From that, we 
+        can figure out [what fees to charge](https://substrate.dev/docs/en/knowledgebase/runtime/fees) users.
+        This guide will cover how to calculate the maximum weight for a dispatch call; calculate the actual weight after execution; and
+        reimburse the difference.
+        Here's an overview of the traits we'll be implementing:
+        - [\`PaysFee\`](/rustdocs/latest/frame_support/weights/trait.PaysFee.html): to specify whether or not a dispatch pays the fee.
+        - [\`GetDispatchInfo\`](/rustdocs/latest/frame_support/weights/trait.GetDispatchInfo.html): carries weight information using the \`#[weight]\` attribute.
+        - [\`DispatchResultWithPostInfo\`](/rustdocs/latest/frame_support/dispatch/type.DispatchResultWithPostInfo.html): provides new weight info once the extrinsic function has been executed.
+	    `,
+    },
+  ]}
+/>
 
 ## Steps
 
@@ -112,10 +122,5 @@ Ok(Pays::Yes.into())
     Polkadot's Transaction Fees{' '}
   </ExternalLink>
 
-[weights-kb]: https://substrate.dev/docs/en/knowledgebase/learn-substrate/weight
-[fees-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/fees
-[paysfee-rustdocs]: /rustdocs/latest/frame_support/weights/trait.PaysFee.html
-[get-dispatchinfo-rustdocs]: /rustdocs/latest/frame_support/weights/trait.GetDispatchInfo.html
-[get-postdispatchinfo-rustdocs]: /rustdocs/latest/frame_support/dispatch/type.DispatchResultWithPostInfo.html
 [pays-rustdocs]: /rustdocs/latest/frame_support/weights/enum.Pays.html
 [dbweight-rustdocs]: /rustdocs/latest/frame_system/pallet/trait.Config.html#associatedtype.DbWeight

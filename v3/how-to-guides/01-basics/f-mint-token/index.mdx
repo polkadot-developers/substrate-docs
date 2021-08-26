@@ -22,18 +22,29 @@ difficulty: 1
 	"
 />
 
-## Goal
-
-Create a simple token mint pallet.
-
-## Use cases
-
-Give any account the ability to create a token supply in exchange for native token fee.
-
-## Overview
-
-This guide will step you through an effective way to mint a token by leveraging the primitive capabilities that
-[StorageMap][storagemap-rustdocs] gives us. To achieve this, this "primitive" approach uses the [blake2_128_concat][blake2-128-concat-rustdocs] `hasher` to map balances to account IDs, similar to how the [Balances][balances-frame] pallet makes use of it to store and keep track of account balances.
+<Objectives
+  data={[
+    {
+      title: 'Goal',
+      description: 'Create a simple token mint pallet.',
+    },
+    {
+      title: 'Use Cases',
+      description:
+        `Give any account the ability to create a token supply in exchange for native token fee.`,
+    },
+    {
+      title: 'Overview',
+      description:
+        `This guide will step you through an effective way to mint a token by leveraging the primitive capabilities that
+		 [StorageMap](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) gives us. To achieve this, this "primitive" 
+		 approach uses the [blake2_128_concat](https://substrate.dev/docs/en/knowledgebase/runtime/storage#hashing-algorithms) 
+		 \`hasher\` to map balances to account IDs, similar to how the [Balances][balances-frame] pallet makes use of it to store 
+		 and keep track of account balances.
+	    `,
+    },
+  ]}
+/>
 
 ## Steps
 
@@ -182,8 +193,6 @@ Refer to [this guide](./pallet-integration) if you’re not yet familiar with th
 
 - [Deposit event method][deposit-event-rustdocs]
 
-[storagemap-rustdocs]: /rustdocs/latest/frame_support/storage/trait.StorageMap.html
-[blake2-128-concat-rustdocs]: https://substrate.dev/docs/en/knowledgebase/runtime/storage#hashing-algorithms
 [balances-frame]: https://substrate.dev/docs/en/knowledgebase/runtime/frame#balances
 [events-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/events
 [deposit-event-rustdocs]: /rustdocs/latest/frame_system/pallet/struct.Pallet.html#method.deposit_event

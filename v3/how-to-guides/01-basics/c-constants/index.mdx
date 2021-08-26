@@ -7,23 +7,28 @@ section: how to guides
 category: basics
 difficulty: 1
 ---
-
-## Goal
-
-Define a runtime constant value that becomes reset on `on_finalize`.
-
-## Use cases
-
-Use a constant to keep track of the amount of times a function is called during a single block cycle.
-
-## Overview
-
-Declaring a constant value in a runtime is a useful tool to either define fixed values or define values that change dynamically
-according to some factor. This guide steps through the process of creating pallet constants that are used to reset a `u32`
-value in storage. This value, we'll call `SingleValue`, can also be modified using a method called `add_value`.
-
-The purpose of this guide is to demonstrate the utiltiy of configuring constants by hardcoding them as well as making them more
-dynamic.
+<Objectives
+  data={[
+    {
+      title: 'Goal',
+      description: 'Define a runtime constant value that becomes reset on `on_finalize`.',
+    },
+    {
+      title: 'Use Cases',
+      description:
+        `Use a constant to keep track of the amount of times a function is called during a single block cycle.`,
+    },
+    {
+      title: 'Overview',
+      description:
+        `Declaring a constant value in a runtime is a useful tool to either define fixed values or define values that change dynamically
+         according to some factor. This guide steps through the process of creating pallet constants that are used to reset a \`u32\`
+         value in storage. This value, we'll call \`SingleValue\`, can also be modified using a method called \`add_value\`.
+         The purpose of this guide is to demonstrate the utility of configuring constants by hardcoding them as well as making them more
+         dynamic.`,
+    },
+  ]}
+/>
 
 ## Steps
 
