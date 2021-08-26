@@ -1,37 +1,36 @@
 import React from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
 
 interface FastTrackPlaygroundProps {
-  title: string
   description: string
   playgroundLink: string
   header: string
 }
 
 export function FastTrackPlayground({
-  title,
   header,
   description,
   playgroundLink,
 }: FastTrackPlaygroundProps) {
   return (
     <>
-      <div className="max-w-sm rounded bg-substrateGray-light">
-        <div className="px-6 py-3 rounded-t-lg bg-substrateGreen">
-          <span className="text-sm text-white font-bold dark:text-black">
+      <div className="hidden lg:inline-block ml-16 float-right max-w-xs rounded bg-substrateGray-light shadow-lg">
+        <div className="py-3 px-6 rounded-t-lg bg-substrateGreen">
+          <div className="text-lg text-white font-bold dark:text-black">
             {header}
-          </span>
+          </div>
         </div>
-        <div className="px-6 pb-4">
-          <h3>{title}</h3>
-          <p className="pb-2">{description}</p>
-          <LocalizedLink className="mx-auto" to={playgroundLink}>
-            <div className="flex items-center justify-center w-full h-14 rounded bg-substrateDark transform transition duration-300 ease-in-out hover:bg-opacity-90">
-              <button className="text-lg text-white font-bold focus:outline-none">
-                Set up Playground
-              </button>
-            </div>
-          </LocalizedLink>
+        <div className="p-6">
+          <p className="mb-0 pb-6">{description}</p>
+          <a
+            href={playgroundLink}
+            className="md-button"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <button className="bg-substrateDark py-3 w-full rounded text-lg text-white font-bold transform transition-all duration-300 ease-in-out hover:bg-opacity-90">
+              Set up Playground
+            </button>
+          </a>
         </div>
       </div>
     </>
