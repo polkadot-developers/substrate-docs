@@ -1,6 +1,6 @@
 ---
 title: Interacting with Your Node
-slug: /v3/tutorials/create-your-first-substrate-chain/interact
+slug: /tutorials/v3/create-your-first-substrate-chain/interact
 version: 3.0 
 section: tutorials
 category: substrate chain
@@ -22,7 +22,7 @@ Run the following command to start your node:
 
 Note the flags:
 
-- `--dev` this sets up a developer node [chain specification](/v3/docs/toolchains/chain-specs)
+- `--dev` this sets up a developer node [chain specification](/docs/v3/toolchains/chain-specs)
 - `--tmp` this saves all active data for the node (keys, blockchain database, networking info, ...)
   and is deleted as soon as you properly terminate your node (using <kbd>ctrl</kbd>+<kbd>c</kbd>). So every time you start with this command, you will have a clean state to work from. If the node is killed, `/tmp` is cleaned automatically on the restart of your
   computer for linux based OSs, and these files can manually be removed if needed.
@@ -71,7 +71,7 @@ A few notes on the example output above:
 - `💾 Database: RocksDb at /tmp/substrateP1jD7H/chains/dev/db` : where chain data is being written
 - `🏷 Local node identity is: 12D3KooWQdU84EJCqDr4aqfhb7dxXU2fzd6i2Rn1XdNtsiM5jvEC`: the node ID
   needed if you intend to connect to other nodes directly (more in the
-  [private network tutorial](/v3/tutorials/private-network))
+  [private network tutorial](/tutorials/v3/private-network))
 
 <Message
   type={`green`}
@@ -115,7 +115,7 @@ an account selector that will let you control the account you use to perform on-
 ![Chain Data & Account Selector](../../../../src/images/tutorials/01-create-your-first-chain/chain-data.png)
 
 There is also a table that lists
-[the well-known test accounts](/v3/docs/toolchains/subkey#well-known-keys) that you have
+[the well-known test accounts](/docs/v3/toolchains/subkey#well-known-keys) that you have
 access to. Some, like Alice and Bob, already have funds!
 
 ![Account Table](../../../../src/images/tutorials/01-create-your-first-chain/accts-prefunded.png)
@@ -135,7 +135,7 @@ the transfer is processed.
 The Front-End Template exposes many helpful features and you should explore all of them while you're
 connected to a local development node. One good way to get started is by clicking the "Show
 Metadata" button at the top of the template page and reviewing
-[the metadata that your runtime exposes](/v3/docs/runtime/metadata).
+[the metadata that your runtime exposes](/docs/v3/runtime/metadata).
 
 ![Metadata JSON](../../../../src/images/tutorials/01-create-your-first-chain/metadata.png)
 
@@ -147,20 +147,20 @@ a Substrate runtime.
 
 ![Pallet Interactor & Events](../../../../src/images/tutorials/01-create-your-first-chain/interactor-events.png)
 
-[Extrinsics](/v3/docs/concepts/extrinsics) are the runtime's callable functions;
+[Extrinsics](/docs/v3/concepts/extrinsics) are the runtime's callable functions;
 if you are already familiar with blockchain concepts, you can think of them as transactions for now.
 The Pallet Interactor allows you to submit
-[unsigned](/v3/docs/concepts/extrinsics#unsigned-transactions) or
-[signed](/v3/docs/concepts/extrinsics#signed-transactions) extrinsics and also
+[unsigned](/docs/v3/concepts/extrinsics#unsigned-transactions) or
+[signed](/docs/v3/concepts/extrinsics#signed-transactions) extrinsics and also
 provides a button that makes it easy to invoke an extrinsic by way of
 [the `sudo` function from the Sudo pallet](/rustdocs/latest/pallet_sudo/enum.Call.html#variant.sudo).
 You can learn more about using the "SUDO" button to invoke privileged extrinsics in the [Add a Pallet](../../add-a-pallet) tutorial.
 
 You can select Query interactions to read
-[the values present in your runtime's storage](/v3/docs/runtime/storage). The RPC and
+[the values present in your runtime's storage](/docs/v3/runtime/storage). The RPC and
 Constant options provide additional mechanisms for runtime interaction.
 
-Like many blockchains, Substrate chains use [events](/v3/docs/runtime/events) to report
+Like many blockchains, Substrate chains use [events](/docs/v3/runtime/events) to report
 the results of asynchronous operations. If you have already used the Front-End Template to perform a
 balance transfer as described above, you should see an event for the transfer in the Event component
 next to the Pallet Interactor.

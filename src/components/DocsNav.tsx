@@ -59,7 +59,7 @@ export default function DocsNav({
         >
           <LocalizedLink
             className="flex justify-start items-center pl-4 py-4 text-black dark:text-white hover:text-substrateDark"
-            to={templateId === 1 ? '/v3/tutorials' : '/'}
+            to={templateId === 1 ? '/tutorials' : '/'}
           >
             <svg
               className="fill-current text-substrateDark dark:text-white"
