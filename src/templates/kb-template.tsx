@@ -40,12 +40,14 @@ const DocsTemplate = ({ data, pageContext }: any) => {
             <div>
               <div>
                 {data.mdx ? (
-                  <div className="pt-10">
-                    <VersionControl
-                      version={version}
-                      slug={slug}
-                      absolutePath={data.mdx.fileAbsolutePath}
-                    />
+                  <div>
+                    <div className={`py-8`}>
+                      <VersionControl
+                        version={version}
+                        slug={slug}
+                        absolutePath={data.mdx.fileAbsolutePath}
+                      />
+                    </div>
                     <div className="markdown-body mdx-anchor">
                       <h1>{data.mdx.frontmatter.title}</h1>
                       <MDXRenderer>{data.mdx.body}</MDXRenderer>

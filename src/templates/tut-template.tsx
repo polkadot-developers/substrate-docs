@@ -44,7 +44,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
                     <div
                       className={`py-8 ${
                         data.mdx.frontmatter.difficulty &&
-                        'flex justify-between'
+                        'flex justify-between items-center'
                       }`}
                     >
                       {data.mdx.frontmatter.difficulty && (
