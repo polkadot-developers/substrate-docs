@@ -5,7 +5,7 @@ import { LocalizedLink } from 'gatsby-theme-i18n'
 
 interface PlaygroundCardProps {
   icon: any
-  difficulty: string
+  difficulty: number
   title: string
   description: string
   tutData: { name: string; link: string }[]

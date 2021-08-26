@@ -38,12 +38,33 @@ const DocsTemplate = ({ data, pageContext }: any) => {
             <div>
               <div>
                 {data.mdx ? (
-                  <div className="pt-10">
-                    <VersionControl
-                      version={version}
-                      slug={slug}
-                      absolutePath={data.mdx.fileAbsolutePath}
-                    />
+                  <div>
+                    <div
+                      className={`py-8 ${
+                        data.mdx.frontmatter.difficulty &&
+                        'flex justify-between'
+                      }`}
+                    >
+                      {data.mdx.frontmatter.difficulty && (
+                        <div className="inline-block text-xs">
+                          <button className="bg-substrateBlue bg-opacity-5 px-4 py-2 border border-substratePurple border-opacity-30 rounded cursor-text">
+                            {data.mdx.frontmatter.difficulty === 1
+                              ? 'Beginner'
+                              : data.mdx.frontmatter.difficulty === 2
+                              ? 'Intermediate'
+                              : data.mdx.frontmatter.difficulty === 3
+                              ? 'Advanced'
+                              : null}
+                          </button>
+                        </div>
+                      )}
+                      <VersionControl
+                        version={version}
+                        slug={slug}
+                        absolutePath={data.mdx.fileAbsolutePath}
+                      />
+                    </div>
+
                     <div className="markdown-body mdx-anchor">
                       <h1>{data.mdx.frontmatter.title}</h1>
                       <MDXRenderer>{data.mdx.body}</MDXRenderer>
@@ -117,6 +138,7 @@ export const query = graphql`
         slug
         title
         hideNav
+        difficulty
       }
       body
       headings {
@@ -134,6 +156,7 @@ export const query = graphql`
         slug
         title
         hideNav
+        difficulty
       }
       body
       headings {

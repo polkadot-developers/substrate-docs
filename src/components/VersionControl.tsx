@@ -20,7 +20,7 @@ export default function VersionControl({
   //   setPathName(str)
   // })
   return (
-    <div className="flex items-center justify-end">
+    <div className="hidden lg:flex lg:items-center lg:justify-end">
       <div
         // onClick={() => setIsComponentVisible(!isComponentVisible)}
         className="relative flex items-center justify-end text-sm"

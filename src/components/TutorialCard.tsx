@@ -8,7 +8,7 @@ interface TutorialCardProps {
   image: any
   description: string
   time: string
-  difficulty: string
+  difficulty: number
   prerequisites: boolean
   version: string
   link: string
