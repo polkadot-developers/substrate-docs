@@ -8,7 +8,11 @@ import DocsSideBar from '../components/DocsSideBar'
 import DocsNav from '../components/DocsNav'
 import VersionControl from '../components/VersionControl'
 import LastUpdateGithub from '../components/LastUpdateGithub'
-import { BottomButtons, Message } from '../components/DocsComponents'
+import {
+  BottomButtons,
+  Message,
+  RelevantSkills,
+} from '../components/DocsComponents'
 import navMenu from '../components/DevNavMenu'
 
 const DocsTemplate = ({ data, pageContext }: any) => {
@@ -83,6 +87,11 @@ const DocsTemplate = ({ data, pageContext }: any) => {
 
                     <div className="markdown-body mdx-anchor">
                       <h1>{data.mdx.frontmatter.title}</h1>
+                      {data.mdx.frontmatter.relevantSkills && (
+                        <RelevantSkills
+                          data={data.mdx.frontmatter.relevantSkills}
+                        />
+                      )}
                       <MDXRenderer>{data.mdx.body}</MDXRenderer>
                     </div>
                   </div>
@@ -156,6 +165,7 @@ export const query = graphql`
         hideNav
         difficulty
         duration
+        relevantSkills
       }
       body
       headings {
@@ -175,6 +185,7 @@ export const query = graphql`
         hideNav
         difficulty
         duration
+        relevantSkills
       }
       body
       headings {
