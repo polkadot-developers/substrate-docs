@@ -150,6 +150,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-meta-redirect`,
     `gatsby-plugin-twitter`,
     {
       resolve: `gatsby-theme-i18n`,
