@@ -5,22 +5,31 @@ keywords: pallet design, currency, intermediate, runtime
 version: 3.0 
 section: how to guides
 category: pallet design
+difficulty: 2
 ---
 
-## Goal
-
-Write a pallet that allows users to lock funds.
-
-## Use cases
-
-- Staking
-- Conviction voting
-
-## Overview
-
-The [`LockableCurrency`][lockable-rustdocs] trait can be very useful in the context of economic systems that enforce accountability by collateralizing fungible resources.
-Substrate's [staking pallet][staking-frame] makes use of the same trait to handle locked funds in time-based increments. In
-this guide, we will make use of it in our own custom pallet.
+<Objectives
+  data={[
+    {
+      title: 'Goal',
+      description: 'Write a pallet that allows users to lock funds.',
+    },
+    {
+      title: 'Use Cases',
+      description:
+        `- Staking
+		- Conviction voting`,
+    },
+    {
+      title: 'Overview',
+      description:
+        `The [\`LockableCurrency\`](/rustdocs/latest/frame_support/traits/trait.LockableCurrency.html) trait can be very useful in the context of economic systems that enforce accountability by collateralizing fungible resources.
+		Substrate's [staking pallet](/rustdocs/latest/pallet_staking/index.html) makes use of the same trait to handle locked funds in time-based increments. In
+		this guide, we will make use of it in our own custom pallet.
+		`,
+    },
+  ]}
+/>
 
 ## Steps
 
@@ -145,6 +154,5 @@ Call the `remove_lock()` method from `Currency`:
 - [LockableCurrency][lockable-rustdocs]
 - [LockIdentifier][lockidentifier-rustdocs]
 
-[staking-frame]: /rustdocs/latest/pallet_staking/index.html
 [lockable-rustdocs]: /rustdocs/latest/frame_support/traits/trait.LockableCurrency.html
 [lockidentifier-rustdocs]: /rustdocs/latest/frame_support/traits/type.LockIdentifier.html

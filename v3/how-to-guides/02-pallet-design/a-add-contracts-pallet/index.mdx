@@ -19,21 +19,29 @@ difficulty: 1
     "
 />
 
-## Goal
-
-Add the Contracts pallet to your runtime to be able to use Wasm smart contracts in your blockchain.
-
-## Use cases
-
-- Smart Contract development
-- On-chain execution of Wasm binaries
-
-## Overview
-
-This guide will show you how you can add the [Contracts pallet][contracts-frame] to your runtime in order to allow your blockchain
-to support Wasm smart contracts. You can follow similar patterns to add additional FRAME pallets to your runtime,
-however you should note that each pallet is a little different in terms of the specific configuration settings
-needed to use it correctly.
+<Objectives
+  data={[
+    {
+      title: 'Goal',
+      description: 'Add the Contracts pallet to your runtime to be able to use Wasm smart contracts in your blockchain.',
+    },
+    {
+      title: 'Use Cases',
+      description:
+        `- Smart Contract development
+         - On-chain execution of Wasm binaries`,
+    },
+    {
+      title: 'Overview',
+      description:
+        `This guide will show you how you can add the [Contracts pallet](/rustdocs/latest/pallet_contracts/) to your runtime in order to allow your blockchain
+        to support Wasm smart contracts. You can follow similar patterns to add additional FRAME pallets to your runtime,
+        however you should note that each pallet is a little different in terms of the specific configuration settings
+        needed to use it correctly.
+        `,
+    },
+  ]}
+/>
 
 ## Steps
 
@@ -52,7 +60,7 @@ Now you'll have to implement the Contract's pallet [configuration traits][contra
 
 #### Implement `pallet_contracts`
 
-Start by making sure you've included all of the types that `pallet_contracts` exposes. You can copy these from [FRAME's source code][contracts-frame]
+Start by making sure you've included all of the types that `pallet_contracts` exposes. You can copy these from [FRAME's source code][contracts-frame-gh]
 (always check that versioning is equivalent to the imported crate). Here's what you need to add inside `runtime/src/lib.rs` &mdash; only the first 4 types are shown:
 
 ```rust
@@ -216,9 +224,8 @@ cargo build --release
 - [`pallet_contracts` crate](/rustdocs/latest/pallet_contracts/index.html)
 - [`pallet_contracts_rpc` crate](/rustdocs/latest/pallet_contracts_rpc/index.html)
 
-[contracts-frame]: /rustdocs/latest/pallet_contracts/
 [create-first-chain-tutorial]: /v3/tutorials/create-your-first-substrate-chain
 [contracts-config-rustdocs]: /rustdocs/latest/pallet_contracts/trait.Config.html
-[contracts-frame]: https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs#L144
+[contracts-frame-gh]: https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs#L144
 [bin-runtime-contracts-frame]: https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs#L786
 [contracts-api-rustdocs]: /rustdocs/latest/pallet_contracts_rpc_runtime_api/trait.ContractsApi.html
