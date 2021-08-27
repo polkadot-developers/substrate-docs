@@ -22,8 +22,8 @@ difficulty: 2
     {
       title: 'Overview',
       description:
-        `Sometimes a disptachable function inside a pallet reuse logic that's common to other dispatchables.
-         In this case, it's useful to refactor this logic into its own separate function, private to the pallet.
+        `Sometimes a disptachable function inside a pallet reuses logic that's common to other dispatchables.
+         In this case, it's useful to refactor this logic into its own private function.
          Other times, dispatchable functions get increasingly difficult to read as the amount of code increases
          to perform various checks within the dispatchable. In both instances, using helper functions that cannot
          be accessed from outside the pallet are a useful tool to optimize for code readability and reusability.
