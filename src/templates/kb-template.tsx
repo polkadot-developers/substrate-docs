@@ -4,7 +4,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import DocsNavMobile from '../components/DocsNavMobile'
-import DocsSideBar from '../components/DocsSideBar'
+import TableOfContent from '../components/TableOfContent'
 import DocsNav from '../components/DocsNav'
 import VersionControl from '../components/VersionControl'
 import LastUpdateGithub from '../components/LastUpdateGithub'
@@ -22,6 +22,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
       <SEO title={data.mdx.frontmatter.title} />
       <div>
         <div className="flex flex-col lg:flex-row">
+          {/* Docs Side Bar */}
           <div className="lg:hidden">
             <DocsNavMobile
               sideNav={docsMenu}
@@ -36,6 +37,8 @@ const DocsTemplate = ({ data, pageContext }: any) => {
               templateId={docId}
             />
           </div>
+          {/* ------------ */}
+          {/* Main Article */}
           <article className="max-w-6xl px-4 lg:px-16 lg:pb-24 lg:flex lg:mx-auto">
             <div>
               <div className={`py-8`}>
@@ -56,10 +59,13 @@ const DocsTemplate = ({ data, pageContext }: any) => {
                 <BottomButtons menu={docsMenu} pageSlug={slug} />
               )}
             </div>
+            {/* Table of Contents */}
             <div className="hidden xl:inline-block xl:flex-none">
-              <DocsSideBar headings={data.mdx.headings} />
+              <TableOfContent headings={data.mdx.tableOfContents} />
             </div>
+            {/* ------------ */}
           </article>
+          {/* ------------ */}
         </div>
       </div>
     </Layout>
@@ -80,10 +86,6 @@ export const query = graphql`
         hideNav
       }
       body
-      headings {
-        value
-        depth
-      }
       tableOfContents(maxDepth: 3)
       fileAbsolutePath
     }

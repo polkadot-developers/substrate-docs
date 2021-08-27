@@ -4,7 +4,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import DocsNavMobile from '../components/DocsNavMobile'
-import DocsSideBar from '../components/DocsSideBar'
+import TableOfContent from '../components/TableOfContent'
 import DocsNav from '../components/DocsNav'
 import VersionControl from '../components/VersionControl'
 import LastUpdateGithub from '../components/LastUpdateGithub'
@@ -93,7 +93,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
               )}
             </div>
             <div className="hidden xl:inline-block xl:flex-none">
-              <DocsSideBar headings={data.mdx.headings} />
+              <TableOfContent headings={data.mdx.tableOfContents} />
             </div>
           </article>
         </div>
@@ -119,10 +119,6 @@ export const query = graphql`
         relevantSkills
       }
       body
-      headings {
-        value
-        depth
-      }
       tableOfContents(maxDepth: 3)
       fileAbsolutePath
     }

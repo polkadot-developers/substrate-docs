@@ -1,11 +1,26 @@
 $substrateGreen: #26e0a2;
 
 article {
+  h2::before { 
+    display: block; 
+    content: " "; 
+    margin-top: -80px; 
+    height: 80px; 
+    visibility: hidden; 
+    pointer-events: none;
+  }
+  h3::before { 
+    display: block; 
+    content: " "; 
+    margin-top: -80px; 
+    height: 80px; 
+    visibility: hidden; 
+    pointer-events: none;
+  }
   a.anchor {
-    display: inline-block;
-    margin-left: -25px;
-    padding-right: 5px;
-    opacity: 0.1;
+    padding-top: 5px;
+    opacity: 0;
+    transition: all 0.2s;
   }
   a.anchor:hover {
     opacity: 1;
