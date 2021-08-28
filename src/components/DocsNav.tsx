@@ -109,7 +109,6 @@ export default function DocsNav({
                       <a
                         className="flex items-center justify-between hover:no-underline"
                         href="/rustdocs"
-                        target="_blank"
                         rel="noreferrer"
                       >
                         <div className="font-medium text-black dark:text-white">
