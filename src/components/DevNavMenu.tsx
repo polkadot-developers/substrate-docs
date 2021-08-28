@@ -6,17 +6,17 @@ const DevNavMenu = {
     return [
       {
         section: `${intl.formatMessage({ id: 'docs-nav-knowledgebase' })}`,
-        url: '/v3/docs/getting-started/overview',
+        url: '/docs',
         external: false,
       },
       {
         section: `${intl.formatMessage({ id: 'docs-nav-tutorials' })}`,
-        url: '/v3/tutorials',
+        url: '/tutorials',
         external: false,
       },
       {
         section: `${intl.formatMessage({ id: 'docs-nav-htg' })}`,
-        url: '/v3/how-to-guides',
+        url: '/how-to-guides',
         external: false,
       },
       {
@@ -26,7 +26,7 @@ const DevNavMenu = {
       },
       {
         section: `${intl.formatMessage({ id: 'docs-nav-learningtracks' })}`,
-        url: '/learning-tracks',
+        url: '/tracks',
         external: false,
       },
     ]
@@ -40,23 +40,23 @@ const DevNavMenu = {
         items: [
           {
             title: `${intl.formatMessage({ id: 'docs-menu-overview' })}`,
-            link: '/v3/docs/getting-started/overview',
+            link: '/docs/v3/getting-started/overview',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-architecture' })}`,
-            link: '/v3/docs/getting-started/architecture',
+            link: '/docs/v3/getting-started/architecture',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-installation' })}`,
-            link: '/v3/docs/getting-started/installation',
+            link: '/docs/v3/getting-started/installation',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-windows' })}`,
-            link: '/v3/docs/getting-started/windows-users',
+            link: '/docs/v3/getting-started/windows-users',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-glossary' })}`,
-            link: '/v3/docs/getting-started/glossary',
+            link: '/docs/v3/getting-started/glossary',
           },
         ],
       },
@@ -65,41 +65,41 @@ const DevNavMenu = {
         items: [
           {
             title: `${intl.formatMessage({ id: 'docs-menu-gs-runtime' })}`,
-            link: '/v3/docs/concepts/runtime',
+            link: '/docs/v3/concepts/runtime',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-extrinsics' })}`,
-            link: '/v3/docs/concepts/extrinsics',
+            link: '/docs/v3/concepts/extrinsics',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-account-abstractions',
             })}`,
-            link: '/v3/docs/concepts/account-abstractions',
+            link: '/docs/v3/concepts/account-abstractions',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-transaction-pool',
             })}`,
-            link: '/v3/docs/concepts/tx-pool',
+            link: '/docs/v3/concepts/tx-pool',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-session-keys',
             })}`,
-            link: '/v3/docs/concepts/session-keys',
+            link: '/docs/v3/concepts/session-keys',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-transaction-weight',
             })}`,
-            link: '/v3/docs/concepts/weight',
+            link: '/docs/v3/concepts/weight',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-offchain-features',
             })}`,
-            link: '/v3/docs/concepts/off-chain-features',
+            link: '/docs/v3/concepts/off-chain-features',
           },
         ],
       },
@@ -108,69 +108,69 @@ const DevNavMenu = {
         items: [
           {
             title: `${intl.formatMessage({ id: 'docs-menu-pallets' })}`,
-            link: '/v3/docs/runtime/pallets',
+            link: '/docs/v3/runtime/pallets',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-frame' })}`,
-            link: '/v3/docs/runtime/frame',
+            link: '/docs/v3/runtime/frame',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-macros',
             })}`,
-            link: '/v3/docs/runtime/macros',
+            link: '/docs/v3/runtime/macros',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-metadata' })}`,
-            link: '/v3/docs/runtime/metadata',
+            link: '/docs/v3/runtime/metadata',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-storage' })}`,
-            link: '/v3/docs/runtime/storage',
+            link: '/docs/v3/runtime/storage',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-origins',
             })}`,
-            link: '/v3/docs/runtime/origins',
+            link: '/docs/v3/runtime/origins',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-execution' })}`,
-            link: '/v3/docs/runtime/execution',
+            link: '/docs/v3/runtime/execution',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-events' })}`,
-            link: '/v3/docs/runtime/events',
+            link: '/docs/v3/runtime/events',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-errors' })}`,
-            link: '/v3/docs/runtime/errors',
+            link: '/docs/v3/runtime/errors',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-weights-and-fees',
             })}`,
-            link: '/v3/docs/runtime/weights-and-fees',
+            link: '/docs/v3/runtime/weights-and-fees',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-benchmarking' })}`,
-            link: '/v3/docs/runtime/benchmarking',
+            link: '/docs/v3/runtime/benchmarking',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-debugging' })}`,
-            link: '/v3/docs/runtime/debugging',
+            link: '/docs/v3/runtime/debugging',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-testing' })}`,
-            link: '/v3/docs/runtime/testing',
+            link: '/docs/v3/runtime/testing',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-randomness' })}`,
-            link: '/v3/docs/runtime/randomness',
+            link: '/docs/v3/runtime/randomness',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-upgrades' })}`,
-            link: '/v3/docs/runtime/upgrades',
+            link: '/docs/v3/runtime/upgrades',
           },
         ],
       },
@@ -179,23 +179,23 @@ const DevNavMenu = {
         items: [
           {
             title: `${intl.formatMessage({ id: 'docs-menu-sc-overview' })}`,
-            link: '/v3/docs/smart-contracts/overview',
+            link: '/docs/v3/smart-contracts/overview',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-contracts-pallet',
             })}`,
-            link: '/v3/docs/smart-contracts/contracts-pallet',
+            link: '/docs/v3/smart-contracts/contracts-pallet',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-evm-pallet',
             })}`,
-            link: '/v3/docs/smart-contracts/evm-pallet',
+            link: '/docs/v3/smart-contracts/evm-pallet',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-sc-faq' })}`,
-            link: '/v3/docs/smart-contracts/faq',
+            link: '/docs/v3/smart-contracts/faq',
           },
         ],
       },
@@ -204,27 +204,27 @@ const DevNavMenu = {
         items: [
           {
             title: `${intl.formatMessage({ id: 'docs-menu-polkadot-js' })}`,
-            link: '/v3/docs/toolchains/polkadot-js',
+            link: '/docs/v3/toolchains/polkadot-js',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-client-libraries',
             })}`,
-            link: '/v3/docs/toolchains/client-libraries',
+            link: '/docs/v3/toolchains/client-libraries',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-subkey' })}`,
-            link: '/v3/docs/toolchains/subkey',
+            link: '/docs/v3/toolchains/subkey',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-memory-profiling',
             })}`,
-            link: '/v3/docs/toolchains/memory-profiling',
+            link: '/docs/v3/toolchains/memory-profiling',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-chain-specs' })}`,
-            link: '/v3/docs/toolchains/chain-specs',
+            link: '/docs/v3/toolchains/chain-specs',
           },
         ],
       },
@@ -233,41 +233,41 @@ const DevNavMenu = {
         items: [
           {
             title: `${intl.formatMessage({ id: 'docs-menu-account-info' })}`,
-            link: '/v3/docs/advanced/account-info',
+            link: '/docs/v3/advanced/account-info',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-scale-codec' })}`,
-            link: '/v3/docs/advanced/scale-codec',
+            link: '/docs/v3/advanced/scale-codec',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-consensus' })}`,
-            link: '/v3/docs/advanced/consensus',
+            link: '/docs/v3/advanced/consensus',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-block-import' })}`,
-            link: '/v3/docs/advanced/block-import',
+            link: '/docs/v3/advanced/block-import',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-executor' })}`,
-            link: '/v3/docs/advanced/executor',
+            link: '/docs/v3/advanced/executor',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-cryptography' })}`,
-            link: '/v3/docs/advanced/cryptography',
+            link: '/docs/v3/advanced/cryptography',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-storage' })}`,
-            link: '/v3/docs/advanced/storage',
+            link: '/docs/v3/advanced/storage',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-ss58' })}`,
-            link: '/v3/docs/advanced/ss58',
+            link: '/docs/v3/advanced/ss58',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-hash-collections',
             })}`,
-            link: '/v3/docs/advanced/hash-collections',
+            link: '/docs/v3/advanced/hash-collections',
           },
         ],
       },
@@ -285,37 +285,37 @@ const DevNavMenu = {
             title: `${intl.formatMessage({
               id: 'htg-basics-pallet-integration',
             })}`,
-            link: '/v3/how-to-guides/basics/pallet-integration',
+            link: '/how-to-guides/v3/basics/pallet-integration',
           },
           {
             title: `${intl.formatMessage({
               id: 'htg-basics-instantiable-pallets',
             })}`,
-            link: '/v3/how-to-guides/basics/instantiable-pallets',
+            link: '/how-to-guides/v3/basics/instantiable-pallets',
           },
           {
             title: `${intl.formatMessage({
               id: 'htg-basics-configurable-constants',
             })}`,
-            link: '/v3/how-to-guides/basics/configurable-constants',
+            link: '/how-to-guides/v3/basics/configurable-constants',
           },
           {
             title: `${intl.formatMessage({ id: 'htg-basics-genesis' })}`,
-            link: '/v3/how-to-guides/basics/genesis',
+            link: '/how-to-guides/v3/basics/genesis',
           },
           {
             title: `${intl.formatMessage({
               id: 'htg-basics-helper-functions',
             })}`,
-            link: '/v3/how-to-guides/basics/helper-functions',
+            link: '/how-to-guides/v3/basics/helper-functions',
           },
           {
             title: `${intl.formatMessage({ id: 'htg-basics-mint-token' })}`,
-            link: '/v3/how-to-guides/basics/mint-token',
+            link: '/how-to-guides/v3/basics/mint-token',
           },
           {
             title: `${intl.formatMessage({ id: 'htg-basics-weights' })}`,
-            link: '/v3/how-to-guides/basics/weights',
+            link: '/how-to-guides/v3/basics/weights',
           },
         ],
       },
@@ -327,31 +327,31 @@ const DevNavMenu = {
             title: `${intl.formatMessage({
               id: 'htg-pallet-design-add-contracts',
             })}`,
-            link: '/v3/how-to-guides/pallet-design/contracts-pallet',
+            link: '/how-to-guides/v3/pallet-design/contracts-pallet',
           },
           {
             title: `${intl.formatMessage({
               id: 'htg-pallet-design-lockable-currency',
             })}`,
-            link: '/v3/how-to-guides/pallet-design/lockable-currency',
+            link: '/how-to-guides/v3/pallet-design/lockable-currency',
           },
           {
             title: `${intl.formatMessage({
               id: 'htg-pallet-design-randomness',
             })}`,
-            link: '/v3/how-to-guides/pallet-design/randomness',
+            link: '/how-to-guides/v3/pallet-design/randomness',
           },
           {
             title: `${intl.formatMessage({
               id: 'htg-pallet-design-crowdfund',
             })}`,
-            link: '/v3/how-to-guides/pallet-design/crowdfund',
+            link: '/how-to-guides/v3/pallet-design/crowdfund',
           },
           {
             title: `${intl.formatMessage({
               id: 'htg-pallet-design-storage-value',
             })}`,
-            link: '/v3/how-to-guides/pallet-design/storage-value',
+            link: '/how-to-guides/v3/pallet-design/storage-value',
           },
         ],
       },
@@ -363,7 +363,7 @@ const DevNavMenu = {
             title: `${intl.formatMessage({
               id: 'htg-weights-calculate-fees',
             })}`,
-            link: '/v3/how-to-guides/weights/calculate-fees',
+            link: '/how-to-guides/v3/weights/calculate-fees',
           },
         ],
       },
@@ -372,13 +372,13 @@ const DevNavMenu = {
         items: [
           {
             title: `${intl.formatMessage({ id: 'htg-testing-basics' })}`,
-            link: '/v3/how-to-guides/testing/basics',
+            link: '/how-to-guides/v3/testing/basics',
           },
           {
             title: `${intl.formatMessage({
               id: 'htg-testing-transfer-function',
             })}`,
-            link: '/v3/how-to-guides/testing/transfer-function',
+            link: '/how-to-guides/v3/testing/transfer-function',
           },
         ],
       },
@@ -390,15 +390,15 @@ const DevNavMenu = {
         items: [
           {
             title: `${intl.formatMessage({ id: 'htg-sm-nicks' })}`,
-            link: '/v3/how-to-guides/storage-migrations/basics',
+            link: '/how-to-guides/v3/storage-migrations/basics',
           },
           {
             title: `${intl.formatMessage({ id: 'htg-sm-steps' })}`,
-            link: '/v3/how-to-guides/storage-migrations/trigger-with-apps',
+            link: '/how-to-guides/v3/storage-migrations/trigger-with-apps',
           },
           {
             title: `${intl.formatMessage({ id: 'htg-sm-tests' })}`,
-            link: '/v3/how-to-guides/storage-migrations/tests',
+            link: '/how-to-guides/v3/storage-migrations/tests',
           },
         ],
       },
@@ -408,7 +408,7 @@ const DevNavMenu = {
         items: [
           {
             title: `${intl.formatMessage({ id: 'htg-consensus-pow' })}`,
-            link: '/v3/how-to-guides/consensus/pow',
+            link: '/how-to-guides/v3/consensus/pow',
           },
         ],
       },
@@ -418,7 +418,7 @@ const DevNavMenu = {
         items: [
           {
             title: `${intl.formatMessage({ id: 'htg-tools' })}`,
-            link: '/v3/how-to-guides/tools/try-runtime',
+            link: '/how-to-guides/v3/tools/try-runtime',
           },
         ],
       },
@@ -433,19 +433,19 @@ DevNavMenu.tuts.firstChain = {
   items: [
     {
       title: `Introduction`,
-      link: '/v3/tutorials/create-your-first-substrate-chain',
+      link: '/tutorials/v3/create-your-first-substrate-chain',
     },
     {
       title: `Set-up Your Computer`,
-      link: '/v3/tutorials/create-your-first-substrate-chain/setup',
+      link: '/tutorials/v3/create-your-first-substrate-chain/setup',
     },
     {
       title: `Background Information`,
-      link: '/v3/tutorials/create-your-first-substrate-chain/background',
+      link: '/tutorials/v3/create-your-first-substrate-chain/background',
     },
     {
       title: `Interacting with Your Node`,
-      link: '/v3/tutorials/create-your-first-substrate-chain/interact',
+      link: '/tutorials/v3/create-your-first-substrate-chain/interact',
     },
   ],
 }
@@ -455,19 +455,19 @@ DevNavMenu.tuts.poe = {
   items: [
     {
       title: `Introduction`,
-      link: '/v3/tutorials/proof-of-existence',
+      link: '/tutorials/v3/proof-of-existence',
     },
     {
       title: `Prepare to build a dApp`,
-      link: '/v3/tutorials/proof-of-existence/prepare',
+      link: '/tutorials/v3/proof-of-existence/prepare',
     },
     {
       title: `Building a Custom Pallet`,
-      link: '/v3/tutorials/proof-of-existence/pallet',
+      link: '/tutorials/v3/proof-of-existence/pallet',
     },
     {
       title: `Building a Custom Front End`,
-      link: '/v3/tutorials/proof-of-existence/front-end',
+      link: '/tutorials/v3/proof-of-existence/front-end',
     },
   ],
 }
@@ -477,15 +477,15 @@ DevNavMenu.tuts.permissionedNetwork = {
   items: [
     {
       title: `Introduction`,
-      link: '/v3/tutorials/permissioned-network',
+      link: '/tutorials/v3/permissioned-network',
     },
     {
       title: `Add the node-authorization pallet`,
-      link: '/v3/tutorials/permissioned-network/node-authorization-pallet',
+      link: '/tutorials/v3/permissioned-network/node-authorization-pallet',
     },
     {
       title: `Launch your permissioned network`,
-      link: '/v3/tutorials/permissioned-network/launch',
+      link: '/tutorials/v3/permissioned-network/launch',
     },
   ],
 }
@@ -495,15 +495,15 @@ DevNavMenu.tuts.forklessUpgrades = {
   items: [
     {
       title: `Introduction`,
-      link: '/v3/tutorials/forkless-upgrades',
+      link: '/tutorials/v3/forkless-upgrades',
     },
     {
       title: `Sudo Upgrade`,
-      link: '/v3/tutorials/forkless-upgrades/sudo-upgrade',
+      link: '/tutorials/v3/forkless-upgrades/sudo-upgrade',
     },
     {
       title: `Schedule an Upgrade`,
-      link: '/v3/tutorials/forkless-upgrades/schedule-an-upgrade',
+      link: '/tutorials/v3/forkless-upgrades/schedule-an-upgrade',
     },
   ],
 }
@@ -513,23 +513,23 @@ DevNavMenu.tuts.privateNetwork = {
   items: [
     {
       title: `Introduction`,
-      link: '/v3/tutorials/private-network',
+      link: '/tutorials/v3/private-network',
     },
     {
       title: `Start a Chain with Alice and Bob`,
-      link: '/v3/tutorials/private-network/alice-and-bob',
+      link: '/tutorials/v3/private-network/alice-and-bob',
     },
     {
       title: `Generate Your Own Keys`,
-      link: '/v3/tutorials/private-network/key-generation',
+      link: '/tutorials/v3/private-network/key-generation',
     },
     {
       title: `Create a Custom Chain Spec`,
-      link: '/v3/tutorials/private-network/custom-chainspec',
+      link: '/tutorials/v3/private-network/custom-chainspec',
     },
     {
       title: `Launch Your Private Network`,
-      link: '/v3/tutorials/private-network/launch-custom-chain',
+      link: '/tutorials/v3/private-network/launch-custom-chain',
     },
   ],
 }
@@ -539,11 +539,11 @@ DevNavMenu.tuts.nodeMetrics = {
   items: [
     {
       title: `Introduction`,
-      link: '/v3/tutorials/node-metrics',
+      link: '/tutorials/v3/node-metrics',
     },
     {
       title: `Using Grafana and Prometheus with Substrate`,
-      link: '/v3/tutorials/node-metrics/p1',
+      link: '/tutorials/v3/node-metrics/p1',
     },
   ],
 }
@@ -553,23 +553,23 @@ DevNavMenu.tuts.addPallet = {
   items: [
     {
       title: `Introduction`,
-      link: '/v3/tutorials/add-a-pallet',
+      link: '/tutorials/v3/add-a-pallet',
     },
     {
       title: `Import the Nicks Pallet`,
-      link: '/v3/tutorials/add-a-pallet/import',
+      link: '/tutorials/v3/add-a-pallet/import',
     },
     {
       title: `Configure the Nicks Pallet`,
-      link: '/v3/tutorials/add-a-pallet/configure',
+      link: '/tutorials/v3/add-a-pallet/configure',
     },
     {
       title: `Interact with the Nicks Pallet`,
-      link: '/v3/tutorials/add-a-pallet/interact',
+      link: '/tutorials/v3/add-a-pallet/interact',
     },
     {
       title: `Publish Your Own Pallet (optional)`,
-      link: '/v3/tutorials/add-a-pallet/publish',
+      link: '/tutorials/v3/add-a-pallet/publish',
     },
   ],
 }
@@ -579,15 +579,15 @@ DevNavMenu.tuts.contractsTutorial = {
   items: [
     {
       title: `Introduction`,
-      link: '/v3/tutorials/add-contracts',
+      link: '/tutorials/v3/add-contracts',
     },
     {
       title: `Node Set-up`,
-      link: '/v3/tutorials/add-contracts/pt1',
+      link: '/tutorials/v3/add-contracts/pt1',
     },
     {
       title: `Implement the Contracts pallet and its APIs`,
-      link: '/v3/tutorials/add-contracts/pt2',
+      link: '/tutorials/v3/add-contracts/pt2',
     },
   ],
 }

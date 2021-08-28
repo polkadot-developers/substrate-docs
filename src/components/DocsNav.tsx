@@ -59,7 +59,7 @@ export default function DocsNav({
         >
           <LocalizedLink
             className="flex justify-start items-center pl-4 py-4 text-black dark:text-white hover:text-substrateDark"
-            to={templateId === 1 ? '/v3/tutorials' : '/'}
+            to={templateId === 1 ? '/tutorials' : '/'}
           >
             <svg
               className="fill-current text-substrateDark dark:text-white"
@@ -108,8 +108,7 @@ export default function DocsNav({
                     {navItem.external ? (
                       <a
                         className="flex items-center justify-between hover:no-underline"
-                        href="/rustdocs/latest/sc_service/index.html"
-                        target="_blank"
+                        href="/rustdocs"
                         rel="noreferrer"
                       >
                         <div className="font-medium text-black dark:text-white">
