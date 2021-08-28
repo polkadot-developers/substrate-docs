@@ -56,13 +56,16 @@ jobs:
       - name: Take a 10s nap to ensure gatsby-app ready
         run: sleep 10
 
-      - name: Run `linkcheck`
-        run: |
-          ~/linkcheck/linkcheck :9000 --skip-file .github/workflows/lc-skip.txt || checkexit=$?
-          if [ $checkexit -le 1 ]; then
-            echo "Successfully exit with linkcheck warning. See above message."
-            exit 0
-          else
-            echo "Please check linkcheck error above."
-            exit 1
-          fi
+      # - name: Run `linkcheck`
+      #   run: |
+      #     ~/linkcheck/linkcheck :9000 --skip-file .github/workflows/lc-skip.txt || checkexit=$?
+      #     if [ $checkexit -le 1 ]; then
+      #       echo "Successfully exit with linkcheck warning. See above message."
+      #       exit 0
+      #     else
+      #       echo "Please check linkcheck error above."
+      #       exit 1
+      #     fi
+
+      - name: Run `broken-link-check`
+        run: yarn checklinks:v3
