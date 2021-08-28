@@ -18,17 +18,17 @@ export default function tutorials({ data }: any) {
             image={data.tutorialOne}
             description={`Launch and interact with your first Substrate chain in this minimal end-to-end guide.`}
             time={`< 1 Hour`}
-            difficulty={`beginner`}
+            difficulty={1}
             prerequisites={false}
             version={`V3.0.0`}
             link={`/tutorials/v3/create-your-first-substrate-chain`}
           />
           <TutorialCard
-            title={`Add Pallets to Runtime and Publish Custom Pallets`}
+            title={`Add a FRAME Pallet to Your Runtime`}
             image={data.tutorialTwo}
-            description={`Learn to add the Nicks pallet to runtime and publish custom pallets that others can import.`}
+            description={`Learn to add the Nicks pallet to runtime and publish a custom pallet that others can import.`}
             time={`2 Hours`}
-            difficulty={`beginner`}
+            difficulty={1}
             prerequisites={true}
             version={`V3.0.0`}
             link={`/tutorials/v3/add-a-pallet`}
@@ -38,7 +38,7 @@ export default function tutorials({ data }: any) {
             image={data.tutorialThree}
             description={`Build a customized Substrate chain with its own user interface.`}
             time={`1 Hour`}
-            difficulty={`beginner`}
+            difficulty={1}
             prerequisites={true}
             version={`V3.0.0`}
             link={`/tutorials/v3/proof-of-existence`}
@@ -48,7 +48,7 @@ export default function tutorials({ data }: any) {
             image={data.tutorialFour}
             description={`A comprehensive, end-to-end tutorial for building a permissioned network using node-authorization pallet.`}
             time={`1 Hour`}
-            difficulty={`beginner`}
+            difficulty={1}
             prerequisites={true}
             version={`V3.0.0`}
             link={`/tutorials/v3/permissioned-network`}
@@ -58,7 +58,7 @@ export default function tutorials({ data }: any) {
             image={data.tutorialFive}
             description={`Perform a forkless runtime upgrade on a running Substrate network.`}
             time={`2 Hours`}
-            difficulty={`beginner`}
+            difficulty={1}
             prerequisites={true}
             version={`V3.0.0`}
             link={`/tutorials/v3/forkless-upgrades`}
@@ -68,7 +68,7 @@ export default function tutorials({ data }: any) {
             image={data.tutorialSix}
             description={`Learn how to start a private blockchain network using an out-of-the-box Substrate node.`}
             time={`2 Hours`}
-            difficulty={`beginner`}
+            difficulty={1}
             prerequisites={false}
             version={`V3.0.0`}
             link={`/tutorials/v3/private-network`}
@@ -78,7 +78,7 @@ export default function tutorials({ data }: any) {
             image={data.tutorialOne}
             description={`Learn how to visualize the metrics that Substrate records using Prometheus.`}
             time={`< 1 Hour`}
-            difficulty={`beginner`}
+            difficulty={1}
             prerequisites={false}
             version={`V3.0.0`}
             link={`/tutorials/v3/node-metrics`}
@@ -88,7 +88,7 @@ export default function tutorials({ data }: any) {
             image={data.tutorialOne}
             description={`Allow your blockchain to support Wasm smart contracts by adding and configuring FRAME's Contracts pallet.`}
             time={`3 Hours`}
-            difficulty={`intermediate`}
+            difficulty={2}
             prerequisites={false}
             version={`V3.0.0`}
             link={`/tutorials/v3/add-contracts`}

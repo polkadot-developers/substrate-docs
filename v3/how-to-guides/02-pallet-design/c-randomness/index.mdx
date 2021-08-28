@@ -5,27 +5,35 @@ keywords: pallet design, intermediate, runtime, randomness
 version: 3.0 
 section: how to guides
 category: pallet design
+difficulty: 2
 ---
 
-## Goal
-
-Implement a randomness function inside a pallet.
-
-## Use cases
-
-- NFT applications
-- Casino gaming type applications
-
-## Overview
-
-[Randomness][randomness-kb] is useful in computer programs for everything from gaming applications to selecting block
-authors. True randomness is hard to come by in deterministic computers. This is particularly true in the context
-of a blockchain when all the nodes in the network must agree on the state of the chain. FRAME provides runtime engineers
-with a source of randomness, using the [Randomness trait][randomness-rustdocs].
-
-This guide would step you through making use of FRAME's Randomness trait by using it's `random` method and a nonce as a subject.
-For additional entropy to the randomness value, the last step shows how to assign the `RandomCollectiveFlip` pallet
-to the configuration trait of a pallet exposing some "random" type.
+<Objectives
+  data={[
+    {
+      title: 'Goal',
+      description: 'Implement a randomness function inside a pallet.',
+    },
+    {
+      title: 'Use Cases',
+      description:
+        `- NFT applications
+        - Casino gaming type applications`,
+    },
+    {
+      title: 'Overview',
+      description:
+        `[Randomness](/v3/docs/runtime/randomness)is useful in computer programs for everything from gaming applications to selecting block
+        authors. True randomness is hard to come by in deterministic computers. This is particularly true in the context
+        of a blockchain when all the nodes in the network must agree on the state of the chain. FRAME provides runtime engineers
+        with a source of randomness, using the [Randomness trait](/rustdocs/latest/frame_support/traits/trait.Randomness.html).
+        This guide would step you through making use of FRAME's Randomness trait by using it's \`random\` method and a nonce as a subject.
+        For additional entropy to the randomness value, the last step shows how to assign the \`RandomCollectiveFlip\` pallet
+        to the configuration trait of a pallet exposing some "random" type.
+        `,
+    },
+  ]}
+/>
 
 ## Steps
 
@@ -159,7 +167,5 @@ impl my_pallet::Config for Runtime{
     Verifiable Random Functions
   </ExternalLink>
 
-[randomness-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/randomness
-[randomness-rustdocs]: /rustdocs/latest/frame_support/traits/trait.Randomness.html
 [h256-rustdocs]: /rustdocs/latest/sp_core/struct.H256.html
 [rcf-pallet-rustdocs]: /rustdocs/latest/pallet_randomness_collective_flip/index.html

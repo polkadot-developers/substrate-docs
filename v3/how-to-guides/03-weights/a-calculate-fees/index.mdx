@@ -5,26 +5,38 @@ keywords: weights, fees, runtime, FRAME v1
 version: 3.0 
 section: how to guides
 category: weights
+difficulty: 1
 ---
 
-## Goal
-
-Customize `WeightToFee` to modify how fees are calculated for your runtime.
-
-## Use cases
-
-Modify the way fees are calculated, instead of using [`IdentityFee`][identityfee-rustdocs] which maps one unit of fee to one unit of weight.
-
-## Overview
-
-Fees are broken down into three components:
-
-- **Byte fee** - A fee proportional to the transaction's length in bytes. The proportionality constant is a parameter in the transaction_payment pallet.
-- **Weight fee** - A fee calculated from the transaction's weight. Weights quantify the time spent executing the transaction. Learn more in the recipe on weights. The conversion doesn't need to be linear, although it often is. The same conversion function is applied across all transactions from all pallets in the runtime.
-- **Fee Multiplier** - A multiplier for the computed fee, that can change as the chain progresses.
-
-FRAME provides the [transaction payment pallet][transaction-frame] for calculating and collecting fees for executing transactions. It
-can be useful to modify the way fees are calculated to charge fees with more accuracy to your users. This guides steps through the process of customizing `WeightToFee` for your runtime's implementation of `pallet_transaction_payment`.
+<Objectives
+  data={[
+    {
+      title: 'Goal',
+      description: 'Customize \`WeightToFee\` to modify how fees are calculated for your runtime.',
+    },
+    {
+      title: 'Use Cases',
+      description:
+        `Modify the way fees are calculated, instead of using [\`IdentityFee\`](/rustdocs/latest/frame_support/weights/struct.IdentityFee.html) which maps one unit of fee to one unit of weight.`,
+    },
+    {
+      title: 'Overview',
+      description:
+        `Fees are broken down into three components:
+		- **Byte fee** - A fee proportional to the transaction's length in bytes. The proportionality 
+		constant is a parameter in the transaction_payment pallet.
+		- **Weight fee** - A fee calculated from the transaction's weight. Weights quantify the time 
+		spent executing the transaction. Learn more in the recipe on weights. The conversion doesn't 
+		need to be linear, although it often is. The same conversion function is applied across all 
+		transactions from all pallets in the runtime.
+		- **Fee Multiplier** - A multiplier for the computed fee, that can change as the chain progresses.
+		FRAME provides the [transaction payment pallet](https://github.com/paritytech/substrate/tree/master/frame/transaction-payment) 
+		for calculating and collecting fees for executing transactions. It can be useful to modify 
+		the way fees are calculated to charge fees with more accuracy to your users. This guides steps 
+		through the process of customizing \`WeightToFee\` for your runtime's implementation of \`pallet_transaction_payment\`.`,
+    },
+  ]}
+/>
 
 ## Steps
 
@@ -97,4 +109,3 @@ impl pallet_transaction_payment::Config for Runtime {
 - [`WeightToFeePolynomial`](/rustdocs/latest/frame_support/weights/trait.WeightToFeePolynomial.html)
 
 [transaction-frame]: https://github.com/paritytech/substrate/tree/master/frame/transaction-payment
-[identityfee-rustdocs]: /rustdocs/latest/frame_support/weights/struct.IdentityFee.html
