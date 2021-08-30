@@ -27,7 +27,7 @@
   } */
   html {
     @apply bg-white dark:bg-black antialiased font-body;
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
   }
 
   body {

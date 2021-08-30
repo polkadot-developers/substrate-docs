@@ -19,7 +19,7 @@ export default function DocsNav({
 
   return (
     <nav
-      className={`sticky top-16 h-docNav overflow-y-auto ${
+      className={`sticky top-16 max-h-[100vh-100px] overflow-y-auto ${
         isOpen
           ? `transition-width transform w-16`
           : `transition-width transform w-60`

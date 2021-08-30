@@ -73,7 +73,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
               )}
             </div>
             <div className="hidden xl:inline-block xl:flex-none">
-              <TableOfContent headings={data.mdx.headings} />
+              <TableOfContent headings={data.mdx.tableOfContents} />
             </div>
           </article>
         </div>
