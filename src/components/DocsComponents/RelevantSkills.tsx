@@ -11,7 +11,7 @@ export function RelevantSkills({ data }: RelevantSkillsProps) {
       {data.map((str, index) => (
         <button
           key={index}
-          className="mx-1 xl:mx-2 my-1 xl:mt-3 px-4 py-1 rounded border border-substrateYellow bg-substrateYellow bg-opacity-10 text-xs font-medium cursor-default"
+          className="bg-substrateYellow bg-opacity-10 px-4 py-2 ml-4 mt-2 border border-substrateYellow rounded cursor-text text-xs"
         >
           {str}
         </button>
@@ -19,3 +19,4 @@ export function RelevantSkills({ data }: RelevantSkillsProps) {
     </div>
   )
 }
+
