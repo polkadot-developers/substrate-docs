@@ -56,15 +56,15 @@ const DocsTemplate = ({ data, pageContext }: any) => {
                   slug={slug}
                   absolutePath={data.mdx.fileAbsolutePath}
                 />
+              </div>
+              <div className="markdown-body mdx-anchor">
+                <h1>{data.mdx.frontmatter.title}</h1>
                 {data.mdx.frontmatter.difficulty && (
                   <DocTag
                     difficulty={data.mdx.frontmatter.difficulty}
                     duration={data.mdx.frontmatter.duration}
                   />
                 )}
-              </div>
-              <div className="markdown-body mdx-anchor">
-                <h1>{data.mdx.frontmatter.title}</h1>
                 <MDXRenderer>{data.mdx.body}</MDXRenderer>
               </div>
               <div className="text-xs text-right py-12">

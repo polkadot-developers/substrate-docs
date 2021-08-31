@@ -8,7 +8,7 @@ interface DocTagProps {
 export default function DocTag(props: DocTagProps) {
   return (
     <>
-      <div className="inline-block text-xs mb-8">
+      <div className="inline-block text-xs mb-5">
         <button className="bg-substrateBlue bg-opacity-5 px-4 py-2 border border-substratePurple border-opacity-30 rounded cursor-text">
           {props.difficulty === 1
             ? 'Beginner'
