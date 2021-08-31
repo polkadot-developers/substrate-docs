@@ -10,6 +10,8 @@ import VersionControl from '../components/VersionControl'
 import LastUpdateGithub from '../components/LastUpdateGithub'
 import { BottomButtons } from '../components/DocsComponents'
 import navMenu from '../components/DevNavMenu'
+import BreadCrumbNav from '../components/BreadCrumbNav'
+import DocTag from '../components/DocTag'
 
 const DocsTemplate = ({ data, pageContext }: any) => {
   const { slug, version } = pageContext
@@ -41,12 +43,25 @@ const DocsTemplate = ({ data, pageContext }: any) => {
           {/* Main Article */}
           <article className="max-w-6xl px-4 lg:px-16 lg:pb-24 lg:flex lg:mx-auto">
             <div>
-              <div className={`py-8`}>
+              <div
+                className={`py-8 lg:flex lg:justify-between lg:items-center`}
+              >
+                <BreadCrumbNav
+                  section={data.mdx.frontmatter.section}
+                  sectionURL={`/v3/docs/getting-started/overview`}
+                  title={data.mdx.frontmatter.title}
+                />
                 <VersionControl
                   version={version}
                   slug={slug}
                   absolutePath={data.mdx.fileAbsolutePath}
                 />
+                {data.mdx.frontmatter.difficulty && (
+                  <DocTag
+                    difficulty={data.mdx.frontmatter.difficulty}
+                    duration={data.mdx.frontmatter.duration}
+                  />
+                )}
               </div>
               <div className="markdown-body mdx-anchor">
                 <h1>{data.mdx.frontmatter.title}</h1>
@@ -84,6 +99,8 @@ export const query = graphql`
         slug
         title
         hideNav
+        section
+        category
       }
       body
       tableOfContents(maxDepth: 3)
