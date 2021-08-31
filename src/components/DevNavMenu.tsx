@@ -6,28 +6,23 @@ const DevNavMenu = {
     return [
       {
         section: `${intl.formatMessage({ id: 'docs-nav-knowledgebase' })}`,
-        url: '/v3/docs/getting-started/overview',
+        url: '/docs',
         external: false,
       },
       {
         section: `${intl.formatMessage({ id: 'docs-nav-tutorials' })}`,
-        url: '/v3/tutorials',
+        url: '/tutorials',
         external: false,
       },
       {
         section: `${intl.formatMessage({ id: 'docs-nav-htg' })}`,
-        url: '/v3/how-to-guides',
+        url: '/how-to-guides',
         external: false,
       },
       {
         section: `${intl.formatMessage({ id: 'docs-nav-rustdocs' })}`,
         url: '#',
         external: true,
-      },
-      {
-        section: `${intl.formatMessage({ id: 'docs-nav-learningtracks' })}`,
-        url: '/learning-tracks',
-        external: false,
       },
     ]
   },

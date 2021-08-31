@@ -19,4 +19,3 @@ export function RelevantSkills({ data }: RelevantSkillsProps) {
     </div>
   )
 }
-
