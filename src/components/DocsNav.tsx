@@ -20,16 +20,16 @@ export default function DocsNav({
   return (
     <nav
       className={`sticky top-16 h-docNav ${
-        isOpen
-          ? `transition-width transform w-16 overflow-y-hidden`
-          : `transition-width transform w-64 overflow-y-auto `
+        isOpen ? `w-16 overflow-y-hidden` : `w-64 overflow-y-auto `
       }`}
     >
       <div>
         <div
           className={`flex ${
-            isOpen ? `justify-start` : `justify-between`
-          } items-center h-14 bg-substrateGray dark:bg-gray-700 mt-10 px-6`}
+            isOpen
+              ? `transition-all transform duration-75 ease-in-out justify-start px-4`
+              : `transition-all transform duration-75 ease-in-out justify-between px-6`
+          } items-center h-14 bg-substrateGray dark:bg-gray-700 mt-10 `}
         >
           <div className={`${isOpen && `hidden`}`}>
             <span className="font-bold">
