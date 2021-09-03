@@ -422,6 +422,59 @@ const DevNavMenu = {
           },
         ],
       },
+      // 7. Parachains
+      {
+        name: `${intl.formatMessage({
+          id: 'docs-nav-htg-parachains',
+        })}`,
+        items: [
+          {
+            title: `${intl.formatMessage({ id: 'htg-parachains-upgrade' })}`,
+            link: '/how-to-guides/v3/parachains/preparing-an-upgrade',
+          },
+          {
+            title: `${intl.formatMessage({ id: 'htg-parachains-setup' })}`,
+            link: '/how-to-guides/v3/parachains/setup',
+          },
+          {
+            title: `${intl.formatMessage({ id: 'htg-parachains-register' })}`,
+            link: '/how-to-guides/v3/parachains/register',
+          },
+
+          {
+            title: `${intl.formatMessage({ id: 'htg-parachains-reserve' })}`,
+            link: '/how-to-guides/v3/parachains/reserve-id',
+          },
+          {
+            title: `${intl.formatMessage({ id: 'htg-parachains-collators' })}`,
+            link: '/how-to-guides/v3/parachains/start-collator-node',
+          },
+          {
+            title: `${intl.formatMessage({ id: 'htg-parachains-rococo' })}`,
+            link: '/how-to-guides/v3/parachains/rococo',
+          },
+        ],
+      },
+      // 8. Tools
+      {
+        name: `${intl.formatMessage({
+          id: 'docs-nav-htg-tools',
+        })}`,
+        items: [
+          {
+            title: `${intl.formatMessage({ id: 'htg-tools-try-runtime' })}`,
+            link: '/how-to-guides/v3/tools/integrate-try-runtime',
+          },
+          {
+            title: `${intl.formatMessage({ id: 'htg-tools-txwrapper' })}`,
+            link: '/how-to-guides/v3/tools/use-txwrapper',
+          },
+          {
+            title: `${intl.formatMessage({ id: 'htg-tools-sidecar' })}`,
+            link: '/how-to-guides/v3/tools/sidecar',
+          },
+        ],
+      },
     ]
   },
 }
