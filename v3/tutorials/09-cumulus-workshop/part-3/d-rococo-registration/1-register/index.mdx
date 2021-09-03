@@ -19,7 +19,7 @@ Rococo is Parity's official test network for cumulus-based parachains.
 <Message
   type={`yellow`}
   title={`Important`}
-  text={`As parachain is being developed in a fast pace, you need to use the
+  text={`As parachains are being developed at a fast pace, you need to use the
   corresponding tagged version of Cumulus and Polkadot for the relay-chain and parachain
   compatible to each others.
   
@@ -27,9 +27,9 @@ Rococo is Parity's official test network for cumulus-based parachains.
   `}
 />
 
-<ExternalLink url={`https://github.com/paritytech/polkadot/tree/release-v0.9.8`}>**Polkadot `release-v0.9.8` branch**</ExternalLink>
-
-<ExternalLink url={`https://github.com/paritytech/cumulus/tree/polkadot-v0.9.8`}>**Cumulus `polkadot-v0.9.8` branch**</ExternalLink>
+<ExternalLink url={`https://github.com/paritytech/polkadot/tree/release-v0.9.8`}>Polkadot `release-v0.9.8` branch</ExternalLink>
+<p></p>
+<ExternalLink url={`https://github.com/paritytech/cumulus/tree/polkadot-v0.9.8`}>Cumulus `polkadot-v0.9.8` branch</ExternalLink>
 
 ### 2. Request ROC Tokens
 
@@ -54,9 +54,8 @@ All parachains will need to register as a parathread first. You will need:
 - **5 ROCs** deposit to register a Para ID.
 
 - [Reserve a unique Para ID](en/2-relay-chain/2-reserve). This will be assigned to the next
-  available ID. This integer will be greater than `2000`, as `0-999` are reserved for
-  <ExternalLink url={`https://wiki.polkadot.network/docs/learn-common-goods#system-level-chains`}>system parachains </ExternalLink>
-  and `1000-1999` are reserved for <ExternalLink url={`https://wiki.polkadot.network/docs/learn-common-goods#public-utility-chains`}>public utility parachains</ExternalLink>
+  available ID. This integer will be greater than `2000`, as `0-999` are reserved for <ExternalLink url={`https://wiki.polkadot.network/docs/learn-common-goods#system-level-chains`}>system parachains</ExternalLink> and 
+  `1000-1999` are reserved for <ExternalLink url={`https://wiki.polkadot.network/docs/learn-common-goods#public-utility-chains`}>public utility parachains</ExternalLink>.
 
 - Your parachain genesis state. Refer to the
   [genesis state export process](en/3-parachains/1-launch.md#generate-parachain-genesis-state).
