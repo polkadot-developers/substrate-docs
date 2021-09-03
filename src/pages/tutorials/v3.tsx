@@ -21,7 +21,7 @@ export default function tutorials({ data }: any) {
             difficulty={1}
             prerequisites={false}
             version={`V3.0.0`}
-            link={`/v3/tutorials/create-your-first-substrate-chain`}
+            link={`/tutorials/v3/create-your-first-substrate-chain`}
           />
           <TutorialCard
             title={`Add a FRAME Pallet to Your Runtime`}
@@ -31,7 +31,7 @@ export default function tutorials({ data }: any) {
             difficulty={1}
             prerequisites={true}
             version={`V3.0.0`}
-            link={`/v3/tutorials/add-a-pallet`}
+            link={`/tutorials/v3/add-a-pallet`}
           />
           <TutorialCard
             title={`Proof of Existence`}
@@ -41,7 +41,7 @@ export default function tutorials({ data }: any) {
             difficulty={1}
             prerequisites={true}
             version={`V3.0.0`}
-            link={`/v3/tutorials/proof-of-existence`}
+            link={`/tutorials/v3/proof-of-existence`}
           />
           <TutorialCard
             title={`Permissioned Network`}
@@ -51,7 +51,7 @@ export default function tutorials({ data }: any) {
             difficulty={1}
             prerequisites={true}
             version={`V3.0.0`}
-            link={`/v3/tutorials/permissioned-network`}
+            link={`/tutorials/v3/permissioned-network`}
           />
           <TutorialCard
             title={`Forkless Upgrades`}
@@ -61,7 +61,7 @@ export default function tutorials({ data }: any) {
             difficulty={1}
             prerequisites={true}
             version={`V3.0.0`}
-            link={`/v3/tutorials/forkless-upgrades`}
+            link={`/tutorials/v3/forkless-upgrades`}
           />
           <TutorialCard
             title={`Private Network`}
@@ -71,7 +71,7 @@ export default function tutorials({ data }: any) {
             difficulty={1}
             prerequisites={false}
             version={`V3.0.0`}
-            link={`/v3/tutorials/private-network`}
+            link={`/tutorials/v3/private-network`}
           />
           <TutorialCard
             title={`Node Metrics`}
@@ -81,7 +81,7 @@ export default function tutorials({ data }: any) {
             difficulty={1}
             prerequisites={false}
             version={`V3.0.0`}
-            link={`/v3/tutorials/node-metrics`}
+            link={`/tutorials/v3/node-metrics`}
           />
           <TutorialCard
             title={`Add the Contracts Pallet`}
@@ -91,7 +91,7 @@ export default function tutorials({ data }: any) {
             difficulty={2}
             prerequisites={false}
             version={`V3.0.0`}
-            link={`/v3/tutorials/add-contracts`}
+            link={`/tutorials/v3/add-contracts`}
           />
         </div>
       </div>

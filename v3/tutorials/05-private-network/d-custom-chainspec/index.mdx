@@ -1,6 +1,6 @@
 ---
 title: Create a Custom Chain Spec
-slug: /v3/tutorials/private-network/custom-chainspec
+slug: /tutorials/v3/private-network/custom-chainspec
 version: 3.0 
 section: tutorials
 category: private network
@@ -45,7 +45,7 @@ you built earlier when you ran the `cargo build --release` command.
 
 The portion of the file we're interested in is the Aura authorities used for creating blocks,
 indicated by **"aura"** field below, and GRANDPA authorities used for finalizing blocks, indicated
-by the **"grandpa"** field. That section looks like this using the [two provided demo](/v3/tutorials/private-network/key-generation#option-3-use-pre-generated-keys) keys:
+by the **"grandpa"** field. That section looks like this using the [two provided demo](/tutorials/v3/private-network/key-generation#option-3-use-pre-generated-keys) keys:
 
 ```json
 {
@@ -91,7 +91,7 @@ All we need to do is change the authority addresses listed (currently Alice and 
 addresses that we generated in the previous step. The **sr25519** addresses go in the **aura**
 section, and the **ed25519** addresses in the **grandpa** section. You may add as many validators as
 you like. For additional context, read about
-[keys in Substrate](/v3/docs/advanced/cryptography#public-key-cryptography).
+[keys in Substrate](/docs/v3/advanced/cryptography#public-key-cryptography).
 
 <Message
   type={`red`}

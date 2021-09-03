@@ -40,29 +40,34 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Download `linkcheck`
-        # ref: https://github.com/filiph/linkcheck
-        run: |
-          pushd ~/
-          wget https://github.com/filiph/linkcheck/releases/download/2.0.19/linkcheck-2.0.19-linux-x64.tar.gz -O linkcheck.tar.gz
-          tar xzf linkcheck.tar.gz
-          pushd
+      # - name: Download `linkcheck`
+      #   # ref: https://github.com/filiph/linkcheck
+      #   run: |
+      #     pushd ~/
+      #     wget https://github.com/filiph/linkcheck/releases/download/2.0.19/linkcheck-2.0.19-linux-x64.tar.gz -O linkcheck.tar.gz
+      #     tar xzf linkcheck.tar.gz
+      #     pushd
 
       # Setting up tmate terminal for debugging gh action
       #   ref: https://github.com/marketplace/actions/debugging-with-tmate
       # - name: Setup tmate session
       #   uses: mxschmitt/action-tmate@v3
 
-      - name: Take a 10s nap to ensure gatsby-app ready
-        run: sleep 10
+      - name: Take a 6s nap to ensure gatsby-app ready
+        run: sleep 6
 
-      - name: Run `linkcheck`
+      # - name: Run `linkcheck`
+      #   run: |
+      #     ~/linkcheck/linkcheck :9000 --skip-file .github/workflows/lc-skip.txt || checkexit=$?
+      #     if [ $checkexit -le 1 ]; then
+      #       echo "Successfully exit with linkcheck warning. See above message."
+      #       exit 0
+      #     else
+      #       echo "Please check linkcheck error above."
+      #       exit 1
+      #     fi
+
+      - name: Run `broken-link-check`
         run: |
-          ~/linkcheck/linkcheck :9000 --skip-file .github/workflows/lc-skip.txt || checkexit=$?
-          if [ $checkexit -le 1 ]; then
-            echo "Successfully exit with linkcheck warning. See above message."
-            exit 0
-          else
-            echo "Please check linkcheck error above."
-            exit 1
-          fi
+          yarn install
+          yarn checklinks:v3

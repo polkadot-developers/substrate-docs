@@ -41,17 +41,17 @@ const MainNav = {
           },
           {
             linkTitle: `Docs`,
-            link: `/v3/docs/getting-started/overview`,
+            link: `/docs`,
             external: false,
           },
           {
             linkTitle: `How-to Guides`,
-            link: `/v3/how-to-guides`,
+            link: `/how-to-guides`,
             external: false,
           },
           {
             linkTitle: `Tutorials`,
-            link: `/v3/tutorials`,
+            link: `/tutorials`,
             external: false,
           },
           {
