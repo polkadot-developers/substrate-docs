@@ -1,30 +1,37 @@
 ---
 title: Using Helper Functions
-slug: /v3/how-to-guides/basics/helper-functions
+slug: /how-to-guides/v3/basics/helper-functions
 keywords: basics, runtime
 version: 3.0 
 section: how to guides
 category: basics
+difficulty: 2
 ---
 
-## Goal
-
-Use helper functions inside a pallet to improve code readability and reusability.
-
-## Use cases
-
-Re-use helper functions to perform common "verify" checks across multiple pallets.
-
-## Overview
-
-Sometimes a disptachable function inside a pallet reuse logic that's common to other dispatchables.
-In this case, it's useful to refactor this logic into its own separate function, private to the pallet.
-Other times, dispatchable functions get increasingly difficult to read as the amount of code increases
-to perform various checks within the dispatchable. In both instances, using helper functions that cannot
-be accessed from outside the pallet are a useful tool to optimize for code readability and reusability.
-
-In this guide, we'll step through how to create an adder helper that checks for arithmetic overflow
-and can be reused in any dispatchable.
+<Objectives
+  data={[
+    {
+      title: 'Goal',
+      description: 'Use helper functions inside a pallet to improve code readability and reusability.',
+    },
+    {
+      title: 'Use Cases',
+      description:
+        `Re-use helper functions to perform common "verify" checks across multiple pallets.`,
+    },
+    {
+      title: 'Overview',
+      description:
+        `Sometimes a disptachable function inside a pallet reuses logic that's common to other dispatchables.
+         In this case, it's useful to refactor this logic into its own private function.
+         Other times, dispatchable functions get increasingly difficult to read as the amount of code increases
+         to perform various checks within the dispatchable. In both instances, using helper functions that cannot
+         be accessed from outside the pallet are a useful tool to optimize for code readability and reusability.
+         In this guide, we'll step through how to create an adder helper that checks for arithmetic overflow
+         and can be reused in any dispatchable.`,
+    },
+  ]}
+/>
 
 ## Steps
 

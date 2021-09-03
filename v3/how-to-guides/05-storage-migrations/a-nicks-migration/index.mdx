@@ -1,6 +1,6 @@
 ---
 title: Basic Storage Migration
-slug: /v3/how-to-guides/storage-migrations/basics
+slug: /how-to-guides/v3/storage-migrations/basics
 keywords: storage migration, runtime, upgrades
 version: 3.0 
 section: how to guides
@@ -8,18 +8,28 @@ category: storage migrations
 difficulty: 1
 ---
 
-## Goal
-
-Write a storage migration for a pallet that adds an additional `Vec<u8>` storage item to runtime storage.
-
-## Use cases
-
-A pallet that adds a single storage item and needs to be included in a runtime upgrade.
-
-## Overview
-
-This guide will step through a storage migration on [FRAME's Nick's pallet][nicks-frame]. It shows how to modify a storage map to
-provide an optional field that includes a last name, and how to write the migration function ready to be triggered upon a runtime upgrade. This guide can equally be used in other contexts which require a simple storage migration that modifies a storage map in a runtime.
+<Objectives
+  data={[
+    {
+      title: 'Goal',
+      description: 'Write a storage migration for a pallet that adds an additional \`Vec<u8>\` storage item to runtime storage.',
+    },
+    {
+      title: 'Use Cases',
+      description:
+        `A pallet that adds a single storage item and needs to be included in a runtime upgrade.`,
+    },
+    {
+      title: 'Overview',
+      description:
+        `This guide will step through a storage migration on [FRAME's Nick's pallet](https://github.com/paritytech/substrate/tree/master/frame/nicks). 
+        It shows how to modify a storage map to provide an optional field that includes a last name, and how to write the migration function ready 
+        to be triggered upon a runtime upgrade. This guide can equally be used in other contexts which require a simple storage migration that 
+        modifies a storage map in a runtime.
+        `,
+    },
+  ]}
+/>
 
 ## Steps
 
@@ -200,6 +210,5 @@ Put the new storage types in a `types.json` which you will need to trigger the m
 - Rust's <ExternalLink url={`https://doc.rust-lang.org/std/option/`}>Option enum</ExternalLink>
 - [`frame_support::storage::migration`](/rustdocs/latest/frame_support/storage/migration/index.html) utility docs
 
-[nicks-frame]: https://github.com/paritytech/substrate/tree/master/frame/nicks
 [translate-storage-rustdocs]: /rustdocs/latest/frame_support/storage/types/struct.StorageMap.html#method.translate
 [nicks-migration-htg-diff]: https://github.com/substrate-developer-hub/migration-example/pull/2/files

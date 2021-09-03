@@ -1,6 +1,6 @@
 ---
 title: Using Grafana and Prometheus with Substrate
-slug: /v3/tutorials/node-metrics/p1
+slug: /tutorials/v3/node-metrics/p1
 version: 3.0 
 section: tutorials
 category: node metrics
@@ -14,8 +14,8 @@ In this tutorial you will  learn how to use Grafana and Prometheus to scrape and
 
 ### 1. Install Prometheus and Grafana
 
-1. Install Prometheus [here](https://prometheus.io/docs/prometheus/latest/installation/)
-2. Install Grafana [here](https://grafana.com/get)
+- Install Prometheus [here](https://prometheus.io/docs/prometheus/latest/installation/).
+- Install Grafana [here](https://grafana.com/get).
 
 <Message
   type={`green`}
@@ -35,7 +35,7 @@ In this tutorial you will  learn how to use Grafana and Prometheus to scrape and
   title={`Information`}
   text=
     "Before you continue here, you should complete the
-    [create your first substrate chain](/v3/tutorials/create-your-first-substrate-chain)
+    [create your first substrate chain](/tutorials/v3/create-your-first-substrate-chain)
     tutorial. The same substrate version, conventions for 
     directory structure, and bin names are used here.
     You can of course use your own custom Substrate node instead of the template, 
@@ -146,7 +146,8 @@ all available metric data.
 ### 5. Visualizing Prometheus Metrics with Grafana
 
 Once you have Grafana running, navigate to it in a browser (**the default is https://localhost:3000/**).
-Log in (default user `admin` and password `admin`) and navigate to the [data sources](http://localhost:3000/datasources) page.
+Log in (default user `admin` and password `admin`) and navigate to the data sources page at
+`localhost:3000/datasources`.
 
 You then need to select a `Prometheus` data source type and specify where Grafana needs to look for it.
 
@@ -191,7 +192,7 @@ dashboards](https://grafana.com/grafana/dashboards/13759/)
 
 ### Learn More
 
-- Learn how to [set up a private Substrate network](/v3/tutorials/private-network).
+- Learn how to [set up a private Substrate network](/tutorials/v3/private-network).
 - Further configuration, notification services, and permanent installation of
   [Substrate/Polkadot monitoring tools](https://wiki.polkadot.network/docs/en/maintain-guides-how-to-monitor-your-node)
 
