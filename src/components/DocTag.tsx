@@ -9,7 +9,7 @@ export default function DocTag(props: DocTagProps) {
   return (
     <>
       <div className="inline-block text-xs mb-5">
-        <button className="bg-substrateBlue bg-opacity-5 px-4 py-2 border border-substratePurple border-opacity-30 rounded cursor-text">
+        <button className="bg-substrateBlue dark:bg-substrateDark bg-opacity-5 px-4 py-2 border border-substratePurple dark:border-substrateWhite border-opacity-30 rounded cursor-text">
           {props.difficulty === 1
             ? 'Beginner'
             : props.difficulty === 2
@@ -19,7 +19,7 @@ export default function DocTag(props: DocTagProps) {
             : null}
         </button>
         {props.duration && (
-          <button className="bg-substrateBlue bg-opacity-5 ml-4 px-4 py-2 border border-substratePurple border-opacity-30 rounded cursor-text">
+          <button className="bg-substrateBlue dark:bg-substrateDark bg-opacity-5 ml-4 px-4 py-2 border border-substratePurple dark:border-substrateWhite border-opacity-30 rounded cursor-text">
             <svg
               className="inline-block -mt-0.5 fill-current text-black dark:text-white"
               width="14"

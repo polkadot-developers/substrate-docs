@@ -26,12 +26,11 @@
     @apply box-border;
   } */
   html {
-    @apply bg-white dark:bg-black antialiased font-body;
-    /* scroll-behavior: smooth; */
+    @apply bg-white dark:bg-darkBackground
   }
 
   body {
-    @apply bg-white dark:bg-black text-substrateDark dark:text-white text-base;
+    @apply bg-white dark:bg-darkBackground text-substrateDark dark:text-white text-base;
     background: transparent;
   }
 

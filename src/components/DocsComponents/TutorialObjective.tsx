@@ -8,7 +8,7 @@ interface TutorialObjectiveProps {
 export function TutorialObjective({ data }: TutorialObjectiveProps) {
   return (
     <>
-      <div className="my-2 xl:pt-4 xl:flex xl:justify-start xl:items-start xl:bg-substrateGray-light xl:dark:bg-gray-800">
+      <div className="my-2 xl:pt-4 xl:flex xl:justify-start xl:items-start xl:bg-substrateGray-light xl:dark:bg-substrateDark">
         <div className="hidden xl:inline-block xl:ml-8 xl:mr-4 xl:mt-1 xl:w-7 xl:h-7">
           <svg
             className="fill-current text-substrateGreen"

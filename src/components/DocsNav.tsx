@@ -77,7 +77,7 @@ export default function DocsNav({
           </div>
           <div>
             <hr className="mt-6" />
-            <div className="flex items-center justify-between px-20 lg:px-6 py-4 lg:dark:bg-gray-900">
+            <div className="flex items-center justify-between px-20 lg:px-6 py-4">
               <span>{intl.formatMessage({ id: 'docs-nav-learn-more' })}</span>
             </div>
             {globalNav
@@ -86,7 +86,7 @@ export default function DocsNav({
                 return (
                   <div
                     key={index}
-                    className="px-20 lg:px-6 py-4 lg:dark:bg-gray-900"
+                    className="px-20 lg:px-6 py-4 lg:dark:bg-substrateDark"
                   >
                     {navItem.external ? (
                       <a
