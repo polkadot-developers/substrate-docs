@@ -52,7 +52,7 @@ module.exports = {
         },
         mdxRed: {
           DEFAULT: '#FFE1D9',
-          dark: 'F2606A',
+          dark: '#F2606A',
         },
         mdxLightBg: '#FAFBFC',
         bgDark: '#20292A',
