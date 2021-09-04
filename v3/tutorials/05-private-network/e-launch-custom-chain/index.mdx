@@ -1,6 +1,6 @@
 ---
 title: Creating Your Private Network
-slug: /v3/tutorials/private-network/launch-custom-chain
+slug: /tutorials/v3/private-network/launch-custom-chain
 version: 3.0 
 section: tutorials
 category: private network
@@ -91,9 +91,9 @@ Once your node is running, you will again notice that no blocks are being produc
 you need to add your keys into the keystore. Remember you will need to complete these steps for each
 node in your network. You will add two types of keys for each node: Aura and GRANDPA keys. Aura keys
 are necessary for
-[block _production_](/v3/docs/getting-started/glossary#author);
+[block _production_](/docs/v3/getting-started/glossary#author);
 GRANDPA keys are necessary for
-[block _finalization_](/v3/docs/getting-started/glossary#finality).
+[block _finalization_](/docs/v3/getting-started/glossary#finality).
 
 #### Option 1: Use the Polkadot-JS Apps UI
 
@@ -118,9 +118,9 @@ publicKey: <your raw sr25519 key> (eg. 0x9effc1668ca381c242885516ec9fa2b19c67b66
 />
 
 You've now successfully inserted your
-[**Aura**](/v3/docs/getting-started/glossary#aura-aka-authority-round)
+[**Aura**](/docs/v3/getting-started/glossary#aura-aka-authority-round)
 key. You can repeat those steps to insert your
-[**GRANDPA**](/v3/docs/getting-started/glossary#grandpa) key (the
+[**GRANDPA**](/docs/v3/getting-started/glossary#grandpa) key (the
 **ed25519** key)
 
 ![Inserting a GRANDPA key using Apps](../../../../src/images/tutorials/05-private-network/private-network-apps-insert-key-gran.png)
@@ -329,4 +329,4 @@ Details in https://github.com/substrate-developer-hub/tutorials/issues/16 -->
 ### Learn More
 
 That big Wasm blob we encountered in the chain spec was necessary to enable forkless upgrades.
-Learn more about how the [executor](/v3/docs/advanced/executor) uses on-chain Wasm.
+Learn more about how the [executor](/docs/v3/advanced/executor) uses on-chain Wasm.
