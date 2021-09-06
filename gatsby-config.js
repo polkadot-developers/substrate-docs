@@ -123,6 +123,13 @@ module.exports = {
         name: `add-contracts`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/v3/tutorials/09-cumulus-workshop/`,
+        name: `cumulus`,
+      },
+    },
     //*********************************//
     {
       resolve: `gatsby-source-filesystem`,

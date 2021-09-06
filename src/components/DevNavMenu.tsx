@@ -423,168 +423,250 @@ const DevNavMenu = {
 
 DevNavMenu.tuts = {}
 
-DevNavMenu.tuts.firstChain = {
-  name: `Create Your First Substrate Chain`,
-  items: [
-    {
-      title: `Introduction`,
-      link: '/tutorials/v3/create-your-first-substrate-chain',
-    },
-    {
-      title: `Set-up Your Computer`,
-      link: '/tutorials/v3/create-your-first-substrate-chain/setup',
-    },
-    {
-      title: `Background Information`,
-      link: '/tutorials/v3/create-your-first-substrate-chain/background',
-    },
-    {
-      title: `Interacting with Your Node`,
-      link: '/tutorials/v3/create-your-first-substrate-chain/interact',
-    },
-  ],
-}
+DevNavMenu.tuts.firstChain = [
+  {
+    name: `Create Your First Substrate Chain`,
+    items: [
+      {
+        title: `Introduction`,
+        link: '/tutorials/v3/create-your-first-substrate-chain',
+      },
+      {
+        title: `Set-up Your Computer`,
+        link: '/tutorials/v3/create-your-first-substrate-chain/setup',
+      },
+      {
+        title: `Background Information`,
+        link: '/tutorials/v3/create-your-first-substrate-chain/background',
+      },
+      {
+        title: `Interacting with Your Node`,
+        link: '/tutorials/v3/create-your-first-substrate-chain/interact',
+      },
+    ],
+  },
+]
 
-DevNavMenu.tuts.poe = {
-  name: `Proof of Existence`,
-  items: [
-    {
-      title: `Introduction`,
-      link: '/tutorials/v3/proof-of-existence',
-    },
-    {
-      title: `Prepare to build a dApp`,
-      link: '/tutorials/v3/proof-of-existence/prepare',
-    },
-    {
-      title: `Building a Custom Pallet`,
-      link: '/tutorials/v3/proof-of-existence/pallet',
-    },
-    {
-      title: `Building a Custom Front End`,
-      link: '/tutorials/v3/proof-of-existence/front-end',
-    },
-  ],
-}
+DevNavMenu.tuts.poe = [
+  {
+    name: `Proof of Existence`,
+    items: [
+      {
+        title: `Introduction`,
+        link: '/tutorials/v3/proof-of-existence',
+      },
+      {
+        title: `Prepare to build a dApp`,
+        link: '/tutorials/v3/proof-of-existence/prepare',
+      },
+      {
+        title: `Building a Custom Pallet`,
+        link: '/tutorials/v3/proof-of-existence/pallet',
+      },
+      {
+        title: `Building a Custom Front End`,
+        link: '/tutorials/v3/proof-of-existence/front-end',
+      },
+    ],
+  },
+]
 
-DevNavMenu.tuts.permissionedNetwork = {
-  name: `Start a Permissioned Network`,
-  items: [
-    {
-      title: `Introduction`,
-      link: '/tutorials/v3/permissioned-network',
-    },
-    {
-      title: `Add the node-authorization pallet`,
-      link: '/tutorials/v3/permissioned-network/node-authorization-pallet',
-    },
-    {
-      title: `Launch your permissioned network`,
-      link: '/tutorials/v3/permissioned-network/launch',
-    },
-  ],
-}
+DevNavMenu.tuts.permissionedNetwork = [
+  {
+    name: `Start a Permissioned Network`,
+    items: [
+      {
+        title: `Introduction`,
+        link: '/tutorials/v3/permissioned-network',
+      },
+      {
+        title: `Add the node-authorization pallet`,
+        link: '/tutorials/v3/permissioned-network/node-authorization-pallet',
+      },
+      {
+        title: `Launch your permissioned network`,
+        link: '/tutorials/v3/permissioned-network/launch',
+      },
+    ],
+  },
+]
 
-DevNavMenu.tuts.forklessUpgrades = {
-  name: `Forkless Runtime Upgrades`,
-  items: [
-    {
-      title: `Introduction`,
-      link: '/tutorials/v3/forkless-upgrades',
-    },
-    {
-      title: `Sudo Upgrade`,
-      link: '/tutorials/v3/forkless-upgrades/sudo-upgrade',
-    },
-    {
-      title: `Schedule an Upgrade`,
-      link: '/tutorials/v3/forkless-upgrades/schedule-an-upgrade',
-    },
-  ],
-}
+DevNavMenu.tuts.forklessUpgrades = [
+  {
+    name: `Forkless Runtime Upgrades`,
+    items: [
+      {
+        title: `Introduction`,
+        link: '/tutorials/v3/forkless-upgrades',
+      },
+      {
+        title: `Sudo Upgrade`,
+        link: '/tutorials/v3/forkless-upgrades/sudo-upgrade',
+      },
+      {
+        title: `Schedule an Upgrade`,
+        link: '/tutorials/v3/forkless-upgrades/schedule-an-upgrade',
+      },
+    ],
+  },
+]
 
-DevNavMenu.tuts.privateNetwork = {
-  name: `Start a Private Network`,
-  items: [
-    {
-      title: `Introduction`,
-      link: '/tutorials/v3/private-network',
-    },
-    {
-      title: `Start a Chain with Alice and Bob`,
-      link: '/tutorials/v3/private-network/alice-and-bob',
-    },
-    {
-      title: `Generate Your Own Keys`,
-      link: '/tutorials/v3/private-network/key-generation',
-    },
-    {
-      title: `Create a Custom Chain Spec`,
-      link: '/tutorials/v3/private-network/custom-chainspec',
-    },
-    {
-      title: `Launch Your Private Network`,
-      link: '/tutorials/v3/private-network/launch-custom-chain',
-    },
-  ],
-}
+DevNavMenu.tuts.privateNetwork = [
+  {
+    name: `Start a Private Network`,
+    items: [
+      {
+        title: `Introduction`,
+        link: '/tutorials/v3/private-network',
+      },
+      {
+        title: `Start a Chain with Alice and Bob`,
+        link: '/tutorials/v3/private-network/alice-and-bob',
+      },
+      {
+        title: `Generate Your Own Keys`,
+        link: '/tutorials/v3/private-network/key-generation',
+      },
+      {
+        title: `Create a Custom Chain Spec`,
+        link: '/tutorials/v3/private-network/custom-chainspec',
+      },
+      {
+        title: `Launch Your Private Network`,
+        link: '/tutorials/v3/private-network/launch-custom-chain',
+      },
+    ],
+  },
+]
 
-DevNavMenu.tuts.nodeMetrics = {
-  name: `Visualizing Node Metrics`,
-  items: [
-    {
-      title: `Introduction`,
-      link: '/tutorials/v3/node-metrics',
-    },
-    {
-      title: `Using Grafana and Prometheus with Substrate`,
-      link: '/tutorials/v3/node-metrics/p1',
-    },
-  ],
-}
+DevNavMenu.tuts.nodeMetrics = [
+  {
+    name: `Visualizing Node Metrics`,
+    items: [
+      {
+        title: `Introduction`,
+        link: '/tutorials/v3/node-metrics',
+      },
+      {
+        title: `Using Grafana and Prometheus with Substrate`,
+        link: '/tutorials/v3/node-metrics/p1',
+      },
+    ],
+  },
+]
 
-DevNavMenu.tuts.addPallet = {
-  name: `Add a FRAME's Nicks Pallet to Your Runtime`,
-  items: [
-    {
-      title: `Introduction`,
-      link: '/tutorials/v3/add-a-pallet',
-    },
-    {
-      title: `Import the Nicks Pallet`,
-      link: '/tutorials/v3/add-a-pallet/import',
-    },
-    {
-      title: `Configure the Nicks Pallet`,
-      link: '/tutorials/v3/add-a-pallet/configure',
-    },
-    {
-      title: `Interact with the Nicks Pallet`,
-      link: '/tutorials/v3/add-a-pallet/interact',
-    },
-    {
-      title: `Publish Your Own Pallet (optional)`,
-      link: '/tutorials/v3/add-a-pallet/publish',
-    },
-  ],
-}
+DevNavMenu.tuts.addPallet = [
+  {
+    name: `Add a FRAME's Nicks Pallet to Your Runtime`,
+    items: [
+      {
+        title: `Introduction`,
+        link: '/tutorials/v3/add-a-pallet',
+      },
+      {
+        title: `Import the Nicks Pallet`,
+        link: '/tutorials/v3/add-a-pallet/import',
+      },
+      {
+        title: `Configure the Nicks Pallet`,
+        link: '/tutorials/v3/add-a-pallet/configure',
+      },
+      {
+        title: `Interact with the Nicks Pallet`,
+        link: '/tutorials/v3/add-a-pallet/interact',
+      },
+      {
+        title: `Publish Your Own Pallet (optional)`,
+        link: '/tutorials/v3/add-a-pallet/publish',
+      },
+    ],
+  },
+]
 
-DevNavMenu.tuts.contractsTutorial = {
-  name: `Add the Contracts Pallet`,
-  items: [
-    {
-      title: `Introduction`,
-      link: '/tutorials/v3/add-contracts',
-    },
-    {
-      title: `Node Set-up`,
-      link: '/tutorials/v3/add-contracts/pt1',
-    },
-    {
-      title: `Implement the Contracts pallet and its APIs`,
-      link: '/tutorials/v3/add-contracts/pt2',
-    },
-  ],
-}
+DevNavMenu.tuts.contractsTutorial = [
+  {
+    name: `Add the Contracts Pallet`,
+    items: [
+      {
+        title: `Introduction`,
+        link: '/tutorials/v3/add-contracts',
+      },
+      {
+        title: `Node Set-up`,
+        link: '/tutorials/v3/add-contracts/pt1',
+      },
+      {
+        title: `Implement the Contracts pallet and its APIs`,
+        link: '/tutorials/v3/add-contracts/pt2',
+      },
+    ],
+  },
+]
+
+DevNavMenu.tuts.cumulusWorkshop = [
+  {
+    name: `Part I`,
+    items: [
+      {
+        title: `Introduction`,
+        link: '/tutorials/v3/cumulus-workshop',
+      },
+      {
+        title: `Build Environment and Compilation`,
+        link: '/tutorials/v3/cumulus-workshop/build-env',
+      },
+      {
+        title: `Relay chain spec`,
+        link: '/tutorials/v3/cumulus-workshop/relay-spec',
+      },
+      {
+        title: `Starting the Relay Chain`,
+        link: '/tutorials/v3/cumulus-workshop/relay-start',
+      },
+    ],
+  },
+  {
+    name: `Part II`,
+    items: [
+      {
+        title: `Reserve a Para ID`,
+        link: '/tutorials/v3/cumulus-workshop/para-id',
+      },
+      {
+        title: `Launch a Parachain`,
+        link: '/tutorials/v3/cumulus-workshop/para-launch',
+      },
+      {
+        title: `Parachain Registration`,
+        link: '/tutorials/v3/cumulus-workshop/para-register',
+      },
+      {
+        title: `Interacting with a Parachain`,
+        link: '/tutorials/v3/cumulus-workshop/para-interact',
+      },
+      {
+        title: `Connecting Additional Parachain Nodes`,
+        link: '/tutorials/v3/cumulus-workshop/para-nodes',
+      },
+    ],
+  },
+  {
+    name: `Part III`,
+    items: [
+      {
+        title: `Launch a Development Environment with Polkadot Launch`,
+        link: '/tutorials/v3/cumulus-workshop/polkadot-launch',
+      },
+      {
+        title: `Parachain Node Template`,
+        link: '/tutorials/v3/cumulus-workshop/para-node-template',
+      },
+      {
+        title: `Rococo Testnet Registration`,
+        link: '/tutorials/v3/cumulus-workshop/rococo',
+      },
+    ],
+  },
+]
 
 export default DevNavMenu
