@@ -31,7 +31,7 @@ const Code = ({ codeString, language }: any) => {
         theme={theme}
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <div className="max-w-full lg:max-w-md xl:max-w-2xl 2xl:max-w-4xl">
+          <div className="max-w-full lg:max-w-md xl:max-w-2xl 2xl:max-w-3xl">
             <div className="gatsby-highlight " data-language={language}>
               <pre className={`${className}`} style={style}>
                 <button

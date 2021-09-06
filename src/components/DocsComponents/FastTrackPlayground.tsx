@@ -13,9 +13,9 @@ export function FastTrackPlayground({
 }: FastTrackPlaygroundProps) {
   return (
     <>
-      <div className="hidden lg:inline-block ml-16 float-right max-w-xs rounded bg-substrateGray-light shadow-lg">
+      <div className="hidden lg:inline-block ml-16 float-right max-w-xs rounded bg-substrateGray-light dark:bg-substrateDark shadow-lg">
         <div className="py-3 px-6 rounded-t-lg bg-substrateGreen">
-          <div className="text-lg text-white font-bold dark:text-black">
+          <div className="text-lg text-white font-bold dark:text-substrateDark">
             {header}
           </div>
         </div>
@@ -27,7 +27,7 @@ export function FastTrackPlayground({
             target="_blank"
             rel="noreferrer"
           >
-            <button className="bg-substrateDark py-3 w-full rounded text-lg text-white font-bold transform transition-all duration-300 ease-in-out hover:bg-opacity-90">
+            <button className="bg-substrateDark dark:bg-darkBackground py-3 w-full rounded text-lg text-white font-bold transform transition-all duration-300 ease-in-out hover:bg-opacity-90">
               Set up Playground
             </button>
           </a>

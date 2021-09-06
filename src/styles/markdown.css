@@ -82,6 +82,15 @@
   outline-width: 0;
 }
 
+.markdown-body a.anchor {
+  padding-top: 5px;
+  opacity: 0;
+  transition: all 0.2s;
+}
+.markdown-body a.anchor:hover {
+  opacity: 1;
+}
+
 .markdown-body strong {
   font-weight: inherit;
   font-weight: bolder;
@@ -132,47 +141,6 @@
   font-size: inherit;
   line-height: inherit;
 }
-
-/* .markdown-body a {
-  color: #0366d6;
-  text-decoration: none;
-}
-
-.markdown-body a:hover {
-  text-decoration: underline;
-} */
-
-/* .markdown-body a {
-  position: relative;
-  color: #5a30b4;
-  text-decoration: none;
-}
-
-.markdown-body a:hover {
-  color: #5a30b4;
-}
-
-.markdown-body a::before {
-  content: '';
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 1px;
-  bottom: 0;
-  left: 0;
-  background-color: #5a30b4;
-  transform: scaleX(0);
-  transform-origin: top left;
-  transition: transform 0.3s ease;
-}
-
-.markdown-body a.md-button:hover::before {
-  transform: scaleX(0);
-}
-
-.markdown-body a:hover::before {
-  transform: scaleX(1);
-} */
 
 .markdown-body strong {
   font-weight: 600;
@@ -713,6 +681,7 @@
 .markdown-body h1,
 .markdown-body h2 {
   padding-bottom: 0.3em;
+  scroll-margin-top: 80px;
 }
 
 .markdown-body h2 {
@@ -721,6 +690,7 @@
 
 .markdown-body h3 {
   font-size: 1.25em;
+  scroll-margin-top: 80px;
 }
 
 .markdown-body h4 {

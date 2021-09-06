@@ -2,13 +2,13 @@ import React from 'react'
 import { LocalizedLink } from 'gatsby-theme-i18n'
 
 interface TutorialObjectiveProps {
-  data: { textLineOne: string; textLineTwo: string; url: string }
+  data: { textLineOne: string; textLineTwo?: string; url: string }
 }
 
 export function TutorialObjective({ data }: TutorialObjectiveProps) {
   return (
     <>
-      <div className="my-2 xl:pt-4 xl:flex xl:justify-start xl:items-start xl:bg-substrateGray-light xl:dark:bg-gray-800">
+      <div className="my-2 xl:pt-4 xl:flex xl:justify-start xl:items-start xl:bg-substrateGray-light xl:dark:bg-substrateDark">
         <div className="hidden xl:inline-block xl:ml-8 xl:mr-4 xl:mt-1 xl:w-7 xl:h-7">
           <svg
             className="fill-current text-substrateGreen"
@@ -29,7 +29,9 @@ export function TutorialObjective({ data }: TutorialObjectiveProps) {
           <p className="hidden xl:block font-light">{data.textLineTwo}</p>
         </div>
         <LocalizedLink
-          className="md-button hidden xl:block xl:mt-1 xl:mr-4"
+          className={`md-button hidden xl:block bg-red-400 ${
+            !data.textLineTwo ? `xl:-mt-1` : `xl:mt-1`
+          }  xl:mr-4`}
           to={data.url}
         >
           <button className="w-10 h-10 bg-substrateGreen rounded flex justify-center items-center">

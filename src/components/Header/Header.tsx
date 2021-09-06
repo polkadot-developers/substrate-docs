@@ -49,7 +49,7 @@ export default function Header() {
   }, [scroll.y])
 
   return (
-    <header className="sticky top-0 z-10 font-body border-b bg-white dark:bg-black border-gray-200 dark:border-gray-700">
+    <header className="sticky top-0 z-10 font-body border-b bg-white dark:bg-darkBackground border-gray-200 dark:border-gray-700">
       <div className="px-4 xl:px-12">
         <div
           className={`flex items-center justify-between transition-height ease-in-out ${menuHeight}`}
