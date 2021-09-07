@@ -14,7 +14,7 @@ keywords:
 ### 1. Parachain Registration
 
 We have our relay chain launched and our parachain collator ready to go. Now we have to register the
-parachain on the relay chain. In the live Polkadot network, this will be accomplished with <ExternalLink url={`https://wiki.polkadot.network/docs/en/learn-auction`}>parachain auctions</ExternalLink>. But today we will do it
+parachain on the relay chain. In the live Polkadot network, this will be accomplished with <ExternalLink url="https://wiki.polkadot.network/docs/en/learn-auction">parachain auctions</ExternalLink>. But today we will do it
 with `Sudo` call.
 
 ### 2. Registration Transaction
@@ -42,7 +42,7 @@ on this can be found [latter on in this tutorial](en/3-parachains/4-more-nodes).
  `}
  />
 
-- Go to <ExternalLink url={`https://polkadot.js.org/apps/#/explorer`}>Polkadot Apps UI</ExternalLink>, connecting to your **relay chain**.
+- Go to <ExternalLink url="https://polkadot.js.org/apps/#/explorer">Polkadot Apps UI</ExternalLink>, connecting to your **relay chain**.
 
 - Execute a sudo extrinsic on the relay chain by going to `Developer` -> `sudo` page.
 
@@ -79,7 +79,7 @@ have an onboarded parathread:
 
 ![parathread-onboarding.png](../../../../../src/images/tutorials/09-cumulus-workshop/parathread-onboarding.png)
 
-- Go to <ExternalLink url={`https://polkadot.js.org/apps/#/explorer`}>Polkadot Apps UI</ExternalLink>,
+- Go to <ExternalLink url="https://polkadot.js.org/apps/#/explorer">Polkadot Apps UI</ExternalLink>,
   connecting to your **relay chain**.
 
 - Execute a sudo extrinsic on the relay chain by going to `Developer` -> `sudo` page.
@@ -185,7 +185,7 @@ Then register from a [blank slate](#registration-transaction) again.
 ### 5. Parachian Block Finalization
 
 The relay chain tracks the latest blocks (the heads) of each parachain. When a relay chain block
-is finalized, any parachain blocks that have completed the <ExternalLink url={`https://polkadot.network/the-path-of-a-parachain-block/`}>validation process</ExternalLink>
+is finalized, any parachain blocks that have completed the <ExternalLink url="https://polkadot.network/the-path-of-a-parachain-block/">validation process</ExternalLink>
 are also finalized.
 This is how Polkadot achieves shared security.
 

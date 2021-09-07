@@ -11,7 +11,7 @@ keywords:
 
 Now that we have gone through the procedure of manually launching a relay chain of a few nodes, and
 a parachain, you can automate testnets for development and testing.
-<ExternalLink url={`https://github.com/paritytech/polkadot-launch`}>`polkadot-launch`</ExternalLink> is a Node utility script that
+<ExternalLink url="https://github.com/paritytech/polkadot-launch">`polkadot-launch`</ExternalLink> is a Node utility script that
 does this for you, allowing for some custom configurations to setup networks very simply.
 
 Note that this isn't a replacement for the manual process, as this script is not a perfect fit for
@@ -49,7 +49,7 @@ node dist/cli.js --version
 # 1.7.0
 ```
 
-If you think your edits are valuable, please consider <ExternalLink url={`https://github.com/paritytech/polkadot-launch`}>opening a PR</ExternalLink>.
+If you think your edits are valuable, please consider <ExternalLink url="https://github.com/paritytech/polkadot-launch">opening a PR</ExternalLink>.
 
 ### 2. Basic Configuration
 
@@ -123,7 +123,7 @@ If you wish to monitor the logs in real time, you can do so with:
 tail -f <logfile>
 ```
 
-Another way to verify the setup is correct, is by going to <ExternalLink url={`https://polkadot.js.org/apps/#/parachains`}> Polkadot-JS Apps **Network** -
+Another way to verify the setup is correct, is by going to <ExternalLink url="https://polkadot.js.org/apps/#/parachains"> Polkadot-JS Apps **Network** -
 **Parachains** tab</ExternalLink> , after configure to connect to a
 **relay chain node**, you should see the UI showing two parachains being connected to the relay chain.
 
@@ -252,7 +252,7 @@ Finally, there is `genesis`. It is a JSON object of the properties you want to m
 
 #### `simpleParachains` Section
 
-This is similar to parachains but for "simple" collators like the <ExternalLink url={`https://github.com/paritytech/polkadot/tree/master/parachain/test-parachains/adder/collator`}>adder-collator</ExternalLink>, 
+This is similar to parachains but for "simple" collators like the <ExternalLink url="https://github.com/paritytech/polkadot/tree/master/parachain/test-parachains/adder/collator">adder-collator</ExternalLink>, 
 a very simple collator that lives in the polkadot repo and is meant for simple testing. It supports a subset of configuration values, and is meant to run with a single node only:
 
 `simpleParachains` section is similar to `parachains` section:
