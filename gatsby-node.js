@@ -49,6 +49,11 @@ const tutsInfo = [
     navSlug: 'contractsTutorial',
     version: '3.0',
   },
+  {
+    name: 'cumulus',
+    navSlug: 'cumulusWorkshop',
+    version: '3.0',
+  },
 ]
 
 const gqlTpl = `{ res: allFile(

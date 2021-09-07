@@ -19,23 +19,36 @@ export default function DocsNav({
 
   return (
     <nav
-      className={`sticky top-16 h-docNav overflow-y-auto ${
-        isOpen
-          ? `transition-width transform w-16`
-          : `transition-width transform w-60`
+      className={`sticky top-16 h-docNav ${
+        isOpen ? `w-16 overflow-y-hidden` : `w-64 overflow-y-auto `
       }`}
     >
       <div>
-        <div className="flex flex-row justify-end pl-4 pt-10 pb-5">
+        <div
+          className={`flex ${
+            isOpen
+              ? `transition-all transform duration-75 ease-in-out justify-start px-4`
+              : `transition-all transform duration-75 ease-in-out justify-between px-6`
+          } items-center h-14 bg-substrateGray dark:bg-gray-700 mt-10 `}
+        >
+          <div className={`${isOpen && `hidden`}`}>
+            <span className="font-bold">
+              {templateId === 0
+                ? `${intl.formatMessage({ id: 'nav-docs' })}`
+                : templateId === 1
+                ? `${intl.formatMessage({ id: 'nav-tutorials' })}`
+                : templateId === 2
+                ? `${intl.formatMessage({ id: 'nav-how-to-guides' })}`
+                : null}
+            </span>
+          </div>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="bg-black dark:bg-white p-3 mr-4 rounded-lg opacity-90 hover:opacity-100 focus:outline-none"
+            className="bg-substrateDark dark:bg-white p-2 rounded-lg transform transition-opacity duration-300 ease-in-out hover:opacity-80 focus:outline-none"
           >
             <svg
               className={`fill-current text-white dark:text-black ${
-                isOpen
-                  ? 'transition transform duration-300 rotate-180'
-                  : 'transition transform duration-300 rotate-0'
+                isOpen && 'rotate-180'
               }`}
               width="12"
               height="10"
@@ -57,36 +70,6 @@ export default function DocsNav({
               : 'transition-all transform duration-500 ease-in-out opacity-100'
           }`}
         >
-          <LocalizedLink
-            className="flex justify-start items-center pl-4 py-4 text-black dark:text-white hover:text-substrateDark"
-            to={templateId === 1 ? '/tutorials' : '/'}
-          >
-            <svg
-              className="fill-current text-substrateDark dark:text-white"
-              width="12"
-              height="12"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M9.11836 19.1184C9.60528 19.6053 10.3947 19.6053 10.8816 19.1184C11.3683 18.6317 11.3686 17.8429 10.8824 17.3559L4.7875 11.25L18.75 11.25C19.4404 11.25 20 10.6904 20 10C20 9.30965 19.4404 8.75 18.75 8.75L4.7875 8.75L10.8824 2.64415C11.3686 2.1571 11.3683 1.36826 10.8816 0.881648C10.3947 0.39473 9.60527 0.394731 9.11836 0.881648L1.03312e-06 10L9.11836 19.1184Z"></path>
-            </svg>
-            <span className="pl-4 text-sm font-bold">
-              {templateId === 1
-                ? 'Back to Tutorials'
-                : `${intl.formatMessage({ id: 'docs-nav-docs-overview' })}`}
-            </span>
-          </LocalizedLink>
-          <div className="flex py-3 bg-substrateGray dark:bg-gray-700">
-            <span className="pl-4 font-bold">
-              {templateId === 0
-                ? `${intl.formatMessage({ id: 'nav-docs' })}`
-                : templateId === 1
-                ? `${intl.formatMessage({ id: 'nav-tutorials' })}`
-                : templateId === 2
-                ? `${intl.formatMessage({ id: 'nav-how-to-guides' })}`
-                : null}
-            </span>
-          </div>
           <div className="pt-2">
             {sideNav.map((section: any, index: number) => (
               <SlideDownNav key={index} section={section} />
@@ -94,7 +77,7 @@ export default function DocsNav({
           </div>
           <div>
             <hr className="mt-6" />
-            <div className="flex items-center justify-between px-20 lg:px-4 py-4 lg:dark:bg-gray-900">
+            <div className="flex items-center justify-between px-20 lg:px-6 py-4">
               <span>{intl.formatMessage({ id: 'docs-nav-learn-more' })}</span>
             </div>
             {globalNav
@@ -103,7 +86,7 @@ export default function DocsNav({
                 return (
                   <div
                     key={index}
-                    className="px-20 lg:px-4 py-4 lg:dark:bg-gray-900"
+                    className="px-20 lg:px-6 py-4 lg:dark:bg-substrateDark"
                   >
                     {navItem.external ? (
                       <a
