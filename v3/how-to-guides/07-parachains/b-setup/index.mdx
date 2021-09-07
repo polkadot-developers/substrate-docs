@@ -41,25 +41,31 @@ impl<'a> From<&'a str> for ProtocolId {
 
 This step is important &mdash; you wouldn't want to connect to the wrong network!
 
-:::tip
-Refer to [this guide](/docs/pallet-design/randomness) for some ideas on creating a unique value to use here.
-:::
+<Message
+  type={`green`}
+  title={`Tip`}
+  text={`Refer to [this guide](/docs/pallet-design/randomness) for some ideas on creating a unique value to use here.`}
+/>
 
-:::note Memory Profiling
-[Profiling your collator][profiling-kb] should be done to analyze memory leaks,
-identify where memory consumption is happening, define temporary
-allocations, and investigate excessive memory fragmentation within
-applications.
-:::
+<Message
+  type={`gray`}
+  title={`A note on Memory Profiling`}
+  text={`[Profiling your collator](https://substrate.dev/docs/en/knowledgebase/integrate/memory-profiling) should be done to analyze memory leaks,
+	identify where memory consumption is happening, define temporary
+	allocations, and investigate excessive memory fragmentation within
+	applications.
+  `}
+/>
 
 ### 2. Check runtime weights
 
 Use benchmarking to verify that your runtime weights are correct.
 
-:::note
-Refer to this [knowledgebase article][benchmarking-kb] on
-benchmarking for additional information.
-:::
+<Message
+  type={`green`}
+  title={`Tip`}
+  text={`Refer to this [knowledgebase article](https://substrate.dev/docs/en/knowledgebase/runtime/benchmarking) on benchmarking for additional information.`}
+/>
 
 #### Customize weights
 
@@ -79,13 +85,20 @@ Generally, when launching a parachain, it is important to use the **compressed v
 
 - If the runtime is included in the state proof, ensure the PoV block (i.e. the set of extrinsics, including the new runtime, the PoV state proof, potentially the old runtime) fits within the PoVBlock size limit. If the runtime is not included in the state proof, the size limit of the new runtime will be much higher.
 
-:::tip
-You can check the maximum PoVBlock size [here](https://github.com/paritytech/polkadot/blob/a620156c0cdb46991b8eae89b99d1941aa8d9e18/primitives/src/v1/mod.rs#L206) or in the Polkadot-JS Apps UI: _Developers_ -> _ParachainsConfiguration_ -> _ActiveConfiguration_)
-:::
+<Message
+  type={`gray`}
+  title={`A note on Memory Profiling`}
+  text={`You can check the maximum PoV Block size [here](https://github.com/paritytech/polkadot/blob/a620156c0cdb46991b8eae89b99d1941aa8d9e18/primitives/src/v1/mod.rs#L206) 
+  or in the Polkadot-JS Apps UI: _Developers_ -> _ParachainsConfiguration_ -> _ActiveConfiguration_`}
+/>
 
-:::info
-Here you can see an example of how to [limit](https://github.com/paritytech/cumulus/blob/59cdbb6a56b1c49009413d66ba2232494563b57c/polkadot-parachains/statemine/src/lib.rs#L148) and [enable](https://github.com/paritytech/cumulus/pull/476/files#diff-09b95657e9aa1b646722afa7944a00ddc2541e8753254a86180b338d3376f93eL151) functionality with filters as implemented in [Statemint][statemint].
-:::
+<Message
+  type={`yellow`}
+  title={`Information`}
+  text={`Here you can see an example of how to [limit](https://github.com/paritytech/cumulus/blob/59cdbb6a56b1c49009413d66ba2232494563b57c/polkadot-parachains/statemine/src/lib.rs#L148) 
+  nd [enable](https://github.com/paritytech/cumulus/pull/476/files#diff-09b95657e9aa1b646722afa7944a00ddc2541e8753254a86180b338d3376f93eL151) 
+  functionality with filters as implemented in [Statemint](https://github.com/paritytech/cumulus/tree/master/polkadot-parachains/statemint).`}
+/>
 
 #### For large runtimes
 
@@ -112,5 +125,3 @@ It is less favorable to perform storage upgrades for large runtimes. In these ca
 - [Benchmarking][benchmarking-kb]
 
 [benchmarking-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/benchmarking
-[profiling-kb]: https://substrate.dev/docs/en/knowledgebase/integrate/memory-profiling
-[statemint]: https://github.com/paritytech/cumulus/tree/master/polkadot-parachains/statemint

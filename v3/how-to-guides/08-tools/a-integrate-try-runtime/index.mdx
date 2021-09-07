@@ -22,9 +22,11 @@ Use `try-runtime` to test a storage migration.
 The `try-runtime` tool is useful for running tests before launching a runtime to production. This is a simple guide 
 which steps through which dependencies to include and where to include them in order to use it inside a runtime. 
 
-:::warning
-Be sure to use the latest `monthly-*` tag when adding your dependencies.
-:::
+<Message
+  type={`red`}
+  title={`Warning`}
+  text={`Be sure to use the latest \`monthly-*\` tag when adding your dependencies.`}
+/>
 
 ## Steps
 
@@ -133,10 +135,13 @@ try-runtime-cli = { git = 'https://github.com/paritytech/substrate.git', tag = '
 /* --snip-- */
 ```
 
-:::note
-If you're using custom pallets in your workspace, make sure you included 
-`try-runtime` in the dependencies inside the `pallets/pallet_name/Cargo.toml` file of your workspace.
-:::
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`If you're using custom pallets in your workspace, make sure you included 
+  \`try-runtime\` in the dependencies inside the \`pallets/pallet_name/Cargo.toml\` file of your workspace.
+  `}
+/>
 
 ### 3. Using `try-runtime`
 
