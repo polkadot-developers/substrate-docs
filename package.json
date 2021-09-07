@@ -78,6 +78,7 @@
     "gatsby-plugin-postcss": "^4.7.1",
     "hyperlink": "^4.7.0",
     "postcss": "^8.3.4",
+    "postcss-import": "^14.0.2",
     "prettier": "^2.3.1",
     "tailwindcss": "^2.2.7",
     "tap-spot": "^1.1.1",

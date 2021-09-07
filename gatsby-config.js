@@ -225,11 +225,14 @@ module.exports = {
       },
     },
     'gatsby-plugin-postcss',
+    /* use tailwindcss, used sass instead of css */
     {
       resolve: 'gatsby-plugin-sass',
       options: {
         postCssPlugins: [
           require('tailwindcss'),
+          /* Load custom Tailwind CSS configuration, used to purge
+             "unused" tailwind classes */
           require('./tailwind.config.js'),
         ],
       },
