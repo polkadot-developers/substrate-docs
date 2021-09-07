@@ -48,8 +48,8 @@ export default function Footer() {
             </svg>
           </Link>
         </div>
-        <nav className="p-0 m-0 hidden sm:block lg:w-full lg:max-w-screen md:h-auto">
-          <ul className="m-0 list-none">
+        <nav className="p-0 m-0 hidden xs:block lg:w-full lg:max-w-screen md:h-auto">
+          <ul className="h-[640px] sm:h-auto m-0 p-0 list-none flex flex-wrap flex-col flex-start">
             {navItems.map((section, index) => {
               return (
                 <li
