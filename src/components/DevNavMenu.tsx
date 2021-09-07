@@ -362,6 +362,7 @@ const DevNavMenu = {
           },
         ],
       },
+      // 4. Testing.
       {
         name: `${intl.formatMessage({ id: 'docs-nav-htg-testing' })}`,
         items: [
@@ -377,7 +378,7 @@ const DevNavMenu = {
           },
         ],
       },
-      // 4. Testing.
+      // 5. Storage Migrations.
       {
         name: `${intl.formatMessage({
           id: 'docs-nav-htg-storage-migrations',
@@ -397,7 +398,7 @@ const DevNavMenu = {
           },
         ],
       },
-      // 5. Storage Migrations.
+      // 6. Consensus.
       {
         name: `${intl.formatMessage({ id: 'docs-nav-htg-consensus' })}`,
         items: [
@@ -407,17 +408,7 @@ const DevNavMenu = {
           },
         ],
       },
-      // 6. Consenus.
-      {
-        name: `${intl.formatMessage({ id: 'docs-nav-htg-tools' })}`,
-        items: [
-          {
-            title: `${intl.formatMessage({ id: 'htg-tools' })}`,
-            link: '/how-to-guides/v3/tools/try-runtime',
-          },
-        ],
-      },
-      // 7. Parachains
+      // 7. Parachains.
       {
         name: `${intl.formatMessage({
           id: 'docs-nav-htg-parachains',
@@ -458,11 +449,11 @@ const DevNavMenu = {
         items: [
           {
             title: `${intl.formatMessage({ id: 'htg-tools-try-runtime' })}`,
-            link: '/how-to-guides/v3/tools/integrate-try-runtime',
+            link: '/how-to-guides/v3/tools/try-runtime',
           },
           {
             title: `${intl.formatMessage({ id: 'htg-tools-txwrapper' })}`,
-            link: '/how-to-guides/v3/tools/use-txwrapper',
+            link: '/how-to-guides/v3/tools/txwrapper',
           },
           {
             title: `${intl.formatMessage({ id: 'htg-tools-sidecar' })}`,
