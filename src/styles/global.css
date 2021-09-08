@@ -30,7 +30,7 @@
   }
 
   body {
-    @apply bg-white dark:bg-darkBackground text-substrateDark dark:text-white text-base;
+    @apply bg-white dark:bg-darkBackground text-substrateDark dark:text-white text-base font-body;
     background: transparent;
   }
 
@@ -44,7 +44,7 @@
 
   /* Headings */
   h1 {
-    @apply font-title font-bold;
+    @apply font-bold;
   }
 
   h2,
@@ -128,6 +128,10 @@
   /* Unordered Lists */
   ul {
     @apply list-disc;
+  }
+
+  #config {
+    scroll-margin-top: 80px;
   }
 
 }
