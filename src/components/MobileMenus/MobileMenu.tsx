@@ -64,7 +64,7 @@ const MobileMenu = ({ theme, toggleMenu, navItems }: MobileMenuProps) => {
         </div>
         <div onClick={() => toggleMenu()} className="h-auto cursor-pointer">
           <svg
-            className="fill-current text-Black dark:text-white"
+            className="fill-current text-substrateDark dark:text-white"
             width="20"
             height="20"
             viewBox="0 0 20 20"
@@ -91,7 +91,7 @@ const MobileMenu = ({ theme, toggleMenu, navItems }: MobileMenuProps) => {
                     ? setIsEcoMenuOpen(!isEcoMenuOpen)
                     : null
                 }}
-                className="py-3 hover:bg-substrateGreen-light dark:hover:bg-gray-700 font-medium transform transition-all duration-75 ease-in-out hover:font-bold"
+                className="py-3 hover:bg-substrateGreen-light dark:hover:bg-green-700 font-medium transform transition-all duration-75 ease-in-out hover:font-bold"
               >
                 <div className="px-6 flex items-center justify-between focus:outline-none cursor-pointer">
                   <div className="text-2xl">{item.name}</div>

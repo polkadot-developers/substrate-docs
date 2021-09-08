@@ -1,25 +1,34 @@
 ---
 title: Basic Pallet Integration
-slug: /v3/how-to-guides/basics/pallet-integration
+slug: /how-to-guides/v3/basics/pallet-integration
 keywords: basics, beginner, runtime
 version: 3.0 
 section: how to guides
 category: basics
+difficulty: 1
 ---
 
-## Goal
-
-Learn the steps for integrating a pallet to your runtime.
-
-## Use cases
-
-- Including a custom pallet that implements an event and a call for runtime.
-- Including a pallet from Crates.io to a runtime.
-
-## Overview
-
-This guide is an extension to the ["Add a Pallet to Your Runtime" tutorial][add-a-pallet-tutorial], intended as a resource
-for developers new to Substrate looking to quickly integrate a pallet to their runtime. It covers adding both local and external pallets to a runtime.
+<Objectives
+  data={[
+    {
+      title: 'Goal',
+      description: 'Learn the steps for integrating a pallet to your runtime.',
+    },
+    {
+      title: 'Use Cases',
+      description:
+        `- Including a custom pallet that implements an event and a call for runtime   
+         - Including a pallet from Crates.io to a runtime.`,
+    },
+    {
+      title: 'Overview',
+      description:
+        `This guide is an extension to the ["Add a Pallet to Your Runtime" tutorial](/tutorials/v3/add-a-pallet),
+        intended as a resource for developers new to Substrate looking to quickly integrate a pallet to their runtime. 
+        It covers adding both local and external pallets to a runtime.`,
+    },
+  ]}
+/>
 
 ## Steps
 
@@ -98,7 +107,7 @@ std = [
 
 #### For external pallets
 
-Assuming the pallet is hosted in <ExternalLink url={`/rustdocs/latest/sc_service/index.html`}>parity.crates.io</ExternalLink>, adding it to the runtime would look like this:
+Assuming the pallet is hosted in <ExternalLink url={'https://crates.parity.io/'}>crates.parity.io</ExternalLink>, adding it to the runtime would look like this:
 
 ```rust
 [dependencies.pallet-external]
@@ -139,18 +148,7 @@ std = [
     FRAME Timestamp Pallet in Crates.io{' '}
   </ExternalLink>
 
----
-
-<FastTrackPlayground
-  title={``}
-  description={`Set up a local sandbox environment 
-to skip over set-up and get straight to hacking. Utilize the power of Playground right away.`}
-  playgroundLink={`https://playground.substrate.dev`}
-/>
-
-[add-a-pallet-tutorial]: /v3/tutorials/add-a-pallet
 [mock-runtime]: https://substrate.dev/docs/en/knowledgebase/runtime/tests#mock-runtime-environment
-[parity-crates]: /rustdocs/latest/sc_service/index.html
 [timestamp-frame]: https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs#L413-L422
 [timestamp-rustdocs]: /rustdocs/latest/pallet_timestamp/pallet/trait.Config.html#associated-types
 [template-frame]: https://github.com/substrate-developer-hub/substrate-node-template/blob/master/pallets/template/src/lib.rs#L1-L107

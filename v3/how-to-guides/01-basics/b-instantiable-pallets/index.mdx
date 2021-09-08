@@ -1,10 +1,11 @@
 ---
 title: Intantiable Pallets
-slug: /v3/how-to-guides/basics/instantiable-pallets
+slug: /how-to-guides/v3/basics/instantiable-pallets
 keywords: basics, intermediate, runtime
 version: 3.0 
 section: how to guides
 category: basics
+difficulty: 1
 ---
 
 <Message
@@ -13,22 +14,29 @@ category: basics
   text={`This guide is based on FRAME v1 macros and will soon be deprecated.`}
 />
 
-## Goal
-
-Learn how to configure instantiable pallets.
-
-## Use cases
-
-- A token chain hosts two independent cryptocurrencies.
-- Governance has two (or more) houses which act similarly internally.
-- A social network chain that maintains different treasuries.
-
-## Overview
-
-The premise of instantiable pallets is to provide separate storage items for a runtime that contains more than one
-reference to the same pallet. This can be useful in cases where you may need to reuse the logic provided by a single
-pallet. This recipe guides you through how to create two instances of the same pallet and how to configure their
-capabilities.
+<Objectives
+  data={[
+    {
+      title: 'Goal',
+      description: 'Learn how to configure instantiable pallets.',
+    },
+    {
+      title: 'Use Cases',
+      description:
+        `- A token chain hosts two independent cryptocurrencies.
+         - Governance has two (or more) houses which act similarly internally.
+         - A social network chain that maintains different treasuries.`,
+    },
+    {
+      title: 'Overview',
+      description:
+        `The premise of instantiable pallets is to provide separate storage items for a runtime that contains more than one
+         reference to the same pallet. This can be useful in cases where you may need to reuse the logic provided by a single
+         pallet. This recipe guides you through how to create two instances of the same pallet and how to configure their
+         capabilities.`,
+    },
+  ]}
+/>
 
 ## Steps
 

@@ -8,7 +8,7 @@ interface TutorialCardProps {
   image: any
   description: string
   time: string
-  difficulty: string
+  difficulty: number
   prerequisites: boolean
   version: string
   link: string
@@ -26,7 +26,7 @@ export default function TutorialCard({
 }: TutorialCardProps) {
   const tutImage = getImage(image)
   return (
-    <div className="w-80 md:w-96 mb-8 mx-4 rounded bg-substrateGray-light dark:bg-gray-900">
+    <div className="w-80 md:w-96 mb-8 mx-4 rounded bg-substrateGray-light dark:bg-substrateDark">
       <LocalizedLink to={link}>
         <div className="inline-block overflow-hidden">
           <GatsbyImage
@@ -48,13 +48,13 @@ export default function TutorialCard({
             <div className="flex flex-col md:flex-row-reverse md:justify-between">
               <div className="flex items-center">
                 <svg
-                  className="fill-current text-black dark:text-white"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 14 14"
+                  className="fill-current text-black dark:text-substrateWhite"
                   xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="19"
+                  viewBox="0 0 18 19"
                 >
-                  <path d="M7.02622 0C10.8539 0 14 3.14607 14 7.02622C14 10.8539 10.8539 14 7.02622 14C3.14607 14 0 10.8539 0 7.02622C0 3.14607 3.14607 0 7.02622 0ZM6.29213 3.1985C6.29213 2.51685 7.34082 2.51685 7.34082 3.1985V6.92135L9.75281 7.603C10.382 7.81273 10.1199 8.80899 9.4382 8.65168L6.71161 7.81273C6.44944 7.7603 6.29213 7.55056 6.29213 7.28839V3.1985ZM7.02622 1.04869C3.72285 1.04869 1.04869 3.72285 1.04869 7.02622C1.04869 10.2772 3.72285 12.9513 7.02622 12.9513C10.2772 12.9513 12.9513 10.2772 12.9513 7.02622C12.9513 3.72285 10.2772 1.04869 7.02622 1.04869Z" />
+                  <path d="M9 0.181023C4.02823 0.181023 0 4.20925 0 9.18102C0 14.1528 4.02823 18.181 9 18.181C13.9718 18.181 18 14.1528 18 9.18102C18 4.20925 13.9718 0.181023 9 0.181023ZM12.3565 11.5399L11.6307 12.4472C11.5831 12.5067 11.5242 12.5563 11.4574 12.5931C11.3906 12.6299 11.3172 12.6531 11.2414 12.6616C11.1656 12.67 11.0889 12.6634 11.0157 12.6422C10.9424 12.621 10.8741 12.5855 10.8145 12.5379L8.38306 10.7335C8.21317 10.5975 8.07604 10.425 7.98182 10.2288C7.88759 10.0327 7.83868 9.81781 7.83871 9.60017V3.95522C7.83871 3.80122 7.89988 3.65353 8.00878 3.54464C8.11767 3.43575 8.26536 3.37457 8.41935 3.37457H9.58064C9.73464 3.37457 9.88233 3.43575 9.99122 3.54464C10.1001 3.65353 10.1613 3.80122 10.1613 3.95522V9.18102L12.2661 10.7234C12.3257 10.771 12.3753 10.83 12.4121 10.8968C12.4489 10.9636 12.4721 11.0371 12.4805 11.1129C12.4889 11.1887 12.4823 11.2655 12.461 11.3387C12.4397 11.412 12.4042 11.4804 12.3565 11.5399Z" />
                 </svg>
                 <span className="pl-2 text-sm">{time}</span>
               </div>
@@ -75,7 +75,7 @@ export default function TutorialCard({
         </div>
         <div className="p-4">
           <LocalizedLink to={link}>
-            <button className="w-full lg:w-52 py-3 rounded bg-substrateDark transform transition-all duration-300 ease-in-out hover:bg-opacity-80 text-white text-lg font-bold focus:outline-none">
+            <button className="w-full lg:w-52 py-3 rounded bg-substrateDark dark:bg-substrateWhite transform transition-all duration-300 ease-in-out hover:bg-opacity-80 dark:hover:bg-opacity-80 text-white dark:text-substrateDark text-lg font-bold focus:outline-none">
               Try it now!
             </button>
           </LocalizedLink>

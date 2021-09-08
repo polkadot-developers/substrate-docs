@@ -1,6 +1,6 @@
 ---
 title: Interact with the Nicks Pallet
-slug: /v3/tutorials/add-a-pallet/interact
+slug: /tutorials/v3/add-a-pallet/interact
 version: 3.0 
 section: tutorials
 category: add a pallet
@@ -34,7 +34,7 @@ After the build succeeds, you can start the node:
 
 As in the previous tutorials, this tutorial will use the Substrate Developer Hub Front-End Template
 to allow you to interact with the Node Template. As long as you have completed the
-[Create Your First Chain](/v3/tutorials/create-your-first-substrate-chain) and [Build a dApp](/v3/tutorials/proof-of-existence)
+[Create Your First Chain](/tutorials/v3/create-your-first-substrate-chain) and [Build a dApp](/tutorials/v3/proof-of-existence)
 tutorials, you should already be prepared to continue with the rest of this tutorial.
 
 <Message
@@ -42,7 +42,7 @@ tutorials, you should already be prepared to continue with the rest of this tuto
   title={`Information`}
   text=
     "Refer directly to the
-    [front-end setup instructions](/v3/tutorials/create-your-first-substrate-chain/setup#install-the-front-end-template)
+    [front-end setup instructions](/tutorials/v3/create-your-first-substrate-chain/setup#install-the-front-end-template)
     for the Create Your First Chain Tutorial if necessary.
     "
 />
@@ -56,7 +56,7 @@ yarn start
 ### 3. Use the Nicks Pallet
 
 You should already be familiar with using the Front-End Template to
-[interact with a pallet](/v3/tutorials/create-your-first-substrate-chain/interact#pallet-interactor-&-events).
+[interact with a pallet](/tutorials/v3/create-your-first-substrate-chain/interact#pallet-interactor-&-events).
 In this section we will use the Nicks pallet to further illustrate how the Front-End Template can be
 used to interact with FRAME pallets. We will also learn more about how to use the Front-End Template
 to invoke privileged functions with the Sudo pallet, which is included by default as part of the
@@ -77,7 +77,7 @@ dispatchable, as well as allow you to observe the
 [events](/rustdocs/latest/pallet_nicks/enum.RawEvent.html) emitted by the Nicks
 pallet and the other pallets that compose your chain's runtime. Now use the Pallet Interactor's
 Query capabilities to read the value of Alice's nickname from the
-[runtime storage](/v3/docs/runtime/storage) of the Nicks pallet.
+[runtime storage](/docs/v3/runtime/storage) of the Nicks pallet.
 
 ![Read a Name](../../../../src/images/tutorials/07-add-a-pallet/name-of-alice.png)
 
@@ -109,9 +109,9 @@ associated with Alice's account as opposed to the `Root` origin.
 
 You will notice that even though the function call was successfully dispatched, a `BadOrigin` error
 was emitted and is visible in the Events pane. This means that Alice's account was still charged
-[fees](/v3/docs/runtime/weights-and-fees) for the dispatch, but there weren't any state changes
+[fees](/docs/v3/runtime/weights-and-fees) for the dispatch, but there weren't any state changes
 executed because the Nicks pallet follows the important
-[verify-first-write-last](/v3/docs/runtime/storage#verify-first-write-last) pattern. Now
+[verify-first-write-last](/docs/v3/runtime/storage#verify-first-write-last) pattern. Now
 use the `SUDO` button to dispatch the same call with the same parameter.
 
 ![Nicks Pallet Error](../../../../src/images/tutorials/07-add-a-pallet/clear-name-error.png)
@@ -158,17 +158,12 @@ different pallets, and in the `bin/node/runtime/src/lib.rs` file you will see ho
 runtime. You can generally copy what was done there as a starting point to include a pallet in your
 own runtime.
 
-<Message
-  type={`green`}
-  title={`Further learning`}
-  text={`
-  - Learn how to add a more complex pallet to the Node Template by going through the
-  [Add the Contracts Pallet](/v3/how-to-guides/pallet-design/contracts-pallet) guide.
-  
-  - Complete the [Forkless Upgrade a Chain](/v3/tutorials/forkless-upgrades) tutorial to learn how Substrate enables
-  forkless runtime upgrades and follow steps to perform two upgrades, each of which is performed by
-  way of a distinct upgrade mechanism.`}
-/>
+## Next steps
 
-## Next steps 
+- Learn how to add a more complex pallet to the Node Template by going through the
+  [Add the Contracts Pallet](/how-to-guides/v3/pallet-design/contracts-pallet) guide.
+  
+  - Complete the [Forkless Upgrade a Chain](/tutorials/v3/forkless-upgrades) tutorial to learn how Substrate enables
+  forkless runtime upgrades and follow steps to perform two upgrades, each of which is performed by
+  way of a distinct upgrade mechanism.
 

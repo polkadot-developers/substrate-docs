@@ -1,25 +1,34 @@
 ---
 title: Migration Tests
-slug: /v3/how-to-guides/storage-migrations/tests
+slug: /how-to-guides/v3/storage-migrations/tests
 keywords: storage migration, testing, runtime
 version: 3.0 
 section: how to guides
 category: storage migrations
+difficulty: 2
 ---
 
-## Goal
-
-Write tests for a simple storage migration.
-
-## Use cases
-
-Testing a migration module inside a pallet.
-
-## Overview
-
-When writing a runtime migration module it is important to test it to avoid any critical issues caused by mangling storage items. This
-guide provides a walk through of the tests to include for a simple storage migration of a single pallet, using the Nicks pallet
-migration from the [basic storage migration guide](./basics) as a reference.
+<Objectives
+  data={[
+    {
+      title: 'Goal',
+      description: 'Write tests for a simple storage migration.',
+    },
+    {
+      title: 'Use Cases',
+      description:
+        `Testing a migration module inside a pallet.`,
+    },
+    {
+      title: 'Overview',
+      description:
+        `When writing a runtime migration module it is important to test it to avoid any critical issues caused by mangling storage items. This
+		guide provides a walk through of the tests to include for a simple storage migration of a single pallet, using the Nicks pallet
+		migration from the [basic storage migration guide](./basics) as a reference.
+        `,
+    },
+  ]}
+/>
 
 ## Steps
 

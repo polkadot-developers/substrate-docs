@@ -25,7 +25,9 @@ export default function NavListItem({
       <a href={link}>
         <div
           className={`${styles} ${
-            isCurrent ? 'text-substrateGreen underline' : 'text-black'
+            isCurrent
+              ? 'text-substrateGreen underline'
+              : 'text-substrateDark dark:text-white'
           }`}
         >
           <span>{title}</span>
@@ -37,7 +39,9 @@ export default function NavListItem({
       <Link to={link}>
         <div
           className={`${styles} ${
-            isCurrent ? 'text-substrateGreen underline' : 'text-black'
+            isCurrent
+              ? 'text-substrateGreen underline'
+              : 'text-substrateDark dark:text-white'
           }`}
         >
           <span>{title}</span>

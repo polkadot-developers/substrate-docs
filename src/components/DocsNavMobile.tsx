@@ -25,13 +25,13 @@ export default function DocsNav({
 
   return (
     <nav
-      className={`bg-substrateGray-light dark:bg-gray-900 w-screen overflow-auto ${
+      className={`bg-substrateGray-light dark:bg-darkBackground w-screen overflow-auto ${
         isOpen ? 'h-docNav z-10' : null
       }`}
     >
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="flex justify-center items-center py-4 bg-substrateGray dark:bg-gray-900"
+        className="flex justify-center items-center py-4 bg-substrateGray dark:bg-gray-700"
       >
         <svg
           className="fill-current text-black dark:text-white"
@@ -77,7 +77,7 @@ export default function DocsNav({
         {isOpen && (
           <>
             <hr className="mt-6" />
-            <div className="flex items-center justify-between px-20 py-4 dark:bg-gray-900">
+            <div className="flex items-center justify-between px-6 sm:px-20 py-4 dark:bg-darkBackground">
               <div className="font-light">More Ways to Learn</div>
             </div>
             {globalNav
@@ -86,12 +86,12 @@ export default function DocsNav({
                 return (
                   <div
                     key={index}
-                    className="px-20 lg:px-4 py-4 lg:bg-white lg:dark:bg-black"
+                    className="px-6 sm:px-20 lg:px-4 py-4 lg:bg-white lg:dark:bg-black"
                   >
                     {navItem.external ? (
                       <a
                         className="flex items-center justify-between hover:no-underline"
-                        href="/rustdocs/latest/sc_service/index.html"
+                        href="/rustdocs"
                         target="_blank"
                         rel="noreferrer"
                       >

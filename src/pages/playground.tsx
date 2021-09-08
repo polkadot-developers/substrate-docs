@@ -35,7 +35,7 @@ export default function playground({ data }: any) {
         <div className="flex flex-col lg:flex-row lg:justify-center items-center">
           <PlaygroundCard
             icon={iconOne}
-            difficulty={'beginner'}
+            difficulty={1}
             title={`${intl.formatMessage({ id: 'playground-card-one-title' })}`}
             description={`${intl.formatMessage({
               id: 'playground-card-one-description',
@@ -58,7 +58,7 @@ export default function playground({ data }: any) {
           />
           <PlaygroundCard
             icon={iconTwo}
-            difficulty={'intermediate'}
+            difficulty={2}
             title={`${intl.formatMessage({ id: 'playground-card-two-title' })}`}
             description={`${intl.formatMessage({
               id: 'playground-card-one-description',
@@ -77,7 +77,7 @@ export default function playground({ data }: any) {
           />
           <PlaygroundCard
             icon={iconThree}
-            difficulty={'advance'}
+            difficulty={3}
             title={`${intl.formatMessage({
               id: 'playground-card-three-title',
             })}`}

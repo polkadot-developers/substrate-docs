@@ -1,22 +1,28 @@
 ---
 title: Build a Proof of Existence dApp
-slug: /v3/tutorials/proof-of-existence
+slug: /tutorials/v3/proof-of-existence
 hideNav: true
 version: 3.0 
 section: tutorials
 category: proof of existence
 keywords:
+difficulty: 1
+duration: 1 Hour
+relevantSkills: 
+  - Rust 
+  - FRAME
+  - ReactJS
 ---
 
 ## Introduction
 
 In this tutorial, you will learn to create a custom
 ["Proof of Existence"](https://en.wikipedia.org/wiki/Proof_of_Existence) dApp using the Substrate
-blockchain development framework and the [FRAME](../../../v3/docs/runtime/frame) library. From
+blockchain development framework and the [FRAME](/docs/v3/runtime/frame) library. From
 [Wikipedia](https://en.wikipedia.org/wiki/Proof_of_Existence):
 
-> Proof of Existence is an online service that verifies the existence of computer files as of a
-> specific time via timestamped transactions in the bitcoin blockchain.
+> "Proof of Existence is an online service that verifies the existence of computer files as of a
+> specific time via timestamped transactions in the bitcoin blockchain."
 
 Rather than uploading the entire file to the blockchain to "prove its existence", users submit a
 [hash of the file](https://en.wikipedia.org/wiki/File_verification), known as a file digest or
@@ -41,7 +47,7 @@ snippets and explain what all the code does at a high level.
 We only expect that:
 
 - You have completed the
-  [Create Your First Substrate Chain Tutorial](../../tutorials/create-your-first-substrate-chain).
+  [Create Your First Substrate Chain Tutorial](/tutorials/v3/create-your-first-substrate-chain).
 - You are generally familiar with software development, writing code, and running your code.
 - You are open to learning about the bleeding edge of blockchain development.
 
@@ -59,21 +65,21 @@ We only expect that:
   data={{
     textLineOne:
       '1. Launch a Substrate blockchain based on a node template.',
-    url: '/v3/tutorials/proof-of-existence/prepare',
+    url: '/tutorials/v3/proof-of-existence/prepare',
   }}
 />
 <TutorialObjective
   data={{
     textLineOne:
       '2. Add our own custom PoE pallet from scratch and implement our PoE API.',
-    url: '/v3/tutorials/proof-of-existence/pallet',
+    url: '/tutorials/v3/proof-of-existence/pallet',
   }}
 />
 <TutorialObjective
   data={{
     textLineOne:
       '3. Add a custom user interface that interacts with our PoE API.',
-    url: '/v3/tutorials/proof-of-existence/front-end',
+    url: '/tutorials/v3/proof-of-existence/front-end',
   }}
 />
 
@@ -82,4 +88,4 @@ We only expect that:
 - Learn how to create and use a custom FRAME pallet 
 - Learn how to modify the front-end node template to match your node's runtime items
 
-<AccentButton text={`Sounds good? Let's begin!`} link={`/v3/tutorials/proof-of-existence/prepare`} />
+<AccentButton text={`Sounds good? Let's begin!`} link={`/tutorials/v3/proof-of-existence/prepare`} />

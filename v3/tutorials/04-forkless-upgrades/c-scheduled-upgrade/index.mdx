@@ -1,6 +1,6 @@
 ---
 title: Schedule an Upgrade
-slug: /v3/tutorials/forkless-upgrades/schedule-an-upgrade
+slug: /tutorials/v3/forkless-upgrades/schedule-an-upgrade
 version: 3.0 
 section: tutorials
 category: forkless upgrades
@@ -13,7 +13,7 @@ Now that the Node Template has been upgraded to include the Scheduler pallet,
 can be used to perform the next runtime upgrade. In the previous part, the
 `sudo_unchecked_weight` function was used to override the weight associated with the `set_code`
 function; in this section, the runtime upgrade will be _scheduled_ so that it can be processed as
-the only [extrinsic](/v3/docs/concepts/extrinsics) in a block.
+the only [extrinsic](/docs/v3/concepts/extrinsics) in a block.
 
 ### 1. Prepare an Upgraded Runtime
 
@@ -43,7 +43,7 @@ parameter_types! {
 ```
 
 This change increases the value of the Balances pallet's
-[`ExistentialDeposit`](/v3/docs/getting-started/glossary#existential-deposit) - the
+[`ExistentialDeposit`](/docs/v3/getting-started/glossary#existential-deposit) - the
 minimum balance needed to keep an account alive from the point-of-view of the Balances pallet.
 
 <Message
@@ -52,7 +52,7 @@ minimum balance needed to keep an account alive from the point-of-view of the Ba
   text=
 	  "Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000
 	  to be reaped - that would require a
-	  [storage migration](/v3/docs/runtime/upgrades#storage-migrations), which is out of
+	  [storage migration](/docs/v3/runtime/upgrades#storage-migrations), which is out of
 	  scope for this tutorial.
 	  "
 />
@@ -107,5 +107,5 @@ TODO: add reference to tutorial or recipe on storage migrations when avalible
 https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues/766
 -->
 
-- Learn about [storage migrations](/v3/docs/runtime/upgrades#storage-migrations) and
+- Learn about [storage migrations](/docs/v3/runtime/upgrades#storage-migrations) and
   attempt one alongside a runtime upgrade.

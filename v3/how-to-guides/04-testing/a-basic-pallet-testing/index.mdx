@@ -1,26 +1,34 @@
 ---
 title: Setting up Tests for Your Pallet
-slug: /v3/how-to-guides/testing/basics
+slug: /how-to-guides/v3/testing/basics
 keywords: basics, testing, runtime
 version: 3.0 
 section: how to guides
 category: testing
+difficulty: 1
 ---
 
-## Goal
-
-Learn how to setup the scaffolding required to write tests for your pallet.
-
-## Use cases
-
-Writing and running unit tests for a pallet.
-
-## Overview
-
-This guide steps through how to use `mock.rs` and `test.rs` as a basis for testing your pallet. We'll be
-using the node template for the scaffolding of the `mock.rs` file and an arbitrary pallet &mdash; called `pallet-testing`
-&mdash; to give this guide some context. This pallet will contain a single function called `add_value`, that takes an origin and
-a `u32` and returns `Ok(())` if the value is less than or equal to a constant called `MaxValue` that we specify in the mock runtime.
+<Objectives
+  data={[
+    {
+      title: 'Goal',
+      description: 'Learn how to setup the scaffolding required to write tests for your pallet.',
+    },
+    {
+      title: 'Use Cases',
+      description:
+        `Writing and running unit tests for a pallet.`,
+    },
+    {
+      title: 'Overview',
+      description:
+        `This guide steps through how to use \`mock.rs\` and \`test.rs\` as a basis for testing your pallet. We'll be
+		using the node template for the scaffolding of the \`mock.rs\` file and an arbitrary pallet &mdash; called \`pallet-testing\`
+		&mdash; to give this guide some context. This pallet will contain a single function called \`add_value\`, that takes an origin and
+		a \`u32\` and returns \`Ok(())\` if the value is less than or equal to a constant called \`MaxValue\` that we specify in the mock runtime.`,
+    },
+  ]}
+/>
 
 ## Steps
 

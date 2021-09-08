@@ -1,3 +1,13 @@
+// This param is used when `/docs` are then redirected to `/docs/<defaultVersion>`
+const defaultVersion = 'v3'
+
+const redirects = [
+  { fromPath: '/docs', toPath: `/docs/${defaultVersion}` },
+  { fromPath: '/docs/v3', toPath: '/docs/v3/getting-started/overview' },
+  { fromPath: '/tutorials', toPath: `/tutorials/${defaultVersion}` },
+  { fromPath: '/how-to-guides', toPath: `/how-to-guides/${defaultVersion}` },
+]
+
 const tutsInfo = [
   {
     name: 'create-your-first-substrate-chain',
@@ -39,6 +49,11 @@ const tutsInfo = [
     navSlug: 'contractsTutorial',
     version: '3.0',
   },
+  {
+    name: 'cumulus',
+    navSlug: 'cumulusWorkshop',
+    version: '3.0',
+  },
 ]
 
 const gqlTpl = `{ res: allFile(
@@ -54,7 +69,7 @@ const gqlTpl = `{ res: allFile(
 } }`
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
-  const { createPage } = actions
+  const { createPage, createRedirect } = actions
 
   const kbTemplate = require.resolve(`./src/templates/kb-template.tsx`)
   const htgTemplate = require.resolve(`./src/templates/htg-template.tsx`)
@@ -137,6 +152,16 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           navMenuSlug: tutInfo.navSlug,
         },
       })
+    })
+  })
+
+  // -- Create Redirect --
+  redirects.forEach(({ fromPath, toPath }) => {
+    createRedirect({
+      fromPath,
+      toPath,
+      isPermanent: true,
+      statusCode: 301,
     })
   })
 }

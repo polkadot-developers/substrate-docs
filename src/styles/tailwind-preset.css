@@ -1,24 +1,14 @@
-/* *,
-  *:after,
-  *:before {
-    @apply box-border;
-  } */
 html {
-  @apply bg-white dark:bg-substrateDarkest antialiased;
-  scroll-behavior: smooth;
+  @apply bg-white dark:bg-darkBackground antialiased;
 }
 
 body {
-  @apply bg-white dark:bg-substrateDarkest text-substrateDark dark:text-white text-base;
+  @apply bg-white dark:bg-darkBackground text-substrateDark dark:text-white text-base;
   background: transparent;
 }
 
 main.main-container {
   min-height: calc(100vh - 394px);
-}
-
-.container {
-  @apply px-4;
 }
 
 /* Headings */
@@ -108,8 +98,3 @@ ol {
 ul {
   @apply list-disc;
 }
-
-/* Anchor Tags */
-/* a {
-    @apply cursor-point;
-  }*/

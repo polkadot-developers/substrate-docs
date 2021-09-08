@@ -20,13 +20,13 @@ export default function VersionControl({
   //   setPathName(str)
   // })
   return (
-    <div className="flex items-center justify-end">
+    <div className="hidden lg:flex lg:items-center lg:justify-end">
       <div
         // onClick={() => setIsComponentVisible(!isComponentVisible)}
         className="relative flex items-center justify-end text-sm"
       >
         <svg
-          className="fill-current text-substrateBlue dark:text-white"
+          className="fill-current dark:text-white"
           width="11"
           height="13"
           viewBox="0 0 11 13"
@@ -34,7 +34,7 @@ export default function VersionControl({
         >
           <path d="M5.60267 1.45603L5.30933 2.91207H1.46667V7.28017H3.93067L4.224 5.82414H9.53333V1.45603H5.60267ZM4.4 0H11V12.3763H9.53333V7.28017H5.42667L5.13333 8.73621H0V1.45603H4.10667L4.4 0Z" />
         </svg>
-        <div className="pl-1 text-substrateBlue dark:text-white">{`Version ${version}`}</div>
+        <div className="pl-1">{`Version ${version}`}</div>
         {/* {isComponentVisible && (
           <div ref={ref} className="absolute top-6 right-0 w-28">
             <ul className="list-none bg-white ring-1 ring-black ring-opacity-90 rounded-md pl-2 pr-2 py-2">
