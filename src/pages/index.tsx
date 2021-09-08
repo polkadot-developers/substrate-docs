@@ -10,7 +10,7 @@ export default function Index() {
 
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="Documentation Home" />
       <div className="h-screen -mt-24 flex justify-center items-center">
         <span className="text-4xl md:text-6xl lg:text-8xl transform hover:scale-110 transition duration-300">
           {intl.formatMessage({ id: 'helloSubstrate' })} !!!

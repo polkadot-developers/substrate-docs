@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Layout from '../components/Layout'
+import SEO from '../components/SEO'
 import { StaticImage } from 'gatsby-plugin-image'
 import PlaygroundCard from '../components/PlaygroundCard'
 
@@ -16,6 +17,7 @@ export default function playground() {
   }, [])
   return (
     <Layout>
+      <SEO title="Playground" />
       <section className="xl:container my-20 md:mt-20 md:mb-36">
         <div className="flex flex-col md:flex-row md:items-center px-6">
           <div className="lg:m-0 md:w-1/2 md:px-5 lg:px-10">
