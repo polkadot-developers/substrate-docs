@@ -161,6 +161,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       fromPath,
       toPath,
       isPermanent: true,
+      redirectInBrowser: true,
+      force: true,
       statusCode: 301,
     })
   })

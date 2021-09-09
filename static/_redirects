@@ -2,5 +2,5 @@
 # to confirm the particular rustdocs page existed.
 # TODO: Once `docs.substrate.io/rustdocs` is launched, the following rules can be removed.
 
-/rustdocs     https://substrate.dev/rustdocs            200
-/rustdocs/*   https://substrate.dev/rustdocs/:splat     200
+/rustdocs     https://substrate.dev/rustdocs            200!
+/rustdocs/*   https://substrate.dev/rustdocs/:splat     200!
