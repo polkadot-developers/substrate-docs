@@ -45,7 +45,7 @@ const DocsTemplate = ({ data, pageContext }: any) => {
               >
                 <BreadCrumbNav
                   section={data.mdx.frontmatter.section}
-                  sectionURL={`/v3/tutorials`}
+                  sectionURL={`/tutorials/v3`}
                   title={data.mdx.frontmatter.title}
                 />
                 <VersionControl
