@@ -135,8 +135,19 @@
   "docs-nav-htg-consensus": "Consensus",
   "htg-consensus-pow": "Add PoW Consensus",
 
+  "docs-nav-htg-parachains": "Parachains",  
+  "htg-parachains-upgrade": "Preparing for On-Chain Upgrades",
+  "htg-parachains-setup": "Set-up your runtime and client",
+  "htg-parachains-register": "How to register your Parachain",
+  "htg-parachains-reserve": "How to reserve a ParaID",
+  "htg-parachains-collators": "Start a Collator Node",
+  "htg-parachains-rococo": "Start a testnet on Rococo",
+
   "docs-nav-htg-tools": "Tools",
-  "htg-tools-try-runtime": "Integrate Try-runtime",
+  "htg-tools-try-runtime": "Integrate try-runtime",
+  "htg-tools-txwrapper": "Create a `txwrapper` for a chain",
+  "htg-tools-sidecar": "Track Parachain auction winners using Sidecar",
+  
 
   "tutorials-beginner": "débutant",
   "tutorials-intermediate": "intermédiaire",

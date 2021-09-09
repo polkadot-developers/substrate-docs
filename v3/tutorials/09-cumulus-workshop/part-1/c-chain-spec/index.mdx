@@ -9,7 +9,7 @@ keywords:
 
 ## Overview
 
-You will need a chain specification ([chain spec](/v3/docs/toolchains/chain-specs))
+You will need a chain specification ([chain spec](/docs/v3/toolchains/chain-specs))
 for your relay chain network. You can use one that is [included with this workshop](/0-files/chainspecs/rococo-custom-2-plain.json), or create your own.
 
 <Message
@@ -24,8 +24,8 @@ Whichever chain spec file you choose to use we will refer to the file simply as 
 in the instructions below. You will need to supply the proper path to the chain spec you are using.
 These _conventionally_ live in a `/res` folder that is published in your node's codebase for others to use. As an example:
 
-- Polkadot includes these **relay chain** chain spec files <ExternalLink url={`https://github.com/paritytech/polkadot/tree/master/node/service/res`}> here </ExternalLink>
-- Cumulus includes these **parachain** chain spec files <ExternalLink url={`https://github.com/paritytech/cumulus/tree/master/polkadot-parachains/res`}> here </ExternalLink>
+- Polkadot includes these **relay chain** chain spec files <ExternalLink url="https://github.com/paritytech/polkadot/tree/master/node/service/res"> here </ExternalLink>
+- Cumulus includes these **parachain** chain spec files <ExternalLink url="https://github.com/paritytech/cumulus/tree/master/polkadot-parachains/res"> here </ExternalLink>
 
 <Message
   type={`gray`}
@@ -126,14 +126,14 @@ Add your new authority's `AccountId` and `ValidatorId`.
 
 In this runtime configuration, both IDs are the same and are generated from the "stash" account. You
 can generate your own or inspect the
-[well-known development accounts](/v3/docs/toolchains/subkey#well-known-keys).
+[well-known development accounts](/docs/v3/toolchains/subkey#well-known-keys).
 
 The following commands demonstrate how the first part of the `palletSession` section inside the
 spec file can be reproduced. The second part is obtained similarly with `//Bob` and `//Bob//stash`.
 
 > All the keys and addresses needed can be generated using either:
 >
-> - The [`subkey` tool](/v3/docs/toolchains/subkey) (v2.0.1 and above for BEEFY keys)
+> - The [`subkey` tool](/docs/v3/toolchains/subkey) (v2.0.1 and above for BEEFY keys)
 > - The node `key` subcommand. (this can be your `polkadot` or `parachain-collator` binary, based on the latest substrate)
 
 Polkadot **validator authority** address for `//Alice//stash` (`sr25519` cryptography):
@@ -271,7 +271,7 @@ This ingests the keys you set in your
 file for you when you _compile your runtime_ based on what you configure
 [in this section](https://github.com/paritytech/polkadot/blob/master/node/service/src/chain_spec.rs#L656) of that file.
 
-The BEEFY key is encoded, this is derived in the [polkadot launch CLI tool](https://github.com/paritytech/polkadot-launch/blob/89e9704c8addd7f4dffa7cc75236393fd8c80bab/src/spec.ts#L68) using the [@polkadot-js/util-crypto](https://github.com/polkadot-js/common/tree/master/packages/util-crypto) node package [here](https://github.com/polkadot-js/common/blob/e7e82443231b75b7a546b462a63385db82a57f36/packages/keyring/src/pair/index.ts#L115) as a [SS58 encoded key](../../../v3/docs/advanced/ss58) of the form:
+The BEEFY key is encoded, this is derived in the [polkadot launch CLI tool](https://github.com/paritytech/polkadot-launch/blob/89e9704c8addd7f4dffa7cc75236393fd8c80bab/src/spec.ts#L68) using the [@polkadot-js/util-crypto](https://github.com/polkadot-js/common/tree/master/packages/util-crypto) node package [here](https://github.com/polkadot-js/common/blob/e7e82443231b75b7a546b462a63385db82a57f36/packages/keyring/src/pair/index.ts#L115) as a [SS58 encoded key](/docs/v3/advanced/ss58) of the form:
 
 ```
 base58encode ( concat ( <address-type>, <address>, <checksum> ) )

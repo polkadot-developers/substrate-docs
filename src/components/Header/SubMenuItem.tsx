@@ -26,14 +26,14 @@ export default function SubMenuItem({
       <div
         ref={ref}
         onClick={() => setIsComponentVisible(!isComponentVisible)}
-        className={`px-6 py-2 -mb-1 text-black dark:text-white cursor-pointer ${
+        className={`pl-6 py-2 pr-24 text-black dark:text-white cursor-pointer ${
           isComponentVisible
             ? 'bg-substrateGreen-light underline dark:bg-gray-900 hover:text-black'
             : 'hover:text-substrateGreen hover:underline'
         }`}
       >
-        <div className="flex items-center justify-between">
-          <span className="font-medium">{data.linkTitle}</span>
+        <span className="font-medium">{data.linkTitle}</span>
+        <span className="absolute right-6 pt-1.5">
           <svg
             className={` `}
             xmlns="http://www.w3.org/2000/svg"
@@ -50,11 +50,11 @@ export default function SubMenuItem({
               strokeLinejoin="round"
             />
           </svg>
-        </div>
+        </span>
       </div>
       {isComponentVisible ? (
         <>
-          <div className="absolute top-0 -right-56 w-56 h-[275.19px] pt-4 pb-[1.2rem] rounded-tr-md rounded-br-md shadow-lg ring-1 ring-black dark:ring-white bg-white dark:bg-black">
+          <div className="absolute top-0 left-full h-full w-56 pt-4 pb-5 rounded-tr-md rounded-br-md shadow-lg ring-1 ring-black dark:ring-white bg-white dark:bg-black">
             {data.items.map((item, index) => {
               return (
                 <div key={index}>

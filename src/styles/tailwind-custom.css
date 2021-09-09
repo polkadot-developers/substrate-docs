@@ -1,0 +1,18 @@
+/* project specific tailwind styles */
+
+@layer utilities {
+  @variants responsive {
+    .text-shadow {
+      text-shadow: 1px 0px 0px #242a35;
+    }
+    .text-shadow-md {
+      text-shadow: 4px 4px 8px #242a35;
+    }
+    .text-shadow-lg {
+      text-shadow: 15px 15px 30px #242a35;
+    }
+    .text-shadow-none {
+      text-shadow: none;
+    }
+  }
+}
