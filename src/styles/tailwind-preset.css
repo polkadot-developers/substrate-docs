@@ -1,5 +1,5 @@
 html {
-  @apply bg-white dark:bg-darkBackground antialiased;
+  @apply bg-white dark:bg-darkBackground antialiased font-body;
 }
 
 body {
