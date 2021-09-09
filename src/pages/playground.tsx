@@ -1,133 +1,89 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import { useIntl } from 'react-intl'
+import React, { useState, useEffect } from 'react'
 import Layout from '../components/Layout'
-import { SecondaryButton } from '../components/Buttons'
+import SEO from '../components/SEO'
+import { StaticImage } from 'gatsby-plugin-image'
 import PlaygroundCard from '../components/PlaygroundCard'
-import iconOne from '../images/box-icon.svg'
-import iconTwo from '../images/lightening-icon.svg'
-import iconThree from '../images/squiqqly-lines.svg'
 
-export default function playground({ data }: any) {
-  const intl = useIntl()
-  const image = getImage(data.playgroundSnapshot)
+export default function playground() {
+  const [selected, setSelected] = useState('')
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const deploy = urlParams.get('deploy')
+    deploy === 'node-template'
+      ? setSelected('node-template')
+      : deploy === 'front-end-template'
+      ? setSelected('front-end-template')
+      : null
+  }, [])
   return (
     <Layout>
-      <section className="container px-4 py-20 text-center">
-        <div className="text-2xl md:text-6xl mb-8 font-bold text-center">
-          {intl.formatMessage({ id: 'playground-title' })}
-        </div>
-        <p className="font-medium max-w-4xl mx-auto">
-          {intl.formatMessage({ id: 'playground-description' })}
-        </p>
-        <p className="font-medium text-substrateBlue">
-          {intl.formatMessage({ id: 'playground-github-info' })}
-        </p>
-        <SecondaryButton external={true} link={`https://www.github.com`}>
-          {intl.formatMessage({ id: 'playground-github-cta' })}
-        </SecondaryButton>
-      </section>
-      <section className="container px-4 mb-28">
-        <div className="text-xl md:text-4xl my-8 font-bold text-center">
-          {intl.formatMessage({ id: 'playground-configuration-title' })}
-        </div>
-        <div className="flex flex-col lg:flex-row lg:justify-center items-center">
-          <PlaygroundCard
-            icon={iconOne}
-            difficulty={1}
-            title={`${intl.formatMessage({ id: 'playground-card-one-title' })}`}
-            description={`${intl.formatMessage({
-              id: 'playground-card-one-description',
-            })}`}
-            playgroundLink={`/#`}
-            tutData={[
-              {
-                name: 'Create a substrate blockchain',
-                link: '/#',
-              },
-              {
-                name: 'Create flexible runtime library',
-                link: '/#',
-              },
-              {
-                name: 'Configure Runtime',
-                link: '/#',
-              },
-            ]}
-          />
-          <PlaygroundCard
-            icon={iconTwo}
-            difficulty={2}
-            title={`${intl.formatMessage({ id: 'playground-card-two-title' })}`}
-            description={`${intl.formatMessage({
-              id: 'playground-card-one-description',
-            })}`}
-            playgroundLink={`/#`}
-            tutData={[
-              {
-                name: 'Create a substrate blockchain',
-                link: '/#',
-              },
-              {
-                name: 'Create flexible runtime library',
-                link: '/#',
-              },
-            ]}
-          />
-          <PlaygroundCard
-            icon={iconThree}
-            difficulty={3}
-            title={`${intl.formatMessage({
-              id: 'playground-card-three-title',
-            })}`}
-            description={`${intl.formatMessage({
-              id: 'playground-card-one-description',
-            })}`}
-            playgroundLink={`/#`}
-            tutData={[
-              {
-                name: 'Create a substrate blockchain',
-                link: '/#',
-              },
-              {
-                name: 'Create flexible runtime library',
-                link: '/#',
-              },
-            ]}
-          />
-        </div>
-      </section>
-      <section className="container px-4  mb-28">
-        <div className="flex flex-col md:flex-row items-center">
-          <GatsbyImage
-            className="mx-auto md:w-1/2"
-            image={image}
-            alt="Substrate Playground Screenshot"
-          />
-          <div className="md:w-1/2 md:pl-20">
-            <div className="text-xl md:text-4xl my-8 font-bold text-center md:text-left">
-              {intl.formatMessage({ id: 'playground-substrate-playground' })}
+      <SEO title="Playground" />
+      <section className="xl:container my-20 md:mt-20 md:mb-36">
+        <div className="flex flex-col md:flex-row md:items-center px-6">
+          <div className="lg:m-0 md:w-1/2 md:px-5 lg:px-10">
+            <div className="text-5xl xl:text-7xl font-title font-extrabold mb-6">
+              Playground
             </div>
-            <p>
-              {intl.formatMessage({ id: 'playground-substrate-paragraph-one' })}
-            </p>
-            <p>
-              {intl.formatMessage({ id: 'playground-substrate-paragraph-two' })}
+            <h4 className="text-xl font-semibold">
+              Set up a local environment
+            </h4>
+            <p className="max-w-lg">
+              We recommend picking a sandbox, particularly if you&apos;re just
+              getting started. Building on Substrate requires different pieces
+              of technology. Using a sandbox allows you to skip preliminary
+              set-up and prerequisites to get to the parts that are important to
+              you.
             </p>
           </div>
+          <div className="flex justify-center md:w-1/2">
+            <StaticImage
+              backgroundColor="transparent"
+              src="../images/playground-hero.png"
+              alt="Substrate Playground"
+              layout="constrained"
+            />
+          </div>
+        </div>
+      </section>
+      <section id="config" className="xl:container mb-36">
+        <div className="mx-auto max-w-xl text-center font-extrabold text-4xl xl:text-6xl">
+          Select Playground Configuration
+        </div>
+        <div className="my-20 px-6 flex flex-col items-center lg:flex-row lg:justify-center">
+          <PlaygroundCard
+            icon={'node'}
+            preSelected={selected === 'node-template'}
+            title={`Node Template`}
+            description={`A “skeleton blockchain” with essential capabilities, including P2P
+            networking, consensus, finality, account, transaction and sudo
+            governance modules.`}
+            listTitle={'Runtime Modules'}
+            components={[
+              'pallet_balances',
+              'pallet_transaction_payment',
+              'pallet_sudos',
+              'pallet_template',
+            ]}
+            link={`https://playground.substrate.dev/?deploy=node-template`}
+          />
+          <PlaygroundCard
+            icon={'front'}
+            preSelected={selected === 'front-end-template'}
+            title={`Front-End Template`}
+            description={`A modular UI built with ReactJS to act as a front-end to the Substrate 
+            Node Template. It contains all necessary components to interact with the Node 
+            Template’s mruntime.`}
+            listTitle={'Key Components'}
+            components={[
+              'pallet interactor',
+              'Events',
+              'Balances',
+              'Block number',
+            ]}
+            link={` https://playground.substrate.dev/?deploy=front-end-template`}
+          />
         </div>
       </section>
     </Layout>
   )
 }
-export const pageQuery = graphql`
-  {
-    playgroundSnapshot: file(name: { eq: "playground-snapshot" }) {
-      id
-      childImageSharp {
-        gatsbyImageData
-      }
-    }
-  }
-`

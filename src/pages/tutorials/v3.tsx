@@ -2,12 +2,14 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { useIntl } from 'react-intl'
 import Layout from '../../components/Layout'
+import SEO from '../../components/SEO'
 import TutorialCard from '../../components/TutorialCard'
 
 export default function tutorials({ data }: any) {
   const intl = useIntl()
   return (
     <Layout>
+      <SEO title="Tutorials" />
       <div className="px-4">
         <h1 className="text-center my-8 lg:my-12">
           {intl.formatMessage({ id: 'nav-tutorials' })}
