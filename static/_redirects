@@ -2,7 +2,9 @@
 # to confirm the particular rustdocs page existed.
 # TODO: Once `docs.substrate.io/rustdocs` is launched, the following rules can be removed.
 
+# ------------
 # --- Test ---
+# ------------
 
 ## --- Test: Tutorial ---
 
@@ -20,7 +22,7 @@
 
 # Tutorial - Private Network
 /docs-test/en/tutorials/start-a-private-network     /tutorials/v3/private-network           301!
-/docs/en/tutorials/start-a-private-network/*        /tutorials/v3/private-network           301!
+/docs-test/en/tutorials/start-a-private-network/*   /tutorials/v3/private-network           301!
 
 # Tutorial - Forkless Upgrade
 /docs-test/en/tutorials/forkless-upgrade            /tutorials/v3/forkless-upgrades         301!
@@ -43,7 +45,9 @@
 /substrate-how-to-guides-test                       /how-to-guides/v3                       301!
 /substrate-how-to-guides-test/*                     /how-to-guides/v3                       301!
 
+# ------------------
 # --- Production ---
+# ------------------
 
 ## Production: Tutorial
 
@@ -63,9 +67,6 @@
 
 # --- Rustdocs ---
 
-/rustdocs     https://paritytech.github.io/substrate/            200!
-/rustdocs/*   https://paritytech.github.io/substrate/:splat      200!
-
-
-# Catch all
-/*                                         /                     301
+/rustdocs/latest/*   https://paritytech.github.io/substrate/:splat      200!
+/rustdocs/*          https://paritytech.github.io/substrate             301
+/rustdocs            https://paritytech.github.io/substrate             301

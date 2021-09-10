@@ -87,7 +87,7 @@ You can run the link checker locally by:
 
 - https://substrate.dev/docs-test/en/tutorials/create-your-first-substrate-chain
 - https://substrate.dev/docs-test/en/tutorials/create-your-first-substrate-chain/setup
-- https://substrate.dev/docs/en/tutorials/build-a-dapp
-- https://substrate.dev/docs/en/tutorials/build-a-dapp/prepare
+- https://substrate.dev/docs-test/en/tutorials/build-a-dapp
+- https://substrate.dev/docs-test/en/tutorials/build-a-dapp/prepare
 - https://substrate.dev/substrate-how-to-guides-test
 - https://substrate.dev/substrate-how-to-guides-test/docs/basics/basic-pallet-integration
