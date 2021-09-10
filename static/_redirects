@@ -2,5 +2,70 @@
 # to confirm the particular rustdocs page existed.
 # TODO: Once `docs.substrate.io/rustdocs` is launched, the following rules can be removed.
 
-/rustdocs     https://substrate.dev/rustdocs            200!
-/rustdocs/*   https://substrate.dev/rustdocs/:splat     200!
+# --- Test ---
+
+## --- Test: Tutorial ---
+
+# Tutorial - Create Your First Substrate Chain
+/docs-test/en/tutorials/create-your-first-substrate-chain    /tutorials/v3/create-your-first-substrate-chain    301!
+/docs-test/en/tutorials/create-your-first-substrate-chain/*  /tutorials/v3/create-your-first-substrate-chain    301!
+
+# Tutorial - Add a Pallet to Your Runtime
+/docs-test/en/tutorials/add-a-pallet    /tutorials/v3/add-a-pallet                          301!
+/docs-test/en/tutorials/add-a-pallet/*  /tutorials/v3/add-a-pallet                          301!
+
+# Tutorial - PoE
+/docs-test/en/tutorials/build-a-dapp    /tutorials/v3/proof-of-existence                    301!
+/docs-test/en/tutorials/build-a-dapp/*  /tutorials/v3/proof-of-existence                    301!
+
+# Tutorial - Private Network
+/docs-test/en/tutorials/start-a-private-network     /tutorials/v3/private-network           301!
+/docs/en/tutorials/start-a-private-network/*        /tutorials/v3/private-network           301!
+
+# Tutorial - Forkless Upgrade
+/docs-test/en/tutorials/forkless-upgrade            /tutorials/v3/forkless-upgrades         301!
+/docs-test/en/tutorials/forkless-upgrade/*          /tutorials/v3/forkless-upgrades         301!
+
+# Tutorial - Permissioned Network
+/docs-test/en/tutorials/build-permission-network      /tutorials/v3/permissioned-network    301!
+/docs-test/en/tutorials/build-permission-network/*    /tutorials/v3/permissioned-network    301!
+
+# Tutorial - Add a Contract Pallet
+/docs-test/en/tutorials/add-contracts-pallet        /tutorials/v3/add-contracts             301!
+/docs-test/en/tutorials/add-contracts-pallet/*      /tutorials/v3/add-contracts             301!
+
+# Tutorial - Node Metrics
+/docs-test/en/tutorials/visualize-node-metrics      /tutorials/v3/node-metrics              301!
+/docs-test/en/tutorials/visualize-node-metrics/*    /tutorials/v3/node-metrics              301!
+
+## --- Test: How-to Guides ---
+
+/substrate-how-to-guides-test                       /how-to-guides/v3                       301!
+/substrate-how-to-guides-test/*                     /how-to-guides/v3                       301!
+
+# --- Production ---
+
+## Production: Tutorial
+
+/docs/en/tutorials/build-a-dapp           /tutorials/v3/proof-of-existence                  301!
+/docs/en/tutorials/build-a-dapp/*         /tutorials/v3/proof-of-existence                  301!
+
+# Tutorial - Cumulus Workshop
+/tutorials/substrate-cumulus-workshop               /tutorials/v3/cumulus-workshop          301!
+/tutorials/substrate-cumulus-workshop/*             /tutorials/v3/cumulus-workshop          301!
+/cumulus-workshop                                   /tutorials/v3/cumulus-workshop          301!
+/cumulus-workshop/*                                 /tutorials/v3/cumulus-workshop          301!
+
+## --- Production: How-to Guides ---
+
+/substrate-how-to-guides                       /how-to-guides/v3                       301!
+/substrate-how-to-guides/*                     /how-to-guides/v3                       301!
+
+# --- Rustdocs ---
+
+/rustdocs     https://paritytech.github.io/substrate/            200!
+/rustdocs/*   https://paritytech.github.io/substrate/:splat      200!
+
+
+# Catch all
+/*                                         /                     301
