@@ -14,7 +14,12 @@ export const useActiveHash = (itemIds: string[], rootMargin = undefined) => {
       { rootMargin: rootMargin || `0% 0% -80% 0%` }
     )
     itemIds.forEach((id: string) => {
-      observer.observe(document.getElementById(id))
+      const el = document.getElementById(id)
+      el
+        ? observer.observe(document.getElementById(id))
+        : console.warn(
+            `Unknown ID: ${id}. We don't support h1 tag (#) in markdown article.`
+          )
     })
   }, [])
   return activeHash
