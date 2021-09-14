@@ -10,8 +10,8 @@ keywords:
 ## Overview
 
 The Substrate Developer Hub Node Template, which is used as the starting point for this tutorial,
-has a FRAME-based [runtime](/docs/v3/concepts/runtime).
-[FRAME](/docs/v3/runtime/frame) is a library of code that allows
+has a FRAME-based [runtime](/v3/concepts/runtime).
+[FRAME](/v3/runtime/frame) is a library of code that allows
 you to build a Substrate runtime by composing modules called "pallets". You can think of these
 pallets as individual pieces of logic that define what your blockchain can do! Substrate provides
 you with a number of pre-built pallets for use in FRAME-based runtimes.
@@ -81,7 +81,7 @@ is constructed, **delete all contents of this file**.
 <Message
   type={`yellow`}
   title={`Information`}
-  text={`Have a look at [the skeleton of a FRAME pallet](/docs/v3/runtime/pallets#frame-v2)
+  text={`Have a look at [the skeleton of a FRAME pallet](/v3/runtime/pallets#frame-v2)
   from the knowledgebase to learn more about the basic structure of a FRAME pallet.`}
 />
 
@@ -120,7 +120,7 @@ pub mod pallet {
 }
 ```
 
-By doing this, we've declared the dependencies and [macros](/docs/v3/runtime/macros) our pallet will require to function.
+By doing this, we've declared the dependencies and [macros](/v3/runtime/macros) our pallet will require to function.
 
 Things like _events_, _storage_, and _callable functions_ may look familiar to you if you have done other
 blockchain development. We will show you what each of these components looks like for a basic Proof
@@ -137,7 +137,7 @@ Of Existence pallet by providing you with the code blocks that go under each sec
     necessary in the [Add a Pallet](../../add-a-pallet) tutorial.
     You _can_ use `std` features in non-runtime components like `mock.rs` and `tests.rs` using
     `[dev-dependencies]` _ONLY_. Specifics and examples of this are outside the scope of this
-    tutorial. Learn more about [testing in Substrate here](/docs/v3/runtime/testing).
+    tutorial. Learn more about [testing in Substrate here](/v3/runtime/testing).
     "
 />
 

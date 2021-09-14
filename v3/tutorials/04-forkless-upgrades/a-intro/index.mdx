@@ -20,15 +20,15 @@ relevantSkills:
 One of the defining features of the Substrate blockchain development framework is its support for
 **forkless runtime upgrades**. Forkless upgrades are a means of enhancing a blockchain runtime in a
 way that is supported and protected by the capabilities of the blockchain itself. A blockchain's
-[runtime](/docs/v3/concepts/runtime) defines the [state](/docs/v3/runtime/storage) the
+[runtime](/v3/concepts/runtime) defines the [state](/v3/runtime/storage) the
 blockchain can hold and also defines the logic for effecting changes to that state.
 
 ![node-diagram.png](../../../../src/images/tutorials/04-forkless-upgrade/node-diagram.png)
 
 Substrate makes it possible to deploy enhanced runtime capabilities (**including _breaking_ changes(!)**)
-without a [hard fork](/docs/v3/getting-started/glossary#fork). Because the definition of the
+without a [hard fork](/v3/getting-started/glossary#fork). Because the definition of the
 runtime is itself an element in a Substrate chain's state, network participants may update this
-value by way of an [extrinsic](/docs/v3/concepts/extrinsics), specifically
+value by way of an [extrinsic](/v3/concepts/extrinsics), specifically
 [the `set_code` function](/rustdocs/latest/frame_system/pallet/enum.Call.html#variant.set_code).
 Since updates to runtime state are bound by the blockchain's consensus mechanisms and cryptographic
 guarantees, network participants can use the blockchain itself to trustlessly distribute updated or
@@ -36,14 +36,14 @@ extended runtime logic without needing to fork the chain or even release a new b
 
 This tutorial will use the Substrate Developer Hub
 [Node Template](https://github.com/substrate-developer-hub/substrate-node-template) to explore two
-mechanisms for forkless upgrades of [FRAME](/docs/v3/runtime/frame)-based runtimes.
+mechanisms for forkless upgrades of [FRAME](/v3/runtime/frame)-based runtimes.
 First, the
 [`sudo_unchecked_weight`](/rustdocs/latest/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
-function from the [Sudo pallet](/docs/v3/runtime/frame#sudo) will be used to perform an
-upgrade that adds the [Scheduler pallet](/docs/v3/runtime/frame#scheduler). Then, the
+function from the [Sudo pallet](/v3/runtime/frame#sudo) will be used to perform an
+upgrade that adds the [Scheduler pallet](/v3/runtime/frame#scheduler). Then, the
 [`schedule`](/rustdocs/latest/pallet_scheduler/enum.Call.html#variant.schedule)
 function from the Scheduler pallet will be used to perform an upgrade that increases the
-[existential (minimum) balance](/docs/v3/getting-started/glossary#existential-deposit)
+[existential (minimum) balance](/v3/getting-started/glossary#existential-deposit)
 for network accounts.
 
 If you have problems with this tutorial, the Substrate community is full of helpful resources! We
@@ -69,7 +69,7 @@ create an Issue.
   title={`Tip`}
   text={`
   1. To get a sense of what runtime upgrades are more concretely, read the
-   [runtime upgrade documentation](/docs/v3/runtime/upgrades) first, or at least have
+   [runtime upgrade documentation](/v3/runtime/upgrades) first, or at least have
    it open as a reference as you progress.
   2. If you haven't already, you should complete these tutorials before this one:
       - [Create Your First Substrate Chain](/tutorials/v3/create-your-first-substrate-chain),

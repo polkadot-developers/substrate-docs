@@ -107,36 +107,36 @@
 ## Production: Knowledge Base
 
 ### Production: Getting Started
-/docs/en                                       /docs/v3/getting-started/overview      301!
-/docs/en/                                      /docs/v3/getting-started/overview      301!
-/docs/en/knowledgebase/getting-started         /docs/v3/getting-started/installation  301!
-/docs/en/knowledgebase/getting-started/*       /docs/v3/getting-started/:splat        301!
+/docs/en                                       /v3/getting-started/overview      301!
+/docs/en/                                      /v3/getting-started/overview      301!
+/docs/en/knowledgebase/getting-started         /v3/getting-started/installation  301!
+/docs/en/knowledgebase/getting-started/*       /v3/getting-started/:splat        301!
 
 ### Knowledge Base: Key Concepts
-/docs/en/knowledgebase/learn-substrate/*      /docs/v3/concepts/:splat        301!
-/docs/en/knowledgebase/runtime                /docs/v3/concepts/runtime       301!
-/docs/en/knowledgebase/runtime/               /docs/v3/concepts/runtime       301!
+/docs/en/knowledgebase/learn-substrate/*      /v3/concepts/:splat        301!
+/docs/en/knowledgebase/runtime                /v3/concepts/runtime       301!
+/docs/en/knowledgebase/runtime/               /v3/concepts/runtime       301!
 
 ### Knowledge Base: Runtime Development
-/docs/en/knowledgebase/runtime/fees           /docs/v3/runtime/weights-and-fees  301!
-/docs/en/knowledgebase/runtime/*              /docs/v3/runtime/:splat            301!
+/docs/en/knowledgebase/runtime/fees           /v3/runtime/weights-and-fees  301!
+/docs/en/knowledgebase/runtime/*              /v3/runtime/:splat            301!
 
 ### Knowledge Base: Smart Contract
-/docs/en/knowledgebase/smart-contracts        /docs/v3/smart-contracts/overview  301!
-/docs/en/knowledgebase/smart-contracts/       /docs/v3/smart-contracts/overview  301!
-/docs/en/knowledgebase/smart-contracts/*      /docs/v3/smart-contracts/:splat    301!
+/docs/en/knowledgebase/smart-contracts        /v3/smart-contracts/overview  301!
+/docs/en/knowledgebase/smart-contracts/       /v3/smart-contracts/overview  301!
+/docs/en/knowledgebase/smart-contracts/*      /v3/smart-contracts/:splat    301!
 
 ### Knowledge Base: Integrate
-/docs/en/knowledgebase/integrate/*            /docs/v3/toolchains/:splat         301!
+/docs/en/knowledgebase/integrate/*            /v3/toolchains/:splat         301!
 
 ### Knowledge Base: Advanced
-/docs/en/knowledgebase/advanced/codec         /docs/v3/advanced/scale-codec      301!
-/docs/en/knowledgebase/advanced/codec/        /docs/v3/advanced/scale-codec      301!
-/docs/en/knowledgebase/advanced/ss58-address-format   /docs/v3/advanced/ss58     301!
-/docs/en/knowledgebase/advanced/ss58-address-format/  /docs/v3/advanced/ss58     301!
-/docs/en/knowledgebase/advanced/no-hash-collections   /docs/v3/advanced/hash-collections  301!
-/docs/en/knowledgebase/advanced/no-hash-collections/  /docs/v3/advanced/hash-collections  301!
-/docs/en/knowledgebase/advanced/*             /docs/v3/advanced/:splat           301!
+/docs/en/knowledgebase/advanced/codec         /v3/advanced/scale-codec      301!
+/docs/en/knowledgebase/advanced/codec/        /v3/advanced/scale-codec      301!
+/docs/en/knowledgebase/advanced/ss58-address-format   /v3/advanced/ss58     301!
+/docs/en/knowledgebase/advanced/ss58-address-format/  /v3/advanced/ss58     301!
+/docs/en/knowledgebase/advanced/no-hash-collections   /v3/advanced/hash-collections  301!
+/docs/en/knowledgebase/advanced/no-hash-collections/  /v3/advanced/hash-collections  301!
+/docs/en/knowledgebase/advanced/*             /v3/advanced/:splat           301!
 
 ## Production: rustdocs
 

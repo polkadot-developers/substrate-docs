@@ -77,7 +77,7 @@ dispatchable, as well as allow you to observe the
 [events](/rustdocs/latest/pallet_nicks/enum.RawEvent.html) emitted by the Nicks
 pallet and the other pallets that compose your chain's runtime. Now use the Pallet Interactor's
 Query capabilities to read the value of Alice's nickname from the
-[runtime storage](/docs/v3/runtime/storage) of the Nicks pallet.
+[runtime storage](/v3/runtime/storage) of the Nicks pallet.
 
 ![Read a Name](../../../../src/images/tutorials/07-add-a-pallet/name-of-alice.png)
 
@@ -109,9 +109,9 @@ associated with Alice's account as opposed to the `Root` origin.
 
 You will notice that even though the function call was successfully dispatched, a `BadOrigin` error
 was emitted and is visible in the Events pane. This means that Alice's account was still charged
-[fees](/docs/v3/runtime/weights-and-fees) for the dispatch, but there weren't any state changes
+[fees](/v3/runtime/weights-and-fees) for the dispatch, but there weren't any state changes
 executed because the Nicks pallet follows the important
-[verify-first-write-last](/docs/v3/runtime/storage#verify-first-write-last) pattern. Now
+[verify-first-write-last](/v3/runtime/storage#verify-first-write-last) pattern. Now
 use the `SUDO` button to dispatch the same call with the same parameter.
 
 ![Nicks Pallet Error](../../../../src/images/tutorials/07-add-a-pallet/clear-name-error.png)

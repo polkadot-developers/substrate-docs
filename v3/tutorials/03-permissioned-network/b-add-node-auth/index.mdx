@@ -36,7 +36,7 @@ Instead, you can manipulate the connection between a well know node
 and a normal node or between two normal nodes and sub-nodes.
 
 The `node-authorization` pallet integrates an
-[offchain worker](/docs/v3/concepts/off-chain-features#off-chain-workers)
+[offchain worker](/v3/concepts/off-chain-features#off-chain-workers)
 to configure it's node connections. Make sure to enable offchain worker with
 the right CLI flag as offchain worker is disabled by default for non-authority nodes.
 
@@ -79,7 +79,7 @@ cargo build --release
   title={`Tip`}
   text=
 	"If you do run into issues building, checkout
-	[these helpful tips](/docs/v3/getting-started/installation#2-rust-developer-environment).
+	[these helpful tips](/v3/getting-started/installation#2-rust-developer-environment).
 	"
 />
 
@@ -227,12 +227,12 @@ fn testnet_genesis(
 The first element of the tuple is the `OpaquePeerId` and we use `bs58::decode` to convert
 the `PeerId` in human readable format to bytes. The second element of the tuple is `AccountId`
 and represents the owner of this node, here we are using one of the provided endowed accounts
-for demonstration: [Alice and Bob](/docs/v3/toolchains/subkey#well-known-keys).
+for demonstration: [Alice and Bob](/v3/toolchains/subkey#well-known-keys).
 
 <!-- TODO: update to use the `key` embedded CLI tool with the node, reference subkey as option -->
 
 You may wondering where the `12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2` comes from.
-We can use [subkey](/docs/v3/toolchains/subkey#generating-node-keys) to generate
+We can use [subkey](/v3/toolchains/subkey#generating-node-keys) to generate
 the above human readable `PeerId`.
 
 ```bash
@@ -244,7 +244,7 @@ subkey generate-node-key
   title={`Note`}
   text=
 	"`subkey` is a CLI tool that comes bundled with substrate, and you can install it natively too! 
-	Refer to the [install Instructions](/docs/v3/toolchains/subkey#installation).
+	Refer to the [install Instructions](/v3/toolchains/subkey#installation).
   	"
 />
 
