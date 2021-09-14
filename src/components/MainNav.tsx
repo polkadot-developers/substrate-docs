@@ -41,7 +41,7 @@ const MainNav = {
           },
           {
             linkTitle: `Docs`,
-            link: `/docs`,
+            link: `/v3`,
             external: false,
           },
           {

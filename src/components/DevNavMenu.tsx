@@ -6,7 +6,7 @@ const DevNavMenu = {
     return [
       {
         section: `${intl.formatMessage({ id: 'docs-nav-knowledgebase' })}`,
-        url: '/docs',
+        url: '/v3',
         external: false,
       },
       {
@@ -21,7 +21,7 @@ const DevNavMenu = {
       },
       {
         section: `${intl.formatMessage({ id: 'docs-nav-rustdocs' })}`,
-        url: '#',
+        url: '/rustdocs',
         external: true,
       },
     ]
@@ -35,23 +35,23 @@ const DevNavMenu = {
         items: [
           {
             title: `${intl.formatMessage({ id: 'docs-menu-overview' })}`,
-            link: '/docs/v3/getting-started/overview',
+            link: '/v3/getting-started/overview',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-architecture' })}`,
-            link: '/docs/v3/getting-started/architecture',
+            link: '/v3/getting-started/architecture',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-installation' })}`,
-            link: '/docs/v3/getting-started/installation',
+            link: '/v3/getting-started/installation',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-windows' })}`,
-            link: '/docs/v3/getting-started/windows-users',
+            link: '/v3/getting-started/windows-users',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-glossary' })}`,
-            link: '/docs/v3/getting-started/glossary',
+            link: '/v3/getting-started/glossary',
           },
         ],
       },
@@ -60,41 +60,41 @@ const DevNavMenu = {
         items: [
           {
             title: `${intl.formatMessage({ id: 'docs-menu-gs-runtime' })}`,
-            link: '/docs/v3/concepts/runtime',
+            link: '/v3/concepts/runtime',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-extrinsics' })}`,
-            link: '/docs/v3/concepts/extrinsics',
+            link: '/v3/concepts/extrinsics',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-account-abstractions',
             })}`,
-            link: '/docs/v3/concepts/account-abstractions',
+            link: '/v3/concepts/account-abstractions',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-transaction-pool',
             })}`,
-            link: '/docs/v3/concepts/tx-pool',
+            link: '/v3/concepts/tx-pool',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-session-keys',
             })}`,
-            link: '/docs/v3/concepts/session-keys',
+            link: '/v3/concepts/session-keys',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-transaction-weight',
             })}`,
-            link: '/docs/v3/concepts/weight',
+            link: '/v3/concepts/weight',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-offchain-features',
             })}`,
-            link: '/docs/v3/concepts/off-chain-features',
+            link: '/v3/concepts/off-chain-features',
           },
         ],
       },
@@ -103,69 +103,69 @@ const DevNavMenu = {
         items: [
           {
             title: `${intl.formatMessage({ id: 'docs-menu-pallets' })}`,
-            link: '/docs/v3/runtime/pallets',
+            link: '/v3/runtime/pallets',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-frame' })}`,
-            link: '/docs/v3/runtime/frame',
+            link: '/v3/runtime/frame',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-macros',
             })}`,
-            link: '/docs/v3/runtime/macros',
+            link: '/v3/runtime/macros',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-metadata' })}`,
-            link: '/docs/v3/runtime/metadata',
+            link: '/v3/runtime/metadata',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-storage' })}`,
-            link: '/docs/v3/runtime/storage',
+            link: '/v3/runtime/storage',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-origins',
             })}`,
-            link: '/docs/v3/runtime/origins',
+            link: '/v3/runtime/origins',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-execution' })}`,
-            link: '/docs/v3/runtime/execution',
+            link: '/v3/runtime/execution',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-events' })}`,
-            link: '/docs/v3/runtime/events',
+            link: '/v3/runtime/events',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-errors' })}`,
-            link: '/docs/v3/runtime/errors',
+            link: '/v3/runtime/errors',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-weights-and-fees',
             })}`,
-            link: '/docs/v3/runtime/weights-and-fees',
+            link: '/v3/runtime/weights-and-fees',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-benchmarking' })}`,
-            link: '/docs/v3/runtime/benchmarking',
+            link: '/v3/runtime/benchmarking',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-debugging' })}`,
-            link: '/docs/v3/runtime/debugging',
+            link: '/v3/runtime/debugging',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-testing' })}`,
-            link: '/docs/v3/runtime/testing',
+            link: '/v3/runtime/testing',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-randomness' })}`,
-            link: '/docs/v3/runtime/randomness',
+            link: '/v3/runtime/randomness',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-upgrades' })}`,
-            link: '/docs/v3/runtime/upgrades',
+            link: '/v3/runtime/upgrades',
           },
         ],
       },
@@ -174,23 +174,23 @@ const DevNavMenu = {
         items: [
           {
             title: `${intl.formatMessage({ id: 'docs-menu-sc-overview' })}`,
-            link: '/docs/v3/smart-contracts/overview',
+            link: '/v3/smart-contracts/overview',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-contracts-pallet',
             })}`,
-            link: '/docs/v3/smart-contracts/contracts-pallet',
+            link: '/v3/smart-contracts/contracts-pallet',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-evm-pallet',
             })}`,
-            link: '/docs/v3/smart-contracts/evm-pallet',
+            link: '/v3/smart-contracts/evm-pallet',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-sc-faq' })}`,
-            link: '/docs/v3/smart-contracts/faq',
+            link: '/v3/smart-contracts/faq',
           },
         ],
       },
@@ -199,27 +199,27 @@ const DevNavMenu = {
         items: [
           {
             title: `${intl.formatMessage({ id: 'docs-menu-polkadot-js' })}`,
-            link: '/docs/v3/toolchains/polkadot-js',
+            link: '/v3/toolchains/polkadot-js',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-client-libraries',
             })}`,
-            link: '/docs/v3/toolchains/client-libraries',
+            link: '/v3/toolchains/client-libraries',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-subkey' })}`,
-            link: '/docs/v3/toolchains/subkey',
+            link: '/v3/toolchains/subkey',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-memory-profiling',
             })}`,
-            link: '/docs/v3/toolchains/memory-profiling',
+            link: '/v3/toolchains/memory-profiling',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-chain-specs' })}`,
-            link: '/docs/v3/toolchains/chain-specs',
+            link: '/v3/toolchains/chain-specs',
           },
         ],
       },
@@ -228,41 +228,41 @@ const DevNavMenu = {
         items: [
           {
             title: `${intl.formatMessage({ id: 'docs-menu-account-info' })}`,
-            link: '/docs/v3/advanced/account-info',
+            link: '/v3/advanced/account-info',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-scale-codec' })}`,
-            link: '/docs/v3/advanced/scale-codec',
+            link: '/v3/advanced/scale-codec',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-consensus' })}`,
-            link: '/docs/v3/advanced/consensus',
+            link: '/v3/advanced/consensus',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-block-import' })}`,
-            link: '/docs/v3/advanced/block-import',
+            link: '/v3/advanced/block-import',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-executor' })}`,
-            link: '/docs/v3/advanced/executor',
+            link: '/v3/advanced/executor',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-cryptography' })}`,
-            link: '/docs/v3/advanced/cryptography',
+            link: '/v3/advanced/cryptography',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-storage' })}`,
-            link: '/docs/v3/advanced/storage',
+            link: '/v3/advanced/storage',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-ss58' })}`,
-            link: '/docs/v3/advanced/ss58',
+            link: '/v3/advanced/ss58',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-hash-collections',
             })}`,
-            link: '/docs/v3/advanced/hash-collections',
+            link: '/v3/advanced/hash-collections',
           },
         ],
       },

@@ -13,8 +13,6 @@
     "serve:fresh": "yarn clean; yarn build; yarn serve",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "checklinks:v1": "hyperlink --canonicalroot https://docs.substrate.io -r --skip '200 public/rustdocs' --skip 'fragment-redirect' --skip 'fragment-check' --skip 'preconnect-check https://fonts.gstatic.com' --skip 'external-redirect' public/index.html | tap-spot",
-    "checklinks:v2": "linkcheck :9000 --skip-file .github/workflows/lc-skip.txt",
-    "checklinks:v2:e": "linkcheck :9000 -e --skip-file .github/workflows/lc-skip.txt",
     "checklinks:v3": "blc --filter-level=3 -rof --requests=10 --exclude='/rustdocs' --exclude='/crates.io' --exclude='/fonts.gstatic.com' --exclude='/www.substrate.io' --exclude='/docs.substrate.io' --exclude='/github.com' http://localhost:9000",
     "lint": "npm-run-all lint:**",
     "lint:eslint": "eslint . --ext ts --ext tsx --ext js --ext jsx",
