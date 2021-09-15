@@ -12,36 +12,43 @@ In this chapter, we will show you how you can build an ERC20 token contract with
 <TutorialObjective
   data={{
     textLineOne:
-      '1. ',
-      url: '',
+      '1. Understanding the ERC20 Standard',
+      url: '#erc20-standard',
   }}
 />
 <TutorialObjective
   data={{
     textLineOne:
-      '2. ',
-    url: '',
+      '2. Creating the ERC20 Template',
+    url: '#creating-the-erc20-template',
   }}
 />
 <TutorialObjective
   data={{
     textLineOne:
-      '3. ',
-    url: '',
+      '3. Transferring Tokens',
+    url: '#transferring-tokens',
   }}
 />
 <TutorialObjective
   data={{
     textLineOne:
-      '4. ',
-    url: '',
+      '4. Creating Events',
+    url: '#creating-events',
   }}
 />
 <TutorialObjective
   data={{
     textLineOne:
-      '5. ',
-    url: '',
+      '5. Supporting Approvals and Transfer From',
+    url: '#supporting-approval-and-transfer_from',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '5. Testing',
+    url: '#testing-our-contract',
   }}
 />
 
@@ -316,7 +323,7 @@ Remember to run `cargo +nightly test` to test your work.
 
 <!-- tabs:end -->
 
-## Supporting Approvals and Transfer From
+## Supporting `approval` and `transfer_from`
 
 We are almost there! Our token contract can now transfer funds from user to user and tell the
 outside world what is going on when this happens. All that is left to do is introduce the `approve`

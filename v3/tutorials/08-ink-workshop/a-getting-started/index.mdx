@@ -13,35 +13,42 @@ This part will teach you everything you need to know to get started building sma
   data={{
     textLineOne:
       '1. Installing prerequisites on your computer',
-      url: '',
+      url: '#prerequisites',
   }}
 />
 <TutorialObjective
   data={{
     textLineOne:
-      '2. Using the ink! `cargo-contract` plugin to start a new project',
-    url: '',
+      '2. Starting a new project with cargo-contract',
+    url: '#creating-an-ink-project',
   }}
 />
 <TutorialObjective
   data={{
     textLineOne:
       '3. Building and testing our contract',
-    url: '',
+    url: '#running-a-substrate-smart-contracts-node',
   }}
 />
 <TutorialObjective
   data={{
     textLineOne:
       '4. Deploying our contract on a local Substrate node',
-    url: '',
+    url: '#deploying-your-contract',
   }}
 />
 <TutorialObjective
   data={{
     textLineOne:
       '5. Interacting with our contract using the Canvas UI',
-    url: '',
+    url: '#calling-your-contract',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '6. Troubleshooting',
+    url: '#troubleshooting',
   }}
 />
 
@@ -49,11 +56,11 @@ This part will teach you everything you need to know to get started building sma
 - Learn the basic of writing smart contracts with ink!
 - Learn how to deploy an ERC20 contract in a Substrate node using ink!
 
-<AccentButton text={`Sound reasonable? Let's begin!`} link={`#substrate-prerequisites`} />
+<AccentButton text={`Sound reasonable? Let's begin!`} link={`#prerequisites`} />
 
 To follow this tutorial, you will need to set up some stuff on your computer.
 
-## Substrate Prerequisites
+## Prerequisites
 
 Follow the
 [official installation steps](https://substrate.dev/docs/en/knowledgebase/getting-started/) from the
@@ -65,9 +72,7 @@ rustup component add rust-src --toolchain nightly
 rustup target add wasm32-unknown-unknown --toolchain nightly
 ```
 
-### 1. Installing The Canvas Node
-
-## Installing The Substrate Contracts Node
+### 1. Installing The Substrate Contracts Node
 
 We need to use a Substrate node with the built-in `pallet-contracts` module. For this workshop we'll use a pre-configured Substrate node client.
 
@@ -133,7 +138,7 @@ flipper
 ### 1. Contract Source Code
 
 The ink CLI automatically generates the source code for the "Flipper" contract, which is about the simplest "smart" contract you can build. 
-You can take a sneak peak as to what will come by looking at the <ExternalLink url="https://github.com/paritytech/ink/blob/v3.0.0-rc3/examples/flipper/lib.rs">Flipper Example source code</ExternalLink>.
+You can take a sneak peak as to what will come by looking at the <ExternalLink url="https://github.com/paritytech/ink/blob/v3.0.0-rc3/examples/flipper/lib.rs">Flipper Example source code</ExternalLink> .
 
 The Flipper contract is nothing more than a `bool` which gets flipped from true to false through the `flip()` function. We won't go deep into the details of this source code because we will be walking you through the steps of building a more advanced contract!
 
@@ -222,7 +227,6 @@ and configure the [Canvas UI](https://github.com/paritytech/canvas-ui) to intera
 
 ## Running a Substrate Smart Contracts Node
 
-
 After successfully installing [`substrate-contracts-node`](https://github.com/paritytech/substrate-contracts-node),
 you can start a local development chain by running:
 
@@ -267,7 +271,7 @@ With this pattern, contract code like the ERC20 standard can be put on the block
 time, but instantiated any number of times. No need to continually upload the same source code over
 and waste space on the blockchain.
 
-## Upload Contract Code and Instantiate a Contract on the Blockchain
+### 1. Upload Contract Code
 
 Here we will upload the contract code and instantiate one copy of the contract on the blockchain (
 which is usually why we upload the contract code in the first place):
@@ -279,7 +283,9 @@ which is usually why we upload the contract code in the first place):
 & drop area. You will see the UI parse the metadata and showing what functions the contract contains.
 - Click the **Constructor Details**
 
-![Flipper Instantiate Contract 01](./assets/flipper-instantiate-01.png)
+![Flipper Instantiate Contract 01](../assets/flipper-instantiate-01.png)
+
+### 2. Instantiate a Contract on the Blockchain
 
 Smart contracts exist as an extension of the account system on the blockchain. Thus creating an
 instance of this contract will create a new `AccountId` which will store any balance managed by the
@@ -428,4 +434,4 @@ get it functioning again, however this is beyond the scope of this tutorial.
 
 ### 5. Other Issues
 
-If you run into any other issues during this tutorial, please [report an issue](https://github.com/substrate-developer-hub/substrate-contracts-workshop/issues)!
+If you run into any other issues during this tutorial, please <ExternalLink url="https://github.com/substrate-developer-hub/substrate-contracts-workshop/issues">report an issue</ExternalLink> .
