@@ -649,65 +649,19 @@ DevNavMenu.tuts.inkWorkshop = [
 
 DevNavMenu.tuts.cumulusWorkshop = [
   {
-    name: `Part I`,
+    name: `Substrate Cumulus Workshop`,
     items: [
       {
-        title: `Introduction`,
-        link: '/tutorials/v3/cumulus-workshop',
+        title: `Getting Started`,
+        link: '/tutorials/v3/cumulus-workshop/pt1',
       },
       {
-        title: `Build Environment and Compilation`,
-        link: '/tutorials/v3/cumulus-workshop/build-env',
+        title: `Connecting to a Relay Chain`,
+        link: '/tutorials/v3/cumulus-workshop/pt2',
       },
       {
-        title: `Relay chain spec`,
-        link: '/tutorials/v3/cumulus-workshop/relay-spec',
-      },
-      {
-        title: `Starting the Relay Chain`,
-        link: '/tutorials/v3/cumulus-workshop/relay-start',
-      },
-    ],
-  },
-  {
-    name: `Part II`,
-    items: [
-      {
-        title: `Reserve a Para ID`,
-        link: '/tutorials/v3/cumulus-workshop/para-id',
-      },
-      {
-        title: `Launch a Parachain`,
-        link: '/tutorials/v3/cumulus-workshop/para-launch',
-      },
-      {
-        title: `Parachain Registration`,
-        link: '/tutorials/v3/cumulus-workshop/para-register',
-      },
-      {
-        title: `Interacting with a Parachain`,
-        link: '/tutorials/v3/cumulus-workshop/para-interact',
-      },
-      {
-        title: `Connecting Additional Parachain Nodes`,
-        link: '/tutorials/v3/cumulus-workshop/para-nodes',
-      },
-    ],
-  },
-  {
-    name: `Part III`,
-    items: [
-      {
-        title: `Launch a Development Environment with Polkadot Launch`,
-        link: '/tutorials/v3/cumulus-workshop/polkadot-launch',
-      },
-      {
-        title: `Parachain Node Template`,
-        link: '/tutorials/v3/cumulus-workshop/para-node-template',
-      },
-      {
-        title: `Rococo Testnet Registration`,
-        link: '/tutorials/v3/cumulus-workshop/rococo',
+        title: `Using Polkadot Launch`,
+        link: '/tutorials/v3/cumulus-workshop/pt3',
       },
     ],
   },

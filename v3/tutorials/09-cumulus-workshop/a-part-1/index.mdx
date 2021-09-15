@@ -1,13 +1,179 @@
 ---
-title: Relay Chain Chain Specification
-slug: /tutorials/v3/cumulus-workshop/relay-spec
-version: 3.0 
-section: tutorials
-category: parachains
-keywords:
+title: Substrate Cumulus Workshop
+slug: /tutorials/v3/cumulus-workshop/pt1
+version: 3.0
+section: Tutorials
+category: Parachains
+keywords: cumulus, workshop, parachain, template
+hideNav: true
 ---
 
-## Overview
+## Getting Started
+
+In this hands-on workshop, participants will start a Polkadot-like chain (the relay chain), register
+parachains, make cross-chain asset transfers, and convert their own Substrate runtimes to parachains
+using Cumulus. To learn more about parachains before continuing this workshop, 
+read about <ExternalLink url="https://polkadot.network/the-path-of-a-parachain-block/">The Path of a Parachain Block</ExternalLink>
+on the official Polkadot Blog.
+
+
+<Message
+  type={`green`}
+  title={`Substrate Experience`}
+  text={`
+  If you are here _without_ any former Substrate experience, you are likely to not understand or
+complete this tutorial. Before you continue please complete the following tutorials:
+  - [Create Your First Substrate Chain](/tutorials/v3/create-your-first-substrate-chain)
+  - [Start a Private Network](/tutorials/v3/private-network)
+  
+  We will reference these assuming you have already understand all the steps involved, and
+have your machine configured to compile Substrate-based projects.
+  `}
+/>
+
+### 1. Hardware Requirements
+
+In this workshop, we will be using [Substrate Parachain Template](https://github.com/substrate-developer-hub/substrate-parachain-template). Compiling this project is a resource intensive
+process! We suggest compiling and running the Parachain template on a machine with **no less than**:
+
+- 8 GB of RAM (16 is suggested)
+- 4 CPU cores (8 is suggested)
+- 50 GB of free HDD/SSD space
+
+Without the minimal RAM here, you are likely to _run out of memory resulting in a `SIGKILL`
+error_. This generally happens on the `polkadot-service` build so be sure to _monitor your RAM
+usage_ (with something like [`htop`](https://htop.dev/)) and look out as swap memory starting to be
+used.
+
+<Message
+  type={`green`}
+  title={`Tip`}
+  text={`
+If you cannot find a machine with the minimums here, try the following solution which trades longer build
+time for more limited memory usage.
+- Use less threads: cargo's \`-j\` flag specifies the number of threads to use to build. Try to use one less than the CPU cores your machine has.
+- Use cargo's [codegen units](https://doc.rust-lang.org/cargo/reference/profiles.html#codegen-units)
+  feature makes more optimized builds, with less ram, but _much_ longer compile times.
+\`\`\`bash
+# use less codegen units
+RUSTFLAGS="-C codegen-units=1" cargo build --release
+# set the number of cores/threads to compile (used to build cumulus/polkadot on rpi 3)
+cargo build --release -j 1
+\`\`\`
+`}
+/>
+
+### 2. Software Version
+
+At the moment, parachains are _very tightly coupled_ with the relay chain's codebase they are
+connecting to. If you want to connect your parachian to a running relay network like the
+[Rococo](https://wiki.polkadot.network/docs/build-pdk#testing-a-parachain-rococo-testnet) test network, you _must_ be
+sure that you are testing against the exact same build of that relay chain.
+
+This workshop has been tested on commits:
+
+- **Polkadot** tagged [**`v0.9.8`**](https://github.com/paritytech/polkadot/tree/v0.9.8)
+- **Parachain Template** tagged [**`polkadot-v0.9.8`**](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.8)
+- **Polkadot-JS Apps** tagged [**`v0.94.1`**](https://github.com/polkadot-js/apps/tree/v0.94.1).
+  It is generally expected that the [hosted Polkadot-JS Apps](https://polkadot.js.org/apps/#/explorer) should work. If you have issues, build and run this UI yourself, at this tagged version.
+
+
+<Message
+  type={`red`}
+  title={`Warning`}
+  text={`You **must** use these exact versions to ensure that you do not run into conflicts.
+  Parachain development is actively making breaking changes between commits on these
+  repositories.`}
+/>
+
+We're doing our best to keep the parachain template and this workshop updated presently
+with the latest release of Polkadot. Please check with us in the [Parachain Technical matrix channel](https://matrix.to/#/#parachain-technical:matrix.parity.io)
+when breaking changes and testnet resets occur.
+
+<!-- TODO: ## Acknowledgement & Contribution Refer to [Acknowledgement & Contribution](acknowledgement-contribution) -->
+
+### 3. Acknowledgements
+
+Thanks <ExternalLink url="https://github.com/Jackie-Zhong"> Jackie-Zhong </ExternalLink> and <ExternalLink url="https://github.com/davidrhodus">David Rhodus </ExternalLink>
+for the Chinese content translation!
+
+### 4. Disclaimer
+
+**Cumulus is pre-release software that is still under development.** While this workshop strives to
+be useful, the material it covers may change or break before Cumulus is fully released. Nothing
+presented here is ready for use in value-bearing blockchains!
+
+## Build Environment & Compilation
+
+This workshop covers the entire process of launching a relay chain, connecting parachains,
+transferring assets between chains, and developing your own parachain runtimes. Naturally, there
+will be some significant compiling if you intend to build everything yourself.
+
+Compiling the Polkadot and parachain template nodes can be avoided if you prefer to use the
+Docker images.
+
+### 1. Setup Local Development Environment
+
+Follow the instructions here to [setup a local development environment](/v3/getting-started/overview)
+for Substrate.
+
+### 2. Building the Polkadot Relay Chain Node
+
+Clone the Polkadot repository, and build the node. We are using a
+[specific git tag](/#2-software-version) for this workshop. Perform these steps in your typical
+workspace directory.
+
+```bash
+# Clone the Polkadot Repository
+git clone https://github.com/paritytech/polkadot.git
+
+# Switch into the Polkadot directory
+cd polkadot
+
+# Checkout the proper commit
+git checkout v0.9.8
+
+# Build the relay chain Node
+cargo build --release
+
+# Check if the help page prints to ensure the node is built correctly
+./target/release/polkadot --help
+```
+
+If the help page is printed, you have succeeded in building a Polkadot node.
+
+For the rest of this workshop, we will refer to this binary simply as `polkadot`.
+
+### 3. Building the Parachain Template
+
+We will use the <ExternalLink url="https://github.com/substrate-developer-hub/substrate-parachain-template">Parachain Template </ExternalLink>
+(similar to the <ExternalLink url="https://github.com/substrate-developer-hub/substrate-node-template">Node Template </ExternalLink>
+to launch our first parachain and make cross-chain asset transfers. Later, we will
+use it as the starting point for developing our own parachains. Perform these steps in your typical
+workspace directory.
+
+```bash
+# Clone the Parachain Template
+git clone https://github.com/substrate-developer-hub/substrate-parachain-template
+
+# Switch into the Parachain Template directory
+cd substrate-parachain-template
+
+# Checkout the proper commit
+git checkout polkadot-v0.9.8
+
+# Build the parachain template collator
+cargo build --release
+
+# Check if the help page prints to ensure the node is built correctly
+./target/release/parachain-collator --help
+```
+
+If the help page is printed, you have succeeded in building a Cumulus-based parachain collator.
+
+For the rest of this workshop we will refer to it simply as `parachain-collator`.
+
+## Relay Chain Chain Specification
 
 You will need a chain specification ([chain spec](/v3/toolchains/chain-specs))
 for your relay chain network. You can use one that is [included with this workshop](/0-files/chainspecs/rococo-custom-2-plain.json), or create your own.
@@ -37,7 +203,6 @@ in the way Wasm runtimes are compiled, at least for now.
 `}
 /> 
 
-## Steps 
 ### 1. Chain Specification
 
 For just checking if things work, we suggest you use one of the [precompiled raw](#_1a-using-a-prebuilt-chain-spec)
@@ -230,29 +395,27 @@ You may get the output warning: `Took active validators from set with wrong size
 The resulting `chain-spec.json` will still be **perfectly usable**, you can ignore this warning for
 now.
 
-<Message
-  type={`green`}
-  title={`SS58 Encoding of Key vs. Address`}
-  text={`In the case of sr25519 and ed25519, the account ID matches its public key, hence SS58 encoded
+#### SS58 Encoding of Key vs. Address
+  
+  In the case of sr25519 and ed25519, the account ID matches its public key, hence SS58 encoded
   account-id address is the same as SS58 public key encoding. In case of ECDSA, we apply blake2 algorithm to the public key to get the address (due to the size
   difference between 33 vs 32 bytes), so the SS58 encoding is different. 
   
   Default serialization / deserialization implementation for public keys is using SS58 encoding,
   hence every time we use public keys in encoded form we are going to need it's SS58 encoding. A
   notable case is chain spec JSON file and encoding of session keys (most importantly BEEFY).
-  `}
+
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`The addition of custom session keys in the plain chain spec is not needed for **production chains**,
+as these are generated for you in the included chain spec files in \`node/service/res\` folder.
+The exercise above is used because you are recompiling your node for just adding authorities in this case.
+So if all you need to do is configure minor things off of a known base chain spec, as we did, you will want
+to set the information in \`chain-spec.rs\`, and generate the binary and finally use the CLI to generate
+your custom chain spec.`}
 />
 
-## Next steps
-
-The addition of custom session keys in the plain chain spec is not needed for **production chains**,
-as these are generated for you in the included chain spec files in `node/service/res` folder.
-The exercise above is used because you are recompiling your node for just adding authorities in this case.
-So if all you need to do is configure minor things off of a know base chain spec, as we did, you will want
-to set the information in `chain-spec.rs`, and generate the binary and finally use the CLI to generate
-your custom chain spec.
-
-[next steps TODO]
 
 <!--
 
@@ -282,3 +445,79 @@ worry about the details any more here.
 
 -->
 
+## Starting the Relay Chain
+
+Before we can attach any cumulus-based parachains, we need to launch a relay chain to connect to.
+This page describes in detail how to start both nodes using the two-validator `rococo-custom-2-raw.json`
+chain spec that ships with this workshop as well as the general instructions for starting additional
+nodes.
+
+### 1. Start Alice's Node
+
+```bash
+# Start Relay `Alice` node
+polkadot \
+--alice \
+--validator \
+--base-path /tmp/relay/alice \
+--chain <path to spec json> \
+--port 30333 \
+--ws-port 9944
+```
+
+The port and websocket port specified here are the defaults and thus those flags can be omitted.
+However we've chosen to leave them in to enforce the habit of checking their values. Because Alice
+is using the defaults, no other nodes on the relay chain or parachains can use these ports.
+
+When the node starts you will see several log messages. **Take note of the node's Peer ID**
+in the logs. We will need it when connecting other nodes to it. It will look something like
+this:
+
+```bash
+🏷 Local node identity is: 12D3KooWGjsmVmZCM1jPtVNp6hRbbkGBK3LADYNniJAKJ19NUYiq
+```
+
+### 2. Start Bob's Node
+
+```bash
+polkadot \
+--bob \
+--validator \
+--base-path /tmp/relay-bob \
+--chain <path to spec json> \
+--bootnodes /ip4/<Alice IP>/tcp/30333/p2p/<Alice Peer ID> \
+--port 30334 \
+--ws-port 9945
+```
+
+Bob's command is perfectly analogous to Alice's. It differs concretely from Alice's in that Bob has
+specified his own base path, provided his own validator keys (`--bob`), and used his own ports.
+Finally he has added a `--bootnodes` flag. This bootnodes flag is not strictly necessary if you are
+running the entire network on a single local system, but it is necessary when operating over the
+network, so I've chosen to leave it in.
+
+### 3. Starting Additional Validators (Optional)
+
+> If you are using the `rococo-custom-2-raw.json` spec, you do not need to start additional nodes.
+
+If you're using the `rococo-custom-3-raw.json` or `rococo-custom-4-raw.json` specs that ship with this workshop you will
+need to start one or two more nodes. Again, this command is entirely analogous. You just need to
+make sure that nodes on the same physical system do not have conflicting ports or base paths.
+
+```bash
+polkadot \
+--charlie \
+--validator \
+--base-path /tmp/relay-charlie \
+--chain <path to spec json> \
+--port 30335 \
+--ws-port 9946
+```
+
+If your custom chain spec includes self-generated keys, see the
+[Substrate private network tutorial](/tutorials/v3/private-network/launch-custom-chain#add-keys-to-keystore)
+for details on inserting these keys.
+
+## Next steps 
+
+- Reserve your Para ID
