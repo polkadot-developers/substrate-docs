@@ -7,6 +7,42 @@ category: parachains
 keywords:
 ---
 
+The final part of the workshop will step you through how to use Polkadot Launch to test a parachain
+in a development environment.
+
+<TutorialObjective
+  data={{
+    textLineOne:
+      '1. Using Polkadot Launch',
+      url: '#using-polkadot-launch',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '2. Launching a Testnet with Docker',
+    url: '#launching-a-testnet-with-docker',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '3. Parachain Node Template',
+    url: '#parachain-node-template',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '4. Rococo Testnet Registration',
+    url: '#rococo-testnet-registration',
+  }}
+/>
+
+## Learning outcomes
+
+- Use `polkadot-launch` to run a parachain environment 
+
 ## Using Polkadot Launch 
 
 Now that we have gone through the procedure of manually launching a relay chain of a few nodes, and
@@ -322,7 +358,7 @@ cloud-based relay chain.
 
 ---
 
-### 1. Using the Docker Images
+#### Using the Docker Images
 
 > You may skip this step if you have built the nodes locally
 
@@ -362,8 +398,8 @@ Throughout this workshop when we need to run nodes we will refer to them simply 
 
 ## Parachain Node Template
 
-Substrate developers who are familiar with the
-<ExternalLink url="https://github.com/substrate-developer-hub/substrate-node-template">Substrate Node Template</ExternalLink> will
+Substrate developers who are familiar with
+the <ExternalLink url="https://github.com/substrate-developer-hub/substrate-node-template">Substrate Node Template</ExternalLink> will
 find the <ExternalLink url="https://github.com/substrate-developer-hub/substrate-parachain-template">Substrate Parachain Template </ExternalLink>
 familiar. They have the same general structure featuring `node`, `runtime`, and `pallets`
 directories. Their runtimes are similar and feature many of the same pallets. Apart from a few new
@@ -625,7 +661,3 @@ You will see an extrinsic pop up similar to the following:
 ![crowdloan-contribute.png](../../../../../src/images/tutorials/09-cumulus-workshop/crowdloan-contribute.png)
 
 Input the funding amount your want to support and submit the transaction.
-
-## Next steps 
-
-[ TODO ]

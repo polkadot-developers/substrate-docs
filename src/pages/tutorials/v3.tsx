@@ -103,7 +103,7 @@ export default function tutorials({ data }: any) {
             difficulty={3}
             prerequisites={true}
             version={`V3.0.0`}
-            link={`/tutorials/v3/cumulus-workshop`}
+            link={`/tutorials/v3/cumulus-workshop/pt1`}
           />
         </div>
       </div>

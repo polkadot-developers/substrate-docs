@@ -1,5 +1,5 @@
 ---
-title: Reserve a Para ID
+title: Connecting to a Relay Chain
 slug: /tutorials/v3/cumulus-workshop/pt2
 version: 3.0 
 section: tutorials
@@ -7,7 +7,47 @@ category: parachains
 keywords:
 ---
 
-## Connecting to a Relay Chain
+In this part of the workshop, we'll connect a parachain to our relay chain and add additional nodes.
+
+<TutorialObjective
+  data={{
+    textLineOne:
+      '1. Launching a Parachain',
+      url: '#launching-a-parachain',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '2. Interact with a Parachain',
+    url: '#interact-with-a-parachain',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '3. Parachain Registration',
+    url: '#parachain-registration',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '4. Connecting Additional Parachain Nodes',
+    url: '#connecting-additional-parachain-nodes',
+  }}
+/>
+
+## Learning outcomes
+
+- Register a Para ID
+- Start a collator node
+- Submit transactions with XCMP
+- Connect additional parachain nodes
+
+## Launching a Parachain
+
+### 1. Reserve a Para ID
  
 To connect to any relay chain, you must first reserve a Para ID for your parathread that will
 become a parachain. It is called Para ID, because the same ID can be seen as its parachain ID or
@@ -36,7 +76,7 @@ Note that the account used to register the Para ID must also be the origin for u
 Para ID. Once you submit this extrinsic successfully (you must see a sucessful `registrar.Reserved`
 event with your `paraID`), you can now launch your parachain or parathread using this reserved ID.
 
-## Launching a Parachain
+### 2. Deploying the chain
 
 We'll begin by deploying <ExternalLink url="https://github.com/substrate-developer-hub/substrate-parachain-template">Parachain Template </ExternalLink>
 with Para ID `2000`. These instructions are written specifically for Para ID 2000.
@@ -45,7 +85,7 @@ The `parachain-collator` binary used below comes from compiling the Parachain Te
 Refer to [Building the Parachain Template](en/1-prep/1-compiling?id=building-the-parachain-template)
 section for details.
 
-### 1. Generate Parachain Genesis State
+### 3. Generate Parachain Genesis State
 
 To register a parachain, the relay chain needs to know the parachain's genesis state. The collator
 node can export that state to a file for us. The following command will create a file containing the
@@ -55,7 +95,7 @@ parachain's entire genesis state, hex-encoded.
 parachain-collator export-genesis-state --parachain-id 2000 > para-2000-genesis
 ```
 
-### 2. Obtain Wasm Runtime Validation Function
+### 4. Obtain Wasm Runtime Validation Function
 
 The relay chain also needs the parachain-specific runtime validation logic to validate
 parachain blocks. The collator node also has a command to produce this Wasm blob:
@@ -71,7 +111,7 @@ parachain-collator export-genesis-wasm > para-2000-wasm
 > This is for the _genesis_ block only. You cannot, at this time, connect a parachian with any
 > previous state to a relay chain. All parachains must start from block 0 on the relay chain.
 
-### 3. Start the Collator Node
+### 5. Start the Collator Node
 
 We can now start the collator node with the following command. Notice that we need to supply the same
 relay chain spec we used when launching relay chain nodes, at the second half of the command.
@@ -109,7 +149,7 @@ Currently, a parachain node runs both a parachain collator (or full node) tightl
 There is presently no way to run a parachain node without the embedded relay chain node, but it is expected
 that this will become possible for non-collator nodes eventually.
 
-### 4. Checking if it Works
+### 6. Checking if it Works
 
 At this point your _collator's logs_ should look something like this:
 
@@ -160,7 +200,7 @@ You should see your collator node running (alone) and peering with the already
 running relay chain nodes. It has not start authoring parachain blocks yet.
 Authoring will begin when the collator is actually **registered on the relay chain**.
 
-## Interact with a Parachain
+## Interact with the Parachain
 
 The entire point of launching and registering parachains is that we can submit transactions to the
 parachains and interact with them.
@@ -438,6 +478,3 @@ parachain-collator \
   --chain <relay-chain chain spec> \
   --bootnodes <other relay chain node>
 ```
-## Next steps
-
-[ TODO ]

@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl'
-{/* prettier-ignore */}
 const DevNavMenu = {
   global: () => {
     const intl = useIntl()
@@ -660,7 +659,7 @@ DevNavMenu.tuts.cumulusWorkshop = [
         link: '/tutorials/v3/cumulus-workshop/pt2',
       },
       {
-        title: `Using Polkadot Launch`,
+        title: `Launch a Development Environment`,
         link: '/tutorials/v3/cumulus-workshop/pt3',
       },
     ],

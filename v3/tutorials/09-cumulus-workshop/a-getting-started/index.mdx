@@ -5,10 +5,8 @@ version: 3.0
 section: Tutorials
 category: Parachains
 keywords: cumulus, workshop, parachain, template
-hideNav: true
+hideNav: 
 ---
-
-## Getting Started
 
 In this hands-on workshop, participants will start a Polkadot-like chain (the relay chain), register
 parachains, make cross-chain asset transfers, and convert their own Substrate runtimes to parachains
@@ -30,6 +28,41 @@ complete this tutorial. Before you continue please complete the following tutori
 have your machine configured to compile Substrate-based projects.
   `}
 />
+
+<TutorialObjective
+  data={{
+    textLineOne:
+      '1. Prerequisites',
+      url: '#prerequisites',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '2. Build Environment & Compilation',
+    url: '#build-environment--compilation',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '3. Relay Chain Chain Specification',
+    url: '#relay-chain-chain-specification',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '4. Starting the Relay Chain',
+    url: '#starting-the-relay-chain',
+  }}
+/>
+
+## Learning outcomes
+
+- 
+
+## Prerequisites
 
 ### 1. Hardware Requirements
 
@@ -517,7 +550,3 @@ polkadot \
 If your custom chain spec includes self-generated keys, see the
 [Substrate private network tutorial](/tutorials/v3/private-network/launch-custom-chain#add-keys-to-keystore)
 for details on inserting these keys.
-
-## Next steps 
-
-- Reserve your Para ID
