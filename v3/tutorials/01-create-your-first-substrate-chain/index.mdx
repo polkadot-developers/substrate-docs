@@ -147,13 +147,11 @@ To install and configure Rust manually:
   rustup show
   ```
 
-The previous steps walked you through the installation and configuration of Rust and the Rust toolchain. 
-It is also possible to automate the steps using a script.
-If you want to try installing and configuring Rust using a script, open a terminal shell on your computer and run the following command:
+    The previous steps walked you through the installation and configuration of Rust and the Rust toolchain so that you could see the full process for yourself. 
+
+    It is also possible to automate the steps using a script. 
+    If you want to try installing and configuring Rust using a script, see the [`getsubstrate`](https://getsubstrate.io) automation script.
   
-  ```
-  curl https://getsubstrate.io -sSf | bash -s -- --fast
-  ```
 
 ## Set up a development environment
 
@@ -331,27 +329,27 @@ To transfer funds to an account:
 
 1. In the Balances table, notice the predefined accounts—such as dave—that have no funds associated with them.
 
-    ![]()
+    ![Locate an account with zero funds](../../../src/images/tutorials/01-create-your-first-chain/dave-account.png)
     
-    Under the Balances table, the front-end template displays a **Transfer** component. 
+    Under the Balances table, the front-end template also displays a **Transfer** component. 
     You use this component to transfer funds from one account to another.
 
 1. Copy and paste the address for the **dave** account to specify the address to which you are transferring funds.
 
 1. Specify at least 1000000000000 as the amount to transfer, then click **Submit**.
 
-    ![]()
+    ![Transfer funds to an account](../../../src/images/tutorials/01-create-your-first-chain/transfer-filled.png)
 
 1. Notice that the Balances table is updated with the transfer.
 
-    ![]()
+    ![Updated balance displayed](../../../src/images/tutorials/01-create-your-first-chain/balance-result.png)
 
 1. Check the Events component to see events related to the transfer you just completed.
 
+    The Substrate blockchain reports the result of asynchronous operations as events, so you can use the Events components to see details about each operation performed as part of the transfer. 
     For example:
-
-    ![image-name](../../../../src/images/docs/getting-started/technical-freedom.png)
-
+    
+    ![Events recorded as results from asynchronous operations](../../../src/images/tutorials/01-create-your-first-chain/event-panel.png)
 
 1. When the transaction has been completed and included in a block, you see a confirmation message similar to the following:
 
