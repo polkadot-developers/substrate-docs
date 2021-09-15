@@ -66,7 +66,7 @@ export default function tutorials({ data }: any) {
             link={`/tutorials/v3/forkless-upgrades`}
           />
           <TutorialCard
-            title={`Private Network`}
+            title={`Start a Private Network`}
             image={data.tutorialSix}
             description={`Learn how to start a private blockchain network using an out-of-the-box Substrate node.`}
             time={`2 Hours`}
@@ -86,7 +86,7 @@ export default function tutorials({ data }: any) {
             link={`/tutorials/v3/node-metrics`}
           />
           <TutorialCard
-            title={`Deploy an ink! Smart Contract`}
+            title={`Develop Smart Contracts with ink!`}
             image={data.tutorialOne}
             description={`Learn to build and deploy an ERC20 token smart contract with ink!`}
             time={`2 Hours`}
