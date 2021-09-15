@@ -86,14 +86,14 @@ export default function tutorials({ data }: any) {
             link={`/tutorials/v3/node-metrics`}
           />
           <TutorialCard
-            title={`Add the Contracts Pallet`}
+            title={`Deploy an ink! Smart Contract`}
             image={data.tutorialOne}
-            description={`Allow your blockchain to support Wasm smart contracts by adding and configuring FRAME's Contracts pallet.`}
-            time={`3 Hours`}
+            description={`Learn to build and deploy an ERC20 token smart contract with ink!`}
+            time={`2 Hours`}
             difficulty={2}
             prerequisites={false}
             version={`V3.0.0`}
-            link={`/tutorials/v3/add-contracts`}
+            link={`/tutorials/v3/ink-workshop/pt1`}
           />
           <TutorialCard
             title={`Cumulus Workshop`}

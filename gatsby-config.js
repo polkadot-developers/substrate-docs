@@ -119,8 +119,8 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/v3/tutorials/08-contracts/`,
-        name: `add-contracts`,
+        path: `${__dirname}/v3/tutorials/08-ink-workshop/`,
+        name: `ink-workshop`,
       },
     },
     {

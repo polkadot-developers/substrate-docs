@@ -33,8 +33,8 @@
 /docs-test/en/tutorials/build-permission-network/*    /tutorials/v3/permissioned-network    301!
 
 ### Tutorial - Add a Contract Pallet
-/docs-test/en/tutorials/add-contracts-pallet        /tutorials/v3/add-contracts             301!
-/docs-test/en/tutorials/add-contracts-pallet/*      /tutorials/v3/add-contracts             301!
+/docs-test/en/tutorials/ink-workshop        /tutorials/v3/ink-workshop             301!
+/docs-test/en/tutorials/ink-workshop/*      /tutorials/v3/ink-workshop             301!
 
 ### Tutorial - Node Metrics
 /docs-test/en/tutorials/visualize-node-metrics      /tutorials/v3/node-metrics              301!

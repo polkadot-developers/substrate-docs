@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-
+{/* prettier-ignore */}
 const DevNavMenu = {
   global: () => {
     const intl = useIntl()
@@ -627,24 +627,24 @@ DevNavMenu.tuts.addPallet = [
   },
 ]
 
-DevNavMenu.tuts.contractsTutorial = [
+DevNavMenu.tuts.inkWorkshop = [
   {
-    name: `Add the Contracts Pallet`,
-    items: [
-      {
-        title: `Introduction`,
-        link: '/tutorials/v3/add-contracts',
-      },
-      {
-        title: `Node Set-up`,
-        link: '/tutorials/v3/add-contracts/pt1',
-      },
-      {
-        title: `Implement the Contracts pallet and its APIs`,
-        link: '/tutorials/v3/add-contracts/pt2',
-      },
-    ],
-  },
+  name: `ink! Contracts Workshop`,
+  items: [
+    {
+      title: `Getting Started`,
+      link: '/tutorials/v3/ink-workshop/pt1',
+    },
+    {
+      title: `Develop a Smart Contract`,
+      link: '/tutorials/v3/ink-workshop/pt2',
+    },
+    {
+      title: `Build an ERC20 Token Contract`,
+      link: '/tutorials/v3/ink-workshop/pt3',
+    },
+  ],
+},
 ]
 
 DevNavMenu.tuts.cumulusWorkshop = [
