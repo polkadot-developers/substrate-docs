@@ -41,29 +41,29 @@ Before we even get started, let's layout what we're going to do over the course 
 <TutorialObjective
   data={{
     textLineOne:
-      '1. Launch a Substrate blockchain network based on a template project.',
-      url: '/tutorials/v3/private-network/alice-and-bob',
+      '1. Alice and Bob Start Blockchain',
+      url: '/tutorials/v3/private-network#alice-and-bob-start-blockchain',
   }}
 />
 <TutorialObjective
   data={{
     textLineOne:
       '2. Generate ed25519 and sr25519 key-pairs for use as a network authority.',
-    url: '/tutorials/v3/private-network/key-generation',
+    url: '#generate-your-own-keys',
   }}
 />
 <TutorialObjective
   data={{
     textLineOne:
-      '3. Create and edit a chainspec json file.',
-    url: '/tutorials/v3/private-network/custom-chainspec',
+      '3. Create and edit a chainspec JSON file.',
+    url: '#create-a-custom-chain-spec',
   }}
 />
 <TutorialObjective
   data={{
     textLineOne:
       '4. Launch your custom chain.',
-    url: '/tutorials/v3/private-network/launch-custom-chain',
+    url: '#launch-your-private-network',
   }}
 />
 
@@ -440,7 +440,7 @@ you built earlier when you ran the `cargo build --release` command.
 
 The portion of the file we're interested in is the Aura authorities used for creating blocks,
 indicated by **"aura"** field below, and GRANDPA authorities used for finalizing blocks, indicated
-by the **"grandpa"** field. That section looks like this using the [two provided demo](/tutorials/v3/private-network/key-generation#option-3-use-pre-generated-keys) keys:
+by the **"grandpa"** field. That section looks like this using the [two provided demo keys](#option-3-use-pre-generated-keys):
 
 ```json
 {
@@ -724,8 +724,8 @@ cat /tmp/node01/chains/local_testnet/keystore/617572619effc1668ca381c242885516ec
 ```
 
 Notice there are two keystores, as expected as we added two keys to our node.
-This example used [pair 1](../key-generation#pair-1) from the well known seeds here, and
-will use [pair 2](../key-generation#pair-2) for our next node, where your keys may differ.
+This example used [pair 1](#option-3-use-pre-generated-keys) from the well known seeds here, and
+will use `pair 2` for our next node, where your keys may differ.
 
 <!-- TODO: update below with example of successful use (not working for me at time of writing) -->
 
