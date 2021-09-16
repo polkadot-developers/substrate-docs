@@ -20,11 +20,11 @@ To ensure the security of the data on the chain and the ongoing progress of the 
 
 At a high-level, a blockchain node consists of the following key components:
 
-- [Storage]()
-- [Peer-to-peer networking]()
-- [Consensus capabilities]()
-- Data handling capabilities for external—[extrinsic]()—information
-- [Runtime environment]()
+- [Storage](/v3/advanced/storage)
+- <ExternalLink url="https://libp2p.io">Peer-to-peer networking</ExternalLink>
+- [Consensus capabilities](/v3/advanced/consensus)
+- Data handling capabilities for external or ["extrinsic"](/v3/concepts/extrinsics) information
+- A [Runtime](/v3/concepts/runtime)
 
 Because of the complexity involved in building these components, most blockchain projects are forked from an existing blockchain project. 
 For example, the Bitcoin repository was forked to create: Litecoin, ZCash, Namecoin, and Bitcoin Cash. Similarly, the Ethereum repository was forked to create Quorum, POA Network, KodakCoin, and Musicoin.
@@ -77,15 +77,32 @@ Before you begin, verify the following:
 
 By completing this tutorial, you will accomplish the following objectives:
 
-- Set up a Substrate development environment on your computer. 
-
-- Use a node template project to run a Substrate-based blockchain. 
-
-- Use a front-end template project to interact with the template node.
+<TutorialObjective
+  data={{
+    textLineOne:
+      '1. Set up a Substrate development environment on your computer.',
+    url: '#install-rust-and-the-rust-toolchain',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '2. Use a node template project to run a Substrate-based blockchain.',
+    url: '#prepare-a-substrate-node-using-the-node-template',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '3. Use a front-end template project to interact with the template node.',
+    url: '#start-the-front-end-template',
+  }}
+/>
 
 ## Install required packages
 
-Substrate development is easiest on UNIX-based operating systems like macOS or Linux. If you are using Microsoft Windows, see [XX]().
+Substrate development is easiest on UNIX-based operating systems like macOS or Linux. If you are using Microsoft Windows, 
+refer to [the Windows installation page](/v3/getting-started/windows-users).
 
 To install required packages on macOS or Linux:
 
@@ -100,7 +117,7 @@ To install required packages on macOS or Linux:
   | Fedora | `sudo dnf update sudo dnf install clang curl git openssl-devel`
   | OpenSUSE | `sudo zypper install clang curl git openssl-devel llvm-devel libudev-devel`
   | macOS | `brew update && brew install openssl`
-  | Windows | See [XX]().
+  | Windows | Refer to this [installation guide](/v3/getting-started/windows-users).
 
   If you are using macOS and do not have Homebrew installed, run the following command to install Homebrew:
   
@@ -387,11 +404,11 @@ For a guided tour of the front-end template components, see the following tutori
 
 - [Explore blockchain metadata]().
 - [Call extrinsic functions]().
-- [Add a new pallet]().
-- [Upgrade the runtime]().
+- [Add a new pallet](/tutorials/v3/add-a-pallet).
+- [Upgrade the runtime](/tutorials/v3/forkless-upgrades).
 
 If you've experienced any issues with this tutorial or want to provide feedback:
 
-- Ask a question on Stack Overflow using the substrate tag.
+- Ask a question on <ExternalLink url="https://stackoverflow.com/questions/tagged/substrate">Stack Overflow</ExternalLink> using the substrate tag.
 
-- Contact Parity on Element.
+- Contact <ExternalLink url="https://matrix.to/#/#substrate-technical:matrix.org">Parity on Element</ExternalLink> .

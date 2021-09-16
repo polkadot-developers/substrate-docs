@@ -472,20 +472,20 @@ DevNavMenu.tuts.firstChain = [
     name: `Create Your First Substrate Chain`,
     items: [
       {
-        title: `Introduction`,
-        link: '/tutorials/v3/create-your-first-substrate-chain',
+        title: `Background`,
+        link: '/tutorials/v3/create-your-first-substrate-chain#what-is-a-blockchain-node',
       },
       {
         title: `Set-up Your Computer`,
-        link: '/tutorials/v3/create-your-first-substrate-chain/setup',
+        link: '/tutorials/v3/create-your-first-substrate-chain/#install-rust-and-the-rust-toolchain',
       },
       {
-        title: `Background Information`,
-        link: '/tutorials/v3/create-your-first-substrate-chain/background',
+        title: `Using the Substrate Node Template`,
+        link: '/tutorials/v3/create-your-first-substrate-chain/#prepare-a-substrate-node-using-the-node-template',
       },
       {
         title: `Interacting with Your Node`,
-        link: '/tutorials/v3/create-your-first-substrate-chain/interact',
+        link: '#start-the-front-end-template',
       },
     ],
   },
