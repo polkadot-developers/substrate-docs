@@ -537,19 +537,19 @@ DevNavMenu.tuts.permissionedNetwork = [
 
 DevNavMenu.tuts.forklessUpgrades = [
   {
-    name: `Forkless Runtime Upgrades`,
+    name: `Initiate a Forkless Runtime Upgrade`,
     items: [
       {
         title: `Introduction`,
-        link: '/tutorials/v3/forkless-upgrades',
+        link: '/tutorials/v3/forkless-upgrades#introduction',
       },
       {
         title: `Sudo Upgrade`,
-        link: '/tutorials/v3/forkless-upgrades/sudo-upgrade',
+        link: '/tutorials/v3/forkless-upgrades#sudo-upgrade',
       },
       {
         title: `Schedule an Upgrade`,
-        link: '/tutorials/v3/forkless-upgrades/schedule-an-upgrade',
+        link: '/tutorials/v3/forkless-upgrades#schedule-an-upgrade',
       },
     ],
   },
