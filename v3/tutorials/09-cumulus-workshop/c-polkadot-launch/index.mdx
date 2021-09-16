@@ -47,7 +47,7 @@ in a development environment.
 
 Now that we have gone through the procedure of manually launching a relay chain of a few nodes, and
 a parachain, you can automate testnets for development and testing.
-<ExternalLink url="https://github.com/paritytech/polkadot-launch">`polkadot-launch`</ExternalLink> is a Node utility script that
+<ExternalLink url="https://github.com/paritytech/polkadot-launch">polkadot-launch</ExternalLink> is a Node utility script that
 does this for you, allowing for some custom configurations to setup networks very simply.
 
 Note that this isn't a replacement for the manual process, as this script is not a perfect fit for
@@ -141,7 +141,7 @@ polkadot-launch relay-3-2para-1.json
 
 If everything go well, you should see messages similar to the following:
 
-![polkadot-launch-log.png](../../../../../src/images/tutorials/09-cumulus-workshop/polkadot-launch-log.png)
+![polkadot-launch-log.png](../../../../src/images/tutorials/09-cumulus-workshop/polkadot-launch-log.png)
 
 Now open your working directory to find the relay chain node log are written to `alice.log`,
 `bob.log`, and `charlie.log` for your three validators, respectively. While the parachain log is
@@ -162,7 +162,7 @@ Another way to verify the setup is correct, is by going to <ExternalLink url="ht
 **Parachains** tab</ExternalLink> , after configure to connect to a
 **relay chain node**, you should see the UI showing two parachains being connected to the relay chain.
 
-![polkadot-launch-log.png](../../../../../src/images/tutorials/09-cumulus-workshop/polkadot-apps-with-2-parachains.png)
+![polkadot-launch-log.png](../../../../src/images/tutorials/09-cumulus-workshop/polkadot-apps-with-2-parachains.png)
 
 Congratulation! You have automated the launch of a 3-node relay chain, and two parachains with a
 single node using `polkadot-launch` CLI utility.
@@ -558,20 +558,20 @@ The procedure will be as followed:
 
 - Reserve for the next available Para ID.
 
-  ![paraid-reserve.png](../../../../../src/images/tutorials/09-cumulus-workshop/paraid-reserve.png)
+  ![paraid-reserve.png](../../../../src/images/tutorials/09-cumulus-workshop/paraid-reserve.png)
 
 - After successfully reserving your Para ID, you can now register as a **Parathread**.
 
-  ![register-parathread.png](../../../../../src/images/tutorials/09-cumulus-workshop/register-parathread.png)
+  ![register-parathread.png](../../../../src/images/tutorials/09-cumulus-workshop/register-parathread.png)
 
 - Once your extrinsic succeeds, you will see the `registrar.Registered` event being emitted.
 
-  ![parathread-register-success.png](../../../../../src/images/tutorials/09-cumulus-workshop/parathread-register-success.png)
+  ![parathread-register-success.png](../../../../src/images/tutorials/09-cumulus-workshop/parathread-register-success.png)
 
 - Also in the Polkadot-JS Apps <ExternalLink url="https://polkadot.js.org/apps/#/parachains/parathreads">**Parachains > Parathreads** page</ExternalLink>
   you will see your parathread registration is **Onboarding**:
 
-  ![parathread-onboarding.png](../../../../../src/images/tutorials/09-cumulus-workshop/parathread-onboarding.png)
+  ![parathread-onboarding.png](../../../../src/images/tutorials/09-cumulus-workshop/parathread-onboarding.png)
 
 After the extrinsic succeeds, it takes [**2 sessions**](#relevant-settings) for the chain to
 fully onboard as a parathread.
@@ -607,7 +607,7 @@ You can do so in Polkadot-JS App <ExternalLink url="https://polkadot.js.org/apps
 
 Pick your Para ID, how much you want to bid, and the slots you want to bid for:
 
-![parachain-bid.png](../../../../../src/images/tutorials/09-cumulus-workshop/parachain-bid.png)
+![parachain-bid.png](../../../../src/images/tutorials/09-cumulus-workshop/parachain-bid.png)
 
 ### 5. Crowdloans
 
@@ -623,7 +623,7 @@ parachain slot.
 
 In the following, we are getting ready to submit an extrinsic to start a crowdloan.
 
-![parachain-bid.png](../../../../../src/images/tutorials/09-cumulus-workshop/parachain-crowdloan.png)
+![parachain-bid.png](../../../../src/images/tutorials/09-cumulus-workshop/parachain-crowdloan.png)
 
 Notes on the parameters:
 
@@ -647,7 +647,7 @@ Notes on the parameters:
 If your extrinsic succeeds, you can see your new crowdloan entry in
 <ExternalLink url="https://polkadot.js.org/apps/#/parachains/crowdloan">**Network** > **Parachains** > **Crowdloan** page</ExternalLink>:
 
-![crowdloan-success.png](../../../../../src/images/tutorials/09-cumulus-workshop/crowdloan-success.png)
+![crowdloan-success.png](../../../../src/images/tutorials/09-cumulus-workshop/crowdloan-success.png)
 
 #### Fund a Crowdloan Campaign
 
@@ -658,6 +658,6 @@ You can goto the same <ExternalLink url="https://polkadot.js.org/apps/#/parachai
 
 You will see an extrinsic pop up similar to the following:
 
-![crowdloan-contribute.png](../../../../../src/images/tutorials/09-cumulus-workshop/crowdloan-contribute.png)
+![crowdloan-contribute.png](../../../../src/images/tutorials/09-cumulus-workshop/crowdloan-contribute.png)
 
 Input the funding amount your want to support and submit the transaction.

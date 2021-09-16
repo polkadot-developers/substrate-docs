@@ -62,7 +62,7 @@ The easiest way to reserve your Para ID is via the <ExternalLink url="https://po
 under the _Network_ -> **Parachains** subpage, click on **Parathreads** tab and use the
 **+ ParaId** button.
 
-![Reserve a Para ID](../../../../../src/images/tutorials/09-cumulus-workshop/paraid-reserve.png)
+![Reserve a Para ID](../../../../src/images/tutorials/09-cumulus-workshop/paraid-reserve.png)
 
 <Message
   type={`yellow`}
@@ -283,7 +283,7 @@ on this can be found [latter on in this tutorial](en/3-parachains/4-more-nodes).
 - Pick `paraSudoWrapper` -> `sudoScheduleParaInitialize(id, genesis)` as the extrinsic type,
   shown below.
 
-![parachain-registration-sudo.png](../../../../../src/images/tutorials/09-cumulus-workshop/parachain-registration-sudo.png)
+![parachain-registration-sudo.png](../../../../src/images/tutorials/09-cumulus-workshop/parachain-registration-sudo.png)
 
 - In the extrinsics parameters, specify:
 
@@ -311,7 +311,7 @@ instructions, with the exception of asking for a slot lease to be awarded or par
 public testnet or mainnet. Here we will use `sudo` to grant ourselves a lease instead. You should
 have an onboarded parathread:
 
-![parathread-onboarding.png](../../../../../src/images/tutorials/09-cumulus-workshop/parathread-onboarding.png)
+![parathread-onboarding.png](../../../../src/images/tutorials/09-cumulus-workshop/parathread-onboarding.png)
 
 - Go to <ExternalLink url="https://polkadot.js.org/apps/#/explorer">Polkadot Apps UI</ExternalLink>,
   connecting to your **relay chain**.
@@ -321,7 +321,7 @@ have an onboarded parathread:
 - Pick `slots`->`forceLease(para, leaser, amount, period_begin, period_end)` as the extrinsic type,
   shown below.
 
-![forceLease.png](../../../../../src/images/tutorials/09-cumulus-workshop/forceLease.png)
+![forceLease.png](../../../../src/images/tutorials/09-cumulus-workshop/forceLease.png)
 
 Be sure to set the begin period to the slot you wish to start at, in testing this very likely is the
 already active slot `0` if you started from scratch. Extending this out to beyond the scope of
@@ -329,7 +329,7 @@ the time you wish to test this parachain is likely best, unless you wish to test
 offboarding cycles, then electing slot leases that have gaps for a `paraID` would be in order.
 Once fully onboarded and after [block production](#block-production) starts you should see:
 
-![parachain-active-lease.png](../../../../../src/images/tutorials/09-cumulus-workshop/parachain-active-lease.png)
+![parachain-active-lease.png](../../../../src/images/tutorials/09-cumulus-workshop/parachain-active-lease.png)
 
 ### 3. Block Production
 
@@ -426,7 +426,7 @@ This is how Polkadot achieves shared security.
 We can keep track of what parachains are registered and what their latest head data is on the
 `Network > Parachains` tab in the Apps UI.
 
-![parachain-summary-screenshot.png](../../../../../src/images/tutorials/09-cumulus-workshop/parachain-summary-screenshot.png)
+![parachain-summary-screenshot.png](../../../../src/images/tutorials/09-cumulus-workshop/parachain-summary-screenshot.png)
 
 ## Connecting Additional Parachain Nodes 
 

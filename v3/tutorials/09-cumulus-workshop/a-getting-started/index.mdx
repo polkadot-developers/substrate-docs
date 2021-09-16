@@ -14,7 +14,10 @@ relevantSkills:
 
 In this hands-on workshop, participants will start a Polkadot-like chain (the relay chain), register
 parachains, make cross-chain asset transfers, and convert their own Substrate runtimes to parachains
-using Cumulus. To learn more about parachains before continuing this workshop, 
+using Cumulus. The workshop is divided into 3 parts. At the end of this workshop, you will have learnt the process of 
+connecting any Substrate based chain to a relay chain and how to interact with it in a local test network. 
+
+To learn more about parachains before continuing this workshop, 
 read about <ExternalLink url="https://polkadot.network/the-path-of-a-parachain-block/">The Path of a Parachain Block</ExternalLink>
 on the official Polkadot Blog.
 
@@ -33,6 +36,8 @@ have your machine configured to compile Substrate-based projects.
   `}
 />
 
+## Getting Started
+
 <TutorialObjective
   data={{
     textLineOne:
@@ -43,15 +48,15 @@ have your machine configured to compile Substrate-based projects.
 <TutorialObjective
   data={{
     textLineOne:
-      '2. Build Environment & Compilation',
+      '2. Build Environment and Compilation',
     url: '#build-environment--compilation',
   }}
 />
 <TutorialObjective
   data={{
     textLineOne:
-      '3. Relay Chain Chain Specification',
-    url: '#relay-chain-chain-specification',
+      '3. Relay Chain Specification',
+    url: '#relay-chain-specification',
   }}
 />
 <TutorialObjective
@@ -62,9 +67,10 @@ have your machine configured to compile Substrate-based projects.
   }}
 />
 
-## Learning outcomes
+### Learning Outcomes
 
-- 
+- Set up your parachain building environment 
+- Start a relay chain
 
 ## Prerequisites
 
@@ -210,7 +216,7 @@ If the help page is printed, you have succeeded in building a Cumulus-based para
 
 For the rest of this workshop we will refer to it simply as `parachain-collator`.
 
-## Relay Chain Chain Specification
+## Relay Chain Specification
 
 You will need a chain specification ([chain spec](/v3/toolchains/chain-specs))
 for your relay chain network. You can use one that is [included with this workshop](/0-files/chainspecs/rococo-custom-2-plain.json), or create your own.
