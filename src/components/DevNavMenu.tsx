@@ -589,11 +589,19 @@ DevNavMenu.tuts.nodeMetrics = [
     items: [
       {
         title: `Introduction`,
-        link: '/tutorials/v3/node-metrics',
+        link: '/tutorials/v3/node-metrics#introduction',
       },
       {
-        title: `Using Grafana and Prometheus with Substrate`,
-        link: '/tutorials/v3/node-metrics/p1',
+        title: `Install Prometheus and Grafana`,
+        link: '/tutorials/v3/node-metrics#install-prometheus-and-grafana',
+      },
+      {
+        title: `Start a Substrate Template Node`,
+        link: '/tutorials/v3/node-metrics#start-a-substrate-template-node',
+      },
+      {
+        title: `Visualizing Prometheus Metrics with Grafana`,
+        link: '/tutorials/v3/node-metrics#visualizing-prometheus-metrics-with-grafana',
       },
     ],
   },
