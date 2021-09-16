@@ -493,15 +493,23 @@ DevNavMenu.tuts.firstChain = [
 
 DevNavMenu.tuts.poe = [
   {
-    name: `Proof of Existence`,
+    name: `Build a Proof of Existence Blockchain`,
     items: [
       {
-        title: `Proof of Existence`,
-        link: '/tutorials/v3/proof-of-existence',
+        title: `Introduction`,
+        link: '/tutorials/v3/proof-of-existence/#introduction',
       },
       {
-        title: `Building a Custom Pallet`,
+        title: `Preparation`,
+        link: '/tutorials/v3/proof-of-existence#prepare-to-build-a-dapp',
+      },
+      {
+        title: `Build a Custom Pallet`,
         link: '/tutorials/v3/proof-of-existence#building-a-custom-pallet',
+      },
+      {
+        title: `Build a Custom Front-end`,
+        link: '/tutorials/v3/proof-of-existence#building-a-custom-front-end',
       },
     ],
   },

@@ -5,7 +5,7 @@ hideNav: true
 version: 3.0 
 section: tutorials
 category: proof of existence
-keywords:
+keywords: dapp, substrate 
 difficulty: 1
 duration: 1 Hour
 relevantSkills: 
@@ -13,6 +13,8 @@ relevantSkills:
   - FRAME
   - ReactJS
 ---
+
+## Introduction
 
 In this tutorial, you will learn to create a custom
 ["Proof of Existence"](https://en.wikipedia.org/wiki/Proof_of_Existence) dApp using the Substrate
@@ -29,7 +31,7 @@ value, which is efficient for storing on the blockchain. Any user with the origi
 that this file matches the one on the blockchain by simply recomputing the hash of the file and
 comparing it with the hash stored on chain.
 
-![File Hash](../../../../src/images/tutorials/02-proof-of-existence/file-hash.png)
+![File Hash](../../../src/images/tutorials/02-proof-of-existence/file-hash.png)
 
 To add to this, blockchains also provide a robust identity system through accounts that map to
 [public keys](https://en.wikipedia.org/wiki/Public-key_cryptography), and associations built on
@@ -86,8 +88,6 @@ We only expect that:
 - Learn how to create and use a custom FRAME pallet 
 - Learn how to modify the front-end node template to match your node's runtime items
 
-<AccentButton text={`Sounds good? Let's begin!`} link={`#prepare-to-build-a-dapp`} />
-
 ## Prepare to build a dApp
 
 <FastTrackPlayground
@@ -101,7 +101,7 @@ For our PoE blockchain, we'll be customizing the Node Template so you'll need to
 We'll also be customizing the Front-end Template so you'll need to make sure you have that too. This part steps you
 through just that and goes over our application design.
 
-### 1. Install the Node Template
+### Install the Node Template
 
 You should already have version `v3.0.0+1` of the
 [Substrate Developer Hub Node Template](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions%2Fbuild-a-dapp-v3+1)
@@ -122,7 +122,7 @@ git clone -b v3.0.0+1 --depth 1 https://github.com/substrate-developer-hub/subst
       the instructions in [its readme](https://github.com/substrate-developer-hub/substrate-node-template#getting-started)."
 />
 
-### 2. Install the Front-End Template
+### Install the Front-End Template
 
 The **Create Your First Substrate Chain** Tutorial used the front-end template, so there is no
 additional set-up required if you have already completed that tutorial.
@@ -137,7 +137,7 @@ additional set-up required if you have already completed that tutorial.
   "
 />
 
-### 3. Application Design
+### Application Design
 
 Our PoE API will expose two callable functions:
 
@@ -179,7 +179,7 @@ The goal of this tutorial is to teach you how to create your own FRAME pallet to
 custom blockchain. The Substrate Developer Hub Node Template comes with a template pallet that we
 will use as a starting point to build our own custom runtime logic.
 
-### 1. Scaffolding with FRAME
+### Scaffolding with FRAME
 
 <Message
   type={`gray`}
@@ -287,7 +287,7 @@ Of Existence pallet by providing you with the code blocks that go under each sec
     "
 />
 
-### 2. Pallet Configuration Trait
+### Pallet Configuration Trait
 
 Every pallet has a component called `Config` that is used for configuration. This component is a
 [Rust "trait"](https://doc.rust-lang.org/book/ch10-02-traits.html): traits in Rust are similar to
@@ -307,7 +307,7 @@ covered in greater depth in the [Add a Pallet](../../add-a-pallet) tutorial. To 
 	}
 ```
 
-### 3. Implement pallet Events
+### Implement pallet Events
 
 Now that we've configured our pallet to emit events, let's go ahead and define those events.
 Our pallet will only emit an event in two circumstances:
@@ -339,7 +339,7 @@ To implement this, replace `#[pallet::event]` with:
 	}
 ```
 
-#### 3.1 Include `sp-std` library
+#### Include `sp-std` library
 
 Notice here that we are using the `Vec<u8>` type, which is _normally_ included in the `std` Rust library. We _cannot_ use `std`!
 So instead, we have included `use sp_std::vec::Vec;` in our `mod pallet`.
@@ -358,7 +358,7 @@ sp-std = { default-features = false, version = '3.0.0' }
 # -- snip --
 ```
 
-### 4. Include pallet Errors
+### Include pallet Errors
 
 The events we defined previously indicate when calls to the pallet have completed successfully.
 Similarly, errors indicate when a call has failed, and why it has failed.
@@ -383,7 +383,7 @@ To implement this, replace the `#[pallet::error]` line with:
         }
 ```
 
-### 5. Implement a `StorageMap` storage item
+### Implement a `StorageMap` storage item
 
 To add a new proof to the blockchain, we will simply store that proof in our pallet's storage. To
 store that value, we will create a [hash map](https://en.wikipedia.org/wiki/Hash_table) from the
@@ -398,7 +398,7 @@ To implement this, replace the `#[pallet::storage]` line with:
     pub(super) type Proofs<T: Config> = StorageMap<_, Blake2_128Concat, Vec<u8>, (T::AccountId, T::BlockNumber), ValueQuery>;
 ```
 
-### 6. Implement callable functions
+### Implement callable functions
 
 As implied by our pallet's events and errors, we will have two "dispatchable functions" the user can
 call in this FRAME pallet:
@@ -475,7 +475,7 @@ To implement this, replace the `#[pallet::call]` line with:
         }
 ```
 
-### 7. Build Your New Pallet
+### Build Your New Pallet
 
 After you've copied all of the parts of this pallet correctly into your `pallets/template/lib.rs`
 file, you should be able to recompile your node without warning or error. Run this command in the
@@ -542,7 +542,7 @@ yarn set version berry
 yarn set version latest
 ```
 
-### 1. Explore the Front-End Template
+### Explore the Front-End Template
 
 To start the Front-End Template, navigate to its directory and run:
 
@@ -561,7 +561,7 @@ You'll see a list of pre-funded accounts, and you can make token transfers betwe
 
 ![Balance Transfer](../../../../src/images/tutorials/02-proof-of-existence/front-end-template-balance-transfer.png)
 
-### 2. Add your custom react component
+### Add your custom react component
 
 In the Front-End Template project, edit the `TemplateModule.js` file in the `/src/` folder:
 
@@ -741,7 +741,7 @@ comments to learn what each part is doing.
       "
 />
 
-### 3. Submit a proof
+### Submit a proof
 
 Your Front-End Template should reload when you save your changes, and you'll notice our new
 component. Now we're ready to try out our new dApp. Select any file on your computer, and you will
@@ -761,7 +761,7 @@ revoke the claim if you want.
 Remember, only the owner can revoke the claim! If you select another user account at the top, and
 you will see that the revoke option is disabled!
 
-#### Next steps
+## Next steps
 
 This is the end of our journey into creating a Proof of Existence blockchain.
 
@@ -773,9 +773,9 @@ with your blockchain.
 This tutorial chose to omit some of the specific details around development in order to keep this
 experience short and satisfying. However, we want you to keep learning!
 
-### Learn more
+#### Learn more
 To learn more about building your own pallets, explore the
-[Substrate Recipes](https://substrate.dev/recipes/).
+[Substrate Recipes](https://substrate.dev/recipes/) and the [How-to Guides](/how-to-guides)
 
 Complete the [Add a Pallet](/tutorials/v3/add-a-pallet/) tutorial to learn how to extend the Node Template with
 additional capabilities from Substrate's set of
