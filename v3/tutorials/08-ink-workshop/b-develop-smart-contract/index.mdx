@@ -4,7 +4,7 @@ slug: /tutorials/v3/ink-workshop/pt2
 version: 3.0 
 section: tutorials
 category: ink workshop
-keywords:
+keywords: smart contracts, erc20, wasm
 ---
 
 This chapter will get you started developing smart contracts with ink!.
@@ -67,8 +67,7 @@ Let's take a look at a high level what is available to you when developing a sma
 
 ### 1. ink!
 
-ink! is an
-[Embedded Domain Specific Language](https://wiki.haskell.org/Embedded_domain_specific_language)
+ink! is an <ExternalLink url="https://wiki.haskell.org/Embedded_domain_specific_language">Embedded Domain Specific Language</ExternalLink>
 (EDSL) that you can use to write WebAssembly based smart contracts in the Rust programming language.
 
 ink! is just standard Rust in a well defined "contract format" with specialized `#[ink(...)]` attribute macros. These attribute macros tell ink! what the different parts of your Rust smart contract represent, and ultimately allow ink! to do all the magic needed to create Substrate compatible Wasm bytecode!
@@ -111,7 +110,7 @@ If everything looks good, then we are ready to start programming!
 
 #### Solution
 
-[embedded-code-final](.../assets/1.1-finished-code.rs ':include :type=code embed-final')
+[embedded-code-final](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/1/assets/1.1-finished-code.rs ':include :type=code embed-final')
 
 <!-- tabs:end -->
 
@@ -217,15 +216,15 @@ Remember to run `cargo +nightly test` to test your work.
 
 #### ** Template **
 
-[embedded-code](.../assets/1.2-template.rs ':include :type=code embed-template')
+[embedded-code](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/1/assets/1.2-template.rs ':include :type=code embed-template')
 
 #### ** Solution **
 
-[embedded-code-final](.../assets/1.2-finished-code.rs ':include :type=code embed-final')
+[embedded-code-final](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/1/assets/1.2-finished-code.rs ':include :type=code embed-final')
 
 #### ** Previous Solution **
 
-[embedded-code-previous](.../assets/1.1-finished-code.rs ':include :type=code embed-previous')
+[embedded-code-previous](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/1/assets/1.1-finished-code.rs ':include :type=code embed-previous')
 
 <!-- tabs:end -->
 
@@ -538,7 +537,14 @@ mod mycontract {
 
 As you might have noticed in the example above, we use a special function called `self.env().caller()`. This function is available throughout the contract logic and will always return to you the contract caller.
 
-> **NOTE:** The contract caller is not the same as the origin caller. If a user triggers a contract which then calls a subsequent contract, the `self.env().caller()` in the second contract will be the address of the first contract, not the original user.
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`The contract caller is not the same as the origin caller. 
+  If a user triggers a contract which then calls a subsequent contract, 
+  the \`self.env().caller()\` in the second contract will be the address 
+  of the first contract, not the original user.`}
+/>
 
 `self.env().caller()` can be used in a number of different ways. In the example above, we are basically creating an "access control" layer which only allows users to access their own values. You can also save the contract owner during contract deployment for future references:
 

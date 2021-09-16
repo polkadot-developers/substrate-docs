@@ -4,7 +4,7 @@ slug: /tutorials/v3/ink-workshop/pt3
 version: 3.0 
 section: tutorials
 category: ink workshop
-keywords:
+keywords: smart contracts, erc20, wasm
 ---
 
 In this chapter, we will show you how you can build an ERC20 token contract with ink!.
@@ -145,11 +145,11 @@ Remember to run `cargo +nightly test` to test your work.
 
 #### ** Template **
 
-[embedded-code](./assets/2.1-template.rs ':include :type=code embed-template')
+[embedded-code](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.1-template.rs ':include :type=code embed-template')
 
 #### ** Solution **
 
-[embedded-code-final](./assets/2.1-finished-code.rs ':include :type=code embed-final')
+[embedded-code-final](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.1-finished-code.rs ':include :type=code embed-final')
 
 <!-- tabs:end -->
 
@@ -229,15 +229,15 @@ Remember to run `cargo +nightly test` to test your work.
 
 #### ** Template **
 
-[embedded-code](./assets/2.2-template.rs ':include :type=code embed-template')
+[embedded-code](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.2-template.rs ':include :type=code embed-template')
 
 #### ** Solution **
 
-[embedded-code-final](./assets/2.2-finished-code.rs ':include :type=code embed-final')
+[embedded-code-final](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.2-finished-code.rs ':include :type=code embed-final')
 
 #### ** Previous Solution **
 
-[embedded-code-previous](./assets/2.1-finished-code.rs ':include :type=code embed-previous')
+[embedded-code-previous](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.1-finished-code.rs ':include :type=code embed-previous')
 
 <!-- tabs:end -->
 
@@ -295,7 +295,7 @@ self.env()
         });
 ```
 
-> Note: `value` does not need a `Some()`, as the value is not stored in an `Option`.
+Notice that `value` does not need a `Some()`, as the value is not stored in an `Option`.
 
 We want to emit a `Transfer` event every time that a transfer takes place. In the ERC-20 template
 that we have been working on, this occurs in two places: first, during the `new` call, and second,
@@ -311,15 +311,15 @@ Remember to run `cargo +nightly test` to test your work.
 
 #### ** Template **
 
-[embedded-code](./assets/2.3-template.rs ':include :type=code embed-template')
+[embedded-code](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.3-template.rs ':include :type=code embed-template')
 
 #### ** Solution **
 
-[embedded-code-final](./assets/2.3-finished-code.rs ':include :type=code embed-final')
+[embedded-code-final](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.3-finished-code.rs ':include :type=code embed-final')
 
 #### ** Previous Solution **
 
-[embedded-code-previous](./assets/2.2-finished-code.rs ':include :type=code embed-previous')
+[embedded-code-previous](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.2-finished-code.rs ':include :type=code embed-previous')
 
 <!-- tabs:end -->
 
@@ -436,15 +436,15 @@ Remember to run `cargo +nightly test` to test your work.
 
 #### ** Template **
 
-[embedded-code](./assets/2.4-template.rs ':include :type=code embed-template')
+[embedded-code](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.4-template.rs ':include :type=code embed-template')
 
 #### ** Solution **
 
-[embedded-code-final](./assets/2.4-finished-code.rs ':include :type=code embed-final')
+[embedded-code-final](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.4-finished-code.rs ':include :type=code embed-final')
 
 #### ** Previous Solution **
 
-[embedded-code-previous](./assets/2.3-finished-code.rs ':include :type=code embed-previous')
+[embedded-code-previous](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.3-finished-code.rs ':include :type=code embed-previous')
 
 <!-- tabs:end -->
 
@@ -524,6 +524,7 @@ at the beginning.
 
 Then we approve `0x00000001` to have an allowance of 20 to transfer his own fund.
 
+
 > **Note**: Notice this line is called with account `0x00000001`, so it may look silly that `0x00000001` has
 > to approve himself to use his own fund. In fact if he call `transfer()` directly, he can still
 > transfer fund to others. But with `transfer_from()` we know that `approve()` has the logic to set the
@@ -539,14 +540,10 @@ You could also refer to the API doc on further usage of
 Congratulation! You have completed the tutorial and you write your own ERC20 token smart contract
 using ink! in Substrate.
 
-### 3. Next Step
+## Further Learning
 
-- Learn more about smart contract development at:
-https://substrate.dev/docs/en/knowledgebase/smart-contracts/
-
-<!-- tabs:start -->
+- Learn more about [Smart Contract development with Substrate](/v3/smart-contracts/overview)
+- Explore the [ink! documentation](https://paritytech.github.io/ink-docs/)
 
 #### ** Template **
-[embedded-code](./assets/2.4-finished-code.rs ':include :type=code embed-template')
-
-<!-- tabs:end -->
+[embedded-code](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.4-finished-code.rs ':include :type=code embed-template')

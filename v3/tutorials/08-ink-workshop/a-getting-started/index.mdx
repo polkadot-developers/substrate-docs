@@ -4,7 +4,12 @@ slug: /tutorials/v3/ink-workshop/pt1
 version: 3.0 
 section: tutorials
 category: ink workshop
-keywords:
+keywords: smart contracts, erc20, wasm
+difficulty: 2
+duration: 2.5 Hours
+relevantSkills:  
+  - ink!
+  - Smart Contracts
 ---
 
 This part will teach you everything you need to know to get started building smart contracts on Substrate with ink!.
@@ -63,7 +68,7 @@ To follow this tutorial, you will need to set up some stuff on your computer.
 ## Prerequisites
 
 Follow the
-[official installation steps](https://substrate.dev/docs/en/knowledgebase/getting-started/) from the
+[official installation steps](/v3/getting-started/installation) from the
 Substrate Developer Hub Knowledge Base to install the prerequisites.
 
 Once you have done the above you will also need to run:
@@ -173,6 +178,13 @@ Run the following command to compile your smart contract in the Flipper project 
 cargo +nightly contract build
 ```
 
+<Message
+  type={`yellow`}
+  title={`Information`}
+  text={`If you run into a \`call to unsafe function\` error, run \`cargo install --force cargo-contract && rustup update\`
+  to make sure everything is up to date.`}
+/>
+
 This command will build a Wasm binary for the ink! project, a metadata file (which contains the
 contract's ABI) and a `.contract` file which bundles both. This `.contract` file can be used for
 deploying your contract to your chain. If all goes well, you should see a `target` folder which
@@ -180,11 +192,10 @@ contains these files:
 
 ```
 target
-  └─ debug
-    └─ ...
   └─ ink
     └─ release
       └─ ...
+    └─ .rustc_info.json
     └─ CACHEDIR.TAG
     └─ flipper.contract
     └─ flipper.wasm
@@ -222,8 +233,8 @@ If you look closely at the constructors and messages, you will also notice a `se
 contains a 4-byte hash of the function name and is used to route your contract calls to the correct
 functions.
 
-In the next section we will start a [Substrate Smart Contracts node](https://github.com/paritytech/substrate-contracts-node)
-and configure the [Canvas UI](https://github.com/paritytech/canvas-ui) to interact with it.
+In the next section we will start a <ExternalLink url="https://github.com/paritytech/substrate-contracts-node">Substrate Smart Contracts node</ExternalLink>
+and configure the <ExternalLink url="https://github.com/paritytech/canvas-ui">Canvas UI</ExternalLink> to interact with it.
 
 ## Running a Substrate Smart Contracts Node
 
@@ -283,7 +294,7 @@ which is usually why we upload the contract code in the first place):
 & drop area. You will see the UI parse the metadata and showing what functions the contract contains.
 - Click the **Constructor Details**
 
-![Flipper Instantiate Contract 01](../assets/flipper-instantiate-01.png)
+![Flipper Instantiate Contract 01](../0-assets/flipper-instantiate-01.png)
 
 ### 2. Instantiate a Contract on the Blockchain
 
@@ -300,7 +311,7 @@ instantiate a copy of the smart contract:
 Allowed** of `200000`.
 - Click on `Instantiate`
 
-![Flipper Instantiate Contract 02](./assets/flipper-instantiate-02.png)
+![Flipper Instantiate Contract 02](../0-assets/flipper-instantiate-02.png)
 
 > **Note:** As mentioned earlier, contract creation involves creation of a new account. As such, you
 must be sure to give the contract account at least the existential deposit defined by your
@@ -313,7 +324,7 @@ the extrinsic `contracts.instantiateWithCode` is called, and a flurry of events 
 creation of a new account (`system.NewAccount`) and the instantiation of the contract
 (`contracts.Instantiated`):
 
-![Flipper Instantiate Contract 03](./assets/flipper-instantiate-03.png)
+![Flipper Instantiate Contract 03](../0-assets/flipper-instantiate-03.png)
 
 ## Calling your Contract
 
@@ -332,13 +343,17 @@ values for the other options.
 
 Press **"Call"** and confirm that it returns the value `false`:
 
-![An image of Flipper RPC call with false](./assets/flipper-false.png)
+![An image of Flipper RPC call with false](../0-assets/flipper-false.png)
 
-> NOTE: You might be wondering "Why did we need to specify gas when reading a value from a contract?"
->
-> If you notice right above the "Call" button is a dropdown select box that allows you to "Send as
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`You might be wondering "Why did we need to specify gas when reading a value from a contract?"
+If you notice right above the "Call" button is a dropdown select box that allows you to "Send as
 RPC call" or "Send as transaction". For a read-only request like this, we can simply use an RPC call
-which will _simulate_ a transaction, but not actually storing anything on-chain. Thus, you will still need to specify the right amount of gas to cover your "virtual fee". But don't worry, nothing will be charged when making a call this way. :)
+which will _simulate_ a transaction, but not actually storing anything on-chain. Thus, you will still need to specify the right amount of gas to cover your "virtual fee". 
+But don't worry, nothing will be charged when making a call this way. 🙂`}
+/>
 
 ### 2. flip() function
 
@@ -348,11 +363,11 @@ The alternative message to send with the UI is `flip()`. Again, accept the defau
 
 You will notice that the `flip()` message defaults to a transaction call.
 
-![An image of a Flipper transaction](./assets/send-as-transaction.png)
+![An image of a Flipper transaction](../0-assets/send-as-transaction.png)
 
 If the transaction was successful, we should then be able to go back to the `get()` function and see our updated storage:
 
-![An image of Flipper RPC call with true](./assets/flipper-true.png)
+![An image of Flipper RPC call with true](../0-assets/flipper-true.png)
 
 Woohoo! You deployed your first smart contract!
 
@@ -406,7 +421,7 @@ you may have done before on your node.
 When interacting with contracts using the Canvas UI, you have the option to submit your call as a
 transaction or as a RPC:
 
-![An image of submitting with transaction or RPC](./assets/send-as.png)
+![An image of submitting with transaction or RPC](../0-assets/send-as.png)
 
 When you send as a transaction, it should be exactly as you expect. A transaction is submitted to
 the contract, a fee is deducted from your account, and the state of your blockchain can change. In
