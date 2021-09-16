@@ -613,23 +613,23 @@ DevNavMenu.tuts.addPallet = [
     items: [
       {
         title: `Introduction`,
-        link: '/tutorials/v3/add-a-pallet',
+        link: '/tutorials/v3/add-a-pallet#introduction',
       },
       {
         title: `Import the Nicks Pallet`,
-        link: '/tutorials/v3/add-a-pallet/import',
+        link: '/tutorials/v3/add-a-pallet#import-the-nicks-pallet',
       },
       {
         title: `Configure the Nicks Pallet`,
-        link: '/tutorials/v3/add-a-pallet/configure',
+        link: '/tutorials/v3/add-a-pallet#configure-the-nicks-pallet',
       },
       {
         title: `Interact with the Nicks Pallet`,
-        link: '/tutorials/v3/add-a-pallet/interact',
+        link: '/tutorials/v3/add-a-pallet#interact-with-the-nicks-pallet',
       },
       {
-        title: `Publish Your Own Pallet (optional)`,
-        link: '/tutorials/v3/add-a-pallet/publish',
+        title: `Publish Your Own Pallet`,
+        link: '/tutorials/v3/add-a-pallet#publish-your-own-pallet',
       },
     ],
   },
