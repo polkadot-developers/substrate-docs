@@ -561,23 +561,23 @@ DevNavMenu.tuts.privateNetwork = [
     items: [
       {
         title: `Introduction`,
-        link: '/tutorials/v3/private-network',
+        link: '/tutorials/v3/private-network#ntroduction',
       },
       {
-        title: `Start a Chain with Alice and Bob`,
-        link: '/tutorials/v3/private-network/alice-and-bob',
+        title: `Alice and Bob Start Blockchain`,
+        link: '/tutorials/v3/private-network#alice-and-bob-start-blockchain',
       },
       {
         title: `Generate Your Own Keys`,
-        link: '/tutorials/v3/private-network/key-generation',
+        link: '/tutorials/v3/private-network#generate-your-own-keys',
       },
       {
         title: `Create a Custom Chain Spec`,
-        link: '/tutorials/v3/private-network/custom-chainspec',
+        link: '/tutorials/v3/private-network#create-a-custom-chain-spec',
       },
       {
         title: `Launch Your Private Network`,
-        link: '/tutorials/v3/private-network/launch-custom-chain',
+        link: '/tutorials/v3/private-network#launch-your-private-network',
       },
     ],
   },
