@@ -77,7 +77,7 @@ export default function tutorials({ data }: any) {
           />
           <TutorialCard
             title={`Node Metrics`}
-            image={data.tutorialOne}
+            image={data.tutorialThree}
             description={`Learn how to visualize the metrics that Substrate records using Prometheus.`}
             time={`< 1 Hour`}
             difficulty={1}
@@ -87,7 +87,7 @@ export default function tutorials({ data }: any) {
           />
           <TutorialCard
             title={`Develop Smart Contracts with ink!`}
-            image={data.tutorialOne}
+            image={data.tutorialFour}
             description={`Learn to build and deploy an ERC20 token smart contract with ink!`}
             time={`2 Hours`}
             difficulty={2}
@@ -98,12 +98,22 @@ export default function tutorials({ data }: any) {
           <TutorialCard
             title={`Cumulus Workshop`}
             image={data.tutorialOne}
-            description={`A workshop to configure Substrate node as a Parachain`}
+            description={`A workshop to configure a Substrate node as a Parachain`}
             time={`3 Hours`}
             difficulty={3}
             prerequisites={true}
             version={`V3.0.0`}
             link={`/tutorials/v3/cumulus-workshop/pt1`}
+          />
+          <TutorialCard
+            title={`Frontier Workshop`}
+            image={data.tutorialSix}
+            description={`A workshop to configure a Substrate node to run Substrate EVM and Solidity contracts`}
+            time={`1 Hour`}
+            difficulty={2}
+            prerequisites={false}
+            version={`V3.0.0`}
+            link={`/tutorials/v3/frontier`}
           />
         </div>
       </div>

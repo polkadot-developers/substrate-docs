@@ -674,4 +674,24 @@ DevNavMenu.tuts.cumulusWorkshop = [
   },
 ]
 
+DevNavMenu.tuts.frontierWorkshop = [
+  {
+    name: `Frontier Workshop`,
+    items: [
+      {
+        title: `Getting Started`,
+        link: '/tutorials/v3/frontier#getting-started',
+      },
+      {
+        title: `Architecture`,
+        link: '/tutorials/v3/frontier#architecture',
+      },
+      {
+        title: `ERC20 Contract Deployment`,
+        link: '/tutorials/v3/frontier#erc20-contract-deployment',
+      },
+    ],
+  },
+]
+
 export default DevNavMenu

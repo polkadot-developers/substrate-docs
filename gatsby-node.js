@@ -54,6 +54,11 @@ const tutsInfo = [
     navSlug: 'cumulusWorkshop',
     version: '3.0',
   },
+  {
+    name: 'frontier',
+    navSlug: 'frontierWorkshop',
+    version: '3.0',
+  },
 ]
 
 const gqlTpl = `{ res: allFile(

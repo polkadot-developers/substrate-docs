@@ -130,6 +130,13 @@ module.exports = {
         name: `cumulus`,
       },
     },
+      {
+        resolve: `gatsby-source-filesystem`,
+        options: {
+          path: `${__dirname}/v3/tutorials/10-frontier-workshop/`,
+          name: `frontier`,
+        },
+      },
     //*********************************//
     {
       resolve: `gatsby-source-filesystem`,
