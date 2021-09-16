@@ -472,20 +472,20 @@ DevNavMenu.tuts.firstChain = [
     name: `Create Your First Substrate Chain`,
     items: [
       {
-        title: `Introduction`,
-        link: '/tutorials/v3/create-your-first-substrate-chain',
+        title: `Background`,
+        link: '/tutorials/v3/create-your-first-substrate-chain#what-is-a-blockchain-node',
       },
       {
         title: `Set-up Your Computer`,
-        link: '/tutorials/v3/create-your-first-substrate-chain/setup',
+        link: '/tutorials/v3/create-your-first-substrate-chain/#install-rust-and-the-rust-toolchain',
       },
       {
-        title: `Background Information`,
-        link: '/tutorials/v3/create-your-first-substrate-chain/background',
+        title: `Using the Substrate Node Template`,
+        link: '/tutorials/v3/create-your-first-substrate-chain/#prepare-a-substrate-node-using-the-node-template',
       },
       {
         title: `Interacting with Your Node`,
-        link: '/tutorials/v3/create-your-first-substrate-chain/interact',
+        link: '#start-the-front-end-template',
       },
     ],
   },
@@ -493,23 +493,23 @@ DevNavMenu.tuts.firstChain = [
 
 DevNavMenu.tuts.poe = [
   {
-    name: `Proof of Existence`,
+    name: `Build a Proof of Existence Blockchain`,
     items: [
       {
         title: `Introduction`,
-        link: '/tutorials/v3/proof-of-existence',
+        link: '/tutorials/v3/proof-of-existence/#introduction',
       },
       {
-        title: `Prepare to build a dApp`,
-        link: '/tutorials/v3/proof-of-existence/prepare',
+        title: `Preparation`,
+        link: '/tutorials/v3/proof-of-existence#prepare-to-build-a-dapp',
       },
       {
-        title: `Building a Custom Pallet`,
-        link: '/tutorials/v3/proof-of-existence/pallet',
+        title: `Build a Custom Pallet`,
+        link: '/tutorials/v3/proof-of-existence#building-a-custom-pallet',
       },
       {
-        title: `Building a Custom Front End`,
-        link: '/tutorials/v3/proof-of-existence/front-end',
+        title: `Build a Custom Front-end`,
+        link: '/tutorials/v3/proof-of-existence#building-a-custom-front-end',
       },
     ],
   },
@@ -521,15 +521,15 @@ DevNavMenu.tuts.permissionedNetwork = [
     items: [
       {
         title: `Introduction`,
-        link: '/tutorials/v3/permissioned-network',
+        link: '/tutorials/v3/permissioned-network#introduction',
       },
       {
         title: `Add the node-authorization pallet`,
-        link: '/tutorials/v3/permissioned-network/node-authorization-pallet',
+        link: '/tutorials/v3/permissioned-network#add-node-authorization-pallet',
       },
       {
         title: `Launch your permissioned network`,
-        link: '/tutorials/v3/permissioned-network/launch',
+        link: '/tutorials/v3/permissioned-network#launch-our-permissioned-network',
       },
     ],
   },
@@ -537,19 +537,19 @@ DevNavMenu.tuts.permissionedNetwork = [
 
 DevNavMenu.tuts.forklessUpgrades = [
   {
-    name: `Forkless Runtime Upgrades`,
+    name: `Initiate a Forkless Runtime Upgrade`,
     items: [
       {
         title: `Introduction`,
-        link: '/tutorials/v3/forkless-upgrades',
+        link: '/tutorials/v3/forkless-upgrades#introduction',
       },
       {
         title: `Sudo Upgrade`,
-        link: '/tutorials/v3/forkless-upgrades/sudo-upgrade',
+        link: '/tutorials/v3/forkless-upgrades#sudo-upgrade',
       },
       {
         title: `Schedule an Upgrade`,
-        link: '/tutorials/v3/forkless-upgrades/schedule-an-upgrade',
+        link: '/tutorials/v3/forkless-upgrades#schedule-an-upgrade',
       },
     ],
   },
@@ -561,23 +561,23 @@ DevNavMenu.tuts.privateNetwork = [
     items: [
       {
         title: `Introduction`,
-        link: '/tutorials/v3/private-network',
+        link: '/tutorials/v3/private-network#ntroduction',
       },
       {
-        title: `Start a Chain with Alice and Bob`,
-        link: '/tutorials/v3/private-network/alice-and-bob',
+        title: `Alice and Bob Start Blockchain`,
+        link: '/tutorials/v3/private-network#alice-and-bob-start-blockchain',
       },
       {
         title: `Generate Your Own Keys`,
-        link: '/tutorials/v3/private-network/key-generation',
+        link: '/tutorials/v3/private-network#generate-your-own-keys',
       },
       {
         title: `Create a Custom Chain Spec`,
-        link: '/tutorials/v3/private-network/custom-chainspec',
+        link: '/tutorials/v3/private-network#create-a-custom-chain-spec',
       },
       {
         title: `Launch Your Private Network`,
-        link: '/tutorials/v3/private-network/launch-custom-chain',
+        link: '/tutorials/v3/private-network#launch-your-private-network',
       },
     ],
   },
@@ -589,11 +589,19 @@ DevNavMenu.tuts.nodeMetrics = [
     items: [
       {
         title: `Introduction`,
-        link: '/tutorials/v3/node-metrics',
+        link: '/tutorials/v3/node-metrics#introduction',
       },
       {
-        title: `Using Grafana and Prometheus with Substrate`,
-        link: '/tutorials/v3/node-metrics/p1',
+        title: `Install Prometheus and Grafana`,
+        link: '/tutorials/v3/node-metrics#install-prometheus-and-grafana',
+      },
+      {
+        title: `Start a Substrate Template Node`,
+        link: '/tutorials/v3/node-metrics#start-a-substrate-template-node',
+      },
+      {
+        title: `Visualizing Prometheus Metrics with Grafana`,
+        link: '/tutorials/v3/node-metrics#visualizing-prometheus-metrics-with-grafana',
       },
     ],
   },
@@ -605,23 +613,23 @@ DevNavMenu.tuts.addPallet = [
     items: [
       {
         title: `Introduction`,
-        link: '/tutorials/v3/add-a-pallet',
+        link: '/tutorials/v3/add-a-pallet#introduction',
       },
       {
         title: `Import the Nicks Pallet`,
-        link: '/tutorials/v3/add-a-pallet/import',
+        link: '/tutorials/v3/add-a-pallet#import-the-nicks-pallet',
       },
       {
         title: `Configure the Nicks Pallet`,
-        link: '/tutorials/v3/add-a-pallet/configure',
+        link: '/tutorials/v3/add-a-pallet#configure-the-nicks-pallet',
       },
       {
         title: `Interact with the Nicks Pallet`,
-        link: '/tutorials/v3/add-a-pallet/interact',
+        link: '/tutorials/v3/add-a-pallet#interact-with-the-nicks-pallet',
       },
       {
-        title: `Publish Your Own Pallet (optional)`,
-        link: '/tutorials/v3/add-a-pallet/publish',
+        title: `Publish Your Own Pallet`,
+        link: '/tutorials/v3/add-a-pallet#publish-your-own-pallet',
       },
     ],
   },
