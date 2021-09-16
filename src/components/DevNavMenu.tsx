@@ -496,20 +496,12 @@ DevNavMenu.tuts.poe = [
     name: `Proof of Existence`,
     items: [
       {
-        title: `Introduction`,
+        title: `Proof of Existence`,
         link: '/tutorials/v3/proof-of-existence',
       },
       {
-        title: `Prepare to build a dApp`,
-        link: '/tutorials/v3/proof-of-existence/prepare',
-      },
-      {
         title: `Building a Custom Pallet`,
-        link: '/tutorials/v3/proof-of-existence/pallet',
-      },
-      {
-        title: `Building a Custom Front End`,
-        link: '/tutorials/v3/proof-of-existence/front-end',
+        link: '/tutorials/v3/proof-of-existence#building-a-custom-pallet',
       },
     ],
   },
