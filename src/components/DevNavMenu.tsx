@@ -693,5 +693,49 @@ DevNavMenu.tuts.frontierWorkshop = [
     ],
   },
 ]
+DevNavMenu.tuts.kittiesWorkshop = [
+  {
+    name: `Kitties Workshop Part I`,
+    items: [
+      {
+        title: `Introduction`,
+        link: '/tutorials/v3/kitties/pt1',
+      },
+      {
+        title: `Uniqueness, custom types and storage maps`,
+        link: '/tutorials/v3/kitties/pt1#uniqueness-custom-types-and-storage-maps',
+      },
+      {
+        title: `Dispatchables, Events and Errors`,
+        link: '/tutorials/v3/kitties/pt1#dispatchables-events-and-errors',
+      },
+      {
+        title: `Interacting with your Kitties`,
+        link: '/tutorials/v3/kitties/pt1#interacting-with-your-ktties',
+      },
+      {
+        title: `Interacting with your Kitties`,
+        link: '/tutorials/v3/kitties/pt1#interacting-with-your-ktties',
+      },
+    ],
+  },
+  {
+    name: `Kitties Workshop Part II`,
+    items: [
+      {
+        title: `Introduction`,
+        link: '/tutorials/v3/kitties/pt2',
+      },
+      {
+        title: `Getting Started`,
+        link: '/tutorials/v3/kitties/pt2#getting-started',
+      },
+      {
+        title: `Creating Custom Components`,
+        link: '/tutorials/v3/kitties/pt2#creating-custom-components',
+      },
+    ],
+  },
+]
 
 export default DevNavMenu

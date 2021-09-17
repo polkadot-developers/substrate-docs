@@ -59,6 +59,11 @@ const tutsInfo = [
     navSlug: 'frontierWorkshop',
     version: '3.0',
   },
+  {
+    name: 'kitties',
+    navSlug: 'kittiesWorkshop',
+    version: '3.0',
+  },
 ]
 
 const gqlTpl = `{ res: allFile(

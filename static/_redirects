@@ -93,6 +93,12 @@
 /cumulus-workshop                                   /tutorials/v3/cumulus-workshop          301!
 /cumulus-workshop/*                                 /tutorials/v3/cumulus-workshop          301!
 
+### Tutorial - Kitties Workshop
+/tutorials/kitties                                  /tutorials/v3/kitties                   301!
+/tutorials/kitties/*                                /tutorials/v3/kitties                   301!
+/kitties                                            /tutorials/v3/kitties                   301!
+/kitties/*                                          /tutorials/v3/kitties                   301!
+
 ### Tutorial page
 /en/tutorials                                       /tutorials/v3                      301!
 /en/tutorials/                                      /tutorials/v3                      301!

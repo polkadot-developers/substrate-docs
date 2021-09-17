@@ -115,6 +115,16 @@ export default function tutorials({ data }: any) {
             version={`V3.0.0`}
             link={`/tutorials/v3/frontier`}
           />
+          <TutorialCard
+            title={`Kitties Workshop`}
+            image={data.tutorialSix}
+            description={`Kitties workshop.`}
+            time={`1 Hour`}
+            difficulty={2}
+            prerequisites={false}
+            version={`V3.0.0`}
+            link={`/tutorials/v3/kitties/pt1`}
+          />
         </div>
       </div>
     </Layout>
