@@ -116,10 +116,10 @@ export default function tutorials({ data }: any) {
             link={`/tutorials/v3/frontier`}
           />
           <TutorialCard
-            title={`Kitties Workshop`}
+            title={`Substrate Kitties Workshop`}
             image={data.tutorialSix}
-            description={`Kitties workshop.`}
-            time={`1 Hour`}
+            description={`Build a full stack application that handles the ownership management of Substrate Kitties.`}
+            time={`4 Hours`}
             difficulty={2}
             prerequisites={false}
             version={`V3.0.0`}
