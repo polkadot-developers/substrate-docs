@@ -45,13 +45,23 @@ const tutsInfo = [
     version: '3.0',
   },
   {
-    name: 'add-contracts',
-    navSlug: 'contractsTutorial',
+    name: 'ink-workshop',
+    navSlug: 'inkWorkshop',
     version: '3.0',
   },
   {
     name: 'cumulus',
     navSlug: 'cumulusWorkshop',
+    version: '3.0',
+  },
+  {
+    name: 'frontier',
+    navSlug: 'frontierWorkshop',
+    version: '3.0',
+  },
+  {
+    name: 'kitties',
+    navSlug: 'kittiesWorkshop',
     version: '3.0',
   },
 ]

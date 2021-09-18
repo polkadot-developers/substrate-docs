@@ -66,7 +66,7 @@ export default function tutorials({ data }: any) {
             link={`/tutorials/v3/forkless-upgrades`}
           />
           <TutorialCard
-            title={`Private Network`}
+            title={`Start a Private Network`}
             image={data.tutorialSix}
             description={`Learn how to start a private blockchain network using an out-of-the-box Substrate node.`}
             time={`2 Hours`}
@@ -77,7 +77,7 @@ export default function tutorials({ data }: any) {
           />
           <TutorialCard
             title={`Node Metrics`}
-            image={data.tutorialOne}
+            image={data.tutorialThree}
             description={`Learn how to visualize the metrics that Substrate records using Prometheus.`}
             time={`< 1 Hour`}
             difficulty={1}
@@ -86,24 +86,44 @@ export default function tutorials({ data }: any) {
             link={`/tutorials/v3/node-metrics`}
           />
           <TutorialCard
-            title={`Add the Contracts Pallet`}
-            image={data.tutorialOne}
-            description={`Allow your blockchain to support Wasm smart contracts by adding and configuring FRAME's Contracts pallet.`}
-            time={`3 Hours`}
+            title={`Develop Smart Contracts with ink!`}
+            image={data.tutorialFour}
+            description={`Learn to build and deploy an ERC20 token smart contract with ink!`}
+            time={`2 Hours`}
             difficulty={2}
             prerequisites={false}
             version={`V3.0.0`}
-            link={`/tutorials/v3/add-contracts`}
+            link={`/tutorials/v3/ink-workshop/pt1`}
           />
           <TutorialCard
             title={`Cumulus Workshop`}
             image={data.tutorialOne}
-            description={`A workshop to configure Substrate node as a Parachain`}
+            description={`A workshop to configure a Substrate node as a Parachain`}
             time={`3 Hours`}
             difficulty={3}
             prerequisites={true}
             version={`V3.0.0`}
-            link={`/tutorials/v3/cumulus-workshop`}
+            link={`/tutorials/v3/cumulus-workshop/pt1`}
+          />
+          <TutorialCard
+            title={`Frontier Workshop`}
+            image={data.tutorialSix}
+            description={`A workshop to configure a Substrate node to run Substrate EVM and Solidity contracts`}
+            time={`1 Hour`}
+            difficulty={2}
+            prerequisites={false}
+            version={`V3.0.0`}
+            link={`/tutorials/v3/frontier`}
+          />
+          <TutorialCard
+            title={`Substrate Kitties Workshop`}
+            image={data.tutorialSix}
+            description={`Build a full stack application that handles the ownership management of Substrate Kitties.`}
+            time={`4 Hours`}
+            difficulty={2}
+            prerequisites={false}
+            version={`V3.0.0`}
+            link={`/tutorials/v3/kitties/pt1`}
           />
         </div>
       </div>

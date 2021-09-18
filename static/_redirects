@@ -32,9 +32,9 @@
 /docs-test/en/tutorials/build-permission-network      /tutorials/v3/permissioned-network    301!
 /docs-test/en/tutorials/build-permission-network/*    /tutorials/v3/permissioned-network    301!
 
-### Tutorial - Add a Contract Pallet
-/docs-test/en/tutorials/add-contracts-pallet        /tutorials/v3/add-contracts             301!
-/docs-test/en/tutorials/add-contracts-pallet/*      /tutorials/v3/add-contracts             301!
+### Tutorial - ink! Workshop
+/docs-test/en/tutorials/ink-workshop        /tutorials/v3/ink-workshop             301!
+/docs-test/en/tutorials/ink-workshop/*      /tutorials/v3/ink-workshop             301!
 
 ### Tutorial - Node Metrics
 /docs-test/en/tutorials/visualize-node-metrics      /tutorials/v3/node-metrics              301!
@@ -92,6 +92,12 @@
 /tutorials/substrate-cumulus-workshop/*             /tutorials/v3/cumulus-workshop          301!
 /cumulus-workshop                                   /tutorials/v3/cumulus-workshop          301!
 /cumulus-workshop/*                                 /tutorials/v3/cumulus-workshop          301!
+
+### Tutorial - Kitties Workshop
+/tutorials/kitties                                  /tutorials/v3/kitties                   301!
+/tutorials/kitties/*                                /tutorials/v3/kitties                   301!
+/kitties                                            /tutorials/v3/kitties                   301!
+/kitties/*                                          /tutorials/v3/kitties                   301!
 
 ### Tutorial page
 /en/tutorials                                       /tutorials/v3                      301!

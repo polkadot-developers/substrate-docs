@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl'
-
 const DevNavMenu = {
   global: () => {
     const intl = useIntl()
@@ -635,87 +634,105 @@ DevNavMenu.tuts.addPallet = [
   },
 ]
 
-DevNavMenu.tuts.contractsTutorial = [
+DevNavMenu.tuts.inkWorkshop = [
   {
-    name: `Add the Contracts Pallet`,
+  name: `ink! Contracts Workshop`,
+  items: [
+    {
+      title: `Getting Started`,
+      link: '/tutorials/v3/ink-workshop/pt1',
+    },
+    {
+      title: `Develop a Smart Contract`,
+      link: '/tutorials/v3/ink-workshop/pt2',
+    },
+    {
+      title: `Build an ERC20 Token Contract`,
+      link: '/tutorials/v3/ink-workshop/pt3',
+    },
+  ],
+},
+]
+
+DevNavMenu.tuts.cumulusWorkshop = [
+  {
+    name: `Substrate Cumulus Workshop`,
     items: [
       {
-        title: `Introduction`,
-        link: '/tutorials/v3/add-contracts',
+        title: `Getting Started`,
+        link: '/tutorials/v3/cumulus-workshop/pt1',
       },
       {
-        title: `Node Set-up`,
-        link: '/tutorials/v3/add-contracts/pt1',
+        title: `Connecting to a Relay Chain`,
+        link: '/tutorials/v3/cumulus-workshop/pt2',
       },
       {
-        title: `Implement the Contracts pallet and its APIs`,
-        link: '/tutorials/v3/add-contracts/pt2',
+        title: `Launch a Development Environment`,
+        link: '/tutorials/v3/cumulus-workshop/pt3',
       },
     ],
   },
 ]
 
-DevNavMenu.tuts.cumulusWorkshop = [
+DevNavMenu.tuts.frontierWorkshop = [
   {
-    name: `Part I`,
+    name: `Frontier Workshop`,
+    items: [
+      {
+        title: `Getting Started`,
+        link: '/tutorials/v3/frontier#getting-started',
+      },
+      {
+        title: `Architecture`,
+        link: '/tutorials/v3/frontier#architecture',
+      },
+      {
+        title: `ERC20 Contract Deployment`,
+        link: '/tutorials/v3/frontier#erc20-contract-deployment',
+      },
+    ],
+  },
+]
+DevNavMenu.tuts.kittiesWorkshop = [
+  {
+    name: `Kitties Workshop Part I`,
     items: [
       {
         title: `Introduction`,
-        link: '/tutorials/v3/cumulus-workshop',
+        link: '/tutorials/v3/kitties/pt1',
       },
       {
-        title: `Build Environment and Compilation`,
-        link: '/tutorials/v3/cumulus-workshop/build-env',
+        title: `Uniqueness, custom types and storage maps`,
+        link: '/tutorials/v3/kitties/pt1#uniqueness-custom-types-and-storage-maps',
       },
       {
-        title: `Relay chain spec`,
-        link: '/tutorials/v3/cumulus-workshop/relay-spec',
+        title: `Dispatchables, Events and Errors`,
+        link: '/tutorials/v3/kitties/pt1#dispatchables-events-and-errors',
       },
       {
-        title: `Starting the Relay Chain`,
-        link: '/tutorials/v3/cumulus-workshop/relay-start',
-      },
-    ],
-  },
-  {
-    name: `Part II`,
-    items: [
-      {
-        title: `Reserve a Para ID`,
-        link: '/tutorials/v3/cumulus-workshop/para-id',
+        title: `Interacting with your Kitties`,
+        link: '/tutorials/v3/kitties/pt1#interacting-with-your-ktties',
       },
       {
-        title: `Launch a Parachain`,
-        link: '/tutorials/v3/cumulus-workshop/para-launch',
-      },
-      {
-        title: `Parachain Registration`,
-        link: '/tutorials/v3/cumulus-workshop/para-register',
-      },
-      {
-        title: `Interacting with a Parachain`,
-        link: '/tutorials/v3/cumulus-workshop/para-interact',
-      },
-      {
-        title: `Connecting Additional Parachain Nodes`,
-        link: '/tutorials/v3/cumulus-workshop/para-nodes',
+        title: `Interacting with your Kitties`,
+        link: '/tutorials/v3/kitties/pt1#interacting-with-your-ktties',
       },
     ],
   },
   {
-    name: `Part III`,
+    name: `Kitties Workshop Part II`,
     items: [
       {
-        title: `Launch a Development Environment with Polkadot Launch`,
-        link: '/tutorials/v3/cumulus-workshop/polkadot-launch',
+        title: `Introduction`,
+        link: '/tutorials/v3/kitties/pt2',
       },
       {
-        title: `Parachain Node Template`,
-        link: '/tutorials/v3/cumulus-workshop/para-node-template',
+        title: `Getting Started`,
+        link: '/tutorials/v3/kitties/pt2#getting-started',
       },
       {
-        title: `Rococo Testnet Registration`,
-        link: '/tutorials/v3/cumulus-workshop/rococo',
+        title: `Creating Custom Components`,
+        link: '/tutorials/v3/kitties/pt2#creating-custom-components',
       },
     ],
   },
