@@ -711,11 +711,7 @@ DevNavMenu.tuts.kittiesWorkshop = [
       },
       {
         title: `Interacting with your Kitties`,
-        link: '/tutorials/v3/kitties/pt1#interacting-with-your-ktties',
-      },
-      {
-        title: `Interacting with your Kitties`,
-        link: '/tutorials/v3/kitties/pt1#interacting-with-your-ktties',
+        link: '/tutorials/v3/kitties/pt1#interacting-with-your-kitties',
       },
     ],
   },
