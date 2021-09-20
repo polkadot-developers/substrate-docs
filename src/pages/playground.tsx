@@ -57,11 +57,11 @@ export default function playground() {
             description={`A “skeleton blockchain” with essential capabilities, including P2P
             networking, consensus, finality, account, transaction and sudo
             governance modules.`}
-            listTitle={'Runtime Modules'}
+            listTitle={'Key Runtime Modules'}
             components={[
               'pallet_balances',
               'pallet_transaction_payment',
-              'pallet_sudos',
+              'pallet_sudo',
               'pallet_template',
             ]}
             link={`https://playground.substrate.dev/?deploy=node-template`}
@@ -75,10 +75,10 @@ export default function playground() {
             Template’s mruntime.`}
             listTitle={'Key Components'}
             components={[
-              'pallet interactor',
-              'Events',
+              'Interactor',
+              'MetaData',
               'Balances',
-              'Block number',
+              'BlockNumber',
             ]}
             link={` https://playground.substrate.dev/?deploy=front-end-template`}
           />
