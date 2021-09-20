@@ -74,12 +74,7 @@ export default function playground() {
             Node Template. It contains all necessary components to interact with the Node 
             Template’s mruntime.`}
             listTitle={'Key Components'}
-            components={[
-              'Interactor',
-              'MetaData',
-              'Balances',
-              'BlockNumber',
-            ]}
+            components={['Interactor', 'MetaData', 'Balances', 'BlockNumber']}
             link={` https://playground.substrate.dev/?deploy=front-end-template`}
           />
         </div>
