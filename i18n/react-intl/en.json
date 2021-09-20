@@ -45,8 +45,8 @@
   "docs-nav-edit": "Edit",
   "docs-nav-next": "Next",
   "docs-nav-back": "Back",
-  "docs-nav-docs-overview":"Back to Developers Overview",
-  "docs-nav-learn-more":"More Ways to Learn",
+  "docs-nav-docs-overview": "Back to Developers Overview",
+  "docs-nav-learn-more": "More Ways to Learn",
 
   "docs-menu-getting-started": "Getting Started",
   "docs-menu-overview": "Overview",
@@ -135,8 +135,9 @@
 
   "docs-nav-htg-consensus": "Consensus",
   "htg-consensus-pow": "Add PoW Consensus",
+  "htg-consensus-hybrid": "Create a PoS-PoW Hybrid Node",
 
-  "docs-nav-htg-parachains": "Parachains",  
+  "docs-nav-htg-parachains": "Parachains",
   "htg-parachains-upgrade": "Preparing for On-Chain Upgrades",
   "htg-parachains-setup": "Set-up your runtime and client",
   "htg-parachains-register": "How to register your Parachain",

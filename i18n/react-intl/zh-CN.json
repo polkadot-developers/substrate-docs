@@ -45,8 +45,8 @@
   "docs-nav-edit": "编辑",
   "docs-nav-next": "下一个",
   "docs-nav-back": "后退",
-  "docs-nav-docs-overview":"返回开发人员概览",
-  "docs-nav-learn-more":"更多学习方式",
+  "docs-nav-docs-overview": "返回开发人员概览",
+  "docs-nav-learn-more": "更多学习方式",
 
   "docs-menu-getting-started": "入门",
   "docs-menu-overview": "概览",
@@ -135,7 +135,7 @@
   "docs-nav-htg-consensus": "Consensus",
   "htg-consensus-pow": "Add PoW Consensus",
 
-  "docs-nav-htg-parachains": "Parachains",  
+  "docs-nav-htg-parachains": "Parachains",
   "htg-parachains-upgrade": "Preparing for On-Chain Upgrades",
   "htg-parachains-setup": "Set-up your runtime and client",
   "htg-parachains-register": "How to register your Parachain",

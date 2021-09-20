@@ -405,6 +405,10 @@ const DevNavMenu = {
             title: `${intl.formatMessage({ id: 'htg-consensus-pow' })}`,
             link: '/how-to-guides/v3/consensus/pow',
           },
+          {
+            title: `${intl.formatMessage({ id: 'htg-consensus-hybrid' })}`,
+            link: '/how-to-guides/v3/consensus/hybrid-pos-pow',
+          },
         ],
       },
       // 7. Parachains.
@@ -636,22 +640,22 @@ DevNavMenu.tuts.addPallet = [
 
 DevNavMenu.tuts.inkWorkshop = [
   {
-  name: `ink! Contracts Workshop`,
-  items: [
-    {
-      title: `Getting Started`,
-      link: '/tutorials/v3/ink-workshop/pt1',
-    },
-    {
-      title: `Develop a Smart Contract`,
-      link: '/tutorials/v3/ink-workshop/pt2',
-    },
-    {
-      title: `Build an ERC20 Token Contract`,
-      link: '/tutorials/v3/ink-workshop/pt3',
-    },
-  ],
-},
+    name: `ink! Contracts Workshop`,
+    items: [
+      {
+        title: `Getting Started`,
+        link: '/tutorials/v3/ink-workshop/pt1',
+      },
+      {
+        title: `Develop a Smart Contract`,
+        link: '/tutorials/v3/ink-workshop/pt2',
+      },
+      {
+        title: `Build an ERC20 Token Contract`,
+        link: '/tutorials/v3/ink-workshop/pt3',
+      },
+    ],
+  },
 ]
 
 DevNavMenu.tuts.cumulusWorkshop = [
