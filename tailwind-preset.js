@@ -31,6 +31,7 @@ module.exports = {
         substrateGreen: {
           light: '#D4F9EC',
           DEFAULT: '#24CC85',
+          dark: '#22B577',
         },
         substrateGray: {
           light: '#FBFBFB',

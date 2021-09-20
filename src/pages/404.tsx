@@ -3,6 +3,7 @@ import { navigate } from 'gatsby'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import { useIntl } from 'react-intl'
+import { PrimaryFixedButton } from '../components/Buttons'
 
 export default function NotFoundPage() {
   const intl = useIntl()
@@ -17,14 +18,9 @@ export default function NotFoundPage() {
           <h2 className="text-center text-4xl mb-10 font-bold">
             {intl.formatMessage({ id: '404-text' })}
           </h2>
-          <a
-            onClick={() => navigate(-1)}
-            className={`bg-substrateGreen py-3 px-8 hover:bg-white dark:hover:bg-darkBackground border-2 border-transparent hover:border-substrateGreen rounded text-white hover:text-substrateGreen transform transition duration-300 ease-in-out cursor-pointer`}
-          >
-            <button className={`focus:outline-none font-bold text-xl`}>
-              {intl.formatMessage({ id: '404-button' })}
-            </button>
-          </a>
+          <PrimaryFixedButton onClick={() => navigate(-1)}>
+            {intl.formatMessage({ id: '404-button' })}
+          </PrimaryFixedButton>
         </div>
       </section>
     </Layout>
