@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import MobileMenu from '../MobileMenus/MobileMenu'
 import DocsButton from '../DocsButton'
 import { Link } from 'gatsby'
@@ -9,6 +9,8 @@ import SearchDocs from '../SearchDocs'
 import ThemeToggle from '../ThemeToggle'
 import MainNav from '../MainNav'
 import useScrollListener from '../Hooks/use-scroll-listener'
+
+import { ThemeContext } from '../../contexts/ThemeContext.js'
 
 export default function Header() {
   const scroll = useScrollListener()
@@ -24,21 +26,7 @@ export default function Header() {
       : (document.body.style.overflow = `unset`)
   }, [isMobileNavOpen])
 
-  const [theme, setTheme] = useState<string>('')
-  useEffect(() => {
-    if (
-      localStorage.theme === 'dark' ||
-      (!('theme' in localStorage) &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-      document.documentElement.classList.add('dark')
-      localStorage.theme = 'dark'
-      setTheme('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-      setTheme('light')
-    }
-  }, [])
+  const { colorMode } = useContext(ThemeContext)
 
   useEffect(() => {
     if (scroll.y > 15) {
@@ -58,7 +46,7 @@ export default function Header() {
             <Link to="/">
               <svg
                 className={`fill-current ${
-                  theme === 'dark' ? `text-white` : `text-black`
+                  colorMode === 'dark' ? `text-white` : `text-black`
                 }`}
                 data-name="Layer 1"
                 xmlns="http://www.w3.org/2000/svg"
@@ -99,7 +87,7 @@ export default function Header() {
           </div>
           {isMobileNavOpen && (
             <MobileMenu
-              theme={theme}
+              theme={colorMode}
               toggleMenu={toggleMenu}
               navItems={navItems}
               // currentLang={locale}
@@ -125,7 +113,7 @@ export default function Header() {
                 <DocsButton />
               </div>
               {/* <LanguageSwitcher currentLang={locale} langConfig={config} /> */}
-              <ThemeToggle theme={theme} setTheme={setTheme} />
+              <ThemeToggle />
             </div>
           </nav>
         </div>
