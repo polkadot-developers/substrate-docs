@@ -420,13 +420,6 @@ various patterns for:
 - Declaring a single value \`u64\` storage item.
   `} />
 
-
-### Next steps
-
-- Writing a struct in a `StorageMap` to store details about our Kitties.
-- Using the `Randomness` trait to create unique Kitties.
-- Creating our pallet's remaining storage items.
-
 [installation]: https://substrate.dev/docs/en/knowledgebase/getting-started/
 [substrate-node-template]: https://github.com/substrate-developer-hub/substrate-node-template
 [pallets-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/pallets
@@ -441,8 +434,13 @@ various patterns for:
 
 ## Uniqueness, Custom Types, and Storage Maps
 
-_In this part of the tutorial, we'll build out the components of our pallet needed to manage the
-creation and ownership of our Kitties._
+<Message type='yellow' title='Learning Outcome' text={`
+In this part of the tutorial, we'll build out the components of our pallet needed to manage the
+creation and ownership of our Kitties. We will learn about:\n\n
+- Writing a struct in a \`StorageMap\` to store details about our Kitties.
+- Using the \`Randomness\` trait to create unique Kitties.
+- Creating our pallet's remaining storage items.
+`}/>
 
 This part of the tutorial dives into some pillar concepts for developing pallets with FRAME
 (stands for **Framework for Runtime Aggregation of Modularized Entities**). On top of learning how
@@ -863,12 +861,6 @@ learnt:\n\n
 - How to write \`StorageMap\` storage items.
 `}/>
 
-### Next steps
-
-- Create a dispatchable function that mints a new Kitty
-- Create a helper function to handle storage updates
-- Implement Errors and Events
-
 [default-rustdocs]: https://doc.rust-lang.org/std/default/trait.Default.html
 [randomness-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/traits/trait.Randomness.html
 [hash-rustdocs]: https://substrate.dev/rustdocs/latest/sp_runtime/traits/trait.Hash.html
@@ -885,6 +877,12 @@ learnt:\n\n
 
 
 ## Dispatchables, Events and Errors
+
+<Message type='yellow' title='Learning Outcome' text={`
+- Create a dispatchable function that mints a new Kitty
+- Create a helper function to handle storage updates
+- Implement Errors and Events
+`}/>
 
 In the previous section of this tutorial, we laid down the foundations geared to manage the
 ownership of our Kitties &mdash; even though they don't really exist yet! In this part of the
@@ -1300,12 +1298,6 @@ To recap, in this part of the tutorial you've learnt how to:\n
 - Query storage items and chain state using the PolkadotJS Apps UI.
   `}/>
 
-### Next steps
-
-- Create a dispatchable to buy a Kitty
-- Create a dispatchable to transfer a Kitty
-- Create a dispatchable to breed two Kitties
-
 [frame-macros-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/macros#palletcall
 [txn-fees-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/fees
 [weights-kb]: https://substrate.dev/docs/en/knowledgebase/learn-substrate/weight
@@ -1323,6 +1315,12 @@ To recap, in this part of the tutorial you've learnt how to:\n
 
 
 ## Interacting with your Kitties
+
+<Message type='yellow' title='Learning Outcome' text={`
+- Create a dispatchable to buy a Kitty
+- Create a dispatchable to transfer a Kitty
+- Create a dispatchable to breed two Kitties
+`}/>
 
 Up until this point in the tutorial, we've built a chain capable of only creating and tracking the
 ownership of Kitties. In this part of the tutorial, we want to make our runtime more like a game by
@@ -1728,7 +1726,7 @@ importantly, at this point in the tutorial you should have all the knowledge you
 creating your own pallet logics and dispatchable functions.
 `}/>
 
-### Next steps
+## Next Steps
 
 Complete Part II of this tutorial to:
 
