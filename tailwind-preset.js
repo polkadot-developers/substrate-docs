@@ -81,6 +81,9 @@ module.exports = {
         body: ['Karla', 'sans-serif'],
         quote: ['serif'],
       },
+      fontSize: {
+        'four-oh-four': ['20rem', { lineHeight: '1' }],
+      },
       transitionProperty: {
         height: 'height',
         width: 'width',
