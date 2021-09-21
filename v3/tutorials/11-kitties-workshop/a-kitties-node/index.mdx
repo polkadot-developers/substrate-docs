@@ -52,29 +52,29 @@ Kitties really can only do the following things:
 
 **In Part I, we'll go over:**
 
-1. [**Basic setup**](/docs/Tutorials/Kitties/Part%201/basic-setup) - we'll need to spin up a
+1. [**Basic setup**](#basic-set-up) - we'll need to spin up a
 Substrate node and create a custom pallet.
 
-2. [**Runtime storage**](/docs/Tutorials/Kitties/Part%201/basic-setup) - we'll need a total of three
+2. [**Runtime storage**](#basic-set-up) - we'll need a total of three
 storage items in our pallet to keep track of the amount of Kitties, their owners, and a `Kitty`
 object containing a single Kitty's information.
 
-3. [**Dispatchable functions**](/docs/Tutorials/Kitties/Part%201/dispatchables-and-events) - we'll
+3. [**Dispatchable functions**](#dispatchables-events-and-errors) - we'll
 need a total of 5 dispatchable functions: `create`, `set_price`, `transfer`, `buy_kitty`, and
 `breed_kitty`.
 
-4. [**Private functions**](/docs/Tutorials/Kitties/Part%201/create-kitties) - we'll write a few
+4. [**Private functions**](#dispatchables-events-and-errors) - we'll write a few
 helper functions to handle the heavy lifting logics, and
 
-5. [**Helper functions**](/docs/Tutorials/Kitties/Part%201/interacting-functions) - we'll write
+5. [**Helper functions**](#interacting-with-your-kitties) - we'll write
 two helper functions for our dispatchable functions: `mint` and `transfer_from`.
 
 **In Part II, we will:**
 
-1. [**Create a UI for interacting with our pallet's storage items**](/docs/Tutorials/Kitties/Part%202/kitties-frontend)
+1. [**Create a UI for interacting with our pallet's storage items**](../pt2)
 - we'll connect to Substrate Front-end Template and create the UI for each dispatchable calls.
 
-2. [**Enhance our UX with Polkadot JS API**](/docs/Tutorials/Kitties/Part%202/kitties-frontend).
+2. [**Enhance our UX with Polkadot JS API**](../pt2).
 
 In any case, if you are stuck in following the tutorial, you can always refer back to the full
 working source code at the following:
@@ -223,7 +223,7 @@ kitties-tutorial           <--  The name of our project directory
 ```
 
 > You can go ahead and remove `mock.rs` and `tests.rs`. **We won't be learning about
-> using these in this tutorial. Have a look at [this how-to guide](/docs/testing/test-transfer) if
+> using these in this tutorial. Have a look at [this how-to guide](/how-to-guides/v3/testing/transfer-function) if
 > you're curious to learn how testing works.**
 
 [Pallets][pallets-kb] in Substrate are used to define runtime logic. In our case, we'll be creating
@@ -447,7 +447,7 @@ This part of the tutorial dives into some pillar concepts for developing pallets
 to use existing types and traits, you'll learn how create your own types like providing your pallet
 with a `Gender` type. At the end of this part, you will have implemented the remaining two storage
 items according to the logic outlined for the Substrate Kitty application [in the overview of this
-tutorial](../overview#what-were-building).
+tutorial](#what-were-building).
 
 ### Scaffold Kitty Struct
 
@@ -578,9 +578,7 @@ Let's first go over what information a single Kitty will carry:
 
 #### B. Sketching Out the Types Held by Our Struct
 
-Looking at the items of our struct from
-[step 1A](/docs/Tutorials/Kitties/Part%201/create-kitties#a-what-information-to-include), we can
-deduce the following types:
+Looking at the items of our struct from above, we can deduce the following types:
 
 - **`[u8; 16]`** for `dna` - to use 16 bytes to represent a Kitty's DNA.
 - **`BalanceOf`** for `price` - this is a custom type using FRAME's [`Currency` trait][currency-frame].
@@ -651,7 +649,7 @@ setting a value in relation to what another function returns. In our case we hav
 situation where we need to configure our Kitty struct in such a way that sets `Gender` according to
 a Kitty's DNA.
 
-We'll only be using this function when we get to [creating Kitties](/docs/tutorials/Kitties/Part%201/dispatchables-and-events#2-write-the-create_kitty-dispatchable).
+We'll only be using this function when we get to [creating Kitties](#write-the-create_kitty-dispatchable).
 Regardless, let us learn how to write it now and get it out of the way. We'll create a public
 function called `gen_gender` that returns the `Gender` type and uses a random function to choose
 between `Gender` enum values.
@@ -723,7 +721,7 @@ implementation (`RandomnessCollectiveFlip`) from its interface (
   type={`green`}
   title={`Further Learning`}
   text={`
-Check out this [how-to guide](/docs/pallet-design/randomness) on implementing randomness in case
+Check out this [how-to guide](/how-to-guides/v3/pallet-design/randomness) on implementing randomness in case
 you get stuck.
   `}
 />
@@ -925,7 +923,7 @@ way can be considered an additive security feauture.
   type={`green`}
   title={`Further Learning`}
   text={`
-Check out [this how-to guide](/docs/basics/helper-functions/) about writing and using helper
+Check out [this how-to guide](/how-to-guides/v3/basics/helper-functions) about writing and using helper
 functions to learn more.
   `}/>
 
@@ -938,7 +936,6 @@ dispatchables and helper functions looks like:
 - generate a random hash with the signing account
 - create a new Kitty object using the random hash
 - call a private `mint()` function
-- increment the nonce using `increment_nonce()` from [Part II](/docs/tutorials/Kitties/Part%201/create-kitties#nonce)
 
 **`mint`** (private helper function)
 
@@ -1100,8 +1097,9 @@ In order to use events inside our pallet, we need to add a new associated type `
 pallet's configuration trait `Config`. Additionally &mdash; just as when adding any type to our
 pallet's `Config` trait &mdash; we also need to define it in our runtime `/runtime/src/lib.rs`.
 
-This pattern is the same as when we added the `KittyRandomness` type in [Part II of this tutorial](/docs/Tutorials/Kitties/Part%201/create-kitties#3-implement-on-chain-randomness)
-and has already been included from the initial scaffolding of our codebase:
+This pattern is the same as when we added the `KittyRandomness` type in
+[Part II of this tutorial](#implement-on-chain-randomness) and has already been included from the
+initial scaffolding of our codebase:
 
 ```rust
   /// Configure the pallet by specifying the parameters and types it depends on.
@@ -1385,7 +1383,7 @@ is extracted, and if false, returns `<Error<T>>::NotKittyOwner` error.
 #### B. Updating the price of our Kitty object
 
 Every Kitty object has a price attribute that we've set to `None` as a default value inside the
-`mint` function in [Part II](/docs/tutorials/Kitties/Part%201/dispatchables-and-events#3-write-the-mint-function):
+`mint` function in [Part II](#write-the-mint-function):
 
 ```rust
 let kitty = Kitty::<T> {
@@ -1428,7 +1426,7 @@ kitty.price = new_price.clone();
 #### D. Deposit an Event
 
 Once all checks are passed and the new price is written to storage, we can deposit an event
-[just like we did in Part III](/docs/tutorials/Kitties/Part%201/dispatchables-and-events#4-implement-pallet-events).
+[just like we did in Part III](#implement-pallet-events).
 Replace the line marked as ACTION #3 with:
 
 ```rust
@@ -1607,7 +1605,7 @@ fn transfer(
 ```
 
 Now we can make use of the `Currency` type in our pallet's `Config` trait and `ExistenceRequirement`
-&ndash; that we [initially started with in Part I](/docs/tutorials/Kitties/Part%201/basic-setup#2-write-out-pallet_kitties-scaffold).
+&ndash; that we [initially started with in Part I](#write-out-pallet_kitties-scaffold).
 
 Update the balances of both the caller of this function and the receiver, replacing ACTION #8:
 
@@ -1704,7 +1702,7 @@ cargo build --release
 ./target/release/node-kitties --dev --tmp
 ```
 
-Now check your work using the Polkadot-JS Apps just like [we did in the previous part](/docs/Tutorials/Kitties/Part%201/dispatchables-and-events#5-testing-with-polkadotjs-apps).
+Now check your work using the Polkadot-JS Apps just like [we did in the previous part](#testing-with-polkadot-js-apps-ui).
 Once your chain is running and connected to the PolkadotJS Apps UI, perform these manual checks:
 
 - Fund multiple users with tokens so they can all participate

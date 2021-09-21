@@ -40,7 +40,7 @@ module.exports = {
   },
   flags: {
     DEV_SSR: false,
-    PRESERVE_WEBPACK_CACHE: false,
+    PRESERVE_FILE_DOWNLOAD_CACHE: false,
   },
   plugins: [
     {
