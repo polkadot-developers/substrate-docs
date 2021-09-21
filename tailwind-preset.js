@@ -31,6 +31,7 @@ module.exports = {
         substrateGreen: {
           light: '#D4F9EC',
           DEFAULT: '#24CC85',
+          dark: '#22B577',
         },
         substrateGray: {
           light: '#FBFBFB',
@@ -80,6 +81,9 @@ module.exports = {
         title: ['Poppins', 'sans-serif'],
         body: ['Karla', 'sans-serif'],
         quote: ['serif'],
+      },
+      fontSize: {
+        'four-oh-four': ['20rem', { lineHeight: '1' }],
       },
       transitionProperty: {
         height: 'height',
