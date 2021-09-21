@@ -5,7 +5,6 @@ import MobileSubMenu from './MobileSubMenu'
 import SearchDoc from '../SearchDocs'
 
 interface MobileMenuProps {
-  theme: string
   toggleMenu: () => void
   navItems: {
     name: string
@@ -27,7 +26,7 @@ interface MobileMenuProps {
   }[]
 }
 
-const MobileMenu = ({ theme, toggleMenu, navItems }: MobileMenuProps) => {
+const MobileMenu = ({ toggleMenu, navItems }: MobileMenuProps) => {
   const [isTechMenuOpen, setIsTechMenuOpen] = useState(false)
   const [isDevMenuOpen, setIsDevMenuOpen] = useState(false)
   const [isVisionMenuOpen, setIsVisionMenuOpen] = useState(false)
@@ -39,9 +38,7 @@ const MobileMenu = ({ theme, toggleMenu, navItems }: MobileMenuProps) => {
         <div className="w-32">
           <Link to="/">
             <svg
-              className={`fill-current ${
-                theme === 'dark' ? `text-white` : `text-black`
-              }`}
+              className={`fill-current text-substrateDark dark:text-substrateWhite`}
               data-name="Layer 1"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 419.75 58.11"
