@@ -19,9 +19,16 @@ function getInitialColorMode() {
   return 'light'
 }
 
-export const ThemeContext = React.createContext()
+interface ThemeContextInterface {
+  colorMode: string
+  setColorMode: (value: string) => void
+}
 
-export const ThemeProvider = ({ children }) => {
+export const ThemeContext = React.createContext<ThemeContextInterface | null>(
+  null
+)
+
+export const ThemeProvider = ({ children }: any) => {
   const [colorMode, rawSetColorMode] = React.useState(getInitialColorMode())
 
   useEffect(() => {
@@ -30,7 +37,7 @@ export const ThemeProvider = ({ children }) => {
     }
   }, [])
 
-  const setColorMode = value => {
+  const setColorMode = (value: string) => {
     rawSetColorMode(value)
     // Set Tailwind color mode
     if (value == 'dark') {

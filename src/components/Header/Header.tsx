@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import MobileMenu from '../MobileMenus/MobileMenu'
 import DocsButton from '../DocsButton'
 import { Link } from 'gatsby'
@@ -9,8 +9,6 @@ import SearchDocs from '../SearchDocs'
 import ThemeToggle from '../ThemeToggle'
 import MainNav from '../MainNav'
 import useScrollListener from '../Hooks/use-scroll-listener'
-
-import { ThemeContext } from '../../contexts/ThemeContext.js'
 
 export default function Header() {
   const scroll = useScrollListener()
@@ -25,8 +23,6 @@ export default function Header() {
       ? (document.body.style.overflow = `hidden`)
       : (document.body.style.overflow = `unset`)
   }, [isMobileNavOpen])
-
-  const { colorMode } = useContext(ThemeContext)
 
   useEffect(() => {
     if (scroll.y > 15) {
@@ -45,9 +41,7 @@ export default function Header() {
           <div className="w-40 relative transform transition-all duration-300 ease-in-out hover:opacity-50">
             <Link to="/">
               <svg
-                className={`fill-current ${
-                  colorMode === 'dark' ? `text-white` : `text-black`
-                }`}
+                className={`fill-current text-substrateDark dark:text-substrateWhite`}
                 data-name="Layer 1"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 419.75 58.11"
@@ -87,7 +81,6 @@ export default function Header() {
           </div>
           {isMobileNavOpen && (
             <MobileMenu
-              theme={colorMode}
               toggleMenu={toggleMenu}
               navItems={navItems}
               // currentLang={locale}

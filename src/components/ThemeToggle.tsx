@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-
-import { ThemeContext } from '../contexts/ThemeContext.js'
+import { ThemeContext } from '../contexts/ThemeContext'
 
 export default function ThemeToggle() {
   const { colorMode, setColorMode } = useContext(ThemeContext)
