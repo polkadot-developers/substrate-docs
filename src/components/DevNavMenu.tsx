@@ -703,15 +703,15 @@ DevNavMenu.tuts.kittiesWorkshop = [
     items: [
       {
         title: 'Introduction',
-        link:  '/tutorials/v3/kitties/pt1#introduction',
+        link: '/tutorials/v3/kitties/pt1#introduction',
       },
       {
         title: 'Tutorial Objectives',
-        link:  '/tutorials/v3/kitties/pt1#tutorial-objectives',
+        link: '/tutorials/v3/kitties/pt1#tutorial-objectives',
       },
       {
         title: 'Basic Set-up',
-        link:  '/tutorials/v3/kitties/pt1#basic-set-up',
+        link: '/tutorials/v3/kitties/pt1#basic-set-up',
       },
       {
         title: `Uniqueness, Custom Types, and Storage Maps`,
