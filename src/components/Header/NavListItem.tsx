@@ -16,7 +16,14 @@ export default function NavListItem({
   const styles =
     'whitespace-nowrap pl-6 pr-12 py-2 focus:outline-none focus:bg-substrateBlueBg hover:text-substrateGreen hover:underline dark:text-white font-medium'
   useEffect(() => {
-    if (link === location.pathname) {
+    if (
+      link === location.pathname ||
+      (location.pathname === '/v3/getting-started/overview' &&
+        title === 'Docs') ||
+      (location.pathname.includes('how-to-guides') &&
+        title === 'How-to Guides') ||
+      (location.pathname.includes('tutorials') && title === 'Tutorials')
+    ) {
       setIsCurrent(true)
     }
   }, [])
