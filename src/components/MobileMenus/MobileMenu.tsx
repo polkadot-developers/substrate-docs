@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 // import LanguageSwitcher from '../LanguageSwitcher'
 import MobileSubMenu from './MobileSubMenu'
 import SearchDoc from '../SearchDocs'
+import ThemeToggle from '../ThemeToggle'
 
 interface MobileMenuProps {
   toggleMenu: () => void
@@ -117,6 +118,9 @@ const MobileMenu = ({ toggleMenu, navItems }: MobileMenuProps) => {
           <SearchDoc />
         </div>
         {/* <LanguageSwitcher currentLang={currentLang} langConfig={langConfig} /> */}
+        <div className="px-6 py-8">
+          <ThemeToggle />
+        </div>
       </div>
       {isTechMenuOpen && (
         <MobileSubMenu
