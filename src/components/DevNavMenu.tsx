@@ -220,6 +220,10 @@ const DevNavMenu = {
             title: `${intl.formatMessage({ id: 'docs-menu-chain-specs' })}`,
             link: '/v3/toolchains/chain-specs',
           },
+          {
+            title: `${intl.formatMessage({ id: 'docs-menu-try-runtime' })}`,
+            link: '/v3/toolchains/try-runtime',
+          },
         ],
       },
       {
