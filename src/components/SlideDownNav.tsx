@@ -8,8 +8,10 @@ interface SlideDownNavProps {
 export default function SlideDownNav({ section }: SlideDownNavProps) {
   const [isOpen, setIsOpen] = useState(false)
   useEffect(() => {
+    const link = location.pathname + location.hash
+    console.log(link)
     section.items.map(item => {
-      if (item.link === location.pathname) {
+      if (item.link === link) {
         setIsOpen(!isOpen)
       }
     })
@@ -39,6 +41,8 @@ export default function SlideDownNav({ section }: SlideDownNavProps) {
       <div>
         {isOpen &&
           section.items.map((item, index) => {
+            const link = location.pathname + location.hash
+            console.log(link)
             return (
               <LocalizedLink
                 className="hover:no-underline "
@@ -46,8 +50,8 @@ export default function SlideDownNav({ section }: SlideDownNavProps) {
                 to={item.link}
               >
                 <div
-                  className={`text-gray-600 dark:text-gray-200 text-sm pl-10 pr-6 sm:px-24 lg:pl-10 lg:pr-6 py-2 hover:text-shadow ${
-                    item.link === location.pathname ? `text-shadow` : ` `
+                  className={`text-gray-600 dark:text-gray-200 text-sm pl-10 pr-6 sm:px-24 lg:pl-10 lg:pr-6 py-2 hover:font-medium ${
+                    item.link === link && `font-medium`
                   }`}
                 >
                   {item.title}

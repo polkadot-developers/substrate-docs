@@ -484,7 +484,7 @@ DevNavMenu.tuts.firstChain = [
       },
       {
         title: `Interacting with Your Node`,
-        link: '#start-the-front-end-template',
+        link: '/tutorials/v3/create-your-first-substrate-chain/#start-the-front-end-template',
       },
     ],
   },
