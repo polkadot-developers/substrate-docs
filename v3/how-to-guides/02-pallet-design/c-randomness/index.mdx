@@ -89,25 +89,11 @@ updates it. Using this approach it would look like this:
     }
 ```
 
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text={[
-    'Learn more about ',
-    <ExternalLink
-      url={`/rustdocs/latest/funty/trait.IsInteger.html#tymethod.wrapping_add`}
-    >
-      wrapping_add
-    </ExternalLink>,
-    ' and ',
-    <ExternalLink
-      url={`/rustdocs/latest/frame_support/dispatch/trait.Encode.html#method.encode`}
-    >
-      encode()
-    </ExternalLink>,
-    ' in the Rust documentation.',
-  ]}
-/>
+<Message type='yellow' title='Information' text={`
+Learn more about [\`wrapping_add\`](/rustdocs/latest/funty/trait.IsInteger.html#tymethod.wrapping_add)
+and [\`encode()\`](/rustdocs/latest/frame_support/dispatch/trait.Encode.html#method.encode) in the
+Rust documentation.
+`}/>
 
 ### 3. Use Randomness in a dispatchable
 

@@ -219,7 +219,7 @@ For the rest of this workshop we will refer to it simply as `parachain-collator`
 ## Relay Chain Specification
 
 You will need a chain specification ([chain spec](/v3/toolchains/chain-specs))
-for your relay chain network. You can use one that is [included with this workshop](/0-files/chainspecs/rococo-custom-2-plain.json), or create your own.
+for your relay chain network. You can use one that is [included with this workshop](/assets/tutorials/cumulus-workshop/chainspecs/rococo-custom-2-plain.json), or create your own.
 
 <Message
   type={`yellow`}
@@ -259,24 +259,24 @@ use when starting your nodes. Jump to the [Conversion](#_2-convert-to-raw-chain-
 This workshop contains three chain spec files that you can use **without modification** for a
 local test network:
 
-- [rococo-custom-2-raw.json](v3/tutorials/09-cumulus-workshop/z-FILES/chainspecs/rococo-custom-2-raw.json)
+- [rococo-custom-2-raw.json](/assets/tutorials/cumulus-workshop/chainspecs/rococo-custom-2-raw.json)
   : A two-validator relay chain with Alice and Bob as authorities. Useful for registering
-  a single parachain. Plain chain spec: [rococo-custom-2-plain.json](v3/tutorials/09-cumulus-workshop/z-FILES/chainspecs/rococo-custom-2-plain.json)
+  a single parachain. Plain chain spec: [rococo-custom-2-plain.json](/assets/tutorials/cumulus-workshop/chainspecs/rococo-custom-2-plain.json)
 
-- <a href="shared/chainspecs/rococo-custom-3-raw.json">
+- <a href="/assets/tutorials/cumulus-workshop/chainspecs/rococo-custom-3-raw.json">
     shared/chainspecs/rococo-custom-3-raw.json
   </a>
   : A three-validator relay chain identical to `rococo-local` spec, with Charlie
-  as the third validator. Plain chain spec <a href="shared/chainspecs/rococo-custom-3-plain.json">
+  as the third validator. Plain chain spec <a href="/assets/tutorials/cumulus-workshop/chainspecs/rococo-custom-3-plain.json">
     included
   </a>
   .
 
-- <a href="shared/chainspecs/rococo-custom-4-raw.json">
+- <a href="/assets/tutorials/cumulus-workshop/chainspecs/rococo-custom-4-raw.json">
     shared/chainspecs/rococo-custom-4-raw.json
   </a>
   : A four-validator relay chain identical to `rococo-local` spec, with Charlie and
-  Dave as the third and fourth validators. Plain chain spec <a href="shared/chainspecs/rococo-custom-4-plain.json">
+  Dave as the third and fourth validators. Plain chain spec <a href="/assets/tutorials/cumulus-workshop/chainspecs/rococo-custom-4-plain.json">
     included
   </a>
   .
@@ -286,7 +286,7 @@ can also be used to derive a [new custom raw chain spec](#adjust-the-chain-spec)
 
 These specs were created according to the steps in the next section. If you would like even more
 validators, or to customize the relay chain in some other ways, keep reading, otherwise
-[start your relay chain](en/2-relay-chain/1-launch) with a raw chain spec file.
+[start your relay chain](#starting-the-relay-chain) with a raw chain spec file.
 
 #### Option 2: Create Your Own Chain Spec
 
@@ -416,9 +416,6 @@ Secret Key URI `//Alice` is account:
 
 Notice the BEEFY key is the `Public key (SS58)` and it's _different_ from the `SS58 Address` in the
 case of ECDSA keys (see [the note below](#ss58-encoding-of-key-vs-address) on why).
-
-> Phew! That was a lot of keys! To learn more about _why and how_ these are used, see the
-> [session keys](session-keys) section below.
 
 Now that you have all the keys you need, append them in the `palletSession` section of you _plain_ spec file.
 You can either create new IDs or use other well known accounts following this same process.
@@ -558,5 +555,5 @@ polkadot \
 ```
 
 If your custom chain spec includes self-generated keys, see the
-[Substrate private network tutorial](/tutorials/v3/private-network/launch-custom-chain#add-keys-to-keystore)
+[Substrate private network tutorial](/tutorials/v3/private-network#add-keys-to-keystore)
 for details on inserting these keys.
