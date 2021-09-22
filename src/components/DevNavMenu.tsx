@@ -687,6 +687,10 @@ DevNavMenu.tuts.frontierWorkshop = [
         link: '/tutorials/v3/frontier#getting-started',
       },
       {
+        title: `Frontier Template`,
+        link: '/tutorials/v3/frontier#frontier-template',
+      },
+      {
         title: `Architecture`,
         link: '/tutorials/v3/frontier#architecture',
       },
@@ -702,20 +706,33 @@ DevNavMenu.tuts.kittiesWorkshop = [
     name: `Kitties Workshop Part I`,
     items: [
       {
-        title: `Introduction`,
-        link: '/tutorials/v3/kitties/pt1',
+        title: 'Introduction',
+        link: '/tutorials/v3/kitties/pt1#introduction',
       },
       {
-        title: `Uniqueness, custom types and storage maps`,
+        title: 'Tutorial Objectives',
+        link: '/tutorials/v3/kitties/pt1#tutorial-objectives',
+      },
+      {
+        title: 'Basic Set-up',
+        link: '/tutorials/v3/kitties/pt1#basic-set-up',
+      },
+      {
+<<<<<<< HEAD
+        title: `Interacting with your Kitties`,
+        link: '/tutorials/v3/kitties/pt1#interacting-with-your-kitties',
+=======
+        title: `Uniqueness, Custom Types, and Storage Maps`,
         link: '/tutorials/v3/kitties/pt1#uniqueness-custom-types-and-storage-maps',
       },
       {
-        title: `Dispatchables, Events and Errors`,
+        title: `Dispatchables, Events, and Errors`,
         link: '/tutorials/v3/kitties/pt1#dispatchables-events-and-errors',
       },
       {
-        title: `Interacting with your Kitties`,
-        link: '/tutorials/v3/kitties/pt1#interacting-with-your-kitties',
+        title: `Interacting with Your Kitties`,
+        link: '/tutorials/v3/kitties/pt1#interacting-with-your-ktties',
+>>>>>>> 1cd39168d9e9c859cb6a09d0c881cc7ee578020a
       },
     ],
   },
@@ -724,7 +741,7 @@ DevNavMenu.tuts.kittiesWorkshop = [
     items: [
       {
         title: `Introduction`,
-        link: '/tutorials/v3/kitties/pt2',
+        link: '/tutorials/v3/kitties/pt2#introduction',
       },
       {
         title: `Getting Started`,

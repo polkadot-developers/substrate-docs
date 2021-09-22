@@ -6,6 +6,7 @@ const redirects = [
   { fromPath: '/v3', toPath: '/v3/getting-started/overview' },
   { fromPath: '/tutorials', toPath: `/tutorials/${defaultVersion}` },
   { fromPath: '/how-to-guides', toPath: `/how-to-guides/${defaultVersion}` },
+  { fromPath: '/tutorials/v3/kitties', toPath: `/tutorials/v3/kitties/pt1` },
 ]
 
 const tutsInfo = [

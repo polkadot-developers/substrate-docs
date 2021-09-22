@@ -24,22 +24,6 @@ export default function Header() {
       : (document.body.style.overflow = `unset`)
   }, [isMobileNavOpen])
 
-  const [theme, setTheme] = useState<string>('')
-  useEffect(() => {
-    if (
-      localStorage.theme === 'dark' ||
-      (!('theme' in localStorage) &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-      document.documentElement.classList.add('dark')
-      localStorage.theme = 'dark'
-      setTheme('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-      setTheme('light')
-    }
-  }, [])
-
   useEffect(() => {
     if (scroll.y > 15) {
       setMenuHeight('h-16')
@@ -57,9 +41,7 @@ export default function Header() {
           <div className="w-40 relative transform transition-all duration-300 ease-in-out hover:opacity-50">
             <Link to="/">
               <svg
-                className={`fill-current ${
-                  theme === 'dark' ? `text-white` : `text-black`
-                }`}
+                className={`fill-current text-substrateDark dark:text-substrateWhite`}
                 data-name="Layer 1"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 419.75 58.11"
@@ -99,7 +81,6 @@ export default function Header() {
           </div>
           {isMobileNavOpen && (
             <MobileMenu
-              theme={theme}
               toggleMenu={toggleMenu}
               navItems={navItems}
               // currentLang={locale}
@@ -125,7 +106,7 @@ export default function Header() {
                 <DocsButton />
               </div>
               {/* <LanguageSwitcher currentLang={locale} langConfig={config} /> */}
-              <ThemeToggle theme={theme} setTheme={setTheme} />
+              <ThemeToggle />
             </div>
           </nav>
         </div>
