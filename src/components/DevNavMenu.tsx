@@ -266,6 +266,15 @@ const DevNavMenu = {
           },
         ],
       },
+        {
+          name: `${intl.formatMessage({ id: 'docs-menu-contributing' })}`,
+          items: [
+            {
+              title: `${intl.formatMessage({ id: 'docs-menu-stye-guide' })}`,
+              link: '/v3/style-guide',
+            },
+          ],
+      },
     ]
   },
 
