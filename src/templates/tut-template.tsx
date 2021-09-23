@@ -66,9 +66,14 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
                     duration={data.mdx.frontmatter.duration}
                   />
                 )}
-                {data.mdx.frontmatter.relevantSkills && (
-                  <RelevantSkills data={data.mdx.frontmatter.relevantSkills} />
-                )}
+                <div className="mb-4">
+                  {data.mdx.frontmatter.relevantSkills && (
+                    <RelevantSkills
+                      data={data.mdx.frontmatter.relevantSkills}
+                    />
+                  )}
+                </div>
+
                 <MDXRenderer>{data.mdx.body}</MDXRenderer>
               </div>
               <div className="text-xs text-right py-12">
