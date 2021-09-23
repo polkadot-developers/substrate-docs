@@ -56,7 +56,7 @@ export default function DropDown({ menuData }: DropDownMenuProps) {
           }`}
         >
           <ul
-            className={`m-0 list-none relative pt-4 pb-5 bg-white dark:bg-black shadow-lg ring-1 ring-substrateDark dark:ring-white rounded-md ${
+            className={`m-0 list-none relative pt-4 pb-5 bg-white dark:bg-darkBackground shadow-lg ring-1 ring-substrateDark dark:ring-white rounded-md ${
               itemNavOpen ? `rounded-tr-none rounded-br-none` : null
             }`}
           >

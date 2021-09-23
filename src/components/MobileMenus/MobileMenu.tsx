@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 // import LanguageSwitcher from '../LanguageSwitcher'
 import MobileSubMenu from './MobileSubMenu'
 import SearchDoc from '../SearchDocs'
+import ThemeToggle from '../ThemeToggle'
 
 interface MobileMenuProps {
   toggleMenu: () => void
@@ -33,7 +34,7 @@ const MobileMenu = ({ toggleMenu, navItems }: MobileMenuProps) => {
   const [isEcoMenuOpen, setIsEcoMenuOpen] = useState(false)
 
   return (
-    <nav className="lg:hidden absolute inset-0 bg-substrateGray-light dark:bg-black z-90 animate-fade-in-right">
+    <nav className="lg:hidden absolute inset-0 bg-substrateGray-light dark:bg-darkBackground z-90 animate-fade-in-right">
       <div className="h-16 px-6 flex items-center justify-between">
         <div className="w-32">
           <Link to="/">
@@ -71,7 +72,7 @@ const MobileMenu = ({ toggleMenu, navItems }: MobileMenuProps) => {
           </svg>
         </div>
       </div>
-      <div className="bg-substrateGray-light dark:bg-black h-screen z-20">
+      <div className="bg-substrateGray-light dark:bg-darkBackground h-screen z-20">
         <div className="py-8">
           {navItems.map((item, index: number) => {
             return (
@@ -93,19 +94,20 @@ const MobileMenu = ({ toggleMenu, navItems }: MobileMenuProps) => {
                 <div className="px-6 flex items-center justify-between focus:outline-none cursor-pointer">
                   <div className="text-2xl">{item.name}</div>
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="7"
-                    height="13"
+                    name="arrow-next"
+                    className="fill-current text-black dark:text-white"
+                    version="1.2"
+                    baseProfile="tiny"
+                    id="Layer_1"
+                    x="0px"
+                    y="0px"
                     viewBox="0 0 7 13"
-                    fill="none"
+                    overflow="visible"
+                    xmlSpace="preserve"
+                    width="13"
+                    height="13"
                   >
-                    <path
-                      d="M1 12L6 6.5L1 1"
-                      stroke="#242A35"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
+                    <polygon points="1.4,12.3 0.6,11.7 5.3,6.5 0.6,1.3 1.4,0.7 6.7,6.5 "></polygon>
                   </svg>
                 </div>
               </div>
@@ -116,6 +118,9 @@ const MobileMenu = ({ toggleMenu, navItems }: MobileMenuProps) => {
           <SearchDoc />
         </div>
         {/* <LanguageSwitcher currentLang={currentLang} langConfig={langConfig} /> */}
+        <div className="px-6 py-8">
+          <ThemeToggle />
+        </div>
       </div>
       {isTechMenuOpen && (
         <MobileSubMenu

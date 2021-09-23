@@ -13,7 +13,7 @@ import { BottomButtons, RelevantSkills } from '../components/DocsComponents'
 import navMenu from '../components/DevNavMenu'
 import DocTag from '../components/DocTag'
 
-const DocsTemplate = ({ data, pageContext }: any) => {
+const DocsTemplate = ({ location, data, pageContext }: any) => {
   const { slug, version, navMenuSlug } = pageContext
   const docId = 1
   const globalDocsNav = navMenu.global()
@@ -26,6 +26,8 @@ const DocsTemplate = ({ data, pageContext }: any) => {
         <div className="flex flex-col lg:flex-row">
           <div className="lg:hidden">
             <DocsNavMobile
+              pathname={location.pathname}
+              hashLink={location.hash}
               sideNav={docsMenu}
               globalNav={globalDocsNav}
               templateId={docId}
@@ -33,6 +35,8 @@ const DocsTemplate = ({ data, pageContext }: any) => {
           </div>
           <div className="hidden lg:inline-block lg:flex-none lg:h-auto lg:bg-substrateGray-light lg:dark:bg-substrateDark border-r border-gray-200 dark:border-gray-700">
             <DocsNav
+              pathname={location.pathname}
+              hashLink={location.hash}
               sideNav={docsMenu}
               globalNav={globalDocsNav}
               templateId={docId}
@@ -62,9 +66,14 @@ const DocsTemplate = ({ data, pageContext }: any) => {
                     duration={data.mdx.frontmatter.duration}
                   />
                 )}
-                {data.mdx.frontmatter.relevantSkills && (
-                  <RelevantSkills data={data.mdx.frontmatter.relevantSkills} />
-                )}
+                <div className="mb-4">
+                  {data.mdx.frontmatter.relevantSkills && (
+                    <RelevantSkills
+                      data={data.mdx.frontmatter.relevantSkills}
+                    />
+                  )}
+                </div>
+
                 <MDXRenderer>{data.mdx.body}</MDXRenderer>
               </div>
               <div className="text-xs text-right py-12">

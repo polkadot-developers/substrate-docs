@@ -45,7 +45,7 @@ export default function playground() {
           </div>
         </div>
       </section>
-      <section id="config" className="xl:container mb-36">
+      <section id="config" className="xl:container mb-36 scroll-margin-top-100">
         <div className="mx-auto max-w-xl text-center font-extrabold text-4xl xl:text-6xl">
           Select Playground Configuration
         </div>

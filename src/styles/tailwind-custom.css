@@ -25,3 +25,12 @@
     -webkit-text-fill-color: transparent;
   }
 }
+
+/* Scroll Margin top 100px */
+@layer utilities {
+  @variants responsive {
+    .scroll-margin-top-100 {
+      scroll-margin-top: 100px;
+    }
+  }
+}
