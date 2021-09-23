@@ -20,7 +20,7 @@ export default function SlideDownNav({
     <>
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between px-6 sm:px-20 lg:px-6 py-3 bg-substrateGray-light dark:lg:bg-substrateDark dark:bg-darkBackground cursor-pointer"
+        className="flex items-center justify-between px-6 sm:px-20 lg:px-6 py-3 bg-substrateGray-light lg:dark:bg-substrateDark dark:bg-darkBackground cursor-pointer"
       >
         <div className={`${isOpen ? `font-bold` : `font-medium`}`}>
           {section.name}
@@ -41,16 +41,12 @@ export default function SlideDownNav({
       <div>
         {isOpen &&
           section.items.map((item, index) => {
-            const current = item.link === pathname || item.link === hashLink
+            const active = item.link === pathname || item.link === hashLink
             return (
-              <LocalizedLink
-                className="hover:no-underline "
-                key={index}
-                to={item.link}
-              >
+              <LocalizedLink key={index} to={item.link}>
                 <div
                   className={`text-gray-600 dark:text-gray-200 text-sm pl-10 pr-6 sm:px-24 lg:pl-10 lg:pr-6 py-2 hover:font-medium ${
-                    current && `font-medium`
+                    active && `font-medium`
                   }`}
                 >
                   {item.title}

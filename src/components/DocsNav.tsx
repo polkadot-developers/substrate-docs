@@ -83,9 +83,12 @@ export default function DocsNav({
         >
           <div className="pt-2">
             {sideNav.map((section, index: number) => {
-              const current = section.items.some(
-                item => item.link === pathname || item.link === hashLink
-              )
+              const current = section.items.some(item => {
+                return (
+                  item.link === pathname.replace(/\/+$/, '') ||
+                  item.link === hashLink
+                )
+              })
               return (
                 <SlideDownNav
                   key={index}
