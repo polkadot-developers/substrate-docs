@@ -77,7 +77,7 @@ export default function tutorials({ data }: any) {
           />
           <TutorialCard
             title={`Node Metrics`}
-            image={data.tutorialSeven}
+            image={data.tutorialThree}
             description={`Learn how to visualize the metrics that Substrate records using Prometheus.`}
             time={`< 1 Hour`}
             difficulty={1}
@@ -87,7 +87,7 @@ export default function tutorials({ data }: any) {
           />
           <TutorialCard
             title={`Develop Smart Contracts with ink!`}
-            image={data.tutorialEight}
+            image={data.tutorialFour}
             description={`Learn to build and deploy an ERC20 token smart contract with ink!`}
             time={`2 Hours`}
             difficulty={2}
@@ -97,7 +97,7 @@ export default function tutorials({ data }: any) {
           />
           <TutorialCard
             title={`Cumulus Workshop`}
-            image={data.tutorialNine}
+            image={data.tutorialOne}
             description={`A workshop to configure a Substrate node as a Parachain`}
             time={`3 Hours`}
             difficulty={3}
@@ -107,7 +107,7 @@ export default function tutorials({ data }: any) {
           />
           <TutorialCard
             title={`Frontier Workshop`}
-            image={data.tutorialTen}
+            image={data.tutorialSix}
             description={`A workshop to configure a Substrate node to run Substrate EVM and Solidity contracts`}
             time={`1 Hour`}
             difficulty={2}
@@ -117,7 +117,7 @@ export default function tutorials({ data }: any) {
           />
           <TutorialCard
             title={`Substrate Kitties Workshop`}
-            image={data.tutorialEleven}
+            image={data.tutorialSix}
             description={`Build a full stack application that handles the ownership management of Substrate Kitties.`}
             time={`4 Hours`}
             difficulty={2}
@@ -133,85 +133,37 @@ export default function tutorials({ data }: any) {
 
 export const pageQuery = graphql`
   {
-    tutorialOne: file(name: { eq: "tuts-1" }) {
+    tutorialOne: file(name: { eq: "tuts-one" }) {
       id
       childImageSharp {
         gatsbyImageData
       }
     }
-    tutorialTwo: file(name: { eq: "tuts-2" }) {
+    tutorialTwo: file(name: { eq: "tuts-two" }) {
       id
       childImageSharp {
         gatsbyImageData
       }
     }
-    tutorialThree: file(name: { eq: "tuts-3" }) {
+    tutorialThree: file(name: { eq: "tuts-three" }) {
       id
       childImageSharp {
         gatsbyImageData
       }
     }
-    tutorialFour: file(name: { eq: "tuts-4" }) {
+    tutorialFour: file(name: { eq: "tuts-four" }) {
       id
       childImageSharp {
         gatsbyImageData
       }
     }
-    tutorialFive: file(name: { eq: "tuts-5" }) {
+    tutorialFive: file(name: { eq: "tuts-five" }) {
       id
       childImageSharp {
         gatsbyImageData
       }
     }
-    tutorialSix: file(name: { eq: "tuts-6" }) {
-      id
-      childImageSharp {
-        gatsbyImageData
-      }
-    }
-    tutorialSeven: file(name: { eq: "tuts-7" }) {
-      id
-      childImageSharp {
-        gatsbyImageData
-      }
-    }
-    tutorialEight: file(name: { eq: "tuts-8" }) {
-      id
-      childImageSharp {
-        gatsbyImageData
-      }
-    }
-    tutorialNine: file(name: { eq: "tuts-9" }) {
-      id
-      childImageSharp {
-        gatsbyImageData
-      }
-    }
-    tutorialTen: file(name: { eq: "tuts-10" }) {
-      id
-      childImageSharp {
-        gatsbyImageData
-      }
-    }
-    tutorialEleven: file(name: { eq: "tuts-11" }) {
-      id
-      childImageSharp {
-        gatsbyImageData
-      }
-    }
-    tutorialTwelve: file(name: { eq: "tuts-12" }) {
-      id
-      childImageSharp {
-        gatsbyImageData
-      }
-    }
-    tutorialThirteen: file(name: { eq: "tuts-13" }) {
-      id
-      childImageSharp {
-        gatsbyImageData
-      }
-    }
-    tutorialFourteen: file(name: { eq: "tuts-14" }) {
+    tutorialSix: file(name: { eq: "tuts-six" }) {
       id
       childImageSharp {
         gatsbyImageData
