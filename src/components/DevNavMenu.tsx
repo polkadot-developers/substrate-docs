@@ -220,6 +220,10 @@ const DevNavMenu = {
             title: `${intl.formatMessage({ id: 'docs-menu-chain-specs' })}`,
             link: '/v3/toolchains/chain-specs',
           },
+          {
+            title: `${intl.formatMessage({ id: 'docs-menu-try-runtime' })}`,
+            link: '/v3/toolchains/try-runtime',
+          },
         ],
       },
       {
@@ -404,6 +408,10 @@ const DevNavMenu = {
           {
             title: `${intl.formatMessage({ id: 'htg-consensus-pow' })}`,
             link: '/how-to-guides/v3/consensus/pow',
+          },
+          {
+            title: `${intl.formatMessage({ id: 'htg-consensus-hybrid' })}`,
+            link: '/how-to-guides/v3/consensus/hybrid-pos-pow',
           },
         ],
       },

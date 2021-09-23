@@ -17,19 +17,22 @@ Interact with a Substrate blockchain node using a REST service.
 
 ## Overview
 
-To find the winner of a completed auction we will need to know the block number the auction ended at. Since [Sidecar][sidecar-gh] is a stateless API and the auction info is stored at the final block of an auction, once the auction is over we need the block number to make historic queries to retrieve the event and data stored in it (keep reading for details).
+To find the winner of a completed auction we will need to know the block number the auction ended at. Since [Sidecar][sidecar-gh] is a stateless API and the 
+auction info is stored at the final block of an auction, once the auction is over we need the block number to make historic queries to retrieve the event 
+and data stored in it (keep reading for details).
 
 ## Steps
 
 ### 1. Leverage the `/experimental/paras/auctions/current` endpoint
 
-We will track and store `finishEnd`, `auctionIndex`, and `leasePeriods` in a Database.
+We will track and store `finishEnd`, `auctionIndex`, and `leasePeriods` in a Database:
 
-`finishEnd`: This is the last block of the auction. Storing it allows you to query the block at which the auction ended. From that block you can extract the lease winning related events. (To query the block: GET /blocks/{finishEnd}.)
+- `finishEnd`: This is the last block of the auction. Storing it allows you to query the block at which the auction ended. From that block you can extract the 
+lease winning related events. (To query the block: GET /blocks/{finishEnd}.)
 
-`auctionIndex`: The unique identifier for the auction.
+- `auctionIndex`: The unique identifier for the auction.
 
-`leasePeriods`: The available lease period indexes that may be bid on for the specific auctionIndex.
+- `leasePeriods`: The available lease period indexes that may be bid on for the specific auctionIndex.
 
 ### 2. Using Sidecar to find the auction winners
 
