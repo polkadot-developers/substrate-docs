@@ -722,10 +722,6 @@ DevNavMenu.tuts.kittiesWorkshop = [
         link: '/tutorials/v3/kitties/pt1#basic-set-up',
       },
       {
-<<<<<<< HEAD
-        title: `Interacting with your Kitties`,
-        link: '/tutorials/v3/kitties/pt1#interacting-with-your-kitties',
-=======
         title: `Uniqueness, Custom Types, and Storage Maps`,
         link: '/tutorials/v3/kitties/pt1#uniqueness-custom-types-and-storage-maps',
       },
@@ -736,7 +732,6 @@ DevNavMenu.tuts.kittiesWorkshop = [
       {
         title: `Interacting with Your Kitties`,
         link: '/tutorials/v3/kitties/pt1#interacting-with-your-ktties',
->>>>>>> 1cd39168d9e9c859cb6a09d0c881cc7ee578020a
       },
     ],
   },
