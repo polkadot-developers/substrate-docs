@@ -6,7 +6,7 @@ interface PrimaryFixedButtonProps {
   children: string
   link?: string
   fullWidth?: boolean
-  onClick: any
+  onClick?: any
 }
 
 export function PrimaryFixedButton({
