@@ -2,17 +2,28 @@ import React, { useState } from 'react'
 import { useIntl } from 'react-intl'
 import { LocalizedLink } from 'gatsby-theme-i18n'
 import SlideDownNav from '../components/SlideDownNav'
+// import { useLocalization } from 'gatsby-theme-i18n'
 
 interface DocsNavProps {
   templateId: number
-  sideNav: any
+  sideNav: {
+    name: string
+    items: {
+      title: string
+      link: string
+    }[]
+  }[]
   globalNav: { section: string; url: string; external: boolean }[]
+  pathname: string
+  hashLink: string
 }
 
 export default function DocsNav({
   templateId,
   sideNav,
   globalNav,
+  pathname,
+  hashLink,
 }: DocsNavProps) {
   const intl = useIntl()
   const [isOpen, setIsOpen] = useState(false)
@@ -71,9 +82,20 @@ export default function DocsNav({
           }`}
         >
           <div className="pt-2">
-            {sideNav.map((section: any, index: number) => (
-              <SlideDownNav key={index} section={section} />
-            ))}
+            {sideNav.map((section, index: number) => {
+              const current = section.items.some(
+                item => item.link === pathname || item.link === hashLink
+              )
+              return (
+                <SlideDownNav
+                  key={index}
+                  section={section}
+                  current={current}
+                  pathname={pathname}
+                  hashLink={hashLink}
+                />
+              )
+            })}
           </div>
           <div>
             <hr className="mt-6" />

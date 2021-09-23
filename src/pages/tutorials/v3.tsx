@@ -23,7 +23,7 @@ export default function tutorials({ data }: any) {
             difficulty={1}
             prerequisites={false}
             version={`V3.0.0`}
-            link={`/tutorials/v3/create-your-first-substrate-chain`}
+            link={`/tutorials/v3/create-your-first-substrate-chain/`}
           />
           <TutorialCard
             title={`Add FRAME's Nicks Pallet to Your Runtime`}
@@ -33,7 +33,7 @@ export default function tutorials({ data }: any) {
             difficulty={1}
             prerequisites={true}
             version={`V3.0.0`}
-            link={`/tutorials/v3/add-a-pallet`}
+            link={`/tutorials/v3/add-a-pallet/`}
           />
           <TutorialCard
             title={`Proof of Existence`}
@@ -43,7 +43,7 @@ export default function tutorials({ data }: any) {
             difficulty={1}
             prerequisites={true}
             version={`V3.0.0`}
-            link={`/tutorials/v3/proof-of-existence`}
+            link={`/tutorials/v3/proof-of-existence/`}
           />
           <TutorialCard
             title={`Permissioned Network`}
@@ -53,7 +53,7 @@ export default function tutorials({ data }: any) {
             difficulty={1}
             prerequisites={true}
             version={`V3.0.0`}
-            link={`/tutorials/v3/permissioned-network`}
+            link={`/tutorials/v3/permissioned-network/`}
           />
           <TutorialCard
             title={`Forkless Upgrades`}
@@ -63,7 +63,7 @@ export default function tutorials({ data }: any) {
             difficulty={1}
             prerequisites={true}
             version={`V3.0.0`}
-            link={`/tutorials/v3/forkless-upgrades`}
+            link={`/tutorials/v3/forkless-upgrades/`}
           />
           <TutorialCard
             title={`Start a Private Network`}
@@ -73,7 +73,7 @@ export default function tutorials({ data }: any) {
             difficulty={1}
             prerequisites={false}
             version={`V3.0.0`}
-            link={`/tutorials/v3/private-network`}
+            link={`/tutorials/v3/private-network/`}
           />
           <TutorialCard
             title={`Node Metrics`}
@@ -83,7 +83,7 @@ export default function tutorials({ data }: any) {
             difficulty={1}
             prerequisites={false}
             version={`V3.0.0`}
-            link={`/tutorials/v3/node-metrics`}
+            link={`/tutorials/v3/node-metrics/`}
           />
           <TutorialCard
             title={`Develop Smart Contracts with ink!`}
@@ -93,7 +93,7 @@ export default function tutorials({ data }: any) {
             difficulty={2}
             prerequisites={false}
             version={`V3.0.0`}
-            link={`/tutorials/v3/ink-workshop/pt1`}
+            link={`/tutorials/v3/ink-workshop/pt1/`}
           />
           <TutorialCard
             title={`Cumulus Workshop`}
@@ -103,7 +103,7 @@ export default function tutorials({ data }: any) {
             difficulty={3}
             prerequisites={true}
             version={`V3.0.0`}
-            link={`/tutorials/v3/cumulus-workshop/pt1`}
+            link={`/tutorials/v3/cumulus-workshop/pt1/`}
           />
           <TutorialCard
             title={`Frontier Workshop`}
@@ -113,7 +113,7 @@ export default function tutorials({ data }: any) {
             difficulty={2}
             prerequisites={false}
             version={`V3.0.0`}
-            link={`/tutorials/v3/frontier`}
+            link={`/tutorials/v3/frontier/`}
           />
           <TutorialCard
             title={`Substrate Kitties Workshop`}
@@ -123,7 +123,7 @@ export default function tutorials({ data }: any) {
             difficulty={2}
             prerequisites={false}
             version={`V3.0.0`}
-            link={`/tutorials/v3/kitties/pt1`}
+            link={`/tutorials/v3/kitties/pt1/`}
           />
         </div>
       </div>

@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { LocalizedLink } from 'gatsby-theme-i18n'
 
 interface SlideDownNavProps {
   section: { name: string; items: { title: string; link: string }[] }
+  current: boolean
+  pathname: string
+  hashLink: string
 }
 
-export default function SlideDownNav({ section }: SlideDownNavProps) {
-  const [isOpen, setIsOpen] = useState(false)
-  useEffect(() => {
-    const link = location.pathname + location.hash
-    console.log(link)
-    section.items.map(item => {
-      if (item.link === link) {
-        setIsOpen(!isOpen)
-      }
-    })
-  }, [])
+export default function SlideDownNav({
+  section,
+  current,
+  pathname,
+  hashLink,
+}: SlideDownNavProps) {
+  const [isOpen, setIsOpen] = useState(current)
+
   return (
     <>
       <div
@@ -41,8 +41,7 @@ export default function SlideDownNav({ section }: SlideDownNavProps) {
       <div>
         {isOpen &&
           section.items.map((item, index) => {
-            const link = location.pathname + location.hash
-            console.log(link)
+            const current = item.link === pathname || item.link === hashLink
             return (
               <LocalizedLink
                 className="hover:no-underline "
@@ -51,7 +50,7 @@ export default function SlideDownNav({ section }: SlideDownNavProps) {
               >
                 <div
                   className={`text-gray-600 dark:text-gray-200 text-sm pl-10 pr-6 sm:px-24 lg:pl-10 lg:pr-6 py-2 hover:font-medium ${
-                    item.link === link && `font-medium`
+                    current && `font-medium`
                   }`}
                 >
                   {item.title}
