@@ -32,7 +32,7 @@ export default function TutorialCard({
           <GatsbyImage
             className="block h-24 md:h-60 object-cover rounded-t transform transition-all duration-300 ease-in-out hover:scale-110"
             image={tutImage}
-            alt={`Tutorial Image`}
+            alt={title}
           />
         </div>
       </LocalizedLink>
