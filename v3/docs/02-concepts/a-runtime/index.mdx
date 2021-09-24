@@ -15,11 +15,18 @@ blockchain's [state](/v3/getting-started/glossary#state) as well as the
 [functions](/v3/concepts/extrinsics) that allow blockchain users to make
 changes to this state.
 
+Each Substrate node contains a runtime. The runtime contains the business logic of the chain. It 
+defines what transactions are valid and invalid and determines how the chain's state changes in 
+response to transactions. The "outer node", everything other than the runtime, does not compile 
+to Wasm, only to native. The outer node is responsible for handling peer discovery, transaction 
+pooling, block and transaction gossiping, consensus, and answering RPC calls from the outside 
+world. While performing these tasks, the outer node sometimes needs to query the runtime for 
+information, or provide information to the runtime. A Runtime API facilitates this kind of 
+communication between the outer node and the runtime. 
+
 In order to provide its defining forkless runtime upgrade capabilities, Substrate uses runtimes that
 are built as [WebAssembly (Wasm)](/v3/getting-started/glossary#webassembly-wasm)
-bytecode. Substrate also defines the
-core primitives that the runtime must
-implement.
+bytecode. Substrate also defines the core primitives that the runtime must implement.
 
 ## Core Primitives
 
