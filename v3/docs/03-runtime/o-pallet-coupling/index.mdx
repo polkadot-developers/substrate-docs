@@ -8,25 +8,26 @@ keywords: coupling, pallet design
 ---
 
 In computer science, <ExternalLink url="https://en.wikipedia.org/wiki/Coupling_(computer_programming)">coupling</ExternalLink> 
-is the degree to which two software modules depend on eachother. System designers use the terms high and low coupling to 
+is the degree to which two software modules depend on each other. System designers use the terms high and low coupling to
 describe how computer systems are structured. The term also applies to object oriented programming paradigms, whereby tight 
-coupling is when two groups of classes are dependant on eachother, and loose coupling is when a class uses an interface that 
+coupling is when two groups of classes are dependant on each other, and loose coupling is when a class uses an interface that
 another class exposes.
 
 In Substrate, tight and loose pallet coupling is used to for calling a function that lives inside another pallet. 
 Both techniques achieve the same thing in different ways, each having certain trade-offs. In a nutshell,
 tight coupling of pallets should be used in instances where a pallet requires inheriting its coupled counterpart 
-_as a whole_ as opposed to specific types or methods. In general, tight coupling makes working with two pallets more less 
+_as a whole_ as opposed to specific types or methods. In general, tight coupling makes working with two pallets less
 flexible and extensible.
 
 ##  Tightly Coupled Pallets
 
-Tightly coupling pallets is more explicit than loosely coupling them. When you are writing a pallet that 
-you want to tightly couple, you explicitly specify the name of the pallet on which you depend as a trait bound on your 
-pallet's configuration trait. 
+Tightly coupling pallets is more explicit than loosely coupling them. When writing a pallet that
+tightly couple, you explicitly specify the pallet's `Config` trait to be bound by the `Config` trait
+of the other pallet you want to couple with.
 
-Notice that all FRAME pallets are tightly coupled to the `frame_system` pallet. Here's an example of tightly
-coupling a pallet with the Config trait of an imaginary pallet called `some_pallet` in addition to `frame_system`:
+Notice that all FRAME pallets are tightly coupled to the `frame_system` pallet. Here's an example
+of tightly coupling a pallet with the `Config` trait of an imaginary pallet called `some_pallet`
+in addition to `frame_system`:
 
 ```rust
 pub trait Config: frame_system::Config + some_pallet::Config {
@@ -35,55 +36,100 @@ pub trait Config: frame_system::Config + some_pallet::Config {
 ```
 
 This is very similar to using class inteheritance in object oriented programming. 
-Supplying this trait bound implies that this pallet can only be installed in a runtime that also has  
-`some_pallet` pallet installed. Similar to with `frame_system`, this approach would require specifying
-`some_pallet` in the tightly coupled pallet's Cargo.toml file. 
-
-While tightly coupling pallets is conceptually simple, it has the disadvantage that it depends on a specific 
-implementation rather than an abstract interface. This makes the code more difficult to maintain over time and is 
-generally frowned upon. Rather than using the behavior of a particular type which can change over time, tight 
-coupling depends on a pallet's code as a whole. 
+Supplying this trait bound implies that this pallet can only be installed in a runtime that also
+has `some_pallet` pallet installed. Similar to with `frame_system`, this approach would require
+specifying `some_pallet` in the coupled pallet's **Cargo.toml** file.
 
 Tight coupling has several disadvantages developers should take into account:
 
-- **Maintainability**: changes in one pallet will result in needing to modify both pallets. 
-- **Overhead**: writing a tightly coupled pallet may require more effort due to the inter-dependency between the two. 
-- **Reusability**: both modules must be include for one to be used, making it more difficult to integrate a tightly coupled pallet. 
+- **Maintainability**: changes in one pallet will often result in needing to modify the other pallet.
+- **Reusability**: both modules must be included for one to be used, making it more difficult to
+integrate a tightly coupled pallet.
 
 ##  Loosely Coupled Pallets
 
-Unlike tight coupling, loose coupling enables coupling a **specific implementation** of a pallet to another pallet. It is similar 
-to the concept of [polymorphism](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)) in object oriented 
-programming. Rust adopts a special kind of polymorphism called [bounded parametric polymorphism](https://en.wikipedia.org/wiki/Parametric_polymorphism)
-to preserve its type safety features. This kind polymorphism enables us to specify traits that can act like objects which Rust calls
-[trait objects](https://doc.rust-lang.org/book/ch17-02-trait-objects.html#using-trait-objects-that-allow-for-values-of-different-types).
+Unlike tight coupling, in loose coupling pallet we just specify traits and function interfaces that
+certain types need to be bound by.
 
-The way loose coupling works in Substrate requires adding an associated type to a pallet's configuration trait and ensuring the supplied type 
-implements the necessary behavior by specifying a trait bound. For example:
+The actual implementation of such types happens **outside of the pallet** during our runtime configuration
+(usually in the `/runtime/src/lib.rs` file). Here one may choose to configure it with
+another pallet that has implemented these traits, or declare a totally new struct,
+implement those traits, and assign it when implementing the pallet config in runtime.
+
+Let's go through an example. Say in one pallet we want to tap into one's account balance and
+make a transfer to another account. We first define a `Currency` trait, which has an **abstract
+function interface** that is agreed will implement the actual transfer logic later.
 
 ```rust
-pub trait Config: frame_system::Config {
-    // --snip--
-
-    /// A type that will supply a set of members to check access control against
-    type SomeAssociatedType: ExternalPalletType<AccountId = Self::AccountId>;
+pub trait Currency<AccountId> {
+    // -- snip --
+    fn transfer(
+        source: &AccountId,
+        dest: &AccountId,
+        value: Self::Balance,
+        // don't worry about the last parameter for now
+        existence_requirement: ExistenceRequirement,
+    ) -> DispatchResult;
 }
 ```
 
-Notice that many FRAME pallets are coupled to the [Currency trait](https://substrate.dev/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html)
+Then inside our own pallet, we define `MyCurrency` associated type and bound it by
+`Currency<Self::AccountId>` so we can tap into the balance tranfer logic by calling
+`T::MyCurrency::transfer(...)`.
+
+```rust
+pub trait Config: frame_system::Config {
+    type MyCurrency: Currency<Self::AccountId>;
+}
+
+impl<T: Config> Pallet<T> {
+    pub fn my_function() {
+        T::MyCurrency::transfer(&buyer, &seller, price, ExistenceRequirement::KeepAlive)?;
+    }
+}
+```
+
+Notice that at this point, we have not specified how the `Currency::transfer()` logic will be implemented.
+It is only agreed upon that it will be implemented somewhere.
+
+Now in our runtime configuration (i.e. `runtime/src/lib.rs`), we have our runtime implements the
+pallet, and concretely specify the type to be `Balances`.
+
+```rust
+impl my_pallet::Config for Runtime {
+    type MyCurrency = Balances;
+}
+```
+
+`Balances`, which is specified in `construct_runtime!` macro, is of type
+[`pallet_balances`](https://substrate.dev/rustdocs/latest/pallet_balances)
+that [implements `Currency` trait](https://substrate.dev/rustdocs/latest/pallet_balances/index.html#implementations-1).
+
+By now we have closed the loop and provide on implementation to `Currency<AccountId>` trait.
+
+## Further Notes
+
+Notice that many FRAME pallets are coupled to this
+[Currency trait](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html)
 in this way. 
 
-In general, loose coupling will provide more flexibility than tight coupling and is considered better practice from a systems design perspective.
-It guarantees better maintability, reusability and extensibility of code. Yet, tight coupling can be a good first choice for scenarios where
-the pallets are minimally complex and have more overlap in methods and types than differences. In FRAME, there exists 2 pallets that are tightly coupled
-to [`pallet_treasury`](https://github.com/paritytech/substrate/tree/master/frame/treasury): the [Bounties pallet](https://github.com/paritytech/substrate/tree/master/frame/bounties) and the [Tipping pallet](https://github.com/paritytech/substrate/tree/master/frame/tips).
+In general, loose coupling will provide more flexibility than tight coupling and is considered
+better practice from a system design perspective. It guarantees better maintability, reusability,
+and extensibility of code. Yet, tight coupling can be a good first choice for scenarios where
+the pallets are minimally complex and have more overlap in methods and types than differences.
 
-As a general rule, the more complex a pallet is, the less desirable 
-it would be to tightly couple it. This evokes a concept in computer science called [cohesion](https://en.wikipedia.org/wiki/Cohesion_(computer_science)), 
+In FRAME, there exists 2 pallets that are tightly coupled to
+[`pallet_treasury`](https://github.com/paritytech/substrate/tree/master/frame/treasury): the
+[Bounties pallet](https://github.com/paritytech/substrate/tree/master/frame/bounties) and the
+[Tipping pallet](https://github.com/paritytech/substrate/tree/master/frame/tips).
+
+As a general rule, the more complex a pallet is, the less desirable it would be to tightly couple
+it. This evokes a concept in computer science called [cohesion](https://en.wikipedia.org/wiki/Cohesion_(computer_science)),
 a metric used to examine the overall quality of a software system.
 
 ## Learn More
 
 - Read the <ExternalLink url="https://doc.rust-lang.org/book/ch17-00-oop.html">Object Oriented Programming Features of Rust</ExternalLink> 
 section of the Rust Book
-- How-to guides on how to use [loose coupling](/how-to-guides/v3/pallet-design/tight-coupling) and [tight coupling](/how-to-guides/v3/pallet-design/loose-coupling) in your runtime
+- How-to guides on how to use [loose coupling](/how-to-guides/v3/pallet-design/tight-coupling) and
+[tight coupling](/how-to-guides/v3/pallet-design/loose-coupling) in your runtime

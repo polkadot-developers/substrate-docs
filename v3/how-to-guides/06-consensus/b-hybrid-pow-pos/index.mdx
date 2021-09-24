@@ -22,13 +22,13 @@ difficulty: 3
       title: 'Overview',
       description:`
 This guide demonstrates how to create a Substrate-based node that employs hybrid consensus, using
-[Sha3 Proof of Work](./sha3-pow-consensus.md) to dictate block authoring and the
-[Grandpa](https://substrate.dev/rustdocs/v3.0.0/sc_finality_grandpa/index.html) finality gadget to provide
-[deterministic finality](https://substrate.dev/docs/en/knowledgebase/advanced/consensus#finality). The minimal proof
+[Sha3 Proof of Work](../pow) to dictate block authoring and the
+[Grandpa](/rustdocs/latest/sc_finality_grandpa/index.html) finality gadget to provide
+[deterministic finality](/v3/advanced/consensus#finality). The minimal proof
 of work consensus lives entirely outside of the runtime while the grandpa finality obtains its
 authorities from the runtime via the
-[GrandpaAPI](https://substrate.dev/rustdocs/v3.0.0/sp_finality_grandpa/trait.GrandpaApi.html). Read about Substrate's 
-[block import pipeline](/runtime/upgrades), to better understand how to make use of this guide.`,
+[GrandpaAPI](/rustdocs/latest/sp_finality_grandpa/trait.GrandpaApi.html). Read about Substrate's
+[block import pipeline](/v3/runtime/upgrades), to better understand how to make use of this guide.`,
     },
   ]}
 />
@@ -37,7 +37,7 @@ authorities from the runtime via the
     type={`gray`}
     title={`Note`}
     text={`Grandpa relies on getting its authority sets from the runtime via the
-[GrandpaAPI](https://substrate.dev/rustdocs/v3.0.0/sp_finality_grandpa/trait.GrandpaApi.html), so you'll need a runtime 
+[GrandpaAPI](/rustdocs/latest/sp_finality_grandpa/trait.GrandpaApi.html), so you'll need a runtime
 that provides this API to successfully compile a node implementing this guide. `}
 />
 
@@ -51,7 +51,7 @@ background task that actually casts Grandpa votes. The
 [details of the Grandpa protocol](https://research.web3.foundation/en/latest/polkadot/finality.html)
 are beyond the scope of this guide.
 
-In `src/service.rs`, create the Grandpa block import:
+In `node/src/service.rs`, create the Grandpa block import:
 
 ```rust
 let (grandpa_block_import, grandpa_link) = sc_finality_grandpa::block_import(
@@ -77,9 +77,10 @@ let pow_block_import = sc_consensus_pow::PowBlockImport::new(
 
 ### 2. Create import queue
 
-With the block imports setup, we can proceed to creating the import queue. We make it using PoW's
-[`import_queue` helper function](https://substrate.dev/rustdocs/v3.0.0/sc_consensus_pow/fn.import_queue.html). Notice that it requires the entire block import pipeline which we
-refer to as `pow_block_import` because PoW is the outermost layer.
+With the block imports setup, we can proceed to create the import queue. We make it using PoW's
+[`import_queue` helper function](/rustdocs/latest/sc_consensus_pow/fn.import_queue.html).
+Notice that it requires the entire block import pipeline which we refer to as `pow_block_import`
+because PoW is the outermost layer.
 
 ```rust
 let import_queue = sc_consensus_pow::import_queue(
@@ -123,7 +124,7 @@ task_manager
 
 Grandpa is _not_ CPU intensive, so we will use a standard `async` worker to listen to and cast
 Grandpa votes. We begin by creating a Grandpa
-[`Config`](https://substrate.dev/rustdocs/v3.0.0/sc_finality_grandpa/struct.Config.html):
+[`Config`](/rustdocs/latest/sc_finality_grandpa/struct.Config.html):
 
 ```rust
 let grandpa_config = sc_finality_grandpa::Config {
@@ -137,7 +138,7 @@ let grandpa_config = sc_finality_grandpa::Config {
 ```
 
 We can then use this config to create an instance of
-[`GrandpaParams`](https://substrate.dev/rustdocs/v3.0.0/sc_finality_grandpa/struct.GrandpaParams.html).
+[`GrandpaParams`](/rustdocs/latest/sc_finality_grandpa/struct.GrandpaParams.html).
 
 ```rust
 let grandpa_config = sc_finality_grandpa::GrandpaParams {
