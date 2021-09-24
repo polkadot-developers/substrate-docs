@@ -170,6 +170,10 @@ const DevNavMenu = {
             title: `${intl.formatMessage({ id: 'docs-menu-coupling' })}`,
             link: '/v3/runtime/pallet-coupling',
           },
+          {
+            title: `${intl.formatMessage({ id: 'docs-menu-rpcs' })}`,
+            link: '/v3/runtime/custom-rpcs',
+          },
         ],
       },
       {
