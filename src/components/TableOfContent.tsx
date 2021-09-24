@@ -52,9 +52,9 @@ export default function TableOfContent({ headings }: TableOfContentProps) {
                 <div key={index}>
                   <a href={value.url}>
                     <div
-                      className={`pb-3 hover:text-substrateGreen ${
+                      className={`pb-3 hover:text-substrateBlue dark:hover:text-substrateBlue-light ${
                         activeHash === value.url.substr(1) &&
-                        'text-substrateGreen'
+                        'text-substrateBlue dark:text-substrateBlue-light'
                       }`}
                     >
                       {value.title}
@@ -67,9 +67,9 @@ export default function TableOfContent({ headings }: TableOfContentProps) {
                           <div key={index} className="pl-3">
                             <a href={value.url}>
                               <div
-                                className={`inline-flex pb-3 hover:text-substrateGreen ${
+                                className={`inline-flex pb-3 hover:text-substrateBlue dark:hover:text-substrateBlue-light ${
                                   activeHash === value.url.substr(1) &&
-                                  'text-substrateGreen'
+                                  'text-substrateBlue dark:text-substrateBlue-light'
                                 }`}
                               >
                                 {value.title}
