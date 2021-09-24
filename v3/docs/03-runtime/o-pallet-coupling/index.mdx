@@ -52,7 +52,7 @@ Unlike tight coupling, in loose coupling pallet we just specify traits and funct
 certain types need to be bound by.
 
 The actual implementation of such types happens **outside of the pallet** during our runtime configuration
-(usually happening in the file `/runtime/src/lib.rs`). Here one may choose to configure it with
+(usually in the `/runtime/src/lib.rs` file). Here one may choose to configure it with
 another pallet that have implemented these traits, or declare a totally new struct,
 implement those traits, and assign it when implementing the pallet config in runtime.
 
