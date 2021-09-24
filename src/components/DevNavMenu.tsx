@@ -166,6 +166,10 @@ const DevNavMenu = {
             title: `${intl.formatMessage({ id: 'docs-menu-upgrades' })}`,
             link: '/v3/runtime/upgrades',
           },
+          {
+            title: `${intl.formatMessage({ id: 'docs-menu-coupling' })}`,
+            link: '/v3/runtime/pallet-coupling',
+          },
         ],
       },
       {
