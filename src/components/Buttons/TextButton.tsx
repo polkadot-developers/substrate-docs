@@ -1,5 +1,6 @@
 import React from 'react'
 import { LocalizedLink } from 'gatsby-theme-i18n'
+import cx from 'classnames'
 
 interface TextButtonProps {
   link: string
@@ -18,28 +19,42 @@ export function TextButton(props: TextButtonProps) {
   return (
     <>
       {props.external ? (
-        <div className="block">
+        <div className="block group">
           <a
-            className={`mr-2 transform transition-all duration-300 ease-in-out hover:mr-4 ${textSize()} font-bold border-b-2 ${accentStyle()}`}
             href={props.link}
             target="_blank"
             rel="noreferrer"
+            className={`${textSize()} font-bold border-b-2 ${accentStyle()}`}
           >
             {props.children}
           </a>
-          <span className={`${props.accent ? `text-substrateGreen` : null}`}>
+          <span
+            className={cx(
+              'w-8 inline-block pl-2 transform transition-all duration-300 ease-in-out group-hover:pl-4',
+              {
+                'text-substrateGreen': props.accent,
+              }
+            )}
+          >
             &#10132;
           </span>
         </div>
       ) : (
-        <div className="block">
+        <div className="block group">
           <LocalizedLink
-            className={`mr-2 transform transition-all duration-300 ease-in-out hover:mr-4 ${textSize()} font-bold border-b-2 ${accentStyle()}`}
+            className={`${textSize()} font-bold border-b-2 ${accentStyle()}`}
             to={props.link}
           >
             {props.children}
           </LocalizedLink>
-          <span className={`${props.accent ? `text-substrateGreen` : null}`}>
+          <span
+            className={cx(
+              'w-8 inline-block pl-2 transform transition-all duration-300 ease-in-out group-hover:pl-4',
+              {
+                'text-substrateGreen': props.accent,
+              }
+            )}
+          >
             &#10132;
           </span>
         </div>
