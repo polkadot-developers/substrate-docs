@@ -15,7 +15,7 @@ export function TextButton(props: TextButtonProps) {
   const accentStyle = () =>
     props.accent
       ? `text-substrateGreen border-substrateGreen`
-      : `border-substrateDark`
+      : `border-substrateDark dark:border-white`
   return (
     <>
       {props.external ? (
@@ -24,7 +24,7 @@ export function TextButton(props: TextButtonProps) {
             href={props.link}
             target="_blank"
             rel="noreferrer"
-            className={`${textSize()} font-bold border-b-2 ${accentStyle()}`}
+            className={`${textSize()} font-bold pb-0.5 border-b-2 ${accentStyle()}`}
           >
             {props.children}
           </a>
@@ -42,7 +42,7 @@ export function TextButton(props: TextButtonProps) {
       ) : (
         <div className="block group">
           <LocalizedLink
-            className={`${textSize()} font-bold border-b-2 ${accentStyle()}`}
+            className={`${textSize()} font-bold pb-0.5 border-b-2 ${accentStyle()}`}
             to={props.link}
           >
             {props.children}

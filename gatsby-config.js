@@ -152,6 +152,14 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: `${__dirname}/src/images/svgs/`,
+        },
+      },
+    },
+    {
       resolve: 'gatsby-omni-font-loader',
       options: {
         mode: 'render-blocking',

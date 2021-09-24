@@ -22,7 +22,6 @@ const MagicScriptTag = () => {
     document.documentElement.classList.add(colorMode);
   })()
     `
-  // eslint-disable-next-line react/no-danger
   return <script dangerouslySetInnerHTML={{ __html: codeToRunOnClient }} />
 }
 
