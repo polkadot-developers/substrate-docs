@@ -53,7 +53,7 @@ certain types need to be bound by.
 
 The actual implementation of such types happens **outside of the pallet** during our runtime configuration
 (usually in the `/runtime/src/lib.rs` file). Here one may choose to configure it with
-another pallet that have implemented these traits, or declare a totally new struct,
+another pallet that has implemented these traits, or declare a totally new struct,
 implement those traits, and assign it when implementing the pallet config in runtime.
 
 Let's go through an example. Say in one pallet we want to tap into one's account balance and
