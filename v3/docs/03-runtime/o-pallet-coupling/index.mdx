@@ -49,7 +49,7 @@ integrate a tightly coupled pallet.
 ##  Loosely Coupled Pallets
 
 Unlike tight coupling, in loose coupling pallet we just specify traits and function interfaces that
-certain types need to be bound of, and doesn't care how they are implemented **inside the pallet**.
+certain types need to be bound by.
 
 The actual implementation happens **outside of the pallet** during our runtime configuration
 (usually happening in the file `/runtime/src/lib.rs`). Here one may choose to configure it with
