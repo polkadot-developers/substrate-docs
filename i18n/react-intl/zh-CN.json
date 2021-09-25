@@ -95,6 +95,7 @@
   "docs-menu-memory-profiling": "Memory Profiling",
   "docs-menu-chain-specs": "Chain Specification",
   "docs-menu-try-runtime": "Try Runtime",
+  "docs-menu-substrate-connect": "Substrate Connect",
 
   "docs-menu-advanced": "Advanced",
   "docs-menu-account-info": "Account Info",
