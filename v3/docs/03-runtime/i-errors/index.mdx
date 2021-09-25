@@ -20,25 +20,9 @@ that _should_ be a
 [`DispatchError`](/rustdocs/latest/frame_support/dispatch/enum.DispatchError.html)
 if the dispatchable function encountered an error.
 
-Each FRAME pallet may define custom a `DispatchError` by:
-
-- using
-  the [`decl_error!` macro](../macros#decl_error) (FRAME v1) or;
-- the [`#[pallet::error]` macro](../macros#palleterror) (FRAME v2).
+Each FRAME pallet may define a custom `DispatchError` by using the [`#[pallet::error]` macro](../macros#palleterror).
 
 ```rust
-// FRAME v1.
-// Errors inform users that something went wrong.
-decl_error! {
-	pub enum Error for Module<T: Config> {
-		/// Error names should be descriptive.
-		InvalidParameter,
-		/// Errors should have helpful documentation associated with them.
-		OutOfSpace,
-	}
-}
-
-// FRAME v2.
 #[pallet::error]
 pub enum Error<T> {
 		/// Error names should be descriptive.
@@ -46,15 +30,7 @@ pub enum Error<T> {
 		/// Errors should have helpful documentation associated with them.
 		OutOfSpace,
 	}
-
 ```
-
-<Message
-  type={`gray`}
-  title={`Note`}
-  text={`In FRAME v1, in order to emit custom errors from a pallet, the pallet must
-  configure the \`Error\` type in \`decl_module!\`. See the [Rust docs](/rustdocs/latest/frame_support/macro.decl_error.html#usage) for more details.`}
-/>
 
 The
 [Pallet Template](https://github.com/substrate-developer-hub/substrate-pallet-template/blob/master/src/lib.rs)
@@ -75,6 +51,4 @@ frame_support::ensure!(param < T::MaxVal::get(), Error::<T>::InvalidParameter);
 
 ### References
 
-- [`decl_error!` macro](/rustdocs/latest/frame_support/macro.decl_error.html)
-- [`decl_module!` macro](/rustdocs/latest/frame_support/macro.decl_module.html)
 - [`[pallet::error]` macro](/rustdocs/latest/frame_support/attr.pallet.html#error-palleterror-optional)

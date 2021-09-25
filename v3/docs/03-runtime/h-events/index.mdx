@@ -15,18 +15,9 @@ when those events are emitted.
 
 ## Declaring an Event
 
-Runtime events are created with the `decl_event!` macro (FRAME v1) or the `#[pallet::event]` macro (in FRAME v2).
+Runtime events are created with the `#[pallet::event]` macro.
 
 ```rust
-// In FRAME v1.
-decl_event!(
-	pub enum Event<T: Config> {
-		/// Set a value.
-		ValueSet(u32, T::AccountId),
-	}
-);
-
-// In FRAME v2.
 #[pallet::event]
 #[pallet::metadata(u32 = "Metadata")]
 pub enum Event<T: Config> {
@@ -38,13 +29,6 @@ pub enum Event<T: Config> {
 The `Event` enum needs to be declared in your runtime's configuration trait.
 
 ```rust
-// In FRAME v1.
-pub trait Config: system::Config {
-	/// The overarching event type.
-	type Event: From<Event<Self>> + Into<<Self as system::Config>::Event>;
-}
-
-// In FRAME v2.
 #[pallet::config]
 	pub trait Config: frame_system::Config {
 		/// The overarching event type.
@@ -91,24 +75,8 @@ construct_runtime!(
 
 ## Depositing an Event
 
-Substrate provides a default implementation of how to deposit an event using macros, which varies slightly depending on [FRAME version adopted](../macros#overview-of-frame-versioning). In FRAME v1:
-
-```rust
-decl_module! {
-	pub struct Module<T: Config> for enum Call where origin: T::Origin {
-		// Default implementation of `deposit_event`
-		fn deposit_event() = default;
-
-		fn set_value(origin, value: u64) {
-			let sender = ensure_signed(origin)?;
-			// --snip--
-			Self::deposit_event(RawEvent::ValueSet(value, sender));
-		}
-	}
-}
-```
-
-In FRAME v2, depositing an event adopts a slightly different structure:
+Substrate provides a default implementation of how to deposit an event using macros.
+Depositing an event has the following structure:
 
 ```rust
 // 1. Use the `generate_deposit` attribute when declaring the Events enum.
@@ -177,7 +145,5 @@ runtime events are used:
 
 ### References
 
-- [`decl_event!` macro](/rustdocs/latest/frame_support/macro.decl_event.html)
-- [`decl_module!` macro](/rustdocs/latest/frame_support/macro.decl_module.html)
 - [`construct_runtime!` macro](/rustdocs/latest/frame_support/macro.construct_runtime.html)
 - [`#[frame_support::pallet]` macro](/rustdocs/latest/frame_support/attr.pallet.html)

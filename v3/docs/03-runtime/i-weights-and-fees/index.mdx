@@ -143,7 +143,7 @@ fn my_dispatchable() {
 
 This dispatchable does one database read and two database writes in addition to other things that
 add the additional 20,000. A database access is generally every time a value that is declared inside
-the `decl_storage!` block is accessed. However, only unique accesses are counted because once a
+the `#[pallet::storage]` block is accessed. However, only unique accesses are counted because once a
 value is accessed it is cached and accessing it again does not result in a database operation. That
 is:
 
@@ -322,8 +322,9 @@ impl WeighData<(&u32, &u64)> for CustomWeight {
 }
 
 // given dispatch:
-decl_module! {
-    #[weight = CustomWeight]
+#[pallet::call]
+impl<T: Config<I>, I: 'static> Pallet<T, I> {
+    #[pallet::weight(CustomWeight)]
     fn foo(a: u32, b: u64) { ... }
 }
 ```

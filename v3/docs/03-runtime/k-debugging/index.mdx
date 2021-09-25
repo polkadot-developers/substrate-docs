@@ -92,9 +92,9 @@ use sp_runtime::print;
 ```
 
 ```rust
-// The pallet's errors
-decl_error! {
-	pub enum Error for Module<T: Config> {
+	// The pallet's errors
+	#[pallet::error]
+	pub enum Error<T> {
 		/// Value was None
 		NoneValue,
 		/// Value reached maximum and cannot be incremented further
@@ -221,8 +221,8 @@ use sp_std::if_std; // Import into scope the if_std! macro.
 The `println!` statement should be inside of the `if_std` macro.
 
 ```rust
-decl_module! {
-
+#[pallet::call]
+impl<T: Config<I>, I: 'static> Pallet<T, I> {
 		// --snip--
 		pub fn do_something(origin) -> DispatchResult {
 

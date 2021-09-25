@@ -892,7 +892,7 @@ going to:
   a Kitty.
 - **Write `mint()`**: a helper function that updates our pallet's storage items and performs error
   checks, called by `create_kitty`.
-- **Include `Events`**: using FRAME's `#[pallet::events]` macro.
+- **Include `Events`**: using FRAME's `#[pallet::event]` macro.
 
 At the end of this part, we'll check that everything compiles without error and call our
 `create_kitty` extrinsic using the PolkadotJS Apps UI.
@@ -1289,7 +1289,7 @@ parts of what powers a FRAME pallet and how to put them to use. All part IV of t
 is adding more capabilities to our pallet by taking what we've learnt in this part.\n
 To recap, in this part of the tutorial you've learnt how to:\n
 - Distinguish between implementing a dispatchable function and a private helper function.
-- Use \`#[pallet::call]\`, \`#[pallet::events]\` and \`#[pallet::error]\`.
+- Use \`#[pallet::call]\`, \`#[pallet::event]\` and \`#[pallet::error]\`.
 - Implement basic error checking with FRAME.
 - Update values in storage with safety checks.
 - Implement FRAME events and use them in a function.

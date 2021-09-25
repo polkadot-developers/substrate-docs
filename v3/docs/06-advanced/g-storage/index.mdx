@@ -120,7 +120,7 @@ append the hash of the first map key followed by the hash of the second map key 
 Double Map's storage key. Like Storage Values, Substrate will use the TwoX 128 hashing algorithm for
 the module and Storage Map names, but you will need to make sure to use the correct
 [hashing algorithm](/v3/runtime/storage#hashing-algorithms) (the one that was declared in
-[the `decl_storage` macro](/v3/runtime/storage#declaring-storage-items)) when determining the hashed
+[the `#[pallet::storage]` macro](/v3/runtime/storage#declaring-storage-items)) when determining the hashed
 keys for the elements in a map.
 
 Here is an example that illustrates querying a Storage Map named `FreeBalance` from a module named

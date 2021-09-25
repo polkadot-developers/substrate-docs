@@ -335,9 +335,9 @@ development framework.
 an acronym for the "Framework for Runtime Aggregation of Modularized Entities". FRAME allows
 developers to create blockchain runtimes by composing modules, called "[pallets](#pallet)". Runtime
 developers interact with FRAME by way of a [macro](#macro) language that makes it easy for
-developers to define custom pallets (e.g. [`decl_event!`](../../runtime/macros#decl_event),
-[`decl_error!`](../../runtime/macros#decl_error), [`decl_storage!`](../../runtime/macros#decl_storage),
-[`decl_module!`](../../runtime/macros#decl_module) and compose pallets (e.g.
+developers to define custom pallets (e.g. [`#[pallet::event]`](../../runtime/macros#palletevents),
+[`#[pallet::error]!`](../../runtime/macros#palleterror), [`#[pallet::storage`](../../runtime/macros#palletstorage),
+[`#[frame_support::pallet`](../../runtime/macros#frame_supportpallet) and compose pallets (e.g.
 [`construct_runtime!`](../../runtime/macros#construct_runtime) into a working runtime that can easily
 be used to power a Substrate-based blockchain. The convention used in
 [the Substrate codebase](https://github.com/paritytech/substrate/tree/master/frame) is to preface
