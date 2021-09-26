@@ -1,10 +1,11 @@
 import React from 'react'
 import { LocalizedLink } from 'gatsby-theme-i18n'
-import cx from 'classnames'
+import Icon from '../Icon'
 
 interface TextButtonProps {
   link: string
   children: string
+  className?: string
   accent?: boolean
   cta?: boolean
   external?: boolean
@@ -19,44 +20,34 @@ export function TextButton(props: TextButtonProps) {
   return (
     <>
       {props.external ? (
-        <div className="block group">
-          <a
-            href={props.link}
-            target="_blank"
-            rel="noreferrer"
-            className={`${textSize()} font-bold pb-0.5 border-b-2 ${accentStyle()}`}
-          >
-            {props.children}
+        <div className={props.className}>
+          <a href={props.link} target="_blank" rel="noreferrer">
+            <p
+              className={`font-bold pb-1 mr-0.5 border-b-2 inline hover:mr-2 transition-all ${textSize()} ${accentStyle()}`}
+            >
+              {props.children}
+            </p>{' '}
+            <span
+              className={`fill-current text-substrateDark dark:text-white inline-block ${accentStyle()}`}
+            >
+              <Icon name="arrowMore" />
+            </span>
           </a>
-          <span
-            className={cx(
-              'w-8 inline-block pl-2 transform transition-all duration-300 ease-in-out group-hover:pl-4',
-              {
-                'text-substrateGreen': props.accent,
-              }
-            )}
-          >
-            &#10132;
-          </span>
         </div>
       ) : (
-        <div className="block group">
-          <LocalizedLink
-            className={`${textSize()} font-bold pb-0.5 border-b-2 ${accentStyle()}`}
-            to={props.link}
-          >
-            {props.children}
+        <div className={props.className}>
+          <LocalizedLink to={props.link}>
+            <p
+              className={`font-bold pb-1 mr-0.5 border-b-2 inline hover:mr-2 transition-all ${textSize()} ${accentStyle()}`}
+            >
+              {props.children}
+            </p>{' '}
+            <span
+              className={`fill-current text-substrateDark dark:text-white inline-block ${accentStyle()}`}
+            >
+              <Icon name="arrowMore" />
+            </span>
           </LocalizedLink>
-          <span
-            className={cx(
-              'w-8 inline-block pl-2 transform transition-all duration-300 ease-in-out group-hover:pl-4',
-              {
-                'text-substrateGreen': props.accent,
-              }
-            )}
-          >
-            &#10132;
-          </span>
         </div>
       )}
     </>

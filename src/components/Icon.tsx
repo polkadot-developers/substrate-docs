@@ -14,6 +14,7 @@ import ideCode from '../images/svgs/ide-code.svg'
 import diamondYellow from '../images/svgs/diamond-yellow.svg'
 import diamondPurple from '../images/svgs/diamond-purple.svg'
 import diamondGreen from '../images/svgs/diamond-green.svg'
+import arrowMore from '../images/svgs/arrow-more.svg'
 
 const iconsMap = {
   /* homepage */
@@ -33,16 +34,17 @@ const iconsMap = {
   /* social-media */
   elementOrg: elementOrg,
   stackOverflowOrg: stackOverflowOrg,
-}
-
-export default function Icon({ name, className }: IconProps) {
-  if (!name) return <span className="w-5"></span>
-  const IconComponent = iconsMap[name]
-  if (!IconComponent) return <span className="w-5"></span>
-  return <IconComponent name={name} className={className}></IconComponent>
+  arrowMore: arrowMore,
 }
 
 interface IconProps {
   name: string
-  className: string
+  className?: string
+}
+
+export default function Icon({ name, className }: IconProps) {
+  if (!name) return <span className="w-5"></span>
+  const IconComponent = iconsMap[`${name}`]
+  if (!IconComponent) return <span className="w-5"></span>
+  return <IconComponent name={name} className={className}></IconComponent>
 }

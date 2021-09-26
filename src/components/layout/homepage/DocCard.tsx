@@ -1,7 +1,6 @@
 import React from 'react'
 import cx from 'classnames'
 import { LocalizedLink } from 'gatsby-theme-i18n'
-import { TextButton } from '../../Buttons'
 import Icon from '../../Icon'
 
 interface DocCardProps {
@@ -22,7 +21,7 @@ export default function DocCard({
   iconName,
 }: DocCardProps) {
   return (
-    <LocalizedLink to={link}>
+    <LocalizedLink data-aos="fade-up" to={link}>
       <div className="group">
         <div
           className={cx(
@@ -42,10 +41,21 @@ export default function DocCard({
             <p className="font-bold text-lg">{textOne}</p>
             <p>{textTwo}</p>
           </div>
-
-          <TextButton accent cta link={link}>
-            {cta}
-          </TextButton>
+          <div className="block group">
+            <span
+              className={`text-xl font-bold pb-1 border-b-2 text-substrateGreen border-substrateGreen`}
+            >
+              {cta}
+            </span>
+            <span
+              className={cx(
+                'w-8 inline-block pl-2 transform transition-all duration-300 ease-in-out group-hover:pl-4',
+                'text-substrateGreen'
+              )}
+            >
+              &#10132;
+            </span>
+          </div>
         </div>
       </div>
     </LocalizedLink>

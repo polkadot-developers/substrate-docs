@@ -1,7 +1,5 @@
 import React from 'react'
-
 import Icon from '../../Icon'
-// import LineArrowButton from '../../ui/LineArrowButton';
 import { TextButton } from '../../Buttons'
 
 const exploreLinks = {
@@ -63,12 +61,12 @@ const ExploreLinkSection = ({ links }: ExploreLinkSectionProps) => {
   const currentLinks: ICurrentLinks[] = []
 
   links.forEach((link: string) => {
-    currentLinks.push(exploreLinks[link])
+    currentLinks.push(exploreLinks[`${link}`])
   })
 
   return (
     <div className="bg-substrateGray-light dark:bg-darkBackground pb-10 pt-20">
-      <section className="px-6 xl:container mb-20">
+      <section className="container mb-20 lg:px-10">
         <h4 className="text-2xl font-bold mb-16">Explore More Substrate</h4>
         <div className="sm:grid grid-cols-3 gap-6 xl:gap-24">
           {currentLinks.map(

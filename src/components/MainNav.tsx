@@ -102,17 +102,17 @@ const MainNav = {
             items: [
               {
                 linkTitle: 'Hackathons',
-                link: '${site}ecosystem/opportunities/hackathons',
+                link: `${site}ecosystem/opportunities/hackathons`,
                 external: true,
               },
               {
                 linkTitle: 'Grants',
-                link: '${site}ecosystem/opportunities/grants',
+                link: `${site}ecosystem/opportunities/grants`,
                 external: true,
               },
               {
                 linkTitle: 'Jobs',
-                link: '${site}ecosystem/opportunities/jobs',
+                link: `${site}ecosystem/opportunities/jobs`,
                 external: true,
               },
             ],
@@ -124,17 +124,17 @@ const MainNav = {
             items: [
               {
                 linkTitle: 'Substrate Seminar',
-                link: '${site}ecosystem/resources/substrate-seminar',
+                link: `${site}ecosystem/resources/substrate-seminar`,
                 external: true,
               },
               {
                 linkTitle: 'Awesome Substrate',
-                link: '${site}ecosystem/resources/awesome-substrate',
+                link: `${site}ecosystem/resources/awesome-substrate`,
                 external: true,
               },
               {
                 linkTitle: 'Community Resources',
-                link: '${site}ecosystem/resources/community-learning-offerings',
+                link: `${site}ecosystem/resources/community-learning-offerings`,
                 external: true,
               },
             ],
@@ -146,22 +146,22 @@ const MainNav = {
             items: [
               {
                 linkTitle: 'Contact',
-                link: '${site}ecosystem/connect/contact',
+                link: `${site}ecosystem/connect/contact`,
                 external: true,
               },
               {
                 linkTitle: 'Events',
-                link: '${site}ecosystem/connect/events',
+                link: `https://www.parity.io/events`,
                 external: true,
               },
               {
                 linkTitle: 'Newsletter',
-                link: '${site}newsletter',
+                link: `${site}newsletter`,
                 external: true,
               },
               {
                 linkTitle: 'Blog',
-                link: '${site}ecosystem/connect/blog',
+                link: `https://www.parity.io/blog/tag/parity-substrate`,
                 external: true,
               },
             ],

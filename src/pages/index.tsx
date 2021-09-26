@@ -160,7 +160,10 @@ export default function Index() {
               Explore Playground
             </SecondaryButton>
           </div>
-          <div className="flex justify-center md:w-1/2 duration-150 ease-in hover:opacity-50">
+          <div
+            data-aos="fade-left"
+            className="flex justify-center md:w-1/2 duration-150 ease-in hover:opacity-50"
+          >
             <LocalizedLink to="/playground">
               <StaticImage
                 backgroundColor="transparent"
@@ -176,7 +179,7 @@ export default function Index() {
       {/* Explore Documentation Section */}
       {/* ///////////////////////////// */}
       <section className="px-6 xl:container mb-40">
-        <div className="mb-14">
+        <div className="mb-14 lg:px-10">
           <div className="text-4xl md:text-5xl xl:text-7xl font-extrabold mb-8">
             Explore Documentation
           </div>
@@ -192,7 +195,7 @@ export default function Index() {
       {/* ////////////////////////////// */}
       {/* Connect With Community Section */}
       {/* ////////////////////////////// */}
-      <section className="xl:container my-20 md:mt-20 md:mb-40">
+      <section className="xl:container px-6 my-20 md:mt-20 md:mb-40">
         <div className="flex flex-col md:flex-row md:items-center px-6 lg:mb-20">
           <div className="lg:m-0 md:w-1/2 md:px-5 lg:px-10">
             <div className="text-4xl xl:text-6xl 2xl:text-7xl font-extrabold mb-8">
