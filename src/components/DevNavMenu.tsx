@@ -130,11 +130,7 @@ const DevNavMenu = {
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-events' })}`,
-            link: '/v3/runtime/events',
-          },
-          {
-            title: `${intl.formatMessage({ id: 'docs-menu-errors' })}`,
-            link: '/v3/runtime/errors',
+            link: '/v3/runtime/events-and-errors',
           },
           {
             title: `${intl.formatMessage({
