@@ -101,10 +101,6 @@ const DevNavMenu = {
         name: `${intl.formatMessage({ id: 'docs-menu-runtime' })}`,
         items: [
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-pallets' })}`,
-            link: '/v3/runtime/pallets',
-          },
-          {
             title: `${intl.formatMessage({ id: 'docs-menu-frame' })}`,
             link: '/v3/runtime/frame',
           },
