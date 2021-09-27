@@ -166,14 +166,9 @@ const DevNavMenu = {
             title: `${intl.formatMessage({ id: 'docs-menu-rpcs' })}`,
             link: '/v3/runtime/custom-rpcs',
           },
-        ],
-      },
-      {
-        name: `${intl.formatMessage({ id: 'docs-menu-smart-contracts' })}`,
-        items: [
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-sc-overview' })}`,
-            link: '/v3/smart-contracts/overview',
+            title: `${intl.formatMessage({ id: 'docs-menu-smart-contracts' })}`,
+            link: '/v3/runtime/smart-contracts',
           },
         ],
       },

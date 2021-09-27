@@ -80,11 +80,7 @@
   "docs-menu-upgrades": "Upgrades",
   "docs-menu-coupling": "Pallet Coupling",
   "docs-menu-rpcs": "Custom RPCs",
-
   "docs-menu-smart-contracts": "Smart Contracts",
-  "docs-menu-sc-overview": "Overview",
-  "docs-menu-contracts-pallet": "Contracts Pallet",
-  "docs-menu-sc-faq": "FAQ",
 
   "docs-menu-integrate": "Toolchains",
   "docs-menu-polkadot-js": "Polkadot-JS",
