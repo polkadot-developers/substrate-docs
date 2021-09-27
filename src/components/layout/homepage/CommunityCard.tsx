@@ -9,6 +9,7 @@ export default function CommunityCard() {
         siteMetadata {
           element
           stackOverflow
+          substrateIO
         }
       }
     }
@@ -34,7 +35,7 @@ export default function CommunityCard() {
       headingOne: 'Participate',
       iconOne: 'gradHat',
       linkTextOne: 'Substrate Seminar',
-      linkOne: 'https://www.substrate.io/ecosystem/opportunities/hackathons',
+      linkOne: `${site.siteMetadata.substrateIO}/ecosystem/resources/seminar`,
       headingTwo: 'Learn more',
       iconTwo: 'calendar',
       linkTextTwo: 'Events',
@@ -47,11 +48,11 @@ export default function CommunityCard() {
       headingOne: 'Rise to the challenge',
       iconOne: 'ideCode',
       linkTextOne: 'Hackathon',
-      linkOne: 'https://www.substrate.io/ecosystem/opportunities/hackathons',
+      linkOne: `${site.siteMetadata.substrateIO}/ecosystem/opportunities/hackathons`,
       headingTwo: 'Get funding',
       iconTwo: 'grantsDollar',
       linkTextTwo: 'Grants',
-      linkTwo: 'https://www.substrate.io/ecosystem/opportunities/grants',
+      linkTwo: `${site.siteMetadata.substrateIO}/ecosystem/opportunities/grants`,
     },
   ]
   return (
@@ -73,9 +74,7 @@ export default function CommunityCard() {
               name={item.iconOne}
               className="mr-3 fill-current dark:text-subtrateWhite"
             />
-            <a href={item.linkOne} target="_blank" rel="noreferrer">
-              {item.linkTextOne}
-            </a>
+            <a href={item.linkOne}>{item.linkTextOne}</a>
           </div>
           <hr />
           <p>
@@ -86,9 +85,7 @@ export default function CommunityCard() {
               name={item.iconTwo}
               className="mr-3 fill-current dark:text-subtrateWhite"
             />
-            <a href={item.linkTwo} target="_blank" rel="noreferrer">
-              {item.linkTextTwo}
-            </a>
+            <a href={item.linkTwo}>{item.linkTextTwo}</a>
           </div>
         </div>
       ))}

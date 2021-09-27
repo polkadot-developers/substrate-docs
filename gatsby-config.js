@@ -37,6 +37,7 @@ module.exports = {
     terms: 'https://www.parity.io/terms',
     youtube: 'https://www.youtube.com/c/ParityTech',
     crowdcast: 'https://www.crowdcast.io/e/substrate-seminar-2',
+    substrateIO: 'https://substrate-io-staging.netlify.app',
   },
   flags: {
     DEV_SSR: false,
