@@ -58,7 +58,6 @@ export default function Index() {
       {/* ////////////////////// */}
       {/* Learn Subsrate Section */}
       {/* ////////////////////// */}
-      {/* <Section styles="relative px-6 xl:container md:mt-20 md:mb-36 lg:mt-40 lg:mb-60 h-full"> */}
       <Section styles="relative">
         <div className="absolute inset-0 md:mt-20">
           <div className="lg:hidden">
@@ -114,8 +113,8 @@ export default function Index() {
       {/* ////////////////// */}
       {/* <Section className="xl:container my-20 md:mt-20 md:mb-36 lg:mt-40 lg:mb-60 "> */}
       <Section>
-        <div className="flex flex-col md:flex-row md:items-center">
-          <div className="mb-16 lg:m-0 md:w-1/2">
+        <div className="flex flex-col lg:flex-row lg:items-center">
+          <div className="mb-16 lg:m-0 lg:w-1/2">
             <div className="text-5xl xl:text-7xl font-extrabold mb-8">
               Playground
             </div>
@@ -164,7 +163,7 @@ export default function Index() {
           </div>
           <div
             data-aos="fade-left"
-            className="flex justify-center md:w-1/2 duration-150 ease-in hover:opacity-50"
+            className="hidden lg:flex justify-center lg:w-1/2 duration-150 ease-in hover:opacity-50"
           >
             <LocalizedLink to="/playground">
               <StaticImage
