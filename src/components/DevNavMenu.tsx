@@ -177,35 +177,40 @@ const DevNavMenu = {
         ],
       },
       {
-        name: `${intl.formatMessage({ id: 'docs-menu-integrate' })}`,
+        name: `${intl.formatMessage({ id: 'docs-menu-integration' })}`,
         items: [
           {
             title: `${intl.formatMessage({ id: 'docs-menu-polkadot-js' })}`,
-            link: '/v3/toolchains/polkadot-js',
+            link: '/v3/integration/polkadot-js',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-client-libraries',
             })}`,
-            link: '/v3/toolchains/client-libraries',
+            link: '/v3/integration/client-libraries',
           },
           {
+            title: `${intl.formatMessage({ id: 'docs-menu-substrate-connect' })}`,
+            link: '/v3/integration/substrate-connect',
+          },
+        ]
+      },
+        {
+          name: `${intl.formatMessage({ id: 'docs-menu-tools' })}`,
+          items: [
+          {
             title: `${intl.formatMessage({ id: 'docs-menu-subkey' })}`,
-            link: '/v3/toolchains/subkey',
+            link: '/v3/tools/subkey',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-memory-profiling',
             })}`,
-            link: '/v3/toolchains/memory-profiling',
+            link: '/v3/tools/memory-profiling',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-try-runtime' })}`,
-            link: '/v3/toolchains/try-runtime',
-          },
-          {
-            title: `${intl.formatMessage({ id: 'docs-menu-substrate-connect' })}`,
-            link: '/v3/toolchains/substrate-connect',
+            link: '/v3/tools/try-runtime',
           },
         ],
       },

@@ -83,13 +83,15 @@
   "docs-menu-rpcs": "Custom RPCs",
   "docs-menu-smart-contracts": "Smart Contract Toolkits",
 
-  "docs-menu-integrate": "Toolchains",
+  "docs-menu-integration": "Integration",
   "docs-menu-polkadot-js": "Polkadot-JS",
   "docs-menu-client-libraries": "Client Libraries",
+  "docs-menu-substrate-connect": "Substrate Connect",
+
+  "docs-menu-tools": "Tools",
   "docs-menu-subkey": "Subkey",
   "docs-menu-memory-profiling": "Memory Profiling",
   "docs-menu-try-runtime": "Try Runtime",
-  "docs-menu-substrate-connect": "Substrate Connect",
 
   "docs-menu-advanced": "Advanced",
   "docs-menu-account-info": "Account Info",

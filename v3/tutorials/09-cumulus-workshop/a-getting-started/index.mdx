@@ -334,14 +334,14 @@ Add your new authority's `AccountId` and `ValidatorId`.
 
 In this runtime configuration, both IDs are the same and are generated from the "stash" account. You
 can generate your own or inspect the
-[well-known development accounts](/v3/toolchains/subkey#well-known-keys).
+[well-known development accounts](/v3/tools/subkey#well-known-keys).
 
 The following commands demonstrate how the first part of the `palletSession` section inside the
 spec file can be reproduced. The second part is obtained similarly with `//Bob` and `//Bob//stash`.
 
 > All the keys and addresses needed can be generated using either:
 >
-> - The [`subkey` tool](/v3/toolchains/subkey) (v2.0.1 and above for BEEFY keys)
+> - The [`subkey` tool](/v3/tools/subkey) (v2.0.1 and above for BEEFY keys)
 > - The node `key` subcommand. (this can be your `polkadot` or `parachain-collator` binary, based on the latest substrate)
 
 Polkadot **validator authority** address for `//Alice//stash` (`sr25519` cryptography):
