@@ -64,7 +64,7 @@
   "docs-menu-transaction-weight": "Transaction Weight",
   "docs-menu-offchain-features": "Off-Chain Features",
 
-  "docs-menu-runtime": "Runtime",
+  "docs-menu-runtime": "Runtime Development",
   "docs-menu-frame": "FRAME",
   "docs-menu-macros": "Macros",
   "docs-menu-metadata": "Metadata",
@@ -80,7 +80,7 @@
   "docs-menu-upgrades": "Upgrades",
   "docs-menu-coupling": "Pallet Coupling",
   "docs-menu-rpcs": "Custom RPCs",
-  "docs-menu-smart-contracts": "Smart Contracts",
+  "docs-menu-smart-contracts": "Smart Contract Toolkits",
 
   "docs-menu-integrate": "Toolchains",
   "docs-menu-polkadot-js": "Polkadot-JS",
