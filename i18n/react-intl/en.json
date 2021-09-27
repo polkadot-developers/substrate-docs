@@ -77,6 +77,7 @@
   "docs-menu-debugging": "Debugging",
   "docs-menu-testing": "Testing",
   "docs-menu-randomness": "Randomness",
+  "docs-menu-chain-specs": "Chain Specification",
   "docs-menu-upgrades": "Upgrades",
   "docs-menu-coupling": "Pallet Coupling",
   "docs-menu-rpcs": "Custom RPCs",
@@ -87,7 +88,6 @@
   "docs-menu-client-libraries": "Client Libraries",
   "docs-menu-subkey": "Subkey",
   "docs-menu-memory-profiling": "Memory Profiling",
-  "docs-menu-chain-specs": "Chain Specification",
   "docs-menu-try-runtime": "Try Runtime",
   "docs-menu-substrate-connect": "Substrate Connect",
 

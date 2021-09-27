@@ -155,6 +155,10 @@ const DevNavMenu = {
             link: '/v3/runtime/randomness',
           },
           {
+            title: `${intl.formatMessage({ id: 'docs-menu-chain-specs' })}`,
+            link: '/v3/runtime/chain-specs',
+          },
+          {
             title: `${intl.formatMessage({ id: 'docs-menu-upgrades' })}`,
             link: '/v3/runtime/upgrades',
           },
@@ -194,10 +198,6 @@ const DevNavMenu = {
               id: 'docs-menu-memory-profiling',
             })}`,
             link: '/v3/toolchains/memory-profiling',
-          },
-          {
-            title: `${intl.formatMessage({ id: 'docs-menu-chain-specs' })}`,
-            link: '/v3/toolchains/chain-specs',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-try-runtime' })}`,
