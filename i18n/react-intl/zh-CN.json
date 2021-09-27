@@ -61,6 +61,7 @@
   "docs-menu-transaction-pool": "交易池",
   "docs-menu-session-keys": "会话密钥",
   "docs-menu-transaction-weight": "交易权重",
+  "docs-menu-execution": "Execution",
   "docs-menu-offchain-features": "链下功能",
 
   "docs-menu-runtime": "Runtime Development",
@@ -69,7 +70,6 @@
   "docs-menu-metadata": "Metadata",
   "docs-menu-storage": "Storage",
   "docs-menu-origins": "Origins",
-  "docs-menu-execution": "Execution",
   "docs-menu-events": "Events and Errors",
   "docs-menu-weights-and-fees": "Weights and Fees",
   "docs-menu-benchmarking": "Benchmarking",

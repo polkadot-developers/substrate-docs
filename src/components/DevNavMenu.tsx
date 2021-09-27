@@ -90,6 +90,10 @@ const DevNavMenu = {
             link: '/v3/concepts/weight',
           },
           {
+            title: `${intl.formatMessage({ id: 'docs-menu-execution' })}`,
+            link: '/v3/concepts/execution',
+          },
+          {
             title: `${intl.formatMessage({
               id: 'docs-menu-offchain-features',
             })}`,
@@ -123,10 +127,6 @@ const DevNavMenu = {
               id: 'docs-menu-origins',
             })}`,
             link: '/v3/runtime/origins',
-          },
-          {
-            title: `${intl.formatMessage({ id: 'docs-menu-execution' })}`,
-            link: '/v3/runtime/execution',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-events' })}`,

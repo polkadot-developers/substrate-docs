@@ -61,6 +61,7 @@
   "docs-menu-transaction-pool": "Pool de transactions",
   "docs-menu-session-keys": "Clés de session",
   "docs-menu-transaction-weight": "Poids de la transaction",
+  "docs-menu-execution": "Execution",
   "docs-menu-offchain-features": "Fonctionnalités hors chaîne",
 
   "docs-menu-runtime": "Runtime Development",
@@ -69,7 +70,6 @@
   "docs-menu-metadata": "Metadata",
   "docs-menu-storage": "Storage",
   "docs-menu-origins": "Origins",
-  "docs-menu-execution": "Execution",
   "docs-menu-events": "Events and Errors",
   "docs-menu-weights-and-fees": "Weights and Fees",
   "docs-menu-benchmarking": "Benchmarking",
