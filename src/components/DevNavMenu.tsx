@@ -176,12 +176,6 @@ const DevNavMenu = {
             link: '/v3/smart-contracts/overview',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'docs-menu-contracts-pallet',
-            })}`,
-            link: '/v3/smart-contracts/contracts-pallet',
-          },
-          {
             title: `${intl.formatMessage({ id: 'docs-menu-sc-faq' })}`,
             link: '/v3/smart-contracts/faq',
           },
