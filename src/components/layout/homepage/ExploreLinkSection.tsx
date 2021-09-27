@@ -76,12 +76,12 @@ const ExploreLinkSection = ({ links }: ExploreLinkSectionProps) => {
     <div className="bg-substrateGray-light dark:bg-darkBackground pb-10 pt-20">
       <section className="container mb-20 lg:px-10">
         <h4 className="text-2xl font-bold mb-16">Explore More Substrate</h4>
-        <div className="sm:grid grid-cols-3 gap-6 xl:gap-24">
+        <div className="md:grid grid-cols-3 gap-6 xl:gap-24">
           {currentLinks.map(
             ({ title, description, link, linkText, icon }, index) => (
               <div
                 key={index}
-                className="mb-16 sm:mb-0 flex flex-col justify-between"
+                className="mb-16 md:mb-0 flex flex-col justify-between"
               >
                 <div>
                   <Icon name={icon} className="mb-6 w-8 h-8" />

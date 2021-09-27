@@ -6,7 +6,7 @@ export default function ExploreDocs() {
     {
       name: 'Ways To Build',
       cta: 'Get Statrted',
-      link: '#',
+      link: '/v3/getting-started/overview',
       items: [
         {
           name: 'FRAME',
@@ -28,7 +28,7 @@ export default function ExploreDocs() {
     {
       name: 'Learn The Fundamentals',
       cta: 'More key concepts',
-      link: '#',
+      link: '/v3/concepts/runtime',
       items: [
         {
           name: 'Accounts',
@@ -55,7 +55,7 @@ export default function ExploreDocs() {
     {
       name: 'Tools and Integration',
       cta: 'More Tools',
-      link: '#',
+      link: '/v3/toolchains/polkadot-js',
       items: [
         {
           name: 'Polkadot JS',

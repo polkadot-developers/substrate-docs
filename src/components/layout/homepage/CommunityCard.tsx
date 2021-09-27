@@ -56,12 +56,13 @@ export default function CommunityCard() {
     },
   ]
   return (
-    <div className="px-6 sm:flex sm:flex-wrap sm:justify-center xl:justify-evenly">
+    <div className="px-6 sm:flex sm:flex-col lg:flex-row sm:items-center  xl:justify-evenly">
       {data.map((item, index) => (
         <div
           key={index}
           data-aos="fade-up"
-          className="h-[410px]] w-full sm:w-80 2xl:w-96 shadow-xl py-8 px-6 mb-4 sm:m-4 bg-white dark:bg-substrateDark mdx-anchor"
+          data-aos-delay={index === 1 ? '200' : index === 2 ? '400' : ''}
+          className="lg:h-[500px] xl:h-[456px] w-full sm:w-80 2xl:w-96 shadow-xl py-8 px-6 mb-4 sm:m-4 bg-white dark:bg-substrateDark mdx-anchor"
         >
           <div className="text-2xl font-bold mb-5">{item.title}</div>
           <p>{item.description}</p>

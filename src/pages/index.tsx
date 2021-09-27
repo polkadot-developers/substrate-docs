@@ -190,7 +190,7 @@ export default function Index() {
             needs.
           </div>
         </div>
-        <div className="sm:flex sm:flex-wrap sm:justify-start xl:justify-evenly">
+        <div className="md:flex md:justify-start xl:justify-evenly">
           <ExploreDocs />
         </div>
       </Section>
