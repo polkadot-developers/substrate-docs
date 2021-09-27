@@ -5,6 +5,7 @@ import Lottie from 'react-lottie'
 import Icon from '../components/Icon'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
+import Section from '../components/layout/Section'
 // import { useIntl } from 'react-intl'
 import { PrimaryFixedButton } from '../components/Buttons'
 import DocCard from '../components/layout/homepage/DocCard'
@@ -57,7 +58,8 @@ export default function Index() {
       {/* ////////////////////// */}
       {/* Learn Subsrate Section */}
       {/* ////////////////////// */}
-      <section className="relative px-6 xl:container md:mt-20 md:mb-36 lg:mt-40 lg:mb-60 h-full">
+      {/* <Section styles="relative px-6 xl:container md:mt-20 md:mb-36 lg:mt-40 lg:mb-60 h-full"> */}
+      <Section styles="relative">
         <div className="absolute inset-0 md:mt-20">
           <div className="lg:hidden">
             <StaticImage
@@ -80,40 +82,40 @@ export default function Index() {
               Substrate developer knowledge base
             </h4>
           </div>
-          <div className="sm:flex sm:flex-wrap sm:justify-center">
+          <div className="sm:flex sm:flex-col sm:items-center lg:flex-row lg:justify-center">
             <DocCard
               title={`Documentation`}
-              textOne="Welcoem to Substrate!"
-              textTwo={`Discover the principles and design decisions that Substrate is built on. Read about its key features and capabilties as well as the specific skills needed to be an effective Substrate blockchain developer.`}
+              text={`Discover the principles and design decisions that Substrate is built on. Read about its key features and capabilties as well as the specific skills needed to be an effective Substrate blockchain developer.`}
               link={`/v3`}
               cta={`Get started`}
               iconName={`docsIcon`}
             />
             <DocCard
               title={`How-To Guides`}
-              textOne="A modular approach to learning Substrate"
-              textTwo={`Browse through the collection of how-to guides to help you solve common problems to building Substrate blockchains. Refer to these to learn the patterns that will help you become a better runtime engineer.`}
+              text={`Browse through the collection of how-to guides to help you solve common problems to building Substrate blockchains. Refer to these to learn the patterns that will help you become a better runtime engineer.`}
               link={`/how-to-guides`}
               cta={`Learn and contribute`}
               iconName={`htgIcon`}
+              animationDelay={200}
             />
             <DocCard
               title={`Tutorials`}
-              textOne="Active engagement"
-              textTwo={`Create your first Substrate chain, perform a forkless upgrade, and more. These tutorials are designed to help developers getting started with Substrate get up to speed with the basics. Use these to dive right into learning Substrate in a fun and engaging way.`}
+              text={`Create your first Substrate chain, perform a forkless upgrade, and more. These tutorials are designed to help developers getting started with Substrate get up to speed with the basics. Use these to dive right into learning Substrate in a fun and engaging way.`}
               link={`/tutorials`}
               cta={`MISSING CTA`}
               iconName={`tutsIcon`}
+              animationDelay={400}
             />
           </div>
         </div>
-      </section>
+      </Section>
       {/* ////////////////// */}
       {/* Playground Section */}
       {/* ////////////////// */}
-      <section className="xl:container my-20 md:mt-20 md:mb-36 lg:mt-40 lg:mb-60 ">
-        <div className="flex flex-col md:flex-row md:items-center px-6">
-          <div className="mb-16 lg:m-0 md:w-1/2 md:px-5 lg:px-10">
+      {/* <Section className="xl:container my-20 md:mt-20 md:mb-36 lg:mt-40 lg:mb-60 "> */}
+      <Section>
+        <div className="flex flex-col md:flex-row md:items-center">
+          <div className="mb-16 lg:m-0 md:w-1/2">
             <div className="text-5xl xl:text-7xl font-extrabold mb-8">
               Playground
             </div>
@@ -174,12 +176,13 @@ export default function Index() {
             </LocalizedLink>
           </div>
         </div>
-      </section>
+      </Section>
       {/* ///////////////////////////// */}
       {/* Explore Documentation Section */}
       {/* ///////////////////////////// */}
-      <section className="px-6 xl:container mb-40">
-        <div className="mb-14 lg:px-10">
+      {/* <Section className="px-6 xl:container mb-40"> */}
+      <Section>
+        <div className="mb-14">
           <div className="text-4xl md:text-5xl xl:text-7xl font-extrabold mb-8">
             Explore Documentation
           </div>
@@ -191,11 +194,12 @@ export default function Index() {
         <div className="sm:flex sm:flex-wrap sm:justify-start xl:justify-evenly">
           <ExploreDocs />
         </div>
-      </section>
+      </Section>
       {/* ////////////////////////////// */}
       {/* Connect With Community Section */}
       {/* ////////////////////////////// */}
-      <section className="xl:container px-6 my-20 md:mt-20 md:mb-40">
+      {/* <section className="xl:container px-6 my-20 md:mt-20 md:mb-40"> */}
+      <Section>
         <div className="flex flex-col md:flex-row md:items-center px-6 lg:mb-20">
           <div className="lg:m-0 md:w-1/2 md:px-5 lg:px-10">
             <div className="text-4xl xl:text-6xl 2xl:text-7xl font-extrabold mb-8">
@@ -217,7 +221,7 @@ export default function Index() {
           </div>
         </div>
         <CommunityCard />
-      </section>
+      </Section>
       <ExploreLinkSection links={['technology', 'vision', 'ecosystem']} />
     </Layout>
   )

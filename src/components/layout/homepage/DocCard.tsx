@@ -5,29 +5,29 @@ import Icon from '../../Icon'
 
 interface DocCardProps {
   title: string
-  textOne: string
-  textTwo: string
+  text: string
   link: string
   cta: string
   iconName: string
+  animationDelay?: number
 }
 
 export default function DocCard({
   title,
-  textOne,
-  textTwo,
+  text,
   link,
   cta,
   iconName,
+  animationDelay,
 }: DocCardProps) {
   return (
-    <LocalizedLink data-aos="fade-up" to={link}>
+    <LocalizedLink data-aos="fade-up" data-aos-delay={animationDelay} to={link}>
       <div className="group">
         <div
           className={cx(
-            'h-[400px]] w-full text-center sm:w-96 shadow-xl p-10 mb-4 md:m-4 bg-white',
+            'w-full text-center sm:w-96 lg:w-80 xl:w-96 shadow-xl p-10 mb-4 md:m-4 bg-white',
             'dark:bg-substrateDark',
-            'duration-300 ease-in-out group-hover:scale-105'
+            'transition-all group-hover:scale-105'
           )}
         >
           <div className="flex justify-center mb-6">
@@ -36,10 +36,9 @@ export default function DocCard({
               className="fill-current text-substrateWhite  dark:border dark:rounded-full dark:border-substrateWhite"
             />
           </div>
-          <div className="md:h-72">
+          <div className="lg:h-80 xl:h-60">
             <div className="text-2xl font-extrabold mb-5">{title}</div>
-            <p className="font-bold text-lg">{textOne}</p>
-            <p>{textTwo}</p>
+            <p>{text}</p>
           </div>
           <div className="block group">
             <span
