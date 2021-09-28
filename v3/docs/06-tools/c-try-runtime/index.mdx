@@ -25,14 +25,14 @@ The initial motivation for `try-runtime` came from the need to test runtime chan
 
 ## How it works
 The `try-runtime` tool has its own implementation of externalities called [`remote_externalities`][remoteextern-rustdocs] which is just a builder wrapper around `TestExternalities` that uses
-a generic [key-value store](/docs/en/knowledgebase/advanced/storage) where data is [SCALE encoded](/docs/en/knowledgebase/advanced/codec).
+a generic [key-value store](/v3/advanced/storage) where data is [SCALE encoded](/v3/advanced/scale-codec).
 
 The diagram below illustrates the way externalities sits outside a compiled runtime as a means to capture 
 the storage of that runtime. 
 
 Storage externalities            |  Testing with externalities
 :-------------------------:|:-------------------------:
-![image](/docs/assets/advanced/try-runtime-ext-1.png)  |  ![image](/docs/assets/advanced/try-runtime-ext-2.png)
+![image](/img/docs/advanced/try-runtime-ext-1.png)  |  ![image](/img/docs/advanced/try-runtime-ext-2.png)
 
 With `remote_externalities`, developers can capture some chain state and run tests on it. Essentially, `RemoteExterrnalities` will populate a `TestExternalities` with a real chain's data. 
 
@@ -204,8 +204,8 @@ RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
 ## Next Steps
 
 ### Learn More
-- [Integrate `try-runtime`][integrate-tryruntime-htg] how-to guide  
-- [Storage keys](/docs/en/knowledgebase/advanced/storage#storage-value-keys)
+- [Integrate `try-runtime`][integrate-try-runtime-htg] how-to guide
+- [Storage keys](/v3/advanced/storage#storage-value-keys)
 - [`OnRuntimeUpgrade`][onruntimeupgrade-method-rustdocs] FRAME trait
 - [`try-runtime-upgrade`][executive-try-runtime-rustdocs] from `frame_executive`
 - [`set_storage`][get-storage-rustdocs] from `sp_core::traits::Externalities`
@@ -214,8 +214,8 @@ RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
 - `try-runtime` in [FRAME's Staking pallet][staking-frame]
 
 [tryruntime-api-rustdocs]: https://crates.parity.io/frame_try_runtime/trait.TryRuntime.html
-[testextern-rustdocs]: https://substrate.dev/rustdocs/latest/sp_state_machine/struct.TestExternalities.html
-[basicextern-rustdocs]: https://substrate.dev/rustdocs/latest/sp_state_machine/struct.BasicExternalities.html
+[testextern-rustdocs]: /rustdocs/latest/sp_state_machine/struct.TestExternalities.html
+[basicextern-rustdocs]: /rustdocs/latest/sp_state_machine/struct.BasicExternalities.html
 [remoteextern-rustdocs]: https://crates.parity.io/remote_externalities/index.html#
 [stateapi-rustdocs]: https://crates.parity.io/sc_rpc/state/trait.StateApi.html# 
 [stateapi-storage-rustdocs]: https://crates.parity.io/sc_rpc/state/trait.StateApi.html#tymethod.storage
@@ -232,7 +232,5 @@ RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
 [get-storage]: https://polkadot.js.org/docs/substrate/rpc/#getstoragechildkey-prefixedstoragekey-key-storagekey-at-hash-optionstoragedata
 [storage-keys-paged]: https://polkadot.js.org/docs/substrate/rpc/#getkeyspagedchildkey-prefixedstoragekey-prefix-storagekey-count-u32-startkey-storagekey-at-hash-vecstoragekey
 [storage-keys-paged-rustdocs]: https://crates.parity.io/sc_rpc/state/trait.StateApi.html#tymethod.storage_keys_paged
-[integrate-tryruntime-htg]: https://substrate.dev/substrate-how-to-guides/docs/tools/integrate-try-runtime
 [fork-off-gh]: https://github.com/maxsam4/fork-off-substrate
-[integrate-try-runtime-htg]: https://substrate.dev/substrate-how-to-guides/docs/tools/integrate-try-runtime
-
+[integrate-try-runtime-htg]: /how-to-guides/v3/tools/try-runtime
