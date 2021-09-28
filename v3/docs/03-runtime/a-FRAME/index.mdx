@@ -121,13 +121,13 @@ impl<T:Config> Pallet<T> { ... }
   to learn more about adding functionality to a FRAME pallet.`}
 />
 
-### System Modules
+### System Crate
 
-The [FRAME System Module `frame_system`](/rustdocs/latest/frame_system) provides low-level types,
-storage, and functions for your blockchain. All other pallets depend on the System library as the
+The [FRAME System crate `frame_system`](/rustdocs/latest/frame_system) provides low-level types,
+storage, and functions for your blockchain. All other pallets depend on the System crate as the
 basis of your Substrate runtime.
 
-The System module defines all the core types for the Substrate runtime, such as:
+The System crate defines all the core types for the Substrate runtime, such as:
 
 - Origin
 - Block Number
@@ -148,19 +148,19 @@ It also has a number of system-critical storage items, such as:
 Finally, it defines a number of low level functions which can access your blockchain storage, verify
 the origin of an extrinsic, and more.
 
-### Executive Module
+### Support Crate 
 
-The [FRAME Executive Module `frame_executive`](/rustdocs/latest/frame_executive) acts as the
-orchestration layer for the runtime. It dispatches incoming extrinsic calls to the respective
-pallets in the runtime.
-
-### Support Module
-
-The [FRAME Support Module `frame_support`](/rustdocs/latest/frame_support) is a collection of Rust
-macros, types, traits, and functions that simplify the development of Substrate pallets.
+The [FRAME Support Crate `frame_support`](/rustdocs/latest/frame_support) is a collection of Rust
+macros, types, traits, and modules that simplify the development of Substrate pallets.
 
 The support macros expanded at compile time generate boilerplate code needed for the common
 structure of a pallet and save developers from writing them repeatedly.
+
+### Executive Pallet
+
+The [FRAME Executive Pallet `frame_executive`](/rustdocs/latest/frame_executive) acts as the
+orchestration layer for the runtime. It dispatches incoming extrinsic calls to the respective
+pallets in the runtime.
 
 ### Runtime
 
