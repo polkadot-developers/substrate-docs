@@ -101,17 +101,17 @@ export default function ExploreDocs() {
             <ul className="px-4 leading-7">
               {section.items.map((item, index) => (
                 <li key={index}>
-                  <div>
-                    <LocalizedLink to={item.link}>
+                  <LocalizedLink to={item.link}>
+                    <div>
                       <b>{item.name}</b>
-                    </LocalizedLink>
-                  </div>
-                  <p>{item.description}</p>
+                    </div>
+                    <p>{item.description}</p>
+                  </LocalizedLink>
                 </li>
               ))}
             </ul>
             <div className="pl-4">
-              <TextButton accent link={section.link}>
+              <TextButton accent cta link={section.link}>
                 {section.cta}
               </TextButton>
             </div>

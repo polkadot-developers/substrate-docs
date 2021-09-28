@@ -26,7 +26,7 @@ export default function Index() {
       <Section>
         <div className="flex flex-col md:flex-row md:items-center mt-10">
           <div className="lg:m-0 mb-10 md:w-1/2 md:px-5 lg:px-10">
-            <div className="text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-6">
+            <div className="text-5xl lg:text-6xl font-extrabold mb-6">
               Substrate <br /> Developer Hub
             </div>
             <h4 className="text-xl xl:text-3xl font-semibold">
@@ -40,18 +40,20 @@ export default function Index() {
             <PrimaryFixedButton link="/v3">Get Started</PrimaryFixedButton>
           </div>
           <div className="flex justify-center md:w-1/2">
-            <div className="lg:h-[482px] lg:w-[482px]">
-              <Lottie
-                options={{
-                  animationData,
-                  loop: false,
-                  rendererSettings: {
-                    preserveAspectRatio: 'xMidYMid slice',
-                  },
-                }}
-                isClickToPauseDisabled={true}
-              />
-            </div>
+            <LocalizedLink to="/v3">
+              <div className="lg:h-[430px] lg:w-[430px] lg:mt-8">
+                <Lottie
+                  options={{
+                    animationData,
+                    loop: false,
+                    rendererSettings: {
+                      preserveAspectRatio: 'xMidYMid slice',
+                    },
+                  }}
+                  isClickToPauseDisabled={true}
+                />
+              </div>
+            </LocalizedLink>
           </div>
         </div>
       </Section>
@@ -165,7 +167,6 @@ export default function Index() {
           >
             <LocalizedLink to="/playground">
               <StaticImage
-                className="duration-150 ease-in-out hover:opacity-50"
                 backgroundColor="transparent"
                 src="../images/playground-hero.png"
                 alt="Substrate Playground"
@@ -186,14 +187,14 @@ export default function Index() {
             needs.
           </div>
         </div>
-        <div className="md:flex md:justify-start xl:justify-evenly">
+        <div className="md:flex md:justify-start xl:justify-between">
           <ExploreDocs />
         </div>
       </Section>
       {/* Connect With Community Section */}
       <Section>
         <div className="flex flex-col md:flex-row md:items-center lg:mb-4">
-          <div className="lg:m-0 md:w-1/2 md:px-5 lg:px-10">
+          <div className="lg:m-0 md:w-1/2">
             <div className="text-4xl xl:text-6xl 2xl:text-7xl font-extrabold mb-8">
               Connect with <br /> the community
             </div>
@@ -212,7 +213,9 @@ export default function Index() {
             />
           </div>
         </div>
-        <CommunityCard />
+        <div className="sm:flex sm:flex-col lg:flex-row sm:items-center  xl:justify-between">
+          <CommunityCard />
+        </div>
       </Section>
       <ExploreLinkSection links={['technology', 'vision', 'ecosystem']} />
     </Layout>
