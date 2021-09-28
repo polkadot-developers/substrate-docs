@@ -24,7 +24,7 @@ export default function Index() {
     <Layout>
       <SEO title="Developers Home" />
       <Section>
-        <div className="flex flex-col md:flex-row md:items-center mt-10">
+        <div className="flex flex-col md:flex-row md:items-center mt-10 doc-hero">
           <div className="lg:m-0 mb-10 md:w-1/2 md:px-5 lg:px-10">
             <div className="text-5xl lg:text-6xl font-extrabold mb-6">
               Substrate <br /> Developer Hub
@@ -40,20 +40,20 @@ export default function Index() {
             <PrimaryFixedButton link="/v3">Get Started</PrimaryFixedButton>
           </div>
           <div className="flex justify-center md:w-1/2">
-            <LocalizedLink to="/v3">
-              <div className="lg:h-[430px] lg:w-[430px] lg:mt-8">
-                <Lottie
-                  options={{
-                    animationData,
-                    loop: false,
-                    rendererSettings: {
-                      preserveAspectRatio: 'xMidYMid slice',
-                    },
-                  }}
-                  isClickToPauseDisabled={true}
-                />
-              </div>
-            </LocalizedLink>
+            {/* <LocalizedLink to="/v3"> */}
+            <div className="lg:h-[430px] lg:w-[430px] lg:mt-8">
+              <Lottie
+                options={{
+                  animationData,
+                  loop: false,
+                  rendererSettings: {
+                    preserveAspectRatio: 'xMidYMid slice',
+                  },
+                }}
+                isClickToPauseDisabled={true}
+              />
+            </div>
+            {/* </LocalizedLink> */}
           </div>
         </div>
       </Section>
