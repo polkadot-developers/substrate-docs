@@ -15,6 +15,8 @@ blockchain's [state](/v3/getting-started/glossary#state) as well as the
 [functions](/v3/concepts/extrinsics) that allow blockchain users to make
 changes to this state.
 
+![substrate-runtime-client](/img/docs/concepts/substrate-runtime-client.png)
+
 Each Substrate node contains a runtime. The runtime contains the business logic of the chain. It 
 defines what transactions are valid and invalid and determines how the chain's state changes in 
 response to transactions. The "outer node", everything other than the runtime, does not compile 
@@ -24,31 +26,33 @@ world. While performing these tasks, the outer node sometimes needs to query the
 information, or provide information to the runtime. A Runtime API facilitates this kind of 
 communication between the outer node and the runtime. 
 
+## Runtime APIs
+
 In Substrate, the `sp_api` crate provides an interface to implement a runtime API. It is designed to give 
 developers the ability to define their own custom runtime APIs using the [`impl_runtime_apis`](/rustdocs/latest/sp_api/macro.impl_runtime_apis.html) 
 macro. However, every runtime must implement the [`Core`](/rustdocs/latest/sp_api/trait.Core.html) and 
-[`Metadata`](/rustdocs/latest/sp_api/trait.Metadata.html) runtime APIs. In addtion to these, a basic Substrate Node
+[`Metadata`](/rustdocs/latest/sp_api/trait.Metadata.html) runtime APIs. In addition to these, a basic Substrate Node
 has the following runtime APIs implemented:
-- [`BlockBuilder`](/rustdocs/latest/sp_block_builder/trait.BlockBuilder.html)
-- [`TaggedTransactionQueue`](/rustdocs/latest/sp_transaction_pool/runtime_api/trait.TaggedTransactionQueue.html)
-- [`OffchainWorkerApi`](/rustdocs/latest/sp_offchain/trait.OffchainWorkerApi.html)
-- [`AuraApi`](/rustdocs/latest/sp_consensus_aura/trait.AuraApi.html)
-- [`SessionKeys`](/rustdocs/latest/sp_session/trait.SessionKeys.html)
-- [`GrandpaApi`](/rustdocs/latest/sp_finality_grandpa/trait.GrandpaApi.html)
-- [`AccountNonceApi`](/rustdocs/latest/frame_system_rpc_runtime_api/trait.AccountNonceApi.html)
-- [`TransactionPaymentApi`](/rustdocs/latest/pallet_transaction_payment_rpc_runtime_api/trait.TransactionPaymentApi.html)
-- [`Benchmark`](/rustdocs/latest/frame_benchmarking/trait.Benchmark.html)
+- [`BlockBuilder`](/rustdocs/latest/sp_block_builder/trait.BlockBuilder.html): Provides the functionality required for building a block.
+- [`TaggedTransactionQueue`](/rustdocs/latest/sp_transaction_pool/runtime_api/trait.TaggedTransactionQueue.html): Handles validating transactions in the transaction queue.
+- [`OffchainWorkerApi`](/rustdocs/latest/sp_offchain/trait.OffchainWorkerApi.html): Handles [off-chain capabilities](/v3/concepts/off-chain-features).
+- [`AuraApi`](/rustdocs/latest/sp_consensus_aura/trait.AuraApi.html): Handles block authorship with [Aura consensus](/v3/advanced/consensus#aura).
+- [`SessionKeys`](/rustdocs/latest/sp_session/trait.SessionKeys.html): Generates and decodes [session keys](/v3/concepts/session-keys).
+- [`GrandpaApi`](/rustdocs/latest/sp_finality_grandpa/trait.GrandpaApi.html): Integrates the [GRANDPA](/v3/advanced/consensus#grandpa) finality gadget into the runtime.
+- [`AccountNonceApi`](/rustdocs/latest/frame_system_rpc_runtime_api/trait.AccountNonceApi.html): Handles querying transaction indices.
+- [`TransactionPaymentApi`](/rustdocs/latest/pallet_transaction_payment_rpc_runtime_api/trait.TransactionPaymentApi.html): Handles querying information about transactions.
+- [`Benchmark`](/rustdocs/latest/frame_benchmarking/trait.Benchmark.html): Provides a way to [benchmark](/v3/runtime/benchmarking) a FRAME runtime.
 
 
-In order to provide its defining forkless runtime upgrade capabilities, Substrate uses runtimes that
+In order to provide its defining forkless runtime upgrade capabilities, Substrate runtimes
 are built as [WebAssembly (Wasm)](/v3/getting-started/glossary#webassembly-wasm)
 bytecode. Substrate also defines the core primitives that the runtime must implement.
 
 ## Core Primitives
 
 The Substrate framework makes minimal assumptions about what your runtime must provide to the other
-layers of Substrate. They are mandatory to define and must fulfill a particular interface in order
-to work within the Substrate framework.
+layers of Substrate. But there are a few data types need to be defined and must fulfill a particular
+interface in order to work within the Substrate framework.
 
 They are:
 
@@ -64,7 +68,7 @@ They are:
 
 - `Extrinsic`: A type to represent a single piece of data external to the blockchain that is
   recognized by the blockchain. This typically involves one or more signatures, and some sort of
-  encoded instruction (e.g. for transferring ownership of funds or calling into a smart contract).
+  encoded instructions (e.g. for transferring ownership of funds or calling into a smart contract).
 
 - `Header`: A type which is representative (cryptographically or otherwise) of all information
   relevant to a block. It includes the parent hash, the storage root and the extrinsics trie root,
@@ -82,14 +86,13 @@ The core Substrate codebase ships with [FRAME](/v3/runtime/frame), Parity's syst
 for Substrate runtime development that is used for chains like
 [Kusama](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/lib.rs) and
 [Polkadot](https://github.com/paritytech/polkadot/blob/master/runtime/polkadot/src/lib.rs). FRAME
-defines additional runtime primitives and
-provides a framework that makes it easy to construct a runtime by composing modules, called
-[pallets](/v3/runtime/frame#pallets). Each pallet encapsulates domain-specific logic that is expressed as a set of a
-[storage items](/v3/runtime/storage), [events](/v3/runtime/events-and-errors),
-[errors](/v3/runtime/events-and-errors) and
+defines additional runtime primitives and provides a framework that makes it easy to construct a
+runtime by composing modules, called [pallets](/v3/runtime/pallets). Each pallet encapsulates
+domain-specific logic that is expressed as a set of a [storage items](/v3/runtime/storage),
+[events](/v3/runtime/events), [errors](/v3/runtime/errors) and
 [dispatchable functions](/v3/getting-started/glossary#dispatch). FRAME developers
-can [create their own pallets](/v3/runtime/frame#pallets) and reuse existing pallets,
-including [over 50 that ship with Substrate](/v3/runtime/frame#prebuilt-pallets).
+can [create their own pallets](/v3/runtime/pallets) and reuse existing pallets,
+including [over 50 of those shipped with Substrate](/v3/runtime/frame#prebuilt-pallets).
 
 ![Runtime Composition](../../../../src/images/docs/concepts/frame-runtime.png)
 
@@ -99,12 +102,12 @@ FRAME. These are:
 - `Call`: The dispatch type that can be called via an extrinsic.
 
 - `Origin`: Represents where a call came from. For example, a signed message (a transaction), an
-  unsigned message (an inherent extrinsic), and a call from the runtime itself (a root call).
+  unsigned message (an inherent extrinsic), or a call from the runtime itself (a root call).
 
 - `Index`: An account index (aka nonce) type. This stores the number of previous transactions
   associated with a sender account.
 
-- `Hashing`: The hashing system (algorithm) being used in the runtime (e.g. Blake2).
+- `Hashing`: The hashing algorithm being used in the runtime (e.g. Blake2).
 
 - `AccountId`: The type used to identify user accounts in the runtime.
 
