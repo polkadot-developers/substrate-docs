@@ -92,6 +92,8 @@ use sp_runtime::print;
 ```
 
 ```rust
+#[frame_support::pallet]
+pub mod pallet {
 	// The pallet's errors
 	#[pallet::error]
 	pub enum Error<T> {
@@ -100,14 +102,14 @@ use sp_runtime::print;
 		/// Value reached maximum and cannot be incremented further
 		StorageOverflow,
 	}
-}
 
-impl<T: Config> Printable for Error<T> {
-	fn print(&self) {
-		match self {
-			Error::NoneValue => "Invalid Value".print(),
-			Error::StorageOverflow => "Value Exceeded and Overflowed".print(),
-			_ => "Invalid Error Case".print(),
+	impl<T: Config> Printable for Error<T> {
+		fn print(&self) {
+			match self {
+				Error::NoneValue => "Invalid Value".print(),
+				Error::StorageOverflow => "Value Exceeded and Overflowed".print(),
+				_ => "Invalid Error Case".print(),
+			}
 		}
 	}
 }

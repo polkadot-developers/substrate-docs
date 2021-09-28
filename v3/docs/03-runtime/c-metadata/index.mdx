@@ -291,18 +291,18 @@ For example:
 
 ```rust
 #[pallet::call]
-	impl<T: Config> Pallet<T> {
+impl<T: Config> Pallet<T> {
 
-		/// This function does some thing.
-    ///
-    /// All documentation details go here.
-		pub(super) fn do_something(
-            origin: OriginFor<T>,
-            #[pallet::compact] thing: T::Something
-            ) -> DispatchResultWithPostInfo {
-      // ... snip
-    }
+  /// This function does some thing.
+  ///
+  /// All documentation details go here.
+  pub(super) fn do_something(
+    origin: OriginFor<T>,
+    #[pallet::compact] thing: T::Something
+  ) -> DispatchResultWithPostInfo {
+    // ... snip
   }
+}
 ```
 
 This materializes in the metadata as follows:
@@ -332,14 +332,14 @@ This metadata snippet is generated from this declaration in `frame-system`:
 
 ```rust
 #[pallet::event]
-	#[pallet::metadata(T::AccountId = "AccountId")]
-	pub enum Event<T: Config> {
-    /// An extrinsic completed successfully.
-		ExtrinsicSuccess(DispatchInfo, T::AccountId),
-    /// An extrinsic failed.
-		ExtrinsicFailed(DispatchError, DispatchInfo),
-    // ... snip
-	}
+#[pallet::metadata(T::AccountId = "AccountId")]
+pub enum Event<T: Config> {
+  /// An extrinsic completed successfully.
+  ExtrinsicSuccess(DispatchInfo, T::AccountId),
+  /// An extrinsic failed.
+  ExtrinsicFailed(DispatchError, DispatchInfo),
+  // ... snip
+}
 
 ```
 
