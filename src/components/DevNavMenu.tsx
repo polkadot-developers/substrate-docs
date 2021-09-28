@@ -212,7 +212,13 @@ const DevNavMenu = {
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-try-runtime' })}`,
-            link: '/v3/tools/try-runtime',
+            link: '/v3/toolchains/try-runtime',
+          },
+          {
+            title: `${intl.formatMessage({
+              id: 'docs-menu-substrate-connect',
+            })}`,
+            link: '/v3/toolchains/substrate-connect',
           },
         ],
       },
