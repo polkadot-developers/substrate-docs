@@ -90,6 +90,10 @@ const DevNavMenu = {
             link: '/v3/concepts/weight',
           },
           {
+            title: `${intl.formatMessage({ id: 'docs-menu-execution' })}`,
+            link: '/v3/concepts/execution',
+          },
+          {
             title: `${intl.formatMessage({
               id: 'docs-menu-offchain-features',
             })}`,
@@ -100,10 +104,6 @@ const DevNavMenu = {
       {
         name: `${intl.formatMessage({ id: 'docs-menu-runtime' })}`,
         items: [
-          {
-            title: `${intl.formatMessage({ id: 'docs-menu-pallets' })}`,
-            link: '/v3/runtime/pallets',
-          },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-frame' })}`,
             link: '/v3/runtime/frame',
@@ -129,16 +129,8 @@ const DevNavMenu = {
             link: '/v3/runtime/origins',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-execution' })}`,
-            link: '/v3/runtime/execution',
-          },
-          {
             title: `${intl.formatMessage({ id: 'docs-menu-events' })}`,
-            link: '/v3/runtime/events',
-          },
-          {
-            title: `${intl.formatMessage({ id: 'docs-menu-errors' })}`,
-            link: '/v3/runtime/errors',
+            link: '/v3/runtime/events-and-errors',
           },
           {
             title: `${intl.formatMessage({
@@ -163,6 +155,10 @@ const DevNavMenu = {
             link: '/v3/runtime/randomness',
           },
           {
+            title: `${intl.formatMessage({ id: 'docs-menu-chain-specs' })}`,
+            link: '/v3/runtime/chain-specs',
+          },
+          {
             title: `${intl.formatMessage({ id: 'docs-menu-upgrades' })}`,
             link: '/v3/runtime/upgrades',
           },
@@ -170,63 +166,53 @@ const DevNavMenu = {
             title: `${intl.formatMessage({ id: 'docs-menu-coupling' })}`,
             link: '/v3/runtime/pallet-coupling',
           },
-        ],
-      },
-      {
-        name: `${intl.formatMessage({ id: 'docs-menu-smart-contracts' })}`,
-        items: [
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-sc-overview' })}`,
-            link: '/v3/smart-contracts/overview',
+            title: `${intl.formatMessage({ id: 'docs-menu-rpcs' })}`,
+            link: '/v3/runtime/custom-rpcs',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'docs-menu-contracts-pallet',
-            })}`,
-            link: '/v3/smart-contracts/contracts-pallet',
-          },
-          {
-            title: `${intl.formatMessage({
-              id: 'docs-menu-evm-pallet',
-            })}`,
-            link: '/v3/smart-contracts/evm-pallet',
-          },
-          {
-            title: `${intl.formatMessage({ id: 'docs-menu-sc-faq' })}`,
-            link: '/v3/smart-contracts/faq',
+            title: `${intl.formatMessage({ id: 'docs-menu-smart-contracts' })}`,
+            link: '/v3/runtime/smart-contracts',
           },
         ],
       },
       {
-        name: `${intl.formatMessage({ id: 'docs-menu-integrate' })}`,
+        name: `${intl.formatMessage({ id: 'docs-menu-integration' })}`,
         items: [
           {
             title: `${intl.formatMessage({ id: 'docs-menu-polkadot-js' })}`,
-            link: '/v3/toolchains/polkadot-js',
+            link: '/v3/integration/polkadot-js',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-client-libraries',
             })}`,
-            link: '/v3/toolchains/client-libraries',
+            link: '/v3/integration/client-libraries',
           },
           {
+            title: `${intl.formatMessage({
+              id: 'docs-menu-substrate-connect',
+            })}`,
+            link: '/v3/integration/substrate-connect',
+          },
+        ],
+      },
+      {
+        name: `${intl.formatMessage({ id: 'docs-menu-tools' })}`,
+        items: [
+          {
             title: `${intl.formatMessage({ id: 'docs-menu-subkey' })}`,
-            link: '/v3/toolchains/subkey',
+            link: '/v3/tools/subkey',
           },
           {
             title: `${intl.formatMessage({
               id: 'docs-menu-memory-profiling',
             })}`,
-            link: '/v3/toolchains/memory-profiling',
-          },
-          {
-            title: `${intl.formatMessage({ id: 'docs-menu-chain-specs' })}`,
-            link: '/v3/toolchains/chain-specs',
+            link: '/v3/tools/memory-profiling',
           },
           {
             title: `${intl.formatMessage({ id: 'docs-menu-try-runtime' })}`,
-            link: '/v3/toolchains/try-runtime',
+            link: '/v3/tools/try-runtime',
           },
         ],
       },
