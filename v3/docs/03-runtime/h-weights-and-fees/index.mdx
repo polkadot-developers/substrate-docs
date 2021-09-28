@@ -181,7 +181,7 @@ fn my_dispatchable() {
 Dispatches in this class represent normal user-triggered transactions. These types of dispatches may
 only consume a portion of a block's total weight limit; this portion can be found by examining the
 [`AvailableBlockRatio`](/rustdocs/latest/frame_system/limits/struct.BlockLength.html#method.max_with_normal_ratio).
-Normal dispatches are sent to the [transaction pool](../../concepts/tx-pool).
+Normal dispatches are sent to the [transaction pool](/v3/concepts/tx-pool).
 
 #### Operational Dispatches
 
@@ -195,7 +195,7 @@ Dispatches in this class are given maximum priority and are exempt from paying t
 
 Mandatory dispatches will be included in a block even if they cause the block to surpass its weight
 limit. This dispatch class may only be applied to
-[inherents](../../concepts/extrinsics#inherents) and is intended to represent functions that are
+[inherents](/v3/concepts/extrinsics#inherents) and is intended to represent functions that are
 part of the block validation process. Since these kinds of dispatches are always included in a block
 regardless of the function weight, it is critical that the function's validation process prevents
 malicious validators from abusing the function in order to craft blocks that are valid but
@@ -226,7 +226,7 @@ fn handle_users(origin, calls: Vec<User>) {
 
 Depending on the execution logic, a dispatchable may consume less weight than was prescribed
 pre-dispatch. Why this is useful is explained in the
-[weights article](../../concepts/weight#post-dispatch-weight-correction). In order to correct
+[weights article](/v3/concepts/weight#post-dispatch-weight-correction). In order to correct
 weight, the dispatchable declares a different return type and then returns its actual weight:
 
 ```rust
@@ -395,7 +395,7 @@ the weight functions for dispatchables in their worst case scenarios, within a c
 
 ### Learn More
 
-- Dedicated [weight documentation](../../concepts/weight)
+- Dedicated [weight documentation](/v3/concepts/weight)
 - [Example module](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
 - [SignedExtension](/rustdocs/latest/sp_runtime/traits/trait.SignedExtension.html)
 
