@@ -91,7 +91,7 @@ chain spec, and then use it.
 ### Developing a Runtime
 
 Nearly every Substrate runtime will have storage items that need to be configured at genesis. When
-developing with [FRAME](../../runtime/frame), any storage item that is declared with the `config()`
+developing with [FRAME](/v3/runtime/frame), any storage item that is declared with the `config()`
 option requires configuration at genesis. It is the job of the chain spec, specifically the genesis
 portion, to configure such storage values.
 
@@ -129,7 +129,7 @@ Substrate node's chainspec json.
 ```
 
 Before this spec can be used to initialize a node's genesis storage, the human-readable keys must be
-transformed into actual storage keys for the [storage trie](../../advanced/storage). This
+transformed into actual storage keys for the [storage trie](/v3/advanced/storage). This
 transformation is straight-forward, but it requires that the node's runtime be able to understand
 the chain spec.
 

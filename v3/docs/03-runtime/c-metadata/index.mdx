@@ -104,7 +104,7 @@ The response has the following format:
 }
 ```
 
-The `result` field contains the blockchain metadata as a [SCALE-encoded](../../advanced/scale-codec)
+The `result` field contains the blockchain metadata as a [SCALE-encoded](/v3/advanced/scale-codec)
 hexadecimal string. The example above represents the actual value that is returned for block
 1,768,321; you can check for yourself by using a WebSocket client to query a node. Continue reading
 to learn more about the format of this encoded blob as well as
@@ -172,7 +172,7 @@ As described above, the integer `1635018093` is a "magic number" that represents
 text. The rest of the metadata has two sections: `modules` and `extrinsic`. The `modules` section
 contains information about the runtime's pallets, while the extrinsic section describes the version
 of extrinsics that the runtime is using. Different extrinsic versions may have different formats,
-especially when considering [signed extrinsics](../../concepts/extrinsics).
+especially when considering [signed extrinsics](/v3/concepts/extrinsics).
 
 #### Modules
 
@@ -451,7 +451,7 @@ the [`InvalidSpecName` error](/rustdocs/latest/frame_system/pallet/enum.Error.ht
 ### Learn More
 
 - [Storage](../storage)
-- [SCALE](../../advanced/scale-codec)
+- [SCALE](/v3/advanced/scale-codec)
 - [Macros](../macros)
 - [Events](../events-and-errors)
 - [Extrinsics](../../concepts/extrinsics)
