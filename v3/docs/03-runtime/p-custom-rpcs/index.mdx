@@ -17,14 +17,16 @@ In many cases it is useful to add custom RPCs to your node.
 
 In order to connect custom RPCs you must provide a function known as an "RPC extension builder". 
 This function takes a parameter for whether the node should deny unsafe RPC calls, and returns 
-an [`IoHandler`](/rustdocs/latest/node_rpc/type.IoHandler.html) that the node needs to create a JSON RPC. For more context, read more 
-by looking at the [`RpcExtensionBuilder` trait API](/rustdocs/latest/sc_service/trait.RpcExtensionBuilder.html) documentation.
+an [`IoHandler`](/rustdocs/latest/node_rpc/type.IoHandler.html) that the node needs to create a
+JSON RPC. For more context, read more by looking at the
+[`RpcExtensionBuilder` trait API](/rustdocs/latest/sc_service/trait.RpcExtensionBuilder.html)
+documentation.
 
 ## RPC Types 
 
-RPCs can be interfaces to a node's consensus mechanisms, or interfaces for any outside user to submit transactions
-to the blockchain.
-In all cases, it's important to consider what endpoints and types of RPCs to expose.
+RPCs can be interfaces to a node's consensus mechanisms, or interfaces with any outside user to
+submit transactions to the blockchain. In all cases, it's important to consider what endpoints
+RPCs expose.
 
 Launch a node and run this command to see a full list of your node's RPC APIs:
 
@@ -64,13 +66,16 @@ These RPCs are declared by using the \`#[rpc(name = "rpc_method")]\` macro, wher
 corresponding to [\`submit_extrinsic\`](/rustdocs/latest/sc_rpc/author/trait.AuthorApi.html#tymethod.submit_extrinsic).`}
 /> 
 
-It's critical to filter out these kind of calls if the requests are coming from untrusted users. The way to do it is through a [JSON-RPC](/v3/getting-started/glossary#json-rpc) proxy that is 
-able to inspect calls and only pass through whitelisted set of APIs.
+It's critical to filter out these kind of calls if the requests are coming from untrusted users.
+The way to do it is through a [JSON-RPC](/v3/getting-started/glossary#json-rpc) proxy that is
+able to inspect calls and only pass allowed-set of APIs.
 
 ## RPCs for `remote_externalities`
 
-There exists a special type of using RPCs in the context of `remote_externalities`. [This `rpc_api`](/rustdocs/latest/remote_externalities/rpc_api/index.html)
-allows you to make one-off RPC calls to a Substrate node, useful for testing purposes with tools like [`try-runtime`](/v3/toolchains/try-runtime) for example.
+There exists a special type of using RPCs in the context of `remote_externalities`.
+[This `rpc_api`](/rustdocs/latest/remote_externalities/rpc_api/index.html) allows you to make
+one-off RPC calls to a Substrate node, useful for testing purposes with tools like
+[`try-runtime`](/v3/toolchains/try-runtime) for example.
 
 ## Endpoints
 
@@ -79,8 +84,9 @@ When starting any Substrate node, these two endpoints are made available to you:
 - HTTP Endpoint: http://localhost:9933/
 - Websocket Endpoint: ws://localhost:9944/
 
-Most of the Substrate front-end libraries and tools use the more powerful WebSocket endpoint to interact with the blockchain. Through WebSockets, you can subscribe to 
-various items, like events, and receive push notifications whenever changes in your blockchain occur.
+Most of the Substrate front-end libraries and tools use the more powerful WebSocket endpoint to
+interact with the blockchain. Through WebSockets, you can subscribe to the chain states, such as
+events, and receive push notifications whenever changes in your blockchain occur.
 
 To call the `Metadata` endpoint, run this command alongside a running node:
 
@@ -88,10 +94,11 @@ To call the `Metadata` endpoint, run this command alongside a running node:
 curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "state_getMetadata"}' http://localhost:9933/
 ```
 
-The return value of this command is not in human readable format. For that, it needs to use the [SCALE codec](/v3/advanced/scale-codec) encoding scheme.
+The return value of this command is not in human readable format. For that, it needs to use the
+[SCALE codec](/v3/advanced/scale-codec) encoding scheme.
 
-Each storage item has a relative storage key associated to it which is used to [query storage](/v3/advanced/storage#querying-storage). This is how
-RPC endpoints know where to look.
+Each storage item has a relative storage key associated to it which is used to
+[query storage](/v3/advanced/storage#querying-storage). This is how RPC endpoints know where to look.
 
 ## Examples
 
