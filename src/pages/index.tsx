@@ -27,10 +27,10 @@ export default function Index() {
         <div className="flex flex-col md:flex-row md:items-center px-6">
           <div className="lg:m-0 mb-10 md:w-1/2 md:px-5 lg:px-10">
             <div className="text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-6">
-              Substrate <br /> Develop Hub
+              Substrate <br /> Developer Hub
             </div>
             <h4 className="text-xl xl:text-3xl font-semibold">
-              Your path to runtime engineering starts here
+              The center of knowledge
             </h4>
             <p className="max-w-lg">
               Substrate is powered by best-in-class cryptographic research and
@@ -76,7 +76,9 @@ export default function Index() {
         </div>
         <div className="h-full relative">
           <div className="text-center mb-16">
-            <h1>Learn Substrate</h1>
+            <div className="text-5xl xl:text-7xl font-extrabold mb-3">
+              Learn Substrate
+            </div>
             <h4 className="text-xl xl:text-3xl font-semibold">
               Substrate developer knowledge base
             </h4>
@@ -91,7 +93,7 @@ export default function Index() {
             />
             <DocCard
               title={`How-To Guides`}
-              text={`Browse through the collection of how-to guides to help you solve common problems to building Substrate blockchains. Refer to these to learn the patterns that will help you become a better runtime engineer.`}
+              text={`The Substrate how-to guides have everything you need to produce a robust blockchains and parachains. From beginner to expert, you can use them flexibly to suit your current needs.`}
               link={`/how-to-guides`}
               cta={`Learn and contribute`}
               iconName={`htgIcon`}
@@ -99,9 +101,9 @@ export default function Index() {
             />
             <DocCard
               title={`Tutorials`}
-              text={`Create your first Substrate chain, perform a forkless upgrade, and more. These tutorials are designed to help developers getting started with Substrate get up to speed with the basics. Use these to dive right into learning Substrate in a fun and engaging way.`}
+              text={`Create your first Substrate chain, perform a forkless upgrade, and more. This selection of tutorials can lead you through the process in sessions up to two hours.`}
               link={`/tutorials`}
-              cta={`MISSING CTA`}
+              cta={`Dive in`}
               iconName={`tutsIcon`}
               animationDelay={400}
             />
@@ -122,10 +124,11 @@ export default function Index() {
               Set up a cloud sandbox
             </h4>
             <p className="max-w-lg">
-              Skip the dependency installs and hack on a running Substrate Node
-              straight from your browser. Useful for hosting developer workshops
-              or following tutorials, using a sandbox allows you to skip the
-              preliminary set-up stages and experiment right away.
+              We recommend picking a sandbox, particularly if you&apos;re just
+              getting started. Building on Substrate requires different pieces
+              of technology. Useful for hosting Substrate developer workshops or
+              following tutorials, using a sandbox allows you to skip the
+              preliminary set-up to get to the parts most important to you.
             </p>
             <div className="my-8">
               <button className="duration-150 ease-in hover:opacity-50">
@@ -207,7 +210,7 @@ export default function Index() {
             <p className="max-w-lg">
               Network, share and learn from others who speak your (tech)
               language! Join in the conversation & keep up with the latest
-              developments. NEED MORE TEXT HERE!!!!!
+              developments.
             </p>
           </div>
           <div className="flex justify-center md:w-1/2">

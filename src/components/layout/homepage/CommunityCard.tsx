@@ -18,7 +18,7 @@ export default function CommunityCard() {
     {
       title: 'Contact',
       description:
-        'cryptographic research and comes with peer-to-peer networking, consensus. MISSING COPY',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et',
       headingOne: 'Join the conversation',
       iconOne: 'elementOrg',
       linkTextOne: 'Element',
@@ -44,7 +44,7 @@ export default function CommunityCard() {
     {
       title: 'Hackathons & Grants',
       description:
-        'cryptographic research and comes with peer-to-peer networking, consensus. MISSING COPY',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et',
       headingOne: 'Rise to the challenge',
       iconOne: 'ideCode',
       linkTextOne: 'Hackathon',
