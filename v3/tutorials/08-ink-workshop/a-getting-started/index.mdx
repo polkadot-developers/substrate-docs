@@ -245,7 +245,7 @@ you can start a local development chain by running:
 substrate-contracts-node --dev --tmp
 ```
 
-![Substrate Smart Contracts Node](../0-assets/start-canvas-node.png)
+![Substrate Smart Contracts Node](/assets/tutorials/ink-workshop/start-canvas-node.png)
 
 You should start seeing blocks being produced by your node in your terminal.
 
@@ -255,7 +255,7 @@ to interact with your node. You first need to configure the UI to connect to it:
 - Click on the dropdown selector at bottom left corner.
 - Choose the Local Node.
 
-![Connect to local node](../0-assets/canvas-connect-to-local.png)
+![Connect to local node](/assets/tutorials/ink-workshop/canvas-connect-to-local.png)
 
 ## Deploying your Contract
 
@@ -294,7 +294,7 @@ which is usually why we upload the contract code in the first place):
 & drop area. You will see the UI parse the metadata and showing what functions the contract contains.
 - Click the **Constructor Details**
 
-![Flipper Instantiate Contract 01](../0-assets/flipper-instantiate-01.png)
+![Flipper Instantiate Contract 01](/assets/tutorials/ink-workshop/flipper-instantiate-01.png)
 
 ### 2. Instantiate a Contract on the Blockchain
 
@@ -311,7 +311,7 @@ instantiate a copy of the smart contract:
 Allowed** of `200000`.
 - Click on `Instantiate`
 
-![Flipper Instantiate Contract 02](../0-assets/flipper-instantiate-02.png)
+![Flipper Instantiate Contract 02](/assets/tutorials/ink-workshop/flipper-instantiate-02.png)
 
 > **Note:** As mentioned earlier, contract creation involves creation of a new account. As such, you
 must be sure to give the contract account at least the existential deposit defined by your
@@ -324,7 +324,7 @@ the extrinsic `contracts.instantiateWithCode` is called, and a flurry of events 
 creation of a new account (`system.NewAccount`) and the instantiation of the contract
 (`contracts.Instantiated`):
 
-![Flipper Instantiate Contract 03](../0-assets/flipper-instantiate-03.png)
+![Flipper Instantiate Contract 03](/assets/tutorials/ink-workshop/flipper-instantiate-03.png)
 
 ## Calling your Contract
 
@@ -343,7 +343,7 @@ values for the other options.
 
 Press **"Call"** and confirm that it returns the value `false`:
 
-![An image of Flipper RPC call with false](../0-assets/flipper-false.png)
+![An image of Flipper RPC call with false](/assets/tutorials/ink-workshop/flipper-false.png)
 
 <Message
   type={`gray`}
@@ -363,11 +363,11 @@ The alternative message to send with the UI is `flip()`. Again, accept the defau
 
 You will notice that the `flip()` message defaults to a transaction call.
 
-![An image of a Flipper transaction](../0-assets/send-as-transaction.png)
+![An image of a Flipper transaction](/assets/tutorials/ink-workshop/send-as-transaction.png)
 
 If the transaction was successful, we should then be able to go back to the `get()` function and see our updated storage:
 
-![An image of Flipper RPC call with true](../0-assets/flipper-true.png)
+![An image of Flipper RPC call with true](/assets/tutorials/ink-workshop/flipper-true.png)
 
 Woohoo! You deployed your first smart contract!
 
@@ -421,7 +421,7 @@ you may have done before on your node.
 When interacting with contracts using the Canvas UI, you have the option to submit your call as a
 transaction or as a RPC:
 
-![An image of submitting with transaction or RPC](../0-assets/send-as.png)
+![An image of submitting with transaction or RPC](/assets/tutorials/ink-workshop/send-as.png)
 
 When you send as a transaction, it should be exactly as you expect. A transaction is submitted to
 the contract, a fee is deducted from your account, and the state of your blockchain can change. In
