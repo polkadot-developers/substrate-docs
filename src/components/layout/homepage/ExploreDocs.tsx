@@ -7,7 +7,7 @@ export default function ExploreDocs() {
     {
       name: 'Ways To Build',
       cta: 'Get started',
-      link: '/v3/getting-started/overview',
+      link: '/v3',
       items: [
         {
           name: 'FRAME',
@@ -23,7 +23,7 @@ export default function ExploreDocs() {
         },
         {
           name: 'Parachain capabilities',
-          link: '#',
+          link: '/v3/runtime/parachain-capabilities',
           description:
             'Jump right into the technical components required to build a parachain.',
         },
@@ -32,11 +32,11 @@ export default function ExploreDocs() {
     {
       name: 'Learn The Fundamentals',
       cta: 'More key concepts',
-      link: '/v3/concepts/runtime',
+      link: '/v3/concepts/',
       items: [
         {
           name: 'Accounts',
-          link: '/v3/advanced/account-info',
+          link: '/v3/concepts/account-abstractions',
           description:
             'Explore the basics of Substrate’s FRAME and start creating your custom pallets.',
         },
@@ -63,7 +63,7 @@ export default function ExploreDocs() {
     {
       name: 'Tools and Integration',
       cta: 'More tools',
-      link: '/v3/toolchains/polkadot-js',
+      link: '/tools',
       items: [
         {
           name: 'Polkadot JS',
@@ -73,19 +73,13 @@ export default function ExploreDocs() {
         },
         {
           name: 'Substrate Connect',
-          link: '#',
+          link: '/v3/toolchains/substrate-connect',
           description:
             'Light client tools to connect runtimes to end-users applications  without a third-party service.',
         },
         {
-          name: 'Transaction Weights',
-          link: '/v3/concepts/weight',
-          description:
-            'Understand how benchmarking and weights are used to calculate transaction fees. ',
-        },
-        {
           name: 'Tx Wrapper ',
-          link: '#',
+          link: '/v3/toolchains/tx-wrapper',
           description:
             'Publish libraries to create chain specific offline transactions.',
         },
