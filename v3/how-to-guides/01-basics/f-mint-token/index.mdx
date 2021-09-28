@@ -161,7 +161,7 @@ If `checked_sub()` returns `None`, the operation caused an overflow and throws a
 
 ### 4. Include your pallet in your runtime
 
-Refer to [this guide](./pallet-integration) if you’re not yet familiar with this procedure.
+Refer to [this guide](../pallet-integration) if you’re not yet familiar with this procedure.
 
 <Message
   type={`green`}
@@ -171,7 +171,7 @@ Refer to [this guide](./pallet-integration) if you’re not yet familiar with th
     users have unlimited access to writing to storage. Safer approaches include: using configuring 'GenesisConfig' or
     fixing a predetermined maximum value in runtime.
   - **Weights.** All the weights were set to 10_000 in the above code snippets. Learn more about weight
-    configuration in this [basic guide on weights](./basic-tx-weight-calculations).
+    configuration in this [basic guide on weights](../weights).
   - **Origins.** One assumption this guide makes is that the origin will always be the sudo user.
     Origins are a powerful capability in Substrate. Learn more about how they work
     [here](https://substrate.dev/docs/en/knowledgebase/runtime/origin).
@@ -187,7 +187,7 @@ Refer to [this guide](./pallet-integration) if you’re not yet familiar with th
 
 #### How-to guides
 
-- [Configure a runtime constant](./configurable-constants)
+- [Configure a runtime constant](../configurable-constants)
 
 #### Rust docs
 

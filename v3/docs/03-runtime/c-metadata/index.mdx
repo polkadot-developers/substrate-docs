@@ -8,9 +8,9 @@ keywords:
 ---
 
 Blockchains that are built on Substrate expose metadata in order to make it easier to interact with
-them. This metadata is separated by the different [pallets](../pallets) that inform your blockchain.
+them. This metadata is separated by the different [pallets](/v3/runtime/frame#pallets) that inform your blockchain.
 For each module, the metadata provides information about the [storage items](../storage),
-[extrinsic calls](/v3/concepts/extrinsics), [events](../events), constants, and errors that are
+[extrinsic calls](../../concepts/extrinsics), [events](../events-and-errors), constants, and errors that are
 exposed by that module. Substrate automatically generates this metadata for you and makes it
 available through RPC calls.
 
@@ -280,7 +280,7 @@ to get information for a specific storage item.
 
 ##### Dispatchable Calls
 
-Metadata for dispatchable calls includes information about the runtime calls and are defined by the
+Metadata for dispatchable calls includes information about the runtime calls are defined by the
 `#[pallet]` macro. For each call, the metadata includes:
 
 - `name`: Name of the function in the module.
@@ -453,8 +453,8 @@ the [`InvalidSpecName` error](/rustdocs/latest/frame_system/pallet/enum.Error.ht
 - [Storage](../storage)
 - [SCALE](/v3/advanced/scale-codec)
 - [Macros](../macros)
-- [Events](../events)
-- [Extrinsics](/v3/concepts/extrinsics)
+- [Events](../events-and-errors)
+- [Extrinsics](../../concepts/extrinsics)
 
 ### References
 

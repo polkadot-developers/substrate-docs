@@ -350,6 +350,18 @@ const DevNavMenu = {
             })}`,
             link: '/how-to-guides/v3/pallet-design/storage-value',
           },
+          {
+            title: `${intl.formatMessage({
+              id: 'htg-tightly-coupling-pallets',
+            })}`,
+            link: '/how-to-guides/v3/pallet-design/tight-coupling',
+          },
+          {
+            title: `${intl.formatMessage({
+              id: 'htg-loosely-coupling-pallets',
+            })}`,
+            link: '/how-to-guides/v3/pallet-design/loose-coupling',
+          },
         ],
       },
       // 3. Weights.

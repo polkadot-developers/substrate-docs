@@ -49,7 +49,7 @@ directly on storage. Therefore, runtime developers should perform all necessary 
 extrinsic will succeed before mutating storage. If an extrinsic fails mid-execution, previous
 storage mutations will not be reverted.
 
-[Events](../events) that are emitted from an extrinsic are also written to storage. Therefore, you
+[Events](/v3/runtime/events-and-errors) that are emitted from an extrinsic are also written to storage. Therefore, you
 should not emit an event before performing the complementary actions. If an extrinsic fails after an
 event is emitted, the event will not be reverted.
 
@@ -71,7 +71,7 @@ usage of the blockchain.
 ### Learn More
 
 - Learn how you can simulate the orchestration of the Executive module in your
-  [runtime tests](/testing).
+  [runtime tests](/v3/runtime/testing).
 
 ### References
 

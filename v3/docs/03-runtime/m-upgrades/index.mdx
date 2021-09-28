@@ -132,7 +132,7 @@ FRAME storage migrations are implemented by way of
 [the `OnRuntimeUpgrade` trait](/rustdocs/latest/frame_support/traits/trait.OnRuntimeUpgrade.html),
 which specifies a single function, `on_runtime_upgrade`. This function provides a hook that allows
 runtime developers to specify logic that will run immediately _after_ a runtime upgrade but _before_
-any [extrinsics or even the `on_initialize` function](../execution#executing-a-block) has executed.
+any [extrinsics or even the `on_initialize` function](/v3/concepts/execution#executing-a-block) has executed.
 
 ### Preparing for a Migration
 

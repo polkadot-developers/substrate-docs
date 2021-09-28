@@ -52,7 +52,7 @@ does this for you, allowing for some custom configurations to setup networks ver
 
 Note that this isn't a replacement for the manual process, as this script is not a perfect fit for
 all use cases and may fail for yours, so when things go wrong, you know the [manual
-steps](en/1-prep/1-compiling) that this script is executing for you to troubleshoot.
+steps](../pt1#build-environment--compilation) that this script is executing for you to troubleshoot.
 
 Now, let's install the utility script and try it out.
 
@@ -94,14 +94,14 @@ In this exercise, we will launch a **Polkadot relay chain of three nodes and two
 
 1. We first get our Polkadot and Parachain Template cloned, and compiled.
 
-   1. Build Polkadot, instructions [here](/en/1-prep/1-compiling?id=building-the-polkadot-relay-chain-node)
-   2. Build a Parachain, instructions [here](/en/1-prep/1-compiling?id=building-the-parachain-template)
+   1. Build Polkadot, instructions [here](../pt1#2-building-the-polkadot-relay-chain-node)
+   2. Build a Parachain, instructions [here](../pt1#3-building-the-parachain-template)
 
 2. Write a config file for `polkadot-launch` to fit your needs.
    - **Here is one to get us started:**
      <a
        target="_blank"
-       href="shared/polkadot-launch-config/relay-3-validators--2paras-1collator.json"
+       href="/assets/tutorials/cumulus-workshop/polkadot-launch-config/relay-3-validators--2paras-1collator.json"
      >
        relay-3-validators--2paras-1collator.json
      </a>
@@ -343,9 +343,11 @@ In this chapter we have covered about `polkadot-launch` Node utility. You are no
 
 This is a good basis to get to our next subject, actual parachain development.
 
-## Launching a Testnet with Docker
+<!-- FIXME - docker for this is presently not maintained. this was simply copied from the compilation page. Needs to be updated to be used! -->
 
-<!-- fIXME - docker for this is presently not maintained. this was simply copied from the compilation page. Needs to be updated to be used! -->
+<!--
+
+## Launching a Testnet with Docker
 
 If you intend to use this material for a live workshop you may shorten it by cutting steps off of
 the end. If your workshop will not cover writing your own parachains, you may skip all the
@@ -395,6 +397,8 @@ docker run --network host joshyorndorff/cumulus-workshop-parachain-collator --pa
 
 Throughout this workshop when we need to run nodes we will refer to them simply as `polkadot` and
 `parachain-collator`. You will need to transform these commands into appropriate docker commands.
+
+-->
 
 ## Parachain Node Template
 
@@ -472,7 +476,7 @@ that cumulus provides.
   The instructions in the following sections walk through a few basic exercises using the parachain
   template. They may be followed in any order and do not build on one another.
   They assume that you have already
-  [compiled the Parachain Template](../1-prep/1-compiling.md) on your local system. If you haven't,
+  [compiled the Parachain Template](../pt1#3-building-the-parachain-template) on your local system. If you haven't,
   please go back and do that.
   `}
 />
@@ -542,15 +546,15 @@ All parachains will need to register as a parathread first. You will need:
 
 - **5 ROCs** deposit to register a Para ID.
 
-- [Reserve a unique Para ID](en/2-relay-chain/2-reserve). This will be assigned to the next
+- [Reserve a unique Para ID](../pt2#1-reserve-a-para-id). This will be assigned to the next
   available ID. This integer will be greater than `2000`, as `0-999` are reserved for <ExternalLink url="https://wiki.polkadot.network/docs/learn-common-goods#system-level-chains">system parachains</ExternalLink> and 
   `1000-1999` are reserved for <ExternalLink url="https://wiki.polkadot.network/docs/learn-common-goods#public-utility-chains">public utility parachains</ExternalLink>.
 
 - Your parachain genesis state. Refer to the
-  [genesis state export process](en/3-parachains/1-launch.md#generate-parachain-genesis-state).
+  [genesis state export process](../pt2#3-generate-parachain-genesis-state).
 
 - Your parachain Wasm runtime. Refer to the
-  [Wasm runtime export process](en/3-parachains/1-launch.md#obtain-wasm-runtime-validation-function).
+  [Wasm runtime export process](../pt2#4-obtain-wasm-runtime-validation-function).
 
 The procedure will be as followed:
 
