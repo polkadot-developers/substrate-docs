@@ -22,9 +22,9 @@ export default function Index() {
 
   return (
     <Layout>
-      <SEO title="Documentation Home" />
-      <section className="xl:container my-20 md:mt-20 md:mb-36 lg:mb-60">
-        <div className="flex flex-col md:flex-row md:items-center px-6">
+      <SEO title="Developers Home" />
+      <Section>
+        <div className="flex flex-col md:flex-row md:items-center mt-10">
           <div className="lg:m-0 mb-10 md:w-1/2 md:px-5 lg:px-10">
             <div className="text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-6">
               Substrate <br /> Developer Hub
@@ -54,10 +54,8 @@ export default function Index() {
             </div>
           </div>
         </div>
-      </section>
-      {/* ////////////////////// */}
+      </Section>
       {/* Learn Subsrate Section */}
-      {/* ////////////////////// */}
       <Section styles="relative">
         <div className="absolute inset-0 md:mt-20">
           <div className="lg:hidden">
@@ -110,14 +108,11 @@ export default function Index() {
           </div>
         </div>
       </Section>
-      {/* ////////////////// */}
       {/* Playground Section */}
-      {/* ////////////////// */}
-      {/* <Section className="xl:container my-20 md:mt-20 md:mb-36 lg:mt-40 lg:mb-60 "> */}
       <Section>
         <div className="flex flex-col lg:flex-row lg:items-center">
           <div className="mb-16 lg:m-0 lg:w-1/2">
-            <div className="text-5xl xl:text-7xl font-extrabold mb-8">
+            <div className="font-title text-5xl xl:text-7xl font-extrabold mb-8">
               Playground
             </div>
             <h4 className="text-xl xl:text-3xl font-semibold">
@@ -166,10 +161,11 @@ export default function Index() {
           </div>
           <div
             data-aos="fade-left"
-            className="hidden lg:flex justify-center lg:w-1/2 duration-150 ease-in hover:opacity-50"
+            className="hidden lg:flex justify-center lg:w-1/2"
           >
             <LocalizedLink to="/playground">
               <StaticImage
+                className="duration-150 ease-in-out hover:opacity-50"
                 backgroundColor="transparent"
                 src="../images/playground-hero.png"
                 alt="Substrate Playground"
@@ -179,10 +175,7 @@ export default function Index() {
           </div>
         </div>
       </Section>
-      {/* ///////////////////////////// */}
       {/* Explore Documentation Section */}
-      {/* ///////////////////////////// */}
-      {/* <Section className="px-6 xl:container mb-40"> */}
       <Section>
         <div className="mb-14">
           <div className="text-4xl md:text-5xl xl:text-7xl font-extrabold mb-8">
@@ -197,12 +190,9 @@ export default function Index() {
           <ExploreDocs />
         </div>
       </Section>
-      {/* ////////////////////////////// */}
       {/* Connect With Community Section */}
-      {/* ////////////////////////////// */}
-      {/* <section className="xl:container px-6 my-20 md:mt-20 md:mb-40"> */}
       <Section>
-        <div className="flex flex-col md:flex-row md:items-center px-6 lg:mb-20">
+        <div className="flex flex-col md:flex-row md:items-center lg:mb-4">
           <div className="lg:m-0 md:w-1/2 md:px-5 lg:px-10">
             <div className="text-4xl xl:text-6xl 2xl:text-7xl font-extrabold mb-8">
               Connect with <br /> the community

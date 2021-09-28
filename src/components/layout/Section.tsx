@@ -7,7 +7,7 @@ interface SectionProps {
 }
 
 export default function Layout({ children, styles }: SectionProps) {
-  const sectionClass = 'container mb-20 xl:mb-40 px-6 lg:px-10'
+  const sectionClass = 'container mb-20 px-6 lg:px-10'
 
   return <section className={cx(sectionClass, styles)}>{children}</section>
 }

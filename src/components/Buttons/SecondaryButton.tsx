@@ -8,7 +8,7 @@ interface SecondaryButtonProps {
   cta?: boolean
 }
 export function SecondaryButton(props: SecondaryButtonProps) {
-  const paddingSize = () => (props.cta ? `py-3 px-6` : `py-2 px-5`)
+  const paddingSize = () => (props.cta ? `py-3 px-7` : `py-2 px-5`)
   return (
     <>
       {props.external ? (

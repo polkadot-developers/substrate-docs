@@ -1,25 +1,29 @@
 import React from 'react'
 import { TextButton } from '../../Buttons'
+import { LocalizedLink } from 'gatsby-theme-i18n'
 
 export default function ExploreDocs() {
   const content = [
     {
       name: 'Ways To Build',
-      cta: 'Get Statrted',
+      cta: 'Get started',
       link: '/v3/getting-started/overview',
       items: [
         {
           name: 'FRAME',
+          link: '/v3/runtime/frame',
           description:
             'Explore the basics of Substrate’s FRAME and start creating your custom pallets.',
         },
         {
           name: 'Smart Contracts',
+          link: '/v3/smart-contracts/overview',
           description:
             'Understand what smart contract capabilities exist for Substrate chains.',
         },
         {
           name: 'Parachain capabilities',
+          link: '#',
           description:
             'Jump right into the technical components required to build a parachain.',
         },
@@ -32,21 +36,25 @@ export default function ExploreDocs() {
       items: [
         {
           name: 'Accounts',
+          link: '/v3/advanced/account-info',
           description:
             'Explore the basics of Substrate’s FRAME and start creating your custom pallets.',
         },
         {
           name: 'Extrinsics',
+          link: '/v3/concepts/extrinsics',
           description:
             'Understand what smart contract capabilities exist for Substrate chains.',
         },
         {
           name: 'Transaction Weights',
+          link: '/v3/concepts/weight',
           description:
             'Understand how benchmarking and weights are used to calculate transaction fees. ',
         },
         {
           name: 'Off-Chain Features',
+          link: '/v3/concepts/off-chain-features',
           description:
             'Explore how you can include oracle-like capabilities in your runtime.',
         },
@@ -54,26 +62,30 @@ export default function ExploreDocs() {
     },
     {
       name: 'Tools and Integration',
-      cta: 'More Tools',
+      cta: 'More tools',
       link: '/v3/toolchains/polkadot-js',
       items: [
         {
           name: 'Polkadot JS',
+          link: '/v3/toolchains/polkadot-js',
           description:
             'Interact with a Substrate chain using JavaScript, a browser extension or in-browser RPC endpoint.',
         },
         {
           name: 'Substrate Connect',
+          link: '#',
           description:
             'Light client tools to connect runtimes to end-users applications  without a third-party service.',
         },
         {
           name: 'Transaction Weights',
+          link: '/v3/concepts/weight',
           description:
             'Understand how benchmarking and weights are used to calculate transaction fees. ',
         },
         {
           name: 'Tx Wrapper ',
+          link: '#',
           description:
             'Publish libraries to create chain specific offline transactions.',
         },
@@ -90,7 +102,9 @@ export default function ExploreDocs() {
               {section.items.map((item, index) => (
                 <li key={index}>
                   <div>
-                    <b>{item.name}</b>
+                    <LocalizedLink to={item.link}>
+                      <b>{item.name}</b>
+                    </LocalizedLink>
                   </div>
                   <p>{item.description}</p>
                 </li>

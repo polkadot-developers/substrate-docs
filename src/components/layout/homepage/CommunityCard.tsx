@@ -70,7 +70,7 @@ export default function CommunityCard() {
           <p>
             <b>{item.headingOne}:</b>
           </p>
-          <div className="flex items-center mb-6">
+          <div className="flex items-center mb-6 font-bold">
             <Icon
               name={item.iconOne}
               className="mr-3 fill-current dark:text-subtrateWhite"
@@ -81,7 +81,7 @@ export default function CommunityCard() {
           <p>
             <b>{item.headingTwo}:</b>
           </p>
-          <div className="flex items-center mb-6">
+          <div className="flex items-center mb-6 font-bold">
             <Icon
               name={item.iconTwo}
               className="mr-3 fill-current dark:text-subtrateWhite"
