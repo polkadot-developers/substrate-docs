@@ -38,7 +38,7 @@ export default function DocCard({
           </div>
           <div className="lg:h-80 xl:h-60">
             <div className="text-2xl font-extrabold mb-5">{title}</div>
-            <p>{text}</p>
+            <p className="font-medium">{text}</p>
           </div>
           <div className="block group">
             <span

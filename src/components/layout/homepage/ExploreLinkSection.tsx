@@ -86,7 +86,7 @@ const ExploreLinkSection = ({ links }: ExploreLinkSectionProps) => {
                 <div>
                   <Icon name={icon} className="mb-6 w-8 h-8" />
                   <h5 className="text-xl font-bold mb-6">{title}</h5>
-                  <p>{description}</p>
+                  <p className="font-medium">{description}</p>
                 </div>
                 <TextButton external link={link}>
                   {linkText}

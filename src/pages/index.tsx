@@ -32,7 +32,7 @@ export default function Index() {
             <h4 className="text-xl xl:text-3xl font-semibold">
               The center of knowledge
             </h4>
-            <p className="max-w-lg">
+            <p className="font-medium max-w-lg">
               Substrate is powered by best-in-class cryptographic research and
               comes with peer-to-peer networking, consensus mechanisms, and much
               more.
@@ -76,7 +76,7 @@ export default function Index() {
         </div>
         <div className="h-full relative">
           <div className="text-center mb-16">
-            <div className="text-5xl xl:text-7xl font-extrabold mb-3">
+            <div className="text-5xl lg:text-6xl font-extrabold mb-3">
               Learn Substrate
             </div>
             <h4 className="text-xl xl:text-3xl font-semibold">
@@ -114,13 +114,13 @@ export default function Index() {
       <Section>
         <div className="flex flex-col lg:flex-row lg:items-center">
           <div className="mb-16 lg:m-0 lg:w-1/2">
-            <div className="font-title text-5xl xl:text-7xl font-extrabold mb-8">
+            <div className="font-title text-5xl lg:text-6xl font-extrabold mb-8">
               Playground
             </div>
             <h4 className="text-xl xl:text-3xl font-semibold">
               Set up a cloud sandbox
             </h4>
-            <p className="max-w-lg">
+            <p className="max-w-lg font-medium">
               We recommend picking a sandbox, particularly if you&apos;re just
               getting started. Building on Substrate requires different pieces
               of technology. Useful for hosting Substrate developer workshops or
@@ -179,7 +179,7 @@ export default function Index() {
       {/* Explore Documentation Section */}
       <Section>
         <div className="mb-14">
-          <div className="text-4xl md:text-5xl xl:text-7xl font-extrabold mb-8">
+          <div className="text-5xl lg:text-6xl font-extrabold mb-8">
             Explore Documentation
           </div>
           <div className="text-xl">
@@ -195,10 +195,10 @@ export default function Index() {
       <Section>
         <div className="flex flex-col md:flex-row md:items-center lg:mb-4">
           <div className="lg:m-0 md:w-1/2">
-            <div className="text-4xl xl:text-6xl 2xl:text-7xl font-extrabold mb-8">
+            <div className="text-5xl lg:text-6xl font-extrabold mb-8">
               Connect with <br /> the community
             </div>
-            <p className="max-w-lg">
+            <p className="max-w-lg font-medium">
               Network, share and learn from others who speak your (tech)
               language! Join in the conversation & keep up with the latest
               developments.
