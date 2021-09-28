@@ -190,14 +190,16 @@ const DevNavMenu = {
             link: '/v3/integration/client-libraries',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-substrate-connect' })}`,
+            title: `${intl.formatMessage({
+              id: 'docs-menu-substrate-connect',
+            })}`,
             link: '/v3/integration/substrate-connect',
           },
-        ]
+        ],
       },
-        {
-          name: `${intl.formatMessage({ id: 'docs-menu-tools' })}`,
-          items: [
+      {
+        name: `${intl.formatMessage({ id: 'docs-menu-tools' })}`,
+        items: [
           {
             title: `${intl.formatMessage({ id: 'docs-menu-subkey' })}`,
             link: '/v3/tools/subkey',
