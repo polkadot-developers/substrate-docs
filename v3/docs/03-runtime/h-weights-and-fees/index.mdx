@@ -8,14 +8,14 @@ keywords:
 ---
 
 When a block author constructs a block, it must limit the block's execution time. A block body
-consists of a series of [extrinsics](../../concepts/extrinsics). Since the resources needed to
+consists of a series of [extrinsics](/v3/concepts/extrinsics). Since the resources needed to
 execute an extrinsic can vary, Substrate provides a flexible mechanism called "weights" to
 characterize the _time_ it takes to execute an extrinsic. To be economically sustainable and to
-limit spam, some transactions --- primarily those dispatched by users --- require a fee prior to
+limit spam, some transactions &mdash; primarily those dispatched by users &mdash; require a fee prior to
 transaction execution.
 
 Although an extrinsic's weight is only one component of the fee charged to its sender, it is
-recommended to understand the [weight system](../../concepts/weight) before reading this
+recommended to understand the [weight system](/v3/concepts/weight) before reading this
 document.
 
 ## Fee Calculation
@@ -29,7 +29,7 @@ A transaction fee consists of two parts:
 
 - `length_fee`: A per-byte fee that is multiplied by the length, in bytes, of the encoded extrinsic.
   See
-  [`TransactionByteFee`](/rustdocs/latest/pallet_transaction_payment/trait.Config.html#associatedtype.TransactionByteFee).
+  [`TransactionByteFee`](/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.TransactionByteFee).
 - `weight_fee`: A fee based on the weight of the extrinsic, which is a function of two parameters.
   One, an `ExtrinsicBaseWeight` that is declared in the runtime and applies to all extrinsics. The
   base weight covers inclusion overhead like signature verification. Two, a flexible `#[weight]`
