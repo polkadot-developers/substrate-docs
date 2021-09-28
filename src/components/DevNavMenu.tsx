@@ -260,7 +260,7 @@ const DevNavMenu = {
         ],
       },
         {
-          name: `${intl.formatMessage({ id: 'docs-menu-contributing' })}`,
+          name: `${intl.formatMessage({ id: 'docs-menu-contribute' })}`,
           items: [
             {
               title: `${intl.formatMessage({ id: 'docs-menu-stye-guide' })}`,
