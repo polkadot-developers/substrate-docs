@@ -335,14 +335,16 @@ development framework.
 an acronym for the "Framework for Runtime Aggregation of Modularized Entities". FRAME allows
 developers to create blockchain runtimes by composing modules, called "[pallets](#pallet)". Runtime
 developers interact with FRAME by way of a [macro](#macro) language that makes it easy for
-developers to define custom pallets (e.g. [`#[pallet::event]`](../../runtime/macros#palletevents),
-[`#[pallet::error]!`](../../runtime/macros#palleterror), [`#[pallet::storage`](../../runtime/macros#palletstorage),
-[`#[frame_support::pallet`](../../runtime/macros#frame_supportpallet) and compose pallets (e.g.
-[`construct_runtime!`](../../runtime/macros#construct_runtime) into a working runtime that can easily
-be used to power a Substrate-based blockchain. The convention used in
-[the Substrate codebase](https://github.com/paritytech/substrate/tree/master/frame) is to preface
-FRAME's core modules with `frame_` and the optional pallets with `pallet_*`. For instance, the
-macros mentioned above are all defined in the [`frame_support`](../../runtime/frame#support-library)
+developers to define custom pallets (e.g.
+[`#[pallet::event]`](../../runtime/macros#palletevents),
+[`#[pallet::error]`](../../runtime/macros#palleterror),
+[`#[pallet::storage]`](../../runtime/macros#palletstorage),
+[`#[frame_support::pallet]`](../../runtime/macros#frame_supportpallet)
+and compose pallets (e.g. [`construct_runtime!`](../../runtime/macros#construct_runtime)
+into a working runtime that can easily be used to power a Substrate-based blockchain. The convention
+used in [the Substrate codebase](https://github.com/paritytech/substrate/tree/master/frame) is to
+preface FRAME's core modules with `frame_` and the optional pallets with `pallet_*`. For instance,
+the macros mentioned above are all defined in the [`frame_support`](../../runtime/frame#support-library)
 module and all FRAME-based runtimes _must_ include the
 [`frame_system`](../../runtime/frame#system-library) module. Once the
 `frame_support::construct_runtime` macro has been used to create a runtime that includes the

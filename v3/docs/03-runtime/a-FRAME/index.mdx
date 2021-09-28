@@ -36,30 +36,35 @@ features and functionality for a runtime.
 
 FRAME not only provides a library of commonly used Substrate pallets but also a framework to build custom domain-specific
 pallets, giving runtime engineers the flexibility to define their runtime's behaviour according to their
-target use case. The result: each pallet has its own discrete logic which can modify the features and
+target use case. The result is each pallet has its own discrete logic which can modify the features and
 functionality of your blockchain's state transition functions.
 
-For example, the [Balances pallet](https://github.com/paritytech/substrate/tree/master/frame/balances), which is included in [FRAME](/v3/getting-started/glossary#frame), defines cryptocurrency capabilities for your blockchain. More specifically, it
-defines:
+For example, the [Balances pallet](https://github.com/paritytech/substrate/tree/master/frame/balances),
+which is included in [FRAME](/v3/getting-started/glossary#frame), defines cryptocurrency
+capabilities for your blockchain. More specifically, it defines:
 
 - **Storage items** that keep track of the tokens a user owns.
-- **Functions** that users can call to transfer
-  and manage those tokens.
+- **Functions** that users can call to transfer and manage those tokens.
 - **APIs** which allow other pallets to make use of those tokens and their capabilities.
-- **Hooks**
-  which allow other pallets to trigger function calls when a user's balance changes.
+- **Hooks** which allow other pallets to trigger function calls when a user's balance changes.
 
-Substrate runtime engineers can define custom logic for their blockchain by writing their own pallets and encapsulating their blockchains desired functionality by combining custom pallets with existing FRAME pallets or Substrate modules alike. The following documentation will show you how.
-
-<Message
-  type={`gray`}
-  title={`Note`}
-  text={`At the time of writing, FRAME pallets exist in two different flavors &mdash; Version 1 and Version 2. This article first covers the structure of a v1 pallet. Skip to [FRAME v2](#frame-v2) for the latest structure of a Substrate pallet. Read [here](../macros#frame-v1-vs-v2) for more information on these changes.`}
-/>
+Substrate runtime engineers can define custom logics for their blockchain by writing their own
+pallets and encapsulating their blockchains desired functionality by combining custom pallets with
+existing FRAME pallets or Substrate modules alike. The following documentation will show you how.
 
 ### Skeleton of a Pallet
 
 A FRAME pallet is composed of 7 sections:
+
+1. Imports and Dependencies
+2. Declaration of the Pallet type
+3. Runtime Configuration Trait
+4. Runtime Storage
+5. Runtime Events
+6. Hooks
+7. Extrinsics
+
+An example is as follows:
 
 ```rust
 // 1. Imports and Dependencies
@@ -74,56 +79,55 @@ pub mod pallet {
 // This is a placeholder to implement traits and methods.
 #[pallet::pallet]
 #[pallet::generate_store(pub(super) trait Store)]
-	pub struct Pallet<T>(PhantomData<T>);
+pub struct Pallet<T>(PhantomData<T>);
 
 // 3. Runtime Configuration Trait
 // All types and constants go here.
 // Use #[pallet::constant] and #[pallet::extra_constants]
 // to pass in values to metadata.
 #[pallet::config]
-	pub trait Config: frame_system::Config { ... }
+pub trait Config: frame_system::Config { ... }
 
 // 4. Runtime Storage
 // Use to declare storage items.
 #[pallet::storage]
-	#[pallet::getter(fn something)]
-	pub MyStorage<T: Config> = StorageValue<_, u32>;
+#[pallet::getter(fn something)]
+pub MyStorage<T: Config> = StorageValue<_, u32>;
 
 // 5. Runtime Events
 // Can stringify event types to metadata.
 #[pallet::event]
-	#[pallet::metadata(T::AccountId = "AccountId")]
-	#[pallet::generate_deposit(pub(super) fn deposit_event)]
-	pub enum Event<T: Config> { ... }
+#[pallet::metadata(T::AccountId = "AccountId")]
+#[pallet::generate_deposit(pub(super) fn deposit_event)]
+pub enum Event<T: Config> { ... }
 
 // 6. Hooks
 // Define some logic that should be executed
 // regularly in some context, for e.g. on_initialize.
 #[pallet::hooks]
-	impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> { ... }
+impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> { ... }
 
 // 7. Extrinsics
 // Functions that are callable from outside the runtime.
 #[pallet::call]
-	impl<T:Config> Pallet<T> { ... }
-
+impl<T:Config> Pallet<T> { ... }
 ```
 
 <Message
   type={`gray`}
   title={`Note`}
   text={`Pallets can be composed of as many sections as needed, giving runtime engineers a lot of 
-  flexibility ontop of the basic skeletons depicted above. Refer to the [Substrate Runtime Macros](../macros#substrate-runtime-macros)
+  flexibility on top of the basic skeletons depicted above. Refer to the [Substrate Runtime Macros](../macros#substrate-runtime-macros)
   to learn more about adding functionality to a FRAME pallet.`}
 />
 
-### System Library
+### System Modules
 
-The [System library](/rustdocs/latest/frame_system) provides
-low-level types, storage, and functions for your blockchain. All other pallets depend on the System
-library as the basis of your Substrate runtime.
+The [FRAME System Module `frame_system`](/rustdocs/latest/frame_system) provides low-level types,
+storage, and functions for your blockchain. All other pallets depend on the System library as the
+basis of your Substrate runtime.
 
-The System library defines all the core types for the Substrate runtime, such as:
+The System module defines all the core types for the Substrate runtime, such as:
 
 - Origin
 - Block Number
@@ -146,18 +150,17 @@ the origin of an extrinsic, and more.
 
 ### Executive Module
 
-The [FRAME Executive module](/rustdocs/latest/frame_executive) acts as the
+The [FRAME Executive Module `frame_executive`](/rustdocs/latest/frame_executive) acts as the
 orchestration layer for the runtime. It dispatches incoming extrinsic calls to the respective
 pallets in the runtime.
 
-### Support Library
+### Support Module
 
-The [FRAME Support library](/rustdocs/latest/frame_support) is a
-collection of Rust macros, types, traits, and functions that simplify the development of Substrate
-pallets.
+The [FRAME Support Module `frame_support`](/rustdocs/latest/frame_support) is a collection of Rust
+macros, types, traits, and functions that simplify the development of Substrate pallets.
 
-The support macros expand at compile time to generate code that is used by the runtime and reduce
-boilerplate code for the most common components of a pallet.
+The support macros expanded at compile time generate boilerplate code needed for the common
+structure of a pallet and save developers from writing them repeatedly.
 
 ### Runtime
 
@@ -348,7 +351,7 @@ A module for doing multi-signature dispatches.
 ### Nicks
 
 Nicks is a trivial module for keeping track of account names on-chain. It makes no effort to create
-a name hierarchy, be a DNS replacement or provide reverse lookups.
+a name hierarchy, be a DNS replacement, or provide reverse lookups.
 
 - [Docs](/rustdocs/latest/pallet_nicks)
 - [Source](https://github.com/paritytech/substrate/tree/master/frame/nicks/src/lib.rs)
@@ -475,14 +478,9 @@ amount for any reason other than transaction fee payment.
 
 ## Next Steps
 
-### Learn More
-
-- Learn how to [develop custom Substrate pallets](#pallets).
-
 ### Examples
 
-- Follow a
-  [tutorial to add a pallet to your FRAME runtime](/tutorials/v3/add-a-pallet).
+- Follow a [tutorial to add a pallet to your FRAME runtime](/tutorials/v3/add-a-pallet).
 
 ### References
 
