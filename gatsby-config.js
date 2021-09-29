@@ -170,7 +170,13 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-netlify`,
+    {
+      resolve: `gatsby-plugin-netlify`,
+      options: {
+        mergeLinkHeaders: false,
+        mergeCachingHeaders: false,
+      },
+    },
     `gatsby-plugin-meta-redirect`,
     `gatsby-plugin-twitter`,
     {
