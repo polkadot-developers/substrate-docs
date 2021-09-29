@@ -9,7 +9,7 @@ const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
 
 module.exports = {
   siteMetadata: {
-    title: 'Substrate Docs',
+    title: 'Substrate_',
     siteUrl: siteUrl,
     image: '/static/images/parity-og-image.jpeg',
     description: 'add-description',

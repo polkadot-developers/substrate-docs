@@ -22,7 +22,7 @@ export default function Index() {
 
   return (
     <Layout>
-      <SEO title="Developers Home" />
+      <SEO title="Developer Home" />
       <Section>
         <div className="flex flex-col md:flex-row md:items-center mt-10 doc-hero">
           <div className="lg:m-0 mb-10 md:w-1/2 md:px-5 lg:px-10">
