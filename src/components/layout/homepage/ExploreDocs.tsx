@@ -17,7 +17,7 @@ export default function ExploreDocs() {
         },
         {
           name: 'Smart Contracts',
-          link: '/v3/smart-contracts/overview',
+          link: '/v3/runtime/smart-contracts',
           description:
             'Understand what smart contract capabilities exist for Substrate chains.',
         },
@@ -32,7 +32,7 @@ export default function ExploreDocs() {
     {
       name: 'Learn The Fundamentals',
       cta: 'More key concepts',
-      link: '/v3/concepts/',
+      link: '/v3/concepts',
       items: [
         {
           name: 'Accounts',
@@ -63,23 +63,23 @@ export default function ExploreDocs() {
     {
       name: 'Tools and Integration',
       cta: 'More tools',
-      link: '/tools',
+      link: '/v3/tools',
       items: [
         {
           name: 'Polkadot JS',
-          link: '/v3/toolchains/polkadot-js',
+          link: '/v3/integration/polkadot-js',
           description:
             'Interact with a Substrate chain using JavaScript, a browser extension or in-browser RPC endpoint.',
         },
         {
           name: 'Substrate Connect',
-          link: '/v3/toolchains/substrate-connect',
+          link: '/v3/integration/substrate-connect',
           description:
             'Light client tools to connect runtimes to end-users applications  without a third-party service.',
         },
         {
           name: 'Tx Wrapper ',
-          link: '/v3/toolchains/tx-wrapper',
+          link: '/how-to-guides/v3/tools/txwrapper',
           description:
             'Publish libraries to create chain specific offline transactions.',
         },
