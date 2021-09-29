@@ -7,7 +7,7 @@ interface GithuEditButtonProps {
 export default function GithubEditButton(props: GithuEditButtonProps) {
   const intl = useIntl()
   const githubSlug =
-    'https://github.com/substrate-developer-hub/substrate-docs/tree/main'
+    'https://github.com/substrate-developer-hub/substrate-docs/edit/main'
 
   const [url, setUrl] = useState('')
   useEffect(() => {
