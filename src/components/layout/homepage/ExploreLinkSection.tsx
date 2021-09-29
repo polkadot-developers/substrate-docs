@@ -87,7 +87,18 @@ const ExploreLinkSection = ({ links }: ExploreLinkSectionProps) => {
                     <h5 className="text-xl font-bold mb-6">{title}</h5>
                     <p>{description}</p>
                   </div>
-                  <TextButton link={link}>{linkText}</TextButton>
+                  <div>
+                    <p
+                      className={`font-bold pb-1 mr-0.5 border-b-2 inline hover:mr-2 transition-all border-substrateDark dark:border-white`}
+                    >
+                      {linkText}
+                    </p>{' '}
+                    <span
+                      className={`fill-current text-substrateDark dark:text-white inline-block`}
+                    >
+                      <Icon name="arrowMore" />
+                    </span>
+                  </div>
                 </div>
               </a>
             )

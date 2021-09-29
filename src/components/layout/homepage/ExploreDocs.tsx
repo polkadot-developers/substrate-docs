@@ -99,7 +99,7 @@ export default function ExploreDocs() {
                     <div className="font-medium">
                       <b>{item.name}</b>
                     </div>
-                    <p className="font-medium">{item.description}</p>
+                    <p className="font-medium leading-7">{item.description}</p>
                   </LocalizedLink>
                 </li>
               ))}

@@ -120,7 +120,7 @@ export default function Index() {
             <h4 className="text-xl xl:text-3xl font-semibold">
               Set up a cloud sandbox
             </h4>
-            <p className="max-w-lg font-medium">
+            <p className="max-w-lg font-medium leading-7">
               We recommend picking a sandbox, particularly if you&apos;re just
               getting started. Building on Substrate requires different pieces
               of technology. Useful for hosting Substrate developer workshops or
