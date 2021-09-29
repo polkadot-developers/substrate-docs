@@ -46,11 +46,24 @@ export default function MobileDropDown({
             const itemStyles =
               'block font-medium hover:font-bold pl-12 mb-0 py-3'
             if (external) {
-              return (
-                <a key={index} href={each.link}>
-                  <span className={`${itemStyles}`}>{each.linkTitle}</span>
-                </a>
-              )
+              if (each.linkTitle === 'Events' || each.linkTitle === 'Blog') {
+                return (
+                  <a
+                    key={index}
+                    href={each.link}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <span className={`${itemStyles}`}>{each.linkTitle}</span>
+                  </a>
+                )
+              } else {
+                return (
+                  <a key={index} href={each.link}>
+                    <span className={`${itemStyles}`}>{each.linkTitle}</span>
+                  </a>
+                )
+              }
             } else {
               return (
                 <Link key={index} to={each.link}>

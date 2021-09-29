@@ -1,7 +1,6 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import Icon from '../../Icon'
-import { TextButton } from '../../Buttons'
 import Section from '../Section'
 
 interface ExploreLinkSectionProps {
