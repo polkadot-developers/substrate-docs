@@ -2,6 +2,7 @@ import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import Icon from '../../Icon'
 import { TextButton } from '../../Buttons'
+import Section from '../Section'
 
 interface ExploreLinkSectionProps {
   links: string[]
@@ -73,29 +74,26 @@ const ExploreLinkSection = ({ links }: ExploreLinkSectionProps) => {
   })
 
   return (
-    <div className="bg-substrateGray-light dark:bg-darkBackground pb-10 pt-20">
-      <section className="container mb-20 lg:px-10">
+    <div className="pb-10 pt-20 bg-substrateGray-light dark:bg-substrateGray-darkest">
+      <Section>
         <h4 className="text-2xl font-bold mb-16">Explore More Substrate</h4>
-        <div className="md:grid grid-cols-3 gap-6 xl:gap-24">
+        <div className="md:grid grid-cols-3 gap-6 xl:gap-10">
           {currentLinks.map(
             ({ title, description, link, linkText, icon }, index) => (
-              <div
-                key={index}
-                className="mb-16 md:mb-0 flex flex-col justify-between"
-              >
-                <div>
-                  <Icon name={icon} className="mb-6 w-8 h-8" />
-                  <h5 className="text-xl font-bold mb-6">{title}</h5>
-                  <p className="font-medium">{description}</p>
+              <a key={index} href={link}>
+                <div className="h-full hover:bg-white hover:shadow-xl hover:scale-105 rounded-md p-8 mb-16 sm:mb-0 flex flex-col justify-between transition-all dark:hover:bg-substrateDark">
+                  <div>
+                    <Icon name={icon} className="mb-6 w-8 h-8" />
+                    <h5 className="text-xl font-bold mb-6">{title}</h5>
+                    <p>{description}</p>
+                  </div>
+                  <TextButton link={link}>{linkText}</TextButton>
                 </div>
-                <TextButton external link={link}>
-                  {linkText}
-                </TextButton>
-              </div>
+              </a>
             )
           )}
         </div>
-      </section>
+      </Section>
     </div>
   )
 }

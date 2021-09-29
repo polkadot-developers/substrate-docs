@@ -14,7 +14,7 @@ module.exports = {
       md: '768px',
       lg: '1024px',
       xl: '1280px',
-      '2xl': '1536px',
+      '2xl': '1400px',
     },
     letterSpacing: {
       tightest: '-.075em',
@@ -37,6 +37,7 @@ module.exports = {
           light: '#FBFBFB',
           DEFAULT: '#F2F2F2',
           dark: '#3A424E',
+          darkest: '#21232d',
         },
         substrateWhite: '#F8FAF9',
         substrateRed: '#F2606A',

@@ -15,7 +15,7 @@ export function TextButton(props: TextButtonProps) {
   const textSize = () => (props.cta ? 'text-xl' : 'text-lg')
   const accentStyle = () =>
     props.accent
-      ? `text-substrateGreen border-substrateGreen`
+      ? `text-substrateGreen dark:text-substrateGreen border-substrateGreen`
       : `border-substrateDark dark:border-white`
   return (
     <>
@@ -45,7 +45,7 @@ export function TextButton(props: TextButtonProps) {
             <span
               className={`fill-current text-substrateDark dark:text-white inline-block ${accentStyle()}`}
             >
-              <Icon name="arrowMore" />
+              <Icon name={`arrowMore`} />
             </span>
           </LocalizedLink>
         </div>
