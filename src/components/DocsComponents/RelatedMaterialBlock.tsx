@@ -16,10 +16,10 @@ export function RelatedMaterialBlock({
 }: RelatedMaterialBlockProps) {
   return (
     <>
-      <div className="flex flex-wrap justify-start">
-        <div className="bg-mdxLightBg dark:bg-gray-300 dark:text-substrateDark px-4 pt-4 pb-6 my-2 w-80 border border-substrateDark-light dark:border-white rounded">
+      <div className="inline-flex flex-wrap justify-start mr-4">
+        <div className="bg-mdxLightBg dark:bg-gray-300 dark:text-substrateDark px-4 pt-4 pb-6 my-2 w-80  border border-substrateDark-light dark:border-white rounded">
           <span className="text-2xl font-medium">{title}</span>
-          <p className="text-base font-light py-2">{text}</p>
+          <p className="text-base font-light py-2 h-[112px]">{text}</p>
           <div className="md-button inline-block">
             <LocalizedLink
               className={`md-button mr-2 transform transition-all duration-300 ease-in-out hover:mr-4 text-lg font-bold border-b-2 border-substrateDark`}

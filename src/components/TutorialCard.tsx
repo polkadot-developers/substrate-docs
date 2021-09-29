@@ -36,7 +36,7 @@ export default function TutorialCard({
           />
         </div>
       </LocalizedLink>
-      <div className="md:h-[335px] md:flex md:flex-col md:justify-between">
+      <div className="md:h-[361px] md:flex md:flex-col md:justify-between">
         <div className="px-4">
           <div>
             <LocalizedLink to={link}>
@@ -64,10 +64,10 @@ export default function TutorialCard({
             </div>
             <hr />
             <div>
-              <span className="px-4 p-2 text-sm rounded border border-substrateDark">
+              <span className="px-4 p-2 text-sm rounded border border-substrateDark dark:border-substrateWhite">
                 {prerequisites ? `Prerequisities` : `No Prerequisites`}
               </span>
-              <span className="ml-4 px-4 p-2 text-sm rounded border border-substrateDark">
+              <span className="ml-4 px-4 p-2 text-sm rounded border border-substrateDark dark:border-substrateWhite">
                 {version}
               </span>
             </div>

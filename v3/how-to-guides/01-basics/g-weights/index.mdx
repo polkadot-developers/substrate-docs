@@ -15,7 +15,7 @@ difficulty: 1
     "This guide shows a basic procedure for confirguring weights. There are more
     advanced methods that suit different use cases. For simple functions with fixed amounts
     of storage reads, this method works well. For any other use cases, see the section 
-    [on weights](./weights/calculate-fees).
+    [on weights](../../weights/calculate-fees).
     "
 />
 
@@ -27,9 +27,9 @@ difficulty: 1
     },
     {
       title: 'Use Cases',
-      description:
-        `- Assign the correct weight before a function call to storage.
-         - Calculate transaction fees.`,
+      description:`
+- Assign the correct weight before a function call to storage.
+- Calculate transaction fees.`,
     },
     {
       title: 'Overview',
@@ -43,9 +43,9 @@ difficulty: 1
         This guide will cover how to calculate the maximum weight for a dispatch call; calculate the actual weight after execution; and
         reimburse the difference.
         Here's an overview of the traits we'll be implementing:
-        - [\`PaysFee\`](/rustdocs/latest/frame_support/weights/trait.PaysFee.html): to specify whether or not a dispatch pays the fee.
-        - [\`GetDispatchInfo\`](/rustdocs/latest/frame_support/weights/trait.GetDispatchInfo.html): carries weight information using the \`#[weight]\` attribute.
-        - [\`DispatchResultWithPostInfo\`](/rustdocs/latest/frame_support/dispatch/type.DispatchResultWithPostInfo.html): provides new weight info once the extrinsic function has been executed.
+- [\`PaysFee\`](/rustdocs/latest/frame_support/weights/trait.PaysFee.html): to specify whether or not a dispatch pays the fee.
+- [\`GetDispatchInfo\`](/rustdocs/latest/frame_support/weights/trait.GetDispatchInfo.html): carries weight information using the \`#[weight]\` attribute.
+- [\`DispatchResultWithPostInfo\`](/rustdocs/latest/frame_support/dispatch/type.DispatchResultWithPostInfo.html): provides new weight info once the extrinsic function has been executed.
 	    `,
     },
   ]}

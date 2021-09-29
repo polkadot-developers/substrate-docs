@@ -17,13 +17,13 @@ difficulty: 2
     {
       title: 'Use Cases',
       description:
-        `- NFT applications
-        - Casino gaming type applications`,
+`- NFT applications
+- Casino gaming type applications`,
     },
     {
       title: 'Overview',
       description:
-        `[Randomness](/docs/v3/runtime/randomness)is useful in computer programs for everything from gaming applications to selecting block
+        `[Randomness](/v3/runtime/randomness)is useful in computer programs for everything from gaming applications to selecting block
         authors. True randomness is hard to come by in deterministic computers. This is particularly true in the context
         of a blockchain when all the nodes in the network must agree on the state of the chain. FRAME provides runtime engineers
         with a source of randomness, using the [Randomness trait](/rustdocs/latest/frame_support/traits/trait.Randomness.html).
@@ -89,25 +89,11 @@ updates it. Using this approach it would look like this:
     }
 ```
 
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text={[
-    'Learn more about ',
-    <ExternalLink
-      url={`/rustdocs/latest/funty/trait.IsInteger.html#tymethod.wrapping_add`}
-    >
-      wrapping_add
-    </ExternalLink>,
-    ' and ',
-    <ExternalLink
-      url={`/rustdocs/latest/frame_support/dispatch/trait.Encode.html#method.encode`}
-    >
-      encode()
-    </ExternalLink>,
-    ' in the Rust documentation.',
-  ]}
-/>
+<Message type='yellow' title='Information' text={`
+Learn more about [\`wrapping_add\`](/rustdocs/latest/funty/trait.IsInteger.html#tymethod.wrapping_add)
+and [\`encode()\`](/rustdocs/latest/frame_support/dispatch/trait.Encode.html#method.encode) in the
+Rust documentation.
+`}/>
 
 ### 3. Use Randomness in a dispatchable
 

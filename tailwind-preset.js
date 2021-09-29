@@ -31,6 +31,7 @@ module.exports = {
         substrateGreen: {
           light: '#D4F9EC',
           DEFAULT: '#24CC85',
+          dark: '#22B577',
         },
         substrateGray: {
           light: '#FBFBFB',
@@ -42,7 +43,10 @@ module.exports = {
         substratePurple: '#5A30B4',
         substrateYellow: '#FDAB3D',
         substrateDark: '#242A35',
-        substrateBlue: '#4E73F2',
+        substrateBlue: {
+          light: '#0094FF',
+          DEFAULT: '#4E73F2',
+        },
         substrateBlueBg: '#EEF1FE',
         substrateDarkest: '#181A22',
         darkBackground: '#181A22',
@@ -80,6 +84,9 @@ module.exports = {
         title: ['Poppins', 'sans-serif'],
         body: ['Karla', 'sans-serif'],
         quote: ['serif'],
+      },
+      fontSize: {
+        'four-oh-four': ['20rem', { lineHeight: '1' }],
       },
       transitionProperty: {
         height: 'height',

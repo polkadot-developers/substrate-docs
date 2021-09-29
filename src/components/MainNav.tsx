@@ -1,32 +1,33 @@
 const MainNav = {
   global: () => {
+    const site = 'https://substrate-io-staging.netlify.app/'
     return [
       {
         name: `Technology`,
         subMenu: [
           {
             linkTitle: `Overview`,
-            link: `https://www.substrate.io/technology`,
+            link: `${site}technology`,
             external: true,
           },
           {
             linkTitle: `Flexible`,
-            link: `https://www.substrate.io/technology/flexible`,
+            link: `${site}technology/flexible`,
             external: true,
           },
           {
             linkTitle: `Open`,
-            link: `https://www.substrate.io/technology/open`,
+            link: `${site}technology/open`,
             external: true,
           },
           {
             linkTitle: `Interoperable`,
-            link: `https://www.substrate.io/technology/interoperable`,
+            link: `${site}technology/interoperable`,
             external: true,
           },
           {
             linkTitle: `Future-Proof`,
-            link: `https://www.substrate.io/technology/future-proof`,
+            link: `${site}technology/future-proof`,
             external: true,
           },
         ],
@@ -41,7 +42,7 @@ const MainNav = {
           },
           {
             linkTitle: `Docs`,
-            link: `/docs`,
+            link: `/v3`,
             external: false,
           },
           {
@@ -71,7 +72,7 @@ const MainNav = {
         subMenu: [
           {
             linkTitle: `Substrate & Polkadot`,
-            link: `https://www.substrate.io/vision/`,
+            link: `${site}vision/`,
             external: true,
           },
         ],
@@ -81,17 +82,17 @@ const MainNav = {
         subMenu: [
           {
             linkTitle: `Home`,
-            link: `https://www.substrate.io/ecosystem`,
+            link: `${site}ecosystem`,
             external: true,
           },
           {
-            linkTitle: `Teams`,
-            link: `https://www.substrate.io/ecosystem/teams`,
+            linkTitle: `Projects`,
+            link: `${site}ecosystem/projects`,
             external: true,
           },
           {
             linkTitle: `Builders Program`,
-            link: `https://www.substrate.io/ecosystem/substrate-builders-program`,
+            link: `${site}ecosystem/substrate-builders-program`,
             external: true,
           },
           {
@@ -101,17 +102,17 @@ const MainNav = {
             items: [
               {
                 linkTitle: 'Hackathons',
-                link: 'https://www.substrate.io/ecosystem/opportunities/hackathons',
+                link: `${site}ecosystem/opportunities/hackathons`,
                 external: true,
               },
               {
                 linkTitle: 'Grants',
-                link: 'https://www.substrate.io/ecosystem/opportunities/grants',
+                link: `${site}ecosystem/opportunities/grants`,
                 external: true,
               },
               {
                 linkTitle: 'Jobs',
-                link: 'https://www.substrate.io/ecosystem/opportunities/jobs',
+                link: `${site}ecosystem/opportunities/jobs`,
                 external: true,
               },
             ],
@@ -123,17 +124,17 @@ const MainNav = {
             items: [
               {
                 linkTitle: 'Substrate Seminar',
-                link: 'https://www.substrate.io/ecosystem/resources/substrate-seminar',
+                link: `${site}ecosystem/resources/substrate-seminar`,
                 external: true,
               },
               {
                 linkTitle: 'Awesome Substrate',
-                link: 'https://www.substrate.io/ecosystem/resources/awesome-substrate',
+                link: `${site}ecosystem/resources/awesome-substrate`,
                 external: true,
               },
               {
                 linkTitle: 'Community Resources',
-                link: 'https://www.substrate.io/ecosystem/resources/community-learning-offerings',
+                link: `${site}ecosystem/resources/community-learning-offerings`,
                 external: true,
               },
             ],
@@ -145,22 +146,22 @@ const MainNav = {
             items: [
               {
                 linkTitle: 'Contact',
-                link: 'https://www.substrate.io/ecosystem/connect/contact',
+                link: `${site}ecosystem/connect/contact`,
                 external: true,
               },
               {
                 linkTitle: 'Events',
-                link: 'https://www.substrate.io/ecosystem/connect/events',
+                link: `${site}ecosystem/connect/events`,
                 external: true,
               },
               {
                 linkTitle: 'Newsletter',
-                link: 'https://www.substrate.io/newsletter',
+                link: `${site}newsletter`,
                 external: true,
               },
               {
                 linkTitle: 'Blog',
-                link: 'https://www.substrate.io/ecosystem/connect/blog',
+                link: `${site}ecosystem/connect/blog`,
                 external: true,
               },
             ],

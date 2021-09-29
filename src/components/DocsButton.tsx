@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl'
 export default function DocsButton() {
   const intl = useIntl()
   return (
-    <LocalizedLink to="/docs">
+    <LocalizedLink to="/v3">
       <button className="flex items-center justify-center bg-substrateDark dark:bg-substrateWhite text-white dark:text-substrateDark text-sm py-2 w-20 rounded opacity-100 transform transition duration-300 ease-in-out hover:opacity-80 focus:outline-none">
         {/* <img src={docsIcon} alt="Substrate Docs Icon" /> */}
         <svg

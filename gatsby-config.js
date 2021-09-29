@@ -40,7 +40,6 @@ module.exports = {
   },
   flags: {
     DEV_SSR: false,
-    PRESERVE_WEBPACK_CACHE: false,
   },
   plugins: [
     {
@@ -119,8 +118,8 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/v3/tutorials/08-contracts/`,
-        name: `add-contracts`,
+        path: `${__dirname}/v3/tutorials/08-ink-workshop/`,
+        name: `ink-workshop`,
       },
     },
     {
@@ -128,6 +127,20 @@ module.exports = {
       options: {
         path: `${__dirname}/v3/tutorials/09-cumulus-workshop/`,
         name: `cumulus`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/v3/tutorials/10-frontier-workshop/`,
+        name: `frontier`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/v3/tutorials/11-kitties-workshop/`,
+        name: `kitties`,
       },
     },
     //*********************************//

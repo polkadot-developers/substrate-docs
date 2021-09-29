@@ -1,11 +1,18 @@
-// This param is used when `/docs` are then redirected to `/docs/<defaultVersion>`
+// This param is used when `/[tutorials, how-to-guides]` are then redirected to
+// `/[tutorials, how-to-guides]/<defaultVersion>`.
 const defaultVersion = 'v3'
 
 const redirects = [
-  { fromPath: '/docs', toPath: `/docs/${defaultVersion}` },
-  { fromPath: '/docs/v3', toPath: '/docs/v3/getting-started/overview' },
   { fromPath: '/tutorials', toPath: `/tutorials/${defaultVersion}` },
   { fromPath: '/how-to-guides', toPath: `/how-to-guides/${defaultVersion}` },
+  { fromPath: '/v3', toPath: '/v3/getting-started/overview' },
+  { fromPath: '/v3/getting-started', toPath: '/v3/getting-started/overview' },
+  { fromPath: '/v3/concepts', toPath: '/v3/concepts/runtime' },
+  { fromPath: '/v3/runtime', toPath: '/v3/runtime/frame' },
+  { fromPath: '/v3/integration', toPath: '/v3/integration/polkadot-js' },
+  { fromPath: '/v3/tools', toPath: '/v3/tools/subkey' },
+  { fromPath: '/v3/advanced', toPath: '/v3/advanced/account-info' },
+  { fromPath: '/tutorials/v3/kitties', toPath: `/tutorials/v3/kitties/pt1` },
 ]
 
 const tutsInfo = [
@@ -45,13 +52,23 @@ const tutsInfo = [
     version: '3.0',
   },
   {
-    name: 'add-contracts',
-    navSlug: 'contractsTutorial',
+    name: 'ink-workshop',
+    navSlug: 'inkWorkshop',
     version: '3.0',
   },
   {
     name: 'cumulus',
     navSlug: 'cumulusWorkshop',
+    version: '3.0',
+  },
+  {
+    name: 'frontier',
+    navSlug: 'frontierWorkshop',
+    version: '3.0',
+  },
+  {
+    name: 'kitties',
+    navSlug: 'kittiesWorkshop',
     version: '3.0',
   },
 ]

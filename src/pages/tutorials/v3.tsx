@@ -26,9 +26,9 @@ export default function tutorials({ data }: any) {
             link={`/tutorials/v3/create-your-first-substrate-chain`}
           />
           <TutorialCard
-            title={`Add a FRAME Pallet to Your Runtime`}
+            title={`Add FRAME's Nicks Pallet to Your Runtime`}
             image={data.tutorialTwo}
-            description={`Learn to add the Nicks pallet to runtime and publish a custom pallet that others can import.`}
+            description={`Add the Nicks pallet to your runtime and publish a custom pallet that others can reuse in their projects.`}
             time={`2 Hours`}
             difficulty={1}
             prerequisites={true}
@@ -66,7 +66,7 @@ export default function tutorials({ data }: any) {
             link={`/tutorials/v3/forkless-upgrades`}
           />
           <TutorialCard
-            title={`Private Network`}
+            title={`Start a Private Network`}
             image={data.tutorialSix}
             description={`Learn how to start a private blockchain network using an out-of-the-box Substrate node.`}
             time={`2 Hours`}
@@ -77,7 +77,7 @@ export default function tutorials({ data }: any) {
           />
           <TutorialCard
             title={`Node Metrics`}
-            image={data.tutorialOne}
+            image={data.tutorialSeven}
             description={`Learn how to visualize the metrics that Substrate records using Prometheus.`}
             time={`< 1 Hour`}
             difficulty={1}
@@ -86,24 +86,44 @@ export default function tutorials({ data }: any) {
             link={`/tutorials/v3/node-metrics`}
           />
           <TutorialCard
-            title={`Add the Contracts Pallet`}
-            image={data.tutorialOne}
-            description={`Allow your blockchain to support Wasm smart contracts by adding and configuring FRAME's Contracts pallet.`}
-            time={`3 Hours`}
+            title={`Develop Smart Contracts with ink!`}
+            image={data.tutorialEight}
+            description={`Learn to build and deploy an ERC20 token smart contract with ink!`}
+            time={`2 Hours`}
             difficulty={2}
             prerequisites={false}
             version={`V3.0.0`}
-            link={`/tutorials/v3/add-contracts`}
+            link={`/tutorials/v3/ink-workshop/pt1`}
           />
           <TutorialCard
             title={`Cumulus Workshop`}
-            image={data.tutorialOne}
-            description={`A workshop to configure Substrate node as a Parachain`}
+            image={data.tutorialNine}
+            description={`A workshop to configure a Substrate node as a Parachain`}
             time={`3 Hours`}
             difficulty={3}
             prerequisites={true}
             version={`V3.0.0`}
-            link={`/tutorials/v3/cumulus-workshop`}
+            link={`/tutorials/v3/cumulus-workshop/pt1`}
+          />
+          <TutorialCard
+            title={`Frontier Workshop`}
+            image={data.tutorialTen}
+            description={`A workshop to configure a Substrate node to run Substrate EVM and Solidity contracts`}
+            time={`1 Hour`}
+            difficulty={2}
+            prerequisites={false}
+            version={`V3.0.0`}
+            link={`/tutorials/v3/frontier`}
+          />
+          <TutorialCard
+            title={`Substrate Kitties Workshop`}
+            image={data.tutorialEleven}
+            description={`Build a full stack application that handles the ownership management of Substrate Kitties.`}
+            time={`4 Hours`}
+            difficulty={2}
+            prerequisites={false}
+            version={`V3.0.0`}
+            link={`/tutorials/v3/kitties/pt1`}
           />
         </div>
       </div>
@@ -113,37 +133,79 @@ export default function tutorials({ data }: any) {
 
 export const pageQuery = graphql`
   {
-    tutorialOne: file(name: { eq: "tuts-one" }) {
+    tutorialOne: file(name: { eq: "tuts-1" }) {
       id
       childImageSharp {
         gatsbyImageData
       }
     }
-    tutorialTwo: file(name: { eq: "tuts-two" }) {
+    tutorialTwo: file(name: { eq: "tuts-2" }) {
       id
       childImageSharp {
         gatsbyImageData
       }
     }
-    tutorialThree: file(name: { eq: "tuts-three" }) {
+    tutorialThree: file(name: { eq: "tuts-3" }) {
       id
       childImageSharp {
         gatsbyImageData
       }
     }
-    tutorialFour: file(name: { eq: "tuts-four" }) {
+    tutorialFour: file(name: { eq: "tuts-4" }) {
       id
       childImageSharp {
         gatsbyImageData
       }
     }
-    tutorialFive: file(name: { eq: "tuts-five" }) {
+    tutorialFive: file(name: { eq: "tuts-5" }) {
       id
       childImageSharp {
         gatsbyImageData
       }
     }
-    tutorialSix: file(name: { eq: "tuts-six" }) {
+    tutorialSix: file(name: { eq: "tuts-6" }) {
+      id
+      childImageSharp {
+        gatsbyImageData
+      }
+    }
+    tutorialSeven: file(name: { eq: "tuts-7" }) {
+      id
+      childImageSharp {
+        gatsbyImageData
+      }
+    }
+    tutorialEight: file(name: { eq: "tuts-8" }) {
+      id
+      childImageSharp {
+        gatsbyImageData
+      }
+    }
+    tutorialNine: file(name: { eq: "tuts-9" }) {
+      id
+      childImageSharp {
+        gatsbyImageData
+      }
+    }
+    tutorialTen: file(name: { eq: "tuts-10" }) {
+      id
+      childImageSharp {
+        gatsbyImageData
+      }
+    }
+    tutorialEleven: file(name: { eq: "tuts-11" }) {
+      id
+      childImageSharp {
+        gatsbyImageData
+      }
+    }
+    tutorialTwelve: file(name: { eq: "tuts-12" }) {
+      id
+      childImageSharp {
+        gatsbyImageData
+      }
+    }
+    tutorialThirteen: file(name: { eq: "tuts-13" }) {
       id
       childImageSharp {
         gatsbyImageData

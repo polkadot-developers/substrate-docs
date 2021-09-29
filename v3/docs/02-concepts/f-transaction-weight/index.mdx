@@ -1,6 +1,6 @@
 ---
 title: Transaction Weight
-slug: /docs/v3/concepts/weight
+slug: /v3/concepts/weight
 version: 3.0 
 section: docs
 category: concepts
@@ -25,7 +25,7 @@ The amount of weight a block may contain is limited, and optional weight consump
 that is not required to be deployed as part of the block's initialization or finalization phases nor
 used in mandatory inherent extrinsics) will generally be limited through economic measures &mdash; or in
 simple terms, through transaction fees. The fee implications of the weight system are covered in the
-[Transaction Fees document](../../runtime/weights-and-fees).
+[Transaction Fees document](/v3/runtime/weights-and-fees).
 
 Substrate defines one unit of weight as one picosecond of execution time, that is **10 12
 weight = 1 second**, or 1,000 weight = 1 nanosecond, on fixed reference hardware (Intel Core
@@ -135,7 +135,7 @@ operational class.
 
 There is also a `Mandatory` dispatch class that can be used to ensure an extrinsic is always
 included in a block regardless of its impact on block weight. Please refer to the article on
-[Transaction Fees](../../runtime/weights-and-fees) to learn more about the different dispatch classes and
+[Transaction Fees](/v3/runtime/weights-and-fees) to learn more about the different dispatch classes and
 when to use them.
 
 ### Learn More

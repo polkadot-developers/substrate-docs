@@ -1,0 +1,492 @@
+---
+title: Initiate a Forkless Runtime Upgrade
+slug: /tutorials/v3/forkless-upgrades
+hideNav: true
+version: 3.0 
+section: tutorials
+category: forkless upgrades
+keywords: runtime upgrades, forkless, schedular pallet
+difficulty: 1
+duration: 2 Hour
+relevantSkills: 
+  - Rust 
+  - Blockchain basics
+  - FRAME
+  - Wasm
+---
+
+## Introduction
+
+One of the defining features of the Substrate blockchain development framework is its support for
+**forkless runtime upgrades**. Forkless upgrades are a means of enhancing a blockchain runtime in a
+way that is supported and protected by the capabilities of the blockchain itself. A blockchain's
+[runtime](/v3/concepts/runtime) defines the [state](/v3/runtime/storage) the
+blockchain can hold and also defines the logic for effecting changes to that state.
+
+![node-diagram.png](../../../src/images/tutorials/04-forkless-upgrade/node-diagram.png)
+
+Substrate makes it possible to deploy enhanced runtime capabilities (**including _breaking_ changes(!)**)
+without a [hard fork](/v3/getting-started/glossary#fork). Because the definition of the
+runtime is itself an element in a Substrate chain's state, network participants may update this
+value by way of an [extrinsic](/v3/concepts/extrinsics), specifically
+[the `set_code` function](/rustdocs/latest/frame_system/pallet/enum.Call.html#variant.set_code).
+Since updates to runtime state are bound by the blockchain's consensus mechanisms and cryptographic
+guarantees, network participants can use the blockchain itself to trustlessly distribute updated or
+extended runtime logic without needing to fork the chain or even release a new blockchain client.
+
+This tutorial will use the Substrate Developer Hub
+[Node Template](https://github.com/substrate-developer-hub/substrate-node-template) to explore two
+mechanisms for forkless upgrades of [FRAME](/v3/runtime/frame)-based runtimes.
+First, the
+[`sudo_unchecked_weight`](/rustdocs/latest/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
+function from the [Sudo pallet](/v3/runtime/frame#sudo) will be used to perform an
+upgrade that adds the [Scheduler pallet](/v3/runtime/frame#scheduler). Then, the
+[`schedule`](/rustdocs/latest/pallet_scheduler/enum.Call.html#variant.schedule)
+function from the Scheduler pallet will be used to perform an upgrade that increases the
+[existential (minimum) balance](/v3/getting-started/glossary#existential-deposit)
+for network accounts.
+
+If you have problems with this tutorial, the Substrate community is full of helpful resources! We
+maintain an active
+[Substrate Technical chat room](https://matrix.to/#/#substrate-technical:matrix.org) and
+monitor the
+[`substrate` tag on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate). You can
+also use the [`subport` GitHub repository](https://github.com/paritytech/subport/issues/new) to
+create an Issue.
+
+<Message
+  type={`yellow`}
+  title={`Information`}
+  text=
+    "Please do note that your problem may already solved on Stackoverflow or Subport
+    do a search first for keywords in your error messages and concepts, and if you found them useful
+    as well, comment to let us know that it\'s a common issue to escalate for a fix.
+    "
+/>
+
+<Message
+  type={`green`}
+  title={`Tip`}
+  text={`
+  1. To get a sense of what runtime upgrades are more concretely, read the
+   [runtime upgrade documentation](/v3/runtime/upgrades) first, or at least have
+   it open as a reference as you progress.
+  2. If you haven't already, you should complete these tutorials before this one:
+      - [Create Your First Substrate Chain](/tutorials/v3/create-your-first-substrate-chain),
+      which will guide you through the process of setting up your development environment.
+      - [Add a Pallet to Your Runtime](/tutorials/v3/add-a-pallet), which will introduce the
+     FRAME system for runtime development and guide you through the process of extending the
+     capabilities of a FRAME runtime by adding a pallet.
+   `}
+/>
+
+## What You Will Be Doing
+
+Before we even get started, let's layout what we are going to do over the course of this turorial. We will:
+
+<TutorialObjective
+  data={{
+    textLineOne:
+      '1. Use a sudo call to include the Schedular pallet in a live runtime.',
+    url: '/tutorials/v3/forkless-upgrades#sudo-upgrade',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne:
+      '2. Schedule a runtime upgrade.',
+    url: '/tutorials/v3/forkless-upgrades#schedule-an-upgrade',
+  }}
+/>
+
+## Learning outcomes
+- Understand some basic governance features in Substrate chains
+- Gain experience with how a Substrate chain can upgrade it's runtime
+- Learn how to use the schedular pallet in your runtime 
+
+## Sudo Upgrade
+
+This part of the tutorial will step you through launching a Substrate chain and initiating a simple 
+runtime upgrade using the [Sudo pallet](/v3/runtime/frame#sudo).
+
+### Start the Template Node
+
+Since forkless runtime upgrades do not require network participants to restart their blockchain
+clients, the first step of this tutorial is to start the template node as-is. Build and start the
+unmodified [Node Template](https://github.com/substrate-developer-hub/substrate-node-template).
+
+```shell
+cargo run --release -- --dev --tmp
+```
+
+<Message
+  type={`green`}
+  title={`Tip`}
+  text=
+	"**Leave this node running!** Notice that the node will not be restarted as part of this tutorial
+	despite the fact that two runtime upgrades are performed.
+	You will be editing and re-compiling the node\'s runtime code, but _do not_ stop and restart the
+	node to prove to yourself that the runtime upgrade is in fact done on an _active_ (dev) network,
+	not a rebuilt or restarted one.
+	"
+/>
+
+By default, the [well-known Alice account](/v3/tools/subkey#well-known-keys) is
+configured as the holder of the Sudo pallet's key in the `development_config` function of the
+template node's
+[chain specification file](https://github.com/substrate-developer-hub/substrate-node-template/blob/v3.0.0/node/src/chain_spec.rs) -
+this is the configuration that is used when the node is launched with the `--dev` flag. This means
+that Alice's account will be the one used to perform runtime upgrades throughout this tutorial.
+
+#### Runtime Upgrade Resource Accounting
+
+Dispatchable calls in Substrate are always associated with a
+[weight](/v3/concepts/weight), which is used for resource accounting. FRAME's
+System module bounds extrinsics to a block
+[`BlockLength`](/rustdocs/latest/frame_system/limits/struct.BlockLength.html) and
+[`BlockWeights`](/rustdocs/latest/frame_system/limits/struct.BlockWeights.html) limit.
+The `set_code` function in
+[the `System` module](https://github.com/paritytech/substrate/blob/v3.0.0/frame/system/src/lib.rs) is
+intentionally designed to consume the maximum weight that may fit in a block.
+
+<Message
+  type={`yellow`}
+  title={`Information`}
+  text=
+	"The runtime upgrade should consume the entire block to avoid extrinsics trying to execute
+	on a different version of a runtime when called. Although theoretically one may be able to 
+	use [transaction priority](/v3/concepts/tx-pool#transaction-priority)
+	and carefully study the FRAME logic involved to allow for other extrinsics to be dispatched 
+	in the same block as the upgrade, it is a very poor idea to try to do this for almost
+	any blockchain: it is worth to spend one block to keep this operation clean and reduce 
+	chance of error. This study is outside the scope of this tutorial.
+	"
+/>
+
+The [`set_code` function](/rustdocs/latest/src/frame_system/lib.rs.html#329-337)'s
+weight annotation also specifies that the extrinsic call is in
+[the `Operational` class](/v3/runtime/weights-and-fees#operational-dispatches) of dispatchable
+function, which identifies it as relating to network _operations_ and impacts the accounting of its
+resources, such as by exempting it from the
+[`TransactionByteFee`](/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.TransactionByteFee).
+
+### Use `sudo` to dispatch
+
+As the name of the [Sudo pallet](/v3/runtime/frame#sudo) implies, it provides
+capabilities related to the management of a single
+[`sudo` ("superuser do")](https://en.wikipedia.org/wiki/Sudo) administrator. In FRAME, the `Root`
+Origin is used to identify the runtime administrator; some of FRAME's features, including the
+ability to update the runtime by way of
+[the `set_code` function](/rustdocs/latest/frame_system/pallet/enum.Call.html#variant.set_code),
+are only accessible to this administrator. The Sudo pallet maintains a single
+[storage item](/v3/runtime/storage): the ID of the account that has access to the
+pallet's [dispatchable functions](/v3/getting-started/glossary#dispatch). The Sudo
+pallet's `sudo` function allows the holder of this account to invoke a dispatchable as the `Root`
+origin.
+
+The following pseudo-code demonstrates how this is achieved, refer to the
+[Sudo pallet's source code](https://github.com/paritytech/substrate/blob/v3.0.0/frame/sudo/src/lib.rs)
+to learn more.
+
+```rust
+fn sudo(origin, call) -> Result {
+  // Ensure caller is the account identified by the administrator key
+  let sender = ensure_signed(origin)?;
+  ensure!(sender == Self::key(), Error::RequireSudo);
+
+  // Dispatch the specified call as the Root origin
+  let res = call.dispatch(Origin::Root);
+  Ok()
+}
+```
+
+#### `sudo` to Override Resource Accounting
+
+In order to work around resource accounting within FRAME's safeguards, the Sudo pallet provides the
+[`sudo_unchecked_weight`](/rustdocs/latest/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
+function, which provides the same capability as the `sudo` function, but accepts an additional
+parameter that is used to specify the (possibly zero) weight to use for the call. The
+`sudo_unchecked_weight` function is what will be used to invoke the runtime upgrade in this section
+of this tutorial; in the next section, the Scheduler pallet will be used to manage the resources
+consumed by the `set_code` function.
+
+Here we allow for a block that may take _an indefinite time to compute_ intentionally. This ensures
+that our runtime upgrade does not fail, no matter how complex the operation is. It could take all
+the time it needs to succeed or fail.
+
+### Prepare an Upgraded Runtime
+
+#### Add the `Scheduler` Pallet
+
+Because the template node doesn't come with the
+[Scheduler pallet](/rustdocs/latest/pallet_scheduler/index.html) included in
+its runtime, the first runtime upgrade performed in this tutorial will add that pallet.
+First, add the Scheduler pallet as a dependency in the template node's runtime Cargo file.
+
+**`runtime/Cargo.toml`**
+
+```toml
+pallet-scheduler = { default-features = false, version = '3.0.0' }
+
+#--snip--
+
+[features]
+default = ['std']
+std = [
+    #--snip--
+    'pallet-scheduler/std',
+    #--snip--
+]
+```
+
+Next, add the pallet to the runtime:
+
+**`runtime/src/lib.rs`**
+
+```rust
+/// Define the types required by the Scheduler pallet.
+parameter_types! {
+	pub MaximumSchedulerWeight: Weight = 10_000_000;
+	pub const MaxScheduledPerBlock: u32 = 50;
+}
+
+/// Configure the runtime's implementation of the Scheduler pallet.
+impl pallet_scheduler::Config for Runtime {
+	type Event = Event;
+	type Origin = Origin;
+	type PalletsOrigin = OriginCaller;
+	type Call = Call;
+	type MaximumWeight = MaximumSchedulerWeight;
+	type ScheduleOrigin = frame_system::EnsureRoot<AccountId>;
+	type MaxScheduledPerBlock = MaxScheduledPerBlock;
+	type WeightInfo = ();
+}
+
+// Add the Scheduler pallet inside the construct_runtime! macro.
+construct_runtime!(
+	pub enum Runtime where
+		Block = Block,
+		NodeBlock = opaque::Block,
+		UncheckedExtrinsic = UncheckedExtrinsic
+	{
+		/*** snip ***/
+		Scheduler: pallet_scheduler::{Module, Call, Storage, Event<T>},
+	}
+);
+```
+
+The final step to preparing an upgraded FRAME runtime is to increment its
+[`spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version),
+which is a member of
+[the `RuntimeVersion` struct](/rustdocs/latest/sp_version/struct.RuntimeVersion.html):
+
+**`runtime/src/lib.rs`**
+
+```rust
+pub const VERSION: RuntimeVersion = RuntimeVersion {
+	spec_name: create_runtime_str!("node-template"),
+	impl_name: create_runtime_str!("node-template"),
+	authoring_version: 1,
+	spec_version: 101,  // *Increment* this value, the template uses 100 as a base
+	impl_version: 1,
+	apis: RUNTIME_API_VERSIONS,
+	transaction_version: 1,
+};
+```
+
+Take a moment to review the components of the `RuntimeVersion` struct:
+
+- `spec_name`: The name of the runtime/chain, e.g. Ethereum.
+- `impl_name`: The name of the client, e.g. OpenEthereum.
+- `authoring_version`: The authorship version for
+  [block authors](/v3/getting-started/glossary#author).
+- `spec_version`: The version of the runtime/chain.
+- `impl_version`: The version of the client.
+- `apis`: The list of supported APIs.
+- `transaction_version`: The version of the
+  [dispatchable function](/v3/getting-started/glossary#dispatch) interface.
+
+In order to upgrade the runtime it is _required_ to _increase_ the `spec_version`; refer to the
+implementation of the
+[FRAME System](https://github.com/paritytech/substrate/blob/v3.0.0/frame/system/src/lib.rs) module
+and in particular the `can_set_code` function to to see how this requirement and others are enforced
+by runtime logic.
+
+### Build the Upgraded Runtime
+
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`Keep your node running! You should use a new terminal to compile the runtime`}
+/>
+
+```shell
+# Here we *only* build the runtime, the node has not been changed.
+cargo build --release -p node-template-runtime
+```
+
+<Message
+  type={`yellow`}
+  title={`Information`}
+  text=
+	  "Here is a
+	  [solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/runtime-upgrade-v3)
+	  to check against in case you\'re stuck. See the `diff` in the commit history for details.
+	  "
+/>
+
+Here the `--release` flag will result in a longer compile time, but also generate a smaller build
+artifact that is better suited for submitting to the blockchain network: storage minimization
+and optimizations are _critical_ for any blockchain.
+
+As we are _only_ building the runtime, Cargo looks in runtime
+`cargo.toml` file for requirements and only executes these. Notice the
+[`runtime/build.rs` file](https://doc.rust-lang.org/cargo/reference/build-scripts.html) that
+cargo looks for build the Wasm of your runtime that is specified in `runtime/src/lib.rs`.
+
+When the `--release` flag is specified, build artifacts are output to the
+`target/release` directory; when the flag is omitted they will be sent to `target/debug`. Refer to
+[the official documentation](https://doc.rust-lang.org/cargo/commands/cargo-build.html) to learn
+more about building Rust code with Cargo.
+
+### Upgrade the Runtime
+
+Use this link to open the Polkadot JS Apps UI and automatically configure the UI to connect to the
+local node: https://polkadot.js.org/apps/#/extrinsics?rpc=ws://127.0.0.1:9944.
+
+<Message
+  type={`green`}
+  title={`Tip`}
+  text=
+	  "Some ad blockers and browser restrictions (e.g. the built-in Shield in Brave browser, and https 
+	  requirement for socket connection in Firefox) interfere with connecting to a local node. Make sure 
+	  to check them and, if needed, turn them off. You may not get connecting from a remote IP (like `polkadot.js.org/apps/`) 
+	  to a local node working. If you are unable to solve this, we encourage you to 
+	  host your app locally, like [the apps UI](https://github.com/polkadot-js/apps#development).
+	  "
+/>
+
+Use Alice's account to invoke the `sudoUncheckedWeight` function and use the `setCode` function from the system
+pallet as its parameter. In order to supply the build artifact that was generated by the previous
+build step, toggle the "file upload" switch on the right-hand side of the "code" input field for the
+parameter to the `setCode` function. Click the "code" input field, and select the Wasm binary that
+defines the upgraded runtime:
+`target/release/wbuild/node-template-runtime/node_template_runtime.compact.wasm`. Leave the value
+for the `_weight` parameter at the default of `0`. Click "Submit Transaction" and then "Sign and
+Submit".
+
+![Sudo Upgrade Panel](../../../src/images/tutorials/04-forkless-upgrade/sudo-upgrade.png)
+
+After the transaction has been included in a block, the version number in the upper-left-hand corner
+of Polkadot JS Apps UI should reflect that the runtime version is now `101`.
+
+![Runtime Version 101](../../../src/images/tutorials/04-forkless-upgrade/version-101.png)
+
+If you still see your node producing blocks in the terminal it's running and reported
+on the UI, you have performed a successful _forkless_ runtime upgrade! Congrats!!!
+
+Next up, we will:
+
+1. Upgrade your runtime version
+2. Use the Schedular pallet to schedule your runtime upgrade on your running chain
+
+
+## Schedule an Upgrade
+
+Now that the Node Template has been upgraded to include the Scheduler pallet,
+[the `schedule` function](/rustdocs/latest/pallet_scheduler/enum.Call.html#variant.schedule)
+can be used to perform the next runtime upgrade. In the previous part, the
+`sudo_unchecked_weight` function was used to override the weight associated with the `set_code`
+function; in this section, the runtime upgrade will be _scheduled_ so that it can be processed as
+the only [extrinsic](/v3/concepts/extrinsics) in a block.
+
+### Prepare an Upgraded Runtime
+
+This upgrade is more straightforward than the previous one and only requires updating a single value
+in `runtime/src/lib.rs` aside from the runtime's `spec_version`.
+
+```rust
+pub const VERSION: RuntimeVersion = RuntimeVersion {
+	spec_name: create_runtime_str!("node-template"),
+	impl_name: create_runtime_str!("node-template"),
+	authoring_version: 1,
+	spec_version: 102,  // *Increment* this value.
+	impl_version: 1,
+	apis: RUNTIME_API_VERSIONS,
+	transaction_version: 1,
+};
+
+/*** snip ***/
+
+parameter_types! {
+	pub const ExistentialDeposit: u128 = 1000;  // Update this value.
+	pub const MaxLocks: u32 = 50;
+}
+
+/*** snip ***/
+
+```
+
+This change increases the value of the Balances pallet's
+[`ExistentialDeposit`](/v3/getting-started/glossary#existential-deposit) - the
+minimum balance needed to keep an account alive from the point-of-view of the Balances pallet.
+
+<Message
+  type={`yellow`}
+  title={`Information`}
+  text=
+	  "Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000
+	  to be reaped - that would require a
+	  [storage migration](/v3/runtime/upgrades#storage-migrations), which is out of
+	  scope for this tutorial.
+	  "
+/>
+
+### Build the Upgraded Runtime
+
+```bash
+cargo build --release -p node-template-runtime
+```
+
+<Message
+  type={`gray`}
+  title={`Note`}
+  text=
+	  "This will _override_ any privous build artifacts! So if you want to have a copy on hand of 
+	  your last runtime Wasm build files, be sure to copy them somewhere else.
+	  "
+/>
+
+### Upgrade the Runtime
+
+In the previous section, the Scheduler pallet was configured with the `Root` origin as its
+[`ScheduleOrigin`](/rustdocs/latest/pallet_scheduler/trait.Config.html#associatedtype.ScheduleOrigin),
+which means that the `sudo` function (_not_ `sudo_unchecked_weight`) can be used to invoke the
+`schedule` function. Use this link to open the Polkadot JS Apps UI's Sudo tab:
+https://polkadot.js.org/apps/#/sudo?rpc=ws://127.0.0.1:9944. Wait until all the other fields have
+been filled in before providing the `when` parameter. Leave the `maybe_periodic` parameter empty and
+the `priority` parameter at its default value of `0`. Select the System pallet's `set_code` function
+as the `call` parameter and provide the Wasm binary as before. Leave the "with weight override"
+option deactivated. Once all the other fields have been filled in, use a block number about 10
+blocks (1 minute) in the future to fill in the `when` parameter and quickly submit the transaction.
+
+![Scheduled Upgrade Panel](../../../src/images/tutorials/04-forkless-upgrade/scheduled-upgrade.png)
+
+You can use the template node's command line output or the
+[Polkadot JS Apps UI block explorer](https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944)
+to watch as this scheuled call takes place.
+
+![Scheduled Success Runtime Upgrade Version 102](../../../src/images/tutorials/04-forkless-upgrade/scheduled-upgrade-success.png)
+
+After the target block has been included in the chain, the version number in the upper-left-hand
+corner of Polkadot JS Apps UI should reflect that the runtime version is now `102`.
+
+You can then observe the specific changes that were made in the upgrade by using the
+[Polkadot JS Apps UI Chain State](https://polkadot.js.org/apps/#/chainstate/constants?rpc=ws://127.0.0.1:9944)
+app to query the `existentialDeposit` constant value from the Balances pallet.
+
+## Next Steps
+
+- Learn about [storage migrations](/v3/runtime/upgrades#storage-migrations) and
+  attempt one alongside a runtime upgrade.
+- Explore the [how-to guides section on storage migrations](/how-to-guides/v3/storage-migrations/basics)
