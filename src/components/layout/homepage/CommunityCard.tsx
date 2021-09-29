@@ -64,7 +64,7 @@ export default function CommunityCard() {
           className="lg:h-[500px] xl:h-[456px] w-full sm:w-80 2xl:w-96 shadow-xl py-8 px-6 mb-4 sm:mr-4 bg-white dark:bg-substrateDark mdx-anchor"
         >
           <div className="text-2xl font-bold mb-5">{item.title}</div>
-          <p className="h-[72px] font-medium">{item.description}</p>
+          <p className="h-[72px]">{item.description}</p>
           <hr />
           <p>
             <b>{item.headingOne}:</b>

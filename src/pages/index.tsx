@@ -30,7 +30,7 @@ export default function Index() {
             <h4 className="text-xl xl:text-3xl font-semibold">
               The center of knowledge
             </h4>
-            <p className="font-medium max-w-lg text-xl">
+            <p className=" max-w-lg text-xl">
               Substrate is powered by best-in-class cryptographic research and
               comes with peer-to-peer networking, consensus mechanisms, and much
               more.
@@ -120,7 +120,7 @@ export default function Index() {
             <h4 className="text-xl xl:text-3xl font-semibold">
               Set up a cloud sandbox
             </h4>
-            <p className="max-w-lg font-medium leading-7">
+            <p className="max-w-lg  leading-7">
               We recommend picking a sandbox, particularly if you&apos;re just
               getting started. Building on Substrate requires different pieces
               of technology. Useful for hosting Substrate developer workshops or
@@ -198,7 +198,7 @@ export default function Index() {
             <div className="text-5xl lg:text-6xl font-extrabold mb-8">
               Connect with <br /> the community
             </div>
-            <p className="max-w-lg font-medium text-xl">
+            <p className="max-w-lg  text-xl">
               Network, share and learn from others who speak your (tech)
               language! Join in the conversation & keep up with the latest
               developments.

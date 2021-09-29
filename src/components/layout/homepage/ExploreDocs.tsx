@@ -96,10 +96,10 @@ export default function ExploreDocs() {
               {section.items.map((item, index) => (
                 <li key={index}>
                   <LocalizedLink to={item.link}>
-                    <div className="font-medium">
+                    <div className="">
                       <b>{item.name}</b>
                     </div>
-                    <p className="font-medium leading-7">{item.description}</p>
+                    <p className="leading-7">{item.description}</p>
                   </LocalizedLink>
                 </li>
               ))}
