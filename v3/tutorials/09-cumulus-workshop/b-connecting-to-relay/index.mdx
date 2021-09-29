@@ -78,11 +78,11 @@ event with your `paraID`), you can now launch your parachain or parathread using
 
 ### 2. Deploying the chain
 
-We'll begin by deploying <ExternalLink url="https://github.com/substrate-developer-hub/substrate-parachain-template">Parachain Template </ExternalLink>
+We'll begin by deploying <ExternalLink url="https://github.com/substrate-developer-hub/substrate-parachain-template">Parachain Template</ExternalLink>
 with Para ID `2000`. These instructions are written specifically for Para ID 2000.
 
 The `parachain-collator` binary used below comes from compiling the Parachain Template successfully.
-Refer to [Building the Parachain Template](en/1-prep/1-compiling?id=building-the-parachain-template)
+Refer to [Building the Parachain Template](../pt1#3-building-the-parachain-template)
 section for details.
 
 ### 3. Generate Parachain Genesis State
@@ -255,12 +255,12 @@ with `Sudo` call.
 
 The transaction can be submitted **on a relay chain node** via Polkadot Apps UI. There are options
 for you to accomplish different types of registration that we cover below, only _one_ is needed.
-Note that all methods here depend on a [`paraID` being reserved](en/2-relay-chain/reserve) - so be
+Note that all methods here depend on a [`paraID` being reserved](#1-reserve-a-para-id) - so be
 sure to do that first.
 
 If you are running a network with more than two validators you can add more parachains through the
 same interface with the parameters adjusted accordingly using any mix of these options. More details
-on this can be found [latter on in this tutorial](en/3-parachains/4-more-nodes).
+on this can be found [in here](../pt1#3-starting-additional-validators-optional).
 
 #### Option 1: `paraSudoWrapper.sudoScheduleParaInitialize`
 
@@ -306,7 +306,7 @@ page.
   `}
 />
 
-Please first follow the [Rococo registration](en/5-rococo-registration/1-register?id=_2-register-as-a-parathread)
+Please first follow the [Rococo registration](../pt3#3-register-as-a-parathread)
 instructions, with the exception of asking for a slot lease to be awarded or participating in a slot auction on a
 public testnet or mainnet. Here we will use `sudo` to grant ourselves a lease instead. You should
 have an onboarded parathread:
@@ -337,7 +337,7 @@ The collator should start producing parachain blocks (aka collating) once the re
 successful **and a new relay chain epoch has begun**!
 
 > This may take a while! Be patient as you wait for a new epoch to begin first.
-> This is 10 blocks for the [rococo `chain-spec.json`](en/1-prep/2-chain-spec?id=_1a-using-a-prebuilt-chain-spec)
+> This is 10 blocks for the [rococo `chain-spec.json`](../pt1#1-chain-specification)
 > included in this workshop.
 
 Finally, the collator should start producing log messages like the following:

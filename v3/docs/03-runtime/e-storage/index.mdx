@@ -15,20 +15,20 @@ ultimately lowers the overhead costs for participants in your blockchain. In oth
 Substrate exposes a set of layered, modular storage APIs that allow runtime developers to make the storage decisions that suit them
 best. This
 document is intended to provide information and best practices about Substrate's runtime storage
-interfaces. Please refer to [the advanced storage documentation](../../advanced/storage) for information about how these interfaces are implemented.
+interfaces. Please refer to [the advanced storage documentation](/v3/advanced/storage) for information about how these interfaces are implemented.
 
 ## Storage Items
 
 In Substrate, any pallet can introduce new storage items that will become part of your blockchain’s state. These storage items can be simple single value items, or more complex storage maps. The type of storage items you choose to implement depends entirely on their intended role within your runtime logic.
 
-FRAME's [`Storage pallet`](/rustdocs/latest/frame_support/storage) gives runtime developers access to Substrate's flexible storage APIs, which can support any value that is encodable
-by [Parity's SCALE codec](../../advanced/scale-codec). These include:
+FRAME's [`Storage` module](/rustdocs/latest/frame_support/storage) gives runtime developers access to Substrate's flexible storage APIs, which can support any value that is encodable
+by [Parity's SCALE codec](/v3/advanced/scale-codec). These include:
 
 - [Storage Value](/rustdocs/latest/frame_support/storage/trait.StorageValue.html) - used to store any single value, such as a `u64`.
 - [Storage Map](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) - used to store a key-value hash map, such as a balance-to-account mapping.
 - [Storage Double Map](/rustdocs/latest/frame_support/storage/trait.StorageDoubleMap.html) - used as an implementation of a storage map with two keys to provide the ability to efficiently removing
   all entries that have a common first key.
-- Storage N Map - used to store a hash map with any arbitrary number of keys, it can be used as a basis to build a Triple Storage Map, a Quadruple Storage Map and so on.
+- [Storage N Map](/rustdocs/latest/frame_support/storage/trait.StorageNMap.html) - used to store a hash map with any arbitrary number of keys, it can be used as a basis to build a Triple Storage Map, a Quadruple Storage Map and so on.
 
 ### Storage Value
 
@@ -64,7 +64,7 @@ Refer to the Storage Map documentation for
 Double Storage Maps are very similar to single Storage Maps except they contain two keys, which is useful for querying values with common keys.
 
 Refer to the documentation on
-[advanced storage](../../advanced/storage) to learn more about how different Storage Maps, including Double Storage Maps, are implemented.
+[advanced storage](/v3/advanced/storage) to learn more about how different Storage Maps, including Double Storage Maps, are implemented.
 
 ### N Storage Map
 
@@ -113,25 +113,8 @@ Storage Double Maps, the `iter()` and `drain()` methods require the first key as
 
 ## Declaring Storage Items
 
-Runtime storage items are created in the [`decl_storage` macro](/rustdocs/latest/frame_support/macro.decl_storage.html) in any FRAME-like pallet. Here is an example of declaring the 3 different types of storage items:
-
-```rust
-decl_storage! {
-    trait Store for Module<T: Config> as Example {
-        // A StorageValue item.
-        SomePrivateValue: u32;
-        pub SomePrimitiveValue get(fn some_primitive_value): u32;
-        // A StorageMap item.
-        pub SomeMap get(fn some_map): map hasher(blake2_128_concat) T::AccountId => u32;
-        // A StorageDoubleMap item.
-        pub SomeDoubleMap: double_map hasher(blake2_128_concat) u32, hasher(blake2_128_concat) T::AccountId => u32;
-        // A StorageNMap item.
-        pub SomeNMap: nmap hasher(blake2_128_concat) u32, hasher(blake2_128_concat) u32, hasher(twox_64_concat) T::AccountId => u32;
-    }
-}
-```
-
-In FRAME v2 syntax, declaring the above storage items would look like:
+Runtime storage items are created in the [`#[pallet::storage]` macro](/rustdocs/latest/frame_support/attr.pallet.html#storage-palletstorage-optional) 
+in any FRAME-based pallet. Here is an example of declaring the 3 different types of storage items:
 
 ```rust
 #[pallet::storage]
@@ -171,28 +154,26 @@ be used.
 ### Visibility
 
 In the examples above, all the storage items except `SomePrivateValue` are made public by way of the
-`pub` keyword (`pub(super)` in FRAME v2). Blockchain storage is always publicly
+`pub(super)` keyword. Blockchain storage is always publicly
 [visible from _outside_ of the runtime](#accessing-storage-items); the visibility of Substrate
 storage items only impacts whether or not other pallets _within_ the runtime will be able to access
 a storage item.
 
 ### Getter Methods
 
-The `decl_storage` macro provides an optional `get` extension that can be used to implement a getter
+The `#[pallet::getter(..)]` macro provides an optional `get` extension that can be used to implement a getter
 method for a storage item on the module that contains that storage item; the extension takes the
 desired name of the getter function as an argument. If you omit this optional extension, you will
 still be able to access the storage item's value, but you will not be able to do so by way of a
 getter method implemented on the module; instead, you will need to use
 [the storage item's `get` method](#methods).
-In FRAME v2, the equivalent extension is derived by the `#[pallet::getter(..)]` macro attribute.
-
 
 <Message
   type={`gray`}
   title={`Note`}
   text={`The optional \`get\` and \`getter\` extensions only
   impact the way that a storage item can be accessed from _within_ Substrate code &mdash; you will always be
-  able to [query the storage of your runtime](../../advanced/storage#Querying-Storage) to get the value
+  able to [query the storage of your runtime](/v3/advanced/storage#Querying-Storage) to get the value
   of a storage item.`}
 />
 
@@ -201,14 +182,6 @@ Here is an example that implements a getter method named `some_value` for a Stor
 `SomeValue::get()` method:
 
 ```rust
-// In FRAME v1.
-decl_storage! {
-    trait Store for Module<T: Config> as Example {
-        pub SomeValue get(fn some_value): u64;
-    }
-}
-
-// In FRAME v2.
 #[pallet::storage]
 #[pallet::getter(fn some_value)]
 pub(super) type SomeValue = StorageValue<_, u64, ValueQuery>;
@@ -223,14 +196,6 @@ value during execution.
 Here is an example of specifying the default value for all items in a map:
 
 ```rust
-//In FRAME v1.
-decl_storage! {
-    trait Store for Module<T: Config> as Example {
-        pub SomeMap: map u64 => u64 = 1337;
-    }
-}
-
-//In FRAME v2.
 #[pallet::type_value]
 pub(super) fn MyDefaultMap<T: Config>() -> u64 { 1337u64 }
 #[pallet::storage]
@@ -247,7 +212,7 @@ access storage items. The Polkadot JS team also maintains
 interacting with Substrate-based blockchains, including querying storage.
 
 Refer to
-[the advanced storage documentation](../../advanced/storage) to learn more about how to query a Substrate key-value database by using the RPC server.
+[the advanced storage documentation](/v3/advanced/storage) to learn more about how to query a Substrate key-value database by using the RPC server.
 
 ## Hashing Algorithms
 
@@ -294,7 +259,7 @@ key's original unhashed value and verify it if they'd like (by re-hashing it). T
 Substrate have **deprecated the use of non-transparent hashers** within FRAME-based runtimes, so
 this information is provided primarily for completeness. In fact, it is _necessary_ to use a
 transparent hashing algorithm if you would like to access [iterable map](#iterable-storage-maps)
-capabilities. Learn more about the capabilities that transparent hashing algorithms expose in the [advanced storage documentation](../../advanced/storage#storage-map-keys).
+capabilities. Learn more about the capabilities that transparent hashing algorithms expose in the [advanced storage documentation](/v3/advanced/storage#storage-map-keys).
 
 ### Common Substrate Hashers
 
@@ -315,38 +280,38 @@ cryptographic hash.
 
 Substrate's runtime storage APIs include capabilities to initialize storage items in the genesis
 block of your blockchain. The genesis storage configuration APIs expose a number of mechanisms for
-initializing storage, all of which have entry points in the `decl_storage` macro. These mechanisms
-all result in the creation of a `GenesisConfig` data type that implements
+initializing storage, all of which have entry points in the `#[pallet::genesis_config]` macro. This mechanism
+results in the creation of a `GenesisConfig` data type that implements
 the [`BuildModuleGenesisStorage` trait](/rustdocs/latest/sp_runtime/trait.BuildModuleGenesisStorage.html)
 and will be added to the pallet that contains the storage items.
-Storage items that are tagged for genesis configuration, such as [`Struct pallet_balances::GenesisConfig`](/rustdocs/latest/pallet_balances/pallet/struct.GenesisConfig.html)) for example, will have a corresponding attribute on this
-data type.
+Storage items that are tagged for genesis configuration, such as 
+[`pallet_balances::GenesisConfig`](/rustdocs/latest/pallet_balances/pallet/struct.GenesisConfig.html) 
+for example, will have a corresponding attribute on this data type.
 
 In order to consume a pallet's genesis configuration capabilities, you must include the
 `Config` element when adding the pallet to your runtime.
 All the `GenesisConfig` types for the pallets that inform a runtime will be aggregated into a single
 `GenesisConfig` type for that runtime, which implements
-the [`BuildStorage` trait](/rustdocs/latest/sp_runtime/trait.BuildStorage.html). For example, in [`Struct node_template_runtime::GenesisConfig`](/rustdocs/latest/node_template_runtime/struct.GenesisConfig.html),
-each attribute on this type corresponds to a `GenesisConfig` from the runtime's pallets that have a `Config` element.
+the [`BuildStorage` trait](/rustdocs/latest/sp_runtime/trait.BuildStorage.html). For example, in the
+[`node_template_runtime::GenesisConfig`](/rustdocs/latest/node_template_runtime/struct.GenesisConfig.html) struct,
+each attribute on this type corresponds to a `GenesisConfig` from the runtime's pallets that has a `Config` element.
 Ultimately, the runtime's `GenesisConfig` is exposed by way of
 the [`ChainSpec` trait](/rustdocs/latest/sc_chain_spec/trait.ChainSpec.html).
 
 For a complete
-and concrete example of using Substrate's genesis storage configuration capabilities, refer to the
-`decl_storage` macro in
-the [Society pallet](https://github.com/paritytech/substrate/blob/master/frame/society/src/lib.rs)
-as well as the genesis configuration for the Society pallet's storage in
+and concrete example of using Substrate's genesis storage configuration capabilities, refer to
+the genesis configuration for the Society pallet's storage in
 the [chain specification that ships with the Substrate code base](https://github.com/paritytech/substrate/blob/master/bin/node/cli/src/chain_spec.rs).
-Keep reading for more detailed descriptions of these capabilities.
+Keep reading for a more detailed descriptions of these capabilities.
 
-### `config`
+### `genesis_config`
 
-When you use the `decl_storage` macro to declare a storage item, you can provide an optional
-`config` extension that will add an attribute to the pallet's `GenesisConfig` data type. The value
-of this attribute will be used as the initial value of the storage item in your chain's genesis
-block. The `config` extension takes a parameter that will determine the name of the attribute on the
-`GenesisConfig` data type &mdash; this parameter is optional if the [`get` extension](#getter-methods) is
-provided.
+The [`#[pallet::genesis_config]`](/rustdocs/latest/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional) 
+macro provides an extension that will add an attribute to the pallet's 
+`GenesisConfig` data type. The value of this attribute will be used as the initial value of the storage 
+item in your chain's genesis block. The `config` extension takes a parameter that will determine the 
+name of the attribute on the `GenesisConfig` data type &mdash; this parameter is optional if the 
+[`get` extension](#getter-methods) is provided.
 
 Here is an example that demonstrates using the `config` extension with a Storage Value named `MyVal`
 to create an attribute named `init_val` on the `GenesisConfig` data type for the Storage Value's
@@ -356,14 +321,6 @@ to set the Storage Value's initial value in your chain's genesis block.
 In `my_pallet/src/lib.rs`:
 
 ```rust
-// In FRAME v1.
-decl_storage! {
-    trait Store for Module<T: Config> as MyPallet {
-        pub MyVal get(fn my_val) config(init_val): u64;
-    }
-}
-
-// In FRAME v2.
 #[pallet::genesis_config]
 pub struct GenesisConfig<T: Config> {
 		pub init_val: u64,
@@ -380,38 +337,27 @@ GenesisConfig {
 }
 ```
 
-### `build`
+### `genesis_build`
 
-Whereas [the `config` extension](#config) to the `decl_storage` macro allows you to configure a
-module's genesis storage state within a chain specification, the `build` extension allows you to
-perform this same task within the pallet itself (this gives you access to the pallet's private
-functions). Like `config`, the `build` extension accepts a single parameter, but in this case the
-parameter is always required and must be a closure, which is essentially a function. The `build`
-closure will be invoked with a single parameter whose type will be the pallet's `GenesisConfig` type. This gives you easy access to all the attributes of the `GenesisConfig` type.
+The [`#[pallet::genesis_build]`](/rustdocs/latest/frame_support/attr.pallet.html#genesis-build-palletgenesis_build-optional) 
+extension allows you to define how `genesis_configuration` is built within the pallet itself (this gives you access to the pallet's private
+functions). Like `genesis_config`, the `genesis_build` extension accepts a single parameter, but in this case the
+parameter is always required and must be a closure, which is essentially a function. The `genesis_build`
+closure will be invoked with a single parameter whose type will be the pallet's `GenesisConfig` type. 
+This gives you easy access to all the attributes of the `GenesisConfig` type.
 
-The `build` extension can be used with the `config` extension for a single storage item. In this case, the
-pallet's `GenesisConfig` type will have an attribute that corresponds to what was set using `config` and
-whose value will be set in the chain specification, but it will be the value returned by the `build`
+The `genesis_build` extension must be used alongside the `genesis_config` extension. A
+pallet's `GenesisConfig` type will have an attribute that corresponds to what was set in `genesis_config` and
+whose value will be set in the chain specification, but it will be the value returned by the `genesis_build`
 closure that will be used to set the storage item's genesis value.
 
-Here is an example that demonstrates using `build` to set the initial value of a storage item. In
+Here is an example that demonstrates using `genesis_build` to set the initial value of a storage item. In
 this case, the example involves two storage items: one that represents a list of member account IDs
-and another that designates a special member from the list (the prime member). The list of members is
-provided by way of the `config` extension and the prime member &mdash; assumed to be the first
-element in the list of members &mdash; is set using the `build` extension.
+and another that designates a special member from the list (the prime member).
 
 In `my_pallet/src/lib.rs`:
 
 ```rust
-// In FRAME v1.
-decl_storage! {
-    trait Store for Module<T: Config> as MyPallet {
-        pub Members config(orig_ids): Vec<T::AccountId>;
-        pub Prime build(|config: &GenesisConfig<T>| config.orig_ids.first().cloned()): T::AccountId;
-    }
-}
-
-// In FRAME v2.
 #[pallet::genesis_config]
 struct GenesisConfig {
     members: Vec<T::AccountId>,
@@ -437,40 +383,15 @@ GenesisConfig {
 }
 ```
 
-### `add_extra_genesis`
-
-The `add_extra_genesis` extension to the `decl_storage` macro allows you to define a scope where the
-[`config`](#config) and [`build`](#build) extensions can be provided without the need to bind them
-to specific storage items. You can use `config` within an `add_extra_genesis` scope to add an
-attribute to a pallet's `GenesisConfig` data type that can be used within any `build` closure. The
-`build` closures that are defined within an `add_extra_genesis` scope can be used to execute logic
-without binding that logic's return value to the value of a particular storage item. This may be
+You can also use `genesis_build` to define a `GenesisConfig` attribute that
+is not bound to a particular storage item. This may be
 desireable if you wish to invoke a private helper function within your pallet that sets several
-storage items, or invoke a function defined in some other pallets included within your pallet.
-
-Here is an example that encapsulates the same use case described above in the example for `build`. In this
-case, however, the `add_extra_genesis` extension is used to define a `GenesisConfig` attribute that
-is not bound to a particular storage item as well as a `build` closure that will call a private
-function on the pallet to set the values of multiple storage items. For the purposes of this
-example, the implementation of the private helper function (`initialize_members`) is left to your
-imagination.
+storage items, or invoke a function defined in some other pallets included within your pallet. 
+For example, using an imaginary private function called `intitialize_members`, this would look like:
 
 In `my_pallet/src/lib.rs`:
 
 ```rust
-// In FRAME v1.
-decl_storage! {
-    trait Store for Module<T: Config> as MyPallet {
-        pub Members: Vec<T::AccountId>;
-        pub Prime: T::AccountId;
-    }
-    add_extra_genesis {
-        config(orig_ids): Vec<T::AccountId>;
-        build(|config| Module::<T>::initialize_members(&config.members))
-    }
-}
-
-// In FRAME v2.
 #[pallet::genesis_config]
 struct GenesisConfig {
     members: Vec<T::AccountId>,
@@ -574,7 +495,7 @@ requires users to configure a bound on this number that will be included as a
 
 ### Learn More
 
-Read [the advanced storage documentation](../../advanced/storage).
+Read [the advanced storage documentation](/v3/advanced/storage).
 
 ### Examples
 

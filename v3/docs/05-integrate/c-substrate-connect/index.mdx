@@ -1,0 +1,105 @@
+---
+title: Substrate Connect 
+slug: /v3/integration/substrate-connect
+version: 3.0 
+section: docs
+category: tools
+keywords: client, wasm, rpc, node
+---
+
+Rather than a single tool, [Substrate Connect](https://paritytech.github.io/substrate-connect/) is
+more of a tool-kit, or bundle of tools, that enable developers to build application specific light
+clients for Substrate based chains. It provides a more secure alternative than connecting to
+a JSON-RPC node to interact with the chain.
+
+Substrate Connect builds on the Polkadot JS API so building an app has the same experience as with
+using a traditional RPC server node. Its components are also part of the Substrate building
+framework and available for every Substrate based project.
+
+## What It Enables
+
+Substrate Connect provides the necessary infrastructure to run a Substrate light client in any
+Javascript or Node environment, from in-browser applications and extensions, to Electron apps,
+IOT devices, and mobile phones.
+
+Substrate Connect enables Substrate runtime engineers to:
+
+-  Generate a light client of their chain in a single command.
+-  Create an interface to run light nodes of different chains.
+-  Create an interface to add runtimes and genesis configurations of their own chains.
+
+For in-browser use, Substrate Connect provides a Browser Extension built upon the
+`@substrate/extension` node module. It is designed to give end-users the ability to contain all
+running light clients in one browser tab.
+
+The extension runs a single light client, [Smoldot](https://github.com/paritytech/smoldot) that
+manages connecting to different blockchains. Whenever a user opens an app in a new browser tab it
+asks the extension to connect to whatever blockchains the app is interested in. The light client is
+smart enough to share resources so that it only connects to a network once even if there are
+multiple apps talking to it.
+
+## Motivation
+
+1. Interacting with a Substrate chain via an RPC server requires a layer of 3rd party trust which
+can be avoided. Substrate Connect uses a Wasm light client which connects to a Substrate chain
+without any unecessary intermediary.
+
+2. Due to browser limitations on websockets from HTTPS pages, establishing a good number of peers
+is difficult as many nodes need to be available with TLS (Transport Layer Security). Substrate
+Connect provides a browser extension to overcome this limitation and to keep the chains synced in
+the background, making applications on a Substrate chain faster.
+
+## How it works
+
+### Modules
+
+Substrate Connect currently has
+[4 different modules](https://paritytech.github.io/substrate-connect/api/modules.html):
+
+- `@substrate/connect`: provides a `Detector` class to detect whether a user has the Substrate
+Connect browser extension installed. If it isn't installed, it falls back to instantiating a WASM
+light client directly in the page.
+
+- `@substrate/connect-extension-protocol`: handles receiving and listening for messages from the
+browser extension and provider.
+
+- `@substrate/extension`: manages an app's connection to multiple blockchains, creating an instance
+of Smoldot and connecting the app to it.
+
+- `@substrate/smoldot-test-utils`: utility functions for testing purposes.
+
+The combination of these modules result in: 
+
+1. **Ready-to-use Substrate Wasm Light-Clients to be executed in the browser.** They are part of
+the Substrate framework and with that, available for every Substrate based project. If developers
+want to generate a light client of their chain, all it takes is just one command to compile a
+library that contains everything that's needed to run a light client in the browser.
+
+2. **A node module that bundles the light-clients of different chains.** It provides an interface
+that allows developers to run light nodes of different chains and to add runtimes and genesis
+configurations of their own chain.
+
+### Usage
+
+When used in individual projects, the Substrate Connect node module will first check for the
+installed extension. If available, it will try to connect to the light client running inside the
+extension. Only if the extension is not installed will it start a light client in the browser tab.
+
+### Ways to use it 
+
+When building an app with Substrate Connect, it will detect whether the user has the extension and
+use it, or create the WASM light client in-page for them. If developers want to generate a light
+client of their chain, all it takes is just one command to compile a library that contains
+everything needed to run a light client in the browser.
+
+Refer to these guides to get started with Substrate Connect:
+
+- [Installation](https://github.com/paritytech/substrate-connect#getting-started)
+- [Launching the browser extension](https://github.com/paritytech/substrate-connect/tree/master/projects/extension)
+
+## Next Steps
+
+### Learn More
+
+- Learn how [Custom RPCs](/v3/runtime/custom-rpcs) work in Substrate 
+- Learn more about [Smoldot](https://github.com/paritytech/smoldot), the lightweight client for Substrate chains
