@@ -1,6 +1,4 @@
 import * as React from 'react'
-// import { graphql } from 'gatsby'
-// import { LocalizedLink } from 'gatsby-theme-i18n'
 import Lottie from 'react-lottie'
 import Icon from '../components/Icon'
 import Layout from '../components/Layout'
@@ -37,7 +35,9 @@ export default function Index() {
               comes with peer-to-peer networking, consensus mechanisms, and much
               more.
             </p>
-            <PrimaryFixedButton link="/v3">Get Started</PrimaryFixedButton>
+            <PrimaryFixedButton hero link="/v3">
+              Get Started
+            </PrimaryFixedButton>
           </div>
           <div className="flex justify-center md:w-1/2">
             {/* <LocalizedLink to="/v3"> */}
@@ -179,7 +179,7 @@ export default function Index() {
       {/* Explore Documentation Section */}
       <Section>
         <div className="mb-14">
-          <div className="text-5xl lg:text-6xl font-extrabold mb-8">
+          <div className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-8 break-normal">
             Explore Documentation
           </div>
           <div className="text-xl">
