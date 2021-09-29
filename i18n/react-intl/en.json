@@ -45,8 +45,8 @@
   "docs-nav-edit": "Edit",
   "docs-nav-next": "Next",
   "docs-nav-back": "Back",
-  "docs-nav-docs-overview":"Back to Developers Overview",
-  "docs-nav-learn-more":"More Ways to Learn",
+  "docs-nav-docs-overview": "Back to Developers Overview",
+  "docs-nav-learn-more": "More Ways to Learn",
 
   "docs-menu-getting-started": "Getting Started",
   "docs-menu-overview": "Overview",
@@ -55,44 +55,43 @@
   "docs-menu-windows": "Getting Started on Windows",
   "docs-menu-glossary": "Glossary",
 
-  "docs-menu-key-concepts": "Substrate Key Concepts",
+  "docs-menu-key-concepts": "Key Concepts",
   "docs-menu-gs-runtime": "Runtime",
   "docs-menu-extrinsics": "Extrinsics",
   "docs-menu-account-abstractions": "Account Abstractions",
   "docs-menu-transaction-pool": "Transaction Pool",
   "docs-menu-session-keys": "Session Keys",
   "docs-menu-transaction-weight": "Transaction Weight",
+  "docs-menu-execution": "Execution",
   "docs-menu-offchain-features": "Off-Chain Features",
 
-  "docs-menu-runtime": "Runtime",
-  "docs-menu-pallets": "Pallets",
+  "docs-menu-runtime": "Runtime Development",
   "docs-menu-frame": "FRAME",
   "docs-menu-macros": "Macros",
   "docs-menu-metadata": "Metadata",
   "docs-menu-storage": "Storage",
   "docs-menu-origins": "Origins",
-  "docs-menu-execution": "Execution",
-  "docs-menu-events": "Events",
-  "docs-menu-errors": "Errors",
+  "docs-menu-events": "Events and Errors",
   "docs-menu-weights-and-fees": "Weights and Fees",
   "docs-menu-benchmarking": "Benchmarking",
   "docs-menu-debugging": "Debugging",
   "docs-menu-testing": "Testing",
   "docs-menu-randomness": "Randomness",
+  "docs-menu-chain-specs": "Chain Specification",
   "docs-menu-upgrades": "Upgrades",
+  "docs-menu-coupling": "Pallet Coupling",
+  "docs-menu-rpcs": "Custom RPCs",
+  "docs-menu-smart-contracts": "Smart Contract Toolkits",
 
-  "docs-menu-smart-contracts": "Smart Contracts",
-  "docs-menu-sc-overview": "Overview",
-  "docs-menu-contracts-pallet": "Contracts Pallet",
-  "docs-menu-evm-pallet": "EVM Pallet",
-  "docs-menu-sc-faq": "FAQ",
-
-  "docs-menu-integrate": "Toolchains",
+  "docs-menu-integration": "Integration",
   "docs-menu-polkadot-js": "Polkadot-JS",
   "docs-menu-client-libraries": "Client Libraries",
+  "docs-menu-substrate-connect": "Substrate Connect",
+
+  "docs-menu-tools": "Tools",
   "docs-menu-subkey": "Subkey",
   "docs-menu-memory-profiling": "Memory Profiling",
-  "docs-menu-chain-specs": "Chain Specification",
+  "docs-menu-try-runtime": "Try Runtime",
 
   "docs-menu-advanced": "Advanced",
   "docs-menu-account-info": "Account Info",
@@ -104,6 +103,9 @@
   "docs-menu-adv-storage": "Storage",
   "docs-menu-ss58": "SS58 Address Format",
   "docs-menu-hash-collections": "Hash Collections",
+
+  "docs-menu-contribute": "Contribute",
+  "docs-menu-stye-guide": "Style Guide",
 
   "docs-nav-htg-basics": "Basics",
   "htg-basics-pallet-integration": "Pallet Integration",
@@ -135,8 +137,9 @@
 
   "docs-nav-htg-consensus": "Consensus",
   "htg-consensus-pow": "Add PoW Consensus",
+  "htg-consensus-hybrid": "Create a PoS-PoW Hybrid Node",
 
-  "docs-nav-htg-parachains": "Parachains",  
+  "docs-nav-htg-parachains": "Parachains",
   "htg-parachains-upgrade": "Preparing for On-Chain Upgrades",
   "htg-parachains-setup": "Set-up your runtime and client",
   "htg-parachains-register": "How to register your Parachain",
@@ -168,7 +171,7 @@
   "playground-substrate-paragraph-one": "Though Substrate makes it very easy to build blockchains ready for Polkadot, blockchains in the Polkadot network don’t need to be built with Substrate.",
   "playground-substrate-paragraph-two": "And even if you don’t want your blockchain to connect to Polkadot, you will still find Substrate a very useful framework for creating a state-of-the-art blockchain.",
 
-  "404":"404",
-  "404-text":"Something's missing",
-  "404-button":"Go back"
+  "404": "404",
+  "404-text": "Something's missing",
+  "404-button": "Go back"
 }

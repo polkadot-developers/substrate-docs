@@ -23,17 +23,17 @@ difficulty: 1
       title: 'Overview',
       description:
         `Fees are broken down into three components:
-		- **Byte fee** - A fee proportional to the transaction's length in bytes. The proportionality 
-		constant is a parameter in the transaction_payment pallet.
-		- **Weight fee** - A fee calculated from the transaction's weight. Weights quantify the time 
-		spent executing the transaction. Learn more in the recipe on weights. The conversion doesn't 
-		need to be linear, although it often is. The same conversion function is applied across all 
-		transactions from all pallets in the runtime.
-		- **Fee Multiplier** - A multiplier for the computed fee, that can change as the chain progresses.
-		FRAME provides the [transaction payment pallet](https://github.com/paritytech/substrate/tree/master/frame/transaction-payment) 
-		for calculating and collecting fees for executing transactions. It can be useful to modify 
-		the way fees are calculated to charge fees with more accuracy to your users. This guides steps 
-		through the process of customizing \`WeightToFee\` for your runtime's implementation of \`pallet_transaction_payment\`.`,
+- **Byte fee** - A fee proportional to the transaction's length in bytes. The proportionality 
+constant is a parameter in the transaction_payment pallet.
+- **Weight fee** - A fee calculated from the transaction's weight. Weights quantify the time 
+spent executing the transaction. Learn more in the recipe on weights. The conversion doesn't 
+need to be linear, although it often is. The same conversion function is applied across all 
+transactions from all pallets in the runtime.
+- **Fee Multiplier** - A multiplier for the computed fee, that can change as the chain progresses.
+FRAME provides the [transaction payment pallet](https://github.com/paritytech/substrate/tree/master/frame/transaction-payment) 
+for calculating and collecting fees for executing transactions. It can be useful to modify 
+the way fees are calculated to charge fees with more accuracy to your users. This guides steps 
+through the process of customizing \`WeightToFee\` for your runtime's implementation of \`pallet_transaction_payment\`.`,
     },
   ]}
 />
