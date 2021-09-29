@@ -30,7 +30,7 @@ export default function Index() {
             <h4 className="text-xl xl:text-3xl font-semibold">
               The center of knowledge
             </h4>
-            <p className="font-medium max-w-lg">
+            <p className="font-medium max-w-lg text-xl">
               Substrate is powered by best-in-class cryptographic research and
               comes with peer-to-peer networking, consensus mechanisms, and much
               more.
@@ -179,7 +179,7 @@ export default function Index() {
       {/* Explore Documentation Section */}
       <Section>
         <div className="mb-14">
-          <div className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-8 break-normal">
+          <div className="text-4xltext-5xl lg:text-6xl font-extrabold mb-8 break-normal">
             Explore Documentation
           </div>
           <div className="text-xl">
@@ -198,7 +198,7 @@ export default function Index() {
             <div className="text-5xl lg:text-6xl font-extrabold mb-8">
               Connect with <br /> the community
             </div>
-            <p className="max-w-lg font-medium">
+            <p className="max-w-lg font-medium text-xl">
               Network, share and learn from others who speak your (tech)
               language! Join in the conversation & keep up with the latest
               developments.
