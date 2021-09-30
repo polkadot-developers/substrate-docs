@@ -34,19 +34,6 @@ export default function playground() {
               following tutorials, using a sandbox allows you to skip the
               preliminary set-up to get to the parts most important to you.
             </p>
-            {/* <div className="text-5xl xl:text-7xl font-title font-extrabold mb-6">
-              Playground
-            </div>
-            <h4 className="text-xl font-semibold">
-              Set up a local environment
-            </h4>
-            <p className="max-w-lg">
-              We recommend picking a sandbox, particularly if you&apos;re just
-              getting started. Building on Substrate requires different pieces
-              of technology. Using a sandbox allows you to skip preliminary
-              set-up and prerequisites to get to the parts that are important to
-              you.
-            </p> */}
           </div>
           <div className="flex justify-center md:w-1/2">
             <StaticImage

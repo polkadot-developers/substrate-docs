@@ -30,7 +30,7 @@ export default function DocsNav({
 
   return (
     <nav
-      className={`sticky top-16 h-docNav ${
+      className={`sticky top-16 mb-12 h-docNav ${
         isOpen ? `w-16 overflow-y-hidden` : `w-64 overflow-y-auto `
       }`}
     >
