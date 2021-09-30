@@ -123,6 +123,8 @@
   "htg-pallet-design-randomness": "Implementing Randomness",
   "htg-pallet-design-crowdfund": "Simple Crowdfund",
   "htg-pallet-design-storage-value": "Storage Value Struct",
+  "htg-tightly-coupling-pallets": "Tightly Coupling a Pallet",
+  "htg-loosely-coupling-pallets": "Loosely Coupling a Pallet",
 
   "docs-nav-htg-weights": "Weights",
   "htg-weights-calculate-fees": "Calculating Fees",
