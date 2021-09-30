@@ -201,6 +201,10 @@ const DevNavMenu = {
         name: `${intl.formatMessage({ id: 'docs-menu-tools' })}`,
         items: [
           {
+            title: `${intl.formatMessage({ id: 'docs-menu-tools-landing' })}`,
+            link: '/v3/tools',
+          },
+          {
             title: `${intl.formatMessage({ id: 'docs-menu-subkey' })}`,
             link: '/v3/tools/subkey',
           },
