@@ -28,11 +28,12 @@ export default function playground() {
               Set up a local environment
             </h4>
             <p className="max-w-lg">
-              We recommend picking a sandbox, particularly if you&apos;re just
-              getting started. Building on Substrate requires different pieces
-              of technology. Using a sandbox allows you to skip preliminary
-              set-up and prerequisites to get to the parts that are important to
-              you.
+            Building with Substrate requires different pieces
+            of technology. We recommend picking a sandbox if 
+            you&apos;re just getting started and want to try things out. 
+            Or if you&apos;re hosting Substrate developer workshops or following 
+            tutorials, using a sandbox environment allows you to skip the 
+            preliminary set-up to get to the parts most important to you.
             </p>
           </div>
           <div className="flex justify-center md:w-1/2">
