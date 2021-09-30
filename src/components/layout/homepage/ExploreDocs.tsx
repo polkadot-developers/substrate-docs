@@ -32,7 +32,7 @@ export default function ExploreDocs() {
           name: 'Accounts',
           link: '/v3/concepts/account-abstractions',
           description:
-            'Read about Substrate\'s Account and key pair generation system.',
+            "Read about Substrate's Account and key pair generation system.",
         },
         {
           name: 'Extrinsics',

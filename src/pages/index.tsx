@@ -125,12 +125,12 @@ export default function Index() {
               Set up a cloud sandbox
             </h4>
             <p className="max-w-lg  leading-7">
-            Building with Substrate requires different pieces
-            of technology. We recommend picking a sandbox if 
-            you&apos;re just getting started and want to try things out. 
-            Or if you&apos;re hosting Substrate developer workshops or following 
-            tutorials, using a sandbox environment allows you to skip the 
-            preliminary set-up to get to the parts most important to you.
+              Building with Substrate requires different pieces of technology.
+              We recommend picking a sandbox if you&apos;re just getting started
+              and want to try things out. Or if you&apos;re hosting Substrate
+              developer workshops or following tutorials, using a sandbox
+              environment allows you to skip the preliminary set-up to get to
+              the parts most important to you.
             </p>
             <div className="my-8">
               <button className="duration-150 ease-in hover:opacity-50">
