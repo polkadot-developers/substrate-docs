@@ -201,6 +201,10 @@ const DevNavMenu = {
         name: `${intl.formatMessage({ id: 'docs-menu-tools' })}`,
         items: [
           {
+            title: `${intl.formatMessage({ id: 'docs-menu-tools-landing' })}`,
+            link: '/v3/tools',
+          },
+          {
             title: `${intl.formatMessage({ id: 'docs-menu-subkey' })}`,
             link: '/v3/tools/subkey',
           },
@@ -259,14 +263,14 @@ const DevNavMenu = {
           },
         ],
       },
-        {
-          name: `${intl.formatMessage({ id: 'docs-menu-contribute' })}`,
-          items: [
-            {
-              title: `${intl.formatMessage({ id: 'docs-menu-stye-guide' })}`,
-              link: '/v3/style-guide',
-            },
-          ],
+      {
+        name: `${intl.formatMessage({ id: 'docs-menu-contribute' })}`,
+        items: [
+          {
+            title: `${intl.formatMessage({ id: 'docs-menu-stye-guide' })}`,
+            link: '/v3/style-guide',
+          },
+        ],
       },
     ]
   },
@@ -495,19 +499,19 @@ DevNavMenu.tuts.firstChain = [
       },
       {
         title: `Background`,
-        link: '#what-is-a-blockchain-node',
+        link: '/tutorials/v3/create-your-first-substrate-chain#what-is-a-blockchain-node',
       },
       {
         title: `Set-up Your Computer`,
-        link: '#install-rust-and-the-rust-toolchain',
+        link: '/tutorials/v3/create-your-first-substrate-chain#install-rust-and-the-rust-toolchain',
       },
       {
         title: `Using the Substrate Node Template`,
-        link: '#prepare-a-substrate-node-using-the-node-template',
+        link: '/tutorials/v3/create-your-first-substrate-chain#prepare-a-substrate-node-using-the-node-template',
       },
       {
         title: `Interacting with Your Node`,
-        link: '#start-the-front-end-template',
+        link: '/tutorials/v3/create-your-first-substrate-chain#start-the-front-end-template',
       },
     ],
   },
@@ -523,15 +527,15 @@ DevNavMenu.tuts.poe = [
       },
       {
         title: `Preparation`,
-        link: '#prepare-to-build-a-dapp',
+        link: '/tutorials/v3/proof-of-existence#prepare-to-build-a-dapp',
       },
       {
         title: `Build a Custom Pallet`,
-        link: '#building-a-custom-pallet',
+        link: '/tutorials/v3/proof-of-existence#building-a-custom-pallet',
       },
       {
         title: `Build a Custom Front-end`,
-        link: '#building-a-custom-front-end',
+        link: '/tutorials/v3/proof-of-existence#building-a-custom-front-end',
       },
     ],
   },
@@ -547,11 +551,11 @@ DevNavMenu.tuts.permissionedNetwork = [
       },
       {
         title: `Add the node-authorization pallet`,
-        link: '#add-node-authorization-pallet',
+        link: '/tutorials/v3/permissioned-network#add-node-authorization-pallet',
       },
       {
         title: `Launch your permissioned network`,
-        link: '#launch-our-permissioned-network',
+        link: '/tutorials/v3/permissioned-network#launch-our-permissioned-network',
       },
     ],
   },
@@ -567,11 +571,11 @@ DevNavMenu.tuts.forklessUpgrades = [
       },
       {
         title: `Sudo Upgrade`,
-        link: '#sudo-upgrade',
+        link: '/tutorials/v3/forkless-upgrades#sudo-upgrade',
       },
       {
         title: `Schedule an Upgrade`,
-        link: '#schedule-an-upgrade',
+        link: '/tutorials/v3/forkless-upgrades#schedule-an-upgrade',
       },
     ],
   },
@@ -587,19 +591,19 @@ DevNavMenu.tuts.privateNetwork = [
       },
       {
         title: `Alice and Bob Start Blockchain`,
-        link: '#alice-and-bob-start-blockchain',
+        link: '/tutorials/v3/private-network#alice-and-bob-start-blockchain',
       },
       {
         title: `Generate Your Own Keys`,
-        link: '#generate-your-own-keys',
+        link: '/tutorials/v3/private-network#generate-your-own-keys',
       },
       {
         title: `Create a Custom Chain Spec`,
-        link: '#create-a-custom-chain-spec',
+        link: '/tutorials/v3/private-network#create-a-custom-chain-spec',
       },
       {
         title: `Launch Your Private Network`,
-        link: '#launch-your-private-network',
+        link: '/tutorials/v3/private-network#launch-your-private-network',
       },
     ],
   },
@@ -615,15 +619,15 @@ DevNavMenu.tuts.nodeMetrics = [
       },
       {
         title: `Install Prometheus and Grafana`,
-        link: '#install-prometheus-and-grafana',
+        link: '/tutorials/v3/node-metrics#install-prometheus-and-grafana',
       },
       {
         title: `Start a Substrate Template Node`,
-        link: '#start-a-substrate-template-node',
+        link: '/tutorials/v3/node-metrics#start-a-substrate-template-node',
       },
       {
         title: `Visualizing Prometheus Metrics with Grafana`,
-        link: '#visualizing-prometheus-metrics-with-grafana',
+        link: '/tutorials/v3/node-metrics#visualizing-prometheus-metrics-with-grafana',
       },
     ],
   },
@@ -639,19 +643,19 @@ DevNavMenu.tuts.addPallet = [
       },
       {
         title: `Import the Nicks Pallet`,
-        link: '#import-the-nicks-pallet',
+        link: '/tutorials/v3/add-a-pallet#import-the-nicks-pallet',
       },
       {
         title: `Configure the Nicks Pallet`,
-        link: '#configure-the-nicks-pallet',
+        link: '/tutorials/v3/add-a-pallet#configure-the-nicks-pallet',
       },
       {
         title: `Interact with the Nicks Pallet`,
-        link: '#interact-with-the-nicks-pallet',
+        link: '/tutorials/v3/add-a-pallet#interact-with-the-nicks-pallet',
       },
       {
         title: `Publish Your Own Pallet`,
-        link: '#publish-your-own-pallet',
+        link: '/tutorials/v3/add-a-pallet#publish-your-own-pallet',
       },
     ],
   },
@@ -707,15 +711,15 @@ DevNavMenu.tuts.frontierWorkshop = [
       },
       {
         title: `Frontier Template`,
-        link: '#frontier-template',
+        link: '/tutorials/v3/frontier#frontier-template',
       },
       {
         title: `Architecture`,
-        link: '#architecture',
+        link: '/tutorials/v3/frontier#architecture',
       },
       {
         title: `ERC20 Contract Deployment`,
-        link: '#erc20-contract-deployment',
+        link: '/tutorials/v3/frontier#erc20-contract-deployment',
       },
     ],
   },
@@ -730,23 +734,23 @@ DevNavMenu.tuts.kittiesWorkshop = [
       },
       {
         title: 'Tutorial Objectives',
-        link: '#tutorial-objectives',
+        link: '/tutorials/v3/kitties/pt1#tutorial-objectives',
       },
       {
         title: 'Basic Set-up',
-        link: '#basic-set-up',
+        link: '/tutorials/v3/kitties/pt1#basic-set-up',
       },
       {
         title: `Uniqueness, Custom Types, and Storage Maps`,
-        link: '#uniqueness-custom-types-and-storage-maps',
+        link: '/tutorials/v3/kitties/pt1#uniqueness-custom-types-and-storage-maps',
       },
       {
         title: `Dispatchables, Events, and Errors`,
-        link: '#dispatchables-events-and-errors',
+        link: '/tutorials/v3/kitties/pt1#dispatchables-events-and-errors',
       },
       {
         title: `Interacting with Your Kitties`,
-        link: '#interacting-with-your-ktties',
+        link: '/tutorials/v3/kitties/pt1#interacting-with-your-ktties',
       },
     ],
   },
@@ -759,11 +763,11 @@ DevNavMenu.tuts.kittiesWorkshop = [
       },
       {
         title: `Getting Started`,
-        link: '#getting-started',
+        link: '/tutorials/v3/kitties/pt2#getting-started',
       },
       {
         title: `Creating Custom Components`,
-        link: '#creating-custom-components',
+        link: '/tutorials/v3/kitties/pt2#creating-custom-components',
       },
     ],
   },

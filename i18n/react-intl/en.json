@@ -89,6 +89,7 @@
   "docs-menu-substrate-connect": "Substrate Connect",
 
   "docs-menu-tools": "Tools",
+  "docs-menu-tools-landing": "Explore Tools",
   "docs-menu-subkey": "Subkey",
   "docs-menu-memory-profiling": "Memory Profiling",
   "docs-menu-try-runtime": "Try Runtime",
@@ -122,6 +123,8 @@
   "htg-pallet-design-randomness": "Implementing Randomness",
   "htg-pallet-design-crowdfund": "Simple Crowdfund",
   "htg-pallet-design-storage-value": "Storage Value Struct",
+  "htg-tightly-coupling-pallets": "Tightly Coupling a Pallet",
+  "htg-loosely-coupling-pallets": "Loosely Coupling a Pallet",
 
   "docs-nav-htg-weights": "Weights",
   "htg-weights-calculate-fees": "Calculating Fees",

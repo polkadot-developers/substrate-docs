@@ -28,19 +28,35 @@ export default function NavListItem({
     }
   }, [])
   if (external) {
-    return (
-      <a href={link}>
-        <div
-          className={`${styles} ${
-            isCurrent
-              ? 'text-substrateGreen underline'
-              : 'text-substrateDark dark:text-white'
-          }`}
-        >
-          <span>{title}</span>
-        </div>
-      </a>
-    )
+    if (title === 'Rust Docs' || title === 'Events' || title === 'Blog') {
+      return (
+        <a href={link} target="_blank" rel="noreferrer">
+          <div
+            className={`${styles} ${
+              isCurrent
+                ? 'text-substrateGreen underline'
+                : 'text-substrateDark dark:text-white'
+            }`}
+          >
+            <span>{title}</span>
+          </div>
+        </a>
+      )
+    } else {
+      return (
+        <a href={link}>
+          <div
+            className={`${styles} ${
+              isCurrent
+                ? 'text-substrateGreen underline'
+                : 'text-substrateDark dark:text-white'
+            }`}
+          >
+            <span>{title}</span>
+          </div>
+        </a>
+      )
+    }
   } else {
     return (
       <Link to={link}>

@@ -1,10 +1,15 @@
 html {
-  @apply bg-white dark:bg-darkBackground antialiased font-body;
+  @apply bg-white antialiased font-body;
 }
 
 body {
-  @apply bg-white dark:bg-darkBackground text-substrateDark dark:text-white text-base;
+  @apply bg-white text-substrateDark dark:text-white text-base;
   background: transparent;
+}
+
+html.dark,
+body.dark {
+  @apply bg-darkBackground;
 }
 
 main.main-container {
@@ -12,10 +17,7 @@ main.main-container {
 }
 
 /* Headings */
-h1 {
-  @apply font-title font-bold;
-}
-
+h1,
 h2,
 h3,
 h4,
@@ -24,23 +26,29 @@ h6 {
   @apply font-body font-bold;
 }
 
-h1 {
-  @apply mb-3 text-2xl md:text-4xl xl:text-6xl;
+h1,
+.h1 {
+  @apply font-body font-extrabold mb-3 text-2xl md:text-4xl xl:text-6xl;
+  line-height: 1.2;
 }
 
-h2 {
+h2,
+.h2 {
   @apply mb-4 text-4xl;
 }
 
-h3 {
+h3,
+.h3 {
   @apply mb-5 text-3xl;
 }
 
-h4 {
+h4,
+.h4 {
   @apply mb-6 text-lg md:text-2xl;
 }
 
-h5 {
+h5,
+.h5 {
   @apply text-xl;
 }
 

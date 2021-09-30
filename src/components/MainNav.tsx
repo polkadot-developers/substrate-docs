@@ -57,7 +57,7 @@ const MainNav = {
           },
           {
             linkTitle: `Rust Docs`,
-            link: `/rustdocs`,
+            link: `/rustdocs/`,
             external: true,
           },
           {
@@ -151,7 +151,7 @@ const MainNav = {
               },
               {
                 linkTitle: 'Events',
-                link: `${site}ecosystem/connect/events`,
+                link: `https://www.parity.io/events`,
                 external: true,
               },
               {
@@ -161,7 +161,7 @@ const MainNav = {
               },
               {
                 linkTitle: 'Blog',
-                link: `${site}ecosystem/connect/blog`,
+                link: `https://www.parity.io/blog/tag/parity-substrate`,
                 external: true,
               },
             ],
