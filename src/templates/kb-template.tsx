@@ -45,7 +45,7 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
           </div>
           {/* ------------ */}
           {/* Main Article */}
-          <article className="max-w-6xl px-4 lg:px-16 lg:pb-24 lg:flex lg:mx-auto">
+          <article className="max-w-6xl px-4 lg:px-16 mb-20 lg:flex lg:mx-auto">
             <div>
               <div
                 className={`py-8 lg:flex lg:justify-between lg:items-center`}
