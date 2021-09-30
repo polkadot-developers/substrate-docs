@@ -43,8 +43,8 @@ export default function TableOfContent({ headings }: TableOfContentProps) {
 
   return (
     <>
-      <div className="w-60 sticky top-16 max-h-screen py-8 pl-11 text-sm overflow-y-auto overscroll-contain">
-        <div className="pb-3">{items && 'ON THIS PAGE'}</div>
+      <div className="w-60 sticky top-20 max-h-screen my-[29px] ml-11 overflow-y-auto overscroll-contain">
+        <div className="mb-3 font-semibold">{items && 'ON THIS PAGE'}</div>
         {items && (
           <>
             {items.map((value, index) => {
@@ -52,7 +52,7 @@ export default function TableOfContent({ headings }: TableOfContentProps) {
                 <div key={index}>
                   <a href={value.url}>
                     <div
-                      className={`pb-3 hover:text-substrateBlue dark:hover:text-substrateBlue-light ${
+                      className={`mb-2 hover:text-substrateBlue dark:hover:text-substrateBlue-light ${
                         activeHash === value.url.substr(1) &&
                         'text-substrateBlue dark:text-substrateBlue-light'
                       }`}
@@ -67,7 +67,7 @@ export default function TableOfContent({ headings }: TableOfContentProps) {
                           <div key={index} className="pl-3">
                             <a href={value.url}>
                               <div
-                                className={`inline-flex pb-3 hover:text-substrateBlue dark:hover:text-substrateBlue-light ${
+                                className={`inline-flex mb-2 hover:text-substrateBlue dark:hover:text-substrateBlue-light ${
                                   activeHash === value.url.substr(1) &&
                                   'text-substrateBlue dark:text-substrateBlue-light'
                                 }`}

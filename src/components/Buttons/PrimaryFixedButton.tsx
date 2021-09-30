@@ -4,7 +4,7 @@ import { LocalizedLink } from 'gatsby-theme-i18n'
 import Icon from '../../components/Icon'
 
 interface PrimaryFixedButtonProps {
-  children: string
+  children: React.ReactNode
   link?: string
   fullWidth?: boolean
   onClick?: any

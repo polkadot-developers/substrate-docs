@@ -42,8 +42,8 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
               templateId={docId}
             />
           </div>
-          <article className="max-w-6xl px-4 lg:px-16 lg:pb-24 lg:flex lg:mx-auto">
-            <div>
+          <article className="px-6 mb-20 lg:flex lg:mx-auto">
+            <div className="lg:flex-grow">
               <div
                 className={`py-8 lg:flex lg:justify-between lg:items-center`}
               >
@@ -58,7 +58,7 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
                   absolutePath={data.mdx.fileAbsolutePath}
                 />
               </div>
-              <div className="markdown-body mdx-anchor">
+              <div className="max-w-full lg:max-w-2xl 2xl:max-w-3xl markdown-body mdx-anchor">
                 <h1>{data.mdx.frontmatter.title}</h1>
                 {data.mdx.frontmatter.difficulty && (
                   <DocTag
@@ -73,7 +73,6 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
                     />
                   )}
                 </div>
-
                 <MDXRenderer>{data.mdx.body}</MDXRenderer>
               </div>
               <div className="text-xs text-right py-12">
@@ -83,9 +82,11 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
                 <BottomButtons menu={docsMenu} pageSlug={slug} />
               )}
             </div>
-            <div className="hidden xl:inline-block xl:flex-none">
+            {/* Table of Contents */}
+            <div className="hidden xl:inline-block">
               <TableOfContent headings={data.mdx.tableOfContents} />
             </div>
+            {/* ------------ */}
           </article>
         </div>
       </div>

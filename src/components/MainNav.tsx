@@ -72,7 +72,7 @@ const MainNav = {
         subMenu: [
           {
             linkTitle: `Substrate & Polkadot`,
-            link: `${site}vision/`,
+            link: `${site}vision/substrate-and-polkadot`,
             external: true,
           },
         ],
