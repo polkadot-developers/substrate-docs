@@ -19,13 +19,7 @@ export default function ExploreDocs() {
           name: 'Smart Contracts',
           link: '/v3/runtime/smart-contracts',
           description:
-            'Understand what smart contract capabilities exist for Substrate chains.',
-        },
-        {
-          name: 'Parachain capabilities',
-          link: '/v3/runtime/parachain-capabilities',
-          description:
-            'Jump right into the technical components required to build a parachain.',
+            'Discover the different ways to use smart contracts in Substrate chains.',
         },
       ],
     },
@@ -38,13 +32,13 @@ export default function ExploreDocs() {
           name: 'Accounts',
           link: '/v3/concepts/account-abstractions',
           description:
-            'Explore the basics of Substrate’s FRAME and start creating your custom pallets.',
+            'Read about Substrate\'s Account and key pair generation system.',
         },
         {
           name: 'Extrinsics',
           link: '/v3/concepts/extrinsics',
           description:
-            'Understand what smart contract capabilities exist for Substrate chains.',
+            'Learn about the different transaction types in Substrate.',
         },
         {
           name: 'Transaction Weights',
@@ -75,13 +69,13 @@ export default function ExploreDocs() {
           name: 'Substrate Connect',
           link: '/v3/integration/substrate-connect',
           description:
-            'Light client tools to connect runtimes to end-users applications  without a third-party service.',
+            'Integrate a light client that connects your runtime to an end-user application without a third-party service.',
         },
         {
           name: 'Tx Wrapper ',
           link: '/how-to-guides/v3/tools/txwrapper',
           description:
-            'Publish libraries to create chain specific offline transactions.',
+            'Publish libraries that can create offline transactions specific to your chain.',
         },
       ],
     },
