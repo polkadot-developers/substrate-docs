@@ -17,6 +17,8 @@ import diamondGreen from '../images/svgs/diamond-green.svg'
 import arrowMore from '../images/svgs/arrow-more.svg'
 import flag from '../images/svgs/flag.svg'
 import github from '../images/svgs/github-small.svg'
+import docsNavIcon from '../images/svgs/docs-nav-icon.svg'
+import arrowDown from '../images/svgs/arrow-down.svg'
 
 const iconsMap = {
   /* homepage */
@@ -39,7 +41,9 @@ const iconsMap = {
   github: github,
   /* UI specific */
   arrowMore: arrowMore,
+  arrowDown: arrowDown,
   flag: flag,
+  docsNavIcon: docsNavIcon,
 }
 
 interface IconProps {
