@@ -41,14 +41,14 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
               templateId={2}
             />
           </div>
-          <article className="max-w-6xl px-4 lg:px-16 mb-20 lg:flex lg:mx-auto">
-            <div>
+          <article className="px-6 mb-20 lg:flex lg:mx-auto">
+            <div className="lg:flex-grow">
               <div
                 className={`py-8 lg:flex lg:justify-between lg:items-center`}
               >
                 <BreadCrumbNav
                   section={data.mdx.frontmatter.section}
-                  sectionURL={`/how-to-guides/v3`}
+                  sectionURL={`/how-to-guidess/v3`}
                   title={data.mdx.frontmatter.title}
                 />
                 <VersionControl
@@ -57,10 +57,13 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
                   absolutePath={data.mdx.fileAbsolutePath}
                 />
               </div>
-              <div className="markdown-body mdx-anchor">
+              <div className="max-w-full lg:max-w-2xl 2xl:max-w-3xl markdown-body mdx-anchor">
                 <h1>{data.mdx.frontmatter.title}</h1>
                 {data.mdx.frontmatter.difficulty && (
-                  <DocTag difficulty={data.mdx.frontmatter.difficulty} />
+                  <DocTag
+                    difficulty={data.mdx.frontmatter.difficulty}
+                    duration={data.mdx.frontmatter.duration}
+                  />
                 )}
                 <MDXRenderer>{data.mdx.body}</MDXRenderer>
               </div>
@@ -71,7 +74,7 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
                 <BottomButtons menu={docsMenu} pageSlug={slug} />
               )}
             </div>
-            <div className="hidden xl:inline-block xl:flex-none">
+            <div className="hidden xl:inline-block">
               <TableOfContent headings={data.mdx.tableOfContents} />
             </div>
           </article>

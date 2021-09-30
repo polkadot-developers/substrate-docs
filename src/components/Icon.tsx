@@ -19,6 +19,7 @@ import flag from '../images/svgs/flag.svg'
 import github from '../images/svgs/github-small.svg'
 import docsNavIcon from '../images/svgs/docs-nav-icon.svg'
 import arrowDown from '../images/svgs/arrow-down.svg'
+import copyText from '../images/svgs/copy-text.svg'
 
 const iconsMap = {
   /* homepage */
@@ -44,6 +45,7 @@ const iconsMap = {
   arrowDown: arrowDown,
   flag: flag,
   docsNavIcon: docsNavIcon,
+  copyText: copyText,
 }
 
 interface IconProps {
