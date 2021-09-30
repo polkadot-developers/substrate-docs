@@ -64,6 +64,8 @@ export default function Index() {
             <StaticImage
               src={'../images/backgrounds/backgroundTwo.png'}
               alt={'Learn Substrate Background'}
+              loading="eager"
+              placeholder="none"
               layout="constrained"
             />
           </div>
@@ -71,6 +73,8 @@ export default function Index() {
             <StaticImage
               src={'../images/backgrounds/backgroundOne.png'}
               alt={'Learn Substrate Background'}
+              loading="eager"
+              placeholder="none"
             />
           </div>
         </div>
