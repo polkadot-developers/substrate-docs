@@ -2,6 +2,7 @@ import React from 'react'
 // import { LocalizedLink } from 'gatsby-theme-i18n'
 // import useComponentVisible from './Hooks/use-component-visible'
 import GithubEditButton from './GithubEditButton'
+import Icon from '../components/Icon'
 
 interface VersionControlProps {
   version: string
@@ -23,17 +24,9 @@ export default function VersionControl({
     <div className="hidden lg:flex lg:items-center lg:justify-end">
       <div
         // onClick={() => setIsComponentVisible(!isComponentVisible)}
-        className="relative flex items-center justify-end text-sm"
+        className="relative flex items-center justify-end text-sm font-medium"
       >
-        <svg
-          className="fill-current dark:text-white"
-          width="11"
-          height="13"
-          viewBox="0 0 11 13"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M5.60267 1.45603L5.30933 2.91207H1.46667V7.28017H3.93067L4.224 5.82414H9.53333V1.45603H5.60267ZM4.4 0H11V12.3763H9.53333V7.28017H5.42667L5.13333 8.73621H0V1.45603H4.10667L4.4 0Z" />
-        </svg>
+        <Icon name="flag" className="fill-current dark:text-white" />
         <div className="pl-1">{`Version ${version}`}</div>
         {/* {isComponentVisible && (
           <div ref={ref} className="absolute top-6 right-0 w-28">

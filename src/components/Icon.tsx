@@ -15,6 +15,8 @@ import diamondYellow from '../images/svgs/diamond-yellow.svg'
 import diamondPurple from '../images/svgs/diamond-purple.svg'
 import diamondGreen from '../images/svgs/diamond-green.svg'
 import arrowMore from '../images/svgs/arrow-more.svg'
+import flag from '../images/svgs/flag.svg'
+import github from '../images/svgs/github-small.svg'
 
 const iconsMap = {
   /* homepage */
@@ -34,7 +36,10 @@ const iconsMap = {
   /* social-media */
   elementOrg: elementOrg,
   stackOverflowOrg: stackOverflowOrg,
+  github: github,
+  /* UI specific */
   arrowMore: arrowMore,
+  flag: flag,
 }
 
 interface IconProps {
