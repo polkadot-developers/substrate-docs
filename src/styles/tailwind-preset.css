@@ -18,10 +18,6 @@ main.main-container {
 
 /* Headings */
 h1,
-.h1 {
-  @apply font-body font-extrabold;
-}
-
 h2,
 h3,
 h4,
@@ -32,7 +28,7 @@ h6 {
 
 h1,
 .h1 {
-  @apply mb-3 text-2xl md:text-4xl xl:text-6xl;
+  @apply font-body font-extrabold mb-3 text-2xl md:text-4xl xl:text-6xl;
   line-height: 1.2;
 }
 
