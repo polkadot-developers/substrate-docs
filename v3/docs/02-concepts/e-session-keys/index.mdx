@@ -86,8 +86,8 @@ You will then need to register the new keys on chain using a [`session.setKeys`]
 <Message
   type={`yellow`}
   title={`Important`}
-  text={`For increased security, session keys should be changed every session. This can be done by creating a certificate via signing a session public key
-  and broadcasting it via an extrinsic.`}
+  text={`For increased security, session keys should be changed every session. This can be done by creating new session keys, putting the session public keys into 
+  an extrinsic, and applying this extrinsic on chain.`}
 />
 
 Since session keys are hot keys that must be kept online, the individual keys should **not** be used to
