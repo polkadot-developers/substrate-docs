@@ -57,7 +57,7 @@ const MainNav = {
           },
           {
             linkTitle: `Rust Docs`,
-            link: `https://substrate.dev/rustdocs/`,
+            link: `/rustdocs/`,
             external: true,
           },
           {
