@@ -58,7 +58,7 @@ export default function DocsNav({
             className="bg-substrateDark dark:bg-white p-2 rounded-lg transform transition-opacity duration-300 ease-in-out hover:opacity-80 focus:outline-none"
           >
             <svg
-              className={`fill-current text-white dark:text-black ${
+              className={`fill-current text-white dark:text-substrateDark ${
                 isOpen && 'rotate-180'
               }`}
               width="12"
@@ -119,11 +119,11 @@ export default function DocsNav({
                         href="/rustdocs"
                         rel="noreferrer"
                       >
-                        <div className="font-medium text-black dark:text-white">
+                        <div className="font-medium text-substrateDark dark:text-white">
                           {navItem.section}
                         </div>
                         <svg
-                          className={`fill-current text-black dark:text-white transform -rotate-90`}
+                          className={`fill-current text-substrateDark dark:text-white transform -rotate-90`}
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="-5 -8 24 24"
                           width="16"
@@ -138,11 +138,11 @@ export default function DocsNav({
                         className="flex items-center justify-between hover:no-underline"
                         to={navItem.url}
                       >
-                        <div className="font-medium text-black dark:text-white">
+                        <div className="font-medium text-substrateDark dark:text-white">
                           {navItem.section}
                         </div>
                         <svg
-                          className={`fill-current text-black dark:text-white transform -rotate-90`}
+                          className={`fill-current text-substrateDark dark:text-white transform -rotate-90`}
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="-5 -8 24 24"
                           width="16"

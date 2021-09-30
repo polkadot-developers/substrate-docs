@@ -116,11 +116,11 @@ export default function DocsNav({
                         target="_blank"
                         rel="noreferrer"
                       >
-                        <div className="font-medium text-black dark:text-white">
+                        <div className="font-medium text-substrateDark dark:text-white">
                           {navItem.section}
                         </div>
                         <svg
-                          className={`fill-current text-black dark:text-white transform -rotate-90`}
+                          className={`fill-current text-substrateDark dark:text-white transform -rotate-90`}
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="-5 -8 24 24"
                           width="16"
@@ -135,11 +135,11 @@ export default function DocsNav({
                         className="flex items-center justify-between hover:no-underline"
                         to={navItem.url}
                       >
-                        <div className="font-medium text-black dark:text-white">
+                        <div className="font-medium text-substrateDark dark:text-white">
                           {navItem.section}
                         </div>
                         <svg
-                          className={`fill-current text-black dark:text-white transform -rotate-90`}
+                          className={`fill-current text-substrateDark dark:text-white transform -rotate-90`}
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="-5 -8 24 24"
                           width="16"

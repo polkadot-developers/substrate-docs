@@ -60,7 +60,7 @@
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   line-height: 1.8;
-  @apply font-body text-black dark:text-white;
+  @apply font-body text-substrateDark dark:text-white;
   font-size: 16px;
   word-wrap: break-word;
 }
@@ -244,6 +244,7 @@
 .markdown-body p {
   margin-top: 0;
   margin-bottom: 10px;
+  @apply font-medium;
 }
 
 .markdown-body blockquote {

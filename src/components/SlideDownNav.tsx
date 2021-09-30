@@ -26,7 +26,7 @@ export default function SlideDownNav({
           {section.name}
         </div>
         <svg
-          className={`fill-current text-black dark:text-white ${
+          className={`fill-current text-substrateDark dark:text-white ${
             isOpen ? '-rotate-180' : null
           }`}
           xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,7 @@ export default function SlideDownNav({
             return (
               <LocalizedLink key={index} to={item.link}>
                 <div
-                  className={`text-gray-600 dark:text-gray-200 text-sm pl-10 pr-6 sm:px-24 lg:pl-10 lg:pr-6 py-2 hover:font-bold ${
+                  className={`text-substrateDark dark:text-white text-sm pl-10 pr-6 sm:px-24 lg:pl-10 lg:pr-6 py-2 hover:font-bold ${
                     active && `font-bold`
                   }`}
                 >
