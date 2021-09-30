@@ -12,6 +12,14 @@ const redirects = [
   { fromPath: '/v3/integration', toPath: '/v3/integration/polkadot-js' },
   { fromPath: '/v3/advanced', toPath: '/v3/advanced/account-info' },
   { fromPath: '/tutorials/v3/kitties', toPath: `/tutorials/v3/kitties/pt1` },
+  { fromPath: '/how-to-guides/basics', toPath: `/how-to-guides/v3/basics/pallet-integration` },
+  { fromPath: '/how-to-guides/pallet-design', toPath: `/how-to-guides/v3/pallet-design/contracts-pallet` },
+  { fromPath: '/how-to-guides/weights', toPath: `/how-to-guides/v3/weights/calculate-fees` },
+  { fromPath: '/how-to-guides/testing', toPath: `/how-to-guides/v3/testing/basics` },
+  { fromPath: '/how-to-guides/storage-migrations', toPath: `/how-to-guides/v3/storage-migrations/basics` },
+  { fromPath: '/how-to-guides/consensus', toPath: `/how-to-guides/v3/consensus/pow` },
+  { fromPath: '/how-to-guides/parachains', toPath: `/how-to-guides/v3/parachains/preparing-an-upgrade` },
+  { fromPath: '/how-to-guides/tools', toPath: `/how-to-guides/v3/tools/try-runtime` },
 ]
 
 const tutsInfo = [

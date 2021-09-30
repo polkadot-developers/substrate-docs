@@ -97,7 +97,7 @@ export default function Index() {
             />
             <DocCard
               title={`How-To Guides`}
-              text={`The Substrate how-to guides have everything you need to produce a robust blockchains and parachains. From beginner to expert, you can use them flexibly to suit your current needs.`}
+              text={`The Substrate how-to guides have everything you need to produce robust Substrate based blockchains. From beginner to expert, you can use them flexibly to suit your current needs.`}
               link={`/how-to-guides`}
               cta={`Learn and contribute`}
               iconName={`htgIcon`}
@@ -105,7 +105,7 @@ export default function Index() {
             />
             <DocCard
               title={`Tutorials`}
-              text={`Create your first Substrate chain, perform a forkless upgrade, and more. This selection of tutorials can lead you through the process in sessions up to two hours.`}
+              text={`Create your first Substrate chain, perform a forkless upgrade, and more. This selection of tutorials will lead you through the process in sessions of up to two hours.`}
               link={`/tutorials`}
               cta={`Dive in`}
               iconName={`tutsIcon`}
@@ -124,12 +124,13 @@ export default function Index() {
             <h4 className="text-xl xl:text-3xl font-semibold">
               Set up a cloud sandbox
             </h4>
-            <p className="max-w-lg leading-7">
-              We recommend picking a sandbox, particularly if you&apos;re just
-              getting started. Building on Substrate requires different pieces
-              of technology. Useful for hosting Substrate developer workshops or
-              following tutorials, using a sandbox allows you to skip the
-              preliminary set-up to get to the parts most important to you.
+            <p className="max-w-lg  leading-7">
+            Building with Substrate requires different pieces
+            of technology. We recommend picking a sandbox if 
+            you&apos;re just getting started and want to try things out. 
+            Or if you&apos;re hosting Substrate developer workshops or following 
+            tutorials, using a sandbox environment allows you to skip the 
+            preliminary set-up to get to the parts most important to you.
             </p>
             <div className="my-8">
               <button className="duration-150 ease-in hover:opacity-50">
