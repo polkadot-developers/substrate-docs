@@ -499,19 +499,19 @@ DevNavMenu.tuts.firstChain = [
       },
       {
         title: `Background`,
-        link: '/tutorials/v3/create-your-first-substrate-chain#what-is-a-blockchain-node',
+        link: '#what-is-a-blockchain-node',
       },
       {
         title: `Set-up Your Computer`,
-        link: '/tutorials/v3/create-your-first-substrate-chain#install-rust-and-the-rust-toolchain',
+        link: '#install-rust-and-the-rust-toolchain',
       },
       {
         title: `Using the Substrate Node Template`,
-        link: '/tutorials/v3/create-your-first-substrate-chain#prepare-a-substrate-node-using-the-node-template',
+        link: '#prepare-a-substrate-node-using-the-node-template',
       },
       {
         title: `Interacting with Your Node`,
-        link: '/tutorials/v3/create-your-first-substrate-chain#start-the-front-end-template',
+        link: '#start-the-front-end-template',
       },
     ],
   },
@@ -527,15 +527,15 @@ DevNavMenu.tuts.poe = [
       },
       {
         title: `Preparation`,
-        link: '/tutorials/v3/proof-of-existence#prepare-to-build-a-dapp',
+        link: '#prepare-to-build-a-dapp',
       },
       {
         title: `Build a Custom Pallet`,
-        link: '/tutorials/v3/proof-of-existence#building-a-custom-pallet',
+        link: '#building-a-custom-pallet',
       },
       {
         title: `Build a Custom Front-end`,
-        link: '/tutorials/v3/proof-of-existence#building-a-custom-front-end',
+        link: '#building-a-custom-front-end',
       },
     ],
   },
@@ -551,11 +551,11 @@ DevNavMenu.tuts.permissionedNetwork = [
       },
       {
         title: `Add the node-authorization pallet`,
-        link: '/tutorials/v3/permissioned-network#add-node-authorization-pallet',
+        link: '#add-node-authorization-pallet',
       },
       {
         title: `Launch your permissioned network`,
-        link: '/tutorials/v3/permissioned-network#launch-our-permissioned-network',
+        link: '#launch-our-permissioned-network',
       },
     ],
   },
@@ -571,11 +571,11 @@ DevNavMenu.tuts.forklessUpgrades = [
       },
       {
         title: `Sudo Upgrade`,
-        link: '/tutorials/v3/forkless-upgrades#sudo-upgrade',
+        link: '#sudo-upgrade',
       },
       {
         title: `Schedule an Upgrade`,
-        link: '/tutorials/v3/forkless-upgrades#schedule-an-upgrade',
+        link: '#schedule-an-upgrade',
       },
     ],
   },
@@ -591,19 +591,19 @@ DevNavMenu.tuts.privateNetwork = [
       },
       {
         title: `Alice and Bob Start Blockchain`,
-        link: '/tutorials/v3/private-network#alice-and-bob-start-blockchain',
+        link: '#alice-and-bob-start-blockchain',
       },
       {
         title: `Generate Your Own Keys`,
-        link: '/tutorials/v3/private-network#generate-your-own-keys',
+        link: '#generate-your-own-keys',
       },
       {
         title: `Create a Custom Chain Spec`,
-        link: '/tutorials/v3/private-network#create-a-custom-chain-spec',
+        link: '#create-a-custom-chain-spec',
       },
       {
         title: `Launch Your Private Network`,
-        link: '/tutorials/v3/private-network#launch-your-private-network',
+        link: '#launch-your-private-network',
       },
     ],
   },
@@ -619,15 +619,15 @@ DevNavMenu.tuts.nodeMetrics = [
       },
       {
         title: `Install Prometheus and Grafana`,
-        link: '/tutorials/v3/node-metrics#install-prometheus-and-grafana',
+        link: '#install-prometheus-and-grafana',
       },
       {
         title: `Start a Substrate Template Node`,
-        link: '/tutorials/v3/node-metrics#start-a-substrate-template-node',
+        link: '#start-a-substrate-template-node',
       },
       {
         title: `Visualizing Prometheus Metrics with Grafana`,
-        link: '/tutorials/v3/node-metrics#visualizing-prometheus-metrics-with-grafana',
+        link: '#visualizing-prometheus-metrics-with-grafana',
       },
     ],
   },
@@ -643,19 +643,19 @@ DevNavMenu.tuts.addPallet = [
       },
       {
         title: `Import the Nicks Pallet`,
-        link: '/tutorials/v3/add-a-pallet#import-the-nicks-pallet',
+        link: '#import-the-nicks-pallet',
       },
       {
         title: `Configure the Nicks Pallet`,
-        link: '/tutorials/v3/add-a-pallet#configure-the-nicks-pallet',
+        link: '#configure-the-nicks-pallet',
       },
       {
         title: `Interact with the Nicks Pallet`,
-        link: '/tutorials/v3/add-a-pallet#interact-with-the-nicks-pallet',
+        link: '#interact-with-the-nicks-pallet',
       },
       {
         title: `Publish Your Own Pallet`,
-        link: '/tutorials/v3/add-a-pallet#publish-your-own-pallet',
+        link: '#publish-your-own-pallet',
       },
     ],
   },
@@ -711,15 +711,15 @@ DevNavMenu.tuts.frontierWorkshop = [
       },
       {
         title: `Frontier Template`,
-        link: '/tutorials/v3/frontier#frontier-template',
+        link: '#frontier-template',
       },
       {
         title: `Architecture`,
-        link: '/tutorials/v3/frontier#architecture',
+        link: '#architecture',
       },
       {
         title: `ERC20 Contract Deployment`,
-        link: '/tutorials/v3/frontier#erc20-contract-deployment',
+        link: '#erc20-contract-deployment',
       },
     ],
   },
@@ -734,23 +734,23 @@ DevNavMenu.tuts.kittiesWorkshop = [
       },
       {
         title: 'Tutorial Objectives',
-        link: '/tutorials/v3/kitties/pt1#tutorial-objectives',
+        link: '#tutorial-objectives',
       },
       {
         title: 'Basic Set-up',
-        link: '/tutorials/v3/kitties/pt1#basic-set-up',
+        link: '#basic-set-up',
       },
       {
         title: `Uniqueness, Custom Types, and Storage Maps`,
-        link: '/tutorials/v3/kitties/pt1#uniqueness-custom-types-and-storage-maps',
+        link: '#uniqueness-custom-types-and-storage-maps',
       },
       {
         title: `Dispatchables, Events, and Errors`,
-        link: '/tutorials/v3/kitties/pt1#dispatchables-events-and-errors',
+        link: '#dispatchables-events-and-errors',
       },
       {
         title: `Interacting with Your Kitties`,
-        link: '/tutorials/v3/kitties/pt1#interacting-with-your-ktties',
+        link: '#interacting-with-your-kitties',
       },
     ],
   },
@@ -763,11 +763,11 @@ DevNavMenu.tuts.kittiesWorkshop = [
       },
       {
         title: `Getting Started`,
-        link: '/tutorials/v3/kitties/pt2#getting-started',
+        link: '#getting-started',
       },
       {
         title: `Creating Custom Components`,
-        link: '/tutorials/v3/kitties/pt2#creating-custom-components',
+        link: '#creating-custom-components',
       },
     ],
   },
