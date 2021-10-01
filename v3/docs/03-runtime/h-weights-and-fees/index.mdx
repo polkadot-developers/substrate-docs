@@ -294,16 +294,8 @@ transaction has more than 100 bytes of length in arguments and will pay fees if 
 is greater than 10 bytes.
 
 ```rust
-use coded::Encode;
-use sr_primitives::weights::{DispatchClass, ClassifyDispatch, WeightData}
-
-// self.0 is the multiplier, `m`
 struct LenWeight(u32);
-
-// We don't quite know what T is. After all, different dispatches have different arguments, hence
-// `T` will be different. All that we care about is that `T` is encodable. That is always true by
-// definition. All dispatch arguments are encodable.
-impl<T: Encode> WeighData<T> for LenWeight {
+impl<T> WeighData<T> for LenWeight {
     fn weigh_data(&self, target: T) -> Weight {
         let multiplier = self.0;
         let encoded_len = target.encode().len() as u32;
@@ -311,7 +303,7 @@ impl<T: Encode> WeighData<T> for LenWeight {
     }
 }
 
-impl<T: Encode> ClassifyDispatch<T> for LenWeight {
+impl<T> ClassifyDispatch<T> for LenWeight {
     fn classify_dispatch(&self, target: T) -> DispatchClass {
         let encoded_len = target.encode().len() as u32;
         if encoded_len > 100 {
@@ -322,7 +314,7 @@ impl<T: Encode> ClassifyDispatch<T> for LenWeight {
     }
 }
 
-impl<T: Encode> PaysFee<T> {
+impl<T> PaysFee<T> {
     fn pays_fee(&self, target: T) -> Pays {
         let encoded_len = target.encode().len() as u32;
         if encoded_len > 10 {
@@ -346,7 +338,7 @@ impl WeighData<(&u32, &u64)> for CustomWeight {
     }
 }
 
-// given dispatch:
+// given a dispatch:
 #[pallet::call]
 impl<T: Config<I>, I: 'static> Pallet<T, I> {
     #[pallet::weight(CustomWeight)]
@@ -364,7 +356,6 @@ This is an example of how to customize your inclusion fee. You must configure th
 associated types in the respective module.
 
 ```rust
-use sr_primitives::{traits::Convert, weights::Weight}
 // Assume this is the balance type
 type Balance = u64;
 
