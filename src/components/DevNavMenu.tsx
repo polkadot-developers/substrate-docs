@@ -726,7 +726,7 @@ DevNavMenu.tuts.frontierWorkshop = [
 ]
 DevNavMenu.tuts.kittiesWorkshop = [
   {
-    name: `Kitties Workshop Part I`,
+    name: `Build the Substrate Kitties Chain`,
     items: [
       {
         title: 'Introduction',
@@ -755,7 +755,7 @@ DevNavMenu.tuts.kittiesWorkshop = [
     ],
   },
   {
-    name: `Kitties Workshop Part II`,
+    name: `Create a Front-end for the Kitties Chain`,
     items: [
       {
         title: `Introduction`,
