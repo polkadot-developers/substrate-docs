@@ -758,7 +758,7 @@ DevNavMenu.tuts.kittiesWorkshop = [
     name: `Create a Front-end for the Kitties Chain`,
     items: [
       {
-        title: `Introduction`,
+        title: `Overview`,
         link: '/tutorials/v3/kitties/pt2',
       },
       {
