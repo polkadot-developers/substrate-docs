@@ -62,7 +62,7 @@ After you start your new blockchain, you can use the Substrate Developer Hub fro
 
 This tutorial provides a basic introduction to Substrate and prepares a minimal working development environment that you can use to explore further in additional tutorials. 
 It is intended for anyone interested in learning about Substrate and blockchain development. 
-The tutorial assumes you have no prior experience with or knowledge of Substrate. 
+The tutorial assumes you have no prior experience or knowledge of Substrate.
 You don't need any programming or blockchain experience to complete this tutorial. 
 This is just the first step, but hopefully, it inspires you to continue your journey.
 
@@ -72,12 +72,11 @@ This tutorial requires compiling Rust code and takes approximately one to two ho
 
 ### Before you begin
 
-For this tutorial, you download and use working code. 
-Before you begin, verify the following:
+For this tutorial, you download and use working code. Before you begin, verify the following:
 
-- You have an internet connection and access to a shell terminal on your local computer.
+- You have good internet connection and access to a shell terminal on your local computer.
 
-- You are generally familiar with software development and using command-line interfaces.
+- You are generally familiar with software development and use command-line interfaces.
 
 - You are generally familiar with blockchains and smart contract platforms.
 
@@ -118,7 +117,7 @@ To install required packages on macOS or Linux:
 
 1. Locate your operating system in the following table and run the appropriate commands for your development environment.
 
-  | For this operating system | Run the following commands
+  | OS | Installation commands
   | ------------------------- | --------------------------
   | Ubuntu or Debian | `sudo apt update && sudo apt install -y git clang curl libssl-dev llvm libudev-dev`
   | Arch Linux | `pacman -Syu --needed --noconfirm curl git clang`
@@ -184,16 +183,17 @@ After you install the required packages and the Rust compiler and toolchain, you
 You could build a development environment manually using the tools of your choice, but the Substrate Developer Hub has templates to get you started. 
 After you set up the development environment, you can use it in subsequent tutorials as you learn more about building on Substrate.
 
-## Prepare a Substrate node using the node template
+## Prepare a Substrate node using the Node Template
 
-The Substrate node template provides a working development environment so that you can start building on Substrate right away.
+The [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
+provides a working development environment so that you can start building on Substrate right away.
 
-To compile the Substrate node template:
+To compile the Substrate Node Template:
 
-1. Clone the node template repository using the version `v3.0.0+monthly-2021-05` branch by running the following command:
+1. Clone the node template repository using the version `latest` branch by running the following command:
 
     ```
-    git clone -b v3.0.0+monthly-2021-05 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+    git clone -b latest --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
     ```
 
 1. Change to the root of the node template directory by running the following command:
@@ -210,14 +210,14 @@ To compile the Substrate node template:
     
     You should always use the `--release` flag to build optimized artifacts.
 
-### Install the front-end template
+### Install the Front-end template
 
-The front-end template uses [ReactJS](https://reactjs.org/) to render a web browser interface that enables you to interact with the Substrate-based blockchain node.
-You can use this front-end template as a starting point for creating user interfaces for your own projects in the future.
+The Front-end Template uses [ReactJS](https://reactjs.org/) to render a web browser interface that enables you to interact with the Substrate-based blockchain node.
+You can use this Front-end template as a starting point for creating user interfaces for your own projects in future.
 
-The front-end template requires [Yarn](https://yarnpkg.com/) and [Node.js](https://nodejs.org/). If you don't have these tools, you must install them first.
+The Front-end Template requires [Yarn](https://yarnpkg.com/) and [Node.js](https://nodejs.org/). If you don't have these tools, install them first.
 
-To install the front-end template:
+To install the Front-end Template:
 
 1. Check whether `node` is installed on your local computer by running the following command:
 
@@ -225,7 +225,9 @@ To install the front-end template:
     node --version
     ```
     
-    If the command doesn’t return a version number, download and install `node` by following the instructions for the operating system you use on the [Node.js](https://nodejs.org/) website.
+    If the command doesn’t return a version number, download and install `node` by following the
+    instructions for the operating system you use on the [Node.js](https://nodejs.org/) website.
+    Node version should be at least **v14** to run the Front-end Template.
 
 1. Check whether `yarn` is installed on your local computer by running the following command:
 
@@ -239,10 +241,10 @@ To install the front-end template:
     npm install -g yarn
     ```
 
-1. Clone the front-end template repository by running the following command:
+1. Clone the Front-end Template repository by running the following command:
 
     ```
-    git clone -b v3.0.0+monthly-2021-05 --depth 1 https://github.com/substrate-developer-hub/substrate-front-end-template
+    git clone -b latest --depth 1 https://github.com/substrate-developer-hub/substrate-front-end-template
     ```
 
 1. Change to the root of the front-end template directory by running the following command:
@@ -265,9 +267,9 @@ After your node compiles, you are ready to start exploring what it does using th
 
 To start the local Substrate node:
 
-1. Open a terminal shell, if necessary.
+1. Open a terminal shell.
 
-1. Change to the root directory where you compiled the Substrate node template.
+1. Change to the root directory where you compiled the Substrate Node Template.
 
 1. Start the node in development mode by running the following command:
 
@@ -275,13 +277,15 @@ To start the local Substrate node:
     ./target/release/node-template --dev --tmp
     ```
     
-    The node-template command-line options specify how you want the running node to operate. 
+    The `node-template` command-line options specify how you want the running node to operate.
     In this case, the options specify the following:
 
-    - The `--dev` option specifies that the node run as a developer node chain specification.
+    - The `--dev` option specifies that the node is run as a developer node chain specification.
 
-    - The `--tmp` option specifies that the node save all active data—such as keys, blockchain database, and networking information—while it is running, then delete the data when you stop the node by pressing Control-c.
-    You should use `--tmp` option to ensure you have a clean working state any time you stop and restart the node.
+    - The `--tmp` option specifies that the node will delete all active data—such as keys,
+    blockchain database, and networking information when you stop the node by pressing Control-c.
+    You can use `--tmp` option to ensure you have a clean working state any time you stop and
+    restart the node.
 
 1. Verify your node is up and running successfully by reviewing the output displayed in the terminal.
 
@@ -316,38 +320,42 @@ To start the local Substrate node:
 
 1. Keep the terminal that displays the node output open to continue.
 
-### Start the front-end template
+### Start the Front-end Template
 
-The Substrate front-end template consists of user interface components to enable you to interact with the Substrate node and perform a few common tasks.
+The Substrate Front-end Template consists of user interface components to enable you to interact
+with the Substrate node and perform a few common tasks.
 
-To use the front-end template:
+To use the Front-end Template:
 
-1. Open a new terminal shell on your computer.
+1. Open a new terminal shell on your computer, change to the root directory where you installed the
+Front-end Template.
 
-1. In the new terminal, change to the root directory where you installed the front-end template.
-
-1. Start the web server for the front-end template by running the following command:
+1. Start the Front-end template by running the following command:
 
     ```
     yarn start
     ```
 
-1. Open http://localhost:8000/ in a browser to view the front-end template.
+1. Open **http://localhost:8000** in a browser to view the Front-end Template.
 
-    The top section has an Account selection list for selecting the account to work with when you want to perform on-chain operations. The top section of the template also displays information about the chain to which you're connected.
+    The top section has an Account selection list for selecting the account to work with when you
+    want to perform on-chain operations. The top section of the template also displays information
+    about the chain to which you're connected.
 
     ![Front-end template top section](../../../src/images/tutorials/01-create-your-first-chain/blockchain-top.png)
 
-    You might also notice that the front-end template displays a Balances table with some predefined accounts and that a few of those accounts are preconfigured with funds. 
+    You might also notice that the Front-end Template displays a Balances table with some
+    predefined accounts and that a few of those accounts are preconfigured with funds.
     You can use this sample data to try out operations like transferring funds.
 
     ![Predefined accounts and balances](../../../src/images/tutorials/01-create-your-first-chain/balances.png)
 
 ## Transfer funds from one account to another
 
-Now that you have a blockchain node running on your local computer and you have a front-end template available for performing on-chain operations, you are ready to explore different ways to interact with the blockchain.
+Now that you have a blockchain node running on your local computer and you have a Front-end Template
+available for performing on-chain operations, you are ready to explore different ways to interact with the blockchain.
 
-By default, the front-end template includes several components that allow you to try different common tasks. 
+By default, the Front-end Template includes several components that allow you to try different common tasks.
 For this tutorial, you can perform a simple transfer operation that moves funds from one account to another.
 
 To transfer funds to an account:
@@ -361,17 +369,18 @@ To transfer funds to an account:
 
 1. Copy and paste the address for the **dave** account to specify the address to which you are transferring funds.
 
-1. Specify at least 1000000000000 as the amount to transfer, then click **Submit**.
+1. Specify at least **1000000000000** as the amount to transfer, then click **Submit**.
 
     ![Transfer funds to an account](../../../src/images/tutorials/01-create-your-first-chain/transfer-filled.png)
 
-1. Notice that the Balances table is updated with the transfer.
+1. Notice that the values in Balances table is updated with the transfer.
 
     ![Updated balance displayed](../../../src/images/tutorials/01-create-your-first-chain/balance-result.png)
 
-1. Check the Events component to see events related to the transfer you just completed.
+1. Check the **Events** component to see events related to the transfer you just completed.
 
-    The Substrate blockchain reports the result of asynchronous operations as events, so you can use the Events components to see details about each operation performed as part of the transfer. 
+    The Substrate blockchain reports the result of asynchronous operations as events, so you can
+    use the Events components to see details about each operation performed as part of the transfer.
     For example:
     
     ![Events recorded as results from asynchronous operations](../../../src/images/tutorials/01-create-your-first-chain/event-panel.png)
@@ -382,8 +391,11 @@ To transfer funds to an account:
  
 ## Stop the local node
 
-After a successful transfer, you can continue to explore the front-end template components or stop the local SUbstrate node the state changes you made. 
-Stopping the local node stops the blockchain from progressing and resets the node template to its initial state so that you can return to it for use in this tutorial or other tutorials.
+After a successful transfer, you can continue to explore the front-end template components or
+stop the local Substrate node the state changes you made.
+With `--tmp` flag specified when running the Node Template, stopping the local node stops the
+blockchain and purge all persistent block data that goes with it so you can start with a clean new
+state next time you start again.
 
 To stop the local Substrate node:
 
@@ -401,22 +413,22 @@ In this tutorial, you learned:
 
 - How to start a working Substrate-based blockchain node using the node.
 
-- How to view and interact with the blockchain node using a front-end user interface template.
+- How to view and interact with the blockchain node using a front-end user interface.
 
 - How to make a simple transfer from one account to another.
 
-The front-end template includes several additional components for you to experiment with while you're connected to a local development node.
-You can explore these components on your own or through subsequent tutorials that guide you through what each component does.
+The Front-end Template includes several additional components for you to experiment with while
+you're connected to a local development node.
 
-For a guided tour of the front-end template components, see the following tutorials:
+You can explore these components on your own or may interested to learn more about the following:
 
-- [Explore blockchain metadata]().
-- [Call extrinsic functions]().
+- [Explore blockchain metadata](/v3/runtime/metadata).
+- [Call extrinsic functions](/v3/concepts/extrinsics).
 - [Add a new pallet](/tutorials/v3/add-a-pallet).
 - [Upgrade the runtime](/tutorials/v3/forkless-upgrades).
 
-If you've experienced any issues with this tutorial or want to provide feedback:
+If you've experienced any issues with this tutorial or wanted to provide feedback:
 
-- Ask a question on <ExternalLink url="https://stackoverflow.com/questions/tagged/substrate">Stack Overflow</ExternalLink> using the substrate tag.
+- Ask questions on <ExternalLink url="https://stackoverflow.com/questions/tagged/substrate">Stack Overflow</ExternalLink> using the *substrate* tag.
 
 - Contact <ExternalLink url="https://matrix.to/#/#substrate-technical:matrix.org">Parity on Element</ExternalLink> .
