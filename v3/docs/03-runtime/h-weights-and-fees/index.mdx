@@ -84,7 +84,7 @@ In this formula, the `targeted_fee_adjustment` is a multiplier that can tune the
 
 	 The `ExtrinsicBaseWeight` that is declared in the runtime and applies to all extrinsics. 
 	 
-	 The #[weight] annotation that accounts for an extrinsic's complexity.
+	 The `#[pallet::weight]` annotation that accounts for an extrinsic's complexity.
 
 To convert the weight to Currency, the runtime must define a `WeightToFee` struct that implements a conversion function, `Convert<Weight,Balance>`. 
 
@@ -144,7 +144,7 @@ annotation-based system that lets you combine fixed values for database read/wri
 fixed values based on benchmarks. The most basic example would look like this:
 
 ```rust
-#[weight = 100_000]
+#[pallet::weight(100_000)]
 fn my_dispatchable() {
     // ...
 }
@@ -160,7 +160,7 @@ as a constant and then used in the annotations when expressing database accesses
 dispatchable:
 
 ```rust
-#[weight = T::DbWeight::get().reads_writes(1, 2) + 20_000]
+#[pallet::weight(T::DbWeight::get().reads_writes(1, 2) + 20_000)]
 fn my_dispatchable() {
     // ...
 }
@@ -185,7 +185,7 @@ otherwise in the weight annotation, a dispatch is `Normal`. The developer can sp
 dispatchable uses another class like this:
 
 ```rust
-#[weight = (100_000, DispatchClass::Operational)]
+#[pallet::weight(100_000, DispatchClass::Operational)]
 fn my_dispatchable() {
     // ...
 }
@@ -195,7 +195,7 @@ This tuple notation also allows specifying a final argument that determines whet
 is charged based on the annotated weight. When not defined otherwise, `Pays::Yes` is assumed:
 
 ```rust
-#[weight = (100_000, DispatchClass::Normal, Pays::No)]
+#[pallet::weight(100_000, DispatchClass::Normal, Pays::No)]
 fn my_dispatchable() {
     // ...
 }
@@ -237,11 +237,11 @@ arguments of a dispatchable. The weight should be trivially computable from the 
 some basic arithmetic:
 
 ```rust
-#[weight = FunctionOf(
+#[pallet::weight(FunctionOf(
   |args: (&Vec<User>,)| args.0.len().saturating_mul(10_000),
   DispatchClass::Normal,
   Pays::Yes,
-)]
+))]
 fn handle_users(origin, calls: Vec<User>) {
     // Do something per user
 }
@@ -255,7 +255,7 @@ pre-dispatch. Why this is useful is explained in the
 weight, the dispatchable declares a different return type and then returns its actual weight:
 
 ```rust
-#[weight = 10_000 + 500_000_000]
+#[pallet::weight(10_000 + 500_000_000)]
 fn expensive_or_cheap(input: u64) -> DispatchResultWithPostInfo {
     let was_heavy = do_calculation(input);
 
