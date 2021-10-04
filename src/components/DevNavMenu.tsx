@@ -263,8 +263,20 @@ const DevNavMenu = {
           name: `${intl.formatMessage({ id: 'docs-menu-contribute' })}`,
           items: [
             {
-              title: `${intl.formatMessage({ id: 'docs-menu-stye-guide' })}`,
+              title: `${intl.formatMessage({ id: 'docs-menu-style-guide' })}`,
               link: '/v3/style-guide',
+            },
+            {
+              title: `${intl.formatMessage({ id: 'docs-menu-writing-style' })}`,
+              link: '/v3/style-guide/writing-style',
+            },
+            {
+              title: `${intl.formatMessage({ id: 'docs-menu-bounties' })}`,
+              link: '/v3/style-guide/bounties',
+            },
+            {
+              title: `${intl.formatMessage({ id: 'docs-menu-templates' })}`,
+              link: '/v3/style-guide/templates',
             },
           ],
       },
