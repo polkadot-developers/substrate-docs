@@ -154,8 +154,9 @@ tag = 'monthly-2021-08'
 version = '4.0.0-dev'
 ```
 
-This is telling Cargo to find the crate from git repository [`paritytech/substrate`](https://github.com/paritytech/substrate) with commit
-that is tagged with `monthly-YYYY-MM`. `YYYY` and `MM` are the corresponding year and month.
+This is telling Cargo to find the crate from git repository
+[`paritytech/substrate`](https://github.com/paritytech/substrate) with commit that is tagged with
+`monthly-YYYY-MM`. `YYYY` and `MM` are the corresponding year and month.
 
 #### Crate Features
 
@@ -192,7 +193,7 @@ snippet above should be read as:
 
 This is important to enable the Substrate runtime to compile to both native binary, which supports
 Rust [`std`](https://doc.rust-lang.org/std/), and [Wasm](https://webassembly.org/) binary, which
-do not (read about [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html).
+do not (read about [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html)).
 
 The use of Wasm runtime binaries is one of Substrate's defining features. It allows the runtime code
 to become a part of a blockchain's evolving state; it also means that the definition of the runtime
@@ -419,9 +420,9 @@ configuration trait for the Nicks pallet. Add the following code to your runtime
 parameter_types! {
     // Choose a fee that incentivizes desireable behavior.
     pub const NickReservationFee: u128 = 100;
-    pub const MinNickLength: usize = 8;
+    pub const MinNickLength: u32 = 8;
     // Maximum bounds on storage are important to secure your chain.
-    pub const MaxNickLength: usize = 32;
+    pub const MaxNickLength: u32 = 32;
 }
 
 impl pallet_nicks::Config for Runtime {
@@ -513,7 +514,7 @@ cargo build --release
 ```
 
 If the build fails, go back to the previous section and make sure you followed all the steps
-correctly. You can also view a [full solution including the `Nick` pallet](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions%2Fadd-a-pallet-v3).
+correctly. You can also view the [full solution of including the `Nick` pallet](https://github.com/substrate-developer-hub/substrate-node-template/tree/tut-sols/add-a-pallet%2Flatest).
 
 After the build succeeds, you can start the node:
 
@@ -525,7 +526,7 @@ After the build succeeds, you can start the node:
 ### Start the Front-End
 
 As in the previous tutorials, this tutorial will use the
-[Substrate Front-End Template](https://github.com/substrate-developer-hub/substrate-front-end-template)
+[Substrate Front-End Template](https://github.com/substrate-developer-hub/substrate-front-end-template/tree/latest)
 to allow you to interact with the Node Template. As long as you have completed the
 [Create Your First Chain](/tutorials/v3/create-your-first-substrate-chain) and
 [Proof of Existence](/tutorials/v3/proof-of-existence) tutorials, you should be prepared to
