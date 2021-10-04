@@ -734,23 +734,23 @@ DevNavMenu.tuts.kittiesWorkshop = [
       },
       {
         title: 'Tutorial Objectives',
-        link: '#tutorial-objectives',
+        link: '/tutorials/v3/kitties/pt1#tutorial-objectives',
       },
       {
         title: 'Basic Set-up',
-        link: '#basic-set-up',
+        link: '/tutorials/v3/kitties/pt1#basic-set-up',
       },
       {
         title: `Uniqueness, Custom Types, and Storage Maps`,
-        link: '#uniqueness-custom-types-and-storage-maps',
+        link: '/tutorials/v3/kitties/pt1#uniqueness-custom-types-and-storage-maps',
       },
       {
         title: `Dispatchables, Events, and Errors`,
-        link: '#dispatchables-events-and-errors',
+        link: '/tutorials/v3/kitties/pt1#dispatchables-events-and-errors',
       },
       {
         title: `Interacting with Your Kitties`,
-        link: '#interacting-with-your-kitties',
+        link: '/tutorials/v3/kitties/pt1#interacting-with-your-kitties',
       },
     ],
   },
@@ -763,11 +763,11 @@ DevNavMenu.tuts.kittiesWorkshop = [
       },
       {
         title: `Getting Started`,
-        link: '#getting-started',
+        link: '/tutorials/v3/kitties/pt2#getting-started',
       },
       {
         title: `Creating Custom Components`,
-        link: '#creating-custom-components',
+        link: '/tutorials/v3/kitties/pt2#creating-custom-components',
       },
     ],
   },
