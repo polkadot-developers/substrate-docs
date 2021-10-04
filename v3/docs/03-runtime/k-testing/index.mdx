@@ -130,7 +130,7 @@ time dependent changes.
 
 A simple way of doing this increments the System module's block number between `on_initialize` and
 `on_finalize` calls from all modules with `System::block_number()` as the sole input. While it is
-important for runtime code to [cache calls](https://substrate.dev/recipes/cache.html) to storage or
+important for runtime code to cache calls to storage or
 the system module, the test environment scaffolding should prioritize readability to facilitate
 future maintenance.
 
