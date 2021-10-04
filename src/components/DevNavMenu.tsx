@@ -268,11 +268,11 @@ const DevNavMenu = {
           items: [
             {
               title: `${intl.formatMessage({ id: 'docs-menu-style-guide' })}`,
-              link: '/v3/contribute',
+              link: '/v3/contribute/style-guide',
             },
             {
               title: `${intl.formatMessage({ id: 'docs-menu-writing-style' })}`,
-              link: '/v3/contribute/style-guide',
+              link: '/v3/contribute/writing',
             },
             {
               title: `${intl.formatMessage({ id: 'docs-menu-bounties' })}`,
