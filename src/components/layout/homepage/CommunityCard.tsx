@@ -1,19 +1,10 @@
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+import { useSiteMetadata } from '../../Hooks/use-site-metadata'
 import Icon from '../../Icon'
+import Link from '../../Link'
 
 export default function CommunityCard() {
-  const { site } = useStaticQuery(graphql`
-    {
-      site {
-        siteMetadata {
-          element
-          stackOverflow
-          substrateIO
-        }
-      }
-    }
-  `)
+  const { siteMetadata } = useSiteMetadata()
   const data = [
     {
       title: 'Contact',
@@ -21,11 +12,11 @@ export default function CommunityCard() {
       headingOne: 'Join the conversation',
       iconOne: 'elementOrg',
       linkTextOne: 'Element',
-      linkOne: site.siteMetadata.element,
+      linkOne: siteMetadata.element,
       headingTwo: 'Find answers',
       iconTwo: 'stackOverflowOrg',
       linkTextTwo: 'Stack Overflow',
-      linkTwo: site.siteMetadata.stackOverflow,
+      linkTwo: siteMetadata.stackOverflow,
     },
     {
       title: 'Seminars & Events',
@@ -34,7 +25,7 @@ export default function CommunityCard() {
       headingOne: 'Participate',
       iconOne: 'gradHat',
       linkTextOne: 'Substrate Seminar',
-      linkOne: `${site.siteMetadata.substrateIO}/ecosystem/resources/seminar`,
+      linkOne: `${siteMetadata.substrateIO}/ecosystem/resources/seminar`,
       headingTwo: 'Learn more',
       iconTwo: 'calendar',
       linkTextTwo: 'Events',
@@ -47,11 +38,11 @@ export default function CommunityCard() {
       headingOne: 'Rise to the challenge',
       iconOne: 'ideCode',
       linkTextOne: 'Hackathon',
-      linkOne: `${site.siteMetadata.substrateIO}/ecosystem/opportunities/hackathons`,
+      linkOne: `${siteMetadata.substrateIO}/ecosystem/opportunities/hackathons`,
       headingTwo: 'Get funding',
       iconTwo: 'grantsDollar',
       linkTextTwo: 'Grants',
-      linkTwo: `${site.siteMetadata.substrateIO}/ecosystem/opportunities/grants`,
+      linkTwo: `${siteMetadata.substrateIO}/ecosystem/opportunities/grants`,
     },
   ]
   return (
@@ -74,7 +65,7 @@ export default function CommunityCard() {
               name={item.iconOne}
               className="mr-3 fill-current dark:text-subtrateWhite"
             />
-            <a href={item.linkOne}>{item.linkTextOne}</a>
+            <Link to={item.linkOne}>{item.linkTextOne}</Link>
           </div>
           <hr />
           <p>
@@ -85,7 +76,7 @@ export default function CommunityCard() {
               name={item.iconTwo}
               className="mr-3 fill-current dark:text-subtrateWhite"
             />
-            <a href={item.linkTwo}>{item.linkTextTwo}</a>
+            <Link to={item.linkTwo}>{item.linkTextTwo}</Link>
           </div>
         </div>
       ))}
