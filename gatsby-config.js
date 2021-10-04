@@ -11,8 +11,9 @@ module.exports = {
   siteMetadata: {
     title: 'Substrate_',
     siteUrl: siteUrl,
-    image: '/static/images/parity-og-image.jpeg',
-    description: 'add-description',
+    image_og: '',
+    description:
+      'Substrate enables developers to quickly and easily build future-proof blockchains optimized for any use case.',
     keywords: [
       'Blockchain',
       'Polkadot',
