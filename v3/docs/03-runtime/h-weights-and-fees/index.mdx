@@ -19,8 +19,8 @@ The resources that need to be managed include:
 Substrate provides block authors with several ways to manage access to resources and to prevent individual components of the chain from consuming too much of any single resource. 
 Two of the most important mechanisms available to block authors are **weights** and **transaction fees**.
 
-[Weights](../learn-substrate/weight) are used to manage the time it takes to validate a block. 
-In general, weights are used to characterize the time it takes to execute the [extrinsic](../learn-substrate/extrinsics) calls in the body of a block. 
+[Weights](../concepts/weight) are used to manage the time it takes to validate a block. 
+In general, weights are used to characterize the time it takes to execute the [extrinsic](../concepts/extrinsics) calls in the body of a block. 
 By controlling the execution time that a block can consume, weights set limits on storage input and output and computation.
 
 > **Note:** Weights are not used to restrict access to other resources, such as storage itself or memory
