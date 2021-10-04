@@ -23,8 +23,8 @@ Two of the most important mechanisms available to block authors are **weights** 
 In general, weights are used to characterize the time it takes to execute the [extrinsic](../concepts/extrinsics) calls in the body of a block. 
 By controlling the execution time that a block can consume, weights set limits on storage input and output and computation.
 
-> **Note:** Weights are not used to restrict access to other resources, such as storage itself or memory
-footprint. Other mechanisms must be used for this.
+<Message type={`gray`} title={`Note`} text={`Weights are not used to restrict access to other resources, such as storage itself or memory footprint. Other mechanisms must be used for this.`}
+/>
 
 Some of the weight allowed for a block is consumed as part of the block's initialization and finalization. 
 The weight might also be used to execute mandatory inherent extrinsic calls. 
@@ -42,16 +42,16 @@ The final fee for a transaction is calculated using the following parameters:
 
 * _length fee_: A fee proportional to the encoded length of the transaction.
 
-* _tip_: An optional tip. Tip increases the priority of the transaction, giving it a higher chance to be included by the transaction queue.
+* _tip_: An optional tip to increase the priority of the transaction, giving it a higher chance to be included by the transaction queue.
 
 The base fee and proportional weight and length fees constitute the **inclusion fee**. 
 The inclusion fee is the minimum fee that must be available for a transaction to be included in a block.
 
 ## Using the transaction payment pallet
 
-The [Transaction Payment](https://substrate.dev/rustdocs/latest/pallet_transaction_payment/index.html) pallet provides the basic logic for calculating the inclusion fee.
+The [Transaction Payment pallet](/rustdocs/latest/pallet_transaction_payment/index.html) provides the basic logic for calculating the inclusion fee.
 
-You can also use the [Transaction Payment](https://substrate.dev/rustdocs/latest/pallet_transaction_payment/index.html) pallet to:
+You can also use the Transaction Payment pallet to:
 
 * Convert a weight value into a deductible fee based on a currency type using `Config::WeightToFee`.
 
@@ -121,7 +121,7 @@ For example:
 
 * Bonds are a type of fee that might be returned or slashed after some on-chain event.
   
-  For example, you might want to require users to place a bond to participate in a vote. TThe bond might then be returned at the end of the referendum or slashed if the voter attempted malicious behavior.
+  For example, you might want to require users to place a bond to participate in a vote. The bond might then be returned at the end of the referendum or slashed if the voter attempted malicious behavior.
 
 * Deposits are fees that might be returned later.
   
@@ -399,11 +399,11 @@ impl<T: Get<Perquintill>> Convert<Fixed128, Fixed128> for TargetedFeeAdjustment<
 
 ## Next steps
 
-The entire logic of fees is encapsulated in `pallet-transaction-payment` via a `SignedExtension`.
-While this module provides a high degree of flexibility, a user can opt to build their custom
+The entire logic of fees is encapsulated in `pallet-transaction-payment` via a [`SignedExtension`](/concepts/extrinsics#signed-extension).
+While this pallet provides a high degree of flexibility, a user can opt to build their custom
 payment module drawing inspiration from Transaction Payment.
 
-Given now you know what Substrate weight system is, how it affect the transaction fee computation, and how to specify 
+Given now you know what Substrate's weight system is, how it affects transaction fee computation, and how to specify 
 them for your dispatchables, the last question is how to find the right weights for your dispatchables. 
 That is what **Substrate benchmarking** is for. By writing benchmarking functions and running them, the system 
 (`frame-benchmarking`) calls these functions repeatedly with different numerical parameters and empirically determine 
@@ -417,8 +417,8 @@ the weight functions for dispatchables in their worst case scenarios, within a c
 
 You can find examples of custom weights and fees in the following repositories:
 
-* [Custom weights](https://github.com/substrate-developer-hub/recipes/tree/master/pallets/weights)
-* [custom WeightToFee](https://github.com/substrate-developer-hub/recipes/tree/master/runtimes/weight-fee-runtime).
+* [Custom weights for the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/example/src/weights.rs)
+* [Custom WeightToFee how-to guide](/how-to-guides/v3/weights/calculate-fees)
 
 ### References
 
