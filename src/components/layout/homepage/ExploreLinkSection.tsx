@@ -30,7 +30,7 @@ const ExploreLinkSection = ({ links }: ExploreLinkSectionProps) => {
     technology: {
       title: 'Technology',
       description:
-        'Learn why Substrate is the most powerful framework for quickly building customized, future-proof blockchains',
+        'Learn why Substrate is the most powerful framework for quickly building customized, future-proof blockchains.',
       link: `${site.siteMetadata.substrateIO}/technology`,
       linkText: 'Explore the Tech',
       icon: 'diamondGreen',
@@ -38,7 +38,7 @@ const ExploreLinkSection = ({ links }: ExploreLinkSectionProps) => {
     developerHub: {
       title: 'Developer Hub',
       description:
-        'Dive into documentation, tutorials, and resources to immediately get started building with Substrate',
+        'Dive into documentation, tutorials, and resources to immediately get started building with Substrate.',
       link: '/',
       linkText: 'Start building',
       icon: 'diamondPink',
@@ -46,7 +46,7 @@ const ExploreLinkSection = ({ links }: ExploreLinkSectionProps) => {
     vision: {
       title: 'Vision',
       description:
-        'Substrate is the backbone of the Polkadot ecosystem, building the decentralized and fair internet of the future',
+        'Substrate is the backbone of the Polkadot ecosystem, building the decentralized and fair internet of the future.',
       link: `${site.siteMetadata.substrateIO}/vision/substrate-and-polkadot`,
       linkText: 'Discover more',
       icon: 'diamondPurple',
@@ -54,7 +54,7 @@ const ExploreLinkSection = ({ links }: ExploreLinkSectionProps) => {
     ecosystem: {
       title: 'Ecosystem',
       description:
-        'Access resources, maximize opportunities, and connect with a thriving network of Substrate enthusiasts and builders',
+        'Access resources, maximize opportunities, and connect with a thriving network of Substrate enthusiasts and builders.',
       link: `${site.siteMetadata.substrateIO}/ecosystem`,
       linkText: 'Check out the Ecosystem',
       icon: 'diamondYellow',
@@ -62,7 +62,7 @@ const ExploreLinkSection = ({ links }: ExploreLinkSectionProps) => {
     projects: {
       title: 'Projects',
       description:
-        'See how Substrate has been implemented by innovative teams in many industries around the world',
+        'See how Substrate has been implemented by innovative teams in many industries around the world.',
       link: `${site.siteMetadata.substrateIO}/ecosystem/projects`,
       linkText: 'Meet The Teams',
       icon: 'diamondYellow',
