@@ -43,7 +43,8 @@ will stop producing blocks, which means that it will stop functioning.
   title={`Important`}
   text={`Although wrapping related items in a shared \`struct\` is an excellent way to reduce the number
   of storage reads, at some point the size of the object will begin to
-  incur costs that may outweigh the optimization in storage reads.`}
+  incur costs that may outweigh the optimization in storage reads. Read more about [benchmarking](/v3/runtime/benchmarking) to learn
+  how to optimize execution time.`}
 />
 
 Refer to the Storage Value documentation for
@@ -113,7 +114,7 @@ Storage Double Maps, the `iter()` and `drain()` methods require the first key as
 
 ## Declaring Storage Items
 
-Runtime storage items are created in the [`#[pallet::storage]` macro](/rustdocs/latest/frame_support/attr.pallet.html#storage-palletstorage-optional) 
+Runtime storage items are created with [`#[pallet::storage]`](/rustdocs/latest/frame_support/attr.pallet.html#storage-palletstorage-optional) 
 in any FRAME-based pallet. Here is an example of declaring the 3 different types of storage items:
 
 ```rust
@@ -151,10 +152,18 @@ pub(super) type SomeNMap<T> = StorageNMap<
 Notice that the map's storage items specify [the hashing algorithm](#hashing-algorithms) that will
 be used.
 
+### QueryKindTrait
+
+The [`QueryKindTrait`](/rustdocs/latest/frame_support/storage/types/trait.QueryKindTrait.html) generic of storage determines 
+how the storage should be handled when there is no value in storage. With [`OptionQuery`](/rustdocs/latest/frame_support/storage/types/struct.OptionQuery.html), when no value is in storage 
+the method get will return `None`. With [`ValueQuery`](/rustdocs/latest/frame_support/storage/types/struct.ValueQuery.html), 
+when no value is in storage the `get` method will return the value configured with the `OnEmpty` generic. 
+When you have a specific default value to configure, use `ValueQuery`.
+
 ### Visibility
 
 In the examples above, all the storage items except `SomePrivateValue` are made public by way of the
-`pub(super)` keyword. Blockchain storage is always publicly
+`pub` keyword. Blockchain storage is always publicly
 [visible from _outside_ of the runtime](#accessing-storage-items); the visibility of Substrate
 storage items only impacts whether or not other pallets _within_ the runtime will be able to access
 a storage item.
@@ -197,9 +206,9 @@ Here is an example of specifying the default value for all items in a map:
 
 ```rust
 #[pallet::type_value]
-pub(super) fn MyDefaultMap<T: Config>() -> u64 { 1337u64 }
+pub fn MyDefaultMap<T: Config>() -> u64 { 1337u64 }
 #[pallet::storage]
-pub(super) type MyStorage<T> = StorageMap<_, Blake2_128Concat, u64, u64, ValueStorage, MyDefaultMap>;
+pub type MyStorage<T> = StorageMap<_, Blake2_128Concat, u64, u64, ValueStorage, MyDefaultMap>;
 ```
 
 ## Accessing Storage Items
@@ -280,13 +289,9 @@ cryptographic hash.
 
 Substrate's runtime storage APIs include capabilities to initialize storage items in the genesis
 block of your blockchain. The genesis storage configuration APIs expose a number of mechanisms for
-initializing storage, all of which have entry points in the `#[pallet::genesis_config]` macro. This mechanism
-results in the creation of a `GenesisConfig` data type that implements
-the [`BuildModuleGenesisStorage` trait](/rustdocs/latest/sp_runtime/trait.BuildModuleGenesisStorage.html)
-and will be added to the pallet that contains the storage items.
-Storage items that are tagged for genesis configuration, such as 
-[`pallet_balances::GenesisConfig`](/rustdocs/latest/pallet_balances/pallet/struct.GenesisConfig.html) 
-for example, will have a corresponding attribute on this data type.
+initializing storage, all of which have entry points in `#[pallet::genesis_config]`. 
+The `GenesisConfig` data type is defined under the attribute `#[pallet::genesis_config]` and
+the attribute [`pallet::genesis_build`] is used to build the genesis configuration.
 
 In order to consume a pallet's genesis configuration capabilities, you must include the
 `Config` element when adding the pallet to your runtime.
@@ -340,18 +345,10 @@ GenesisConfig {
 ### `genesis_build`
 
 The [`#[pallet::genesis_build]`](/rustdocs/latest/frame_support/attr.pallet.html#genesis-build-palletgenesis_build-optional) 
-extension allows you to define how `genesis_configuration` is built within the pallet itself (this gives you access to the pallet's private
-functions). Like `genesis_config`, the `genesis_build` extension accepts a single parameter, but in this case the
-parameter is always required and must be a closure, which is essentially a function. The `genesis_build`
-closure will be invoked with a single parameter whose type will be the pallet's `GenesisConfig` type. 
-This gives you easy access to all the attributes of the `GenesisConfig` type.
+attribute allows you to define how `genesis_configuration` is built within the pallet itself (this gives you access to the pallet's private
+functions). 
 
-The `genesis_build` extension must be used alongside the `genesis_config` extension. A
-pallet's `GenesisConfig` type will have an attribute that corresponds to what was set in `genesis_config` and
-whose value will be set in the chain specification, but it will be the value returned by the `genesis_build`
-closure that will be used to set the storage item's genesis value.
-
-Here is an example that demonstrates using `genesis_build` to set the initial value of a storage item. In
+Here is an example that demonstrates using `#[pallet::genesis_config]` and `#[pallet::genesis_build]` to set the initial value of a storage item. In
 this case, the example involves two storage items: one that represents a list of member account IDs
 and another that designates a special member from the list (the prime member).
 
@@ -499,21 +496,20 @@ Read [the advanced storage documentation](/v3/advanced/storage).
 
 ### Examples
 
-Check out the Substrate Recipes covering various topics on storage:
+Check out some guides covering various topics on storage:
 
-- [Storage Maps](https://substrate.dev/recipes/storage-maps.html)
-- [Caching Storage Calls](https://substrate.dev/recipes/cache.html)
-- [Using Vectors](https://substrate.dev/recipes/vec-set.html)
-- [Using Maps](https://substrate.dev/recipes/map-set.html)
+- [Using a Storage Map](/how-to-guides/v3/basics/mint-token)
+- [Structs in storage](/how-to-guides/v3/pallet-design/storage-value)
+- [Storage migration](/how-to-guides/v3/storage-migrations/basics)
 
 ### References
 
 - Visit the reference docs for the
-  [`decl_storage!` macro](/rustdocs/latest/frame_support/macro.decl_storage.html)
+  [#[frame_support::pallet] macro](/rustdocs/latest/frame_support/attr.pallet.html#storage-palletstorage-optional)
   for more details about the available storage declarations.
 
 - Visit the reference docs for
-  [StorageValue](/rustdocs/latest/frame_support/storage/trait.StorageValue.html),
-  [StorageMap](/rustdocs/latest/frame_support/storage/trait.StorageMap.html),
-  [StorageDoubleMap](/rustdocs/latest/frame_support/storage/trait.StorageDoubleMap.html)
-  and StorageNMap to learn more about their APIs.
+  [StorageValue](/rustdocs/latest/frame_support/storage/types/struct.StorageValue.html),
+  [StorageMap](/rustdocs/latest/frame_support/storage/types/struct.StorageMap.html),
+  [StorageDoubleMap](/rustdocs/latest/frame_support/storage/types/struct.StorageDoubleMap.html)
+  and [StorageNMap](/rustdocs/latest/frame_support/storage/types/struct.StorageNMap.html) to learn more about their APIs.

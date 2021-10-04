@@ -67,27 +67,51 @@ Important Convention Note
 
     - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/)
 
-## Github Workflow Configuration
+## Running link-checking locally
 
-### Link Checking ([`check-links.yml`](github/workflows/check-links.yml))
+There are more than 10,000 links in this doc repo. So we have a link checker to go through most of
+them, both internal and external links, to make sure they are valid. We have settings to exclude
+some external links by default (more on this later).
 
-We configured Github workflow to build the site and perform links checking. It build this Gatsby site in production as a docker image and push it to Docker hub at [`jimmychu0807/substrate-docs`](https://hub.docker.com/repository/docker/jimmychu0807/substrate-docs). The image is then launched as a service in the next job `check-links`. [`blc`](https://github.com/stevenvachon/broken-link-checker) utility is run against the running gatsby site in a docker container to check all the links.
+We use [`blc`](https://github.com/stevenvachon/broken-link-checker) (broken-link-checker) for links
+checking, which is a javascript project. It will be installed when you run `yarn install` in this
+package as it is depended on as a developement package.
 
-This workflow is triggered if you push or make a pull request to `main` or `develop` branches. It is configured to only check internal links, as external links are sometimes flaky and out of our control. Another point to note is it checks for link anchor as well. If the link anchor cannot be found, warning is thrown, and can be inspected when viewing the details of the github action log.
+To run link checker, first in one terminal, build the gatsby site with clean cache:
 
-**Running link checker locally**
+```bash
+yarn serve:fresh
+```
 
-You can run the link checker locally by:
+This command takes a minute or two for the above command to complete, have the site built, and
+finally serving it at `https://localhost:9000`.
 
-- Download [the `linkcheck` binary](https://github.com/filiph/linkcheck/releases), and put it under $PATH.
-- Run `yarn serve:fresh` in one terminal to build the gatsby site and serve it.
-- Run `yarn checklinks:v3`. If you want to check for external links as well, run `yarn checklinks:v2:e`.
+In another terminal, run:
 
-## Link Redirection Test
+```bash
+yarn checklinks:v3
+```
 
-- https://substrate.dev/docs-test/en/tutorials/create-your-first-substrate-chain
-- https://substrate.dev/docs-test/en/tutorials/create-your-first-substrate-chain/setup
-- https://substrate.dev/docs-test/en/tutorials/build-a-dapp
-- https://substrate.dev/docs-test/en/tutorials/build-a-dapp/prepare
-- https://substrate.dev/substrate-how-to-guides-test
-- https://substrate.dev/substrate-how-to-guides-test/docs/basics/basic-pallet-integration
+You can further configure it in `package.json` file. Currently it has a list of paths being
+excluded. These paths are not regex-supported and just doing a plain string matching. They are
+excluded because for:
+
+- `/substrate-io-staging.netlify.app`: internal staging site.
+
+- `/rustdocs`: all paths to `/rustdocs/<splat>` are going to be redirected to
+  [https://paritytech.github.io/substrate/<splat>](https://paritytech.github.io/substrate). The
+  redirection is handled by netlify redirect feature. Gatsby server will just rendered them as 404
+  pages.
+
+- `/www.substrate.io`, `/docs.substrate.io`: these are public substrate.io pages that can be remove
+  from the excluded list once [substrate.io](https://www.substrate.io) is launched.
+
+- `/crates.io`, `/fonts.gstatic.com`, `/github.com`, `/wwww.nuget.org`: they either have
+  rate-limiting check or doesn't welcome web crawlers to fetch them and just return a 404 page.
+
+## Link checking as part of Github workflow
+
+We configured a [Github workflow](../.github/workflows/check-links.yml) to build the Gatsby site in
+production as a docker image and push it to Docker hub at [`jimmychu0807/substrate-docs`](https://hub.docker.com/repository/docker/jimmychu0807/substrate-docs).
+The image is then launched as a service in the next CICD job. `checklinks:v3` is run against the
+running gatsby site in the docker container to check all links.

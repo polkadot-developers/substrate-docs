@@ -201,6 +201,10 @@ const DevNavMenu = {
         name: `${intl.formatMessage({ id: 'docs-menu-tools' })}`,
         items: [
           {
+            title: `${intl.formatMessage({ id: 'docs-menu-tools-landing' })}`,
+            link: '/v3/tools',
+          },
+          {
             title: `${intl.formatMessage({ id: 'docs-menu-subkey' })}`,
             link: '/v3/tools/subkey',
           },
@@ -734,7 +738,7 @@ DevNavMenu.tuts.frontierWorkshop = [
 ]
 DevNavMenu.tuts.kittiesWorkshop = [
   {
-    name: `Kitties Workshop Part I`,
+    name: `Build the Substrate Kitties Chain`,
     items: [
       {
         title: 'Introduction',
@@ -758,15 +762,15 @@ DevNavMenu.tuts.kittiesWorkshop = [
       },
       {
         title: `Interacting with Your Kitties`,
-        link: '#interacting-with-your-ktties',
+        link: '#interacting-with-your-kitties',
       },
     ],
   },
   {
-    name: `Kitties Workshop Part II`,
+    name: `Create a Front-end for the Kitties Chain`,
     items: [
       {
-        title: `Introduction`,
+        title: `Overview`,
         link: '/tutorials/v3/kitties/pt2',
       },
       {

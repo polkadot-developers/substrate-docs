@@ -9,7 +9,7 @@ const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
 
 module.exports = {
   siteMetadata: {
-    title: 'Substrate Docs',
+    title: 'Substrate_',
     siteUrl: siteUrl,
     image: '/static/images/parity-og-image.jpeg',
     description: 'add-description',
@@ -37,6 +37,7 @@ module.exports = {
     terms: 'https://www.parity.io/terms',
     youtube: 'https://www.youtube.com/c/ParityTech',
     crowdcast: 'https://www.crowdcast.io/e/substrate-seminar-2',
+    substrateIO: 'https://substrate-io-staging.netlify.app',
   },
   flags: {
     DEV_SSR: false,
@@ -152,6 +153,14 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: `${__dirname}/src/images/svgs/`,
+        },
+      },
+    },
+    {
       resolve: 'gatsby-omni-font-loader',
       options: {
         mode: 'render-blocking',
@@ -170,7 +179,13 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-netlify`,
+    {
+      resolve: `gatsby-plugin-netlify`,
+      options: {
+        mergeLinkHeaders: false,
+        mergeCachingHeaders: false,
+      },
+    },
     `gatsby-plugin-meta-redirect`,
     `gatsby-plugin-twitter`,
     {

@@ -22,7 +22,11 @@ export function BottomButtons({ menu, pageSlug }: BottomButtonsProps) {
   useEffect(() => {
     const pages: { title: string; link: string }[] = []
     menu.forEach(menuItems => {
-      menuItems.items.forEach(item => pages.push(item))
+      menuItems.items.forEach(item => {
+        if (item.link.indexOf('#') != 0) {
+          pages.push(item)
+        }
+      })
     })
     pages.map((each, index) => {
       if (each.link === pageSlug) {

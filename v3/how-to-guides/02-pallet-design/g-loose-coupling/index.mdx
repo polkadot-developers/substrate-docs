@@ -1,5 +1,5 @@
 ---
-title: Loosely Coupling Your Pallet
+title: Loosely Coupling a Pallet
 slug: /how-to-guides/v3/pallet-design/loose-coupling
 version: 3.0
 section: how to guides
@@ -115,7 +115,7 @@ in FRAME's [Democracy pallet](https://github.com/paritytech/substrate/blob/maste
 - the use of `WeightInfo` in all FRAME pallets, such as the 
 the [Identity pallet](https://github.com/paritytech/substrate/blob/master/frame/identity/src/lib.rs#L149-L151) and its use of its 
 [specific weighting methods](https://github.com/paritytech/substrate/blob/master/frame/identity/src/weights.rs#L46-L64) 
-- the [`KeyOwnerProofSystem` trait](https://substrate.dev/rustdocs/latest/frame_support/traits/trait.KeyOwnerProofSystem.html) 
+- the [`KeyOwnerProofSystem` trait](/rustdocs/latest/frame_support/traits/trait.KeyOwnerProofSystem.html) 
 [used in `pallet_granpa`](https://github.com/paritytech/substrate/blob/master/frame/grandpa/src/lib.rs#L106)
 
 ## Resources

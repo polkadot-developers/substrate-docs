@@ -8,23 +8,29 @@ interface SecondaryButtonProps {
   cta?: boolean
 }
 export function SecondaryButton(props: SecondaryButtonProps) {
-  const textSize = () => (props.cta ? `text-xl py-3 px-8` : `text-lg py-1 px-7`)
-  const styles =
-    'bg-substrateDark transform transition duration-300 ease-in-out text-white font-bold rounded border-2 border-transparent hover:bg-opacity-80'
+  const paddingSize = () => (props.cta ? `py-4 px-8` : `py-2 px-5`)
+  const textSize = () => (props.cta ? `text-xl` : `text-lg`)
   return (
     <>
       {props.external ? (
-        <a
-          className={`${styles} ${textSize()}`}
-          href={props.link}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {props.children}
+        <a href={props.link}>
+          <div
+            className={`bg-substrateDark dark:bg-substrateGray-light ${paddingSize()} ${textSize()} inline-block rounded-md hover:opacity-80 transition-opacity`}
+          >
+            <div className="font-bold mb-0 text-white dark:text-black">
+              {props.children}
+            </div>
+          </div>
         </a>
       ) : (
-        <LocalizedLink className={`${styles} ${textSize()}`} to={props.link}>
-          {props.children}
+        <LocalizedLink to={props.link}>
+          <div
+            className={`bg-substrateDark dark:bg-substrateGray-light ${paddingSize()} ${textSize()} inline-block rounded-md hover:opacity-80 transition-opacity`}
+          >
+            <div className="font-bold mb-0 text-white dark:text-black">
+              {props.children}
+            </div>
+          </div>
         </LocalizedLink>
       )}
     </>
