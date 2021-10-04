@@ -11,8 +11,9 @@ module.exports = {
   siteMetadata: {
     title: 'Substrate_',
     siteUrl: siteUrl,
-    image: '/static/images/parity-og-image.jpeg',
-    description: 'add-description',
+    image_og: '',
+    description:
+      'Substrate enables developers to quickly and easily build future-proof blockchains optimized for any use case.',
     keywords: [
       'Blockchain',
       'Polkadot',
@@ -179,6 +180,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
+    'gatsby-plugin-sitemap',
     {
       resolve: `gatsby-plugin-netlify`,
       options: {
@@ -286,5 +288,14 @@ module.exports = {
       },
     },
     'gatsby-plugin-offline',
+    {
+      resolve: 'gatsby-plugin-simple-analytics',
+      options: {
+        domain: 'api-sa.substrate.io',
+        eventsGlobal: 'sa',
+        events: true,
+        trackPageViews: true,
+      },
+    },
   ],
 }

@@ -39,7 +39,7 @@ difficulty: 1
         checks what the cost will be before 
         a function is executed. As runtime engineers, we care a lot about weights. Not only do they help add security checks around the 
         functions we create, but they also force us to think about the computational ressources consumed by a transaction. From that, we 
-        can figure out [what fees to charge](https://substrate.dev/docs/en/knowledgebase/runtime/fees) users.
+        can figure out [what fees to charge](/v3/runtime/weights-and-fees) users.
         This guide will cover how to calculate the maximum weight for a dispatch call; calculate the actual weight after execution; and
         reimburse the difference.
         Here's an overview of the traits we'll be implementing:
@@ -107,7 +107,7 @@ Ok(Pays::Yes.into())
 #### Knowledgebase
 
 - [Transaction Weights](/v3/concepts/weight)
-- [Transaction Fees Knowledgebase](https://substrate.dev/docs/en/knowledgebase/runtime/fees)
+- [Transaction Fees](/v3/runtime/weights-and-fees)
 
 #### Rust docs
 
