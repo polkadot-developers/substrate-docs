@@ -268,19 +268,19 @@ const DevNavMenu = {
           items: [
             {
               title: `${intl.formatMessage({ id: 'docs-menu-style-guide' })}`,
-              link: '/v3/style-guide',
+              link: '/v3/contribute',
             },
             {
               title: `${intl.formatMessage({ id: 'docs-menu-writing-style' })}`,
-              link: '/v3/style-guide/writing-style',
+              link: '/v3/contribute/style-guide',
             },
             {
               title: `${intl.formatMessage({ id: 'docs-menu-bounties' })}`,
-              link: '/v3/style-guide/bounties',
+              link: '/v3/contribute/bounties',
             },
             {
               title: `${intl.formatMessage({ id: 'docs-menu-templates' })}`,
-              link: '/v3/style-guide/templates',
+              link: '/v3/contribute/templates',
             },
           ],
       },
