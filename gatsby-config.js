@@ -179,6 +179,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
+    'gatsby-plugin-sitemap',
     {
       resolve: `gatsby-plugin-netlify`,
       options: {
@@ -286,5 +287,14 @@ module.exports = {
       },
     },
     'gatsby-plugin-offline',
+    {
+      resolve: 'gatsby-plugin-simple-analytics',
+      options: {
+        domain: 'api-sa.substrate.io',
+        eventsGlobal: 'sa',
+        events: true,
+        trackPageViews: true,
+      },
+    },
   ],
 }
