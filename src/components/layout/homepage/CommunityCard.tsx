@@ -17,7 +17,7 @@ export default function CommunityCard() {
   const data = [
     {
       title: 'Contact',
-      description: 'Got questions? Get in touch!',
+      description: 'Have any questions? Get in touch!',
       headingOne: 'Join the conversation',
       iconOne: 'elementOrg',
       linkTextOne: 'Element',
@@ -43,10 +43,10 @@ export default function CommunityCard() {
     {
       title: 'Hackathons & Grants',
       description:
-        'Jump-start your project or your career in the blockchain space.',
+        'Find out how you can jump-start your project or your career in the blockchain space.',
       headingOne: 'Rise to the challenge',
       iconOne: 'ideCode',
-      linkTextOne: 'Hackathon',
+      linkTextOne: 'Hackathons',
       linkOne: `${site.siteMetadata.substrateIO}/ecosystem/opportunities/hackathons`,
       headingTwo: 'Get funding',
       iconTwo: 'grantsDollar',
