@@ -23,6 +23,7 @@ export const useSiteMetadata = () => {
             gitter
             stackOverflow
             keywords
+            substrateIO
           }
         }
       }

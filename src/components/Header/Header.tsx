@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import MobileMenu from '../MobileMenus/MobileMenu'
 import DocsButton from '../DocsButton'
-import { useStaticQuery, graphql } from 'gatsby'
+import { useSiteMetadata } from '../Hooks/use-site-metadata'
 // import { useLocalization } from 'gatsby-theme-i18n'
 // import LanguageSwitcher from './LanguageSwitcher'
 import DropDownMenu from './DropDownMenu'
@@ -18,15 +18,7 @@ export default function Header() {
   const toggleMenu = () => setIsMobileNavOpen(!isMobileNavOpen)
   const navItems = MainNav.global()
 
-  const { site } = useStaticQuery(graphql`
-    {
-      site {
-        siteMetadata {
-          substrateIO
-        }
-      }
-    }
-  `)
+  const { siteMetadata } = useSiteMetadata()
 
   useEffect(() => {
     isMobileNavOpen
@@ -49,7 +41,7 @@ export default function Header() {
           className={`flex items-center justify-between transition-height ease-in-out ${menuHeight}`}
         >
           <div className="w-40 relative transform transition-all duration-300 ease-in-out hover:opacity-50">
-            <a href={site.siteMetadata.substrateIO}>
+            <a href={siteMetadata.substrateIO}>
               <svg
                 className={`fill-current text-substrateDark dark:text-substrateWhite`}
                 data-name="Layer 1"
