@@ -36,7 +36,7 @@ core FRAME pallets.
 
 This guide will show you how you can add the
 [Nicks pallet](/rustdocs/latest/pallet_nicks/index.html). You can follow
-similar pattern to add additional FRAME pallets to your runtime. However you should note that each
+a similar pattern to add additional FRAME pallets to your runtime. However you should note that each
 pallet is a little different in terms of the specific configuration settings needed to use it
 correctly. This tutorial will help you understand what you'll need to consider when adding a new
 pallet to your FRAME runtime.
@@ -44,12 +44,12 @@ pallet to your FRAME runtime.
 <Message
   type={`green`}
   title={`We're here to help`}
-  text={`If you run into issues on this tutorial, **we are here to help!** You can
+  text={`If you run into any issues during this tutorial, **we are here to help!** You can
   [ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) and use the
   \`substrate\` tag or contact us on [Element](https://matrix.to/#/#substrate-technical:matrix.org).`}
 />
 
-You should already have the [latest version of the Node Template](https://github.com/substrate-developer-hub/substrate-node-template/tree/latest) compiled on your computer from when you completed the
+You should already have the [latest version of the Node Template](https://github.com/substrate-developer-hub/substrate-node-template/tree/latest) compiled on your computer if you completed the
 [Create Your First Substrate Chain](/tutorials/v3/create-your-first-substrate-chain) tutorial. If
 you do not, please complete it first.
 
@@ -57,7 +57,7 @@ you do not, please complete it first.
   type={`yellow`}
   title={`Information`}
   text=
-      "Experienced developers who truly prefer to skip that tutorial may install the Node Template
+      "If you skipped the first blockchain tutorial, you should install the node template now.
       according to [the instructions in its readme](https://github.com/substrate-developer-hub/substrate-node-template#getting-started).
       "
 />
@@ -95,7 +95,7 @@ Before we get started, let's layout our objectives:
   }}
 />
 
-## Learning Outcomes
+## Learning outcomes
 
 - Learn how to integrate a FRAME pallet to your node and runtime.
 - Familiarize yourself with customizing a pallet's configuration trait.
@@ -402,8 +402,8 @@ impl pallet_balances::Config for Runtime {
 The `impl pallet_balances::Config` block allows runtime developers that are including the Balances pallet in
 their runtime to configure the types and parameters that are defined in the Balances pallet
 `Config` configuration trait. For example, the `impl` block above configures the Balances pallet to
-use the `Balance` type, a type alias of `u128`, to track balances. If you were developing a chain
-where it was important to optimize storage, you could use any unsigned integer type that was at
+use the `Balance` type, a type alias of `u128`, to track balances. If you're developing a chain
+where it's important to optimize storage, you could use any unsigned integer type that was at
 least 32-bits in size; this is because
 [the `Balance` type](/rustdocs/latest/pallet_balances/pallet/trait.Config.html#associatedtype.Balance)
 for the Balances pallet `Config` configuration trait is bound by
@@ -514,7 +514,7 @@ cargo build --release
 ```
 
 If the build fails, go back to the previous section and make sure you followed all the steps
-correctly. You can also view the [full solution of including the `Nick` pallet](https://github.com/substrate-developer-hub/substrate-node-template/tree/tut-sols/add-a-pallet%2Flatest).
+correctly. You can also view the [full solution of including the `Nick` pallet](https://github.com/substrate-developer-hub/substrate-node-template/tree/tut-sol/add-a-pallet%2Flatest).
 
 After the build succeeds, you can start the node:
 
@@ -697,7 +697,7 @@ branch = 'master'
 
 ### Option 2: Publishing on crates.io
 
-**crates.io** allows permissionless publishing of any Rust modules. You could learn the procedure by
+**crates.io** allows permissionless publishing of Rust modules. You could learn the procedure by
 following their guide on how to [publish on crates.io](https://doc.rust-lang.org/cargo/reference/publishing.html).
 
 Once published, other developers could refer to your pallet in their `Cargo.toml` using the
