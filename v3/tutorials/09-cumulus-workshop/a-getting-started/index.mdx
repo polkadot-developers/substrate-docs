@@ -23,47 +23,48 @@ To learn more about parachains **before** continuing this workshop,
 read about:
 - <ExternalLink url="https://wiki.polkadot.network/docs/learn-parachains">Parachain Basics</ExternalLink>
 - <ExternalLink url="https://polkadot.network/the-path-of-a-parachain-block/">The Path of a Parachain Block</ExternalLink>
-- <ExternalLink url="https://wiki.polkadot.network/docs/build-pdk">Parachain Development Overview</ExternalLink>
+- <ExternalLink url="https://htop.dev/">Parachain Development Overview</ExternalLink>
 
 <Message
-  type={`yellow`}
-  title={`Substrate Experience Required`}
-  text={`
-  If you are here _without_ any former Substrate experience, you are likely to not understand or
-  complete this tutorial. Before you continue please complete the following tutorials:
-  - [Create Your First Substrate Chain](/tutorials/v3/create-your-first-substrate-chain)
-  - [Start a Private Network](/tutorials/v3/private-network)
-
-  We will reference these assuming you have already understand all the steps involved, and
-  have your machine configured to compile Substrate-based projects.
-  `}
+type={`yellow`}
+title={`Substrate Experience Required`}
+text={`
+If you are here _without_ any former Substrate experience, you are likely to not
+understand or complete this tutorial. Before you continue please complete the following
+tutorials:
+- [Create Your First Substrate Chain](/tutorials/v3/create-your-first-substrate-chain)
+- [Start a Private Network](/tutorials/v3/private-network)
+\n
+We will reference these assuming you have already underst all the steps involved, and
+have your machine configured to compile Substrate-based projects.
+`}
 />
 
 ## Getting Started
 
 <TutorialObjective
-  data={{
-    textLineOne: '1. Prerequisites',
-    url: '#prerequisites',
-  }}
+data={{
+  textLineOne: '1. Prerequisites',
+  url: '#prerequisites',
+}}
 />
 <TutorialObjective
-  data={{
-    textLineOne: '2. Build Environment and Compilation',
-    url: '#build-environment--compilation',
-  }}
+data={{
+  textLineOne: '2. Build Environment and Compilation',
+  url: '#build-environment--compilation',
+}}
 />
 <TutorialObjective
-  data={{
-    textLineOne: '3. Relay Chain Specification',
-    url: '#relay-chain-specification',
-  }}
+data={{
+  textLineOne: '3. Relay Chain Specification',
+  url: '#relay-chain-specification',
+}}
 />
 <TutorialObjective
-  data={{
-    textLineOne: '4. Starting the Relay Chain',
-    url: '#starting-the-relay-chain',
-  }}
+data={{
+  textLineOne: '4. Starting the Relay Chain',
+  url: '#starting-the-relay-chain',
+}}
 />
 
 ### Learning Outcomes
@@ -75,8 +76,10 @@ read about:
 
 ### 1. Hardware Requirements
 
-In this workshop, we will be using [Substrate Parachain Template](https://github.com/substrate-developer-hub/substrate-parachain-template). Compiling this project is a resource intensive
-process! We suggest compiling and running the Parachain template on a machine with **no less than**:
+In this workshop, we will be using the
+[Substrate Parachain Template](https://github.com/substrate-developer-hub/substrate-parachain-template).
+Compiling this project is a resource intensive process! We suggest compiling and running the
+Parachain template on a machine with **no less than**:
 
 - 8 GB of RAM (16 is suggested)
 - 4 CPU cores (8 is suggested)
@@ -84,13 +87,13 @@ process! We suggest compiling and running the Parachain template on a machine wi
 
 Without the minimal RAM here, you are likely to _run out of memory resulting in a `SIGKILL`
 error_. This generally happens on the `polkadot-service` build so be sure to _monitor your RAM
-usage_ (with something like [`htop`](https://htop.dev/)) and look out as swap memory starting to be
-used.
+usage_ (with something like <ExternalLink url="https://htop.dev/">`htop`</ExternalLink>) and
+look out as swap memory starting to be used.
 
 <Message
-  type={`green`}
-  title={`Tip`}
-  text={`
+type={`green`}
+title={`Tip`}
+text={`
 If you cannot find a machine with the minimums here, try the following solution which trades longer build
 time for more limited memory usage.
 - Use less threads: cargo's \`-j\` flag specifies the number of threads to use to build. Try to use one less than the CPU cores your machine has.
@@ -108,9 +111,8 @@ cargo build --release -j 1
 ### 2. Software Version
 
 At the moment, parachains are _very tightly coupled_ with the relay chain's codebase they are
-connecting to. If you want to connect your parachian to a running relay network like the
-[Rococo](https://wiki.polkadot.network/docs/build-pdk#testing-a-parachain-rococo-testnet) test network, you _must_ be
-sure that you are testing against the exact same build of that relay chain.
+connecting to. If you want to connect your parachian to a running relay network, you _must_ be
+sure that you are testing against the **exact same build of that relay chain**.
 
 This workshop has been tested on commits:
 
@@ -120,29 +122,23 @@ This workshop has been tested on commits:
   It is generally expected that the [hosted Polkadot-JS Apps](https://polkadot.js.org/apps/#/explorer) should work. If you have issues, build and run this UI yourself, at this tagged version.
 
 <Message
-  type={`red`}
-  title={`Warning`}
-  text={`You **must** use these exact versions to ensure that you do not run into conflicts.
-  Parachain development is actively making breaking changes between commits on these
-  repositories.`}
+type={`red`}
+title={`Exact Versions Matter`}
+text={`
+You **must** use these exact versions to ensure that you do not run into conflicts.
+Parachain development is actively making breaking changes between commits on these
+repositories.
+`}
 />
 
 We're doing our best to keep the parachain template and this workshop updated presently
-with the latest release of Polkadot. Please check with us in the [Parachain Technical matrix channel](https://matrix.to/#/#parachain-technical:matrix.parity.io)
-when breaking changes and testnet resets occur.
+with the
+<ExternalLink url="https://github.com/paritytech/polkadot/releases">latest release of Polkadot.</ExternalLink>
+Please check with us in the
+<ExternalLink url="https://matrix.to/#/#parachain-technical:matrix.parity.io">Parachain Technical matrix channel</ExternalLink>
+when versions don't match there vs. what this workshop has listed, any issues you run into,
+and when Rococo testnet resets occur.
 
-<!-- TODO: ## Acknowledgement & Contribution Refer to [Acknowledgement & Contribution](acknowledgement-contribution) -->
-
-### 3. Acknowledgements
-
-Thanks <ExternalLink url="https://github.com/Jackie-Zhong"> Jackie-Zhong </ExternalLink> and <ExternalLink url="https://github.com/davidrhodus">David Rhodus </ExternalLink>
-for the Chinese content translation!
-
-### 4. Disclaimer
-
-**Cumulus is pre-release software that is still under development.** While this workshop strives to
-be useful, the material it covers may change or break before Cumulus is fully released. Nothing
-presented here is ready for use in value-bearing blockchains!
 
 ## Build Environment & Compilation
 
@@ -160,9 +156,7 @@ for Substrate.
 
 ### 2. Building the Polkadot Relay Chain Node
 
-Clone the Polkadot repository, and build the node. We are using a
-[specific git tag](/#2-software-version) for this workshop. Perform these steps in your typical
-workspace directory.
+Clone the Polkadot repository, and build the node:
 
 ```bash
 # Clone the Polkadot Repository
@@ -172,7 +166,7 @@ git clone https://github.com/paritytech/polkadot.git
 cd polkadot
 
 # Checkout the proper commit
-git checkout v0.9.8
+git checkout v0.9.10
 
 # Build the relay chain Node
 cargo build --release
@@ -187,11 +181,12 @@ For the rest of this workshop, we will refer to this binary simply as `polkadot`
 
 ### 3. Building the Parachain Template
 
-We will use the <ExternalLink url="https://github.com/substrate-developer-hub/substrate-parachain-template">Parachain Template </ExternalLink>
-(similar to the <ExternalLink url="https://github.com/substrate-developer-hub/substrate-node-template">Node Template </ExternalLink>
-to launch our first parachain and make cross-chain asset transfers. Later, we will
-use it as the starting point for developing our own parachains. Perform these steps in your typical
-workspace directory.
+We will use the
+<ExternalLink url="https://github.com/substrate-developer-hub/substrate-parachain-template"> Parachain Template </ExternalLink>
+(similar but not identical to the
+<ExternalLink url="https://github.com/substrate-developer-hub/substrate-node-template"> Node Template </ExternalLink>
+) to launch our first parachain and make cross-chain asset transfers. Later, we will
+use it as the starting point for developing our own parachains. In a different terminal window:
 
 ```bash
 # Clone the Parachain Template
@@ -201,7 +196,7 @@ git clone https://github.com/substrate-developer-hub/substrate-parachain-templat
 cd substrate-parachain-template
 
 # Checkout the proper commit
-git checkout polkadot-v0.9.8
+git checkout polkadot-v0.9.10
 
 # Build the parachain template collator
 cargo build --release
@@ -217,14 +212,16 @@ For the rest of this workshop we will refer to it simply as `parachain-collator`
 ## Relay Chain Specification
 
 You will need a chain specification ([chain spec](/v3/runtime/chain-specs))
-for your relay chain network. You can use one that is [included with this workshop](/assets/tutorials/cumulus-workshop/chainspecs/rococo-custom-2-plain.json), or create your own.
+for your relay chain network.
 
 <Message
-  type={`yellow`}
-  title={`Important`}
-  text={`Keep in mind to always have one or more relay chain validator node running than
-  your connected parachains. For example, if you want to connect two parachains, run three or more
-  relay chain validator nodes.`}
+type={`yellow`}
+title={`Important`}
+text={`
+Keep in mind to always have one or more relay chain validator node running than
+your connected parachains. For example, if you want to connect two parachains, run three or more
+relay chain validator nodes.
+`}
 />
 
 Whichever chain spec file you choose to use we will refer to the file simply as `chain-spec.json`
@@ -235,9 +232,10 @@ These _conventionally_ live in a `/res` folder that is published in your node's 
 - Cumulus includes these **parachain** chain spec files <ExternalLink url="https://github.com/paritytech/cumulus/tree/master/polkadot-parachains/res"> here </ExternalLink>
 
 <Message
-  type={`gray`}
-  title={`Note`}
-  text={`If you intend to let others connect to your network, you should have the genesis Wasm and the
+type={`gray`}
+title={`Note`}
+text={`
+If you intend to let others connect to your network, you should have the genesis Wasm and the
 associated chain spec for your network generated once and distributed to your peers.
 This stems from the [non-deterministic issue](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1\)
 in the way Wasm runtimes are compiled, at least for now.
@@ -257,30 +255,37 @@ use when starting your nodes. Jump to the [Conversion](#_2-convert-to-raw-chain-
 This workshop contains three chain spec files that you can use **without modification** for a
 local test network:
 
-- [rococo-custom-2-raw.json](/assets/tutorials/cumulus-workshop/chainspecs/rococo-custom-2-raw.json)
+- <a href="/assets/tutorials/cumulus-workshop/chainspecs/rococo-custom-2-raw.json" download>
+    rococo-custom-2-raw.json
+  </a>
   : A two-validator relay chain with Alice and Bob as authorities. Useful for registering
-  a single parachain. Plain chain spec: [rococo-custom-2-plain.json](/assets/tutorials/cumulus-workshop/chainspecs/rococo-custom-2-plain.json)
-
-- <a href="/assets/tutorials/cumulus-workshop/chainspecs/rococo-custom-3-raw.json">
-    shared/chainspecs/rococo-custom-3-raw.json
+  a single parachain. (
+  <a href="/assets/tutorials/cumulus-workshop/chainspecs/rococo-custom-3-plain.json" download>
+    plain chain spec
   </a>
-  : A three-validator relay chain identical to `rococo-local` spec, with Charlie as the third validator.
-  Plain chain spec <a href="/assets/tutorials/cumulus-workshop/chainspecs/rococo-custom-3-plain.json">
-    included
-  </a>
-  .
+  ).
 
-- <a href="/assets/tutorials/cumulus-workshop/chainspecs/rococo-custom-4-raw.json">
-    shared/chainspecs/rococo-custom-4-raw.json
+- <a href="/assets/tutorials/cumulus-workshop/chainspecs/rococo-custom-3-raw.json" download>
+    rococo-custom-3-raw.json
+  </a>
+  : A three-validator relay chain identical to `rococo-local` spec, with Charlie as the third validator. (
+  <a href="/assets/tutorials/cumulus-workshop/chainspecs/rococo-custom-3-plain.json" download>
+    plain chain spec
+  </a>
+  ).
+
+- <a href="/assets/tutorials/cumulus-workshop/chainspecs/rococo-custom-4-raw.json" download>
+    rococo-custom-4-raw.json
   </a>
   : A four-validator relay chain identical to `rococo-local` spec, with Charlie and Dave as the third
-  and fourth validators. Plain chain spec <a href="/assets/tutorials/cumulus-workshop/chainspecs/rococo-custom-4-plain.json">
-    included
+  and fourth validators. (
+  <a href="/assets/tutorials/cumulus-workshop/chainspecs/rococo-custom-4-plain.json">
+    plain chain spec
   </a>
-  .
+  ).
 
 Plain chain spec files are in a more human readable and modifiable format for your inspection. They
-can also be used to derive a [new custom raw chain spec](#adjust-the-chain-spec).
+can also be used to derive a new custom raw chain spec.
 
 These specs were created according to the steps in the next section. If you would like even more
 validators, or to customize the relay chain in some other ways, keep reading, otherwise
