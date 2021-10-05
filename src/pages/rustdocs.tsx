@@ -15,10 +15,13 @@ export default function RustDocs() {
               Substrate <br /> Rust Docs
             </div>
             <p className="max-w-lg">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Vestibulum mollis pulvinar ligula, dictum consectetur odio blandit
-              eu. Donec fringilla, elit non sagittis dapibus, dui justo varius
-              leo, quis aliquam mi dolor et ex.
+              Substrate uses Rust's source code documentation and crate system to publish and manage 
+              its growing code base. The Substrate Rust docs is where all of that code lives, providing developers 
+              with the ultimate source of truth for updates in versions or changes in modules.
+            </p>
+            <p>  
+              This page maintains a reference list of all of Substrate's monthly releases since v3.0.0, for 
+              developers to be able to revisit previous source code documentation versions if they need to.
             </p>
             <ul className="list-inside mdx-anchor text-substrateBlue dark:text-substrateBlue-light">
               <li>
