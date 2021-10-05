@@ -145,8 +145,6 @@
 /docs/en/knowledgebase/advanced/*             /v3/advanced/:splat           301!
 
 ## Production: rustdocs
-/rustdocs            https://paritytech.github.io/substrate                    301
-/rustdocs/           https://paritytech.github.io/substrate                    301
 /rustdocs/*          https://paritytech.github.io/substrate/:splat             200
 
 # ---------------

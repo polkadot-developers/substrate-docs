@@ -20,6 +20,9 @@ import github from '../images/svgs/github-small.svg'
 import docsNavIcon from '../images/svgs/docs-nav-icon.svg'
 import arrowDown from '../images/svgs/arrow-down.svg'
 import copyText from '../images/svgs/copy-text.svg'
+import elementWhite from '../images/svgs/element-white.svg'
+import stackOverflowWhite from '../images/svgs/stack-overflow-white.svg'
+import twitter from '../images/svgs/twitter.svg'
 
 const iconsMap = {
   /* homepage */
@@ -38,8 +41,11 @@ const iconsMap = {
   nodeTemplate: nodeTemplate,
   /* social-media */
   elementOrg: elementOrg,
+  elementWhite: elementWhite,
   stackOverflowOrg: stackOverflowOrg,
+  stackOverflowWhite: stackOverflowWhite,
   github: github,
+  twitter: twitter,
   /* UI specific */
   arrowMore: arrowMore,
   arrowDown: arrowDown,

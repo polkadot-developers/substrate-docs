@@ -46,7 +46,7 @@ const Layout = ({ children }: any) => {
   return (
     <React.Fragment>
       <Header />
-      <main className="min-h-screen">
+      <main className="main-container">
         <MDXProvider components={components}>{children}</MDXProvider>
       </main>
       <Footer />
