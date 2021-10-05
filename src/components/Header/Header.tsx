@@ -108,7 +108,9 @@ export default function Header() {
                 <DocsButton />
               </div>
               {/* <LanguageSwitcher currentLang={locale} langConfig={config} /> */}
-              <ThemeToggle />
+              <div className="w-6 h-6">
+                <ThemeToggle />
+              </div>
             </div>
           </nav>
         </div>
