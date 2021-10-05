@@ -1,33 +1,33 @@
 const MainNav = {
   global: () => {
-    const site = 'https://substrate-io-staging.netlify.app/'
+    const site = 'https://substrate-io-staging.netlify.app'
     return [
       {
         name: `Technology`,
         subMenu: [
           {
             linkTitle: `Overview`,
-            link: `${site}technology`,
+            link: `${site}/technology`,
             external: true,
           },
           {
             linkTitle: `Flexible`,
-            link: `${site}technology/flexible`,
+            link: `${site}/technology/flexible`,
             external: true,
           },
           {
             linkTitle: `Open`,
-            link: `${site}technology/open`,
+            link: `${site}/technology/open`,
             external: true,
           },
           {
             linkTitle: `Interoperable`,
-            link: `${site}technology/interoperable`,
+            link: `${site}/technology/interoperable`,
             external: true,
           },
           {
             linkTitle: `Future-Proof`,
-            link: `${site}technology/future-proof`,
+            link: `${site}/technology/future-proof`,
             external: true,
           },
         ],
@@ -58,7 +58,7 @@ const MainNav = {
           {
             linkTitle: `Rust Docs`,
             link: `/rustdocs/`,
-            external: true,
+            external: false,
           },
           {
             linkTitle: `Playground`,
@@ -72,7 +72,7 @@ const MainNav = {
         subMenu: [
           {
             linkTitle: `Substrate & Polkadot`,
-            link: `${site}vision/substrate-and-polkadot`,
+            link: `${site}/vision/substrate-and-polkadot`,
             external: true,
           },
         ],
@@ -82,17 +82,17 @@ const MainNav = {
         subMenu: [
           {
             linkTitle: `Home`,
-            link: `${site}ecosystem`,
+            link: `${site}/ecosystem`,
             external: true,
           },
           {
             linkTitle: `Projects`,
-            link: `${site}ecosystem/projects`,
+            link: `${site}/ecosystem/projects`,
             external: true,
           },
           {
             linkTitle: `Builders Program`,
-            link: `${site}ecosystem/substrate-builders-program`,
+            link: `${site}/ecosystem/substrate-builders-program`,
             external: true,
           },
           {
@@ -102,17 +102,17 @@ const MainNav = {
             items: [
               {
                 linkTitle: 'Hackathons',
-                link: `${site}ecosystem/opportunities/hackathons`,
+                link: `${site}/ecosystem/opportunities/hackathons`,
                 external: true,
               },
               {
                 linkTitle: 'Grants',
-                link: `${site}ecosystem/opportunities/grants`,
+                link: `${site}/ecosystem/opportunities/grants`,
                 external: true,
               },
               {
                 linkTitle: 'Jobs',
-                link: `${site}ecosystem/opportunities/jobs`,
+                link: `${site}/ecosystem/opportunities/jobs`,
                 external: true,
               },
             ],
@@ -124,17 +124,17 @@ const MainNav = {
             items: [
               {
                 linkTitle: 'Substrate Seminar',
-                link: `${site}ecosystem/resources/substrate-seminar`,
+                link: `${site}/ecosystem/resources/seminar`,
                 external: true,
               },
               {
                 linkTitle: 'Awesome Substrate',
-                link: `${site}ecosystem/resources/awesome-substrate`,
+                link: `${site}/ecosystem/resources/awesome-substrate`,
                 external: true,
               },
               {
                 linkTitle: 'Community Resources',
-                link: `${site}ecosystem/resources/community-learning-offerings`,
+                link: `${site}/ecosystem/resources/community-resources`,
                 external: true,
               },
             ],
@@ -146,7 +146,7 @@ const MainNav = {
             items: [
               {
                 linkTitle: 'Contact',
-                link: `${site}ecosystem/connect/contact`,
+                link: `${site}/ecosystem/connect/contact`,
                 external: true,
               },
               {
@@ -156,7 +156,7 @@ const MainNav = {
               },
               {
                 linkTitle: 'Newsletter',
-                link: `${site}newsletter`,
+                link: `${site}/ecosystem/connect/newsletter`,
                 external: true,
               },
               {

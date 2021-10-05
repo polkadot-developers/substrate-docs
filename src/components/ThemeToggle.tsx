@@ -5,20 +5,23 @@ export default function ThemeToggle() {
   const { colorMode, setColorMode } = useContext(ThemeContext)
 
   function toggleTheme() {
-    if (colorMode === 'dark') {
-      setColorMode('light')
-    } else {
-      setColorMode('dark')
-    }
+    if (colorMode === 'dark') setColorMode('light')
+    if (colorMode === 'light') setColorMode('dark')
+  }
+
+  if (!colorMode) {
+    return null
   }
 
   return (
-    <div onClick={toggleTheme}>
+    <div
+      className="cursor-pointer opacity-50 hover:opacity-100 transition-opacity"
+      onClick={toggleTheme}
+    >
       {colorMode === 'dark' ? (
         <svg
-          className="transform -rotate-12 cursor-pointer"
+          className="transform -rotate-12 fill-current text-white"
           xmlns="http://www.w3.org/2000/svg"
-          fill="gray"
           viewBox="-4 -2 24 24"
           width="24"
           height="24"
@@ -29,9 +32,8 @@ export default function ThemeToggle() {
         </svg>
       ) : (
         <svg
-          className="cursor-pointer"
+          className="opacity-80 fill-current text-black"
           xmlns="http://www.w3.org/2000/svg"
-          fill="gray"
           viewBox="-2 -2 24 24"
           width="24"
           height="24"
