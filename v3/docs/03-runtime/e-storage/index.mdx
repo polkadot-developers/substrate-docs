@@ -22,13 +22,13 @@ interfaces. Please refer to [the advanced storage documentation](/v3/advanced/st
 In Substrate, any pallet can introduce new storage items that will become part of your blockchain’s state. These storage items can be simple single value items, or more complex storage maps. The type of storage items you choose to implement depends entirely on their intended role within your runtime logic.
 
 FRAME's [`Storage` module](/rustdocs/latest/frame_support/storage) gives runtime developers access to Substrate's flexible storage APIs, which can support any value that is encodable
-by [Parity's SCALE codec](/v3/advanced/scale-codec). These include:
+by [SCALE codec](/v3/advanced/scale-codec). These include:
 
 - [Storage Value](/rustdocs/latest/frame_support/storage/trait.StorageValue.html) - used to store any single value, such as a `u64`.
-- [Storage Map](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) - used to store a key-value hash map, such as a balance-to-account mapping.
-- [Storage Double Map](/rustdocs/latest/frame_support/storage/trait.StorageDoubleMap.html) - used as an implementation of a storage map with two keys to provide the ability to efficiently removing
+- [Storage Map](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) - used to store a key-value mapping, such as account-to-balance.
+- [Storage Double Map](/rustdocs/latest/frame_support/storage/trait.StorageDoubleMap.html) - used as an implementation of a storage map with two keys to provide the ability to efficiently remove
   all entries that have a common first key.
-- [Storage N Map](/rustdocs/latest/frame_support/storage/trait.StorageNMap.html) - used to store a hash map with any arbitrary number of keys, it can be used as a basis to build a Triple Storage Map, a Quadruple Storage Map and so on.
+- [Storage N Map](/rustdocs/latest/frame_support/storage/trait.StorageNMap.html) - used to store a mapping with any arbitrary number of keys, it can be used as a basis to build a Triple Storage Map, a Quadruple Storage Map and so on.
 
 ### Storage Value
 
