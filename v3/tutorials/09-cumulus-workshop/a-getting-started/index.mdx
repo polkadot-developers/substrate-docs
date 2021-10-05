@@ -7,20 +7,19 @@ category: Parachains
 keywords: cumulus, workshop, parachain, template
 difficulty: 3
 duration: 3 Hour
-relevantSkills: 
-  - Rust 
+relevantSkills:
+  - Rust
   - Parachains
 ---
 
 In this hands-on workshop, participants will start a Polkadot-like chain (the relay chain), register
 parachains, make cross-chain asset transfers, and convert their own Substrate runtimes to parachains
-using Cumulus. The workshop is divided into 3 parts. At the end of this workshop, you will have learnt the process of 
-connecting any Substrate based chain to a relay chain and how to interact with it in a local test network. 
+using Cumulus. The workshop is divided into 3 parts. At the end of this workshop, you will have learnt the process of
+connecting any Substrate based chain to a relay chain and how to interact with it in a local test network.
 
-To learn more about parachains before continuing this workshop, 
+To learn more about parachains before continuing this workshop,
 read about <ExternalLink url="https://polkadot.network/the-path-of-a-parachain-block/">The Path of a Parachain Block</ExternalLink>
 on the official Polkadot Blog.
-
 
 <Message
   type={`green`}
@@ -40,36 +39,32 @@ have your machine configured to compile Substrate-based projects.
 
 <TutorialObjective
   data={{
-    textLineOne:
-      '1. Prerequisites',
-      url: '#prerequisites',
+    textLineOne: '1. Prerequisites',
+    url: '#prerequisites',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '2. Build Environment and Compilation',
+    textLineOne: '2. Build Environment and Compilation',
     url: '#build-environment--compilation',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '3. Relay Chain Specification',
+    textLineOne: '3. Relay Chain Specification',
     url: '#relay-chain-specification',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '4. Starting the Relay Chain',
+    textLineOne: '4. Starting the Relay Chain',
     url: '#starting-the-relay-chain',
   }}
 />
 
 ### Learning Outcomes
 
-- Set up your parachain building environment 
+- Set up your parachain building environment
 - Start a relay chain
 
 ## Prerequisites
@@ -119,7 +114,6 @@ This workshop has been tested on commits:
 - **Parachain Template** tagged [**`polkadot-v0.9.8`**](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.8)
 - **Polkadot-JS Apps** tagged [**`v0.94.1`**](https://github.com/polkadot-js/apps/tree/v0.94.1).
   It is generally expected that the [hosted Polkadot-JS Apps](https://polkadot.js.org/apps/#/explorer) should work. If you have issues, build and run this UI yourself, at this tagged version.
-
 
 <Message
   type={`red`}
@@ -244,7 +238,7 @@ associated chain spec for your network generated once and distributed to your pe
 This stems from the [non-deterministic issue](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1\)
 in the way Wasm runtimes are compiled, at least for now.
 `}
-/> 
+/>{' '}
 
 ### 1. Chain Specification
 
@@ -436,14 +430,14 @@ The resulting `chain-spec.json` will still be **perfectly usable**, you can igno
 now.
 
 #### SS58 Encoding of Key vs. Address
-  
-  In the case of sr25519 and ed25519, the account ID matches its public key, hence SS58 encoded
-  account-id address is the same as SS58 public key encoding. In case of ECDSA, we apply blake2 algorithm to the public key to get the address (due to the size
-  difference between 33 vs 32 bytes), so the SS58 encoding is different. 
-  
-  Default serialization / deserialization implementation for public keys is using SS58 encoding,
-  hence every time we use public keys in encoded form we are going to need it's SS58 encoding. A
-  notable case is chain spec JSON file and encoding of session keys (most importantly BEEFY).
+
+In the case of sr25519 and ed25519, the account ID matches its public key, hence SS58 encoded
+account-id address is the same as SS58 public key encoding. In case of ECDSA, we apply blake2 algorithm to the public key to get the address (due to the size
+difference between 33 vs 32 bytes), so the SS58 encoding is different.
+
+Default serialization / deserialization implementation for public keys is using SS58 encoding,
+hence every time we use public keys in encoded form we are going to need it's SS58 encoding. A
+notable case is chain spec JSON file and encoding of session keys (most importantly BEEFY).
 
 <Message
   type={`gray`}
@@ -455,7 +449,6 @@ So if all you need to do is configure minor things off of a known base chain spe
 to set the information in \`chain-spec.rs\`, and generate the binary and finally use the CLI to generate
 your custom chain spec.`}
 />
-
 
 <!--
 

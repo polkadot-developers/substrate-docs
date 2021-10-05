@@ -1,5 +1,5 @@
 ---
-title: Tightly Coupling a Pallet 
+title: Tightly Coupling a Pallet
 slug: /how-to-guides/v3/pallet-design/tight-coupling
 version: 3.0
 section: how to guides
@@ -11,7 +11,8 @@ difficulty: 2
   data={[
     {
       title: 'Goal',
-      description: 'Learn how to use one pallet\'s capabilities from inside your pallet',
+      description:
+        "Learn how to use one pallet's capabilities from inside your pallet",
     },
     {
       title: 'Use Cases',
@@ -19,8 +20,7 @@ difficulty: 2
     },
     {
       title: 'Overview',
-      description:
-        `Tight coupling two pallets may suit specific use cases where the outside pallet 
+      description: `Tight coupling two pallets may suit specific use cases where the outside pallet 
          contains many types and methods common to those of the initial pallet. If this is not 
          the case, it's recommended to use loose coupling instead. Read more about pallet 
          coupling [here](/v3/runtime/pallet-coupling).`,
@@ -32,14 +32,14 @@ difficulty: 2
 
 ### 1. Configure your workspace
 
-Assume you want to use a pallet called `special-pallet`, which is a pallet in your 
+Assume you want to use a pallet called `special-pallet`, which is a pallet in your
 local workspace. Import it by providing its path in your pallet's `Cargo.toml` file:
 
 ```toml
 special-pallet = { path = '../special-pallet', default-features = false }
 ```
 
-### 2. Add a trait bound to your pallet 
+### 2. Add a trait bound to your pallet
 
 Now all you need to do is create a trait bound around your pallet's configuration trait:
 
@@ -49,7 +49,7 @@ pub trait Config: frame_system::Config + special_pallet::Config {
 }
 ```
 
-### 3. Use getter function 
+### 3. Use getter function
 
 In order to use a method from `special_pallet`, call it the following way:
 
@@ -62,8 +62,8 @@ The above snippet assumes that `special_pallet` contains a method called `get()`
 
 ## Examples
 
-- FRAME's [Bounties](https://github.com/paritytech/substrate/tree/master/frame/bounties) 
-and [Tipping](https://github.com/paritytech/substrate/tree/master/frame/tips) pallets with the Treasury pallet
+- FRAME's [Bounties](https://github.com/paritytech/substrate/tree/master/frame/bounties)
+  and [Tipping](https://github.com/paritytech/substrate/tree/master/frame/tips) pallets with the Treasury pallet
 
 ## Resources
 

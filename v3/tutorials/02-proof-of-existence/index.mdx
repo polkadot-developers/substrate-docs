@@ -2,14 +2,14 @@
 title: Build a Proof of Existence dApp
 slug: /tutorials/v3/proof-of-existence
 hideNav: true
-version: 3.0 
+version: 3.0
 section: tutorials
 category: proof of existence
-keywords: dapp, substrate 
+keywords: dapp, substrate
 difficulty: 1
 duration: 1 Hour
-relevantSkills: 
-  - Rust 
+relevantSkills:
+  - Rust
   - FRAME
   - ReactJS
 ---
@@ -63,8 +63,7 @@ We only expect that:
 
 <TutorialObjective
   data={{
-    textLineOne:
-      '1. Launch a Substrate blockchain based on a node template.',
+    textLineOne: '1. Launch a Substrate blockchain based on a node template.',
     url: '#prepare-to-build-a-dapp',
   }}
 />
@@ -84,8 +83,9 @@ We only expect that:
 />
 
 ## Learning outcomes
+
 - Learn how to think about a Substrate node as a framework to create a decentralized application made of pallets
-- Learn how to create and use a custom FRAME pallet 
+- Learn how to create and use a custom FRAME pallet
 - Learn how to modify the front-end node template to match your node's runtime items
 
 ## Prepare to build a dApp
@@ -117,8 +117,7 @@ git clone -b v3.0.0+1 --depth 1 https://github.com/substrate-developer-hub/subst
 <Message
   type={`gray`}
   title={`Note`}
-  text=
-      "Experienced developers may prefer to skip that tutorial and install the Node Template according to
+  text="Experienced developers may prefer to skip that tutorial and install the Node Template according to
       the instructions in [its readme](https://github.com/substrate-developer-hub/substrate-node-template#getting-started)."
 />
 
@@ -130,8 +129,7 @@ additional set-up required if you have already completed that tutorial.
 <Message
   type={`green`}
   title={`Tip`}
-  text=
-  "Refer directly to the front-end setup instructions for the
+  text="Refer directly to the front-end setup instructions for the
   [Create Your First Chain Tutorial](/tutorials/v3/create-your-first-substrate-chain#install-the-front-end-template)
   if necessary.
   "
@@ -150,8 +148,9 @@ claimed, and who made those claims.
 Sounds simple enough, right? Let's get coding!
 
 #### Next steps
+
 1. Create a custom pallet from scratch
-2. Implement pallet events, errors and storage items 
+2. Implement pallet events, errors and storage items
 3. Implement callabe functions `create_claim()` and `revoke_claim()`
 
 ## Building a Custom Pallet
@@ -184,10 +183,8 @@ will use as a starting point to build our own custom runtime logic.
 <Message
   type={`gray`}
   title={`Note`}
-  text={
-      `The following sections will start _from scratch_ and assumes that you have cleared the contents inside
-       \`pallet/template/src/lib.rs\` file.` 
-  }
+  text={`The following sections will start _from scratch_ and assumes that you have cleared the contents inside
+       \`pallet/template/src/lib.rs\` file.`}
 />
 
 Open the Node Template in your favorite code editor, then open the file
@@ -275,8 +272,7 @@ Of Existence pallet by providing you with the code blocks that go under each sec
 <Message
   type={`red`}
   title={`Warning`}
-  text=
-    "The `no_std` feature is required for all pallets! This is because we are building a
+  text="The `no_std` feature is required for all pallets! This is because we are building a
     runtime_ module that _must_ compile to WASM, and therefore cannot depend on rust\'s `std` dependencies.
     If you take a look at the `pallets/template/Cargo.toml` file, you will see that the template already has
     `std` default feature disabled which is necessary in order to compile the runtime to WASM. Learn more about why this is
@@ -494,8 +490,7 @@ And now it is time to interact with our new Proof of Existence pallet!
 <Message
   type={`yellow`}
   title={`Information`}
-  text=
-    "There is a full node template solution
+  text="There is a full node template solution
     [here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/build-a-dapp-v3+1)
     to use as a reference if you're stuck. Check the commit diff from the base `v3.0.0+1` template for the exact changes.
     "
@@ -504,7 +499,7 @@ And now it is time to interact with our new Proof of Existence pallet!
 #### Next steps
 
 1. Install the Substrate Front-end Template
-2. Add a custom React component to interact with your node's runtime 
+2. Add a custom React component to interact with your node's runtime
 3. Submit a proof and check that your dApp works
 
 ## Building a Custom Front End
@@ -727,8 +722,7 @@ comments to learn what each part is doing.
 <Message
   type={`yellow`}
   title={`Information`}
-  text=
-      "There is a full node template solution
+  text="There is a full node template solution
       [here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/build-a-dapp-v3+1)
       to use as a reference if you're stuck. Check the commit diff from the base `v3.0.0+1` template for the exact changes.
       "
@@ -767,6 +761,7 @@ This tutorial chose to omit some of the specific details around development in o
 experience short and satisfying. However, we want you to keep learning!
 
 #### Learn more
+
 To learn more about building your own pallets, explore the
 [FRAME documentation](/v3/runtime/FRAME) and the [how-to guides](/how-to-guides).
 
