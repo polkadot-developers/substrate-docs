@@ -1,39 +1,35 @@
 ---
 title: Connecting to a Relay Chain
 slug: /tutorials/v3/cumulus-workshop/pt2
-version: 3.0 
-section: tutorials
-category: parachains
-keywords:
+version: 3.0
+section: Tutorials
+category: Parachains
+keywords: cumulus, workshop, parachain, template, rococo, parathread
 ---
 
 In this part of the workshop, we'll connect a parachain to our relay chain and add additional nodes.
 
 <TutorialObjective
   data={{
-    textLineOne:
-      '1. Launching a Parachain',
-      url: '#launching-a-parachain',
+    textLineOne: '1. Launching a Parachain',
+    url: '#launching-a-parachain',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '2. Interact with a Parachain',
+    textLineOne: '2. Interact with a Parachain',
     url: '#interact-with-a-parachain',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '3. Parachain Registration',
+    textLineOne: '3. Parachain Registration',
     url: '#parachain-registration',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '4. Connecting Additional Parachain Nodes',
+    textLineOne: '4. Connecting Additional Parachain Nodes',
     url: '#connecting-additional-parachain-nodes',
   }}
 />
@@ -48,7 +44,7 @@ In this part of the workshop, we'll connect a parachain to our relay chain and a
 ## Launching a Parachain
 
 ### 1. Reserve a Para ID
- 
+
 To connect to any relay chain, you must first reserve a Para ID for your parathread that will
 become a parachain. It is called Para ID, because the same ID can be seen as its parachain ID or
 parathread ID, depending on your current chain to relay-chain connection state. To do this, you need
@@ -68,8 +64,7 @@ under the _Network_ -> **Parachains** subpage, click on **Parathreads** tab and 
   type={`yellow`}
   title={`Information`}
   text={`You will need to connect to a relay chain to submit this extrinsic! In testnets, your Parachain
-    ID will be 2000 for your first parathread registration.`
-  }
+    ID will be 2000 for your first parathread registration.`}
 />
 
 Note that the account used to register the Para ID must also be the origin for using this
@@ -242,7 +237,6 @@ in mind when interacting with various connected chains:
 
 For a detailed overview, see the <ExternalLink url="https://wiki.polkadot.network/docs/en/learn-crosschain">Polkadot wiki on XCMP </ExternalLink>
 
-
 ## Parachain Registration
 
 ### 1. Register Using `Sudo`
@@ -274,7 +268,7 @@ on this can be found [in here](../pt1#3-starting-additional-validators-optional)
  parachains without a lease are downgraded to parathreads, so make note of the next slot
  ending period and be sure to re-register as needed.
  `}
- />
+/>
 
 - Go to <ExternalLink url="https://polkadot.js.org/apps/#/explorer">Polkadot Apps UI</ExternalLink>, connecting to your **relay chain**.
 
@@ -399,7 +393,7 @@ Finally, the collator should start producing log messages like the following:
   on your entire network. Relay chains only store _header_ information. If the parachian data is lost
   you will **not** be able to recover the chain!
   `}
-/> 
+/>{' '}
 
 If you _must_ purge your chain database, you need to deregister and re-register it. It may be easier
 in testing to instead just purge all the chains. To purge the collator, run:
@@ -428,7 +422,7 @@ We can keep track of what parachains are registered and what their latest head d
 
 ![parachain-summary-screenshot.png](../../../../src/images/tutorials/09-cumulus-workshop/parachain-summary-screenshot.png)
 
-## Connecting Additional Parachain Nodes 
+## Connecting Additional Parachain Nodes
 
 A parachain can work with only a single collator as we've shown already. But that configuration is
 not very decentralized. An adversary would only need to take down a single node to stall the
