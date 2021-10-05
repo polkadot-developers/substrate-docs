@@ -58,7 +58,7 @@ const MainNav = {
           {
             linkTitle: `Rust Docs`,
             link: `/rustdocs/`,
-            external: true,
+            external: false,
           },
           {
             linkTitle: `Playground`,

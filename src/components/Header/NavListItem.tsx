@@ -28,7 +28,7 @@ export default function NavListItem({
     }
   }, [])
   if (external) {
-    if (title === 'Rust Docs' || title === 'Events' || title === 'Blog') {
+    if (title === 'Events' || title === 'Blog') {
       return (
         <a href={link} target="_blank" rel="noreferrer">
           <div

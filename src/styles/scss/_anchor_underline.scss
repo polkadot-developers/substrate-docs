@@ -27,11 +27,11 @@
   transform: scaleX(1);
 }
 
+
 // Markdown Anchor Tags
 .mdx-anchor a {
   position: relative;
   @apply text-substrateBlue dark:text-substrateBlue-light;
-  // color: #4E73F2;
   text-decoration: none;
 }
 
@@ -60,5 +60,41 @@
   transform: scaleX(0);
 }
 .mdx-anchor a:hover::before {
+  transform: scaleX(1);
+}
+
+
+// Anchor tag in Substrate Green color
+.anchor-green a {
+  position: relative;
+  @apply text-substrateGreen;
+  text-decoration: none;
+}
+
+.anchor-green a:hover {
+  @apply text-substrateGreen;
+}
+
+.anchor-green a::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  @apply bg-substrateGreen;
+  transform: scaleX(0);
+  transform-origin: top left;
+  transition: transform 0.3s ease;
+}
+
+.anchor-green a.md-button:hover::before {
+  transform: scaleX(0);
+}
+.anchor-green a.anchor:hover::before {
+  transform: scaleX(0);
+}
+.anchor-green a:hover::before {
   transform: scaleX(1);
 }
