@@ -154,9 +154,10 @@ be used.
 
 ### QueryKindTrait
 
-The [`QueryKindTrait`](/rustdocs/latest/frame_support/storage/types/trait.QueryKindTrait.html) generic of storage determines 
-how the storage should be handled when there is no value in storage. With [`OptionQuery`](/rustdocs/latest/frame_support/storage/types/struct.OptionQuery.html), when no value is in storage 
-the method get will return `None`. With [`ValueQuery`](/rustdocs/latest/frame_support/storage/types/struct.ValueQuery.html), 
+The implementation of the [`QueryKindTrait`](/rustdocs/latest/frame_support/storage/types/trait.QueryKindTrait.html) passed
+to the storage item determines how the storage should be handled when there is no value in storage.
+With [`OptionQuery`](/rustdocs/latest/frame_support/storage/types/struct.OptionQuery.html), when no value is in storage 
+the method `get` will return `None`. With [`ValueQuery`](/rustdocs/latest/frame_support/storage/types/struct.ValueQuery.html), 
 when no value is in storage the `get` method will return the value configured with the `OnEmpty` generic. 
 When you have a specific default value to configure, use `ValueQuery`.
 
