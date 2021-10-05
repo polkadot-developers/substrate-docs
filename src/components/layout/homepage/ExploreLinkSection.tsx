@@ -77,31 +77,27 @@ const ExploreLinkSection = ({ links }: ExploreLinkSectionProps) => {
       <Section>
         <h4 className="text-2xl font-bold mb-16">Explore More Substrate</h4>
         <div className="md:grid grid-cols-3 gap-6 xl:gap-10">
-          {currentLinks.map(
-            ({ title, description, link, linkText, icon }, index) => (
-              <a key={index} href={link}>
-                <div className="h-full hover:bg-white hover:shadow-xl hover:scale-105 rounded-md p-8 mb-16 sm:mb-0 flex flex-col justify-between transition-all dark:hover:bg-substrateDark">
-                  <div>
-                    <Icon name={icon} className="mb-6 w-8 h-8" />
-                    <h5 className="text-xl font-bold mb-6">{title}</h5>
-                    <p>{description}</p>
-                  </div>
-                  <div>
-                    <p
-                      className={`font-bold pb-1 mr-0.5 border-b-2 inline hover:mr-2 transition-all border-substrateDark dark:border-white`}
-                    >
-                      {linkText}
-                    </p>{' '}
-                    <span
-                      className={`fill-current text-substrateDark dark:text-white inline-block`}
-                    >
-                      <Icon name="arrowMore" />
-                    </span>
-                  </div>
+          {currentLinks.map(({ title, description, link, linkText, icon }, index) => (
+            <a key={index} href={link}>
+              <div className="h-full hover:bg-white hover:shadow-xl hover:scale-105 rounded-md p-8 mb-16 sm:mb-0 flex flex-col justify-between transition-all dark:hover:bg-substrateDark">
+                <div>
+                  <Icon name={icon} className="mb-6 w-8 h-8" />
+                  <h5 className="text-xl font-bold mb-6">{title}</h5>
+                  <p>{description}</p>
                 </div>
-              </a>
-            )
-          )}
+                <div>
+                  <p
+                    className={`font-bold pb-1 mr-0.5 border-b-2 inline hover:mr-2 transition-all border-substrateDark dark:border-white`}
+                  >
+                    {linkText}
+                  </p>{' '}
+                  <span className={`fill-current text-substrateDark dark:text-white inline-block`}>
+                    <Icon name="arrowMore" />
+                  </span>
+                </div>
+              </div>
+            </a>
+          ))}
         </div>
       </Section>
     </div>

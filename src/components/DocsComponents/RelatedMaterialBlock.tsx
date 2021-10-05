@@ -8,12 +8,7 @@ interface RelatedMaterialBlockProps {
   linkText: string
 }
 
-export function RelatedMaterialBlock({
-  title,
-  text,
-  link,
-  linkText,
-}: RelatedMaterialBlockProps) {
+export function RelatedMaterialBlock({ title, text, link, linkText }: RelatedMaterialBlockProps) {
   return (
     <>
       <div className="inline-flex flex-wrap justify-start mr-4">

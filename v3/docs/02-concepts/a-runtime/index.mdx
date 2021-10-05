@@ -1,7 +1,7 @@
 ---
 title: Runtime
 slug: /v3/concepts/runtime
-version: 3.0 
+version: 3.0
 section: docs
 category: concepts
 keywords:
@@ -17,22 +17,23 @@ changes to this state.
 
 ![substrate-runtime-client](/img/docs/concepts/substrate-runtime-client.png)
 
-Each Substrate node contains a runtime. The runtime contains the business logic of the chain. It 
-defines what transactions are valid and invalid and determines how the chain's state changes in 
-response to transactions. The "outer node", everything other than the runtime, does not compile 
-to Wasm, only to native. The outer node is responsible for handling peer discovery, transaction 
-pooling, block and transaction gossiping, consensus, and answering RPC calls from the outside 
-world. While performing these tasks, the outer node sometimes needs to query the runtime for 
-information, or provide information to the runtime. A Runtime API facilitates this kind of 
-communication between the outer node and the runtime. 
+Each Substrate node contains a runtime. The runtime contains the business logic of the chain. It
+defines what transactions are valid and invalid and determines how the chain's state changes in
+response to transactions. The "outer node", everything other than the runtime, does not compile
+to Wasm, only to native. The outer node is responsible for handling peer discovery, transaction
+pooling, block and transaction gossiping, consensus, and answering RPC calls from the outside
+world. While performing these tasks, the outer node sometimes needs to query the runtime for
+information, or provide information to the runtime. A Runtime API facilitates this kind of
+communication between the outer node and the runtime.
 
 ## Runtime APIs
 
-In Substrate, the `sp_api` crate provides an interface to implement a runtime API. It is designed to give 
-developers the ability to define their own custom runtime APIs using the [`impl_runtime_apis`](/rustdocs/latest/sp_api/macro.impl_runtime_apis.html) 
-macro. However, every runtime must implement the [`Core`](/rustdocs/latest/sp_api/trait.Core.html) and 
+In Substrate, the `sp_api` crate provides an interface to implement a runtime API. It is designed to give
+developers the ability to define their own custom runtime APIs using the [`impl_runtime_apis`](/rustdocs/latest/sp_api/macro.impl_runtime_apis.html)
+macro. However, every runtime must implement the [`Core`](/rustdocs/latest/sp_api/trait.Core.html) and
 [`Metadata`](/rustdocs/latest/sp_api/trait.Metadata.html) runtime APIs. In addition to these, a basic Substrate Node
 has the following runtime APIs implemented:
+
 - [`BlockBuilder`](/rustdocs/latest/sp_block_builder/trait.BlockBuilder.html): Provides the functionality required for building a block.
 - [`TaggedTransactionQueue`](/rustdocs/latest/sp_transaction_pool/runtime_api/trait.TaggedTransactionQueue.html): Handles validating transactions in the transaction queue.
 - [`OffchainWorkerApi`](/rustdocs/latest/sp_offchain/trait.OffchainWorkerApi.html): Handles [off-chain capabilities](/v3/concepts/off-chain-features).
@@ -42,7 +43,6 @@ has the following runtime APIs implemented:
 - [`AccountNonceApi`](/rustdocs/latest/frame_system_rpc_runtime_api/trait.AccountNonceApi.html): Handles querying transaction indices.
 - [`TransactionPaymentApi`](/rustdocs/latest/pallet_transaction_payment_rpc_runtime_api/trait.TransactionPaymentApi.html): Handles querying information about transactions.
 - [`Benchmark`](/rustdocs/latest/frame_benchmarking/trait.Benchmark.html): Provides a way to [benchmark](/v3/runtime/benchmarking) a FRAME runtime.
-
 
 In order to provide its defining forkless runtime upgrade capabilities, Substrate runtimes
 are built as [WebAssembly (Wasm)](/v3/getting-started/glossary#webassembly-wasm)

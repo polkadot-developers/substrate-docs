@@ -41,10 +41,7 @@ export default function Footer() {
               <path d="M269.28,14.69a12.55,12.55,0,0,1,4.89,5.69V13.1h12.24V53.28H274.17V46a12.6,12.6,0,0,1-4.89,5.69,14.57,14.57,0,0,1-7.92,2.08,16.25,16.25,0,0,1-8.9-2.48,17,17,0,0,1-6.19-7.16,24.87,24.87,0,0,1-2.27-11,24.82,24.82,0,0,1,2.27-11,17.13,17.13,0,0,1,6.19-7.13,16.34,16.34,0,0,1,8.9-2.48A14.57,14.57,0,0,1,269.28,14.69ZM258.94,26a10.2,10.2,0,0,0-2.41,7.2,10.2,10.2,0,0,0,2.41,7.2,9.05,9.05,0,0,0,12.75-.07,10.06,10.06,0,0,0,2.48-7.13A10,10,0,0,0,271.69,26a8.39,8.39,0,0,0-6.37-2.63A8.31,8.31,0,0,0,258.94,26Z" />
               <path d="M318.81,42.7V53.28h-5.54q-7.06,0-11-3.49t-3.93-11.56V23.47H293V13.1h5.4V3.24h12.32V13.1h8.06V23.47h-8.06v15a4.5,4.5,0,0,0,1,3.31,4.66,4.66,0,0,0,3.27.94Z" />
               <path d="M364.24,35.42H336.38q.21,4.55,2.3,6.52a7.43,7.43,0,0,0,5.33,2,7.32,7.32,0,0,0,4.54-1.37A6.36,6.36,0,0,0,350.92,39h13a17,17,0,0,1-3.45,7.6,18.54,18.54,0,0,1-6.77,5.26,23.17,23.17,0,0,1-19.62-.58A17.69,17.69,0,0,1,327,44.14a22.22,22.22,0,0,1-2.6-11,22.5,22.5,0,0,1,2.56-11,17.56,17.56,0,0,1,7.16-7.13,23.66,23.66,0,0,1,21,0,17.33,17.33,0,0,1,7,6.87,20.56,20.56,0,0,1,2.48,10.19A17,17,0,0,1,364.24,35.42ZM350,24.3a7.8,7.8,0,0,0-5.43-2,8,8,0,0,0-5.62,2,8.41,8.41,0,0,0-2.52,5.9h15.7C352.19,27.6,351.49,25.62,350,24.3Z" />
-              <path
-                className="fill-current text-substrateGreen"
-                d="M419.75,46.09v12H375.19v-12Z"
-              />
+              <path className="fill-current text-substrateGreen" d="M419.75,46.09v12H375.19v-12Z" />
             </svg>
           </Link>
         </div>
@@ -61,8 +58,7 @@ export default function Footer() {
                   </span>
                   <ul className="m-0 p-0 list-none ml-0 sm:ml-7 sm:flex sm:flex-wrap sm:w-full text-sm sm:text-base sm:mt-0.5">
                     {section.subMenu.map((item, index) => {
-                      const itemStyles =
-                        'p-0 m-0 underline-anchor pb-4 sm:mr-6 leading-relaxed'
+                      const itemStyles = 'p-0 m-0 underline-anchor pb-4 sm:mr-6 leading-relaxed'
                       if (item.items) {
                         return (
                           <Fragment key={index}>
@@ -196,27 +192,16 @@ export default function Footer() {
         </div>
         <div className="underline-anchor inline-flex flex-col md:flex-row py-6 text-[#DFE3EA] text-xs font-light">
           <div className="mb-4 md:mb-0 md:pr-8 inline-block">
-            © {new Date().getFullYear()} Parity Technologies{` `}All Rights
-            Reserved{` `}
+            © {new Date().getFullYear()} Parity Technologies{` `}All Rights Reserved{` `}
           </div>
           <div className="mb-4 md:mb-0 md:mr-8 inline-block">
-            <a
-              className="block"
-              href={site.siteMetadata.privacy}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a className="block" href={site.siteMetadata.privacy} target="_blank" rel="noreferrer">
               Privacy Policy
             </a>
           </div>
 
           <div className="mb-4 md:mb-0 md:mr-8 inline-block">
-            <a
-              className="block"
-              href={site.siteMetadata.terms}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a className="block" href={site.siteMetadata.terms} target="_blank" rel="noreferrer">
               Terms of Services
             </a>
           </div>

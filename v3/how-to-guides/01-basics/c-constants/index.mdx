@@ -2,11 +2,12 @@
 title: Configure a Runtime Constant
 slug: /how-to-guides/v3/basics/configurable-constants
 keywords: basics, runtime, configurable constants
-version: 3.0 
+version: 3.0
 section: how to guides
 category: basics
 difficulty: 1
 ---
+
 <Objectives
   data={[
     {
@@ -15,13 +16,11 @@ difficulty: 1
     },
     {
       title: 'Use Cases',
-      description:
-        `Use a constant to keep track of the amount of times a function is called during a single block cycle.`,
+      description: `Use a constant to keep track of the amount of times a function is called during a single block cycle.`,
     },
     {
       title: 'Overview',
-      description:
-        `Declaring a constant value in a runtime is a useful tool to either define fixed values or define values that change dynamically
+      description: `Declaring a constant value in a runtime is a useful tool to either define fixed values or define values that change dynamically
          according to some factor. This guide steps through the process of creating pallet constants that are used to reset a \`u32\`
          value in storage. This value, we'll call \`SingleValue\`, can also be modified using a method called \`add_value\`.
          The purpose of this guide is to demonstrate the utility of configuring constants by hardcoding them as well as making them more

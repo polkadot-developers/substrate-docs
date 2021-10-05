@@ -6,21 +6,14 @@ import SearchSectionLabel from './SearchSectionLabel'
 import useComponentVisible from './Hooks/use-component-visible'
 
 export default function SearchDocs() {
-  const { ref, isComponentVisible, setIsComponentVisible } =
-    useComponentVisible(false)
+  const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false)
   const [section, setSection] = useState({
     docs: false,
     tuts: false,
     htgs: false,
   })
   const types = ['Docs', 'Tutorials', 'How-to Guides']
-  const suggestedTerms = [
-    'Runtime',
-    'Storage',
-    'FRAME',
-    'Weights',
-    'Pallet Design',
-  ]
+  const suggestedTerms = ['Runtime', 'Storage', 'FRAME', 'Weights', 'Pallet Design']
   const sectionNames = {
     docs: 'docs',
     tuts: 'tutorials',
@@ -169,11 +162,7 @@ export default function SearchDocs() {
               <div className="flex flex-col sm:flex-row mb-6">
                 {types.map((type, index) => (
                   <div key={index}>
-                    <SearchSectionLabel
-                      index={index}
-                      section={section}
-                      setSection={setSection}
-                    >
+                    <SearchSectionLabel index={index} section={section} setSection={setSection}>
                       {type}
                     </SearchSectionLabel>
                   </div>
@@ -192,16 +181,8 @@ export default function SearchDocs() {
                   {query.length === 0 ? (
                     <div>
                       {suggestedTerms.map((term, index) => (
-                        <div
-                          className="cursor-pointer"
-                          onClick={() => setQuery(term)}
-                          key={index}
-                        >
-                          <SearchResult
-                            noLink
-                            section={`Suggestion`}
-                            title={term}
-                          />
+                        <div className="cursor-pointer" onClick={() => setQuery(term)} key={index}>
+                          <SearchResult noLink section={`Suggestion`} title={term} />
                         </div>
                       ))}
                     </div>
@@ -224,10 +205,7 @@ export default function SearchDocs() {
                         </div>
                       ) : (
                         <div>
-                          <SearchResult
-                            error
-                            title={`Try another search term`}
-                          />
+                          <SearchResult error title={`Try another search term`} />
                         </div>
                       )}
                     </div>

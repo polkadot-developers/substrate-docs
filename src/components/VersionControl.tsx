@@ -9,10 +9,7 @@ interface VersionControlProps {
   slug: string
   absolutePath: string
 }
-export default function VersionControl({
-  version,
-  absolutePath,
-}: VersionControlProps) {
+export default function VersionControl({ version, absolutePath }: VersionControlProps) {
   // const { ref, isComponentVisible, setIsComponentVisible } =
   //   useComponentVisible(false)
   // const [pathName, setPathName] = useState('')

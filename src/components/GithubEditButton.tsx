@@ -7,16 +7,11 @@ interface GithuEditButtonProps {
 }
 export default function GithubEditButton(props: GithuEditButtonProps) {
   const intl = useIntl()
-  const githubSlug =
-    'https://github.com/substrate-developer-hub/substrate-docs/edit/main'
+  const githubSlug = 'https://github.com/substrate-developer-hub/substrate-docs/edit/main'
 
   const [url, setUrl] = useState('')
   useEffect(() => {
-    setUrl(
-      `${githubSlug}${props.absolutePath.substr(
-        props.absolutePath.indexOf('/v')
-      )}`
-    )
+    setUrl(`${githubSlug}${props.absolutePath.substr(props.absolutePath.indexOf('/v'))}`)
   }, [])
 
   return (
@@ -28,10 +23,7 @@ export default function GithubEditButton(props: GithuEditButtonProps) {
         rel="noreferrer"
       >
         |{` `}
-        <Icon
-          name="github"
-          className="mx-2 fill-current text-substrateDark dark:text-white"
-        />
+        <Icon name="github" className="mx-2 fill-current text-substrateDark dark:text-white" />
         {` `}
         <span className="text-substrateDark dark:text-white">
           {intl.formatMessage({ id: 'docs-nav-edit' })}

@@ -2,7 +2,7 @@
 title: Using Helper Functions
 slug: /how-to-guides/v3/basics/helper-functions
 keywords: basics, runtime
-version: 3.0 
+version: 3.0
 section: how to guides
 category: basics
 difficulty: 2
@@ -12,17 +12,16 @@ difficulty: 2
   data={[
     {
       title: 'Goal',
-      description: 'Use helper functions inside a pallet to improve code readability and reusability.',
+      description:
+        'Use helper functions inside a pallet to improve code readability and reusability.',
     },
     {
       title: 'Use Cases',
-      description:
-        `Re-use helper functions to perform common "verify" checks across multiple pallets.`,
+      description: `Re-use helper functions to perform common "verify" checks across multiple pallets.`,
     },
     {
       title: 'Overview',
-      description:
-        `Sometimes a disptachable function inside a pallet reuses logic that's common to other dispatchables.
+      description: `Sometimes a disptachable function inside a pallet reuses logic that's common to other dispatchables.
          In this case, it's useful to refactor this logic into its own private function.
          Other times, dispatchable functions get increasingly difficult to read as the amount of code increases
          to perform various checks within the dispatchable. In both instances, using helper functions that cannot
@@ -93,15 +92,11 @@ a dispatchable that allows a signed extrinsic to add a value to the existing sto
 
 #### Rust docs
 
-- <ExternalLink
-    url={`https://docs.rs/num/0.4.0/num/traits/trait.CheckedAdd.html`}
-  >
+- <ExternalLink url={`https://docs.rs/num/0.4.0/num/traits/trait.CheckedAdd.html`}>
     {' '}
     checked_add{' '}
   </ExternalLink>
-- <ExternalLink
-    url={`https://doc.rust-lang.org/std/option/enum.Option.html#method.ok_or`}
-  >
+- <ExternalLink url={`https://doc.rust-lang.org/std/option/enum.Option.html#method.ok_or`}>
     {' '}
     ok_or{' '}
   </ExternalLink>

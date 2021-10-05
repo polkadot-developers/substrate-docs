@@ -28,9 +28,7 @@ const getHeadingIds: any = (
         idList.push(hashToId(item.url))
       }
       if (item.items && traverseFullDepth && recursionDepth < (depth || 6)) {
-        idList.push(
-          ...getHeadingIds(item.items, true, depth, recursionDepth + 1)
-        )
+        idList.push(...getHeadingIds(item.items, true, depth, recursionDepth + 1))
       }
     }
   }

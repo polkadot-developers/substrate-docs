@@ -12,12 +12,7 @@ interface LabelProps {
   }
 }
 
-export default function SearchSectionLabel({
-  index,
-  section,
-  setSection,
-  children,
-}: LabelProps) {
+export default function SearchSectionLabel({ index, section, setSection, children }: LabelProps) {
   const handleChange = () => {
     if (index === 0) {
       setSection((prevState: LabelProps) => ({
@@ -58,9 +53,7 @@ export default function SearchSectionLabel({
           checked={checked() || false}
           onChange={() => handleChange()}
         />
-        <span className="text-base md:text-lg font-semibold pl-2">
-          {children}
-        </span>
+        <span className="text-base md:text-lg font-semibold pl-2">{children}</span>
       </label>
     </>
   )

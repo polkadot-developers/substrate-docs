@@ -19,18 +19,14 @@ export function PrimaryButton(props: PrimaryButtonProps) {
           target="_blank"
           rel="noreferrer"
         >
-          <button className={`focus:outline-none font-bold ${textSize()}`}>
-            {props.children}
-          </button>
+          <button className={`focus:outline-none font-bold ${textSize()}`}>{props.children}</button>
         </a>
       ) : (
         <LocalizedLink
           className={`bg-substrateGreen ${padding()} hover:bg-white border-2 border-transparent hover:border-substrateGreen rounded text-white hover:text-substrateGreen transform transition duration-300 ease-in-out`}
           to={props.link}
         >
-          <button className={`focus:outline-none font-bold ${textSize()}`}>
-            {props.children}
-          </button>
+          <button className={`focus:outline-none font-bold ${textSize()}`}>{props.children}</button>
         </LocalizedLink>
       )}
     </>

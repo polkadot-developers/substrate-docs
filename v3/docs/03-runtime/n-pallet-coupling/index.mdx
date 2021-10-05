@@ -7,19 +7,19 @@ category: runtime
 keywords: coupling, pallet design
 ---
 
-In computer science, <ExternalLink url="https://en.wikipedia.org/wiki/Coupling_(computer_programming)">coupling</ExternalLink> 
+In computer science, <ExternalLink url="https://en.wikipedia.org/wiki/Coupling_(computer_programming)">coupling</ExternalLink>
 is the degree to which two software modules depend on each other. System designers use the terms high and low coupling to
-describe how computer systems are structured. The term also applies to object oriented programming paradigms, whereby tight 
+describe how computer systems are structured. The term also applies to object oriented programming paradigms, whereby tight
 coupling is when two groups of classes are dependant on each other, and loose coupling is when a class uses an interface that
 another class exposes.
 
-In Substrate, tight and loose pallet coupling is used to for calling a function that lives inside another pallet. 
+In Substrate, tight and loose pallet coupling is used to for calling a function that lives inside another pallet.
 Both techniques achieve the same thing in different ways, each having certain trade-offs. In a nutshell,
-tight coupling of pallets should be used in instances where a pallet requires inheriting its coupled counterpart 
+tight coupling of pallets should be used in instances where a pallet requires inheriting its coupled counterpart
 _as a whole_ as opposed to specific types or methods. In general, tight coupling makes working with two pallets less
 flexible and extensible.
 
-##  Tightly Coupled Pallets
+## Tightly Coupled Pallets
 
 Tightly coupling pallets is more explicit than loosely coupling them. When writing a pallet that
 tightly couple, you explicitly specify the pallet's `Config` trait to be bound by the `Config` trait
@@ -35,7 +35,7 @@ pub trait Config: frame_system::Config + some_pallet::Config {
 }
 ```
 
-This is very similar to using class inteheritance in object oriented programming. 
+This is very similar to using class inteheritance in object oriented programming.
 Supplying this trait bound implies that this pallet can only be installed in a runtime that also
 has `some_pallet` pallet installed. Similar to with `frame_system`, this approach would require
 specifying `some_pallet` in the coupled pallet's **Cargo.toml** file.
@@ -44,9 +44,9 @@ Tight coupling has several disadvantages developers should take into account:
 
 - **Maintainability**: changes in one pallet will often result in needing to modify the other pallet.
 - **Reusability**: both modules must be included for one to be used, making it more difficult to
-integrate a tightly coupled pallet.
+  integrate a tightly coupled pallet.
 
-##  Loosely Coupled Pallets
+## Loosely Coupled Pallets
 
 Unlike tight coupling, in loose coupling pallet we just specify traits and function interfaces that
 certain types need to be bound by.
@@ -111,7 +111,7 @@ By now we have closed the loop and provide on implementation to `Currency<Accoun
 
 Notice that many FRAME pallets are coupled to this
 [Currency trait](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html)
-in this way. 
+in this way.
 
 In general, loose coupling will provide more flexibility than tight coupling and is considered
 better practice from a system design perspective. It guarantees better maintability, reusability,
@@ -124,12 +124,12 @@ In FRAME, there exists 2 pallets that are tightly coupled to
 [Tipping pallet](https://github.com/paritytech/substrate/tree/master/frame/tips).
 
 As a general rule, the more complex a pallet is, the less desirable it would be to tightly couple
-it. This evokes a concept in computer science called [cohesion](https://en.wikipedia.org/wiki/Cohesion_(computer_science)),
+it. This evokes a concept in computer science called [cohesion](<https://en.wikipedia.org/wiki/Cohesion_(computer_science)>),
 a metric used to examine the overall quality of a software system.
 
 ## Learn More
 
-- Read the <ExternalLink url="https://doc.rust-lang.org/book/ch17-00-oop.html">Object Oriented Programming Features of Rust</ExternalLink> 
-section of the Rust Book
+- Read the <ExternalLink url="https://doc.rust-lang.org/book/ch17-00-oop.html">Object Oriented Programming Features of Rust</ExternalLink>
+  section of the Rust Book
 - How-to guides on how to use [loose coupling](/how-to-guides/v3/pallet-design/tight-coupling) and
-[tight coupling](/how-to-guides/v3/pallet-design/loose-coupling) in your runtime
+  [tight coupling](/how-to-guides/v3/pallet-design/loose-coupling) in your runtime

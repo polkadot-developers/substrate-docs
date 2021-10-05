@@ -49,9 +49,7 @@ export function BottomButtons({ menu, pageSlug }: BottomButtonsProps) {
       {prevButton === null ? null : (
         <PreviousButton text={prevButton.title} link={prevButton.link} />
       )}
-      {nextButton === null ? null : (
-        <NextButton text={nextButton.title} link={nextButton.link} />
-      )}
+      {nextButton === null ? null : <NextButton text={nextButton.title} link={nextButton.link} />}
     </div>
   )
 }

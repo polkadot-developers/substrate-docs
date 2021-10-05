@@ -2,14 +2,14 @@
 title: Start a Permissioned Network
 slug: /tutorials/v3/permissioned-network
 hideNav: true
-version: 3.0 
+version: 3.0
 section: tutorials
 category: permissioned network
-keywords: permissioned, consortium, 
+keywords: permissioned, consortium,
 difficulty: 1
 duration: 1 Hour
-relevantSkills: 
-  - Rust 
+relevantSkills:
+  - Rust
   - Blockchain basics
 ---
 
@@ -50,15 +50,13 @@ Before we get started, let's layout the objectives of this tutorial:
 
 <TutorialObjective
   data={{
-    textLineOne:
-      '1. Modify the Node Template project to add `node-authorization pallet`.',
+    textLineOne: '1. Modify the Node Template project to add `node-authorization pallet`.',
     url: '/tutorials/v3/permissioned-network#add-node-authorization-pallet',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne:
-    '2. Launch multiple nodes and authorize new nodes to join.',
+    textLineOne: '2. Launch multiple nodes and authorize new nodes to join.',
     url: '/tutorials/v3/permissioned-network#launch-our-permissioned-network',
   }}
 />
@@ -104,11 +102,9 @@ the right CLI flag as offchain worker is disabled by default for non-authority n
 <Message
   type={`red`}
   title={`Warning`}
-  text={
-	  `Your node may not be synced with the latest block, and thus not be aware of and published updates that are 
+  text={`Your node may not be synced with the latest block, and thus not be aware of and published updates that are 
 	  reflected in the \`node-authorization\` chain storage. You may need to disable offchain worker
-	  and manually set reachable reserved nodes for your node to sync up with the network if this is the case.`
-  }
+	  and manually set reachable reserved nodes for your node to sync up with the network if this is the case.`}
 />
 
 ### Build the Node Template
@@ -136,8 +132,7 @@ cargo build --release
 <Message
   type={`green`}
   title={`Tip`}
-  text=
-	"If you do run into issues building, checkout
+  text="If you do run into issues building, checkout
 	[these helpful tips](/v3/getting-started/installation#2-rust-developer-environment).
 	"
 />
@@ -301,8 +296,7 @@ subkey generate-node-key
 <Message
   type={`gray`}
   title={`Note`}
-  text=
-	"`subkey` is a CLI tool that comes bundled with substrate, and you can install it natively too! 
+  text="`subkey` is a CLI tool that comes bundled with substrate, and you can install it natively too! 
 	Refer to the [install Instructions](/v3/tools/subkey#installation).
   	"
 />
@@ -319,12 +313,12 @@ Now all the code changes are finished, we are ready to launch our permissioned n
 <Message
   type={`yellow`}
   title={`Information`}
-  text= "Stuck? The solution with all required changes to the base template can be found ',
+  text="Stuck? The solution with all required changes to the base template can be found ',
 		[here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/permissioned-network-v3).',
 		"
 />
 
-In the  next section, we will use well-known node keys and Peer IDs to launch your permissioned network 
+In the next section, we will use well-known node keys and Peer IDs to launch your permissioned network
 and allow access for other nodes to join.
 
 ## Launch our Permissioned Network
@@ -404,8 +398,7 @@ making Dave's node as a well known node.
 <Message
   type={`gray`}
   title={`Note`}
-  text=
-    "You can get the above bs58 decoded peer id by using `bs58::decode` similar',
+  text="You can get the above bs58 decoded peer id by using `bs58::decode` similar',
     to how it was used in our genesis storage configuration. Alternatively, there are tools online like ',
     [this one](https://whisperd.tech/bs58-codec/)
     to en/decode bs58 IDs.
@@ -441,9 +434,7 @@ Other used CLI flags are:
 <Message
   type={`yellow`}
   title={`Information`}
-  text={
-    `You can get the detailed description of above flags and more by running \`./target/release/node-template -h\`.`
-  }
+  text={`You can get the detailed description of above flags and more by running \`./target/release/node-template -h\`.`}
 />
 
 Start Bob's node:
@@ -482,8 +473,7 @@ information:
 <Message
   type={`red`}
   title={`Warning`}
-  text=
-    "If you don't do this, you will get extrinsic errors of the form:
+  text="If you don't do this, you will get extrinsic errors of the form:
     `Verification Error: Execution(ApiError(Could not convert parameter 'tx' between node and runtime)`. 
     More details [here](https://polkadot.js.org/docs/api/FAQ#the-node-returns-a-could-not-convert-error-on-send).
     "
@@ -513,16 +503,16 @@ Let's start Charlie's node,
 --ws-port=9946 \
 --offchain-worker always
 ```
+
 <Message
   type={`yellow`}
   title={`Important`}
-  text=
-    "The `node-authorization` pallet integrates an
+  text="The `node-authorization` pallet integrates an
     [offchain worker](/v3/concepts/off-chain-features#off-chain-workers)
     to configure node connections. As Charlie is not _yet_ a well-known node, and we
     intend to attach Dave\'s node, we require the offchain worker to be enabled.
     "
-/> 
+/>{' '}
 
 After it was started, you should see there are **no connected peers** for this node.
 This is because we are trying to connect to a permissioned network, you need to
@@ -549,8 +539,7 @@ by default in a local network.
 <Message
   type={`gray`}
   title={`Note`}
-  text=
-    "If your nodes are not on the same local network, you don't need mDNS and should use
+  text="If your nodes are not on the same local network, you don't need mDNS and should use
     `--no-mdns` to disable it. If running node in a public internet, you need to use
     `--no-mdns` to disable it. If running node in a public internet, you need to use
     Otherwise put the reachable nodes as bootnodes of Chain Spec.
@@ -604,8 +593,7 @@ Restart Dave's node in case it's not connecting with Charlie right away.
 <Message
   type={`gray`}
   title={`Note`}
-  text=
-    "_Any_ node may issue _extrinsics_ that effect other node\'s behavior, as long as it
+  text="_Any_ node may issue _extrinsics_ that effect other node\'s behavior, as long as it
     is _on chain data_ that is used for reference, and you have the _singing key_ in the keystore 
     available for the account in question for the extrinsics\' required origin. 
     All nodes in this demonstration have access to the developer signing keys, thus 
@@ -622,7 +610,7 @@ You are at the end of this tutorial and are already learned about how to build a
 permissioned network. You can also play with other dispatchable calls like
 `remove_well_known_node`, `remove_connections`.
 
-## Next steps 
+## Next steps
 
 - Complete the [Private Network Tutorial](/tutorials/v3/private-network)
 - Read more about the [Subkey tool](/v3/tools/subkey)

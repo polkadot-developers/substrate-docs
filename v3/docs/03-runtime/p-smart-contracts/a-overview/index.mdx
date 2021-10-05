@@ -1,7 +1,7 @@
 ---
 title: Smart Contract Toolkits
 slug: /v3/runtime/smart-contracts
-version: 3.0 
+version: 3.0
 section: docs
 category: smart contracts
 keywords: contracts, evm, ethereum
@@ -234,7 +234,7 @@ reverted, and the gas fee is **not** returned to the user. If the contract execu
 remaining gas, it is returned to the user at the end of the transaction.
 
 The Contracts pallet determines the gas price, which is a conversion between the Substrate
-[**weight system**](/v3/concepts/weight) and a single unit of gas. Thus, to execute a transaction, a user 
+[**weight system**](/v3/concepts/weight) and a single unit of gas. Thus, to execute a transaction, a user
 must have a free balance of at least `gas price` \* `gas limit` which can be spent.
 
 ### Storage Rent
@@ -331,8 +331,7 @@ to support earlier hard fork configurations.
   existing system to work on a Substrate-based chain.`}
 />
 
-
-## FAQ 
+## FAQ
 
 #### What is the difference between memory and storage?
 
@@ -359,7 +358,6 @@ cargo +nightly test
 You can follow
 [our guide here](/how-to-guides/v3/pallet-design/contracts-pallet) for instructions on how to add the Contracts pallet
 and other FRAME pallets to your blockchain's runtime.
-
 
 ## Learn More
 

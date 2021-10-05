@@ -7,21 +7,15 @@ interface NavListItemProps {
   title: string
 }
 
-export default function NavListItem({
-  external,
-  link,
-  title,
-}: NavListItemProps) {
+export default function NavListItem({ external, link, title }: NavListItemProps) {
   const [isCurrent, setIsCurrent] = useState(false)
   const styles =
     'whitespace-nowrap pl-6 pr-12 py-2 focus:outline-none focus:bg-substrateBlueBg hover:text-substrateGreen hover:underline dark:text-white font-medium'
   useEffect(() => {
     if (
       link === location.pathname ||
-      (location.pathname === '/v3/getting-started/overview' &&
-        title === 'Docs') ||
-      (location.pathname.includes('how-to-guides') &&
-        title === 'How-to Guides') ||
+      (location.pathname === '/v3/getting-started/overview' && title === 'Docs') ||
+      (location.pathname.includes('how-to-guides') && title === 'How-to Guides') ||
       (location.pathname.includes('tutorials') && title === 'Tutorials')
     ) {
       setIsCurrent(true)
@@ -33,9 +27,7 @@ export default function NavListItem({
         <a href={link} target="_blank" rel="noreferrer">
           <div
             className={`${styles} ${
-              isCurrent
-                ? 'text-substrateGreen underline'
-                : 'text-substrateDark dark:text-white'
+              isCurrent ? 'text-substrateGreen underline' : 'text-substrateDark dark:text-white'
             }`}
           >
             <span>{title}</span>
@@ -47,9 +39,7 @@ export default function NavListItem({
         <a href={link}>
           <div
             className={`${styles} ${
-              isCurrent
-                ? 'text-substrateGreen underline'
-                : 'text-substrateDark dark:text-white'
+              isCurrent ? 'text-substrateGreen underline' : 'text-substrateDark dark:text-white'
             }`}
           >
             <span>{title}</span>
@@ -62,9 +52,7 @@ export default function NavListItem({
       <Link to={link}>
         <div
           className={`${styles} ${
-            isCurrent
-              ? 'text-substrateGreen underline'
-              : 'text-substrateDark dark:text-white'
+            isCurrent ? 'text-substrateGreen underline' : 'text-substrateDark dark:text-white'
           }`}
         >
           <span>{title}</span>

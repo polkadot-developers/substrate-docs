@@ -22,12 +22,9 @@ export function PrimaryFixedButton({
     <LocalizedLink to={link}>
       <div
         onClick={onClick}
-        className={cx(
-          'group bg-substrateGreen inline-flex relative rounded-md overflow-hidden',
-          {
-            'w-full justify-center': fullWidth,
-          }
-        )}
+        className={cx('group bg-substrateGreen inline-flex relative rounded-md overflow-hidden', {
+          'w-full justify-center': fullWidth,
+        })}
       >
         <p
           className={cx('font-bold text-white mb-0 transition-all', {

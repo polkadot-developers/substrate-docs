@@ -11,9 +11,7 @@ export default function tutorials({ data }: any) {
     <Layout>
       <SEO title="Tutorials" />
       <div className="px-4">
-        <h1 className="text-center my-8 lg:my-12">
-          {intl.formatMessage({ id: 'nav-tutorials' })}
-        </h1>
+        <h1 className="text-center my-8 lg:my-12">{intl.formatMessage({ id: 'nav-tutorials' })}</h1>
         <div className="mb-40 flex flex-col items-center md:flex-row md:flex-wrap md:justify-center">
           <TutorialCard
             title={`Create Your First Substrate Chain`}

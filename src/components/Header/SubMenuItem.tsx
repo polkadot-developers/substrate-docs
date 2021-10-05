@@ -12,12 +12,8 @@ interface SubMenuItemProps {
   setItemNavOpen: (param: boolean) => void
 }
 
-export default function SubMenuItem({
-  data,
-  setItemNavOpen,
-}: SubMenuItemProps) {
-  const { ref, isComponentVisible, setIsComponentVisible } =
-    useComponentVisible(false)
+export default function SubMenuItem({ data, setItemNavOpen }: SubMenuItemProps) {
+  const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false)
   useEffect(() => {
     isComponentVisible ? setItemNavOpen(true) : setItemNavOpen(false)
   }, [isComponentVisible])
@@ -58,11 +54,7 @@ export default function SubMenuItem({
             {data.items.map((item, index) => {
               return (
                 <div key={index}>
-                  <NavListItem
-                    external={item.external}
-                    link={item.link}
-                    title={item.linkTitle}
-                  />
+                  <NavListItem external={item.external} link={item.link} title={item.linkTitle} />
                 </div>
               )
             })}

@@ -42,8 +42,7 @@ export default function CommunityCard() {
     },
     {
       title: 'Hackathons & Grants',
-      description:
-        'Jump-start your project or your career in the blockchain space',
+      description: 'Jump-start your project or your career in the blockchain space',
       headingOne: 'Rise to the challenge',
       iconOne: 'ideCode',
       linkTextOne: 'Hackathon',
@@ -70,10 +69,7 @@ export default function CommunityCard() {
             <b>{item.headingOne}:</b>
           </p>
           <div className="flex items-center mb-6 font-bold">
-            <Icon
-              name={item.iconOne}
-              className="mr-3 fill-current dark:text-subtrateWhite"
-            />
+            <Icon name={item.iconOne} className="mr-3 fill-current dark:text-subtrateWhite" />
             <a href={item.linkOne}>{item.linkTextOne}</a>
           </div>
           <hr />
@@ -81,10 +77,7 @@ export default function CommunityCard() {
             <b>{item.headingTwo}:</b>
           </p>
           <div className="flex items-center mb-6 font-bold">
-            <Icon
-              name={item.iconTwo}
-              className="mr-3 fill-current dark:text-subtrateWhite"
-            />
+            <Icon name={item.iconTwo} className="mr-3 fill-current dark:text-subtrateWhite" />
             <a href={item.linkTwo}>{item.linkTextTwo}</a>
           </div>
         </div>

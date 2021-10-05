@@ -84,10 +84,7 @@ export default function DocsNav({
           <div className="pt-2">
             {sideNav.map((section, index: number) => {
               const current = section.items.some(item => {
-                return (
-                  item.link === pathname.replace(/\/+$/, '') ||
-                  item.link === hashLink
-                )
+                return item.link === pathname.replace(/\/+$/, '') || item.link === hashLink
               })
               return (
                 <SlideDownNav
@@ -109,10 +106,7 @@ export default function DocsNav({
               .filter((navItem, index) => templateId != index)
               .map((navItem, index) => {
                 return (
-                  <div
-                    key={index}
-                    className="px-20 lg:px-6 py-4 lg:dark:bg-substrateDark"
-                  >
+                  <div key={index} className="px-20 lg:px-6 py-4 lg:dark:bg-substrateDark">
                     {navItem.external ? (
                       <a
                         className="flex items-center justify-between hover:no-underline"

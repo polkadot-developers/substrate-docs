@@ -7,11 +7,7 @@ interface FooterNavItemProps {
   title: string
 }
 
-export default function FooterNavItem({
-  external,
-  link,
-  title,
-}: FooterNavItemProps) {
+export default function FooterNavItem({ external, link, title }: FooterNavItemProps) {
   if (external) {
     return <a href={link}>{title}</a>
   } else {

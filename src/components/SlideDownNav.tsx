@@ -8,12 +8,7 @@ interface SlideDownNavProps {
   hashLink: string
 }
 
-export default function SlideDownNav({
-  section,
-  current,
-  pathname,
-  hashLink,
-}: SlideDownNavProps) {
+export default function SlideDownNav({ section, current, pathname, hashLink }: SlideDownNavProps) {
   const [isOpen, setIsOpen] = useState(current)
 
   return (
@@ -22,9 +17,7 @@ export default function SlideDownNav({
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center justify-between px-6 sm:px-20 lg:px-6 py-3 bg-substrateGray-light lg:dark:bg-substrateDark dark:bg-darkBackground cursor-pointer"
       >
-        <div className={`${isOpen ? `font-bold` : `font-medium`}`}>
-          {section.name}
-        </div>
+        <div className={`${isOpen ? `font-bold` : `font-medium`}`}>{section.name}</div>
         <svg
           className={`fill-current text-substrateDark dark:text-white ${
             isOpen ? '-rotate-180' : null

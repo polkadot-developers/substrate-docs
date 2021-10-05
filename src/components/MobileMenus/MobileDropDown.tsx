@@ -9,13 +9,8 @@ interface MobileDropDownProps {
   items: { linkTitle: string; link: string; external: boolean }[]
 }
 
-export default function MobileDropDown({
-  external,
-  title,
-  items,
-}: MobileDropDownProps) {
-  const { isComponentVisible, setIsComponentVisible } =
-    useComponentVisible(false)
+export default function MobileDropDown({ external, title, items }: MobileDropDownProps) {
+  const { isComponentVisible, setIsComponentVisible } = useComponentVisible(false)
   return (
     <div>
       <div
@@ -43,17 +38,11 @@ export default function MobileDropDown({
       {isComponentVisible ? (
         <>
           {items.map((each, index) => {
-            const itemStyles =
-              'block font-medium hover:font-bold pl-12 mb-0 py-3'
+            const itemStyles = 'block font-medium hover:font-bold pl-12 mb-0 py-3'
             if (external) {
               if (each.linkTitle === 'Events' || each.linkTitle === 'Blog') {
                 return (
-                  <a
-                    key={index}
-                    href={each.link}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
+                  <a key={index} href={each.link} target="_blank" rel="noreferrer">
                     <span className={`${itemStyles}`}>{each.linkTitle}</span>
                   </a>
                 )

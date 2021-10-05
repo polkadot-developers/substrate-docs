@@ -17,9 +17,7 @@ export const useActiveHash = (itemIds: string[], rootMargin = undefined) => {
       const el = document.getElementById(id)
       el
         ? observer.observe(document.getElementById(id))
-        : console.warn(
-            `Unknown ID: ${id}. We don't support h1 tag (#) in markdown article.`
-          )
+        : console.warn(`Unknown ID: ${id}. We don't support h1 tag (#) in markdown article.`)
     })
   }, [])
   return activeHash

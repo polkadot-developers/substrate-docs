@@ -17,8 +17,7 @@ interface DropDownMenuProps {
 }
 
 export default function DropDown({ menuData }: DropDownMenuProps) {
-  const { ref, isComponentVisible, setIsComponentVisible } =
-    useComponentVisible(false)
+  const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false)
   const { name, subMenu } = menuData
   const [itemNavOpen, setItemNavOpen] = useState(false)
   return (
@@ -36,9 +35,7 @@ export default function DropDown({ menuData }: DropDownMenuProps) {
         </span>
         <svg
           className={`inline-block xl:ml-2 fill-current group-hover:text-substrateGreen dark:text-white ${
-            isComponentVisible
-              ? 'transform rotate-180 text-substrateGreen'
-              : `text-black`
+            isComponentVisible ? 'transform rotate-180 text-substrateGreen' : `text-black`
           }`}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="-5 -8 24 24"
@@ -65,10 +62,7 @@ export default function DropDown({ menuData }: DropDownMenuProps) {
                 if (item.items) {
                   return (
                     <li key={index} className="m-0">
-                      <SubMenuItem
-                        data={item}
-                        setItemNavOpen={setItemNavOpen}
-                      />
+                      <SubMenuItem data={item} setItemNavOpen={setItemNavOpen} />
                     </li>
                   )
                 } else {

@@ -84,13 +84,9 @@ const Buttons = () => {
               <SecondaryButton link="#">Runtime Tutorial</SecondaryButton>
             </div>
             <div className="flex items-center mt-6">
-              <PrimaryButton link="#">
-                Awesome Substrate Node Workshop
-              </PrimaryButton>
+              <PrimaryButton link="#">Awesome Substrate Node Workshop</PrimaryButton>
               <span className="px-4"></span>
-              <SecondaryButton link="#">
-                Awesome Substrate Node Workshop
-              </SecondaryButton>
+              <SecondaryButton link="#">Awesome Substrate Node Workshop</SecondaryButton>
             </div>
           </div>
           <div className="w-96 m-6">
@@ -106,11 +102,10 @@ const Buttons = () => {
         <div className="w-1/2 m-6">
           <h4>TXT LINKS</h4>
           <p className="markdown-body">
-            You can run the pre-designed{' '}
-            <LocalizedLink to="#">Substrate Node</LocalizedLink> and{' '}
-            <LocalizedLink to="#">configure</LocalizedLink> its genesis block.
-            In this case, you just need to supply a JSON file and launch your
-            own blockchain. The JSON file allows you to configure{' '}
+            You can run the pre-designed <LocalizedLink to="#">Substrate Node</LocalizedLink> and{' '}
+            <LocalizedLink to="#">configure</LocalizedLink> its genesis block. In this case, you
+            just need to supply a JSON file and launch your own blockchain. The JSON file allows you
+            to configure{' '}
           </p>
         </div>
         <div className="m-6">
