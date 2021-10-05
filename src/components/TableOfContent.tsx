@@ -43,7 +43,7 @@ export default function TableOfContent({ headings }: TableOfContentProps) {
 
   return (
     <>
-      <div className="w-60 sticky top-20 max-h-screen my-[29px] ml-11 overflow-y-auto overscroll-contain">
+      <div className="w-60 sticky top-20 h-[calc(100vh-125px)] max-h-screen my-[29px] ml-11 overflow-y-auto overscroll-contain">
         <div className="mb-3 font-semibold">{items && 'ON THIS PAGE'}</div>
         {items && (
           <>
