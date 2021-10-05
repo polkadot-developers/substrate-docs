@@ -69,15 +69,13 @@ We only expect that:
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '2. Add our own custom PoE pallet from scratch and implement our PoE API.',
+    textLineOne: '2. Add our own custom PoE pallet from scratch and implement our PoE API.',
     url: '#building-a-custom-pallet',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '3. Add a custom user interface that interacts with our PoE API.',
+    textLineOne: '3. Add a custom user interface that interacts with our PoE API.',
     url: '#building-a-custom-frontend',
   }}
 />
@@ -710,9 +708,7 @@ export function Main(props) {
 
 export default function TemplateModule(props) {
   const { api } = useSubstrate()
-  return api.query.templateModule && api.query.templateModule.proofs ? (
-    <Main {...props} />
-  ) : null
+  return api.query.templateModule && api.query.templateModule.proofs ? <Main {...props} /> : null
 }
 ```
 

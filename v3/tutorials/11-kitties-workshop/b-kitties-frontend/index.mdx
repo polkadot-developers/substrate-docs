@@ -301,9 +301,7 @@ const subscribeKitties = () => {
     // Get Kitty objects from storage
     unsub = await api.query.kitties.kitties.multi(kittyHashes, kitties => {
       // Create an array of Kitty objects from `constructKitty`
-      const kittyArr = kitties.map((kitty, ind) =>
-        constructKitty(kittyHashes[ind], kitty.value)
-      )
+      const kittyArr = kitties.map((kitty, ind) => constructKitty(kittyHashes[ind], kitty.value))
       // Set the array of Kitty objects to state
       setKitties(kittyArr)
     })
@@ -380,30 +378,20 @@ Create a file `src/KittyAvatar.js` and paste in the following code:
 import React from 'react'
 
 // Generate an array [start, start + 1, ..., end] inclusively
-const genArray = (start, end) =>
-  Array.from(Array(end - start + 1).keys()).map(v => v + start)
+const genArray = (start, end) => Array.from(Array(end - start + 1).keys()).map(v => v + start)
 
 const IMAGES = {
   accessory: genArray(1, 20).map(
     n => `${process.env.PUBLIC_URL}/assets/KittyAvatar/accessorie_${n}.png`
   ),
-  body: genArray(1, 15).map(
-    n => `${process.env.PUBLIC_URL}/assets/KittyAvatar/body_${n}.png`
-  ),
-  eyes: genArray(1, 15).map(
-    n => `${process.env.PUBLIC_URL}/assets/KittyAvatar/eyes_${n}.png`
-  ),
-  mouth: genArray(1, 10).map(
-    n => `${process.env.PUBLIC_URL}/assets/KittyAvatar/mouth_${n}.png`
-  ),
-  fur: genArray(1, 10).map(
-    n => `${process.env.PUBLIC_URL}/assets/KittyAvatar/fur_${n}.png`
-  ),
+  body: genArray(1, 15).map(n => `${process.env.PUBLIC_URL}/assets/KittyAvatar/body_${n}.png`),
+  eyes: genArray(1, 15).map(n => `${process.env.PUBLIC_URL}/assets/KittyAvatar/eyes_${n}.png`),
+  mouth: genArray(1, 10).map(n => `${process.env.PUBLIC_URL}/assets/KittyAvatar/mouth_${n}.png`),
+  fur: genArray(1, 10).map(n => `${process.env.PUBLIC_URL}/assets/KittyAvatar/fur_${n}.png`),
 }
 
 const dnaToAttributes = dna => {
-  const attribute = (index, type) =>
-    IMAGES[type][dna[index] % IMAGES[type].length]
+  const attribute = (index, type) => IMAGES[type][dna[index] % IMAGES[type].length]
 
   return {
     body: attribute(0, 'body'),
@@ -462,15 +450,7 @@ As a preliminary step, create a new file called `KittyCards.js` and add the foll
 
 ```js
 import React from 'react'
-import {
-  Button,
-  Card,
-  Grid,
-  Message,
-  Modal,
-  Form,
-  Label,
-} from 'semantic-ui-react'
+import { Button, Card, Grid, Message, Modal, Form, Label } from 'semantic-ui-react'
 
 import KittyAvatar from './KittyAvatar'
 import { TxButton } from './substrate-lib/components'
@@ -672,11 +652,7 @@ const KittyCards = props => {
     <Grid columns={3}>
       {kitties.map((kitty, i) => (
         <Grid.Column key={`kitty-${i}`}>
-          <KittyCard
-            kitty={kitty}
-            accountPair={accountPair}
-            setStatus={setStatus}
-          />
+          <KittyCard kitty={kitty} accountPair={accountPair} setStatus={setStatus} />
         </Grid.Column>
       ))}
     </Grid>
