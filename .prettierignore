@@ -5,3 +5,4 @@ public
 
 # Ignore files that don't need *text* formatting
 src/images
+static
