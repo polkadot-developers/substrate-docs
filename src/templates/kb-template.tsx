@@ -79,7 +79,11 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
               )}
               <div className="mt-10">
                 <hr />
-                <FeedbackWidget />
+                <FeedbackWidget
+                  title={data.mdx.frontmatter.title}
+                  section={data.mdx.frontmatter.section}
+                  slug={slug}
+                />
               </div>
             </div>
             {/* Table of Contents */}
