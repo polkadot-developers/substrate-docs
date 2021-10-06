@@ -8,7 +8,7 @@ import TableOfContent from '../components/TableOfContent'
 import DocsNav from '../components/DocsNav'
 import VersionControl from '../components/VersionControl'
 import LastUpdateGithub from '../components/LastUpdateGithub'
-import { BottomButtons } from '../components/DocsComponents'
+import { BottomButtons, FeedbackWidget } from '../components/DocsComponents'
 import { DevNavMenu as navMenu } from '../components/DevNavMenu'
 import BreadCrumbNav from '../components/BreadCrumbNav'
 import DocTag from '../components/DocTag'
@@ -77,6 +77,10 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
               {data.mdx.frontmatter.hideNav ? null : (
                 <BottomButtons menu={docsMenu} pageSlug={slug} />
               )}
+              <div className="mt-10">
+                <hr />
+                <FeedbackWidget />
+              </div>
             </div>
             {/* Table of Contents */}
             <div className="hidden xl:inline-block">
