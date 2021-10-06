@@ -22,7 +22,7 @@ const getHeadingIds: any = (
 ) => {
   const idList = []
   const hashToId = (str: string) => str.slice(1)
-  if (toc) {
+  if (toc && toc.headings) {
     for (const item of toc.headings.items) {
       if (item.url) {
         idList.push(hashToId(item.url))
