@@ -317,10 +317,10 @@ Our pallet will only emit an event in two circumstances:
 1. When a new proof is added to the blockchain.
 2. When a proof is removed.
 
-Events can contain some additional data. In this case, each event will also display who trigger the
+Events can contain some additional data. In this case, each event will also display who triggers the
 event (`AccountId`), and the proof data (as `Vec<u8>`) that is being stored or removed. Note that
-convention is to include an array with descriptive names for these parameters at the end of event
-documentation.
+convention is to include an array with descriptive names for these parameters when documenting
+an event.
 
 To implement this, replace `#[pallet::event]` with:
 
@@ -556,7 +556,7 @@ yarn install
 yarn start
 ```
 
-A new tab should open in your web browser and you'll the following interface.
+A new tab should open in your web browser and you should see the following interface.
 
 ![Front End Template](../../../src/images/tutorials/02-proof-of-existence/front-end-template.png)
 
