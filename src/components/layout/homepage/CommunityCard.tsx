@@ -34,7 +34,7 @@ export default function CommunityCard() {
     {
       title: 'Hackathons & Grants',
       description:
-        'Find out how you can jump-start your project or your career in the blockchain space.',
+        'Jump-start your project or your career in the blockchain space.',
       headingOne: 'Rise to the challenge',
       iconOne: 'ideCode',
       linkTextOne: 'Hackathon',
