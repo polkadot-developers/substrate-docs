@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export const useActiveHash = (itemIds: string[], rootMargin = undefined) => {
+export const useActiveHash = (itemIds: string[], rootMargin?: string) => {
   const [activeHash, setActiveHash] = useState(``)
   useEffect(() => {
     const observer = new IntersectionObserver(

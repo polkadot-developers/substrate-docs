@@ -9,7 +9,7 @@ import DocsNav from '../components/DocsNav'
 import VersionControl from '../components/VersionControl'
 import LastUpdateGithub from '../components/LastUpdateGithub'
 import { BottomButtons } from '../components/DocsComponents'
-import navMenu from '../components/DevNavMenu'
+import { DevNavMenu as navMenu } from '../components/DevNavMenu'
 import BreadCrumbNav from '../components/BreadCrumbNav'
 import DocTag from '../components/DocTag'
 
