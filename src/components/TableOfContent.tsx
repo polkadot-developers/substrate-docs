@@ -15,15 +15,22 @@ interface TableOfContentProps {
 }
 
 const getHeadingIds: any = (
-  toc: TableOfContentProps,
+  toc: {
+    url: string
+    title: string
+    items?: {
+      url: string
+      title: string
+    }[]
+  }[],
   traverseFullDepth = true,
   depth: number,
   recursionDepth = 1
 ) => {
   const idList = []
   const hashToId = (str: string) => str.slice(1)
-  if (toc && toc.headings) {
-    for (const item of toc.headings.items) {
+  if (toc) {
+    for (const item of toc) {
       if (item.url) {
         idList.push(hashToId(item.url))
       }
