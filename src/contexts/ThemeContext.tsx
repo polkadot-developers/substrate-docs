@@ -24,7 +24,9 @@ interface ThemeContextInterface {
   setColorMode: (value: string) => void
 }
 
-export const ThemeContext = React.createContext<ThemeContextInterface | null>(null)
+export const ThemeContext = React.createContext<ThemeContextInterface | null>(
+  null
+)
 
 export const ThemeProvider = ({ children }: any) => {
   const [colorMode, rawSetColorMode] = React.useState(undefined)
@@ -47,6 +49,8 @@ export const ThemeProvider = ({ children }: any) => {
     localStorage.theme = value
   }
   return (
-    <ThemeContext.Provider value={{ colorMode, setColorMode }}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={{ colorMode, setColorMode }}>
+      {children}
+    </ThemeContext.Provider>
   )
 }

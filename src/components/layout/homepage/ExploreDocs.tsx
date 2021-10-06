@@ -18,7 +18,8 @@ export default function ExploreDocs() {
         {
           name: 'Smart Contract Toolkits',
           link: '/v3/runtime/smart-contracts',
-          description: 'Discover the different ways to use smart contracts in Substrate chains.',
+          description:
+            'Discover the different ways to use smart contracts in Substrate chains.',
         },
       ],
     },
@@ -30,12 +31,14 @@ export default function ExploreDocs() {
         {
           name: 'Accounts',
           link: '/v3/concepts/account-abstractions',
-          description: "Read about Substrate's Account and key pair generation system.",
+          description:
+            "Read about Substrate's Account and key pair generation system.",
         },
         {
           name: 'Extrinsics',
           link: '/v3/concepts/extrinsics',
-          description: 'Learn about the different transaction types in Substrate.',
+          description:
+            'Learn about the different transaction types in Substrate.',
         },
         {
           name: 'Transaction Weights',
@@ -46,7 +49,8 @@ export default function ExploreDocs() {
         {
           name: 'Off-Chain Features',
           link: '/v3/concepts/off-chain-features',
-          description: 'Explore how you can include oracle-like capabilities in your runtime.',
+          description:
+            'Explore how you can include oracle-like capabilities in your runtime.',
         },
       ],
     },

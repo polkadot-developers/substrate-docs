@@ -25,7 +25,12 @@ const Code = ({ codeString, language }: any) => {
 
   return (
     <>
-      <Highlight {...defaultProps} code={codeString} language={language} theme={theme}>
+      <Highlight
+        {...defaultProps}
+        code={codeString}
+        language={language}
+        theme={theme}
+      >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <div className="max-w-full">
             <div className="gatsby-highlight" data-language={language}>

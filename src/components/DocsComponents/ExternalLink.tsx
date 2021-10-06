@@ -7,7 +7,12 @@ interface ExternalLinkProps {
 
 export function ExternalLink(props: ExternalLinkProps) {
   return (
-    <a className="inline-block" href={props.url} target="_blank" rel="noreferrer">
+    <a
+      className="inline-block"
+      href={props.url}
+      target="_blank"
+      rel="noreferrer"
+    >
       <span className="">{props.children}</span>
       <svg
         className="inline-block fill-current ml-2"

@@ -14,7 +14,9 @@ export default function BreadCrumbNav(props: BreadCrumbNavProps) {
         <span className="px-2 text-substrateDark dark:text-white">»</span>
         <LocalizedLink to={props.sectionURL}>{props.section}</LocalizedLink>
         <span className="px-2 text-substrateDark dark:text-white">»</span>
-        <span className="text-substrateDark dark:text-white">{props.title}</span>
+        <span className="text-substrateDark dark:text-white">
+          {props.title}
+        </span>
       </div>
     </>
   )

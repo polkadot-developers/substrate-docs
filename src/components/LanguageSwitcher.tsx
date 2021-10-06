@@ -13,7 +13,10 @@ interface LanguageSwitcherProps {
     name: string
   }[]
 }
-export default function LanguageSwitcher({ currentLang, langConfig }: LanguageSwitcherProps) {
+export default function LanguageSwitcher({
+  currentLang,
+  langConfig,
+}: LanguageSwitcherProps) {
   const intl = useIntl()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [currentLink, setCurrentLink] = useState('')
@@ -27,13 +30,18 @@ export default function LanguageSwitcher({ currentLang, langConfig }: LanguageSw
   })
   return (
     <div className="flex items-center px-4">
-      <p className="lg:hidden pt-6 pr-6 ">{intl.formatMessage({ id: 'nav-language' })}</p>
+      <p className="lg:hidden pt-6 pr-6 ">
+        {intl.formatMessage({ id: 'nav-language' })}
+      </p>
       <div
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         className="flex items-center justify-center w-20 cursor-pointer focus:outline-none"
       >
         <div className={`uppercase pr-4`}>
-          <div onClick={() => setIsMenuOpen(!isMenuOpen)} className="relative cursor-pointer">
+          <div
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="relative cursor-pointer"
+          >
             {currentLang}
           </div>
           <div
@@ -45,7 +53,11 @@ export default function LanguageSwitcher({ currentLang, langConfig }: LanguageSw
           >
             {langConfig.map((lang, index) => {
               return currentLang != lang.code ? (
-                <LocalizedLink key={index} to={currentLink} language={lang.code}>
+                <LocalizedLink
+                  key={index}
+                  to={currentLink}
+                  language={lang.code}
+                >
                   <div className="my-2 mx-4 text-black dark:text-white hover:text-substrateGreen dark:hover:text-substrateGreen">
                     {lang.code}
                   </div>

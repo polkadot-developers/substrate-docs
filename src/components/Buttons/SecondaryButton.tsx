@@ -17,7 +17,9 @@ export function SecondaryButton(props: SecondaryButtonProps) {
           <div
             className={`bg-substrateDark dark:bg-substrateGray-light ${paddingSize()} ${textSize()} inline-block rounded-md hover:opacity-80 transition-opacity`}
           >
-            <div className="font-bold mb-0 text-white dark:text-black">{props.children}</div>
+            <div className="font-bold mb-0 text-white dark:text-black">
+              {props.children}
+            </div>
           </div>
         </a>
       ) : (
@@ -25,7 +27,9 @@ export function SecondaryButton(props: SecondaryButtonProps) {
           <div
             className={`bg-substrateDark dark:bg-substrateGray-light ${paddingSize()} ${textSize()} inline-block rounded-md hover:opacity-80 transition-opacity`}
           >
-            <div className="font-bold mb-0 text-white dark:text-black">{props.children}</div>
+            <div className="font-bold mb-0 text-white dark:text-black">
+              {props.children}
+            </div>
           </div>
         </LocalizedLink>
       )}

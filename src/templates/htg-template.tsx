@@ -43,7 +43,9 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
           </div>
           <article className="px-6 mb-20 lg:flex lg:mx-auto">
             <div className="lg:flex-grow">
-              <div className={`py-8 lg:flex lg:justify-between lg:items-center`}>
+              <div
+                className={`py-8 lg:flex lg:justify-between lg:items-center`}
+              >
                 <BreadCrumbNav
                   section={data.mdx.frontmatter.section}
                   sectionURL={`/how-to-guides/v3`}
@@ -86,7 +88,10 @@ export default DocsTemplate
 
 export const query = graphql`
   query ($locale: String!, $slug: String!) {
-    mdx(fields: { locale: { eq: $locale } }, frontmatter: { slug: { eq: $slug } }) {
+    mdx(
+      fields: { locale: { eq: $locale } }
+      frontmatter: { slug: { eq: $slug } }
+    ) {
       frontmatter {
         slug
         title

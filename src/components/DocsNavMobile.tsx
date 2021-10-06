@@ -30,20 +30,26 @@ export default function DocsNav({
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
-    isOpen ? (document.body.style.overflow = `hidden`) : (document.body.style.overflow = `unset`)
+    isOpen
+      ? (document.body.style.overflow = `hidden`)
+      : (document.body.style.overflow = `unset`)
   }, [isOpen])
 
   return (
     <nav
-      className={cx('bg-substrateGray-light dark:bg-darkBackground w-screen overflow-auto', {
-        'h-docNav z-10': isOpen,
-      })}
+      className={cx(
+        'bg-substrateGray-light dark:bg-darkBackground w-screen overflow-auto',
+        { 'h-docNav z-10': isOpen }
+      )}
     >
       <div
         onClick={() => setIsOpen(!isOpen)}
         className="flex justify-center items-center py-4 bg-substrateGray dark:bg-gray-700 cursor-pointer"
       >
-        <Icon name="docsNavIcon" className="fill-current text-black dark:text-white" />
+        <Icon
+          name="docsNavIcon"
+          className="fill-current text-black dark:text-white"
+        />
         <span className="pl-2 font-bold">
           {templateId === 0
             ? `${intl.formatMessage({ id: 'nav-docs' })}`
@@ -55,9 +61,10 @@ export default function DocsNav({
         </span>
         <Icon
           name="arrowDown"
-          className={cx('ml-2 fill-current text-black dark:text-white transform', {
-            'rotate-180': isOpen,
-          })}
+          className={cx(
+            'ml-2 fill-current text-black dark:text-white transform',
+            { 'rotate-180': isOpen }
+          )}
         />
       </div>
       <div className="overflow-auto">

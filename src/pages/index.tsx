@@ -27,10 +27,13 @@ export default function Index() {
             <div className="text-5xl lg:text-6xl font-extrabold mb-6">
               Substrate <br /> Developer Hub
             </div>
-            <h4 className="text-xl xl:text-3xl font-semibold">The center of knowledge</h4>
+            <h4 className="text-xl xl:text-3xl font-semibold">
+              The center of knowledge
+            </h4>
             <p className=" max-w-lg text-xl">
-              Substrate is powered by best-in-class cryptographic research and comes with
-              peer-to-peer networking, consensus mechanisms, and much more.
+              Substrate is powered by best-in-class cryptographic research and
+              comes with peer-to-peer networking, consensus mechanisms, and much
+              more.
             </p>
             <PrimaryFixedButton hero link="/v3">
               Get Started
@@ -77,7 +80,9 @@ export default function Index() {
         </div>
         <div className="h-full relative">
           <div className="text-center mb-16">
-            <div className="text-5xl lg:text-6xl font-extrabold mb-3">Learn Substrate</div>
+            <div className="text-5xl lg:text-6xl font-extrabold mb-3">
+              Learn Substrate
+            </div>
             <h4 className="text-xl xl:text-3xl font-semibold">
               Substrate developer knowledge base
             </h4>
@@ -113,14 +118,19 @@ export default function Index() {
       <Section>
         <div className="flex flex-col lg:flex-row lg:items-center">
           <div className="mb-16 lg:m-0 lg:w-1/2">
-            <div className="font-title text-5xl lg:text-6xl font-extrabold mb-8">Playground</div>
-            <h4 className="text-xl xl:text-3xl font-semibold">Set up a cloud sandbox</h4>
+            <div className="font-title text-5xl lg:text-6xl font-extrabold mb-8">
+              Playground
+            </div>
+            <h4 className="text-xl xl:text-3xl font-semibold">
+              Set up a cloud sandbox
+            </h4>
             <p className="max-w-lg  leading-7">
-              Building with Substrate requires different pieces of technology. We recommend picking
-              a sandbox if you&apos;re just getting started and want to try things out. Or if
-              you&apos;re hosting Substrate developer workshops or following tutorials, using a
-              sandbox environment allows you to skip the preliminary set-up to get to the parts most
-              important to you.
+              Building with Substrate requires different pieces of technology.
+              We recommend picking a sandbox if you&apos;re just getting started
+              and want to try things out. Or if you&apos;re hosting Substrate
+              developer workshops or following tutorials, using a sandbox
+              environment allows you to skip the preliminary set-up to get to
+              the parts most important to you.
             </p>
             <div className="my-8">
               <button className="duration-150 ease-in hover:opacity-50">
@@ -132,7 +142,9 @@ export default function Index() {
                     name="nodeTemplate"
                     className="w-8 fill-current text-substrateDark dark:text-substrateWhite"
                   />
-                  <div className="text-xl ml-4 font-extrabold">Node Playground</div>
+                  <div className="text-xl ml-4 font-extrabold">
+                    Node Playground
+                  </div>
                 </LocalizedLink>
               </button>
               <button className="block mt-8 mb-16 duration-150 ease-in hover:opacity-50">
@@ -154,7 +166,10 @@ export default function Index() {
               Explore Playground
             </SecondaryButton>
           </div>
-          <div data-aos="fade-left" className="hidden lg:flex justify-center lg:w-1/2">
+          <div
+            data-aos="fade-left"
+            className="hidden lg:flex justify-center lg:w-1/2"
+          >
             <LocalizedLink to="/playground">
               <StaticImage
                 backgroundColor="transparent"
@@ -173,7 +188,8 @@ export default function Index() {
             Explore Documentation
           </div>
           <div className="text-xl">
-            Browse through the use case specific highlights that meet your needs.
+            Browse through the use case specific highlights that meet your
+            needs.
           </div>
         </div>
         <div className="md:flex md:justify-start xl:justify-between">

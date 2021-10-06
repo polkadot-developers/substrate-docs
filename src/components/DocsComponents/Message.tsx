@@ -56,7 +56,9 @@ export function Message({ type, title, text }: MessageProps) {
             </svg>
           ) : null}
         </div>
-        <span className="inline-block pl-1 capitalize text-lg font-bold mt-2">{title}</span>
+        <span className="inline-block pl-1 capitalize text-lg font-bold mt-2">
+          {title}
+        </span>
       </div>
       <div>
         <ReactMarkdown>{text}</ReactMarkdown>

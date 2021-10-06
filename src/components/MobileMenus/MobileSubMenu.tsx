@@ -65,7 +65,11 @@ export default function TechSubMenu({
           } else {
             return (
               <div key={index}>
-                <MobileNavItem external={item.external} link={item.link} title={item.linkTitle} />
+                <MobileNavItem
+                  external={item.external}
+                  link={item.link}
+                  title={item.linkTitle}
+                />
               </div>
             )
           }
