@@ -263,26 +263,26 @@ const DevNavMenu = {
           },
         ],
       },
-        {
-          name: `${intl.formatMessage({ id: 'docs-menu-contribute' })}`,
-          items: [
-            {
-              title: `${intl.formatMessage({ id: 'docs-menu-style-guide' })}`,
-              link: '/v3/contribute/style-guide',
-            },
-            {
-              title: `${intl.formatMessage({ id: 'docs-menu-writing-style' })}`,
-              link: '/v3/contribute/writing',
-            },
-            {
-              title: `${intl.formatMessage({ id: 'docs-menu-bounties' })}`,
-              link: '/v3/contribute/bounties',
-            },
-            {
-              title: `${intl.formatMessage({ id: 'docs-menu-templates' })}`,
-              link: '/v3/contribute/templates',
-            },
-          ],
+      {
+        name: `${intl.formatMessage({ id: 'docs-menu-contribute' })}`,
+        items: [
+          {
+            title: `${intl.formatMessage({ id: 'docs-menu-style-guide' })}`,
+            link: '/v3/contribute/style-guide',
+          },
+          {
+            title: `${intl.formatMessage({ id: 'docs-menu-writing-style' })}`,
+            link: '/v3/contribute/writing',
+          },
+          {
+            title: `${intl.formatMessage({ id: 'docs-menu-bounties' })}`,
+            link: '/v3/contribute/bounties',
+          },
+          {
+            title: `${intl.formatMessage({ id: 'docs-menu-templates' })}`,
+            link: '/v3/contribute/templates',
+          },
+        ],
       },
     ]
   },
