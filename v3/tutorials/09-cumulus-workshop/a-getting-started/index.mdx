@@ -74,7 +74,7 @@ have your machine configured to compile Substrate-based projects.
 
 ## Prerequisites
 
-### 1. Hardware Requirements
+### Hardware Requirements
 
 In this workshop, we will be using [Substrate Parachain Template](https://github.com/substrate-developer-hub/substrate-parachain-template). Compiling this project is a resource intensive
 process! We suggest compiling and running the Parachain template on a machine with **no less than**:
@@ -106,7 +106,7 @@ cargo build --release -j 1
 `}
 />
 
-### 2. Software Version
+### Software Version
 
 At the moment, parachains are _very tightly coupled_ with the relay chain's codebase they are
 connecting to. If you want to connect your parachian to a running relay network like the
@@ -135,12 +135,12 @@ when breaking changes and testnet resets occur.
 
 <!-- TODO: ## Acknowledgement & Contribution Refer to [Acknowledgement & Contribution](acknowledgement-contribution) -->
 
-### 3. Acknowledgements
+### Acknowledgements
 
 Thanks <ExternalLink url="https://github.com/Jackie-Zhong"> Jackie-Zhong </ExternalLink> and <ExternalLink url="https://github.com/davidrhodus">David Rhodus </ExternalLink>
 for the Chinese content translation!
 
-### 4. Disclaimer
+### Disclaimer
 
 **Cumulus is pre-release software that is still under development.** While this workshop strives to
 be useful, the material it covers may change or break before Cumulus is fully released. Nothing
@@ -155,12 +155,12 @@ will be some significant compiling if you intend to build everything yourself.
 Compiling the Polkadot and parachain template nodes can be avoided if you prefer to use the
 Docker images.
 
-### 1. Setup Local Development Environment
+### Setup Local Development Environment
 
 Follow the instructions here to [setup a local development environment](/v3/getting-started/overview)
 for Substrate.
 
-### 2. Building the Polkadot Relay Chain Node
+### Building the Polkadot Relay Chain Node
 
 Clone the Polkadot repository, and build the node. We are using a
 [specific git tag](/#2-software-version) for this workshop. Perform these steps in your typical
@@ -187,7 +187,7 @@ If the help page is printed, you have succeeded in building a Polkadot node.
 
 For the rest of this workshop, we will refer to this binary simply as `polkadot`.
 
-### 3. Building the Parachain Template
+### Building the Parachain Template
 
 We will use the <ExternalLink url="https://github.com/substrate-developer-hub/substrate-parachain-template">Parachain Template </ExternalLink>
 (similar to the <ExternalLink url="https://github.com/substrate-developer-hub/substrate-node-template">Node Template </ExternalLink>
@@ -246,7 +246,7 @@ in the way Wasm runtimes are compiled, at least for now.
 `}
 /> 
 
-### 1. Chain Specification
+### Chain Specification
 
 For just checking if things work, we suggest you use one of the [precompiled raw](#_1a-using-a-prebuilt-chain-spec)
 chain spec we have included for you. If you want to customize your network, jump to [Create Your Chain Spec](#_1b-create-your-own-chain-spec) section.
@@ -328,7 +328,7 @@ in other tutorials (Alice and Bob in the case of the `rococo-custom-plain.json` 
 }
 ```
 
-### 2. Adjust the Chain Spec
+### Adjust the Chain Spec
 
 Add your new authority's `AccountId` and `ValidatorId`.
 
@@ -420,7 +420,7 @@ case of ECDSA keys (see [the note below](#ss58-encoding-of-key-vs-address) on wh
 Now that you have all the keys you need, append them in the `palletSession` section of you _plain_ spec file.
 You can either create new IDs or use other well known accounts following this same process.
 
-### 3. Convert Plain to Raw Chain Spec
+### Convert Plain to Raw Chain Spec
 
 Now that you've modified your chain spec, you can generate the final raw spec file.
 
@@ -492,7 +492,7 @@ This page describes in detail how to start both nodes using the two-validator `r
 chain spec that ships with this workshop as well as the general instructions for starting additional
 nodes.
 
-### 1. Start Alice's Node
+### Start Alice's Node
 
 ```bash
 # Start Relay `Alice` node
@@ -517,7 +517,7 @@ this:
 🏷 Local node identity is: 12D3KooWGjsmVmZCM1jPtVNp6hRbbkGBK3LADYNniJAKJ19NUYiq
 ```
 
-### 2. Start Bob's Node
+### Start Bob's Node
 
 ```bash
 polkadot \
@@ -536,7 +536,7 @@ Finally he has added a `--bootnodes` flag. This bootnodes flag is not strictly n
 running the entire network on a single local system, but it is necessary when operating over the
 network, so I've chosen to leave it in.
 
-### 3. Starting Additional Validators (Optional)
+### Starting Additional Validators (Optional)
 
 > If you are using the `rococo-custom-2-raw.json` spec, you do not need to start additional nodes.
 

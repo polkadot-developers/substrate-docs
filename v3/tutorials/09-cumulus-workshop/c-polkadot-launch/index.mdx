@@ -47,7 +47,7 @@ troubleshoot.
 
 Now, let's install the utility and try it out.
 
-### 1. Installation
+### Installation
 
 #### Option A: Global install
 
@@ -77,7 +77,7 @@ node dist/cli.js --version
 
 If you think your edits are valuable, please consider <ExternalLink url="https://github.com/paritytech/polkadot-launch">opening a PR</ExternalLink>.
 
-### 2. Basic configuration
+### Basic configuration
 
 In this exercise, we will launch a **Polkadot relay chain of three nodes and two parachains, each
 with one node only**.
@@ -164,7 +164,7 @@ single node using \`polkadot-launch\` CLI utility.`}
 Next, we will go through in details the configuration parameters that `polkadot-launch` recognizes
 in the config file.
 
-### 3. `polkadot-launch` configuration
+### Polkadot Launch configuration
 
 The config file can broadly divided into five sections as shown below.
 
@@ -346,13 +346,13 @@ Finally, we have `types`, and `finalization`.
 - `finalization`: either `true` or `false`, whether you want transactions submitted to the network
   to wait for finalization.
 
-### 4. How it works
+### How it works
 
 This tool automates the steps you learned previously to spin up multiple relay chain nodes and
 parachain nodes in a single local machine. It also leverages on Polkadot-JS API to connect to
 these spawned nodes over their WebSocket endpoints.
 
-### 5. Conclusion
+### Conclusion
 
 In this chapter we have covered about `polkadot-launch` utility. You are now able to setup your own
 config file and launch a relay chain / parachains network all in just a single command.
@@ -429,7 +429,7 @@ can be used with few modifications on the Parachain Template.
 The similarities between these two templates should give you confidence, that if you've built a
 Substrate chain, you will have no problem building a parachain!
 
-### 1. Differences from the Node Template
+### Differences from the Node Template
 
 There are, however, a few important differences between the two templates that are worth observing at
 the outset.
@@ -483,7 +483,7 @@ that cumulus provides.
   `}
 />
 
-### 2. Using the Template
+### Using the Template
 
 <Message
   type={`yellow`}
@@ -505,7 +505,7 @@ Modify this pallet by adding storage items.
 Follow the [PoE tutorial](/tutorials/v3/proof-of-existence). Although it was
 written for the node template, it works effectively identically here.
 
-### 3. Adding an External Pallet
+### Adding an External Pallet
 
 <!-- TODO: add more content and gotchas about pallets in the para-context -->
 
@@ -521,7 +521,7 @@ inspiration.
 
 ## Rococo Testnet Registration
  
-### 1. Parathread Registration
+### Parathread Registration
 
 Rococo is Parity's official test network for cumulus-based parachains.
 
@@ -540,7 +540,7 @@ Rococo is Parity's official test network for cumulus-based parachains.
 <p></p>
 <ExternalLink url="https://github.com/paritytech/cumulus/tree/polkadot-v0.9.8">Cumulus `polkadot-v0.9.8` branch</ExternalLink>
 
-### 2. Request ROC Tokens
+### Request ROC Tokens
 
 ROC is the native currency on the Rococo test network. You will need some ROC in order to
 register your Rococo parachain.
@@ -556,7 +556,7 @@ You need to register on Rococo as a parathread before able to experiment on Roco
   `}
 />
 
-### 3. Register as a Parathread
+### Register as a Parathread
 
 All parachains will need to register as a parathread first. You will need:
 
@@ -596,7 +596,7 @@ The procedure will be as followed:
 After the extrinsic succeeds, it takes [**2 sessions**](#relevant-settings) for the chain to
 fully onboard as a parathread.
 
-### 4. Parachain Slot Auction
+### Parachain Slot Auction
 
 Parathead can then be transformed to parachain by winning a parachain slot auction. This guarantees
 the now parachain will always have their block data hashed and included in the relay chain block
@@ -629,7 +629,7 @@ Pick your Para ID, how much you want to bid, and the slots you want to bid for:
 
 ![parachain-bid.png](../../../../src/images/tutorials/09-cumulus-workshop/parachain-bid.png)
 
-### 5. Crowdloans
+### Crowdloans
 
 You may also choose to harness your community and get their supports in winning the parachain
 slot auction. In this case, you would start a crowdloan campaign so your supporters can
