@@ -7,34 +7,27 @@ category: parachains
 keywords:
 ---
 
-The final part of the workshop will step you through how to use Polkadot Launch to test a parachain
-in a development environment.
+The final part of the workshop will step you through how to use `polkadot-launch` to test a
+parachain in a development environment.
 
 <TutorialObjective
   data={{
     textLineOne:
-      '1. Using Polkadot Launch',
+      '1. Using polkadot-launch',
       url: '#using-polkadot-launch',
   }}
 />
 <TutorialObjective
   data={{
     textLineOne:
-      '2. Launching a Testnet with Docker',
-    url: '#launching-a-testnet-with-docker',
-  }}
-/>
-<TutorialObjective
-  data={{
-    textLineOne:
-      '3. Parachain Node Template',
+      '2. Parachain Node Template',
     url: '#parachain-node-template',
   }}
 />
 <TutorialObjective
   data={{
     textLineOne:
-      '4. Rococo Testnet Registration',
+      '3. Rococo Testnet Registration',
     url: '#rococo-testnet-registration',
   }}
 />
@@ -43,22 +36,20 @@ in a development environment.
 
 - Use `polkadot-launch` to run a parachain environment 
 
-## Using Polkadot Launch 
+## Using polkadot-launch
 
-Now that we have gone through the procedure of manually launching a relay chain of a few nodes, and
-a parachain, you can automate testnets for development and testing.
-<ExternalLink url="https://github.com/paritytech/polkadot-launch">polkadot-launch</ExternalLink> is a Node utility script that
-does this for you, allowing for some custom configurations to setup networks very simply.
+Now that we have gone through the procedure of manually launching a relay chain of a few nodes and
+a parachain, we can actually automate launching such network environments for development and
+testing using [`polkadot-launch`](https://github.com/paritytech/polkadot-launch). Note that it is
+still recommended to understand [the manual process](../pt1#build-environment--compilation), as this
+script is not a perfect fit for all use cases, and when things go wrong, you know how to
+troubleshoot.
 
-Note that this isn't a replacement for the manual process, as this script is not a perfect fit for
-all use cases and may fail for yours, so when things go wrong, you know the [manual
-steps](../pt1#build-environment--compilation) that this script is executing for you to troubleshoot.
+Now, let's install the utility and try it out.
 
-Now, let's install the utility script and try it out.
+### Installation
 
-### 1. Installation
-
-#### Global Install (Option A)
+#### Option A: Global install
 
 For most cases, you do not need to edit `polkadot-launch`. Run the following command to install the
 script globally in your environment:
@@ -70,7 +61,7 @@ polkadot-launch --version
 # 1.7.0
 ```
 
-#### Clone & Local Build (Option B)
+#### Option B: Clone & run locally
 
 If you find you need to edit the script, or otherwise would like to build this yourself, do:
 
@@ -86,69 +77,63 @@ node dist/cli.js --version
 
 If you think your edits are valuable, please consider <ExternalLink url="https://github.com/paritytech/polkadot-launch">opening a PR</ExternalLink>.
 
-### 2. Basic Configuration
+### Basic configuration
 
-In this exercise, we will launch a **Polkadot relay chain of three nodes and two parachains, each with one node only**.
+In this exercise, we will launch a **Polkadot relay chain of three nodes and two parachains, each
+with one node only**.
 
 #### Prerequisites
 
-1. We first get our Polkadot and Parachain Template cloned, and compiled.
+1. Get the Polkadot and Parachain Template cloned and compiled.
 
-   1. Build Polkadot, instructions [here](../pt1#2-building-the-polkadot-relay-chain-node)
-   2. Build a Parachain, instructions [here](../pt1#3-building-the-parachain-template)
+   1. Build Polkadot, instructions [here](../pt1#2-building-the-polkadot-relay-chain-node).
+   2. Build the Parachain Template, instructions [here](../pt1#3-building-the-parachain-template).
 
-2. Write a config file for `polkadot-launch` to fit your needs.
-   - **Here is one to get us started:**
-     <a
-       target="_blank"
-       href="/assets/tutorials/cumulus-workshop/polkadot-launch-config/relay-3-validators--2paras-1collator.json"
-     >
-       relay-3-validators--2paras-1collator.json
-     </a>
+2. Write a config file for `polkadot-launch` to fit your needs. Here is one to get us started:
 
-<!-- for some reason this links can't be markdown. See https://github.com/substrate-developer-hub/cumulus-workshop/issues/16 -->
+   <ExternalLink url="/assets/tutorials/cumulus-workshop/polkadot-launch-config/relay-3-validators--2paras-1collator.json">
+     relay-3-validators--2paras-1collator.json
+   </ExternalLink>
 
-Let take a brief look at the file. Inside the `relaychain` key, we see:
+   Let's take a brief look inside the file. Inside the `relaychain` section, there are:
 
-- `bin`: specifying where the relay chain binary is
-- `chain`: the type of the relay chain we are launching
-- `nodes`: number of nodes we have
+   - `bin`: where the relay chain binary is located.
+   - `chain`: the type of the relay chain we are launching.
+   - `nodes`: number of nodes we have and their respective config. As mentioned, 3 nodes will be
+     deployed using the well-known addresses as session keys. We also specify their respective
+     websocket port (`wsPort`) and TCP port (`port`) they listen to.
 
-As mentioned 3 nodes with the respective well known address as the session keys, its
-respective websocket port (`wsPort`) and TCP port (`port`) listening to.
+   Inside the `parachains` section, **two parachains** are defined, each with:
 
-Inside `parachains` key, we see **two parachains** are defined, each with:
+   - `bin`: where the parachain binary is located.
+   - `id`: the Para ID of each chain.
+   - `balance`: initial balance to be set for the well-known accounts.
+   - `nodes`: the node setting for the corresponding parachains.
 
-- `bin`: where the parachain binary is located
-- `id`: the Para ID of each chain
-- `balance`: Initial balance to be set for key-known account
-- `nodes`: the nodes setting for the corresponding parachains
-
-We see that each parachain has one node setup.
+   Each parachain has one node setup.
 
 3. Update the `bin` location for the relaychain and parachains to an absolute path where your
    binaries are located. For the two parachains, use the same Parachain Template binary.
 
-#### Launch a Network
+#### Launch a network
 
 Now you can start your network with the next commands:
 
 ```bash
-mkdir <some empty working directory for log files and new chainspecs>
-cd <your logfile & chainspec dir>
-polkadot-launch relay-3-2para-1.json
+mkdir polkadot-config
+cd polkadot-config
+# download the `relay-3-validators--2paras-1collator.json` file into this directory.
+polkadot-launch relay-3-validators--2paras-1collator.json
 ```
 
-If everything go well, you should see messages similar to the following:
+If everything goes well, you should see messages similar to the following:
 
 ![polkadot-launch-log.png](../../../../src/images/tutorials/09-cumulus-workshop/polkadot-launch-log.png)
 
-Now open your working directory to find the relay chain node log are written to `alice.log`,
-`bob.log`, and `charlie.log` for your three validators, respectively. While the parachain log is
-indicated with the websocket port numbers they are listening to, so you should see `9988.log`and
-`9999.log` there for each unique instance of your parachains. There are also the customized chain
-spec files used to launch each network, including the change of `paraID` used for each instance of
-the parachain used in your file.
+Now in your current working directory you will find the relay chain node logs are written to
+`alice.log`, `bob.log`, and `charlie.log` for your three validators. While the parachain logs are
+indicated with the websocket port numbers they are listening to, `9988.log`and `9999.log`. There
+are also customized chain spec files used to launch the networks.
 
 If you wish to monitor the logs in real time, you can do so with:
 
@@ -158,20 +143,30 @@ If you wish to monitor the logs in real time, you can do so with:
 tail -f <logfile>
 ```
 
-Another way to verify the setup is correct, is by going to <ExternalLink url="https://polkadot.js.org/apps/#/parachains"> Polkadot-JS Apps **Network** -
-**Parachains** tab</ExternalLink> , after configure to connect to a
-**relay chain node**, you should see the UI showing two parachains being connected to the relay chain.
+Another way to verify the setup is correct is by going to:
+
+<ExternalLink url="https://polkadot.js.org/apps/#/parachains">
+  Polkadot-JS Apps > Network > Parachains
+</ExternalLink>
+
+After configure the Apps to connect to the local **relay chain node**, you should see the UI
+showing two parachains being connected to the relay chain.
 
 ![polkadot-launch-log.png](../../../../src/images/tutorials/09-cumulus-workshop/polkadot-apps-with-2-parachains.png)
 
-Congratulation! You have automated the launch of a 3-node relay chain, and two parachains with a
-single node using `polkadot-launch` CLI utility.
+<Message
+  type={`green`}
+  title={`Congratulation`}
+  text={`You have automated the launch of a 3-node relay chain, and two parachains with a
+single node using \`polkadot-launch\` CLI utility.`}
+/>
 
-Next, we will go through in details the configuration parameters that `polkadot-launch` recognizes in the config file.
+Next, we will go through in details the configuration parameters that `polkadot-launch` recognizes
+in the config file.
 
-###  3. `polkadot-launch` Configuration
+### Polkadot Launch configuration
 
-The config file can broadly divided into five sections, shown below.
+The config file can broadly divided into five sections as shown below.
 
 ```json
 {
@@ -204,9 +199,10 @@ The config file can broadly divided into five sections, shown below.
 }
 ```
 
-#### `relaychain` Section
+#### `relaychain` section
 
-This section of JSON specifies how the relaychain should be launched. The full config looks like the following:
+This section of JSON specifies how the relaychain should be launched. The full config looks like
+the following:
 
 ```json
 "relaychain": {
@@ -239,25 +235,32 @@ This section of JSON specifies how the relaychain should be launched. The full c
 }
 ```
 
-We have gone through the `bin`, `chain`, and `nodes` [above](#kickstart).
+- `bin`: where the relay chain binary is located.
+- `chain`: the type of the chain to be launched. The full list of supported types is
+  [specified here](https://github.com/paritytech/polkadot/blob/master/cli/src/command.rs#L94-L135).
+  Typically we want to use `rococo-local` for testing and development.
 
-For each node inside `nodes`, you could have the following keys:
+For each node inside `nodes`, the following properties can be added:
 
-- `name`: Must be one of `alice`, `bob`, `charlie`, or `dave`.
-- `wsPort`: The websocket port for this node.
-- `port`: The TCP port of this node.
-- `basePath`: Where the chain database are going to be saved.If unspecified, the chain is run with `--tmp` flag.
-- `flags`: Any addition flags that would be passed to the relay chain.
+- `name`: one of well-known account names, e.g. `alice`, `bob`, `charlie`, or `dave`.
+- `wsPort`: the websocket port this node listens to.
+- `port`: the TCP port this node listens to.
+- `basePath`: location of where the chain database is going to be saved. If unspecified, the node
+  is launched with `--tmp` flag.
+- `flags`: any addition flags that would be passed to the node.
 
-Finally, there is `genesis`. It is a JSON object of the properties you want to modify from the genesis configuration. Non-specified properties will be unchanged from the original genesis configuration. Regarding the `genesis` value, it is the same as all the values shown in the chainspec when generated by the following commands:
+Finally, there is `genesis` property. It is a JSON object with properties you want to modify from
+the default genesis configuration. Regarding the `genesis` value, it is the same as all the values
+shown in the chain spec when generated by the following command:
 
 ```bash
 ./polkadot build-spec --chain=rococo-local --disable-default-bootnode
 ```
 
-#### `parachains` Section
+#### `parachains` section
 
-`parachains` is an array of objects, configuring how one or more parachains are to be launched. It looks like the following:
+`parachains` is an array of objects, configuring how one or more parachains are to be launched. It
+looks like the following:
 
 ```json
 "parachains": [
@@ -280,40 +283,42 @@ Finally, there is `genesis`. It is a JSON object of the properties you want to m
 ]
 ```
 
-- `bin`: The path of the collator node binary. Use an absolute path here.
-- `id`: The Para ID assigned to this parachain. Must be unique.
-- `balance`: (Optional) Configure a starting amount of balance on the relay chain for this chain's account ID.
+- `bin`: where the parachain collator binary is located.
+- `id`: the Para ID assigned to this parachain. Must be unique among the network.
+- `balance`: (optional) configure a starting amount of balance on the relay chain for this chain's
+  account ID.
 - For each node in `nodes`, it has the same configuration as node config in the relay chain.
 
-#### `simpleParachains` Section
+#### `simpleParachains` section
 
-This is similar to parachains but for "simple" collators like the <ExternalLink url="https://github.com/paritytech/polkadot/tree/master/parachain/test-parachains/adder/collator">adder-collator</ExternalLink>, 
-a very simple collator that lives in the polkadot repo and is meant for simple testing. It supports a subset of configuration values, and is meant to run with a single node only:
-
-`simpleParachains` section is similar to `parachains` section:
+This is similar to parachains but for "simple" collators like <ExternalLink url="https://github.com/paritytech/polkadot/tree/master/parachain/test-parachains/adder/collator">adder-collator</ExternalLink>,
+a simple collator that lives in the polkadot repo for testing. It supports a subset of configuration
+values, and is meant to run with a single node only.
 
 ```json
 "simpleParachains": [
   {
     "bin": "./bin/adder-collator",
     "id": "400",
+    "balance": "1000000000000000000000",
     "port": "31400",
-    "name": "alice",
-    "balance": "1000000000000000000000"
+    "name": "alice"
   }
 ]
 ```
 
-- `bin`: The path to the collator binary.
-- `id`: The id to assign to this parachain. Must be unique.
-- `port`: The TCP port for this node.
-- `balance`: (Optional) Configure a starting amount of balance on the relay chain for this chain's account ID.
+Their meanings are similar to their counterparts in [`parachains` section](). Note that since
+a simple parachain only has one node, configs that was originally in `nodes` property are flattened
+into one level now.
 
-#### `hrmpChannels` Section
+#### `hrmpChannels` section
 
-This section specifies HRMP channels to be open between the specified parachains so that it's possible to send messages between those. Keep in mind that an HRMP channel is unidirectional and in case you need to communicate both ways you need to open channels in both directions.
+This section config how the Horizontal Relay-routed Message Passing (HRMP) channels are open
+between the specified parachain pair so they can send messages to each others. Keep in mind that
+an HRMP channel is unidirectional and you need to open channels in both directions to enable them
+communicating both ways.
 
-`hrmpChannels` looks similar to the following:
+`hrmpChannels` property is defined as follows.
 
 ```json
 "hrmpChannels": [
@@ -326,20 +331,31 @@ This section specifies HRMP channels to be open between the specified parachains
 ]
 ```
 
+- `sender`: chain Para ID messages are sent from.
+- `recipient`: chain Para ID messages are sent to.
+- `maxCapacity`: number of messages that can be sent before they are acknowledged by
+  the recipient chain.
+- `maxMessageSize`: maximum size of a message that can be sent across.
+
 #### Remaining
 
 Finally, we have `types`, and `finalization`.
 
-- `types`: The custom Polkadot-JS custom types to be fed to Polkadot-JS API.
-- `finalization`: either `true` or `false`, whether you want transaction submitted from `polkadot-launch` to wait for block finalization.
+- `types`: [custom Substrate types](https://polkadot.js.org/docs/api/start/types.extend/) to be fed
+  into Polkadot-JS API.
+- `finalization`: either `true` or `false`, whether you want transactions submitted to the network
+  to wait for finalization.
 
-### 4. How It Works
+### How it works
 
-This tool just automates the steps you learned previously to spin up multiple relay chain nodes and parachain nodes in order to create a local test network. It also leverage on Polkadot-JS API to connect to these spawned nodes over their WebSocket endpoints.
+This tool automates the steps you learned previously to spin up multiple relay chain nodes and
+parachain nodes in a single local machine. It also leverages on Polkadot-JS API to connect to
+these spawned nodes over their WebSocket endpoints.
 
-### 5. Conclusion
+### Conclusion
 
-In this chapter we have covered about `polkadot-launch` Node utility. You are now able to build up your own config file, and launch a relay chain and parachains set all in just a single command.
+In this chapter we have covered about `polkadot-launch` utility. You are now able to setup your own
+config file and launch a relay chain / parachains network all in just a single command.
 
 This is a good basis to get to our next subject, actual parachain development.
 
@@ -413,7 +429,7 @@ can be used with few modifications on the Parachain Template.
 The similarities between these two templates should give you confidence, that if you've built a
 Substrate chain, you will have no problem building a parachain!
 
-### 1. Differences from the Node Template
+### Differences from the Node Template
 
 There are, however, a few important differences between the two templates that are worth observing at
 the outset.
@@ -467,7 +483,7 @@ that cumulus provides.
   `}
 />
 
-### 2. Using the Template
+### Using the Template
 
 <Message
   type={`yellow`}
@@ -489,7 +505,7 @@ Modify this pallet by adding storage items.
 Follow the [PoE tutorial](/tutorials/v3/proof-of-existence). Although it was
 written for the node template, it works effectively identically here.
 
-### 3. Adding an External Pallet
+### Adding an External Pallet
 
 <!-- TODO: add more content and gotchas about pallets in the para-context -->
 
@@ -505,7 +521,7 @@ inspiration.
 
 ## Rococo Testnet Registration
  
-### 1. Parathread Registration
+### Parathread Registration
 
 Rococo is Parity's official test network for cumulus-based parachains.
 
@@ -524,7 +540,7 @@ Rococo is Parity's official test network for cumulus-based parachains.
 <p></p>
 <ExternalLink url="https://github.com/paritytech/cumulus/tree/polkadot-v0.9.8">Cumulus `polkadot-v0.9.8` branch</ExternalLink>
 
-### 2. Request ROC Tokens
+### Request ROC Tokens
 
 ROC is the native currency on the Rococo test network. You will need some ROC in order to
 register your Rococo parachain.
@@ -540,7 +556,7 @@ You need to register on Rococo as a parathread before able to experiment on Roco
   `}
 />
 
-### 3. Register as a Parathread
+### Register as a Parathread
 
 All parachains will need to register as a parathread first. You will need:
 
@@ -580,7 +596,7 @@ The procedure will be as followed:
 After the extrinsic succeeds, it takes [**2 sessions**](#relevant-settings) for the chain to
 fully onboard as a parathread.
 
-### 4. Parachain Slot Auction
+### Parachain Slot Auction
 
 Parathead can then be transformed to parachain by winning a parachain slot auction. This guarantees
 the now parachain will always have their block data hashed and included in the relay chain block
@@ -613,7 +629,7 @@ Pick your Para ID, how much you want to bid, and the slots you want to bid for:
 
 ![parachain-bid.png](../../../../src/images/tutorials/09-cumulus-workshop/parachain-bid.png)
 
-### 5. Crowdloans
+### Crowdloans
 
 You may also choose to harness your community and get their supports in winning the parachain
 slot auction. In this case, you would start a crowdloan campaign so your supporters can

@@ -10,8 +10,8 @@ export default function RustDocs() {
     <Layout>
       <SEO title="Substrate Rust Docs" />
       <Section>
-        <div className="flex flex-col md:flex-row md:items-center px-6 mt-20">
-          <div className="lg:m-0 md:w-1/2 md:px-5 lg:px-10">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-center px-6 pb-10 lg:pb-0 my-10">
+          <div className="lg:m-0 lg:w-1/2 md:px-5 lg:px-10">
             <div className="font-title text-5xl lg:text-6xl font-extrabold mb-8">
               Substrate <br /> Rust Docs
             </div>
@@ -43,7 +43,7 @@ export default function RustDocs() {
                   {`(latest)`}
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="https://paritytech.github.io/substrate/monthly-2021-08/sc_service/index.html">
                   Monthly-2021-08
                 </Link>
@@ -52,10 +52,10 @@ export default function RustDocs() {
                 <Link to="https://paritytech.github.io/substrate/v3.0.0">
                   v3.0.0
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
-          <div className="hidden md:flex justify-center md:w-1/2">
+          <div className="hidden lg:flex lg:justify-center lg:w-1/2 lg:m-10 lg:max-w-lg">
             <RustLogo />
           </div>
         </div>

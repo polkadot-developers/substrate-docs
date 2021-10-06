@@ -114,19 +114,19 @@ inspect blocks:
 
 To build the chain, execute the following commands from the project root:
 
-```
-$ cargo build --release
+```bash
+cargo build --release
 ```
 
 To execute the chain, run:
 
-```
-$ ./target/debug/frontier-template-node --dev
+```bash
+./target/release/frontier-template-node --dev
 ```
 
 The node also supports to use manual seal (to produce block manually through RPC).  
-```
-$ ./target/debug/frontier-template-node --dev --manual-seal
+```bash
+./target/release/frontier-template-node --dev --manual-seal
 ```
 
 ### Query Balance Using RPC
@@ -224,7 +224,7 @@ which can be used to deploy it to the Substrate blockchain.
 Use the Polkadot UI `Extrinsics` app to deploy the contract from Alice's account (submit the
 extrinsic as a signed transaction) using `evm > create` with the following parameters:
 
-```
+```text
 source: 0xd43593c715fdd31c61141abd04a99fd6822c8558
 init: <raw contract bytecode, a very long hex value>
 value: 0
