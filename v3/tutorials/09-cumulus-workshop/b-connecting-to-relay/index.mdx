@@ -1,6 +1,6 @@
 ---
 title: Connecting to a Relay Chain
-slug: /tutorials/v3/cumulus-workshop/pt2
+slug: /tutorials/v3/cumulus/pt2
 version: 3.0
 section: Tutorials
 category: Parachains
@@ -44,7 +44,7 @@ In this part of the workshop, we'll connect a parachain to our relay chain and a
 ## Launching a Parachain
 
 ### Reserve a Para ID
- 
+
 To connect to any relay chain, you must first reserve a Para ID for your parathread that will
 become a parachain. It is called Para ID, because the same ID can be seen as its parachain ID or
 parathread ID, depending on your current chain to relay-chain connection state. To do this, you need
@@ -58,7 +58,7 @@ The easiest way to reserve your Para ID is via the <ExternalLink url="https://po
 under the _Network_ -> **Parachains** sub-page, click on **Parathreads** tab and use the
 **+ ParaId** button.
 
-![Reserve a Para ID](../../../../src/images/tutorials/09-cumulus-workshop/paraid-reserve.png)
+![Reserve a Para ID](../../../../src/images/tutorials/09-cumulus/paraid-reserve.png)
 
 <Message
   type={`yellow`}
@@ -277,7 +277,7 @@ on this can be found [in here](../pt1#3-starting-additional-validators-optional)
 - Pick `paraSudoWrapper` -> `sudoScheduleParaInitialize(id, genesis)` as the extrinsic type,
   shown below.
 
-![parachain-registration-sudo.png](../../../../src/images/tutorials/09-cumulus-workshop/parachain-registration-sudo.png)
+![parachain-registration-sudo.png](../../../../src/images/tutorials/09-cumulus/parachain-registration-sudo.png)
 
 - In the extrinsics parameters, specify:
 
@@ -305,7 +305,7 @@ instructions, with the exception of asking for a slot lease to be awarded or par
 public testnet or mainnet. Here we will use `sudo` to grant ourselves a lease instead. You should
 have an onboarded parathread:
 
-![parathread-onboarding.png](../../../../src/images/tutorials/09-cumulus-workshop/parathread-onboarding.png)
+![parathread-onboarding.png](../../../../src/images/tutorials/09-cumulus/parathread-onboarding.png)
 
 - Go to <ExternalLink url="https://polkadot.js.org/apps/#/explorer">Polkadot Apps UI</ExternalLink>,
   connecting to your **relay chain**.
@@ -315,7 +315,7 @@ have an onboarded parathread:
 - Pick `slots`->`forceLease(para, leaser, amount, period_begin, period_end)` as the extrinsic type,
   shown below.
 
-![forceLease.png](../../../../src/images/tutorials/09-cumulus-workshop/forceLease.png)
+![forceLease.png](../../../../src/images/tutorials/09-cumulus/forceLease.png)
 
 Be sure to set the begin period to the slot you wish to start at, in testing this very likely is the
 already active slot `0` if you started from scratch. Extending this out to beyond the scope of
@@ -323,7 +323,7 @@ the time you wish to test this parachain is likely best, unless you wish to test
 offboarding cycles, then electing slot leases that have gaps for a `paraID` would be in order.
 Once fully onboarded and after [block production](#block-production) starts you should see:
 
-![parachain-active-lease.png](../../../../src/images/tutorials/09-cumulus-workshop/parachain-active-lease.png)
+![parachain-active-lease.png](../../../../src/images/tutorials/09-cumulus/parachain-active-lease.png)
 
 ### Block Production
 
@@ -420,7 +420,7 @@ This is how Polkadot achieves shared security.
 We can keep track of what parachains are registered and what their latest head data is on the
 `Network > Parachains` tab in the Apps UI.
 
-![parachain-summary-screenshot.png](../../../../src/images/tutorials/09-cumulus-workshop/parachain-summary-screenshot.png)
+![parachain-summary-screenshot.png](../../../../src/images/tutorials/09-cumulus/parachain-summary-screenshot.png)
 
 ## Connecting Additional Parachain Nodes
 
@@ -430,7 +430,7 @@ parachain.
 
 > You should have _at least_ 2 **validators** (relay chain nodes) running for every **collator**
 > (parachain nodes) on your network. This is why we have included a prebuilt 3 and 4 validator
-> chain spec for you in [the workshop assets](https://github.com/substrate-developer-hub/cumulus-workshop/tree/latest/shared/chainspecs), and you
+> chain spec for you in [the workshop assets](https://github.com/substrate-developer-hub/cumulus/tree/latest/shared/chainspecs), and you
 > can add more as needed, described there.
 
 ### Start the Second Collator

@@ -11,9 +11,7 @@ export default function tutorials({ data }: any) {
     <Layout>
       <SEO title="Tutorials" />
       <div className="px-4">
-        <h1 className="text-center my-8 lg:my-12">
-          {intl.formatMessage({ id: 'nav-tutorials' })}
-        </h1>
+        <h1 className="text-center my-8 lg:my-12">{intl.formatMessage({ id: 'nav-tutorials' })}</h1>
         <div className="mb-40 flex flex-col items-center md:flex-row md:flex-wrap md:justify-center">
           <TutorialCard
             title={`Create Your First Substrate Chain`}
@@ -116,14 +114,14 @@ export default function tutorials({ data }: any) {
             link={`/tutorials/v3/frontier`}
           />
           <TutorialCard
-            title={`Cumulus Workshop`}
+            title={`Cumulus & Parachains`}
             image={data.tutorialNine}
-            description={`A workshop to configure a Substrate node as a Parachain`}
+            description={`Learn to configure a Substrate node as a Parachain`}
             time={`3 Hours`}
             difficulty={3}
             prerequisites={true}
             version={`V3.0.0`}
-            link={`/tutorials/v3/cumulus-workshop/pt1`}
+            link={`/tutorials/v3/cumulus/pt1`}
           />
         </div>
       </div>

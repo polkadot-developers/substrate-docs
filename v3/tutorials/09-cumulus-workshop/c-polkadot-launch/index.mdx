@@ -1,6 +1,6 @@
 ---
 title: Launch a Development Environment
-slug: /tutorials/v3/cumulus-workshop/pt3
+slug: /tutorials/v3/cumulus/pt3
 version: 3.0
 section: tutorials
 category: parachains
@@ -12,22 +12,19 @@ parachain in a development environment.
 
 <TutorialObjective
   data={{
-    textLineOne:
-      '1. Using polkadot-launch',
-      url: '#using-polkadot-launch',
+    textLineOne: '1. Using polkadot-launch',
+    url: '#using-polkadot-launch',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '2. Parachain Node Template',
+    textLineOne: '2. Parachain Node Template',
     url: '#parachain-node-template',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '3. Rococo Testnet Registration',
+    textLineOne: '3. Rococo Testnet Registration',
     url: '#rococo-testnet-registration',
   }}
 />
@@ -91,7 +88,7 @@ with one node only**.
 
 2. Write a config file for `polkadot-launch` to fit your needs. Here is one to get us started:
 
-   <ExternalLink url="/assets/tutorials/cumulus-workshop/polkadot-launch-config/relay-3-validators--2paras-1collator.json">
+   <ExternalLink url="/assets/tutorials/cumulus/polkadot-launch-config/relay-3-validators--2paras-1collator.json">
      relay-3-validators--2paras-1collator.json
    </ExternalLink>
 
@@ -128,7 +125,7 @@ polkadot-launch relay-3-validators--2paras-1collator.json
 
 If everything goes well, you should see messages similar to the following:
 
-![polkadot-launch-log.png](../../../../src/images/tutorials/09-cumulus-workshop/polkadot-launch-log.png)
+![polkadot-launch-log.png](../../../../src/images/tutorials/09-cumulus/polkadot-launch-log.png)
 
 Now in your current working directory you will find the relay chain node logs are written to
 `alice.log`, `bob.log`, and `charlie.log` for your three validators. While the parachain logs are
@@ -152,7 +149,7 @@ Another way to verify the setup is correct is by going to:
 After configure the Apps to connect to the local **relay chain node**, you should see the UI
 showing two parachains being connected to the relay chain.
 
-![polkadot-launch-log.png](../../../../src/images/tutorials/09-cumulus-workshop/polkadot-apps-with-2-parachains.png)
+![polkadot-launch-log.png](../../../../src/images/tutorials/09-cumulus/polkadot-apps-with-2-parachains.png)
 
 <Message
   type={`green`}
@@ -292,9 +289,12 @@ looks like the following:
 #### `simpleParachains` section
 
 This is similar to parachains but for "simple" collators like
-<ExternalLink url="https://github.com/paritytech/polkadot/tree/master/parachain/test-parachains/adder/collator">adder-collator</ExternalLink>,
-a simple collator that lives in the polkadot repo for testing. It supports a subset of configuration
-values, and is meant to run with a single node only.
+
+<ExternalLink url="https://github.com/paritytech/polkadot/tree/master/parachain/test-parachains/adder/collator">
+  adder-collator
+</ExternalLink>
+, a simple collator that lives in the polkadot repo for testing. It supports a subset of
+configuration values, and is meant to run with a single node only.
 
 ```json
 "simpleParachains": [
@@ -384,8 +384,8 @@ cloud-based relay chain.
 The two docker images available for this workshop run the exact same binaries that we described
 building in the previous section.
 
-- `joshyorndorff/cumulus-workshop-polkadot` is the relay chain node.
-- `joshyorndorff/cumulus-workshop-parachain-collator` is the parachain node.
+- `joshyorndorff/cumulus-polkadot` is the relay chain node.
+- `joshyorndorff/cumulus-parachain-collator` is the parachain node.
 
 Because these containers will need to communicate with each other, you will need to handle
 networking. <ExternalLink url="https://docs.docker.com/network/">Networking in Docker</ExternalLink> is beyond the scope of this
@@ -401,7 +401,7 @@ if you were running local binaries.
 polkadot --my-args
 
 # You should run
-docker run --network host joshyorndorff/cumulus-workshop-polkadot --my-args
+docker run --network host joshyorndorff/cumulus-polkadot --my-args
 ```
 
 ```bash
@@ -409,7 +409,7 @@ docker run --network host joshyorndorff/cumulus-workshop-polkadot --my-args
 parachain-collator --para-args -- --relay-args
 
 # You should run
-docker run --network host joshyorndorff/cumulus-workshop-parachain-collator --para-args -- --relay-args
+docker run --network host joshyorndorff/cumulus-parachain-collator --para-args -- --relay-args
 ```
 
 Throughout this workshop when we need to run nodes we will refer to them simply as `polkadot` and
@@ -520,7 +520,7 @@ Reference the [**Add a Pallet** tutorial](/tutorials/v3/add-a-pallet) for
 inspiration.
 
 ## Rococo Testnet Registration
- 
+
 ### Parathread Registration
 
 Rococo is Parity's official test network for cumulus-based parachains.
@@ -582,20 +582,20 @@ The procedure will be as followed:
 
 - Reserve for the next available Para ID.
 
-  ![paraid-reserve.png](../../../../src/images/tutorials/09-cumulus-workshop/paraid-reserve.png)
+  ![paraid-reserve.png](../../../../src/images/tutorials/09-cumulus/paraid-reserve.png)
 
 - After successfully reserving your Para ID, you can now register as a **Parathread**.
 
-  ![register-parathread.png](../../../../src/images/tutorials/09-cumulus-workshop/register-parathread.png)
+  ![register-parathread.png](../../../../src/images/tutorials/09-cumulus/register-parathread.png)
 
 - Once your extrinsic succeeds, you will see the `registrar.Registered` event being emitted.
 
-  ![parathread-register-success.png](../../../../src/images/tutorials/09-cumulus-workshop/parathread-register-success.png)
+  ![parathread-register-success.png](../../../../src/images/tutorials/09-cumulus/parathread-register-success.png)
 
 - Also in the Polkadot-JS Apps <ExternalLink url="https://polkadot.js.org/apps/#/parachains/parathreads">**Parachains > Parathreads** page</ExternalLink>
   you will see your parathread registration is **Onboarding**:
 
-  ![parathread-onboarding.png](../../../../src/images/tutorials/09-cumulus-workshop/parathread-onboarding.png)
+  ![parathread-onboarding.png](../../../../src/images/tutorials/09-cumulus/parathread-onboarding.png)
 
 After the extrinsic succeeds, it takes [**2 sessions**](#relevant-settings) for the chain to
 fully onboard as a parathread.
@@ -631,7 +631,7 @@ You can do so in Polkadot-JS App <ExternalLink url="https://polkadot.js.org/apps
 
 Pick your Para ID, how much you want to bid, and the slots you want to bid for:
 
-![parachain-bid.png](../../../../src/images/tutorials/09-cumulus-workshop/parachain-bid.png)
+![parachain-bid.png](../../../../src/images/tutorials/09-cumulus/parachain-bid.png)
 
 ### Crowdloans
 
@@ -647,7 +647,7 @@ parachain slot.
 
 In the following, we are getting ready to submit an extrinsic to start a crowdloan.
 
-![parachain-bid.png](../../../../src/images/tutorials/09-cumulus-workshop/parachain-crowdloan.png)
+![parachain-bid.png](../../../../src/images/tutorials/09-cumulus/parachain-crowdloan.png)
 
 Notes on the parameters:
 
@@ -675,7 +675,7 @@ If your extrinsic succeeds, you can see your new crowdloan entry in
 </ExternalLink>
 :
 
-![crowdloan-success.png](../../../../src/images/tutorials/09-cumulus-workshop/crowdloan-success.png)
+![crowdloan-success.png](../../../../src/images/tutorials/09-cumulus/crowdloan-success.png)
 
 #### Fund a Crowdloan Campaign
 
@@ -686,6 +686,6 @@ You can goto the same <ExternalLink url="https://polkadot.js.org/apps/#/parachai
 
 You will see an extrinsic pop up similar to the following:
 
-![crowdloan-contribute.png](../../../../src/images/tutorials/09-cumulus-workshop/crowdloan-contribute.png)
+![crowdloan-contribute.png](../../../../src/images/tutorials/09-cumulus/crowdloan-contribute.png)
 
 Input the funding amount your want to support and submit the transaction.
