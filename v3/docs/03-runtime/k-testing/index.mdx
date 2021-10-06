@@ -67,7 +67,7 @@ hashmap-based externalities implementation in
 [`TestExternalities`](/rustdocs/latest/sp_state_machine/struct.TestExternalities.html).
 
 This example demonstrates defining a struct called `ExtBuilder` to build an instance of
-`TestExternalities`, and setting the block number to be 1.
+`TestExternalities`, and setting the block number to 1.
 
 ```rust
 pub struct ExtBuilder;
@@ -174,7 +174,7 @@ fn run_to_block(n: u64) {
 ```
 
 `on_finalize` and `on_initialize` are only called from `ExamplePallet` if the pallet trait
-implements the `sr_primitives::traits::{OnInitialize, OnFinalize}` traits to execute the logic
+implements the `frame_support::traits::{OnInitialize, OnFinalize}` traits to execute the logic
 encoded in the runtime methods before and after each block respectively.
 
 Then call this function in the following fashion.
