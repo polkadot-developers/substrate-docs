@@ -1,0 +1,35 @@
+import * as React from 'react'
+import { LocalizedLink } from 'gatsby-theme-i18n'
+import { ExternalLink } from '../DocsComponents'
+
+const isHash = (str: string) => /^#/.test(str)
+const isInternal = (to: string) => /^\/(?!\/)/.test(to)
+const isFile = (to: string) => /\..+$/.test(to)
+
+interface MdxLinkProps {
+  href: string
+  children: React.ReactNode
+  props: React.ReactNode
+}
+
+export function MdxLink({ href, children, ...props }: MdxLinkProps) {
+  if (isHash(href) || !isInternal(href) || isFile(href)) {
+    console.log('LINK IN EXTERNAL ====> ', href)
+    if (isHash(href)) {
+      return (
+        <a {...props} href={href}>
+          {children}
+        </a>
+      )
+    } else {
+      return <ExternalLink url={href}>{children}</ExternalLink>
+    }
+  } else {
+    console.log('LINK IN LOCALIZED ====> ', href)
+    return (
+      <LocalizedLink {...props} to={href}>
+        {children}
+      </LocalizedLink>
+    )
+  }
+}
