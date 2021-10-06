@@ -89,6 +89,11 @@ To keep the tone conversational but concise, adhere to the following common-sens
   * Instead of “and then”, just use “then”.
 
 * Avoid jargon, colloquialisms, and idiomatic phrases.
+* Avoid adverbs and subjective statements. For example, don’t use words and phrases that include easily, rapidly, simply, quickly.
+
+  * Experienced developers who truly prefer to skip the tutorial...
+
+  * We can quickly test if this code is functioning as expected...
 
 ## Headings
 
@@ -118,7 +123,15 @@ Procedure titles and headings should answer the question: _What are you trying t
 is _I want to create an account_, the article heading should be _Create an account_.
 In most cases, concept and reference topics are named with a noun phrase, such as _Event hooks_.
 
-## Bullets
+## Lists
+
+Introduce lists with a heading, a sentence, or a fragment that ends with a colon.
+
+Use **numbered lists** for processes and procedures that must be completed in sequential order. Use **bulleted lists** for items that don't need to appear in order. 
+
+Make all list items parallel in structure. For example, start each item in the list using a noun or a phrase that starts with a verb.
+
+### Bullets
 
 Bullets are for unordered lists. 
 The order of items in a bulleted list can imply importance, but generally all list items are peers.
@@ -128,15 +141,28 @@ single words or short phrases of no more than four words.
 Use parallel structure in phrasing the items in a list. 
 For example, each list item might start with a verb, noun, or gerund. 
   
-## Numbered steps
+### Numbered steps
 
 Only use numbered paragraphs for steps in procedures.
-If a procedure has more than nine steps, always consider breaking it into subsections with headings. Ideally, each procedure or subtask should be three to six steps, not have nested sub-steps, and have minimal embedded paragraphs describing what happens—the result or outcome to expect—in an unnumbered paragraph following the step. 
+If a procedure has more than nine steps, always consider breaking it into subsections with headings. Ideally, each procedure or subtask should be three to six steps, not have nested sub-steps, and have minimal embedded paragraphs describing what happens—the result or outcome to expect—in an unnumbered paragraph following the step.
+
+Don't combine different actions into one step except when two actions complete a task, such as "Enter the user name, then click **Next**."
 
 ## Pronouns
 
 Use gender-neutral pronouns, like “they” whenever possible. 
 Generally, you can change any noun from singular to plural to have subject-verb-pronoun agreement and avoid the use of gender-specific pronouns like “he”, “him”, “his” or “she”, “her”, “hers”.
+
+Be wary of impersonal and potentially ambiguous pronouns such as:
+
+* all, another, any
+* each, either
+* few, many, neither, none, 
+* one, other
+* same, several, some, such
+* that, them, these, those
+
+If you use any of these impersonal pronouns, be sure you answer “of what?”, “of which?”, or “as what?” in the sentence.
 
 ## Terminology and usage conventions
 
@@ -173,15 +199,23 @@ Use bold formatting for user interface elements that the user interacts with, in
 Don't use bold, italics, or underlining for emphasis. If there's text that requires more attention than the surrounding body, 
 consider isolating it as a standalone note or tip.
 
-NOTE: Indicates neutral or positive information that emphasizes or supplements important points of the main text. 
+**Use admonishment components sparingly!** They are generally disruptive to the reader’s experience. Ask yourself if it is really necessary to stop the reader’s forward progress by adding a Note, Caution, or Tip component.
+
+#### Note
+
+Indicates neutral or positive information that emphasizes or supplements important points of the main text. 
 A note supplies information that may apply only in special cases. Examples are memory limitations, equipment 
 configurations, or details that apply to specific versions of a program.
 
-TIP: Helps users apply the techniques and procedures described in the text to their specific needs. 
+#### Tip
+
+Helps users apply the techniques and procedures described in the text to their specific needs. 
 A tip suggests alternative methods that may not be obvious and helps users understand the benefits and capabilities of the product. 
 A tip is not essential to the basic understanding of the text.
 
-CAUTION: Advises users that failure to take or avoid a specific action could result in loss of data. 
+#### Caution
+
+Advises users that failure to take or avoid a specific action could result in loss of data. 
 
 ### Images
 
@@ -193,10 +227,28 @@ If you include screenshots, only include the relevant parts of the screen and us
 
 Be wary of using diagrams or illustrations that include any information—visual or textual—that is likely to get stale.
 
+### Log in formats
+
+Most Linux distributions and macOS use log in to describe how a user initiates an interactive session. Windows uses log on.
+
+* Use _log in_ as two words with no hyphen when describing an action (verb usage).
+
+* Use _login_ as one word when used as a noun (rare but some platforms use login to mean user or an identity).
+
+* Use _log-in_ with a hyphen when modifying a noun (adjective usage).
+
+### Optional steps
+
+Use (Optional) to the beginning of steps that are optional. For example:
+1. Open a new terminal.
+2. Open the attributes file in a text editor.
+3. (Optional) Add a custom field.
+
 ### Punctuation
 
 | Element | How to use it
 | ------- | -------------
+| apostrophe (‘) | Use in contractions for a conversational tone. Avoid using the possessive form.
 | capitalization | Use sentence style capitalization for all headings. When referring to elements in the user interface, follow the capitalization that is used in the labels or text. Do not capitalize common terms.
 | colon (:) | Use a colon at the end of the statement that introduces a procedure, bulleted list, or table.
 | comma (,) | Use a serial comma to separate three or more items in a series, including the item before the conjunction.
@@ -205,6 +257,19 @@ Be wary of using diagrams or illustrations that include any information—visual
 | quotation marks (" ") | Avoid using quotation marks unless you need to quote a message or as tring that would otherwise be confusing given its surrounding context.
 | semicolons (;) | Don't use semicolons instead of commas to separate items in a list. If you think the content should use semicolons, consider rewriting it into subtopics or an unordered bullet list.
 | Slashes (/) and backslashes (\) | Avoid using slashes or backslashes except when documenting paths that require either forward or backward slashes. Never use _and/or_ in documentation.
+
+### Software versions
+
+Use or later or and later to refer to multiple versions of software. For example:
+
+* Firefox 3.6 or later
+* Rust compiler (rustc) version 1.55.0 and later
+
+### Tense
+
+Use **present tense** whenever possible. 
+Use past tense only if you must describe something that has already occurred.
+Use future tense only if you must describe something that has not yet occurred but can be safely assumed.
 
 ### User interface elements
 
@@ -247,3 +312,106 @@ needs to do or wants to accomplish and not what is displayed on the screen.
 | prerequisite | As a section title, use _Before you begin_ instead. If you use _prerequisite_ in the text, there’s no hyphen.
 | that, which | Use _that_ at the beginning of a clause that’s necessary for the sentence to make sense. Don’t put a comma before it. Don't use that when introducing a clause referring to people. Use _who_. Use _which_ at the beginning of a clause that adds supporting or parenthetical information to a sentence. If you can omit the clause and the sentence still makes sense, use _which_, and put a comma before it.
 | user name | Use user name as two words, not username.
+
+## Best practices and common mistakes 
+
+This section highlights best practices and common mistakes to avoid.
+
+### Make every word count
+
+Concise sentences are easier to read, comprehend, and translate. 
+
+* Use simple words with precise meanings.
+
+* Remove words that don’t add substance. 
+
+* Avoid using passive _to be_ verbs like been and being.
+
+* Avoid weak or vague verbs, such as _have_, _make_, and _do_.
+
+When in doubt, choose the simple word or phrase over a more formal or complex one. For example:
+
+| Use this | Not this
+| -------- | --------
+| use | utilize, make use of
+| remove | extract, take away, eliminate
+| tell | inform, let know
+| to |in order to, as a means to
+| also | in addition
+| connect | establish connectivity
+
+Whenever possible, choose words that have one clear meaning.
+Omit unnecessary adverbs—words that describe how, when, or where. Unless they're important to the meaning of a statement, leave them out.
+
+### Be consistent
+
+Use one term consistently to represent one concept. For example, if you use extrinsic, dispatchable, and transaction interchangeably or ambiguously, you’ll leave the reader confused and uncertain. If terminology changes, be prepared to root out old terminology.
+
+If you use words that can be both nouns and verbs—for example, words like file, post, mark, screen, record, and report—use sentence structure and context to eliminate ambiguity.
+
+### Avoid dangling participles
+
+Participles are modifiers so they must have a noun to modify. A dangling participle is a participle that doesn’t have a noun to modify. If you misplace or leave out the word being modified, you’ll end up with a sentence that is difficult to understand, illogical, or ambiguous (though potentially amusing). Here are a few examples of sentences with dangling participles:
+
+* Looking around the yard, dandelions sprouted in every corner.
+
+* Walking through the kitchen, the smoke alarm was going off.
+
+* Driving like a maniac, the deer was hit and killed.
+
+You can correct these sentences by bringing the participle phrase closer to the subject the phrase is intended to modify or changing the word order of the sentence to clarify who is doing what. You can also fix these types of problems by changing the tense or using the active voice. For example:
+
+* Looking around the yard, I saw dandelions had sprouted in every corner.
+
+* As I was walking through the kitchen, the smoke alarm was going off.
+
+* Driving like a maniac, he hit a deer and killed it.
+
+### Dangling prepositions
+
+In modern English, it’s perfectly acceptable to end a sentence with a preposition. Don’t twist a sentence into knots just to avoid using a preposition at the end.
+
+* This is something you might be interested in.
+
+* This is an example you should pay attention to.
+
+### Cross-reference formats
+
+Most cross-references should include information that clarifies what the reader can expect to be found in the referenced topic.
+
+* For cross-references to topics in the Substrate documentation, use the following formats:
+
+   For more information about [task or concept], see [topic-title].
+
+* For cross-references in a glossary entry to other glossary entries, use the following format:
+  
+  See [topic].
+
+* For cross-references to external resources, use the title of the destination instead of the URL of the destination.
+
+Avoid using links to unnamed destinations. For example, don’t use links like click <u>here</u> or see <u>this article</u>.
+
+## Writing concept topics
+
+Concept topics answer “why?” and “what is…?” questions. 
+Use concept topics to:
+
+* Explain abstract ideas.
+
+* Introduce new terminology.
+
+* Offer analysis.
+
+* Provide background information.
+
+The goal of a concept topic is to help the reader understand the bigger picture, the key components of a system or architecture, relationships between components.
+
+Concept topics tend to be relatively stable, requiring little, if any, ongoing maintenance.
+
+At a minimum, a concept topic includes at least one heading and one or more body paragraphs. A concept topic can also include:
+
+* One or more examples.
+
+* Two or more subsections, marked by subheadings.
+
+* A list of related topics.
