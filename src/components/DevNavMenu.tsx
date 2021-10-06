@@ -635,7 +635,7 @@ DevNavMenu.tuts.nodeMetrics = [
 
 DevNavMenu.tuts.addPallet = [
   {
-    name: `Add Nicks Pallet to the Runtime`,
+    name: `Add the Nicks Pallet to your Runtime`,
     items: [
       {
         title: `Introduction`,
