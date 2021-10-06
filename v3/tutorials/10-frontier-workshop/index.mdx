@@ -8,8 +8,8 @@ category: Parachains
 keywords: ethereum, workshop, frontier
 difficulty: 3
 duration: 3 Hour
-relevantSkills:
-  - Rust
+relevantSkills: 
+  - Rust 
   - Ethereum
   - Smart Contracts
 ---
@@ -49,7 +49,7 @@ There's also a github repo `template` that is available for major Frontier relea
 
 You can generate a version of the Frontier template by running the
 [generation script](https://github.com/paritytech/frontier/blob/master/.maintain/node-template-release.sh)
-included in Frontier.
+included in Frontier. 
 
 ```bash
 # from the top working dir of Frontier:
@@ -87,26 +87,26 @@ inspect blocks:
 
 ```json
 {
-  "Address": "MultiAddress",
-  "LookupSource": "MultiAddress",
-  "Account": {
-    "nonce": "U256",
-    "balance": "U256"
-  },
-  "Transaction": {
-    "nonce": "U256",
-    "action": "String",
-    "gas_price": "u64",
-    "gas_limit": "u64",
-    "value": "U256",
-    "input": "Vec<u8>",
-    "signature": "Signature"
-  },
-  "Signature": {
-    "v": "u64",
-    "r": "H256",
-    "s": "H256"
-  }
+	"Address": "MultiAddress",
+	"LookupSource": "MultiAddress",
+	"Account": {
+		"nonce": "U256",
+		"balance": "U256"
+	},
+	"Transaction": {
+		"nonce": "U256",
+		"action": "String",
+		"gas_price": "u64",
+		"gas_limit": "u64",
+		"value": "U256",
+		"input": "Vec<u8>",
+		"signature": "Signature"
+	},
+	"Signature": {
+		"v": "u64",
+		"r": "H256",
+		"s": "H256"
+	}
 }
 ```
 
@@ -145,11 +145,13 @@ x: eth.getBalance
 Alice's EVM account ID was calculated using
 [an included utility script](https://github.com/paritytech/frontier/blob/master/template/utils/README.md#--evm-address-address).
 
+
+
 ### Deploy & Call Ethereum Smart Contracts
 
 To deploy and call Ethereum smart contracts and test the related functionality follow the next steps at:
-
 - [Testing Ethereum Smart Contracts Functionality](#erc20-contract-deployment).
+
 
 ## Architecture
 

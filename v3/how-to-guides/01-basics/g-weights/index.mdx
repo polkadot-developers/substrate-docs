@@ -2,7 +2,7 @@
 title: Calculating Transaction Weights
 slug: /how-to-guides/v3/basics/weights
 keywords: basics, weights, runtime, FRAME V1
-version: 3.0
+version: 3.0 
 section: how to guides
 category: basics
 difficulty: 1
@@ -11,7 +11,8 @@ difficulty: 1
 <Message
   type={`yellow`}
   title={`Information`}
-  text="This guide shows a basic procedure for confirguring weights. There are more
+  text=
+    "This guide shows a basic procedure for confirguring weights. There are more
     advanced methods that suit different use cases. For simple functions with fixed amounts
     of storage reads, this method works well. For any other use cases, see the section 
     [on weights](../../weights/calculate-fees).
@@ -26,7 +27,7 @@ difficulty: 1
     },
     {
       title: 'Use Cases',
-      description: `
+      description:`
 - Assign the correct weight before a function call to storage.
 - Calculate transaction fees.`,
     },
@@ -115,7 +116,9 @@ Ok(Pays::Yes.into())
 
 #### Other
 
-- <ExternalLink url={`https://wiki.polkadot.network/docs/en/learn-transaction-fees`}>
+- <ExternalLink
+    url={`https://wiki.polkadot.network/docs/en/learn-transaction-fees`}
+  >
     Polkadot's Transaction Fees{' '}
   </ExternalLink>
 

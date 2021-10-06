@@ -2,7 +2,7 @@
 title: Implement a Lockable Currency
 slug: /how-to-guides/v3/pallet-design/lockable-currency
 keywords: pallet design, currency, intermediate, runtime
-version: 3.0
+version: 3.0 
 section: how to guides
 category: pallet design
 difficulty: 2
@@ -16,12 +16,14 @@ difficulty: 2
     },
     {
       title: 'Use Cases',
-      description: `- Staking
+      description:
+`- Staking
 - Conviction voting`,
     },
     {
       title: 'Overview',
-      description: `The [\`LockableCurrency\`](/rustdocs/latest/frame_support/traits/trait.LockableCurrency.html) trait can be very useful in the context of economic systems that enforce accountability by collateralizing fungible resources.
+      description:
+        `The [\`LockableCurrency\`](/rustdocs/latest/frame_support/traits/trait.LockableCurrency.html) trait can be very useful in the context of economic systems that enforce accountability by collateralizing fungible resources.
 		Substrate's [staking pallet](/rustdocs/latest/pallet_staking/index.html) makes use of the same trait to handle locked funds in time-based increments. In
 		this guide, we will make use of it in our own custom pallet.
 		`,

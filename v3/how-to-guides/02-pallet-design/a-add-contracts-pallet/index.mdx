@@ -2,7 +2,7 @@
 title: Integrate the Contracts Pallet
 slug: /how-to-guides/v3/pallet-design/contracts-pallet
 keywords: pallet design, intermediate, runtime
-version: 3.0
+version: 3.0 
 section: how to guides
 category: pallet design
 difficulty: 1
@@ -11,7 +11,8 @@ difficulty: 1
 <Message
   type={`green`}
   title={`Tip`}
-  text="You should already have the latest version of the 
+  text=
+    "You should already have the latest version of the 
     Substrate Node Template compiled on your computer to follow this guide.
     If you haven't already done so, refer to 
     [this tutorial](/tutorials/v3/create-your-first-substrate-chain/).
@@ -22,17 +23,18 @@ difficulty: 1
   data={[
     {
       title: 'Goal',
-      description:
-        'Add the Contracts pallet to your runtime to be able to use Wasm smart contracts in your blockchain.',
+      description: 'Add the Contracts pallet to your runtime to be able to use Wasm smart contracts in your blockchain.',
     },
     {
       title: 'Use Cases',
-      description: `- Developping a chain capable of handling smart contracts
+      description:
+`- Developping a chain capable of handling smart contracts
 - On-chain execution of Wasm binaries`,
     },
     {
       title: 'Overview',
-      description: `This guide will show you how you can add the [Contracts pallet](/rustdocs/latest/pallet_contracts/) to your runtime in order to allow your blockchain
+      description:
+        `This guide will show you how you can add the [Contracts pallet](/rustdocs/latest/pallet_contracts/) to your runtime in order to allow your blockchain
         to support Wasm smart contracts. You can follow similar patterns to add additional FRAME pallets to your runtime,
         however you should note that each pallet is a little different in terms of the specific configuration settings
         needed to use it correctly.
@@ -148,14 +150,10 @@ Add this alongside the other `use` statements in `node/src/rpc.rs`:
 use pallet_contracts_rpc::{Contracts, ContractsApi};
 ```
 
-<Message
-  type="green"
-  title="Tip"
-  text={`
+<Message type='green' title='Tip' text={`
 Unsure what version to import? Use the latest version as indicated in
 [crates.io](https://crates.io/search?q=pallet-contracts-rpc).
-`}
-/>
+`}/>
 
 #### Implement the Contracts runtime API
 

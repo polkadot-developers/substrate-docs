@@ -1,15 +1,15 @@
 ---
 title: Add the Nicks Pallet to your Runtime
 slug: /tutorials/v3/add-a-pallet
-version: 3.0
+version: 3.0 
 hideNav: true
 section: tutorials
 category: add a pallet
 keywords: FRAME, runtime, custom pallet
 difficulty: 1
 duration: 2 Hour
-relevantSkills:
-  - Rust
+relevantSkills: 
+  - Rust 
   - FRAME
 ---
 
@@ -68,13 +68,15 @@ Before we get started, let's layout our objectives:
 
 <TutorialObjective
   data={{
-    textLineOne: '1. Add the Nicks pallet to your Node Template',
+    textLineOne:
+      '1. Add the Nicks pallet to your Node Template',
     url: '/tutorials/v3/add-a-pallet#import-the-nicks-pallet',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne: '2. Implement the Nicks pallet configuration trait.',
+    textLineOne:
+      '2. Implement the Nicks pallet configuration trait.',
     url: '/tutorials/v3/add-a-pallet#configure-the-nicks-pallet',
   }}
 />
@@ -281,7 +283,7 @@ Before moving on, check that the new dependencies resolve correctly by running:
 cargo check -p node-template-runtime
 ```
 
-Next we will implement the Nicks pallet configuration trait and add the Nicks pallet to your runtime.
+Next we will implement the Nicks pallet configuration trait and add the Nicks pallet to your runtime. 
 
 ## Configure the Nicks Pallet
 
@@ -348,7 +350,6 @@ pub trait Config: frame_system::Config {
     type MaxLength: Get<u32>;
 }
 ```
-
 ### Implement the Nicks pallet `Config` trait
 
 Just like we used the Balances pallet as a template for importing the Nicks pallet, let's use the
@@ -492,7 +493,8 @@ construct_runtime!(
 <Message
   type={`gray`}
   title={`Note`}
-  text="Not all pallets will expose all of these runtime types, and some may expose more! You
+  text=
+    "Not all pallets will expose all of these runtime types, and some may expose more! You
     should always look at the documentation or source code of a pallet to determine which of these types
     you need to expose.
     "
@@ -501,7 +503,7 @@ construct_runtime!(
 ## Interact with the Nicks Pallet
 
 Now you are ready to compile and run your node that has been enhanced with nickname capabilities
-from the [Nicks pallet](/rustdocs/latest/pallet_nicks/index.html).
+from the [Nicks pallet](/rustdocs/latest/pallet_nicks/index.html). 
 
 ### Compile and run the node
 
@@ -533,7 +535,8 @@ continue with the rest of this tutorial.
 <Message
   type={`yellow`}
   title={`Information`}
-  text="Refer directly to the
+  text=
+    "Refer directly to the
     [front-end setup instructions](/tutorials/v3/create-your-first-substrate-chain/#install-the-front-end-template)
     in the Create Your First Chain Tutorial if necessary.
     "
@@ -717,8 +720,8 @@ in **crates.io** repository.
   techniques.
 - For more information about runtime development tips and patterns, refer to our
   [How-to Guides](/how-to-guides).
-- For a bare FRAME pallet with higly detailed doc comments on specifics of what more you can access
-  within FRAME, see [this example in `substrate`](https://github.com/paritytech/substrate/tree/master/frame/example).
+- For a bare FRAME pallet with higly detailed doc comments on specifics of what more you can access 
+within FRAME, see [this example in `substrate`](https://github.com/paritytech/substrate/tree/master/frame/example).
 
 #### References
 

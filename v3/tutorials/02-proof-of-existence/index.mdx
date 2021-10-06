@@ -2,14 +2,14 @@
 title: Build a Proof of Existence dApp
 slug: /tutorials/v3/proof-of-existence
 hideNav: true
-version: 3.0
+version: 3.0 
 section: tutorials
 category: proof of existence
-keywords: dapp, substrate
+keywords: dapp, substrate 
 difficulty: 1
 duration: 1 Hour
-relevantSkills:
-  - Rust
+relevantSkills: 
+  - Rust 
   - FRAME
   - ReactJS
 ---
@@ -69,13 +69,15 @@ We only expect that:
 />
 <TutorialObjective
   data={{
-    textLineOne: '2. Add our own custom PoE pallet from scratch and implement our PoE API.',
+    textLineOne:
+      '2. Add our own custom PoE pallet from scratch and implement our PoE API.',
     url: '#building-a-custom-pallet',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne: '3. Add a custom user interface that interacts with our PoE API.',
+    textLineOne:
+      '3. Add a custom user interface that interacts with our PoE API.',
     url: '#building-a-custom-frontend',
   }}
 />
@@ -113,7 +115,8 @@ git clone -b latest --depth 1 https://github.com/substrate-developer-hub/substra
 <Message
   type={`gray`}
   title={`Note`}
-  text="Experienced developers may prefer to skip that tutorial and install the Node Template according to
+  text=
+      "Experienced developers may prefer to skip that tutorial and install the Node Template according to
       the instructions in [its readme](https://github.com/substrate-developer-hub/substrate-node-template#getting-started)."
 />
 
@@ -125,7 +128,8 @@ so there is no additional set-up required if you have already completed that tut
 <Message
   type={`green`}
   title={`Tip`}
-  text="Refer directly to the front-end setup instructions for the
+  text=
+  "Refer directly to the front-end setup instructions for the
   [Create Your First Chain Tutorial](/tutorials/v3/create-your-first-substrate-chain#install-the-front-end-template)
   if necessary.
   "
@@ -144,7 +148,6 @@ claimed, and who made those claims.
 Sounds simple enough, right? Let's get coding!
 
 #### Next steps
-
 1. Create a custom pallet from scratch
 2. Implement pallet events, errors, and storage items
 3. Implement callabe functions `create_claim()` and `revoke_claim()`
@@ -180,8 +183,10 @@ point to build our own custom runtime logic.
 <Message
   type={`gray`}
   title={`Note`}
-  text={`The following sections will start _from scratch_ and assumes that you have cleared the contents inside
-       \`pallet/template/src/lib.rs\` file.`}
+  text={
+      `The following sections will start _from scratch_ and assumes that you have cleared the contents inside
+       \`pallet/template/src/lib.rs\` file.` 
+  }
 />
 
 Open the Node Template in your favorite code editor, then open the file
@@ -514,7 +519,7 @@ interact with our new Proof of Existence pallet!
 #### Next steps
 
 1. Install the Substrate Front-end Template
-2. Add a custom React component to interact with your node's runtime
+2. Add a custom React component to interact with your node's runtime 
 3. Submit a proof and check that your dApp works
 
 ## Building a Custom Front End
@@ -772,7 +777,6 @@ This tutorial chooses to omit some of the specific details around development in
 experience short and satisfying. However, we want you to keep learning!
 
 #### Learn more
-
 To learn more about building your own pallets, explore the
 [FRAME documentation](/v3/runtime/frame) and the [how-to guides](/how-to-guides).
 

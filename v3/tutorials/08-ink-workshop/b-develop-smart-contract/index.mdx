@@ -1,7 +1,7 @@
 ---
 title: Develop a Smart Contract
 slug: /tutorials/v3/ink-workshop/pt2
-version: 3.0
+version: 3.0 
 section: tutorials
 category: ink workshop
 keywords: smart contracts, erc20, wasm
@@ -13,43 +13,48 @@ We will build a simple **Incrementer** contract which holds a number which you c
 
 <TutorialObjective
   data={{
-    textLineOne: '1. ink! Smart Contract Template',
-    url: '#contract-template',
+    textLineOne:
+      '1. ink! Smart Contract Template',
+      url: '#contract-template',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne: '2. Storing a Value',
+    textLineOne:
+      '2. Storing a Value',
     url: '#storing-a-value',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne: '3. Interacting with a Storage Value',
+    textLineOne:
+      '3. Interacting with a Storage Value',
     url: '#interacting-with-a-storage-value',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne: '4. Incrementing the Value',
+    textLineOne:
+      '4. Incrementing the Value',
     url: '#incrementing-the-value',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne: '5. Storing a Mapping',
+    textLineOne:
+      '5. Storing a Mapping',
     url: '#storing-a-mapping',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne: '6. Updating a Value',
+    textLineOne:
+      '6. Updating a Value',
     url: '#updating-a-value',
   }}
 />
 
 ## Learning outcomes
-
 - Learn the structure of ink! smart contracts
 - To store single values and hash maps
 - To safely get and set these values
@@ -635,6 +640,7 @@ self.my_number_map
     .and_modify(|old_value| *old_value += by)
     .or_insert(by);
 ```
+
 
 ### 3. Your Turn
 
