@@ -125,17 +125,15 @@ const Buttons = () => {
           <h4>PRIMARY FIXED WIDTH</h4>
           <div className="mt-6">
             <p className="mb-0">10 Characters</p>
-            <PrimaryFixedButton small link="#">
-              Primaryara
-            </PrimaryFixedButton>
+            <PrimaryFixedButton link="#">Primaryara</PrimaryFixedButton>
             <br />
             <p className="mb-0">20 Characters</p>
-            <PrimaryFixedButton medium link="#">
+            <PrimaryFixedButton link="#">
               Primary Medium ABCDE
             </PrimaryFixedButton>
             <br />
             <p className="mb-0">30 Characters</p>
-            <PrimaryFixedButton large link="#">
+            <PrimaryFixedButton link="#">
               Primary Very very very Large
             </PrimaryFixedButton>
           </div>

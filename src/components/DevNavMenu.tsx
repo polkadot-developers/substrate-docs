@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl'
+
 const DevNavMenu = {
   global: () => {
     const intl = useIntl()
@@ -499,9 +500,8 @@ const DevNavMenu = {
   },
 }
 
-DevNavMenu.tuts = {}
-
-DevNavMenu.tuts.firstChain = [
+const DevNavMenuTuts = new Map()
+DevNavMenuTuts.set('firstChain', [
   {
     name: `Create Your First Substrate Chain`,
     items: [
@@ -527,9 +527,8 @@ DevNavMenu.tuts.firstChain = [
       },
     ],
   },
-]
-
-DevNavMenu.tuts.poe = [
+])
+DevNavMenuTuts.set('poe', [
   {
     name: `Build a Proof of Existence Blockchain`,
     items: [
@@ -551,9 +550,8 @@ DevNavMenu.tuts.poe = [
       },
     ],
   },
-]
-
-DevNavMenu.tuts.permissionedNetwork = [
+])
+DevNavMenuTuts.set('permissionedNetwork', [
   {
     name: `Start a Permissioned Network`,
     items: [
@@ -571,9 +569,8 @@ DevNavMenu.tuts.permissionedNetwork = [
       },
     ],
   },
-]
-
-DevNavMenu.tuts.forklessUpgrades = [
+])
+DevNavMenuTuts.set('forklessUpgrades', [
   {
     name: `Initiate a Forkless Runtime Upgrade`,
     items: [
@@ -591,9 +588,8 @@ DevNavMenu.tuts.forklessUpgrades = [
       },
     ],
   },
-]
-
-DevNavMenu.tuts.privateNetwork = [
+])
+DevNavMenuTuts.set('privateNetwork', [
   {
     name: `Start a Private Network`,
     items: [
@@ -619,9 +615,8 @@ DevNavMenu.tuts.privateNetwork = [
       },
     ],
   },
-]
-
-DevNavMenu.tuts.nodeMetrics = [
+])
+DevNavMenuTuts.set('nodeMetrics', [
   {
     name: `Visualizing Node Metrics`,
     items: [
@@ -643,9 +638,8 @@ DevNavMenu.tuts.nodeMetrics = [
       },
     ],
   },
-]
-
-DevNavMenu.tuts.addPallet = [
+])
+DevNavMenuTuts.set('addPallet', [
   {
     name: `Add the Nicks Pallet to your Runtime`,
     items: [
@@ -671,9 +665,8 @@ DevNavMenu.tuts.addPallet = [
       },
     ],
   },
-]
-
-DevNavMenu.tuts.inkWorkshop = [
+])
+DevNavMenuTuts.set('inkWorkshop', [
   {
     name: `ink! Contracts Workshop`,
     items: [
@@ -691,9 +684,8 @@ DevNavMenu.tuts.inkWorkshop = [
       },
     ],
   },
-]
-
-DevNavMenu.tuts.cumulusWorkshop = [
+])
+DevNavMenuTuts.set('cumulusWorkshop', [
   {
     name: `Substrate Cumulus Workshop`,
     items: [
@@ -711,9 +703,8 @@ DevNavMenu.tuts.cumulusWorkshop = [
       },
     ],
   },
-]
-
-DevNavMenu.tuts.frontierWorkshop = [
+])
+DevNavMenuTuts.set('frontierWorkshop', [
   {
     name: `Frontier Workshop`,
     items: [
@@ -735,8 +726,8 @@ DevNavMenu.tuts.frontierWorkshop = [
       },
     ],
   },
-]
-DevNavMenu.tuts.kittiesWorkshop = [
+])
+DevNavMenuTuts.set('kittiesWorkshop', [
   {
     name: `Build the Substrate Kitties Chain`,
     items: [
@@ -783,6 +774,5 @@ DevNavMenu.tuts.kittiesWorkshop = [
       },
     ],
   },
-]
-
-export default DevNavMenu
+])
+export { DevNavMenu, DevNavMenuTuts }

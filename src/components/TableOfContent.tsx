@@ -15,7 +15,14 @@ interface TableOfContentProps {
 }
 
 const getHeadingIds: any = (
-  toc: TableOfContentProps,
+  toc: {
+    url: string
+    title: string
+    items?: {
+      url: string
+      title: string
+    }[]
+  }[],
   traverseFullDepth = true,
   depth: number,
   recursionDepth = 1
