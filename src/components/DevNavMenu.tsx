@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl'
+
 const DevNavMenu = {
   global: () => {
     const intl = useIntl()
@@ -267,8 +268,20 @@ const DevNavMenu = {
         name: `${intl.formatMessage({ id: 'docs-menu-contribute' })}`,
         items: [
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-stye-guide' })}`,
-            link: '/v3/style-guide',
+            title: `${intl.formatMessage({ id: 'docs-menu-style-guide' })}`,
+            link: '/v3/contribute/style-guide',
+          },
+          {
+            title: `${intl.formatMessage({ id: 'docs-menu-writing-style' })}`,
+            link: '/v3/contribute/writing',
+          },
+          {
+            title: `${intl.formatMessage({ id: 'docs-menu-bounties' })}`,
+            link: '/v3/contribute/bounties',
+          },
+          {
+            title: `${intl.formatMessage({ id: 'docs-menu-templates' })}`,
+            link: '/v3/contribute/templates',
           },
         ],
       },
@@ -487,9 +500,8 @@ const DevNavMenu = {
   },
 }
 
-DevNavMenu.tuts = {}
-
-DevNavMenu.tuts.firstChain = [
+const DevNavMenuTuts = new Map()
+DevNavMenuTuts.set('firstChain', [
   {
     name: `Create Your First Substrate Chain`,
     items: [
@@ -499,25 +511,24 @@ DevNavMenu.tuts.firstChain = [
       },
       {
         title: `Background`,
-        link: '/tutorials/v3/create-your-first-substrate-chain#what-is-a-blockchain-node',
+        link: '#what-is-a-blockchain-node',
       },
       {
         title: `Set-up Your Computer`,
-        link: '/tutorials/v3/create-your-first-substrate-chain#install-rust-and-the-rust-toolchain',
+        link: '#install-rust-and-the-rust-toolchain',
       },
       {
         title: `Using the Substrate Node Template`,
-        link: '/tutorials/v3/create-your-first-substrate-chain#prepare-a-substrate-node-using-the-node-template',
+        link: '#prepare-a-substrate-node-using-the-node-template',
       },
       {
         title: `Interacting with Your Node`,
-        link: '/tutorials/v3/create-your-first-substrate-chain#start-the-front-end-template',
+        link: '#start-the-front-end-template',
       },
     ],
   },
-]
-
-DevNavMenu.tuts.poe = [
+])
+DevNavMenuTuts.set('poe', [
   {
     name: `Build a Proof of Existence Blockchain`,
     items: [
@@ -527,21 +538,20 @@ DevNavMenu.tuts.poe = [
       },
       {
         title: `Preparation`,
-        link: '/tutorials/v3/proof-of-existence#prepare-to-build-a-dapp',
+        link: '#prepare-to-build-a-dapp',
       },
       {
         title: `Build a Custom Pallet`,
-        link: '/tutorials/v3/proof-of-existence#building-a-custom-pallet',
+        link: '#building-a-custom-pallet',
       },
       {
         title: `Build a Custom Front-end`,
-        link: '/tutorials/v3/proof-of-existence#building-a-custom-front-end',
+        link: '#building-a-custom-front-end',
       },
     ],
   },
-]
-
-DevNavMenu.tuts.permissionedNetwork = [
+])
+DevNavMenuTuts.set('permissionedNetwork', [
   {
     name: `Start a Permissioned Network`,
     items: [
@@ -551,17 +561,16 @@ DevNavMenu.tuts.permissionedNetwork = [
       },
       {
         title: `Add the node-authorization pallet`,
-        link: '/tutorials/v3/permissioned-network#add-node-authorization-pallet',
+        link: '#add-node-authorization-pallet',
       },
       {
         title: `Launch your permissioned network`,
-        link: '/tutorials/v3/permissioned-network#launch-our-permissioned-network',
+        link: '#launch-our-permissioned-network',
       },
     ],
   },
-]
-
-DevNavMenu.tuts.forklessUpgrades = [
+])
+DevNavMenuTuts.set('forklessUpgrades', [
   {
     name: `Initiate a Forkless Runtime Upgrade`,
     items: [
@@ -571,17 +580,16 @@ DevNavMenu.tuts.forklessUpgrades = [
       },
       {
         title: `Sudo Upgrade`,
-        link: '/tutorials/v3/forkless-upgrades#sudo-upgrade',
+        link: '#sudo-upgrade',
       },
       {
         title: `Schedule an Upgrade`,
-        link: '/tutorials/v3/forkless-upgrades#schedule-an-upgrade',
+        link: '#schedule-an-upgrade',
       },
     ],
   },
-]
-
-DevNavMenu.tuts.privateNetwork = [
+])
+DevNavMenuTuts.set('privateNetwork', [
   {
     name: `Start a Private Network`,
     items: [
@@ -591,25 +599,24 @@ DevNavMenu.tuts.privateNetwork = [
       },
       {
         title: `Alice and Bob Start Blockchain`,
-        link: '/tutorials/v3/private-network#alice-and-bob-start-blockchain',
+        link: '#alice-and-bob-start-blockchain',
       },
       {
         title: `Generate Your Own Keys`,
-        link: '/tutorials/v3/private-network#generate-your-own-keys',
+        link: '#generate-your-own-keys',
       },
       {
         title: `Create a Custom Chain Spec`,
-        link: '/tutorials/v3/private-network#create-a-custom-chain-spec',
+        link: '#create-a-custom-chain-spec',
       },
       {
         title: `Launch Your Private Network`,
-        link: '/tutorials/v3/private-network#launch-your-private-network',
+        link: '#launch-your-private-network',
       },
     ],
   },
-]
-
-DevNavMenu.tuts.nodeMetrics = [
+])
+DevNavMenuTuts.set('nodeMetrics', [
   {
     name: `Visualizing Node Metrics`,
     items: [
@@ -619,23 +626,22 @@ DevNavMenu.tuts.nodeMetrics = [
       },
       {
         title: `Install Prometheus and Grafana`,
-        link: '/tutorials/v3/node-metrics#install-prometheus-and-grafana',
+        link: '#install-prometheus-and-grafana',
       },
       {
         title: `Start a Substrate Template Node`,
-        link: '/tutorials/v3/node-metrics#start-a-substrate-template-node',
+        link: '#start-a-substrate-template-node',
       },
       {
         title: `Visualizing Prometheus Metrics with Grafana`,
-        link: '/tutorials/v3/node-metrics#visualizing-prometheus-metrics-with-grafana',
+        link: '#visualizing-prometheus-metrics-with-grafana',
       },
     ],
   },
-]
-
-DevNavMenu.tuts.addPallet = [
+])
+DevNavMenuTuts.set('addPallet', [
   {
-    name: `Add a FRAME's Nicks Pallet to Your Runtime`,
+    name: `Add the Nicks Pallet to your Runtime`,
     items: [
       {
         title: `Introduction`,
@@ -643,25 +649,24 @@ DevNavMenu.tuts.addPallet = [
       },
       {
         title: `Import the Nicks Pallet`,
-        link: '/tutorials/v3/add-a-pallet#import-the-nicks-pallet',
+        link: '#import-the-nicks-pallet',
       },
       {
         title: `Configure the Nicks Pallet`,
-        link: '/tutorials/v3/add-a-pallet#configure-the-nicks-pallet',
+        link: '#configure-the-nicks-pallet',
       },
       {
         title: `Interact with the Nicks Pallet`,
-        link: '/tutorials/v3/add-a-pallet#interact-with-the-nicks-pallet',
+        link: '#interact-with-the-nicks-pallet',
       },
       {
         title: `Publish Your Own Pallet`,
-        link: '/tutorials/v3/add-a-pallet#publish-your-own-pallet',
+        link: '#publish-your-own-pallet',
       },
     ],
   },
-]
-
-DevNavMenu.tuts.inkWorkshop = [
+])
+DevNavMenuTuts.set('inkWorkshop', [
   {
     name: `ink! Contracts Workshop`,
     items: [
@@ -679,9 +684,8 @@ DevNavMenu.tuts.inkWorkshop = [
       },
     ],
   },
-]
-
-DevNavMenu.tuts.cumulusWorkshop = [
+])
+DevNavMenuTuts.set('cumulusWorkshop', [
   {
     name: `Substrate Cumulus Workshop`,
     items: [
@@ -699,9 +703,8 @@ DevNavMenu.tuts.cumulusWorkshop = [
       },
     ],
   },
-]
-
-DevNavMenu.tuts.frontierWorkshop = [
+])
+DevNavMenuTuts.set('frontierWorkshop', [
   {
     name: `Frontier Workshop`,
     items: [
@@ -711,22 +714,22 @@ DevNavMenu.tuts.frontierWorkshop = [
       },
       {
         title: `Frontier Template`,
-        link: '/tutorials/v3/frontier#frontier-template',
+        link: '#frontier-template',
       },
       {
         title: `Architecture`,
-        link: '/tutorials/v3/frontier#architecture',
+        link: '#architecture',
       },
       {
         title: `ERC20 Contract Deployment`,
-        link: '/tutorials/v3/frontier#erc20-contract-deployment',
+        link: '#erc20-contract-deployment',
       },
     ],
   },
-]
-DevNavMenu.tuts.kittiesWorkshop = [
+])
+DevNavMenuTuts.set('kittiesWorkshop', [
   {
-    name: `Kitties Workshop Part I`,
+    name: `Build the Substrate Kitties Chain`,
     items: [
       {
         title: 'Introduction',
@@ -750,15 +753,15 @@ DevNavMenu.tuts.kittiesWorkshop = [
       },
       {
         title: `Interacting with Your Kitties`,
-        link: '/tutorials/v3/kitties/pt1#interacting-with-your-ktties',
+        link: '/tutorials/v3/kitties/pt1#interacting-with-your-kitties',
       },
     ],
   },
   {
-    name: `Kitties Workshop Part II`,
+    name: `Create a Front-end for the Kitties Chain`,
     items: [
       {
-        title: `Introduction`,
+        title: `Overview`,
         link: '/tutorials/v3/kitties/pt2',
       },
       {
@@ -771,6 +774,5 @@ DevNavMenu.tuts.kittiesWorkshop = [
       },
     ],
   },
-]
-
-export default DevNavMenu
+])
+export { DevNavMenu, DevNavMenuTuts }

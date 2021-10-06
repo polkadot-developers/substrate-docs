@@ -10,14 +10,14 @@ import BreadCrumbNav from '../components/BreadCrumbNav'
 import VersionControl from '../components/VersionControl'
 import LastUpdateGithub from '../components/LastUpdateGithub'
 import { BottomButtons, RelevantSkills } from '../components/DocsComponents'
-import navMenu from '../components/DevNavMenu'
+import { DevNavMenu as navMenu, DevNavMenuTuts } from '../components/DevNavMenu'
 import DocTag from '../components/DocTag'
 
 const DocsTemplate = ({ location, data, pageContext }: any) => {
   const { slug, version, navMenuSlug } = pageContext
   const docId = 1
   const globalDocsNav = navMenu.global()
-  const docsMenu = navMenu.tuts[`${navMenuSlug}`]
+  const docsMenu = DevNavMenuTuts.get(navMenuSlug)
 
   return (
     <Layout>

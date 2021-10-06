@@ -24,7 +24,7 @@ export default function tutorials({ data }: any) {
             link={`/tutorials/v3/create-your-first-substrate-chain`}
           />
           <TutorialCard
-            title={`Add FRAME's Nicks Pallet to Your Runtime`}
+            title={`Add the Nicks Pallet to your Runtime`}
             image={data.tutorialTwo}
             description={`Add the Nicks pallet to your runtime and publish a custom pallet that others can reuse in their projects.`}
             time={`2 Hours`}
@@ -42,6 +42,26 @@ export default function tutorials({ data }: any) {
             prerequisites={true}
             version={`V3.0.0`}
             link={`/tutorials/v3/proof-of-existence`}
+          />
+          <TutorialCard
+            title={`Substrate Kitties Workshop`}
+            image={data.tutorialEleven}
+            description={`Build a full stack application that handles the ownership management of Substrate Kitties.`}
+            time={`4 Hours`}
+            difficulty={2}
+            prerequisites={false}
+            version={`V3.0.0`}
+            link={`/tutorials/v3/kitties/pt1`}
+          />
+          <TutorialCard
+            title={`Start a Private Network`}
+            image={data.tutorialSix}
+            description={`Learn how to start a private blockchain network using an out-of-the-box Substrate node.`}
+            time={`2 Hours`}
+            difficulty={1}
+            prerequisites={false}
+            version={`V3.0.0`}
+            link={`/tutorials/v3/private-network`}
           />
           <TutorialCard
             title={`Permissioned Network`}
@@ -64,16 +84,6 @@ export default function tutorials({ data }: any) {
             link={`/tutorials/v3/forkless-upgrades`}
           />
           <TutorialCard
-            title={`Start a Private Network`}
-            image={data.tutorialSix}
-            description={`Learn how to start a private blockchain network using an out-of-the-box Substrate node.`}
-            time={`2 Hours`}
-            difficulty={1}
-            prerequisites={false}
-            version={`V3.0.0`}
-            link={`/tutorials/v3/private-network`}
-          />
-          <TutorialCard
             title={`Node Metrics`}
             image={data.tutorialSeven}
             description={`Learn how to visualize the metrics that Substrate records using Prometheus.`}
@@ -94,16 +104,6 @@ export default function tutorials({ data }: any) {
             link={`/tutorials/v3/ink-workshop/pt1`}
           />
           <TutorialCard
-            title={`Cumulus Workshop`}
-            image={data.tutorialNine}
-            description={`A workshop to configure a Substrate node as a Parachain`}
-            time={`3 Hours`}
-            difficulty={3}
-            prerequisites={true}
-            version={`V3.0.0`}
-            link={`/tutorials/v3/cumulus-workshop/pt1`}
-          />
-          <TutorialCard
             title={`Frontier Workshop`}
             image={data.tutorialTen}
             description={`A workshop to configure a Substrate node to run Substrate EVM and Solidity contracts`}
@@ -114,14 +114,14 @@ export default function tutorials({ data }: any) {
             link={`/tutorials/v3/frontier`}
           />
           <TutorialCard
-            title={`Substrate Kitties Workshop`}
-            image={data.tutorialEleven}
-            description={`Build a full stack application that handles the ownership management of Substrate Kitties.`}
-            time={`4 Hours`}
-            difficulty={2}
-            prerequisites={false}
+            title={`Cumulus Workshop`}
+            image={data.tutorialNine}
+            description={`A workshop to configure a Substrate node as a Parachain`}
+            time={`3 Hours`}
+            difficulty={3}
+            prerequisites={true}
             version={`V3.0.0`}
-            link={`/tutorials/v3/kitties/pt1`}
+            link={`/tutorials/v3/cumulus-workshop/pt1`}
           />
         </div>
       </div>

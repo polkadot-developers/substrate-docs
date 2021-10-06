@@ -1,5 +1,5 @@
 ---
-title: Kitties Workshop
+title: Create a Front-end for the Kitties Chain
 slug: /tutorials/v3/kitties/pt2
 version: 3.0
 section: Tutorials
@@ -358,8 +358,8 @@ Now all that's left to do for our component to listen for changes in our node's 
 to pass in `subscribeKittyCnt` and `subscribeKitties` to React's `useEffect` function. Hence:
 
 ```js
-useEffect(subscribeKittyCnt, [api, keyring])
-useEffect(subscribeKitties, [api, kittyHashes])
+useEffect(subscribeKittyCnt, [api, keyring]);
+useEffect(subscribeKitties, [api, kittyHashes]);
 ```
 
 Learn more about how "Effect Hooks" work in [React's documentation](https://reactjs.org/docs/hooks-effect.html).
@@ -370,7 +370,7 @@ internally in React. We will then access and display them in the following secti
 ### Create the `KittyAvatar.js` Component
 
 In this component, all we're doing is mapping a library of PNG images to the bytes of our Kitty DNA.
-Since it's mostly all Javascript, we won't be going into much details.
+Since it's mostly all Javascript, we won't be going into much detail.
 
 Create a file `src/KittyAvatar.js` and paste in the following code:
 
@@ -704,20 +704,15 @@ Finally, to render Kitties.js, we want to add a new row to the `<Container/>` in
 </Grid.Row>
 ```
 
-<Message
-  type="yellow"
-  text="Information"
-  text={`
 If you get stuck in any of the above section. You can refer back to the complete source code of:\n
-- [\`src/kitties.js\`](https://github.com/substrate-developer-hub/substrate-front-end-template/blob/tutorials%2Fkitties/src/Kitties.js)
-- [\`src/kittyCards.js\`](https://github.com/substrate-developer-hub/substrate-front-end-template/blob/tutorials%2Fkitties/src/KittyCards.js)
-- [\`src/kittyAvatar.js\`](https://github.com/substrate-developer-hub/substrate-front-end-template/blob/tutorials%2Fkitties/src/KittyAvatar.js)
-`}
-/>
+- [`src/kitties.js`](https://github.com/substrate-developer-hub/substrate-front-end-template/blob/tutorials%2Fkitties/src/Kitties.js)
+- [`src/kittyCards.js`](https://github.com/substrate-developer-hub/substrate-front-end-template/blob/tutorials%2Fkitties/src/KittyCards.js)
+- [`src/kittyAvatar.js`](https://github.com/substrate-developer-hub/substrate-front-end-template/blob/tutorials%2Fkitties/src/KittyAvatar.js)
 
 Congratulations! You have finished the front-end turorial! Now run `yarn start`, refresh your
 browser and you should be able to start interacting with your node.
 
 ## Next steps
 
-- Explore the Polkadot JS API [cookbook](https://polkadot.js.org/docs/api/cookbook)
+- Explore the Polkadot JS API [cookbook](https://polkadot.js.org/docs/api/cookbook) 
+- Read about creating [custom RPCs](/v3/runtime/custom-rpcs) in Substrate 

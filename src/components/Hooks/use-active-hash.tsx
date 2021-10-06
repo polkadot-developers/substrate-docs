@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export const useActiveHash = (itemIds: string[], rootMargin = undefined) => {
+export const useActiveHash = (itemIds: string[], rootMargin?: string) => {
   const [activeHash, setActiveHash] = useState(``)
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -11,7 +11,7 @@ export const useActiveHash = (itemIds: string[], rootMargin = undefined) => {
           }
         })
       },
-      { rootMargin: rootMargin || `0% 0% -80% 0%` }
+      { rootMargin: rootMargin || `-100px 0px -80% 0px` }
     )
     itemIds.forEach((id: string) => {
       const el = document.getElementById(id)

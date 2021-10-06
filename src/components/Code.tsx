@@ -3,7 +3,7 @@ import Highlight, { defaultProps } from 'prism-react-renderer'
 import Icon from './Icon'
 import Prism from 'prism-react-renderer/prism'
 import theme from 'prism-react-renderer/themes/dracula'
-;(typeof global !== 'undefined' ? global : window).Prism = Prism
+;((typeof global !== 'undefined' ? global : window) as any).Prism = Prism
 require('prismjs/components/prism-rust')
 require('prismjs/components/prism-solidity')
 require('prismjs/components/prism-bash')

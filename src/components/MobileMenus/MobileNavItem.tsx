@@ -19,23 +19,13 @@ export default function MobileNavItem({ external, link, title }: MobileNavItemPr
   const styles = 'text-black dark:text-white hover:no-underline px-6 py-3 text-lg hover:font-bold'
   const activeStyles = () => (isActive ? `font-bold` : `font-medium`)
   if (external) {
-    if (title === 'Rust Docs') {
-      return (
-        <a href={link} target="_blank" rel="noreferrer">
-          <div className={`${styles} ${activeStyles()}`}>
-            <span>{title}</span>
-          </div>
-        </a>
-      )
-    } else {
-      return (
-        <a href={link}>
-          <div className={`${styles} ${activeStyles()}`}>
-            <span>{title}</span>
-          </div>
-        </a>
-      )
-    }
+    return (
+      <a href={link}>
+        <div className={`${styles} ${activeStyles()}`}>
+          <span>{title}</span>
+        </div>
+      </a>
+    )
   } else {
     return (
       <Link to={link}>

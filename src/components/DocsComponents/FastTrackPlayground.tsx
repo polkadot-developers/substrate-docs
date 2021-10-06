@@ -21,7 +21,7 @@ export function FastTrackPlayground({
           <p className="mb-0 pb-6">{description}</p>
           <a href={playgroundLink} className="md-button" target="_blank" rel="noreferrer">
             <button className="bg-substrateDark dark:bg-darkBackground py-3 w-full rounded text-lg text-white font-bold transform transition-all duration-300 ease-in-out hover:bg-opacity-90">
-              Set up Playground
+              Go to Playground
             </button>
           </a>
         </div>

@@ -220,7 +220,7 @@ construct_runtime!(
 ### Add genesis storage for our pallet
 
 `PeerId` is encoded in bs58 format, so we need a new library
-[bs58](https://docs.rs/bs58/) in **node/cargo.toml** to decode it to get its bytes.
+[bs58](https://docs.rs/bs58/) in **node/Cargo.toml** to decode it to get its bytes.
 
 **`node/cargo.toml`**
 
@@ -282,8 +282,6 @@ The first element of the tuple is the `OpaquePeerId` and we use `bs58::decode` t
 the `PeerId` in human readable format to bytes. The second element of the tuple is `AccountId`
 and represents the owner of this node, here we are using one of the provided endowed accounts
 for demonstration: [Alice and Bob](/v3/tools/subkey#well-known-keys).
-
-<!-- TODO: update to use the `key` embedded CLI tool with the node, reference subkey as option -->
 
 You may wondering where the `12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2` comes from.
 We can use [subkey](/v3/tools/subkey#generating-node-keys) to generate

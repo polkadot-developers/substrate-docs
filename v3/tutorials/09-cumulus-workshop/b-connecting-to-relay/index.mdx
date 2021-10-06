@@ -43,8 +43,8 @@ In this part of the workshop, we'll connect a parachain to our relay chain and a
 
 ## Launching a Parachain
 
-### 1. Reserve a Para ID
-
+### Reserve a Para ID
+ 
 To connect to any relay chain, you must first reserve a Para ID for your parathread that will
 become a parachain. It is called Para ID, because the same ID can be seen as its parachain ID or
 parathread ID, depending on your current chain to relay-chain connection state. To do this, you need
@@ -71,7 +71,7 @@ Note that the account used to register the Para ID must also be the origin for u
 Para ID. Once you submit this extrinsic successfully (you must see a sucessful `registrar.Reserved`
 event with your `paraID`), you can now launch your parachain or parathread using this reserved ID.
 
-### 2. Deploying the chain
+### Deploying the chain
 
 We'll begin by deploying <ExternalLink url="https://github.com/substrate-developer-hub/substrate-parachain-template">Parachain Template</ExternalLink>
 with Para ID `2000`. These instructions are written specifically for Para ID 2000.
@@ -80,7 +80,7 @@ The `parachain-collator` binary used below comes from compiling the Parachain Te
 Refer to [Building the Parachain Template](../pt1#3-building-the-parachain-template)
 section for details.
 
-### 3. Generate Parachain Genesis State
+### Generate Parachain Genesis State
 
 To register a parachain, the relay chain needs to know the parachain's genesis state. The collator
 node can export that state to a file for us. The following command will create a file containing the
@@ -90,7 +90,7 @@ parachain's entire genesis state, hex-encoded.
 parachain-collator export-genesis-state --parachain-id 2000 > para-2000-genesis
 ```
 
-### 4. Obtain Wasm Runtime Validation Function
+### Obtain Wasm Runtime Validation Function
 
 The relay chain also needs the parachain-specific runtime validation logic to validate
 parachain blocks. The collator node also has a command to produce this Wasm blob:
@@ -106,7 +106,7 @@ parachain-collator export-genesis-wasm > para-2000-wasm
 > This is for the _genesis_ block only. You cannot, at this time, connect a parachian with any
 > previous state to a relay chain. All parachains must start from block 0 on the relay chain.
 
-### 5. Start the Collator Node
+### Start the Collator Node
 
 We can now start the collator node with the following command. Notice that we need to supply the same
 relay chain spec we used when launching relay chain nodes, at the second half of the command.
@@ -144,7 +144,7 @@ Currently, a parachain node runs both a parachain collator (or full node) tightl
 There is presently no way to run a parachain node without the embedded relay chain node, but it is expected
 that this will become possible for non-collator nodes eventually.
 
-### 6. Checking if it Works
+### Checking if it Works
 
 At this point your _collator's logs_ should look something like this:
 
@@ -200,7 +200,7 @@ Authoring will begin when the collator is actually **registered on the relay cha
 The entire point of launching and registering parachains is that we can submit transactions to the
 parachains and interact with them.
 
-### 1. Connecting with the Apps UI
+### Connecting with the Apps UI
 
 We've already connected the Apps UI to the relay chain node. Now we can also connect to the
 parachain collator. Open another instance of Apps in a new browser window, and connect it to the
@@ -209,7 +209,7 @@ parachain node at:
 
 https://polkadot.js.org/apps/?rpc=ws%3A%2F%2Flocalhost%3A9945#/
 
-### 2. Submit Transactions
+### Submit Transactions
 
 You can make some simple token transfers to ensure that the parachain is operating normally. You can
 also make some on-chain remarks by going to the `Extrinsics` page, choosing `System` pallet and
@@ -217,7 +217,7 @@ also make some on-chain remarks by going to the `Extrinsics` page, choosing `Sys
 
 If the transaction go through as expected, you have a working parachain!
 
-### 3. Cross-chain Message Passing (XCMP)
+### Cross-chain Message Passing (XCMP)
 
 A parachain is it's own chain, but one key feature of connecting to a _common_ relaychain is the
 ability to communicate _between_ the connected chains. This area of functionality at the cutting
@@ -239,13 +239,13 @@ For a detailed overview, see the <ExternalLink url="https://wiki.polkadot.networ
 
 ## Parachain Registration
 
-### 1. Register Using `Sudo`
+### Register Using `Sudo`
 
 We have our relay chain launched and our parachain collator ready to go. Now we have to register the
 parachain on the relay chain. In the live Polkadot network, this will be accomplished with <ExternalLink url="https://wiki.polkadot.network/docs/en/learn-auction">parachain auctions</ExternalLink>. But today we will do it
 with `Sudo` call.
 
-### 2. Registration Transaction
+### Registration Transaction
 
 The transaction can be submitted **on a relay chain node** via Polkadot Apps UI. There are options
 for you to accomplish different types of registration that we cover below, only _one_ is needed.
@@ -325,7 +325,7 @@ Once fully onboarded and after [block production](#block-production) starts you 
 
 ![parachain-active-lease.png](../../../../src/images/tutorials/09-cumulus-workshop/parachain-active-lease.png)
 
-### 3. Block Production
+### Block Production
 
 The collator should start producing parachain blocks (aka collating) once the registration is
 successful **and a new relay chain epoch has begun**!
@@ -384,7 +384,7 @@ Finally, the collator should start producing log messages like the following:
 2021-05-30 17:00:39 [Parachain] 💤 Idle (0 peers), best: #2 (0x5087…b5a0), finalized #1 (0x80fc…ccae), ⬇ 0 ⬆ 0
 ```
 
-### 4. Chains Purge
+### Chains Purge
 
 <Message
   type={`yellow`}
@@ -410,7 +410,7 @@ polkadot purge-chain\
 
 Then register from a [blank slate](#registration-transaction) again.
 
-### 5. Parachian Block Finalization
+### Parachian Block Finalization
 
 The relay chain tracks the latest blocks (the heads) of each parachain. When a relay chain block
 is finalized, any parachain blocks that have completed the <ExternalLink url="https://polkadot.network/the-path-of-a-parachain-block/">validation process</ExternalLink>
@@ -433,7 +433,7 @@ parachain.
 > chain spec for you in [the workshop assets](https://github.com/substrate-developer-hub/cumulus-workshop/tree/latest/shared/chainspecs), and you
 > can add more as needed, described there.
 
-### 1. Start the Second Collator
+### Start the Second Collator
 
 The command to run additional collators is as follows. This command is nearly identical to the one
 we used to start the first collator, but we need to avoid conflicting ports and `base-path` directories.
@@ -456,7 +456,7 @@ parachain-collator \
 --bootnodes <other relay chain node>
 ```
 
-### 2. Non-Collating Parachain Full Nodes
+### Non-Collating Parachain Full Nodes
 
 It is also possible to start non-collating full node for a parachain. In this case, simply
 leave out the `--collator` flag.

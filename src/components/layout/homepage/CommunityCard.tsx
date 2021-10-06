@@ -1,31 +1,22 @@
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+import { useSiteMetadata } from '../../Hooks/use-site-metadata'
 import Icon from '../../Icon'
+import Link from '../../Link'
 
 export default function CommunityCard() {
-  const { site } = useStaticQuery(graphql`
-    {
-      site {
-        siteMetadata {
-          element
-          stackOverflow
-          substrateIO
-        }
-      }
-    }
-  `)
+  const { siteMetadata } = useSiteMetadata()
   const data = [
     {
       title: 'Contact',
-      description: 'Got questions? Get in touch!',
+      description: 'Have any questions? Get in touch!',
       headingOne: 'Join the conversation',
       iconOne: 'elementOrg',
       linkTextOne: 'Element',
-      linkOne: site.siteMetadata.element,
+      linkOne: siteMetadata.element,
       headingTwo: 'Find answers',
       iconTwo: 'stackOverflowOrg',
       linkTextTwo: 'Stack Overflow',
-      linkTwo: site.siteMetadata.stackOverflow,
+      linkTwo: siteMetadata.stackOverflow,
     },
     {
       title: 'Seminars & Events',
@@ -34,7 +25,7 @@ export default function CommunityCard() {
       headingOne: 'Participate',
       iconOne: 'gradHat',
       linkTextOne: 'Substrate Seminar',
-      linkOne: `${site.siteMetadata.substrateIO}/ecosystem/resources/seminar`,
+      linkOne: `${siteMetadata.substrateIO}/ecosystem/resources/seminar`,
       headingTwo: 'Learn more',
       iconTwo: 'calendar',
       linkTextTwo: 'Events',
@@ -42,15 +33,16 @@ export default function CommunityCard() {
     },
     {
       title: 'Hackathons & Grants',
-      description: 'Jump-start your project or your career in the blockchain space',
+      description:
+        'Jump-start your project or your career in the blockchain space.',
       headingOne: 'Rise to the challenge',
       iconOne: 'ideCode',
       linkTextOne: 'Hackathon',
-      linkOne: `${site.siteMetadata.substrateIO}/ecosystem/opportunities/hackathons`,
+      linkOne: `${siteMetadata.substrateIO}/ecosystem/opportunities/hackathons`,
       headingTwo: 'Get funding',
       iconTwo: 'grantsDollar',
       linkTextTwo: 'Grants',
-      linkTwo: `${site.siteMetadata.substrateIO}/ecosystem/opportunities/grants`,
+      linkTwo: `${siteMetadata.substrateIO}/ecosystem/opportunities/grants`,
     },
   ]
   return (
@@ -69,16 +61,22 @@ export default function CommunityCard() {
             <b>{item.headingOne}:</b>
           </p>
           <div className="flex items-center mb-6 font-bold">
-            <Icon name={item.iconOne} className="mr-3 fill-current dark:text-subtrateWhite" />
-            <a href={item.linkOne}>{item.linkTextOne}</a>
+            <Icon
+              name={item.iconOne}
+              className="mr-3 fill-current dark:text-subtrateWhite"
+            />
+            <Link to={item.linkOne}>{item.linkTextOne}</Link>
           </div>
           <hr />
           <p>
             <b>{item.headingTwo}:</b>
           </p>
           <div className="flex items-center mb-6 font-bold">
-            <Icon name={item.iconTwo} className="mr-3 fill-current dark:text-subtrateWhite" />
-            <a href={item.linkTwo}>{item.linkTextTwo}</a>
+            <Icon
+              name={item.iconTwo}
+              className="mr-3 fill-current dark:text-subtrateWhite"
+            />
+            <Link to={item.linkTwo}>{item.linkTextTwo}</Link>
           </div>
         </div>
       ))}

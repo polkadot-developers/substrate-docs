@@ -35,8 +35,8 @@ difficulty: 1
       title: 'Overview',
       description: `This guide will step you through an effective way to mint a token by leveraging the primitive capabilities that
 		 [StorageMap](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) gives us. To achieve this, this "primitive" 
-		 approach uses the [blake2_128_concat](https://substrate.dev/docs/en/knowledgebase/runtime/storage#hashing-algorithms) 
-		 \`hasher\` to map balances to account IDs, similar to how the [Balances][balances-frame] pallet makes use of it to store 
+		 approach uses the [blake2_128_concat](/v3/runtime/storage#hashing-algorithms) 
+		 \`hasher\` to map balances to account IDs, similar to how the [Balances](/rustdocs/latest/pallet_balances/index.html) pallet makes use of it to store 
 		 and keep track of account balances.
 	    `,
     },
@@ -171,7 +171,7 @@ Refer to [this guide](../pallet-integration) if you’re not yet familiar with t
     configuration in this [basic guide on weights](../weights).
   - **Origins.** One assumption this guide makes is that the origin will always be the sudo user.
     Origins are a powerful capability in Substrate. Learn more about how they work
-    [here](https://substrate.dev/docs/en/knowledgebase/runtime/origin).
+    [here](/v3/runtime/origins).
   `}
 />
 
@@ -190,6 +190,5 @@ Refer to [this guide](../pallet-integration) if you’re not yet familiar with t
 
 - [Deposit event method][deposit-event-rustdocs]
 
-[balances-frame]: https://substrate.dev/docs/en/knowledgebase/runtime/frame#balances
-[events-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/events
+[events-kb]: /v3/runtime/events-and-errors
 [deposit-event-rustdocs]: /rustdocs/latest/frame_system/pallet/struct.Pallet.html#method.deposit_event

@@ -20,33 +20,38 @@ import github from '../images/svgs/github-small.svg'
 import docsNavIcon from '../images/svgs/docs-nav-icon.svg'
 import arrowDown from '../images/svgs/arrow-down.svg'
 import copyText from '../images/svgs/copy-text.svg'
+import elementWhite from '../images/svgs/element-white.svg'
+import stackOverflowWhite from '../images/svgs/stack-overflow-white.svg'
+import twitter from '../images/svgs/twitter.svg'
 
-const iconsMap = {
-  /* homepage */
-  docsIcon: docsIcon,
-  htgIcon: htgIcon,
-  tutsIcon: tutsIcon,
-  gradHat: gradHat,
-  calendar: calendar,
-  grantsDollar: grantsDollar,
-  ideCode: ideCode,
-  diamondGreen: diamondGreen,
-  diamondYellow: diamondYellow,
-  diamondPurple: diamondPurple,
-  /* playground */
-  feTemplate: feTemplate,
-  nodeTemplate: nodeTemplate,
-  /* social-media */
-  elementOrg: elementOrg,
-  stackOverflowOrg: stackOverflowOrg,
-  github: github,
-  /* UI specific */
-  arrowMore: arrowMore,
-  arrowDown: arrowDown,
-  flag: flag,
-  docsNavIcon: docsNavIcon,
-  copyText: copyText,
-}
+const iconsMap = new Map()
+/* homepage */
+iconsMap.set('docsIcon', docsIcon)
+iconsMap.set('htgIcon', htgIcon)
+iconsMap.set('tutsIcon', tutsIcon)
+iconsMap.set('gradHat', gradHat)
+iconsMap.set('calendar', calendar)
+iconsMap.set('grantsDollar', grantsDollar)
+iconsMap.set('ideCode', ideCode)
+iconsMap.set('diamondGreen', diamondGreen)
+iconsMap.set('diamondYellow', diamondYellow)
+iconsMap.set('diamondPurple', diamondPurple)
+/* playground */
+iconsMap.set('feTemplate', feTemplate)
+iconsMap.set('nodeTemplate', nodeTemplate)
+/* social-media */
+iconsMap.set('elementOrg', elementOrg)
+iconsMap.set('elementWhite', elementWhite)
+iconsMap.set('stackOverflowOrg', stackOverflowOrg)
+iconsMap.set('stackOverflowWhite', stackOverflowWhite)
+iconsMap.set('github', github)
+iconsMap.set('twitter', twitter)
+/* UI specific */
+iconsMap.set('arrowMore', arrowMore)
+iconsMap.set('arrowDown', arrowDown)
+iconsMap.set('flag', flag)
+iconsMap.set('docsNavIcon', docsNavIcon)
+iconsMap.set('copyText', copyText)
 
 interface IconProps {
   name: string
@@ -55,7 +60,7 @@ interface IconProps {
 
 export default function Icon({ name, className }: IconProps) {
   if (!name) return <span className="w-5"></span>
-  const IconComponent = iconsMap[`${name}`]
+  const IconComponent = iconsMap.get(name)
   if (!IconComponent) return <span className="w-5"></span>
   return <IconComponent name={name} className={className}></IconComponent>
 }

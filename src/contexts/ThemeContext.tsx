@@ -27,18 +27,16 @@ interface ThemeContextInterface {
 export const ThemeContext = React.createContext<ThemeContextInterface | null>(null)
 
 export const ThemeProvider = ({ children }: any) => {
-  const [colorMode, rawSetColorMode] = React.useState(getInitialColorMode())
+  const [colorMode, rawSetColorMode] = React.useState(undefined)
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      rawSetColorMode(getInitialColorMode())
-    }
+    rawSetColorMode(getInitialColorMode())
   }, [])
 
   const setColorMode = (value: string) => {
     rawSetColorMode(value)
     // Set Tailwind color mode
-    if (value == 'dark') {
+    if (value === 'dark') {
       document.documentElement.classList.add('dark')
       document.documentElement.classList.remove('light')
     } else {

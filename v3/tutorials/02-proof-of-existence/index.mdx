@@ -16,10 +16,8 @@ relevantSkills:
 
 ## Introduction
 
-In this tutorial, you will learn to create a custom
-["Proof of Existence"](https://en.wikipedia.org/wiki/Proof_of_Existence) dApp using the Substrate
-blockchain development framework and the [FRAME](/v3/runtime/frame) library. From
-[Wikipedia](https://en.wikipedia.org/wiki/Proof_of_Existence):
+In this tutorial, you will learn to create a custom "Proof of Existence" (PoE) dApp using the Substrate
+blockchain development framework and the [FRAME](/v3/runtime/frame) library. From Wikipedia:
 
 > "Proof of Existence is an online service that verifies the existence of computer files as of a
 > specific time via timestamped transactions in the bitcoin blockchain."
@@ -35,35 +33,37 @@ comparing it with the hash stored on chain.
 
 To add to this, blockchains also provide a robust identity system through accounts that map to
 [public keys](https://en.wikipedia.org/wiki/Public-key_cryptography), and associations built on
-top of those keys (see [FRAME's identity pallet](https://github.com/paritytech/substrate/tree/v3.0.0/frame/identity)).
+top of those keys (see [FRAME's identity pallet](https://github.com/paritytech/substrate/tree/master/frame/identity)).
 So when a file digest is stored on the blockchain, we can also record which account uploaded that digest.
-This allows that controller of that account to later prove that they were the original person to claim the file.
+This allows that controller of that account to later prove that they were the original person
+who claim the file.
 
-This tutorial should take you about **1 hour** to complete. We will be using the
+This tutorial should take you about **one hour** to complete. We will be using the
 [Rust programming language](https://www.rust-lang.org/) and [ReactJS](https://reactjs.org/), but you
-do not need to know these to be able to complete this guide. We will provide you with working code
+do not need to know these to complete this guide. We will provide you with working code
 snippets and explain what all the code does at a high level.
 
 We only expect that:
 
 - You have completed the
   [Create Your First Substrate Chain Tutorial](/tutorials/v3/create-your-first-substrate-chain).
-- You are generally familiar with software development, writing code, and running your code.
+- You are generally familiar with software development, writing code, and compiling your code.
 - You are open to learning about the bleeding edge of blockchain development.
 
 <Message
   type={`green`}
   title={`We're here to help`}
   text={`If you run into an issue on this tutorial, **we are here to help!** You can
-  [ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) and use the
-  \`substrate\` tag or contact us on [Element](https://matrix.to/#/#substrate-technical:matrix.org).`}
+  [ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) using the
+  \`substrate\` tag, or contact us on [Element](https://matrix.to/#/#substrate-technical:matrix.org).`}
 />
 
 ## What you will be doing
 
 <TutorialObjective
   data={{
-    textLineOne: '1. Launch a Substrate blockchain based on a node template.',
+    textLineOne:
+      '1. Launch a Substrate blockchain based on Substrate Node Template.',
     url: '#prepare-to-build-a-dapp',
   }}
 />
@@ -81,10 +81,10 @@ We only expect that:
 />
 
 ## Learning outcomes
-
-- Learn how to think about a Substrate node as a framework to create a decentralized application made of pallets
-- Learn how to create and use a custom FRAME pallet
-- Learn how to modify the front-end node template to match your node's runtime items
+- Learn how to think of Substrate as a framework to create a decentralized application composed of
+  pallets
+- Learn how to create and use a custom FRAME pallet 
+- Learn how to modify the Front-end Node Template to match your node's runtime items
 
 ## Prepare to build a dApp
 
@@ -95,21 +95,19 @@ We only expect that:
   playgroundLink={`/playground?deploy=front-end-template#config`}
 />
 
-For our PoE blockchain, we'll be customizing the Node Template so you'll need to make sure you have it installed.
-We'll also be customizing the Front-end Template so you'll need to make sure you have that too. This part steps you
-through just that and goes over our application design.
+For our PoE blockchain, we'll be customizing the Node Template so you'll need to make sure you have
+it installed. We'll also be customizing the Front-end Template so you'll need to make sure you have
+that too. This part steps you through just that and goes over our application design.
 
 ### Install the Node Template
 
-You should already have version `v3.0.0+1` of the
-[Substrate Developer Hub Node Template](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions%2Fbuild-a-dapp-v3+1)
+You should already have the [`latest` version of Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template/tree/latest)
 compiled on your computer from when you completed the
-[Create Your First Substrate Chain Tutorial](/tutorials/v3/create-your-first-substrate-chain). If you do not,
-please complete that tutorial. (v3.0.0 tag works as well, but comes with FRAME v1 templates,
-v3.0.0+1 includes FRAME v2 templates that you can use for reference for mock and testing files.)
+[Create Your First Substrate Chain Tutorial](/tutorials/v3/create-your-first-substrate-chain).
+If you haven't, please complete that tutorial.
 
 ```bash
-git clone -b v3.0.0+1 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+git clone -b latest --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
 ```
 
 <Message
@@ -121,8 +119,8 @@ git clone -b v3.0.0+1 --depth 1 https://github.com/substrate-developer-hub/subst
 
 ### Install the Front-End Template
 
-The **Create Your First Substrate Chain** Tutorial used the front-end template, so there is no
-additional set-up required if you have already completed that tutorial.
+The **Create Your First Substrate Chain** Tutorial used the [`latest` version of Front-end Template](https://github.com/substrate-developer-hub/substrate-front-end-template/tree/latest),
+so there is no additional set-up required if you have already completed that tutorial.
 
 <Message
   type={`green`}
@@ -148,12 +146,12 @@ Sounds simple enough, right? Let's get coding!
 #### Next steps
 
 1. Create a custom pallet from scratch
-2. Implement pallet events, errors and storage items
+2. Implement pallet events, errors, and storage items
 3. Implement callabe functions `create_claim()` and `revoke_claim()`
 
 ## Building a Custom Pallet
 
-The Substrate Developer Hub Node Template, which is used as the starting point for this tutorial,
+The Substrate Node Template, which is used as the starting point for this tutorial,
 has a FRAME-based [runtime](/v3/concepts/runtime).
 [FRAME](/v3/runtime/frame) is a library of code that allows
 you to build a Substrate runtime by composing modules called "pallets". You can think of these
@@ -167,14 +165,15 @@ To give some examples, FRAME includes:
 - a [Balances](/rustdocs/latest/pallet_balances/)
   pallet that controls the underlying currency of your blockchain by managing the _balances_ of all the
   accounts in your system.
-- a [Contracts](/rustdocs/latest/pallet_contracts/) pallet, designed to add smart contract functionality to your blockchain.
+- a [Contracts](/rustdocs/latest/pallet_contracts/) pallet, designed to add smart contract
+  functionality to your blockchain.
 - pallets for on-chain governance capabilities such as [Democracy](/rustdocs/latest/pallet_democracy/),
   [Elections](/rustdocs/latest/pallet_elections/), and
   [Collective](/rustdocs/latest/pallet_collective/).
 
-The goal of this tutorial is to teach you how to create your own FRAME pallet to include in your
-custom blockchain. The Substrate Developer Hub Node Template comes with a template pallet that we
-will use as a starting point to build our own custom runtime logic.
+The goal of this tutorial is to teach you how to create your own FRAME pallet to be included in your
+custom blockchain. The Node Template comes with a simple pallet that we will use as a starting
+point to build our own custom runtime logic.
 
 ### Scaffolding with FRAME
 
@@ -197,15 +196,17 @@ substrate-node-template
 |   |
 |   +-- template
 |       |
-|       +-- Cargo.toml     <-- *Modify* this file
+|       +-- Cargo.toml           <-- *Modify* this file
 |       |
 |       +-- src
 |           |
-|           +-- lib.rs     <-- *Remove* contents
+|           +-- benchmark.rs     <-- *Remove* (optionally modify)
 |           |
-|           +-- mock.rs    <-- *Remove* (optionally modify)
+|           +-- lib.rs           <-- *Remove* contents
 |           |
-|           +-- tests.rs   <-- *Remove* (optionally modify)
+|           +-- mock.rs          <-- *Remove* (optionally modify)
+|           |
+|           +-- tests.rs         <-- *Remove* (optionally modify)
 |
 +-- runtime
 |
@@ -222,13 +223,13 @@ is constructed, **delete all contents of this file**.
 <Message
   type={`yellow`}
   title={`Information`}
-  text={`Have a look at [the skeleton of a FRAME pallet](/v3/runtime/frame#skeleton-of-a-pallet#frame-v2)
-  from the knowledgebase to learn more about the basic structure of a FRAME pallet.`}
+  text={`Have a look at [the skeleton of a FRAME pallet](/v3/runtime/frame/#skeleton-of-a-pallet)
+  from the docs to learn more about the basic structure of a FRAME pallet.`}
 />
 
 This tutorial is using the latest version of FRAME so be sure to refer to that. We can start by scaffolding our pallet using the following code:
 
-**`pallet/template/src/lib.rs`**
+**`pallets/template/src/lib.rs`**
 
 ```rust
 #![cfg_attr(not(feature = "std"), no_std)]
@@ -238,67 +239,69 @@ pub use pallet::*;
 
 #[frame_support::pallet]
 pub mod pallet {
-	use frame_support::{dispatch::DispatchResultWithPostInfo, pallet_prelude::*};
-	use frame_system::pallet_prelude::*;
-	use sp_std::vec::Vec; // Step 3.1 will include this in `Cargo.toml`
+  use frame_support::pallet_prelude::*;
+  use frame_system::pallet_prelude::*;
+  use sp_std::vec::Vec; // Step 3.1 will include this in `Cargo.toml`
 
-    #[pallet::config]  // <-- Step 2. code block will replace this.
+  #[pallet::config]  // <-- Step 2. code block will replace this.
 
-    #[pallet::event]   // <-- Step 3. code block will replace this.
+  #[pallet::event]   // <-- Step 3. code block will replace this.
 
-    #[pallet::error]   // <-- Step 4. code block will replace this.
+  #[pallet::error]   // <-- Step 4. code block will replace this.
 
-    #[pallet::pallet]
-    #[pallet::generate_store(pub(super) trait Store)]
-    pub struct Pallet<T>(_);
+  #[pallet::pallet]
+  #[pallet::generate_store(pub(super) trait Store)]
+  pub struct Pallet<T>(_);
 
-    #[pallet::storage] // <-- Step 5. code block will replace this.
+  #[pallet::storage] // <-- Step 5. code block will replace this.
 
-    #[pallet::hooks]
-    impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {}
+  #[pallet::hooks]
+  impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {}
 
-    #[pallet::call]   // <-- Step 6. code block will replace this.
+  #[pallet::call]   // <-- Step 6. code block will replace this.
 }
 ```
 
-By doing this, we've declared the dependencies and [macros](/v3/runtime/macros) our pallet will require to function.
+By doing this, we've declared the dependencies and [macros](/v3/runtime/macros) our pallet will
+require to function.
 
-Things like _events_, _storage_, and _callable functions_ may look familiar to you if you have done other
-blockchain development. We will show you what each of these components looks like for a basic Proof
-Of Existence pallet by providing you with the code blocks that go under each section.
+Things like _events_, _storage_, and _callable functions_ may look familiar to you if you have done
+other blockchain development. We will show you what each of these components looks like for a
+basic proof-of-existence pallet by providing you with the code blocks that go under each section.
 
 <Message
   type={`red`}
   title={`Warning`}
-  text="The `no_std` feature is required for all pallets! This is because we are building a
-    runtime_ module that _must_ compile to WASM, and therefore cannot depend on rust\'s `std` dependencies.
-    If you take a look at the `pallets/template/Cargo.toml` file, you will see that the template already has
-    `std` default feature disabled which is necessary in order to compile the runtime to WASM. Learn more about why this is
-    necessary in the [Add a Pallet](/tutorials/v3/add-a-pallet) tutorial.
-    You _can_ use `std` features in non-runtime components like `mock.rs` and `tests.rs` using
-    `[dev-dependencies]` _ONLY_. Specifics and examples of this are outside the scope of this
-    tutorial. Learn more about [testing in Substrate here](/v3/runtime/testing).
-    "
+  text=
+    "The `no_std` feature is required for all pallets! This is because we are building a
+    runtime module that _must_ compile to WASM, and therefore cannot depend on rust\'s `std`
+    dependencies. If you take a look at the `pallets/template/Cargo.toml` file, you will see that
+    the template already has `std` default feature disabled which is necessary in order to compile
+    the runtime to WASM. Learn more about why this is necessary in the
+    [Add a Pallet](/tutorials/v3/add-a-pallet) tutorial. You *can only* use `std` features in
+    non-runtime components like `mock.rs` and `tests.rs` using `[dev-dependencies]`. Specifics and
+    examples of this are outside the scope of this tutorial. Learn more about
+    [testing in Substrate here](/v3/runtime/testing)."
 />
 
 ### Pallet Configuration Trait
 
-Every pallet has a component called `Config` that is used for configuration. This component is a
-[Rust "trait"](https://doc.rust-lang.org/book/ch10-02-traits.html): traits in Rust are similar to
-interfaces in languages such as C++, Java and Go. For now, the only thing we will configure about
-our pallet is that it will emit some Events. The `Config` interface is another topic that will be
-covered in greater depth in the [Add a Pallet](/tutorials/v3/add-a-pallet) tutorial. To define the pallet's
-`Config` trait, replace the `#[pallet::config]` line with this block:
+Every pallet has a component called `Config` that is used for configuration. It is a
+[Rust "trait"](https://doc.rust-lang.org/book/ch10-02-traits.html). Traits in Rust are similar to
+interfaces in languages such as C++, Java, and Go. For now, the only thing we will configure about
+our pallet is that it will emit some events. The `Config` trait is another topic that will be
+covered in greater depth in the [Add a Pallet](/tutorials/v3/add-a-pallet) tutorial. To define
+the pallet's `Config` trait, replace the `#[pallet::config]` line with this block:
 
 **`pallet/template/src/lib.rs`**
 
 ```rust
-	/// Configure the pallet by specifying the parameters and types on which it depends.
-    #[pallet::config]
-	pub trait Config: frame_system::Config {
-		/// Because this pallet emits events, it depends on the runtime's definition of an event.
-		type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
-	}
+/// Configure the pallet by specifying the parameters and types on which it depends.
+#[pallet::config]
+pub trait Config: frame_system::Config {
+  /// Because this pallet emits events, it depends on the runtime's definition of an event.
+  type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+}
 ```
 
 ### Implement pallet Events
@@ -309,87 +312,99 @@ Our pallet will only emit an event in two circumstances:
 1. When a new proof is added to the blockchain.
 2. When a proof is removed.
 
-The events can contain some additional data, in this case, each event will also display who
-triggered the event (`AccountId`), and the proof data (as `Vec<u8>`) that is being stored or
-removed. Note that convention is to include an array with descriptive names for these parameters at
-the end of event documentation.
+Events can contain some additional data. In this case, each event will also display who triggers the
+event (`AccountId`), and the proof data (as `Vec<u8>`) that is being stored or removed. Note that
+convention is to include an array with descriptive names for these parameters when documenting
+an event.
 
 To implement this, replace `#[pallet::event]` with:
 
-**`pallet/template/src/lib.rs`**
+**`pallets/template/src/lib.rs`**
 
 ```rust
-	// Pallets use events to inform users when important changes are made.
-	// Event documentation should end with an array that provides descriptive names for parameters.
-	// https://substrate.dev/docs/en/knowledgebase/runtime/events
-	#[pallet::event]
-	#[pallet::metadata(T::AccountId = "AccountId")]
-	#[pallet::generate_deposit(pub(super) fn deposit_event)]
-	pub enum Event<T: Config> {
-		/// Event emitted when a proof has been claimed. [who, claim]
-		ClaimCreated(T::AccountId, Vec<u8>),
-    /// Event emitted when a claim is revoked by the owner. [who, claim]
-		ClaimRevoked(T::AccountId, Vec<u8>),
-	}
+// Pallets use events to inform users when important changes are made.
+// Event documentation should end with an array that provides descriptive names for parameters.
+// https://docs.substrate.io/v3/runtime/events-and-errors
+#[pallet::event]
+#[pallet::generate_deposit(pub(super) fn deposit_event)]
+pub enum Event<T: Config> {
+  /// Event emitted when a proof has been claimed. [who, claim]
+  ClaimCreated(T::AccountId, Vec<u8>),
+  /// Event emitted when a claim is revoked by the owner. [who, claim]
+  ClaimRevoked(T::AccountId, Vec<u8>),
+}
 ```
 
 #### Include `sp-std` library
 
-Notice here that we are using the `Vec<u8>` type, which is _normally_ included in the `std` Rust library. We _cannot_ use `std`!
-So instead, we have included `use sp_std::vec::Vec;` in our `mod pallet`.
-The [sp-std crate](/rustdocs/latest/sp_std/index.html) includes many common
-things that we desire from `std`, but are `no_std` compatible. To use this though, we _must_
-update our pallet's dependencies:
+Notice here that we are using the `Vec<u8>` type, which _normally_ is included in the `std` Rust
+library. But we _cannot_ use `std` in pallet development! So instead, we have included
+`use sp_std::vec::Vec;` in our `mod pallet`. The [sp-std crate](/rustdocs/latest/sp_std/index.html)
+includes many common things that we desire from `std`, but are `no_std` compatible. To use this
+though, we _must_ update our pallet's dependencies:
 
-**`pallet/template/Cargo.toml`**
+**`pallets/template/Cargo.toml`**
 
 ```toml
 # add `sp-std` in the dependencies section of the toml file
 
-[dependencies]
 # -- snip --
-sp-std = { default-features = false, version = '3.0.0' }
-# -- snip --
+[dependencies.sp-std]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-2021-10'  # or the latest monthly
+version = '4.0.0-dev'    # or the latest version
+
+# -- Scroll to the bottom section --
+
+[features]
+default = ['std']
+std = [
+  # -- snip --
+  'sp-std/std',
+]
 ```
 
-### Include pallet Errors
+### Include pallet errors
 
 The events we defined previously indicate when calls to the pallet have completed successfully.
 Similarly, errors indicate when a call has failed, and why it has failed.
 
-The first of these errors can occur when attempting to claim a new proof. Of course a user cannot
-claim a proof that has already been claimed. The latter two can occur when attempting to revoke a
+The first of these errors can occur when attempting to claim a new proof. A user cannot
+claim a proof that has already been claimed. The other two can occur when attempting to revoke a
 proof.
 
 To implement this, replace the `#[pallet::error]` line with:
 
-**`pallet/template/src/lib.rs`**
+**`pallets/template/src/lib.rs`**
 
 ```rust
-    #[pallet::error]
-    pub enum Error<T> {
-            /// The proof has already been claimed.
-            ProofAlreadyClaimed,
-            /// The proof does not exist, so it cannot be revoked.
-            NoSuchProof,
-            /// The proof is claimed by another account, so caller can't revoke it.
-            NotProofOwner,
-        }
+#[pallet::error]
+pub enum Error<T> {
+  /// The proof has already been claimed.
+  ProofAlreadyClaimed,
+  /// The proof does not exist, so it cannot be revoked.
+  NoSuchProof,
+  /// The proof is claimed by another account, so caller can't revoke it.
+  NotProofOwner,
+}
 ```
 
 ### Implement a `StorageMap` storage item
 
 To add a new proof to the blockchain, we will simply store that proof in our pallet's storage. To
 store that value, we will create a [hash map](https://en.wikipedia.org/wiki/Hash_table) from the
-proof to the owner of that proof and the block number the proof was made. We'll be using FRAME's [`StorageMap`](/rustdocs/latest/frame_support/storage/types/struct.StorageMap.html) to keep track of this information.
+proof to the owner of that proof and the block number the proof was made. We'll be using FRAME's
+[`StorageMap`](/rustdocs/latest/frame_support/storage/types/struct.StorageMap.html) to keep track
+of this information.
 
 To implement this, replace the `#[pallet::storage]` line with:
 
-**`pallet/template/src/lib.rs`**
+**`pallets/template/src/lib.rs`**
 
 ```rust
-    #[pallet::storage]
-    pub(super) type Proofs<T: Config> = StorageMap<_, Blake2_128Concat, Vec<u8>, (T::AccountId, T::BlockNumber), ValueQuery>;
+#[pallet::storage]
+pub(super) type Proofs<T: Config> = StorageMap<_, Blake2_128Concat, Vec<u8>, (T::AccountId, T::BlockNumber), ValueQuery>;
 ```
 
 ### Implement callable functions
@@ -400,73 +415,73 @@ call in this FRAME pallet:
 1. `create_claim()`: Allow a user to claim the existence of a file with a proof.
 2. `revoke_claim()`: Allow the owner of a claim to revoke their claim.
 
-These functions will be based on using the `StorageMap` based on the following logic: if a proof has an owner and a block number, then we know that it has been claimed. Otherwise, the
+These functions will be based on using the `StorageMap` based on the following logic: if a proof
+has an owner and a block number, then we know that it has been claimed. Otherwise, the
 proof is available to be claimed (and written to storage).
 
 To implement this, replace the `#[pallet::call]` line with:
 
-**`pallet/template/src/lib.rs`**
+**`pallets/template/src/lib.rs`**
 
 ```rust
-    // Dispatchable functions allows users to interact with the pallet and invoke state changes.
-    // These functions materialize as "extrinsics", which are often compared to transactions.
-    // Dispatchable functions must be annotated with a weight and must return a DispatchResult.
-        #[pallet::call]
-        impl<T: Config> Pallet<T> {
-            #[pallet::weight(1_000)]
-            pub(super) fn create_claim(
-                origin: OriginFor<T>,
-                proof: Vec<u8>,
-            ) -> DispatchResultWithPostInfo {
+// Dispatchable functions allows users to interact with the pallet and invoke state changes.
+// These functions materialize as "extrinsics", which are often compared to transactions.
+// Dispatchable functions must be annotated with a weight and must return a DispatchResult.
+#[pallet::call]
+impl<T: Config> Pallet<T> {
+  #[pallet::weight(1_000)]
+  pub fn create_claim(
+    origin: OriginFor<T>,
+    proof: Vec<u8>,
+  ) -> DispatchResult {
+    // Check that the extrinsic was signed and get the signer.
+    // This function will return an error if the extrinsic is not signed.
+    // https://docs.substrate.io/v3/runtime/origins
+    let sender = ensure_signed(origin)?;
 
-                // Check that the extrinsic was signed and get the signer.
-                // This function will return an error if the extrinsic is not signed.
-                // https://substrate.dev/docs/en/knowledgebase/runtime/origin
-                let sender = ensure_signed(origin)?;
+    // Verify that the specified proof has not already been claimed.
+    ensure!(!Proofs::<T>::contains_key(&proof), Error::<T>::ProofAlreadyClaimed);
 
-                // Verify that the specified proof has not already been claimed.
-                ensure!(!Proofs::<T>::contains_key(&proof), Error::<T>::ProofAlreadyClaimed);
+    // Get the block number from the FRAME System module.
+    let current_block = <frame_system::Module<T>>::block_number();
 
-                // Get the block number from the FRAME System module.
-                let current_block = <frame_system::Module<T>>::block_number();
+    // Store the proof with the sender and block number.
+    Proofs::<T>::insert(&proof, (&sender, current_block));
 
-                // Store the proof with the sender and block number.
-                Proofs::<T>::insert(&proof, (&sender, current_block));
+    // Emit an event that the claim was created.
+    Self::deposit_event(Event::ClaimCreated(sender, proof));
 
-                // Emit an event that the claim was created.
-                Self::deposit_event(Event::ClaimCreated(sender, proof));
+    Ok(())
+  }
 
-                Ok(().into())
-            }
+  #[pallet::weight(10_000)]
+  pub fn revoke_claim(
+    origin: OriginFor<T>,
+    proof: Vec<u8>,
+  ) -> DispatchResult {
+    // Check that the extrinsic was signed and get the signer.
+    // This function will return an error if the extrinsic is not signed.
+    // https://docs.substrate.io/v3/runtime/origins
+    let sender = ensure_signed(origin)?;
 
-            #[pallet::weight(10_000)]
-            fn revoke_claim(
-                origin: OriginFor<T>,
-                proof: Vec<u8>,
-            ) -> DispatchResultWithPostInfo {
-                // Check that the extrinsic was signed and get the signer.
-                // This function will return an error if the extrinsic is not signed.
-                // https://substrate.dev/docs/en/knowledgebase/runtime/origin
-                let sender = ensure_signed(origin)?;
+    // Verify that the specified proof has been claimed.
+    ensure!(Proofs::<T>::contains_key(&proof), Error::<T>::NoSuchProof);
 
-                // Verify that the specified proof has been claimed.
-                ensure!(Proofs::<T>::contains_key(&proof), Error::<T>::NoSuchProof);
+    // Get owner of the claim.
+    let (owner, _) = Proofs::<T>::get(&proof);
 
-                // Get owner of the claim.
-                let (owner, _) = Proofs::<T>::get(&proof);
+    // Verify that sender of the current call is the claim owner.
+    ensure!(sender == owner, Error::<T>::NotProofOwner);
 
-                // Verify that sender of the current call is the claim owner.
-                ensure!(sender == owner, Error::<T>::NotProofOwner);
+    // Remove claim from storage.
+    Proofs::<T>::remove(&proof);
 
-                // Remove claim from storage.
-                Proofs::<T>::remove(&proof);
+    // Emit an event that the claim was erased.
+    Self::deposit_event(Event::ClaimRevoked(sender, proof));
 
-                // Emit an event that the claim was erased.
-                Self::deposit_event(Event::ClaimRevoked(sender, proof));
-
-                Ok(().into())
-            }
-        }
+    Ok(())
+  }
+}
 ```
 
 ### Build Your New Pallet
@@ -482,16 +497,18 @@ cargo build --release
 ./target/release/node-template --dev --tmp
 ```
 
-If everything worked out properly, your node should be producing blocks.
-And now it is time to interact with our new Proof of Existence pallet!
+If everything work out properly, your node should run and produce blocks. And now it is time to
+interact with our new Proof of Existence pallet!
 
 <Message
-  type={`yellow`}
-  title={`Information`}
-  text="There is a full node template solution
-    [here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/build-a-dapp-v3+1)
-    to use as a reference if you're stuck. Check the commit diff from the base `v3.0.0+1` template for the exact changes.
-    "
+  type={'yellow'}
+  title={'Information'}
+  text=
+    "There is a full Node Template solution
+    [here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tut-sol/proof-of-existence%2Flatest)
+    to use as a reference if you\'re stuck. Check the
+    [commit diff from the base `latest` template](https://github.com/substrate-developer-hub/substrate-node-template/compare/latest...tutorials/solutions/proof-of-existence?expand=1)
+    for the exact changes."
 />
 
 #### Next steps
@@ -509,24 +526,19 @@ In this section, we will get the front-end up and running and add a custom React
 designed to make use of our PoE pallet's capabilities.
 
 The first thing you'll need to do is to clone a copy of the
-[Front-End Template](https://github.com/substrate-developer-hub/substrate-front-end-template)
-**specifically with the `v3.0.0` tag** as a base, if you haven't already.
+[the `latest` version of Front-End Template](https://github.com/substrate-developer-hub/substrate-front-end-template/tree/latest)
+as a base, if you haven't already.
 
 ```bash
-git clone -b v3.0.0 --depth 1 https://github.com/substrate-developer-hub/substrate-front-end-template
+git clone -b latest --depth 1 https://github.com/substrate-developer-hub/substrate-front-end-template
 ```
 
-#### Yarn V2
-
-The Frontend Template is expected to work with `yarn 2.4.1`.
-To ensure you have the right version, use:
-
-```bash
-# use yarn 2+
-yarn set version berry
-# update to latest yarn 2
-yarn set version latest
-```
+<Message
+  type={'yellow'}
+  title={'Notes'}
+  text="Front-end Template requires [Yarn Berry](https://yarnpkg.com/) to run. Please ensure running `yarn --version`
+    in your local machine is returning a version of v2 or above."
+/>
 
 ### Explore the Front-End Template
 
@@ -539,7 +551,7 @@ yarn install
 yarn start
 ```
 
-A new tab should open in your web browser and you'll see the following interface.
+A new tab should open in your web browser and you should see the following interface.
 
 ![Front End Template](../../../src/images/tutorials/02-proof-of-existence/front-end-template.png)
 
@@ -646,7 +658,7 @@ export function Main(props) {
   // The actual UI elements which are returned from our component.
   return (
     <Grid.Column>
-      <h1>Proof Of Existence</h1>
+      <h1>Proof of Existence</h1>
       {/* Show warning or success message if the file is or is not claimed. */}
       <Form success={!!digest && !isClaimed()} warning={isClaimed()}>
         <Form.Field>
@@ -707,8 +719,10 @@ export function Main(props) {
 }
 
 export default function TemplateModule(props) {
-  const { api } = useSubstrate()
-  return api.query.templateModule && api.query.templateModule.proofs ? <Main {...props} /> : null
+  const { api } = useSubstrate();
+  return api.query.templateModule && api.query.templateModule.proofs
+    ? <Main {...props} />
+    : null;
 }
 ```
 
@@ -718,10 +732,11 @@ comments to learn what each part is doing.
 <Message
   type={`yellow`}
   title={`Information`}
-  text="There is a full node template solution
-      [here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/build-a-dapp-v3+1)
-      to use as a reference if you're stuck. Check the commit diff from the base `v3.0.0+1` template for the exact changes.
-      "
+  text="There is a full Front-end Template solution
+    [here](https://github.com/substrate-developer-hub/substrate-front-end-template/tree/tut-sol/proof-of-existence%2Flatest)
+    to use as a reference if you're stuck. Check the
+    [commit diff from the base `latest` template](https://github.com/substrate-developer-hub/substrate-front-end-template/compare/latest...tutorials/solutions/proof-of-existence?expand=1)
+    for the exact changes."
 />
 
 ### Submit a proof
@@ -746,24 +761,23 @@ you will see that the revoke option is disabled!
 
 ## Next steps
 
-This is the end of our journey into creating a Proof of Existence blockchain.
+This is the end of our journey into creating a Proof of Existence dApp.
 
-You have seen firsthand how simple it can be to develop a brand new pallet and launch a custom
+You have seen first-hand how simple it can be to develop a brand new pallet and launch a custom
 blockchain using Substrate and FRAME. Furthermore, we have shown you that the Substrate ecosystem
 provides you with the tools to quickly create responsive front-end experiences so users can interact
 with your blockchain.
 
-This tutorial chose to omit some of the specific details around development in order to keep this
+This tutorial chooses to omit some of the specific details around development in order to keep this
 experience short and satisfying. However, we want you to keep learning!
 
 #### Learn more
 
 To learn more about building your own pallets, explore the
-[Substrate Recipes](https://substrate.dev/recipes/) and the [How-to Guides](/how-to-guides)
+[FRAME documentation](/v3/runtime/frame) and the [how-to guides](/how-to-guides).
 
-Complete the [Add a Pallet](/tutorials/v3/add-a-pallet/) tutorial to learn how to extend the Node Template with
-additional capabilities from Substrate's set of
-[core FRAME pallets](/v3/runtime/frame).
+Complete the [Add a Pallet](/tutorials/v3/add-a-pallet/) tutorial to learn how to extend the Node
+Template with additional capabilities from Substrate's set of [core FRAME pallets](/v3/runtime/frame).
 
 Substrate is written in the Rust programming language, which has a great community and many helpful
 resources. If you would like to learn more about this powerful and
@@ -773,6 +787,8 @@ language, check out the information-packed [Rust Book](https://doc.rust-lang.org
 
 If you experienced any issues with this tutorial or want to provide feedback, you can
 [ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) (using the
-`substrate` tag) or ask any questions in the [Substrate Technical Channel on Element](https://matrix.to/#/#substrate-technical:matrix.org). We're here to help!
+`substrate` tag), or ask any questions in the
+[Substrate Technical Channel on Element](https://matrix.to/#/#substrate-technical:matrix.org).
+We're here to help!
 
 We can't wait to see what you build next.

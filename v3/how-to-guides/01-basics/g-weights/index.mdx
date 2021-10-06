@@ -32,12 +32,13 @@ difficulty: 1
     },
     {
       title: 'Overview',
-      description: `Weights are an important part of Substrate development as they provide information about what the maximum cost a function can 
-        be in terms of the block size it will take up. This way, the [weighting system](https://substrate.dev/docs/en/knowledgebase/learn-substrate/weight) 
+      description:
+        `Weights are an important part of Substrate development as they provide information about what the maximum cost a function can 
+        be in terms of the block size it will take up. This way, the [weighting system](/v3/concepts/weight) 
         checks what the cost will be before 
         a function is executed. As runtime engineers, we care a lot about weights. Not only do they help add security checks around the 
         functions we create, but they also force us to think about the computational ressources consumed by a transaction. From that, we 
-        can figure out [what fees to charge](https://substrate.dev/docs/en/knowledgebase/runtime/fees) users.
+        can figure out [what fees to charge](/v3/runtime/weights-and-fees) users.
         This guide will cover how to calculate the maximum weight for a dispatch call; calculate the actual weight after execution; and
         reimburse the difference.
         Here's an overview of the traits we'll be implementing:
@@ -102,10 +103,10 @@ Ok(Pays::Yes.into())
 
 ## Related material
 
-#### Knowledgebase
+#### Docs
 
-- [Transaction Weights](https://substrate.dev/docs/en/knowledgebase/learn-substrate/weight)
-- [Transaction Fees Knowledgebase](https://substrate.dev/docs/en/knowledgebase/runtime/fees)
+- [Transaction Weights](/v3/concepts/weight)
+- [Transaction Fees](/v3/runtime/weights-and-fees)
 
 #### Rust docs
 

@@ -9,7 +9,7 @@ import DocsNav from '../components/DocsNav'
 import VersionControl from '../components/VersionControl'
 import LastUpdateGithub from '../components/LastUpdateGithub'
 import { BottomButtons } from '../components/DocsComponents'
-import navMenu from '../components/DevNavMenu'
+import { DevNavMenu as navMenu } from '../components/DevNavMenu'
 import BreadCrumbNav from '../components/BreadCrumbNav'
 import DocTag from '../components/DocTag'
 
@@ -46,7 +46,7 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
               <div className={`py-8 lg:flex lg:justify-between lg:items-center`}>
                 <BreadCrumbNav
                   section={data.mdx.frontmatter.section}
-                  sectionURL={`/how-to-guidess/v3`}
+                  sectionURL={`/how-to-guides/v3`}
                   title={data.mdx.frontmatter.title}
                 />
                 <VersionControl

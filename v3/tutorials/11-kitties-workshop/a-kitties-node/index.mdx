@@ -1,5 +1,5 @@
 ---
-title: Kitties Workshop
+title: Build the Substrate Kitties Chain
 slug: /tutorials/v3/kitties/pt1
 version: 3.0
 section: Tutorials
@@ -379,7 +379,7 @@ To do this we'll use [`StorageValue`][storagevalue-rustdocs] from Substrate's
 [storage API][storage-api-rustdocs] which is a trait that depends on the [storage macro][storage-macro-kb].
 
 All that means for our purposes is that for any storage item we want to declare, we must include the
-`#[pallet::storage]` macro beforehand. Learn more about declaring storage items [here](https://substrate.dev/docs/en/knowledgebase/runtime/storage#declaring-storage-items).
+`#[pallet::storage]`  macro beforehand. Learn more about declaring storage items [here](/v3/runtime/storage#declaring-storage-items).
 
 In `pallets/kitties/src/lib.rs`, replace the ACTION line with:
 
@@ -423,16 +423,16 @@ various patterns for:
   `}
 />
 
-[installation]: https://substrate.dev/docs/en/knowledgebase/getting-started/
+[installation]: /v3/getting-started/installation
 [substrate-node-template]: https://github.com/substrate-developer-hub/substrate-node-template
-[pallets-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/pallets
-[macros-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/macros#frame-v2-macros-and-attributes
-[storagevalue-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageValue.html
-[storage-api-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/index.html
+[pallets-kb]: /v3/runtime/frame#pallets
+[macros-kb]: /v3/runtime/macros#frame-macros-and-attributes
+[storagevalue-rustdocs]: /rustdocs/latest/frame_support/storage/trait.StorageValue.html
+[storage-api-rustdocs]: /rustdocs/latest/frame_support/storage/index.html
 [template-code]: https://github.com/substrate-developer-hub/substrate-how-to-guides/tree/main/static/code/kitties-tutorial
-[runtime-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/
+[runtime-kb]: /v3/concepts/runtime
 [kickstart-tool]: https://github.com/Keats/kickstart
-[storage-macro-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/macros#palletstorage
+[storage-macro-kb]: /v3/runtime/macros#palletstorage
 
 ## Uniqueness, Custom Types, and Storage Maps
 
@@ -875,18 +875,18 @@ learnt:\n\n
 />
 
 [default-rustdocs]: https://doc.rust-lang.org/std/default/trait.Default.html
-[randomness-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/traits/trait.Randomness.html
-[hash-rustdocs]: https://substrate.dev/rustdocs/latest/sp_runtime/traits/trait.Hash.html
-[h256-rustdocs]: https://substrate.dev/rustdocs/latest/sp_core/struct.H256.html
-[randomness-collective-flip-frame]: https://substrate.dev/rustdocs/latest/pallet_randomness_collective_flip/index.html
-[nonce-rustdocs]: https://substrate.dev/rustdocs/latest/frame_system/struct.AccountInfo.html#structfield.nonce
-[2x64-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/struct.Twox64Concat.html
-[prelude-traits-rustdocs]: https://substrate.dev/rustdocs/latest/sp_std/prelude/index.html#traits
+[randomness-rustdocs]: /rustdocs/latest/frame_support/traits/trait.Randomness.html
+[hash-rustdocs]: /rustdocs/latest/sp_runtime/traits/trait.Hash.html
+[h256-rustdocs]: /rustdocs/latest/sp_core/struct.H256.html
+[randomness-collective-flip-frame]: /rustdocs/latest/pallet_randomness_collective_flip/index.html
+[nonce-rustdocs]: /rustdocs/latest/frame_system/struct.AccountInfo.html#structfield.nonce
+[2x64-rustdocs]: /rustdocs/latest/frame_support/struct.Twox64Concat.html
+[prelude-traits-rustdocs]: /rustdocs/latest/sp_std/prelude/index.html#traits
 [derive-macro-rust]: https://doc.rust-lang.org/reference/procedural-macros.html#derive-macros
-[storage-best-practice-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/storage#best-practices
-[storage-map-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/storage#storage-map
-[storage-value-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/storage#storage-value
-[currency-frame]: https://substrate.dev/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html#associatedtype.Balance
+[storage-best-practice-kb]: /v3/runtime/storage#best-practices
+[storage-map-kb]: /v3/runtime/storage/#storage-map
+[storage-value-kb]: /v3/runtime/storage#storage-value
+[currency-frame]: /rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html#associatedtype.Balance
 
 ## Dispatchables, Events, and Errors
 
@@ -1006,7 +1006,7 @@ section):
   text={`
 In \`create_kitty\` our return was of type \`DispatchResult\`. Since \`mint()\` is a helper for
 \`create_kitty\`, we don't need to overwrite \`PostDispatchInfo\`, we can use a return type of
-[\`DispatchResult\`](https://substrate.dev/rustdocs/latest/frame_support/dispatch/type.DispatchResult.html)
+[\`DispatchResult\`](/rustdocs/latest/frame_support/dispatch/type.DispatchResult.html)
 &mdash; its unaugmented version.
   `}
 />
@@ -1070,12 +1070,12 @@ checking for overflow with `check_add()` function.
 
 Once we've done with the check, we proceed with updating our storage items by:
 
-1. Making use of the [`try_mutate`](https://substrate.dev/rustdocs/latest/frame_support/storage/trait.StorageMap.html#tymethod.try_mutate)
-   to update the kitty's owner vector.
+1. Making use of the [`try_mutate`](/rustdocs/latest/frame_support/storage/trait.StorageMap.html#tymethod.try_mutate)
+to update the kitty's owner vector.
 2. Using [`insert`][insert-rustdocs] method provided by Substrate's StorageMap API to store the
-   actually Kitty object and associate it with its `kitty_id`.
-3. Using [`put`](https://substrate.dev/rustdocs/latest/frame_support/storage/trait.StorageValue.html#tymethod.put)
-   provided by StorageValue API to save the latest kitty count.
+actually Kitty object and associate it with its `kitty_id`.
+3. Using [`put`](/rustdocs/latest/frame_support/storage/trait.StorageValue.html#tymethod.put)
+provided by StorageValue API to save the latest kitty count.
 
 <Message
   type="gray"
@@ -1325,20 +1325,20 @@ To recap, in this part of the tutorial you've learnt how to:\n
   `}
 />
 
-[frame-macros-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/macros#palletcall
-[txn-fees-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/fees
-[weights-kb]: https://substrate.dev/docs/en/knowledgebase/learn-substrate/weight
-[contains-key-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/storage/trait.StorageMap.html#tymethod.contains_key
-[insert-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/storage/trait.StorageMap.html#tymethod.insert
-[storage-value-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/storage/types/struct.StorageValue.html#method.put
-[storagemap-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/storage/types/struct.StorageMap.html#method.insert
-[events-rustdocs]: https://crates.parity.io/frame_support/attr.pallet.html#event-palletevent-optional
-[events-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/events
+[frame-macros-kb]: /v3/runtime/macros#palletcall
+[txn-fees-kb]: /v3/runtime/weights-and-fees
+[weights-kb]: /v3/concepts/weight
+[contains-key-rustdocs]: /rustdocs/latest/frame_support/storage/trait.StorageMap.html#tymethod.contains_key
+[insert-rustdocs]: /rustdocs/latest/frame_support/storage/trait.StorageMap.html#tymethod.insert
+[storage-value-rustdocs]: /rustdocs/latest/frame_support/storage/types/struct.StorageValue.html#method.put
+[storagemap-rustdocs]: /rustdocs/latest/frame_support/storage/types/struct.StorageMap.html#method.insert
+[events-rustdocs]: /rustdocs/latest/frame_support/attr.pallet.html#event-palletevent-optional
+[events-kb]: /v3/runtime/events-and-errors
 [polkadotjsapps]: https://polkadot.js.org/apps/#/explorer
-[dispatchresult-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/dispatch/type.DispatchResult.html
-[dispatchable-kb]: https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#dispatch
-[extrinsics-kb]: /v3/concepts/execution#executing-extrinsics
-[errors-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/errors
+[dispatchresult-rustdocs]: /rustdocs/latest/frame_support/dispatch/type.DispatchResult.html
+[dispatchable-kb]: /v3/getting-started/glossary#dispatch
+[extrinsics-kb]:  /v3/concepts/execution#executing-extrinsics
+[errors-kb]: /v3/runtime/events-and-errors
 
 ## Interacting with your Kitties
 
@@ -1573,7 +1573,7 @@ pub fn transfer_kitty_to(
 }
 ```
 
-Notice the use of [`[#transactional]`](https://substrate.dev/rustdocs/latest/frame_support/attr.transactional.html)
+Notice the use of [`[#transactional]`](/rustdocs/latest/frame_support/attr.transactional.html)
 which we imported at the very beginning of this tutorial. It allows us to write dispatchable
 functions that commit changes to the storage only if the annotated function return `Ok`. Otherwise
 all changes are discarded.
@@ -1603,7 +1603,7 @@ ensure!(T::Currency::free_balance(&buyer) >= bid_price, <Error<T>>::NotEnoughBal
 ```
 
 In a similar vain, we have to verify whether the user has the capacity to receive a Kitty &mdash;
-remember we're using a [`BoundedVec`](https://substrate.dev/rustdocs/latest/frame_support/storage/bounded_vec/struct.BoundedVec.html)
+remember we're using a [`BoundedVec`](/rustdocs/latest/frame_support/storage/bounded_vec/struct.BoundedVec.html)
 that can only hold a fixed number of Kitties, defined in our pallet's `MaxKittyOwned` constant.
 
 ```rust
@@ -1781,7 +1781,7 @@ Complete Part II of this tutorial to:
 [frame-balances-rustdocs]: https://crates.parity.io/frame_support/traits/tokens/currency/trait.Currency.html
 [polkadotjs-ui]: https://polkadot.js.org/apps/#/explorer
 [rust-u8]: https://doc.rust-lang.org/std/primitive.u8.html
-[currency-frame-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/traits/tokens/currency/index.html
-[currency-balances-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html#associatedtype.Balance
-[balances-frame]: https://substrate.dev/rustdocs/latest/pallet_balances/index.html
-[currency-transfer-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html#tymethod.transfer
+[currency-frame-rustdocs]: /rustdocs/latest/frame_support/traits/tokens/currency/index.html
+[currency-balances-rustdocs]: /rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html#associatedtype.Balance
+[balances-frame]: /rustdocs/latest/pallet_balances/index.html
+[currency-transfer-rustdocs]: /rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html#tymethod.transfer

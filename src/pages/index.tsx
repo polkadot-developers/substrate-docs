@@ -188,8 +188,10 @@ export default function Index() {
               Connect with <br /> the community
             </div>
             <p className="max-w-lg  text-xl">
-              Network, share and learn from others who speak your (tech) language! Join in the
-              conversation & keep up with the latest developments.
+              Network, share and learn from others who speak your (tech)
+              language! Discover the various open communication channels where
+              you can engage, participate and keep up with the latest
+              developments.
             </p>
           </div>
           <div className="flex justify-center md:w-1/2">

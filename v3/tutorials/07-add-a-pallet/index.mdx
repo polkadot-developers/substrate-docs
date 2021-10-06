@@ -1,5 +1,5 @@
 ---
-title: Add FRAME's Nicks Pallet to Your Runtime
+title: Add the Nicks Pallet to your Runtime
 slug: /tutorials/v3/add-a-pallet
 version: 3.0
 hideNav: true
@@ -18,7 +18,10 @@ relevantSkills:
 <FastTrackPlayground
   header={`Use the Substrate Playground`}
   title={`Run the Front-end Template and edit right from your browser!`}
-  description={`Skip the set-up steps and run the Node Template and Front-end right from your browser!`}
+  description={
+    `Skip the set-up steps and run the Node Template and Front-end Template right from your
+    browser.`
+  }
   playgroundLink={`/playground?deploy=front-end-template#config`}
 />
 
@@ -33,7 +36,7 @@ core FRAME pallets.
 
 This guide will show you how you can add the
 [Nicks pallet](/rustdocs/latest/pallet_nicks/index.html). You can follow
-similar patterns to add additional FRAME pallets to your runtime, however you should note that each
+a similar pattern to add additional FRAME pallets to your runtime. However you should note that each
 pallet is a little different in terms of the specific configuration settings needed to use it
 correctly. This tutorial will help you understand what you'll need to consider when adding a new
 pallet to your FRAME runtime.
@@ -41,26 +44,27 @@ pallet to your FRAME runtime.
 <Message
   type={`green`}
   title={`We're here to help`}
-  text={`If you run into an issue on this tutorial, **we are here to help!** You can
+  text={`If you run into any issues during this tutorial, **we are here to help!** You can
   [ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) and use the
   \`substrate\` tag or contact us on [Element](https://matrix.to/#/#substrate-technical:matrix.org).`}
 />
 
-You should already have [latest version of the Node Template](https://github.com/substrate-developer-hub/substrate-node-template/tree/latest) compiled on your computer from when you completed the
+You should already have the [latest version of the Node Template](https://github.com/substrate-developer-hub/substrate-node-template/tree/latest) compiled on your computer if you completed the
 [Create Your First Substrate Chain](/tutorials/v3/create-your-first-substrate-chain) tutorial. If
 you do not, please complete it first.
 
 <Message
   type={`yellow`}
   title={`Information`}
-  text="Experienced developers who truly prefer to skip those tutorials may install the Node Template
+  text=
+      "If you skipped the first blockchain tutorial, you should install the node template now.
       according to [the instructions in its readme](https://github.com/substrate-developer-hub/substrate-node-template#getting-started).
       "
 />
 
 ## What You Will Be Doing
 
-Before we even get started, let's layout our objectives:
+Before we get started, let's layout our objectives:
 
 <TutorialObjective
   data={{
@@ -76,22 +80,24 @@ Before we even get started, let's layout our objectives:
 />
 <TutorialObjective
   data={{
-    textLineOne: '3. Use the Front-end template to interact with the Nicks pallet.',
+    textLineOne:
+      '3. Use the Front-end Template to interact with the Nicks pallet.',
     url: '/tutorials/v3/add-a-pallet#interact-with-the-nicks-pallet',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne: '4. Learn how to publish a custom pallet to Github or Crates.io ',
+    textLineOne:
+      '4. Learn how to publish a custom pallet to Github or crates.io.',
     url: '/tutorials/v3/add-a-pallet#publish-your-own-pallet',
   }}
 />
 
 ## Learning outcomes
 
-- Learn how to integrate a FRAME pallet to your node and runtime
-- Familiarize yourself with customizing a pallet's configuration trait
-- Learn how to publish a custom pallet to [crates.io](https://crates.io/)
+- Learn how to integrate a FRAME pallet to your node and runtime.
+- Familiarize yourself with customizing a pallet's configuration trait.
+- Learn how to publish a custom pallet to [crates.io](https://crates.io/).
 
 ## Import the Nicks Pallet
 
@@ -114,6 +120,8 @@ substrate-node-template/
 |   +-- src/
 |       |
 |       +-- lib.rs     <-- Most changes in this file
+|       |
+|       +-- ...
 |
 +-- pallets/
 |
@@ -126,30 +134,33 @@ substrate-node-template/
 
 ### Importing a Pallet Crate
 
-The first thing you need to do to add the Nicks pallet is to import the `pallet-nicks` crate in your
-runtime's `Cargo.toml` file. If you want a proper primer into Cargo References, please check out
-[their official documentation](https://doc.rust-lang.org/cargo/reference/index.html).
+The first thing you need to do is to import the [`pallet-nicks`](/rustdocs/latest/pallet_nicks) crate in your
+runtime's `Cargo.toml` file. If you want a proper primer into Cargo syntax, please check out
+[its official documentation](https://doc.rust-lang.org/cargo/reference/index.html).
 
-Open `substrate-node-template/runtime/Cargo.toml` and you will see a list of all the dependencies
-your runtime has. For example, it depends on the [Balances pallet](/rustdocs/latest/pallet_balances/index.html):
+Open `substrate-node-template/runtime/Cargo.toml` and you will see all runtime dependencies. For
+example, it depends on the [Balances pallet](/rustdocs/latest/pallet_balances/index.html):
 
 **`runtime/Cargo.toml`**
 
 ```TOML
-[dependencies]
 #--snip--
-pallet-balances = { default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-YYYY-MM' }
+[dependencies.pallet-balances]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-2021-08'
+version = '4.0.0-dev'
 ```
 
-This is telling Cargo to find the crate from git repository `paritytech/substrate` with commit
-that is tagged with `monthly-YYYY-MM`. `YYYY` and `MM` are the corresponding year and month.
+This is telling Cargo to find the crate from git repository
+[`paritytech/substrate`](https://github.com/paritytech/substrate) with commit that is tagged with
+`monthly-YYYY-MM`. `YYYY` and `MM` are the corresponding year and month.
 
 #### Crate Features
 
-One important thing we need to call out with importing pallet crates is making sure to set up the
-crate `features` correctly. In the code snippet above, you will notice that we set
-`default-features = false`. If you explore the `Cargo.toml` file even closer, you will find
-something like:
+Note that when importing pallet crates we need to make sure crate `features` is setup correctly.
+In the code snippet above, you will notice that we set `default-features = false`. If you look
+further down in the `Cargo.toml`, you will find something like:
 
 **`runtime/Cargo.toml`**
 
@@ -165,7 +176,7 @@ std = [
     'frame-system-rpc-runtime-api/std',
     'pallet-aura/std',
     'pallet-balances/std',
-    #--snip--
+    # --snip--
 ]
 ```
 
@@ -180,7 +191,7 @@ snippet above should be read as:
 
 This is important to enable the Substrate runtime to compile to both native binary, which supports
 Rust [`std`](https://doc.rust-lang.org/std/), and [Wasm](https://webassembly.org/) binary, which
-do not (see: [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html)).
+do not (read about [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html)).
 
 The use of Wasm runtime binaries is one of Substrate's defining features. It allows the runtime code
 to become a part of a blockchain's evolving state; it also means that the definition of the runtime
@@ -223,9 +234,11 @@ So based on the `balances` import shown above, the `nicks` import will look like
 **`runtime/Cargo.toml`**
 
 ```TOML
-[dependencies]
-#--snip--
-pallet-nicks = { default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05' }
+[dependencies.pallet-nicks]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-YYYY-MM'
+version = '4.0.0-dev'
 ```
 
 As with other pallets, the Nicks pallet has an `std` feature. We should build its `std` feature
@@ -274,8 +287,8 @@ Next we will implement the Nicks pallet configuration trait and add the Nicks pa
 
 Every pallet has a component called `Config` that is used for configuration. This component is a
 [Rust "trait"](https://doc.rust-lang.org/book/ch10-02-traits.html); traits in Rust are similar to
-interfaces in languages such as C++, Java and Go. FRAME developers must implement this trait for
-each pallet they would like to include in a runtime in order to configure that pallet with the
+interfaces in languages such as C++, Java and Go. FRAME developers must have their runtime implement
+this trait for each pallet they would like to include and configure that pallet with the
 parameters and types that it needs from the outer runtime. For instance, in the template pallet that
 is included in the
 [Node Template](https://github.com/substrate-developer-hub/substrate-node-template), you will see
@@ -291,16 +304,15 @@ pub trait Config: frame_system::Config {
 }
 ```
 
-As the comment states, we are using the `Event` type of the `Config` configuration trait in order to
-allow the template pallet to emit a type of event that is compatible with the outer runtime.
+As the comment states, we have an `Event` associated type of the `Config` configuration trait in order to
+allow the template pallet to emit events that is compatible with the outer runtime.
 The `Config` configuration trait may also be used to tune parameters that control the resources
 required to interact with a pallet or even to limit the resources of the runtime that the pallet may
 consume. You will see examples of both such cases below when you implement the `Config` configuration
 trait for the Nicks pallet.
 
 To figure out what you need to implement for the Nicks pallet specifically, you can take a look at
-the
-[`pallet_nicks::Config` documentation](/rustdocs/latest/pallet_nicks/trait.Config.html)
+the [`pallet_nicks::Config` documentation](/rustdocs/latest/pallet_nicks/pallet/trait.Config.html)
 or the definition of the trait itself in
 [the source code](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs) of the
 Nicks pallet. We have annotated the source code for `nicks` pallet _from the substrate source_ below with
@@ -343,7 +355,7 @@ Just like we used the Balances pallet as a template for importing the Nicks pall
 Balances pallet as an example to help us understand how we can implement the `Config` interface for the
 Nicks pallet. You will notice that this implementation consists of two parts: a `parameter_types!`
 block where constant values are defined and an `impl` block where the types and values defined by
-the `Config` interface are configured. This code block has also been annotated with additional
+the `Config` interface are configured. These code blocks have also been annotated with additional
 comments that you should be sure to read:
 
 **`runtime/src/lib.rs`**
@@ -360,6 +372,10 @@ parameter_types! {
 impl pallet_balances::Config for Runtime {
     // The previously defined parameter_type is used as a configuration parameter.
     type MaxLocks = MaxLocks;
+
+    type MaxReserves = ();
+
+    type ReserveIdentifier = [u8; 8];
 
     // The "Balance" that appears after the equal sign is an alias for the u128 type.
     type Balance = Balance;
@@ -383,11 +399,11 @@ impl pallet_balances::Config for Runtime {
 ```
 
 The `impl pallet_balances::Config` block allows runtime developers that are including the Balances pallet in
-their runtime to configure the types and parameters that are specified by the Balances pallet
+their runtime to configure the types and parameters that are defined in the Balances pallet
 `Config` configuration trait. For example, the `impl` block above configures the Balances pallet to
-use the `u128` type to track balances. If you were developing a chain where it was important to
-optimize storage, you could use any unsigned integer type that was at least 32-bits in size; this is
-because
+use the `Balance` type, a type alias of `u128`, to track balances. If you're developing a chain
+where it's important to optimize storage, you could use any unsigned integer type that was at
+least 32-bits in size; this is because
 [the `Balance` type](/rustdocs/latest/pallet_balances/pallet/trait.Config.html#associatedtype.Balance)
 for the Balances pallet `Config` configuration trait is bound by
 [the `AtLeast32BitUnsigned` trait](/rustdocs/latest/sp_arithmetic/traits/trait.AtLeast32BitUnsigned.html).
@@ -403,9 +419,9 @@ configuration trait for the Nicks pallet. Add the following code to your runtime
 parameter_types! {
     // Choose a fee that incentivizes desireable behavior.
     pub const NickReservationFee: u128 = 100;
-    pub const MinNickLength: usize = 8;
+    pub const MinNickLength: u32 = 8;
     // Maximum bounds on storage are important to secure your chain.
-    pub const MaxNickLength: usize = 32;
+    pub const MaxNickLength: u32 = 32;
 }
 
 impl pallet_nicks::Config for Runtime {
@@ -442,10 +458,11 @@ determine the types that the pallet exposes so that we can tell the runtime that
 complete list of possible types can be found in the
 [`construct_runtime!` macro documentation](/rustdocs/latest/frame_support/macro.construct_runtime.html).
 
-If we look at the [Nicks pallet](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs) in detail, we know it has:
+If we look at the [Nicks pallet](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs)
+in detail, we know it has:
 
-- Module **Storage**: Because it uses the `#[pallet::storage]` macro.
-- Module **Event**s: Because it uses the `#[pallet::events]` macro. You will notice that in the case of
+- Pallet **Storage**: Because it uses the `#[pallet::storage]` macro.
+- Pallet **Event**s: Because it uses the `#[pallet::events]` macro. You will notice that in the case of
   the Nicks pallet, the `Event` keyword is parameterized with respect to a type, `T`; this is
   because at least one of the events defined by the Nicks pallet depends on a type that is
   configured with the `Config` configuration trait.
@@ -495,7 +512,7 @@ cargo build --release
 ```
 
 If the build fails, go back to the previous section and make sure you followed all the steps
-correctly. You can also view a [full solution including the `Nick` pallet](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions%2Fadd-a-pallet-v3.0.0+monthly-2021-05).
+correctly. You can also view the [full solution of including the `Nick` pallet](https://github.com/substrate-developer-hub/substrate-node-template/tree/tut-sol/add-a-pallet%2Flatest).
 
 After the build succeeds, you can start the node:
 
@@ -506,17 +523,19 @@ After the build succeeds, you can start the node:
 
 ### Start the Front-End
 
-As in the previous tutorials, this tutorial will use the Substrate Developer Hub Front-End Template
+As in the previous tutorials, this tutorial will use the
+[Substrate Front-End Template](https://github.com/substrate-developer-hub/substrate-front-end-template/tree/latest)
 to allow you to interact with the Node Template. As long as you have completed the
-[Create Your First Chain](/tutorials/v3/create-your-first-substrate-chain) and [Build a dApp](/tutorials/v3/proof-of-existence)
-tutorials, you should already be prepared to continue with the rest of this tutorial.
+[Create Your First Chain](/tutorials/v3/create-your-first-substrate-chain) and
+[Proof of Existence](/tutorials/v3/proof-of-existence) tutorials, you should be prepared to
+continue with the rest of this tutorial.
 
 <Message
   type={`yellow`}
   title={`Information`}
   text="Refer directly to the
     [front-end setup instructions](/tutorials/v3/create-your-first-substrate-chain/#install-the-front-end-template)
-    for the Create Your First Chain Tutorial if necessary.
+    in the Create Your First Chain Tutorial if necessary.
     "
 />
 
@@ -591,7 +610,7 @@ use the `SUDO` button to dispatch the same call with the same parameter.
 
 The Sudo pallet emits a
 [`Sudid` event](/rustdocs/latest/pallet_sudo/enum.RawEvent.html#variant.Sudid)
-to inform network participants that the `Root` origin dispatched a call, however, you will notice
+to inform network participants that the `Root` origin dispatched a call. However, you will notice
 that the inner dispatch failed with a
 [`DispatchError`](/rustdocs/latest/sp_runtime/enum.DispatchError.html) (the
 Sudo pallet's
@@ -626,10 +645,12 @@ the beginning of this guide, each pallet will be a little different. Have no fea
 refer to the [Substrate runtime](https://github.com/paritytech/substrate/tree/master/bin/node/runtime)
 which includes nearly every pallets in the library of core FRAME pallets.
 
-In the Substrate node runtime `bin/node/runtime/Cargo.toml` file, you will see how to import
-different pallets, and in the `bin/node/runtime/src/lib.rs` file you will see how to add each pallet to your
-runtime. You can generally copy what was done there as a starting point to include a pallet in your
-own runtime.
+In the Substrate node runtime
+[`bin/node/runtime/Cargo.toml` file](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/Cargo.toml),
+you will see how to import different pallets, and in the
+[`bin/node/runtime/src/lib.rs` file](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs)
+you will see how to add each pallet to your runtime. You can generally copy what was done there as
+a starting point to include a pallet in your own runtime.
 
 <Message
   type={`green`}
@@ -673,7 +694,7 @@ branch = 'master'
 
 ### Option 2: Publishing on crates.io
 
-**crates.io** allows permissionless publishing of any Rust module. You could learn the procedure by
+**crates.io** allows permissionless publishing of Rust modules. You could learn the procedure by
 following their guide on how to [publish on crates.io](https://doc.rust-lang.org/cargo/reference/publishing.html).
 
 Once published, other developers could refer to your pallet in their `Cargo.toml` using the
