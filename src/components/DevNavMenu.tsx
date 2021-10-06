@@ -691,15 +691,15 @@ DevNavMenuTuts.set('cumulusWorkshop', [
     items: [
       {
         title: `Getting Started`,
-        link: '/tutorials/v3/cumulus-workshop/pt1',
+        link: '/tutorials/v3/cumulus/pt1',
       },
       {
         title: `Connecting to a Relay Chain`,
-        link: '/tutorials/v3/cumulus-workshop/pt2',
+        link: '/tutorials/v3/cumulus/pt2',
       },
       {
         title: `Launch a Development Environment`,
-        link: '/tutorials/v3/cumulus-workshop/pt3',
+        link: '/tutorials/v3/cumulus/pt3',
       },
     ],
   },
