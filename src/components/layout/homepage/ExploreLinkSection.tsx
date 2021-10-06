@@ -30,7 +30,7 @@ const ExploreLinkSection = ({ links }: ExploreLinkSectionProps) => {
     developerHub: {
       title: 'Developer Hub',
       description:
-        'Dive into documentation, tutorials, and resources to immediately get started building with Substrate',
+        'Dive into documentation, tutorials, and resources to immediately get started building with Substrate.',
       link: '/',
       linkText: 'Start building',
       icon: 'diamondPink',
