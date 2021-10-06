@@ -16,7 +16,7 @@ export default function ExploreDocs() {
             'Explore the basics of Substrate’s FRAME and start creating your custom pallets.',
         },
         {
-          name: 'Smart Contracts',
+          name: 'Smart Contract Toolkits',
           link: '/v3/runtime/smart-contracts',
           description:
             'Discover the different ways to use smart contracts in Substrate chains.',

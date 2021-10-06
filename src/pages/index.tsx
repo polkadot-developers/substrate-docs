@@ -205,7 +205,8 @@ export default function Index() {
             </div>
             <p className="max-w-lg  text-xl">
               Network, share and learn from others who speak your (tech)
-              language! Join in the conversation & keep up with the latest
+              language! Discover the various open communication channels where
+              you can engage, participate and keep up with the latest
               developments.
             </p>
           </div>
