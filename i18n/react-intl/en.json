@@ -106,7 +106,10 @@
   "docs-menu-hash-collections": "Hash Collections",
 
   "docs-menu-contribute": "Contribute",
-  "docs-menu-stye-guide": "Style Guide",
+  "docs-menu-style-guide": "Style Guide",
+  "docs-menu-writing-style": "Writing",
+  "docs-menu-bounties": "Bounties",
+  "docs-menu-templates": "Templates",
 
   "docs-nav-htg-basics": "Basics",
   "htg-basics-pallet-integration": "Pallet Integration",
