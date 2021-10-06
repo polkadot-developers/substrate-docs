@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import AOS from 'aos'
 import { MDXProvider } from '@mdx-js/react'
-// import { MdxLink } from 'gatsby-theme-i18n'
 import {
   Message,
   PreviousButton,
