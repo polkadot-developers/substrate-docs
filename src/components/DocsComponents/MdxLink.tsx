@@ -14,7 +14,6 @@ interface MdxLinkProps {
 
 export function MdxLink({ href, children, ...props }: MdxLinkProps) {
   if (isHash(href) || !isInternal(href) || isFile(href)) {
-    console.log('LINK IN EXTERNAL ====> ', href)
     if (isHash(href)) {
       return (
         <a {...props} href={href}>
@@ -25,7 +24,6 @@ export function MdxLink({ href, children, ...props }: MdxLinkProps) {
       return <ExternalLink url={href}>{children}</ExternalLink>
     }
   } else {
-    console.log('LINK IN LOCALIZED ====> ', href)
     return (
       <LocalizedLink {...props} to={href}>
         {children}
