@@ -701,6 +701,10 @@ DevNavMenuTuts.set('cumulusTutorial', [
         title: `Launch a parachain testnet`,
         link: '/tutorials/v3/cumulus/pt3',
       },
+      //   {
+      //     title: `Register on Rococo`,
+      //     link: '/tutorials/v3/cumulus/pt4',
+      //   },
     ],
   },
 ])
