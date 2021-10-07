@@ -17,7 +17,7 @@ difficulty: 1
     {
       title: 'Use Cases',
       description:
-        `Configuring accurate weights for a pallet's extrinsics`,
+        `Setting up your pallet to be able to benchmark your extrinsics.`,
     },
     {
       title: 'Overview',
@@ -31,7 +31,7 @@ difficulty: 1
 
 ## Steps
 
-### Set-up benchmarking for your pallet
+### 1. Set-up benchmarking for your pallet
 1. In [the pallet's
    `Cargo.toml`](https://github.com/paritytech/substrate/blob/master/frame/example/Cargo.toml), add
    the `frame-benchmarking` crate (with appropriate tag and version) and the `runtime-benchmarks` feature.
@@ -57,17 +57,19 @@ difficulty: 1
    and create a basic structure:
 
    ```rust
-   use super::*;
-   mod benchmarking {
-     use super::*;
-     use crate::Pallet as Template;
-     use frame_benchmarking::{benchmarks, impl_benchmark_test_suite, whitelisted_caller};
-     use frame_system::RawOrigin;
+    //! Benchmarks for Template Pallet
 
-     benchmarks!{
-       // Individual benchmarks are placed here
-     }
-   }
+    #![cfg(feature = "runtime-benchmarks")]
+
+    use sp_std::prelude::*;
+    use super::*;
+    use crate::Pallet as Template;
+    use frame_benchmarking::{benchmarks, impl_benchmark_test_suite, whitelisted_caller};
+    use frame_system::RawOrigin;
+
+    benchmarks!{
+      // Individual benchmarks are placed here
+    }
    ```
 
 3. Each benchmark case has up to three sections: a setup section, an execution section, and
@@ -104,7 +106,7 @@ difficulty: 1
    verify the result at the end.
 
 4. Once you have written your benchmarks, you should make sure they execute properly by testing
-   them. You can add this macro at the bottom of your benchmarking module:
+   them. Add this macro at the bottom of your benchmarking module:
 
    ```rust
    impl_benchmark_test_suite!(
@@ -122,7 +124,7 @@ difficulty: 1
    when actually running the benchmarks. If all tests pass, then it's likely that things will
    work when you actually run your benchmarks!
 
-### Add benchmarking to your runtime
+### 2. Add benchmarking to your runtime
 
 With all the code completed on the pallet side, you need to also enable your full runtime to allow
 benchmarking.
@@ -147,7 +149,7 @@ benchmarking.
    ```
 
 2. Add your new pallet to your runtime just as you would any other pallet. If you need more details
-   check out our tutorial to [Add a Pallet to Your Runtime Tutorial](/tutorials/v3/add-a-pallet) or 
+   check out the [Add a Pallet to Your Runtime Tutorial](/tutorials/v3/add-a-pallet) or 
    [this guide on integrating a pallet to your runtime](/how-to-guides/v3/basics/pallet-integration).
 
 3. Then, in addition to your normal runtime configuration, you also need to update the benchmarking
@@ -182,7 +184,7 @@ benchmarking.
    }
    ```
 
-### Run your benchmarks
+### 3. Run your benchmarks
 
 1. Build your project with the benchmarks enabled:
 
@@ -210,8 +212,11 @@ command to run standard benchmarking for your `pallet_you_created`:
     --steps 20 \                
     --repeat 10 \               
     --raw \                     
-    --output ./                 
+    --output ./pallets/src/pallet-created/weights.rs                 
 ```
+
+This will create a `weights.rs` file inside your pallet's directory. Refer to [this guide]() to learn 
+how to configure your pallet to use those weights.
 
 
 ## Examples
@@ -219,5 +224,6 @@ command to run standard benchmarking for your `pallet_you_created`:
 ## Related material
 
 #### Docs 
+- [Benchmarking](/v3/runtime/benchmarking)
+- [Use custom weights from benchmarking](/how-to-guides/v3/weights/use-benchmark-weights)
 
-#### Rust docs
