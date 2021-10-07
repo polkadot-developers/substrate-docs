@@ -4,9 +4,10 @@ import { LocalizedLink } from 'gatsby-theme-i18n'
 interface LinkProps {
   to: string
   children: React.ReactNode
+  className?: string
 }
 
-export default function Link({ to, children }: LinkProps) {
+export default function Link({ to, children, className }: LinkProps) {
   const linksExcempted = ['substrate-io-staging.netlify.app', 'substrate.io']
   const [isExternalLink, setIsExternalLink] = useState(true)
   const [isExcemption, setIsExcemption] = useState(true)
@@ -23,15 +24,19 @@ export default function Link({ to, children }: LinkProps) {
       {isExternalLink ? (
         <>
           {isExcemption ? (
-            <a href={to}>{children}</a>
+            <a className={className} href={to}>
+              {children}
+            </a>
           ) : (
-            <a href={to} target="_blank" rel="noreferrer">
+            <a className={className} href={to} target="_blank" rel="noreferrer">
               {children}
             </a>
           )}
         </>
       ) : (
-        <LocalizedLink to={to}>{children}</LocalizedLink>
+        <LocalizedLink className={className} to={to}>
+          {children}
+        </LocalizedLink>
       )}
     </>
   )
