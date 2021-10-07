@@ -1,7 +1,7 @@
 ---
 title: Smart Contract Toolkits
 slug: /v3/runtime/smart-contracts
-version: 3.0 
+version: 3.0
 section: docs
 category: smart contracts
 keywords: contracts, evm, ethereum
@@ -111,11 +111,14 @@ governance. The table below is meant to help inform your
 decisions on which approach to use based on different situations.
 
 <table>
-  <tr>
-    <th>Runtime Development </th>
-    <th>Smart Contract</th>
-    <th>Use Case Specific</th>
-  </tr>
+  <thead>
+    <tr>
+      <th>Runtime Development </th>
+      <th>Smart Contract</th>
+      <th>Use Case Specific</th>
+    </tr>
+  </thead>
+  <tbody>
   <tr>
     <td>
       <ul>
@@ -152,6 +155,7 @@ decisions on which approach to use based on different situations.
       </ul>
     </td>
   </tr>
+  </tbody>
 </table>
 
 <Message
@@ -183,7 +187,10 @@ Here are some of ink!'s key features:
 - Because ink! follows Rust standards, tools like [`rustfmt`](https://github.com/rust-lang/rustfmt)
   and [`rust-analyzer`](https://github.com/rust-analyzer/rust-analyzer) already work out of the box.
 
-<AccentButton text={`Start the ink! workshop`} link={`/tutorials/v3/ink-workshop/pt1`} />
+<AccentButton
+  text={`Start the ink! workshop`}
+  link={`/tutorials/v3/ink-workshop/pt1`}
+/>
 
 ### Features
 
@@ -234,7 +241,7 @@ reverted, and the gas fee is **not** returned to the user. If the contract execu
 remaining gas, it is returned to the user at the end of the transaction.
 
 The Contracts pallet determines the gas price, which is a conversion between the Substrate
-[**weight system**](/v3/concepts/weight) and a single unit of gas. Thus, to execute a transaction, a user 
+[**weight system**](/v3/concepts/weight) and a single unit of gas. Thus, to execute a transaction, a user
 must have a free balance of at least `gas price` \* `gas limit` which can be spent.
 
 ### Storage Rent
@@ -282,7 +289,10 @@ It works alongside with the [Ethereum pallet](https://docs.rs/pallet-ethereum) a
 [Dynamic Fee pallet](https://docs.rs/pallet-dynamic-fee) to enable the creation of runtimes
 capable of fully emulating Ethereum block production and transaction processing.
 
-<AccentButton text={`Start the Frontier workshop`} link={`/tutorials/v3/frontier`} />
+<AccentButton
+  text={`Start the Frontier workshop`}
+  link={`/tutorials/v3/frontier`}
+/>
 
 ### EVM Engine
 
@@ -331,8 +341,7 @@ to support earlier hard fork configurations.
   existing system to work on a Substrate-based chain.`}
 />
 
-
-## FAQ 
+## FAQ
 
 #### What is the difference between memory and storage?
 
@@ -359,7 +368,6 @@ cargo +nightly test
 You can follow
 [our guide here](/how-to-guides/v3/pallet-design/contracts-pallet) for instructions on how to add the Contracts pallet
 and other FRAME pallets to your blockchain's runtime.
-
 
 ## Learn More
 
