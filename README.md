@@ -35,7 +35,21 @@ Important Convention Note
 
     ```shell
     cd substrate-docs/
-    yarn install
+    yarn
+    ```
+
+3. **Configure environment variables**
+    
+    Copy `example.env.development` and rename to `.env.development`
+
+    Config URL variables based on your preferable local setup. URL will be used for links generation between documentation and platform stack
+
+    - `GATSBY_DOCS_URL` represents this project serving documentation
+    - `GATSBY_IO_URL`: represents platform website
+
+    ```
+    GATSBY_IO_URL=http://localhost:8001  // local or hosted URL
+    GATSBY_DOCS_URL=http://localhost:8000 // default docs.substrate.io if not set
     ```
 
 3.  **Fire the engine**
@@ -58,7 +72,7 @@ Important Convention Note
 
     - [Documentation](https://www.gatsbyjs.com/docs/)
 
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/
+    - [Tutorials](https://www.gatsbyjs.com/tutorial/)
     - [Guides](https://www.gatsbyjs.com/tutorial/)
 
     - [API Reference](https://www.gatsbyjs.com/docs/api-reference/)

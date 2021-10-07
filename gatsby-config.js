@@ -7,7 +7,7 @@ require('dotenv').config({
 module.exports = {
   siteMetadata: {
     title: 'Substrate_',
-    siteUrl: `${process.env.GATSBY_DOCS_URL}`,
+    siteUrl: `${process.env.GATSBY_DOCS_URL || 'https://docs.substrate.io'}`,
     image_og: '',
     description:
       'Substrate enables developers to quickly and easily build future-proof blockchains optimized for any use case.',
