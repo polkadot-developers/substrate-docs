@@ -333,6 +333,11 @@ polkadot \
 If you would like even more validators, or to customize the relay chain in some other ways, keep
 reading!
 
+<AccentButton
+  text={`Don't need a custom relay spec? Jump to connecting to your relay chain ->`}
+  link={`../pt2`}
+/>
+
 ## Create a custom relay chain spec (optional)
 
 It is generally best to start from an existing specification to minimize chances of
@@ -539,7 +544,7 @@ You may get the output warning: `Took active validators from set with wrong size
 The resulting `chain-spec.json` will still be **perfectly usable**, you can ignore this warning for
 now.
 
-### Start the relay chain and insert keys
+### Start the custom relay chain and insert your own keys
 
 If your custom chain spec includes self-generated keys, see the
 [Substrate private network tutorial](/tutorials/v3/private-network#add-keys-to-keystore)
