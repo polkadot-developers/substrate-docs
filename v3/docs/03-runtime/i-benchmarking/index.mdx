@@ -7,32 +7,46 @@ category: runtime
 keywords:
 ---
 
-## What Is Runtime Benchmarking?
-
 The default Substrate block production systems produce blocks at consistent intervals. This is the
 known as the target block time. Given this requirement, Substrate based blockchains are only be able
 to execute a limited number of extrinsics per block. The time it takes to execute an extrinsic may
 vary based on the computational complexity, storage complexity, hardware used, and many other
-factors. We use generic measurement called **weight** to represent how many extrinsics can fit into
-one block. This is further explained in the [transaction weight section](/v3/concepts/weight).
+factors. We use generic measurement called [weight](/v3/concepts/weight) to represent how many extrinsics 
+can fit into one block.
 
-In Substrate, **10^12 Weight = 1 Second**, and i.e 1,000 weight = 1 nanosecond, measured on a
-specific reference hardware<sup>[[1]](#footnote-ref-hardware)</sup>.
+In Substrate, **10^12 weight units = 1 second**, or 1,000 weight units = 1 nanosecond. This is measured on
+specific reference hardware: Intel Core i7-7700K CPU with 64GB of RAM and an NVMe SSD.
 
 Substrate does not use a mechanism similar to "gas metering" for extrinsic measurement due to the
 large overhead such a process would introduce. Instead, Substrate expects benchmarking to provide an
-approximate maximum for the worst case scenario of executing an extrinsic. Substrate will charge the
-user assuming this worst case scenario path was taken, and if the extrinsic turns out needing less
-resources, some of the estimated weight and fees can be returned. This is further explained in the
+approximate maximum for the worst case scenario of executing an extrinsic. Users are charged assuming
+this worst case scenario path was taken, and if the extrinsic turns out needing less resources, some of 
+the estimated weight and fees can be returned. This is further explained in the 
 [Transaction Weights and Fees](../weights-and-fees) chapter.
 
-So how do we determine the worst case scenario computation time and weight of our extrinsics?
+## Why benchmark a pallet
 
-This is where Substrate Runtime Benchmarking comes in. It has a set of tools to help determine the
-weight of a runtime extrinsic. It execute the extrinsics in a pallet multiple times within the
-runtime environment, and keeps track of the execution time.
+Denial-of-service (DoS) is a common attack vector for distributed systems, including blockchain
+networks. A simple example of such an attack would be for a user to repeatedly execute an extrinsic
+that involve intensive computation. To prevent users from spamming the network, we charge fee to the
+user for making that call. The cost of the call should reflect the computation and storage cost
+incurred to the system such that the more complex the call, the higher the fee. However, we still want to
+encourage users to use our blockchain system, so we also want this estimated cost to be relatively
+accurate so we don't charge users more than necessary.
 
-In total, it:
+Benchmarking allows developers to charge appropriate transaction fees to end users, corresponding to a
+more accurate representation of the cost an extrinsic has on the system. Setting a proper weight function 
+that accurately reflects the underlying computation and storage is also an important security safeguard in 
+Substrate.
+
+## How to benchmark
+
+The [FRAME benchmarking module](/rustdocs/latest/frame_benchmarking/benchmarking/index.html) has a set 
+of tools to help determine the worst case scenario computation time of runtime extrinsics in order to 
+determine appropriate weights for those extrinsics. It does this by executing a pallet's extrinsics 
+multiple times within a mock runtime environment, and keeps track of the execution time.
+
+In summary, it:
 
 - Sets up and executes extrinsics from your pallets.
 
@@ -42,29 +56,10 @@ In total, it:
 - Uses linear regression analysis to determine the relationship between computation time and the
   extrinsic input.
 
-- Outputs a rust file with ready to use weight functions that can be easily integrated in your
+- Outputs a Rust file with ready to use weight functions that can be easily integrated in your
   runtime.
 
-## Why Benchmark a Runtime Pallet?
-
-Denial-of-service (DoS) is a common attack vector for distributed systems, including blockchain
-networks. A simple example of such an attack would be for a user to repeatedly execute an extrinsic
-that involve intensive computation. To prevent users from spamming the network, we charge fee to the
-user for making that call. The cost of the call should reflect the computation and storage cost
-incurred to the system, to the more complex the call, the more we charge. However, we still want to
-encourage users to use our blockchain system, so we also want this estimate cost to be relatively
-accurate so we don't charge users more than necessary.
-
-With the Substrate benchmarking framework, runtime developers can estimate the weight of their
-extrinsics and charge an appropriate transaction fee to the end users. So it is critical to
-benchmark our runtime extrinsics to measure how the extrinsic computation changes with respect to
-its input and set the proper weight functions for these extrinsics. Setting a proper weight function
-that reflects accurately on the underlying computation and storage is an important security
-safeguard in Substrate.
-
-## How to Benchmark?
-
-The benchmarking framework uses Rust macros to help users easily integrate them into their runtime.
+This framework uses Rust macros to help users easily integrate them into their runtime.
 A Substrate benchmark will look something like this:
 
 ```rust
@@ -91,20 +86,28 @@ configure the range of those variables, and use them within the benchmark set-up
 The full syntax and functionality can be seen in the [`benchmarks!` macro API
 documentation](/rustdocs/latest/frame_benchmarking/macro.benchmarks.html).
 
-### Adding Benchmarking to Your Pallet
+
+### Adding benchmarking to your pallet
 
 1. In [the pallet's
    `Cargo.toml`](https://github.com/paritytech/substrate/blob/master/frame/example/Cargo.toml), add
-   the `frame-benchmarking` crate and the `runtime-benchmarks` feature.
+   the `frame-benchmarking` crate (with appropriate tag and version) and the `runtime-benchmarks` feature.
 
    ```toml
-   [dependencies]
-   # -- snip --
-   frame-benchmarking = { version = "3.1.0", default-features = false, path = "../benchmarking", optional = true }
+   [dependencies.frame-benchmarking]
+   default-features = false
+   git = 'https://github.com/paritytech/substrate.git'
+   optional = true
+   tag = '<monthly>'
+   version = '<version>'
 
    [features]
    # -- snip --
    runtime-benchmarks = ["frame-benchmarking"]
+   std = [
+     # -- snip --
+     'frame-benchmarking/std',
+   ]
    ```
 
 2. Create a new sub-module for your benchmarks within your pallet, and create a basic structure
@@ -195,18 +198,19 @@ benchmarking.
 1. Update your runtime `Cargo.toml` file to include the `runtime-benchmarking` features:
 
    ```toml
-   [dependencies]
-   # -- snip --
-   pallet-you-created = { version = ..., default-features = false, path = ... }
-
+   [dependencies.pallet-you-created]
+   default-features = false
+   path = '../pallets/pallet-you-created'
+   version = '3.0.0-monthly-2021-08'
+  
    [features]
-   std = [
-     # -- snip --
-     "pallet-you-created/std"
-   ]
    runtime-benchmarks = [
      # -- snip --
-     "pallet-you-created/runtime-benchmarks"
+     'pallet-you-created/runtime-benchmarks'
+   ]
+    std = [
+     # -- snip --
+     'pallet-you-created/std'
    ]
    ```
 
@@ -244,8 +248,8 @@ benchmarking.
    }
    ```
 
-   This code should already exist within your runtime assuming you use any of our starting
-   templates. There seems to be a lot of code, but we are mainly just setting up the environment
+   Assuming you use any of our starting templates, this code should already exist within your runtime. 
+   There seems to be a lot of code, but we are mainly just setting up the environment
    where your benchmarking code will run.
 
 4. To add our new benchmarks, we simply add a new line with the `add_benchmark!` macro.
@@ -295,7 +299,7 @@ command to execute benchmarks for a pallet will look like this:
 ```
 
 - `chain` specifies the chain-spec we will use
-- `execution` and `wasm-execution` specify we are benchmarking the compiled wasm code (vs the native
+- `execution` and `wasm-execution` specify we are benchmarking the compiled Wasm code (versus the native
   code as an alternative)
 - `pallet` and `extrinsic` specify which pallet and extrinsics we are benchmarking. With the above
   arguments we are benchmarking all extrinsics of `pallet_example`.
@@ -465,8 +469,8 @@ pub trait WeightInfo {
 }
 ```
 
-Here, associated function `set_dummy` take a parameter. This is because we have the line `let b in 1 .. 1000;` in our `set_dummy` benchmarking function, indicating the execution time likely be affected
-by this parameter.
+Here, associated function `set_dummy` take a parameter. This is because we have the line `let b in 1 .. 1000;` 
+in our `set_dummy` benchmarking function, indicating the execution time likely be affected by this parameter.
 
 The generated file implements these associated functions. To integrate them, we can copy the
 generated file into the directory where `lib.rs` is located and named it as `weights.rs`.
@@ -495,9 +499,9 @@ pub mod pallet {
 }
 ```
 
-For each extrinsic, we add an attribute macro `pallet::weight` and pass in the weight implementation
+For each extrinsic, we add an attribute `#[pallet::weight]` and pass in the weight implementation
 function with the same name as the extrinsic and variables that affect the weight. We can pass
-extrinsic parameters as weight function inputs to estimated the final weight.
+extrinsic parameters as weight function inputs to estimate the final weight.
 
 ## Best Practice and Common Patterns
 
@@ -561,8 +565,3 @@ up, but not doing fancy computation.
 - [Substrate Seminar: Benchmarking Your Substrate
   Pallet](https://www.youtube.com/watch?v=Qa6sTyUqgek)
 - [Benchmarking and Weights for a New Pallet](https://hackmd.io/041uMXYXR8y6nBWUnQ6uCQ)
-
-## Footnotes
-
-1. <span id="footnote-ref-hardware">The</span> reference hardware use for benchmarking
-   Substrate is an Intel Core i7-7700K CPU with 64GB of RAM and an NVMe SSD.
