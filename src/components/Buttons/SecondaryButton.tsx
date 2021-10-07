@@ -3,7 +3,7 @@ import { LocalizedLink } from 'gatsby-theme-i18n'
 
 interface SecondaryButtonProps {
   link: string
-  children: string
+  children: React.ReactNode
   external?: boolean
   cta?: boolean
 }
