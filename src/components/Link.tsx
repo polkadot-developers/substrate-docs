@@ -11,7 +11,6 @@ const InfraLink = ({ to, children }: InfraLinkProps) => {
   const { colorMode } = useContext(ThemeContext)
 
   const handleClick = (e: React.FormEvent<EventTarget>, to: string) => {
-    if (colorMode === 'light') return
     e.preventDefault()
     window.location.href = to + `?mode=${colorMode}`
   }
