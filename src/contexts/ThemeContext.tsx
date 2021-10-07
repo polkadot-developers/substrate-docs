@@ -49,9 +49,9 @@ interface ThemeProviderInterface {
 
 export const ThemeProvider = ({ children, value }: ThemeProviderInterface) => {
   const [colorMode, rawSetColorMode] = React.useState(undefined)
-  const { location } = value
 
   useEffect(() => {
+    const { location } = value
     rawSetColorMode(getInitialColorMode())
     if (getUrlColorMode(location))
       setColorMode(getUrlColorMode(location) as string)
