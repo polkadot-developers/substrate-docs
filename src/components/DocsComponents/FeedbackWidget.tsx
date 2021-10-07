@@ -11,7 +11,6 @@ export function FeedbackWidget({ title, slug, section }: FeedbackWidgetProps) {
   const githubLink =
     'https://github.com/substrate-developer-hub/substrate-docs/issues/new?'
   const githubTitle = `Feedback Submission - ${section} / ${title}`
-  console.log(section)
   const currentSection = () => {
     if (section === 'how to guides') {
       return 'Guide'
