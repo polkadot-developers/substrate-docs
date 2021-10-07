@@ -58,7 +58,7 @@ iconsMap.set('docsNavIcon', docsNavIcon)
 iconsMap.set('copyText', copyText)
 iconsMap.set('externalIcon', externalIcon)
 iconsMap.set('informationIcon', informationIcon)
-iconsMap.set('adviceIcon',  adviceIcon)
+iconsMap.set('adviceIcon', adviceIcon)
 iconsMap.set('noteIcon', noteIcon)
 
 interface IconProps {
