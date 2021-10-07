@@ -4,7 +4,23 @@ slug: /tutorials/v3/cumulus/pt2
 version: 'polkadot-0.9.10'
 section: Tutorials
 category: Parachains
-keywords: cumulus, workshop, parachain, template, rococo, parathread
+keywords:
+  [
+    cumulus,
+    tutorial,
+    workshop,
+    parachain,
+    parathread,
+    paraid,
+    register,
+    template,
+    rococo,
+    parathread,
+    xcm,
+    xcmp,
+    relay chain,
+    collator,
+  ]
 ---
 
 In this part of the workshop, we'll connect a parachain to our relay chain and add additional nodes.
@@ -36,29 +52,29 @@ In this part of the workshop, we'll connect a parachain to our relay chain and a
 
 ## Learning outcomes
 
-- Register a Para ID
-- Start a collator node
-- Submit transactions with XCMP
+- Register a para ID
+- Initialize a parachain
+- Start and connect a collator
 - Connect additional parachain nodes
 
 ## Launching a Parachain
 
-### Reserve a Para ID
+### Reserve a para ID
 
-To connect to any relay chain, you must first reserve a Para ID for your parathread that will
-become a parachain. It is called Para ID, because the same ID can be seen as its parachain ID or
+To connect to any relay chain, you must first reserve a para ID for your parathread that will
+become a parachain. It is called para ID, because the same ID can be seen as its parachain ID or
 parathread ID, depending on your current chain to relay-chain connection state. To do this, you need
 to have sufficient amount of the currency on the network to
 reserve the ID. This is 20 "units" on the testnets. Check for the amount on your relay chain.
-The relay chain is responsible for allotting all Para IDs (they can no longer
+The relay chain is responsible for allotting all para IDs (they can no longer
 be user selected) and will be simply the increment starting at `2000` for all chains connecting
-that are not "systems parachains" that use a different method to obtain the Para ID.
+that are not "systems parachains" that use a different method to obtain the para ID.
 
-The easiest way to reserve your Para ID is via the <ExternalLink url="https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/parachains/parathreads">Polkadot-JS Apps</ExternalLink>
+The easiest way to reserve your para ID is via the <ExternalLink url="https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/parachains/parathreads">Polkadot-JS Apps</ExternalLink>
 under the _Network_ -> **Parachains** sub-page, click on **Parathreads** tab and use the
 **+ ParaId** button.
 
-![Reserve a Para ID](../../../../src/images/tutorials/09-cumulus/paraid-reserve.png)
+![Reserve a para ID](../../../../src/images/tutorials/09-cumulus/paraid-reserve.png)
 
 <Message
   type={`yellow`}
@@ -67,14 +83,14 @@ under the _Network_ -> **Parachains** sub-page, click on **Parathreads** tab and
     ID will be 2000 for your first parathread registration.`}
 />
 
-Note that the account used to register the Para ID must also be the origin for using this
-Para ID. Once you submit this extrinsic successfully (you must see a successful `registrar.Reserved`
+Note that the account used to register the para ID must also be the origin for using this
+para ID. Once you submit this extrinsic successfully (you must see a successful `registrar.Reserved`
 event with your `paraID`), you can now launch your parachain or parathread using this reserved ID.
 
 ### Deploying the chain
 
 We'll begin by deploying <ExternalLink url="https://github.com/substrate-developer-hub/substrate-parachain-template">Parachain Template</ExternalLink>
-with Para ID `2000`. These instructions are written specifically for Para ID 2000.
+with para ID `2000`. These instructions are written specifically for para ID 2000.
 
 The `parachain-collator` binary used below comes from compiling the Parachain Template successfully.
 Refer to [Building the Parachain Template](../pt1#3-building-the-parachain-template)
@@ -99,7 +115,7 @@ parachain blocks. The collator node also has a command to produce this Wasm blob
 parachain-collator export-genesis-wasm > para-2000-wasm
 ```
 
-> The Wasm blob does not depend on the Para ID, so we do not provide that flag. If you are
+> The Wasm blob does not depend on the para ID, so we do not provide that flag. If you are
 > launching multiple parachains using the exact same runtime, you do not need to regenerate the Wasm
 > blob each time.
 
@@ -112,7 +128,7 @@ We can now start the collator node with the following command. Notice that we ne
 relay chain spec we used when launching relay chain nodes, at the second half of the command.
 
 ```bash
-# NOTE: this command assumes a Para ID of 2000. Change as needed.
+# NOTE: this command assumes a para ID of 2000. Change as needed.
 parachain-collator \
 --alice \
 --collator \
@@ -134,7 +150,7 @@ collator node and also an **embedded relay chain node**. The arguments before th
 collator, and the arguments after the `--` are for the embedded relay chain node.
 
 We give the collator a base path and ports as we did for the relay chain node previously. We also
-specify the Para ID.
+specify the para ID.
 
 Remember to change the collator-specific values if you are executing these instructions a second
 time for a second parachain. You will use the same relay chain chain spec, but need different ports
@@ -235,7 +251,13 @@ in mind when interacting with various connected chains:
 
 - Vertical message passing (VMP) will eventually be allowed for.
 
-For a detailed overview, see the <ExternalLink url="https://wiki.polkadot.network/docs/en/learn-crosschain">Polkadot wiki on XCMP </ExternalLink>
+<Message
+  type={`green`}
+  title={`Learn more about XCMP`}
+  text={`
+For a detailed overview, see the [Polkadot wiki on XCMP](https://wiki.polkadot.network/docs/en/learn-crosschain)
+`}
+/>
 
 ## Parachain Registration
 
@@ -332,7 +354,7 @@ successful **and a new relay chain epoch has begun**!
 
 > This may take a while! Be patient as you wait for a new epoch to begin first.
 > This is 10 blocks for the [rococo `chain-spec.json`](../pt1#1-chain-specification)
-> included in this workshop.
+> included in this tutorial.
 
 Finally, the collator should start producing log messages like the following:
 

@@ -18,7 +18,7 @@ rm -rf /tmp/relay /tmp/parachain
 
 # ./target/release/polkadot --charlie --validator --base-path /tmp/relay/charlie --chain ../cumulus-workshop/shared/chainspecs/rococo-custom-2-raw.json --port 30335 --ws-port 9946
 
-# Register paraID 2000 with `Charlie`
+# Register para ID 2000 with `Charlie`
 # https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/parachains/parathreads
 
 # Parachain collators gen state

@@ -4,7 +4,23 @@ slug: /tutorials/v3/cumulus/pt3
 version: 'polkadot-0.9.10'
 section: tutorials
 category: parachains
-keywords: cumulus, tutorial, workshop, parachain, template, rococo, parathread
+keywords:
+  [
+    cumulus,
+    tutorial,
+    workshop,
+    parachain,
+    parathread,
+    paraid,
+    register,
+    template,
+    rococo,
+    parathread,
+    xcm,
+    xcmp,
+    relay chain,
+    collator,
+  ]
 ---
 
 The final part of the workshop will step you through how to use the <ExternalLink
@@ -86,7 +102,7 @@ Let's take a brief look inside the file. Inside the `relaychain` section, there 
 Inside the `parachains` section, **two parachains** are defined, each with:
 
 - `bin`: where the parachain binary is located.
-- `id`: the Para ID of each chain.
+- `id`: the para ID of each chain.
 - `balance`: initial balance to be set for the well-known accounts.
 - `nodes`: the node setting for the corresponding parachains.
 
@@ -264,7 +280,7 @@ looks like the following:
 ```
 
 - `bin`: where the parachain collator binary is located.
-- `id`: the Para ID assigned to this parachain. Must be unique among the network.
+- `id`: the para ID assigned to this parachain. Must be unique among the network.
 - `balance`: (optional) configure a starting amount of balance on the relay chain for this chain's
   account ID.
 - For each node in `nodes`, it has the same configuration as node config in the relay chain.
@@ -315,8 +331,8 @@ communicating both ways.
 ]
 ```
 
-- `sender`: chain Para ID messages are sent from.
-- `recipient`: chain Para ID messages are sent to.
+- `sender`: chain para ID messages are sent from.
+- `recipient`: chain para ID messages are sent to.
 - `maxCapacity`: number of messages that can be sent before they are acknowledged by
   the recipient chain.
 - `maxMessageSize`: maximum size of a message that can be sent across.

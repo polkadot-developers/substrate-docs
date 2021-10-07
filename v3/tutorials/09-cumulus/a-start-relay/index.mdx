@@ -4,12 +4,30 @@ slug: /tutorials/v3/cumulus/pt1
 version: 'polkadot-0.9.10'
 section: Tutorials
 category: Parachains
-keywords: cumulus, tutorial, workshop, parachain, template, rococo, parathread
 difficulty: 3
 duration: 3 Hour
 relevantSkills:
   - Rust
   - Parachains
+  - Cumulus
+  - XCMP
+keywords:
+  [
+    cumulus,
+    tutorial,
+    workshop,
+    parachain,
+    parathread,
+    paraid,
+    register,
+    template,
+    rococo,
+    parathread,
+    xcm,
+    xcmp,
+    relay chain,
+    collator,
+  ]
 ---
 
 ## Before you begin
@@ -76,6 +94,7 @@ With those complete, let's dive in!
 
 - Set up your parachain build environment
 - Start a relay chain
+- Customize a relay chain specification
 
 ## Hardware and software requirements
 
@@ -235,7 +254,7 @@ the outset.
 #### Parachain info pallet
 
 This pallet is designed to inject information about the parachain's registration into its own
-runtime. Currently it just injects the Para ID that the chain is registered at. This allows the
+runtime. Currently it just injects the para ID that the chain is registered at. This allows the
 runtime to know which cross-chain messages are intended for it.
 
 #### Message broker pallet

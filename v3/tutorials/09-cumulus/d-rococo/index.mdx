@@ -4,13 +4,31 @@ slug: /tutorials/v3/cumulus/pt4
 version: 'polkadot-0.9.10'
 section: tutorials
 category: parachains
-keywords: cumulus, tutorial, workshop, parachain, template, rococo, parathread, rococo, crowdloan, slot auction
+keywords:
+  [
+    cumulus,
+    tutorial,
+    workshop,
+    parachain,
+    parathread,
+    paraid,
+    register,
+    template,
+    rococo,
+    parathread,
+    xcm,
+    xcmp,
+    relay chain,
+    collator,
+  ]
 ---
 
 Rococo is Parity's official test network for cumulus-based parachains.
 
-## **_NEW ROCOCO SLOTS PRESENTLY DISABLED FOR COMMUNITY CHAINS_**
-
+<Message
+  type={`yellow`}
+  title={`NEW ROCOCO SLOTS PRESENTLY DISABLED FOR COMMUNITY CHAINS`}
+  text={`
 The core team is very actively working on _breaking changes_ in [disputes
 logic](https://github.com/paritytech/polkadot/blob/master/runtime/parachains/src/disputes.rs)
 (following the [implementers
@@ -18,10 +36,12 @@ guide](https://github.com/paritytech/polkadot/blob/master/roadmap/implementers-g
 and testing these on Rococo.
 This is causing instability in running parachains on Rococo, and thus **temporarily** _new
 slots are not typically available_.
-
+\n
 Come ask the team in [Parachain Technical matrix
 channel](https://matrix.to/#/#parachain-technical:matrix.parity.io) about the status and your needs
 to connect to a larger testnet and we can discuss options.
+`}
+/>
 
 <Message
   type={`red`}
@@ -33,6 +53,12 @@ to connect to a larger testnet and we can discuss options.
   Please test registering your parachain locally before attempting to connect to Rococo!
   `}
 />
+
+<!--
+TODO:FIXME: once we open again, we need to update versions and instruct on how to
+check what you need on a production network (maybe as a HTG)
+https://github.com/substrate-developer-hub/substrate-docs/issues/241
+-->
 
 <ExternalLink url="https://github.com/paritytech/polkadot/tree/release-v0.9.10">
   Polkadot `release-v0.9.10` branch
@@ -62,9 +88,9 @@ You need to register on Rococo as a parathread before able to experiment on Roco
 
 All parachains will need to register as a parathread first. You will need:
 
-- **5 ROCs** deposit to register a Para ID.
+- **5 ROCs** deposit to register a para ID.
 
-- [Reserve a unique Para ID](../pt2#1-reserve-a-para-id). This will be assigned to the next
+- [Reserve a unique para ID](../pt2#1-reserve-a-para-id). This will be assigned to the next
   available ID. This integer will be greater than `2000`, as `0-999` are reserved for <ExternalLink url="https://wiki.polkadot.network/docs/learn-common-goods#system-level-chains">system parachains</ExternalLink> and
   `1000-1999` are reserved for <ExternalLink url="https://wiki.polkadot.network/docs/learn-common-goods#public-utility-chains">public utility parachains</ExternalLink>.
 
@@ -78,11 +104,11 @@ The procedure will be as followed:
 
 - Goto Polkadot-JS Apps <ExternalLink url="https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/parachains/parathreads">here</ExternalLink>
 
-- Reserve for the next available Para ID.
+- Reserve for the next available para ID.
 
   ![paraid-reserve.png](../../../../src/images/tutorials/09-cumulus/paraid-reserve.png)
 
-- After successfully reserving your Para ID, you can now register as a **Parathread**.
+- After successfully reserving your para ID, you can now register as a **Parathread**.
 
   ![register-parathread.png](../../../../src/images/tutorials/09-cumulus/register-parathread.png)
 
@@ -122,12 +148,12 @@ including on-boarding, off-boarding, upgrading, downgrading, etc.
 
 #### Bidding
 
-Anyone with a fully onboarded parathread can make a bid to win a parachain slot for their Para ID.
+Anyone with a fully onboarded parathread can make a bid to win a parachain slot for their para ID.
 They need to out-bid all others participating in the slot auction.
 
 You can do so in Polkadot-JS App <ExternalLink url="https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/parachains/auctions">**Network** > **Parachains** > **Auctions** page</ExternalLink>.
 
-Pick your Para ID, how much you want to bid, and the slots you want to bid for:
+Pick your para ID, how much you want to bid, and the slots you want to bid for:
 
 ![parachain-bid.png](../../../../src/images/tutorials/09-cumulus/parachain-bid.png)
 
@@ -149,7 +175,7 @@ In the following, we are getting ready to submit an extrinsic to start a crowdlo
 
 Notes on the parameters:
 
-- `parachain id`: You can only create a crowdloan campaign for a Para ID that you registered.
+- `parachain id`: You can only create a crowdloan campaign for a para ID that you registered.
 
 - `crowdfund cap`: The maximum amount your crowdloan campaign can collect. This is just a responsible
   measure for getting external support.
