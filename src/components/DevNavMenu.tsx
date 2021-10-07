@@ -698,7 +698,7 @@ DevNavMenuTuts.set('cumulusTutorial', [
         link: '/tutorials/v3/cumulus/pt2',
       },
       {
-        title: `Launch a full parachain testnet`,
+        title: `Launch a parachain testnet`,
         link: '/tutorials/v3/cumulus/pt3',
       },
     ],
