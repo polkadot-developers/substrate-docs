@@ -19,6 +19,20 @@ function getInitialColorMode() {
   return 'light'
 }
 
+function getUrlColorMode(location: { href: string; pathname: string }) {
+  const currentUrl = location.href
+  const searchParams = new URL(currentUrl).searchParams
+  const mode = searchParams.get('mode')
+
+  if (mode === 'dark' || mode === 'light') {
+    searchParams.delete('mode')
+    window.history.replaceState(null, null, location.pathname + searchParams)
+    return mode
+  }
+
+  return false
+}
+
 interface ThemeContextInterface {
   colorMode: string
   setColorMode: (value: string) => void
@@ -28,11 +42,19 @@ export const ThemeContext = React.createContext<ThemeContextInterface | null>(
   null
 )
 
-export const ThemeProvider = ({ children }: any) => {
+interface ThemeProviderInterface {
+  children: React.ReactNode
+  value: { location: { href: string; pathname: string } }
+}
+
+export const ThemeProvider = ({ children, value }: ThemeProviderInterface) => {
   const [colorMode, rawSetColorMode] = React.useState(undefined)
+  const { location } = value
 
   useEffect(() => {
     rawSetColorMode(getInitialColorMode())
+    if (getUrlColorMode(location))
+      setColorMode(getUrlColorMode(location) as string)
   }, [])
 
   const setColorMode = (value: string) => {
