@@ -5,6 +5,7 @@ import { ThemeContext } from '../contexts/ThemeContext'
 interface InfraLinkProps {
   to: string
   children: React.ReactNode
+  className?: string
 }
 
 const InfraLink = ({ to, children }: InfraLinkProps) => {
