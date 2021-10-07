@@ -829,7 +829,7 @@
   overflow: auto;
   font-size: 85%;
   line-height: 1.45;
-  background-color: #f6f8fa;
+  @apply bg-substrateGray-light dark:bg-substrateDark;
   border-radius: 3px;
 }
 
