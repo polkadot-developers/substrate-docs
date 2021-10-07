@@ -1,7 +1,7 @@
 ---
-title: Cumulus Tutorial
+title: Start a Relay Chain
 slug: /tutorials/v3/cumulus/pt1
-version: 3.0
+version: 'polkadot-0.9.10'
 section: Tutorials
 category: Parachains
 keywords: cumulus, tutorial, workshop, parachain, template, rococo, parathread
@@ -12,8 +12,10 @@ relevantSkills:
   - Parachains
 ---
 
+## Before you begin
+
 In this tutorial you will start a Polkadot-like chain (the relay chain),
-use<ExternalLink url="https://github.com/paritytech/cumulus#readme"> Cumulus </ExternalLink>
+use <ExternalLink url="https://github.com/paritytech/cumulus#readme">Cumulus</ExternalLink>
 to create your own parachain, connect it to your relay chain, and interact with the nodes in a local
 testnet.
 
@@ -35,12 +37,14 @@ understand or complete this tutorial. We assume you have completed these tutoria
 - [Create Your First Substrate Chain](/tutorials/v3/create-your-first-substrate-chain)
 - [Start a Private Network](/tutorials/v3/private-network)
 
-## Getting started
+With those complete, let's dive in!
+
+## Outline of this page
 
 <TutorialObjective
   data={{
-    textLineOne: '1. Prerequisites',
-    url: '#prerequisites',
+    textLineOne: '1. Hardware and software requirements',
+    url: '#hardware-and-software-requirements',
   }}
 />
 <TutorialObjective
@@ -67,40 +71,42 @@ understand or complete this tutorial. We assume you have completed these tutoria
 - Set up your parachain build environment
 - Start a relay chain
 
-## Prerequisites
+## Hardware and software requirements
 
-### Hardware requirements
-
+<Message
+  type={`yellow`}
+  title={`Hardware requirements`}
+  text={`
 Compiling this project is a resource intensive process! We suggest using a machine with
 **no less than**:
-
+\n
 - 8 GB of RAM (16 is suggested)
 - 4 CPU cores (8 is suggested)
 - 50 GB of free HDD/SSD space
+\n
+Without the minimal RAM here, you are likely to run out of memory resulting in a \`SIGKILL\`
+error. This generally happens on the \`polkadot-service\` build so be sure to monitor your RAM
+usage (with something like [htop](https://htop.dev/) and look out as swap memory starting to be
+used.
+`}
+/>
 
-Without the minimal RAM here, you are likely to _run out of memory resulting in a `SIGKILL`
-error_. This generally happens on the `polkadot-service` build so be sure to _monitor your RAM
-usage_ (with something like <ExternalLink url="https://htop.dev/">`htop`</ExternalLink>) and
-look out as swap memory starting to be used.
+### Build with underpowered hardware
 
-<Message
-  type={`green`}
-  title={`Build with underpowered hardware`}
-  text={`
-If you cannot find a machine with the minimums here, try the following solution which trades longer
+If you **_cannot_** find a machine with the minimums here, try the following solution which trades longer
 build time for more limited memory usage.
-- Use less threads: cargo's \`-j\` flag specifies the number of threads to use to build. Try to use
-one less than the CPU cores your machine has.
+
+- Use less threads: cargo's `-j` flag specifies the number of threads to use to build. Try to use
+  one less than the CPU cores your machine has.
 - Use cargo's [codegen units](https://doc.rust-lang.org/cargo/reference/profiles.html#codegen-units)
   feature makes more optimized builds, with less ram, but _much_ longer compile times.
-\`\`\`bash
+
+```bash
 # use less codegen units
 RUSTFLAGS="-C codegen-units=1" cargo build --release
 # set the number of cores/threads to compile (used to build cumulus/polkadot on rpi 3)
 cargo build --release -j 1
-\`\`\`
-`}
-/>
+```
 
 ### Software versioning
 

@@ -685,20 +685,20 @@ DevNavMenuTuts.set('inkWorkshop', [
     ],
   },
 ])
-DevNavMenuTuts.set('cumulusWorkshop', [
+DevNavMenuTuts.set('cumulusTutorial', [
   {
-    name: `Substrate Cumulus Workshop`,
+    name: `Cumulus Tutorial`,
     items: [
       {
-        title: `Getting Started`,
+        title: `Start a relay chain`,
         link: '/tutorials/v3/cumulus/pt1',
       },
       {
-        title: `Connecting to a Relay Chain`,
+        title: `Connect a parachain`,
         link: '/tutorials/v3/cumulus/pt2',
       },
       {
-        title: `Launch a Development Environment`,
+        title: `Launch a full parachain testnet`,
         link: '/tutorials/v3/cumulus/pt3',
       },
     ],

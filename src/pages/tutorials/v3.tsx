@@ -120,7 +120,7 @@ export default function tutorials({ data }: any) {
             time={`3 Hours`}
             difficulty={3}
             prerequisites={true}
-            version={`V3.0.0`}
+            version={`polkadot-0.9.10`}
             link={`/tutorials/v3/cumulus/pt1`}
           />
         </div>
