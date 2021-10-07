@@ -13,11 +13,11 @@ relevantSkills:
 ---
 
 In this tutorial you will start a Polkadot-like chain (the relay chain),
-use <ExternalLink url="https://github.com/paritytech/cumulus#readme">Cumulus</ExternalLink>
-to create your own parachain, connect it to your relay chain, and interact with it in a local
-test network.
+use<ExternalLink url="https://github.com/paritytech/cumulus#readme"> Cumulus </ExternalLink>
+to create your own parachain, connect it to your relay chain, and interact with the nodes in a local
+testnet.
 
-To learn more about parachains **before** continuing, please read:
+Please learn some about parachains **before** continuing the tutorial:
 
 - <ExternalLink url="https://wiki.polkadot.network/docs/learn-parachains">
     Parachain Basics
@@ -25,22 +25,15 @@ To learn more about parachains **before** continuing, please read:
 - <ExternalLink url="https://polkadot.network/the-path-of-a-parachain-block/">
     The Path of a Parachain Block
   </ExternalLink>
-- <ExternalLink url="https://htop.dev/">Parachain Development Overview</ExternalLink>
+- <ExternalLink url="https://wiki.polkadot.network/docs/build-build-with-polkadot">
+    Parachain Development Overview
+  </ExternalLink>
 
-<Message
-  type={`yellow`}
-  title={`Substrate Experience Required`}
-  text={`
 If you are here _without_ any former Substrate experience, you are likely to not
-understand or complete this tutorial. Before you continue please complete the following
-tutorials:
+understand or complete this tutorial. We assume you have completed these tutorials:
+
 - [Create Your First Substrate Chain](/tutorials/v3/create-your-first-substrate-chain)
 - [Start a Private Network](/tutorials/v3/private-network)
-\n
-We will reference these assuming you have already completed these, and
-have your machine configured to compile Substrate-based projects.
-`}
-/>
 
 ## Getting started
 
@@ -92,7 +85,7 @@ look out as swap memory starting to be used.
 
 <Message
   type={`green`}
-  title={`Tip`}
+  title={`Build with underpowered hardware`}
   text={`
 If you cannot find a machine with the minimums here, try the following solution which trades longer
 build time for more limited memory usage.
@@ -115,29 +108,36 @@ cargo build --release -j 1
   type={`red`}
   title={`Exact Versions Matter`}
   text={`
-You **must** use the _exact_ versions mentioned below to ensure that you do not run into conflicts.
-Parachain development is actively making breaking changes between commits on these repositories.
+You **must** use the _exact_ versions set forth in this tutorial to ensure that you do not run into
+conflicts.
+\n
+At the moment, parachains are _very tightly coupled_ with the relay chain's codebase they are
+connecting to. If you want to connect your parachian to a **any** relay network, you _must_ be
+sure that you are building and testing against the **exact same build of that relay chain** for your
+collator!
 `}
 />
 
-At the moment, parachains are _very tightly coupled_ with the relay chain's codebase they are
-connecting to. If you want to connect your parachian to a **any** relay network, you _must_ be
-sure that you are testing against the **exact same build of that relay chain**.
-
 This tutorial has been tested on commits:
 
-> - **Polkadot** tagged <ExternalLink url="https://github.com/paritytech/polkadot/tree/v0.9.10">**`v0.9.10`**</ExternalLink>
-> - **Parachain Template** tagged <ExternalLink url="https://github.com/substrate-developer-hub/substrate-parachain-template/> tree/polkadot-v0.9.10">**`polkadot-v0.9.10`**</ExternalLink>
-> - **Polkadot-JS Apps** tagged <ExternalLink url="https://github.com/polkadot-js/apps/commit/> 1073f1b79bf0aec1c853441e3bbac614defce76e">**`v0.96.2-34`**</ExternalLink>
->   - It is generally expected that the [hosted Polkadot-JS Apps](https://polkadot.js.org/apps/#/explorer)
->     should work. If you have issues, build and run this UI yourself, at this tagged version.
+- **Polkadot** tagged <ExternalLink url="https://github.com/paritytech/polkadot/tree/v0.9.10">**`v0.9.10`**</ExternalLink>
+- **Parachain Template** tagged <ExternalLink url="https://github.com/substrate-developer-hub/substrate-parachain-template/> tree/polkadot-v0.9.10">**`polkadot-v0.9.10`**</ExternalLink>
+- **Polkadot-JS Apps** tagged <ExternalLink url="https://github.com/polkadot-js/apps/commit/> 1073f1b79bf0aec1c853441e3bbac614defce76e">**`v0.96.2-34`**</ExternalLink>
+  - It is generally expected that the [hosted Polkadot-JS Apps](https://polkadot.js.org/apps/#/explorer)
+    should work. If you have issues, build and run this UI yourself, at this tagged version.
 
 We're doing our best to keep the parachain template and this tutorial updated presently
 with the <ExternalLink url="https://github.com/paritytech/polkadot/releases">latest release of Polkadot.</ExternalLink>
 
-Please check-in with us on the <ExternalLink url="https://matrix.to/#/#parachain-technical:matrix.parity.io"> Parachain Technical matrix channel </ExternalLink>
-when the latest version is not what is listed in this tutorial, report any issues you run into, and
-get further support.
+<Message
+  type={`green`}
+  title={`Join the chat`}
+  text={`
+Please join the
+[parachain technical matrix channel](https://matrix.to/#/#parachain-technical:matrix.parity.io) 
+to report any issues you run into and get further support.
+`}
+/>
 
 ## Build your nodes
 
@@ -206,7 +206,7 @@ for your relay chain network.
 
 <Message
   type={`yellow`}
-  title={`Important`}
+  title={`Minimal validators per collator`}
   text={`
 Always have one or more relay chain validator node running than the total connected parachains. For
 example, if you want to connect two parachains, run three or more relay chain validator nodes.
@@ -218,7 +218,7 @@ in the instructions below. You will need to supply the proper path to the chain 
 
 <Message
   type={`gray`}
-  title={`Note`}
+  title={`Distribute your raw spec`}
   text={`
 If you intend to let others connect to your network, you should have the genesis Wasm and the
 associated chain spec for your network generated once and distributed to your peers.
@@ -341,7 +341,7 @@ generate your own chain specs.
 
 <Message
   type={`yellow`}
-  title={`note`}
+  title={`chainspec testing with \`rococo-local\``}
   text={`
 Your final spec _must_ start with the word \`rococo\` or the node will not know what runtime logic
 to include.
@@ -407,7 +407,7 @@ chain spec to use to pass to your nodes on startup. Jump to the
 
 <Message
   type={`gray`}
-  title={`Note`}
+  title={`Direct edits vs. building specs`}
   text={`
 The addition of custom session keys in the plain chain spec as discussed in this section is
 not needed for **production chains**, as these are generated for you in the included chain spec
@@ -430,12 +430,14 @@ spec file can be reproduced. The second part is obtained similarly with `//Bob` 
 
 <Message
   type={`yellow`}
-  title={`note`}
+  title={`Subkey tool vs. key command`}
   text={`
 All the keys and addresses needed can be generated and inspected using either:
 - The stand-alone [\`subkey\` tool](/v3/tools/subkey) (v2.0.1 and above for BEEFY keys)
 - The node \`key\` subcommand, included in all substrate node CLIs
-The commands are equivalent for either one you choose.
+\n
+The commands are equivalent for either one you choose, the sole difference being that the \`key\`
+subcommand also includes methods to \`insert\` keys into your nodes.
 `}
 />
 
@@ -448,7 +450,7 @@ subkey inspect --scheme sr25519 --network substrate //Alice//stash
 
 _Output:_
 
-```
+```text
 Secret Key URI `//Alice//stash` is account:
   Secret seed:       0x3c881bc4d45926680c64a7f9315eeda3dd287f8d598f3653d7c107799c5422b3
   Public key (hex):  0xbe5ddb1579b72e84524fc29e78609e3caf42e85aa118ebfe0b0ad404b5bdd25f
@@ -465,7 +467,7 @@ subkey inspect --scheme ed25519 --network substrate //Alice
 
 _Output:_
 
-```
+```text
 Secret Key URI `//Alice` is account:
   Secret seed:       0xabf8e5bdbe30c65656c0a3cbd181ff8a56294a69dfedd27982aace4a76909115
   Public key (hex):  0x88dc3417d5058ec4b4503e0c12ea1a0a89be200fe98922423d4334014fa6b0ee
@@ -483,7 +485,7 @@ subkey inspect --scheme sr25519 --network substrate //Alice
 
 _Output:_
 
-```
+```text
 Secret Key URI `//Alice` is account:
   Secret seed:       0xe5be9a5092b81bca64be81d212e7f2f9eba183bb7a90954f7b76361f6edb5c0a
   Public key (hex):  0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d
@@ -500,7 +502,7 @@ subkey inspect --scheme ecdsa --network substrate //Alice
 
 _Output:_
 
-```
+```text
 Secret Key URI `//Alice` is account:
   Secret seed:       0xcb6df9de1efca7a3998a8ead4e02159d5fa99c3e0d4fd6432667390bb4726854
   Public key (hex):  0x020a1091341fe5664bfa1782d5e04779689068c916b04cb365ec3153755684d9a1

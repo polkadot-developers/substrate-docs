@@ -114,9 +114,9 @@ export default function tutorials({ data }: any) {
             link={`/tutorials/v3/frontier`}
           />
           <TutorialCard
-            title={`Cumulus & Parachains`}
+            title={`Create a Parachain with Cumulus`}
             image={data.tutorialNine}
-            description={`Learn to configure a Substrate node as a Parachain`}
+            description={`Learn to use the parachain template in local testnet`}
             time={`3 Hours`}
             difficulty={3}
             prerequisites={true}
