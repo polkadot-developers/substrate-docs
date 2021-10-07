@@ -25,15 +25,16 @@ public smart contract platform.
 
 Some examples are:
 
-- **Fees**: Ensuring that contract developers are charged for the computation and storage they force
-  on the computers running their contract, and not allowed to abuse the block creators.
+- **Fees**: Ensuring that contract execution incurs fees for the computation and storage it forces
+  on the computers where it is runnning on, and not allowed to abuse the block creators.
 
 - **Sandbox**: A contract is not able to modify core blockchain storage or the storage of other
   contracts directly. It's power is limited to only modifying it's own state, and the ability to
   make outside calls to other contracts or runtime functions.
 
-- **State Rent**: A contract takes up space on the blockchain, and thus should be charged for simply
-  existing. This ensures that people don't take advantage of "free, unlimited storage".
+- **Storage Deposit**: A contract takes up space on the blockchain, and thus should be charged for
+  taking up space on the nodes' hard drives. This ensures that people don't take advantage of
+  "free, unlimited storage".
 
 - **Reversion**: A contract can be prone to have situations which lead to logical errors. The
   expectations of a contract developer are low, so extra overhead is added to support reverting
@@ -201,7 +202,9 @@ available within the runtime. This is currently implemented with
 The Contracts pallet uses an account-based system similar to many existing smart contract platforms.
 To the Substrate runtime, contract accounts are just like normal user accounts; however, in addition
 to an `AccountID` and `Balance` that normal accounts have, a contract account also has associated
-contract code and some persistent contract storage.
+contract code and some persistent contract storage. A noteable beaviour that arises from this
+is that a contract's account can receive balance without having its code executed by submitting
+a plain transfer transaction.
 
 ### Deploying and Calling Contracts
 
@@ -233,19 +236,28 @@ reached before the contract execution completes, the transaction fails, contract
 reverted, and the gas fee is **not** returned to the user. If the contract execution completes with
 remaining gas, it is returned to the user at the end of the transaction.
 
-The Contracts pallet determines the gas price, which is a conversion between the Substrate
-[**weight system**](/v3/concepts/weight) and a single unit of gas. Thus, to execute a transaction, a user 
-must have a free balance of at least `gas price` \* `gas limit` which can be spent.
+The concept of gas is tightly integrated with substrates [**weight system**](/v3/concepts/weight).
+In fact there is no difference between gas and weight. The specified `gas_limit` directly influences
+the weight of the submitted transaction. The contracts pallet uses
+[post dispatch weight correction](/v3/concepts/weight#post-dispatch-weight-correction) to change
+the pre dispatch weight derived from the `gas_limit` to the actual weight consumed.
+Thus, to execute a transaction, a user  must have a free balance of at least `weight price` \* `gas limit`
+which can be spent. The charged fee however, is based upon the actually consumed gas. The weight price
+is determined due do the usual [transaction fee mechanism](/v3/runtime/weights-and-fees).
 
-### Storage Rent
+### Storage Deposit
 
 Similar to how gas limits the amount of computational resources that can be used during a
-transaction, storage rent limits the footprint that a contract can have on the blockchain's storage.
-A contract account is charged proportionally to the amount of storage its account uses. When a
-contract's balance goes below a defined limit, the contract's account is turned into a "tombstone"
-and its storage is cleaned up. A tombstone contract can be restored by providing the data that was
-cleaned up when it became a tombstone as well as any additional funds needed to keep the contract
-alive.
+transaction, storage deposit limits the footprint that a contract can have on the blockchain's storage.
+Any caller of a contract is charged a deposit proportionally to the amount of storage that the
+call in question adds to the blockchain. If a call removes storage the caller that removes it
+gets a refund proportionally to the amount of storage that was removed. Please note that with
+caller we mean the origin of a contract execution and not any contract which calls into another
+contract during a transaction.
+
+Similar to the `gas_limit` argument there is also a `storage_limit` argument with which users
+can limit the amount of deposit that can be incurred. The argument is denominated in native
+chain balance and hence the user must have at least that amount of free balance.
 
 ### Contracts Pallet vs. EVM
 
@@ -261,7 +273,7 @@ network.
 
 The EVM charges for storage fees only at the time of storage. This one-time cost results in some
 permanent amount of storage being used on the blockchain, _forever_, which is economically unsound.
-The Contracts pallet attempts to repair this through [storage rent](#storage-rent) which ensures
+The Contracts pallet attempts to repair this through [storage deposit](#storage-deposit) which ensures
 that any data that persists on the blockchain is appropriately charged for those resources.
 
 The Contracts pallet chooses to approach contract creation using a
