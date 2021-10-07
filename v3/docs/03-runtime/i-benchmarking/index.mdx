@@ -142,6 +142,65 @@ to put the weight of `on_finalize` on to `on_initialize` or the extrinsic itself
 another tip of trying to keep the pallet hook execution in constant time for only set up and clean
 up, but not doing fancy computation.
 
+## Command arguments 
+
+```bash 
+    --chain dev \               # Configurable Chain Spec
+    --execution wasm \          # Always test with Wasm
+    --wasm-execution compiled \ # Always used `wasm-time`
+    --pallet pallet_example \   # Select the pallet
+    --extrinsic '\*' \          # Select the benchmark case name, using '*' for all
+    --steps 20 \                # Number of steps across component ranges
+    --repeat 10 \               # Number of times we repeat a benchmark
+    --raw \                     # Optionally output raw benchmark data to stdout
+    --output ./                 # Output results into a Rust file
+```
+
+Another argument introduced above is `--template`. We allow you to specify your own weight
+template file and the benchmarking toolchain will fill in the exact numbers from the measured
+result. This enables automating weight generation in your desired code format and integrates this
+in your CI process.
+
+The template is in [rust handlebars](https://docs.rs/handlebars/) format.
+
+## Example 
+
+Let's take `accumulate_dummy` benchmark case from the [example pallet](https://github.com/paritytech/substrate/blob/4b6635cf136a9fe2226f3152b4633afc6269912c/frame/example/src/lib.rs#L501-L530)
+as an example. 
+
+```rust
+accumulate_dummy {
+  let b in 1 .. 1000;
+  let caller = account("caller", 0, 0);
+}: _ (RawOrigin::Signed(caller), b.into())
+```
+
+Using the benchmarking CLI, we can specify the number of steps and repeats. This means how many 
+steps will be taken to walk through each variable range, and how many times the execution state 
+will be repeated.
+
+For example:
+
+```bash 
+./target/release/node-template benchmark \
+    --chain dev \               # Configurable Chain Spec
+    --execution wasm \          # Always test with Wasm
+    --wasm-execution compiled \ # Always used `wasm-time`
+    --pallet pallet_example \   # Select the pallet
+    --extrinsic '\*' \          # Select the benchmark case name, using '*' for all
+    --steps 20 \                # Number of steps across component ranges
+    --repeat 10 \               # Number of times we repeat a benchmark
+    --raw \                     # Optionally output raw benchmark data to stdout
+    --output ./                 # Output results into a Rust file
+```
+
+With `--steps 20 --repeat 10` in the benchmark input arguments, `b` will walk 20 steps to reach
+1,000, so `b` will start from 1 and increment by about 50. For each value of `b`, we will execute
+the benchmark 10 times and record the benchmark information.
+
+![multi-variables-regression](../../../../src/images/docs/runtime/benchmarking-multi-variables-regression.png)
+
+
 ## Further learning
 
 - [`frame-benchmarking` README](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/README.md)

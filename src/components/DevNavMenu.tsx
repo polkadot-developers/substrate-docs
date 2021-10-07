@@ -378,6 +378,18 @@ const DevNavMenu = {
             })}`,
             link: '/how-to-guides/v3/weights/calculate-fees',
           },
+          {
+            title: `${intl.formatMessage({
+              id: 'htg-weights-add-benchmarking',
+            })}`,
+            link: '/how-to-guides/v3/weights/benchmarking',
+          },
+          {
+            title: `${intl.formatMessage({
+              id: 'htg-weights-use-benchmark-weights',
+            })}`,
+            link: '/how-to-guides/v3/weights/use-benchmark-weights',
+          },
         ],
       },
       // 4. Testing.
