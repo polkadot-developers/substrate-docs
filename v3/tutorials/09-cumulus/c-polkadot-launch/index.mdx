@@ -75,8 +75,8 @@ If you think your edits are valuable, please consider <ExternalLink url="https:/
 
 1. Build your relay chain (with the runtimes you want enabled) and any parachains **with matching**
    **versions(!!)** cloned and compiled. Generate or acquire the proper chainspecs, genesis files,
-   and runtime WASMs for your chains ([instructions here](../pt1)). You will need all these files
-   and binaries to use your configuration moving forward.
+   and runtime Wasm blobs for your chains ([instructions here](../pt1)). You will need all these
+   files and binaries to use your configuration moving forward.
 
 2. Write a config file for `polkadot-launch` to fit your needs.
 
@@ -345,3 +345,9 @@ Finally, we have `types`, and `finalization`.
   into Polkadot-JS API.
 - `finalization`: either `true` or `false`, whether you want transactions submitted to the network
   to wait for finalization.
+
+## Next steps
+
+Now we have the ability to configure complex networks to thoroughly test locally. But what about transitioning
+to a production system? How do you connect to a relay chain that exists already and get a parachain
+slot there? In the [next section](../pt4) we learn about how to connect to Rococo.

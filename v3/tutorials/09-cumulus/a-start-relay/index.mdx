@@ -201,8 +201,6 @@ cargo build --release
 
 If the help page is printed, you have succeeded in building a Polkadot node.
 
-For the rest of this tutorial, we will refer to this binary simply as `polkadot`.
-
 ### Building the parachain template
 
 We will use the <ExternalLink url="https://github.com/substrate-developer-hub/substrate-parachain-template"> Parachain Template </ExternalLink>
@@ -230,8 +228,6 @@ cargo build --release
 ```
 
 If the help page is printed, you have succeeded in building a Cumulus-based parachain collator.
-
-For the rest of this tutorial we will refer to it simply as `parachain-collator`.
 
 ## Parachain node template overview (optional)
 
@@ -375,7 +371,7 @@ nodes.
 
 ```bash
 # Start Relay `Alice` node
-polkadot \
+./target/release/polkadot \
 --alice \
 --validator \
 --base-path /tmp/relay/alice \
@@ -399,7 +395,7 @@ this:
 ### Start the `bob` validator
 
 ```bash
-polkadot \
+./target/release/\
 --bob \
 --validator \
 --base-path /tmp/relay-bob \
@@ -422,7 +418,7 @@ others may need to start more nodes. Again, this command is entirely analogous. 
 make sure that nodes on the same physical system do not have conflicting ports or base paths.
 
 ```bash
-polkadot \
+./target/release/\
 --charlie \
 --validator \
 --base-path /tmp/relay-charlie \
@@ -458,7 +454,7 @@ to include.
 
 ```bash
 # Create a base chain spec that we will modify
-polkadot build-spec --chain rococo-local --disable-default-bootnode > rococo-custom-plain.json
+./target/release/build-spec --chain rococo-local --disable-default-bootnode > rococo-custom-plain.json
 ```
 
 That file contains most of the information we need already. Rococo is a permissioned chain, so
@@ -638,7 +634,7 @@ notable case is chain spec JSON file and encoding of session keys (most importan
 Now that you've modified your chain spec, you can generate the final raw spec file.
 
 ```bash
-polkadot build-spec --chain rococo-custom-plain.json --raw --disable-default-bootnode > rococo-custom.json
+./target/release/build-spec --chain rococo-custom-plain.json --raw --disable-default-bootnode > rococo-custom.json
 ```
 
 You may get the output warning: `Took active validators from set with wrong size`.
@@ -650,3 +646,8 @@ now.
 If your custom chain spec includes self-generated keys, see the
 [Substrate private network tutorial](/tutorials/v3/private-network#add-keys-to-keystore)
 for details on inserting these keys into your various nodes.
+
+## Next steps
+
+So now that we have a layer 0 blockchain ready to go... we can start connecting layer 1 parachains
+to it! In the [next section](../pt3) we dive in!
