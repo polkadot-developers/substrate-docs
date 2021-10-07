@@ -129,7 +129,7 @@
   "docs-nav-htg-weights": "Weights",
   "htg-weights-calculate-fees": "Calculating Fees",
   "htg-weights-add-benchmarking": "Add Benchmarking to Your pallet",
-  "htg-weights-use-benchmarking": "Use a Custom WeightInfo trait from Benchmarking",
+  "htg-weights-use-benchmarking": "Use Custom Weights from Benchmarking",
 
   "docs-nav-htg-testing": "Testing",
   "htg-testing-basics": "Setting up Tests for Your Pallet",

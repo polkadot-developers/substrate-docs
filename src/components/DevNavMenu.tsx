@@ -382,11 +382,11 @@ const DevNavMenu = {
             title: `${intl.formatMessage({
               id: 'htg-weights-add-benchmarking',
             })}`,
-            link: '/how-to-guides/v3/weights/benchmarking',
+            link: '/how-to-guides/v3/weights/add-benchmarking',
           },
           {
             title: `${intl.formatMessage({
-              id: 'htg-weights-use-benchmark-weights',
+              id: 'htg-weights-use-benchmarking',
             })}`,
             link: '/how-to-guides/v3/weights/use-benchmark-weights',
           },
