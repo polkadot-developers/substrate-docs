@@ -22,7 +22,7 @@ const DevNavMenu = {
       {
         section: `${intl.formatMessage({ id: 'docs-nav-rustdocs' })}`,
         url: '/rustdocs',
-        external: true,
+        external: false,
       },
     ]
   },
