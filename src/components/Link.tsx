@@ -7,7 +7,7 @@ interface LinkProps {
 }
 
 export default function Link({ to, children }: LinkProps) {
-  const linksExcempted = ['substrate-io-staging.netlify.app', 'substrate.io']
+  const linksExcempted = [process.env.GATSBY_IO_URL]
   const [isExternalLink, setIsExternalLink] = useState(true)
   const [isExcemption, setIsExcemption] = useState(true)
 
