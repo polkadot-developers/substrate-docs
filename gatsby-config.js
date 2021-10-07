@@ -7,7 +7,7 @@ require('dotenv').config({
 module.exports = {
   siteMetadata: {
     title: 'Substrate_',
-    siteUrl: process.env.GATSBY_DOCS_URL,
+    siteUrl: `${process.env.GATSBY_DOCS_URL}`,
     image_og: '',
     description:
       'Substrate enables developers to quickly and easily build future-proof blockchains optimized for any use case.',
@@ -35,7 +35,7 @@ module.exports = {
     terms: 'https://www.parity.io/terms',
     youtube: 'https://www.youtube.com/c/ParityTech',
     crowdcast: 'https://www.crowdcast.io/e/substrate-seminar-2',
-    substrateIO: process.env.GATSBY_IO_URL,
+    substrateIO: `${process.env.GATSBY_DOCS_URL}`,
   },
   flags: {
     DEV_SSR: false,
