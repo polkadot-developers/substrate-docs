@@ -23,7 +23,7 @@ export function BottomButtons({ menu, pageSlug }: BottomButtonsProps) {
     const pages: { title: string; link: string }[] = []
     menu.forEach(menuItems => {
       menuItems.items.forEach(item => {
-        if (item.link.indexOf('#') != 0) {
+        if (!item.link.includes('#')) {
           pages.push(item)
         }
       })

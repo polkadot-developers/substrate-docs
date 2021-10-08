@@ -17,11 +17,13 @@ export default function LastUpdateGithub({
     fetch(githubLink)
       .then(response => response.json())
       .then(resultData => {
-        setDate(
-          moment(resultData[0].commit.author.date).format('MMMM DD, YYYY')
-        )
-        setSHA(resultData[0].sha.slice(0, 7))
-        setLink(resultData[0].html_url)
+        if (resultData.length > 0) {
+          setDate(
+            moment(resultData[0].commit.author.date).format('MMMM DD, YYYY')
+          )
+          setSHA(resultData[0].sha.slice(0, 7))
+          setLink(resultData[0].html_url)
+        }
       })
   }, [])
   return (

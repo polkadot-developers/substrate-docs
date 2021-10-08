@@ -1,0 +1,41 @@
+name: Feedback template
+description: Submit your feedback to help us improve.
+title: "[Feedback template]: "
+labels: ["feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to submit your feedback!
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Did something go wrong or do you have a suggestion for improving our site?
+      placeholder: Describe what you saw or experienced.
+    validations:
+      required: true
+  - type: textarea
+    id: behaviour
+    attributes:
+      label: Expected behavior
+      description: Describe what you expected to see or to have happened.
+      placeholder: Or if something delighted you, we'd love to know that, too.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Provide the steps that led to the discovery of the issue. 
+      placeholder: If something went wrong, we want to fix it!
+    validations:
+      required: true
+  - type: textarea
+    id: action
+    attributes:
+      label: Recommended course of action (optional)
+      description: If you have a suggestion for fixing the issue you found, describe what you think the fix should be.
+  - type: markdown
+    attributes:
+      value: "Thanks for completing our form!"
