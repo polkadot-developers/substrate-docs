@@ -690,15 +690,15 @@ DevNavMenuTuts.set('cumulusTutorial', [
     name: `Cumulus Tutorial`,
     items: [
       {
-        title: `Start a relay chain`,
+        title: `Start a Relay Chain`,
         link: '/tutorials/v3/cumulus/pt1',
       },
       {
-        title: `Connect a parachain`,
+        title: `Connect to a Parachain`,
         link: '/tutorials/v3/cumulus/pt2',
       },
       {
-        title: `Launch a parachain testnet`,
+        title: `Launch a Parachain Testnet`,
         link: '/tutorials/v3/cumulus/pt3',
       },
       //   {

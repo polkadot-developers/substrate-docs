@@ -7,7 +7,7 @@ interface FeedbackWidgetProps {
   section: string
   slug: string
 }
-export function FeedbackWidget({ title, slug, section }: FeedbackWidgetProps) {
+export function FeedbackWidget({ title, section }: FeedbackWidgetProps) {
   const githubLink =
     'https://github.com/substrate-developer-hub/substrate-docs/issues/new?'
   const githubTitle = `Feedback Submission - ${section} / ${title}`
