@@ -38,5 +38,5 @@ body:
       description: If you have a suggestion for fixing the issue you found, describe what you think the fix should be.
       placeholder: Clear steps and URL references are always helpful here. 
   - type: markdown
-  attributes:
-    value: "Thanks for completing our form!"
+    attributes:
+      value: "Thanks for completing our form!"
