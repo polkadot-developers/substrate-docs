@@ -40,7 +40,7 @@ export default function DocsNav({
           className={`flex ${
             isOpen
               ? `transition-all transform duration-75 ease-in-out justify-start px-4`
-              : `transition-all transform duration-75 ease-in-out justify-between px-6`
+              : `transition-all transform duration-75 ease-in-out justify-between px-4`
           } items-center h-14 bg-substrateGray dark:bg-gray-700 mt-10 `}
         >
           <div className={`${isOpen && `hidden`}`}>
@@ -103,7 +103,7 @@ export default function DocsNav({
           </div>
           <div>
             <hr className="mt-6" />
-            <div className="flex items-center justify-between px-20 lg:px-6 py-4">
+            <div className="flex items-center justify-between px-20 lg:px-4 py-4">
               <span>{intl.formatMessage({ id: 'docs-nav-learn-more' })}</span>
             </div>
             {globalNav
@@ -112,7 +112,7 @@ export default function DocsNav({
                 return (
                   <div
                     key={index}
-                    className="px-20 lg:px-6 py-4 lg:dark:bg-substrateDark"
+                    className="px-20 lg:px-4 py-4 lg:dark:bg-substrateDark"
                   >
                     <Link to={navItem.url}>
                       <div className="flex items-center justify-between hover:no-underline">
