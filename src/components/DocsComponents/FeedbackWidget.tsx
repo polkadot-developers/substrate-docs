@@ -7,10 +7,11 @@ interface FeedbackWidgetProps {
   section: string
   slug: string
 }
+
 export function FeedbackWidget({ title, slug, section }: FeedbackWidgetProps) {
   const githubLink =
     'https://github.com/substrate-developer-hub/substrate-docs/issues/new?'
-  const githubTitle = `Feedback Submission - ${section} / ${title}`
+  const githubTitle = `Feedback Submission - ${section} - ${title} - ${slug}`
   const currentSection = () => {
     if (section === 'how to guides') {
       return 'Guide'
@@ -34,7 +35,7 @@ export function FeedbackWidget({ title, slug, section }: FeedbackWidgetProps) {
 
       <SecondaryButton
         external
-        link={`${githubLink}title=${githubTitle}&template=feedback-template.md&labels=feedback`}
+        link={`${githubLink}title=${githubTitle}&template=feedback-template.yaml&labels=feedback`}
       >
         Help us improve
       </SecondaryButton>
