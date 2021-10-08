@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import cx from 'classnames'
+
 import { useIntl } from 'react-intl'
 import SlideDownNav from './SlideDownNav'
 import Icon from './Icon'

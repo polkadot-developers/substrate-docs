@@ -28,8 +28,8 @@ export function BottomButtons({ menu, pageSlug }: BottomButtonsProps) {
         }
       })
     })
-    pages.map((each, index) => {
-      if (each.link === pageSlug) {
+    pages.map((cur, index) => {
+      if (cur.link === pageSlug) {
         if (index === 0) {
           setNextButton(pages[index + 1])
           setPrevButton(null)
@@ -50,10 +50,10 @@ export function BottomButtons({ menu, pageSlug }: BottomButtonsProps) {
         prevButton === null ? 'lg:justify-end' : 'lg:justify-between'
       }`}
     >
-      {prevButton === null ? null : (
+      {prevButton && (
         <PreviousButton text={prevButton.title} link={prevButton.link} />
       )}
-      {nextButton === null ? null : (
+      {nextButton && (
         <NextButton text={nextButton.title} link={nextButton.link} />
       )}
     </div>
