@@ -65,12 +65,12 @@ for the `example` extrinsic:
 
 ```rust
   #[pallet::weight(T::WeightInfo::example(x.len()))]
-  fn example(origin: OriginFor<T>, arg: Vec<u32>) {
+  fn example(origin: OriginFor<T>, arg: Vec<u32>) -> DispatchResult {
       //...
   }
 ```
 
-### 3. Define the `WeightInfo` type in `Config` trait impls
+### 4. Define the `WeightInfo` type in `Config` trait impls
 
 You'll need to define the `WeightInfo` trait in both your pallet's tests mockup `mock.rs` 
 and your Substrate `node`'s runtime.
