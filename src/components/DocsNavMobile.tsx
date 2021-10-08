@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import cx from 'classnames'
-// import { LocalizedLink } from 'gatsby-theme-i18n'
+
 import { useIntl } from 'react-intl'
 import SlideDownNav from './SlideDownNav'
 import Icon from './Icon'
