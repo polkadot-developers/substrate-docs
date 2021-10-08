@@ -12,25 +12,22 @@ relevantSkills:
   - Rust
 ---
 
-## Introduction
-
 ![image](/img/tutorials/kitties-workshop/kitties-tutorial.png)
 
 Welcome to the Substrate Kitties workshop. This workshop is split into two separate parts, designed
 to teach you everything you need to know about building a blockchain that handles the creation and
-ownership management of Substrate Kitties. Part I will cover how to build the Kitties pallet,
+ownership management of Substrate Kitties. 
+
+Part I will cover how to build the Kitties pallet,
 including the functionality to interact with the Kitties we create, such as transferring, buying
-and setting prices. Part II will cover developing the Front-end UI to interact with the blockchain
-we build in Part I.
+and setting prices. [Part II](/tutorials/v3/kitties/pt2) will cover developing the Front-end UI to 
+interact with the blockchain we build in Part I.
 
-You may find it useful to come back to this section as you progress through each part &mdash; just
-to keep track of the bigger picture.
-
-## Tutorial Objectives
+## Tutorial objectives
 
 - Learn basic patterns for building and running a Substrate node.
 - Write and integrate a custom FRAME pallet to your runtime.
-- Use structs in storage and how to create and update storage items.
+- Learn how to create and update storage items.
 - Write pallet extrinsics and helper functions.
 - Use the PolkadotJS API to connect a Substrate node to a custom a front-end.
 
@@ -38,71 +35,37 @@ This tutorial assumes that you have already installed the prerequisites for buil
 on your machine. If you haven't already, head over to our
 [installation guide](/v3/getting-started/installation).
 
-### What We're Building
+### What we're building
 
 In Part I of this tutorial, we'll intentionally keep things simple so that you can decide on how
 you'd like to improve your Substrate Kitties chain later on. For the purposes of what we're building,
 Kitties really can only do the following things:
 
-- Be created either by some original sources or by being bred using existing Kitties.
+- Be created either by some original source or by being bred using existing Kitties.
 
 - Be sold at a price set by their owner.
 
 - Be transferred from one owner to another.
 
-**In Part I, we'll go over:**
+### What we won't cover
 
-1. [**Basic setup**](#basic-set-up) - we'll need to spin up a
-Substrate node and create a custom pallet.
-
-2. [**Runtime storage**](#basic-set-up) - we'll need a total of three
-storage items in our pallet to keep track of the amount of Kitties, their owners, and a `Kitty`
-object containing a single Kitty's information.
-
-3. [**Dispatchable functions**](#dispatchables-events-and-errors) - we'll
-need a total of 5 dispatchable functions: `create`, `set_price`, `transfer`, `buy_kitty`, and
-`breed_kitty`.
-
-4. [**Private functions**](#dispatchables-events-and-errors) - we'll write a few
-helper functions to handle the heavy lifting logics, and
-
-5. [**Helper functions**](#interacting-with-your-kitties) - we'll write
-two helper functions for our dispatchable functions: `mint` and `transfer_from`.
-
-**In Part II, we will:**
-
-1. [**Create a UI for interacting with our pallet's storage items**](../pt2)
-- we'll connect to Substrate Front-end Template and create the UI for each dispatchable calls.
-
-2. [**Enhance our UX with Polkadot JS API**](../pt2).
-
-In any case, if you are stuck in following the tutorial, you can always refer back to the full
-working source code at the following:
-
-- On Substrate side, it is under [Substrate Node Template repository `tutorials/kitties` branch](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/kitties).
-Most of the code changes are under `/pallets/kitties/src/lib.rs`.
-
-- On the front end side, it is under [Substrate Front-end Template repository `tutorials/kitties` branch](https://github.com/substrate-developer-hub/substrate-front-end-template/tree/tutorials/kitties).
-Most of the code changes are within these three files: `/src/[Kitties.js, KittyCards.js, KittyAvatar.js]`.
-
-### What We Won't Cover
-
-The following fall outside the scope of this tutorial:
+The following items fall outside the scope of this tutorial:
 
  - Writing tests for our pallet.
+ - Using correct weight values 
 
- You can refer to the [how-to guides](/how-to-guides) on how to do this once you've completed this
- tutorial series.
+You can refer to the [how-to guides](/how-to-guides/v3) on how to integrate these once you've completed this
+workshop.
 
 <Message
   type={`green`}
   title={`Tip`}
   text={`
 Follow each step at your own pace &mdash; the goal is for you to learn and the best way to do
-that is to try it yourself! Use the side panel to write your code as you follow along (coming soon).\n
+that is to try it yourself!\n
 Before moving on from one section to the next, make sure your pallet builds without any error.
 You'll be writing most of the code yourself! Use the template files
-[here](https://github.com/substrate-developer-hub/substrate-how-to-guides/tree/main/static/code/kitties-tutorial)
+[here](https://github.com/substrate-developer-hub/substrate-docs/tree/main/static/assets/tutorials/kitties-tutorial)
 to help you complete each part.\n
 If you are stuck in following the tutorial, refer to the complete source code at:
 - On Substrate end, [Substrate Node Template repository \`tutorials/kitties\` branch](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/kitties).
@@ -112,23 +75,24 @@ Most of the code changes are within these three files: \`/src/[Kitties.js, Kitty
 `}
 />
 
-## Basic Set-up
+## Basic set-up
 
 Before we can start making Kitties, we first need to do a little groundwork. This part covers the
 basic patterns involved with using the Substrate Node Template to set up a custom pallet and
 include a simple storage item.
 
-### Set-up Your Template Node
+### Set-up your template node
 
 The [Substrate Node Template][substrate-node-template] provides us with an "out-of-the-box"
 blockchain node. Our biggest advantage in using it are that both networking and consensus layers
-are already built and all we need to focus on is building out our [runtime][runtime-kb] and
-[pallet][pallets-kb] logics. Before we get there, we need to set-up our project in terms of naming
+are already built and all we need to focus on is building out the logic of our [runtime][runtime-kb] and
+[pallets][pallets-kb]. Before we get there, we need to set-up our project in terms of naming
 and dependencies.
 
-We'll use a CLI tool called [kickstart][kickstart-tool] to easily rename our node template.
+We'll use a CLI tool called [kickstart][kickstart-tool] to easily rename our node template. Install it by
+running `cargo install kickstart`.
 
-In the root directory of your local workspace, run the following command:
+Once `kickstart` is installed, in the root directory of your local workspace run the following command:
 
 ```bash
 kickstart https://github.com/sacha-l/kickstart-substrate
@@ -143,23 +107,18 @@ your node and pallet. Type in:
 This will create a directory called `kitties` with a copy of the [Substrate Node Template][substrate-node-template]
 containing the name changes that correspond our template node, runtime, and pallet.
 
-Open the `kitties` directory in your favorite code editor and rename it to `kitties-tutorial`.
+Open the `kitties` directory in your favorite code editor and rename it as `kitties-tutorial`.
 Renaming this directory will be helpful once you start creating other projects with the node
 template &mdash; it'll help keep things organized!
 
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text={`Notice the directories that the \`kickstart\` command modified:
+Notice the directories that the `kickstart` command modified:
 - **\`/node/\`** - This contains all the logic that allows your node to interact with your runtime
 and RPC clients.
 - **\`/pallets/\`** - Here's where all your custom pallets live.
 - **\`/runtime/\`** - This is where all pallets (both custom "internal" and "external" ones) are
 aggregated and implemented for the chain's runtime.
-  `}
-/>
 
-By default, you'll notice that the instance of our modified template pallet name remains
+You'll also notice that the instance of our modified template pallet name remains
 `TemplateModule`. Change it to `SubstrateKitties` (in `runtime/src/lib.rs`):
 
 ```rust
@@ -175,27 +134,7 @@ construct_runtime!(
 );
 ```
 
-We can already build the node as is by navigating to directory `kitties` in terminal and running
-this command:
-
-```bash
-cargo build --release
-```
-
-It's normal if this command takes a little while depending on your machine &mdash; it's building a
-whole bunch of crates from the Substrate crates and libraries. The nice thing is that once we run
-this command the first time, it won't need to rebuild all the crates when we build subsequent times.
-
-Assuming that your node builds successfully, launch it in development mode to make sure it works:
-
-```bash
-./target/release/node-kitties --tmp --dev
-```
-
-You should see blocks being created in your terminal. The `--tmp` and `--dev` flags mean we're
-running a temporary node in development mode.
-
-### Write Out `pallet_kitties` Scaffold
+### Write the `pallet_kitties` scaffold
 
 We'll be spending most of this tutorial in the `pallets` directory of our template node. Let's take
 a glance at the folder structure in our workspace:
@@ -227,9 +166,9 @@ kitties-tutorial           <--  The name of our project directory
 > you're curious to learn how testing works.**
 
 [Pallets][pallets-kb] in Substrate are used to define runtime logic. In our case, we'll be creating
-a single pallet that manages all of the logics of our Substrate Kitties application.
+a single pallet that manages all of the logic of our Substrate Kitties application.
 
-Let's lay out the basic structure of our pallet by outlining the parts inside the
+Let's lay out the basic structure of our pallet by outlining the parts inside
 `pallets/mykitties/src/lib.rs`.
 
 Notice that our pallet's directory `pallets/kitties/` is not the same as our pallet's name. The name
@@ -249,9 +188,10 @@ We'll be updating additional dependencies as we progress through the next parts 
   `}/>
 
 Here's the most bare-bones version of the Kitties pallet we will be building in this tutorial. It
-contains the starting point for  adding code for the next sections of this tutorial, with comments
-marked with **TODO** to indicate code we will be writing later, and **ACTION** to indicate code
-that will be written in the current part of the tutorial.
+contains the starting point for adding code for the next sections of this tutorial. Just like the 
+[helper files](https://github.com/substrate-developer-hub/substrate-docs/tree/main/static/assets/tutorials/kitties-tutorial) 
+for this tutorial, it contains comments marked with **TODO** to indicate code we will 
+be writing later, and **ACTION** to indicate code that will be written in the current section. 
 
 Paste the following code in `/pallets/kitties/src/lib.rs`:
 
@@ -267,7 +207,7 @@ pub mod pallet {
                         traits::{Currency, ExistenceRequirement, Randomness},
                         pallet_prelude::*};
     use frame_system::pallet_prelude::*;
-    use sp_core::H256;
+    use sp_io::hashing::blake2_128;
 
     // TODO Part II: Struct for holding Kitty information.
 
@@ -279,7 +219,7 @@ pub mod pallet {
 
     /// Configure the pallet by specifying the parameters and types it depends on.
     #[pallet::config]
-    pub trait Config: pallet_balances::Config + frame_system::Config {
+    pub trait Config: frame_system::Config {
         /// Because this pallet emits events, it depends on the runtime's definition of an event.
         type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
 
@@ -297,7 +237,6 @@ pub mod pallet {
     }
 
     #[pallet::event]
-    #[pallet::metadata(T::AccountId = "AccountId")]
     #[pallet::generate_deposit(pub(super) fn deposit_event)]
     pub enum Event<T: Config> {
         // TODO Part III
@@ -334,22 +273,12 @@ pub mod pallet {
 }
 ```
 
-Now try running the following command to rebuild your chain:
+Now try running the following command to build your pallet. We won't build the entire chain just yet
+because we haven't yet implemented the `Currency` type in our runtime. At least we can check that there 
+are no errors in our pallet so far:
 
 ```bash
-cargo build --release
-```
-
-Get an error about dependencies? That's normal! Our pallet is using `sp-io` which isn't part of the
-node template so we must specify it ourselves. In `pallets/mykitties/Cargo.toml`,  add the
-following:
-
-```TOML
-[dependencies.sp-io]
-default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-08'
-version = '4.0.0-dev'
+cargo build -p pallet-kitties
 ```
 
 <Message
@@ -357,20 +286,16 @@ version = '4.0.0-dev'
   title={`Warning`}
   text={`
 Check that you're using the correct \`monthly-*\` tag and version otherwise you will get a
-dependency error. Here, we're using \`monthly-2021-08\` tag of Substrate.
+dependency error. Here, we're using the \`monthly-2021-08\` tag of Substrate.
   `}
 />
-
-Now run `cargo build --release` again to make sure it builds without errors.
 
 You'll notice the Rust compiler giving you warnings about unused imports. That's fine! Just ignore
 them &mdash; we're going to be using those imports in the later parts of the tutorial.
 
-In the next step we will include the first storage item our Kitty application will require.
+### Add storage items
 
-### Include a Storage Item to Track All Kitties
-
-Let's start by adding the most simple logic we can to our runtime: a function which stores a
+Let's start add the most simple logic we can to our runtime: a function that stores a
 variable in runtime.
 
 To do this we'll use [`StorageValue`][storagevalue-rustdocs] from Substrate's
@@ -382,32 +307,31 @@ All that means for our purposes is that for any storage item we want to declare,
 In `pallets/kitties/src/lib.rs`, replace the ACTION line with:
 
 ```rust
-  #[pallet::storage]
-  #[pallet::getter(fn kitty_cnt)]
-  /// Keeps track of the number of Kitties in existence.
-  pub(super) type KittyCnt<T: Config> = StorageValue<_, u64, ValueQuery>;
+#[pallet::storage]
+#[pallet::getter(fn kitty_cnt)]
+/// Keeps track of the number of Kitties in existence.
+pub(super) type KittyCnt<T: Config> = StorageValue<_, u64, ValueQuery>;
 ```
 
 This creates a storage item for our pallet to keep track of the total count of Kitties in existence.
 
-### Build a Pallet
+### Add Currency implementation
 
-From the previous step, your pallet should contain a storage item called `KittyCnt` which keeps
-track of a single `u64` value. As part of the basic setup, we're doing great!
+Before we proceed with building our node, we need to add the Currency type to our pallet's runtime 
+implementation. In `runtime/src/lib.rs`, add the following:
 
-As mentioned in the [overview of this tutorial](#tutorial-objectives), you'll be implementing 3
-storage items in total which you'll discover as you write out your pallet's logic in the next parts.
-
-Before we move on, let's make sure everything compiles. We don't need to rebuild our entire node
-each time we update our pallet. Instead, we can use a command that only builds our pallet. From
-inside your pallet directory, run the following:
-
-```bash
-cargo build -p pallet-kitties
+```rust
+impl pallet_kitties::Config for Runtime {
+	type Event = Event;
+	type Currency = Balances; // <-- Add this line
+}
 ```
 
-Does your pallet compile without error? Well done if it does! If not, go back and check that all the
-macros are in place and that you've included the FRAME dependencies.
+Now build your node and make sure you don't have any errors. This will take a little while at first.
+
+```bash
+cargo build --release
+```
 
 <Message
   type = 'green'
@@ -420,40 +344,19 @@ various patterns for:
 - Declaring a single value \`u64\` storage item.
   `} />
 
-[installation]: /v3/getting-started/installation
-[substrate-node-template]: https://github.com/substrate-developer-hub/substrate-node-template
-[pallets-kb]: /v3/runtime/frame#pallets
-[macros-kb]: /v3/runtime/macros#frame-macros-and-attributes
-[storagevalue-rustdocs]: /rustdocs/latest/frame_support/storage/trait.StorageValue.html
-[storage-api-rustdocs]: /rustdocs/latest/frame_support/storage/index.html
-[template-code]: https://github.com/substrate-developer-hub/substrate-how-to-guides/tree/main/static/code/kitties-tutorial
-[runtime-kb]: /v3/concepts/runtime
-[kickstart-tool]: https://github.com/Keats/kickstart
-[storage-macro-kb]: /v3/runtime/macros#palletstorage
+## Uniqueness, custom types and storage maps
 
+This section dives into some pillar concepts for developing pallets with FRAME
+(**Framework for Runtime Aggregation of Modularized Entities**), incuding writing [a storage 
+struct](/how-to-guides/v3/pallet-design/storage-value) and [implementing the randomness trait
+](/how-to-guides/v3/pallet-design/randomness). On top of learning how to use existing types and traits, 
+you'll learn how create your own types like providing your pallet with a `Gender` type. At the 
+end of this part, you will have implemented the remaining two storage items according to the logic 
+outlined for the Substrate Kitty application [in the overview of this tutorial](#what-were-building).
 
-## Uniqueness, Custom Types, and Storage Maps
-
-<Message type='yellow' title='Learning Outcome' text={`
-In this part of the tutorial, we'll build out the components of our pallet needed to manage the
-creation and ownership of our Kitties. We will learn about:\n\n
-- Writing a struct in a \`StorageMap\` to store details about our Kitties.
-- Using the \`Randomness\` trait to create unique Kitties.
-- Creating our pallet's remaining storage items.
-`}/>
-
-This part of the tutorial dives into some pillar concepts for developing pallets with FRAME
-(stands for **Framework for Runtime Aggregation of Modularized Entities**). On top of learning how
-to use existing types and traits, you'll learn how create your own types like providing your pallet
-with a `Gender` type. At the end of this part, you will have implemented the remaining two storage
-items according to the logic outlined for the Substrate Kitty application [in the overview of this
-tutorial](#what-were-building).
-
-### Scaffold Kitty Struct
-
-We added additional comments to the code from Part I (in the `/pallets/kitties/src/lib.rs` file)
-to better assist you with the action items in this part of the tutorial. To follow each step with
-ease, you can just replace your code with the [helper code](https://github.com/substrate-developer-hub/substrate-how-to-guides/blob/main/static/code/kitties-tutorial/02-create-kitties.rs)
+We added additional comments to the code from Part I in a dedicated helper file
+to better assist you with the action items of this section. To follow each step with
+ease, you can just replace your code with the [helper code](https://github.com/substrate-developer-hub/substrate-docs/tree/main/static/assets/tutorials/kitties-tutorial/02-create-kitties.rs)
 provided below:
 
 <Message
@@ -471,101 +374,103 @@ pub use pallet::*;
 
 #[frame_support::pallet]
 pub mod pallet {
-  use frame_support::pallet_prelude::*;
-  use frame_system::pallet_prelude::*;
-  use frame_support::{
-    sp_runtime::traits::Hash,
-    traits::{ Randomness, Currency, tokens::ExistenceRequirement },
-    transactional
-  };
-  use sp_io::hashing::blake2_128;
+	use frame_support::pallet_prelude::*;
+	use frame_system::pallet_prelude::*;
+	use frame_support::{
+		sp_runtime::traits::Hash,
+		traits::{ Randomness, Currency, tokens::ExistenceRequirement },
+		transactional
+	};
+	use sp_io::hashing::blake2_128;
 
-  #[cfg(feature = "std")]
-  use serde::{Deserialize, Serialize};
+	#[cfg(feature = "std")]
+	use serde::{Deserialize, Serialize};
 
-    // ACTION #1: Write a Struct to hold Kitty information.
+	// ACTION #1: Write a Struct to hold Kitty information.
 
-    // ACTION #2: Enum declaration for Gender.
+	// ACTION #2: Enum declaration for Gender.
 
-    // ACTION #3: Implementation to handle Gender type in Kitty struct.
+	// ACTION #3: Implementation to handle Gender type in Kitty struct.
 
-    #[pallet::pallet]
-    #[pallet::generate_store(trait Store)]
-    pub struct Pallet<T>(_);
+	#[pallet::pallet]
+	#[pallet::generate_store(trait Store)]
+	pub struct Pallet<T>(_);
 
-    /// Configure the pallet by specifying the parameters and types it depends on.
-    #[pallet::config]
-    pub trait Config: pallet_balances::Config + frame_system::Config {
-        /// Because this pallet emits events, it depends on the runtime's definition of an event.
-        type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+	/// Configure the pallet by specifying the parameters and types it depends on.
+	#[pallet::config]
+	pub trait Config: frame_system::Config {
+		/// Because this pallet emits events, it depends on the runtime's definition of an event.
+		type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
 
-        /// The Currency handler for the Kitties pallet.
-        type Currency: Currency<Self::AccountId>;
+		/// The Currency handler for the Kitties pallet.
+		type Currency: Currency<Self::AccountId>;
 
-        // ACTION #5: Specify the type for Randomness we want to specify for runtime.
-    }
+		// ACTION #5: Specify the type for Randomness we want to specify for runtime.
 
-    // Errors.
-    #[pallet::error]
-    pub enum Error<T> {
-        // TODO Part III
-    }
+		// ACTION #9: Add MaxKittyOwned constant
+	}
 
-    // Events.
-    #[pallet::event]
-    #[pallet::metadata(T::AccountId = "AccountId")]
-    #[pallet::generate_deposit(pub(super) fn deposit_event)]
-    pub enum Event<T: Config> {
-        // TODO Part III
-    }
+	// Errors.
+	#[pallet::error]
+	pub enum Error<T> {
+		// TODO Part III
+	}
 
-    #[pallet::storage]
-    #[pallet::getter(fn all_kitties_count)]
-    pub(super) type AllKittiesCount<T: Config> = StorageValue<_, u64, ValueQuery>;
+	// Events.
+	#[pallet::event]
+	#[pallet::generate_deposit(pub(super) fn deposit_event)]
+	pub enum Event<T: Config> {
+		// TODO Part III
+	}
 
-    // ACTION #6: Add Nonce storage item.
+	#[pallet::storage]
+	#[pallet::getter(fn all_kitties_count)]
+	pub(super) type KittyCnt<T: Config> = StorageValue<_, u64, ValueQuery>;
 
-    // ACTION #9: Remaining storage items.
+	// ACTION #7: Remaining storage items.
 
-    // TODO Part IV: Our pallet's genesis configuration.
+	// TODO Part IV: Our pallet's genesis configuration.
 
-    #[pallet::call]
-    impl<T: Config> Pallet<T> {
+	#[pallet::call]
+	impl<T: Config> Pallet<T> {
 
-        // TODO Part III: create_kitty
+		// TODO Part III: create_kitty
 
-        // TODO Part III: set_price
+		// TODO Part IV: set_price
 
-        // TODO Part III: transfer
+		// TODO Part IV: transfer
 
-        // TODO Part III: buy_kitty
+		// TODO Part IV: buy_kitty
 
-        // TODO Part III: breed_kitty
-    }
+		// TODO Part IV: breed_kitty
+	}
 
-    // ACTION #4: helper function for Kitty struct
+	//** Our helper functions.**//
 
-    impl<T: Config> Pallet<T> {
-        // TODO Part III: helper functions for dispatchable functions
+	impl<T: Config> Pallet<T> {
 
-        // ACTION #7: increment_nonce helper
+		// ACTION #4: helper function for Kitty struct
 
-        // ACTION #8: random_hash helper
+		// TODO Part III: helper functions for dispatchable functions
 
-        // TODO: mint, transfer_from
+		// ACTION #6: funtion to randomly generate DNA
 
-    }
+		// TODO Part III: mint
+
+		// TODO Part IV: transfer_kitty_to
+	}
 }
 ```
 
+### Scaffold Kitty struct
 
-#### A. What Information to Include
-
-**Struct** in Rust is a useful construct to help storing data that have things in common. For our
+A Struct in Rust is a useful construct to help store data that have things in common. For our
 purposes, our Kitty will carry multiple properties which we can store in a single struct instead
 of using separate storage items. This comes in handy when trying to optimize for storage reads and
 writes so our runtime can perform less read/writes to update multiple values. Read more about
 storage best practices [here][storage-best-practice-kb].
+
+#### What information to include
 
 Let's first go over what information a single Kitty will carry:
 
@@ -576,7 +481,7 @@ Let's first go over what information a single Kitty will carry:
 - **`gender`**: an enum that can be either `Male` or `Female`.
 - **`owner`**: an account ID designating a single owner.
 
-#### B. Sketching Out the Types Held by Our Struct
+#### Sketching out the types held by our struct
 
 Looking at the items of our struct from above, we can deduce the following types:
 
@@ -614,7 +519,7 @@ Notice how we use the derive macro to include [various helper traits][prelude-tr
 using our struct. For type `Gender`, we will need to build out our own custom enum and helper
 functions. Now is a good time to do that.
 
-### Write a Custom Type For `Gender`
+### Write a custom type for `Gender`
 
 We have just created a struct that requires a custom type called `Gender`. This type will handle an
 enum defining our Kitty's gender. To create it, you'll build out the following parts:
@@ -622,27 +527,27 @@ enum defining our Kitty's gender. To create it, you'll build out the following p
 - **An enum declaration**, which specifies `Male` and `Female` values.
 - **A function to configure a defaut value**, based on the enum.
 
-#### A. Enums
+1. #### Declare the custom enum 
 
-Replace ACTION item #2 with the following enum declaration:
+  Replace ACTION item #2 with the following enum declaration:
 
-```rust
-#[derive(Encode, Decode, Debug, Clone, PartialEq)]
-pub enum Gender {
-    Male,
-    Female,
-}
-```
+  ```rust
+  #[derive(Encode, Decode, Debug, Clone, PartialEq)]
+  pub enum Gender {
+      Male,
+      Female,
+  }
+  ```
 
-Notice the use of the [derive macro][derive-macro-rust] which must precede the enum declaration.
-This wraps our enum in the data structures it will need to interface with other types in our
-runtime.
+  Notice the use of the [derive macro][derive-macro-rust] which must precede the enum declaration.
+  This wraps our enum in the data structures it will need to interface with other types in our
+  runtime.
 
-Great, we now know how to create a custom struct and specify its default value. But what about
-providing a way for a Kitty struct to be _assigned_ a gender value? For that we need to learn one
-more thing.
+  Great, we now know how to create a custom struct and specify its default value. But what about
+  providing a way for a Kitty struct to be _assigned_ a gender value? For that we need to learn one
+  more thing.
 
-#### B. Configuring Functions For Our Kitty Struct
+1. #### Implement a helper function for our Kitty struct
 
 Configuring a struct is useful in order to pre-define a value in our struct. For example, when
 setting a value in relation to what another function returns. In our case we have a similar
@@ -669,7 +574,7 @@ fn gen_gender() -> Gender {
 Now whenever `gen_gender()` is called inside our pallet, it will return a pseudo random enum value
 for `Gender`.
 
-### Implement On-chain Randomness
+### Implement on-chain randomness
 
 If we want to be able to tell these Kitties apart, we need to start giving them unique properties!
 In the previous step, we've made use of `KittyRandomness` which we haven't actually defined yet.
@@ -681,171 +586,161 @@ ones.
 
 In order to use the `Randomness` trait for our pallet, we must:
 
-**A. Define a new type bound by `Randomness` trait in our pallet's configuration trait.**
+1. #### Define a new type bound by `Randomness` trait in our pallet's configuration trait
 
-The `Randomness` trait from `frame_support` requires specifying it with a paramater to replace the
-`Output` and `BlockNumber` generics. Take a look at [the documentation][randomness-rustdocs] and
-the source code implementation to understand how this works. For our purposes, we want the output
-of functions using this trait to be [`H256`][h256-rustdocs] which you'll notice should already be
-declared at the top of your working codebase.
+  The `Randomness` trait from `frame_support` requires specifying it with a paramater to replace the
+  `Output` and `BlockNumber` generics. Take a look at [the documentation][randomness-rustdocs] and
+  the source code implementation to understand how this works. For our purposes, we want the output
+  of functions using this trait to be [`H256`][h256-rustdocs] which you'll notice should already be
+  declared at the top of your working codebase.
 
-Replace the ACTION #5 line with:
+  Replace the ACTION #5 line with:
 
-```rust
-type KittyRandomness: Randomness<Self::H256, Self::BlockNumber>;
-```
+  ```rust
+  type KittyRandomness: Randomness<Self::Hash, Self::BlockNumber>;
+  ```
 
-**B. Specify the actual type in our runtime.**
+1. #### Specify the actual type in our runtime
 
-Given that we have added a new type in the configuration of our pallet, we need to config our
-runtime to set its concrete type. This could come in handy if ever we want to change the algorithm
-that `KittyRandomness` is using, without needing to modify where it's used inside our pallet.
+  Given that we have added a new type in the configuration of our pallet, we need to config our
+  runtime to set its concrete type. This could come in handy if ever we want to change the algorithm
+  that `KittyRandomness` is using, without needing to modify where it's used inside our pallet.
 
-To showcase this point, we're going to set the `KittyRandomness` type to an instance of
-[FRAME's `RandomnessCollectiveFlip`][randomness-collective-flip-frame]. Conveniently, the Node
-Template already has an instance of the `RandomnessCollectiveFlip` pallet. All you need to do
-is **set the `KittyRandomness` type in your runtime, inside `runtime/src/lib.rs`**:
+  To showcase this point, we're going to set the `KittyRandomness` type to an instance of
+  [FRAME's `RandomnessCollectiveFlip`][randomness-collective-flip-frame]. Conveniently, the Node
+  Template already has an instance of the `RandomnessCollectiveFlip` pallet. All you need to do
+  is **set the `KittyRandomness` type in your runtime, inside `runtime/src/lib.rs`**:
 
-```rust
-impl pallet_mykitties::Config for Runtime {
-    type Event = Event;
-  type KittyRandomness = RandomnessCollectiveFlip; // <-- ACTION: add this line.
-}
-```
+  ```rust
+  impl pallet_mykitties::Config for Runtime {
+      type Event = Event;
+    type KittyRandomness = RandomnessCollectiveFlip; // <-- ACTION: add this line.
+  }
+  ```
 
-Programming is about abstraction. Here we have abstracted out the randomness generation
-implementation (`RandomnessCollectiveFlip`) from its interface (
-`Randomness<Self::H256, Self::BlockNumber>` trait).
+  Programming is about abstraction. Here we have abstracted out the randomness generation
+  implementation (`RandomnessCollectiveFlip`) from its interface (
+  `Randomness<Self::Hash, Self::BlockNumber>` trait). Check out this [how-to guide](/how-to-guides/v3/pallet-design/randomness) 
+  on implementing randomness in case you get stuck. 
 
-<Message
-  type={`green`}
-  title={`Further Learning`}
-  text={`
-Check out this [how-to guide](/how-to-guides/v3/pallet-design/randomness) on implementing randomness in case
-you get stuck.
-  `}
-/>
+1. #### Generating random DNA
 
-#### Generating Random DNA
+  Generating DNA is similar to using randomness to randomly assign a gender type. The difference is
+  that we'll be making use of `blake2_128` we imported in the previous part. Replace the ACTION #6
+  line with:
 
-Generating DNA is similar to using randomness to randomly assign a gender type. The difference is
-that we'll be making use of `blake2_128` we imported in the previous part. Replace the ACTION #7
-line with:
+  ```rust
+  fn gen_dna() -> [u8; 16] {
+      let payload = (
+          T::KittyRandomness::random(&b"dna"[..]).0,
+          <frame_system::Pallet<T>>::block_number(),
+      );
+      payload.using_encoded(blake2_128)
+  }
+  ```
 
-```rust
-fn gen_dna() -> [u8; 16] {
-    let payload = (
-        T::KittyRandomness::random(&b"dna"[..]).0,
-        <frame_system::Pallet<T>>::block_number(),
-    );
-    payload.using_encoded(blake2_128)
-}
-```
+### Write remaining storage items
 
-### Write Remaining Storage Items
+1. #### Understanding storage item logic
 
-#### A. Understanding Storage Item Logics
+  To easily track all of our kitties, we're going to standardize our logic to use a unique ID as the
+  global key for our storage items. This means that a single unique key will point to our Kitty
+  object (i.e. the struct we previously declared).
 
-To easily track all of our kitties, we're going to standardize our logic to use a unique ID as the
-global key for our storage items. This means that a single unique key will point to our Kitty
-object (i.e. the struct we previously declared).
+  In order for this to work, we need to make sure that the ID for a new Kitty is always unique. We can
+  do this with a new storage item `Kitties` which will be a mapping from an ID (Hash) to the Kitty
+  object.
 
-In order for this to work, we need to make sure that the ID for a new Kitty is always unique. We can
-do this with a new storage item `Kitties` which will be a mapping from an ID (Hash) to the Kitty
-object.
+  With this object, we can easily check for collisions by simply checking whether this storage item
+  already contains a mapping using a particular ID. For example, from inside a dispatchable function
+  we could check using:
 
-With this object, we can easily check for collisions by simply checking whether this storage item
-already contains a mapping using a particular ID. For example, from inside a dispatchable function
-we could check using:
+  ```rust
+  ensure!(!<Kitties<T>>::exists(new_id), "This new id already exists");
+  ```
 
-```rust
-ensure!(!<Kitties<T>>::exists(new_id), "This new id already exists");
-```
+  Our runtime needs to be made aware of:
 
-Our runtime needs to be made aware of:
+    - Unique assets, like currency or Kitties (this will be held by a storgae map called `Kitties`)
+    - Ownership of those assets, like account IDs (this will be handled a new storage map called
+    `KittiesOwned`)
 
-1. Unique assets, like currency or Kitties (this will be held by a storgae map called `Kitties`)
-2. Ownership of those assets, like account IDs (this will be handled a new storage map called
-`KittiesOwned`)
+1. #### Using a `StorageMap`
 
-#### B. Using a `StorageMap`
+  To create a storage instance for the `Kitty` struct, we'll be using[`StorageMap`][storage-map-kb]
+  &mdash; a hash-map provided to us by FRAME.
 
-To create a storage instance for the `Kitty` struct, we'll be using[`StorageMap`][storage-map-kb]
-&mdash; a hash-map provided to us by FRAME.
+  Here's what the `Kitties` storage item looks like:
 
-Here's what the `Kitties` storage item looks like:
+  ```rust
+  #[pallet::storage]
+  #[pallet::getter(fn kitty)]
+  pub(super) type Kitties<T: Config> = StorageMap<
+    _,
+    Twox64Concat,
+    T::Hash,
+    Kitty<T>
+    >;
+  ```
 
-```rust
-#[pallet::storage]
-#[pallet::getter(fn kitty)]
-pub(super) type Kitties<T: Config> = StorageMap<
-  _,
-  Twox64Concat,
-  T::Hash,
-  Kitty<T>
-  >;
-```
+  Breaking it down, we declare the storage type and assign a `StorageMap` that takes:
 
-Breaking it down, we declare the storage type and assign a `StorageMap` that takes:
+    - The [`Twox64Concat`][2x64-rustdocs] hashing algorithm.
+    - A key of type `T::Hash`.
+    - A value of type `Kitty<T>`.
 
-- The [`Twox64Concat`][2x64-rustdocs] hashing algorithm.
-- A key of type `T::Hash`.
-- A value of type `Kitty<T>`.
+  The `KittiesOwned` storage item is similar except that we'll be using a `BoundedVec` to keep track
+  of some maximum number of Kitties we'll configure in `runtime/src/lib.s`.
 
-The `KittiesOwned` storage item is similar except that we'll be using a `BoundedVec` to keep track
-of some maximum number of Kitties we'll configure in `runtime/src/lib.s`.
+  ```rust
+  #[pallet::storage]
+  #[pallet::getter(fn kitties_owned)]
+  pub(super) type Kitties<T: Config> = StorageMap<
+    _,
+    Twox64Concat,
+    T::AccountId,
+    BoundedVec<T::Hash, T::MaxKittyOwned>,
+    ValueQuery
+    >;
+  ```
 
-```rust
-#[pallet::storage]
-#[pallet::getter(fn kitties_owned)]
-pub(super) type Kitties<T: Config> = StorageMap<
-  _,
-  Twox64Concat,
-  T::AccountId,
-  BoundedVec<T::Hash, T::MaxKittyOwned>,
-  ValueQuery
-  >;
-```
+  Your turn! Copy the two code snippets above to replace line ACTION #7.
 
-Your turn! Copy the two code snippets above to replace line ACTION #8.
+  Before we can check our pallet compiles, we need to add a new type `MaxKittyOwned` in the config
+  trait, which is a pallet constant type (similar to `KittyRandomness` in the previous steps).
+  Replace ACTION #9 with:
 
-Before we can check our pallet compiles, we need to add a new type `MaxKittyOwned` in the config
-trait, which is a pallet constant type (similar to `KittyRandomness` in the previous steps).
-Replace ACTION #9 with:
-
-```rust
-#[pallet::config]
-pub trait Config: frame_system::Config {
-  //...
+  ```rust
   #[pallet::constant]
   type MaxKittyOwned: Get<u32>;
-}
-```
-Finally, we define `MaxKittyOwned` type in `runtime/src/lib.rs`:
+  ```
+  Finally, we define `MaxKittyOwned` type in `runtime/src/lib.rs`. This is the same pattern as we 
+  followed for `Currency` and `KittyRandomness` except we'll be adding a fixed `u32` using the 
+  `parameter_types!` macro:
 
-```rust
-parameter_types! {              // <- add this macro
-  // One can own at most 9,999 Kitties
-  pub const MaxKittyOwned: u32 = 9999;
+  ```rust
+  parameter_types! {              // <- add this macro
+    // One can own at most 9,999 Kitties
+    pub const MaxKittyOwned: u32 = 9999;
+    }
+
+  /// Configure the pallet-kitties in pallets/kitties.
+  impl pallet_kitties::Config for Runtime {
+    type Event = Event;
+    type Currency = Balances;
+    type KittyRandomness = RandomnessCollectiveFlip;
+    type MaxKittyOwned = MaxKittyOwned; // <- add this line
   }
+  ```
 
-/// Configure the pallet-kitties in pallets/kitties.
-impl pallet_kitties::Config for Runtime {
-  type Event = Event;
-  type Currency = Balances;
-  type KittyRandomness = RandomnessCollectiveFlip;
-  type MaxKittyOwned = MaxKittyOwned; // <- add this line
-}
-```
+  Now is a good time to check that your Kitties blockchain compiles!
 
-Assuming you've followed the above steps correctly, now is a good time to check that your pallet compiles:
+  ```bash
+  cargo build --release
+  ```
 
-```bash
-cargo build -p pallet-kitties
-```
-
-Running into difficulties? Check your solution against the [completed helper code](https://github.com/substrate-developer-hub/substrate-how-to-guides/blob/main/static/code/kitties-tutorial/03-dispatchables-and-events.rs)
-for this part of the tutorial.
+  Running into difficulties? Check your solution against the [completed helper code](https://github.com/substrate-developer-hub/substrate-how-to-guides/blob/main/static/code/kitties-tutorial/03-dispatchables-and-events.rs)
+  for this part of the tutorial.
 
 <Message type='green' title='Congratulations!' text={`
 If you've made it this far, you now have the foundations for your pallet to
@@ -859,22 +754,7 @@ learnt:\n\n
 - How to write \`StorageMap\` storage items.
 `}/>
 
-[default-rustdocs]: https://doc.rust-lang.org/std/default/trait.Default.html
-[randomness-rustdocs]: /rustdocs/latest/frame_support/traits/trait.Randomness.html
-[hash-rustdocs]: /rustdocs/latest/sp_runtime/traits/trait.Hash.html
-[h256-rustdocs]: /rustdocs/latest/sp_core/struct.H256.html
-[randomness-collective-flip-frame]: /rustdocs/latest/pallet_randomness_collective_flip/index.html
-[nonce-rustdocs]: /rustdocs/latest/frame_system/struct.AccountInfo.html#structfield.nonce
-[2x64-rustdocs]: /rustdocs/latest/frame_support/struct.Twox64Concat.html
-[prelude-traits-rustdocs]: /rustdocs/latest/sp_std/prelude/index.html#traits
-[derive-macro-rust]: https://doc.rust-lang.org/reference/procedural-macros.html#derive-macros
-[storage-best-practice-kb]: /v3/runtime/storage#best-practices
-[storage-map-kb]: /v3/runtime/storage/#storage-map
-[storage-value-kb]: /v3/runtime/storage#storage-value
-[currency-frame]: /rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html#associatedtype.Balance
-
-
-## Dispatchables, Events, and Errors
+## Dispatchables, events, and errors
 
 <Message type='yellow' title='Learning Outcome' text={`
 - Create a dispatchable function that mints a new Kitty
@@ -907,7 +787,7 @@ It also uses various "ACTION" items as a way to assist you through each step.
   `}
 />
 
-### Public and Private Functions
+### Public and private functions
 
 Before we dive right in, it's important to understand the pallet design decisions we'll be making
 around coding up our Kitty pallet's minting and ownership management capabilities.
@@ -1740,3 +1620,29 @@ Complete Part II of this tutorial to:
 [currency-balances-rustdocs]: /rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html#associatedtype.Balance
 [balances-frame]: /rustdocs/latest/pallet_balances/index.html
 [currency-transfer-rustdocs]: /rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html#tymethod.transfer
+
+
+[installation]: /v3/getting-started/installation
+[substrate-node-template]: https://github.com/substrate-developer-hub/substrate-node-template
+[pallets-kb]: /v3/runtime/frame#pallets
+[macros-kb]: /v3/runtime/macros#frame-macros-and-attributes
+[storagevalue-rustdocs]: /rustdocs/latest/frame_support/storage/trait.StorageValue.html
+[storage-api-rustdocs]: /rustdocs/latest/frame_support/storage/index.html
+[template-code]: https://github.com/substrate-developer-hub/substrate-how-to-guides/tree/main/static/code/kitties-tutorial
+[runtime-kb]: /v3/concepts/runtime
+[kickstart-tool]: https://github.com/Keats/kickstart
+[storage-macro-kb]: /v3/runtime/macros#palletstorage
+[default-rustdocs]: https://doc.rust-lang.org/std/default/trait.Default.html
+[randomness-rustdocs]: /rustdocs/latest/frame_support/traits/trait.Randomness.html
+[hash-rustdocs]: /rustdocs/latest/sp_runtime/traits/trait.Hash.html
+[h256-rustdocs]: /rustdocs/latest/sp_core/struct.H256.html
+[randomness-collective-flip-frame]: /rustdocs/latest/pallet_randomness_collective_flip/index.html
+[nonce-rustdocs]: /rustdocs/latest/frame_system/struct.AccountInfo.html#structfield.nonce
+[2x64-rustdocs]: /rustdocs/latest/frame_support/struct.Twox64Concat.html
+[prelude-traits-rustdocs]: /rustdocs/latest/sp_std/prelude/index.html#traits
+[derive-macro-rust]: https://doc.rust-lang.org/reference/procedural-macros.html#derive-macros
+[storage-best-practice-kb]: /v3/runtime/storage#best-practices
+[storage-map-kb]: /v3/runtime/storage/#storage-map
+[storage-value-kb]: /v3/runtime/storage#storage-value
+[currency-frame]: /rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html#associatedtype.Balance
+

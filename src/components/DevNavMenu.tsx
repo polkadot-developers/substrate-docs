@@ -732,7 +732,7 @@ DevNavMenuTuts.set('kittiesWorkshop', [
     name: `Build the Substrate Kitties Chain`,
     items: [
       {
-        title: 'Introduction',
+        title: 'Substrate Kitties Part I',
         link: '/tutorials/v3/kitties/pt1',
       },
       {
@@ -761,7 +761,7 @@ DevNavMenuTuts.set('kittiesWorkshop', [
     name: `Create a Front-end for the Kitties Chain`,
     items: [
       {
-        title: `Overview`,
+        title: `Substrate Kitties Part II`,
         link: '/tutorials/v3/kitties/pt2',
       },
       {
