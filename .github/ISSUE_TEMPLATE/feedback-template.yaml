@@ -31,8 +31,11 @@ body:
       placeholder: If something went wrong, we want to fix it!
     validations:
       required: true
-    label: Recommended course of action (optional)
+  - type: textarea
+    id: action
+    attributes:
+      label: Recommended course of action (optional)
       description: If you have a suggestion for fixing the issue you found, describe what you think the fix should be.
   - type: markdown
-  attributes:
-    value: "Thanks for completing our form!"
+    attributes:
+      value: "Thanks for completing our form!"
