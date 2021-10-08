@@ -2,6 +2,8 @@
 .cache
 node_modules
 public
+package.json
+package-lock.json
 
 # Ignore files that don't need *text* formatting
 src/images
