@@ -403,6 +403,12 @@ const DevNavMenu = {
             })}`,
             link: '/how-to-guides/v3/weights/use-benchmark-weights',
           },
+          {
+            title: `${intl.formatMessage({
+              id: 'htg-weights-conditional',
+            })}`,
+            link: '/how-to-guides/v3/weights/conditional-weighting-struct',
+          },
         ],
       },
       // 4. Testing.
