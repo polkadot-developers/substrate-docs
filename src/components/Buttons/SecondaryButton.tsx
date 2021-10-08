@@ -3,7 +3,7 @@ import { LocalizedLink } from 'gatsby-theme-i18n'
 
 interface SecondaryButtonProps {
   link: string
-  children: string
+  children: React.ReactNode
   external?: boolean
   cta?: boolean
 }
@@ -13,7 +13,7 @@ export function SecondaryButton(props: SecondaryButtonProps) {
   return (
     <>
       {props.external ? (
-        <a href={props.link}>
+        <a href={props.link} target="_blank" rel="noreferrer">
           <div
             className={`bg-substrateDark dark:bg-substrateGray-light ${paddingSize()} ${textSize()} inline-block rounded-md hover:opacity-80 transition-opacity`}
           >

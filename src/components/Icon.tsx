@@ -23,6 +23,7 @@ import copyText from '../images/svgs/copy-text.svg'
 import elementWhite from '../images/svgs/element-white.svg'
 import stackOverflowWhite from '../images/svgs/stack-overflow-white.svg'
 import twitter from '../images/svgs/twitter.svg'
+import feedbackIcon from '../images/svgs/feedback-icon.svg'
 import externalIcon from '../images/svgs/external-icon.svg'
 import informationIcon from '../images/svgs/information.svg'
 import adviceIcon from '../images/svgs/advice.svg'
@@ -56,6 +57,7 @@ iconsMap.set('arrowDown', arrowDown)
 iconsMap.set('flag', flag)
 iconsMap.set('docsNavIcon', docsNavIcon)
 iconsMap.set('copyText', copyText)
+iconsMap.set('feedbackIcon', feedbackIcon)
 iconsMap.set('externalIcon', externalIcon)
 iconsMap.set('informationIcon', informationIcon)
 iconsMap.set('adviceIcon', adviceIcon)
