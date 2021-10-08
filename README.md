@@ -12,7 +12,7 @@
 
 Important Convention Note
 
-> Always create your own branch to work on the site. Use `develop` for testing. Both Netlify flags towards the bottom display status of `develop` and `main` site. `main` is production ONLY and deployed by dedicated Dev or Comms team through Forestry.
+> Always create your own branch to work on the site. Use `develop` for testing. Both Netlify flags towards the bottom display status of `develop` and `main` site. `main` is production ONLY and deployed by dedicated Dev or Comms team through Forestry..
 
 ### Status
 
