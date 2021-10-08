@@ -89,8 +89,8 @@ const tutsInfo = [
   },
   {
     name: 'cumulus',
-    navSlug: 'cumulusWorkshop',
-    version: '3.0',
+    navSlug: 'cumulusTutorial',
+    version: 'polkadot-v0.9.10',
   },
   {
     name: 'frontier',

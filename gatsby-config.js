@@ -124,7 +124,7 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/v3/tutorials/09-cumulus-workshop/`,
+        path: `${__dirname}/v3/tutorials/09-cumulus/`,
         name: `cumulus`,
       },
     },
