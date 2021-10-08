@@ -16,7 +16,7 @@ export default function ExploreDocs() {
             'Explore the basics of Substrate’s FRAME and start creating your custom pallets.',
         },
         {
-          name: 'Smart Contracts',
+          name: 'Smart Contract Toolkits',
           link: '/v3/runtime/smart-contracts',
           description:
             'Discover the different ways to use smart contracts in Substrate chains.',
@@ -88,14 +88,14 @@ export default function ExploreDocs() {
             <div className="text-2xl font-extrabold mb-9">{section.name}</div>
             <ul className="px-4 leading-7">
               {section.items.map((item, index) => (
-                <li key={index}>
-                  <LocalizedLink to={item.link}>
+                <LocalizedLink key={index} to={item.link}>
+                  <li>
                     <div className="">
                       <b>{item.name}</b>
                     </div>
                     <p className="leading-7">{item.description}</p>
-                  </LocalizedLink>
-                </li>
+                  </li>
+                </LocalizedLink>
               ))}
             </ul>
             <div className="pl-4">

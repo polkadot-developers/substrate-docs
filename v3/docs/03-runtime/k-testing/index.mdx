@@ -10,7 +10,7 @@ keywords:
 Runtime tests allow you to verify the logic in your runtime module by mocking a Substrate runtime
 environment.
 
-## Unit Testing
+## Unit testing
 
 Substrate uses the existing
 [unit testing](https://doc.rust-lang.org/rust-by-example/testing/unit_testing.html) framework
@@ -20,78 +20,86 @@ provided by Rust. To run tests, the command is
 cargo test <optional: test_name>
 ```
 
-## Mock Runtime Environment
+## Mock runtime environment
 
-To test a Substrate runtime, construct a mock runtime environment. The configuration type `Test` is
-defined as a unit struct with implementations for each of the configuration traits that need to be
+To test a Substrate runtime, construct a mock runtime environment. The configuration type `Test`
+is defined as a Rust enum with implementations for each of the pallet configuration trait that are
 used in the mock runtime.
 
 ```rust
-#[derive(Clone, PartialEq, Eq, Debug)]
-pub struct Test;
-```
+frame_support::construct_runtime!(
+	pub enum Test where
+		Block = Block,
+		NodeBlock = Block,
+		UncheckedExtrinsic = UncheckedExtrinsic,
+	{
+		System: frame_system::{Pallet, Call, Config, Storage, Event<T>},
+		TemplateModule: pallet_template::{Pallet, Call, Storage, Event<T>},
+	}
+);
 
-If `Test` implements `balances::Config`, the assignment might use `u64` for the `Balance` type.
-
-```rust
-impl balances::Config for TestRuntime {
-	type Balance = u64;
-	//..
+impl frame_system::Config for Test {
+	// -- snip --
+	type AccountId = u64;
 }
 ```
 
-By assigning `balances::Balance` and `system::AccountId` to `u64`, mock runtimes ease the mental
-overhead of comprehensive, conscientious testers. Reasoning about accounts and balances only
-requires tracking a `(AccountId: u64, Balance: u64)` mapping.
+If `Test` implements `pallet_balances::Config`, the assignment might use `u64` for the `Balance` type.
 
-### Mock Runtime Storage
+```rust
+impl pallet_balances::Config for Test {
+	// -- snip --
+	type Balance = u64;
+}
+```
+
+By assigning `pallet_balances::Balance` and `frame_system::AccountId` to `u64`, mock runtimes ease
+the mental overhead of comprehensive, conscientious testers. Reasoning about accounts and balances
+only requires tracking a `(AccountId: u64, Balance: u64)` mapping.
+
+### Mock runtime storage
 
 The [`sp-io`](/rustdocs/latest/sp_io) crate exposes a
 [`TestExternalities`](/rustdocs/latest/sp_io/type.TestExternalities.html)
 implementation frequently used for mocking storage in tests. It is the type alias for an in-memory,
 hashmap-based externalities implementation in
-[`substrate_state_machine`](/rustdocs/latest/sp_state_machine)]
-referred to as
+[`substrate_state_machine`](/rustdocs/latest/sp_state_machine) referred to as
 [`TestExternalities`](/rustdocs/latest/sp_state_machine/struct.TestExternalities.html).
 
-This examples demonstrates defining a struct called `ExtBuilder` to build an instance of
-[`TestExternalities`](/rustdocs/latest/sp_io/type.TestExternalities.html).
+This example demonstrates defining a struct called `ExtBuilder` to build an instance of
+`TestExternalities`, and setting the block number to 1.
 
 ```rust
 pub struct ExtBuilder;
 
 impl ExtBuilder {
-	pub fn build() -> sp_io::TestExternalities {
-		let mut storage = system::GenesisConfig::default().build_storage::<TestRuntime>().unwrap();
-		sp_io::TestExternalities::from(storage)
+	pub fn build(self) -> sp_io::TestExternalities {
+		let mut t = system::GenesisConfig::default().build_storage::<TestRuntime>().unwrap();
+		let mut ext = sp_io::TestExternalities::new(t);
+		ext.execute_with(|| System::set_block_number(1));
+		ext
 	}
 }
 ```
 
 To create the test environment in unit tests, the build method is called to generate a
-`TestExternalities` using the default genesis configuration. Then,
-[`with_externalities`](/rustdocs/latest/sp_externalities/fn.with_externalities.html)
-provides the runtime environment in which we may call the pallet's methods to test that storage,
-events, and errors behave as expected.
+`TestExternalities` using the default genesis configuration.
 
 ```rust
 #[test]
 fn fake_test_example() {
-	ExtBuilder::build().execute_with(|| {
-		// ...test conditions...
-	})
+	ExtBuilder::default().build_and_execute(|| {
+		// ...test logics...
+	});
 }
 ```
 
-Custom implementations of
-[Externalities](/rustdocs/latest/sp_externalities) allow developers
+Custom implementations of [Externalities](/rustdocs/latest/sp_externalities) allow developers
 to construct runtime environments that provide access to features of the outer node. Another example
-of this can be found in
-[`offchain`](/rustdocs/latest/sp_core/offchain), which maintains its
-own [Externalities](/rustdocs/latest/sp_core/offchain/trait.Externalities.html)
-implementation.
+of this can be found in [`offchain`](/rustdocs/latest/sp_core/offchain), which maintains its own
+[Externalities](/rustdocs/latest/sp_core/offchain/trait.Externalities.html) implementation.
 
-#### Genesis Config
+#### Genesis config
 
 The previously shown `ExtBuilder::build()` method used the default genesis configuration for
 building the mock runtime environment. In many cases, it is convenient to set storage before
@@ -99,14 +107,15 @@ testing.
 
 An example might involve pre-seeding account balances before testing.
 
-In the implementation of `system::Config`, `AccountId` is set to `u64` just like `Balance` shown
+In the implementation of `frame_system::Config`, `AccountId` is set to `u64` just like `Balance` shown
 above. Place `(u64, u64)` pairs in the `balances` vec to seed `(AccountId, Balance)` pairs as the
 account balances.
 
 ```rust
-pub fn build(self) -> sp_io::TestExternalities {
-	GenesisConfig {
-		balances: Some(balances::GenesisConfig::<TestRuntime>{
+impl ExtBuilder {
+	pub fn build(self) -> sp_io::TestExternalities {
+		let mut t = frame_system::GenesisConfig::default().build_storage::<Test>().unwrap();
+		pallet_balances::GenesisConfig::<Test> {
 			balances: vec![
 				(1, 10),
 				(2, 20),
@@ -115,20 +124,36 @@ pub fn build(self) -> sp_io::TestExternalities {
 				(5, 50),
 				(6, 60)
 			],
-			vesting: vec![],
-		}),
-	}.build_storage().unwrap().into()
+		}
+			.assimilate_storage(&mut t)
+			.unwrap();
+
+		let mut ext = sp_io::TestExternalities::new(t);
+		ext.execute_with(|| System::set_block_number(1));
+		ext
+	}
 }
 ```
 
 Account 1 has balance 10, account 2 has balance 20, and so on.
 
-### Block Production
+The exact struct of how to define the genesis config of a certain pallet depends on the pallet
+`GenesisConfig` struct definition. For Balances Pallet, as shown
+[in the rustdocs](/rustdocs/latest/pallet_balances/pallet/struct.GenesisConfig.html), it is defined
+as:
 
-It will be useful to simulate block production to verify that expected behavior holds during block
-time dependent changes.
+```rust
+pub struct GenesisConfig<T: Config<I>, I: 'static = ()> {
+	pub balances: Vec<(T::AccountId, T::Balance)>,
+}
+```
 
-A simple way of doing this increments the System module's block number between `on_initialize` and
+### Block production
+
+It will be useful to simulate block production to verify that expected behavior holds across block
+production.
+
+A simple way of doing this is by incrementing the System module's block number between `on_initialize` and
 `on_finalize` calls from all modules with `System::block_number()` as the sole input. While it is
 important for runtime code to cache calls to storage or
 the system module, the test environment scaffolding should prioritize readability to facilitate
@@ -137,28 +162,30 @@ future maintenance.
 ```rust
 fn run_to_block(n: u64) {
 	while System::block_number() < n {
-		ExampleModule::on_finalize(System::block_number());
-		System::on_finalize(System::block_number());
+		if System::block_number() > 1 {
+			ExamplePallet::on_finalize(System::block_number());
+			System::on_finalize(System::block_number());
+		}
 		System::set_block_number(System::block_number() + 1);
 		System::on_initialize(System::block_number());
-		ExampleModule::on_initialize(System::block_number());
+		ExamplePallet::on_initialize(System::block_number());
 	}
 }
 ```
 
-`on_finalize` and `on_initialize` are only called from `ExampleModule` if the pallet's trait
-implements the `sr_primitives::traits::{OnInitialize, OnFinalize}` traits to execute the logic
+`on_finalize` and `on_initialize` are only called from `ExamplePallet` if the pallet trait
+implements the `frame_support::traits::{OnInitialize, OnFinalize}` traits to execute the logic
 encoded in the runtime methods before and after each block respectively.
 
-To use this function in unit tests,
+Then call this function in the following fashion.
 
 ```rust
 #[test]
 fn my_runtime_test() {
 	with_externalities(&mut new_test_ext(), || {
-		assert_ok!(ExampleModule::start_auction());
+		assert_ok!(ExamplePallet::start_auction());
 		run_to_block(10);
-		assert_ok!(ExampleModule::end_auction());
+		assert_ok!(ExamplePallet::end_auction());
 	});
 }
 ```

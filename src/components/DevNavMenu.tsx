@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl'
+
 const DevNavMenu = {
   global: () => {
     const intl = useIntl()
@@ -21,7 +22,7 @@ const DevNavMenu = {
       {
         section: `${intl.formatMessage({ id: 'docs-nav-rustdocs' })}`,
         url: '/rustdocs',
-        external: true,
+        external: false,
       },
     ]
   },
@@ -267,8 +268,20 @@ const DevNavMenu = {
         name: `${intl.formatMessage({ id: 'docs-menu-contribute' })}`,
         items: [
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-stye-guide' })}`,
-            link: '/v3/style-guide',
+            title: `${intl.formatMessage({ id: 'docs-menu-style-guide' })}`,
+            link: '/v3/contribute/style-guide',
+          },
+          {
+            title: `${intl.formatMessage({ id: 'docs-menu-writing-style' })}`,
+            link: '/v3/contribute/writing',
+          },
+          {
+            title: `${intl.formatMessage({ id: 'docs-menu-bounties' })}`,
+            link: '/v3/contribute/bounties',
+          },
+          {
+            title: `${intl.formatMessage({ id: 'docs-menu-templates' })}`,
+            link: '/v3/contribute/templates',
           },
         ],
       },
@@ -499,9 +512,8 @@ const DevNavMenu = {
   },
 }
 
-DevNavMenu.tuts = {}
-
-DevNavMenu.tuts.firstChain = [
+const DevNavMenuTuts = new Map()
+DevNavMenuTuts.set('firstChain', [
   {
     name: `Create Your First Substrate Chain`,
     items: [
@@ -527,9 +539,8 @@ DevNavMenu.tuts.firstChain = [
       },
     ],
   },
-]
-
-DevNavMenu.tuts.poe = [
+])
+DevNavMenuTuts.set('poe', [
   {
     name: `Build a Proof of Existence Blockchain`,
     items: [
@@ -551,9 +562,8 @@ DevNavMenu.tuts.poe = [
       },
     ],
   },
-]
-
-DevNavMenu.tuts.permissionedNetwork = [
+])
+DevNavMenuTuts.set('permissionedNetwork', [
   {
     name: `Start a Permissioned Network`,
     items: [
@@ -571,9 +581,8 @@ DevNavMenu.tuts.permissionedNetwork = [
       },
     ],
   },
-]
-
-DevNavMenu.tuts.forklessUpgrades = [
+])
+DevNavMenuTuts.set('forklessUpgrades', [
   {
     name: `Initiate a Forkless Runtime Upgrade`,
     items: [
@@ -591,9 +600,8 @@ DevNavMenu.tuts.forklessUpgrades = [
       },
     ],
   },
-]
-
-DevNavMenu.tuts.privateNetwork = [
+])
+DevNavMenuTuts.set('privateNetwork', [
   {
     name: `Start a Private Network`,
     items: [
@@ -619,9 +627,8 @@ DevNavMenu.tuts.privateNetwork = [
       },
     ],
   },
-]
-
-DevNavMenu.tuts.nodeMetrics = [
+])
+DevNavMenuTuts.set('nodeMetrics', [
   {
     name: `Visualizing Node Metrics`,
     items: [
@@ -643,11 +650,10 @@ DevNavMenu.tuts.nodeMetrics = [
       },
     ],
   },
-]
-
-DevNavMenu.tuts.addPallet = [
+])
+DevNavMenuTuts.set('addPallet', [
   {
-    name: `Add a FRAME's Nicks Pallet to Your Runtime`,
+    name: `Add the Nicks Pallet to your Runtime`,
     items: [
       {
         title: `Introduction`,
@@ -671,9 +677,8 @@ DevNavMenu.tuts.addPallet = [
       },
     ],
   },
-]
-
-DevNavMenu.tuts.inkWorkshop = [
+])
+DevNavMenuTuts.set('inkWorkshop', [
   {
     name: `ink! Contracts Workshop`,
     items: [
@@ -691,9 +696,8 @@ DevNavMenu.tuts.inkWorkshop = [
       },
     ],
   },
-]
-
-DevNavMenu.tuts.cumulusWorkshop = [
+])
+DevNavMenuTuts.set('cumulusWorkshop', [
   {
     name: `Substrate Cumulus Workshop`,
     items: [
@@ -711,9 +715,8 @@ DevNavMenu.tuts.cumulusWorkshop = [
       },
     ],
   },
-]
-
-DevNavMenu.tuts.frontierWorkshop = [
+])
+DevNavMenuTuts.set('frontierWorkshop', [
   {
     name: `Frontier Workshop`,
     items: [
@@ -735,8 +738,8 @@ DevNavMenu.tuts.frontierWorkshop = [
       },
     ],
   },
-]
-DevNavMenu.tuts.kittiesWorkshop = [
+])
+DevNavMenuTuts.set('kittiesWorkshop', [
   {
     name: `Build the Substrate Kitties Chain`,
     items: [
@@ -783,6 +786,5 @@ DevNavMenu.tuts.kittiesWorkshop = [
       },
     ],
   },
-]
-
-export default DevNavMenu
+])
+export { DevNavMenu, DevNavMenuTuts }

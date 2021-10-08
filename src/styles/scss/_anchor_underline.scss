@@ -27,11 +27,11 @@
   transform: scaleX(1);
 }
 
+
 // Markdown Anchor Tags
 .mdx-anchor a {
   position: relative;
   @apply text-substrateBlue dark:text-substrateBlue-light;
-  // color: #4E73F2;
   text-decoration: none;
 }
 
