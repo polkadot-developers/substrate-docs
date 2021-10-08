@@ -1,5 +1,5 @@
 ---
-title: Use custom weights from benchmarking
+title: Use Custom Weights from Benchmarking
 slug: /how-to-guides/v3/weights/use-benchmark-weights
 keywords: weights, benchmarking, runtime
 version: 3.0 
@@ -63,10 +63,10 @@ configured `WeightInfo` type. For example, `example` would be a function from `w
 for the `example` extrinsic:
 
 ```rust
-#[pallet::weight(T::WeightInfo::example(x.len()))]
-fn example(origin: OriginFor<T>, arg: Vec<u32>) {
-    //...
-}
+  #[pallet::weight(T::WeightInfo::example(x.len()))]
+  fn example(origin: OriginFor<T>, arg: Vec<u32>) {
+      //...
+  }
 ```
 
 ### 3. Define the `WeightInfo` type in `Config` trait impls
@@ -76,23 +76,25 @@ and the Substrate `node`'s runtime.
 
 In your pallet's `Config` trait impl in `mock.rs`, introduce the line:
 
-```
-type WeightInfo = ();
+```rust
+  type WeightInfo = ();
 ```
 
 In your pallet's `Config` trait impl in `runtime/src/lib.rs`, introduce the line:
 
-```
-type WeightInfo = pallet_example::weights::SubstrateWeight<Runtime>;
+```rust
+  type WeightInfo = pallet_example::weights::SubstrateWeight<Runtime>;
 ```
 
 ## Examples
+
 - [Benchmarking in the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/example/src/benchmarking.rs)
 - [Weights in the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/example/src/weights.rs)
 
 ## Related material
 
 #### Docs 
+
 - [Benchmarking](/v3/runtime/benchmarking)
 - [Calculate custom fees](/how-to-guides/v3/weights/calculate-fees)
 
