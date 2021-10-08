@@ -11,14 +11,8 @@ interface buttonProps {
 }
 
 export function BottomButtons({ menu, pageSlug }: BottomButtonsProps) {
-  const [nextButton, setNextButton] = useState<buttonProps | null>({
-    title: '',
-    link: '',
-  })
-  const [prevButton, setPrevButton] = useState<buttonProps | null>({
-    title: '',
-    link: '',
-  })
+  const [nextButton, setNextButton] = useState<buttonProps | null>()
+  const [prevButton, setPrevButton] = useState<buttonProps | null>()
   useEffect(() => {
     const pages: { title: string; link: string }[] = []
     menu.forEach(menuItems => {
@@ -43,7 +37,6 @@ export function BottomButtons({ menu, pageSlug }: BottomButtonsProps) {
       }
     })
   }, [])
-
   return (
     <div
       className={`flex flex-col items-center lg:flex-row ${
