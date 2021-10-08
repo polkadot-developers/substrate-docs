@@ -210,12 +210,13 @@ export default function Index() {
               developments.
             </p>
           </div>
-          <div className="flex justify-center md:w-1/2">
+          <div className="flex justify-center md:w-1/2 p-6">
             <StaticImage
               backgroundColor="transparent"
-              src="../images/photos/homepage/connect-with-the-community.png"
+              src="../images/photos/homepage/connect-with-the-community.jpg"
               alt="Connect With Substrate Community"
               layout="constrained"
+              className="rounded-lg overflow-hidden"
             />
           </div>
         </div>

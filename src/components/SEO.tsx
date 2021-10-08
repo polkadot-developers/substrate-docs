@@ -25,7 +25,7 @@ const SEO = ({ description, title, children }: SEOProps) => {
         height: 60,
       },
     },
-    url: 'https://docs.substrate.io/',
+    url: siteMetadata.siteUrl,
     image: {
       '@type': 'ImageObject',
       url: `${siteMetadata.image_og}`,

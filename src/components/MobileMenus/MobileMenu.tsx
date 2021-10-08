@@ -5,6 +5,8 @@ import MobileSubMenu from './MobileSubMenu'
 import SearchDoc from '../SearchDocs'
 import ThemeToggle from '../ThemeToggle'
 
+import { useSiteMetadata } from '../../components/Hooks/use-site-metadata'
+
 interface MobileMenuProps {
   toggleMenu: () => void
   navItems: {
@@ -33,11 +35,13 @@ const MobileMenu = ({ toggleMenu, navItems }: MobileMenuProps) => {
   const [isVisionMenuOpen, setIsVisionMenuOpen] = useState(false)
   const [isEcoMenuOpen, setIsEcoMenuOpen] = useState(false)
 
+  const { siteMetadata } = useSiteMetadata()
+
   return (
     <nav className="lg:hidden absolute inset-0 bg-substrateGray-light dark:bg-darkBackground z-90 animate-fade-in-right">
       <div className="h-16 px-6 flex items-center justify-between">
         <div className="w-32">
-          <Link to="/">
+          <Link to={siteMetadata.substrateIO}>
             <svg
               className={`fill-current text-substrateDark dark:text-substrateWhite`}
               data-name="Layer 1"

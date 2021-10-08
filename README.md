@@ -35,10 +35,24 @@ Important Convention Note
 
     ```shell
     cd substrate-docs/
-    yarn install
+    yarn
     ```
 
-3.  **Fire the engine**
+3. **Configure environment variables**
+    
+    Copy `example.env.development` and rename to `.env.development`
+
+    Config URL variables based on your preferable local setup. URL will be used for links generation between documentation and platform stack
+
+    - `GATSBY_DOCS_URL` represents this project serving documentation
+    - `GATSBY_IO_URL`: represents platform website
+
+    ```
+    GATSBY_IO_URL=http://localhost:8000  // local or hosted URL
+    GATSBY_DOCS_URL=http://localhost:8001 // default docs.substrate.io if not set
+    ```
+
+4.  **Fire the engine**
 
     Navigate into your new site’s directory and use the following command to start the development server locally.
 
@@ -47,18 +61,18 @@ Important Convention Note
     yarn dev
     ```
 
-4.  **Open the code and start customizing!**
+5.  **Open the code and start customizing!**
 
     Your site is now running at http://localhost:8000!
     And your GraphiQL data layer is running at http://localhost:8000/\_\_graphql
 
     Edit to see your site update in real-time!
 
-5.  **Learn more about GatbsyJS**
+6.  **Learn more about GatbsyJS**
 
     - [Documentation](https://www.gatsbyjs.com/docs/)
 
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/
+    - [Tutorials](https://www.gatsbyjs.com/tutorial/)
     - [Guides](https://www.gatsbyjs.com/tutorial/)
 
     - [API Reference](https://www.gatsbyjs.com/docs/api-reference/)

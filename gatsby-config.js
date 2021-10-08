@@ -1,16 +1,13 @@
-const {
-  NODE_ENV,
-  URL: NETLIFY_SITE_URL = 'https://docs.substrate.io',
-  DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
-  CONTEXT: NETLIFY_ENV = NODE_ENV,
-} = process.env
-const isNetlifyProduction = NETLIFY_ENV === 'production'
-const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
+/* read the `.env.*` files, gatsby builtin */
+// eslint-disable-next-line
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 module.exports = {
   siteMetadata: {
     title: 'Substrate_',
-    siteUrl: siteUrl,
+    siteUrl: `${process.env.GATSBY_DOCS_URL || 'https://docs.substrate.io'}`,
     image_og: '',
     description:
       'Substrate enables developers to quickly and easily build future-proof blockchains optimized for any use case.',
@@ -38,7 +35,7 @@ module.exports = {
     terms: 'https://www.parity.io/terms',
     youtube: 'https://www.youtube.com/c/ParityTech',
     crowdcast: 'https://www.crowdcast.io/e/substrate-seminar-2',
-    substrateIO: 'https://substrate-io-staging.netlify.app',
+    substrateIO: `${process.env.GATSBY_IO_URL}`,
   },
   flags: {
     DEV_SSR: false,
@@ -210,7 +207,6 @@ module.exports = {
       options: {
         defaults: {
           formats: [`auto`, `webp`],
-          placeholder: `tracedSVG`,
           quality: 100,
           breakpoints: [640, 768, 1024, 1280],
           backgroundColor: `transparent`,
