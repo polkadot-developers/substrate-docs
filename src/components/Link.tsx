@@ -74,3 +74,5 @@ const testExternalLink = (href: string) => {
   const match = regex.test(href)
   return match
 }
+
+export { testExternalLink, testInfraLink }
