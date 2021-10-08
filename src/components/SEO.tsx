@@ -28,7 +28,7 @@ const SEO = ({ description, title, children }: SEOProps) => {
     url: 'https://docs.substrate.io/',
     image: {
       '@type': 'ImageObject',
-      url: `${siteMetadata.iamge_og}`,
+      url: `${siteMetadata.image_og}`,
       width: 1600,
       height: 800,
     },
