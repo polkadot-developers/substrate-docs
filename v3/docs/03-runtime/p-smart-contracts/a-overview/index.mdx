@@ -202,9 +202,8 @@ available within the runtime. This is currently implemented with
 The Contracts pallet uses an account-based system similar to many existing smart contract platforms.
 To the Substrate runtime, contract accounts are just like normal user accounts; however, in addition
 to an `AccountID` and `Balance` that normal accounts have, a contract account also has associated
-contract code and some persistent contract storage. A noteable beaviour that arises from this
-is that a contract's account can receive balance without having its code executed by submitting
-a plain transfer transaction.
+contract code and some persistent contract storage. A notable behaviour that arises from this
+is that a contract's account can receive balances without having its code executed by a plain transfer transaction.
 
 ### Deploying and Calling Contracts
 
