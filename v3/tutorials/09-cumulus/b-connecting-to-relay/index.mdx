@@ -1,6 +1,6 @@
 ---
 title: Connect to a Parachain
-slug: /tutorials/v3/cumulus/pt2
+slug: /tutorials/v3/cumulus/connect-parachain
 version: 'polkadot-0.9.10'
 section: tutorials
 category: parachains
@@ -90,7 +90,7 @@ collator binary you have roughly following these instructions.
 #### Generate a parachain genesis state
 
 To register a parachain, the relay chain needs to know the parachain's
-[genesis state](../runtime/chain-specs#the-genesis-state). The collator node can export that state
+[genesis state](../../../../v3/runtime/chain-specs#the-genesis-state). The collator node can export that state
 to a file for us. The following command will create a file containing the parachain's entire genesis
 state, hex-encoded:
 
@@ -228,7 +228,7 @@ sure to do that first.
 
 If you are running a network with more than two validators you can add more parachains through the
 same interface with the parameters adjusted accordingly using any mix of these options. More details
-on this can be found [in here](../pt1#3-starting-additional-validators-optional).
+on this can be found [in here](start-relay#starting-additional-validators-optional).
 
 #### Option 1: `paraSudoWrapper.sudoScheduleParaInitialize`
 
@@ -274,7 +274,7 @@ page.
   `}
 />
 
-Please first follow the [Rococo registration](../pt4) instructions, with the exception of asking for
+Please first follow the [Rococo registration](pt4) instructions, with the exception of asking for
 a slot lease to be awarded or participating in a slot auction on a public testnet or mainnet. Here
 we will use `sudo` to grant ourselves a lease instead. You should have an onboarded parathread:
 
@@ -304,7 +304,8 @@ The collator should start producing parachain blocks (aka collating) once the re
 successful **and a new relay chain epoch has begun**!
 
 > This may take a while! Be patient as you wait for a new epoch to begin first.
-> This is 10 blocks for the [rococo `chain-spec.json`](../pt1#1-chain-specification)
+> This is 10 blocks for the
+> example <a href="/assets/tutorials/cumulus/chainspecs/rococo-custom-2-raw.json" download> rococo-custom-2-raw.json</a>
 > included in this tutorial.
 
 Finally, the collator should start producing log messages like the following:
@@ -439,7 +440,7 @@ parachain.
 
 You should have _at least_ 2 **validators** (relay chain nodes) running for every **collator**
 (parachain nodes) on your network. This is why we have included a prebuilt 3 and 4 validator
-chain spec for you in [the first section](../pt1#pre-configured-chain-spec-files), and you
+chain spec for you in [the first section](start-relay#pre-configured-chain-spec-files), and you
 can add more as needed, described there.
 
 ### Start a second collator
@@ -485,5 +486,5 @@ the `--collator` flag.
 ## Next steps
 
 That was _quite a lot of work_ to get a parachain up and running! Don't fret though, in the
-[next section](../pt3) we learn about how to _completely automate_ all the steps we did in this
+next section we learn about how to _completely automate_ all the steps we did in this
 tutorial thus far to configure a parachain... and much more!

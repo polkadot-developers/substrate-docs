@@ -691,19 +691,19 @@ DevNavMenuTuts.set('cumulusTutorial', [
     items: [
       {
         title: `Start a Relay Chain`,
-        link: '/tutorials/v3/cumulus/pt1',
+        link: '/tutorials/v3/cumulus/start-relay',
       },
       {
         title: `Connect to a Parachain`,
-        link: '/tutorials/v3/cumulus/pt2',
+        link: '/tutorials/v3/cumulus/connect-parachain',
       },
       {
         title: `Launch a Parachain Testnet`,
-        link: '/tutorials/v3/cumulus/pt3',
+        link: '/tutorials/v3/cumulus/polkadot-launch',
       },
       //   {
       //     title: `Register on Rococo`,
-      //     link: '/tutorials/v3/cumulus/pt4',
+      //     link: '/tutorials/v3/cumulus/rococo',
       //   },
     ],
   },
