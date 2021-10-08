@@ -48,8 +48,8 @@ Important Convention Note
     - `GATSBY_IO_URL`: represents platform website
 
     ```
-    GATSBY_IO_URL=http://localhost:8001  // local or hosted URL
-    GATSBY_DOCS_URL=http://localhost:8000 // default docs.substrate.io if not set
+    GATSBY_IO_URL=http://localhost:8000  // local or hosted URL
+    GATSBY_DOCS_URL=http://localhost:8001 // default docs.substrate.io if not set
     ```
 
 4.  **Fire the engine**
