@@ -35,8 +35,6 @@ function getUrlColorMode(location: { href: string; pathname: string }) {
   return false
 }
 
-const referrer = document.referrer
-
 interface ThemeContextInterface {
   colorMode: string
   setColorMode: (value: string) => void
@@ -53,7 +51,6 @@ interface ThemeProviderInterface {
 
 export const ThemeProvider = ({ children, value }: ThemeProviderInterface) => {
   const [colorMode, rawSetColorMode] = React.useState(undefined)
-  const referrerInfra = testInfraLink(referrer)
 
   useEffect(() => {
     const { location } = value
@@ -61,6 +58,9 @@ export const ThemeProvider = ({ children, value }: ThemeProviderInterface) => {
     if (getUrlColorMode(location))
       setColorMode(getUrlColorMode(location) as string)
     // reset scroll position to top when navigate between stacks
+    // reset scroll position to top when navigate between stacks
+    const referrer = document.referrer
+    const referrerInfra = testInfraLink(referrer)
     if (referrerInfra) window.scrollTo(0, 0)
   }, [])
 
