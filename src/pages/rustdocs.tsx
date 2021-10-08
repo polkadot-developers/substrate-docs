@@ -9,9 +9,9 @@ export default function RustDocs() {
   return (
     <Layout>
       <SEO title="Substrate Rust Docs" />
-      <Section>
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-center px-6 pb-10 lg:pb-0 my-10">
-          <div className="lg:m-0 lg:w-1/2 md:px-5 lg:px-10">
+      <Section styles="mt-12">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-center">
+          <div className="lg:w-1/2">
             <div className="font-title text-5xl lg:text-6xl font-extrabold mb-8">
               Substrate <br /> Rust Docs
             </div>
@@ -22,7 +22,7 @@ export default function RustDocs() {
               with the ultimate source of truth for updates in versions or
               changes in modules.
             </p>
-            <p>
+            <p className="max-w-lg">
               This page maintains a reference list of all of Substrate&apos;s
               monthly releases since v3.0.0, for developers to be able to
               revisit previous source code documentation versions if they need
@@ -55,7 +55,7 @@ export default function RustDocs() {
               </li> */}
             </ul>
           </div>
-          <div className="hidden lg:flex lg:justify-center lg:w-1/2 lg:m-10 lg:max-w-lg">
+          <div className="hidden lg:flex lg:justify-center lg:w-1/2 lg:px-12 xl:pr-36">
             <RustLogo />
           </div>
         </div>
