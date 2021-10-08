@@ -8,7 +8,7 @@ interface InfraLinkProps {
   className?: string
 }
 
-const InfraLink = ({ to, children }: InfraLinkProps) => {
+const InfraLink = ({ to, children, className }: InfraLinkProps) => {
   const { colorMode } = useContext(ThemeContext)
 
   const handleClick = (e: React.FormEvent<EventTarget>, to: string) => {
@@ -17,7 +17,7 @@ const InfraLink = ({ to, children }: InfraLinkProps) => {
   }
 
   return (
-    <a href={to} onClick={e => handleClick(e, to)}>
+    <a href={to} onClick={e => handleClick(e, to)} className={className}>
       {children}
     </a>
   )
@@ -26,22 +26,36 @@ const InfraLink = ({ to, children }: InfraLinkProps) => {
 interface LinkProps {
   to: string
   children: React.ReactNode
+  className: string
 }
 
-export default function Link({ to, children }: LinkProps) {
+export default function Link({ to, children, className }: LinkProps) {
   const external = testExternalLink(to)
   const infraLink = testInfraLink(to)
 
   if (external) {
     return (
-      <a href={to} target="_blank" rel="noreferrer noopener">
+      <a
+        href={to}
+        target="_blank"
+        className={className}
+        rel="noreferrer noopener"
+      >
         {children}
       </a>
     )
   } else if (infraLink) {
-    return <InfraLink to={to}>{children}</InfraLink>
+    return (
+      <InfraLink to={to} className={className}>
+        {children}
+      </InfraLink>
+    )
   } else {
-    return <LocalizedLink to={to}>{children}</LocalizedLink>
+    return (
+      <LocalizedLink to={to} className={className}>
+        {children}
+      </LocalizedLink>
+    )
   }
 }
 
