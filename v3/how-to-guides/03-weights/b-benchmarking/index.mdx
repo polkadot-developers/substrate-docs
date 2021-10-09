@@ -22,7 +22,7 @@ difficulty: 1
     {
       title: 'Overview',
       description:
-        `This guides steps throught the process of adding benchmarking to a pallet and runtime. In addition, 
+        `This guide steps throught the process of adding benchmarking to a pallet and runtime. In addition,
         it covers the steps of writing a simple benchmark for a pallet as well as testing and running the 
         benchmarking tool. This guide does not cover updating weights with benchmarked values.`,
     },
@@ -32,9 +32,12 @@ difficulty: 1
 ## Steps
 
 ### 1. Set-up benchmarking for your pallet
+
 1. In [the pallet's
    `Cargo.toml`](https://github.com/paritytech/substrate/blob/master/frame/example/Cargo.toml), add
    the `frame-benchmarking` crate (with appropriate tag and version) and the `runtime-benchmarks` feature.
+
+   `pallets/example/Cargo.toml`
 
    ```toml
    [dependencies.frame-benchmarking]
@@ -53,17 +56,17 @@ difficulty: 1
    ]
    ```
 
-2. Create a new Rust module for your benchmarks in your pallet's folder (e.g. `/pallets/example/src/benchmarking.rs`), 
-   and create a basic structure:
+2. Create a new Rust module for your benchmarks in your pallet's folder (an example of
+  [`/pallets/template/src/benchmarking.rs`](https://github.com/substrate-developer-hub/substrate-node-template/blob/latest/pallets/template/src/benchmarking.rs)),
+   and create the basic structure:
+
+   `pallets/example/src/benchmarking.rs`
 
    ```rust
     //! Benchmarks for Template Pallet
-
     #![cfg(feature = "runtime-benchmarks")]
 
-    use sp_std::prelude::*;
-    use super::*;
-    use crate::Pallet as Template;
+    use crate::*;
     use frame_benchmarking::{benchmarks, impl_benchmark_test_suite, whitelisted_caller};
     use frame_system::RawOrigin;
 
@@ -88,7 +91,7 @@ difficulty: 1
    }
    ```
 
-   We'll refer to an extremely basic example of a benchmark from the [Example pallet](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs).
+   We'll refer to an extremely basic example of a benchmark from the [Example Pallet](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs).
    Take a look at the extrinsic we'll be benchmarking for [here](http://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs#L543-562).
 
    ```rust
@@ -107,6 +110,8 @@ difficulty: 1
 
 4. Once you have written your benchmarks, you should make sure they execute properly by testing
    them. Add this macro at the bottom of your benchmarking module:
+
+   `pallets/example/src/benchmarking.rs`
 
    ```rust
    impl_benchmark_test_suite!(
