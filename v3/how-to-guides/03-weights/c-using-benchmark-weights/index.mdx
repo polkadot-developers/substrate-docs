@@ -93,7 +93,7 @@ and your Substrate `node`'s runtime.
 In your pallet's `Config` trait impl in `mock.rs`, introduce the following line to exclude weights
 in our testing.
 
-`pallets/example/src/mock.rs` or `pallets/example/src/test.rs`
+In `pallets/example/src/mock.rs` or `pallets/example/src/test.rs`:
 
 ```rust
 impl Config for TestRuntime {
