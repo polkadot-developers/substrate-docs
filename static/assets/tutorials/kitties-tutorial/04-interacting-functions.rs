@@ -115,7 +115,7 @@ pub mod pallet {
   pub(super) type KittiesOwned<T: Config> =
     StorageMap<_, Twox64Concat, T::AccountId, BoundedVec<T::Hash, T::MaxKittyOwned>, ValueQuery>;
 
-  // ACTION 12: Our pallet's genesis configuration.
+  // ACTION #11: Our pallet's genesis configuration.
 
   #[pallet::call]
   impl<T: Config> Pallet<T> {
@@ -143,7 +143,7 @@ pub mod pallet {
     ) -> DispatchResult {
       let sender = ensure_signed(origin)?;
 
-      // ACTION #1: Checking Kitty owner
+      // ACTION #1a: Checking Kitty owner
 
       let mut kitty = Self::kitties(&kitty_id).ok_or(<Error<T>>::KittyNotExist)?;
 
@@ -154,7 +154,7 @@ pub mod pallet {
       Ok(())
     }
 
-    // ACTION #5: transfer
+    // ACTION #4: transfer
 
     // buy_kitty
     #[transactional]
@@ -170,7 +170,9 @@ pub mod pallet {
       let kitty = Self::kitties(&kitty_id).ok_or(<Error<T>>::KittyNotExist)?;
       ensure!(kitty.owner != buyer, <Error<T>>::BuyerIsKittyOwner);
 
-      // ACTION #7: Check if the Kitty is for sale.
+      // ACTION #6: Check if the Kitty is for sale.
+
+      // ACTION #7: Check if buyer can receive Kitty.
 
       // ACTION #8: Update Balances using the Currency trait.
 
@@ -193,9 +195,9 @@ pub mod pallet {
       ensure!(Self::is_kitty_owner(&kid1, &sender)?, <Error<T>>::NotKittyOwner);
       ensure!(Self::is_kitty_owner(&kid2, &sender)?, <Error<T>>::NotKittyOwner);
 
-      // ACTION #10: Breed two Kitties using unique DNA
+      // ACTION #9: Breed two Kitties using unique DNA
 
-      // ACTION #11: Mint new Kitty using new DNA
+      // ACTION #10: Mint new Kitty using new DNA
 
       Ok(())
     }
@@ -260,13 +262,8 @@ pub mod pallet {
       Ok(kitty_id)
     }
 
-    pub fn is_kitty_owner(kitty_id: &T::Hash, acct: &T::AccountId) -> Result<bool, Error<T>> {
-      match Self::kitties(kitty_id) {
-        Some(kitty) => Ok(kitty.owner == *acct),
-        None => Err(<Error<T>>::KittyNotExist)
-      }
-    }
+    // ACTION #1b
 
-    // ACTION #6: Write transfer_kitty_to
+    // ACTION #5: Write transfer_kitty_to
   }
 }

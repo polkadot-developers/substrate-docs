@@ -120,17 +120,6 @@ pub mod pallet {
 		// TODO Part IV: breed_kitty
 	}
 
-	// Helper function for Kitty struct
-	impl<T: Config> Kitty<T, T> {
-		pub fn gender(dna: T::Hash) -> Gender {
-			if dna.as_ref()[0] % 2 == 0 {
-				Gender::Male
-			} else {
-				Gender::Female
-			}
-		}
-	}
-
 	//** Our helper functions.**//
 
 	impl<T: Config> Pallet<T> {
