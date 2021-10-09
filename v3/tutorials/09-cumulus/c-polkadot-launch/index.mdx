@@ -1,6 +1,6 @@
 ---
 title: Launch a Parachain Testnet
-slug: /tutorials/v3/cumulus/pt3
+slug: /tutorials/v3/cumulus/polkadot-launch
 version: 'polkadot-0.9.10'
 section: tutorials
 category: parachains
@@ -14,16 +14,16 @@ relevantSkills:
   - XCMP
 ---
 
-The final part of the workshop will step you through how to use the <ExternalLink
-url="https://github.com/paritytech/polkadot-launch"> polkadot-launch </ExternalLink> tool to
-_rapidly_ launch a full parachain testnet with multiple parachains and a common relaychain.
+The final part of the workshop will step you through how to use
+the <ExternalLink url="https://github.com/paritytech/polkadot-launch"> polkadot-launch </ExternalLink>
+tool to _rapidly_ launch a full parachain testnet with multiple parachains and a common relaychain.
 
-> Note that it is still recommended to understand [the manual process](../pt1), as this script is
+> It is still highly recommended to understand [the manual process](start-relay), as this script is
 > not a perfect fit for all use cases, and when things go wrong, you know how to troubleshoot.
 
 ## Learning outcomes
 
-- Use `polkadot-launch` to launch a parachain environment
+- Use `polkadot-launch` to configure and deploy a parachain testnet
 
 ## How `polkadot-launch` works
 
@@ -36,8 +36,8 @@ to configure as you specify.
 
 ### Option A: Global install
 
-For most cases, you do not need to edit `polkadot-launch`. Run the following command to install the
-script globally in your environment:
+For most cases, you do not need to modify `polkadot-launch` itself. Run the following command to
+install the script globally in your environment:
 
 ```bash
 yarn global add polkadot-launch
@@ -48,7 +48,7 @@ polkadot-launch --version
 
 ### Option B: Clone & run locally
 
-If you find you need to edit the script, or otherwise would like to build this yourself, do:
+If you find you need to edit the tool, or otherwise would like to build this yourself:
 
 ```bash
 git clone git@github.com:paritytech/polkadot-launch.git
@@ -60,18 +60,19 @@ node dist/cli.js --version
 # 1.7.0
 ```
 
-If you think your edits are valuable, please consider <ExternalLink url="https://github.com/paritytech/polkadot-launch">opening a PR</ExternalLink>.
+> If you think your edits are valuable, please
+> consider <ExternalLink url="https://github.com/paritytech/polkadot-launch">opening a PR</ExternalLink>!
 
 ## `polkadot-launch` overview
 
 1. Build your relay chain (with the runtimes you want enabled) and any parachains **with matching**
    **versions(!!)** cloned and compiled. Generate or acquire the proper chainspecs, genesis files,
-   and runtime Wasm blobs for your chains ([instructions here](../pt1)). You will need all these
+   and runtime Wasm blobs for your chains ([instructions here](start-relay)). You will need all these
    files and binaries to use your configuration moving forward.
 
 2. Write a config file for `polkadot-launch` to fit your needs.
 
-3. Launch and do initial registration tasks automatically with `polkadot-launch`
+3. Launch (your initial registration tasks automatically)
 
 The important new aspect here is the config file. Here is one to get started:
 
@@ -104,7 +105,7 @@ Each parachain has one node setup.
 
 ## Launch a network
 
-Now you can start your network with the next commands:
+Start with:
 
 ```bash
 mkdir polkadot-config
@@ -113,11 +114,11 @@ cd polkadot-config
 polkadot-launch relay-3-validators--2paras-1collator.json
 ```
 
-If everything goes well, you should see messages similar to the following:
+If everything goes well, you should see messages similar to:
 
 ![polkadot-launch-log.png](../../../../src/images/tutorials/09-cumulus/polkadot-launch-log.png)
 
-Now in your current working directory you will find the relay chain node logs are written to
+Now in your **current working directory** you will find the relay chain node logs are written to
 `alice.log`, `bob.log`, and `charlie.log` for your three validators. While the parachain logs are
 indicated with the websocket port numbers they are listening to, `9988.log`and `9999.log`. There
 are also customized chain spec files used to launch the networks.
@@ -143,9 +144,10 @@ showing two parachains being connected to the relay chain.
 
 <Message
   type={`green`}
-  title={`Congratulation`}
+  title={`All done!`}
   text={`You have automated the launch of a 3-node relay chain, and two parachains with a
-single node using \`polkadot-launch\` CLI utility.`}
+single node using \`polkadot-launch\` CLI utility and avoided all the initial manual overhead of starting
+node and registering parachains!`}
 />
 
 Next, we will go through in details the configuration parameters that `polkadot-launch` recognizes
@@ -298,9 +300,8 @@ values, and is meant to run with a single node only.
 ]
 ```
 
-Their meanings are similar to their counterparts in [`parachains` section](). Note that since
-a simple parachain only has one node, configs that was originally in `nodes` property are flattened
-into one level now.
+Note that since a simple parachain only has one node, configs that was originally in `nodes`
+property are flattened into one level now.
 
 ### `hrmpChannels` section
 
@@ -332,8 +333,8 @@ communicating both ways.
 
 Finally, we have `types`, and `finalization`.
 
-- `types`: [custom Substrate types](https://polkadot.js.org/docs/api/start/types.extend/) to be fed
-  into Polkadot-JS API.
+- `types`: <ExternalLink url="https://polkadot.js.org/docs/api/start/types.extend/"> custom Substrate types </ExternalLink>
+  to be fed into Polkadot-JS API.
 - `finalization`: either `true` or `false`, whether you want transactions submitted to the network
   to wait for finalization.
 
@@ -341,4 +342,9 @@ Finally, we have `types`, and `finalization`.
 
 Now we have the ability to configure complex networks to thoroughly test locally. But what about transitioning
 to a production system? How do you connect to a relay chain that exists already and get a parachain
-slot there? In the [next section](../pt4) we learn about how to connect to Rococo.
+slot there? In the [next section](rococo) we learn about how to register on and connect to Rococo.
+
+<!--
+FIXME TODO: once rococo registration is live again, uncomment the next page
+(src/components/DevNavMenu.tsx)  and remove the link above
+-->

@@ -1,6 +1,6 @@
 ---
 title: Register on Rococo
-slug: /tutorials/v3/cumulus/pt4
+slug: /tutorials/v3/cumulus/rococo
 version: 'polkadot-0.9.10'
 section: tutorials
 category: parachains
@@ -81,15 +81,15 @@ All parachains will need to register as a parathread first. You will need:
 
 - **5 ROCs** deposit to register a para ID.
 
-- [Reserve a unique para ID](../pt2#1-reserve-a-para-id). This will be assigned to the next
+- [Reserve a unique para ID](connect-parachain#1-reserve-a-para-id). This will be assigned to the next
   available ID. This integer will be greater than `2000`, as `0-999` are reserved for <ExternalLink url="https://wiki.polkadot.network/docs/learn-common-goods#system-level-chains">system parachains</ExternalLink> and
   `1000-1999` are reserved for <ExternalLink url="https://wiki.polkadot.network/docs/learn-common-goods#public-utility-chains">public utility parachains</ExternalLink>.
 
 - Your parachain genesis state. Refer to the
-  [genesis state export process](../pt2#3-generate-parachain-genesis-state).
+  [genesis state export process](connect-parachain#3-generate-parachain-genesis-state).
 
 - Your parachain Wasm runtime. Refer to the
-  [Wasm runtime export process](../pt2#4-obtain-wasm-runtime-validation-function).
+  [Wasm runtime export process](connect-parachain#4-obtain-wasm-runtime-validation-function).
 
 The procedure will be as followed:
 
