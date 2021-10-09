@@ -17,18 +17,18 @@ difficulty: 2
     {
       title: 'Use Cases',
       description:
-        `Customize transaction fees by enforcing a conditional based on an extrinsic's computed weight value.`,
+        `Applying totally different weight functions based on certain condition on computing
+        extrinsic's weight value.`,
     },
     {
       title: 'Overview',
       description:
         `Substrate provides a mechanism known as [transaction weighting](/v3/concepts/weight) to quantify the
-      resources consumed while executing a transaction. This approach to a custom weight function
-      establishes a weight value based on some condition. It handles calculating weight values 
-      according to the parameters of an extrinsic, whose first parameters are a boolean values.
-      If the boolean is true, then the weight is linear in the second parameter. Otherwise the weight is 
-      constant. Once defined, it can be used directly in your pallet, written as such: \`#[pallet::weight(Conditional(200)]\`,
-      whereby the weight will be linear to the \`u32\` value if the boolean is true. 
+      resources consumed while executing a transaction. Typically we will just use the weight
+      functions returned from our benchmarking for this. But Substrate also allow us to apply a
+      totally different weight function based on certain condition. We will walk through an example
+      in this guide. Once defined, it can be used directly in your pallet, written as such:
+      \`#[pallet::weight(Conditional(\<your condition\>)]\`.
       
 Here are the different traits we'll be implementing:
   - [\`WeighData\`](/rustdocs/latest/frame_support/weights/trait.WeighData.html#impl-WeighData<T>-for-(Weight%2C%20DispatchClass%2C%20Pays)): Weigh the data in a function. 
@@ -46,9 +46,17 @@ Import `DispatchClass`, `WeighData` and `PaysFee` by declaring `use frame_suppor
 at the top of your pallet.
 
 In your pallet's `lib.rs` file, declare a struct called `Conditional` and write an implementation 
-of `WeighData` for `Conditional`, where the first parameter is a boolean value:
+of `WeighData` for `Conditional`, where the first parameter is the condition that evaluate to
+a boolean value. In the following example, if the condition is true, the weight will be linear to
+the input. Otherwise the weight will be a constant.
+
+`pallets/example/src/lib.rs`
 
 ```rust
+use frame_support::dispatch::{DispatchClass, PaysFee, WeighData};
+
+// -- snip --
+
 pub struct Conditional(u32);
 
 impl WeighData<(&bool, &u32)> for Conditional {
@@ -72,7 +80,13 @@ Add `weights::{ClassifyDispatch, DispatchClass, Pays, Weight}` to your pallet's 
 Since this implementation of `WeighData` requires a [`DispatchClass`](/rustdocs/latest/frame_support/weights/enum.DispatchClass.html), use `default`
 to classify all calls as normal:
 
+`pallets/example/src/lib.rs`
+
 ```rust
+use frame_support::weights::{ClassifyDispatch, DispatchClass, Pays, Weight};
+
+// -- snip --
+
 // Implement ClassifyDispatch
 impl<T> ClassifyDispatch<T> for Conditional {
     fn classify_dispatch(&self, _: T) -> DispatchClass {
@@ -86,7 +100,13 @@ impl<T> ClassifyDispatch<T> for Conditional {
 Specify how `PaysFee` is used for the custom `WeighData` struct. Setting this to `true` will require the
 caller of this dispatch to pay a fee: 
 
+`pallets/example/src/lib.rs`
+
 ```rust
+use frame_support::weights::PaysFee
+
+// -- snip --
+
 // Implement PaysFee
 impl PaysFee for Conditional {
     fn pays_fee(&self) -> bool {
@@ -97,7 +117,9 @@ impl PaysFee for Conditional {
 
 ### 4. Use the weighting struct for an extrinsic
 
-Use the conditional weighting struct on your palle'ts extrinsics like this:
+Use the conditional weighting struct on your pallet's extrinsics like this:
+
+`pallets/example/src/lib.rs`
 
 ```rust
   #[pallet::weight(Conditional(200))]
@@ -116,4 +138,3 @@ Use the conditional weighting struct on your palle'ts extrinsics like this:
 
 - [Benchmarking](/v3/runtime/benchmarking)
 - [Calculate custom fees](/how-to-guides/v3/weights/calculate-fees)
-
