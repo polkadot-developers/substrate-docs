@@ -451,7 +451,7 @@ const DevNavMenu = {
         items: [
           {
             title: `${intl.formatMessage({ id: 'htg-parachains-upgrade' })}`,
-            link: '/how-to-guides/v3/parachains/preparing-an-upgrade',
+            link: '/how-to-guides/v3/parachains/runtime-upgrades',
           },
           {
             title: `${intl.formatMessage({ id: 'htg-parachains-setup' })}`,
@@ -685,22 +685,26 @@ DevNavMenuTuts.set('inkWorkshop', [
     ],
   },
 ])
-DevNavMenuTuts.set('cumulusWorkshop', [
+DevNavMenuTuts.set('cumulusTutorial', [
   {
-    name: `Substrate Cumulus Workshop`,
+    name: `Cumulus Tutorial`,
     items: [
       {
-        title: `Getting Started`,
-        link: '/tutorials/v3/cumulus-workshop/pt1',
+        title: `Start a Relay Chain`,
+        link: '/tutorials/v3/cumulus/start-relay',
       },
       {
-        title: `Connecting to a Relay Chain`,
-        link: '/tutorials/v3/cumulus-workshop/pt2',
+        title: `Connect to a Parachain`,
+        link: '/tutorials/v3/cumulus/connect-parachain',
       },
       {
-        title: `Launch a Development Environment`,
-        link: '/tutorials/v3/cumulus-workshop/pt3',
+        title: `Launch a Parachain Testnet`,
+        link: '/tutorials/v3/cumulus/polkadot-launch',
       },
+      //   {
+      //     title: `Register on Rococo`,
+      //     link: '/tutorials/v3/cumulus/rococo',
+      //   },
     ],
   },
 ])

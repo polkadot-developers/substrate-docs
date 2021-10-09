@@ -4,7 +4,6 @@ import Icon from '../components/Icon'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import Section from '../components/layout/Section'
-// import { useIntl } from 'react-intl'
 import { PrimaryFixedButton } from '../components/Buttons'
 import DocCard from '../components/layout/homepage/DocCard'
 import CommunityCard from '../components/layout/homepage/CommunityCard'
@@ -16,14 +15,12 @@ import { LocalizedLink } from 'gatsby-theme-i18n'
 import ExploreLinkSection from '../components/layout/homepage/ExploreLinkSection'
 
 export default function Index() {
-  // const intl = useIntl()
-
   return (
     <Layout>
       <SEO title="Developer Home" />
-      <Section>
-        <div className="flex flex-col md:flex-row md:items-center mt-10 doc-hero">
-          <div className="lg:m-0 mb-10 md:w-1/2 md:px-5 lg:px-10">
+      <Section styles="mt-12">
+        <div className="flex flex-col md:flex-row md:items-center doc-hero">
+          <div className="md:w-1/2 mb-10 lg:m-0">
             <div className="text-5xl lg:text-6xl font-extrabold mb-6">
               Substrate <br /> Developer Hub
             </div>
@@ -40,7 +37,6 @@ export default function Index() {
             </PrimaryFixedButton>
           </div>
           <div className="flex justify-center md:w-1/2">
-            {/* <LocalizedLink to="/v3"> */}
             <div className="lg:h-[430px] lg:w-[430px] lg:mt-8">
               <Lottie
                 options={{
@@ -53,7 +49,6 @@ export default function Index() {
                 isClickToPauseDisabled={true}
               />
             </div>
-            {/* </LocalizedLink> */}
           </div>
         </div>
       </Section>
@@ -87,7 +82,7 @@ export default function Index() {
               Substrate developer knowledge base
             </h4>
           </div>
-          <div className="sm:flex sm:flex-col sm:items-center lg:flex-row lg:justify-evenly">
+          <div className="grid grid-cols-1 gap-10 lg:gap-0 lg:flex flex-col lg:flex-row z-10">
             <DocCard
               title={`Documentation`}
               text={`Discover the principles and design decisions that Substrate is built on. Read about its key features and capabilties as well as the specific skills needed to be an effective Substrate blockchain developer.`}
@@ -124,7 +119,7 @@ export default function Index() {
             <h4 className="text-xl xl:text-3xl font-semibold">
               Set up a cloud sandbox
             </h4>
-            <p className="max-w-lg  leading-7">
+            <p className="max-w-lg leading-7 lg:pr-6">
               Building with Substrate requires different pieces of technology.
               We recommend picking a sandbox if you&apos;re just getting started
               and want to try things out. Or if you&apos;re hosting Substrate
@@ -198,28 +193,29 @@ export default function Index() {
       </Section>
       {/* Connect With Community Section */}
       <Section>
-        <div className="flex flex-col md:flex-row md:items-center lg:mb-4">
+        <div className="flex flex-col md:flex-row md:items-center mb-10">
           <div className="lg:m-0 md:w-1/2">
             <div className="text-5xl lg:text-6xl font-extrabold mb-8">
               Connect with <br /> the community
             </div>
-            <p className="max-w-lg  text-xl">
+            <p className="max-w-lg text-xl">
               Network, share and learn from others who speak your (tech)
               language! Discover the various open communication channels where
               you can engage, participate and keep up with the latest
               developments.
             </p>
           </div>
-          <div className="flex justify-center md:w-1/2">
+          <div className="lg:p-6 lg:pr-0 md:w-1/2">
             <StaticImage
               backgroundColor="transparent"
-              src="../images/photos/homepage/connect-with-the-community.png"
+              src="../images/photos/homepage/connect-with-the-community.jpg"
               alt="Connect With Substrate Community"
               layout="constrained"
+              className="rounded-lg overflow-hidden"
             />
           </div>
         </div>
-        <div className="sm:flex sm:flex-col lg:flex-row sm:items-center  xl:justify-between">
+        <div className="mt-12 mb-24 grid grid-cols-1 lg:grid-cols-3 gap-6">
           <CommunityCard />
         </div>
       </Section>

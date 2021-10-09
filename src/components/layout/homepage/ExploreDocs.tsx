@@ -86,10 +86,10 @@ export default function ExploreDocs() {
         <div key={index} className="md:w-96 xl:mr-6">
           <div className="mb-14">
             <div className="text-2xl font-extrabold mb-9">{section.name}</div>
-            <ul className="px-4 leading-7">
+            <ul className="px-4 leading-7 ml-0">
               {section.items.map((item, index) => (
                 <LocalizedLink key={index} to={item.link}>
-                  <li>
+                  <li className="ml-0 pl-0">
                     <div className="">
                       <b>{item.name}</b>
                     </div>

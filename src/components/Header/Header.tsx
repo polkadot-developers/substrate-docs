@@ -10,6 +10,8 @@ import ThemeToggle from '../ThemeToggle'
 import MainNav from '../MainNav'
 import useScrollListener from '../Hooks/use-scroll-listener'
 
+import Link from '../Link'
+
 export default function Header() {
   const scroll = useScrollListener()
   // const { locale, config } = useLocalization()
@@ -41,7 +43,7 @@ export default function Header() {
           className={`flex items-center justify-between transition-height ease-in-out ${menuHeight}`}
         >
           <div className="w-40 relative transform transition-all duration-300 ease-in-out hover:opacity-50">
-            <a href={siteMetadata.substrateIO}>
+            <Link to={siteMetadata.substrateIO}>
               <svg
                 className={`fill-current text-substrateDark dark:text-substrateWhite`}
                 data-name="Layer 1"
@@ -62,7 +64,7 @@ export default function Header() {
                   d="M419.75,46.09v12H375.19v-12Z"
                 />
               </svg>
-            </a>
+            </Link>
           </div>
           {/* ------------------ */}
           {/* Mobile Navigation */}
