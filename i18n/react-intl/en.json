@@ -4,7 +4,7 @@
   "second-page": "Second Page",
   "second-page-description": "Second Page Description",
   "first-page": "First Page",
-  "first-page-description": "First Page Descriptoin",
+  "first-page-description": "First Page Description",
 
   "nav-technology": "Technology",
   "nav-modular": "Modular",
@@ -146,7 +146,7 @@
   "htg-consensus-hybrid": "Create a PoS-PoW Hybrid Node",
 
   "docs-nav-htg-parachains": "Parachains",
-  "htg-parachains-upgrade": "Preparing for On-Chain Upgrades",
+  "htg-parachains-upgrade": "Runtime Upgrades",
   "htg-parachains-setup": "Set-up your runtime and client",
   "htg-parachains-register": "How to register your Parachain",
   "htg-parachains-reserve": "How to reserve a ParaID",
