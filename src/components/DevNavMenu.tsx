@@ -451,7 +451,7 @@ const DevNavMenu = {
         items: [
           {
             title: `${intl.formatMessage({ id: 'htg-parachains-upgrade' })}`,
-            link: '/how-to-guides/v3/parachains/preparing-an-upgrade',
+            link: '/how-to-guides/v3/parachains/runtime-upgrades',
           },
           {
             title: `${intl.formatMessage({ id: 'htg-parachains-setup' })}`,

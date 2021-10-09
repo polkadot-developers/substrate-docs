@@ -123,7 +123,7 @@ export default function tutorials({ data }: any) {
             difficulty={3}
             prerequisites={true}
             version={`polkadot-0.9.10`}
-            link={`/tutorials/v3/cumulus/pt1`}
+            link={`/tutorials/v3/cumulus/start-relay`}
           />
         </div>
       </div>
