@@ -1,31 +1,25 @@
-<h1 align="center">
-  <a href="https://www.subsrate.io">
-    <img alt="Substrate Logo" src="static/img/sub.gif" width="70%" />
+<p align="center">
+  <a href="https://www.parity.io">
+    <img alt="Parity Logo" src="https://www.parity.io/images/parity_logo_light.png" width="60" />
   </a>
-</h1>
+</p>
 <h1 align="center">
-  Substrate Developer Hub
+  Substrate Docs
 </h1>
-<h2 align="center">
+<h3 align="center">
+  Substrate Documentation, How-to Guides, Tutorials, and more!
+</h3>
 
-</h2>
+[![Netlify Status](https://api.netlify.com/api/v1/badges/65f522fe-eefa-434b-bdb3-6345d363c177/deploy-status)](https://app.netlify.com/sites/ecstatic-babbage-c109a3/deploys) ![linkcheck workflow](https://github.com/substrate-developer-hub/substrate-docs/actions/workflows/check-links.yml/badge.svg)
+
+This repository serves as the **developer hub** for the **[Substrate](https://substrate.io)** blockchain
+framework. The docs are written in [MDX](https://mdxjs.com/) format an extension of
+[markdown](https://www.markdownguide.org/), processed by [Gatsby](https://www.gatsbyjs.com/), and
+hosted on the Substrate Developer Hub site:
+
 <h3 align="center">
   <a target=_blank>https://docs.substrate.io/</a>
 </h3>
-
-[![Netlify
-Status](https://api.netlify.com/api/v1/badges/65f522fe-eefa-434b-bdb3-6345d363c177/deploy-status)](https://app.netlify.com/sites/ecstatic-babbage-c109a3/deploys)
-![linkcheck
-workflow](https://github.com/substrate-developer-hub/substrate-docs/actions/workflows/check-links.yml/badge.svg)
-
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](v3/docs/00-style-and-contributor-guidelines/a-contributor-guidelines/index.mdx)
-[![Matrix](https://img.shields.io/matrix/frontier:matrix.org)](https://matrix.to/#/#substrate-technical:matrix.org)
-
-This repository serves as the **developer hub** for the **[Substrate](https://substrate.io)** blockchain
-framework. It includes Substrate documentation, how-to guides, tutorials, and more! The content is written in [MDX](https://mdxjs.com/) format (an extension of
-[markdown](https://www.markdownguide.org/)), processed by [Gatsby](https://www.gatsbyjs.com/), and
-hosted on the Substrate Developer Hub: https://docs.substrate.io/ .
-
 
 ## Contributing
 
@@ -41,13 +35,13 @@ would love to get to know you and your work!
 ### Directory Structure
 
 The content of this website is versioned in separate directories `v<version>` is the convention
-used. The devhub is then hierarchically separated into the three main types of
-content: docs, how-to-guides, and tutorials. 
+used.The devhub is then hierarchically separated into the three main types of documentation: docs,
+how-to-guides, and tutorials. 
 
 Sub folders in these are of the form:
 ```
 - <version>
-  - <content type>
+  - <doc type>
     - <XX-section>
       - <Y-page>
         - `index.mdx`
@@ -77,6 +71,16 @@ Some gotchas:
 ### Staging Deployment
 
 - `develop` branch is available at: https://substrate-docs-staging.netlify.app
+
+<!-- internal note:
+***Important***
+
+**Always create your own branch to work on the site, and submit pull requests to `develop`.** 
+
+> We target `develop` for pushing new content before merging with `main` and publishing the site.
+> The `main` branch is production ONLY and must be deployed by a WebDev or Communications teams
+> member through Forestry.
+-->
 
 ## 🚀 Quick start
 
