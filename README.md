@@ -194,5 +194,4 @@ running gatsby site in the docker container to check all links.
 
 ## License
 
-TBD
-<!-- Substrate **documentation** is licence under the [Apache 2 license](./LICENSE). -->
+Substrate **documentation** is licence under the [Apache 2 license](./LICENSE).
