@@ -14,7 +14,7 @@ Note that [events](/v3/runtime/events-and-errors) are not extrinsics. The chain 
 information that are intrinsic to the chain itself. For example, staking rewards are events, not
 extrinsics, because the reward is triggered by circumstances intrinsic to the chain's logic.
 
-## Block Structure
+## Block structure
 
 A block in Substrate is composed of a header and an array of extrinsics. The header contains a  
 block height, parent hash, extrinsics root, state root, and digest. This section will only focus on
@@ -46,7 +46,7 @@ timestamp, which may mean it is within some acceptable range of their own system
 
 - [Inherents Reference](/rustdocs/latest/sp_inherents/index.html)
 
-## Signed Transactions
+## Signed transactions
 
 Signed transactions contain a signature of the account that issued the transaction and stands to pay
 a fee to have the transaction included on chain. Because the value of including signed transactions
@@ -55,7 +55,7 @@ with a low risk of spam.
 
 Signed transactions fit the concept of a transaction in Ethereum or Bitcoin.
 
-## Unsigned Transactions
+## Unsigned transactions
 
 Some cases call for unsigned transactions. Use unsigned transactions with care, as their validation
 logic can be difficult.
@@ -64,14 +64,14 @@ Since the transaction is not signed, there is nobody to pay a fee. Because of th
 queue lacks economic logic to prevent spam. Unsigned transactions also lack a nonce, making replay
 protection difficult. A few transactions warrant using the unsigned variant, but they will require
 some form of spam prevention based on a custom implementation of
-[signed extension](#signed-extension), which can exist on unsigned transactions.
+[signed extension](/v3/concepts/tx-pool#signed-extension), which can exist on unsigned transactions.
 
 An example of unsigned transactions in Substrate is the [I'm Online](/v3/runtime/frame#im-online)
 heartbeat transaction sent by authorities. The transaction includes a signature from a Session key,
 which does not control funds and therefore cannot pay a fee. The transaction pool controls spam by
 checking if a heartbeat has already been submitted in the session.
 
-## Further Reading
+## Further reading
 
 - [Reference Documentation](/rustdocs/latest/sp_runtime/traits/trait.Extrinsic.html)
 - [Runtime Execution](/v3/concepts/execution)
