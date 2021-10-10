@@ -10,7 +10,7 @@ keywords:
 An extrinsic is a piece of information that comes from outside the chain and is included in a block.
 Extrinsics fall into three categories: inherents, signed transactions, and unsigned transactions.
 
-Note that [events](../../runtime/events-and-errors) are not extrinsics. The chain emits events for pieces of
+Note that [events](/v3/runtime/events-and-errors) are not extrinsics. The chain emits events for pieces of
 information that are intrinsic to the chain itself. For example, staking rewards are events, not
 extrinsics, because the reward is triggered by circumstances intrinsic to the chain's logic.
 
@@ -71,28 +71,9 @@ heartbeat transaction sent by authorities. The transaction includes a signature 
 which does not control funds and therefore cannot pay a fee. The transaction pool controls spam by
 checking if a heartbeat has already been submitted in the session.
 
-## Signed Extension
-
-`SignedExtension` is a trait by which a transaction can be extended with additional data or logic.
-Signed extensions are used anywhere you want some information about a transaction prior to
-execution. This is heavily used in the transaction queue.
-
-The runtime can use some of this data, for example the `Call` that will be dispatched, to calculate
-transaction fees. Signed extensions also include an `AdditionalSigned` type that can hold any
-encodable data, and therefore allow you to perform any custom logic prior to including or
-dispatching a transaction. The transaction queue regularly calls functions from `SignedExtension` to
-validate transactions prior to block construction to avoid including transactions that will fail in
-blocks.
-
-Despite the name, `SignedExtension` can also be used to verify unsigned transactions. The
-`*_unsigned` set of methods can be implemented to encapsulate validation, spam, and replay
-protection logic that is needed by the transaction pool.
-
-- [Signed Extension Reference](/rustdocs/latest/sp_runtime/traits/trait.SignedExtension.html)
-
 ## Further Reading
 
 - [Reference Documentation](/rustdocs/latest/sp_runtime/traits/trait.Extrinsic.html)
 - [Runtime Execution](/v3/concepts/execution)
 - [Transaction Fees](/v3/runtime/weights-and-fees)
-- [Transaction Pool](../tx-pool)
+- [Transaction Pool](/v3/concepts/tx-pool)
