@@ -533,6 +533,7 @@ enum defining our Kitty's gender. To create it, you'll build out the following p
 
   ```rust
   #[derive(Encode, Decode, Debug, Clone, PartialEq)]
+  #[cfg_attr(feature = "std", derive(Serialize, Deserialize))]
   pub enum Gender {
       Male,
       Female,
@@ -541,7 +542,14 @@ enum defining our Kitty's gender. To create it, you'll build out the following p
 
   Notice the use of the [derive macro][derive-macro-rust] which must precede the enum declaration.
   This wraps our enum in the data structures it will need to interface with other types in our
-  runtime.
+  runtime. In order to use `Serialize` and `Deserialize`, you will need to add the `serde` crate in
+  `pallets/kitties/Cargo.toml`:
+
+  ```toml
+  [dependencies.serde]
+  default-features = false
+  version = '1.0.119'
+  ```
 
   Great, we now know how to create a custom struct and specify its default value. But what about
   providing a way for a Kitty struct to be _assigned_ a gender value? For that we need to learn one
