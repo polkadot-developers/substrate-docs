@@ -10,7 +10,7 @@
 
 </h2>
 <h3 align="center">
-  <a target=_blank>https://docs.substrate.io/</a>
+  https://docs.substrate.io/
 </h3>
 
 [![Netlify
