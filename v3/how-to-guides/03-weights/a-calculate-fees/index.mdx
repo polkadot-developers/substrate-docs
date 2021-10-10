@@ -22,18 +22,17 @@ difficulty: 1
     {
       title: 'Overview',
       description:
-        `Fees are broken down into three components:
+        `This guides steps through the process of customizing \`WeightToFee\` for your runtime's implementation of \`pallet_transaction_payment\`.
+		Fees are broken down into three components:
 - **Byte fee** - A fee proportional to the transaction's length in bytes. The proportionality 
-constant is a parameter in the transaction_payment pallet.
-- **Weight fee** - A fee calculated from the transaction's weight. Weights quantify the time 
-spent executing the transaction. Learn more in the recipe on weights. The conversion doesn't 
+constant is a parameter in the Transaction Payment Pallet.
+- **Weight fee** - A fee calculated from the [transaction's weight](/v3/runtime/weights-and-fees). The conversion doesn't 
 need to be linear, although it often is. The same conversion function is applied across all 
-transactions from all pallets in the runtime.
+transactions for all pallets in the runtime.
 - **Fee Multiplier** - A multiplier for the computed fee, that can change as the chain progresses.
-FRAME provides the [transaction payment pallet](https://github.com/paritytech/substrate/tree/master/frame/transaction-payment) 
+FRAME provides the [Transaction Payment Pallet](/rustdocs/latest/pallet_transaction_payment/index.html)
 for calculating and collecting fees for executing transactions. It can be useful to modify 
-the way fees are calculated to charge fees with more accuracy to your users. This guides steps 
-through the process of customizing \`WeightToFee\` for your runtime's implementation of \`pallet_transaction_payment\`.`,
+the way fees are calculated to more accurately charge fees.`,
     },
   ]}
 />
@@ -42,8 +41,11 @@ through the process of customizing \`WeightToFee\` for your runtime's implementa
 
 ### 1. Write the `LinearWeightToFee` struct
 
-In `runtime/src/libs.rs`, create the struct called `LinearWeightToFee` that implements `WeightToFeePolynomial`. It must return
-a smallvec of `WeightToFeeCoefficient` integers:
+In `runtime/src/lib.rs`, create the struct called `LinearWeightToFee` that implements
+[`WeightToFeePolynomial`](/rustdocs/latest/frame_support/weights/trait.WeightToFeePolynomial.html).
+It must returns a smallvec of `WeightToFeeCoefficient` integers.
+
+`runtime/src/lib.rs`
 
 ```rust
 pub struct LinearWeightToFee<C>(sp_std::marker::PhantomData<C>);
@@ -72,6 +74,8 @@ where
 Convert the dispatch weight
 `type WeightToFee` to the chargeable fee `LinearWeightToFee` (replacing `IdentityFee<Balance>;`):
 
+`runtime/src/lib.rs`
+
 ```rust
 parameter_types! {
     // Used with LinearWeightToFee conversion.
@@ -97,9 +101,14 @@ impl pallet_transaction_payment::Config for Runtime {
 
 ## Related material
 
+#### How-to guides 
+
+- [Add benchmarking to your runtime](/how-to-guides/v3/weights/add-benchmarking)
+- [Use benchmarked weights in your pallet](/how-to-guides/v3/weights/use-benchmark-weights)
+
 #### Docs
 
-- [Weights](/v3/concepts/weight)
+- [Weights in Substrate](/v3/concepts/weight)
 - [Transaction Weights and Fees](/v3/runtime/weights-and-fees)
 
 #### Rust docs
