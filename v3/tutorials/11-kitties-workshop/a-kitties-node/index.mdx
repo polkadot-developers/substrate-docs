@@ -557,30 +557,30 @@ enum defining our Kitty's gender. To create it, you'll build out the following p
 
 1. #### Implement a helper function for our Kitty struct
 
-Configuring a struct is useful in order to pre-define a value in our struct. For example, when
-setting a value in relation to what another function returns. In our case we have a similar
-situation where we need to configure our Kitty struct in such a way that sets `Gender` according to
-a Kitty's DNA.
+  Configuring a struct is useful in order to pre-define a value in our struct. For example, when
+  setting a value in relation to what another function returns. In our case we have a similar
+  situation where we need to configure our Kitty struct in such a way that sets `Gender` according to
+  a Kitty's DNA.
 
-We'll only be using this function when we get to [creating Kitties](#write-the-create_kitty-dispatchable).
-Regardless, let us learn how to write it now and get it out of the way. We'll create a public
-function called `gen_gender` that returns the `Gender` type and uses a random function to choose
-between `Gender` enum values.
+  We'll only be using this function when we get to [creating Kitties](#write-the-create_kitty-dispatchable).
+  Regardless, let us learn how to write it now and get it out of the way. We'll create a public
+  function called `gen_gender` that returns the `Gender` type and uses a random function to choose
+  between `Gender` enum values.
 
-Replace ACTION #4 with the following code snippet:
+  Replace ACTION #4 with the following code snippet:
 
-```rust
-fn gen_gender() -> Gender {
-    let random = T::KittyRandomness::random(&b"gender"[..]).0;
-    match random.as_ref()[0] % 2 {
-        0 => Gender::Male,
-        _ => Gender::Female,
-    }
-}
-```
+  ```rust
+  fn gen_gender() -> Gender {
+      let random = T::KittyRandomness::random(&b"gender"[..]).0;
+      match random.as_ref()[0] % 2 {
+          0 => Gender::Male,
+          _ => Gender::Female,
+      }
+  }
+  ```
 
-Now whenever `gen_gender()` is called inside our pallet, it will return a pseudo random enum value
-for `Gender`.
+  Now whenever `gen_gender()` is called inside our pallet, it will return a pseudo random enum value
+  for `Gender`.
 
 ### Implement on-chain randomness
 
