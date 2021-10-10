@@ -399,7 +399,7 @@ impl<T: Get<Perquintill>> Convert<Fixed128, Fixed128> for TargetedFeeAdjustment<
 
 ## Next steps
 
-The entire logic of fees is encapsulated in `pallet-transaction-payment` via a [`SignedExtension`](/v3/concepts/tx-pool#signed-extension).
+The entire logic of fees is encapsulated in `pallet-transaction-payment` via a [`SignedExtension`](/v3/concepts/extrinsics#signed-extension).
 While this pallet provides a high degree of flexibility, a user can opt to build their custom
 payment module drawing inspiration from Transaction Payment.
 
