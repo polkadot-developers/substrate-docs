@@ -30,12 +30,6 @@ keywords: [collator, parachain, launch, prereq, requirements, checklist, weight,
         coordinate with the relay chain to finalize state transitions. When launching a parachain to
         production, it is critically important to make sure a chain's runtime is properly configured
         and tested.
-		\n
-		**Before you continue**, please read about:
-		- [Benchmarking](/v3/runtime/benchmarking) 
-		- [Memory profiling](/v3/tools/memory-profiling) and complete the
-        [cumulus tutorial](/tutorials/v3/cumulus/start-relay) (you want a good understanding of the
-        \`polkadot-launch\` tool to enable dummy chain testing)
       `,
     },
   ]}
@@ -45,84 +39,57 @@ keywords: [collator, parachain, launch, prereq, requirements, checklist, weight,
 
 ### 1. Set a unique `protocolId`
 
-_All_ chains should use a **unique** `protocolId`. This ensures nodes do not incorrectly connect to
-nodes from other libp2p networks (like other chains' nodes) isolate themselves and guard against
-from peering in a way that will cause _many_ issues.
+<Message
+  type={`red`}
+  title={`Network collisions can cause major headaches`}
+  text={`
+_All_ chains should use a **unique** \`protocolId\` that _no other network_ (testnets, relay chain,
+parachains, etc) uses. This ensures your nodes do not incorrectly peer with
+nodes from other libp2p networks. You want to isolate them to a distinct peer group with this ID.
+Protocol ID collisions will cause _many_ issues for your nodes!
+`}
+/>
 
-In order to set a unique ProtocolID, change make sure you use some nonce or salt value. This is set
+In order to set a unique protocol ID, change make sure you use some nonce or salt value. This is set
 (for
 the <ExternalLink url="https://github.com/substrate-developer-hub/substrate-parachain-template/"> parachain node template </ExternalLink>
 as a CLI item in `/client/network/src/command.rs`, and passed to extend the `/client/network/src/chain_spec.rs`
 
-```rust
-#[derive(Clone, PartialEq, Eq, Hash)]
-pub struct ProtocolId(smallvec::SmallVec<[u8; 6]>);
 
-impl<'a> From<&'a str> for ProtocolId {
-	fn from(bytes: &'a str) -> ProtocolId {
-		ProtocolId(bytes.as_bytes().into())
-	}
+All [chain specification](v3/runtime/chain-specs) files include this item as a field. For example,
+the primary <ExternalLink url="https://github.com/paritytech/polkadot/tree/master/node/service/res"> relay chain runtime chain specs </ExternalLink>
+have unique protocol IDs. For Polkadot:
+
+```json
+// raw chain spec file in polkadot repo `/node/service/res/polkadot.json`
+{
+//--snip--
+  "protocolId": "dot"
+//--snip--
 }
-```	
+```
 
-This step is important &mdash; you wouldn't want to connect to the wrong network!
+Keep an eye (subscribe)
+to <ExternalLink url="https://github.com/paritytech/substrate/issues/7746"> this issue </ExternalLink> 
+that will address a better method to safely configure this constant in the future.
 
-<Message
-  type={`green`}
-  title={`Tip`}
-  text={`Refer to [this guide](./pallet-design/randomness) for some ideas on creating a unique value to use here.`}
-/>
+### 2. Memory profiling
 
 <Message
   type={`gray`}
-  title={`A note on Memory Profiling`}
-  text={`[Profiling your collator](/v3/tools/memory-profiling) should be done to analyze memory leaks,
-	identify where memory consumption is happening, define temporary
-	allocations, and investigate excessive memory fragmentation within
-	applications.
-  `}
-/>
-
-
-
-<Message
-  type={`gray`}
-  title={`A note on Memory Profiling`}
+  title={`Leaks cause unstable networks`}
   text={`
-         Keep an eye (subscribe)
-        to <ExternalLink url="https://github.com/paritytech/substrate/issues/7746"> this issue </ExternalLink> 
-        that will address a better method to safely configure this constant in the future.
-  `}
+[Profiling your collator](/v3/tools/memory-profiling) should be done to analyze memory leaks, 
+identify where memory consumption is happening, define temporary
+allocations, and investigate excessive memory fragmentation within
+applications.
+`}
 />
 
+### 3. Minimize your runtime size
 
-### 2. Check runtime weights
-
-Use benchmarking to verify that your runtime weights are correct.
-
-<Message
-  type={`green`}
-  title={`Tip`}
-  text={`Refer to this [article](/v3/runtime/benchmarking) on benchmarking for additional information.`}
-/>
-
-#### Customize weights
-
-Make sure that each pallet in your runtime employs the correct weighting system. Default Substrate
-weight **are not** to be used in production, as a general rule.
-
-#### Set block weight limit
-
-It is recommended to have a block weight limit (block production time) of 0.5 seconds in the
-beginning due to uncertainties in block execution time. As the execution time of the network
-stabilizes the weight limit can be increased to 2 seconds.
-
-### 3. Runtime deployment
-
-#### Minimize the size of your runtime
-
-Generally, when launching a parachain, it is important to use the **compressed version of the
-runtime** to lower the amount of data being transferred.
+When launching a parachain, it is critical to use the **compressed version of the runtime** to lower
+the amount of resource consumption as much as possible for the relay chain.
 
 - It is recommended to launch a parachain with limited functionality and gradually increase it with
   runtime upgrades. The reason behind that is that during a runtime upgrade both the previous runtime
@@ -135,8 +102,8 @@ runtime** to lower the amount of data being transferred.
   runtime will be much higher.
 
 <Message
-  type={`gray`}
-  title={`Memory profiling to comply with relay chain`}
+  type={`yellow`}
+  title={`Critical parachain constraints`}
   text={`You can check the maximum sizes [in the Polkadot
          repo](https://github.com/paritytech/polkadot/blob/master/primitives/src/v1/mod.rs#L247-L253)
          for all relay chains (these are common constants). Make note of:
@@ -150,15 +117,25 @@ runtime** to lower the amount of data being transferred.
   `}
 />
 
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text={`Here you can see an example of how to [limit](https://github.com/paritytech/cumulus/blob/59cdbb6a56b1c49009413d66ba2232494563b57c/polkadot-parachains/statemine/src/lib.rs#L148) 
-  nd [enable](https://github.com/paritytech/cumulus/pull/476/files#diff-09b95657e9aa1b646722afa7944a00ddc2541e8753254a86180b338d3376f93eL151) 
-  functionality with filters as implemented in [Statemint](https://github.com/paritytech/cumulus/tree/master/polkadot-parachains/statemint).`}
-/>
+### 4. Use proper weights
 
-#### For large runtimes
+Use [runtime benchmarking](/v3/runtime/benchmarking)) to ensure that your runtime weights are
+actually indicative of the resources used by your runtime.
+
+#### Custom weights
+
+If you need to diverge from benchmarks, make sure that each pallet in your runtime employs the
+correct weighting system. Default and "guessed at" weights **are not** to be used in production, as
+a general rule. In the parachain context, this is critical, as block finalizaiton will _fail_ if you
+do not fit within the 
+
+#### Set block weight limit
+
+It is recommended to have a block weight limit (block production time) of 0.5 seconds in the
+beginning due to uncertainties in block execution time. As the execution time of the network
+stabilizes the weight limit can be increased to 2 seconds.
+
+#### Alternative methods for too-large large runtimes
 
 It is less favorable to perform storage upgrades for large runtimes. In these cases, you can:
 
@@ -170,16 +147,27 @@ It is less favorable to perform storage upgrades for large runtimes. In these ca
 
 4. Register your parachain with the updated genesis and the WASM blob generated in (3)
 
-5. After your parachain is live you can upgrade your runtime on-chain to include the missing pallets (ensure that pallet indices and names match those used to generate the genesis state in step (1) without having to do storage migrations. For more information on on-chain runtime upgrades refer to the next section.
+5. After your parachain is live you can upgrade your runtime on-chain to include the missing pallets
+   (ensure that pallet indices and names match those used to generate the genesis state in step (1)
+   without having to do storage migrations. For more information on on-chain runtime upgrades refer to
+   the next section.
+
+### 5. Setup call filters
+
+Especially when launching a parachain, you might need to highly constrict what is enabled for
+_specific classes_ of users.This can be accomplished with **call filters**.
+
+<Message
+  type={`yellow`}
+  title={`Information`}
+  text={`
+Here you can see an example of how to
+[limit](https://github.com/paritytech/cumulus/blob/59cdbb6a56b1c49009413d66ba2232494563b57c/polkadot-parachains/statemine/src/lib.rs#L148) 
+and [enable](https://github.com/paritytech/cumulus/pull/476/files#diff-09b95657e9aa1b646722afa7944a00ddc2541e8753254a86180b338d3376f93eL151) 
+functionality with filters as implemented in Statemint (for it's launch).
+`}
+/>
 
 ## Examples
 
 - [Statemine runtime deployment](https://github.com/paritytech/cumulus/pull/476)
-
-## Resources
-
-#### Docs
-
-- [Benchmarking][benchmarking-kb]
-
-[benchmarking-kb]: /v3/runtime/benchmarking
