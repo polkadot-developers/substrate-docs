@@ -131,7 +131,10 @@
 
   "docs-nav-htg-weights": "Weights",
   "htg-weights-calculate-fees": "Calculating Fees",
-
+  "htg-weights-add-benchmarking": "Add Benchmarking to Your pallet",
+  "htg-weights-use-benchmarking": "Use Custom Weights from Benchmarking",
+  "htg-weights-conditional": "Create a Conditional Weighting Struct",
+  
   "docs-nav-htg-testing": "Testing",
   "htg-testing-basics": "Setting up Tests for Your Pallet",
   "htg-testing-transfer-function": "Testing a Transfer Function",
@@ -147,7 +150,7 @@
 
   "docs-nav-htg-parachains": "Parachains",
   "htg-parachains-upgrade": "Runtime Upgrades",
-  "htg-parachains-setup": "Set-up your runtime and client",
+  "htg-parachains-pre-launch": "Parachain Pre-Launch Requirements",
   "htg-parachains-register": "How to register your Parachain",
   "htg-parachains-reserve": "How to reserve a ParaID",
   "htg-parachains-collators": "Start a Collator Node",

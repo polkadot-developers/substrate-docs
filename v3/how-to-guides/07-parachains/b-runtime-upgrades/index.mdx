@@ -5,7 +5,7 @@ version: polkadot-0.9.10
 section: how to guides
 category: parachains
 difficulty: 3
-keywords: [collators, parachains, runtime upgrade, cumulus, storage migration]
+keywords: [collators, parachains, upgrade, cumulus, storage, migration]
 ---
 
 <Objectives
@@ -28,15 +28,18 @@ keywords: [collators, parachains, runtime upgrade, cumulus, storage migration]
         flow required as they you _must_ coordinate with the relay chain to facilitate this. Because
         of this, and the very confined nature of state transition coordination both
         **quickly and succinctly** enough for the block inclusion in the relay chain.
-		\n
-		**Before you continue**, please read the generic 
-		[runtime upgrade docs](/v3/runtime/upgrades) and complete the
-        [cumulus tutorial](/tutorials/v3/cumulus/start-relay) (you want a good understanding of the
-        \`polkadot-launch\` tool to enable dummy chain testing)
       `,
     },
   ]}
 />
+
+## Before you continue
+
+Please do the folowing:
+
+- Read the general [runtime upgrade docs](/v3/runtime/upgrades).
+- Complete the [cumulus tutorial](/tutorials/v3/cumulus/start-relay), and learn the
+  `polkadot-launch` tool for testing.
 
 ## Steps
 
