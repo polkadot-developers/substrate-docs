@@ -24,9 +24,26 @@ particular workflows and best practices in this repository.
 
 **Always create your own branch to work on the site, and submit pull requests to `develop`.** 
 
-> We target `develop` for pushing new content before merging with `main` and publishing the site.
-> The `main` branch is production ONLY and must be deployed by a WebDev or Communications teams
-> member through Forestry.
+All contributions should target `develop` for pushing new content before merging with `main` and
+publishing the site. The `main` branch is production ONLY and must be deployed by a maintainer
+with the access to do so through Forestry.
+
+The maintainers ask everyone to be responsible about **rebasing**
+([not merging](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)) on top of the present
+`develop` branch just before merging and carefully reviewing any conflicts here - especially
+whenever you are changing globally used config/gatsby files. Any changes in the same pages we make
+in different PRs without this can conflict otherwise!
+
+Before maintainers merge a PR, they will:
+- Get required approvals from other maintainers
+- Clone repo locally
+- Checkout and pull local `develop` up to the head of `origin/develop`
+- Checkout the PR branch from `origin/<pr branch>`
+- `git rebase develop`
+- Review and fix conflicts correctly, especially with respect to links/config files
+- `git push --force` (for the **PR branch**, _not `develop`! )
+- If some major change was needed in this, get approvals/clarifications on these. 
+- `git merge --squash` the PR (on the github PR's page)
 
 ## Contributor guidelines
 
