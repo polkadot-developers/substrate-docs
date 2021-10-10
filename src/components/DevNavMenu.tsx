@@ -712,7 +712,7 @@ DevNavMenuTuts.set('cumulusTutorial', [
         link: '/tutorials/v3/cumulus/start-relay',
       },
       {
-        title: `Connect to a Parachain`,
+        title: `Connect a Parachain`,
         link: '/tutorials/v3/cumulus/connect-parachain',
       },
       {
