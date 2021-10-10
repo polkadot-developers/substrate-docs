@@ -26,7 +26,6 @@ framework. It includes Substrate documentation, how-to guides, tutorials, and mo
 [markdown](https://www.markdownguide.org/)), processed by [Gatsby](https://www.gatsbyjs.com/), and
 hosted on the Substrate Developer Hub: https://docs.substrate.io/ .
 
-
 ## Contributing
 
 Thank you for your interest in contributing to documentation for the Substrate development
@@ -34,7 +33,7 @@ framework. As a member of the community, you are invited and encouraged to contr
 issues, offering suggestions for improvements to existing content, adding review comments to
 existing pull requests, proposing new content, or creating new pull requests to fix issues or
 provide new content. Please review our [contributor guidelines](/v3/contribute/style-guide) prior to
-any contribution. If you have any further questions, please do not hesitate to reach out on our 
+any contribution. If you have any further questions, please do not hesitate to reach out on our
 [substrate technical community channel](https://matrix.to/#/#substrate-technical:matrix.org)! We
 would love to get to know you and your work!
 
@@ -42,9 +41,10 @@ would love to get to know you and your work!
 
 The content of this website is versioned in separate directories `v<version>` is the convention
 used. The devhub is then hierarchically separated into the three main types of
-content: docs, how-to-guides, and tutorials. 
+content: docs, how-to-guides, and tutorials.
 
 Sub folders in these are of the form:
+
 ```
 - <version>
   - <content type>
@@ -52,19 +52,21 @@ Sub folders in these are of the form:
       - <Y-page>
         - `index.mdx`
 ```
+
 By convention we use `XX` numbering starting at `00` for sections, and `Y` lettering starting at `a`
-for pages. 
+for pages.
 
 File directory example: `v3/docs/00-style-and-contributor-guidelines/a-contributor-guidelines/index.mdx`
 
 Each `index.mdx` page has the content to be rendered to this page, and all pages include a header
-section with a `slug` item that is used for navigation on the generated site, 
+section with a `slug` item that is used for navigation on the generated site,
 
 URL example: https://docs.substrate.io/v3/contribute/style-guide
 
 Configuration and styling files for gatsby live primarily in the `src` folder.
 
 Some gotchas:
+
 - The `i18n` folder is used for translation **but also for the rendering of the navigation**
   **elements sections**. Your `index.mdx` file's `title` is not the source for this.
 - If you are adding or renaming a page, you **must** add it correctly in `src/components/DevNavMenu.tsx` and
@@ -96,8 +98,8 @@ Some gotchas:
     yarn # alias for `yarn install`
     ```
 
-3. **Configure environment variables**
-    
+3.  **Configure environment variables**
+
     Copy `example.env.development` and rename to `.env.development`
 
     Config URL variables based on your preferable local setup. URL will be used for links generation between documentation and platform stack
@@ -121,7 +123,7 @@ Some gotchas:
 5.  **Open the code and start customizing!**
 
     Your site is now running at [http://localhost:8001](http://localhost:8001)
-    And your GraphiQL data layer is running at [http://localhost:8000\_\_graphql](http://localhost:8000\_\_graphql)
+    And your GraphiQL data layer is running at [http://localhost:8000\_\_graphql](http://localhost:8000__graphql)
 
     Edit to see your site update in real-time on save.
 
