@@ -7,8 +7,8 @@
   "license": "MIT",
   "scripts": {
     "clean": "gatsby clean",
-	"dev": "gatsby develop -p 8001",
-	"start": "gatsby develop -p 8001",
+    "dev": "gatsby develop -p 8001",
+    "start": "gatsby develop -p 8001",
     "develop": "gatsby develop -p 8001",
     "build": "gatsby build",
     "serve": "gatsby serve",
