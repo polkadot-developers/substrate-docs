@@ -1,17 +1,13 @@
 <h1 align="center">
-  <a href="https://www.subsrate.io">
+  <a href="https://www.substrate.io">
     <img alt="Substrate Logo" src="static/img/sub.gif" width="70%" />
   </a>
 </h1>
-<h1 align="center">
-  Substrate Developer Hub
-</h1>
-<h2 align="center">
+<h1 align="center"> Substrate Developer Hub </h1>
+<h3 align="center"> https://docs.substrate.io/ </h3>
+<br/>
 
-</h2>
-<h3 align="center">
-  https://docs.substrate.io/
-</h3>
+<!-- Badges -->
 
 [![Netlify
 Status](https://api.netlify.com/api/v1/badges/65f522fe-eefa-434b-bdb3-6345d363c177/deploy-status)](https://app.netlify.com/sites/ecstatic-babbage-c109a3/deploys)
@@ -20,6 +16,8 @@ workflow](https://github.com/substrate-developer-hub/substrate-docs/actions/work
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](v3/docs/00-style-and-contributor-guidelines/a-contributor-guidelines/index.mdx)
 [![Matrix](https://img.shields.io/matrix/frontier:matrix.org)](https://matrix.to/#/#substrate-technical:matrix.org)
+
+<!-- Description -->
 
 This repository serves as the **developer hub** for the **[Substrate](https://substrate.io)** blockchain
 framework. It includes Substrate documentation, how-to guides, tutorials, and more! The content is written in [MDX](https://mdxjs.com/) format (an extension of
