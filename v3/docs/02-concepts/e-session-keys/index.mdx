@@ -18,14 +18,13 @@ account (stake) and nominators. To do so, they create a new session keys by sign
 Controller key. Then, they inform the chain that this key represents their Controller key by
 publishing the Session certificate in a transaction on the chain.
 
-Substrate provides the
-[Session pallet](/rustdocs/latest/pallet_session), which allows
-validators to manage their session keys.
+Substrate provides the [Session pallet](/v3/runtime/frame#session), which allows validators to manage 
+their session keys.
 
 ## Use
 
-Session keys are used by validators to sign consensus-related messages. [`SessionKeys`](/rustdocs/latest/sp_session/trait.SessionKeys.html) is a generic,
-indexable type that is made concrete in the runtime.
+Session keys are used by validators to sign consensus-related messages. [`SessionKeys`](/rustdocs/latest/sp_session/trait.SessionKeys.html) 
+is a generic, indexable type that is made concrete in the runtime.
 
 You can declare any number of Session keys. For example, the default Substrate node uses four. Other
 chains could have more or fewer depending on what operations the chain expects its validators to
@@ -68,9 +67,9 @@ Refer to the runtime for the most up-to-date implementation.`}
 />
 
 The default Substrate node implements Session keys in the
-[Session pallet](/rustdocs/latest/pallet_session/).
+[Session pallet](/rustdocs/latest/pallet_session/trait.Config.html#associatedtype.Keys).
 
-### Strongly Typed Wrappers
+### Strongly typed wrappers
 
 The Session keys from a Substrate node could use the same cryptography, but serve _very_ different purposes
 in your runtime logic. To prevent the wrong key being used for the wrong operation, strong
@@ -108,6 +107,6 @@ behavior.
 - Take a look at the default
   [session keys in the Substrate node runtime](/rustdocs/latest/node_runtime/struct.SessionKeys.html).
 
-- Take a look at
-  [`substrate_application_crypto`](/rustdocs/latest/sp_application_crypto),
-  used for constructing application specific strongly typed crypto wrappers.
+- Take a look at the
+  [`sp_application_crypto`](/rustdocs/latest/sp_application_crypto/index.html),
+  crate, used for constructing application-specific strongly typed crypto wrappers.
