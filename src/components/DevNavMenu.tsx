@@ -454,8 +454,8 @@ const DevNavMenu = {
             link: '/how-to-guides/v3/parachains/runtime-upgrades',
           },
           {
-            title: `${intl.formatMessage({ id: 'htg-parachains-setup' })}`,
-            link: '/how-to-guides/v3/parachains/setup',
+            title: `${intl.formatMessage({ id: 'htg-parachains-pre-launch' })}`,
+            link: '/how-to-guides/v3/parachains/pre-launch',
           },
           {
             title: `${intl.formatMessage({ id: 'htg-parachains-register' })}`,

@@ -147,7 +147,7 @@
 
   "docs-nav-htg-parachains": "Parachains",
   "htg-parachains-upgrade": "Runtime Upgrades",
-  "htg-parachains-setup": "Set-up your runtime and client",
+  "htg-parachains-pre-launch": "Parachain Pre-Launch Requirements",
   "htg-parachains-register": "How to register your Parachain",
   "htg-parachains-reserve": "How to reserve a ParaID",
   "htg-parachains-collators": "Start a Collator Node",
