@@ -9,7 +9,7 @@ keywords:
 
 This document offers a conceptual overview of the cryptography used in Substrate.
 
-## Hashing Algorithms
+## Hashing algorithms
 
 Hash functions are used in Substrate to map arbitrary sized data to fixed-sized values.
 
@@ -38,7 +38,7 @@ function. It is considered to be very fast and is also used in
 
 Substrate uses the [`blake2`](https://docs.rs/blake2/) implementation in Rust.
 
-## Public-Key Cryptography
+## Public-Key cryptography
 
 Public-key cryptography is used in Substrate to provide a robust authentication system.
 
@@ -76,9 +76,9 @@ Schnorr signatures bring some noticeable features over the [ECDSA](#ecdsa)/EdDSA
 One sacrifice that is made when using Schnorr signatures over ECDSA is that both require 64 bytes,
 but only ECDSA signatures communicate their public key.
 
-## Next Steps
+## Next steps
 
-### Learn More
+### Learn more
 
 - Learn about the [Substrate account abstractions](/v3/concepts/account-abstractions).
 - For more detailed descriptions, please see the more advanced
