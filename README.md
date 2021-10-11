@@ -32,7 +32,7 @@ issues, offering suggestions for improvements to existing content, adding review
 existing pull requests, proposing new content, or creating new pull requests to fix issues or
 provide new content. Please review our [contributor guidelines](/v3/contribute/style-guide) prior to
 any contribution. If you have any further questions, please do not hesitate to reach out on our
-[substrate technical community channel](https://matrix.to/#/#substrate-technical:matrix.org)! We
+[Substrate technical community channel](https://matrix.to/#/#substrate-technical:matrix.org)! We
 would love to get to know you and your work!
 
 ### Directory Structure
