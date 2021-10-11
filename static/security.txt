@@ -1,0 +1,5 @@
+Contact: bugbounty@parity.io
+Preferred-Languages: en
+Canonical: https://www.parity.io/.well-known/security.txt
+Policy: https://www.parity.io/bug-bounty/
+Hiring: https://www.parity.io/jobs/
