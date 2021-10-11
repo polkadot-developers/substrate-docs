@@ -41,7 +41,7 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
               templateId={2}
             />
           </div>
-          <article className="px-6 mb-20 lg:flex lg:mx-auto">
+          <article className="px-4 mb-20 lg:flex lg:mx-auto">
             <div className="lg:flex-grow">
               <div
                 className={`py-8 lg:flex lg:justify-between lg:items-center`}

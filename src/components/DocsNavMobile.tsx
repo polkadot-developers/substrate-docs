@@ -39,7 +39,7 @@ export default function DocsNav({
     <nav
       className={cx(
         'bg-substrateGray-light dark:bg-darkBackground w-screen overflow-auto',
-        { 'h-docNav z-10': isOpen }
+        { 'h-[calc(100vh-100px)] z-10': isOpen }
       )}
     >
       <div
