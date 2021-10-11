@@ -129,7 +129,7 @@ construct_runtime!(
     UncheckedExtrinsic = UncheckedExtrinsic
     {
         // --snip
-        SubstrateKitties: pallet_kitties::{Pallet, Call, Storage, Event<T>},
+        SubstrateKitties: pallet_kitties::{Pallet, Call, Config<T>, Storage, Event<T>},
     }
 );
 ```
