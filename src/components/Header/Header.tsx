@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import MobileMenu from '../MobileMenus/MobileMenu'
-import DocsButton from '../DocsButton'
 import { useSiteMetadata } from '../Hooks/use-site-metadata'
-// import { useLocalization } from 'gatsby-theme-i18n'
-// import LanguageSwitcher from './LanguageSwitcher'
+import cx from 'classnames'
+import DocsButton from '../DocsButton'
 import DropDownMenu from './DropDownMenu'
 import SearchDocs from '../SearchDocs'
 import ThemeToggle from '../ThemeToggle'
@@ -14,9 +13,8 @@ import Link from '../Link'
 
 export default function Header() {
   const scroll = useScrollListener()
-  // const { locale, config } = useLocalization()
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false)
-  const [menuHeight, setMenuHeight] = useState('h-24')
+  const [isScrolled, setIsScrolled] = useState(false)
   const toggleMenu = () => setIsMobileNavOpen(!isMobileNavOpen)
   const navItems = MainNav.global()
 
@@ -29,20 +27,31 @@ export default function Header() {
   }, [isMobileNavOpen])
 
   useEffect(() => {
-    if (scroll.y > 15) {
-      setMenuHeight('h-16')
+    /* TODO: add into context */
+    if (scroll.y > 30) {
+      setIsScrolled(true)
     } else if (scroll.y < 1) {
-      setMenuHeight('h-24')
+      setIsScrolled(false)
     }
   }, [scroll.y])
 
   return (
-    <header className="sticky top-0 z-10 font-body border-b bg-white dark:bg-darkBackground border-gray-200 dark:border-gray-700">
+    <header
+      className={cx(
+        'sticky top-0 z-50 border-b border-gray-200 dark:border-substrateDarkThemeGrey bg-white dark:bg-substrateDarkest'
+      )}
+    >
       <div className="px-4 xl:px-12">
         <div
-          className={`flex items-center justify-between transition-height ease-in-out ${menuHeight}`}
+          className={cx(
+            'flex items-center justify-between transition-height ease-in-out',
+            {
+              'h-24': !isScrolled,
+              'h-16': isScrolled,
+            }
+          )}
         >
-          <div className="w-40 relative transform transition-all duration-300 ease-in-out hover:opacity-50">
+          <div className="w-40 relative transform transition-opacity duration-300 ease-in-out hover:opacity-50">
             <Link to={siteMetadata.substrateIO}>
               <svg
                 className={`fill-current text-substrateDark dark:text-substrateWhite`}
@@ -104,12 +113,13 @@ export default function Header() {
                 )
               })}
             </div>
-            <div className=" w-1/2 flex items-center justify-end">
-              <SearchDocs />
+            <div className="w-1/2 flex items-center justify-end">
+              <div>
+                <SearchDocs />
+              </div>
               <div className="pl-8 pr-6">
                 <DocsButton />
               </div>
-              {/* <LanguageSwitcher currentLang={locale} langConfig={config} /> */}
               <div className="w-6 h-6">
                 <ThemeToggle />
               </div>

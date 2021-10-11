@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { navigate } from 'gatsby'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import { useIntl } from 'react-intl'
@@ -18,9 +17,16 @@ export default function NotFoundPage() {
           <h2 className="text-center text-4xl mb-10 font-bold">
             {intl.formatMessage({ id: '404-text' })}
           </h2>
-          <PrimaryFixedButton onClick={() => navigate(-1)}>
-            {intl.formatMessage({ id: '404-button' })}
-          </PrimaryFixedButton>
+          <div className="flex flex-wrap pb-24 justify-center">
+            <div className="mx-4 mb-4 md:mb-0">
+              <PrimaryFixedButton link="/">Home</PrimaryFixedButton>
+            </div>
+            <div>
+              <PrimaryFixedButton link="https://github.com/substrate-developer-hub/substrate-docs/issues/new?title=Broken%20Link&template=feedback-template.yaml&labels=feedback">
+                Report a broken link
+              </PrimaryFixedButton>
+            </div>
+          </div>
         </div>
       </section>
     </Layout>
