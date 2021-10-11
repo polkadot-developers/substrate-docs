@@ -60,7 +60,7 @@ For example:
   URL : https://docs.substrate.io/v3/contribute/style-guide
   Corresponding slug: /v3/contribute/style-guide
 
-Configuration and styling files for gatsby live primarily in the `src` folder.
+Configuration and styling files for Gatsby live primarily in the `src` folder.
 
 Some gotchas:
 - The `i18n` folder is used for translation **but also for the rendering of the navigation**
