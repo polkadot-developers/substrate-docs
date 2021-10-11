@@ -51,13 +51,13 @@ Protocol ID collisions will cause _many_ issues for your nodes!
 />
 
 In order to set a unique protocol ID, change make sure you use some nonce or salt value. This is set
-(for
-the <ExternalLink url="https://github.com/substrate-developer-hub/substrate-parachain-template/"> parachain node template </ExternalLink>
+(for the [parachain node template](https://github.com/substrate-developer-hub/substrate-parachain-template/))
 as a CLI item in `/client/network/src/command.rs`, and passed to extend the `/client/network/src/chain_spec.rs`
 
 All [chain specification](/v3/runtime/chain-specs) files include this item as a field. For example,
-the primary <ExternalLink url="https://github.com/paritytech/polkadot/tree/master/node/service/res"> relay chain runtime chain specs </ExternalLink>
-have unique protocol IDs. For Polkadot:
+the primary [relay chain
+runtime](https://github.com/paritytech/polkadot/tree/master/node/service/res)
+chain specs have unique protocol IDs. For Polkadot:
 
 ```json
 // raw chain spec file in polkadot repo `/node/service/res/polkadot.json`
@@ -69,7 +69,7 @@ have unique protocol IDs. For Polkadot:
 ```
 
 Keep an eye (subscribe)
-to <ExternalLink url="https://github.com/paritytech/substrate/issues/7746"> this issue </ExternalLink>
+to [this issue](https://github.com/paritytech/substrate/issues/7746)
 that will address a better method to safely configure this constant in the future.
 
 ### 2. Memory profiling
