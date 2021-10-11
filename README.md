@@ -56,7 +56,7 @@ for pages.
 
 File directory example: `v3/docs/00-style-and-contributor-guidelines/a-contributor-guidelines/index.mdx`
 
-Each `index.mdx` page has the content to be rendered to this page, and all pages include a header
+Each `index.mdx` page contains the content to be rendered, and all pages include a frontmatter
 section with a `slug` item that is used for navigation on the generated site,
 
 URL example: https://docs.substrate.io/v3/contribute/style-guide
