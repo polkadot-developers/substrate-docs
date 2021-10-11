@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'gatsby'
+import Link from '../Link'
 // import LanguageSwitcher from '../LanguageSwitcher'
 import MobileSubMenu from './MobileSubMenu'
 import SearchDoc from '../SearchDocs'

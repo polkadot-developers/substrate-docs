@@ -26,7 +26,7 @@ const InfraLink = ({ to, children, className }: InfraLinkProps) => {
 interface LinkProps {
   to: string
   children: React.ReactNode
-  className: string
+  className?: string
 }
 
 export default function Link({ to, children, className }: LinkProps) {
