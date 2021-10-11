@@ -35,7 +35,7 @@ any contribution. If you have any further questions, please do not hesitate to r
 [substrate technical community channel](https://matrix.to/#/#substrate-technical:matrix.org)! We
 would love to get to know you and your work!
 
-### Directory Structure
+### Directory structure
 
 The content of this website is versioned in separate directories `v<version>` is the convention
 used. The devhub is then hierarchically separated into the three main types of
@@ -70,24 +70,27 @@ Some gotchas:
 - If you are adding or renaming a page, you **must** add it correctly in `src/components/DevNavMenu.tsx` and
   possibly `gatsby-config.js` and `gatsby-node.js`.
 
-### Production Deployment
+### Production deployment
 
 - `main` branch is available at: https://docs.substrate.io/
 
-### Staging Deployment
+### Staging deployment
 
 - `develop` branch is available at: https://substrate-docs-staging.netlify.app
 
+If you are submitting a PR, make sure to submit it to the `develop` branch. Only once PRs are merged into 
+develop will they get merged into `main`.
+
 ## 🚀 Quick start
 
-1.  **Clone the Repo**
+1.  **Clone the repo**
 
     ```bash
     # create a new folder to get going
     git clone https://github.com/substrate-developer-hub/substrate-docs.git
     ```
 
-2.  **Get Setup**
+2.  **Get setup**
 
     Navigate into your new site’s directory and install all dependencies.
 
@@ -121,7 +124,7 @@ Some gotchas:
 5.  **Open the code and start customizing!**
 
     Your site is now running at [http://localhost:8001](http://localhost:8001)
-    And your GraphiQL data layer is running at [http://localhost:8000\_\_graphql](http://localhost:8000__graphql)
+    and your GraphiQL data layer is running at [http://localhost:8000\_\_graphql](http://localhost:8000__graphql).
 
     Edit to see your site update in real-time on save.
 
