@@ -1,7 +1,7 @@
 import React from 'react'
 import cx from 'classnames'
 import useComponentVisible from '../Hooks/use-component-visible'
-import { Link } from 'gatsby'
+import Link from '../Link'
 
 interface MobileDropDownProps {
   external: boolean
