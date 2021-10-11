@@ -32,11 +32,11 @@ It is important to define the encoding scheme used on Substrate rather than reus
 codec library because this codec needs to be re-implemented on other platforms and languages that
 want to support interoperability.
 
-## Codec Definition
+## Codec definition
 
 Here you will find how the SCALE codec encodes different types.
 
-### Fixed-width Integers
+### Fixed-width integers
 
 Basic integers are encoded using a fixed-width little-endian (LE) format.
 
@@ -46,7 +46,7 @@ Basic integers are encoded using a fixed-width little-endian (LE) format.
 - `unsigned 16-bit integer 42`: `0x2a00`
 - `unsigned 32-bit integer 16777215`: `0xffffff00`
 
-### Compact/General Integers
+### Compact/general integers
 
 A "compact" or general integer encoding is sufficient for encoding large integers (up to 2\*\*536)
 and is more efficient at encoding most values than the fixed-width version. (Though for single-byte
@@ -149,7 +149,7 @@ Tuple of compact unsigned integer and boolean:
 
 `(3, false)`: `0x0c00`
 
-### Data Structures
+### Data structures
 
 For structures, the values are named, but that is irrelevant for the encoding (names are ignored -
 only order matters). **All containers store elements consecutively. The order of the elements is not

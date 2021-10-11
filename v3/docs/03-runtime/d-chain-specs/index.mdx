@@ -4,20 +4,20 @@ slug: /v3/runtime/chain-specs
 version: 3.0 
 section: docs
 category: runtime
-keywords: genesis, configuration
+keywords: genesis, configuration, chainspec
 ---
 
 A chain specification, or "chain spec", is a collection of configuration information that dictates
 which network a blockchain node will connect to, which entities it will initially communicate with,
 and what consensus-critical state it must have at genesis.
 
-## Structure of a Chain Spec
+## Structure of a Chainspec
 
 The [`ChainSpec` struct](/rustdocs/latest/sc_service/struct.GenericChainSpec.html)
 separates the information contained in a chain spec into two parts. A node can use a `ChainSpec`
 instance to create a genesis block.
 
-### The Client Spec
+### The client spec
 
 The first part of the chain spec, is the `ClientSpec`. The `ClientSpec` contains configuration
 information used by the Substrate client, the part of the node outside of the runtime. Much of this
@@ -40,7 +40,7 @@ additional data to configure customized parts of the client. One example use cas
 node about well-known blocks at specific heights, to prevent long range attacks when syncing a new
 node from genesis.
 
-### The Genesis State
+### The genesis state
 
 The second part of the chain spec is the consensus-critical genesis configuration. All nodes in the
 network must agree on this initial state before they can agree on any subsequent blocks. Therefore,
@@ -55,7 +55,7 @@ runtime must also be supplied in the chain spec.
 
 It is this second part of the chain spec that is used when creating a genesis block.
 
-## Storing Chain Spec Information
+## Storing chainspec information
 
 The information that comprises a chain spec can be stored in either of two ways. Being a Rust
 struct, the first way to store this information is as Rust code. Indeed, Substrate nodes typically
@@ -69,12 +69,12 @@ method for serializing its data into JSON as well as a function for de-serializi
 instance of a chain spec. When launching testnets or private chains, it is common to distribute a
 JSON-encoded chain spec along with the node binary.
 
-## Using Chain Specs
+## Using chainspecs
 
 Node operators and runtime developers will encounter chain specifications when performing common
 tasks.
 
-### Launching a Chain
+### Launching a chain
 
 Each time a node operator starts a node, they provide a chain specification that the node should
 use. In the simplest case, the chain spec is provided implicitly and the node uses a default chain
@@ -88,14 +88,14 @@ node operators is to provide a chain spec as a JSON file with a command-line fla
 `--chain=someCustomSpec.json`, in which case the node will attempt to de-serialize the provided JSON
 chain spec, and then use it.
 
-### Developing a Runtime
+### Developing a runtime
 
 Nearly every Substrate runtime will have storage items that need to be configured at genesis. When
 developing with [FRAME](/v3/runtime/frame), any storage item that is declared with the `config()`
 option requires configuration at genesis. It is the job of the chain spec, specifically the genesis
 portion, to configure such storage values.
 
-### Customizing a Chain Spec
+### Customizing a chain spec
 
 When creating a one-off network for development, testing, or demonstration purposes, a truly
 customized chain spec may be desired. Node operators may export the default chain spec for the
@@ -115,7 +115,7 @@ customized chain by supplying the customized JSON.
 substrate --chain=myCustomSpec.json
 ```
 
-## Raw Chain Specs
+## Raw chainspecs
 
 Substrate nodes support runtime upgrades, which means a blockchain's runtime may be different than
 when the chain began. Chain specs, as discussed so far, contain information structured in a way that
@@ -151,9 +151,9 @@ After the conversion process, the above snippet looks like this:
 "0x50a63a871aced22e88ee6466fe5aa5d9": "0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d",
 ```
 
-## Next Steps
+## Next steps
 
-### Learn More
+### Learn more
 
 - Rustdocs for the
   [`ChainSpec` struct](/rustdocs/latest/sc_service/struct.GenericChainSpec.html)
