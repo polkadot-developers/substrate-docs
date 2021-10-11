@@ -1,6 +1,6 @@
 import cx from 'classnames'
 import React from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import Link from '../Link'
 import Icon from '../../components/Icon'
 
 interface PrimaryFixedButtonProps {
@@ -19,7 +19,7 @@ export function PrimaryFixedButton({
   hero = false,
 }: PrimaryFixedButtonProps) {
   return (
-    <LocalizedLink to={link}>
+    <Link to={link}>
       <div
         onClick={onClick}
         className={cx(
@@ -49,6 +49,6 @@ export function PrimaryFixedButton({
           <Icon name="arrowMore" className="self-center" />
         </div>
       </div>
-    </LocalizedLink>
+    </Link>
   )
 }
