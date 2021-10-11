@@ -51,13 +51,8 @@ check what you need on a production network (maybe as a HTG)
 https://github.com/substrate-developer-hub/substrate-docs/issues/241
 -->
 
-<ExternalLink url="https://github.com/paritytech/polkadot/tree/release-v0.9.10">
-  Polkadot `release-v0.9.10` branch
-</ExternalLink>
-<p></p>
-<ExternalLink url="https://github.com/paritytech/cumulus/tree/polkadot-v0.9.10">
-  Cumulus `polkadot-v0.9.10` branch
-</ExternalLink>
+- [Polkadot `release-v0.9.10` branch](https://github.com/paritytech/polkadot/tree/release-v0.9.10)
+- [Cumulus `polkadot-v0.9.10` branch](https://github.com/paritytech/cumulus/tree/polkadot-v0.9.10)
 
 ### Request ROC Tokens
 
@@ -82,8 +77,10 @@ All parachains will need to register as a parathread first. You will need:
 - **5 ROCs** deposit to register a para ID.
 
 - [Reserve a unique para ID](connect-parachain#1-reserve-a-para-id). This will be assigned to the next
-  available ID. This integer will be greater than `2000`, as `0-999` are reserved for <ExternalLink url="https://wiki.polkadot.network/docs/learn-common-goods#system-level-chains">system parachains</ExternalLink> and
-  `1000-1999` are reserved for <ExternalLink url="https://wiki.polkadot.network/docs/learn-common-goods#public-utility-chains">public utility parachains</ExternalLink>.
+  available ID. This integer will be greater than `2000`, as `0-999` are reserved for
+  [system parachains](https://wiki.polkadot.network/docs/learn-common-goods#system-level-chains) and 
+  `1000-1999` are reserved for
+  [public utility parachains](https://wiki.polkadot.network/docs/learn-common-goods#public-utility-chains).
 
 - Your parachain genesis state. Refer to the
   [genesis state export process](connect-parachain#3-generate-parachain-genesis-state).
@@ -93,7 +90,8 @@ All parachains will need to register as a parathread first. You will need:
 
 The procedure will be as followed:
 
-- Goto Polkadot-JS Apps <ExternalLink url="https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/parachains/parathreads">here</ExternalLink>
+- Goto Polkadot-JS Apps Rococo parathreads section
+  [here](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/parachains/parathreads).
 
 - Reserve for the next available para ID.
 
@@ -107,8 +105,9 @@ The procedure will be as followed:
 
   ![parathread-register-success.png](../../../../src/images/tutorials/09-cumulus/parathread-register-success.png)
 
-- Also in the Polkadot-JS Apps <ExternalLink url="https://polkadot.js.org/apps/#/parachains/parathreads">**Parachains > Parathreads** page</ExternalLink>
-  you will see your parathread registration is **Onboarding**:
+- Also in the Polkadot-JS Apps 
+  [Parachains -> Parathreads](https://polkadot.js.org/apps/#/parachains/parathreads)
+  page and you will see your parathread registration is **Onboarding**:
 
   ![parathread-onboarding.png](../../../../src/images/tutorials/09-cumulus/parathread-onboarding.png)
 
@@ -142,7 +141,9 @@ including on-boarding, off-boarding, upgrading, downgrading, etc.
 Anyone with a fully onboarded parathread can make a bid to win a parachain slot for their para ID.
 They need to out-bid all others participating in the slot auction.
 
-You can do so in Polkadot-JS App <ExternalLink url="https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/parachains/auctions">**Network** > **Parachains** > **Auctions** page</ExternalLink>.
+You can do so in Polkadot-JS App
+[Network -> Parachains -> Auctions](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/parachains/auctions)
+page.
 
 Pick your para ID, how much you want to bid, and the slots you want to bid for:
 
@@ -185,9 +186,8 @@ Notes on the parameters:
 
 If your extrinsic succeeds, you can see your new crowdloan entry in
 
-<ExternalLink url="https://polkadot.js.org/apps/#/parachains/crowdloan">
-  **Network** > **Parachains** > **Crowdloan** page
-</ExternalLink>
+[Network -> Parachains -> Crowdloan page](https://polkadot.js.org/apps/#/parachains/crowdloan)
+
 :
 
 ![crowdloan-success.png](../../../../src/images/tutorials/09-cumulus/crowdloan-success.png)
@@ -197,7 +197,8 @@ If your extrinsic succeeds, you can see your new crowdloan entry in
 Any accounts with a free balance and elect to contribute to your campaign, including the
 same account that started this campaign.
 
-You can goto the same <ExternalLink url="https://polkadot.js.org/apps/#/parachains/crowdloan">**Crowdloan** page</ExternalLink> above, and choose **+ Contribute** on the campaign you want to support.
+You can goto the same [Crowdloan page](https://polkadot.js.org/apps/#/parachains/crowdloan) above,
+and choose **+ Contribute** on the campaign you want to support.
 
 You will see an extrinsic pop up similar to the following:
 
