@@ -43,29 +43,29 @@ used. The devhub is then hierarchically separated into the three main types of
 content: docs, how-to-guides, and tutorials.
 
 Sub folders in these are of the form:
+
 ```
 - <version>
-  - <doc type>
+  - <content type>
     - <XX-section>
       - <Y-page>
         - `index.mdx`
 ```
+
 By convention we use `XX` numbering starting at `00` for sections, and `Y` lettering starting at `a`
-for pages. 
+for pages.
 
 File directory example: `v3/docs/00-style-and-contributor-guidelines/a-contributor-guidelines/index.mdx`
 
-Each `index.mdx` page contains the content to be rendered, and all pages include a frontmatter
-section with a `slug` item that is used for navigation on the generated site.
+Each `index.mdx` page has the content to be rendered to this page, and all pages include a header
+section with a `slug` item that is used for navigation on the generated site,
 
-For example:
+URL example: https://docs.substrate.io/v3/contribute/style-guide
 
-  URL : https://docs.substrate.io/v3/contribute/style-guide
-  Corresponding slug: /v3/contribute/style-guide
-
-Configuration and styling files for Gatsby live primarily in the `src` folder.
+Configuration and styling files for gatsby live primarily in the `src` folder.
 
 Some gotchas:
+
 - The `i18n` folder is used for translation **but also for the rendering of the navigation**
   **elements sections**. Your `index.mdx` file's `title` is not the source for this.
 - If you are adding or renaming a page, you **must** add it correctly in `src/components/DevNavMenu.tsx` and
@@ -101,7 +101,7 @@ develop will they get merged into `main`.
     ```
 
 3. **Configure environment variables**
-    
+
     Copy `example.env.development` and rename to `.env.development`
 
     Config URL variables based on your preferable local setup. URL will be used for links generation between documentation and platform stack
@@ -125,7 +125,8 @@ develop will they get merged into `main`.
 5.  **Open the code and start customizing!**
 
     Your site is now running at [http://localhost:8001](http://localhost:8001)
-    and your GraphQL data layer is running at [http://localhost:8000\_\_graphql](http://localhost:8000__graphql).
+    and your GraphQL data layer is running at 
+	[http://localhost:8000\_\_graphql](http://localhost:8000__graphql).
 
     Edit to see your site update in real-time on save.
 
