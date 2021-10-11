@@ -74,7 +74,7 @@ Some gotchas:
 
 ### Staging deployment
 
-- `develop` branch is available at: https://substrate-docs-staging.netlify.app
+- `develop` branch is available at: https://develop--substrate-docs.netlify.app/
 
 <!-- internal note:
 ***Important***
