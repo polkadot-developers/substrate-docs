@@ -468,29 +468,20 @@ const DevNavMenu = {
         })}`,
         items: [
           {
-            title: `${intl.formatMessage({ id: 'htg-parachains-pre-launch' })}`,
-            link: '/how-to-guides/v3/parachains/pre-launch',
-          },
-          {
-            title: `${intl.formatMessage({ id: 'htg-parachains-upgrade' })}`,
-            link: '/how-to-guides/v3/parachains/runtime-upgrades',
-          },
-          {
-            title: `${intl.formatMessage({ id: 'htg-parachains-register' })}`,
-            link: '/how-to-guides/v3/parachains/register',
-          },
-
-          {
-            title: `${intl.formatMessage({ id: 'htg-parachains-reserve' })}`,
-            link: '/how-to-guides/v3/parachains/reserve-id',
+            title: `${intl.formatMessage({ id: 'htg-parachains-connect' })}`,
+            link: '/how-to-guides/v3/parachains/connect',
           },
           {
             title: `${intl.formatMessage({ id: 'htg-parachains-collators' })}`,
             link: '/how-to-guides/v3/parachains/start-collator-node',
           },
           {
-            title: `${intl.formatMessage({ id: 'htg-parachains-rococo' })}`,
-            link: '/how-to-guides/v3/parachains/rococo',
+            title: `${intl.formatMessage({ id: 'htg-parachains-pre-launch' })}`,
+            link: '/how-to-guides/v3/parachains/pre-launch',
+          },
+          {
+            title: `${intl.formatMessage({ id: 'htg-parachains-upgrade' })}`,
+            link: '/how-to-guides/v3/parachains/runtime-upgrades',
           },
         ],
       },

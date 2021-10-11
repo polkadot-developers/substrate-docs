@@ -11,7 +11,7 @@ Substrate uses a simple key-value data store implemented as a database-backed, m
 All of Substrate's [higher-lever storage abstractions](/v3/runtime/storage) are built on top of this
 simple key-value store.
 
-## Key-Value Database
+## Key-Value database
 
 Substrate implements its storage database with [RocksDB](https://rocksdb.org/), a persistent
 key-value store for fast storage environments. It also supports an experimental
@@ -23,7 +23,7 @@ The DB is used for all the components of Substrate that require persistent stora
 - Substrate light-clients
 - Off-chain workers
 
-## Trie Abstraction
+## Trie abstraction
 
 One advantage of using a simple key-value store is that you are able to easily abstract storage
 structures on top of it.
@@ -44,7 +44,7 @@ All trie nodes are stored in the DB and part of the trie state can get pruned, i
 can be deleted from storage when it is out of pruning range for non-archive nodes. We do not use
 [reference counting](http://en.wikipedia.org/wiki/Reference_counting) for performance reasons.
 
-### State Trie
+### State trie
 
 Substrate-based chains have a single main trie, called the state trie, whose root hash is placed in
 each block header. This is used to easily verify the state of the blockchain and provide a basis for
@@ -54,7 +54,7 @@ This trie only stores content for the canonical chain, not forks. There is a sep
 [`state_db` layer](/rustdocs/latest/sc_state_db) that maintains the
 trie state with references counted in memory for all that is non-canonical.
 
-### Child Trie
+### Child trie
 
 Substrate also provides an API to generate new child tries with their own root hashes that can be
 used in the runtime.
@@ -69,7 +69,7 @@ can use to verify the specific content in that trie. Subsections of a trie do no
 root-hash-like representation that satisfy these needs automatically; thus a child trie is used
 instead.
 
-## Querying Storage
+## Querying storage
 
 Blockchains that are built with Substrate expose a remote procedure call (RPC) server that can be
 used to query runtime storage. When you use the Substrate RPC to access a storage item, you only
@@ -77,7 +77,7 @@ need to provide [the key](#key-value-database) associated with that item.
 [Substrate's runtime storage APIs](/v3/runtime/storage) expose a number of storage item types; keep
 reading to learn how to calculate storage keys for the different types of storage items.
 
-### Storage Value Keys
+### Storage value keys
 
 To calculate the key for a simple [Storage Value](/v3/runtime/storage#storage-value), take the
 [TwoX 128 hash](https://github.com/Cyan4973/xxHash) of the name of the pallet that contains the
@@ -110,7 +110,7 @@ costs associated with a cryptographic hash function since the input to the hash 
 of the pallet and storage item) are determined by the runtime developer and not by potentially
 malicious users of your blockchain.
 
-### Storage Map Keys
+### Storage map keys
 
 Like Storage Values, the keys for [Storage Maps](/v3/runtime/storage#storage-map) are equal to the
 TwoX 128 hash of the name of the pallet that contains the map prepended to the TwoX 128 hash of the
@@ -189,16 +189,16 @@ example, after you remove the first 32 hexadecimal characters that represent the
 `5GNJqTPyNqANBkUVMN1LPPrxXnFouWXoe2wNSmmEoLctxiZY`, which is the account ID for the familiar
 `Alice_Stash` account.
 
-## Runtime Storage API
+## Runtime storage API
 
 Substrate's [FRAME Support crate](/rustdocs/latest/frame_support)
 provides utilities for generating unique, deterministic keys for your runtime's storage items. These
 storage items are placed in the [state trie](#trie-abstraction) and are accessible by
 [querying the trie by key](#querying-storage).
 
-## Next Steps
+## Next steps
 
-### Learn More
+### Learn more
 
 - Learn how to add [storage items](/v3/runtime/storage) into your Substrate runtime pallets.
 

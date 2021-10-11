@@ -11,7 +11,7 @@ Blockchain nodes use consensus engines to agree on the blockchain's state. This 
 fundamentals of consensus in blockchain systems, how consensus interacts with the runtime in the
 Substrate framework, and the consensus engines available with the framework.
 
-## State Machines and Conflicts
+## State machines and conflicts
 
 A blockchain runtime is a [state machine](https://en.wikipedia.org/wiki/Finite-state_machine). It
 has some internal state, and state transition function that allows it to transition from its current
@@ -27,7 +27,7 @@ Blockchains must agree on:
 In order to agree on the resulting state after a transition, all operations within a blockchain's
 [state transition function](/v3/concepts/runtime) must be deterministic.
 
-## Conflict Exclusion
+## Conflict exclusion
 
 In centralized systems, the central authority chooses among mutually exclusive alternatives by
 recording state transitions in the order it sees them, and choosing the first of the competing
@@ -46,7 +46,7 @@ Substrate provides several block construction algorithms and also allows you to 
 - BABE (slot-based)
 - Proof of Work
 
-## Fork Choice Rules
+## Fork choice rules
 
 As a primitive, a block contains a header and a batch of
 [extrinsics](/v3/concepts/extrinsics). The header must contain a reference to its parent block
@@ -60,7 +60,7 @@ the one that should be extended. Substrate exposes this concept through the
 Substrate allows you to write a custom fork choice rule, or use one that comes out of the box. For
 example:
 
-### Longest Chain Rule
+### Longest chain rule
 
 The longest chain rule simply says that the best chain is the longest chain. Substrate provides this
 chain selection rule with the
@@ -69,14 +69,14 @@ GRANDPA uses the longest chain rule for voting.
 
 ![longest chain rule](../../../../src/images/docs/advanced/consensus-longest-chain.png)
 
-### GHOST Rule
+### GHOST rule
 
 The Greedy Heaviest Observed SubTree rule says that, starting at the genesis block, each fork is
 resolved by choosing the branch that has the most blocks built on it recursively.
 
 ![GHOST rule](../../../../src/images/docs/advanced/consensus-ghost.png)
 
-## Block Production
+## Block production
 
 Some nodes in a blockchain network are able to produce new blocks, a process known as authoring.
 Exactly which nodes may author blocks depends on which consensus engine you're using. In a
@@ -186,7 +186,7 @@ To accommodate these consensus features, Substrate has the concept of a
 [`DigestItem`](/rustdocs/latest/sp_runtime/enum.DigestItem.html), a message
 passed from the outer part of the node, where consensus lives, to the runtime, or vice versa.
 
-## Learn More
+## Learn more
 
 Because both BABE and GRANDPA will be used in the Polkadot network, Web3 Foundation provides
 research-level presentations of the algorithms.
