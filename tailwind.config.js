@@ -18,6 +18,7 @@ module.exports = {
           dark: '#F2606A',
         },
         mdxLightBg: '#FAFBFC',
+        substrateDarkThemeGrey: '#3A424E',
       },
     },
   },
