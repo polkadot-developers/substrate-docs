@@ -852,6 +852,15 @@ for this section, find ACTION #1 and replace it with the following code:
     log::info!("A kitty is born with ID: {:?}.", kitty_id);
 }
 ```
+We won't go into debugging, but logging to the console is a useful tip to make sure your 
+pallet is behaving as expected. In order to use `log::info`, add this to your pallet's 
+`Cargo.toml` file:
+
+```toml
+[dependencies.log]
+default-features = false
+version = '0.4.14'
+```
 
 <Message
   type='gray'
@@ -1532,15 +1541,16 @@ impl<T: Config> GenesisBuild<T> for GenesisConfig<T> {
 ```
 
 To let our chain know about our pallet's genesis configuration, we need to modify the
-`chain_spec.rs` file in our project's `node` folder. Go to `node/src/chain_spec.rs`, add 
-`use node_template_runtime::KittiesConfig;` at the top of the file and add the
-following snippet inside the `testnet_genesis` function:
+`chain_spec.rs` file in our project's `node` folder. It's important you make sure you use
+the name of the pallet instance in `runtime/src/lib.rs`, which in our case was `SubstrateKitties`.
+Go to `node/src/chain_spec.rs`, add `use node_kitties_runtime::SubstrateKittiesConfig;` at the 
+top of the file and add the following snippet inside the `testnet_genesis` function:
 
 ```rust
 //-- snip --
-    kitties: KittiesConfig {
-      kitties: vec![],
-    },
+		substrate_kitties: SubstrateKittiesConfig {
+			kitties: vec![],
+		},
 //-- snip --
 ```
 ### Update `runtime/src/lib.rs` And Interact With Your Kitties
