@@ -55,7 +55,7 @@ section with a `slug` item that is used to link to that content in the generated
 
 URL example: https://docs.substrate.io/v3/contribute/style-guide
 
-Configuration and styling files for gatsby live primarily in the `src` folder.
+Configuration and styling files for Gatsby live primarily in the `src` folder.
 
 Some gotchas:
 
