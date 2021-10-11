@@ -37,7 +37,7 @@ would love to get to know you and your work!
 
 ### Directory Structure
 
-The content of this website is versioned in separate directories `v<version>` is the convention
+The content of this website is versioned in separate directories, where `v<version>` is the convention
 used. The devhub is then hierarchically separated into the three main types of
 content: docs, how-to-guides, and tutorials.
 
