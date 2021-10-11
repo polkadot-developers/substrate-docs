@@ -76,7 +76,7 @@ Some gotchas:
 
 ### Staging deployment
 
-- `develop` branch is available at: https://substrate-docs-staging.netlify.app
+- `develop` branch is available at: https://develop--substrate-docs.netlify.app/
 
 If you are submitting a PR, make sure to submit it to the `develop` branch. Only once PRs are merged into 
 develop will they get merged into `main`.
