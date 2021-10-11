@@ -193,6 +193,11 @@ production as a docker image and push it to Docker hub at
 The image is then launched as a service in the next CI/CD job. `checklinks:v3` is run against the
 running gatsby site in the docker container to check all links.
 
+## Security
+
+Please report _security_ bugs as stated in the [`static/security.txt` file](static/security.txt) in
+this repository.
+
 ## License
 
 TBD
