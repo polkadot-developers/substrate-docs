@@ -24,7 +24,8 @@ pub mod pallet {
     <<T as Config>::Currency as Currency<<T as frame_system::Config>::AccountId>>::Balance;
 
   // Struct for holding Kitty information.
-  #[derive(Clone, Encode, Decode, PartialEq)]
+	#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
+	#[scale_info(skip_type_params(T))]
   pub struct Kitty<T: Config> {
     pub dna: [u8; 16],   // Using 16 bytes to represent a kitty DNA
     pub price: Option<BalanceOf<T>>,
@@ -33,7 +34,8 @@ pub mod pallet {
   }
 
   // Set Gender type in Kitty struct.
-  #[derive(Encode, Decode, Debug, Clone, PartialEq)]
+	#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
+	#[scale_info(skip_type_params(T))]
   #[cfg_attr(feature = "std", derive(Serialize, Deserialize))]
   pub enum Gender {
     Male,
