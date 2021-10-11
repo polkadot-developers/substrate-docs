@@ -5,7 +5,8 @@ version: polkadot-0.9.10
 section: how to guides
 category: parachains
 difficulty: 1
-keywords: [collator, parachain, parathread, upgrade, cumulus, storage, migration, paraid, register, launch]
+keywords:
+  [collator, parachain, parathread, upgrade, cumulus, storage, migration, paraid, register, launch]
 ---
 
 <Objectives
@@ -36,7 +37,7 @@ keywords: [collator, parachain, parathread, upgrade, cumulus, storage, migration
     },
   ]}
 />
-<br/>
+<br />
 
 <Message
   type={`gray`}
@@ -131,8 +132,8 @@ Authoring will begin when the collator is actually **registered on the relay cha
 
 Depending on your target relay chain and authority there, you have options to register. Typically
 for testing you will use `sudo` and for production
-use <ExternalLink url="https://wiki.polkadot.network/docs/en/learn-auction">parachain auctions</ExternalLink>
-and <ExternalLink url="https://wiki.polkadot.network/docs/learn-crowdloans">crowdloans</ExternalLink>
+use <ExternalLink url="https://wiki.polkadot.network/docs/learn-auction">parachain auctions</ExternalLink>
+and <ExternalLink url="https://wiki.polkadot.network/docs/learn-crowdloans">crowdloans</ExternalLink>.
 
 **This guide presently only covers the sudo testing case.**
 
@@ -146,18 +147,19 @@ Optionally, you can calculate the exact formulas for deposit calculation for Pol
 pub const fn deposit(items: u32, bytes: u32) -> Balance {}
 ```
 
-This is located in the [`runtime/<RELAY CHAIN>/src/constants.rs` files in Polkadot](https://github.com/paritytech/polkadot/blob/master/runtime/)
+This is located in the `runtime/<RELAY CHAIN>/src/constants.rs`
+files <ExternalLink url="https://github.com/paritytech/polkadot/blob/master/runtime/"> in Polkadot</ExternalLink>.
 
 #### Register Using `sudo`
 
 We have our relay chain launched and our parachain collator ready to go. Now we have to register the
 parachain on the relay chain. In the a production network, this will typically be accomplished
-with
-on Polkadot and Kusama, but for this tutorial we will do it with `sudo` call.
+with on Polkadot and Kusama, but for this tutorial we will do it with `sudo` call.
 
 ##### Option 1: `paraSudoWrapper.sudoScheduleParaInitialize`
 
-- Go to <ExternalLink url="https://polkadot.js.org/apps/#/explorer">Polkadot Apps UI</ExternalLink>, connecting to your **relay chain**.
+- Go to the <ExternalLink url="https://polkadot.js.org/apps/#/explorer">Polkadot Apps UI</ExternalLink>
+  , connecting to your **relay chain**.
 
 - Execute a sudo extrinsic on the relay chain by going to `Developer` -> `sudo` page.
 
