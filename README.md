@@ -196,9 +196,10 @@ excluded because for:
 We configured a [Github workflow](../.github/workflows/check-links.yml) to build the Gatsby site in
 production as a docker image and push it to Docker hub at
 [`jimmychu0807/substrate-docs`](https://hub.docker.com/repository/docker/jimmychu0807/substrate-docs).
-The image is then launched as a service in the next CICD job. `checklinks:v3` is run against the
+The image is then launched as a service in the next CI/CD job. `checklinks:v3` is run against the
 running gatsby site in the docker container to check all links.
 
 ## License
 
-Substrate **documentation** is licence under the [Apache 2 license](./LICENSE).
+TBD
+<!-- Substrate **documentation** is licence under the [Apache 2 license](./LICENSE). -->
