@@ -79,16 +79,6 @@ Some gotchas:
 
 - `develop` branch is available at: https://develop--substrate-docs.netlify.app/
 
-<!-- internal note:
-***Important***
-
-**Always create your own branch to work on the site, and submit pull requests to `develop`.** 
-
-> We target `develop` for pushing new content before merging with `main` and publishing the site.
-> The `main` branch is production ONLY and must be deployed by a WebDev or Communications teams
-> member through Forestry.
--->
-
 If you are submitting a PR, make sure to submit it to the `develop` branch. Only once PRs are merged into 
 develop will they get merged into `main`.
 
