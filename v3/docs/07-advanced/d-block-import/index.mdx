@@ -7,12 +7,10 @@ category: advanced
 keywords:
 ---
 
-## The Import Queue
-
-The import queue is an abstract worker queue present in every Substrate node. It is not part of the
-runtime. The import queue is responsible for processing pieces of incoming information, verifying
+The block import pipeline is an abstract worker queue present in every Substrate node. It is not part of the
+runtime. The import pipeline is responsible for processing pieces of incoming information, verifying
 them, and if they are valid, importing them into the node's state. The most fundamental piece of
-information that the import queue processes is blocks themselves, but it is also responsible for
+information that the import pipeline processes is blocks themselves, but it is also responsible for
 importing consensus-related messages such as justifications and, in light clients, finality proofs.
 
 The import queue collects incoming elements from the network and stores them in a pool. The elements
@@ -29,7 +27,7 @@ The import queue also provides some hooks via the
 [`Link` trait](/rustdocs/latest/sp_consensus/import_queue/trait.Link.html) that can be used
 to follow its progress.
 
-## The Basic Queue
+## Basic queue
 
 Substrate provides a default in-memory implementation of the `ImportQueue` known as the
 [`BasicQueue`](/rustdocs/latest/sp_consensus/import_queue/struct.BasicQueue.html). The
@@ -42,7 +40,7 @@ Any consensus engine that relies on the `BasicQueue` must implement the `Verifie
 [inherent data](/v3/concepts/extrinsics#inherents), and ensuring that
 the block is signed by the appropriate authority.
 
-## The Block Import Trait
+## Block import trait
 
 When the import queue is ready to import a block, it passes the block in question to a method
 provided by the
@@ -55,7 +53,7 @@ One implementor of the `BlockImport` trait that is used in every Substrate node 
 block database. When a block is imported into the client, it is added to the main database of blocks
 that the node knows about.
 
-## The Block Import Pipeline
+## Block import pipeline
 
 In the simplest cases, blocks are imported directly into the client. But most consensus engines will
 need to perform additional verification on incoming blocks, update their own local auxiliary
@@ -77,7 +75,7 @@ both an authoring engine and a finality gadget to layer the nesting even more de
 Polkadot's block import pipeline consists of a `BabeBlockImport`, which wraps a
 `GrandpaBlockImport`, which wraps the `Client`.
 
-## Learn More
+## Learn more
 
 Have a look at these guides that cover the block import pipeline:
 
