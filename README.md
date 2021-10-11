@@ -1,16 +1,17 @@
-<p align="center">
-  <a href="https://www.parity.io">
-    <img alt="Parity Logo" src="https://www.parity.io/images/parity_logo_light.png" width="60" />
-  </a>
-</p>
 <h1 align="center">
-  Substrate Docs
+  <a href="https://www.substrate.io">
+    <img alt="Substrate Logo" src="static/img/sub.gif" width="70%" />
+  </a>
 </h1>
-<h3 align="center">
-  Substrate Documentation, How-to Guides, Tutorials, and more!
-</h3>
+<h1 align="center"> Substrate Developer Hub </h1>
+<h3 align="center"> https://docs.substrate.io/ </h3>
+<br/>
+
+<!-- Badges -->
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/65f522fe-eefa-434b-bdb3-6345d363c177/deploy-status)](https://app.netlify.com/sites/ecstatic-babbage-c109a3/deploys) ![linkcheck workflow](https://github.com/substrate-developer-hub/substrate-docs/actions/workflows/check-links.yml/badge.svg)
+
+<!-- Description -->
 
 This repository serves as the **developer hub** for the **[Substrate](https://substrate.io)** blockchain
 framework. The docs are written in [MDX](https://mdxjs.com/) format an extension of
