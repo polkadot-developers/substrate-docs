@@ -119,7 +119,8 @@ and RPC clients.
 aggregated and implemented for the chain's runtime.
 
 You'll also notice that the instance of our modified template pallet name remains
-`TemplateModule`. Change it to `SubstrateKitties` (in `runtime/src/lib.rs`):
+`TemplateModule`. Change it to `SubstrateKitties` (in `runtime/src/lib.rs`) and add 
+`Config<T>` to the pallet declaration:
 
 ```rust
 construct_runtime!(
@@ -129,7 +130,7 @@ construct_runtime!(
     UncheckedExtrinsic = UncheckedExtrinsic
     {
         // --snip
-        SubstrateKitties: pallet_kitties::{Pallet, Call, Config<T>, Storage, Event<T>},
+        SubstrateKitties: pallet_kitties::{Pallet, Call, Config<T>, Storage, Event<T>}, // <-- add this line
     }
 );
 ```
