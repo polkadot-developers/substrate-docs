@@ -149,12 +149,10 @@
   "htg-consensus-hybrid": "Create a PoS-PoW Hybrid Node",
 
   "docs-nav-htg-parachains": "Parachains",
+  "htg-parachains-connect": "Connect to a Relay Chain",
+  "htg-parachains-collators": "Collator Selection",
+  "htg-parachains-pre-launch": "Pre-Launch Requirements",
   "htg-parachains-upgrade": "Runtime Upgrades",
-  "htg-parachains-pre-launch": "Parachain Pre-Launch Requirements",
-  "htg-parachains-register": "How to register your Parachain",
-  "htg-parachains-reserve": "How to reserve a ParaID",
-  "htg-parachains-collators": "Start a Collator Node",
-  "htg-parachains-rococo": "Start a testnet on Rococo",
 
   "docs-nav-htg-tools": "Tools",
   "htg-tools-try-runtime": "Integrate try-runtime",

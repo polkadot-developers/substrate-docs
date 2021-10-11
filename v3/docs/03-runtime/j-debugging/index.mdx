@@ -11,13 +11,13 @@ Debugging is a necessity in all walks of software development, and blockchain is
 of the same tools used for general purpose Rust debugging also apply to Substrate. However, there
 are some restrictions when operating inside of a `no_std` environment like the Substrate runtime.
 
-## FRAME Debugging & Logging Utilities
+## FRAME debugging and logging utilities
 
 The FRAME Support
 [`debug` module](/rustdocs/latest/frame_support/debug/index.html) contains
 macros and functions that make it possible to print logs out of runtime code.
 
-### Log from Native Runtimes
+### Log from native runtimes
 
 For performance-preserving, native-only debugging, use the macros in the
 [`frame_support::debug::native` module](/rustdocs/latest/frame_support/debug/native/index.html).
@@ -56,7 +56,7 @@ name.
 frame_support::debug::native::debug!(target: "customTarget", "called by {:?}", who);
 ```
 
-### Log from Wasm Runtimes
+### Log from Wasm runtimes
 
 It is possible to pay a performance price in order to log from Wasm runtimes.
 
@@ -77,7 +77,7 @@ pub fn do_something(origin) -> DispatchResult {
 }
 ```
 
-## Printable Trait
+## Printable trait
 
 The Printable trait is meant to be a way to print from the runtime in `no_std` and in `std`. The
 `print` function works with any type that implements the
@@ -166,7 +166,7 @@ gets called.
   with debug code not needed in production.`}
 />
 
-## Substrate's Own `print` Function
+## Substrate's own `print` function
 
 For legacy use cases, Substrate provides extra tools for `Print` debugging (or tracing). You can use
 the [`print` function](/rustdocs/latest/sp_runtime/fn.print.html) to log the

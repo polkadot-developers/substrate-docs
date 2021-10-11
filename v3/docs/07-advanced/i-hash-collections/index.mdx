@@ -17,7 +17,7 @@ standard library also contains
 [`HashSet`](https://doc.rust-lang.org/std/collections/struct.HashSet.html). Let's look into why
 those types are not also exposed in `sp_std`.
 
-## Trees vs Hashes
+## Trees vs. Hashes
 
 Trees and hashes are two distinct approaches to implementing the interface of a map or set.
 Fundamentally, trees operate by comparing items: a node in the tree contains an item, and might
@@ -35,7 +35,7 @@ and `contains`: their performance does not depend on the number of items they co
 Clearly, hash-based implementations are faster than tree-based implementations for large `n`.
 However, most modern hash implementations require non-determinism in order to operate properly.
 
-## Non-determinism in Hash Collections
+## Non-determinism in hash collections
 
 The transform from an arbitrary hashable piece of data into a hash bucket for a particular hash
 table typically occurs in two phases: first, the data is hashed into a single number, the hash
@@ -66,7 +66,7 @@ many languages, including Rust.
 However, the foundation of the strategy remains a single, random number. This is incompatible with
 blockchain applications.
 
-## Non-determinism on the Blockchain
+## Non-determinism on the blockchain
 
 Blockchains are fundamentally consensus engines. At heart, this means that all the validators have
 to do the same thing.

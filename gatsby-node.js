@@ -38,7 +38,7 @@ const redirects = [
   },
   {
     fromPath: '/how-to-guides/parachains',
-    toPath: `/how-to-guides/v3/parachains/runtime-upgrades`,
+    toPath: `/how-to-guides/v3/parachains/connect`,
   },
   {
     fromPath: '/how-to-guides/tools',

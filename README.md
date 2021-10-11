@@ -9,20 +9,14 @@
 
 <!-- Badges -->
 
-[![Netlify
-Status](https://api.netlify.com/api/v1/badges/65f522fe-eefa-434b-bdb3-6345d363c177/deploy-status)](https://app.netlify.com/sites/ecstatic-babbage-c109a3/deploys)
-![linkcheck
-workflow](https://github.com/substrate-developer-hub/substrate-docs/actions/workflows/check-links.yml/badge.svg)
-
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](v3/docs/00-style-and-contributor-guidelines/a-contributor-guidelines/index.mdx)
-[![Matrix](https://img.shields.io/matrix/frontier:matrix.org)](https://matrix.to/#/#substrate-technical:matrix.org)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/65f522fe-eefa-434b-bdb3-6345d363c177/deploy-status)](https://app.netlify.com/sites/ecstatic-babbage-c109a3/deploys) ![linkcheck workflow](https://github.com/substrate-developer-hub/substrate-docs/actions/workflows/check-links.yml/badge.svg)
 
 <!-- Description -->
 
 This repository serves as the **developer hub** for the **[Substrate](https://substrate.io)** blockchain
-framework. It includes Substrate documentation, how-to guides, tutorials, and more! The content is written in [MDX](https://mdxjs.com/) format (an extension of
-[markdown](https://www.markdownguide.org/)), processed by [Gatsby](https://www.gatsbyjs.com/), and
-hosted on the Substrate Developer Hub: https://docs.substrate.io/ .
+framework. The docs are written in [MDX](https://mdxjs.com/) format an extension of
+[markdown](https://www.markdownguide.org/), processed by [Gatsby](https://www.gatsbyjs.com/), and
+hosted on the Substrate Developer Hub site:
 
 ## Contributing
 
@@ -32,12 +26,12 @@ issues, offering suggestions for improvements to existing content, adding review
 existing pull requests, proposing new content, or creating new pull requests to fix issues or
 provide new content. Please review our [contributor guidelines](/v3/contribute/style-guide) prior to
 any contribution. If you have any further questions, please do not hesitate to reach out on our
-[substrate technical community channel](https://matrix.to/#/#substrate-technical:matrix.org)! We
+[Substrate technical community channel](https://matrix.to/#/#substrate-technical:matrix.org)! We
 would love to get to know you and your work!
 
 ### Directory structure
 
-The content of this website is versioned in separate directories `v<version>` is the convention
+The content of this website is versioned in separate directories, where `v<version>` is the convention
 used. The devhub is then hierarchically separated into the three main types of
 content: docs, how-to-guides, and tutorials.
 
@@ -45,7 +39,7 @@ Sub folders in these are of the form:
 
 ```
 - <version>
-  - <content type>
+  - <doc type>
     - <XX-section>
       - <Y-page>
         - `index.mdx`
@@ -56,12 +50,12 @@ for pages.
 
 File directory example: `v3/docs/00-style-and-contributor-guidelines/a-contributor-guidelines/index.mdx`
 
-Each `index.mdx` page has the content to be rendered to this page, and all pages include a header
-section with a `slug` item that is used for navigation on the generated site,
+Each `index.mdx` page contains the content to be rendered, and all pages include a frontmatter
+section with a `slug` item that is used to link to that content in the generated site.
 
 URL example: https://docs.substrate.io/v3/contribute/style-guide
 
-Configuration and styling files for gatsby live primarily in the `src` folder.
+Configuration and styling files for Gatsby live primarily in the `src` folder.
 
 Some gotchas:
 
@@ -80,6 +74,16 @@ Some gotchas:
 
 If you are submitting a PR, make sure to submit it to the `develop` branch. Only once PRs are merged into 
 develop will they get merged into `main`.
+
+<!-- internal note:
+***Important***
+
+**Always create your own branch to work on the site, and submit pull requests to `develop`.** 
+
+> We target `develop` for pushing new content before merging with `main` and publishing the site.
+> The `main` branch is production ONLY and must be deployed by a WebDev or Communications teams
+> member through Forestry.
+-->
 
 ## 🚀 Quick start
 

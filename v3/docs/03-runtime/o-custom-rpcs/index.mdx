@@ -13,7 +13,7 @@ for checking storage values, submitting transactions, and querying the
 current consensus authorities. Substrate comes with several [default RPCs](https://polkadot.js.org/docs/substrate/rpc/). 
 In many cases it is useful to add custom RPCs to your node. 
 
-## The RPC Extensions Builder
+## The RPC extensions builder
 
 In order to connect custom RPCs you must provide a function known as an "RPC extension builder". 
 This function takes a parameter for whether the node should deny unsafe RPC calls, and returns 
@@ -22,7 +22,7 @@ JSON RPC. For more context, read more by looking at the
 [`RpcExtensionBuilder` trait API](/rustdocs/latest/sc_service/trait.RpcExtensionBuilder.html)
 documentation.
 
-## RPC Types 
+## RPC types 
 
 RPCs can be interfaces to a node's consensus mechanisms, or interfaces with any outside user to
 submit transactions to the blockchain. In all cases, it's important to consider what endpoints
