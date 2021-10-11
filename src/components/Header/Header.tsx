@@ -29,7 +29,7 @@ export default function Header() {
   }, [isMobileNavOpen])
 
   useEffect(() => {
-    if (scroll.y > 15) {
+    if (scroll.y > 30) {
       setMenuHeight('h-16')
     } else if (scroll.y < 1) {
       setMenuHeight('h-24')
