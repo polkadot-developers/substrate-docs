@@ -2,7 +2,7 @@
   "name": "substrate-docs",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Parity Technolgoies WebDev Team",
+  "author": "Parity Technologies WebDev Team",
   "private": false,
   "license": "MIT",
   "scripts": {
