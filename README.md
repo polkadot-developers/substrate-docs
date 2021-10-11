@@ -52,10 +52,13 @@ for pages.
 
 File directory example: `v3/docs/00-style-and-contributor-guidelines/a-contributor-guidelines/index.mdx`
 
-Each `index.mdx` page has the content to be rendered to this page, and all pages include a header
-section with a `slug` item that is used for navigation on the generated site, 
+Each `index.mdx` page contains the content to be rendered, and all pages include a frontmatter
+section with a `slug` item that is used for navigation on the generated site.
 
-URL example: https://docs.substrate.io/v3/contribute/style-guide
+For example:
+
+  URL : https://docs.substrate.io/v3/contribute/style-guide
+  Corresponding slug: /v3/contribute/style-guide
 
 Configuration and styling files for gatsby live primarily in the `src` folder.
 
