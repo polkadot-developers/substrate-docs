@@ -11,6 +11,9 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/65f522fe-eefa-434b-bdb3-6345d363c177/deploy-status)](https://app.netlify.com/sites/ecstatic-babbage-c109a3/deploys) ![linkcheck workflow](https://github.com/substrate-developer-hub/substrate-docs/actions/workflows/check-links.yml/badge.svg)
 
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](v3/docs/00-style-and-contributor-guidelines/a-contributor-guidelines/index.mdx)
+[![Matrix](https://img.shields.io/matrix/frontier:matrix.org)](https://matrix.to/#/#substrate-technical:matrix.org)
+
 <!-- Description -->
 
 This repository serves as the **developer hub** for the **[Substrate](https://substrate.io)** blockchain
