@@ -1,0 +1,36 @@
+name: Broken link
+description: Report a broken link to help us fix them.
+title: "[Broken Link]: "
+labels: ["fixlink"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Found a broken link? Thanks for helping us identify them. Please fill in the sections below and hit the "Submit new issue" button when you're done.
+  - type: textarea
+    id: url
+    attributes:
+      label: Broken URL
+      description: What link was broken?
+      placeholder: Please paste in the URL here.
+    validations:
+      required: true
+  - type: textarea
+    id: behaviour
+    attributes:
+      label: Expected redirect
+      description: Where was this link supposed to go?
+      placeholder: Please paste in the URL here or where you expected it to go.
+    validations:
+      required: true
+  - type: textarea
+    id: other
+    attributes:
+      label: Origin 
+      description: Was this from a Google search? Or a project?
+      placeholder: Help us understand where we should look to fix this broken link.
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: "Thanks for helping out!"

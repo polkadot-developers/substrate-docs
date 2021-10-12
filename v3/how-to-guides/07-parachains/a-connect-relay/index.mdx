@@ -132,8 +132,8 @@ Authoring will begin when the collator is actually **registered on the relay cha
 
 Depending on your target relay chain and authority there, you have options to register. Typically
 for testing you will use `sudo` and for production
-use <ExternalLink url="https://wiki.polkadot.network/docs/learn-auction">parachain auctions</ExternalLink>
-and <ExternalLink url="https://wiki.polkadot.network/docs/learn-crowdloans">crowdloans</ExternalLink>.
+use parachain [auctions](https://wiki.polkadot.network/docs/learn-auction)
+and [crowdloans](https://wiki.polkadot.network/docs/learn-crowdloans).
 
 **This guide presently only covers the sudo testing case.**
 
@@ -148,7 +148,7 @@ pub const fn deposit(items: u32, bytes: u32) -> Balance {}
 ```
 
 This is located in the `runtime/<RELAY CHAIN>/src/constants.rs`
-files <ExternalLink url="https://github.com/paritytech/polkadot/blob/master/runtime/"> in Polkadot</ExternalLink>.
+files [in Polkadot](https://github.com/paritytech/polkadot/blob/master/runtime/).
 
 #### Register Using `sudo`
 
@@ -158,8 +158,8 @@ with on Polkadot and Kusama, but for this tutorial we will do it with `sudo` cal
 
 ##### Option 1: `paraSudoWrapper.sudoScheduleParaInitialize`
 
-- Go to the <ExternalLink url="https://polkadot.js.org/apps/#/explorer">Polkadot Apps UI</ExternalLink>
-  , connecting to your **relay chain**.
+- Go to the [Polkadot Apps UI](https://polkadot.js.org/apps/#/explorer), connecting to your
+  **relay chain**.
 
 - Execute a sudo extrinsic on the relay chain by going to `Developer` -> `sudo` page.
 
@@ -175,8 +175,8 @@ page.
 
 ##### Option 2: `slots.forceLease`
 
-- Go to <ExternalLink url="https://polkadot.js.org/apps/#/explorer">Polkadot Apps UI</ExternalLink>,
-  connecting to your **relay chain**.
+- Go to the [Polkadot Apps UI](https://polkadot.js.org/apps/#/explorer), connecting to your
+  **relay chain**.
 
 - Execute a sudo extrinsic on the relay chain by going to `Developer` -> `sudo` page.
 

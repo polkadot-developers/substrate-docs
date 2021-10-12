@@ -21,8 +21,10 @@ const components = {
   wrapper: ({ children }) => <>{children}</>,
 }
 
-export const wrapPageElement = ({ element, props }) => (
-  <MDXProvider components={components}>
-    <ThemeProvider value={props}>{element}</ThemeProvider>
-  </MDXProvider>
+export const wrapRootElement = ({ element }) => (
+  <ThemeProvider>{element}</ThemeProvider>
+)
+
+export const wrapPageElement = ({ element }) => (
+  <MDXProvider components={components}>{element}</MDXProvider>
 )
