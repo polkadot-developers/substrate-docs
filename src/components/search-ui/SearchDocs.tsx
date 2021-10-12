@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Icon from '../Icon'
 import useComponentVisible from '../Hooks/use-component-visible'
 import { SearchModal } from '../search-ui'
@@ -6,6 +6,11 @@ import { SearchModal } from '../search-ui'
 export function SearchDocs() {
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible(false)
+  useEffect(() => {
+    isComponentVisible
+      ? (document.body.style.overflow = `hidden`)
+      : (document.body.style.overflow = `unset`)
+  }, [isComponentVisible])
   return (
     <>
       <div
