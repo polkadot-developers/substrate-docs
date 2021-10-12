@@ -125,7 +125,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   const result = await graphql(`
     {
-      docsV3: allFile(filter: { sourceInstanceName: { eq: "kbV3" }, extension: { eq: "mdx" } }) {
+      docsV3: allFile(
+        filter: { sourceInstanceName: { eq: "kbV3" }, extension: { eq: "mdx" } }
+      ) {
         nodes {
           childMdx {
             frontmatter {
@@ -134,7 +136,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           }
         }
       }
-      htg: allFile(filter: { sourceInstanceName: { eq: "htg" }, extension: { eq: "mdx" } }) {
+      htg: allFile(
+        filter: { sourceInstanceName: { eq: "htg" }, extension: { eq: "mdx" } }
+      ) {
         nodes {
           childMdx {
             frontmatter {

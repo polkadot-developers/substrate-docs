@@ -8,7 +8,7 @@ module.exports = {
   siteMetadata: {
     title: 'Substrate_',
     siteUrl: `${process.env.GATSBY_DOCS_URL || 'https://docs.substrate.io'}`,
-    image_og: '',
+    image_og: `${process.env.GATSBY_DOCS_URL}/img/substrate_og.png`,
     description:
       'Substrate enables developers to quickly and easily build future-proof blockchains optimized for any use case.',
     keywords: [
