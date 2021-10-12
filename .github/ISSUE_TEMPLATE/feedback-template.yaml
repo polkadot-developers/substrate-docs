@@ -1,7 +1,7 @@
-name: Feedback template
+name: Feedback form template
 description: Submit your feedback to help us improve.
-title: "[Feedback Submission]: "
-labels: ["feedback"]
+title: '[Feedback Submission]: '
+labels: ['feedback']
 body:
   - type: markdown
     attributes:
@@ -32,8 +32,8 @@ body:
     id: steps
     attributes:
       label: Steps to reproduce the problem (optional)
-      description: Provide the steps that led to the discovery of the issue. 
-      placeholder: Describe what you were doing so we can reproduce the problem. 
+      description: Provide the steps that led to the discovery of the issue.
+      placeholder: Describe what you were doing so we can reproduce the problem.
     validations:
       required: false
   - type: input
@@ -46,4 +46,4 @@ body:
       required: false
   - type: markdown
     attributes:
-      value: "Thanks for completing our form!"
+      value: 'Thanks for completing our form!'
