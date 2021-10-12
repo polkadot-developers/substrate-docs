@@ -1,106 +1,116 @@
 // This param is used when `/[tutorials, how-to-guides]` are then redirected to
 // `/[tutorials, how-to-guides]/<defaultVersion>`.
-const defaultVersion = 'v3'
+
+// CONSTANTS FOR VERSIONING ---------------------------------------------------
+// Used in redirects & URLS: 
+const defaultVersion = `v3`
+// Used in `tutsInfo` as a field (informational only)
+const substrateVersion = `3.0.0`
+const frontierVersion = `3.0.0`
+const inkVersion = `3.0.0`
+const cumulusVersion = `polkadot-v0.9.10`
 
 const redirects = [
-  { fromPath: '/tutorials', toPath: `/tutorials/${defaultVersion}` },
-  { fromPath: '/how-to-guides', toPath: `/how-to-guides/${defaultVersion}` },
-  { fromPath: '/v3', toPath: '/v3/getting-started/overview' },
-  { fromPath: '/v3/getting-started', toPath: '/v3/getting-started/overview' },
-  { fromPath: '/v3/concepts', toPath: '/v3/concepts/runtime' },
-  { fromPath: '/v3/runtime', toPath: '/v3/runtime/frame' },
-  { fromPath: '/v3/integration', toPath: '/v3/integration/polkadot-js' },
-  { fromPath: '/v3/advanced', toPath: '/v3/advanced/account-info' },
-  { fromPath: '/tutorials/v3/kitties', toPath: `/tutorials/v3/kitties/pt1` },
+  { fromPath: `/tutorials`, toPath: `/tutorials/${defaultVersion}` },
+  { fromPath: `/how-to-guides`, toPath: `/how-to-guides/${defaultVersion}` },
+  { fromPath: `/${defaultVersion}`, toPath: `/${defaultVersion}/getting-started/overview` },
+  { fromPath: `/${defaultVersion}/getting-started`, toPath: `/${defaultVersion}/getting-started/overview` },
+  { fromPath: `/${defaultVersion}/concepts`, toPath: `/${defaultVersion}/concepts/runtime` },
+  { fromPath: `/${defaultVersion}/runtime`, toPath: `/${defaultVersion}/runtime/frame` },
+  { fromPath: `/${defaultVersion}/integration`, toPath: `/${defaultVersion}/integration/polkadot-js` },
+  { fromPath: `/${defaultVersion}/advanced`, toPath: `/${defaultVersion}/advanced/account-info` },
+  { fromPath: `/tutorials/${defaultVersion}/kitties`, toPath: `/tutorials/${defaultVersion}/kitties/pt1` },
+  { fromPath: `/tutorials/${defaultVersion}/cumulus`, toPath: `/tutorials/${defaultVersion}/cumulus/start-relay` },
+  { fromPath: `/tutorials/${defaultVersion}/ink-workshop`, toPath: `/tutorials/${defaultVersion}/ink-workshop/pt1` },
   {
-    fromPath: '/how-to-guides/basics',
-    toPath: `/how-to-guides/v3/basics/pallet-integration`,
+    fromPath: `/how-to-guides/basics`,
+    toPath: `/how-to-guides/${defaultVersion}/basics/pallet-integration`,
   },
   {
-    fromPath: '/how-to-guides/pallet-design',
-    toPath: `/how-to-guides/v3/pallet-design/contracts-pallet`,
+    fromPath: `/how-to-guides/pallet-design`,
+    toPath: `/how-to-guides/${defaultVersion}/pallet-design/contracts-pallet`,
   },
   {
-    fromPath: '/how-to-guides/weights',
-    toPath: `/how-to-guides/v3/weights/calculate-fees`,
+    fromPath: `/how-to-guides/weights`,
+    toPath: `/how-to-guides/${defaultVersion}/weights/calculate-fees`,
   },
   {
-    fromPath: '/how-to-guides/testing',
-    toPath: `/how-to-guides/v3/testing/basics`,
+    fromPath: `/how-to-guides/testing`,
+    toPath: `/how-to-guides/${defaultVersion}/testing/basics`,
   },
   {
-    fromPath: '/how-to-guides/storage-migrations',
-    toPath: `/how-to-guides/v3/storage-migrations/basics`,
+    fromPath: `/how-to-guides/storage-migrations`,
+    toPath: `/how-to-guides/${defaultVersion}/storage-migrations/basics`,
   },
   {
-    fromPath: '/how-to-guides/consensus',
-    toPath: `/how-to-guides/v3/consensus/pow`,
+    fromPath: `/how-to-guides/consensus`,
+    toPath: `/how-to-guides/${defaultVersion}/consensus/pow`,
   },
   {
-    fromPath: '/how-to-guides/parachains',
-    toPath: `/how-to-guides/v3/parachains/connect`,
+    fromPath: `/how-to-guides/parachains`,
+    toPath: `/how-to-guides/${defaultVersion}/parachains/connect`,
   },
   {
-    fromPath: '/how-to-guides/tools',
-    toPath: `/how-to-guides/v3/tools/try-runtime`,
+    fromPath: `/how-to-guides/tools`,
+    toPath: `/how-to-guides/${defaultVersion}/tools/try-runtime`,
   },
 ]
 
 const tutsInfo = [
   {
-    name: 'create-your-first-substrate-chain',
-    navSlug: 'firstChain',
-    version: '3.0',
+    name: `create-your-first-substrate-chain`,
+    navSlug: `firstChain`,
+    version: `${substrateVersion}`,
   },
   {
-    name: 'add-a-pallet',
-    navSlug: 'addPallet',
-    version: '3.0',
+    name: `add-a-pallet`,
+    navSlug: `addPallet`,
+    version: `${substrateVersion}`,
   },
   {
-    name: 'proof-of-existence',
-    navSlug: 'poe',
-    version: '3.0',
+    name: `proof-of-existence`,
+    navSlug: `poe`,
+    version: `${substrateVersion}`,
   },
   {
-    name: 'permissioned-network',
-    navSlug: 'permissionedNetwork',
-    version: '3.0',
+    name: `permissioned-network`,
+    navSlug: `permissionedNetwork`,
+    version: `${substrateVersion}`,
   },
   {
-    name: 'forkless-upgrades',
-    navSlug: 'forklessUpgrades',
-    version: '3.0',
+    name: `forkless-upgrades`,
+    navSlug: `forklessUpgrades`,
+    version: `${substrateVersion}`,
   },
   {
-    name: 'private-network',
-    navSlug: 'privateNetwork',
-    version: '3.0',
+    name: `private-network`,
+    navSlug: `privateNetwork`,
+    version: `${substrateVersion}`,
   },
   {
-    name: 'node-metrics',
-    navSlug: 'nodeMetrics',
-    version: '3.0',
+    name: `node-metrics`,
+    navSlug: `nodeMetrics`,
+    version: `${substrateVersion}`,
   },
   {
-    name: 'ink-workshop',
-    navSlug: 'inkWorkshop',
-    version: '3.0',
+    name: `ink-workshop`,
+    navSlug: `inkWorkshop`,
+    version: `${inkVersion}`,
   },
   {
-    name: 'cumulus',
-    navSlug: 'cumulusTutorial',
-    version: 'polkadot-v0.9.10',
+    name: `cumulus`,
+    navSlug: `cumulusTutorial`,
+    version: `${cumulusVersion}`,
   },
   {
-    name: 'frontier',
-    navSlug: 'frontierWorkshop',
-    version: '3.0',
+    name: `frontier`,
+    navSlug: `frontierWorkshop`,
+    version: `${frontierVersion}`,
   },
   {
-    name: 'kitties',
-    navSlug: 'kittiesWorkshop',
-    version: '3.0',
+    name: `kitties`,
+    navSlug: `kittiesWorkshop`,
+    version: `${substrateVersion}`,
   },
 ]
 
@@ -125,8 +135,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   const result = await graphql(`
     {
-      docsV3: allFile(
-        filter: { sourceInstanceName: { eq: "kbV3" }, extension: { eq: "mdx" } }
+      docs${defaultVersion}: allFile(
+        filter: { sourceInstanceName: { eq: "kb${defaultVersion}" }, extension: { eq: "mdx" } }
       ) {
         nodes {
           childMdx {
@@ -156,7 +166,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
 
   const tutsGqlResult = await Promise.allSettled(
-    tutsInfo.map(tutInfo => graphql(gqlTpl.replace('>>param1<<', tutInfo.name)))
+    tutsInfo.map(tutInfo => graphql(gqlTpl.replace(`>>param1<<`, tutInfo.name)))
   )
 
   if (tutsGqlResult.some(res => res.errors)) {
@@ -164,14 +174,14 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return
   }
 
-  const allV3 = result.data.docsV3.nodes
-  allV3.forEach(({ childMdx: node }) => {
+  const all${defaultVersion} = result.data.docs${defaultVersion}.nodes
+  all${defaultVersion}.forEach(({ childMdx: node }) => {
     createPage({
       path: `${node.frontmatter.slug}`,
       component: kbTemplate,
       context: {
         slug: `${node.frontmatter.slug}`,
-        version: `3.0`,
+        version: `${substrateVersion}`,
       },
     })
   })
@@ -183,7 +193,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       component: htgTemplate,
       context: {
         slug: `${node.frontmatter.slug}`,
-        version: `3.0`,
+        version: `${substrateVersion}`,
       },
     })
   })
@@ -224,8 +234,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 /* eslint-disable security/detect-non-literal-require */
 const { GraphQLJSONObject } = require(`graphql-type-json`)
 const lunr = require(`lunr`)
-const remark = require('remark')
-const strip = require('strip-markdown')
+const remark = require(`remark`)
+const strip = require(`strip-markdown`)
 
 exports.createResolvers = ({ cache, createResolvers }) => {
   createResolvers({
@@ -286,7 +296,7 @@ const createIndex = async (docNodes, cache) => {
     }
   }
   const index = lunr(function () {
-    console.log('Updating Lunr Search Index')
+    console.log(`Updating Lunr Search Index`)
     this.ref(`slug`)
     this.field(`title`)
     this.field(`section`)
