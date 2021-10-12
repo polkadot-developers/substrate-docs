@@ -1,7 +1,7 @@
-name: Bug report template
-description: Let us know about an issue you experienced.
-title: '[BUG]: '
-labels: ['bug']
+name: Bug report (website related)
+description: Let us know about an issue you experienced on https://docs.substrate.io/
+title: '[WEBSITE BUG]: '
+labels: ['bug','web-dev']
 body:
   - type: markdown
     attributes:

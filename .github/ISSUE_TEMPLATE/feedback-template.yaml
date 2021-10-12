@@ -1,5 +1,5 @@
-name: Feedback form template
-description: Submit your feedback to help us improve.
+name: Feedback form
+description: Submit your feedback to help us improve!
 title: '[Feedback Submission]: '
 labels: ['feedback']
 body:
