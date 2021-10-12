@@ -30,7 +30,7 @@ Substrate Connect enables Substrate runtime engineers to:
 For in-browser use, Substrate Connect provides a browser extension designed to give end-users the 
 ability to contain all running light clients in one browser tab. In addition, it provides:
 
-1. **Ready-to-use Substrate Wasm Light-Clients to be executed in the browser.** Wasm light clients are 
+1. **Ready-to-use Substrate Light-Clients to be executed in the browser.** Light clients are 
 part of the Substrate framework and with that, available for every Substrate based project. If developers
 want to generate a light client of their chain, all it takes is just one command to compile a
 library that contains everything that's needed to run a light client in the browser.
@@ -58,7 +58,7 @@ asks the extension to connect to whatever blockchains the app is interested in. 
 smart enough to share resources so that it only connects to a network once even if there are
 multiple apps talking to it.
 
-The `@substrate/connect` API has the following capabilities:
+The `@substrate/connect` library has the following capabilities:
 
 - It can detect whether a user has the Substrate Connect browser extension installed. If it 
 isn't installed, it falls back to instantiating a light client directly in the page.
