@@ -22,7 +22,7 @@ export default function NotFoundPage() {
               <PrimaryFixedButton link="/">Home</PrimaryFixedButton>
             </div>
             <div>
-              <PrimaryFixedButton link="https://github.com/substrate-developer-hub/substrate-docs/issues/new?title=Broken%20Link&template=feedback-template.yaml&labels=feedback">
+              <PrimaryFixedButton link="https://github.com/substrate-developer-hub/substrate-docs/issues/new?title=Broken%20Link&template=broken-link.yaml&labels=Broken%20Link">
                 Report a broken link
               </PrimaryFixedButton>
             </div>
