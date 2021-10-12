@@ -9,21 +9,14 @@
 
 <!-- Badges -->
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/65f522fe-eefa-434b-bdb3-6345d363c177/deploy-status)](https://app.netlify.com/sites/ecstatic-babbage-c109a3/deploys) ![linkcheck workflow](https://github.com/substrate-developer-hub/substrate-docs/actions/workflows/check-links.yml/badge.svg)
-
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](v3/docs/00-style-and-contributor-guidelines/a-contributor-guidelines/index.mdx)
-[![Matrix](https://img.shields.io/matrix/frontier:matrix.org)](https://matrix.to/#/#substrate-technical:matrix.org)
+![linkcheck workflow](https://github.com/substrate-developer-hub/substrate-docs/actions/workflows/check-links.yml/badge.svg) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](v3/docs/00-style-and-contributor-guidelines/a-contributor-guidelines/index.mdx) [![Matrix](https://img.shields.io/matrix/frontier:matrix.org)](https://matrix.to/#/#substrate-technical:matrix.org)
 
 <!-- Description -->
 
 This repository serves as the **developer hub** for the **[Substrate](https://substrate.io)** blockchain
 framework. The docs are written in [MDX](https://mdxjs.com/) format an extension of
 [markdown](https://www.markdownguide.org/), processed by [Gatsby](https://www.gatsbyjs.com/), and
-hosted on the Substrate Developer Hub site:
-
-<h3 align="center">
-  <a target=_blank>https://docs.substrate.io/</a>
-</h3>
+published to https://docs.substrate.io/ .
 
 ## Contributing
 
@@ -38,14 +31,14 @@ would love to get to know you and your work!
 
 ### Directory structure
 
-The content of this website is versioned in separate directories, where `v<version>` is the convention
+The content of this website is versioned in separate directories, where `v<VERSION>` is the convention
 used. The devhub is then hierarchically separated into the three main types of
 content: docs, how-to-guides, and tutorials.
 
 Sub folders in these are of the form:
 
 ```
-- <version>
+- v<VERSION>
   - <content type>
     - <XX-section>
       - <Y-page>
