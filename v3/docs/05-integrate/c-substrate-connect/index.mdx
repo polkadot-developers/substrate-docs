@@ -47,7 +47,7 @@ can be avoided. Substrate Connect uses a Wasm light client which connects to a S
 without any unecessary intermediary.
 
 In addition, due to browser limitations on websockets from HTTPS pages, establishing a good number of peers
-is difficult as many nodes need to be available with TLS (Transport Layer Security). Substrate
+is difficult as nodes are reachable only if they provide a TLS (Transport Layer Security) certificate. Substrate
 Connect provides a browser extension to overcome this limitation and to keep the chains synced in
 the background, making applications on a Substrate chain faster.
 
@@ -62,7 +62,7 @@ multiple apps talking to it.
 The `@substrate/connect` API has the following capabilities:
 
 - It can detect whether a user has the Substrate Connect browser extension installed. If it 
-isn't installed, it falls back to instantiating a WASM light client directly in the page.
+isn't installed, it falls back to instantiating a light client directly in the page.
 
 - It handles receiving and listening for messages from the browser extension and provider.
 
