@@ -2,7 +2,11 @@ import React from 'react'
 
 interface LabelProps {
   index: number
-  section: any
+  section: {
+    docs: boolean
+    tuts: boolean
+    htgs: boolean
+  }
   setSection: any
   children: React.ReactNode
   prevState?: {
@@ -12,7 +16,7 @@ interface LabelProps {
   }
 }
 
-export default function SearchSectionLabel({
+export function SearchSectionLabel({
   index,
   section,
   setSection,

@@ -28,6 +28,8 @@ import externalIcon from '../images/svgs/external-icon.svg'
 import informationIcon from '../images/svgs/information.svg'
 import adviceIcon from '../images/svgs/advice.svg'
 import noteIcon from '../images/svgs/note.svg'
+import searchIcon from '../images/svgs/search.svg'
+import closeIcon from '../images/svgs/close-icon.svg'
 
 const iconsMap = new Map()
 /* homepage */
@@ -62,6 +64,8 @@ iconsMap.set('externalIcon', externalIcon)
 iconsMap.set('informationIcon', informationIcon)
 iconsMap.set('adviceIcon', adviceIcon)
 iconsMap.set('noteIcon', noteIcon)
+iconsMap.set('searchIcon', searchIcon)
+iconsMap.set('closeIcon', closeIcon)
 
 interface IconProps {
   name: string
