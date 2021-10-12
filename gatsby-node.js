@@ -1,14 +1,24 @@
+// CONSTANTS FOR VERSIONING AND REDIRECTS -------------------------------------
+
+// NOTE: the constants are not enough on a version change! GraphQL needs an update below, see
+// exports.createPages = async ({ actions, graphql, reporter }) => {...}
+// and
+//   const allv3 = result.data.docsv3.nodes
+
+// Used in redirects & URLS: 
 // This param is used when `/[tutorials, how-to-guides]` are then redirected to
 // `/[tutorials, how-to-guides]/<defaultVersion>`.
-
-// CONSTANTS FOR VERSIONING AND REDIRECTS -------------------------------------
-// Used in redirects & URLS: 
 const defaultVersion = `v3`
-// Used in `tutsInfo` as a field (informational only)
+
+// Used in `tutsInfo` as a field
 const substrateVersion = `3.0.0`
 const frontierVersion = `3.0.0`
 const inkVersion = `3.0.0`
 const cumulusVersion = `polkadot-v0.9.10`
+
+// ----------------------------------------------------------------------------
+
+
 
 const redirects = [
   { fromPath: `/tutorials`, toPath: `/tutorials/${defaultVersion}` },
@@ -135,8 +145,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   const result = await graphql(`
     {
-      docs${defaultVersion}: allFile(
-        filter: { sourceInstanceName: { eq: "kb${defaultVersion}" }, extension: { eq: "mdx" } }
+      docsv3: allFile(
+        filter: { sourceInstanceName: { eq: "kbv3" }, extension: { eq: "mdx" } }
       ) {
         nodes {
           childMdx {
@@ -174,8 +184,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return
   }
 
-  const all${defaultVersion} = result.data.docs${defaultVersion}.nodes
-  all${defaultVersion}.forEach(({ childMdx: node }) => {
+  const allv3 = result.data.docsv3.nodes
+  allv3s.forEach(({ childMdx: node }) => {
     createPage({
       path: `${node.frontmatter.slug}`,
       component: kbTemplate,
