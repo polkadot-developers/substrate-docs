@@ -1,12 +1,12 @@
-name: Feedback template
-description: Submit your feedback to help us improve.
-title: "[Feedback Submission]: "
-labels: ["feedback"]
+name: Bug report template
+description: Let us know about an issue you experienced
+title: "[BUG]: "
+labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thank you so much for taking the time to submit your feedback!
+        Thank you so much for taking the time to report a problem!
   - type: dropdown
     id: browsers
     attributes:
@@ -21,17 +21,17 @@ body:
     validations:
       required: false
   - type: textarea
-    id: feedback
+    id: bug
     attributes:
-      label: Feedback
-      description: Did something go wrong or have a suggestion for improving this site?
-      placeholder: Describe what you would like to see changed.
+      label: Bug report
+      description: What happened?
+      placeholder: Describe the problem.
     validations:
       required: true
   - type: textarea
     id: steps
     attributes:
-      label: Steps to reproduce the problem (optional)
+      label: Steps to reproduce the problem
       description: Provide the steps that led to the discovery of the issue. 
       placeholder: Describe what you were doing so we can reproduce the problem. 
     validations:
@@ -46,4 +46,4 @@ body:
       required: false
   - type: markdown
     attributes:
-      value: "Thanks for completing our form!"
+      value: "Thanks again for completing this report!"
