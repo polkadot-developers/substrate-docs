@@ -2,7 +2,7 @@
 title: Testing a Transfer Function
 slug: /how-to-guides/v3/testing/transfer-function
 keywords: testing, runtime, beginner
-version: 3.0 
+version: 3.0
 section: how to guides
 category: testing
 difficulty: 1
@@ -12,19 +12,16 @@ difficulty: 1
   data={[
     {
       title: 'Goal',
-      description: 'Learn how to write tests and improve the correctness of a \`transfer\` function.',
+      description: 'Learn how to write tests and improve the correctness of a `transfer` function.',
     },
     {
       title: 'Use Cases',
-      description:
-        `Testing a custom transfer function.`,
+      description: `Testing a custom transfer function.`,
     },
     {
       title: 'Overview',
-      description:
-        `Testing each function is an imporant part of developing pallets for production. This guide
-        steps you through best practices for writing test cases for a basic \`transfer\` function.
-        `,
+      description: `Testing each function is an important part of developing pallets for production.
+      This guide steps you through best practices for writing test cases for a basic \`transfer\` function.`,
     },
   ]}
 />
@@ -33,7 +30,8 @@ difficulty: 1
 
 ### 1. Outline the `transfer` function
 
-A transfer function has two key elements: subtracting a balance from an account and adding that balance to another account.
+A transfer function has two key elements: subtracting a balance from an account and adding that
+balance to another account.
 Here, we'll start by outlining this function:
 
 ```rust
@@ -51,7 +49,7 @@ pub (super) fn transfer(
     Accounts::<T>::mutate(&to, |bal| {
         *bal = bal.saturating_add(amount);
     });
-    Self::deposit_event(Event::<T>::Transfered(sender, to, amount))
+    Self::deposit_event(Event::<T>::Transferred(sender, to, amount))
     Ok(().into())
 }
 ```
@@ -122,7 +120,7 @@ Make sure that sending and receiving accounts aren't dust accounts. Use `T::MinB
 
 ## Examples
 
-- tests in the [`reward-coin`](https://github.com/substrate-developer-hub/substrate-how-to-guides/blob/main/example-code/template-node/pallets/reward-coin/src/tests.rs) example pallet
+- Tests in the [`reward-coin` example pallet](https://github.com/substrate-developer-hub/substrate-how-to-guides/blob/main/example-code/template-node/pallets/reward-coin/src/tests.rs).
 
 ## Resources
 
