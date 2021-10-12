@@ -37,10 +37,10 @@
 /docs/en/tutorials/frontier/*                  /tutorials/v3/frontier/*                301!
 
 ### Tutorial - Cumulus Workshop
-/tutorials/substrate-cumulus-workshop               /tutorials/v3/cumulus/p1                301!
-/tutorials/substrate-cumulus-workshop/*             /tutorials/v3/cumulus/p1                301!
-/cumulus-workshop                                   /tutorials/v3/cumulus/p1                301!
-/cumulus-workshop/*                                 /tutorials/v3/cumulus/p1                301!
+/tutorials/substrate-cumulus-workshop               /tutorials/v3/cumulus/start-relay       301!
+/tutorials/substrate-cumulus-workshop/*             /tutorials/v3/cumulus/start-relay       301!
+/cumulus-workshop                                   /tutorials/v3/cumulus/start-relay       301!
+/cumulus-workshop/*                                 /tutorials/v3/cumulus/start-relay       301!
 
 ### Tutorial - Kitties Workshop
 /tutorials/kitties                                  /tutorials/v3/kitties                   301!

@@ -14,7 +14,7 @@
     "serve": "gatsby serve",
     "serve:fresh": "yarn clean; yarn build; yarn serve",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "checklinks": "yarn blc --filter-level=3 -rof --requests=10 --exclude='/rustdocs' --exclude='/crates.io' --exclude='/fonts.gstatic.com' --exclude='/www.substrate.io' --exclude='/docs.substrate.io' --exclude='/substrate-io-staging.netlify.app' --exclude='/github.com' --exclude='/www.nuget.org' http://localhost:9000",
+    "checklinks": "yarn blc --filter-level=3 -rof --requests=10 --exclude='/rustdocs' --exclude='/crates.io' --exclude='/fonts.gstatic.com' --exclude='/github.com' --exclude='/www.nuget.org' --exclude='/www.chicagomanualofstyle.org' http://localhost:9000",
     "lint": "eslint . --ext ts --ext tsx --ext js --ext jsx",
     "lint:tsc": "tsc -p tsconfig.json --noEmit"
   },
