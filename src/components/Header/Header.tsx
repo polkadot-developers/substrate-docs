@@ -4,7 +4,6 @@ import { useSiteMetadata } from '../Hooks/use-site-metadata'
 import cx from 'classnames'
 import DocsButton from '../DocsButton'
 import DropDownMenu from './DropDownMenu'
-// import SearchDocs from '../SearchDocs'
 import { SearchDocs } from '../search-ui'
 import ThemeToggle from '../ThemeToggle'
 import MainNav from '../MainNav'
@@ -116,7 +115,6 @@ export default function Header() {
             </div>
             <div className="w-1/2 flex items-center justify-end">
               <div>
-                {/* <SearchDocs /> */}
                 <SearchDocs />
               </div>
               <div className="pl-8 pr-6">
