@@ -165,7 +165,7 @@ finally serving it at `https://localhost:9000`.
 In another terminal, run:
 
 ```bash
-yarn checklinks:v3
+yarn checklinks
 ```
 
 You can further configure it in `package.json` file. Currently it has a list of paths being
@@ -190,7 +190,7 @@ excluded because for:
 We configured a [Github workflow](../.github/workflows/check-links.yml) to build the Gatsby site in
 production as a docker image and push it to Docker hub at
 [`jimmychu0807/substrate-docs`](https://hub.docker.com/repository/docker/jimmychu0807/substrate-docs).
-The image is then launched as a service in the next CI/CD job. `checklinks:v3` is run against the
+The image is then launched as a service in the next CI/CD job. `checklinks` is run against the
 running gatsby site in the docker container to check all links.
 
 ## Security
