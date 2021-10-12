@@ -1,7 +1,7 @@
 // This param is used when `/[tutorials, how-to-guides]` are then redirected to
 // `/[tutorials, how-to-guides]/<defaultVersion>`.
 
-// CONSTANTS FOR VERSIONING ---------------------------------------------------
+// CONSTANTS FOR VERSIONING AND REDIRECTS -------------------------------------
 // Used in redirects & URLS: 
 const defaultVersion = `v3`
 // Used in `tutsInfo` as a field (informational only)
