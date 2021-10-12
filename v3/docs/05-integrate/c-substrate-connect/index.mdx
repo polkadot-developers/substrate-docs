@@ -8,19 +8,18 @@ keywords: client, wasm, rpc, node
 ---
 
 [Substrate Connect](https://paritytech.github.io/substrate-connect/) is
-a JavaScript library that enables developers to build application specific light
-clients for Substrate chains. It provides a more secure alternative than connecting to
-a JSON-RPC node to interact with the chain. 
+a JavaScript library and browser extension that builds on the [Polkadot JS 
+API](/v3/integration/polkadot-js#polkadot-js-api) to enable developers to build application 
+specific light clients for Substrate chains. It uses core components are also part of the 
+Substrate building framework and available for every Substrate based project.
 
-Substrate Connect builds on the [Polkadot JS API](/v3/integration/polkadot-js#polkadot-js-api) 
-so building an app has the same experience as with using a traditional RPC server node. Its 
-components are also part of the Substrate building framework and available for every Substrate
-based project.
+Building blockchain apps with Substrate Connect is the same as building any app that uses a special 
+RPC node except that nodes don't need to be vetted or trusted.
 
 ## What it enables
 
 Substrate Connect provides the necessary infrastructure to run a Substrate light client in any
-Javascript or Node environment, from in-browser applications and extensions, to Electron apps,
+Javascript or any Node environment, from in-browser applications and extensions, to Electron apps,
 IOT devices, and mobile phones.
 
 Substrate Connect enables Substrate runtime engineers to:
@@ -28,7 +27,7 @@ Substrate Connect enables Substrate runtime engineers to:
 -  Generate a light client of their chain in a single command.
 -  Run light nodes of different chains including their own custom chains 
 
-For in-browser use, Substrate Connect provides a Browser Extension designed to give end-users the 
+For in-browser use, Substrate Connect provides a browser extension designed to give end-users the 
 ability to contain all running light clients in one browser tab. In addition, it provides:
 
 1. **Ready-to-use Substrate Wasm Light-Clients to be executed in the browser.** Wasm light clients are 
