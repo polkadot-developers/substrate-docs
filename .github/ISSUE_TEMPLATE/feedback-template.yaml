@@ -28,14 +28,6 @@ body:
       placeholder: Describe what you would like to see changed.
     validations:
       required: true
-  - type: textarea
-    id: steps
-    attributes:
-      label: Steps to reproduce the problem (optional)
-      description: Provide the steps that led to the discovery of the issue.
-      placeholder: Describe what you were doing so we can reproduce the problem.
-    validations:
-      required: false
   - type: input
     id: contact
     attributes:
