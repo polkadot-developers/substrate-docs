@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import Link from '../Link'
 // import LanguageSwitcher from '../LanguageSwitcher'
 import MobileSubMenu from './MobileSubMenu'
-import SearchDoc from '../SearchDocs'
+// import SearchDoc from '../SearchDocs'
+import { SearchDocs } from '../search-ui'
 import ThemeToggle from '../ThemeToggle'
 
 import { useSiteMetadata } from '../../components/Hooks/use-site-metadata'
@@ -119,7 +120,8 @@ const MobileMenu = ({ toggleMenu, navItems }: MobileMenuProps) => {
           })}
         </div>
         <div className="px-6">
-          <SearchDoc />
+          {/* <SearchDoc /> */}
+          <SearchDocs />
         </div>
         {/* <LanguageSwitcher currentLang={currentLang} langConfig={langConfig} /> */}
         <div className="px-6 py-8">
