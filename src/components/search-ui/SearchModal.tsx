@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useLunrIndex } from '../Hooks/use-lunr-index'
-import { SearchSectionLabel, SearchResult, SearchInput } from '../search-ui'
+import {
+  SearchSectionLabel,
+  SearchResultsContainer,
+  SearchInput,
+} from '../search-ui'
 
 interface SearchModalProps {
   id: React.LegacyRef<HTMLDivElement>
@@ -33,13 +37,7 @@ export function SearchModal({ id, closeModal }: SearchModalProps) {
     tuts: false,
     htgs: false,
   })
-  const suggestedTerms = [
-    'Runtime',
-    'Storage',
-    'FRAME',
-    'Weights',
-    'Pallet Design',
-  ]
+
   const sectionNames = {
     docs: 'docs',
     tuts: 'tutorials',
@@ -127,58 +125,11 @@ export function SearchModal({ id, closeModal }: SearchModalProps) {
               </div>
             ))}
           </div>
-
-          <div className="h-full">
-            <div
-              className={`${
-                query.length === 0 ? 'invisible' : 'visible'
-              } text-sm font-bold mb-3 animate-fade-in`}
-            >
-              {displayedResults.length} RESULTS
-            </div>
-            <div className="overflow-y-auto overscroll-contain h-[400px]">
-              {query.length === 0 ? (
-                <div>
-                  {suggestedTerms.map((term, index) => (
-                    <div
-                      className="cursor-pointer"
-                      onClick={() => setQuery(term)}
-                      key={index}
-                    >
-                      <SearchResult
-                        noLink
-                        section={`Suggestion`}
-                        title={term}
-                      />
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div>
-                  {searchResults.length > 0 ? (
-                    <div>
-                      {displayedResults.map((result, index) => {
-                        return (
-                          <div key={index}>
-                            <SearchResult
-                              slug={result.slug}
-                              section={result.section}
-                              category={result.category}
-                              title={result.title}
-                            />
-                          </div>
-                        )
-                      })}
-                    </div>
-                  ) : (
-                    <div>
-                      <SearchResult error title={`Try another search term`} />
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
+          <SearchResultsContainer
+            results={displayedResults}
+            query={query}
+            setQuery={setQuery}
+          />
         </div>
       </div>
       <div
