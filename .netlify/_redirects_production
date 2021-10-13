@@ -93,6 +93,10 @@
 /docs/en/knowledgebase/advanced/no-hash-collections/  /v3/advanced/hash-collections  301!
 /docs/en/knowledgebase/advanced/*             /v3/advanced/:splat           301!
 
+## Awesome Substrate Redirect 
+/awesome-substrate                            https://substrate.io/ecosystem/resources/awesome-substrate/
+/awesome-substrate/                           https://substrate.io/ecosystem/resources/awesome-substrate/
+
 ## Production: rustdocs
 /rustdocs/*          https://paritytech.github.io/substrate/:splat             200
 
