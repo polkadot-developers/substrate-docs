@@ -1,5 +1,5 @@
 ---
-title: Start a Private Network
+title: Start a private network
 slug: /tutorials/v3/private-network
 hideNav: true
 version: 3.0 
@@ -14,55 +14,51 @@ relevantSkills:
   - FRAME
 ---
 
-##  Introduction
+This tutorial provides a basic introduction to the **consensus** model used in the Substrate node template and how to start a blockchain network with an
+**authority set** of private **validators**.
 
-In this tutorial we will learn and practice how to start a blockchain network with a
-validator/authority set of your choosing using Substrate.
+All blockchains require the nodes in the network to agree on the set of messages and their order to successfully create blocks and progress from one block to the next.
+Each block represents state at a specific point in time and the nodes agreement on the state is called consensus.
+There are several differnt algorithms used to reach consensus, including:
 
-You should already have version `v3.0.0` of the
-[Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
-compiled on your computer from when you completed the
-[Create Your First Substrate Chain Tutorial](/tutorials/v3/create-your-first-substrate-chain).
-If you do not, please complete that tutorial.
+* Proof of work consensus depends on the computational work done by validator nodes to add valid blocks to the chain.
 
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text=
-      "Experienced developers who truly prefer to skip that tutorial, you may install the node template 
-      according to the instructions in its readme.
-      "
-/>
+* Proof of stake consensus selects the validators add valid blocks to the chain based on the cryptocurrency holdings that they have locked up as a stake in the network.
 
-## What You Will be Doing
+* Proof of authority consensus relies on a set of approved account identities to act as validators. The nodes associated with approved accounts have the authority to put transactions into blocks.
 
-Before we even get started, let's layout what we're going to do over the course of this turorial. We will:
+The Substrate node template uses a proof of authority consensus model also referred to as **authority round** or **Aura** consensus.
+The Aura consensus protocol limits block production to a rotating list of authorized accounts—**authorities**—that create blocks in a round robin fashion.
+
+In this tutorial, you'll see how this consensus model works in practice, first, by using the predefined accounts that are part of the node template, then by adding a new authority to the approved set.
+
+## Before you begin
 
 <TutorialObjective
   data={{
     textLineOne:
-      '1. Alice and Bob Start Blockchain',
+      'Start the blockchain using predefined accounts.',
       url: '/tutorials/v3/private-network#alice-and-bob-start-blockchain',
   }}
 />
 <TutorialObjective
   data={{
     textLineOne:
-      '2. Generate ed25519 and sr25519 key-pairs for use as a network authority.',
+      'Generate ed25519 and sr25519 key-pairs for use as a network authority.',
     url: '#generate-your-own-keys',
   }}
 />
 <TutorialObjective
   data={{
     textLineOne:
-      '3. Create and edit a chainspec JSON file.',
+      'Create and edit a chain spec JSON file.',
     url: '#create-a-custom-chain-spec',
   }}
 />
 <TutorialObjective
   data={{
     textLineOne:
-      '4. Launch your custom chain.',
+      'Launch your custom chain.',
     url: '#launch-your-private-network',
   }}
 />
@@ -72,61 +68,74 @@ Before we even get started, let's layout what we're going to do over the course 
 - Learn how to configure a JSON chainspec file 
 
 
-## Alice and Bob Start Blockchain
+## Start the blockchain using predefined accounts
 
-Before we generate our own keys, and start a truly unique Substrate network, let's learn the
-fundamentals by starting with a pre-defined network specification called `local` with two
-pre-defined (and definitely not private!) keys known as Alice and Bob.
-**This portion of the tutorial should be run on a single workstation with a single Substrate binary.**
+Before you generate keys to start your own private Substrate network, you can learn the fundamental principles using a predefined network specification called `local` and predefined user accounts.
 
-### Alice Starts First
+For this part of the tutorial, you should have the Substrate node template running on a single local computer with predefined accounts that are named Alice and Bob.
 
-Alice (or whomever is playing her) should run these commands from node-template repository root.
+### Start the blockchain as Alice
 
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text=
-    "Here we\'ve explicitly shown the `purge-chain` command. In the future we will omit this You should
-    purge old chain data any time you\'re trying to start a new network.
-    "
-/>
+To start the blockchain:
 
-```bash
-# Purge any chain data from previous runs
-# You will be prompted to type `y`
-./target/release/node-template purge-chain --base-path /tmp/alice --chain local
-```
+1. Open a terminal shell on your computer.
 
-```bash
-# Start Alice's node
-./target/release/node-template \
-  --base-path /tmp/alice \
-  --chain local \
-  --alice \
-  --port 30333 \
-  --ws-port 9945 \
-  --rpc-port 9933 \
-  --node-key 0000000000000000000000000000000000000000000000000000000000000001 \
-  --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
-  --validator
-```
+1. Change to the root directory where you compiled the Substrate node template.
 
-Let's look at those flags in detail:
+1. Purge old chain data by running the following command:
+    
+    ```bash
+    ./target/release/node-template purge-chain --base-path /tmp/alice --chain local
+    ```
+    The command prompts you to confirm the operation.
 
-| <div style="min-width:110pt"> Flags </div> | Descriptions                                                                                                                                                                                                                                                                                                                               |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `--base-path`                              | Specifies a directory where Substrate should store all the data related to this chain. If this value is not specified, a default path will be used. If the directory does not exist it will be created for you. If other blockchain data already exists there you will get an error. Either clear the directory or choose a different one. |
-| `--chain local`                            | Specifies which chain specification to use. There are a few prepackaged options including `local`, `development`, and `staging` but generally one specifies their own chain spec file. We'll specify our own file in a later step.                                                                                                         |
-| `--alice`                                  | Puts the predefined Alice keys (both for block production and finalization) in the node's keystore. Generally one should generate their own keys and insert them with an RPC call. We'll generate our own keys in a later step. This flag also makes Alice a validator.                                                                    |
-| `--port 30333`                             | Specifies the port that your node will listen for p2p traffic on. `30333` is the default and this flag can be omitted if you're happy with the default. If Bob's node will run on the same physical system, you will need to explicitly specify a different port for it.                                                                   |
-| `--ws-port 9945`                           | Specifies the port that your node will listen for incoming WebSocket traffic on. The default value is `9944`. This example uses a custom web socket port number (`9945`).                                                                                                                                                                  |
-| `--rpc-port 9933`                          | Specifies the port that your node will listen for incoming RPC traffic on. `9933` is the default, so this parameter may be omitted.                                                                                                                                                                                                        |
-| `--node-key <key>`                         | The Ed25519 secret key to use for `libp2p` networking. The value is parsed as a hex-encoded Ed25519 32 byte secret key, i.e. 64 hex characters. WARNING: Secrets provided as command-line arguments are easily exposed. Use of this option should be limited to development and testing.                                                   |
-| `--telemetry-url`                          | Tells the node to send telemetry data to a particular server. The one we've chosen here is hosted by Parity and is available for anyone to use. You may also host your own (beyond the scope of this article) or omit this flag entirely.                                                                                                  |
-| `--validator`                              | Means that we want to participate in block production and finalization rather than just sync the network.                                                                                                                                                                                                                                  |
+    ```bash
+    Are you sure to remove "/tmp/alice/chains/local_testnet/db"? [y/N]:
+    ```
 
-When the node starts, you should see output similar to this:
+1. Type `y` to confirm that you want to remove the chain data.
+    
+    You should always remove old chain data when starting a new network.
+
+1. Start the local blockchain node using the alice account by running the following command:
+    
+    ```bash
+    ./target/release/node-template \
+    --base-path /tmp/alice \
+    --chain local \
+    --alice \
+    --port 30333 \
+    --ws-port 9945 \
+    --rpc-port 9933 \
+    --node-key 0000000000000000000000000000000000000000000000000000000000000001 \
+    --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
+    --validator
+    ```
+
+#### Review the command-line options
+
+Before moving on, let's take a closer look at the options used to start the node templates.
+
+| <div style="min-width:110pt;font-weight:bold;">Option</div> | <div style="font-weight:bold;">Description</div> |
+|:------------------------------ |: ---------------------------------------------- |
+| `--base-path` | Specifies the directory for storing all of the data related to this chain. If you don't specify this option, a default path is used. If you specify a directory that doesn'o't exist, it is created for you. If the directory you specify already contains blockchain data, you must remove the data from the directory or choose a different location for the command to start the node to succeed. |
+| `--chain local` | Specifies the chain specification to use. Valid predefined chain specifications include `local`, `development`, and `staging`. Generally, you would specify your own chain specification file. You'll see how to create your own chain specification file in a later step. |
+| `--alice` | Places the predefined keys for the Alice account in the node's keystore. With this setting, the `alice` account is used for block production and finalization. Generally, you would generate your own keys and insert them with an RPC call. You'll see how to generate your own keys in a later step. |
+| `--port 30333` | Specifies the port to listen on for p2p traffic. Port `30333` is the default. You can omit this option to use the default. Because this tutorial uses to nodes running on the same physical computer to simulate a network, you must explicitly specify a different port for at least one account. |
+| `--ws-port 9945`  | Specifies the port to listen on for incoming WebSocket traffic. The default value is `9944`. This example uses a custom web socket port number (`9945`). |
+| `--rpc-port 9933` | Specifies the port to listen on for incoming RPC traffic. Port `9933` is the default. You can omit this option to use the default. |
+| `--node-key <key>` | Specifies the Ed25519 secret key to use for `libp2p` networking. The value is parsed as a hex-encoded Ed25519 32-byte secret key, that is, 64 hex characters. WARNING: Secrets provided as command-line arguments are easily exposed. You should only use this option for development and testing. |
+| `--telemetry-url` | Specifies where to send telemetry data. For this tutorial, you can send telemetry data to a server hosted by Parity that is available for anyone to use. You can specify a differnet server or omit this option. |
+| `--validator` | Specifies that this node participates in block production and finalization for the network. |
+
+For more information about the command-line options that are available for started the node template, see the usage help by running the following command:
+
+`./target/release/node-template --help`
+
+#### Review the node messages displayed
+
+If the node starts successfully, the terminal displays messages describing network operations. 
+For example, you should see output similar to this:
 
 ```
 2021-03-10 17:34:27  Substrate Node
@@ -150,153 +159,155 @@ When the node starts, you should see output similar to this:
 ...
 ```
 
-A coupe things to notice:
+There are a few key messages you should notice in the output displayed.
 
- - `🔨 Initializing Genesis block/state (state: 0xea47…9ba8, header-hash: 0x9d07…7cce)` tells which
-   genesis block the node is using. When you start the next node, verify that these values are
-   equal.
- - `🏷 Local node identity is: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp` shows the
-   Peer ID that Bob will need when booting from Alice's node. This value was determined by the
-   `--node-key` that was used to start Alice's node.
+* `🔨 Initializing Genesis block/state (state: 0xea47…9ba8, header-hash: 0x9d07…7cce)` identifies the initial or **genesis block** that the node is using. 
+  When you start the next node, verify that these values are equal.
+
+* `🏷 Local node identity is: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp` shows the peer ID that the node started by Bob will need from Alice's node. This value was determined by the `--node-key` that was used to start Alice's node.
    
- - No blocks are being produced yet. Blocks will start being produced once another
-   node joins the network.
+* No blocks are being produced yet. Blocks will start being produced once another node joins the network.
 
-More details about all of these flags and others that I haven't mentioned are available by running
-`./target/release/node-template --help`.
+### Attach a front-end to see information about the node
 
-### Attach a UI
+You can see a lot of information about node operations by watching the output it produces in your terminal.
+You can also view information about node operations by using a web browser to access the Polkadot-JS graphical user interface.
 
-You can tell a lot about your node by watching the output it produces in your terminal. There is
-also a nice graphical user interface called Polkadot-JS Apps, or just "Apps" for short.
+To view node operations using the Polkadot-JS application:
 
-In your web browser, navigate to
-[https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9945#/explorer](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9945#/explorer).
+1. Open a web browser.
 
-<Message
-  type={`green`}
-  title={`Tip`}
-  text=
-	  "Some Ad blockers (e.g. the built-in Shield in Brave browser, pihole, browser extentions, etc.)
-	  block the connection to a local node. In case you have any Ad blockers in your browser, make
-	  sure to check them and turn them off as needed if you have issues connecting to your local node. 
-	  Also some browsers, notably Firefox, will not connect to a local node from a https website.
-	  An easy work around is to try another browser, like Chromium. Alternatively you can
-    [host this interface locally](https://github.com/polkadot-js/apps#development).
-    "
-/>
+1. Navigate to the
+[Polkadot-JS Explorer](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9945#/explorer).
+    
+  The Polkadot-JS Explorer link uses the `rpc` URL parameter to connect to the local node.
 
-The link provided above includes the `rpc` URL parameter, which instructs the Apps UI to connect to
-the URL that was provided as its value (in this case, your local node). To manually configure Apps
-UI to connect to another node:
+  Some browsers have ad blocking features that prevent connecting to a local node.
+  If you have trouble connecting to the local node, see if you have ad blocking enabled and disable it, as needed. 
+	If your braowser prevents connections to a local node, try using another browser, like Chromium or downloading and hosting the [Polkadot-JS application](https://github.com/polkadot-js/apps#development) locally.
 
-- Click on the top left network icon
+To use Polkadot-JS Explorer to connect to another node:
 
-  ![Top Left Network Icon](../../../src/images/tutorials/05-private-network/private-network-top-left-network-icon.png)
+1. Click the network icon displayed in the top left corner of the Polkadot-JS Explorer page.
 
-- A popup dialog appears. Expand **DEVELOPMENT** and ensure the custom endpoint is set to
-  `ws://127.0.0.1:9945`.
+  ![Display the list of networks](../../../src/images/tutorials/05-private-network/private-network-top-left-network-icon.png)
 
-  ![Select Network](../../../src/images/tutorials/05-private-network/private-network-select-network.png)
+1. Expand **DEVELOPMENT** at the bottom of the list of networks available.
 
-- To connect to a custom node and port, you just need to specify the endpoint by choosing
-  `custom endpoint` and type in your own endpoint. In this way you can use a single instance of Apps
-  UI to connect to various nodes. Click **Switch** icon to actually switch to the new endpoint when
-  necessary.
+  ![Display DEVELOPMENT networks](../../../src/images/tutorials/05-private-network/polkadot-list-networks.png)
 
-  ![Custom Endpoint](../../../src/images/tutorials/05-private-network/private-network-custom-endpoint.png)
+1. Verify the custom endpoint is set to `ws://127.0.0.1:9945`.
 
-You should now see something like this example from the **Network** and **Explorer** page.
+1. Connect to another node and port by specifying a different IP address or host name and port number for the custom endpoint.
+  
+  You can use a single instance of the Polkadot-JS application to connect to various nodes. 
+
+1. Click **Switch** to change to the new custom endpoint.
+
+  ![Custom endpoint](../../../src/images/tutorials/05-private-network/private-network-custom-endpoint.png)
+
+You should now see something like this example on the **Network** page.
 
 ![No blocks in polkadot-js-apps](../../../src/images/tutorials/05-private-network/private-network-no-blocks.png)
 
-<Message
-  type={`gray`}
-  title={`Note`}
-  text=
-    "If you do not want to run your hosted version of Polkadot-JS Apps UI while connecting to Substrate 
-    node you have deployed remotely, you can [configure SSH local port forwarding](https://www.booleanworld.com/guide-ssh-port-forwarding-tunnelling/)
-    to forward local request to the `ws-port` listened by the remote host.
-    "
-/>
+### Add a node to the blockchain network as Bob
 
-### Bob Joins
+Now that the node you started using the `alice` account keys is running, you can add another node to the network using the `bob` account.
+Because you are joining a network that is already running, you will use the running node to bootstrap the new node.
+The commands you use here are similar to the ones you used before, but with a few important differences.
 
-Now that Alice's node is up and running, Bob can join the network by bootstrapping from her node.
-His command will look very similar.
+To add a node to the running blockchain:
 
-```bash
-./target/release/node-template purge-chain --base-path /tmp/bob --chain local
-```
+1. Open a new terminal shell on your computer.
 
-```bash
-./target/release/node-template \
-  --base-path /tmp/bob \
-  --chain local \
-  --bob \
-  --port 30334 \
-  --ws-port 9946 \
-  --rpc-port 9934 \
-  --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
-  --validator \
-  --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
-```
+1. Change to the root directory where you compiled the Substrate node template.
 
-Most of these options are already explained above, but there are a few points worth mentioning.
+1. Purge old chain data by running the following command:
+        
+    ```bash
+    ./target/release/node-template purge-chain --base-path /tmp/bob --chain local
+    ```
 
-- Because these two nodes are running on the same physical machine, Bob must specify different
-  `--base-path`, `--port`, `--ws-port`, and `--rpc-port` values.
-- Bob has added the `--bootnodes` flag and specified a single boot node, namely Alice's. He must
-  correctly specify these three pieces of information which Alice can supply for him.
-  - Alice's IP Address, probably `127.0.0.1`
-  - Alice's Port, she specified `30333`
-  - Alice's Peer ID, copied from her log output.
+1. Start a second local blockchain node using the `bob` account by running the following command:
+    
+    ```bash
+    ./target/release/node-template \
+    --base-path /tmp/bob \
+    --chain local \
+    --bob \
+    --port 30334 \
+    --ws-port 9946 \
+    --rpc-port 9934 \
+    --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
+    --validator \
+    --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
+    ```
+    
+    Take note of the following differences between this command and the previous on.
+    
+    * Because the two nodes are running on the same physical computer, you must specify different values for the `--base-path`, `--port`, `--ws-port`, and `--rpc-port` options.
 
-If all is going well, after a few seconds, the nodes should peer together and start producing
-blocks. You should see some lines like the following in the console that started Alice node:
+    * This command includes the `--bootnodes` option and specifies a single boot node, the node started by `alice` using the following information:
+      
+      * The IP address for the running node. In this case, the IP address uses the IPv4 (`ip4`) format and the address for the localhost `127.0.0.1`.
+      
+      * The port number used for peer-to-peer communication. In this case, the port number for TCP traffic is `30333`.
+      
+      * The peer identifier for the running node that you made note of in the console output. In this case, `12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp`.
+      
+      After a few seconds, the nodes should connect to each other as peers and start producing blocks. 
+      You should see lines like the following in the console that started first node:
+      
+      ```
+      ...
+      2021-03-10 17:47:32  🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
+      2021-03-10 17:47:32  🔍 Discovered new external address for our node: /ip4/<your computer's LAN IP>/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
+      2021-03-10 17:47:33  💤 Idle (1 peers), best: #0 (0x9d07…7cce), finalized #0 (0x9d07…7cce), ⬇ 1.0kiB/s ⬆ 1.0kiB/s
+      2021-03-10 17:47:36  🙌 Starting consensus session on top of parent 0x9d07d1757a9ca248e58141ce52a11fca37f71007dec16650b87a853f0d4c7cce
+      2021-03-10 17:47:36  🎁 Prepared block for proposing at 1 [hash: 0x727826a5e6fba9a13af11422d4677b5f0743cc733c382232328e69fd307d1d2f; parent_hash: 0x9d07…7cce; extrinsics (1): [0x768a…a9e2]]
+      2021-03-10 17:47:36  🔖 Pre-sealed block for proposal at 1. Hash now 0x4841d8b2e62483fa4702b3ddcd1b603803842374dcdc1e9533ad407708b33dd8, previously 0x727826a5e6fba9a13af11422d4677b5f0743cc733c382232328e69fd307d1d2f.
+      2021-03-10 17:47:36  ✨ Imported #1 (0x4841…3dd8)
+      2021-03-10 17:47:36  ✨ Imported #1 (0xb241…2ae8)
+      2021-03-10 17:47:38  💤 Idle (1 peers), best: #1 (0x4841…3dd8), finalized #0 (0x9d07…7cce), ⬇ 0.8kiB/s ⬆ 0.8kiB/s
+      2021-03-10 17:47:42  ♻️  Reorg on #1,0x4841…3dd8 to #2,0x8b6a…dce6, common ancestor #0,0x9d07…7cce
+      2021-03-10 17:47:42  ✨ Imported #2 (0x8b6a…dce6)
+      2021-03-10 17:47:43  💤 Idle (1 peers), best: #2 (0x8b6a…dce6), finalized #0 (0x9d07…7cce), ⬇ 0.8kiB/s ⬆ 0.7kiB/s
+      2021-03-10 17:47:48  🙌 Starting consensus session on top of parent 0x8b6a3ab2fe9891b1af008ea0d92dae9bc84cfa5578231e81066d47928822dce6
+      2021-03-10 17:47:48  🎁 Prepared block for proposing at 3 [hash: 0xb887aef2097eff5869e38ccec0302bce372ad05ac2cdf9cc4725c38ec071fb7a; parent_hash: 0x8b6a…dce6; extrinsics (1): [0x82ac…2f20]]
+      2021-03-10 17:47:48  🔖 Pre-sealed block for proposal at 3. Hash now 0x34d608dd8be6b82bef4a7aaae1ec80930a5c4b8cf9bdc99013410e91544f3a2a, previously 0xb887aef2097eff5869e38ccec0302bce372ad05ac2cdf9cc4725c38ec071fb7a.
+      2021-03-10 17:47:48  ✨ Imported #3 (0x34d6…3a2a)
+      2021-03-10 17:47:48  💤 Idle (1 peers), best: #3 (0x34d6…3a2a), finalized #0 (0x9d07…7cce), ⬇ 0.7kiB/s ⬆ 0.8kiB/s
+      2021-03-10 17:47:53  💤 Idle (1 peers), best: #3 (0x34d6…3a2a), finalized #1 (0xb241…2ae8), ⬇ 0.6kiB/s ⬆ 0.7kiB/s
+      2021-03-10 17:47:54  ✨ Imported #4 (0x2b8a…fdc4)
+      2021-03-10 17:47:58  💤 Idle (1 peers), best: #4 (0x2b8a…fdc4), finalized #2 (0x8b6a…dce6), ⬇ 0.7kiB/s ⬆ 0.6kiB/s
+      ...
+      ```
+      
+      These lines show that the first node started by `alice` has a one peer (`1 peers`), they have produced some blocks (`best: #4 (0x2b8a…fdc4)`), and that the blocks are being finalized (`finalized #2 (0x8b6a…dce6)`).
+      
+      If you look at the console that started the second node, you should see output.
 
-```
-...
-2021-03-10 17:47:32  🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
-2021-03-10 17:47:32  🔍 Discovered new external address for our node: /ip4/<your computer's LAN IP>/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
-2021-03-10 17:47:33  💤 Idle (1 peers), best: #0 (0x9d07…7cce), finalized #0 (0x9d07…7cce), ⬇ 1.0kiB/s ⬆ 1.0kiB/s
-2021-03-10 17:47:36  🙌 Starting consensus session on top of parent 0x9d07d1757a9ca248e58141ce52a11fca37f71007dec16650b87a853f0d4c7cce
-2021-03-10 17:47:36  🎁 Prepared block for proposing at 1 [hash: 0x727826a5e6fba9a13af11422d4677b5f0743cc733c382232328e69fd307d1d2f; parent_hash: 0x9d07…7cce; extrinsics (1): [0x768a…a9e2]]
-2021-03-10 17:47:36  🔖 Pre-sealed block for proposal at 1. Hash now 0x4841d8b2e62483fa4702b3ddcd1b603803842374dcdc1e9533ad407708b33dd8, previously 0x727826a5e6fba9a13af11422d4677b5f0743cc733c382232328e69fd307d1d2f.
-2021-03-10 17:47:36  ✨ Imported #1 (0x4841…3dd8)
-2021-03-10 17:47:36  ✨ Imported #1 (0xb241…2ae8)
-2021-03-10 17:47:38  💤 Idle (1 peers), best: #1 (0x4841…3dd8), finalized #0 (0x9d07…7cce), ⬇ 0.8kiB/s ⬆ 0.8kiB/s
-2021-03-10 17:47:42  ♻️  Reorg on #1,0x4841…3dd8 to #2,0x8b6a…dce6, common ancestor #0,0x9d07…7cce
-2021-03-10 17:47:42  ✨ Imported #2 (0x8b6a…dce6)
-2021-03-10 17:47:43  💤 Idle (1 peers), best: #2 (0x8b6a…dce6), finalized #0 (0x9d07…7cce), ⬇ 0.8kiB/s ⬆ 0.7kiB/s
-2021-03-10 17:47:48  🙌 Starting consensus session on top of parent 0x8b6a3ab2fe9891b1af008ea0d92dae9bc84cfa5578231e81066d47928822dce6
-2021-03-10 17:47:48  🎁 Prepared block for proposing at 3 [hash: 0xb887aef2097eff5869e38ccec0302bce372ad05ac2cdf9cc4725c38ec071fb7a; parent_hash: 0x8b6a…dce6; extrinsics (1): [0x82ac…2f20]]
-2021-03-10 17:47:48  🔖 Pre-sealed block for proposal at 3. Hash now 0x34d608dd8be6b82bef4a7aaae1ec80930a5c4b8cf9bdc99013410e91544f3a2a, previously 0xb887aef2097eff5869e38ccec0302bce372ad05ac2cdf9cc4725c38ec071fb7a.
-2021-03-10 17:47:48  ✨ Imported #3 (0x34d6…3a2a)
-2021-03-10 17:47:48  💤 Idle (1 peers), best: #3 (0x34d6…3a2a), finalized #0 (0x9d07…7cce), ⬇ 0.7kiB/s ⬆ 0.8kiB/s
-2021-03-10 17:47:53  💤 Idle (1 peers), best: #3 (0x34d6…3a2a), finalized #1 (0xb241…2ae8), ⬇ 0.6kiB/s ⬆ 0.7kiB/s
-2021-03-10 17:47:54  ✨ Imported #4 (0x2b8a…fdc4)
-2021-03-10 17:47:58  💤 Idle (1 peers), best: #4 (0x2b8a…fdc4), finalized #2 (0x8b6a…dce6), ⬇ 0.7kiB/s ⬆ 0.6kiB/s
-...
-```
+1. Open the
+[Polkadot-JS Explorer](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9945#/explorer) to verify the network is producing and finalizing blocks using the Polkadot-JS application.
+    
+      
+      After you've verified that both nodes are running as expected, you can shut both nodes down. 
 
-These lines shows that Bob has peered with Alice (**`1 peers`**), they have produced some blocks
-(**`best: #4 (0x2b8a…fdc4)`**), and blocks are being finalized (**`finalized #2 (0x8b6a…dce6)`**).
+1. Shut down each node by pressing Control-C in each terminal.
 
-Looking at the console that started Bob's node, you should see something similar.
+## Generate your own keys
 
-Once you've verified that both nodes are running as expected, you should shut them down. Although
-this is not strictly required, so long as you don't have conflicting ports and the same chainspec.
-The next section of this tutorial will include commands to restart new nodes when necessary.
+Now that you know how to start and connect running nodes using command-line options, you are ready to generate you own secret keys instead of using the predefined account keys. 
+Each person who wants to participate in the blockchain should generate his or her own keys. 
+There are several different ways you can generate keys, including:
+
+* Subkey command-line program.
+
+* 
 
 
-## Generate Your Own Keys
-
-Now that we know the fundamentals and the command line options, it's time to generate our own keys
-rather than using the well-known Alice and Bob keys. Each person who wants to participate in the
-blockchain should generate their own keys. This page explains several options for generating keys,
-and each participant only needs to choose one such option. Regardless of which option you choose, be
-sure to record all of the output from this section as you will need it later.
+Network participants can choose any of these methods to generate keys. 
+Regardless of the method you choose, be sure to record the output because you will need the information later.
 
 ### Option 1: Subkey
 
@@ -345,7 +356,7 @@ Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song v
 
 The same UI that we used to see blocks being produced can also be used to generate keys. This option
 is convenient if you do not want to install Subkey. It can be used for production keys, but the
-system should not be connected to the internet when generating such keys.
+system should not be connected to the internet g such keys.
 
 <Message
   type={`red`}
@@ -353,7 +364,7 @@ system should not be connected to the internet when generating such keys.
   text=
     "A system that generates production keys should not be connected to the internet regardless of what
     method you choose. It is mentioned here specifically because having an internet connection is 
-    generally desired when using a webapp like Polkadot JS Apps.
+    generally desired ebapp like Polkadot JS Apps.
     "
 /> 
 
@@ -436,7 +447,7 @@ the one we used before. To start, we need to export the chain spec to a file nam
 
 The file we just created contains several fields, and you can learn a lot by exploring them. By far
 the largest field is a single binary blob that is the Wasm binary of our runtime. It is part of what
-you built earlier when you ran the `cargo build --release` command.
+you built earlier he `cargo build --release` command.
 
 The portion of the file we're interested in is the Aura authorities used for creating blocks,
 indicated by **"aura"** field below, and GRANDPA authorities used for finalizing blocks, indicated
@@ -538,7 +549,7 @@ single binary.
 ### First Participant Starts a Bootnode
 
 You've completed all the necessary prep work and you're now ready to launch your chain. This process
-is very similar to when you launched a chain earlier, as Alice and Bob. It's important to start with
+is very similar to hed a chain earlier, as Alice and Bob. It's important to start with
 a clean base path, so if you plan to use the same path that you've used previously, please delete
 all contents from that directory.
 
@@ -563,7 +574,7 @@ The first participant can launch her node with:
   --name MyNode01
 ```
 
-Here are some differences from when we launched as Alice.
+Here are some differences from ed as Alice.
 
 - I've omitted the `--alice` flag. Instead we will insert our own custom keys into the keystore
   through the RPC shortly.
@@ -691,7 +702,7 @@ If you enter the command and parameters correctly, the node will return a JSON r
 { "jsonrpc": "2.0", "result": null, "id": 1 }
 ```
 
-Make sure you delete the file that contains the keys when you are done.
+Make sure you delete the file that contains the keys one.
 
 #### Option 3: Use the `key` command
 
