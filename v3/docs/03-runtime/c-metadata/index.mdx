@@ -9,8 +9,8 @@ keywords:
 
 Blockchains that are built on Substrate expose metadata in order to make it easier to interact with
 them. This metadata is separated by the different [pallets](/v3/runtime/frame#pallets) that inform your blockchain.
-For each module, the metadata provides information about the [storage items](../storage),
-[extrinsic calls](../../concepts/extrinsics), [events](../events-and-errors), constants, and errors that are
+For each module, the metadata provides information about the [storage items](/v3/runtime/storage),
+[extrinsic calls](/v3/concepts/extrinsics), [events](/v3/runtime/events-and-errors), constants, and errors that are
 exposed by that module. Substrate automatically generates this metadata for you and makes it
 available through RPC calls.
 
@@ -18,7 +18,7 @@ Since the runtime of a Substrate blockchain is an evolving part of the blockchai
 blockchain metadata is stored on a per-block basis. Be aware that querying the metadata for an older
 block (with an archive node, for example) could result in acquiring out-of-date metadata that is not
 compatible with a blockchain's current state. As described in the
-[Upgrades documentation](../upgrades), developers building on top of Substrate chains can
+[Upgrades documentation](/v3/runtime/upgrades), developers building on top of Substrate chains can
 expect that the metadata for a chain should _only_ change when the chain's
 [runtime `spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version)
 changes.
@@ -264,7 +264,7 @@ about the module's storage:
 ```
 
 Every storage item that is defined in a pallet will have a corresponding metadata entry. 
-Metadata entries like these are generated from [macros](../macros) using associated types from the [`frame-system`](/rustdocs/latest/frame_system/pallet/trait.Config.html) crate. For example:
+Metadata entries like these are generated from [macros](/v3/runtime/macros) using associated types from the [`frame-system`](/rustdocs/latest/frame_system/pallet/trait.Config.html) crate. For example:
 
 ```rust
 #[pallet::config]
@@ -450,11 +450,11 @@ the [`InvalidSpecName` error](/rustdocs/latest/frame_system/pallet/enum.Error.ht
 
 ### Learn more
 
-- [Storage](../storage)
+- [Storage](/v3/runtime/storage)
 - [SCALE](/v3/advanced/scale-codec)
-- [Macros](../macros)
-- [Events](../events-and-errors)
-- [Extrinsics](../../concepts/extrinsics)
+- [Macros](/v3/runtime/macros)
+- [Events](/v3/runtime/events-and-errors)
+- [Extrinsics](/v3/concepts/extrinsics)
 
 ### References
 
