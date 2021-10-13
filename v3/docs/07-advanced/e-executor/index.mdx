@@ -7,9 +7,10 @@ category: advanced
 keywords:
 ---
 
-The executor is responsible for dispatching and executing calls into the Substrate runtime.
+The [executor](/v3/getting-started/glossary#executor) is responsible for dispatching and executing 
+calls into the Substrate runtime.
 
-## Runtime Execution
+## Runtime execution
 
 The Substrate runtime is compiled into a native executable and a WebAssembly (Wasm) binary.
 
@@ -19,7 +20,7 @@ the blockchain under a well known storage key.
 These two representations of the runtime may not be the same. For example, after the runtime is
 upgraded. The executor determines which version of the runtime to use when dispatching calls.
 
-### Execution Strategy
+### Execution strategy
 
 Before runtime execution begins, the Substrate client proposes which runtime execution environment
 should be used. This is controlled by the execution strategy, which can be configured for the
@@ -52,7 +53,7 @@ They can be overridden via the command line argument `--execution-{block-constru
 - `Both` mapping to the `Both` strategy
 - `NativeElseWasm` mapping to `NativeElsmWasm` strategy
 
-### Wasm Execution
+### Wasm execution
 
 The Wasm representation of the Substrate runtime is considered the canonical runtime. Because this
 Wasm runtime is placed in the blockchain storage, the network must come to consensus about this
@@ -66,7 +67,7 @@ For these reasons, the blockchain prefers to do block construction with the Wasm
 executed in Wasm will always work in the native execution environment, but the same cannot be said
 the other way around. Wasm execution can help to ensure that block producers create valid blocks.
 
-### Native Execution
+### Native execution
 
 The native runtime will only be used by the executor when it is chosen as the execution strategy and
 it is compatible with the requested runtime version (see
@@ -75,9 +76,9 @@ For all other execution processes other than block construction, the native runt
 since it is more performant. In any situation where the native executable should not be run, the
 canonical Wasm runtime is executed instead.
 
-## Next Steps
+## Next steps
 
-### Learn More
+### Learn more
 
 - Read more about runtime upgrades in the [Runtime documentation](/v3/runtime/upgrades).
 

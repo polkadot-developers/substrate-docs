@@ -16,7 +16,7 @@ reasons for choosing smart contract development over runtime development for you
 Developing Substrate runtimes and smart contracts are two different approaches to building
 "decentralized applications" using Substrate.
 
-### Smart Contracts
+### Smart contracts
 
 A traditional smart contract platform allows users to publish additional logic on top of some core
 blockchain logic. Since smart contract logic can be published by anyone, including malicious actors
@@ -56,7 +56,7 @@ any of the growing pains or errors which may occur.
 - Have a lower bar to entry for development.
 - Enable fast pace community interaction through a playground to write new logic.
 
-### Runtime Development
+### Runtime development
 
 On the other hand, runtime development affords none of these protections or safe guards that Smart
 Contracts give you. As a runtime developer, the barrier to entry on the code you produce jumps way up.
@@ -81,7 +81,7 @@ different parts of your runtime logic such that it will not be abused by malicio
   not only responsible for writing working code but must constantly check to avoid writing broken code.
 - Has no inherent economic incentives to repel bad actors.
 
-### Choosing the Right Approach
+### Choosing the right approach
 
 Substrate runtime development and Smart Contracts each provide tools designed for different problem spaces. There is likely some amount of overlap in the kinds of problems each one can solve, but
 there is also a clear set of problems suited for only one of the two. To give just one example in
@@ -170,7 +170,7 @@ decisions on which approach to use based on different situations.
 Substrate provides two smart contract virtual machines which can be added to your runtime: the [Contracts pallet](#contracts-pallet) and
 the [EVM pallet](#evm-pallet). Each come with additional tools to ease development depending on your use cases.
 
-## Contracts Pallet
+## Contracts pallet
 
 The [Contracts pallet](/rustdocs/latest/pallet_contracts) provides
 the ability for the runtime to deploy and execute [WebAssembly (Wasm)](https://webassembly.org/)
@@ -204,7 +204,7 @@ The Contracts pallet depends on a Wasm sandboxing interface defining the Wasm ex
 available within the runtime. This is currently implemented with
 [`wasmi`](https://github.com/paritytech/wasmi), a Wasm interpreter.
 
-#### Account Based
+#### Account based
 
 The Contracts pallet uses an account-based system similar to many existing smart contract platforms.
 To the Substrate runtime, contract accounts are just like normal user accounts; however, in addition
@@ -212,7 +212,7 @@ to an `AccountID` and `Balance` that normal accounts have, a contract account al
 contract code and some persistent contract storage. A notable behaviour that arises from this
 is that a contract's account can receive balances without having its code executed by a plain transfer transaction.
 
-### Deploying and Calling Contracts
+### Deploying and calling contracts
 
 Deploying a contract with the Contracts pallet takes two steps:
 
@@ -254,7 +254,7 @@ The Contracts pallet determines the gas price, which is a conversion between the
 [**weight system**](/v3/concepts/weight) and a single unit of gas. Thus, to execute a transaction, a user
 must have a free balance of at least `gas price` \* `gas limit` which can be spent.
 
-### Storage Deposit
+### Storage deposit
 
 Similar to how gas limits the amount of computational resources that can be used during a
 transaction, storage deposit limits the footprint that a contract can have on the blockchain's storage.
@@ -268,7 +268,7 @@ Similar to the `gas_limit` argument there is also a `storage_limit` argument wit
 can limit the amount of deposit that can be incurred. The argument is denominated in native
 chain balance and hence the user must have at least that amount of free balance.
 
-### Contracts Pallet vs. EVM
+### Contracts pallet vs. EVM
 
 The Contracts pallet iterates on existing ideas in the smart contract ecosystem, particularly
 Ethereum and the EVM.
@@ -292,7 +292,7 @@ contract logic. This could enable behavior like what
 [`create2`](https://eips.ethereum.org/EIPS/eip-1014) provided to Ethereum or even enable repairable
 or upgradeable contracts on a Substrate based blockchain.
 
-## EVM Pallet
+## EVM pallet
 
 The [**FRAME EVM pallet**](https://docs.rs/pallet_evm/) provides an EVM execution environment for Substrate's Ethereum
 compatibility layer, known as [Frontier](https://github.com/paritytech/frontier). It allows unmodified EVM
@@ -308,14 +308,14 @@ capable of fully emulating Ethereum block production and transaction processing.
   link={`/tutorials/v3/frontier`}
 />
 
-### EVM Engine
+### EVM engine
 
 The EVM pallet uses [SputnikVM](https://github.com/rust-blockchain/evm) as the underlying EVM engine.
 The engine is overhauled so that it's [modular](https://github.com/corepaper/evm). In the future, we
 will want to allow users to swap out components like gasometer, and inject their own customized
 ones.
 
-### Execution Lifecycle
+### Execution lifecycle
 
 There are a separate set of accounts managed by the EVM pallet. Substrate based accounts can call
 the EVM pallet to deposit or withdraw balance from the Substrate base-currency into a different
@@ -325,7 +325,7 @@ and call smart contracts using this pallet.
 There's one-to-one mapping from Substrate accounts and EVM external accounts that is defined by a
 conversion function.
 
-### EVM Pallet vs. Ethereum Network
+### EVM pallet vs. Ethereum network
 
 The EVM pallet should be able to produce nearly identical results compared to the Ethereum mainnet,
 including gas cost and balance changes.
@@ -383,7 +383,7 @@ You can follow
 [our guide here](/how-to-guides/v3/pallet-design/contracts-pallet) for instructions on how to add the Contracts pallet
 and other FRAME pallets to your blockchain's runtime.
 
-## Learn More
+## Learn more
 
 - Learn more about [why Rust is an ideal smart contract language](https://paritytech.github.io/ink-docs/why-rust-for-smart-contracts).
 - Follow a [tutorial to add a pallet to your FRAME runtime](/tutorials/v3/add-a-pallet/).

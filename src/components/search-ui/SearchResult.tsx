@@ -9,7 +9,7 @@ interface SearchResultProps {
   noLink?: boolean
   error?: boolean
 }
-export default function SearchResult({
+export function SearchResult({
   slug,
   section,
   category,

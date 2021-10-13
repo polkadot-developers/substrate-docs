@@ -69,7 +69,7 @@ with the version of Subkey specified by the `cargo install` command in the
 Once installed, use the `subkey -h` command to see all the sub-commands and flags available.
 Use `subkey <sub-command> -h` to see help items for ech sub-command.
 
-## Inspecting Keys
+## Inspecting keys
 
 The `inspect` command recalculates a key pair's public key and public address given its secret seed.
 You most commonly inspect the key by the mnemonic phrase that is used to derive it:
@@ -112,7 +112,7 @@ Secret Key URI `0xc8fa03532fb22ee1f7f6908b9c02b4e72483f0dbd66e4cd456b8f34c6230b8
 
 Next in how to generate keys, we will also show you how to inspect more than a base seed.
 
-## Generating Keys
+## Generating keys
 
 Generate an sr25519 key by running:
 
@@ -213,7 +213,7 @@ Secret Key URI `0xf58706b2057633b6d634d9cc54e8e9e8f11246290c0bbef934129978ede643
 Notice the SS58 Address`5GdandXEVW1ER8cxW6uQgpjpyuEbZ3s2ED3ZU15LfrGdQhhz` contains the string
 `dan`.
 
-### Example Seed
+### Example seed
 
 > We will use the seed generated above to illustrate different
 > [HD key derivation paths](#hd-key-derivation) and
@@ -240,7 +240,7 @@ Secret phrase `caution juice atom organ advance problem want pledge someone seni
   SS58 Address:      5Gv8YYFu8H1btvmrJy9FjjAWfb99wrhV3uhPFoNEr918utyR
 ```
 
-## Specify Network Address Format
+## Specify network address format
 
 Subkey encodes the address depending on the network. You can use the `--network` flag to change
 this. See `subkey <inspect/generate> -n` for supported networks.
@@ -266,7 +266,7 @@ Secret phrase `caution juice atom organ advance problem want pledge someone seni
   SS58 Address:      HRkCrbmke2XeabJ5fxJdgXWpBRPkXWfWHY8eTeCKwDdf4k6
 ```
 
-## HD Key Derivation
+## HD key derivation
 
 <Message
   type={`yellow`}
@@ -289,7 +289,7 @@ Further, soft key derivation supports:
 
 - parent public key + path ➔ child public key
 
-### Hard Key Derivation
+### Hard key derivation
 
 You can derive a hard key child using `//` after the mnemonic phrase:
 
@@ -310,7 +310,7 @@ Secret Key URI `caution juice atom organ advance problem want pledge someone sen
   SS58 Address:      5F3sa2TJAWMqDhXG6jhV4N8ko9SxwGy8TpaNS1repo5EYjQX
 ```
 
-### Soft Key Derivation
+### Soft key derivation
 
 Likewise, you can derive a soft key child using a single `/` after the mnemonic phrase:
 
@@ -354,7 +354,7 @@ Public Key URI `5Gv8YYFu8H1btvmrJy9FjjAWfb99wrhV3uhPFoNEr918utyR/polkadot/0` is 
 
 Note that the two addresses here match. This is not the case in hard key derivation!
 
-## Password Protected Keys
+## Password protected keys
 
 <Message
   type={`yellow`}
@@ -422,7 +422,7 @@ Secret Key URI `caution juice atom organ advance problem want pledge someone sen
 Take note that the `--password` flag _does not_ report the password used, but the `///` _does_.
 The output is identical otherwise.
 
-## Combine Derivation Paths & Passwords
+## Combine derivation paths and passwords
 
 <Message
   type={`yellow`}
@@ -503,7 +503,7 @@ phrase + derivation path + password." As such, you can reveal your parent public
 and soft derivation paths without revealing your mnemonic phrase or password, retaining control
 of all derived addresses.
 
-## Signing and Verifying Messages
+## Signing and verifying messages
 
 ### Signing
 
@@ -554,7 +554,7 @@ Signature verifies correctly.
   newline character and verify the correct message.`}
 />
 
-## Generating Node Keys
+## Generating node keys
 
 You can generate a node's libp2p key by the following:
 
@@ -576,7 +576,7 @@ _Output:_
 
 The peer ID is displayed on screen and the actual key is saved in the `<output-file>`.
 
-## Well-Known Keys
+## Well-known keys
 
 The common seed used for all development accounts is:
 ```text
@@ -616,7 +616,7 @@ It is important remember that keys such as this are _not_ secure, and should be 
 testing. In addition, anyone not using PolkadotJS or Subkey should note this information to properly
 generate the account.
 
-## Further Resources
+## Further resources
 
 <Message
   type={`yellow`}

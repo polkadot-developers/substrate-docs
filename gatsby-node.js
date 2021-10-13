@@ -13,6 +13,10 @@ const redirects = [
   { fromPath: '/v3/advanced', toPath: '/v3/advanced/account-info' },
   { fromPath: '/tutorials/v3/kitties', toPath: `/tutorials/v3/kitties/pt1` },
   {
+    fromPath: '/tutorials/v3/cumulus',
+    toPath: `/tutorials/v3/cumulus/start-relay`,
+  },
+  {
     fromPath: '/how-to-guides/basics',
     toPath: `/how-to-guides/v3/basics/pallet-integration`,
   },
@@ -38,7 +42,7 @@ const redirects = [
   },
   {
     fromPath: '/how-to-guides/parachains',
-    toPath: `/how-to-guides/v3/parachains/runtime-upgrades`,
+    toPath: `/how-to-guides/v3/parachains/connect`,
   },
   {
     fromPath: '/how-to-guides/tools',
@@ -125,7 +129,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   const result = await graphql(`
     {
-      docsV3: allFile(filter: { sourceInstanceName: { eq: "kbV3" }, extension: { eq: "mdx" } }) {
+      docsV3: allFile(
+        filter: { sourceInstanceName: { eq: "kbV3" }, extension: { eq: "mdx" } }
+      ) {
         nodes {
           childMdx {
             frontmatter {
@@ -134,7 +140,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           }
         }
       }
-      htg: allFile(filter: { sourceInstanceName: { eq: "htg" }, extension: { eq: "mdx" } }) {
+      htg: allFile(
+        filter: { sourceInstanceName: { eq: "htg" }, extension: { eq: "mdx" } }
+      ) {
         nodes {
           childMdx {
             frontmatter {

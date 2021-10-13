@@ -39,7 +39,7 @@ export default function DocsNav({
     <nav
       className={cx(
         'bg-substrateGray-light dark:bg-darkBackground w-screen overflow-auto',
-        { 'h-docNav z-10': isOpen }
+        { 'h-[calc(100vh-100px)] z-10': isOpen }
       )}
     >
       <div
@@ -88,7 +88,7 @@ export default function DocsNav({
         {isOpen && (
           <>
             <hr className="mt-6" />
-            <div className="flex items-center justify-between px-6 sm:px-20 py-4 dark:bg-darkBackground">
+            <div className="flex items-center justify-between px-4 sm:px-20 py-4 dark:bg-darkBackground">
               <div className="font-light">More Ways to Learn</div>
             </div>
             {globalNav
@@ -97,7 +97,7 @@ export default function DocsNav({
                 return (
                   <div
                     key={index}
-                    className="px-6 sm:px-20 lg:px-4 py-4 lg:bg-white lg:dark:bg-black"
+                    className="px-4 sm:px-20 lg:px-4 py-4 lg:bg-white lg:dark:bg-black"
                   >
                     <Link to={navItem.url}>
                       <div className="flex items-center justify-between">

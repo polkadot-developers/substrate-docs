@@ -19,18 +19,16 @@ function getInitialColorMode() {
   return 'light'
 }
 
-function getUrlColorMode(location: { href: string; pathname: string }) {
-  const currentUrl = location.href
-  const searchParams = new URL(currentUrl).searchParams
-  const mode = searchParams.get('mode')
+function testQueryMode(searchParams: URLSearchParams) {
+  if (searchParams) {
+    const mode = searchParams.get('mode')
 
-  if (mode === 'dark' || mode === 'light') {
-    searchParams.delete('mode')
-    window.history.replaceState(null, null, location.pathname + searchParams)
-    return mode
-  }
-
-  return false
+    if (mode === 'dark' || mode === 'light') {
+      return mode
+    } else {
+      return false
+    }
+  } else return false
 }
 
 interface ThemeContextInterface {
@@ -44,18 +42,12 @@ export const ThemeContext = React.createContext<ThemeContextInterface | null>(
 
 interface ThemeProviderInterface {
   children: React.ReactNode
-  value: { location: { href: string; pathname: string } }
 }
 
-export const ThemeProvider = ({ children, value }: ThemeProviderInterface) => {
+export const ThemeProvider = ({ children }: ThemeProviderInterface) => {
   const [colorMode, rawSetColorMode] = React.useState(undefined)
-
-  useEffect(() => {
-    const { location } = value
-    rawSetColorMode(getInitialColorMode())
-    if (getUrlColorMode(location))
-      setColorMode(getUrlColorMode(location) as string)
-  }, [])
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : ''
+  const searchParams = currentUrl && new URL(currentUrl).searchParams
 
   const setColorMode = (value: string) => {
     rawSetColorMode(value)
@@ -70,6 +62,24 @@ export const ThemeProvider = ({ children, value }: ThemeProviderInterface) => {
     // Persist on update
     localStorage.theme = value
   }
+
+  // update color mode from query
+  if (testQueryMode(searchParams)) {
+    setColorMode(testQueryMode(searchParams) as string)
+    searchParams.delete('mode')
+    // remove mode param from query
+    window.history.replaceState(
+      null,
+      null,
+      location.pathname + (searchParams.toString() && '?' + searchParams)
+    )
+  }
+
+  // update color mode if not set from query
+  useEffect(() => {
+    if (!testQueryMode(searchParams)) rawSetColorMode(getInitialColorMode())
+  }, [])
+
   return (
     <ThemeContext.Provider value={{ colorMode, setColorMode }}>
       {children}

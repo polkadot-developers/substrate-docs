@@ -391,6 +391,24 @@ const DevNavMenu = {
             })}`,
             link: '/how-to-guides/v3/weights/calculate-fees',
           },
+          {
+            title: `${intl.formatMessage({
+              id: 'htg-weights-add-benchmarking',
+            })}`,
+            link: '/how-to-guides/v3/weights/add-benchmarking',
+          },
+          {
+            title: `${intl.formatMessage({
+              id: 'htg-weights-use-benchmarking',
+            })}`,
+            link: '/how-to-guides/v3/weights/use-benchmark-weights',
+          },
+          {
+            title: `${intl.formatMessage({
+              id: 'htg-weights-conditional',
+            })}`,
+            link: '/how-to-guides/v3/weights/conditional-weighting-struct',
+          },
         ],
       },
       // 4. Testing.
@@ -450,29 +468,20 @@ const DevNavMenu = {
         })}`,
         items: [
           {
-            title: `${intl.formatMessage({ id: 'htg-parachains-upgrade' })}`,
-            link: '/how-to-guides/v3/parachains/runtime-upgrades',
-          },
-          {
-            title: `${intl.formatMessage({ id: 'htg-parachains-setup' })}`,
-            link: '/how-to-guides/v3/parachains/setup',
-          },
-          {
-            title: `${intl.formatMessage({ id: 'htg-parachains-register' })}`,
-            link: '/how-to-guides/v3/parachains/register',
-          },
-
-          {
-            title: `${intl.formatMessage({ id: 'htg-parachains-reserve' })}`,
-            link: '/how-to-guides/v3/parachains/reserve-id',
+            title: `${intl.formatMessage({ id: 'htg-parachains-connect' })}`,
+            link: '/how-to-guides/v3/parachains/connect',
           },
           {
             title: `${intl.formatMessage({ id: 'htg-parachains-collators' })}`,
             link: '/how-to-guides/v3/parachains/start-collator-node',
           },
           {
-            title: `${intl.formatMessage({ id: 'htg-parachains-rococo' })}`,
-            link: '/how-to-guides/v3/parachains/rococo',
+            title: `${intl.formatMessage({ id: 'htg-parachains-pre-launch' })}`,
+            link: '/how-to-guides/v3/parachains/pre-launch',
+          },
+          {
+            title: `${intl.formatMessage({ id: 'htg-parachains-upgrade' })}`,
+            link: '/how-to-guides/v3/parachains/runtime-upgrades',
           },
         ],
       },
@@ -694,7 +703,7 @@ DevNavMenuTuts.set('cumulusTutorial', [
         link: '/tutorials/v3/cumulus/start-relay',
       },
       {
-        title: `Connect to a Parachain`,
+        title: `Connect a Parachain`,
         link: '/tutorials/v3/cumulus/connect-parachain',
       },
       {
@@ -736,7 +745,7 @@ DevNavMenuTuts.set('kittiesWorkshop', [
     name: `Build the Substrate Kitties Chain`,
     items: [
       {
-        title: 'Introduction',
+        title: 'Substrate Kitties Part I',
         link: '/tutorials/v3/kitties/pt1',
       },
       {
@@ -765,7 +774,7 @@ DevNavMenuTuts.set('kittiesWorkshop', [
     name: `Create a Front-end for the Kitties Chain`,
     items: [
       {
-        title: `Overview`,
+        title: `Substrate Kitties Part II`,
         link: '/tutorials/v3/kitties/pt2',
       },
       {

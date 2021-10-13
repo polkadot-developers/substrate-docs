@@ -46,4 +46,4 @@ jobs:
       - name: Run `broken-link-check`
         run: |
           yarn install
-          yarn checklinks:v3
+          yarn checklinks
