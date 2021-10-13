@@ -59,7 +59,7 @@ You can also use the Transaction Payment pallet to:
 
 * Manage the withdrawal, refund, and deposit of transaction fees using `Config::OnChargeTransaction`.
 
-You can learn more about these configuration traits in the [Transaction Payment](https://substrate.dev/rustdocs/latest/pallet_transaction_payment/index.html) documentation. 
+You can learn more about these configuration traits in the [Transaction Payment](/rustdocs/latest/pallet_transaction_payment/index.html) documentation. 
 
 You should note that transaction fees are withdrawn before the transaction is executed. 
 After the transaction is executed, the transaction weight can be adjusted to reflect the actual resources the transaction used. 
@@ -102,10 +102,10 @@ However, this scenario would be a rare occurrence because the transaction queue 
 
 The inclusion fee formula always results in the same fee for the same input. 
 However, weight can be dynamic and—based on how
-[`WeightToFee`](https://substrate.dev/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.WeightToFee)
+[`WeightToFee`](/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.WeightToFee)
 is defined—the final fee can include some degree of variability. 
 
-To account for this variability, the Transaction Payment pallet provides the [`FeeMultiplierUpdate`](https://substrate.dev/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.FeeMultiplierUpdate) configurable parameter.
+To account for this variability, the Transaction Payment pallet provides the [`FeeMultiplierUpdate`](/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.FeeMultiplierUpdate) configurable parameter.
 
 The default update function is inspired by the Polkadot network and implements a targeted adjustment in which a target saturation level of block weight is defined. 
 If the previous block is more saturated, then the fees are slightly increased. 
