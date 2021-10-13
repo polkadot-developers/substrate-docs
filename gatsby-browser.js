@@ -52,7 +52,7 @@ export const onRouteUpdate = ({ location }) => scrollToAnchor(location)
  * @param {Object} location -
  * @param {Number} [mainNavHeight] - the height of any persistent nav -> document.querySelector(`nav`)
  */
-function scrollToAnchor(location, mainNavHeight = 140) {
+function scrollToAnchor(location, mainNavHeight = 100) {
   // Check for location so build does not fail
   if (location && location.hash) {
     // Fix scrolling for ids starting with numbers
