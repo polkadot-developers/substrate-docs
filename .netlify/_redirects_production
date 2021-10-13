@@ -71,6 +71,7 @@
 /docs/en/knowledgebase/learn-substrate/*      /v3/concepts/:splat        301!
 /docs/en/knowledgebase/runtime                /v3/concepts/runtime       301!
 /docs/en/knowledgebase/runtime/               /v3/concepts/runtime       301!
+/docs/en/knowledgebase/runtime/pallets        /v3/runtime/frame#pallets  301!
 
 ### Knowledge Base: Runtime Development
 /docs/en/knowledgebase/runtime/fees           /v3/runtime/weights-and-fees  301!
