@@ -73,6 +73,8 @@ https://substrate-docs.netlify.app/* https://docs.substrate.io/:splat 301!
 /docs/en/knowledgebase/learn-substrate/*      /v3/concepts/:splat        301!
 /docs/en/knowledgebase/runtime                /v3/concepts/runtime       301!
 /docs/en/knowledgebase/runtime/               /v3/concepts/runtime       301!
+/docs/en/knowledgebase/runtime/pallets        /v3/runtime/frame#pallets  301!
+/docs/en/knowledgebase/runtime/origin         /v3/runtime/origins        301!
 
 ### Knowledge Base: Runtime Development
 /docs/en/knowledgebase/runtime/fees           /v3/runtime/weights-and-fees  301!
@@ -94,6 +96,10 @@ https://substrate-docs.netlify.app/* https://docs.substrate.io/:splat 301!
 /docs/en/knowledgebase/advanced/no-hash-collections   /v3/advanced/hash-collections  301!
 /docs/en/knowledgebase/advanced/no-hash-collections/  /v3/advanced/hash-collections  301!
 /docs/en/knowledgebase/advanced/*             /v3/advanced/:splat           301!
+
+## Awesome Substrate Redirect 
+/awesome-substrate                            https://substrate.io/ecosystem/resources/awesome-substrate/
+/awesome-substrate/                           https://substrate.io/ecosystem/resources/awesome-substrate/
 
 ## Production: rustdocs
 /rustdocs/*          https://paritytech.github.io/substrate/:splat             200

@@ -1,7 +1,7 @@
 name: Broken link
 description: Report a broken link to help us fix them.
 title: "[Broken Link]: "
-labels: ["fixlink"]
+labels: ["broken link"]
 body:
   - type: markdown
     attributes:

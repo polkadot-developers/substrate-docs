@@ -13,6 +13,10 @@ const redirects = [
   { fromPath: '/v3/advanced/', toPath: '/v3/advanced/account-info/' },
   { fromPath: '/tutorials/v3/kitties/', toPath: `/tutorials/v3/kitties/pt1/` },
   {
+    fromPath: '/tutorials/v3/cumulus/',
+    toPath: `/tutorials/v3/cumulus/start-relay/`,
+  },
+  {
     fromPath: '/how-to-guides/basics/',
     toPath: `/how-to-guides/v3/basics/pallet-integration/`,
   },
