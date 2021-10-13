@@ -29,21 +29,6 @@ export const wrapPageElement = ({ element }) => (
   <MDXProvider components={components}>{element}</MDXProvider>
 )
 
-/* overide update scroll position on route change;
-   see: https://github.com/alexluong/gatsby-packages/issues/33 */
-export const shouldUpdateScroll = ({ routerProps: { location } }) => {
-  if (!window || !location) {
-    return [0, 0]
-  }
-  // TODO: bypass forcing scroll programmatically on pages with article nav
-  const bypassPages = ['/', '/tutorials/v3/', '/rustdocs/', '/playground/']
-  if (bypassPages.includes(location.pathname)) {
-    window.scrollTo(0, 0)
-  }
-
-  return false
-}
-
 export const onRouteUpdate = ({ location }) => scrollToAnchor(location)
 
 /**
@@ -54,6 +39,7 @@ export const onRouteUpdate = ({ location }) => scrollToAnchor(location)
  */
 function scrollToAnchor(location, mainNavHeight = 100) {
   // Check for location so build does not fail
+
   if (location && location.hash) {
     // Fix scrolling for ids starting with numbers
     // https://stackoverflow.com/a/20306237/1268612
@@ -64,6 +50,11 @@ function scrollToAnchor(location, mainNavHeight = 100) {
       top: item - mainNavHeight,
       behavior: 'instant',
     })
+  }
+
+  const bypassPages = ['/', '/tutorials/v3/', '/rustdocs/', '/playground/']
+  if (bypassPages.includes(location.pathname)) {
+    window.scrollTo(0, 0)
   }
 
   return true
