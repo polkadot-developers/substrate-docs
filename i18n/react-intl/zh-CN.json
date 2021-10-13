@@ -155,8 +155,8 @@
   "htg-parachains-rococo": "Start a testnet on Rococo",
 
   "docs-nav-htg-tools": "Tools",
-  "htg-tools-try-runtime": "Integrate try-runtime",
-  "htg-tools-txwrapper": "Create a `txwrapper` for a chain",
+  "htg-tools-try-runtime": "Integrate Try Runtime",
+  "htg-tools-txwrapper": "Create a txwrapper for a chain",
   "htg-tools-sidecar": "Track Parachain auction winners using Sidecar",
 
   "tutorials-beginner": "初学者",
