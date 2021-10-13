@@ -28,7 +28,6 @@ export default function DocsNav({
 }: DocsNavProps) {
   const intl = useIntl()
   const [isOpen, setIsOpen] = useState(false)
-
   return (
     <nav
       className={`sticky top-16 mb-12 h-docNav ${
@@ -85,10 +84,7 @@ export default function DocsNav({
           <div className="pt-2">
             {sideNav.map((section, index: number) => {
               const current = section.items.some(item => {
-                return (
-                  item.link === pathname.replace(/\/+$/, '') ||
-                  item.link === hashLink
-                )
+                return item.link === pathname || item.link === hashLink
               })
               return (
                 <SlideDownNav

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import Link from '../Link'
 import { ExternalLink } from '../DocsComponents'
 
 const isHash = (str: string) => /^#/.test(str)
@@ -26,9 +26,9 @@ export function MdxLink({ href, children, ...props }: MdxLinkProps) {
     }
   } else {
     return (
-      <LocalizedLink {...props} to={href}>
+      <Link {...props} to={href}>
         {children}
-      </LocalizedLink>
+      </Link>
     )
   }
 }

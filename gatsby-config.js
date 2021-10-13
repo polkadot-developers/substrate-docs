@@ -293,5 +293,11 @@ module.exports = {
         trackPageViews: true,
       },
     },
+    {
+      resolve: `gatsby-plugin-force-trailing-slashes`,
+      options: {
+        excludedPaths: [`/404.html`],
+      },
+    },
   ],
 }
