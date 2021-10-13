@@ -3,11 +3,7 @@ import { LocalizedLink } from 'gatsby-theme-i18n'
 import { ThemeContext } from '../contexts/ThemeContext'
 
 const addTrailingSlash = (url: string) => {
-  const lastChar = url.substr(-1)
-  if (lastChar != '/') {
-    url = url + '/'
-  }
-
+  url += url.endsWith('/') ? '' : '/'
   return url
 }
 
