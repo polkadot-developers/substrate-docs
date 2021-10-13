@@ -1,3 +1,5 @@
+# Netlify app domain
+https://substrate-docs.netlify.app/* https://docs.substrate.io/:splat 301!
 ## Production: Tutorial
 
 ### Tutorial - Create Your First Substrate Chain
