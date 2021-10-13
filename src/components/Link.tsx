@@ -2,9 +2,19 @@ import React, { useContext } from 'react'
 import { LocalizedLink } from 'gatsby-theme-i18n'
 import { ThemeContext } from '../contexts/ThemeContext'
 
-const addTrailingSlash = (url: string) => {
-  url += url.endsWith('/') ? '' : '/'
-  return url
+const addTrailingSlash = (uri: string) => {
+  const addSlash = (uri: string) => {
+    uri += uri.endsWith('/') ? '' : '/'
+    return uri
+  }
+
+  if (uri.indexOf('#') > 0) {
+    const hash = uri.substring(uri.indexOf('#'), uri.length)
+    uri = addSlash(uri.replace(hash, ''))
+    return uri + hash
+  }
+  uri = addSlash(uri)
+  return uri
 }
 
 interface InfraLinkProps {
