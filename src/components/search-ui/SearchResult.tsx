@@ -1,5 +1,5 @@
 import React from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import Link from '../Link'
 
 interface SearchResultProps {
   slug?: string
@@ -43,7 +43,7 @@ export function SearchResult({
           </div>
         </div>
       ) : (
-        <LocalizedLink to={slug}>
+        <Link to={slug}>
           <div
             className={`group px-4 pt-2 pb-3 mr-3 mb-2 bg-substrateGray dark:bg-gray-700  rounded animate-fade-in-down ${
               error
@@ -64,7 +64,7 @@ export function SearchResult({
               {category} {noLink || error ? '' : '-'} {title}
             </p>
           </div>
-        </LocalizedLink>
+        </Link>
       )}
     </>
   )
