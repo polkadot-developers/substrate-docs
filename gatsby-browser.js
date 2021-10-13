@@ -9,7 +9,6 @@ import { preToCodeBlock } from 'mdx-utils'
 import Code from './src/components/Code'
 
 import { ThemeProvider } from './src/contexts/ThemeContext'
-import { convertCompilerOptionsFromJson } from 'typescript'
 
 const components = {
   pre: preProps => {
