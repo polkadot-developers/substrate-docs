@@ -12,24 +12,20 @@ keywords: [collator, parachain, launch, prereq, requirements, checklist, weight,
   data={[
     {
       title: 'Goal',
-      description: `
-	    - Ensure \`protocolId\` is set uniquely.
-		- Ensure runtime weights are correct.
-		`,
+      description: `Ensure \`protocolId\` is set uniquely and that runtime weights are correct.`,
     },
     {
       title: 'Use Cases',
-      description: `
-        - Launching a parachain outside of a local testing environment.
+      description: `Launching a parachain outside of a local testing environment.
       `,
     },
     {
       title: 'Overview',
       description: `
-        The runtime constraints on a parachain are _much_ stricter than a solochain, as you _must_
-        coordinate with the relay chain to finalize state transitions. When launching a parachain to
-        production, it is critically important to make sure a chain's runtime is properly configured
-        and tested.
+  The runtime constraints on a parachain are _much_ stricter than a solochain, as you _must_
+  coordinate with the relay chain to finalize state transitions. When launching a parachain to
+  production, it is critically important to make sure a chain's runtime is properly configured
+  and tested.
       `,
     },
   ]}
@@ -191,7 +187,8 @@ in the same environment, the more sure you can be that your runtime upgrades wil
 
 ## Resources
 
-- [Regular runtime upgrade docs](/v3/runtime/upgrades)
-  - [Fork Off Substrate tool](https://github.com/maxsam4/fork-off-substrate)
-- [`try-runtime` tool](/v3/tools/try-runtime)
+- [Reference documentation for runtime upgrades](/v3/runtime/upgrades)
+- [A how-to guide to use benchmarked weights](/how-to-guides/v3/weights/use-benchmark-weights)
+- [Reference for `try-runtime` documentation](/v3/tools/try-runtime)
   - [`try-runtime` video workshop](https://www.crowdcast.io/e/substrate-seminar/41)
+- [Fork Off Substrate tool](https://github.com/maxsam4/fork-off-substrate)
