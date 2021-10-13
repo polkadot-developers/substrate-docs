@@ -1,5 +1,5 @@
 import React from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import Link from '../Link'
 import Icon from '../Icon'
 
 interface TextButtonProps {
@@ -36,7 +36,7 @@ export function TextButton(props: TextButtonProps) {
         </div>
       ) : (
         <div className={props.className}>
-          <LocalizedLink to={props.link}>
+          <Link to={props.link}>
             <p
               className={`font-bold pb-1 mr-0.5 border-b-2 inline hover:mr-2 transition-all ${textSize()} ${accentStyle()}`}
             >
@@ -47,7 +47,7 @@ export function TextButton(props: TextButtonProps) {
             >
               <Icon name={`arrowMore`} />
             </span>
-          </LocalizedLink>
+          </Link>
         </div>
       )}
     </>

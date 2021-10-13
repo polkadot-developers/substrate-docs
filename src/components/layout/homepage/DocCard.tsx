@@ -1,6 +1,6 @@
 import React from 'react'
 import cx from 'classnames'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import Link from '../../Link'
 import Icon from '../../Icon'
 
 interface DocCardProps {
@@ -21,7 +21,7 @@ export default function DocCard({
   animationDelay,
 }: DocCardProps) {
   return (
-    <LocalizedLink data-aos="fade-up" data-aos-delay={animationDelay} to={link}>
+    <Link data-aos="fade-up" data-aos-delay={animationDelay} to={link}>
       <div
         className={cx(
           'w-full text-center shadow-xl bg-white p-10 md:px-6 md:py-10 xl:p-10',
@@ -55,6 +55,6 @@ export default function DocCard({
           </span>
         </div>
       </div>
-    </LocalizedLink>
+    </Link>
   )
 }

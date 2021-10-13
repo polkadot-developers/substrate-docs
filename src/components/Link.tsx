@@ -2,6 +2,15 @@ import React, { useContext } from 'react'
 import { LocalizedLink } from 'gatsby-theme-i18n'
 import { ThemeContext } from '../contexts/ThemeContext'
 
+const addTrailingSlash = (url: string) => {
+  const lastChar = url.substr(-1)
+  if (lastChar != '/') {
+    url = url + '/'
+  }
+
+  return url
+}
+
 interface InfraLinkProps {
   to: string
   children: React.ReactNode
@@ -13,11 +22,15 @@ const InfraLink = ({ to, children, className }: InfraLinkProps) => {
 
   const handleClick = (e: React.FormEvent<EventTarget>, to: string) => {
     e.preventDefault()
-    window.location.href = to + `?mode=${colorMode}`
+    window.location.href = addTrailingSlash(to) + `?mode=${colorMode}`
   }
 
   return (
-    <a href={to} onClick={e => handleClick(e, to)} className={className}>
+    <a
+      href={addTrailingSlash(to)}
+      onClick={e => handleClick(e, to)}
+      className={className}
+    >
       {children}
     </a>
   )
@@ -52,7 +65,7 @@ export default function Link({ to, children, className }: LinkProps) {
     )
   } else {
     return (
-      <LocalizedLink to={to} className={className}>
+      <LocalizedLink to={addTrailingSlash(to)} className={className}>
         {children}
       </LocalizedLink>
     )
