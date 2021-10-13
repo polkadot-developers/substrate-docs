@@ -244,13 +244,13 @@ Next, add the pallet to the runtime:
 **`runtime/src/lib.rs`**
 
 ```rust
-/// Define the types required by the Scheduler pallet.
+// Define the types required by the Scheduler pallet.
 parameter_types! {
 	pub MaximumSchedulerWeight: Weight = 10_000_000;
 	pub const MaxScheduledPerBlock: u32 = 50;
 }
 
-/// Configure the runtime's implementation of the Scheduler pallet.
+// Configure the runtime's implementation of the Scheduler pallet.
 impl pallet_scheduler::Config for Runtime {
 	type Event = Event;
 	type Origin = Origin;
