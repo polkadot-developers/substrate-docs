@@ -86,7 +86,7 @@ https://substrate-docs.netlify.app/* https://docs.substrate.io/:splat 301!
 /docs/en/knowledgebase/smart-contracts/*      /v3/smart-contracts/:splat    301!
 
 ### Knowledge Base: Integrate
-/docs/en/knowledgebase/integrate/*            /v3/toolchains/:splat         301!
+/docs/en/knowledgebase/integrate/*            /v3/tools/:splat         301!
 
 ### Knowledge Base: Advanced
 /docs/en/knowledgebase/advanced/codec         /v3/advanced/scale-codec      301!
