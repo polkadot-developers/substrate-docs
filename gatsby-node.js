@@ -171,7 +171,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const allV3 = result.data.docsV3.nodes
   allV3.forEach(({ childMdx: node }) => {
     createPage({
-      path: `${node.frontmatter.slug}`,
+      path: `${node.frontmatter.slug}/`,
       component: kbTemplate,
       context: {
         slug: `${node.frontmatter.slug}`,
@@ -183,7 +183,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const htgPages = result.data.htg.nodes
   htgPages.forEach(({ childMdx: node }) => {
     createPage({
-      path: `${node.frontmatter.slug}`,
+      path: `${node.frontmatter.slug}/`,
       component: htgTemplate,
       context: {
         slug: `${node.frontmatter.slug}`,
@@ -196,7 +196,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     const res = tutsGqlResult[`${ind}`].value.data.res.nodes
     res.forEach(({ childMdx: node }) => {
       createPage({
-        path: `${node.frontmatter.slug}`,
+        path: `${node.frontmatter.slug}/`,
         component: tutorialTemplate,
         context: {
           slug: `${node.frontmatter.slug}`,
