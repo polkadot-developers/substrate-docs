@@ -435,19 +435,6 @@ For these scenarios, you submit an RPC call, which will run all of your contract
 actually submit a transaction or update the chain state. However, you will still need to specify
 the right amount of gas to cover your "virtual fee". But don't worry, nothing will be charged when making a call this way. :)
 
-### 4. Contract State Rent
-
-The Substrate contracts pallet has a state rent system that forces contracts to stay funded if they
-want to stay on the blockchain. This means that the more you use a contract, the more fees are taken
-from it. At some point, the contract will run out of fees and turn into a non-functioning tombstone.
-We try to avoid this by giving the contract a large endowment when we initially deploy it. However,
-if your contract does become a tombstone, for the purposes of this tutorial, the easiest solution is
-to just redeploy your contract on the chain.
-
-The best way to prevent this in general is to make sure your contract always stays well funded. In
-real world scenarios, there is a process that you can go through to recover a tombstone contract and
-get it functioning again, however this is beyond the scope of this tutorial.
-
-### 5. Other Issues
+### 4. Other Issues
 
 If you run into any other issues during this tutorial, please [report an issue](https://github.com/substrate-developer-hub/substrate-contracts-workshop/issues)!
