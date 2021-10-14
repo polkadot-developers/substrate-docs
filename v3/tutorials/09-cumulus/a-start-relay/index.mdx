@@ -321,30 +321,30 @@ We have included three set of chain spec files in this tutorial that you can use
 **without modification** for a local test network:
 
 - A two-validator relay chain with Alice and Bob as authorities. Useful for registering a single
-  parachain - [plain chain spec](/assets/tutorials/cumulus/chainspecs/rococo-custom-2-plain.json),
-  [raw chain spec](/assets/tutorials/cumulus/chainspecs/rococo-custom-2-raw.json).
+  parachain - [plain chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-plain.json),
+  [raw chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json).
 
 - A three-validator relay chain identical to `rococo-custom-2-raw` spec, with Charlie as the third
-  validator - [plain chain spec](/assets/tutorials/cumulus/chainspecs/rococo-custom-3-plain.json),
-  [raw chain spec](/assets/tutorials/cumulus/chainspecs/rococo-custom-3-raw.json).
+  validator - [plain chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-3-plain.json),
+  [raw chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-3-raw.json).
 
 - A four-validator relay chain identical to `rococo-custom-2-raw` spec, with Charlie and Dave as
   the third and fourth validators -
-  [plain chain spec](/assets/tutorials/cumulus/chainspecs/rococo-custom-4-plain.json),
-  [raw chain spec](/assets/tutorials/cumulus/chainspecs/rococo-custom-4-raw.json).
+  [plain chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-4-plain.json),
+  [raw chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-4-raw.json).
 
 Plain chain spec files are in a more human readable and modifiable format for your inspection. You
 will need to convert it to a SCALE encoded **raw** chain spec to use when starting your nodes. Jump
 to the [conversion](#convert-plain-to-raw-chain-spec) section to see how to do that.
 
 The above raw chain specs were created according to the steps in the
-[create your own chain spec](#create-a-custom-chain-spec) section.
+[create your own chain spec](##create-a-custom-relay-chain-spec-optional) section.
 
 ## Start your relay chain
 
 Before we can attach any cumulus-based parachains, we need to launch a relay chain for them to
 connect to. This section describes in detail how to start both nodes using the above
-[two-validator raw chain spec](/assets/tutorials/cumulus/chainspecs/rococo-custom-2-raw.json)
+[two-validator raw chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json)
 as well as the general instructions for starting additional nodes.
 
 ### Start the `alice` validator
@@ -393,7 +393,7 @@ necessary when operating over the network.
 ### Starting additional validators (optional)
 
 If you are using the
-[two-validator raw chain spec](/assets/tutorials/cumulus/chainspecs/rococo-custom-2-raw.json),
+[two-validator raw chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json),
 you do not need to start additional nodes, but others may need to start more nodes. Again, this
 command is entirely analogous. You just need to make sure that nodes on the same local machine do
 not have conflicting ports or base paths.
@@ -468,9 +468,9 @@ file. All keys in the generated file belong to the usual well-known accounts use
 
 As [mentioned above](#pre-configured-chain-spec-files), we have pre-configured:
 
-- [rococo-custom-2-plain.json](/assets/tutorials/cumulus/chainspecs/rococo-custom-2-plain.json)
-- [rococo-custom-3-plain.json](/assets/tutorials/cumulus/chainspecs/rococo-custom-3-plain.json)
-- [rococo-custom-4-plain.json](/assets/tutorials/cumulus/chainspecs/rococo-custom-4-plain.json)
+- [rococo-custom-2-plain.json](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-plain.json)
+- [rococo-custom-3-plain.json](/assets/tutorials/cumulus/chain-specs/rococo-custom-3-plain.json)
+- [rococo-custom-4-plain.json](/assets/tutorials/cumulus/chain-specs/rococo-custom-4-plain.json)
 
 Plain chain spec files are in a more human readable and modifiable format for our inspection. We
 will need to convert it to a SCALE encoded **raw** chain spec to pass to nodes on startup. Jump to

@@ -36,7 +36,7 @@ If you do not, please complete that tutorial.
 
 ## What You Will be Doing
 
-Before we even get started, let's layout what we're going to do over the course of this turorial. We will:
+Before we even get started, let's layout what we're going to do over the course of this tutorial. We will:
 
 <TutorialObjective
   data={{
@@ -55,7 +55,7 @@ Before we even get started, let's layout what we're going to do over the course 
 <TutorialObjective
   data={{
     textLineOne:
-      '3. Create and edit a chainspec JSON file.',
+      '3. Create and edit a chain spec JSON file.',
     url: '#create-a-custom-chain-spec',
   }}
 />
@@ -69,7 +69,7 @@ Before we even get started, let's layout what we're going to do over the course 
 
 ## Learning outcomes
 - Learn how to create authority nodes for a private network
-- Learn how to configure a JSON chainspec file 
+- Learn how to configure a JSON chain spec file 
 
 
 ## Alice and Bob start a blockchain
@@ -177,7 +177,7 @@ In your web browser, navigate to
   type={`green`}
   title={`Tip`}
   text=
-	  "Some Ad blockers (e.g. the built-in Shield in Brave browser, pihole, browser extentions, etc.)
+	  "Some Ad blockers (e.g. the built-in Shield in Brave browser, pihole, browser extensions, etc.)
 	  block the connection to a local node. In case you have any Ad blockers in your browser, make
 	  sure to check them and turn them off as needed if you have issues connecting to your local node. 
 	  Also some browsers, notably Firefox, will not connect to a local node from a https website.
@@ -286,7 +286,7 @@ These lines shows that Bob has peered with Alice (**`1 peers`**), they have prod
 Looking at the console that started Bob's node, you should see something similar.
 
 Once you've verified that both nodes are running as expected, you should shut them down. Although
-this is not strictly required, so long as you don't have conflicting ports and the same chainspec.
+this is not strictly required, so long as you don't have conflicting ports and the same chain spec.
 The next section of this tutorial will include commands to restart new nodes when necessary.
 
 
@@ -400,7 +400,7 @@ learning purposes.
 | SS58 Address  | `5CRZoFgJs4zLzCCAGoCUUs2MRmuD5BKAh17pWtb62LMoCi9h`                           |
 
 In the next section, we will create a custom chain specification using your key pairs and
-share your custom chain specicification with your network validators
+share your custom chain specification with your network validators
 
 
 ## Create a Custom Chain Spec
@@ -499,7 +499,7 @@ you like. For additional context, read about
     "
 /> 
 
-### Convert and share the raw chainspec
+### Convert and share the raw chain spec
 Once the chain spec is prepared, convert it to a "raw" chain spec. The raw chain spec contains all
 the same information, but it contains the encoded storage keys that the node will use to reference
 the data in its local storage. Distributing a raw spec ensures that each node will store the data at
@@ -830,7 +830,7 @@ those keypairs, and start a private network based on your custom chain spec.
 <Message
   type={`green`}
   title={`Tip`}
-  text={`If you would like examples of correct JSON keystore \`curl\` files with a known working chainspec, see [this
+  text={`If you would like examples of correct JSON keystore \`curl\` files with a known working chain spec, see [this
   solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/private-chain-v3). 
   You can use the extra files with your already cloned and compiled node, no need to start from scratch.`}
 />
