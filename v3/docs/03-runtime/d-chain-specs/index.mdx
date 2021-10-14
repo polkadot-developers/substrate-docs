@@ -4,14 +4,14 @@ slug: /v3/runtime/chain-specs
 version: 3.0 
 section: docs
 category: runtime
-keywords: genesis, configuration, chainspec
+keywords: genesis, configuration, chain spec
 ---
 
 A chain specification, or "chain spec", is a collection of configuration information that dictates
 which network a blockchain node will connect to, which entities it will initially communicate with,
 and what consensus-critical state it must have at genesis.
 
-## Structure of a Chainspec
+## Structure of a chain specification
 
 The [`ChainSpec` struct](/rustdocs/latest/sc_service/struct.GenericChainSpec.html)
 separates the information contained in a chain spec into two parts. A node can use a `ChainSpec`
@@ -55,7 +55,7 @@ runtime must also be supplied in the chain spec.
 
 It is this second part of the chain spec that is used when creating a genesis block.
 
-## Storing chainspec information
+## Storing chain specification information
 
 The information that comprises a chain spec can be stored in either of two ways. Being a Rust
 struct, the first way to store this information is as Rust code. Indeed, Substrate nodes typically
@@ -69,7 +69,7 @@ method for serializing its data into JSON as well as a function for de-serializi
 instance of a chain spec. When launching testnets or private chains, it is common to distribute a
 JSON-encoded chain spec along with the node binary.
 
-## Using chainspecs
+## Using chain specifications
 
 Node operators and runtime developers will encounter chain specifications when performing common
 tasks.
@@ -115,12 +115,12 @@ customized chain by supplying the customized JSON.
 substrate --chain=myCustomSpec.json
 ```
 
-## Raw chainspecs
+## Raw chain specifications
 
 Substrate nodes support runtime upgrades, which means a blockchain's runtime may be different than
 when the chain began. Chain specs, as discussed so far, contain information structured in a way that
 can be understood by the node's runtime. For example, consider this excerpt from the default
-Substrate node's chainspec json.
+Substrate node's chain specification `.json` file:
 
 ```json
 "sudo": {
@@ -165,5 +165,5 @@ After the conversion process, the above snippet looks like this:
 - Gain hands-on experience with chain specs by
   [starting a private network](/tutorials/v3/private-network).
 - The
-  [Node Template's Chainspec](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs)
+  [Node Template's chain specification](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs)
   stored as rust code.
