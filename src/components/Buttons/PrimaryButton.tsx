@@ -1,5 +1,5 @@
 import React from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import Link from '../Link'
 
 interface PrimaryButtonProps {
   link: string
@@ -24,14 +24,14 @@ export function PrimaryButton(props: PrimaryButtonProps) {
           </button>
         </a>
       ) : (
-        <LocalizedLink
+        <Link
           className={`bg-substrateGreen ${padding()} hover:bg-white border-2 border-transparent hover:border-substrateGreen rounded text-white hover:text-substrateGreen transform transition duration-300 ease-in-out`}
           to={props.link}
         >
           <button className={`focus:outline-none font-bold ${textSize()}`}>
             {props.children}
           </button>
-        </LocalizedLink>
+        </Link>
       )}
     </>
   )

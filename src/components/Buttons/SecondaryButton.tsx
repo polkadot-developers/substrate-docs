@@ -1,5 +1,5 @@
 import React from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import Link from '../Link'
 
 interface SecondaryButtonProps {
   link: string
@@ -23,7 +23,7 @@ export function SecondaryButton(props: SecondaryButtonProps) {
           </div>
         </a>
       ) : (
-        <LocalizedLink to={props.link}>
+        <Link to={props.link}>
           <div
             className={`bg-substrateDark dark:bg-substrateGray-light ${paddingSize()} ${textSize()} inline-block rounded-md hover:opacity-80 transition-opacity`}
           >
@@ -31,7 +31,7 @@ export function SecondaryButton(props: SecondaryButtonProps) {
               {props.children}
             </div>
           </div>
-        </LocalizedLink>
+        </Link>
       )}
     </>
   )

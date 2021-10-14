@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import Link from './Link'
 
 interface SlideDownNavProps {
   section: { name: string; items: { title: string; link: string }[] }
@@ -43,7 +43,7 @@ export default function SlideDownNav({
           section.items.map((item, index) => {
             const active = item.link === pathname || item.link === hashLink
             return (
-              <LocalizedLink key={index} to={item.link}>
+              <Link key={index} to={item.link}>
                 <div
                   className={`text-substrateDark dark:text-white text-sm pl-8 pr-6 sm:px-24 lg:pl-8 lg:pr-6 py-2 hover:font-bold ${
                     active && `font-bold`
@@ -51,7 +51,7 @@ export default function SlideDownNav({
                 >
                   {item.title}
                 </div>
-              </LocalizedLink>
+              </Link>
             )
           })}
       </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import Icon from '../../Icon'
 import Section from '../Section'
 import { useSiteMetadata } from '../../Hooks/use-site-metadata'
+import Link from '../../Link'
 
 interface ExploreLinkSectionProps {
   links: string[]
@@ -71,7 +72,7 @@ const ExploreLinkSection = ({ links }: ExploreLinkSectionProps) => {
         <div className="md:grid grid-cols-3 gap-6 xl:gap-10">
           {currentLinks.map(
             ({ title, description, link, linkText, icon }, index) => (
-              <a key={index} href={link}>
+              <Link key={index} to={link}>
                 <div className="h-full hover:bg-white hover:shadow-xl hover:scale-105 rounded-md p-8 mb-16 sm:mb-0 flex flex-col justify-between transition-all dark:hover:bg-substrateDark">
                   <div>
                     <Icon name={icon} className="mb-6 w-8 h-8" />
@@ -91,7 +92,7 @@ const ExploreLinkSection = ({ links }: ExploreLinkSectionProps) => {
                     </span>
                   </div>
                 </div>
-              </a>
+              </Link>
             )
           )}
         </div>
