@@ -8,13 +8,39 @@ const addTrailingSlash = (uri: string) => {
     return uri
   }
 
-  if (uri.indexOf('#') > 0) {
-    const hash = uri.substring(uri.indexOf('#'), uri.length)
-    uri = addSlash(uri.replace(hash, ''))
-    return uri + hash
+  const removeSlash = (uri: string) => {
+    return uri.replace(/\/$/, '')
   }
+
+  const getHash = (uri: string) => {
+    if (uri.indexOf('#') > 0) {
+      return uri.substring(uri.indexOf('#'), uri.length)
+    }
+    return ''
+  }
+
+  const getSearch = (uri: string) => {
+    if (uri.indexOf('?') > 0) {
+      return uri.substring(uri.indexOf('?'), uri.length)
+    }
+    return ''
+  }
+
+  // eg: http://localhost:8001/playground/?deploy=node-template#config
+  // remove back slash if exist
+  uri = removeSlash(uri)
+  // store hash if exist and remove from uri
+  const hash = getHash(uri)
+  if (hash) uri = uri.replace(hash, '')
+  // remove back slash if exist
+  uri = removeSlash(uri)
+  // store search query if exist and remove from uri
+  const search = getSearch(uri)
+  if (search) uri = uri.replace(search, '')
+  // add slash if missing
   uri = addSlash(uri)
-  return uri
+
+  return uri + search + hash
 }
 
 interface InfraLinkProps {
