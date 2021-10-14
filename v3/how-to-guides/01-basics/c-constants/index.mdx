@@ -22,9 +22,9 @@ difficulty: 1
       title: 'Overview',
       description:
         `Declaring a constant value in a runtime is a useful tool to either define fixed values or define values that change dynamically
-         according to some factor. This guide steps through the process of creating pallet constants that are used to reset a \`u32\`
+         according to some factor. This guide shows you how to create pallet constants that are used to reset a \`u32\`
          value in storage. This value, we'll call \`SingleValue\`, can also be modified using a method called \`add_value\`.
-         The purpose of this guide is to demonstrate the utility of configuring constants by hardcoding them as well as making them more
+         The purpose of this guide is to demonstrate the utility of configuring constants by hardcoding them and making them more
          dynamic.`,
     },
   ]}
@@ -32,7 +32,7 @@ difficulty: 1
 
 ## Steps
 
-### 1. Define the constants in your pallet
+### 1. Define the constants in your pallet.
 
 - `MaxAddend` will be the value displayed in metadata.
 - `ClearFrequency` keeps track of the block numbers and will
@@ -52,9 +52,9 @@ difficulty: 1
 	}
 ```
 
-### 2. Declare your storage items and events
+### 2. Declare your storage items and events.
 
-Using the storage attribute macro, declare `SingleValue` which will be the value that gets modified every block cycle.
+Using the storage attribute macro, declare `SingleValue`, the value that gets modified every block cycle.
 
 ```rust
 #[pallet::storage]
@@ -68,7 +68,7 @@ Define your pallet's events:
 #[pallet::event]
 #[pallet::generate_deposit(pub(super) fn deposit_event)]
 pub enum Event<T: Config> {
-    /// The value has ben added to. The parameters are
+    /// The value has been added to. The parameters are
     /// (initial amount, amount added, final amount).
     Added(u32, u32, u32),
     /// The value has been cleared. The parameter is the value before clearing.
@@ -104,16 +104,16 @@ runs at the end of block execution. Specify this logic under the `#[pallet::hook
 	}
 ```
 
-### 4. Create a method that allows users to specify the value
+### 4. Create a method that allows users to specify the value.
 
 The `add_value` method increases `SingleValue` so long as each call adds to less than the `MaxAddend` value.
 
 For this method, make sure to:
 
-- Include checks.
-- Keep track of the previous value.
-- Check for overflow.
-- Update `SingleValue`.
+- Include checks
+- Keep track of the previous value
+- Check for overflow
+- Update `SingleValue`
 
 ```rust
     // Extrinsics callable from outside the runtime.

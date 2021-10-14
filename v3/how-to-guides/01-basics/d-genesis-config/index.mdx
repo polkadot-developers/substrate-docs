@@ -11,9 +11,7 @@ difficulty: 1
 <Message
   type={`yellow`}
   title={`Information`}
-  text={`This is intended for beginners just getting started and want to get familiar with customizing 
-  their chain. Not all configurations will follow the same approach&mdash;this in fact is the most basic 
-  approach. Learn more in the [related material section](#related-material).`}
+  text={`This is intended for beginners who want to become familiar with customizing their chain. Not all configurations will follow the same approach. This is the most basic approach. Learn more in the [related material section](#related-material).`}
 />
 
 <Objectives
@@ -31,7 +29,7 @@ difficulty: 1
       title: 'Overview',
       description:
         `Genesis configuration is a useful tool for testing chain behaviour by defining an initial state for things such as accounts, 
-        balances, genesis for custom pallets, and more. Here is a simple guide on how to configure custom intial balances for a runtime, 
+        balances, genesis for custom pallets, and more. Here is a simple guide on how to configure custom intial balances for a runtime 
         by modifying [BalancesConfig](/rustdocs/latest/node_template_runtime/type.BalancesConfig.html) in \`chainspec.rs\`.`,
     },
   ]}
@@ -67,7 +65,7 @@ pallet_balances: Some(BalancesConfig {
 
 ### 2. Modify balances
 
-By changing the right-hand-side value of the `balances` tuple, you can customize the amount of each account. Take a look at the [Rust documentation][genesis-config-rustdocs] on how this is implemented. Let's modify things such that Alice's account is pre-seeded with 1<<10:
+By changing the right side value of the `balances` tuple, you can customize the amount of each account. See the [Rust documentation][genesis-config-rustdocs] to learn how this works. Let's modify things such that Alice's account is pre-seeded with 1<<10:
 
 ```rust
 pallet_balances: Some(BalancesConfig {

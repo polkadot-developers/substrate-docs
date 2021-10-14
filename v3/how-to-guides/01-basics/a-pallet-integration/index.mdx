@@ -59,7 +59,7 @@ impl pallet_something::Config for Runtime {
 }
 ```
 
-Then, declare your pallet and the items it exposes in `construct_runtime!`, including the additional `Module` and `Storage`
+Declare your pallet and the items it exposes in `construct_runtime!`, including the additional `Module` and `Storage`
 types for the runtime macro:
 
 ```rust
@@ -79,7 +79,7 @@ construct_runtime!(
 #### For external pallets
 
 The same pattern applies as for declaring a local pallet, except you must ensure you include all the types your pallet exposes.
-In addition, don't forget to include relevant parameter types and constants if relevant. See this examples on how [`pallet_timestamp`][timestamp-frame]
+Additionally, you must include relevant parameter types and constants if relevant. See the examples on how [`pallet_timestamp`][timestamp-frame]
 is declared.
 
 ### 3. Update `/runtime/Cargo.toml`
@@ -109,7 +109,7 @@ std = [
 
 #### For external pallets
 
-Assuming the pallet is hosted in [crates.parity.io](https://crates.parity.io/), adding it to the runtime would look like this:
+For example, if the pallet is hosted in [crates.parity.io](https://crates.parity.io/), adding it to the runtime would look like this:
 
 ```rust
 [dependencies.pallet-external]
