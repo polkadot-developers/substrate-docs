@@ -59,8 +59,8 @@ impl pallet_something::Config for Runtime {
 }
 ```
 
-Declare your pallet and the items it exposes in `construct_runtime!`, including the additional `Module` and `Storage`
-types for the runtime macro:
+Declare your pallet and the items it exposes in `construct_runtime!`, including the additional `Pallet` and `Storage`
+types for the [runtime macro](/v3/runtime/macros/#construct_runtime):
 
 ```rust
 construct_runtime!(
@@ -70,7 +70,7 @@ construct_runtime!(
 		UncheckedExtrinsic = UncheckedExtrinsic
 	{
 /* --snip-- */
-		Something: pallet_something::{Module, Call, Storage, Event<T>},
+		Something: pallet_something::{Pallet, Call, Storage, Event<T>},
 /* --snip-- */
 	}
 );
