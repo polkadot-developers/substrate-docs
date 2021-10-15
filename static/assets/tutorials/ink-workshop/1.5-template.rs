@@ -16,7 +16,8 @@ mod incrementer {
         #[ink(constructor)]
         pub fn new(init_value: i32) -> Self {
             Self {
-                value: init_value,
+				value: init_value,
+				// ACTION: Set initial `my_value`
             }
         }
 
@@ -24,6 +25,7 @@ mod incrementer {
         pub fn default() -> Self {
             Self {
                 value: 0,
+				// ACTION: Set initial `my_value`
             }
         }
 
