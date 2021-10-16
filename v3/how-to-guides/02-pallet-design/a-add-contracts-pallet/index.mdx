@@ -48,7 +48,7 @@ difficulty: 1
 1. Add Contracts to your runtime.
   To learn how to include Contracts in your runtime, see [Basic pallet integration](/how-to-guides/v3/basics/pallet-integration).
 
-2. Update `runtime/Cargo.toml` and `runtime/Cargo.toml` with the following entries:
+2. Update `runtime/Cargo.toml` and `node/Cargo.toml` with the following entries:
 
   - `pallet-contracts`
   - `pallet-contracts-primitives`
@@ -63,14 +63,14 @@ Implement the Contracts pallet [configuration traits][contracts-config-rustdocs]
   
   Add these types to `runtime/src/lib.rs`. The following code snippet shows four types:
 
-```rust
-impl pallet_contracts::Config for Runtime {
-    type Time = Timestamp;
-    type Randomness = RandomnessCollectiveFlip;
-    type Currency = Balances;
-    type Event = Event;
-    /* --snip-- */
-```
+  ```rust
+  impl pallet_contracts::Config for Runtime {
+      type Time = Timestamp;
+      type Randomness = RandomnessCollectiveFlip;
+      type Currency = Balances;
+      type Event = Event;
+      /* --snip-- */
+  ```
 
 2. Add parameter types.
 
@@ -132,10 +132,9 @@ impl pallet_contracts::Config for Runtime {
   type={`yellow`}
   title={`Information`}
   text={`The Contracts pallet exposes custom runtime APIs and RPC endpoints
-  which enables reading a contracts state from off chain. Since we want to use 
-  the Contracts pallet to make calls to our node's storage without making a transaction, 
-  we'll two other pallets: the Contracts RPC Runtime API pallet and the Contracts RPC pallet 
-  to help us achieve this.`}
+  which enables reading a contracts state from off chain. To use 
+  the Contracts pallet to make calls to your node's storage without making a transaction, 
+  you'll use two other pallets: the Contracts RPC Runtime API pallet and the Contracts RPC pallet.`}
 />
 
 1. Import the dependencies.
