@@ -43,19 +43,17 @@ difficulty: 1
   ]}
 />
 
-## Steps
-
-### Import the dependencies.
+## Import the dependencies.
 
 1. Add Contracts to your runtime.
   To learn how to include Contracts in your runtime, see [Basic pallet integration](/how-to-guides/v3/basics/pallet-integration).
 
 2. Update `runtime/Cargo.toml` and `runtime/Cargo.toml` with the following entries:
 
-- `pallet-contracts`
-- `pallet-contracts-primitives`
+  - `pallet-contracts`
+  - `pallet-contracts-primitives`
 
-### Add the Contracts pallet to your runtime.
+## Add the Contracts pallet to your runtime.
 
 Implement the Contracts pallet [configuration traits][contracts-config-rustdocs] in order for your runtime to use it properly.
 
@@ -128,7 +126,7 @@ Create an instance of the Contracts pallet in `construct_macro!` inside `runtime
  /* --snip-- */
 ```
 
-### Add API dependencies
+## Add API dependencies
 
 <Message
   type={`yellow`}
@@ -189,7 +187,7 @@ Unsure what version to import? Use the latest version as indicated in
     );
   ```
 
-### Start your upgraded chain
+## Start your upgraded chain
 
 Your node template now includes the Contracts pallet and is ready to execute WASM smart contracts.
 
@@ -208,8 +206,6 @@ cargo build --release
 - `canvas-node` [rpc file](https://github.com/paritytech/canvas-node/blob/master/node/src/rpc.rs)
 
 ## Related material
-
-#### Rust docs
 
 - [`pallet_contracts` crate](/rustdocs/latest/pallet_contracts/index.html)
 - [`pallet_contracts_rpc` crate](/rustdocs/latest/pallet_contracts_rpc/index.html)
