@@ -61,7 +61,7 @@ Implement the Contracts pallet [configuration traits][contracts-config-rustdocs]
   
   Make sure you've included all of the types that `pallet_contracts` exposes. You can copy these from [FRAME's source code][contracts-frame-gh]. Always check that versioning is equivalent to the imported crate. 
   
-  Add these types to `runtime/src/lib.rs`. For example:
+  Add these types to `runtime/src/lib.rs`. The following code snippet shows four types:
 
 ```rust
 impl pallet_contracts::Config for Runtime {
@@ -116,7 +116,7 @@ impl pallet_contracts::Config for Runtime {
   const AVERAGE_ON_INITIALIZE_RATIO: Perbill = Perbill::from_percent(10);
   ```
 
-3. Add an instance in runtime for `pallet_contracts`
+3. Add an instance in runtime for `pallet_contracts`.
 
   Create an instance of the Contracts pallet in `construct_macro!` inside `runtime/src/lib.rs`:
 
@@ -138,7 +138,7 @@ impl pallet_contracts::Config for Runtime {
   to help us achieve this.`}
 />
 
-1. Import dependencies
+1. Import the dependencies.
   As in the [first step of this guide](#1-import-the-dependencies), update `/runtime/Cargo.toml` to add `pallet-contracts-rpc-runtime-api`.
 
 2. Include `pallet-contracts` and `pallet-contracts-rpc` inside `node/Cargo.toml` so that your runtime can interact with your node.
@@ -156,7 +156,7 @@ impl pallet_contracts::Config for Runtime {
   [crates.io](https://crates.io/search?q=pallet-contracts-rpc).
   `}/>
 
-4. Implement the Contracts runtime API
+4. Implement the Contracts runtime API.
 
   Navigate to the`impl_runtime_apis!` macro near the end of your runtime.
 
@@ -166,7 +166,7 @@ impl pallet_contracts::Config for Runtime {
   - **`get_storage()`**: returns `pallet_contracts_primitives::GetStorageResult {Contracts::get_storage(address, key)}`
   - **`rent_projection()`**: returns `pallet_contracts_primitives::RentProjectionResult<BlockNumber> {Contracts::rent_projection(address)}`
   
-5. Add the RPC API extension
+5. Add the RPC API extension.
 
   To be able to call the runtime API, you must add the RPC to the node's service.
 
