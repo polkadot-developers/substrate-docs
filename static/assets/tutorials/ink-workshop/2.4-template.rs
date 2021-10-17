@@ -45,9 +45,10 @@ mod erc20 {
 				value: initial_supply,
 			});
 
+			// ACTION: add allowances initialization
 			Self {
 				total_supply: initial_supply,
-				balances
+				balances,
 			}
 		}
 
