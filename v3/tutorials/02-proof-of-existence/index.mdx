@@ -17,8 +17,8 @@ relevantSkills:
 This tutorial illustrates how to create a custom proof-of-existence (PoE) service using the Substrate
 blockchain development framework and the [FRAME](/v3/runtime/frame) library. 
 
-Proof of existence is an approach to validating the authenticity and ownership of a digital object by using the information stored on the blockchain about the object.
-Because the blockchain associates a timestamp and signature with the object, the blockchain record can be used to verify—to prove—that a particular object existed at a specific date and time and the owner of record at that date and time.
+Proof of existence is an approach to validating the authenticity and ownership of a digital object by using the object information stored on the blockchain.
+Because the blockchain associates a timestamp and signature with the object, the blockchain record can be used to verify and prove that a particular object existed at a specific date and time. It can also verify who the owner of record was at that date and time.
 
 ## Digital objects and hashes
 
@@ -84,7 +84,7 @@ Therefore, the first step is to remove some files and content from the file in t
 
 1. Open a terminal shell and navigate to the root directory for the node template.
 
-1. Change to the `pallets/template/src` directory byt running the following command:
+1. Change to the `pallets/template/src` directory by running the following command:
     
     ```
     cd pallets/template/src
@@ -212,8 +212,8 @@ Instead, the proof-of-existence pallet uses the [sp-std crate](/rustdocs/latest/
 use sp_std::vec::Vec;
 ```
 
-The `sp-std` crate provides many standard Rust library functions amodified to be compatible with `no_std` configuration. 
-To use the  `sp-std` crate, you _must_ update the pallet dependencies in the `Cargo.toml` file.
+The `sp-std` crate provides many standard Rust library functions modified to be compatible with `no_std` configuration. 
+To use the  `sp-std` crate, you must update the pallet dependencies in the `Cargo.toml` file.
 
 To add the  `sp-std` crate to the pallet:
 
@@ -277,7 +277,7 @@ To implement the errors for the proof-of-existence pallet:
 ## Implement a `StorageMap` storage item
 
 To add a new proof to the blockchain, the proof-of-existence pallet requires a storage mechanism. 
-To address this requirement, you can create a [hash map](https://en.wikipedia.org/wiki/Hash_table) that maps each proof to its owner and records the block number the proof was made. 
+To address this requirement, you can create a [hash map](https://en.wikipedia.org/wiki/Hash_table) that maps each proof to its owner and records the block number when the proof was made. 
 To create this hash map, you can use the FRAME [`StorageMap`](/rustdocs/latest/frame_support/storage/types/struct.StorageMap.html) pallet.
 
 To implement storage for the proof-of-existence pallet:
@@ -313,7 +313,7 @@ To implement this logic in the proof-of-existence pallet:
 1. Replace the `#[pallet::call]` line with the following code block:
 
     ```rust
-    // Dispatchable functions allows users to interact with the pallet and invoke state changes.
+    // Dispatchable functions allow users to interact with the pallet and invoke state changes.
     // These functions materialize as "extrinsics", which are often compared to transactions.
     // Dispatchable functions must be annotated with a weight and must return a DispatchResult.
     #[pallet::call]
@@ -593,7 +593,7 @@ component.
 
 To test the proof-of-existence pallet using the new front-end component:
 
-1. Click Choose file and select any file on your computer.
+1. Click **Choose file** and select any file on your computer.
     
     The proof-of-existence pallet generates the hash for the selected file and displays it in the File Digest field.
 
