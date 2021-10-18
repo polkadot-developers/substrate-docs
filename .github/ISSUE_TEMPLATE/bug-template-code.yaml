@@ -1,4 +1,4 @@
-name: Bug report (code or build issues)
+name: Bug report (code, content or build issues)
 description: Let us know about an issue you experienced.
 title: '[CODE BUG]: '
 labels: ['bug', 'devhub']
