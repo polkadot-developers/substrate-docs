@@ -715,9 +715,9 @@ In order to use the `Randomness` trait for our pallet, we must:
 
   ```rust
   #[pallet::storage]
-	#[pallet::getter(fn kitties_owned)]
-	/// Keeps track of what accounts own what Kitty.
-	pub(super) type KittiesOwned<T: Config> = StorageMap<
+  #[pallet::getter(fn kitties_owned)]
+  /// Keeps track of what accounts own what Kitty.
+  pub(super) type KittiesOwned<T: Config> = StorageMap<
     _, 
     Twox64Concat, 
     T::AccountId, 
