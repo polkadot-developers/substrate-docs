@@ -96,7 +96,7 @@ Implement the Contracts pallet [configuration traits][contracts-config-rustdocs]
 
   ```rust
   /* --snip-- */
-  Contracts: pallet_contracts::{Module, Call, Config<T>, Storage, Event<T>},
+  Contracts: pallet_contracts::{Pallet, Call, Config<T>, Storage, Event<T>},
   /* --snip-- */
   ```
 
@@ -164,7 +164,7 @@ Implement the Contracts pallet [configuration traits][contracts-config-rustdocs]
 
 Your node template now includes the Contracts pallet and is ready to execute WASM smart contracts.
 
-Build and run it usingthe following commands:
+Build and run it using the following commands:
 
 ```rust
 # Build chain
