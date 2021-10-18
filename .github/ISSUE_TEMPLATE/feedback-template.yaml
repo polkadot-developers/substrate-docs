@@ -24,7 +24,7 @@ body:
     id: feedback
     attributes:
       label: Feedback
-      description: Did something go wrong or have a suggestion for improving this site?
+      description: Did something go wrong or do you have a suggestion for improving this site?
       placeholder: Describe what you would like to see changed.
     validations:
       required: true
