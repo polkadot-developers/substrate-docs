@@ -90,6 +90,9 @@
 /docs/en/knowledgebase/runtime/off-chain-workers	/v3/concepts/off-chain-features/        301!
 /docs/en/knowledgebase/runtime/primitives	        /v3/concepts/runtime/#core-primitives   301!
 /docs/en/knowledgebase/runtime/tests	            /v3/runtime/testing/                    301!
+/docs/en/knowledgebase/runtime/origin	            /v3/runtime/origins/                    301!
+/docs/en/knowledgebase/runtime/pallets	          /v3/runtime/pallet-coupling/            301!
+/docs/en/knowledgebase/runtime/*                  /v3/runtime/:splat                      301!
 
 ### Knowledge Base: Smart Contract
 /docs/en/knowledgebase/smart-contracts                      /v3/runtime/smart-contracts/                    301!
