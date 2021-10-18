@@ -281,7 +281,7 @@ are no errors in our pallet so far:
 ```bash
 cargo build -p pallet-kitties
 ```
-
+<br />
 <Message
   type={`red`}
   title={`Warning`}
@@ -333,7 +333,7 @@ Now build your node and make sure you don't have any errors. This will take a li
 ```bash
 cargo build --release
 ```
-
+<br />
 <Message
   type = 'green'
   title = 'Congratulations!'
@@ -508,7 +508,7 @@ pub struct Kitty<T: Config> {
     pub owner: AccountOf<T>,
 }
 ```
-
+<br />
 <Message type='gray' title='Note' text = {`
 We define \`<BalanceOf<T>>\` and \`AccountOf<T>\` types, and use them in the \`Kitty\`. If you
 wonder what the first line means in Rust, it is to define a type alias \`AccountOf<T>\` which is
@@ -861,7 +861,7 @@ pallet is behaving as expected. In order to use `log::info`, add this to your pa
 default-features = false
 version = '0.4.14'
 ```
-
+<br />
 <Message
   type='gray'
   title='Why "DispatchResult" and not "DispatchResultWithPostInfo"?'
@@ -990,7 +990,7 @@ initial scaffolding of our codebase:
       //--snip--//
   }
 ```
-
+<br />
 <Message
   type={`yellow`}
   title={`Information`}
@@ -1024,7 +1024,7 @@ Complete it by replacing ACTION #4 with:
 ```rust
 Self::deposit_event(Event::Created(sender, kitty_id));
 ```
-
+<br />
 <Message
   type={`gray`}
   title={`Note`}
@@ -1071,6 +1071,7 @@ compiles, run the following command to see if everything can build:
 ```rust
 cargo build --release
 ```
+<br />
 <Message
   type={`yellow`}
   title={`Information`}
@@ -1266,7 +1267,7 @@ object.value = new_value;
 
 <Object<T>>::insert(object_id, object);
 ```
-
+<br />
 <Message type='gray' title='Note' text={`
 Rust expects you to declare a variable as mutable (using the \`mut\` keyword) whenever its value is
 going to be updated.
@@ -1478,7 +1479,7 @@ Self::transfer_kitty_to(&kitty_id, &buyer)?;
 // Deposit relevant Event
 Self::deposit_event(Event::Bought(buyer, seller, kitty_id, bid_price));
 ```
-
+<br />
 <Message type='gray' title='Note' text={`
 Both of the above operations, \`T::Currency::transfer()\`, and \`Self::transfer_kitty_to()\` could
 fail which is why we check for the returned result in each case. If \`Err\` is returned, we also return from the
