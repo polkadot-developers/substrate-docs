@@ -23,7 +23,7 @@ export function BottomButtons({ menu, pageSlug }: BottomButtonsProps) {
       })
     })
     pages.map((cur, index) => {
-      if (cur.link === pageSlug) {
+      if (cur.link === `${pageSlug}/`) {
         if (index === 0) {
           setNextButton(pages[index + 1])
           setPrevButton(null)
