@@ -41,7 +41,7 @@ First, the
 [`sudo_unchecked_weight`](/rustdocs/latest/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
 function from the [Sudo pallet](/v3/runtime/frame#sudo) will be used to perform an
 upgrade that adds the [Scheduler pallet](/v3/runtime/frame#scheduler). Then, the
-[`schedule`](/rustdocs/latest/pallet_scheduler/enum.Call.html#variant.schedule)
+[`schedule`](/rustdocs/latest/pallet_scheduler/pallet/enum.Call.html#variant.schedule)
 function from the Scheduler pallet will be used to perform an upgrade that increases the
 [existential (minimum) balance](/v3/getting-started/glossary#existential-deposit)
 for network accounts.
@@ -82,7 +82,7 @@ create an Issue.
 
 ## What You Will Be Doing
 
-Before we even get started, let's layout what we are going to do over the course of this turorial. We will:
+Before we even get started, let's layout what we are going to do over the course of this tutorial. We will:
 
 <TutorialObjective
   data={{
@@ -244,13 +244,13 @@ Next, add the pallet to the runtime:
 **`runtime/src/lib.rs`**
 
 ```rust
-/// Define the types required by the Scheduler pallet.
+// Define the types required by the Scheduler pallet.
 parameter_types! {
 	pub MaximumSchedulerWeight: Weight = 10_000_000;
 	pub const MaxScheduledPerBlock: u32 = 50;
 }
 
-/// Configure the runtime's implementation of the Scheduler pallet.
+// Configure the runtime's implementation of the Scheduler pallet.
 impl pallet_scheduler::Config for Runtime {
 	type Event = Event;
 	type Origin = Origin;
@@ -394,7 +394,7 @@ Next up, we will:
 ## Schedule an Upgrade
 
 Now that the Node Template has been upgraded to include the Scheduler pallet,
-[the `schedule` function](/rustdocs/latest/pallet_scheduler/enum.Call.html#variant.schedule)
+[the `schedule` function](rustdocs/latest/pallet_scheduler/pallet/enum.Call.html#variant.schedule)
 can be used to perform the next runtime upgrade. In the previous part, the
 `sudo_unchecked_weight` function was used to override the weight associated with the `set_code`
 function; in this section, the runtime upgrade will be _scheduled_ so that it can be processed as
@@ -452,7 +452,7 @@ cargo build --release -p node-template-runtime
   type={`gray`}
   title={`Note`}
   text=
-	  "This will _override_ any privous build artifacts! So if you want to have a copy on hand of 
+	  "This will _override_ any previous build artifacts! So if you want to have a copy on hand of
 	  your last runtime Wasm build files, be sure to copy them somewhere else.
 	  "
 />
@@ -474,7 +474,7 @@ blocks (1 minute) in the future to fill in the `when` parameter and quickly subm
 
 You can use the template node's command line output or the
 [Polkadot JS Apps UI block explorer](https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944)
-to watch as this scheuled call takes place.
+to watch as this scheduled call takes place.
 
 ![Scheduled Success Runtime Upgrade Version 102](../../../src/images/tutorials/04-forkless-upgrade/scheduled-upgrade-success.png)
 
