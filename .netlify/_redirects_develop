@@ -29,6 +29,9 @@
 /docs/en/tutorials/add-contracts-pallet        /tutorials/v3/ink-workshop/pt1/         301!
 /docs/en/tutorials/add-contracts-pallet/*      /tutorials/v3/ink-workshop/pt1/         301!
 
+### Substrate Contracts Workshop
+/substrate-contracts-workshop/                 /tutorials/v3/ink-workshop/pt1/         301!
+
 ### Tutorial - Node Metrics
 /docs/en/tutorials/visualize-node-metrics      /tutorials/v3/node-metrics              301!
 /docs/en/tutorials/visualize-node-metrics/*    /tutorials/v3/node-metrics              301!
