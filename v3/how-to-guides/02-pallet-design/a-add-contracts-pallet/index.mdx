@@ -124,13 +124,6 @@ Implement the Contracts pallet [configuration traits][contracts-config-rustdocs]
   use pallet_contracts_rpc::{Contracts, ContractsApi};
   ```
 
-  <Message type='green' title='Tip' text={`
-  Unsure what version to import? Use the latest version as indicated in
-  [crates.io](https://crates.io/search?q=pallet-contracts-rpc).
-  `}/>
-
-4. Implement the Contracts runtime API.
-
   Navigate to the`impl_runtime_apis!` macro near the end of your runtime.
 
   Add the following functions that the `ContractsApi` exposes:

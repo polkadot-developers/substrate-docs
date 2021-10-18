@@ -29,6 +29,9 @@
 /docs/en/tutorials/add-contracts-pallet        /tutorials/v3/ink-workshop/pt1/         301!
 /docs/en/tutorials/add-contracts-pallet/*      /tutorials/v3/ink-workshop/pt1/         301!
 
+### Substrate Contracts Workshop
+/substrate-contracts-workshop/                 /tutorials/v3/ink-workshop/pt1/         301!
+
 ### Tutorial - Node Metrics
 /docs/en/tutorials/visualize-node-metrics      /tutorials/v3/node-metrics              301!
 /docs/en/tutorials/visualize-node-metrics/*    /tutorials/v3/node-metrics              301!
@@ -90,6 +93,9 @@
 /docs/en/knowledgebase/runtime/off-chain-workers	/v3/concepts/off-chain-features/        301!
 /docs/en/knowledgebase/runtime/primitives	        /v3/concepts/runtime/#core-primitives   301!
 /docs/en/knowledgebase/runtime/tests	            /v3/runtime/testing/                    301!
+/docs/en/knowledgebase/runtime/origin	            /v3/runtime/origins/                    301!
+/docs/en/knowledgebase/runtime/pallets	          /v3/runtime/frame/#pallets            301!
+/docs/en/knowledgebase/runtime/*                  /v3/runtime/:splat                      301!
 
 ### Knowledge Base: Smart Contract
 /docs/en/knowledgebase/smart-contracts                      /v3/runtime/smart-contracts/                    301!
@@ -107,6 +113,7 @@
 /docs/en/knowledgebase/integrate/memory-profiling   /v3/tools/memory-profiling/         301!
 /docs/en/knowledgebase/integrate/polkadot-js        /v3/integration/polkadot-js/        301!
 /docs/en/knowledgebase/integrate/subkey             /v3/tools/subkey/                   301!
+
 
 ### Knowledge Base: Advanced
 /docs/en/knowledgebase/advanced/codec         /v3/advanced/scale-codec                  301!

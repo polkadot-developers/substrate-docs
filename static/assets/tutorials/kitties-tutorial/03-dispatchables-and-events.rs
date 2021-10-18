@@ -144,9 +144,9 @@ pub mod pallet {
 		}
 
 		// Create new DNA with existing DNA
-		pub fn breed_dna(kid1: &T::Hash, kid2: &T::Hash) -> Result<[u8; 16], Error<T>> {
-			let dna1 = Self::kitties(kid1).ok_or(<Error<T>>::KittyNotExist)?.dna;
-			let dna2 = Self::kitties(kid2).ok_or(<Error<T>>::KittyNotExist)?.dna;
+		pub fn breed_dna(parent1: &T::Hash, parent2: &T::Hash) -> Result<[u8; 16], Error<T>> {
+			let dna1 = Self::kitties(parent1).ok_or(<Error<T>>::KittyNotExist)?.dna;
+			let dna2 = Self::kitties(parent2).ok_or(<Error<T>>::KittyNotExist)?.dna;
 
 			let mut new_dna = Self::gen_dna();
 			for i in 0..new_dna.len() {
