@@ -153,16 +153,18 @@ kitties-tutorial           <--  The name of our project directory
 |       |
 |       +-- src
 |           |
-|           +-- lib.rs     <-- Remove contents
+|           +-- benchmarking.rs     <-- Remove file
 |           |
-|           +-- mock.rs    <-- Remove file
+|           +-- lib.rs              <-- Remove contents
 |           |
-|           +-- tests.rs   <-- Remove file
+|           +-- mock.rs             <-- Remove file
+|           |
+|           +-- tests.rs            <-- Remove file
 |
 +-- Cargo.toml
 ```
 
-> You can go ahead and remove `mock.rs` and `tests.rs`. **We won't be learning about
+> You can go ahead and remove `benchmarking.rs`, `mock.rs` and `tests.rs`. **We won't be learning about
 > using these in this tutorial. Have a look at [this how-to guide](/how-to-guides/v3/testing/transfer-function) if
 > you're curious to learn how testing works.**
 
@@ -281,7 +283,7 @@ are no errors in our pallet so far:
 ```bash
 cargo build -p pallet-kitties
 ```
-
+<br />
 <Message
   type={`red`}
   title={`Warning`}
@@ -333,7 +335,7 @@ Now build your node and make sure you don't have any errors. This will take a li
 ```bash
 cargo build --release
 ```
-
+<br />
 <Message
   type = 'green'
   title = 'Congratulations!'
@@ -508,7 +510,7 @@ pub struct Kitty<T: Config> {
     pub owner: AccountOf<T>,
 }
 ```
-
+<br />
 <Message type='gray' title='Note' text = {`
 We define \`<BalanceOf<T>>\` and \`AccountOf<T>\` types, and use them in the \`Kitty\`. If you
 wonder what the first line means in Rust, it is to define a type alias \`AccountOf<T>\` which is
@@ -534,7 +536,7 @@ We have just created a struct that requires a custom type called `Gender`. This 
 enum defining our Kitty's gender. To create it, you'll build out the following parts:
 
 - **An enum declaration**, which specifies `Male` and `Female` values.
-- **A function to configure a defaut value**, based on the enum.
+- **Implement a helper function** for our Kitty struct.
 
 1. #### Declare the custom enum 
 
@@ -561,7 +563,7 @@ enum defining our Kitty's gender. To create it, you'll build out the following p
   version = '1.0.119'
   ```
 
-  Great, we now know how to create a custom struct and specify its default value. But what about
+  Great, we now know how to create a custom struct. But what about
   providing a way for a Kitty struct to be _assigned_ a gender value? For that we need to learn one
   more thing.
 
@@ -609,7 +611,7 @@ In order to use the `Randomness` trait for our pallet, we must:
   The `Randomness` trait from `frame_support` requires specifying it with a paramater to replace the
   `Output` and `BlockNumber` generics. Take a look at [the documentation][randomness-rustdocs] and
   the source code implementation to understand how this works. For our purposes, we want the output
-  of functions using this trait to be [`H256`][h256-rustdocs] which you'll notice should already be
+  of functions using this trait to be [`Blake2 128-bit hash`][blake2-rustdocs] which you'll notice should already be
   declared at the top of your working codebase.
 
   Replace the ACTION #5 line with:
@@ -630,9 +632,10 @@ In order to use the `Randomness` trait for our pallet, we must:
   is **set the `KittyRandomness` type in your runtime, inside `runtime/src/lib.rs`**:
 
   ```rust
-  impl pallet_mykitties::Config for Runtime {
+  impl pallet_kitties::Config for Runtime {
       type Event = Event;
-    type KittyRandomness = RandomnessCollectiveFlip; // <-- ACTION: add this line.
+	    type Currency = Balances;
+      type KittyRandomness = RandomnessCollectiveFlip; // <-- ACTION: add this line.
   }
   ```
 
@@ -692,7 +695,7 @@ In order to use the `Randomness` trait for our pallet, we must:
 
   ```rust
   #[pallet::storage]
-  #[pallet::getter(fn kitty)]
+  #[pallet::getter(fn kitties)]
   pub(super) type Kitties<T: Config> = StorageMap<
     _,
     Twox64Concat,
@@ -713,11 +716,12 @@ In order to use the `Randomness` trait for our pallet, we must:
   ```rust
   #[pallet::storage]
   #[pallet::getter(fn kitties_owned)]
-  pub(super) type Kitties<T: Config> = StorageMap<
-    _,
-    Twox64Concat,
-    T::AccountId,
-    BoundedVec<T::Hash, T::MaxKittyOwned>,
+  /// Keeps track of what accounts own what Kitty.
+  pub(super) type KittiesOwned<T: Config> = StorageMap<
+    _, 
+    Twox64Concat, 
+    T::AccountId, 
+    BoundedVec<T::Hash, T::MaxKittyOwned>, 
     ValueQuery
     >;
   ```
@@ -844,15 +848,19 @@ Assuming you've now replaced the contents of `pallets/kitties/src/lib.rs` with [
 for this section, find ACTION #1 and replace it with the following code:
 
 ```rust
-    let sender = ensure_signed(origin)?;
+#[pallet::weight(100)]
+pub fn create_kitty(origin: OriginFor<T>) -> DispatchResult {
+  let sender = ensure_signed(origin)?; // <- add this line
+  let kitty_id = Self::mint(&sender, None, None)?; // <- add this line
+  // Logging to the console
+  log::info!("A kitty is born with ID: {:?}.", kitty_id); // <- add this line
 
-    let kitty_id = Self::mint(&sender, None, None)?;
+  // ACTION #4: Deposit `Created` event
 
-    // Logging to the console
-    log::info!("A kitty is born with ID: {:?}.", kitty_id);
+	Ok(())
 }
 ```
-We won't go into debugging, but logging to the console is a useful tip to make sure your 
+We won't go into [debugging](/v3/runtime/debugging/), but logging to the console is a useful tip to make sure your 
 pallet is behaving as expected. In order to use `log::info`, add this to your pallet's 
 `Cargo.toml` file:
 
@@ -861,7 +869,7 @@ pallet is behaving as expected. In order to use `log::info`, add this to your pa
 default-features = false
 version = '0.4.14'
 ```
-
+<br />
 <Message
   type='gray'
   title='Why "DispatchResult" and not "DispatchResultWithPostInfo"?'
@@ -990,7 +998,7 @@ initial scaffolding of our codebase:
       //--snip--//
   }
 ```
-
+<br />
 <Message
   type={`yellow`}
   title={`Information`}
@@ -1024,7 +1032,7 @@ Complete it by replacing ACTION #4 with:
 ```rust
 Self::deposit_event(Event::Created(sender, kitty_id));
 ```
-
+<br />
 <Message
   type={`gray`}
   title={`Note`}
@@ -1071,6 +1079,7 @@ compiles, run the following command to see if everything can build:
 ```rust
 cargo build --release
 ```
+<br />
 <Message
   type={`yellow`}
   title={`Information`}
@@ -1266,7 +1275,7 @@ object.value = new_value;
 
 <Object<T>>::insert(object_id, object);
 ```
-
+<br />
 <Message type='gray' title='Note' text={`
 Rust expects you to declare a variable as mutable (using the \`mut\` keyword) whenever its value is
 going to be updated.
@@ -1478,7 +1487,7 @@ Self::transfer_kitty_to(&kitty_id, &buyer)?;
 // Deposit relevant Event
 Self::deposit_event(Event::Bought(buyer, seller, kitty_id, bid_price));
 ```
-
+<br />
 <Message type='gray' title='Note' text={`
 Both of the above operations, \`T::Currency::transfer()\`, and \`Self::transfer_kitty_to()\` could
 fail which is why we check for the returned result in each case. If \`Err\` is returned, we also return from the
@@ -1495,8 +1504,10 @@ function is already provided for you in the template file for this section.
 Paste in the following to complete the `breed_kitty` function, replacing line ACTION #9:
 
 ```rust
-let new_dna = Self::breed_dna(&kid1, &kid2)?;
+let new_dna = Self::breed_dna(&parent1, &parent2)?;
 ```
+
+Don't forget to add `breed_dna(&parent1, &parent2)` helper function (peep it's definition in [the helper file](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/kitties-tutorial/04-interacting-functions.rs#L227))
 
 Now that we've used the user inputs of Kitty IDs and combined them to create a new unique Kitty ID,
 we can use the `mint()` function to write that new Kitty to storage. Replace line ACTION #10 to 
@@ -1553,7 +1564,7 @@ top of the file and add the following snippet inside the `testnet_genesis` funct
 		},
 //-- snip --
 ```
-### Update `runtime/src/lib.rs` And Interact With Your Kitties
+### Build, run and interact with your Kitties
 
 If you've completed all of the preceding parts and steps of this tutorial, you're ready to
 run your chain and start interacting with all the new capabilities of your Kitties pallet!
@@ -1616,7 +1627,7 @@ visualize and interact with your Kitties!
 [default-rustdocs]: https://doc.rust-lang.org/std/default/trait.Default.html
 [randomness-rustdocs]: /rustdocs/latest/frame_support/traits/trait.Randomness.html
 [hash-rustdocs]: /rustdocs/latest/sp_runtime/traits/trait.Hash.html
-[h256-rustdocs]: /rustdocs/latest/sp_core/struct.H256.html
+[blake2-rustdocs]: /rustdocs/latest/sp_core/hashing/fn.blake2_128.html
 [randomness-collective-flip-frame]: /rustdocs/latest/pallet_randomness_collective_flip/index.html
 [nonce-rustdocs]: /rustdocs/latest/frame_system/struct.AccountInfo.html#structfield.nonce
 [2x64-rustdocs]: /rustdocs/latest/frame_support/struct.Twox64Concat.html

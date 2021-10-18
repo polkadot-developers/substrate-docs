@@ -24,7 +24,8 @@ Thank you for your interest in contributing to documentation for the Substrate d
 framework. As a member of the community, you are invited and encouraged to contribute by submitting
 issues, offering suggestions for improvements to existing content, adding review comments to
 existing pull requests, proposing new content, or creating new pull requests to fix issues or
-provide new content. Please review our [contributor guidelines](/v3/contribute/style-guide) prior to
+provide new content. Please review our 
+[contributor guidelines](https://docs.substrate.io/v3/contribute/style-guide/) prior to
 any contribution. If you have any further questions, please do not hesitate to reach out on our
 [Substrate technical community channel](https://matrix.to/#/#substrate-technical:matrix.org)! We
 would love to get to know you and your work!
@@ -53,7 +54,7 @@ File directory example: `v3/docs/00-style-and-contributor-guidelines/a-contribut
 Each `index.mdx` page has the content to be rendered to this page, and all pages include a header
 section with a `slug` item that is used for navigation on the generated site,
 
-URL example: https://docs.substrate.io/v3/contribute/style-guide
+URL example: https://docs.substrate.io/v3/contribute/style-guide/
 
 Configuration and styling files for gatsby live primarily in the `src` folder.
 
