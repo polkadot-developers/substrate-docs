@@ -1,0 +1,39 @@
+name: Request new or edited content
+description: Submit your requests and suggestions to help us improve!
+title: '[Content] '
+labels: ['new content ✍%EF%B8%8F']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you so much for taking the time to request new or modified content!
+  - type: textarea
+    id: content
+    attributes:
+      label: Content request
+      description: What lead you to make this request? What action should we take on it?
+      placeholder: Describe what you would like to see added or changed.
+    validations:
+      required: true
+  - type: dropdown
+    id: help
+    attributes:
+      label: Are you willing to help with this request?
+      multiple: true
+      options:
+        - Yes!
+        - No.
+        - Maybe (please specify)
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: Contact details (optional)
+      description: How can we get in touch with you if we need more info?
+      placeholder: ex. email@example.com
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: 'Thanks for helping us identify how to make our docs better!'
