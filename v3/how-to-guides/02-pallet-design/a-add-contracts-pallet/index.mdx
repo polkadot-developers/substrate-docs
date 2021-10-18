@@ -8,40 +8,14 @@ category: pallet design
 difficulty: 1
 ---
 
-<Message
-  type={`green`}
-  title={`Tip`}
-  text=
-    "You should already have the latest version of the 
-    Substrate Node Template compiled on your computer to follow this guide.
-    If you haven't already done so, refer to 
-    [this tutorial](/tutorials/v3/create-your-first-substrate-chain/).
-    "
-/>
+# Smart contracts and your blockchain
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description: 'Add the Contracts pallet to your runtime to be able to use Wasm smart contracts in your blockchain.',
-    },
-    {
-      title: 'Use Cases',
-      description:
-`- Developping a chain capable of handling smart contracts
-- On-chain execution of Wasm binaries`,
-    },
-    {
-      title: 'Overview',
-      description:
-        `This guide will show you how to add the [Contracts pallet](/rustdocs/latest/pallet_contracts/) to your runtime in order to allow your blockchain
-        to support Wasm smart contracts. You can follow similar patterns to add additional FRAME pallets to your runtime,
-        however you should note that each pallet is a little different in terms of the specific configuration settings
-        needed to use it correctly.
-        `,
-    },
-  ]}
-/>
+This guide will show you how to add the [Contracts pallet](/rustdocs/latest/pallet_contracts/) to your runtime so that your blockchain
+to support Wasm smart contracts. You can follow similar patterns to add additional FRAME pallets to your runtime, however you should note that each pallet is a little different in terms of the specific configuration settings needed to use it correctly.
+
+## Before you begin
+
+Make sure you have the latest version of the Substrate Node Template compiled on your computer. If you haven't already done so, see [Create your first substrate chain](/tutorials/v3/create-your-first-substrate-chain/).
 
 ## Import the dependencies
 
