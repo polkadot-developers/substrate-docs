@@ -22,12 +22,12 @@ difficulty: 2
     {
       title: 'Overview',
       description:
-        `Sometimes a disptachable function inside a pallet reuses logic that's common to other dispatchables.
+        `Sometimes a dispatchable function inside a pallet reuses logic that is common to other dispatchables.
          In this case, it's useful to refactor this logic into its own private function.
-         Other times, dispatchable functions get increasingly difficult to read as the amount of code increases
+         At other times, dispatchable functions get increasingly difficult to read as the amount of code increases
          to perform various checks within the dispatchable. In both instances, using helper functions that cannot
          be accessed from outside the pallet are a useful tool to optimize for code readability and reusability.
-         In this guide, we'll step through how to create an adder helper that checks for arithmetic overflow
+         In this guide, we'll see how to create an adder helper that checks for arithmetic overflow
          and can be reused in any dispatchable.`,
     },
   ]}
@@ -35,9 +35,9 @@ difficulty: 2
 
 ## Steps
 
-### 1. Create your helper function
+### 1. Create your helper function.
 
-The helper we'll refer to is called `fn _adder`: it checks that there is no overflow when adding two integers of type `u32`.
+The helper we'll refer to is called `fn _adder`. It checks that there is no overflow when adding two integers of type `u32`.
 
 It takes two `u32` integers, uses `checked_add` and `ok_or` to check that there is no overflow. If there is, it returns an error; otherwise
 it returns the result.
@@ -52,9 +52,9 @@ impl<T: Config> Pallet<T> {
 }
 ```
 
-### 2. Use it in your dispatchables
+### 2. Use it in your dispatchables.
 
-Identify the places where you've needed to verify for overflow when performing an addition.
+Identify the places where you need to check for overflow when performing an addition.
 Use the helper function instead of rewriting the same code. Below is a simple example of
 a dispatchable that allows a signed extrinsic to add a value to the existing storage value:
 
@@ -93,15 +93,5 @@ a dispatchable that allows a signed extrinsic to add a value to the existing sto
 
 #### Rust docs
 
-- <ExternalLink
-    url={`https://docs.rs/num/0.4.0/num/traits/trait.CheckedAdd.html`}
-  >
-    {' '}
-    checked_add{' '}
-  </ExternalLink>
-- <ExternalLink
-    url={`https://doc.rust-lang.org/std/option/enum.Option.html#method.ok_or`}
-  >
-    {' '}
-    ok_or{' '}
-  </ExternalLink>
+- [`checked_add` in `num` crate](https://docs.rs/num/0.4.0/num/traits/trait.CheckedAdd.html)
+- [`ok_or` in `Option` crate](https://doc.rust-lang.org/std/option/enum.Option.html#method.ok_or)

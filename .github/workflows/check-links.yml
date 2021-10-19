@@ -3,7 +3,6 @@ name: Check Links
 on:
   pull_request:
     branches: [ main, develop ]
-
   push:
     # always want to including test-ci for testing gh-action
     branches: [ main, develop, test-ci ]
@@ -11,16 +10,15 @@ on:
 jobs:
   build-website-image:
     runs-on: ubuntu-latest
+    environment: test
     steps:
-      - name: Log in to Docker Hub
-        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+      - name: Docker Login
+        uses: docker/login-action@v1.10.0
         with:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
       - name: Checkout repo
         uses: actions/checkout@v2
-
       - name: Build & push image
         run: |
           docker build -t jimmychu0807/substrate-docs .
@@ -29,21 +27,18 @@ jobs:
   check-links:
     needs: build-website-image
     runs-on: ubuntu-latest
-
+    environment: test
     services:
       gatsby-app:
         image: jimmychu0807/substrate-docs
         ports:
           - 9000:9000
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
-
       - name: Take a 6s nap to ensure gatsby-app ready
         run: sleep 6
-
       - name: Run `broken-link-check`
         run: |
           yarn install
-          yarn checklinks:v3
+          yarn checklinks

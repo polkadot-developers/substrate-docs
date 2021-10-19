@@ -9,9 +9,13 @@ import DocsNav from '../components/DocsNav'
 import BreadCrumbNav from '../components/BreadCrumbNav'
 import VersionControl from '../components/VersionControl'
 import LastUpdateGithub from '../components/LastUpdateGithub'
-import { BottomButtons, RelevantSkills } from '../components/DocsComponents'
 import { DevNavMenu as navMenu, DevNavMenuTuts } from '../components/DevNavMenu'
 import DocTag from '../components/DocTag'
+import {
+  BottomButtons,
+  RelevantSkills,
+  FeedbackWidget,
+} from '../components/DocsComponents'
 
 const DocsTemplate = ({ location, data, pageContext }: any) => {
   const { slug, version, navMenuSlug } = pageContext
@@ -42,7 +46,7 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
               templateId={docId}
             />
           </div>
-          <article className="px-6 mb-20 lg:flex lg:mx-auto">
+          <article className="px-4 mb-20 lg:flex lg:mx-auto">
             <div className="lg:flex-grow">
               <div
                 className={`py-8 lg:flex lg:justify-between lg:items-center`}
@@ -81,6 +85,14 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
               {data.mdx.frontmatter.hideNav ? null : (
                 <BottomButtons menu={docsMenu} pageSlug={slug} />
               )}
+              <div className="mt-10">
+                <hr />
+                <FeedbackWidget
+                  title={data.mdx.frontmatter.title}
+                  section={data.mdx.frontmatter.section}
+                  slug={slug}
+                />
+              </div>
             </div>
             {/* Table of Contents */}
             <div className="hidden xl:inline-block">

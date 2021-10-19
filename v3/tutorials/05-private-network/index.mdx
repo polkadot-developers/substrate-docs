@@ -41,8 +41,8 @@ Before we even get started, let's layout what we're going to do over the course 
 <TutorialObjective
   data={{
     textLineOne:
-      '1. Alice and Bob Start Blockchain',
-      url: '/tutorials/v3/private-network#alice-and-bob-start-blockchain',
+      '1. Have Alice and Bob start a blockchain',
+      url: '/tutorials/v3/private-network#alice-and-bob-start-a-blockchain',
   }}
 />
 <TutorialObjective
@@ -72,7 +72,7 @@ Before we even get started, let's layout what we're going to do over the course 
 - Learn how to configure a JSON chainspec file 
 
 
-## Alice and Bob Start Blockchain
+## Alice and Bob start a blockchain
 
 Before we generate our own keys, and start a truly unique Substrate network, let's learn the
 fundamentals by starting with a pre-defined network specification called `local` with two
@@ -150,7 +150,7 @@ When the node starts, you should see output similar to this:
 ...
 ```
 
-A coupe things to notice:
+A few things to notice:
 
  - `🔨 Initializing Genesis block/state (state: 0xea47…9ba8, header-hash: 0x9d07…7cce)` tells which
    genesis block the node is using. When you start the next node, verify that these values are
@@ -467,7 +467,7 @@ by the **"grandpa"** field. That section looks like this using the [two provided
   }
 }
 ```
-
+<br />
 <Message
   type={`yellow`}
   title={`Information`}
@@ -628,7 +628,7 @@ keytype: aura
 suri: <your mnemonic phrase> (eg. clip organ olive upper oak void inject side suit toilet stick narrow)
 publicKey: <your raw sr25519 key> (eg. 0x9effc1668ca381c242885516ec9fa2b19c67b6684c02a8a3237b6862e5c8cd7e)
 ```
-
+<br />
 <Message
   type={`gray`}
   title={`Note`}
@@ -651,6 +651,7 @@ keytype: gran
 suri: <your mnemonic phrase> (eg. clip organ olive upper oak void inject side suit toilet stick narrow)
 publicKey: <your raw ed25519 key> (eg. 0xb48004c6e1625282313b07d1c9950935e86894a2e4f21fb1ffee9854d180c781)
 ```
+<br />
 <Message
   type={`gray`}
   title={`Note`}
@@ -727,14 +728,6 @@ Notice there are two keystores, as expected as we added two keys to our node.
 This example used [pair 1](#option-3-use-pre-generated-keys) from the well known seeds here, and
 will use `pair 2` for our next node, where your keys may differ.
 
-<!-- TODO: update below with example of successful use (not working for me at time of writing) -->
-
-<!--
-You can also set a non-standard keystore file for your node with the flags:
-  keystore-path <PATH> - Specify custom keystore path
-  keystore-uri <keystore-uri> - Specify custom URIs to connect to for keystore-services
--->
-
 ### Subsequent Participants Join
 
 Subsequent validators can now join the network. This can be done by specifying the `--bootnodes`
@@ -759,7 +752,7 @@ parameter as Bob did previously.
   # you MUST fill the correct info in the line above:
   # --bootnodes /ip4/<IP Address>/tcp/<p2p Port>/p2p/<Peer ID>
 ```
-
+<br />
 <Message
   type={`red`}
   title={`Warning`}
@@ -842,10 +835,8 @@ those keypairs, and start a private network based on your custom chain spec.
   You can use the extra files with your already cloned and compiled node, no need to start from scratch.`}
 />
 
-<!-- TODO link to the followup tutorial about starting a 3 node network using the demo substrate node
-Details in https://github.com/substrate-developer-hub/tutorials/issues/16 -->
-
 ## Next steps
 
 That big Wasm blob we encountered in the chain spec was necessary to enable forkless upgrades.
-Learn more about how the [executor](/v3/advanced/executor) uses on-chain Wasm.
+Learn more about how the [executor](/v3/advanced/executor) uses on-chain Wasm. Alternatively, continue 
+learning by completing the [permissioned network tutorial](/tutorials/v3/permissioned-network).

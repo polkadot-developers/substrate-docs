@@ -1,5 +1,5 @@
 import React from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import Link from '../components/Link'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import DifficultyMeter from './DifficultyMeter'
 
@@ -27,7 +27,7 @@ export default function TutorialCard({
   const tutImage = getImage(image)
   return (
     <div className="w-80 md:w-96 mb-8 mx-4 rounded bg-substrateGray-light dark:bg-substrateDark">
-      <LocalizedLink to={link}>
+      <Link to={link}>
         <div className="inline-block overflow-hidden">
           <GatsbyImage
             className="block h-24 md:h-60 object-cover rounded-t transform transition-all duration-300 ease-in-out hover:scale-110"
@@ -35,13 +35,13 @@ export default function TutorialCard({
             alt={`Tutorial Image`}
           />
         </div>
-      </LocalizedLink>
+      </Link>
       <div className="md:h-[361px] md:flex md:flex-col md:justify-between">
         <div className="px-4">
           <div>
-            <LocalizedLink to={link}>
+            <Link to={link}>
               <h4 className="my-3 font-bold">{title}</h4>
-            </LocalizedLink>
+            </Link>
             <p className="mb-3 text-sm md:text-base">{description}</p>
           </div>
           <div className="my-4">
@@ -74,11 +74,11 @@ export default function TutorialCard({
           </div>
         </div>
         <div className="p-4">
-          <LocalizedLink to={link}>
+          <Link to={link}>
             <button className="w-full lg:w-52 py-3 rounded bg-substrateDark dark:bg-substrateWhite transform transition-all duration-300 ease-in-out hover:bg-opacity-80 dark:hover:bg-opacity-80 text-white dark:text-substrateDark text-lg font-bold focus:outline-none">
               Try it now!
             </button>
-          </LocalizedLink>
+          </Link>
         </div>
       </div>
     </div>

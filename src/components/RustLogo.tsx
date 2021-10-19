@@ -3,7 +3,7 @@ import React from 'react'
 export default function RustLogo() {
   return (
     <svg
-      className="fill-current text-substrateDark dark:text-substrateWhite"
+      className="fill-current text-substrateDark dark:text-substrateWhite w-full h-auto"
       xmlns="http://www.w3.org/2000/svg"
       version="1.0"
       width="774.000000pt"

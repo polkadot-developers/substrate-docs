@@ -12,13 +12,13 @@ difficulty: 1
   type={`yellow`}
   title={`Information`}
   text=
-    "This is a beginner guide intended for novice
+    "This is a beginner guide intended for new
     Substrate developers looking to explore ways to create tokens in Substrate.
-    This approach _is not_ recommended best practice.
-    Use this guide to learn how to improve upon your runtime logic's
+    This approach _is not_ a recommended best practice.
+    Use this guide to learn how to improve upon your runtime logic
     capabilities and code quality. See the
     [Examples section](#examples)
-    for a practical implementations of this guide.'
+    for practical implementations of this guide.'
 	"
 />
 
@@ -48,7 +48,7 @@ difficulty: 1
 
 ## Steps
 
-### 1. Setup your pallet's `Config` trait
+### 1. Setup your pallet's `Config` trait.
 
 Using the Node Template as a starting point, specify the types your pallet depends on and the [`Events`][events-kb] it emits:
 
@@ -65,7 +65,7 @@ pub enum Event<T: Config> {
 }
 ```
 
-### 2. Declare your storage item `StorageMap`
+### 2. Declare your storage item `StorageMap`.
 
 This pallet only keeps track of the balance to account ID mapping. Call it `BalanceToAccount`:
 
@@ -83,7 +83,7 @@ This pallet only keeps track of the balance to account ID mapping. Call it `Bala
 /* --snip-- */
 ```
 
-### 3. Create your pallet’s functions
+### 3. Create your pallet’s functions.
 
 We can now bring our attention to creating the intended capabilities of our pallet with the following functions:
 
@@ -130,7 +130,7 @@ pub(super) fn transfer(
 /* --snip-- */
 ```
 
-#### Verify and add error handling
+#### Verify and add error handling.
 
 When performing balance updates, use `checked_sub` and `checked_add` to handle potential errors with overflow:
 
@@ -172,7 +172,7 @@ Refer to [this guide](../pallet-integration) if you’re not yet familiar with t
     fixing a predetermined maximum value in runtime.
   - **Weights.** All the weights were set to 10_000 in the above code snippets. Learn more about weight
     configuration in this [basic guide on weights](../weights).
-  - **Origins.** One assumption this guide makes is that the origin will always be the sudo user.
+  - **Origins.** This guide assumes that the origin will always be the sudo user.
     Origins are a powerful capability in Substrate. Learn more about how they work
     [here](/v3/runtime/origins).
   `}

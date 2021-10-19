@@ -1,5 +1,5 @@
 import React from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import Link from './Link'
 
 interface BreadCrumbNavProps {
   section: string
@@ -10,9 +10,9 @@ export default function BreadCrumbNav(props: BreadCrumbNavProps) {
   return (
     <>
       <div className="text-sm font-medium text-substrateBlue dark:text-substrateBlue-light capitalize mdx-anchor">
-        <LocalizedLink to="/">Developers Home</LocalizedLink>
+        <Link to="/">Developers Home</Link>
         <span className="px-2 text-substrateDark dark:text-white">»</span>
-        <LocalizedLink to={props.sectionURL}>{props.section}</LocalizedLink>
+        <Link to={props.sectionURL}>{props.section}</Link>
         <span className="px-2 text-substrateDark dark:text-white">»</span>
         <span className="text-substrateDark dark:text-white">
           {props.title}

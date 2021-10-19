@@ -1,7 +1,7 @@
 ---
 title: Smart Contract Toolkits
 slug: /v3/runtime/smart-contracts
-version: 3.0 
+version: 3.0
 section: docs
 category: smart contracts
 keywords: contracts, evm, ethereum
@@ -16,7 +16,7 @@ reasons for choosing smart contract development over runtime development for you
 Developing Substrate runtimes and smart contracts are two different approaches to building
 "decentralized applications" using Substrate.
 
-### Smart Contracts
+### Smart contracts
 
 A traditional smart contract platform allows users to publish additional logic on top of some core
 blockchain logic. Since smart contract logic can be published by anyone, including malicious actors
@@ -25,15 +25,16 @@ public smart contract platform.
 
 Some examples are:
 
-- **Fees**: Ensuring that contract developers are charged for the computation and storage they force
-  on the computers running their contract, and not allowed to abuse the block creators.
+- **Fees**: Ensuring that contract execution incurs fees for the computation and storage it forces
+  on the computers where it is runnning on, and not allowed to abuse the block creators.
 
 - **Sandbox**: A contract is not able to modify core blockchain storage or the storage of other
   contracts directly. It's power is limited to only modifying it's own state, and the ability to
   make outside calls to other contracts or runtime functions.
 
-- **State Rent**: A contract takes up space on the blockchain, and thus should be charged for simply
-  existing. This ensures that people don't take advantage of "free, unlimited storage".
+- **Storage Deposit**: A contract takes up space on the blockchain, and thus should be charged for
+  taking up space on the nodes' hard drives. This ensures that people don't take advantage of
+  "free, unlimited storage".
 
 - **Reversion**: A contract can be prone to have situations which lead to logical errors. The
   expectations of a contract developer are low, so extra overhead is added to support reverting
@@ -55,7 +56,7 @@ any of the growing pains or errors which may occur.
 - Have a lower bar to entry for development.
 - Enable fast pace community interaction through a playground to write new logic.
 
-### Runtime Development
+### Runtime development
 
 On the other hand, runtime development affords none of these protections or safe guards that Smart
 Contracts give you. As a runtime developer, the barrier to entry on the code you produce jumps way up.
@@ -80,7 +81,7 @@ different parts of your runtime logic such that it will not be abused by malicio
   not only responsible for writing working code but must constantly check to avoid writing broken code.
 - Has no inherent economic incentives to repel bad actors.
 
-### Choosing the Right Approach
+### Choosing the right approach
 
 Substrate runtime development and Smart Contracts each provide tools designed for different problem spaces. There is likely some amount of overlap in the kinds of problems each one can solve, but
 there is also a clear set of problems suited for only one of the two. To give just one example in
@@ -111,11 +112,14 @@ governance. The table below is meant to help inform your
 decisions on which approach to use based on different situations.
 
 <table>
-  <tr>
-    <th>Runtime Development </th>
-    <th>Smart Contract</th>
-    <th>Use Case Specific</th>
-  </tr>
+  <thead>
+    <tr>
+      <th>Runtime Development </th>
+      <th>Smart Contract</th>
+      <th>Use Case Specific</th>
+    </tr>
+  </thead>
+  <tbody>
   <tr>
     <td>
       <ul>
@@ -152,6 +156,7 @@ decisions on which approach to use based on different situations.
       </ul>
     </td>
   </tr>
+  </tbody>
 </table>
 
 <Message
@@ -165,7 +170,7 @@ decisions on which approach to use based on different situations.
 Substrate provides two smart contract virtual machines which can be added to your runtime: the [Contracts pallet](#contracts-pallet) and
 the [EVM pallet](#evm-pallet). Each come with additional tools to ease development depending on your use cases.
 
-## Contracts Pallet
+## Contracts pallet
 
 The [Contracts pallet](/rustdocs/latest/pallet_contracts) provides
 the ability for the runtime to deploy and execute [WebAssembly (Wasm)](https://webassembly.org/)
@@ -183,7 +188,10 @@ Here are some of ink!'s key features:
 - Because ink! follows Rust standards, tools like [`rustfmt`](https://github.com/rust-lang/rustfmt)
   and [`rust-analyzer`](https://github.com/rust-analyzer/rust-analyzer) already work out of the box.
 
-<AccentButton text={`Start the ink! workshop`} link={`/tutorials/v3/ink-workshop/pt1`} />
+<AccentButton
+  text={`Start the ink! workshop`}
+  link={`/tutorials/v3/ink-workshop/pt1`}
+/>
 
 ### Features
 
@@ -196,14 +204,15 @@ The Contracts pallet depends on a Wasm sandboxing interface defining the Wasm ex
 available within the runtime. This is currently implemented with
 [`wasmi`](https://github.com/paritytech/wasmi), a Wasm interpreter.
 
-#### Account Based
+#### Account based
 
 The Contracts pallet uses an account-based system similar to many existing smart contract platforms.
 To the Substrate runtime, contract accounts are just like normal user accounts; however, in addition
 to an `AccountID` and `Balance` that normal accounts have, a contract account also has associated
-contract code and some persistent contract storage.
+contract code and some persistent contract storage. A notable behaviour that arises from this
+is that a contract's account can receive balances without having its code executed by a plain transfer transaction.
 
-### Deploying and Calling Contracts
+### Deploying and calling contracts
 
 Deploying a contract with the Contracts pallet takes two steps:
 
@@ -216,7 +225,7 @@ pallet on your blockchain.
 
 Calls to contracts can alter the storage of the contract, create new contracts, and call other
 contracts. Because Substrate provides you with the ability to write custom runtimes, the
-Contracts pallet also enables you to make asynchronous calls directly to those runtime functions on
+Contracts pallet also enables you to make synchronous calls directly to those runtime functions on
 behalf of the contract's account.
 
 The Contracts pallet is intended to be used by any user on a public network. This means that
@@ -233,21 +242,33 @@ reached before the contract execution completes, the transaction fails, contract
 reverted, and the gas fee is **not** returned to the user. If the contract execution completes with
 remaining gas, it is returned to the user at the end of the transaction.
 
+The concept of gas is tightly integrated with substrates [**weight system**](/v3/concepts/weight).
+In fact there is no difference between gas and weight. The specified `gas_limit` directly influences
+the weight of the submitted transaction. The contracts pallet uses
+[post dispatch weight correction](/v3/concepts/weight#post-dispatch-weight-correction) to change
+the pre dispatch weight derived from the `gas_limit` to the actual weight consumed.
+Thus, to execute a transaction, a user  must have a free balance of at least `weight price` \* `gas limit`
+which can be spent. The charged fee however, is based upon the actually consumed gas. The weight price
+is determined due do the usual [transaction fee mechanism](/v3/runtime/weights-and-fees).
 The Contracts pallet determines the gas price, which is a conversion between the Substrate
-[**weight system**](/v3/concepts/weight) and a single unit of gas. Thus, to execute a transaction, a user 
+[**weight system**](/v3/concepts/weight) and a single unit of gas. Thus, to execute a transaction, a user
 must have a free balance of at least `gas price` \* `gas limit` which can be spent.
 
-### Storage Rent
+### Storage deposit
 
 Similar to how gas limits the amount of computational resources that can be used during a
-transaction, storage rent limits the footprint that a contract can have on the blockchain's storage.
-A contract account is charged proportionally to the amount of storage its account uses. When a
-contract's balance goes below a defined limit, the contract's account is turned into a "tombstone"
-and its storage is cleaned up. A tombstone contract can be restored by providing the data that was
-cleaned up when it became a tombstone as well as any additional funds needed to keep the contract
-alive.
+transaction, storage deposit limits the footprint that a contract can have on the blockchain's storage.
+Any caller of a contract is charged a deposit proportionally to the amount of storage that the
+call in question adds to the blockchain. If a call removes storage the caller that removes it
+gets a refund proportionally to the amount of storage that was removed. Please note that with
+caller we mean the origin of a contract execution and not any contract which calls into another
+contract during a transaction.
 
-### Contracts Pallet vs. EVM
+Similar to the `gas_limit` argument there is also a `storage_limit` argument with which users
+can limit the amount of deposit that can be incurred. The argument is denominated in native
+chain balance and hence the user must have at least that amount of free balance.
+
+### Contracts pallet vs. EVM
 
 The Contracts pallet iterates on existing ideas in the smart contract ecosystem, particularly
 Ethereum and the EVM.
@@ -261,7 +282,7 @@ network.
 
 The EVM charges for storage fees only at the time of storage. This one-time cost results in some
 permanent amount of storage being used on the blockchain, _forever_, which is economically unsound.
-The Contracts pallet attempts to repair this through [storage rent](#storage-rent) which ensures
+The Contracts pallet attempts to repair this through [storage deposit](#storage-deposit) which ensures
 that any data that persists on the blockchain is appropriately charged for those resources.
 
 The Contracts pallet chooses to approach contract creation using a
@@ -271,7 +292,7 @@ contract logic. This could enable behavior like what
 [`create2`](https://eips.ethereum.org/EIPS/eip-1014) provided to Ethereum or even enable repairable
 or upgradeable contracts on a Substrate based blockchain.
 
-## EVM Pallet
+## EVM pallet
 
 The [**FRAME EVM pallet**](https://docs.rs/pallet_evm/) provides an EVM execution environment for Substrate's Ethereum
 compatibility layer, known as [Frontier](https://github.com/paritytech/frontier). It allows unmodified EVM
@@ -282,16 +303,19 @@ It works alongside with the [Ethereum pallet](https://docs.rs/pallet-ethereum) a
 [Dynamic Fee pallet](https://docs.rs/pallet-dynamic-fee) to enable the creation of runtimes
 capable of fully emulating Ethereum block production and transaction processing.
 
-<AccentButton text={`Start the Frontier workshop`} link={`/tutorials/v3/frontier`} />
+<AccentButton
+  text={`Start the Frontier workshop`}
+  link={`/tutorials/v3/frontier`}
+/>
 
-### EVM Engine
+### EVM engine
 
 The EVM pallet uses [SputnikVM](https://github.com/rust-blockchain/evm) as the underlying EVM engine.
 The engine is overhauled so that it's [modular](https://github.com/corepaper/evm). In the future, we
 will want to allow users to swap out components like gasometer, and inject their own customized
 ones.
 
-### Execution Lifecycle
+### Execution lifecycle
 
 There are a separate set of accounts managed by the EVM pallet. Substrate based accounts can call
 the EVM pallet to deposit or withdraw balance from the Substrate base-currency into a different
@@ -301,7 +325,7 @@ and call smart contracts using this pallet.
 There's one-to-one mapping from Substrate accounts and EVM external accounts that is defined by a
 conversion function.
 
-### EVM Pallet vs. Ethereum Network
+### EVM pallet vs. Ethereum network
 
 The EVM pallet should be able to produce nearly identical results compared to the Ethereum mainnet,
 including gas cost and balance changes.
@@ -331,8 +355,7 @@ to support earlier hard fork configurations.
   existing system to work on a Substrate-based chain.`}
 />
 
-
-## FAQ 
+## FAQ
 
 #### What is the difference between memory and storage?
 
@@ -360,8 +383,7 @@ You can follow
 [our guide here](/how-to-guides/v3/pallet-design/contracts-pallet) for instructions on how to add the Contracts pallet
 and other FRAME pallets to your blockchain's runtime.
 
-
-## Learn More
+## Learn more
 
 - Learn more about [why Rust is an ideal smart contract language](https://paritytech.github.io/ink-docs/why-rust-for-smart-contracts).
 - Follow a [tutorial to add a pallet to your FRAME runtime](/tutorials/v3/add-a-pallet/).

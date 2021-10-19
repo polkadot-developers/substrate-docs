@@ -52,7 +52,7 @@ Substrate runtime engineers can define custom logics for their blockchain by wri
 pallets and encapsulating their blockchains desired functionality by combining custom pallets with
 existing FRAME pallets or Substrate modules alike. The following documentation will show you how.
 
-### Skeleton of a Pallet
+### Skeleton of a pallet
 
 A FRAME pallet is composed of 7 sections:
 
@@ -96,7 +96,6 @@ pub mod pallet {
 	// 5. Runtime Events
 	// Can stringify event types to metadata.
 	#[pallet::event]
-	#[pallet::metadata(T::AccountId = "AccountId")]
 	#[pallet::generate_deposit(pub(super) fn deposit_event)]
 	pub enum Event<T: Config> { ... }
 
@@ -113,7 +112,7 @@ pub mod pallet {
 
 }
 ```
-
+<br />
 <Message
   type={`gray`}
   title={`Note`}
@@ -122,7 +121,7 @@ pub mod pallet {
   to learn more about adding functionality to a FRAME pallet.`}
 />
 
-### System Crate
+### System crate
 
 The [FRAME System crate `frame_system`](/rustdocs/latest/frame_system) provides low-level types,
 storage, and functions for your blockchain. All other pallets depend on the System crate as the
@@ -149,7 +148,7 @@ It also has a number of system-critical storage items, such as:
 Finally, it defines a number of low level functions which can access your blockchain storage, verify
 the origin of an extrinsic, and more.
 
-### Support Crate 
+### Support crate 
 
 The [FRAME Support Crate `frame_support`](/rustdocs/latest/frame_support) is a collection of Rust
 macros, types, traits, and modules that simplify the development of Substrate pallets.
@@ -157,7 +156,7 @@ macros, types, traits, and modules that simplify the development of Substrate pa
 The support macros expanded at compile time generate boilerplate code needed for the common
 structure of a pallet and save developers from writing them repeatedly.
 
-### Executive Pallet
+### Executive pallet
 
 The [FRAME Executive Pallet `frame_executive`](/rustdocs/latest/frame_executive) acts as the
 orchestration layer for the runtime. It dispatches incoming extrinsic calls to the respective
@@ -170,7 +169,7 @@ included with your runtime and configures them to work together to compose your 
 calls are made to your runtime, it uses the Executive pallet to dispatch those calls to the
 individual pallets.
 
-## Prebuilt Pallets
+## Prebuilt pallets
 
 Some pallets will be sufficiently general-purpose to be reused in many blockchains. Anyone is free
 to write and share useful pallets. There is a collection of popular pallets provided with Substrate.
@@ -180,7 +179,7 @@ Let's explore them.
 
 The Assets pallet is a simple, secure module for dealing with fungible assets.
 
-- [Docs](/rustdocs/latest/pallet_assets)
+- [Docs](/rustdocs/latest/pallet_assets/index.html)
 - [Source](https://github.com/paritytech/substrate/tree/master/frame/assets/src/lib.rs)
 
 ### Atomic Swap
@@ -470,11 +469,13 @@ amount for any reason other than transaction fee payment.
 - [Docs](/rustdocs/latest/pallet_vesting)
 - [Source](https://github.com/paritytech/substrate/tree/master/frame/vesting/src/lib.rs)
 
-## Next Steps
+## Next steps
 
-### Examples
+### Learn more
 
-- Follow a [tutorial to add a pallet to your FRAME runtime](/tutorials/v3/add-a-pallet).
+- Follow the [tutorial to add a pallet to your FRAME runtime](/tutorials/v3/add-a-pallet).
+- Learn how to [implement a pallet to lock user funds](/how-to-guides/v3/pallet-design/lockable-currency/).
+- Learn how to [write a simple crowd funding pallet](/how-to-guides/v3/pallet-design/crowdfund/).
 
 ### References
 

@@ -7,7 +7,7 @@ category: runtime
 keywords: coupling, pallet design
 ---
 
-In computer science, <ExternalLink url="https://en.wikipedia.org/wiki/Coupling_(computer_programming)">coupling</ExternalLink> 
+In computer science, [coupling](https://en.wikipedia.org/wiki/Coupling_(computer_programming))
 is the degree to which two software modules depend on each other. System designers use the terms high and low coupling to
 describe how computer systems are structured. The term also applies to object oriented programming paradigms, whereby tight 
 coupling is when two groups of classes are dependant on each other, and loose coupling is when a class uses an interface that
@@ -19,7 +19,7 @@ tight coupling of pallets should be used in instances where a pallet requires in
 _as a whole_ as opposed to specific types or methods. In general, tight coupling makes working with two pallets less
 flexible and extensible.
 
-##  Tightly Coupled Pallets
+##  Tightly coupled pallets
 
 Tightly coupling pallets is more explicit than loosely coupling them. When writing a pallet that
 tightly couple, you explicitly specify the pallet's `Config` trait to be bound by the `Config` trait
@@ -46,7 +46,7 @@ Tight coupling has several disadvantages developers should take into account:
 - **Reusability**: both modules must be included for one to be used, making it more difficult to
 integrate a tightly coupled pallet.
 
-##  Loosely Coupled Pallets
+##  Loosely coupled pallets
 
 Unlike tight coupling, in loose coupling pallet we just specify traits and function interfaces that
 certain types need to be bound by.
@@ -107,7 +107,7 @@ that [implements `Currency` trait](/rustdocs/latest/pallet_balances/index.html#i
 
 By now we have closed the loop and provide on implementation to `Currency<AccountId>` trait.
 
-## Further Notes
+## Further notes
 
 Notice that many FRAME pallets are coupled to this
 [Currency trait](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html)
@@ -127,9 +127,9 @@ As a general rule, the more complex a pallet is, the less desirable it would be 
 it. This evokes a concept in computer science called [cohesion](https://en.wikipedia.org/wiki/Cohesion_(computer_science)),
 a metric used to examine the overall quality of a software system.
 
-## Learn More
+## Learn more
 
-- Read the <ExternalLink url="https://doc.rust-lang.org/book/ch17-00-oop.html">Object Oriented Programming Features of Rust</ExternalLink> 
-section of the Rust Book
-- How-to guides on how to use [loose coupling](/how-to-guides/v3/pallet-design/tight-coupling) and
-[tight coupling](/how-to-guides/v3/pallet-design/loose-coupling) in your runtime
+- Read the Object Oriented Programming Features of Rust section of 
+  the [Rust Book](https://doc.rust-lang.org/book/ch17-00-oop.html)
+- Learn how to use [loose coupling](/how-to-guides/v3/pallet-design/tight-coupling/) and
+[tight coupling](/how-to-guides/v3/pallet-design/loose-coupling/) in your runtimes

@@ -1037,6 +1037,13 @@
     core-js-pure "^3.16.0"
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@7.12.5":
+  version "7.12.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.5.tgz#410e7e487441e1b360c29be715d870d9b985882e"
+  integrity sha512-plcc+hbExy3McchJCEQG3knOsuh3HH+Prx1P6cLIkET/0dLuQDEnrT+s27Axgc9bqfsmNUNHfscgMUdBpC9xfg==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.14.8", "@babel/runtime@^7.15.3", "@babel/runtime@^7.15.4", "@babel/runtime@^7.3.4", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   version "7.15.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.15.4.tgz#fd17d16bfdf878e6dd02d19753a39fa8a8d9c84a"
@@ -6443,6 +6450,13 @@ gatsby-plugin-eslint@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-eslint/-/gatsby-plugin-eslint-3.0.0.tgz#af6a70158f1751f03f804430aa8b1feeac7db97c"
   integrity sha512-nvyLz067k8lmhWIalhgFCzlNIjHIabYPZXpARM0k4AGRJWOPgOxc5P0T+G/TjCvtSg4+jtKotbE5ranMbxIBiw==
+
+gatsby-plugin-force-trailing-slashes@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-force-trailing-slashes/-/gatsby-plugin-force-trailing-slashes-1.0.5.tgz#22d2f16bf4dea4fca79c129cf9cbd29d9229d888"
+  integrity sha512-RxRdW++bvSHv4Mho999W0LLNdiQX1OMOvY0v1TlafcaYqJ93fYV/Jp3DDD6PKS0PAKNS8Q8DRsD67cipFmZCFA==
+  dependencies:
+    "@babel/runtime" "7.12.5"
 
 gatsby-plugin-image@^1.8.0:
   version "1.13.0"

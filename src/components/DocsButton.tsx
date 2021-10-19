@@ -1,11 +1,11 @@
 import React from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import Link from './Link'
 import { useIntl } from 'react-intl'
 
 export default function DocsButton() {
   const intl = useIntl()
   return (
-    <LocalizedLink to="/v3">
+    <Link to="/v3/">
       <button className="flex items-center justify-center bg-substrateDark dark:bg-substrateWhite text-white dark:text-substrateDark text-sm py-2 w-20 rounded opacity-100 transform transition duration-300 ease-in-out hover:opacity-80 focus:outline-none">
         {/* <img src={docsIcon} alt="Substrate Docs Icon" /> */}
         <svg
@@ -26,6 +26,6 @@ export default function DocsButton() {
         </svg>
         <span className="pl-2">{intl.formatMessage({ id: 'nav-docs' })}</span>
       </button>
-    </LocalizedLink>
+    </Link>
   )
 }

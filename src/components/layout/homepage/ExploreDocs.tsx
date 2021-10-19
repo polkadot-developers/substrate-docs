@@ -1,6 +1,6 @@
 import React from 'react'
 import { TextButton } from '../../Buttons'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import Link from '../../Link'
 
 export default function ExploreDocs() {
   const content = [
@@ -86,16 +86,16 @@ export default function ExploreDocs() {
         <div key={index} className="md:w-96 xl:mr-6">
           <div className="mb-14">
             <div className="text-2xl font-extrabold mb-9">{section.name}</div>
-            <ul className="px-4 leading-7">
+            <ul className="px-4 leading-7 ml-0">
               {section.items.map((item, index) => (
-                <LocalizedLink key={index} to={item.link}>
-                  <li>
+                <Link key={index} to={item.link}>
+                  <li className="ml-0 pl-0">
                     <div className="">
                       <b>{item.name}</b>
                     </div>
                     <p className="leading-7">{item.description}</p>
                   </li>
-                </LocalizedLink>
+                </Link>
               ))}
             </ul>
             <div className="pl-4">

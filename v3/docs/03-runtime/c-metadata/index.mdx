@@ -9,8 +9,8 @@ keywords:
 
 Blockchains that are built on Substrate expose metadata in order to make it easier to interact with
 them. This metadata is separated by the different [pallets](/v3/runtime/frame#pallets) that inform your blockchain.
-For each module, the metadata provides information about the [storage items](../storage),
-[extrinsic calls](../../concepts/extrinsics), [events](../events-and-errors), constants, and errors that are
+For each module, the metadata provides information about the [storage items](/v3/runtime/storage),
+[extrinsic calls](/v3/concepts/extrinsics), [events](/v3/runtime/events-and-errors), constants, and errors that are
 exposed by that module. Substrate automatically generates this metadata for you and makes it
 available through RPC calls.
 
@@ -18,7 +18,7 @@ Since the runtime of a Substrate blockchain is an evolving part of the blockchai
 blockchain metadata is stored on a per-block basis. Be aware that querying the metadata for an older
 block (with an archive node, for example) could result in acquiring out-of-date metadata that is not
 compatible with a blockchain's current state. As described in the
-[Upgrades documentation](../upgrades), developers building on top of Substrate chains can
+[Upgrades documentation](/v3/runtime/upgrades), developers building on top of Substrate chains can
 expect that the metadata for a chain should _only_ change when the chain's
 [runtime `spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version)
 changes.
@@ -27,7 +27,7 @@ All examples in this document were taken from block 1,768,321 on Kusama. You can
 [full metadata](https://gist.github.com/insipx/db5e49c0160b1f1bd421a3c34fefdf48) before reading the
 rest of this document and continue to refer to it as you proceed.
 
-## How to Get the Metadata
+## How to get the metadata
 
 There are a number of language-specific libraries that you can use to fetch metadata from a
 Substrate node, as well as language-agnostic HTTP and WebSocket APIs.
@@ -45,14 +45,14 @@ the metadata and decode them for you. Once decoded, the structure may be seriali
 [JSONRPC](https://github.com/paritytech/jsonrpc) and
 [jsonrpsee](https://github.com/paritytech/jsonrpsee) Rust libraries provide interfaces to do so.
 
-### Javascript
+### JavaScript
 
-If you are using Javascript, [`polkadot-js/api`](https://polkadot.js.org/api/) already provides APIs
+If you are using JavaScript, [`polkadot-js/api`](https://polkadot.js.org/api/) already provides APIs
 to interact with a Substrate blockchain, including the
 [`getMetadata`](https://polkadot.js.org/docs/substrate/rpc#getmetadataat-blockhash-metadata) function.
 
 You can try the following code snippets to fetch the metadata in this
-[Polkadot-JS App - Javascript page](https://polkadot.js.org/apps/#/js):
+[Polkadot-JS App - JavaScript page](https://polkadot.js.org/apps/#/js):
 
 ```javascript
 const metadata = await api.rpc.state.getMetadata()
@@ -61,7 +61,7 @@ console.log('Magic number: ' + metadata.magicNumber)
 console.log('Metadata: ' + JSON.stringify(metadata.asLatest.toHuman(), null, 2))
 ```
 
-### HTTP & WebSocket APIs
+### HTTP & websocket APIs
 
 Substrate nodes expose [a JSON-RPC API](/rustdocs/latest/sc_rpc) that you can
 access by way of **HTTP** or **WebSocket** requests. The message to
@@ -110,12 +110,12 @@ hexadecimal string. The example above represents the actual value that is return
 to learn more about the format of this encoded blob as well as
 [its decoded format](https://gist.githubusercontent.com/insipx/db5e49c0160b1f1bd421a3c34fefdf48/raw/2c33ff080bec84f0627610124c732deb30a0adc7/meta_block_1768321.json).
 
-## Metadata Formats
+## Metadata formats
 
 This section will briefly review the SCALE-encoded metadata that is represented as a hexadecimal
 string before taking a more detailed look at the metadata's decoded format.
 
-### Encoded Metadata Format
+### Encoded metadata format
 
 The hex blob that is returned by the JSON-RPCs `state_getMetadata` method starts with a hard-coded
 magic number, `0x6d657461`, which represents "meta" in plain text. The next piece of data (`0x0b` in
@@ -134,7 +134,7 @@ which will be reviewed below as well as some
 [extrinsic metadata](/rustdocs/latest/frame_metadata/struct.ExtrinsicMetadata.html), which
 is mostly out of the scope of this document.
 
-### Decoded Metadata Format
+### Decoded metadata format
 
 Here is a condensed version of decoded metadata:
 
@@ -264,7 +264,7 @@ about the module's storage:
 ```
 
 Every storage item that is defined in a pallet will have a corresponding metadata entry. 
-Metadata entries like these are generated from [macros](../macros) using associated types from the [`frame-system`](/rustdocs/latest/frame_system/pallet/trait.Config.html) crate. For example:
+Metadata entries like these are generated from [macros](/v3/runtime/macros) using associated types from the [`frame-system`](/rustdocs/latest/frame_system/pallet/trait.Config.html) crate. For example:
 
 ```rust
 #[pallet::config]
@@ -278,7 +278,7 @@ pub trait Config: frame_system::Config {
 [the JSON-RPC's storage function](/rustdocs/latest/sc_rpc/state/struct.StateClient.html#method.storage)
 to get information for a specific storage item.
 
-##### Dispatchable Calls
+##### Dispatchable calls
 
 Metadata for dispatchable calls includes information about the runtime calls are defined by the
 `#[pallet]` macro. For each call, the metadata includes:
@@ -446,15 +446,15 @@ These are errors that could occur during the submission or execution of an extri
 the FRAME System pallet is declaring that it may raise the
 the [`InvalidSpecName` error](/rustdocs/latest/frame_system/pallet/enum.Error.html#variant.InvalidSpecName).
 
-## Next Steps
+## Next steps
 
-### Learn More
+### Learn more
 
-- [Storage](../storage)
+- [Storage](/v3/runtime/storage)
 - [SCALE](/v3/advanced/scale-codec)
-- [Macros](../macros)
-- [Events](../events-and-errors)
-- [Extrinsics](../../concepts/extrinsics)
+- [Macros](/v3/runtime/macros)
+- [Events](/v3/runtime/events-and-errors)
+- [Extrinsics](/v3/concepts/extrinsics)
 
 ### References
 

@@ -14,7 +14,7 @@ on the computer's operating system. Once Rust is configured, you will use its to
 with Rust projects; the commands for Rust's toolchains will be the same for all supported,
 Unix-based operating systems.
 
-## 1. Build Dependencies
+## 1. Build dependencies
 
 Substrate development is easiest on Unix-based operating systems like macOS or Linux. The examples
 in the Substrate [Tutorials](/tutorials) and [How-to Guides](/how-to-guides)
@@ -93,9 +93,9 @@ and follow the instructions for [Ubuntu/Debian](#ubuntudebian). Please refer to 
 [guide for native Windows development](/v3/getting-started/windows-users).
   `}/>
 
-## 2. Rust Developer Environment
+## 2. Rust developer environment
 
-### Automated `getsubstrate.io` Script
+### Automated `getsubstrate.io` script
 
 For most users you can run our script to automate the steps listed below:
 
@@ -105,7 +105,7 @@ curl https://getsubstrate.io -sSf | bash -s -- --fast
 
 If this gives any errors, please follow the steps below to manually configure rust on your machine.
 
-### Manual Rust Configuration
+### Manual Rust configuration
 
 This guide uses [`rustup`](https://rustup.rs/) to help manage the Rust toolchain. First install and
 configure `rustup`:
@@ -126,7 +126,7 @@ rustup update nightly
 rustup target add wasm32-unknown-unknown --toolchain nightly
 ```
 
-## Test Your Set-Up
+## Test your set-up
 
 Now the best way to ensure that you have successfully prepared a computer for Substrate
 development is to follow the steps in [our first tutorial](/tutorials/v3/create-your-first-substrate-chain).
@@ -138,12 +138,12 @@ development is to follow the steps in [our first tutorial](/tutorials/v3/create-
   text={`For more details on _why_ these dependancies are used, and for _troubleshooting_ errors building the template, read on.`}
 />
 
-## Troubleshooting Substrate Builds
+## Troubleshooting Substrate builds
 
 Sometimes you can't get the [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
 to compile out of the box. Here are some tips to help you work through that.
 
-### Rust Configuration Check
+### Rust configuration check
 
 To see what Rust toolchain you are presently using, run:
 
@@ -182,7 +182,7 @@ As you can see above, the default toolchain is stable, and the
 You also see that `nightly-2020-10-06-x86_64-unknown-linux-gnu` is installed, but is not used unless explicitly defined as illustrated in the [specify your nightly version](#specifying-nightly-version)
 section.
 
-### WebAssembly Compilation
+### WebAssembly compilation
 
 Substrate uses [WebAssembly](https://webassembly.org) (Wasm) to produce portable blockchain
 runtimes. You will need to configure your Rust compiler to use
@@ -198,7 +198,7 @@ the stable Rust toolchain.
 if you're curious as to why and how this will be resolved.`}
 />
 
-#### Latest Nightly for Substrate `master`
+#### Latest nightly for Substrate `master`
 
 Developers who are building Substrate _itself_ should always use the latest bug-free versions of
 Rust stable and nightly. This is because the Substrate codebase follows the tip of Rust nightly,
@@ -210,7 +210,7 @@ rustup update
 rustup update nightly
 rustup target add wasm32-unknown-unknown --toolchain nightly
 ```
-
+<br/>
 <Message
   type={`gray`}
   title={`Note`}
@@ -222,7 +222,7 @@ Be sure to [specify your nightly version](#specifying-nightly-version) if you ge
 from \`rustup\` and [downgrade nightly as needed](#downgrading-rust-nightly).`}
 />
 
-#### Rust Nightly Toolchain
+#### Rust nightly toolchain
 
 If you want to guarantee that your build works on your computer as you update Rust and other
 dependencies, you should use a specific Rust nightly version that is known to be
@@ -236,7 +236,7 @@ developers. For instance, the Polkadot client specifies this information in its
 rustup install nightly-<yyyy-MM-dd>
 ```
 
-#### Wasm Toolchain
+#### Wasm toolchain
 
 Now, configure the nightly version to work with the Wasm compilation target:
 
@@ -244,7 +244,7 @@ Now, configure the nightly version to work with the Wasm compilation target:
 rustup target add wasm32-unknown-unknown --toolchain nightly-<yyyy-MM-dd>
 ```
 
-### Specifying Nightly Version
+### Specifying nightly version
 
 Use the `WASM_BUILD_TOOLCHAIN` environment variable to specify the Rust nightly version a Substrate
 project should use for Wasm compilation:
@@ -252,7 +252,7 @@ project should use for Wasm compilation:
 ```bash
 WASM_BUILD_TOOLCHAIN=nightly-<yyyy-MM-dd> cargo build --release
 ```
-
+<br/>
 <Message
   type={`yellow`}
   title={`Information`}
@@ -260,7 +260,7 @@ WASM_BUILD_TOOLCHAIN=nightly-<yyyy-MM-dd> cargo build --release
 compiled with **your default toolchain**, i.e. the latest installed stable toolchain.`}
 />
 
-### Downgrading Rust Nightly
+### Downgrading Rust nightly
 
 If your computer is configured to use the latest Rust nightly and you would like to downgrade to a
 specific nightly version, follow these steps:

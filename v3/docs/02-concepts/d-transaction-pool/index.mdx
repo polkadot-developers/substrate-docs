@@ -7,8 +7,9 @@ category: concepts
 keywords:
 ---
 
-The transaction pool contains all transactions (signed and unsigned) broadcasted to the network that
-have been received and validated by the local node.
+The transaction pool contains all transactions ([signed](/v3/concepts/extrinsics#signed-transactions) 
+and [unsigned](/v3/concepts/extrinsics#unsigned-transactions)) broadcasted to the network that have been 
+received and validated by the local node.
 
 **Validity**
 
@@ -36,7 +37,7 @@ Note: It's possible to design a custom runtime to remove the strict transaction 
 requirement. This would allow full nodes to implement different strategies on transaction
 propagation and block inclusion.
 
-## Transaction Dependencies
+## Transaction dependencies
 
 The `ValidTransaction`
 [struct](/rustdocs/latest/sp_runtime/transaction_validity/struct.ValidTransaction.html)
@@ -57,10 +58,10 @@ they should be included.
 Substrate supports multiple `provides` and `requires` tags, so custom runtimes can create alternate
 dependency (ordering) schemes.
 
-## Transaction Priority
+## Transaction priority
 
-Transaction `priority` in the `ValidTransaction`
-[struct](/rustdocs/latest/sp_runtime/transaction_validity/struct.ValidTransaction.html)
+Transaction `priority` in the [`ValidTransaction`
+struct](/rustdocs/latest/sp_runtime/transaction_validity/struct.ValidTransaction.html)
 determines the ordering of transactions that are in the ready queue. If a node is the next block
 author, it will order transactions from high to low priority in the next block until it reaches the
 weight or length limit of the block.
@@ -69,8 +70,8 @@ weight or length limit of the block.
 dependent transactions. For example, if we have two (or more) transactions that have their
 dependencies satisfied, then we use `priority` to choose the order for them.
 
-For runtimes built with FRAME, `priority` is defined as the `fee` that the transaction is going to
-pay. For example:
+For runtimes built with [FRAME](/v3/runtime/frame), `priority` is defined as the `fee` that the transaction 
+is going to pay. For example:
 
 - If we receive 2 transactions from _different_ senders (with `nonce=0`), we use `priority` to
   determine which transaction is more important and included in the block first.
@@ -82,11 +83,11 @@ Note that the pool does not know about fees, accounts, or signatures - it only d
 validity of the transaction and the abstract notion of the `priority`, `requires`, and `provides`
 parameters. All other details are defined by the runtime via the `validate_transaction` function.
 
-## Transaction Lifecycle
+## Transaction lifecycle
 
 A transaction can follow two paths:
 
-### Block Produced by our Node
+### Block produced by our node
 
 1. Our node listens for transactions on the network.
 2. Each transaction is verified and valid transactions are placed in the transaction pool.
@@ -103,15 +104,16 @@ Note that transactions are not removed from the ready queue when blocks are auth
 _only_ on block import. This is due to the possibility that a recently-authored block may not make
 it into the canonical chain.
 
-### Block Received from Network
+### Block received from network
 
 The block is executed and the entire block either succeeds or fails.
 
-## Transaction Validity
+## Transaction validity
 
-`validate_transaction` is called from the runtime, checks for a valid signature and nonce (or output
-for a UTXO chain) and returns a `Result`. `validate_transaction` checks transactions in isolation,
-so it will not catch errors like the same output being spent twice.
+[`validate_transaction`](/rustdocs/latest/sp_transaction_pool/runtime_api/trait.TaggedTransactionQueue.html#method.validate_transaction) 
+is called from the runtime, checks for a valid signature and nonce (or output for a UTXO chain) and returns 
+a `Result`. `validate_transaction` checks transactions in isolation, so it will not catch errors like the 
+same output being spent twice.
 
 Although it is possible, `validate_transaction` does not check whether calls to pallets will
 succeed. It is a potential DoS vector since all transactions in the network will be passed into
@@ -123,7 +125,27 @@ outdated. The function will be called frequently, potentially multiple times for
 transaction. It is also possible for `validate_transaction` to fail a dependent transaction that
 would pass `execute_block` if it were executed in the correct order.
 
+## Signed extension
+
+[`SignedExtension`](/rustdocs/latest/sp_runtime/traits/trait.SignedExtension.html) is a trait 
+by which a transaction can be extended with additional data or logic.
+Signed extensions are used anywhere you want some information about a transaction prior to
+execution. This is heavily used in the transaction pool.
+
+The runtime can use some of this data, for example the `Call` that will be dispatched, to calculate
+transaction fees. Signed extensions also include an `AdditionalSigned` type that can hold any
+encodable data, and therefore allow you to perform any custom logic prior to including or
+dispatching a transaction. The transaction queue regularly calls functions from `SignedExtension` to
+validate transactions prior to block construction to avoid including transactions that will fail in
+blocks.
+
+Despite the name, `SignedExtension` can also be used to verify [unsigned transactions](/v3/concepts/extrinsics#unsigned-transactions). 
+The `*_unsigned` set of methods can be implemented to encapsulate validation, spam, and replay
+protection logic that is needed by the transaction pool.
+
+- [Signed Extension API](/rustdocs/latest/sp_runtime/traits/trait.SignedExtension.html)
+
 ## Further Reading
 
-- [Extrinsics](../extrinsics)
+- [Extrinsics](/v3/concepts/extrinsics)
 - [Transaction Fees](/v3/runtime/weights-and-fees)

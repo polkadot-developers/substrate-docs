@@ -47,7 +47,7 @@ difficulty: 1
 
 ### 1. Import the dependencies
 
-Refer to [this guide](../../basics/pallet-integration) to properly include Contracts in your runtime.
+Refer to [this guide](/how-to-guides/v3/basics/pallet-integration) to properly include Contracts in your runtime.
 
 This includes **updating `runtime/Cargo.toml` and `runtime/Cargo.toml`** with:
 
@@ -149,7 +149,7 @@ Add this alongside the other `use` statements in `node/src/rpc.rs`:
 ```rust
 use pallet_contracts_rpc::{Contracts, ContractsApi};
 ```
-
+<br />
 <Message type='green' title='Tip' text={`
 Unsure what version to import? Use the latest version as indicated in
 [crates.io](https://crates.io/search?q=pallet-contracts-rpc).
