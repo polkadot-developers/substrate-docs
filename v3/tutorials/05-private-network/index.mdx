@@ -290,7 +290,7 @@ this is not strictly required, so long as you don't have conflicting ports and t
 The next section of this tutorial will include commands to restart new nodes when necessary.
 
 
-## Generate Your Own Keys
+## Generate your own keys
 
 Now that we know the fundamentals and the command line options, it's time to generate our own keys
 rather than using the well-known Alice and Bob keys. Each person who wants to participate in the
@@ -298,7 +298,7 @@ blockchain should generate their own keys. This page explains several options fo
 and each participant only needs to choose one such option. Regardless of which option you choose, be
 sure to record all of the output from this section as you will need it later.
 
-### Option 1: Subkey
+### Option 1: use Subkey
 
 Subkey is a tool that generates keys specifically designed to be used with Substrate.
 
@@ -341,7 +341,7 @@ Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song v
   SS58 Address:     5CesK3uTmn4NGfD3oyGBd1jrp4EfRyYdtqL3ERe9SXv8jUHb
 ```
 
-### Option 2: Polkadot-JS Apps
+### Option 2: use Polkadot-JS Apps
 
 The same UI that we used to see blocks being produced can also be used to generate keys. This option
 is convenient if you do not want to install Subkey. It can be used for production keys, but the
@@ -412,7 +412,7 @@ previously.
 In this example we will create a two-node network, but the process generalizes to more nodes in a
 straight-forward manner.
 
-### Create a Chain Specification
+### Create a chain specification
 
 Last time around, we used `--chain local` which is a predefined "chain spec" that has Alice and Bob
 specified as validators along with many other useful defaults.
@@ -529,13 +529,13 @@ Next steps:
 - Add other participants to your network
 
 
-## Launch Your Private Network
+## Launch your private network
 
 With your custom chain spec created and distributed to all participants, you're ready to launch your
 own custom chain. In this section it is no longer required to use a single physical machine or a
 single binary.
 
-### First Participant Starts a Bootnode
+### First participant starts a bootnode
 
 You've completed all the necessary prep work and you're now ready to launch your chain. This process
 is very similar to when you launched a chain earlier, as Alice and Bob. It's important to start with
@@ -606,7 +606,7 @@ These values are for this specific
 example, but for your node, they will be different and **required for other nodes to directly connect to it** 
 (without a bootnode in the chain spec, as we removed in the flags before).
 
-### Add Keys to Keystore
+### Add keys to keystore
 
 Once your node is running, you will again notice that no blocks are being produced. At this point,
 you need to add your keys into the keystore. Remember you will need to complete these steps for each
@@ -616,7 +616,7 @@ are necessary for
 GRANDPA keys are necessary for
 [block _finalization_](/v3/getting-started/glossary#finality).
 
-#### Option 1: Use the Polkadot-JS Apps UI
+#### Option 1: use the Polkadot-JS Apps UI
 
 You can use the Apps UI to insert your keys into the keystore. Navigate to "Developer --> RPC Call". Choose
 "author" and "insertKey". The fields can be filled like this:
@@ -661,7 +661,7 @@ publicKey: <your raw ed25519 key> (eg. 0xb48004c6e1625282313b07d1c9950935e86894a
       "
 />
 
-#### Option 2: Use `curl`
+#### Option 2: use `curl`
 
 You can also insert a key into the keystore by using [`curl`](https://curl.haxx.se/) from the
 command line. This approach may be preferable in a production setting, where you may be using a
@@ -694,7 +694,7 @@ If you enter the command and parameters correctly, the node will return a JSON r
 
 Make sure you delete the file that contains the keys when you are done.
 
-#### Option 3: Use the `key` command
+#### Option 3: use the `key` command
 
 Alternatively, you can insert a key saved to a local file using the `key` command:
 
@@ -703,7 +703,7 @@ Alternatively, you can insert a key saved to a local file using the `key` comman
 ./target/release/node-template key insert --base-path /tmp/node01 --chain local --key-type <aura/gran> --suri /path/to/key/file
 ```
 
-### Verify Keys in the Keystore (Optional)
+### Verify keys in the keystore (Optional)
 
 Optionally, If you would like to check that your keys are now loaded, you can view the keystore files that should
 now exists for your `node01`. These are found in the following (default example) location:
@@ -728,7 +728,7 @@ Notice there are two keystores, as expected as we added two keys to our node.
 This example used [pair 1](#option-3-use-pre-generated-keys) from the well known seeds here, and
 will use `pair 2` for our next node, where your keys may differ.
 
-### Subsequent Participants Join
+### Subsequent participants join
 
 Subsequent validators can now join the network. This can be done by specifying the `--bootnodes`
 parameter as Bob did previously.
