@@ -8,147 +8,124 @@ category: pallet design
 difficulty: 2
 ---
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description: 'Write a pallet that allows users to lock funds.',
-    },
-    {
-      title: 'Use Cases',
-      description:
-`- Staking
-- Conviction voting`,
-    },
-    {
-      title: 'Overview',
-      description:
-        `The [\`LockableCurrency\`](/rustdocs/latest/frame_support/traits/trait.LockableCurrency.html) trait can be very useful in the context of economic systems that enforce accountability by collateralizing fungible resources.
-		Substrate's [staking pallet](/rustdocs/latest/pallet_staking/index.html) makes use of the same trait to handle locked funds in time-based increments. In
-		this guide, we will make use of it in our own custom pallet.
-		`,
-    },
-  ]}
-/>
+This guide will show you how to write a pallet that allows users to lock funds for staking and conviction voting.
+The [\`LockableCurrency\`](/rustdocs/latest/frame_support/traits/trait.LockableCurrency.html) trait is useful in the context of economic systems that enforce accountability by collateralizing fungible resources. You can use the Substrate [staking pallet](/rustdocs/latest/pallet_staking/index.html) to manage locked funds in time-based increments. In this guide, we will make use of it in our own custom pallet.
 
-## Steps
+## Create a staking pallet
 
-### 1. Declare relevant imports
+1. Declare relevant imports.
+	
+	Import the following traits:
 
-Import the following traits:
+	```rust
+	use frame_support::{
+		dispatch::DispatchResult,
+		traits::{Currency, LockIdentifier, LockableCurrency, WithdrawReasons},
+	};
+	```
 
-```rust
-use frame_support::{
-	dispatch::DispatchResult,
-	traits::{Currency, LockIdentifier, LockableCurrency, WithdrawReasons},
-};
-```
+1. Declare the `LockIdentifier` constant.
 
-### 2.Declare the `LockIdentifier` constant
+	To use `LockableCurrency`, you must declare a [`LockIdentifier`][lockidentifier-rustdocs]. This Identifier must be eight characters long. For example:
 
-In order to use `LockableCurrency`, we need to declare a [`LockIdentifier`][lockidentifier-rustdocs] (must be 8 characters long):
+	```rust
+	const EXAMPLE_ID: LockIdentifier = *b"example ";
+	```
 
-```rust
-const EXAMPLE_ID: LockIdentifier = *b"example ";
-```
+1. Define the required types.
 
-### 3. Define the required types
+	Define the lockable currency type:
 
-Define the lockable currency type:
+	```rust
+	type BalanceOf<T> =
+		<<T as Config>::Currency as Currency<<T as frame_system::Config>::AccountId>>::Balance;
+	/*--snip--*/
+		type Currency: LockableCurrency<Self::AccountId, Moment = Self::BlockNumber>;
+	```
 
-```rust
-type BalanceOf<T> =
-	<<T as Config>::Currency as Currency<<T as frame_system::Config>::AccountId>>::Balance;
-/*--snip--*/
-	type Currency: LockableCurrency<Self::AccountId, Moment = Self::BlockNumber>;
-```
+	The new `BalanceOf<T>` type satisfies the type constraints of `Self::Balance` for all provided
+	methods in`Currency`.
 
-The new `BalanceOf<T>` type satisfies the type constraints of `Self::Balance` for all provided
-methods in`Currency`.
+1. Add the required functions.
 
-### 4. Write out the required functions
+	This pallet must contain the following key functions to ensure it handles the basic logical components for locking and unlocking a curency for a period of time.
 
-Our pallet must contain the following key functions to ensure it handles the basic logical components for locking and
-unlocking a curency for a period of time. These are:
+	- `fn lock_capital`: Locks the specified amount of tokens from the caller.
+	- `fn extend_lock`: Extends the lock period.
+	- `fn unlock_all`: Releases all locked tokens.
 
-- `fn lock_capital`: Locks the specified amount of tokens from the caller.
-- `fn extend_lock`: Extends the lock period.
-- `fn unlock_all`: Releases all locked tokens.
+	**`fn lock_capital`**
 
-#### `fn lock_capital`
+	Call the `set_lock()` method from `Currency`:
 
-Call the `set_lock()` method from `Currency`:
+	```rust
+		#[pallet::weight(10_000 + T::DbWeight::get().writes(1))]
+		pub(super) fn lock_capital(
+			origin: OriginFor<T>,
+			#[pallet::compact] amount: BalanceOf<T>
+		) -> DispatchResultWithPostInfo {
 
-```rust
-	#[pallet::weight(10_000 + T::DbWeight::get().writes(1))]
-	pub(super) fn lock_capital(
-		origin: OriginFor<T>,
-		#[pallet::compact] amount: BalanceOf<T>
-	) -> DispatchResultWithPostInfo {
+			let user = ensure_signed(origin)?;
 
-		let user = ensure_signed(origin)?;
+			T::Currency::set_lock(
+				EXAMPLE_ID,
+				&user,
+				amount,
+				WithdrawReasons::all(),
+			);
 
-		T::Currency::set_lock(
-			EXAMPLE_ID,
-			&user,
-			amount,
-			WithdrawReasons::all(),
-		);
+			Self::deposit_event(Event::Locked(user, amount));
+			Ok(().into())
+		}
+	```
 
-		Self::deposit_event(Event::Locked(user, amount));
-		Ok(().into())
-	}
-```
+	**`fn extend_lock`**
 
-#### `fn extend_lock`
+	Call the `extend_lock()` method from `Currency`:
 
-Call the `extend_lock()` method from `Currency`:
+	```rust
+		#[pallet::weight(1_000)]
+		pub(super) fn extend_lock(
+			origin: OriginFor<T>,
+			#[pallet::compact] amount: BalanceOf<T>,
+		) -> DispatchResultWithPostInfo {
+			let user = ensure_signed(origin)?;
 
-```rust
-	#[pallet::weight(1_000)]
-	pub(super) fn extend_lock(
-		origin: OriginFor<T>,
-		#[pallet::compact] amount: BalanceOf<T>,
-	) -> DispatchResultWithPostInfo {
-		let user = ensure_signed(origin)?;
+			T::Currency::extend_lock(
+				EXAMPLE_ID,
+				&user,
+				amount,
+				WithdrawReasons::all(),
+			);
 
-		T::Currency::extend_lock(
-			EXAMPLE_ID,
-			&user,
-			amount,
-			WithdrawReasons::all(),
-		);
+			Self::deposit_event(Event::ExtendedLock(user, amount));
+			Ok(().into())
+		}
+	```
 
-		Self::deposit_event(Event::ExtendedLock(user, amount));
-		Ok(().into())
-	}
-```
+	**`fn unlock_all`**
 
-#### `fn unlock_all`
+	Call the `remove_lock()` method from `Currency`:
 
-Call the `remove_lock()` method from `Currency`:
+	```rust
+		#[pallet::weight(1_000)]
+		pub(super) fn unlock_all(
+			origin: OriginFor<T>,
+		) -> DispatchResultWithPostInfo {
+			let user = ensure_signed(origin)?;
 
-```rust
-	#[pallet::weight(1_000)]
-	pub(super) fn unlock_all(
-		origin: OriginFor<T>,
-	) -> DispatchResultWithPostInfo {
-		let user = ensure_signed(origin)?;
+			T::Currency::remove_lock(EXAMPLE_ID, &user);
 
-		T::Currency::remove_lock(EXAMPLE_ID, &user);
-
-		Self::deposit_event(Event::Unlocked(user));
-		Ok(().into())
-	}
-```
+			Self::deposit_event(Event::Unlocked(user));
+			Ok(().into())
+		}
+	```
 
 ## Examples
 
 - [`lockable-currency`](https://github.com/substrate-developer-hub/substrate-how-to-guides/blob/main/example-code/template-node/pallets/lockable-currency/src/lib.rs) example pallet
 
 ## Related material
-
-#### Rust docs
 
 - [Currency trait](/rustdocs/latest/frame_support/traits/trait.Currency.html)
 - [LockableCurrency][lockable-rustdocs]
