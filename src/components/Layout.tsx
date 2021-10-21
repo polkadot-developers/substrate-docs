@@ -15,11 +15,13 @@ import {
   FastTrackPlayground,
   ExternalLink,
   MdxLink,
+  Img,
 } from './DocsComponents'
 import Header from './Header/Header'
 import Footer from './Footer'
 
 const components = {
+  img: Img,
   a: MdxLink,
   Message,
   PreviousButton,
