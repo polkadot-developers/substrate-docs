@@ -203,14 +203,17 @@ Substrate allows you to specify a default value that is returned when a storage 
 set. Although the default value does **not** actually occupy runtime storage, the runtime logic will see this
 value during execution.
 
-Here is an example of specifying the default value for all items in a map:
+Here is an example of specifying a default value in storage:
 
 ```rust
 #[pallet::type_value]
-pub fn MyDefaultMap<T: Config>() -> u64 { 1337u64 }
+pub(super) fn MyDefault<T: Config>() -> T::Balance { 3.into() }
 #[pallet::storage]
-pub type MyStorage<T> = StorageMap<_, Blake2_128Concat, u64, u64, ValueStorage, MyDefaultMap>;
+pub(super) type MyStorageValue<T: Config> =
+    StorageValue<Value = T::Balance, QueryKind = ValueQuery, OnEmpty = MyDefault<T>>;
 ```
+Notice that for the sake of adding clarity to each storage field, the syntax above is the non-abbreviated 
+version of declaring storage items.
 
 ## Accessing Storage Items
 
@@ -240,17 +243,17 @@ keep in mind that any hasher that does not produce a transparent output has been
 
 ### Cryptographic Hashing Algorithms
 
-Cryptographic hashing algorithms are those that use cryptography to make it challenging to use the
-input to the hashing algorithm to influence its output. For example, a cryptographic hashing
+Cryptographic hashing algorithms enable us to build tools that make it extremely difficult to manipulate the
+input of a hashing algorithm to influence its output. For example, a cryptographic hashing
 algorithm would produce a wide distribution of outputs even if the inputs were the numbers 1
 through 10. It is critical to use cryptographic hashing algorithms when users are able to influence
 the keys of a Storage Map. Failure to do so creates an attack vector that makes it easy for
 malicious actors to degrade the performance of your blockchain network. An example of a map that
 should use a cryptographic hash algorithm to generate its keys is a map used to track account
 balances. In this case, it is important to use a cryptographic hashing algorithm so that an attacker
-cannot bombard your system with many small transfers to sequential account numbers. Without a
-cryptographic hash algorithm this would create an imbalanced storage structure that would suffer in
-performance.
+cannot bombard your system with many small transfers to sequential account numbers. Without the appropriate 
+cryptographic hashing algorithm this would create an imbalanced storage structure that would suffer in
+performance. Read more about common hashers in Subsrate in [this section](#common-substrate-hashers).
 
 <Message
   type={`gray`}
