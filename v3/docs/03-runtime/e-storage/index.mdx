@@ -54,7 +54,8 @@ Refer to the Storage Value documentation for
 
 Map data structures are ideal for managing sets of items whose elements will be accessed randomly,
 as opposed to iterating over them sequentially in their entirety. Storage Maps in Substrate are
-implemented as key-value hash maps. In order to give runtime engineers increased control, Substrate allows developers to select
+implemented as key-value mappings that provide a similar interface as traditional [hash-maps](https://en.wikipedia.org/wiki/Hash_table)
+for enabling random lookups. In order to give runtime engineers increased control, Substrate allows developers to select
 which hashing algorithms suits their use case the best for generating a map's keys. This is covered in the section on [hashing algorithms](#hashing-algorithms).
 
 Refer to the Storage Map documentation for
