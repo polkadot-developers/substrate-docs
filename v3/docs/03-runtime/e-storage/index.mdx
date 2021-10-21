@@ -35,8 +35,8 @@ by [SCALE codec](/v3/advanced/scale-codec). These include:
 This type of storage item should be used for values that are viewed as a single unit by the runtime. This could be a single primitive value, a single `struct`, or a single collection of related
 items. If a storage item is used for storing lists of items, runtime developers should be conscious about the size of the lists they use.
 Large lists incur storage costs just like large `structs`.
-Furthermore, iterating over a large list in your runtime may result in exceeding the block production time. If this occurs your blockchain
-will stop producing blocks, which means that it will stop functioning.
+Furthermore, iterating over a large list in your runtime may result in exceeding the block production time. If this occurs for sovereign chains, the blockchain will slow down.
+If this occurs for [parachains](/v3/getting-started/glossary/#parachain), the blockchain will stop producing blocks and stop functioning. 
 
 <Message
   type={`yellow`}
@@ -63,7 +63,7 @@ Refer to the Storage Map documentation for
 
 ### Double Storage Map
 
-Double Storage Maps are very similar to single Storage Maps except they contain two keys, which is useful for querying values with common keys.
+[Double Storage Maps](/rustdocs/latest/frame_support/storage/trait.StorageDoubleMap.html) are very similar to single Storage Maps except they contain two keys, which is useful for querying values with common keys.
 
 Refer to the documentation on
 [advanced storage](/v3/advanced/storage) to learn more about how different Storage Maps, including Double Storage Maps, are implemented.
@@ -74,7 +74,7 @@ N Storage Maps are also very similar to its siblings, namely Storage Maps and Do
 
 To specify the keys in an N Storage Map in FRAMEv2, a tuple containing the special `NMapKey` struct must be provided as a type to the Key (i.e. second) type parameter while declaring the `StorageNMap`.
 
-Refer to the N Storage Map documentation for more details about the syntaxes in using a N Storage Map.
+Refer to the [N Storage Map documentation](/rustdocs/latest/frame_support/storage/trait.StorageNMap.html) for more details about the syntaxes in using a N Storage Map.
 
 #### Iterating Over Storage Maps
 
@@ -101,17 +101,17 @@ Storage Double Maps, the `iter()` and `drain()` methods require the first key as
   doing this, you'll get undefined results. See the docs:
   [`IterableStorageMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageMap.html#tymethod.iter),
   [`IterableStorageDoubleMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter) and
-  `IterableStorageNMap`.
+  [`IterableStorageNMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageNMap.html#tymethod.iter).
 - `drain()` - remove all elements from the map and iterate through them in no particular order. If you
   add elements to the map while doing this, you'll get undefined results. See the docs:
   [`IterableStorageMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain),
   [`IterableStorageDoubleMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain) and
-  `IterableStorageNMap`.
+  [`IterableStorageNMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageNMap.html#tymethod.drain).
 - `translate()` - use the provided function to translate all elements of the map, in no particular
   order. To remove an element from the map, return `None` from the translation function. See the docs:
   [`IterableStorageMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate),
   [`IterableStorageDoubleMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.translate) and
-  `IterableStorageNMap`.
+  [`IterableStorageNMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageNMap.html#tymethod.translate).
 
 ## Declaring Storage Items
 
