@@ -76,7 +76,7 @@ To specify the keys in an N Storage Map in FRAMEv2, a tuple containing the speci
 
 Refer to the [N Storage Map documentation](/rustdocs/latest/frame_support/storage/trait.StorageNMap.html) for more details about the syntaxes in using a N Storage Map.
 
-#### Iterating Over Storage Maps
+### Iterating Over Storage Maps
 
 Substrate Storage Maps are iterable with respect to their keys and values. Because maps are often
 used to track unbounded sets of data (such as account balances), iterating over them without caution in the runtime may cause blocks not being able to produced in time.
@@ -94,8 +94,7 @@ elements of a native list, map iterations are significantly _more_ costly than l
   wrong &mdash; yet, avoiding it would be considered a better approach with respect to best practices.`}
 />
 
-Substrate's Iterable Storage Map interfaces define the following methods (note that for Iterable
-Storage Double Maps, the `iter()` and `drain()` methods require the first key as a parameter):
+Substrate's Iterable Storage Map interfaces define the following methods:
 
 - `iter()` - enumerate all elements in the map in no particular order. If you alter the map while
   doing this, you'll get undefined results. See the docs:
@@ -158,9 +157,9 @@ be used.
 The implementation of the [`QueryKindTrait`](/rustdocs/latest/frame_support/storage/types/trait.QueryKindTrait.html) passed
 to the storage item determines how the storage should be handled when there is no value in storage.
 With [`OptionQuery`](/rustdocs/latest/frame_support/storage/types/struct.OptionQuery.html), when no value is in storage 
-the method `get` will return `None`. With [`ValueQuery`](/rustdocs/latest/frame_support/storage/types/struct.ValueQuery.html), 
+the `get` method will return `None`. With [`ValueQuery`](/rustdocs/latest/frame_support/storage/types/struct.ValueQuery.html), 
 when no value is in storage the `get` method will return the value configured with the `OnEmpty` generic. 
-When you have a specific default value to configure, use `ValueQuery`.
+For cases with a specific default value to configure, it is recommended to use `ValueQuery`.
 
 ### Visibility
 
