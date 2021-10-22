@@ -9,9 +9,9 @@ keywords:
 
 Blockchains that are built on Substrate expose metadata in order to make it easier to interact with
 them. This metadata is separated by the different [pallets](/v3/runtime/frame#pallets) that inform your blockchain.
-For each module, the metadata provides information about the [storage items](/v3/runtime/storage),
+For each pallet, the metadata provides information about the [storage items](/v3/runtime/storage),
 [extrinsic calls](/v3/concepts/extrinsics), [events](/v3/runtime/events-and-errors), constants, and errors that are
-exposed by that module. Substrate automatically generates this metadata for you and makes it
+exposed by that pallet. Substrate automatically generates this metadata for you and makes it
 available through RPC calls.
 
 Since the runtime of a Substrate blockchain is an evolving part of the blockchain's state,
@@ -283,7 +283,7 @@ to get information for a specific storage item.
 Metadata for dispatchable calls includes information about the runtime calls are defined by the
 `#[pallet]` macro. For each call, the metadata includes:
 
-- `name`: Name of the function in the module.
+- `name`: Name of the function in the pallet.
 - `args`: Arguments in function definition. Includes the name and type of each argument.
 - `documentation`: Documentation of the function.
 

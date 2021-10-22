@@ -364,7 +364,7 @@ struct GenesisConfig {
 #[pallet::genesis_build]
 impl<T: Config> GenesisBuild<T> for GenesisConfig {
     fn build(&self) {
-        Module::<T>::initialize_members(&config.members);
+        Pallet::<T>::initialize_members(&config.members);
         SomeStorageItem::<T>::put(self.prime);
   }
 }
@@ -398,7 +398,7 @@ struct GenesisConfig {
 #[pallet::genesis_build]
 impl<T: Config> GenesisBuild<T> for GenesisConfig {
     fn build(&self) {
-        Module::<T>::initialize_members(&config.members);
+        Pallet::<T>::initialize_members(&config.members);
         SomeStorageItem::<T>::put(self.prime);
   }
 }
