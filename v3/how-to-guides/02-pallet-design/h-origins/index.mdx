@@ -6,3 +6,26 @@ section: how to guides
 category: pallet design
 difficulty: 2
 ---
+
+This guide goes over a simple way to assign an account ID to an origin. This origin could be used 
+from within the pallet its defined in but also in any other pallet it is tightly coupled to.
+
+## Use cases
+
+- Create a special origin with Sudo-like access to specific dispatchables
+- Implement a dispatchable that can only be called by the origin defined from another pallet.
+
+Create a custom origin with a specified account ID and enforce it in a signed dispatchable.
+
+## Before you begin
+
+Before you begin, verify the following requirements:
+
+- You already have a working pallet and dispatchable to implement a custom origin for.
+- Read about Substrate's [origin system](/v3/runtime/origins/) to understand what they are and ways to use them.
+
+## Steps
+
+## Examples
+
+## Resources
