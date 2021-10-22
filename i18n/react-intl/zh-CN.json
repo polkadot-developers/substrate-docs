@@ -127,6 +127,7 @@
   "htg-pallet-design-storage-value": "Storage Value Struct",
   "htg-tightly-coupling-pallets": "Tightly Coupling a Pallet",
   "htg-loosely-coupling-pallets": "Loosely Coupling a Pallet",
+  "htg-account-id-origins": "Define a Custom Origin as an Account ID",
 
   "docs-nav-htg-weights": "Weights",
   "htg-weights-calculate-fees": "Calculating Fees",

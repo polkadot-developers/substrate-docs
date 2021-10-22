@@ -379,6 +379,12 @@ const DevNavMenu = {
             })}`,
             link: '/how-to-guides/v3/pallet-design/loose-coupling/',
           },
+          {
+            title: `${intl.formatMessage({
+              id: 'htg-account-id-origin',
+            })}`,
+            link: '/how-to-guides/v3/pallet-design/account-id-origin/',
+          },
         ],
       },
       // 3. Weights.
