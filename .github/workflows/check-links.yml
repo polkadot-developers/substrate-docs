@@ -21,8 +21,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Build & push image
         run: |
-          docker build -t paritytechnologies/substrate-docs .
-          docker push paritytechnologies/substrate-docs
+          docker build -t paritytechno/substrate-docs .
+          docker push paritytechno/substrate-docs
 
   check-links:
     needs: build-website-image
@@ -30,7 +30,7 @@ jobs:
     environment: test
     services:
       gatsby-app:
-        image: paritytechnologies/substrate-docs
+        image: paritytechno/substrate-docs
         ports:
           - 9000:9000
     steps:
