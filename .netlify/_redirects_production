@@ -81,12 +81,13 @@
 /docs/en/knowledgebase/getting-started/*       /v3/getting-started/:splat        301!
 
 ### Knowledge Base: Key Concepts
-/docs/en/knowledgebase/learn-substrate/*      /v3/concepts/:splat        301!
-/docs/en/knowledgebase/runtime                /v3/concepts/runtime       301!
-/docs/en/knowledgebase/runtime/               /v3/concepts/runtime       301!
+/docs/en/knowledgebase/learn-substrate/*                        /v3/concepts/:splat             301!
+/docs/en/knowledgebase/learn-substrate/off-chain-workers        /v3/concepts/off-chain-features 301!
+/docs/en/knowledgebase/runtime                                  /v3/concepts/runtime            301!
+/docs/en/knowledgebase/runtime/                                 /v3/concepts/runtime            301!
 
 ### Knowledge Base: Runtime Development
-/docs/en/knowledgebase/runtime/fees               /v3/runtime/weights-and-fees            301!
+/docs/en/knowledgebase/runtime/fees                 /v3/runtime/weights-and-fees            301!
 /docs/en/knowledgebase/runtime/errors	            /v3/runtime/events-and-errors/          301!
 /docs/en/knowledgebase/runtime/events	            /v3/runtime/events-and-errors/          301!
 /docs/en/knowledgebase/runtime/execution	        /v3/concepts/execution/                 301!
