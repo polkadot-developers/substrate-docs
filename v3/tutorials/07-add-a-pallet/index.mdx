@@ -268,7 +268,7 @@ To implement the nicks pallet in your runtime:
   
   impl pallet_nicks::Config for Runtime {
     // The Balances pallet implements the ReservableCurrency trait.
-    // `Balances` is defined in `construct_runtimes!` macro. See below.
+    // `Balances` is defined in `construct_runtime!` macro. See below.
     // /rustdocs/latest/pallet_balances/index.html#implementations-2
     type Currency = Balances;
 
