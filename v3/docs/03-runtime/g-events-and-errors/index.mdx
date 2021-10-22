@@ -60,7 +60,7 @@ construct_runtime!(
 		UncheckedExtrinsic = UncheckedExtrinsic
 	{
 		// --snip--
-		TemplateModule: template::{Module, Call, Storage, Event<T>},
+		TemplateModule: template::{Pallet, Call, Storage, Event<T>},
 		//--add-this------------------------------------->^^^^^^^^
 	}
 );
