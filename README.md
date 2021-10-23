@@ -59,7 +59,7 @@ URL example: https://docs.substrate.io/v3/contribute/style-guide/
 Configuration and styling files for gatsby live primarily in the `src` folder.
 
 > NOTE: there are more peculiarities to contributing to this specific repo's content. Please review
-> the contributor guidelines on [Build and Deploy](https://docs.substrate.io/v3/contribute/writing#build-and-deploy) to be aware of them! 
+> the contributor guidelines on [Builder notes](https://docs.substrate.io/v3/contribute/writing#builder-notes) to be aware of them! 
 
 ### Production deployment
 
