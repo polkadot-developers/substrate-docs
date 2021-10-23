@@ -24,7 +24,7 @@ Thank you for your interest in contributing to documentation for the Substrate d
 framework. As a member of the community, you are invited and encouraged to contribute by submitting
 issues, offering suggestions for improvements to existing content, adding review comments to
 existing pull requests, proposing new content, or creating new pull requests to fix issues or
-provide new content. Please review our 
+provide new content. Please review our
 [contributor guidelines](https://docs.substrate.io/v3/contribute/style-guide/) prior to
 any contribution. If you have any further questions, please do not hesitate to reach out on our
 [Substrate technical community channel](https://matrix.to/#/#substrate-technical:matrix.org)! We
@@ -73,7 +73,7 @@ guidelines if making any non-trivial PRs here.
 
 - `develop` branch is available at: https://develop--substrate-docs.netlify.app/
 
-If you are submitting a PR, make sure to submit it to the `develop` branch. Only once PRs are merged into 
+If you are submitting a PR, make sure to submit it to the `develop` branch. Only once PRs are merged into
 develop will they get merged into `main`.
 
 ## 🚀 Quick start
@@ -94,7 +94,7 @@ develop will they get merged into `main`.
     yarn # alias for `yarn install`
     ```
 
-3. **Configure environment variables**
+3.  **Configure environment variables**
 
     Copy `example.env.development` and rename to `.env.development`
 
@@ -119,8 +119,8 @@ develop will they get merged into `main`.
 5.  **Open the code and start customizing!**
 
     Your site is now running at [http://localhost:8001](http://localhost:8001)
-    and your GraphQL data layer is running at 
-	[http://localhost:8000\_\_graphql](http://localhost:8000__graphql).
+    and your GraphQL data layer is running at
+    [http://localhost:8000\_\_graphql](http://localhost:8000__graphql).
 
     Edit to see your site update in real-time on save.
 
@@ -195,4 +195,5 @@ this repository.
 ## License
 
 TBD
+
 <!-- Substrate **documentation** is licence under the [Apache 2 license](./LICENSE). -->
