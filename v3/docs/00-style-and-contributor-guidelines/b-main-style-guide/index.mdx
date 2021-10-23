@@ -12,6 +12,9 @@ developing documentation for Parity Technologies products and audiences.
 The goal of this guide is to help members of the documentation team and any one interested in contributing to documentation 
 write material that is clear, concise, and consistent.
 
+This guide also includes peculiarities to working with this repo specifically for active
+contributors to be aware of available in the [Build and Deploy](#build-and-deploy) section.
+
 If you can't find the answer to a style, voice, or terminology question in this guide, consult the following resources:
 
 * [Microsoft Style Guide](https://docs.microsoft.com/en-us/style-guide/welcome/)
@@ -415,3 +418,24 @@ At a minimum, a concept topic includes at least one heading and one or more body
 * Two or more subsections, marked by subheadings.
 
 * A list of related topics.
+
+## Build and Deploy
+
+Some gotchas or adding or editing new content specific to this repository:
+
+- The `i18n` folder is used for translation **but also for the rendering of the navigation**
+  **elements sections**. Your `index.mdx` file's `title` is not the source for this.
+- If you are adding or renaming a page, you **must** add it correctly in `src/components/DevNavMenu.tsx` and
+  possibly `gatsby-config.js` and `gatsby-node.js`.
+- All `/rustdoc/` internal links must end with `.html` or `.html#some-ID`.
+  Reasoning in [#425](https://github.com/substrate-developer-hub/substrate-docs/issues/425).
+- From time to time, the development server local casche becomes corrupted. To fix this in a one liner:
+    ```bash
+    yarn clean && yarn dev
+    ```
+  ***PLEASE do this when reviewing a page before every PR*** - this ensures your state is what the
+  build CI see as well.  
+- From time to time, BREAKING changes happen in the `yarn` dependencies. To fix this in a one liner:
+    ```bash
+    git checkout main && git pull && yarn clean && yarn install && yarn dev
+    ```

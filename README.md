@@ -9,7 +9,7 @@
 
 <!-- Badges -->
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/42dec01f-3723-4828-9f01-45ac5b3c8a11/deploy-status)](https://app.netlify.com/sites/substrate-docs/deploys) ![linkcheck workflow](https://github.com/substrate-developer-hub/substrate-docs/actions/workflows/check-links.yml/badge.svg) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](v3/docs/00-style-and-contributor-guidelines/a-contributor-guidelines/index.mdx) [![Matrix](https://img.shields.io/matrix/frontier:matrix.org)](https://matrix.to/#/#substrate-technical:matrix.org)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/42dec01f-3723-4828-9f01-45ac5b3c8a11/deploy-status)](https://app.netlify.com/sites/substrate-docs/deploys) ![linkcheck workflow](https://github.com/substrate-developer-hub/substrate-docs/actions/workflows/check-links.yml/badge.svg) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://docs.substrate.io/v3/contribute/style-guide/) [![Matrix](https://img.shields.io/matrix/frontier:matrix.org)](https://matrix.to/#/#substrate-technical:matrix.org)
 
 <!-- Description -->
 
@@ -49,7 +49,7 @@ Sub folders in these are of the form:
 By convention we use `XX` numbering starting at `00` for sections, and `Y` lettering starting at `a`
 for pages.
 
-File directory example: `v3/docs/00-style-and-contributor-guidelines/a-contributor-guidelines/index.mdx`
+File directory example: `/v3/docs/00-style-and-contributor-guidelines/a-contributor-guidelines/index.mdx`
 
 Each `index.mdx` page has the content to be rendered to this page, and all pages include a header
 section with a `slug` item that is used for navigation on the generated site,
@@ -58,12 +58,8 @@ URL example: https://docs.substrate.io/v3/contribute/style-guide/
 
 Configuration and styling files for gatsby live primarily in the `src` folder.
 
-Some gotchas:
-
-- The `i18n` folder is used for translation **but also for the rendering of the navigation**
-  **elements sections**. Your `index.mdx` file's `title` is not the source for this.
-- If you are adding or renaming a page, you **must** add it correctly in `src/components/DevNavMenu.tsx` and
-  possibly `gatsby-config.js` and `gatsby-node.js`.
+> NOTE: there are more peculiarities to contributing to this specific repo's content. Please review
+> the contributor guidelines on [Build and Deploy](https://docs.substrate.io/v3/contribute/writing#build-and-deploy) to be aware of them! 
 
 ### Production deployment
 
