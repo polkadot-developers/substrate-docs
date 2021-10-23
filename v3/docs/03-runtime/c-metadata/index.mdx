@@ -36,8 +36,8 @@ Substrate node, as well as language-agnostic HTTP and WebSocket APIs.
 
 The easiest way to get the metadata is by querying the automatically-generated JSON-RPC function
 `state_getMetadata`. This will return a vector of SCALE-encoded bytes. You can decode this using the
-[`frame-metadata`](/rustdocs/latest/frame_metadata) and
-[`parity-scale-codec`](/rustdocs/latest/parity_scale_codec) libraries.
+[`frame-metadata`](/rustdocs/latest/frame_metadata/index.html) and
+[`parity-scale-codec`](/rustdocs/latest/parity_scale_codec/index.html) libraries.
 
 Some helpful libraries like [`substrate-subxt`](https://github.com/paritytech/substrate-subxt) fetch
 the metadata and decode them for you. Once decoded, the structure may be serialized into JSON with
@@ -63,7 +63,7 @@ console.log('Metadata: ' + JSON.stringify(metadata.asLatest.toHuman(), null, 2))
 
 ### HTTP & websocket APIs
 
-Substrate nodes expose [a JSON-RPC API](/rustdocs/latest/sc_rpc) that you can
+Substrate nodes expose [a JSON-RPC API](/rustdocs/latest/sc_rpc/index.html) that you can
 access by way of **HTTP** or **WebSocket** requests. The message to
 [request metadata](/rustdocs/latest/sc_rpc/state/struct.StateClient.html#method.metadata)
 from a node looks like this:
@@ -458,5 +458,5 @@ the [`InvalidSpecName` error](/rustdocs/latest/frame_system/pallet/enum.Error.ht
 
 ### References
 
-- [Metadata](/rustdocs/latest/frame_metadata)
+- [Metadata](/rustdocs/latest/frame_metadata/index.html)
 - [FRAME v2 macro documentation](/rustdocs/latest/frame_support/attr.pallet.html)

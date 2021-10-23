@@ -413,7 +413,7 @@ To set a nickname for an account:
 
 1. Select `nicks` from the list of pallets available to call.
 
-1. Select the [`setName` dispatchable](/rustdocs/latest/pallet_nicks/enum.Call.html#variant.set_name) as 
+1. Select the [`setName` dispatchable](/rustdocs/latest/pallet_nicks/pallet/enum.Call.html#variant.set_name) as 
 the function to call from the `nicks` pallet. 
 
 1. Type a name that is longer than the `MinNickLength` (8 characters)and no longer than the `MaxNickLength` 
@@ -438,7 +438,7 @@ To return the information stored for Alice:
 
 1. Select `nicks` from the list of pallets available to query.
 
-1. Select the [`nameOf`](/rustdocs/latest/pallet_nicks/enum.Call.html#variant.set_name). 
+1. Select the [`nameOf`](/rustdocs/latest/pallet_nicks/pallet/enum.Call.html#variant.set_name). 
 
 1. Copy and paste the address for the alice account in the Account field, then click **Query**.
 
@@ -460,7 +460,7 @@ To return the information stored for Alice:
 
 This tutorial
 Use the `Signed` button to invoke
-[the `killName` dispatchable](/rustdocs/latest/pallet_nicks/pallet/enum.Call.htm)
+[the `killName` dispatchable](/rustdocs/latest/pallet_nicks/pallet/enum.Call.html#variant.kill_name)
 function and use Bob's account ID as the function's argument. The `killName` function must be called
 by the `ForceOrigin` that was configured with the Nicks pallet's `Config` interface in the previous
 section. You may recall that we configured this to be the FRAME system's `Root` origin. The Node
@@ -493,7 +493,7 @@ to inform network participants that the `Root` origin dispatched a call, however
 that the inner dispatch failed with a
 [`DispatchError`](/rustdocs/latest/sp_runtime/enum.DispatchError.html) (the
 Sudo pallet's
-[`sudo` function](/rustdocs/latest/pallet_sudo/pallet/enum.Call.html) is
+[`sudo` function](/rustdocs/latest/pallet_sudo/pallet/enum.Call.html#variant.sudo) is
 the "outer" dispatch). In particular, this was an instance of
 [the `DispatchError::Module` variant](/rustdocs/latest/frame_support/dispatch/enum.DispatchError.html#variant.Module),
 which reports two pieces of metadata: an `index` number and an `error` number. The `index` number
