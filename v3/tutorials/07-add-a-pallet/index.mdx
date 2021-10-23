@@ -150,11 +150,11 @@ If you review the comments for the runtime in the
 [node template](https://github.com/substrate-developer-hub/substrate-node-template), you will see examples
 of using the `Config` configuration trait to define and tune parameters for each pallet.
 
-Most of the pallet-specific code required to add a pallet is implemented using the `Config` trait. 
-To see what you need to implement for the Nicks pallet specifically, see the [`pallet_nicks::Config` 
-documentation](/rustdocs/latest/pallet_nicks/pallet/trait.Config.html) or the 
-definition of the trait itself in [the source code](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs) 
-of the Nicks pallet. 
+Most of the pallet-specific code required to add a pallet is implemented using the `Config` trait.
+To see what you need to implement for the Nicks pallet specifically, see the [`pallet_nicks::Config`
+documentation](/rustdocs/latest/pallet_nicks/pallet/trait.Config.html) or the
+definition of the trait itself in [the source code](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs)
+of the Nicks pallet.
 
 In the source code for the `nicks` pallet, the `Config` trait declares the following types:
 
@@ -269,7 +269,7 @@ parameter_types! {
 impl pallet_nicks::Config for Runtime {
   // The Balances pallet implements the ReservableCurrency trait.
   // `Balances` is defined in `construct_runtime!` macro. See below.
-  // /rustdocs/latest/pallet_balances/index.html#implementations-2
+  // https://docs.substrate.io/rustdocs/latest/pallet_balances/index.html#implementations-2
   type Currency = Balances;
 
   // Use the NickReservationFee from the parameter_types block.
@@ -279,7 +279,7 @@ impl pallet_nicks::Config for Runtime {
   type Slashed = ();
 
   // Configure the FRAME System Root origin as the Nick pallet admin.
-  // /rustdocs/latest/frame_system/enum.RawOrigin.html#variant.Root
+  // https://docs.substrate.io/rustdocs/latest/frame_system/enum.RawOrigin.html#variant.Root
   type ForceOrigin = frame_system::EnsureRoot<AccountId>;
 
   // Use the MinNickLength from the parameter_types block.
@@ -413,8 +413,8 @@ To set a nickname for an account:
 
 1. Select `nicks` from the list of pallets available to call.
 
-1. Select the [`setName` dispatchable](/rustdocs/latest/pallet_nicks/pallet/enum.Call.html#variant.set_name) as 
-the function to call from the `nicks` pallet. 
+1. Select the [`setName` dispatchable](/rustdocs/latest/pallet_nicks/pallet/enum.Call.html#variant.set_name) as
+   the function to call from the `nicks` pallet.
 
 1. Type a name that is longer than the `MinNickLength` (8 characters)and no longer than the `MaxNickLength`
    (32 characters).
@@ -438,7 +438,7 @@ To return the information stored for Alice:
 
 1. Select `nicks` from the list of pallets available to query.
 
-1. Select the [`nameOf`](/rustdocs/latest/pallet_nicks/pallet/enum.Call.html#variant.set_name). 
+1. Select the [`nameOf`](/rustdocs/latest/pallet_nicks/pallet/enum.Call.html#variant.set_name).
 
 1. Copy and paste the address for the alice account in the Account field, then click **Query**.
 
