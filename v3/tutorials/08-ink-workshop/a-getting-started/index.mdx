@@ -250,6 +250,18 @@ substrate-contracts-node --dev --tmp
 
 You should start seeing blocks being produced by your node in your terminal.
 
+
+
+## Deploying your Contract
+
+<Message
+  type={`red`}
+  title={`Important`}
+  text={`Canvas UI is undergoing technical difficulties and is not functional at the moment. While we are working on a fix, 
+  please use https://polkadot.js.org/apps/ to deploy and interact with your contracts. Same principles apply, the UI differs slightly. 
+  Make sure you are connected to the local node by selecting it from the top left menu and that you navigate to Developer/Contracts page`}
+/>
+
 Go to the [hosted version of Canvas UI](https://paritytech.github.io/canvas-ui) to interact with
 your node. You first need to configure the UI to connect to it:
 
@@ -258,10 +270,7 @@ your node. You first need to configure the UI to connect to it:
 
 ![Connect to local node](/assets/tutorials/ink-workshop/canvas-connect-to-local.png)
 
-## Deploying your Contract
-
-
-Now that we have generated the Wasm binary from our source code and started a Canvas node, we want
+Now that we have generated the Wasm binary from our source code and connected to a local node node, we want
 to deploy this contract onto our Substrate blockchain.
 
 Smart contract deployment on Substrate is a little different than on traditional smart contract
@@ -329,6 +338,14 @@ creation of a new account (`system.NewAccount`) and the instantiation of the con
 
 ## Calling your Contract
 
+<Message
+  type={`red`}
+  title={`Important`}
+  text={`Canvas UI is undergoing technical difficulties and is not functional at the moment. While we are working on a fix, 
+  please use https://polkadot.js.org/apps/ to deploy and interact with your contracts. Same principles apply, the UI differs slightly. 
+  Make sure you are connected to the local node by selecting it from the top left menu and that you navigate to Developer/Contracts page`}
+/>
+
 Now that your contract has been fully deployed, we can start interacting with it! Flipper only has
 two functions, `flip()` and `get()` so we will show you what it's like to play with both of them.
 Click the **Execute** button under the contract after you instantiate the Flipper contract in the
@@ -393,6 +410,13 @@ you will need to follow these same steps you have done with the Flipper contract
 
 ## Troubleshooting
 
+<Message
+  type={`red`}
+  title={`Important`}
+  text={`Canvas UI is undergoing technical difficulties and is not functional at the moment. While we are working on a fix, 
+  please use https://polkadot.js.org/apps/ to deploy and interact with your contracts. Same principles apply, the UI differs slightly. 
+  Make sure you are connected to the local node by selecting it from the top left menu and that you navigate to Developer/Contracts page`}
+/>
 
 Here are solutions to some of the common problems you may come across:
 
