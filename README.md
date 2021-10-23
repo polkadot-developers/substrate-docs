@@ -9,7 +9,7 @@
 
 <!-- Badges -->
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/42dec01f-3723-4828-9f01-45ac5b3c8a11/deploy-status)](https://app.netlify.com/sites/substrate-docs/deploys) ![linkcheck workflow](https://github.com/substrate-developer-hub/substrate-docs/actions/workflows/check-links.yml/badge.svg) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](v3/docs/00-style-and-contributor-guidelines/a-contributor-guidelines/index.mdx) [![Matrix](https://img.shields.io/matrix/frontier:matrix.org)](https://matrix.to/#/#substrate-technical:matrix.org)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/42dec01f-3723-4828-9f01-45ac5b3c8a11/deploy-status)](https://app.netlify.com/sites/substrate-docs/deploys) ![linkcheck workflow](https://github.com/substrate-developer-hub/substrate-docs/actions/workflows/check-links.yml/badge.svg) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://docs.substrate.io/v3/contribute/style-guide/) [![Matrix](https://img.shields.io/matrix/frontier:matrix.org)](https://matrix.to/#/#substrate-technical:matrix.org)
 
 <!-- Description -->
 
@@ -24,7 +24,7 @@ Thank you for your interest in contributing to documentation for the Substrate d
 framework. As a member of the community, you are invited and encouraged to contribute by submitting
 issues, offering suggestions for improvements to existing content, adding review comments to
 existing pull requests, proposing new content, or creating new pull requests to fix issues or
-provide new content. Please review our 
+provide new content. Please review our
 [contributor guidelines](https://docs.substrate.io/v3/contribute/style-guide/) prior to
 any contribution. If you have any further questions, please do not hesitate to reach out on our
 [Substrate technical community channel](https://matrix.to/#/#substrate-technical:matrix.org)! We
@@ -49,7 +49,7 @@ Sub folders in these are of the form:
 By convention we use `XX` numbering starting at `00` for sections, and `Y` lettering starting at `a`
 for pages.
 
-File directory example: `v3/docs/00-style-and-contributor-guidelines/a-contributor-guidelines/index.mdx`
+File directory example: `/v3/docs/00-style-and-contributor-guidelines/a-contributor-guidelines/index.mdx`
 
 Each `index.mdx` page has the content to be rendered to this page, and all pages include a header
 section with a `slug` item that is used for navigation on the generated site,
@@ -58,12 +58,12 @@ URL example: https://docs.substrate.io/v3/contribute/style-guide/
 
 Configuration and styling files for gatsby live primarily in the `src` folder.
 
-Some gotchas:
+### Builder notes
 
-- The `i18n` folder is used for translation **but also for the rendering of the navigation**
-  **elements sections**. Your `index.mdx` file's `title` is not the source for this.
-- If you are adding or renaming a page, you **must** add it correctly in `src/components/DevNavMenu.tsx` and
-  possibly `gatsby-config.js` and `gatsby-node.js`.
+There are some unique requirements to be aware if you are contributing content in this repository to
+make your life, and the life of the maintainers much easier! Please review the
+[Builder notes](https://docs.substrate.io/v3/contribute/writing#builder-notes) in the contributor
+guidelines if making any non-trivial PRs here.
 
 ### Production deployment
 
@@ -73,7 +73,7 @@ Some gotchas:
 
 - `develop` branch is available at: https://develop--substrate-docs.netlify.app/
 
-If you are submitting a PR, make sure to submit it to the `develop` branch. Only once PRs are merged into 
+If you are submitting a PR, make sure to submit it to the `develop` branch. Only once PRs are merged into
 develop will they get merged into `main`.
 
 ## 🚀 Quick start
@@ -94,7 +94,7 @@ develop will they get merged into `main`.
     yarn # alias for `yarn install`
     ```
 
-3. **Configure environment variables**
+3.  **Configure environment variables**
 
     Copy `example.env.development` and rename to `.env.development`
 
@@ -119,8 +119,8 @@ develop will they get merged into `main`.
 5.  **Open the code and start customizing!**
 
     Your site is now running at [http://localhost:8001](http://localhost:8001)
-    and your GraphQL data layer is running at 
-	[http://localhost:8000\_\_graphql](http://localhost:8000__graphql).
+    and your GraphQL data layer is running at
+    [http://localhost:8000\_\_graphql](http://localhost:8000__graphql).
 
     Edit to see your site update in real-time on save.
 
@@ -195,4 +195,5 @@ this repository.
 ## License
 
 TBD
+
 <!-- Substrate **documentation** is licence under the [Apache 2 license](./LICENSE). -->
