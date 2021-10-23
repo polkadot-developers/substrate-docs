@@ -429,13 +429,17 @@ Some gotchas or adding or editing new content specific to this repository:
   possibly `gatsby-config.js` and `gatsby-node.js`.
 - All `/rustdoc/` internal links must end with `.html` or `.html#some-ID`.
   Reasoning in [#425](https://github.com/substrate-developer-hub/substrate-docs/issues/425).
-- From time to time, the development server local casche becomes corrupted. To fix this in a one liner:
+- From time to time, the development server local cache becomes corrupted. To fix this in a one liner:
     ```bash
     yarn clean && yarn dev
     ```
   ***PLEASE do this when reviewing a page before every PR*** - this ensures your state is what the
   build CI see as well.  
-- From time to time, BREAKING changes happen in the `yarn` dependencies. To fix this in a one liner:
+- From time to time, BREAKING changes happen in the `yarn` dependencies. To fix this in a one liner
+  on `main`:
     ```bash
-    git checkout main && git pull && yarn clean && yarn install && yarn dev
+    git checkout main && git pull && yarn install && yarn clean && yarn dev
     ```
+  Change the branch above to your working brach of choice, or start a new on for a new PR based on
+  latest `main` this way.
+  > NOTE: please discard the `"private": false,` field this adds to `package.json` .
