@@ -460,7 +460,7 @@ To return the information stored for Alice:
 
 This tutorial
 Use the `Signed` button to invoke
-[the `killName` dispatchable](/rustdocs/latest/pallet_nicks/#dispatchable-functions)
+[the `killName` dispatchable](/rustdocs/latest/pallet_nicks/pallet/enum.Call.htm)
 function and use Bob's account ID as the function's argument. The `killName` function must be called
 by the `ForceOrigin` that was configured with the Nicks pallet's `Config` interface in the previous
 section. You may recall that we configured this to be the FRAME system's `Root` origin. The Node
@@ -493,7 +493,7 @@ to inform network participants that the `Root` origin dispatched a call, however
 that the inner dispatch failed with a
 [`DispatchError`](/rustdocs/latest/sp_runtime/enum.DispatchError.html) (the
 Sudo pallet's
-[`sudo` function](/rustdocs/latest/pallet_sudo/#dispatchable-functions) is
+[`sudo` function](/rustdocs/latest/pallet_sudo/pallet/enum.Call.html) is
 the "outer" dispatch). In particular, this was an instance of
 [the `DispatchError::Module` variant](/rustdocs/latest/frame_support/dispatch/enum.DispatchError.html#variant.Module),
 which reports two pieces of metadata: an `index` number and an `error` number. The `index` number
