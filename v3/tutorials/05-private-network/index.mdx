@@ -63,11 +63,6 @@ In this tutorial, you'll see how this consensus model works in practice, first, 
   }}
 />
 
-## Learning outcomes
-- Learn how to create authority nodes for a private network
-- Learn how to configure a JSON chainspec file 
-
-
 ## Start the blockchain using predefined accounts
 
 Before you generate keys to start your own private Substrate network, you can learn the fundamental principles using a predefined network specification called `local` and predefined user accounts.
@@ -289,86 +284,39 @@ To add a node to the running blockchain:
 
 1. Open the
 [Polkadot-JS Explorer](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9945#/explorer) to verify the network is producing and finalizing blocks using the Polkadot-JS application.
-    
-      
+     
       After you've verified that both nodes are running as expected, you can shut both nodes down. 
 
 1. Shut down each node by pressing Control-C in each terminal.
 
 ## Generate your own keys
 
-Now that you know how to start and connect running nodes using command-line options, you are ready to generate you own secret keys instead of using the predefined account keys. 
-Each person who wants to participate in the blockchain should generate his or her own keys. 
-There are several different ways you can generate keys, including:
+Now that you know how to start and connect running nodes as peers using command-line options, you are ready to generate you own secret keys instead of using the predefined account keys. 
+Each participant in the blockchain network should generate unique keys. 
 
-* Subkey command-line program.
+There are several ways you can generate keys.
+For example, you can generate keypairs using the (<a target="_blank" href="/v3/tools/subkey">Subkey</a>) command-line program, the Polkadot-JS application, or third-party key generation utilties.
 
-* 
+Although you could use pre-generated keypairs to complete this tutorial, you would never use those keys in a production environment.
+Instead of using predefined keys or the `subkey` program, this tutorial illustrates how to generate keys using the Polkadot-JS application.
 
+### Use Polkadot-JS to generate keys
 
-Network participants can choose any of these methods to generate keys. 
-Regardless of the method you choose, be sure to record the output because you will need the information later.
+You have already used the Polkadot-JS application to see blocks being produced for the nodes managed by Alice and Bob.
+You can also use the Polkadot-JS application to generate keys to use with Substrate.
 
-### Option 1: Subkey
+You can use the Polkadot-JS application to generate production keys.
+However, you should never use a system connected to the internet to generate production keys.
+Disconnecting from the internet is not required for this tutorial.
 
-Subkey is a tool that generates keys specifically designed to be used with Substrate.
+To use the Polkadot-JS application to generate keys:
 
-Begin by compiling and installing the utility (<a target="_blank" href="/v3/tools/subkey">instructions and more info here</a>). This may take up to 15 minutes or so.
+1. Open the
+[Polkadot-JS Explorer](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9945#/explorer) in a web browser.
 
-We will need to generate at least **2** keys from each type. Every node will need to have its own
-keys.
+1. On the **Accounts** tab, click **Add account**. 
 
-Generate a mnemonic and see the `sr25519` key and address associated with it. This key will be used
-by Aura for block production.
-
-```bash
-# subkey command
-subkey generate --scheme sr25519
-```
-
-```bash
-# subkey output
-Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song vital leisure` is account:
-  Secret seed:      0xa2b0200f9666b743402289ca4f7e79c9a4a52ce129365578521b0b75396bd242
-  Public key (hex): 0x0a11c9bcc81f8bd314e80bc51cbfacf30eaeb57e863196a79cccdc8bf4750d21
-  Account ID:       0x0a11c9bcc81f8bd314e80bc51cbfacf30eaeb57e863196a79cccdc8bf4750d21
-  SS58 Address:     5CHucvTwrPg8L2tjneVoemApqXcUaEdUDsCEPyE7aDwrtR8D
-```
-
-Now see the `ed25519` key and address associated with the same mnemonic. This key will be used by
-GRANDPA for block finalization.
-
-```bash
-# subkey command
-subkey inspect --scheme ed25519 "infant salmon buzz patrol maple subject turtle cute legend song vital leisure"
-```
-
-```bash
-# subkey output
-Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song vital leisure` is account:
-  Secret seed:      0xa2b0200f9666b743402289ca4f7e79c9a4a52ce129365578521b0b75396bd242
-  Public key (hex): 0x1a0e2bf1e0195a1f5396c5fd209a620a48fe90f6f336d89c89405a0183a857a3
-  Account ID:       0x1a0e2bf1e0195a1f5396c5fd209a620a48fe90f6f336d89c89405a0183a857a3
-  SS58 Address:     5CesK3uTmn4NGfD3oyGBd1jrp4EfRyYdtqL3ERe9SXv8jUHb
-```
-
-### Option 2: Polkadot-JS Apps
-
-The same UI that we used to see blocks being produced can also be used to generate keys. This option
-is convenient if you do not want to install Subkey. It can be used for production keys, but the
-system should not be connected to the internet g such keys.
-
-<Message
-  type={`red`}
-  title={`Warning`}
-  text=
-    "A system that generates production keys should not be connected to the internet regardless of what
-    method you choose. It is mentioned here specifically because having an internet connection is 
-    generally desired ebapp like Polkadot JS Apps.
-    "
-/> 
-
-On the "Accounts" tab, click "Add account". You do not need to provide a name, although you may if
+1. You do not need to provide a name, although you may if
 you would like to save this account for submitting transaction in addition to validating.
 
 Generate an `sr25519` key which will be used by Aura for block production. Take careful note of the
@@ -378,11 +326,6 @@ left.
 Then generate an `ed25519` key which will be used by GRANDPA for block finalization. Again, note
 the mnemonic phrase and ss58 address.
 
-### Option 3: Use Pre-Generated Keys
-
-If you just want to get on with the tutorial, you may use one of the pre-generated keypairs below.
-But realize that these keys should absolutely not be used in production, and are provided only for
-learning purposes.
 
 ##### Pair 1
 
