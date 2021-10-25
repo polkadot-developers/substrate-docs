@@ -2,47 +2,44 @@ name: Check Links
 
 on:
   pull_request:
+    # With this setting, when we open a PR to `main` and `develop, it will run the linkchecking.
+    # This also includes every commit to an open PR to `main` and `develop`.
+    # ref:
+    #   - https://github.com/open-telemetry/opentelemetry-python/issues/1370
+    #   - https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#pull_request
     branches: [ main, develop ]
-
-  push:
-    # always want to including test-ci for testing gh-action
-    branches: [ main, develop, test-ci ]
 
 jobs:
   build-website-image:
     runs-on: ubuntu-latest
+    environment: test
     steps:
       - name: Docker Login
         uses: docker/login-action@v1.10.0
         with:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
       - name: Checkout repo
         uses: actions/checkout@v2
-
       - name: Build & push image
         run: |
-          docker build -t jimmychu0807/substrate-docs .
-          docker push jimmychu0807/substrate-docs
+          docker build -t paritytechno/substrate-docs .
+          docker push paritytechno/substrate-docs
 
   check-links:
     needs: build-website-image
     runs-on: ubuntu-latest
-
+    environment: test
     services:
       gatsby-app:
-        image: jimmychu0807/substrate-docs
+        image: paritytechno/substrate-docs
         ports:
           - 9000:9000
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
-
       - name: Take a 6s nap to ensure gatsby-app ready
         run: sleep 6
-
       - name: Run `broken-link-check`
         run: |
           yarn install

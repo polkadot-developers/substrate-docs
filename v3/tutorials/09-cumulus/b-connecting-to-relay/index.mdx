@@ -114,7 +114,7 @@ blob each time.
   title={`No pre-genesis blocks allowed`}
   text={`
 This runtime and state is for the parachain's _genesis_ block only. You cannot, at this time,
-connect a parachian with any previous state to a relay chain. All parachains must start from block 0
+connect a parachain with any previous state to a relay chain. All parachains must start from block 0
 on the relay chain. Eventually, migrating a solo chain built on Substrate is expected to be
 possible, but this functionality is not planned anytime soon.
 `}
@@ -299,7 +299,7 @@ The collator should start producing parachain blocks (aka collating) once the re
 successful **and the next relay chain epoch begin**!
 
 > This may take a while! Be patient as you wait for the next epoch to start.
-> This is 10 blocks for the example [`rococo-custom-2-raw.json`](/assets/tutorials/cumulus/chainspecs/rococo-custom-2-raw.json)
+> This is 10 blocks for the example [`rococo-custom-2-raw.json`](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json)
 > included in this tutorial.
 
 Finally, the collator should start producing log messages like the following:
@@ -408,7 +408,7 @@ For a detailed overview, refer to [Polkadot wiki on XCMP](https://wiki.polkadot.
   text={`
 Your sole collator is the only home of the parachain data as there is only one node
 on your entire parachain network. Relay chains only store parachains header information. If the
-parachian data is lost, you will **not** be able to recover the chain!
+parachain data is lost, you will **not** be able to recover the chain!
   `}
 />
 
