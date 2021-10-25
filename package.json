@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Parity Technologies WebDev Team",
-  "private": false,
   "license": "MIT",
   "scripts": {
     "clean": "gatsby clean",

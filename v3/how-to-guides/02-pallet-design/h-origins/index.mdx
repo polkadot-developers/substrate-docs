@@ -12,23 +12,20 @@ from within the pallet its defined in but also in any other pallet it is tightly
 
 ## Use cases
 
-- Create a special origin with Sudo-like access to specific dispatchables
+- Create a special origin with Sudo-like access to specific dispatchables.
 - Implement a dispatchable that can only be called by the origin defined from another pallet.
-
-Create a custom origin with a specified account ID and enforce it in a signed dispatchable.
 
 ## Before you begin
 
-Before you begin, verify the following requirements:
+Verify the following requirements:
 
-- You already have a working pallet and dispatchable to implement a custom origin for.
 - Read about Substrate's [origin system](/v3/runtime/origins/) to understand what they are and ways to use them.
+- You already have a working pallet and dispatchable to implement a custom origin for.
 
 ## Steps
 
-  Start by adding an Orgin type to your pallet's `Config` trait.
-
-1. This type will be used when you implement your pallet for your runtime:
+1. Start by adding an Orgin type to your pallet's `Config` trait. This type will be used when you implement 
+   your pallet for your runtime:
 
   ```rust
   pub trait Config: frame_system::Config {
@@ -76,19 +73,21 @@ Before you begin, verify the following requirements:
   In the above implementation, we're using `try_origin` from `EnsureOrigin` to ensure the origin matches what we specified
   in our pallet's configuration trait, i.e. `SpecialOrigin`.
 
-We have the basis to start using `SpecialAccountId` as our custom origin. Before using it in our pallet's dispatchables,
-we'll first need to specify what this account ID is for our runtime. 
+  We have the basis to start using `SpecialAccountId` as our custom origin. Before using it in our pallet's dispatchables,
+  we'll first need to specify what this account ID is for our runtime. 
 
-Define your custom origin for your runtime: 
-
-1. In `runtime/src/lib.rs`, add `ord_parameter_types` with the account ID you wish to use:
+1. In `runtime/src/lib.rs`, add the [`ord_parameter_types`](/rustdocs/latest/frame_support/macro.ord_parameter_types.html) macro 
+   with the account ID you wish to use to define your custom origin for your runtime: 
 
   ```rust
   // Define the account ID to control the origin in my_custom_pallet, make sure to store your key pairs.
   frame_support::ord_parameter_types! {
-    // `subkey inspect //SpecialAccountId`
+    // ID derived by running `subkey inspect //SpecialAccountId`
+    // See: https://docs.substrate.io/v3/tools/subkey/
     pub const SpecialAccountId: AccountId = AccountId::from(hex_literal::hex!["60f28d2abe90a6bbfef78dc50bf798d52582b1da3868d8f470b22831e5edac73"]);
   }
+  ```
+  Make sure you to add the [`hex_literal`]() dependency in `runtime/Cargo.toml` and remove it from `runtime-benchmarks` features.
 
 1. Add the `SpecialAccountId` type to the runtime implementation of your pallet:
 
@@ -99,9 +98,29 @@ Define your custom origin for your runtime:
   }
   ```
 
-  
+1. Use `SpecialAccountId` in your dispatchable:
 
+  ```rust
+  pub fn special_function(
+      origin: OriginFor<T>, 
+      something: u32
+      ) -> DispatchResult {
+        let who = ensure_signed(origin)?;
+        ensure!(who == T::SpecialAccountId::get(), DispatchError::BadOrigin);
+        // Some dispatchable logic here.
+        // Return a successful DispatchResult.
+        Ok(())
+      }
+  ```
 
 ## Examples
 
+- Custom `RawOrigin` enum in FRAME'S [Collective pallet](https://substrate.dev/rustdocs/latest/src/pallet_collective/lib.rs.html#158)
+- `EnsureMember` from FRAME's [Collective pallet](https://substrate.dev/rustdocs/latest/src/pallet_collective/lib.rs.html#878)
+- Different origins in the [Membership pallet](https://github.com/paritytech/substrate/blob/master/frame/membership/src/lib.rs#L40-L53) 
+
+
 ## Resources
+
+- [EnsureOrigin](https://substrate.dev/rustdocs/latest/frame_support/pallet_prelude/trait.EnsureOrigin.html)
+- [frame_support::ord_parameter_types!](https://substrate.dev/rustdocs/latest/frame_support/macro.ord_parameter_types.html)

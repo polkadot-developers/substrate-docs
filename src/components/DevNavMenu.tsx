@@ -381,7 +381,7 @@ const DevNavMenu = {
           },
           {
             title: `${intl.formatMessage({
-              id: 'htg-account-id-origin',
+              id: 'htg-account-id-origins',
             })}`,
             link: '/how-to-guides/v3/pallet-design/account-id-origin/',
           },
