@@ -375,7 +375,7 @@ this:
 ### Start the `bob` validator
 
 ```bash
-./target/release/\
+./target/release/polkadot \
 --bob \
 --validator \
 --base-path /tmp/relay-bob \
@@ -399,7 +399,7 @@ command is entirely analogous. You just need to make sure that nodes on the same
 not have conflicting ports or base paths.
 
 ```bash
-./target/release/\
+./target/release/polkadot \
 --charlie \
 --validator \
 --base-path /tmp/relay-charlie \
@@ -436,7 +436,7 @@ runtime logic to include.
 
 ```bash
 # Create a base chain spec that we will modify
-./target/release/build-spec --chain rococo-local --disable-default-bootnode > rococo-custom-plain.json
+./target/release/polkadot build-spec --chain rococo-local --disable-default-bootnode > rococo-custom-plain.json
 ```
 
 We have just generated a **plain chain spec** file for `rococo-local` network. That file contains
@@ -609,7 +609,7 @@ notable case is chain spec JSON file and encoding of session keys (most importan
 Now that you've modified your plain chain spec, you can generate the final raw chain spec by:
 
 ```bash
-./target/release/build-spec --chain rococo-custom-plain.json --raw --disable-default-bootnode > rococo-custom.json
+./target/release/polkadot build-spec --chain rococo-custom-plain.json --raw --disable-default-bootnode > rococo-custom.json
 ```
 
 You may get the output warning: `Took active validators from set with wrong size`.
