@@ -48,24 +48,24 @@ Implement the Contracts pallet [configuration traits][contracts-config-rustdocs]
 
   Add the parameter types directly above `impl pallet_contracts::Config for Runtime`.
 
-```rust
-/* --snip-- */
- Contracts: pallet_contracts::{Pallet, Call, Config<T>, Storage, Event<T>},
- /* --snip-- */
-```
+  ```rust
+  /* --snip-- */
+  Contracts: pallet_contracts::{Pallet, Call, Config<T>, Storage, Event<T>},
+  /* --snip-- */
+  ```
 
   For example, the following shows how the parameter type, `DeletionQueueDepth`, should be added:
 
   ```rust
   parameter_types! {
-      /* --snip-- */
-    pub DeletionQueueDepth: u32 = ((DeletionWeightLimit::get() / (
-        <Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(1) -
-        <Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(0)
-          )) / 5) as u32;
-          /* --snip-- */
-      }
-  ```
+       /* --snip-- */
+     pub DeletionQueueDepth: u32 = ((DeletionWeightLimit::get() / (
+         <Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(1) -
+         <Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(0)
+           )) / 5) as u32;
+           /* --snip-- */
+       }
+    ```
 
   Notice how the above parameter type depends on `WeightInfo`. This requires you to add the following to the top of `runtime/src/lib.rs`:
 
