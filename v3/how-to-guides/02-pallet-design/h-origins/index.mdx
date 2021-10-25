@@ -8,7 +8,9 @@ difficulty: 2
 ---
 
 This guide goes over a simple way to assign an account ID to an origin. This origin could be used 
-from within the pallet its defined in but also in any other pallet it is tightly coupled to.
+from within the pallet its defined in but also in any other pallet it is tightly coupled to. This could
+be used as the basis for creating similar origin capabilities as FRAME's democracy pallet, for example 
+implementing a [special root origin](/rustdocs/latest/pallet_democracy/index.html#root).
 
 ## Use cases
 
@@ -115,12 +117,12 @@ Verify the following requirements:
 
 ## Examples
 
-- Custom `RawOrigin` enum in FRAME'S [Collective pallet](https://substrate.dev/rustdocs/latest/src/pallet_collective/lib.rs.html#158)
-- `EnsureMember` from FRAME's [Collective pallet](https://substrate.dev/rustdocs/latest/src/pallet_collective/lib.rs.html#878)
+- Custom `RawOrigin` enum in FRAME'S [Collective pallet](/rustdocs/latest/src/pallet_collective/lib.rs.html#158)
+- `EnsureMember` from FRAME's [Collective pallet](/rustdocs/latest/src/pallet_collective/lib.rs.html#878)
 - Different origins in the [Membership pallet](https://github.com/paritytech/substrate/blob/master/frame/membership/src/lib.rs#L40-L53) 
 
 
 ## Resources
 
-- [EnsureOrigin](https://substrate.dev/rustdocs/latest/frame_support/pallet_prelude/trait.EnsureOrigin.html)
-- [frame_support::ord_parameter_types!](https://substrate.dev/rustdocs/latest/frame_support/macro.ord_parameter_types.html)
+- [`EnsureOrigin`](https://substrate.dev/rustdocs/latest/frame_support/pallet_prelude/trait.EnsureOrigin.html)
+- [frame_support::ord_parameter_types!](/rustdocs/latest/frame_support/macro.ord_parameter_types.html)
