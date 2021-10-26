@@ -8,7 +8,7 @@ category: pallet design
 difficulty: 2
 ---
 
-[Randomness](/v3/runtime/randomness)is used in computer programs for many applications. For example, gaming applications, NFT creation, and selecting block authors all require a degree of randomness.
+[Randomness](/v3/runtime/randomness) is used in computer programs for many applications. For example, gaming applications, NFT creation, and selecting block authors all require a degree of randomness.
 
 True randomness is hard to come by in deterministic computers. This is particularly true in the context of a blockchain, when all the nodes in the network must agree on the state of the chain. FRAME provides runtime engineers with a source of randomness, using the [Randomness trait](/rustdocs/latest/frame_support/traits/trait.Randomness.html).
         
@@ -19,7 +19,8 @@ This guide will show you how to make use of FRAME's Randomness trait by using th
 
 1. Import `Randomness`
 
-  In the pallet you want to use, import the `Randomness` trait from `frame_support`:
+  In the pallet you want to use, import the [`Randomness`](/rustdocs/latest/frame_support/traits/trait.Randomness.html) 
+  trait from `frame_support`:
 
   ```rust
   use frame_support::traits::Randomness;
@@ -30,11 +31,14 @@ This guide will show you how to make use of FRAME's Randomness trait by using th
   ```rust
   #[pallet::config]
   pub trait frame_system::Config {
-      type MyRandomness: Randomness<H256>;
+      type MyRandomness: Randomness<Self::Hash, Self::BlockNumber>;
   }
   ```
 
-  Note that the `Randomness` trait specifies a generic return of type `Output`. Use [`sp_core::H256`][h256-rustdocs] in your pallet to satisfy that trait requirement.
+  Note that the `Randomness` trait specifies a generic return of type `Output` and `BlockNumber`. 
+  Use [`BlockNumber`](/rustdocs/latest/frame_system/pallet/trait.Config.html#associatedtype.BlockNumber) 
+  and [`Hash`](/rustdocs/latest/frame_system/pallet/trait.Config.html#associatedtype.Hash) from `frame_system`
+  in your pallet to satisfy that trait requirement.
 
   <Message
     type={`red`}
@@ -58,7 +62,8 @@ This guide will show you how to make use of FRAME's Randomness trait by using th
 
   * **Create a private nonce function.** This will be used to increment the nonce each time it's used.
 
-  The `increment_nonce()` private function can be implemented in such a way that it both returns and updates the nonce. For example:
+  The `increment_nonce()` private function can be implemented in such a way that it both returns and updates 
+  the nonce. For example:
 
   ```rust
       fn get_and_increment_nonce() -> Vec<u8> {
@@ -69,41 +74,44 @@ This guide will show you how to make use of FRAME's Randomness trait by using th
   ```
   <br />
   <Message type='yellow' title='Note' text={`
-  To learn more about the wrapping and encoding methods, see [\`wrapping_add\`](/rustdocs/latest/funty/trait.IsInteger.html#tymethod.wrapping_add) and [\`encode()\`](/rustdocs/latest/frame_support/dispatch/trait.Encode.html#method.encode) in the Rust documentation.
+  To learn more about the wrapping and encoding methods, see [\`wrapping_add\`](/rustdocs/latest/funty/trait.IsInteger.html#tymethod.wrapping_add) 
+  and [\`encode()\`](/rustdocs/latest/frame_support/dispatch/trait.Encode.html#method.encode) in the Rust documentation.
   `}/>
 
 1. Use Randomness in a dispatchable.
 
-  Using the nonce, you can call the `random()` method that `Randomness` exposes. The code snippet below is a mock example that assumes relevant events and storage items have been implemented:
+  Using the nonce, you can call the `random()` method that `Randomness` exposes. The code snippet below is a mock example that assumes 
+  relevant events and storage items have been implemented:
 
   ```rust
-          #[pallet::weight(100)]
-          pub fn create_unique(
-        origin: OriginFor<T>)
-        -> DispatchResultWithPostInfo {
+  #[pallet::weight(100)]
+  pub fn create_unique(
+      origin: OriginFor<T>)
+      -> DispatchResultWithPostInfo {
 
-                  // Account calling this dispatchable.
-                  let sender = ensure_signed(origin)?;
+      // Account calling this dispatchable.
+      let sender = ensure_signed(origin)?;
 
-                  // Random value.
-          let nonce = Self::get_and_increment_nonce();
-                  let randomValue = T::MyRandomness::random(&nonce);
+      // Random value.
+      let nonce = Self::get_and_increment_nonce();
+      let randomValue = T::MyRandomness::random(&nonce);
 
-                  // Write the random value to storage.
-                  <MyStorageItem<T>>::put(randomValue);
+      // Write the random value to storage.
+      <MyStorageItem<T>>::put(randomValue);
 
-                  Self::deposit_event(Event::UniqueCreated(randomValue));
-              }
+      Self::deposit_event(Event::UniqueCreated(randomValue));
+  }
   ```
 
 1. Update your pallet's runtime implementation
 
-  Because you have added a type to your pallet's configuration trait, `Config` opens up the opportunity to further enhance the randomness derived by the `Randomness` trait. This is accomplished by using the [Randomness Collective Flip pallet][rcf-pallet-rustdocs].
+  Because you have added a type to your pallet's configuration trait, `Config` opens up the opportunity to further enhance the randomness 
+  derived by the `Randomness` trait. This is accomplished by using the [Randomness Collective Flip pallet][rcf-pallet-rustdocs].
 
   Using this pallet alongside the `Randomness` trait will significantly improve the entropy being processed by `random()`.
 
-  In `runtime/src/lib.rs`, assuming `pallet_random_collective_flip` is instantiated in `construct_runtime` as `RandomCollectiveFlip`, specify your exposed
-  type in the following way:
+  In `runtime/src/lib.rs`, assuming `pallet_random_collective_flip` is instantiated in `construct_runtime` as `RandomCollectiveFlip`, 
+  specify your exposed type in the following way:
 
   ```rust
   impl my_pallet::Config for Runtime{
@@ -121,5 +129,4 @@ This guide will show you how to make use of FRAME's Randomness trait by using th
 
 [Verifiable Random Functions](https://en.wikipedia.org/wiki/Verifiable_random_function)
 
-[h256-rustdocs]: /rustdocs/latest/sp_core/struct.H256.html
 [rcf-pallet-rustdocs]: /rustdocs/latest/pallet_randomness_collective_flip/index.html
