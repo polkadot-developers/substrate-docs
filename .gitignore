@@ -61,10 +61,17 @@ public
 # Mac files
 .DS_Store
 
-# Yarn
+# Yarn, not using zero-installs
+# ref: https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
 yarn-error.log
 .pnp/
-.pnp.js
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 # Yarn Integrity file
 .yarn-integrity
 

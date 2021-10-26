@@ -38,7 +38,7 @@ This tutorial will use the Substrate Developer Hub
 [Node Template](https://github.com/substrate-developer-hub/substrate-node-template) to explore two
 mechanisms for forkless upgrades of [FRAME](/v3/runtime/frame)-based runtimes.
 First, the
-[`sudo_unchecked_weight`](/rustdocs/latest/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
+[`sudo_unchecked_weight`](/rustdocs/latest/pallet_sudo/pallet/enum.Call.html#variant.sudo_unchecked_weight)
 function from the [Sudo pallet](/v3/runtime/frame#sudo) will be used to perform an
 upgrade that adds the [Scheduler pallet](/v3/runtime/frame#scheduler). Then, the
 [`schedule`](/rustdocs/latest/pallet_scheduler/pallet/enum.Call.html#variant.schedule)
@@ -203,7 +203,7 @@ fn sudo(origin, call) -> Result {
 #### `sudo` to Override Resource Accounting
 
 In order to work around resource accounting within FRAME's safeguards, the Sudo pallet provides the
-[`sudo_unchecked_weight`](/rustdocs/latest/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
+[`sudo_unchecked_weight`](/rustdocs/latest/pallet_sudo/pallet/enum.Call.html#variant.sudo_unchecked_weight)
 function, which provides the same capability as the `sudo` function, but accepts an additional
 parameter that is used to specify the (possibly zero) weight to use for the call. The
 `sudo_unchecked_weight` function is what will be used to invoke the runtime upgrade in this section
@@ -270,7 +270,7 @@ construct_runtime!(
 		UncheckedExtrinsic = UncheckedExtrinsic
 	{
 		/*** snip ***/
-		Scheduler: pallet_scheduler::{Module, Call, Storage, Event<T>},
+		Scheduler: pallet_scheduler::{Pallet, Call, Storage, Event<T>},
 	}
 );
 ```
