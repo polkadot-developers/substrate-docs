@@ -65,20 +65,24 @@ This guide will show you how to make use of FRAME's Randomness trait by using th
   The `increment_nonce()` private function can be implemented in such a way that it both returns and updates 
   the nonce. For example:
 
-  ```rust
-      fn get_and_increment_nonce() -> Vec<u8> {
-          let nonce = Nonce::get();
-          Nonce::put(nonce.wrapping_add(1));
-          nonce.encode()
-      }
-  ```
-  <br />
-  <Message type='yellow' title='Note' text={`
-  To learn more about the wrapping and encoding methods, see [\`wrapping_add\`](/rustdocs/latest/funty/trait.IsInteger.html#tymethod.wrapping_add) 
-  and [\`encode()\`](/rustdocs/latest/frame_support/dispatch/trait.Encode.html#method.encode) in the Rust documentation.
-  `}/>
+    ```rust
+        fn get_and_increment_nonce() -> Vec<u8> {
+            let nonce = Nonce::get();
+            Nonce::put(nonce.wrapping_add(1));
+            nonce.encode()
+        }
+    ```
+    <br />
+    <Message 
+      type={`yellow`} 
+      title={`Note`}
+      text=
+      "To learn more about the wrapping and encoding methods, see [`wrapping_add`](/rustdocs/latest/funty/trait.IsInteger.html#tymethod.wrapping_add) 
+      and [`encode()`](/rustdocs/latest/frame_support/dispatch/trait.Encode.html#method.encode) in the Rust documentation.
+      "
+    />
 
-1. Use Randomness in a dispatchable.
+3. Use Randomness in a dispatchable.
 
   Using the nonce, you can call the `random()` method that `Randomness` exposes. The code snippet below is a mock example that assumes 
   relevant events and storage items have been implemented:
@@ -103,7 +107,7 @@ This guide will show you how to make use of FRAME's Randomness trait by using th
   }
   ```
 
-1. Update your pallet's runtime implementation
+4. Update your pallet's runtime implementation
 
   Because you have added a type to your pallet's configuration trait, `Config` opens up the opportunity to further enhance the randomness 
   derived by the `Randomness` trait. This is accomplished by using the [Randomness Collective Flip pallet][rcf-pallet-rustdocs].
