@@ -59,8 +59,8 @@ impl pallet_something::Config for Runtime {
 }
 ```
 
-Then, declare your pallet and the items it exposes in `construct_runtime!`, including the additional `Module` and `Storage`
-types for the runtime macro:
+Declare your pallet and the items it exposes in `construct_runtime!`, including the additional `Pallet` and `Storage`
+types for the [runtime macro](/v3/runtime/macros/#construct_runtime):
 
 ```rust
 construct_runtime!(
@@ -70,7 +70,7 @@ construct_runtime!(
 		UncheckedExtrinsic = UncheckedExtrinsic
 	{
 /* --snip-- */
-		Something: pallet_something::{Module, Call, Storage, Event<T>},
+		Something: pallet_something::{Pallet, Call, Storage, Event<T>},
 /* --snip-- */
 	}
 );
@@ -79,7 +79,7 @@ construct_runtime!(
 #### For external pallets
 
 The same pattern applies as for declaring a local pallet, except you must ensure you include all the types your pallet exposes.
-In addition, don't forget to include relevant parameter types and constants if relevant. See this examples on how [`pallet_timestamp`][timestamp-frame]
+Additionally, you must include the relevant parameter types and constants. For examples of how to declare parameters and constants, see the [`pallet_timestamp`][timestamp-frame] code,
 is declared.
 
 ### 3. Update `/runtime/Cargo.toml`
@@ -109,7 +109,7 @@ std = [
 
 #### For external pallets
 
-Assuming the pallet is hosted in <ExternalLink url={'https://crates.parity.io/'}>crates.parity.io</ExternalLink>, adding it to the runtime would look like this:
+For example, if the pallet is hosted in [crates.parity.io](https://crates.parity.io/), adding it to the runtime would look like this:
 
 ```rust
 [dependencies.pallet-external]
@@ -135,7 +135,7 @@ std = [
 
 ## Related material
 
-#### Knowledgebase
+#### Docs
 
 - [Mock runtime][mock-runtime]
 
@@ -145,10 +145,7 @@ std = [
 
 #### Other
 
-- <ExternalLink url="https://crates.io/crates/pallet-timestamp">
-    {' '}
-    FRAME Timestamp Pallet in Crates.io{' '}
-  </ExternalLink>
+- [FRAME `pallet-timestamp`](https://crates.io/crates/pallet-timestamp)
 
 [mock-runtime]: /v3/runtime/testing#mock-runtime-environment
 [timestamp-frame]: https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs#L413-L422

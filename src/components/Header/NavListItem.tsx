@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'gatsby'
+// import { Link } from 'gatsby'
+import Link from '../Link'
 
 interface NavListItemProps {
   external: boolean
@@ -7,11 +8,7 @@ interface NavListItemProps {
   title: string
 }
 
-export default function NavListItem({
-  external,
-  link,
-  title,
-}: NavListItemProps) {
+export default function NavListItem({ link, title }: NavListItemProps) {
   const [isCurrent, setIsCurrent] = useState(false)
   const styles =
     'whitespace-nowrap pl-6 pr-12 py-2 focus:outline-none focus:bg-substrateBlueBg hover:text-substrateGreen hover:underline dark:text-white font-medium'
@@ -27,49 +24,17 @@ export default function NavListItem({
       setIsCurrent(true)
     }
   }, [])
-  if (external) {
-    if (title === 'Rust Docs' || title === 'Events' || title === 'Blog') {
-      return (
-        <a href={link} target="_blank" rel="noreferrer">
-          <div
-            className={`${styles} ${
-              isCurrent
-                ? 'text-substrateGreen underline'
-                : 'text-substrateDark dark:text-white'
-            }`}
-          >
-            <span>{title}</span>
-          </div>
-        </a>
-      )
-    } else {
-      return (
-        <a href={link}>
-          <div
-            className={`${styles} ${
-              isCurrent
-                ? 'text-substrateGreen underline'
-                : 'text-substrateDark dark:text-white'
-            }`}
-          >
-            <span>{title}</span>
-          </div>
-        </a>
-      )
-    }
-  } else {
-    return (
-      <Link to={link}>
-        <div
-          className={`${styles} ${
-            isCurrent
-              ? 'text-substrateGreen underline'
-              : 'text-substrateDark dark:text-white'
-          }`}
-        >
-          <span>{title}</span>
-        </div>
-      </Link>
-    )
-  }
+  return (
+    <Link to={link}>
+      <div
+        className={`${styles} ${
+          isCurrent
+            ? 'text-substrateGreen underline'
+            : 'text-substrateDark dark:text-white'
+        }`}
+      >
+        <span>{title}</span>
+      </div>
+    </Link>
+  )
 }

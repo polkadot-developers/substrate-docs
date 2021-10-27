@@ -67,7 +67,7 @@ Let's take a look at a high level what is available to you when developing a sma
 
 ### 1. ink!
 
-ink! is an <ExternalLink url="https://wiki.haskell.org/Embedded_domain_specific_language">Embedded Domain Specific Language</ExternalLink>
+ink! is an [Embedded Domain Specific Language](https://wiki.haskell.org/Embedded_domain_specific_language)
 (EDSL) that you can use to write WebAssembly based smart contracts in the Rust programming language.
 
 ink! is just standard Rust in a well defined "contract format" with specialized `#[ink(...)]` attribute macros. These attribute macros tell ink! what the different parts of your Rust smart contract represent, and ultimately allow ink! to do all the magic needed to create Substrate compatible Wasm bytecode!
@@ -222,7 +222,7 @@ Now that we have created and initialized a storage value, we are going to start 
 
 ### 1. Contract Functions
 
-As you see in the contract template, all of your contract functions are part of your contract module.
+As you see in the contract template, all of your contract functions are part of your contract pallet.
 
 ```rust
 impl MyContract {

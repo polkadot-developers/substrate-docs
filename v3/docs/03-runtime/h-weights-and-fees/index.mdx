@@ -19,8 +19,8 @@ The resources that need to be managed include:
 Substrate provides block authors with several ways to manage access to resources and to prevent individual components of the chain from consuming too much of any single resource. 
 Two of the most important mechanisms available to block authors are **weights** and **transaction fees**.
 
-[Weights](../concepts/weight) are used to manage the time it takes to validate a block. 
-In general, weights are used to characterize the time it takes to execute the [extrinsic](../concepts/extrinsics) calls in the body of a block. 
+[Weights](/v3/concepts/weight) are used to manage the time it takes to validate a block. 
+In general, weights are used to characterize the time it takes to execute the [extrinsic](/v3/concepts/extrinsics) calls in the body of a block. 
 By controlling the execution time that a block can consume, weights set limits on storage input and output and computation.
 
 <Message type={`gray`} title={`Note`} text={`Weights are not used to restrict access to other resources, such as storage itself or memory footprint. Other mechanisms must be used for this.`}
@@ -59,7 +59,7 @@ You can also use the Transaction Payment pallet to:
 
 * Manage the withdrawal, refund, and deposit of transaction fees using `Config::OnChargeTransaction`.
 
-You can learn more about these configuration traits in the [Transaction Payment](https://substrate.dev/rustdocs/latest/pallet_transaction_payment/index.html) documentation. 
+You can learn more about these configuration traits in the [Transaction Payment](/rustdocs/latest/pallet_transaction_payment/index.html) documentation. 
 
 You should note that transaction fees are withdrawn before the transaction is executed. 
 After the transaction is executed, the transaction weight can be adjusted to reflect the actual resources the transaction used. 
@@ -102,10 +102,10 @@ However, this scenario would be a rare occurrence because the transaction queue 
 
 The inclusion fee formula always results in the same fee for the same input. 
 However, weight can be dynamic and—based on how
-[`WeightToFee`](https://substrate.dev/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.WeightToFee)
+[`WeightToFee`](/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.WeightToFee)
 is defined—the final fee can include some degree of variability. 
 
-To account for this variability, the Transaction Payment pallet provides the [`FeeMultiplierUpdate`](https://substrate.dev/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.FeeMultiplierUpdate) configurable parameter.
+To account for this variability, the Transaction Payment pallet provides the [`FeeMultiplierUpdate`](/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.FeeMultiplierUpdate) configurable parameter.
 
 The default update function is inspired by the Polkadot network and implements a targeted adjustment in which a target saturation level of block weight is defined. 
 If the previous block is more saturated, then the fees are slightly increased. 
@@ -399,7 +399,7 @@ impl<T: Get<Perquintill>> Convert<Fixed128, Fixed128> for TargetedFeeAdjustment<
 
 ## Next steps
 
-The entire logic of fees is encapsulated in `pallet-transaction-payment` via a [`SignedExtension`](/concepts/extrinsics#signed-extension).
+The entire logic of fees is encapsulated in `pallet-transaction-payment` via a [`SignedExtension`](/v3/concepts/tx-pool#signed-extension).
 While this pallet provides a high degree of flexibility, a user can opt to build their custom
 payment module drawing inspiration from Transaction Payment.
 
@@ -407,10 +407,10 @@ Given now you know what Substrate's weight system is, how it affects transaction
 them for your dispatchables, the last question is how to find the right weights for your dispatchables. 
 That is what **Substrate benchmarking** is for. By writing benchmarking functions and running them, the system 
 (`frame-benchmarking`) calls these functions repeatedly with different numerical parameters and empirically determine 
-the weight functions for dispatchables in their worst case scenarios, within a certain limit. For more information, see [Benchmarking](../i-benchmarking).
+the weight functions for dispatchables in their worst case scenarios, within a certain limit. For more information, see [Benchmarking](/v3/runtime/benchmarking).
 
 - Dedicated [weight documentation](/v3/concepts/weight)
-- [Example module](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
+- [Example pallet](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
 - [SignedExtension](/rustdocs/latest/sp_runtime/traits/trait.SignedExtension.html)
 
 ### Examples

@@ -13,7 +13,7 @@ cryptographic operations, and gaming and gambling. Many randomness-requiring app
 already finding a home on blockchain networks. This article describes how randomness is produced and
 used in Substrate runtimes.
 
-## Deterministic Randomness
+## Deterministic randomness
 
 In traditional non-blockchain computing, an application that required randomness could choose to use
 a real random value drawn from hardware, or a pseudo-random value that is actually deterministic,
@@ -28,14 +28,14 @@ Luckily, advancements in cryptographic primitives like
 development of multi-party randomness computation allow application that require randomness to still
 be used in the Blockchain.
 
-## Substrate's Randomness Trait
+## Substrate's randomness trait
 
 Substrate provides a trait called
 [`Randomness`](/rustdocs/latest/frame_support/traits/trait.Randomness.html) that codifies
 the interface between the logic that generates randomness and the logic that consumes it. This trait
 allows the two pieces of logic to be written independently of each other.
 
-### Consuming Randomness
+### Consuming randomness
 
 A developer who is writing a pallet that needs randomness, does not need to worry about providing
 that randomness. Rather, the pallet can simply require a randomness source that implements the trait.
@@ -49,7 +49,7 @@ The second method is called random. It takes a byte-array which is used as a con
 returns a result as unique to this context and as independently from other contexts as allowed by
 the underlying randomness source.
 
-### Generating Randomness
+### Generating randomness
 
 There are many different ways to implement the `Randomness` trait, each of which represents
 different trade-offs between performance, complexity, and security. Substrate ships with two
@@ -57,34 +57,34 @@ implementations, and developers are able to provide their own implementation if 
 make different tradeoffs.
 
 The first implementation provided by Substrate is the
-[Randomness Collective Flip Pallet](/rustdocs/latest/pallet_randomness_collective_flip).
+[Randomness Collective Flip Pallet](/rustdocs/latest/pallet_randomness_collective_flip/index.html).
 This pallet is based on collective coin flipping. It is quite performant, but not very secure. This
 pallet should be used only when testing randomness-consuming pallets, not it production.
 
-The second implementation is the [BABE pallet](/rustdocs/latest/pallet_babe),
+The second implementation is the [BABE pallet](/rustdocs/latest/pallet_babe/index.html),
 which uses verifiable random functions. This pallet provides production-grade randomness, and is
 used in Polkadot. Selecting this randomness source dictates that your blockchain use Babe consensus.
 
-## Security Properties
+## Security properties
 
 The `Randomness` trait provides a convenient and useful abstraction over randomness sources in
 Substrate runtimes. But the trait itself does not make any security guarantees. A
 runtime developer must ensure that the randomness source used meets the security requirements of
 _all_ pallet's that consume its randomness.
 
-## Next Steps
+## Next steps
 
-### Learn More
+### Learn more
 
-- https://en.wikipedia.org/wiki/Random_number_generation
-- https://en.wikipedia.org/wiki/Applications_of_randomness
+- [Random number generation](https://en.wikipedia.org/wiki/Random_number_generation)
+- [Different applications for randomness](https://en.wikipedia.org/wiki/Applications_of_randomness)
 
 ### Examples
 
-- Explore this [guide about implementing Randomness](/how-to-guides/v3/pallet-design/randomness).
+- Explore this [guide about implementing Randomness](/how-to-guides/v3/pallet-design/randomness/)
 
 ### References
 
 - Read more in the [Polkadot Wiki](https://wiki.polkadot.network/docs/en/learn-randomness)
 - View the Rustdocs on the
-  [`Randomness` Trait](/rustdocs/latest/frame_support/traits/trait.Randomness.html).
+  [`Randomness` Trait](/rustdocs/latest/frame_support/traits/trait.Randomness.html)

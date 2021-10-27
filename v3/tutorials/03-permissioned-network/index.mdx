@@ -75,7 +75,7 @@ a configurable set of nodes for a permissioned network.
 Each node is identified by a `PeerId` which is simply a wrapper on `Vec<u8>`.
 Each `PeerId` is owned by an `AccountId` that claims it
 (these are
-[associated in a map](/rustdocs/latest/pallet_node_authorization/struct.Owners.html)
+[associated in a map](/rustdocs/latest/pallet_node_authorization/pallet/type.Owners.html)
 ). With this pallet, you have two ways to authorize a node which wants to join the network:
 
 1. Join the set of well known nodes between which the connections are allowed.
@@ -93,7 +93,7 @@ _anyone_ could subsequently claim.
 The owner of a node can then add and remove connections for their node.
 To be clear, you can't change the connections between well known nodes,
 they are always allowed to connect with each other.
-Instead, you can manipulate the connection between a well know node
+Instead, you can manipulate the connection between a well known node
 and a normal node or between two normal nodes and sub-nodes.
 
 The `node-authorization` pallet integrates an
@@ -132,7 +132,7 @@ You should be able to `build` the project (or `check`) without any error:
 cd substrate-node-template/
 cargo build --release
 ```
-
+<br />
 <Message
   type={`green`}
   title={`Tip`}
@@ -214,7 +214,7 @@ construct_runtime!(
         /* --snip-- */
 
         /*** Add This Line ***/
-        NodeAuthorization: pallet_node_authorization::{Module, Call, Storage, Event<T>, Config<T>},
+        NodeAuthorization: pallet_node_authorization::{Pallet, Call, Storage, Event<T>, Config<T>},
 
         /* --snip-- */
 
@@ -225,7 +225,7 @@ construct_runtime!(
 ### Add genesis storage for our pallet
 
 `PeerId` is encoded in bs58 format, so we need a new library
-[bs58](https://docs.rs/bs58/) in **node/cargo.toml** to decode it to get its bytes.
+[bs58](https://docs.rs/bs58/) in **node/Cargo.toml** to decode it to get its bytes.
 
 **`node/cargo.toml`**
 
@@ -264,7 +264,7 @@ fn testnet_genesis(
     /* --snip-- */
 
     /*** Add This Block Item ***/
-		pallet_node_authorization: Some(NodeAuthorizationConfig {
+		node_authorization: NodeAuthorizationConfig {
     		nodes: vec![
 				(
 					OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
@@ -288,8 +288,6 @@ the `PeerId` in human readable format to bytes. The second element of the tuple 
 and represents the owner of this node, here we are using one of the provided endowed accounts
 for demonstration: [Alice and Bob](/v3/tools/subkey#well-known-keys).
 
-<!-- TODO: update to use the `key` embedded CLI tool with the node, reference subkey as option -->
-
 You may wondering where the `12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2` comes from.
 We can use [subkey](/v3/tools/subkey#generating-node-keys) to generate
 the above human readable `PeerId`.
@@ -297,7 +295,7 @@ the above human readable `PeerId`.
 ```bash
 subkey generate-node-key
 ```
-
+<br />
 <Message
   type={`gray`}
   title={`Note`}
@@ -478,7 +476,7 @@ information:
   "PeerId": "(Vec<u8>)"
 }
 ```
-
+<br />
 <Message
   type={`red`}
   title={`Warning`}
@@ -513,6 +511,7 @@ Let's start Charlie's node,
 --ws-port=9946 \
 --offchain-worker always
 ```
+<br />
 <Message
   type={`yellow`}
   title={`Important`}

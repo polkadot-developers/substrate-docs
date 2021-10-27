@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'gatsby'
+import Link from '../Link'
 
 interface MobileNavItemProps {
   external: boolean
@@ -7,11 +7,7 @@ interface MobileNavItemProps {
   title: string
 }
 
-export default function MobileNavItem({
-  external,
-  link,
-  title,
-}: MobileNavItemProps) {
+export default function MobileNavItem({ link, title }: MobileNavItemProps) {
   const [isActive, setIsActive] = useState(false)
   useEffect(() => {
     if (location.pathname === link) {
@@ -23,31 +19,11 @@ export default function MobileNavItem({
   const styles =
     'text-black dark:text-white hover:no-underline px-6 py-3 text-lg hover:font-bold'
   const activeStyles = () => (isActive ? `font-bold` : `font-medium`)
-  if (external) {
-    if (title === 'Rust Docs') {
-      return (
-        <a href={link} target="_blank" rel="noreferrer">
-          <div className={`${styles} ${activeStyles()}`}>
-            <span>{title}</span>
-          </div>
-        </a>
-      )
-    } else {
-      return (
-        <a href={link}>
-          <div className={`${styles} ${activeStyles()}`}>
-            <span>{title}</span>
-          </div>
-        </a>
-      )
-    }
-  } else {
-    return (
-      <Link to={link}>
-        <div className={`${styles} ${activeStyles()}`}>
-          <span>{title}</span>
-        </div>
-      </Link>
-    )
-  }
+  return (
+    <Link to={link}>
+      <div className={`${styles} ${activeStyles()}`}>
+        <span>{title}</span>
+      </div>
+    </Link>
+  )
 }

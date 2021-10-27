@@ -68,8 +68,7 @@ To follow this tutorial, you will need to set up some stuff on your computer.
 ## Prerequisites
 
 Follow the
-[official installation steps](/v3/getting-started/installation) from the
-Substrate Developer Hub Knowledge Base to install the prerequisites.
+[official installation steps](/v3/getting-started/installation) to install the prerequisites.
 
 Once you have done the above you will also need to run:
 ```
@@ -79,7 +78,7 @@ rustup target add wasm32-unknown-unknown --toolchain nightly
 
 ### 1. Installing The Substrate Contracts Node
 
-We need to use a Substrate node with the built-in `pallet-contracts` module. For this workshop we'll use a pre-configured Substrate node client.
+We need to use a Substrate node with the built-in `pallet-contracts` pallet. For this workshop we'll use a pre-configured Substrate node client.
 
 ```bash
 cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag v0.1.0 --force --locked
@@ -99,7 +98,7 @@ sudo apt install binaryen
 # For MacOS users
 brew install binaryen
 ```
-
+<br />
 <Message
   type={`gray`}
   title={`Note`}
@@ -109,13 +108,13 @@ brew install binaryen
 After you've installed the package execute:
 
 ```bash
-cargo install cargo-contract --vers ^0.14 --force --locked
+cargo install cargo-contract --vers ^0.15 --force --locked
 ```
 
 You can then use `cargo contract --help` to start exploring the commands made available to you.
 
 
-## Creating An Ink Project
+## Creating An ink! Project
 
 We are going to use the ink! CLI to generate the files we need for a Substrate smart contract project.
 
@@ -142,8 +141,9 @@ flipper
 
 ### 1. Contract Source Code
 
-The ink CLI automatically generates the source code for the "Flipper" contract, which is about the simplest "smart" contract you can build. 
-You can take a sneak peak as to what will come by looking at the <ExternalLink url="https://github.com/paritytech/ink/blob/v3.0.0-rc3/examples/flipper/lib.rs">Flipper Example source code</ExternalLink> .
+The ink! CLI automatically generates the source code for the "Flipper" contract, which is about the
+simplest "smart" contract you can build. You can take a sneak peak as to what will come by looking
+at the [Flipper Example](https://github.com/paritytech/ink/blob/v3.0.0-rc5/examples/flipper/lib.rs).
 
 The Flipper contract is nothing more than a `bool` which gets flipped from true to false through the `flip()` function. We won't go deep into the details of this source code because we will be walking you through the steps of building a more advanced contract!
 
@@ -177,7 +177,7 @@ Run the following command to compile your smart contract in the Flipper project 
 ```bash
 cargo +nightly contract build
 ```
-
+<br />
 <Message
   type={`yellow`}
   title={`Information`}
@@ -233,8 +233,9 @@ If you look closely at the constructors and messages, you will also notice a `se
 contains a 4-byte hash of the function name and is used to route your contract calls to the correct
 functions.
 
-In the next section we will start a <ExternalLink url="https://github.com/paritytech/substrate-contracts-node">Substrate Smart Contracts node</ExternalLink>
-and configure the <ExternalLink url="https://github.com/paritytech/canvas-ui">Canvas UI</ExternalLink> to interact with it.
+In the next section we will start a
+[Substrate Smart Contracts node](https://github.com/paritytech/substrate-contracts-node) and
+configure the [Canvas UI](https://github.com/paritytech/canvas-ui) to interact with it.
 
 ## Running a Substrate Smart Contracts Node
 
@@ -249,18 +250,27 @@ substrate-contracts-node --dev --tmp
 
 You should start seeing blocks being produced by your node in your terminal.
 
-Go to the <ExternalLink url="https://paritytech.github.io/canvas-ui">hosted version of Canvas UI</ExternalLink>
-to interact with your node. You first need to configure the UI to connect to it:
+
+
+## Deploying your Contract
+
+<Message
+  type={`red`}
+  title={`Important`}
+  text={`Canvas UI is undergoing technical difficulties and is not functional at the moment. While we are working on a fix, 
+  please use https://polkadot.js.org/apps/ to deploy and interact with your contracts. Same principles apply, the UI differs slightly. 
+  Make sure you are connected to the local node by selecting it from the top left menu and that you navigate to Developer/Contracts page`}
+/>
+
+Go to the [hosted version of Canvas UI](https://paritytech.github.io/canvas-ui) to interact with
+your node. You first need to configure the UI to connect to it:
 
 - Click on the dropdown selector at bottom left corner.
 - Choose the Local Node.
 
 ![Connect to local node](/assets/tutorials/ink-workshop/canvas-connect-to-local.png)
 
-## Deploying your Contract
-
-
-Now that we have generated the Wasm binary from our source code and started a Canvas node, we want
+Now that we have generated the Wasm binary from our source code and connected to a local node node, we want
 to deploy this contract onto our Substrate blockchain.
 
 Smart contract deployment on Substrate is a little different than on traditional smart contract
@@ -328,6 +338,14 @@ creation of a new account (`system.NewAccount`) and the instantiation of the con
 
 ## Calling your Contract
 
+<Message
+  type={`red`}
+  title={`Important`}
+  text={`Canvas UI is undergoing technical difficulties and is not functional at the moment. While we are working on a fix, 
+  please use https://polkadot.js.org/apps/ to deploy and interact with your contracts. Same principles apply, the UI differs slightly. 
+  Make sure you are connected to the local node by selecting it from the top left menu and that you navigate to Developer/Contracts page`}
+/>
+
 Now that your contract has been fully deployed, we can start interacting with it! Flipper only has
 two functions, `flip()` and `get()` so we will show you what it's like to play with both of them.
 Click the **Execute** button under the contract after you instantiate the Flipper contract in the
@@ -392,6 +410,13 @@ you will need to follow these same steps you have done with the Flipper contract
 
 ## Troubleshooting
 
+<Message
+  type={`red`}
+  title={`Important`}
+  text={`Canvas UI is undergoing technical difficulties and is not functional at the moment. While we are working on a fix, 
+  please use https://polkadot.js.org/apps/ to deploy and interact with your contracts. Same principles apply, the UI differs slightly. 
+  Make sure you are connected to the local node by selecting it from the top left menu and that you navigate to Developer/Contracts page`}
+/>
 
 Here are solutions to some of the common problems you may come across:
 
@@ -434,19 +459,6 @@ For these scenarios, you submit an RPC call, which will run all of your contract
 actually submit a transaction or update the chain state. However, you will still need to specify
 the right amount of gas to cover your "virtual fee". But don't worry, nothing will be charged when making a call this way. :)
 
-### 4. Contract State Rent
+### 4. Other Issues
 
-The Substrate contracts pallet has a state rent system that forces contracts to stay funded if they
-want to stay on the blockchain. This means that the more you use a contract, the more fees are taken
-from it. At some point, the contract will run out of fees and turn into a non-functioning tombstone.
-We try to avoid this by giving the contract a large endowment when we initially deploy it. However,
-if your contract does become a tombstone, for the purposes of this tutorial, the easiest solution is
-to just redeploy your contract on the chain.
-
-The best way to prevent this in general is to make sure your contract always stays well funded. In
-real world scenarios, there is a process that you can go through to recover a tombstone contract and
-get it functioning again, however this is beyond the scope of this tutorial.
-
-### 5. Other Issues
-
-If you run into any other issues during this tutorial, please <ExternalLink url="https://github.com/substrate-developer-hub/substrate-contracts-workshop/issues">report an issue</ExternalLink> .
+If you run into any other issues during this tutorial, please [report an issue](https://github.com/substrate-developer-hub/substrate-contracts-workshop/issues)!

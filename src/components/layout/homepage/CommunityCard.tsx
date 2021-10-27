@@ -8,7 +8,7 @@ export default function CommunityCard() {
   const data = [
     {
       title: 'Contact',
-      description: 'Got questions? Get in touch!',
+      description: 'Have any questions? Get in touch!',
       headingOne: 'Join the conversation',
       iconOne: 'elementOrg',
       linkTextOne: 'Element',
@@ -34,7 +34,7 @@ export default function CommunityCard() {
     {
       title: 'Hackathons & Grants',
       description:
-        'Jump-start your project or your career in the blockchain space',
+        'Jump-start your project or your career in the blockchain space.',
       headingOne: 'Rise to the challenge',
       iconOne: 'ideCode',
       linkTextOne: 'Hackathon',
@@ -52,31 +52,32 @@ export default function CommunityCard() {
           key={index}
           data-aos="fade-up"
           data-aos-delay={index === 1 ? '200' : index === 2 ? '400' : ''}
-          className="lg:h-[500px] xl:h-[456px] w-full sm:w-80 2xl:w-96 shadow-xl py-8 px-6 mb-4 sm:mr-4 bg-white dark:bg-substrateDark mdx-anchor"
         >
-          <div className="text-2xl font-bold mb-5">{item.title}</div>
-          <p className="h-[72px]">{item.description}</p>
-          <hr />
-          <p>
-            <b>{item.headingOne}:</b>
-          </p>
-          <div className="flex items-center mb-6 font-bold">
-            <Icon
-              name={item.iconOne}
-              className="mr-3 fill-current dark:text-subtrateWhite"
-            />
-            <Link to={item.linkOne}>{item.linkTextOne}</Link>
-          </div>
-          <hr />
-          <p>
-            <b>{item.headingTwo}:</b>
-          </p>
-          <div className="flex items-center mb-6 font-bold">
-            <Icon
-              name={item.iconTwo}
-              className="mr-3 fill-current dark:text-subtrateWhite"
-            />
-            <Link to={item.linkTwo}>{item.linkTextTwo}</Link>
+          <div className="cursor-pointer shadow-xl px-6 py-8 transition-transform rounded-md bg-white dark:bg-substrateDark mdx-anchor relative min-h-full hover:scale-105">
+            <div className="text-2xl font-bold mb-5">{item.title}</div>
+            <p className="h-[72px]">{item.description}</p>
+            <hr />
+            <p>
+              <b>{item.headingOne}:</b>
+            </p>
+            <div className="flex items-center mb-6 font-bold">
+              <Icon
+                name={item.iconOne}
+                className="mr-3 fill-current dark:text-subtrateWhite"
+              />
+              <Link to={item.linkOne}>{item.linkTextOne}</Link>
+            </div>
+            <hr />
+            <p>
+              <b>{item.headingTwo}:</b>
+            </p>
+            <div className="flex items-center mb-6 font-bold">
+              <Icon
+                name={item.iconTwo}
+                className="mr-3 fill-current dark:text-subtrateWhite"
+              />
+              <Link to={item.linkTwo}>{item.linkTextTwo}</Link>
+            </div>
           </div>
         </div>
       ))}

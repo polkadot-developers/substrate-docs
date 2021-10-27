@@ -8,8 +8,8 @@ import TableOfContent from '../components/TableOfContent'
 import DocsNav from '../components/DocsNav'
 import VersionControl from '../components/VersionControl'
 import LastUpdateGithub from '../components/LastUpdateGithub'
-import { BottomButtons } from '../components/DocsComponents'
-import navMenu from '../components/DevNavMenu'
+import { BottomButtons, FeedbackWidget } from '../components/DocsComponents'
+import { DevNavMenu as navMenu } from '../components/DevNavMenu'
 import BreadCrumbNav from '../components/BreadCrumbNav'
 import DocTag from '../components/DocTag'
 
@@ -45,7 +45,7 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
           </div>
           {/* ------------ */}
           {/* Main Article */}
-          <article className="px-6 mb-20 lg:flex lg:mx-auto">
+          <article className="px-4 mb-20 lg:flex lg:mx-auto">
             <div className="lg:flex-grow">
               <div
                 className={`py-8 lg:flex lg:justify-between lg:items-center`}
@@ -77,6 +77,14 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
               {data.mdx.frontmatter.hideNav ? null : (
                 <BottomButtons menu={docsMenu} pageSlug={slug} />
               )}
+              <div className="mt-10">
+                <hr />
+                <FeedbackWidget
+                  title={data.mdx.frontmatter.title}
+                  section={data.mdx.frontmatter.section}
+                  slug={slug}
+                />
+              </div>
             </div>
             {/* Table of Contents */}
             <div className="hidden xl:inline-block">

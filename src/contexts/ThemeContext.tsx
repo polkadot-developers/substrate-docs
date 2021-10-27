@@ -19,6 +19,18 @@ function getInitialColorMode() {
   return 'light'
 }
 
+function testQueryMode(searchParams: URLSearchParams) {
+  if (searchParams) {
+    const mode = searchParams.get('mode')
+
+    if (mode === 'dark' || mode === 'light') {
+      return mode
+    } else {
+      return false
+    }
+  } else return false
+}
+
 interface ThemeContextInterface {
   colorMode: string
   setColorMode: (value: string) => void
@@ -28,19 +40,19 @@ export const ThemeContext = React.createContext<ThemeContextInterface | null>(
   null
 )
 
-export const ThemeProvider = ({ children }: any) => {
-  const [colorMode, rawSetColorMode] = React.useState(getInitialColorMode())
+interface ThemeProviderInterface {
+  children: React.ReactNode
+}
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      rawSetColorMode(getInitialColorMode())
-    }
-  }, [])
+export const ThemeProvider = ({ children }: ThemeProviderInterface) => {
+  const [colorMode, rawSetColorMode] = React.useState(undefined)
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : ''
+  const searchParams = currentUrl && new URL(currentUrl).searchParams
 
   const setColorMode = (value: string) => {
     rawSetColorMode(value)
     // Set Tailwind color mode
-    if (value == 'dark') {
+    if (value === 'dark') {
       document.documentElement.classList.add('dark')
       document.documentElement.classList.remove('light')
     } else {
@@ -50,6 +62,24 @@ export const ThemeProvider = ({ children }: any) => {
     // Persist on update
     localStorage.theme = value
   }
+
+  // update color mode from query
+  if (testQueryMode(searchParams)) {
+    setColorMode(testQueryMode(searchParams) as string)
+    searchParams.delete('mode')
+    // remove mode param from query
+    window.history.replaceState(
+      null,
+      null,
+      location.pathname + (searchParams.toString() && '?' + searchParams)
+    )
+  }
+
+  // update color mode if not set from query
+  useEffect(() => {
+    if (!testQueryMode(searchParams)) rawSetColorMode(getInitialColorMode())
+  }, [])
+
   return (
     <ThemeContext.Provider value={{ colorMode, setColorMode }}>
       {children}

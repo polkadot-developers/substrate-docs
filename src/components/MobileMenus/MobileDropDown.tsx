@@ -1,7 +1,7 @@
 import React from 'react'
 import cx from 'classnames'
 import useComponentVisible from '../Hooks/use-component-visible'
-import { Link } from 'gatsby'
+import Link from '../Link'
 
 interface MobileDropDownProps {
   external: boolean
@@ -9,11 +9,7 @@ interface MobileDropDownProps {
   items: { linkTitle: string; link: string; external: boolean }[]
 }
 
-export default function MobileDropDown({
-  external,
-  title,
-  items,
-}: MobileDropDownProps) {
+export default function MobileDropDown({ title, items }: MobileDropDownProps) {
   const { isComponentVisible, setIsComponentVisible } =
     useComponentVisible(false)
   return (
@@ -45,32 +41,11 @@ export default function MobileDropDown({
           {items.map((each, index) => {
             const itemStyles =
               'block font-medium hover:font-bold pl-12 mb-0 py-3'
-            if (external) {
-              if (each.linkTitle === 'Events' || each.linkTitle === 'Blog') {
-                return (
-                  <a
-                    key={index}
-                    href={each.link}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <span className={`${itemStyles}`}>{each.linkTitle}</span>
-                  </a>
-                )
-              } else {
-                return (
-                  <a key={index} href={each.link}>
-                    <span className={`${itemStyles}`}>{each.linkTitle}</span>
-                  </a>
-                )
-              }
-            } else {
-              return (
-                <Link key={index} to={each.link}>
-                  <span className={`${itemStyles}`}>{each.linkTitle}</span>
-                </Link>
-              )
-            }
+            return (
+              <Link key={index} to={each.link}>
+                <span className={`${itemStyles}`}>{each.linkTitle}</span>
+              </Link>
+            )
           })}
         </>
       ) : null}

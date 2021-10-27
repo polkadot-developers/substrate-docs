@@ -36,13 +36,13 @@ If you do not, please complete that tutorial.
 
 ## What You Will be Doing
 
-Before we even get started, let's layout what we're going to do over the course of this turorial. We will:
+Before we even get started, let's layout what we're going to do over the course of this tutorial. We will:
 
 <TutorialObjective
   data={{
     textLineOne:
-      '1. Alice and Bob Start Blockchain',
-      url: '/tutorials/v3/private-network#alice-and-bob-start-blockchain',
+      '1. Have Alice and Bob start a blockchain',
+      url: '/tutorials/v3/private-network#alice-and-bob-start-a-blockchain',
   }}
 />
 <TutorialObjective
@@ -55,7 +55,7 @@ Before we even get started, let's layout what we're going to do over the course 
 <TutorialObjective
   data={{
     textLineOne:
-      '3. Create and edit a chainspec JSON file.',
+      '3. Create and edit a chain spec JSON file.',
     url: '#create-a-custom-chain-spec',
   }}
 />
@@ -69,10 +69,10 @@ Before we even get started, let's layout what we're going to do over the course 
 
 ## Learning outcomes
 - Learn how to create authority nodes for a private network
-- Learn how to configure a JSON chainspec file 
+- Learn how to configure a JSON chain spec file 
 
 
-## Alice and Bob Start Blockchain
+## Alice and Bob start a blockchain
 
 Before we generate our own keys, and start a truly unique Substrate network, let's learn the
 fundamentals by starting with a pre-defined network specification called `local` with two
@@ -150,7 +150,7 @@ When the node starts, you should see output similar to this:
 ...
 ```
 
-A coupe things to notice:
+A few things to notice:
 
  - `🔨 Initializing Genesis block/state (state: 0xea47…9ba8, header-hash: 0x9d07…7cce)` tells which
    genesis block the node is using. When you start the next node, verify that these values are
@@ -177,7 +177,7 @@ In your web browser, navigate to
   type={`green`}
   title={`Tip`}
   text=
-	  "Some Ad blockers (e.g. the built-in Shield in Brave browser, pihole, browser extentions, etc.)
+	  "Some Ad blockers (e.g. the built-in Shield in Brave browser, pihole, browser extensions, etc.)
 	  block the connection to a local node. In case you have any Ad blockers in your browser, make
 	  sure to check them and turn them off as needed if you have issues connecting to your local node. 
 	  Also some browsers, notably Firefox, will not connect to a local node from a https website.
@@ -286,11 +286,11 @@ These lines shows that Bob has peered with Alice (**`1 peers`**), they have prod
 Looking at the console that started Bob's node, you should see something similar.
 
 Once you've verified that both nodes are running as expected, you should shut them down. Although
-this is not strictly required, so long as you don't have conflicting ports and the same chainspec.
+this is not strictly required, so long as you don't have conflicting ports and the same chain spec.
 The next section of this tutorial will include commands to restart new nodes when necessary.
 
 
-## Generate Your Own Keys
+## Generate your own keys
 
 Now that we know the fundamentals and the command line options, it's time to generate our own keys
 rather than using the well-known Alice and Bob keys. Each person who wants to participate in the
@@ -298,7 +298,7 @@ blockchain should generate their own keys. This page explains several options fo
 and each participant only needs to choose one such option. Regardless of which option you choose, be
 sure to record all of the output from this section as you will need it later.
 
-### Option 1: Subkey
+### Option 1: use Subkey
 
 Subkey is a tool that generates keys specifically designed to be used with Substrate.
 
@@ -341,7 +341,7 @@ Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song v
   SS58 Address:     5CesK3uTmn4NGfD3oyGBd1jrp4EfRyYdtqL3ERe9SXv8jUHb
 ```
 
-### Option 2: Polkadot-JS Apps
+### Option 2: use Polkadot-JS Apps
 
 The same UI that we used to see blocks being produced can also be used to generate keys. This option
 is convenient if you do not want to install Subkey. It can be used for production keys, but the
@@ -400,10 +400,10 @@ learning purposes.
 | SS58 Address  | `5CRZoFgJs4zLzCCAGoCUUs2MRmuD5BKAh17pWtb62LMoCi9h`                           |
 
 In the next section, we will create a custom chain specification using your key pairs and
-share your custom chain specicification with your network validators
+share your custom chain specification with your network validators
 
 
-## Create a Custom Chain Spec
+## Create a custom chain spec
 
 Now that each participant has their own keys generated, you're ready to create a custom chain
 specification. We will use this custom chain spec instead of the built-in `local` spec that we used
@@ -412,7 +412,7 @@ previously.
 In this example we will create a two-node network, but the process generalizes to more nodes in a
 straight-forward manner.
 
-### Create a Chain Specification
+### Create a chain specification
 
 Last time around, we used `--chain local` which is a predefined "chain spec" that has Alice and Bob
 specified as validators along with many other useful defaults.
@@ -467,7 +467,7 @@ by the **"grandpa"** field. That section looks like this using the [two provided
   }
 }
 ```
-
+<br />
 <Message
   type={`yellow`}
   title={`Information`}
@@ -499,7 +499,7 @@ you like. For additional context, read about
     "
 /> 
 
-### Convert and share the raw chainspec
+### Convert and share the raw chain spec
 Once the chain spec is prepared, convert it to a "raw" chain spec. The raw chain spec contains all
 the same information, but it contains the encoded storage keys that the node will use to reference
 the data in its local storage. Distributing a raw spec ensures that each node will store the data at
@@ -529,13 +529,13 @@ Next steps:
 - Add other participants to your network
 
 
-## Launch Your Private Network
+## Launch your private network
 
 With your custom chain spec created and distributed to all participants, you're ready to launch your
 own custom chain. In this section it is no longer required to use a single physical machine or a
 single binary.
 
-### First Participant Starts a Bootnode
+### First participant starts a bootnode
 
 You've completed all the necessary prep work and you're now ready to launch your chain. This process
 is very similar to when you launched a chain earlier, as Alice and Bob. It's important to start with
@@ -606,7 +606,7 @@ These values are for this specific
 example, but for your node, they will be different and **required for other nodes to directly connect to it** 
 (without a bootnode in the chain spec, as we removed in the flags before).
 
-### Add Keys to Keystore
+### Add keys to keystore
 
 Once your node is running, you will again notice that no blocks are being produced. At this point,
 you need to add your keys into the keystore. Remember you will need to complete these steps for each
@@ -616,7 +616,7 @@ are necessary for
 GRANDPA keys are necessary for
 [block _finalization_](/v3/getting-started/glossary#finality).
 
-#### Option 1: Use the Polkadot-JS Apps UI
+#### Option 1: use the Polkadot-JS Apps UI
 
 You can use the Apps UI to insert your keys into the keystore. Navigate to "Developer --> RPC Call". Choose
 "author" and "insertKey". The fields can be filled like this:
@@ -628,7 +628,7 @@ keytype: aura
 suri: <your mnemonic phrase> (eg. clip organ olive upper oak void inject side suit toilet stick narrow)
 publicKey: <your raw sr25519 key> (eg. 0x9effc1668ca381c242885516ec9fa2b19c67b6684c02a8a3237b6862e5c8cd7e)
 ```
-
+<br />
 <Message
   type={`gray`}
   title={`Note`}
@@ -651,6 +651,7 @@ keytype: gran
 suri: <your mnemonic phrase> (eg. clip organ olive upper oak void inject side suit toilet stick narrow)
 publicKey: <your raw ed25519 key> (eg. 0xb48004c6e1625282313b07d1c9950935e86894a2e4f21fb1ffee9854d180c781)
 ```
+<br />
 <Message
   type={`gray`}
   title={`Note`}
@@ -660,7 +661,7 @@ publicKey: <your raw ed25519 key> (eg. 0xb48004c6e1625282313b07d1c9950935e86894a
       "
 />
 
-#### Option 2: Use `curl`
+#### Option 2: use `curl`
 
 You can also insert a key into the keystore by using [`curl`](https://curl.haxx.se/) from the
 command line. This approach may be preferable in a production setting, where you may be using a
@@ -693,7 +694,7 @@ If you enter the command and parameters correctly, the node will return a JSON r
 
 Make sure you delete the file that contains the keys when you are done.
 
-#### Option 3: Use the `key` command
+#### Option 3: use the `key` command
 
 Alternatively, you can insert a key saved to a local file using the `key` command:
 
@@ -702,7 +703,7 @@ Alternatively, you can insert a key saved to a local file using the `key` comman
 ./target/release/node-template key insert --base-path /tmp/node01 --chain local --key-type <aura/gran> --suri /path/to/key/file
 ```
 
-### Verify Keys in the Keystore (Optional)
+### Verify keys in the keystore (Optional)
 
 Optionally, If you would like to check that your keys are now loaded, you can view the keystore files that should
 now exists for your `node01`. These are found in the following (default example) location:
@@ -727,15 +728,7 @@ Notice there are two keystores, as expected as we added two keys to our node.
 This example used [pair 1](#option-3-use-pre-generated-keys) from the well known seeds here, and
 will use `pair 2` for our next node, where your keys may differ.
 
-<!-- TODO: update below with example of successful use (not working for me at time of writing) -->
-
-<!--
-You can also set a non-standard keystore file for your node with the flags:
-  keystore-path <PATH> - Specify custom keystore path
-  keystore-uri <keystore-uri> - Specify custom URIs to connect to for keystore-services
--->
-
-### Subsequent Participants Join
+### Subsequent participants join
 
 Subsequent validators can now join the network. This can be done by specifying the `--bootnodes`
 parameter as Bob did previously.
@@ -759,7 +752,7 @@ parameter as Bob did previously.
   # you MUST fill the correct info in the line above:
   # --bootnodes /ip4/<IP Address>/tcp/<p2p Port>/p2p/<Peer ID>
 ```
-
+<br />
 <Message
   type={`red`}
   title={`Warning`}
@@ -837,15 +830,13 @@ those keypairs, and start a private network based on your custom chain spec.
 <Message
   type={`green`}
   title={`Tip`}
-  text={`If you would like examples of correct JSON keystore \`curl\` files with a known working chainspec, see [this
+  text={`If you would like examples of correct JSON keystore \`curl\` files with a known working chain spec, see [this
   solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/private-chain-v3). 
   You can use the extra files with your already cloned and compiled node, no need to start from scratch.`}
 />
 
-<!-- TODO link to the followup tutorial about starting a 3 node network using the demo substrate node
-Details in https://github.com/substrate-developer-hub/tutorials/issues/16 -->
-
 ## Next steps
 
 That big Wasm blob we encountered in the chain spec was necessary to enable forkless upgrades.
-Learn more about how the [executor](/v3/advanced/executor) uses on-chain Wasm.
+Learn more about how the [executor](/v3/advanced/executor) uses on-chain Wasm. Alternatively, continue 
+learning by completing the [permissioned network tutorial](/tutorials/v3/permissioned-network).

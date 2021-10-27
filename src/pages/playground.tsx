@@ -3,6 +3,7 @@ import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import { StaticImage } from 'gatsby-plugin-image'
 import PlaygroundCard from '../components/PlaygroundCard'
+import Section from '../components/layout/Section'
 
 export default function playground() {
   const [selected, setSelected] = useState('')
@@ -18,9 +19,9 @@ export default function playground() {
   return (
     <Layout>
       <SEO title="Playground" />
-      <section className="xl:container my-20 md:mt-20 md:mb-36">
-        <div className="flex flex-col md:flex-row md:items-center px-6">
-          <div className="lg:m-0 md:w-1/2 md:px-5 lg:px-10">
+      <Section styles="mt-12 md:mb-36">
+        <div className="flex flex-col md:flex-row md:items-center doc-hero">
+          <div className="md:w-1/2 mb-10 lg:m-0">
             <div className="font-title text-5xl lg:text-6xl font-extrabold mb-8">
               Playground
             </div>
@@ -45,9 +46,12 @@ export default function playground() {
             />
           </div>
         </div>
-      </section>
-      <section id="config" className="xl:container mb-36 scroll-margin-top-100">
-        <div className="mx-auto max-w-xl text-center font-extrabold text-4xl xl:text-6xl">
+      </Section>
+      <Section>
+        <div
+          id="config"
+          className="mx-auto max-w-xl text-center font-extrabold text-4xl xl:text-6xl scroll-margin-top-100"
+        >
           Select Playground Configuration
         </div>
         <div className="my-20 px-6 flex flex-col items-center lg:flex-row lg:justify-center">
@@ -56,8 +60,8 @@ export default function playground() {
             preSelected={selected === 'node-template'}
             title={`Node Template`}
             description={`A “skeleton blockchain” with essential capabilities, including P2P
-            networking, consensus, finality, account, transaction and sudo
-            governance modules.`}
+              networking, consensus, finality, account, transaction and sudo
+              governance modules.`}
             listTitle={'Key Runtime Modules'}
             components={[
               'pallet_balances',
@@ -72,14 +76,14 @@ export default function playground() {
             preSelected={selected === 'front-end-template'}
             title={`Front-End Template`}
             description={`A modular UI built with ReactJS to act as a front-end to the Substrate 
-            Node Template. It contains all necessary components to interact with the Node 
-            Template’s mruntime.`}
+              Node Template. It contains all necessary components to interact with the Node 
+              Template’s mruntime.`}
             listTitle={'Key Components'}
             components={['Interactor', 'MetaData', 'Balances', 'BlockNumber']}
             link={` https://playground.substrate.dev/?deploy=front-end-template`}
           />
         </div>
-      </section>
+      </Section>
     </Layout>
   )
 }

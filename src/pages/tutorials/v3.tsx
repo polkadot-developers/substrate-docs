@@ -26,7 +26,7 @@ export default function tutorials({ data }: any) {
             link={`/tutorials/v3/create-your-first-substrate-chain`}
           />
           <TutorialCard
-            title={`Add FRAME's Nicks Pallet to Your Runtime`}
+            title={`Add the Nicks Pallet to your Runtime`}
             image={data.tutorialTwo}
             description={`Add the Nicks pallet to your runtime and publish a custom pallet that others can reuse in their projects.`}
             time={`2 Hours`}
@@ -116,14 +116,14 @@ export default function tutorials({ data }: any) {
             link={`/tutorials/v3/frontier`}
           />
           <TutorialCard
-            title={`Cumulus Workshop`}
+            title={`Create a Parachain with Cumulus`}
             image={data.tutorialNine}
-            description={`A workshop to configure a Substrate node as a Parachain`}
+            description={`Learn to use the parachain template in local testnet`}
             time={`3 Hours`}
             difficulty={3}
             prerequisites={true}
-            version={`V3.0.0`}
-            link={`/tutorials/v3/cumulus-workshop/pt1`}
+            version={`polkadot-0.9.10`}
+            link={`/tutorials/v3/cumulus/start-relay`}
           />
         </div>
       </div>

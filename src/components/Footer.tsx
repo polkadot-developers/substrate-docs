@@ -130,7 +130,7 @@ export default function Footer() {
           </div>
           <div className="mb-4 md:mb-0 md:mr-8 inline-block">
             <a
-              className="block"
+              className="block cursor-pointer"
               href={siteMetadata.privacy}
               target="_blank"
               rel="noreferrer"
@@ -141,7 +141,7 @@ export default function Footer() {
 
           <div className="mb-4 md:mb-0 md:mr-8 inline-block">
             <a
-              className="block"
+              className="block cursor-pointer"
               href={siteMetadata.terms}
               target="_blank"
               rel="noreferrer"

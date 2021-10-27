@@ -2,18 +2,19 @@
   "name": "substrate-docs",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Parity Technolgoies WebDev Team",
+  "author": "Parity Technologies WebDev Team",
   "private": false,
   "license": "MIT",
   "scripts": {
     "clean": "gatsby clean",
-    "dev": "gatsby develop",
+    "dev": "gatsby develop -p 8001",
+    "start": "gatsby develop -p 8001",
+    "develop": "gatsby develop -p 8001",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "serve:fresh": "yarn clean; yarn build; yarn serve",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "checklinks:v1": "hyperlink --canonicalroot https://docs.substrate.io -r --skip '200 public/rustdocs' --skip 'fragment-redirect' --skip 'fragment-check' --skip 'preconnect-check https://fonts.gstatic.com' --skip 'external-redirect' public/index.html | tap-spot",
-    "checklinks:v3": "yarn blc --filter-level=3 -rof --requests=10 --exclude='/rustdocs' --exclude='/crates.io' --exclude='/fonts.gstatic.com' --exclude='/www.substrate.io' --exclude='/docs.substrate.io' --exclude='/substrate-io-staging.netlify.app' --exclude='/github.com' --exclude='/www.nuget.org' http://localhost:9000",
+    "checklinks": "yarn blc --filter-level=3 -rof --requests=10 --exclude='/rustdocs' --exclude='/crates.io' --exclude='/fonts.gstatic.com' --exclude='/github.com' --exclude='/www.nuget.org' --exclude='/www.chicagomanualofstyle.org' http://localhost:9000",
     "lint": "eslint . --ext ts --ext tsx --ext js --ext jsx",
     "lint:tsc": "tsc -p tsconfig.json --noEmit"
   },
@@ -26,6 +27,7 @@
     "gatsby": "^3.7.2",
     "gatsby-omni-font-loader": "^1.3.1",
     "gatsby-plugin-eslint": "^3.0.0",
+    "gatsby-plugin-force-trailing-slashes": "^1.0.5",
     "gatsby-plugin-image": "^1.8.0",
     "gatsby-plugin-manifest": "^3.7.1",
     "gatsby-plugin-mdx": "^1.2.25",
@@ -63,6 +65,7 @@
     "strip-markdown": "4.0.0"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.15.8",
     "@tailwindcss/aspect-ratio": "^0.2.0",
     "@types/aos": "^3.0.4",
     "@types/lunr": "^2.3.4",
@@ -75,22 +78,23 @@
     "@typescript-eslint/eslint-plugin": "^4.27.0",
     "@typescript-eslint/parser": "^4.27.0",
     "autoprefixer": "^10.2.6",
-    "babel-eslint": "^10.1.0",
     "broken-link-checker": "^0.7.8",
     "eslint": "^7.28.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-loader": "^4.0.2",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-security": "^1.4.0",
-    "eslint-webpack-plugin": "^2.5.4",
+    "eslint-webpack-plugin": "^3.0.1",
     "gatsby-plugin-postcss": "^4.7.1",
-    "hyperlink": "^4.7.0",
     "postcss": "^8.3.4",
     "postcss-import": "^14.0.2",
     "prettier": "^2.3.1",
     "tailwindcss": "^2.2.7",
     "tap-spot": "^1.1.1",
     "typescript": "^4.3.2"
-  }
+  },
+  "resolutions": {
+    "minipass": "2.7.0"
+  },
+  "packageManager": "yarn@3.0.2"
 }

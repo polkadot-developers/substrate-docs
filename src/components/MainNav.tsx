@@ -1,6 +1,6 @@
 const MainNav = {
   global: () => {
-    const site = 'https://substrate-io-staging.netlify.app'
+    const site = process.env.GATSBY_IO_URL
     return [
       {
         name: `Technology`,
@@ -58,7 +58,7 @@ const MainNav = {
           {
             linkTitle: `Rust Docs`,
             link: `/rustdocs/`,
-            external: true,
+            external: false,
           },
           {
             linkTitle: `Playground`,

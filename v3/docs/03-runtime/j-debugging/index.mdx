@@ -8,76 +8,32 @@ keywords:
 ---
 
 Debugging is a necessity in all walks of software development, and blockchain is no exception. Most
-of the same tools used for general purpose Rust debugging also apply to Substrate. However, there
-are some restrictions when operating inside of a `no_std` environment like the Substrate runtime.
+of the same tools used for general purpose Rust debugging also apply to Substrate. 
 
-## FRAME Debugging & Logging Utilities
+## Logging utilities
 
-The FRAME Support
-[`debug` module](/rustdocs/latest/frame_support/debug/index.html) contains
-macros and functions that make it possible to print logs out of runtime code.
+You can use Rust's logging API to debug your runtimes. This comes with a number of macros, including 
+[`debug`](https://docs.rs/log/0.4.14/log/macro.debug.html) and [`info`](https://docs.rs/log/0.4.14/log/macro.info.html).
 
-### Log from Native Runtimes
-
-For performance-preserving, native-only debugging, use the macros in the
-[`frame_support::debug::native` module](/rustdocs/latest/frame_support/debug/native/index.html).
+For example, after updating your pallet's `Cargo.toml` file with the [`log` crate](https://crates.io/crates/log)
+just use `log::info!` to log to your console:
 
 ```rust
 pub fn do_something(origin) -> DispatchResult {
-	print("Execute do_something");
 
 	let who = ensure_signed(origin)?;
 	let my_val: u32 = 777;
 
 	Something::put(my_val);
 
-	frame_support::debug::native::debug!("called by {:?}", who);
+	log::info!("called by {:?}", who);
 
 	Self::deposit_event(RawEvent::SomethingStored(my_val, who));
 	Ok(())
 }
 ```
 
-The
-[`frame_support::debug::native::debug!`](/rustdocs/latest/frame_support/debug/native/macro.debug.html)
-macro avoids extra overhead in Wasm runtimes, but is only effective when the runtime is executing in
-native mode. In order to view these log messages, it's necessary to configure the node to use the
-right logging target. By default, the name of the target is the name of the crate that contains the
-log messages.
-
-```sh
-./target/release/node-template --dev -lpallet_template=debug
-```
-
-The `debug!` macro takes an optional parameter, `target`, that can be used to specify the target
-name.
-
-```rust
-frame_support::debug::native::debug!(target: "customTarget", "called by {:?}", who);
-```
-
-### Log from Wasm Runtimes
-
-It is possible to pay a performance price in order to log from Wasm runtimes.
-
-```rust
-pub fn do_something(origin) -> DispatchResult {
-	print("Execute do_something");
-
-	let who = ensure_signed(origin)?;
-	let my_val: u32 = 777;
-
-	Something::put(my_val);
-
-	frame_support::debug::RuntimeLogger::init();
-	frame_support::debug::debug!("called by {:?}", who);
-
-	Self::deposit_event(RawEvent::SomethingStored(my_val, who));
-	Ok(())
-}
-```
-
-## Printable Trait
+## Printable trait
 
 The Printable trait is meant to be a way to print from the runtime in `no_std` and in `std`. The
 `print` function works with any type that implements the
@@ -158,7 +114,7 @@ gets called.
 2020-01-01 tokio-blocking-driver DEBUG runtime  0                <-- index value from the Error enum definition
 2020-01-01 tokio-blocking-driver DEBUG runtime  NoneValue        <-- str which holds the name of the ident of the error
 ```
-
+<br />
 <Message
   type={`yellow`}
   title={`Important`}
@@ -166,7 +122,7 @@ gets called.
   with debug code not needed in production.`}
 />
 
-## Substrate's Own `print` Function
+## Substrate's own `print` function
 
 For legacy use cases, Substrate provides extra tools for `Print` debugging (or tracing). You can use
 the [`print` function](/rustdocs/latest/sp_runtime/fn.print.html) to log the

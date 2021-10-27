@@ -27,7 +27,7 @@ used in mandatory inherent extrinsics) will generally be limited through economi
 simple terms, through transaction fees. The fee implications of the weight system are covered in the
 [Transaction Fees document](/v3/runtime/weights-and-fees).
 
-Substrate defines one unit of weight as one picosecond of execution time, that is **10 12
+Substrate defines one unit of weight as one picosecond of execution time, that is **10<sup>12</sup>
 weight = 1 second**, or 1,000 weight = 1 nanosecond, on fixed reference hardware (Intel Core
 i7-7700K CPU with 64GB of RAM and an NVMe SSD).
 
@@ -45,7 +45,7 @@ tuning options give runtime developers a way to make the optimal transaction per
 requirement trade-offs for their use case. These trade-offs can be tuned with runtime updates to
 keep up with hardware and software improvements.
 
-## Weight Fundamentals
+## Weight fundamentals
 
 Weights represent the _limited_ time that your blockchain has to validate a block. This includes
 computational cycles, and storage I/O. A custom implementation may use complex structures to express
@@ -79,7 +79,7 @@ are available:
   ensure the weighing parameters correspond accurately to on-chain state and if they don't then the
   operation should gracefully error.
 
-### Weight Factors
+### Weight factors
 
 Several factors impact execution time, and therefore weight calculation. One large contributor is
 the number of database accesses that are performed by a dispatchable. Because the cost of a database
@@ -101,7 +101,7 @@ does not exceed the limit. The
 is responsible for interpreting these weights and deducting fees based upon them. The weighing
 function is part of the runtime so it can be upgraded if needed.
 
-## Post Dispatch Weight Correction
+## Post dispatch weight correction
 
 There are cases where the actual weight of a dispatchable is not trivially computable from its
 inputs. For example, the weight could depend on the logic path of the dispatchable. Without any
@@ -114,7 +114,7 @@ was executed. This weight must be less than or equal to the pre-dispatch worst c
 user to be allowed to include an extrinsic, they still must be able to pay for the maximum weight,
 even though the final payment will be based on the actual weight.
 
-## Block Weight and Length Limit
+## Block weight and length limit
 
 Aside from affecting fees, the main purpose of the weight system is to prevent a block from being
 filled with transactions that would take too long to execute. While processing transactions within a
@@ -138,7 +138,7 @@ included in a block regardless of its impact on block weight. Please refer to th
 [Transaction Fees](/v3/runtime/weights-and-fees) to learn more about the different dispatch classes and
 when to use them.
 
-### Learn More
+### Learn more
 
 - [Example](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
   pallet.
