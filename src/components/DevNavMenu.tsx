@@ -608,7 +608,7 @@ DevNavMenuTuts.set('privateNetwork', [
       },
       {
         title: `Alice and Bob Start Blockchain`,
-        link: '#alice-and-bob-start-blockchain',
+        link: '#alice-and-bob-start-a-blockchain',
       },
       {
         title: `Generate Your Own Keys`,
