@@ -276,6 +276,17 @@ pub mod pallet {
 }
 ```
 
+Notice that we're using `sp_io` in our pallet. 
+Ensure that this is declared as a dependency in your pallet's `Cargo.toml`:
+
+```toml
+[dependencies.sp-io]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-2021-10'
+version = '4.0.0-dev'
+```
+
 Now try running the following command to build your pallet. We won't build the entire chain just yet
 because we haven't yet implemented the `Currency` type in our runtime. At least we can check that there 
 are no errors in our pallet so far:
