@@ -59,30 +59,29 @@ Use the helper function instead of rewriting the same code. Below is a simple ex
 a dispatchable that allows a signed extrinsic to add a value to the existing storage value:
 
 ```rust
-    // Extrinsics callable from outside the runtime.
-	 #[pallet::call]
-    impl<T: Config> Pallet<T> {
-    #[pallet::weight(1_000)]
+// Extrinsics callable from outside the runtime.
+#[pallet::call]
+impl<T: Config> Pallet<T> {
+  #[pallet::weight(1_000)]
+  fn add_value(
+    origin: OriginFor<T>,
+    val_to_add: u32
+    ) -> DispatchResultWithPostInfo {
+      let _ = ensure_signed(origin)?;
+      
+      ensure!(val_to_add <= T::MaxAddend::get(), "value must be <= maximum add amount constant");
 
-    fn add_value(
-        origin: OriginFor<T>,
-        val_to_add: u32
-        ) -> DispatchResultWithPostInfo {
-            let _ = ensure_signed(origin)?;
+      // previous value got
+      let c_val = SingleValue::<T>::get();
 
-            ensure!(val_to_add <= T::MaxAddend::get(), "value must be <= maximum add amount constant");
+      // checks for overflow when new value added
+      let result = _adder(c_val, val_to_add);
 
-            // previous value got
-           	let c_val = SingleValue::<T>::get();
-
-            // checks for overflow when new value added
-            let result = _adder(c_val, val_to_add);
-
-            <SingleValue<T>>::put(result);
-            Self::deposit_event(Event::Added(c_val, val_to_add, result));
-            Ok(().into())
-        }
-	}
+      <SingleValue<T>>::put(result);
+      Self::deposit_event(Event::Added(c_val, val_to_add, result));
+      Ok(().into())
+  }
+}
 ```
 
 ## Examples

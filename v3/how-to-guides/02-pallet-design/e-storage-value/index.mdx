@@ -56,7 +56,7 @@ Use `StorageValue` to declare the struct as a new single item in storage:
 ```rust
 #[pallet::storage]
 #[pallet::getter(fn meta_data)]
-	pub(super) type MetaDataStore<T: Config> = StorageValue<_, MetaData<T::AccountId, T::Balance>, ValueQuery>;
+pub(super) type MetaDataStore<T: Config> = StorageValue<_, MetaData<T::AccountId, T::Balance>, ValueQuery>;
 ```
 
 ### 3. Configure `GenesisConfig` and `GenesisBuild`
@@ -115,7 +115,6 @@ fn on_initialize(_n: T::BlockNumber) -> Weight {
 	Accounts::<T>::mutate(&meta.minter, |bal| {
 		*bal = bal.saturating_add(value);
 	});
-
 }
 ```
 

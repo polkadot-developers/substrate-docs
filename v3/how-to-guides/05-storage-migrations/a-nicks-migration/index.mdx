@@ -101,11 +101,11 @@ The scaffolding of this module looks like this:
 
 ```rust
 pub mod migration {
-    use super::*;
-
-    pub mod v1 {...} // only contains V1 storage format
-
-    pub fn migrate_to_v2<T: Config>() -> frame_support::weights::Weight {...} // contains checks and transforms storage to V2 format
+  use super::*;
+  
+  pub mod v1 {...} // only contains V1 storage format
+  
+  pub fn migrate_to_v2<T: Config>() -> frame_support::weights::Weight {...} // contains checks and transforms storage to V2 format
 }
 ```
 

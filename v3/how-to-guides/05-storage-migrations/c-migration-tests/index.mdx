@@ -52,8 +52,8 @@ Using `asset_noop!(...)`, `assert_ok!(...)` and `assert_eq!(...)`, constructing 
 ```rust
 #[test]
 fn normal_operation_should_work() {
-	new_test_ext().execute_with(|| {
-		assert_ok!(Nicks::set_name(Origin::signed(1), b"Gav".to_vec(), None));
+  new_test_ext().execute_with(|| {
+    assert_ok!(Nicks::set_name(Origin::signed(1), b"Gav".to_vec(), None));
 		assert_eq!(Balances::reserved_balance(1), 2);
 		assert_eq!(Balances::free_balance(1), 8);
 		assert_eq!(<NameOf<Test>>::get(1).unwrap().0.first, b"Gav".to_vec());

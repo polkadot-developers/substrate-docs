@@ -1,5 +1,5 @@
 ---
-title: Generating On-chain Randomness
+title: Implement a randomness function inside a pallet
 slug: /how-to-guides/v3/pallet-design/randomness
 keywords: pallet design, intermediate, runtime, randomness
 version: '3.0' 
@@ -8,135 +8,103 @@ category: pallet design
 difficulty: 2
 ---
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description: 'Implement a randomness function inside a pallet.',
-    },
-    {
-      title: 'Use Cases',
-      description:
-`- NFT applications
-- Casino gaming type applications`,
-    },
-    {
-      title: 'Overview',
-      description:
-        `[Randomness](/v3/runtime/randomness)is useful in computer programs for everything from gaming applications to selecting block
-        authors. True randomness is hard to come by in deterministic computers. This is particularly true in the context
-        of a blockchain when all the nodes in the network must agree on the state of the chain. FRAME provides runtime engineers
-        with a source of randomness, using the [Randomness trait](/rustdocs/latest/frame_support/traits/trait.Randomness.html).
-        This guide would step you through making use of FRAME's Randomness trait by using it's \`random\` method and a nonce as a subject.
-        For additional entropy to the randomness value, the last step shows how to assign the \`RandomCollectiveFlip\` pallet
-        to the configuration trait of a pallet exposing some "random" type.
-        `,
-    },
-  ]}
-/>
+[Randomness](/v3/runtime/randomness) is used in computer programs for many applications. For example, gaming applications, NFT creation, and selecting block authors all require a degree of randomness.
 
-## Steps
+True randomness is hard to come by in deterministic computers. This is particularly true in the context of a blockchain, when all the nodes in the network must agree on the state of the chain. FRAME provides runtime engineers with a source of randomness, using the [Randomness trait](/rustdocs/latest/frame_support/traits/trait.Randomness.html).
+        
+This guide explains how to make use of FRAME's Randomness trait by using the `random` method and a nonce as a subject. 
+The guide also illustrates how to add entropy to the randomness value by assigning the `RandomCollectiveFlip` pallet to the configuration trait of a pallet that exposes a "random" type.
 
-### 1. Import `Randomness`
+## Import `Randomness`
 
-Inside the pallet you want to use, import the `Randomness` trait from `frame_support`,:
+1. In the pallet you want to use, import the [`Randomness`](/rustdocs/latest/frame_support/traits/trait.Randomness.html) 
+   trait from `frame_support`:
 
-```rust
-use frame_support::traits::Randomness;
-```
+  ```rust
+  use frame_support::traits::Randomness;
+  ```
 
-Now, include it in your pallet's configuration trait:
+1. Include it in your pallet's configuration trait:
 
-```rust
-#[pallet::config]
-pub trait frame_system::Config {
-    type MyRandomness: Randomness<H256>;
-}
-```
+  ```rust
+  #[pallet::config]
+  pub trait frame_system::Config {
+      type MyRandomness: Randomness<Self::Hash, Self::BlockNumber>;
+  }
+  ```
 
-Notice that the `Randomness` trait specifies a generic return of type `Output`. Use [`sp_core::H256`][h256-rustdocs] in your pallet
-to satisfy that trait requirement.
+  Note that the `Randomness` trait specifies a generic return of type `Output` and `BlockNumber`. 
+  Use [`BlockNumber`](/rustdocs/latest/frame_system/pallet/trait.Config.html#associatedtype.BlockNumber) 
+  and [`Hash`](/rustdocs/latest/frame_system/pallet/trait.Config.html#associatedtype.Hash) from `frame_system`
+  in your pallet to satisfy that trait requirement.
+  
+  As stated in [this trait's documentation](/rustdocs/latest/frame_support/traits/trait.Randomness.html), at best, this trait can give you randomness which was hard to predict a long time ago but that has become easy to predict recently. 
+  Keep this in mind when you evaluate your use of it.
 
-<Message
-  type={`red`}
-  title={`A warning on using this trait`}
-  text=
-     "As stated in
-     [this trait's documentation](/rustdocs/latest/frame_support/traits/trait.Randomness.html)
-     at best, this trait can give you randomness which was hard to predict a long time ago 
-     but that has become easy to predict recently. 
-     Bear this in mind depending on your use case for it.
-     "
-/>
-
-### 2. Create a nonce
+## Create a nonce and use it in your randomness implementation
 
 Use a nonce to serve as a subject for the `frame_support::traits::Randomness::random(subject: &[u8])` method.
 
-There's two steps to including a nonce in your pallet:
+1. There are two steps to including a nonce in your pallet:
+ 
+    * **Create a `Nonce` storage item.** The storage item can be type `u32` or `u64`. 
 
-1. **Create a `Nonce` storage item.** This could be of type `u32` or `u64` (no need for it to be larger).
-2. **Create a private nonce function.** This will be used to increment the nonce each time it's used.
+    * **Create a private nonce function.** This function increments the nonce each time it's used.
 
-The `increment_nonce()` private function could be implemented in such a way that it returns the nonce as well as
-updates it. Using this approach it would look like this:
+  The `increment_nonce()` private function can be implemented in such a way that it both returns and updates the nonce. 
+  For example:
 
-```rust
-    fn get_and_increment_nonce() -> Vec<u8> {
-        let nonce = Nonce::get();
-        Nonce::put(nonce.wrapping_add(1));
-        nonce.encode()
-    }
-```
-<br />
-<Message type='yellow' title='Information' text={`
-Learn more about [\`wrapping_add\`](/rustdocs/latest/funty/trait.IsInteger.html#tymethod.wrapping_add)
-and [\`encode()\`](/rustdocs/latest/frame_support/dispatch/trait.Encode.html#method.encode) in the
-Rust documentation.
-`}/>
+    ```rust
+        fn get_and_increment_nonce() -> Vec<u8> {
+            let nonce = Nonce::get();
+            Nonce::put(nonce.wrapping_add(1));
+            nonce.encode()
+        }
+    ```
 
-### 3. Use Randomness in a dispatchable
+  To learn more about the wrapping and encoding methods, see [`wrapping_add`](/rustdocs/latest/funty/trait.IsInteger.html#tymethod.wrapping_add) and [`encode()`](/rustdocs/latest/frame_support/dispatch/trait.Encode.html#method.encode) in the Rust documentation.
 
-Using the nonce, you can call the `random()` method that `Randomness` exposes. The code snippet below is a made up example
-that assumes relevant events and storage items have been implemented:
+1. Use Randomness in a dispatchable.
 
-```rust
-        #[pallet::weight(100)]
-        pub fn create_unique(
-			origin: OriginFor<T>)
-			-> DispatchResultWithPostInfo {
+  Using the nonce, you can call the `random()` method that `Randomness` exposes. The code snippet below is a mock example that assumes 
+  relevant events and storage items have been implemented:
 
-                // Account calling this dispatchable.
-                let sender = ensure_signed(origin)?;
+  ```rust
+  #[pallet::weight(100)]
+  pub fn create_unique(
+      origin: OriginFor<T>)
+      -> DispatchResultWithPostInfo {
 
-                // Random value.
-				let nonce = Self::get_and_increment_nonce();
-                let randomValue = T::MyRandomness::random(&nonce);
+      // Account calling this dispatchable.
+      let sender = ensure_signed(origin)?;
 
-                // Write the random value to storage.
-                <MyStorageItem<T>>::put(randomValue);
+      // Random value.
+      let nonce = Self::get_and_increment_nonce();
+      let randomValue = T::MyRandomness::random(&nonce);
 
-                Self::deposit_event(Event::UniqueCreated(randomValue));
-            }
-```
+      // Write the random value to storage.
+      <MyStorageItem<T>>::put(randomValue);
 
-### 4. Updating your pallet's runtime implementation
+      Self::deposit_event(Event::UniqueCreated(randomValue));
+  }
+  ```
 
-Having added a type to your pallet's configuration trait `Config` opens up the opportunity to further enhance the
-randomness derived by the `Randomness` trait, by using the [Randomness Collective Flip pallet][rcf-pallet-rustdocs].
+1. Update your pallet's runtime implementation
 
-Using this pallet alongside the `Randomness` trait will significantly improve the entropy being processed by `random()`.
+  Because you have added a type to your pallet's configuration trait, `Config` opens up the opportunity to further enhance the randomness 
+  derived by the `Randomness` trait. This is accomplished by using the [Randomness Collective Flip pallet][rcf-pallet-rustdocs].
 
-In `runtime/src/lib.rs`, assuming `pallet_random_collective_flip` is instantiated in `construct_runtime` as `RandomCollectiveFlip`, specify your exposed
-type like this:
+  Using this pallet alongside the `Randomness` trait will significantly improve the entropy being processed by `random()`.
 
-```rust
-impl my_pallet::Config for Runtime{
-    type Event;
-    type MyRandomness = RandomCollectiveFlip;
-}
+  In `runtime/src/lib.rs`, assuming `pallet_random_collective_flip` is instantiated in `construct_runtime` as `RandomCollectiveFlip`, 
+  specify your exposed type in the following way:
 
-```
+  ```rust
+  impl my_pallet::Config for Runtime{
+      type Event;
+      type MyRandomness = RandomCollectiveFlip;
+  }
+  ```
 
 ## Examples
 
@@ -145,9 +113,6 @@ impl my_pallet::Config for Runtime{
 
 ## Related material
 
-#### Other
+[Verifiable Random Functions](https://en.wikipedia.org/wiki/Verifiable_random_function)
 
-- [Verifiable Random Functions](https://en.wikipedia.org/wiki/Verifiable_random_function)
-
-[h256-rustdocs]: /rustdocs/latest/sp_core/struct.H256.html
 [rcf-pallet-rustdocs]: /rustdocs/latest/pallet_randomness_collective_flip/index.html

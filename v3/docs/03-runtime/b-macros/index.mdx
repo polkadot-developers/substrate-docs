@@ -201,7 +201,7 @@ For example:
 
 ```rust
 #[pallet::hooks]
-imple<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
+impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
   // Hooks functions and logic goes here.
 }
 ```

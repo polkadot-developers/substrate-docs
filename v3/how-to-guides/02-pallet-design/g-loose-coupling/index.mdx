@@ -94,14 +94,14 @@ that [implements the `Currency` trait](/rustdocs/latest/pallet_balances/index.ht
 
 ```rust
 impl my_pallet::Config for Runtime {
-    type LocalCurrency = Balances;
+  type LocalCurrency = Balances;
 }
 
 construct_runtime! (
   pub enum Runtime where
-    Block = Block,
-    NodeBlock = opaque::Block,
-    UncheckedExtrinsic = UncheckedExtrinsic
+  Block = Block,
+  NodeBlock = opaque::Block,
+  UncheckedExtrinsic = UncheckedExtrinsic
   {
     Balances: pallet_balances::{Pallet, Call, Storage, Config<T>, Event<T>},
   }

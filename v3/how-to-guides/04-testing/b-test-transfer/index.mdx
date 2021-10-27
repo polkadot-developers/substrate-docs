@@ -37,18 +37,19 @@ Here, we'll start by outlining this function:
 ```rust
 #[pallet::weight(10_000)]
 pub (super) fn transfer(
-    origin: OriginFor<T>,
-    to: T::AccountId,
-    #[pallet::compact] amount: T::Balance,
-) -> DispatchResultWithPostInfo {
+  origin: OriginFor<T>,
+  to: T::AccountId,
+  #[pallet::compact] amount: T::Balance,
+  ) -> DispatchResultWithPostInfo {
     let sender = ensure_signed(origin)?;
-
+    
     Accounts::<T>::mutate(&sender, |bal| {
-        *bal = bal.saturating_sub(amount);
-    });
-    Accounts::<T>::mutate(&to, |bal| {
+      *bal = bal.saturating_sub(amount);
+      });
+      Accounts::<T>::mutate(&to, |bal| {
         *bal = bal.saturating_add(amount);
-    });
+        });
+
     Self::deposit_event(Event::<T>::Transferred(sender, to, amount))
     Ok(().into())
 }
@@ -62,16 +63,16 @@ In a separate `tests.rs` file, write out this first test case:
 ```rust
 #[test]
 fn transfer_works() {
-	new_test_ext().execute_with(|| {
-		MetaDataStore::<Test>::put(MetaData {
+  new_test_ext().execute_with(|| {
+    MetaDataStore::<Test>::put(MetaData {
 			issuance: 0,
 			minter: 1,
 			burner: 1,
 		});
-        // Mint 42 coins to account 2.
-        assert_ok!(RewardCoin::mint(Origin::signed(1), 2, 42));
-        // Send 50 coins to account 3.
-        asset_noop!(RewardCoin::transfer(Origin::signed(2), 3, 50), Error::<T>::InsufficientBalance);
+    // Mint 42 coins to account 2.
+    assert_ok!(RewardCoin::mint(Origin::signed(1), 2, 42));
+    // Send 50 coins to account 3.
+    asset_noop!(RewardCoin::transfer(Origin::signed(2), 3, 50), Error::<T>::InsufficientBalance);
 ```
 
 #### Configure error handling
@@ -81,9 +82,9 @@ This will check whether _bal is greater or equal to amount_ and throw an error m
 
 ```rust
 Accounts::<T>::try_mutate(&sender, |bal| {
-    ensure!(bal >= amount, Error::<T>::InsufficientBalance);
-    *bal = bal.saturating_sub(amount);
-    Ok(())
+  ensure!(bal >= amount, Error::<T>::InsufficientBalance);
+  *bal = bal.saturating_sub(amount);
+  Ok(())
 });
 ```
 
@@ -103,7 +104,7 @@ Use `#[transactional]` to generate a wrapper around both checks:
 
 ```rust
 #[transactional]
-	pub(super) fn transfer(
+pub(super) fn transfer(
 /*--snip--*/
 ```
 
@@ -113,8 +114,8 @@ Make sure that sending and receiving accounts aren't dust accounts. Use `T::MinB
 
 ```rust
 /*--snip--*/
-    let new_bal = bal.checked_sub(&amount).ok_or(Error::<T>::InsufficientBalance)?;
-    ensure!(new_bal >= T::MinBalance::get(), Error::<T>::BelowMinBalance);
+let new_bal = bal.checked_sub(&amount).ok_or(Error::<T>::InsufficientBalance)?;
+ensure!(new_bal >= T::MinBalance::get(), Error::<T>::BelowMinBalance);
 /*--snip--*/
 ```
 

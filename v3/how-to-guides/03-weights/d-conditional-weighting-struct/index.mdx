@@ -60,17 +60,17 @@ use frame_support::dispatch::{DispatchClass, PaysFee, WeighData};
 pub struct Conditional(u32);
 
 impl WeighData<(&bool, &u32)> for Conditional {
-    fn weigh_data(&self, (switch, val): (&bool, &u32)) -> Weight {
-
-        // If the first parameter is true, then the weight is linear in the second parameter.
-        if *switch {
-            val.saturating_mul(self.0)
-        }
-        // Otherwise the weight is constant.
-        else {
-            self.0
-        }
+  fn weigh_data(&self, (switch, val): (&bool, &u32)) -> Weight {
+    
+    // If the first parameter is true, then the weight is linear in the second parameter.
+    if *switch {
+      val.saturating_mul(self.0)
+      }
+      // Otherwise the weight is constant.
+    else {
+      self.0
     }
+  }
 }
 ```
 
@@ -89,9 +89,9 @@ use frame_support::weights::{ClassifyDispatch, DispatchClass, Pays, Weight};
 
 // Implement ClassifyDispatch
 impl<T> ClassifyDispatch<T> for Conditional {
-    fn classify_dispatch(&self, _: T) -> DispatchClass {
-        Default::default()
-    }
+  fn classify_dispatch(&self, _: T) -> DispatchClass {
+    Default::default()
+  }
 }
 ```
 
@@ -110,7 +110,7 @@ use frame_support::weights::PaysFee
 // Implement PaysFee
 impl PaysFee for Conditional {
     fn pays_fee(&self) -> bool {
-        true
+      true
     }
 }
 ```
