@@ -60,7 +60,7 @@ The guide also illustrates how to add entropy to the randomness value by assigni
 
     * **Create a `Nonce` storage item.** The storage item can be type `u32` or `u64`. 
 
-    * **Create a private nonce function.** This will be used to increment the nonce each time it's used.
+    * **Create a private nonce function.** This function increments the nonce each time it's used.
 
   The `increment_nonce()` private function can be implemented in such a way that it both returns and updates 
   the nonce. For example:
