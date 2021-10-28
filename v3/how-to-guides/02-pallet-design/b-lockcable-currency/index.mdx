@@ -8,7 +8,7 @@ category: pallet design
 difficulty: 2
 ---
 
-This guide will show you how to write a pallet that allows users to lock funds for staking and conviction voting.
+This guide shows you how to write a pallet that allows users to lock funds for staking and voting.
 The [\`LockableCurrency\`](/rustdocs/latest/frame_support/traits/trait.LockableCurrency.html) trait is useful in the context of economic systems that enforce accountability by collateralizing fungible resources. You can use the Substrate [staking pallet](/rustdocs/latest/pallet_staking/index.html) to manage locked funds in time-based increments. In this guide, we will make use of it in our own custom pallet.
 
 ## Create a staking pallet
