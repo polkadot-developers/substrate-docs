@@ -1,0 +1,81 @@
+---
+title: Verify Runtime Wasm Binaries with Subwasm
+slug: /how-to-guides/v3/tools/subwasm
+keywords: tooling, wasm
+version: 3.0 
+section: how to guides
+category: tools
+---
+
+[Subwasm](https://github.com/chevdor/subwasm) provides a way to expose all of the features and functionalities of the runtime of any Substrate chain. 
+Any runtime can be queried for an exhaustive list of a chain's metadata and specifications without needing to rely on the Wasm running on a node.
+
+This guide steps through the different capabilities that Subwasm provides. 
+
+## Use cases
+
+- Expose verifiable historical information of a chain's runtime. 
+- Get a quick snapshot of the modules in a runtime.
+- Check for changes between runtimes using a diff 
+
+## Before you begin
+
+To follow this guide you should have a chain you wish to query. 
+You can either [download existing Wasm binaries]() or use ones generated from your own chains. 
+In order to filter metadata, you will also need to [install JQ](https://stedolan.github.io/jq/download/).
+
+
+## Install and discover the CLI tool
+
+To get started:
+
+1. Install Subwasm.
+
+    ```bash
+    cargo install --git https://github.com/chevdor/subwasm --tag v0.14.1 --locked
+    ```
+
+    Make sure you're using the [latest release](https://github.com/chevdor/subwasm/releases). 
+    This guide is based on version 0.14.1. 
+
+1. Explore the CLI commands.
+
+    ```bash
+    subwasm --help
+    ```
+
+## Get information about a runtime 
+
+1. Launch a local node from inside your chain's directory. 
+   This example is launching the node template in dev mode.
+   
+   ```bash
+    ./target/release/node-template --tmp --dev
+   ```
+
+1. In a new terminal, create a temporary folder and use Subwasm to get and save the Wasm of your local chain.
+
+  ```bash
+  mkdir TempWasms && cd TempWasms
+  subwasm get ws://localhost:9944 -o mychain.wasm
+  ```
+
+1. Run the following command to save your chain's metadata to a JSON file:
+
+   ```bash
+    subwasm --json meta mychain.wasm | jq 'del( .. | .documentation? )' > mychain-metadata.json
+   ```
+
+   Using JQ is a useful tool to filter the metadata details from the `subwasm --json meta mychain.wasm` command.
+   In this case, we're choosing to ignore all documentation metadata.
+   You can have a look at the different metadata fields a Substrate chain exposes [here](https://polkadot.js.org/docs/substrate).
+
+1. Use the custom metadata file in a front-end application. 
+
+## Examples [required - link to at least one example]
+
+Replace this paragraph with an introductory sentence followed by a link to at least one working example that corresponds with the information covered in this guide.
+
+## Related resources [optional - add links as needed]
+
+Replace this paragraph with a list of links to other materials.
