@@ -1,7 +1,7 @@
 ---
 title: Installation
 slug: /v3/getting-started/installation
-version: 3.0 
+version: 3.0
 section: docs
 category: getting started
 keywords:
@@ -95,24 +95,12 @@ and follow the instructions for [Ubuntu/Debian](#ubuntudebian). Please refer to 
 
 ## 2. Rust developer environment
 
-### Automated `getsubstrate.io` script
-
-For most users you can run our script to automate the steps listed below:
-
-```bash
-curl https://getsubstrate.io -sSf | bash -s -- --fast
-```
-
-If this gives any errors, please follow the steps below to manually configure rust on your machine.
-
-### Manual Rust configuration
-
 This guide uses [`rustup`](https://rustup.rs/) to help manage the Rust toolchain. First install and
 configure `rustup`:
 
 ```bash
 # Install
-curl https://sh.rustup.rs -sSf | sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # Configure
 source ~/.cargo/env
 ```
