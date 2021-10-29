@@ -5,7 +5,7 @@ const DevNavMenu = {
     const intl = useIntl()
     return [
       {
-        section: `${intl.formatMessage({ id: 'docs-nav-knowledgebase' })}`,
+        section: `Docs`,
         url: '/v3/',
         external: false,
       },

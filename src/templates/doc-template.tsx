@@ -15,7 +15,6 @@ import DocTag from '../components/DocTag'
 
 const DocsTemplate = ({ location, data, pageContext }: any) => {
   const { slug, version } = pageContext
-  const docId = 0
   const globalDocsNav = navMenu.global()
   const docsMenu = navMenu.knowledgebase()
 
@@ -31,7 +30,7 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
               hashLink={location.hash}
               sideNav={docsMenu}
               globalNav={globalDocsNav}
-              templateId={docId}
+              section={data.mdx.frontmatter.section}
             />
           </div>
           <div className="hidden lg:inline-block lg:flex-none lg:h-auto lg:bg-substrateGray-light lg:dark:bg-substrateDark border-r border-gray-200 dark:border-gray-700">
@@ -40,7 +39,7 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
               hashLink={location.hash}
               sideNav={docsMenu}
               globalNav={globalDocsNav}
-              templateId={docId}
+              section={data.mdx.frontmatter.section}
             />
           </div>
           {/* ------------ */}
