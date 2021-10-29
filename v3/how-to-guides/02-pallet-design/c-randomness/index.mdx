@@ -101,23 +101,20 @@ Using the nonce, you can call the `random()` method that `Randomness` exposes. T
 that assumes relevant events and storage items have been implemented:
 
 ```rust
-        #[pallet::weight(100)]
-        pub fn create_unique(
-			origin: OriginFor<T>)
-			-> DispatchResultWithPostInfo {
+#[pallet::weight(100)]
+pub fn create_unique(origin: OriginFor<T>) -> DispatchResultWithPostInfo {
+  // Account calling this dispatchable.
+  let sender = ensure_signed(origin)?;
 
-                // Account calling this dispatchable.
-                let sender = ensure_signed(origin)?;
+  // Random value.
+	let nonce = Self::get_and_increment_nonce();
+  let randomValue = T::MyRandomness::random(&nonce);
 
-                // Random value.
-				let nonce = Self::get_and_increment_nonce();
-                let randomValue = T::MyRandomness::random(&nonce);
+  // Write the random value to storage.
+  <MyStorageItem<T>>::put(randomValue);
 
-                // Write the random value to storage.
-                <MyStorageItem<T>>::put(randomValue);
-
-                Self::deposit_event(Event::UniqueCreated(randomValue));
-            }
+  Self::deposit_event(Event::UniqueCreated(randomValue));
+}
 ```
 
 ### 4. Updating your pallet's runtime implementation
@@ -132,10 +129,9 @@ type like this:
 
 ```rust
 impl my_pallet::Config for Runtime{
-    type Event;
-    type MyRandomness = RandomCollectiveFlip;
+  type Event;
+  type MyRandomness = RandomCollectiveFlip;
 }
-
 ```
 
 ## Examples
