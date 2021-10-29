@@ -7,30 +7,14 @@ category: pallet design
 difficulty: 2
 ---
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description: 'Learn how to use one pallet\'s capabilities from inside your pallet',
-    },
-    {
-      title: 'Use Cases',
-      description: `Give your pallet access to the methods and types of another pallet.`,
-    },
-    {
-      title: 'Overview',
-      description:
-        `Tight coupling two pallets may suit specific use cases where the outside pallet 
-         contains many types and methods common to those of the initial pallet. If this is not 
-         the case, it's recommended to use loose coupling instead. Read more about pallet 
-         coupling [here](/v3/runtime/pallet-coupling).`,
-    },
-  ]}
-/>
+This guide will show you how to use an external pallet's capabilities from inside your pallet.
 
-## Steps
+Tight coupling two pallets may suit specific use cases where an outside pallet contains many types and methods common to those of your initial pallet. If this is not the case, you can use loose coupling instead. To learn more, see [pallet coupling](/v3/runtime/pallet-coupling).
 
-### 1. Configure your workspace
+
+## Before you begin
+
+1. Configure your workspace
 
 Assume you want to use a pallet called `special-pallet`, which is a pallet in your 
 local workspace. Import it by providing its path in your pallet's `Cargo.toml` file:
