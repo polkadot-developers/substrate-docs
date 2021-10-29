@@ -33,7 +33,8 @@ Implement the Contracts pallet [configuration traits][contracts-config-rustdocs]
   
   Make sure you've included all of the types that `pallet_contracts` exposes. You can copy these from [FRAME's source code][contracts-frame-gh]. Always check that versioning is equivalent to the imported crate. 
   
-  Add these types to `runtime/src/lib.rs`. The following code snippet shows four types:
+  Add these types to `runtime/src/lib.rs`. 
+  The following code snippet shows four types:
 
   ```rust
   impl pallet_contracts::Config for Runtime {
