@@ -40,15 +40,15 @@ difficulty: 1
 
 ```rust
 #[pallet::config]
-	pub trait Config: frame_system::Config {
-        type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+pub trait Config: frame_system::Config {
+  type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+  
+  #[pallet::constant] // put the constant in metadata
+  /// Maximum amount added per invocation.
+  type MaxAddend: Get<u32>;
 
-		#[pallet::constant] // put the constant in metadata
-        /// Maximum amount added per invocation.
-        type MaxAddend: Get<u32>;
-
-        /// Frequency with which the stored value is deleted.
-        type ClearFrequency: Get<Self::BlockNumber>;
+  /// Frequency with which the stored value is deleted.
+  type ClearFrequency: Get<Self::BlockNumber>;
 	}
 ```
 
@@ -93,15 +93,15 @@ runs at the end of block execution. Specify this logic under the `#[pallet::hook
 
 ```rust
 #[pallet::hooks]
-    impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
-        fn on_finalize(n: T::BlockNumber) {
-            if (n % T::ClearFrequency::get()).is_zero() {
-                let current_value = <SingleValue<T>>::get();
-            	<SingleValue<T>>::put(0u32);
-                Self::deposit_event(Event::Cleared(current_value));
-            }
-        }
-	}
+impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
+  fn on_finalize(n: T::BlockNumber) {
+    if (n % T::ClearFrequency::get()).is_zero() {
+      let current_value = <SingleValue<T>>::get();
+      <SingleValue<T>>::put(0u32);
+      Self::deposit_event(Event::Cleared(current_value));
+    }
+  }
+}
 ```
 
 ### 4. Create a method that allows users to specify the value.
@@ -116,30 +116,29 @@ For this method, make sure to:
 - Update `SingleValue`.
 
 ```rust
-    // Extrinsics callable from outside the runtime.
-	 #[pallet::call]
-    impl<T: Config> Pallet<T> {
-    #[pallet::weight(1_000)]
+// Extrinsics callable from outside the runtime.
+#[pallet::call]
+impl<T: Config> Pallet<T> {
+  #[pallet::weight(1_000)]
+  fn add_value(
+    origin: OriginFor<T>,
+    val_to_add: u32
+    ) -> DispatchResultWithPostInfo {
 
-    fn add_value(
-        origin: OriginFor<T>,
-        val_to_add: u32
-        ) -> DispatchResultWithPostInfo {
-            let _ = ensure_signed(origin)?;
+    let _ = ensure_signed(origin)?;
+    ensure!(val_to_add <= T::MaxAddend::get(), "value must be <= maximum add amount constant");
 
-            ensure!(val_to_add <= T::MaxAddend::get(), "value must be <= maximum add amount constant");
+    // previous value got
+    let c_val = SingleValue::<T>::get();
 
-            // previous value got
-           	let c_val = SingleValue::<T>::get();
+    // checks for overflow when new value added
+    let result = c_val.checked_add(val_to_add).ok_or(Error::<T>::Overflow)?;
 
-            // checks for overflow when new value added
-            let result = c_val.checked_add(val_to_add).ok_or(Error::<T>::Overflow)?;
-
-            <SingleValue<T>>::put(result);
-            Self::deposit_event(Event::Added(c_val, val_to_add, result));
-            Ok(().into())
-        }
-	}
+    <SingleValue<T>>::put(result);
+    Self::deposit_event(Event::Added(c_val, val_to_add, result));
+    Ok(().into())
+  }
+}
 ```
 
 ### 5. Supply the constant value for runtime
