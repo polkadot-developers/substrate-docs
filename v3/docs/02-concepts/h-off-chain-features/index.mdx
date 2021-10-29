@@ -1,17 +1,18 @@
 ---
 title: Off-Chain Features
 slug: /v3/concepts/off-chain-features
-version: 3.0 
+version: 3.0
 section: docs
 category: concepts
 keywords: off-chain, off-chain storage, oracles, ocw
 ---
 
 There is often a need to query and/or process off-chain data before it can be included in the
-on-chain state. The conventional way of doing this is through oracles. Oracles are external services
-that typically listen to blockchain events and trigger tasks accordingly. When these tasks complete,
-their results are submitted back to the blockchain using transactions. While this approach works, it
-still has several flaws with respect to security, scalability, and infrastructure efficiency.
+on-chain state.
+The conventional way of doing this is through oracles.
+Oracles are external services that typically listen to blockchain events and trigger tasks accordingly.
+When these tasks complete, their results are submitted back to the blockchain using transactions.
+While this approach works, it still has several flaws with respect to security, scalability, and infrastructure efficiency.
 
 To make the off-chain data integration secure and more efficient, Substrate provides off-chain
 features:
