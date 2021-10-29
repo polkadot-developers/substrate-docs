@@ -74,7 +74,7 @@ In addition to the ubiquitous `Event` type, this pallet will need:
 /// The pallet's configuration trait.
 #[pallet::config]
 pub trait Config: frame_system::Config {
-	type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+  type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
 	type Currency: ReservableCurrency<Self::AccountId>;
 	type SubmissionDeposit: Get<BalanceOf<Self>>;
 	type MinContribution: Get<BalanceOf<Self>>;
@@ -111,23 +111,22 @@ Our storage items will need to keep track of which user contributed to what fund
 pub type FundIndex = u32;
 type AccountIdOf<T> = <T as frame_system::Config>::AccountId;
 type BalanceOf<T> = <<T as Config>::Currency as Currency<AccountIdOf<T>>>::Balance;
-type FundInfoOf<T> =
-		FundInfo<AccountIdOf<T>, BalanceOf<T>, <T as frame_system::Config>::BlockNumber>;
+type FundInfoOf<T> = FundInfo<AccountIdOf<T>, BalanceOf<T>, <T as frame_system::Config>::BlockNumber>;
 ```
 
 Now, use those types to create one `StorageMap` item that tracks the funds by index and a second, `StorageValue`, that keeps track of `FundIndex`:
 
 ```rust
 #[pallet::storage]
-	#[pallet::getter(fn funds)]
-	/// Info on all of the funds.
-	pub(super) type Funds<T: Config> = StorageMap<
-		_,
-		Blake2_128Concat,
-		FundIndex,
-		FundInfoOf<T>,
-		OptionQuery,
-	>;
+#[pallet::getter(fn funds)]
+/// Info on all of the funds.
+pub(super) type Funds<T: Config> = StorageMap<
+  _,
+  Blake2_128Concat,
+  FundIndex,
+  FundInfoOf<T>,
+  OptionQuery,
+>;
 
 	#[pallet::storage]
 	#[pallet::getter(fn fund_count)]
@@ -151,11 +150,11 @@ Then, we'll need to generate unique [ChildInfo][childinfo-rustdocs] IDs:
 
 ```rust
 pub fn id_from_index(index: FundIndex) -> child::ChildInfo {
-    let mut buf = Vec::new();
-    buf.extend_from_slice(b"crowdfnd");
-    buf.extend_from_slice(&index.to_le_bytes()[..]);
-
-    child::ChildInfo::new_default(T::Hashing::hash(&buf[..]).as_ref())
+  let mut buf = Vec::new();
+  buf.extend_from_slice(b"crowdfnd");
+  buf.extend_from_slice(&index.to_le_bytes()[..]);
+  
+  child::ChildInfo::new_default(T::Hashing::hash(&buf[..]).as_ref())
 }
 ```
 

@@ -166,27 +166,28 @@ benchmarking.
    impl frame_benchmarking::Benchmark<Block> for Runtime {
      fn dispatch_benchmark(
        config: frame_benchmarking::BenchmarkConfig
-     ) -> Result<
-			(Vec<frame_benchmarking::BenchmarkBatch>, Vec<StorageInfo>),
-			sp_runtime::RuntimeString,
-		> {
-      // -- snip --
-       let whitelist: Vec<TrackedStorageKey> = vec![
-         // You can whitelist any storage keys you do not want to track here
-       ];
-       let storage_info = AllPalletsWithSystem::storage_info();
-       let mut batches = Vec::<BenchmarkBatch>::new();
-       let params = (&config, &whitelist);
+     ) -> Result<(
+       Vec<frame_benchmarking::BenchmarkBatch>,
+       Vec<StorageInfo>),
+       sp_runtime::RuntimeString,
+       > {
+         // -- snip --
+         let whitelist: Vec<TrackedStorageKey> = vec![
+           // You can whitelist any storage keys you do not want to track here
+           ];
+           let storage_info = AllPalletsWithSystem::storage_info();
+           let mut batches = Vec::<BenchmarkBatch>::new();
+           let params = (&config, &whitelist);
 
-       // Adding the pallet for which you will perform the benchmarking
-       add_benchmark!(params, batches, pallet_you_crated, YourPallet);
+           // Adding the pallet for which you will perform the benchmarking
+           add_benchmark!(params, batches, pallet_you_crated, YourPallet);
+           
+           // -- snip --
 
-       // -- snip --
-
-       if batches.is_empty() { return Err("Benchmark not found for this pallet.".into()) }
-       Ok(batches, storage_info)
-     }
-   }
+           if batches.is_empty() { return Err("Benchmark not found for this pallet.".into()) }
+           Ok(batches, storage_info)
+          }
+      }
    ```
 
 ### 3. Run your benchmarks

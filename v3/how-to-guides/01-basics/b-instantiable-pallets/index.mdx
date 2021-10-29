@@ -73,8 +73,8 @@ impl mint_token::Config<mint_token::Instance2> for Runtime {
 }
 
 /* --snip-- */
-MintToken1: mint_token::<Instance1>::{Module, Call, Storage, Event<T>},
-MintToken2: mint_token::<Instance2>::{Module, Call, Storage, Event<T>},
+MintToken1: mint_token::<Instance1>::{Pallet, Call, Storage, Event<T>},
+MintToken2: mint_token::<Instance2>::{Pallet, Call, Storage, Event<T>},
 /* --snip-- */
 ```
 
