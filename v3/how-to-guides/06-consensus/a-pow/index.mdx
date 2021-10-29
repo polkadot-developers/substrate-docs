@@ -41,22 +41,22 @@ In `src/service.rs`, make a function called `new_full1` that defines [`PartialCo
 
 ```rust
 let pow_block_import = sc_consensus_pow::PowBlockImport::new(
-    client.clone(),
-    client.clone(),
-    sha3pow::MinimalSha3Algorithm,
-    0,                              // check inherents starting at block 0
-    select_chain.clone(),
-    inherent_data_providers.clone(),
-    can_author_with,
+  client.clone(),
+  client.clone(),
+  sha3pow::MinimalSha3Algorithm,
+  0,                              // check inherents starting at block 0
+  select_chain.clone(),
+  inherent_data_providers.clone(),
+  can_author_with,
 );
 
 let import_queue = sc_consensus_pow::import_queue(
-    Box::new(pow_block_import.clone()),
-    None,
-    sha3pow::MinimalSha3Algorithm,  // provide it with references to our client
-    inherent_data_providers.clone(),
-    &task_manager.spawn_handle(),
-    config.prometheus_registry(),
+  Box::new(pow_block_import.clone()),
+  None,
+  sha3pow::MinimalSha3Algorithm,  // provide it with references to our client
+  inherent_data_providers.clone(),
+  &task_manager.spawn_handle(),
+  config.prometheus_registry(),
 )?;
 ```
 
@@ -68,13 +68,13 @@ Define your node's [inherents][inherents-kb] by using [`InherentDataProviders`][
 
 ```rust
 pub fn build_inherent_data_providers() -> Result<InherentDataProviders, ServiceError> {
-    let providers = InherentDataProviders::new();
-
-    providers
-        .register_provider(sp_timestamp::InherentDataProvider)
-        .map_err(Into::into)
-        .map_err(sp_consensus::error::Error::InherentData)?;
-
+  let providers = InherentDataProviders::new();
+  
+  providers
+    .register_provider(sp_timestamp::InherentDataProvider)
+    .map_err(Into::into)
+    .map_err(sp_consensus::error::Error::InherentData)?;
+    
     Ok(providers)
 }
 ```

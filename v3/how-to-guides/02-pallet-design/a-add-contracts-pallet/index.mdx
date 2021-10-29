@@ -137,6 +137,13 @@ the Contracts pallet to make calls to your node's storage without making a trans
 
   To be able to call the runtime API, you must add the RPC to the node's service.
 
+  ```rust
+  // Contracts RPC API extension
+  io.extend_with(
+     ContractsApi::to_delegate(Contracts::new(client.clone()))
+    );
+  ```
+  
   This RPC does not contain access to the Contracts pallet by default. 
   To interact with it, you must extend the existing RPC and add the Contracts pallet along with the API.
 
@@ -161,7 +168,7 @@ Your node template now includes the Contracts pallet and is ready to execute WAS
 
 Build and run it using the following commands:
 
-```rust
+```bash
 # Build chain
 cargo build --release
 # Launch chain in development mode
