@@ -136,7 +136,8 @@ the Contracts pallet to make calls to your node's storage without making a trans
 
   To be able to call the runtime API, you must add the RPC to the node's service.
 
-  This RPC does not contain access to the Contracts pallet by default. To interact with it, you must extend the existing RPC and add the Contracts pallet along with the API.
+  This RPC does not contain access to the Contracts pallet by default. 
+  To interact with it, you must extend the existing RPC and add the Contracts pallet along with the API.
 
   In `node/src/rpc.rs`, add the following line to the `where` clause in `create_full<C, P>`:
 
