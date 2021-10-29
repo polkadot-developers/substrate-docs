@@ -71,14 +71,13 @@ Using `call.get_dispatch_info()`, calculate the maximum possible weight before t
 
 ```rust
 #[weight = {
-			let dispatch_info = call.get_dispatch_info();
-			(dispatch_info.weight, dispatch_info.class, Pays::Yes)
-            }]
-
-      // Define a function header that returns DispatchResultWithPostInfo.
-		  fn do_three_reads(origin, call: Box<<T as Config>::Call>) -> DispatchResultWithPostInfo {
-      // Function logic.
-        }
+  let dispatch_info = call.get_dispatch_info();
+  (dispatch_info.weight, dispatch_info.class, Pays::Yes)
+  }]
+    // Define a function header that returns DispatchResultWithPostInfo.
+    fn do_three_reads(origin, call: Box<<T as Config>::Call>) -> DispatchResultWithPostInfo {
+    // Function logic.
+    }
 ```
 
 `GetDispatchInfo` provides the `get_dispatch_info()` method we need to retrieve information about the function's weight.

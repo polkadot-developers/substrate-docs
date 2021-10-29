@@ -80,13 +80,13 @@ We'll take `DeletionQueueDepth` as one example &mdash; go ahead and add them in:
 
 ```rust
 parameter_types! {
-     /* --snip-- */
-	pub DeletionQueueDepth: u32 = ((DeletionWeightLimit::get() / (
-			<Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(1) -
-			<Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(0)
-		    )) / 5) as u32;
-        /* --snip-- */
-    }
+  /* --snip-- */
+  pub DeletionQueueDepth: u32 = ((DeletionWeightLimit::get() / (
+    <Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(1) -
+    <Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(0)
+    )) / 5) as u32;
+    /* --snip-- */
+  }
 ```
 
 Notice how the above parameter type depends on `WeightInfo`. This requires you to add the following to the top of `runtime/src/lib.rs`:
@@ -186,8 +186,8 @@ And add the contracts RPC API extension using:
 
 ```rust
  // Contracts RPC API extension
-   io.extend_with(
-       ContractsApi::to_delegate(Contracts::new(client.clone()))
+ io.extend_with(
+   ContractsApi::to_delegate(Contracts::new(client.clone()))
    );
 ```
 
@@ -197,7 +197,7 @@ Your node template now includes the Contracts pallet and is ready to execute WAS
 
 Build and run it using:
 
-```rust
+```bash
 # Build chain
 cargo build --release
 # Launch chain in development mode
