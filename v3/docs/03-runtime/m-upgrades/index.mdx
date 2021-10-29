@@ -64,10 +64,11 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
   do the same thing. Non-consensus-breaking optimizations are about the only changes that could be
   made which would result in only the `impl_version` changing.
 
-- `transaction_version`: The version of the extrinsics interface, useful to synchronize firmware updates for hardware wallets and to sign transactions correctly. 
+- `transaction_version`: The version of the extrinsics interface, useful to synchronize firmware updates for hardware wallets. 
+  This allows hardware wallets to know which transactions they can safely sign.
   This number must be bumped when there is a change in the order of the pallets in the `construct_runtime!` macro or when there is a change in the dispatchables of a pallet.
   This includes any change in pallet and dispatchable runtime parameter types. 
-  If this number is updated, then the `spec_version` must also be updated which can be automated in your chain's CI process. 
+  If this number is updated, then the `spec_version` must also be updated which can be automated as a CI process. 
 
 - `apis` is a list of supported
   [runtime APIs](/rustdocs/latest/sp_api/macro.impl_runtime_apis.html) along
