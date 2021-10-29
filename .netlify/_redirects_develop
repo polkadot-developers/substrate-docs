@@ -81,12 +81,13 @@
 /docs/en/knowledgebase/getting-started/*       /v3/getting-started/:splat        301!
 
 ### Knowledge Base: Key Concepts
-/docs/en/knowledgebase/learn-substrate/*      /v3/concepts/:splat        301!
-/docs/en/knowledgebase/runtime                /v3/concepts/runtime       301!
-/docs/en/knowledgebase/runtime/               /v3/concepts/runtime       301!
+/docs/en/knowledgebase/learn-substrate/*                        /v3/concepts/:splat             301!
+/docs/en/knowledgebase/learn-substrate/off-chain-workers        /v3/concepts/off-chain-features 301!
+/docs/en/knowledgebase/runtime                                  /v3/concepts/runtime            301!
+/docs/en/knowledgebase/runtime/                                 /v3/concepts/runtime            301!
 
 ### Knowledge Base: Runtime Development
-/docs/en/knowledgebase/runtime/fees               /v3/runtime/weights-and-fees            301!
+/docs/en/knowledgebase/runtime/fees                 /v3/runtime/weights-and-fees            301!
 /docs/en/knowledgebase/runtime/errors	            /v3/runtime/events-and-errors/          301!
 /docs/en/knowledgebase/runtime/events	            /v3/runtime/events-and-errors/          301!
 /docs/en/knowledgebase/runtime/execution	        /v3/concepts/execution/                 301!
@@ -94,7 +95,7 @@
 /docs/en/knowledgebase/runtime/primitives	        /v3/concepts/runtime/#core-primitives   301!
 /docs/en/knowledgebase/runtime/tests	            /v3/runtime/testing/                    301!
 /docs/en/knowledgebase/runtime/origin	            /v3/runtime/origins/                    301!
-/docs/en/knowledgebase/runtime/pallets	          /v3/runtime/pallet-coupling/            301!
+/docs/en/knowledgebase/runtime/pallets	          /v3/runtime/frame/#pallets            301!
 /docs/en/knowledgebase/runtime/*                  /v3/runtime/:splat                      301!
 
 ### Knowledge Base: Smart Contract
@@ -113,6 +114,7 @@
 /docs/en/knowledgebase/integrate/memory-profiling   /v3/tools/memory-profiling/         301!
 /docs/en/knowledgebase/integrate/polkadot-js        /v3/integration/polkadot-js/        301!
 /docs/en/knowledgebase/integrate/subkey             /v3/tools/subkey/                   301!
+
 
 ### Knowledge Base: Advanced
 /docs/en/knowledgebase/advanced/codec         /v3/advanced/scale-codec                  301!

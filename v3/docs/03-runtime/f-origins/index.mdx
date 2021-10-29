@@ -11,7 +11,7 @@ The runtime origin is used by dispatchable functions to check where a call has c
 
 ## Raw origins
 
-Substrate defines three raw origins which can be used in your runtime module:
+Substrate defines three raw origins which can be used in your runtime pallets:
 
 ```rust
 pub enum RawOrigin<AccountId> {
@@ -44,7 +44,7 @@ proposal.dispatch(system::RawOrigin::None.into())
 ```
 
 You can look at the source code of the
-[Sudo module](/rustdocs/latest/pallet_sudo) for a practical
+[Sudo module](/rustdocs/latest/pallet_sudo/index.html) for a practical
 implementation of this.
 
 ## Custom origins
@@ -61,11 +61,11 @@ Customizing origins allows runtime developers to specify valid origins depending
 
 ### Examples
 
-- View the [Sudo module](https://github.com/paritytech/substrate/tree/master/frame/sudo) to see how it allows a user to call with `Root` and `Signed` origin.
+- View the [Sudo pallet](https://github.com/paritytech/substrate/tree/master/frame/sudo) to see how it allows a user to call with `Root` and `Signed` origin.
 
-- View the [Timestamp module](https://github.com/paritytech/substrate/tree/master/frame/timestamp) to see how it validates an a call with `None` origin.
+- View the [Timestamp pallet](https://github.com/paritytech/substrate/tree/master/frame/timestamp) to see how it validates an a call with `None` origin.
 
-- View the [Collective module](https://github.com/paritytech/substrate/tree/master/frame/collective) to see how it constructs a custom `Member` origin.
+- View the [Collective pallet](https://github.com/paritytech/substrate/tree/master/frame/collective) to see how it constructs a custom `Member` origin.
 
 - View our recipe for creating and using a custom origin.
 

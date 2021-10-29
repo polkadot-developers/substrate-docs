@@ -7,10 +7,10 @@ category: runtime
 keywords:
 ---
 
-A Substrate runtime module can emit events when it wants to notify external entities about changes
+A pallet can emit events when it wants to notify external entities about changes
 or conditions in the runtime to external entities like users, chain explorers, or dApps.
 
-You can define what events your module emits, what information is contained within those events, and
+You can define what events your pallet emits, what information is contained within those events, and
 when those events are emitted.
 
 ## Declaring an event
@@ -40,7 +40,7 @@ The `Event` enum needs to be declared in your runtime's configuration trait.
 
 Your pallet's events need to be exposed to your node's runtime (`/runtime/src/lib.rs`).
 
-First, you need to implement the `Event` type in your module's configuration trait:
+First, you need to implement the `Event` type in your pallet's configuration trait:
 
 ```rust
 // runtime/src/lib.rs
@@ -60,12 +60,12 @@ construct_runtime!(
 		UncheckedExtrinsic = UncheckedExtrinsic
 	{
 		// --snip--
-		TemplateModule: template::{Module, Call, Storage, Event<T>},
+		TemplateModule: template::{Pallet, Call, Storage, Event<T>},
 		//--add-this------------------------------------->^^^^^^^^
 	}
 );
 ```
-
+<br />
 <Message
   type={`gray`}
   title={`Note`}
@@ -106,8 +106,8 @@ The default behavior of this function is to call
 [`deposit_event`](/rustdocs/latest/frame_system/pallet/struct.Pallet.html#method.deposit_event)
 from the FRAME system, which writes the event to storage.
 
-This function places the event in the System module's runtime storage for that block. At the
-beginning of a new block, the System module automatically removes all events that were stored from
+This function places the event in the System pallet's runtime storage for that block. At the
+beginning of a new block, the System pallet automatically removes all events that were stored from
 the previous block.
 
 Events deposited using the default implementation will be directly supported by downstream libraries
@@ -126,7 +126,7 @@ those types as shown in the example above.
 
 The Substrate RPC does not directly expose an endpoint for querying events. If you used the default
 implementation, you can see the list of events for the current block by querying the storage of the
-System module. Otherwise, the [Polkadot-JS API](/v3/integration/polkadot-js) supports a WebSocket
+System pallet. Otherwise, the [Polkadot-JS API](/v3/integration/polkadot-js) supports a WebSocket
 subscription on runtime events.
 
 ## Errors

@@ -57,11 +57,11 @@ implementations, and developers are able to provide their own implementation if 
 make different tradeoffs.
 
 The first implementation provided by Substrate is the
-[Randomness Collective Flip Pallet](/rustdocs/latest/pallet_randomness_collective_flip).
+[Randomness Collective Flip Pallet](/rustdocs/latest/pallet_randomness_collective_flip/index.html).
 This pallet is based on collective coin flipping. It is quite performant, but not very secure. This
 pallet should be used only when testing randomness-consuming pallets, not it production.
 
-The second implementation is the [BABE pallet](/rustdocs/latest/pallet_babe),
+The second implementation is the [BABE pallet](/rustdocs/latest/pallet_babe/index.html),
 which uses verifiable random functions. This pallet provides production-grade randomness, and is
 used in Polkadot. Selecting this randomness source dictates that your blockchain use Babe consensus.
 
@@ -81,10 +81,10 @@ _all_ pallet's that consume its randomness.
 
 ### Examples
 
-- Explore this [guide about implementing Randomness](/how-to-guides/v3/pallet-design/randomness).
+- Explore this [guide about implementing Randomness](/how-to-guides/v3/pallet-design/randomness/)
 
 ### References
 
 - Read more in the [Polkadot Wiki](https://wiki.polkadot.network/docs/en/learn-randomness)
 - View the Rustdocs on the
-  [`Randomness` Trait](/rustdocs/latest/frame_support/traits/trait.Randomness.html).
+  [`Randomness` Trait](/rustdocs/latest/frame_support/traits/trait.Randomness.html)

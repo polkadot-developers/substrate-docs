@@ -141,9 +141,9 @@ some good resources:
 - [Basics and Metadata](https://polkadot.js.org/docs/api/start/basics)
 - [RPC queries](https://polkadot.js.org/docs/api/start/api.rpc)
 - [Storage methods](https://polkadot.js.org/docs/substrate/storage) such as
-`api.query.<module>.<method>` to access a pallet instance in a runtime
+`api.query.<pallet>.<method>` to access a pallet instance in a runtime
 - [Extrinsics methods](https://polkadot.js.org/docs/substrate/extrinsics) such as
-`api.tx.<module>.<method>` to trigger a transaction.
+`api.tx.<pallet>.<method>` to trigger a transaction.
 
 [substrate-frontend-template]: https://github.com/substrate-developer-hub/substrate-front-end-template
 
@@ -210,7 +210,7 @@ the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.js`.
   changes in Kitty objects. To do this we'll create [a subscription](https://reactjs.org/docs/hooks-reference.html#useeffect) 
   function for each.
 
-  We'll use `api.query.kitties.kittyCnt` to listen for a change in the amount of Kitties,
+  We'll use `api.query.substrateKitties.kittyCnt` to listen for a change in the amount of Kitties,
   which will query `KittyCnt` from our Kitties pallet storage item. Then,
   we'll use the `entries()` method from Polkadot-JS API to get Kitty IDs and transform them 
   with the `convertToKittyHash` function. 
@@ -224,9 +224,9 @@ the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.js`.
 
       const asyncFetch = async () => {
           // Query KittyCnt from runtime
-        unsub = await api.query.kitties.kittyCnt(async cnt => {
+        unsub = await api.query.substrateKitties.kittyCnt(async cnt => {
           // Fetch all Kitty objects using entries()
-          const entries = await api.query.kitties.kitties.entries();
+          const entries = await api.query.substrateKitties.kitties.entries();
           // Retrieve only the Kitty ID and set to state
           const hashes = entries.map(convertToKittyHash);
           setKittyHashes(hashes);
@@ -241,7 +241,7 @@ the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.js`.
       };
     };
   ```
-
+  <br />
   <Message
     type={`green`}
     title={`Learn More`}
@@ -263,7 +263,7 @@ the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.js`.
 
       const asyncFetch = async () => {
           // Get Kitty objects from storage 
-        unsub = await api.query.kitties.kitties.multi(kittyHashes, kitties => {
+        unsub = await api.query.substrateKitties.multi(kittyHashes, kitties => {
           // Create an array of Kitty objects from `constructKitty`
           const kittyArr = kitties
             .map((kitty, ind) => constructKitty(kittyHashes[ind], kitty.value));
@@ -286,20 +286,13 @@ the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.js`.
   used in the map. Now we want to extract only the key for the map, so we extract the last 64 bytes 
   out in our `convertToKittyHash` function.
 
-1. Paste in the follow snippet to extract the last 64 bytes of the storage key:
-
-  ```js
-  const convertToKittyHash = entry =>
-    `0x${entry[0].toJSON().slice(-64)}`;
-  ```
-
-1. Use that value in the subscription function to transform an entry to its corresponding hash:
+1. Use `convertToKittyHash` helper function (declared at step 2) in the subscription function to transform an entry to its corresponding hash:
 
   ```js
     const asyncFetch = async () => {
-        unsub = await api.query.kitties.kittyCnt(async cnt => {
+        unsub = await api.query.substrateKitties.kitties.kittyCnt(async cnt => {
           // Fetch all kitty keys
-          const entries = await api.query.kitties.kitties.entries();
+          const entries = await api.query.substrateKitties.kitties.kitties.entries();
           const hashes = entries.map(convertToKittyHash);
           setKittyHashes(hashes);
         });
@@ -322,7 +315,7 @@ the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.js`.
     };
   ```
 
-1. Now all that's left to do for our component to listen for changes in our node's runtime storgae is
+1. Now all that's left to do for our component to listen for changes in our node's runtime storage is
   to pass in `subscribeKittyCnt` and `subscribeKitties` to React's `useEffect` function. Add these 
   lines to enable this:
 
@@ -500,7 +493,7 @@ Our `KittyCards.js` component will have three sections to it:
             accountPair={accountPair} label='Transfer' type='SIGNED-TX' setStatus={setStatus}
             onClick={confirmAndClose}
             attrs={{
-              palletRpc: 'kitties',
+              palletRpc: 'substrateKitties',
               callable: 'transfer',
               inputParams: [formValue.target, kitty.id],
               paramFields: [true, true]
@@ -636,7 +629,7 @@ Now that we've built all the bits for our front-end application, we can piece ev
         <TxButton
           accountPair={accountPair} label='Create Kitty' type='SIGNED-TX' setStatus={setStatus}
           attrs={{
-            palletRpc: 'kitties',
+            palletRpc: 'substrateKitties',
             callable: 'createKitty',
             inputParams: [],
             paramFields: []

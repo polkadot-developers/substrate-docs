@@ -271,16 +271,16 @@ pub mod pallet {
 		#[pallet::weight(100)]
 		pub fn breed_kitty(
 			origin: OriginFor<T>,
-			kid1: T::Hash,
-			kid2: T::Hash
+			parent1: T::Hash,
+			parent2: T::Hash
 		) -> DispatchResult {
 			let sender = ensure_signed(origin)?;
 
 			// Check: Verify `sender` owns both kitties (and both kitties exist).
-			ensure!(Self::is_kitty_owner(&kid1, &sender)?, <Error<T>>::NotKittyOwner);
-			ensure!(Self::is_kitty_owner(&kid2, &sender)?, <Error<T>>::NotKittyOwner);
+			ensure!(Self::is_kitty_owner(&parent1, &sender)?, <Error<T>>::NotKittyOwner);
+			ensure!(Self::is_kitty_owner(&parent2, &sender)?, <Error<T>>::NotKittyOwner);
 
-			let new_dna = Self::breed_dna(&kid1, &kid2)?;
+			let new_dna = Self::breed_dna(&parent1, &parent2)?;
 			Self::mint(&sender, Some(new_dna), None)?;
 
 			Ok(())
@@ -306,9 +306,9 @@ pub mod pallet {
 			payload.using_encoded(blake2_128)
 		}
 
-		pub fn breed_dna(kid1: &T::Hash, kid2: &T::Hash) -> Result<[u8; 16], Error<T>> {
-			let dna1 = Self::kitties(kid1).ok_or(<Error<T>>::KittyNotExist)?.dna;
-			let dna2 = Self::kitties(kid2).ok_or(<Error<T>>::KittyNotExist)?.dna;
+		pub fn breed_dna(parent1: &T::Hash, parent2: &T::Hash) -> Result<[u8; 16], Error<T>> {
+			let dna1 = Self::kitties(parent1).ok_or(<Error<T>>::KittyNotExist)?.dna;
+			let dna2 = Self::kitties(parent2).ok_or(<Error<T>>::KittyNotExist)?.dna;
 
 			let mut new_dna = Self::gen_dna();
 			for i in 0..new_dna.len() {

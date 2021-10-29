@@ -60,7 +60,7 @@ It is encoded with the two least significant bits denoting the mode:
   (valid only for values `64-(2**14-1)`).
 - `0b10`: four-byte mode: upper six bits and the following three bytes are the LE encoding of the
   value (valid only for values `(2**14)-(2**30-1)`).
-- `0b11`: Big-integer mode: The upper six bits are the number of bytes following, less four. The
+- `0b11`: Big-integer mode: The upper six bits are the number of bytes following, plus four. The
   value is contained, LE encoded, in the bytes following. The final (most significant) byte must be
   non-zero. Valid only for values `(2**30)-(2**536-1)`.
 
@@ -70,6 +70,8 @@ It is encoded with the two least significant bits denoting the mode:
 - `unsigned integer 1`: `0x04`
 - `unsigned integer 42`: `0xa8`
 - `unsigned integer 69`: `0x1501`
+- `unsigned integer 65535`: `0xf3ff0300`
+- `BigInt(100000000000000)`: `0x0b00407a10f35a`
 
 Error:
 
@@ -136,7 +138,7 @@ SCALE Bytes:
 
 ### Strings
 
-Strings are Vectors containing a valid UTF8 sequence.
+Strings are Vectors of bytes (`Vec<u8>`) containing a valid UTF8 sequence.
 
 ### Tuples
 

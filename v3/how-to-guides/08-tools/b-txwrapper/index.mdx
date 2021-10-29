@@ -1,5 +1,5 @@
 ---
-title: Create a `txwrapper` for a chain
+title: Create a txwrapper for a chain
 slug: /how-to-guides/v3/tools/txwrapper
 keywords: runtime, tooling
 version: 3.0 
@@ -8,20 +8,25 @@ category: tools
 difficulty: 2
 ---
 
-## Goal
-
-Structure the public API of a chain's `txwrapper` package.
-
-## Use cases
-
-For existing `txwrapper` users to easily integrate new txwrappers.
-
-## Overview
-
-Creating a `txwrapper` package will expand the offline signing options for users of your chain. This is important for security 
-conscious users who need to facilitate transaction signing, construction and/or decoding with an air-gapped device(s). This includes
-(but is not limited to) custodians, exchanges, and cold storage users.
-
+<Objectives
+  data={[
+    {
+      title: 'Goal',
+      description: `Structure the public API of a chain's \`txwrapper\` package.`,
+    },
+    {
+      title: 'Use Cases',
+      description: `For existing \`txwrapper\` users to easily integrate new txwrappers.`,
+    },
+    {
+      title: 'Overview',
+      description: `Creating a \`txwrapper\` package will expand the offline signing options for 
+      users of your chain. This is important for security conscious users who need to facilitate 
+      transaction signing, construction and/or decoding with an air-gapped device(s). This includes 
+      (but is not limited to) custodians, exchanges, and cold storage users.`},
+  ]}
+/>
+<br />
 <Message
   type={`green`}
   title={`Tip`}

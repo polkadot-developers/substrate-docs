@@ -30,9 +30,9 @@ difficulty: 1
     {
       title: 'Overview',
       description:
-        `The premise of instantiable pallets is to provide separate storage items for a runtime that contains more than one
-         reference to the same pallet. This can be useful in cases where you may need to reuse the logic provided by a single
-         pallet. This recipe guides you through how to create two instances of the same pallet and how to configure their
+        `Instantiable pallets provide separate storage items for a runtime that contains more than one
+         reference to the same pallet. This is useful in cases where you want to reuse the logic provided by a single
+         pallet. This procedure shows you how to create two instances of the same pallet and how to configure their
          capabilities.`,
     },
   ]}
@@ -73,8 +73,8 @@ impl mint_token::Config<mint_token::Instance2> for Runtime {
 }
 
 /* --snip-- */
-MintToken1: mint_token::<Instance1>::{Module, Call, Storage, Event<T>},
-MintToken2: mint_token::<Instance2>::{Module, Call, Storage, Event<T>},
+MintToken1: mint_token::<Instance1>::{Pallet, Call, Storage, Event<T>},
+MintToken2: mint_token::<Instance2>::{Pallet, Call, Storage, Event<T>},
 /* --snip-- */
 ```
 
