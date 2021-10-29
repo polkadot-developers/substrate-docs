@@ -20,8 +20,8 @@ Make sure you have the latest version of the Substrate Node Template compiled on
 
 2. Update `runtime/Cargo.toml` with the following entries:
 
-  - `pallet-contracts`
-  - `pallet-contracts-primitives`
+    - `pallet-contracts`
+    - `pallet-contracts-primitives`
 
 ## Add the Contracts pallet to your runtime
 
@@ -125,10 +125,10 @@ the Contracts pallet to make calls to your node's storage without making a trans
 
   Add the following functions that the `ContractsApi` exposes:
 
-  - **`call()`**: returns `pallet_contracts_primitives::ContractExecResult { Contracts::bare_call(origin, dest, value, gas_limit, input_data)}`
-  - **`get_storage()`**: returns `pallet_contracts_primitives::GetStorageResult {Contracts::get_storage(address, key)}`
-  - **`rent_projection()`**: returns `pallet_contracts_primitives::RentProjectionResult<BlockNumber> {Contracts::rent_projection(address)}`
-  
+    - **`call()`**: returns `pallet_contracts_primitives::ContractExecResult { Contracts::bare_call(origin, dest, value, gas_limit, input_data)}`
+    - **`get_storage()`**: returns `pallet_contracts_primitives::GetStorageResult {Contracts::get_storage(address, key)}`
+    - **`rent_projection()`**: returns `pallet_contracts_primitives::RentProjectionResult<BlockNumber> {Contracts::rent_projection(address)}`
+    
 5. Add the RPC API extension.
 
   To be able to call the runtime API, you must add the RPC to the node's service.
