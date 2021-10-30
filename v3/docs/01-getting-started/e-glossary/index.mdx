@@ -12,354 +12,282 @@ ecosystem. This is a helpful resource for even the most experienced Substrate de
 
 ---
 
-## Adaptive Quorum Biasing (AQB)
+## adaptive quorum biasing (AQB)
 
-A means of specifying a passing threshold for a referendum based on voter turnout. Positive turnout
-bias means that as more votes are cast, the passing threshold _decreases_; i.e. a higher turnout
-positively increases the likelihood of a referendum passing. Negative turnout bias means that the
-passing threshold _increases_ as more votes are cast. Negative turnout bias is also called "default
-carries" as, given an apathetic voting body, the referendum will pass by default. A neutral turnout
-bias specifies a simple majority passing threshold. AQB removes the need for strict quorums, which
-are arbitrary and create undesirable governance mechanics. AQB is implemented in the
-[Democracy pallet](/v3/runtime/frame#democracy), which provides the interfaces for a number of
-on-chain bodies (e.g. a [Collective](#council) or any token holder) to call referenda with positive,
-neutral, or negative biases.
+Provides a mechanism for adjusting the passing threshold for a referendum based on voter turnout.
+Adaptive quorum biasing allows for more flexible governance by removing the requirement to have an arbitrary quorum for voting purposes, which create undesirable governance mechanics.
+Adaptive quorum biasing is implemented in the [Democracy pallet](/v3/runtime/frame#democracy). 
+The Democracy pallet provides the interfaces for on-chain bodies such as a [collective](#council) or individual token holder—to call referenda with positive,
+negative, or neutral biases.
 
-## AfG
+With a **positive turnout bias**, the passing threshold _decreases_ as more votes are cast, so that a higher turnout increases the likelihood of a referendum passing. 
+With a **negative turnout bias**, the passing threshold _increases_ as more votes are cast. 
+Negative turnout bias is also sometimes called a "default carries" position because if there's an apathetic voting body, the referendum passes by default. 
+A **neutral turnout bias** specifies a simple majority passing threshold.  
 
-An internal codename for "Al's Finality Gadget", which is named after
-[Alistair Stewart](https://w3f-research.readthedocs.io/en/latest/team_members/alistair.html)
-who invented it. AfG is synonymous with [GRANDPA](#grandpa).
+<!--
+## AFG
 
-## Aggregation
+An internal codename for "Al's Finality Gadget," which is named after [Alistair Stewart](https://w3f-research.readthedocs.io/en/latest/team_members/alistair.html)
+who invented it. 
+AFG is synonymous with [GRANDPA](#grandpa).
+-->
 
-Used in the context of [FRAME](#frame), "[pallet](#pallet) aggregation" means combining analogous
-types from multiple runtime modules into a single type. This allows each module's analogous types to
-be represented. Currently there are six such data types:
+## aggregation
 
-- `Call` - published functions that may be called with a set of arguments
-- `Error` - used to inform users why a function invocation (`Call`) failed
-- `Event` - pallets can emit events to make users aware of some state changes
-- `Log` - an extensible header item
-- `Metadata` - information that allows inspection of the above
-- `Origin` - specifies the source of a function invocation (`Call`)
+Used in the context of [FRAME](#frame), _aggregation_ or _[pallet](#pallet) aggregation_ is the process of combining analogous types from multiple runtime modules into a single type. 
+Pallet aggregation allows each module's analogous types to be represented. 
+Currently, there are six such data types:
 
-## Approval Voting
+- `Call` for published functions that can be called with a set of arguments.
+- `Error` for messages that indicate why a function invocation (`Call`) failed.
+- `Event` for pallet-emitted events that describe state changes.
+- `Log` for extensible header items.
+- `Metadata` for information that allows inspection of the above.
+- `Origin` for the source of a function invocation (`Call`).
 
-Voting system where voter can vote for as many candidates as desired. The candidate with highest
-overall amount of votes wins. Notably:
+## approval voting
 
-- voting for all candidates is exactly equivalent to voting for none; and
-- it is possible to vote "against" a single candidate by voting for all other candidates.
+Voting system where voters can vote for as many candidates as desired. 
+The candidate with the highest overall number of votes wins. 
+With approval voting, it is worth noting the following:
 
-Approval voting is used by the
-[FRAME Elections Phragmen pallet](/v3/runtime/frame#elections-phragmén) that materializes as a
-governing [Council](#council) on a number of Substrate-based chains.
+- Voting for all candidates is the same as voting for none.
+- It is possible to vote against a single candidate by voting for all other candidates.
 
-## Author
+Approval voting is used by the [FRAME Elections Phragmen pallet](/v3/runtime/frame#elections-phragmén) as a governing [Council](#council) on a number of Substrate-based chains.
 
-The [node](#node) that is responsible for the creation of a [block](#block); block authors may be
-referred to as block "producers". In a proof-of-work chain these nodes are called "miners".
+## author
 
-## Authority
+Describes the [node](#node) that is responsible for the creation of a [block](#block).
+Block authors are also referred to as _block producers_. 
+In a proof-of-work blockchain, these nodes are called _miners_.
 
-Authorities are the [nodes](#node) who, as a collective, manage [consensus](#consensus) on a
-[blockchain](#blockchain) network. In a [proof-of-stake](#nominated-proof-of-stake-npos) network
-(such as one using [the Staking pallet](/v3/runtime/frame#staking) from [FRAME](#frame)), authorities
-are determined through a token-weighted nomination/voting system.
+## authority
 
-> The terms "authorities" and "[validators](#validator)" may sometimes seem to refer the same thing.
-> "Validators" is a broader term that can include other aspects of chain maintenance such as
-> parachain validation. In general authorities are a (non-strict) subset of validators and many
-> validators will be authorities.
+The [nodes](#node) that act as a collective to manage [consensus](#consensus) on a[blockchain](#blockchain) network. 
+In a [proof-of-stake](#nominated-proof-of-stake-npos) blockchain—for example, a blockchain that us the [Staking pallet](/v3/runtime/frame#staking) from [FRAME](#frame)—authorities are determined through a token-weighted nomination and voting system.
 
-## Aura (aka "Authority Round")
+> The terms _authorities_ and _[validators](#validator)_ sometimes seem to refer the same thing.
+> However, _validators_ is a broader term that can include other aspects of chain maintenance such as parachain validation. 
+> In general, authorities are a (non-strict) subset of validators and many validators are authorities.
 
-Deterministic [consensus](#consensus) protocol where [block](#block) production is limited to a
-rotating list of [authorities](#authority) that take turns creating blocks; the majority of online
-authorities are assumed to be honest. Learn more by reading
-[the official wiki article](https://openethereum.github.io/Aura) for the Aura consensus
-algorithm.
+## authority round (Aura)
 
-### Aura + GRANDPA
+Deterministic [consensus](#consensus) protocol where [block](#block) production is limited to a rotating list of [authorities](#authority) that take turns creating blocks.
+With authority round (Aura) consensus, the majority of online
+authorities are assumed to be honest. 
 
-A [hybrid consensus](#hybrid-consensus) scheme where [Aura](#aura) is used for block production and
+Learn more by reading [the official wiki article](https://openethereum.github.io/Aura) for the Aura consensus algorithm.
+
+The Aura protocol is often used in combination with GRANDPA as a [hybrid consensus](#hybrid-consensus) protocol where [Aura](#aura) is used for block production and
 short-term [probabilistic finality](#probabilistic-finality), with
-[deterministic finality](#deterministic-finality) provided through [GRANDPA](#grandpa).
+[deterministic finality](#deterministic-finality) provided by [GRANDPA](#grandpa).
 
----
+## blind assignment of blockchain extension (BABE)
 
-## Blind Assignment of Blockchain Extension (BABE)
+A [block authoring](#author) protocol similar to [Aura](#aura).
+However, with the blind assignment of blockchain extension (BABE) protocol, [authorities](#authority) win [slots](#slot) based on a verifiable random function (VRF) as opposed to the round-robin selection method. 
+The winning authority can select a chain and submit a new block for it. 
 
-[Block authoring](#author) protocol similar to [Aura](#aura), however [authorities](#authority) win
-[slots](#slot) based on a verifiable random function (VRF) as opposed to Aura's round-robin
-selection method. The winning authority can select a chain and submit a new block for it. Learn more
-about BABE by referring to its
-[official Web3 Foundation research document](https://research.web3.foundation/en/latest/polkadot/block-production/Babe.html).
+Learn more about BABE by referring to its [official Web3 Foundation research document](https://research.web3.foundation/en/latest/polkadot/block-production/Babe.html).
 
-## Block
+## block
 
-A single element of a blockchain that [cryptographically](#cryptographic-primitives) binds a set of
-[extrinsic](#extrinsic) data (the "body") to a "[header](#header)". Blocks are arranged into a tree
-through parent pointers (implemented as a hash of the parent) and the tree is pruned into a list via
-a [fork-choice rule](/v3/advanced/consensus#fork-choice-rules), and optional
-[finality gadget](#finality).
+Describes a single element of a blockchain that [cryptographically](#cryptographic-primitives) binds a set of [extrinsic](#extrinsic) data—the body—to a [header](#header). 
+Blocks are arranged into a tree through parent pointers. 
+The pointer to a parent block is a hash of the parent and the tree is pruned into a list using a [fork-choice rule](/v3/advanced/consensus#fork-choice-rules) and an optional [finality](#finality) mechanism.
 
-## Blockchain
+## blockchain
 
-A blockchain is a distributed network of computers that uses
-[cryptography](#cryptographic-primitives) to allow a group of participants to trustlessly come to
-[consensus](#consensus) on the [state](#state) of a system as it evolves over time. The computers
-that compose the blockchain network are called [nodes](#node).
+Describes a distributed network of computers that uses [cryptography](#cryptographic-primitives) to allow a group of participants to trustlessly come to [consensus](#consensus) on the [state](#state) of a system as it evolves over time
+The computers that compose the blockchain network are called [nodes](#node).
 
-## Byzantine Fault Tolerance (BFT)
+## Byzantine fault tolerance (BFT)
 
-The ability of a distributed computer system to remain operational in the face of a proportion of
-defective [nodes](#node) or [actors](#authority). "Byzantine" refers to the ultimate level of
-defectiveness, with such nodes assumed to be actively malicious and coordinating rather than merely
-offline or buggy. Typically, BFT systems remain functional with up to around one-third of Byzantine
-nodes.
+Defines the ability of a distributed computer network to remain operational if a certain proportion of its [nodes](#node) or [authorities](#authority) are defective or behaving maliciously. 
+Typically, a distributed network is considered byzantine fault tolerant if it can remain functional with up to one-third of nodes assumed to defective, offline, actively malicious, and acting as part of a coordinated attack.
 
-### Byzantine Failure
+### Byzantine failure
 
-The loss of a system service due to a Byzantine Fault (i.e. components in the system fail and there
-is imperfect information about whether a component has failed) in systems that require consensus.
+The loss of a network service due to node failures that exceed the proprortion of nodes required to reach consensus.
 
-### Practical Byzantine Fault Tolerance (pBFT)
+### practical byzantine fault tolerance (pBFT)
 
-An early approach to Byzantine fault tolerance. pBFT systems tolerate Byzantine behavior from up to
-one-third of participants. The communication overhead for such systems is `O(n²)`, where `n` is the
-number of nodes (participants) in the system.
+An early approach to Byzantine fault tolerance. pBFT systems tolerate Byzantine behavior from up to one-third of participants. 
+The communication overhead for such systems is `O(n²)`, where `n` is the number of nodes (participants) in the system.
 
----
+## consensus
 
-## Consensus
+In the context of a [blockchain](#blockchain), consensus is the process nodes use to agree on the canonical [fork](#fork) of a chain. 
+Consensus is comprised of [authorship](#author), [finality](#finality), and [fork-choice rule](/v3/advanced/consensus#fork-choice-rules). 
 
-In the context of a [blockchain](#blockchain), consensus is the process nodes use to agree on the
-canonical [fork](#fork) of a chain. Consensus is comprised of [authorship](#author),
-[finality](#finality), and [fork-choice rule](/v3/advanced/consensus#fork-choice-rules). In the
-Substrate ecosystem, these three components are cleanly separated from one another, and the term
-consensus often refers specifically to authorship.
+In the Substrate ecosystem, these three components are separated from one another, and the term consensus often refers specifically to authorship.
+In the context of a Substrate [node](#node), the term **consensus engine** describes the node subsystem that is responsible for consensus tasks.
 
-### Consensus Engine
+See also [hybrid consensus](hybrid-consensus).
 
-A subsystem of a Substrate [node](#node) that is responsible for consensus tasks.
+## consensus algorithm
 
-### Consensus Algorithms
+An algorithm that ensures that a set of [actors](#authority)—who don't necessarily trust each other—can reach agreement about state as the result of some computation.
+Because most consensus algorithms assume that up to one-third of the actors or nodes can  are [Byzantine fault tolerant](#byzantine-fault-tolerance-bft).
 
-An algorithm that is able to ensure that a set of [actors](#authority), who don't necessarily trust
-each other, can come to consensus over some computation. Often mentioned alongside "**safety**" (the
-ability to ensure that any progression will eventually be agreed as having happened by all honest
-nodes) and "**liveness**" (the ability to keep making progress). Many consensus algorithm are
-referred to as being [Byzantine-fault-tolerant](#byzantine-fault-tolerance-bft).
 
-There is
-[a comprehensive blog series](https://polkadot.network/polkadot-consensus-part-1-introduction/) that
-provides a deep dive into the consensus strategies of [the Polkadot Network](#polkadot-network).
+Consensus algorithms are generately concerned with ensuring two properties:
 
-### Hybrid Consensus
+- **safety** indicating that all honest nodes eventually agreed on the state of the chain.
+- **liveness**" indicating the ability for the chain to keep making progress. 
 
-A blockchain consensus protocol that consists of independent or loosely coupled mechanisms for
-[block production](#author) and [finality](#finality). This allows the chain to grow as fast as
-probabilistic consensus protocols, such as [Aura](#aura-aka-authority-round), while still maintaining the same level of
-security as [deterministic finality](#deterministic-finality) consensus protocols, such as
-[GRANDPA](#grandpa). In general, block production algorithms tend to be faster than finality
-mechanisms; separating these concerns gives Substrate developers greater control of their chain's
-performance.
+For detailed information about the consensus strategies of the [Polkadot network](#polkadot-network), see the [Polkadot Consensus](https://polkadot.network/polkadot-consensus-part-1-introduction/) blog series.
 
-## Cryptographic Primitives
+See also [hybrid consensus](hybrid-consensus).
 
-A term that refers to concepts like signature schemes and hashing algorithms. Cryptographic
-primitives are essential to many aspects of the Substrate ecosystem:
+## cryptographic primitives
 
-- [Blockchains](#blockchain): [blocks](#block) must be hashed under some algorithm and reference
-  their parent block's hash.
-- [State](#state): Substrate storage is encoded as a [trie](#trie-patricia-merkle-tree), a data
-  structure that uses hashing to facilitate efficient verification.
-- [Consensus](#consensus): [authorities](#authority) often use digital signature schemes of some
-  kind.
-- [Transaction](#transaction) authentication: in [runtimes](#runtime) where transactions and
-  [accounts](/v3/concepts/account-abstractions) are used, accounts are identified and
-  authenticated through the use of cryptography.
+A general term used to describe fundamental cryptographic concepts such as signature schemes and hashing algorithms. 
+Cryptographic primitives are essential to many aspects of the Substrate ecosystem. For example:
 
-## Council
+- Hashing algorithms produce [blocks](#block) of hashed data and each block uses the hash generated by the hashing algorithm to reference its parent block.
+- Hashing is used to encode [state](#state) as a [trie](#trie-patricia-merkle-tree) data structure to facilitate efficient verification.
+- Digital signature schemes are used to secure different [consensus](#consensus) models such as [authorities](#authority).
+- Cryptographic schemes identify and authenticate the [accounts](/v3/concepts/account-abstractions) used to perform [transactions](#transaction) in the Substrate runtime.
 
-The term "Council" is used on a number of Substrate-based networks, such as [Kusama](#kusama) and
-[Polkadot](#polkadot) to refer to an instance of
-[the Collective pallet](/v3/runtime/frame#collective) that is used as a part of the network's
-[FRAME](#frame)-based [runtime](#runtime). The Council primarily serves as a body to optimize and
-check/balance the more inclusive referendum system.
+## council
 
----
+Most often used to refer to an instance of the [Collective pallet](/v3/runtime/frame#collective) on Substrate-based networks such as [Kusama](#kusama) or [Polkadot](#polkadot) if the Collective pallet is part of the [FRAME](#frame)-based [runtime](#runtime) for the network. 
+A council primarily serves to optimize and balance the more inclusive referendum system.
 
-## Database Backend
+## database backend
 
-The means by which the [state](#state) of a [blockchain](#blockchain) network is persisted between
-invocations of the [blockchain node](#node) application. There is
-[documentation](/v3/advanced/storage) that explains the implementation of the database backend that
-is used by Substrate-based chains.
+The means by which the [state](#state) of a [blockchain](#blockchain) network is persisted between invocations of the [blockchain node](#node) application. 
+For information about how the database backend is implemented and used by Substrate-based chains, see [Advanced storage](/v3/advanced/storage).
 
-## Dev Phrase
+## dev phrase
 
-A
-[mnemonic phrase](https://en.wikipedia.org/wiki/Mnemonic#For_numerical_sequences_and_mathematical_operations)
-that is intentionally made public. All of the
-[well-known development accounts](/v3/tools/subkey#well-known-keys) (Alice, Bob, Charlie, Dave,
-Ferdie, and Eve) are generated from the same dev phrase. The dev phrase is:
-`bottom drive obey lake curtain smoke basket hold race lonely fit walk`.
+A [mnemonic phrase](https://en.wikipedia.org/wiki/Mnemonic#For_numerical_sequences_and_mathematical_operations) that is intentionally made public. 
+All of the[well-known development accounts](/v3/tools/subkey#well-known-keys) (Alice, Bob, Charlie, Dave, Eve, and Ferdie) are generated from the same dev phrase. 
+The dev phrase is:
+`bottom drive obey lake curtain smoke basket hold race lonely fit walk`
 
-Many tools in the Substrate ecosystem, such as [`subkey`](/v3/tools/subkey), allow users to
-implicitly specify the dev phrase by only specifying a derivation path such as `//Alice`.
+Many tools in the Substrate ecosystem, such as [`subkey`](/v3/tools/subkey), allow users to implicitly specify the dev phrase by only specifying a derivation path such as `//Alice`.
 
-## Digest
+## digest
 
-An extensible field of the [block header](#header) that encodes information needed by several actors
-in a blockchain network including, [light clients](#light-client) for chain synchronization,
-consensus engines for block verification, and the runtime itself in the case of pre-runtime digests.
+An extensible field of the [block header](#header) that encodes information needed by several actors in a blockchain network including:
 
-## Dispatch
+- [Light clients](#light-client) for chain synchronization.
+- Consensus engines for block verification.
+- The runtime itself in the case of pre-runtime digests.
 
-A dispatch is the execution of a function with a pre-defined set of arguments. In the context of
-[runtime](#runtime) development with [FRAME](#frame), this refers specifically to the "runtime
-dispatch" system, a means of taking some pure data (the type is known as `Call` by convention) and
-interpreting it in order to call a published function in a runtime module ("[pallet](#pallet)") with
-some arguments. Such published functions take one additional parameter, known as
-[`origin`](#origin), that allows the function to securely determine the provenance of its execution.
+## dispatch
 
----
+The execution of a function with a predefined set of arguments. 
+In the context of [runtime](#runtime) development with [FRAME](#frame), a dispatch takes pure data—the type is known as `Call` by convention—and uses that data to call a published function in a runtime module ([pallet](#pallet)) with predefined arguments.
+The published functions take one additional parameter, known as [`origin`](#origin), that allows the function to securely determine the provenance of its execution.
 
-## Equivocating
+## equivocating
 
-A type of [Byzantine](#byzantine-fault-tolerance-bft) (erroneous/malicious) behavior that involves
-backing multiple mutually-exclusive options within the [consensus](#consensus) mechanism.
+A type of erroneous or malicious behavior that involves backing multiple mutually-exclusive options within the [consensus](#consensus) mechanism.
 
-## Ethash
+## ethash
 
-A function used by some [proof-of-work](#proof-of-work) [consensus](#consensus) systems, notably
-that which is used by the Ethereum blockchain. It was developed by
-[a team led by Tim Hughes](https://github.com/ethereum/ethash/graphs/contributors).
+A function used by some [proof-of-work](#proof-of-work) [consensus](#consensus) systems, such as the Ethereum blockchain. 
+It was developed by [a team led by Tim Hughes](https://github.com/ethereum/ethash/graphs/contributors).
 
-## Events
+## events
 
-A means of recording, for the benefit of the off-chain world, that some particular [state](#state)
-transition happened. Within the context of [FRAME](#frame), events are one of a number of composable
-data types that each [pallet](#pallet) may individually define. Events in FRAME are implemented as a
-set of transient storage items that are inspected immediately after a block has executed and reset
-during block-initialization.
+A means of recording, for the benefit of the off-chain world, that some particular [state](#state) transition happened. 
+In the context of [FRAME](#frame), events are a composable data types that each [pallet](#pallet) can individually define. 
+Events in FRAME are implemented as a set of transient storage items that are inspected immediately after a block has executed and reset during block-initialization.
 
-## Executor
+## executor
 
 A means of executing a function call in a given [runtime](#runtime) with a set of dependencies.
 There are two [executor](/v3/advanced/executor) implementations present in
-Substrate, _Wasm_ and _Native_.
+Substrate, _WebAssembly_ and _native_.
 
-### Native Executor
+- The _native executor_ uses a natively compiled runtime embedded in the [node](#node) to execute calls. 
+This is a performance optimization that up-to-date nodes can take advantage of.
 
-This executor uses a natively compiled runtime embedded in the [node](#node) to execute calls. This
-is a performance optimization that up-to-date nodes can take advantage of.
+- The _WebAssembly executor_ uses a [Wasm](#webassembly-wasm) binary and a Wasm interpreter to execute calls. 
+The binary is guaranteed to be up-to-date regardless of the version of the blockchain [node](#node) because it is persisted in the [state](#state) of the Substrate-based chain.
 
-### Wasm Executor
+## extrinsic
 
-This executor uses a [Wasm](#webassembly-wasm) binary and a Wasm interpreter to execute calls. The
-binary is guaranteed to be up-to-date regardless of the version of the blockchain [node](#node)
-since it is persisted in the [state](#state) of the Substrate-based chain.
+Data that is external to the blockchain and included in a [block](#block). 
+In general, there are two types of extrinsics:
 
-## Extrinsic
-
-A piece of data that is bundled into a [block](#block) in order to express something from the
-"external" (i.e. off-chain) world. There are, broadly speaking, two types of extrinsics:
-transactions, which may be
-[signed](/v3/concepts/extrinsics#signed-transactions) or
-[unsigned](/v3/concepts/extrinsics#unsigned-transactions), and
-[inherents](/v3/concepts/extrinsics#inherents), which are inserted by
+- [signed](/v3/concepts/extrinsics#signed-transactions) or
+[unsigned](/v3/concepts/extrinsics#unsigned-transactions) transactions.
+- [inherents](/v3/concepts/extrinsics#inherents) inserted by
 [block authors](#author).
 
-## Existential Deposit
+## existential deposit
 
-Within the [Balances pallet](/v3/runtime/frame#balances), this is the minimum
-balance an account may have. Accounts cannot be created with a balance less than this amount, and if
-an account's balance ever drops below this amount, the Balances pallet will use
-[a FRAME System API](/rustdocs/latest/frame_system/pallet/struct.Pallet.html#method.dec_ref)
-to drop its references to that account. If all the references to an account are dropped, it
-[may be reaped](/rustdocs/latest/frame_system/pallet/struct.Pallet.html#method.allow_death).
+The minimum balance an account is allowed to have in the [Balances pallet](/v3/runtime/frame#balances). 
+Accounts cannot be created with a balance less than the existential deposit amount.
+If an account balance drops below this amount, the Balances pallet uses
+[a FRAME System API](/rustdocs/latest/frame_system/pallet/struct.Pallet.html#method.dec_ref) to drop its references to that account. 
+If all of the references to an account are dropped, the account can be [reaped](/rustdocs/latest/frame_system/pallet/struct.Pallet.html#method.allow_death).
 
----
+## finality
 
-## Finality
+The part of [consensus](#consensus) that makes the ongoing progress of the blockchain irreversible.
+After a [block](#block) is finalized, all of the [state](#state) changes it encapsulates are irreversible without a hard fork.
+The consensus algorithm _must_ guarantee that finalized blocks never need reverting.
+However, different consensus algorithms can define different finalization methods.
 
-A part of [consensus](#consensus) that deals with making a progression irreversible. If a
-[block](#block) is "finalized", then any [state](#state) changes it encapsulates are irreversible
-without a hard fork and it is safe to effect any off-chain repercussions that depend on them. The
-consensus algorithm _must_ guarantee that finalized blocks never need reverting.
+In a consensus protocol that uses **deterministic finality**, each block is guaranteed to be the canonical block for that chain when the block is included. 
+Deterministic finality is desirable in situations where the full chain is not available, such as in the case of [light clients](#light-client). 
+[GRANDPA](#grandpa) is the deterministic finality protocol that is used by the [Polkadot Network](#polkadot-network).
 
-[GRANDPA](#grandpa) is the [deterministic finality](#deterministic-finality) gadget that is used by
-the [Polkadot Network](#polkadot-network).
+In a consensus protocol that uses **probabilistic finality**, finality is expressed in terms of a probability, denoted by `p`, that a proposed block, denoted by `B`, will remain in the canonical chain.
+As more blocks are produced on top of `B`, `p` approaches 1.
 
-### Deterministic Finality
+In a consensus protocol that uses **instant finality**, finality is guaranteed  immediately upon block production. 
+This type of non-probabilistic consensus tends to use [practical byzantine fault tolerance (pBFT)](#practical-byzantine-fault-tolerance-pbft) and have expensive communication requirements.
 
-In these systems, all blocks are guaranteed to be the canonical block for that chain upon block
-inclusion. Deterministic finality is desirable in situations where the full chain is not available,
-such as in the case of [light clients](#light-client). [GRANDPA](#grandpa) is a deterministic
-finality gadget.
+## proof-of-finality
 
-### Instant Finality
+Data that can be used to prove that a particular block is finalized.
 
-A non-probabilistic consensus protocol that gives a guarantee of finality immediately upon block
-production. These tend to be [pBFT](#practical-byzantine-fault-tolerance-pbft)-based and thus very
-expensive in terms of communication requirements.
+## fork
 
-### Probabilistic Finality
-
-In these systems, finality is expressed in terms of a probability, denoted by `p`, that a proposed
-block, denoted by `B`, will remain in the canonical chain; as more blocks are produced on top of
-`B`, `p` approaches 1.
-
-### Proof-of-Finality
-
-A piece of data that can be used to prove that a particular block is finalized.
-
-## Fork
-
-Forks occur when two [blocks](#block) have the same parent. Forks must be
-[resolved](/v3/advanced/consensus#fork-choice-rules) so that only one canonical chain exists.
+Indicates that there are divergent paths a blockchain might take. 
+If two or more [blocks](#block) have the same parent but different state, the blockchain cannot continue to progress until the differences are [resolved](/v3/advanced/consensus#fork-choice-rules).
+An unresolved fork would split the blockchain into two separate chains.
+By resolving divergent forks, you can ensure that only one canonical chain exists.
 
 ## Flaming Fir
 
-Flaming Fir is a [Parity](https://www.parity.io/)-maintained Substrate-based
-[blockchain](#blockchain) that exists for developing and testing the Substrate blockchain
-development framework.
+A Substrate-based [blockchain](#blockchain) test network that exists for developing and testing the Substrate blockchain development framework.
+For more information about accessing Substrate networks and flaming fir, see the [Polkadot wiki](https://wiki.polkadot.network/docs/maintain-networks#flaming-fir).
 
 ## FRAME
 
-[FRAME](/v3/runtime/frame) is Substrate's system for [**runtime**](#runtime) development. The name is
-an acronym for the "Framework for Runtime Aggregation of Modularized Entities". FRAME allows
-developers to create blockchain runtimes by composing modules, called "[pallets](#pallet)". Runtime
-developers interact with FRAME by way of a [macro](#macro) language that makes it easy for
-developers to define custom pallets (e.g.
-[`#[pallet::event]`](/v3/runtime/macros#palletevents),
-[`#[pallet::error]`](/v3/runtime/macros#palleterror),
-[`#[pallet::storage]`](/v3/runtime/macros#palletstorage),
-[`#[frame_support::pallet]`](/v3/runtime/macros#frame_supportpallet)
-and compose pallets (e.g. [`construct_runtime!`](/v3/runtime/macros#construct_runtime)
-into a working runtime that can easily be used to power a Substrate-based blockchain. The convention
-used in [the Substrate codebase](https://github.com/paritytech/substrate/tree/master/frame) is to
-preface FRAME's core modules with `frame_` and the optional pallets with `pallet_*`. For instance,
-the macros mentioned above are all defined in the [`frame_support`](/v3/runtime/frame#support-library)
-module and all FRAME-based runtimes _must_ include the
-[`frame_system`](/v3/runtime/frame#system-library) module. Once the
-`frame_support::construct_runtime` macro has been used to create a runtime that includes the
-`frame_system` module, optional pallets such as the [Balances](/v3/runtime/frame#balances) pallet may
-be used to extend the runtimes core capabilities.
+An acronym for the _Framework for Runtime Aggregation of Modularized Entities_ that enables developers to create blockchain [runtime](#runtime) environments from a modular set of components called [pallets](#pallet).
 
-## Full Client
+Runtime developers interact with FRAME using [macros](#macro) such as the following:
 
-A [node](#node) that is able to synchronize a block chain in a maximally secure manner through
-execution (and thus verification) of all logic. Full clients stand in contrast to
-[light clients](#light-client).
+* [`#[pallet::event]`](/v3/runtime/macros#palletevents),
+* [`#[pallet::error]`](/v3/runtime/macros#palleterror),
+* [`#[pallet::storage]`](/v3/runtime/macros#palletstorage),
+* [`#[frame_support::pallet]`](/v3/runtime/macros#frame_supportpallet)
 
----
+The macros make it easy to define custom pallets and compose pallets to create a working runtime using the [`construct_runtime!`](/v3/runtime/macros#construct_runtime)
+macro to deploy a Substrate-based blockchain. 
 
-## Genesis Configuration
+The convention used in [the Substrate codebase](https://github.com/paritytech/substrate/tree/master/frame) is to preface core FRAME modules with `frame_` and the optional pallets with `pallet_*`. 
+For example, the preceding macros are all defined in the [`frame_support`](/v3/runtime/frame#support-library) module and all FRAME-based runtimes _must_ include the
+[`frame_system`](/v3/runtime/frame#system-library) module. 
+After the `frame_support::construct_runtime` macro has been used to create a runtime that includes the `frame_system` module, optional pallets such as the [Balances](/v3/runtime/frame#balances) pallet can be used to extend the core capabilities of the runtime.
+
+## full client
+
+A [node](#node) that is able to synchronize a blockchain in a secure manner through execution (and thus verification) of all logic. 
+Full clients stand in contrast to [light clients](#light-client).
+
+## genesis configuration
 
 A mechanism for specifying the initial (genesis) [state](#state) of a [blockchain](#blockchain).
 Genesis configuration of Substrate-based chains is accomplished by way of a
@@ -383,6 +311,16 @@ information is used by [light-clients](#light-client) to get a minimally-secure 
 synchronization of the chain.
 
 ---
+
+## hybrid consensus
+
+A blockchain consensus protocol that consists of independent or loosely coupled mechanisms for
+[block production](#author) and [finality](#finality). This allows the chain to grow as fast as
+probabilistic consensus protocols, such as [Aura](#aura-aka-authority-round), while still maintaining the same level of
+security as [deterministic finality](#deterministic-finality) consensus protocols, such as
+[GRANDPA](#grandpa). In general, block production algorithms tend to be faster than finality
+mechanisms; separating these concerns gives Substrate developers greater control of their chain's
+performance.
 
 ## Keystore
 
