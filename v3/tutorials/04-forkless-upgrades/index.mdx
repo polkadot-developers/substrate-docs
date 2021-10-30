@@ -226,7 +226,11 @@ First, add the Scheduler pallet as a dependency in the template node's runtime C
 **`runtime/Cargo.toml`**
 
 ```toml
-pallet-scheduler = { default-features = false, version = '3.0.0' }
+   [dependencies.pallet-scheduler]
+   default-features = false
+   git = 'https://github.com/paritytech/substrate.git'
+   tag = 'monthly-2021-10'
+   version = '4.0.0-dev'
 
 #--snip--
 
