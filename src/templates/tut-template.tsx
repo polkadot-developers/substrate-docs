@@ -9,14 +9,14 @@ import DocsNav from '../components/DocsNav'
 import BreadCrumbNav from '../components/BreadCrumbNav'
 import VersionControl from '../components/VersionControl'
 import LastUpdateGithub from '../components/LastUpdateGithub'
-import { DevNavMenu as navMenu, DevNavMenuTuts } from '../components/DevNavMenu'
+import { DevNavMenu as navMenu } from '../components/DevNavMenu'
 import DocTag from '../components/DocTag'
 import { BottomButtons, RelevantSkills, FeedbackWidget } from '../components/DocsComponents'
 
 const DocsTemplate = ({ location, data, pageContext }: any) => {
   const { slug, version } = pageContext
   const globalDocsNav = navMenu.global()
-  const docsMenu = DevNavMenuTuts.get(data.mdx.frontmatter.sideNav)
+  const docsMenu = navMenu.tuts()
 
   return (
     <Layout>
