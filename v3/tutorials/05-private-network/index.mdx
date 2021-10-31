@@ -44,21 +44,21 @@ In this tutorial, you'll see how this consensus model works in practice, first, 
 <TutorialObjective
   data={{
     textLineOne:
-      'Generate ed25519 and sr25519 key-pairs for use as a network authority.',
+      'Generate keypairs for use as a network authority.',
     url: '#generate-your-own-keys',
   }}
 />
 <TutorialObjective
   data={{
     textLineOne:
-      'Create and edit a chain spec JSON file.',
+      'Create a custom chain specification file.',
     url: '#create-a-custom-chain-spec',
   }}
 />
 <TutorialObjective
   data={{
     textLineOne:
-      'Launch your custom chain.',
+      'Launch your private blockchain network.',
     url: '#launch-your-private-network',
   }}
 />
@@ -181,8 +181,6 @@ To view node operations using the Polkadot-JS application:
   If you have trouble connecting to the local node, see if you have ad blocking enabled and disable it, as needed. 
 	If your braowser prevents connections to a local node, try using another browser, like Chromium or downloading and hosting the [Polkadot-JS application](https://github.com/polkadot-js/apps#development) locally.
 
-To use Polkadot-JS Explorer to connect to another node:
-
 1. Click the network icon displayed in the top left corner of the Polkadot-JS Explorer page.
 
   ![Display the list of networks](../../../src/images/tutorials/05-private-network/private-network-top-left-network-icon.png)
@@ -192,28 +190,25 @@ To use Polkadot-JS Explorer to connect to another node:
   ![Display DEVELOPMENT networks](../../../src/images/tutorials/05-private-network/polkadot-list-networks.png)
 
 1. Verify the custom endpoint is set to `ws://127.0.0.1:9945`.
-
-1. Connect to another node and port by specifying a different IP address or host name and port number for the custom endpoint.
   
-  You can use a single instance of the Polkadot-JS application to connect to various nodes. 
+    You can use a single instance of the Polkadot-JS application to connect to different networks, nodes, and endpoints.
+    For more information about using the Polkadot-JS application, see XXX.
 
-1. Click **Switch** to change to the new custom endpoint.
+    ![Custom endpoint](../../../src/images/tutorials/05-private-network/private-network-custom-endpoint.png)
 
-  ![Custom endpoint](../../../src/images/tutorials/05-private-network/private-network-custom-endpoint.png)
+    You should now see something like this displayed in the Polkadot-JS Explorer **Network** page.
 
-You should now see something like this example on the **Network** page.
-
-![No blocks in polkadot-js-apps](../../../src/images/tutorials/05-private-network/private-network-no-blocks.png)
+    ![No blocks displayed in Polkadot-JS](../../../src/images/tutorials/05-private-network/private-network-no-blocks.png)
 
 ### Add a node to the blockchain network as Bob
 
 Now that the node you started using the `alice` account keys is running, you can add another node to the network using the `bob` account.
-Because you are joining a network that is already running, you will use the running node to bootstrap the new node.
-The commands you use here are similar to the ones you used before, but with a few important differences.
+Because you are joining a network that is already running, you can use the running node to bootstrap the new node.
+The commands are similar to the ones you used before, but with a few important differences.
 
 To add a node to the running blockchain:
 
-1. Open a new terminal shell on your computer.
+1. Open a **new** terminal shell on your computer.
 
 1. Change to the root directory where you compiled the Substrate node template.
 
@@ -280,24 +275,21 @@ To add a node to the running blockchain:
       
       These lines show that the first node started by `alice` has a one peer (`1 peers`), they have produced some blocks (`best: #4 (0x2b8a…fdc4)`), and that the blocks are being finalized (`finalized #2 (0x8b6a…dce6)`).
       
-      If you look at the console that started the second node, you should see output.
+      If you look at the console that started the second node, you should see similar output.
 
-1. Open the
-[Polkadot-JS Explorer](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9945#/explorer) to verify the network is producing and finalizing blocks using the Polkadot-JS application.
-     
-      After you've verified that both nodes are running as expected, you can shut both nodes down. 
-
-1. Shut down each node by pressing Control-C in each terminal.
+1. Open the [Polkadot-JS Explorer](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9945#/explorer) to verify the network is producing and finalizing blocks.
+    
+    ![Blocks are produced and finalized](../../../src/images/tutorials/05-private-network/private-network-displays-blocks.png)
 
 ## Generate your own keys
 
 Now that you know how to start and connect running nodes as peers using command-line options, you are ready to generate you own secret keys instead of using the predefined account keys. 
-Each participant in the blockchain network should generate unique keys. 
+It's important to remember that each participant in the blockchain network is responsible for generating unique keys. 
 
 There are several ways you can generate keys.
 For example, you can generate keypairs using the (<a target="_blank" href="/v3/tools/subkey">Subkey</a>) command-line program, the Polkadot-JS application, or third-party key generation utilties.
 
-Although you could use pre-generated keypairs to complete this tutorial, you would never use those keys in a production environment.
+Although you could use predefined keypairs to complete this tutorial, you would never use those keys in a production environment.
 Instead of using predefined keys or the `subkey` program, this tutorial illustrates how to generate keys using the Polkadot-JS application.
 
 ### Use Polkadot-JS to generate keys
@@ -305,202 +297,242 @@ Instead of using predefined keys or the `subkey` program, this tutorial illustra
 You have already used the Polkadot-JS application to see blocks being produced for the nodes managed by Alice and Bob.
 You can also use the Polkadot-JS application to generate keys to use with Substrate.
 
-You can use the Polkadot-JS application to generate production keys.
-However, you should never use a system connected to the internet to generate production keys.
-Disconnecting from the internet is not required for this tutorial.
+For this tutorial, you remain connected to the internet and your local node to generate your keys. 
+As a best practice, you should not be connected to the internet when you generate keys for a production blockchain. 
+For a production environment, you should disconnect from the internet before you generate any keys.
 
 To use the Polkadot-JS application to generate keys:
 
-1. Open the
-[Polkadot-JS Explorer](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9945#/explorer) in a web browser.
+1. Open the [Polkadot-JS Explorer](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9945#/explorer) in a web browser.
 
-1. On the **Accounts** tab, click **Add account**. 
+1. Click **Accounts**, then click **Add account**. 
 
-1. You do not need to provide a name, although you may if
-you would like to save this account for submitting transaction in addition to validating.
+1. Copy the mnemonic seed phrase and keep in a safe place.
 
-Generate an `sr25519` key which will be used by Aura for block production. Take careful note of the
-mnemonic phrase, and the SS58 address which can be copied by clicking on the identicon in the top
-left.
+1. Select the **I have saved my mnemonic safely** checkbox, then click **Next**.
 
-Then generate an `ed25519` key which will be used by GRANDPA for block finalization. Again, note
-the mnemonic phrase and ss58 address.
+1. Type a name and password for the account, then click **Next**.
+
+1. Click **Save** to generate the `sr25519` key for the account.
+
+    The `sr25519` key is used by Aura for block production. 
+
+1. Note of the mnemonic phrase, and the SS58 address which can be copied by clicking on the identicon in the top left.
+
+1. Generate an `ed25519` key which will be used by GRANDPA for block finalization. 
+Note the mnemonic phrase and ss58 address.
 
 
 ##### Pair 1
 
-| Key           | Value                                                                  |
-| ------------- | ---------------------------------------------------------------------- |
+| Key    | Value                                                                  |
+| ------ | ---------------------------------------------------------------------- |
 | Secret phrase | `clip organ olive upper oak void inject side suit toilet stick narrow` |
-| Secret seed   | `0x4bd2b2c1dad3dbe3fa37dc6ad5a4e32ddd8ad84b938179ac905b0622880e86e7`   |
-| **SR25519**   |                                                                        |
-| Public key    | `0x9effc1668ca381c242885516ec9fa2b19c67b6684c02a8a3237b6862e5c8cd7e`   |
-| SS58 Address  | `5FfBQ3kwXrbdyoqLPvcXRp7ikWydXawpNs2Ceu3WwFdhZ8W4`                     |
-| **ED25519**   |                                                                        |
-| Public key    | `0xb48004c6e1625282313b07d1c9950935e86894a2e4f21fb1ffee9854d180c781`   |
-| SS58 Address  | `5G9NWJ5P9uk7am24yCKeLZJqXWW6hjuMyRJDmw4ofqxG8Js2`                     |
+| Secret seed | `0x4bd2b2c1dad3dbe3fa37dc6ad5a4e32ddd8ad84b938179ac905b0622880e86e7` |
+| **SR25519** |                                                               |
+| Public key | `0x9effc1668ca381c242885516ec9fa2b19c67b6684c02a8a3237b6862e5c8cd7e` |
+| SS58 Address `5FfBQ3kwXrbdyoqLPvcXRp7ikWydXawpNs2Ceu3WwFdhZ8W4` |
+| **ED25519** |                                                   |
+| Public key | `0xb48004c6e1625282313b07d1c9950935e86894a2e4f21fb1ffee9854d180c781` |
+| SS58 Address `5G9NWJ5P9uk7am24yCKeLZJqXWW6hjuMyRJDmw4ofqxG8Js2` |
 
 ##### Pair 2
 
-| Key           | Value                                                                        |
-| ------------- | ---------------------------------------------------------------------------- |
+| Key | Value |
+| ------ | ---------------------------------------------------------------------- |
 | Secret phrase | `paper next author index wedding frost voice mention fetch waste march tilt` |
-| Secret seed   | `0x4846fedafeed0cf307da3e2b5dfa61415009b239119242006fc8c0972dde64b0`         |
+| Secret seed | `0x4846fedafeed0cf307da3e2b5dfa61415009b239119242006fc8c0972dde64b0` |
 | **SR25519**   |                                                                              |
-| Public key    | `0x74cca68a32156615a5923c67024db70da5e7ed36e70c8cd5bcf3556df152bb6d`         |
-| SS58 Address  | `5EhrCtDaQRYjVbLi7BafbGpFqcMhjZJdu8eW8gy6VRXh6HDp`                           |
+| Public key | `0x74cca68a32156615a5923c67024db70da5e7ed36e70c8cd5bcf3556df152bb6d`         |
+| SS58 Address | `5EhrCtDaQRYjVbLi7BafbGpFqcMhjZJdu8eW8gy6VRXh6HDp`                           |
 | **ED25519**   |                                                                              |
-| Public key    | `0x0fe9065f6450c5501df3efa6b13958949cb4b81a2147d68c14ad25366be1ccb4`         |
-| SS58 Address  | `5CRZoFgJs4zLzCCAGoCUUs2MRmuD5BKAh17pWtb62LMoCi9h`                           |
+| Public key | `0x0fe9065f6450c5501df3efa6b13958949cb4b81a2147d68c14ad25366be1ccb4`         |
+| SS58 Address | `5CRZoFgJs4zLzCCAGoCUUs2MRmuD5BKAh17pWtb62LMoCi9h`                           |
 
-In the next section, we will create a custom chain specification using your key pairs and
-share your custom chain specicification with your network validators
+After you generate the keys to use with your blockchain, you are ready to create a custom **chain specification** using those key pairs then share your custom chain specicification with trusted network participants called **validators**.
 
+## Create a custom chain specification
 
-## Create a Custom Chain Spec
+To enable others to participate in your blockchain network, you should ensure that they generate their own keys. 
+If other participants have generated their key pairs, you can create a custom chain specification to replace the `local` chain specification that you used previously.
 
-Now that each participant has their own keys generated, you're ready to create a custom chain
-specification. We will use this custom chain spec instead of the built-in `local` spec that we used
-previously.
+This tutorial shows you hows to create a two-node network.
+You can follow the same steps to add more nodes to your network.
 
-In this example we will create a two-node network, but the process generalizes to more nodes in a
-straight-forward manner.
+### Modify an existing chain specification
 
-### Create a Chain Specification
+Previously, you added nodes to the blockchain using the predefined `local` chain specification using the `--chain local` command-line option. 
+Instead of writing a completely new chain specicification, you can modify the exisitng one that you used before. 
 
-Last time around, we used `--chain local` which is a predefined "chain spec" that has Alice and Bob
-specified as validators along with many other useful defaults.
+To create a new chain specification based on an exisitng one:
 
-Rather than writing our chain spec completely from scratch, we'll just make a few modifications to
-the one we used before. To start, we need to export the chain spec to a file named
-`customSpec.json`. 
+1. Open a terminal shell on your computer.
 
-<Message
-  type={`green`}
-  title={`Tip`}
-  text={`Further details about all of these commands are available by running: \`node-template --help\`.`}
-/>
+1. Change to the root directory where you compiled the Substrate node template.
 
-```bash
-# Export the local chain spec to json
-./target/release/node-template build-spec --disable-default-bootnode --chain local > customSpec.json
-```
+1. Export the local chain specicification to a file named `customSpec.json` by running the following command: 
+    
+    ```bash
+    ./target/release/node-template build-spec --disable-default-bootnode --chain local > customSpec.json
+    ```
 
-### Modify Aura authority nodes
+    If you were to open the `customSpec.json` file in a text editor, you would see that it contains several fields, including a large blob that contains the Wasm binary for the runtime you built using the `cargo build --release` command.
+    Instead of viewing the entire file, let's look at the first and last few lines.
 
-The file we just created contains several fields, and you can learn a lot by exploring them. By far
-the largest field is a single binary blob that is the Wasm binary of our runtime. It is part of what
-you built earlier he `cargo build --release` command.
+1. View the first few fields in the `customSpec.json` file by running the following command:
+    
+    ```bash
+    head customSpec.json
+    ```
 
-The portion of the file we're interested in is the Aura authorities used for creating blocks,
-indicated by **"aura"** field below, and GRANDPA authorities used for finalizing blocks, indicated
-by the **"grandpa"** field. That section looks like this using the [two provided demo keys](#option-3-use-pre-generated-keys):
+    The command displays the first fields from the file.
+    For example:
 
-```json
-{
-  //-- snip --
-  "genesis": {
-    "runtime": {
-      "frameSystem": {
-        //-- snip --
-      },
-      "palletAura": {
-        "authorities": [
-          "5FfBQ3kwXrbdyoqLPvcXRp7ikWydXawpNs2Ceu3WwFdhZ8W4",
-          "5EhrCtDaQRYjVbLi7BafbGpFqcMhjZJdu8eW8gy6VRXh6HDp"
+    ```bash
+    {
+      "name": "Local Testnet",
+      "id": "local_testnet",
+      "chainType": "Local",
+      "bootNodes": [],
+      "telemetryEndpoints": null,
+      "protocolId": null,
+      "properties": null,
+      "consensusEngine": null,
+      "codeSubstitutes": {},
+    ```
+
+1. View the last fields in the `customSpec.json` file by running the following command:
+    
+    ```bash
+    tail -n 80 customSpec.json
+    ```
+    
+    This command displays the last sections following the Wasm binary field, including the details for several of the pallets—such as the `sudo` and `balances` pallets—that are used in the runtime.
+
+1. Open the `customSpec.json` file in a text editor.
+
+1. Modify the `name` field to identify this chain specification as a custom chain specification.
+    
+    For example:
+
+    ```json
+    "name": "My Custom Testnet",
+    ```
+
+1. Modify `aura` field to specify the authority nodes that should be used for creating blocks.
+    
+    ```json
+    "aura": {
+      "authorities": [
+        "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY",
+        "5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty"
+      ]
+    },
+    ```
+
+    Use the SR25519 SS58 address keys for the key pairs you previously generated.
+
+1. Modify the `grandpa` field to specify the authorities that should be used for finalizing blocks. 
+    
+    ```json
+    "grandpa": {
+      "authorities": [
+          [
+            "5FA9nQDVg267DEd8m1ZypXLBnvN7SFxYwV7ndqSYGiN9TTpu",
+            1
+          ],
+          [
+            "5GoNkf6WdbxCFnPdAnYYQyCjAKPJgLNxXwPjwTh6DGg6gN3E",
+            1
+          ]
         ]
       },
-      "palletGrandpa": {
-        "authorities": [
-          ["5G9NWJ5P9uk7am24yCKeLZJqXWW6hjuMyRJDmw4ofqxG8Js2", 1],
-          ["5CRZoFgJs4zLzCCAGoCUUs2MRmuD5BKAh17pWtb62LMoCi9h", 1]
-        ]
-      }
-      //-- snip --
-    }
-  }
-}
-```
+      ```
 
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text=
-    "These instructions are written for the node template. They will work with other Substrate-based 
-    nodes with few modifications. In Substrate, nodes that include the session pallet should leave 
-    the Aura and Grandpa configs empty and instead insert this information in the session config. All 
-    of this is demonstrated in the chain spec you export from your desired node. 
-    "
-/>
+      Use the ED25519 SS58 address keys for the key pairs you previously generated.
+      
+      You might notice that there are two data values for the Grandpa `authorities` field. The first value is the address key. The second value is used to support **weighted votes**. In this example, each validator has a weight of **1** vote.
 
-The format for the Grandpa data is more complex because the Grandpa protocol supports weighted
-votes. In this case we have given each validator a weight of **1**.
+1. Save your changes and close the file.
 
-All we need to do is change the authority addresses listed (currently Alice and Bob) to our own
-addresses that we generated in the previous step. The **sr25519** addresses go in the **aura**
-section, and the **ed25519** addresses in the **grandpa** section. You may add as many validators as
-you like. For additional context, read about
-[keys in Substrate](/v3/advanced/cryptography#public-key-cryptography).
+### Add validators
 
-<Message
-  type={`red`}
-  title={`Warning`}
-  text=
-    "Validators should not share the same keys, even for learning purposes. If two validators have the 
-    same keys, they will produce conflicting blocks. 
-    A single person should create the chain spec and share the resulting 
-    `customSpecRaw.json` file with their fellow validators. 
-    "
-/> 
+As you have just seen, you can add and change the authority addresses in a chain specification by modifying the `aura` and `grandpa` sections. 
+You can use this technique to add as many validators as
+you like.
 
-### Convert and share the raw chainspec
-Once the chain spec is prepared, convert it to a "raw" chain spec. The raw chain spec contains all
-the same information, but it contains the encoded storage keys that the node will use to reference
-the data in its local storage. Distributing a raw spec ensures that each node will store the data at
-the proper storage keys.
+To add validators:
 
-```bash
-./target/release/node-template build-spec --chain=customSpec.json --raw --disable-default-bootnode > customSpecRaw.json
-```
+* Modify the `aura` section to include **SR25519** addresses.
 
-Finally share the `customSpecRaw.json` with your all the other validators in the network.
+* Modify the `grandpa` section to include **ed25519** addresses and a voting weight. 
+ 
+Be sure to use unique keys for each validator. 
+If two validators have the same keys, they produce conflicting blocks. 
 
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text=
-    "Because Rust -> Wasm optimized builds aren't reproducible, each person will get a slightly
-    different Wasm blob which will break consensus if each participant generates the file themselves.
-    For the curious, learn more about this issue in 
-    [this blog post](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1).
-    "
-/>
+For additional information about working with key pairs and signatures, see
+[Public-Key cryptography](/v3/advanced/cryptography#public-key-cryptography).
 
-Next steps:
+### Convert the chain specification to use the raw format
 
-- Launch the chain with the bootnode
-- Add keys to keystore
-- Add other participants to your network
+After you prepare a chain specification with the information you want to use, you must convert it into a raw specification before it can be used. 
+The raw chain specification includes all of the same information as the unconverted specification.
+However, the raw chain specification also contains encoded storage keys that the node uses to reference the data in its local storage. 
+Distributing a raw chain specification ensures that each node stores the data using the proper storage keys.
 
+To convert a chain specification to use the raw format:
 
-## Launch Your Private Network
+1. Open a terminal shell on your computer.
 
-With your custom chain spec created and distributed to all participants, you're ready to launch your
-own custom chain. In this section it is no longer required to use a single physical machine or a
-single binary.
+1. Change to the root directory where you compiled the Substrate node template.
 
-### First Participant Starts a Bootnode
+1. Convert the `customSpec.json` chain specicification to the raw format with the file name `customSpecRaw.json` by running the following command: 
+    
+    ```bash
+    ./target/release/node-template build-spec --chain=customSpec.json --raw --disable-default-bootnode > customSpecRaw.json
+    ```
 
-You've completed all the necessary prep work and you're now ready to launch your chain. This process
-is very similar to hed a chain earlier, as Alice and Bob. It's important to start with
-a clean base path, so if you plan to use the same path that you've used previously, please delete
-all contents from that directory.
+### Share the chain specification with others
 
-The first participant can launch her node with:
+If you are creating a private blockchain network to share with other participants, you should ensure that only one person creates the chain specifiction and shares the resulting raw version of the specification—for example, the `customSpecRaw.json` file—with all of the other validators in the network. 
+
+Because Rust builds that produce WebAssembly optimized binaries aren't reproducible, each person who generates the Wasm runtime would produce a slightly different Wasm blob. 
+To ensure determinism, all participants in the blockchain network should use the same raw chain specification file.
+For more information about this issue, see [Hunting down a non-determinism-bug in our Rust Wasm build](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1).
+
+## Launch the private network
+
+After you distribute the custom chain specification to all network participants, you're ready to launch your own private blockchain. 
+The steps are similar to the steps you followed in [Start the blockchain using predefined accounts](#Start-the-blockchain-using-predefined-accounts). 
+For this part of the tutorial, you are no longer required to use a single physical computer or a single binary.
+
+### Start a first node
+
+As the first participant in the private blockchain network, you are responsible for starting the first node, called the **bootnode**.
+
+To start the first node:
+
+1. Open a terminal shell on your computer.
+
+1. Change to the root directory where you compiled the Substrate node template.
+
+1. Purge old chain data by running the following command:
+    
+    ```bash
+    ./target/release/node-template purge-chain --base-path /tmp/node01 --chain local -y
+    ```
+    The command prompts you to confirm the operation.
+
+    ```bash
+    Are you sure to remove "/tmp/alice/chains/local_testnet/db"? [y/N]:
+    ```
+
+1. Type `y` to confirm that you want to remove the chain data.
+    
+
 
 ```bash
 # purge chain (only required for new/modified dev chain spec)
-./target/release/node-template purge-chain --base-path /tmp/node01 --chain local -y
 ```
 
 ```bash
@@ -519,16 +551,15 @@ The first participant can launch her node with:
 
 Here are some differences from ed as Alice.
 
-- I've omitted the `--alice` flag. Instead we will insert our own custom keys into the keystore
-  through the RPC shortly.
-- The `--chain` flag has changed to use our custom chain spec.
-- I've added the optional `--name` flag. You may use it to give your node a human-readable name in
-  the telemetry UI.
-- The optional `--rpc-methods Unsafe` flag has been added. As the name indicates, this flag is not
-  safe to use in a production setting, but it allows this tutorial to stay focused on the topic at
-  hand.
+- Omitted the `--alice` flag. 
+  Instead, you will insert your own custom keys into the keystore through the RPC shortly.
+- The `--chain` flag has changed to use the custom chain specification.
+- The optional `--name` flag. 
+  You may use it to give your node a human-readable name in the telemetry UI.
+- The optional `--rpc-methods Unsafe` flag has been added. 
+  As the name indicates, this flag is not safe to use in a production setting, but it allows this tutorial to stay focused on the topic at hand.
 
-You should see the console outputs something as follows:
+You should see console output similar to the following:
 
 ```bash
 2021-03-10 18:32:15  Substrate Node
@@ -560,7 +591,7 @@ These values are for this specific
 example, but for your node, they will be different and **required for other nodes to directly connect to it** 
 (without a bootnode in the chain spec, as we removed in the flags before).
 
-### Add Keys to Keystore
+### Add keys to the keystore
 
 Once your node is running, you will again notice that no blocks are being produced. At this point,
 you need to add your keys into the keystore. Remember you will need to complete these steps for each
@@ -656,7 +687,7 @@ Alternatively, you can insert a key saved to a local file using the `key` comman
 ./target/release/node-template key insert --base-path /tmp/node01 --chain local --key-type <aura/gran> --suri /path/to/key/file
 ```
 
-### Verify Keys in the Keystore (Optional)
+### Verify keys in the keystore (Optional)
 
 Optionally, If you would like to check that your keys are now loaded, you can view the keystore files that should
 now exists for your `node01`. These are found in the following (default example) location:
@@ -691,8 +722,8 @@ You can also set a non-standard keystore file for your node with the flags:
 
 ### Subsequent Participants Join
 
-Subsequent validators can now join the network. This can be done by specifying the `--bootnodes`
-parameter as Bob did previously.
+Subsequent validators can now join the network. 
+This can be done by specifying the `--bootnodes` parameter as Bob did previously.
 
 ```bash
 # purge chain (only required for new/modified dev chain spec)
