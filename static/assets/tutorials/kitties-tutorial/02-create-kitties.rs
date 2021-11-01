@@ -12,6 +12,7 @@ pub mod pallet {
 		transactional
 	};
 	use sp_io::hashing::blake2_128;
+	use scale_info::TypeInfo;
 
 	#[cfg(feature = "std")]
 	use serde::{Deserialize, Serialize};
