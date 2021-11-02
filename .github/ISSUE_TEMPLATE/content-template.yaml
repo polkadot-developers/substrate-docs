@@ -1,7 +1,6 @@
-name: Request new or edited content
+name: Request New or Edited Content
 description: Submit your requests and suggestions to help us improve!
-title: '[Content] '
-labels: ['new content ✍%EF%B8%8F']
+labels: ['new content 💡✍️']
 body:
   - type: markdown
     attributes:
@@ -26,6 +25,3 @@ body:
         - Maybe (please specify)
     validations:
       required: true
-  - type: markdown
-    attributes:
-      value: 'Thanks for helping us identify how to make our docs better!'

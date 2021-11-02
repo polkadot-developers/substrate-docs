@@ -3,6 +3,6 @@ contact_links:
   - name: StackOverflow [tagged substrate]
     url: https://stackoverflow.com/questions/tagged/substrate
     about: Please seek support and ask questions on StackOverflow and tag them `substrate`.
-  - name: Substrate community chat
+  - name: Substrate Community Chat
     url: https://matrix.to/#/#substrate-technical:matrix.org
     about: Join the community chat!
