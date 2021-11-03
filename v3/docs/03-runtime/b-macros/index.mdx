@@ -196,9 +196,7 @@ Highly encouraged, but optional which will help ensure all of your pallet storag
 
 **What it does**
 
-This requires all storage to implement the trait `traits::StorageInfoTrait`, thus all keys and value
-types must bound `pallet_prelude::MaxEncodedLen`. Some individual storage can opt-out from this
-constraint by using `#[pallet::unbounded]`, see `#[pallet::storage]` documentation.
+This requires all storage to implement the trait `traits::StorageInfoTrait`, thus all keys and value types must bound `pallet_prelude::MaxEncodedLen`. Some individual storage can opt-out from this constraint by using `#[pallet::unbounded]`, see `#[pallet::storage]` documentation.
 
 This is an example of its definition:
 
