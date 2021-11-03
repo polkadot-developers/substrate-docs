@@ -15,10 +15,8 @@ To make the off-chain data integration secure and more efficient, Substrate prov
 
 - **Off-Chain Worker (OCW)** subsystems allows execution of long-running and possibly non-deterministic tasks (e.g. web requests, encryption/decryption and signing of data, random number generation, CPU-intensive computations, enumeration/aggregation of on-chain data, etc.) that could otherwise require longer than the block execution time.
 
-- **Off-Chain Storage** offers storage that is local to a Substrate node that can be accessed both by off-chain workers (both read and write access)
-  and on-chain logic (write access via off-chain indexing but not read access).
-  This is great for different worker threads to communicate to each others and for storing user or
-  node-specific data that does not require consensus over the whole network.
+- **Off-Chain Storage** offers storage that is local to a Substrate node that can be accessed both by off-chain workers (both read and write access) and on-chain logic (write access via off-chain indexing but not read access).
+This allows different worker threads to communicate to each other and to store user or node-specific data that does not require consensus over the whole network.
 
 - **Off-Chain Indexing** allows the runtime, if opted-in, to write directly to the off-chain storage
   independently from OCWs. This serves as a local/temporary storage for on-chain logic and
