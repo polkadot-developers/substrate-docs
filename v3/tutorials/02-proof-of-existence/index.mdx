@@ -137,7 +137,7 @@ Therefore, the first step is to remove some files and content from the files in 
     #[pallet::pallet]
     #[pallet::generate_store(pub(super) trait Store)]
     #[pallet::generate_storage_info]
-    pub struct Pallet<T, I = ()>(PhantomData<(T, I)>);
+    pub struct Pallet<T>(_);
     
     #[pallet::storage] // <-- Step 5. code block will replace this.
     #[pallet::hooks]

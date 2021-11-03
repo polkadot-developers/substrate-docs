@@ -181,7 +181,7 @@ This is an example of its definition:
 #[pallet::pallet]
 #[pallet::generate_store(pub(super) trait Store)]
 #[pallet::generate_storage_info]
-pub struct Pallet<T, I = ()>(PhantomData<(T, I)>);
+pub struct Pallet<T>(_);
 ```
 
 **Docs**
@@ -204,7 +204,7 @@ This is an example of its definition:
 #[pallet::pallet]
 #[pallet::generate_store(pub(super) trait Store)]
 #[pallet::generate_storage_info]
-pub struct Pallet<T, I = ()>(PhantomData<(T, I)>);
+pub struct Pallet<T>(_);
 ```
 
 **Docs**
