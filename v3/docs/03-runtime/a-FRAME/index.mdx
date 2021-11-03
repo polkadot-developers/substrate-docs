@@ -76,9 +76,10 @@ pub mod pallet {
 
 	// 2. Declaration of the Pallet type
 	// This is a placeholder to implement traits and methods.
-	#[pallet::pallet]
-	#[pallet::generate_store(pub(super) trait Store)]
-	pub struct Pallet<T>(PhantomData<T>);
+    #[pallet::pallet]
+    #[pallet::generate_store(pub(super) trait Store)]
+    #[pallet::generate_storage_info]
+    pub struct Pallet<T, I = ()>(PhantomData<(T, I)>);
 
 	// 3. Runtime Configuration Trait
 	// All types and constants go here.

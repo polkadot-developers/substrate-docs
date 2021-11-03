@@ -180,12 +180,38 @@ This is an example of its definition:
 ```rust
 #[pallet::pallet]
 #[pallet::generate_store(pub(super) trait Store)]
-pub struct Pallet<T>(PhantomData<T>);
+#[pallet::generate_storage_info]
+pub struct Pallet<T, I = ()>(PhantomData<(T, I)>);
 ```
 
 **Docs**
 
 - See the [macro expansion](/rustdocs/latest/frame_support/attr.pallet.html#macro-expansion-1) added to the `struct Pallet<T>` definition
+
+### #[pallet::generate_storage_info]
+
+**When to use**
+
+Highly encouraged, but optional which will help ensure all of your pallet storage items are bounded.
+
+**What it does**
+
+This requires all storage to implement the trait `traits::StorageInfoTrait`, thus all keys and value
+types must bound `pallet_prelude::MaxEncodedLen`. Some individual storage can opt-out from this
+constraint by using `#[pallet::unbounded]`, see `#[pallet::storage]` documentation.
+
+This is an example of its definition:
+
+```rust
+#[pallet::pallet]
+#[pallet::generate_store(pub(super) trait Store)]
+#[pallet::generate_storage_info]
+pub struct Pallet<T, I = ()>(PhantomData<(T, I)>);
+```
+
+**Docs**
+
+- See the [macro expansion](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#pallet-struct-placeholder-palletpallet-mandatory) added to the `struct Pallet<T>` definition
 
 ### #[pallet::hooks]
 
