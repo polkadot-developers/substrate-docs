@@ -60,7 +60,7 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
 - `impl_version`: The version of the implementation of the specification. 
   Nodes are free to ignore this; it serves only as an indication that the code is different. 
   As long as the other two versions are the same then while the actual code may be different, it is required to do the same thing. 
-  Non-consensus-breaking optimizations are about the only changes that could be made which would result in only the `impl_version` changing.
+  In general, only non-logic-breaking optimizations would result in a change of the `impl_version`.
 
 - `transaction_version`: The version of the extrinsics interface, useful to synchronize firmware updates for hardware wallets. 
   This allows hardware wallets to know which transactions they can safely sign.
