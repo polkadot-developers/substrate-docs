@@ -5,128 +5,99 @@ keywords: basics, beginner, runtime
 version: 3.0 
 section: how to guides
 category: basics
-difficulty: 1
 ---
 
-<Objectives
-  data={[
+This guide is an extension to the ["Add a Pallet to Your Runtime" tutorial](/tutorials/v3/add-a-pallet) and explains how to quickly integrate both local and external pallets in a runtime.
+
+You will learn how to include a custom internal pallet that implements an event and a call for runtime, and how to include an external pallet from `Crates.io` to a runtime.
+
+## Import a pallet
+
+1. Create a local pallet called `pallet_something`.
+
+  Import this pallet by adding the following to `/runtime/src/lib.rs`:
+
+  ```rust
+  // Import your pallet.
+  pub use pallet_something;
+  ```
+
+1. Configure your pallet's runtime implementation. 
+  Assume the local pallet only has the `Event` and `Call` types exposed to the runtime. Add the following to `/runtime/src/lib.rs`:
+
+  ```rust
+  // Configure your pallet.
+  impl pallet_something::Config for Runtime {
+    type Event = Event;
+    type Call = Call;
+  }
+  ```
+
+1. Declare your pallet and the items it exposes. 
+  Include the additional `Pallet` and `Storage` types for the [runtime macro](/v3/runtime/macros/#construct_runtime). In `construct_runtime!`, add the following:
+
+  ```rust
+  construct_runtime!(
+    pub enum Runtime where
+      Block = Block,
+      NodeBlock = opaque::Block,
+      UncheckedExtrinsic = UncheckedExtrinsic
     {
-      title: 'Goal',
-      description: 'Learn the steps for integrating a pallet to your runtime.',
-    },
-    {
-      title: 'Use Cases',
-      description: `
-- Including a custom pallet that implements an event and a call for runtime
-- Including a pallet from Crates.io to a runtime.
-`
-      ,
-    },
-    {
-      title: 'Overview',
-      description:
-        `This guide is an extension to the ["Add a Pallet to Your Runtime" tutorial](/tutorials/v3/add-a-pallet),
-        intended as a resource for developers new to Substrate looking to quickly integrate a pallet to their runtime. 
-        It covers adding both local and external pallets to a runtime.`,
-    },
-  ]}
-/>
+  /* --snip-- */
+      Something: pallet_something::{Pallet, Call, Storage, Event<T>},
+  /* --snip-- */
+    }
+  );
+  ```
 
-## Steps
+> **NOTE:** To add an external pallet, you use a similar method to the one you used with the local pallet, but you must include all of the types your pallet exposes.
+You must also include the relevant parameter types and constants. For examples of how to declare parameters and constants, see [`pallet_timestamp`][timestamp-frame].
 
-### 1. Import your pallet
+1. Update `/runtime/Cargo.toml`
 
-#### For local pallets
+  **Local pallets**
 
-Assuming a pallet called `pallet_something` is created, the first step is to import it in `/runtime/src/lib.rs`:
+  In `/runtime/Cargo.toml`, include your pallet as a local dependency in `std` and add `runtime-benchmarks`. For example:
 
-```rust
-// Import your pallet.
-pub use pallet_something;
-```
+  ```rust
+  /* --snip-- */
+  [dependencies.pallet-something]
+  default-features = false
+  path = '../pallets/something'
+  version = '3.0.0'
+  /* --snip-- */
+  [features]
+  default = ['std']
+  runtime-benchmarks = [
+    /* --snip */
+    'pallet-something/runtime-benchmarks',
+  ]
+  std = [
+    'pallet-something/std',
+  /* --snip-- */
+  ]
+  ```
 
-### 2. Include it in `/runtime/src/lib.rs`
+  **External pallets**
 
-#### For local pallets
+  The following is an example of how you would add an external pallet if the pallet is hosted in [crates.parity.io](https://crates.parity.io/):
 
-Configure your pallet's runtime implementation. Assuming the local pallet only has `Event` and `Call` types exposed to the runtime:
-
-```rust
-// Configure your pallet.
-impl pallet_something::Config for Runtime {
-	type Event = Event;
-	type Call = Call;
-}
-```
-
-Declare your pallet and the items it exposes in `construct_runtime!`, including the additional `Pallet` and `Storage`
-types for the [runtime macro](/v3/runtime/macros/#construct_runtime):
-
-```rust
-construct_runtime!(
-	pub enum Runtime where
-		Block = Block,
-		NodeBlock = opaque::Block,
-		UncheckedExtrinsic = UncheckedExtrinsic
-	{
-/* --snip-- */
-		Something: pallet_something::{Pallet, Call, Storage, Event<T>},
-/* --snip-- */
-	}
-);
-```
-
-#### For external pallets
-
-The same pattern applies as for declaring a local pallet, except you must ensure you include all the types your pallet exposes.
-Additionally, you must include the relevant parameter types and constants. For examples of how to declare parameters and constants, see the [`pallet_timestamp`][timestamp-frame] code,
-is declared.
-
-### 3. Update `/runtime/Cargo.toml`
-
-#### For local pallets
-
-In `/runtime/Cargo.toml`, include your pallet as a local dependency, include it in `std` and add `runtime-benchmarks`:
-
-```rust
-/* --snip-- */
-[dependencies.pallet-something]
-default-features = false
-path = '../pallets/something'
-version = '3.0.0'
-/* --snip-- */
-[features]
-default = ['std']
-runtime-benchmarks = [
-	/* --snip */
-	'pallet-something/runtime-benchmarks',
-]
-std = [
-	'pallet-something/std',
-/* --snip-- */
-]
-```
-
-#### For external pallets
-
-For example, if the pallet is hosted in [crates.parity.io](https://crates.parity.io/), adding it to the runtime would look like this:
-
-```rust
-[dependencies.pallet-external]
-default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-rev = 'd6c33e7ec313f9bd5e319dc0a5a3ace5543f9617'
-version = '3.0.0'
-/* --snip-- */
-runtime-benchmarks = [
-	/* --snip */
-	'pallet-external/runtime-benchmarks',
-]
-std = [
-'pallet-external/std',
-/* --snip-- */
-]
-```
+  ```rust
+  [dependencies.pallet-external]
+  default-features = false
+  git = 'https://github.com/paritytech/substrate.git'
+  rev = 'd6c33e7ec313f9bd5e319dc0a5a3ace5543f9617'
+  version = '3.0.0'
+  /* --snip-- */
+  runtime-benchmarks = [
+    /* --snip */
+    'pallet-external/runtime-benchmarks',
+  ]
+  std = [
+  'pallet-external/std',
+  /* --snip-- */
+  ]
+  ```
 
 ## Examples
 
@@ -135,16 +106,8 @@ std = [
 
 ## Related material
 
-#### Docs
-
 - [Mock runtime][mock-runtime]
-
-#### Rust docs
-
 - [Timestamp Pallet associated types][timestamp-rustdocs]
-
-#### Other
-
 - [FRAME `pallet-timestamp`](https://crates.io/crates/pallet-timestamp)
 
 [mock-runtime]: /v3/runtime/testing#mock-runtime-environment
