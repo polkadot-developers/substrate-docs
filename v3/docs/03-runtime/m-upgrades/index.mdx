@@ -66,7 +66,7 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
   This allows hardware wallets to know which transactions they can safely sign.
   This number must be bumped when there is a change in the order of the pallets in the `construct_runtime!` macro or when there is a change in the dispatchables of a pallet.
   This includes any change in pallet and dispatchable runtime parameter types. 
-  If this number is updated, then the `spec_version` must also be updated which can be automated as a CI process, see [this example](https://gitlab.parity.io/parity/polkadot/-/blob/master/scripts/gitlab/check_extrinsics_ordering.sh).
+  If this number is updated, then the `spec_version` must also be updated. Updates to the `spec_version` can be automated as a CI process, as is done for the [Polkadot network](https://gitlab.parity.io/parity/polkadot/-/blob/master/scripts/gitlab/check_extrinsics_ordering.sh).
 
 - `apis` is a list of supported [runtime APIs](/rustdocs/latest/sp_api/macro.impl_runtime_apis.html) along with their versions.
 
