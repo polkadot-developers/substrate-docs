@@ -7,15 +7,15 @@ section: how to guides
 category: basics
 ---
 
-Declaring a constant value in a runtime is a useful tool to either define fixed values or define values that change dynamically according to some factor. 
-This guide shows you how to create pallet constants that are used to reset a `u32` value in storage. This value, we'll call `SingleValue`, can also be modified using a method called `add_value`.
+Declaring a constant value in a runtime is a useful tool to either define fixed values or define values that change dynamically according to some factor. This guide shows you how to create pallet constants that are used to reset a \`u32\` value in storage. This value, we'll call \`SingleValue\`, can also be modified using a method called \`add_value\`.
 
-## Configure your pallet's types, events, errors and hooks
+## Create pallet constants and add them to your runtime
 
 1. Define the constants in your pallet.
 
-    - `MaxAddend` will be the value displayed in metadata.
-    - `ClearFrequency` keeps track of the block numbers and will be used to reset `SingleValue`.
+  - `MaxAddend` will be the value displayed in metadata.
+  - `ClearFrequency` keeps track of the block numbers and will
+    be used to reset `SingleValue`:
 
   ```rust
   #[pallet::config]
@@ -65,7 +65,7 @@ This guide shows you how to create pallet constants that are used to reset a `u3
   }
   ```
 
-1. Configure `on_finalize`.
+1. Configure `on_finalize`
 
   `SingleValue` is set to 0 every `ClearFrequency` number of blocks in the `on_finalize` function that
   runs at the end of block execution. Specify this logic under the `#[pallet::hooks]` attribute:
@@ -83,18 +83,16 @@ This guide shows you how to create pallet constants that are used to reset a `u3
   }
   ```
 
-## Create a dispatchable and configure your runtime
-
 1. Create a method that allows users to specify the value.
 
   The `add_value` method increases `SingleValue` so long as each call adds to less than the `MaxAddend` value.
 
   For this method you must:
 
-    - Include checks.
-    - Keep track of the previous value.
-    - Check for overflow.
-    - Update `SingleValue`.
+  - Include checks.
+  - Keep track of the previous value.
+  - Check for overflow.
+  - Update `SingleValue`.
 
   ```rust
   // Extrinsics callable from outside the runtime.
