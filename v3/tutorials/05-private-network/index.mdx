@@ -17,7 +17,7 @@ relevantSkills:
 This tutorial provides a basic introduction to the **consensus** model used in the Substrate node template and how to start a blockchain network with an **authority set** of private **validators**.
 
 All blockchains require the nodes in the network to agree on the set of messages and their order to successfully create blocks and progress from one block to the next.
-Each block represents state at a specific point in time and the nodes agreement on the state is called consensus.
+Each block represents the state of data at a specific point in time and the nodes' agreement on the state is called **consensus**.
 There are several differnt algorithms used to reach consensus, including:
 
 * Proof of work consensus depends on the computational work done by validator nodes to add valid blocks to the chain.
@@ -35,13 +35,15 @@ In this tutorial, you'll see how this consensus model works in practice, first, 
 
 Before you begin, verify the following:
 
-* You have configured your environment for Substrate development by installing [Rust and the Rust toolchain]().
+* You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/v3/getting-started/installation).
 
-* You have completed the [Create your first Substrate blockchain]() and have the Substrate node template installed locally.
+* You have completed the [Create your first Substrate blockchain](/tutorials/v3/create-your-first-substrate-chain) and have the Substrate node template installed locally.
 
 * You are generally familiar with software development and use command-line interfaces.
 
 * You are generally familiar with blockchains and smart contract platforms.
+
+## Tutorial objectives
 
 By completing this tutorial, you will accomplish the following objectives:
 
@@ -55,11 +57,11 @@ By completing this tutorial, you will accomplish the following objectives:
 
 ## Start the blockchain using predefined accounts
 
-Before you generate keys to start your own private Substrate network, you can learn the fundamental principles using a predefined network specification called `local` and predefined user accounts.
+Before you generate keys to start your own private Substrate network, you can learn the fundamental principles using a predefined network specification called `local` and running under predefined user accounts.
 
-For this part of the tutorial, you should have the Substrate node template running on a single local computer with predefined accounts that are named Alice and Bob.
+This part of the tutorial simulates a private network by running two Substrate nodes on a single local computer using predefined accounts that are named `alice` and `bob`.
 
-### Start the blockchain as Alice
+### Start the first blockchain node
 
 To start the blockchain:
 
@@ -72,7 +74,7 @@ To start the blockchain:
     ```bash
     ./target/release/node-template purge-chain --base-path /tmp/alice --chain local
     ```
-    The command prompts you to confirm the operation.
+    The command prompts you to confirm the operation:
 
     ```bash
     Are you sure to remove "/tmp/alice/chains/local_testnet/db"? [y/N]:
@@ -99,13 +101,13 @@ To start the blockchain:
 
 #### Review the command-line options
 
-Before moving on, let's take a closer look at the options used to start the node template.
+Before moving on, have a look at how the following options are used to start the node template.
 
-| <div style="min-width:110pt;font-weight:bold;">Option</div> | <div style="font-weight:bold;">Description</div> |
-|:------------------------------ |: ---------------------------------------------- |
+|:<div style="min-width:110pt;font-weight:bold;">Option</div> |:<div style="font-weight:bold;">Description</div> |
+|:--------------- |: ---------------------------------------------- |
 | `--base-path` | Specifies the directory for storing all of the data related to this chain.|
 | `--chain local` | Specifies the chain specification to use. Valid predefined chain specifications include `local`, `development`, and `staging`.|
-| `--alice` | Places the predefined keys for the Alice account in the node's keystore. With this setting, the `alice` account is used for block production and finalization.|
+| `--alice` | Adds the predefined keys for the `alice` account to the node's keystore. With this setting, the `alice` account is used for block production and finalization.|
 | `--port 30333` | Specifies the port to listen on for peer-to-peer (`p2p`) traffic. Because this tutorial uses two nodes running on the same physical computer to simulate a network, you must explicitly specify a different port for at least one account. |
 | `--ws-port 9945`  | Specifies the port to listen on for incoming WebSocket traffic. The default port is `9944`. This tutorial uses a custom web socket port number (`9945`). |
 | `--rpc-port 9933` | Specifies the port to listen on for incoming RPC traffic. The default port is `9933`.|
@@ -113,7 +115,7 @@ Before moving on, let's take a closer look at the options used to start the node
 | `--telemetry-url` | Specifies where to send telemetry data. For this tutorial, you can send telemetry data to a server hosted by Parity that is available for anyone to use.|
 | `--validator` | Specifies that this node participates in block production and finalization for the network. |
 
-For more information about the command-line options that are available for started the node template, see the usage help by running the following command:
+For more information about the command-line options that are available for the node template, see the usage help by running the following command:
 
 `./target/release/node-template --help`
 
@@ -144,16 +146,18 @@ For example, you should see output similar to this:
 ...
 ```
 
-There are a few key messages you should notice in the output displayed.
+In particular, you should note the following key messages in the output:
 
 * `🔨 Initializing Genesis block/state (state: 0xea47…9ba8, header-hash: 0x9d07…7cce)` identifies the initial or **genesis block** that the node is using. 
-  When you start the next node, verify that these values are equal.
+  When you start the next node, verify that these values are the same.
 
-* `🏷 Local node identity is: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp` shows the peer ID that the node started by Bob will need from Alice's node. This value was determined by the `--node-key` that was used to start Alice's node.
+* `🏷 Local node identity is: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp` specifies a string that uniquely identifies this node. 
+  This string is determined by the `--node-key` that was used to start the node using the `alice` account. You use this string to identify the node to connect to when you start a second node.
    
-* No blocks are being produced yet. Blocks will start being produced once another node joins the network.
+* `2021-03-10 17:34:37  💤 Idle (0 peers), best: #0 (0x9d07…7cce), finalized #0 (0x9d07…7cce), ⬇ 0 ⬆ 0` indicates that there are no other nodes in the network and that no blocks are being produced. 
+  Another node must join the network before blocks can start to be produced.
 
-### Attach a front-end to see information about the node
+### Attach a frontend to see information about the node
 
 You can see a lot of information about node operations by watching the output it produces in your terminal.
 You can also view information about node operations by using a web browser to access the Polkadot-JS graphical user interface.
@@ -175,7 +179,7 @@ To view node operations using the Polkadot-JS application:
 
   ![Display the list of networks](../../../src/images/tutorials/05-private-network/private-network-top-left-network-icon.png)
 
-1. Expand **DEVELOPMENT** at the bottom of the list of networks available.
+1. Expand **DEVELOPMENT** in the list of networks available.
 
   ![Display DEVELOPMENT networks](../../../src/images/tutorials/05-private-network/polkadot-list-networks.png)
 
@@ -190,10 +194,10 @@ To view node operations using the Polkadot-JS application:
 
     ![No blocks displayed in Polkadot-JS](../../../src/images/tutorials/05-private-network/private-network-no-blocks.png)
 
-### Add a node to the blockchain network as Bob
+### Add a second node to the blockchain network
 
 Now that the node you started using the `alice` account keys is running, you can add another node to the network using the `bob` account.
-Because you are joining a network that is already running, you can use the running node to bootstrap the new node.
+Because you are joining a network that is already running, you can use the running node to identify the network for the new node to join.
 The commands are similar to the ones you used before, but with a few important differences.
 
 To add a node to the running blockchain:
@@ -223,61 +227,69 @@ To add a node to the running blockchain:
     --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
     ```
     
-    Take note of the following differences between this command and the previous on.
+    Note the following differences between this command and the previous one:
     
     * Because the two nodes are running on the same physical computer, you must specify different values for the `--base-path`, `--port`, `--ws-port`, and `--rpc-port` options.
 
-    * This command includes the `--bootnodes` option and specifies a single boot node, the node started by `alice` using the following information:
+    * This command includes the `--bootnodes` option and specifies a single boot node, the node started by `alice`.
+    
+    The `--bootnodes` option specifies the following information:
+    
+    * `ip4` indicates that the IP address for the node uses the IPv4 format
+    * `127.0.0.1` specifies the IP address for the running node. 
+      In this case, and the address for the localhost.
+    * `tcp` specifies TCP as the protocol used for peer-to-peer communication.
+    * `30333` specifies the port number used for peer-to-peer communication. 
+      In this case, the port number for TCP traffic.
+    * `12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp` identifies the running node to communicate with for this netwrokt. 
+      In this case, the identifier for the node started using the `alice` account.
       
-      * The IP address for the running node. In this case, the IP address uses the IPv4 (`ip4`) format and the address for the localhost `127.0.0.1`.
+## Verify blocks are produced and finalized
+
+After you start the second node, the nodes should connect to each other as peers and start producing blocks. 
+    
+To verify blocks are being finalized:
+
+1. Verify that you see lines similar to the following in the terminal where you started the first node:
+    
+    ```
+    ...
+    2021-03-10 17:47:32  🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
+    2021-03-10 17:47:32  🔍 Discovered new external address for our node: /ip4/<your computer's LAN IP>/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
+    2021-03-10 17:47:33  💤 Idle (1 peers), best: #0 (0x9d07…7cce), finalized #0 (0x9d07…7cce), ⬇ 1.0kiB/s ⬆ 1.0kiB/s
+    2021-03-10 17:47:36  🙌 Starting consensus session on top of parent 0x9d07d1757a9ca248e58141ce52a11fca37f71007dec16650b87a853f0d4c7cce
+    2021-03-10 17:47:36  🎁 Prepared block for proposing at 1 [hash: 0x727826a5e6fba9a13af11422d4677b5f0743cc733c382232328e69fd307d1d2f; parent_hash: 0x9d07…7cce; extrinsics (1): [0x768a…a9e2]]
+    2021-03-10 17:47:36  🔖 Pre-sealed block for proposal at 1. Hash now 0x4841d8b2e62483fa4702b3ddcd1b603803842374dcdc1e9533ad407708b33dd8, previously 0x727826a5e6fba9a13af11422d4677b5f0743cc733c382232328e69fd307d1d2f.
+    2021-03-10 17:47:36  ✨ Imported #1 (0x4841…3dd8)
+    2021-03-10 17:47:36  ✨ Imported #1 (0xb241…2ae8)
+    2021-03-10 17:47:38  💤 Idle (1 peers), best: #1 (0x4841…3dd8), finalized #0 (0x9d07…7cce), ⬇ 0.8kiB/s ⬆ 0.8kiB/s
+    2021-03-10 17:47:42  ♻️  Reorg on #1,0x4841…3dd8 to #2,0x8b6a…dce6, common ancestor #0,0x9d07…7cce
+    2021-03-10 17:47:42  ✨ Imported #2 (0x8b6a…dce6)
+    2021-03-10 17:47:43  💤 Idle (1 peers), best: #2 (0x8b6a…dce6), finalized #0 (0x9d07…7cce), ⬇ 0.8kiB/s ⬆ 0.7kiB/s
+    2021-03-10 17:47:48  🙌 Starting consensus session on top of parent 0x8b6a3ab2fe9891b1af008ea0d92dae9bc84cfa5578231e81066d47928822dce6
+    2021-03-10 17:47:48  🎁 Prepared block for proposing at 3 [hash: 0xb887aef2097eff5869e38ccec0302bce372ad05ac2cdf9cc4725c38ec071fb7a; parent_hash: 0x8b6a…dce6; extrinsics (1): [0x82ac…2f20]]
+    2021-03-10 17:47:48  🔖 Pre-sealed block for proposal at 3. Hash now 0x34d608dd8be6b82bef4a7aaae1ec80930a5c4b8cf9bdc99013410e91544f3a2a, previously 0xb887aef2097eff5869e38ccec0302bce372ad05ac2cdf9cc4725c38ec071fb7a.
+    2021-03-10 17:47:48  ✨ Imported #3 (0x34d6…3a2a)
+    2021-03-10 17:47:48  💤 Idle (1 peers), best: #3 (0x34d6…3a2a), finalized #0 (0x9d07…7cce), ⬇ 0.7kiB/s ⬆ 0.8kiB/s
+    2021-03-10 17:47:53  💤 Idle (1 peers), best: #3 (0x34d6…3a2a), finalized #1 (0xb241…2ae8), ⬇ 0.6kiB/s ⬆ 0.7kiB/s
+    2021-03-10 17:47:54  ✨ Imported #4 (0x2b8a…fdc4)
+    2021-03-10 17:47:58  💤 Idle (1 peers), best: #4 (0x2b8a…fdc4), finalized #2 (0x8b6a…dce6), ⬇ 0.7kiB/s ⬆ 0.6kiB/s
+    ...
+    ```
       
-      * The port number used for peer-to-peer communication. In this case, the port number for TCP traffic is `30333`.
-      
-      * The peer identifier for the running node that you made note of in the console output. In this case, `12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp`.
-      
-      After a few seconds, the nodes should connect to each other as peers and start producing blocks. 
-      You should see lines like the following in the console that started first node:
-      
-      ```
-      ...
-      2021-03-10 17:47:32  🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
-      2021-03-10 17:47:32  🔍 Discovered new external address for our node: /ip4/<your computer's LAN IP>/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
-      2021-03-10 17:47:33  💤 Idle (1 peers), best: #0 (0x9d07…7cce), finalized #0 (0x9d07…7cce), ⬇ 1.0kiB/s ⬆ 1.0kiB/s
-      2021-03-10 17:47:36  🙌 Starting consensus session on top of parent 0x9d07d1757a9ca248e58141ce52a11fca37f71007dec16650b87a853f0d4c7cce
-      2021-03-10 17:47:36  🎁 Prepared block for proposing at 1 [hash: 0x727826a5e6fba9a13af11422d4677b5f0743cc733c382232328e69fd307d1d2f; parent_hash: 0x9d07…7cce; extrinsics (1): [0x768a…a9e2]]
-      2021-03-10 17:47:36  🔖 Pre-sealed block for proposal at 1. Hash now 0x4841d8b2e62483fa4702b3ddcd1b603803842374dcdc1e9533ad407708b33dd8, previously 0x727826a5e6fba9a13af11422d4677b5f0743cc733c382232328e69fd307d1d2f.
-      2021-03-10 17:47:36  ✨ Imported #1 (0x4841…3dd8)
-      2021-03-10 17:47:36  ✨ Imported #1 (0xb241…2ae8)
-      2021-03-10 17:47:38  💤 Idle (1 peers), best: #1 (0x4841…3dd8), finalized #0 (0x9d07…7cce), ⬇ 0.8kiB/s ⬆ 0.8kiB/s
-      2021-03-10 17:47:42  ♻️  Reorg on #1,0x4841…3dd8 to #2,0x8b6a…dce6, common ancestor #0,0x9d07…7cce
-      2021-03-10 17:47:42  ✨ Imported #2 (0x8b6a…dce6)
-      2021-03-10 17:47:43  💤 Idle (1 peers), best: #2 (0x8b6a…dce6), finalized #0 (0x9d07…7cce), ⬇ 0.8kiB/s ⬆ 0.7kiB/s
-      2021-03-10 17:47:48  🙌 Starting consensus session on top of parent 0x8b6a3ab2fe9891b1af008ea0d92dae9bc84cfa5578231e81066d47928822dce6
-      2021-03-10 17:47:48  🎁 Prepared block for proposing at 3 [hash: 0xb887aef2097eff5869e38ccec0302bce372ad05ac2cdf9cc4725c38ec071fb7a; parent_hash: 0x8b6a…dce6; extrinsics (1): [0x82ac…2f20]]
-      2021-03-10 17:47:48  🔖 Pre-sealed block for proposal at 3. Hash now 0x34d608dd8be6b82bef4a7aaae1ec80930a5c4b8cf9bdc99013410e91544f3a2a, previously 0xb887aef2097eff5869e38ccec0302bce372ad05ac2cdf9cc4725c38ec071fb7a.
-      2021-03-10 17:47:48  ✨ Imported #3 (0x34d6…3a2a)
-      2021-03-10 17:47:48  💤 Idle (1 peers), best: #3 (0x34d6…3a2a), finalized #0 (0x9d07…7cce), ⬇ 0.7kiB/s ⬆ 0.8kiB/s
-      2021-03-10 17:47:53  💤 Idle (1 peers), best: #3 (0x34d6…3a2a), finalized #1 (0xb241…2ae8), ⬇ 0.6kiB/s ⬆ 0.7kiB/s
-      2021-03-10 17:47:54  ✨ Imported #4 (0x2b8a…fdc4)
-      2021-03-10 17:47:58  💤 Idle (1 peers), best: #4 (0x2b8a…fdc4), finalized #2 (0x8b6a…dce6), ⬇ 0.7kiB/s ⬆ 0.6kiB/s
-      ...
-      ```
-      
-      These lines show that the first node started by `alice` has a one peer (`1 peers`), they have produced some blocks (`best: #4 (0x2b8a…fdc4)`), and that the blocks are being finalized (`finalized #2 (0x8b6a…dce6)`).
-      
-      If you look at the console that started the second node, you should see similar output.
+    These lines show that the first node started by `alice` has a one peer (`1 peers`), they have produced some blocks (`best: #4 (0x2b8a…fdc4)`), and that the blocks are being finalized (`finalized #2 (0x8b6a…dce6)`).
+
+1. Verify that you see similar output in the terminal where you started the second node.
 
 1. Open the [Polkadot-JS Explorer](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9945#/explorer) to verify the network is producing and finalizing blocks.
     
     ![Blocks are produced and finalized](../../../src/images/tutorials/05-private-network/private-network-displays-blocks.png)
 
-    After you've verified that both nodes are running as expected, you can shut them down to prevent port and chain specification conflicts.
-
-1. Return to the terminal shell where the node output is displayed and press Control-c to terminate the process, then repeat in the second terminal shell to stop all running nodes.
+1. Shut down both nodes by pressing Control-c in each terminal shell.
 
 ## Generate your own keys
 
-Now that you know how to start and connect running nodes as peers using command-line options, you are ready to generate you own secret keys instead of using the predefined account keys. 
+Now that you know how to start and connect running nodes as peers using command-line options, you are ready to generate your own secret keys instead of using the predefined account keys. 
 It's important to remember that each participant in the blockchain network is responsible for generating unique keys.
 
 ### Key generation options
@@ -290,7 +302,7 @@ Instead of using predefined keys or the more secure `subkey` program, this tutor
 
 ### Generate local keys using the node template
 
-You have already used the some command-line options to start your local blockchain node using the predefined Alice and Bob accounts.
+You have already used the some command-line options to start your local blockchain node using the predefined `alice` and `bob` accounts.
 You can also use command-line options to generate random keys to use with Substrate.
 
 For this tutorial, you can remain connected to the internet and use your local node to generate your keys. 
@@ -363,7 +375,7 @@ After you generate the keys to use with your blockchain, you are ready to create
 To enable others to participate in your blockchain network, you should ensure that they generate their own keys. 
 If other participants have generated their key pairs, you can create a custom chain specification to replace the `local` chain specification that you used previously.
 
-This tutorial shows you how to create a two-node network.
+This tutorial illustrates how to create a two-node network.
 You can follow the same steps to add more nodes to your network.
 
 ### Modify an existing chain specification
@@ -371,7 +383,7 @@ You can follow the same steps to add more nodes to your network.
 Previously, you added nodes to the blockchain using the predefined `local` chain specification using the `--chain local` command-line option. 
 Instead of writing a completely new chain specification, you can modify the one that you have used before. 
 
-To create a new chain specification based on an existing specifications:
+To create a new chain specification based on an existing specification:
 
 1. Open a terminal shell on your computer.
 
@@ -383,10 +395,10 @@ To create a new chain specification based on an existing specifications:
     ./target/release/node-template build-spec --disable-default-bootnode --chain local > customSpec.json
     ```
 
-    If you were to open the `customSpec.json` file in a text editor, you would see that it contains several fields, including a large blob that contains the Wasm binary for the runtime you built using the `cargo build --release` command.
-    Instead of viewing the entire file, let's look at the first and last few lines.
+    If you open the `customSpec.json` file in a text editor, you would see that it contains several fields, including a large blob that contains the Wasm binary for the runtime you built using the `cargo build --release` command.
+    Instead of viewing the entire file, you can preview the first and last few lines to see the fields you need to change.
 
-1. View the first few fields in the `customSpec.json` file by running the following command:
+1. Preview the first few fields in the `customSpec.json` file by running the following command:
     
     ```bash
     head customSpec.json
@@ -408,7 +420,7 @@ To create a new chain specification based on an existing specifications:
       "codeSubstitutes": {},
     ```
 
-1. View the last fields in the `customSpec.json` file by running the following command:
+1. Preview the last fields in the `customSpec.json` file by running the following command:
     
     ```bash
     tail -n 80 customSpec.json
@@ -426,7 +438,7 @@ To create a new chain specification based on an existing specifications:
     "name": "My Custom Testnet",
     ```
 
-1. Modify `aura` field to specify the authority nodes that should be used for creating blocks by adding the Sr25519 SS58 address keys for each network participant.
+1. Modify `aura` field to specify the nodes with the authority to create blocks by adding the Sr25519 SS58 address keys for each network participant.
     
     ```json
     "aura": {
@@ -437,7 +449,7 @@ To create a new chain specification based on an existing specifications:
       },
     ```
 
-1. Modify the `grandpa` field to specify the authorities that should be used for finalizing blocks by adding the Ed25519 SS58 address keys for each network participant. 
+1. Modify the `grandpa` field to specify the nodes with the authority to finalize blocks by adding the Ed25519 SS58 address keys for each network participant. 
     
     ```json
     "grandpa": {
@@ -454,7 +466,7 @@ To create a new chain specification based on an existing specifications:
       },
       ```
 
-      You might notice that there are two data values for the Grandpa `authorities` field. 
+      Note that there are two data values for the `authorities` field in the `grandpa` section. 
       The first value is the address key. 
       The second value is used to support **weighted votes**. 
       In this example, each validator has a weight of **1** vote.
@@ -481,7 +493,7 @@ For additional information about working with key pairs and signatures, see [Pub
 ### Convert the chain specification to use the raw format
 
 After you prepare a chain specification with the information you want to use, you must convert it into a raw specification before it can be used. 
-The raw chain specification includes all of the same information as the unconverted specification.
+The raw chain specification includes the same information as the unconverted specification.
 However, the raw chain specification also contains encoded storage keys that the node uses to reference the data in its local storage. 
 Distributing a raw chain specification ensures that each node stores the data using the proper storage keys.
 
@@ -491,7 +503,7 @@ To convert a chain specification to use the raw format:
 
 1. Change to the root directory where you compiled the Substrate node template.
 
-1. Convert the `customSpec.json` chain specicification to the raw format with the file name `customSpecRaw.json` by running the following command: 
+1. Convert the `customSpec.json` chain specification to the raw format with the file name `customSpecRaw.json` by running the following command: 
     
     ```bash
     ./target/release/node-template build-spec --chain=customSpec.json --raw --disable-default-bootnode > customSpecRaw.json
@@ -499,19 +511,27 @@ To convert a chain specification to use the raw format:
 
 ### Share the chain specification with others
 
-If you are creating a private blockchain network to share with other participants, you should ensure that only one person creates the chain specifiction and shares the resulting raw version of the specification—for example, the `customSpecRaw.json` file—with all of the other validators in the network. 
+If you are creating a private blockchain network to share with other participants, ensure that only one person creates the chain specifiction and shares the resulting raw version of that specification—for example, the `customSpecRaw.json` file—with all of the other validators in the network.
 
-Because Rust builds that produce WebAssembly optimized binaries aren't reproducible, each person who generates the Wasm runtime would produce a slightly different Wasm blob. 
-To ensure determinism, all participants in the blockchain network should use the same raw chain specification file.
+Because the Rust compiler produces optimized WebAssembly binaries that aren't deterministically reproducible, each person who generates the Wasm runtime produces a slightly different Wasm blob. 
+To ensure determinism, all participants in the blockchain network must use exactly the same raw chain specification file.
 For more information about this issue, see [Hunting down a non-determinism-bug in our Rust Wasm build](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1).
 
 ## Launch the private network
 
 After you distribute the custom chain specification to all network participants, you're ready to launch your own private blockchain. 
 The steps are similar to the steps you followed in [Start the blockchain using predefined accounts](#Start-the-blockchain-using-predefined-accounts). 
-For this part of the tutorial, you are no longer required to use a single physical computer or a single binary.
+To continue with this part of the tutorial, you are no longer using a single physical computer or a single binary.
 
-### Start a first node
+To continue, verify the following:
+
+* You have generated or collected the account keys for at least two authority accounts.
+* You have updated your custom chain specification to include the keys for block production (`aura`) and block finalization (`grandpa`).
+* You have converted your custom chain specification to raw format and distributed the raw chain specification to the nodes participating in the private network.
+
+If you have completed these steps, you are ready to start the first node in the private blockchain.
+
+### Start the first node
 
 As the first participant in the private blockchain network, you are responsible for starting the first node, called the **bootnode**.
 
@@ -542,7 +562,7 @@ To start the first node:
     --name MyNode01
     ```
     
-    Notice the following changes to the command you are running to start the node:
+    Note the following changes to the command you are running to start the node:
     
     * Instead of the predefined `--alice` account, you are using your own keys.
       You'll add your keys to the keystore in a separate step.
@@ -553,7 +573,7 @@ To start the first node:
     
     * The `--rpc-methods Unsafe` command-line option allows you to continue the tutorial using an unsafe communication mode because your blockchain is not being used in a production setting.
     
-    After running this command, you should see output similar to the following:
+1. Verify that you see output similar to the following:
     
     ```bash
     2021-11-03 15:32:14 Substrate Node    
@@ -575,7 +595,7 @@ To start the first node:
     2021-11-03 15:32:20 💤 Idle (0 peers), best: #0 (0x6c78…37de), finalized #0 (0x6c78…37de), ⬇ 0 ⬆ 0    
     ```
     
-    In the output, you should take note of the following information:
+    In the output, take note of the following information:
     
     * The **node identity** is `12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX`.
     
@@ -595,7 +615,7 @@ For each node:
 
 * Add the `aura` authority keys to enable [block _production_](/v3/getting-started/glossary#author).
 
-* Add the grandpa authority keys to enable [block _finalization_](/v3/getting-started/glossary#finality).
+* Add the `grandpa` authority keys to enable [block _finalization_](/v3/getting-started/glossary#finality).
 
 There are several ways you can insert keys into the keystore.
 For this tutorial, you can use the `key` subcommand to insert locally-generated secret keys.
@@ -662,7 +682,6 @@ To add a second validator to the private network:
     ```bash
     ./target/release/node-template purge-chain --base-path /tmp/node02 --chain local -y
     ```
-    If the path contains any data, the command prompts you to confirm the operation that you want to remove the chain data.
 
 1. Start a second blockchain node by running the following command:
     
@@ -686,7 +705,7 @@ To add a second validator to the private network:
     
     `💔 The bootnode you want to connect to at ... provided a different peer ID than the one you expect: ...`
     
-    Notice that the command includes the `base-path` and `name` command-line options plus an additional `validator` options to specify that this node is a validator for the private network.
+    Note that the command includes the `base-path` and `name` command-line options plus an additional `validator` option to specify that this node is a validator for the private network.
     Also note that all validators must be using _identical chain specifications_ to peer.
 
 1. Add the `aura` secret key generated from the `key` subcommand by running a command similar to the following:
@@ -699,7 +718,7 @@ To add a second validator to the private network:
     --key-type aura
     ```
 
-    Keep in mind that this command uses the second participant's secret key and that the `aura` key type is required to enable block production.
+    Note that this command uses the second participant's secret key and that the `aura` key type is required to enable block production.
 
 1. Add the `grandpa` secret key generated from the `key` subcommand to the local keystore by running a command similar to the following:
     
@@ -711,7 +730,7 @@ To add a second validator to the private network:
     --key-type gran
     ```
 
-    Keep in mind that this command uses the second participant's secret key and that the `gran` key type is required to enable block finalization.
+    Note that this command uses the second participant's secret key and that the `gran` key type is required to enable block finalization.
     
     Block finalization requires at least two-thirds of the validators to add their keys to their respective keystores. 
     Because this network is configured with two validators in the chain specification, block finalization starts after the second node has added its keys.
@@ -731,7 +750,7 @@ To add a second validator to the private network:
 
     Substrate nodes require a restart after inserting a `grandpa` key, so you must shut down and restart nodes before you see blocks being finalized.
 
-1. Shut down the node by pressing Control-C.
+1. Shut down the node by pressing Control-c.
 
 1. Restart the second blockchain node by running the following command:
     
@@ -749,7 +768,7 @@ To add a second validator to the private network:
     --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX
     ```
     
-    Notice that the command includes the `base-path` and `name` command-line options plus an additional `validator` option to specify that this node is a validator for the private network.
+    Note that the command includes the `base-path` and `name` command-line options plus an additional `validator` option to specify that this node is a validator for the private network.
     Also note that all validators must be using _identical chain specifications_ to peer.
     
     Be sure to set the correct `bootnode` identifier in the command.
@@ -784,9 +803,9 @@ To learn more about the topics introduced in this tutorial, see the following se
 
 * [Executor](/v3/advanced/executor) for more information about the WebAssembly runtime that is a core component of the chain specification.
 
-* [Accounts](https://wiki.polkadot.network/docs/learn-accounts) and [Key management](https://wiki.polkadot.network/docs/learn-account-generation) for more information about key generatiob and storage options.
+* [Accounts](https://wiki.polkadot.network/docs/learn-accounts) and [Key management](https://wiki.polkadot.network/docs/learn-account-generation) for more information about key generation and storage options.
 
-* [Cryptography](https://docs.substrate.io/v3/advanced/cryptography/) for more information abot the signature schemes used for different keys.
+* [Cryptography](https://docs.substrate.io/v3/advanced/cryptography/) for more information about the signature schemes used for different keys.
 
 <!-- TODO link to the followup tutorial about starting a 3 node network using the demo substrate node
 Details in https://github.com/substrate-developer-hub/tutorials/issues/16 -->
