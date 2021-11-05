@@ -62,7 +62,7 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
   As long as the other two versions are the same then while the actual code may be different, it is required to do the same thing. 
   In general, only non-logic-breaking optimizations would result in a change of the `impl_version`.
 
-- `transaction_version`: The version of the extrinsics interface, useful to synchronize firmware updates for hardware wallets. 
+- `transaction_version`: The version of the extrinsics interface, useful to synchronize firmware updates for hardware wallets or for any signing device to verify runtime transactions are valid.
   This allows hardware wallets to know which transactions they can safely sign.
   This number must be bumped when there is a change in the index of the pallets in the `construct_runtime!` macro or when any dispatchable changes, such as the number of parameters or any parameter type changes.
   This includes any change in pallet and dispatchable runtime parameter types. 
