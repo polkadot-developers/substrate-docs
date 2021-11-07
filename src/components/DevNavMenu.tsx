@@ -5,7 +5,7 @@ const DevNavMenu = {
     const intl = useIntl()
     return [
       {
-        section: `${intl.formatMessage({ id: 'docs-nav-knowledgebase' })}`,
+        section: `Docs`,
         url: '/v3/',
         external: false,
       },
@@ -608,7 +608,7 @@ DevNavMenuTuts.set('privateNetwork', [
       },
       {
         title: `Alice and Bob Start Blockchain`,
-        link: '#alice-and-bob-start-blockchain',
+        link: '#alice-and-bob-start-a-blockchain',
       },
       {
         title: `Generate Your Own Keys`,
