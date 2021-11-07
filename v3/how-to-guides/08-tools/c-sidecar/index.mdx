@@ -2,7 +2,7 @@
 title: Track Parachain auction winners using Sidecar
 slug: /how-to-guides/v3/tools/sidecar
 keywords: node, client, tooling
-version: '3.0' 
+version: '3.0'
 section: how to guides
 category: tools
 ---
@@ -23,7 +23,8 @@ category: tools
       number the auction ended at. Since [Sidecar](https://github.com/paritytech/substrate-api-sidecar) 
       is a stateless API and the auction info is stored at the final block of an auction, once the 
       auction is over we need the block number to make historic queries to retrieve the event and data 
-      stored in it.`},
+      stored in it.`,
+    },
   ]}
 />
 
@@ -33,8 +34,8 @@ category: tools
 
 We will track and store `finishEnd`, `auctionIndex`, and `leasePeriods` in a Database:
 
-- `finishEnd`: This is the last block of the auction. Storing it allows you to query the block at which the auction ended. From that block you can extract the 
-lease winning related events. (To query the block: GET /blocks/{finishEnd}.)
+- `finishEnd`: This is the last block of the auction. Storing it allows you to query the block at which the auction ended. From that block you can extract the
+  lease winning related events. (To query the block: GET /blocks/{finishEnd}.)
 
 - `auctionIndex`: The unique identifier for the auction.
 
@@ -77,7 +78,7 @@ This step queries all blocks at the block height specified in the `finishEnd` fi
                     '1', // LeasePeriod (begining of the lease period)
                     '4', // LeasePeriod (the count of the lease period)
                     '10000', // Balance (extra balance reserved)
-                    '1000000000', // Balance (total balance) 
+                    '1000000000', // Balance (total balance)
                 ]
             },
             {
@@ -97,9 +98,8 @@ This step queries all blocks at the block height specified in the `finishEnd` fi
 ### 4. Compare your data
 
 Now that you have all the `paraIds` that won slots for that auction, you can compare it with the data relevant to the `auctionIndex`.
-Comparing the `leasePeriods` that are available during the active auction to the `leasePeriods` that have been won and denoted in the 
+Comparing the `leasePeriods` that are available during the active auction to the `leasePeriods` that have been won and denoted in the
 `Leased` events (there may be multiple if there are multiple winners) will give you all the winners for that auction.
-
 
 ## Examples
 

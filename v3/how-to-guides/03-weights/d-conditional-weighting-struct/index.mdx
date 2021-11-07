@@ -2,7 +2,7 @@
 title: Conditional weighting struct
 slug: /how-to-guides/v3/weights/conditional-weighting-struct
 keywords: weights, benchmarking, runtime
-version: '3.0' 
+version: '3.0'
 section: how to guides
 category: weights
 difficulty: 2
@@ -16,14 +16,12 @@ difficulty: 2
     },
     {
       title: 'Use Cases',
-      description:
-        `Applying totally different weight functions based on certain condition on computing
+      description: `Applying totally different weight functions based on certain condition on computing
         extrinsic's weight value.`,
     },
     {
       title: 'Overview',
-      description:
-        `Substrate provides a mechanism known as [transaction weighting](/v3/concepts/weight) to quantify the
+      description: `Substrate provides a mechanism known as [transaction weighting](/v3/concepts/weight) to quantify the
       resources consumed while executing a transaction. Typically we will just use the weight
       functions returned from our benchmarking for this. But Substrate also allow us to apply a
       totally different weight function based on certain condition. We will walk through an example
@@ -34,7 +32,8 @@ Here are the different traits we'll be implementing:
   - [\`WeighData\`](/rustdocs/latest/frame_support/weights/trait.WeighData.html#impl-WeighData<T>-for-(Weight%2C%20DispatchClass%2C%20Pays)): Weigh the data in a function. 
     \`pallet::weight\` expects whatever implements \`WeighData<T>\` to replace \`T\` with a tuple of the dispatch arguments.
   - [\`PaysFee\`](rustdocs/latest/frame_support/weights/trait.PaysFee.html): Designate whether the dispatch pays a fee or not.
-  - [\`ClassifyDispatch\`](/rustdocs//latest/frame_support/weights/trait.ClassifyDispatch.html): A way to tell the runtime about the type of dispatch being made.`},
+  - [\`ClassifyDispatch\`](/rustdocs//latest/frame_support/weights/trait.ClassifyDispatch.html): A way to tell the runtime about the type of dispatch being made.`,
+    },
   ]}
 />
 
@@ -42,10 +41,10 @@ Here are the different traits we'll be implementing:
 
 ### 1. Write the `WeighData` struct
 
-Import `DispatchClass`, `WeighData` and `PaysFee` by declaring `use frame_support::dispatch::{DispatchClass, PaysFee, WeighData}` 
+Import `DispatchClass`, `WeighData` and `PaysFee` by declaring `use frame_support::dispatch::{DispatchClass, PaysFee, WeighData}`
 at the top of your pallet.
 
-In your pallet's `lib.rs` file, declare a struct called `Conditional` and write an implementation 
+In your pallet's `lib.rs` file, declare a struct called `Conditional` and write an implementation
 of `WeighData` for `Conditional`, where the first parameter is the condition that evaluate to
 a boolean value. In the following example, if the condition is true, the weight will be linear to
 the input. Otherwise the weight will be a constant.
@@ -61,7 +60,7 @@ pub struct Conditional(u32);
 
 impl WeighData<(&bool, &u32)> for Conditional {
   fn weigh_data(&self, (switch, val): (&bool, &u32)) -> Weight {
-    
+
     // If the first parameter is true, then the weight is linear in the second parameter.
     if *switch {
       val.saturating_mul(self.0)
@@ -98,7 +97,7 @@ impl<T> ClassifyDispatch<T> for Conditional {
 ### 3. Implement `PaysFee`
 
 Specify how `PaysFee` is used for the custom `WeighData` struct. Setting this to `true` will require the
-caller of this dispatch to pay a fee: 
+caller of this dispatch to pay a fee:
 
 `pallets/example/src/lib.rs`
 
@@ -134,7 +133,7 @@ Use the conditional weighting struct on your pallet's extrinsics like this:
 
 ## Related material
 
-#### Docs 
+#### Docs
 
 - [Benchmarking](/v3/runtime/benchmarking)
 - [Calculate custom fees](/how-to-guides/v3/weights/calculate-fees)

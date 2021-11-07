@@ -2,7 +2,7 @@
 title: Simple Crowdfund
 slug: /how-to-guides/v3/pallet-design/crowdfund
 keywords: pallet design, intermediate, runtime, child trie
-version: '3.0' 
+version: '3.0'
 section: how to guides
 category: pallet design
 difficulty: 2
@@ -20,17 +20,16 @@ difficulty: 2
   data={[
     {
       title: 'Goal',
-      description: 'Build a pallet that controls multiple token accounts, storing data in child storage.',
+      description:
+        'Build a pallet that controls multiple token accounts, storing data in child storage.',
     },
     {
       title: 'Use Cases',
-      description:
-        `A simple on-chain crowdfunding app for participants to pool funds towards a common goal.`,
+      description: `A simple on-chain crowdfunding app for participants to pool funds towards a common goal.`,
     },
     {
       title: 'Overview',
-      description:
-        `Using a child trie provides two advantages over using standard storage. First, it allows for
+      description: `Using a child trie provides two advantages over using standard storage. First, it allows for
         removing the entirety of the trie is a single storage write when the fund is dispensed or
         dissolved. Second, it allows any contributor to prove that they contributed using a Merkle Proof.
         This guide demonstrates how to use one trie for each active crowdfund. Any user can start a crowdfund by
@@ -153,7 +152,7 @@ pub fn id_from_index(index: FundIndex) -> child::ChildInfo {
   let mut buf = Vec::new();
   buf.extend_from_slice(b"crowdfnd");
   buf.extend_from_slice(&index.to_le_bytes()[..]);
-  
+
   child::ChildInfo::new_default(T::Hashing::hash(&buf[..]).as_ref())
 }
 ```
@@ -187,7 +186,8 @@ its [associated methods][storage-map-rustdocs]. Our pallet's `create` function a
   text={`
 Not yet familiar with using a struct in storage? Refer to [this how-to guide](../storage-value) to
 learn how.
-  `}/>
+  `}
+/>
 
 #### Contribute funds to an existing fund
 

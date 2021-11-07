@@ -1,15 +1,15 @@
 ---
 title: Macros
 slug: /v3/runtime/macros
-version: '3.0' 
+version: '3.0'
 section: docs
 category: runtime
-keywords: 
+keywords:
 ---
 
-> As of January 2021, FRAME based pallets have upgraded their use of macros. Refer to [this guide](/rustdocs/latest/frame_support/attr.pallet.html#upgrade-guidelines) 
-to learn about migrating a v1 pallet to v2 and [this resource](https://hackmd.io/@fscJ0GEvRb2rqALLZB1kfA/SkSerkamt) to learn more about FRAME's version 
-changes.
+> As of January 2021, FRAME based pallets have upgraded their use of macros. Refer to [this guide](/rustdocs/latest/frame_support/attr.pallet.html#upgrade-guidelines)
+> to learn about migrating a v1 pallet to v2 and [this resource](https://hackmd.io/@fscJ0GEvRb2rqALLZB1kfA/SkSerkamt) to learn more about FRAME's version
+> changes.
 
 Substrate uses [Rust macros](https://doc.rust-lang.org/book/ch19-06-macros.html) to aggregate the logic derived from pallets that are implemented for a runtime.
 These runtime macros allow developers to focus on runtime logic rather than encoding and decoding on-chain
@@ -289,8 +289,8 @@ Hasher, Prefix, QueryKind and an OnEmpty
 parameter. The prefix generic defines the place where the
 storage will store its `(key, value)` pairs (i.e. the trie) and defines the pallet and storage prefix like such:
 
-  `concat(twox_128(pallet_prefix), towx_128(storage_prefix))`, replacing `_` with the generated prefix implementations 
-  of the pallet and storage names.
+`concat(twox_128(pallet_prefix), towx_128(storage_prefix))`, replacing `_` with the generated prefix implementations
+of the pallet and storage names.
 
 **Docs**
 
