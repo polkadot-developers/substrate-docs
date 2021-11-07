@@ -64,7 +64,7 @@ Declaring a constant value in a runtime is a useful tool to either define fixed 
   }
   ```
 
-1. Configure `on_finalize`
+1. Configure `on_finalize`.
 
   `SingleValue` is set to 0 every `ClearFrequency` number of blocks in the `on_finalize` function that
   runs at the end of block execution. Specify this logic under the `#[pallet::hooks]` attribute:
