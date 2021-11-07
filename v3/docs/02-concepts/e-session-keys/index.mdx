@@ -1,13 +1,13 @@
 ---
 title: Session Keys
 slug: /v3/concepts/session-keys
-version: '3.0' 
+version: '3.0'
 section: docs
 category: concepts
 keywords:
 ---
 
-Substrate provides the [Session pallet](/rustdocs/latest/pallet_session/index.html), 
+Substrate provides the [Session pallet](/rustdocs/latest/pallet_session/index.html),
 which allows validators to manage their session keys.
 
 Session keys are "hot keys" that are used by validators to sign consensus-related messages. They are
@@ -23,7 +23,7 @@ publishing the Session certificate in a transaction on the chain.
 
 ## Implementation
 
-Session keys are used by validators to sign consensus-related messages. [`SessionKeys`](/rustdocs/latest/sp_session/trait.SessionKeys.html) 
+Session keys are used by validators to sign consensus-related messages. [`SessionKeys`](/rustdocs/latest/sp_session/trait.SessionKeys.html)
 is a generic, indexable type that is made concrete in the runtime.
 
 You can declare any number of Session keys. For example, the default Substrate node uses four. Other
@@ -59,7 +59,7 @@ mod app {
 }
 ```
 
-Typically, these keys are also initially configured in the genesis state to launch your 
+Typically, these keys are also initially configured in the genesis state to launch your
 chain with pre-established validators. You can see this demonstrated in the
 [private network tutorial](/tutorials/v3/private-network/).
 
