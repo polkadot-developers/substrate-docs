@@ -42,17 +42,13 @@ const DevNavMenu = {
             link: '/v3/getting-started/architecture/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-installation' })}`,
-            link: '/v3/getting-started/installation/',
+            title: `${intl.formatMessage({ id: 'docs-menu-dev-env' })}`,
+            link: '/v3/getting-started/dev-env/',
           },
-          {
-            title: `${intl.formatMessage({ id: 'docs-menu-windows' })}`,
-            link: '/v3/getting-started/windows-users/',
-          },
-          {
-            title: `${intl.formatMessage({ id: 'docs-menu-glossary' })}`,
-            link: '/v3/getting-started/glossary/',
-          },
+          // {
+          //   title: `${intl.formatMessage({ id: 'docs-menu-windows' })}`,
+          //   link: '/v3/getting-started/windows-users/',
+          // },
         ],
       },
       {
@@ -261,6 +257,19 @@ const DevNavMenu = {
               id: 'docs-menu-hash-collections',
             })}`,
             link: '/v3/advanced/hash-collections/',
+          },
+        ],
+      },
+      {
+        name: `${intl.formatMessage({ id: 'docs-menu-reference' })}`,
+        items: [
+          {
+            title: `${intl.formatMessage({ id: 'docs-menu-troubleshoot-builds' })}`,
+            link: '/v3/reference/troubleshoot-builds',
+          },
+          {
+            title: `${intl.formatMessage({ id: 'docs-menu-glossary' })}`,
+            link: '/v3/reference/glossary/',
           },
         ],
       },
