@@ -1,7 +1,7 @@
 ---
 title: FRAME
 slug: /v3/runtime/frame
-version: 3.0 
+version: '3.0'
 section: docs
 category: runtime
 keywords:
@@ -113,6 +113,7 @@ pub mod pallet {
 
 }
 ```
+
 <br />
 <Message
   type={`gray`}
@@ -149,7 +150,7 @@ It also has a number of system-critical storage items, such as:
 Finally, it defines a number of low level functions which can access your blockchain storage, verify
 the origin of an extrinsic, and more.
 
-### Support crate 
+### Support crate
 
 The [FRAME Support Crate `frame_support`](/rustdocs/latest/frame_support/index.html) is a collection of Rust
 macros, types, traits, and modules that simplify the development of Substrate pallets.
@@ -273,7 +274,7 @@ The Phragmén Elections pallet is an election module based on
 ### Elections
 
 > WARNING: NOT ACTIVELY MAINTAINED
-The Elections pallet is an election module for stake-weighted membership selection of a collective.
+> The Elections pallet is an election module for stake-weighted membership selection of a collective.
 
 - [Docs](/rustdocs/latest/pallet_elections/index.html)
 - [Source](https://github.com/paritytech/substrate/tree/master/frame/elections/src/lib.rs)

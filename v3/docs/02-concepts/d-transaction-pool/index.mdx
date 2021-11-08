@@ -1,14 +1,14 @@
 ---
 title: Transaction Pool
 slug: /v3/concepts/tx-pool
-version: 3.0 
+version: '3.0'
 section: docs
 category: concepts
 keywords:
 ---
 
-The transaction pool contains all transactions ([signed](/v3/concepts/extrinsics#signed-transactions) 
-and [unsigned](/v3/concepts/extrinsics#unsigned-transactions)) broadcasted to the network that have been 
+The transaction pool contains all transactions ([signed](/v3/concepts/extrinsics#signed-transactions)
+and [unsigned](/v3/concepts/extrinsics#unsigned-transactions)) broadcasted to the network that have been
 received and validated by the local node.
 
 **Validity**
@@ -70,7 +70,7 @@ weight or length limit of the block.
 dependent transactions. For example, if we have two (or more) transactions that have their
 dependencies satisfied, then we use `priority` to choose the order for them.
 
-For runtimes built with [FRAME](/v3/runtime/frame), `priority` is defined as the `fee` that the transaction 
+For runtimes built with [FRAME](/v3/runtime/frame), `priority` is defined as the `fee` that the transaction
 is going to pay. For example:
 
 - If we receive 2 transactions from _different_ senders (with `nonce=0`), we use `priority` to
@@ -110,9 +110,9 @@ The block is executed and the entire block either succeeds or fails.
 
 ## Transaction validity
 
-[`validate_transaction`](/rustdocs/latest/sp_transaction_pool/runtime_api/trait.TaggedTransactionQueue.html#method.validate_transaction) 
-is called from the runtime, checks for a valid signature and nonce (or output for a UTXO chain) and returns 
-a `Result`. `validate_transaction` checks transactions in isolation, so it will not catch errors like the 
+[`validate_transaction`](/rustdocs/latest/sp_transaction_pool/runtime_api/trait.TaggedTransactionQueue.html#method.validate_transaction)
+is called from the runtime, checks for a valid signature and nonce (or output for a UTXO chain) and returns
+a `Result`. `validate_transaction` checks transactions in isolation, so it will not catch errors like the
 same output being spent twice.
 
 Although it is possible, `validate_transaction` does not check whether calls to pallets will
@@ -127,7 +127,7 @@ would pass `execute_block` if it were executed in the correct order.
 
 ## Signed extension
 
-[`SignedExtension`](/rustdocs/latest/sp_runtime/traits/trait.SignedExtension.html) is a trait 
+[`SignedExtension`](/rustdocs/latest/sp_runtime/traits/trait.SignedExtension.html) is a trait
 by which a transaction can be extended with additional data or logic.
 Signed extensions are used anywhere you want some information about a transaction prior to
 execution. This is heavily used in the transaction pool.
@@ -139,7 +139,7 @@ dispatching a transaction. The transaction queue regularly calls functions from 
 validate transactions prior to block construction to avoid including transactions that will fail in
 blocks.
 
-Despite the name, `SignedExtension` can also be used to verify [unsigned transactions](/v3/concepts/extrinsics#unsigned-transactions). 
+Despite the name, `SignedExtension` can also be used to verify [unsigned transactions](/v3/concepts/extrinsics#unsigned-transactions).
 The `*_unsigned` set of methods can be implemented to encapsulate validation, spam, and replay
 protection logic that is needed by the transaction pool.
 

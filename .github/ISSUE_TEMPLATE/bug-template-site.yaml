@@ -1,7 +1,6 @@
-name: Bug report (website related)
+name: Website Bug Report
 description: Let us know about an issue you experienced on https://docs.substrate.io/
-title: '[WEBSITE BUG]: '
-labels: ['bug', 'web-dev']
+labels: ['bug 🐛', 'web-dev 🕸']
 body:
   - type: markdown
     attributes:
@@ -36,6 +35,3 @@ body:
       placeholder: Describe what you were doing so we can reproduce the problem.
     validations:
       required: false
-  - type: markdown
-    attributes:
-      value: 'Thanks again for completing this report!'

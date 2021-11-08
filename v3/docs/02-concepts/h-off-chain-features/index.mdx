@@ -1,39 +1,30 @@
 ---
 title: Off-Chain Features
 slug: /v3/concepts/off-chain-features
-version: 3.0 
+version: '3.0'
 section: docs
 category: concepts
 keywords: off-chain, off-chain storage, oracles, ocw
 ---
 
-There is often a need to query and/or process off-chain data before it can be included in the
-on-chain state. The conventional way of doing this is through oracles. Oracles are external services
-that typically listen to blockchain events and trigger tasks accordingly. When these tasks complete,
-their results are submitted back to the blockchain using transactions. While this approach works, it
-still has several flaws with respect to security, scalability, and infrastructure efficiency.
+There is often a need to query and/or process off-chain data before it can be included in the on-chain state.
+The conventional way of doing this is through [oracles](/v3/getting-started/glossary#oracle).
+While this approach works, it still has several flaws with respect to security, scalability, and infrastructure efficiency.
 
-To make the off-chain data integration secure and more efficient, Substrate provides off-chain
-features:
+To make the off-chain data integration secure and more efficient, Substrate provides off-chain features:
 
-- **Off-Chain Worker (OCW)** subsystem allows execution of long-running and possibly non-
-  deterministic tasks (e.g. web requests, encryption/decryption and signing of data, random number
-  generation, CPU-intensive computations, enumeration/aggregation of on-chain data, etc.) that could
-  otherwise require longer than the block execution time.
+- **Off-Chain Worker (OCW)** subsystems allows execution of long-running and possibly non-deterministic tasks (e.g. web requests, encryption/decryption and signing of data, random number generation, CPU-intensive computations, enumeration/aggregation of on-chain data, etc.) that could otherwise require longer than the block execution time.
 
-- **Off-Chain Storage** offers storage that is local to a Substrate node that can be accessed both
-  by off-chain workers (both read and write access) and on-chain logic (write access via off-chain
-  indexing but not read access). This is great for different worker threads to communicate to each
-  others and for storing user- / node-specific data that does not require consensus over the whole
-  network.
+- **Off-Chain Storage** offers storage that is local to a Substrate node that can be accessed both by off-chain workers (both read and write access) and on-chain logic (write access via off-chain indexing but not read access).
+  This allows different worker threads to communicate to each other and to store user or node-specific data that does not require consensus over the whole network.
 
 - **Off-Chain Indexing** allows the runtime, if opted-in, to write directly to the off-chain storage
   independently from OCWs. This serves as a local/temporary storage for on-chain logic and
   complement to its on-chain state.
 
 Off-chain features run in their own Wasm execution environment outside of the Substrate runtime.
-This separation of concerns makes sure that block production is not impacted by long-running
-off-chain tasks. However, as the off-chain features are declared in the same code as the runtime,
+This separation of concerns makes sure that block production is not impacted by long-running off-chain tasks.
+However, as the off-chain features are declared in the same code as the runtime,
 they can easily access on-chain state for their computations.
 
 ![Off-chain Workers](../../../../src/images/docs/concepts/off-chain-workers-v2.png)
@@ -44,21 +35,16 @@ Off-chain workers have access to extended APIs for communicating with the extern
 
 - Ability to
   [submit transactions](/rustdocs/latest/sp_runtime/offchain/trait.TransactionPool.html)
-  (either signed or unsigned) to the chain to publish computation results [[1]](#example-txs).
-- A fully-featured HTTP client allowing the worker to access and fetch data from external services [[2]](#example-http).
+  (either signed or unsigned) to the chain to publish computation results.
+- A fully-featured HTTP client allowing the worker to access and fetch data from external services.
 - Access to the local keystore to sign and verify statements or transactions.
 - An additional, local
   [key-value database](/rustdocs/latest/sp_runtime/offchain/trait.OffchainStorage.html)
-  shared between all off-chain workers [[3]](#example-off-chain-storage).
+  shared between all off-chain workers.
 - A secure, local entropy source for random number generation.
 - Access to the node's precise
   [local time](/rustdocs/latest/sp_runtime/offchain/struct.Timestamp.html).
 - The ability to sleep and resume work.
-
-OCWs can be initiated from within a special function in your runtime implementation,
-[`fn offchain_worker(block: T::BlockNumber)`](/rustdocs/latest/frame_support/traits/trait.OffchainWorker.html).
-communicate results back to the chain, off-chain workers can submit signed or unsigned transactions
-to be included in subsequent blocks.
 
 Note that the results from off-chain workers are not subject to regular transaction verification. A
 verification mechanism (e.g. voting, averaging, checking sender signatures, or simply "trusting")
@@ -102,7 +88,8 @@ exactly the same for every node with indexing enabled.
 To look at concrete examples of off-chain workers and how to use them in runtime development,
 refer to the following sections in Substrate Recipes:
 
-- [Submit signed and unsigned transactions from off-chain workers back on-chain](https://github.com/substrate-developer-hub/recipes/blob/master/text/off-chain-workers/transactions.html)
-- [Fetch external data using HTTP requests and parse JSON responses](https://github.com/substrate-developer-hub/recipes/blob/master/text/off-chain-workers/http-json.html)
-- [Store result in off-chain worker local storage](https://github.com/substrate-developer-hub/recipes/blob/master/text/off-chain-workers/storage.html)
-- [Example of off-chain indexing](https://github.com/substrate-developer-hub/recipes/blob/master/text/off-chain-workers/indexing.html)
+- [Substrate's inclded `example-offchain-worker`](https://github.com/paritytech/substrate/tree/master/frame/example-offchain-worker)
+- [Recipe to Submit signed and unsigned transactions from off-chain workers back on-chain](https://github.com/substrate-developer-hub/recipes/blob/master/text/off-chain-workers/transactions.html)
+- [Recipe to fetch external data using HTTP requests and parse JSON responses](https://github.com/substrate-developer-hub/recipes/blob/master/text/off-chain-workers/http-json.html)
+- [Recipe to store result in off-chain worker local storage](https://github.com/substrate-developer-hub/recipes/blob/master/text/off-chain-workers/storage.html)
+- [Recipe for off-chain indexing](https://github.com/substrate-developer-hub/recipes/blob/master/text/off-chain-workers/indexing.html)
