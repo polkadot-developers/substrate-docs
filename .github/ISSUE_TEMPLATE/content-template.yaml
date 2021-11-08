@@ -22,6 +22,6 @@ body:
       options:
         - Yes!
         - No.
-        - Maybe (please specify)
+        - Maybe (please elaborate above)
     validations:
       required: true
