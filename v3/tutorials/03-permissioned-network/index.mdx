@@ -212,7 +212,7 @@ construct_runtime!(
         /* --snip-- */
 
         /*** Add This Line ***/
-        NodeAuthorization: pallet_node_authorization::{Pallet, Call, Storage, Event<T>, Config<T>},
+        NodeAuthorization: pallet_node_authorization::{Module, Call, Storage, Event<T>, Config<T>},
 
         /* --snip-- */
 
@@ -262,7 +262,7 @@ fn testnet_genesis(
     /* --snip-- */
 
     /*** Add This Block Item ***/
-		node_authorization: NodeAuthorizationConfig {
+		pallet_node_authorization: Some(NodeAuthorizationConfig {
     		nodes: vec![
 				(
 					OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
