@@ -51,9 +51,8 @@
   "docs-menu-getting-started": "Getting Started",
   "docs-menu-overview": "Overview",
   "docs-menu-architecture": "Architecture",
-  "docs-menu-installation": "Installation",
+  "docs-menu-dev-env": "Developer Environment",
   "docs-menu-windows": "Getting Started on Windows",
-  "docs-menu-glossary": "Glossary",
 
   "docs-menu-key-concepts": "Key Concepts",
   "docs-menu-gs-runtime": "Runtime",
@@ -110,6 +109,10 @@
   "docs-menu-writing-style": "Writing",
   "docs-menu-bounties": "Bounties",
   "docs-menu-templates": "Templates",
+
+  "docs-menu-reference": "Reference",
+  "docs-menu-troubleshoot-builds":"Troubleshooting Builds",
+  "docs-menu-glossary": "Glossary",
 
   "docs-nav-htg-basics": "Basics",
   "htg-basics-pallet-integration": "Pallet Integration",
