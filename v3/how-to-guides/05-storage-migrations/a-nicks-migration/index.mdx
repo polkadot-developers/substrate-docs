@@ -2,7 +2,7 @@
 title: Basic Storage Migration
 slug: /how-to-guides/v3/storage-migrations/basics
 keywords: storage migration, runtime, upgrades
-version: 3.0 
+version: '3.0'
 section: how to guides
 category: storage migrations
 difficulty: 1
@@ -12,17 +12,16 @@ difficulty: 1
   data={[
     {
       title: 'Goal',
-      description: 'Write a storage migration for a pallet that adds an additional \`Vec<u8>\` storage item to runtime storage.',
+      description:
+        'Write a storage migration for a pallet that adds an additional `Vec<u8>` storage item to runtime storage.',
     },
     {
       title: 'Use Cases',
-      description:
-        `A pallet that adds a single storage item and needs to be included in a runtime upgrade.`,
+      description: `A pallet that adds a single storage item and needs to be included in a runtime upgrade.`,
     },
     {
       title: 'Overview',
-      description:
-        `This guide will step through a storage migration on [FRAME's Nick's pallet](https://github.com/paritytech/substrate/tree/master/frame/nicks). 
+      description: `This guide will step through a storage migration on [FRAME's Nick's pallet](https://github.com/paritytech/substrate/tree/master/frame/nicks). 
         It shows how to modify a storage map to provide an optional field that includes a last name, and how to write the migration function ready 
         to be triggered upon a runtime upgrade. This guide can equally be used in other contexts which require a simple storage migration that 
         modifies a storage map in a runtime.
@@ -101,11 +100,11 @@ The scaffolding of this module looks like this:
 
 ```rust
 pub mod migration {
-    use super::*;
+  use super::*;
 
-    pub mod v1 {...} // only contains V1 storage format
+  pub mod v1 {...} // only contains V1 storage format
 
-    pub fn migrate_to_v2<T: Config>() -> frame_support::weights::Weight {...} // contains checks and transforms storage to V2 format
+  pub fn migrate_to_v2<T: Config>() -> frame_support::weights::Weight {...} // contains checks and transforms storage to V2 format
 }
 ```
 
@@ -153,6 +152,7 @@ NameOf::<T>::translate::<(Vec<u8>, BalanceOf<T>), _>(
 		}
 	);
 ```
+
 <br />
 <Message
   type={`green`}

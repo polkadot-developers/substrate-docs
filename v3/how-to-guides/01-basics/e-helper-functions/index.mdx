@@ -2,7 +2,7 @@
 title: Using Helper Functions
 slug: /how-to-guides/v3/basics/helper-functions
 keywords: basics, runtime
-version: 3.0 
+version: '3.0'
 section: how to guides
 category: basics
 difficulty: 2
@@ -12,17 +12,16 @@ difficulty: 2
   data={[
     {
       title: 'Goal',
-      description: 'Use helper functions inside a pallet to improve code readability and reusability.',
+      description:
+        'Use helper functions inside a pallet to improve code readability and reusability.',
     },
     {
       title: 'Use Cases',
-      description:
-        `Re-use helper functions to perform common "verify" checks across multiple pallets.`,
+      description: `Re-use helper functions to perform common "verify" checks across multiple pallets.`,
     },
     {
       title: 'Overview',
-      description:
-        `Sometimes a dispatchable function inside a pallet reuses logic that is common to other dispatchables.
+      description: `Sometimes a dispatchable function inside a pallet reuses logic that is common to other dispatchables.
          In this case, it's useful to refactor this logic into its own private function.
          At other times, dispatchable functions get increasingly difficult to read as the amount of code increases
          to perform various checks within the dispatchable. In both instances, using helper functions that cannot
@@ -59,30 +58,29 @@ Use the helper function instead of rewriting the same code. Below is a simple ex
 a dispatchable that allows a signed extrinsic to add a value to the existing storage value:
 
 ```rust
-    // Extrinsics callable from outside the runtime.
-	 #[pallet::call]
-    impl<T: Config> Pallet<T> {
-    #[pallet::weight(1_000)]
+// Extrinsics callable from outside the runtime.
+#[pallet::call]
+impl<T: Config> Pallet<T> {
+  #[pallet::weight(1_000)]
+  fn add_value(
+    origin: OriginFor<T>,
+    val_to_add: u32
+    ) -> DispatchResultWithPostInfo {
+      let _ = ensure_signed(origin)?;
 
-    fn add_value(
-        origin: OriginFor<T>,
-        val_to_add: u32
-        ) -> DispatchResultWithPostInfo {
-            let _ = ensure_signed(origin)?;
+      ensure!(val_to_add <= T::MaxAddend::get(), "value must be <= maximum add amount constant");
 
-            ensure!(val_to_add <= T::MaxAddend::get(), "value must be <= maximum add amount constant");
+      // previous value got
+      let c_val = SingleValue::<T>::get();
 
-            // previous value got
-           	let c_val = SingleValue::<T>::get();
+      // checks for overflow when new value added
+      let result = _adder(c_val, val_to_add);
 
-            // checks for overflow when new value added
-            let result = _adder(c_val, val_to_add);
-
-            <SingleValue<T>>::put(result);
-            Self::deposit_event(Event::Added(c_val, val_to_add, result));
-            Ok(().into())
-        }
-	}
+      <SingleValue<T>>::put(result);
+      Self::deposit_event(Event::Added(c_val, val_to_add, result));
+      Ok(().into())
+  }
+}
 ```
 
 ## Examples

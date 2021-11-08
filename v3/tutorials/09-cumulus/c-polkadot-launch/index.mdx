@@ -1,6 +1,7 @@
 ---
 title: Launch a Parachain Testnet
 slug: /tutorials/v3/cumulus/polkadot-launch
+sideNav: cumulusTutorial
 version: 'polkadot-0.9.10'
 section: tutorials
 category: parachains
@@ -36,7 +37,7 @@ install the script globally in your environment:
 yarn global add polkadot-launch
 # Check install:
 polkadot-launch --version
-# 1.7.0
+# 1.8.0
 ```
 
 ### Option B: Clone & run locally
@@ -50,7 +51,7 @@ cd polkadot-launch
 yarn install
 # The entry point is `cl.js`
 node dist/cli.js --version
-# 1.7.0
+# 1.8.0
 ```
 
 > If you think your edits are valuable, please
@@ -66,7 +67,7 @@ on your network to configure as you specify.
 Specifically, you will perform the following to use `polkadot-launch`:
 
 1. Compile and have your relay chain node and parachain collator binaries ready.
-  [Instructions here](/tutorials/v3/cumulus/start-relay). Beware to match their corresponding tagged version.
+   [Instructions here](/tutorials/v3/cumulus/start-relay). Beware to match their corresponding tagged version.
 
 2. Write a config file for `polkadot-launch` to fit your needs.
 
@@ -134,7 +135,6 @@ tail -f <logfile>
 
 Another way to verify the setup is by going to:
 [Polkadot-JS Apps > Network > Parachains](https://polkadot.js.org/apps/#/parachains).
-
 
 After configure the Apps to connect to the local **relay chain node**, you should see the UI
 showing two parachains being connected to the relay chain.

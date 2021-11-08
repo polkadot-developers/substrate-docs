@@ -2,7 +2,7 @@
 title: Calculating Transaction Weights
 slug: /how-to-guides/v3/basics/weights
 keywords: basics, weights, runtime, FRAME V1
-version: 3.0 
+version: '3.0'
 section: how to guides
 category: basics
 difficulty: 1
@@ -11,8 +11,7 @@ difficulty: 1
 <Message
   type={`yellow`}
   title={`Information`}
-  text=
-    "This guide shows a basic procedure for configuring weights. There are more
+  text="This guide shows a basic procedure for configuring weights. There are more
     advanced methods that suit different use cases. For simple functions with fixed amounts
     of storage reads, this method works well. For other use cases, see the section 
     [on weights](/how-to-guides/v3/weights/calculate-fees).
@@ -23,18 +22,18 @@ difficulty: 1
   data={[
     {
       title: 'Goal',
-      description: 'Understand how to calculate transaction weights for a basic dispatch function.',
+      description:
+        'Understand how to calculate transaction weights for a basic dispatch function.',
     },
     {
       title: 'Use Cases',
-      description:`
+      description: `
 - Assign the correct weight before a function call to storage.
 - Calculate transaction fees.`,
     },
     {
       title: 'Overview',
-      description:
-        `Weights are an important part of Substrate development because they provide information about the maximum cost of a function 
+      description: `Weights are an important part of Substrate development because they provide information about the maximum cost of a function 
         in terms of the block size it will take up. This way, the [weighting system](/v3/concepts/weight) 
         checks what the cost will be before 
         a function is executed. As runtime engineers, we care a lot about weights. Not only do they help add security checks around the 
@@ -71,14 +70,13 @@ Using `call.get_dispatch_info()`, calculate the maximum possible weight before t
 
 ```rust
 #[weight = {
-			let dispatch_info = call.get_dispatch_info();
-			(dispatch_info.weight, dispatch_info.class, Pays::Yes)
-            }]
-
-      // Define a function header that returns DispatchResultWithPostInfo.
-		  fn do_three_reads(origin, call: Box<<T as Config>::Call>) -> DispatchResultWithPostInfo {
-      // Function logic.
-        }
+  let dispatch_info = call.get_dispatch_info();
+  (dispatch_info.weight, dispatch_info.class, Pays::Yes)
+  }]
+    // Define a function header that returns DispatchResultWithPostInfo.
+    fn do_three_reads(origin, call: Box<<T as Config>::Call>) -> DispatchResultWithPostInfo {
+    // Function logic.
+    }
 ```
 
 `GetDispatchInfo` provides the `get_dispatch_info()` method we need to retrieve information about the function's weight.

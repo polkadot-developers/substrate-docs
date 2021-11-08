@@ -54,92 +54,22 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/v3/docs`,
-        name: `kbV3`,
+        name: `docs`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/v3/how-to-guides`,
-        name: `htg`,
+        name: `htgs`,
       },
     },
     //TUTORIALS//
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/v3/tutorials/01-create-your-first-substrate-chain`,
-        name: `create-your-first-substrate-chain`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/v3/tutorials/02-proof-of-existence`,
-        name: `proof-of-existence`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/v3/tutorials/03-permissioned-network`,
-        name: `permissioned-network`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/v3/tutorials/04-forkless-upgrades`,
-        name: `forkless-upgrades`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/v3/tutorials/05-private-network`,
-        name: `private-network`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/v3/tutorials/06-node-metrics`,
-        name: `node-metrics`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/v3/tutorials/07-add-a-pallet`,
-        name: `add-a-pallet`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/v3/tutorials/08-ink-workshop/`,
-        name: `ink-workshop`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/v3/tutorials/09-cumulus/`,
-        name: `cumulus`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/v3/tutorials/10-frontier-workshop/`,
-        name: `frontier`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/v3/tutorials/11-kitties-workshop/`,
-        name: `kitties`,
+        path: `${__dirname}/v3/tutorials/`,
+        name: `tuts`,
       },
     },
     //*********************************//
