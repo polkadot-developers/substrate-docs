@@ -24,13 +24,8 @@ export default function Index() {
             <div className="text-5xl lg:text-6xl font-extrabold mb-6">
               Substrate <br /> Developer Hub
             </div>
-            <h4 className="text-xl xl:text-3xl font-semibold">
-              The center of knowledge
-            </h4>
             <p className=" max-w-lg text-xl">
-              Substrate is powered by best-in-class cryptographic research and
-              comes with peer-to-peer networking, consensus mechanisms, and much
-              more.
+              Substrate is a highly-modular blockchain building framework, this is the place to learn how to wield it masterfully.
             </p>
             <PrimaryFixedButton hero link="/v3/">
               Get Started
@@ -78,33 +73,30 @@ export default function Index() {
             <div className="text-5xl lg:text-6xl font-extrabold mb-3">
               Learn Substrate
             </div>
-            <h4 className="text-xl xl:text-3xl font-semibold">
-              Substrate developer knowledge base
-            </h4>
           </div>
           <div className="grid grid-cols-1 gap-10 lg:gap-0 lg:flex flex-col lg:flex-row lg:justify-between z-10">
             <DocCard
               title={`Documentation`}
-              text={`Discover the principles and design decisions that Substrate is built on. Read about its key features and capabilties as well as the specific skills needed to be an effective Substrate blockchain developer.`}
+              text={`Discover the principles and design decisions that Substrate is built on. Read about key features, capabilities, and explore the specific skills needed to be an effective Substrate blockchain developer.`}
               link={`/v3/`}
-              cta={`Get started`}
+              cta={`Grasp fundamentals`}
               iconName={`docsIcon`}
             />
             <DocCard
-              title={`How-To Guides`}
-              text={`The Substrate how-to guides have everything you need to produce robust Substrate based blockchains. From beginner to expert, you can use them flexibly to suit your current needs.`}
-              link={`/how-to-guides/`}
-              cta={`Learn and contribute`}
-              iconName={`htgIcon`}
-              animationDelay={200}
-            />
-            <DocCard
               title={`Tutorials`}
-              text={`Create your first Substrate chain, perform a forkless upgrade, and more. This selection of tutorials will lead you through the process in sessions of up to two hours.`}
+              text={`Detailed examples of common development patterns. From your first Substrate chain, performing forkless upgrades, launching a parachain, and more.`}
               link={`/tutorials/`}
-              cta={`Dive in`}
+              cta={`Use Substrate`}
               iconName={`tutsIcon`}
               animationDelay={400}
+            />
+            <DocCard
+              title={`How-To Guides`}
+              text={`Quick references to implement many things you need to produce robust Substrate based blockchain. From beginner to expert, you can use them flexibly to suit your current needs.`}
+              link={`/how-to-guides/`}
+              cta={`Implement features`}
+              iconName={`htgIcon`}
+              animationDelay={200}
             />
           </div>
         </div>
@@ -174,21 +166,6 @@ export default function Index() {
               />
             </Link>
           </div>
-        </div>
-      </Section>
-      {/* Explore Documentation Section */}
-      <Section>
-        <div className="mb-14">
-          <div className="text-4xltext-5xl lg:text-6xl font-extrabold mb-8 break-normal">
-            Explore Documentation
-          </div>
-          <div className="text-xl">
-            Browse through the use case specific highlights that meet your
-            needs.
-          </div>
-        </div>
-        <div className="md:flex md:justify-start xl:justify-between">
-          <ExploreDocs />
         </div>
       </Section>
       {/* Connect With Community Section */}
