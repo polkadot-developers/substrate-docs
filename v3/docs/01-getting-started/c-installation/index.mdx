@@ -80,8 +80,6 @@ brew install openssl
   `}
 />
 
-
-
 ## 2. Rust developer environment setup
 
 This guide uses <https://rustup.rs> installer and the `rustup` tool to manage the Rust toolchain.
@@ -180,7 +178,7 @@ To ensure your Rust compiler is always up to date, you should run:
 ```bash
 rustup update
 # In your working directory, if new toolchain versions were installed
-# clean to remove unusable artifacts 
+# clean to remove unusable artifacts
 cargo clean
 # build from scratch
 cargo build --release
@@ -190,10 +188,9 @@ It _will_ be necessary to occasionally rerun `rustup update` if a change in the 
 When you do this, both your nightly and stable toolchains will be pulled to the most recent release, and for nightly, it is generally _not_ expected to compile WASM without error (although it very often does).
 Be sure to [specify your nightly version](#specifying-nightly-version) if you get WASM build errors from `rustup` and [downgrade nightly as needed](#downgrading-rust-nightly).
 
-
 #### Rust nightly toolchain
 
-If you want to guarantee that your build works on your computer as you update Rust and other dependencies, you should use a specific Rust nightly version that is known to be compatible with the version of Substrate they are using; this version will vary from project to project and different projects may use different mechanisms to communicate this version to developers. 
+If you want to guarantee that your build works on your computer as you update Rust and other dependencies, you should use a specific Rust nightly version that is known to be compatible with the version of Substrate they are using; this version will vary from project to project and different projects may use different mechanisms to communicate this version to developers.
 For instance, the Polkadot client specifies this information in its [release notes](https://github.com/paritytech/polkadot/releases).
 
 ```bash
