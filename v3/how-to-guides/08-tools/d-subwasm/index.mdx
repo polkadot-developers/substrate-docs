@@ -7,23 +7,20 @@ section: how to guides
 category: tools
 ---
 
-[Subwasm](https://github.com/chevdor/subwasm) provides a way to expose all of the features and functionalities of the runtime of any Substrate chain. 
-Any runtime can be queried for an exhaustive list of a chain's metadata and specifications without needing to rely on the Wasm running on a node.
-
+[Subwasm](https://github.com/chevdor/subwasm) provides a way to expose the features of the runtime for any Substrate chain. 
 This guide steps through the different capabilities that Subwasm provides. 
 
 ## Use cases
 
 - Expose verifiable historical information of a chain's runtime. 
 - Get a quick snapshot of the modules in a runtime.
-- Check for changes between runtimes using a diff 
+- Check for changes between runtimes using a diff.
 
 ## Before you begin
 
 To follow this guide you should have a chain you wish to query. 
-You can either [download existing Wasm binaries]() or use ones generated from your own chains. 
+This could either be one running locally or one running in production.
 In order to filter metadata, you will also need to [install JQ](https://stedolan.github.io/jq/download/).
-
 
 ## Install and discover the CLI tool
 
@@ -49,16 +46,16 @@ To get started:
 1. Launch a local node from inside your chain's directory. 
    This example is launching the node template in dev mode.
    
-   ```bash
+    ```bash
     ./target/release/node-template --tmp --dev
-   ```
+    ```
 
 1. In a new terminal, create a temporary folder and use Subwasm to get and save the Wasm of your local chain.
 
-  ```bash
-  mkdir TempWasms && cd TempWasms
-  subwasm get ws://localhost:9944 -o mychain.wasm
-  ```
+    ```bash
+    mkdir TempWasms && cd TempWasms
+    subwasm get ws://localhost:9944 -o mychain.wasm
+    ```
 
 1. Run the following command to save your chain's metadata to a JSON file:
 
