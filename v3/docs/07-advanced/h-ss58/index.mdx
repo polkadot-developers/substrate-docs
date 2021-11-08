@@ -169,10 +169,10 @@ const isValid = isValidSubstrateAddress()
 console.log(isValid)
 ```
 
-### Ecosystem tools
+### Ecosystem SS58 tools
 
 Below you will find a list of other Substrate API tools built in various languages by our community.
-They each validate addresses in their own way, and can act as a starting point.
+They each validate SS58 addresses in their own way, and can be used to transform and interact with addresses, as well act as a guide for implimenting tools like this yourself.
 
 - [Python Substrate Interface](https://polkascan.github.io/py-substrate-interface/#substrateinterface.Keypair) - developed by Polkascan.
 - [Go Substrate RPC client](https://github.com/centrifuge/go-substrate-rpc-client) - developed by Centrifuge.
@@ -182,6 +182,7 @@ They each validate addresses in their own way, and can act as a starting point.
 - [SS58 Transform](https://polkadot.subscan.io/tools/ss58_transform) - to manually verify an address (sanity check).
 
 ## Learn more
+
 - [`Ss58Codec` in Substrate](https://paritytech.github.io/substrate/master/sp_core/crypto/trait.Ss58Codec.html)
 - The cannonical [SS58 registry](https://github.com/paritytech/ss58-registry)
 - [Polkadot-js API on GitHub](https://github.com/polkadot-js/api)
