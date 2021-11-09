@@ -45,6 +45,7 @@ const DevNavMenu = {
             title: `${intl.formatMessage({ id: 'docs-menu-dev-env' })}`,
             link: '/v3/getting-started/dev-env/',
           },
+          // Hiding windows from navbar, still rendered and pointed to in dev env page
           // {
           //   title: `${intl.formatMessage({ id: 'docs-menu-windows' })}`,
           //   link: '/v3/getting-started/windows-users/',
