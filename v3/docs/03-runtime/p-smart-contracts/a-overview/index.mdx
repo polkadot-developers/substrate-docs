@@ -1,7 +1,7 @@
 ---
 title: Smart Contract Toolkits
 slug: /v3/runtime/smart-contracts
-version: 3.0
+version: '3.0'
 section: docs
 category: smart contracts
 keywords: contracts, evm, ethereum
@@ -120,42 +120,42 @@ decisions on which approach to use based on different situations.
     </tr>
   </thead>
   <tbody>
-  <tr>
-    <td>
-      <ul>
-        <li> Privacy Layer </li>
-        <li> Feeless Token </li>
-        <li> Light-Client Bridge </li>
-        <li> Decentralized Exchange </li>
-        <li> Oracles </li>
-        <li> Stable Coin </li>
-      </ul>
-    </td>
-    <td>
-      <ul>
-        <li>Multi-signature Wallet </li>
-        <li>Data services </li>
-        <li>Simple fundraiser </li>
-      </ul>
-    </td>
-    <td>
-      Gaming dApp
-      <ul>
-        <li>Small scale (contract)</li>
-        <li> Large scale (runtime)</li>
-      </ul>
-      Decentralized Autonomous Organizations (DAO)
-      <ul>
-        <li>Community driven (contract)</li>
-        <li>Protocol driven (runtime)</li>
-      </ul>
-      Treasury
-      <ul>
-        <li>Community driven (contract)</li>
-        <li>Protocol driven (runtime)</li>
-      </ul>
-    </td>
-  </tr>
+    <tr>
+      <td>
+        <ul>
+          <li> Privacy Layer </li>
+          <li> Feeless Token </li>
+          <li> Light-Client Bridge </li>
+          <li> Decentralized Exchange </li>
+          <li> Oracles </li>
+          <li> Stable Coin </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>Multi-signature Wallet </li>
+          <li>Data services </li>
+          <li>Simple fundraiser </li>
+        </ul>
+      </td>
+      <td>
+        Gaming dApp
+        <ul>
+          <li>Small scale (contract)</li>
+          <li> Large scale (runtime)</li>
+        </ul>
+        Decentralized Autonomous Organizations (DAO)
+        <ul>
+          <li>Community driven (contract)</li>
+          <li>Protocol driven (runtime)</li>
+        </ul>
+        Treasury
+        <ul>
+          <li>Community driven (contract)</li>
+          <li>Protocol driven (runtime)</li>
+        </ul>
+      </td>
+    </tr>
   </tbody>
 </table>
 
@@ -247,7 +247,7 @@ In fact there is no difference between gas and weight. The specified `gas_limit`
 the weight of the submitted transaction. The contracts pallet uses
 [post dispatch weight correction](/v3/concepts/weight#post-dispatch-weight-correction) to change
 the pre dispatch weight derived from the `gas_limit` to the actual weight consumed.
-Thus, to execute a transaction, a user  must have a free balance of at least `weight price` \* `gas limit`
+Thus, to execute a transaction, a user must have a free balance of at least `weight price` \* `gas limit`
 which can be spent. The charged fee however, is based upon the actually consumed gas. The weight price
 is determined due do the usual [transaction fee mechanism](/v3/runtime/weights-and-fees).
 The Contracts pallet determines the gas price, which is a conversion between the Substrate

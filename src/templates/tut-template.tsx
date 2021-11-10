@@ -11,17 +11,12 @@ import VersionControl from '../components/VersionControl'
 import LastUpdateGithub from '../components/LastUpdateGithub'
 import { DevNavMenu as navMenu, DevNavMenuTuts } from '../components/DevNavMenu'
 import DocTag from '../components/DocTag'
-import {
-  BottomButtons,
-  RelevantSkills,
-  FeedbackWidget,
-} from '../components/DocsComponents'
+import { BottomButtons, RelevantSkills, FeedbackWidget } from '../components/DocsComponents'
 
 const DocsTemplate = ({ location, data, pageContext }: any) => {
-  const { slug, version, navMenuSlug } = pageContext
-  const docId = 1
+  const { slug, version } = pageContext
   const globalDocsNav = navMenu.global()
-  const docsMenu = DevNavMenuTuts.get(navMenuSlug)
+  const docsMenu = DevNavMenuTuts.get(data.mdx.frontmatter.sideNav)
 
   return (
     <Layout>
@@ -34,7 +29,7 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
               hashLink={location.hash}
               sideNav={docsMenu}
               globalNav={globalDocsNav}
-              templateId={docId}
+              section={data.mdx.frontmatter.section}
             />
           </div>
           <div className="hidden lg:inline-block lg:flex-none lg:h-auto lg:bg-substrateGray-light lg:dark:bg-substrateDark border-r border-gray-200 dark:border-gray-700">
@@ -43,14 +38,12 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
               hashLink={location.hash}
               sideNav={docsMenu}
               globalNav={globalDocsNav}
-              templateId={docId}
+              section={data.mdx.frontmatter.section}
             />
           </div>
           <article className="px-4 mb-20 lg:flex lg:mx-auto">
             <div className="lg:flex-grow">
-              <div
-                className={`py-8 lg:flex lg:justify-between lg:items-center`}
-              >
+              <div className={`py-8 lg:flex lg:justify-between lg:items-center`}>
                 <BreadCrumbNav
                   section={data.mdx.frontmatter.section}
                   sectionURL={`/tutorials/v3`}
@@ -72,9 +65,7 @@ const DocsTemplate = ({ location, data, pageContext }: any) => {
                 )}
                 <div className="mb-4">
                   {data.mdx.frontmatter.relevantSkills && (
-                    <RelevantSkills
-                      data={data.mdx.frontmatter.relevantSkills}
-                    />
+                    <RelevantSkills data={data.mdx.frontmatter.relevantSkills} />
                   )}
                 </div>
                 <MDXRenderer>{data.mdx.body}</MDXRenderer>
@@ -110,10 +101,7 @@ export default DocsTemplate
 
 export const query = graphql`
   query ($locale: String!, $slug: String!) {
-    mdx(
-      fields: { locale: { eq: $locale } }
-      frontmatter: { slug: { eq: $slug } }
-    ) {
+    mdx(fields: { locale: { eq: $locale } }, frontmatter: { slug: { eq: $slug } }) {
       frontmatter {
         slug
         title
@@ -123,6 +111,7 @@ export const query = graphql`
         relevantSkills
         section
         category
+        sideNav
       }
       body
       tableOfContents(maxDepth: 3)

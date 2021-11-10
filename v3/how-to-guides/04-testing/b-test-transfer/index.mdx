@@ -2,7 +2,7 @@
 title: Testing a Transfer Function
 slug: /how-to-guides/v3/testing/transfer-function
 keywords: testing, runtime, beginner
-version: 3.0
+version: '3.0'
 section: how to guides
 category: testing
 difficulty: 1
@@ -12,7 +12,8 @@ difficulty: 1
   data={[
     {
       title: 'Goal',
-      description: 'Learn how to write tests and improve the correctness of a `transfer` function.',
+      description:
+        'Learn how to write tests and improve the correctness of a `transfer` function.',
     },
     {
       title: 'Use Cases',
@@ -42,7 +43,7 @@ pub (super) fn transfer(
   #[pallet::compact] amount: T::Balance,
   ) -> DispatchResultWithPostInfo {
     let sender = ensure_signed(origin)?;
-    
+
     Accounts::<T>::mutate(&sender, |bal| {
       *bal = bal.saturating_sub(amount);
       });

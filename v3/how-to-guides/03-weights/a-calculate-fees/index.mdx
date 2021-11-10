@@ -2,7 +2,7 @@
 title: Calculating Fees
 slug: /how-to-guides/v3/weights/calculate-fees
 keywords: weights, fees, runtime, FRAME v1
-version: 3.0 
+version: '3.0'
 section: how to guides
 category: weights
 difficulty: 1
@@ -12,17 +12,16 @@ difficulty: 1
   data={[
     {
       title: 'Goal',
-      description: 'Customize \`WeightToFee\` to modify how fees are calculated for your runtime.',
+      description:
+        'Customize `WeightToFee` to modify how fees are calculated for your runtime.',
     },
     {
       title: 'Use Cases',
-      description:
-        `Modify the way fees are calculated, instead of using [\`IdentityFee\`](/rustdocs/latest/frame_support/weights/struct.IdentityFee.html) which maps one unit of fee to one unit of weight.`,
+      description: `Modify the way fees are calculated, instead of using [\`IdentityFee\`](/rustdocs/latest/frame_support/weights/struct.IdentityFee.html) which maps one unit of fee to one unit of weight.`,
     },
     {
       title: 'Overview',
-      description:
-        `This guides steps through the process of customizing \`WeightToFee\` for your runtime's implementation of \`pallet_transaction_payment\`.
+      description: `This guides steps through the process of customizing \`WeightToFee\` for your runtime's implementation of \`pallet_transaction_payment\`.
 		Fees are broken down into three components:
 - **Byte fee** - A fee proportional to the transaction's length in bytes. The proportionality 
 constant is a parameter in the Transaction Payment Pallet.
@@ -101,7 +100,7 @@ impl pallet_transaction_payment::Config for Runtime {
 
 ## Related material
 
-#### How-to guides 
+#### How-to guides
 
 - [Add benchmarking to your runtime](/how-to-guides/v3/weights/add-benchmarking)
 - [Use benchmarked weights in your pallet](/how-to-guides/v3/weights/use-benchmark-weights)
