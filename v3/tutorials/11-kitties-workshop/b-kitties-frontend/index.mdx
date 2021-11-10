@@ -303,7 +303,7 @@ out in our `convertToKittyHash` function.
 const asyncFetch = async () => {
   unsub = await api.query.substrateKitties.kitties.kittyCnt(async cnt => {
     // Fetch all kitty keys
-    const entries = await api.query.substrateKitties.kitties.kitties.entries()
+    const entries = await api.query.substrateKitties.kitties.entries()
     const hashes = entries.map(convertToKittyHash)
     setKittyHashes(hashes)
   })
