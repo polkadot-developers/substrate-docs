@@ -75,6 +75,8 @@
 ## Production: Knowledge Base
 
 ### Production: Getting Started
+/en/                                           /v3/getting-started/overview      301! 
+/docs/v3                                       /v3/getting-started/overview      301!
 /docs/en                                       /v3/getting-started/overview      301!
 /docs/en/                                      /v3/getting-started/overview      301!
 /docs/en/knowledgebase/getting-started         /v3/getting-started/installation  301!
@@ -124,6 +126,7 @@
 /docs/en/knowledgebase/advanced/no-hash-collections   /v3/advanced/hash-collections     301!
 /docs/en/knowledgebase/advanced/no-hash-collections/  /v3/advanced/hash-collections     301!
 /docs/en/knowledgebase/advanced/*             /v3/advanced/:splat                       301!
+/docs/low-level-data-formats                          /v3/advanced/scale-codec/         301!
 
 ## Production: rustdocs
 /rustdocs/*          https://paritytech.github.io/substrate/:splat             200
