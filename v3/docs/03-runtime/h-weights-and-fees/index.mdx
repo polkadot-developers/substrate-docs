@@ -1,33 +1,36 @@
 ---
 title: Weights and Fees
 slug: /v3/runtime/weights-and-fees
-version: 3.0 
+version: '3.0'
 section: docs
 category: runtime
 keywords:
 ---
 
-Because the resources available to a blockchain are limited, it’s important to manage how blocks consume them. 
+Because the resources available to a blockchain are limited, it’s important to manage how blocks consume them.
 The resources that need to be managed include:
 
-* Memory usage
-* Storage input and output
-* Computation
-* Transaction and block size
-* State database size
+- Memory usage
+- Storage input and output
+- Computation
+- Transaction and block size
+- State database size
 
-Substrate provides block authors with several ways to manage access to resources and to prevent individual components of the chain from consuming too much of any single resource. 
+Substrate provides block authors with several ways to manage access to resources and to prevent individual components of the chain from consuming too much of any single resource.
 Two of the most important mechanisms available to block authors are **weights** and **transaction fees**.
 
-[Weights](/v3/concepts/weight) are used to manage the time it takes to validate a block. 
-In general, weights are used to characterize the time it takes to execute the [extrinsic](/v3/concepts/extrinsics) calls in the body of a block. 
+[Weights](/v3/concepts/weight) are used to manage the time it takes to validate a block.
+In general, weights are used to characterize the time it takes to execute the [extrinsic](/v3/concepts/extrinsics) calls in the body of a block.
 By controlling the execution time that a block can consume, weights set limits on storage input and output and computation.
 
-<Message type={`gray`} title={`Note`} text={`Weights are not used to restrict access to other resources, such as storage itself or memory footprint. Other mechanisms must be used for this.`}
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`Weights are not used to restrict access to other resources, such as storage itself or memory footprint. Other mechanisms must be used for this.`}
 />
 
-Some of the weight allowed for a block is consumed as part of the block's initialization and finalization. 
-The weight might also be used to execute mandatory inherent extrinsic calls. 
+Some of the weight allowed for a block is consumed as part of the block's initialization and finalization.
+The weight might also be used to execute mandatory inherent extrinsic calls.
 To help ensure blocks don’t consume too much execution time—and prevent malicious users from overloading the system with unnecessary calls—weights are used in combination with transaction fees.
 
 Transaction fees are a key component of making the blockchain economically sustainable and are typically applied to transactions initiated by users and deducted before a transaction request is executed.
@@ -36,15 +39,15 @@ Transaction fees are a key component of making the blockchain economically susta
 
 The final fee for a transaction is calculated using the following parameters:
 
-* _base fee_: This is the minimum amount a user pays for a transaction. It is declared as a **base weight** in the runtime and converted to a fee using `WeightToFee`.
+- _base fee_: This is the minimum amount a user pays for a transaction. It is declared as a **base weight** in the runtime and converted to a fee using `WeightToFee`.
 
-* _weight fee_: A fee proportional to the execution time (input and output and computation) that a transaction consumes.
+- _weight fee_: A fee proportional to the execution time (input and output and computation) that a transaction consumes.
 
-* _length fee_: A fee proportional to the encoded length of the transaction.
+- _length fee_: A fee proportional to the encoded length of the transaction.
 
-* _tip_: An optional tip to increase the priority of the transaction, giving it a higher chance to be included by the transaction queue.
+- _tip_: An optional tip to increase the priority of the transaction, giving it a higher chance to be included by the transaction queue.
 
-The base fee and proportional weight and length fees constitute the **inclusion fee**. 
+The base fee and proportional weight and length fees constitute the **inclusion fee**.
 The inclusion fee is the minimum fee that must be available for a transaction to be included in a block.
 
 ## Using the transaction payment pallet
@@ -53,22 +56,22 @@ The [Transaction Payment pallet](/rustdocs/latest/pallet_transaction_payment/ind
 
 You can also use the Transaction Payment pallet to:
 
-* Convert a weight value into a deductible fee based on a currency type using `Config::WeightToFee`.
+- Convert a weight value into a deductible fee based on a currency type using `Config::WeightToFee`.
 
-* Update the fee for the next block by defining a multiplier, based on the final state of the chain at the end of the previous block using `Config::FeeMultiplierUpdate`.
+- Update the fee for the next block by defining a multiplier, based on the final state of the chain at the end of the previous block using `Config::FeeMultiplierUpdate`.
 
-* Manage the withdrawal, refund, and deposit of transaction fees using `Config::OnChargeTransaction`.
+- Manage the withdrawal, refund, and deposit of transaction fees using `Config::OnChargeTransaction`.
 
-You can learn more about these configuration traits in the [Transaction Payment](/rustdocs/latest/pallet_transaction_payment/index.html) documentation. 
+You can learn more about these configuration traits in the [Transaction Payment](/rustdocs/latest/pallet_transaction_payment/index.html) documentation.
 
-You should note that transaction fees are withdrawn before the transaction is executed. 
-After the transaction is executed, the transaction weight can be adjusted to reflect the actual resources the transaction used. 
+You should note that transaction fees are withdrawn before the transaction is executed.
+After the transaction is executed, the transaction weight can be adjusted to reflect the actual resources the transaction used.
 If a transaction uses fewer resources than expected, the transaction fee is corrected and the adjusted transaction fee is deposited.
 
 ### A closer look at the inclusion fee
 
 The formula for calculating the final fee looks like this:
- 
+
 ```
 inclusion_fee = base_fee + length_fee + [targeted_fee_adjustment * weight_fee];
 final_fee = inclusion_fee + tip;
@@ -76,20 +79,20 @@ final_fee = inclusion_fee + tip;
 
 In this formula, the `targeted_fee_adjustment` is a multiplier that can tune the final fee based on the congestion of the network.
 
-* The `base_fee` derived from the base weight covers inclusion overhead like signature verification.
+- The `base_fee` derived from the base weight covers inclusion overhead like signature verification.
 
-* The `length_fee` is a per-byte fee that is multiplied by the length of the encoded extrinsic.
+- The `length_fee` is a per-byte fee that is multiplied by the length of the encoded extrinsic.
 
-* The `weight_fee` fee is calculated using two parameters:
+- The `weight_fee` fee is calculated using two parameters:
 
-	 The `ExtrinsicBaseWeight` that is declared in the runtime and applies to all extrinsics. 
-	 
-	 The `#[pallet::weight]` annotation that accounts for an extrinsic's complexity.
+  The `ExtrinsicBaseWeight` that is declared in the runtime and applies to all extrinsics.
 
-To convert the weight to Currency, the runtime must define a `WeightToFee` struct that implements a conversion function, `Convert<Weight,Balance>`. 
+  The `#[pallet::weight]` annotation that accounts for an extrinsic's complexity.
+
+To convert the weight to Currency, the runtime must define a `WeightToFee` struct that implements a conversion function, `Convert<Weight,Balance>`.
 
 Note that the extrinsic sender is charged the inclusion
-fee before the extrinsic is invoked. The fee is deducted from the sender's balance even if the transaction fails upon execution. 
+fee before the extrinsic is invoked. The fee is deducted from the sender's balance even if the transaction fails upon execution.
 
 ### Accounts with an insufficient balance
 
@@ -100,40 +103,40 @@ However, this scenario would be a rare occurrence because the transaction queue 
 
 ### Fee multiplier
 
-The inclusion fee formula always results in the same fee for the same input. 
+The inclusion fee formula always results in the same fee for the same input.
 However, weight can be dynamic and—based on how
 [`WeightToFee`](/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.WeightToFee)
-is defined—the final fee can include some degree of variability. 
+is defined—the final fee can include some degree of variability.
 
 To account for this variability, the Transaction Payment pallet provides the [`FeeMultiplierUpdate`](/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.FeeMultiplierUpdate) configurable parameter.
 
-The default update function is inspired by the Polkadot network and implements a targeted adjustment in which a target saturation level of block weight is defined. 
-If the previous block is more saturated, then the fees are slightly increased. 
-Similarly, if the previous block has fewer transactions than the target, fees are decreased by a small amount. 
+The default update function is inspired by the Polkadot network and implements a targeted adjustment in which a target saturation level of block weight is defined.
+If the previous block is more saturated, then the fees are slightly increased.
+Similarly, if the previous block has fewer transactions than the target, fees are decreased by a small amount.
 For more information about fee multiplier adjustments, see the
 [Web3 research page](https://w3f-research.readthedocs.io/en/latest/polkadot/overview/2-token-economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits).
 
 ## Transactions with special requirements
 
 Inclusion fees must be computable prior to execution, and therefore can only represent fixed logic.
-Some transactions warrant limiting resources with other strategies. 
+Some transactions warrant limiting resources with other strategies.
 For example:
 
-* Bonds are a type of fee that might be returned or slashed after some on-chain event.
-  
+- Bonds are a type of fee that might be returned or slashed after some on-chain event.
+
   For example, you might want to require users to place a bond to participate in a vote. The bond might then be returned at the end of the referendum or slashed if the voter attempted malicious behavior.
 
-* Deposits are fees that might be returned later.
-  
-	For example, you might require users to pay a deposit to execute an operation that uses storage. If a subsequent operation frees up storage, the user's deposit could be returned.
+- Deposits are fees that might be returned later.
 
-- Burn operations are used to pay for a transaction based on its internal logic. 
-  
-	For example, a transaction might burn funds from the sender if the transaction creates new storage items to pay for the increased the state size.
+  For example, you might require users to pay a deposit to execute an operation that uses storage. If a subsequent operation frees up storage, the user's deposit could be returned.
 
-* Limits enable you to enforce constant or configurable limits on certain operations. 
-  
-	For example, the default Staking pallet only allows nominators to nominate 16 validators to limit the complexity of the validator election process.
+* Burn operations are used to pay for a transaction based on its internal logic.
+
+  For example, a transaction might burn funds from the sender if the transaction creates new storage items to pay for the increased the state size.
+
+- Limits enable you to enforce constant or configurable limits on certain operations.
+
+  For example, the default Staking pallet only allows nominators to nominate 16 validators to limit the complexity of the validator election process.
 
 It is important to note that if you query the chain for a transaction fee, it only returns the inclusion fee.
 
@@ -403,10 +406,10 @@ The entire logic of fees is encapsulated in `pallet-transaction-payment` via a [
 While this pallet provides a high degree of flexibility, a user can opt to build their custom
 payment module drawing inspiration from Transaction Payment.
 
-Given now you know what Substrate's weight system is, how it affects transaction fee computation, and how to specify 
-them for your dispatchables, the last question is how to find the right weights for your dispatchables. 
-That is what **Substrate benchmarking** is for. By writing benchmarking functions and running them, the system 
-(`frame-benchmarking`) calls these functions repeatedly with different numerical parameters and empirically determine 
+Given now you know what Substrate's weight system is, how it affects transaction fee computation, and how to specify
+them for your dispatchables, the last question is how to find the right weights for your dispatchables.
+That is what **Substrate benchmarking** is for. By writing benchmarking functions and running them, the system
+(`frame-benchmarking`) calls these functions repeatedly with different numerical parameters and empirically determine
 the weight functions for dispatchables in their worst case scenarios, within a certain limit. For more information, see [Benchmarking](/v3/runtime/benchmarking).
 
 - Dedicated [weight documentation](/v3/concepts/weight)
@@ -417,8 +420,8 @@ the weight functions for dispatchables in their worst case scenarios, within a c
 
 You can find examples of custom weights and fees in the following repositories:
 
-* [Custom weights for the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/example/src/weights.rs)
-* [Custom WeightToFee how-to guide](/how-to-guides/v3/weights/calculate-fees)
+- [Custom weights for the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/example/src/weights.rs)
+- [Custom WeightToFee how-to guide](/how-to-guides/v3/weights/calculate-fees)
 
 ### References
 
