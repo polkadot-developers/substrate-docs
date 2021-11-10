@@ -503,6 +503,10 @@ const DevNavMenu = {
             title: `${intl.formatMessage({ id: 'htg-tools-sidecar' })}`,
             link: '/how-to-guides/v3/tools/sidecar/',
           },
+          {
+            title: `${intl.formatMessage({ id: 'htg-tools-subwasm' })}`,
+            link: '/how-to-guides/v3/tools/subwasm',
+          },
         ],
       },
     ]
