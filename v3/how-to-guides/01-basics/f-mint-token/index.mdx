@@ -2,7 +2,7 @@
 title: Primitive Token Mint
 slug: /how-to-guides/v3/basics/mint-token
 keywords: basics, beginner, runtime, tokens
-version: '3.0' 
+version: '3.0'
 section: how to guides
 category: basics
 difficulty: 1
@@ -11,8 +11,7 @@ difficulty: 1
 <Message
   type={`yellow`}
   title={`Information`}
-  text=
-    "This is a beginner guide intended for new
+  text="This is a beginner guide intended for new
     Substrate developers looking to explore ways to create tokens in Substrate.
     This approach _is not_ a recommended best practice.
     Use this guide to learn how to improve upon your runtime logic
@@ -30,13 +29,11 @@ difficulty: 1
     },
     {
       title: 'Use Cases',
-      description:
-        `Give any account the ability to create a token supply in exchange for native token fee.`,
+      description: `Give any account the ability to create a token supply in exchange for native token fee.`,
     },
     {
       title: 'Overview',
-      description:
-        `This guide will step you through an effective way to mint a token by leveraging the primitive capabilities that
+      description: `This guide will step you through an effective way to mint a token by leveraging the primitive capabilities that
 		 [StorageMap](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) gives us. To achieve this, this "primitive" 
 		 approach uses the [blake2_128_concat](/v3/runtime/storage#hashing-algorithms) 
 		 \`hasher\` to map balances to account IDs, similar to how the [Balances](/rustdocs/latest/pallet_balances/index.html) pallet makes use of it to store 

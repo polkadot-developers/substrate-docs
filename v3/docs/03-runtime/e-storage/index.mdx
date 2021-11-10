@@ -1,7 +1,11 @@
 ---
 title: Storage
 slug: /v3/runtime/storage
+<<<<<<< HEAD
 version: '3.0' 
+=======
+version: '3.0'
+>>>>>>> ee9217c1345ad69a7d1430b65d9fb664e0581b8f
 section: docs
 category: runtime
 keywords:
@@ -36,7 +40,7 @@ This type of storage item should be used for values that are viewed as a single 
 items. If a storage item is used for storing lists of items, runtime developers should be conscious about the size of the lists they use.
 Large lists incur storage costs just like large `structs`.
 Furthermore, iterating over a large list in your runtime may result in exceeding the block production time. If this occurs for sovereign chains, the blockchain will slow down.
-If this occurs for [parachains](/v3/getting-started/glossary/#parachain), the blockchain will stop producing blocks and stop functioning. 
+If this occurs for [parachains](/v3/getting-started/glossary/#parachain), the blockchain will stop producing blocks and stop functioning.
 
 <Message
   type={`yellow`}
@@ -83,7 +87,6 @@ used to track unbounded sets of data (such as account balances), iterating over 
 Furthermore, because accessing the elements of a map requires more database reads than accessing the
 elements of a native list, map iterations are significantly _more_ costly than list iterations in terms of execution time.
 
-
 <Message
   type={`green`}
   title={`A note on best practices`}
@@ -114,7 +117,7 @@ Substrate's Iterable Storage Map interfaces define the following methods:
 
 ## Declaring storage items
 
-Runtime storage items are created with [`#[pallet::storage]`](/rustdocs/latest/frame_support/attr.pallet.html#storage-palletstorage-optional) 
+Runtime storage items are created with [`#[pallet::storage]`](/rustdocs/latest/frame_support/attr.pallet.html#storage-palletstorage-optional)
 in any FRAME-based pallet. Here is an example of declaring the four different types of storage items:
 
 ```rust
@@ -156,9 +159,9 @@ be used.
 
 The implementation of the [`QueryKindTrait`](/rustdocs/latest/frame_support/storage/types/trait.QueryKindTrait.html) passed
 to the storage item determines how the storage should be handled when there is no value in storage.
-With [`OptionQuery`](/rustdocs/latest/frame_support/storage/types/struct.OptionQuery.html), when no value is in storage 
-the `get` method will return `None`. With [`ValueQuery`](/rustdocs/latest/frame_support/storage/types/struct.ValueQuery.html), 
-when no value is in storage the `get` method will return the value configured with the `OnEmpty` generic. 
+With [`OptionQuery`](/rustdocs/latest/frame_support/storage/types/struct.OptionQuery.html), when no value is in storage
+the `get` method will return `None`. With [`ValueQuery`](/rustdocs/latest/frame_support/storage/types/struct.ValueQuery.html),
+when no value is in storage the `get` method will return the value configured with the `OnEmpty` generic.
 For cases with a specific default value to configure, it is recommended to use `ValueQuery`.
 
 ### Visibility
@@ -212,7 +215,8 @@ pub(super) fn MyDefault<T: Config>() -> T::Balance { 3.into() }
 pub(super) type MyStorageValue<T: Config> =
     StorageValue<Value = T::Balance, QueryKind = ValueQuery, OnEmpty = MyDefault<T>>;
 ```
-Notice that for the sake of adding clarity to each storage field, the syntax above is the non-abbreviated 
+
+Notice that for the sake of adding clarity to each storage field, the syntax above is the non-abbreviated
 version of declaring storage items.
 
 ## Accessing storage items
@@ -251,7 +255,7 @@ the keys of a Storage Map. Failure to do so creates an attack vector that makes 
 malicious actors to degrade the performance of your blockchain network. An example of a map that
 should use a cryptographic hash algorithm to generate its keys is a map used to track account
 balances. In this case, it is important to use a cryptographic hashing algorithm so that an attacker
-cannot bombard your system with many small transfers to sequential account numbers. Without the appropriate 
+cannot bombard your system with many small transfers to sequential account numbers. Without the appropriate
 cryptographic hashing algorithm this would create an imbalanced storage structure that would suffer in
 performance. Read more about common hashers in Subsrate in [this section](#common-substrate-hashers).
 
@@ -279,8 +283,8 @@ capabilities. Learn more about the capabilities that transparent hashing algorit
 This table lists some common hashers used in Substrate and denotes those that are cryptographic and
 those that are transparent:
 
-| Hasher                                                                                                | Cryptographic | Transparent |
-| ----------------------------------------------------------------------------------------------------- | ------------- | ----------- |
+| Hasher                                                                           | Cryptographic | Transparent |
+| -------------------------------------------------------------------------------- | ------------- | ----------- |
 | [Blake2 128 Concat](/rustdocs/latest/frame_support/struct.Blake2_128Concat.html) | X             | X           |
 | [TwoX 64 Concat](/rustdocs/latest/frame_support/struct.Twox64Concat.html)        |               | X           |
 | [Identity](/rustdocs/latest/frame_support/struct.Identity.html)                  |               | X           |
@@ -293,7 +297,7 @@ cryptographic hash.
 
 Substrate's runtime storage APIs include capabilities to initialize storage items in the genesis
 block of your blockchain. The genesis storage configuration APIs expose a number of mechanisms for
-initializing storage, all of which have entry points in `#[pallet::genesis_config]`. 
+initializing storage, all of which have entry points in `#[pallet::genesis_config]`.
 The `GenesisConfig` data type is defined under the attribute `#[pallet::genesis_config]` and
 the attribute [`pallet::genesis_build`] is used to build the genesis configuration.
 
@@ -315,11 +319,11 @@ Keep reading for a more detailed descriptions of these capabilities.
 
 ### `genesis_config`
 
-The [`#[pallet::genesis_config]`](/rustdocs/latest/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional) 
-macro provides an extension that will add an attribute to the pallet's 
-`GenesisConfig` data type. The value of this attribute will be used as the initial value of the storage 
-item in your chain's genesis block. The `config` extension takes a parameter that will determine the 
-name of the attribute on the `GenesisConfig` data type &mdash; this parameter is optional if the 
+The [`#[pallet::genesis_config]`](/rustdocs/latest/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional)
+macro provides an extension that will add an attribute to the pallet's
+`GenesisConfig` data type. The value of this attribute will be used as the initial value of the storage
+item in your chain's genesis block. The `config` extension takes a parameter that will determine the
+name of the attribute on the `GenesisConfig` data type &mdash; this parameter is optional if the
 [`get` extension](#getter-methods) is provided.
 
 Here is an example that demonstrates using the `config` extension with a Storage Value named `MyVal`
@@ -348,9 +352,9 @@ GenesisConfig {
 
 ### `genesis_build`
 
-The [`#[pallet::genesis_build]`](/rustdocs/latest/frame_support/attr.pallet.html#genesis-build-palletgenesis_build-optional) 
+The [`#[pallet::genesis_build]`](/rustdocs/latest/frame_support/attr.pallet.html#genesis-build-palletgenesis_build-optional)
 attribute allows you to define how `genesis_configuration` is built within the pallet itself (this gives you access to the pallet's private
-functions). 
+functions).
 
 Here is an example that demonstrates using `#[pallet::genesis_config]` and `#[pallet::genesis_build]` to set the initial value of a storage item. In
 this case, the example involves two storage items: one that represents a list of member account IDs
@@ -387,7 +391,7 @@ GenesisConfig {
 You can also use `genesis_build` to define a `GenesisConfig` attribute that
 is not bound to a particular storage item. This may be
 desireable if you wish to invoke a private helper function within your pallet that sets several
-storage items, or invoke a function defined in some other pallets included within your pallet. 
+storage items, or invoke a function defined in some other pallets included within your pallet.
 For example, using an imaginary private function called `intitialize_members`, this would look like:
 
 In `my_pallet/src/lib.rs`:

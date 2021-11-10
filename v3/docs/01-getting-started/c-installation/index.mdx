@@ -59,15 +59,8 @@ sudo zypper install clang curl git openssl-devel llvm-devel libudev-devel
 
 <Message
   type={`yellow`}
-  title={`Information`}
-  text=
-    "The Apple M1 ARM system on a chip is not very well supported yet by rust, and thus you very likely will run into build errors stemming from this. There are reports that using substrate dependencies newer than the June 2021 monthly release are able to work without issue. Here is the ',
-    [node template `monthly-2021-05`](https://github.com/substrate-developer-hub/substrate-node-template/tree/v3.0.0%2Bmonthly-2021-05)
-    'that you should use as a base for building on M1s. If you decide not to use a monthly release, see 
-    [this community contributed script](https://github.com/substrate-developer-hub/substrate-node-template/issues/179#issuecomment-843522331)
-    (and discussion)
-    for details on extra configuration steps to get things working on `v3.0.0` and below.
-    "
+  title={`Apple M1 ARM`}
+  text="If you have an Apple M1 ARM system on a chip, make sure that you have Apple Rosetta 2 installed through \`softwareupdate --install-rosetta\`. This is only needed to run the \`protoc\` tool during the build. The build itself and the target binaries would remain native."
 />
 
 Open the Terminal application and execute the following commands:
@@ -91,7 +84,8 @@ Native development of Substrate is _not_ very well supported! It is _highly_ rec
 use [Windows Subsystem Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) (WSL)
 and follow the instructions for [Ubuntu/Debian](#ubuntudebian). Please refer to the separate
 [guide for native Windows development](/v3/getting-started/windows-users).
-  `}/>
+  `}
+/>
 
 ## 2. Rust developer environment
 
@@ -118,7 +112,6 @@ rustup target add wasm32-unknown-unknown --toolchain nightly
 
 Now the best way to ensure that you have successfully prepared a computer for Substrate
 development is to follow the steps in [our first tutorial](/tutorials/v3/create-your-first-substrate-chain).
-
 
 <Message
   type={`yellow`}
@@ -198,7 +191,8 @@ rustup update
 rustup update nightly
 rustup target add wasm32-unknown-unknown --toolchain nightly
 ```
-<br/>
+
+<br />
 <Message
   type={`gray`}
   title={`Note`}
@@ -240,7 +234,8 @@ project should use for Wasm compilation:
 ```bash
 WASM_BUILD_TOOLCHAIN=nightly-<yyyy-MM-dd> cargo build --release
 ```
-<br/>
+
+<br />
 <Message
   type={`yellow`}
   title={`Information`}

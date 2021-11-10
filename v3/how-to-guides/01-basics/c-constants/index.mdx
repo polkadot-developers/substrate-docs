@@ -2,26 +2,26 @@
 title: Configure a Runtime Constant
 slug: /how-to-guides/v3/basics/configurable-constants
 keywords: basics, runtime, configurable constants
-version: '3.0' 
+version: '3.0'
 section: how to guides
 category: basics
 difficulty: 1
 ---
+
 <Objectives
   data={[
     {
       title: 'Goal',
-      description: 'Define a runtime constant value that becomes reset on `on_finalize`.',
+      description:
+        'Define a runtime constant value that becomes reset on `on_finalize`.',
     },
     {
       title: 'Use Cases',
-      description:
-        `Use a constant to keep track of the amount of times a function is called during a single block cycle.`,
+      description: `Use a constant to keep track of the amount of times a function is called during a single block cycle.`,
     },
     {
       title: 'Overview',
-      description:
-        `Declaring a constant value in a runtime is a useful tool to either define fixed values or define values that change dynamically
+      description: `Declaring a constant value in a runtime is a useful tool to either define fixed values or define values that change dynamically
          according to some factor. This guide shows you how to create pallet constants that are used to reset a \`u32\`
          value in storage. This value, we'll call \`SingleValue\`, can also be modified using a method called \`add_value\`.
          The purpose of this guide is to demonstrate the utility of configuring constants by hardcoding them and making them more
@@ -42,7 +42,7 @@ difficulty: 1
 #[pallet::config]
 pub trait Config: frame_system::Config {
   type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
-  
+
   #[pallet::constant] // put the constant in metadata
   /// Maximum amount added per invocation.
   type MaxAddend: Get<u32>;

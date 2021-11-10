@@ -1,6 +1,6 @@
 # Guide title [answers "How do I ...?]
 
-Replace this paragraph with an overview that provides a brief summary of what this guide is about and why it's useful. 
+Replace this paragraph with an overview that provides a brief summary of what this guide is about and why it's useful.
 The overview section can be more than one paragraph. It does not require any heading before the text.
 
 ## Use cases [optional - if it is redundant, leave it out]
@@ -13,11 +13,11 @@ Replace this template content with an introductory sentence and list of prerequi
 
 Before you begin, verify the following requirements:
 
-* What should someone **have** before reading this article?
+- What should someone **have** before reading this article?
 
-* What should someone **know** before reading this article?
+- What should someone **know** before reading this article?
 
-* What should someone **do** before reading this article?
+- What should someone **do** before reading this article?
 
 ## Steps [use a more descriptive heading as needed]
 

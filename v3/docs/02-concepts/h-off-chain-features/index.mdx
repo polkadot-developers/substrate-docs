@@ -1,7 +1,11 @@
 ---
 title: Off-Chain Features
 slug: /v3/concepts/off-chain-features
+<<<<<<< HEAD
 version: '3.0' 
+=======
+version: '3.0'
+>>>>>>> ee9217c1345ad69a7d1430b65d9fb664e0581b8f
 section: docs
 category: concepts
 keywords: off-chain, off-chain storage, oracles, ocw
@@ -16,14 +20,14 @@ To make the off-chain data integration secure and more efficient, Substrate prov
 - **Off-Chain Worker (OCW)** subsystems allows execution of long-running and possibly non-deterministic tasks (e.g. web requests, encryption/decryption and signing of data, random number generation, CPU-intensive computations, enumeration/aggregation of on-chain data, etc.) that could otherwise require longer than the block execution time.
 
 - **Off-Chain Storage** offers storage that is local to a Substrate node that can be accessed both by off-chain workers (both read and write access) and on-chain logic (write access via off-chain indexing but not read access).
-This allows different worker threads to communicate to each other and to store user or node-specific data that does not require consensus over the whole network.
+  This allows different worker threads to communicate to each other and to store user or node-specific data that does not require consensus over the whole network.
 
 - **Off-Chain Indexing** allows the runtime, if opted-in, to write directly to the off-chain storage
   independently from OCWs. This serves as a local/temporary storage for on-chain logic and
   complement to its on-chain state.
 
 Off-chain features run in their own Wasm execution environment outside of the Substrate runtime.
-This separation of concerns makes sure that block production is not impacted by long-running off-chain tasks. 
+This separation of concerns makes sure that block production is not impacted by long-running off-chain tasks.
 However, as the off-chain features are declared in the same code as the runtime,
 they can easily access on-chain state for their computations.
 

@@ -2,20 +2,20 @@
 title: Start a Private Network
 slug: /tutorials/v3/private-network
 hideNav: true
-version: '3.0' 
+version: '3.0'
 sideNav: privateNetwork
 section: tutorials
 category: private network
 keywords: permissioned, consortium, authority, network
 difficulty: 1
 duration: 2 Hour
-relevantSkills: 
-  - Rust 
+relevantSkills:
+  - Rust
   - Blockchain basics
   - FRAME
 ---
 
-##  Introduction
+## Introduction
 
 In this tutorial we will learn and practice how to start a blockchain network with a
 validator/authority set of your choosing using Substrate.
@@ -29,8 +29,7 @@ If you do not, please complete that tutorial.
 <Message
   type={`yellow`}
   title={`Information`}
-  text=
-      "Experienced developers who truly prefer to skip that tutorial, you may install the node template 
+  text="Experienced developers who truly prefer to skip that tutorial, you may install the node template 
       according to the instructions in its readme.
       "
 />
@@ -41,9 +40,8 @@ Before we even get started, let's layout what we're going to do over the course 
 
 <TutorialObjective
   data={{
-    textLineOne:
-      '1. Have Alice and Bob start a blockchain',
-      url: '/tutorials/v3/private-network#alice-and-bob-start-a-blockchain',
+    textLineOne: '1. Have Alice and Bob start a blockchain',
+    url: '/tutorials/v3/private-network#alice-and-bob-start-a-blockchain',
   }}
 />
 <TutorialObjective
@@ -55,23 +53,21 @@ Before we even get started, let's layout what we're going to do over the course 
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '3. Create and edit a chain spec JSON file.',
+    textLineOne: '3. Create and edit a chain spec JSON file.',
     url: '#create-a-custom-chain-spec',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '4. Launch your custom chain.',
+    textLineOne: '4. Launch your custom chain.',
     url: '#launch-your-private-network',
   }}
 />
 
 ## Learning outcomes
-- Learn how to create authority nodes for a private network
-- Learn how to configure a JSON chain spec file 
 
+- Learn how to create authority nodes for a private network
+- Learn how to configure a JSON chain spec file
 
 ## Alice and Bob start a blockchain
 
@@ -87,8 +83,7 @@ Alice (or whomever is playing her) should run these commands from node-template 
 <Message
   type={`yellow`}
   title={`Information`}
-  text=
-    "Here we\'ve explicitly shown the `purge-chain` command. In the future we will omit this You should
+  text="Here we\'ve explicitly shown the `purge-chain` command. In the future we will omit this You should
     purge old chain data any time you\'re trying to start a new network.
     "
 />
@@ -153,15 +148,14 @@ When the node starts, you should see output similar to this:
 
 A few things to notice:
 
- - `🔨 Initializing Genesis block/state (state: 0xea47…9ba8, header-hash: 0x9d07…7cce)` tells which
-   genesis block the node is using. When you start the next node, verify that these values are
-   equal.
- - `🏷 Local node identity is: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp` shows the
-   Peer ID that Bob will need when booting from Alice's node. This value was determined by the
-   `--node-key` that was used to start Alice's node.
-   
- - No blocks are being produced yet. Blocks will start being produced once another
-   node joins the network.
+- `🔨 Initializing Genesis block/state (state: 0xea47…9ba8, header-hash: 0x9d07…7cce)` tells which
+  genesis block the node is using. When you start the next node, verify that these values are
+  equal.
+- `🏷 Local node identity is: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp` shows the
+  Peer ID that Bob will need when booting from Alice's node. This value was determined by the
+  `--node-key` that was used to start Alice's node.
+- No blocks are being produced yet. Blocks will start being produced once another
+  node joins the network.
 
 More details about all of these flags and others that I haven't mentioned are available by running
 `./target/release/node-template --help`.
@@ -177,8 +171,7 @@ In your web browser, navigate to
 <Message
   type={`green`}
   title={`Tip`}
-  text=
-	  "Some Ad blockers (e.g. the built-in Shield in Brave browser, pihole, browser extensions, etc.)
+  text="Some Ad blockers (e.g. the built-in Shield in Brave browser, pihole, browser extensions, etc.)
 	  block the connection to a local node. In case you have any Ad blockers in your browser, make
 	  sure to check them and turn them off as needed if you have issues connecting to your local node. 
 	  Also some browsers, notably Firefox, will not connect to a local node from a https website.
@@ -214,8 +207,7 @@ You should now see something like this example from the **Network** and **Explor
 <Message
   type={`gray`}
   title={`Note`}
-  text=
-    "If you do not want to run your hosted version of Polkadot-JS Apps UI while connecting to Substrate 
+  text="If you do not want to run your hosted version of Polkadot-JS Apps UI while connecting to Substrate 
     node you have deployed remotely, you can [configure SSH local port forwarding](https://www.booleanworld.com/guide-ssh-port-forwarding-tunnelling/)
     to forward local request to the `ws-port` listened by the remote host.
     "
@@ -290,7 +282,6 @@ Once you've verified that both nodes are running as expected, you should shut th
 this is not strictly required, so long as you don't have conflicting ports and the same chain spec.
 The next section of this tutorial will include commands to restart new nodes when necessary.
 
-
 ## Generate your own keys
 
 Now that we know the fundamentals and the command line options, it's time to generate our own keys
@@ -351,12 +342,11 @@ system should not be connected to the internet when generating such keys.
 <Message
   type={`red`}
   title={`Warning`}
-  text=
-    "A system that generates production keys should not be connected to the internet regardless of what
+  text="A system that generates production keys should not be connected to the internet regardless of what
     method you choose. It is mentioned here specifically because having an internet connection is 
     generally desired when using a webapp like Polkadot JS Apps.
     "
-/> 
+/>{' '}
 
 On the "Accounts" tab, click "Add account". You do not need to provide a name, although you may if
 you would like to save this account for submitting transaction in addition to validating.
@@ -403,7 +393,6 @@ learning purposes.
 In the next section, we will create a custom chain specification using your key pairs and
 share your custom chain specification with your network validators
 
-
 ## Create a custom chain spec
 
 Now that each participant has their own keys generated, you're ready to create a custom chain
@@ -420,7 +409,7 @@ specified as validators along with many other useful defaults.
 
 Rather than writing our chain spec completely from scratch, we'll just make a few modifications to
 the one we used before. To start, we need to export the chain spec to a file named
-`customSpec.json`. 
+`customSpec.json`.
 
 <Message
   type={`green`}
@@ -468,12 +457,12 @@ by the **"grandpa"** field. That section looks like this using the [two provided
   }
 }
 ```
+
 <br />
 <Message
   type={`yellow`}
   title={`Information`}
-  text=
-    "These instructions are written for the node template. They will work with other Substrate-based 
+  text="These instructions are written for the node template. They will work with other Substrate-based 
     nodes with few modifications. In Substrate, nodes that include the session pallet should leave 
     the Aura and Grandpa configs empty and instead insert this information in the session config. All 
     of this is demonstrated in the chain spec you export from your desired node. 
@@ -492,15 +481,15 @@ you like. For additional context, read about
 <Message
   type={`red`}
   title={`Warning`}
-  text=
-    "Validators should not share the same keys, even for learning purposes. If two validators have the 
+  text="Validators should not share the same keys, even for learning purposes. If two validators have the 
     same keys, they will produce conflicting blocks. 
     A single person should create the chain spec and share the resulting 
     `customSpecRaw.json` file with their fellow validators. 
     "
-/> 
+/>{' '}
 
 ### Convert and share the raw chain spec
+
 Once the chain spec is prepared, convert it to a "raw" chain spec. The raw chain spec contains all
 the same information, but it contains the encoded storage keys that the node will use to reference
 the data in its local storage. Distributing a raw spec ensures that each node will store the data at
@@ -515,8 +504,7 @@ Finally share the `customSpecRaw.json` with your all the other validators in the
 <Message
   type={`yellow`}
   title={`Information`}
-  text=
-    "Because Rust -> Wasm optimized builds aren't reproducible, each person will get a slightly
+  text="Because Rust -> Wasm optimized builds aren't reproducible, each person will get a slightly
     different Wasm blob which will break consensus if each participant generates the file themselves.
     For the curious, learn more about this issue in 
     [this blog post](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1).
@@ -528,7 +516,6 @@ Next steps:
 - Launch the chain with the bootnode
 - Add keys to keystore
 - Add other participants to your network
-
 
 ## Launch your private network
 
@@ -598,13 +585,14 @@ You should see the console outputs something as follows:
 2021-03-10 18:32:26  💤 Idle (0 peers), best: #0 (0x9d07…7cce), finalized #0 (0x9d07…7cce), ⬇ 0 ⬆ 0
 ```
 
-Here you must take note of: 
+Here you must take note of:
+
 - the **node identity**: `12D3KooWJvVUoAa7R8gjCSQ45x69Ahh3HcdVSH1dvpcA52vKawHL`
 - the **IP address** `127.0.0.1`
 - the p2p port `--port = 30333`
 
 These values are for this specific
-example, but for your node, they will be different and **required for other nodes to directly connect to it** 
+example, but for your node, they will be different and **required for other nodes to directly connect to it**
 (without a bootnode in the chain spec, as we removed in the flags before).
 
 ### Add keys to keystore
@@ -629,12 +617,12 @@ keytype: aura
 suri: <your mnemonic phrase> (eg. clip organ olive upper oak void inject side suit toilet stick narrow)
 publicKey: <your raw sr25519 key> (eg. 0x9effc1668ca381c242885516ec9fa2b19c67b6684c02a8a3237b6862e5c8cd7e)
 ```
+
 <br />
 <Message
   type={`gray`}
   title={`Note`}
-  text=
-      "If you generated your keys with the Apps UI you will not know your raw public key. In this case
+  text="If you generated your keys with the Apps UI you will not know your raw public key. In this case
       you may use your SS58 address (`5FfBQ3kwXrbdyoqLPvcXRp7ikWydXawpNs2Ceu3WwFdhZ8W4`) instead.
       "
 />
@@ -652,12 +640,12 @@ keytype: gran
 suri: <your mnemonic phrase> (eg. clip organ olive upper oak void inject side suit toilet stick narrow)
 publicKey: <your raw ed25519 key> (eg. 0xb48004c6e1625282313b07d1c9950935e86894a2e4f21fb1ffee9854d180c781)
 ```
+
 <br />
 <Message
   type={`gray`}
   title={`Note`}
-  text=
-      "If you are following these steps for the _second_ node in the network, you must connect the UI to 
+  text="If you are following these steps for the _second_ node in the network, you must connect the UI to 
       the second node before inserting the keys.
       "
 />
@@ -753,12 +741,12 @@ parameter as Bob did previously.
   # you MUST fill the correct info in the line above:
   # --bootnodes /ip4/<IP Address>/tcp/<p2p Port>/p2p/<Peer ID>
 ```
+
 <br />
 <Message
   type={`red`}
   title={`Warning`}
-  text=
-    "Make sure you set the correct node ID! If you didn\'t set the correct node ID gathered from another running with the same chain spec,
+  text="Make sure you set the correct node ID! If you didn\'t set the correct node ID gathered from another running with the same chain spec,
     but only the right IP - you will get errors of the form: 
     `💔 The bootnode you want to connect to at ... provided a different peer ID than the one you expect: ...`
     "
@@ -839,5 +827,5 @@ those keypairs, and start a private network based on your custom chain spec.
 ## Next steps
 
 That big Wasm blob we encountered in the chain spec was necessary to enable forkless upgrades.
-Learn more about how the [executor](/v3/advanced/executor) uses on-chain Wasm. Alternatively, continue 
+Learn more about how the [executor](/v3/advanced/executor) uses on-chain Wasm. Alternatively, continue
 learning by completing the [permissioned network tutorial](/tutorials/v3/permissioned-network).

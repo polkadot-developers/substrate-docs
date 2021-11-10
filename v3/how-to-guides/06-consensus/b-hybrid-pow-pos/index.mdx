@@ -2,7 +2,7 @@
 title: Create a PoS-PoW Hybrid Node
 slug: /how-to-guides/v3/consensus/hybrid-pos-pow
 keywords: node, client, consensus, proof-of-work, proof-of-stake
-version: '3.0' 
+version: '3.0'
 section: how to guides
 category: consensus
 difficulty: 3
@@ -12,7 +12,8 @@ difficulty: 3
   data={[
     {
       title: 'Goal',
-      description: 'Provide a GRANPA and PoW consensus engine to a service client.',
+      description:
+        'Provide a GRANPA and PoW consensus engine to a service client.',
     },
     {
       title: 'Use Cases',
@@ -20,7 +21,7 @@ difficulty: 3
     },
     {
       title: 'Overview',
-      description:`
+      description: `
 This guide demonstrates how to create a Substrate-based node that employs hybrid consensus, using
 [Sha3 Proof of Work](../pow) to dictate block authoring and the
 [Grandpa](/rustdocs/latest/sc_finality_grandpa/index.html) finality gadget to provide
@@ -34,9 +35,9 @@ authorities from the runtime via the
 />
 <br />
 <Message
-    type={`gray`}
-    title={`Note`}
-    text={`Grandpa relies on getting its authority sets from the runtime via the
+  type={`gray`}
+  title={`Note`}
+  text={`Grandpa relies on getting its authority sets from the runtime via the
 [GrandpaAPI](/rustdocs/latest/sp_finality_grandpa/trait.GrandpaApi.html), so you'll need a runtime
 that provides this API to successfully compile a node implementing this guide. `}
 />
@@ -60,6 +61,7 @@ let (grandpa_block_import, grandpa_link) = sc_finality_grandpa::block_import(
 	select_chain.clone(),
 )?;
 ```
+
 With the grandpa block import created, we can now create the PoW block import. The Pow block import
 is the outer-most layer of the block import onion and it wraps the grandpa block import.
 

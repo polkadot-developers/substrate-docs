@@ -1,19 +1,115 @@
 ---
 title: SS58 Address Format
 slug: /v3/advanced/ss58
+<<<<<<< HEAD
 version: '3.0' 
+=======
+version: '3.0'
+>>>>>>> ee9217c1345ad69a7d1430b65d9fb664e0581b8f
 section: docs
 category: advanced
 keywords:
 ---
 
-SS58 is a simple address format designed for Substrate based chains. There's no problem with using
-other address formats for a chain, but this serves as a robust default. It is heavily based on
-Bitcoin's Base-58-check format with a few alterations.
+SS58 is a simple address format designed for Substrate based chains.
+There's no problem with using other address formats for a chain, but this serves as a robust default.
+It is heavily based on Bitcoin's Base-58-check format with a few alterations.
 
-The basic idea is a base-58 encoded value that can identify a specific account on the Substrate
-chain. Different chains have different means of identifying accounts. SS58 is designed to be
-extensible for this reason.
+The basic idea is a base-58 encoded value which can identify a specific account on the Substrate chain.
+Different chains have different means of identifying accounts.
+SS58 is designed to be extensible for this reason.
+
+## Format in detail
+
+This page outlines the implementation of [`Ss58Codec` in Substrate](https://paritytech.github.io/substrate/master/sp_core/crypto/trait.Ss58Codec.html).
+Also of note is the cannonical [SS58 registry](https://github.com/paritytech/ss58-registry) of adress type mappings to various networks described below.
+
+### Basic format
+
+The basic format conforms to:
+
+```
+base58encode ( concat ( <address-type>, <address>, <checksum> ) )
+```
+
+That is, the concatenated byte series of address type, address and checksum then passed into a base-58 encoder.
+The `base58encode` function is implemented exactly as [defined](https://en.wikipedia.org/wiki/Base58) in Bitcoin and IPFS, using the same alphabet as both.
+
+### Address type
+
+The `<address-type>` is one or more bytes that describe the precise format of the following bytes.
+
+Currently, there exist several valid values:
+
+- 00000000b..=00111111b (0..=63 inclusive): Simple account/address/network identifier.
+  The byte can be interpreted directly as such an identifier.
+- 01000000b..=01111111b (64..=127 inclusive): Full address/address/network identifier.
+  The lower 6 bits of this byte should be treated as the upper 6 bits of a 14 bit identifier value, with the lower 8 bits defined by the following byte. 
+  This works for all identifiers up to 2**14 (16,383).
+- 10000000b..=11111111b (128..=255 inclusive): Reserved for future address format extensions.
+
+The latter (42) is a "wildcard" address that is meant to be equally valid on all Substrate networks that support fixed-length addresses.
+For production networks, however, a network-specific version may be desirable to help avoid the key-reuse between networks and some of the problems that it can cause.
+Substrate nodes will default to printing keys in address type 42, though alternative Substrate-based node implementations (e.g. Polkadot) may elect to default to some other type.
+
+### Address Formats for Substrate
+
+There are 16 different address formats, identified by the length (**in bytes**) of the total payload (i.e. including the checksum).
+
+| Total | Type | Raw Account | Checksum |
+|:-----:|:----:|:-----------:|:--------:|
+| 3     | 1    | 1           | 1        |
+| 4     | 1    | 2           | 1        |
+| 5     | 1    | 2           | 2        |
+| 6     | 1    | 4           | 1        |
+| 7     | 1    | 4           | 2        |
+| 8     | 1    | 4           | 3        |
+| 9     | 1    | 4           | 4        |
+| 10    | 1    | 8           | 1        |
+| 11    | 1    | 8           | 2        |
+| 12    | 1    | 8           | 3        |
+| 13    | 1    | 8           | 4        |
+| 14    | 1    | 8           | 5        |
+| 15    | 1    | 8           | 6        |
+| 16    | 1    | 8           | 7        |
+| 17    | 1    | 8           | 8        |
+| 34    | 1    | 32          | 2        |
+
+## Checksum types
+
+Several potential checksum strategies exist within Substrate, giving different length and longevity guarantees.
+There are two types of checksum preimages (known as SS58 and AccountID) and many different checksum lengths (1 to 8 bytes).
+
+In all cases for Substrate, the [Blake2-256](https://en.wikipedia.org/wiki/BLAKE_(hash_function)) hash function is used.
+The variants simply select the preimage used as the input to the hash function and the number of bytes taken from its output.
+
+The bytes used are always the left most bytes.
+The input to be used is the non-checksum portion of the SS58 byte series used as input to the base-58 function, i.e. `concat( <address-type>, <address> )`.
+A context prefix of `0x53533538505245`, (the string `SS58PRE`) is prepended to the input to give the final hashing preimage.
+
+The advantage of using more checksum bytes is simply that more bytes provide a greater degree of protection against input errors and index alteration at the cost of widening the textual address by an extra few characters.
+For the account ID format, this is insignificant and therefore no 1-byte alternative is provided.
+For the shorter account-index formats, the extra byte represents a far greater portion of the final address, so it is left for further up the stack (though not necessarily the user themself) to determine the best tradeoff for their purposes.
+
+## Simple/full address types and account/address/network identifiers
+
+[The registry](https://github.com/paritytech/ss58-registry) expresses the status of the account/address/network *identifiers*.
+
+*Identifiers* up to value 64 may be expressed in a *simple* format address, in which the least significant byte (LSB) of the identifier value is expressed as the first byte of the encoded address.
+
+For identifiers of between 64 and 16,383, the *full* format address must be used.
+
+This encoding is slightly fiddly since we encode as little endian (LE), yet the first two bits (which should encode 64s and 128s) are already used up with the necessary `01` prefix.
+We treat the first two bytes as a 16 bit sequence, and we disregard the first two bits of that (since they're already fixed to be `01`). 
+With the remaining 14 bits, we encode our identifier value as LE, with the assumption that the two missing higher order bits are zero.
+This effectively spreads the low-order byte across the boundary between the two bytes.
+
+Thus the 14-bit identifier `0b00HHHHHH_MMLLLLLL` is expressed in the two bytes as:
+
+- `0b01LLLLLL`
+- `0bHHHHHHMM`
+
+Identifiers of 16384 and beyond are not currently supported.
 
 ## Validating addresses
 
@@ -21,14 +117,12 @@ There are several ways to verify that a value is a valid SS58 address.
 
 ### Subkey
 
-You can use the [Subkey](/v3/tools/subkey) `inspect`
-subcommand, which accepts the seed phrase, a hex-encoded private key, or an SS58 address as the input
-URI. If the input is a valid address, it will return a list containing the corresponding public
-key (hex), account ID, and SS58 values.
+You can use the [Subkey](/v3/tools/subkey) `inspect` subcommand, which accepts the seed phrase, a hex-encoded private key, or an SS58 address as the input URI.
+If the input is a valid address, it will return a list containing the corresponding public key (hex), account ID and SS58 values.
 
-Subkey assumes that an address is based on a public/private keypair. In the case of inspecting an
-address, it will return the 32 byte account ID. Not all addresses in Substrate-based networks are
-based on keys.
+Subkey assumes that an address is based on a public/private keypair.
+In the case of inspecting an address, it will return the 32 byte account ID.
+Not all addresses in Substrate-based networks are based on keys.
 
 <Message
   type={`gray`}
@@ -53,8 +147,7 @@ Invalid phrase/URI given
 
 ### PolkadotJS API
 
-For verifying an address in your JavaScript projects, you can utilize the functions built
-into the [PolkadotJS API](https://polkadot.js.org/docs/api/).
+For verifying an address in your JavaScript projects, you can utilize the functions built into the [PolkadotJS API](https://polkadot.js.org/docs/api/).
 
 ```javascript
 // Import Polkadot.js API dependencies.
@@ -80,25 +173,11 @@ const isValid = isValidSubstrateAddress()
 console.log(isValid)
 ```
 
-### Community Built
+## Learn more
 
-Below you will find a list of other Substrate API tools built in various languages by our community.
-They each validate addresses in their own way, and can act as a starting point.
-
-- [Python Substrate Interface](https://polkascan.github.io/py-substrate-interface/#substrateinterface.Keypair) - developed by Polkascan.
-
-- [Go Substrate RPC client](https://github.com/centrifuge/go-substrate-rpc-client) - developed by Centrifuge.
-
-- [C++ Polkadot Substrate API](https://github.com/usetech-llc/polkadot_api_cpp) - developed by Usetech.
-
-- [.Net API](https://github.com/usetech-llc/polkadot_api_dotnet) - developed by Usetech.
-
-- [Go implemented utilities](https://github.com/itering/subscan-essentials) - developed by Subscan.
-
-- [SS58 Transform](https://polkadot.subscan.io/tools/ss58_transform) - to manually verify an address (sanity check).
-
-### Learn more
-
+- [`Ss58Codec` in Substrate](https://paritytech.github.io/substrate/master/sp_core/crypto/trait.Ss58Codec.html)
+- The cannonical [SS58 registry](https://github.com/paritytech/ss58-registry)
 - [Polkadot-js API on GitHub](https://github.com/polkadot-js/api)
-
 - [Install Subkey](/v3/tools/subkey#installation)
+- [Ecosystem client
+libs](https://substrate.io/ecosystem/resources/awesome-substrate/#client-libraries) and [tools(https://substrate.io/ecosystem/resources/awesome-substrate/#tools)]
