@@ -81,7 +81,7 @@ In this example, we'll take Polkadot's runtime at block 500 and compare it with 
 1. Save the Wasm blob of a previous state.
 
     ```bash
-    subwasm get --chain polkadot --block 0xfdeab19649426aadbdab046c9b5dac0a5b0c850b8fd0927e3b4e6c896d5fb0b7 -o polkadot-50000.wasm
+    subwasm get --chain polkadot --block 0xfdeab19649426aadbdab046c9b5dac0a5b0c850b8fd0927e3b4e6c896d5fb0b7 -o polkadot-500000.wasm
     ```
 
 1. Get the latest Wasm blob of the runtime.
@@ -90,10 +90,10 @@ In this example, we'll take Polkadot's runtime at block 500 and compare it with 
     subwasm get --chain polkadot -o polkadot-latest.wasm 
     ```
 
-1. Compare the two runtimes.
+1. Compare the two runtimes and put the output into a JSON file.
 
     ```bash
-    subwasm diff polkadot-latest.wasm polkadot-50000.wasm
+    subwasm diff polkadot-latest.wasm polkadot-500000.wasm --json > polkadot-wasm-diff.json
     ```
 
 ## Examples 
