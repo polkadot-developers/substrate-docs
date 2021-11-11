@@ -1,15 +1,15 @@
 ---
 title: Macros
 slug: /v3/runtime/macros
-version: 3.0 
+version: '3.0'
 section: docs
 category: runtime
-keywords: 
+keywords:
 ---
 
-> As of January 2021, FRAME based pallets have upgraded their use of macros. Refer to [this guide](/rustdocs/latest/frame_support/attr.pallet.html#upgrade-guidelines) 
-to learn about migrating a v1 pallet to v2 and [this resource](https://hackmd.io/@fscJ0GEvRb2rqALLZB1kfA/SkSerkamt) to learn more about FRAME's version 
-changes.
+> As of January 2021, FRAME based pallets have upgraded their use of macros. Refer to [this guide](/rustdocs/latest/frame_support/attr.pallet.html#upgrade-guidelines)
+> to learn about migrating a v1 pallet to v2 and [this resource](https://hackmd.io/@fscJ0GEvRb2rqALLZB1kfA/SkSerkamt) to learn more about FRAME's version
+> changes.
 
 Substrate uses [Rust macros](https://doc.rust-lang.org/book/ch19-06-macros.html) to aggregate the logic derived from pallets that are implemented for a runtime.
 These runtime macros allow developers to focus on runtime logic rather than encoding and decoding on-chain
@@ -180,12 +180,36 @@ This is an example of its definition:
 ```rust
 #[pallet::pallet]
 #[pallet::generate_store(pub(super) trait Store)]
-pub struct Pallet<T>(PhantomData<T>);
+#[pallet::generate_storage_info]
+pub struct Pallet<T>(_);
 ```
 
 **Docs**
 
 - See the [macro expansion](/rustdocs/latest/frame_support/attr.pallet.html#macro-expansion-1) added to the `struct Pallet<T>` definition
+
+### #[pallet::generate_storage_info]
+
+**When to use**
+
+Highly encouraged, but optional which will help ensure all of your pallet storage items are bounded.
+
+**What it does**
+
+This requires all storage to implement the trait `traits::StorageInfoTrait`, thus all keys and value types must bound `pallet_prelude::MaxEncodedLen`. Some individual storage can opt-out from this constraint by using `#[pallet::unbounded]`, see `#[pallet::storage]` documentation.
+
+This is an example of its definition:
+
+```rust
+#[pallet::pallet]
+#[pallet::generate_store(pub(super) trait Store)]
+#[pallet::generate_storage_info]
+pub struct Pallet<T>(_);
+```
+
+**Docs**
+
+- See the [macro expansion](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#pallet-struct-placeholder-palletpallet-mandatory) added to the `struct Pallet<T>` definition
 
 ### #[pallet::hooks]
 
@@ -201,7 +225,7 @@ For example:
 
 ```rust
 #[pallet::hooks]
-imple<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
+impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
   // Hooks functions and logic goes here.
 }
 ```
@@ -289,8 +313,8 @@ Hasher, Prefix, QueryKind and an OnEmpty
 parameter. The prefix generic defines the place where the
 storage will store its `(key, value)` pairs (i.e. the trie) and defines the pallet and storage prefix like such:
 
-  `concat(twox_128(pallet_prefix), towx_128(storage_prefix))`, replacing `_` with the generated prefix implementations 
-  of the pallet and storage names.
+`concat(twox_128(pallet_prefix), towx_128(storage_prefix))`, replacing `_` with the generated prefix implementations
+of the pallet and storage names.
 
 **Docs**
 
@@ -360,64 +384,6 @@ to convert the type to its specified value.
 **Docs**
 
 - [API Documentation](/rustdocs/latest/frame_support/macro.parameter_types.html)
-
-### impl_outer_origin!
-
-**When to use**
-
-To construct an `Origin` struct type for a runtime. This macro is typically called automatically by
-the `construct_runtime!` macro, but developers may call this macro directly to construct a mock
-runtime for testing that has a less complex structure than an actual runtime.
-
-Each extrinsic call has an `Origin` type parameter passed, signaling if the call is made from
-`NONE`, `ROOT`, or a particular account.
-
-**What it does**
-
-This macro creates an `Origin` struct type, and implements various helper traits for the type.
-
-**Docs**
-
-- [API Documentation](/rustdocs/latest/frame_support/macro.impl_outer_origin.html)
-
-### impl_outer_event!
-
-**When to use**
-
-To construct an `Event` struct type for a runtime. This macro is typically called automatically by
-the `construct_runtime!` macro. However, developers may call this macro directly to construct an
-`Event` enum selecting the specific pallet events they want to listen for. This is useful when
-constructing a mock runtime for testing.
-
-**What it does**
-
-This macro creates an event enum type, implements various helper traits on `Event` type, including
-`core::clone::Clone`, `core::marker::StructuralPartialEq`, `core::fmt::Debug`, data
-encoding/decoding traits etc. Finally, the macro implements only the specifying pallet events for
-the runtime.
-
-**Docs**
-
-- [API Documentation](/rustdocs/latest/frame_support/macro.impl_outer_event.html)
-
-### impl_outer_dispatch!
-
-**When to use**
-
-To implement a meta-dispatch module to dispatch to other dispatchers. This macro is typically called
-automatically by the `construct_runtime!` macro. However, developers may call this macro directly to
-construct a `Call` enum selecting the specific pallet that it dispatches. This is useful when
-constructing a mock runtime for testing.
-
-**What it does**
-
-This macro creates a `Call` enum type, implements various helper traits on `Event` type, including
-`Clone`, `PartialEq`, `RuntimeDebug` etc. Finally, the macro implements `GetDispatchInfo`,
-`GetCallMetadata`, `IsSubType` traits for the `Call` enum.
-
-**Docs**
-
-- [API Documentation](/rustdocs/latest/frame_support/macro.impl_outer_dispatch.html)
 
 ## Substrate system library macros
 

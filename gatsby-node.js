@@ -50,103 +50,21 @@ const redirects = [
   },
 ]
 
-const tutsInfo = [
-  {
-    name: 'create-your-first-substrate-chain',
-    navSlug: 'firstChain',
-    version: '3.0',
-  },
-  {
-    name: 'add-a-pallet',
-    navSlug: 'addPallet',
-    version: '3.0',
-  },
-  {
-    name: 'proof-of-existence',
-    navSlug: 'poe',
-    version: '3.0',
-  },
-  {
-    name: 'permissioned-network',
-    navSlug: 'permissionedNetwork',
-    version: '3.0',
-  },
-  {
-    name: 'forkless-upgrades',
-    navSlug: 'forklessUpgrades',
-    version: '3.0',
-  },
-  {
-    name: 'private-network',
-    navSlug: 'privateNetwork',
-    version: '3.0',
-  },
-  {
-    name: 'node-metrics',
-    navSlug: 'nodeMetrics',
-    version: '3.0',
-  },
-  {
-    name: 'ink-workshop',
-    navSlug: 'inkWorkshop',
-    version: '3.0',
-  },
-  {
-    name: 'cumulus',
-    navSlug: 'cumulusTutorial',
-    version: 'polkadot-v0.9.10',
-  },
-  {
-    name: 'frontier',
-    navSlug: 'frontierWorkshop',
-    version: '3.0',
-  },
-  {
-    name: 'kitties',
-    navSlug: 'kittiesWorkshop',
-    version: '3.0',
-  },
-]
-
-const gqlTpl = `{ res: allFile(
-  filter: { sourceInstanceName: { eq: ">>param1<<" }, extension: { eq: "mdx" }}
-) {
-  nodes {
-    childMdx {
-      frontmatter {
-        slug
-      }
-    }
-  }
-} }`
-
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage, createRedirect } = actions
 
-  const kbTemplate = require.resolve(`./src/templates/kb-template.tsx`)
+  const docTemplate = require.resolve(`./src/templates/doc-template.tsx`)
   const htgTemplate = require.resolve(`./src/templates/htg-template.tsx`)
   const tutorialTemplate = require.resolve(`./src/templates/tut-template.tsx`)
 
-  const result = await graphql(`
+  const { data } = await graphql(`
     {
-      docsV3: allFile(
-        filter: { sourceInstanceName: { eq: "kbV3" }, extension: { eq: "mdx" } }
-      ) {
-        nodes {
-          childMdx {
+      allMdx {
+        edges {
+          node {
             frontmatter {
               slug
-            }
-          }
-        }
-      }
-      htg: allFile(
-        filter: { sourceInstanceName: { eq: "htg" }, extension: { eq: "mdx" } }
-      ) {
-        nodes {
-          childMdx {
-            frontmatter {
-              slug
+              section
             }
           }
         }
@@ -154,25 +72,21 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     }
   `)
 
-  if (result.errors) {
-    reporter.panicOnBuild(result.errors)
+  if (data.errors) {
+    reporter.panicOnBuild(data.errors)
     return
   }
 
-  const tutsGqlResult = await Promise.allSettled(
-    tutsInfo.map(tutInfo => graphql(gqlTpl.replace('>>param1<<', tutInfo.name)))
+  const allDocs = data.allMdx.edges.filter(each => each.node.frontmatter.section === 'docs')
+  const allHtgs = data.allMdx.edges.filter(
+    each => each.node.frontmatter.section === 'how to guides'
   )
+  const allTuts = data.allMdx.edges.filter(each => each.node.frontmatter.section === 'tutorials')
 
-  if (tutsGqlResult.some(res => res.errors)) {
-    reporter.panicOnBuild(tutsGqlResult.filter(res => res.errors))
-    return
-  }
-
-  const allV3 = result.data.docsV3.nodes
-  allV3.forEach(({ childMdx: node }) => {
+  allDocs.forEach(({ node }) => {
     createPage({
       path: `${node.frontmatter.slug}/`,
-      component: kbTemplate,
+      component: docTemplate,
       context: {
         slug: `${node.frontmatter.slug}`,
         version: `3.0`,
@@ -180,8 +94,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     })
   })
 
-  const htgPages = result.data.htg.nodes
-  htgPages.forEach(({ childMdx: node }) => {
+  allHtgs.forEach(({ node }) => {
     createPage({
       path: `${node.frontmatter.slug}/`,
       component: htgTemplate,
@@ -192,18 +105,14 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     })
   })
 
-  tutsInfo.forEach((tutInfo, ind) => {
-    const res = tutsGqlResult[`${ind}`].value.data.res.nodes
-    res.forEach(({ childMdx: node }) => {
-      createPage({
-        path: `${node.frontmatter.slug}/`,
-        component: tutorialTemplate,
-        context: {
-          slug: `${node.frontmatter.slug}`,
-          version: tutInfo.version,
-          navMenuSlug: tutInfo.navSlug,
-        },
-      })
+  allTuts.forEach(({ node }) => {
+    createPage({
+      path: `${node.frontmatter.slug}/`,
+      component: tutorialTemplate,
+      context: {
+        slug: `${node.frontmatter.slug}`,
+        version: `3.0`,
+      },
     })
   })
 

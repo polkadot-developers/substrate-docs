@@ -5,7 +5,7 @@ const DevNavMenu = {
     const intl = useIntl()
     return [
       {
-        section: `${intl.formatMessage({ id: 'docs-nav-knowledgebase' })}`,
+        section: `Docs`,
         url: '/v3/',
         external: false,
       },
@@ -540,24 +540,7 @@ DevNavMenuTuts.set('firstChain', [
 DevNavMenuTuts.set('poe', [
   {
     name: `Build a Proof of Existence Blockchain`,
-    items: [
-      {
-        title: `Introduction`,
-        link: '/tutorials/v3/proof-of-existence/',
-      },
-      {
-        title: `Preparation`,
-        link: '#prepare-to-build-a-dapp',
-      },
-      {
-        title: `Build a Custom Pallet`,
-        link: '#building-a-custom-pallet',
-      },
-      {
-        title: `Build a Custom Front-end`,
-        link: '#building-a-custom-front-end',
-      },
-    ],
+    items: [ ],
   },
 ])
 DevNavMenuTuts.set('permissionedNetwork', [
@@ -608,7 +591,7 @@ DevNavMenuTuts.set('privateNetwork', [
       },
       {
         title: `Alice and Bob Start Blockchain`,
-        link: '#alice-and-bob-start-blockchain',
+        link: '#alice-and-bob-start-a-blockchain',
       },
       {
         title: `Generate Your Own Keys`,

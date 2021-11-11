@@ -18,7 +18,7 @@ pub mod pallet {
   use scale_info::TypeInfo;
 
   #[cfg(feature = "std")]
-  use serde::{Deserialize, Serialize};
+  use frame_support::serde::{Deserialize, Serialize};
 
   type AccountOf<T> = <T as frame_system::Config>::AccountId;
   type BalanceOf<T> =
@@ -44,7 +44,8 @@ pub mod pallet {
   }
 
   #[pallet::pallet]
-  #[pallet::generate_store(trait Store)]
+  #[pallet::generate_store(pub(super) trait Store)]
+  #[pallet::generate_storage_info]
   pub struct Pallet<T>(_);
 
   // Configure the pallet by specifying the parameters and types on which it depends.
