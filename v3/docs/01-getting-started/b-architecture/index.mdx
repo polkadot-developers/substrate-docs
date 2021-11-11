@@ -9,7 +9,7 @@ keywords:
 
 ![Substrate Client Architecture](../../../../src/images/docs/getting-started/substrate-arch.png)
 
-The Substrate [client](/v3/glossary#node) is an application that runs a Substrate-based blockchain node.
+The Substrate [client](/v3/reference/glossary#node) is an application that runs a Substrate-based blockchain node.
 It consists of several components that include, but are not limited to, the following:
 
 - **Storage**: used to persist the evolving state of a Substrate blockchain. The
@@ -17,7 +17,7 @@ It consists of several components that include, but are not limited to, the foll
   state of storage. Substrate ships with a simple and highly efficient
   [key-value storage mechanism](/v3/advanced/storage).
 - **Runtime**: the logic that defines how blocks are processed, including state transition logic. In Substrate, runtime code is
-  compiled to [Wasm](/v3/getting-started/glossary#webassembly-wasm) and becomes part of the blockchain's
+  compiled to [Wasm](/v3/reference/glossary#webassembly-wasm) and becomes part of the blockchain's
   storage state. This enables one of the defining features of a Substrate-based blockchain:
   [forkless runtime upgrades](/v3/runtime/upgrades#forkless-runtime-upgrades). Substrate clients may also
   include a "native runtime" that is compiled for the same platform as the client itself (as opposed to Wasm). The

@@ -27,7 +27,7 @@ blockchain can hold and also defines the logic for effecting changes to that sta
 ![node-diagram.png](../../../src/images/tutorials/04-forkless-upgrade/node-diagram.png)
 
 Substrate makes it possible to deploy enhanced runtime capabilities (**including _breaking_ changes(!)**)
-without a [hard fork](/v3/getting-started/glossary#fork). Because the definition of the
+without a [hard fork](/v3/reference/glossary#fork). Because the definition of the
 runtime is itself an element in a Substrate chain's state, network participants may update this
 value by way of an [extrinsic](/v3/concepts/extrinsics), specifically
 [the `set_code` function](/rustdocs/latest/frame_system/pallet/enum.Call.html#variant.set_code).
@@ -44,7 +44,7 @@ function from the [Sudo pallet](/v3/runtime/frame#sudo) will be used to perform 
 upgrade that adds the [Scheduler pallet](/v3/runtime/frame#scheduler). Then, the
 [`schedule`](/rustdocs/latest/pallet_scheduler/pallet/enum.Call.html#variant.schedule)
 function from the Scheduler pallet will be used to perform an upgrade that increases the
-[existential (minimum) balance](/v3/getting-started/glossary#existential-deposit)
+[existential (minimum) balance](/v3/reference/glossary#existential-deposit)
 for network accounts.
 
 If you have problems with this tutorial, the Substrate community is full of helpful resources! We
@@ -179,7 +179,7 @@ ability to update the runtime by way of
 [the `set_code` function](/rustdocs/latest/frame_system/pallet/enum.Call.html#variant.set_code),
 are only accessible to this administrator. The Sudo pallet maintains a single
 [storage item](/v3/runtime/storage): the ID of the account that has access to the
-pallet's [dispatchable functions](/v3/getting-started/glossary#dispatch). The Sudo
+pallet's [dispatchable functions](/v3/reference/glossary#dispatch). The Sudo
 pallet's `sudo` function allows the holder of this account to invoke a dispatchable as the `Root`
 origin.
 
@@ -302,12 +302,12 @@ Take a moment to review the components of the `RuntimeVersion` struct:
 - `spec_name`: The name of the runtime/chain, e.g. Ethereum.
 - `impl_name`: The name of the client, e.g. OpenEthereum.
 - `authoring_version`: The authorship version for
-  [block authors](/v3/getting-started/glossary#author).
+  [block authors](/v3/reference/glossary#author).
 - `spec_version`: The version of the runtime/chain.
 - `impl_version`: The version of the client.
 - `apis`: The list of supported APIs.
 - `transaction_version`: The version of the
-  [dispatchable function](/v3/getting-started/glossary#dispatch) interface.
+  [dispatchable function](/v3/reference/glossary#dispatch) interface.
 
 In order to upgrade the runtime it is _required_ to _increase_ the `spec_version`; refer to the
 implementation of the
@@ -429,7 +429,7 @@ parameter_types! {
 ```
 
 This change increases the value of the Balances pallet's
-[`ExistentialDeposit`](/v3/getting-started/glossary#existential-deposit) - the
+[`ExistentialDeposit`](/v3/reference/glossary#existential-deposit) - the
 minimum balance needed to keep an account alive from the point-of-view of the Balances pallet.
 
 <Message

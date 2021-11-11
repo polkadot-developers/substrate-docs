@@ -9,9 +9,9 @@ keywords:
 
 The runtime of a blockchain is the business logic that defines its behavior. In Substrate-based
 chains, the runtime is referred to as the
-"[state transition function](/v3/getting-started/glossary#state-transition-function-stf)";
+"[state transition function](/v3/reference/glossary#state-transition-function-stf)";
 it is where Substrate developers define the storage items that are used to represent the
-blockchain's [state](/v3/getting-started/glossary#state) as well as the
+blockchain's [state](/v3/reference/glossary#state) as well as the
 [functions](/v3/concepts/extrinsics) that allow blockchain users to make
 changes to this state.
 
@@ -45,7 +45,7 @@ has the following runtime APIs implemented:
 - [`Benchmark`](/rustdocs/latest/frame_benchmarking/trait.Benchmark.html): Provides a way to [benchmark](/v3/runtime/benchmarking) a FRAME runtime.
 
 In order to provide its defining forkless runtime upgrade capabilities, Substrate runtimes
-are built as [WebAssembly (Wasm)](/v3/getting-started/glossary#webassembly-wasm)
+are built as [WebAssembly (Wasm)](/v3/reference/glossary#webassembly-wasm)
 bytecode. Substrate also defines the core primitives that the runtime must implement.
 
 ## Core primitives
@@ -92,7 +92,7 @@ provides a framework that makes it easy to construct a runtime by composing modu
 expressed as a set of a [storage items](/v3/runtime/storage),
 [events](/v3/runtime/events-and-errors),
 [errors](/v3/runtime/events-and-errors#errors), and
-[dispatchable functions](/v3/getting-started/glossary#dispatch). FRAME developers
+[dispatchable functions](/v3/reference/glossary#dispatch). FRAME developers
 can [create their own pallets](/v3/runtime/frame#pallets) and reuse existing pallets,
 including [over 50 of those shipped with Substrate](/v3/runtime/frame#prebuilt-pallets).
 
