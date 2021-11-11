@@ -62,6 +62,7 @@ The `GenesisConfig` code should go after your storage items.
 		}
 	}
   ```
+  This allows you to execute some logic to define how the `GenesisConfig` struct places something in storage.
 
 ## Configure your node's chain spec
 
@@ -81,8 +82,8 @@ We'll assume our pallet is called `pallet_something`, declared as `PalletSomethi
 	let accounts_to_map: Vec<AccountId> = 
     vec![
       get_account_id_from_seed::<sr25519::Public>("Alice"),
-			get_account_id_from_seed::<sr25519::Public>("Bob"),
-			get_account_id_from_seed::<sr25519::Public>("Charlie"),  
+      get_account_id_from_seed::<sr25519::Public>("Bob"),
+      get_account_id_from_seed::<sr25519::Public>("Charlie"),  
     ];
   ```
 
