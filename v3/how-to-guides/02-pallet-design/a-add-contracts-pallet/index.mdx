@@ -128,7 +128,7 @@ use pallet_contracts_rpc::{Contracts, ContractsApi};
 
 Navigate to the`impl_runtime_apis!` macro near the end of your runtime.
 
-Add the following functions that the `ContractsApi` exposes:
+4. Add the following functions that the `ContractsApi` exposes:
 
     - **`call()`**: returns `pallet_contracts_primitives::ContractExecResult { Contracts::bare_call(origin, dest, value, gas_limit, input_data)}`
     - **`get_storage()`**: returns `pallet_contracts_primitives::GetStorageResult {Contracts::get_storage(address, key)}`
