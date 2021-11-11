@@ -77,7 +77,7 @@
 ### Production: Getting Started
 /docs/en                                       /v3/getting-started/overview      301!
 /docs/en/                                      /v3/getting-started/overview      301!
-/docs/en/knowledgebase/getting-started         /v3/getting-started/installation  301!
+/docs/en/knowledgebase/getting-started         /v3/getting-started/dev-env  301!
 /docs/en/knowledgebase/getting-started/*       /v3/getting-started/:splat        301!
 
 ### Knowledge Base: Key Concepts
