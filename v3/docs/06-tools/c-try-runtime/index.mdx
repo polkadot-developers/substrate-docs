@@ -38,9 +38,13 @@ where data is [SCALE encoded](/v3/advanced/scale-codec).
 The diagram below illustrates the way externalities sits outside a compiled runtime as a means to capture
 the storage of that runtime.
 
-|               Storage externalities                |             Testing with externalities             |
-| :------------------------------------------------: | :------------------------------------------------: |
-| ![image](/img/docs/advanced/try-runtime-ext-1.png) | ![image](/img/docs/advanced/try-runtime-ext-2.png) |
+### Storage externalities
+
+![Storage externalities](../../../../src/images/docs/advanced/try-runtime-ext-1.png)
+
+### Testing with externalities
+
+![Testing with externalities](../../../../src/images/docs/advanced/try-runtime-ext-2.png)
 
 With `remote_externalities`, developers can capture some chain state and run tests on it. Essentially, `RemoteExternalities`
 will populate a `TestExternalities` with a real chain's data.
