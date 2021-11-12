@@ -27,7 +27,7 @@ const Banner = () => {
       )}
     >
       <Icon name="stackOverflowOrg" className="h-8 w-8 mb-4" />
-      <p className="mb-0 leading-6 underline-animate underline-animate-thin">
+      <p className="mb-0 leading-6 mdx-anchor">
         <span className="font-bold">Substrate is campaigning</span> to get its
         own StackExchange Community created. Please help us{' '}
         <Link to="https://area51.stackexchange.com/proposals/126136/substrate-blockchain-framework">
