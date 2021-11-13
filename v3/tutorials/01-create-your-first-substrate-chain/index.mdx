@@ -137,37 +137,37 @@ To install and configure Rust manually:
 curl https://sh.rustup.rs -sSf | sh
 ```
 
-1. Configure your current shell to reload your PATH environment variable so that it includes the Cargo `bin` directory by running the following command:
+2. Configure your current shell to reload your PATH environment variable so that it includes the Cargo `bin` directory by running the following command:
 
 ```
 source ~/.cargo/env
 ```
 
-1. Configure the Rust toolchain to default to the latest `stable` version by running the following commands:
+3. Configure the Rust toolchain to default to the latest `stable` version by running the following commands:
 
 ```
 rustup default stable
 rustup update
 ```
 
-1. Add the `nightly` release and the `nightly` WebAssembly (`wasm`) targets by running the following commands:
+4. Add the `nightly` release and the `nightly` WebAssembly (`wasm`) targets by running the following commands:
 
 ```
 rustup update nightly
 rustup target add wasm32-unknown-unknown --toolchain nightly
 ```
 
-1. Verify your installation by running the following commands:
+5. Verify your installation by running the following commands:
 
 ```
 rustc --version
 rustup show
 ```
 
-    The previous steps walked you through the installation and configuration of Rust and the Rust toolchain so that you could see the full process for yourself.
+The previous steps walked you through the installation and configuration of Rust and the Rust toolchain so that you could see the full process for yourself.  
 
-    It is also possible to automate the steps using a script.
-    If you want to try installing and configuring Rust using a script, see the [`getsubstrate`](https://getsubstrate.io) automation script.
+It is also possible to automate the steps using a script.
+If you want to try installing and configuring Rust using a script, see the [`getsubstrate`](https://getsubstrate.io) automation script.
 
 ## Set up a development environment
 
