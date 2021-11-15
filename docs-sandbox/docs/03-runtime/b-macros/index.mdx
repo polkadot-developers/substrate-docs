@@ -1,0 +1,445 @@
+---
+title: Macros
+slug: /v3/runtime/macros
+version: '3.0'
+section: docs
+category: runtime
+keywords:
+---
+
+> As of January 2021, FRAME based pallets have upgraded their use of macros. Refer to [this guide](/rustdocs/latest/frame_support/attr.pallet.html#upgrade-guidelines)
+> to learn about migrating a v1 pallet to v2 and [this resource](https://hackmd.io/@fscJ0GEvRb2rqALLZB1kfA/SkSerkamt) to learn more about FRAME's version
+> changes.
+
+Substrate uses [Rust macros](https://doc.rust-lang.org/book/ch19-06-macros.html) to aggregate the logic derived from pallets that are implemented for a runtime.
+These runtime macros allow developers to focus on runtime logic rather than encoding and decoding on-chain
+variables or writing extensive blocks of code to achieve [basic blockchain fundamentals](/v3/concepts/runtime#core-primitives). This offloads a lot of the heavy lifting from blockchain development efforts and removes the need to duplicate code.
+
+The purpose of this article is to give a basic overview of Rust macros and explain the Substrate macros
+that runtime engineers most frequently use.
+
+## Macro basics
+
+Put simply, macros are lines of code that write code. They provide the ability to abstract things out without needing to declare complex data structures explicitly.
+There are four kinds of macro in Rust:
+
+- [declarative macros](https://doc.rust-lang.org/book/ch19-06-macros.html#declarative-macros-with-macro_rules-for-general-metaprogramming) (most widely used)
+- [custom derive](https://doc.rust-lang.org/book/ch19-06-macros.html#how-to-write-a-custom-derive-macro) (a type of procedural macro)
+- [attribute-like macros](https://doc.rust-lang.org/book/ch19-06-macros.html#attribute-like-macros) (a type of procedural macro)
+- [function-like macros](https://doc.rust-lang.org/book/ch19-06-macros.html#function-like-macros) (a type of procedural macro)
+
+Most Substrate runtime macros are defined using either **declarative macros** or **function-like macros**, with a recent adoption of
+**attribute-like macros** in FRAME v2 pallets.
+
+<Message
+  type={`green`}
+  title={`Tips to learn more about Substrate runtime macros`}
+  text={`
+   - Read the [documentation](/rustdocs/latest/frame_support/index.html#macros) on commonly used macros in FRAME.
+   - Use [\`cargo expand\`](https://github.com/dtolnay/cargo-expand) to review a macro's expanded code and understand what's happening under the hood.
+   - Read more on [macro rules of expression pattern matching](https://danielkeep.github.io/tlborm/book/pim-README.html).
+  `}
+/>
+
+## Substrate runtime macros
+
+The following section is a comprehensive explanation of the macros that runtime engineers most frequently encounter.
+Developers who want to know about the implementation details are encouraged to follow the links in
+"Docs and Notes" sub-sections to better understand how each macro expands.
+
+Substrate Primitives and FRAME both rely on a collection of various types of macros. The following
+sections will go over each in more detail. Here's a general overview of Substrate macros:
+
+**Macros in the FRAME [Support Library](/v3/runtime/frame#support-library):**
+
+- in `frame_support`:
+  - [function-like](/rustdocs/latest/frame_support/index.html#macros) macros
+  - [derive](/rustdocs/latest/frame_support/index.html#derives) macros
+  - [attribute](/rustdocs/latest/frame_support/index.html#attributes) macros
+
+**Macros in the Substrate [System Library](/v3/runtime/frame#system-library):**
+
+- in `sp_core`:
+  - [function-like macros](/rustdocs/latest/sp_core/index.html#macros) macros
+  - [derive `RuntimeDebug`](/rustdocs/latest/sp_core/index.html#derives) macro
+- in `sp_runtime`:
+  - [function-like](/rustdocs/latest/sp_runtime/index.html#macros) macros
+  - [derive](/rustdocs/latest/sp_runtime/index.html#derives) macros
+- in `serde`: [function-like](/rustdocs/latest/sp_runtime/index.html#derives) macros
+- in `sp_api`: [function-like](/rustdocs/latest/sp_api/index.html#macros) macros
+- in `sp_std`: [function-like](/rustdocs/latest/sp_std/index.html#macros) macros
+- in `sp_version`: [function-like](/rustdocs/latest/sp_version/index.html#macros) macros
+
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`Refer to \`#Substrate dependencies\` in the \`Cargo.toml\` file of the
+  [node template runtime](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/runtime/Cargo.toml#L21)
+  to see where these are put to use.
+  `}
+/>
+
+## FRAME macros and attributes
+
+This sections covers all of the different macros that ship with FRAME. Refer to the [structure of a pallet](/v3/runtime/frame#pallets)
+to understand the composition of a Substrate pallet.
+
+### #[frame_support::pallet]
+
+**When to use**
+
+Required to declare a pallet consisting of a set of types, functions, and trait implementations that will later be aggregated by `construct_runtime` to build to runtime.
+
+**What it does**
+
+This is the [attribute macro](/rustdocs/latest/frame_support/attr.pallet.html) that allows the pallet to be used in `construct_runtime!`. This macro
+is made up of the various attributes that will be used to identify the specific items the pallet requires.
+
+Similar to a derive macro, this macro only expands types and trait implementations by reading the input and its input is _almost_ never touched. The only exception where this macro
+modifies its input (contrary to a derive macro) is:
+
+- **when a generic is replaced with a type**. For example, in `pallet::pallet` the inner types of the item in `pub struct Pallet<..>(_)` is replaced by `PhantomData`
+  and in `pallet::storage`, the first generic `_` is replaced with a type that implements the `StorageInstance` trait.
+- **some item is changed**. For example, when `pallet::type_value` changes the function item into a struct and trait implementation.
+- **some docs are added when none are provided by the user.** For example, if no documentation is provided the macro `pallet::pallet` will modify the input to add documentation above the item `struct Pallet<T>(_);`.
+
+### #[pallet::config]
+
+**When to use**
+
+Required to define the pallet's generics.
+
+**What it does**
+
+Provides constants that are part of the [`Config` trait](/rustdocs/latest/frame_system/pallet/trait.Config.html) and gives information about external tools to use for the runtime.
+
+**Docs**
+
+- [Config trait](/rustdocs/latest/frame_support/attr.pallet.html#config-trait-palletconfig-mandatory)
+
+### #[pallet::constant]
+
+**When to use**
+
+To pass values of associated types to metadata, which allows the value of the type to be used by external tools and third parties. Note that this attribute is only usable from inside a `#[pallet::config]` item.
+
+**What it does**
+
+Provides the `Config` trait with the types and attributes it needs for the runtime and generates associated metadata.
+
+Adding the `#[pallet::constant]` attribute will result in the macro adding to the constant metadata, including: the constant's name; the name of the associated type; the constant's value; and the value returned by `Get::get()`.
+
+For example, we can use `#[pallet::constant]` to put `type MyGetParam` in metadata:
+
+```rust
+#[pallet::config]
+pub trait Config: frame_system::Config {
+	#[pallet::constant] // puts attributes in metadata
+	type MyGetParam: Get<u32>;
+}
+```
+
+**Docs**
+
+- See use in the context of [#[pallet::config]](/rustdocs/latest/frame_support/attr.pallet.html#config-trait-palletconfig-mandatory)
+
+### #[pallet::extra_constants]
+
+**When to use**
+
+Optionally, for additional constants one may want to pass to metadata.
+
+**What it does**
+
+It allows to define some additional constants to put into metadata. For example, you could declare a function that returns a value that will be generated to metadata:
+
+```rust
+#[pallet::extra_constants]
+impl<T: Config> Pallet<T> {
+  //Example function using extra_constants
+  fn example_extra_constants() -> u128 { 4u128 }
+}
+```
+
+**Docs**
+
+- See [documentation](/rustdocs/latest/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional)
+
+### #[pallet::pallet]
+
+**When to use**
+
+Required to declare the pallet struct place holder, to be later used by `construct_runtime`.
+
+**What it does**
+
+Generates the `Store` trait if the attribute is provided, which contains an associated type for each storage item. It takes the form of a more explicit Rust struct module and can be written as `pub struct Pallet<T>(_);`, with the appropriate `PhantomData` replacing `_` to make it generic.
+
+This is an example of its definition:
+
+```rust
+#[pallet::pallet]
+#[pallet::generate_store(pub(super) trait Store)]
+#[pallet::generate_storage_info]
+pub struct Pallet<T>(_);
+```
+
+**Docs**
+
+- See the [macro expansion](/rustdocs/latest/frame_support/attr.pallet.html#macro-expansion-1) added to the `struct Pallet<T>` definition
+
+### #[pallet::generate_storage_info]
+
+**When to use**
+
+Highly encouraged, but optional which will help ensure all of your pallet storage items are bounded.
+
+**What it does**
+
+This requires all storage to implement the trait `traits::StorageInfoTrait`, thus all keys and value types must bound `pallet_prelude::MaxEncodedLen`. Some individual storage can opt-out from this constraint by using `#[pallet::unbounded]`, see `#[pallet::storage]` documentation.
+
+This is an example of its definition:
+
+```rust
+#[pallet::pallet]
+#[pallet::generate_store(pub(super) trait Store)]
+#[pallet::generate_storage_info]
+pub struct Pallet<T>(_);
+```
+
+**Docs**
+
+- See the [macro expansion](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#pallet-struct-placeholder-palletpallet-mandatory) added to the `struct Pallet<T>` definition
+
+### #[pallet::hooks]
+
+**When to use**
+
+Required for declaring pallet hooks.
+
+**What it does**
+
+[`Hooks`](/rustdocs/latest/frame_support/traits/trait.Hooks.html#provided-methods) are made available by using the `Hooks` trait.
+
+For example:
+
+```rust
+#[pallet::hooks]
+impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
+  // Hooks functions and logic goes here.
+}
+```
+
+**Docs**
+
+- See the [documentation](/rustdocs/latest/frame_support/attr.pallet.html#hooks-pallethooks-mandatory)
+- See the [macro expansion](/rustdocs/latest/frame_support/attr.pallet.html#macro-expansion-2)
+
+### #[pallet::call]
+
+**When to use**
+
+Required, to implement a pallet's dispatchables. Each dispatchable must:
+
+- define a weight with the `#[pallet::weight($expr)]` attribute
+- have its first argument as `origin: OriginFor<T>`,
+- use compact encoding for argument using #[pallet::compact]
+- return `DispatchResultWithPostInfo` or `DispatchResult`
+
+**What it does**
+
+[Extrinsics](/v3/concepts/extrinsics) can use calls to
+trigger specific logic. Calls can also be used in on-chain governance, demonstrated by the democracy
+pallet where calls can be voted on.
+`#[pallet::call]` allows to create dispatchable functions which will generate associated items
+from the `impl` code blocks. In other words, it aggregates all dispatchable logic using the [`Call` enum
+(/rustdocs/latest/frame_system/pallet/enum.Call.html) which will aggregate all
+dispatchable calls into a single runtime call.
+
+**Docs**
+
+- See the [documentation](/rustdocs/latest/frame_support/attr.pallet.html#call-palletcall-mandatory)
+
+### #[pallet::error]
+
+**When to use**
+
+Optionally, to define error types to be used in dispatchables.
+
+**What it does**
+
+Puts error variants documentation into metadata.
+
+**Docs**
+
+- See [documentation](/rustdocs/latest/frame_support/attr.pallet.html#error-palleterror-optional)
+
+### #[pallet::event]
+
+**When to use**
+
+Optionally, to define a pallet's event types.
+
+**What it does**
+
+It is similar to errors but it can holds more information. They generate the metadata of the event and add_derive. It uses the `#[pallet::metadata(..)]` attribute to define what metadata to put from the events.
+
+For example:
+
+```rust
+#[pallet::event]
+#[pallet::metadata(u32 = "SpecialU32")]
+pub enum Event<T: Config> {
+	Proposed(u32, T::AccountId),
+}
+```
+
+**Docs**
+
+- See [documentation](/rustdocs/latest/frame_support/attr.pallet.html#event-palletevent-optional)
+
+### #[pallet::storage]
+
+**When to use**
+
+Optionally, as it can be used multiple times.
+
+**What it does**
+
+To define some abstract storage inside runtime storage.
+
+`[pallet::storage]` is using a Rust-like HashMap to do storage, except it takes a Key, Value,
+Hasher, Prefix, QueryKind and an OnEmpty
+parameter. The prefix generic defines the place where the
+storage will store its `(key, value)` pairs (i.e. the trie) and defines the pallet and storage prefix like such:
+
+`concat(twox_128(pallet_prefix), towx_128(storage_prefix))`, replacing `_` with the generated prefix implementations
+of the pallet and storage names.
+
+**Docs**
+
+- See [macro documentation](/rustdocs/latest/frame_support/attr.pallet.html#storage-palletstorage-optional)
+- [`StorageMap` implementation](/rustdocs/latest/frame_support/pallet_prelude/struct.StorageMap.html#implementations)
+- [Rust HashMap syntax](https://doc.rust-lang.org/book/ch08-03-hash-maps.html)
+
+### Other attributes
+
+Other FRAME macro attributes include:
+
+- [#[pallet::genesis_config]](/rustdocs/latest/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional)
+- [#[pallet::type_value]](/rustdocs/latest/frame_support/attr.pallet.html#type-value-pallettype_value-optional)
+- [#[pallet::genesis_build]](/rustdocs/latest/frame_support/attr.pallet.html#genesis-build-palletgenesis_build-optional)
+- [#[pallet::inherent]](/rustdocs/latest/frame_support/attr.pallet.html#inherent-palletinherent-optional)
+- [#[pallet::validate_unsigned]](/rustdocs/latest/frame_support/attr.pallet.html#validate-unsigned-palletvalidate_unsigned-optional)
+- [#[pallet::origin]](/rustdocs/latest/frame_support/attr.pallet.html#origin-palletorigin-optional)
+
+## Additional FRAME macros
+
+### construct_runtime!
+
+**When to use**
+
+To construct Substrate runtime and integrating various pallets into the runtime.
+
+**What it does**
+
+The macro declares and implements various struct and enum, e.g.`Runtime`, `Event`, `Origin`, `Call`,
+`GenesisConfig` etc, and implements various helper traits for these struct types. The macro also
+adds logics of mapping different events and dispatchable calls from the overarching runtime back to
+a particular pallet.
+
+**Docs and notes**
+
+- [API Documentation](/rustdocs/latest/frame_support/macro.construct_runtime.html)
+- `Runtime` struct type is defined to represent the Substrate runtime.
+- `Event` enum type is defined with variants of all pallets that emit events, with helper traits and
+  encoding/decoding traits implemented for the enum. Various conversion traits `Event` also
+  implements `TryInto<pallets::Event<Runtime>>` trait to extract the event out from the enum type.
+- `Origin` enum type is defined with helper traits, e.g. `PartialEq`, `Clone`, `Debug` implemented.
+  This enum type defines who calls an extrinsic: `NONE`, `ROOT`, or signed by a particular account.
+  These three primitive origins are defined by the FRAME System module, but optional FRAME pallets
+  may also define origins.
+- `Call` enum type is defined with all integrated pallets as variants. It contains the data and
+  metadata of each of the integrated pallets, and redirects calls to the specific pallet via
+  implementing `frame_support::traits::UnfilteredDispatchable` trait.
+- `GenesisConfig` struct type is defined and implements `sp_runtime::BuildStorage` trait for
+  building up the storage genesis config.
+- The macro adopts the `frame_support::unsigned::ValidateUnsigned` trait implementation from each
+  pallet. If no `ValidateUnsigned` trait is implemented in any included pallets, all unsigned
+  transactions will be rejected.
+
+### parameter_types!
+
+**When to use**
+
+To declare parameter types to be assigned to pallet configurable trait associated types during
+runtime construction.
+
+**What it does**
+
+The macro replaces each parameter specified into a struct type with a `get()` function returning its
+specified value. Each parameter struct type also implements a `frame_support::traits::Get<I>` trait
+to convert the type to its specified value.
+
+**Docs**
+
+- [API Documentation](/rustdocs/latest/frame_support/macro.parameter_types.html)
+
+## Substrate system library macros
+
+### impl_runtime_apis!
+
+**When to use**
+
+This macro generates the API implementations for the client side through the `RuntimeApi` and
+`RuntimeApiImpl` struct type.
+
+**What it does**
+
+The macro defines the `RuntimeApi` and `RuntimeApiImpl` exposed to the Substrate node client. It
+provides implementation details of the RuntimeApiImpl based on the setup and appended user specified
+implementation in the `RuntimeApiImpl`.
+
+**Docs and notes**
+
+- [API Documentation](/rustdocs/latest/sp_api/macro.impl_runtime_apis.html)
+- `RuntimeApi` and `RuntimeApiImpl` structs are declared. The macro also implements various helper
+  traits for `RuntimeApiImpl`.
+- What developers define within `impl_runtime_apis!` macro are appended to the end of
+  `RuntimeApiImpl` implementation.
+- To expose version information about the runtime, a constant `RUNTIME_API_VERSIONS` is defined.
+  containing the runtime core `ID`/`VERSION`, metadata `ID`/`VERSION`, SessionKeys `ID`/`VERSION`,
+  etc.
+- A public module `api` is defined with a `dispatch()` function implemented deciding how various
+  strings are mapped to metadata or chain lifecycle calls.
+
+### app_crypto!
+
+**When to use**
+
+To specify cryptographic key pairs and its signature algorithm that are to be managed by a pallet.
+
+**What it does**
+
+The macro declares three struct types, `Public`, `Signature`, and `Pair`. Aside from having various
+helper traits implemented for these three types, `Public` type is implemented to generating
+keypairs, signing and verifying signature, `Signature` type to hold the signature property given the
+signature chosen to be used (e.g. SR25519, ED25519 etc), and `Pair` type to generate a
+public-private key pair from a seed.
+
+**Docs and notes**
+
+- [API Documentation](/rustdocs/latest/sp_application_crypto/macro.app_crypto.html)
+- `Public` struct type is declared, and implements `sp_application_crypto::AppKey` trait defining
+  the public key type, and `sp_application_crypto::RuntimeAppPublic` trait for generating keypairs,
+  signing, and verifying signatures.
+- `Signature` struct type is declared, and implements `core::hash::Hash` trait on how the data with
+  this signature type is hashed.
+- `Pair` struct type is declared to wrap over the crypto pair. This type implements
+  `sp_application_crypto::Pair` and `sp_application_crypto::AppKey` traits determining how it
+  generates public-private key pairs from a phrase or seed.
+
+## References
+
+- [The Rust Programming Language ch 19.5 Macros](https://doc.rust-lang.org/book/ch19-06-macros.html)
+- [The Little Book of Rust Macros](https://danielkeep.github.io/tlborm/book)

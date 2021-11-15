@@ -1,0 +1,167 @@
+---
+title: Welcome to the Substrate community
+slug: /v3/contribute/style-guide
+version: '3.0'
+section: docs
+category: style guide
+keywords: contribute, style guide
+---
+
+<Message
+  type="yellow"
+  title="Information"
+  text={`This section is still work in progress.`}
+/>
+
+Thank you for your interest in contributing to documentation for the Substrate development framework.
+As a member of the community, you are invited and encouraged to contribute by submitting issues, offering
+suggestions for improvements to existing content, adding review comments to existing pull requests, proposing
+new content, or creating new pull requests to fix issues or provide new content.
+
+We value, respect, and appreciate all contributions from the developer community and only ask that you
+agree to abide by our [Code of conduct](https://github.com/paritytech/substrate/blob/master/docs/CODE_OF_CONDUCT.md)
+and review our [Contributor guidelines](#contributor-guidelines).
+
+To learn more about how to contribute, including guidelines for how to structure content and how to participate in our
+bounty program that pays you for contributing, see the following topics:
+
+- [Contributor guidelines](#contributor-guidelines)
+- [Writing guidelines](/v3/contribute/writing)
+- [Bounty program](/v3/contribute/bounties)
+
+## Repository working guidelines
+
+To facilitate a streamlined and pleasant workflow for contributors and maintainers, we follow some
+particular workflows and best practices in this repository.
+
+#### Creating PRs
+
+**Always create your own branch to work on the site, and submit pull requests to `develop`.**
+
+All contributions should target `develop` for pushing new content before merging with `main` and
+publishing the site. The `main` branch is production ONLY and must be deployed by a maintainer
+with the access to do so through Forestry.
+
+The maintainers ask everyone to be responsible about **rebasing**
+([not merging](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)) on top of the present
+`develop` branch just before merging and carefully reviewing any conflicts here - especially
+whenever you are changing globally used config/gatsby files. Any changes in the same pages we make
+in different PRs without this can conflict otherwise!
+
+Before maintainers merge a PR, they will:
+
+- Get required approvals from other maintainers
+- Clone repo locally
+- Checkout and pull local `develop` up to the head of `origin/develop`
+- Checkout the PR branch from `origin/<pr branch>`
+- `git rebase develop`
+- Review and fix conflicts correctly, especially with respect to links/config files
+- `git push --force` (for the **PR branch**, \_not `develop`! )
+- If some major change was needed in this, get approvals/clarifications on these.
+- `git merge --squash` the PR (on the github PR's page)
+
+## Contributor guidelines
+
+The most valuable contributions from the community typically take the form of how-to guides or
+tutorials that help other developers solve specific problems, learn specific skills, or demonstrate
+specific tasks.
+
+If you would like to contribute, you might be wondering “What is the difference between a ‘how-to’
+guide and a tutorial?”.
+
+### How-to guides
+
+A how-to guide describes how to achieve a goal or complete a task. Only the information that is
+pertinent to achieving that goal or completing the task is included. With how-to guides, readers
+have enough information to know what they want to do—for example, open a bank account—but not
+necessarily enough information to know how to do it—for example, 1) select an institution, 2) fill
+out an application, 3) deposit a minimum amount of currency. How-to guides often include links to
+additional information, but should not include explanations that take the focus away from what the
+reader wants to accomplish.
+
+### Tutorials
+
+A tutorial is a hands-on illustration or lesson that enables the reader to achieve a
+highly-predictable result. Tutorials assume that readers have no prior knowledge on the subject
+being covered and that they require explicit guidance to complete each step to reach a well-known
+outcome. Typically, a tutorial is a guided tour that helps the reader complete one organic task from
+start to finish. There are no detours and the information should not be broken out into subtopics
+because the steps must be completed in order, not in a sequence of the reader’s choosing.
+
+The single most important aspect of a tutorial is that it should always result in a successful,
+expected outcome. The successful outcome is what inspires confidence and delight in the reader. The
+single most important distinction between a how-to guide and a tutorial is that in a tutorial the
+author decides what the goal should be and the author eliminates all distractions that would detract
+from the successful achievement of the goal.
+
+### Recommendations for writing how-to guides
+
+The Substrate Developer Hub is intended to provide a modular and extensible framework of resources
+for the Substrate developer community and broader ecosystem. To achieve this goal, we want to make
+it easy for contributors to integrate new content that follows a few guiding principles and basic
+conventions for structure and style. As a content creator, you should keep the following general
+principles in mind:
+
+- ◼️ Modularity. Each guide has a well-defined and useful focus. However, if there’s information
+  that’s useful in more than one guide, you can abstract it into a standalone topic and reuse it in
+  multiple places.
+
+- 🔗 Linking. Guides should use links where they are useful—for example, to guide readers to
+  concepts or reference topics—but be mindful that stale links frustrate readers.
+
+- ⏯️ Examples. Useful code examples are a critical component of creating a useful guide.
+
+- 🛰️ Related references. Guides can include links to related resources, like Rust docs, video
+  content, or other guides and tutorials.
+
+### Content categories and tags
+
+The How-to guides are grouped into categories to help keep them organized in the how-to-guides repository. The current groupings
+reflect the different areas of development within Substrate:
+
+- Basics. Where the really simple guides live, those that can be referenced by more complex ones.
+
+- Pallet design. Everything to do with building custom pallets with or without FRAME.
+
+- Weights. Any content that covers configuring weights for specific use cases.
+
+- Testing. A collection of guides for testing.
+
+- Storage migrations. Anything to do with storage migrations.
+
+- Consensus. Client stuff, bridging, node configurations.
+
+* Parachains. Guides related to building parachain capabilities.
+
+The source files use tags to identify the categories that apply. As a content contributor, you
+should use tags to identify the level of complexity and the most appropriate category for your
+content.
+
+#### Complexity
+
+Specify the level of complexity by adding the most appropriate tag from the following list:
+
+- beginner
+- intermediate
+- advanced
+
+#### Information category
+
+Specify the category for your article by adding the most appropriate tag from the following list:
+
+- basics
+- client
+- consensus
+- currency
+- fees
+- frame-v1
+- migration
+- node
+- pallet design
+- proof-of-work
+- runtime
+- storage
+- testing
+- weights
+- parachains
+- contracts

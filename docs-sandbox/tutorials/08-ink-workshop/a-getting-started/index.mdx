@@ -1,0 +1,436 @@
+---
+title: Getting Started
+slug: /tutorials/v3/ink-workshop/pt1
+version: '3.0'
+sideNav: inkWorkshop
+section: tutorials
+category: ink workshop
+keywords: smart contracts, erc20, wasm
+difficulty: 2
+duration: 2.5 Hours
+relevantSkills:
+  - ink!
+  - Smart Contracts
+---
+
+This part will teach you everything you need to know to get started building smart contracts on Substrate with ink!.
+
+<TutorialObjective
+  data={{
+    textLineOne: '1. Installing prerequisites on your computer',
+    url: '#prerequisites',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne: '2. Starting a new project with cargo-contract',
+    url: '#creating-an-ink-project',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne: '3. Building and testing our contract',
+    url: '#running-a-substrate-smart-contracts-node',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne: '4. Deploying our contract on a local Substrate node',
+    url: '#deploying-your-contract',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne: '5. Interacting with our contract using the Canvas UI',
+    url: '#calling-your-contract',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne: '6. Troubleshooting',
+    url: '#troubleshooting',
+  }}
+/>
+
+## Learning outcomes
+
+- Learn the basic of writing smart contracts with ink!
+- Learn how to deploy an ERC20 contract in a Substrate node using ink!
+
+<AccentButton text={`Sound reasonable? Let's begin!`} link={`#prerequisites`} />
+
+To follow this tutorial, you will need to set up some stuff on your computer.
+
+## Prerequisites
+
+Follow the
+[official installation steps](/v3/getting-started/installation) to install the prerequisites.
+
+Once you have done the above you will also need to run:
+
+```
+rustup component add rust-src --toolchain nightly
+rustup target add wasm32-unknown-unknown --toolchain nightly
+```
+
+### 1. Installing The Substrate Contracts Node
+
+We need to use a Substrate node with the built-in `pallet-contracts` pallet. For this workshop we'll use a pre-configured Substrate node client.
+
+```bash
+cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag v0.1.0 --force --locked
+```
+
+### 2. ink! CLI
+
+The final tool we will be installing is the ink! command line utility which will make setting up Substrate smart contract projects easier.
+
+As a prerequisite for the tool you need to install the **binaryen** package, which is used to optimize the WebAssembly bytecode of the contract.
+
+If you are using Ubuntu, Debian or MacOS, you could install it directly:
+
+```bash
+# For Ubuntu or Debian users
+sudo apt install binaryen
+# For MacOS users
+brew install binaryen
+```
+
+<br />
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`If you're unable to find a version of \`binaryen\` compatible with your OS, you can [download the binary release directly](https://github.com/WebAssembly/binaryen/releases).`}
+/>
+
+After you've installed the package execute:
+
+```bash
+cargo install cargo-contract --vers ^0.15 --force --locked
+```
+
+You can then use `cargo contract --help` to start exploring the commands made available to you.
+
+## Creating An ink! Project
+
+We are going to use the ink! CLI to generate the files we need for a Substrate smart contract project.
+
+From your working directory, run:
+
+```bash
+cargo contract new flipper
+```
+
+This command will create a new project folder named `flipper` which we will explore:
+
+```bash
+cd flipper/
+```
+
+**ink! Contract Project**
+
+```
+flipper
+  └─ lib.rs                <-- Contract Source Code
+  └─ Cargo.toml            <-- Rust Dependencies and ink! Configuration
+  └─ .gitignore
+```
+
+### 1. Contract Source Code
+
+The ink! CLI automatically generates the source code for the "Flipper" contract, which is about the
+simplest "smart" contract you can build. You can take a sneak peak as to what will come by looking
+at the [Flipper Example](https://github.com/paritytech/ink/blob/v3.0.0-rc5/examples/flipper/lib.rs).
+
+The Flipper contract is nothing more than a `bool` which gets flipped from true to false through the `flip()` function. We won't go deep into the details of this source code because we will be walking you through the steps of building a more advanced contract!
+
+### 2. Testing Your Contract
+
+You will see at the bottom of the source code there are simple test cases which verify the functionality of the contract. We can quickly test this code is functioning as expected using the **off-chain test environment** that ink! provides.
+
+In your project folder run:
+
+```bash
+cargo +nightly test
+```
+
+To which you should see a successful test completion:
+
+```bash
+$ cargo +nightly test
+    running 2 tests
+    test flipper::tests::it_works ... ok
+    test flipper::tests::default_works ... ok
+
+    test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+```
+
+Now that we are feeling confident things are working, we can actually compile this contract to Wasm.
+
+### 3. Building Your Contract
+
+Run the following command to compile your smart contract in the Flipper project directory:
+
+```bash
+cargo +nightly contract build
+```
+
+<br />
+<Message
+  type={`yellow`}
+  title={`Information`}
+  text={`If you run into a \`call to unsafe function\` error, run \`cargo install --force cargo-contract && rustup update\`
+  to make sure everything is up to date.`}
+/>
+
+This command will build a Wasm binary for the ink! project, a metadata file (which contains the
+contract's ABI) and a `.contract` file which bundles both. This `.contract` file can be used for
+deploying your contract to your chain. If all goes well, you should see a `target` folder which
+contains these files:
+
+```
+target
+  └─ ink
+    └─ release
+      └─ ...
+    └─ .rustc_info.json
+    └─ CACHEDIR.TAG
+    └─ flipper.contract
+    └─ flipper.wasm
+    └─ metadata.json
+```
+
+Let's take a look at the structure of `metadata.json`:
+
+```JSON
+{
+  "metadataVersion": "0.1.0",
+  "source": {...},
+  "contract": {...},
+  "spec": {
+    "constructors": [...],
+    "docs": [],
+    "events": [],
+    "messages": [...],
+  },
+  "storage": {...},
+  "types": [...]
+}
+```
+
+This file describes all the interfaces that can be used to interact with your contract:
+
+- `types` provides the custom **data types** used throughout the rest of the JSON.
+- `storage` defines all the **storage** items managed by your contract and how to ultimately access
+  them.
+- `spec` stores information about the callable functions like **constructors** and **messages** a
+  user can call to interact with the contract. It also has helpful information like the **events**
+  that are emitted by the contract or any **docs**.
+
+If you look closely at the constructors and messages, you will also notice a `selector` which
+contains a 4-byte hash of the function name and is used to route your contract calls to the correct
+functions.
+
+In the next section we will start a
+[Substrate Smart Contracts node](https://github.com/paritytech/substrate-contracts-node) and
+configure the [Canvas UI](https://github.com/paritytech/canvas-ui) to interact with it.
+
+## Running a Substrate Smart Contracts Node
+
+After successfully installing [`substrate-contracts-node`](https://github.com/paritytech/substrate-contracts-node),
+you can start a local development chain by running:
+
+```bash
+substrate-contracts-node --dev --tmp
+```
+
+![Substrate Smart Contracts Node](/assets/tutorials/ink-workshop/start-canvas-node.png)
+
+You should start seeing blocks being produced by your node in your terminal.
+
+## Deploying your Contract
+
+Go to the [hosted version of Canvas UI](https://paritytech.github.io/canvas-ui) to interact with
+your node. You first need to configure the UI to connect to it:
+
+- Click on the dropdown selector at bottom left corner.
+- Choose the Local Node.
+
+![Connect to local node](/assets/tutorials/ink-workshop/canvas-connect-to-local.png)
+
+Now that we have generated the Wasm binary from our source code and connected to a local node node, we want
+to deploy this contract onto our Substrate blockchain.
+
+Smart contract deployment on Substrate is a little different than on traditional smart contract
+blockchains.
+
+Whereas a completely new blob of smart contract source code is deployed each time you push a
+contract on other platforms, Substrate opts to optimize this behavior. For example, the standard
+ERC20 token has been deployed to Ethereum thousands of times, sometimes only with changes to the
+initial configuration (through the Solidity `constructor` function). Each of these instances take
+up space on the blockchain equivalent to the contract source code size, even though no code was
+actually changed.
+
+In Substrate, the contract deployment process is split into two steps:
+
+1. Putting your contract code on the blockchain
+2. Creating an instance of your contract
+
+With this pattern, contract code like the ERC20 standard can be put on the blockchain one single
+time, but instantiated any number of times. No need to continually upload the same source code over
+and waste space on the blockchain.
+
+### 1. Upload Contract Code
+
+Here we will upload the contract code and instantiate one copy of the contract on the blockchain (
+which is usually why we upload the contract code in the first place):
+
+- Click the **Upload & Instantiate Contract** button.
+- Choose an **Instantiation account** (e.g. ALICE).
+- Give the contract a descriptive **Name** (e.g. Flipper Contract).
+- Drag the `flipper.contract` file that contains the bundled Wasm blob and metadata into the drag
+  & drop area. You will see the UI parse the metadata and showing what functions the contract contains.
+- Click the **Constructor Details**
+
+![Flipper Instantiate Contract 01](/assets/tutorials/ink-workshop/flipper-instantiate-01.png)
+
+### 2. Instantiate a Contract on the Blockchain
+
+Smart contracts exist as an extension of the account system on the blockchain. Thus creating an
+instance of this contract will create a new `AccountId` which will store any balance managed by the
+smart contract and allow us to interact with the contract.
+
+Now a screen displays the information that represents our smart contract. We are going to
+instantiate a copy of the smart contract:
+
+- Give the contract instance a **Contract Name** (e.g. The First Flipper).
+- Accept the default options for the contract **Instantiation Constructor**.
+- Accept the default options **Endowment** of `1000 Units` to pay the storage rent, and **Max Gas
+  Allowed** of `200000`.
+- Click on `Instantiate`
+
+![Flipper Instantiate Contract 02](/assets/tutorials/ink-workshop/flipper-instantiate-02.png)
+
+> **Note:** As mentioned earlier, contract creation involves creation of a new account. As such, you
+> must be sure to give the contract account at least the existential deposit defined by your
+> blockchain. We also need to be able to pay the contract's rent (endowment). If we consume all of
+> this deposit, the contract will become a tombstone. We can always refill the contract's balance and
+> keep it on chain.
+
+When you click **Instantiate**, and in the next confirmation screen **Sign & Submit**, you should see
+the extrinsic `contracts.instantiateWithCode` is called, and a flurry of events appear including the
+creation of a new account (`system.NewAccount`) and the instantiation of the contract
+(`contracts.Instantiated`):
+
+![Flipper Instantiate Contract 03](/assets/tutorials/ink-workshop/flipper-instantiate-03.png)
+
+## Calling your Contract
+
+Now that your contract has been fully deployed, we can start interacting with it! Flipper only has
+two functions, `flip()` and `get()` so we will show you what it's like to play with both of them.
+Click the **Execute** button under the contract after you instantiate the Flipper contract in the
+previous step.
+
+### 1. get() function
+
+Take a look at our contract's `default()` function, we set the initial value of the Flipper contract
+`value` to `No` when we instantiated the contract. Let's check that this is the case.
+
+In the **Message to Send** section, select the "**get(): bool**" message and accept the default
+values for the other options.
+
+Press **"Call"** and confirm that it returns the value `false`:
+
+![An image of Flipper RPC call with false](/assets/tutorials/ink-workshop/flipper-false.png)
+
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`You might be wondering "Why did we need to specify gas when reading a value from a contract?"
+If you notice right above the "Call" button is a dropdown select box that allows you to "Send as
+RPC call" or "Send as transaction". For a read-only request like this, we can simply use an RPC call
+which will _simulate_ a transaction, but not actually storing anything on-chain. Thus, you will still need to specify the right amount of gas to cover your "virtual fee". 
+But don't worry, nothing will be charged when making a call this way. 🙂`}
+/>
+
+### 2. flip() function
+
+So let's make the value turn `true` now!
+
+The alternative message to send with the UI is `flip()`. Again, accept the default values for the other options.
+
+You will notice that the `flip()` message defaults to a transaction call.
+
+![An image of a Flipper transaction](/assets/tutorials/ink-workshop/send-as-transaction.png)
+
+If the transaction was successful, we should then be able to go back to the `get()` function and see our updated storage:
+
+![An image of Flipper RPC call with true](/assets/tutorials/ink-workshop/flipper-true.png)
+
+Woohoo! You deployed your first smart contract!
+
+### 3. Moving Forward
+
+We will not go over these setup and deployment steps again, but you can use them throughout the
+tutorial to deploy certain contract on-chain.
+
+The rest of the tutorial will have **template code** which you will use to walk through the
+different steps of contract development. Each template comes with a fully designed suite of tests
+that should pass if you programmed your contract correctly. Before you move on from a section, make
+sure that you run:
+
+```bash
+cargo +nightly test
+```
+
+and that the tests all execute successfully without any warnings.
+
+You need not deploy your contract between each section, but if we ask you to deploy your contract,
+you will need to follow these same steps you have done with the Flipper contract.
+
+## Troubleshooting
+
+Here are solutions to some of the common problems you may come across:
+
+### 1. Unexpected Epoch Change
+
+There is a known issue with the Substrate block production (BABE) on a running chain. If you stop
+your node for too long (closing the terminal, putting your computer to sleep, etc...), you will get
+the following error:
+
+```bash
+ClientImport("Unexpected epoch change")
+```
+
+To solve this you will need to restart your node with: `canvas --dev --tmp`. At that point, you will
+need to re-deploy any contracts and re-do any steps that you may have done before on your node. As
+long as you keep your node running, you should face no issues.
+
+### 2. Old Contracts in Local Storage
+
+**Canvas UI** uses its own local storage to track the contracts that you have deployed. This means
+that if you deploy a contract using the UI, and then purge your Canvas node, you will be prompted to
+reset your local storage and please do so. And then re-deploy any contracts and re-do any steps that
+you may have done before on your node.
+
+### 3. Send as Transaction vs Send as RPC
+
+When interacting with contracts using the Canvas UI, you have the option to submit your call as a
+transaction or as a RPC:
+
+![An image of submitting with transaction or RPC](/assets/tutorials/ink-workshop/send-as.png)
+
+When you send as a transaction, it should be exactly as you expect. A transaction is submitted to
+the contract, a fee is deducted from your account, and the state of your blockchain can change. In
+these situations, no value is returned from your contract call, only a "Success" or "Failed"
+extrinsic message along with any events it may emit.
+
+However, there may be some calls that you want to "test", rather than actually submit a transaction,
+or you may want to peek at the value that _would_ be returned if you called the contract function.
+For these scenarios, you submit an RPC call, which will run all of your contract logic, but not
+actually submit a transaction or update the chain state. However, you will still need to specify
+the right amount of gas to cover your "virtual fee". But don't worry, nothing will be charged when making a call this way. :)
+
+### 4. Other Issues
+
+If you run into any other issues during this tutorial, please [report an issue](https://github.com/substrate-developer-hub/substrate-contracts-workshop/issues)!
