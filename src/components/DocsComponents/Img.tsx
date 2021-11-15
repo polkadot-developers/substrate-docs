@@ -5,6 +5,10 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 interface ImgProps {
   src: string
   alt: string
+  node: {
+    name: string
+    ext: string
+  }
 }
 
 export function Img({ src, alt }: ImgProps) {
@@ -20,16 +24,16 @@ export function Img({ src, alt }: ImgProps) {
               gatsbyImageData
             }
             name
+            ext
           }
         }
       }
     }
   `)
-  const image = allFile.edges.find(edge => {
-    return `${edge.node.name}.png` === src
+  const image = allFile.edges.find((edge: ImgProps) => {
+    return `${edge.node.name}${edge.node.ext}` === src
   })
 
   const currentImage = getImage(image.node.childImageSharp.gatsbyImageData)
-  console.log(image)
-  return <GatsbyImage image={currentImage} alt={alt} />
+  return <GatsbyImage as={'span'} image={currentImage} alt={alt} />
 }
