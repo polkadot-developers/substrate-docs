@@ -68,7 +68,7 @@ In this exercise, we will reserve a para ID using
 Under the **Network** > **Parachains** sub-page, click on **Parathreads** tab and use the
 **+ ParaId** button.
 
-![Reserve a para ID](../../../../src/images/tutorials/09-cumulus/paraid-reserve.png)
+![Reserve a para ID](paraid-reserve.png)
 
 <Message
   type={`yellow`}
@@ -248,7 +248,7 @@ next slot ending period and be sure to re-register as needed.
 - Pick `paraSudoWrapper` -> `sudoScheduleParaInitialize(id, genesis)` as the extrinsic type,
   shown below.
 
-![parachain-registration-sudo.png](../../../../src/images/tutorials/09-cumulus/parachain-registration-sudo.png)
+![parachain-registration-sudo.png](parachain-registration-sudo.png)
 
 - In the extrinsics parameters, specify:
 
@@ -274,7 +274,7 @@ account that reserved it, or use \`sudo\` with a \`registrar.forceRegister\` ext
 
 Here we will use `sudo` to grant ourselves a lease. You should have an onboarded parathread:
 
-![parathread-onboarding.png](../../../../src/images/tutorials/09-cumulus/parathread-onboarding.png)
+![parathread-onboarding.png](parathread-onboarding.png)
 
 - Go to [Polkadot Apps UI](https://polkadot.js.org/apps/),
   connecting to your **relay chain**.
@@ -284,7 +284,7 @@ Here we will use `sudo` to grant ourselves a lease. You should have an onboarded
 - Pick `slots`->`forceLease(para, leaser, amount, period_begin, period_end)` as the extrinsic type,
   shown below.
 
-![forceLease.png](../../../../src/images/tutorials/09-cumulus/forceLease.png)
+![forceLease.png](forceLease.png)
 
 Be sure to set the begin period to the slot you wish to start at. In testing, this is very likely
 to be the already active slot `0` if you started a fresh new relay chain. Extending this out to
@@ -292,7 +292,7 @@ beyond the time you wish to test this parachain is likely the best, unless you w
 onboarding and offboarding cycles. In that case, then electing slot leases that have gaps for a
 `paraID` would be in order. Once fully onboarded and after block production starts you should see:
 
-![parachain-active-lease.png](../../../../src/images/tutorials/09-cumulus/parachain-active-lease.png)
+![parachain-active-lease.png](parachain-active-lease.png)
 
 ### Block production
 
@@ -363,7 +363,7 @@ This is how Polkadot achieves **pooled, shared security** for it's parachains!
 We can observed what parachains are registered and what their latest head data is on the
 `Network > Parachains` tab in the Apps UI.
 
-![parachain-summary-screenshot.png](../../../../src/images/tutorials/09-cumulus/parachain-summary-screenshot.png)
+![parachain-summary-screenshot.png](parachain-summary-screenshot.png)
 
 ## Interact with a parachain
 

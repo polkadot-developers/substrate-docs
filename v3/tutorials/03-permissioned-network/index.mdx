@@ -490,7 +490,7 @@ bytes in hex format.
 We can also check the owner of one node by querying the storage `owners` with the
 peer id of the node as input, you should get the account address of the owner.
 
-![query_well_known_nodes](../../../src/images/tutorials//03-permissioned-network/get_well_known_nodes.png)
+![query_well_known_nodes](get_well_known_nodes.png)
 
 ### Add Another Well Known Node
 
@@ -532,7 +532,7 @@ Go to **Developer** page, **Sudo** tab, in apps and submit the `nodeAuthorizatio
 `add_well_known_node` call with the peer id in hex of Charlie's node and the
 owner is Charlie, of course. Note Allice is the valid sudo origin for this call.
 
-![add_well_known_node](../../../src/images/tutorials/03-permissioned-network/add_well_known_node.png)
+![add_well_known_node](add_well_known_node.png)
 
 After the transaction is included in the block, you should see Charlie's node is
 connected to Alice and Bob's nodes, and starts to sync blocks. Notice the reason
@@ -580,16 +580,16 @@ In the **Developer Extrinsics** page, get Charlie to submit an `addConnections` 
 The first PeerId is the peer id in hex of Charlie's node. The connections is a list
 of allowed peer ids for Charlie's node, here we only add Dave's.
 
-![charlie_add_connections](../../../src/images/tutorials/03-permissioned-network/charlie_add_connections.png)
+![charlie_add_connections](charlie_add_connections.png)
 
 Then, Dave needs to configure his node to allow the connection from Charlie's node.
 But before he adds this, Dave needs to _claim_ his node, hopefully it's not too late!
 
-![dave_claim_node](../../../src/images/tutorials/03-permissioned-network/dave_claim_node.png)
+![dave_claim_node](dave_claim_node.png)
 
 Similarly, Dave can add connection from Charlie's node.
 
-![dave_add_connections](../../../src/images/tutorials/03-permissioned-network/dave_add_connections.png)
+![dave_add_connections](dave_add_connections.png)
 
 You should now see Dave is catching up blocks and only has one peer which belongs to Charlie!
 Restart Dave's node in case it's not connecting with Charlie right away.

@@ -134,7 +134,7 @@ Substrate provides runtime developers with multiple hooks when writing their own
 a block, variable weight requirements in `on_finalize` can easily lead to an overweight block and should be
 avoided.
 
-![on-finalize-blocktime.png](../../../../src/images/docs/runtime/benchmarking-on-finalize-blocktime.png)
+![on-finalize-blocktime.png](benchmarking-on-finalize-blocktime.png)
 
 If possible, move the logic to `on_intialize` hook that happens at the beginning of the block. Then
 the number of extrinsics to be included in the block can be adjusted accordingly. Another trick is
@@ -208,7 +208,7 @@ With `--steps 20 --repeat 10` in the benchmark input arguments, `b` will walk 20
 the benchmark 10 times and record the benchmark information. The resulting weights will be outputted
 into a `weights.rs` file.
 
-![multi-variables-regression](../../../../src/images/docs/runtime/benchmarking-multi-variables-regression.png)
+![multi-variables-regression](benchmarking-multi-variables-regression.png)
 
 ### Raw data output
 

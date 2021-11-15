@@ -422,7 +422,7 @@ To set a nickname for an account:
 
 1. Click `Signed` to execute the function.
 
-   ![Set a name](../../../src/images/tutorials/07-add-a-pallet/set-name.png)
+   ![Set a name](set-name.png)
 
 1. Observe the status of the call and the [events](/rustdocs/latest/pallet_nicks/enum.RawEvent.html)
    emitted by the Nicks
@@ -443,7 +443,7 @@ To return the information stored for Alice:
 
 1. Copy and paste the address for the alice account in the Account field, then click **Query**.
 
-   ![Read a name](../../../src/images/tutorials/07-add-a-pallet/name-of-alice.png)
+   ![Read a name](name-of-alice.png)
 
    The return type is a tuple that contains two values:
 
@@ -455,7 +455,7 @@ To return the information stored for Alice:
    value returned because Bob has not invoked the `setName` dispatchable and deposited the funds to
    reserve a nickname.
 
-   ![Read an empty name](../../../src/images/tutorials/07-add-a-pallet/name-of-bob.png)
+   ![Read an empty name](name-of-bob.png)
 
 ## Explore more advanced topics
 
@@ -477,7 +477,7 @@ The front-end template makes it easy to use the Sudo pallet to dispatch a call f
 [the `Signed` origin](/rustdocs/latest/frame_system/enum.RawOrigin.html#variant.Signed)
 associated with Alice's account as opposed to the `Root` origin.
 
-![`BadOrigin` Error](../../../src/images/tutorials/07-add-a-pallet/kill-name-bad-origin.png)
+![`BadOrigin` Error](kill-name-bad-origin.png)
 
 You will notice that even though the function call was successfully dispatched, a `BadOrigin` error
 was emitted and is visible in the Events pane. This means that Alice's account was still charged
@@ -486,7 +486,7 @@ executed because the Nicks pallet follows the important
 [verify-first-write-last](/v3/runtime/storage#verify-first-write-last) pattern. Now
 use the `SUDO` button to dispatch the same call with the same parameter.
 
-![Nicks Pallet Error](../../../src/images/tutorials/07-add-a-pallet/clear-name-error.png)
+![Nicks Pallet Error](clear-name-error.png)
 
 The Sudo pallet emits a
 [`Sudid` event](/rustdocs/latest/pallet_sudo/enum.RawEvent.html#variant.Sudid)

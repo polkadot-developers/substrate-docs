@@ -164,13 +164,13 @@ The Ethereum Virtual Machine (EVM) is a sandboxed virtual stack machine that is 
 EVM pallet. The EVM is responsible for executing Ethereum contract bytecode of smart contracts,
 typically written in a high level language like Solidity, then compiled to EVM bytecode.
 
-![architecture diagram](../../../src/images/tutorials/10-frontier-workshop/pallet-evm.png)
+![architecture diagram](pallet-evm.png)
 
 ### Ethereum Pallet
 
 The Ethereum pallet is responsible for storing Ethereum-formatted blocks, transaction receipts, and transaction statuses.
 
-![architecture diagram](../../../src/images/tutorials/10-frontier-workshop/pallet-ethereum.png)
+![architecture diagram](pallet-ethereum.png)
 
 ### Wrapping Ethereum Transactions
 
@@ -186,7 +186,7 @@ Our runtime is storing all the ethereum-formatted information that may be querie
 way for the RPC server to call into the runtime and retrieve that information. This is done through
 runtime APIs & RPCs.
 
-![architecture diagram](../../../src/images/tutorials/10-frontier-workshop/rpc.png)
+![architecture diagram](rpc.png)
 
 Further reading:
 
@@ -197,7 +197,7 @@ Further reading:
 
 ### Frontier Block Import
 
-![architecture diagram](../../../src/images/tutorials/10-frontier-workshop/block-import.png)
+![architecture diagram](block-import.png)
 
 Further reading:
 

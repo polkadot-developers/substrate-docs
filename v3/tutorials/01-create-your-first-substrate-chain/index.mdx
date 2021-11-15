@@ -30,7 +30,7 @@ At a high level, a blockchain node consists of the following key components:
 Because of the complexity involved in building these components, most blockchain projects are forked from an existing blockchain project.
 For example, the Bitcoin repository was forked to create: Litecoin, ZCash, Namecoin, and Bitcoin Cash. Similarly, the Ethereum repository was forked to create Quorum, POA Network, KodakCoin, and Musicoin.
 
-![Blockchain Forks](../../../src/images/tutorials/01-create-your-first-chain/forks.png)
+![Blockchain Forks](forks.png)
 
 However, the existing blockchain platforms were not designed to allow for modification.
 As a result, building a new blockchain by forking has serious limitations.
@@ -334,13 +334,13 @@ To use the Front-end Template:
    want to perform on-chain operations. The top section of the template also displays information
    about the chain to which you're connected.
 
-   ![Front-end template top section](../../../src/images/tutorials/01-create-your-first-chain/blockchain-top.png)
+   ![Front-end template top section](blockchain-top.png)
 
    You might also notice that the Front-end Template displays a Balances table with some
    predefined accounts and that a few of those accounts are preconfigured with funds.
    You can use this sample data to try out operations like transferring funds.
 
-   ![Predefined accounts and balances](../../../src/images/tutorials/01-create-your-first-chain/balances.png)
+   ![Predefined accounts and balances](balances.png)
 
 ## Transfer funds from one account to another
 
@@ -354,7 +354,7 @@ To transfer funds to an account:
 
 1. In the Balances table, notice the predefined accounts—such as dave—that have no funds associated with them.
 
-   ![Locate an account with zero funds](../../../src/images/tutorials/01-create-your-first-chain/dave-account.png)
+   ![Locate an account with zero funds](dave-account.png)
 
    Under the Balances table, the front-end template also displays a **Transfer** component.
    You use this component to transfer funds from one account to another.
@@ -363,11 +363,11 @@ To transfer funds to an account:
 
 1. Specify at least **1000000000000** as the amount to transfer, then click **Submit**.
 
-   ![Transfer funds to an account](../../../src/images/tutorials/01-create-your-first-chain/transfer-filled.png)
+   ![Transfer funds to an account](transfer-filled.png)
 
 1. Notice that the values in Balances table is updated with the transfer.
 
-   ![Updated balance displayed](../../../src/images/tutorials/01-create-your-first-chain/balance-result.png)
+   ![Updated balance displayed](balance-result.png)
 
 1. Check the **Events** component to see events related to the transfer you just completed.
 
@@ -375,7 +375,7 @@ To transfer funds to an account:
    use the Events components to see details about each operation performed as part of the transfer.
    For example:
 
-   ![Events recorded as results from asynchronous operations](../../../src/images/tutorials/01-create-your-first-chain/event-panel.png)
+   ![Events recorded as results from asynchronous operations](event-panel.png)
 
 1. When the transaction has been completed and included in a block, you see a confirmation message similar to the following:
 
