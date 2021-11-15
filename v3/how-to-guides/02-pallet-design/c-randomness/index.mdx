@@ -56,13 +56,13 @@ For example:
 
     ```rust
         fn get_and_increment_nonce() -> Vec<u8> {
-            let nonce = Nonce::get();
-            Nonce::put(nonce.wrapping_add(1));
+            let nonce = Nonce::<T>::get();
+            Nonce::<T>::put(nonce.wrapping_add(1));
             nonce.encode()
         }
     ```
 
-To learn more about the wrapping and encoding methods, see [`wrapping_add`](/rustdocs/latest/funty/trait.IsInteger.html#tymethod.wrapping_add) and [`encode()`](/rustdocs/latest/frame_support/dispatch/trait.Encode.html#method.encode) in the Rust documentation.
+  To learn more about the wrapping and encoding methods, see [`wrapping_add`](https://doc.rust-lang.org/std/intrinsics/fn.wrapping_add.html) and [`encode()`](/rustdocs/latest/frame_support/dispatch/trait.Encode.html#method.encode) in the Rust documentation.
 
 1. Use Randomness in a dispatchable.
 
@@ -78,9 +78,9 @@ pub fn create_unique(
     // Account calling this dispatchable.
     let sender = ensure_signed(origin)?;
 
-    // Random value.
-    let nonce = Self::get_and_increment_nonce();
-    let randomValue = T::MyRandomness::random(&nonce);
+      // Random value.
+      let nonce = Self::get_and_increment_nonce();
+      let (randomValue, _) = T::MyRandomness::random(&nonce);
 
     // Write the random value to storage.
     <MyStorageItem<T>>::put(randomValue);

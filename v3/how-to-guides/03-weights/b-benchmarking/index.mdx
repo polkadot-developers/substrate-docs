@@ -33,7 +33,7 @@ difficulty: 1
 ### 1. Set-up benchmarking for your pallet
 
 1. In [the pallet's
-   `Cargo.toml`](https://github.com/paritytech/substrate/blob/master/frame/example/Cargo.toml), add
+   `Cargo.toml`](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/weights.rs), add
    the `frame-benchmarking` crate (with appropriate tag and version) and the `runtime-benchmarks` feature.
 
    `pallets/example/Cargo.toml`
@@ -90,8 +90,8 @@ difficulty: 1
    }
    ```
 
-   We'll refer to an extremely basic example of a benchmark from the [Example Pallet](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs).
-   Take a look at the extrinsic we'll be benchmarking for [here](http://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs#L543-562).
+   We'll refer to an extremely basic example of a benchmark from the [Example Pallet](https://github.com/paritytech/substrate/tree/master/frame/examples/basic).
+   Take a look at the extrinsic we'll be benchmarking for:
 
    ```rust
    // This will measure the execution time of `set_dummy` for b in [1..1000] range.
@@ -225,8 +225,8 @@ how to configure your pallet to use those weights.
 
 ## Examples
 
-- [Benchmarking in the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/example/src/benchmarking.rs)
-- [Weights in the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/example/src/weights.rs)
+- [Benchmarking in the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/benchmarking.rs)
+- [Weights in the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/weights.rs)
 
 ## Related material
 

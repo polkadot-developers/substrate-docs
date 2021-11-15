@@ -540,24 +540,7 @@ DevNavMenuTuts.set('firstChain', [
 DevNavMenuTuts.set('poe', [
   {
     name: `Build a Proof of Existence Blockchain`,
-    items: [
-      {
-        title: `Introduction`,
-        link: '/tutorials/v3/proof-of-existence/',
-      },
-      {
-        title: `Preparation`,
-        link: '#prepare-to-build-a-dapp',
-      },
-      {
-        title: `Build a Custom Pallet`,
-        link: '#building-a-custom-pallet',
-      },
-      {
-        title: `Build a Custom Front-end`,
-        link: '#building-a-custom-front-end',
-      },
-    ],
+    items: [ ],
   },
 ])
 DevNavMenuTuts.set('permissionedNetwork', [
