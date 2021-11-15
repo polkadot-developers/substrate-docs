@@ -29,15 +29,15 @@ difficulty: 1
     },
     {
       title: 'Use Cases',
-      description: `
-        Give any account the ability to create a token supply in exchange for native token fee.
-      `,
+      description: `Give any account the ability to create a token supply in exchange for native token fee.`,
     },
     {
       title: 'Overview',
-      description: `
-        This guide will step you through an effective way to mint a token by leveraging the primitive capabilities that [StorageMap](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) gives us.
-        To achieve this, this "primitive" approach uses the [blake2_128_concat](/v3/runtime/storage#hashing-algorithms) \`hasher\` to map balances to account IDs, similar to how the [Balances](/rustdocs/latest/pallet_balances/index.html) pallet makes use of it to store and keep track of account balances.
+      description: `This guide will step you through an effective way to mint a token by leveraging the primitive capabilities that
+		 [StorageMap](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) gives us. To achieve this, this "primitive" 
+		 approach uses the [blake2_128_concat](/v3/runtime/storage#hashing-algorithms) 
+		 \`hasher\` to map balances to account IDs, similar to how the [Balances](/rustdocs/latest/pallet_balances/index.html) pallet makes use of it to store 
+		 and keep track of account balances.
 	    `,
     },
   ]}
@@ -84,31 +84,31 @@ pub(super) type BalanceToAccount<T: Config> = StorageMap<
 
 We can now bring our attention to creating the intended capabilities of our pallet with the following functions:
 
-1. `mint()`: to issue a token supply from any origin.
+(i) `mint()`: to issue a token supply from any origin.
 
-   ```rust
-   /* --snip-- */
-   #[pallet::weight(10_000 + T::DbWeight::get().writes(1))]
-   pub(super) fn mint(
-     origin: OriginFor<T>,
-     #[pallet::compact] amount: T::Balance
-     ) -> DispatchResultWithPostInfo {
+```rust
+/* --snip-- */
+#[pallet::weight(10_000 + T::DbWeight::get().writes(1))]
+pub(super) fn mint(
+	origin: OriginFor<T>,
+	#[pallet::compact] amount: T::Balance
+	) -> DispatchResultWithPostInfo {
 
-     let sender = ensure_signed(origin)?;
+	let sender = ensure_signed(origin)?;
 
-     // Update storage.
-     <BalanceToAccount<T>>::insert(&sender, amount);
+	// Update storage.
+	<BalanceToAccount<T>>::insert(&sender, amount);
 
-     // Emit an event.
-     Self::deposit_event(Event::MintedNewSupply(sender));
+	// Emit an event.
+	Self::deposit_event(Event::MintedNewSupply(sender));
 
-     // Return a successful DispatchResultWithPostInfo.
-     Ok(().into())
-   }
-   /* --snip-- */
-   ```
+	// Return a successful DispatchResultWithPostInfo.
+	Ok(().into())
+}
+/* --snip-- */
+```
 
-1. `transfer()`: to allow the minting account to transfer a given balance to another account.
+(ii) `transfer()`: to allow the minting account to transfer a given balance to another account.
 
 #### Define transfer variables
 
@@ -164,14 +164,14 @@ Refer to [this guide](../pallet-integration) if you’re not yet familiar with t
   type={`green`}
   title={`Further Learning`}
   text={`
-    - **Safety.** The mint function takes in an amount to 'mint' which is *not good practice* because it implies that users have unlimited access to writing to storage.
-      Safer approaches include: using configuring 'GenesisConfig' or
-      fixing a predetermined maximum value in runtime.
-    - **Weights.** All the weights were set to 10_000 in the above code snippets.
-      Learn more about weight configuration in this [basic guide on weights](../weights).
-    - **Origins.** This guide assumes that the origin will always be the sudo user.
-      Origins are a powerful capability in Substrate.
-      Learn more about how they work [here](/v3/runtime/origins).
+  - **Safety.** The mint function takes in an amount to 'mint' which is *not good practice* because it implies that
+    users have unlimited access to writing to storage. Safer approaches include: using configuring 'GenesisConfig' or
+    fixing a predetermined maximum value in runtime.
+  - **Weights.** All the weights were set to 10_000 in the above code snippets. Learn more about weight
+    configuration in this [basic guide on weights](../weights).
+  - **Origins.** This guide assumes that the origin will always be the sudo user.
+    Origins are a powerful capability in Substrate. Learn more about how they work
+    [here](/v3/runtime/origins).
   `}
 />
 

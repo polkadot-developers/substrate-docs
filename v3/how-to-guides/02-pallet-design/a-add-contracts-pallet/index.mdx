@@ -32,80 +32,80 @@ Implement the Contracts pallet [configuration traits][contracts-config-rustdocs]
 
 1. Implement `pallet_contracts`.
 
-   Make sure you've included all of the types that `pallet_contracts` exposes.
-   You can copy these from [FRAME's source code][contracts-frame-gh]. Always check that versioning is equivalent to the imported crate.
+Make sure you've included all of the types that `pallet_contracts` exposes.
+You can copy these from [FRAME's source code][contracts-frame-gh]. Always check that versioning is equivalent to the imported crate.
 
-   Add these types to `runtime/src/lib.rs`.
-   The following code snippet shows four types:
+Add these types to `runtime/src/lib.rs`.
+The following code snippet shows four types:
 
-   ```rust
-   impl pallet_contracts::Config for Runtime {
-       type Time = Timestamp;
-       type Randomness = RandomnessCollectiveFlip;
-       type Currency = Balances;
-       type Event = Event;
-       /* --snip-- */
-   ```
+```rust
+impl pallet_contracts::Config for Runtime {
+    type Time = Timestamp;
+    type Randomness = RandomnessCollectiveFlip;
+    type Currency = Balances;
+    type Event = Event;
+    /* --snip-- */
+```
 
-1. Add parameter types.
+2. Add parameter types.
 
-   Note that some of these types require `parameter_types`. To see an example of how they should be added, see [this example][bin-runtime-contracts-frame].
+Note that some of these types require `parameter_types`. To see an example of how they should be added, see [this example][bin-runtime-contracts-frame].
 
-   Add the parameter types directly above `impl pallet_contracts::Config for Runtime`.
+Add the parameter types directly above `impl pallet_contracts::Config for Runtime`.
 
-   ```rust
-   /* --snip-- */
-   Contracts: pallet_contracts::{Pallet, Call, Config<T>, Storage, Event<T>},
-   /* --snip-- */
-   ```
+```rust
+/* --snip-- */
+Contracts: pallet_contracts::{Pallet, Call, Config<T>, Storage, Event<T>},
+/* --snip-- */
+```
 
-   For example, the following shows how the parameter type, `DeletionQueueDepth`, should be added:
+For example, the following shows how the parameter type, `DeletionQueueDepth`, should be added:
 
-   ````rust
-   parameter_types! {
-       /* --snip-- */
-     pub DeletionQueueDepth: u32 = ((DeletionWeightLimit::get() / (
-         <Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(1) -
-         <Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(0)
-           )) / 5) as u32;
-           /* --snip-- */
-       }
-     ```
+````rust
+parameter_types! {
+     /* --snip-- */
+   pub DeletionQueueDepth: u32 = ((DeletionWeightLimit::get() / (
+       <Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(1) -
+       <Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(0)
+         )) / 5) as u32;
+         /* --snip-- */
+     }
+  ```
 
-   Notice how the above parameter type depends on `WeightInfo`. This requires you to add the following to the top of `runtime/src/lib.rs`:
+Notice how the above parameter type depends on `WeightInfo`. This requires you to add the following to the top of `runtime/src/lib.rs`:
 
-   ```rust
-   use pallet_contracts::weights::WeightInfo;
-   ````
+```rust
+use pallet_contracts::weights::WeightInfo;
+````
 
-   Similarly, other parameter types use constants such as `DAYS`, `MILLICENTS` and `AVERAGE_ON_INITIALIZE_RATIO`.
+Similarly, other parameter types use constants such as `DAYS`, `MILLICENTS` and `AVERAGE_ON_INITIALIZE_RATIO`.
 
-   Define these towards the top of your `runtime/src/lib.rs` file where the other constants exist:
+Define these towards the top of your `runtime/src/lib.rs` file where the other constants exist:
 
-   ```rust
-   // Contracts price units.
-   pub const MILLICENTS: Balance = 1_000_000_000;
-   pub const CENTS: Balance = 1_000 * MILLICENTS;
-   pub const DOLLARS: Balance = 100 * CENTS;
+```rust
+// Contracts price units.
+pub const MILLICENTS: Balance = 1_000_000_000;
+pub const CENTS: Balance = 1_000 * MILLICENTS;
+pub const DOLLARS: Balance = 100 * CENTS;
 
-   const fn deposit(items: u32, bytes: u32) -> Balance {
-       items as Balance * 15 * CENTS + (bytes as Balance) * 6 * CENTS
-   }
+const fn deposit(items: u32, bytes: u32) -> Balance {
+    items as Balance * 15 * CENTS + (bytes as Balance) * 6 * CENTS
+}
 
-   /// We assume that ~10% of the block weight is consumed by `on_initalize` handlers.
-   /// This is used to limit the maximal weight of a single extrinsic.
-   const AVERAGE_ON_INITIALIZE_RATIO: Perbill = Perbill::from_percent(10);
-   ```
+/// We assume that ~10% of the block weight is consumed by `on_initalize` handlers.
+/// This is used to limit the maximal weight of a single extrinsic.
+const AVERAGE_ON_INITIALIZE_RATIO: Perbill = Perbill::from_percent(10);
+```
 
-1. Add an instance in runtime for `pallet_contracts`.
+3. Add an instance in runtime for `pallet_contracts`.
 
-   Create an instance of the Contracts pallet in `construct_macro!` inside `runtime/src/lib.rs`:
+Create an instance of the Contracts pallet in `construct_macro!` inside `runtime/src/lib.rs`:
 
-   ```rust
-   /* --snip-- */
-   Contracts: pallet_contracts::{Pallet, Call, Config<T>, Storage, Event<T>},
-   /* --snip-- */
-   ```
+```rust
+/* --snip-- */
+Contracts: pallet_contracts::{Pallet, Call, Config<T>, Storage, Event<T>},
+/* --snip-- */
+```
 
 ## Add API dependencies
 
@@ -116,52 +116,52 @@ the Contracts pallet to make calls to your node's storage without making a trans
 1. Import the dependencies.
    As in the [first step of this guide](#1-import-the-dependencies), update `/runtime/Cargo.toml` to add `pallet-contracts-rpc-runtime-api`.
 
-1. Include `pallet-contracts` and `pallet-contracts-rpc` inside `node/Cargo.toml` so that your runtime can interact with your node.
+2. Include `pallet-contracts` and `pallet-contracts-rpc` inside `node/Cargo.toml` so that your runtime can interact with your node.
 
-1. Add the [`ContractsApi`][contracts-api-rustdocs] dependency required to implement the Contracts runtime API.
+3. Add the [`ContractsApi`][contracts-api-rustdocs] dependency required to implement the Contracts runtime API.
 
-   Add this with the other `use` statements in `node/src/rpc.rs`:
+Add this with the other `use` statements in `node/src/rpc.rs`:
 
-   ```rust
-   use pallet_contracts_rpc::{Contracts, ContractsApi};
-   ```
+```rust
+use pallet_contracts_rpc::{Contracts, ContractsApi};
+```
 
-   Navigate to the`impl_runtime_apis!` macro near the end of your runtime.
+Navigate to the`impl_runtime_apis!` macro near the end of your runtime.
 
-   Add the following functions that the `ContractsApi` exposes:
+Add the following functions that the `ContractsApi` exposes:
 
-   - **`call()`**: returns `pallet_contracts_primitives::ContractExecResult { Contracts::bare_call(origin, dest, value, gas_limit, input_data)}`
-   - **`get_storage()`**: returns `pallet_contracts_primitives::GetStorageResult {Contracts::get_storage(address, key)}`
-   - **`rent_projection()`**: returns `pallet_contracts_primitives::RentProjectionResult<BlockNumber> {Contracts::rent_projection(address)}`
+    - **`call()`**: returns `pallet_contracts_primitives::ContractExecResult { Contracts::bare_call(origin, dest, value, gas_limit, input_data)}`
+    - **`get_storage()`**: returns `pallet_contracts_primitives::GetStorageResult {Contracts::get_storage(address, key)}`
+    - **`rent_projection()`**: returns `pallet_contracts_primitives::RentProjectionResult<BlockNumber> {Contracts::rent_projection(address)}`
 
-1. Add the RPC API extension.
+5. Add the RPC API extension.
 
-   To be able to call the runtime API, you must add the RPC to the node's service.
+To be able to call the runtime API, you must add the RPC to the node's service.
 
-   ```rust
-   // Contracts RPC API extension
-   io.extend_with(
-     ContractsApi::to_delegate(Contracts::new(client.clone()))
-     );
-   ```
+```rust
+// Contracts RPC API extension
+io.extend_with(
+   ContractsApi::to_delegate(Contracts::new(client.clone()))
+  );
+```
 
-   This RPC does not contain access to the Contracts pallet by default.
-   To interact with it, you must extend the existing RPC and add the Contracts pallet along with the API.
+This RPC does not contain access to the Contracts pallet by default.
+To interact with it, you must extend the existing RPC and add the Contracts pallet along with the API.
 
-   In `node/src/rpc.rs`, add the following line to the `where` clause in `create_full<C, P>`:
+In `node/src/rpc.rs`, add the following line to the `where` clause in `create_full<C, P>`:
 
-   ```rust
-   C::Api: pallet_contracts_rpc::ContractsRuntimeApi<Block, AccountId, Balance, BlockNumber>,
-   ```
+```rust
+C::Api: pallet_contracts_rpc::ContractsRuntimeApi<Block, AccountId, Balance, BlockNumber>,
+```
 
-   Add the contracts RPC API extension.
+Add the contracts RPC API extension.
 
-   ```rust
-   // Contracts RPC API extension
-     io.extend_with(
-         ContractsApi::to_delegate(Contracts::new(client.clone()))
-     );
-   ```
+```rust
+// Contracts RPC API extension
+  io.extend_with(
+      ContractsApi::to_delegate(Contracts::new(client.clone()))
+  );
+```
 
 ## Start your upgraded chain
 
