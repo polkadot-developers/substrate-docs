@@ -8,7 +8,7 @@ module.exports = {
   siteMetadata: {
     title: 'Substrate_',
     siteUrl: `${process.env.GATSBY_DOCS_URL || 'https://docs.substrate.io'}`,
-    image_og: '',
+    image_og: `${process.env.GATSBY_DOCS_URL}/img/substrate_og.png`,
     description:
       'Substrate enables developers to quickly and easily build future-proof blockchains optimized for any use case.',
     keywords: [
@@ -54,92 +54,22 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/v3/docs`,
-        name: `kbV3`,
+        name: `docs`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/v3/how-to-guides`,
-        name: `htg`,
+        name: `htgs`,
       },
     },
     //TUTORIALS//
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/v3/tutorials/01-create-your-first-substrate-chain`,
-        name: `create-your-first-substrate-chain`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/v3/tutorials/02-proof-of-existence`,
-        name: `proof-of-existence`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/v3/tutorials/03-permissioned-network`,
-        name: `permissioned-network`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/v3/tutorials/04-forkless-upgrades`,
-        name: `forkless-upgrades`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/v3/tutorials/05-private-network`,
-        name: `private-network`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/v3/tutorials/06-node-metrics`,
-        name: `node-metrics`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/v3/tutorials/07-add-a-pallet`,
-        name: `add-a-pallet`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/v3/tutorials/08-ink-workshop/`,
-        name: `ink-workshop`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/v3/tutorials/09-cumulus/`,
-        name: `cumulus`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/v3/tutorials/10-frontier-workshop/`,
-        name: `frontier`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/v3/tutorials/11-kitties-workshop/`,
-        name: `kitties`,
+        path: `${__dirname}/v3/tutorials/`,
+        name: `tuts`,
       },
     },
     //*********************************//
@@ -229,6 +159,7 @@ module.exports = {
             resolve: `gatsby-remark-autolink-headers`,
             options: {
               offsetY: `100`,
+              icon: `<svg className="fill-current text-substrateDark dark:text-white" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg>`,
               maintainCase: false,
               removeAccents: false,
               isIconAfterHeader: false,
@@ -291,6 +222,12 @@ module.exports = {
         eventsGlobal: 'sa',
         events: true,
         trackPageViews: true,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-force-trailing-slashes`,
+      options: {
+        excludedPaths: [`/404.html`],
       },
     },
   ],

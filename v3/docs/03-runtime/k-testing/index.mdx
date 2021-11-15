@@ -1,7 +1,7 @@
 ---
 title: Testing
 slug: /v3/runtime/testing
-version: 3.0 
+version: '3.0'
 section: docs
 category: runtime
 keywords:
@@ -59,11 +59,11 @@ only requires tracking a `(AccountId: u64, Balance: u64)` mapping.
 
 ### Mock runtime storage
 
-The [`sp-io`](/rustdocs/latest/sp_io) crate exposes a
+The [`sp-io`](/rustdocs/latest/sp_io/index.html) crate exposes a
 [`TestExternalities`](/rustdocs/latest/sp_io/type.TestExternalities.html)
 implementation frequently used for mocking storage in tests. It is the type alias for an in-memory,
 hashmap-based externalities implementation in
-[`substrate_state_machine`](/rustdocs/latest/sp_state_machine) referred to as
+[`substrate_state_machine`](/rustdocs/latest/sp_state_machine/index.html) referred to as
 [`TestExternalities`](/rustdocs/latest/sp_state_machine/struct.TestExternalities.html).
 
 This example demonstrates defining a struct called `ExtBuilder` to build an instance of
@@ -94,9 +94,9 @@ fn fake_test_example() {
 }
 ```
 
-Custom implementations of [Externalities](/rustdocs/latest/sp_externalities) allow developers
+Custom implementations of [Externalities](/rustdocs/latest/sp_externalities/index.html) allow developers
 to construct runtime environments that provide access to features of the outer node. Another example
-of this can be found in [`offchain`](/rustdocs/latest/sp_core/offchain), which maintains its own
+of this can be found in [`offchain`](/rustdocs/latest/sp_core/offchain/index.html), which maintains its own
 [Externalities](/rustdocs/latest/sp_core/offchain/trait.Externalities.html) implementation.
 
 #### Genesis config
@@ -189,3 +189,7 @@ fn my_runtime_test() {
 	});
 }
 ```
+
+## Learn more
+
+- Learn how to set up tests for your pallet with [this guide](/how-to-guides/v3/testing/basics/)

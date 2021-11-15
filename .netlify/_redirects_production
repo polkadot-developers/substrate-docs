@@ -1,0 +1,147 @@
+## Production: Tutorial
+
+### Tutorial - Create Your First Substrate Chain
+/docs/en/tutorials/create-your-first-substrate-chain    /tutorials/v3/create-your-first-substrate-chain    301!
+/docs/en/tutorials/create-your-first-substrate-chain/*  /tutorials/v3/create-your-first-substrate-chain    301!
+
+### Tutorial - Add a Pallet to Your Runtime
+/docs/en/tutorials/add-a-pallet    /tutorials/v3/add-a-pallet                          301!
+/docs/en/tutorials/add-a-pallet/*  /tutorials/v3/add-a-pallet                          301!
+/docs/en/tutorials/create-a-pallet /tutorials/v3/add-a-pallet/                         301!         
+
+### Tutorial - PoE
+/docs/en/tutorials/build-a-dapp    /tutorials/v3/proof-of-existence                    301!
+/docs/en/tutorials/build-a-dapp/*  /tutorials/v3/proof-of-existence                    301!
+
+### Tutorial - Private Network
+/docs/en/tutorials/start-a-private-network     /tutorials/v3/private-network           301!
+/docs/en/tutorials/start-a-private-network/*   /tutorials/v3/private-network           301!
+
+### Tutorial - Forkless Upgrade
+/docs/en/tutorials/forkless-upgrade            /tutorials/v3/forkless-upgrades         301!
+/docs/en/tutorials/forkless-upgrade/*          /tutorials/v3/forkless-upgrades         301!
+
+### Tutorial - Permissioned Network
+/docs/en/tutorials/build-permission-network      /tutorials/v3/permissioned-network    301!
+/docs/en/tutorials/build-permission-network/*    /tutorials/v3/permissioned-network    301!
+
+### Tutorial - Add a Contract Pallet
+/docs/en/tutorials/add-contracts-pallet        /tutorials/v3/ink-workshop/pt1/         301!
+/docs/en/tutorials/add-contracts-pallet/*      /tutorials/v3/ink-workshop/pt1/         301!
+
+### Substrate Contracts Workshop
+/substrate-contracts-workshop/                 /tutorials/v3/ink-workshop/pt1/         301!
+
+### Tutorial - Node Metrics
+/docs/en/tutorials/visualize-node-metrics      /tutorials/v3/node-metrics              301!
+/docs/en/tutorials/visualize-node-metrics/*    /tutorials/v3/node-metrics              301!
+
+### Tutorial - Frontier
+/docs/en/tutorials/frontier                    /tutorials/v3/frontier                  301!
+/docs/en/tutorials/frontier/*                  /tutorials/v3/frontier/*                301!
+
+### Tutorial - Cumulus Workshop
+/tutorials/substrate-cumulus-workshop               /tutorials/v3/cumulus/start-relay       301!
+/tutorials/substrate-cumulus-workshop/*             /tutorials/v3/cumulus/start-relay       301!
+/cumulus-workshop                                   /tutorials/v3/cumulus/start-relay       301!
+/cumulus-workshop/*                                 /tutorials/v3/cumulus/start-relay       301!
+
+### Tutorial - Kitties Workshop
+/tutorials/kitties                                  /tutorials/v3/kitties                   301!
+/tutorials/kitties/*                                /tutorials/v3/kitties                   301!
+/kitties                                            /tutorials/v3/kitties                   301!
+/kitties/*                                          /tutorials/v3/kitties                   301!
+
+### Tutorial - Runtime Benchmarking 
+/docs/en/tutorials/runtime-benchmarking/	          /v3/runtime/benchmarking/          301!
+
+### Tutorial - Upgrade A Chain 
+/docs/en/tutorials/upgrade-a-chain/	                      /tutorials/v3/forkless-upgrades/                        301!
+/docs/en/tutorials/upgrade-a-chain/scheduled-upgrade	    /tutorials/v3/forkless-upgrades/#schedule-an-upgrade    301!
+/docs/en/tutorials/upgrade-a-chain/sudo-upgrade	          /tutorials/v3/forkless-upgrades/#sudo-upgrade           301!
+
+### Tutorial page
+/en/tutorials                                       /tutorials/v3                      301!
+/en/tutorials/                                      /tutorials/v3                      301!
+
+
+## Production: How-to Guides & Recipes
+
+/substrate-how-to-guides                       /how-to-guides/v3                       301!
+/substrate-how-to-guides/*                     /how-to-guides/v3                       301!
+/recipes                                       /how-to-guides/v3                       301!
+/recipes/*                                     /how-to-guides/v3                       301!
+
+## Production: Knowledge Base
+
+### Production: Getting Started
+/en/                                           /v3/getting-started/overview      301! 
+/docs/v3                                       /v3/getting-started/overview      301!
+/docs/en                                       /v3/getting-started/overview      301!
+/docs/en/                                      /v3/getting-started/overview      301!
+/docs/en/knowledgebase/getting-started         /v3/getting-started/installation  301!
+/docs/en/knowledgebase/getting-started/*       /v3/getting-started/:splat        301!
+
+### Knowledge Base: Key Concepts
+/docs/en/knowledgebase/learn-substrate/*                        /v3/concepts/:splat             301!
+/docs/en/knowledgebase/learn-substrate/off-chain-workers        /v3/concepts/off-chain-features 301!
+/docs/en/knowledgebase/runtime                                  /v3/concepts/runtime            301!
+/docs/en/knowledgebase/runtime/                                 /v3/concepts/runtime            301!
+
+### Knowledge Base: Runtime Development
+/docs/en/knowledgebase/runtime/fees                 /v3/runtime/weights-and-fees            301!
+/docs/en/knowledgebase/runtime/errors	            /v3/runtime/events-and-errors/          301!
+/docs/en/knowledgebase/runtime/events	            /v3/runtime/events-and-errors/          301!
+/docs/en/knowledgebase/runtime/execution	        /v3/concepts/execution/                 301!
+/docs/en/knowledgebase/runtime/off-chain-workers	/v3/concepts/off-chain-features/        301!
+/docs/en/knowledgebase/runtime/primitives	        /v3/concepts/runtime/#core-primitives   301!
+/docs/en/knowledgebase/runtime/tests	            /v3/runtime/testing/                    301!
+/docs/en/knowledgebase/runtime/origin	            /v3/runtime/origins/                    301!
+/docs/en/knowledgebase/runtime/pallets	          /v3/runtime/frame/#pallets           301!
+/docs/en/knowledgebase/runtime/*                  /v3/runtime/:splat                      301!
+
+### Knowledge Base: Smart Contract
+/docs/en/knowledgebase/smart-contracts                      /v3/runtime/smart-contracts/                    301!
+/docs/en/knowledgebase/smart-contracts/contracts-pallet	    /v3/runtime/frame/#contracts                    301!             
+/docs/en/knowledgebase/smart-contracts/evm-pallet	          /v3/runtime/smart-contracts/#evm-pallet         301!
+/docs/en/knowledgebase/smart-contracts/faq	                /v3/runtime/smart-contracts/#faq                301!
+/docs/en/knowledgebase/smart-contracts/	                    /v3/runtime/smart-contracts/                    301!
+/docs/en/knowledgebase/smart-contracts/ink-development	    /v3/runtime/smart-contracts/#contracts-pallet   301!
+/docs/en/knowledgebase/smart-contracts/ink-fundamentals	    /v3/runtime/smart-contracts/#contracts-pallet   301!
+/docs/en/knowledgebase/smart-contracts/overview	            /v3/runtime/smart-contracts/                    301!
+
+### Knowledge Base: Integrate
+/docs/en/knowledgebase/integrate/chain-spec         /v3/runtime/chain-specs/            301!
+/docs/en/knowledgebase/integrate/libraries          /v3/integration/client-libraries/   301!
+/docs/en/knowledgebase/integrate/memory-profiling   /v3/tools/memory-profiling/         301!
+/docs/en/knowledgebase/integrate/polkadot-js        /v3/integration/polkadot-js/        301!
+/docs/en/knowledgebase/integrate/subkey             /v3/tools/subkey/                   301!
+
+### Knowledge Base: Advanced
+/docs/en/knowledgebase/advanced/codec         /v3/advanced/scale-codec                  301!
+/docs/en/knowledgebase/advanced/codec/        /v3/advanced/scale-codec                  301!
+/docs/en/knowledgebase/advanced/ss58-address-format   /v3/advanced/ss58                 301!
+/docs/en/knowledgebase/advanced/ss58-address-format/  /v3/advanced/ss58                 301!
+/docs/en/knowledgebase/advanced/no-hash-collections   /v3/advanced/hash-collections     301!
+/docs/en/knowledgebase/advanced/no-hash-collections/  /v3/advanced/hash-collections     301!
+/docs/en/knowledgebase/advanced/*             /v3/advanced/:splat                       301!
+/docs/low-level-data-formats                          /v3/advanced/scale-codec/         301!
+
+## Production: rustdocs
+/rustdocs/*          https://paritytech.github.io/substrate/:splat             200
+
+# ---------------
+# --- Others ----
+# ---------------
+
+# Generic Pages 
+/docs/zh-CN                           /                                                              301!
+/docs/zh-CN/*                         /                                                              301!
+/videos                               /                                                              301!
+/docs/en/contribute/help-translate    /v3/contribute/style-guide/                                    301!
+/en/community                         https://substrate.io/ecosystem/resources/community-resources/  301!
+/community                            https://substrate.io/ecosystem/resources/community-resources/  301!
+/newsletter	                          https://substrate.io/ecosystem/connect/newsletter/             301!
+/seminar	                          https://substrate.io/ecosystem/resources/seminar/              301!
+/terms	                              https://www.parity.io/terms/                                   301!
+/awesome-substrate                    https://substrate.io/ecosystem/resources/awesome-substrate/    301!

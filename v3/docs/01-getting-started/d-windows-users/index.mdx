@@ -1,7 +1,7 @@
 ---
 title: Getting Started on Windows
 slug: /v3/getting-started/windows-users
-version: 3.0 
+version: '3.0'
 section: docs
 category: getting started
 keywords:
@@ -30,17 +30,12 @@ If you do decide to try and use a Windows computer to _natively_ build Substrate
 2. Install Rust:
 
    - Detailed instructions are provided by the
-     [Rust Book](https://doc.rust-lang.org/book/ch01-01-installation.html#installing-rustup-on-windows).
+     [Rust Book](https://doc.rust-lang.org/book/ch01-01-installation.html#installing-rustup-on-windows)
+     and a quick reference is available at <https://rustup.rs/> .
 
      - Download from: https://www.rust-lang.org/tools/install.
-     - Run the installation file: `rustup-init.exe`.
-
-      <Message
-         type={`gray`}
-         title={`Note`}
-         text={`It shouldn't prompt you to install \`vs_buildtools\` since you did it in step 1.`}
-      />
-
+     - Run the installation file: `rustup-init.exe` for 32 or 64 bis as appropriate.
+       - It shouldn't prompt you to install \`vs_buildtools\` since you did it in step 1.
      - Choose "Default Installation."
      - To get started, you need Cargo's bin directory (`%USERPROFILE%\.cargo\bin`) in your PATH
        environment variable. Future applications will automatically have the correct environment,

@@ -6,7 +6,7 @@ import Icon from './Icon'
 // import { useLocalization } from 'gatsby-theme-i18n'
 
 interface DocsNavProps {
-  templateId: number
+  section: string
   sideNav: {
     name: string
     items: {
@@ -19,19 +19,12 @@ interface DocsNavProps {
   hashLink: string
 }
 
-export default function DocsNav({
-  templateId,
-  sideNav,
-  globalNav,
-  pathname,
-  hashLink,
-}: DocsNavProps) {
+export default function DocsNav({ section, sideNav, globalNav, pathname, hashLink }: DocsNavProps) {
   const intl = useIntl()
   const [isOpen, setIsOpen] = useState(false)
-
   return (
     <nav
-      className={`sticky top-16 mb-12 h-docNav ${
+      className={`sticky top-16 mb-12 h-[calc(100vh-100px)] ${
         isOpen ? `w-16 overflow-y-hidden` : `w-64 overflow-y-auto `
       }`}
     >
@@ -40,16 +33,16 @@ export default function DocsNav({
           className={`flex ${
             isOpen
               ? `transition-all transform duration-75 ease-in-out justify-start px-4`
-              : `transition-all transform duration-75 ease-in-out justify-between px-6`
+              : `transition-all transform duration-75 ease-in-out justify-between px-4`
           } items-center h-14 bg-substrateGray dark:bg-gray-700 mt-10 `}
         >
           <div className={`${isOpen && `hidden`}`}>
             <span className="font-bold">
-              {templateId === 0
+              {section === 'docs'
                 ? `${intl.formatMessage({ id: 'nav-docs' })}`
-                : templateId === 1
+                : section === 'tutorials'
                 ? `${intl.formatMessage({ id: 'nav-tutorials' })}`
-                : templateId === 2
+                : section === 'how to guides'
                 ? `${intl.formatMessage({ id: 'nav-how-to-guides' })}`
                 : null}
             </span>
@@ -85,10 +78,7 @@ export default function DocsNav({
           <div className="pt-2">
             {sideNav.map((section, index: number) => {
               const current = section.items.some(item => {
-                return (
-                  item.link === pathname.replace(/\/+$/, '') ||
-                  item.link === hashLink
-                )
+                return item.link === pathname || item.link === hashLink
               })
               return (
                 <SlideDownNav
@@ -103,31 +93,26 @@ export default function DocsNav({
           </div>
           <div>
             <hr className="mt-6" />
-            <div className="flex items-center justify-between px-20 lg:px-6 py-4">
+            <div className="flex items-center justify-between px-20 lg:px-4 py-4">
               <span>{intl.formatMessage({ id: 'docs-nav-learn-more' })}</span>
             </div>
-            {globalNav
-              .filter((navItem, index) => templateId != index)
-              .map((navItem, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="px-20 lg:px-6 py-4 lg:dark:bg-substrateDark"
-                  >
-                    <Link to={navItem.url}>
-                      <div className="flex items-center justify-between hover:no-underline">
-                        <div className="font-medium text-substrateDark dark:text-white">
-                          {navItem.section}
-                        </div>
-                        <Icon
-                          name="arrowDown"
-                          className="fill-current text-substrateDark dark:text-white transform -rotate-90"
-                        />
+            {globalNav.map((navItem, index) => {
+              return (
+                <div key={index} className="px-20 lg:px-4 py-4 lg:dark:bg-substrateDark">
+                  <Link to={navItem.url}>
+                    <div className="flex items-center justify-between hover:no-underline">
+                      <div className="font-medium text-substrateDark dark:text-white">
+                        {navItem.section}
                       </div>
-                    </Link>
-                  </div>
-                )
-              })}
+                      <Icon
+                        name="arrowDown"
+                        className="fill-current text-substrateDark dark:text-white transform -rotate-90"
+                      />
+                    </div>
+                  </Link>
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>

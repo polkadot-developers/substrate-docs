@@ -2,6 +2,47 @@ import React, { useContext } from 'react'
 import { LocalizedLink } from 'gatsby-theme-i18n'
 import { ThemeContext } from '../contexts/ThemeContext'
 
+const addTrailingSlash = (uri: string) => {
+  const addSlash = (uri: string) => {
+    uri += uri.endsWith('/') ? '' : '/'
+    return uri
+  }
+
+  const removeSlash = (uri: string) => {
+    return uri.replace(/\/$/, '')
+  }
+
+  const getHash = (uri: string) => {
+    if (uri.indexOf('#') > 0) {
+      return uri.substring(uri.indexOf('#'), uri.length)
+    }
+    return ''
+  }
+
+  const getSearch = (uri: string) => {
+    if (uri.indexOf('?') > 0) {
+      return uri.substring(uri.indexOf('?'), uri.length)
+    }
+    return ''
+  }
+
+  // eg: http://localhost:8001/playground/?deploy=node-template#config
+  // remove back slash if exist
+  uri = removeSlash(uri)
+  // store hash if exist and remove from uri
+  const hash = getHash(uri)
+  if (hash) uri = uri.replace(hash, '')
+  // remove back slash if exist
+  uri = removeSlash(uri)
+  // store search query if exist and remove from uri
+  const search = getSearch(uri)
+  if (search) uri = uri.replace(search, '')
+  // add slash if missing
+  uri = addSlash(uri)
+
+  return uri + search + hash
+}
+
 interface InfraLinkProps {
   to: string
   children: React.ReactNode
@@ -13,11 +54,15 @@ const InfraLink = ({ to, children, className }: InfraLinkProps) => {
 
   const handleClick = (e: React.FormEvent<EventTarget>, to: string) => {
     e.preventDefault()
-    window.location.href = to + `?mode=${colorMode}`
+    window.location.href = addTrailingSlash(to) + `?mode=${colorMode}`
   }
 
   return (
-    <a href={to} onClick={e => handleClick(e, to)} className={className}>
+    <a
+      href={addTrailingSlash(to)}
+      onClick={e => handleClick(e, to)}
+      className={className}
+    >
       {children}
     </a>
   )
@@ -26,7 +71,7 @@ const InfraLink = ({ to, children, className }: InfraLinkProps) => {
 interface LinkProps {
   to: string
   children: React.ReactNode
-  className: string
+  className?: string
 }
 
 export default function Link({ to, children, className }: LinkProps) {
@@ -52,7 +97,7 @@ export default function Link({ to, children, className }: LinkProps) {
     )
   } else {
     return (
-      <LocalizedLink to={to} className={className}>
+      <LocalizedLink to={addTrailingSlash(to)} className={className}>
         {children}
       </LocalizedLink>
     )
@@ -74,3 +119,5 @@ const testExternalLink = (href: string) => {
   const match = regex.test(href)
   return match
 }
+
+export { testExternalLink, testInfraLink }

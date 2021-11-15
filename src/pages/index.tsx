@@ -11,7 +11,7 @@ import { StaticImage } from 'gatsby-plugin-image'
 import { SecondaryButton } from '../components/Buttons'
 import ExploreDocs from '../components/layout/homepage/ExploreDocs'
 import * as animationData from '../images/animations/dev-hero.json'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import Link from '../components/Link'
 import ExploreLinkSection from '../components/layout/homepage/ExploreLinkSection'
 
 export default function Index() {
@@ -32,7 +32,7 @@ export default function Index() {
               comes with peer-to-peer networking, consensus mechanisms, and much
               more.
             </p>
-            <PrimaryFixedButton hero link="/v3">
+            <PrimaryFixedButton hero link="/v3/">
               Get Started
             </PrimaryFixedButton>
           </div>
@@ -82,18 +82,18 @@ export default function Index() {
               Substrate developer knowledge base
             </h4>
           </div>
-          <div className="grid grid-cols-1 gap-10 lg:gap-0 lg:flex flex-col lg:flex-row z-10">
+          <div className="grid grid-cols-1 gap-10 lg:gap-0 lg:flex flex-col lg:flex-row lg:justify-between z-10">
             <DocCard
               title={`Documentation`}
               text={`Discover the principles and design decisions that Substrate is built on. Read about its key features and capabilties as well as the specific skills needed to be an effective Substrate blockchain developer.`}
-              link={`/v3`}
+              link={`/v3/`}
               cta={`Get started`}
               iconName={`docsIcon`}
             />
             <DocCard
               title={`How-To Guides`}
               text={`The Substrate how-to guides have everything you need to produce robust Substrate based blockchains. From beginner to expert, you can use them flexibly to suit your current needs.`}
-              link={`/how-to-guides`}
+              link={`/how-to-guides/`}
               cta={`Learn and contribute`}
               iconName={`htgIcon`}
               animationDelay={200}
@@ -101,7 +101,7 @@ export default function Index() {
             <DocCard
               title={`Tutorials`}
               text={`Create your first Substrate chain, perform a forkless upgrade, and more. This selection of tutorials will lead you through the process in sessions of up to two hours.`}
-              link={`/tutorials`}
+              link={`/tutorials/`}
               cta={`Dive in`}
               iconName={`tutsIcon`}
               animationDelay={400}
@@ -129,7 +129,7 @@ export default function Index() {
             </p>
             <div className="my-8">
               <button className="duration-150 ease-in hover:opacity-50">
-                <LocalizedLink
+                <Link
                   className="flex items-center"
                   to="/playground/?deploy=node-template#config"
                 >
@@ -140,10 +140,10 @@ export default function Index() {
                   <div className="text-xl ml-4 font-extrabold">
                     Node Playground
                   </div>
-                </LocalizedLink>
+                </Link>
               </button>
               <button className="block mt-8 mb-16 duration-150 ease-in hover:opacity-50">
-                <LocalizedLink
+                <Link
                   className="flex items-center"
                   to="/playground/?deploy=front-end-template#config"
                 >
@@ -154,10 +154,10 @@ export default function Index() {
                   <div className="text-xl ml-4 font-extrabold text-left">
                     Front-End Template Playground
                   </div>
-                </LocalizedLink>
+                </Link>
               </button>
             </div>
-            <SecondaryButton cta link="/playground">
+            <SecondaryButton cta link="/playground/">
               Explore Playground
             </SecondaryButton>
           </div>
@@ -165,14 +165,14 @@ export default function Index() {
             data-aos="fade-left"
             className="hidden lg:flex justify-center lg:w-1/2"
           >
-            <LocalizedLink to="/playground">
+            <Link to="/playground/">
               <StaticImage
                 backgroundColor="transparent"
                 src="../images/playground-hero.png"
                 alt="Substrate Playground"
                 layout="constrained"
               />
-            </LocalizedLink>
+            </Link>
           </div>
         </div>
       </Section>

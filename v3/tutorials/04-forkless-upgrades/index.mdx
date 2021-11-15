@@ -2,14 +2,15 @@
 title: Initiate a Forkless Runtime Upgrade
 slug: /tutorials/v3/forkless-upgrades
 hideNav: true
-version: 3.0 
+version: '3.0'
+sideNav: forklessUpgrades
 section: tutorials
 category: forkless upgrades
 keywords: runtime upgrades, forkless, schedular pallet
 difficulty: 1
 duration: 2 Hour
-relevantSkills: 
-  - Rust 
+relevantSkills:
+  - Rust
   - Blockchain basics
   - FRAME
   - Wasm
@@ -38,10 +39,10 @@ This tutorial will use the Substrate Developer Hub
 [Node Template](https://github.com/substrate-developer-hub/substrate-node-template) to explore two
 mechanisms for forkless upgrades of [FRAME](/v3/runtime/frame)-based runtimes.
 First, the
-[`sudo_unchecked_weight`](/rustdocs/latest/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
+[`sudo_unchecked_weight`](/rustdocs/latest/pallet_sudo/pallet/enum.Call.html#variant.sudo_unchecked_weight)
 function from the [Sudo pallet](/v3/runtime/frame#sudo) will be used to perform an
 upgrade that adds the [Scheduler pallet](/v3/runtime/frame#scheduler). Then, the
-[`schedule`](/rustdocs/latest/pallet_scheduler/enum.Call.html#variant.schedule)
+[`schedule`](/rustdocs/latest/pallet_scheduler/pallet/enum.Call.html#variant.schedule)
 function from the Scheduler pallet will be used to perform an upgrade that increases the
 [existential (minimum) balance](/v3/getting-started/glossary#existential-deposit)
 for network accounts.
@@ -57,8 +58,7 @@ create an Issue.
 <Message
   type={`yellow`}
   title={`Information`}
-  text=
-    "Please do note that your problem may already solved on Stackoverflow or Subport
+  text="Please do note that your problem may already solved on Stackoverflow or Subport
     do a search first for keywords in your error messages and concepts, and if you found them useful
     as well, comment to let us know that it\'s a common issue to escalate for a fix.
     "
@@ -82,7 +82,7 @@ create an Issue.
 
 ## What You Will Be Doing
 
-Before we even get started, let's layout what we are going to do over the course of this turorial. We will:
+Before we even get started, let's layout what we are going to do over the course of this tutorial. We will:
 
 <TutorialObjective
   data={{
@@ -93,20 +93,20 @@ Before we even get started, let's layout what we are going to do over the course
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '2. Schedule a runtime upgrade.',
+    textLineOne: '2. Schedule a runtime upgrade.',
     url: '/tutorials/v3/forkless-upgrades#schedule-an-upgrade',
   }}
 />
 
 ## Learning outcomes
+
 - Understand some basic governance features in Substrate chains
 - Gain experience with how a Substrate chain can upgrade it's runtime
-- Learn how to use the schedular pallet in your runtime 
+- Learn how to use the schedular pallet in your runtime
 
 ## Sudo Upgrade
 
-This part of the tutorial will step you through launching a Substrate chain and initiating a simple 
+This part of the tutorial will step you through launching a Substrate chain and initiating a simple
 runtime upgrade using the [Sudo pallet](/v3/runtime/frame#sudo).
 
 ### Start the Template Node
@@ -119,11 +119,11 @@ unmodified [Node Template](https://github.com/substrate-developer-hub/substrate-
 cargo run --release -- --dev --tmp
 ```
 
+<br />
 <Message
   type={`green`}
   title={`Tip`}
-  text=
-	"**Leave this node running!** Notice that the node will not be restarted as part of this tutorial
+  text="**Leave this node running!** Notice that the node will not be restarted as part of this tutorial
 	despite the fact that two runtime upgrades are performed.
 	You will be editing and re-compiling the node\'s runtime code, but _do not_ stop and restart the
 	node to prove to yourself that the runtime upgrade is in fact done on an _active_ (dev) network,
@@ -152,8 +152,7 @@ intentionally designed to consume the maximum weight that may fit in a block.
 <Message
   type={`yellow`}
   title={`Information`}
-  text=
-	"The runtime upgrade should consume the entire block to avoid extrinsics trying to execute
+  text="The runtime upgrade should consume the entire block to avoid extrinsics trying to execute
 	on a different version of a runtime when called. Although theoretically one may be able to 
 	use [transaction priority](/v3/concepts/tx-pool#transaction-priority)
 	and carefully study the FRAME logic involved to allow for other extrinsics to be dispatched 
@@ -163,7 +162,7 @@ intentionally designed to consume the maximum weight that may fit in a block.
 	"
 />
 
-The [`set_code` function](/rustdocs/latest/src/frame_system/lib.rs.html#329-337)'s
+The [`set_code` function](/rustdocs/latest/src/frame_system/lib.rs.html#345-352)'s
 weight annotation also specifies that the extrinsic call is in
 [the `Operational` class](/v3/runtime/weights-and-fees#operational-dispatches) of dispatchable
 function, which identifies it as relating to network _operations_ and impacts the accounting of its
@@ -203,7 +202,7 @@ fn sudo(origin, call) -> Result {
 #### `sudo` to Override Resource Accounting
 
 In order to work around resource accounting within FRAME's safeguards, the Sudo pallet provides the
-[`sudo_unchecked_weight`](/rustdocs/latest/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
+[`sudo_unchecked_weight`](/rustdocs/latest/pallet_sudo/pallet/enum.Call.html#variant.sudo_unchecked_weight)
 function, which provides the same capability as the `sudo` function, but accepts an additional
 parameter that is used to specify the (possibly zero) weight to use for the call. The
 `sudo_unchecked_weight` function is what will be used to invoke the runtime upgrade in this section
@@ -226,7 +225,11 @@ First, add the Scheduler pallet as a dependency in the template node's runtime C
 **`runtime/Cargo.toml`**
 
 ```toml
-pallet-scheduler = { default-features = false, version = '3.0.0' }
+   [dependencies.pallet-scheduler]
+   default-features = false
+   git = 'https://github.com/paritytech/substrate.git'
+   tag = 'monthly-2021-10'
+   version = '4.0.0-dev'
 
 #--snip--
 
@@ -244,13 +247,13 @@ Next, add the pallet to the runtime:
 **`runtime/src/lib.rs`**
 
 ```rust
-/// Define the types required by the Scheduler pallet.
+// Define the types required by the Scheduler pallet.
 parameter_types! {
 	pub MaximumSchedulerWeight: Weight = 10_000_000;
 	pub const MaxScheduledPerBlock: u32 = 50;
 }
 
-/// Configure the runtime's implementation of the Scheduler pallet.
+// Configure the runtime's implementation of the Scheduler pallet.
 impl pallet_scheduler::Config for Runtime {
 	type Event = Event;
 	type Origin = Origin;
@@ -270,7 +273,7 @@ construct_runtime!(
 		UncheckedExtrinsic = UncheckedExtrinsic
 	{
 		/*** snip ***/
-		Scheduler: pallet_scheduler::{Module, Call, Storage, Event<T>},
+		Scheduler: pallet_scheduler::{Pallet, Call, Storage, Event<T>},
 	}
 );
 ```
@@ -325,11 +328,11 @@ by runtime logic.
 cargo build --release -p node-template-runtime
 ```
 
+<br />
 <Message
   type={`yellow`}
   title={`Information`}
-  text=
-	  "Here is a
+  text="Here is a
 	  [solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/runtime-upgrade-v3)
 	  to check against in case you\'re stuck. See the `diff` in the commit history for details.
 	  "
@@ -357,8 +360,7 @@ local node: https://polkadot.js.org/apps/#/extrinsics?rpc=ws://127.0.0.1:9944.
 <Message
   type={`green`}
   title={`Tip`}
-  text=
-	  "Some ad blockers and browser restrictions (e.g. the built-in Shield in Brave browser, and https 
+  text="Some ad blockers and browser restrictions (e.g. the built-in Shield in Brave browser, and https 
 	  requirement for socket connection in Firefox) interfere with connecting to a local node. Make sure 
 	  to check them and, if needed, turn them off. You may not get connecting from a remote IP (like `polkadot.js.org/apps/`) 
 	  to a local node working. If you are unable to solve this, we encourage you to 
@@ -390,11 +392,10 @@ Next up, we will:
 1. Upgrade your runtime version
 2. Use the Schedular pallet to schedule your runtime upgrade on your running chain
 
-
 ## Schedule an Upgrade
 
 Now that the Node Template has been upgraded to include the Scheduler pallet,
-[the `schedule` function](/rustdocs/latest/pallet_scheduler/enum.Call.html#variant.schedule)
+[the `schedule` function](rustdocs/latest/pallet_scheduler/pallet/enum.Call.html#variant.schedule)
 can be used to perform the next runtime upgrade. In the previous part, the
 `sudo_unchecked_weight` function was used to override the weight associated with the `set_code`
 function; in this section, the runtime upgrade will be _scheduled_ so that it can be processed as
@@ -434,8 +435,7 @@ minimum balance needed to keep an account alive from the point-of-view of the Ba
 <Message
   type={`yellow`}
   title={`Information`}
-  text=
-	  "Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000
+  text="Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000
 	  to be reaped - that would require a
 	  [storage migration](/v3/runtime/upgrades#storage-migrations), which is out of
 	  scope for this tutorial.
@@ -448,11 +448,11 @@ minimum balance needed to keep an account alive from the point-of-view of the Ba
 cargo build --release -p node-template-runtime
 ```
 
+<br />
 <Message
   type={`gray`}
   title={`Note`}
-  text=
-	  "This will _override_ any privous build artifacts! So if you want to have a copy on hand of 
+  text="This will _override_ any previous build artifacts! So if you want to have a copy on hand of
 	  your last runtime Wasm build files, be sure to copy them somewhere else.
 	  "
 />
@@ -474,7 +474,7 @@ blocks (1 minute) in the future to fill in the `when` parameter and quickly subm
 
 You can use the template node's command line output or the
 [Polkadot JS Apps UI block explorer](https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944)
-to watch as this scheuled call takes place.
+to watch as this scheduled call takes place.
 
 ![Scheduled Success Runtime Upgrade Version 102](../../../src/images/tutorials/04-forkless-upgrade/scheduled-upgrade-success.png)
 

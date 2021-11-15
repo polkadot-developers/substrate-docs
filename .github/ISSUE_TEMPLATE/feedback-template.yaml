@@ -1,44 +1,29 @@
-name: Feedback template
-description: Submit your feedback to help us improve.
-title: "[Feedback Submission]: "
-labels: ["feedback"]
+name: Feedback Form
+description: Submit your feedback to help us improve!
+labels: ['feedback 📝']
 body:
   - type: markdown
     attributes:
       value: |
-        Thank you for taking the time to submit your feedback. Please fill in the sections below and hit the "Submit new issue" button when you're done.
-  - type: textarea
-    id: symptom
+        Thank you so much for taking the time to submit your feedback!
+  - type: dropdown
+    id: browsers
     attributes:
-      label: Symptom
-      description: Did something go wrong or do you have a suggestion for improving our site?
-      placeholder: Describe what you saw or experienced.
-    validations:
-      required: true
-  - type: textarea
-    id: behaviour
-    attributes:
-      label: Expected behavior
-      description: Describe what you expected to see or to have happened.
-      placeholder: Or if something delighted you, we'd love to know that, too :).
-    validations:
-      required: true
-  - type: textarea
-    id: steps
-    attributes:
-      label: Steps to reproduce
-      description: Provide the steps that led to the discovery of the issue. 
-      placeholder: If something went wrong, we want to fix it!
-    validations:
-      required: true
-  - type: textarea
-    id: action
-    attributes:
-      label: Recommended course of action (optional)
-      description: If you have a suggestion for fixing the issue you found, describe what you think the fix should be.
-      placeholder: Clear steps and URL references are always helpful here. 
+      label: What browsers are you seeing the problem on?
+      multiple: true
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
+        - Other (please write below)
     validations:
       required: false
-  - type: markdown
+  - type: textarea
+    id: feedback
     attributes:
-      value: "Thanks for completing our form!"
+      label: Feedback
+      description: Did something go wrong or do you have a suggestion for improving this site?
+      placeholder: Describe what you would like to see changed.
+    validations:
+      required: true
