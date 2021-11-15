@@ -81,7 +81,6 @@ Use a nonce to serve as a subject for the `frame_support::traits::Randomness::ra
         // Random value.
         let nonce = Self::get_and_increment_nonce();
         let randomValue = T::MyRandomness::random(&nonce);
-
         // Write the random value to storage.
         <MyStorageItem<T>>::put(randomValue);
 

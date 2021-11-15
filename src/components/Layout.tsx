@@ -18,6 +18,7 @@ import {
 } from './DocsComponents'
 import Header from './Header/Header'
 import Footer from './Footer'
+import Banner from './Banner'
 
 const components = {
   a: MdxLink,
@@ -45,6 +46,7 @@ const Layout = ({ children }: any) => {
 
   return (
     <React.Fragment>
+      <Banner />
       <Header />
       <main className="main-container">
         <MDXProvider components={components}>{children}</MDXProvider>
