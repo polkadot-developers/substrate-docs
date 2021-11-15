@@ -2,18 +2,19 @@
 title: Create your first Substrate blockchain
 slug: /tutorials/v3/create-your-first-substrate-chain
 hideNav: true
-version: 3.0 
+version: '3.0'
+sideNav: firstChain
 section: tutorials
 category: substrate chain
 keywords: node template, basics
 difficulty: 1
 duration: 1 Hour
-relevantSkills: 
-  - Rust 
+relevantSkills:
+  - Rust
   - Blockchain basics
 ---
 
-Blockchain software enables individual computers—called nodes—to communicate with each other to form a decentralized peer-to-peer (P2P) network. 
+Blockchain software enables individual computers—called nodes—to communicate with each other to form a decentralized peer-to-peer (P2P) network.
 To ensure the security of the data on the chain and the ongoing progress of the chain, the nodes use some form of consensus to agree on the state of data in each block of data and the order in which the blocks are processed.
 
 ## What is a blockchain node?
@@ -21,41 +22,41 @@ To ensure the security of the data on the chain and the ongoing progress of the 
 At a high level, a blockchain node consists of the following key components:
 
 - [Storage](/v3/advanced/storage)
-- <ExternalLink url="https://libp2p.io">Peer-to-peer networking</ExternalLink>
+- [Peer-to-peer networking](https://libp2p.io)
 - [Consensus capabilities](/v3/advanced/consensus)
 - Data handling capabilities for external or ["extrinsic"](/v3/concepts/extrinsics) information
 - A [Runtime](/v3/concepts/runtime)
 
-Because of the complexity involved in building these components, most blockchain projects are forked from an existing blockchain project. 
+Because of the complexity involved in building these components, most blockchain projects are forked from an existing blockchain project.
 For example, the Bitcoin repository was forked to create: Litecoin, ZCash, Namecoin, and Bitcoin Cash. Similarly, the Ethereum repository was forked to create Quorum, POA Network, KodakCoin, and Musicoin.
 
 ![Blockchain Forks](../../../src/images/tutorials/01-create-your-first-chain/forks.png)
 
-However, the existing blockchain platforms were not designed to allow for modification. 
+However, the existing blockchain platforms were not designed to allow for modification.
 As a result, building a new blockchain by forking has serious limitations.
 
 ## What is Substrate?
 
 Substrate is an open source, modular, and extensible framework for building blockchains.
 
-Substrate has been designed from the ground up to be flexible and allow innovators to design and build a blockchain network that meets their needs. 
+Substrate has been designed from the ground up to be flexible and allow innovators to design and build a blockchain network that meets their needs.
 It provides all the core components you need to build a customized blockchain node.
 
-To get you started, the Substrate Developer Hub provides an out-of-the-box working Substrate-based node template. 
+To get you started, the Substrate Developer Hub provides an out-of-the-box working Substrate-based node template.
 Without making any changes, you can use this node template to create a working blockchain network with some predefined user accounts and funds.
 
 ## Get started
 
-The first step in becoming a blockchain developer is to learn how to compile and launch a single local blockchain node. 
-In this tutorial, you build and start a single node blockchain using a node template. 
+The first step in becoming a blockchain developer is to learn how to compile and launch a single local blockchain node.
+In this tutorial, you build and start a single node blockchain using a node template.
 After you start your new blockchain, you can use the Substrate Developer Hub front-end template to view information about blockchain activity and submit a transaction.
 
 ### Who is this tutorial for?
 
-This tutorial provides a basic introduction to Substrate and prepares a minimal working development environment that you can use to explore further in additional tutorials. 
-It is intended for anyone interested in learning about Substrate and blockchain development. 
+This tutorial provides a basic introduction to Substrate and prepares a minimal working development environment that you can use to explore further in additional tutorials.
+It is intended for anyone interested in learning about Substrate and blockchain development.
 The tutorial assumes you have no prior experience or knowledge of Substrate.
-You don't need any programming or blockchain experience to complete this tutorial. 
+You don't need any programming or blockchain experience to complete this tutorial.
 This is just the first step, but hopefully, it inspires you to continue your journey.
 
 ### How much time do you need to complete this tutorial?
@@ -100,7 +101,7 @@ By completing this tutorial, you will accomplish the following objectives:
 
 ## Install required packages
 
-Substrate development is easiest on UNIX-based operating systems like macOS or Linux. If you are using Microsoft Windows, 
+Substrate development is easiest on UNIX-based operating systems like macOS or Linux. If you are using Microsoft Windows,
 refer to [the Windows installation page](/v3/getting-started/windows-users).
 
 To install required packages on macOS or Linux:
@@ -109,70 +110,69 @@ To install required packages on macOS or Linux:
 
 1. Locate your operating system in the following table and run the appropriate commands for your development environment.
 
-  | OS | Installation commands
-  | ------------------------- | --------------------------
-  | Ubuntu or Debian | `sudo apt update && sudo apt install -y git clang curl libssl-dev llvm libudev-dev`
-  | Arch Linux | `pacman -Syu --needed --noconfirm curl git clang`
-  | Fedora | `sudo dnf update sudo dnf install clang curl git openssl-devel`
-  | OpenSUSE | `sudo zypper install clang curl git openssl-devel llvm-devel libudev-devel`
-  | macOS | `brew update && brew install openssl`
-  | Windows | Refer to this [installation guide](/v3/getting-started/windows-users).
+| OS               | Installation commands                                                               |
+| ---------------- | ----------------------------------------------------------------------------------- |
+| Ubuntu or Debian | `sudo apt update && sudo apt install -y git clang curl libssl-dev llvm libudev-dev` |
+| Arch Linux       | `pacman -Syu --needed --noconfirm curl git clang`                                   |
+| Fedora           | `sudo dnf update sudo dnf install clang curl git openssl-devel`                     |
+| OpenSUSE         | `sudo zypper install clang curl git openssl-devel llvm-devel libudev-devel`         |
+| macOS            | `brew update && brew install openssl`                                               |
+| Windows          | Refer to this [installation guide](/v3/getting-started/windows-users).              |
 
-  If you are using macOS and do not have Homebrew installed, run the following command to install Homebrew:
-  
-  ``` 
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-  ```
-  
-  After installing Homebrew, run `brew install openssl`.
+If you are using macOS and do not have Homebrew installed, run the following command to install Homebrew:
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+```
+
+After installing Homebrew, run `brew install openssl`.
 
 ## Install Rust and the Rust toolchain
 
 To install and configure Rust manually:
 
 1. Install `rustup` by running the following command:
-  
-  ```
-  curl https://sh.rustup.rs -sSf | sh
-  ```
+
+```
+curl https://sh.rustup.rs -sSf | sh
+```
 
 1. Configure your current shell to reload your PATH environment variable so that it includes the Cargo `bin` directory by running the following command:
-  
-  ```
-  source ~/.cargo/env
-  ```
+
+```
+source ~/.cargo/env
+```
 
 1. Configure the Rust toolchain to default to the latest `stable` version by running the following commands:
-  
-  ```
-  rustup default stable
-  rustup update
-  ```
+
+```
+rustup default stable
+rustup update
+```
 
 1. Add the `nightly` release and the `nightly` WebAssembly (`wasm`) targets by running the following commands:
-  
-  ```
-  rustup update nightly
-  rustup target add wasm32-unknown-unknown --toolchain nightly
-  ```
+
+```
+rustup update nightly
+rustup target add wasm32-unknown-unknown --toolchain nightly
+```
 
 1. Verify your installation by running the following commands:
-  
-  ```
-  rustc --version
-  rustup show
-  ```
 
-    The previous steps walked you through the installation and configuration of Rust and the Rust toolchain so that you could see the full process for yourself. 
+```
+rustc --version
+rustup show
+```
 
-    It is also possible to automate the steps using a script. 
+    The previous steps walked you through the installation and configuration of Rust and the Rust toolchain so that you could see the full process for yourself.
+
+    It is also possible to automate the steps using a script.
     If you want to try installing and configuring Rust using a script, see the [`getsubstrate`](https://getsubstrate.io) automation script.
-  
 
 ## Set up a development environment
 
-After you install the required packages and the Rust compiler and toolchain, you are ready to set up a development environment on your local computer. 
-You could build a development environment manually using the tools of your choice, but the Substrate Developer Hub has templates to get you started. 
+After you install the required packages and the Rust compiler and toolchain, you are ready to set up a development environment on your local computer.
+You could build a development environment manually using the tools of your choice, but the Substrate Developer Hub has templates to get you started.
 After you set up the development environment, you can use it in subsequent tutorials as you learn more about building on Substrate.
 
 ## Prepare a Substrate node using the Node Template
@@ -184,23 +184,23 @@ To compile the Substrate Node Template:
 
 1. Clone the node template repository using the version `latest` branch by running the following command:
 
-    ```
-    git clone -b latest --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
-    ```
+   ```
+   git clone -b latest --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+   ```
 
 1. Change to the root of the node template directory by running the following command:
 
-    ```
-    cd substrate-node-template
-    ```
+   ```
+   cd substrate-node-template
+   ```
 
 1. Compile the node template by running the following command:
 
-    ```
-    cargo build --release
-    ```
-    
-    You should always use the `--release` flag to build optimized artifacts.
+   ```
+   cargo build --release
+   ```
+
+   You should always use the `--release` flag to build optimized artifacts.
 
 ### Install the Front-end template
 
@@ -213,43 +213,43 @@ To install the Front-end Template:
 
 1. Check whether `node` is installed on your local computer by running the following command:
 
-    ```
-    node --version
-    ```
-    
-    If the command doesn’t return a version number, download and install `node` by following the
-    instructions for the operating system you use on the [Node.js](https://nodejs.org/) website.
-    Node version should be at least **v14** to run the Front-end Template.
+   ```
+   node --version
+   ```
+
+   If the command doesn’t return a version number, download and install `node` by following the
+   instructions for the operating system you use on the [Node.js](https://nodejs.org/) website.
+   Node version should be at least **v14** to run the Front-end Template.
 
 1. Check whether `yarn` is installed on your local computer by running the following command:
 
-    ```
-    yarn --version
-    ```
-    
-    If the command doesn’t return a version number, download and install `yarn` by running the following command:
+   ```
+   yarn --version
+   ```
 
-    ```
-    npm install -g yarn
-    ```
+   If the command doesn’t return a version number, download and install `yarn` by running the following command:
+
+   ```
+   npm install -g yarn
+   ```
 
 1. Clone the Front-end Template repository by running the following command:
 
-    ```
-    git clone -b latest --depth 1 https://github.com/substrate-developer-hub/substrate-front-end-template
-    ```
+   ```
+   git clone -b latest --depth 1 https://github.com/substrate-developer-hub/substrate-front-end-template
+   ```
 
 1. Change to the root of the front-end template directory by running the following command:
 
-    ```
-    cd substrate-front-end-template
-    ```
+   ```
+   cd substrate-front-end-template
+   ```
 
 1. Install the dependencies for the front-end template by running the following command:
 
-    ```
-    yarn install
-    ```
+   ```
+   yarn install
+   ```
 
 ## Start the blockchain node and explore
 
@@ -265,50 +265,50 @@ To start the local Substrate node:
 
 1. Start the node in development mode by running the following command:
 
-    ```
-    ./target/release/node-template --dev --tmp
-    ```
-    
-    The `node-template` command-line options specify how you want the running node to operate.
-    In this case, the options specify the following:
+   ```
+   ./target/release/node-template --dev --tmp
+   ```
 
-    - The `--dev` option specifies that the node is run as a developer node chain specification.
+   The `node-template` command-line options specify how you want the running node to operate.
+   In this case, the options specify the following:
 
-    - The `--tmp` option specifies that the node will delete all active data—such as keys,
-    blockchain database, and networking information when you stop the node by pressing Control-c.
-    You can use `--tmp` option to ensure you have a clean working state any time you stop and
-    restart the node.
+   - The `--dev` option specifies that the node is run as a developer node chain specification.
+
+   - The `--tmp` option specifies that the node will delete all active data—such as keys,
+     blockchain database, and networking information when you stop the node by pressing Control-c.
+     You can use `--tmp` option to ensure you have a clean working state any time you stop and
+     restart the node.
 
 1. Verify your node is up and running successfully by reviewing the output displayed in the terminal.
 
-    The terminal should display output similar to this:
-    
-    ```
-    2021-03-16 10:56:51  Running in --dev mode, RPC CORS has been disabled.
-    2021-03-16 10:56:51  Substrate Node
-    2021-03-16 10:56:51  ✌️  version 3.0.0-8370ddd-x86_64-linux-gnu
-    2021-03-16 10:56:51  ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2021
-    2021-03-16 10:56:51  📋 Chain specification: Development
-    2021-03-16 10:56:51  🏷 Node name: few-size-5380
-    2021-03-16 10:56:51  👤 Role: AUTHORITY
-    2021-03-16 10:56:51  💾 Database: RocksDb at /tmp/substrateP1jD7H/chains/dev/db
-    2021-03-16 10:56:51  ⛓  Native runtime: node-template-100 (node-template-1.tx1.au1)
-    2021-03-16 10:56:51  🔨 Initializing Genesis block/state (state: 0x17df…04a0, header-hash: 0xc43b…ed16)
-    2021-03-16 10:56:51  👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
-    2021-03-16 10:56:51  ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
-    2021-03-16 10:56:51  Using default protocol ID "sup" because none is configured in the chain specs
-    2021-03-16 10:56:51  🏷 Local node identity is: 12D3KooWQdU84EJCqDr4aqfhb7dxXU2fzd6i2Rn1XdNtsiM5jvEC
-    2021-03-16 10:56:51  📦 Highest known block at #0
-    ...
-    ...
-    ...
-    2021-03-16 10:56:56  💤 Idle (0 peers), best: #2 (0x05bd…de3f), finalized #0 (0xc43b…ed16), ⬇ 0 ⬆ 0
-    ```
+   The terminal should display output similar to this:
 
-    If the number after `finalized` is increasing, your blockchain is producing new blocks and reaching consensus about the state they describe.
-    
-    We'll look into the details of what's reported in the log output in a later tutorial. 
-    For now, it's only important to know that your node is running and producing blocks.
+   ```
+   2021-03-16 10:56:51  Running in --dev mode, RPC CORS has been disabled.
+   2021-03-16 10:56:51  Substrate Node
+   2021-03-16 10:56:51  ✌️  version 3.0.0-8370ddd-x86_64-linux-gnu
+   2021-03-16 10:56:51  ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2021
+   2021-03-16 10:56:51  📋 Chain specification: Development
+   2021-03-16 10:56:51  🏷 Node name: few-size-5380
+   2021-03-16 10:56:51  👤 Role: AUTHORITY
+   2021-03-16 10:56:51  💾 Database: RocksDb at /tmp/substrateP1jD7H/chains/dev/db
+   2021-03-16 10:56:51  ⛓  Native runtime: node-template-100 (node-template-1.tx1.au1)
+   2021-03-16 10:56:51  🔨 Initializing Genesis block/state (state: 0x17df…04a0, header-hash: 0xc43b…ed16)
+   2021-03-16 10:56:51  👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
+   2021-03-16 10:56:51  ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
+   2021-03-16 10:56:51  Using default protocol ID "sup" because none is configured in the chain specs
+   2021-03-16 10:56:51  🏷 Local node identity is: 12D3KooWQdU84EJCqDr4aqfhb7dxXU2fzd6i2Rn1XdNtsiM5jvEC
+   2021-03-16 10:56:51  📦 Highest known block at #0
+   ...
+   ...
+   ...
+   2021-03-16 10:56:56  💤 Idle (0 peers), best: #2 (0x05bd…de3f), finalized #0 (0xc43b…ed16), ⬇ 0 ⬆ 0
+   ```
+
+   If the number after `finalized` is increasing, your blockchain is producing new blocks and reaching consensus about the state they describe.
+
+   We'll look into the details of what's reported in the log output in a later tutorial.
+   For now, it's only important to know that your node is running and producing blocks.
 
 1. Keep the terminal that displays the node output open to continue.
 
@@ -320,27 +320,27 @@ with the Substrate node and perform a few common tasks.
 To use the Front-end Template:
 
 1. Open a new terminal shell on your computer, change to the root directory where you installed the
-Front-end Template.
+   Front-end Template.
 
 1. Start the Front-end template by running the following command:
 
-    ```
-    yarn start
-    ```
+   ```
+   yarn start
+   ```
 
 1. Open **http://localhost:8000** in a browser to view the Front-end Template.
 
-    The top section has an Account selection list for selecting the account to work with when you
-    want to perform on-chain operations. The top section of the template also displays information
-    about the chain to which you're connected.
+   The top section has an Account selection list for selecting the account to work with when you
+   want to perform on-chain operations. The top section of the template also displays information
+   about the chain to which you're connected.
 
-    ![Front-end template top section](../../../src/images/tutorials/01-create-your-first-chain/blockchain-top.png)
+   ![Front-end template top section](../../../src/images/tutorials/01-create-your-first-chain/blockchain-top.png)
 
-    You might also notice that the Front-end Template displays a Balances table with some
-    predefined accounts and that a few of those accounts are preconfigured with funds.
-    You can use this sample data to try out operations like transferring funds.
+   You might also notice that the Front-end Template displays a Balances table with some
+   predefined accounts and that a few of those accounts are preconfigured with funds.
+   You can use this sample data to try out operations like transferring funds.
 
-    ![Predefined accounts and balances](../../../src/images/tutorials/01-create-your-first-chain/balances.png)
+   ![Predefined accounts and balances](../../../src/images/tutorials/01-create-your-first-chain/balances.png)
 
 ## Transfer funds from one account to another
 
@@ -354,33 +354,33 @@ To transfer funds to an account:
 
 1. In the Balances table, notice the predefined accounts—such as dave—that have no funds associated with them.
 
-    ![Locate an account with zero funds](../../../src/images/tutorials/01-create-your-first-chain/dave-account.png)
-    
-    Under the Balances table, the front-end template also displays a **Transfer** component. 
-    You use this component to transfer funds from one account to another.
+   ![Locate an account with zero funds](../../../src/images/tutorials/01-create-your-first-chain/dave-account.png)
+
+   Under the Balances table, the front-end template also displays a **Transfer** component.
+   You use this component to transfer funds from one account to another.
 
 1. Copy and paste the address for the **dave** account to specify the address to which you are transferring funds.
 
 1. Specify at least **1000000000000** as the amount to transfer, then click **Submit**.
 
-    ![Transfer funds to an account](../../../src/images/tutorials/01-create-your-first-chain/transfer-filled.png)
+   ![Transfer funds to an account](../../../src/images/tutorials/01-create-your-first-chain/transfer-filled.png)
 
 1. Notice that the values in Balances table is updated with the transfer.
 
-    ![Updated balance displayed](../../../src/images/tutorials/01-create-your-first-chain/balance-result.png)
+   ![Updated balance displayed](../../../src/images/tutorials/01-create-your-first-chain/balance-result.png)
 
 1. Check the **Events** component to see events related to the transfer you just completed.
 
-    The Substrate blockchain reports the result of asynchronous operations as events, so you can
-    use the Events components to see details about each operation performed as part of the transfer.
-    For example:
-    
-    ![Events recorded as results from asynchronous operations](../../../src/images/tutorials/01-create-your-first-chain/event-panel.png)
+   The Substrate blockchain reports the result of asynchronous operations as events, so you can
+   use the Events components to see details about each operation performed as part of the transfer.
+   For example:
+
+   ![Events recorded as results from asynchronous operations](../../../src/images/tutorials/01-create-your-first-chain/event-panel.png)
 
 1. When the transaction has been completed and included in a block, you see a confirmation message similar to the following:
 
-    😉 Finalized. Block hash: 0xda7e9e935abf5a3a2fdb0a27d67cd7a69e628165b5827255af2635ba226411a4
- 
+   😉 Finalized. Block hash: 0xda7e9e935abf5a3a2fdb0a27d67cd7a69e628165b5827255af2635ba226411a4
+
 ## Stop the local node
 
 After a successful transfer, you can continue to explore the front-end template components or
@@ -421,6 +421,6 @@ You can explore these components on your own or may interested to learn more abo
 
 If you've experienced any issues with this tutorial or wanted to provide feedback:
 
-- Ask questions on <ExternalLink url="https://stackoverflow.com/questions/tagged/substrate">Stack Overflow</ExternalLink> using the *substrate* tag.
+- Ask questions on [Stack Overflow tagged _substrate_](https://stackoverflow.com/questions/tagged/substrate).
 
-- Contact <ExternalLink url="https://matrix.to/#/#substrate-technical:matrix.org">Parity on Element</ExternalLink> .
+- Contact the [Substrate community on Element](https://matrix.to/#/#substrate-technical:matrix.org).

@@ -131,7 +131,10 @@
 
   "docs-nav-htg-weights": "Weights",
   "htg-weights-calculate-fees": "Calculating Fees",
-
+  "htg-weights-add-benchmarking": "Add Benchmarking to Your pallet",
+  "htg-weights-use-benchmarking": "Use Custom Weights from Benchmarking",
+  "htg-weights-conditional": "Create a Conditional Weighting Struct",
+  
   "docs-nav-htg-testing": "Testing",
   "htg-testing-basics": "Setting up Tests for Your Pallet",
   "htg-testing-transfer-function": "Testing a Transfer Function",
@@ -146,17 +149,15 @@
   "htg-consensus-hybrid": "Create a PoS-PoW Hybrid Node",
 
   "docs-nav-htg-parachains": "Parachains",
+  "htg-parachains-connect": "Connect to a Relay Chain",
+  "htg-parachains-collators": "Collator Selection",
+  "htg-parachains-pre-launch": "Pre-Launch Requirements",
   "htg-parachains-upgrade": "Runtime Upgrades",
-  "htg-parachains-setup": "Set-up your runtime and client",
-  "htg-parachains-register": "How to register your Parachain",
-  "htg-parachains-reserve": "How to reserve a ParaID",
-  "htg-parachains-collators": "Start a Collator Node",
-  "htg-parachains-rococo": "Start a testnet on Rococo",
 
   "docs-nav-htg-tools": "Tools",
-  "htg-tools-try-runtime": "Integrate try-runtime",
-  "htg-tools-txwrapper": "Create a `txwrapper` for a chain",
-  "htg-tools-sidecar": "Track Parachain auction winners using Sidecar",
+  "htg-tools-try-runtime": "Integrate Try Runtime",
+  "htg-tools-txwrapper": "Create a txwrapper for a chain",
+  "htg-tools-sidecar": "Track parachain auction winners using Sidecar",
 
   "tutorials-beginner": "beginner",
   "tutorials-intermediate": "intermediate",

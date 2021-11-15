@@ -1,7 +1,7 @@
 ---
 title: Runtime
 slug: /v3/concepts/runtime
-version: 3.0 
+version: '3.0'
 section: docs
 category: concepts
 keywords:
@@ -15,24 +15,25 @@ blockchain's [state](/v3/getting-started/glossary#state) as well as the
 [functions](/v3/concepts/extrinsics) that allow blockchain users to make
 changes to this state.
 
-![substrate-runtime-client](/img/docs/concepts/substrate-runtime-client.png)
+![substrate-runtime-client.png](../../../../src/images/docs/concepts/substrate-runtime-client.png)
 
-Each Substrate node contains a runtime. The runtime contains the business logic of the chain. It 
-defines what transactions are valid and invalid and determines how the chain's state changes in 
-response to transactions. The "outer node", everything other than the runtime, does not compile 
-to Wasm, only to native. The outer node is responsible for handling peer discovery, transaction 
-pooling, block and transaction gossiping, consensus, and answering RPC calls from the outside 
-world. While performing these tasks, the outer node sometimes needs to query the runtime for 
-information, or provide information to the runtime. A Runtime API facilitates this kind of 
-communication between the outer node and the runtime. 
+Each Substrate node contains a runtime. The runtime contains the business logic of the chain. It
+defines what transactions are valid and invalid and determines how the chain's state changes in
+response to transactions. The "outer node", everything other than the runtime, does not compile
+to Wasm, only to native. The outer node is responsible for handling peer discovery, transaction
+pooling, block and transaction gossiping, consensus, and answering RPC calls from the outside
+world. While performing these tasks, the outer node sometimes needs to query the runtime for
+information, or provide information to the runtime. A Runtime API facilitates this kind of
+communication between the outer node and the runtime.
 
 ## Runtime APIs
 
-In Substrate, the `sp_api` crate provides an interface to implement a runtime API. It is designed to give 
-developers the ability to define their own custom runtime APIs using the [`impl_runtime_apis`](/rustdocs/latest/sp_api/macro.impl_runtime_apis.html) 
-macro. However, every runtime must implement the [`Core`](/rustdocs/latest/sp_api/trait.Core.html) and 
+In Substrate, the `sp_api` crate provides an interface to implement a runtime API. It is designed to give
+developers the ability to define their own custom runtime APIs using the [`impl_runtime_apis`](/rustdocs/latest/sp_api/macro.impl_runtime_apis.html)
+macro. However, every runtime must implement the [`Core`](/rustdocs/latest/sp_api/trait.Core.html) and
 [`Metadata`](/rustdocs/latest/sp_api/trait.Metadata.html) runtime APIs. In addition to these, a basic Substrate Node
 has the following runtime APIs implemented:
+
 - [`BlockBuilder`](/rustdocs/latest/sp_block_builder/trait.BlockBuilder.html): Provides the functionality required for building a block.
 - [`TaggedTransactionQueue`](/rustdocs/latest/sp_transaction_pool/runtime_api/trait.TaggedTransactionQueue.html): Handles validating transactions in the transaction queue.
 - [`OffchainWorkerApi`](/rustdocs/latest/sp_offchain/trait.OffchainWorkerApi.html): Handles [off-chain capabilities](/v3/concepts/off-chain-features).
@@ -43,15 +44,14 @@ has the following runtime APIs implemented:
 - [`TransactionPaymentApi`](/rustdocs/latest/pallet_transaction_payment_rpc_runtime_api/trait.TransactionPaymentApi.html): Handles querying information about transactions.
 - [`Benchmark`](/rustdocs/latest/frame_benchmarking/trait.Benchmark.html): Provides a way to [benchmark](/v3/runtime/benchmarking) a FRAME runtime.
 
-
 In order to provide its defining forkless runtime upgrade capabilities, Substrate runtimes
 are built as [WebAssembly (Wasm)](/v3/getting-started/glossary#webassembly-wasm)
 bytecode. Substrate also defines the core primitives that the runtime must implement.
 
-## Core Primitives
+## Core primitives
 
 The Substrate framework makes minimal assumptions about what your runtime must provide to the other
-layers of Substrate. But there are a few data types need to be defined and must fulfill a particular
+layers of Substrate. But there are a few data types that need to be defined and must fulfill a particular
 interface in order to work within the Substrate framework.
 
 They are:
@@ -80,7 +80,7 @@ They are:
 - `BlockNumber`: A type which encodes the total number of ancestors any valid block has. Typically a
   32-bit quantity.
 
-## FRAME Primitives
+## FRAME primitives
 
 The core Substrate codebase ships with [FRAME](/v3/runtime/frame), Parity's system
 for Substrate runtime development that is used for chains like
@@ -121,9 +121,9 @@ Although a lot of core runtime development can be enabled with FRAME and
 its related primitives, FRAME is not the only system for developing
 Substrate based blockchains.
 
-## Next Steps
+## Next steps
 
-### Learn More
+### Learn more
 
 - Learn about the [Substrate FRAME](/v3/runtime/frame).
 - Follow a

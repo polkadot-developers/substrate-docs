@@ -2,7 +2,7 @@
 title: Setting up Tests for Your Pallet
 slug: /how-to-guides/v3/testing/basics
 keywords: basics, testing, runtime
-version: 3.0 
+version: '3.0'
 section: how to guides
 category: testing
 difficulty: 1
@@ -12,20 +12,21 @@ difficulty: 1
   data={[
     {
       title: 'Goal',
-      description: 'Learn how to setup the scaffolding required to write tests for your pallet.',
+      description:
+        'Learn how to setup the scaffolding required to write tests for your pallet.',
     },
     {
       title: 'Use Cases',
-      description:
-        `Writing and running unit tests for a pallet.`,
+      description: `Writing and running unit tests for a pallet.`,
     },
     {
       title: 'Overview',
-      description:
-        `This guide steps through how to use \`mock.rs\` and \`test.rs\` as a basis for testing your pallet. We'll be
-		using the node template for the scaffolding of the \`mock.rs\` file and an arbitrary pallet &mdash; called \`pallet-testing\`
-		&mdash; to give this guide some context. This pallet will contain a single function called \`add_value\`, that takes an origin and
-		a \`u32\` and returns \`Ok(())\` if the value is less than or equal to a constant called \`MaxValue\` that we specify in the mock runtime.`,
+      description: `This guide steps through how to use \`mock.rs\` and \`test.rs\` as a basis for
+      testing your pallet. We'll be using the node template for the scaffolding of the \`mock.rs\`
+      file and an arbitrary pallet &mdash; called \`pallet-testing\` &mdash; to give this guide some
+      context. This pallet will contain a single function called \`add_value\`, that takes an origin
+      and a \`u32\` and returns \`Ok(())\` if the value is less than or equal to a constant called
+      \`MaxValue\` that we specify in the mock runtime.`,
     },
   ]}
 />
@@ -36,7 +37,7 @@ difficulty: 1
 
 Inside `pallet-testing/src`, the first thing we need to do is create two empty files: `mock.rs` and `tests.rs`.
 
-Paste in the contents from [`template/src/mock.rs`][template-node-mock-rs]. We'll use this as boilerpate
+Paste in the contents from [`template/src/mock.rs`][template-node-mock-rs]. We'll use this as boilerplate
 which we'll customize for our `pallet-testing` pallet.
 
 ### 2. Create a mock runtime to test your pallet
@@ -59,7 +60,7 @@ case `pallet_testing`:
 
 ```rust
 /*--snip--*/
-	TestingPallet: pallet_testing::{Module, Call, Storage, Event<T>},
+TestingPallet: pallet_testing::{Pallet, Call, Storage, Event<T>},
 /*--snip--*/
 ```
 
@@ -153,8 +154,8 @@ cargo test
 
 #### How-to guides
 
-- [Testing a transfer function](../transfer-function)
-- [Migration tests](../../storage-migrations/tests)
+- [Testing a transfer function](/how-to-guides/v3/testing/transfer-function)
+- [Migration tests](/how-to-guides/v3/storage-migrations/tests)
 
 #### Docs
 

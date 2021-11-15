@@ -1,34 +1,40 @@
 ---
-title: Create a `txwrapper` for a chain
+title: Create a txwrapper for a chain
 slug: /how-to-guides/v3/tools/txwrapper
 keywords: runtime, tooling
-version: 3.0 
+version: '3.0'
 section: how to guides
 category: tools
 difficulty: 2
 ---
 
-## Goal
-
-Structure the public API of a chain's `txwrapper` package.
-
-## Use cases
-
-For existing `txwrapper` users to easily integrate new txwrappers.
-
-## Overview
-
-Creating a `txwrapper` package will expand the offline signing options for users of your chain. This is important for security 
-conscious users who need to facilitate transaction signing, construction and/or decoding with an air-gapped device(s). This includes
-(but is not limited to) custodians, exchanges, and cold storage users.
-
+<Objectives
+  data={[
+    {
+      title: 'Goal',
+      description: `Structure the public API of a chain's \`txwrapper\` package.`,
+    },
+    {
+      title: 'Use Cases',
+      description: `For existing \`txwrapper\` users to easily integrate new txwrappers.`,
+    },
+    {
+      title: 'Overview',
+      description: `Creating a \`txwrapper\` package will expand the offline signing options for 
+      users of your chain. This is important for security conscious users who need to facilitate 
+      transaction signing, construction and/or decoding with an air-gapped device(s). This includes 
+      (but is not limited to) custodians, exchanges, and cold storage users.`,
+    },
+  ]}
+/>
+<br />
 <Message
   type={`green`}
   title={`Tip`}
   text={`Prior to building a \`txwrapper\` for your own chain, have a look at the [\`txwrapper-examples\`](https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-examples/README.md). 
   Make sure you understand the Polkadot example and take a look at the \`txwrapper-core\` methods an end user is expected to use (see \`decode\`, \`construct.{signingPayload, signedTx, txHash}\`). 
   Your package will be re-exporting these so be sure to understand the public API you will create.`}
-/> 
+/>{' '}
 
 ## Steps
 
@@ -47,16 +53,15 @@ that are relevant to a FRAME based chain using at least the `balances`, `proxy`,
 
 ### 2. Update `package.json`
 
-
-Modify the following fields to reflect your chains information: 
+Modify the following fields to reflect your chains information:
 
 - name
-- author 
-- description 
-- repository 
-- bugs 
+- author
+- description
+- repository
+- bugs
 - homepage
-- private (mark as false) 
+- private (mark as false)
 
 Additionally, add the following field to give publishing permission:
 
@@ -69,7 +74,7 @@ Additionally, add the following field to give publishing permission:
 ### 3. Choose relevant methods to re-export
 
 You will need to choose what pallet methods you want your `txwrapper` to expose. It is recommended to choose methods that are likely to be
-signed by keys stored offline. 
+signed by keys stored offline.
 
 <Message
   type={`green`}
@@ -80,7 +85,7 @@ signed by keys stored offline.
 
 ### 4. Create a `getRegistry` method
 
- Your txwrapper will need to export a `getRegistry` method so users can get a Polkadot-js `TypeRegistry` with the most up-to-date types for your chain.
+Your txwrapper will need to export a `getRegistry` method so users can get a Polkadot-js `TypeRegistry` with the most up-to-date types for your chain.
 
 With some small modifications, the `foo` example below can be applied to any `FRAME`-based chain compatible with Polkadot-js types:
 
@@ -158,15 +163,15 @@ And add relevant exports:
 // src/methods/currencies/index.ts
 
 // export the method, effectively making available under the `currencies` namespace
-export * from './transfer';
+export * from './transfer'
 // src/methods
 
 // Export everything from within `methods`, including the `currencies` namespace, making it so we can
 // access the method via `methods.currencies.transfer`
-export * as methods from './methods';
+export * as methods from './methods'
 ```
 
-### 5. Create a working example 
+### 5. Create a working example
 
 <Message
   type={`green`}
@@ -176,13 +181,13 @@ export * as methods from './methods';
   offline transaction generation for your chain.`}
 />
 
-1. Rename `template-example.ts` to something appropriate to your chain and update all the sections in the file marked TODO. 
+1. Rename `template-example.ts` to something appropriate to your chain and update all the sections in the file marked TODO.
 2. Update `examples/README.md` in the sections marked TODO.
 3. Make sure you can run the example using a development node for your chain.
 
 ### 6. Publish your package
 
-Once you've made sure that versioning make sense and that the [package works locally][npm-pack], 
+Once you've made sure that versioning make sense and that the [package works locally][npm-pack],
 refer to [this guide][npm-publish] to learn how publish your package to `NPM`.
 
 ## Examples
@@ -194,7 +199,7 @@ refer to [this guide][npm-publish] to learn how publish your package to `NPM`.
 - How-to use [`tx-wrapper-polkadot`][txwrapper-examples-gh]
 - Serialization/deserialization [unit tests using `jest`](https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-orml/src/methods/currencies/transfer.spec.ts)
 
-[txwrapper-examples-gh]: https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-examples/README.md 
+[txwrapper-examples-gh]: https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-examples/README.md
 [txwrapper-template-gh]: https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-template
 [txwrapper-substrate-gh]: https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-substrate/README.md
 [npm-publish]: https://docs.npmjs.com/cli/v6/commands/npm-publish

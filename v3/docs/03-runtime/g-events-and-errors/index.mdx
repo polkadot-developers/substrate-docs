@@ -1,19 +1,19 @@
 ---
 title: Events
 slug: /v3/runtime/events-and-errors
-version: 3.0 
+version: '3.0'
 section: docs
 category: runtime
 keywords:
 ---
 
-A Substrate runtime module can emit events when it wants to notify external entities about changes
+A pallet can emit events when it wants to notify external entities about changes
 or conditions in the runtime to external entities like users, chain explorers, or dApps.
 
-You can define what events your module emits, what information is contained within those events, and
+You can define what events your pallet emits, what information is contained within those events, and
 when those events are emitted.
 
-## Declaring an Event
+## Declaring an event
 
 Runtime events are created with the `#[pallet::event]` macro.
 
@@ -36,11 +36,11 @@ The `Event` enum needs to be declared in your runtime's configuration trait.
 	}
 ```
 
-## Exposing Events to Your Runtime
+## Exposing events to your runtime
 
 Your pallet's events need to be exposed to your node's runtime (`/runtime/src/lib.rs`).
 
-First, you need to implement the `Event` type in your module's configuration trait:
+First, you need to implement the `Event` type in your pallet's configuration trait:
 
 ```rust
 // runtime/src/lib.rs
@@ -60,12 +60,13 @@ construct_runtime!(
 		UncheckedExtrinsic = UncheckedExtrinsic
 	{
 		// --snip--
-		TemplateModule: template::{Module, Call, Storage, Event<T>},
+		TemplateModule: template::{Pallet, Call, Storage, Event<T>},
 		//--add-this------------------------------------->^^^^^^^^
 	}
 );
 ```
 
+<br />
 <Message
   type={`gray`}
   title={`Note`}
@@ -73,7 +74,7 @@ construct_runtime!(
   types. In our example it does, and is included above.`}
 />
 
-## Depositing an Event
+## Depositing an event
 
 Substrate provides a default implementation of how to deposit an event using macros.
 Depositing an event has the following structure:
@@ -106,15 +107,15 @@ The default behavior of this function is to call
 [`deposit_event`](/rustdocs/latest/frame_system/pallet/struct.Pallet.html#method.deposit_event)
 from the FRAME system, which writes the event to storage.
 
-This function places the event in the System module's runtime storage for that block. At the
-beginning of a new block, the System module automatically removes all events that were stored from
+This function places the event in the System pallet's runtime storage for that block. At the
+beginning of a new block, the System pallet automatically removes all events that were stored from
 the previous block.
 
 Events deposited using the default implementation will be directly supported by downstream libraries
 like the [Polkadot-JS API](/v3/integration/polkadot-js), however you can implement your own
 `deposit_event` function if you want to handle events differently.
 
-## Supported Types
+## Supported types
 
 Events can emit any type which supports the [Parity SCALE codec](/v3/advanced/scale-codec).
 
@@ -122,11 +123,11 @@ In the case where you want to use Runtime generic types like `AccountId` or `Bal
 include a [`where` clause](https://doc.rust-lang.org/rust-by-example/generics/where.html) to define
 those types as shown in the example above.
 
-## Listening To Events
+## Listening to events
 
 The Substrate RPC does not directly expose an endpoint for querying events. If you used the default
 implementation, you can see the list of events for the current block by querying the storage of the
-System module. Otherwise, the [Polkadot-JS API](/v3/integration/polkadot-js) supports a WebSocket
+System pallet. Otherwise, the [Polkadot-JS API](/v3/integration/polkadot-js) supports a WebSocket
 subscription on runtime events.
 
 ## Errors
@@ -168,19 +169,16 @@ used to check pre-conditions and emit an errors if they are not met.
 frame_support::ensure!(param < T::MaxVal::get(), Error::<T>::InvalidParameter);
 ```
 
-## Next Steps
+## Next steps
 
-### Learn More
+### Learn more
 
-- Learn more about the [macros](../macros) used in Substrate runtime development.
+- Learn more about the [macros](/v3/runtime/macros) used in Substrate runtime development.
 - Learn more about using the [Polkadot-JS API](/v3/integration/polkadot-js).
 
 ### Examples
 
-These [Substrate Recipes](https://github.com/substrate-developer-hub/recipes) offer examples of how
-runtime events are used:
-
-- [A pallet that implements standard events](https://github.com/substrate-developer-hub/recipes/blob/master/pallets/last-caller/src/lib.rs)
+- Learn about Events and Errors by completing the [Substrate Kitties tutorial](/tutorials/v3/kitties/pt1#dispatchables-events-and-errors)
 
 ### References
 

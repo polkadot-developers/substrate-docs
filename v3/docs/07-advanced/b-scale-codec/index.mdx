@@ -1,7 +1,7 @@
 ---
 title: SCALE Codec
 slug: /v3/advanced/scale-codec
-version: 3.0 
+version: '3.0'
 section: docs
 category: advanced
 keywords:
@@ -32,11 +32,11 @@ It is important to define the encoding scheme used on Substrate rather than reus
 codec library because this codec needs to be re-implemented on other platforms and languages that
 want to support interoperability.
 
-## Codec Definition
+## Codec definition
 
 Here you will find how the SCALE codec encodes different types.
 
-### Fixed-width Integers
+### Fixed-width integers
 
 Basic integers are encoded using a fixed-width little-endian (LE) format.
 
@@ -46,7 +46,7 @@ Basic integers are encoded using a fixed-width little-endian (LE) format.
 - `unsigned 16-bit integer 42`: `0x2a00`
 - `unsigned 32-bit integer 16777215`: `0xffffff00`
 
-### Compact/General Integers
+### Compact/general integers
 
 A "compact" or general integer encoding is sufficient for encoding large integers (up to 2\*\*536)
 and is more efficient at encoding most values than the fixed-width version. (Though for single-byte
@@ -60,7 +60,7 @@ It is encoded with the two least significant bits denoting the mode:
   (valid only for values `64-(2**14-1)`).
 - `0b10`: four-byte mode: upper six bits and the following three bytes are the LE encoding of the
   value (valid only for values `(2**14)-(2**30-1)`).
-- `0b11`: Big-integer mode: The upper six bits are the number of bytes following, less four. The
+- `0b11`: Big-integer mode: The upper six bits are the number of bytes following, plus four. The
   value is contained, LE encoded, in the bytes following. The final (most significant) byte must be
   non-zero. Valid only for values `(2**30)-(2**536-1)`.
 
@@ -70,6 +70,8 @@ It is encoded with the two least significant bits denoting the mode:
 - `unsigned integer 1`: `0x04`
 - `unsigned integer 42`: `0xa8`
 - `unsigned integer 69`: `0x1501`
+- `unsigned integer 65535`: `0xfeff0300`
+- `BigInt(100000000000000)`: `0x0b00407a10f35a`
 
 Error:
 
@@ -136,7 +138,7 @@ SCALE Bytes:
 
 ### Strings
 
-Strings are Vectors containing a valid UTF8 sequence.
+Strings are Vectors of bytes (`Vec<u8>`) containing a valid UTF8 sequence.
 
 ### Tuples
 
@@ -149,7 +151,7 @@ Tuple of compact unsigned integer and boolean:
 
 `(3, false)`: `0x0c00`
 
-### Data Structures
+### Data structures
 
 For structures, the values are named, but that is irrelevant for the encoding (names are ignored -
 only order matters). **All containers store elements consecutively. The order of the elements is not
@@ -196,7 +198,7 @@ that is written in Rust and maintained by Parity Technologies.
 - Rust: [`paritytech/parity-scale-codec`](https://github.com/paritytech/parity-scale-codec)
 - Python: [`polkascan/py-scale-codec`](https://github.com/polkascan/py-scale-codec)
 - Golang: [`itering/scale.go`](https://github.com/itering/scale.go)
-- C++: [`soramitsu/scale`](https://github.com/soramitsu/kagome/tree/master/core/scale)
+- C++: [`soramitsu/scale-codec-cpp`](https://github.com/soramitsu/scale-codec-cpp)
 - JavaScript: [`polkadot-js/api`](https://github.com/polkadot-js/api)
 - AssemblyScript: [`LimeChain/as-scale-codec`](https://github.com/LimeChain/as-scale-codec)
 - Haskell: [`airalab/hs-web3`](https://github.com/airalab/hs-web3/tree/master/packages/scale)

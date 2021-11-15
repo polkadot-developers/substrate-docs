@@ -1,144 +1,70 @@
-// This param is used when `/[tutorials, how-to-guides]` are then redirected to
-// `/[tutorials, how-to-guides]/<defaultVersion>`.
+// This param is used when `/[tutorials, how-to-guides]/` are then redirected to
+// `/[tutorials, how-to-guides]/<defaultVersion>/`.
 const defaultVersion = 'v3'
 
 const redirects = [
-  { fromPath: '/tutorials', toPath: `/tutorials/${defaultVersion}` },
-  { fromPath: '/how-to-guides', toPath: `/how-to-guides/${defaultVersion}` },
-  { fromPath: '/v3', toPath: '/v3/getting-started/overview' },
-  { fromPath: '/v3/getting-started', toPath: '/v3/getting-started/overview' },
-  { fromPath: '/v3/concepts', toPath: '/v3/concepts/runtime' },
-  { fromPath: '/v3/runtime', toPath: '/v3/runtime/frame' },
-  { fromPath: '/v3/integration', toPath: '/v3/integration/polkadot-js' },
-  { fromPath: '/v3/advanced', toPath: '/v3/advanced/account-info' },
-  { fromPath: '/tutorials/v3/kitties', toPath: `/tutorials/v3/kitties/pt1` },
+  { fromPath: '/tutorials/', toPath: `/tutorials/${defaultVersion}/` },
+  { fromPath: '/how-to-guides/', toPath: `/how-to-guides/${defaultVersion}/` },
+  { fromPath: '/v3/', toPath: '/v3/getting-started/overview/' },
+  { fromPath: '/v3/getting-started/', toPath: '/v3/getting-started/overview/' },
+  { fromPath: '/v3/concepts/', toPath: '/v3/concepts/runtime/' },
+  { fromPath: '/v3/runtime/', toPath: '/v3/runtime/frame/' },
+  { fromPath: '/v3/integration/', toPath: '/v3/integration/polkadot-js/' },
+  { fromPath: '/v3/advanced/', toPath: '/v3/advanced/account-info/' },
+  { fromPath: '/tutorials/v3/kitties/', toPath: `/tutorials/v3/kitties/pt1/` },
   {
-    fromPath: '/how-to-guides/basics',
-    toPath: `/how-to-guides/v3/basics/pallet-integration`,
+    fromPath: '/tutorials/v3/cumulus/',
+    toPath: `/tutorials/v3/cumulus/start-relay/`,
   },
   {
-    fromPath: '/how-to-guides/pallet-design',
-    toPath: `/how-to-guides/v3/pallet-design/contracts-pallet`,
+    fromPath: '/how-to-guides/basics/',
+    toPath: `/how-to-guides/v3/basics/pallet-integration/`,
   },
   {
-    fromPath: '/how-to-guides/weights',
-    toPath: `/how-to-guides/v3/weights/calculate-fees`,
+    fromPath: '/how-to-guides/pallet-design/',
+    toPath: `/how-to-guides/v3/pallet-design/contracts-pallet/`,
   },
   {
-    fromPath: '/how-to-guides/testing',
-    toPath: `/how-to-guides/v3/testing/basics`,
+    fromPath: '/how-to-guides/weights/',
+    toPath: `/how-to-guides/v3/weights/calculate-fees/`,
   },
   {
-    fromPath: '/how-to-guides/storage-migrations',
-    toPath: `/how-to-guides/v3/storage-migrations/basics`,
+    fromPath: '/how-to-guides/testing/',
+    toPath: `/how-to-guides/v3/testing/basics/`,
   },
   {
-    fromPath: '/how-to-guides/consensus',
-    toPath: `/how-to-guides/v3/consensus/pow`,
+    fromPath: '/how-to-guides/storage-migrations/',
+    toPath: `/how-to-guides/v3/storage-migrations/basics/`,
   },
   {
-    fromPath: '/how-to-guides/parachains',
-    toPath: `/how-to-guides/v3/parachains/runtime-upgrades`,
+    fromPath: '/how-to-guides/consensus/',
+    toPath: `/how-to-guides/v3/consensus/pow/`,
   },
   {
-    fromPath: '/how-to-guides/tools',
-    toPath: `/how-to-guides/v3/tools/try-runtime`,
-  },
-]
-
-const tutsInfo = [
-  {
-    name: 'create-your-first-substrate-chain',
-    navSlug: 'firstChain',
-    version: '3.0',
+    fromPath: '/how-to-guides/parachains/',
+    toPath: `/how-to-guides/v3/parachains/connect/`,
   },
   {
-    name: 'add-a-pallet',
-    navSlug: 'addPallet',
-    version: '3.0',
-  },
-  {
-    name: 'proof-of-existence',
-    navSlug: 'poe',
-    version: '3.0',
-  },
-  {
-    name: 'permissioned-network',
-    navSlug: 'permissionedNetwork',
-    version: '3.0',
-  },
-  {
-    name: 'forkless-upgrades',
-    navSlug: 'forklessUpgrades',
-    version: '3.0',
-  },
-  {
-    name: 'private-network',
-    navSlug: 'privateNetwork',
-    version: '3.0',
-  },
-  {
-    name: 'node-metrics',
-    navSlug: 'nodeMetrics',
-    version: '3.0',
-  },
-  {
-    name: 'ink-workshop',
-    navSlug: 'inkWorkshop',
-    version: '3.0',
-  },
-  {
-    name: 'cumulus',
-    navSlug: 'cumulusTutorial',
-    version: 'polkadot-v0.9.10',
-  },
-  {
-    name: 'frontier',
-    navSlug: 'frontierWorkshop',
-    version: '3.0',
-  },
-  {
-    name: 'kitties',
-    navSlug: 'kittiesWorkshop',
-    version: '3.0',
+    fromPath: '/how-to-guides/tools/',
+    toPath: `/how-to-guides/v3/tools/try-runtime/`,
   },
 ]
-
-const gqlTpl = `{ res: allFile(
-  filter: { sourceInstanceName: { eq: ">>param1<<" }, extension: { eq: "mdx" }}
-) {
-  nodes {
-    childMdx {
-      frontmatter {
-        slug
-      }
-    }
-  }
-} }`
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage, createRedirect } = actions
 
-  const kbTemplate = require.resolve(`./src/templates/kb-template.tsx`)
+  const docTemplate = require.resolve(`./src/templates/doc-template.tsx`)
   const htgTemplate = require.resolve(`./src/templates/htg-template.tsx`)
   const tutorialTemplate = require.resolve(`./src/templates/tut-template.tsx`)
 
-  const result = await graphql(`
+  const { data } = await graphql(`
     {
-      docsV3: allFile(filter: { sourceInstanceName: { eq: "kbV3" }, extension: { eq: "mdx" } }) {
-        nodes {
-          childMdx {
+      allMdx {
+        edges {
+          node {
             frontmatter {
               slug
-            }
-          }
-        }
-      }
-      htg: allFile(filter: { sourceInstanceName: { eq: "htg" }, extension: { eq: "mdx" } }) {
-        nodes {
-          childMdx {
-            frontmatter {
-              slug
+              section
             }
           }
         }
@@ -146,25 +72,21 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     }
   `)
 
-  if (result.errors) {
-    reporter.panicOnBuild(result.errors)
+  if (data.errors) {
+    reporter.panicOnBuild(data.errors)
     return
   }
 
-  const tutsGqlResult = await Promise.allSettled(
-    tutsInfo.map(tutInfo => graphql(gqlTpl.replace('>>param1<<', tutInfo.name)))
+  const allDocs = data.allMdx.edges.filter(each => each.node.frontmatter.section === 'docs')
+  const allHtgs = data.allMdx.edges.filter(
+    each => each.node.frontmatter.section === 'how to guides'
   )
+  const allTuts = data.allMdx.edges.filter(each => each.node.frontmatter.section === 'tutorials')
 
-  if (tutsGqlResult.some(res => res.errors)) {
-    reporter.panicOnBuild(tutsGqlResult.filter(res => res.errors))
-    return
-  }
-
-  const allV3 = result.data.docsV3.nodes
-  allV3.forEach(({ childMdx: node }) => {
+  allDocs.forEach(({ node }) => {
     createPage({
-      path: `${node.frontmatter.slug}`,
-      component: kbTemplate,
+      path: `${node.frontmatter.slug}/`,
+      component: docTemplate,
       context: {
         slug: `${node.frontmatter.slug}`,
         version: `3.0`,
@@ -172,10 +94,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     })
   })
 
-  const htgPages = result.data.htg.nodes
-  htgPages.forEach(({ childMdx: node }) => {
+  allHtgs.forEach(({ node }) => {
     createPage({
-      path: `${node.frontmatter.slug}`,
+      path: `${node.frontmatter.slug}/`,
       component: htgTemplate,
       context: {
         slug: `${node.frontmatter.slug}`,
@@ -184,18 +105,14 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     })
   })
 
-  tutsInfo.forEach((tutInfo, ind) => {
-    const res = tutsGqlResult[`${ind}`].value.data.res.nodes
-    res.forEach(({ childMdx: node }) => {
-      createPage({
-        path: `${node.frontmatter.slug}`,
-        component: tutorialTemplate,
-        context: {
-          slug: `${node.frontmatter.slug}`,
-          version: tutInfo.version,
-          navMenuSlug: tutInfo.navSlug,
-        },
-      })
+  allTuts.forEach(({ node }) => {
+    createPage({
+      path: `${node.frontmatter.slug}/`,
+      component: tutorialTemplate,
+      context: {
+        slug: `${node.frontmatter.slug}`,
+        version: `3.0`,
+      },
     })
   })
 

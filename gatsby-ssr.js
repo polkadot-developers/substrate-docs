@@ -34,7 +34,5 @@ export const onRenderBody = ({ setPreBodyComponents }) => {
 }
 
 export const wrapRootElement = ({ element }) => (
-  <ThemeProvider>
-    <div>{element}</div>
-  </ThemeProvider>
+  <ThemeProvider>{element}</ThemeProvider>
 )
