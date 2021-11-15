@@ -5,6 +5,7 @@ keywords: basics, beginner, runtime
 version: '3.0'
 section: how to guides
 category: basics
+difficulty: 1
 ---
 
 This guide is an extension to the ["Add a Pallet to Your Runtime" tutorial](/tutorials/v3/add-a-pallet) and explains how to quickly integrate both local and external pallets in a runtime.
@@ -25,30 +26,30 @@ pub use pallet_something;
 1. Configure your pallet's runtime implementation.
    Assume the local pallet only has the `Event` and `Call` types exposed to the runtime. Add the following to `/runtime/src/lib.rs`:
 
-```rust
-// Configure your pallet.
-impl pallet_something::Config for Runtime {
-  type Event = Event;
-  type Call = Call;
-}
-```
+   ```rust
+   // Configure your pallet.
+   impl pallet_something::Config for Runtime {
+     type Event = Event;
+     type Call = Call;
+   }
+   ```
 
 1. Declare your pallet and the items it exposes.
    Include the additional `Pallet` and `Storage` types for the [runtime macro](/v3/runtime/macros/#construct_runtime). In `construct_runtime!`, add the following:
 
-```rust
-construct_runtime!(
-  pub enum Runtime where
-    Block = Block,
-    NodeBlock = opaque::Block,
-    UncheckedExtrinsic = UncheckedExtrinsic
-  {
-/* --snip-- */
-    Something: pallet_something::{Pallet, Call, Storage, Event<T>},
-/* --snip-- */
-  }
-);
-```
+   ```rust
+   construct_runtime!(
+     pub enum Runtime where
+       Block = Block,
+       NodeBlock = opaque::Block,
+       UncheckedExtrinsic = UncheckedExtrinsic
+     {
+   /* --snip-- */
+       Something: pallet_something::{Pallet, Call, Storage, Event<T>},
+   /* --snip-- */
+     }
+   );
+   ```
 
 > **NOTE:** To add an external pallet, you use a similar method to the one you used with the local pallet, but you must include all of the types your pallet exposes.
 > You must also include the relevant parameter types and constants. For examples of how to declare parameters and constants, see [`pallet_timestamp`][timestamp-frame].
@@ -57,26 +58,26 @@ construct_runtime!(
 
    **Local pallets**
 
-In `/runtime/Cargo.toml`, include your pallet as a local dependency in `std` and add `runtime-benchmarks`. For example:
+   In `/runtime/Cargo.toml`, include your pallet as a local dependency in `std` and add `runtime-benchmarks`. For example:
 
-```rust
-/* --snip-- */
-[dependencies.pallet-something]
-default-features = false
-path = '../pallets/something'
-version = '3.0.0'
-/* --snip-- */
-[features]
-default = ['std']
-runtime-benchmarks = [
-  /* --snip */
-  'pallet-something/runtime-benchmarks',
-]
-std = [
-  'pallet-something/std',
-/* --snip-- */
-]
-```
+   ```rust
+   /* --snip-- */
+   [dependencies.pallet-something]
+   default-features = false
+   path = '../pallets/something'
+   version = '3.0.0'
+   /* --snip-- */
+   [features]
+   default = ['std']
+   runtime-benchmarks = [
+     /* --snip */
+     'pallet-something/runtime-benchmarks',
+   ]
+   std = [
+     'pallet-something/std',
+   /* --snip-- */
+   ]
+   ```
 
 **External pallets**
 
