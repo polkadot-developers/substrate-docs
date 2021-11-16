@@ -19,11 +19,11 @@ This tutorial provides a basic introduction to the **consensus** model used in t
 
 All blockchains require the nodes in the network to agree on the set of messages and their order to successfully create blocks and progress from one block to the next.
 Each block represents the state of data at a specific point in time and the nodes' agreement on the state is called **consensus**.
-There are several different algorithms used to reach consensus, including:
+There are several different algorithms used to reach consensus, including the following:
 
 * Proof of work consensus depends on the computational work done by validator nodes to add valid blocks to the chain.
 
-* Proof of stake consensus selects the validators add valid blocks to the chain based on the cryptocurrency holdings that they have locked up as a stake in the network.
+* Proof of stake consensus selects the validators to add valid blocks to the chain based on the cryptocurrency holdings that they have locked up as a stake in the network.
 
 * Proof of authority consensus relies on a set of approved account identities to act as validators. The nodes associated with approved accounts have the authority to put transactions into blocks.
 
@@ -309,8 +309,8 @@ You have already used the some command-line options to start your local blockcha
 You can also use command-line options to generate random keys to use with Substrate.
 
 For this tutorial, you can remain connected to the internet and use your local node to generate your keys. 
-As a best practice, you should never be connected to the internet when you generate keys for a production blockchain. 
-For a production environment, you should disconnect from the internet before you generate any keys.
+As a best practice, you should use an air-gapped computer that has never been connected to the internet when you generate keys for a production blockchain. 
+At a minimum, you should disconnect from the internet before you generate any keys you intend to use on a public blockchain.
 
 To generate keys using the node template:
 
