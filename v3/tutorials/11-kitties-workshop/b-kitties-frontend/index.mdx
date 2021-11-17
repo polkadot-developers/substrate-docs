@@ -373,27 +373,28 @@ Our `KittyCards.js` component will have three sections to it:
    ```js
    import React from 'react'
    import {
-   Button,
-   Card,
-   Grid,
-   Message,
-   Modal,
-   Form,
-   Label,
+     Button,
+     Card,
+     Grid,
+     Message,
+     Modal,
+     Form,
+     Label,
    } from 'semantic-ui-react'
    import KittyAvatar from './KittyAvatar'
    import { TxButton } from './substrate-lib/components'
    ```
+
    Let's outline what the `TransferModal` will do.
    Conveniently, the Substrate Front-end Template comes with a component called `TxButton` which is a useful way to include a transfer button that interacts with a node.
    This component will allow us to send a transaction into our node and trigger a signed extrinsic for the Kitties pallet.
    The way it is built can be broken down into the following pieces:
+
    - A "transfer" button exists, which opens up a modal upon being clicked.
-   - This modal, we'll call "Kitty Transfer" is a `Form` containing (1) the Kitty ID and (2) an input
-   field for a receiving address.
+   - This modal, we'll call "Kitty Transfer" is a `Form` containing (1) the Kitty ID and (2) an input field for a receiving address.
    - It also contains a "transfer" and "cancel" button.
-   See the screenshot below for reference:
-   ![kitty-transfer-shot.png](../../../../src/images/tutorials/11-kitties-workshop/kitty-transfer-shot.png)
+     See the screenshot below for reference:
+     ![kitty-transfer-shot.png](../../../../src/images/tutorials/11-kitties-workshop/kitty-transfer-shot.png)
 
 1. You'll need to extract the properties (or "props") to access your node's state using React hooks.
    These are: `kitty`, `accountPair` and `setStatus`.
@@ -408,6 +409,7 @@ Our `KittyCards.js` component will have three sections to it:
    setFormValue({ ...formValue, [key]: el.value });
    };
    ```
+
    We also need a `confirmAndClose` function to be passed into the `TxButton` component, being called when a confirmation action is triggered.
    This function will receive an unsubscription function from `TxButton`.
    In addition to calling this function for clean up, we will just close the modal dialog box.
@@ -423,6 +425,7 @@ Our `KittyCards.js` component will have three sections to it:
 
    Our Kitty Card has a "transfer" button that opens up a modal where a user can choose an address to send their Kitty to.
    That modal will have:
+
    - a Title.
    - an read-only field for a Kitty ID.
    - an input field for an Account ID.
