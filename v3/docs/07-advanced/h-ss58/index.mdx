@@ -89,11 +89,11 @@ For the shorter account-index formats, the extra byte represents a far greater p
 
 ## Simple/full address types and account/address/network identifiers
 
-[The registry](https://github.com/paritytech/ss58-registry) expresses the status of the account/address/network _identifiers_.
+[The registry](https://github.com/paritytech/ss58-registry) expresses the status of the account/address/network **identifiers**.
 
-_Identifiers_ up to value 64 may be expressed in a _simple_ format address, in which the least significant byte (LSB) of the identifier value is expressed as the first byte of the encoded address.
+**Identifiers** up to value 64 may be expressed in a **simple** format address, in which the least significant byte (LSB) of the identifier value is expressed as the first byte of the encoded address.
 
-For identifiers of between 64 and 16,383, the _full_ format address must be used.
+For identifiers of between 64 and 16,383, the **full** format address must be used.
 
 This encoding is slightly fiddly since we encode as little endian (LE), yet the first two bits (which should encode 64s and 128s) are already used up with the necessary `01` prefix.
 We treat the first two bytes as a 16 bit sequence, and we disregard the first two bits of that (since they're already fixed to be `01`).
