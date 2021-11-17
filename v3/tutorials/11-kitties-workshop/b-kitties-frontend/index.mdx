@@ -299,20 +299,30 @@ Since it's mostly all Javascript, we won't be going into much detail.
    import React from 'react'
 
    // Generate an array [start, start + 1, ..., end] inclusively
-   const genArray = (start, end) => Array.from(Array(end - start + 1).keys()).map(v => v + start)
+   const genArray = (start, end) =>
+     Array.from(Array(end - start + 1).keys()).map(v => v + start)
 
    const IMAGES = {
      accessory: genArray(1, 20).map(
        n => `${process.env.PUBLIC_URL}/assets/KittyAvatar/accessorie_${n}.png`
      ),
-     body: genArray(1, 15).map(n => `${process.env.PUBLIC_URL}/assets/KittyAvatar/body_${n}.png`),
-     eyes: genArray(1, 15).map(n => `${process.env.PUBLIC_URL}/assets/KittyAvatar/eyes_${n}.png`),
-     mouth: genArray(1, 10).map(n => `${process.env.PUBLIC_URL}/assets/KittyAvatar/mouth_${n}.png`),
-     fur: genArray(1, 10).map(n => `${process.env.PUBLIC_URL}/assets/KittyAvatar/fur_${n}.png`),
+     body: genArray(1, 15).map(
+       n => `${process.env.PUBLIC_URL}/assets/KittyAvatar/body_${n}.png`
+     ),
+     eyes: genArray(1, 15).map(
+       n => `${process.env.PUBLIC_URL}/assets/KittyAvatar/eyes_${n}.png`
+     ),
+     mouth: genArray(1, 10).map(
+       n => `${process.env.PUBLIC_URL}/assets/KittyAvatar/mouth_${n}.png`
+     ),
+     fur: genArray(1, 10).map(
+       n => `${process.env.PUBLIC_URL}/assets/KittyAvatar/fur_${n}.png`
+     ),
    }
 
    const dnaToAttributes = dna => {
-     const attribute = (index, type) => IMAGES[type][dna[index] % IMAGES[type].length]
+     const attribute = (index, type) =>
+       IMAGES[type][dna[index] % IMAGES[type].length]
 
      return {
        body: attribute(0, 'body'),
@@ -570,7 +580,11 @@ We'll use React's `Card` component to create a card that renders the Kitty avata
        <Grid columns={3}>
          {kitties.map((kitty, i) => (
            <Grid.Column key={`kitty-${i}`}>
-             <KittyCard kitty={kitty} accountPair={accountPair} setStatus={setStatus} />
+             <KittyCard
+               kitty={kitty}
+               accountPair={accountPair}
+               setStatus={setStatus}
+             />
            </Grid.Column>
          ))}
        </Grid>

@@ -15,12 +15,12 @@ You will learn how to include a custom internal pallet that implements an event 
 
 1. Create a local pallet called `pallet_something`.
 
-  Import this pallet by adding the following to `/runtime/src/lib.rs`:
-
-  ```rust
-  // Import your pallet.
-  pub use pallet_something;
-  ```
+   Import this pallet by adding the following to `/runtime/src/lib.rs`:
+   
+   ```rust
+   // Import your pallet.
+   pub use pallet_something;
+   ```
 
 1. Configure your pallet's runtime implementation.
    Assume the local pallet only has the `Event` and `Call` types exposed to the runtime. Add the following to `/runtime/src/lib.rs`:
@@ -28,8 +28,8 @@ You will learn how to include a custom internal pallet that implements an event 
    ```rust
    // Configure your pallet.
    impl pallet_something::Config for Runtime {
-     type Event = Event;
-     type Call = Call;
+   	type Event = Event;
+   	type Call = Call;
    }
    ```
 
@@ -38,15 +38,15 @@ You will learn how to include a custom internal pallet that implements an event 
 
    ```rust
    construct_runtime!(
-     pub enum Runtime where
-       Block = Block,
-       NodeBlock = opaque::Block,
-       UncheckedExtrinsic = UncheckedExtrinsic
-     {
-   /* --snip-- */
-       Something: pallet_something::{Pallet, Call, Storage, Event<T>},
-   /* --snip-- */
-     }
+   	pub enum Runtime where
+   	Block = Block,
+   	NodeBlock = opaque::Block,
+   	UncheckedExtrinsic = UncheckedExtrinsic
+   	{
+   		/* --snip-- */
+   		Something: pallet_something::{Pallet, Call, Storage, Event<T>},
+   		/* --snip-- */
+   	}
    );
    ```
 
@@ -59,22 +59,22 @@ You will learn how to include a custom internal pallet that implements an event 
 
    In `/runtime/Cargo.toml`, include your pallet as a local dependency in `std` and add `runtime-benchmarks`. For example:
 
-   ```rust
-   /* --snip-- */
+   ```TOML
+   # --snip--
    [dependencies.pallet-something]
    default-features = false
    path = '../pallets/something'
    version = '3.0.0'
-   /* --snip-- */
+   # --snip--
    [features]
    default = ['std']
    runtime-benchmarks = [
-     /* --snip */
+     # --snip--
      'pallet-something/runtime-benchmarks',
    ]
    std = [
      'pallet-something/std',
-   /* --snip-- */
+     # --snip--
    ]
    ```
 
@@ -82,20 +82,20 @@ You will learn how to include a custom internal pallet that implements an event 
 
 The following is an example of how you would add an external pallet if the pallet is hosted in [crates.parity.io](https://crates.parity.io/):
 
-```rust
+```TOML
 [dependencies.pallet-external]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
 rev = 'd6c33e7ec313f9bd5e319dc0a5a3ace5543f9617'
 version = '3.0.0'
-/* --snip-- */
+# --snip--
 runtime-benchmarks = [
   /* --snip */
   'pallet-external/runtime-benchmarks',
 ]
 std = [
-'pallet-external/std',
-/* --snip-- */
+  'pallet-external/std',
+  # --snip--
 ]
 ```
 

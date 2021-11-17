@@ -559,7 +559,9 @@ The React component enables you to expose the proof-of-existence capabilities an
 
    export default function TemplateModule(props) {
      const { api } = useSubstrate()
-     return api.query.templateModule && api.query.templateModule.proofs ? <Main {...props} /> : null
+     return api.query.templateModule && api.query.templateModule.proofs ? (
+       <Main {...props} />
+     ) : null
    }
    ```
 
@@ -567,7 +569,7 @@ The React component enables you to expose the proof-of-existence capabilities an
 
 1. Start the front-end template by running the following command:
 
-   ```
+   ```bash
    yarn start
    ```
 
