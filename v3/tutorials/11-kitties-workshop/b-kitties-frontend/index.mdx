@@ -120,7 +120,7 @@ Here are some good resources:
 `Kitties.js` is the component that will get rendered by `Apps.js`, the top-most level component.
 So it does the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.js`.
 
-1.  Start by creating a file called `Kitties.js` in `src` and paste the following imports:
+1. Start by creating a file called `Kitties.js` in `src` and paste the following imports:
 
         ```js
         import React, { useEffect, useState } from 'react'
@@ -135,7 +135,7 @@ So it does the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.j
     The way our custom components make use of Polkadot-JS API is by using `substrate-lib`, which is a wrapper around [Polkadot JS API instance](https://polkadot.js.org/docs/api/start/create/) and allows us to retrieve account keys from the [Polkadot-JS keyring](https://polkadot.js.org/docs/api/start/keyring).
     This is why we use `useSubstrate` which is exported by `src/substrate-lib/SubstrateContext.js` and used to create the wrapper.
 
-1.  Proceed by pasting in the following code snippet:
+1. Proceed by pasting in the following code snippet:
 
         ```js
         // Construct a Kitty ID from storage key
@@ -174,7 +174,7 @@ So it does the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.j
         We'll use `api.query.substrateKitties.kittyCnt` to listen for a change in the amount of Kitties, which will query `KittyCnt` from our Kitties pallet storage item.
         Then, we'll use the `entries()` method from Polkadot-JS API to get Kitty IDs and transform them with the `convertToKittyHash` function.
 
-1.  Paste the following snippet to enable this:
+1. Paste the following snippet to enable this:
 
         ```js
         // Subscription function for setting Kitty IDs
@@ -201,7 +201,7 @@ So it does the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.j
         }
         ```
 
-1.  Similarly for `subscribeKitties`, paste the following code snippet:
+1. Similarly for `subscribeKitties`, paste the following code snippet:
 
         ```js
         // Subscription function to construct a Kitty object
@@ -378,7 +378,7 @@ Our `KittyCards.js` component will have three sections to it:
 
 - `KittyCards`: a component that renders a grid for `KittyCard` (yes, singular!) described above.
 
-1.  As a preliminary step, create a new file called `KittyCards.js` and add the following imports:
+1. As a preliminary step, create a new file called `KittyCards.js` and add the following imports:
 
         ```js
         import React from 'react'
@@ -411,7 +411,7 @@ Our `KittyCards.js` component will have three sections to it:
 
     ![kitty-transfer-shot.png](../../../../src/images/tutorials/11-kitties-workshop/kitty-transfer-shot.png)
 
-1.  You'll need to extract the properties (or "props") to access your node's state using React hooks.
+1. You'll need to extract the properties (or "props") to access your node's state using React hooks.
     These are: `kitty`, `accountPair` and `setStatus`.
     Do this by pasting in the following code snippet:
 
@@ -430,7 +430,7 @@ Our `KittyCards.js` component will have three sections to it:
         This function will receive an unsubscription function from `TxButton`.
         In addition to calling this function for clean up, we will just close the modal dialog box.
 
-1.  Paste the following snippet:
+1. Paste the following snippet:
 
     ```js
     const confirmAndClose = unsub => {
@@ -448,7 +448,7 @@ Our `KittyCards.js` component will have three sections to it:
     - a "Cancel" button which closes the Transfer modal.
     - the `TxButton` React component to trigger the transaction.
 
-1.  Paste this in to complete `TransferModal` and read the comments to follow what each piece of code is doing:
+1. Paste this in to complete `TransferModal` and read the comments to follow what each piece of code is doing:
 
     ```js
     return <Modal onClose={() => setOpen(false)} onOpen={() => setOpen(true)} open={open}
