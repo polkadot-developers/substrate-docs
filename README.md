@@ -78,25 +78,25 @@ develop will they get merged into `main`.
 
 ## 🚀 Quick start
 
-1.  **Clone the repo**
+1. **Clone the repo**
 
-    ```bash
-    # create a new folder to get going
-    git clone https://github.com/substrate-developer-hub/substrate-docs.git
-    ```
+   ```bash
+   # create a new folder to get going
+   git clone https://github.com/substrate-developer-hub/substrate-docs.git
+   ```
 
-2.  **Get setup**
+2. **Get setup**
 
-    Navigate into your new site’s directory and install all dependencies.
+   Navigate into your new site’s directory and install all dependencies.
 
-    ```bash
-    cd substrate-docs/
-    yarn # alias for `yarn install`
-    ```
+   ```bash
+   cd substrate-docs/
+   yarn # alias for `yarn install`
+   ```
 
-3.  **Configure environment variables**
+3. **Configure environment variables**
 
-    Copy `example.env.development` and rename to `.env.development`
+   Copy `example.env.development` and rename to `.env.development`
 
     Config URL variables based on your preferable local setup. URL will be used for links generation between documentation and platform stack
 
@@ -108,7 +108,7 @@ develop will they get merged into `main`.
     GATSBY_DOCS_URL=http://localhost:8001 // default docs.substrate.io if not set
     ```
 
-4.  **Fire the engine**
+4. **Fire the engine**
 
     Navigate into your new site’s directory and use the following command to start the development server locally.
 
@@ -116,7 +116,7 @@ develop will they get merged into `main`.
     yarn dev # alias for `yarn start` and `yarn develop`
     ```
 
-5.  **Open the code and start customizing!**
+5. **Open the code and start customizing!**
 
     Your site is now running at [http://localhost:8001](http://localhost:8001)
     and your GraphQL data layer is running at
@@ -124,7 +124,7 @@ develop will they get merged into `main`.
 
     Edit to see your site update in real-time on save.
 
-6.  **Learn more about GatbsyJS**
+6. **Learn more about GatbsyJS**
 
     - [Documentation](https://www.gatsbyjs.com/docs/)
 
@@ -196,4 +196,4 @@ this repository.
 
 TBD
 
-<!-- Substrate **documentation** is licence under the [Apache 2 license](./LICENSE). -->
+<!-- Substrate **documentation** is license under the [Apache 2 license](./LICENSE). -->
