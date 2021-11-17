@@ -40,8 +40,8 @@ Currently, there exist several valid values:
 - 00000000b..=00111111b (0..=63 inclusive): Simple account/address/network identifier.
   The byte can be interpreted directly as such an identifier.
 - 01000000b..=01111111b (64..=127 inclusive): Full address/address/network identifier.
-  The lower 6 bits of this byte should be treated as the upper 6 bits of a 14 bit identifier value, with the lower 8 bits defined by the following byte. 
-  This works for all identifiers up to 2**14 (16,383).
+  The lower 6 bits of this byte should be treated as the upper 6 bits of a 14 bit identifier value, with the lower 8 bits defined by the following byte.
+  This works for all identifiers up to 2\*\*14 (16,383).
 - 10000000b..=11111111b (128..=255 inclusive): Reserved for future address format extensions.
 
 The latter (42) is a "wildcard" address that is meant to be equally valid on all Substrate networks that support fixed-length addresses.
@@ -53,30 +53,30 @@ Substrate nodes will default to printing keys in address type 42, though alterna
 There are 16 different address formats, identified by the length (**in bytes**) of the total payload (i.e. including the checksum).
 
 | Total | Type | Raw Account | Checksum |
-|:-----:|:----:|:-----------:|:--------:|
-| 3     | 1    | 1           | 1        |
-| 4     | 1    | 2           | 1        |
-| 5     | 1    | 2           | 2        |
-| 6     | 1    | 4           | 1        |
-| 7     | 1    | 4           | 2        |
-| 8     | 1    | 4           | 3        |
-| 9     | 1    | 4           | 4        |
-| 10    | 1    | 8           | 1        |
-| 11    | 1    | 8           | 2        |
-| 12    | 1    | 8           | 3        |
-| 13    | 1    | 8           | 4        |
-| 14    | 1    | 8           | 5        |
-| 15    | 1    | 8           | 6        |
-| 16    | 1    | 8           | 7        |
-| 17    | 1    | 8           | 8        |
-| 34    | 1    | 32          | 2        |
+| :---: | :--: | :---------: | :------: |
+|   3   |  1   |      1      |    1     |
+|   4   |  1   |      2      |    1     |
+|   5   |  1   |      2      |    2     |
+|   6   |  1   |      4      |    1     |
+|   7   |  1   |      4      |    2     |
+|   8   |  1   |      4      |    3     |
+|   9   |  1   |      4      |    4     |
+|  10   |  1   |      8      |    1     |
+|  11   |  1   |      8      |    2     |
+|  12   |  1   |      8      |    3     |
+|  13   |  1   |      8      |    4     |
+|  14   |  1   |      8      |    5     |
+|  15   |  1   |      8      |    6     |
+|  16   |  1   |      8      |    7     |
+|  17   |  1   |      8      |    8     |
+|  34   |  1   |     32      |    2     |
 
 ## Checksum types
 
 Several potential checksum strategies exist within Substrate, giving different length and longevity guarantees.
 There are two types of checksum preimages (known as SS58 and AccountID) and many different checksum lengths (1 to 8 bytes).
 
-In all cases for Substrate, the [Blake2-256](https://en.wikipedia.org/wiki/BLAKE_(hash_function)) hash function is used.
+In all cases for Substrate, the [Blake2-256](<https://en.wikipedia.org/wiki/BLAKE_(hash_function)>) hash function is used.
 The variants simply select the preimage used as the input to the hash function and the number of bytes taken from its output.
 
 The bytes used are always the left most bytes.
@@ -89,14 +89,14 @@ For the shorter account-index formats, the extra byte represents a far greater p
 
 ## Simple/full address types and account/address/network identifiers
 
-[The registry](https://github.com/paritytech/ss58-registry) expresses the status of the account/address/network *identifiers*.
+[The registry](https://github.com/paritytech/ss58-registry) expresses the status of the account/address/network _identifiers_.
 
-*Identifiers* up to value 64 may be expressed in a *simple* format address, in which the least significant byte (LSB) of the identifier value is expressed as the first byte of the encoded address.
+_Identifiers_ up to value 64 may be expressed in a _simple_ format address, in which the least significant byte (LSB) of the identifier value is expressed as the first byte of the encoded address.
 
-For identifiers of between 64 and 16,383, the *full* format address must be used.
+For identifiers of between 64 and 16,383, the _full_ format address must be used.
 
 This encoding is slightly fiddly since we encode as little endian (LE), yet the first two bits (which should encode 64s and 128s) are already used up with the necessary `01` prefix.
-We treat the first two bytes as a 16 bit sequence, and we disregard the first two bits of that (since they're already fixed to be `01`). 
+We treat the first two bytes as a 16 bit sequence, and we disregard the first two bits of that (since they're already fixed to be `01`).
 With the remaining 14 bits, we encode our identifier value as LE, with the assumption that the two missing higher order bits are zero.
 This effectively spreads the low-order byte across the boundary between the two bytes.
 
@@ -176,4 +176,4 @@ console.log(isValid)
 - [Polkadot-js API on GitHub](https://github.com/polkadot-js/api)
 - [Install Subkey](/v3/tools/subkey#installation)
 - [Ecosystem client
-libs](https://substrate.io/ecosystem/resources/awesome-substrate/#client-libraries) and [tools(https://substrate.io/ecosystem/resources/awesome-substrate/#tools)]
+  libs](https://substrate.io/ecosystem/resources/awesome-substrate/#client-libraries) and [tools(https://substrate.io/ecosystem/resources/awesome-substrate/#tools)]
