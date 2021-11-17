@@ -56,15 +56,15 @@ For runtimes built with FRAME, the nodes order transactions with an account-base
 Every signed transaction needs to contain a nonce, which is incremented by 1 every time a new transaction is made.
 For example, the first transaction from a new account will have `nonce = 0` and the second transaction will have `nonce = 1`.
 
-At minimum, FRAME transactions have a `provides` tag of `encode(sender ++ nonce)` and a `requires` tag of `encode(sender ++ (nonce -1)) if nonce > 1`. 
-Transactions do not require anything if `nonce=0`. 
+At minimum, FRAME transactions have a `provides` tag of `encode(sender ++ nonce)` and a `requires` tag of `encode(sender ++ (nonce -1)) if nonce > 1`.
+Transactions do not require anything if `nonce=0`.
 As a result, all transactions coming from a single sender will form a sequence in which they should be included.
 
 Substrate supports multiple `provides` and `requires` tags, so custom runtimes can create alternate dependency (ordering) schemes.
 
 ## Transaction priority
 
-Transaction `priority` in the `ValidTransaction` struct determines the ordering of transactions that are in the ready queue. 
+Transaction `priority` in the `ValidTransaction` struct determines the ordering of transactions that are in the ready queue.
 If a node is the next block author, it will order transactions from high to low priority in the next block until it reaches the weight or length limit of the block.
 
 `priority` defines the linear ordering of a graph in the case of one transaction unlocking multiple dependent transactions.
@@ -95,7 +95,7 @@ A transaction can follow two paths:
 4. Transactions are executed and state changes are stored in local memory.
    Transactions from the `ready` queue are also propagated (gossiped) to peers over the network.
    We use the exact ordering as the pending block since transactions in the front of the queue have a higher priority and are more likely to be successfully executed in the next block.
-5. The constructed block is published to the network. 
+5. The constructed block is published to the network.
    All other nodes on the network receive and execute the block.
 
 Notice that transactions are not removed from the ready queue when blocks are authored, but removed _only_ on block import.
@@ -115,7 +115,7 @@ The runtime can use some of this data, for example the `Call` that will be dispa
 Signed extensions also include an `AdditionalSigned` type that can hold any encodable data, and therefore allow you to perform any custom logic prior to including or dispatching a transaction.
 The transaction queue regularly calls functions from `SignedExtension` to validate transactions prior to block construction to avoid including transactions that will fail in blocks.
 
-Despite the name, `SignedExtension` can also be used to verify [unsigned transactions](/v3/concepts/extrinsics#unsigned-transactions). 
+Despite the name, `SignedExtension` can also be used to verify [unsigned transactions](/v3/concepts/extrinsics#unsigned-transactions).
 The `*_unsigned` set of methods can be implemented to encapsulate validation, spam, and replay protection logic that is needed by the transaction pool.
 
 - [Signed Extension API](/rustdocs/latest/sp_runtime/traits/trait.SignedExtension.html)
