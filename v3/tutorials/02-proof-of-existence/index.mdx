@@ -32,7 +32,7 @@ Because any change to a file would result in a different hash, users can prove t
 ## Digital objects and account signatures
 
 Blockchains use [public keys](https://en.wikipedia.org/wiki/Public-key_cryptography) to map digital identities to accounts that have private keys.
-The blockchain records the account you use to store the hash for a digitial object as part of the transaction.
+The blockchain records the account you use to store the hash for a digital object as part of the transaction.
 Because the account information is stored as part of the transaction, the controller of the account can later prove ownership as the person who initially uploaded the file.
 
 ## How much time do you need to complete this tutorial?
@@ -270,13 +270,13 @@ To implement the errors for the proof-of-existence pallet:
    ```rust
    #[pallet::error]
    pub enum Error<T> {
-     /// The proof has already been claimed.
-     ProofAlreadyClaimed,
-     /// The proof does not exist, so it cannot be revoked.
-     NoSuchProof,
-     /// The proof is claimed by another account, so caller can't revoke it.
-     NotProofOwner,
-     }
+   	/// The proof has already been claimed.
+   	ProofAlreadyClaimed,
+   	/// The proof does not exist, so it cannot be revoked.
+   	NoSuchProof,
+   	/// The proof is claimed by another account, so caller can't revoke it.
+   	NotProofOwner,
+   	}
    ```
 
 1. Save your changes.
@@ -325,58 +325,47 @@ To implement this logic in the proof-of-existence pallet:
    // Dispatchable functions must be annotated with a weight and must return a DispatchResult.
    #[pallet::call]
    impl<T: Config> Pallet<T> {
-     #[pallet::weight(1_000)]
-     pub fn create_claim(
-       origin: OriginFor<T>,
-       proof: Vec<u8>,
-       ) -> DispatchResult {
-         // Check that the extrinsic was signed and get the signer.
-         // This function will return an error if the extrinsic is not signed.
-         // https://docs.substrate.io/v3/runtime/origins
-         let sender = ensure_signed(origin)?;
-
-         // Verify that the specified proof has not already been claimed.
-         ensure!(!Proofs::<T>::contains_key(&proof), Error::<T>::ProofAlreadyClaimed);
-
-         // Get the block number from the FRAME System pallet.
-         let current_block = <frame_system::Pallet<T>>::block_number();
-
-         // Store the proof with the sender and block number.
-         Proofs::<T>::insert(&proof, (&sender, current_block));
-
-         // Emit an event that the claim was created.
-         Self::deposit_event(Event::ClaimCreated(sender, proof));
-
-         Ok(())
-         }
-
-         #[pallet::weight(10_000)]
-         pub fn revoke_claim(
-           origin: OriginFor<T>,
-           proof: Vec<u8>,
-           ) -> DispatchResult {
-             // Check that the extrinsic was signed and get the signer.
-             // This function will return an error if the extrinsic is not signed.
-             // https://docs.substrate.io/v3/runtime/origins
-             let sender = ensure_signed(origin)?;
-
-             // Verify that the specified proof has been claimed.
-             ensure!(Proofs::<T>::contains_key(&proof), Error::<T>::NoSuchProof);
-
-             // Get owner of the claim.
-             let (owner, _) = Proofs::<T>::get(&proof);
-
-             // Verify that sender of the current call is the claim owner.
-             ensure!(sender == owner, Error::<T>::NotProofOwner);
-
-             // Remove claim from storage.
-             Proofs::<T>::remove(&proof);
-
-             // Emit an event that the claim was erased.
-             Self::deposit_event(Event::ClaimRevoked(sender, proof));
-             Ok(())
-           }
-     }
+   	#[pallet::weight(1_000)]
+   	pub fn create_claim(
+   	origin: OriginFor<T>,
+   	proof: Vec<u8>,
+   	) -> DispatchResult {
+   		// Check that the extrinsic was signed and get the signer.
+   		// This function will return an error if the extrinsic is not signed.
+   		// https://docs.substrate.io/v3/runtime/origins
+   		let sender = ensure_signed(origin)?;
+   		// Verify that the specified proof has not already been claimed.
+   		ensure!(!Proofs::<T>::contains_key(&proof), Error::<T>::ProofAlreadyClaimed);
+   		// Get the block number from the FRAME System pallet.
+   		let current_block = <frame_system::Pallet<T>>::block_number();
+   		// Store the proof with the sender and block number.
+   		Proofs::<T>::insert(&proof, (&sender, current_block));
+   		// Emit an event that the claim was created.
+   		Self::deposit_event(Event::ClaimCreated(sender, proof));
+   		Ok(())
+   		}
+   		#[pallet::weight(10_000)]
+   		pub fn revoke_claim(
+   		origin: OriginFor<T>,
+   		proof: Vec<u8>,
+   		) -> DispatchResult {
+   			// Check that the extrinsic was signed and get the signer.
+   			// This function will return an error if the extrinsic is not signed.
+   			// https://docs.substrate.io/v3/runtime/origins
+   			let sender = ensure_signed(origin)?;
+   			// Verify that the specified proof has been claimed.
+   			ensure!(Proofs::<T>::contains_key(&proof), Error::<T>::NoSuchProof);
+   			// Get owner of the claim.
+   			let (owner, _) = Proofs::<T>::get(&proof);
+   			// Verify that sender of the current call is the claim owner.
+   			ensure!(sender == owner, Error::<T>::NotProofOwner);
+   			// Remove claim from storage.
+   			Proofs::<T>::remove(&proof);
+   			// Emit an event that the claim was erased.
+   			Self::deposit_event(Event::ClaimRevoked(sender, proof));
+   			Ok(())
+   		}
+   	}
    ```
 
 1. Save your changes and close the file.
@@ -580,7 +569,7 @@ The React component enables you to expose the proof-of-existence capabilities an
 
 1. Start the front-end template by running the following command:
 
-   ```
+   ```bash
    yarn start
    ```
 
