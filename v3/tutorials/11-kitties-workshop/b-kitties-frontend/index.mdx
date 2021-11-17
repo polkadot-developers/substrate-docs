@@ -122,112 +122,99 @@ So it does the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.j
 
 1. Start by creating a file called `Kitties.js` in `src` and paste the following imports:
 
-        ```js
-        import React, { useEffect, useState } from 'react'
-        import { Form, Grid } from 'semantic-ui-react'
-
-        import { useSubstrate } from './substrate-lib'
-        import { TxButton } from './substrate-lib/components'
-
-        import KittyCards from './KittyCards'
-        ```
-
-    The way our custom components make use of Polkadot-JS API is by using `substrate-lib`, which is a wrapper around [Polkadot JS API instance](https://polkadot.js.org/docs/api/start/create/) and allows us to retrieve account keys from the [Polkadot-JS keyring](https://polkadot.js.org/docs/api/start/keyring).
-    This is why we use `useSubstrate` which is exported by `src/substrate-lib/SubstrateContext.js` and used to create the wrapper.
+   ```js
+   import React, { useEffect, useState } from 'react'
+   import { Form, Grid } from 'semantic-ui-react'
+   import { useSubstrate } from './substrate-lib'
+   import { TxButton } from './substrate-lib/components'
+   import KittyCards from './KittyCards'
+   ```
+   The way our custom components make use of Polkadot-JS API is by using `substrate-lib`, which is a wrapper around [Polkadot JS API instance](https://polkadot.js.org/docs/api/start/create/) and allows us to retrieve account keys from the [Polkadot-JS keyring](https://polkadot.js.org/docs/api/start/keyring).
+   This is why we use `useSubstrate` which is exported by `src/substrate-lib/SubstrateContext.js` and used to create the wrapper.
 
 1. Proceed by pasting in the following code snippet:
 
-        ```js
-        // Construct a Kitty ID from storage key
-        const convertToKittyHash = entry =>
-        `0x${entry[0].toJSON().slice(-64)}`;
-
-        // Construct a Kitty object
-        const constructKitty = (hash, { dna, price, gender, owner }) => ({
-        id: hash,
-        dna,
-        price: price.toJSON(),
-        gender: gender.toJSON(),
-        owner: owner.toJSON()
-        });
-
-        // Use React hooks
-        export default function Kitties (props) {
-        const { api, keyring } = useSubstrate();
-        const { accountPair } = props;
-
-        const [kittyHashes, setKittyHashes] = useState([]);
-        const [kitties, setKitties] = useState([]);
-        const [status, setStatus] = useState('');
-        // snip
-        ```
-
-        The above code handles a few important aspects of our front-end application:
-
-        - `convertToKittyHash` helps construct a Kitty ID from its storage key.
-        - `constructKitty` is a function to hold all Kitty objects.
-        - `Kitties` enables us to subscribe to chain storage item changes and use the `useEffect` React hook to update the state of our other components.
-
-        There are two things our app needs to subscribe to: storage changes in the amount of Kitties and changes in Kitty objects.
-        To do this we'll create [a subscription](https://reactjs.org/docs/hooks-reference.html#useeffect) function for each.
-
-        We'll use `api.query.substrateKitties.kittyCnt` to listen for a change in the amount of Kitties, which will query `KittyCnt` from our Kitties pallet storage item.
-        Then, we'll use the `entries()` method from Polkadot-JS API to get Kitty IDs and transform them with the `convertToKittyHash` function.
+   ```js
+   // Construct a Kitty ID from storage key
+   const convertToKittyHash = entry =>
+   `0x${entry[0].toJSON().slice(-64)}`;
+   // Construct a Kitty object
+   const constructKitty = (hash, { dna, price, gender, owner }) => ({
+   id: hash,
+   dna,
+   price: price.toJSON(),
+   gender: gender.toJSON(),
+   owner: owner.toJSON()
+   });
+   // Use React hooks
+   export default function Kitties (props) {
+   const { api, keyring } = useSubstrate();
+   const { accountPair } = props;
+   const [kittyHashes, setKittyHashes] = useState([]);
+   const [kitties, setKitties] = useState([]);
+   const [status, setStatus] = useState('');
+   // snip
+   ```
+   The above code handles a few important aspects of our front-end application:
+   - `convertToKittyHash` helps construct a Kitty ID from its storage key.
+   - `constructKitty` is a function to hold all Kitty objects.
+   - `Kitties` enables us to subscribe to chain storage item changes and use the `useEffect` React hook to update the state of our other components.
+   There are two things our app needs to subscribe to: storage changes in the amount of Kitties and changes in Kitty objects.
+   To do this we'll create [a subscription](https://reactjs.org/docs/hooks-reference.html#useeffect) function for each.
+   We'll use `api.query.substrateKitties.kittyCnt` to listen for a change in the amount of Kitties, which will query `KittyCnt` from our Kitties pallet storage item.
+   Then, we'll use the `entries()` method from Polkadot-JS API to get Kitty IDs and transform them with the `convertToKittyHash` function.
 
 1. Paste the following snippet to enable this:
 
-        ```js
-        // Subscription function for setting Kitty IDs
-        const subscribeKittyCnt = () => {
-        let unsub = null
-
-        const asyncFetch = async () => {
-          // Query KittyCnt from runtime
-          unsub = await api.query.substrateKitties.kittyCnt(async cnt => {
-          // Fetch all Kitty objects using entries()
-          const entries = await api.query.substrateKitties.kitties.entries()
-          // Retrieve only the Kitty ID and set to state
-          const hashes = entries.map(convertToKittyHash)
-          setKittyHashes(hashes)
-          })
-        }
-
-        asyncFetch()
-
-        // return the unsubscription cleanup function
-        return () => {
-          unsub && unsub()
-        }
-        }
-        ```
+   ```js
+   // Subscription function for setting Kitty IDs
+   const subscribeKittyCnt = () => {
+     let unsub = null
+     const asyncFetch = async () => {
+     // Query KittyCnt from runtime
+     unsub = await api.query.substrateKitties.kittyCnt(async cnt => {
+     // Fetch all Kitty objects using entries()
+     const entries = await api.query.substrateKitties.kitties.entries()
+     // Retrieve only the Kitty ID and set to state
+     const hashes = entries.map(convertToKittyHash)
+     setKittyHashes(hashes)
+     })
+     }
+     asyncFetch()
+     // return the unsubscription cleanup function
+     return () => {
+     unsub && unsub()
+     }
+   }
+   ```
 
 1. Similarly for `subscribeKitties`, paste the following code snippet:
 
-        ```js
-        // Subscription function to construct a Kitty object
-        const subscribeKitties = () => {
-        let unsub = null
-
-        const asyncFetch = async () => {
-          // Get Kitty objects from storage
-          unsub = await api.query.substrateKitties.multi(kittyHashes, kitties => {
-          // Create an array of Kitty objects from `constructKitty`
-          const kittyArr = kitties.map((kitty, ind) =>
-            constructKitty(kittyHashes[ind], kitty.value)
-          )
-          // Set the array of Kitty objects to state
-          setKitties(kittyArr)
-          })
-        }
-
-        asyncFetch()
-
-        // return the unsubscription cleanup function
-        return () => {
-          unsub && unsub()
-        }
-        }
-        ```
+   ```js
+   // Subscription function to construct a Kitty object
+   const subscribeKitties = () => {
+     let unsub = null
+     
+     const asyncFetch = async () => {
+       // Get Kitty objects from storage
+       unsub = await api.query.substrateKitties.multi(kittyHashes, kitties => {
+       // Create an array of Kitty objects from `constructKitty`
+       const kittyArr = kitties.map((kitty, ind) =>
+       constructKitty(kittyHashes[ind], kitty.value)
+       )
+       // Set the array of Kitty objects to state
+       setKitties(kittyArr)
+       })
+     }
+     
+     asyncFetch()
+     
+     // return the unsubscription cleanup function
+     return () => {
+       unsub && unsub()
+     }
+   }
+   ```
 
 <br />
 <Message
