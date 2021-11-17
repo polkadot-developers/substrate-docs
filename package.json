@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Parity Technologies WebDev Team",
+  "private": true,
   "license": "MIT",
   "scripts": {
     "clean": "gatsby clean",
@@ -14,7 +15,7 @@
     "serve:fresh": "yarn clean; yarn build; yarn serve",
     "fmt:docs": "prettier --config .prettierrc.js --write \"{!**/*.{js,jsx,ts,tsx,json},**/*.{md,mdx}}\"",
     "fmt:site": "prettier --config .prettierrc.js --write \"{**/*.{js,jsx,ts,tsx,json},!**/*.{md,mdx}}\"",
-    "checklinks": "yarn blc --filter-level=3 -rof --requests=10 --exclude='/rustdocs' --exclude='/crates.io' --exclude='/fonts.gstatic.com' --exclude='/github.com' --exclude='/www.nuget.org' --exclude='/www.chicagomanualofstyle.org' http://localhost:9000",
+    "checklinks": "yarn blc --filter-level=3 -rof --requests=10 --exclude='/rustdocs' --exclude='/crates.io' --exclude='/fonts.gstatic.com' --exclude='/github.com' --exclude='/www.nuget.org' --exclude='/www.chicagomanualofstyle.org' --exclude='/undefined' http://localhost:9000",
     "lint": "eslint . --ext ts --ext tsx --ext js --ext jsx",
     "lint:tsc": "tsc -p tsconfig.json --noEmit"
   },
@@ -97,4 +98,4 @@
     "minipass": "2.7.0"
   },
   "packageManager": "yarn@3.0.2"
-}
+  }
