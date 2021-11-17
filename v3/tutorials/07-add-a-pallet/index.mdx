@@ -107,14 +107,14 @@ For an introduction to editing `Cargo.toml` files, see the [Cargo reference docu
 
    If you forget to update the `features` section, you might see errors similar to the following when you
    build the native binaries:
-   
+
    ```text
    error[E0425]: cannot find function `memory_teardown` in module `sandbox`
      --> ~/.cargo/git/checkouts/substrate-7e08433d4c370a21/83a6f1a/primitives/sandbox/src/../without_std.rs:53:12
      |
    53 |         sandbox::memory_teardown(self.memory_idx);
      |                  ^^^^^^^^^^^^^^^ not found in `sandbox`
-   
+
    error[E0425]: cannot find function `memory_new` in module `sandbox`
      --> ~/.cargo/git/checkouts/substrate-7e08433d4c370a21/83a6f1a/primitives/sandbox/src/../without_std.rs:72:18
      |
@@ -232,29 +232,29 @@ To implement the nicks pallet in your runtime:
    	// Maximum bounds on storage are important to secure your chain.
    	pub const MaxNickLength: u32 = 32;
    }
-   
+
    impl pallet_nicks::Config for Runtime {
    	// The Balances pallet implements the ReservableCurrency trait.
    	// `Balances` is defined in `construct_runtime!` macro. See below.
    	// https://docs.substrate.io/rustdocs/latest/pallet_balances/index.html#implementations-2
    	type Currency = Balances;
-   
+
    	// Use the NickReservationFee from the parameter_types block.
    	type ReservationFee = NickReservationFee;
-   
+
    	// No action is taken when deposits are forfeited.
    	type Slashed = ();
-   
+
    	// Configure the FRAME System Root origin as the Nick pallet admin.
    	// https://docs.substrate.io/rustdocs/latest/frame_system/enum.RawOrigin.html#variant.Root
    	type ForceOrigin = frame_system::EnsureRoot<AccountId>;
-   
+
    	// Use the MinNickLength from the parameter_types block.
    	type MinLength = MinNickLength;
-   
+
    	// Use the MaxNickLength from the parameter_types block.
    	type MaxLength = MaxNickLength;
-   
+
    	// The ubiquitous event type.
    	type Event = Event;
    }
@@ -301,7 +301,7 @@ To implement the nicks pallet in your runtime:
    ```bash
    cargo check -p node-template-runtime
    ```
-   
+
    If there are no errors, you are ready to compile.
 
 1. Compile the node in release mode by running the following command:
