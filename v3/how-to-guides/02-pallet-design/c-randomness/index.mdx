@@ -27,7 +27,7 @@ The guide also illustrates how to add entropy to the randomness value by assigni
    ```rust
    #[pallet::config]
    pub trait frame_system::Config {
-       type MyRandomness: Randomness<Self::Hash, Self::BlockNumber>;
+   	type MyRandomness: Randomness<Self::Hash, Self::BlockNumber>;
    }
    ```
 
@@ -53,11 +53,11 @@ Use a nonce to serve as a subject for the `frame_support::traits::Randomness::ra
    For example:
 
    ```rust
-       fn get_and_increment_nonce() -> Vec<u8> {
-           let nonce = Nonce::<T>::get();
-           Nonce::<T>::put(nonce.wrapping_add(1));
-           nonce.encode()
-       }
+   fn get_and_increment_nonce() -> Vec<u8> {
+   	let nonce = Nonce::<T>::get();
+   	Nonce::<T>::put(nonce.wrapping_add(1));
+   	nonce.encode()
+   }
    ```
 
    To learn more about the wrapping and encoding methods, see [`wrapping_add`](https://doc.rust-lang.org/std/intrinsics/fn.wrapping_add.html) and [`encode()`](/rustdocs/latest/frame_support/dispatch/trait.Encode.html#method.encode) in the Rust documentation.
@@ -70,20 +70,16 @@ Use a nonce to serve as a subject for the `frame_support::traits::Randomness::ra
    ```rust
    #[pallet::weight(100)]
    pub fn create_unique(
-       origin: OriginFor<T>)
-       -> DispatchResultWithPostInfo {
-
-       // Account calling this dispatchable.
-       let sender = ensure_signed(origin)?;
-
-         // Random value.
-         let nonce = Self::get_and_increment_nonce();
-         let (randomValue, _) = T::MyRandomness::random(&nonce);
-
-       // Write the random value to storage.
-       <MyStorageItem<T>>::put(randomValue);
-
-       Self::deposit_event(Event::UniqueCreated(randomValue));
+   	origin: OriginFor<T>)
+   	-> DispatchResultWithPostInfo {
+   	// Account calling this dispatchable.
+   	let sender = ensure_signed(origin)?;
+   		// Random value.
+   		let nonce = Self::get_and_increment_nonce();
+   		let (randomValue, _) = T::MyRandomness::random(&nonce);
+   	// Write the random value to storage.
+   	<MyStorageItem<T>>::put(randomValue);
+   	Self::deposit_event(Event::UniqueCreated(randomValue));
    }
    ```
 
@@ -99,8 +95,8 @@ Use a nonce to serve as a subject for the `frame_support::traits::Randomness::ra
 
    ```rust
    impl my_pallet::Config for Runtime{
-       type Event;
-       type MyRandomness = RandomCollectiveFlip;
+   	type Event;
+   	type MyRandomness = RandomCollectiveFlip;
    }
    ```
 

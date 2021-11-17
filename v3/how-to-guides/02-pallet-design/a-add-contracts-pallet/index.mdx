@@ -21,7 +21,6 @@ If you haven't already done so, see [Create your first substrate chain](/tutoria
    To learn how to include Contracts in your runtime, see [Basic pallet integration](/how-to-guides/v3/basics/pallet-integration).
 
 1. Update `runtime/Cargo.toml` with the following entries:
-
    - `pallet-contracts`
    - `pallet-contracts-primitives`
 
@@ -39,11 +38,11 @@ Implement the Contracts pallet [configuration traits][contracts-config-rustdocs]
 
    ```rust
    impl pallet_contracts::Config for Runtime {
-       type Time = Timestamp;
-       type Randomness = RandomnessCollectiveFlip;
-       type Currency = Balances;
-       type Event = Event;
-       /* --snip-- */
+   	type Time = Timestamp;
+   	type Randomness = RandomnessCollectiveFlip;
+   	type Currency = Balances;
+   	type Event = Event;
+   	/* --snip-- */
    ```
 
 1. Add parameter types.
@@ -60,22 +59,22 @@ Implement the Contracts pallet [configuration traits][contracts-config-rustdocs]
 
    For example, the following shows how the parameter type, `DeletionQueueDepth`, should be added:
 
-   ````rust
+   ```rust
    parameter_types! {
-       /* --snip-- */
-     pub DeletionQueueDepth: u32 = ((DeletionWeightLimit::get() / (
-         <Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(1) -
-         <Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(0)
-           )) / 5) as u32;
-           /* --snip-- */
-       }
-     ```
+   	/* --snip-- */
+   	pub DeletionQueueDepth: u32 = ((DeletionWeightLimit::get() / (
+   		<Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(1) -
+   		<Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(0)
+   		)) / 5) as u32;
+   		/* --snip-- */
+   	}
+   ```
 
    Notice how the above parameter type depends on `WeightInfo`. This requires you to add the following to the top of `runtime/src/lib.rs`:
 
    ```rust
    use pallet_contracts::weights::WeightInfo;
-   ````
+   ```
 
    Similarly, other parameter types use constants such as `DAYS`, `MILLICENTS` and `AVERAGE_ON_INITIALIZE_RATIO`.
 
@@ -88,7 +87,7 @@ Implement the Contracts pallet [configuration traits][contracts-config-rustdocs]
    pub const DOLLARS: Balance = 100 * CENTS;
 
    const fn deposit(items: u32, bytes: u32) -> Balance {
-       items as Balance * 15 * CENTS + (bytes as Balance) * 6 * CENTS
+   	items as Balance * 15 * CENTS + (bytes as Balance) * 6 * CENTS
    }
 
    /// We assume that ~10% of the block weight is consumed by `on_initialize` handlers.
@@ -140,8 +139,8 @@ As in the [first step of this guide](#1-import-the-dependencies), update `/runti
    ```rust
    // Contracts RPC API extension
    io.extend_with(
-     ContractsApi::to_delegate(Contracts::new(client.clone()))
-     );
+   	ContractsApi::to_delegate(Contracts::new(client.clone()))
+   );
    ```
 
    This RPC does not contain access to the Contracts pallet by default.
@@ -157,9 +156,9 @@ As in the [first step of this guide](#1-import-the-dependencies), update `/runti
 
    ```rust
    // Contracts RPC API extension
-     io.extend_with(
-         ContractsApi::to_delegate(Contracts::new(client.clone()))
-     );
+   io.extend_with(
+   	ContractsApi::to_delegate(Contracts::new(client.clone()))
+   );
    ```
 
 ## Start your upgraded chain

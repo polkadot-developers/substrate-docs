@@ -34,8 +34,8 @@ The `GenesisConfig` code should go after your storage items.
    ```rust
    #[pallet::genesis_config]
    pub struct GenesisConfig<T: Config> {
-     pub single_value: T::Balance,
-     pub account_map: Vec<(T::AccountId, T::Balance)>,
+   	pub single_value: T::Balance,
+   	pub account_map: Vec<(T::AccountId, T::Balance)>,
    }
    ```
 
@@ -44,9 +44,9 @@ The `GenesisConfig` code should go after your storage items.
    ```rust
    #[cfg(feature = "std")]
    impl<T: Config> Default for GenesisConfig<T> {
-     fn default() -> Self {
-       Self { single_value: Default::default(), account_map: Default::default() }
-     }
+   	fn default() -> Self {
+   		Self { single_value: Default::default(), account_map: Default::default() }
+   	}
    }
    ```
 
@@ -55,12 +55,12 @@ The `GenesisConfig` code should go after your storage items.
    ```rust
    #[pallet::genesis_build]
    impl<T: Config> GenesisBuild<T> for GenesisConfig<T> {
-     fn build(&self) {
-       <SingleValue<T>>::put(&self.single_value);
-       for (a, b) in &self.account_map {
-         <AccountMap<T>>::insert(a, b);
-       }
-     }
+   	fn build(&self) {
+   		<SingleValue<T>>::put(&self.single_value);
+   		for (a, b) in &self.account_map {
+   			<AccountMap<T>>::insert(a, b);
+   		}
+   	}
    }
    ```
 
@@ -83,11 +83,11 @@ We'll assume our pallet is called `pallet_something`, declared as `PalletSomethi
 
    ```rust
    let accounts_to_map: Vec<AccountId> =
-     vec![
-       get_account_id_from_seed::<sr25519::Public>("Alice"),
-       get_account_id_from_seed::<sr25519::Public>("Bob"),
-       get_account_id_from_seed::<sr25519::Public>("Charlie"),
-     ];
+   	vec![
+   		get_account_id_from_seed::<sr25519::Public>("Alice"),
+   		get_account_id_from_seed::<sr25519::Public>("Bob"),
+   		get_account_id_from_seed::<sr25519::Public>("Charlie"),
+   	];
    ```
 
 1. Complete the `GenesisConfig` clause in the `testnet_genesis` function.
@@ -99,8 +99,8 @@ We'll assume our pallet is called `pallet_something`, declared as `PalletSomethi
 
    ```rust
    pallet_something: PalletSomethingConfig {
-     single_value: VALUE,
-     account_map: accounts_to_map.iter().cloned().map(|x| (x, VALUE)).collect(),
+   	single_value: VALUE,
+   	account_map: accounts_to_map.iter().cloned().map(|x| (x, VALUE)).collect(),
    }
    ```
 

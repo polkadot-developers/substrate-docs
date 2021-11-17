@@ -18,13 +18,13 @@ SS58 is designed to be extensible for this reason.
 ## Format in detail
 
 This page outlines the implementation of [`Ss58Codec` in Substrate](https://paritytech.github.io/substrate/master/sp_core/crypto/trait.Ss58Codec.html).
-Also of note is the cannonical [SS58 registry](https://github.com/paritytech/ss58-registry) of adress type mappings to various networks described below.
+Also of note is the canonical [SS58 registry](https://github.com/paritytech/ss58-registry) of address type mappings to various networks described below.
 
 ### Basic format
 
 The basic format conforms to:
 
-```
+```text
 base58encode ( concat ( <address-type>, <address>, <checksum> ) )
 ```
 
@@ -85,7 +85,7 @@ A context prefix of `0x53533538505245`, (the string `SS58PRE`) is prepended to t
 
 The advantage of using more checksum bytes is simply that more bytes provide a greater degree of protection against input errors and index alteration at the cost of widening the textual address by an extra few characters.
 For the account ID format, this is insignificant and therefore no 1-byte alternative is provided.
-For the shorter account-index formats, the extra byte represents a far greater portion of the final address, so it is left for further up the stack (though not necessarily the user themself) to determine the best tradeoff for their purposes.
+For the shorter account-index formats, the extra byte represents a far greater portion of the final address, so it is left for further up the stack (though not necessarily the user themselves) to determine the best tradeoff for their purposes.
 
 ## Simple/full address types and account/address/network identifiers
 
@@ -172,7 +172,7 @@ console.log(isValid)
 ## Learn more
 
 - [`Ss58Codec` in Substrate](https://paritytech.github.io/substrate/master/sp_core/crypto/trait.Ss58Codec.html)
-- The cannonical [SS58 registry](https://github.com/paritytech/ss58-registry)
+- The canonical [SS58 registry](https://github.com/paritytech/ss58-registry)
 - [Polkadot-js API on GitHub](https://github.com/polkadot-js/api)
 - [Install Subkey](/v3/tools/subkey#installation)
 - [Ecosystem client
