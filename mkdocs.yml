@@ -1,0 +1,65 @@
+# Project information
+site_name: Substrate Doc Sandbox
+#repo_url: https://github.com/example/repository/
+docs_dir: 'docs-sandbox'
+
+# Copyright
+copyright: 'Copyright &copy; 2021. All rights reserved.'
+
+# Configuration
+theme:
+  name: material
+  custom_dir: my-overrides
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.indexes
+    - navigation.tracking
+    - navigation.sections
+    #- toc.integrate
+  language: 'en'
+
+# Navigation
+nav:
+   - 'Welcome to Substrate': 'index.md'
+   - 'Quick start': 'quickstart/index.md'
+   - 'Docs':
+        - main-docs/index.md
+        - 'Why Substrate?': 'main-docs/01-why-substrate/index.md'
+        - 'Fundamentals': 
+             - 'main-docs/02-fundamentals/index.md'
+             #- 'Blockchain basics': 'main-docs/fundamentals/blockchain-basic.md'
+             #- 'Anatomy of a node': 'main-docs/fundamentals/substrate-client.md'
+        - 'Install': 
+             - 'docs/install/index.md'
+        - 'Explore': 'docs/explore.md'
+        - 'Design': 'docs/05-design/index.mdx'
+        - 'Build': 'docs/build.md'
+        - 'Test': 'docs/test.md'
+        - 'Deploy': 'docs/deploy.md'
+        #- 'Migrate': 'main-docs/migrate.md'
+        #- 'Monitor': 'main-docs/monitor.md'
+        #- 'Operate': 'main-docs/operate.md'
+        - 'Upgrade': 'docs/upgrade.md'
+        #- 'Retire': 'main-docs/retire.md'
+   - 'Tutorials':
+        - tutorials/index.md
+        - 'Build a local blockchain': 'tutorials/01-build-local-blockchain/index.md'
+        - 'Simulate a network': 'tutorials/02-simulate-network/index.md'
+        - 'Start a private network': 'tutorials/03-private-network/index.md'
+   - 'Reference':
+        - 'reference/index.md'
+        - 'Rust crates': 'https://docs.substrate.io/rustdocs/"target="_blank'
+        - 'How-to quick reference guides': 
+             - 'reference/how-to-guides/index.md'
+        #- 'Polkadot-JS': 'reference/polkadot-js.md'
+        #- 'Client libraries': 'reference/client-lib.md'
+        #- 'Glossary': 'reference/glossary.md'
+   - 'Community': 
+        - 'community/index.md'
+        - 'Writing style guidelines': 'community/01-writing-guide/index.md'
+        - 'Site builder guidelines': 'community/02-site-guide/index.md'
+        - 'How-to topic template': 'https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/contribute-templates/how-to-template.md/"target="_blank'
+        - 'Bounties': 'community/03-bounty/index.md'
+   - 'FAQ dropbox': 'faq-dropbox/index.md'
+   - 'Playground': 'https://docs.substrate.io/playground/"target="_blank'
