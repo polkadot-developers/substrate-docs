@@ -84,8 +84,7 @@ To add the Nicks pallet to the Substrate node template:
 
 In this `dependencies.pallet-nicks` section, `default-features = false` specifies that the default features to be used are the features defined for the [`std`](https://doc.rust-lang.org/std/) native Rust binary listed in the `features` section.
 
-It is important to note that the Substrate runtime compiles to both a native Rust [`std`](https://doc.rust-lang.org/std/) binary and a [WebAssembly (Wasm)](https://webassembly.org/) binary.
-For more information about compiling [`std`](https://doc.rust-lang.org/std/) and [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html) features, see XXX.
+It is important to note that the Substrate runtime compiles to both a native Rust [`std`](https://doc.rust-lang.org/std/) binary and a [WebAssembly (Wasm)](https://webassembly.org/) binary. For more information about compiling [`std`](https://doc.rust-lang.org/std/) and [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html) features, see the [Rust Embedded Book](https://docs.rust-embedded.org/book/intro/no-std.html#summary).
 
 The remaining lines specify that Cargo should use the `pallet-nicks` crate from the `paritytech/substrate` repository with the commit tag identified using the `monthly-YYYY-MM` naming convention.
 
