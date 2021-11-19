@@ -71,43 +71,44 @@ All we need to focus on is building out the logic of our [runtime][runtime-kb] a
 
 To kick things off, we need to set-up our project name and dependencies.
 We'll use a CLI tool called [kickstart][kickstart-tool] to easily rename our node template.
+
 1. Install it by running `cargo install kickstart`.
 
 1. Once `kickstart` is installed, in the root directory of your local workspace run the following command:
 
-  ```bash
-  kickstart https://github.com/sacha-l/kickstart-substrate
-  ```
+   ```bash
+   kickstart https://github.com/sacha-l/kickstart-substrate
+   ```
 
-  This command will clone a copy of the most recent Node Template and ask how you would like to call your node and pallet.
+   This command will clone a copy of the most recent Node Template and ask how you would like to call your node and pallet.
 
 1. Type in:
 
-    - `kitties` - as the name of our node. The node will be named as `node-kitties`.
-    - `kitties` - as the name of your pallet. The pallet will be named as `pallet-kitties`.
+   - `kitties` - as the name of our node. The node will be named as `node-kitties`.
+   - `kitties` - as the name of your pallet. The pallet will be named as `pallet-kitties`.
 
-  This will create a directory called `kitties` with a copy of the [Substrate Node Template][substrate-node-template] containing the name changes that correspond our template node, runtime, and pallet.
+   This will create a directory called `kitties` with a copy of the [Substrate Node Template][substrate-node-template] containing the name changes that correspond our template node, runtime, and pallet.
 
 1. Open the `kitties` directory in your favorite code editor and rename it as `kitties-tutorial` &mdash; or whatever name you like to help keep your work organized.
 
-    Notice the directories that the `kickstart` command modified:
+   Notice the directories that the `kickstart` command modified:
 
-    - **/node/** - This folder contains all the logic that allows your node to interact with your runtime and RPC clients.
-    - **/pallets/** - Here's where all your custom pallets live.
-    - **/runtime/** - This folder is where all pallets (both custom "internal" and "external" ones) are aggregated and implemented for the chain's runtime.
+   - **/node/** - This folder contains all the logic that allows your node to interact with your runtime and RPC clients.
+   - **/pallets/** - Here's where all your custom pallets live.
+   - **/runtime/** - This folder is where all pallets (both custom "internal" and "external" ones) are aggregated and implemented for the chain's runtime.
 
 1. In `runtime/src/lib.rs`, you'll also notice that the instance of our modified template pallet name remains `TemplateModule`.
-Change it to `SubstrateKitties`:
+   Change it to `SubstrateKitties`:
 
-  ```rust
-  construct_runtime!(
-      // --snip
-      {
-          // --snip
-          SubstrateKitties: pallet_kitties,
-      }
-  );
-  ```
+   ```rust
+   construct_runtime!(
+   	// --snip
+   {
+   		// --snip
+   		SubstrateKitties: pallet_kitties,
+   	}
+   );
+   ```
 
 ### Write the `pallet_kitties` scaffold
 
@@ -168,102 +169,102 @@ Just like the [helper files](https://github.com/substrate-developer-hub/substrat
 
 1. Paste the following code in `/pallets/kitties/src/lib.rs`:
 
-  ```rust
-  #![cfg_attr(not(feature = "std"), no_std)]
+   ```rust
+   #![cfg_attr(not(feature = "std"), no_std)]
 
-  pub use pallet::*;
+   pub use pallet::*;
 
-  #[frame_support::pallet]
-  pub mod pallet {
-      use frame_support::{sp_runtime::traits::{Hash, Zero},
-                          dispatch::{DispatchResultWithPostInfo, DispatchResult},
-                          traits::{Currency, ExistenceRequirement, Randomness},
-                          pallet_prelude::*};
-      use frame_system::pallet_prelude::*;
-      use sp_io::hashing::blake2_128;
+   #[frame_support::pallet]
+   pub mod pallet {
+   	use frame_support::{sp_runtime::traits::{Hash, Zero},
+   						dispatch::{DispatchResultWithPostInfo, DispatchResult},
+   						traits::{Currency, ExistenceRequirement, Randomness},
+   						pallet_prelude::*};
+   	use frame_system::pallet_prelude::*;
+   	use sp_io::hashing::blake2_128;
 
-      // TODO Part II: Struct for holding Kitty information.
+   	// TODO Part II: Struct for holding Kitty information.
 
-      // TODO Part II: Enum and implementation to handle Gender type in Kitty struct.
+   	// TODO Part II: Enum and implementation to handle Gender type in Kitty struct.
 
-      #[pallet::pallet]
-      #[pallet::generate_store(pub(super) trait Store)]
-      #[pallet::generate_storage_info]
-      pub struct Pallet<T>(_);
+   	#[pallet::pallet]
+   	#[pallet::generate_store(pub(super) trait Store)]
+   	#[pallet::generate_storage_info]
+   	pub struct Pallet<T>(_);
 
-      /// Configure the pallet by specifying the parameters and types it depends on.
-      #[pallet::config]
-      pub trait Config: frame_system::Config {
-          /// Because this pallet emits events, it depends on the runtime's definition of an event.
-          type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+   	/// Configure the pallet by specifying the parameters and types it depends on.
+   	#[pallet::config]
+   	pub trait Config: frame_system::Config {
+   		/// Because this pallet emits events, it depends on the runtime's definition of an event.
+   		type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
 
-          /// The Currency handler for the Kitties pallet.
-          type Currency: Currency<Self::AccountId>;
+   		/// The Currency handler for the Kitties pallet.
+   		type Currency: Currency<Self::AccountId>;
 
-          // TODO Part II: Specify the custom types for our runtime.
+   		// TODO Part II: Specify the custom types for our runtime.
 
-      }
+   	}
 
-      // Errors.
-      #[pallet::error]
-      pub enum Error<T> {
-          // TODO Part III
-      }
+   	// Errors.
+   	#[pallet::error]
+   	pub enum Error<T> {
+   		// TODO Part III
+   	}
 
-      #[pallet::event]
-      #[pallet::generate_deposit(pub(super) fn deposit_event)]
-      pub enum Event<T: Config> {
-          // TODO Part III
-      }
+   	#[pallet::event]
+   	#[pallet::generate_deposit(pub(super) fn deposit_event)]
+   	pub enum Event<T: Config> {
+   		// TODO Part III
+   	}
 
-      // ACTION: Storage item to keep a count of all existing Kitties.
+   	// ACTION: Storage item to keep a count of all existing Kitties.
 
-      // TODO Part II: Remaining storage items.
+   	// TODO Part II: Remaining storage items.
 
-      // TODO Part III: Our pallet's genesis configuration.
+   	// TODO Part III: Our pallet's genesis configuration.
 
-      #[pallet::call]
-      impl<T: Config> Pallet<T> {
+   	#[pallet::call]
+   	impl<T: Config> Pallet<T> {
 
-          // TODO Part III: create_kitty
+   		// TODO Part III: create_kitty
 
-          // TODO Part III: set_price
+   		// TODO Part III: set_price
 
-          // TODO Part III: transfer
+   		// TODO Part III: transfer
 
-          // TODO Part III: buy_kitty
+   		// TODO Part III: buy_kitty
 
-          // TODO Part III: breed_kitty
-      }
+   		// TODO Part III: breed_kitty
+   	}
 
-      // TODO Parts II: helper function for Kitty struct
+   	// TODO Parts II: helper function for Kitty struct
 
-      impl<T: Config> Pallet<T> {
-          // TODO Part III: helper functions for dispatchable functions
+   	impl<T: Config> Pallet<T> {
+   		// TODO Part III: helper functions for dispatchable functions
 
-          // TODO: increment_nonce, random_hash, mint, transfer_from
+   		// TODO: increment_nonce, random_hash, mint, transfer_from
 
-      }
-  }
-  ```
+   	}
+   }
+   ```
 
 1. Notice that we're using `sp_io` in our pallet.
-Ensure that this is declared as a dependency in your pallet's `Cargo.toml` file:
+   Ensure that this is declared as a dependency in your pallet's `Cargo.toml` file:
 
-  ```toml
-  [dependencies.sp-io]
-  default-features = false
-  git = 'https://github.com/paritytech/substrate.git'
-  tag = 'monthly-2021-11'
-  version = '4.0.0-dev'
-  ```
+   ```toml
+   [dependencies.sp-io]
+   default-features = false
+   git = 'https://github.com/paritytech/substrate.git'
+   tag = 'monthly-2021-11'
+   version = '4.0.0-dev'
+   ```
 
 1. Now try running the following command to build your pallet. We won't build the entire chain just yet because we haven't yet implemented the `Currency` type in our runtime.
-At least we can check that there are no errors in our pallet so far:
+   At least we can check that there are no errors in our pallet so far:
 
-  ```bash
-  cargo build -p pallet-kitties
-  ```
+   ```bash
+   cargo build -p pallet-kitties
+   ```
 
 <br />
 <Message
@@ -276,7 +277,7 @@ dependency error. Here, we're using the \`monthly-2021-11\` tag of Substrate.
 />
 
 You'll notice the Rust compiler giving you warnings about unused imports.
-That's fine! 
+That's fine!
 Just ignore them &mdash; we're going to be using those imports in the later parts of the tutorial.
 
 ### Add storage items
@@ -330,9 +331,9 @@ various patterns for:
 
 ## Uniqueness, custom types and storage maps
 
-You're ready to dive into some pillar concepts for developing pallets with FRAME (**Framework for Runtime Aggregation of Modularized Entities**), incuding writing [a storage struct](/how-to-guides/v3/pallet-design/storage-value) and [implementing the randomness trait](/how-to-guides/v3/pallet-design/randomness).
+You're ready to dive into some pillar concepts for developing pallets with FRAME (**Framework for Runtime Aggregation of Modularized Entities**), including writing [a storage struct](/how-to-guides/v3/pallet-design/storage-value) and [implementing the randomness trait](/how-to-guides/v3/pallet-design/randomness).
 
-Use the [helper code](https://github.com/substrate-developer-hub/substrate-docs/tree/main/static/assets/tutorials/kitties-tutorial/02-create-kitties.rs) provided below to help you complete each step. 
+Use the [helper code](https://github.com/substrate-developer-hub/substrate-docs/tree/main/static/assets/tutorials/kitties-tutorial/02-create-kitties.rs) provided below to help you complete each step.
 This will be the basis of the next few steps.
 
 Update your pallet code with the following code snip (skip this step if you prefer not to use the template code):
@@ -424,7 +425,7 @@ pub mod pallet {
 
 		// TODO Part III: helper functions for dispatchable functions
 
-		// ACTION #6: funtion to randomly generate DNA
+		// ACTION #6: function to randomly generate DNA
 
 		// TODO Part III: mint
 
@@ -512,39 +513,39 @@ To create it, you'll build out the following parts:
 
 1. Replace ACTION item #2 with the following enum declaration:
 
-  ```rust
-    #[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
-    #[scale_info(skip_type_params(T))]
-  #[cfg_attr(feature = "std", derive(Serialize, Deserialize))]
-  pub enum Gender {
-      Male,
-      Female,
-  }
-  ```
+```rust
+  #[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
+  #[scale_info(skip_type_params(T))]
+#[cfg_attr(feature = "std", derive(Serialize, Deserialize))]
+pub enum Gender {
+    Male,
+    Female,
+}
+```
 
-  Notice the use of the [derive macro][derive-macro-rust] which must precede the enum declaration.
-  This wraps our enum in the data structures it will need to interface with other types in our runtime.
+Notice the use of the [derive macro][derive-macro-rust] which must precede the enum declaration.
+This wraps our enum in the data structures it will need to interface with other types in our runtime.
 
-  Great, we now know how to create a custom struct.
-  But what about providing a way for a Kitty struct to be _assigned_ a gender value?
-  For that we need to configure it using a helper function.
+Great, we now know how to create a custom struct.
+But what about providing a way for a Kitty struct to be _assigned_ a gender value?
+For that we need to configure it using a helper function.
 
-  Configuring a struct is useful in order to pre-define a value in our struct.
-  For example, when setting a value in relation to what another function returns.
-  In our case we have a similar situation where we need to configure our Kitty struct in such a way that sets `Gender` according to a Kitty's DNA.
-  To do this, we'll create a public function called `gen_gender` that returns the `Gender` type and uses a random function to choose between `Gender` enum values.
+Configuring a struct is useful in order to pre-define a value in our struct.
+For example, when setting a value in relation to what another function returns.
+In our case we have a similar situation where we need to configure our Kitty struct in such a way that sets `Gender` according to a Kitty's DNA.
+To do this, we'll create a public function called `gen_gender` that returns the `Gender` type and uses a random function to choose between `Gender` enum values.
 
 1. Replace ACTION #4 with the following code snippet:
 
-  ```rust
-  fn gen_gender() -> Gender {
-      let random = T::KittyRandomness::random(&b"gender"[..]).0;
-      match random.as_ref()[0] % 2 {
-          0 => Gender::Male,
-          _ => Gender::Female,
-      }
-  }
-  ```
+```rust
+fn gen_gender() -> Gender {
+	let random = T::KittyRandomness::random(&b"gender"[..]).0;
+	match random.as_ref()[0] % 2 {
+		0 => Gender::Male,
+		_ => Gender::Female,
+	}
+}
+```
 
 Now whenever `gen_gender()` is called inside our pallet, it will return a pseudo random enum value for `Gender`.
 
@@ -557,54 +558,54 @@ Let's get to it.
 We'll be using the [Randomness trait][randomness-rustdocs] from `frame_support` to do this.
 It will be able to generate a random seed which we'll create unique Kitties with as well as breed new ones.
 
-1. In your pallet's configuration traite, define a new type bound by the `Randomness` trait.
+1. In your pallet's configuration trait, define a new type bound by the `Randomness` trait.
 
-  The `Randomness` trait from `frame_support` requires specifying it with a paramater to replace the `Output` and `BlockNumber` generics.
-  Take a look at [the documentation][randomness-rustdocs] and the source code implementation to understand how this works.
-  For our purposes, we want the output of functions using this trait to be [`Blake2 128-bit hash`][blake2-rustdocs] which you'll notice should already be declared at the top of your working codebase.
+The `Randomness` trait from `frame_support` requires specifying it with a parameter to replace the `Output` and `BlockNumber` generics.
+Take a look at [the documentation][randomness-rustdocs] and the source code implementation to understand how this works.
+For our purposes, we want the output of functions using this trait to be [`Blake2 128-bit hash`][blake2-rustdocs] which you'll notice should already be declared at the top of your working codebase.
 
-  Replace the ACTION #5 line with:
+Replace the ACTION #5 line with:
 
-  ```rust
-  type KittyRandomness: Randomness<Self::Hash, Self::BlockNumber>;
-  ```
+```rust
+type KittyRandomness: Randomness<Self::Hash, Self::BlockNumber>;
+```
 
 1. Specify the actual type in your runtime.
 
-  Given that we have added a new type in the configuration of our pallet, we need to config our runtime to set its concrete type.
-  This could come in handy if ever we want to change the algorithm that `KittyRandomness` is using, without needing to modify where it's used inside our pallet.
+Given that we have added a new type in the configuration of our pallet, we need to config our runtime to set its concrete type.
+This could come in handy if ever we want to change the algorithm that `KittyRandomness` is using, without needing to modify where it's used inside our pallet.
 
-  To showcase this point, we're going to set the `KittyRandomness` type to an instance of [FRAME's `RandomnessCollectiveFlip`][randomness-collective-flip-frame].
-  Conveniently, the Node Template already has an instance of the `RandomnessCollectiveFlip` pallet.
-  
-  Set the `KittyRandomness` type in your runtime (inside `runtime/src/lib.rs`):
+To showcase this point, we're going to set the `KittyRandomness` type to an instance of [FRAME's `RandomnessCollectiveFlip`][randomness-collective-flip-frame].
+Conveniently, the Node Template already has an instance of the `RandomnessCollectiveFlip` pallet.
 
-  ```rust
-  impl pallet_kitties::Config for Runtime {
-      type Event = Event;
-        type Currency = Balances;
-      type KittyRandomness = RandomnessCollectiveFlip; // <-- ACTION: add this line.
-  }
-  ```
+Set the `KittyRandomness` type in your runtime (inside `runtime/src/lib.rs`):
 
-  Here we have abstracted out the randomness generation implementation (`RandomnessCollectiveFlip`) from its interface (`Randomness<Self::Hash, Self::BlockNumber>` trait).
-  Check out this [how-to guide](/how-to-guides/v3/pallet-design/randomness) on implementing randomness in case you get stuck.
+```rust
+impl pallet_kitties::Config for Runtime {
+	type Event = Event;
+		type Currency = Balances;
+	type KittyRandomness = RandomnessCollectiveFlip; // <-- ACTION: add this line.
+}
+```
+
+Here we have abstracted out the randomness generation implementation (`RandomnessCollectiveFlip`) from its interface (`Randomness<Self::Hash, Self::BlockNumber>` trait).
+Check out this [how-to guide](/how-to-guides/v3/pallet-design/randomness) on implementing randomness in case you get stuck.
 
 1. Generate random DNA
 
-  Generating DNA is similar to using randomness to randomly assign a gender type.
-  The difference is that we'll be making use of `blake2_128` we imported in the previous part.
-  Replace the ACTION #6 line with:
+Generating DNA is similar to using randomness to randomly assign a gender type.
+The difference is that we'll be making use of `blake2_128` we imported in the previous part.
+Replace the ACTION #6 line with:
 
-  ```rust
-  fn gen_dna() -> [u8; 16] {
-      let payload = (
-          T::KittyRandomness::random(&b"dna"[..]).0,
-          <frame_system::Pallet<T>>::block_number(),
-      );
-      payload.using_encoded(blake2_128)
-  }
-  ```
+```rust
+fn gen_dna() -> [u8; 16] {
+	let payload = (
+		T::KittyRandomness::random(&b"dna"[..]).0,
+		<frame_system::Pallet<T>>::block_number(),
+	);
+	payload.using_encoded(blake2_128)
+}
+```
 
 ### Write remaining storage items
 
@@ -623,8 +624,8 @@ ensure!(!<Kitties<T>>::exists(new_id), "This new id already exists");
 
 Storage items our runtime needs to keep track of:
 
-  - Unique assets, like currency or Kitties (this will be held by a storgae map called `Kitties`).
-  - Ownership of those assets, like account IDs (this will be handled a new storage map called `KittiesOwned`).
+- Unique assets, like currency or Kitties (this will be held by a storage map called `Kitties`).
+- Ownership of those assets, like account IDs (this will be handled a new storage map called `KittiesOwned`).
 
 To create a storage instance for the `Kitty` struct, we'll be using[`StorageMap`][storage-map-kb] &mdash; a hash-map provided to us by FRAME.
 
@@ -634,18 +635,18 @@ Here's what the `Kitties` storage item looks like:
 #[pallet::storage]
 #[pallet::getter(fn kitties)]
 pub(super) type Kitties<T: Config> = StorageMap<
-  _,
-  Twox64Concat,
-  T::Hash,
-  Kitty<T>
-  >;
+	_,
+	Twox64Concat,
+	T::Hash,
+	Kitty<T>
+	>;
 ```
 
 Breaking it down, we declare the storage type and assign a `StorageMap` that takes:
 
-  - The [`Twox64Concat`][2x64-rustdocs] hashing algorithm.
-  - A key of type `T::Hash`.
-  - A value of type `Kitty<T>`.
+- The [`Twox64Concat`][2x64-rustdocs] hashing algorithm.
+- A key of type `T::Hash`.
+- A value of type `Kitty<T>`.
 
 The `KittiesOwned` storage item is similar except that we'll be using a `BoundedVec` to keep track of some maximum number of Kitties we'll configure in `runtime/src/lib.s`.
 
@@ -654,12 +655,12 @@ The `KittiesOwned` storage item is similar except that we'll be using a `Bounded
 #[pallet::getter(fn kitties_owned)]
 /// Keeps track of what accounts own what Kitty.
 pub(super) type KittiesOwned<T: Config> = StorageMap<
-  _,
-  Twox64Concat,
-  T::AccountId,
-  BoundedVec<T::Hash, T::MaxKittyOwned>,
-  ValueQuery
-  >;
+	_,
+	Twox64Concat,
+	T::AccountId,
+	BoundedVec<T::Hash, T::MaxKittyOwned>,
+	ValueQuery
+	>;
 ```
 
 Your turn! Copy the two code snippets above to replace line ACTION #7.
@@ -677,16 +678,16 @@ This is the same pattern as we followed for `Currency` and `KittyRandomness` exc
 
 ```rust
 parameter_types! {              // <- add this macro
-  // One can own at most 9,999 Kitties
-  pub const MaxKittyOwned: u32 = 9999;
-  }
+	// One can own at most 9,999 Kitties
+	pub const MaxKittyOwned: u32 = 9999;
+	}
 
 /// Configure the pallet-kitties in pallets/kitties.
 impl pallet_kitties::Config for Runtime {
-  type Event = Event;
-  type Currency = Balances;
-  type KittyRandomness = RandomnessCollectiveFlip;
-  type MaxKittyOwned = MaxKittyOwned; // <- add this line
+	type Event = Event;
+	type Currency = Balances;
+	type KittyRandomness = RandomnessCollectiveFlip;
+	type MaxKittyOwned = MaxKittyOwned; // <- add this line
 }
 ```
 
@@ -731,8 +732,8 @@ As developers, we want to make sure the code we write is efficient and elegant.
 Often times, optimizing for one optimizes for the other.
 The way we're going to set up our pallet to optimize for both will be to break-up the "heavy lifting" logic into private helper functions.
 This improves code readability and reusability too.
-As we'll see, we can create private functions which can be called by multiple dispatchable functions without compromizing on security.
-In fact, building this way can be considered an additive security feauture.
+As we'll see, we can create private functions which can be called by multiple dispatchable functions without compromising on security.
+In fact, building this way can be considered an additive security feature.
 Check out [this how-to guide](/how-to-guides/v3/basics/helper-functions) about writing and using helper functions to learn more.
 
 Before jumping into implementing this approach, let's first paint the big picture of what combining dispatchables and helper functions looks like.
@@ -749,7 +750,7 @@ Before jumping into implementing this approach, let's first paint the big pictur
 - checks that the Kitty doesn't already exist
 - updates storage with the new Kitty ID (for all Kitties and for the owner's account)
 - updates the new total Kitty count for storage and the new owner's account
-- deposits an Event to signal that a Kitty has succesfully been created
+- deposits an Event to signal that a Kitty has successfully been created
 
 ### Write the `create_kitty` dispatchable
 
@@ -774,12 +775,12 @@ Assuming you've now replaced the contents of `pallets/kitties/src/lib.rs` with [
 ```rust
 #[pallet::weight(100)]
 pub fn create_kitty(origin: OriginFor<T>) -> DispatchResult {
-  let sender = ensure_signed(origin)?; // <- add this line
-  let kitty_id = Self::mint(&sender, None, None)?; // <- add this line
-  // Logging to the console
-  log::info!("A kitty is born with ID: {:?}.", kitty_id); // <- add this line
+	let sender = ensure_signed(origin)?; // <- add this line
+	let kitty_id = Self::mint(&sender, None, None)?; // <- add this line
+	// Logging to the console
+	log::info!("A kitty is born with ID: {:?}.", kitty_id); // <- add this line
 
-  // ACTION #4: Deposit `Created` event
+	// ACTION #4: Deposit `Created` event
 
 	Ok(())
 }
@@ -812,38 +813,36 @@ Paste in the following code snippet to write the `mint` function, replacing ACTI
 ```rust
 // Helper to mint a Kitty.
 pub fn mint(
-  owner: &T::AccountId,
-  dna: Option<[u8; 16]>,
-  gender: Option<Gender>,
+	owner: &T::AccountId,
+	dna: Option<[u8; 16]>,
+	gender: Option<Gender>,
 ) -> Result<T::Hash, Error<T>> {
-  let kitty = Kitty::<T> {
-    dna: dna.unwrap_or_else(Self::gen_dna),
-    price: None,
-    gender: gender.unwrap_or_else(Self::gen_gender),
-    owner: owner.clone(),
-  };
+	let kitty = Kitty::<T> {
+		dna: dna.unwrap_or_else(Self::gen_dna),
+		price: None,
+		gender: gender.unwrap_or_else(Self::gen_gender),
+	owner: owner.clone(),
+	};
 
-  let kitty_id = T::Hashing::hash_of(&kitty);
+	let kitty_id = T::Hashing::hash_of(&kitty);
 
-  // Performs this operation first as it may fail
-  let new_cnt = Self::kitty_cnt().checked_add(1)
-    .ok_or(<Error<T>>::KittyCntOverflow)?;
-
-  // Performs this operation first because as it may fail
-  <KittiesOwned<T>>::try_mutate(&owner, |kitty_vec| {
-    kitty_vec.try_push(kitty_id)
-  }).map_err(|_| <Error<T>>::ExceedMaxKittyOwned)?;
-
-  <Kitties<T>>::insert(kitty_id, kitty);
-  <KittyCnt<T>>::put(new_cnt);
-  Ok(kitty_id)
+	// Performs this operation first as it may fail
+	let new_cnt = Self::kitty_cnt().checked_add(1)
+		.ok_or(<Error<T>>::KittyCntOverflow)?;
+	// Performs this operation first because as it may fail
+	<KittiesOwned<T>>::try_mutate(&owner, |kitty_vec| {
+		kitty_vec.try_push(kitty_id)
+	}).map_err(|_| <Error<T>>::ExceedMaxKittyOwned)?;
+	<Kitties<T>>::insert(kitty_id, kitty);
+	<KittyCnt<T>>::put(new_cnt);
+	Ok(kitty_id)
 }
 ```
 
 Let's go over what the above code is doing.
 
 The first thing we're doing is creating a new Kitty object.
-Then, we create a unique `kitty_id` using a hashing funciton based on the current properties of the kitty.
+Then, we create a unique `kitty_id` using a hashing function based on the current properties of the kitty.
 
 Next, we increment the `KittyCnt` using the storage getter function `Self::kitty_cnt()`.
 We also checking for overflow with `check_add()` function.
@@ -877,8 +876,8 @@ With FRAME macros, events are just an enum declared like this:
 #[pallet::event]
 #[pallet::generate_deposit(pub(super) fn deposit_event)]
 pub enum Event<T: Config>{
-    /// A function succeeded. [time, day]
-    Success(T::Time, T::Day),
+	/// A function succeeded. [time, day]
+	Success(T::Time, T::Day),
 }
 ```
 
@@ -886,7 +885,7 @@ As you can see in the above snippet, we use attribute macro:
 
 `#[pallet::generate_deposit(pub(super) fn deposit_event)]`
 
-This allows us to deposit a specifc event using the pattern below:
+This allows us to deposit a specific event using the pattern below:
 
 ```rust
 Self::deposit_event(Event::Success(var_time, var_day));
@@ -901,22 +900,22 @@ This pattern is the same as when we added the `KittyRandomness` type to our pall
 /// Configure the pallet by specifying the parameters and types it depends on.
 #[pallet::config]
 pub trait Config: frame_system::Config {
-  /// Because this pallet emits events, it depends on the runtime's definition of an event.
-  type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
-  //--snip--//
-  }
+	/// Because this pallet emits events, it depends on the runtime's definition of an event.
+	type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+	//--snip--//
+	}
 ```
 
 Declare your pallet events by replacing the ACTION #3 line with:
 
 ```rust
-/// A new Kitty was sucessfully created. \[sender, kitty_id\]
+/// A new Kitty was successfully created. \[sender, kitty_id\]
 Created(T::AccountId, T::Hash),
-/// Kitty price was sucessfully set. \[sender, kitty_id, new_price\]
+/// Kitty price was successfully set. \[sender, kitty_id, new_price\]
 PriceSet(T::AccountId, T::Hash, Option<BalanceOf<T>>),
-/// A Kitty was sucessfully transferred. \[from, to, kitty_id\]
+/// A Kitty was successfully transferred. \[from, to, kitty_id\]
 Transferred(T::AccountId, T::AccountId, T::Hash),
-/// A Kitty was sucessfully bought. \[buyer, seller, kitty_id, bid_price\]
+/// A Kitty was successfully bought. \[buyer, seller, kitty_id, bid_price\]
 Bought(T::AccountId, T::AccountId, T::Hash, BalanceOf<T>),
 ```
 
@@ -946,7 +945,7 @@ FRAME provides us with an error handling system using [`[#pallet::error]`][error
 Declare all possible errors using the provided FRAME macro under `#[pallet::error]`, replace line ACTION #5a with:
 
 ```rust
-/// Handles arithemtic overflow when incrementing the Kitty counter.
+/// Handles arithmetic overflow when incrementing the Kitty counter.
 KittyCntOverflow,
 /// An account cannot own more Kitties than `MaxKittyCount`.
 ExceedMaxKittyOwned,
@@ -994,14 +993,14 @@ In the next section you'll be able to see everything you've built so far in acti
 ### Testing with Polkadot-JS Apps UI
 
 1. Run your chain and use the [PolkadotJS Apps UI](https://polkadot.js.org/apps/#/explorer) to interact with it.
-In your project directory, run:
+   In your project directory, run:
 
-  ```bash
-  ./target/release/node-kitties --tmp --dev
-  ```
+   ```bash
+   ./target/release/node-kitties --tmp --dev
+   ```
 
-  By doing this, we're specifying to run a temporary chain in developer mode, so as not to need to purge storage each time we want to start a fresh chain.
-  You should be seeing block finalization happening in your terminal. 
+   By doing this, we're specifying to run a temporary chain in developer mode, so as not to need to purge storage each time we want to start a fresh chain.
+   You should be seeing block finalization happening in your terminal.
 
 1. Head over to [Polkadot.js Apps UI][polkadotjsapps].
 
@@ -1084,10 +1083,10 @@ Paste the following in ACTION #1b:
 
 ```rust
 pub fn is_kitty_owner(kitty_id: &T::Hash, acct: &T::AccountId) -> Result<bool, Error<T>> {
-    match Self::kitties(kitty_id) {
-        Some(kitty) => Ok(kitty.owner == *acct),
-        None => Err(<Error<T>>::KittyNotExist)
-    }
+	match Self::kitties(kitty_id) {
+		Some(kitty) => Ok(kitty.owner == *acct),
+		None => Err(<Error<T>>::KittyNotExist)
+	}
 }
 ```
 
@@ -1101,10 +1100,10 @@ Every Kitty object has a price attribute that we've set to `None` as a default v
 
 ```rust
 let kitty = Kitty::<T> {
-  dna: dna.unwrap_or_else(Self::gen_dna),
-  price: None,                           //<-- 👀 here
-  gender: gender.unwrap_or_else(Self::gen_gender),
-  owner: owner.clone(),
+	dna: dna.unwrap_or_else(Self::gen_dna),
+	price: None,                           //<-- 👀 here
+	gender: gender.unwrap_or_else(Self::gen_gender),
+	owner: owner.clone(),
 };
 ```
 
@@ -1172,27 +1171,27 @@ Paste in the following snippet to replace ACTION #4 in the template code:
 ```rust
 #[pallet::weight(100)]
 pub fn transfer(
-    origin: OriginFor<T>,
-    to: T::AccountId,
-    kitty_id: T::Hash
+	origin: OriginFor<T>,
+	to: T::AccountId,
+	kitty_id: T::Hash
 ) -> DispatchResult {
-    let from = ensure_signed(origin)?;
+	let from = ensure_signed(origin)?;
 
-    // Ensure the kitty exists and is called by the kitty owner
-    ensure!(Self::is_kitty_owner(&kitty_id, &from)?, <Error<T>>::NotKittyOwner);
+	// Ensure the kitty exists and is called by the kitty owner
+	ensure!(Self::is_kitty_owner(&kitty_id, &from)?, <Error<T>>::NotKittyOwner);
 
-    // Verify the kitty is not transferring back to its owner.
-    ensure!(from != to, <Error<T>>::TransferToSelf);
+	// Verify the kitty is not transferring back to its owner.
+	ensure!(from != to, <Error<T>>::TransferToSelf);
 
-    // Verify the recipient has the capacity to receive one more kitty
-    let to_owned = <KittiesOwned<T>>::get(&to);
-    ensure!((to_owned.len() as u32) < T::MaxKittyOwned::get(), <Error<T>>::ExceedMaxKittyOwned);
+	// Verify the recipient has the capacity to receive one more kitty
+	let to_owned = <KittiesOwned<T>>::get(&to);
+	ensure!((to_owned.len() as u32) < T::MaxKittyOwned::get(), <Error<T>>::ExceedMaxKittyOwned);
 
-    Self::transfer_kitty_to(&kitty_id, &to)?;
+	Self::transfer_kitty_to(&kitty_id, &to)?;
 
-    Self::deposit_event(Event::Transferred(from, to, kitty_id));
+	Self::deposit_event(Event::Transferred(from, to, kitty_id));
 
-    Ok(())
+	Ok(())
 }
 ```
 
@@ -1218,35 +1217,35 @@ Copy the following to replace ACTION #5:
 ```rust
 #[transactional]
 pub fn transfer_kitty_to(
-    kitty_id: &T::Hash,
-    to: &T::AccountId,
+	kitty_id: &T::Hash,
+	to: &T::AccountId,
 ) -> Result<(), Error<T>> {
-    let mut kitty = Self::kitties(&kitty_id).ok_or(<Error<T>>::KittyNotExist)?;
+	let mut kitty = Self::kitties(&kitty_id).ok_or(<Error<T>>::KittyNotExist)?;
 
-    let prev_owner = kitty.owner.clone();
+	let prev_owner = kitty.owner.clone();
 
-    // Remove `kitty_id` from the KittyOwned vector of `prev_kitty_owner`
-    <KittiesOwned<T>>::try_mutate(&prev_owner, |owned| {
-        if let Some(ind) = owned.iter().position(|&id| id == *kitty_id) {
-            owned.swap_remove(ind);
-            return Ok(());
-        }
-        Err(())
-    }).map_err(|_| <Error<T>>::KittyNotExist)?;
+	// Remove `kitty_id` from the KittyOwned vector of `prev_kitty_owner`
+	<KittiesOwned<T>>::try_mutate(&prev_owner, |owned| {
+		if let Some(ind) = owned.iter().position(|&id| id == *kitty_id) {
+			owned.swap_remove(ind);
+			return Ok(());
+		}
+		Err(())
+	}).map_err(|_| <Error<T>>::KittyNotExist)?;
 
-    // Update the kitty owner
-    kitty.owner = to.clone();
-    // Reset the ask price so the kitty is not for sale until `set_price()` is called
-    // by the current owner.
-    kitty.price = None;
+	// Update the kitty owner
+	kitty.owner = to.clone();
+	// Reset the ask price so the kitty is not for sale until `set_price()` is called
+	// by the current owner.
+	kitty.price = None;
 
-    <Kitties<T>>::insert(kitty_id, kitty);
+	<Kitties<T>>::insert(kitty_id, kitty);
 
-    <KittiesOwned<T>>::try_mutate(to, |vec| {
-        vec.try_push(*kitty_id)
-    }).map_err(|_| <Error<T>>::ExceedMaxKittyOwned)?;
+	<KittiesOwned<T>>::try_mutate(to, |vec| {
+		vec.try_push(*kitty_id)
+	}).map_err(|_| <Error<T>>::ExceedMaxKittyOwned)?;
 
-    Ok(())
+	Ok(())
 }
 ```
 
@@ -1266,9 +1265,9 @@ Replace line ACTION #6 to check whether a Kitty is for sale:
 ```rust
 // Check the kitty is for sale and the kitty ask price <= bid_price
 if let Some(ask_price) = kitty.price {
-    ensure!(ask_price <= bid_price, <Error<T>>::KittyBidPriceTooLow);
+	ensure!(ask_price <= bid_price, <Error<T>>::KittyBidPriceTooLow);
 } else {
-    Err(<Error<T>>::KittyNotForSale)?;
+	Err(<Error<T>>::KittyNotForSale)?;
 }
 
 // Check the buyer has enough free balance
@@ -1297,12 +1296,12 @@ It's useful to understand why it's important to use the `transfer` method in par
   Take a look at how the `transfer` function we'll be using [is structured][currency-transfer-rustdocs]:
 
 ```rust
-  fn transfer(
-      source: &AccountId,
-      dest: &AccountId,
-      value: Self::Balance,
-      existence_requirement: ExistenceRequirement
-  ) -> DispatchResult
+	fn transfer(
+		source: &AccountId,
+		dest: &AccountId,
+		value: Self::Balance,
+		existence_requirement: ExistenceRequirement
+	) -> DispatchResult
 ```
 
 Now we can make use of the `Currency` type in our pallet's `Config` trait and `ExistenceRequirement` that we [initially started with in the first section](#write-out-pallet_kitties-scaffold).
@@ -1365,25 +1364,25 @@ Copy the following code to replace ACTION #11:
 // Our pallet's genesis configuration.
 #[pallet::genesis_config]
 pub struct GenesisConfig<T: Config> {
-    pub kitties: Vec<(T::AccountId, [u8; 16], Gender)>,
+	pub kitties: Vec<(T::AccountId, [u8; 16], Gender)>,
 }
 
 // Required to implement default for GenesisConfig.
 #[cfg(feature = "std")]
 impl<T: Config> Default for GenesisConfig<T> {
-    fn default() -> GenesisConfig<T> {
-        GenesisConfig { kitties: vec![] }
-    }
+	fn default() -> GenesisConfig<T> {
+		GenesisConfig { kitties: vec![] }
+	}
 }
 
 #[pallet::genesis_build]
 impl<T: Config> GenesisBuild<T> for GenesisConfig<T> {
-    fn build(&self) {
-        // When building a kitty from genesis config, we require the dna and gender to be supplied.
-        for (acct, dna, gender) in &self.kitties {
-            let _ = <Pallet<T>>::mint(acct, Some(dna.clone()), Some(gender.clone()));
-        }
-    }
+	fn build(&self) {
+		// When building a kitty from genesis config, we require the dna and gender to be supplied.
+		for (acct, dna, gender) in &self.kitties {
+			let _ = <Pallet<T>>::mint(acct, Some(dna.clone()), Some(gender.clone()));
+		}
+	}
 }
 ```
 
@@ -1429,8 +1428,8 @@ After all of these actions, confirm that all users have the correct number of Ki
   title="Congratulations!"
   text={`
 You've successfully created the backend of a fully functional Substrate chain capable of creating
-and managing Substrate Kitties. The basic capabilities of our Kitties application could also be 
-abstracted to other NFT-like use cases. Most importantly, at this point in the tutorial you should 
+and managing Substrate Kitties. The basic capabilities of our Kitties application could also be
+abstracted to other NFT-like use cases. Most importantly, at this point in the tutorial you should
 have all the knowledge you need to start creating your own pallet logic and dispatchable functions.
 `}
 />
