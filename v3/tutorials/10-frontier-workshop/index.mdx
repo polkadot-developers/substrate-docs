@@ -34,236 +34,186 @@ We also reccomend that you have completed _at least_ the following three Substra
 - [Add a Pallet to Your Runtime](/tutorials/v3/add-a-pallet/)
 - [Build a PoE Decentralized Application](/tutorials/v3/proof-of-existence)
 
-## Frontier template
+Further reading:
+- [the ERC-20 token standard](https://github.com/danforbes/danforbes/blob/master/writings/eth-dev.md#EIP-20-ERC-20-Token-Standard)
+- The storage slot was calculated using [a provided utility](https://github.com/paritytech/frontier/blob/master/template/utils/README.md#--erc20-slot-slot-address). 
+(Slot 0 and Alice address: `0xd43593c715fdd31c61141abd04a99fd6822c8558`).
+- [EVM layout of state variables in storage](https://docs.soliditylang.org/en/v0.8.6/internals/layout_in_storage.html#layout-of-state-variables-in-storage).
+- [the EVM ABI specification](https://solidity.readthedocs.io/en/latest/abi-spec.html)
 
-This tutorial is presently a little bit out of date. 
-While it is still a good reference, it refers to an older version of Substrate template. 
-It is thus encouraged to generate your own template based of whatever commit you desire from frontier itself to start working with many of the core features of Frontier installed and enabled.
+## Run the Frontier node 
 
-The Frontier project currently does not use the published Substrate crates; it refers to Subsrate code from github directly. 
-Take note of this in your `Cargo` files. 
-You _must_ use the _matching_ version of dependencies for all of Substrate and Frontier in your project.
+1. Clone a copy of the Frontier node template:
 
-This is a stop-gap solution while Frontier is being updated to the latest Substrate tag/release.
+  ```bash
+  git clone https://github.com/substrate-developer-hub/frontier-node-template.git
+  ```
 
-There's also a github repo `template` that is available for major Frontier releases pre-generated for you.
+1. Configure your intial EVM accounts.
 
-#### Generation script
+  To configure the genesis block with pre-funded accounts before we launch the chain, we can add a custom EVM account. 
+  Run the subkey command for some chosen unique account and retrieve the first 40 hex characters from the AccountId:
 
-You can generate a version of the Frontier template by running the [generation script](https://github.com/paritytech/frontier/blob/master/.maintain/node-template-release.sh) included in Frontier.
+  ```bash
+  Secret Key URI `//Myaccount` is account:
+  Secret seed:       0x7c5c0dd7a9b6adc993a292c5632d5fbaa530811cdc84ed3f2f9ff66b54313254
+  Public key (hex):  0x901157a43faa9e078ae714ff21e4bd1f8d527a59c2957674797f690f0e869b79
+  Public key (SS58): 5FKbuQMkpXhTv7JB9bNQqxvK3iuiQFUZxSuA4A2RBjXLMeRZ
+  Account ID:        0x901157a43faa9e078ae714ff21e4bd1f8d527a59c2957674797f690f0e869b79
+  SS58 Address:      5FKbuQMkpXhTv7JB9bNQqxvK3iuiQFUZxSuA4A2RBjXLMeRZ
+  ```
 
-```bash
-# from the top working dir of Frontier:
-cd .maintain/
-# set the *full file name with .tar.gz extension* for your output file
-./node-template-release.sh TEMPLATE.tar.gz
-# Note the file will be placed in the top level working dir of frontier
-# Move the archive to wherever you like...
-tar xvzf TEMPLATE.tar.gz
-# this unpacks into `frontier-node-template` with all your files
-cd frontier-node-template
-```
+  This would correspond to: 
+  
+  `901157a43faa9e078ae714ff21e4bd1f8d527a59`
 
-The Substrate Developer Hub has generated the template using the [included release guide](https://github.com/paritytech/frontier/blob/master/docs/node-template-release.md), and intends to update with major releases of Frontier moving forward.
+  Find out how you could automate this step by using [this utility script](https://github.com/paritytech/frontier/blob/master/template/utils/README.md#--evm-address-address).
 
-You can `use` the pre-generated template or `fork` it from here: https://github.com/substrate-developer-hub/frontier-node-template/ .
+1. Update `EVMConfig`.
 
-### Build and configuration setup
+  In `node/src/chainspec.rs`, add this snip of code to `accounts` inside `EVMConfig`:
 
-#### Genesis configuration
+  ```rust
+  map.insert(
+					H160::from_str("901157a43faa9e078ae714ff21e4bd1f8d527a59")
+						.expect("internal H160 is valid; qed"),
 
-The development [chain spec](https://github.com/paritytech/frontier/blob/master/template/node/src/chain_spec.rs) included with this project defines a genesis block that has been pre-configured with an EVM account for [Alice](/v3/tools/subkey#well-known-keys). 
-When [a development chain is started](https://github.com/substrate-developer-hub/substrate-node-template#run), Alice's EVM account will be funded with a large amount of Ether. 
-The [Polkadot UI](https://polkadot.js.org/apps/#?rpc=ws://127.0.0.1:9944) can be used to see the details of Alice's EVM account. 
-In order to view an EVM account, use the `Developer` tab of the Polkadot UI `Settings` app to define the EVM `Account` type as below. 
-It is also necessary to define the `Address` and `LookupSource` to send transaction, and `Transaction` and `Signature` to be able to inspect blocks:
+					pallet_evm::GenesisAccount {
+						balance: U256::from_str("0xffffffffffffffffffffffffffffffff")
+							.expect("internal U256 is valid; qed"),
+						code: Default::default(),
+						nonce: Default::default(),
+						storage: Default::default(),
+					},
+				);
+  ```
 
-```json
-{
-  "Address": "MultiAddress",
-  "LookupSource": "MultiAddress",
-  "Account": {
-    "nonce": "U256",
-    "balance": "U256"
-  },
-  "Transaction": {
-    "nonce": "U256",
-    "action": "String",
-    "gas_price": "u64",
-    "gas_limit": "u64",
-    "value": "U256",
-    "input": "Vec<u8>",
-    "signature": "Signature"
-  },
-  "Signature": {
-    "v": "u64",
-    "r": "H256",
-    "s": "H256"
+1. Build and run the node in developer mode:
+
+  ```bash
+  cargo run build --dev --tmp  
+  ```
+
+## Interact with your Frontier node 
+
+The [Polkadot JS Apps UI](https://polkadot.js.org/apps/#?rpc=ws://127.0.0.1:9944) can be used to see the details of Alice's EVM account. 
+
+1. Import custom types.
+
+  In the `Settings -> Developer` tab of the UI, paste in the following to ensure the UI knows about our node's custom types:
+
+  ```json
+  {
+    "Address": "MultiAddress",
+    "LookupSource": "MultiAddress",
+    "Account": {
+      "nonce": "U256",
+      "balance": "U256"
+    },
+    "Transaction": {
+      "nonce": "U256",
+      "action": "String",
+      "gas_price": "u64",
+      "gas_limit": "u64",
+      "value": "U256",
+      "input": "Vec<u8>",
+      "signature": "Signature"
+    },
+    "Signature": {
+      "v": "u64",
+      "r": "H256",
+      "s": "H256"
+    }
   }
-}
-```
+  ```
 
-#### Build and run
+1. Query Alice's balance by sumbitting an RPC.
+  In `Developer -> RPC calls` select `eth > getBalance(address, number)` and include Alice's EVM account ID:
 
-To build the chain, execute the following commands from the project root:
+  ```text
+  0xd43593c715fdd31c61141abd04a99fd6822c8558
+  ``` 
 
-```bash
-cargo build --release
-```
+  The value that is returned should be:
 
-To execute the chain, run:
+  ```text
+  340,282,366,920,938,463,463,374,607,431,768,210,955
+  ```
 
-```bash
-./target/release/frontier-template-node --dev
-```
+1. Look at the storage items of the `evm` pallet.
+  Go to `Developer -> Chain state -> Storage -> evm -> accountCodes` and query with the include option.
+  Input Alice's EVM account ID:
 
-The node also supports to use manual seal (to produce block manually through RPC).
-
-```bash
-./target/release/frontier-template-node --dev --manual-seal
-```
-
-### Query balance using RPC
-
-Once your node is running, use the Polkadot JS Apps' `RPC calls` under the `Developer` tab to query `eth > getBalance(address, number)` with Alice's EVM account ID (`0xd43593c715fdd31c61141abd04a99fd6822c8558`); the value that is returned should be:
-
-```text
-x: eth.getBalance
-340,282,366,920,938,463,463,374,607,431,768,211,455
-```
-
-> Further reading:
-> [EVM accounts](https://github.com/danforbes/danforbes/blob/master/writings/eth-dev.md#Accounts)
-
-Alice's EVM account ID was calculated using [an included utility script](https://github.com/paritytech/frontier/blob/master/template/utils/README.md#--evm-address-address).
-
-### Deploy and call Ethereum smart contracts
-
-To deploy and call Ethereum smart contracts and test the related functionality follow the next steps at:
-
-- [Testing Ethereum Smart Contracts Functionality](#erc20-contract-deployment).
-
-## Architecture
-
-Here are a few helpful diagrams to help illustrate how the Frontier EVM and Ethereum RPC plug into your Substrate FRAME runtime.
-
-### EVM pallet runtime configuration
-
-The Ethereum Virtual Machine (EVM) is a sandboxed virtual stack machine that is implemented in the EVM pallet. 
-The EVM is responsible for executing Ethereum contract bytecode of smart contracts, typically written in a high level language like Solidity, then compiled to EVM bytecode.
-
-![architecture diagram](../../../src/images/tutorials/10-frontier-workshop/pallet-evm.png)
-
-### Ethereum pallet
-
-The Ethereum pallet is responsible for storing Ethereum-formatted blocks, transaction receipts, and transaction statuses.
-
-![architecture diagram](../../../src/images/tutorials/10-frontier-workshop/pallet-ethereum.png)
-
-### Wrapping Ethereum transactions
-
-When a user submits a raw Ethereum transaction, we need to convert it into a Substrate transaction. 
-The conversion is simple. 
-We just wrap the raw transaction in a call the `pallet_ethereum`'s `transact` extrinsic. 
-This is done in the runtime.
-
-> Note that Ethereum Accounts and Substrate accounts in this template are not directly compatible for using keys. 
-> For an explainer on this, please see the [Moonbean documentain on EVM and Substrate Accounts](https://docs.moonbeam.network/learn/unified-accounts/#substrate-evm-compatible-blockchain).
-
-### Ethereum specific runtime APIs and RPCs
-
-Our runtime is storing all the Ethereum-formatted information that may be queried, thus we need a way for the RPC server to call into the runtime and retrieve that information. 
-This is done through runtime APIs and RPCs.
-
-![architecture diagram](../../../src/images/tutorials/10-frontier-workshop/rpc.png)
-
-Further reading:
-
-- [Runtime APIs](/v3/concepts/runtime#runtime-apis)
-- [Recipe about Custom RPCs](/v3/runtime/custom-rpcs)
-- RPCs in Frontier: [fc-rpc](https://github.com/paritytech/frontier/tree/master/client/rpc)
-  and [fc-rpc-core](https://github.com/paritytech/frontier/blob/master/client/rpc-core/)
-
-### Frontier block import
-
-![architecture diagram](../../../src/images/tutorials/10-frontier-workshop/block-import.png)
-
-Further reading:
-
-- [Block import pipeline docs](/v3/advanced/block-import)
-- [Frontier consensus code](https://github.com/paritytech/frontier/tree/master/primitives/consensus)
+  ```text
+  evm.accountCodes: Bytes
+  []
+  ```
+  There's nothing there just yet! 
+  This is where our ERC20 contract byte code will be stored.
 
 ## ERC20 contract deployment
 
 The following steps are also available as a [Typescript script](https://github.com/paritytech/frontier/tree/master/template/examples/contract-erc20) using Polkadot JS SDK.
 
-### Contract creation
+1. Pick an ERC20 smart contract you'd like to deploy.
 
-The [`truffle`](https://github.com/paritytech/frontier/tree/master/template/examples/contract-erc20/truffle) directory contains a [Truffle](https://www.trufflesuite.com/truffle) project that defines [an ERC-20 token](https://github.com/paritytech/frontier/tree/master/template/examples/contract-erc20/truffle/contracts/MyToken.sol). 
-For convenience, this repository also contains [the compiled bytecode of this token contract](https://github.com/paritytech/frontier/tree/master/template/examples/contract-erc20/truffle/contracts/MyToken.json#L259), which can be used to deploy it to the Substrate blockchain.
+  You can choose your own or just use the one inside the Frontier template directory, in the `examples` folder.
+  This directory contains a [Truffle](https://www.trufflesuite.com/truffle) project that defines an ERC-20 token, along with its [compiled bytecode](https://github.com/paritytech/frontier/tree/master/template/examples/contract-erc20/truffle/contracts/MyToken.json#L259).
+  
+  Copy the contract byte code, which we will need in the next step:
 
-> Further reading:
-> [the ERC-20 token standard](https://github.com/danforbes/danforbes/blob/master/writings/eth-dev.md#EIP-20-ERC-20-Token-Standard)
+  ```json
+  0x608060405234801561001057600080fd5b50610041337fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff61004660201b60201c565b610291565b600073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff1614156100e9576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601f8152602001807f45524332303a206d696e7420746f20746865207a65726f20616464726573730081525060200191505060405180910390fd5b6101028160025461020960201b610c7c1790919060201c565b60028190555061015d816000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000205461020960201b610c7c1790919060201c565b6000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055508173ffffffffffffffffffffffffffffffffffffffff16600073ffffffffffffffffffffffffffffffffffffffff167fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef836040518082815260200191505060405180910390a35050565b600080828401905083811015610287576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601b8152602001807f536166654d6174683a206164646974696f6e206f766572666c6f77000000000081525060200191505060405180910390fd5b8091505092915050565b610e3a806102a06000396000f3fe608060405234801561001057600080fd5b50600436106100885760003560e01c806370a082311161005b57806370a08231146101fd578063a457c2d714610255578063a9059cbb146102bb578063dd62ed3e1461032157610088565b8063095ea7b31461008d57806318160ddd146100f357806323b872dd146101115780633950935114610197575b600080fd5b6100d9600480360360408110156100a357600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050610399565b604051808215151515815260200191505060405180910390f35b6100fb6103b7565b6040518082815260200191505060405180910390f35b61017d6004803603606081101561012757600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001909291905050506103c1565b604051808215151515815260200191505060405180910390f35b6101e3600480360360408110156101ad57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919050505061049a565b604051808215151515815260200191505060405180910390f35b61023f6004803603602081101561021357600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061054d565b6040518082815260200191505060405180910390f35b6102a16004803603604081101561026b57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050610595565b604051808215151515815260200191505060405180910390f35b610307600480360360408110156102d157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050610662565b604051808215151515815260200191505060405180910390f35b6103836004803603604081101561033757600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610680565b6040518082815260200191505060405180910390f35b60006103ad6103a6610707565b848461070f565b6001905092915050565b6000600254905090565b60006103ce848484610906565b61048f846103da610707565b61048a85604051806060016040528060288152602001610d7060289139600160008b73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000610440610707565b73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054610bbc9092919063ffffffff16565b61070f565b600190509392505050565b60006105436104a7610707565b8461053e85600160006104b8610707565b73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008973ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054610c7c90919063ffffffff16565b61070f565b6001905092915050565b60008060008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050919050565b60006106586105a2610707565b8461065385604051806060016040528060258152602001610de160259139600160006105cc610707565b73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008a73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054610bbc9092919063ffffffff16565b61070f565b6001905092915050565b600061067661066f610707565b8484610906565b6001905092915050565b6000600160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054905092915050565b600033905090565b600073ffffffffffffffffffffffffffffffffffffffff168373ffffffffffffffffffffffffffffffffffffffff161415610795576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526024815260200180610dbd6024913960400191505060405180910390fd5b600073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff16141561081b576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526022815260200180610d286022913960400191505060405180910390fd5b80600160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055508173ffffffffffffffffffffffffffffffffffffffff168373ffffffffffffffffffffffffffffffffffffffff167f8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925836040518082815260200191505060405180910390a3505050565b600073ffffffffffffffffffffffffffffffffffffffff168373ffffffffffffffffffffffffffffffffffffffff16141561098c576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526025815260200180610d986025913960400191505060405180910390fd5b600073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff161415610a12576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526023815260200180610d056023913960400191505060405180910390fd5b610a7d81604051806060016040528060268152602001610d4a602691396000808773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054610bbc9092919063ffffffff16565b6000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002081905550610b10816000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054610c7c90919063ffffffff16565b6000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055508173ffffffffffffffffffffffffffffffffffffffff168373ffffffffffffffffffffffffffffffffffffffff167fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef836040518082815260200191505060405180910390a3505050565b6000838311158290610c69576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825283818151815260200191508051906020019080838360005b83811015610c2e578082015181840152602081019050610c13565b50505050905090810190601f168015610c5b5780820380516001836020036101000a031916815260200191505b509250505060405180910390fd5b5060008385039050809150509392505050565b600080828401905083811015610cfa576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601b8152602001807f536166654d6174683a206164646974696f6e206f766572666c6f77000000000081525060200191505060405180910390fd5b809150509291505056fe45524332303a207472616e7366657220746f20746865207a65726f206164647265737345524332303a20617070726f766520746f20746865207a65726f206164647265737345524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e636545524332303a207472616e7366657220616d6f756e74206578636565647320616c6c6f77616e636545524332303a207472616e736665722066726f6d20746865207a65726f206164647265737345524332303a20617070726f76652066726f6d20746865207a65726f206164647265737345524332303a2064656372656173656420616c6c6f77616e63652062656c6f77207a65726fa265627a7a72315820c7a5ffabf642bda14700b2de42f8c57b36621af020441df825de45fd2b3e1c5c64736f6c63430005100032
+  ```
 
-Use the Polkadot UI `Extrinsics` app to deploy the contract from Alice's account (submit the extrinsic as a signed transaction) using `evm > create` with the following parameters:
+1. Use Polkadot JS Apps to deploy the contract from Alice's account. 
+
+  Submit an extrinsic as a signed transaction using `evm > create` with the following data:
+
+  ```text
+  source: 0xd43593c715fdd31c61141abd04a99fd6822c8558
+  init:   0x608060405234801561001057600080fd5b50610041337fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff61004660201b60201c565b610291565b600073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff1614156100e9576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601f8152602001807f45524332303a206d696e7420746f20746865207a65726f20616464726573730081525060200191505060405180910390fd5b6101028160025461020960201b610c7c1790919060201c565b60028190555061015d816000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000205461020960201b610c7c1790919060201c565b6000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055508173ffffffffffffffffffffffffffffffffffffffff16600073ffffffffffffffffffffffffffffffffffffffff167fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef836040518082815260200191505060405180910390a35050565b600080828401905083811015610287576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601b8152602001807f536166654d6174683a206164646974696f6e206f766572666c6f77000000000081525060200191505060405180910390fd5b8091505092915050565b610e3a806102a06000396000f3fe608060405234801561001057600080fd5b50600436106100885760003560e01c806370a082311161005b57806370a08231146101fd578063a457c2d714610255578063a9059cbb146102bb578063dd62ed3e1461032157610088565b8063095ea7b31461008d57806318160ddd146100f357806323b872dd146101115780633950935114610197575b600080fd5b6100d9600480360360408110156100a357600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050610399565b604051808215151515815260200191505060405180910390f35b6100fb6103b7565b6040518082815260200191505060405180910390f35b61017d6004803603606081101561012757600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001909291905050506103c1565b604051808215151515815260200191505060405180910390f35b6101e3600480360360408110156101ad57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919050505061049a565b604051808215151515815260200191505060405180910390f35b61023f6004803603602081101561021357600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061054d565b6040518082815260200191505060405180910390f35b6102a16004803603604081101561026b57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050610595565b604051808215151515815260200191505060405180910390f35b610307600480360360408110156102d157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050610662565b604051808215151515815260200191505060405180910390f35b6103836004803603604081101561033757600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610680565b6040518082815260200191505060405180910390f35b60006103ad6103a6610707565b848461070f565b6001905092915050565b6000600254905090565b60006103ce848484610906565b61048f846103da610707565b61048a85604051806060016040528060288152602001610d7060289139600160008b73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000610440610707565b73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054610bbc9092919063ffffffff16565b61070f565b600190509392505050565b60006105436104a7610707565b8461053e85600160006104b8610707565b73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008973ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054610c7c90919063ffffffff16565b61070f565b6001905092915050565b60008060008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050919050565b60006106586105a2610707565b8461065385604051806060016040528060258152602001610de160259139600160006105cc610707565b73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008a73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054610bbc9092919063ffffffff16565b61070f565b6001905092915050565b600061067661066f610707565b8484610906565b6001905092915050565b6000600160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054905092915050565b600033905090565b600073ffffffffffffffffffffffffffffffffffffffff168373ffffffffffffffffffffffffffffffffffffffff161415610795576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526024815260200180610dbd6024913960400191505060405180910390fd5b600073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff16141561081b576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526022815260200180610d286022913960400191505060405180910390fd5b80600160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055508173ffffffffffffffffffffffffffffffffffffffff168373ffffffffffffffffffffffffffffffffffffffff167f8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925836040518082815260200191505060405180910390a3505050565b600073ffffffffffffffffffffffffffffffffffffffff168373ffffffffffffffffffffffffffffffffffffffff16141561098c576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526025815260200180610d986025913960400191505060405180910390fd5b600073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff161415610a12576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526023815260200180610d056023913960400191505060405180910390fd5b610a7d81604051806060016040528060268152602001610d4a602691396000808773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054610bbc9092919063ffffffff16565b6000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002081905550610b10816000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054610c7c90919063ffffffff16565b6000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055508173ffffffffffffffffffffffffffffffffffffffff168373ffffffffffffffffffffffffffffffffffffffff167fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef836040518082815260200191505060405180910390a3505050565b6000838311158290610c69576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825283818151815260200191508051906020019080838360005b83811015610c2e578082015181840152602081019050610c13565b50505050905090810190601f168015610c5b5780820380516001836020036101000a031916815260200191505b509250505060405180910390fd5b5060008385039050809150509392505050565b600080828401905083811015610cfa576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601b8152602001807f536166654d6174683a206164646974696f6e206f766572666c6f77000000000081525060200191505060405180910390fd5b809150509291505056fe45524332303a207472616e7366657220746f20746865207a65726f206164647265737345524332303a20617070726f766520746f20746865207a65726f206164647265737345524332303a207472616e7366657220616d6f756e7420657863656564732062616c616e636545524332303a207472616e7366657220616d6f756e74206578636565647320616c6c6f77616e636545524332303a207472616e736665722066726f6d20746865207a65726f206164647265737345524332303a20617070726f76652066726f6d20746865207a65726f206164647265737345524332303a2064656372656173656420616c6c6f77616e63652062656c6f77207a65726fa265627a7a72315820c7a5ffabf642bda14700b2de42f8c57b36621af020441df825de45fd2b3e1c5c64736f6c63430005100032
+  value: 0
+  gas_limit: 4294967295
+  gas_price: 1
+  nonce: {None}
+  ```
+
+1. Verify that the contract was deployed and save the address which it was deployed to.
+
+  Go to `Network -> Explorer` and copy the address value from the `Log` event:
+  
+  ```javascript
+  EvmLog
+  {
+    address: 0xb49a2a41bbd68b6f49f03810f299d752875bcf89
+    topics: [
+      0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef
+      0x0000000000000000000000000000000000000000000000000000000000000000
+      0x000000000000000000000000d43593c715fdd31c61141abd04a99fd6822c8558
+    ]
+    data: 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+  }
+  ```
+  Now if you go to `Developer -> Chain state -> Storage -> evm -> accountCodes`, you should be able to see the contract in storage.
+
+### Transfer ERC20 tokens
+
+Go to `Developer -> Extrinsics` and selevct `evm > call`. 
+Input the following fields transfer some of Alice's ERC-20 tokens to Bob.
 
 ```text
 source: 0xd43593c715fdd31c61141abd04a99fd6822c8558
-init: <raw contract bytecode, a very long hex value>
-value: 0
-gas_limit: 4294967295
-gas_price: 1
-nonce: <empty> {None}
-```
-
-The values for `gas_limit` and `gas_price` were chosen for convenience and have little inherent or special meaning. 
-Note that `None` for the nonce will increment the known nonce for the source account, starting from `0x0`, you may manually set this but will get an "evm.InvalidNonce" error if not set correctly.
-
-Once the extrinsic is in a block, navigate to the `Network` -> `Explorer` tab in the UI to verify that the EVM pallet has emitted a `Created` event with the `address` of the newly-created contract:
-
-```bash
-# UI:
-evm.Created
-A contract has been created at given [address]
-   H160: 0x8a50db1e0f9452cfd91be8dc004ceb11cb08832f
-```
-
-In this case, however, it is trivial to [calculate this value](https://ethereum.stackexchange.com/a/46960): `0x8a50db1e0f9452cfd91be8dc004ceb11cb08832f`. 
-That is because EVM contract account IDs are determined solely by the ID and nonce of the contract creator's account and, in this case, both of those values are well-known (`0xd43593c715fdd31c61141abd04a99fd6822c8558` and `0x0`, respectively).
-
-### Check contract storage
-
-Use the `Chain State` UI tab to query`evm > accountCodes` for both Alice's and the contract's account IDs; notice that Alice's account code is empty and the contract's is equal to the bytecode of the Solidity contract.
-
-The ERC-20 contract that was deployed inherits from [the OpenZeppelin ERC-20 implementation](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol) and extends its capabilities by adding [a constructor that mints a maximum amount of tokens to the contract creator](https://github.com/paritytech/frontier/tree/master/template/examples/contract-erc20/truffle/contracts/MyToken.sol#L8).
-Use the `Chain State` app to query `evm > accountStorage` and view the value associated with Alice's account in the `_balances` map of the ERC-20 contract; use the ERC-20 contract address (`0x8a50db1e0f9452cfd91be8dc004ceb11cb08832f`) as the first parameter and the storage slot to read as the second parameter (`0x045c0350b9cf0df39c4b40400c965118df2dca5ce0fbcf0de4aafc099aea4a14`). 
-The value that is returned should be `0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff`.
-
-The storage slot was calculated using [a provided utility](https://github.com/paritytech/frontier/blob/master/template/utils/README.md#--erc20-slot-slot-address). 
-(Slot 0 and Alice address: `0xd43593c715fdd31c61141abd04a99fd6822c8558`).
-
-> Further reading:
-> [EVM layout of state variables in storage](https://docs.soliditylang.org/en/v0.8.6/internals/layout_in_storage.html#layout-of-state-variables-in-storage).
-
-### Contract usage
-
-Use the `Developer` -> `Extrinsics` tab to invoke the `transfer(address, uint256)` function on the ERC-20 contract with `evm > call` and transfer some of the ERC-20 tokens from Alice to Bob.
-
-```text
 target: 0x8a50db1e0f9452cfd91be8dc004ceb11cb08832f
-source: 0xd43593c715fdd31c61141abd04a99fd6822c8558
 input: 0xa9059cbb0000000000000000000000008eaf04151687736326c9fea17e25fc528761369300000000000000000000000000000000000000000000000000000000000000dd
 value: 0
 gas_limit: 4294967295
 gas_price: 1
 ```
 
-The value of the `input` parameter is an EVM ABI-encoded function call that was calculated using [the Remix web IDE](http://remix.ethereum.org); it consists of a function selector (`0xa9059cbb`) and the arguments to be used for the function invocation. 
+The value of the `input` parameter is an EVM ABI-encoded function call that was calculated using [the Remix web IDE](http://remix.ethereum.org). 
+It consists of a function selector (`0xa9059cbb`) and the arguments to be used for the function invocation. 
 In this case, the arguments correspond to Bob's EVM account ID (`0x8eaf04151687736326c9fea17e25fc5287613693`) and the number of tokens to be transferred (`0xdd`, or 221 in hex).
 
-> Further reading:
-> [the EVM ABI specification](https://solidity.readthedocs.io/en/latest/abi-spec.html)
+## Connect to Ethereum 
 
-### Check Bob contract storage
-
-After the extrinsic has finalized, use the `Chain State` app to query `evm > accountStorage` to see the ERC-20 balances for both Alice and Bob.
