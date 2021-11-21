@@ -149,6 +149,7 @@
   "htg-consensus-hybrid": "Create a PoS-PoW Hybrid Node",
 
   "docs-nav-htg-parachains": "Parachains",
+  "htg-parachains-convert": "Solochain Logic Conversion",
   "htg-parachains-connect": "Connect to a Relay Chain",
   "htg-parachains-collators": "Collator Selection",
   "htg-parachains-pre-launch": "Pre-Launch Requirements",
