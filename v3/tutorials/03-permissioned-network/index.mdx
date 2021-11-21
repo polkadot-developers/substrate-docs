@@ -463,6 +463,9 @@ stored in the `nodeAuthorization` pallet, `wellKnownNodes` storage. You should b
 able to see the peer ids of Alice and Bob's nodes, prefixed with `0x` to show its
 bytes in hex format.
 
+> NOTE: if you are using an older node that **does not include the `scale-info` pallet, you will need to use an **older version of the UI that you build and run yourself, as custom type mappings that you needed before are no longer supported (this is a very good thing!)
+> For how to use an older apps UI, see the [instructions at the end of this page](#apps-ui-use-without-scale-info).
+
 We can also check the owner of one node by querying the storage `owners` with the
 peer id of the node as input, you should get the account address of the owner.
 
@@ -589,6 +592,47 @@ Restart Dave's node in case it's not connecting with Charlie right away.
 You are at the end of this tutorial and are already learned about how to build a
 permissioned network. You can also play with other dispatchable calls like
 `remove_well_known_node`, `remove_connections`.
+
+## Apps UI use without `scale-info`
+
+> The instructions bellow _only_ apply to nodes that do not use the `scale-info` pallet that all modern Substrate nodes do.
+> This powerful and very useful feature was introduced [in this PR](https://github.com/paritytech/substrate/pull/8615).
+> We highly recommend including this in your node!
+
+The hosted apps UI is _not compatible_ with custom metadata any longer.
+To use custom type mappings you manually specify, you need to clone and run a compatible version yourself.
+
+The last release including the custom types in the UI is [`v0.96.1` available here](https://github.com/polkadot-js/apps/releases/tag/v0.96.1)
+
+```bash
+# choose ONLY one clone method:
+# ssh (better!)
+git clone --depth=1 git@github.com:polkadot-js/apps.git --branch v0.96.1
+# https (if needed)
+git clone --depth=1 https://github.com/polkadot-js/apps.git --branch v0.96.1
+
+# Install, build, serve (https://github.com/polkadot-js/apps#development)
+# - Ensure that you have a recent LTS version of Node.js, for development purposes Node >=10.13.0 is recommended.
+# - Ensure that you have a recent version of Yarn, for development purposes Yarn >=1.10.1 is required.
+yarn
+yarn start
+# - Access the UI via http://localhost:3000
+```
+
+We need to add an extra setting to tell the frontend the type of the `PeerId` used in node-authorization pallet.
+Note: the format of `PeerId` here is a wrapper on bs58 decoded peer id in bytes.
+Go to the **Settings Developer** [page in apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/settings/developer), add following [custom type mapping](https://polkadot.js.org/docs/api/start/types.extend)
+information:
+
+```json
+// add this as is, or with other required types you have set already:
+{
+  "PeerId": "(Vec<u8>)"
+}
+```
+
+> If you don't do this, you will get extrinsic errors of the form: `Verification Error: Execution(ApiError(Could not convert parameter 'tx' between node and runtime)`.
+> More details [here](https://polkadot.js.org/docs/api/FAQ#the-node-returns-a-could-not-convert-error-on-send).
 
 ## Next steps
 
