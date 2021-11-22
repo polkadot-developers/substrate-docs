@@ -15,13 +15,12 @@ This guide steps through the different capabilities that Subwasm provides.
 - Expose verifiable historical information of a chain's runtime for front end applications.
 - Get a quick snapshot of the modules in a runtime.
 - Check for changes between runtimes using a diff.
-- Expose a verifiable runtime for governance transparency.
+- Expose a verifiable runtime for transparency in runtime upgrade proposals.
 
 ## Before you begin
 
-To follow this guide you should have a runtime from a chain you wish to query. 
-This could either be one running locally or one running in production.
-In order to filter metadata, you will also need to [install JQ](https://stedolan.github.io/jq/download/).
+- You have a chain running locally that is executing the runtime you wish to examine. 
+- You have [JQ](https://stedolan.github.io/jq/download/) installed in your environment to enable filtering the metadata.
 
 ## Install and discover the CLI tool
 
@@ -31,7 +30,7 @@ To get started, install Subwasm and explore its commands.
 cargo install --locked --git https://github.com/chevdor/subwasm --tag v0.16.1
 ```
 Make sure you're using the [latest release](https://github.com/chevdor/subwasm/releases). 
-This guide is based on version 0.14.1. 
+This guide is based on version 0.16.1. 
 
 Explore the CLI commands.
 
@@ -55,7 +54,7 @@ subwasm --help
     subwasm get ws://localhost:9944 -o mychain.wasm
     ```
     The `-o` flag will save the the Wasm file to `mychain.wasm`.
-    
+
 1. Run the following command to save your chain's metadata to a JSON file:
 
    ```bash
@@ -75,7 +74,7 @@ In this example, we'll take Polkadot's runtime at block 500,000 and compare it w
 
 1. Go to a block explorer and retrieve the block hash for the runtime your want to compared against.
 
-    For example, go to [PolkadotJS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frpc.polkadot.io#/explorer) and retrieve the block hash at [block 50000](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frpc.polkadot.io#/explorer/query/50000).
+    For example, go to [PolkadotJS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frpc.polkadot.io#/explorer) and retrieve the block hash at [block 500000](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frpc.polkadot.io#/explorer/query/500000).
 
     `0xfdeab19649426aadbdab046c9b5dac0a5b0c850b8fd0927e3b4e6c896d5fb0b7`
 
