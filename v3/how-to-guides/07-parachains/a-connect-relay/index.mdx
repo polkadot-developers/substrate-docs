@@ -80,7 +80,21 @@ it. **This is required to be specified in the following steps, and cannot genera
 In the next steps it is assumed you use Cumulus, and thus have the proper commands for the `parachain-collator`
 binary that is produced for your collator nodes.
 
-### 2. Generate the genesis state
+### 2. Create a the chain spec
+
+Create the [chain spec](/v3/runtime/chain-specs) plain `.json`file:
+```bash
+parachain-collator build-spec > chain-spec-plain.json
+```
+
+[Customize](/v3/runtime/chain-specs/#customizing-a-chain-spec) the plain `.json` chain-spec as necessary.
+Then, create the [raw](/v3/runtime/chain-specs/#raw-chain-specifications):
+
+```bash
+parachain-collator build-spec --chain chain-spec-plain.json --raw > chain-spec-raw.json
+```
+
+### 3. Generate the genesis state
 
 Create the [genesis state](/v3/runtime/chain-specs#the-genesis-state) file, hex-encoded.
 Replace `<YOUR PARA ID>` with the para ID reserved above (for example `2000`):
@@ -89,7 +103,7 @@ Replace `<YOUR PARA ID>` with the para ID reserved above (for example `2000`):
 parachain-collator export-genesis-state --parachain-id <YOUR PARA ID> > para-<YOUR PARA ID>-genesis
 ```
 
-### 3. Generate Wasm runtime validation function
+### 4. Generate Wasm runtime validation function
 
 Replace `<YOUR PARA ID>` with the para ID reserved above (for example `2000`):
 
@@ -101,7 +115,7 @@ The Wasm blob does not depend on the para ID, so we do not provide that flag. If
 launching multiple parachains using the **exact same runtime**, you do not need to regenerate the Wasm
 blob each time. You do need to generate a new genesis state.
 
-### 4. Start the collators
+### 5. Start the collators
 
 Note that we need to supply the same relay chain spec as our targe relay chain! replace that with
 the proper file after the `-- ` separator in a command similar to:
@@ -127,7 +141,7 @@ You should see your collator running and peering with the already
 running relay chain nodes. It has not start authoring parachain blocks yet.
 Authoring will begin when the collator is actually **registered on the relay chain**.
 
-### 5. Parachain registration
+### 6. Parachain registration
 
 Depending on your target relay chain and authority there, you have options to register. Typically
 for testing you will use `sudo` and for production
@@ -192,7 +206,7 @@ Once fully onboarded and after block production starts you should see:
 
 ![parachain-active-lease.png](../../../../src/images/tutorials/09-cumulus/parachain-active-lease.png)
 
-### 6. Block production and finalization
+### 7. Block production and finalization
 
 The collator should start producing parachain blocks (aka collating) once the registration is
 successful **and a new relay chain epoch has begun**!
