@@ -62,7 +62,7 @@ subwasm --help
     subwasm --json meta mychain.wasm | jq 'del( .. | .documentation? )' > mychain-metadata.json
    ```
 
-   Using JQ is a useful tool to filter the metadata details from the `subwasm --json meta mychain.wasm` command.
+   You can use JQ to filter the metadata details from the `subwasm --json meta mychain.wasm` command.
    This example ignores all documentation metadata.
    For information about the metadata fields that a Substrate chain exposes, see the documentation on [Substrate Metadata](https://polkadot.js.org/docs/substrate).
 
