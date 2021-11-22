@@ -13,7 +13,7 @@ This guide steps through the different capabilities that Subwasm provides.
 ## Use cases
 
 - Expose verifiable historical information of a chain's runtime for front end applications.
-- Get a quick snapshot of the modules in a runtime.
+- Get a snapshot of the modules in a runtime.
 - Check for changes between runtimes using a diff.
 - Expose a verifiable runtime for transparency in runtime upgrade proposals.
 
@@ -69,7 +69,7 @@ subwasm --help
 
 ## Compare two different runtimes of a live chain
 
-Using Subwasm, we can also compare the runtimes of a chain at different blocks. 
+You can also use Subwasm to compare the runtimes of a chain at different blocks. 
 In this example, we'll take Polkadot's runtime at block 500,000 and compare it with its latest runtime.
 
 1. Go to a block explorer and retrieve the block hash for the runtime your want to compared against.
