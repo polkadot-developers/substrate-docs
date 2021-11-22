@@ -39,10 +39,10 @@ Explore the CLI commands.
 subwasm --help
 ```
 
-## Get information about a runtime 
+## Get information about a runtime of a local chain
 
 1. Launch a local node from inside your chain's directory. 
-   This example is launching the node template in dev mode.
+   This example launches a node template in dev mode.
    
     ```bash
     ./target/release/node-template --tmp --dev
@@ -54,7 +54,8 @@ subwasm --help
     mkdir TempWasms && cd TempWasms
     subwasm get ws://localhost:9944 -o mychain.wasm
     ```
-
+    The `-o` flag will save the the Wasm file to `mychain.wasm`.
+    
 1. Run the following command to save your chain's metadata to a JSON file:
 
    ```bash
@@ -67,10 +68,10 @@ subwasm --help
 
 1. Use the custom metadata file in a front-end application. 
 
-## Compare two different runtimes
+## Compare two different runtimes of a live chain
 
 Using Subwasm, we can also compare the runtimes of a chain at different blocks. 
-In this example, we'll take Polkadot's runtime at block 500 and compare it with its latest runtime.
+In this example, we'll take Polkadot's runtime at block 500,000 and compare it with its latest runtime.
 
 1. Go to a block explorer and retrieve the block hash for the runtime your want to compared against.
 
