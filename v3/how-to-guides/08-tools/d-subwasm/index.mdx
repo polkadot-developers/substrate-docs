@@ -19,25 +19,9 @@ This guide steps through the different capabilities that Subwasm provides.
 
 ## Before you begin
 
+- You have the [latest release](https://github.com/chevdor/subwasm/releases) of Subwasm installed.
 - You have a chain running locally that is executing the runtime you wish to examine. 
 - You have [JQ](https://stedolan.github.io/jq/download/) installed in your environment to enable filtering the metadata.
-
-## Install and discover the CLI tool
-
-To get started:
-1. Install Subwasm by running the following command:
-
-```bash
-cargo install --locked --git https://github.com/chevdor/subwasm --tag v0.16.1
-```
-Make sure you're using the [latest release](https://github.com/chevdor/subwasm/releases). 
-This guide is based on version 0.16.1. 
-
-1. Explore the CLI commands by running the following command:
-
-```bash
-subwasm --help
-```
 
 ## Get information about a runtime of a local chain
 
@@ -48,12 +32,16 @@ subwasm --help
     ./target/release/node-template --tmp --dev
     ```
 
-1. In a new terminal, create a temporary folder.
-
-1. Use Subwasm to get and save the Wasm of your local chain.
+1. In a new terminal, create a temporary folder called `TempWasms`.
 
     ```bash
-    mkdir TempWasms && cd TempWasms
+    mkdir TempWasms
+    ```
+
+1. Inside the new folder, use Subwasm to get and save the Wasm of your local chain.
+
+    ```bash
+    cd TempWasms
     subwasm get ws://localhost:9944 -o mychain.wasm
     ```
     The `-o` flag will save the the Wasm file to `mychain.wasm`.
@@ -73,7 +61,7 @@ subwasm --help
 ## Compare two different runtimes of a live chain
 
 You can also use Subwasm to compare the runtimes of a chain at different blocks. 
-In this example, we'll take Polkadot's runtime at block 500,000 and compare it with its latest runtime.
+The following example compares the Polkadot runtime at block 500,000 with its latest runtime.
 
 1. Go to a block explorer and retrieve the block hash for the runtime you want to compare against.
 
