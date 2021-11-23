@@ -361,7 +361,6 @@ pub mod pallet {
 
   #[pallet::pallet]
   #[pallet::generate_store(pub(super) trait Store)]
-  #[pallet::generate_storage_info]
   pub struct Pallet<T>(_);
 
 	/// Configure the pallet by specifying the parameters and types it depends on.
@@ -428,6 +427,14 @@ pub mod pallet {
 		// TODO Part IV: transfer_kitty_to
 	}
 }
+```
+
+Along with this code, we'll need to import `serde`. 
+Add this to your pallet's Cargo.toml file:
+
+```toml
+[dependencies.serde]
+version =  '1.0.129'
 ```
 
 ### Scaffold Kitty struct
