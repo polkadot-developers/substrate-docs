@@ -439,30 +439,6 @@ finalized in bother terminal logs. Now let's use the
 and check the well known nodes of our blockchain. Don't forget to switch to one of
 our local nodes running: `127.0.0.1:9944` or `127.0.0.1:9945`.
 
-Firstly, we need to add an extra setting to tell the frontend the type of the `PeerId` used
-in node-authorization pallet. Note: the format of `PeerId` here is a wrapper on bs58 decoded
-peer id in bytes. Go to the **Settings Developer**
-[page in apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/settings/developer)
-, add following [custom type mapping](https://polkadot.js.org/docs/api/start/types.extend)
-information:
-
-```json
-// add this as is, or with other required types you have set already:
-{
-  "PeerId": "(Vec<u8>)"
-}
-```
-
-<br />
-<Message
-  type={`red`}
-  title={`Warning`}
-  text="If you don't do this, you will get extrinsic errors of the form:
-    `Verification Error: Execution(ApiError(Could not convert parameter 'tx' between node and runtime)`. 
-    More details [here](https://polkadot.js.org/docs/api/FAQ#the-node-returns-a-could-not-convert-error-on-send).
-    "
-/>
-
 Then, let's go to **Developer** page, **Chain State sub-tab**, and check the data
 stored in the `nodeAuthorization` pallet, `wellKnownNodes` storage. You should be
 able to see the peer ids of Alice and Bob's nodes, prefixed with `0x` to show its
