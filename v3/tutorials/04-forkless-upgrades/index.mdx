@@ -116,7 +116,7 @@ clients, the first step of this tutorial is to start the template node as-is. Bu
 unmodified [Node Template](https://github.com/substrate-developer-hub/substrate-node-template).
 
 ```shell
-cargo run --release -- --dev --tmp
+cargo run --release -- --dev 
 ```
 
 <br />
@@ -225,11 +225,11 @@ First, add the Scheduler pallet as a dependency in the template node's runtime C
 **`runtime/Cargo.toml`**
 
 ```toml
-   [dependencies.pallet-scheduler]
-   default-features = false
-   git = 'https://github.com/paritytech/substrate.git'
-   tag = 'monthly-2021-10'
-   version = '4.0.0-dev'
+[dependencies.pallet-scheduler]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-2021-11-1'
+version = '4.0.0-dev'
 
 #--snip--
 
@@ -263,6 +263,7 @@ impl pallet_scheduler::Config for Runtime {
 	type ScheduleOrigin = frame_system::EnsureRoot<AccountId>;
 	type MaxScheduledPerBlock = MaxScheduledPerBlock;
 	type WeightInfo = ();
+  type OriginPrivilegeCmp = EqualPrivilegeOnly;
 }
 
 // Add the Scheduler pallet inside the construct_runtime! macro.
@@ -273,9 +274,15 @@ construct_runtime!(
 		UncheckedExtrinsic = UncheckedExtrinsic
 	{
 		/*** snip ***/
-		Scheduler: pallet_scheduler::{Pallet, Call, Storage, Event<T>},
+		Scheduler: pallet_scheduler,
 	}
 );
+```
+
+Add the following trait dependency at the top of the file:
+
+```rust
+pub use frame_support::EqualPrivilegeOnly;
 ```
 
 The final step to preparing an upgraded FRAME runtime is to increment its
@@ -333,7 +340,7 @@ cargo build --release -p node-template-runtime
   type={`yellow`}
   title={`Information`}
   text="Here is a
-	  [solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/runtime-upgrade-v3)
+	  [solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/runtime-upgrade)
 	  to check against in case you\'re stuck. See the `diff` in the commit history for details.
 	  "
 />
@@ -354,8 +361,7 @@ more about building Rust code with Cargo.
 
 ### Upgrade the Runtime
 
-Use this link to open the Polkadot JS Apps UI and automatically configure the UI to connect to the
-local node: https://polkadot.js.org/apps/#/extrinsics?rpc=ws://127.0.0.1:9944.
+Use [this link](https://polkadot.js.org/apps/#/extrinsics?rpc=ws://127.0.0.1:9944) to open the Polkadot JS Apps UI and automatically configure the UI to connect to the local node.
 
 <Message
   type={`green`}
@@ -463,7 +469,9 @@ In the previous section, the Scheduler pallet was configured with the `Root` ori
 [`ScheduleOrigin`](/rustdocs/latest/pallet_scheduler/trait.Config.html#associatedtype.ScheduleOrigin),
 which means that the `sudo` function (_not_ `sudo_unchecked_weight`) can be used to invoke the
 `schedule` function. Use this link to open the Polkadot JS Apps UI's Sudo tab:
-https://polkadot.js.org/apps/#/sudo?rpc=ws://127.0.0.1:9944. Wait until all the other fields have
+https://polkadot.js.org/apps/#/sudo?rpc=ws://127.0.0.1:9944. 
+
+Wait until all the other fields have
 been filled in before providing the `when` parameter. Leave the `maybe_periodic` parameter empty and
 the `priority` parameter at its default value of `0`. Select the System pallet's `set_code` function
 as the `call` parameter and provide the Wasm binary as before. Leave the "with weight override"
@@ -489,4 +497,4 @@ app to query the `existentialDeposit` constant value from the Balances pallet.
 
 - Learn about [storage migrations](/v3/runtime/upgrades#storage-migrations) and
   attempt one alongside a runtime upgrade.
-- Explore the [how-to guides section on storage migrations](/how-to-guides/v3/storage-migrations/basics)
+- Explore the [how-to guides section on storage migrations](/how-to-guides/v3/storage-migrations/basics).
