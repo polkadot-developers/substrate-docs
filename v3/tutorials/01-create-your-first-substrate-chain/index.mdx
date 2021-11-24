@@ -271,8 +271,8 @@ To start the local Substrate node:
 
    The `node-template` command-line options specify how you want the running node to operate.
    In this case, the `--dev` option specifies that the node runs in developer mode using the predefined `development` chain specification.
-   By default, this also implies that the node will delete all active data—such as keys, blockchain database, and networking information when you stop the node by pressing Control-c.
-   This ensures you have a clean working state any time you stop and restart the node.
+   By default, this option also deletes all active data—such as keys, the blockchain database, and networking information when you stop the node by pressing Control-c.
+   Using the `--dev` option ensures that you have a clean working state any time you stop and restart the node.
 
 1. Verify your node is up and running successfully by reviewing the output displayed in the terminal.
 
@@ -380,9 +380,7 @@ To transfer funds to an account:
 
 After a successful transfer, you can continue to explore the front-end template components or
 stop the local Substrate node the state changes you made.
-With `--dev` flag specified when running the Node Template, stopping the local node stops the
-blockchain and purge all persistent block data that goes with it so you can start with a clean new
-state next time you start again.
+Because you specified the `--dev` option when you started the node, stopping the local node stops the blockchain and purges all persistent block data so that you can start with a clean state next time you start the node.
 
 To stop the local Substrate node:
 
