@@ -111,36 +111,23 @@ the right CLI flag as offchain worker is disabled by default for non-authority n
 
 ### Build the Node Template
 
-If you already have Node Template cloned, you can just create a
-**check out of the v3.0.0 branch** from the base template,
-otherwise, clone this branch of the project:
+To get started: 
+1. Clone the node template.
 
-```bash
-# Fresh clone, if needed:
-git clone -b v3.0.0 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
-# From the working directory, create a new branch and check it out
-cd substrate-node-template
-git branch perm-network
-git checkout perm-network
-```
+  ```bash
+  git clone https://github.com/substrate-developer-hub/substrate-node-template
+  ```
 
-You should be able to `build` the project (or `check`) without any error:
+1. Build the node template.
 
-```bash
-cd substrate-node-template/
-cargo build --release
-```
+  ```bash
+  cd substrate-node-template/
+  cargo build --release
+  ```
+  
+  If you do run into issues building, checkout [these helpful tips](/v3/getting-started/installation#2-rust-developer-environment).
 
-<br />
-<Message
-  type={`green`}
-  title={`Tip`}
-  text="If you do run into issues building, checkout
-	[these helpful tips](/v3/getting-started/installation#2-rust-developer-environment).
-	"
-/>
-
-Now open the code with your favorite editor, and let's make some changes.
+1. Now open the code with your favorite editor, and let's make some changes.
 
 ### Add the `node-authorization` pallet
 
@@ -149,9 +136,11 @@ First we must add the pallet to our runtime dependencies:
 **`runtime/Cargo.toml`**
 
 ```TOML
-[dependencies]
-#--snip--
-pallet-node-authorization = { default-features = false, version = '3.0.0' }
+[dependencies.pallet-node-authorization]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-2021-11-1'
+version = '4.0.0-dev'
 
 #--snip--
 [features]
@@ -163,11 +152,9 @@ std = [
 ]
 ```
 
-We need to simulate the governance in our simple blockchain, so we just let a `sudo` admin rule,
-configuring the pallet's interface to `EnsureRoot`. In a production environment we sould want to have
-difference, governance based checking implemented here. More details of this `Config` can be found in
-the pallet's
-[reference docs](/rustdocs/latest/pallet_node_authorization/pallet/trait.Config.html).
+We need to simulate the governance in our simple blockchain, so we just let a `sudo` admin rule, configuring the pallet's interface to `EnsureRoot`. 
+In a production environment we should want to have governance based checking implemented here. 
+More details of this `Config` can be found in the pallet's [reference docs](/rustdocs/latest/pallet_node_authorization/pallet/trait.Config.html).
 
 **`runtime/src/lib.rs`**
 
@@ -210,20 +197,15 @@ construct_runtime!(
         UncheckedExtrinsic = UncheckedExtrinsic
     {
         /* --snip-- */
-
-        /*** Add This Line ***/
-        NodeAuthorization: pallet_node_authorization::{Pallet, Call, Storage, Event<T>, Config<T>},
-
+        NodeAuthorization: pallet_node_authorization, // <-- add this line
         /* --snip-- */
-
     }
 );
 ```
 
 ### Add genesis storage for our pallet
 
-`PeerId` is encoded in bs58 format, so we need a new library
-[bs58](https://docs.rs/bs58/) in **node/Cargo.toml** to decode it to get its bytes.
+`PeerId` is encoded in bs58 format, so we need a new library [bs58](https://docs.rs/bs58/) in **node/Cargo.toml** to decode it to get its bytes.
 
 **`node/cargo.toml`**
 
@@ -258,25 +240,24 @@ fn testnet_genesis(
 	endowed_accounts: Vec<AccountId>,
 	_enable_println: bool,
 ) -> GenesisConfig {
+  GenesisConfig {
 
-    /* --snip-- */
+      /* --snip-- */
 
-    /*** Add This Block Item ***/
-		node_authorization: NodeAuthorizationConfig {
-    		nodes: vec![
-				(
-					OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
-					endowed_accounts[0].clone()
-				),
-				(
-					OpaquePeerId(bs58::decode("12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust").into_vec().unwrap()),
-					endowed_accounts[1].clone()
-				),
-    		],
-   		}),
-
-    /* --snip-- */
-
+      /*** Add This Block Item ***/
+      node_authorization: NodeAuthorizationConfig {
+        nodes: vec![
+          (
+            OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
+            endowed_accounts[0].clone()
+          ),
+          (
+            OpaquePeerId(bs58::decode("12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust").into_vec().unwrap()),
+            endowed_accounts[1].clone()
+          ),
+          ],
+      },
+   }  
 }
 ```
 
@@ -316,7 +297,7 @@ Now all the code changes are finished, we are ready to launch our permissioned n
   type={`yellow`}
   title={`Information`}
   text="Stuck? The solution with all required changes to the base template can be found ',
-		[here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/permissioned-network-v3).',
+		[here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/permissioned-network).',
 		"
 />
 
