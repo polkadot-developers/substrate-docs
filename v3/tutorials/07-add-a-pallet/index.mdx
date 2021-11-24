@@ -78,7 +78,7 @@ To add the Nicks pallet to the Substrate node template:
    [dependencies.pallet-nicks]
    default-features = false
    git = 'https://github.com/paritytech/substrate.git'
-   tag = 'monthly-2021-10'
+   tag = 'monthly-2021-11-1'
    version = '4.0.0-dev'
    ```
 
@@ -99,7 +99,7 @@ For an introduction to editing `Cargo.toml` files, see the [Cargo reference docu
      ...
      'pallet-aura/std',
      'pallet-balances/std',
-     'pallet-nicks/std',
+     'pallet-nicks/std', # add this line
      ...
    ]
    ```
@@ -287,10 +287,10 @@ To implement the nicks pallet in your runtime:
        UncheckedExtrinsic = UncheckedExtrinsic
      {
        /* --snip-- */
-       Balances: pallet_balances::{Pallet, Call, Storage, Config<T>, Event<T>},
+       Balances: pallet_balances,
 
        /*** Add This Line ***/
-       Nicks: pallet_nicks::{Pallet, Call, Storage, Event<T>},
+       Nicks: pallet_nicks,
      }
    );
    ```
@@ -324,16 +324,13 @@ To start the local Substrate node:
 1. Start the node in development mode by running the following command:
 
    ```
-   ./target/release/node-template --dev --tmp
+   ./target/release/node-template --dev
    ```
 
    The node-template command-line options specify how you want the running node to operate.
-   In this case, the options specify the following:
-
-   - The `--dev` option specifies that the node run as a developer node chain specification.
-
-   - The `--tmp` option specifies that the node save all active data—such as keys, blockchain database, and networking information—while it is running, then delete the data when you stop the node by pressing Control-c.
-     You should use `--tmp` option to ensure you have a clean working state any time you stop and restart the node.
+   In this case, the `--dev` option specifies that the node run as a developer node chain specification.
+   By default this option implies that the node will save all active data—such as keys, blockchain database, and networking information—while it is running, then delete the data when you stop the node by pressing Control-c.
+   This also ensures you have a clean working state any time you stop and restart the node.
 
 1. Verify your node is up and running successfully by reviewing the output displayed in the terminal.
 
