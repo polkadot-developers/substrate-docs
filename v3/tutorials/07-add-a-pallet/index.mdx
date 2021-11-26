@@ -208,7 +208,7 @@ Just like you used the Balances pallet as a template for importing the Nicks pal
    }
    ```
 
-The `impl pallet_balances::Config` block allows your to configure the types and parameters that are specified by the Balances pallet `Config` trait.
+The `impl pallet_balances::Config` block allows you to configure the types and parameters that are specified by the Balances pallet `Config` trait.
 For example, this `impl` block configures the Balances pallet to use the `u128` type to track balances.
 If you were developing a chain where it was important to optimize storage, you could use any unsigned integer type that was at least 32-bits in size because the [`Balance` type](/rustdocs/latest/pallet_balances/pallet/trait.Config.html#associatedtype.Balance) for the Balances pallet `Config` trait is bound by the [`AtLeast32BitUnsigned` trait](/rustdocs/latest/sp_arithmetic/traits/trait.AtLeast32BitUnsigned.html).
 
