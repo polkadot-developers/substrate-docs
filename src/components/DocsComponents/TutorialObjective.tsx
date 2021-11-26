@@ -1,5 +1,5 @@
 import React from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import Link from '../Link'
 
 interface TutorialObjectiveProps {
   data: { textLineOne: string; textLineTwo?: string; url: string }
@@ -28,7 +28,7 @@ export function TutorialObjective({ data }: TutorialObjectiveProps) {
           <p className="font-medium mb-0">{data.textLineOne}</p>
           <p className="hidden xl:block font-light">{data.textLineTwo}</p>
         </div>
-        <LocalizedLink
+        <Link
           className={`md-button hidden xl:block bg-red-400 ${
             !data.textLineTwo ? `xl:-mt-1` : `xl:mt-1`
           }  xl:mr-4`}
@@ -47,7 +47,7 @@ export function TutorialObjective({ data }: TutorialObjectiveProps) {
               />
             </svg>
           </button>
-        </LocalizedLink>
+        </Link>
       </div>
     </>
   )
