@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import Link from '../components/Link'
 
 interface LanguageSwitcherProps {
   currentLang: string
@@ -49,15 +49,11 @@ export default function LanguageSwitcher({
           >
             {langConfig.map((lang, index) => {
               return currentLang != lang.code ? (
-                <LocalizedLink
-                  key={index}
-                  to={currentLink}
-                  language={lang.code}
-                >
+                <Link key={index} to={currentLink} language={lang.code}>
                   <div className="my-2 mx-4 text-black dark:text-white hover:text-substrateGreen dark:hover:text-substrateGreen">
                     {lang.code}
                   </div>
-                </LocalizedLink>
+                </Link>
               ) : null
             })}
           </div>
