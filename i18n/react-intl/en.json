@@ -159,6 +159,7 @@
   "htg-tools-try-runtime": "Integrate Try Runtime",
   "htg-tools-txwrapper": "Create a txwrapper for a chain",
   "htg-tools-sidecar": "Track parachain auction winners using Sidecar",
+  "htg-tools-subwasm": "Verify Runtime Wasm Binaries with Subwasm",
 
   "tutorials-beginner": "beginner",
   "tutorials-intermediate": "intermediate",
