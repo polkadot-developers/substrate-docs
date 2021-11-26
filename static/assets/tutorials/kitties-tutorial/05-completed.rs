@@ -2,6 +2,9 @@
 
 pub use pallet::*;
 
+mod mock;
+mod tests;
+
 #[frame_support::pallet]
 pub mod pallet {
 	use frame_support::pallet_prelude::*;
@@ -24,14 +27,13 @@ pub mod pallet {
 	// Struct for holding Kitty information.
 	#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
 	#[scale_info(skip_type_params(T))]
-	pub struct Kitty<T: Config> {
 		pub dna: [u8; 16],   // Using 16 bytes to represent a kitty DNA
 		pub price: Option<BalanceOf<T>>,
 		pub gender: Gender,
 		pub owner: AccountOf<T>,
 	}
 
-	// Enum declaration for Gender.
+	// Set Gender type in Kitty struct.
 	#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
 	#[scale_info(skip_type_params(T))]
 	#[cfg_attr(feature = "std", derive(Serialize, Deserialize))]
@@ -42,9 +44,10 @@ pub mod pallet {
 
     #[pallet::pallet]
     #[pallet::generate_store(pub(super) trait Store)]
+    #[pallet::generate_storage_info]
     pub struct Pallet<T>(_);
 
-	/// Configure the pallet by specifying the parameters and types it depends on.
+	// Configure the pallet by specifying the parameters and types on which it depends.
 	#[pallet::config]
 	pub trait Config: frame_system::Config {
 		/// Because this pallet emits events, it depends on the runtime's definition of an event.
@@ -64,7 +67,7 @@ pub mod pallet {
 	// Errors.
 	#[pallet::error]
 	pub enum Error<T> {
-		/// Handles arithmetic overflow when incrementing the Kitty counter.
+		/// Handles arithemtic overflow when incrementing the Kitty counter.
 		KittyCntOverflow,
 		/// An account cannot own more Kitties than `MaxKittyCount`.
 		ExceedMaxKittyOwned,
@@ -84,17 +87,16 @@ pub mod pallet {
 		NotEnoughBalance,
 	}
 
-	// Events.
 	#[pallet::event]
 	#[pallet::generate_deposit(pub(super) fn deposit_event)]
 	pub enum Event<T: Config> {
-		/// A new Kitty was successfully created. \[sender, kitty_id\]
+		/// A new Kitty was sucessfully created. \[sender, kitty_id\]
 		Created(T::AccountId, T::Hash),
-		/// Kitty price was successfully set. \[sender, kitty_id, new_price\]
+		/// Kitty price was sucessfully set. \[sender, kitty_id, new_price\]
 		PriceSet(T::AccountId, T::Hash, Option<BalanceOf<T>>),
-		/// A Kitty was successfully transferred. \[from, to, kitty_id\]
+		/// A Kitty was sucessfully transferred. \[from, to, kitty_id\]
 		Transferred(T::AccountId, T::AccountId, T::Hash),
-		/// A Kitty was successfully bought. \[buyer, seller, kitty_id, bid_price\]
+		/// A Kitty was sucessfully bought. \[buyer, seller, kitty_id, bid_price\]
 		Bought(T::AccountId, T::AccountId, T::Hash, BalanceOf<T>),
 	}
 

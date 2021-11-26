@@ -5,6 +5,7 @@ keywords: pallet design, intermediate, runtime, child trie
 version: '3.0'
 section: how to guides
 category: pallet design
+difficulty: 2
 ---
 
 <Message
@@ -103,7 +104,7 @@ pub struct FundInfo<AccountId, Balance, BlockNumber> {
 
 ### 3. Declare your storage items
 
-Our storage items will need to keep track of which user contributed to what fund as well as how much they contributed. First, define the following types which will be used to declare our storage items:
+Our storage items will need to keep track of which user contributed to what fund as well as how much they contributed. First, deine the following types which will be used to declare our storage items:
 
 ```rust
 pub type FundIndex = u32;

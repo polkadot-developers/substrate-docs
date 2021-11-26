@@ -468,10 +468,6 @@ const DevNavMenu = {
         })}`,
         items: [
           {
-            title: `${intl.formatMessage({ id: 'htg-parachains-convert' })}`,
-            link: '/how-to-guides/v3/parachains/convert',
-          },
-          {
             title: `${intl.formatMessage({ id: 'htg-parachains-connect' })}`,
             link: '/how-to-guides/v3/parachains/connect/',
           },
@@ -506,10 +502,6 @@ const DevNavMenu = {
           {
             title: `${intl.formatMessage({ id: 'htg-tools-sidecar' })}`,
             link: '/how-to-guides/v3/tools/sidecar/',
-          },
-          {
-            title: `${intl.formatMessage({ id: 'htg-tools-subwasm' })}`,
-            link: '/how-to-guides/v3/tools/subwasm',
           },
         ],
       },
@@ -690,7 +682,7 @@ DevNavMenuTuts.set('cumulusTutorial', [
     name: `Cumulus Tutorial`,
     items: [
       {
-        title: `Start a Local Relay Chain`,
+        title: `Start a Relay Chain`,
         link: '/tutorials/v3/cumulus/start-relay/',
       },
       {
@@ -698,13 +690,13 @@ DevNavMenuTuts.set('cumulusTutorial', [
         link: '/tutorials/v3/cumulus/connect-parachain/',
       },
       {
-        title: `Launch a Local Parachain Testnet`,
+        title: `Launch a Parachain Testnet`,
         link: '/tutorials/v3/cumulus/polkadot-launch/',
       },
-      {
-        title: `Connect to a Live Relay Chain`,
-        link: '/tutorials/v3/cumulus/rococo',
-      },
+      //   {
+      //     title: `Register on Rococo`,
+      //     link: '/tutorials/v3/cumulus/rococo',
+      //   },
     ],
   },
 ])

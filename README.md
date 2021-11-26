@@ -196,4 +196,4 @@ this repository.
 
 TBD
 
-<!-- Substrate **documentation** is license under the [Apache 2 license](./LICENSE). -->
+<!-- Substrate **documentation** is licence under the [Apache 2 license](./LICENSE). -->

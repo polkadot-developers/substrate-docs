@@ -45,6 +45,7 @@ pub mod pallet {
 
   #[pallet::pallet]
   #[pallet::generate_store(pub(super) trait Store)]
+  #[pallet::generate_storage_info]
   pub struct Pallet<T>(_);
 
   // Configure the pallet by specifying the parameters and types on which it depends.
@@ -87,19 +88,18 @@ pub mod pallet {
     NotEnoughBalance,
   }
 
-	// Events.
-	#[pallet::event]
-	#[pallet::generate_deposit(pub(super) fn deposit_event)]
-	pub enum Event<T: Config> {
-		/// A new Kitty was successfully created. \[sender, kitty_id\]
-		Created(T::AccountId, T::Hash),
-		/// Kitty price was successfully set. \[sender, kitty_id, new_price\]
-		PriceSet(T::AccountId, T::Hash, Option<BalanceOf<T>>),
-		/// A Kitty was successfully transferred. \[from, to, kitty_id\]
-		Transferred(T::AccountId, T::AccountId, T::Hash),
-		/// A Kitty was successfully bought. \[buyer, seller, kitty_id, bid_price\]
-		Bought(T::AccountId, T::AccountId, T::Hash, BalanceOf<T>),
-	}
+  #[pallet::event]
+  #[pallet::generate_deposit(pub(super) fn deposit_event)]
+  pub enum Event<T: Config> {
+    /// A new Kitty was sucessfully created. \[sender, kitty_id\]
+    Created(T::AccountId, T::Hash),
+    /// Kitty price was sucessfully set. \[sender, kitty_id, new_price\]
+    PriceSet(T::AccountId, T::Hash, Option<BalanceOf<T>>),
+    /// A Kitty was sucessfully transferred. \[from, to, kitty_id\]
+    Transferred(T::AccountId, T::AccountId, T::Hash),
+    /// A Kitty was sucessfully bought. \[buyer, seller, kitty_id, bid_price\]
+    Bought(T::AccountId, T::AccountId, T::Hash, BalanceOf<T>),
+  }
 
   // Storage items.
 

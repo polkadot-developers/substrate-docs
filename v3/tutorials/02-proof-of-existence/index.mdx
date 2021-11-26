@@ -19,7 +19,7 @@ This tutorial illustrates how to create a custom proof-of-existence (PoE) servic
 blockchain development framework and the [FRAME](/v3/runtime/frame) library.
 
 Proof of existence is an approach to validating the authenticity and ownership of a digital object by using the object information stored on the blockchain.
-Because the blockchain associates a timestamp and signature with the object, the blockchain record can be used to verify—to serve as proof—that a particular object existed at a specific date and time. It can also verify who the owner of a record was at that date and time.
+Because the blockchain associates a timestamp and signature with the object, the blockchain record can be used to verify—to serve as proof—that a particular object existed at a specific date and time. It can also verify who the owner of record was at that date and time.
 
 ## Digital objects and hashes
 
@@ -32,7 +32,7 @@ Because any change to a file would result in a different hash, users can prove t
 ## Digital objects and account signatures
 
 Blockchains use [public keys](https://en.wikipedia.org/wiki/Public-key_cryptography) to map digital identities to accounts that have private keys.
-The blockchain records the account you use to store the hash for a digital object as part of the transaction.
+The blockchain records the account you use to store the hash for a digitial object as part of the transaction.
 Because the account information is stored as part of the transaction, the controller of the account can later prove ownership as the person who initially uploaded the file.
 
 ## How much time do you need to complete this tutorial?
@@ -122,32 +122,32 @@ Therefore, the first step is to remove some files and content from the files in 
 
 1. Add a skeleton set of pallet dependencies and [macros](/v3/runtime/macros) that the custom pallet requires by copying the following code:
 
-   ```rust
-   // Re-export pallet items so that they can be accessed from the crate namespace.
-   pub use pallet::*;
+    ```rust
+    // Re-export pallet items so that they can be accessed from the crate namespace.
+    pub use pallet::*;
+    
+    #[frame_support::pallet]
+    pub mod pallet {
+      use frame_support::pallet_prelude::*;
+      use frame_system::pallet_prelude::*;
+      use sp_std::vec::Vec; // Step 3.1 will include this in `Cargo.toml`
+      
+    #[pallet::config]  // <-- Step 2. code block will replace this.
+    #[pallet::event]   // <-- Step 3. code block will replace this.
+    #[pallet::error]   // <-- Step 4. code block will replace this.
+    #[pallet::pallet]
+    #[pallet::generate_store(pub(super) trait Store)]
+    #[pallet::generate_storage_info]
+    pub struct Pallet<T>(_);
+    
+    #[pallet::storage] // <-- Step 5. code block will replace this.
+    #[pallet::hooks]
+    impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {}
+    #[pallet::call]   // <-- Step 6. code block will replace this.
+    }
+    ```
 
-   #[frame_support::pallet]
-   pub mod pallet {
-     use frame_support::pallet_prelude::*;
-     use frame_system::pallet_prelude::*;
-     use sp_std::vec::Vec; // Step 3.1 will include this in `Cargo.toml`
-
-   #[pallet::config]  // <-- Step 2. code block will replace this.
-   #[pallet::event]   // <-- Step 3. code block will replace this.
-   #[pallet::error]   // <-- Step 4. code block will replace this.
-   #[pallet::pallet]
-   #[pallet::generate_store(pub(super) trait Store)]
-   #[pallet::generate_storage_info]
-   pub struct Pallet<T>(_);
-
-   #[pallet::storage] // <-- Step 5. code block will replace this.
-   #[pallet::hooks]
-   impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {}
-   #[pallet::call]   // <-- Step 6. code block will replace this.
-   }
-   ```
-
-   You now have a framework that includes placeholders for _events_, _errors_, _storage_, and _callable functions_.
+    You now have a framework that includes placeholders for _events_, _errors_, _storage_, and _callable functions_.
 
 1. Save your changes.
 
@@ -232,8 +232,8 @@ To add the `sp-std` crate to the pallet:
    [dependencies.sp-std]
    default-features = false
    git = 'https://github.com/paritytech/substrate.git'
-   tag = 'monthly-2021-11-1'  # or the latest monthly
-   version = '4.0.0-dev'      # or the latest version
+   tag = 'monthly-2021-10'  # or the latest monthly
+   version = '4.0.0-dev'    # or the latest version
    ```
 
 1. Add the `sp-std` crate to the list of features.
@@ -270,13 +270,13 @@ To implement the errors for the proof-of-existence pallet:
    ```rust
    #[pallet::error]
    pub enum Error<T> {
-   	/// The proof has already been claimed.
-   	ProofAlreadyClaimed,
-   	/// The proof does not exist, so it cannot be revoked.
-   	NoSuchProof,
-   	/// The proof is claimed by another account, so caller can't revoke it.
-   	NotProofOwner,
-   	}
+     /// The proof has already been claimed.
+     ProofAlreadyClaimed,
+     /// The proof does not exist, so it cannot be revoked.
+     NoSuchProof,
+     /// The proof is claimed by another account, so caller can't revoke it.
+     NotProofOwner,
+     }
    ```
 
 1. Save your changes.
@@ -285,7 +285,7 @@ To implement the errors for the proof-of-existence pallet:
 
 To add a new proof to the blockchain, the proof-of-existence pallet requires a storage mechanism.
 To address this requirement, you can create a [hash map](https://en.wikipedia.org/wiki/Hash_table) that maps each proof to its owner and records the block number when the proof was made.
-To create this hash map, you can use the FRAME [`StorageMap`](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) trait.
+To create this hash map, you can use the FRAME [`StorageMap`](/rustdocs/latest/frame_support/storage/types/struct.StorageMap.html) pallet.
 
 To implement storage for the proof-of-existence pallet:
 
@@ -325,47 +325,58 @@ To implement this logic in the proof-of-existence pallet:
    // Dispatchable functions must be annotated with a weight and must return a DispatchResult.
    #[pallet::call]
    impl<T: Config> Pallet<T> {
-   	#[pallet::weight(1_000)]
-   	pub fn create_claim(
-   	origin: OriginFor<T>,
-   	proof: Vec<u8>,
-   	) -> DispatchResult {
-   		// Check that the extrinsic was signed and get the signer.
-   		// This function will return an error if the extrinsic is not signed.
-   		// https://docs.substrate.io/v3/runtime/origins
-   		let sender = ensure_signed(origin)?;
-   		// Verify that the specified proof has not already been claimed.
-   		ensure!(!Proofs::<T>::contains_key(&proof), Error::<T>::ProofAlreadyClaimed);
-   		// Get the block number from the FRAME System pallet.
-   		let current_block = <frame_system::Pallet<T>>::block_number();
-   		// Store the proof with the sender and block number.
-   		Proofs::<T>::insert(&proof, (&sender, current_block));
-   		// Emit an event that the claim was created.
-   		Self::deposit_event(Event::ClaimCreated(sender, proof));
-   		Ok(())
-   		}
-   		#[pallet::weight(10_000)]
-   		pub fn revoke_claim(
-   		origin: OriginFor<T>,
-   		proof: Vec<u8>,
-   		) -> DispatchResult {
-   			// Check that the extrinsic was signed and get the signer.
-   			// This function will return an error if the extrinsic is not signed.
-   			// https://docs.substrate.io/v3/runtime/origins
-   			let sender = ensure_signed(origin)?;
-   			// Verify that the specified proof has been claimed.
-   			ensure!(Proofs::<T>::contains_key(&proof), Error::<T>::NoSuchProof);
-   			// Get owner of the claim.
-   			let (owner, _) = Proofs::<T>::get(&proof);
-   			// Verify that sender of the current call is the claim owner.
-   			ensure!(sender == owner, Error::<T>::NotProofOwner);
-   			// Remove claim from storage.
-   			Proofs::<T>::remove(&proof);
-   			// Emit an event that the claim was erased.
-   			Self::deposit_event(Event::ClaimRevoked(sender, proof));
-   			Ok(())
-   		}
-   	}
+     #[pallet::weight(1_000)]
+     pub fn create_claim(
+       origin: OriginFor<T>,
+       proof: Vec<u8>,
+       ) -> DispatchResult {
+         // Check that the extrinsic was signed and get the signer.
+         // This function will return an error if the extrinsic is not signed.
+         // https://docs.substrate.io/v3/runtime/origins
+         let sender = ensure_signed(origin)?;
+
+         // Verify that the specified proof has not already been claimed.
+         ensure!(!Proofs::<T>::contains_key(&proof), Error::<T>::ProofAlreadyClaimed);
+
+         // Get the block number from the FRAME System pallet.
+         let current_block = <frame_system::Pallet<T>>::block_number();
+
+         // Store the proof with the sender and block number.
+         Proofs::<T>::insert(&proof, (&sender, current_block));
+
+         // Emit an event that the claim was created.
+         Self::deposit_event(Event::ClaimCreated(sender, proof));
+
+         Ok(())
+         }
+
+         #[pallet::weight(10_000)]
+         pub fn revoke_claim(
+           origin: OriginFor<T>,
+           proof: Vec<u8>,
+           ) -> DispatchResult {
+             // Check that the extrinsic was signed and get the signer.
+             // This function will return an error if the extrinsic is not signed.
+             // https://docs.substrate.io/v3/runtime/origins
+             let sender = ensure_signed(origin)?;
+
+             // Verify that the specified proof has been claimed.
+             ensure!(Proofs::<T>::contains_key(&proof), Error::<T>::NoSuchProof);
+
+             // Get owner of the claim.
+             let (owner, _) = Proofs::<T>::get(&proof);
+
+             // Verify that sender of the current call is the claim owner.
+             ensure!(sender == owner, Error::<T>::NotProofOwner);
+
+             // Remove claim from storage.
+             Proofs::<T>::remove(&proof);
+
+             // Emit an event that the claim was erased.
+             Self::deposit_event(Event::ClaimRevoked(sender, proof));
+             Ok(())
+           }
+     }
    ```
 
 1. Save your changes and close the file.
@@ -412,8 +423,9 @@ To compile and start the updated Substrate node:
 
 ## Build a custom front-end component
 
-Now that you have a new blockchain running with the custom proof-of-existence pallet, let's add a custom React component to the front-end template.
-This React component enables you to expose the proof-of-existence capabilities and interact with the new pallet you created.
+Now that you have a new blockchain running with the custom
+proof-of-existence pallet, let's add a custom React component to the front-end template.
+The React component enables you to expose the proof-of-existence capabilities and test interacting with the new pallet.
 
 ### Add your custom react component
 
@@ -426,161 +438,161 @@ This React component enables you to expose the proof-of-existence capabilities a
 1. Copy and paste the following code into the`src/TemplateModule.js` file:
 
    ```javascript
-  // React and Semantic UI elements.
-  import React, { useState, useEffect } from 'react';
-  import { Form, Input, Grid, Message } from 'semantic-ui-react';
+   // React and Semantic UI elements.
+   import React, { useState, useEffect } from 'react'
+   import { Form, Input, Grid, Message } from 'semantic-ui-react'
 
-  // Pre-built Substrate front-end utilities for connecting to a node
-  // and making a transaction.
-  import { useSubstrate } from './substrate-lib';
-  import { TxButton } from './substrate-lib/components';
+   // Pre-built Substrate front-end utilities for connecting to a node
+   // and making a transaction.
+   import { useSubstrate } from './substrate-lib'
+   import { TxButton } from './substrate-lib/components'
 
-  // Polkadot-JS utilities for hashing data.
-  import { blake2AsHex } from '@polkadot/util-crypto';
+   // Polkadot-JS utilities for hashing data.
+   import { blake2AsHex } from '@polkadot/util-crypto'
 
-  // Main Proof Of Existence component is exported.
-  export function Main (props) {
-    // Establish an API to talk to the Substrate node.
-    const { api } = useSubstrate();
-    // Get the selected user from the `AccountSelector` component.
-    const { accountPair } = props;
-    // React hooks for all the state variables we track.
-    // Learn more at: https://reactjs.org/docs/hooks-intro.html
-    const [status, setStatus] = useState('');
-    const [digest, setDigest] = useState('');
-    const [owner, setOwner] = useState('');
-    const [block, setBlock] = useState(0);
-    // Our `FileReader()` which is accessible from our functions below.
-    let fileReader;
-    // Takes our file, and creates a digest using the Blake2 256 hash function
-    const bufferToDigest = () => {
-      // Turns the file content to a hexadecimal representation.
-      const content = Array.from(new Uint8Array(fileReader.result))
-        .map(b => b.toString(16).padStart(2, '0'))
-        .join('');
-      const hash = blake2AsHex(content, 256);
-      setDigest(hash);
-    };
+   // Main Proof Of Existence component is exported.
+   export function Main(props) {
+     // Establish an API to talk to the Substrate node.
+     const { api } = useSubstrate()
+     // Get the selected user from the `AccountSelector` component.
+     const { accountPair } = props
+     // React hooks for all the state variables we track.
+     // Learn more at: https://reactjs.org/docs/hooks-intro.html
+     const [status, setStatus] = useState('')
+     const [digest, setDigest] = useState('')
+     const [owner, setOwner] = useState('')
+     const [block, setBlock] = useState(0)
+     // Our `FileReader()` which is accessible from our functions below.
+     let fileReader
+     // Takes our file, and creates a digest using the Blake2 256 hash function
+     const bufferToDigest = () => {
+       // Turns the file content to a hexadecimal representation.
+       const content = Array.from(new Uint8Array(fileReader.result))
+         .map(b => b.toString(16).padStart(2, '0'))
+         .join('')
+       const hash = blake2AsHex(content, 256)
+       setDigest(hash)
+     }
 
-    // Callback function for when a new file is selected.
-    const handleFileChosen = file => {
-      fileReader = new FileReader();
-      fileReader.onloadend = bufferToDigest;
-      fileReader.readAsArrayBuffer(file);
-    };
+     // Callback function for when a new file is selected.
+     const handleFileChosen = file => {
+       fileReader = new FileReader()
+       fileReader.onloadend = bufferToDigest
+       fileReader.readAsArrayBuffer(file)
+     }
 
-    // React hook to update the owner and block number information for a file
-    useEffect(() => {
-      let unsubscribe;
-      // Polkadot-JS API query to the `proofs` storage item in our pallet.
-      // This is a subscription, so it will always get the latest value,
-      // even if it changes.
-      api.query.templateModule
-        .proofs(digest, result => {
-          // Our storage item returns a tuple, which is represented as an array.
-          setOwner(result[0].toString());
-          setBlock(result[1].toNumber());
-        })
-        .then(unsub => {
-          unsubscribe = unsub;
-        });
-      return () => unsubscribe && unsubscribe();
-      // This tells the React hook to update whenever the file digest changes
-      // (when a new file is chosen), or when the storage subscription says the
-      // value of the storage item has updated.
-    }, [digest, api.query.templateModule]);
+     // React hook to update the owner and block number information for a file
+     useEffect(() => {
+       let unsubscribe
+       // Polkadot-JS API query to the `proofs` storage item in our pallet.
+       // This is a subscription, so it will always get the latest value,
+       // even if it changes.
+       api.query.templateModule
+         .proofs(digest, result => {
+           // Our storage item returns a tuple, which is represented as an array.
+           setOwner(result[0].toString())
+           setBlock(result[1].toNumber())
+         })
+         .then(unsub => {
+           unsubscribe = unsub
+         })
+       return () => unsubscribe && unsubscribe()
+       // This tells the React hook to update whenever the file digest changes
+       // (when a new file is chosen), or when the storage subscription says the
+       // value of the storage item has updated.
+     }, [digest, api.query.templateModule])
 
-    // We can say a file digest is claimed if the stored block number is not 0
-    function isClaimed () {
-      return block !== 0;
-    }
+     // We can say a file digest is claimed if the stored block number is not 0
+     function isClaimed() {
+       return block !== 0
+     }
 
-    // The actual UI elements which are returned from our component.
-    return (
-      <Grid.Column>
-        <h1>Proof of Existence</h1>
-        {/* Show warning or success message if the file is or is not claimed. */}
-        <Form success={!!digest && !isClaimed()} warning={isClaimed()}>
-          <Form.Field>
-            {/* File selector with a callback to `handleFileChosen`. */}
-            <Input
-              type="file"
-              id="file"
-              label="Your File"
-              onChange={e => handleFileChosen(e.target.files[0])}
-            />
-            {/* Show this message if the file is available to be claimed */}
-            <Message success header="File Digest Unclaimed" content={digest} />
-            {/* Show this message if the file is already claimed. */}
-            <Message
-              warning
-              header="File Digest Claimed"
-              list={[digest, `Owner: ${owner}`, `Block: ${block}`]}
-            />
-          </Form.Field>
-          {/* Buttons for interacting with the component. */}
-          <Form.Field>
-            {/* Button to create a claim. Only active if a file is selected, and not already claimed. Updates the `status`. */}
-            <TxButton
-              accountPair={accountPair}
-              label={'Create Claim'}
-              setStatus={setStatus}
-              type="SIGNED-TX"
-              disabled={isClaimed() || !digest}
-              attrs={{
-                palletRpc: 'templateModule',
-                callable: 'createClaim',
-                inputParams: [digest],
-                paramFields: [true]
-              }}
-            />
-            {/* Button to revoke a claim. Only active if a file is selected, and is already claimed. Updates the `status`. */}
-            <TxButton
-              accountPair={accountPair}
-              label="Revoke Claim"
-              setStatus={setStatus}
-              type="SIGNED-TX"
-              disabled={!isClaimed() || owner !== accountPair.address}
-              attrs={{
-                palletRpc: 'templateModule',
-                callable: 'revokeClaim',
-                inputParams: [digest],
-                paramFields: [true]
-              }}
-            />
-          </Form.Field>
-          {/* Status message about the transaction. */}
-          <div style={{ overflowWrap: 'break-word' }}>{status}</div>
-        </Form>
-      </Grid.Column>
-    );
-  }
+     // The actual UI elements which are returned from our component.
+     return (
+       <Grid.Column>
+         <h1>Proof of Existence</h1>
+         {/* Show warning or success message if the file is or is not claimed. */}
+         <Form success={!!digest && !isClaimed()} warning={isClaimed()}>
+           <Form.Field>
+             {/* File selector with a callback to `handleFileChosen`. */}
+             <Input
+               type="file"
+               id="file"
+               label="Your File"
+               onChange={e => handleFileChosen(e.target.files[0])}
+             />
+             {/* Show this message if the file is available to be claimed */}
+             <Message success header="File Digest Unclaimed" content={digest} />
+             {/* Show this message if the file is already claimed. */}
+             <Message
+               warning
+               header="File Digest Claimed"
+               list={[digest, `Owner: ${owner}`, `Block: ${block}`]}
+             />
+           </Form.Field>
+           {/* Buttons for interacting with the component. */}
+           <Form.Field>
+             {/* Button to create a claim. Only active if a file is selected, and not already claimed. Updates the `status`. */}
+             <TxButton
+               accountPair={accountPair}
+               label={'Create Claim'}
+               setStatus={setStatus}
+               type="SIGNED-TX"
+               disabled={isClaimed() || !digest}
+               attrs={{
+                 palletRpc: 'templateModule',
+                 callable: 'createClaim',
+                 inputParams: [digest],
+                 paramFields: [true],
+               }}
+             />
+             {/* Button to revoke a claim. Only active if a file is selected, and is already claimed. Updates the `status`. */}
+             <TxButton
+               accountPair={accountPair}
+               label="Revoke Claim"
+               setStatus={setStatus}
+               type="SIGNED-TX"
+               disabled={!isClaimed() || owner !== accountPair.address}
+               attrs={{
+                 palletRpc: 'templateModule',
+                 callable: 'revokeClaim',
+                 inputParams: [digest],
+                 paramFields: [true],
+               }}
+             />
+           </Form.Field>
+           {/* Status message about the transaction. */}
+           <div style={{ overflowWrap: 'break-word' }}>{status}</div>
+         </Form>
+       </Grid.Column>
+     )
+   }
 
-  export default function TemplateModule (props) {
-    const { api } = useSubstrate();
-    return api.query.templateModule && api.query.templateModule.proofs
-      ? (
-      <Main {...props} />
-        )
-      : null;
-  }
+   export default function TemplateModule(props) {
+     const { api } = useSubstrate()
+     return api.query.templateModule && api.query.templateModule.proofs ? (
+       <Main {...props} />
+     ) : null
+   }
    ```
 
 1. Save your changes and close the file.
 
 1. Start the front-end template by running the following command:
 
-   ```bash
+   ```
    yarn start
    ```
-  
-  This will open up a new tab with the front-end serving at **http://localhost:8000**.
+
+1. Open **http://localhost:8000** in a browser to view the front-end template.
+
+The customized front-end template includes the new proof of existence
+component.
 
 ### Submit a proof
 
 To test the proof-of-existence pallet using the new front-end component:
 
-1. Find the component at the bottom of the page.
 1. Click **Choose file** and select any file on your computer.
 
    The proof-of-existence pallet generates the hash for the selected file and displays it in the File Digest field.
