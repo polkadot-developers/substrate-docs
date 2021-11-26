@@ -117,20 +117,6 @@ module.exports = {
     },
     `gatsby-plugin-meta-redirect`,
     `gatsby-plugin-twitter`,
-    {
-      resolve: `gatsby-theme-i18n`,
-      options: {
-        defaultLang: `en`,
-        locales: `en`,
-        configPath: require.resolve(`./i18n/config.json`),
-      },
-    },
-    {
-      resolve: `gatsby-theme-i18n-react-intl`,
-      options: {
-        defaultLocale: `./i18n/react-intl/en.json`,
-      },
-    },
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-plugin-sharp`,
