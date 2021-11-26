@@ -77,11 +77,15 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return
   }
 
-  const allDocs = data.allMdx.edges.filter(each => each.node.frontmatter.section === 'docs')
+  const allDocs = data.allMdx.edges.filter(
+    each => each.node.frontmatter.section === 'docs'
+  )
   const allHtgs = data.allMdx.edges.filter(
     each => each.node.frontmatter.section === 'how to guides'
   )
-  const allTuts = data.allMdx.edges.filter(each => each.node.frontmatter.section === 'tutorials')
+  const allTuts = data.allMdx.edges.filter(
+    each => each.node.frontmatter.section === 'tutorials'
+  )
 
   allDocs.forEach(({ node }) => {
     createPage({

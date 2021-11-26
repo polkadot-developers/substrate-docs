@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
-import { useIntl } from 'react-intl'
 import SlideDownNav from '../components/SlideDownNav'
 import Link from './Link'
 import Icon from './Icon'
-// import { useLocalization } from 'gatsby-theme-i18n'
 
 interface DocsNavProps {
   section: string
@@ -19,8 +17,13 @@ interface DocsNavProps {
   hashLink: string
 }
 
-export default function DocsNav({ section, sideNav, globalNav, pathname, hashLink }: DocsNavProps) {
-  const intl = useIntl()
+export default function DocsNav({
+  section,
+  sideNav,
+  globalNav,
+  pathname,
+  hashLink,
+}: DocsNavProps) {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <nav
@@ -39,11 +42,11 @@ export default function DocsNav({ section, sideNav, globalNav, pathname, hashLin
           <div className={`${isOpen && `hidden`}`}>
             <span className="font-bold">
               {section === 'docs'
-                ? `${intl.formatMessage({ id: 'nav-docs' })}`
+                ? 'Docs'
                 : section === 'tutorials'
-                ? `${intl.formatMessage({ id: 'nav-tutorials' })}`
+                ? 'Tutorials'
                 : section === 'how to guides'
-                ? `${intl.formatMessage({ id: 'nav-how-to-guides' })}`
+                ? 'How-To-Guides'
                 : null}
             </span>
           </div>
@@ -94,11 +97,14 @@ export default function DocsNav({ section, sideNav, globalNav, pathname, hashLin
           <div>
             <hr className="mt-6" />
             <div className="flex items-center justify-between px-20 lg:px-4 py-4">
-              <span>{intl.formatMessage({ id: 'docs-nav-learn-more' })}</span>
+              <span>More Ways to Learn</span>
             </div>
             {globalNav.map((navItem, index) => {
               return (
-                <div key={index} className="px-20 lg:px-4 py-4 lg:dark:bg-substrateDark">
+                <div
+                  key={index}
+                  className="px-20 lg:px-4 py-4 lg:dark:bg-substrateDark"
+                >
                   <Link to={navItem.url}>
                     <div className="flex items-center justify-between hover:no-underline">
                       <div className="font-medium text-substrateDark dark:text-white">
