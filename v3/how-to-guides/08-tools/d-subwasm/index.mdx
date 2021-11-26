@@ -59,6 +59,7 @@ Make sure you have the following:
 ## Compare two different runtimes of a live chain
 
 You can also use Subwasm to compare the runtimes of a chain at different blocks. 
+Subwasm uses a function that takes the URL of common Substrate chains such as Polkadot, Kusama and Westend, and returns the node's endpoint.
 The following example compares the Polkadot runtime at block 500,000 with its latest runtime.
 
 1. Go to a block explorer and retrieve the block hash for the runtime you want to compare against.
