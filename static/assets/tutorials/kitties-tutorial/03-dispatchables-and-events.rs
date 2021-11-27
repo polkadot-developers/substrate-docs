@@ -39,16 +39,8 @@ pub mod pallet {
 		Female,
 	}
 
-	// Implementation to handle Gender type in Kitty struct.
-	impl Default for Gender {
-		fn default() -> Self {
-			Gender::Male
-		}
-	}
-
     #[pallet::pallet]
     #[pallet::generate_store(pub(super) trait Store)]
-    #[pallet::generate_storage_info]
     pub struct Pallet<T>(_);
 
 	/// Configure the pallet by specifying the parameters and types it depends on.
