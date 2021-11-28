@@ -79,68 +79,68 @@ To add the Nicks pallet to the Substrate node template:
 1. Import the `pallet-nicks` crate to make it available to the node template runtime by adding it to the
    list of dependencies.
 
-```
-[dependencies.pallet-nicks]
-default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-10'
-version = '4.0.0-dev'
-```
+   ```
+   [dependencies.pallet-nicks]
+   default-features = false
+   git = 'https://github.com/paritytech/substrate.git'
+   tag = 'monthly-2021-10'
+   version = '4.0.0-dev'
+   ```
 
-In this `dependencies.pallet-nicks` section, `default-features = false` specifies that the default
-features to be understand are the features defined for the [`std`](https://doc.rust-lang.org/std/)
-native Rust binary listed in the `features` section.
+   In this `dependencies.pallet-nicks` section, `default-features = false` specifies that the default
+   features to be understand are the features defined for the [`std`](https://doc.rust-lang.org/std/)
+   native Rust binary listed in the `features` section.
 
-It is important to note that the Substrate runtime compiles to both a native Rust
-[`std`](https://doc.rust-lang.org/std/) binary and a [WebAssembly (Wasm)](https://webassembly.org/)
-binary. For more information about compiling [`std`](https://doc.rust-lang.org/std/) and
-[`no_std`](https://rust-embedded.github.io/book/intro/no-std.html) features, see XXX.
+   It is important to note that the Substrate runtime compiles to both a native Rust
+   [`std`](https://doc.rust-lang.org/std/) binary and a [WebAssembly (Wasm)](https://webassembly.org/)
+   binary. For more information about compiling [`std`](https://doc.rust-lang.org/std/) and
+   [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html) features, see XXX.
 
-The remaining lines specify that Cargo should use the `pallet-nicks` crate from the  
- `paritytech/substrate` repository with the commit tag identified using the `monthly-YYYY-MM` naming
-convention.
+   The remaining lines specify that Cargo should use the `pallet-nicks` crate from the  
+    `paritytech/substrate` repository with the commit tag identified using the `monthly-YYYY-MM` naming
+   convention.
 
-For an introduction to editing `Cargo.toml` files, see the
-[Cargo reference documentation](https://doc.rust-lang.org/cargo/reference/index.html).
+   For an introduction to editing `Cargo.toml` files, see the
+   [Cargo reference documentation](https://doc.rust-lang.org/cargo/reference/index.html).
 
 1. Add the `pallet-nicks` crate to the list of `features` to be included in the `std` feature set by
    adding the following line `features` section.
 
-```TOML
-[features]
-default = ['std']
-std = [
-    ...
-    'pallet-aura/std',
-    'pallet-balances/std',
-    'pallet-nicks/std',
-    ...
-]
-```
+   ```TOML
+   [features]
+   default = ['std']
+   std = [
+       ...
+       'pallet-aura/std',
+       'pallet-balances/std',
+       'pallet-nicks/std',
+       ...
+   ]
+   ```
 
-If you forget to update the `features` section, you might see errors similar to the following when you
-build the native binaries:
+   If you forget to update the `features` section, you might see errors similar to the following when you
+   build the native binaries:
 
-```
-error[E0425]: cannot find function `memory_teardown` in module `sandbox`
-  --> ~/.cargo/git/checkouts/substrate-7e08433d4c370a21/83a6f1a/primitives/sandbox/src/../without_std.rs:53:12
-   |
-53 |         sandbox::memory_teardown(self.memory_idx);
-   |                  ^^^^^^^^^^^^^^^ not found in `sandbox`
-
-error[E0425]: cannot find function `memory_new` in module `sandbox`
-  --> ~/.cargo/git/checkouts/substrate-7e08433d4c370a21/83a6f1a/primitives/sandbox/src/../without_std.rs:72:18
-   |
-72 |         match sandbox::memory_new(initial, maximum) {
-   |
-...
-```
+   ```
+   error[E0425]: cannot find function `memory_teardown` in module `sandbox`
+     --> ~/.cargo/git/checkouts/substrate-7e08433d4c370a21/83a6f1a/primitives/sandbox/src/../without_std.rs:53:12
+      |
+   53 |         sandbox::memory_teardown(self.memory_idx);
+      |                  ^^^^^^^^^^^^^^^ not found in `sandbox`
+   
+   error[E0425]: cannot find function `memory_new` in module `sandbox`
+     --> ~/.cargo/git/checkouts/substrate-7e08433d4c370a21/83a6f1a/primitives/sandbox/src/../without_std.rs:72:18
+      |
+   72 |         match sandbox::memory_new(initial, maximum) {
+      |
+   ...
+   ```
 
 1. Check that the new dependencies resolve correctly by running the following command:
 
-```bash
-cargo check -p node-template-runtime
-```
+   ```bash
+   cargo check -p node-template-runtime
+   ```
 
 ## Review the configuration trait for the Nicks pallet
 
@@ -197,45 +197,45 @@ interface for the Nicks pallet.
 
 1. Locate the Balances pallet section and note that the implementation consists of two parts:
 
-- The `parameter_types!` block where constant values are defined.
+   - The `parameter_types!` block where constant values are defined.
 
-  ```rust
-  parameter_types! {
-      // The u128 constant value 500 is aliased to a type named ExistentialDeposit.
-      pub const ExistentialDeposit: u128 = 500;
-      // A heuristic that is used for weight estimation.
-      pub const MaxLocks: u32 = 50;
-  }
+     ```rust
+     parameter_types! {
+         // The u128 constant value 500 is aliased to a type named ExistentialDeposit.
+         pub const ExistentialDeposit: u128 = 500;
+         // A heuristic that is used for weight estimation.
+         pub const MaxLocks: u32 = 50;
+     }
+   
+     ```
 
-  ```
+   - The `impl` block where the types and values defined by the `Config` interface are configured.
 
-- The `impl` block where the types and values defined by the `Config` interface are configured.
-
-  ```rust
-  impl pallet_balances::Config for Runtime {
-      // The previously defined parameter_type is used as a configuration parameter.
-      type MaxLocks = MaxLocks;
-
-      // The "Balance" that appears after the equal sign is an alias for the u128 type.
-      type Balance = Balance;
-
-      // The empty value, (), is used to specify a no-op callback function.
-      type DustRemoval = ();
-
-      // The previously defined parameter_type is used as a configuration parameter.
-      type ExistentialDeposit = ExistentialDeposit;
-
-      // The FRAME runtime system is used to track the accounts that hold balances.
-      type AccountStore = System;
-
-      // Weight information is supplied to the Balances pallet by the node template runtime.
-      // type WeightInfo = (); // old way
-      type WeightInfo = pallet_balances::weights::SubstrateWeight<Runtime>;
-
-      // The ubiquitous event type.
-      type Event = Event;
-  }
-  ```
+     ```rust
+     impl pallet_balances::Config for Runtime {
+         // The previously defined parameter_type is used as a configuration parameter.
+         type MaxLocks = MaxLocks;
+   
+         // The "Balance" that appears after the equal sign is an alias for the u128 type.
+         type Balance = Balance;
+   
+         // The empty value, (), is used to specify a no-op callback function.
+         type DustRemoval = ();
+   
+         // The previously defined parameter_type is used as a configuration parameter.
+         type ExistentialDeposit = ExistentialDeposit;
+   
+         // The FRAME runtime system is used to track the accounts that hold balances.
+         type AccountStore = System;
+   
+         // Weight information is supplied to the Balances pallet by the node template runtime.
+         // type WeightInfo = (); // old way
+         type WeightInfo = pallet_balances::weights::SubstrateWeight<Runtime>;
+   
+         // The ubiquitous event type.
+         type Event = Event;
+     }
+     ```
 
 The `impl pallet_balances::Config` block allows your to configure the types and parameters that are
 specified by the Balances pallet `Config` trait.
@@ -257,42 +257,42 @@ To implement the nicks pallet in your runtime:
 
 1. After the last line of the Balances code block, add the following code block for the Nicks pallet:
 
-```rust
-/// Add this code block to your template for Nicks:
-parameter_types! {
-    // Choose a fee that incentivizes desireable behavior.
-    pub const NickReservationFee: u128 = 100;
-    pub const MinNickLength: u32 = 8;
-    // Maximum bounds on storage are important to secure your chain.
-    pub const MaxNickLength: u32 = 32;
-}
+   ```rust
+   /// Add this code block to your template for Nicks:
+   parameter_types! {
+       // Choose a fee that incentivizes desireable behavior.
+       pub const NickReservationFee: u128 = 100;
+       pub const MinNickLength: u32 = 8;
+       // Maximum bounds on storage are important to secure your chain.
+       pub const MaxNickLength: u32 = 32;
+   }
 
-impl pallet_nicks::Config for Runtime {
-    // The Balances pallet implements the ReservableCurrency trait.
-    // `Balances` is defined in `construct_runtime!` macro. See below.
-    // https://docs.substrate.io/rustdocs/latest/pallet_balances/index.html#implementations-2
-    type Currency = Balances;
-  
-    // Use the NickReservationFee from the parameter_types block.
-    type ReservationFee = NickReservationFee;
-  
-    // No action is taken when deposits are forfeited.
-    type Slashed = ();
-  
-    // Configure the FRAME System Root origin as the Nick pallet admin.
-    // https://docs.substrate.io/rustdocs/latest/frame_system/enum.RawOrigin.html#variant.Root
-    type ForceOrigin = frame_system::EnsureRoot<AccountId>;
-  
-    // Use the MinNickLength from the parameter_types block.
-    type MinLength = MinNickLength;
-  
-    // Use the MaxNickLength from the parameter_types block.
-    type MaxLength = MaxNickLength;
-  
-    // The ubiquitous event type.
-    type Event = Event;
-}
-```
+   impl pallet_nicks::Config for Runtime {
+       // The Balances pallet implements the ReservableCurrency trait.
+       // `Balances` is defined in `construct_runtime!` macro. See below.
+       // https://docs.substrate.io/rustdocs/latest/pallet_balances/index.html#implementations-2
+       type Currency = Balances;
+     
+       // Use the NickReservationFee from the parameter_types block.
+       type ReservationFee = NickReservationFee;
+     
+       // No action is taken when deposits are forfeited.
+       type Slashed = ();
+     
+       // Configure the FRAME System Root origin as the Nick pallet admin.
+       // https://docs.substrate.io/rustdocs/latest/frame_system/enum.RawOrigin.html#variant.Root
+       type ForceOrigin = frame_system::EnsureRoot<AccountId>;
+     
+       // Use the MinNickLength from the parameter_types block.
+       type MinLength = MinNickLength;
+     
+       // Use the MaxNickLength from the parameter_types block.
+       type MaxLength = MaxNickLength;
+     
+       // The ubiquitous event type.
+       type Event = Event;
+   }
+   ```
 
 1. Identify the types that the Nicks pallet exposes.
 
@@ -302,13 +302,13 @@ impl pallet_nicks::Config for Runtime {
    The [Nicks pallet](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs) uses
    the following types:
 
-- Pallet **Storage**: Because it uses the `#[pallet::storage]` macro.
-- Pallet **Event**s: Because it uses the `#[pallet::events]` macro. You will notice that in the case of
-  the Nicks pallet, the `Event` keyword is parameterized with respect to a type, `T`; this is
-  because at least one of the events defined by the Nicks pallet depends on a type that is
-  configured with the `Config` configuration trait.
-- **Call**able Functions: Because it has dispatchable functions in the `#[pallet::call]` macro.
-- The **Pallet** type from the `#[pallet::pallet]` macro.
+   - Pallet **Storage**: Because it uses the `#[pallet::storage]` macro.
+   - Pallet **Event**s: Because it uses the `#[pallet::events]` macro. You will notice that in the case of
+     the Nicks pallet, the `Event` keyword is parameterized with respect to a type, `T`; this is
+     because at least one of the events defined by the Nicks pallet depends on a type that is
+     configured with the `Config` configuration trait.
+   - **Call**able Functions: Because it has dispatchable functions in the `#[pallet::call]` macro.
+   - The **Pallet** type from the `#[pallet::pallet]` macro.
 
 1. Add Nicks to the `construct_runtime!` macro.
 
@@ -332,11 +332,11 @@ impl pallet_nicks::Config for Runtime {
 
 1. Check that the new dependencies resolve correctly by running the following command:
 
-```bash
-cargo check -p node-template-runtime
-```
+   ```bash
+   cargo check -p node-template-runtime
+   ```
 
-If there are no errors, you are ready to compile.
+   If there are no errors, you are ready to compile.
 
 1. Compile the node in release mode by running the following command:
 
