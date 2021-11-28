@@ -213,27 +213,33 @@ interface for the Nicks pallet.
 
   ```rust
   impl pallet_balances::Config for Runtime {
-    // The previously defined parameter_type is used as a configuration parameter.
-    type MaxLocks = MaxLocks;
+      // The previously defined parameter_type is used as a configuration parameter.
+      type MaxLocks = MaxLocks;
 
-    // The "Balance" that appears after the equal sign is an alias for the u128 type.
-    type Balance = Balance;
+      // The maximum allowed number of reserves for one account.
+      type MaxReserves = ();
 
-    // The empty value, (), is used to specify a no-op callback function.
-    type DustRemoval = ();
+      // The type of the unique id for named reserves.
+      type ReserveIdentifier = [u8; 8];
 
-    // The previously defined parameter_type is used as a configuration parameter.
-    type ExistentialDeposit = ExistentialDeposit;
+      // The "Balance" that appears after the equal sign is an alias for the u128 type.
+      type Balance = Balance;
 
-    // The FRAME runtime system is used to track the accounts that hold balances.
-    type AccountStore = System;
+      // The ubiquitous event type.
+      type Event = Event;
 
-    // Weight information is supplied to the Balances pallet by the node template runtime.
-    // type WeightInfo = (); // old way
-    type WeightInfo = pallet_balances::weights::SubstrateWeight<Runtime>;
+      // The empty value, (), is used to specify a no-op callback function.
+      type DustRemoval = ();
 
-    // The ubiquitous event type.
-    type Event = Event;
+      // The previously defined parameter_type is used as a configuration parameter.
+      type ExistentialDeposit = ExistentialDeposit;
+
+      // The FRAME runtime system is used to track the accounts that hold balances.
+      type AccountStore = System;
+
+      // Weight information is supplied to the Balances pallet by the node template runtime.
+      // type WeightInfo = (); // old way
+      type WeightInfo = pallet_balances::weights::SubstrateWeight<Runtime>;
   }
   ```
 
