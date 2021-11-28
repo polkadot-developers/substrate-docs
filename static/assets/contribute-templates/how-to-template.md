@@ -4,6 +4,13 @@ As you may be aware at this point, runtime upgrades must always abide by the blo
 
 At Bittensor, we have run into an extreme version of this problem: we accidentally shrunk our block length to 65KB! This effectively made it impossible to perform chain upgrades as our WASM files were at least 300KB in size. 
 
+---
+**WARNING**
+
+This guide should be viewed as a **last resort**, as it is a **risky** approach to this problem and can ruin your chain upgrades if something is done incorrectly. Perform this at your own risk.
+
+---
+
 ## Use cases
 
 This is particularly important if you've accidentally shrunk your block length too much and need to bring your chain back to an upgrade-able state. 
