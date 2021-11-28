@@ -122,32 +122,32 @@ Therefore, the first step is to remove some files and content from the files in 
 
 1. Add a skeleton set of pallet dependencies and [macros](/v3/runtime/macros) that the custom pallet requires by copying the following code:
 
-    ```rust
-    // Re-export pallet items so that they can be accessed from the crate namespace.
-    pub use pallet::*;
-    
-    #[frame_support::pallet]
-    pub mod pallet {
-        use frame_support::pallet_prelude::*;
-        use frame_system::pallet_prelude::*;
-        use sp_std::vec::Vec; // Step 3.1 will include this in `Cargo.toml`
-      
-        #[pallet::config]  // <-- Step 2. code block will replace this.
-        #[pallet::event]   // <-- Step 3. code block will replace this.
-        #[pallet::error]   // <-- Step 4. code block will replace this.
-        #[pallet::pallet]
-        #[pallet::generate_store(pub(super) trait Store)]
-        #[pallet::generate_storage_info]
-        pub struct Pallet<T>(_);
-        
-        #[pallet::storage] // <-- Step 5. code block will replace this.
-        #[pallet::hooks]
-        impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {}
-        #[pallet::call]   // <-- Step 6. code block will replace this.
-    }
-    ```
+   ```rust
+   // Re-export pallet items so that they can be accessed from the crate namespace.
+   pub use pallet::*;
 
-    You now have a framework that includes placeholders for _events_, _errors_, _storage_, and _callable functions_.
+   #[frame_support::pallet]
+   pub mod pallet {
+       use frame_support::pallet_prelude::*;
+       use frame_system::pallet_prelude::*;
+       use sp_std::vec::Vec; // Step 3.1 will include this in `Cargo.toml`
+
+       #[pallet::config]  // <-- Step 2. code block will replace this.
+       #[pallet::event]   // <-- Step 3. code block will replace this.
+       #[pallet::error]   // <-- Step 4. code block will replace this.
+       #[pallet::pallet]
+       #[pallet::generate_store(pub(super) trait Store)]
+       #[pallet::generate_storage_info]
+       pub struct Pallet<T>(_);
+
+       #[pallet::storage] // <-- Step 5. code block will replace this.
+       #[pallet::hooks]
+       impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {}
+       #[pallet::call]   // <-- Step 6. code block will replace this.
+   }
+   ```
+
+   You now have a framework that includes placeholders for _events_, _errors_, _storage_, and _callable functions_.
 
 1. Save your changes.
 
@@ -388,13 +388,13 @@ To implement this logic in the proof-of-existence pallet:
    ```
 
 <Message
-  type={'yellow'}
-  title={'Information'}
-  text="There is a full Node Template solution
-    [here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tut-sol/proof-of-existence%2Flatest)
-    to use as a reference if you\'re stuck. Check the
-    [commit diff from the base `latest` template](https://github.com/substrate-developer-hub/substrate-node-template/compare/latest...tutorials/solutions/proof-of-existence?expand=1)
-    for the exact changes."
+type={'yellow'}
+title={'Information'}
+text="There is a full Node Template solution
+[here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tut-sol/proof-of-existence%2Flatest)
+to use as a reference if you\'re stuck. Check the
+[commit diff from the base `latest` template](https://github.com/substrate-developer-hub/substrate-node-template/compare/latest...tutorials/solutions/proof-of-existence?expand=1)
+for the exact changes."
 />
 
 ## Build the runtime with your new pallet
@@ -515,20 +515,11 @@ The React component enables you to expose the proof-of-existence capabilities an
          <Form success={!!digest && !isClaimed()} warning={isClaimed()}>
            <Form.Field>
              {/* File selector with a callback to `handleFileChosen`. */}
-             <Input
-               type="file"
-               id="file"
-               label="Your File"
-               onChange={e => handleFileChosen(e.target.files[0])}
-             />
+             <Input type="file" id="file" label="Your File" onChange={e => handleFileChosen(e.target.files[0])} />
              {/* Show this message if the file is available to be claimed */}
              <Message success header="File Digest Unclaimed" content={digest} />
              {/* Show this message if the file is already claimed. */}
-             <Message
-               warning
-               header="File Digest Claimed"
-               list={[digest, `Owner: ${owner}`, `Block: ${block}`]}
-             />
+             <Message warning header="File Digest Claimed" list={[digest, `Owner: ${owner}`, `Block: ${block}`]} />
            </Form.Field>
            {/* Buttons for interacting with the component. */}
            <Form.Field>
@@ -570,9 +561,7 @@ The React component enables you to expose the proof-of-existence capabilities an
 
    export default function TemplateModule(props) {
      const { api } = useSubstrate()
-     return api.query.templateModule && api.query.templateModule.proofs ? (
-       <Main {...props} />
-     ) : null
+     return api.query.templateModule && api.query.templateModule.proofs ? <Main {...props} /> : null
    }
    ```
 
