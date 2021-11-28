@@ -310,8 +310,8 @@ Before we proceed with building our node, we need to add the Currency type to ou
 
 ```rust
 impl pallet_kitties::Config for Runtime {
-	type Event = Event;
-	type Currency = Balances; // <-- Add this line
+    type Event = Event;
+    type Currency = Balances; // <-- Add this line
 }
 ```
 
@@ -359,92 +359,92 @@ pub use pallet::*;
 
 #[frame_support::pallet]
 pub mod pallet {
-	use frame_support::pallet_prelude::*;
-	use frame_system::pallet_prelude::*;
-	use frame_support::{
-		sp_runtime::traits::Hash,
-		traits::{ Randomness, Currency, tokens::ExistenceRequirement },
-		transactional
-	};
-	use sp_io::hashing::blake2_128;
+    use frame_support::pallet_prelude::*;
+    use frame_system::pallet_prelude::*;
+    use frame_support::{
+        sp_runtime::traits::Hash,
+        traits::{ Randomness, Currency, tokens::ExistenceRequirement },
+        transactional
+    };
+    use sp_io::hashing::blake2_128;
 
-	#[cfg(feature = "std")]
-	use serde::{Deserialize, Serialize};
+    #[cfg(feature = "std")]
+    use serde::{Deserialize, Serialize};
 
-	// ACTION #1: Write a Struct to hold Kitty information.
+    // ACTION #1: Write a Struct to hold Kitty information.
 
-	// ACTION #2: Enum declaration for Gender.
+    // ACTION #2: Enum declaration for Gender.
 
-	// ACTION #3: Implementation to handle Gender type in Kitty struct.
+    // ACTION #3: Implementation to handle Gender type in Kitty struct.
 
-  #[pallet::pallet]
-  #[pallet::generate_store(pub(super) trait Store)]
-  #[pallet::generate_storage_info]
-  pub struct Pallet<T>(_);
+    #[pallet::pallet]
+    #[pallet::generate_store(pub(super) trait Store)]
+    #[pallet::generate_storage_info]
+    pub struct Pallet<T>(_);
 
-	/// Configure the pallet by specifying the parameters and types it depends on.
-	#[pallet::config]
-	pub trait Config: frame_system::Config {
-		/// Because this pallet emits events, it depends on the runtime's definition of an event.
-		type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+    /// Configure the pallet by specifying the parameters and types it depends on.
+    #[pallet::config]
+    pub trait Config: frame_system::Config {
+        /// Because this pallet emits events, it depends on the runtime's definition of an event.
+        type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
 
-		/// The Currency handler for the Kitties pallet.
-		type Currency: Currency<Self::AccountId>;
+        /// The Currency handler for the Kitties pallet.
+        type Currency: Currency<Self::AccountId>;
 
-		// ACTION #5: Specify the type for Randomness we want to specify for runtime.
+        // ACTION #5: Specify the type for Randomness we want to specify for runtime.
 
-		// ACTION #9: Add MaxKittyOwned constant
-	}
+        // ACTION #9: Add MaxKittyOwned constant
+    }
 
-	// Errors.
-	#[pallet::error]
-	pub enum Error<T> {
-		// TODO Part III
-	}
+    // Errors.
+    #[pallet::error]
+    pub enum Error<T> {
+        // TODO Part III
+    }
 
-	// Events.
-	#[pallet::event]
-	#[pallet::generate_deposit(pub(super) fn deposit_event)]
-	pub enum Event<T: Config> {
-		// TODO Part III
-	}
+    // Events.
+    #[pallet::event]
+    #[pallet::generate_deposit(pub(super) fn deposit_event)]
+    pub enum Event<T: Config> {
+        // TODO Part III
+    }
 
-	#[pallet::storage]
-	#[pallet::getter(fn all_kitties_count)]
-	pub(super) type KittyCnt<T: Config> = StorageValue<_, u64, ValueQuery>;
+    #[pallet::storage]
+    #[pallet::getter(fn all_kitties_count)]
+    pub(super) type KittyCnt<T: Config> = StorageValue<_, u64, ValueQuery>;
 
-	// ACTION #7: Remaining storage items.
+    // ACTION #7: Remaining storage items.
 
-	// TODO Part IV: Our pallet's genesis configuration.
+    // TODO Part IV: Our pallet's genesis configuration.
 
-	#[pallet::call]
-	impl<T: Config> Pallet<T> {
+    #[pallet::call]
+    impl<T: Config> Pallet<T> {
 
-		// TODO Part III: create_kitty
+        // TODO Part III: create_kitty
 
-		// TODO Part IV: set_price
+        // TODO Part IV: set_price
 
-		// TODO Part IV: transfer
+        // TODO Part IV: transfer
 
-		// TODO Part IV: buy_kitty
+        // TODO Part IV: buy_kitty
 
-		// TODO Part IV: breed_kitty
-	}
+        // TODO Part IV: breed_kitty
+    }
 
-	//** Our helper functions.**//
+    //** Our helper functions.**//
 
-	impl<T: Config> Pallet<T> {
+    impl<T: Config> Pallet<T> {
 
-		// ACTION #4: helper function for Kitty struct
+        // ACTION #4: helper function for Kitty struct
 
-		// TODO Part III: helper functions for dispatchable functions
+        // TODO Part III: helper functions for dispatchable functions
 
-		// ACTION #6: funtion to randomly generate DNA
+        // ACTION #6: funtion to randomly generate DNA
 
-		// TODO Part III: mint
+        // TODO Part III: mint
 
-		// TODO Part IV: transfer_kitty_to
-	}
+        // TODO Part IV: transfer_kitty_to
+    }
 }
 ```
 
@@ -531,8 +531,8 @@ To create it, you'll build out the following parts:
 Replace ACTION item #2 with the following enum declaration:
 
 ```rust
-	#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
-	#[scale_info(skip_type_params(T))]
+#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
+#[scale_info(skip_type_params(T))]
 #[cfg_attr(feature = "std", derive(Serialize, Deserialize))]
 pub enum Gender {
     Male,
@@ -613,7 +613,7 @@ All you need to do is **set the `KittyRandomness` type in your runtime, inside `
 ```rust
 impl pallet_kitties::Config for Runtime {
     type Event = Event;
-	    type Currency = Balances;
+    type Currency = Balances;
     type KittyRandomness = RandomnessCollectiveFlip; // <-- ACTION: add this line.
 }
 ```
@@ -670,11 +670,11 @@ Here's what the `Kitties` storage item looks like:
 #[pallet::storage]
 #[pallet::getter(fn kitties)]
 pub(super) type Kitties<T: Config> = StorageMap<
-  _,
-  Twox64Concat,
-  T::Hash,
-  Kitty<T>
-  >;
+    _,
+    Twox64Concat,
+    T::Hash,
+    Kitty<T>,
+>;
 ```
 
 Breaking it down, we declare the storage type and assign a `StorageMap` that takes:
@@ -690,12 +690,12 @@ The `KittiesOwned` storage item is similar except that we'll be using a `Bounded
 #[pallet::getter(fn kitties_owned)]
 /// Keeps track of what accounts own what Kitty.
 pub(super) type KittiesOwned<T: Config> = StorageMap<
-  _,
-  Twox64Concat,
-  T::AccountId,
-  BoundedVec<T::Hash, T::MaxKittyOwned>,
-  ValueQuery
-  >;
+    _,
+    Twox64Concat,
+    T::AccountId,
+    BoundedVec<T::Hash, T::MaxKittyOwned>,
+    ValueQuery,
+>;
 ```
 
 Your turn! Copy the two code snippets above to replace line ACTION #7.
@@ -713,16 +713,16 @@ This is the same pattern as we followed for `Currency` and `KittyRandomness` exc
 
 ```rust
 parameter_types! {              // <- add this macro
-  // One can own at most 9,999 Kitties
-  pub const MaxKittyOwned: u32 = 9999;
-  }
+    // One can own at most 9,999 Kitties
+    pub const MaxKittyOwned: u32 = 9999;
+}
 
 /// Configure the pallet-kitties in pallets/kitties.
 impl pallet_kitties::Config for Runtime {
-  type Event = Event;
-  type Currency = Balances;
-  type KittyRandomness = RandomnessCollectiveFlip;
-  type MaxKittyOwned = MaxKittyOwned; // <- add this line
+    type Event = Event;
+    type Currency = Balances;
+    type KittyRandomness = RandomnessCollectiveFlip;
+    type MaxKittyOwned = MaxKittyOwned; // <- add this line
 }
 ```
 
@@ -810,14 +810,14 @@ Assuming you've now replaced the contents of `pallets/kitties/src/lib.rs` with [
 ```rust
 #[pallet::weight(100)]
 pub fn create_kitty(origin: OriginFor<T>) -> DispatchResult {
-  let sender = ensure_signed(origin)?; // <- add this line
-  let kitty_id = Self::mint(&sender, None, None)?; // <- add this line
-  // Logging to the console
-  log::info!("A kitty is born with ID: {:?}.", kitty_id); // <- add this line
-
-  // ACTION #4: Deposit `Created` event
-
-	Ok(())
+    let sender = ensure_signed(origin)?; // <- add this line
+    let kitty_id = Self::mint(&sender, None, None)?; // <- add this line
+    // Logging to the console
+    log::info!("A kitty is born with ID: {:?}.", kitty_id); // <- add this line
+  
+    // ACTION #4: Deposit `Created` event
+  
+    Ok(())
 }
 ```
 
@@ -860,31 +860,31 @@ Paste in the following code snippet to write the `mint` function, replacing ACTI
 ```rust
 // Helper to mint a Kitty.
 pub fn mint(
-  owner: &T::AccountId,
-  dna: Option<[u8; 16]>,
-  gender: Option<Gender>,
+    owner: &T::AccountId,
+    dna: Option<[u8; 16]>,
+    gender: Option<Gender>,
 ) -> Result<T::Hash, Error<T>> {
-  let kitty = Kitty::<T> {
-    dna: dna.unwrap_or_else(Self::gen_dna),
-    price: None,
-    gender: gender.unwrap_or_else(Self::gen_gender),
-    owner: owner.clone(),
-  };
+    let kitty = Kitty::<T> {
+        dna: dna.unwrap_or_else(Self::gen_dna),
+        price: None,
+        gender: gender.unwrap_or_else(Self::gen_gender),
+        owner: owner.clone(),
+    };
 
-  let kitty_id = T::Hashing::hash_of(&kitty);
+    let kitty_id = T::Hashing::hash_of(&kitty);
 
-  // Performs this operation first as it may fail
-  let new_cnt = Self::kitty_cnt().checked_add(1)
-    .ok_or(<Error<T>>::KittyCntOverflow)?;
+    // Performs this operation first as it may fail
+    let new_cnt = Self::kitty_cnt().checked_add(1)
+        .ok_or(<Error<T>>::KittyCntOverflow)?;
 
-  // Performs this operation first because as it may fail
-  <KittiesOwned<T>>::try_mutate(&owner, |kitty_vec| {
-    kitty_vec.try_push(kitty_id)
-  }).map_err(|_| <Error<T>>::ExceedMaxKittyOwned)?;
+    // Performs this operation first because as it may fail
+    <KittiesOwned<T>>::try_mutate(&owner, |kitty_vec| {
+        kitty_vec.try_push(kitty_id)
+    }).map_err(|_| <Error<T>>::ExceedMaxKittyOwned)?;
 
-  <Kitties<T>>::insert(kitty_id, kitty);
-  <KittyCnt<T>>::put(new_cnt);
-  Ok(kitty_id)
+    <Kitties<T>>::insert(kitty_id, kitty);
+    <KittyCnt<T>>::put(new_cnt);
+    Ok(kitty_id)
 }
 ```
 
@@ -946,13 +946,13 @@ Additionally &mdash; just as when adding any type to our pallet's `Config` trait
 This pattern is the same as when we added the `KittyRandomness` type to our pallet's configuration trait [earlier in this tutorial](#implement-on-chain-randomness) and has already been included from the initial scaffolding of our codebase:
 
 ```rust
-  /// Configure the pallet by specifying the parameters and types it depends on.
-  #[pallet::config]
-  pub trait Config: frame_system::Config {
-      /// Because this pallet emits events, it depends on the runtime's definition of an event.
-      type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
-      //--snip--//
-  }
+/// Configure the pallet by specifying the parameters and types it depends on.
+#[pallet::config]
+pub trait Config: frame_system::Config {
+    /// Because this pallet emits events, it depends on the runtime's definition of an event.
+    type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+    //--snip--//
+}
 ```
 
 <br />
@@ -972,14 +972,14 @@ Learn more about events [here](/v3/runtime/events-and-errors).
 Declare your pallet events by replacing the ACTION #3 line with:
 
 ```rust
-  /// A new Kitty was sucessfully created. \[sender, kitty_id\]
-  Created(T::AccountId, T::Hash),
-  /// Kitty price was sucessfully set. \[sender, kitty_id, new_price\]
-  PriceSet(T::AccountId, T::Hash, Option<BalanceOf<T>>),
-  /// A Kitty was sucessfully transferred. \[from, to, kitty_id\]
-  Transferred(T::AccountId, T::AccountId, T::Hash),
-  /// A Kitty was sucessfully bought. \[buyer, seller, kitty_id, bid_price\]
-  Bought(T::AccountId, T::AccountId, T::Hash, BalanceOf<T>),
+/// A new Kitty was sucessfully created. \[sender, kitty_id\]
+Created(T::AccountId, T::Hash),
+/// Kitty price was sucessfully set. \[sender, kitty_id, new_price\]
+PriceSet(T::AccountId, T::Hash, Option<BalanceOf<T>>),
+/// A Kitty was sucessfully transferred. \[from, to, kitty_id\]
+Transferred(T::AccountId, T::AccountId, T::Hash),
+/// A Kitty was sucessfully bought. \[buyer, seller, kitty_id, bid_price\]
+Bought(T::AccountId, T::AccountId, T::Hash, BalanceOf<T>),
 ```
 
 We'll be using most of these events in the last section of this tutorial.
@@ -1205,10 +1205,10 @@ Every Kitty object has a price attribute that we've set to `None` as a default v
 
 ```rust
 let kitty = Kitty::<T> {
-  dna: dna.unwrap_or_else(Self::gen_dna),
-  price: None,                           //<-- 👀 here
-  gender: gender.unwrap_or_else(Self::gen_gender),
-  owner: owner.clone(),
+    dna: dna.unwrap_or_else(Self::gen_dna),
+    price: None,                           //<-- 👀 here
+    gender: gender.unwrap_or_else(Self::gen_gender),
+    owner: owner.clone(),
 };
 ```
 
@@ -1408,12 +1408,12 @@ It's useful to understand why it's important to use the `transfer` method in par
   Take a look at how the `transfer` function we'll be using [is structured][currency-transfer-rustdocs]:
 
   ```rust
-    fn transfer(
-        source: &AccountId,
-        dest: &AccountId,
-        value: Self::Balance,
-        existence_requirement: ExistenceRequirement
-    ) -> DispatchResult
+  fn transfer(
+      source: &AccountId,
+      dest: &AccountId,
+      value: Self::Balance,
+      existence_requirement: ExistenceRequirement
+  ) -> DispatchResult
   ```
 
 Now we can make use of the `Currency` type in our pallet's `Config` trait and `ExistenceRequirement` that we [initially started with in the first section](#write-out-pallet_kitties-scaffold).
@@ -1504,9 +1504,9 @@ Go to `node/src/chain_spec.rs`, add `use node_kitties_runtime::SubstrateKittiesC
 
 ```rust
 //-- snip --
-		substrate_kitties: SubstrateKittiesConfig {
-			kitties: vec![],
-		},
+substrate_kitties: SubstrateKittiesConfig {
+    kitties: vec![],
+},
 //-- snip --
 ```
 

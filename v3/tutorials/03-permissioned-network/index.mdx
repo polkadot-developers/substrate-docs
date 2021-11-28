@@ -180,19 +180,19 @@ use frame_system::EnsureRoot;
 /* --snip-- */
 
 parameter_types! {
-	pub const MaxWellKnownNodes: u32 = 8;
-	pub const MaxPeerIdLength: u32 = 128;
+    pub const MaxWellKnownNodes: u32 = 8;
+    pub const MaxPeerIdLength: u32 = 128;
 }
 
 impl pallet_node_authorization::Config for Runtime {
-	type Event = Event;
-	type MaxWellKnownNodes = MaxWellKnownNodes;
-	type MaxPeerIdLength = MaxPeerIdLength;
-	type AddOrigin = EnsureRoot<AccountId>;
-	type RemoveOrigin = EnsureRoot<AccountId>;
-	type SwapOrigin = EnsureRoot<AccountId>;
-	type ResetOrigin = EnsureRoot<AccountId>;
-	type WeightInfo = ();
+    type Event = Event;
+    type MaxWellKnownNodes = MaxWellKnownNodes;
+    type MaxPeerIdLength = MaxPeerIdLength;
+    type AddOrigin = EnsureRoot<AccountId>;
+    type RemoveOrigin = EnsureRoot<AccountId>;
+    type SwapOrigin = EnsureRoot<AccountId>;
+    type ResetOrigin = EnsureRoot<AccountId>;
+    type WeightInfo = ();
 }
 
 /* --snip-- */
@@ -252,28 +252,28 @@ Adding our genesis config in the helper function `testnet_genesis`,
 ```rust
 /// Configure initial storage state for FRAME modules.
 fn testnet_genesis(
-	wasm_binary: &[u8],
-	initial_authorities: Vec<(AuraId, GrandpaId)>,
-	root_key: AccountId,
-	endowed_accounts: Vec<AccountId>,
-	_enable_println: bool,
+    wasm_binary: &[u8],
+    initial_authorities: Vec<(AuraId, GrandpaId)>,
+    root_key: AccountId,
+    endowed_accounts: Vec<AccountId>,
+    _enable_println: bool,
 ) -> GenesisConfig {
 
     /* --snip-- */
 
     /*** Add This Block Item ***/
-		node_authorization: NodeAuthorizationConfig {
-    		nodes: vec![
-				(
-					OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
-					endowed_accounts[0].clone()
-				),
-				(
-					OpaquePeerId(bs58::decode("12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust").into_vec().unwrap()),
-					endowed_accounts[1].clone()
-				),
-    		],
-   		}),
+        node_authorization: NodeAuthorizationConfig {
+            nodes: vec![
+                (
+                    OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
+                    endowed_accounts[0].clone()
+                ),
+                (
+                    OpaquePeerId(bs58::decode("12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust").into_vec().unwrap()),
+                    endowed_accounts[1].clone()
+                ),
+            ],
+        }),
 
     /* --snip-- */
 
