@@ -31,6 +31,10 @@ export const wrapPageElement = ({ element }) => (
 
 export const onRouteUpdate = ({ location }) => scrollToAnchor(location)
 
+export const onServiceWorkerUpdateFound = () => {
+  window.location.reload(true)
+}
+
 /**
  *
  * @desc - a function to jump to the correct scroll position
