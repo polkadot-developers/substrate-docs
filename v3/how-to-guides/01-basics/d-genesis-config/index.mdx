@@ -5,84 +5,116 @@ keywords: basics, beginner, runtime
 version: '3.0'
 section: how to guides
 category: basics
-difficulty: 1
 ---
 
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text={`This is intended for beginners who want to become familiar with customizing their chain. Not all configurations will follow the same approach. This is the most basic approach. Learn more in the [related material section](#related-material).`}
-/>
+Genesis configuration defines the initial state for things such as accounts, balances, genesis for custom pallets, and more.
+This guide explains how to configure the genesis of a pallet with 2 simple storage items.
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description: `Learn how to customize a chain's genesis configuration for the [balances pallet](/rustdocs/latest/pallet_balances/index.html).`,
-    },
-    {
-      title: 'Use Cases',
-      description: `Initialize balances for endowed accounts.`,
-    },
-    {
-      title: 'Overview',
-      description: `Genesis configuration is a useful tool for testing chain behavior by defining an initial state for things such as accounts, 
-        balances, genesis for custom pallets, and more. Here is a simple guide on how to configure custom initial balances for a runtime, 
-        by modifying [BalancesConfig](/rustdocs/latest/node_template_runtime/type.BalancesConfig.html) in \`chainspec.rs\`.`,
-    },
-  ]}
-/>
+## Implement genesis inside your pallet
 
-## Steps
+For the sake of this guide, we'll assume you have a pallet `<SingleValue<T>>` and `<AccountMap<T>>`.
 
-### 1. Modify accounts
-
-In `chain_spec.rs`, modify the accounts-to-amount map to apply it to the set of all endowed accounts (this is how every node template is set up):
+For example:
 
 ```rust
- pallet_balances: Some(BalancesConfig {
-		balances: endowed_accounts.iter().cloned().map(|k|(k, 1 << 60)).collect(),
-}),
+#[pallet::storage]
+#[pallet::getter(fn something)]
+pub type SingleValue<T: Config> = StorageValue<_, T::Balance>;
+
+// A map that has enumerable entries.
+#[pallet::storage]
+#[pallet::getter(fn accounts)]
+pub type AccountMap<T: Config> = StorageMap<_, Blake2_128Concat, T::AccountId, T::Balance>;
 ```
 
-Alternatively, write out each account you would like to pre-seed, as shown below:
+The `GenesisConfig` code should go after your storage items.
 
-```rust
-pallet_balances: Some(BalancesConfig {
-		balances: vec![ (
-		get_account_id_from_seed::<sr25519::Public>("Alice"),
-		1 << 60
-		),
-		(
-		get_account_id_from_seed::<sr25519::Public>("Bob"),
-		1 << 60
-		),
-		],
-}),
-```
+1. Using the `#[pallet::genesis_config]` attribute, write the `GenesisConfig` struct for your pallet.
 
-### 2. Modify balances
+   ```rust
+   #[pallet::genesis_config]
+   pub struct GenesisConfig<T: Config> {
+   	pub single_value: T::Balance,
+   	pub account_map: Vec<(T::AccountId, T::Balance)>,
+   }
+   ```
 
-By changing the right side value of the `balances` tuple, you can customize the amount of each account. See the [Rust documentation][genesis-config-rustdocs] to learn how this works. Let's modify things such that Alice's account is pre-seeded with 1<<10:
+1. Set the default value for the `GenesisConfig` struct.
 
-```rust
-pallet_balances: Some(BalancesConfig {
-		balances: vec![ (
-		get_account_id_from_seed::<sr25519::Public>("Alice"),
-		1 << 10  // <---- shift 10 decimals: 1024
-		),
-		],
-}),
-```
+   ```rust
+   #[cfg(feature = "std")]
+   impl<T: Config> Default for GenesisConfig<T> {
+   	fn default() -> Self {
+   		Self { single_value: Default::default(), account_map: Default::default() }
+   	}
+   }
+   ```
 
-## Examples
+1. Using the `#[pallet::genesis_build]` attribute, implement the [`GenesisBuild`](/rustdocs/latest/frame_support/traits/trait.GenesisBuild.html) trait.
+
+   ```rust
+   #[pallet::genesis_build]
+   impl<T: Config> GenesisBuild<T> for GenesisConfig<T> {
+   	fn build(&self) {
+   		<SingleValue<T>>::put(&self.single_value);
+   		for (a, b) in &self.account_map {
+   			<AccountMap<T>>::insert(a, b);
+   		}
+   	}
+   }
+   ```
+
+   This allows you to execute some logic to define how the `GenesisConfig` struct places something in storage.
+
+## Configure your node's chain spec
+
+All that's left to do is to specify what values we want to put in the genesis state of our chain.
+We'll assume our pallet is called `pallet_something`, declared as `PalletSomething` in our runtime's `construct_runtime!` macro.
+
+1. In `node/chain_spec.rs`, create a constant value of type `T::Balance` to be stored in `<SingleValue<T>>` (inside the `testnet_genesis` method).
+
+   ```rust
+   const VALUE: Balance = 235813;
+   ```
+
+   Note that this step also implies that we have `use node_template_runtime::Balance;` imported at the top of our `chain_spec.rs` file.
+
+1. Create a vector of accounts to initialize `<AccountMap<T>>` with (also inside the `testnet_genesis` method).
+
+   ```rust
+   let accounts_to_map: Vec<AccountId> =
+   	vec![
+   		get_account_id_from_seed::<sr25519::Public>("Alice"),
+   		get_account_id_from_seed::<sr25519::Public>("Bob"),
+   		get_account_id_from_seed::<sr25519::Public>("Charlie"),
+   	];
+   ```
+
+1. Complete the `GenesisConfig` clause in the `testnet_genesis` function.
+
+   The convention is to use lowercase spelling of the name of your pallet in `runtime/src/lib.rs` inside `construct_runtime!`.
+   For pallets declared as `CamelCase` for example, the convention is to refer to it as `camel_case` in the `testnet_genesis` function.
+
+   In our example, this looks like:
+
+   ```rust
+   pallet_something: PalletSomethingConfig {
+   	single_value: VALUE,
+   	account_map: accounts_to_map.iter().cloned().map(|x| (x, VALUE)).collect(),
+   }
+   ```
+
+   In the above code, we're mapping each account from `accounts_to_map` to an amount equal to `VALUE`.
+   This pattern is very similar to the Balances pallet's `GenesisConfig` implementation.
+
+## Example
 
 - [Node template 'chainspec.rs'][node-template-chainspec]
+- [Example pallet `GenesisConfig`](/rustdocs/latest/src/pallet_example/lib.rs.html#607)
 
 ## Related material
 
-#### Rust docs
-
+- Learn how to customize a chain's genesis configuration for the [balances pallet](/rustdocs/latest/pallet_balances/index.html).
 - [`BalancesConfig`][balances-config-rustdocs]
 
 [balances-config-rustdocs]: /rustdocs/latest/node_template_runtime/type.BalancesConfig.html
