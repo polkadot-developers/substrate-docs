@@ -175,38 +175,51 @@ Just like you used the Balances pallet as a template for importing the Nicks pal
 
 1. Locate the Balances pallet section and note that the implementation consists of two parts:
 
-   - The `parameter_types!` block where constant values are defined.
+- The `parameter_types!` block where constant values are defined.
 
-   ```rust
-   parameter_types! {
-   	// The u128 constant value 500 is aliased to a type named ExistentialDeposit.
-   	pub const ExistentialDeposit: u128 = 500;
-   	// A heuristic that is used for weight estimation.
-   	pub const MaxLocks: u32 = 50;
-   }
-   ```
+  ```rust
+  parameter_types! {
+    // The u128 constant value 500 is aliased to a type named ExistentialDeposit.
+    pub const ExistentialDeposit: u128 = 500;
+    // A heuristic that is used for weight estimation.
+    pub const MaxLocks: u32 = 50;
+  }
 
-   - The `impl` block where the types and values defined by the `Config` interface are configured.
+  ```
 
-   ```rust
-   impl pallet_balances::Config for Runtime {
-   	// The previously defined parameter_type is used as a configuration parameter.
-   	type MaxLocks = MaxLocks;
-   	// The "Balance" that appears after the equal sign is an alias for the u128 type.
-   	type Balance = Balance;
-   	// The empty value, (), is used to specify a no-op callback function.
-   	type DustRemoval = ();
-   	// The previously defined parameter_type is used as a configuration parameter.
-   	type ExistentialDeposit = ExistentialDeposit;
-   	// The FRAME runtime system is used to track the accounts that hold balances.
-   	type AccountStore = System;
-   	// Weight information is supplied to the Balances pallet by the node template runtime.
-   	// type WeightInfo = (); // old way
-   	type WeightInfo = pallet_balances::weights::SubstrateWeight<Runtime>;
-   	// The ubiquitous event type.
-   	type Event = Event;
-   }
-   ```
+- The `impl` block where the types and values defined by the `Config` interface are configured.
+
+  ```rust
+  impl pallet_balances::Config for Runtime {
+      // The previously defined parameter_type is used as a configuration parameter.
+      type MaxLocks = MaxLocks;
+
+      // The maximum allowed number of reserves for one account.
+      type MaxReserves = ();
+
+      // The type of the unique id for named reserves.
+      type ReserveIdentifier = [u8; 8];
+
+      // The "Balance" that appears after the equal sign is an alias for the u128 type.
+      type Balance = Balance;
+
+      // The ubiquitous event type.
+      type Event = Event;
+
+      // The empty value, (), is used to specify a no-op callback function.
+      type DustRemoval = ();
+
+      // The previously defined parameter_type is used as a configuration parameter.
+      type ExistentialDeposit = ExistentialDeposit;
+
+      // The FRAME runtime system is used to track the accounts that hold balances.
+      type AccountStore = System;
+
+      // Weight information is supplied to the Balances pallet by the node template runtime.
+      // type WeightInfo = (); // old way
+      type WeightInfo = pallet_balances::weights::SubstrateWeight<Runtime>;
+  }
+  ```
 
 The `impl pallet_balances::Config` block allows you to configure the types and parameters that are specified by the Balances pallet `Config` trait.
 For example, this `impl` block configures the Balances pallet to use the `u128` type to track balances.
