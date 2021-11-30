@@ -255,7 +255,7 @@ Just like the [helper files](https://github.com/substrate-developer-hub/substrat
    [dependencies.sp-io]
    default-features = false
    git = 'https://github.com/paritytech/substrate.git'
-   tag = 'monthly-2021-11-1'
+   tag = 'devhub/latest'
    version = '4.0.0-dev'
    ```
 
@@ -265,16 +265,6 @@ Just like the [helper files](https://github.com/substrate-developer-hub/substrat
    ```bash
    cargo build -p pallet-kitties
    ```
-
-<br />
-<Message
-  type={`red`}
-  title={`Warning`}
-  text={`
-Check that you're using the correct \`monthly-*\` tag and version otherwise you will get a
-dependency error. Here, we're using the \`monthly-2021-11-1\` tag of Substrate.
-  `}
-/>
 
 You'll notice the Rust compiler giving you warnings about unused imports.
 That's fine!
