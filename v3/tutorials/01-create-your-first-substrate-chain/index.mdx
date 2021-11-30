@@ -184,19 +184,21 @@ To compile the Substrate Node Template:
 
 1. Clone the node template repository using the version `latest` branch by running the following command:
 
-   ```
-   git clone -b latest --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+   ```bash
+   git clone https://github.com/substrate-developer-hub/substrate-node-template
+   # We want to use the `latest` tag throughout all of this tutorial
+   git checkout latest
    ```
 
 1. Change to the root of the node template directory by running the following command:
 
-   ```
+   ```bash
    cd substrate-node-template
    ```
 
 1. Compile the node template by running the following command:
 
-   ```
+   ```bash
    cargo build --release
    ```
 
@@ -213,7 +215,7 @@ To install the Front-end Template:
 
 1. Check whether `node` is installed on your local computer by running the following command:
 
-   ```
+   ```bash
    node --version
    ```
 
@@ -223,31 +225,33 @@ To install the Front-end Template:
 
 1. Check whether `yarn` is installed on your local computer by running the following command:
 
-   ```
+   ```bash
    yarn --version
    ```
 
    If the command doesn’t return a version number, download and install `yarn` by running the following command:
 
-   ```
+   ```bash
    npm install -g yarn
    ```
 
 1. Clone the Front-end Template repository by running the following command:
 
-   ```
-   git clone -b latest --depth 1 https://github.com/substrate-developer-hub/substrate-front-end-template
+   ```bash
+   git clone https://github.com/substrate-developer-hub/substrate-front-end-template
+   # We want to use the `latest` tag throughout all of this tutorial
+   git checkout latest
    ```
 
 1. Change to the root of the front-end template directory by running the following command:
 
-   ```
+   ```bash
    cd substrate-front-end-template
    ```
 
 1. Install the dependencies for the front-end template by running the following command:
 
-   ```
+   ```bash
    yarn install
    ```
 
@@ -265,7 +269,7 @@ To start the local Substrate node:
 
 1. Start the node in development mode by running the following command:
 
-   ```
+   ```bash
    ./target/release/node-template --dev
    ```
 
@@ -278,7 +282,7 @@ To start the local Substrate node:
 
    The terminal should display output similar to this:
 
-   ```
+   ```text
    2021-11-24 15:36:35 Running in --dev mode, RPC CORS has been disabled.    
    2021-11-24 15:36:35 Substrate Node    
    2021-11-24 15:36:35 ✌️  version 4.0.0-dev-82b7c2c-aarch64-macos    
@@ -319,7 +323,7 @@ To use the Front-end Template:
 
 1. Start the Front-end template by running the following command:
 
-   ```
+   ```bash
    yarn start
    ```
 

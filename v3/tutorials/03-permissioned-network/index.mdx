@@ -105,27 +105,30 @@ the right CLI flag as offchain worker is disabled by default for non-authority n
   type={`red`}
   title={`Warning`}
   text={`Your node may not be synced with the latest block, and thus not be aware of and published updates that are 
-	  reflected in the \`node-authorization\` chain storage. You may need to disable offchain worker
-	  and manually set reachable reserved nodes for your node to sync up with the network if this is the case.`}
+    reflected in the \`node-authorization\` chain storage. You may need to disable offchain worker
+    and manually set reachable reserved nodes for your node to sync up with the network if this is the case.`}
 />
 
 ### Build the Node Template
 
-To get started: 
+To get started:
+
 1. Clone the node template.
 
-  ```bash
-  git clone -b latest --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
-  ```
+   ```bash
+   git clone https://github.com/substrate-developer-hub/substrate-node-template
+   # We want to use the `latest` tag throughout all of this tutorial
+   git checkout latest
+   ```
 
 1. Build the node template.
 
-  ```bash
-  cd substrate-node-template/
-  cargo build --release
-  ```
-  
-  If you do run into issues building, checkout [these helpful tips](/v3/getting-started/installation#2-rust-developer-environment).
+   ```bash
+   cd substrate-node-template/
+   cargo build --release
+   ```
+
+   If you do run into issues building, checkout [these helpful tips](/v3/getting-started/installation#2-rust-developer-environment).
 
 1. Now open the code with your favorite editor, and let's make some changes.
 
@@ -152,8 +155,8 @@ std = [
 ]
 ```
 
-We need to simulate the governance in our simple blockchain, so we just let a `sudo` admin rule, configuring the pallet's interface to `EnsureRoot`. 
-In a production environment we should want to have governance based checking implemented here. 
+We need to simulate the governance in our simple blockchain, so we just let a `sudo` admin rule, configuring the pallet's interface to `EnsureRoot`.
+In a production environment we should want to have governance based checking implemented here.
 More details of this `Config` can be found in the pallet's [reference docs](/rustdocs/latest/pallet_node_authorization/pallet/trait.Config.html).
 
 **`runtime/src/lib.rs`**
@@ -191,15 +194,15 @@ Finally, we are ready to put our pallet in `construct_runtime` macro with follow
 
 ```rust
 construct_runtime!(
-    pub enum Runtime where
-        Block = Block,
-        NodeBlock = opaque::Block,
-        UncheckedExtrinsic = UncheckedExtrinsic
-    {
-        /* --snip-- */
-        NodeAuthorization: pallet_node_authorization, // <-- add this line
-        /* --snip-- */
-    }
+	pub enum Runtime where
+		Block = Block,
+		NodeBlock = opaque::Block,
+		UncheckedExtrinsic = UncheckedExtrinsic
+	{
+		/* --snip-- */
+		NodeAuthorization: pallet_node_authorization, // <-- add this line
+		/* --snip-- */
+	}
 );
 ```
 
@@ -239,25 +242,25 @@ fn testnet_genesis(
 	root_key: AccountId,
 	endowed_accounts: Vec<AccountId>,
 	_enable_println: bool,
-) -> GenesisConfig {
-  GenesisConfig {
+	) -> GenesisConfig {
+	GenesisConfig {
 
-      /* --snip-- */
+		/* --snip-- */
 
-      /*** Add This Block Item ***/
-      node_authorization: NodeAuthorizationConfig {
-        nodes: vec![
-          (
-            OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
-            endowed_accounts[0].clone()
-          ),
-          (
-            OpaquePeerId(bs58::decode("12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust").into_vec().unwrap()),
-            endowed_accounts[1].clone()
-          ),
-          ],
-      },
-   }  
+		/*** Add This Block Item ***/
+		node_authorization: NodeAuthorizationConfig {
+		nodes: vec![
+			(
+			OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
+			endowed_accounts[0].clone()
+			),
+			(
+			OpaquePeerId(bs58::decode("12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust").into_vec().unwrap()),
+			endowed_accounts[1].clone()
+			),
+			],
+		},
+	}
 }
 ```
 
@@ -280,8 +283,8 @@ subkey generate-node-key
   type={`gray`}
   title={`Note`}
   text="`subkey` is a CLI tool that comes bundled with substrate, and you can install it natively too! 
-	Refer to the [install Instructions](/v3/tools/subkey#installation).
-  	"
+    Refer to the [install Instructions](/v3/tools/subkey#installation).
+  "
 />
 
 The output of the command is like:
@@ -293,13 +296,17 @@ c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a // This is node
 
 Now all the code changes are finished, we are ready to launch our permissioned network!
 
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text="Stuck? The solution with all required changes to the base template can be found ',
-		[here](https://github.com/substrate-developer-hub/substrate-node-template/commit/d3eaa1946d647b910a229ff7199f39d349a59e75).',
-		"
-/>
+> **Get stuck or need help?**
+> The solution with all required changes to the base template can be found [here](https://github.com/substrate-developer-hub/substrate-node-template/commit/d3eaa1946d647b910a229ff7199f39d349a59e75) for your review.
+> You can also checkout the working full solution to test against with:
+>
+> ```bash
+> # Run from your cloned node template
+> git checkout tutorials/solutions/permissioned-network
+> # Re-build the template with this source
+> cargo build --release
+> # Try out the functionality described to make sure it works
+> ```
 
 In the next section, we will use well-known node keys and Peer IDs to launch your permissioned network
 and allow access for other nodes to join.
@@ -565,7 +572,7 @@ Restart Dave's node in case it's not connecting with Charlie right away.
     "
 />
 
-🎉***Congratulations!***🎉
+🎉**_Congratulations!_**🎉
 
 You are at the end of this tutorial and are already learned about how to build a
 permissioned network. You can also play with other dispatchable calls like
