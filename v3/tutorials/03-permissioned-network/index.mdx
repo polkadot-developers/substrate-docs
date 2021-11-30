@@ -105,42 +105,32 @@ the right CLI flag as offchain worker is disabled by default for non-authority n
   type={`red`}
   title={`Warning`}
   text={`Your node may not be synced with the latest block, and thus not be aware of and published updates that are 
-	  reflected in the \`node-authorization\` chain storage. You may need to disable offchain worker
-	  and manually set reachable reserved nodes for your node to sync up with the network if this is the case.`}
+    reflected in the \`node-authorization\` chain storage. You may need to disable offchain worker
+    and manually set reachable reserved nodes for your node to sync up with the network if this is the case.`}
 />
 
 ### Build the Node Template
 
-If you already have Node Template cloned, you can just create a
-**check out of the v3.0.0 branch** from the base template,
-otherwise, clone this branch of the project:
+To get started:
 
-```bash
-# Fresh clone, if needed:
-git clone -b v3.0.0 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
-# From the working directory, create a new branch and check it out
-cd substrate-node-template
-git branch perm-network
-git checkout perm-network
-```
+1. Clone the node template.
 
-You should be able to `build` the project (or `check`) without any error:
+   ```bash
+   git clone https://github.com/substrate-developer-hub/substrate-node-template
+   # We want to use the `latest` tag throughout all of this tutorial
+   git checkout latest
+   ```
 
-```bash
-cd substrate-node-template/
-cargo build --release
-```
+1. Build the node template.
 
-<br />
-<Message
-  type={`green`}
-  title={`Tip`}
-  text="If you do run into issues building, checkout
-	[these helpful tips](/v3/getting-started/installation#2-rust-developer-environment).
-	"
-/>
+   ```bash
+   cd substrate-node-template/
+   cargo build --release
+   ```
 
-Now open the code with your favorite editor, and let's make some changes.
+   If you do run into issues building, checkout [these helpful tips](/v3/getting-started/installation#2-rust-developer-environment).
+
+1. Now open the code with your favorite editor, and let's make some changes.
 
 ### Add the `node-authorization` pallet
 
@@ -149,9 +139,11 @@ First we must add the pallet to our runtime dependencies:
 **`runtime/Cargo.toml`**
 
 ```TOML
-[dependencies]
-#--snip--
-pallet-node-authorization = { default-features = false, version = '3.0.0' }
+[dependencies.pallet-node-authorization]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'devhub/latest'
+version = '4.0.0-dev'
 
 #--snip--
 [features]
@@ -163,11 +155,9 @@ std = [
 ]
 ```
 
-We need to simulate the governance in our simple blockchain, so we just let a `sudo` admin rule,
-configuring the pallet's interface to `EnsureRoot`. In a production environment we sould want to have
-difference, governance based checking implemented here. More details of this `Config` can be found in
-the pallet's
-[reference docs](/rustdocs/latest/pallet_node_authorization/pallet/trait.Config.html).
+We need to simulate the governance in our simple blockchain, so we just let a `sudo` admin rule, configuring the pallet's interface to `EnsureRoot`.
+In a production environment we should want to have governance based checking implemented here.
+More details of this `Config` can be found in the pallet's [reference docs](/rustdocs/latest/pallet_node_authorization/pallet/trait.Config.html).
 
 **`runtime/src/lib.rs`**
 
@@ -204,26 +194,21 @@ Finally, we are ready to put our pallet in `construct_runtime` macro with follow
 
 ```rust
 construct_runtime!(
-    pub enum Runtime where
-        Block = Block,
-        NodeBlock = opaque::Block,
-        UncheckedExtrinsic = UncheckedExtrinsic
-    {
-        /* --snip-- */
-
-        /*** Add This Line ***/
-        NodeAuthorization: pallet_node_authorization::{Pallet, Call, Storage, Event<T>, Config<T>},
-
-        /* --snip-- */
-
-    }
+	pub enum Runtime where
+		Block = Block,
+		NodeBlock = opaque::Block,
+		UncheckedExtrinsic = UncheckedExtrinsic
+	{
+		/* --snip-- */
+		NodeAuthorization: pallet_node_authorization, // <-- add this line
+		/* --snip-- */
+	}
 );
 ```
 
 ### Add genesis storage for our pallet
 
-`PeerId` is encoded in bs58 format, so we need a new library
-[bs58](https://docs.rs/bs58/) in **node/Cargo.toml** to decode it to get its bytes.
+`PeerId` is encoded in bs58 format, so we need a new library [bs58](https://docs.rs/bs58/) in **node/Cargo.toml** to decode it to get its bytes.
 
 **`node/cargo.toml`**
 
@@ -257,26 +242,25 @@ fn testnet_genesis(
 	root_key: AccountId,
 	endowed_accounts: Vec<AccountId>,
 	_enable_println: bool,
-) -> GenesisConfig {
+	) -> GenesisConfig {
+	GenesisConfig {
 
-    /* --snip-- */
+		/* --snip-- */
 
-    /*** Add This Block Item ***/
+		/*** Add This Block Item ***/
 		node_authorization: NodeAuthorizationConfig {
-    		nodes: vec![
-				(
-					OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
-					endowed_accounts[0].clone()
-				),
-				(
-					OpaquePeerId(bs58::decode("12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust").into_vec().unwrap()),
-					endowed_accounts[1].clone()
-				),
-    		],
-   		}),
-
-    /* --snip-- */
-
+		nodes: vec![
+			(
+			OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
+			endowed_accounts[0].clone()
+			),
+			(
+			OpaquePeerId(bs58::decode("12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust").into_vec().unwrap()),
+			endowed_accounts[1].clone()
+			),
+			],
+		},
+	}
 }
 ```
 
@@ -299,8 +283,8 @@ subkey generate-node-key
   type={`gray`}
   title={`Note`}
   text="`subkey` is a CLI tool that comes bundled with substrate, and you can install it natively too! 
-	Refer to the [install Instructions](/v3/tools/subkey#installation).
-  	"
+    Refer to the [install Instructions](/v3/tools/subkey#installation).
+  "
 />
 
 The output of the command is like:
@@ -312,13 +296,17 @@ c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a // This is node
 
 Now all the code changes are finished, we are ready to launch our permissioned network!
 
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text="Stuck? The solution with all required changes to the base template can be found ',
-		[here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/permissioned-network-v3).',
-		"
-/>
+> **Get stuck or need help?**
+> The solution with all required changes to the base template can be found [here](https://github.com/substrate-developer-hub/substrate-node-template/commit/d3eaa1946d647b910a229ff7199f39d349a59e75) for your review.
+> You can also checkout the working full solution to test against with:
+>
+> ```bash
+> # Run from your cloned node template
+> git checkout tutorials/solutions/permissioned-network
+> # Re-build the template with this source
+> cargo build --release
+> # Try out the functionality described to make sure it works
+> ```
 
 In the next section, we will use well-known node keys and Peer IDs to launch your permissioned network
 and allow access for other nodes to join.
@@ -458,30 +446,6 @@ finalized in bother terminal logs. Now let's use the
 and check the well known nodes of our blockchain. Don't forget to switch to one of
 our local nodes running: `127.0.0.1:9944` or `127.0.0.1:9945`.
 
-Firstly, we need to add an extra setting to tell the frontend the type of the `PeerId` used
-in node-authorization pallet. Note: the format of `PeerId` here is a wrapper on bs58 decoded
-peer id in bytes. Go to the **Settings Developer**
-[page in apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/settings/developer)
-, add following [custom type mapping](https://polkadot.js.org/docs/api/start/types.extend)
-information:
-
-```json
-// add this as is, or with other required types you have set already:
-{
-  "PeerId": "(Vec<u8>)"
-}
-```
-
-<br />
-<Message
-  type={`red`}
-  title={`Warning`}
-  text="If you don't do this, you will get extrinsic errors of the form:
-    `Verification Error: Execution(ApiError(Could not convert parameter 'tx' between node and runtime)`. 
-    More details [here](https://polkadot.js.org/docs/api/FAQ#the-node-returns-a-could-not-convert-error-on-send).
-    "
-/>
-
 Then, let's go to **Developer** page, **Chain State sub-tab**, and check the data
 stored in the `nodeAuthorization` pallet, `wellKnownNodes` storage. You should be
 able to see the peer ids of Alice and Bob's nodes, prefixed with `0x` to show its
@@ -608,7 +572,7 @@ Restart Dave's node in case it's not connecting with Charlie right away.
     "
 />
 
-🎉***Congratulations!***🎉
+🎉**_Congratulations!_**🎉
 
 You are at the end of this tutorial and are already learned about how to build a
 permissioned network. You can also play with other dispatchable calls like
