@@ -168,7 +168,7 @@ The following steps are also available as a [Typescript script](https://github.c
 
 1. Use Polkadot JS Apps to deploy the contract from Alice's account. 
 
-  Submit an extrinsic as a signed transaction using `evm > create` with the following data:
+  Submit an extrinsic as a signed transaction using `evm -> create` with the following data:
 
   ```text
   source: 0xd43593c715fdd31c61141abd04a99fd6822c8558
@@ -199,7 +199,7 @@ The following steps are also available as a [Typescript script](https://github.c
 
 ### Transfer ERC20 tokens
 
-Go to `Developer -> Extrinsics` and selevct `evm > call`. 
+Go to `Developer -> Extrinsics` and selevct `evm -> call`. 
 Input the following fields transfer some of Alice's ERC-20 tokens to Bob.
 
 ```text
@@ -215,5 +215,33 @@ The value of the `input` parameter is an EVM ABI-encoded function call that was 
 It consists of a function selector (`0xa9059cbb`) and the arguments to be used for the function invocation. 
 In this case, the arguments correspond to Bob's EVM account ID (`0x8eaf04151687736326c9fea17e25fc5287613693`) and the number of tokens to be transferred (`0xdd`, or 221 in hex).
 
-## Connect to Ethereum 
+## Connect to an Ethereum chain using Metamask
 
+1. Add your local network to Metamask.
+
+  - Network name: Frontier tutorial
+  - New RPC URL: http://127.0.0.1:9933
+  - Chain ID: 1337
+
+  Save your netork.
+
+1. Switch to your local network with Metamask.
+
+1. Add or reset your account in Metamask.
+
+
+## Send ERC20 tokens 
+
+1. Use remix to write, compile and deploy your contract.
+   
+   Make this contract controlled by an account you have the keys to so that you can own the supply when the contract is executed.
+
+1. Add custom tokens in Metamask.
+
+  You should see your balance for those tokens appear.
+
+1. Send an amount to some Ethereum address.
+
+1. Configure Net API endpoint.
+
+1. Make CLI RPC calls.
