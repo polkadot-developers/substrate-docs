@@ -59,7 +59,7 @@ const Banner = () => {
         forum!
         <br />
         <b>
-          Please help us by following and committing to your desire for it {' '}
+          Please help us by following and committing to your desire for it{' '}
           <Link to="https://area51.stackexchange.com/proposals/126136/substrate-blockchain-framework">
             here
           </Link>

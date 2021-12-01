@@ -97,6 +97,9 @@ module.exports = {
         md: '0 0 15px 0 rgba(0, 0, 0, 0.05), 0 5px 5px -5px rgba(0, 0, 0, 0.04)',
         xl: '0 0 25px 0 rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
       },
+      zIndex: {
+        '-10': -10,
+      },
       keyframes: {
         'fade-in-down': {
           '0%': {
