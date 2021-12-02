@@ -265,6 +265,15 @@ const DevNavMenu = {
         ],
       },
       {
+        name: `Troubleshooting and FAQ`,
+        items: [
+          {
+            title: `Common issues`,
+            link: '/v3/troubleshooting',
+          },
+        ],
+      }, 
+      {
         name: `${intl.formatMessage({ id: 'docs-menu-contribute' })}`,
         items: [
           {
