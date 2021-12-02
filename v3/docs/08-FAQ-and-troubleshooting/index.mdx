@@ -1,0 +1,56 @@
+---
+title: Troubleshooting and FAQ
+slug: /v3/troubleshooting
+version: '3.0'
+section: docs
+category: 
+keywords:
+---
+
+Developers building with Substrate may come into issues with mismatched versions or breaking changes that result in incompatibility issues.
+This page is a living document of how to work around these types of common issues.
+
+## Using PolkadotJS Apps with a Substrate node that does not yet use the `scale-info` pallet 
+
+*Issue*: The hosted PolkadotJS apps UI no longer requires adding custom metadata.
+Instead, it expects the Substrate node to use `scale_info::TypeInfo` on all its custom enums and structs.
+Chains that have not been updated to include the `scale-info` crate will not be able to pass in custom types to the latest version of PolkadotJS Apps.
+
+*Solution*: Use an older version of PolkadotJS Apps.
+
+The last release that includes the custom types in the UI is `v0.96.1`, [available here](https://github.com/polkadot-js/apps/releases/tag/v0.96.1).
+
+1. Clone PolkadotJS apps v0.96.1. 
+
+    ```bash
+    git clone --depth=1 git@github.com:polkadot-js/apps.git --branch v0.96.1
+    ```
+
+1. Install and start the UI locally.
+    
+    Ensure that you have a recent LTS version of Node.js and Yarn. f
+    For development purposes Node >=10.13.0 is recommended and Yarn >=1.10.1 is required.
+
+    ```bash
+    yarn install 
+    yarn start
+    ```
+
+1. Access the UI at http://localhost:3000.
+ 
+1. Go to **Settings -> Developer** page and paste in your chain's custom types. 
+
+    For example, if you are doing the [permissioned network tutorial](/tutorials/v3/permissioned-network/) with an older Substrate chain, you would add:
+
+    ```json
+    {
+    "PeerId": "(Vec<u8>)"
+    }
+    ```
+
+    If you don't do this, you will get extrinsic errors of the form: `Verification Error: Execution(ApiError(Could not convert parameter 'tx' between node and runtime)`.
+    See more details about the error [here](https://polkadot.js.org/docs/api/FAQ#the-node-returns-a-could-not-convert-error-on-send).
+
+Note that it is highly recommended to include `scale-info` in your node.
+Using it is a very powerful and useful feature which was introduced [in this PR](https://github.com/paritytech/substrate/pull/8615).
+
