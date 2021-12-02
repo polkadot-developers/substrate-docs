@@ -1,13 +1,10 @@
 import React from 'react'
 import Link from './Link'
-import { useIntl } from 'react-intl'
 
 export default function DocsButton() {
-  const intl = useIntl()
   return (
     <Link to="/v3/">
       <button className="flex items-center justify-center bg-substrateDark dark:bg-substrateWhite text-white dark:text-substrateDark text-sm py-2 w-20 rounded opacity-100 transform transition duration-300 ease-in-out hover:opacity-80 focus:outline-none">
-        {/* <img src={docsIcon} alt="Substrate Docs Icon" /> */}
         <svg
           className="fill-current text-white dark:text-substrateDark"
           width="16"
@@ -24,7 +21,7 @@ export default function DocsButton() {
             d="M16 6.87994V6.875C16 6.86188 15.9996 6.84875 15.9987 6.83569C15.9997 6.85038 16.0001 6.86519 16 6.87994L9.31316 0.00562983C9.28602 0.00190036 9.25851 0 9.23076 0H3.07692C1.37759 0 0 1.39911 0 3.125V16.875C0 18.6009 1.37759 20 3.07692 20H12.9231C14.6224 20 16 18.6009 16 16.875V6.87994ZM8.61537 4.375C8.61537 6.10089 9.99297 7.5 11.6923 7.5H14.7692V16.875C14.7692 17.9106 13.9427 18.75 12.9231 18.75H3.07692C2.05732 18.75 1.23077 17.9106 1.23077 16.875V3.125C1.23077 2.08947 2.05732 1.25 3.07692 1.25H8.61537V4.375ZM9.84614 2.13388L13.8989 6.25H11.6923C10.6727 6.25 9.84614 5.41053 9.84614 4.375V2.13388Z"
           />
         </svg>
-        <span className="pl-2">{intl.formatMessage({ id: 'nav-docs' })}</span>
+        <span className="pl-2">Docs</span>
       </button>
     </Link>
   )
