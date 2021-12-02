@@ -12,7 +12,7 @@ const DevNavMenu = {
         external: false,
       },
       {
-        section: 'How-to-Guides',
+        section: 'How-to Guides',
         url: '/how-to-guides/',
         external: false,
       },

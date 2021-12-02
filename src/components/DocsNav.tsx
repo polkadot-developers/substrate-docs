@@ -46,7 +46,7 @@ export default function DocsNav({
                 : section === 'tutorials'
                 ? 'Tutorials'
                 : section === 'how to guides'
-                ? 'How-to-Guides'
+                ? 'How-to Guides'
                 : null}
             </span>
           </div>
