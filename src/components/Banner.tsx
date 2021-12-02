@@ -2,12 +2,14 @@ import cx from 'classnames'
 import React, { useEffect, useState } from 'react'
 
 import useScrollListener from './Hooks/use-scroll-listener'
+import useSessionStorage from './Hooks/use-sessions-storage'
 import Icon from './Icon'
 import Link from './Link'
 
 const Banner = () => {
   const scroll = useScrollListener()
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isBannerOpen, setIsBannerOpen] = useSessionStorage('banner', true)
 
   useEffect(() => {
     if (scroll.y > 300) {
@@ -22,7 +24,7 @@ const Banner = () => {
       className={cx(
         'hidden md:block fixed z-50 right-10 bottom-8 max-w-sm p-6 transition-all text-white dark:text-black dark:bg-substrateGray bg-substrateDark m-0 shadow-xxl rounded-md',
         {
-          'opacity-0 -z-10': isScrolled,
+          'opacity-0 -z-10': isScrolled || !isBannerOpen,
         }
       )}
     >
@@ -47,6 +49,12 @@ const Banner = () => {
             d="M419.75,46.09v12H375.19v-12Z"
           />
         </svg>
+        <div
+          className="absolute right-4 top-4 cursor-pointer duration-150 ease-in-out hover:scale-110"
+          onClick={() => setIsBannerOpen(false)}
+        >
+          <Icon name="closeIcon" className="fill-current h-4 w-4" />
+        </div>
       </div>
 
       <p className="mb-0 leading-6 mdx-anchor">
