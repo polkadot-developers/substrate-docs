@@ -54,3 +54,21 @@ The last release that includes the custom types in the UI is `v0.96.1`, [availab
 Note that it is highly recommended to include `scale-info` in your node.
 Using it is a very powerful and useful feature which was introduced [in this PR](https://github.com/paritytech/substrate/pull/8615).
 
+## Persisting data when running a node in `--dev` mode
+
+*Issue*: When running a chain in developer mode, the `--tmp` flag is implied by default.
+The `--tmp` flag implies that a temporary directory is created and used as a basepath to store a database, keystore and node key. 
+Once the chain is stopped, this directory is deleted.
+Now that the `--tmp` flag is implied by default, some developers may want to have their chain's database persist between starting and stopping their chain.
+
+*Solution*: Provide an explicit base path.
+1. Name your base path, for example `tmp/base-path`.
+
+1. Run the node template and specify your base path.
+
+    ```bash
+    ./target/release/node-template --dev  --base-path /tmp/base-path
+    ```
+
+With this, you can stop your chain and when you restart it, it will resume on the last finalized block.
+See [the original PR](https://github.com/paritytech/substrate/pull/9938) for more details on this change. 
