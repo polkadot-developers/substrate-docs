@@ -3,9 +3,9 @@
   publish = "public/"
 
 [context.deploy-preview]
-  command = "yarn build && cp .netlify/_headers_develop public/_headers && cp .netlify/_redirects_develop public/_redirects"
+  command = "yarn build && cp .netlify/_redirects_production public/_redirects"
   publish = "public/"
 
 [context.develop]
-  command = "yarn build && cp .netlify/_headers_develop public/_headers && cp .netlify/_redirects_develop public/_redirects"
+  command = "yarn build && cp .netlify/_redirects_production public/_redirects"
   publish = "public/"
