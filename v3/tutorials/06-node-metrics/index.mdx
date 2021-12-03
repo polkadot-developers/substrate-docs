@@ -113,7 +113,7 @@ Prometheus->Grafana: `substrate_peers_count (1582023828, 5), (1582023847, 4) [..
   text="We suggest for _testing_ that you download the compiled `bin` programs for these apps
     as opposed to fully installing them or using them in docker. Just `download` for your
     architecture, and run it from the `working directory` that is convenient for you.
-    The links above provide instruction on this, and this guide assume you do it this way.
+    The preceding links provide instructions for downloading the compiled programs, and this guide assumes you follow those instructions.
     "
 />
 
@@ -143,7 +143,7 @@ be accessed over an interface other than local host with
 # start the template node  in dev & tmp mode to experiment
 # optionally add the `--prometheus-port <PORT>`
 # or `--prometheus-external` flags
-./target/release/node-template --dev --tmp
+./target/release/node-template --dev
 ```
 
 ### Configure Prometheus to scrape your Substrate node
@@ -264,8 +264,8 @@ If you do create one, consider uploading it to the [community list of
 dashboards](https://grafana.com/grafana/dashboards) and letting the Substrate
 builder community know it exists by listing in on [Awesome
 Substrate](https://github.com/substrate-developer-hub/awesome-substrate)! Here
-is ours on [the grafana public
-dashboards](https://grafana.com/grafana/dashboards/13759/)
+is ours on [the Grafana public
+dashboard](https://grafana.com/grafana/dashboards/13759/).
 
 ## Next Steps
 

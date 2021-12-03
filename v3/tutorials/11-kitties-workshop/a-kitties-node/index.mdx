@@ -56,7 +56,7 @@ You can refer to the [how-to guides](/how-to-guides/v3) on how to integrate thes
 Follow each step at your own pace &mdash; the goal is for you to learn and the best way to do that is to try it yourself!
 Before moving on from one section to the next, make sure your pallet builds without any error.
 Use the [template files](https://github.com/substrate-developer-hub/substrate-docs/tree/main/static/assets/tutorials/kitties-tutorial) to help you complete each part.
-If you are stuck you can refer to the complete source code on the [Substrate Node Template repository \`tutorials/kitties\` branch](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/kitties).
+If you are stuck you can refer to the complete source code on the [Substrate Node Template repository \`tutorials/solutions/kitties\` branch](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/kitties).
 Most of the code changes will be in `/pallets/kitties/src/lib.rs`.
 
 ## Basic set-up
@@ -255,7 +255,7 @@ Just like the [helper files](https://github.com/substrate-developer-hub/substrat
    [dependencies.sp-io]
    default-features = false
    git = 'https://github.com/paritytech/substrate.git'
-   tag = 'monthly-2021-11-1'
+   tag = 'devhub/latest'
    version = '4.0.0-dev'
    ```
 
@@ -265,16 +265,6 @@ Just like the [helper files](https://github.com/substrate-developer-hub/substrat
    ```bash
    cargo build -p pallet-kitties
    ```
-
-<br />
-<Message
-  type={`red`}
-  title={`Warning`}
-  text={`
-Check that you're using the correct \`monthly-*\` tag and version otherwise you will get a
-dependency error. Here, we're using the \`monthly-2021-11-1\` tag of Substrate.
-  `}
-/>
 
 You'll notice the Rust compiler giving you warnings about unused imports.
 That's fine!
