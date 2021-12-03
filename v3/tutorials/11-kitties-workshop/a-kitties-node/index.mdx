@@ -722,7 +722,7 @@ It also uses various "ACTION" items as a way to guide you through this section.
 Before we dive right in, it's important to understand the pallet design decisions we'll be making around coding up our Kitty pallet's minting and ownership management capabilities.
 
 As developers, we want to make sure the code we write is efficient and elegant.
-Often times, optimizing for one optimizes for the other.
+Oftentimes, optimizing for one optimizes for the other.
 The way we're going to set up our pallet to optimize for both will be to break-up the "heavy lifting" logic into private helper functions.
 This improves code readability and reusability too.
 As we'll see, we can create private functions which can be called by multiple dispatchable functions without compromising on security.
