@@ -1,5 +1,5 @@
 ---
-title: Verify Runtime Wasm Binaries with Subwasm
+title: Inspect a Runtime with Subwasm
 slug: /how-to-guides/v3/tools/subwasm
 keywords: tooling, wasm
 version: 3.0 
@@ -40,7 +40,7 @@ Make sure you have the following:
 
     ```bash
     cd TempWasms
-    subwasm get ws://localhost:9944 -o mychain.wasm
+    subwasm get --chain local -o mychain.wasm
     ```
     The `-o` flag will save the the Wasm file to `mychain.wasm`.
 
@@ -71,7 +71,8 @@ The following example compares the Polkadot runtime at block 500,000 with its la
 1. Save the Wasm blob of a previous state.
 
     ```bash
-    subwasm get --chain polkadot --block 0xfdeab19649426aadbdab046c9b5dac0a5b0c850b8fd0927e3b4e6c896d5fb0b7 -o polkadot-500000.wasm
+    BLOCK_HASH=0xfdeab19649426aadbdab046c9b5dac0a5b0c850b8fd0927e3b4e6c896d5fb0b7
+    subwasm get --chain polkadot --block $BLOCK_HASH -o polkadot-500000.wasm
     ```
 
 1. Get the latest Wasm blob of the runtime.
