@@ -43,7 +43,7 @@ function scrollToAnchor(location, mainNavHeight = 100) {
   if (location && location.hash) {
     // Fix scrolling for ids starting with numbers
     // https://stackoverflow.com/a/20306237/1268612
-    const hash = location.hash.replace(/^#(\d)/, '#\\3$1').split('/')[0]
+    const hash = location.hash.replace(/^#(\d)/, '#\\3$1')
     const item = document.querySelector(`${hash}`)
 
     if (item)
