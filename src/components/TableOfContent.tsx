@@ -6,10 +6,6 @@ interface TableOfContentProps {
     items: {
       url: string
       title: string
-      items?: {
-        url: string
-        title: string
-      }[]
     }[]
   }
 }
@@ -18,14 +14,7 @@ const getHeadingIds: any = (
   toc: {
     url: string
     title: string
-    items?: {
-      url: string
-      title: string
-    }[]
-  }[],
-  traverseFullDepth = true,
-  depth: number,
-  recursionDepth = 1
+  }[]
 ) => {
   const idList = []
   const hashToId = (str: string) => str.slice(1)
@@ -33,11 +22,6 @@ const getHeadingIds: any = (
     for (const item of toc) {
       if (item.url) {
         idList.push(hashToId(item.url))
-      }
-      if (item.items && traverseFullDepth && recursionDepth < (depth || 6)) {
-        idList.push(
-          ...getHeadingIds(item.items, true, depth, recursionDepth + 1)
-        )
       }
     }
   }
@@ -67,26 +51,6 @@ export default function TableOfContent({ headings }: TableOfContentProps) {
                       {value.title}
                     </div>
                   </a>
-                  {value.items && (
-                    <>
-                      {value.items.map((value, index) => {
-                        return (
-                          <div key={index} className="pl-3">
-                            <a href={value.url}>
-                              <div
-                                className={`inline-flex mb-2 hover:text-substrateBlue dark:hover:text-substrateBlue-light ${
-                                  activeHash === value.url.substr(1) &&
-                                  'text-substrateBlue dark:text-substrateBlue-light'
-                                }`}
-                              >
-                                {value.title}
-                              </div>
-                            </a>
-                          </div>
-                        )
-                      })}
-                    </>
-                  )}
                 </div>
               )
             })}
