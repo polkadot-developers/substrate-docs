@@ -10,34 +10,25 @@ interface FeedbackWidgetProps {
 
 export function FeedbackWidget({ title, slug, section }: FeedbackWidgetProps) {
   const githubLink =
-    'https://github.com/substrate-developer-hub/substrate-docs/issues/new?'
-  const githubTitle = `Feedback Submission - ${section} - ${title} - ${slug}`
-  const currentSection = () => {
-    if (section === 'how to guides') {
-      return 'Guide'
-    }
-    if (section === 'tutorials') {
-      return 'Tutorial'
-    }
-    return 'Page'
-  }
+    'https://github.com/substrate-developer-hub/substrate-docs/'
+  const githubTitle = `Issue in - ${section} - ${title} - ${slug}`
   return (
     <div>
       <div className="flex items-center pt-10 mb-4">
         <Icon
           name="feedbackIcon"
-          className="mr-2 fill-current text-subtrateDark dark:text-substrateWhite"
+          className="mr-2 fill-current text-substrateDark dark:text-substrateWhite"
         />
         <span className="text-xl font-semibold">
-          Was This {currentSection()} Helpful?
+          Run into problems?
         </span>
       </div>
 
       <SecondaryButton
         external
-        link={`${githubLink}title=${githubTitle}&template=feedback-template.yaml&labels=feedback`}
+        link={`${githubLink}issues/new/choose?title=${githubTitle}`}
       >
-        Help us improve
+        Please, help us improve
       </SecondaryButton>
     </div>
   )
