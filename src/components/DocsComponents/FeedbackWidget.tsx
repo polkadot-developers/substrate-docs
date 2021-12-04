@@ -16,7 +16,7 @@ export function FeedbackWidget({ title, slug, section }: FeedbackWidgetProps) {
     <div>
       <div className="flex items-center pt-10 mb-4">
         <Icon
-          name="feedbackIcon"
+          name="flag"
           className="mr-2 fill-current text-substrateDark dark:text-substrateWhite"
         />
         <span className="text-xl font-semibold">
@@ -28,7 +28,19 @@ export function FeedbackWidget({ title, slug, section }: FeedbackWidgetProps) {
         external
         link={`${githubLink}issues/new/choose?title=${githubTitle}`}
       >
-        Please, help us improve
+      <div className="flex items-center p-2 m-0">
+        <span className="font-semibold">
+          Let us Know
+        </span>
+        <Icon
+          name="github"
+          className="m-2 fill-current dark:text-substrateDark text-substrateWhite"
+        />
+		<Icon
+          name="externalIcon"
+          className="fill-current dark:text-substrateDark text-substrateWhite"
+        />
+      </div>
       </SecondaryButton>
     </div>
   )
