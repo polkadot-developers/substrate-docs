@@ -1,10 +1,18 @@
 ---
-title: Distribute a Custom Chain Specification
-slug: /how-to-guides/v3/basics/custom-chainspec
-version: polkadot-0.9.11
+title: Custom Chain Specifications
+slug: /how-to-guides/v3/basics/custom-chain-spec
+version: polkadot-0.9.13
 section: how to guides
 category: basics
-keywords: chainspec, node, genesis, plain, raw, private, network, bootstrap
+keywords:
+  - chain spec
+  - node
+  - genesis
+  - plain
+  - raw
+  - private
+  - network
+  - bootstrap
 ---
 
 <Objectives
@@ -48,26 +56,26 @@ We have just generated a **plain chain spec** file for the _default_ network set
 
 ### 2. Modify the plain chain specification (optional)
 
-This optional step we can leverage an _existing_ plain chain specification for a network that otherwise would require modifiaciton of te _source_ of the node to run on a _new network_.
-For example, this can be quite usefull in the [Cumulus Tutorial](/tutorials/v3/cumulus/start-relay) where we want to create a custom _relay chain_ without customizing Polkadot's source.
+This optional step we can leverage an _existing_ plain chain specification for a network that otherwise would require modification of te _source_ of the node to run on a _new network_.
+For example, this can be quite useful in the [Cumulus Tutorial](/tutorials/v3/cumulus/start-relay) where we want to create a custom _relay chain_ without customizing Polkadot's source.
 
-Here we use the _same_ chainspec, but pass a flag to disable bootnodes, as we want a _new_ network where hese nodes will be different.
+Here we use the _same_ chain spec, but pass a flag to disable bootnodes, as we want a _new_ network where these nodes will be different.
 
 ```bash
 ./target/release/node-template build-spec --chain chain-spec-plain.json --raw --disable-default-bootnode > no-bootnodes-chain-spec-plain.json
 ```
 
-This `no-bootnodes-chain-spec-plain.json` can be used to generate a compacified, distributable raw chainspec.
+This `no-bootnodes-chain-spec-plain.json` can be used to generate a SCALE storage encoded, distributable raw chain spec.
 
 ### 3. Generate the raw chain specification
 
-With a plain spec avalible, you generate a final raw chain spec by:
+With a plain spec available, you generate a final raw chain spec by:
 
 ```bash
 ./target/release/node-template build-spec --chain chain-spec-plain.json --raw > chain-spec.json
 ```
 
-### 4. Publsh the chain specification
+### 4. Publish the chain specification
 
 <Message
   type={`yellow`}
@@ -79,25 +87,25 @@ With a plain spec avalible, you generate a final raw chain spec by:
     "
 />
 
-It is _conventional_ to include the chain specification files for your node _within the source code itself_ so that anyone building your node and avoid any chance of non-determinism causing nodes to belive they are on different networks (as the genesis blob may differ).
-Polkadot, Kusama, Rococo, and more network chainpec files are found [in the source here](https://github.com/paritytech/polkadot/tree/master/node/service/res) along with a `.gitignore` file to ensure that you don't acidentally change these `!/*.json` files as you build futher on your node's software and do [runtime upgrades](/tutorials/v3/forkless-upgrades).
+It is _conventional_ to include the chain specification files for your node _within the source code itself_ so that anyone building your node and avoid any chance of non-determinism causing nodes to believe they are on different networks (as the genesis blob may differ).
+Polkadot, Kusama, Rococo, and more network chain spec files are found [in the source here](https://github.com/paritytech/polkadot/tree/master/node/service/res) along with a `.gitignore` file to ensure that you don't accidentally change these `!/*.json` files as you build further on your node's software and do [runtime upgrades](/tutorials/v3/forkless-upgrades).
 
 ### 5. Start a new node
 
-If you publish a node binary, or have users build thier own and then they want to join your network, all then need is the _same_ chain spec file and to run your binary with:
+If you publish a node binary, or have users build their own and then they want to join your network, all then need is the _same_ chain spec file and to run your binary with:
 
 ```bash
 # binary named `node-template`
-# `chain-spec.json` obtained from cononical common source
+# `chain-spec.json` obtained from canonical common source
 node-template --chain chain-spec.json
 ```
 
 This can also simply be configured to be the _default_ network.
-For reference, you can see how [Polkadot impliments](https://github.com/paritytech/polkadot/commits/master/cli/src/command.rs) a default command that uses the chain specs for various networks [in the source here](https://github.com/paritytech/polkadot/tree/master/node/service/res)
+For reference, you can see how [Polkadot implements](https://github.com/paritytech/polkadot/commits/master/cli/src/command.rs) a default command that uses the chain specs for various networks [in the source here](https://github.com/paritytech/polkadot/tree/master/node/service/res)
 
 ## Examples
 
 - [Private network tutorial](/tutorials/v3/private-network#add-keys-to-keystore)
 - Modify the included chain specs in the [Cumulus tutorial](/tutorials/v3/cumulus/start-relay)
 - [Polkadot-like network chain specs](https://github.com/paritytech/polkadot/tree/master/node/service/res)
-- [Polkadot connads for many networks](https://github.com/paritytech/polkadot/commits/master/cli/src/command.rs)
+- [Polkadot commands for many networks](https://github.com/paritytech/polkadot/commits/master/cli/src/command.rs)
