@@ -2,7 +2,7 @@
 title: Start a Relay Chain
 slug: /tutorials/v3/cumulus/start-relay
 sideNav: cumulusTutorial
-version: 'polkadot-0.9.10'
+version: 'polkadot-v0.9.13'
 section: tutorials
 category: parachains
 duration: 3 Hours
@@ -124,9 +124,9 @@ RUSTFLAGS="-C codegen-units=1" cargo build --release
 
 This tutorial has been tested on:
 
-- [Polkadot `v0.9.11`](https://github.com/paritytech/polkadot/tree/v0.9.11)
-- [Substrate Parachain Template `polkadot-v0.9.11`](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.11)
-- [Polkadot-JS Apps `v0.98.2-23`](https://github.com/polkadot-js/apps/commit/bfd79288c99df5ef7f73b961c1743ba823871cfd).
+- [Polkadot `v0.9.13`](https://github.com/paritytech/polkadot/tree/v0.9.13)
+- [Substrate Parachain Template `polkadot-v0.9.13`](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.13)
+- [Polkadot-JS Apps `v0.98.2-121`](https://github.com/polkadot-js/apps/commit/03d53ce1551bc0cd55c55491fa20e652d7eaa4c6).
   It is generally expected that the [hosted Polkadot-JS Apps](https://polkadot.js.org/apps) should work.
   If you have issues, build and run this UI yourself at this tagged version/commit.
 
@@ -139,8 +139,8 @@ This tutorial has been tested on:
     At the moment, parachains are _very tightly coupled_ with the relay chain codebase they are
     connecting to. To have the least amount of hiccups, be sure to use the corresponding tagged
     version of Polkadot and Parachain Template when working on this tutorial. So if you are using
-    [**Polkadot \`v0.9.11\`**](https://github.com/paritytech/polkadot/tree/v0.9.11), use the equivalent
-    version of [**Parachain Template \`polkadot-v0.9.11\`**](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.11).
+    [**Polkadot \`v0.9.13\`**](https://github.com/paritytech/polkadot/tree/v0.9.13), use the equivalent
+    version of [**Parachain Template \`polkadot-v0.9.13\`**](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.13).
   `}
 />
 
@@ -165,7 +165,7 @@ git clone https://github.com/paritytech/polkadot.git
 cd polkadot
 
 # Checkout the proper commit
-git checkout v0.9.11
+git checkout v0.9.13
 
 # Build the relay chain Node
 cargo build --release
@@ -197,7 +197,7 @@ git clone https://github.com/substrate-developer-hub/substrate-parachain-templat
 cd substrate-parachain-template
 
 # Checkout the proper commit
-git checkout polkadot-v0.9.11
+git checkout polkadot-v0.9.13
 
 # Build the parachain template collator
 cargo build --release
@@ -322,15 +322,14 @@ You just need to make sure that nodes on the same local machine do not have conf
 --ws-port 9946
 ```
 
-## Custom chain specifications
+## Custom relay chain specifications
 
-Optionally, explore the [how-to guide on configuring a custom chain-spec](/how-to-guides/v3/basics/custom-chainspec) for instructions to tweak the provided [plain chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-plain.json) for addition of more validators without modification of Polkadot's source code.
+Optionally, explore the [how-to guide on configuring a custom chain spec](/how-to-guides/v3/basics/custom-chainspec) for instructions to tweak the provided [plain chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-plain.json) for addition of more validators without modification of Polkadot's source code.
 
 <Message
   type={`yellow`}
   title={`chain spec testing with \`rococo-local\``}
   text={`
-    For this tutorial, your final chain spec filename **must** start with \`rococo\` or the node will not know what
-    runtime logic to include.
+    For this tutorial, your final chain spec filename **must** start with \`rococo\` or the node will not know what runtime logic to include.
 `}
 />
