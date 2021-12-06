@@ -76,30 +76,63 @@ Under the **Network** > **Parachains** sub-page, click on **Parathreads** tab an
 
 ![Reserve a para ID](../../../../src/images/tutorials/09-cumulus/paraid-reserve.png)
 
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text={`
-    You will need to connect to a relay chain to submit this extrinsic!
-  In testnets, your Parachain ID will be 2000 for your first parathread reservation.
-  `}
-/>
-
 Note that the account used to reserve the para ID must also be the origin for using this para ID.
 Once you submit this extrinsic successfully (you must see a successful `registrar.Reserved` event with your `paraID`), you can now launch your parachain or parathread using this reserved ID.
 
-### Specify a parachain for the relay chain
+### Configure a parachain for a specific relay chain and para ID
 
 We'll begin by generating a few files based on the Parachain Template with the reserved para ID (para ID `2000`).
 
-#### Generate a parachain genesis state
+#### Custom parachain specification
 
-To register a parachain, the relay chain needs to know the parachain's [genesis state](/v3/runtime/chain-specs#the-genesis-state). The collator node can export that state to a file.
-Go to your Parachain Template folder, the following command will create a file containing the parachain's entire genesis state, hex-encoded:
+Your parachain _must_ configure the correct para ID in your chain specification.
+See the [how-to guide on configuring a custom chain spec](/how-to-guides/v3/basics/custom-chain-spec) for more in-depth instructions to generate a plain spec, modify it, and generate a raw spec.
+We first generate a plain spec with:
 
 ```bash
-./target/release/parachain-collator export-genesis-state --parachain-id 2000 > para-2000-genesis
+# Assumes that `rococo-local` is in `node/chan_spec.rs` as the relay you registered with
+./target/release/parachain-collator build-spec --disable-default-bootnode > rococo-local-parachain-plain.json
 ```
+
+Default para ID is `1000` from Cumulus, so you must correctly set it for your parachain based on **the reserved para ID from above**.
+Assuming your reserved para ID is `2000`, you will open `rococo-local-parachain-plain.json` and modify two fields:
+
+```json
+  // --snip--
+  "para_id": 2000, // <--- = your already registered ID
+  // --snip--
+      "parachainInfo": {
+        "parachainId": 2000 // <--- = your already registered ID
+      },
+  // --snip--
+```
+
+Then generate a raw chain spec derived **from your modified plain chain spec**:
+
+```bash
+./target/release/parachain-collator build-spec --chain rococo-local-parachain-plain.json --raw --disable-default-bootnode > rococo-local-parachain-2000-raw.json
+```
+
+<Message
+  type={`yellow`}
+  title={`Save and distribute your raw spec`}
+  text={`
+    If you intend to let others connect to your network, they must have the associated chain spec for your network generated once and distributed to your peers.
+    They cannot reliably produce this themselves, and need to acquire it from a **single source**.
+    This stems from the [non-deterministic issue](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1) in the way Wasm runtimes are compiled, at least for now.
+  `}
+/>
+
+Chain specs _conventionally_ live in a `/res` folder that is published in your node's codebase for others to use.
+For example:
+
+- Polkadot includes these **relay chain** chain specs
+  [under `node/service/res`](https://github.com/paritytech/polkadot/tree/master/node/service/res)
+- Cumulus includes these **parachain** chain specs
+  [under `res`](https://github.com/paritytech/cumulus/tree/master/polkadot-parachains/res)
+
+
+It is good practice to commit this raw chain spec into your source before proceeding.
 
 #### Obtain Wasm runtime validation function
 
@@ -107,11 +140,18 @@ The relay chain also needs the parachain-specific runtime validation logic to va
 The parachain collator node also has a command to produce this Wasm blob:
 
 ```bash
-./target/release/parachain-collator export-genesis-wasm > para-2000-wasm
+./target/release/parachain-collator export-genesis-wasm --chain rococo-local-parachain-2000-raw.json > para-2000-wasm
 ```
 
-The Wasm blob does not depend on the para ID, so we are not providing that flag.
-If you are launching multiple parachains using the exact same runtime, you do not need to regenerate the Wasm blob each time.
+#### Generate a parachain genesis state
+
+To register a parachain, the relay chain needs to know the parachain's [genesis state](/v3/runtime/chain-specs#the-genesis-state).
+The collator node can export that state to a file.
+Go to your Parachain Template folder, the following command will create a file containing the parachain's entire genesis state, hex-encoded:
+
+```bash
+./target/release/parachain-collator export-genesis-state --chain rococo-local-parachain-2000-raw.json > para-2000-genesis
+```
 
 <Message
   type={`yellow`}
@@ -119,11 +159,12 @@ If you are launching multiple parachains using the exact same runtime, you do no
   text={`
     This runtime and state is for the parachain's _genesis_ block only.
     You cannot, at this time, connect a parachain with any previous state to a relay chain.
-    All parachains must start from block 0 on the relay chain. Eventually, migrating a solo chain built on Substrate is expected to be possible, but this functionality is not planned anytime soon.
+    All parachains must start from block 0 on the relay chain. Eventually, migrating the block history of a solo chain built on Substrate is expected to be possible, but this functionality is not planned anytime soon.
     \n
-    See the guide on [converting a solo chain to a parachain](/how-to-guides/v3/parachains/convert) for details on how the Parachain Template was created, and how to convert your chain's logic (not state migrations!) to a parachain.
+    See the guide on [converting a solo chain to a parachain](/how-to-guides/v3/parachains/convert) for details on how the Parachain Template was created, and how to convert your chain's logic (not history/state migrations!) to a parachain.
   `}
 />
+
 
 ### Start the collator node
 
@@ -131,12 +172,11 @@ We can now start the collator node with the following command.
 Notice that we need to supply the same relay chain chain spec we used for launching relay chain nodes at the second half of the command.
 
 ```bash
-# NOTE: this command assumes a para ID of 2000. Change as needed.
 ./target/release/parachain-collator \
 --alice \
 --collator \
 --force-authoring \
---parachain-id 2000 \
+--chain rococo-local-parachain-2000-raw.json \
 --base-path /tmp/parachain/alice \
 --port 40333 \
 --ws-port 8844 \
@@ -227,15 +267,9 @@ More details on this can be found [in here](/tutorials/v3/cumulus/start-relay#st
 
 #### Option 1: `paraSudoWrapper.sudoScheduleParaInitialize`
 
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text={`
-    This option bypasses the slot lease mechanics entirely to onboard a parachain or parathread for a reserved \`paraID\` starting on the next relay chain session.
-	This is the simplest and fastest way to go about testing.
-	But note that the parachain will also be automatically off-boarded at the next period, where any parachains without a lease are downgraded to parathreads, so take note of the next slot ending period and be sure to re-register as needed.
- `}
-/>
+This option bypasses the slot lease mechanics entirely to onboard a parachain or parathread for a reserved `paraID` starting on the next relay chain session.
+This is the simplest and fastest way to go about testing.
+But note that the parachain will also be automatically off-boarded at the next period, where any parachains without a lease are downgraded to parathreads, so take note of the next slot ending period and be sure to re-register as needed.
 
 - Go to [Polkadot Apps UI](https://polkadot.js.org/apps/), connecting to your **relay chain**.
 - Execute a sudo extrinsic on the relay chain by going to `Developer` -> `sudo` page.
@@ -253,13 +287,7 @@ This dispatch, if successful, will emit the `sudo.Sudid` event, viewable in the 
 
 #### Option 2: `slots.forceLease`
 
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text={`
-    This is the more formal flow for registration used in production (with the exception of the use of sudo to force a slot lease): you register your reserved \`paraID\` with the _same_ account that reserved it, or use \`sudo\` with a \`registrar.forceRegister\` extrinsic if you wish.
-  `}
-/>
+This is the more formal flow for registration used in production (with the exception of the use of sudo to force a slot lease): you register your reserved `paraID` with the _same_ account that reserved it, or use `sudo` with a `registrar.forceRegister` extrinsic if you wish.
 
 Here we will use `sudo` to grant ourselves a lease.
 You should have an onboarded parathread:
@@ -369,7 +397,9 @@ You can also make some on-chain remarks by going to the `Extrinsics` page, choos
 
 If the transaction go through as expected, you have a working parachain.
 
-🎉***Congratulations!*** 🎉
+🎉***Congratulations!***🎉
+
+Read on for more optional material.
 
 #### Cross-chain Message Passing (XCMP)
 
@@ -432,7 +462,7 @@ This command is nearly identical to the one we used to start the first collator,
 --bob \
 --collator \
 --force-authoring \
---parachain-id 2000 \
+--chain rococo-local-parachain-2000-raw.json \
 --base-path /tmp/parachain/bob \
 --bootnodes <a running collator node> \
 --port 40334 \
