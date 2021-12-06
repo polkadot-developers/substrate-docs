@@ -189,13 +189,13 @@ to learn more.
 
 ```rust
 fn sudo(origin, call) -> Result {
-    // Ensure caller is the account identified by the administrator key
-    let sender = ensure_signed(origin)?;
-    ensure!(sender == Self::key(), Error::RequireSudo);
+	// Ensure caller is the account identified by the administrator key
+	let sender = ensure_signed(origin)?;
+	ensure!(sender == Self::key(), Error::RequireSudo);
   
-    // Dispatch the specified call as the Root origin
-    let res = call.dispatch(Origin::Root);
-    Ok()
+	// Dispatch the specified call as the Root origin
+	let res = call.dispatch(Origin::Root);
+	Ok()
 }
 ```
 
@@ -249,33 +249,33 @@ Next, add the pallet to the runtime:
 ```rust
 // Define the types required by the Scheduler pallet.
 parameter_types! {
-    pub MaximumSchedulerWeight: Weight = 10_000_000;
-    pub const MaxScheduledPerBlock: u32 = 50;
+	pub MaximumSchedulerWeight: Weight = 10_000_000;
+	pub const MaxScheduledPerBlock: u32 = 50;
 }
 
 // Configure the runtime's implementation of the Scheduler pallet.
 impl pallet_scheduler::Config for Runtime {
-    type Event = Event;
-    type Origin = Origin;
-    type PalletsOrigin = OriginCaller;
-    type Call = Call;
-    type MaximumWeight = MaximumSchedulerWeight;
-    type ScheduleOrigin = frame_system::EnsureRoot<AccountId>;
-    type MaxScheduledPerBlock = MaxScheduledPerBlock;
-    type WeightInfo = ();
-    type OriginPrivilegeCmp = EqualPrivilegeOnly;
+	type Event = Event;
+	type Origin = Origin;
+	type PalletsOrigin = OriginCaller;
+	type Call = Call;
+	type MaximumWeight = MaximumSchedulerWeight;
+	type ScheduleOrigin = frame_system::EnsureRoot<AccountId>;
+	type MaxScheduledPerBlock = MaxScheduledPerBlock;
+	type WeightInfo = ();
+	type OriginPrivilegeCmp = EqualPrivilegeOnly;
 }
 
 // Add the Scheduler pallet inside the construct_runtime! macro.
 construct_runtime!(
-    pub enum Runtime where
-        Block = Block,
-        NodeBlock = opaque::Block,
-        UncheckedExtrinsic = UncheckedExtrinsic
-    {
-        /*** snip ***/
-        Scheduler: pallet_scheduler,
-    }
+	pub enum Runtime where
+		Block = Block,
+		NodeBlock = opaque::Block,
+		UncheckedExtrinsic = UncheckedExtrinsic
+	{
+		/*** snip ***/
+		Scheduler: pallet_scheduler,
+	}
 );
 ```
 
@@ -294,13 +294,13 @@ which is a member of
 
 ```rust
 pub const VERSION: RuntimeVersion = RuntimeVersion {
-    spec_name: create_runtime_str!("node-template"),
-    impl_name: create_runtime_str!("node-template"),
-    authoring_version: 1,
-    spec_version: 101,  // *Increment* this value, the template uses 100 as a base
-    impl_version: 1,
-    apis: RUNTIME_API_VERSIONS,
-    transaction_version: 1,
+	spec_name: create_runtime_str!("node-template"),
+	impl_name: create_runtime_str!("node-template"),
+	authoring_version: 1,
+	spec_version: 101,  // *Increment* this value, the template uses 100 as a base
+	impl_version: 1,
+	apis: RUNTIME_API_VERSIONS,
+	transaction_version: 1,
 };
 ```
 
@@ -414,20 +414,20 @@ in `runtime/src/lib.rs` aside from the runtime's `spec_version`.
 
 ```rust
 pub const VERSION: RuntimeVersion = RuntimeVersion {
-    spec_name: create_runtime_str!("node-template"),
-    impl_name: create_runtime_str!("node-template"),
-    authoring_version: 1,
-    spec_version: 102,  // *Increment* this value.
-    impl_version: 1,
-    apis: RUNTIME_API_VERSIONS,
-    transaction_version: 1,
+	spec_name: create_runtime_str!("node-template"),
+	impl_name: create_runtime_str!("node-template"),
+	authoring_version: 1,
+	spec_version: 102,  // *Increment* this value.
+	impl_version: 1,
+	apis: RUNTIME_API_VERSIONS,
+	transaction_version: 1,
 };
 
 /*** snip ***/
 
 parameter_types! {
-    pub const ExistentialDeposit: u128 = 1000;  // Update this value.
-    pub const MaxLocks: u32 = 50;
+	pub const ExistentialDeposit: u128 = 1000;  // Update this value.
+	pub const MaxLocks: u32 = 50;
 }
 
 /*** snip ***/
