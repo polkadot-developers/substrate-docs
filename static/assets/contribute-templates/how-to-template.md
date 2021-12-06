@@ -29,7 +29,7 @@ It's important to prepare both runtimes and push them consecutively. First prepa
 
 1. Remove any and all custom code you added to your runtime. This means removing the implementation from `construct_runtime!`, all associated `parameter_types!`, and all implementations for runtime.
 
-2. Comment out some unneeded configs and functions. Things like `native_version()`, `frame_benchmarking`, and `pallet_transaction_payment_rpc_runtime_api` can all be removed. 
+2. Comment out some unneeded configs and functions. Things like `native_version()`, and `pallet_transaction_payment_rpc_runtime_api` can all be removed. 
 
    ```rust
    // #[cfg(feature = "std")]
@@ -63,7 +63,7 @@ construct_runtime!(
 ```
   This is the bare minimum needed for our blockchain to work, note how we removed all `Config<T>` and `Event<T>` where they weren't being used. 
 
-5. Remove all unnecessary `signedExtensions`. 
+5. Remove all unnecessary `signedExtensions`. **Warning**: Removing some of these makes your chain be easily attackable. Therefore this part is highly discouraged unless you absolutely need the extra space. Be prepared to **immediately push an update that restores your code back to the original state if you do this**. 
   ```rust
   pub type SignedExtra = (
     frame_system::CheckSpecVersion<Runtime>,
