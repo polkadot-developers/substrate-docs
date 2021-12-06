@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import { Link as GatsbyLink } from 'gatsby'
 import { ThemeContext } from '../contexts/ThemeContext'
 
 const addTrailingSlash = (uri: string) => {
@@ -97,9 +97,9 @@ export default function Link({ to, children, className }: LinkProps) {
     )
   } else {
     return (
-      <LocalizedLink to={addTrailingSlash(to)} className={className}>
+      <GatsbyLink to={addTrailingSlash(to)} className={className}>
         {children}
-      </LocalizedLink>
+      </GatsbyLink>
     )
   }
 }
