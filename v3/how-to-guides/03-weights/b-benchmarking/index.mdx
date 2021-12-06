@@ -5,7 +5,6 @@ keywords: weights, benchmarking, runtime
 version: '3.0'
 section: how to guides
 category: weights
-difficulty: 1
 ---
 
 <Objectives
@@ -21,9 +20,11 @@ difficulty: 1
     },
     {
       title: 'Overview',
-      description: `This guide steps throught the process of adding benchmarking to a pallet and runtime. In addition,
-        it covers the steps of writing a simple benchmark for a pallet as well as testing and running the 
-        benchmarking tool. This guide does not cover updating weights with benchmarked values.`,
+      description: `
+        This guide steps throught the process of adding benchmarking to a pallet and runtime.
+        In addition, it covers the steps of writing a simple benchmark for a pallet as well as testing and running the benchmarking tool.
+        This guide does not cover updating weights with benchmarked values.
+      `,
     },
   ]}
 />
@@ -32,9 +33,7 @@ difficulty: 1
 
 ### 1. Set-up benchmarking for your pallet
 
-1. In [the pallet's
-   `Cargo.toml`](https://github.com/paritytech/substrate/blob/master/frame/example/Cargo.toml), add
-   the `frame-benchmarking` crate (with appropriate tag and version) and the `runtime-benchmarks` feature.
+1. In [the pallet's `Cargo.toml`](https://github.com/paritytech/substrate/blob/master/frame/example/Cargo.toml), add the `frame-benchmarking` crate (with appropriate tag and version) and the `runtime-benchmarks` feature.
 
    `pallets/example/Cargo.toml`
 
@@ -55,9 +54,7 @@ difficulty: 1
    ]
    ```
 
-2. Create a new Rust module for your benchmarks in your pallet's folder (an example of
-   [`/pallets/template/src/benchmarking.rs`](https://github.com/substrate-developer-hub/substrate-node-template/blob/latest/pallets/template/src/benchmarking.rs)),
-   and create the basic structure:
+1. Create a new Rust module for your benchmarks in your pallet's folder (an example of [`/pallets/template/src/benchmarking.rs`](https://github.com/substrate-developer-hub/substrate-node-template/blob/latest/pallets/template/src/benchmarking.rs)), and create the basic structure:
 
    `pallets/example/src/benchmarking.rs`
 
@@ -74,8 +71,7 @@ difficulty: 1
     }
    ```
 
-3. Each benchmark case has up to three sections: a setup section, an execution section, and
-   optionally a verification section at the end.
+1. Each benchmark case has up to three sections: a setup section, an execution section, and optionally a verification section at the end.
 
    ```rust
    benchmarks!{
@@ -90,8 +86,8 @@ difficulty: 1
    }
    ```
 
-   We'll refer to an extremely basic example of a benchmark from the [Example Pallet](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs).
-   Take a look at the extrinsic we'll be benchmarking for [here](http://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs#L543-562).
+   We'll refer to an extremely basic example of a benchmark from the [Example Pallet](https://github.com/paritytech/substrate/tree/master/frame/examples/basic).
+   Take a look at the extrinsic we'll be benchmarking for:
 
    ```rust
    // This will measure the execution time of `set_dummy` for b in [1..1000] range.
@@ -100,15 +96,13 @@ difficulty: 1
    }: set_dummy(RawOrigin::Root, b.into());
    ```
 
-   The name of the benchmark is `set_dummy`. Here `b` is a variable input that is passed into the
-   extrinsic `set_dummy` which may affect the extrinsic execution time. `b` will be varied between
-   1 to 1,000, where we will repeat and measure the benchmark at the different values.
+   The name of the benchmark is `set_dummy`. Here `b` is a variable input that is passed into the extrinsic `set_dummy` which may affect the extrinsic execution time.
+   `b` will be varied between 1 to 1,000, where we will repeat and measure the benchmark at the different values.
 
-   In this example, the extrinsic `set_dummy` is called in the execution section, and we do not
-   verify the result at the end.
+   In this example, the extrinsic `set_dummy` is called in the execution section, and we do not verify the result at the end.
 
-4. Once you have written your benchmarks, you should make sure they execute properly by testing
-   them. Add this macro at the bottom of your benchmarking module:
+1. Once you have written your benchmarks, you should make sure they execute properly by testing them.
+   Add this macro at the bottom of your benchmarking module:
 
    `pallets/example/src/benchmarking.rs`
 
@@ -152,13 +146,11 @@ benchmarking.
    ]
    ```
 
-2. Add your new pallet to your runtime just as you would any other pallet. If you need more details
-   check out the [Add a Pallet to Your Runtime Tutorial](/tutorials/v3/add-a-pallet) or
-   [this guide on integrating a pallet to your runtime](/how-to-guides/v3/basics/pallet-integration).
+1. Add your new pallet to your runtime just as you would any other pallet.
+   If you need more details check out the [Add a Pallet to Your Runtime Tutorial](/tutorials/v3/add-a-pallet) or [this guide on integrating a pallet to your runtime](/how-to-guides/v3/basics/pallet-integration).
 
-3. Then, in addition to your normal runtime configuration, you also need to update the benchmarking
-   section of your runtime. To add our new benchmarks, we simply add a new line with the `add_benchmark!`
-   macro:
+1. Then, in addition to your normal runtime configuration, you also need to update the benchmarking section of your runtime.
+   To add our new benchmarks, we simply add a new line with the `add_benchmark!` macro:
 
    ```rust
    #[cfg(feature = "runtime-benchmarks")]
@@ -197,15 +189,15 @@ benchmarking.
    cargo build --release --features runtime-benchmarks
    ```
 
-2. Once this is done, you should be able to run the `benchmark` subcommand from your project's top
-   level directory to view all CLI options. This will also ensure that benchmarking has been properly integrated:
+1. Once this is done, you should be able to run the `benchmark` subcommand from your project's top level directory to view all CLI options.
+   This will also ensure that benchmarking has been properly integrated:
 
    ```bash
    ./target/release/node-template benchmark --help
    ```
 
-The Benchmarking CLI has a lot of options which can help you automate your benchmarking. Execute the following
-command to run standard benchmarking for your `pallet_you_created`:
+The Benchmarking CLI has a lot of options which can help you automate your benchmarking.
+Execute the following command to run standard benchmarking for your `pallet_you_created`:
 
 ```bash
 ./target/release/node-template benchmark \
@@ -220,13 +212,13 @@ command to run standard benchmarking for your `pallet_you_created`:
     --output ./pallets/src/pallet-created/weights.rs
 ```
 
-This will create a `weights.rs` file inside your pallet's directory. Refer to [this guide](/how-to-guides/v3/weights/use-benchmark-weights) to learn
-how to configure your pallet to use those weights.
+This will create a `weights.rs` file inside your pallet's directory.
+Refer to [this guide](/how-to-guides/v3/weights/use-benchmark-weights) to learn how to configure your pallet to use those weights.
 
 ## Examples
 
-- [Benchmarking in the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/example/src/benchmarking.rs)
-- [Weights in the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/example/src/weights.rs)
+- [Benchmarking in the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/benchmarking.rs)
+- [Weights in the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/weights.rs)
 
 ## Related material
 

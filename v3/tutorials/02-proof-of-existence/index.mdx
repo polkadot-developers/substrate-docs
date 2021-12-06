@@ -19,7 +19,7 @@ This tutorial illustrates how to create a custom proof-of-existence (PoE) servic
 blockchain development framework and the [FRAME](/v3/runtime/frame) library.
 
 Proof of existence is an approach to validating the authenticity and ownership of a digital object by using the object information stored on the blockchain.
-Because the blockchain associates a timestamp and signature with the object, the blockchain record can be used to verify—to serve as proof—that a particular object existed at a specific date and time. It can also verify who the owner of record was at that date and time.
+Because the blockchain associates a timestamp and signature with the object, the blockchain record can be used to verify—to serve as proof—that a particular object existed at a specific date and time. It can also verify who the owner of a record was at that date and time.
 
 ## Digital objects and hashes
 
@@ -32,7 +32,7 @@ Because any change to a file would result in a different hash, users can prove t
 ## Digital objects and account signatures
 
 Blockchains use [public keys](https://en.wikipedia.org/wiki/Public-key_cryptography) to map digital identities to accounts that have private keys.
-The blockchain records the account you use to store the hash for a digitial object as part of the transaction.
+The blockchain records the account you use to store the hash for a digital object as part of the transaction.
 Because the account information is stored as part of the transaction, the controller of the account can later prove ownership as the person who initially uploaded the file.
 
 ## How much time do you need to complete this tutorial?
@@ -232,8 +232,8 @@ To add the `sp-std` crate to the pallet:
    [dependencies.sp-std]
    default-features = false
    git = 'https://github.com/paritytech/substrate.git'
-   tag = 'monthly-2021-10'  # or the latest monthly
-   version = '4.0.0-dev'    # or the latest version
+   tag = 'monthly-2021-11-1'  # or the latest monthly
+   version = '4.0.0-dev'      # or the latest version
    ```
 
 1. Add the `sp-std` crate to the list of features.
@@ -285,7 +285,7 @@ To implement the errors for the proof-of-existence pallet:
 
 To add a new proof to the blockchain, the proof-of-existence pallet requires a storage mechanism.
 To address this requirement, you can create a [hash map](https://en.wikipedia.org/wiki/Hash_table) that maps each proof to its owner and records the block number when the proof was made.
-To create this hash map, you can use the FRAME [`StorageMap`](/rustdocs/latest/frame_support/storage/types/struct.StorageMap.html) pallet.
+To create this hash map, you can use the FRAME [`StorageMap`](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) trait.
 
 To implement storage for the proof-of-existence pallet:
 
@@ -388,13 +388,13 @@ To implement this logic in the proof-of-existence pallet:
    ```
 
 <Message
-type={'yellow'}
-title={'Information'}
-text="There is a full Node Template solution
-[here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tut-sol/proof-of-existence%2Flatest)
-to use as a reference if you\'re stuck. Check the
-[commit diff from the base `latest` template](https://github.com/substrate-developer-hub/substrate-node-template/compare/latest...tutorials/solutions/proof-of-existence?expand=1)
-for the exact changes."
+  type={'yellow'}
+  title={'Information'}
+  text="There is a full Node Template solution
+    [here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/proof-of-existence)
+    to use as a reference if you\'re stuck. Check the
+    [commit diff from the base template](https://github.com/substrate-developer-hub/substrate-node-template/commit/773d72752f3598e5d405b48c6f716f4153c95070#diff-f191d0eb0afa874a64fb9be550a275f957e220b9076c87d4085c2797ca4e310c)
+    for the exact changes."
 />
 
 ## Build the runtime with your new pallet
@@ -423,9 +423,8 @@ To compile and start the updated Substrate node:
 
 ## Build a custom front-end component
 
-Now that you have a new blockchain running with the custom
-proof-of-existence pallet, let's add a custom React component to the front-end template.
-The React component enables you to expose the proof-of-existence capabilities and test interacting with the new pallet.
+Now that you have a new blockchain running with the custom proof-of-existence pallet, let's add a custom React component to the front-end template.
+This React component enables you to expose the proof-of-existence capabilities and interact with the new pallet you created.
 
 ### Add your custom react component
 
@@ -569,19 +568,17 @@ The React component enables you to expose the proof-of-existence capabilities an
 
 1. Start the front-end template by running the following command:
 
-   ```
+   ```bash
    yarn start
    ```
-
-1. Open **http://localhost:8000** in a browser to view the front-end template.
-
-The customized front-end template includes the new proof of existence
-component.
+  
+  This will open up a new tab with the front-end serving at **http://localhost:8000**.
 
 ### Submit a proof
 
 To test the proof-of-existence pallet using the new front-end component:
 
+1. Find the component at the bottom of the page.
 1. Click **Choose file** and select any file on your computer.
 
    The proof-of-existence pallet generates the hash for the selected file and displays it in the File Digest field.
