@@ -131,7 +131,6 @@ For example:
 - Cumulus includes these **parachain** chain specs
   [under `res`](https://github.com/paritytech/cumulus/tree/master/polkadot-parachains/res)
 
-
 It is good practice to commit this raw chain spec into your source before proceeding.
 
 #### Obtain Wasm runtime validation function
@@ -164,7 +163,6 @@ Go to your Parachain Template folder, the following command will create a file c
     See the guide on [converting a solo chain to a parachain](/how-to-guides/v3/parachains/convert) for details on how the Parachain Template was created, and how to convert your chain's logic (not history/state migrations!) to a parachain.
   `}
 />
-
 
 ### Start the collator node
 
@@ -397,7 +395,7 @@ You can also make some on-chain remarks by going to the `Extrinsics` page, choos
 
 If the transaction go through as expected, you have a working parachain.
 
-🎉***Congratulations!***🎉
+🎉**_Congratulations!_**🎉
 
 Read on for more optional material.
 
@@ -450,7 +448,7 @@ An adversary would only need to take down a single node to stall the parachain.
 
 You should have _at least_ two **validators** (relay chain nodes) running for every **collator** (parachain nodes) on your network.
 
-> You can **modify**  [the first section's](/tutorials/v3/cumulus/start-relay#pre-configured-chain-spec-files) provided **plain** relay chain spec to include more validators for testing, or go the more "correct" route used for production of modifying the **source** for genesis state in `chain_spec.rs` for your **relay chain** to add more validators.
+> You can **modify** [the first section's](/tutorials/v3/cumulus/start-relay#pre-configured-chain-spec-files) provided **plain** relay chain spec to include more validators for testing, or go the more "correct" route used for production of modifying the **source** for genesis state in `chain_spec.rs` for your **relay chain** to add more validators.
 
 ### Start a second collator
 

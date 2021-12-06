@@ -226,23 +226,6 @@ You will need a chain specification ([chain spec](/v3/runtime/chain-specs)) for 
 Whichever chain spec file you choose to use we will refer to the file simply as `chain-spec.json`
 in the instructions below. You will need to supply the proper path to the chain spec you are using.
 
-<Message
-  type={`gray`}
-  title={`Distribute your raw spec`}
-  text={`
-    If you intend to let others connect to your network, you should have the genesis Wasm and the associated chain spec for your network generated once and distributed to your peers.
-    This stems from the [non-deterministic issue](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1) in the way Wasm runtimes are compiled, at least for now.
-  `}
-/>
-
-Chain specs _conventionally_ live in a `/res` folder that is published in your node's codebase for others to use.
-For example:
-
-- Polkadot includes these **relay chain** chain specs
-  [under `node/service/res`](https://github.com/paritytech/polkadot/tree/master/node/service/res)
-- Cumulus includes these **parachain** chain specs
-  [under `res`](https://github.com/paritytech/cumulus/tree/master/polkadot-parachains/res)
-
 ### Pre-configured chain spec files
 
 We have included a two-validator relay chain with Alice and Bob as authorities chan spec file in this tutorial that you can use **without modification** for a local test network.
