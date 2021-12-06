@@ -46,7 +46,7 @@ cd substrate-front-end-template
 yarn install
 ```
 
-Open the template in a code editor. You'll notice the following structure (we've only including the directories we care about for this
+Open the template in a code editor. You'll notice the following structure (we're only including the directories we care about for this
 tutorial):
 
 ```
@@ -266,7 +266,7 @@ So it does the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.j
    So we return a clean up function for the effect hook.
    Refer to [Effects with Cleanup](https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup) to learn more about cleanup functions.
 
-1. Now all that's left to do for our component to listen for changes in our node's runtime storage to pass in `subscribeKittyCnt` and `subscribeKitties` to React's `useEffect` function.
+1. Now all that's left to do for our component to listen for changes in our node's runtime storage is to pass in `subscribeKittyCnt` and `subscribeKitties` to React's `useEffect` function.
    Add these lines to enable this:
 
    ```js
@@ -351,7 +351,7 @@ Since it's mostly all Javascript, we won't be going into much detail.
    export default KittyAvatar
    ```
 
-   Notice that the only properties being passed in is `dna`, which will be passed from `KittyCards.js`.
+   Notice that the only property being passed in is `dna`, which will be passed from `KittyCards.js`.
 
 1. The logic in this component is based on a specific Cat Avatar library of PNGs.
    [Download it](https://framagit.org/Deevad/cat-avatar-generator/-/tree/master/avatars/cat) and paste the contents of `avatars/cat` inside a new folder called "KittyAvatar" in your project's `public/assets` folder.
@@ -530,7 +530,7 @@ We'll use React's `Card` component to create a card that renders the Kitty avata
 
 1. It's time to put all the pieces we've built together. We need a function to:
 
-   - Check whether there's any Kitties to render and render a _"No Kitty found here... Create one now!"_
+   - Check whether there are any Kitties to render and render a _"No Kitty found here... Create one now!"_
      message if there aren't any.
    - If there are, render them in a 3 column grid.
 
@@ -642,7 +642,7 @@ If you get stuck in any of the above section, you can refer back to the complete
 **🎉***Congratulations!***🎉** You have finished the Substrate Kitties front-end tutorial!
 We encourage you to write additional functions for other capabilities exposed by your runtime, such as "Set Price", "Buy" or "Breed".
 In [our solution](https://github.com/substrate-developer-hub/substrate-front-end-template/blob/tutorials%2Fkitties/src/KittyCards.js), we implemented the Set Price modal for you to use as an additional example.
-There's lots of ways you can extend what you've learnt here, such as creating a marketplace for different types of avatars, or recreating this front-end with your own UI components.
+There are lots of ways you can extend what you've learnt here, such as creating a marketplace for different types of avatars, or recreating this front-end with your own UI components.
 
 ## Next steps
 
