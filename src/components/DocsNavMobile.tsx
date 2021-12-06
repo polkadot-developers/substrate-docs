@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import cx from 'classnames'
-import { useIntl } from 'react-intl'
 import SlideDownNav from './SlideDownNav'
 import Icon from './Icon'
 import Link from './Link'
@@ -26,38 +25,48 @@ export default function DocsNav({
   pathname,
   hashLink,
 }: DocsNavMobileProps) {
-  const intl = useIntl()
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
-    isOpen ? (document.body.style.overflow = `hidden`) : (document.body.style.overflow = `unset`)
+    isOpen
+      ? (document.body.style.overflow = `hidden`)
+      : (document.body.style.overflow = `unset`)
   }, [isOpen])
 
   return (
     <nav
-      className={cx('bg-substrateGray-light dark:bg-darkBackground w-screen overflow-auto', {
-        'h-[calc(100vh-100px)] z-10': isOpen,
-      })}
+      className={cx(
+        'bg-substrateGray-light dark:bg-darkBackground w-screen overflow-auto',
+        {
+          'h-[calc(100vh-100px)] z-10': isOpen,
+        }
+      )}
     >
       <div
         onClick={() => setIsOpen(!isOpen)}
         className="flex justify-center items-center py-4 bg-substrateGray dark:bg-gray-700 cursor-pointer"
       >
-        <Icon name="docsNavIcon" className="fill-current text-black dark:text-white" />
+        <Icon
+          name="docsNavIcon"
+          className="fill-current text-black dark:text-white"
+        />
         <span className="pl-2 font-bold">
           {section === 'docs'
-            ? `${intl.formatMessage({ id: 'nav-docs' })}`
+            ? 'Docs'
             : section === 'tutorials'
-            ? `${intl.formatMessage({ id: 'nav-tutorials' })}`
+            ? 'Tutorials'
             : section === 'how to guides'
-            ? `${intl.formatMessage({ id: 'nav-how-to-guides' })}`
+            ? 'How-to Guides'
             : null}
         </span>
         <Icon
           name="arrowDown"
-          className={cx('ml-2 fill-current text-black dark:text-white transform', {
-            'rotate-180': isOpen,
-          })}
+          className={cx(
+            'ml-2 fill-current text-black dark:text-white transform',
+            {
+              'rotate-180': isOpen,
+            }
+          )}
         />
       </div>
       <div className="overflow-auto">

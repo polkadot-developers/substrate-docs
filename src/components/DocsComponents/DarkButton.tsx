@@ -1,5 +1,5 @@
 import React from 'react'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import Link from '../Link'
 
 interface DarkButtonProps {
   text: string
@@ -8,13 +8,13 @@ interface DarkButtonProps {
 export function DarkButton({ text, link }: DarkButtonProps) {
   return (
     <>
-      <LocalizedLink className="md-button inline-block my-6" to={link}>
+      <Link className="md-button inline-block my-6" to={link}>
         <div className="flex items-center justify-center w-52 h-14 rounded bg-substrateDark transform transition duration-300 ease-in-out hover:bg-opacity-90">
           <button className="text-lg text-white font-bold focus:outline-none">
             {text}
           </button>
         </div>
-      </LocalizedLink>
+      </Link>
     </>
   )
 }
