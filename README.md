@@ -189,18 +189,31 @@ running gatsby site in the docker container to check all links.
 
 ## Process for using `devhub/latest` and `latest` tags on templates
 
-The devhub team uses the Node Template for tutorials and guides which requires making sure that both the templates and the write-ups (including solutions) are always up to date.
+The devhub team uses the node template for tutorials and guides which requires making sure that both the templates and the write-ups (including solutions) are always up to date.
 We have a system that ensures that content in our documentation hub always builds correctly by using the `devhub/latest` tag for any Substrate crate. 
 
 This requires following a few steps for every new release of Substrate upstream:
 
 1. Go to the [release tags in the Substrate repository](https://github.com/paritytech/substrate/tags).
-1. Set the `devhub/latest` tag to the latest monthly release.
-1. Create a new node template release for the latest monthly (e.g. `monthly-2021-12`). This assumes following the steps to [generate the new template](https://github.com/paritytech/substrate-template-generator).
+1. Set the `devhub/latest` tag to the latest [Polkadot release](https://github.com/paritytech/polkadot/releases) (`polakdot-v<Major>.<Minor>.<Patch>`, not the release candidates apppended `...-rc#`).
+1. Create a new node template release for the latest monthly (e.g. `polkadot-v-0.9.13`). This assumes following the steps to [generate the new template](https://github.com/paritytech/substrate-template-generator).
 1. Then go to the [release tags in the node template repository](https://github.com/substrate-developer-hub/substrate-node-template/tags).
-1. Make the node template's `latest` tag point to the newly generated node template (i.e. in the newly generated node template directory, `git tag latest && git push`).
+1. Make the node template's `latest` tag point to the newly generated node template:
+   ```bash
+   # We want to tag the approprite commit, this is very likely now main
+   # as you just merged a PR into `main` with any changes required from upstream
+   cd substrate-node-template
+   git checkout main 
+   git pull
+   # Move the `latest` tag locally from it's prior location 
+   git tag -d latest && git tag latest
+   # We need to force this tag change upstream **for the template!**
+   git push origin latest --force.
+    ```
 
-The result is that only the solutions to tutotials need to be checked. They could either remain on a previous release, in which case the chore would be to update all `Cargo.toml` files with the same tag. Or they could remain the same however, the chore would be to ensure the solution builds, fixing any upstream breaking changes.
+The result is that only the solutions to tutorials need to be checked.
+They could either remain on a previous release, in which case the chore would be to update all `Cargo.toml` files with the same tag.
+Or they could remain the same however, the chore would be to ensure the solution builds, fixing any upstream breaking changes.
 
 This process also applies for the front-end template and is being tested for other templates such as Frontier and Cumulus. 
 ## Security
