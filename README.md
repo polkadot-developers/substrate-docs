@@ -216,6 +216,7 @@ They could either remain on a previous release, in which case the chore would be
 Or they could remain the same however, the chore would be to ensure the solution builds, fixing any upstream breaking changes.
 
 This process also applies for the front-end template and is being tested for other templates such as Frontier and Cumulus. 
+However, for templates other than the node template, the process is manual (i.e. it doesn't use the template generator mentioned above).
 ## Security
 
 Please report _security_ bugs as stated in the [`static/security.txt` file](static/security.txt) in
