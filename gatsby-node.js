@@ -1,78 +1,17 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { createPageRedirects } = require('./gatsby-node/create-redirects.js')
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const {
+  createDocPages,
+  createHowToGuidePages,
+  createTutorialPages,
+} = require('./gatsby-node/create-pages.js')
 
 exports.createPages = async props => {
   createPageRedirects(props)
-
-  const { actions, graphql, reporter } = props
-  const { createPage } = actions
-
-  const docTemplate = require.resolve(`./src/templates/doc-template.tsx`)
-  const htgTemplate = require.resolve(`./src/templates/htg-template.tsx`)
-  const tutorialTemplate = require.resolve(`./src/templates/tut-template.tsx`)
-
-  const { data } = await graphql(`
-    {
-      allMdx {
-        edges {
-          node {
-            frontmatter {
-              slug
-              section
-            }
-          }
-        }
-      }
-    }
-  `)
-
-  if (data.errors) {
-    reporter.panicOnBuild(data.errors)
-    return
-  }
-
-  const allDocs = data.allMdx.edges.filter(
-    each => each.node.frontmatter.section === 'docs'
-  )
-  const allHtgs = data.allMdx.edges.filter(
-    each => each.node.frontmatter.section === 'how to guides'
-  )
-  const allTuts = data.allMdx.edges.filter(
-    each => each.node.frontmatter.section === 'tutorials'
-  )
-
-  allDocs.forEach(({ node }) => {
-    createPage({
-      path: `${node.frontmatter.slug}/`,
-      component: docTemplate,
-      context: {
-        slug: `${node.frontmatter.slug}`,
-        version: `3.0`,
-      },
-    })
-  })
-
-  allHtgs.forEach(({ node }) => {
-    createPage({
-      path: `${node.frontmatter.slug}/`,
-      component: htgTemplate,
-      context: {
-        slug: `${node.frontmatter.slug}`,
-        version: `3.0`,
-      },
-    })
-  })
-
-  allTuts.forEach(({ node }) => {
-    createPage({
-      path: `${node.frontmatter.slug}/`,
-      component: tutorialTemplate,
-      context: {
-        slug: `${node.frontmatter.slug}`,
-        version: `3.0`,
-      },
-    })
-  })
+  await Promise.all([createDocPages(props)])
+  await Promise.all([createHowToGuidePages(props)])
+  await Promise.all([createTutorialPages(props)])
 }
 
 ////////////////////////////////////////////////////////
