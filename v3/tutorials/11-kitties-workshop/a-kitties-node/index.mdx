@@ -56,17 +56,17 @@ You can refer to the [how-to guides](/how-to-guides/v3) on how to integrate thes
 Follow each step at your own pace &mdash; the goal is for you to learn and the best way to do that is to try it yourself!
 Before moving on from one section to the next, make sure your pallet builds without any error.
 Use the [template files](https://github.com/substrate-developer-hub/substrate-docs/tree/main/static/assets/tutorials/kitties-tutorial) to help you complete each part.
-If you are stuck you can refer to the complete source code on the [Substrate Node Template repository \`tutorials/solutions/kitties\` branch](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/kitties).
+If you are stuck you can refer to the complete source code on the [Substrate node template repository \`tutorials/solutions/kitties\` branch](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/kitties).
 Most of the code changes will be in `/pallets/kitties/src/lib.rs`.
 
 ## Basic set-up
 
 Before we can start making Kitties, we first need to do a little groundwork.
-This part covers the basic patterns involved with using the Substrate Node Template to set up a custom pallet and include a simple storage item.
+This part covers the basic patterns involved with using the Substrate node template to set up a custom pallet and include a simple storage item.
 
 ### Set-up your template node
 
-The [Substrate Node Template][substrate-node-template] provides us with an customizable blockchain node, with built-in networking and consensus layers included.
+The [Substrate node template][substrate-node-template] provides us with an customizable blockchain node, with built-in networking and consensus layers included.
 All we need to focus on is building out the logic of our [runtime][runtime-kb] and [pallets][pallets-kb].
 
 To kick things off, we need to set-up our project name and dependencies.
@@ -80,14 +80,14 @@ We'll use a CLI tool called [kickstart][kickstart-tool] to easily rename our nod
    kickstart https://github.com/sacha-l/kickstart-substrate
    ```
 
-   This command will clone a copy of the most recent Node Template and ask how you would like to call your node and pallet.
+   This command will clone a copy of the most recent node template and ask how you would like to call your node and pallet.
 
 1. Type in:
 
    - `kitties` - as the name of our node. The node will be named as `node-kitties`.
    - `kitties` - as the name of your pallet. The pallet will be named as `pallet-kitties`.
 
-   This will create a directory called `kitties` with a copy of the [Substrate Node Template][substrate-node-template] containing the name changes that correspond our template node, runtime, and pallet.
+   This will create a directory called `kitties` with a copy of the [Substrate node template][substrate-node-template] containing the name changes that correspond our template node, runtime, and pallet.
 
 1. Open the `kitties` directory in your favorite code editor and rename it as `kitties-tutorial` &mdash; or whatever name you like to help keep your work organized.
 
@@ -310,7 +310,7 @@ cargo build --release
 You've completed the first part of this series.
 At this stage, you've learnt the various patterns for:
 
-- Customizing the Substrate Node Template and including a custom pallet.
+- Customizing the Substrate node template and including a custom pallet.
 - Building a Substrate chain and checking that a target pallet compiles.
 - Declaring a single value \`u64\` storage item.
 
@@ -418,7 +418,7 @@ pub mod pallet {
 }
 ```
 
-Along with this code, we'll need to import `serde`. 
+Along with this code, we'll need to import `serde`.
 Add this to your pallet's Cargo.toml file:
 
 ```toml
@@ -568,7 +568,7 @@ Given that we have added a new type in the configuration of our pallet, we need 
 This could come in handy if ever we want to change the algorithm that `KittyRandomness` is using, without needing to modify where it's used inside our pallet.
 
 To showcase this point, we're going to set the `KittyRandomness` type to an instance of [FRAME's `RandomnessCollectiveFlip`][randomness-collective-flip-frame].
-Conveniently, the Node Template already has an instance of the `RandomnessCollectiveFlip` pallet.
+Conveniently, the node template already has an instance of the `RandomnessCollectiveFlip` pallet.
 
 Set the `KittyRandomness` type in your runtime (inside `runtime/src/lib.rs`):
 
@@ -979,9 +979,9 @@ check your code!
   `}
 />
 
-Did that build fine...? 
+Did that build fine...?
 
-🎉***Congratulations!***🎉 
+🎉***Congratulations!***🎉
 
 That's the core functionality of our Kitties pallet.
 In the next section you'll be able to see everything you've built so far in action.
