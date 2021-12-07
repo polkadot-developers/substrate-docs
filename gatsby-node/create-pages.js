@@ -26,12 +26,10 @@ const createDocPages = async ({ graphql, actions }) => {
 
   result.data.allMdx.edges.forEach(({ node }) => {
     createPage({
-      // slug should be from folder
       path: `${node.frontmatter.slug}/`,
       component: path.resolve(`./src/templates/doc.tsx`),
       context: {
         slug: node.frontmatter.slug,
-        // why this version?
         version: `3.0`,
       },
     })
@@ -58,12 +56,10 @@ const createHowToGuidePages = async ({ graphql, actions }) => {
 
   result.data.allMdx.edges.forEach(({ node }) => {
     createPage({
-      // slug should be from folder
       path: `${node.frontmatter.slug}/`,
       component: path.resolve(`./src/templates/how-to-guide.tsx`),
       context: {
         slug: node.frontmatter.slug,
-        // why this version?
         version: `3.0`,
       },
     })
@@ -90,12 +86,10 @@ const createTutorialPages = async ({ graphql, actions }) => {
 
   result.data.allMdx.edges.forEach(({ node }) => {
     createPage({
-      // slug should be from folder
       path: `${node.frontmatter.slug}/`,
       component: path.resolve(`./src/templates/tutorial.tsx`),
       context: {
         slug: node.frontmatter.slug,
-        // why this version?
         version: `3.0`,
       },
     })
