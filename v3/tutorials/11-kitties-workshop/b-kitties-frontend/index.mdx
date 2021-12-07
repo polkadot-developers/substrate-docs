@@ -26,7 +26,7 @@ In this part, you'll build a user interface which can access and interact with o
 We'll be using:
 
 - [Polkadot-JS API](https://polkadot.js.org/docs/api/).
-- The [Substrate Front-end Template](https://github.com/substrate-developer-hub/substrate-front-end-template), a [React app](https://reactjs.org/)
+- The [Substrate front-end template](https://github.com/substrate-developer-hub/substrate-front-end-template), a [React app](https://reactjs.org/)
   that wraps Polkadot-JS API to make it easier to make RPC's to our chain's runtime.
 - A [library for generating Cat avatars](https://framagit.org/Deevad/cat-avatar-generator),
   licensed under [CC-By 4.0](https://creativecommons.org/licenses/by/4.0/) attribution. Thank you
@@ -38,7 +38,7 @@ In case you get stuck, the complete solution for this part of the tutorial can b
 
 The first step of this tutorial is to familiarize yourself with the Substrate Front-end template.
 In this step we will go through an overview of what our React app will look like and the different components we'll be building.
-Start by [installing the Front-end Template][substrate-frontend-template] from your terminal:
+Start by [installing the front-end template][substrate-frontend-template] from your terminal:
 
 ```bash
 git clone https://github.com/substrate-developer-hub/substrate-front-end-template.git
@@ -85,7 +85,7 @@ yarn start
 ```
 
 You should see a tab open up with the front-end template displaying basic features of your chain.
-Notice that it comes with a number of prebuilt components to provide basic interactions with a Substrate Node Template blockchain.
+Notice that it comes with a number of prebuilt components to provide basic interactions with a Substrate node template blockchain.
 
 ### Sketching out our components
 
@@ -274,7 +274,7 @@ So it does the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.j
    useEffect(subscribeKitties, [api, kittyHashes])
    ```
 
-🎉***Congratulations!***🎉 
+🎉***Congratulations!***🎉
 
 We have setup the ground work of accessing the chain and saving all Kitty information internally using React.
 We'll come back to the `Kitties.js` component later once we create all the missing components of our application to complete it.
@@ -387,7 +387,7 @@ Our `KittyCards.js` component will have three sections to it:
    ```
 
    Let's outline what the `TransferModal` will do.
-   Conveniently, the Substrate Front-end Template comes with a component called `TxButton` which is a useful way to include a transfer button that interacts with a node.
+   Conveniently, the Substrate front-end template comes with a component called `TxButton` which is a useful way to include a transfer button that interacts with a node.
    This component will allow us to send a transaction into our node and trigger a signed extrinsic for the Kitties pallet.
    The way it is built can be broken down into the following pieces:
 

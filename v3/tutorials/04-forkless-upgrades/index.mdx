@@ -36,7 +36,7 @@ guarantees, network participants can use the blockchain itself to trustlessly di
 extended runtime logic without needing to fork the chain or even release a new blockchain client.
 
 This tutorial will use the Substrate Developer Hub
-[Node Template](https://github.com/substrate-developer-hub/substrate-node-template) to explore two
+[node template](https://github.com/substrate-developer-hub/substrate-node-template) to explore two
 mechanisms for forkless upgrades of [FRAME](/v3/runtime/frame)-based runtimes.
 First, the
 [`sudo_unchecked_weight`](/rustdocs/latest/pallet_sudo/pallet/enum.Call.html#variant.sudo_unchecked_weight)
@@ -113,10 +113,10 @@ runtime upgrade using the [Sudo pallet](/v3/runtime/frame#sudo).
 
 Since forkless runtime upgrades do not require network participants to restart their blockchain
 clients, the first step of this tutorial is to start the template node as-is. Build and start the
-unmodified [Node Template](https://github.com/substrate-developer-hub/substrate-node-template).
+unmodified [node template](https://github.com/substrate-developer-hub/substrate-node-template).
 
 ```shell
-cargo run --release -- --dev 
+cargo run --release -- --dev
 ```
 
 <br />
@@ -153,11 +153,11 @@ intentionally designed to consume the maximum weight that may fit in a block.
   type={`yellow`}
   title={`Information`}
   text="The runtime upgrade should consume the entire block to avoid extrinsics trying to execute
-	on a different version of a runtime when called. Although theoretically one may be able to 
+	on a different version of a runtime when called. Although theoretically one may be able to
 	use [transaction priority](/v3/concepts/tx-pool#transaction-priority)
-	and carefully study the FRAME logic involved to allow for other extrinsics to be dispatched 
+	and carefully study the FRAME logic involved to allow for other extrinsics to be dispatched
 	in the same block as the upgrade, it is a very poor idea to try to do this for almost
-	any blockchain: it is worth to spend one block to keep this operation clean and reduce 
+	any blockchain: it is worth to spend one block to keep this operation clean and reduce
 	chance of error. This study is outside the scope of this tutorial.
 	"
 />
@@ -366,10 +366,10 @@ Use [this link](https://polkadot.js.org/apps/#/extrinsics?rpc=ws://127.0.0.1:994
 <Message
   type={`green`}
   title={`Tip`}
-  text="Some ad blockers and browser restrictions (e.g. the built-in Shield in Brave browser, and https 
-	  requirement for socket connection in Firefox) interfere with connecting to a local node. Make sure 
-	  to check them and, if needed, turn them off. You may not get connecting from a remote IP (like `polkadot.js.org/apps/`) 
-	  to a local node working. If you are unable to solve this, we encourage you to 
+  text="Some ad blockers and browser restrictions (e.g. the built-in Shield in Brave browser, and https
+	  requirement for socket connection in Firefox) interfere with connecting to a local node. Make sure
+	  to check them and, if needed, turn them off. You may not get connecting from a remote IP (like `polkadot.js.org/apps/`)
+	  to a local node working. If you are unable to solve this, we encourage you to
 	  host your app locally, like [the apps UI](https://github.com/polkadot-js/apps#development).
 	  "
 />
@@ -400,7 +400,7 @@ Next up, we will:
 
 ## Schedule an Upgrade
 
-Now that the Node Template has been upgraded to include the Scheduler pallet,
+Now that the node template has been upgraded to include the Scheduler pallet,
 [the `schedule` function](rustdocs/latest/pallet_scheduler/pallet/enum.Call.html#variant.schedule)
 can be used to perform the next runtime upgrade. In the previous part, the
 `sudo_unchecked_weight` function was used to override the weight associated with the `set_code`
@@ -469,7 +469,7 @@ In the previous section, the Scheduler pallet was configured with the `Root` ori
 [`ScheduleOrigin`](/rustdocs/latest/pallet_scheduler/trait.Config.html#associatedtype.ScheduleOrigin),
 which means that the `sudo` function (_not_ `sudo_unchecked_weight`) can be used to invoke the
 `schedule` function. Use this link to open the Polkadot JS Apps UI's Sudo tab:
-https://polkadot.js.org/apps/#/sudo?rpc=ws://127.0.0.1:9944. 
+https://polkadot.js.org/apps/#/sudo?rpc=ws://127.0.0.1:9944.
 
 Wait until all the other fields have
 been filled in before providing the `when` parameter. Leave the `maybe_periodic` parameter empty and

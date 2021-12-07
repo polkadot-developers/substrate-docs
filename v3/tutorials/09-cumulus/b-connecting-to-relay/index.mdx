@@ -90,12 +90,12 @@ Once you submit this extrinsic successfully (you must see a successful `registra
 
 ### Specify a parachain for the relay chain
 
-We'll begin by generating a few files based on the Parachain Template with the reserved para ID (para ID `2000`).
+We'll begin by generating a few files based on the parachain template with the reserved para ID (para ID `2000`).
 
 #### Generate a parachain genesis state
 
 To register a parachain, the relay chain needs to know the parachain's [genesis state](/v3/runtime/chain-specs#the-genesis-state). The collator node can export that state to a file.
-Go to your Parachain Template folder, the following command will create a file containing the parachain's entire genesis state, hex-encoded:
+Go to your parachain template folder, the following command will create a file containing the parachain's entire genesis state, hex-encoded:
 
 ```bash
 ./target/release/parachain-collator export-genesis-state --parachain-id 2000 > para-2000-genesis
@@ -121,7 +121,7 @@ If you are launching multiple parachains using the exact same runtime, you do no
     You cannot, at this time, connect a parachain with any previous state to a relay chain.
     All parachains must start from block 0 on the relay chain. Eventually, migrating a solo chain built on Substrate is expected to be possible, but this functionality is not planned anytime soon.
     \n
-    See the guide on [converting a solo chain to a parachain](/how-to-guides/v3/parachains/convert) for details on how the Parachain Template was created, and how to convert your chain's logic (not state migrations!) to a parachain.
+    See the guide on [converting a solo chain to a parachain](/how-to-guides/v3/parachains/convert) for details on how the parachain template was created, and how to convert your chain's logic (not state migrations!) to a parachain.
   `}
 />
 
@@ -367,7 +367,7 @@ https://polkadot.js.org/apps/?rpc=ws%3A%2F%2Flocalhost%3A9945#/
 You can make some simple token transfers to ensure that the parachain is operating normally.
 You can also make some on-chain remarks by going to the `Extrinsics` page, choosing `System` pallet and `remark` extrinsic.
 
-If the transaction go through as expected, you have a working parachain. 
+If the transaction go through as expected, you have a working parachain.
 
 🎉***Congratulations!*** 🎉
 
