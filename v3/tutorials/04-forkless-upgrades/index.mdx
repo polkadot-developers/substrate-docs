@@ -116,19 +116,16 @@ clients, the first step of this tutorial is to start the template node as-is. Bu
 unmodified [Node Template](https://github.com/substrate-developer-hub/substrate-node-template).
 
 ```shell
-cargo run --release -- --dev 
+cargo run --release -- --dev
 ```
 
 <br />
 <Message
   type={`green`}
   title={`Tip`}
-  text="**Leave this node running!** Notice that the node will not be restarted as part of this tutorial
-	despite the fact that two runtime upgrades are performed.
-	You will be editing and re-compiling the node\'s runtime code, but _do not_ stop and restart the
-	node to prove to yourself that the runtime upgrade is in fact done on an _active_ (dev) network,
-	not a rebuilt or restarted one.
-	"
+  text="**Leave this node running!** Notice that the node will not be restarted as part of this tutorial despite the fact that two runtime upgrades are performed.
+  You will be editing and re-compiling the node\'s runtime code, but _do not_ stop and restart the node to prove to yourself that the runtime upgrade is in fact done on an _active_ (dev) network, not a rebuilt or restarted one.
+  "
 />
 
 By default, the [well-known Alice account](/v3/tools/subkey#well-known-keys) is
@@ -152,14 +149,10 @@ intentionally designed to consume the maximum weight that may fit in a block.
 <Message
   type={`yellow`}
   title={`Information`}
-  text="The runtime upgrade should consume the entire block to avoid extrinsics trying to execute
-	on a different version of a runtime when called. Although theoretically one may be able to 
-	use [transaction priority](/v3/concepts/tx-pool#transaction-priority)
-	and carefully study the FRAME logic involved to allow for other extrinsics to be dispatched 
-	in the same block as the upgrade, it is a very poor idea to try to do this for almost
-	any blockchain: it is worth to spend one block to keep this operation clean and reduce 
-	chance of error. This study is outside the scope of this tutorial.
-	"
+  text="The runtime upgrade should consume the entire block to avoid extrinsics trying to execute on a different version of a runtime when called.
+  Although theoretically one may be able to use [transaction priority](/v3/concepts/tx-pool#transaction-priority) and carefully study the FRAME logic involved to allow for other extrinsics to be dispatched in the same block as the upgrade, it is a very poor idea to try to do this for almost any blockchain: it is worth to spend one block to keep this operation clean and reduce chance of error.
+  This study is outside the scope of this tutorial.
+  "
 />
 
 The [`set_code` function](/rustdocs/latest/src/frame_system/lib.rs.html#345-352)'s
@@ -192,7 +185,7 @@ fn sudo(origin, call) -> Result {
 	// Ensure caller is the account identified by the administrator key
 	let sender = ensure_signed(origin)?;
 	ensure!(sender == Self::key(), Error::RequireSudo);
-  
+
 	// Dispatch the specified call as the Root origin
 	let res = call.dispatch(Origin::Root);
 	Ok()
@@ -339,10 +332,8 @@ cargo build --release -p node-template-runtime
 <Message
   type={`yellow`}
   title={`Information`}
-  text="Here is a
-	  [solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/runtime-upgrade)
-	  to check against in case you\'re stuck. See the `diff` in the commit history for details.
-	  "
+  text="Here is a [solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/runtime-upgrade) to check against in case you\'re stuck. See the `diff` in the commit history for details.
+  "
 />
 
 Here the `--release` flag will result in a longer compile time, but also generate a smaller build
@@ -366,12 +357,9 @@ Use [this link](https://polkadot.js.org/apps/#/extrinsics?rpc=ws://127.0.0.1:994
 <Message
   type={`green`}
   title={`Tip`}
-  text="Some ad blockers and browser restrictions (e.g. the built-in Shield in Brave browser, and https 
-	  requirement for socket connection in Firefox) interfere with connecting to a local node. Make sure 
-	  to check them and, if needed, turn them off. You may not get connecting from a remote IP (like `polkadot.js.org/apps/`) 
-	  to a local node working. If you are unable to solve this, we encourage you to 
-	  host your app locally, like [the apps UI](https://github.com/polkadot-js/apps#development).
-	  "
+  text="Some ad blockers and browser restrictions (e.g. the built-in Shield in Brave browser, and https requirement for socket connection in Firefox) interfere with connecting to a local node. Make sure to check them and, if needed, turn them off.
+  You may not get connecting from a remote IP (like `polkadot.js.org/apps/`) to a local node working. If you are unable to solve this, we encourage you to host your app locally, like [the apps UI](https://github.com/polkadot-js/apps#development).
+  "
 />
 
 Use Alice's account to invoke the `sudoUncheckedWeight` function and use the `setCode` function from the system
@@ -441,11 +429,8 @@ minimum balance needed to keep an account alive from the point-of-view of the Ba
 <Message
   type={`yellow`}
   title={`Information`}
-  text="Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000
-	  to be reaped - that would require a
-	  [storage migration](/v3/runtime/upgrades#storage-migrations), which is out of
-	  scope for this tutorial.
-	  "
+  text="Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000 to be reaped - that would require a [storage migration](/v3/runtime/upgrades#storage-migrations), which is out of scope for this tutorial.
+  "
 />
 
 ### Build the Upgraded Runtime
@@ -454,14 +439,7 @@ minimum balance needed to keep an account alive from the point-of-view of the Ba
 cargo build --release -p node-template-runtime
 ```
 
-<br />
-<Message
-  type={`gray`}
-  title={`Note`}
-  text="This will _override_ any previous build artifacts! So if you want to have a copy on hand of
-	  your last runtime Wasm build files, be sure to copy them somewhere else.
-	  "
-/>
+This will _override_ any previous build artifacts! So if you want to have a copy on hand of your last runtime Wasm build files, be sure to copy them somewhere else."
 
 ### Upgrade the Runtime
 
@@ -469,7 +447,7 @@ In the previous section, the Scheduler pallet was configured with the `Root` ori
 [`ScheduleOrigin`](/rustdocs/latest/pallet_scheduler/trait.Config.html#associatedtype.ScheduleOrigin),
 which means that the `sudo` function (_not_ `sudo_unchecked_weight`) can be used to invoke the
 `schedule` function. Use this link to open the Polkadot JS Apps UI's Sudo tab:
-https://polkadot.js.org/apps/#/sudo?rpc=ws://127.0.0.1:9944. 
+https://polkadot.js.org/apps/#/sudo?rpc=ws://127.0.0.1:9944.
 
 Wait until all the other fields have
 been filled in before providing the `when` parameter. Leave the `maybe_periodic` parameter empty and

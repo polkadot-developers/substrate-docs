@@ -191,7 +191,7 @@ forward the "success" `bool` up to the function that calls it.
 ```rust
 #[ink(message)]
 pub fn transfer(&mut self, to: AccountId, value: Balance) -> bool {
-  /* --snip-- */
+	/* --snip-- */
 }
 ```
 
@@ -466,9 +466,9 @@ bottom section of the code on the right panel.
 ```rust
 #[cfg(test)]
 mod tests {
-  use super::*;
-  use ink_lang as ink;
-  // snip...
+	use super::*;
+	use ink_lang as ink;
+	// snip...
 }
 ```
 
@@ -481,8 +481,8 @@ The first test case is just:
 ```rust
 #[ink::test]
 fn new_works() {
-  let contract = Erc20::new(777);
-  assert_eq!(contract.total_supply(), 777);
+	let contract = Erc20::new(777);
+	assert_eq!(contract.total_supply(), 777);
 }
 ```
 

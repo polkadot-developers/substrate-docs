@@ -113,7 +113,7 @@ To add the Nicks pallet to the Substrate node template:
       |
    53 |         sandbox::memory_teardown(self.memory_idx);
       |                  ^^^^^^^^^^^^^^^ not found in `sandbox`
-   
+
    error[E0425]: cannot find function `memory_new` in module `sandbox`
      --> ~/.cargo/git/checkouts/substrate-7e08433d4c370a21/83a6f1a/primitives/sandbox/src/../without_std.rs:72:18
       |
@@ -184,7 +184,7 @@ Just like you used the Balances pallet as a template for importing the Nicks pal
      	// A heuristic that is used for weight estimation.
      	pub const MaxLocks: u32 = 50;
      }
-   
+
      ```
 
    - The `impl` block where the types and values defined by the `Config` interface are configured.
@@ -193,23 +193,23 @@ Just like you used the Balances pallet as a template for importing the Nicks pal
      impl pallet_balances::Config for Runtime {
      	// The previously defined parameter_type is used as a configuration parameter.
      	type MaxLocks = MaxLocks;
-   
+
      	// The "Balance" that appears after the equal sign is an alias for the u128 type.
      	type Balance = Balance;
-   
+
      	// The empty value, (), is used to specify a no-op callback function.
      	type DustRemoval = ();
-   
+
      	// The previously defined parameter_type is used as a configuration parameter.
      	type ExistentialDeposit = ExistentialDeposit;
-   
+
      	// The FRAME runtime system is used to track the accounts that hold balances.
      	type AccountStore = System;
-   
+
      	// Weight information is supplied to the Balances pallet by the node template runtime.
      	// type WeightInfo = (); // old way
      	type WeightInfo = pallet_balances::weights::SubstrateWeight<Runtime>;
-   
+
      	// The ubiquitous event type.
      	type Event = Event;
      }
@@ -244,23 +244,23 @@ To implement the nicks pallet in your runtime:
    	// `Balances` is defined in `construct_runtime!` macro. See below.
    	// https://docs.substrate.io/rustdocs/latest/pallet_balances/index.html#implementations-2
    	type Currency = Balances;
-     
+
    	// Use the NickReservationFee from the parameter_types block.
    	type ReservationFee = NickReservationFee;
-     
+
    	// No action is taken when deposits are forfeited.
    	type Slashed = ();
-     
+
    	// Configure the FRAME System Root origin as the Nick pallet admin.
    	// https://docs.substrate.io/rustdocs/latest/frame_system/enum.RawOrigin.html#variant.Root
    	type ForceOrigin = frame_system::EnsureRoot<AccountId>;
-     
+
    	// Use the MinNickLength from the parameter_types block.
    	type MinLength = MinNickLength;
-     
+
    	// Use the MaxNickLength from the parameter_types block.
    	type MaxLength = MaxNickLength;
-     
+
    	// The ubiquitous event type.
    	type Event = Event;
    }
@@ -330,12 +330,12 @@ To start the local Substrate node:
 
 1. Start the node in development mode by running the following command:
 
-   ```
+   ```bash
    ./target/release/node-template --dev
    ```
 
    The node-template command-line options specify how you want the running node to operate.
-In this case, the `--dev` option specifies that the node runs in developer mode using the predefined `development` chain specification.
+   In this case, the `--dev` option specifies that the node runs in developer mode using the predefined `development` chain specification.
    By default, this option also deletes all active data—such as keys, the blockchain database, and networking information when you stop the node by pressing Control-c.
    Using the `--dev` option ensures that you have a clean working state any time you stop and restart the node.
 
@@ -457,10 +457,8 @@ You can generally copy what was done there as a starting point to include a pall
 <Message
   type={`green`}
   title={`Learn More`}
-  text={`Learn how to add a more complex pallet to the Node Template by going through the
-  [Add the Contracts Pallet](/how-to-guides/v3/pallet-design/contracts-pallet) guide or complete 
-  the [Forkless Upgrade a Chain](/tutorials/v3/forkless-upgrades) tutorial to learn how Substrate enables
-  forkless runtime upgrades and follow steps to perform two distinct types of upgrades.`}
+  text={`Learn how to add a more complex pallet to the Node Template by going through the [Add the Contracts Pallet](/how-to-guides/v3/pallet-design/contracts-pallet) guide or complete the [Forkless Upgrade a Chain](/tutorials/v3/forkless-upgrades) tutorial to learn how Substrate enables forkless runtime upgrades and follow steps to perform two distinct types of upgrades.
+  `}
 />
 
 ## Publish Your Own Pallet
