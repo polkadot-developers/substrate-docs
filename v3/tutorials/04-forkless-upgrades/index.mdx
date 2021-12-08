@@ -36,7 +36,7 @@ guarantees, network participants can use the blockchain itself to trustlessly di
 extended runtime logic without needing to fork the chain or even release a new blockchain client.
 
 This tutorial will use the Substrate Developer Hub
-[Node Template](https://github.com/substrate-developer-hub/substrate-node-template) to explore two
+[node template](https://github.com/substrate-developer-hub/substrate-node-template) to explore two
 mechanisms for forkless upgrades of [FRAME](/v3/runtime/frame)-based runtimes.
 First, the
 [`sudo_unchecked_weight`](/rustdocs/latest/pallet_sudo/pallet/enum.Call.html#variant.sudo_unchecked_weight)
@@ -113,7 +113,7 @@ runtime upgrade using the [Sudo pallet](/v3/runtime/frame#sudo).
 
 Since forkless runtime upgrades do not require network participants to restart their blockchain
 clients, the first step of this tutorial is to start the template node as-is. Build and start the
-unmodified [Node Template](https://github.com/substrate-developer-hub/substrate-node-template).
+unmodified [node template](https://github.com/substrate-developer-hub/substrate-node-template).
 
 ```shell
 cargo run --release -- --dev
@@ -388,7 +388,7 @@ Next up, we will:
 
 ## Schedule an Upgrade
 
-Now that the Node Template has been upgraded to include the Scheduler pallet,
+Now that the node template has been upgraded to include the Scheduler pallet,
 [the `schedule` function](rustdocs/latest/pallet_scheduler/pallet/enum.Call.html#variant.schedule)
 can be used to perform the next runtime upgrade. In the previous part, the
 `sudo_unchecked_weight` function was used to override the weight associated with the `set_code`

@@ -2,42 +2,38 @@ import React from 'react'
 import Icon from '../Icon'
 import { SecondaryButton } from '../Buttons'
 
-interface FeedbackWidgetProps {
-  title: string
-  section: string
-  slug: string
-}
-
-export function FeedbackWidget({ title, slug, section }: FeedbackWidgetProps) {
+export function FeedbackWidget() {
   const githubLink =
-    'https://github.com/substrate-developer-hub/substrate-docs/issues/new?'
-  const githubTitle = `Feedback Submission - ${section} - ${title} - ${slug}`
-  const currentSection = () => {
-    if (section === 'how to guides') {
-      return 'Guide'
-    }
-    if (section === 'tutorials') {
-      return 'Tutorial'
-    }
-    return 'Page'
-  }
+    'https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose'
   return (
     <div>
       <div className="flex items-center pt-10 mb-4">
         <Icon
           name="feedbackIcon"
-          className="mr-2 fill-current text-subtrateDark dark:text-substrateWhite"
+          className="mr-2 fill-current text-substrateDark dark:text-substrateWhite"
         />
         <span className="text-xl font-semibold">
-          Was This {currentSection()} Helpful?
+          Run into problems?
         </span>
       </div>
 
       <SecondaryButton
         external
-        link={`${githubLink}title=${githubTitle}&template=feedback-template.yaml&labels=feedback`}
+        link={`${githubLink}`}
       >
-        Help us improve
+      <div className="flex items-center pt-2 mb-2">
+        <span className="font-semibold">
+          Let us Know
+        </span>
+        <Icon
+          name="github"
+          className="m-2 fill-current dark:text-substrateDark text-substrateWhite"
+        />
+		<Icon
+          name="externalIcon"
+          className="fill-current dark:text-substrateDark text-substrateWhite"
+        />
+      </div>
       </SecondaryButton>
     </div>
   )
