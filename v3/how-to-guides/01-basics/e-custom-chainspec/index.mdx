@@ -56,7 +56,7 @@ We have just generated a **plain chain spec** file for the _default_ network set
 
 ### 2. Modify the plain chain specification (optional)
 
-This optional step we can leverage an _existing_ plain chain specification for a network that otherwise would require modification of te _source_ of the node to run on a _new network_.
+This optional step we can leverage an _existing_ plain chain specification for a network that otherwise would require modification of the _source_ of the node to run on a _new network_.
 For example, this can be quite useful in the [Cumulus Tutorial](/tutorials/v3/cumulus/start-relay) where we want to create a custom _relay chain_ without customizing Polkadot's source.
 
 Here we use the _same_ chain spec, but pass a flag to disable bootnodes, as we want a _new_ network where these nodes will be different.
@@ -87,7 +87,7 @@ With a plain spec available, you generate a final raw chain spec by:
     "
 />
 
-It is _conventional_ to include the chain specification files for your node _within the source code itself_ so that anyone building your node and avoid any chance of non-determinism causing nodes to believe they are on different networks (as the genesis blob may differ).
+It is _conventional_ to include the chain specification files for your node _within the source code itself_ so that anyone can build your node in the same way, whereby it becomes easy to check for non-determinism by comparing a genesis blob with another. 
 Polkadot, Kusama, Rococo, and more network chain spec files are found [in the source here](https://github.com/paritytech/polkadot/tree/master/node/service/res) along with a `.gitignore` file to ensure that you don't accidentally change these `!/*.json` files as you build further on your node's software and do [runtime upgrades](/tutorials/v3/forkless-upgrades).
 
 ### 5. Start a new node

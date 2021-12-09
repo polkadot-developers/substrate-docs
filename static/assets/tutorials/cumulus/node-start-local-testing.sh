@@ -49,5 +49,5 @@ rm -rf /tmp/relay /tmp/parachain
 # Optional Force que action to speed up (as sudo): paras -> forceQueueAction(para) for 2000
 # https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/sudo
 
-# Test parachain transfere
+# Test parachain transfer
 # https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A8844#/
