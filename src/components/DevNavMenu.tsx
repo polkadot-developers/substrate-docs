@@ -634,13 +634,13 @@ DevNavMenuTuts.set('cumulusTutorial', [
         link: '/tutorials/v3/cumulus/start-relay/',
       },
       {
-        title: `Connect a Parachain`,
+        title: `Connect a Local Parachain`,
         link: '/tutorials/v3/cumulus/connect-parachain/',
       },
-      {
-        title: `Launch a Local Parachain Testnet`,
-        link: '/tutorials/v3/cumulus/polkadot-launch/',
-      },
+      // {
+      //   title: `Launch a Local Parachain Testnet`,
+      //   link: '/tutorials/v3/cumulus/polkadot-launch/',
+      // },
       {
         title: `Connect to a Live Relay Chain`,
         link: '/tutorials/v3/cumulus/rococo',

@@ -2,7 +2,7 @@
 title: Launch a Parachain Testnet
 slug: /tutorials/v3/cumulus/polkadot-launch
 sideNav: cumulusTutorial
-version: 'polkadot-0.9.10'
+version: 'polkadot-v0.9.13'
 section: tutorials
 category: parachains
 duration: 3 Hours
@@ -17,13 +17,19 @@ keywords:
   - relay chain
   - parachain
   - parathread
-  - paraid
+  - paraID
   - template
   - rococo
   - xcm
   - xcmp
   - collator
 ---
+
+## NOTE: BREAKING CHANGES
+
+> The following is for **reference only**.
+> There is a temporary breaking issue in the launch tool that is traced in https://github.com/substrate-developer-hub/substrate-docs/issues/634 .
+> Thus the examples below are not expected to work!
 
 The final part of the workshop will step you through how to use the [`polkadot-launch`](https://github.com/paritytech/polkadot-launch) tool to automate the launch of a full parachain testnet with multiple parachains and a common relay chain.
 
@@ -136,7 +142,7 @@ If you wish to monitor the logs in real time, you can do so with:
 ```bash
 # While `polkadot-launch` is running...
 # Open a new terminal for each node and monitor logs with:
-tail -f <logfile>
+tail -f <log file>
 ```
 
 Another way to verify the setup is by going to:
@@ -150,8 +156,8 @@ After configuring the Apps to connect to the local **relay chain node**, you sho
   type={`green`}
   title={`All done!`}
   text={`
-  You have automated the launch of a 3-node relay chain, and two parachains with a single node using \`polkadot-launch\` CLI utility and avoided all the initial manual overhead of starting nodes and registering parachains!
-  `}
+You have automated the launch of a 3-node relay chain, and two parachains with a single node using \`polkadot-launch\` CLI utility and avoided all the initial manual overhead of starting nodes and registering parachains!
+`}
 />
 
 Next, we will go through in details the configuration parameters that `polkadot-launch` recognizes in the config file.
