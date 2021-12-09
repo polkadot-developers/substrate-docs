@@ -164,7 +164,7 @@ token transfer when we enable third party allowances and spending on-behalf-of.
 
 ```rust
 fn transfer_from_to(&mut self, from: AccountId, to: AccountId, value: Balance) -> bool {
-  /* --snip-- */
+	/* --snip-- */
 }
 ```
 
@@ -177,7 +177,7 @@ send to the `to` account, something likes the following:
 
 ```rust
 if balance_from < value {
-    return false
+	return false
 }
 ```
 
@@ -191,7 +191,7 @@ forward the "success" `bool` up to the function that calls it.
 ```rust
 #[ink(message)]
 pub fn transfer(&mut self, to: AccountId, value: Balance) -> bool {
-  /* --snip-- */
+	/* --snip-- */
 }
 ```
 
@@ -245,11 +245,11 @@ For example,
 ```rust
 #[ink(event)]
 pub struct Transfer {
-    #[ink(topic)]
-    from: Option<AccountId>,
-    #[ink(topic)]
-    to: Option<AccountId>,
-    value: Balance,
+	#[ink(topic)]
+	from: Option<AccountId>,
+	#[ink(topic)]
+	to: Option<AccountId>,
+	value: Balance,
 }
 ```
 
@@ -274,12 +274,13 @@ does not come from any other account, and so the `from` value should be `None`.
 
 ```rust
 self.env()
-    .emit_event(
-        Transfer {
-            from: None,
-            to: Some(self.env().caller()),
-            value: 100,
-        });
+	.emit_event(
+		Transfer {
+			from: None,
+			to: Some(self.env().caller()),
+			value: 100,
+		}
+	);
 ```
 
 Notice that `value` does not need a `Some()`, as the value is not stored in an `Option`.
@@ -359,8 +360,8 @@ would look like:
 
 ```rust
 pub struct Erc20 {
-    /// Balances that are spendable by non-owners: (owner, spender) -> allowed
-    allowances: ink_storage::collections::HashMap<(AccountId, AccountId), Balance>,
+	/// Balances that are spendable by non-owners: (owner, spender) -> allowed
+	allowances: ink_storage::collections::HashMap<(AccountId, AccountId), Balance>,
 }
 ```
 
@@ -395,7 +396,7 @@ In code, that can easily be represented like so:
 ```rust
 let allowance = self.allowance_of_or_zero(&from, &self.env().caller());
 if allowance < value {
-    return false
+	return false
 }
 /* --snip-- */
 true
@@ -465,9 +466,9 @@ bottom section of the code on the right panel.
 ```rust
 #[cfg(test)]
 mod tests {
-  use super::*;
-  use ink_lang as ink;
-  // snip...
+	use super::*;
+	use ink_lang as ink;
+	// snip...
 }
 ```
 
@@ -480,8 +481,8 @@ The first test case is just:
 ```rust
 #[ink::test]
 fn new_works() {
-  let contract = Erc20::new(777);
-  assert_eq!(contract.total_supply(), 777);
+	let contract = Erc20::new(777);
+	assert_eq!(contract.total_supply(), 777);
 }
 ```
 

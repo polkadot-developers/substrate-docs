@@ -1,8 +1,5 @@
-import { useIntl } from 'react-intl'
-
 const DevNavMenu = {
   global: () => {
-    const intl = useIntl()
     return [
       {
         section: `Docs`,
@@ -10,505 +7,439 @@ const DevNavMenu = {
         external: false,
       },
       {
-        section: `${intl.formatMessage({ id: 'docs-nav-tutorials' })}`,
+        section: 'Tutorials',
         url: '/tutorials/',
         external: false,
       },
       {
-        section: `${intl.formatMessage({ id: 'docs-nav-htg' })}`,
+        section: 'How-to Guides',
         url: '/how-to-guides/',
         external: false,
       },
       {
-        section: `${intl.formatMessage({ id: 'docs-nav-rustdocs' })}`,
+        section: 'Rust Docs',
         url: '/rustdocs/',
         external: false,
       },
     ]
   },
-
   knowledgebase: () => {
-    const intl = useIntl()
     return [
       {
-        name: `${intl.formatMessage({ id: 'docs-menu-getting-started' })}`,
+        name: 'Getting Started',
         items: [
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-overview' })}`,
+            title: 'Overview',
             link: '/v3/getting-started/overview/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-architecture' })}`,
+            title: 'Architecture',
             link: '/v3/getting-started/architecture/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-installation' })}`,
+            title: 'Installation',
             link: '/v3/getting-started/installation/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-windows' })}`,
+            title: 'Getting Started on Windows',
             link: '/v3/getting-started/windows-users/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-glossary' })}`,
+            title: 'Glossary',
             link: '/v3/getting-started/glossary/',
           },
         ],
       },
       {
-        name: `${intl.formatMessage({ id: 'docs-menu-key-concepts' })}`,
+        name: 'Key Concepts',
         items: [
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-gs-runtime' })}`,
+            title: 'Runtime',
             link: '/v3/concepts/runtime/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-extrinsics' })}`,
+            title: 'Extrinsics',
             link: '/v3/concepts/extrinsics/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'docs-menu-account-abstractions',
-            })}`,
+            title: 'Account Abstractions',
             link: '/v3/concepts/account-abstractions/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'docs-menu-transaction-pool',
-            })}`,
+            title: 'Transaction Pool',
             link: '/v3/concepts/tx-pool/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'docs-menu-session-keys',
-            })}`,
+            title: 'Session Keys',
             link: '/v3/concepts/session-keys/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'docs-menu-transaction-weight',
-            })}`,
+            title: 'Transaction Weight',
             link: '/v3/concepts/weight/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-execution' })}`,
+            title: 'Execution',
             link: '/v3/concepts/execution/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'docs-menu-offchain-features',
-            })}`,
+            title: 'Off-Chain Features',
             link: '/v3/concepts/off-chain-features/',
           },
         ],
       },
       {
-        name: `${intl.formatMessage({ id: 'docs-menu-runtime' })}`,
+        name: 'Runtime Development',
         items: [
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-frame' })}`,
+            title: 'FRAME',
             link: '/v3/runtime/frame/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'docs-menu-macros',
-            })}`,
+            title: 'Macros',
             link: '/v3/runtime/macros/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-metadata' })}`,
+            title: 'Metadata',
             link: '/v3/runtime/metadata/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-storage' })}`,
+            title: 'Storage',
             link: '/v3/runtime/storage/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'docs-menu-origins',
-            })}`,
+            title: 'Origins',
             link: '/v3/runtime/origins/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-events' })}`,
+            title: 'Events and Errors',
             link: '/v3/runtime/events-and-errors/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'docs-menu-weights-and-fees',
-            })}`,
+            title: 'Weights and Fees',
             link: '/v3/runtime/weights-and-fees/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-benchmarking' })}`,
+            title: 'Benchmarking',
             link: '/v3/runtime/benchmarking/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-debugging' })}`,
+            title: 'Debugging',
             link: '/v3/runtime/debugging/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-testing' })}`,
+            title: 'Testing',
             link: '/v3/runtime/testing/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-randomness' })}`,
+            title: 'Randomness',
             link: '/v3/runtime/randomness/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-chain-specs' })}`,
+            title: 'Chain Specification',
             link: '/v3/runtime/chain-specs/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-upgrades' })}`,
+            title: 'Upgrades',
             link: '/v3/runtime/upgrades/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-coupling' })}`,
+            title: 'Pallet Coupling',
             link: '/v3/runtime/pallet-coupling/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-rpcs' })}`,
+            title: 'Custom RPCs',
             link: '/v3/runtime/custom-rpcs/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-smart-contracts' })}`,
+            title: 'Smart Contract Toolkits',
             link: '/v3/runtime/smart-contracts/',
           },
         ],
       },
       {
-        name: `${intl.formatMessage({ id: 'docs-menu-integration' })}`,
+        name: 'Integration',
         items: [
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-polkadot-js' })}`,
+            title: 'Polkadot-JS',
             link: '/v3/integration/polkadot-js/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'docs-menu-client-libraries',
-            })}`,
+            title: 'Client Libraries',
             link: '/v3/integration/client-libraries/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'docs-menu-substrate-connect',
-            })}`,
+            title: 'Substrate Connect',
             link: '/v3/integration/substrate-connect/',
           },
         ],
       },
       {
-        name: `${intl.formatMessage({ id: 'docs-menu-tools' })}`,
+        name: 'Tools',
         items: [
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-tools-landing' })}`,
+            title: 'Explore Tools',
             link: '/v3/tools/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-subkey' })}`,
+            title: 'Subkey',
             link: '/v3/tools/subkey/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'docs-menu-memory-profiling',
-            })}`,
+            title: 'Memory Profiling',
             link: '/v3/tools/memory-profiling/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-try-runtime' })}`,
+            title: 'Try Runtime',
             link: '/v3/tools/try-runtime/',
           },
         ],
       },
       {
-        name: `${intl.formatMessage({ id: 'docs-menu-advanced' })}`,
+        name: 'Advanced',
         items: [
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-account-info' })}`,
+            title: 'Account Info',
             link: '/v3/advanced/account-info/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-scale-codec' })}`,
+            title: 'SCALE Codec',
             link: '/v3/advanced/scale-codec/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-consensus' })}`,
+            title: 'Consensus',
             link: '/v3/advanced/consensus/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-block-import' })}`,
+            title: 'Block Import',
             link: '/v3/advanced/block-import/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-executor' })}`,
+            title: 'Executor',
             link: '/v3/advanced/executor/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-cryptography' })}`,
+            title: 'Cryptography',
             link: '/v3/advanced/cryptography/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-storage' })}`,
+            title: 'Storage',
             link: '/v3/advanced/storage/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-ss58' })}`,
+            title: 'SS58 Address Format',
             link: '/v3/advanced/ss58/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'docs-menu-hash-collections',
-            })}`,
+            title: 'Hash Collections',
             link: '/v3/advanced/hash-collections/',
           },
         ],
       },
       {
-        name: `${intl.formatMessage({ id: 'docs-menu-contribute' })}`,
+        name: 'Contribute',
         items: [
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-style-guide' })}`,
+            title: 'Style Guide',
             link: '/v3/contribute/style-guide/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-writing-style' })}`,
+            title: 'Writing',
             link: '/v3/contribute/writing/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-bounties' })}`,
+            title: 'Bounties',
             link: '/v3/contribute/bounties/',
           },
           {
-            title: `${intl.formatMessage({ id: 'docs-menu-templates' })}`,
+            title: 'Templates',
             link: '/v3/contribute/templates/',
           },
         ],
       },
     ]
   },
-
   htg: () => {
-    const intl = useIntl()
     return [
       // 1. Basics.
       {
-        name: `${intl.formatMessage({ id: 'docs-nav-htg-basics' })}`,
+        name: 'Basics',
         items: [
           {
-            title: `${intl.formatMessage({
-              id: 'htg-basics-pallet-integration',
-            })}`,
+            title: 'Pallet Integration',
             link: '/how-to-guides/v3/basics/pallet-integration/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'htg-basics-instantiable-pallets',
-            })}`,
+            title: 'Instantiable Pallets',
             link: '/how-to-guides/v3/basics/instantiable-pallets/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'htg-basics-configurable-constants',
-            })}`,
+            title: 'Configurable Constants',
             link: '/how-to-guides/v3/basics/configurable-constants/',
           },
           {
-            title: `${intl.formatMessage({ id: 'htg-basics-genesis' })}`,
+            title: 'Genesis Configuration',
             link: '/how-to-guides/v3/basics/genesis/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'htg-basics-helper-functions',
-            })}`,
+            title: 'Helper Functions',
             link: '/how-to-guides/v3/basics/helper-functions/',
           },
           {
-            title: `${intl.formatMessage({ id: 'htg-basics-mint-token' })}`,
+            title: 'Primitive Token Mint',
             link: '/how-to-guides/v3/basics/mint-token/',
           },
           {
-            title: `${intl.formatMessage({ id: 'htg-basics-weights' })}`,
+            title: 'Calculating Transaction Weights',
             link: '/how-to-guides/v3/basics/weights/',
           },
         ],
       },
       // 2. Pallet Design.
       {
-        name: `${intl.formatMessage({ id: 'docs-nav-htg-pallet-design' })}`,
+        name: 'Pallet Design',
         items: [
           {
-            title: `${intl.formatMessage({
-              id: 'htg-pallet-design-add-contracts',
-            })}`,
+            title: 'Integrate the Contracts Pallet',
             link: '/how-to-guides/v3/pallet-design/contracts-pallet/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'htg-pallet-design-lockable-currency',
-            })}`,
+            title: 'Implement a Lockable Currency',
             link: '/how-to-guides/v3/pallet-design/lockable-currency/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'htg-pallet-design-randomness',
-            })}`,
+            title: 'Implementing Randomness',
             link: '/how-to-guides/v3/pallet-design/randomness/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'htg-pallet-design-crowdfund',
-            })}`,
+            title: 'Simple Crowdfund',
             link: '/how-to-guides/v3/pallet-design/crowdfund/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'htg-pallet-design-storage-value',
-            })}`,
+            title: 'Storage Value Struct',
             link: '/how-to-guides/v3/pallet-design/storage-value/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'htg-tightly-coupling-pallets',
-            })}`,
+            title: 'Tightly Coupling a Pallet',
             link: '/how-to-guides/v3/pallet-design/tight-coupling/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'htg-loosely-coupling-pallets',
-            })}`,
+            title: 'Loosely Coupling a Pallet',
             link: '/how-to-guides/v3/pallet-design/loose-coupling/',
           },
         ],
       },
       // 3. Weights.
       {
-        name: `${intl.formatMessage({ id: 'docs-nav-htg-weights' })}`,
+        name: 'Weights',
         items: [
           {
-            title: `${intl.formatMessage({
-              id: 'htg-weights-calculate-fees',
-            })}`,
+            title: 'Calculating Fees',
             link: '/how-to-guides/v3/weights/calculate-fees/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'htg-weights-add-benchmarking',
-            })}`,
+            title: 'Add Benchmarking to Your pallet',
             link: '/how-to-guides/v3/weights/add-benchmarking/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'htg-weights-use-benchmarking',
-            })}`,
+            title: 'Use Custom Weights from Benchmarking',
             link: '/how-to-guides/v3/weights/use-benchmark-weights/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'htg-weights-conditional',
-            })}`,
+            title: 'Create a Conditional Weighting Struct',
             link: '/how-to-guides/v3/weights/conditional-weighting-struct/',
           },
         ],
       },
       // 4. Testing.
       {
-        name: `${intl.formatMessage({ id: 'docs-nav-htg-testing' })}`,
+        name: 'Testing',
         items: [
           {
-            title: `${intl.formatMessage({ id: 'htg-testing-basics' })}`,
+            title: 'Setting up Tests for Your Pallet',
             link: '/how-to-guides/v3/testing/basics/',
           },
           {
-            title: `${intl.formatMessage({
-              id: 'htg-testing-transfer-function',
-            })}`,
+            title: 'Testing a Transfer Function',
             link: '/how-to-guides/v3/testing/transfer-function/',
           },
         ],
       },
       // 5. Storage Migrations.
       {
-        name: `${intl.formatMessage({
-          id: 'docs-nav-htg-storage-migrations',
-        })}`,
+        name: 'Storage Migrations',
         items: [
           {
-            title: `${intl.formatMessage({ id: 'htg-sm-nicks' })}`,
+            title: 'Basic Storage Migration',
             link: '/how-to-guides/v3/storage-migrations/basics/',
           },
           {
-            title: `${intl.formatMessage({ id: 'htg-sm-steps' })}`,
+            title: 'Trigger a Storage Migration',
             link: '/how-to-guides/v3/storage-migrations/trigger-with-apps/',
           },
           {
-            title: `${intl.formatMessage({ id: 'htg-sm-tests' })}`,
+            title: 'Migration Tests',
             link: '/how-to-guides/v3/storage-migrations/tests/',
           },
         ],
       },
       // 6. Consensus.
       {
-        name: `${intl.formatMessage({ id: 'docs-nav-htg-consensus' })}`,
+        name: 'Consensus',
         items: [
           {
-            title: `${intl.formatMessage({ id: 'htg-consensus-pow' })}`,
+            title: 'Add PoW Consensus',
             link: '/how-to-guides/v3/consensus/pow/',
           },
           {
-            title: `${intl.formatMessage({ id: 'htg-consensus-hybrid' })}`,
+            title: 'Create a PoS-PoW Hybrid Node',
             link: '/how-to-guides/v3/consensus/hybrid-pos-pow/',
           },
         ],
       },
       // 7. Parachains.
       {
-        name: `${intl.formatMessage({
-          id: 'docs-nav-htg-parachains',
-        })}`,
+        name: 'Parachains',
         items: [
           {
-            title: `${intl.formatMessage({ id: 'htg-parachains-convert' })}`,
+            title: 'Solochain Logic Conversion',
             link: '/how-to-guides/v3/parachains/convert',
           },
           {
-            title: `${intl.formatMessage({ id: 'htg-parachains-connect' })}`,
+            title: 'Connect to a Relay Chain',
             link: '/how-to-guides/v3/parachains/connect/',
           },
           {
-            title: `${intl.formatMessage({ id: 'htg-parachains-collators' })}`,
+            title: 'Collator Selection',
             link: '/how-to-guides/v3/parachains/start-collator-node/',
           },
           {
-            title: `${intl.formatMessage({ id: 'htg-parachains-pre-launch' })}`,
+            title: 'Pre-Launch Requirements',
             link: '/how-to-guides/v3/parachains/pre-launch/',
           },
           {
-            title: `${intl.formatMessage({ id: 'htg-parachains-upgrade' })}`,
+            title: 'Runtime Upgrades',
             link: '/how-to-guides/v3/parachains/runtime-upgrades/',
           },
         ],
       },
       // 8. Tools
       {
-        name: `${intl.formatMessage({
-          id: 'docs-nav-htg-tools',
-        })}`,
+        name: 'Tools',
         items: [
           {
-            title: `${intl.formatMessage({ id: 'htg-tools-try-runtime' })}`,
+            title: 'Integrate Try Runtime',
             link: '/how-to-guides/v3/tools/try-runtime/',
           },
           {
-            title: `${intl.formatMessage({ id: 'htg-tools-txwrapper' })}`,
+            title: 'Create a txwrapper for a chain',
             link: '/how-to-guides/v3/tools/txwrapper/',
           },
           {
-            title: `${intl.formatMessage({ id: 'htg-tools-sidecar' })}`,
+            title: 'Track parachain auction winners using Sidecar',
             link: '/how-to-guides/v3/tools/sidecar/',
           },
           {
-            title: `${intl.formatMessage({ id: 'htg-tools-subwasm' })}`,
+            title: 'Verify Runtime Wasm Binaries with Subwasm',
             link: '/how-to-guides/v3/tools/subwasm',
           },
         ],
@@ -518,6 +449,7 @@ const DevNavMenu = {
 }
 
 const DevNavMenuTuts = new Map()
+
 DevNavMenuTuts.set('firstChain', [
   {
     name: `Create Your First Substrate Chain`,
@@ -545,12 +477,14 @@ DevNavMenuTuts.set('firstChain', [
     ],
   },
 ])
+
 DevNavMenuTuts.set('poe', [
   {
     name: `Build a Proof of Existence Blockchain`,
-    items: [ ],
+    items: [],
   },
 ])
+
 DevNavMenuTuts.set('permissionedNetwork', [
   {
     name: `Start a Permissioned Network`,
@@ -570,6 +504,7 @@ DevNavMenuTuts.set('permissionedNetwork', [
     ],
   },
 ])
+
 DevNavMenuTuts.set('forklessUpgrades', [
   {
     name: `Initiate a Forkless Runtime Upgrade`,
@@ -589,6 +524,7 @@ DevNavMenuTuts.set('forklessUpgrades', [
     ],
   },
 ])
+
 DevNavMenuTuts.set('privateNetwork', [
   {
     name: `Start a Private Network`,
@@ -616,6 +552,7 @@ DevNavMenuTuts.set('privateNetwork', [
     ],
   },
 ])
+
 DevNavMenuTuts.set('nodeMetrics', [
   {
     name: `Visualizing Node Metrics`,
@@ -639,6 +576,7 @@ DevNavMenuTuts.set('nodeMetrics', [
     ],
   },
 ])
+
 DevNavMenuTuts.set('addPallet', [
   {
     name: `Add the Nicks Pallet to your Runtime`,
@@ -666,6 +604,7 @@ DevNavMenuTuts.set('addPallet', [
     ],
   },
 ])
+
 DevNavMenuTuts.set('inkWorkshop', [
   {
     name: `ink! Contracts Workshop`,
@@ -685,6 +624,7 @@ DevNavMenuTuts.set('inkWorkshop', [
     ],
   },
 ])
+
 DevNavMenuTuts.set('cumulusTutorial', [
   {
     name: `Cumulus Tutorial`,
@@ -708,6 +648,7 @@ DevNavMenuTuts.set('cumulusTutorial', [
     ],
   },
 ])
+
 DevNavMenuTuts.set('frontierWorkshop', [
   {
     name: `Frontier Workshop`,
@@ -731,6 +672,7 @@ DevNavMenuTuts.set('frontierWorkshop', [
     ],
   },
 ])
+
 DevNavMenuTuts.set('kittiesWorkshop', [
   {
     name: `Build the Substrate Kitties Chain`,
@@ -779,4 +721,5 @@ DevNavMenuTuts.set('kittiesWorkshop', [
     ],
   },
 ])
+
 export { DevNavMenu, DevNavMenuTuts }

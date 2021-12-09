@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useIntl } from 'react-intl'
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import Link from '../components/Link'
 
 interface LanguageSwitcherProps {
   currentLang: string
@@ -17,7 +16,6 @@ export default function LanguageSwitcher({
   currentLang,
   langConfig,
 }: LanguageSwitcherProps) {
-  const intl = useIntl()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [currentLink, setCurrentLink] = useState('')
   useEffect(() => {
@@ -30,9 +28,7 @@ export default function LanguageSwitcher({
   })
   return (
     <div className="flex items-center px-4">
-      <p className="lg:hidden pt-6 pr-6 ">
-        {intl.formatMessage({ id: 'nav-language' })}
-      </p>
+      <p className="lg:hidden pt-6 pr-6 ">Language</p>
       <div
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         className="flex items-center justify-center w-20 cursor-pointer focus:outline-none"
@@ -53,15 +49,11 @@ export default function LanguageSwitcher({
           >
             {langConfig.map((lang, index) => {
               return currentLang != lang.code ? (
-                <LocalizedLink
-                  key={index}
-                  to={currentLink}
-                  language={lang.code}
-                >
+                <Link key={index} to={currentLink} language={lang.code}>
                   <div className="my-2 mx-4 text-black dark:text-white hover:text-substrateGreen dark:hover:text-substrateGreen">
                     {lang.code}
                   </div>
-                </LocalizedLink>
+                </Link>
               ) : null
             })}
           </div>

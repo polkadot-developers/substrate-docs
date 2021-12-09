@@ -77,11 +77,15 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return
   }
 
-  const allDocs = data.allMdx.edges.filter(each => each.node.frontmatter.section === 'docs')
+  const allDocs = data.allMdx.edges.filter(
+    each => each.node.frontmatter.section === 'docs'
+  )
   const allHtgs = data.allMdx.edges.filter(
     each => each.node.frontmatter.section === 'how to guides'
   )
-  const allTuts = data.allMdx.edges.filter(each => each.node.frontmatter.section === 'tutorials')
+  const allTuts = data.allMdx.edges.filter(
+    each => each.node.frontmatter.section === 'tutorials'
+  )
 
   allDocs.forEach(({ node }) => {
     createPage({
@@ -167,7 +171,6 @@ const createIndex = async (docNodes, cache) => {
   const store = {}
 
   for (const node of docNodes) {
-    const locale = node.fields.locale
     const slug = node.frontmatter.slug
     const section = node.frontmatter.section
     const category = node.frontmatter.category
@@ -195,7 +198,6 @@ const createIndex = async (docNodes, cache) => {
       section,
       category,
       keywords,
-      locale,
     }
   }
   const index = lunr(function () {

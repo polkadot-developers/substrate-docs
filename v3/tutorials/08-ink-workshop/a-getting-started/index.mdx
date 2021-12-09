@@ -68,7 +68,7 @@ Follow the
 
 Once you have done the above you will also need to run:
 
-```
+```bash
 rustup component add rust-src --toolchain nightly
 rustup target add wasm32-unknown-unknown --toolchain nightly
 ```
@@ -129,7 +129,7 @@ cd flipper/
 
 **ink! Contract Project**
 
-```
+```bash
 flipper
   └─ lib.rs                <-- Contract Source Code
   └─ Cargo.toml            <-- Rust Dependencies and ink! Configuration
@@ -188,7 +188,7 @@ contract's ABI) and a `.contract` file which bundles both. This `.contract` file
 deploying your contract to your chain. If all goes well, you should see a `target` folder which
 contains these files:
 
-```
+```bash
 target
   └─ ink
     └─ release
