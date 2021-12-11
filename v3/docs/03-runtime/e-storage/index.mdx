@@ -180,7 +180,7 @@ getter method implemented on the module; instead, you will need to use
 <Message
   type={`gray`}
   title={`Note`}
-  text={`The optional \`get\` and \`getter\` extensions only
+  text={`The optional \`getter\` extension only
   impact the way that a storage item can be accessed from _within_ Substrate code &mdash; you will always be
   able to [query the storage of your runtime](/v3/advanced/storage#Querying-Storage) to get the value
   of a storage item.`}
@@ -340,9 +340,9 @@ In `chain_spec.rs`:
 
 ```rust
 GenesisConfig {
-    my_pallet: Some(MyPalletConfig {
+    my_pallet: MyPalletConfig {
         init_val: 221u64 + SOME_CONSTANT_VALUE,
-    }),
+    },
 }
 ```
 
