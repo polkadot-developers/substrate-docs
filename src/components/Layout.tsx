@@ -18,7 +18,7 @@ import {
 } from './DocsComponents'
 import Header from './Header/Header'
 import Footer from './Footer'
-import Banner from './Banner'
+import Banner from './site/Banner'
 
 const components = {
   a: MdxLink,
