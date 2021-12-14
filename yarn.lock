@@ -8157,16 +8157,6 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"gatsby-omni-font-loader@npm:^1.3.1":
-  version: 1.3.2
-  resolution: "gatsby-omni-font-loader@npm:1.3.2"
-  peerDependencies:
-    gatsby: ^2.0.0 || ^3.0.0 || ^4.0.0-next
-    react-helmet: ">=6.0.0"
-  checksum: a107454fdaf4a63f95b6276ce81cbb36fb5719926d186f712cb16e806c1d6b16dbb5c472c29bb97e4d288c5c1c35af9ffe69b931b1e6d0b9f4ded0be9fe3e206
-  languageName: node
-  linkType: hard
-
 "gatsby-page-utils@npm:^1.14.0":
   version: 1.14.0
   resolution: "gatsby-page-utils@npm:1.14.0"
@@ -17103,7 +17093,6 @@ resolve@^2.0.0-next.3:
     eslint-plugin-security: ^1.4.0
     eslint-webpack-plugin: ^3.0.1
     gatsby: ^3.7.2
-    gatsby-omni-font-loader: ^1.3.1
     gatsby-plugin-eslint: ^3.0.0
     gatsby-plugin-force-trailing-slashes: ^1.0.5
     gatsby-plugin-image: ^1.8.0
