@@ -202,7 +202,10 @@ module.exports = {
         icon: `src/images/favicon.png`,
       },
     },
-    'gatsby-plugin-offline',
+
+    /* removing registered legacy worker from gatsby-plugin-offline */
+    'gatsby-plugin-remove-serviceworker',
+
     {
       resolve: 'gatsby-plugin-simple-analytics',
       options: {
