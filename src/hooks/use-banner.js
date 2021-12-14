@@ -1,4 +1,4 @@
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby'
 
 export const useBanner = () => {
   const {
@@ -25,7 +25,7 @@ export const useBanner = () => {
         }
       }
     `
-  );
+  )
 
-  return { banners };
-};
+  return { banners }
+}
