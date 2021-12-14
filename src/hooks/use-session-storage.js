@@ -2,21 +2,22 @@ import { useEffect, useState } from 'react'
 
 import { isBrowser } from '../utils/browser'
 
-export const useSessionStorage = (key, initialValue) => {
-  const [isBannerOpen, setIsBannerOpen] = useState(null)
+function getSessionStorageOrDefault(key, defaultValue) {
+  const stored = isBrowser && window.sessionStorage.getItem(key)
+  if (!stored) {
+    return defaultValue
+  }
+  return JSON.parse(stored)
+}
+
+export function useSessionStorage(key, defaultValue) {
+  const [value, setValue] = useState(
+    getSessionStorageOrDefault(key, defaultValue)
+  )
 
   useEffect(() => {
-    const stored = isBrowser && window.sessionStorage.getItem(key)
-    if (!stored) {
-      setIsBannerOpen(initialValue)
-    } else {
-      setIsBannerOpen(JSON.parse(stored))
-    }
-  }, [])
+    window.sessionStorage.setItem(key, JSON.stringify(value))
+  }, [key, value])
 
-  useEffect(() => {
-    window.sessionStorage.setItem(key, JSON.stringify(isBannerOpen))
-  }, [isBannerOpen])
-
-  return { isBannerOpen, setIsBannerOpen }
+  return [value, setValue]
 }
