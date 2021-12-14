@@ -7,4 +7,34 @@ section: how to guides
 category: ocw
 ---
 
-Making Transactions
+<Objectives data={[
+  {
+    title: 'Goal',
+    description: `Learn how to perform the following from off-chain workers:
+- signed transactions
+- unsigned transactions
+- unsigned transactions with signed payload`
+  },
+  {
+    title: 'Use Cases',
+    description: `Data processed or fetched from off-chain workers is not saved directly on-chain. To do so, a transaction must be sent on-chain from off-chain workers. Here we introduce three ways of doing that.`,
+  },
+]}/>
+
+## Overview
+
+You have used off-chain workers fetching some valuable data, or processing some very conclusive data. Now you want to save it on-chain. How do you go about that? Here, we introduce three methods:
+
+- **Signed transactions** - use this when you want to record the associated transaction caller and deducting the transaction fee from the caller account.
+- **Unsigned transactions** - use this when you **DO NOT** want to record the associated caller.
+- **Unsigned transactions with signed payload** - use this when you want to record the associated transaction caller, but do not want the caller be responsible for the transaction fee payment.
+
+## Steps for signed transactions
+
+## Steps for unsigned transactions
+
+## Steps for unsigned transactions with signed payload
+
+## Examples
+
+## Related material
