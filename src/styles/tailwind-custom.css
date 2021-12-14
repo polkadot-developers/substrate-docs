@@ -34,3 +34,27 @@
     }
   }
 }
+
+/* utils */
+
+.-mt-36-px {
+  margin-top: calc(-9rem - 1px);
+}
+
+.border-3 {
+  border-width: 3px;
+}
+
+/* Banner */
+
+.banner p {
+  @apply mb-0;
+}
+
+.banner strong {
+  @apply font-bold;
+}
+
+.banner a {
+  @apply text-substrateDarkThemeBlue dark:text-substrateBlue;
+}
