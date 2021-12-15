@@ -31,6 +31,30 @@ You have used off-chain workers fetching some valuable data, or processing some 
 
 ## Steps for signed transactions
 
+1. Call the life-cycle hook of off-chain workers in your pallet, as follows:
+
+  ```rust
+  #[pallet::hooks]
+  impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
+    /// Offchain Worker entry point.
+    ///
+    /// By implementing `fn offchain_worker` you declare a new offchain worker.
+    /// This function will be called when the node is fully synced and a new best block is
+    /// succesfuly imported.
+    /// Note that it's not guaranteed for offchain workers to run on EVERY block, there might
+    /// be cases where some blocks are skipped, or for some the worker runs twice (re-orgs),
+    /// so the code should be able to handle that.
+    /// You can use `Local Storage` API to coordinate runs of the worker.
+    fn offchain_worker(block_number: T::BlockNumber) {
+      log::info!("Hello from pallet-ocw.");
+      // The entry point of your code called by off-chain worker
+    }
+    // ...
+  }
+  ```
+
+2. To
+
 ## Steps for unsigned transactions
 
 ## Steps for unsigned transactions with signed payload
