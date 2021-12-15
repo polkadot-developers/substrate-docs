@@ -91,6 +91,7 @@ develop will they get merged into `main`.
 
     ```bash
     cd substrate-docs/
+    nvm install
     yarn # alias for `yarn install`
     ```
 
