@@ -1,0 +1,22 @@
+/*  using font-display: block; flash of invisible text (FOIT) */
+
+@font-face {
+  font-family: 'Karla';
+  src: url('/fonts/karla/Karla-VariableFont_wght.ttf') format('truetype');
+  font-display: block;
+  font-weight: 100 800;
+}
+
+@font-face {
+  font-family: 'Karla';
+  src: url('/fonts/karla/Karla-Italic-VariableFont_wght.ttf') format('truetype');
+  font-display: block;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/Poppins-ExtraBold.ttf') format('truetype');
+  font-display: block;
+  font-weight: 800;
+}
