@@ -34,7 +34,8 @@ AFG is synonymous with [GRANDPA](#grandpa).
 
 Used in the context of [FRAME](#frame), _aggregation_ or _[pallet](#pallet) aggregation_ is the process of combining analogous types from multiple runtime modules into a single type. 
 Pallet aggregation allows each module's analogous types to be represented. 
-Currently, there are six such data types:
+The call containing the aggregated types is sometimes referred to as an _outer call_ or a call to an _outer object_.
+Currently, there are six data types that can be aggregated:
 
 - `Call` for published functions that can be called with a set of arguments.
 - `Error` for messages that indicate why a function invocation (`Call`) failed.
@@ -100,18 +101,18 @@ The pointer to a parent block is a hash of the parent and the tree is pruned int
 Describes a distributed network of computers that uses [cryptography](#cryptographic-primitives) to allow a group of participants to trustlessly come to [consensus](#consensus) on the [state](#state) of a system as it evolves over time
 The computers that compose the blockchain network are called [nodes](#node).
 
-## Byzantine fault tolerance (BFT)
+## byzantine fault tolerance (BFT)
 
 Defines the ability of a distributed computer network to remain operational if a certain proportion of its [nodes](#node) or [authorities](#authority) are defective or behaving maliciously. 
 Typically, a distributed network is considered byzantine fault tolerant if it can remain functional with up to one-third of nodes assumed to defective, offline, actively malicious, and acting as part of a coordinated attack.
 
-### Byzantine failure
+### byzantine failure
 
 The loss of a network service due to node failures that exceed the proprortion of nodes required to reach consensus.
 
 ### practical byzantine fault tolerance (pBFT)
 
-An early approach to Byzantine fault tolerance. pBFT systems tolerate Byzantine behavior from up to one-third of participants. 
+An early approach to byzantine fault tolerance. pBFT systems tolerate byzantine behavior from up to one-third of participants. 
 The communication overhead for such systems is `O(n²)`, where `n` is the number of nodes (participants) in the system.
 
 ## consensus
@@ -127,7 +128,7 @@ See also [hybrid consensus](hybrid-consensus).
 ## consensus algorithm
 
 An algorithm that ensures that a set of [actors](#authority)—who don't necessarily trust each other—can reach agreement about state as the result of some computation.
-Because most consensus algorithms assume that up to one-third of the actors or nodes can  are [Byzantine fault tolerant](#byzantine-fault-tolerance-bft).
+Because most consensus algorithms assume that up to one-third of the actors or nodes can  are [byzantine fault tolerant](#byzantine-fault-tolerance-bft).
 
 
 Consensus algorithms are generately concerned with ensuring two properties:
@@ -401,7 +402,7 @@ Substrate nodes expose an RPC server on HTTP and WebSocket endpoints.
 
 ## rhododendron
 
-An [instant finality](#instant-finality), [Byzantine fault tolerant (BFT)](#byzantine-fault-tolerance-bft) [consensus](#consensus) algorithm.
+An [instant finality](#instant-finality), [byzantine fault tolerant (BFT)](#byzantine-fault-tolerance-bft) [consensus](#consensus) algorithm.
 One of a number of adaptions of [pBFT](#practical-byzantine-fault-tolerance-pbft) for blockchains.
 Refer to its [implementation on GitHub](https://github.com/paritytech/rhododendron).
 
