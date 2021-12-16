@@ -40,7 +40,7 @@ export default function playground() {
           <div className="flex justify-center md:w-1/2">
             <StaticImage
               backgroundColor="transparent"
-              src="../images/playground-hero.png"
+              src="../images/regular/playground-hero.png"
               alt="Substrate Playground"
               layout="constrained"
             />
