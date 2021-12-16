@@ -1,18 +1,21 @@
 ---
 title: Setting up Tests for Your Pallet
 slug: /how-to-guides/v3/testing/basics
-keywords: basics, testing, runtime
-version: 3.0
+keywords:
+  - basics
+  - testing
+  - runtime
+version: '3.0'
 section: how to guides
 category: testing
-difficulty: 1
 ---
 
 <Objectives
   data={[
     {
       title: 'Goal',
-      description: 'Learn how to setup the scaffolding required to write tests for your pallet.',
+      description:
+        'Learn how to setup the scaffolding required to write tests for your pallet.',
     },
     {
       title: 'Use Cases',
@@ -59,7 +62,7 @@ case `pallet_testing`:
 
 ```rust
 /*--snip--*/
-	TestingPallet: pallet_testing::{Pallet, Call, Storage, Event<T>},
+TestingPallet: pallet_testing::{Pallet, Call, Storage, Event<T>},
 /*--snip--*/
 ```
 

@@ -91,6 +91,7 @@ develop will they get merged into `main`.
 
     ```bash
     cd substrate-docs/
+    nvm install
     yarn # alias for `yarn install`
     ```
 
@@ -196,4 +197,4 @@ this repository.
 
 TBD
 
-<!-- Substrate **documentation** is licence under the [Apache 2 license](./LICENSE). -->
+<!-- Substrate **documentation** is license under the [Apache 2 license](./LICENSE). -->

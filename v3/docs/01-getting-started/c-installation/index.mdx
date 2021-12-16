@@ -1,10 +1,10 @@
 ---
 title: Installation
 slug: /v3/getting-started/installation
-version: 3.0 
+version: '3.0'
 section: docs
 category: getting started
-keywords:
+keywords: []
 ---
 
 This page will guide you through the **2 steps** needed to prepare a computer for **Substrate** development.
@@ -59,15 +59,8 @@ sudo zypper install clang curl git openssl-devel llvm-devel libudev-devel
 
 <Message
   type={`yellow`}
-  title={`Information`}
-  text=
-    "The Apple M1 ARM system on a chip is not very well supported yet by rust, and thus you very likely will run into build errors stemming from this. There are reports that using substrate dependancies newer than the June 2021 monthly release are able to work without issue. Here is the ',
-    [node template `monthly-2021-05`](https://github.com/substrate-developer-hub/substrate-node-template/tree/v3.0.0%2Bmonthly-2021-05)
-    'that you should use as a base for building on M1s. If you decide not to use a monthly release, see 
-    [this community contributed script](https://github.com/substrate-developer-hub/substrate-node-template/issues/179#issuecomment-843522331)
-    (and discussion)
-    for details on extra configuration steps to get things working on `v3.0.0` and below.
-    "
+  title={`Apple M1 ARM`}
+  text="If you have an Apple M1 ARM system on a chip, make sure that you have Apple Rosetta 2 installed through \`softwareupdate --install-rosetta\`. This is only needed to run the \`protoc\` tool during the build. The build itself and the target binaries would remain native."
 />
 
 Open the Terminal application and execute the following commands:
@@ -91,28 +84,17 @@ Native development of Substrate is _not_ very well supported! It is _highly_ rec
 use [Windows Subsystem Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) (WSL)
 and follow the instructions for [Ubuntu/Debian](#ubuntudebian). Please refer to the separate
 [guide for native Windows development](/v3/getting-started/windows-users).
-  `}/>
+  `}
+/>
 
 ## 2. Rust developer environment
 
-### Automated `getsubstrate.io` script
-
-For most users you can run our script to automate the steps listed below:
-
-```bash
-curl https://getsubstrate.io -sSf | bash -s -- --fast
-```
-
-If this gives any errors, please follow the steps below to manually configure rust on your machine.
-
-### Manual Rust configuration
-
-This guide uses [`rustup`](https://rustup.rs/) to help manage the Rust toolchain. First install and
-configure `rustup`:
+This guide uses <https://rustup.rs> installer and the `rustup` tool to manage the Rust toolchain.
+First install and configure `rustup`:
 
 ```bash
 # Install
-curl https://sh.rustup.rs -sSf | sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # Configure
 source ~/.cargo/env
 ```
@@ -131,16 +113,15 @@ rustup target add wasm32-unknown-unknown --toolchain nightly
 Now the best way to ensure that you have successfully prepared a computer for Substrate
 development is to follow the steps in [our first tutorial](/tutorials/v3/create-your-first-substrate-chain).
 
-
 <Message
   type={`yellow`}
   title={`Information`}
-  text={`For more details on _why_ these dependancies are used, and for _troubleshooting_ errors building the template, read on.`}
+  text={`For more details on _why_ these dependencies are used, and for _troubleshooting_ errors building the template, read on.`}
 />
 
 ## Troubleshooting Substrate builds
 
-Sometimes you can't get the [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
+Sometimes you can't get the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template)
 to compile out of the box. Here are some tips to help you work through that.
 
 ### Rust configuration check
@@ -210,7 +191,8 @@ rustup update
 rustup update nightly
 rustup target add wasm32-unknown-unknown --toolchain nightly
 ```
-<br/>
+
+<br />
 <Message
   type={`gray`}
   title={`Note`}
@@ -252,7 +234,8 @@ project should use for Wasm compilation:
 ```bash
 WASM_BUILD_TOOLCHAIN=nightly-<yyyy-MM-dd> cargo build --release
 ```
-<br/>
+
+<br />
 <Message
   type={`yellow`}
   title={`Information`}

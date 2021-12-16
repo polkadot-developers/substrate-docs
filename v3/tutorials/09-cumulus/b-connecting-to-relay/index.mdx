@@ -1,17 +1,28 @@
 ---
 title: Connect a Parachain
 slug: /tutorials/v3/cumulus/connect-parachain
-version: 'polkadot-0.9.10'
+sideNav: cumulusTutorial
+version: 'polkadot-v0.9.13'
 section: tutorials
 category: parachains
 duration: 3 Hours
 difficulty: 3
-keywords: cumulus, relay chain, parachain, parathread, paraid, template, rococo, xcm, xcmp, collator
 relevantSkills:
   - Rust
   - Parachains
   - Cumulus
   - XCMP
+keywords:
+  - cumulus
+  - relay chain
+  - parachain
+  - parathread
+  - paraID
+  - template
+  - rococo
+  - xcm
+  - xcmp
+  - collator
 ---
 
 In this part of the workshop, we'll connect a parachain to our relay chain and add additional nodes.
@@ -52,86 +63,118 @@ In this part of the workshop, we'll connect a parachain to our relay chain and a
 
 ### Reserve a para ID
 
-To connect to any relay chain, you must first reserve a para ID for your parachain. It is called
-"para ID", because the same ID can be seen as its parachain ID or parathread ID, depending on your
-current relay chain slot state. To reserve one, you need to have sufficient amount of the currency
-on the network to reserve the ID. Check for the amount on your target relay chain.
+To connect to any relay chain, you must first reserve a para ID for your parachain.
+It is called "para ID", because the same ID can be seen as its parachain ID or parathread ID, depending on your current relay chain slot state.
+To reserve one, you need to have sufficient amount of the currency on the network to reserve the ID. Check for the amount on your target relay chain.
 
 The relay chain is responsible for allotting all para IDs and will be simply incrementing starting
-at `2000` for all chains connecting that are not
-[common good parachains](https://wiki.polkadot.network/docs/learn-common-goods). These chains use
-a different method to allocate para IDs.
+at `2000` for all chains connecting that are not [common good parachains](https://wiki.polkadot.network/docs/learn-common-goods).
+These chains use a different method to allocate para IDs.
 
-In this exercise, we will reserve a para ID using
-[Polkadot-JS Apps connecting to your local relay chain](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/parachains/parathreads).
-Under the **Network** > **Parachains** sub-page, click on **Parathreads** tab and use the
-**+ ParaId** button.
+In this exercise, we will reserve a para ID using [Polkadot-JS Apps connecting to your local relay chain](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/parachains/parathreads).
+Under the **Network** > **Parachains** sub-page, click on **Parathreads** tab and use the **+ ParaId** button.
 
 ![Reserve a para ID](../../../../src/images/tutorials/09-cumulus/paraid-reserve.png)
 
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text={`You will need to connect to a relay chain to submit this extrinsic! In testnets, your Parachain
-    ID will be 2000 for your first parathread reservation.`}
-/>
+Note that the account used to reserve the para ID must also be the origin for using this para ID.
+Once you submit this extrinsic successfully (you must see a successful `registrar.Reserved` event with your `paraID`), you can now launch your parachain or parathread using this reserved ID.
 
-Note that the account used to reserve the para ID must also be the origin for using this
-para ID. Once you submit this extrinsic successfully (you must see a successful `registrar.Reserved`
-event with your `paraID`), you can now launch your parachain or parathread using this reserved ID.
+### Configure a parachain for a specific relay chain and para ID
 
-### Specify a parachain for the relay chain
+We'll begin by generating a few files based on the parachain template with the reserved para ID (para ID `2000`).
 
-We'll begin by generating a few files based on the Parachain Template with the reserved para ID
-(para ID `2000`).
+#### Custom parachain specification
 
-#### Generate a parachain genesis state
-
-To register a parachain, the relay chain needs to know the parachain's
-[genesis state](/v3/runtime/chain-specs#the-genesis-state). The collator node can export that state
-to a file. Go to your Parachain Template folder, the following command will create a file
-containing the parachain's entire genesis state, hex-encoded:
+Your parachain _must_ configure the correct para ID in your chain specification.
+See the [how-to guide on configuring a custom chain spec](/how-to-guides/v3/basics/custom-chain-spec) for more in-depth instructions to generate a plain spec, modify it, and generate a raw spec.
+We first generate a plain spec with:
 
 ```bash
-./target/release/parachain-collator export-genesis-state --parachain-id 2000 > para-2000-genesis
+# Assumes that `rococo-local` is in `node/chan_spec.rs` as the relay you registered with
+./target/release/parachain-collator build-spec --disable-default-bootnode > rococo-local-parachain-plain.json
 ```
+
+Default para ID is `1000` from Cumulus, so you must correctly set it for your parachain based on **the reserved para ID from above**.
+Assuming your reserved para ID is `2000`, you will open `rococo-local-parachain-plain.json` and modify two fields:
+
+```json
+  // --snip--
+  "para_id": 2000, // <--- your already registered ID
+  // --snip--
+      "parachainInfo": {
+        "parachainId": 2000 // <--- your already registered ID
+      },
+  // --snip--
+```
+
+Then generate a raw chain spec derived **from your modified plain chain spec**:
+
+```bash
+./target/release/parachain-collator build-spec --chain rococo-local-parachain-plain.json --raw --disable-default-bootnode > rococo-local-parachain-2000-raw.json
+```
+
+<Message
+  type={`yellow`}
+  title={`Save and distribute your raw spec`}
+  text={`
+If you intend to let others connect to your network, they must have the associated chain spec for your network generated once and distributed to your peers.
+They cannot reliably produce this themselves, and need to acquire it from a **single source**.
+This stems from the [non-deterministic issue](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1) in the way Wasm runtimes are compiled, at least for now.
+`}
+/>
+
+Chain specs _conventionally_ live in a `/res` folder that is published in your node's codebase for others to use.
+For example:
+
+- Polkadot includes these **relay chain** chain specs
+  [under `node/service/res`](https://github.com/paritytech/polkadot/tree/master/node/service/res)
+- Cumulus includes these **parachain** chain specs
+  [under `res`](https://github.com/paritytech/cumulus/tree/master/polkadot-parachains/res)
+
+It is good practice to commit this raw chain spec into your source before proceeding.
 
 #### Obtain Wasm runtime validation function
 
-The relay chain also needs the parachain-specific runtime validation logic to validate
-parachain blocks. The parachain collator node also has a command to produce this Wasm blob:
+The relay chain also needs the parachain-specific runtime validation logic to validate parachain blocks.
+The parachain collator node also has a command to produce this Wasm blob:
 
 ```bash
-./target/release/parachain-collator export-genesis-wasm > para-2000-wasm
+./target/release/parachain-collator export-genesis-wasm --chain rococo-local-parachain-2000-raw.json > para-2000-wasm
 ```
 
-The Wasm blob does not depend on the para ID, so we are not providing that flag. If you are
-launching multiple parachains using the exact same runtime, you do not need to regenerate the Wasm
-blob each time.
+#### Generate a parachain genesis state
+
+To register a parachain, the relay chain needs to know the parachain's [genesis state](/v3/runtime/chain-specs#the-genesis-state).
+The collator node can export that state to a file.
+Go to your Parachain Template folder, the following command will create a file containing the parachain's entire genesis state, hex-encoded:
+
+```bash
+./target/release/parachain-collator export-genesis-state --chain rococo-local-parachain-2000-raw.json > para-2000-genesis
+```
 
 <Message
   type={`yellow`}
   title={`No pre-genesis blocks allowed`}
   text={`
-This runtime and state is for the parachain's _genesis_ block only. You cannot, at this time,
-connect a parachain with any previous state to a relay chain. All parachains must start from block 0
-on the relay chain. Eventually, migrating a solo chain built on Substrate is expected to be
-possible, but this functionality is not planned anytime soon.
+This runtime and state is for the parachain's _genesis_ block only.
+You cannot, at this time, connect a parachain with any previous state to a relay chain.
+All parachains must start from block 0 on the relay chain. Eventually, migrating the block history of a solo chain built on Substrate is expected to be possible, but this functionality is not planned anytime soon.
+\n
+See the guide on [converting a solo chain to a parachain](/how-to-guides/v3/parachains/convert) for details on how the Parachain Template was created, and how to convert your chain's logic (not history/state migrations!) to a parachain.
 `}
 />
 
 ### Start the collator node
 
-We can now start the collator node with the following command. Notice that we need to supply the same
-relay chain chain spec we used for launching relay chain nodes at the second half of the command.
+We can now start the collator node with the following command.
+Notice that we need to supply the same relay chain chain spec we used for launching relay chain nodes at the second half of the command.
 
 ```bash
-# NOTE: this command assumes a para ID of 2000. Change as needed.
 ./target/release/parachain-collator \
 --alice \
 --collator \
 --force-authoring \
---parachain-id 2000 \
+--chain rococo-local-parachain-2000-raw.json \
 --base-path /tmp/parachain/alice \
 --port 40333 \
 --ws-port 8844 \
@@ -142,20 +185,16 @@ relay chain chain spec we used for launching relay chain nodes at the second hal
 --ws-port 9977
 ```
 
-The first thing to notice about this command is that several arguments are passed before the lone
-`--`, and several more arguments passed after it. A parachain collator contains the actual
-collator node and also an **embedded relay chain node**. The arguments before the `--` are for the
-collator, and the arguments after the `--` are for the embedded relay chain node.
+The first thing to notice about this command is that several arguments are passed before the lone `--`, and several more arguments passed after it.
+A parachain collator contains the actual collator node and also an **embedded relay chain node**. The arguments before the `--` are for the collator, and the arguments after the `--` are for the embedded relay chain node.
 
-We give the collator a base path and ports as we did for the relay chain node previously. We also
-specify the para ID.
+We give the collator a base path and ports as we did for the relay chain node previously.
+We also specify the para ID.
 
-Remember to change the collator-specific values if you are executing these instructions a second
-time for a second parachain. You will use the same relay chain chain spec, but different para ID,
-base path, and ports the second parachain collator binds to.
+Remember to change the collator-specific values if you are executing these instructions a second time for a second parachain.
+You will use the same relay chain chain spec, but different para ID,base path, and ports the second parachain collator binds to.
 
-There is presently no way to run a parachain node without the embedded relay chain node, but it is
-expected that this will become possible for non-collator nodes eventually.
+There is presently no way to run a parachain node without the embedded relay chain node, but it is expected that this will become possible for non-collator nodes eventually.
 
 At this point your _collator's logs_ should look something like this:
 
@@ -202,105 +241,78 @@ At this point your _collator's logs_ should look something like this:
 2021-05-30 16:58:00 [Relaychain] ✨ Imported #10 (0xc9c9…1ca3)
 ```
 
-You should see your collator node running (alone) and peering with the already
-running relay chain nodes. It has not started authoring parachain blocks yet.
+You should see your collator node running (alone) and peering with the already running relay chain nodes.
+It has not started authoring parachain blocks yet.
 Authoring will begin when the collator is actually **registered on the relay chain**.
 
 ## Parachain Registration
 
 ### Register Using `sudo`
 
-We have our relay chain launched and our parachain collator ready to go. Now we have to register the
-parachain on the relay chain. In a production network, this will typically be accomplished
-through [parachain auctions](https://wiki.polkadot.network/docs/en/learn-auction). But for this
-tutorial we will do it with `sudo` call.
+We have our relay chain launched and our parachain collator ready to go.
+Now we have to register the parachain on the relay chain.
+In a production network, this will typically be accomplished through [parachain auctions](https://wiki.polkadot.network/docs/en/learn-auction).
+But for this tutorial we will do it with `sudo` call.
 
 ### Registration Transaction
 
-The transaction can be submitted **on a relay chain node** via Polkadot-JS Apps UI. There are
-multiple options to go about this, and we can pick any one of the following. Note that all options
-here depend on a [`paraID` being reserved](#1-reserve-a-para-id) - so be sure to do that first.
+The transaction can be submitted **on a relay chain node** via Polkadot-JS Apps UI.
+There are multiple options to go about this, and we can pick any one of the following.
+Note that all options here depend on a [`paraID` being reserved](#1-reserve-a-para-id) - so be sure to do that first.
 
-If you are running a network with more than two validators you can add more parachains through the
-same interface with the parameters adjusted accordingly. More details on this can be found
-[in here](/tutorials/v3/cumulus/start-relay#starting-additional-validators-optional).
+If you are running a network with more than two validators you can add more parachains through the same interface with the parameters adjusted accordingly.
+More details on this can be found [in here](/tutorials/v3/cumulus/start-relay#starting-additional-validators-optional).
 
 #### Option 1: `paraSudoWrapper.sudoScheduleParaInitialize`
 
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text={`
-This option bypasses the slot lease mechanics entirely to onboard a parachain or parathread for a
-reserved \`paraID\` starting on the next relay chain session. This is the simplest and fastest way to
-go about testing. But note that the parachain will also be automatically off-boarded at the next
-period, where any parachains without a lease are downgraded to parathreads, so take note of the
-next slot ending period and be sure to re-register as needed.
- `}
-/>
+This option bypasses the slot lease mechanics entirely to onboard a parachain or parathread for a reserved `paraID` starting on the next relay chain session.
+This is the simplest and fastest way to go about testing.
+But note that the parachain will also be automatically off-boarded at the next period, where any parachains without a lease are downgraded to parathreads, so take note of the next slot ending period and be sure to re-register as needed.
 
-- Go to [Polkadot Apps UI](https://polkadot.js.org/apps/),
-  connecting to your **relay chain**.
-
+- Go to [Polkadot Apps UI](https://polkadot.js.org/apps/), connecting to your **relay chain**.
 - Execute a sudo extrinsic on the relay chain by going to `Developer` -> `sudo` page.
-
-- Pick `paraSudoWrapper` -> `sudoScheduleParaInitialize(id, genesis)` as the extrinsic type,
-  shown below.
+- Pick `paraSudoWrapper` -> `sudoScheduleParaInitialize(id, genesis)` as the extrinsic type, shown below.
 
 ![parachain-registration-sudo.png](../../../../src/images/tutorials/09-cumulus/parachain-registration-sudo.png)
 
 - In the extrinsics parameters, specify:
-
   - Set the `id: ParaId` to 2,000
   - `genesisHead`: upload the file `para-2000-genesis` (from the previous step)
   - `validationCode`: upload the file `para-2000-wasm` (from the previous step)
-  - Set the `parachain: Bool` option to **Yes**.
+  - Set the `parachain: Bool` option to **Yes**
 
-This dispatch, if successful, will emit the `sudo.Sudid` event, viewable in the relay chain explorer
-page.
+This dispatch, if successful, will emit the `sudo.Sudid` event, viewable in the relay chain explorer page.
 
 #### Option 2: `slots.forceLease`
 
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text={`
-This is the more formal flow for registration used in production (with the exception of
-the use of sudo to force a slot lease): you register your reserved \`paraID\` with the _same_
-account that reserved it, or use \`sudo\` with a \`registrar.forceRegister\` extrinsic if you wish.
-  `}
-/>
+This is the more formal flow for registration used in production (with the exception of the use of sudo to force a slot lease): you register your reserved `paraID` with the _same_ account that reserved it, or use `sudo` with a `registrar.forceRegister` extrinsic if you wish.
 
-Here we will use `sudo` to grant ourselves a lease. You should have an onboarded parathread:
+Here we will use `sudo` to grant ourselves a lease.
+You should have an onboarded parathread:
 
 ![parathread-onboarding.png](../../../../src/images/tutorials/09-cumulus/parathread-onboarding.png)
 
-- Go to [Polkadot Apps UI](https://polkadot.js.org/apps/),
-  connecting to your **relay chain**.
-
+- Go to [Polkadot Apps UI](https://polkadot.js.org/apps/), connecting to your **relay chain**.
 - Execute a sudo extrinsic on the relay chain by going to `Developer` -> `sudo` page.
-
-- Pick `slots`->`forceLease(para, leaser, amount, period_begin, period_end)` as the extrinsic type,
-  shown below.
+- Pick `slots`->`forceLease(para, leaser, amount, period_begin, period_end)` as the extrinsic type, shown below.
 
 ![forceLease.png](../../../../src/images/tutorials/09-cumulus/forceLease.png)
 
-Be sure to set the begin period to the slot you wish to start at. In testing, this is very likely
-to be the already active slot `0` if you started a fresh new relay chain. Extending this out to
-beyond the time you wish to test this parachain is likely the best, unless you want to test the
-onboarding and offboarding cycles. In that case, then electing slot leases that have gaps for a
-`paraID` would be in order. Once fully onboarded and after block production starts you should see:
+Be sure to set the begin period to the slot you wish to start at.
+In testing, this is very likely to be the already active slot `0` if you started a fresh new relay chain.
+Extending this out to beyond the time you wish to test this parachain is likely the best, unless you want to test the
+onboarding and offboarding cycles.
+In that case, then electing slot leases that have gaps for a `paraID` would be in order. Once fully onboarded and after block production starts you should see:
 
 ![parachain-active-lease.png](../../../../src/images/tutorials/09-cumulus/parachain-active-lease.png)
 
 ### Block production
 
-The collator should start producing parachain blocks (aka collating) once the registration is
-successful **and the next relay chain epoch begin**!
+The collator should start producing parachain blocks (aka collating) once the registration is successful **and the next relay chain epoch begin**!
 
-> This may take a while! Be patient as you wait for the next epoch to start.
-> This is 10 blocks for the example [`rococo-custom-2-raw.json`](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json)
-> included in this tutorial.
+> This may take a while!
+> Be patient as you wait for the next epoch to start.
+> This is 10 blocks for the example [`rococo-custom-2-raw.json`](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json) included in this tutorial.
 
 Finally, the collator should start producing log messages like the following:
 
@@ -354,43 +366,43 @@ Finally, the collator should start producing log messages like the following:
 
 ### Block finalization
 
-The relay chain tracks the latest block (the head) of each parachain. When a relay chain block
-is finalized, every parachain blocks that have completed the
-[validation process](https://polkadot.network/the-path-of-a-parachain-block) are also finalized.
+The relay chain tracks the latest block (the head) of each parachain.
+When a relay chain block is finalized, every parachain blocks that have completed the [validation process](https://polkadot.network/the-path-of-a-parachain-block) are also finalized.
 This is how Polkadot achieves **pooled, shared security** for it's parachains!
 
-We can observed what parachains are registered and what their latest head data is on the
-`Network > Parachains` tab in the Apps UI.
+We can observed what parachains are registered and what their latest head data is on the `Network > Parachains` tab in the Apps UI.
 
 ![parachain-summary-screenshot.png](../../../../src/images/tutorials/09-cumulus/parachain-summary-screenshot.png)
 
 ## Interact with a parachain
 
-The entire point of launching and registering parachains is that we can submit transactions to the
-parachains and interact with them. We are finally ready to submit extrinsics on our parachains!
+The entire point of launching and registering parachains is that we can submit transactions to the parachains and interact with them.
+We are finally ready to submit extrinsics on our parachains!
 
 ### Connecting with the Apps UI
 
-We've already connected the Apps UI to the relay chain node. Now we can also connect to the
-parachain collator. Open another instance of Apps UI in a new browser window, and connect it to the
-appropriate endpoint. If you have followed this workshop so far, you can connect to the
-parachain node at:
+We've already connected the Apps UI to the relay chain node.
+Now we can also connect to the parachain collator.
+Open another instance of Apps UI in a new browser window, and connect it to the appropriate endpoint.
+If you have followed this workshop so far, you can connect to the parachain node at:
 
 https://polkadot.js.org/apps/?rpc=ws%3A%2F%2Flocalhost%3A9945#/
 
 ### Submit extrinsics
 
-You can make some simple token transfers to ensure that the parachain is operating normally. You can
-also make some on-chain remarks by going to the `Extrinsics` page, choosing `System` pallet and
-`remark` extrinsic.
+You can make some simple token transfers to ensure that the parachain is operating normally.
+You can also make some on-chain remarks by going to the `Extrinsics` page, choosing `System` pallet and `remark` extrinsic.
 
-If the transaction go through as expected, you have a working parachain. Congratulations!
+If the transaction go through as expected, you have a working parachain.
+
+🎉**_Congratulations!_**🎉
+
+Read on for more optional material.
 
 #### Cross-chain Message Passing (XCMP)
 
-The defining feature of connecting parachains to a _common_ relay chain is the ability to
-communicate _between_ all connected chains. This area of functionality is at the cutting edge
-development, and for now is not demonstrated in this workshop.
+The defining feature of connecting parachains to a _common_ relay chain is the ability to communicate _between_ all connected chains.
+This area of functionality is at the cutting edge development, and for now is not demonstrated in this workshop.
 
 <Message
   type={`green`}
@@ -409,11 +421,12 @@ For a detailed overview, refer to [Polkadot wiki on XCMP](https://wiki.polkadot.
 Your sole collator is the only home of the parachain data as there is only one node
 on your entire parachain network. Relay chains only store parachains header information. If the
 parachain data is lost, you will **not** be able to recover the chain!
-  `}
+`}
 />
 
 To purge your parachain chain data, you need to deregister and re-register the parachain collator.
-It may be easier in testing to instead just purge all the chains. To purge all chains, run:
+It may be easier in testing to instead just purge all the chains.
+To purge all chains, run:
 
 ```bash
 # Purge the collator(s)
@@ -429,26 +442,25 @@ Then register from a blank slate again.
 
 ## Connecting additional parachain nodes
 
-A parachain can work with only a single collator as we've shown already. But that configuration is
-not very decentralized. An adversary would only need to take down a single node to stall the
-parachain.
+A parachain can work with only a single collator as we've shown already.
+But that configuration is not very decentralized.
+An adversary would only need to take down a single node to stall the parachain.
 
-You should have _at least_ two **validators** (relay chain nodes) running for every **collator**
-(parachain nodes) on your network. This is why we have included a prebuilt 3 and 4 validator
-chain spec in [the first section](/tutorials/v3/cumulus/start-relay#pre-configured-chain-spec-files), and you
-can add more as needed, described there.
+You should have _at least_ two **validators** (relay chain nodes) running for every **collator** (parachain nodes) on your network.
+
+> You can **modify** [the first section's](/tutorials/v3/cumulus/start-relay#pre-configured-chain-spec-files) provided **plain** relay chain spec to include more validators for testing, or go the more "correct" route used for production of modifying the **source** for genesis state in `chain_spec.rs` for your **relay chain** to add more validators.
 
 ### Start a second collator
 
-The command to run additional collators is as follows. This command is nearly identical to the one
-we used to start the first collator, but we need to avoid conflicting ports and `base-path` directories.
+The command to run additional collators is as follows.
+This command is nearly identical to the one we used to start the first collator, but we need to avoid conflicting ports and `base-path` directories.
 
 ```bash
 ./target/release/parachain-collator \
 --bob \
 --collator \
 --force-authoring \
---parachain-id 2000 \
+--chain rococo-local-parachain-2000-raw.json \
 --base-path /tmp/parachain/bob \
 --bootnodes <a running collator node> \
 --port 40334 \
@@ -463,8 +475,8 @@ we used to start the first collator, but we need to avoid conflicting ports and 
 
 ### Non-collating parachain full nodes
 
-It is also possible to start a non-collating full node for a parachain. In this case, simply leave out
-the `--collator` flag.
+It is also possible to start a non-collating full node for a parachain.
+In this case, simply leave out the `--collator` flag.
 
 ```bash
 ./target/release/parachain-collator \
@@ -480,6 +492,5 @@ the `--collator` flag.
 
 ## Next steps
 
-That was quite a lot of work to get a parachain up and running! Don't fret though, in the
-next section we will learn about how to completely automate all the steps we did in this
-tutorial thus far, and much more!
+That was quite a lot of work to get a parachain up and running!
+Don't fret though, in the next section we will learn about how to completely automate all the steps we did in this tutorial thus far, and much more!

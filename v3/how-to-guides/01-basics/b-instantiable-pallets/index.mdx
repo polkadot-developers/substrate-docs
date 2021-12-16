@@ -1,11 +1,13 @@
 ---
 title: Intantiable Pallets
 slug: /how-to-guides/v3/basics/instantiable-pallets
-keywords: basics, intermediate, runtime
-version: 3.0 
+keywords:
+  - basics
+  - intermediate
+  - runtime
+version: '3.0'
 section: how to guides
 category: basics
-difficulty: 1
 ---
 
 <Message
@@ -22,18 +24,20 @@ difficulty: 1
     },
     {
       title: 'Use Cases',
-      description:`
-- A token chain hosts two independent cryptocurrencies.
-- Governance has two (or more) houses which act similarly internally.
-- A social network chain that maintains different treasuries.`,
+      description: `
+        - A token chain hosts two independent cryptocurrencies.
+        - Governance has two (or more) houses which act similarly internally.
+        - A social network chain that maintains different treasuries.
+      `,
     },
     {
       title: 'Overview',
-      description:
-        `Instantiable pallets provide separate storage items for a runtime that contains more than one
-         reference to the same pallet. This is useful in cases where you want to reuse the logic provided by a single
-         pallet. This procedure shows you how to create two instances of the same pallet and how to configure their
-         capabilities.`,
+      description: `
+        Instantiable pallets provide separate storage items for a runtime that contains more than one reference to the same pallet.
+        This is useful in cases where you want to reuse the logic provided by a single pallet.
+        This procedure shows you how to create two instances of the same pallet and how to configure their
+        capabilities.
+      `,
     },
   ]}
 />
@@ -46,15 +50,15 @@ Instantiable pallets must call the `decl_storage!` macro so that the `Instance` 
 
 Add a generic type for `Instance` in the Config trait, Event type, and Store trait. Learn more about how generic types work in Rust [here] [generics-rust-book]. The code snippet below shows the modifications required for our pallet's `Config` and `Store` traits:
 
-    ```rust
-    pub trait Config<I: Instance>: frame_system::Config {
-    	type Event: From<Event<Self>> + Into<<Self as frame_system::Config>::Event>;
-    }
-    /// Include the I: Instance type parameter in storage declaration
-    decl_storage! {
-    	trait Store for Module<T: Config<I>, I: Instance> as MintToken {
-    /* --snip-- */
-    ```
+```rust
+pub trait Config<I: Instance>: frame_system::Config {
+  type Event: From<Event<Self>> + Into<<Self as frame_system::Config>::Event>;
+}
+/// Include the I: Instance type parameter in storage declaration
+decl_storage! {
+  trait Store for Module<T: Config<I>, I: Instance> as MintToken {
+/* --snip-- */
+```
 
 ### 2. Configure your runtime
 

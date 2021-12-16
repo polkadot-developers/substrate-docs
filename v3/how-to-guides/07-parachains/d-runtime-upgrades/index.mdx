@@ -1,11 +1,17 @@
 ---
 title: Runtime Upgrades
 slug: /how-to-guides/v3/parachains/runtime-upgrades
-version: polkadot-0.9.10
+version: polkadot-0.9.11
 section: how to guides
 category: parachains
 difficulty: 3
-keywords: [collators, parachains, upgrade, cumulus, storage, migration]
+keywords:
+  - collators
+  - parachains
+  - upgrade
+  - cumulus
+  - storage
+  - migration
 ---
 
 <Objectives
@@ -55,13 +61,13 @@ use to remedy this problem:
    [Scheduler pallet](https://github.com/paritytech/substrate/tree/master/frame/scheduler)
    to ensure they get executed regardless of block producer.
 
-2. Use versioned storage and only execute migrations when storage values that
+1. Use versioned storage and only execute migrations when storage values that
    haven't yet been upgraded are accessed. This can cause variance in
    transaction fees between users and could potentially result in more complex
    runtime code. However, if properly metered (weights are properly benchmarked)
    this approach will ensure minimal downtime for migration.
 
-3. If you must split your migrations among multiple blocks you can do it either
+1. If you must split your migrations among multiple blocks you can do it either
    on-chain or off-chain:
 
    - An on-chain multi-block migration will require custom pallet logic to be
@@ -97,12 +103,8 @@ upgrade of your chain before it happens.
 [Cumulus][https://github.com/paritytech/cumulus#cumulus-cloud] provides functionality to help you
 notify the relay chain about the upcoming upgrade by:
 
-1.  **Using
-    [`authorize_upgrade`](https://paritytech.github.io/cumulus/cumulus_pallet_parachain_system/pallet/struct.Pallet.html#method.authorize_upgrade)**
-    to provide the hash of your upgrade and authorize it.
-2.  **Using
-    [`enact_authorized_upgrade`](https://paritytech.github.io/cumulus/cumulus_pallet_parachain_system/pallet/struct.Pallet.html#method.enact_authorized_upgrade)**
-    to provide the actual code for the upgrade.
+1. **Using [`authorize_upgrade`](https://paritytech.github.io/cumulus/cumulus_pallet_parachain_system/pallet/struct.Pallet.html#method.authorize_upgrade)** to provide the hash of your upgrade and authorize it.
+1. **Using [`enact_authorized_upgrade`](https://paritytech.github.io/cumulus/cumulus_pallet_parachain_system/pallet/struct.Pallet.html#method.enact_authorized_upgrade)** to provide the actual code for the upgrade.
 
 With both these functions called, the relay chain will be notified that the new
 upgrade has been scheduled.

@@ -1,10 +1,14 @@
 ---
 title: Develop a Smart Contract
 slug: /tutorials/v3/ink-workshop/pt2
-version: 3.0 
+version: '3.0'
+sideNav: inkWorkshop
 section: tutorials
 category: ink workshop
-keywords: smart contracts, erc20, wasm
+keywords:
+  - smart contracts
+  - erc20
+  - wasm
 ---
 
 This chapter will get you started developing smart contracts with ink!.
@@ -13,48 +17,43 @@ We will build a simple **Incrementer** contract which holds a number which you c
 
 <TutorialObjective
   data={{
-    textLineOne:
-      '1. ink! Smart Contract Template',
-      url: '#contract-template',
+    textLineOne: '1. ink! Smart Contract Template',
+    url: '#contract-template',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '2. Storing a Value',
+    textLineOne: '2. Storing a Value',
     url: '#storing-a-value',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '3. Interacting with a Storage Value',
+    textLineOne: '3. Interacting with a Storage Value',
     url: '#interacting-with-a-storage-value',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '4. Incrementing the Value',
+    textLineOne: '4. Incrementing the Value',
     url: '#incrementing-the-value',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '5. Storing a Mapping',
+    textLineOne: '5. Storing a Mapping',
     url: '#storing-a-mapping',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '6. Updating a Value',
+    textLineOne: '6. Updating a Value',
     url: '#updating-a-value',
   }}
 />
 
 ## Learning outcomes
+
 - Learn the structure of ink! smart contracts
 - To store single values and hash maps
 - To safely get and set these values
@@ -119,10 +118,10 @@ Here is how you would store simple values in storage:
 ```rust
 #[ink(storage)]
 pub struct MyContract {
-    // Store a bool
-    my_bool: bool,
-    // Store some number
-    my_number: u32,
+	// Store a bool
+	my_bool: bool,
+	// Store some number
+	my_number: u32,
 }
 /* --snip-- */
 ```
@@ -149,15 +148,15 @@ use ink_lang as ink;
 #[ink::contract]
 mod MyContract {
 
-    // Our struct will use those default ink! types
-    #[ink(storage)]
-    pub struct MyContract {
-        // Store some AccountId
-        my_account: AccountId,
-        // Store some Balance
-        my_balance: Balance,
-    }
-    /* --snip-- */
+	// Our struct will use those default ink! types
+	#[ink(storage)]
+	pub struct MyContract {
+		// Store some AccountId
+		my_account: AccountId,
+		// Store some Balance
+		my_balance: Balance,
+	}
+	/* --snip-- */
 }
 ```
 
@@ -174,31 +173,31 @@ use ink_lang as ink;
 #[ink::contract]
 mod mycontract {
 
-    #[ink(storage)]
-    pub struct MyContract {
-        number: u32,
-    }
+	#[ink(storage)]
+	pub struct MyContract {
+		number: u32,
+	}
 
-    impl MyContract {
-        /// Constructor that initializes the `u32` value to the given `init_value`.
-        #[ink(constructor)]
-        pub fn new(init_value: u32) -> Self {
-            Self {
-                number: init_value,
-            }
-        }
+	impl MyContract {
+		/// Constructor that initializes the `u32` value to the given `init_value`.
+		#[ink(constructor)]
+		pub fn new(init_value: u32) -> Self {
+			Self {
+				number: init_value,
+			}
+		}
 
-        /// Constructor that initializes the `u32` value to the `u32` default.
-        ///
-        /// Constructors can delegate to other constructors.
-        #[ink(constructor)]
-        pub fn default() -> Self {
-            Self {
-                number: Default::default(),
-            }
-        }
-    /* --snip-- */
-    }
+		/// Constructor that initializes the `u32` value to the `u32` default.
+		///
+		/// Constructors can delegate to other constructors.
+		#[ink(constructor)]
+		pub fn default() -> Self {
+			Self {
+				number: Default::default(),
+			}
+		}
+	/* --snip-- */
+	}
 }
 ```
 
@@ -226,7 +225,7 @@ As you see in the contract template, all of your contract functions are part of 
 
 ```rust
 impl MyContract {
-    // Public and Private functions go here
+	// Public and Private functions go here
 }
 ```
 
@@ -237,18 +236,18 @@ breaking up your implementation definitions for your private and public function
 
 ```rust
 impl MyContract {
-    /// Public function
-    #[ink(message)]
-    pub fn my_public_function(&self) {
-        /* --snip-- */
-    }
+	/// Public function
+	#[ink(message)]
+	pub fn my_public_function(&self) {
+		/* --snip-- */
+	}
 
-    /// Private function
-    fn my_private_function(&self) {
-        /* --snip-- */
-    }
+	/// Private function
+	fn my_private_function(&self) {
+		/* --snip-- */
+	}
 
-    /* --snip-- */
+	/* --snip-- */
 }
 ```
 
@@ -262,10 +261,10 @@ We already showed you how to initialize a storage value. Getting the value is ju
 
 ```rust
 impl MyContract {
-    #[ink(message)]
-    pub fn my_getter(&self) -> u32 {
-        self.number
-    }
+	#[ink(message)]
+	pub fn my_getter(&self) -> u32 {
+		self.number
+	}
 }
 ```
 
@@ -303,15 +302,15 @@ If you are simply _reading_ from the contract storage, you only need to pass `&s
 
 ```rust
 impl MyContract {
-    #[ink(message)]
-    pub fn my_getter(&self) -> u32 {
-        self.my_number
-    }
+	#[ink(message)]
+	pub fn my_getter(&self) -> u32 {
+		self.my_number
+	}
 
-    #[ink(message)]
-    pub fn my_setter(&mut self, new_value: u32) {
-        self.my_number = new_value;
-    }
+	#[ink(message)]
+	pub fn my_setter(&mut self, new_value: u32) {
+		self.my_number = new_value;
+	}
 }
 ```
 
@@ -327,29 +326,29 @@ This is an example of using the `Lazy` type:
 ```rust
 #[ink(storage)]
 pub struct MyContract {
-    // Store some number
-    my_number: ink_storage::Lazy<u32>,
+	// Store some number
+	my_number: ink_storage::Lazy<u32>,
 }
 
 impl MyContract {
-    #[ink(constructor)]
-    pub fn new(init_value: u32) -> Self {
-        Self {
-            my_number: ink_storage::Lazy::<u32>::new(init_value),
-        }
-    }
+	#[ink(constructor)]
+	pub fn new(init_value: u32) -> Self {
+		Self {
+			my_number: ink_storage::Lazy::<u32>::new(init_value),
+		}
+	}
 
-    #[ink(message)]
-    pub fn my_setter(&mut self, new_value: u32) {
-        ink_storage::Lazy::<u32>::set(&mut self.my_number, new_value);
-    }
+	#[ink(message)]
+	pub fn my_setter(&mut self, new_value: u32) {
+		ink_storage::Lazy::<u32>::set(&mut self.my_number, new_value);
+	}
 
-    #[ink(message)]
-    pub fn my_adder(&mut self, add_value: u32) {
-        let my_number = &mut self.my_number;
-        let cur = ink_storage::Lazy::<u32>::get(my_number);
-        ink_storage::Lazy::<u32>::set(my_number, cur + add_value);
-    }
+	#[ink(message)]
+	pub fn my_adder(&mut self, add_value: u32) {
+		let my_number = &mut self.my_number;
+		let cur = ink_storage::Lazy::<u32>::get(my_number);
+		ink_storage::Lazy::<u32>::set(my_number, cur + add_value);
+	}
 }
 ```
 
@@ -388,8 +387,8 @@ Here is an example of a mapping from a user to a number:
 ```rust
 #[ink(storage)]
 pub struct MyContract {
-    // Store a mapping from AccountIds to a u32
-    my_number_map: ink_storage::collections::HashMap<AccountId, u32>,
+	// Store a mapping from AccountIds to a u32
+	my_number_map: ink_storage::collections::HashMap<AccountId, u32>,
 }
 ```
 
@@ -449,29 +448,29 @@ use ink_lang as ink;
 #[ink::contract]
 mod mycontract {
 
-    #[ink(storage)]
-    pub struct MyContract {
-        // Store a mapping from AccountIds to a u32
-        my_number_map: ink_storage::collections::HashMap<AccountId, u32>,
-    }
+	#[ink(storage)]
+	pub struct MyContract {
+		// Store a mapping from AccountIds to a u32
+		my_number_map: ink_storage::collections::HashMap<AccountId, u32>,
+	}
 
-    impl MyContract {
-        /// Public function.
-        /// Default constructor.
-        #[ink(constructor)]
-        pub fn default() -> Self {
-            Self {
-                my_number_map: Default::default(),
-            }
-        }
+	impl MyContract {
+		/// Public function.
+		/// Default constructor.
+		#[ink(constructor)]
+		pub fn default() -> Self {
+			Self {
+				my_number_map: Default::default(),
+			}
+		}
 
-        /// Private function.
-        /// Returns the number for an AccountId or 0 if it is not set.
-        fn my_number_or_zero(&self, of: &AccountId) -> u32 {
-            let balance = self.my_number_map.get(of).unwrap_or(&0);
-            *balance
-        }
-    }
+		/// Private function.
+		/// Returns the number for an AccountId or 0 if it is not set.
+		fn my_number_or_zero(&self, of: &AccountId) -> u32 {
+			let balance = self.my_number_map.get(of).unwrap_or(&0);
+			*balance
+		}
+	}
 }
 ```
 
@@ -488,32 +487,32 @@ use ink_lang as ink;
 #[ink::contract]
 mod mycontract {
 
-    #[ink(storage)]
-    pub struct MyContract {
-        // Store a mapping from AccountIds to a u32
-        my_number_map: ink_storage::collections::HashMap<AccountId, u32>,
-    }
+	#[ink(storage)]
+	pub struct MyContract {
+		// Store a mapping from AccountIds to a u32
+		my_number_map: ink_storage::collections::HashMap<AccountId, u32>,
+	}
 
-    impl MyContract {
-        // Get the value for a given AccountId
-        #[ink(message)]
-        pub fn get(&self, of: AccountId) -> u32 {
-            self.my_number_or_zero(&of)
-        }
+	impl MyContract {
+		// Get the value for a given AccountId
+		#[ink(message)]
+		pub fn get(&self, of: AccountId) -> u32 {
+			self.my_number_or_zero(&of)
+		}
 
-        // Get the value for the calling AccountId
-        #[ink(message)]
-        pub fn get_my_number(&self) -> u32 {
-            let caller = self.env().caller();
-            self.my_number_or_zero(&caller)
-        }
+		// Get the value for the calling AccountId
+		#[ink(message)]
+		pub fn get_my_number(&self) -> u32 {
+			let caller = self.env().caller();
+			self.my_number_or_zero(&caller)
+		}
 
-        // Returns the number for an AccountId or 0 if it is not set.
-        fn my_number_or_zero(&self, of: &AccountId) -> u32 {
-            let value = self.my_number_map.get(of).unwrap_or(&0);
-            *value
-        }
-    }
+		// Returns the number for an AccountId or 0 if it is not set.
+		fn my_number_or_zero(&self, of: &AccountId) -> u32 {
+			let value = self.my_number_map.get(of).unwrap_or(&0);
+			*value
+		}
+	}
 }
 ```
 
@@ -541,21 +540,21 @@ use ink_lang as ink;
 #[ink::contract]
 mod mycontract {
 
-    #[ink(storage)]
-    pub struct MyContract {
-        // Store a contract owner
-        owner: AccountId,
-    }
+	#[ink(storage)]
+	pub struct MyContract {
+		// Store a contract owner
+		owner: AccountId,
+	}
 
-    impl MyContract {
-        #[ink(constructor)]
-        pub fn new() -> Self {
-            Self {
-                owner: Self::env().caller();
-            }
-        }
-        /* --snip-- */
-    }
+	impl MyContract {
+		#[ink(constructor)]
+		pub fn new() -> Self {
+			Self {
+				owner: Self::env().caller();
+			}
+		}
+		/* --snip-- */
+	}
 }
 ```
 
@@ -592,27 +591,27 @@ But have no fear, we can continue to use the `my_number_or_zero` function we cre
 ```rust
 impl MyContract {
 
-    /* --snip-- */
+	/* --snip-- */
 
-    // Set the value for the calling AccountId
-    #[ink(message)]
-    pub fn set_my_number(&mut self, value: u32) {
-        let caller = self.env().caller();
-        self.my_number_map.insert(caller, value);
-    }
+	// Set the value for the calling AccountId
+	#[ink(message)]
+	pub fn set_my_number(&mut self, value: u32) {
+		let caller = self.env().caller();
+		self.my_number_map.insert(caller, value);
+	}
 
-    // Add a value to the existing value for the calling AccountId
-    #[ink(message)]
-    pub fn add_my_number(&mut self, value: u32) {
-        let caller = self.env().caller();
-        let my_number = self.my_number_or_zero(&caller);
-        self.my_number_map.insert(caller, my_number + value);
-    }
+	// Add a value to the existing value for the calling AccountId
+	#[ink(message)]
+	pub fn add_my_number(&mut self, value: u32) {
+		let caller = self.env().caller();
+		let my_number = self.my_number_or_zero(&caller);
+		self.my_number_map.insert(caller, my_number + value);
+	}
 
-    /// Returns the number for an AccountId or 0 if it is not set.
-    fn my_number_or_zero(&self, of: &AccountId) -> u32 {
-        *self.my_number_map.get(of).unwrap_or(&0)
-    }
+	/// Returns the number for an AccountId or 0 if it is not set.
+	fn my_number_or_zero(&self, of: &AccountId) -> u32 {
+		*self.my_number_map.get(of).unwrap_or(&0)
+	}
 }
 ```
 
@@ -636,11 +635,10 @@ that we can use to achieve this type of "upsert" behavior:
 ```rust
 let caller = self.env().caller();
 self.my_number_map
-    .entry(caller)
-    .and_modify(|old_value| *old_value += by)
-    .or_insert(by);
+	.entry(caller)
+	.and_modify(|old_value| *old_value += by)
+	.or_insert(by);
 ```
-
 
 ### 3. Your Turn
 

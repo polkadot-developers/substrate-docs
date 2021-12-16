@@ -16,7 +16,7 @@ pub mod pallet {
     // TODO Part II: Enum and implementation to handle Gender type in Kitty struct.
 
     #[pallet::pallet]
-    #[pallet::generate_store(trait Store)]
+    #[pallet::generate_store(pub(super) trait Store)]
     pub struct Pallet<T>(_);
 
     /// Configure the pallet by specifying the parameters and types it depends on.

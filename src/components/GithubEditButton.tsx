@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useIntl } from 'react-intl'
 import Icon from '../components/Icon'
 
 interface GithuEditButtonProps {
   absolutePath: string
 }
 export default function GithubEditButton(props: GithuEditButtonProps) {
-  const intl = useIntl()
   const githubSlug =
     'https://github.com/substrate-developer-hub/substrate-docs/edit/main'
 
@@ -33,9 +31,7 @@ export default function GithubEditButton(props: GithuEditButtonProps) {
           className="mx-2 fill-current text-substrateDark dark:text-white"
         />
         {` `}
-        <span className="text-substrateDark dark:text-white">
-          {intl.formatMessage({ id: 'docs-nav-edit' })}
-        </span>
+        <span className="text-substrateDark dark:text-white">Edit</span>
       </a>
     </div>
   )
