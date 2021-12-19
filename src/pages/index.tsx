@@ -168,7 +168,7 @@ export default function Index() {
             <Link to="/playground/">
               <StaticImage
                 backgroundColor="transparent"
-                src="../images/playground-hero.png"
+                src="../images/regular/playground-hero.png"
                 alt="Substrate Playground"
                 layout="constrained"
               />
