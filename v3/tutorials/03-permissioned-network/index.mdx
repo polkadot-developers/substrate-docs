@@ -488,7 +488,7 @@ Let's start Charlie's node,
 After it was started, you should see there are **no connected peers** for this node.
 This is because we are trying to connect to a permissioned network, you need to
 get authorization to to be connectable! Alice and Bob were configured already in
-the genesis `chain_spec.rs`, where all others mut be added manually via extrinsic.
+the genesis `chain_spec.rs`, where all others must be added manually via extrinsic.
 
 Remember that we are using `sudo` pallet for our governance, we can make a sudo call
 on `add_well_known_node` dispatch call provided by node-authorization pallet to add
@@ -497,7 +497,7 @@ our node. You can find more avaliable calls in this
 
 Go to **Developer** page, **Sudo** tab, in apps and submit the `nodeAuthorization` -
 `add_well_known_node` call with the peer id in hex of Charlie's node and the
-owner is Charlie, of course. Note Allice is the valid sudo origin for this call.
+owner is Charlie, of course. Note Alice is the valid sudo origin for this call.
 
 ![add_well_known_node](../../../src/images/tutorials/03-permissioned-network/add_well_known_node.png)
 
@@ -523,7 +523,7 @@ Now we have 3 well known nodes all validating blocks together!
 
 Let's add Dave's node, not as a well-known node, but a "sub-node" of Charlie.
 Dave will _only_ be able to connect to Charlie to access the network.
-This is a security feature: as Charlie is therefor solely responsible for any
+This is a security feature: as Charlie is therefore solely responsible for any
 connected sub-node peer. There is one point of access control for David in case
 they need to be removed or audited.
 
