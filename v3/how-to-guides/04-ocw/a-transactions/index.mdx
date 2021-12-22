@@ -13,28 +13,33 @@ category: ocw
 <Objectives data={[
   {
     title: 'Goal',
-    description: `Learn how to perform the following from off-chain workers:
-- signed transactions
-- unsigned transactions
-- unsigned transactions with signed payload`
+    description: `Learn how to perform the following actions from off-chain workers:
+- Signed transactions
+- Unsigned transactions
+- Unsigned transactions with signed payload`
   },
   {
     title: 'Use Cases',
-    description: `Data processed or fetched from off-chain workers is not saved directly on-chain. To do so, a transaction must be sent on-chain from off-chain workers. Here we introduce three ways of doing that.`,
+    description: `Data processed from off-chain workers cannot be saved in on-chain storage
+    directly. To do so, a transaction must be sent on-chain from off-chain workers. Here we
+    introduce three ways of doing that.`,
   },
 ]}/>
 
 ## Overview
 
-You have used off-chain workers fetching some valuable data, or processing some very conclusive data. Now you want to save it on-chain. How do you go about that? Here, we introduce three methods:
+You have used off-chain workers fetching some valuable data, or processing some very crucial data.
+Now you want to save it on-chain. How do you go about that? In this how-to guide, we will introduce
+three methods to do that.
 
-- **Signed transactions** - use this when you want to record the associated transaction caller and deducting the transaction fee from the caller account.
+- **Signed transactions** - use this when you want to record the associated transaction caller
+  and deduct the transaction fee from the caller account.
 - **Unsigned transactions** - use this when you **DO NOT** want to record the associated caller.
 - **Unsigned transactions with signed payload** - use this when you want to record the associated transaction caller, but do not want the caller be responsible for the transaction fee payment.
 
-## Steps for sending signed transactions
+## Steps: sending signed transactions
 
-1. Call the life-cycle hook of off-chain workers in your pallet, as follows:
+1. In your pallet, call the hook of off-chain workers as follows:
 
   ```rust
   #[pallet::hooks]
@@ -47,7 +52,6 @@ You have used off-chain workers fetching some valuable data, or processing some 
     /// Note that it's not guaranteed for offchain workers to run on EVERY block, there might
     /// be cases where some blocks are skipped, or for some the worker runs twice (re-orgs),
     /// so the code should be able to handle that.
-    /// You can use `Local Storage` API to coordinate runs of the worker.
     fn offchain_worker(block_number: T::BlockNumber) {
       log::info!("Hello from pallet-ocw.");
       // The entry point of your code called by off-chain worker
@@ -56,7 +60,8 @@ You have used off-chain workers fetching some valuable data, or processing some 
   }
   ```
 
-2. Your pallet trait Config need to be bound by [`CreateSignedTransaction` trait](https://paritytech.github.io/substrate/latest/frame_system/offchain/trait.CreateSignedTransaction.html). So your `Config` trait will look like:
+2. Your pallet trait Config need to be bound by [`CreateSignedTransaction` trait](https://paritytech.github.io/substrate/latest/frame_system/offchain/trait.CreateSignedTransaction.html).
+  So your pallet `Config` trait will look like:
 
   ```rust
   /// This pallet's configuration trait
@@ -66,9 +71,17 @@ You have used off-chain workers fetching some valuable data, or processing some 
   }
   ```
 
-3. To ensure your pallet owns an account that can be used for signing transactions, we will add a `crypto` module with a sr25519 signature key.
+3. To ensure your pallet owns an account that can be used for signing transactions, we will add a `crypto` module with a sr25519 signature key in the pallet.
 
   ```rust
+  use sp_core::{crypto::KeyTypeId};
+
+  // ...
+
+  pub const KEY_TYPE: KeyTypeId = KeyTypeId(*b"demo");
+
+  // ...
+
   pub mod crypto {
     use super::KEY_TYPE;
     use sp_core::sr25519::Signature as Sr25519Signature;
@@ -89,42 +102,69 @@ You have used off-chain workers fetching some valuable data, or processing some 
   }
   ```
 
-  The [`app_crypto` macro](https://paritytech.github.io/substrate/latest/sp_application_crypto/macro.app_crypto.html) above declares an account using sr25519 logic that is identified by `KEY_TYPE`. Note that this doesn't create a new account, but just declaring a crypto account is available for this pallet. More on this at the following.
+  The [`app_crypto` macro](https://paritytech.github.io/substrate/latest/sp_application_crypto/macro.app_crypto.html) above declares an account with sr25519 signature that is identified by
+  `KEY_TYPE`. Note that this doesn't create a new account, but just declaring that a crypto account
+  is available for this pallet. We need to initialize this account later. More on this at the
+  following.
 
 4. Now, you could send a signed transaction on-chain by first getting a signer.
 
   ```rust
-  let signer = Signer::<T, T::AuthorityId>::all_accounts();
-  ```
+  fn offchain_worker(block_number: T::BlockNumber) {
+    let signer = Signer::<T, T::AuthorityId>::all_accounts();
 
-  Although it is calling `all_accounts()`, there is only one account owned by this pallet, defined above in the `crypto` module.
-
-  Then we can send the wrap an extrinsic call in `send_signed_transaction()`:
-
-  ```rust
-  // Using `send_signed_transaction` associated type we create and submit a transaction
-  // representing the call, we've just created.
-  // Submit signed will return a vector of results for all accounts that were found in the
-  // local keystore with expected `KEY_TYPE`.
-  let results = signer.send_signed_transaction(|_account| {
-    Call::on_chain_call { key: val }
-  });
-  ```
-
-  Lastly, we just need to check if the transaction is successfully submitted on-chain and perform proper error handling.
-
-  ```rust
-  for (acc, res) in &results {
-    match res {
-      Ok(()) => log::info!("[{:?}]: submit transaction success.", acc.id),
-      Err(e) => log::error!("[{:?}]: submit transaction failure. Reason: {:?}", acc.id, e),
-    }
+    // ...
   }
   ```
 
-  For a full example on how to send a signed transaction on-chain, refer to [this function](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/v2.0.0/pallets/example-offchain-worker/src/lib.rs#L437-L467) in [Substrate Off-chain Worker Demo](https://github.com/jimmychu0807/substrate-offchain-worker-demo).
+  Although it is calling `all_accounts()`, we will only inject one account into this pallet later
+  defined above in the `crypto` module.
 
-5. From pt #1, we have configured so that for the runtime to implement this pallet `Config` trait, it also has to imeplement the [`CreateSignedTransaction` trait](https://paritytech.github.io/substrate/latest/frame_system/offchain/trait.CreateSignedTransaction.html), so let's implement that trait in our runtime. Looking at its rustdoc, we only need to implement the function `create_transaction()`.
+  Then we can send an extrinsic call in `send_signed_transaction()`:
+
+  ```rust
+  fn offchain_worker(block_number: T::BlockNumber) {
+    let signer = Signer::<T, T::AuthorityId>::all_accounts();
+
+    // Using `send_signed_transaction` associated type we create and submit a transaction
+    // representing the call we've just created.
+    // `send_signed_transaction()` return type is `Option<(Account<T>, Result<(), ()>)>`. It is:
+    //   - `None`: no account is available for sending transaction
+    //   - `Some((account, Ok(())))`: transaction is successfully sent
+    //   - `Some((account, Err(())))`: error occured when sending the transaction
+    let results = signer.send_signed_transaction(|_account| {
+      Call::on_chain_call { key: val }
+    });
+
+    // ...
+  }
+  ```
+
+  Lastly, we just need to check if the transaction is successfully submitted on-chain and perform
+  proper error handling by checking the returned `results`.
+
+  ```rust
+  fn offchain_worker(block_number: T::BlockNumber) {
+    // ...
+
+    for (acc, res) in &results {
+      match res {
+        Ok(()) => log::info!("[{:?}]: submit transaction success.", acc.id),
+        Err(e) => log::error!("[{:?}]: submit transaction failure. Reason: {:?}", acc.id, e),
+      }
+    }
+
+    Ok(())
+  }
+  ```
+
+5. From pt #2, we have configured the trait bound so that the runtime implementing this
+  pallet `Config` trait must also imeplements the `CreateSignedTransaction` trait, so let's
+  implement that trait in our runtime.
+
+  Looking at [its rustdocs](https://paritytech.github.io/substrate/latest/frame_system/offchain/trait.CreateSignedTransaction.html),
+  we only need to implement the function `create_transaction()` for our runtime. In our
+  `runtime/src/lib.rs`:
 
   ```rust
   impl<LocalCall> frame_system::offchain::CreateSignedTransaction<LocalCall> for Runtime
@@ -165,16 +205,18 @@ You have used off-chain workers fetching some valuable data, or processing some 
   }
   ```
 
-  The above code seems long, but what it does is simple. It:
+  The above code seems long, but what it tries to do is really:
 
-    - creates / prepares a `SignedExtra` type, and putting various checkers in-place.
-    - creates a raw payload based on passed in `call` and `extra`.
-    - signs the raw payload with the account public key.
-    - finally, it bundles all data up and return a tuple of the call, the caller, the signature, and any signed extension data.
+    - Create and prepare `extra` of `SignedExtra` type, and put various checkers in-place.
+    - Create a raw payload based on the passed in `call` and `extra`.
+    - Sign the raw payload with the account public key.
+    - Finally, bundle all data up and return a tuple of the call, the caller, its signature, and
+      any signed extension data.
 
-  A full exmaple code can be seen [here](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/v2.0.0/runtime/src/lib.rs#L306-L341).
+  A full exmaple code can be seen [in the **Substrate** code base](https://github.com/paritytech/substrate/blob/monthly-2021-12/bin/node/runtime/src/lib.rs#L960-L999).
 
-6. The runtime also needs to implement `SigningTypes` and `SendTransactionTypes` in order to submit transactions, whether signed or unsigned.
+6. The runtime also needs to implement `SigningTypes` and `SendTransactionTypes` in order to submit
+  transactions, whether signed or unsigned.
 
   ```rust
   impl frame_system::offchain::SigningTypes for Runtime {
@@ -191,29 +233,40 @@ You have used off-chain workers fetching some valuable data, or processing some 
   }
   ```
 
-  An example of this implementation can be seen [in this example](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/v2.0.0/runtime/src/lib.rs#L343-L354).
+  An example of this implementation can be seen [in the **Substrate** code base](https://github.com/paritytech/substrate/blob/monthly-2021-12/bin/node/runtime/src/lib.rs#L1001-L1012).
 
-7. Now we need to configure which account does this pallet owned. In developemnt environment (node starting with `--dev` flag), the key is [inserted in `node/src/service.rs`](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/v2.0.0/node/src/service.rs#L87-L105) at the following:
+7. Now back to pt #3, we need to assign an account this pallet owned. In developemnt environment
+  (node running with `--dev` flag), this account key is [inserted in `node/src/service.rs`](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/v2.0.0/node/src/service.rs#L87-L105)
+  as follows:
 
   ```rust
   pub fn new_partial(config: &Configuration) -> Result <SomeStruct, SomeError> {
+
     //...
+
     if config.offchain_worker.enabled {
       // Initialize seed for signing transaction using off-chain workers. This is a convenience
       // so learners can see the transactions submitted simply running the node.
       // Typically these keys should be inserted with RPC calls to `author_insertKey`.
       sp_keystore::SyncCryptoStore::sr25519_generate_new(
         &*keystore,
-        node_template_runtime::pallet_example_offchain_worker::KEY_TYPE,
+        node_template_runtime::pallet_your_ocw_pallet::KEY_TYPE,
         Some("//Alice"),
       ).expect("Creating key with account Alice should succeed.");
     }
   }
   ```
 
-## Steps for sending unsigned transactions
+  In the above code, we are injecting `Alice` key in the crypto store identified by our pallet
+  defined `KEY_TYPE`.
 
-1. By default, all unsigned transactions are rejected in Substrate. So we first need to whitelist unsigned transactions we want to accept. This can be done by having the pallet implements the `ValidateUnsigned` trait.
+  Now, your pallet is ready to send signed transactions on-chain from off-chain workers.
+
+## Steps: sending unsigned transactions
+
+1. By default all unsigned transactions are rejected in Substrate. So we first need to allow
+  certain unsigned transactions we want to accept. This can be done by having the pallet implements
+  the `ValidateUnsigned` trait. In our pallet `src/lib.rs`:
 
   ```rust
   #[pallet::validate_unsigned]
@@ -231,7 +284,8 @@ You have used off-chain workers fetching some valuable data, or processing some 
   }
   ```
 
-  Inside the `validate_unsigned()` function, we check if it is a call to our allowed functions we return a `ValidTransaction`, otherwise the `TransactionValidityError`. So, we first create a named closure that helps us return a `ValidTransaction`.
+  First, we call the [`validate_unsigned` pallet macro](https://paritytech.github.io/substrate/latest/frame_support/attr.pallet.html#validate-unsigned-palletvalidate_unsigned-optional), and then
+  imeplement the trait.
 
   ```rust
   fn validate_unsigned(source: TransactionSource, call: &Self::Call) -> TransactionValidity {
@@ -245,11 +299,13 @@ You have used off-chain workers fetching some valuable data, or processing some 
   }
     ```
 
-  Next, we check the calling extrinsics,
+  Inside the `validate_unsigned()` function we create a convenient method `valid_tx` that returns
+  `TransactionValidity`. Next, we check the calling extrinsics, if it is a call that we allow,
+  we return a `ValidTransaction`, otherwise a `TransactionValidityError` is returned.
 
   ```rust
   fn validate_unsigned(source: TransactionSource, call: &Self::Call) -> TransactionValidity {
-    // -- continue
+    // ...
     match call {
       Call::extrinsic1 { key: value } => valid_tx(b"extrinsic1".to_vec()),
       _ => InvalidTransaction::Call.into(),
@@ -257,11 +313,14 @@ You have used off-chain workers fetching some valuable data, or processing some 
   }
   ```
 
-  With the above example code, users can call on-chain `extrinsic1` without signature, but not any other extrinsics on-chain.
+  With the above example code, users can call on-chain `extrinsic1` without signature, but not any
+  other extrinsics.
 
-  To see a full example of how `ValidateUnsigned` is implemented in a pallet, refer to [`pallet-ocw`](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/v2.0.0/pallets/ocw/src/lib.rs#L209-L240) and [`pallet-example-offchain-worker`](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/v2.0.0/pallets/example-offchain-worker/src/lib.rs#L294-L322).
+  To see a full example of how `ValidateUnsigned` is implemented in a pallet, refer to
+  [`pallet-ocw` in **Substrate Off-chain Worker Demo**](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/v2.0.0/pallets/ocw/src/lib.rs#L209-L240)
+  and [`pallet-example-offchain-worker` in **Substrate**](https://github.com/paritytech/substrate/blob/monthly-2021-12/frame/examples/offchain-worker/src/lib.rs#L297-L325).
 
-2. Now in the offchain worker function, you could call the offchain unsigned transactions.
+2. Now in the off-chain worker function, we can make unsigned transactions as follow.
 
   ```rust
   #[pallet::hooks]
@@ -270,7 +329,7 @@ You have used off-chain workers fetching some valuable data, or processing some 
     fn offchain_worker(block_number: T::BlockNumber) {
       let value: u64 = 10;
       // This is your call to on-chain extrinsic together with any necessary parameters.
-      let call = Call::unsigned_extrinsic { key: value };
+      let call = Call::unsigned_extrinsic1 { key: value };
 
       // `submit_unsigned_transaction` returns a type of `Result<(), ()>`
       //   ref: https://paritytech.github.io/substrate/latest/frame_system/offchain/struct.SubmitTransaction.html
@@ -282,9 +341,12 @@ You have used off-chain workers fetching some valuable data, or processing some 
   }
   ```
 
-  In the above code, we first prepare our transaction in the `let call = ...` line. Then we submit the transaction using [`SubmitTransaction::submit_unsigned_transaction`](https://paritytech.github.io/substrate/latest/frame_system/offchain/struct.SubmitTransaction.html) and perform necessary error handling in the callback function passed in.
+  In the above code, we first prepare our call in the `let call = ...` line. Then we submit the
+  transaction using [`SubmitTransaction::submit_unsigned_transaction`](https://paritytech.github.io/substrate/latest/frame_system/offchain/struct.SubmitTransaction.html)
+  and perform any necessary error handling in the callback function passed in.
 
-4. To enable `ValidateUnsigned` trait for our runtime, we need to pass this value as a parameter within our `construct_runtime` macro when defining the pallet variant in our `Runtime` enum.
+3. To enable `ValidateUnsigned` trait for our pallet in the runtime, we need to notify that in our
+  `construct_runtime` macro when defining the pallet variant by passing a `ValidateUnsigned` type.
 
   ```rust
   construct_runtime!(
@@ -293,23 +355,30 @@ You have used off-chain workers fetching some valuable data, or processing some 
       NodeBlock = opaque::Block,
       UncheckedExtrinsic = UncheckedExtrinsic
     {
-      OcwDemo: pallet_ocw::{Pallet, Call, Storage, Event<T>, ValidateUnsigned},
+      // ...
+      OcwPallet: pallet_ocw::{Pallet, Call, Storage, Event<T>, ValidateUnsigned},
     }
   );
   ```
 
-5. We will need to implement `SendTransactionTypes` trait for the runtime. This is the same as the implementation used for sending signed transactions in pt #6 above.
+4. We will need to implement `SendTransactionTypes` trait for the runtime. This is the same as the
+  implementation used for [sending signed transactions](#steps-sending-signed-transactions) in
+  pt #6 above.
 
-## Steps for sending unsigned transactions with signed payload
+A full example can be seen [in `pallet-example-offchain-worker` in **Substrate** code base](https://github.com/paritytech/substrate/blob/monthly-2021-12/frame/examples/offchain-worker).
+
+## Steps: sending unsigned transactions with signed payloads
 
 This approach is more or less the same as sending unsigned transactions in the above. We need to:
 
-- implement the `ValidateUnsigned` trait for the pallet.
-- passing the `ValidateUnsigned` type in our Runtime variant when using this pallet
+- Implement the `ValidateUnsigned` trait for the pallet.
+- Passing the `ValidateUnsigned` type in our Runtime variant when using this pallet
 
-You can refer to the exact instructions in the above. Let's see the major differences now.
+You can refer to the instructions in the above. Let's see the major differences now.
 
-1. Now within the off-chain worker function, we will prepare the data structure for the signed payload, called `Payload`. This payload need to implement [`SignedPayload` trait](https://paritytech.github.io/substrate/latest/frame_system/offchain/trait.SignedPayload.html). Let's use a simple example as follows:
+1. We are going to prepare the data structure that is going to be signed (known as the signed
+  payload). This payload needs to implement  [`SignedPayload` trait](https://paritytech.github.io/substrate/latest/frame_system/offchain/trait.SignedPayload.html).
+  Let's use a simple example as follows:
 
   ```rust
   #[derive(Encode, Decode, Clone, PartialEq, Eq, RuntimeDebug, scale_info::TypeInfo)]
@@ -325,7 +394,9 @@ You can refer to the exact instructions in the above. Let's see the major differ
   }
   ```
 
-2. Now in our `offchain_worker` entrance function, we can send the transaction this way:
+  An example can be seen [here](https://github.com/paritytech/substrate/blob/monthly-2021-12/frame/examples/offchain-worker/src/lib.rs#L344-L357).
+
+2. Now within the pallet off-chain worker function, we can send the transaction this way:
 
   ```rust
   #[pallet::hooks]
@@ -345,9 +416,7 @@ You can refer to the exact instructions in the above. Let's see the major differ
       if let Some((_, res)) = signer.send_unsigned_transaction(
         // this line is to prepare and return payload
         |acct| Payload { number, public: acct.public.clone() },
-        |payload, signature| Call::unsigned_extrinsic_with_signed_payload {
-          payload, signature
-        },
+        |payload, signature| Call::some_extrinsics { payload, signature },
       ) {
         match res {
           Ok(()) => log::info!("unsigned tx with signed payload successfully sent.");
@@ -361,13 +430,18 @@ You can refer to the exact instructions in the above. Let's see the major differ
   }
   ```
 
-  In the above code snippet, `send_unsigned_transaction()` accepts two function closures. The first closure returns the payload to be used. The second closure return the on-chain call with payload and signature passed in. This call returns a `Option<(Account<T>, Result<(), ()>)>` result type. They mean:
+  In the above code snippet, we fetch the `signer` and then call `send_unsigned_transaction()`.
+  It accepts two function closures. The first one returns the payload to be used, and the second
+  one returns the on-chain call with payload and signature passed in. This call returns a
+  `Option<(Account<T>, Result<(), ()>)>` result type, which carry the meaning:
 
     * `None`: no account is available for sending transaction
     * `Some((account, Ok(())))`: transaction is successfully sent
     * `Some((account, Err(())))`: error occured when sending the transaction
 
-3. Lastly, you may have a more complex `ValidateUnsigned` logic to check the provided signature does match with the public key signing the payload. You can easily do that with the following logics in the pallet.
+3. Lastly, you may have a more complex `ValidateUnsigned` logic to check the provided signature
+  does match with the public key signing the payload. You can do that with the following logics
+  in the `ValidateUnsigned` implementation.
 
   ```rust
   #[pallet::validate_unsigned]
@@ -398,16 +472,28 @@ You can refer to the exact instructions in the above. Let's see the major differ
   }
   ```
 
-  We have seen most of the above code before. The new code is that we use [`SignedPayload`](https://paritytech.github.io/substrate/latest/frame_system/offchain/trait.SignedPayload.html?search=SignedPayload) to verify the payload, which include the public key, has the same signature as the one provided.
+  We have seen most of the above code before. The new code is that we use
+  [`SignedPayload`](https://paritytech.github.io/substrate/latest/frame_system/offchain/trait.SignedPayload.html?search=SignedPayload)
+  to verify the payload (which contains the public key) has the same signature as the one provided.
 
-Whew! This is a long chapter. But by now you should be able to use off-chain workers to send:
+A full example of [the off-chain function call](https://github.com/paritytech/substrate/blob/monthly-2021-12/frame/examples/offchain-worker/src/lib.rs#L505-L532)
+and [`ValidateUnsigned` implementation](https://github.com/paritytech/substrate/blob/monthly-2021-12/frame/examples/offchain-worker/src/lib.rs#L308-L318)
+can be seen.
 
-1. signed transactions
-2. unsigned transactions
-3. unsigned transactions with signed payload
+---
 
-back on-chain.
+Whew! This is a long chapter. But congratulation! By now you should be able to use off-chain workers
+to send data on-chain using:
+
+- Signed transactions
+- Unsigned transactions
+- Unsigned transactions with signed payload
 
 ## Examples
 
+- [Substrate Offchain Worker Example Pallet](https://github.com/paritytech/substrate/tree/monthly-2021-12/frame/examples/offchain-worker)
+- [OCW Pallet in Substrate Offchain Worker Demo](https://github.com/jimmychu0807/substrate-offchain-worker-demo/tree/v2.0.0/pallets/ocw)
+
 ## Related material
+
+- [Concept: Off-Chain Features](/v3/concepts/off-chain-features/)
