@@ -350,6 +350,15 @@ const DevNavMenu = {
           },
         ],
       },
+      {
+        name: 'Off-chain Workers',
+        items: [
+          {
+            title: 'Local Storage',
+            link: '/how-to-guides/v3/ocw/local-storage/',
+          }
+        ]
+      },
       // 4. Testing.
       {
         name: 'Testing',
