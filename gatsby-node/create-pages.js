@@ -6,16 +6,18 @@ const path = require('path')
    - all graphql function call returns a Promise
  */
 
-const createDocPages = async ({ graphql, actions }) => {
+const createDocsPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const result = await graphql(`
     {
-      allMdx(filter: { frontmatter: { section: { eq: "docs" } } }) {
+      allMarkdownRemark(
+        filter: { fileAbsolutePath: { regex: "//(content)/(docs)/" } }
+      ) {
         edges {
           node {
-            frontmatter {
+            fileAbsolutePath
+            fields {
               slug
-              section
             }
           }
         }
@@ -24,80 +26,24 @@ const createDocPages = async ({ graphql, actions }) => {
   `)
   if (!result || !result.data) return
 
-  result.data.allMdx.edges.forEach(({ node }) => {
+  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    const { slug } = node.fields
+    const { dir } = path.parse(node.fileAbsolutePath)
+    const basePath = '/content/docs/'
+    const relativePath = dir.split(basePath)[1]
+    const fullPath = relativePath != slug ? `${relativePath}/` + slug : slug
+
     createPage({
-      path: `${node.frontmatter.slug}/`,
-      component: path.resolve(`./src/templates/doc.tsx`),
+      path: `/${fullPath}/`,
+      component: path.resolve(`./src/templates/docs-single.js`),
       context: {
-        slug: node.frontmatter.slug,
-        version: `3.0`,
-      },
-    })
-  })
-}
-
-const createHowToGuidePages = async ({ graphql, actions }) => {
-  const { createPage } = actions
-  const result = await graphql(`
-    {
-      allMdx(filter: { frontmatter: { section: { eq: "how to guides" } } }) {
-        edges {
-          node {
-            frontmatter {
-              slug
-              section
-            }
-          }
-        }
-      }
-    }
-  `)
-  if (!result || !result.data) return
-
-  result.data.allMdx.edges.forEach(({ node }) => {
-    createPage({
-      path: `${node.frontmatter.slug}/`,
-      component: path.resolve(`./src/templates/how-to-guide.tsx`),
-      context: {
-        slug: node.frontmatter.slug,
-        version: `3.0`,
-      },
-    })
-  })
-}
-
-const createTutorialPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
-  const result = await graphql(`
-    {
-      allMdx(filter: { frontmatter: { section: { eq: "tutorials" } } }) {
-        edges {
-          node {
-            frontmatter {
-              slug
-              section
-            }
-          }
-        }
-      }
-    }
-  `)
-  if (!result || !result.data) return
-
-  result.data.allMdx.edges.forEach(({ node }) => {
-    createPage({
-      path: `${node.frontmatter.slug}/`,
-      component: path.resolve(`./src/templates/tutorial.tsx`),
-      context: {
-        slug: node.frontmatter.slug,
-        version: `3.0`,
+        relativePath,
+        slug,
       },
     })
   })
 }
 
 module.exports = {
-  createDocPages,
-  createHowToGuidePages,
-  createTutorialPages,
+  createDocsPages,
 }

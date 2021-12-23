@@ -20,10 +20,7 @@
         "babe": {
           "authorities": [],
           "epochConfig": {
-            "c": [
-              1,
-              4
-            ],
+            "c": [1, 4],
             "allowed_slots": "PrimaryAndSecondaryVRFSlots"
           }
         },
