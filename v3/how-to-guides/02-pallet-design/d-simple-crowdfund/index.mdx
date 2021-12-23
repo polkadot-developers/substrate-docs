@@ -32,14 +32,16 @@ category: pallet design
     },
     {
       title: 'Overview',
-      description: `Using a child trie provides two advantages over using standard storage. First, it allows for
-        removing the entirety of the trie is a single storage write when the fund is dispensed or
-        dissolved. Second, it allows any contributor to prove that they contributed using a Merkle Proof.
-        This guide demonstrates how to use one trie for each active crowdfund. Any user can start a crowdfund by
-        specifying a goal amount for the crowdfund, an end time, and a beneficiary who will
-        receive the pooled funds if the goal is reached by the end time. If the fund is not successful, it enters into a
-        retirement period when contributors can reclaim their pledged funds. Finally, an unsuccessful fund can be dissolved,
-        sending any remaining tokens to the user who dissolves it.`,
+      description: `Using a child trie provides two advantages over using standard storage.
+        First, it allows for removing the entirety of the trie is a single storage write when
+        the fund is dispensed or dissolved. Second, it allows any contributor to prove that
+        they contributed using a Merkle Proof. This guide demonstrates how to use one trie
+        for each active crowdfund. Any user can start a crowdfund by specifying a goal amount
+        for the crowdfund, an end time, and a beneficiary who will receive the pooled funds
+        if the goal is reached by the end time. If the fund is not successful, it enters into a
+        retirement period when contributors can reclaim their pledged funds. Finally, an
+        unsuccessful fund can be dissolved, sending any remaining tokens to the user who
+        dissolves it.`,
     },
   ]}
 />
