@@ -1,0 +1,14 @@
+# Navigation link: 'path/to/file/slug'
+nav:
+  - Docs:
+      - 'main-docs'
+      - 'Why Substrate?': 'main-docs/why-substrate/choose-a-dev-platform'
+  - Fundamentals:
+      - 'fundamentals'
+      - 'Install': 'main-docs'
+      - 'Explore': 'main-docs'
+  - Tutorials:
+      - 'tutorials'
+      - 'Build a local blockchain': 'main-docs/why-substrate'
+  - Guides: 'guides'
+  - Example: 'https://example.com'

@@ -3,6 +3,24 @@
 Substrate takes a modular and flexible approach to blockchain development.
 With every design decision, you can choose between the complexity of technical freedom and the ease of developing with predefined modules.
 
+### Ubuntu/Debian
+
+Use a terminal shell to execute the following commands:
+
+```bash
+sudo apt update
+# May prompt for location information
+sudo apt install -y git clang curl libssl-dev llvm libudev-dev
+```
+
+### Arch Linux
+
+Run these commands from a terminal:
+
+```bash
+pacman -Syu --needed --noconfirm curl git clang
+```
+
 The following diagram illustrates the nature of this flexibility.
 
 ![Technical freedom vs development ease](../img/main-docs/technical-freedom.png)
