@@ -25,6 +25,47 @@ module.exports = {
       },
     },
 
+    'gatsby-plugin-postcss',
+
+    /* use tailwindcss, used sass instead of css */
+    {
+      resolve: 'gatsby-plugin-sass',
+      options: {
+        postCssPlugins: [
+          require('tailwindcss'),
+          /* Load custom Tailwind CSS configuration, used to purge
+             "unused" tailwind classes */
+          require('./tailwind.config.js'),
+        ],
+      },
+    },
+
+    /* Progressive Web App + Offline functionality
+       (docs: https://gatsby.dev/offline) */
+    /* `gatsby-plugin-offline`, */
+
+    /* removing registered legacy worker from gatsby-plugin-offline */
+    'gatsby-plugin-remove-serviceworker',
+
+    /* add seo headers and page titles, from pages/components */
+    'gatsby-plugin-react-helmet',
+
+    /* generate an application manifest.json */
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Substrate Documentation`,
+        short_name: `Substrate Docs`,
+        start_url: `/`,
+        background_color: `#000000`,
+        theme_color: `#26E0A2`,
+        display: `standalone`,
+        /* icon path is relative to the root of the site. */
+        icon: `src/images/favicon.png`,
+        // icon: `media/favicon/favicon.png`,
+      },
+    },
+
     /* source file system for (code based) icon images (svg) */
     {
       resolve: `gatsby-source-filesystem`,
@@ -86,11 +127,38 @@ module.exports = {
       },
     },
 
+    /* TODO: clean up / decommission */
+
+    'gatsby-plugin-sitemap',
+    `gatsby-plugin-meta-redirect`,
+    `gatsby-plugin-twitter`,
+
+    {
+      resolve: `gatsby-plugin-netlify`,
+      options: {
+        mergeLinkHeaders: false,
+        mergeCachingHeaders: false,
+      },
+    },
+
+    {
+      resolve: `gatsby-plugin-force-trailing-slashes`,
+      options: {
+        excludedPaths: [`/404.html`],
+      },
+    },
+
+    {
+      resolve: 'gatsby-plugin-simple-analytics',
+      options: {
+        domain: 'api-sa.substrate.io',
+        eventsGlobal: 'sa',
+        events: true,
+        trackPageViews: true,
+      },
+    },
+
     /*
-     * legacy
-     * legacy
-     * legacy
-     * legacy
      * legacy
      */
 
@@ -173,64 +241,5 @@ module.exports = {
     //     },
     //   },
     // },
-
-    'gatsby-plugin-postcss',
-
-    /* use tailwindcss, used sass instead of css */
-    {
-      resolve: 'gatsby-plugin-sass',
-      options: {
-        postCssPlugins: [
-          require('tailwindcss'),
-          /* Load custom Tailwind CSS configuration, used to purge
-             "unused" tailwind classes */
-          require('./tailwind.config.js'),
-        ],
-      },
-    },
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `Substrate Documentation`,
-        short_name: `Substrate Docs`,
-        start_url: `/`,
-        background_color: `#000000`,
-        theme_color: `#26E0A2`,
-        display: `standalone`,
-        icon: `src/images/favicon.png`,
-      },
-    },
-
-    /* removing registered legacy worker from gatsby-plugin-offline */
-    'gatsby-plugin-remove-serviceworker',
-
-    {
-      resolve: 'gatsby-plugin-simple-analytics',
-      options: {
-        domain: 'api-sa.substrate.io',
-        eventsGlobal: 'sa',
-        events: true,
-        trackPageViews: true,
-      },
-    },
-
-    {
-      resolve: `gatsby-plugin-force-trailing-slashes`,
-      options: {
-        excludedPaths: [`/404.html`],
-      },
-    },
-
-    `gatsby-plugin-react-helmet`,
-    'gatsby-plugin-sitemap',
-    {
-      resolve: `gatsby-plugin-netlify`,
-      options: {
-        mergeLinkHeaders: false,
-        mergeCachingHeaders: false,
-      },
-    },
-    `gatsby-plugin-meta-redirect`,
-    `gatsby-plugin-twitter`,
   ],
 }
