@@ -43,6 +43,10 @@ const addTrailingSlash = (uri: string) => {
   return uri + search + hash
 }
 
+const addStartingSlash = (uri: string) => {
+  return (uri = uri.startsWith('/') ? uri : '/'.concat(uri))
+}
+
 interface InfraLinkProps {
   to: string
   children: React.ReactNode
@@ -97,7 +101,10 @@ export default function Link({ to, children, className }: LinkProps) {
     )
   } else {
     return (
-      <GatsbyLink to={addTrailingSlash(to)} className={className}>
+      <GatsbyLink
+        to={addStartingSlash(addTrailingSlash(to))}
+        className={className}
+      >
         {children}
       </GatsbyLink>
     )
