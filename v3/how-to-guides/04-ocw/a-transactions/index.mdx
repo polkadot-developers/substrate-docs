@@ -21,18 +21,18 @@ category: ocw
 
 ## Overview
 
-You have used off-chain workers fetching some valuable data, or processing some very crucial data.
-Now you want to save it on-chain. How do you go about that? In this how-to guide, we will introduce
-three methods to do that.
+You cannot save data processed by off-chain workers directly to on-chain storage. 
+To store any data from an off-chain worker on-chain, you must create a transaction that sends the data from the off-chain worker to the on-chain storage system.
+You can create transactions that send data from off-chain workers to on-chain storage as signed transactions or unsigned transactions depending on how you want the transaction calling account to be handled.
+For example: 
 
-- **Signed transactions** - use this when you want to record the associated transaction caller
-  and deduct the transaction fee from the caller account.
-- **Unsigned transactions** - use this when you **DO NOT** want to record the associated caller.
-- **Unsigned transactions with signed payload** - use this when you want to record the associated transaction caller, but do not want the caller be responsible for the transaction fee payment.
+- Use **signed transactions** if you want to record the associated transaction caller and deduct the transaction fee from the caller account.
+- Use **unsigned transactions** if you **DO NOT** want to record the associated transaction caller.
+- Use **unsigned transactions with signed payload** if you want to record the associated transaction caller, but do not want the caller be responsible for the transaction fee payment.
 
-## Steps: sending signed transactions
+## Sending signed transactions
 
-1. In your pallet, call the hook of off-chain workers as follows:
+1. In your pallet, call the hook for off-chain workers as follows:
 
   ```rust
   #[pallet::hooks]
@@ -53,8 +53,8 @@ three methods to do that.
   }
   ```
 
-2. Your pallet trait Config need to be bound by [`CreateSignedTransaction` trait](https://paritytech.github.io/substrate/latest/frame_system/offchain/trait.CreateSignedTransaction.html).
-  So your pallet `Config` trait will look like:
+2. Add the [`CreateSignedTransaction` trait](https://paritytech.github.io/substrate/latest/frame_system/offchain/trait.CreateSignedTransaction.html) to the Config trait for your pallet.
+  For example, your pallet `Config` trait should look similar to this:
 
   ```rust
   /// This pallet's configuration trait
@@ -64,7 +64,7 @@ three methods to do that.
   }
   ```
 
-3. To ensure your pallet owns an account that can be used for signing transactions, we will add a `crypto` module with a sr25519 signature key in the pallet.
+3. Add a `crypto` module with an sr25519 signature key to ensure that your pallet owns an account that can be used for signing transactions.
 
   ```rust
   use sp_core::{crypto::KeyTypeId};
@@ -95,12 +95,12 @@ three methods to do that.
   }
   ```
 
-  The [`app_crypto` macro](https://paritytech.github.io/substrate/latest/sp_application_crypto/macro.app_crypto.html) above declares an account with sr25519 signature that is identified by
-  `KEY_TYPE`. Note that this doesn't create a new account, but just declaring that a crypto account
-  is available for this pallet. We need to initialize this account later. More on this at the
-  following.
+  The [`app_crypto` macro](https://paritytech.github.io/substrate/latest/sp_application_crypto/macro.app_crypto.html) declares an account with an sr25519 signature that is identified by `KEY_TYPE`. 
+ Note that this doesn't create a new account. 
+ The macro simply declares that a crypto account is available for this pallet. 
+You will need to initialize this account in the next step. 
 
-4. Now, you could send a signed transaction on-chain by first getting a signer.
+4. Initialize a signing account for sending a signed transaction to on-chain storage.
 
   ```rust
   fn offchain_worker(block_number: T::BlockNumber) {
@@ -113,7 +113,7 @@ three methods to do that.
   Although it is calling `all_accounts()`, we will only inject one account into this pallet later
   defined above in the `crypto` module.
 
-  Then we can send an extrinsic call in `send_signed_transaction()`:
+5. Use `send_signed_transaction()` to send an extrinsic call:
 
   ```rust
   fn offchain_worker(block_number: T::BlockNumber) {
@@ -133,8 +133,7 @@ three methods to do that.
   }
   ```
 
-  Lastly, we just need to check if the transaction is successfully submitted on-chain and perform
-  proper error handling by checking the returned `results`.
+ 6. Check if the transaction is successfully submitted on-chain and perform proper error handling by checking the returned `results`.
 
   ```rust
   fn offchain_worker(block_number: T::BlockNumber) {
@@ -151,13 +150,12 @@ three methods to do that.
   }
   ```
 
-5. From pt #2, we have configured the trait bound so that the runtime implementing this
-  pallet `Config` trait must also imeplements the `CreateSignedTransaction` trait, so let's
-  implement that trait in our runtime.
+7. Implement the `CreateSignedTransaction` trait in the runtime.
 
-  Looking at [its rustdocs](https://paritytech.github.io/substrate/latest/frame_system/offchain/trait.CreateSignedTransaction.html),
-  we only need to implement the function `create_transaction()` for our runtime. In our
-  `runtime/src/lib.rs`:
+    Because you configured the `Config` trait for this pallet to implement the `CreateSignedTransaction`  trait, you also need to implement that trait for the runtime.
+
+  By looking at [`CreateSignedTransaction` Rust docs](https://paritytech.github.io/substrate/latest/frame_system/offchain/trait.CreateSignedTransaction.html), you can see that you only need to implement the function `create_transaction()` for the runtime.
+  In `runtime/src/lib.rs`:
 
   ```rust
   impl<LocalCall> frame_system::offchain::CreateSignedTransaction<LocalCall> for Runtime
@@ -206,7 +204,7 @@ three methods to do that.
     - Finally, bundle all data up and return a tuple of the call, the caller, its signature, and
       any signed extension data.
 
-  A full exmaple code can be seen [in the **Substrate** code base](https://github.com/paritytech/substrate/blob/monthly-2021-12/bin/node/runtime/src/lib.rs#L960-L999).
+  You can see a full example of the code in the [**Substrate** code base](https://github.com/paritytech/substrate/blob/monthly-2021-12/bin/node/runtime/src/lib.rs#L960-L999).
 
 6. The runtime also needs to implement `SigningTypes` and `SendTransactionTypes` in order to submit
   transactions, whether signed or unsigned.
