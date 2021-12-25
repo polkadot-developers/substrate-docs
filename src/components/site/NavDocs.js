@@ -4,17 +4,19 @@ import Link from '../Link'
 
 const SubMenu = ({ items }) => {
   return (
-    <ul>
+    <ul className="p-0 m-0">
       {items.map((item, index) => {
         return (
-          <li key={index} className="list-none text-sm px-8  hover:font-bold">
+          <li key={index} className="list-none text-sm m-0 font-medium">
             {Object.keys(item).map(key => {
               const url = item[`${key}`]
               const title = key
 
               return (
                 <Fragment key={key}>
-                  <Link to={url}>{title}</Link>
+                  <Link to={url} className="block px-4 py-1 hover:font-bold">
+                    {title}
+                  </Link>
                 </Fragment>
               )
             })}
@@ -27,7 +29,7 @@ const SubMenu = ({ items }) => {
 
 const CategoryMenu = ({ data }) => {
   const { parent, parentUrl, childMenu } = data
-  const parentItem = <span className="block px-4 py-3">{parent}</span>
+  const parentItem = <span className="inline-block py-3">{parent}</span>
   const hasChildMenu = Array.isArray(childMenu) && childMenu.length > 0
 
   return (
@@ -48,10 +50,10 @@ const Menu = ({ data }) => {
   const { nav } = data
   return (
     <nav role="navigation">
-      <ul>
+      <ul className="p-0 m-0">
         {nav.map((item, index) => {
           return (
-            <li key={index}>
+            <li key={index} className="p-0 m-0 list-none">
               <CategoryMenu data={buildParentMenu(item)} />
             </li>
           )
@@ -61,11 +63,11 @@ const Menu = ({ data }) => {
   )
 }
 
-const DocsNavSidebar = () => {
+const NavDocs = () => {
   return <Menu data={data} />
 }
 
-export default DocsNavSidebar
+export default NavDocs
 
 const buildParentMenu = parentMenu => {
   // parent object key

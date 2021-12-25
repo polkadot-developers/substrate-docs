@@ -1,14 +1,11 @@
 ---
-# title: Choosing a development platform for your project
-# version: '3.0'
+title: Choosing a development platform for your project
 keywords:
   - blockchain
   - consensus
   - substrate
   - architecture
 ---
-
-# Choosing a development platform for your project
 
 Cover the main tenets:
 

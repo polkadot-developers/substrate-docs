@@ -79,7 +79,7 @@ module.exports = {
       resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
-          include: `${__dirname}/src/images/svgs/`,
+          include: `${__dirname}/src/images/svg`,
         },
       },
     },
@@ -108,6 +108,15 @@ module.exports = {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
+          'gatsby-remark-autolink-headers',
+          {
+            resolve: `gatsby-remark-relative-source`,
+            options: {
+              name: `media`,
+              // htmlSources: [{ tagName: `post-video`, attributes: [`image`] }]
+              // post-video is a component referenced later by gatsby-remark-custom-image-component
+            },
+          },
           {
             resolve: `gatsby-remark-images`,
             options: {

@@ -1,4 +1,6 @@
-# Substrate empowers developers
+---
+title: Substrate empowers developers
+---
 
 Substrate takes a modular and flexible approach to blockchain development.
 With every design decision, you can choose between the complexity of technical freedom and the ease of developing with predefined modules.
@@ -23,7 +25,7 @@ pacman -Syu --needed --noconfirm curl git clang
 
 The following diagram illustrates the nature of this flexibility.
 
-![Technical freedom vs development ease](../img/main-docs/technical-freedom.png)
+![Technical freedom vs development ease](/media/images/docs/main-docs/technical-freedom.png)
 
 The main use cases for Substrate blockchains reflect tis sliding scale between technical freedom and development ease.
 At one end of the spectrum, you can deploy predefined Substrate nodes with minimal configuration and launch a blockchain with virtually no development effort.

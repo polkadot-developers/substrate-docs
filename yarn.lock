@@ -4159,6 +4159,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"babel-polyfill@npm:^6.26.0":
+  version: 6.26.0
+  resolution: "babel-polyfill@npm:6.26.0"
+  dependencies:
+    babel-runtime: ^6.26.0
+    core-js: ^2.5.0
+    regenerator-runtime: ^0.10.5
+  checksum: 6fb1a3c0bfe1b6fc56ce1afcf531878aa629b309277a05fbf3fe950589b24cb4052a6e487db21d318eb5336b68730a21f5ef62166b6cc8aea3406261054d1118
+  languageName: node
+  linkType: hard
+
 "babel-preset-gatsby@npm:^1.14.0":
   version: 1.14.0
   resolution: "babel-preset-gatsby@npm:1.14.0"
@@ -4969,7 +4980,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cheerio@npm:^1.0.0-rc.10":
+"cheerio@npm:^1.0.0-rc.10, cheerio@npm:^1.0.0-rc.5":
   version: 1.0.0-rc.10
   resolution: "cheerio@npm:1.0.0-rc.10"
   dependencies:
@@ -5551,7 +5562,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:^2.4.0":
+"core-js@npm:^2.4.0, core-js@npm:^2.5.0":
   version: 2.6.12
   resolution: "core-js@npm:2.6.12"
   checksum: 44fa9934a85f8c78d61e0c8b7b22436330471ffe59ec5076fe7f324d6e8cf7f824b14b1c81ca73608b13bdb0fef035bd820989bf059767ad6fa13123bb8bd016
@@ -6095,6 +6106,17 @@ __metadata:
   version: 0.1.4
   resolution: "deep-is@npm:0.1.4"
   checksum: edb65dd0d7d1b9c40b2f50219aef30e116cedd6fc79290e740972c132c09106d2e80aa0bc8826673dd5a00222d4179c84b36a790eef63a4c4bca75a37ef90804
+  languageName: node
+  linkType: hard
+
+"deep-map@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "deep-map@npm:1.5.0"
+  dependencies:
+    es6-weak-map: ^2.0.2
+    lodash: ^4.17.4
+    tslib: ^1.6.0
+  checksum: 7684320f4e90f5b038461d1ecefe7df1c3a978a6edcd81e4338299d8f86ecee12507af3cf98e09904d826472d2e521307fd09ef06e074c678613a70e893373cf
   languageName: node
   linkType: hard
 
@@ -6869,7 +6891,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"es6-weak-map@npm:^2.0.3":
+"es6-weak-map@npm:^2.0.2, es6-weak-map@npm:^2.0.3":
   version: 2.0.3
   resolution: "es6-weak-map@npm:2.0.3"
   dependencies:
@@ -8586,9 +8608,9 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"gatsby-remark-autolink-headers@npm:^4.8.0":
-  version: 4.11.0
-  resolution: "gatsby-remark-autolink-headers@npm:4.11.0"
+"gatsby-remark-autolink-headers@npm:^5.4.0":
+  version: 5.4.0
+  resolution: "gatsby-remark-autolink-headers@npm:5.4.0"
   dependencies:
     "@babel/runtime": ^7.15.4
     github-slugger: ^1.3.0
@@ -8596,10 +8618,10 @@ fsevents@~2.3.2:
     mdast-util-to-string: ^2.0.0
     unist-util-visit: ^2.0.3
   peerDependencies:
-    gatsby: ^3.0.0-next.0
+    gatsby: ^4.0.0-next
     react: ^16.9.0 || ^17.0.0
     react-dom: ^16.9.0 || ^17.0.0
-  checksum: cd4b16991b585b5a104cc9ddf929dd3f7be196212df06d7d3083c00ab471cedc16e6d5880b2158f541ca50fe2098ed64f4c8356adb02648d0ee429058746100c
+  checksum: cb872fa39461772483ece65db84204b4ff70d0054efd0c856117a19863c53daaf353d25a52175b2c82b63fc312ba911b00d679a67811e23083ff68d8033fbc96
   languageName: node
   linkType: hard
 
@@ -8622,6 +8644,21 @@ fsevents@~2.3.2:
     gatsby: ^4.0.0-next
     gatsby-plugin-sharp: ^4.0.0-next
   checksum: bf4df0345d8351f8099b1346749fd038703a9e6b483e86b90617cf41c47f29c41a857354ed10b53f522fcb086e2cd94876a36a5cdb9e450431709b010c974031
+  languageName: node
+  linkType: hard
+
+"gatsby-remark-relative-source@npm:^0.0.5":
+  version: 0.0.5
+  resolution: "gatsby-remark-relative-source@npm:0.0.5"
+  dependencies:
+    babel-polyfill: ^6.26.0
+    cheerio: ^1.0.0-rc.5
+    deep-map: ^1.5.0
+    is-relative-url: ^2.0.0
+    lodash: ^4.17.21
+    slash: ^2.0.0
+    unist-util-select: ^1.5.0
+  checksum: d2426096ce216aef97d57d5d8db680f2ff8542b83d7797bb02ab6a0009fa127d33caa4ad97d81e8cc187b517079fdf152469306b7f35acc8551cd61006d23ac4
   languageName: node
   linkType: hard
 
@@ -10146,6 +10183,13 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
+"is-absolute-url@npm:^2.0.0":
+  version: 2.1.0
+  resolution: "is-absolute-url@npm:2.1.0"
+  checksum: 781e8cf8a2af54b1b7a92f269244d96c66224030d91120e734ebeebbce044c167767e1389789d8aaf82f9e429cb20ae93d6d0acfe6c4b53d2bd6ebb47a236d76
+  languageName: node
+  linkType: hard
+
 "is-absolute-url@npm:^3.0.0":
   version: 3.0.3
   resolution: "is-absolute-url@npm:3.0.3"
@@ -10628,6 +10672,15 @@ fsevents@~2.3.2:
     call-bind: ^1.0.2
     has-tostringtag: ^1.0.0
   checksum: 362399b33535bc8f386d96c45c9feb04cf7f8b41c182f54174c1a45c9abbbe5e31290bbad09a458583ff6bf3b2048672cdb1881b13289569a7c548370856a652
+  languageName: node
+  linkType: hard
+
+"is-relative-url@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "is-relative-url@npm:2.0.0"
+  dependencies:
+    is-absolute-url: ^2.0.0
+  checksum: 5acb66d6374a0c89fb68a770c94eeee3061b7d2e94d1fdff4d780b3054caf681ad33ed9d554eebeaedd897d90b781684c84ed85c7581d5d50767e857af3a199e
   languageName: node
   linkType: hard
 
@@ -15381,6 +15434,13 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
+"regenerator-runtime@npm:^0.10.5":
+  version: 0.10.5
+  resolution: "regenerator-runtime@npm:0.10.5"
+  checksum: 35b33dbe5381d268b2be98f4ee4b028702acb38b012bff90723df067f915a337e5c979cce4dab4ed23febb223bbebb8820d46902f897742c55818c22c14e2a7c
+  languageName: node
+  linkType: hard
+
 "regenerator-runtime@npm:^0.11.0":
   version: 0.11.1
   resolution: "regenerator-runtime@npm:0.11.1"
@@ -16499,6 +16559,13 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
+"slash@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "slash@npm:2.0.0"
+  checksum: 512d4350735375bd11647233cb0e2f93beca6f53441015eea241fe784d8068281c3987fbaa93e7ef1c38df68d9c60013045c92837423c69115297d6169aa85e6
+  languageName: node
+  linkType: hard
+
 "slash@npm:^3.0.0":
   version: 3.0.0
   resolution: "slash@npm:3.0.0"
@@ -17282,8 +17349,9 @@ resolve@^2.0.0-next.3:
     gatsby-plugin-simple-analytics: ^1.0.4
     gatsby-plugin-sitemap: ^4.10.0
     gatsby-plugin-twitter: ^3.7.1
-    gatsby-remark-autolink-headers: ^4.8.0
+    gatsby-remark-autolink-headers: ^5.4.0
     gatsby-remark-images: ^6.4.0
+    gatsby-remark-relative-source: ^0.0.5
     gatsby-source-filesystem: ^3.7.1
     gatsby-transformer-remark: 3.1.0
     gatsby-transformer-sharp: ^3.7.1
@@ -17938,7 +18006,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"tslib@npm:^1.10.0, tslib@npm:^1.8.1, tslib@npm:^1.9.0":
+"tslib@npm:^1.10.0, tslib@npm:^1.6.0, tslib@npm:^1.8.1, tslib@npm:^1.9.0":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: dbe628ef87f66691d5d2959b3e41b9ca0045c3ee3c7c7b906cc1e328b39f199bb1ad9e671c39025bd56122ac57dfbf7385a94843b1cc07c60a4db74795829acd

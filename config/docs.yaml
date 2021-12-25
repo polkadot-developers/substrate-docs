@@ -1,14 +1,14 @@
-# Navigation link: 'path/to/file/slug'
+# Navigation:
 nav:
+  - Quick Start: '/'
   - Docs:
-      - 'main-docs'
+      - 'main-docs' #category page link
+      - 'Why Substrate?': 'main-docs/why-substrate/choose-a-dev-platform' #page link
+  - Reference:
+      - 'Glossary': 'reference/glossary'
       - 'Why Substrate?': 'main-docs/why-substrate/choose-a-dev-platform'
-  - Fundamentals:
-      - 'fundamentals'
-      - 'Install': 'main-docs'
-      - 'Explore': 'main-docs'
+      - 'Build a local blockchain': 'tutorials/build-blockchain'
   - Tutorials:
       - 'tutorials'
-      - 'Build a local blockchain': 'main-docs/why-substrate'
-  - Guides: 'guides'
-  - Example: 'https://example.com'
+      - 'Build a local blockchain': 'tutorials/build-blockchain'
+  - Example External: 'https://example.com'
