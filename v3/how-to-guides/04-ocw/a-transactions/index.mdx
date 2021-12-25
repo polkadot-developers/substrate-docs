@@ -110,8 +110,7 @@ You will need to initialize this account in the next step.
   }
   ```
 
-  Although it is calling `all_accounts()`, we will only inject one account into this pallet later
-  defined above in the `crypto` module.
+  Call `Signer<T, C>::all_accounts()` to retrieve all signers this pallet owned. You will later (in step #9) inject one account into this pallet for this retrieval.
 
 5. Use `send_signed_transaction()` to send an extrinsic call:
 
@@ -225,7 +224,7 @@ You will need to initialize this account in the next step.
 
   You can see an example of this implementation in the [**Substrate** code base](https://github.com/paritytech/substrate/blob/monthly-2021-12/bin/node/runtime/src/lib.rs#L1001-L1012).
 
-9. Assign an account for this pallet to own. In developemnt environment
+9. Inject an account for this pallet to own. In developemnt environment
   (node running with `--dev` flag), this account key is [inserted in `node/src/service.rs`](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/v2.0.0/node/src/service.rs#L87-L105)
   as follows:
 
@@ -248,6 +247,7 @@ You will need to initialize this account in the next step.
   ```
 
   This example adds the key for the `Alice` account to the key store identified by the pallet-defined `KEY_TYPE`.
+  In production, one or more accounts are injected via chain spec configuration.
 
   Now, your pallet is ready to send signed transactions on-chain from off-chain workers.
 
