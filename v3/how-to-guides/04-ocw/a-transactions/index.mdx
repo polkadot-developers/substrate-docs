@@ -206,8 +206,7 @@ You will need to initialize this account in the next step.
 
   You can see a full example of the code in the [**Substrate** code base](https://github.com/paritytech/substrate/blob/monthly-2021-12/bin/node/runtime/src/lib.rs#L960-L999).
 
-6. The runtime also needs to implement `SigningTypes` and `SendTransactionTypes` in order to submit
-  transactions, whether signed or unsigned.
+8. Implement `SigningTypes` and `SendTransactionTypes` in the runtime to support submitting  transactions, whether they are signed or unsigned.
 
   ```rust
   impl frame_system::offchain::SigningTypes for Runtime {
@@ -224,7 +223,7 @@ You will need to initialize this account in the next step.
   }
   ```
 
-  An example of this implementation can be seen [in the **Substrate** code base](https://github.com/paritytech/substrate/blob/monthly-2021-12/bin/node/runtime/src/lib.rs#L1001-L1012).
+  You can see an example of this implementation in the [**Substrate** code base](https://github.com/paritytech/substrate/blob/monthly-2021-12/bin/node/runtime/src/lib.rs#L1001-L1012).
 
 7. Now back to pt #3, we need to assign an account this pallet owned. In developemnt environment
   (node running with `--dev` flag), this account key is [inserted in `node/src/service.rs`](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/v2.0.0/node/src/service.rs#L87-L105)
@@ -248,16 +247,15 @@ You will need to initialize this account in the next step.
   }
   ```
 
-  In the above code, we are injecting `Alice` key in the crypto store identified by our pallet
-  defined `KEY_TYPE`.
+  This example adds the key for the `Alice` account to the key store identified by the pallet-defined `KEY_TYPE`.
 
   Now, your pallet is ready to send signed transactions on-chain from off-chain workers.
 
-## Steps: sending unsigned transactions
+## Sending unsigned transactions
 
-1. By default all unsigned transactions are rejected in Substrate. So we first need to allow
-  certain unsigned transactions we want to accept. This can be done by having the pallet implements
-  the `ValidateUnsigned` trait. In our pallet `src/lib.rs`:
+By default, all unsigned transactions are rejected in Substrate. 
+To enable Substrate to accept certain unsigned transactions, you must implement the `ValidateUnsigned` trait for the pallet.
+1.  Open the `src/lib.rs` file for your pallet in a text editor.
 
   ```rust
   #[pallet::validate_unsigned]
@@ -275,8 +273,7 @@ You will need to initialize this account in the next step.
   }
   ```
 
-  First, we call the [`validate_unsigned` pallet macro](https://paritytech.github.io/substrate/latest/frame_support/attr.pallet.html#validate-unsigned-palletvalidate_unsigned-optional), and then
-  imeplement the trait.
+ Call the [`validate_unsigned` pallet macro](https://paritytech.github.io/substrate/latest/frame_support/attr.pallet.html#validate-unsigned-palletvalidate_unsigned-optional), then implement the trait as follows:
 
   ```rust
   fn validate_unsigned(source: TransactionSource, call: &Self::Call) -> TransactionValidity {
@@ -291,8 +288,8 @@ You will need to initialize this account in the next step.
     ```
 
   Inside the `validate_unsigned()` function we create a convenient method `valid_tx` that returns
-  `TransactionValidity`. Next, we check the calling extrinsics, if it is a call that we allow,
-  we return a `ValidTransaction`, otherwise a `TransactionValidityError` is returned.
+  Next, check the calling extrinsics to determine if the call is allowed.
+  Return `ValidTransaction` if the call is allowed or return `TransactionValidityError` if the call is not allowed.
 
   ```rust
   fn validate_unsigned(source: TransactionSource, call: &Self::Call) -> TransactionValidity {
@@ -304,14 +301,13 @@ You will need to initialize this account in the next step.
   }
   ```
 
-  With the above example code, users can call on-chain `extrinsic1` without signature, but not any
-  other extrinsics.
+  In this example, users can call the on-chain `extrinsic1` function without a signature, but not any other extrinsics.
 
   To see a full example of how `ValidateUnsigned` is implemented in a pallet, refer to
   [`pallet-ocw` in **Substrate Off-chain Worker Demo**](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/v2.0.0/pallets/ocw/src/lib.rs#L209-L240)
   and [`pallet-example-offchain-worker` in **Substrate**](https://github.com/paritytech/substrate/blob/monthly-2021-12/frame/examples/offchain-worker/src/lib.rs#L297-L325).
 
-2. Now in the off-chain worker function, we can make unsigned transactions as follow.
+2. In the off-chain worker function, you can send unsigned transactions as follows.
 
   ```rust
   #[pallet::hooks]
@@ -332,12 +328,11 @@ You will need to initialize this account in the next step.
   }
   ```
 
-  In the above code, we first prepare our call in the `let call = ...` line. Then we submit the
-  transaction using [`SubmitTransaction::submit_unsigned_transaction`](https://paritytech.github.io/substrate/latest/frame_system/offchain/struct.SubmitTransaction.html)
-  and perform any necessary error handling in the callback function passed in.
+  This code prepares the call in the `let call = ...` line, submits the transaction using [`SubmitTransaction::submit_unsigned_transaction`](https://paritytech.github.io/substrate/latest/frame_system/offchain/struct.SubmitTransaction.html), and performs any necessary error handling in the callback function passed in.
 
-3. To enable `ValidateUnsigned` trait for our pallet in the runtime, we need to notify that in our
-  `construct_runtime` macro when defining the pallet variant by passing a `ValidateUnsigned` type.
+3. Enable the `ValidateUnsigned` trait for the pallet in the runtime by adding the `ValidateUnsigned` type to the `construct_runtime` macro. 
+     
+     For example:
 
   ```rust
   construct_runtime!(
@@ -352,13 +347,11 @@ You will need to initialize this account in the next step.
   );
   ```
 
-4. We will need to implement `SendTransactionTypes` trait for the runtime. This is the same as the
-  implementation used for [sending signed transactions](#steps-sending-signed-transactions) in
-  pt #6 above.
+4. Implement the `SendTransactionTypes` trait for the runtime as described in [sending signed transactions](#sending-signed-transactions).
 
-A full example can be seen [in `pallet-example-offchain-worker` in **Substrate** code base](https://github.com/paritytech/substrate/blob/monthly-2021-12/frame/examples/offchain-worker).
+You can see a full example in [`pallet-example-offchain-worker` in **Substrate** code base](https://github.com/paritytech/substrate/blob/monthly-2021-12/frame/examples/offchain-worker).
 
-## Steps: sending unsigned transactions with signed payloads
+## Sending unsigned transactions with signed payloads
 
 This approach is more or less the same as sending unsigned transactions in the above. We need to:
 
