@@ -8,7 +8,7 @@ import TableOfContents from '../components/site/TableOfContents'
 import Markdown from '../components/default/Markdown'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
-const DocsTemplate = ({ data, pageContext }) => {
+export default function DocsSinglePage({ data, pageContext }) {
   const { markdownRemark } = data
   const { htmlAst, tableOfContents, frontmatter } = markdownRemark
   const { title, featured_image } = frontmatter
@@ -23,6 +23,8 @@ const DocsTemplate = ({ data, pageContext }) => {
         <Sidebar>
           <NavDocs currentPath={pagePath} />
         </Sidebar>
+
+        {/* <DocsSingle collection={collection} /> */}
 
         <article className="px-4 mb-20 lg:flex lg:mx-auto">
           <div className="lg:flex-grow">
@@ -66,8 +68,6 @@ const DocsTemplate = ({ data, pageContext }) => {
     </Layout>
   )
 }
-
-export default DocsTemplate
 
 export const query = graphql`
   query ($slug: String!) {

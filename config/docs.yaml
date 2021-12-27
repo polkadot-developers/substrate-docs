@@ -1,7 +1,7 @@
 # Navigation:
 nav:
   - Quick Start:
-      - 'quick-start'
+      - '/quick-start/'
   - Docs:
       - '/main-docs/' #category page link
       - 'Why Substrate?': '/main-docs/why-substrate/choose-a-dev-platform/' #page link

@@ -3,10 +3,10 @@
 const defaultVersion = 'v3'
 
 const redirects = [
-  {
-    fromPath: '/tutorials/',
-    toPath: `/tutorials/${defaultVersion}/`,
-  },
+  // {
+  //   fromPath: '/tutorials/',
+  //   toPath: `/tutorials/${defaultVersion}/`,
+  // },
   {
     fromPath: '/how-to-guides/',
     toPath: `/how-to-guides/${defaultVersion}/`,
