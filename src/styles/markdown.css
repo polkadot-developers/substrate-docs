@@ -989,3 +989,11 @@
   margin: 0 0.2em 0.25em -1.6em;
   vertical-align: middle;
 }
+
+.markdown-body figure {
+  @apply mb-6;
+}
+
+.markdown-body figcaption {
+  @apply mt-3 text-gray-500;
+}

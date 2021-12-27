@@ -3,9 +3,7 @@ title: Glossary
 keywords:
 ---
 
-![](/media/images/docs/reference/substrate-arch.png)
-
-This glossary defines and explains concepts and terminology that are specific to blockchain technology or the Substrate ecosystem.
+![This glossary defines and explains concepts and terminology that are specific to blockchain technology or the Substrate ecosystem.](/media/images/docs/reference/substrate-arch.png)
 
 ## adaptive quorum biasing (AQB)
 
@@ -20,13 +18,11 @@ With a **negative turnout bias**, the passing threshold _increases_ as more vote
 Negative turnout bias is also sometimes called a "default carries" position because if there's an apathetic voting body, the referendum passes by default.
 A **neutral turnout bias** specifies a simple majority passing threshold.
 
-<!--
 ## AFG
 
 An internal codename for "Al's Finality Gadget," which is named after [Alistair Stewart](https://w3f-research.readthedocs.io/en/latest/team_members/alistair.html)
 who invented it.
 AFG is synonymous with [GRANDPA](#grandpa).
--->
 
 ## aggregation
 

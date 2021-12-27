@@ -1,8 +1,10 @@
+import cx from 'classnames'
+
 import React, { Fragment } from 'react'
-import data from '../../../config/docs.yaml'
+import dataYaml from '../../../config/docs.yaml'
 import Link from '../Link'
 
-const SubMenu = ({ items }) => {
+const SubMenu = ({ items, currentPath }) => {
   return (
     <ul className="p-0 m-0">
       {items.map((item, index) => {
@@ -11,10 +13,16 @@ const SubMenu = ({ items }) => {
             {Object.keys(item).map(key => {
               const url = item[`${key}`]
               const title = key
+              const isActive = currentPath.includes(url)
 
               return (
                 <Fragment key={key}>
-                  <Link to={url} className="block px-4 py-1 hover:font-bold">
+                  <Link
+                    to={url}
+                    className={cx('block px-4 py-1 hover:font-bold', {
+                      'font-bold': isActive,
+                    })}
+                  >
                     {title}
                   </Link>
                 </Fragment>
@@ -27,7 +35,7 @@ const SubMenu = ({ items }) => {
   )
 }
 
-const CategoryMenu = ({ data }) => {
+const CollectionMenu = ({ data, currentPath }) => {
   const { parent, parentUrl, childMenu } = data
   const parentItem = <span className="inline-block py-3">{parent}</span>
   const hasChildMenu = Array.isArray(childMenu) && childMenu.length > 0
@@ -41,20 +49,23 @@ const CategoryMenu = ({ data }) => {
       ) : (
         parentItem
       )}
-      {hasChildMenu && <SubMenu items={childMenu} />}
+      {hasChildMenu && <SubMenu items={childMenu} currentPath={currentPath} />}
     </>
   )
 }
 
-const Menu = ({ data }) => {
-  const { nav } = data
+const Menu = ({ currentPath }) => {
+  const { nav } = dataYaml
   return (
     <nav role="navigation">
       <ul className="p-0 m-0">
         {nav.map((item, index) => {
           return (
             <li key={index} className="p-0 m-0 list-none">
-              <CategoryMenu data={buildParentMenu(item)} />
+              <CollectionMenu
+                data={buildParentMenu(item)}
+                currentPath={currentPath}
+              />
             </li>
           )
         })}
@@ -63,8 +74,8 @@ const Menu = ({ data }) => {
   )
 }
 
-const NavDocs = () => {
-  return <Menu data={data} />
+const NavDocs = ({ currentPath }) => {
+  return <Menu currentPath={currentPath} />
 }
 
 export default NavDocs

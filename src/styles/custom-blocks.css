@@ -1,0 +1,23 @@
+.custom-block {
+  @apply px-4 pt-4 pb-2 mb-8 border-t-8 rounded;
+}
+
+.custom-block.info {
+  @apply bg-mdxYellow dark:bg-mdxYellow-dark border-mdxYellow dark:border-mdxYellow-dark dark:border-opacity-40 dark:bg-opacity-20 bg-opacity-50;
+}
+
+.custom-block.info::before {
+  content: 'Information';
+  @apply font-bold text-lg mb-2 inline-block;
+}
+
+.custom-block.danger {
+  @apply bg-mdxRed dark:bg-mdxRed-dark border-mdxRed dark:border-mdxRed-dark dark:border-opacity-40 dark:bg-opacity-20 bg-opacity-50;
+}
+
+.custom-block.danger::before {
+  content: 'Danger';
+  @apply font-bold text-lg mb-2 inline-block;
+}
+
+

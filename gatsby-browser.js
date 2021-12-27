@@ -1,33 +1,36 @@
 import './src/styles/global.css'
 import './src/styles/language-tabs.css'
 import './src/styles/markdown.css'
+import './src/styles/custom-blocks.css'
 import './src/styles/scss/styles.scss'
 
+import 'lazysizes'
+
 import React from 'react'
-import { MDXProvider } from '@mdx-js/react'
-import { preToCodeBlock } from 'mdx-utils'
-import Code from './src/components/Code'
+// import { MDXProvider } from '@mdx-js/react'
+// import { preToCodeBlock } from 'mdx-utils'
+// import Code from './src/components/Code'
 
 import { ThemeProvider } from './src/contexts/ThemeContext'
 
-const components = {
-  pre: preProps => {
-    const props = preToCodeBlock(preProps)
-    if (props) {
-      return <Code {...props} />
-    }
-    return <pre {...preProps} />
-  },
-  wrapper: ({ children }) => <>{children}</>,
-}
+// const components = {
+//   pre: preProps => {
+//     const props = preToCodeBlock(preProps)
+//     if (props) {
+//       return <Code {...props} />
+//     }
+//     return <pre {...preProps} />
+//   },
+//   wrapper: ({ children }) => <>{children}</>,
+// }
 
 export const wrapRootElement = ({ element }) => (
   <ThemeProvider>{element}</ThemeProvider>
 )
 
-export const wrapPageElement = ({ element }) => (
-  <MDXProvider components={components}>{element}</MDXProvider>
-)
+// export const wrapPageElement = ({ element }) => (
+//   <MDXProvider components={components}>{element}</MDXProvider>
+// )
 
 export const onRouteUpdate = ({ location }) => scrollToAnchor(location)
 

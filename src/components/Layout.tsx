@@ -1,42 +1,46 @@
 import React, { useEffect } from 'react'
 import AOS from 'aos'
-import { MDXProvider } from '@mdx-js/react'
-import {
-  Message,
-  PreviousButton,
-  NextButton,
-  RelatedMaterialBlock,
-  Objectives,
-  TutorialObjective,
-  RelevantSkills,
-  SkillsYouGain,
-  AccentButton,
-  DarkButton,
-  FastTrackPlayground,
-  ExternalLink,
-  MdxLink,
-} from './DocsComponents'
+// import { MDXProvider } from '@mdx-js/react'
+// import {
+//   Message,
+//   PreviousButton,
+//   NextButton,
+//   RelatedMaterialBlock,
+//   Objectives,
+//   TutorialObjective,
+//   RelevantSkills,
+//   SkillsYouGain,
+//   AccentButton,
+//   DarkButton,
+//   FastTrackPlayground,
+//   ExternalLink,
+//   MdxLink,
+// } from './DocsComponents'
 import Header from './Header/Header'
 import Footer from './Footer'
 import Banner from './site/Banner'
 
-const components = {
-  a: MdxLink,
-  Message,
-  PreviousButton,
-  NextButton,
-  RelatedMaterialBlock,
-  Objectives,
-  TutorialObjective,
-  RelevantSkills,
-  SkillsYouGain,
-  AccentButton,
-  DarkButton,
-  FastTrackPlayground,
-  ExternalLink,
+// const components = {
+//   a: MdxLink,
+//   Message,
+//   PreviousButton,
+//   NextButton,
+//   RelatedMaterialBlock,
+//   Objectives,
+//   TutorialObjective,
+//   RelevantSkills,
+//   SkillsYouGain,
+//   AccentButton,
+//   DarkButton,
+//   FastTrackPlayground,
+//   ExternalLink,
+// }
+
+interface LayoutProps {
+  children: React.ReactNode
 }
 
-const Layout = ({ children }: any) => {
+const Layout = ({ children }: LayoutProps) => {
   useEffect(() => {
     AOS.init({
       disable: 'mobile',
@@ -45,14 +49,15 @@ const Layout = ({ children }: any) => {
   }, [])
 
   return (
-    <React.Fragment>
+    <>
       <Banner />
       <Header />
       <main className="main-container">
-        <MDXProvider components={components}>{children}</MDXProvider>
+        {children}
+        {/* <MDXProvider components={components}>{children}</MDXProvider> */}
       </main>
       <Footer />
-    </React.Fragment>
+    </>
   )
 }
 

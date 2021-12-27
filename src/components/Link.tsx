@@ -43,8 +43,12 @@ const addTrailingSlash = (uri: string) => {
   return uri + search + hash
 }
 
-const addStartingSlash = (uri: string) => {
+const addLeadingSlash = (uri: string) => {
   return (uri = uri.startsWith('/') ? uri : '/'.concat(uri))
+}
+
+const addSlashes = (uri: string) => {
+  return addLeadingSlash(addTrailingSlash(uri))
 }
 
 interface InfraLinkProps {
@@ -76,9 +80,15 @@ interface LinkProps {
   to: string
   children: React.ReactNode
   className?: string
+  others: any
 }
 
-export default function Link({ to, children, className }: LinkProps) {
+export default function Link({
+  to,
+  children,
+  className,
+  ...others
+}: LinkProps) {
   const external = testExternalLink(to)
   const infraLink = testInfraLink(to)
 
@@ -89,6 +99,7 @@ export default function Link({ to, children, className }: LinkProps) {
         target="_blank"
         className={className}
         rel="noreferrer noopener"
+        {...others}
       >
         {children}
       </a>
@@ -99,12 +110,15 @@ export default function Link({ to, children, className }: LinkProps) {
         {children}
       </InfraLink>
     )
+  } else if (to.startsWith('#')) {
+    return (
+      <a href={to} className={className} {...others}>
+        {children}
+      </a>
+    )
   } else {
     return (
-      <GatsbyLink
-        to={addStartingSlash(addTrailingSlash(to))}
-        className={className}
-      >
+      <GatsbyLink to={addSlashes(to)} className={className} {...others}>
         {children}
       </GatsbyLink>
     )

@@ -1,6 +1,6 @@
 import React, { ReactChildren } from 'react'
 import { Helmet } from 'react-helmet'
-import { useSiteMetadata } from '../components/Hooks/use-site-metadata'
+import { useSiteMetadata } from './Hooks/use-site-metadata'
 
 interface SEOProps {
   description?: string

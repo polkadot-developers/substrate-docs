@@ -5,9 +5,12 @@ keywords:
   - template
   - basics
 difficulty: 1
-duration: 1 Hour
+duration: 60
+skills:
   - Rust
   - Blockchain basics
+previous: /main-docs/why-substrate/choose-a-dev-platform/
+next: /reference/glossary/
 ---
 
 As you learned in [Blockchain basics](../../main-docs/02-fundamentals/blockchain-basics), a blockchain consists of decentralized computers—called nodes—to form a network.

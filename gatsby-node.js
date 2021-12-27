@@ -8,12 +8,18 @@ exports.createPages = async props => {
   await Promise.all([createDocsPages(props)])
 }
 
-const { addSlugFieldToMarkdown } = require('./gatsby-node/on-create-node.js')
+const {
+  addSlugFieldToMarkdown,
+  addPathFieldToMarkdown,
+  convertFmImagesToRelative,
+} = require('./gatsby-node/on-create-node.js')
 
 exports.onCreateNode = props => {
   const { node } = props
+  convertFmImagesToRelative(props)
   if (node.internal.type === `MarkdownRemark`) {
     addSlugFieldToMarkdown(props)
+    addPathFieldToMarkdown(props)
   }
 }
 

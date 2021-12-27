@@ -5,7 +5,7 @@ import MobileSubMenu from './MobileSubMenu'
 import { SearchDocs } from '../search-ui'
 import ThemeToggle from '../ThemeToggle'
 
-import { useSiteMetadata } from '../../components/Hooks/use-site-metadata'
+import { useSiteMetadata } from '../Hooks/use-site-metadata'
 
 interface MobileMenuProps {
   toggleMenu: () => void

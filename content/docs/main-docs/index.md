@@ -1,5 +1,6 @@
 ---
 title: Substrate empowers developers
+featured_image: /media/images/docs/main-docs/technical-freedom.png
 ---
 
 Substrate takes a modular and flexible approach to blockchain development.

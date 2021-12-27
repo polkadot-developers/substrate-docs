@@ -3,12 +3,10 @@ const { createFilePath } = require('gatsby-source-filesystem')
 
 const addSlugFieldToMarkdown = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
-  const filepaths = createFilePath({ node, getNode, basePath: `pages` })
+  const filepaths = createFilePath({ node, getNode, basePath: `` })
     .split('/')
     .filter(pathElement => pathElement)
-  const slugPath = filepaths[filepaths.length - 1]
-  const slug =
-    node.frontmatter && node.frontmatter.slug ? node.frontmatter.slug : slugPath
+  const slug = filepaths[filepaths.length - 1]
   createNodeField({
     node,
     name: `slug`,
@@ -16,6 +14,24 @@ const addSlugFieldToMarkdown = ({ node, getNode, actions }) => {
   })
 }
 
+const addPathFieldToMarkdown = ({ node, getNode, actions }) => {
+  const { createNodeField } = actions
+  const path = createFilePath({ node, getNode, basePath: `docs` })
+  createNodeField({
+    node,
+    name: `path`,
+    value: path,
+  })
+}
+
+const { fmImagesToRelative } = require('gatsby-remark-relative-source')
+
+const convertFmImagesToRelative = ({ node }) => {
+  fmImagesToRelative(node)
+}
+
 module.exports = {
   addSlugFieldToMarkdown,
+  addPathFieldToMarkdown,
+  convertFmImagesToRelative,
 }
