@@ -1,6 +1,6 @@
 import React from 'react'
 import { TextButton } from '../../Buttons'
-import Link from '../../Link'
+import Link from '../../default/Link'
 
 export default function ExploreDocs() {
   const content = [

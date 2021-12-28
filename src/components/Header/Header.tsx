@@ -9,7 +9,7 @@ import ThemeToggle from '../ThemeToggle'
 import MainNav from '../MainNav'
 import useScrollListener from '../Hooks/use-scroll-listener'
 
-import Link from '../Link'
+import Link from '../default/Link'
 
 export default function Header() {
   const scroll = useScrollListener()

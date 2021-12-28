@@ -5,12 +5,9 @@ const TutorialList = ({ models }) => {
   return (
     <section>
       {models ? (
-        <ul className="flex flex-col items-center md:flex-row md:flex-wrap md:justify-center">
+        <ul className="p-0 m-0 grid grid-cols-2 lg:grid-cols-3 gap-4">
           {models.map((model, index) => (
-            <li
-              key={index}
-              className="w-1/1 md:w-1/2 xl:w-1/3 list-none mb-8 mx-4"
-            >
+            <li key={index} className="list-none">
               <TutorialCard model={model.node} />
             </li>
           ))}

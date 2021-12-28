@@ -11,7 +11,7 @@ import { StaticImage } from 'gatsby-plugin-image'
 import { SecondaryButton } from '../components/Buttons'
 import ExploreDocs from '../components/layout/homepage/ExploreDocs'
 import * as animationData from '../images/animations/dev-hero.json'
-import Link from '../components/Link'
+import Link from '../components/default/Link'
 import ExploreLinkSection from '../components/layout/homepage/ExploreLinkSection'
 
 export default function Index() {

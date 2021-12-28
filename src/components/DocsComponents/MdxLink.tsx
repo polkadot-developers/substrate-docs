@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Link from '../Link'
+import Link from '../default/Link'
 import { ExternalLink } from '../DocsComponents'
 
 const isHash = (str: string) => /^#/.test(str)

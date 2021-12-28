@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from '../../Link'
+import Link from '../Link'
 
 function LinkResolver({ children, href, ...others }) {
   return (
@@ -9,4 +9,4 @@ function LinkResolver({ children, href, ...others }) {
   )
 }
 
-export { LinkResolver as Link }
+export { LinkResolver as a }

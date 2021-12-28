@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from '../components/Link'
+import Link from './default/Link'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import DifficultyMeter from './DifficultyMeter'
 

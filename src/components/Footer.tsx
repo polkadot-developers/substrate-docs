@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import MainNav from './MainNav'
-import Link from './Link'
+import Link from './default/Link'
 import Icon from './Icon'
 import { useSiteMetadata } from './Hooks/use-site-metadata'
 

@@ -1,10 +1,12 @@
 import React from 'react'
 import rehypeReact from 'rehype-react'
 
-import { Link } from './resolvers/Link'
+import { a } from './resolvers/Link'
+import { Image } from './resolvers/Image'
 
 const components = {
-  a: Link,
+  a,
+  img: Image,
 }
 
 const renderAst = new rehypeReact({

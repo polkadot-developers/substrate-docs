@@ -31,7 +31,8 @@ next: /reference/glossary/
 
 ## Images
 
-![Image caption](/media/images/docs/reference/substrate-arch.png)
+![Image1 caption](/media/images/docs/reference/substrate-arch.png)
+![Image2 caption](/media/images/docs/reference/substrate-arch-missing.png)
 
 ### Remote image without caption
 

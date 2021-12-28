@@ -11,12 +11,12 @@ exports.createPages = async props => {
 const {
   addSlugFieldToMarkdown,
   addPathFieldToMarkdown,
-  convertFmImagesToRelative,
+  // convertFmImagesToRelative,
 } = require('./gatsby-node/on-create-node.js')
 
 exports.onCreateNode = props => {
   const { node } = props
-  convertFmImagesToRelative(props)
+  // convertFmImagesToRelative(props)
   if (node.internal.type === `MarkdownRemark`) {
     addSlugFieldToMarkdown(props)
     addPathFieldToMarkdown(props)

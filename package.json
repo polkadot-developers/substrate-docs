@@ -53,6 +53,7 @@
     "gatsby-transformer-remark": "3.1.0",
     "gatsby-transformer-sharp": "^3.7.1",
     "graphql-type-json": "^0.3.2",
+    "js-yaml": "^4.1.0",
     "lazysizes": "^5.3.2",
     "lunr": "^2.3.9",
     "mdx-utils": "^0.2.0",

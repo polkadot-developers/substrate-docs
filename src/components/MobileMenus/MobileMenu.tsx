@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Link from '../Link'
+import Link from '../default/Link'
 // import LanguageSwitcher from '../LanguageSwitcher'
 import MobileSubMenu from './MobileSubMenu'
 import { SearchDocs } from '../search-ui'

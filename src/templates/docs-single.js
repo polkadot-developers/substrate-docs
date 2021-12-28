@@ -6,15 +6,13 @@ import SEO from '../components/SEO'
 import Sidebar from '../components/layout/Sidebar'
 import TableOfContents from '../components/site/TableOfContents'
 import Markdown from '../components/default/Markdown'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { Image } from '../components/default/resolvers/Image'
 
 export default function DocsSinglePage({ data, pageContext }) {
   const { markdownRemark } = data
   const { htmlAst, tableOfContents, frontmatter } = markdownRemark
   const { title, featured_image } = frontmatter
   const { pagePath, collection } = pageContext
-
-  const imageData = getImage(featured_image)
 
   return (
     <Layout>
@@ -38,12 +36,7 @@ export default function DocsSinglePage({ data, pageContext }) {
               <header>
                 <h1>{title}</h1>
                 <figure>
-                  {imageData && (
-                    <GatsbyImage
-                      image={imageData}
-                      alt={`${title} Featured Image`}
-                    />
-                  )}
+                  {featured_image && <Image src={featured_image} />}
                   <figcaption>Featured image</figcaption>
                 </figure>
               </header>
@@ -51,7 +44,7 @@ export default function DocsSinglePage({ data, pageContext }) {
                 <Markdown htmlAst={htmlAst} />
               </main>
               <footer>
-                <div className="py-8">
+                <div className="py-8 text-sm text-gray-400">
                   WIP: Footer: Last edit
                   <hr />
                   Issue report
@@ -79,15 +72,7 @@ export const query = graphql`
       tableOfContents(maxDepth: 2)
       frontmatter {
         title
-        featured_image {
-          childImageSharp {
-            gatsbyImageData(
-              width: 1600
-              placeholder: NONE
-              formats: [AUTO, WEBP, AVIF]
-            )
-          }
-        }
+        featured_image
       }
     }
   }

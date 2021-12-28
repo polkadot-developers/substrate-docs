@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Link from './Link'
+import Link from './default/Link'
 
 interface SlideDownNavProps {
   section: { name: string; items: { title: string; link: string }[] }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import SlideDownNav from '../components/SlideDownNav'
-import Link from './Link'
+import Link from './default/Link'
 import Icon from './Icon'
 
 interface DocsNavProps {

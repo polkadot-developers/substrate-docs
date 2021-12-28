@@ -19,15 +19,7 @@ export const useTutorials = () => {
               frontmatter {
                 title
                 description
-                featured_image {
-                  childImageSharp {
-                    gatsbyImageData(
-                      width: 1200
-                      placeholder: NONE
-                      formats: [AUTO, WEBP, AVIF]
-                    )
-                  }
-                }
+                featured_image
               }
               fields {
                 slug

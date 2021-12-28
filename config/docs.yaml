@@ -7,9 +7,7 @@ nav:
       - 'Why Substrate?': '/main-docs/why-substrate/choose-a-dev-platform/' #page link
   - Reference:
       - 'Glossary': '/reference/glossary/'
-      - 'Why Substrate?': '/main-docs/why-substrate/choose-a-dev-platform/'
-      - 'Build a local blockchain': '/tutorials/build-blockchain/'
   - Tutorials:
       - '/tutorials/'
       - 'Build a local blockchain': '/tutorials/build-blockchain/'
-  - Example External: 'https://example.com'
+      - 'Initiate a Forkless Runtime Upgrade': '/tutorials/forkless-upgrades/'

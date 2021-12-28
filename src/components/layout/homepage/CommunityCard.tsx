@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSiteMetadata } from '../../Hooks/use-site-metadata'
 import Icon from '../../Icon'
-import Link from '../../Link'
+import Link from '../../default/Link'
 
 export default function CommunityCard() {
   const { siteMetadata } = useSiteMetadata()

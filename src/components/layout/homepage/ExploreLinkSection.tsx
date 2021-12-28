@@ -2,7 +2,7 @@ import React from 'react'
 import Icon from '../../Icon'
 import Section from '../Section'
 import { useSiteMetadata } from '../../Hooks/use-site-metadata'
-import Link from '../../Link'
+import Link from '../../default/Link'
 
 interface ExploreLinkSectionProps {
   links: string[]

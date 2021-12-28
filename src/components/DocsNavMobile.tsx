@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import cx from 'classnames'
 import SlideDownNav from './SlideDownNav'
 import Icon from './Icon'
-import Link from './Link'
+import Link from './default/Link'
 
 interface DocsNavMobileProps {
   section: string

@@ -1,8 +1,8 @@
 import cx from 'classnames'
 
 import React, { Fragment } from 'react'
-import dataYaml from '../../../config/docs.yaml'
-import Link from '../Link'
+import configDocs from '../../../config/docs.yaml'
+import Link from '../default/Link'
 
 const SubMenu = ({ items, currentPath }) => {
   return (
@@ -55,7 +55,7 @@ const CollectionMenu = ({ data, currentPath }) => {
 }
 
 const Menu = ({ currentPath }) => {
-  const { nav } = dataYaml
+  const { nav } = configDocs
   return (
     <nav role="navigation">
       <ul className="p-0 m-0">

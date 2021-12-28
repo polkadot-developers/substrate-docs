@@ -1,6 +1,6 @@
 import React from 'react'
 import cx from 'classnames'
-import Link from '../../Link'
+import Link from '../../default/Link'
 import Icon from '../../Icon'
 
 interface DocCardProps {

@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from '../Link'
+import Link from '../default/Link'
 
 interface TutorialObjectiveProps {
   data: { textLineOne: string; textLineTwo?: string; url: string }

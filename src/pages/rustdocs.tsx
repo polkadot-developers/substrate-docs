@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import Link from '../components/Link'
+import Link from '../components/default/Link'
 import Section from '../components/layout/Section'
 import RustLogo from '../components/RustLogo'
 

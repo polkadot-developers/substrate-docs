@@ -124,13 +124,13 @@ module.exports = {
               elements: [`h2`, `h3`],
             },
           },
-          {
-            resolve: `gatsby-remark-relative-source`,
-            options: {
-              name: `media`,
-              // htmlSources: [{ tagName: `img`, attributes: [`src`] }],
-            },
-          },
+          // {
+          //   resolve: `gatsby-remark-relative-source`,
+          //   options: {
+          //     name: `media`,
+          //     // htmlSources: [{ tagName: `img`, attributes: [`src`] }],
+          //   },
+          // },
           'gatsby-remark-unwrap-images',
           {
             resolve: `gatsby-remark-figure-caption`,
@@ -140,18 +140,18 @@ module.exports = {
               captionClassName: '',
             },
           },
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 1600,
-              linkImagesToOriginal: false,
-              quality: 100,
-              disableBgImage: true,
-            },
-          },
+          // {
+          //   resolve: `gatsby-remark-images`,
+          //   options: {
+          //     maxWidth: 1600,
+          //     linkImagesToOriginal: false,
+          //     quality: 100,
+          //     disableBgImage: true,
+          //   },
+          // },
           /* invoke lazyload manually to fix srcset rehype parsing
           using lazysizes package (loaded in gatsby-browser.js) */
-          `gatsby-remark-lazy-load`,
+          // `gatsby-remark-lazy-load`,
           {
             resolve: 'gatsby-remark-custom-blocks',
             options: {
@@ -168,7 +168,7 @@ module.exports = {
           {
             resolve: 'gatsby-remark-component',
             /* for strict declaration (required to escape default components like <img />) */
-            options: { components: ['a'] },
+            options: { components: ['a', 'img'] },
           },
         ],
       },

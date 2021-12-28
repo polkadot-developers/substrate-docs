@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Link as GatsbyLink } from 'gatsby'
-import { ThemeContext } from '../contexts/ThemeContext'
+import { ThemeContext } from '../../contexts/ThemeContext'
 
 const addTrailingSlash = (uri: string) => {
   const addSlash = (uri: string) => {
