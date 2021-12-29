@@ -280,6 +280,10 @@ const DevNavMenu = {
             title: 'Genesis Configuration',
             link: '/how-to-guides/v3/basics/genesis/',
           },
+		  {
+            title: 'Custom Chain Specifications',
+            link: '/how-to-guides/v3/basics/genesis/',
+          },
           {
             title: 'Helper Functions',
             link: '/how-to-guides/v3/basics/helper-functions/',
