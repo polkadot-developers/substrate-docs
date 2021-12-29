@@ -633,7 +633,7 @@ ensure!(!<Kitties<T>>::exists(new_id), "This new id already exists");
 
 Our runtime needs to be made aware of:
 
-- Unique assets, like currency or Kitties (this will be held by a storgae map called `Kitties`).
+- Unique assets, like currency or Kitties (this will be held by a storage map called `Kitties`).
 - Ownership of those assets, like account IDs (this will be handled a new storage map called `KittiesOwned`).
 
 To create a storage instance for the `Kitty` struct, we'll be using[`StorageMap`][storage-map-kb] &mdash; a hash-map provided to us by FRAME.
