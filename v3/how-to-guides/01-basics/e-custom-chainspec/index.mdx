@@ -1,10 +1,8 @@
 ---
 title: Custom Chain Specifications
 slug: /how-to-guides/v3/basics/custom-chain-spec
-version: 'polkadot-0.9.13'
-section: how to guides
-category: basics
 keywords:
+  - basics
   - chain spec
   - node
   - genesis
@@ -13,33 +11,35 @@ keywords:
   - private
   - network
   - bootstrap
+version: 'polkadot-0.9.13'
+section: how to guides
+category: basics
 ---
-
+ 
 <Objectives
   data={[
     {
       title: 'Goal',
       description: `
-        Generate a \`chain-spec.json\` and include it for other nodes to join a common network
+Generate a \`chain-spec.json\` and include it for other nodes to join a common network
       `,
     },
     {
       title: 'Use Cases',
       description: `
-        - Starting a private network
-        - Modify an existing plain chain spec without editing the node source code
+- Starting a private network
+- Modify an existing plain chain spec without editing the node source code
       `,
     },
     {
       title: 'Overview',
       description: `
-        Once you have a Substrate node crafted, you want to start a network with many peers!
-        This guide shows one method to create chain specification files uniformly and distribute them so other nodes can discover and peer with your network _explicitly_.
+Once you have a Substrate node crafted, you want to start a network with many peers!
+This guide shows one method to create chain specification files uniformly and distribute them so other nodes can discover and peer with your network _explicitly_.
       `,
     },
   ]}
 />
-<br />
 
 ## Steps
 

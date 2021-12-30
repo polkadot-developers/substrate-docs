@@ -77,7 +77,7 @@ export default function playground() {
             title={`Front-End Template`}
             description={`A modular UI built with ReactJS to act as a front-end to the Substrate 
               Node Template. It contains all necessary components to interact with the Node 
-              Template’s mruntime.`}
+              Template’s runtime.`}
             listTitle={'Key Components'}
             components={['Interactor', 'MetaData', 'Balances', 'BlockNumber']}
             link={` https://playground.substrate.dev/?deploy=front-end-template`}

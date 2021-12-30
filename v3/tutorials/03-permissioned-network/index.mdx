@@ -334,52 +334,52 @@ access to data from a selected well-known node (upon it's approval).
 For Alice's _well known_ node:
 
 ```bash
-# node key
+# Node Key
 c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a
 
-# peerid, generated from node key
+# Peer ID, generated from node key
 12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2
 
-# bs58 decoded peer id in hex:
+# BS58 decoded Peer ID in hex:
 0024080112201ce5f00ef6e89374afb625f1ae4c1546d31234e87e3c3f51a62b91dd6bfa57df
 ```
 
 For Bob's _well known_ node:
 
 ```bash
-# node key
+# Node Key
 6ce3be907dbcabf20a9a5a60a712b4256a54196000a8ed4050d352bc113f8c58
 
-# peer id, generated from node key
+# Peer ID, generated from node key
 12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust
 
-# bs58 decoded peer id in hex:
+# BS58 decoded Peer ID in hex:
 002408011220dacde7714d8551f674b8bb4b54239383c76a2b286fa436e93b2b7eb226bf4de7
 ```
 
 For Charlie's _NOT well known_ node:
 
 ```bash
-# node key
+# Node Key
 3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e
 
-# peer id, generated from node key
+# Peer ID, generated from node key
 12D3KooWJvyP3VJYymTqG7eH4PM5rN4T2agk5cdNCfNymAqwqcvZ
 
-# bs58 decoded peer id in hex:
+# BS58 decoded Peer ID in hex:
 002408011220876a7b4984f98006dc8d666e28b60de307309835d775e7755cc770328cdacf2e
 ```
 
 For Dave's _sub-node_ (to Charlie, [more below](#add-dave-as-a-sub-node-to-charlie)):
 
 ```bash
-# node key
+# Node Key
 a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a
 
-# peer id, generated from node key
+# Peer ID, generated from node key
 12D3KooWPHWFrfaJzxPnqnAYAoRUyAHHKqACmEycGTVmeVhQYuZN
 
-# bs58 decoded peer id in hex:
+# BS58 decoded Peer ID in hex:
 002408011220c81bc1d7057a1511eb9496f056f6f53cdfe0e14c8bd5ffca47c70a8d76c1326d
 ```
 
@@ -391,11 +391,10 @@ making Dave's node as a well known node.
 <Message
   type={`gray`}
   title={`Note`}
-  text="You can get the above bs58 decoded peer id by using `bs58::decode` similar',
-    to how it was used in our genesis storage configuration. Alternatively, there are tools online like ',
-    [this one](https://whisperd.tech/bs58-codec/)
-    to en/decode bs58 IDs.
-    "
+  text="
+You can get the above bs58 decoded peer id by using `bs58::decode` similar', to how it was used in our genesis storage configuration.
+Alternatively, there are tools online like [this one](https://whisperd.tech/bs58-codec/) to en/decode bs58 IDs.
+"
 />
 
 ### Alice and Bob Start the Network
@@ -492,7 +491,7 @@ the genesis `chain_spec.rs`, where all others must be added manually via extrins
 
 Remember that we are using `sudo` pallet for our governance, we can make a sudo call
 on `add_well_known_node` dispatch call provided by node-authorization pallet to add
-our node. You can find more avaliable calls in this
+our node. You can find more available calls in this
 [reference doc](/rustdocs/latest/pallet_node_authorization/pallet/enum.Call.html).
 
 Go to **Developer** page, **Sudo** tab, in apps and submit the `nodeAuthorization` -
@@ -566,7 +565,7 @@ Restart Dave's node in case it's not connecting with Charlie right away.
     is _on chain data_ that is used for reference, and you have the _singing key_ in the keystore
     available for the account in question for the extrinsics\' required origin.
     All nodes in this demonstration have access to the developer signing keys, thus
-    we were able to issue commands that effected Chalie\'s sub-nodes from _any_ connected node
+    we were able to issue commands that effected Charlie\'s sub-nodes from _any_ connected node
     on our network on behalf of Charlie. In a real world application, node operators would
     _only_ have access to their node keys, and would be the only ones able to sign and submit
     extrinsics properly, very likely from their own node where they have control of the key\'s security.
