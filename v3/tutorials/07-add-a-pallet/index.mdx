@@ -449,13 +449,16 @@ Here are some other things you may want to try:
 - Add a nickname for Bob then use Alice's account and the `SUDO` button to forcibly kill Bob's nickname.
   Switch back to Bob's account and dispatch the `clearName` function.
 
-### Adding Other FRAME Pallets
+### Adding other FRAME pallets
 
-In this guide, we walked through specifically how to import the Nicks pallet, but as mentioned in the beginning of this guide, each pallet will be a little different.
-Have no fear, you can always refer to the [Substrate runtime](https://github.com/paritytech/substrate/tree/master/bin/node/runtime) which includes nearly every pallets in the library of core FRAME pallets.
+This tutorial illustrated how to add a pallet to the runtime using the Nicks pallet as an example.
+However, it is important to note that each pallet is a little different.
+If you aren't sure how to add a specific pallet, the best place to look is the runtime from the main [Substrate repository](https://github.com/paritytech/substrate/tree/master/bin/node/runtime).
+Unlike the node template used in tutorials, the runtime in the main Substrate repository includes most of the pallets available in the library of core FRAME pallets.
 
-In the Substrate node runtime `bin/node/runtime/Cargo.toml` file, you will see how to import different pallets, and in the `bin/node/runtime/src/lib.rs` file you will see how to add each pallet to your runtime.
-You can generally copy what was done there as a starting point to include a pallet in your own runtime.
+Refer to the `bin/node/runtime/Cargo.toml` file for the main Substrate node runtime to see examples of how to import different pallet dependencies.
+Refer to the `bin/node/runtime/src/lib.rs` file for the main Substrate node runtime to see examples of how to configure the runtime to include each pallet.
+Generally, you can copy the code from the main Substrate node runtime as a starting point to include a pallet in your own runtime.
 
 <Message
   type={`green`}
@@ -464,7 +467,7 @@ You can generally copy what was done there as a starting point to include a pall
   `}
 />
 
-## Publish Your Own Pallet
+## Publish your own pallet
 
 By now you should have successfully imported the Nicks pallet.
 In future, you will write your own pallets to execute your application-specific logics.
@@ -511,11 +514,6 @@ We do not specify any target destination on the above, and by default it will se
 
 ## Next steps
 
-- We have [plenty of tutorials](/tutorials) to showcase Substrate development concepts and techniques.
-- For more information about runtime development tips and patterns, refer to our [How-to Guides](/how-to-guides).
-- For a bare FRAME pallet with detailed comments about what you can access within FRAME, see [this example in `substrate`](https://github.com/paritytech/substrate/tree/master/frame/examples/basic).
-
-#### References
-
-- [The Cargo book](https://doc.rust-lang.org/stable/cargo/)
-- [Rust and WebAssembly](https://rustwasm.github.io/)
+- Follow the [tutorials](/tutorials) that demonstrate Substrate development concepts and techniques.
+- Browse [How-to Guides](/how-to-guides) for examples of common runtime development patterns.
+- Explore the [FRAME examples](https://github.com/paritytech/substrate/tree/master/frame/examples/basic) to learn what's available in the FRAME library.

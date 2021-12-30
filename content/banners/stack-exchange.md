@@ -1,6 +1,6 @@
 ---
 title: "StackExchange Forum"
-active: true
+active: false
 ---
 
 The Substrate community is campaigning for a dedicated [StackExchange](https://area51.stackexchange.com/proposals/126136/substrate-blockchain-framework) forum!
