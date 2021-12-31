@@ -354,6 +354,15 @@ const DevNavMenu = {
           },
         ],
       },
+      {
+        name: 'Off-chain Workers',
+        items: [
+          {
+            title: 'Off-chain Indexing',
+            link: 'how-to-guides/v3/ocw/indexing',
+          },
+        ]
+      },
       // 4. Testing.
       {
         name: 'Testing',
