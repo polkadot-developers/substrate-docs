@@ -1,0 +1,36 @@
+---
+title: Off-chain Indexing
+slug: /how-to-guides/v3/ocw/indexing
+keywords:
+  - off-chain worker
+  - ocw
+  - indexing
+version: '3.0'
+section: how to guides
+category: ocw
+---
+
+<Objectives data={[
+  {
+    title: 'Goal',
+    description: `Having on-chain extrinsics able to write data to off-chain worker local storage.`
+  },
+  {
+    title: 'Use Cases',
+    description: `There is a large chunk of data we want to save. In this case we can store the hash of the data on-chain and store the original data in the local storage.`
+  },
+]}/>
+
+## Overview
+
+Occasionally on-chain extrinsics need to pass data to the off-chain worker context with predictable write behavior. We can surely pass this piece of data via on-chain storage, but this is costly and it will make the data propagate among the blockchain network. If this is not a piece of information that need to be saved on-chain, another way is to save this data in off-chain local storage via off-chain indexing.
+
+As off-chain indexing is called in on-chain context, if it is agreed upon by the blockchain consensus mechanism, then it is expected to run predictably by all nodes in the network. One use case is to store only the hash of certain information in on-chain storage for verification purpose but keeping the full data set off-chain for lookup later. In this case the original data can be saved via off-chain indexing.
+
+Notice as off-chain indexing is called and data is saved on every block import (this also includes forks), the consequence is that in case non-unique keys are used the data might be overwritten by different forked blocks and the content of off-chain database will be different between nodes. Care should be taken in choosing the right indexing key to prevent potential overwrites if not desired.
+
+## Steps
+
+## Examples
+
+## Related material
