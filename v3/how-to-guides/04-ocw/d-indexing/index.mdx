@@ -23,14 +23,111 @@ category: ocw
 
 ## Overview
 
-Occasionally on-chain extrinsics need to pass data to the off-chain worker context with predictable write behavior. We can surely pass this piece of data via on-chain storage, but this is costly and it will make the data propagate among the blockchain network. If this is not a piece of information that need to be saved on-chain, another way is to save this data in off-chain local storage via off-chain indexing.
+Occasionally on-chain extrinsics need to pass data to the off-chain worker with predictable write behavior. This data could surely be written to on-chain storage and then have off-chain workers reading from the storage. But this involves updating the blockchain state, which may incur cost depends on the runtime configuration and make the data propagate among the blockchain network. Another way of handing data from on-chain to off-chain context is by saving it in off-chain local storage via **off-chain indexing**.
 
-As off-chain indexing is called in on-chain context, if it is agreed upon by the blockchain consensus mechanism, then it is expected to run predictably by all nodes in the network. One use case is to store only the hash of certain information in on-chain storage for verification purpose but keeping the full data set off-chain for lookup later. In this case the original data can be saved via off-chain indexing.
+As off-chain indexing is called from on-chain extrinsics, if the extrinsic is agreed upon by the blockchain consensus mechanism, then the data written locally is expected to be consistent across all nodes in the network.
 
-Notice as off-chain indexing is called and data is saved on every block import (this also includes forks), the consequence is that in case non-unique keys are used the data might be overwritten by different forked blocks and the content of off-chain database will be different between nodes. Care should be taken in choosing the right indexing key to prevent potential overwrites if not desired.
+One of its use cases is that a large chunk of data need to be stored on-chain, verified among all nodes, and then passed to off-chain workers for processing. But plainly saving the data to the storage is expensive. So only the hash of the data is stored on-chain and the full set of data is stored in local storage via off-chain indexing. Later on this data can be read by off-chain workers.
+
+Notice as off-chain indexing is called and data is saved on every block import (this also includes forks), the consequence is that in case non-unique keys are used the data might be overwritten by different forked blocks and the content of off-chain database will be different between nodes. So developers should be careful in choosing the right indexing key to prevent potential overwrites on multiple forked blocks.
 
 ## Steps
 
-## Examples
+> Notes
+> In order to see the off-chain indexing feature in effect, please run Substrate node with off-chain indexing flag *ON*, as `./target/release/substrate --dev --tmp --enable-offchain-indexing true`
+
+1. Start by building a unique key used for indexing, similar to the following:
+
+  ```rust
+  const ONCHAIN_TX_KEY: &[u8] = b"my_pallet::indexing1";
+
+  #[pallet::call]
+  impl<T: Config> Pallet<T> {
+    #[pallet::weight(100)]
+    pub fn extrinsic(origin: OriginFor<T>, number: u64) -> DispatchResult {
+      let who = ensure_signed(origin)?;
+
+      let key = Self::derived_key(frame_system::Module::<T>::block_number());
+      // ...
+
+      Ok(())
+    }
+  }
+
+  impl<T: Config> Module<T> {
+    fn derived_key(block_number: T::BlockNumber) -> Vec<u8> {
+      block_number.using_encoded(|encoded_bn| {
+        ONCHAIN_TX_KEY.clone().into_iter()
+          .chain(b"/".into_iter())
+          .chain(encoded_bn)
+          .copied()
+          .collect::<Vec<u8>>()
+      })
+    }
+  }
+  ```
+
+  In the above code within a regular extrinsic, `derived_key()` helper method is used to generate the key used later for indexing. Its logic is concatenating a predefined key prefix stored in `ONCHAIN_TX_KEY` constant with the current encoded block number and returning it as a vector of bytes.
+
+2. Define the indexing data and save it using off-chain indexing, similar to the following:
+
+  ```rust
+  use sp_io::offchain_index;
+  const ONCHAIN_TX_KEY: &[u8] = b"my_pallet::indexing1";
+
+  #[derive(Debug, Deserialize, Encode, Decode, Default)]
+  struct IndexingData(Vec<u8>, u64);
+
+  #[pallet::call]
+  impl<T: Config> Pallet<T> {
+    #[pallet::weight(100)]
+    pub fn extrinsic(origin: OriginFor<T>, number: u64) -> DispatchResult {
+      let who = ensure_signed(origin)?;
+
+      let key = Self::derived_key(frame_system::Module::<T>::block_number());
+      let data = IndexingData(b"submit_number_unsigned".to_vec(), number);
+      offchain_index::set(&key, &data.encode());
+      Ok(())
+    }
+  }
+
+  impl<T: Config> Module<T> {
+    // -- skipped for brevity --
+  }
+  ```
+
+  The indexing data can be any data that is bound by `Encode`, `Decode`, and `Deserialize` traits. In the above code, we define the data and store it with [`offchain_index::set()`](https://paritytech.github.io/substrate/latest/sp_io/offchain_index/fn.set.html) method.
+
+  Looking over the documentation of [`offchain_index`](https://paritytech.github.io/substrate/latest/sp_io/offchain_index/index.html), you will only see `set()` and `clear()` methods, but not `get()`. This means on-chain extrinsics could only write to off-chain local storages but not read from them. This is because data in local storage hasn't been verified across the network, so having on-chain logic reading and relying on it may break the network consensus.
+
+3. To read the data in off-chain workers:
+
+  ```rust
+  use sp_runtime::offchain::StorageValueRef;
+
+  #[derive(Debug, Deserialize, Encode, Decode, Default)]
+  struct IndexingData(Vec<u8>, u64);
+
+  fn offchain_worker(block_number: T::BlockNumber) {
+    // Reading back the off-chain indexing value. It is exactly the same as reading from
+    // ocw local storage.
+    let key = Self::derived_key(block_number);
+    let storage_ref = StorageValueRef::persistent(&key);
+
+    if let Some(Some(data)) = storage_ref.get::<IndexingData>() {
+      debug::info!("local storage data: {:?}, {:?}",
+        str::from_utf8(&data.0).unwrap_or("error"), data.1);
+    } else {
+      debug::info!("Error reading from local storage.");
+    }
+
+    // -- snip --
+  }
+  ```
+
+  Then off-chain workers could read from local storage, as explained in [this how-to guide]().
 
 ## Related material
+
+- [Off-Chain Features]()
+- [Local Storage in Off-chain Workers]()
