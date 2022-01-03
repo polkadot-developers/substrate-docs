@@ -359,7 +359,7 @@ const DevNavMenu = {
         items: [
           {
             title: 'Off-chain Indexing',
-            link: 'how-to-guides/v3/ocw/indexing',
+            link: '/how-to-guides/v3/ocw/indexing',
           },
         ]
       },
