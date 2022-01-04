@@ -29,15 +29,6 @@ next: /reference/glossary/
    rustup target add wasm32-unknown-unknown --toolchain nightly
 ```
 
-## Images
-
-![Image1 caption](/media/images/docs/reference/substrate-arch.png)
-![Image2 caption](/media/images/docs/reference/substrate-arch-missing.png)
-
-### Remote image without caption
-
-![](https://docs.substrate.io/static/399a08a0da5e076e00f1b6b39cfa2b2f/416ee/kitties-tutorial.png)
-
 ## Custom blocks feature
 
 [[info]]
@@ -49,3 +40,12 @@ next: /reference/glossary/
 ### Custom components
 
 We can use `<example-component>Custom native HTML component</example-component>` for more complex UI components if needed.
+
+## Images
+
+![Image1 caption](/media/images/docs/reference/substrate-arch.png)
+![Image2 caption](/media/images/docs/reference/substrate-arch-missing.png)
+
+### Remote image without caption
+
+![](https://docs.substrate.io/static/399a08a0da5e076e00f1b6b39cfa2b2f/416ee/kitties-tutorial.png)
