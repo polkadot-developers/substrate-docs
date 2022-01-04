@@ -48,4 +48,4 @@ next: /reference/glossary/
 
 ### Custom components
 
-<custom-component>Custom native HTML component</custom-component>
+We can use `<example-component>Custom native HTML component</example-component>` for more complex UI components if needed.
