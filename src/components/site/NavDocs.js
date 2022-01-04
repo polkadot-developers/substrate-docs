@@ -81,13 +81,13 @@ const NavDocs = ({ currentPath }) => {
 export default NavDocs
 
 const buildParentMenu = parentMenu => {
-  // parent object key
-  const [firstKey] = Object.keys(parentMenu)
+  // collection key 'name'
+  const [collection] = Object.keys(parentMenu)
   // parent items object
-  const subMenu = parentMenu[`${firstKey}`]
+  const subMenu = parentMenu[`${collection}`]
   // prepare menu constructor
   const data = {
-    parent: firstKey,
+    parent: collection,
     parentUrl: '',
     childMenu: [],
   }
