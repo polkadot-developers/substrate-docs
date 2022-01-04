@@ -39,7 +39,7 @@ next: /reference/glossary/
 
 ### Custom components
 
-We can use `<example-component>Custom native HTML component</example-component>` for more complex UI components if needed.
+We can use `<example-component data="string">Custom native HTML component</example-component>` for more complex UI components if needed.
 
 ## Images
 
