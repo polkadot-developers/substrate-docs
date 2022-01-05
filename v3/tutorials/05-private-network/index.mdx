@@ -534,7 +534,7 @@ Because the Rust compiler produces optimized WebAssembly binaries that aren't de
 To ensure determinism, all participants in the blockchain network must use exactly the same raw chain specification file.
 For more information about this issue, see [Hunting down a non-determinism-bug in our Rust Wasm build](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1).
 
-## Launch the private network
+## Launch the private networkn
 
 After you distribute the custom chain specification to all network participants, you're ready to launch your own private blockchain.
 The steps are similar to the steps you followed in [Start the blockchain using predefined accounts](#Start-the-blockchain-using-predefined-accounts).
@@ -649,6 +649,7 @@ To insert keys into the keystore:
    ```bash
    ./target/release/node-template key insert --base-path /tmp/node01 \
    --chain customSpecRaw.json \
+   --scheme Sr25519
    --suri <your-secret-seed> \
    --password-interactive \
    --key-type aura
@@ -673,6 +674,7 @@ To insert keys into the keystore:
    ```bash
    ./target/release/node-template key insert --base-path /tmp/node01 \
    --chain customSpecRaw.json \
+   --scheme Ed25519
    --suri <your-secret-key> \
    --password-interactive \
    --key-type gran
