@@ -25,10 +25,13 @@ If the fund is not successful, it can be dissolved, returning funds to the origi
 To follow this guide and implement the crowdfunding capabilities in your own pallet, include the following dependencies in your pallet:
             
 ```rust
-use frame_support::{pallet_prelude::*, ensure, storage::child,
-traits::{Currency, ExistenceRequirement, Get, ReservableCurrency, WithdrawReasons},
-sp_runtime::{traits::{AccountIdConversion, Saturating, Zero, Hash},
-ModuleId}
+use frame_support::{
+	ensure,
+	pallet_prelude::*,
+	sp_runtime::traits::{AccountIdConversion, Hash, Saturating, Zero},
+	storage::child,
+	traits::{Currency, ExistenceRequirement, Get, ReservableCurrency, WithdrawReasons},
+	PalletId,
 };
 use frame_system::{pallet_prelude::*, ensure_signed};
 use super::*;
@@ -51,10 +54,8 @@ use super::*;
   - **`Currency`**. The currency in which the crowdfunds will be denominated.
   - **`SubmissionDeposit`**. The amount to be held on deposit by the owner of a crowdfund.
   - **`MinContribution`**. The minimum amount that may be contributed to a crowdfund.
-  - **`RetirementPeriod`**. The period of time in blocks during which contributors are able to
-    withdraw their funds after an unsuccessful crowdfund ending.
 
-  Add the traits to the list of types.
+  Extend your trait with the following types:
 
   ```rust
   /// The pallet's configuration trait.
@@ -68,25 +69,38 @@ use super::*;
   }
   ```
 
-1. Create a custom metadata struct.
-
-  Keep track of the constants in your pallet by creating a struct that stores metadata about each fund
+  And the following type aliases:
 
   ```rust
-  #[derive(Encode, Decode, Default, PartialEq, Eq)]
+  pub type FundIndex = u32;
+  type AccountIdOf<T> = <T as frame_system::Config>::AccountId;
+  type BalanceOf<T> = <<T as Config>::Currency as Currency<AccountIdOf<T>>>::Balance;
+  ```
+
+1. Create a struct to store the configuration of crowdfunds.
+
+  ```rust
+  #[derive(Encode, Decode, Default, PartialEq, Eq, TypeInfo)]
   #[cfg_attr(feature = "std", derive(Debug))]
   pub struct FundInfo<AccountId, Balance, BlockNumber> {
-      /// The account that will recieve the funds if the campaign is successful.
-      beneficiary: AccountId,
-      /// The amount of deposit placed.
-      deposit: Balance,
-      /// The total amount raised.
-      raised: Balance,
-      /// Block number after which funding must have succeeded.
-      end: BlockNumber,
-      /// Upper bound on `raised`.
-      goal: Balance,
+    /// The account that will recieve the funds if the campaign is successful.
+    beneficiary: AccountId,
+    /// The amount of deposit placed.
+    deposit: Balance,
+    /// The total amount raised.
+    raised: Balance,
+    /// Block number after which funding must have succeeded.
+    end: BlockNumber,
+    /// Upper bound on `raised`.
+    goal: Balance,
   }
+  ```
+
+  And a new alias to more easily use this:
+
+  ```rust
+  type FundInfoOf<T> =
+    FundInfo<AccountIdOf<T>, BalanceOf<T>, <T as frame_system::Config>::BlockNumber>;
   ```
 
 1. Declare your storage items.
@@ -94,31 +108,21 @@ use super::*;
   Your storage items will keep track of which user contributed to what fund as well as how much they contributed. Define the following types which will be used to declare your storage items:
 
   ```rust
-  pub type FundIndex = u32;
-  type AccountIdOf<T> = <T as frame_system::Config>::AccountId;
-  type BalanceOf<T> = <<T as Config>::Currency as Currency<AccountIdOf<T>>>::Balance;
-  type FundInfoOf<T> =
-      FundInfo<AccountIdOf<T>, BalanceOf<T>, <T as frame_system::Config>::BlockNumber>;
-  ```
-
-  Use those types to create one `StorageMap` item that tracks the funds by index and a second item, `StorageValue`, that keeps track of `FundIndex`:
-
-  ```rust
   #[pallet::storage]
-    #[pallet::getter(fn funds)]
-    /// Info on all of the funds.
-    pub(super) type Funds<T: Config> = StorageMap<
-      _,
-      Blake2_128Concat,
-      FundIndex,
-      FundInfoOf<T>,
-      OptionQuery,
-    >;
+  #[pallet::getter(fn funds)]
+  /// Info on all of the funds.
+  pub(super) type Funds<T: Config> = StorageMap<
+    _,
+    Blake2_128Concat,
+    FundIndex,
+    FundInfoOf<T>,
+    OptionQuery,
+  >;
 
-    #[pallet::storage]
-    #[pallet::getter(fn fund_count)]
-    /// The total number of funds that have so far been allocated.
-    pub(super) type FundCount<T: Config> = StorageValue<_, FundIndex, ValueQuery>;
+  #[pallet::storage]
+  #[pallet::getter(fn fund_count)]
+  /// The total number of funds that have so far been allocated.
+  pub(super) type FundCount<T: Config> = StorageValue<_, FundIndex, ValueQuery>;
   ```
 
 ## Write child trie API helper functions
@@ -128,11 +132,10 @@ Create a function that provides the pallet's dispatchables with the account ID f
 1. Inside `impl<T: Config> Pallet<T>`, write:
 
   ```rust
-  const PALLET_ID: ModuleId = ModuleId(*b"ex/cfund");
-  /**snip**/
   pub fn fund_account_id(index: FundIndex) -> T::AccountId {
-      PALLET_ID.into_sub_account(index)
-    }
+    const PALLET_ID: ModuleId = ModuleId(*b"ex/cfund");
+    PALLET_ID.into_sub_account(index)
+  }
   ```
 
 1. Generate unique [ChildInfo][childinfo-rustdocs] IDs:
