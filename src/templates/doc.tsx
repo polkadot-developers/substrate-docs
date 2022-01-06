@@ -111,7 +111,7 @@ export const query = graphql`
         category
       }
       body
-      tableOfContents(maxDepth: 3)
+      tableOfContents(maxDepth: 2)
       fileAbsolutePath
     }
   }
