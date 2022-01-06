@@ -451,10 +451,11 @@ Here are some other things you may want to try:
 
 ### Adding Other FRAME Pallets
 
-In this guide, we walked through specifically how to import the Nicks pallet, but as mentioned in the beginning of this guide, each pallet will be a little different.
-Have no fear, you can always refer to the [Substrate runtime](https://github.com/paritytech/substrate/tree/master/bin/node/runtime) which includes nearly every pallets in the library of core FRAME pallets.
+In this guide, we walked through specifically how to import the Nicks pallet, but as mentioned in the beginning of this guide, each pallet is a little different.
+If you aren't sure how to add a specific pallet, refer to the runtime from the main [Substrate repository](https://gith.
+Unlike the node template used in tutorials, the runtime in the main Substrate repository includes nearly every pallets in the library of core FRAME pallets.
 
-In the Substrate node runtime `bin/node/runtime/Cargo.toml` file, you will see how to import different pallets, and in the `bin/node/runtime/src/lib.rs` file you will see how to add each pallet to your runtime.
+In the main Substrate node runtime `bin/node/runtime/Cargo.toml` file, you will see how to import different pallets, and in the `bin/node/runtime/src/lib.rs` file you will see how to add each pallet to your runtime.
 You can generally copy what was done there as a starting point to include a pallet in your own runtime.
 
 <Message
