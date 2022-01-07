@@ -190,6 +190,25 @@ fn my_runtime_test() {
 }
 ```
 
+### Testing Events
+
+It can be useful to test that the emitted events conforms to some expectations.
+
+We can acess events emitted from `frame_system` pallet.
+
+```rust
+#[test]
+fn subtract_extrinsic_works() {
+	new_test_ext().execute_with(|| {
+		assert_ok!(<test_pallet::Pallet<Test>>::subtract(Origin::signed(1), 42, 12));
+		let event = <frame_system::Pallet<Test>>::events().pop()
+			.expect("Expected Result EventRecord").event;
+		assert_eq!(event, mock::Event::from(test_pallet::Event::Result(42 - 12)));
+	});
+}
+```
+
+
 ## Learn more
 
 - Learn how to set up tests for your pallet with [this guide](/how-to-guides/v3/testing/basics/)
