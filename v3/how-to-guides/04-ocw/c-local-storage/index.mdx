@@ -20,13 +20,13 @@ category: ocw
 
 ## Overview
 
-In the last section, we mentioned that off-chain workers (**ocw** for short) cannot modify the blockchain state directly, so they have to submit transactions to save their computed results back on-chain.
-Nonetheless there are also times when the data is not suitable to be saved on-chain yet need to be stored somewhere for future access.
-This includes temporary data or intermediate calculation that can be discarded once the computation is completed.
+In the last section, we mentioned that off-chain workers (**OCW** for short) cannot modify the blockchain state directly, so they have to submit transactions to save their computed results back on-chain.
+Nonetheless there are also times when the data is not suitable to be saved on-chain yet still needs to be stored somewhere for future access.
+This includes temporary data or intermediate calculations that can be discarded once the computation is completed.
 
-In this chapter, we will instruct off-chain workers to write data to the local storage without passing the data among the whole blockchain network.
-Concept of **Storage Lock** is introduced to have value access consistently within ocws.
-Ocws are asynchronously run at the end of each block production and they are not limited by how long they run, so at any point of time there could be multiple ocw instances being initiated as shown below.
+In this guide, we will instruct off-chain workers to write data to the local storage without passing the data among the whole blockchain network.
+The concept of a **Storage Lock** is introduced to have value accessible consistently among mutliple OCWs.
+OCWs are asynchronously run at the end of each block production and they are not limited by how long they run, so at any point of time there could be multiple OCW instances being initiated as shown below.
 
 ![Multiple OCW Instances](../../../../src/images/how-to-guides/ocw/local-storage/multiple-ocws.png)
 
@@ -42,7 +42,7 @@ If the cached value is found, off-chain worker returns; else it will try to acqu
 
 ## Steps
 
-1. Define a storage reference in the pallet off-chain worker function hook.
+1. Define a storage reference in your pallet's `offchain_worker` function hook:
 
   ```rust
   fn offchain_worker(block_number: T::BlockNumber) {
@@ -53,7 +53,7 @@ If the cached value is found, off-chain worker returns; else it will try to acqu
   }
   ```
 
-  In the above code, a persistent local storage is defined using [`StorageValueRef::persistent()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.persistent) that is identified by `pallet::my-storage` key.
+  In the above code, a persistent local storage is defined using [`StorageValueRef::persistent()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.persistent) which is identified by `pallet::my-storage` key.
   The key is in a byte array type instead of a `str` type.
   This local storage is persisted and shared across runs of the off-chain workers.
 
@@ -72,10 +72,10 @@ If the cached value is found, off-chain worker returns; else it will try to acqu
   ```
 
   The result is fetched using [`get<T: Decode>()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.get) function, returning a `Result<Option<T>, StorageRetrievalError>` type.
-  We only care about the case of having a valid value. If yes, return.
+  We only care about the case of having a valid value. If yes, return `Ok(())`.
   Note we also need to define the type of the returned value.
 
-  To access the storage, use [`set()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.get) to write to the storage and [`mutate<T, E, F>()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.mutate) to read and change the storage in an atomic fashion.
+  Use [`set()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.get) to write to storage and [`mutate<T, E, F>()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.mutate) to read and change the storage atomically.
 
 3. If there is no valid value (`None`) or having a `StorageRetrievalError`, proceed to compute the required result and acquire the storage lock.
 
@@ -106,10 +106,12 @@ If the cached value is found, off-chain worker returns; else it will try to acqu
   }
   ```
 
-  In the above, a storage lock is defined with both [block and time deadline specified](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.with_block_and_time_deadline).
-  This function takes in a lock identifier, block number expiration, and time expiration. The above lock expires when it either passes the specified amount of block number or time duration. We can also specify the expiration period with [just the block number](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.with_block_deadline) or [time duration](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.with_deadline).
+  In the above code snippet, a storage lock is defined with both the [block and time deadline specified](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.with_block_and_time_deadline).
+  This function takes in a lock identifier, block number expiration, and time expiration. 
+  The above lock expires when it either passes the specified amount of block number or time duration. 
+  We can also specify the expiration period with [just the block number](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.with_block_deadline) or [time duration](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.with_deadline).
 
-4. Then try to acqure the storage lock as follows.
+4. Acquire the storage lock using [`.try_lock()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.try_lock).
 
   ```rust
   fn offchain_worker(block_number: T::BlockNumber) {
@@ -123,12 +125,12 @@ If the cached value is found, off-chain worker returns; else it will try to acqu
   }
   ```
 
-  Use [`.try_lock()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.try_lock) to acquire the lock. It returns `Result<StorageLockGuard<'a, '_, L>, <L as Lockable>::Deadline>`.
-  The mechanism here is to get a hold of the lock guard first which can only be held by one process (ocw run) at a time before writing to the storage.
-  Then the value is written to the storage with `set()`.
-  The data type of the value passed in `set()` must be the same as the type specified above in the `get<T>()` call.
+  It returns `Result<StorageLockGuard<'a, '_, L>, <L as Lockable>::Deadline>`.
+  The mechanism here is to get a hold of the lock guard first which can only be held by one process at a time before writing to storage.
+  Then the value is written to the storage using `set()`.
+  The data type of the value passed into `set()` must be the same as the type specified above in the `get<T>()` call.
 
-  Finally, return from the off-chain worker function.
+5. Finally, return from the off-chain worker function.
 
   The full code looks similar to the following:
 
@@ -163,5 +165,5 @@ If the cached value is found, off-chain worker returns; else it will try to acqu
 
 ## Examples
 
-- [**Offchain Worker Example Pallet** in Substrate](https://github.com/paritytech/substrate/blob/monthly-2021-12/frame/examples/offchain-worker/src/lib.rs#L374-L437)
-- [**OCW Pallet** in Substrate Offchain Worker Demo](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/master/pallets/ocw/src/lib.rs#L299-L342)
+- [**Off-chain worker example pallet** in Substrate](https://github.com/paritytech/substrate/blob/monthly-2021-12/frame/examples/offchain-worker/src/lib.rs#L374-L437)
+- [**OCW pallet** demo](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/master/pallets/ocw/src/lib.rs#L299-L342)
