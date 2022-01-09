@@ -53,7 +53,7 @@ The Substrate HTTP library supports the following methods:
 		// since we are running in a custom WASM execution environment we can't simply
 		// import the library here.
 		let request = http::Request::get("https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD");
-		// We set the deadline for sending of the request, note that awaiting response can
+		// We set the deadline for sending the request but awaiting a response can
 		// have a separate deadline. Next we send the request, before that it's also possible
 		// to alter request headers or stream body content in case of non-GET requests.
 		let pending = request.deadline(deadline).send().map_err(|_| http::Error::IoError)?;
