@@ -27,7 +27,8 @@ Because a blockchain does not have access to data outside its own network, oracl
 
 In this chapter we will look through retreiving/submitting data via an API. 
 
-Remember that although Rust provides various libraries that allow you to issue HTTP requests, the OCW runs in an [no-std](https://docs.rust-embedded.org/book/intro/no-std.html) environment, luckily Substrate provides us a few libraries we can use to issue HTTP requests to an API. 
+Remember that although Rust provides various libraries for issuing HTTP requests, an OCW runs in an [no-std](https://docs.rust-embedded.org/book/intro/no-std.html) environment.
+Luckily, Substrate provides us with a few `no_std` libraries we can use to issue HTTP requests to an API. 
 
 ### Supported Methods
 The Substrate HTTP library supports the following methods:
