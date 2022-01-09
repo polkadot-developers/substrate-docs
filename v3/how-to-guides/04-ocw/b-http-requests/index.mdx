@@ -49,7 +49,7 @@ The Substrate HTTP library supports the following methods:
 
         // Initiate an external HTTP GET request.
 		// This is using high-level wrappers from `sp_runtime`, for the low-level calls that
-		// you can find in `sp_io`. The API is trying to be similar to `reqwest`, but
+		// you can find in `sp_io`. The API is trying to be similar to `request`, but
 		// since we are running in a custom WASM execution environment we can't simply
 		// import the library here.
 		let request = http::Request::get("https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD");
