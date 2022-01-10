@@ -25,7 +25,7 @@ category: ocw
 
 Occasionally on-chain extrinsics need to pass data to off-chain workers with predictable write behavior.
 This data could be written to on-chain storage for off-chain workers to read, but this could potentially incur a huge cost to the blockchain.
-Another way of handing data from on-chain to off-chain worlds is by saving it in the local storage of a noce via **off-chain indexing**.
+Another way of handing data from on-chain to off-chain worlds is by saving it in the local storage of a node via **off-chain indexing**.
 
 Off-chain indexing is called from on-chain extrinsics which implies that the data written locally is expected to be consistent across all nodes in the network.
 
@@ -34,7 +34,7 @@ This would be too expensive.
 The solution would be to use off-chain indexing to store a hash of that data on-chain and have the corresponding raw data stored locally for an off-chain worker to read later on.
 
 Notice that the same extrinsic could be run multiple times when there are forked blocks. 
-The consequence is that in case non-unique keys are used, the data might be overwritten by different forked blocks and the content in the local stroage will be different between nodes.
+The consequence is that in case non-unique keys are used, the data might be overwritten by different forked blocks and the content in the local storage will be different between nodes.
 So developers should be careful in forming the right indexing key to prevent potential overwrites.
 
 ## Steps
