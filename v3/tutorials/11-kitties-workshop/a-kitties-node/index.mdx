@@ -384,7 +384,7 @@ pub mod pallet {
 	}
 
 	#[pallet::storage]
-	#[pallet::getter(fn all_kitties_count)]
+	#[pallet::getter(fn kitty_cnt)]
 	pub(super) type KittyCnt<T: Config> = StorageValue<_, u64, ValueQuery>;
 
 	// ACTION #7: Remaining storage items.
@@ -920,13 +920,13 @@ pub trait Config: frame_system::Config {
 Declare your pallet events by replacing the ACTION #3 line with:
 
 ```rust
-/// A new Kitty was sucessfully created. \[sender, kitty_id\]
+/// A new Kitty was successfully created. \[sender, kitty_id\]
 Created(T::AccountId, T::Hash),
-/// Kitty price was sucessfully set. \[sender, kitty_id, new_price\]
+/// Kitty price was successfully set. \[sender, kitty_id, new_price\]
 PriceSet(T::AccountId, T::Hash, Option<BalanceOf<T>>),
-/// A Kitty was sucessfully transferred. \[from, to, kitty_id\]
+/// A Kitty was successfully transferred. \[from, to, kitty_id\]
 Transferred(T::AccountId, T::AccountId, T::Hash),
-/// A Kitty was sucessfully bought. \[buyer, seller, kitty_id, bid_price\]
+/// A Kitty was successfully bought. \[buyer, seller, kitty_id, bid_price\]
 Bought(T::AccountId, T::AccountId, T::Hash, BalanceOf<T>),
 ```
 
