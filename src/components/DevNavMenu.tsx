@@ -370,10 +370,10 @@ const DevNavMenu = {
             title: 'Local Storage',
             link: '/how-to-guides/v3/ocw/local-storage/',
           },
-          // {
-          //   title: 'Off-chain Indexing',
-          //   link: '/how-to-guides/v3/ocw/indexing/',
-          // }
+          {
+            title: 'Off-chain Indexing',
+            link: '/how-to-guides/v3/ocw/indexing/',
+          }
         ]
       },
       // 5. Testing.
