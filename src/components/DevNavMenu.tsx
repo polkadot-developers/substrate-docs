@@ -354,16 +354,29 @@ const DevNavMenu = {
           },
         ],
       },
+      // 4. Off-chain Workers
       {
         name: 'Off-chain Workers',
         items: [
           {
-            title: 'Local Storage in Off-chain Workers',
+            title: 'Making Transactions',
+            link: '/how-to-guides/v3/ocw/transactions/',
+          },
+          // {
+          //   title: 'Making HTTP Requests',
+          //   link: '/how-to-guides/v3/ocw/http-requests/',
+          // },
+          {
+            title: 'Local Storage',
             link: '/how-to-guides/v3/ocw/local-storage/',
-          }
+          },
+          // {
+          //   title: 'Off-chain Indexing',
+          //   link: '/how-to-guides/v3/ocw/indexing/',
+          // }
         ]
       },
-      // 4. Testing.
+      // 5. Testing.
       {
         name: 'Testing',
         items: [
@@ -377,7 +390,7 @@ const DevNavMenu = {
           },
         ],
       },
-      // 5. Storage Migrations.
+      // 6. Storage Migrations.
       {
         name: 'Storage Migrations',
         items: [
@@ -395,7 +408,7 @@ const DevNavMenu = {
           },
         ],
       },
-      // 6. Consensus.
+      // 7. Consensus.
       {
         name: 'Consensus',
         items: [
@@ -409,7 +422,7 @@ const DevNavMenu = {
           },
         ],
       },
-      // 7. Parachains.
+      // 8. Parachains.
       {
         name: 'Parachains',
         items: [
@@ -435,7 +448,7 @@ const DevNavMenu = {
           },
         ],
       },
-      // 8. Tools
+      // 9. Tools
       {
         name: 'Tools',
         items: [
