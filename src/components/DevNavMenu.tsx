@@ -366,10 +366,10 @@ const DevNavMenu = {
           //   title: 'Making HTTP Requests',
           //   link: '/how-to-guides/v3/ocw/http-requests/',
           // },
-          // {
-          //   title: 'Local Storage',
-          //   link: '/how-to-guides/v3/ocw/local-storage/',
-          // },
+          {
+            title: 'Local Storage',
+            link: '/how-to-guides/v3/ocw/local-storage/',
+          },
           // {
           //   title: 'Off-chain Indexing',
           //   link: '/how-to-guides/v3/ocw/indexing/',
