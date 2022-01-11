@@ -153,6 +153,15 @@ module.exports = {
           using lazysizes package (loaded in gatsby-browser.js) */
           // `gatsby-remark-lazy-load`,
           {
+            resolve: 'gatsby-remark-code-buttons',
+            options: {
+              tooltipText: `Copy to clipboard`,
+              toasterText: 'Copied to clipboard',
+              toasterDuration: 5000,
+            },
+          },
+          `gatsby-remark-prismjs`,
+          {
             resolve: 'gatsby-remark-custom-blocks',
             options: {
               blocks: {

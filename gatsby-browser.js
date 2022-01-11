@@ -4,6 +4,8 @@ import './src/styles/markdown.css'
 import './src/styles/custom-blocks.css'
 import './src/styles/scss/styles.scss'
 
+import 'gatsby-prismjs-dracula'
+
 import 'lazysizes'
 
 import React from 'react'

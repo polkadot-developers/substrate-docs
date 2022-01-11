@@ -24,6 +24,14 @@ next: /reference/glossary/
 
 ## Code
 
+```rust
+   // Configure your pallet.
+   impl pallet_something::Config for Runtime {
+   	type Event = Event;
+   	type Call = Call;
+   }
+```
+
 ```bash
    rustup update nightly
    rustup target add wasm32-unknown-unknown --toolchain nightly
