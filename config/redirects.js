@@ -71,6 +71,10 @@ const redirects = [
     fromPath: '/how-to-guides/tools/',
     toPath: `/how-to-guides/v3/tools/try-runtime/`,
   },
+  {
+    fromPath: '/docs/en/next/conceptual/runtime/contracts/evm_module/',
+    toPath: `/v3/runtime/smart-contracts/#evm-pallet`,
+  },
 ]
 
 module.exports = {
