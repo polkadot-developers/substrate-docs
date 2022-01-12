@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import React, { useState } from 'react'
 
-import { useSiteMetadata } from '../hooks/use-site-metadata'
+import { useSiteMetadata } from '../Hooks/use-site-metadata'
 import Icon from '../Icon'
 import Link from '../Link'
 
