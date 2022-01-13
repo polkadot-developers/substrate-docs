@@ -282,7 +282,7 @@ const DevNavMenu = {
           },
           {
             title: 'Custom Chain Specifications',
-            link: '/how-to-guides/v3/basics/genesis/',
+            link: '/how-to-guides/v3/basics/custom-chain-spec',
           },
           {
             title: 'Helper Functions',
