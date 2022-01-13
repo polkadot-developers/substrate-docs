@@ -1,3 +1,6 @@
+/* import fonts locally to remove cross-site dependency */
+@import 'fonts';
+
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';

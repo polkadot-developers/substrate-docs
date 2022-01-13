@@ -1,10 +1,10 @@
 ---
 title: The Block Import Pipeline
 slug: /v3/advanced/block-import
-version: 3.0 
+version: '3.0'
 section: docs
 category: advanced
-keywords:
+keywords: []
 ---
 
 The block import pipeline is an abstract worker queue present in every Substrate node. It is not part of the
@@ -18,22 +18,22 @@ are later checked for validity and discarded if they are not valid. Elements tha
 imported into the node's local state.
 
 The import queue is codified abstractly in Substrate by means of the
-[`ImportQueue` trait](/rustdocs/latest/sp_consensus/import_queue/trait.ImportQueue.html).
+[`ImportQueue` trait](/rustdocs/latest/sc_consensus/import_queue/trait.ImportQueue.html).
 The use of a trait allows each consensus engine to provide its own specialized implementation of the
 import queue, which may take advantage of optimization opportunities such as verifying multiple
 blocks in parallel as they come in across the network.
 
 The import queue also provides some hooks via the
-[`Link` trait](/rustdocs/latest/sp_consensus/import_queue/trait.Link.html) that can be used
+[`Link` trait](/rustdocs/latest/sc_consensus/import_queue/trait.Link.html) that can be used
 to follow its progress.
 
 ## Basic queue
 
 Substrate provides a default in-memory implementation of the `ImportQueue` known as the
-[`BasicQueue`](/rustdocs/latest/sp_consensus/import_queue/struct.BasicQueue.html). The
+[`BasicQueue`](/rustdocs/latest/sc_consensus/import_queue/struct.BasicQueue.html). The
 `BasicQueue` does not do any kind of optimization, rather it performs the verification and import
 steps sequentially. It does, however, abstract the notion of verification through the use of the
-[`Verifier`](/rustdocs/latest/sp_consensus/import_queue/trait.Verifier.html) trait.
+[`Verifier`](/rustdocs/latest/sc_consensus/import_queue/trait.Verifier.html) trait.
 
 Any consensus engine that relies on the `BasicQueue` must implement the `Verifier` trait. The
 `Verifier` is typically responsible for tasks such as checking
@@ -44,7 +44,7 @@ the block is signed by the appropriate authority.
 
 When the import queue is ready to import a block, it passes the block in question to a method
 provided by the
-[`BlockImport` trait](/rustdocs/latest/sp_consensus/block_import/trait.BlockImport.html).
+[`BlockImport` trait](/rustdocs/latest/sc_consensus/block_import/trait.BlockImport.html).
 This `BlockImport` trait provides the behavior of importing a block into the node's local state
 database.
 
@@ -66,7 +66,7 @@ An example of this wrapping is the
 holds a reference to another type that also implements `BlockImport`. This allows the PoW consensus
 engine to do its own import-related bookkeeping and then pass the block to the nested `BlockImport`,
 probably the client. This pattern is also demonstrated in
-[`AuraBlockImport`](/rustdocs/latest/sc_consensus_aura/struct.AuraBlockImport.html),
+[`AuraBlockImport`](/rustdocs/latest/sc_consensus_aura/struct.ImportQueueParams.html#structfield.block_import),
 [`BabeBlockImport`](/rustdocs/latest/sc_consensus_babe/struct.BabeBlockImport.html), and
 [`GrandpaBlockImport`](/rustdocs/latest/sc_finality_grandpa/struct.GrandpaBlockImport.html).
 

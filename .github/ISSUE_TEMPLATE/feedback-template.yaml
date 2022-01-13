@@ -1,7 +1,6 @@
-name: Feedback form
+name: Feedback Form
 description: Submit your feedback to help us improve!
-title: '[Feedback Submission]: '
-labels: ['feedback']
+labels: ['feedback 📝']
 body:
   - type: markdown
     attributes:
@@ -28,6 +27,3 @@ body:
       placeholder: Describe what you would like to see changed.
     validations:
       required: true
-  - type: markdown
-    attributes:
-      value: 'Thanks for completing our form!'

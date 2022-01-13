@@ -1,57 +1,41 @@
 ---
 title: Metadata
 slug: /v3/runtime/metadata
-version: 3.0 
+version: '3.0'
 section: docs
 category: runtime
-keywords:
+keywords: []
 ---
 
-Blockchains that are built on Substrate expose metadata in order to make it easier to interact with
-them. This metadata is separated by the different [pallets](/v3/runtime/frame#pallets) that inform your blockchain.
-For each pallet, the metadata provides information about the [storage items](/v3/runtime/storage),
-[extrinsic calls](/v3/concepts/extrinsics), [events](/v3/runtime/events-and-errors), constants, and errors that are
-exposed by that pallet. Substrate automatically generates this metadata for you and makes it
-available through RPC calls.
+Blockchains you build on Substrate expose metadata in order to make it easier to interact with them. This metadata is separated by the different [pallets](/v3/runtime/frame#pallets) that inform your blockchain.
+
+For each pallet, the metadata provides information about the [storage items](/v3/runtime/storage), [extrinsic calls](/v3/concepts/extrinsics), [events](/v3/runtime/events-and-errors), constants, and errors that are exposed by that pallet. Substrate automatically generates this metadata for you and makes it available through RPC calls.
 
 Since the runtime of a Substrate blockchain is an evolving part of the blockchain's state,
-blockchain metadata is stored on a per-block basis. Be aware that querying the metadata for an older
-block (with an archive node, for example) could result in acquiring out-of-date metadata that is not
-compatible with a blockchain's current state. As described in the
-[Upgrades documentation](/v3/runtime/upgrades), developers building on top of Substrate chains can
-expect that the metadata for a chain should _only_ change when the chain's
-[runtime `spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version)
-changes.
+blockchain metadata is stored on a per-block basis. Be aware that querying the metadata for an older block (with an archive node, for example) could result in acquiring out-of-date metadata that is not compatible with a blockchain's current state. As described in the [Upgrades documentation](/v3/runtime/upgrades), developers building on top of Substrate chains can expect that the metadata for a chain should only change when the chain's
+[runtime `spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version) changes.
 
 All examples in this document were taken from block 1,768,321 on Kusama. You can look at the
-[full metadata](https://gist.github.com/insipx/db5e49c0160b1f1bd421a3c34fefdf48) before reading the
-rest of this document and continue to refer to it as you proceed.
+[full metadata](https://gist.github.com/insipx/db5e49c0160b1f1bd421a3c34fefdf48) before reading the rest of this document and continue to refer to it as you proceed.
 
-## How to get the metadata
+## Get the metadata
 
 There are a number of language-specific libraries that you can use to fetch metadata from a
 Substrate node, as well as language-agnostic HTTP and WebSocket APIs.
 
 ### Rust
 
-The easiest way to get the metadata is by querying the automatically-generated JSON-RPC function
-`state_getMetadata`. This will return a vector of SCALE-encoded bytes. You can decode this using the
-[`frame-metadata`](/rustdocs/latest/frame_metadata/index.html) and
+The easiest way to get the metadata is by querying the automatically-generated JSON-RPC function `state_getMetadata`. This will return a vector of SCALE-encoded bytes. You can decode this using the [`frame-metadata`](/rustdocs/latest/frame_metadata/index.html) and
 [`parity-scale-codec`](/rustdocs/latest/parity_scale_codec/index.html) libraries.
 
-Some helpful libraries like [`substrate-subxt`](https://github.com/paritytech/substrate-subxt) fetch
-the metadata and decode them for you. Once decoded, the structure may be serialized into JSON with
-[`serde`](https://serde.rs/). If you'd prefer to use the RPC more directly, the
-[JSONRPC](https://github.com/paritytech/jsonrpc) and
-[jsonrpsee](https://github.com/paritytech/jsonrpsee) Rust libraries provide interfaces to do so.
+Some helpful libraries like [`substrate-subxt`](https://github.com/paritytech/substrate-subxt) fetch the metadata and decode them for you. Once decoded, the structure may be serialized into JSON with [`serde`](https://serde.rs/). If you'd prefer to use the RPC more directly, you can use the [JSONRPC](https://github.com/paritytech/jsonrpc) and [jsonrpsee](https://github.com/paritytech/jsonrpsee) Rust libraries.
 
 ### JavaScript
 
-If you are using JavaScript, [`polkadot-js/api`](https://polkadot.js.org/api/) already provides APIs
-to interact with a Substrate blockchain, including the
-[`getMetadata`](https://polkadot.js.org/docs/substrate/rpc#getmetadataat-blockhash-metadata) function.
+If you are using JavaScript, [`polkadot-js/api`](https://polkadot.js.org/api/) provides APIs
+to interact with a Substrate blockchain, including the [`getMetadata`](https://polkadot.js.org/docs/substrate/rpc#getmetadataat-blockhash-metadata) function.
 
-You can try the following code snippets to fetch the metadata in this
+You can use the following code snippets to fetch the metadata in this
 [Polkadot-JS App - JavaScript page](https://polkadot.js.org/apps/#/js):
 
 ```javascript
@@ -263,7 +247,7 @@ about the module's storage:
 }
 ```
 
-Every storage item that is defined in a pallet will have a corresponding metadata entry. 
+Every storage item that is defined in a pallet will have a corresponding metadata entry.
 Metadata entries like these are generated from [macros](/v3/runtime/macros) using associated types from the [`frame-system`](/rustdocs/latest/frame_system/pallet/trait.Config.html) crate. For example:
 
 ```rust
