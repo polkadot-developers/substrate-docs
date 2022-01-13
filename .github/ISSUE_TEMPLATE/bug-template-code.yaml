@@ -1,7 +1,7 @@
-name: Bug report (code, content or build issues)
-description: Let us know about an issue you experienced.
-title: '[CODE BUG]: '
-labels: ['bug', 'devhub']
+name: Code Bug Report
+description: Let us know about an issue you experienced with building based on the Tutorials and
+How-to Guides
+labels: ['bug 🐛']
 body:
   - type: markdown
     attributes:
@@ -23,6 +23,3 @@ body:
       placeholder: Describe what you were doing so we can reproduce the problem.
     validations:
       required: false
-  - type: markdown
-    attributes:
-      value: 'Thanks again for completing this report!'

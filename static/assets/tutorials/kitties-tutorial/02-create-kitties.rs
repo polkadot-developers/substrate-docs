@@ -12,9 +12,10 @@ pub mod pallet {
 		transactional
 	};
 	use sp_io::hashing::blake2_128;
+	use scale_info::TypeInfo;
 
 	#[cfg(feature = "std")]
-	use serde::{Deserialize, Serialize};
+	use frame_support::serde::{Deserialize, Serialize};
 
 	// ACTION #1: Write a Struct to hold Kitty information.
 
@@ -22,9 +23,9 @@ pub mod pallet {
 
 	// ACTION #3: Implementation to handle Gender type in Kitty struct.
 
-	#[pallet::pallet]
-	#[pallet::generate_store(pub(super) trait Store)]
-	pub struct Pallet<T>(_);
+    #[pallet::pallet]
+    #[pallet::generate_store(pub(super) trait Store)]
+    pub struct Pallet<T>(_);
 
 	/// Configure the pallet by specifying the parameters and types it depends on.
 	#[pallet::config]

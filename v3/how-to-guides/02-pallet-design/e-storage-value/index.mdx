@@ -1,18 +1,20 @@
 ---
 title: Use a Struct in Storage
 slug: /how-to-guides/v3/pallet-design/storage-value
-keywords: pallet design, intermediate, runtime
-version: 3.0 
+keywords:
+  - pallet design
+  - intermediate
+  - runtime
+version: '3.0'
 section: how to guides
 category: pallet design
-difficulty: 2
 ---
 
 Creating a struct of similarly grouped storage items is an orderly way to keep track of them. 
 When grouped in this way, it is easier to reference them than it is if individual `StorageValue` items are kept separately.
 This can make testing and genesis configuration easier.
 
-This guide shows you how to create a [`StorageValue`](/rustdocs/latest/frame_support/storage/trait.StorageValue.html) item that holds a struct and is used in [`on_initialize`](/rustdocs/latest/frame_support/traits/trait.Hooks.html#method.on_initialize). 
+This guide shows you how to create a [`StorageValue`](/rustdocs/latest/frame_support/storage/trait.StorageValue.html) storage item that holds a struct and is used in [`on_initialize`](/rustdocs/latest/frame_support/traits/trait.Hooks.html#method.on_initialize). 
 This struct does the following:
 
 - Keeps track of an initial amount (`issuance`)
@@ -119,4 +121,3 @@ The `on_initialize` function ensures that the values for the specified items are
 ## Resources
 
 - [`Default::default()`](/rustdocs/latest/sp_std/default/trait.Default.html)
-
