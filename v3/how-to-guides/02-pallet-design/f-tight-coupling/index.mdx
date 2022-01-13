@@ -7,42 +7,47 @@ category: pallet design
 difficulty: 2
 ---
 
-This guide will show you how to use an external pallet's capabilities from inside your pallet.
+This guide will show you how to use a method from an external pallet inside your pallet.
 
-Tight coupling two pallets may suit specific use cases where an outside pallet contains many types and methods common to those of your initial pallet. If this is not the case, you can use loose coupling instead. To learn more, see [pallet coupling](/v3/runtime/pallet-coupling).
+Tight coupling two pallets may suit specific use cases where an outside pallet contains many types and methods common to those of your initial pallet. 
+If this is not the case, you can use loose coupling instead. 
+To learn more, see [pallet coupling](/v3/runtime/pallet-coupling).
 
 
 ## Before you begin
 
+This guide assumes you have a pallet that you would like to couple another pallet with.
+Use the [template pallet](https://github.com/substrate-developer-hub/substrate-node-template/blob/main/pallets/template/src/lib.rs) if you don't yet have a pallet to work with.
+
 1. Configure your workspace
 
-Assume you want to use a pallet called `special-pallet`, which is a pallet in your 
-local workspace. Import it by providing its path in your pallet's `Cargo.toml` file:
+    Assume you want to use a pallet called `special-pallet`, which is a pallet in your local workspace. 
+    Import it by providing its path in your pallet's `Cargo.toml` file:
 
-```toml
-special-pallet = { path = '../special-pallet', default-features = false }
-```
+    ```toml
+    special-pallet = { path = '../special-pallet', default-features = false }
+    ```
 
-### 2. Add a trait bound to your pallet 
+1. Add a trait bound to your pallet
 
-Now all you need to do is create a trait bound around your pallet's configuration trait:
+    Now all you need to do is create a trait bound around your pallet's configuration trait:
 
-```rust
-pub trait Config: frame_system::Config + special_pallet::Config {
-    // --snip--
-}
-```
+    ```rust
+    pub trait Config: frame_system::Config + special_pallet::Config {
+        // --snip--
+    }
+    ```
 
-### 3. Use getter function 
+1. Use a getter function 
 
-In order to use a method from `special_pallet`, call it the following way:
+    In order to use a method from `special_pallet`, call it the following way:
 
-```rust
-// Get the members from the vec-set pallet
-let who = special_pallet::Pallet::<T>::get();
-```
+    ```rust
+    // Get the members from the vec-set pallet
+    let who = special_pallet::Pallet::<T>::get();
+    ```
 
-The above snippet assumes that `special_pallet` contains a method called `get()`.
+    The above snippet assumes that `special_pallet` contains a method called `get()`.
 
 ## Examples
 
