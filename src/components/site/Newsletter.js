@@ -33,9 +33,8 @@ export default function Newsletter({ layout = 'default' }) {
       body: data,
       mode: 'no-cors',
     })
-      .then(response => {
+      .then(() => {
         setLoading(false)
-        console.log(response)
         setFormSubmitted(!formSubmitted)
         setTimeout(() => {
           setFormSubmitted(false)
