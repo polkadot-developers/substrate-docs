@@ -52,7 +52,7 @@ Use the [template pallet](https://github.com/substrate-developer-hub/substrate-n
 
 	**`GenesisConfig`**
 
-	Use `#[pallet::genesis_config]` to declare the admin account that you'll use in your to initialize values from your `MetaData` struct:
+	Use `#[pallet::genesis_config]` to initialize values from your `MetaData` struct. 
 
 	```rust
 	// Declare `admin` as type `T::AccountId`.
@@ -70,6 +70,7 @@ Use the [template pallet](https://github.com/substrate-developer-hub/substrate-n
 			}
 		}
 	```
+	This `admin` variable must correspond with the variable used in the `node/chainspec.rs` file inside `fn testnet_genesis`.
 
 	**`GenesisBuild`**
 
@@ -108,6 +109,8 @@ Use the [template pallet](https://github.com/substrate-developer-hub/substrate-n
 
 	}
 	```
+	
+The `on_initialize` function ensures that the values for the specified items are written to storage when the chain is launched.
 
 ## Examples
 
