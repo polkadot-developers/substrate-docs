@@ -108,7 +108,6 @@ Use the [template pallet](https://github.com/substrate-developer-hub/substrate-n
 		Accounts::<T>::mutate(&meta.minter, |bal| {
 			*bal = bal.saturating_add(value);
 		});
-
 	}
 	```
 	
