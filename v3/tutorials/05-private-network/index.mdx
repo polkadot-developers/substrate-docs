@@ -349,12 +349,10 @@ To generate keys using the node template:
 1. Use the **secret seed** for the account you just generated to derive keys using the Ed25519 signature scheme by running the following command:
 
    ```bash
-   ./target/release/node-template key inspect --password-interactive --scheme Ed25519 0x0087016ebbdcf03d1b7b2ad9a958e14a43f2351cd42f2f0a973771b90fb0112f
+   ./target/release/node-template key inspect --scheme Ed25519 0x0087016ebbdcf03d1b7b2ad9a958e14a43f2351cd42f2f0a973771b90fb0112f
    ```
 
-1. Type the password you used to the generated keys.
-
-   The command displays output similar to the following:
+1. The command displays output similar to the following:
 
    ```bash
    Secret Key URI `0x0087016ebbdcf03d1b7b2ad9a958e14a43f2351cd42f2f0a973771b90fb0112f` is account:
