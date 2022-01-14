@@ -302,12 +302,12 @@ It's important to remember that each participant in the blockchain network is re
 ### Key generation options
 
 There are several ways you can generate keys.
-For example, you can generate key pairs using a `node-template` subcommand, the standalone <a target="_blank" href="/v3/tools/subkey">Subkey</a> command-line program, the Polkadot-JS application, or third-party key generation utilities.
+For example, you can generate key pairs using a `node-template` subcommand, the standalone [Subkey](/v3/tools/subkey) command-line program, the Polkadot-JS application, or third-party key generation utilities.
 
 Although you could use predefined key pairs to complete this tutorial, you would never use those keys in a production environment.
 Instead of using predefined keys or the more secure `subkey` program, this tutorial illustrates how to generate keys locally using the Substrate node template and the `key` subcommand.
 
-### Generate local keys using the node template<a name="generate-first-keypair"></a>
+### Generate local keys using the node template
 
 You have already used the some command-line options to start your local blockchain node using the predefined `alice` and `bob` accounts.
 You can also use command-line options to generate random keys to use with Substrate.
@@ -372,7 +372,7 @@ To generate keys using the node template:
 
    `5CuqCGfwqhjGzSqz5mnq36tMe651mU9Ji8xQ4JRuUTvPcjVN`
 
-### Generate a second set of keys<a name="generate-second-keypair"></a>
+### Generate a second set of keys
 
 For this tutorial, the private network consists of just two nodes, so you need two sets of keys.
 You have a few options to continue the tutorial:
@@ -659,7 +659,7 @@ To insert keys into the keystore:
    --key-type aura
    ```
 
-   Replace `<your-secret-seed>` with the secret phrase or secret seed for the first key pair that you generated in [Generate local keys using node template](#generate-first-keypair). 
+   Replace `<your-secret-seed>` with the secret phrase or secret seed for the first key pair that you generated in [Generate local keys using node template](#generate-local-keys-using-the-node-template). 
    In this tutorial, the secret phrase is `pig giraffe ceiling enter weird liar orange decline behind total despair fly`, so the `--suri` command-line option specifies that string to insert the key into the keystore.
 
    You can also insert a key from a specified file location.
@@ -744,7 +744,7 @@ To add a second validator to the private network:
    --key-type aura
    ```
 
-   Replace `<second-participant-secret-seed>` with the secret phrase or secret seed that you generated in [Generate a second  key pair](#generate-second-keypair).
+   Replace `<second-participant-secret-seed>` with the secret phrase or secret seed that you generated in [Generate a second key pair](#generate-a-second-set-of-keys).
    The `aura` key type is required to enable block production.
 
 1. Add the `grandpa` secret key generated from the `key` subcommand to the local keystore by running a command similar to the following:
@@ -757,7 +757,7 @@ To add a second validator to the private network:
    --key-type gran
    ```
 
-   Replace `<second-participant-secret-seed>` with the secret phrase or secret seed that you generated in [Generate a second  key pair](#generate-second-keypair).
+   Replace `<second-participant-secret-seed>` with the secret phrase or secret seed that you generated in [Generate a second key pair](#generate-a-second-set-of-keys).
    The `gran` key type is required to enable block finalization.
 
    Block finalization requires at least two-thirds of the validators to add their keys to their respective keystores.
