@@ -739,6 +739,7 @@ To add a second validator to the private network:
    ```bash
    ./target/release/node-template key insert --base-path /tmp/node02 \
    --chain customSpecRaw.json \
+   --scheme Sr25519 \
    --suri <second-participant-secret-seed> \
    --password-interactive \
    --key-type aura
@@ -752,6 +753,7 @@ To add a second validator to the private network:
    ```bash
    ./target/release/node-template key insert --base-path /tmp/node02 \
    --chain customSpecRaw.json \
+   --scheme Ed25519 \
    --suri <second-participant-secret-seed> \
    --password-interactive \
    --key-type gran
