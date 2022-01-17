@@ -50,11 +50,9 @@ Use the [template pallet](https://github.com/substrate-developer-hub/substrate-n
 		pub(super) type MetaDataStore<T: Config> = StorageValue<_, MetaData<T::AccountId, T::Balance>, ValueQuery>;
 	```
 
-1. Configure `GenesisConfig` and `GenesisBuild`
+1. Configure `GenesisConfig`
 
-	**`GenesisConfig`**
-
-	Use `#[pallet::genesis_config]` to initialize values from your `MetaData` struct. 
+	Use the `#[pallet::genesis_config]` attribute to initialize values from your `MetaData` struct. 
 
 	```rust
 	// Declare `admin` as type `T::AccountId`.
@@ -74,9 +72,9 @@ Use the [template pallet](https://github.com/substrate-developer-hub/substrate-n
 	```
 	This `admin` variable must correspond with the variable used in the `node/chainspec.rs` file inside `fn testnet_genesis`.
 
-	**`GenesisBuild`**
+1. Configure `GenesisBuild`
 
-	Use `#[pallet::genesis_build]` to initialize the values of your struct, using `admin` to initialize the values of type `T::AccountId`:
+	Use the `#[pallet::genesis_build]` attribute to initialize the values of your struct, using `admin` to initialize the values of type `T::AccountId`:
 
 	```rust
 	#[pallet::genesis_build]
