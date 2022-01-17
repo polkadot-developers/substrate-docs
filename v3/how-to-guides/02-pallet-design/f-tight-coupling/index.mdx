@@ -7,11 +7,12 @@ category: pallet design
 keywords: []
 ---
 
-This guide will show you how to use a method from an external pallet inside your pallet.
+Tight coupling two pallets is a technique to write pallets that re-use types and methods from an existing pallet.
 
-Tight coupling two pallets may suit specific use cases where an outside pallet contains many types and methods common to those of your initial pallet. 
+It is useful for breaking up some runtime logic into separate pallets that need access to common type and methods.
 To learn more about tight coupling and loose coupling between pallets, see [pallet coupling](/v3/runtime/pallet-coupling).
 
+This guide will show you how to use a method from an exisitng pallet inside your own.
 
 ## Before you begin
 
@@ -42,11 +43,11 @@ Use the [template pallet](https://github.com/substrate-developer-hub/substrate-n
     In order to use a method from `special_pallet`, call it the following way:
 
     ```rust
-    // Get the members from the vec-set pallet
+    // Get the members from `special-pallet` pallet
     let who = special_pallet::Pallet::<T>::get();
     ```
 
-    The above snippet assumes that `special_pallet` contains a method called `get()`.
+    The above snippet assumes that `special_pallet` contains a method called `get()` which returns a vector of account IDs.
 
 ## Examples
 
