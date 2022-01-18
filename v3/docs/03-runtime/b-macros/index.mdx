@@ -252,8 +252,8 @@ Required, to implement a pallet's dispatchables. Each dispatchable must:
 trigger specific logic. Calls can also be used in on-chain governance, demonstrated by the democracy
 pallet where calls can be voted on.
 `#[pallet::call]` allows to create dispatchable functions which will generate associated items
-from the `impl` code blocks. In other words, it aggregates all dispatchable logic using the [`Call` enum
-(/rustdocs/latest/frame_system/pallet/enum.Call.html) which will aggregate all
+from the `impl` code blocks. In other words, it aggregates all dispatchable logic using the
+[`Call` enum](/rustdocs/latest/frame_system/pallet/enum.Call.html) which will aggregate all
 dispatchable calls into a single runtime call.
 
 **Docs**
