@@ -422,9 +422,8 @@ To specify cryptographic key pairs and its signature algorithm that are to be ma
 **What it does**
 
 The macro declares three struct types, `Public`, `Signature`, and `Pair`. Aside from having various
-helper traits implemented for these three types, `Public` type is implemented for generating
-keypairs, signing and verifying signature, `Signature` type to hold the signature property given the
-signature chosen to be used (e.g. SR25519, ED25519 etc), and `Pair` type to generate a
+helper traits implemented for these three types, the `Public` type is implemented for generating
+keypairs, signing and verifying signatures; the `Signature` type is to hold the signature property given the chosen signature (e.g. SR25519, ED25519 etc); and the `Pair` type is to generate a
 public-private key pair from a seed.
 
 **Docs and notes**
