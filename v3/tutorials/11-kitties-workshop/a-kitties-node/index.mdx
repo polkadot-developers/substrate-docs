@@ -604,12 +604,14 @@ It will be able to generate a random seed which we'll create unique Kitties with
 
    Generating DNA is similar to using randomness to randomly assign a gender type.
    The difference is that we'll be making use of `blake2_128` we imported in the previous part.
+   We will also be using the [extrinsic_index](https://docs.rs/frame-system/latest/frame_system/pallet/struct.Pallet.html#method.extrinsic_index) from the `frame_system` pallet in order to generate different hashes if we call this function more then once within the same block.
    Replace the ACTION #6 line with:
 
    ```rust
    fn gen_dna() -> [u8; 16] {
    	let payload = (
    		T::KittyRandomness::random(&b"dna"[..]).0,
+		<frame_system::Pallet<T>>::extrinsic_index().unwrap_or_default(),
    		<frame_system::Pallet<T>>::block_number(),
    	);
    	payload.using_encoded(blake2_128)
