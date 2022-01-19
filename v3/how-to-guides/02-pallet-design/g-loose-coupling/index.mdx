@@ -36,7 +36,7 @@ pallet you want to couple to accordingly:
 
 ```toml
 [dependencies]
-frame-support = { default-features = false, git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-08', version = '4.0.0-dev' }
+frame-support = { default-features = false, git = 'https://github.com/paritytech/substrate.git', tag = 'devhub/latest', version = '4.0.0-dev' }
 
 # -- snip
 
@@ -115,7 +115,7 @@ construct_runtime! (
   the [Identity pallet](https://github.com/paritytech/substrate/blob/master/frame/identity/src/lib.rs#L149-L151) and its use of its
   [specific weighting methods](https://github.com/paritytech/substrate/blob/master/frame/identity/src/weights.rs#L46-L64)
 - the [`KeyOwnerProofSystem` trait](/rustdocs/latest/frame_support/traits/trait.KeyOwnerProofSystem.html)
-  [used in `pallet_granpa`](https://github.com/paritytech/substrate/blob/master/frame/grandpa/src/lib.rs#L106)
+  [used in `pallet_grandpa`](https://github.com/paritytech/substrate/blob/master/frame/grandpa/src/lib.rs#L106)
 
 ## Resources
 
