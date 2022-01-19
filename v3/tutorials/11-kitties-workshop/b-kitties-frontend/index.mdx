@@ -277,7 +277,7 @@ the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.js`.
 
       const asyncFetch = async () => {
         // Get Kitty objects from storage
-        unsub = await api.query.substrateKitties.multi(kittyHashes, kitties => {
+        unsub = await api.query.substrateKitties.kitties.multi(kittyHashes, kitties => {
           // Create an array of Kitty objects from `constructKitty`
           const kittyArr = kitties.map((kitty, ind) =>
             constructKitty(kittyHashes[ind], kitty.value)

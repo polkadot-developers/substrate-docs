@@ -7,58 +7,47 @@ category: pallet design
 keywords: []
 ---
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description:
-        "Learn how to use one pallet's capabilities from inside your pallet",
-    },
-    {
-      title: 'Use Cases',
-      description: `Give your pallet access to the methods and types of another pallet.`,
-    },
-    {
-      title: 'Overview',
-      description: `Tight coupling two pallets may suit specific use cases where the outside pallet 
-         contains many types and methods common to those of the initial pallet. If this is not 
-         the case, it's recommended to use loose coupling instead. Read more about pallet 
-         coupling [here](/v3/runtime/pallet-coupling).`,
-    },
-  ]}
-/>
+Tight coupling two pallets is a technique to write pallets that re-use types and methods from an existing pallet.
 
-## Steps
+It is useful for breaking up some runtime logic into separate pallets that need access to common type and methods.
+To learn more about tight coupling and loose coupling between pallets, see [pallet coupling](/v3/runtime/pallet-coupling).
 
-### 1. Configure your workspace
+This guide will show you how to use a method from an exisitng pallet inside your own.
 
-Assume you want to use a pallet called `special-pallet`, which is a pallet in your
-local workspace. Import it by providing its path in your pallet's `Cargo.toml` file:
+## Before you begin
 
-```toml
-special-pallet = { path = '../special-pallet', default-features = false }
-```
+This guide assumes you have a pallet that you would like to couple another pallet with.
+Use the [template pallet](https://github.com/substrate-developer-hub/substrate-node-template/blob/main/pallets/template/src/lib.rs) if you don't yet have a pallet to work with.
 
-### 2. Add a trait bound to your pallet
+1. Configure your workspace
 
-Now all you need to do is create a trait bound around your pallet's configuration trait:
+    Assume you want to use a pallet called `special-pallet`, which is a pallet in your local workspace. 
+    Import it by providing its path in your pallet's `Cargo.toml` file:
 
-```rust
-pub trait Config: frame_system::Config + special_pallet::Config {
-    // --snip--
-}
-```
+    ```toml
+    special-pallet = { path = '../special-pallet', default-features = false }
+    ```
 
-### 3. Use getter function
+1. Add a trait bound to your pallet
 
-In order to use a method from `special_pallet`, call it the following way:
+    Now all you need to do is create a trait bound around your pallet's configuration trait:
 
-```rust
-// Get the members from the vec-set pallet
-let who = special_pallet::Pallet::<T>::get();
-```
+    ```rust
+    pub trait Config: frame_system::Config + special_pallet::Config {
+        // --snip--
+    }
+    ```
 
-The above snippet assumes that `special_pallet` contains a method called `get()`.
+1. Use a getter function 
+
+    In order to use a method from `special_pallet`, call it the following way:
+
+    ```rust
+    // Get the members from `special-pallet` pallet
+    let who = special_pallet::Pallet::<T>::get();
+    ```
+
+    The above snippet assumes that `special_pallet` contains a method called `get()` which returns a vector of account IDs.
 
 ## Examples
 

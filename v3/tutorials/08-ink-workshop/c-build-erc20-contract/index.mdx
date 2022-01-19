@@ -272,7 +272,7 @@ time to actually emit some events. We do this by calling `self.env().emit_event(
 event as the sole argument to the method call.
 
 Remember that since the `from` and `to` fields are `Option<AccountId>`, we can't just set them to
-particular values. Let's assume we want to set an value of 100 for the initial deployer. This value
+particular values. Let's assume we want to set a value of 100 for the initial deployer. This value
 does not come from any other account, and so the `from` value should be `None`.
 
 ```rust
@@ -450,20 +450,20 @@ you have been running the test cases all along.
 
 In software engineering practice, it is true that writing automatic test cases cannot be emphasized
 enough. There are many type of tests one can write and here we are focusing on writing **Unit Tests**.
-This means we as developers know the code logic (versus testing assuming not knowing the logic, a.k.a.
+This means we as developers know the code logic (versus testing and not knowing the logic, a.k.a.
 [black-box testing](https://en.wikipedia.org/wiki/Black-box_testing)) and we write test cases to
-verify a function perform as we expected by giving it certain inputs and verifying it is returning
-the result we expect. Along the way we also test for edge cases, e.g. how it would handle empty value,
-or value that is out of its expected bound, and test for certain error handling mechanism is executed
-or error message is returned.
+verify a function performs as we expected by giving it certain inputs and verifying it is returning
+the result we expect. Along the way we also test for edge cases, e.g. how it would handle an empty value,
+or a value that is out of its expected bound, and test for certain error handling mechanisms being executed
+or error messages being returned.
 
-The benefit of having unit tests written are so that once our program get big or during
-future code refactoring, we can run these tests and if we see them pass, we have the confident that
+The benefit of having unit tests written is that once our program gets big or during
+future code refactoring, we can run these tests and if we see them pass, we are confident that
 our main program still works.
 
 ### 2. Unit Test Structure
 
-Now let's get to walking through some test cases for smart contract. They can be seen at the
+Now let's get to walking through some test cases for smart contracts. They can be seen at the
 bottom section of the code on the right panel.
 
 ```rust
@@ -491,7 +491,7 @@ fn new_works() {
 
 Each test case is a normal function definition returning nothing prepended by the `#[ink::test]`
 attribute macro. Inside the function, we setup for certain conditions and then assert for certain
-results. If the assert statement fail, it will panic and the test will abort with error message.
+results. If the assert statement fails, it will panic and the test will abort with an error message.
 
 In the above test case, we just define a new contract with `777` as the total supply, and verify
 the total supply is indeed `777`.
@@ -516,8 +516,8 @@ at the beginning.
 Then we approve `0x00000001` to have an allowance of 20 to transfer his own fund.
 
 > **Note**: Notice this line is called with account `0x00000001`, so it may look silly that `0x00000001` has
-> to approve himself to use his own fund. In fact if he call `transfer()` directly, he can still
-> transfer fund to others. But with `transfer_from()` we know that `approve()` has the logic to set the
+> to approve himself to use his own funds. In fact if he calls `transfer()` directly, he can still
+> transfer funds to others. But with `transfer_from()` we know that `approve()` has the logic to set the
 > allowance amount so `0x00000001` can call `transfer_from()` later and succeed.
 
 Afterward, we make a `transfer_from()` call, and ensure the destination account has the expected
@@ -527,7 +527,7 @@ You could also refer to the API doc on further usage of
 [`assert!()`](https://doc.rust-lang.org/std/macro.assert.html) and
 [`assert_eq!()`](https://doc.rust-lang.org/std/macro.assert_eq.html).
 
-Congratulation! You have completed the tutorial and you write your own ERC20 token smart contract
+Congratulations! You have completed the tutorial and you can write your own ERC20 token smart contract
 using ink! in Substrate.
 
 ## Further Learning

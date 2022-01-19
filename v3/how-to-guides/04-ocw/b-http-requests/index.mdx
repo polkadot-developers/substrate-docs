@@ -1,0 +1,107 @@
+---
+title: Making HTTP Requests
+slug: /how-to-guides/v3/ocw/http-requests
+keywords: ['off-chain worker', 'ocw', 'http', 'https', 'requests']
+version: '3.0'
+section: how to guides
+category: ocw
+---
+
+Making HTTP Requests
+
+<Objectives data={[
+  {
+    title: 'Goal',
+    description: `Send HTTP requests offchain.`
+  },
+  {
+    title: 'Use Cases',
+    description: `GET data from offchain, or POST data offchain.`,
+  },
+]}/>
+
+## Overview
+
+Off-chain workers (**OCW** for short) were introduced to extend oracle-like capabilities for Substrate blockchains.
+Because a blockchain does not have access to data outside its own network, oracles are a useful tool to enable interactions between on and off-chain worlds.
+
+In this guide we will look through retrieving the price of bitcoin from the `cryptocompare` api as well as submitting data via an OCW API.
+
+Remember that although Rust provides various libraries for issuing HTTP requests, an OCW runs in an [no-std](https://docs.rust-embedded.org/book/intro/no-std.html) environment.
+Luckily, Substrate provides us with a few `no_std` libraries we can use to issue HTTP requests to an API. 
+
+The Substrate HTTP library supports the following methods:
+- GET
+- POST
+- PUT
+- PATCH
+- DELETE
+
+## Steps
+
+1. Create a deadline of 2 seconds
+
+  ```rust
+  // We want to keep the offchain worker execution time reasonable, so we set a hard-coded
+  // deadline to 2s to complete the external call.
+  // You can also wait idefinitely for the response, however you may still get a timeout
+  // coming from the host machine.
+  let deadline = sp_io::offchain::timestamp().add(Duration::from_millis(2_000));
+  ```
+
+2. Initiate an external HTTP GET request
+
+  ```rust
+  // Initiate an external HTTP GET request.
+  let request = http::Request::get("https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD");
+  let pending = request.deadline(deadline).send().map_err(|_| http::Error::IoError)?;
+  let response = pending.try_wait(deadline).map_err(|_| http::Error::DeadlineReached)??;
+  ```
+
+3. Check the response
+
+  ```rust
+  // Let's check the status code before we proceed to reading the response.
+  if response.code != 200 {
+    log::warn!("Unexpected status code: {}", response.code);
+    return Err(http::Error::Unknown)
+  }
+  ```
+
+4. Read the response
+
+  ```rust
+  let body = response.body().collect::<Vec<u8>>();
+  // Create a str slice from the body.
+  let body_str = sp_std::str::from_utf8(&body).map_err(|_| {
+    log::warn!("No UTF8 body");
+    http::Error::Unknown
+  })?;
+  ```
+
+5. Submit data to an API via a POST request
+
+  ```rust
+   // Send a POST request
+  let request_body = Vec::new();
+  let request = http::Request::post("https://reqres.in/api/users", vec![request_body.clone()])
+    .add_header("x-api-key", "test_api_key")
+    .add_header("content-type", "application/json");
+
+  let pending = request
+    .deadline(deadline)
+    .body(vec![request_body.clone()])
+    .send()
+    .map_err(|_| http::Error::IoError)?;
+
+  // Wait for response
+  let response = pending
+    .try_wait(deadline)
+    .map_err(|_| http::Error::DeadlineReached)??;
+  ```
+
+## Examples
+
+- [**Offchain Worker Example Pallet** in Substrate](https://github.com/paritytech/substrate/blob/monthly-2021-12/frame/examples/offchain-worker/src/lib.rs#L568-#L621)
+- [**OCW Pallet** in Substrate Offchain Worker Demo](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/master/pallets/ocw/src/lib.rs#L363-#L401)
+- [**Offchain HTTP source** in Substrate Core](https://github.com/paritytech/substrate/blob/master/primitives/runtime/src/offchain/http.rs#L63-L76)
