@@ -34,7 +34,7 @@ which steps through which dependencies to include and where to include them in o
 <Message
   type={`red`}
   title={`Warning`}
-  text={`Be sure to use the latest \`monthly-*\` tag when adding your dependencies.`}
+  text={`Be sure to use the \`devhub/latest\` tag when adding your dependencies.`}
 />
 
 ## Steps
@@ -47,8 +47,8 @@ Add the FRAME dependency:
 
 ```rust
 [dependencies]
-frame-try-runtime = { git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-07', optional = true }
-try-runtime-cli = { git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-07', optional = true }
+frame-try-runtime = { git = 'https://github.com/paritytech/substrate.git', tag = 'devhub/latest', optional = true }
+try-runtime-cli = { git = 'https://github.com/paritytech/substrate.git', tag = 'devhub/latest', optional = true }
 
 /* --snip-- */
     std = [
@@ -96,8 +96,8 @@ try-runtime = [
 ]
 
 /* --snip-- */
-frame-try-runtime = { git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-07', optional = true }
-try-runtime-cli = { git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-07', optional = true }
+frame-try-runtime = { git = 'https://github.com/paritytech/substrate.git', tag = 'devhub/latest', optional = true }
+try-runtime-cli = { git = 'https://github.com/paritytech/substrate.git', tag = 'devhub/latest', optional = true }
 /* --snip-- */
 
 ```
