@@ -1,33 +1,26 @@
 import cx from 'classnames'
 
-import React, { Fragment } from 'react'
-import configDocs from '../../../config/docs.yaml'
+import React from 'react'
+import navigation from '../../../content/docs/navigation.yaml'
 import Link from '../default/Link'
 
-const SubMenu = ({ items, currentPath }) => {
+const ChildMenu = ({ pages, currentPath }) => {
   return (
-    <ul className="p-0 m-0">
-      {items.map((item, index) => {
+    <ul className="p-0 m-0 pl-3 py-1">
+      {pages.map((page, index) => {
         return (
-          <li key={index} className="list-none text-sm m-0 font-medium">
-            {Object.keys(item).map(key => {
-              const url = item[`${key}`]
-              const title = key
-              const isActive = currentPath.includes(url)
-
-              return (
-                <Fragment key={key}>
-                  <Link
-                    to={url}
-                    className={cx('block px-4 py-1 hover:font-bold', {
-                      'font-bold': isActive,
-                    })}
-                  >
-                    {title}
-                  </Link>
-                </Fragment>
-              )
+          <li
+            key={index}
+            className={cx('p-0 m-0 list-none text-sm font-medium', {
+              'text-gray-500': currentPath !== page.url,
+              'text-substrateBlue': currentPath === page.url,
             })}
+          >
+            {page.url ? (
+              <Link to={page.url}>{page.title}</Link>
+            ) : (
+              `${page.title}`
+            )}
           </li>
         )
       })}
@@ -35,37 +28,56 @@ const SubMenu = ({ items, currentPath }) => {
   )
 }
 
-const CollectionMenu = ({ data, currentPath }) => {
-  const { parent, parentUrl, childMenu } = data
-  const parentItem = <span className="inline-block py-3">{parent}</span>
-  const hasChildMenu = Array.isArray(childMenu) && childMenu.length > 0
-
+const SubMenu = ({ pages, currentPath }) => {
   return (
-    <>
-      {parentUrl ? (
-        <Link to={`${parentUrl}`} className="font-bold">
-          {parentItem}
-        </Link>
-      ) : (
-        parentItem
-      )}
-      {hasChildMenu && <SubMenu items={childMenu} currentPath={currentPath} />}
-    </>
+    <ul className="p-0 m-0 pl-3">
+      {pages.map((page, index) => {
+        return (
+          <li
+            key={index}
+            className={cx('p-0 m-0 list-none font-medium', {
+              'text-substrateDark dark:text-white': currentPath !== page.url,
+              'text-substrateBlue': currentPath === page.url,
+            })}
+          >
+            {page.url ? (
+              <Link to={page.url}>{page.title}</Link>
+            ) : (
+              `${page.title}`
+            )}
+            {page.pages && (
+              <ChildMenu pages={page.pages} currentPath={currentPath} />
+            )}
+          </li>
+        )
+      })}
+    </ul>
   )
 }
 
 const Menu = ({ currentPath }) => {
-  const { nav } = configDocs
+  const { pages } = navigation
   return (
     <nav role="navigation">
       <ul className="p-0 m-0">
-        {nav.map((item, index) => {
+        {pages.map((page, index) => {
           return (
-            <li key={index} className="p-0 m-0 list-none">
-              <CollectionMenu
-                data={buildParentMenu(item)}
-                currentPath={currentPath}
-              />
+            <li
+              key={index}
+              className={cx('p-0 m-0 list-none font-semibold', {
+                'text-substrateBlue': currentPath === page.url,
+              })}
+            >
+              <span className="inline-block py-3">
+                {page.url ? (
+                  <Link to={page.url}>{page.title}</Link>
+                ) : (
+                  `${page.title}`
+                )}
+              </span>
+              {page.pages && (
+                <SubMenu pages={page.pages} currentPath={currentPath} />
+              )}
             </li>
           )
         })}
@@ -79,32 +91,3 @@ const NavDocs = ({ currentPath }) => {
 }
 
 export default NavDocs
-
-const buildParentMenu = parentMenu => {
-  // collection key 'name'
-  const [collection] = Object.keys(parentMenu)
-  // parent items object
-  const subMenu = parentMenu[`${collection}`]
-  // prepare menu constructor
-  const data = {
-    parent: collection,
-    parentUrl: '',
-    childMenu: [],
-  }
-
-  // populate child menu items if exist
-  if (Array.isArray(subMenu)) {
-    const parentUrl =
-      typeof subMenu[0] === 'string' || subMenu[0] instanceof String
-        ? subMenu[0]
-        : ''
-
-    const childMenu = subMenu.filter(function (val) {
-      return typeof val === 'object' && val !== null
-    })
-
-    return Object.assign(data, { parentUrl: parentUrl }, { childMenu })
-  }
-
-  return Object.assign(data, { parentUrl: subMenu })
-}
