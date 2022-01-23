@@ -1,65 +1,60 @@
 ---
 id: 001
-title: Welcome
+
+title: Introduction to Substrate
 slug: /v3/getting-started/overview
 version: '3.0'
 section: docs
 category: getting started
 keywords: []
 ---
+# Overview
 
-This is the
-official documentation hub for Substrate developers. The purpose of this resource is to help readers understand the
-intricacies of blockchain development with Substrate. This guide is broken down into several sections that
-explain the principles and design decisions that Substrate is built on as well as the specific skills needed to be an
-effective Substrate blockchain developer.
+This section provides an overview of Substrate – structure, working, and usage. 
 
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text={`In order to get the most out of Substrate, you should have a good knowledge of computer science and basic blockchain
-concepts. Terminology like header, block, client, hash, transaction and signature should be familiar. Substrate is
-built on the Rust programming language, which makes use of novel design patterns to enable development of code that is
-safe and fast. Although you don't need to know Rust to get started with Substrate, a good understanding of Rust will
-allow you to become a better Substrate developer. Check out [the excellent resources](https://www.rust-lang.org/learn)
-provided by the Rust community to build your Rust development skills.`}
-/>
+## Prerequisites
 
-Substrate takes a modular approach to blockchain development and defines a rich set of primitives that allows developers
-to make use of powerful, familiar programming idioms.
+To get the most out of Substrate, you should have a good knowledge of computer science and basic blockchain concepts in addition to terminologies like header, block, client, hash, transaction, and signature. Substrate is built on the Rust programming language, which uses novel design patterns to enable development of code that is safe and fast.
 
-## Usage
+>**Note:** Although you don't need to know Rust to get started with Substrate, a good understanding of Rust will enable you to become a better Substrate developer. To to build your Rust development skills, see [Get Started with Rust](https://www.rust-lang.org/learn) provided by the Rust community. 
 
-Substrate is designed to be used in one of three ways:
+## What is Substrate?
 
-1. **With the Substrate Node**: You can run the pre-designed [Substrate Node](https://github.com/paritytech/substrate/tree/master/bin/node)
-   and [configure](https://github.com/paritytech/substrate/blob/master/bin/node/cli/src/chain_spec.rs)
-   its genesis block. In this case, you just need to supply a JSON file and launch your own blockchain.
-   The JSON file allows you to configure the genesis state of the modules that compose the Substrate
-   Node's runtime, such as: Balances, Staking, and Sudo. You can learn more about running a Substrate
-   node in the [Create Your First Substrate Chain](/tutorials/v3/create-your-first-substrate-chain) and
-   [Start a Private Network](/tutorials/v3/private-network) tutorials.
+Substrate is an extensible, modular, open-source framework with an approach to build (customized) blockchains. It defines a rich set of primitives that allows developers to make use of powerful, familiar programming idioms. Substrate provides developers with all the core components that are required to build a distributed blockchain network. Before we dive into Substrate, refer to the [Architecture](https://docs.substrate.io/v3/getting-started/architecture/) section for more details on architecture (or concepts) of Substrate blockchain development.
 
-2. **With Substrate FRAME**: You can easily create your own custom runtime using [FRAME](/v3/runtime/frame)
-   (Framework for Runtime Aggregation of Modularized Entities), which is what is used to build the Substrate Node. This
-   affords you a large amount of freedom over your blockchain's logic, and allows you to configure data types, select
-   from a library of modules (called "pallets"), and even add your own custom pallets. The
-   [Substrate Developer Hub node template](https://github.com/substrate-developer-hub/substrate-node-template) is a
-   helpful starting point for projects like this. To learn more, see the tutorials to
-   [Build a dApp](/tutorials/v3/proof-of-existence) and [Add a Pallet](/tutorials/v3/add-a-pallet).
+### Structure
 
-3. **With Substrate Core**: The entire FRAME system can be ignored, and the runtime can be designed and implemented from
-   scratch. This could be done in _any language_ that can target [WebAssembly](https://webassembly.org/). If the runtime
-   can be made to be compatible with the abstract block authoring logic of the Substrate node, then you can simply
-   construct a new genesis block from your Wasm blob and launch your chain with the existing Rust-based Substrate
-   client. If not, then you will need to alter the client's block authoring logic, and potentially even alter the header
-   and block serialization formats. In terms of development effort, this is by far the most difficult way to use
-   Substrate, but also gives you the most freedom to innovate.
+Blockchains are decentralized and there are many nodes connected on a peer-to-peer network – there is no central authority. Each node is running a blockchain program and stores a copy of the chain. When there is a set of transactions, a node can produce a new block and connect it to its chain. All nodes must accept the new block by solving a mathematical problem, which takes much computational power. 
 
-Substrate allows developers to make choices between technical freedom and ease of development in every step of their design
-decisions. The diagram below illustrates the nature of this flexibility.
+>**Note:** These problems are not real, and no one will use the solutions. It is designed in such a way to prove that a produced block is not malicious.
+                       
+### How does a Substrate work?
 
+To create a custom blockchain, let’s understand the Substrate framework and other elements. The basic unit where blockchain runs is a node. Since blockchain is a decentralized peer-to-peer system, this node runs inside a client and provides all basic components the system needs to function, such as p2p networking, storage, logic for block processing and consensus, and ability to interact with external blockchains.                          
+                          
+### Usage
+
+Substrate allows developers to make choices between technical freedom and ease of development in every step of their design process. The diagram below illustrates the nature of this flexibility (starting from bottom-up).
 ![Technical Freedom vs Development Ease](../../../../src/images/docs/getting-started/technical-freedom.png)
+
+#### 1. Substrate Node
+
+Substrate node is the highest level to start at, which provides most pre-built functionality [Substrate Node](https://github.com/paritytech/substrate/tree/master/bin/node) and includes all default implementations for basic components. You can customize or [configure](https://github.com/paritytech/substrate/blob/master/bin/node/cli/src/chain_spec.rs) the genesis block (that is the initial state) of the chain and run the node get familiar with Substrate. 
+For example, you can import a JSON file and launch your own blockchain. The JSON file allows you to configure the genesis state of the modules that compose the Substrate Node's runtime, such as: Balances, Staking, and Sudo. You can learn more about running a Substrate node in the Create Your First Substrate Chain and Start a Private Network tutorials.
+
+Once you are familiar and are ready to customize or build your own blockchain, you can go one step down and start at the Framework for Runtime Aggregation of Modularized Entities (FRAME).
+
+#### 2. Substrate FRAME
+
+[FRAME](/v3/runtime/frame) is a framework used to build the Substrate runtime from existing libraries. It provides a high degree of freedom to determine a blockchain’s logic, state, and data types—essentially because you are starting from the Substrate’s prebuilt node template and can add or select from a library of modules, also known as pallets. The Substrate Developer Hub node template is a helpful starting point for projects like this as it aids developers to focus on customizations. To learn more, see the tutorials to [Build a dApp](/tutorials/v3/proof-of-existence) and [Add a Pallet](/tutorials/v3/add-a-pallet). 
+
+However, if developers want to do things uniquely, they can go one step down by starting from the Core.
+
+#### 3. Substrate Core
+
+In essence, Substrate Core means that the entire FRAME system can be ignored, and the runtime can be designed and implemented from scratch. This could be done in _any language_ that can target [WebAssembly](https://webassembly.org/). If the runtime can be made to be compatible with the abstract block authoring logic of the Substrate node, then you can simply construct a new genesis block from your Wasm blob and launch your chain with the existing Rust-based Substrate client. If not, then you will need to alter the client's block authoring logic, and potentially even alter the header and block serialization formats. In terms of development effort, this is by far the most difficult way to use Substrate, but also gives you the most freedom to innovate and be able to work seamlessly within the Substrate ecosystem.
+
+Substrate allows developers to make choices between technical freedom and ease of development in every step of their design decisions. The diagram below illustrates the nature of this flexibility.
 
 ## Next steps
 
