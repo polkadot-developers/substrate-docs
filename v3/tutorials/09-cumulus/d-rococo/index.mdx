@@ -26,24 +26,10 @@ keywords:
 ---
 
 Rococo is Parity's official test network for cumulus-based parachains.
+This section of the workshop steps through how you can onboard your parachain to it.
 
-<Message
-  type={`yellow`}
-  title={`NEW Rococo Revamp – Becoming a Community Parachain Testbed has started`}
-  text={`
-Rococo got restarted multiple times over the last weeks in preparation for the [Rococo Revamp – Becoming a Community Parachain Testbed](https://polkadot.network/blog/rococo-revamp-becoming-a-community-parachain-testbed/) and is now ready to onboard community parachains. There is also a [Rococo Faucet](https://matrix.to/#/#rococo-faucet:matrix.org) room to get ROCs. We're continually improving the onboarding procedure and documentation, but please expect things to break and feel free to reach out and ask in [Parachain Technical matrix channel](https://matrix.to/#/#parachain-technical:matrix.parity.io).
-`}
-/>
-
-<Message
-  type={`red`}
-  title={`TEST!`}
-  text={`
-As parachains are being developed at a fast pace, you need to use the corresponding tagged version of Cumulus and Polkadot for the relay-chain and parachain compatible to each others.
-\n
-Please test registering your parachain locally before attempting to connect to Rococo!
-`}
-/>
+NOTE: We're continually improving the onboarding procedure and documentation.
+Please feel free to reach out in the [Parachain Technical matrix channel](https://matrix.to/#/#parachain-technical:matrix.parity.io) if you're facing any issues connecting your parachain.
 
 <!--
 TODO:FIXME: once we open again, we need to update versions and instruct on how to
@@ -51,66 +37,43 @@ check what you need on a production network (maybe as a HTG)
 https://github.com/substrate-developer-hub/substrate-docs/issues/241
 -->
 
-- [Polkadot `master` branch](https://github.com/paritytech/polkadot/tree/master)
-- [Cumulus `master` branch](https://github.com/paritytech/cumulus/tree/master)
+## Before you begin
 
-### Request ROC Tokens
+Make sure you have successfully completed the [previous section](/tutorials/v3/cumulus/connect-parachain) of this workshop and tested your parachain on your local machine.
+This implies that:
+- You're familiar with registering and reserving your unique para ID.
+- You have your parachain's genesis state exported as a JSON file.
+- You have your parachain's runtime Wasm blob.
 
-ROC is the native currency on the Rococo test network.
-You will need some ROC in order to register your Rococo parachain.
+In addition, you will need 5 ROCs from the [Rococo faucet](https://matrix.to/#/#rococo-faucet:matrix.org) to register a para ID.
 
-You need to register on Rococo as a parathread before able to experiment on Rococo testnet.
-
-<Message
-  type={`gray`}
-  title={`Note`}
-  text={`
-If you have any questions and comments regarding Rococo testnet, please join the [Parachain Technical](https://matrix.to/#/#parachain-technical:matrix.parity.io) Element channel.
-On requesting the ROC tokens, please join the [Rococo faucet channel](https://matrix.to/#/#rococo-faucet:matrix.org).
-`}
-/>
-
-### Register as a Parathread
-
-All parachains will need to register as a parathread first.
-You will need:
-
-- **5 ROCs** deposit to register a para ID.
-
-- Reserve a unique para ID. This will be assigned to the next available ID.
-  This integer will be greater than `2000`, as `0-999` are reserved for [system parachains](https://wiki.polkadot.network/docs/learn-common-goods#system-level-chains) and `1000-1999` are reserved for [public utility parachains](https://wiki.polkadot.network/docs/learn-common-goods#public-utility-chains).
-
-- Your parachain genesis state.
-  Refer to the genesis state export process, earlier in the Cumulus tutorial.
-
-- Your parachain Wasm runtime.
-  Refer to the Wasm runtime export process, earlier in the Cumulus tutorial.
+## Register as parathread 
 
 The procedure will be as followed:
 
-- Goto Polkadot-JS Apps Rococo parathreads section [here](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/parachains/parathreads).
+1. Go to [the Polkadot-JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/parachains/parathreads) parathreads section for Rococo.
 
-- Reserve for the next available para ID.
+1. Reserve a unique para ID. You will be assigned to the next available ID.
 
   ![paraid-reserve.png](../../../../src/images/tutorials/09-cumulus/paraid-reserve.png)
 
-- After successfully reserving your para ID, you can now register as a **Parathread**.
+1. After successfully reserving your para ID, you can now register as a **Parathread**.
 
   ![register-parathread.png](../../../../src/images/tutorials/09-cumulus/register-parathread.png)
 
-- Once your extrinsic succeeds, you will see the `registrar.Registered` event being emitted.
+1. Once your extrinsic succeeds, you will see a `registrar.Registered` event being emitted.
 
   ![parathread-register-success.png](../../../../src/images/tutorials/09-cumulus/parathread-register-success.png)
 
-- Also in the Polkadot-JS Apps [Parachains -> Parathreads](https://polkadot.js.org/apps/#/parachains/parathreads) page and you will see your parathread registration is **Onboarding**:
+1. Go to the [Parachains -> Parathreads](https://polkadot.js.org/apps/#/parachains/parathreads) page and you will see that your parathread registration is **Onboarding**:
 
   ![parathread-onboarding.png](../../../../src/images/tutorials/09-cumulus/parathread-onboarding.png)
 
 After the extrinsic succeeds, it takes [**2 sessions**](#relevant-settings) for the chain to fully onboard as a parathread.
 
-### Request a permanent or temporary parachain slot
+## Request a permanent or temporary parachain slot
 
-Once the para is active as a parathread, the related project team should request either a **permanent** or a **temporary parachain slot** on Rococo.
+Once the parachain is active as a parathread, the related project team should request either a **permanent** or a **temporary parachain slot** on Rococo.
 
 - **Permanent slots** are parachain slots assigned to teams who currently have a parachain slot on Polkadot (following a successful slot lease auction)
 and thus have the needs for continuously testing their codebase for compatibility with the latest bleeding edge features in a real-world live environment (Rococo).
