@@ -252,8 +252,8 @@ Required, to implement a pallet's dispatchables. Each dispatchable must:
 trigger specific logic. Calls can also be used in on-chain governance, demonstrated by the democracy
 pallet where calls can be voted on.
 `#[pallet::call]` allows to create dispatchable functions which will generate associated items
-from the `impl` code blocks. In other words, it aggregates all dispatchable logic using the [`Call` enum
-(/rustdocs/latest/frame_system/pallet/enum.Call.html) which will aggregate all
+from the `impl` code blocks. In other words, it aggregates all dispatchable logic using the
+[`Call` enum](/rustdocs/latest/frame_system/pallet/enum.Call.html) which will aggregate all
 dispatchable calls into a single runtime call.
 
 **Docs**
@@ -422,9 +422,8 @@ To specify cryptographic key pairs and its signature algorithm that are to be ma
 **What it does**
 
 The macro declares three struct types, `Public`, `Signature`, and `Pair`. Aside from having various
-helper traits implemented for these three types, `Public` type is implemented to generating
-keypairs, signing and verifying signature, `Signature` type to hold the signature property given the
-signature chosen to be used (e.g. SR25519, ED25519 etc), and `Pair` type to generate a
+helper traits implemented for these three types, the `Public` type is implemented for generating
+keypairs, signing and verifying signatures; the `Signature` type is to hold the signature property given the chosen signature (e.g. SR25519, ED25519 etc); and the `Pair` type is to generate a
 public-private key pair from a seed.
 
 **Docs and notes**

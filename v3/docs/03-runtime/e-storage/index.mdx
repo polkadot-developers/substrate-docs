@@ -295,7 +295,7 @@ Substrate's runtime storage APIs include capabilities to initialize storage item
 block of your blockchain. The genesis storage configuration APIs expose a number of mechanisms for
 initializing storage, all of which have entry points in `#[pallet::genesis_config]`.
 The `GenesisConfig` data type is defined under the attribute `#[pallet::genesis_config]` and
-the attribute [`pallet::genesis_build`] is used to build the genesis configuration.
+the attribute `#[pallet::genesis_build]` is used to build the genesis configuration.
 
 In order to consume a pallet's genesis configuration capabilities, you must include the
 `Config` element when adding the pallet to your runtime.
