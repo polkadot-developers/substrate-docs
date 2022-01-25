@@ -1,5 +1,5 @@
 ---
-title: Register on Rococo
+title: Connect to the Rococo testnet
 slug: /tutorials/v3/cumulus/rococo
 sideNav: cumulusTutorial
 version: 'polkadot-v0.9.13'
@@ -47,9 +47,9 @@ This implies that:
 
 In addition, you will need 5 ROCs from the [Rococo faucet](https://matrix.to/#/#rococo-faucet:matrix.org) to register a para ID.
 
-## Register as parathread 
+## Register as a parathread 
 
-The procedure will be as followed:
+To get started with registering your chain as a parathread:
 
 1. Go to [the Polkadot-JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/parachains/parathreads) parathreads section for Rococo.
 
@@ -57,11 +57,11 @@ The procedure will be as followed:
 
   ![paraid-reserve.png](../../../../src/images/tutorials/09-cumulus/paraid-reserve.png)
 
-1. After successfully reserving your para ID, you can now register as a **Parathread**.
+1. After successfully reserving your para ID, you can now register as a **parathread**.
 
   ![register-parathread.png](../../../../src/images/tutorials/09-cumulus/register-parathread.png)
 
-1. Once your extrinsic succeeds, you will see a `registrar.Registered` event being emitted.
+1. Once your extrinsic succeeds, you will see a `registrar.Registered` event emitted.
 
   ![parathread-register-success.png](../../../../src/images/tutorials/09-cumulus/parathread-register-success.png)
 
@@ -69,9 +69,9 @@ The procedure will be as followed:
 
   ![parathread-onboarding.png](../../../../src/images/tutorials/09-cumulus/parathread-onboarding.png)
 
-After the extrinsic succeeds, it takes [**2 sessions**](#relevant-settings) for the chain to fully onboard as a parathread.
+After the extrinsic succeeds, it takes 2 sessions for the chain to fully onboard as a parathread.
 
-## Request a permanent or temporary parachain slot
+## Request your parachain slot
 
 Once the parachain is active as a parathread, the related project team should request either a **permanent** or a **temporary parachain slot** on Rococo.
 
@@ -90,6 +90,16 @@ At this point, requesting a permanent or temporary parachain slot still a privil
 operator (using a call to the `assignedSlots` pallet's dispatchable functions) but the long-term plan is to make it a community-driven process
 via the chain's governance framework.
 
+For this tutorial, follow these steps to request a temporary slot:
+
+1. In the [Polkadot-JS Apps for Rococo](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#), go to `Developer -> Extrinsics`.
+1. Select the account with enough ROC balance that you wish to use to submit a transaction with.
+1. Select the `assignedSlots` pallet.
+1. Choose the `assignTempParachainSlot` function. 
+1. Insert your reserved para ID. Make sure this matches the one you reserved from the previous section!
+1. Select `Current` for the `LeasePeriodStart`. If the current slot is full, you will be assigned the next available slot.
+1. Sign and submit the transaction.
+
 <Message
   type={`gray`}
   title={`Assigned parachain slots on Rococo`}
@@ -102,3 +112,7 @@ Given a period lease duration of 1 day, the current settings for assigned parach
 - **Maximum temporary slots allocated per leased period**: up to 5 temporary slots per 3-day temporary lease periods
 `}
 />
+
+
+🎉**_Congratulations!_**🎉  
+You're now able to test your parachain on the Rococo test net. 

@@ -668,7 +668,7 @@ DevNavMenuTuts.set('cumulusTutorial', [
       //   link: '/tutorials/v3/cumulus/polkadot-launch/',
       // },
       {
-        title: `Connect to a Live Relay Chain`,
+        title: `Connect to the Rococo testnet`,
         link: '/tutorials/v3/cumulus/rococo',
       },
     ],
