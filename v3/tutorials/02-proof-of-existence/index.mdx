@@ -438,7 +438,7 @@ This React component enables you to expose the proof-of-existence capabilities a
 
    // Pre-built Substrate front-end utilities for connecting to a node
    // and making a transaction.
-   import { useSubstrate } from './substrate-lib'
+   import { useSubstrateState } from './substrate-lib'
    import { TxButton } from './substrate-lib/components'
 
    // Polkadot-JS utilities for hashing data.
@@ -447,9 +447,7 @@ This React component enables you to expose the proof-of-existence capabilities a
    // Main Proof Of Existence component is exported.
    export function Main(props) {
      // Establish an API to talk to the Substrate node.
-     const { api } = useSubstrate()
-     // Get the selected user from the `AccountSelector` component.
-     const { accountPair } = props
+     const { api, currentAccount } = useSubstrateState()
      // React hooks for all the state variables we track.
      // Learn more at: https://reactjs.org/docs/hooks-intro.html
      const [status, setStatus] = useState('')
@@ -528,7 +526,7 @@ This React component enables you to expose the proof-of-existence capabilities a
            <Form.Field>
              {/* Button to create a claim. Only active if a file is selected, and not already claimed. Updates the `status`. */}
              <TxButton
-               accountPair={accountPair}
+               accountPair={currentAccount}
                label={'Create Claim'}
                setStatus={setStatus}
                type="SIGNED-TX"
@@ -542,11 +540,11 @@ This React component enables you to expose the proof-of-existence capabilities a
              />
              {/* Button to revoke a claim. Only active if a file is selected, and is already claimed. Updates the `status`. */}
              <TxButton
-               accountPair={accountPair}
+               accountPair={currentAccount}
                label="Revoke Claim"
                setStatus={setStatus}
                type="SIGNED-TX"
-               disabled={!isClaimed() || owner !== accountPair.address}
+               disabled={!isClaimed() || owner !== currentAccount.address}
                attrs={{
                  palletRpc: 'templateModule',
                  callable: 'revokeClaim',
@@ -563,7 +561,7 @@ This React component enables you to expose the proof-of-existence capabilities a
    }
 
    export default function TemplateModule(props) {
-     const { api } = useSubstrate()
+     const { api } = useSubstrateState()
      return api.query.templateModule && api.query.templateModule.proofs ? (
        <Main {...props} />
      ) : null
