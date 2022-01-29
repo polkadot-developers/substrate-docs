@@ -446,6 +446,10 @@ const DevNavMenu = {
             title: 'Runtime Upgrades',
             link: '/how-to-guides/v3/parachains/runtime-upgrades/',
           },
+		  {
+            title: 'Auctions and Crowdloans',
+            link: '/how-to-guides/v3/parachains/auctions-crowdloans/',
+          },
         ],
       },
       // 9. Tools
@@ -668,7 +672,7 @@ DevNavMenuTuts.set('cumulusTutorial', [
       //   link: '/tutorials/v3/cumulus/polkadot-launch/',
       // },
       {
-        title: `Connect to the Rococo testnet`,
+        title: `Rococo Public Testnet`,
         link: '/tutorials/v3/cumulus/rococo',
       },
     ],
