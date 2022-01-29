@@ -28,8 +28,8 @@ keywords:
 Rococo is Parity's public test network for cumulus-based parachains.
 This section of the workshop steps through how you can onboard your parachain to it.
 
-NOTE: We're continually improving the onboarding procedure and documentation.
-Please feel free to reach out in the [Parachain Technical matrix channel](https://matrix.to/#/#parachain-technical:matrix.parity.io) if you're facing any issues connecting your parachain.
+> NOTE: We're continually improving the onboarding procedure and documentation.
+> Please feel free to reach out in the [Parachain Technical matrix channel](https://matrix.to/#/#parachain-technical:matrix.parity.io) if you're facing any issues connecting your parachain!
 
 ## Before you begin
 
@@ -40,6 +40,11 @@ This implies that:
 - You have your parachain's runtime Wasm blob.
 
 In addition, you will need 5 ROCs from the [Rococo faucet](https://matrix.to/#/#rococo-faucet:matrix.org) to register a para ID.
+
+Lastly, you MUST have you collator's peering ports for hte embedded relay chain and your parachain publicly accessible and discoverable.
+This way you are able to peer with Rococo validator nodes, otherwise you will not be able to produce blocks.
+The peering port is set with the `--port <collator node>-- --port <relay node>` CLI flags, be sure to do this for _both_ nodes separately.
+It's very likely you want at least your collator's `--ws-port <ws port>` port open as well to allow for yourself (and others) to connect with it via the Polkadot Apps UI or API calls.
 
 ## Register as a parathread 
 
@@ -78,7 +83,7 @@ The parachains that were active during the ending lease period will be automatic
 The temporary slots are meant to be used by teams who do not have a parachain slot yet on Polkadot, and are aiming for one in the near future.
 
 The goal of this more dynamic allocations aims at helping teams to test their runtimes more often, and in a more streamlined manner.
-At this point, requesting a permanent or temporary parachain slot still a privileged (sudo) operation to be performed by the test chain's operator (using a call to the `assignedSlots` pallet's dispatchable functions) but the long-term plan is to make it a community-driven process via the chain's governance framework.
+At this point, requesting a permanent or temporary parachain slot still a privileged (sudo) operation to be performed by the test chain's operator (using a call to the `assignedSlots` pallet's dispatchable functions) but the long-term plan is to make it a community-driven process via Rococo's governance framework.
 
 Follow these steps to request a temporary slot:
 
@@ -93,19 +98,54 @@ Follow these steps to request a temporary slot:
 > The Rococo `sudo` key is controlled by Parity tech at this time, so to have the operation required to get a slot, please on the [Parachain Technical matrix channel](https://matrix.to/#/#parachain-technical:matrix.parity.io) once you complete the above and are ready to connect!
 > They will initiate the slot for you ASAP.
 
-<Message
-  type={`gray`}
-  title={`Assigned parachain slots on Rococo`}
-  text={`
-Given a period lease duration of 1 day, the current settings for assigned parachain slots on Rococo are as follows:
+Given a period lease duration of 1 day, the current settings for assigned parachain slots on Rococo are (at the time of writing):
 - **Permanent slot least duration**: 1 year (365 days)
 - **Temporary slot least duration**: 3 days
 - **Maximum number of permanent slots**: up to 25 permanent slots
 - **Maximum number of temporary slots**: up to 20 temporary slots
 - **Maximum temporary slots allocated per leased period**: up to 5 temporary slots per 3-day temporary lease periods
-`}
-/>
 
+These are subject to change, based on the needs of the community.
 
 🎉**_Congratulations!_**🎉  
 With your slot activated by the Parity team, you're now able to test your parachain on the Rococo test net!
+Please do note that when your temporary slot's lease ends, the parachain is automatically downgraded to a parathread. Registered and approved slots are cycled through automatically in a round-robin fashion, so you will expect to come back online as a parachain from time to time.
+
+---
+
+## Use `sudo` to register a slot
+
+Here is the flow that Parity uses on the back end, and you can use for your own Rococo-like relay chains:
+
+The following parameters need to be to configured in the relay chain runtime, as an example:
+```rust
+pub const LeasePeriod: BlockNumber = 7 * DAYS;
+// The number of lease periods a permanent parachain slot lasts
+// (multiplied by LeasePeriod to get the slot duration in blocks)
+pub const PermanentSlotLeasePeriodLength: u32 = 26; 
+// The number of lease periods a temporary parachain slot lasts
+// (multiplied by LeasePeriod to get the slot duration in blocks)
+pub const TemporarySlotLeasePeriodLength: u32 = 1;
+// The max number of permanent slots that can be registered
+pub const MaxPermanentSlots: u32 = 5;
+// The max number of temporary slots to be scheduled per lease periods
+pub const MaxTemporarySlotPerLeasePeriod: u32 = 10;
+```
+
+#### Temporary slots
+
+Initialize a para with `parasSudoWrapper.sudoScheduleParaInitialize` and wait for it to be onboarded as a parathread.
+Then assign a temporary parachain slot with `parasSudoWrapper.sudoAssignTempParachainSlot`, specifying the para Id and lease period start (Current lease period or next one).
+
+![sudoAssignTempParachainSlot.png](../../../../src/images/tutorials/09-cumulus/sudoAssignTempParachainSlot.png)
+
+This will create a lease and the parathread will be upgraded to a parachain when its start lease period begins.
+When a slot's lease ends, the parachain is automatically downgraded to a parathread.
+`parasSudoWrapper` pallet keeps track of temporary slots so it can distribute turns fairly between temp slots.
+
+![temporarySlots.png](../../../../src/images/tutorials/09-cumulus/temporarySlots.png)
+
+#### Permanent slots
+
+You can assign a permanent slot with `parasSudoWrapper.sudoAssignPermParachainSlot` or unassign a slot (permanent or temporary) with `parasSudoWrapper.sudoUnassignParachainSlot` (this clears any lease which downgrades the para back to a parathread).
+This all relies on the existing `slots` pallet & lease mechanism, nothing fancy!
