@@ -41,7 +41,7 @@ This implies that:
 
 In addition, you will need 5 ROCs from the [Rococo faucet](https://matrix.to/#/#rococo-faucet:matrix.org) to register a para ID.
 
-Lastly, you MUST have you collator's peering ports for hte embedded relay chain and your parachain publicly accessible and discoverable.
+Lastly, you MUST have you collator's peering ports for the embedded relay chain and your parachain publicly accessible and discoverable.
 This way you are able to peer with Rococo validator nodes, otherwise you will not be able to produce blocks.
 The peering port is set with the `--port <collator node>-- --port <relay node>` CLI flags, be sure to do this for _both_ nodes separately.
 It's very likely you want at least your collator's `--ws-port <ws port>` port open as well to allow for yourself (and others) to connect with it via the Polkadot Apps UI or API calls.
