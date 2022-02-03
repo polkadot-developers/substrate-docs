@@ -2,6 +2,8 @@
 
 https://substrate-docs-md.netlify.app
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b76a25aa-5622-4303-9ff7-7dc24ab64add/deploy-status)](https://app.netlify.com/sites/substrate-docs-md/deploys)
+
 ## Development
 
 > :warning: **note**: This is an orphan branch (`main-md`) using a different setup than the production release. **Clone and install it into a new separate directory**.
