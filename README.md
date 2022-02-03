@@ -1,23 +1,36 @@
+## Staging
+
+https://substrate-docs-md.netlify.app
+
 ## Development
+
+> :warning: **note**: This is an orphan branch (`main-md`) using a different setup than the production release. **Clone and install it into a new separate directory**.
 
 ### Install
 
-Navigate into your cloned local repo directory and install all dependencies.
+1. Clone this repository:
 
-```shell
+```bash
+#clone into folder <substrate-docs-md>
+git clone https://github.com/substrate-developer-hub/substrate-docs.git substrate-docs-md
+```
+
+2. Navigate into your cloned local repo directory and install all dependencies.
+
+```bash
 yarn
 ```
 
-**Configure environment variables**
+3. Add environment variables:
 
-Copy `example.env.development` and rename to `.env.development`
+```bash
+cp example.env.development .env.development
+```
 
-Config URL variables based on your preferable local setup. URL will be used for links generation between substrate websites.
-
-**Start development server**
+### Start development server
 
 Navigate into your new site’s directory and use the following command to start the development server locally.
 
-```shell
+```bash
 yarn develop
 ```
