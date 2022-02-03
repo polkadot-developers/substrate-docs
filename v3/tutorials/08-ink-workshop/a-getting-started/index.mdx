@@ -81,7 +81,7 @@ rustup target add wasm32-unknown-unknown --toolchain nightly
 We need to use a Substrate node with the built-in `pallet-contracts` pallet. For this workshop we'll use a pre-configured Substrate node client.
 
 ```bash
-cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag v0.3.0 --force --locked
+cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag v0.5.0 --force --locked
 ```
 
 ### 2. ink! CLI
@@ -109,7 +109,7 @@ brew install binaryen
 After you've installed the package execute:
 
 ```bash
-cargo install cargo-contract --vers ^0.16 --force --locked
+cargo install cargo-contract --vers ^0.17 --force --locked
 ```
 
 You can then use `cargo contract --help` to start exploring the commands made available to you.
@@ -143,7 +143,7 @@ flipper
 
 The ink! CLI automatically generates the source code for the "Flipper" contract, which is about the
 simplest "smart" contract you can build. You can take a sneak peak as to what will come by looking
-at the [Flipper Example](https://github.com/paritytech/ink/blob/v3.0.0-rc5/examples/flipper/lib.rs).
+at the [Flipper Example](https://github.com/paritytech/ink/blob/v3.0.0-rc8/examples/flipper/lib.rs).
 
 The Flipper contract is nothing more than a `bool` which gets flipped from true to false through the `flip()` function. We won't go deep into the details of this source code because we will be walking you through the steps of building a more advanced contract!
 
@@ -261,7 +261,7 @@ your node. You first need to configure the UI to connect to it:
 
 ![Connect to local node](/assets/tutorials/ink-workshop/canvas-connect-to-local.png)
 
-Now that we have generated the Wasm binary from our source code and connected to a local node node, we want
+Now that we have generated the Wasm binary from our source code and connected to a local node, we want
 to deploy this contract onto our Substrate blockchain.
 
 Smart contract deployment on Substrate is a little different than on traditional smart contract

@@ -302,14 +302,14 @@ It's important to remember that each participant in the blockchain network is re
 ### Key generation options
 
 There are several ways you can generate keys.
-For example, you can generate key pairs using a `node-template` subcommand, the standalone <a target="_blank" href="/v3/tools/subkey">Subkey</a> command-line program, the Polkadot-JS application, or third-party key generation utilities.
+For example, you can generate key pairs using a `node-template` subcommand, the standalone [Subkey](/v3/tools/subkey) command-line program, the Polkadot-JS application, or third-party key generation utilities.
 
 Although you could use predefined key pairs to complete this tutorial, you would never use those keys in a production environment.
 Instead of using predefined keys or the more secure `subkey` program, this tutorial illustrates how to generate keys locally using the Substrate node template and the `key` subcommand.
 
 ### Generate local keys using the node template
 
-You have already used the some command-line options to start your local blockchain node using the predefined `alice` and `bob` accounts.
+You have already used some command-line options to start your local blockchain node using the predefined `alice` and `bob` accounts.
 You can also use command-line options to generate random keys to use with Substrate.
 
 For this tutorial, you can remain connected to the internet and use your local node to generate your keys.
@@ -346,10 +346,12 @@ To generate keys using the node template:
 
    `5CfBuoHDvZ4fd8jkLQicNL8tgjnK8pVG9AiuJrsNrRAx6CNW`
 
-1. Use the **secret seed** for the account you just generated to derive keys using the Ed25519 signature scheme by running the following command:
+1. Use the **secret phrase** for the account you just generated to derive keys using the Ed25519 signature scheme.
+   
+   For example, run a command similar to the following:
 
    ```bash
-   ./target/release/node-template key inspect --password-interactive --scheme Ed25519 0x0087016ebbdcf03d1b7b2ad9a958e14a43f2351cd42f2f0a973771b90fb0112f
+   ./target/release/node-template key inspect --password-interactive --scheme Ed25519 "pig giraffe ceiling enter weird liar orange decline behind total despair fly"
    ```
 
 1. Type the password you used to the generated keys.
@@ -357,11 +359,11 @@ To generate keys using the node template:
    The command displays output similar to the following:
 
    ```bash
-   Secret Key URI `0x0087016ebbdcf03d1b7b2ad9a958e14a43f2351cd42f2f0a973771b90fb0112f` is account:
+   Secret phrase `pig giraffe ceiling enter weird liar orange decline behind total despair fly` is account:
    Secret seed:       0x0087016ebbdcf03d1b7b2ad9a958e14a43f2351cd42f2f0a973771b90fb0112f
    Public key (hex):  0x2577ba03f47cdbea161851d737e41200e471cd7a31a5c88242a527837efc1e7b
-   Account ID:        0x2577ba03f47cdbea161851d737e41200e471cd7a31a5c88242a527837efc1e7b
    Public key (SS58): 5CuqCGfwqhjGzSqz5mnq36tMe651mU9Ji8xQ4JRuUTvPcjVN
+   Account ID:        0x2577ba03f47cdbea161851d737e41200e471cd7a31a5c88242a527837efc1e7b
    SS58 Address:      5CuqCGfwqhjGzSqz5mnq36tMe651mU9Ji8xQ4JRuUTvPcjVN
    ```
 
@@ -377,7 +379,9 @@ You have a few options to continue the tutorial:
 
 - You can use the keys for one or two of the predefined accounts.
 
-- You can repeat the steps in the previous section using a different identity on another computer to generate a second key pair.
+- You can repeat the steps in the previous section using a different identity on your local computer to generate a second key pair.
+
+- You can derive a child key pair to simulate a second identity on your local computer. 
 
 - You can recruit other participants to generate the keys required to join your private network.
 
@@ -649,17 +653,14 @@ To insert keys into the keystore:
    ```bash
    ./target/release/node-template key insert --base-path /tmp/node01 \
    --chain customSpecRaw.json \
+   --scheme Sr25519 \
    --suri <your-secret-seed> \
    --password-interactive \
    --key-type aura
    ```
 
-   This example uses the secret seed generated from the `key` subcommand into the keystore.
-   In this tutorial, the secret seed generated was `0x563d22ef5f00e589e07445a3ad88bb92efaa897d7f73a4543d9ac87476434e65`, so the `--suri` command-line option specifies that string to insert the key into the keystore:
-
-   ```bash
-   --suri 0x563d22ef5f00e589e07445a3ad88bb92efaa897d7f73a4543d9ac87476434e65
-   ```
+   Replace `<your-secret-seed>` with the secret phrase or secret seed for the first key pair that you generated in [Generate local keys using node template](#generate-local-keys-using-the-node-template). 
+   In this tutorial, the secret phrase is `pig giraffe ceiling enter weird liar orange decline behind total despair fly`, so the `--suri` command-line option specifies that string to insert the key into the keystore.
 
    You can also insert a key from a specified file location.
    For information about the command-line options available, run the following command:
@@ -673,6 +674,7 @@ To insert keys into the keystore:
    ```bash
    ./target/release/node-template key insert --base-path /tmp/node01 \
    --chain customSpecRaw.json \
+   --scheme Ed25519 \
    --suri <your-secret-key> \
    --password-interactive \
    --key-type gran
@@ -737,24 +739,28 @@ To add a second validator to the private network:
    ```bash
    ./target/release/node-template key insert --base-path /tmp/node02 \
    --chain customSpecRaw.json \
+   --scheme Sr25519 \
    --suri <second-participant-secret-seed> \
    --password-interactive \
    --key-type aura
    ```
 
-   Note that this command uses the second participant's secret key and that the `aura` key type is required to enable block production.
+   Replace `<second-participant-secret-seed>` with the secret phrase or secret seed that you generated in [Generate a second key pair](#generate-a-second-set-of-keys).
+   The `aura` key type is required to enable block production.
 
 1. Add the `grandpa` secret key generated from the `key` subcommand to the local keystore by running a command similar to the following:
 
    ```bash
    ./target/release/node-template key insert --base-path /tmp/node02 \
    --chain customSpecRaw.json \
+   --scheme Ed25519 \
    --suri <second-participant-secret-seed> \
    --password-interactive \
    --key-type gran
    ```
 
-   Note that this command uses the second participant's secret key and that the `gran` key type is required to enable block finalization.
+   Replace `<second-participant-secret-seed>` with the secret phrase or secret seed that you generated in [Generate a second key pair](#generate-a-second-set-of-keys).
+   The `gran` key type is required to enable block finalization.
 
    Block finalization requires at least two-thirds of the validators to add their keys to their respective keystores.
    Because this network is configured with two validators in the chain specification, block finalization starts after the second node has added its keys.

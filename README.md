@@ -160,7 +160,7 @@ finally serving it at `https://localhost:9000`.
 In another terminal, run:
 
 ```bash
-yarn checklinks
+yarn checklinks-local
 ```
 
 You can further configure it in `package.json` file. Currently it has a list of paths being

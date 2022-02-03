@@ -35,8 +35,8 @@ functions. We'll be using:
   licensed under [CC-By 4.0](https://creativecommons.org/licenses/by/4.0/) attribution. Thank you
   [David Revoy's](https://framagit.org/Deevad) for making this available.
 
-In Part 2, there will only be two main sections: the first focussing on setting up the Front-end
-Template and the second focussing on building custom React components that can interact with our
+In Part 2, there will only be two main sections: the first focusing on setting up the front-end
+template and the second focusing on building custom React components that can interact with our
 Kitty node.
 
 In case you get stuck, the complete solution for this part of the tutorial
@@ -126,7 +126,7 @@ To do this, go into `src/config/types.json` and replace the whole file with:
 
 ### Sketching out our components
 
-[Substrate Frontend Template][substrate-frontend-template] components use Polkadot-JS API and an
+[Substrate front-end template][substrate-frontend-template] components use Polkadot-JS API and
 RPC endpoints to communicate with a Substrate node. This allows us to use it to read storage items,
 and make extrinsics by calling our pallet's dispatchable functions. Before we get to that, let's
 sketch out the different parts of our application.
@@ -174,15 +174,13 @@ the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.js`.
     import { TxButton } from './substrate-lib/components';
 
     import KittyCards from './KittyCards';
-    ```
+    ````
 
     The way our custom components make use of Polkadot-JS API is by using `substrate-lib`, which is a
     wrapper around [Polkadot JS API instance](https://polkadot.js.org/docs/api/start/create/) and
     allows us to retrieve account keys from the [Polkadot-JS keyring](https://polkadot.js.org/docs/api/start/keyring).
     This is why we use `useSubstrate` which is exported by `src/substrate-lib/SubstrateContext.js` and
     used to create the wrapper.
-
-    ````
 
 1.  Proceed by pasting in the following code snippet:
 
@@ -277,7 +275,7 @@ the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.js`.
 
       const asyncFetch = async () => {
         // Get Kitty objects from storage
-        unsub = await api.query.substrateKitties.multi(kittyHashes, kitties => {
+        unsub = await api.query.substrateKitties.kitties.multi(kittyHashes, kitties => {
           // Create an array of Kitty objects from `constructKitty`
           const kittyArr = kitties.map((kitty, ind) =>
             constructKitty(kittyHashes[ind], kitty.value)
@@ -315,12 +313,6 @@ the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.js`.
     }
     ```
 
-    In `asyncFetch` we have subscribed to the Kitties storage. When the component is teared down, we
-    want to make sure the subscription is cleaned up (unsubscribed). So we return a clean up function
-    for the effect hook. Refer to
-    [Effects with Cleanup](https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup) to learn more
-    about cleanup functions.
-
 1.  Return the clean-up function:
 
     ```js
@@ -336,7 +328,7 @@ the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.js`.
     So we return a clean up function for the effect hook.
     Refer to [Effects with Cleanup](https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup) to learn more about cleanup functions.
 
-1.  Now all that's left to do for our component to listen for changes in our node's runtime storage is to pass in `subscribeKittyCnt` and `subscribeKitties` to React's `useEffect` function.
+1.  Now, all that's left to do in order for our component to listen for changes in our node's storage is to pass in `subscribeKittyCnt` and `subscribeKitties` to React's `useEffect` function.
     Add these lines to enable this:
 
     ```js

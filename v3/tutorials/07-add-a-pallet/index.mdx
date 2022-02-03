@@ -89,7 +89,7 @@ To add the Nicks pallet to the Substrate node template:
 
    It is important to note that the Substrate runtime compiles to both a native Rust [`std`](https://doc.rust-lang.org/std/) binary and a [WebAssembly (Wasm)](https://webassembly.org/) binary. For more information about compiling [`std`](https://doc.rust-lang.org/std/) and [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html) features, see the [Rust Embedded Book](https://docs.rust-embedded.org/book/intro/no-std.html#summary).
 
-   The remaining lines specify that Cargo should use the `pallet-nicks` crate from the `paritytech/substrate` repository with the commit tag identified using the `monthly-YYYY-MM` naming convention.
+   The remaining lines specify that Cargo should use the `pallet-nicks` crate from the `paritytech/substrate` repository with the commit tag identified using the `devhub/latest` tag.
 
    For an introduction to editing `Cargo.toml` files, see the [Cargo reference documentation](https://doc.rust-lang.org/cargo/reference/index.html).
 
@@ -432,7 +432,7 @@ Now use the `SUDO` button to dispatch the same call with the same parameter.
 
 ![Nicks Pallet Error](../../../src/images/tutorials/07-add-a-pallet/clear-name-error.png)
 
-The Sudo pallet emits a [`Sudid` event](/rustdocs/latest/pallet_sudo/enum.RawEvent.html#variant.Sudid) to inform network participants that the `Root` origin dispatched a call, however, you will notice that the inner dispatch failed with a [`DispatchError`](/rustdocs/latest/sp_runtime/enum.DispatchError.html) (the Sudo pallet's [`sudo` function](/rustdocs/latest/pallet_sudo/pallet/enum.Call.html#variant.sudo) is the "outer" dispatch).
+The Sudo pallet emits a [`Sudid` event](/rustdocs/latest/pallet_sudo/pallet/enum.Event.html#variant.Sudid) to inform network participants that the `Root` origin dispatched a call, however, you will notice that the inner dispatch failed with a [`DispatchError`](/rustdocs/latest/sp_runtime/enum.DispatchError.html) (the Sudo pallet's [`sudo` function](/rustdocs/latest/pallet_sudo/pallet/enum.Call.html#variant.sudo) is the "outer" dispatch).
 In particular, this was an instance of [the `DispatchError::Module` variant](/rustdocs/latest/frame_support/dispatch/enum.DispatchError.html#variant.Module), which reports two pieces of metadata: an `index` number and an `error` number.
 The `index` number relates to the pallet from which the error originated; it corresponds with the _index_ (position) of the pallet within the `construct_runtime!` macro.
 The `error` number corresponds with the index of the relevant variant from that pallet's `Error` enum.
@@ -449,13 +449,16 @@ Here are some other things you may want to try:
 - Add a nickname for Bob then use Alice's account and the `SUDO` button to forcibly kill Bob's nickname.
   Switch back to Bob's account and dispatch the `clearName` function.
 
-### Adding Other FRAME Pallets
+### Adding other FRAME pallets
 
-In this guide, we walked through specifically how to import the Nicks pallet, but as mentioned in the beginning of this guide, each pallet will be a little different.
-Have no fear, you can always refer to the [Substrate runtime](https://github.com/paritytech/substrate/tree/master/bin/node/runtime) which includes nearly every pallets in the library of core FRAME pallets.
+This tutorial illustrated how to add a pallet to the runtime using the Nicks pallet as an example.
+However, it is important to note that each pallet is a little different.
+If you aren't sure how to add a specific pallet, the best place to look is the runtime from the main [Substrate repository](https://github.com/paritytech/substrate/tree/master/bin/node/runtime).
+Unlike the node template used in tutorials, the runtime in the main Substrate repository includes most of the pallets available in the library of core FRAME pallets.
 
-In the Substrate node runtime `bin/node/runtime/Cargo.toml` file, you will see how to import different pallets, and in the `bin/node/runtime/src/lib.rs` file you will see how to add each pallet to your runtime.
-You can generally copy what was done there as a starting point to include a pallet in your own runtime.
+Refer to the `bin/node/runtime/Cargo.toml` file for the main Substrate node runtime to see examples of how to import different pallet dependencies.
+Refer to the `bin/node/runtime/src/lib.rs` file for the main Substrate node runtime to see examples of how to configure the runtime to include each pallet.
+Generally, you can copy the code from the main Substrate node runtime as a starting point to include a pallet in your own runtime.
 
 <Message
   type={`green`}
@@ -464,10 +467,10 @@ You can generally copy what was done there as a starting point to include a pall
   `}
 />
 
-## Publish Your Own Pallet
+## Publish your own pallet
 
 By now you should have successfully imported the Nicks pallet.
-In future, you will write your own pallets to execute your application-specific logics.
+In future, you will write your own pallets to execute your application-specific logic.
 In those cases, you may want to share these pallets with others.
 
 In this section, we will cover how to publish your own pallet for open source usage.
@@ -511,11 +514,6 @@ We do not specify any target destination on the above, and by default it will se
 
 ## Next steps
 
-- We have [plenty of tutorials](/tutorials) to showcase Substrate development concepts and techniques.
-- For more information about runtime development tips and patterns, refer to our [How-to Guides](/how-to-guides).
-- For a bare FRAME pallet with detailed comments about what you can access within FRAME, see [this example in `substrate`](https://github.com/paritytech/substrate/tree/master/frame/examples/basic).
-
-#### References
-
-- [The Cargo book](https://doc.rust-lang.org/stable/cargo/)
-- [Rust and WebAssembly](https://rustwasm.github.io/)
+- Follow the [tutorials](/tutorials) that demonstrate Substrate development concepts and techniques.
+- Browse [How-to Guides](/how-to-guides) for examples of common runtime development patterns.
+- Explore the [FRAME examples](https://github.com/paritytech/substrate/tree/master/frame/examples/basic) to learn what's available in the FRAME library.
