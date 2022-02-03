@@ -1,0 +1,212 @@
+.container {
+  @apply px-4;
+}
+
+@media (max-width: theme('screens.sm')) {
+  .container {
+    @apply max-w-none;
+  }
+}
+/* Paragraphs */
+p {
+  font-weight: unset;
+  line-height: 1.625;
+}
+
+/* Links underline animation */
+.underline-animate a {
+  @apply text-substrateBlue dark:text-substrateDarkThemeBlue;
+  display: inline-block;
+  position: relative;
+}
+
+.underline-animate a::after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: '';
+  display: block;
+  height: 2px;
+  left: 0;
+  position: absolute;
+  @apply bg-substrateBlue dark:text-substrateDarkThemeBlue;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+.underline-animate a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Thinner underline animation */
+
+.underline-animate-thin a::after {
+  height: 1px;
+}
+
+/* Scroll Margin top 100px */
+@layer utilities {
+  @variants responsive {
+    .scroll-margin-top-100 {
+      scroll-margin-top: 100px;
+    }
+  }
+}
+
+/* Markdown styles */
+
+.markdown h2,
+h3 {
+  @apply max-w-3xl;
+  scroll-margin-top: 100px;
+}
+
+/* Safari-only */
+@supports (-webkit-hyphens: none) {
+  .markdown h2,
+  h3 {
+    padding-top: 60px;
+    margin-top: -60px;
+  }
+}
+
+.markdown ul {
+  @apply ml-8;
+}
+
+.markdown ul ul {
+  @apply ml-8;
+}
+
+.markdown h2 {
+  @apply mt-14 mb-6 text-2xl font-medium;
+}
+
+.markdown h3 {
+  @apply mt-14 mb-6 text-2xl font-medium;
+}
+
+.markdown p {
+  @apply mb-2;
+}
+
+.markdown code {
+  @apply text-base font-sans;
+}
+
+/* Breadcrumbs */
+
+.breadcrumb__list {
+  @apply list-none flex text-sm ml-0 font-medium;
+}
+
+.breadcrumb__link {
+  @apply text-substrateBlue m-0;
+}
+
+.breadcrumb__list span {
+  @apply text-substrateBlackish dark:text-white;
+}
+
+.breadcrumb__list__item {
+  @apply flex m-0 mr-1;
+}
+
+.breadcrumb__list__item::before {
+  content: '»';
+  @apply mr-2 text-substrateBlackish dark:text-white;
+}
+
+.breadcrumb__list__item:first-of-type::before {
+  content: none;
+  @apply: m-0;
+}
+
+/* Navigation current page */
+
+.navSidebar a[aria-current='page'] {
+  @apply font-bold;
+}
+
+.navMain a[aria-current='page'] {
+  @apply text-substrateGreen dark:text-white underline;
+}
+
+.navMobile a[aria-current='page'] {
+  @apply font-bold;
+}
+
+/* 404 title */
+
+@supports (-webkit-text-stroke: 1px black) {
+  .four-oh-four-title {
+    @apply font-extrabold;
+    -webkit-text-stroke: 2px #24cc85;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* Lottie */
+
+div[aria-label='animation'] {
+  cursor: default;
+}
+
+@media screen and (max-width: 1400px) {
+  .modal-video-close-btn {
+    transform: translateY(-100%);
+  }
+}
+
+/* Primary button transform fix Safari */
+
+.primary-button {
+  clip-path: content-box;
+  -webkit-clip-path: content-box;
+}
+
+/* Image rounded corners fix Safari */
+
+.gatsby-image-wrapper.rounded-md,
+.image-rounded {
+  mask-image: radial-gradient(white, black);
+}
+
+/* utils */
+
+.-mt-36-px {
+  margin-top: calc(-9rem - 1px);
+}
+
+.border-3 {
+  border-width: 3px;
+}
+
+/* Case studies filter checkbox */
+
+.case-studies input[type='checkbox'] {
+  display: none;
+}
+
+.case-studies input[type='checkbox'] + label {
+  @apply inline-block relative cursor-pointer h-4 w-4 mt-1 border border-substrateDark dark:border-white rounded-sm;
+}
+
+.case-studies input[type='checkbox']:checked + label::after {
+  content: '✔';
+  @apply inline-block absolute left-0.5 text-xs text-substrateDark dark:text-white;
+}
+
+/* Banner */
+
+.banner p {
+  @apply mb-0;
+}
+
+.banner strong {
+  @apply font-bold;
+}
+
+.banner a {
+  @apply text-substrateDarkThemeBlue dark:text-substrateBlue;
+}

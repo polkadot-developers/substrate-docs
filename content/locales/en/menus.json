@@ -1,0 +1,49 @@
+{
+  "home": "Home",
+  "technology": "Technology",
+  "developers": "Developers",
+  "vision": "Vision",
+  "ecosystem": "Ecosystem",
+
+  "technology.overview": "Overview",
+  "technology.flexible": "Flexible",
+  "technology.open": "Open",
+  "technology.interoperable": "Interoperable",
+  "technology.future-proof": "Future-Proof",
+
+  "developers.home": "Home",
+  "developers.docs": "Docs",
+  "developers.how-to-guides": "How-to Guides",
+  "developers.tutorials": "Tutorials",
+  "developers.marketplace": "Marketplace",
+  "developers.rustdocs": "Rust Docs",
+  "developers.playground": "Playground",
+
+  "vision.substrate-and-polkadot": "Substrate & Polkadot",
+
+  "ecosystem.home": "Home",
+  "ecosystem.projects": "Projects",
+  "ecosystem.substrate-builders-program": "Builders Program",
+  "ecosystem.opportunities": "Opportunities",
+  "ecosystem.resources": "Resources",
+  "ecosystem.connect": "Connect",
+
+  "ecosystem.opportunities.hackathons": "Hackathons",
+  "ecosystem.opportunities.grants": "Grants",
+  "ecosystem.opportunities.jobs": "Jobs",
+
+  "ecosystem.resources.seminar": "Substrate Seminar",
+  "ecosystem.resources.awesome-substrate": "Awesome Substrate",
+  "ecosystem.resources.community-resources": "Community Resources",
+
+  "ecosystem.resources.contact": "Contact",
+  "ecosystem.resources.events": "Events",
+  "ecosystem.resources.newsletter": "Newsletter",
+  "ecosystem.resources.blog": "Blog",
+
+  "legal.privacy": "Privacy Policy",
+  "legal.terms": "Terms of Services",
+
+  "extra.substrate-connect": "Substrate Connect",
+  "extra.enterprise": "Enterprise"
+}

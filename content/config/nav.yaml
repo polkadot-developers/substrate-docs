@@ -1,0 +1,34 @@
+menu:
+  - quick-start
+  - reference
+  - tutorials
+  - docs
+
+quick-start:
+  title: Quick Start
+  url: /quick-start/
+
+docs:
+  title: Docs
+  url: /main-docs/
+  pages:
+    - title: Why Substrate?
+      url: /main-docs/why-substrate/
+      pages:
+        - title: Choose platform
+          url: /main-docs/why-substrate/choose-a-dev-platform/
+
+tutorials:
+  title: Tutorials
+  url: /tutorials/
+  pages:
+    - title: Build blockchain
+      url: /tutorials/build-blockchain/
+    - title: Forkless
+      url: /tutorials/forkless-upgrades/
+
+reference:
+  title: Reference
+  pages:
+    - title: Glossary
+      url: /reference/glossary/

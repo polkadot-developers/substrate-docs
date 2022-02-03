@@ -1,0 +1,87 @@
+.home-hero {
+  &__headline {
+    text-shadow: 2px 2px 15px rgba(#0a5f3b, 0.45);
+  }
+
+  svg {
+    cursor: default;
+  }
+}
+
+.home-tabs__link {
+  @apply relative inline-block md:text-lg font-bold leading-relaxed mb-2 md:mb-8 transition-all cursor-pointer border-b-2 clear-right text-navItemColor border-transparent hover:text-substrateBlackish dark:hover:text-white;
+
+  svg {
+    @apply transition-all absolute -left-8 top-3 opacity-0;
+  }
+}
+
+.home-tabs__link--active {
+  @apply text-substrateGreen border-substrateGreen hover:text-substrateGreen dark:hover:text-substrateGreen;
+
+  svg {
+    @apply transition-all -left-6 opacity-100;
+  }
+}
+
+.technology-teaser {
+  &__icon {
+    svg {
+      @apply w-36 h-36 mx-auto transition-all;
+    }
+  }
+}
+
+.home-expand {
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: initial;
+  margin-bottom: 1.5rem;
+  max-height: 10rem;
+  transition: max-height 400ms ease-in-out;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3rem;
+    opacity: 1;
+    transition: all 400ms ease-in;
+    @apply bg-gradient-to-t	from-white dark:from-substrateDarkest to-transparentWhite dark:to-transparentDarkest;
+  }
+
+  &--active {
+    max-height: 80rem;
+
+    @media (min-width: 1024px) {
+      max-height: 40rem;
+    }
+
+    @media (min-width: 1400px) {
+      max-height: 32rem;
+    }
+
+    &::after {
+      opacity: 0;
+    }
+
+    + .home-expand__button {
+      svg {
+        @apply -rotate-90;
+      }
+    }
+  }
+
+  &__button {
+    @apply opacity-100 relative pb-1 md:text-lg font-bold border-b-2 border-substrateBlackish dark:border-white hover:border-navItemColor dark:hover:border-navItemColor cursor-pointer transition;
+
+    &:hover {
+      svg {
+        @apply top-3;
+      }
+    }
+  }
+}

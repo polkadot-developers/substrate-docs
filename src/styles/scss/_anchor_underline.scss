@@ -1,0 +1,92 @@
+// Footer Anchor Tags
+.underline-anchor a {
+  position: relative;
+  color: white;
+  text-decoration: none;
+}
+
+.underline-anchor a:hover {
+  color: white;
+}
+
+.underline-anchor a::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  transform: scaleX(0);
+  transform-origin: top left;
+  transition: transform 0.3s ease;
+}
+
+.underline-anchor a:hover::before {
+  transform: scaleX(1);
+}
+
+// Markdown Anchor Tags
+.mdx-anchor a {
+  position: relative;
+  color: #4e73f2;
+  text-decoration: none;
+}
+
+.mdx-anchor a:hover {
+  color: #4e73f2;
+}
+
+.mdx-anchor a::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: #4e73f2;
+  transform: scaleX(0);
+  transform-origin: top left;
+  transition: transform 0.3s ease;
+}
+
+.mdx-anchor a.md-button:hover::before {
+  transform: scaleX(0);
+}
+.mdx-anchor a:hover::before {
+  transform: scaleX(1);
+}
+
+// Team Anchor Tags
+.underline-anchor-dark a {
+  position: relative;
+  @apply text-substrateDark dark:text-white;
+  text-decoration: none;
+}
+
+.underline-anchor-dark a:hover {
+  @apply text-substrateDark dark:text-white;
+}
+
+.underline-anchor-dark a::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  @apply bg-substrateDark dark:bg-white;
+  transform: scaleX(0);
+  transform-origin: top left;
+  transition: transform 0.3s ease;
+}
+
+.underline-anchor-dark a.md-button:hover::before {
+  transform: scaleX(0);
+}
+.underline-anchor-dark a:hover::before {
+  transform: scaleX(1);
+}

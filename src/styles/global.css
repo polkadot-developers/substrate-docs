@@ -1,0 +1,11 @@
+/* import fonts locally to remove cross-site dependency */
+@import 'fonts';
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* GLOBAL Substrate platform preset */
+@import './tailwind-preset.css';
+/* custom project styles */
+@import './tailwind-custom.css';
