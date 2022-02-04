@@ -119,12 +119,7 @@ export default function Newsletter({ layout = 'default' }) {
                   {loading ? 'Sending...' : 'Subscribe'}
                 </button>
                 {failedSubmission && (
-                  <p
-                    className={cn('mb-6 text-sm', {
-                      'mb-2 lg:text-center text-substrateYellow': !widget,
-                      'text-substrateRed': widget,
-                    })}
-                  >
+                  <p className="text-sm mb-2 lg:text-center text-substrateYellow">
                     Submission Failed. Please disable ad-blocker or{' '}
                     <span className="underline-animate underline-animate-thin">
                       <Link to="https://paritytechnologies.activehosted.com/f/11">
