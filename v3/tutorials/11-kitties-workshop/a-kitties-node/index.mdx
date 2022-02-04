@@ -68,7 +68,7 @@ This part covers the basic patterns involved with using the Substrate node templ
 
 ### Set-up your template node
 
-The [Substrate node template][substrate-node-template] provides us with an customizable blockchain node, with built-in networking and consensus layers included.
+The [Substrate node template][substrate-node-template] provides us with a customizable blockchain node, with built-in networking and consensus layers included.
 All we need to focus on is building out the logic of our [runtime][runtime-kb] and [pallets][pallets-kb].
 
 To kick things off, we need to set-up our project name and dependencies.
@@ -240,7 +240,7 @@ Just like the [helper files](https://github.com/substrate-developer-hub/substrat
    		// TODO Part III: breed_kitty
    	}
 
-   	// TODO Parts II: helper function for Kitty struct
+   	// TODO Part II: helper function for Kitty struct
 
    	impl<T: Config> Pallet<T> {
    		// TODO Part III: helper functions for dispatchable functions
@@ -413,7 +413,7 @@ pub mod pallet {
 
 		// TODO Part III: helper functions for dispatchable functions
 
-		// ACTION #6: funtion to randomly generate DNA
+		// ACTION #6: function to randomly generate DNA
 
 		// TODO Part III: mint
 
@@ -570,7 +570,7 @@ It will be able to generate a random seed which we'll create unique Kitties with
 
 1. In your pallet's configuration trait, define a new type bound by the `Randomness` trait.
 
-   The `Randomness` trait from `frame_support` requires specifying it with a paramater to replace the `Output` and `BlockNumber` generics.
+   The `Randomness` trait from `frame_support` requires specifying it with a parameter to replace the `Output` and `BlockNumber` generics.
    Take a look at [the documentation][randomness-rustdocs] and the source code implementation to understand how this works.
    For our purposes, we want the output of functions using this trait to be [`Blake2 128-bit hash`][blake2-rustdocs] which you'll notice should already be declared at the top of your working codebase.
 
@@ -856,9 +856,9 @@ The first thing we're doing is creating a new Kitty object.
 Then, we create a unique `kitty_id` using a hashing function based on the current properties of the kitty.
 
 Next, we increment the `KittyCnt` using the storage getter function `Self::kitty_cnt()`.
-We also checking for overflow with `check_add()` function.
+We are also checking for an overflow with the `check_add()` function.
 
-Once we've done with the check, we proceed with updating our storage items by:
+Once we're done with the check, we proceed with updating our storage items by:
 
 1. Making use of [`try_mutate`](/rustdocs/latest/frame_support/storage/trait.StorageMap.html#tymethod.try_mutate) to update the kitty's owner vector.
 2. Using the [`insert`][insert-rustdocs] method provided by Substrate's StorageMap API to store the actually Kitty object and associate it with its `kitty_id`.
@@ -1014,7 +1014,7 @@ In the next section you'll be able to see everything you've built so far in acti
    ./target/release/node-kitties --tmp --dev
    ```
 
-   By doing this, we're specifying to run a temporary chain in developer mode, so as not to need to purge storage each time we want to start a fresh chain.
+   By doing this, we're specifying to run a temporary chain in development mode, so as not to need to purge storage each time we want to start a fresh chain.
    You should be seeing block finalization happening in your terminal.
 
 1. Head over to [Polkadot.js Apps UI][polkadotjsapps].
@@ -1289,7 +1289,7 @@ if let Some(ask_price) = kitty.price {
 ensure!(T::Currency::free_balance(&buyer) >= bid_price, <Error<T>>::NotEnoughBalance);
 ```
 
-In a similar vain, we have to verify whether the user has the capacity to receive a Kitty.
+In a similar vein, we have to verify whether the user has the capacity to receive a Kitty.
 Remember we're using a [`BoundedVec`](/rustdocs/latest/frame_support/storage/bounded_vec/struct.BoundedVec.html) that can only hold a fixed number of Kitties, defined in our pallet's `MaxKittyOwned` constant.
 Replace ACTION #7 with:
 

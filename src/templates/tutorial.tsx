@@ -122,7 +122,7 @@ export const query = graphql`
         sideNav
       }
       body
-      tableOfContents(maxDepth: 3)
+      tableOfContents(maxDepth: 2)
       fileAbsolutePath
     }
   }

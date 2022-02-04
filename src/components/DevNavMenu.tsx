@@ -282,7 +282,7 @@ const DevNavMenu = {
           },
           {
             title: 'Custom Chain Specifications',
-            link: '/how-to-guides/v3/basics/genesis/',
+            link: '/how-to-guides/v3/basics/custom-chain-spec/',
           },
           {
             title: 'Helper Functions',
@@ -373,8 +373,8 @@ const DevNavMenu = {
           {
             title: 'Off-chain Indexing',
             link: '/how-to-guides/v3/ocw/indexing/',
-          }
-        ]
+          },
+        ],
       },
       // 5. Testing.
       {

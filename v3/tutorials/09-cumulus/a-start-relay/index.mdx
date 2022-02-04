@@ -124,10 +124,10 @@ RUSTFLAGS="-C codegen-units=1" cargo build --release
 
 This tutorial has been tested on:
 
-- [Polkadot `v0.9.16`](https://github.com/paritytech/polkadot/tree/v0.9.13)
+- [Polkadot `v0.9.16`](https://github.com/paritytech/polkadot/tree/v0.9.16)
 - [Substrate Parachain Template `polkadot-v0.9.16`](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.16)
-- [Polkadot-JS Apps `v0.98.2-121`](https://github.com/polkadot-js/apps/commit/03d53ce1551bc0cd55c55491fa20e652d7eaa4c6).
-  It is generally expected that the [hosted Polkadot-JS Apps](https://polkadot.js.org/apps) should work.
+- [Polkadot-JS Apps `v0.103.2-8`](https://github.com/polkadot-js/apps/commit/0b6e52733181392e823f7c37e833f4f5fd6b16ef).
+  It is generally expected that the [hosted Polkadot-JS Apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/explorer) should work.
   If you have issues, build and run this UI yourself at this tagged version/commit.
 
 <Message
@@ -139,7 +139,7 @@ conflicts.\n
 At the moment, parachains are _very tightly coupled_ with the relay chain codebase they are
 connecting to. To have the least amount of hiccups, be sure to use the corresponding tagged
 version of Polkadot and Parachain Template when working on this tutorial. So if you are using
-[**Polkadot \`v0.9.13\`**](https://github.com/paritytech/polkadot/tree/v0.9.13), use the equivalent
+[**Polkadot \`v0.9.16\`**](https://github.com/paritytech/polkadot/tree/v0.9.16), use the equivalent
 version of [**Parachain Template \`polkadot-v0.9.16\`**](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.16).
 `}
 />
@@ -165,7 +165,7 @@ git clone https://github.com/paritytech/polkadot.git
 cd polkadot
 
 # Checkout the proper commit
-git checkout v0.9.13
+git checkout v0.9.16
 
 # Build the relay chain Node
 cargo build --release
