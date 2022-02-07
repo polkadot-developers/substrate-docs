@@ -1,4 +1,8 @@
-# node-template
+---
+title: node-template
+section: reference
+keywords:
+---
 
 The `node-template` program provides a working Substrate node with FRAME system pallets and a subset of additional pallets for working with common blockchain functional operations.`
 With its baseline of functional pallets, the `node-template` serves as a starter kit for building your own blockchain and developing a custom runtime.

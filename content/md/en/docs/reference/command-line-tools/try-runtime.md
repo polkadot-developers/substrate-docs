@@ -1,3 +1,9 @@
+---
+title: try-runtime
+section: reference
+keywords:
+---
+
 The `try-runtime` tool is built to query a snapshot of runtime storage, using an [in-memory-externalities](https://docs.substrate.io/rustdocs/latest/sp_state_machine/struct.TestExternalities.html) to store state. 
 In this way, it enables runtime engineers to write tests for a specified runtime state, for testing against real chain state _before_ going to production. 
 It is designed to be used as a command line interface to specify at which block to query state.

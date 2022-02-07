@@ -1,4 +1,8 @@
-# Command-line tools
+---
+title: Command-line tools
+section: reference
+keywords:
+---
 
 This section provides reference information for Substrate command-line tools.
 
