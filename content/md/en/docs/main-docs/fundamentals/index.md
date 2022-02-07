@@ -1,7 +1,6 @@
 ---
 title: Fundamentals
-slug: /docs/02-fundamentals
-version: '3.0'
+slug: /main-docs/fundamentals/
 section: docs
 keywords: blockchain, consensus, substrate, architecture
 ---
