@@ -1,8 +1,5 @@
----
-title: Command-line tools
-section: reference
-keywords:
----
+# Command-line tools
+
 This section provides reference information for Substrate command-line tools.
 
 | <div style="width:138px;">Command entry point | Description

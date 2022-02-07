@@ -1,8 +1,4 @@
----
-title: subkey
-section: reference
-keywords:
----
+# subkey
 
 The `subkey` program is a key generation and management utility that is included in the Substrate repository.
 You can use the `subkey` program to perform the following tasks:

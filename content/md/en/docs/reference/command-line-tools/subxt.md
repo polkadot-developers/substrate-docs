@@ -1,9 +1,3 @@
----
-title: subxt
-section: reference
-keywords:
----
-
 A library to submit extrinsics to a Substrate node via RPC.
 [Go to documentation](https://github.com/paritytech/substrate-subxt).
 

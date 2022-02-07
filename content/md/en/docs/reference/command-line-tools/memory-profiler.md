@@ -1,8 +1,4 @@
----
-title: memory-profiler
-section: reference
-keywords:
----
+### memory profiler
 
 Memory profiling enables you to understand the memory allocation and behavior of your blockchain applications over time in Substrate-based clients. 
 It identifies method calls in the context of how memory was allocated, combining this information with the number of allocated objects. 

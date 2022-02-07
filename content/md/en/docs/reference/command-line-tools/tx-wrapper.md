@@ -1,8 +1,4 @@
----
-title: tx-wrapper
-section: reference
-keywords:
----
+### tx wrapper
 
 Tools for FRAME chain builders to publish chain specific offline transaction generation libraries.
 [Go to documentation](https://github.com/paritytech/txwrapper-core).
