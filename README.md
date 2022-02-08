@@ -41,7 +41,7 @@ yarn develop
 
 # Working with content
 
-### Path/Slug pattern:
+### Path/Slug pattern
 
 All `.md` files added to `./content/md/en/docs/` folder will output an URL path without the `/docs` prefix, eg.:
 
@@ -49,6 +49,11 @@ All `.md` files added to `./content/md/en/docs/` folder will output an URL path 
 - `<article-name>.md` for an article in its parent category `./content/md/en/docs/reference/glossary.md` &rarr; `/reference/glossary/`
 
 You can use any structure nesting needed, there is no limit of depth.
+
+### Images
+
+- use `./content/media/images/docs/` folder for images to be included in `/docs/*/*.md` files
+- source images in `.md`: `/media/images/docs/path/to/your/image/<image>.ext`
 
 ### Navigation config
 
