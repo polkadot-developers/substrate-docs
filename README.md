@@ -39,9 +39,9 @@ Navigate into your new site’s directory and use the following command to start
 yarn develop
 ```
 
-# Working with content
+# Working with `/docs` content
 
-### Path/Slug pattern
+## URL paths
 
 All `.md` files added to `./content/md/en/docs/` folder will output an URL path without the `/docs` prefix, eg.:
 
@@ -50,12 +50,12 @@ All `.md` files added to `./content/md/en/docs/` folder will output an URL path 
 
 You can use any structure nesting needed, there is no limit of depth.
 
-### Media/Images
+## Media / Images
 
 - use `./content/media/images/docs/` folder for images to be included in `/docs/*/*.md` files
 - source images in `.md`: `/media/images/docs/path/to/your/image/<image>.ext`
 
-### Navigation config
+## Navigation config
 
 - Use file `./content/config/nav.yaml` to add items and linking to your content
 
