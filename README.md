@@ -38,3 +38,24 @@ Navigate into your new site’s directory and use the following command to start
 ```bash
 yarn develop
 ```
+
+# Working with content
+
+### Path/Slug pattern:
+
+All `.md` files added to `./content/md/en/docs/` folder will output an URL path without the `/docs` prefix, eg.:
+
+- `index.md` for a category page : `./content/md/en/docs/reference/index.md` &rarr; `/reference/`
+- `<article-name>.md` for an article in its parent category `./content/md/en/docs/reference/glossary.md` &rarr; `/reference/glossary/`
+
+You can use any structure nesting needed, there is no limit of depth.
+
+### Navigation config
+
+- Use file `./content/config/nav.yaml` to add items and linking to your content
+
+This config file is used to generate sidebar menu where:
+
+- menu is populated from the `menu` sequence (respecting order)
+- menu supports three level hierarchy
+- menu accepts external links, eg.: `https://substrate.io`
