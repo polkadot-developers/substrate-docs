@@ -85,9 +85,10 @@ To add the Nicks pallet to the Substrate node template:
    version = '4.0.0-dev'
    ```
 
-   In this `dependencies.pallet-nicks` section, `default-features = false` specifies that the default features to be used are the features defined for the [`std`](https://doc.rust-lang.org/std/) native Rust binary listed in the `features` section.
+In this `dependencies.pallet-nicks` section, the`default-features = false` setting specifies that the pallet features are not used by default when compiling the runtime.
+Instead, the features that are compiled for the runtime are controlled by specifying which features to include when compiling the native Rust binary listed in a separate `features` section.
 
-   It is important to note that the Substrate runtime compiles to both a native Rust [`std`](https://doc.rust-lang.org/std/) binary and a [WebAssembly (Wasm)](https://webassembly.org/) binary. For more information about compiling [`std`](https://doc.rust-lang.org/std/) and [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html) features, see the [Rust Embedded Book](https://docs.rust-embedded.org/book/intro/no-std.html#summary).
+Because the Substrate runtime compiles to both a native Rust binary with standard library functions [`std`](https://doc.rust-lang.org/std/) and a [WebAssembly (Wasm)](https://webassembly.org/) binary that does not include the standard library, the pallet features that get compiled depend on whether you are compiling the Rust binary (`std` feaures) or the WebAssembly binary (`no-std`). For more information about compiling [`std`](https://doc.rust-lang.org/std/) and [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html) features, see the [Rust Embedded Book](https://docs.rust-embedded.org/book/intro/no-std.html#summary).
 
    The remaining lines specify that Cargo should use the `pallet-nicks` crate from the `paritytech/substrate` repository with the commit tag identified using the `devhub/latest` tag.
 
