@@ -43,7 +43,7 @@ docs:
       url: main-docs/install/
       pages:
         - title: Rust compiler and toolchain
-          url: /main-docs/install/rust-builds
+          url: /main-docs/install/rust-builds/
         - title: Linux
           url: /main-docs/install/linux/
         - title: macOS
@@ -52,17 +52,17 @@ docs:
           url: /main-docs/install/windows/
         - title: Developer tools
           url: /main-docs/install/other-tools/
-        - title: Troubleshoot common issues
-          url: /main-docs/install/troubleshoot/
+        - title: Troubleshoot Rust issues
+          url: /main-docs/install/troubleshooting/
     - title: Explore
       url: /main-docs/explore/
     - title: Design
       url: /main-docs/design/
       pages:
         - title: Designing your runtime logic
-          url: /main-docs/design/index.md
+          url: /main-docs/design/runtime/
         - title: Pallet design
-          url: /main-docs/design/pallet-design
+          url: /main-docs/design/pallet-design/
         - title: Smart contract pallets
           url: /main-docs/design/smart-contract-pallets/
         - title: Storage design decisions
@@ -105,7 +105,7 @@ docs:
         - title: Genesis construction
           url: /main-docs/deploy/genesis/
         - title: Protecting your network from attacks
-          url: 'main-docs/deploy/attacks.md'
+          url: 'main-docs/deploy/attacks/
     - title: Maintain
       url: /main-docs/maintain/
       pages:
