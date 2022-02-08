@@ -91,7 +91,7 @@ export default function Index() {
               iconName={`docsIcon`}
             />
             <DocCard
-              title={`How-To Guides`}
+              title={`How-to Guides`}
               text={`The Substrate how-to guides have everything you need to produce robust Substrate based blockchains. From beginner to expert, you can use them flexibly to suit your current needs.`}
               link={`/how-to-guides/`}
               cta={`Learn and contribute`}
@@ -168,7 +168,7 @@ export default function Index() {
             <Link to="/playground/">
               <StaticImage
                 backgroundColor="transparent"
-                src="../images/playground-hero.png"
+                src="../images/regular/playground-hero.png"
                 alt="Substrate Playground"
                 layout="constrained"
               />

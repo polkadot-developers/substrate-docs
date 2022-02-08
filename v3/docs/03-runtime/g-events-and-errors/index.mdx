@@ -4,7 +4,7 @@ slug: /v3/runtime/events-and-errors
 version: '3.0'
 section: docs
 category: runtime
-keywords:
+keywords: []
 ---
 
 A pallet can emit events when it wants to notify external entities about changes
@@ -159,7 +159,7 @@ pub enum Error<T> {
 ```
 
 The
-[Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/pallets/template/src/lib.rs#L85-L103)
+[Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/pallets/template/src/lib.rs#L85-L103)
 demonstrates some ways to correctly handle errors in dispatchable functions. The FRAME Support
 module also includes a helpful
 [`ensure!` macro](/rustdocs/latest/frame_support/macro.ensure.html) that can be

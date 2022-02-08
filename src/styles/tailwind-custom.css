@@ -34,3 +34,58 @@
     }
   }
 }
+
+/* utils */
+
+.-mt-36-px {
+  margin-top: calc(-9rem - 1px);
+}
+
+.border-3 {
+  border-width: 3px;
+}
+
+/* Links underline animation */
+.underline-animate a {
+  @apply text-substrateBlue dark:text-substrateDarkThemeBlue;
+  display: inline-block;
+  position: relative;
+}
+
+.underline-animate a::after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: '';
+  display: block;
+  height: 2px;
+  left: 0;
+  position: absolute;
+  @apply bg-substrateBlue dark:text-substrateDarkThemeBlue;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+.underline-animate a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Thinner underline animation */
+
+.underline-animate-thin a::after {
+  height: 1px;
+}
+
+/* Banner */
+
+.banner p {
+  @apply mb-0;
+}
+
+.banner strong {
+  @apply font-bold;
+}
+
+.banner a {
+  @apply text-substrateDarkThemeBlue dark:text-substrateBlue;
+}

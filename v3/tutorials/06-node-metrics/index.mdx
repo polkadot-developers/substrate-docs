@@ -6,7 +6,9 @@ sideNav: nodeMetrics
 section: tutorials
 hideNav: true
 category: node metrics
-keywords: telemetry, metrics
+keywords:
+  - telemetry
+  - metrics
 difficulty: 1
 duration: < 1 Hour
 relevantSkills:
@@ -113,7 +115,7 @@ Prometheus->Grafana: `substrate_peers_count (1582023828, 5), (1582023847, 4) [..
   text="We suggest for _testing_ that you download the compiled `bin` programs for these apps
     as opposed to fully installing them or using them in docker. Just `download` for your
     architecture, and run it from the `working directory` that is convenient for you.
-    The links above provide instruction on this, and this guide assume you do it this way.
+    The preceding links provide instructions for downloading the compiled programs, and this guide assumes you follow those instructions.
     "
 />
 
@@ -124,9 +126,9 @@ Prometheus->Grafana: `substrate_peers_count (1582023828, 5), (1582023847, 4) [..
   title={`Information`}
   text="Before you continue here, you should complete the
     [create your first substrate chain](/tutorials/v3/create-your-first-substrate-chain)
-    tutorial. The same substrate version, conventions for 
+    tutorial. The same substrate version, conventions for
     directory structure, and bin names are used here.
-    You can of course use your own custom Substrate node instead of the template, 
+    You can of course use your own custom Substrate node instead of the template,
     just edit the commands shown as needed.
     "
 />
@@ -143,7 +145,7 @@ be accessed over an interface other than local host with
 # start the template node  in dev & tmp mode to experiment
 # optionally add the `--prometheus-port <PORT>`
 # or `--prometheus-external` flags
-./target/release/node-template --dev --tmp
+./target/release/node-template --dev
 ```
 
 ### Configure Prometheus to scrape your Substrate node
@@ -264,8 +266,8 @@ If you do create one, consider uploading it to the [community list of
 dashboards](https://grafana.com/grafana/dashboards) and letting the Substrate
 builder community know it exists by listing in on [Awesome
 Substrate](https://github.com/substrate-developer-hub/awesome-substrate)! Here
-is ours on [the grafana public
-dashboards](https://grafana.com/grafana/dashboards/13759/)
+is ours on [the Grafana public
+dashboard](https://grafana.com/grafana/dashboards/13759/).
 
 ## Next Steps
 
@@ -282,4 +284,4 @@ Have a look at some node visualization examples:
 
 - The Grafana dashboard configuration for the [Polkadot
   network](https://github.com/w3f/polkadot-dashboard).
-- [Grafana Template](https://grafana.com/grafana/dashboards/13759/) for a Substrate Node Template.
+- [Grafana Template](https://grafana.com/grafana/dashboards/13759/) for a Substrate node template.

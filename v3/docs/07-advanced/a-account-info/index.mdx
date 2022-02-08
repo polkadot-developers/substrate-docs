@@ -4,7 +4,7 @@ slug: /v3/advanced/account-info
 version: '3.0'
 section: docs
 category: advanced
-keywords:
+keywords: []
 ---
 
 In this article we will look into how an account is stored in Substrate and how its underlying data
@@ -65,7 +65,7 @@ pub struct AccountInfo<Index, AccountData> {
 }
 ```
 
-Every account has an `AccountInfo` consisting of an `nonce` indicating number of transactions the
+Every account has an `AccountInfo` consisting of a `nonce` indicating the number of transactions the
 account has sent, three reference counters, and an `AccountData` structure which can be configured
 to hold different kinds of data, [further explained below](#accountdata-trait-and-implementation).
 
@@ -90,11 +90,11 @@ existential deposit away.
   not to store data about that account until it is active (i.e. `providers` > 0), and `consumers`
   tells Substrate not to remove an account until data about the account is removed in all pallets
   (i.e. `consumers` == 0). This is to keep users accountable for their data stored on-chain. If
-  users want to remove their accounts and get back the exisitential deposit, they need to remove
+  users want to remove their accounts and get back the existential deposit, they need to remove
   the dependencies from those on-chain pallets, such as clearing data stored on-chain for those
   pallets, which decrement `consumers` counter. Pallets also have cleanup functions to decrement
   `providers` to mark the account as deactivated within the pallet-managed scope. When the account
-  `providers` reaches 0, with the prerequsite that `consumers` has reached 0 by this point, this
+  `providers` reaches 0, with the prerequisite that `consumers` has reached 0 by this point, this
   account is considered **deactivated** by all on-chain pallets.
 
 - **`sufficients`** indicates if there are any reasons this account is self-sufficient to exist by

@@ -4,7 +4,11 @@ slug: /v3/concepts/off-chain-features
 version: '3.0'
 section: docs
 category: concepts
-keywords: off-chain, off-chain storage, oracles, ocw
+keywords:
+  - off-chain
+  - off-chain storage
+  - oracles
+  - ocw
 ---
 
 There is often a need to query and/or process off-chain data before it can be included in the on-chain state.
@@ -52,7 +56,7 @@ should be implemented to determine what information gets into the chain.
 
 ## Off-chain storage
 
-As its name indicated, the storage is not stored on-chain. It can be accessed by off-chain worker
+As its name indicates, the storage is not stored on-chain. It can be accessed by off-chain worker
 threads (both read and write access) and on-chain logic (write only, refer to off-chain indexing
 below). This storage is not populated among the blockchain network and does not need to have
 consensus computation over it.

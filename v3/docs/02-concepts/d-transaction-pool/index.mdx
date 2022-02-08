@@ -4,7 +4,13 @@ slug: /v3/concepts/tx-pool
 version: '3.0'
 section: docs
 category: concepts
-keywords: transaction, pool, order, ordering, sorting, validity
+keywords:
+  - transaction
+  - pool
+  - order
+  - ordering
+  - sorting
+  - validity
 ---
 
 The transaction pool contains all transactions ([signed](/v3/concepts/extrinsics#signed-transactions)
@@ -24,7 +30,7 @@ Example validity checks are:
 The transaction pool also regularly checks validity of existing transactions within the pool.
 A transaction will be dropped from the pool if it is found to be invalid or is an expired mortal transaction.
 
-[`validate_transaction`](/rustdocs/latest/sp_transaction_pool/runtime_api/trait.TaggedTransactionQueue.html#method.validate_transaction) is called from the runtime to checks for a valid signature and nonce (or output for a UTXO chain) and returns a `Result`.
+[`validate_transaction`](/rustdocs/latest/sp_transaction_pool/runtime_api/trait.TaggedTransactionQueue.html#method.validate_transaction) is called from the runtime to check for a valid signature and nonce (or output for a UTXO chain) and returns a `Result`.
 It does this check in isolation, so it will not catch errors such as the same output being spent twice.
 
 Although it is possible, `validate_transaction` does not check whether calls to pallets will succeed.
@@ -56,7 +62,7 @@ For runtimes built with FRAME, the nodes order transactions with an account-base
 Every signed transaction needs to contain a nonce, which is incremented by 1 every time a new transaction is made.
 For example, the first transaction from a new account will have `nonce = 0` and the second transaction will have `nonce = 1`.
 
-At minimum, FRAME transactions have a `provides` tag of `encode(sender ++ nonce)` and a `requires` tag of `encode(sender ++ (nonce -1)) if nonce > 1`.
+At minimum, FRAME transactions have a `provides` tag of `encode(sender ++ nonce)` and a `requires` tag of `encode(sender ++ (nonce -1)) if nonce > 0`.
 Transactions do not require anything if `nonce=0`.
 As a result, all transactions coming from a single sender will form a sequence in which they should be included.
 

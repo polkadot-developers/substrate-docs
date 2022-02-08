@@ -1,7 +1,10 @@
 ---
 title: Configuring Genesis for Balances
 slug: /how-to-guides/v3/basics/genesis
-keywords: basics, beginner, runtime
+keywords:
+  - basics
+  - beginner
+  - runtime
 version: '3.0'
 section: how to guides
 category: basics
@@ -109,14 +112,10 @@ We'll assume our pallet is called `pallet_something`, declared as `PalletSomethi
 
 ## Example
 
-- [Node template 'chainspec.rs'][node-template-chainspec]
+- [Node template 'chain_spec.rs'](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs#L142-L144)
 - [Example pallet `GenesisConfig`](/rustdocs/latest/src/pallet_example/lib.rs.html#607)
 
 ## Related material
 
 - Learn how to customize a chain's genesis configuration for the [balances pallet](/rustdocs/latest/pallet_balances/index.html).
-- [`BalancesConfig`][balances-config-rustdocs]
-
-[balances-config-rustdocs]: /rustdocs/latest/node_template_runtime/type.BalancesConfig.html
-[genesis-config-rustdocs]: /rustdocs/latest/pallet_balances/struct.GenesisConfig.html
-[node-template-chainspec]: https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs#L142-L144
+- [`BalancesConfig`](/rustdocs/latest/node_template_runtime/type.BalancesConfig.html)

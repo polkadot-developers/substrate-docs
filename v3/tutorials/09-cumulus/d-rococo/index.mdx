@@ -1,8 +1,8 @@
 ---
-title: Register on Rococo
+title: Connect to the Rococo Public Testnet
 slug: /tutorials/v3/cumulus/rococo
 sideNav: cumulusTutorial
-version: 'polkadot-0.9.12'
+version: 'polkadot-v0.9.16'
 section: tutorials
 category: parachains
 duration: 3 Hours
@@ -17,7 +17,7 @@ keywords:
   - relay chain
   - parachain
   - parathread
-  - paraid
+  - paraID
   - template
   - rococo
   - xcm
@@ -25,165 +25,88 @@ keywords:
   - collator
 ---
 
-Rococo is Parity's official test network for cumulus-based parachains.
+Rococo is Parity's public test network for cumulus-based parachains.
+This section of the workshop steps through how you can onboard your parachain to it.
 
-<Message
-  type={`yellow`}
-  title={`NEW ROCOCO SLOTS PRESENTLY DISABLED FOR COMMUNITY CHAINS`}
-  text={`
-  The core team is very actively working on _breaking changes_ in [disputes logic](https://github.com/paritytech/polkadot/blob/master/runtime/parachains/src/disputes.rs) (following the [implementers guide](https://github.com/paritytech/polkadot/blob/master/roadmap/implementers-guide/src/runtime/disputes.md)) and testing these on Rococo.
-  This is causing instability in running parachains on Rococo, and thus **temporarily** _new slots are not typically available_.
-  \n
-  Come ask the team in [Parachain Technical matrix channel](https://matrix.to/#/#parachain-technical:matrix.parity.io) about the status and your needs to connect to a larger testnet and we can discuss options.
-  `}
-/>
+> NOTE: We're continually improving the onboarding procedure and documentation.
+> Please feel free to reach out in the [Parachain Technical matrix channel](https://matrix.to/#/#parachain-technical:matrix.parity.io) if you're facing any issues connecting your parachain!
 
-<Message
-  type={`red`}
-  title={`TEST!`}
-  text={`
-  As parachains are being developed at a fast pace, you need to use the corresponding tagged version of Cumulus and Polkadot for the relay-chain and parachain compatible to each others.
-  \n
-  Please test registering your parachain locally before attempting to connect to Rococo!
-  `}
-/>
+## Before you begin
 
-<!--
-TODO:FIXME: once we open again, we need to update versions and instruct on how to
-check what you need on a production network (maybe as a HTG)
-https://github.com/substrate-developer-hub/substrate-docs/issues/241
--->
+Make sure you have successfully completed the [previous section](/tutorials/v3/cumulus/connect-parachain) of this workshop and tested your parachain on your local machine.
+This implies that:
+- You're familiar with registering and reserving your unique para ID.
+- You have your parachain's genesis state exported as a JSON file.
+- You have your parachain's runtime Wasm blob.
 
-- [Polkadot `master` branch](https://github.com/paritytech/polkadot/tree/master)
-- [Cumulus `master` branch](https://github.com/paritytech/cumulus/tree/master)
+In addition, you will need 5 ROCs from the [Rococo faucet](https://matrix.to/#/#rococo-faucet:matrix.org) to register a para ID.
 
-### Request ROC Tokens
+Lastly, you MUST have you collator's peering ports for the embedded relay chain and your parachain publicly accessible and discoverable.
+This way you are able to peer with Rococo validator nodes, otherwise you will not be able to produce blocks.
+The peering port is set with the `--port <collator node>-- --port <relay node>` CLI flags, be sure to do this for _both_ nodes separately.
+It's very likely you want at least your collator's `--ws-port <ws port>` port open as well to allow for yourself (and others) to connect with it via the Polkadot Apps UI or API calls.
 
-ROC is the native currency on the Rococo test network.
-You will need some ROC in order to register your Rococo parachain.
+## Register as a parathread 
 
-You need to register on Rococo as a parathread before able to experiment on Rococo testnet.
+To get started with registering your chain as a parathread:
 
-<Message
-  type={`gray`}
-  title={`Note`}
-  text={`
-  If you have any questions and comments regarding Rococo testnet, please join the [Rococo channel](https://matrix.to/#/#rococo:matrix.parity.io).
-	On requesting the ROC tokens, please join the [Rococo faucet channel](https://matrix.to/#/#rococo-faucet:matrix.org).
-  `}
-/>
+1. Go to [the Polkadot-JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/parachains/parathreads) parathreads section for Rococo.
 
-### Register as a Parathread
-
-All parachains will need to register as a parathread first.
-You will need:
-
-- **5 ROCs** deposit to register a para ID.
-
-- Reserve a unique para ID. This will be assigned to the next available ID.
-  This integer will be greater than `2000`, as `0-999` are reserved for [system parachains](https://wiki.polkadot.network/docs/learn-common-goods#system-level-chains) and `1000-1999` are reserved for [public utility parachains](https://wiki.polkadot.network/docs/learn-common-goods#public-utility-chains).
-
-- Your parachain genesis state.
-  Refer to the genesis state export process, earlier in the Cumulus tutorial.
-
-- Your parachain Wasm runtime.
-  Refer to the Wasm runtime export process, earlier in the Cumulus tutorial.
-
-The procedure will be as followed:
-
-- Goto Polkadot-JS Apps Rococo parathreads section [here](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/parachains/parathreads).
-
-- Reserve for the next available para ID.
+1. Reserve a unique para ID. You will be assigned to the next available ID.
 
   ![paraid-reserve.png](../../../../src/images/tutorials/09-cumulus/paraid-reserve.png)
 
-- After successfully reserving your para ID, you can now register as a **Parathread**.
+1. After successfully reserving your para ID, you can now register as a **parathread**.
 
   ![register-parathread.png](../../../../src/images/tutorials/09-cumulus/register-parathread.png)
 
-- Once your extrinsic succeeds, you will see the `registrar.Registered` event being emitted.
+1. Once your extrinsic succeeds, you will see a `registrar.Registered` event emitted.
 
   ![parathread-register-success.png](../../../../src/images/tutorials/09-cumulus/parathread-register-success.png)
 
-- Also in the Polkadot-JS Apps [Parachains -> Parathreads](https://polkadot.js.org/apps/#/parachains/parathreads) page and you will see your parathread registration is **Onboarding**:
+1. Go to the [Parachains -> Parathreads](https://polkadot.js.org/apps/#/parachains/parathreads) page and you will see that your parathread registration is **Onboarding**:
 
   ![parathread-onboarding.png](../../../../src/images/tutorials/09-cumulus/parathread-onboarding.png)
 
-After the extrinsic succeeds, it takes [**2 sessions**](#relevant-settings) for the chain to fully onboard as a parathread.
+After the extrinsic succeeds, it takes 2 sessions for the chain to fully onboard as a parathread.
 
-### Parachain Slot Auction
+## Request your parachain slot
 
-Parathread can then be transformed to parachain by winning a parachain slot auction.
-This guarantees the now parachain will always have their block data hashed and included in the relay chain block (called Proof of Validation, or short for **PoV**), during the slot duration they are alloted.
+Once the parachain is active as a parathread, the related project team should request either a **permanent** or a **temporary parachain slot** on Rococo.
 
-Only fully-onboarded Rococo parathreads are eligible to bid in a Rococo parachain slot auction.
-Common goods chains can bypass auctions and become parachains through on-chain governance decision.
+- **Permanent slots** are parachain slots assigned to teams who currently have a parachain slot on Polkadot (following a successful slot lease auction) and thus have the needs for continuously testing their codebase for compatibility with the latest bleeding edge features in a real-world live environment (Rococo).
+There is a limited number of permanent slots made available (see note below).
 
-#### Relevant Settings
+- **Temporary slots** are parachain slots that are dynamically allocated in a continuous rollover manner.
+Concretely, at every start of a lease period, a certain number of parathreads (up to a maximum defined in the relay chain's configuration) will be automatically upgraded to parachains for a certain duration.
+The parachains that were active during the ending lease period will be automatically downgraded to parathreads to free the slots for others to use in the subsequent one.
+The temporary slots are meant to be used by teams who do not have a parachain slot yet on Polkadot, and are aiming for one in the near future.
 
-> **Following are setting in the Rococo testnet that affect timing behavior on some parachain operations, and are subject to change!**
+The goal of this more dynamic allocations aims at helping teams to test their runtimes more often, and in a more streamlined manner.
+At this point, requesting a permanent or temporary parachain slot still a privileged (sudo) operation to be performed by the test chain's operator (using a call to the `assignedSlots` pallet's dispatchable functions) but the long-term plan is to make it a community-driven process via Rococo's governance framework.
 
-- Session length: 10 mins
-- Lease Period Length: 14,400 Blocks (1 day)
-- Ending Period: 600 Blocks (60 mins)
-- Current Lease Period Index = Current Block Number / 14400
+Follow these steps to request a temporary slot:
 
-Note that transitions of a parachain/Parathread into a different state will take at least 2 sessions, including on-boarding, off-boarding, upgrading, downgrading, etc.
+1. In the [Polkadot-JS Apps for Rococo](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#), go to `Developer -> Extrinsics`.
+1. Select the account with enough ROC balance that you wish to use to submit a transaction with.
+1. Select the `assignedSlots` pallet.
+1. Choose the `assignTempParachainSlot` function. 
+1. Insert your reserved para ID. Make sure this matches the one you reserved from the previous section!
+1. Select `Current` for the `LeasePeriodStart`. If the current slot is full, you will be assigned the next available slot.
+1. Sign and submit the transaction.
 
-#### Bidding
+> The Rococo `sudo` key is controlled by Parity tech at this time, so to have the operation required to get a slot, please on the [Parachain Technical matrix channel](https://matrix.to/#/#parachain-technical:matrix.parity.io) once you complete the above and are ready to connect!
+> They will initiate the slot for you ASAP.
 
-Anyone with a fully onboarded parathread can make a bid to win a parachain slot for their para ID.
-They need to out-bid all others participating in the slot auction.
+Given a period lease duration of 1 day, the current settings for assigned parachain slots on Rococo are (at the time of writing):
+- **Permanent slot least duration**: 1 year (365 days)
+- **Temporary slot least duration**: 3 days
+- **Maximum number of permanent slots**: up to 25 permanent slots
+- **Maximum number of temporary slots**: up to 20 temporary slots
+- **Maximum temporary slots allocated per leased period**: up to 5 temporary slots per 3-day temporary lease periods
 
-You can do so in Polkadot-JS App [Network -> Parachains -> Auctions](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/parachains/auctions) page.
+These are subject to change, based on the needs of the community.
 
-Pick your para ID, how much you want to bid, and the slots you want to bid for:
-
-![parachain-bid.png](../../../../src/images/tutorials/09-cumulus/parachain-bid.png)
-
-### Crowdloans
-
-You may also choose to harness your community and get their supports in winning the parachain slot auction.
-In this case, you would start a crowdloan campaign so your supporters can loan your project their tokens to win the auction. 
-These tokens will be held in custody during the auction process, and if won, the whole slot leasing duration also.
-
-You will not do this for a testnet parachain slot, but you may consider this option for a mainnet parachain slot.
-
-#### Start a Crowdloan Campaign
-
-In the following, we are getting ready to submit an extrinsic to start a crowdloan.
-
-![parachain-bid.png](../../../../src/images/tutorials/09-cumulus/parachain-crowdloan.png)
-
-Notes on the parameters:
-
-- `parachain id`: You can only create a crowdloan campaign for a para ID that you registered.
-
-- `crowdfund cap`: The maximum amount your crowdloan campaign can collect.
-  This is just a responsible measure for getting external support.
-
-- `ending block`: This is when you want your crowdloan to end.
-  If you know an auction will start in 3 days, and last for 5 days, you probably want to set your crowdloan to end in 10 days, a time with a little buffer at the end.
-  This way you will be sure that your crowdloan is active during the entire auction process.
-  On the other hand, you don't want to set your crowdloan period to be too long, or else prolong the community funds lock up period unnecessarily and discouraging them to participate in your campaign.
-
-- `first period` / `last period`: The slot duration you want to bid for.
-  So if the current auction has slots 3 - 6 open, these values can be any number in between.
-
-- You can cancel a crowdloan as long as you have not received a contribution.
-
-If your extrinsic succeeds, you can see your new crowdloan entry in [Network -> Parachains -> Crowdloan page](https://polkadot.js.org/apps/#/parachains/crowdloan):
-
-![crowdloan-success.png](../../../../src/images/tutorials/09-cumulus/crowdloan-success.png)
-
-#### Fund a Crowdloan Campaign
-
-Any accounts with a free balance and elect to contribute to your campaign, including the same account that started this campaign.
-
-You can goto the same [Crowdloan page](https://polkadot.js.org/apps/#/parachains/crowdloan) above, and choose **+ Contribute** on the campaign you want to support.
-
-You will see an extrinsic pop up similar to the following:
-
-![crowdloan-contribute.png](../../../../src/images/tutorials/09-cumulus/crowdloan-contribute.png)
-
-Input the funding amount your want to support and submit the transaction.
+🎉**_Congratulations!_**🎉  
+With your slot activated by the Parity team, you're now able to test your parachain on the Rococo test net!
+Please do note that when your temporary slot's lease ends, the parachain is automatically downgraded to a parathread. Registered and approved slots are cycled through automatically in a round-robin fashion, so you will expect to come back online as a parachain from time to time.

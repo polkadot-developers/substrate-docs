@@ -4,7 +4,11 @@ slug: /v3/runtime/benchmarking
 version: '3.0'
 section: docs
 category: runtime
-keywords: benchmarking, optimizing, weights, runtime
+keywords:
+  - benchmarking
+  - optimizing
+  - weights
+  - runtime
 ---
 
 The default Substrate block production systems produce blocks at consistent intervals. This is the
@@ -158,7 +162,7 @@ Here's an example of launching a node with benchmarking features enabled:
     --execution wasm \          # Always test with Wasm
     --wasm-execution compiled \ # Always used `wasm-time`
     --pallet pallet_example \   # Select the pallet
-    --extrinsic '\*' \          # Select the benchmark case name, using '*' for all
+    --extrinsic '*' \          # Select the benchmark case name, using '*' for all
     --steps 20 \                # Number of steps across component ranges
     --repeat 10 \               # Number of times we repeat a benchmark
     --raw \                     # Optionally output raw benchmark data to stdout

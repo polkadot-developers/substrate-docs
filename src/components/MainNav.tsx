@@ -132,11 +132,6 @@ const MainNav = {
                 link: `${site}/ecosystem/resources/awesome-substrate`,
                 external: true,
               },
-              {
-                linkTitle: 'Community Resources',
-                link: `${site}/ecosystem/resources/community-resources`,
-                external: true,
-              },
             ],
           },
           {

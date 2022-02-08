@@ -4,7 +4,7 @@ slug: /v3/runtime/storage
 version: '3.0'
 section: docs
 category: runtime
-keywords:
+keywords: []
 ---
 
 Runtime storage allows you to store data in your blockchain that is persisted between blocks and can
@@ -89,7 +89,7 @@ elements of a native list, map iterations are significantly _more_ costly than l
   text={`In general, Substrate focuses on programming according to principles and [best practices](#best-practices)
   as opposed to hard and fast rules of right and wrong. The information here aims to help you understand _all_ of Substrate's
   storage capabilities and how to use them in a way that respects the principles around which
-  they were designed. For instance, iterating over storage maps in your runtime is neither right nor 
+  they were designed. For instance, iterating over storage maps in your runtime is neither right nor
   wrong &mdash; yet, avoiding it would be considered a better approach with respect to best practices.`}
 />
 
@@ -125,18 +125,18 @@ type SomePrivateValue<T> = StorageValue<_, u32, ValueQuery>;
 pub(super) type SomePrimitiveValue<T> = StorageValue<_, u32, ValueQuery>;
 
 #[pallet::storage]
-pub(super) type SomeComplexValue<T> = StorageValue<_, T::AccountId, ValueQuery>;
+pub(super) type SomeComplexValue<T: Config> = StorageValue<_, T::AccountId, ValueQuery>;
 
 #[pallet::storage]
 #[pallet::getter(fn some_map)]
-pub(super) type SomeMap<T> = StorageMap<_, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
+pub(super) type SomeMap<T: Config> = StorageMap<_, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
 
 #[pallet::storage]
-pub(super) type SomeDoubleMap<T> = StorageDoubleMap<_, Blake2_128Concat, u32, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
+pub(super) type SomeDoubleMap<T: Config> = StorageDoubleMap<_, Blake2_128Concat, u32, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
 
 #[pallet::storage]
 #[pallet::getter(fn some_nmap)]
-pub(super) type SomeNMap<T> = StorageNMap<
+pub(super) type SomeNMap<T: Config> = StorageNMap<
     _,
     (
         NMapKey<Blake2_128Concat, u32>,
@@ -180,7 +180,7 @@ getter method implemented on the module; instead, you will need to use
 <Message
   type={`gray`}
   title={`Note`}
-  text={`The optional \`get\` and \`getter\` extensions only
+  text={`The optional \`getter\` extension only
   impact the way that a storage item can be accessed from _within_ Substrate code &mdash; you will always be
   able to [query the storage of your runtime](/v3/advanced/storage#Querying-Storage) to get the value
   of a storage item.`}
@@ -259,7 +259,7 @@ performance. Read more about common hashers in Subsrate in [this section](#commo
   type={`gray`}
   title={`Note`}
   text={`Cryptographic hashing algorithms are more complex and resource-intensive than their
-  non-cryptographic counterparts, which is why it is important for runtime engineers to understand 
+  non-cryptographic counterparts, which is why it is important for runtime engineers to understand
   their appropriate usages in order to make the best use of the flexibility Substrate provides.`}
 />
 
@@ -295,7 +295,7 @@ Substrate's runtime storage APIs include capabilities to initialize storage item
 block of your blockchain. The genesis storage configuration APIs expose a number of mechanisms for
 initializing storage, all of which have entry points in `#[pallet::genesis_config]`.
 The `GenesisConfig` data type is defined under the attribute `#[pallet::genesis_config]` and
-the attribute [`pallet::genesis_build`] is used to build the genesis configuration.
+the attribute `#[pallet::genesis_build]` is used to build the genesis configuration.
 
 In order to consume a pallet's genesis configuration capabilities, you must include the
 `Config` element when adding the pallet to your runtime.
@@ -340,9 +340,9 @@ In `chain_spec.rs`:
 
 ```rust
 GenesisConfig {
-    my_pallet: Some(MyPalletConfig {
+    my_pallet: MyPalletConfig {
         init_val: 221u64 + SOME_CONSTANT_VALUE,
-    }),
+    },
 }
 ```
 
@@ -368,9 +368,9 @@ struct GenesisConfig {
 #[pallet::genesis_build]
 impl<T: Config> GenesisBuild<T> for GenesisConfig {
     fn build(&self) {
-        Pallet::<T>::initialize_members(&config.members);
+        Pallet::<T>::initialize_members(&self.members);
         SomeStorageItem::<T>::put(self.prime);
-  }
+    }
 }
 ```
 
@@ -378,9 +378,10 @@ In `chain_spec.rs`:
 
 ```rust
 GenesisConfig {
-    my_pallet: Some(MyPalletConfig {
-        orig_ids: LIST_OF_IDS,
-    }),
+    my_pallet: MyPalletConfig {
+        members: LIST_OF_IDS,
+        prime: ID,
+    },
 }
 ```
 
@@ -404,7 +405,7 @@ impl<T: Config> GenesisBuild<T> for GenesisConfig {
     fn build(&self) {
         Pallet::<T>::initialize_members(&config.members);
         SomeStorageItem::<T>::put(self.prime);
-  }
+    }
 }
 ```
 
@@ -412,9 +413,10 @@ In `chain_spec.rs`:
 
 ```rust
 GenesisConfig {
-    my_pallet: Some(MyPalletConfig {
-        orig_ids: LIST_OF_IDS,
-    }),
+    my_pallet: MyPalletConfig {
+        members: LIST_OF_IDS,
+        prime: ID,
+    },
 }
 ```
 
