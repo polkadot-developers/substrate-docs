@@ -105,7 +105,7 @@ docs:
         - title: Genesis construction
           url: /main-docs/deploy/genesis/
         - title: Protecting your network from attacks
-          url: 'main-docs/deploy/attacks/
+          url: /main-docs/deploy/attacks/
     - title: Maintain
       url: /main-docs/maintain/
       pages:
