@@ -34,6 +34,6 @@ You'll learn how to:
 The **Connect with other chains** tutorials delve into more advanced topics for moving beyond solo chain development, including how to connect your chain to other chains.
 You'll learn how to:
 
-* 
-* 
-* 
+* Turn a solo chain into a parachain.
+* Deploy a local test network and interact with multiple connected parachains.
+* Connect your parachain to a public test network.
