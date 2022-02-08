@@ -137,24 +137,24 @@ tutorials:
       url: /tutorials/pallets/
       pages:
         - title: Add a simple pallet to the runtime
-          url: /tutorials/pallets/add-a-pallet/
+          url: /tutorials/work-with-pallets/add-a-pallet/
         - title: Configure the contracts pallet
-          url: /tutorials/pallets/contracts-pallet/
+          url: /tutorials/work-with-pallets/contracts-pallet/
         - title: Write a smart contract
-          url: /tutorials/pallets/ink-contract/
+          url: /tutorials/work-with-pallets/ink-contract/
         - title: Create a custom pallet using macros
-          url: /tutorials/pallets/custom-pallet/
+          url: /tutorials/work-with-pallets/custom-pallet/
         - title: Publish a custom pallet
-          url: /tutorials/pallets/publish-pallet/
+          url: /tutorials/work-with-pallets/publish-pallet/
     - title: Connect with other chains
-      url: /tutorials/parachain-dev/
+      url: /tutorials/connect-other-chains/
       pages:
         - title: Connect to a local relay chain
-          url: /tutorials/relay-chain/
+          url: /tutorials/connect-other-chains/relay-chain/
         - title: Connect to Polkadot
-          url: /tutorials/parachain/
+          url: /tutorials/connect-other-chains/parachain/
         - title: Connect to Ethereum
-          url: /tutorials/connect-to-evm/
+          url: /tutorials/connect-other-chains/connect-to-evm/
 
 reference:
   title: Reference
