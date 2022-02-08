@@ -50,7 +50,7 @@ All `.md` files added to `./content/md/en/docs/` folder will output an URL path 
 
 You can use any structure nesting needed, there is no limit of depth.
 
-### Images
+### Media/Images
 
 - use `./content/media/images/docs/` folder for images to be included in `/docs/*/*.md` files
 - source images in `.md`: `/media/images/docs/path/to/your/image/<image>.ext`
