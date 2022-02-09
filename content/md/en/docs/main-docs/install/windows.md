@@ -29,6 +29,7 @@ To prepare a development environment using Windows Subsystem for Linux:
    If you have Microsoft Windows 10, version 2004 (Build 19041 and higher), or Microsoft Windows 11, Windows Subsystem for Linux is available by default and you can continue to the next step.
 
    If you have an older version of Microsoft Windows installed, see [WSL manual installation steps for older versions](https://docs.microsoft.com/en-us/windows/wsl/install-manual).
+   If you are installing on an older version of Microsoft Windows, you can download and install WLS 2 if your computer has Windows 10, version 1903 or higher.
 
 1. Select Windows PowerShell or Command Prompt from the Start menu, right-click, then **Run as administrator**.
 
