@@ -49,7 +49,7 @@ To prepare a development environment using Windows Subsystem for Linux:
 
 1. After the distribution is downloaded, close the terminal.
 
-1. Click the Start menu, select Shut down or sign out, then click **Restart** to restart the computer.
+1. Click the Start menu, select **Shut down or sign out**, then click **Restart** to restart the computer.
    
    Restarting the computer is required to start the installation of the Linux distribution.
    It can take a few minutes for the installation to complete after you restart.
