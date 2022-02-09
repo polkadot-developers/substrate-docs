@@ -155,6 +155,9 @@ To compile the Substrate node template:
     git checkout latest
     ```
 
+    This command checks out the repository in a detached state.
+    If you want to save your changes, you can create a branch from this state.
+
 1. Compile the node template by running the following command:
     
     ```bash

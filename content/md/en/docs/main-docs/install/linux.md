@@ -33,11 +33,15 @@ To install the Rust toolchain on Linux:
 
 1. Add any package dependencies you are missing to your local development environment by running an appropriate package management command for your Linux distribution.
     
-    For example, on Ubuntu, you might run a command similar to the following:
+    For example, on Ubuntu Desktop, you might run a command similar to the following:
     
     ```bash
     sudo apt install --assume-yes git clang curl libssl-dev
     ```
+
+    Remember that different distributions might use different package managers and bundle packages in different ways. 
+    For example, depending on your installation selections, Ubuntu Desktop and Ubuntu Server might have different packages and different requirements.
+    However, the four packages listed in this command-line example are applicable for many common Linux distributions, including Debian, Linux Mint, MX Linux, and Elementary OS.
 
 1. Download the `rustup` installation program and use it to install Rust by running the following command:
     
@@ -124,6 +128,9 @@ To compile the Substrate node template:
     ```bash
     git checkout latest
     ```
+
+    This command checks out the repository in a detached state.
+    If you want to save your changes, you can create a branch from this state.
 
 1. Compile the node template by running the following command:
     
