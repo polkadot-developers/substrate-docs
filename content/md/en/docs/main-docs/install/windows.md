@@ -74,7 +74,7 @@ To install the Rust toolchain on WSL:
 1. Add the required packages for the Ubuntu distribution by running the following command:
    
    ```
-   sudo apt install --assume-yes git clang curl libssl-dev llvm libudev-dev
+   sudo apt install --assume-yes git clang curl libssl-dev
    ```
 
 1. Download the `rustup` installation program and use it to install Rust for the Ubuntu distribution by running the following command:
