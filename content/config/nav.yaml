@@ -40,7 +40,7 @@ docs:
         - title: Substrates Rust
           url: /main-docs/fundamentals/rust-basics/
     - title: Install
-      url: main-docs/install/
+      url: /main-docs/install/
       pages:
         - title: Rust compiler and toolchain
           url: /main-docs/install/rust-builds/
@@ -76,9 +76,13 @@ docs:
           url: /main-docs/build/libraries/
         - title: Build process
           url: /main-docs/build/build-process/
-        - title: Create custom pallets
+        - title: Storage and data structures
+          url: /main-docs/build/storage/
+        - title: Transaction weights and fees
+          url: /main-docs/build/tx-weights-fees/
+        - title: Custom pallets
           url: /main-docs/build/custom-pallets/
-        - title: Front-end development
+        - title: Application development
           url: /main-docs/build/frontend/
         - title: Best practices
           url: /main-docs/build/best-practices/
