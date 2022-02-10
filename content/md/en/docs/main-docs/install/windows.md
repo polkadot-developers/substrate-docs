@@ -121,7 +121,20 @@ To install the Rust toolchain on WSL:
     The command displays output similar to the following:
 
     <pre>
-
+    Default host: x86_64-unknown-linux-gnu
+    rustup home:  /home/subdocs/.rustup
+    
+    installed toolchains
+    --------------------
+    
+    stable-x86_64-unknown-linux-gnu (default)
+    nightly-x86_64-unknown-linux-gnu
+    
+    active toolchain
+    ----------------
+    
+    stable-x86_64-unknown-linux-gnu (default)
+    rustc 1.58.1 (db9d1b20b 2022-01-20)
     </pre>
 
 ## Compile a Substrate node
