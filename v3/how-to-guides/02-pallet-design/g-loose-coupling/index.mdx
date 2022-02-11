@@ -1,10 +1,10 @@
 ---
 title: Loosely Coupling a Pallet
 slug: /how-to-guides/v3/pallet-design/loose-coupling
-version: 3.0
+version: '3.0'
 section: how to guides
 category: pallet design
-difficulty: 2
+keywords: []
 ---
 
 <Objectives
@@ -15,15 +15,14 @@ difficulty: 2
     },
     {
       title: 'Use Cases',
-      description:`Reuse a specific type from another pallet.`,
+      description: `Reuse a specific type from another pallet.`,
     },
     {
       title: 'Overview',
-      description:
-        `Loose coupling is a technique that enables re-using logic from another pallet inside a pallet. In this guide
+      description: `Loose coupling is a technique that enables re-using logic from another pallet inside a pallet. In this guide
         we show the simple pattern of using a type from an outside pallet in our working pallet, by using
         trait bounds in our pallet's configuration trait. We will loosely couple a pallet to make use of the \`Currency\` trait
-        from [\`frame_support\`](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html).`
+        from [\`frame_support\`](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html).`,
     },
   ]}
 />
@@ -32,27 +31,27 @@ difficulty: 2
 
 ### 1. Configure your workspace
 
-In the `Cargo.toml` file of the pallet in your working directory, make sure you specify the 
+In the `Cargo.toml` file of the pallet in your working directory, make sure you specify the
 pallet you want to couple to accordingly:
 
 ```toml
 [dependencies]
-frame-support = { default-features = false, git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-08', version = '4.0.0-dev' }
+frame-support = { default-features = false, git = 'https://github.com/paritytech/substrate.git', tag = 'devhub/latest', version = '4.0.0-dev' }
 
-# -- snip 
+# -- snip
 
 [features]
 default = ['std']
 std = [
 	'frame-support/std',
-# -- snip 
+# -- snip
 ]
 ```
 
 ### 2. Import the trait
 
-We want to use the [`Currency` trait](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html) so 
-that we can give our pallet access to the its methods. 
+We want to use the [`Currency` trait](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html) so
+that we can give our pallet access to the its methods.
 
 Import the trait in your pallet:
 
@@ -83,7 +82,7 @@ Use the method that the type of your loosely coupled pallet provides (in `this-p
 let total_balance = T::LocalCurrency::total_issuance();
 ```
 
-In the above snippet, we're using [`total_issuance`](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html#tymethod.total_issuance) 
+In the above snippet, we're using [`total_issuance`](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html#tymethod.total_issuance)
 that the Currency trait exposes from `frame_support`.
 
 ### 5. Provide the implementation in runtime configuration
@@ -94,14 +93,14 @@ that [implements the `Currency` trait](/rustdocs/latest/pallet_balances/index.ht
 
 ```rust
 impl my_pallet::Config for Runtime {
-    type LocalCurrency = Balances;
+  type LocalCurrency = Balances;
 }
 
 construct_runtime! (
   pub enum Runtime where
-    Block = Block,
-    NodeBlock = opaque::Block,
-    UncheckedExtrinsic = UncheckedExtrinsic
+  Block = Block,
+  NodeBlock = opaque::Block,
+  UncheckedExtrinsic = UncheckedExtrinsic
   {
     Balances: pallet_balances::{Pallet, Call, Storage, Config<T>, Event<T>},
   }
@@ -110,13 +109,13 @@ construct_runtime! (
 
 ## Examples
 
-- `try_origin` from the [`EnsureOrigin`](/rustdocs/latest/frame_support/traits/trait.EnsureOrigin.html) trait 
-in FRAME's [Democracy pallet](https://github.com/paritytech/substrate/blob/master/frame/democracy/src/lib.rs#L294-L352)
-- the use of `WeightInfo` in all FRAME pallets, such as the 
-the [Identity pallet](https://github.com/paritytech/substrate/blob/master/frame/identity/src/lib.rs#L149-L151) and its use of its 
-[specific weighting methods](https://github.com/paritytech/substrate/blob/master/frame/identity/src/weights.rs#L46-L64) 
-- the [`KeyOwnerProofSystem` trait](/rustdocs/latest/frame_support/traits/trait.KeyOwnerProofSystem.html) 
-[used in `pallet_granpa`](https://github.com/paritytech/substrate/blob/master/frame/grandpa/src/lib.rs#L106)
+- `try_origin` from the [`EnsureOrigin`](/rustdocs/latest/frame_support/traits/trait.EnsureOrigin.html) trait
+  in FRAME's [Democracy pallet](https://github.com/paritytech/substrate/blob/master/frame/democracy/src/lib.rs#L294-L352)
+- the use of `WeightInfo` in all FRAME pallets, such as the
+  the [Identity pallet](https://github.com/paritytech/substrate/blob/master/frame/identity/src/lib.rs#L149-L151) and its use of its
+  [specific weighting methods](https://github.com/paritytech/substrate/blob/master/frame/identity/src/weights.rs#L46-L64)
+- the [`KeyOwnerProofSystem` trait](/rustdocs/latest/frame_support/traits/trait.KeyOwnerProofSystem.html)
+  [used in `pallet_grandpa`](https://github.com/paritytech/substrate/blob/master/frame/grandpa/src/lib.rs#L106)
 
 ## Resources
 

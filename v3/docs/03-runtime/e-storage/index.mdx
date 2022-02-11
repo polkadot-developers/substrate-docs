@@ -1,10 +1,10 @@
 ---
 title: Storage
 slug: /v3/runtime/storage
-version: 3.0 
+version: '3.0'
 section: docs
 category: runtime
-keywords:
+keywords: []
 ---
 
 Runtime storage allows you to store data in your blockchain that is persisted between blocks and can
@@ -21,22 +21,22 @@ interfaces. Please refer to [the advanced storage documentation](/v3/advanced/st
 
 In Substrate, any pallet can introduce new storage items that will become part of your blockchain’s state. These storage items can be simple single value items, or more complex storage maps. The type of storage items you choose to implement depends entirely on their intended role within your runtime logic.
 
-FRAME's [`Storage` module](/rustdocs/latest/frame_support/storage/index.html) gives runtime developers access to Substrate's flexible storage APIs, which can support any value that is encodable
-by [Parity's SCALE codec](/v3/advanced/scale-codec/index.html). These include:
+FRAME's [`Storage` module](/rustdocs/latest/frame_support/storage) gives runtime developers access to Substrate's flexible storage APIs, which can support any value that is encodable
+by [SCALE codec](/v3/advanced/scale-codec). These include:
 
 - [Storage Value](/rustdocs/latest/frame_support/storage/trait.StorageValue.html) - used to store any single value, such as a `u64`.
-- [Storage Map](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) - used to store a key-value hash map, such as a balance-to-account mapping.
-- [Storage Double Map](/rustdocs/latest/frame_support/storage/trait.StorageDoubleMap.html) - used as an implementation of a storage map with two keys to provide the ability to efficiently removing
+- [Storage Map](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) - used to store a key-value mapping, such as account-to-balance.
+- [Storage Double Map](/rustdocs/latest/frame_support/storage/trait.StorageDoubleMap.html) - used as an implementation of a storage map with two keys to provide the ability to efficiently remove
   all entries that have a common first key.
-- [Storage N Map](/rustdocs/latest/frame_support/storage/trait.StorageNMap.html) - used to store a hash map with any arbitrary number of keys, it can be used as a basis to build a Triple Storage Map, a Quadruple Storage Map and so on.
+- [Storage N Map](/rustdocs/latest/frame_support/storage/trait.StorageNMap.html) - used to store a mapping with any arbitrary number of keys, it can be used as a basis to build a Triple Storage Map, a Quadruple Storage Map and so on.
 
 ### Storage value
 
 This type of storage item should be used for values that are viewed as a single unit by the runtime. This could be a single primitive value, a single `struct`, or a single collection of related
 items. If a storage item is used for storing lists of items, runtime developers should be conscious about the size of the lists they use.
 Large lists incur storage costs just like large `structs`.
-Furthermore, iterating over a large list in your runtime may result in exceeding the block production time. If this occurs your blockchain
-will stop producing blocks, which means that it will stop functioning.
+Furthermore, iterating over a large list in your runtime may result in exceeding the block production time. If this occurs for sovereign chains, the blockchain will slow down.
+If this occurs for [parachains](/v3/getting-started/glossary/#parachain), the blockchain will stop producing blocks and stop functioning.
 
 <Message
   type={`yellow`}
@@ -54,7 +54,8 @@ Refer to the Storage Value documentation for
 
 Map data structures are ideal for managing sets of items whose elements will be accessed randomly,
 as opposed to iterating over them sequentially in their entirety. Storage Maps in Substrate are
-implemented as key-value hash maps. In order to give runtime engineers increased control, Substrate allows developers to select
+implemented as key-value mappings that provide a similar interface as traditional [hash-maps](https://en.wikipedia.org/wiki/Hash_table)
+for enabling random lookups. In order to give runtime engineers increased control, Substrate allows developers to select
 which hashing algorithms suits their use case the best for generating a map's keys. This is covered in the section on [hashing algorithms](#hashing-algorithms).
 
 Refer to the Storage Map documentation for
@@ -62,7 +63,7 @@ Refer to the Storage Map documentation for
 
 ### Double storage map
 
-Double Storage Maps are very similar to single Storage Maps except they contain two keys, which is useful for querying values with common keys.
+[Double Storage Maps](/rustdocs/latest/frame_support/storage/trait.StorageDoubleMap.html) are very similar to single Storage Maps except they contain two keys, which is useful for querying values with common keys.
 
 Refer to the documentation on
 [advanced storage](/v3/advanced/storage) to learn more about how different Storage Maps, including Double Storage Maps, are implemented.
@@ -73,49 +74,47 @@ N Storage Maps are also very similar to its siblings, namely Storage Maps and Do
 
 To specify the keys in an N Storage Map in FRAMEv2, a tuple containing the special `NMapKey` struct must be provided as a type to the Key (i.e. second) type parameter while declaring the `StorageNMap`.
 
-Refer to the N Storage Map documentation for more details about the syntaxes in using a N Storage Map.
+Refer to the [N Storage Map documentation](/rustdocs/latest/frame_support/storage/trait.StorageNMap.html) for more details about the syntaxes in using a N Storage Map.
 
-#### Iterating over storage maps
+### Iterating over Storage Maps
 
 Substrate Storage Maps are iterable with respect to their keys and values. Because maps are often
 used to track unbounded sets of data (such as account balances), iterating over them without caution in the runtime may cause blocks not being able to produced in time.
 Furthermore, because accessing the elements of a map requires more database reads than accessing the
 elements of a native list, map iterations are significantly _more_ costly than list iterations in terms of execution time.
 
-
 <Message
   type={`green`}
   title={`A note on best practices`}
-  text={`In general, Substrate focuses on "[first principles](#best-practices)" as opposed to hard and fast rules
-  of right and wrong. The information here aims to help you understand _all_ of Substrate's
+  text={`In general, Substrate focuses on programming according to principles and [best practices](#best-practices)
+  as opposed to hard and fast rules of right and wrong. The information here aims to help you understand _all_ of Substrate's
   storage capabilities and how to use them in a way that respects the principles around which
-  they were designed. For instance, iterating over storage maps in your runtime is neither right nor 
+  they were designed. For instance, iterating over storage maps in your runtime is neither right nor
   wrong &mdash; yet, avoiding it would be considered a better approach with respect to best practices.`}
 />
 
-Substrate's Iterable Storage Map interfaces define the following methods (note that for Iterable
-Storage Double Maps, the `iter()` and `drain()` methods require the first key as a parameter):
+Substrate's Iterable Storage Map interfaces define the following methods:
 
 - `iter()` - enumerate all elements in the map in no particular order. If you alter the map while
   doing this, you'll get undefined results. See the docs:
   [`IterableStorageMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageMap.html#tymethod.iter),
   [`IterableStorageDoubleMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter) and
-  `IterableStorageNMap`.
+  [`IterableStorageNMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageNMap.html#tymethod.iter).
 - `drain()` - remove all elements from the map and iterate through them in no particular order. If you
   add elements to the map while doing this, you'll get undefined results. See the docs:
   [`IterableStorageMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain),
   [`IterableStorageDoubleMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain) and
-  `IterableStorageNMap`.
+  [`IterableStorageNMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageNMap.html#tymethod.drain).
 - `translate()` - use the provided function to translate all elements of the map, in no particular
   order. To remove an element from the map, return `None` from the translation function. See the docs:
   [`IterableStorageMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate),
   [`IterableStorageDoubleMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.translate) and
-  `IterableStorageNMap`.
+  [`IterableStorageNMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageNMap.html#tymethod.translate).
 
 ## Declaring storage items
 
-Runtime storage items are created with [`#[pallet::storage]`](/rustdocs/latest/frame_support/attr.pallet.html#storage-palletstorage-optional) 
-in any FRAME-based pallet. Here is an example of declaring the 3 different types of storage items:
+Runtime storage items are created with [`#[pallet::storage]`](/rustdocs/latest/frame_support/attr.pallet.html#storage-palletstorage-optional)
+in any FRAME-based pallet. Here is an example of declaring the four different types of storage items:
 
 ```rust
 #[pallet::storage]
@@ -126,18 +125,18 @@ type SomePrivateValue<T> = StorageValue<_, u32, ValueQuery>;
 pub(super) type SomePrimitiveValue<T> = StorageValue<_, u32, ValueQuery>;
 
 #[pallet::storage]
-pub(super) type SomeComplexValue<T> = StorageValue<_, T::AccountId, ValueQuery>;
+pub(super) type SomeComplexValue<T: Config> = StorageValue<_, T::AccountId, ValueQuery>;
 
 #[pallet::storage]
 #[pallet::getter(fn some_map)]
-pub(super) type SomeMap<T> = StorageMap<_, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
+pub(super) type SomeMap<T: Config> = StorageMap<_, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
 
 #[pallet::storage]
-pub(super) type SomeDoubleMap<T> = StorageDoubleMap<_, Blake2_128Concat, u32, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
+pub(super) type SomeDoubleMap<T: Config> = StorageDoubleMap<_, Blake2_128Concat, u32, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
 
 #[pallet::storage]
 #[pallet::getter(fn some_nmap)]
-pub(super) type SomeNMap<T> = StorageNMap<
+pub(super) type SomeNMap<T: Config> = StorageNMap<
     _,
     (
         NMapKey<Blake2_128Concat, u32>,
@@ -154,11 +153,12 @@ be used.
 
 ### QueryKindTrait
 
-The [`QueryKindTrait`](/rustdocs/latest/frame_support/storage/types/trait.QueryKindTrait.html) generic of storage determines 
-how the storage should be handled when there is no value in storage. With [`OptionQuery`](/rustdocs/latest/frame_support/storage/types/struct.OptionQuery.html), when no value is in storage 
-the method get will return `None`. With [`ValueQuery`](/rustdocs/latest/frame_support/storage/types/struct.ValueQuery.html), 
-when no value is in storage the `get` method will return the value configured with the `OnEmpty` generic. 
-When you have a specific default value to configure, use `ValueQuery`.
+The implementation of the [`QueryKindTrait`](/rustdocs/latest/frame_support/storage/types/trait.QueryKindTrait.html) passed
+to the storage item determines how the storage should be handled when there is no value in storage.
+With [`OptionQuery`](/rustdocs/latest/frame_support/storage/types/struct.OptionQuery.html), when no value is in storage
+the `get` method will return `None`. With [`ValueQuery`](/rustdocs/latest/frame_support/storage/types/struct.ValueQuery.html),
+when no value is in storage the `get` method will return the value configured with the `OnEmpty` generic.
+For cases with a specific default value to configure, it is recommended to use `ValueQuery`.
 
 ### Visibility
 
@@ -180,7 +180,7 @@ getter method implemented on the module; instead, you will need to use
 <Message
   type={`gray`}
   title={`Note`}
-  text={`The optional \`get\` and \`getter\` extensions only
+  text={`The optional \`getter\` extension only
   impact the way that a storage item can be accessed from _within_ Substrate code &mdash; you will always be
   able to [query the storage of your runtime](/v3/advanced/storage#Querying-Storage) to get the value
   of a storage item.`}
@@ -202,14 +202,18 @@ Substrate allows you to specify a default value that is returned when a storage 
 set. Although the default value does **not** actually occupy runtime storage, the runtime logic will see this
 value during execution.
 
-Here is an example of specifying the default value for all items in a map:
+Here is an example of specifying a default value in storage:
 
 ```rust
 #[pallet::type_value]
-pub fn MyDefaultMap<T: Config>() -> u64 { 1337u64 }
+pub(super) fn MyDefault<T: Config>() -> T::Balance { 3.into() }
 #[pallet::storage]
-pub type MyStorage<T> = StorageMap<_, Blake2_128Concat, u64, u64, ValueStorage, MyDefaultMap>;
+pub(super) type MyStorageValue<T: Config> =
+    StorageValue<Value = T::Balance, QueryKind = ValueQuery, OnEmpty = MyDefault<T>>;
 ```
+
+Notice that for the sake of adding clarity to each storage field, the syntax above is the non-abbreviated
+version of declaring storage items.
 
 ## Accessing storage items
 
@@ -239,23 +243,23 @@ keep in mind that any hasher that does not produce a transparent output has been
 
 ### Cryptographic hashing algorithms
 
-Cryptographic hashing algorithms are those that use cryptography to make it challenging to use the
-input to the hashing algorithm to influence its output. For example, a cryptographic hashing
+Cryptographic hashing algorithms enable us to build tools that make it extremely difficult to manipulate the
+input of a hashing algorithm to influence its output. For example, a cryptographic hashing
 algorithm would produce a wide distribution of outputs even if the inputs were the numbers 1
 through 10. It is critical to use cryptographic hashing algorithms when users are able to influence
 the keys of a Storage Map. Failure to do so creates an attack vector that makes it easy for
 malicious actors to degrade the performance of your blockchain network. An example of a map that
 should use a cryptographic hash algorithm to generate its keys is a map used to track account
 balances. In this case, it is important to use a cryptographic hashing algorithm so that an attacker
-cannot bombard your system with many small transfers to sequential account numbers. Without a
-cryptographic hash algorithm this would create an imbalanced storage structure that would suffer in
-performance.
+cannot bombard your system with many small transfers to sequential account numbers. Without the appropriate
+cryptographic hashing algorithm this would create an imbalanced storage structure that would suffer in
+performance. Read more about common hashers in Subsrate in [this section](#common-substrate-hashers).
 
 <Message
   type={`gray`}
   title={`Note`}
   text={`Cryptographic hashing algorithms are more complex and resource-intensive than their
-  non-cryptographic counterparts, which is why it is important for runtime engineers to understand 
+  non-cryptographic counterparts, which is why it is important for runtime engineers to understand
   their appropriate usages in order to make the best use of the flexibility Substrate provides.`}
 />
 
@@ -275,8 +279,8 @@ capabilities. Learn more about the capabilities that transparent hashing algorit
 This table lists some common hashers used in Substrate and denotes those that are cryptographic and
 those that are transparent:
 
-| Hasher                                                                                                | Cryptographic | Transparent |
-| ----------------------------------------------------------------------------------------------------- | ------------- | ----------- |
+| Hasher                                                                           | Cryptographic | Transparent |
+| -------------------------------------------------------------------------------- | ------------- | ----------- |
 | [Blake2 128 Concat](/rustdocs/latest/frame_support/struct.Blake2_128Concat.html) | X             | X           |
 | [TwoX 64 Concat](/rustdocs/latest/frame_support/struct.Twox64Concat.html)        |               | X           |
 | [Identity](/rustdocs/latest/frame_support/struct.Identity.html)                  |               | X           |
@@ -289,9 +293,9 @@ cryptographic hash.
 
 Substrate's runtime storage APIs include capabilities to initialize storage items in the genesis
 block of your blockchain. The genesis storage configuration APIs expose a number of mechanisms for
-initializing storage, all of which have entry points in `#[pallet::genesis_config]`. 
+initializing storage, all of which have entry points in `#[pallet::genesis_config]`.
 The `GenesisConfig` data type is defined under the attribute `#[pallet::genesis_config]` and
-the attribute [`pallet::genesis_build`] is used to build the genesis configuration.
+the attribute `#[pallet::genesis_build]` is used to build the genesis configuration.
 
 In order to consume a pallet's genesis configuration capabilities, you must include the
 `Config` element when adding the pallet to your runtime.
@@ -311,11 +315,11 @@ Keep reading for a more detailed descriptions of these capabilities.
 
 ### `genesis_config`
 
-The [`#[pallet::genesis_config]`](/rustdocs/latest/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional) 
-macro provides an extension that will add an attribute to the pallet's 
-`GenesisConfig` data type. The value of this attribute will be used as the initial value of the storage 
-item in your chain's genesis block. The `config` extension takes a parameter that will determine the 
-name of the attribute on the `GenesisConfig` data type &mdash; this parameter is optional if the 
+The [`#[pallet::genesis_config]`](/rustdocs/latest/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional)
+macro provides an extension that will add an attribute to the pallet's
+`GenesisConfig` data type. The value of this attribute will be used as the initial value of the storage
+item in your chain's genesis block. The `config` extension takes a parameter that will determine the
+name of the attribute on the `GenesisConfig` data type &mdash; this parameter is optional if the
 [`get` extension](#getter-methods) is provided.
 
 Here is an example that demonstrates using the `config` extension with a Storage Value named `MyVal`
@@ -336,17 +340,17 @@ In `chain_spec.rs`:
 
 ```rust
 GenesisConfig {
-    my_pallet: Some(MyPalletConfig {
+    my_pallet: MyPalletConfig {
         init_val: 221u64 + SOME_CONSTANT_VALUE,
-    }),
+    },
 }
 ```
 
 ### `genesis_build`
 
-The [`#[pallet::genesis_build]`](/rustdocs/latest/frame_support/attr.pallet.html#genesis-build-palletgenesis_build-optional) 
+The [`#[pallet::genesis_build]`](/rustdocs/latest/frame_support/attr.pallet.html#genesis-build-palletgenesis_build-optional)
 attribute allows you to define how `genesis_configuration` is built within the pallet itself (this gives you access to the pallet's private
-functions). 
+functions).
 
 Here is an example that demonstrates using `#[pallet::genesis_config]` and `#[pallet::genesis_build]` to set the initial value of a storage item. In
 this case, the example involves two storage items: one that represents a list of member account IDs
@@ -364,9 +368,9 @@ struct GenesisConfig {
 #[pallet::genesis_build]
 impl<T: Config> GenesisBuild<T> for GenesisConfig {
     fn build(&self) {
-        Pallet::<T>::initialize_members(&config.members);
+        Pallet::<T>::initialize_members(&self.members);
         SomeStorageItem::<T>::put(self.prime);
-  }
+    }
 }
 ```
 
@@ -374,16 +378,17 @@ In `chain_spec.rs`:
 
 ```rust
 GenesisConfig {
-    my_pallet: Some(MyPalletConfig {
-        orig_ids: LIST_OF_IDS,
-    }),
+    my_pallet: MyPalletConfig {
+        members: LIST_OF_IDS,
+        prime: ID,
+    },
 }
 ```
 
 You can also use `genesis_build` to define a `GenesisConfig` attribute that
 is not bound to a particular storage item. This may be
 desireable if you wish to invoke a private helper function within your pallet that sets several
-storage items, or invoke a function defined in some other pallets included within your pallet. 
+storage items, or invoke a function defined in some other pallets included within your pallet.
 For example, using an imaginary private function called `intitialize_members`, this would look like:
 
 In `my_pallet/src/lib.rs`:
@@ -400,7 +405,7 @@ impl<T: Config> GenesisBuild<T> for GenesisConfig {
     fn build(&self) {
         Pallet::<T>::initialize_members(&config.members);
         SomeStorageItem::<T>::put(self.prime);
-  }
+    }
 }
 ```
 
@@ -408,9 +413,10 @@ In `chain_spec.rs`:
 
 ```rust
 GenesisConfig {
-    my_pallet: Some(MyPalletConfig {
-        orig_ids: LIST_OF_IDS,
-    }),
+    my_pallet: MyPalletConfig {
+        members: LIST_OF_IDS,
+        prime: ID,
+    },
 }
 ```
 

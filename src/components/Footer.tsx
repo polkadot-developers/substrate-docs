@@ -3,6 +3,7 @@ import MainNav from './MainNav'
 import Link from './Link'
 import Icon from './Icon'
 import { useSiteMetadata } from './Hooks/use-site-metadata'
+import Newsletter from './site/Newsletter'
 
 export default function Footer() {
   const { siteMetadata } = useSiteMetadata()
@@ -10,6 +11,7 @@ export default function Footer() {
 
   return (
     <footer className="w-full px-4 xl:px-12 bg-substrateDark text-white font-body">
+      <Newsletter />
       <div className="lg:flex lg:flex-row-reverse lg:justify-between lg:pt-12 lg:pb-3 border-b-2 border-gray-600">
         <div className="w-52 lg:h-7 relative py-12 lg:p-0 transform transition-all duration-300 ease-in-out hover:opacity-50">
           <Link to={siteMetadata.substrateIO}>

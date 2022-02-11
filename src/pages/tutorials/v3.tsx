@@ -1,19 +1,15 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { useIntl } from 'react-intl'
 import Layout from '../../components/Layout'
 import SEO from '../../components/SEO'
 import TutorialCard from '../../components/TutorialCard'
 
 export default function tutorials({ data }: any) {
-  const intl = useIntl()
   return (
     <Layout>
       <SEO title="Tutorials" />
       <div className="px-4">
-        <h1 className="text-center my-8 lg:my-12">
-          {intl.formatMessage({ id: 'nav-tutorials' })}
-        </h1>
+        <h1 className="text-center my-8 lg:my-12">Tutorials</h1>
         <div className="mb-40 flex flex-col items-center md:flex-row md:flex-wrap md:justify-center">
           <TutorialCard
             title={`Create Your First Substrate Chain`}
@@ -122,7 +118,7 @@ export default function tutorials({ data }: any) {
             time={`3 Hours`}
             difficulty={3}
             prerequisites={true}
-            version={`polkadot-0.9.10`}
+            version={`polkadot-v0.9.16`}
             link={`/tutorials/v3/cumulus/start-relay`}
           />
         </div>

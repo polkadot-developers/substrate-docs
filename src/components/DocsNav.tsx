@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
-import { useIntl } from 'react-intl'
 import SlideDownNav from '../components/SlideDownNav'
 import Link from './Link'
 import Icon from './Icon'
-// import { useLocalization } from 'gatsby-theme-i18n'
 
 interface DocsNavProps {
-  templateId: number
+  section: string
   sideNav: {
     name: string
     items: {
@@ -20,17 +18,16 @@ interface DocsNavProps {
 }
 
 export default function DocsNav({
-  templateId,
+  section,
   sideNav,
   globalNav,
   pathname,
   hashLink,
 }: DocsNavProps) {
-  const intl = useIntl()
   const [isOpen, setIsOpen] = useState(false)
   return (
     <nav
-      className={`sticky top-16 mb-12 h-docNav ${
+      className={`sticky top-16 mb-12 h-[calc(100vh-100px)] ${
         isOpen ? `w-16 overflow-y-hidden` : `w-64 overflow-y-auto `
       }`}
     >
@@ -44,12 +41,12 @@ export default function DocsNav({
         >
           <div className={`${isOpen && `hidden`}`}>
             <span className="font-bold">
-              {templateId === 0
-                ? `${intl.formatMessage({ id: 'nav-docs' })}`
-                : templateId === 1
-                ? `${intl.formatMessage({ id: 'nav-tutorials' })}`
-                : templateId === 2
-                ? `${intl.formatMessage({ id: 'nav-how-to-guides' })}`
+              {section === 'docs'
+                ? 'Docs'
+                : section === 'tutorials'
+                ? 'Tutorials'
+                : section === 'how to guides'
+                ? 'How-to Guides'
                 : null}
             </span>
           </div>
@@ -100,30 +97,28 @@ export default function DocsNav({
           <div>
             <hr className="mt-6" />
             <div className="flex items-center justify-between px-20 lg:px-4 py-4">
-              <span>{intl.formatMessage({ id: 'docs-nav-learn-more' })}</span>
+              <span>More Ways to Learn</span>
             </div>
-            {globalNav
-              .filter((navItem, index) => templateId != index)
-              .map((navItem, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="px-20 lg:px-4 py-4 lg:dark:bg-substrateDark"
-                  >
-                    <Link to={navItem.url}>
-                      <div className="flex items-center justify-between hover:no-underline">
-                        <div className="font-medium text-substrateDark dark:text-white">
-                          {navItem.section}
-                        </div>
-                        <Icon
-                          name="arrowDown"
-                          className="fill-current text-substrateDark dark:text-white transform -rotate-90"
-                        />
+            {globalNav.map((navItem, index) => {
+              return (
+                <div
+                  key={index}
+                  className="px-20 lg:px-4 py-4 lg:dark:bg-substrateDark"
+                >
+                  <Link to={navItem.url}>
+                    <div className="flex items-center justify-between hover:no-underline">
+                      <div className="font-medium text-substrateDark dark:text-white">
+                        {navItem.section}
                       </div>
-                    </Link>
-                  </div>
-                )
-              })}
+                      <Icon
+                        name="arrowDown"
+                        className="fill-current text-substrateDark dark:text-white transform -rotate-90"
+                      />
+                    </div>
+                  </Link>
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>

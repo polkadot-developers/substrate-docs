@@ -1,10 +1,13 @@
 ---
 title: Chain Specification
 slug: /v3/runtime/chain-specs
-version: 3.0 
+version: '3.0'
 section: docs
 category: runtime
-keywords: genesis, configuration, chain spec
+keywords:
+  - genesis
+  - configuration
+  - chain spec
 ---
 
 A chain specification, or "chain spec", is a collection of configuration information that dictates
@@ -115,6 +118,8 @@ customized chain by supplying the customized JSON.
 substrate --chain=myCustomSpec.json
 ```
 
+See the [custom chain spec how-to guide](/how-to-guides/v3/basics/custom-chain-spec) for a more concrete example.
+
 ## Raw chain specifications
 
 Substrate nodes support runtime upgrades, which means a blockchain's runtime may be different than
@@ -166,5 +171,5 @@ After the conversion process, the above snippet looks like this:
 - Gain hands-on experience with chain specs by
   [starting a private network](/tutorials/v3/private-network).
 - The
-  [Node Template's chain specification](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs)
+  [node template's chain specification](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs)
   stored as rust code.

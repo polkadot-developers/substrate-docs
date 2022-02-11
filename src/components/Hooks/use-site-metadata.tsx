@@ -24,6 +24,8 @@ export const useSiteMetadata = () => {
             stackOverflow
             keywords
             substrateIO
+            terms
+            privacy
           }
         }
       }

@@ -1,18 +1,18 @@
 ---
 title: Debugging
 slug: /v3/runtime/debugging
-version: 3.0 
+version: '3.0'
 section: docs
 category: runtime
-keywords:
+keywords: []
 ---
 
 Debugging is a necessity in all walks of software development, and blockchain is no exception. Most
-of the same tools used for general purpose Rust debugging also apply to Substrate. 
+of the same tools used for general purpose Rust debugging also apply to Substrate.
 
 ## Logging utilities
 
-You can use Rust's logging API to debug your runtimes. This comes with a number of macros, including 
+You can use Rust's logging API to debug your runtimes. This comes with a number of macros, including
 [`debug`](https://docs.rs/log/0.4.14/log/macro.debug.html) and [`info`](https://docs.rs/log/0.4.14/log/macro.info.html).
 
 For example, after updating your pallet's `Cargo.toml` file with the [`log` crate](https://crates.io/crates/log)
@@ -114,6 +114,7 @@ gets called.
 2020-01-01 tokio-blocking-driver DEBUG runtime  0                <-- index value from the Error enum definition
 2020-01-01 tokio-blocking-driver DEBUG runtime  NoneValue        <-- str which holds the name of the ident of the error
 ```
+
 <br />
 <Message
   type={`yellow`}

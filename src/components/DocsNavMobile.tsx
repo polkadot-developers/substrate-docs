@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import cx from 'classnames'
-import { useIntl } from 'react-intl'
 import SlideDownNav from './SlideDownNav'
 import Icon from './Icon'
 import Link from './Link'
 
 interface DocsNavMobileProps {
-  templateId: number
+  section: string
   sideNav: {
     name: string
     items: {
@@ -20,13 +19,12 @@ interface DocsNavMobileProps {
 }
 
 export default function DocsNav({
-  templateId,
+  section,
   sideNav,
   globalNav,
   pathname,
   hashLink,
 }: DocsNavMobileProps) {
-  const intl = useIntl()
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
@@ -39,7 +37,9 @@ export default function DocsNav({
     <nav
       className={cx(
         'bg-substrateGray-light dark:bg-darkBackground w-screen overflow-auto',
-        { 'h-[calc(100vh-100px)] z-10': isOpen }
+        {
+          'h-[calc(100vh-100px)] z-10': isOpen,
+        }
       )}
     >
       <div
@@ -51,19 +51,21 @@ export default function DocsNav({
           className="fill-current text-black dark:text-white"
         />
         <span className="pl-2 font-bold">
-          {templateId === 0
-            ? `${intl.formatMessage({ id: 'nav-docs' })}`
-            : templateId === 1
-            ? `${intl.formatMessage({ id: 'nav-tutorials' })}`
-            : templateId === 2
-            ? `${intl.formatMessage({ id: 'nav-how-to-guides' })}`
+          {section === 'docs'
+            ? 'Docs'
+            : section === 'tutorials'
+            ? 'Tutorials'
+            : section === 'how to guides'
+            ? 'How-to Guides'
             : null}
         </span>
         <Icon
           name="arrowDown"
           className={cx(
             'ml-2 fill-current text-black dark:text-white transform',
-            { 'rotate-180': isOpen }
+            {
+              'rotate-180': isOpen,
+            }
           )}
         />
       </div>
@@ -91,28 +93,26 @@ export default function DocsNav({
             <div className="flex items-center justify-between px-4 sm:px-20 py-4 dark:bg-darkBackground">
               <div className="font-light">More Ways to Learn</div>
             </div>
-            {globalNav
-              .filter((navItem, index) => templateId != index)
-              .map((navItem, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="px-4 sm:px-20 lg:px-4 py-4 lg:bg-white lg:dark:bg-black"
-                  >
-                    <Link to={navItem.url}>
-                      <div className="flex items-center justify-between">
-                        <div className="font-medium text-substrateDark dark:text-white">
-                          {navItem.section}
-                        </div>
-                        <Icon
-                          name="arrowDown"
-                          className="fill-current text-substrateDark dark:text-white transform -rotate-90"
-                        />
+            {globalNav.map((navItem, index) => {
+              return (
+                <div
+                  key={index}
+                  className="px-4 sm:px-20 lg:px-4 py-4 lg:bg-white lg:dark:bg-black"
+                >
+                  <Link to={navItem.url}>
+                    <div className="flex items-center justify-between">
+                      <div className="font-medium text-substrateDark dark:text-white">
+                        {navItem.section}
                       </div>
-                    </Link>
-                  </div>
-                )
-              })}
+                      <Icon
+                        name="arrowDown"
+                        className="fill-current text-substrateDark dark:text-white transform -rotate-90"
+                      />
+                    </div>
+                  </Link>
+                </div>
+              )
+            })}
           </>
         )}
       </div>
