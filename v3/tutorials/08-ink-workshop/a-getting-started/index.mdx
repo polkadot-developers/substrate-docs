@@ -389,14 +389,14 @@ the following error:
 ClientImport("Unexpected epoch change")
 ```
 
-To solve this you will need to restart your node with: `canvas --dev --tmp`. At that point, you will
+To solve this you will need to restart your node with: `substrate-contracts-node --dev --tmp`. At that point, you will
 need to re-deploy any contracts and re-do any steps that you may have done before on your node. As
 long as you keep your node running, you should face no issues.
 
 ### 2. Old Contracts in Local Storage
 
 **Contracts UI** uses its own local storage to track the contracts that you have deployed. This means
-that if you deploy a contract using the UI, and then purge your Canvas node, you will be prompted to
+that if you deploy a contract using the UI, and then purge your node, you will be prompted to
 reset your local storage and please do so. And then re-deploy any contracts and re-do any steps that
 you may have done before on your node.
 
