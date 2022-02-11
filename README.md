@@ -73,9 +73,6 @@ guidelines if making any non-trivial PRs here.
 
 - `develop` branch is available at: https://develop--substrate-docs.netlify.app/
 
-If you are submitting a PR, make sure to submit it to the `develop` branch. Only once PRs are merged into
-develop will they get merged into `main`.
-
 ## 🚀 Quick start
 
 1.  **Clone the repo**
