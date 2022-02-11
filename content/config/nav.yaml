@@ -42,7 +42,7 @@ docs:
     - title: Install
       url: /main-docs/install/
       pages:
-        - title: Rust compiler and toolchain
+        - title: Rust toolchain
           url: /main-docs/install/rust-builds/
         - title: Linux
           url: /main-docs/install/linux/

@@ -1,4 +1,8 @@
-# Linux development environment
+---
+title: Linux development environment
+description: Set up a local development environment for Substrate on Linux.
+keywords:
+---
 
 Rust supports most Linux distributions.
 Depending on the specific distribution and version of the operating system you use, you might need to add some package dependencies to your environment.
@@ -33,11 +37,15 @@ To install the Rust toolchain on Linux:
 
 1. Add any package dependencies you are missing to your local development environment by running an appropriate package management command for your Linux distribution.
     
-    For example, on Ubuntu, you might run a command similar to the following:
+    For example, on Ubuntu Desktop or Ubuntu Server, you might run a command similar to the following:
     
     ```bash
     sudo apt install --assume-yes git clang curl libssl-dev
     ```
+
+    Remember that different distributions might use different package managers and bundle packages in different ways. 
+    For example, depending on your installation selections, Ubuntu Desktop and Ubuntu Server might have different packages and different requirements.
+    However, the four packages listed in this command-line example are applicable for many common Linux distributions, including Debian, Linux Mint, MX Linux, and Elementary OS.
 
 1. Download the `rustup` installation program and use it to install Rust by running the following command:
     
@@ -125,6 +133,9 @@ To compile the Substrate node template:
     git checkout latest
     ```
 
+    This command checks out the repository in a detached state.
+    If you want to save your changes, you can create a branch from this state.
+
 1. Compile the node template by running the following command:
     
     ```bash
@@ -134,3 +145,25 @@ To compile the Substrate node template:
     Because of the number of packages required, compiling the node can take several minutes.
 
 After the build completes successfully, your local computer is ready for Substrate development activity.
+
+## Where to go next
+
+The Substrate Developer Hub acts as a central portal for access to the many resources available to the community.
+Depending on your interests and learning style, you might prefer one avenue over another.
+For example, if you prefer to read source code and are familiar with Rust, you might want to start by digging into the [Rust API](reference/rust-docs/).
+If you are new to Substrate and the Substrate ecosystem, you might want broader exposure to what resources are available and where to find them by checking out [Explore](/main-docs/explore/).
+
+Here are a few additional suggestions for where you can learn more.
+
+#### Tell me
+
+* [Node architecture](main-docs/node-architecture/)
+* [Design runtime logic](/main-docs/design/)
+Network topologies
+* [Build process](main-docs/build/)
+
+#### Guide me
+
+* [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
+* [Simulate a network](/tutorials/get-started/simulate-network/)
+* [Start a trusted validator network](/tutorials/get-started/trusted-network/)

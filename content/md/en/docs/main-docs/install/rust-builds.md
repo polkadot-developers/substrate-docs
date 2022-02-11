@@ -1,14 +1,22 @@
-<!-- TODO Manage expectations about build times on lower-spec hardware. Define that practical dev environment requirements are higher than just for running a node  -->
+---
+title: Rust toolchain
+description:
+keywords:
+---
 
-# Rust compiler and toolchain
+<!-- TODO Manage expectations about build times on lower-spec hardware. Define that practical dev environment requirements are higher than just for running a node  -->
 
 Rust is a modern, type sound, and performant programming language that provides a rich feature set for building complex systems.
 The language also has an active developer community and a growing ecosystem of sharable libraries called **crates**.
+
+## Learning Rust
 
 Rust is the core language used to build Substrate-based blockchains, so if you intend to do Substrate development, you need to be familiar with the Rust programming language, compiler, and toolchain management.
 
 If you are just getting started with Rust, you should bookmark [The Rust Programming Language](https://doc.rust-lang.org/book/) and refer to other [Learn Rust](https://www.rust-lang.org/learn) resources on the Rust website to guide you.
 However, there are a few important points to be aware of as you prepare your development environment.
+
+## About the Rust toolchain
 
 The core tools in the Rust **toolchain** are the `rustc` compiler, the `cargo` build and package manager, and the `rustup` toolchain manager.
 At any given point in time, there can multiple versions of Rust available. 

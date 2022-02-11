@@ -1,4 +1,8 @@
-# macOS development environment
+---
+title: macOS development environment
+description: et up a local development environment for Substrate on macOS.
+keywords:
+---
 
 You can install Rust and set up a Substrate development environment on Apple macOS computers with either Intel or an Apple M1 processors.
 
@@ -155,6 +159,9 @@ To compile the Substrate node template:
     git checkout latest
     ```
 
+    This command checks out the repository in a detached state.
+    If you want to save your changes, you can create a branch from this state.
+
 1. Compile the node template by running the following command:
     
     ```bash
@@ -164,3 +171,25 @@ To compile the Substrate node template:
     Because of the number of packages required, compiling the node can take several minutes.
 
 After the build completes successfully, your local computer is ready for Substrate development activity.
+
+## Where to go next
+
+The Substrate Developer Hub acts as a central portal for access to the many resources available to the community.
+Depending on your interests and learning style, you might prefer one avenue over another.
+For example, if you prefer to read source code and are familiar with Rust, you might want to start by digging into the [Rust API](reference/rust-docs/).
+If you are new to Substrate and the Substrate ecosystem, you might want broader exposure to what resources are available and where to find them by checking out [Explore](/main-docs/explore/).
+
+Here are a few additional suggestions for where you can learn more.
+
+#### Tell me
+
+* [Node architecture](main-docs/node-architecture/)
+* [Design runtime logic](/main-docs/design/)
+Network topologies
+* [Build process](main-docs/build/)
+
+#### Guide me
+
+* [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
+* [Simulate a network](/tutorials/get-started/simulate-network/)
+* [Start a trusted validator network](/tutorials/get-started/trusted-network/)
