@@ -1,4 +1,8 @@
-# Linux development environment
+---
+title: Linux development environment
+description: Set up a local development environment for Substrate on Linux.
+keywords:
+---
 
 Rust supports most Linux distributions.
 Depending on the specific distribution and version of the operating system you use, you might need to add some package dependencies to your environment.

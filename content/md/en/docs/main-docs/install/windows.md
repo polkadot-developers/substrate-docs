@@ -1,4 +1,8 @@
-# Windows development environment
+---
+title: Windows development environment
+description: Set up a local development environment for Substrate on Windows.
+keywords:
+---
 
 In general, UNIX-based operating systems—like macOS or Linux—provide a better development environment for building Substrate-based blockchains.
 All of the code examples and command-line instructions in Substrate [Tutorials](../tutorials) and [How-to guides](../reference/how-to-guides) illustrate how to interact with Substrate using UNIX-compatible commands in a terminal.
