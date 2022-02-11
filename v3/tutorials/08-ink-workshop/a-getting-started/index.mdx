@@ -1,13 +1,13 @@
 ---
 title: Getting Started
 slug: /tutorials/v3/ink-workshop/pt1
-version: 3.0 
+version: 3.0
 section: tutorials
 category: ink workshop
 keywords: smart contracts, erc20, wasm
 difficulty: 2
 duration: 2.5 Hours
-relevantSkills:  
+relevantSkills:
   - ink!
   - Smart Contracts
 ---
@@ -16,48 +16,43 @@ This part will teach you everything you need to know to get started building sma
 
 <TutorialObjective
   data={{
-    textLineOne:
-      '1. Installing prerequisites on your computer',
-      url: '#prerequisites',
+    textLineOne: '1. Installing prerequisites on your computer',
+    url: '#prerequisites',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '2. Starting a new project with cargo-contract',
+    textLineOne: '2. Starting a new project with cargo-contract',
     url: '#creating-an-ink-project',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '3. Building and testing our contract',
+    textLineOne: '3. Building and testing our contract',
     url: '#running-a-substrate-smart-contracts-node',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '4. Deploying our contract on a local Substrate node',
+    textLineOne: '4. Deploying our contract on a local Substrate node',
     url: '#deploying-your-contract',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '5. Interacting with our contract using the Canvas UI',
+    textLineOne: '5. Interacting with our contract using the Contracts UI',
     url: '#calling-your-contract',
   }}
 />
 <TutorialObjective
   data={{
-    textLineOne:
-      '6. Troubleshooting',
+    textLineOne: '6. Troubleshooting',
     url: '#troubleshooting',
   }}
 />
 
 ## Learning outcomes
+
 - Learn the basic of writing smart contracts with ink!
 - Learn how to deploy an ERC20 contract in a Substrate node using ink!
 
@@ -71,6 +66,7 @@ Follow the
 [official installation steps](/v3/getting-started/installation) to install the prerequisites.
 
 Once you have done the above you will also need to run:
+
 ```
 rustup component add rust-src --toolchain nightly
 rustup target add wasm32-unknown-unknown --toolchain nightly
@@ -98,6 +94,7 @@ sudo apt install binaryen
 # For MacOS users
 brew install binaryen
 ```
+
 <br />
 <Message
   type={`gray`}
@@ -112,7 +109,6 @@ cargo install cargo-contract --vers ^0.15 --force --locked
 ```
 
 You can then use `cargo contract --help` to start exploring the commands made available to you.
-
 
 ## Creating An ink! Project
 
@@ -177,6 +173,7 @@ Run the following command to compile your smart contract in the Flipper project 
 ```bash
 cargo +nightly contract build
 ```
+
 <br />
 <Message
   type={`yellow`}
@@ -204,7 +201,7 @@ target
 
 Let's take a look at the structure of `metadata.json`:
 
-``` JSON
+```JSON
 {
   "metadataVersion": "0.1.0",
   "source": {...},
@@ -222,12 +219,12 @@ Let's take a look at the structure of `metadata.json`:
 
 This file describes all the interfaces that can be used to interact with your contract:
 
-* `types` provides the custom **data types** used throughout the rest of the JSON.
-* `storage` defines all the **storage** items managed by your contract and how to ultimately access
-them.
-* `spec` stores information about the callable functions like **constructors** and **messages** a
-user can call to interact with the contract. It also has helpful information like the **events**
-that are emitted by the contract or any **docs**.
+- `types` provides the custom **data types** used throughout the rest of the JSON.
+- `storage` defines all the **storage** items managed by your contract and how to ultimately access
+  them.
+- `spec` stores information about the callable functions like **constructors** and **messages** a
+  user can call to interact with the contract. It also has helpful information like the **events**
+  that are emitted by the contract or any **docs**.
 
 If you look closely at the constructors and messages, you will also notice a `selector` which
 contains a 4-byte hash of the function name and is used to route your contract calls to the correct
@@ -235,7 +232,7 @@ functions.
 
 In the next section we will start a
 [Substrate Smart Contracts node](https://github.com/paritytech/substrate-contracts-node) and
-configure the [Canvas UI](https://github.com/paritytech/canvas-ui) to interact with it.
+configure the [Contracts UI](https://github.com/paritytech/contracts-ui) to interact with it.
 
 ## Running a Substrate Smart Contracts Node
 
@@ -250,15 +247,12 @@ substrate-contracts-node --dev --tmp
 
 You should start seeing blocks being produced by your node in your terminal.
 
-
-
 ## Deploying your Contract
 
-
-Go to the [hosted version of Canvas UI](https://paritytech.github.io/canvas-ui) to interact with
+Go to the [hosted version of Contracts UI](https://paritytech.github.io/contracts-ui) to interact with
 your node. You first need to configure the UI to connect to it:
 
-- Click on the dropdown selector at bottom left corner.
+- Click on the dropdown selector at top left corner.
 - Choose the Local Node.
 
 ![Connect to local node](/assets/tutorials/ink-workshop/canvas-connect-to-local.png)
@@ -290,12 +284,13 @@ and waste space on the blockchain.
 Here we will upload the contract code and instantiate one copy of the contract on the blockchain (
 which is usually why we upload the contract code in the first place):
 
-- Click the **Upload & Instantiate Contract** button.
+- Click the **Add New Contract** button in the sidebar.
+- Click the **Upload New Contract Code** button in the Add New Contract page.
 - Choose an **Instantiation account** (e.g. ALICE).
 - Give the contract a descriptive **Name** (e.g. Flipper Contract).
 - Drag the `flipper.contract` file that contains the bundled Wasm blob and metadata into the drag
-& drop area. You will see the UI parse the metadata and showing what functions the contract contains.
-- Click the **Constructor Details**
+  & drop area. You will see the UI parse the metadata and enabling the button that takes you to the next step.
+- Click the **Next** button
 
 ![Flipper Instantiate Contract 01](/assets/tutorials/ink-workshop/flipper-instantiate-01.png)
 
@@ -308,63 +303,46 @@ smart contract and allow us to interact with the contract.
 Now a screen displays the information that represents our smart contract. We are going to
 instantiate a copy of the smart contract:
 
-- Give the contract instance a **Contract Name** (e.g. The First Flipper).
-- Accept the default options for the contract **Instantiation Constructor**.
-- Accept the default options **Endowment** of `1000 Units` to pay the storage rent, and **Max Gas
-Allowed** of `200000`.
-- Click on `Instantiate`
+- Accept the default options for the contract **Deployment Constructor**.
+- Accept the default options **Max Gas Allowed** of `200000`.
+- Click on `Next`
 
 ![Flipper Instantiate Contract 02](/assets/tutorials/ink-workshop/flipper-instantiate-02.png)
 
-> **Note:** As mentioned earlier, contract creation involves creation of a new account. As such, you
-must be sure to give the contract account at least the existential deposit defined by your
-blockchain. We also need to be able to pay the contract's rent (endowment). If we consume all of
-this deposit, the contract will become a tombstone. We can always refill the contract's balance and
-keep it on chain.
-
-When you click **Instantiate**, and in the next confirmation screen **Sign & Submit**, you should see
-the extrinsic `contracts.instantiateWithCode` is called, and a flurry of events appear including the
-creation of a new account (`system.NewAccount`) and the instantiation of the contract
-(`contracts.Instantiated`):
+The transaction is now queued, review your data and click **Upload and Instantiate** or go back and modify your inputs.
 
 ![Flipper Instantiate Contract 03](/assets/tutorials/ink-workshop/flipper-instantiate-03.png)
+
+When you click **Upload and Instantiate** you should see
+the extrinsic `instantiateWithCode` is processing, and a flurry of events appear including the
+creation of a new account (`system.NewAccount`) and the instantiation of the contract
+(`contracts.Instantiated`).
+You will be redirected to a new page, where you can interact with the newly created contract instance.
+
+![Flipper Instantiate Success](/assets/tutorials/ink-workshop/flipper-instantiate-04.png)
 
 ## Calling your Contract
 
 Now that your contract has been fully deployed, we can start interacting with it! Flipper only has
 two functions, `flip()` and `get()` so we will show you what it's like to play with both of them.
-Click the **Execute** button under the contract after you instantiate the Flipper contract in the
-previous step.
 
 ### 1. get() function
 
-Take a look at our contract's `default()` function, we set the initial value of the Flipper contract
-`value` to `No` when we instantiated the contract. Let's check that this is the case.
+We set the initial value of the Flipper contract
+`value` to `false` when we instantiated the contract. Let's check that this is the case.
 
 In the **Message to Send** section, select the "**get(): bool**" message and accept the default
 values for the other options.
 
-Press **"Call"** and confirm that it returns the value `false`:
+Press **"Read"** and confirm that it returns the value `false`:
 
 ![An image of Flipper RPC call with false](/assets/tutorials/ink-workshop/flipper-false.png)
-
-<Message
-  type={`gray`}
-  title={`Note`}
-  text={`You might be wondering "Why did we need to specify gas when reading a value from a contract?"
-If you notice right above the "Call" button is a dropdown select box that allows you to "Send as
-RPC call" or "Send as transaction". For a read-only request like this, we can simply use an RPC call
-which will _simulate_ a transaction, but not actually storing anything on-chain. Thus, you will still need to specify the right amount of gas to cover your "virtual fee". 
-But don't worry, nothing will be charged when making a call this way. 🙂`}
-/>
 
 ### 2. flip() function
 
 So let's make the value turn `true` now!
 
-The alternative message to send with the UI is `flip()`. Again, accept the default values for the other options.
-
-You will notice that the `flip()` message defaults to a transaction call.
+The alternative message to send with the UI is `flip()`. Again, accept the default values for the other options and click **Call**
 
 ![An image of a Flipper transaction](/assets/tutorials/ink-workshop/send-as-transaction.png)
 
@@ -413,14 +391,14 @@ long as you keep your node running, you should face no issues.
 
 ### 2. Old Contracts in Local Storage
 
-**Canvas UI** uses its own local storage to track the contracts that you have deployed. This means
+**Contracts UI** uses its own local storage to track the contracts that you have deployed. This means
 that if you deploy a contract using the UI, and then purge your Canvas node, you will be prompted to
 reset your local storage and please do so. And then re-deploy any contracts and re-do any steps that
 you may have done before on your node.
 
 ### 3. Send as Transaction vs Send as RPC
 
-When interacting with contracts using the Canvas UI, you have the option to submit your call as a
+When interacting with contracts using the Contracts UI, you have the option to submit your call as a
 transaction or as a RPC:
 
 ![An image of submitting with transaction or RPC](/assets/tutorials/ink-workshop/send-as.png)
@@ -431,7 +409,7 @@ these situations, no value is returned from your contract call, only a "Success"
 extrinsic message along with any events it may emit.
 
 However, there may be some calls that you want to "test", rather than actually submit a transaction,
-or you may want to peek at the value that *would* be returned if you called the contract function.
+or you may want to peek at the value that _would_ be returned if you called the contract function.
 For these scenarios, you submit an RPC call, which will run all of your contract logic, but not
 actually submit a transaction or update the chain state. However, you will still need to specify
 the right amount of gas to cover your "virtual fee". But don't worry, nothing will be charged when making a call this way. :)
