@@ -20,7 +20,7 @@ docs:
         - title: Blockchain basics
           url: /main-docs/fundamentals/blockchain-basics/
         - title: Choosing a development platform
-          url: /main-docs/why-substrate/choose-a-dev-platform/
+          url: /main-docs/fundamentals/choose-a-dev-platform/
         - title: Node architecture
           url: /main-docs/fundamentals/architecture/
         - title: Substrate runtime development
