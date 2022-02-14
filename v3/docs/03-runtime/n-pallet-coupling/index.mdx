@@ -37,7 +37,7 @@ pub trait Config: frame_system::Config + some_pallet::Config {
 }
 ```
 
-This is very similar to using class inteheritance in object oriented programming.
+This is very similar to using class inheritance in object oriented programming.
 Supplying this trait bound implies that this pallet can only be installed in a runtime that also
 has `some_pallet` pallet installed. Similar to with `frame_system`, this approach would require
 specifying `some_pallet` in the coupled pallet's **Cargo.toml** file.
@@ -50,7 +50,7 @@ Tight coupling has several disadvantages developers should take into account:
 
 ## Loosely coupled pallets
 
-Unlike tight coupling, in loose coupling pallet we just specify traits and function interfaces that
+Unlike tight coupling, in loosely coupling pallets we just specify traits and function interfaces that
 certain types need to be bound by.
 
 The actual implementation of such types happens **outside of the pallet** during our runtime configuration
@@ -76,7 +76,7 @@ pub trait Currency<AccountId> {
 ```
 
 Then inside our own pallet, we define `MyCurrency` associated type and bound it by
-`Currency<Self::AccountId>` so we can tap into the balance tranfer logic by calling
+`Currency<Self::AccountId>` so we can tap into the balance transfer logic by calling
 `T::MyCurrency::transfer(...)`.
 
 ```rust
@@ -116,7 +116,7 @@ Notice that many FRAME pallets are coupled to this
 in this way.
 
 In general, loose coupling will provide more flexibility than tight coupling and is considered
-better practice from a system design perspective. It guarantees better maintability, reusability,
+better practice from a system design perspective. It guarantees better maintainability, reusability,
 and extensibility of code. Yet, tight coupling can be a good first choice for scenarios where
 the pallets are minimally complex and have more overlap in methods and types than differences.
 
