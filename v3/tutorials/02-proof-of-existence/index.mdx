@@ -440,7 +440,7 @@ This React component enables you to expose the proof-of-existence capabilities a
 
    // Pre-built Substrate front-end utilities for connecting to a node
    // and making a transaction.
-   import { useSubstrate } from './substrate-lib'
+   import { useSubstrateState } from './substrate-lib'
    import { TxButton } from './substrate-lib/components'
 
    // Polkadot-JS utilities for hashing data.
@@ -448,8 +448,9 @@ This React component enables you to expose the proof-of-existence capabilities a
 
    // Main Proof Of Existence component is exported.
    export function Main(props) {
-     // Establish an API to talk to the Substrate node.
-     const { api } = useSubstrate()
+     // Establish an API to talk to the Substrate node
+     // and get the selected user from the `AccountSelector` component.
+     const { api, currentAccount: accountPair } = useSubstrateState()
      // Get the selected user from the `AccountSelector` component.
      const { accountPair } = props
      // React hooks for all the state variables we track.
@@ -565,7 +566,7 @@ This React component enables you to expose the proof-of-existence capabilities a
    }
 
    export default function TemplateModule(props) {
-     const { api } = useSubstrate()
+     const { api } = useSubstrateState()
      return api.query.templateModule && api.query.templateModule.proofs ? (
        <Main {...props} />
      ) : null
