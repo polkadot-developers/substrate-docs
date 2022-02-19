@@ -25,10 +25,10 @@ Explore the following resources to learn more.
 
 #### Tell me more
 
-* [Blockchain basics](/main-docs/02-fundamentals/blockchain-basics/)
-* [Choosing a development platform](/main-docs/01-why-substrate/choose-a-dev-platform)
-* [Substrate node architecture](/main-docs/02-fundamentals/substrate-client/)
-* [Runtime development and FRAME](/main-docs/02-fundamentals/runtime/)
+* [Blockchain basics](/main-docs/fundamentals/blockchain-basics/)
+* [Choosing a development platform](/main-docs/fundamentals/choose-a-dev-platform)
+* [Substrate node architecture](/main-docs/fundamentals/substrate-client/)
+* [Runtime development and FRAME](/main-docs/fundamentals/runtime/)
 
 #### Guide me
 
