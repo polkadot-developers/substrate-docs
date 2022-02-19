@@ -64,10 +64,11 @@ As a core design principle, Substrate enables you to build a blockchain comprise
 ## Where to go next
 
 Substrate provides a unique and powerful framework for building blockchain networks and blockchain applications. 
-You can get started with something asa simple as a single node deployed using a JSON configuration file or build a solo chain that runs independent of any other blockchains
-If you are more ambitious, you can use the Substrate core to design and implement a fully customized blockchain runtime from scratch in any language that can compile to WebAssembly. 
+You can get started with something asa simple as a single node deployed using a JSON configuration file.
+You can use Substrate to build a solo chain that runs independent of any other blockchains or you can connect your Substrate chain to a relay chain like Polkadot or Kusama and realize the benefits of a larger network.
+If you are even more ambitious, you can use the Substrate core to design and implement a fully customized blockchain runtime from scratch and do so in any language that can compile to WebAssembly. 
 
-You can explore the following resources to learn more.
+Depending on your background and interests, explore the following resources to learn more.
 
 #### Tell me
 
