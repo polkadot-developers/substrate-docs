@@ -1,3 +1,9 @@
+---
+title: Transaction formats
+description:
+featured_image:
+--- 
+
 _This article describes in detail what the format of an extrinsic (in particular signed and unsigned transactions) looks like in Substrate._
 _This is particularly useful for understanding how the transaction pool checks incoming tranactions._
 _Parachain builders will find this useful for customizing how their transactions are formatted as well as writing client applications that need to adhere to a chosen format._

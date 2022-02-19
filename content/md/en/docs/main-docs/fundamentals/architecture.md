@@ -1,3 +1,9 @@
+---
+title: Substrate architecture
+description: An introduction to the core components of a SUbstrate node.
+featured_image:
+---
+
 A Substrate node is designed to be modular, extensible and adaptable to change. 
 This article presents the architecture of a Substrate node, using the [node template](https://github.com/substrate-developer-hub/substrate-node-template) as a reference which provides a set of core components ready to use out of the box.
 

@@ -1,3 +1,9 @@
+---
+title: Network topologies
+description: An overview of network deployment scenarios for Substrate nodes.
+featured_image:
+---
+
 Substrate provides tools to build all types of blockchain networks and protocols. 
 This implies application specific networks and nodes.
 
@@ -5,7 +11,7 @@ This implies application specific networks and nodes.
 
 Network architectures can fall into the following categories:
 
-- Relay chains: these Substrate blockchains are desgined to provide decentralized security to other chains connected to it. 
+- Relay chains: these Substrate blockchains are designed to provide decentralized security to other chains connected to it. 
 Polkadot is an example of such a chain.
 - Parachains: parachains are blockchains built to connect to some relay chain. Such chains need to implement the same consenus protocol as the relay chain they target.
 - Solo-chains: these Substrate blockchains implement their own security protocol and are independant from any other chain.

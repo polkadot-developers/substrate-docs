@@ -1,6 +1,8 @@
-Section: Fundamentals
-Sub-section: Rust basics
-Type: reference 
+---
+title: Rust basics
+description: An overview of Rust programming conventions and how they're used in Substrate.
+featured_image:
+--- 
 
 _The goal of this article is to go over some of Rust's programming paradigms and how they're used in Substrate._
 _In doing so, it explains how Substrate uses no_std and why and the role of generics in Substrate runtimes_.

@@ -1,4 +1,11 @@
-# Choosing a development platform for your project
+---
+title: Choosing a development platform
+description: An overview of the differences between smart contract development and Substrate runtime development.
+featured_image:
+---
+
+If you are familiar with how the blockchain industry has evolved, you are most likely familiar with the advent of **smart contract** functionality and growing number of smart contract platforms.
+Although you can write smart contracts to run on a Substrate-based chain, Substrate is not a smart contract platform.
 
 Scalability
 

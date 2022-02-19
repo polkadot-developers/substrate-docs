@@ -1,3 +1,9 @@
+---
+title: Consensus
+description: An overview of common consensus models that you can deploy in the Substrate runtime.
+featured_image:
+---
+
 _This article presents reference and conceptual information about the different consensus mechanisms used in Substrate._ 
 
 Blockchain nodes use consensus engines to agree on the blockchain's state. 

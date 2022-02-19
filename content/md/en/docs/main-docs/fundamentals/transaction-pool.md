@@ -1,3 +1,9 @@
+---
+title: Transaction lifecycle
+description:
+featured_image:
+--- 
+
 _This article provides details explaining how transactions are ordered, verified and then broadcasted to the network before being added to the canonical chain of blocks._
 _This is useful for parachain builders seeking to acquire a mental model of the lifecycle of a transaction in Substrate, useful for understanding why transactions are constructed the way they are and how transaction pools work._
 

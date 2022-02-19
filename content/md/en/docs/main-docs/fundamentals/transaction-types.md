@@ -1,3 +1,9 @@
+---
+title: Extrinsics
+description: 
+featured_image:
+--- 
+
 _This article teaches you about "extrinsics" in Substrate as well as the different types that exist and examples of how they can be used in a runtime._
 _Understanding these naming conventions and the purpose of each type is important for blockchain builders to identify what type to use appropriately._ 
  
