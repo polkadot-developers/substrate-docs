@@ -167,6 +167,8 @@ reference:
     - title: Command-line tools
       url: /reference/command-line-tools/
       pages:
+        - title: archive
+          url: /reference/command-line-tools/archive/
         - title: node-template
           url: /reference/command-line-tools/node-template/
         - title: subkey

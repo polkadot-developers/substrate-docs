@@ -15,14 +15,13 @@ You can find examples for both [JSON](https://github.com/paritytech/polkadot-lau
 
 ## Before you begin
 
-Before you use polkadot-launch to set up a local test network, you need to prepare your environment with the required files:
+Before you use `polkadot-launch` to set up a local test network, you need to prepare your environment with the required files:
 
 * Download and compile the `polkadot` relay chain and copy `polkadot` binary to the `polkadot-launch/bin` directory.
 * Download and compile the `polkadot-collator` and copy `polkadot-collator` binary to the `polkadot-launch/bin` directory.
 * Prepare a configuration file with the properties for your test network.
 
 See the documentation in in the `polkadot-launch` repository for additional informmation abot performing these steps.
-
 
 ## Installation 
 
@@ -36,7 +35,13 @@ To install the `polkadot-launch` program:
     git clone https://github.com/paritytech/polkadot-launch.git
     ```
 
-1. Verify that you have either yarn or npm installed by running either of the following commands:
+1. Change to the root directory of the `polkadot-launch` repository by running the following command:
+    
+    ```
+    cd polkadot-launch
+    ```
+    
+1. Verify that you have either `yarn` or `npm` installed by running either of the following commands:
     
     ```
     yarn --version
