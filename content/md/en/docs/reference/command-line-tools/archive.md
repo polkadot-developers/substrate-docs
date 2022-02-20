@@ -10,20 +10,43 @@ For examples of queries you can run against a Substrate archive database, see [U
 
 ## Before you begin
 
-* You must have PostGresSQL installed on the computer where you are running s Substrate node.
- 
+Before you use `archive` to create a database for a Substrate-based chain, you need to prepare your environment with the required files:
 
-## Installation 
+* You must have PostgreSQL installed on the computer where you are running s Substrate node.
+  
+  You can download PostgreSQL packages for different platforms from the PostgreSQL [Downloads](https://www.postgresql.org/download/) page.
+  
+  Depending on your platform, you might be able to install PostgreSQL using a local package manager.
+  For example, you can install a PostgreSQL package on a macOS computer by running `brew install postgresql` in a Terminal.
 
-To install and compile the  `substrate-archive-cli` program:
+* You must have RabbitMQ or Docker Compose installed on the computer where you have PostgreSQL installed.
+    
+  Depending on your platform, the instruction and system requirements for installing RabbitMQ or Docker can vary. 
+  For information about using [RabbitMQ](https://www.rabbitmq.com/) or [Docker(docker.com)], see the [Setup](https://github.com/paritytech/substrate-archive/wiki/1-Setup) `substrate-archive` wiki page.
 
-1. Install Postgres
-`brew install postgresql`
+* Your Substrate chain must use RocksDB as its backend database.
 
-1. Clone the `substrate-archive` directory using:
-`git clone https://github.com/paritytech/substrate-archive.git`
+## Install and configure
 
-1. Set up the PostgreSQL database by running `docker-compose up -d` to start postgres and pgadmin.
+To install the  `substrate-archive-cli` program:
+
+1. Open a terminal shell on your computer.
+
+1. Clone the `substrate-archive` repository by running the following command:
+    
+    ```
+    git clone https://github.com/paritytech/substrate-archive.git
+    ```
+
+1. Change to the root directory of the `substrate-archive` repository by running the following command:
+    
+    ```
+    cd substrate-archive
+    ```
+
+1. Start the PostgreSQL database (`postgres`) and Postgre administrative process (`pgadmin`) on the Substrate node.
+    
+    If you have Docker Compose, you can start the services automatically by running the `docker-compose up -d` command.
 
 1. Start your Substrate node, with `pruning` set to archive. For example: 
 `./target/release/node-template --pruning=archive`
