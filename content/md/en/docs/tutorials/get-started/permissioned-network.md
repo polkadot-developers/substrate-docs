@@ -107,7 +107,7 @@ If you have completed previous tutorials, you should have the Substrate node tem
     The node template should compile without any errors.
     If you encounter issues when you compile, you can try the troubleshooting tips in [Troubleshoot Rust issues](/main-docs/install/troubleshoting/).
 
-## Add node authorization pallet
+## Add the node authorization pallet
 
 Before you can use a new pallet, you must add some information about it to the configuration file that the compiler uses to build the runtime binary.
 
@@ -120,27 +120,26 @@ Because the Substrate runtime compiles to both a native Rust binary that include
 For information about adding dependencies in `Cargo.toml` files, see [Dependencies](https://doc.rust-lang.org/cargo/guide/dependencies.html) in the Cargo documentation.
 For information about enabling and managing features from dependent packages, see [Features](https://doc.rust-lang.org/cargo/reference/features.html) in the Cargo documentation.
 
+### Add note-authorization dependencies
+
 To add the node-authorization pallet to the Substrate runtime:
 
 1. Open a terminal shell and change to the root directory for the node template.
 
 1. Open the `runtime/Cargo.toml` configuration file in a text editor.
 
-1. Import the `pallet-node-authorization` crate to make it available to the node template runtime by adding it to the list of dependencies.
+1. Locate the `[dependencies]` section and add the `pallet-node-authorization` crate to make it available to the node template runtime.
 
     ```toml
-    [dependencies.pallet-node-authorization]
-    default-features = false
-    git = 'https://github.com/paritytech/substrate.git'
-    tag = 'devhub/latest'
-    version = '4.0.0-dev'
+    [dependencies]
+    pallet-node-authorization = { default-features = false, git = "https://github.com/paritytech/substrate.git", tag = "devhub/latest", version = "4.0.0-dev" }
     ```
-
-   * The first line imports the `pallet-node-authorization` crate as a dependency.
-    * The second line specifies that the pallet features are not enabled by default when compiling the runtime.
-    * The third line specifies the repository location for retrieving the `pallet-node-authorization` crate.
-    * The fourth line specifies a commit tag for retrieving the crate.
-    * The fifth line specifies a version identifier for the crate.
+    
+    This line imports the `pallet-node-authorization` crate as a dependency and specifies the following configuration details for the crate:
+    * The pallet features are not enabled by default when compiling the runtime.
+    * The repository location for retrieving the `pallet-node-authorization` crate.
+    * The commit tag for retrieving the crate.
+    * The version identifier for the crate.
 
 1. Add the `pallet-node-authorization/std` features to the list of `features` to enable when compiling the runtime.
 
@@ -149,9 +148,7 @@ To add the node-authorization pallet to the Substrate runtime:
     default = ['std']
     std = [
       ...
-      'pallet-aura/std',
-      'pallet-balances/std',
-      'pallet-node-authorization/std',    # add this line
+      "pallet-node-authorization/std",    # add this line
       ...
     ]
     ```
@@ -168,125 +165,126 @@ To add the node-authorization pallet to the Substrate runtime:
    cargo check -p node-template-runtime
    ```
 
+### Add an administrative rule
+
+To simulate governance in this tutorial, you can configure the pallet to use the `EnsureRoot` administrative rule that is built-in to the node template by default. 
+In a production environment, you would use more realistic governance-based checking.
+
+To enable the `EnsureRoot` rule in your runtime:
+
+1. Open the `runtime/src/lib.rs` file in a text editor.
+
+1. Add the following line to the file:
+    
+    ```rust
+    use frame_system::EnsureRoot;
+    ```
+
+## Implement the Config trait for the pallet 
+
+Every pallet has a [Rust **trait**](https://doc.rust-lang.org/book/ch10-02-traits.html) called `Config`. 
+The `Config` trait is used to identify the parameters and types that the pallet needs.
+
+Most of the pallet-specific code required to add a pallet is implemented using the `Config` trait.
+You can review what you to need to implement for any pallet by referring to its Rust documentation or the source code for the pallet.
+For example, to see what you need to implement for the `Config` trait in the node-authorization pallet, you can refer to the Rust documentation for [`pallet_node_authorization::Config`](/rustdocs/latest/pallet_node_authorization/pallet/trait.Config.html).
 
 
-**`runtime/Cargo.toml`**
+To implement the `node-authorization` pallet in your runtime:
 
-```TOML
-[dependencies]
-#--snip--
+1. Open the `runtime/src/lib.rs` file in a text editor.
 
-#--snip--
-[features]
-default = ['std']
-std = [
-    #--snip--
-    'pallet-node-authorization/std',
-    #--snip--
-]
-```
+1. Add the `parameter_types` section for the pallet using the following code:
+    
+    ```rust
+    parameter_types! {
+      pub const MaxWellKnownNodes: u32 = 8;
+      pub const MaxPeerIdLength: u32 = 128;
+    }
+    ```
 
-We need to simulate the governance in our simple blockchain, so we just let a `sudo` admin rule,
-configuring the pallet's interface to `EnsureRoot`. 
-In a production environment we would want to have
-difference, governance based checking implemented here. More details of this `Config` can be found in
-the pallet's
-[reference docs](/rustdocs/latest/pallet_node_authorization/pallet/trait.Config.html).
+1. Add the `impl` section for the `Config` trait for the pallet using the following code:
+    
+    ```rust
+    impl pallet_node_authorization::Config for Runtime {
+      type Event = Event;
+      type MaxWellKnownNodes = MaxWellKnownNodes;
+      type MaxPeerIdLength = MaxPeerIdLength;
+      type AddOrigin = EnsureRoot<AccountId>;
+      type RemoveOrigin = EnsureRoot<AccountId>;
+      type SwapOrigin = EnsureRoot<AccountId>;
+      type ResetOrigin = EnsureRoot<AccountId>;
+      type WeightInfo = ();
+    }
+    ```
 
-**`runtime/src/lib.rs`**
-
-```rust
-
-/* --snip-- */
-
-use frame_system::EnsureRoot;
-
-/* --snip-- */
-
-parameter_types! {
-	pub const MaxWellKnownNodes: u32 = 8;
-	pub const MaxPeerIdLength: u32 = 128;
-}
-
-impl pallet_node_authorization::Config for Runtime {
-	type Event = Event;
-	type MaxWellKnownNodes = MaxWellKnownNodes;
-	type MaxPeerIdLength = MaxPeerIdLength;
-	type AddOrigin = EnsureRoot<AccountId>;
-	type RemoveOrigin = EnsureRoot<AccountId>;
-	type SwapOrigin = EnsureRoot<AccountId>;
-	type ResetOrigin = EnsureRoot<AccountId>;
-	type WeightInfo = ();
-}
-
-/* --snip-- */
-```
-
-Finally, we are ready to put our pallet in `construct_runtime` macro with following extra line of code:
-
-**`runtime/src/lib.rs`**
-
-```rust
-construct_runtime!(
+1. Add the pallet to the `construct_runtime` macro with the following line of code:
+    
+    ```rust
+    construct_runtime!(
     pub enum Runtime where
         Block = Block,
         NodeBlock = opaque::Block,
         UncheckedExtrinsic = UncheckedExtrinsic
-    {
-        /* --snip-- */
-
+      {
         /*** Add This Line ***/
         NodeAuthorization: pallet_node_authorization::{Pallet, Call, Storage, Event<T>, Config<T>},
+      }
+    );
+    ```
 
-        /* --snip-- */
+1. Check that the configuration can compile by running the following command:
 
-    }
-);
-```
+   ```bash
+   cargo check -p node-template-runtime
+   ```
 
-### Add genesis storage for our pallet
+### Add genesis storage for authorized nodes
 
-`PeerId` is encoded in bs58 format, so we need a new library
-[bs58](https://docs.rs/bs58/) in **node/Cargo.toml** to decode it to get its bytes.
+Before you can launch the network to use node authorization, some additional configuration is needed to handle the peer identifiers and account identifiers.
+For example, the `PeerId` is encoded in bs58 format, so you need to add a new dependency for the [bs58](https://docs.rs/bs58/) library in the `node/Cargo.toml` to decode the `PeerId` to get its bytes.
+To keep things simple, the authorized nodes are associated with predefined accounts.
 
-**`node/cargo.toml`**
+To configure genesis storage for authorized nodes:
 
-```TOML
-[dependencies]
-#--snip--
-bs58 = "0.4.0"
-#--snip--
-```
+1. Open the `node/Cargo.toml` file in a text editor.
 
-Now we add a proper genesis storage in **node/src/chain_spec.rs**. Similarly, import the necessary dependencies:
+1. Locate the `[dependencies]` section and add the `bs58` library to the node template.
 
-**node/src/chain_spec.rs**
+    ```toml
+    [dependencies]
+    bs58 = "0.4.0"
+    ```
 
-```rust
-/* --snip-- */
-use sp_core::OpaquePeerId; // A struct wraps Vec<u8>, represents as our `PeerId`.
-use node_template_runtime::NodeAuthorizationConfig; // The genesis config that serves for our pallet.
-/* --snip-- */
-```
+1. Save your changes and close the file.
 
-Adding our genesis config in the helper function `testnet_genesis`,
+1. Open the `node/src/chain_spec.rs` file in a text editor.
 
-**node/src/chain_spec.rs**
+1. Add genesis storage for nodes that are authorized to join the network using the following code:
+    
+    ```rust
+    use sp_core::OpaquePeerId; // A struct wraps Vec<u8>, represents as our `PeerId`.
+    use node_template_runtime::NodeAuthorizationConfig; // The genesis config that serves for our pallet.
+    ```
 
-```rust
-/// Configure initial storage state for FRAME modules.
-fn testnet_genesis(
-	wasm_binary: &[u8],
-	initial_authorities: Vec<(AuraId, GrandpaId)>,
-	root_key: AccountId,
-	endowed_accounts: Vec<AccountId>,
-	_enable_println: bool,
-) -> GenesisConfig {
-
-    /* --snip-- */
-
-    /*** Add This Block Item ***/
-		node_authorization: NodeAuthorizationConfig {
+1. Locate the `testnet_genesis` function that configures initial storage state for FRAME modules.
+    
+    For example:
+    
+    ```rust
+    /// Configure initial storage state for FRAME modules.
+    fn testnet_genesis(
+      wasm_binary: &[u8],
+      initial_authorities: Vec<(AuraId, GrandpaId)>,
+      root_key: AccountId,
+      endowed_accounts: Vec<AccountId>,
+      _enable_println: bool,
+      ) -> GenesisConfig {
+        
+1. Within the GenesisConfig declaration, add the following code block:
+    
+    ```rust
+      node_authorization: NodeAuthorizationConfig {
     		nodes: vec![
 				(
 					OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
@@ -297,68 +295,42 @@ fn testnet_genesis(
 					endowed_accounts[1].clone()
 				),
     		],
-   		}),
+   		},
+    ```
+    
+    In this code, `NodeAuthorizationConfig` contains a `nodes` property, which is a vector with a tuple of two elements.
+    The first element of the tuple is the `OpaquePeerId`.
+    The `bs58::decode` operation converts the human-readable `PeerId`—for example, `12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2`—to bytes. 
+    The second element of the tuple is the `AccountId` that represents the owner of this node.
+    This example uses the predefined [Alice and Bob](/reference/command-line-tools/subkey/#well-known-keys), identified here as endowed accounts [0] and [1].
 
-    /* --snip-- */
+1. Save your changes and close the file.
 
-}
-```
+### Verify that the node compiles
 
-`NodeAuthorizationConfig` contains a property named `nodes`, which is vector of tuple.
-The first element of the tuple is the `OpaquePeerId` and we use `bs58::decode` to convert
-the `PeerId` in human readable format to bytes. The second element of the tuple is `AccountId`
-and represents the owner of this node, here we are using one of the provided endowed accounts
-for demonstration: [Alice and Bob](/v3/tools/subkey#well-known-keys).
+Now that you have completed the code changes, you are ready to verify that the node compiles.
 
-You may wondering where the `12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2` comes from.
-We can use [subkey](/v3/tools/subkey#generating-node-keys) to generate
-the above human readable `PeerId`.
+To compile the node:
 
-```bash
-subkey generate-node-key
-```
+1. Change to the root of the `substrate-node-template` directory, if necessary:
 
-<br />
-<Message
-  type={`gray`}
-  title={`Note`}
-  text="`subkey` is a CLI tool that comes bundled with substrate, and you can install it natively too! 
-	Refer to the [install Instructions](/v3/tools/subkey#installation).
-  	"
-/>
+1. Compile the node by running the following command:
+    
+    ```bash
+    cargo build --release
+    ```
 
-The output of the command is like:
+    If there are no syntax errors, you are ready to proceed.
+    If there are errors, follow the instructions in the compile output to fix them then rerun the `cargo build` command.
 
-```bash
-12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2 // this is PeerId.
-c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a // This is node-key.
-```
+## Launch the permissioned network
 
-Now all the code changes are finished, we are ready to launch our permissioned network!
-
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text="Stuck? The solution with all required changes to the base template can be found ',
-		[here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/permissioned-network-v3).',
-		"
-/>
-
-In the next section, we will use well-known node keys and Peer IDs to launch your permissioned network
+You can now use the node keys and peer identifier for the predefined accounts to launch your permissioned network
 and allow access for other nodes to join.
 
-## Launch our Permissioned Network
+This part of the tutorial illustrates how to launch four nodes.
 
-In this part, we will demonstrate how to launch and add new nodes to our permissioned chain.
-
-Let's first make sure everything compiles:
-
-```bash
-# from the root dir of your node template:
-cargo build --release
-```
-
-For this demonstration, we'll launch 4 nodes: 3 well known nodes that are allowed
+3 well known nodes that are allowed
 to author and validate blocks, and 1 sub-node that only has read-only
 access to data from a selected well-known node (upon it's approval).
 
@@ -642,3 +614,5 @@ permissioned network. You can also play with other dispatchable calls like
 
 - Complete the [Private Network Tutorial](/tutorials/v3/private-network)
 - Read more about the [Subkey tool](/v3/tools/subkey)
+
+[Modified node template example](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/permissioned-network-v3)
