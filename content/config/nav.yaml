@@ -131,8 +131,8 @@ tutorials:
           url: /tutorials/get-started/simulate-network/
         - title: Start a trusted validator network
           url: /tutorials/get-started/trusted-network/
-        - title: Grant permissions to specific nodes in a network
-          url: /tutorials/get-started/permissions/
+        - title: Authorize specific node activities
+          url: /tutorials/get-started/permissioned-network/
         - title: Monitor node metrics
           url: /tutorials/get-started/monitor/
         - title: Upgrade the runtime

@@ -325,199 +325,129 @@ To compile the node:
 
 ## Launch the permissioned network
 
-You can now use the node keys and peer identifier for the predefined accounts to launch your permissioned network
-and allow access for other nodes to join.
+You can now use the node keys and peer identifiers for the predefined accounts to launch the permissioned network and authorize other nodes to join.
 
-This part of the tutorial illustrates how to launch four nodes.
+For the purposes of this tutorial, yo are going to launch four nodes.
+Three of the nodes are associated with predefined accounts and all three of those nodes are allowed to author and validate blocks.
+The fourth node is a **sub-node** that is only authorized to read data from a selected node with the approval of that node's owner.
 
-3 well known nodes that are allowed
-to author and validate blocks, and 1 sub-node that only has read-only
-access to data from a selected well-known node (upon it's approval).
+### Obtain node keys and peerIDs
 
-### Obtaining Node Keys and PeerIDs
+You have already configured the nodes associated with the Alice and Bob account in genesis storage.
+You can use the [`subkey`](/reference/command-line-tools/subkey/) program to inspect the keys associated with predefined accounts and to generate and inspect your own keys.
+However, if you run the `subkey generate-node-key` command, your node key and peer identifier are randomly generated and won't match the keys used in the tutorial.
+Because this tutorial uses predefined accounts and well-known node keys, the following table summarizes the keys for each account.
 
-For Alice's _well known_ node:
+| Account | Keys associated with the account
+| ------- | --------------------------------
+| Alice | Node key: c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a 
+|       | PeerID (generated from the node key): 12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2
+|       | Decoded PeerID in hex: 0024080112201ce5f00ef6e89374afb625f1ae4c1546d31234e87e3c3f51a62b91dd6bfa57df
+|       |
+| Bob   | Node key: 6ce3be907dbcabf20a9a5a60a712b4256a54196000a8ed4050d352bc113f8c58
+|       | PeerID (generated from the node key): 12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust
+|       | Decoded PeerID in hex: 002408011220dacde7714d8551f674b8bb4b54239383c76a2b286fa436e93b2b7eb226bf4de7
 
-```bash
-# node key
-c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a
+The two other development accounts—Charlie and Dave—do not have well-known node keys or peer identifiers.
+For demonstration purposes, we'll use the following keys:
 
-# peerid, generated from node key
-12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2
+| Account | Keys associated with the account
+| ------- | --------------------------------
+| Charlie | Node key: 3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e
+|         | PeerID (generated from the node key): 12D3KooWJvyP3VJYymTqG7eH4PM5rN4T2agk5cdNCfNymAqwqcvZ
+|         | Decoded PeerID in hex: 002408011220876a7b4984f98006dc8d666e28b60de307309835d775e7755cc770328cdacf2e
+|         |
+| Dave    | Node key: a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a
+|         | PeerID (generated from the node key): 12D3KooWPHWFrfaJzxPnqnAYAoRUyAHHKqACmEycGTVmeVhQYuZN
+|         | Decoded PeerID in hex: 002408011220c81bc1d7057a1511eb9496f056f6f53cdfe0e14c8bd5ffca47c70a8d76c1326d
 
-# bs58 decoded peer id in hex:
-0024080112201ce5f00ef6e89374afb625f1ae4c1546d31234e87e3c3f51a62b91dd6bfa57df
-```
+### Start the first node
 
-For Bob's _well known_ node:
+Because you have configured genesis storage to use the well-known node keys for Alice and Bob, you can use the `--alice` command shortcut for `--name alice --validator` to start the first node.
 
-```bash
-# node key
-6ce3be907dbcabf20a9a5a60a712b4256a54196000a8ed4050d352bc113f8c58
+To start the first node:
 
-# peer id, generated from node key
-12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust
+1. Open a terminal shell on your computer, if necessary.
 
-# bs58 decoded peer id in hex:
-002408011220dacde7714d8551f674b8bb4b54239383c76a2b286fa436e93b2b7eb226bf4de7
-```
+1. Change to the root directory where you compiled the Substrate node template.
 
-For Charlie's _NOT well known_ node:
+1. Start the first node by running the following command:
+    
+    ```bash
+    ./target/release/node-template \
+    --chain=local \
+    --base-path /tmp/validator1 \
+    --alice \
+    --node-key=c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a \
+    --port 30333 \
+    --ws-port 9944
+    ```
+    
+    In this command, the `--node-key` option to specify the key to be used for a secure connection to the network. 
+    This key is also used internally to generate the human-readable PeerId as shown in above section.
+    
+    As you might have seen in other tutorials, the command-line options used are:
+    
+    * `--chain=local` for a local testnet (not the same as the `--dev` flag!).
+    * `--alice` to name the node `alice` and make the node a validator that can author and finalize blocks.
+    * `--port` to assign a port for peer-to-peer communication.
+    * `--ws-port` to assign a listening port for WebSocket connections.
 
-```bash
-# node key
-3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e
+### Start the second node
 
-# peer id, generated from node key
-12D3KooWJvyP3VJYymTqG7eH4PM5rN4T2agk5cdNCfNymAqwqcvZ
+You can start the second node using the `--bob` command shortcut for `--name bob --validator` to start the second node.
 
-# bs58 decoded peer id in hex:
-002408011220876a7b4984f98006dc8d666e28b60de307309835d775e7755cc770328cdacf2e
-```
+To start the second node:
 
-For Dave's _sub-node_ (to Charlie, [more below](#add-dave-as-a-sub-node-to-charlie)):
+1. Open a **new** terminal shell on your computer.
 
-```bash
-# node key
-a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a
+1. Change to the root directory where you compiled the Substrate node template.
 
-# peer id, generated from node key
-12D3KooWPHWFrfaJzxPnqnAYAoRUyAHHKqACmEycGTVmeVhQYuZN
+1. Start the second node by running the following command:
+    
+    ```bash
+    ./target/release/node-template \
+    --chain=local \
+    --base-path /tmp/validator2 \
+    --bob \
+    --node-key=6ce3be907dbcabf20a9a5a60a712b4256a54196000a8ed4050d352bc113f8c58 \
+    --port 30334 \
+    --ws-port 9945
+    ```
+    
+    After both nodes are started, you should be able to see new blocks authored and finalized in both terminal logs. 
 
-# bs58 decoded peer id in hex:
-002408011220c81bc1d7057a1511eb9496f056f6f53cdfe0e14c8bd5ffca47c70a8d76c1326d
-```
+### Add a third node to the list of well-known nodes
 
-The nodes of Alice and Bob are already configured in genesis storage and serve as
-well known nodes. We will later add Charlie's node into the set of well known nodes.
-Finally we will add the connection between Charlie's node and Dave's node without
-making Dave's node as a well known node.
+You can start the third node with the `--name charlie` command. 
+The `node-authorization` pallet uses an [offchain worker](/main-docs/fundamentals/offchain-operations) to configure node connections. 
+Because the third node is not a well-known node and it will have the fourth node in the network configured as a read-only sub-node, you must include the command line option to enable the offchain worker.
 
-<Message
-  type={`gray`}
-  title={`Note`}
-  text="You can get the above bs58 decoded peer id by using `bs58::decode` similar',
-    to how it was used in our genesis storage configuration. Alternatively, there are tools online like ',
-    [this one](https://whisperd.tech/bs58-codec/)
-    to en/decode bs58 IDs.
-    "
-/>
+To start the third node:
 
-### Alice and Bob Start the Network
+1. Open a **new** terminal shell on your computer.
 
-Let's start Alice's node first:
+1. Change to the root directory where you compiled the Substrate node template.
 
-```bash
-./target/release/node-template \
---chain=local \
---base-path /tmp/validator1 \
---alice \
---node-key=c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a \
---port 30333 \
---ws-port 9944
-```
+1. Start the third node by running the following command:
+    
+    ```bash
+    ./target/release/node-template \
+    --chain=local \
+    --base-path /tmp/validator3 \
+    --name charlie  \
+    --node-key=3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e \
+    --port 30335 \
+    --ws-port=9946 \
+    --offchain-worker always
+    ```
+    
+    After you start this node, you should see there are **no connected peers** for the node.
+    Because this is a permissioned network, the node must be explicitly authorized to connect.
+    The Alice and Bob nodes were configured in the genesis `chain_spec.rs`file.
+    All other nodes mut be added manually using a call to the Sudo pallet.
 
-Here we are using `--node-key` to specify the key that are used for the security
-connection of the network. This key is also used internally to generate the human
-readable PeerId as shown in above section.
-
-Other used CLI flags are:
-
-- `--chain=local` for a local testnet (not the same as the `--dev` flag!).
-- `--alice` to make the node an authority which can author and finalize block,
-  also give the node a name which is `alice`.
-- `--port` assign a port for peer to peer connection.
-- `--ws-port` assign a listening port for WebSocket connection.
-
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text={`You can get the detailed description of above flags and more by running \`./target/release/node-template -h\`.`}
-/>
-
-Start Bob's node:
-
-```bash
-# In a new terminal, leave Alice running
-./target/release/node-template \
---chain=local \
---base-path /tmp/validator2 \
---bob \
---node-key=6ce3be907dbcabf20a9a5a60a712b4256a54196000a8ed4050d352bc113f8c58 \
---port 30334 \
---ws-port 9945
-```
-
-After both nodes are started, you should be able to see new blocks authored and
-finalized in bother terminal logs. Now let's use the
-[polkadot.js apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/explorer)
-and check the well known nodes of our blockchain. Don't forget to switch to one of
-our local nodes running: `127.0.0.1:9944` or `127.0.0.1:9945`.
-
-Firstly, we need to add an extra setting to tell the frontend the type of the `PeerId` used
-in node-authorization pallet. Note: the format of `PeerId` here is a wrapper on bs58 decoded
-peer id in bytes. Go to the **Settings Developer**
-[page in apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/settings/developer)
-, add following [custom type mapping](https://polkadot.js.org/docs/api/start/types.extend)
-information:
-
-```json
-// add this as is, or with other required types you have set already:
-{
-  "PeerId": "(Vec<u8>)"
-}
-```
-
-<br />
-<Message
-  type={`red`}
-  title={`Warning`}
-  text="If you don't do this, you will get extrinsic errors of the form:
-    `Verification Error: Execution(ApiError(Could not convert parameter 'tx' between node and runtime)`. 
-    More details [here](https://polkadot.js.org/docs/api/FAQ#the-node-returns-a-could-not-convert-error-on-send).
-    "
-/>
-
-Then, let's go to **Developer** page, **Chain State sub-tab**, and check the data
-stored in the `nodeAuthorization` pallet, `wellKnownNodes` storage. You should be
-able to see the peer ids of Alice and Bob's nodes, prefixed with `0x` to show its
-bytes in hex format.
-
-We can also check the owner of one node by querying the storage `owners` with the
-peer id of the node as input, you should get the account address of the owner.
-
-![query_well_known_nodes](../img/tutorials//03-permissioned-network/get_well_known_nodes.png)
-
-### Add Another Well Known Node
-
-Let's start Charlie's node,
-
-```bash
-./target/release/node-template \
---chain=local \
---base-path /tmp/validator3 \
---name charlie  \
---node-key=3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e \
---port 30335 \
---ws-port=9946 \
---offchain-worker always
-```
-
-<br />
-<Message
-  type={`yellow`}
-  title={`Important`}
-  text="The `node-authorization` pallet integrates an
-    [offchain worker](/v3/concepts/off-chain-features#off-chain-workers)
-    to configure node connections. As Charlie is not _yet_ a well-known node, and we
-    intend to attach Dave\'s node, we require the offchain worker to be enabled.
-    "
-/>{' '}
-
-After it was started, you should see there are **no connected peers** for this node.
-This is because we are trying to connect to a permissioned network, you need to
-get authorization to to be connectable! Alice and Bob were configured already in
-the genesis `chain_spec.rs`, where all others mut be added manually via extrinsic.
+### Authorize access for the third node
 
 Remember that we are using `sudo` pallet for our governance, we can make a sudo call
 on `add_well_known_node` dispatch call provided by node-authorization pallet to add
@@ -526,23 +456,20 @@ our node. You can find more avaliable calls in this
 
 Go to **Developer** page, **Sudo** tab, in apps and submit the `nodeAuthorization` -
 `add_well_known_node` call with the peer id in hex of Charlie's node and the
-owner is Charlie, of course. Note Allice is the valid sudo origin for this call.
+owner is Charlie, of course. Note Alice is the valid sudo origin for this call.
 
 ![add_well_known_node](../img/tutorials/03-permissioned-network/add_well_known_node.png)
 
 After the transaction is included in the block, you should see Charlie's node is
-connected to Alice and Bob's nodes, and starts to sync blocks. Notice the reason
-the three nodes can find each other is
-[mDNS](/rustdocs/latest/sc_network/index.html) discovery mechanism is enabled
-by default in a local network.
+connected to Alice and Bob's nodes, and starts to sync blocks. 
+The three nodes can find each other using the [mDNS](/rustdocs/latest/sc_network/index.html) discovery mechanism is that is enabled by default in a local network.
 
 <Message
   type={`gray`}
   title={`Note`}
   text="If your nodes are not on the same local network, you don't need mDNS and should use
     `--no-mdns` to disable it. If running node in a public internet, you need to use
-    `--no-mdns` to disable it. If running node in a public internet, you need to use
-    Otherwise put the reachable nodes as bootnodes of Chain Spec.
+    `--no-mdns` to disable it. 
     "
 />
 
@@ -552,9 +479,8 @@ Now we have 3 well known nodes all validating blocks together!
 
 Let's add Dave's node, not as a well-known node, but a "sub-node" of Charlie.
 Dave will _only_ be able to connect to Charlie to access the network.
-This is a security feature: as Charlie is therefor solely responsible for any
-connected sub-node peer. There is one point of access control for David in case
-they need to be removed or audited.
+This is a security feature: as Charlie is therefore solely responsible for any connected sub-node peer. 
+There is one point of access control for David in case they need to be removed or audited.
 
 Start Dave's node with following command:
 
