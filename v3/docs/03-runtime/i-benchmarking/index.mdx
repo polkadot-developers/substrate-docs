@@ -165,7 +165,7 @@ Here's an example of launching a node with benchmarking features enabled:
     --extrinsic '*' \          # Select the benchmark case name, using '*' for all
     --steps 20 \                # Number of steps across component ranges
     --repeat 10 \               # Number of times we repeat a benchmark
-    --raw \                     # Optionally output raw benchmark data to stdout
+    --json-file=raw.json \      # Optionally output json benchmark data to a file
     --output ./                 # Output results into a Rust file
 ```
 
@@ -173,6 +173,8 @@ A recent argument that has been introduced is `--template`. With it, you can spe
 template file and the benchmarking toolchain will fill in the exact numbers from the measured
 result. This enables automating weight generation in your desired code format and integrates this
 in your CI process.
+
+(`--raw` has recently been replaced with `--json` and `--json-file`)
 
 The template is in [rust handlebars](https://docs.rs/handlebars/) format.
 
@@ -203,7 +205,7 @@ For example:
     --extrinsic '\*' \
     --steps 20 \
     --repeat 10 \
-    --raw \
+    --json \
     --output ./pallets/example/weights.rs
 ```
 
