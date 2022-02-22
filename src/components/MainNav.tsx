@@ -111,8 +111,8 @@ const MainNav = {
                 external: true,
               },
               {
-                linkTitle: 'Jobs',
-                link: `${site}/ecosystem/opportunities/jobs`,
+                linkTitle: 'Careers',
+                link: `https://careers.substrate.io/jobs`,
                 external: true,
               },
             ],
