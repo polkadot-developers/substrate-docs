@@ -88,13 +88,14 @@ contract ERC20Interface {
 
 In summary, it allows individuals to deploy their own cryptocurrency on top of an existing smart
 contract platform. There isn't much magic happening in this contract. Users balances are stored in a
-HashMap, and a set of APIs are built to allow users to transfer tokens they own or allow a third
+Mapping, and a set of APIs are built to allow users to transfer tokens they own or allow a third
 party to transfer some amount of tokens on their behalf. Most importantly, all of this logic is
 implemented ensuring that funds are not unintentionally created or destroyed, and that a user's
 funds are protected from malicious actors.
 
-Note that all the public functions return a `bool` which specifies if the call was successful or not.
-We will adhere to that specification.
+Note that all the public functions return a `bool` which specifies if the call was
+successful or not. Note that while a more idiomatic Rust approach would be to return
+`Result`s we will adhere to the Solidity specification for the sake of demonstration.
 
 ## Creating the ERC20 Template
 
@@ -114,7 +115,7 @@ You will notice that the template for the ERC20 token is VERY similar to the Inc
 The storage (so far) consists of:
 
 - `total_supply`: a storage `Value`, representing the total supply of tokens in our contract.
-- `balances`: a storage `HashMap`, representing the individual balance of each account.
+- `balances`: a storage `Mapping`, representing the individual balance of each account.
 
 ### 1. ERC20 Deployment
 
@@ -135,7 +136,6 @@ You need to:
 
 - Set up a constructor function which initializes the two storage items
 - Create getters for both storage items
-- Create a `balance_of_or_zero` function to handle reading values from the HashMap
 
 Remember to run `cargo +nightly test` to test your work.
 
@@ -207,7 +207,7 @@ the contract caller is always authorized to move their own funds.
 There really is not much to say about the simple math executed within a token transfer.
 
 1. First we get the current balance of both the `from` and `to` account, making sure to use our
-   `balance_of_or_zero()` getter.
+   `balance_of` getter.
 2. Then we make the logic check mentioned above to ensure the `from` balance has enough funds to
    send `value`.
 3. Finally, we subtract that `value` from the `from` balance and add it to the `to` balance and
@@ -262,7 +262,7 @@ the event data they can have _indexed fields_. We can do this by using the `#[in
 tag on that field.
 
 One way of retrieving data from an `Option<T>` variable is using the `.unwrap_or()` function. You may
-recall using this in the `my_value_or_zero()` and `balance_of_or_zero()` functions in this project
+recall using this in the `my_value_or_zero()` and `balance_of()` functions in this project
 and the Incrementer project.
 
 ### 2. Emitting Events
@@ -355,7 +355,7 @@ When an account calls `approve` multiple times, the approved value simply overwr
 value that was approved in the past. By default, the approved value between any two accounts is `0`,
 and a user can always call approve for `0` to revoke access to their funds from another account.
 
-To store approvals in our contract, we need to use a slightly fancy `HashMap`.
+To store approvals in our contract, we need to use a slightly more fancy `Mapping` key.
 
 Since each account can have a different amount approved for any other accounts to use, we need to
 use a tuple as our key which simply points to a balance value. Here is an example of what that
@@ -364,7 +364,7 @@ would look like:
 ```rust
 pub struct Erc20 {
 	/// Balances that are spendable by non-owners: (owner, spender) -> allowed
-	allowances: ink_storage::collections::HashMap<(AccountId, AccountId), Balance>,
+	allowances: ink_storage::Mapping<(AccountId, AccountId), Balance>,
 }
 ```
 
@@ -407,7 +407,7 @@ true
 
 Again, we exit early and return false if our authorization does not pass.
 
-If everything looks good though, we simply `insert` the updated allowance into the `allowance` HashMap (`let new_allowance = allowance - value`), and call the `transfer_from_to` between the specified `from` and `to` accounts.
+If everything looks good though, we simply `insert` the updated allowance into the `allowance` Mapping (`let new_allowance = allowance - value`), and call the `transfer_from_to` between the specified `from` and `to` accounts.
 
 ### 2. Be Careful!
 
