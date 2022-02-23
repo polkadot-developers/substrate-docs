@@ -5,28 +5,25 @@ use ink_lang as ink;
 
 #[ink::contract]
 mod incrementer {
+    // ACTION: Import the `SpreadAllocate` trait and derive it for your contract
 
     #[ink(storage)]
     pub struct Incrementer {
         value: i32,
-        // ACTION: Add a `HashMap` from `AccountId` to `i32` named `my_value`
+        // ACTION: Add a `Mapping` from `AccountId` to `i32` named `my_value`
     }
 
     impl Incrementer {
         #[ink(constructor)]
         pub fn new(init_value: i32) -> Self {
-            Self {
-				value: init_value,
-				// ACTION: Set initial `my_value`
-            }
+            // ACTION: Use `initialize_contract` to set an initial value
+            // for `value` and `my_value`
         }
 
         #[ink(constructor)]
         pub fn default() -> Self {
-            Self {
-                value: 0,
-				// ACTION: Set initial `my_value`
-            }
+            // ACTION: Use `initialize_contract` to set default values
+            // for `value` and `my_value`
         }
 
         #[ink(message)]
@@ -41,12 +38,8 @@ mod incrementer {
 
         #[ink(message)]
         pub fn get_mine(&self) -> i32 {
-            // ACTION: Get `my_value` using `my_value_or_zero` on `&self.env().caller()`
+            // ACTION: Get `my_value` using `Mapping::get()` on `&self.env().caller()`
             // ACTION: Return `my_value`
-        }
-
-        fn my_value_or_zero(&self, of: &AccountId) -> i32 {
-            // ACTION: `get` and return the value of `of` and `unwrap_or` return 0
         }
     }
 
