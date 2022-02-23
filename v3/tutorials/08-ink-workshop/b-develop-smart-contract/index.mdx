@@ -133,10 +133,13 @@ Substrate contracts may store types that are encodable and decodable with
 types such as `bool`, `u{8,16,32,64,128}`, `i{8,16,32,64,128}`, `String`, tuples, and arrays.
 
 ink! provides Substrate specific types like `AccountId`, `Balance`, and `Hash` to smart contracts as if
-they were primitive types. ink! also provides storage types for more elaborate storage interactions through the storage module:
+they were primitive types.
+
+ink! also provides a [`Mapping`](https://paritytech.github.io/ink/ink_storage/struct.Mapping.html)
+type, which is a mapping of key-value pairs in storage.
 
 ```rust
-use ink_storage::collections::{Vec, HashMap, Stash, Bitvec};
+use ink_storage::Mapping;
 ```
 
 Here is an example of how you would store an `AccountId` and `Balance`:
@@ -160,7 +163,14 @@ mod MyContract {
 }
 ```
 
-You can find all the supported Substrate types in the [`ink_storage` crate](https://github.com/paritytech/ink/tree/master/crates/storage).
+You may also use some of the Rust standard library collections exposed by the
+[`ink_prelude`](https://paritytech.github.io/ink/ink_prelude/index.html), such as
+[`ink_prelude::vec::Vec`](https://paritytech.github.io/ink/ink_prelude/vec/struct.Vec.html) and
+[`ink_prelude::collections::HashMap`](https://paritytech.github.io/ink/ink_prelude/collections/struct.HashMap.html),
+as part of your contract's storage struct. Note however, that they are not optimized for
+being used as part of contract storage and will be
+[loaded eagerly](https://paritytech.github.io/ink-docs/datastructures/overview#eager-loading).
+This may have some performance implications depending on your use case.
 
 ### 2. Contract Deployment
 
@@ -314,45 +324,7 @@ impl MyContract {
 }
 ```
 
-### 2. Lazy Storage Values
-
-There is [a `Lazy` type](https://paritytech.github.io/ink/ink_storage/struct.Lazy.html) that can be
-used for ink! storage values that do not need to be loaded in some or most cases. Many simple ink!
-examples, including those in this workshop, do not require the use of `Lazy` values. Since there is
-some overhead associated with `Lazy` values, they should only be used where required.
-
-This is an example of using the `Lazy` type:
-
-```rust
-#[ink(storage)]
-pub struct MyContract {
-	// Store some number
-	my_number: ink_storage::Lazy<u32>,
-}
-
-impl MyContract {
-	#[ink(constructor)]
-	pub fn new(init_value: u32) -> Self {
-		Self {
-			my_number: ink_storage::Lazy::<u32>::new(init_value),
-		}
-	}
-
-	#[ink(message)]
-	pub fn my_setter(&mut self, new_value: u32) {
-		ink_storage::Lazy::<u32>::set(&mut self.my_number, new_value);
-	}
-
-	#[ink(message)]
-	pub fn my_adder(&mut self, add_value: u32) {
-		let my_number = &mut self.my_number;
-		let cur = ink_storage::Lazy::<u32>::get(my_number);
-		ink_storage::Lazy::<u32>::set(my_number, cur + add_value);
-	}
-}
-```
-
-### 3. Your Turn
+### 2. Your Turn
 
 Follow the `ACTION`s in the template code.
 
@@ -380,7 +352,8 @@ Let's now extend our Incrementer to not only manage one number, but to manage on
 
 ### 1. Storage HashMap
 
-In addition to storing individual values, ink! also supports `HashMap` which allows you to store items in a key-value mapping.
+In addition to storing individual values, ink! also provides a [`Mapping`](https://paritytech.github.io/ink/ink_storage/struct.Mapping.html)
+type which allows you to store items in a key-value mapping.
 
 Here is an example of a mapping from a user to a number:
 
@@ -388,56 +361,25 @@ Here is an example of a mapping from a user to a number:
 #[ink(storage)]
 pub struct MyContract {
 	// Store a mapping from AccountIds to a u32
-	my_number_map: ink_storage::collections::HashMap<AccountId, u32>,
+	my_number_map: ink_storage::Mapping<AccountId, u32>,
 }
 ```
 
 This means that for a given key, you can store a unique instance of a value type. In this case, each "user" gets their own number, and we can build logic so that only they can modify their own numbers.
 
-### 2. Storage HashMap API
+### 2.Initializing a HashMap
 
-You can find the full ink! HashMap API doc [here](https://paritytech.github.io/ink/ink_storage/collections/hashmap/struct.HashMap.html). Here are some of the most common functions you might use:
 
-```rust
-/// Inserts a key-value pair into the map.
-///
-/// Returns the previous value associated with the same key if any.
-/// If the map did not have this key present, `None` is returned.
-pub fn insert(&mut self, key: K, new_value: V) -> Option<V> {/* --snip-- */}
+In order to correctly initialize a `Mapping` we need two things:
+1. An implementation of the [`SpreadAllocate`](https://paritytech.github.io/ink/ink_storage/traits/trait.SpreadAllocate.html) trait on our storage struct
+2. The [`ink_lang::utils::initalize_contract`](https://paritytech.github.io/ink/ink_lang/utils/fn.initialize_contract.html) initializer
 
-/// Removes the key/value pair from the map associated with the given key.
-///
-/// - Returns the removed value if any.
-pub fn take<Q>(&mut self, key: &Q) -> Option<V> {/* --snip-- */}
+Not initializing storage before you use it is a common error that can break your smart
+contract. If you do not initialize your `Mapping`'s correctly you may end up with
+different `Mapping`'s operating on the same set of storage entries 😱.
 
-/// Returns a shared reference to the value corresponding to the key.
-///
-/// The key may be any borrowed form of the map's key type,
-/// but `Hash` and `Eq` on the borrowed form must match those for the key type.
-pub fn get<Q>(&self, key: &Q) -> Option<&V> {/* --snip-- */}
-
-/// Returns a mutable reference to the value corresponding to the key.
-///
-/// The key may be any borrowed form of the map's key type,
-/// but `Hash` and `Eq` on the borrowed form must match those for the key type.
-pub fn get_mut<Q>(&mut self, key: &Q) -> Option<&mut V> {/* --snip-- */}
-
-/// Returns `true` if there is an entry corresponding to the key in the map.
-pub fn contains_key<Q>(&self, key: &Q) -> bool {/* --snip-- */}
-
-/// Converts the OccupiedEntry into a mutable reference to the value in the entry
-/// with a lifetime bound to the map itself.
-pub fn into_mut(self) -> &'a mut V {/* --snip-- */}
-
-/// Gets the given key's corresponding entry in the map for in-place manipulation.
-pub fn entry(&mut self, key: K) -> Entry<K, V> {/* --snip-- */}
-```
-
-### 3.Initializing a HashMap
-
-As mentioned, not initializing storage before you use it is a common error that can break your smart contract. For each key in a storage value, the value needs to be set before you can use it. To do this, we will create a private function which handles when the value is set and when it is not, and make sure we never work with uninitialized storage.
-
-So given `my_number_map`, imagine we wanted the default value for any given key to be `0`. We can build a function like this:
+Below is an example of how to correctly initialize a `Mapping`, as well as how to write
+and read entries from it.
 
 ```rust
 
@@ -447,85 +389,53 @@ use ink_lang as ink;
 
 #[ink::contract]
 mod mycontract {
+    use ink_storage::traits::SpreadAllocate;
 
-	#[ink(storage)]
-	pub struct MyContract {
-		// Store a mapping from AccountIds to a u32
-		my_number_map: ink_storage::collections::HashMap<AccountId, u32>,
-	}
+    #[ink(storage)]
+    #[derive(SpreadAllocate)]
+    pub struct MyContract {
+        // Store a mapping from AccountIds to a u32
+        map: ink_storage::Mapping<AccountId, u32>,
+    }
 
-	impl MyContract {
-		/// Public function.
-		/// Default constructor.
-		#[ink(constructor)]
-		pub fn default() -> Self {
-			Self {
-				my_number_map: Default::default(),
-			}
-		}
+    impl MyContract {
+        #[ink(constructor)]
+        pub fn new(count: u32) -> Self {
+            // This call is required in order to correctly initialize the
+            // `Mapping`s of our contract.
+            ink_lang::utils::initialize_contract(|contract: &mut Self| {
+                let caller = Self::env().caller();
+                contract.map.insert(&caller, &count);
+            })
+        }
 
-		/// Private function.
-		/// Returns the number for an AccountId or 0 if it is not set.
-		fn my_number_or_zero(&self, of: &AccountId) -> u32 {
-			let balance = self.my_number_map.get(of).unwrap_or(&0);
-			*balance
-		}
-	}
+        #[ink(constructor)]
+        pub fn default() -> Self {
+            // Even though we're not explicitly initializing the `Mapping`,
+            // we still need to call this
+            ink_lang::utils::initialize_contract(|_| {})
+        }
+
+        // Grab the number at the caller's AccountID, if it exists
+        #[ink(message)]
+        pub fn get(&self) -> u32 {
+            let caller = Self::env().caller();
+            self.map.get(&caller).unwrap_or_default()
+        }
+    }
 }
 ```
 
-Here we see that after we `get` the reference from `my_number_map` we call `unwrap_or` which will either `unwrap` the reference, _or_ if there is no value, return some known reference. Then, when building functions that interact with this HashMap, you need to always remember to call this function rather than getting the value directly from storage.
-
-Here is an example:
-
-```rust
-
-#![cfg_attr(not(feature = "std"), no_std)]
-
-use ink_lang as ink;
-
-#[ink::contract]
-mod mycontract {
-
-	#[ink(storage)]
-	pub struct MyContract {
-		// Store a mapping from AccountIds to a u32
-		my_number_map: ink_storage::collections::HashMap<AccountId, u32>,
-	}
-
-	impl MyContract {
-		// Get the value for a given AccountId
-		#[ink(message)]
-		pub fn get(&self, of: AccountId) -> u32 {
-			self.my_number_or_zero(&of)
-		}
-
-		// Get the value for the calling AccountId
-		#[ink(message)]
-		pub fn get_my_number(&self) -> u32 {
-			let caller = self.env().caller();
-			self.my_number_or_zero(&caller)
-		}
-
-		// Returns the number for an AccountId or 0 if it is not set.
-		fn my_number_or_zero(&self, of: &AccountId) -> u32 {
-			let value = self.my_number_map.get(of).unwrap_or(&0);
-			*value
-		}
-	}
-}
-```
-
-### 4. Contract Caller
+### 3. Contract Caller
 
 As you might have noticed in the example above, we use a special function called `self.env().caller()`. This function is available throughout the contract logic and will always return to you the contract caller.
 
 <Message
   type={`gray`}
   title={`Note`}
-  text={`The contract caller is not the same as the origin caller. 
-  If a user triggers a contract which then calls a subsequent contract, 
-  the \`self.env().caller()\` in the second contract will be the address 
+  text={`The contract caller is not the same as the origin caller.
+  If a user triggers a contract which then calls a subsequent contract,
+  the \`self.env().caller()\` in the second contract will be the address
   of the first contract, not the original user.`}
 />
 
@@ -560,7 +470,7 @@ mod mycontract {
 
 Then you can write permissioned functions which checks that the current caller is the owner of the contract.
 
-### 5. Your Turn
+### 4. Your Turn
 
 Follow the `ACTION`s in the template code to introduce a storage map to your contract.
 
@@ -582,63 +492,22 @@ Remember to run `cargo +nightly test` to test your work.
 
 The final step in our Incrementer contract is to allow users to update their own values.
 
-### 1. Modifying a HashMap
+### 1. Updating a Mapping
 
-Making changes to the value of a HashMap is just as sensitive as getting the value. If you try to modify some value before it has been initialized, your contract will panic!
+The `Mapping` API is quite low level. We can directly override a previous value held at a
+storage entry by calling `Mapping::insert()` with an existing key. The `Mapping` will do
+nothing to "protect" us in this case.
 
-But have no fear, we can continue to use the `my_number_or_zero` function we created to protect us from these situations!
+We can also update values by first reading them from storage using `Mapping::get()`, and
+then overriding the entry with `Mapping::insert()`.
 
-```rust
-impl MyContract {
+Note that if there is no existing value at a given key, `Mapping::get()` will return
+`None`.
 
-	/* --snip-- */
+### 2. Cleaning up
 
-	// Set the value for the calling AccountId
-	#[ink(message)]
-	pub fn set_my_number(&mut self, value: u32) {
-		let caller = self.env().caller();
-		self.my_number_map.insert(caller, value);
-	}
-
-	// Add a value to the existing value for the calling AccountId
-	#[ink(message)]
-	pub fn add_my_number(&mut self, value: u32) {
-		let caller = self.env().caller();
-		let my_number = self.my_number_or_zero(&caller);
-		self.my_number_map.insert(caller, my_number + value);
-	}
-
-	/// Returns the number for an AccountId or 0 if it is not set.
-	fn my_number_or_zero(&self, of: &AccountId) -> u32 {
-		*self.my_number_map.get(of).unwrap_or(&0)
-	}
-}
-```
-
-Here we have written two kinds of functions which modify a HashMap. One simply inserts the value
-directly into storage, with no need to read the value first, and another one modifies the existing
-value. Note how we can always `insert` the value without worry, as that initialized the value in
-storage, but before you can get or modify anything, we need to call `my_number_or_zero` to make
-sure we are working with a real value.
-
-### 2. Update or Insert (Upsert)
-
-We will not always have an existing value on our contract's storage. We can take advantage of the
-Rust `Option<T>` type to help us.
-If there's no value on the contract storage we will insert a new one; on the contrary if there is
-an existing value we will only update it.
-
-ink! HashMaps expose the well-known
-[**HashMap Entry API**](https://doc.rust-lang.org/beta/std/collections/hash_map/enum.Entry.html)
-that we can use to achieve this type of "upsert" behavior:
-
-```rust
-let caller = self.env().caller();
-self.my_number_map
-	.entry(caller)
-	.and_modify(|old_value| *old_value += by)
-	.or_insert(by);
-```
+Since `Mapping` is low level we're required to do clean-up ourselves. `Mapping` provides
+a `Mapping::remove()` method which clears the value at a given key from storage.
 
 ### 3. Your Turn
 
