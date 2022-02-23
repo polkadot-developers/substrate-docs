@@ -350,7 +350,7 @@ Remember to run `cargo +nightly test` to test your work.
 
 Let's now extend our Incrementer to not only manage one number, but to manage one number per user!
 
-### 1. Storage HashMap
+### 1. Storage Mapping
 
 In addition to storing individual values, ink! also provides a [`Mapping`](https://paritytech.github.io/ink/ink_storage/struct.Mapping.html)
 type which allows you to store items in a key-value mapping.
@@ -367,7 +367,7 @@ pub struct MyContract {
 
 This means that for a given key, you can store a unique instance of a value type. In this case, each "user" gets their own number, and we can build logic so that only they can modify their own numbers.
 
-### 2.Initializing a HashMap
+### 2.Initializing a Mapping
 
 
 In order to correctly initialize a `Mapping` we need two things:
