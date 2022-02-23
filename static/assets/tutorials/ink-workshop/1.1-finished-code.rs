@@ -13,7 +13,7 @@ mod incrementer {
 		#[ink(constructor)]
 		pub fn new(init_value: i32) -> Self {
 			// Contract Constructor
-			Self{}
+			Self {}
 		}
 
 		#[ink(message)]
