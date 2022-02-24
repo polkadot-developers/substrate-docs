@@ -22,7 +22,7 @@ mod incrementer {
         #[ink(constructor)]
         pub fn default() -> Self {
             Self {
-                value: 0,
+                value: Default::default(),
             }
         }
 

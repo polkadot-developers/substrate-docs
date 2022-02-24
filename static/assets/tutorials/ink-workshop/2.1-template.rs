@@ -4,13 +4,15 @@ use ink_lang as ink;
 
 #[ink::contract]
 mod erc20 {
+    // ACTION: Import and derive the required trait for initializing a contract
+
     #[cfg(not(feature = "ink-as-dependency"))]
     #[ink(storage)]
     pub struct Erc20 {
         /// The total supply.
         total_supply: Balance,
         /// The balance of each user.
-        balances: ink_storage::collections::HashMap<AccountId, Balance>,
+        balances: ink_storage::Mapping<AccountId, Balance>,
     }
 
     impl Erc20 {
@@ -18,6 +20,7 @@ mod erc20 {
         pub fn new(initial_supply: Balance) -> Self {
             // ACTION: `set` the total supply to `initial_supply`
             // ACTION: `insert` the `initial_supply` as the `caller` balance
+            // HINT: Remember to use the initialization utility function
         }
 
         #[ink(message)]
@@ -27,13 +30,8 @@ mod erc20 {
 
         #[ink(message)]
         pub fn balance_of(&self, owner: AccountId) -> Balance {
-            // ACTION: Return the balance of `owner`
-            //   HINT: Use `balance_of_or_zero` to get the `owner` balance
-        }
-
-        fn balance_of_or_zero(&self, owner: &AccountId) -> Balance {
-            // ACTION: `get` the balance of `owner`, then `unwrap_or` fallback to 0
-            // ACTION: Return the balance
+            // ACTION: Return the balance of `owner`, and fallback to
+            // a default value if there is no existing balance
         }
     }
 
