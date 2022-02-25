@@ -1,5 +1,5 @@
 ---
-title: Authorize specific node activities
+title: Authorize specific nodes
 description: permissioned network
 keywords: permissioned, consortium,
 difficulty: 1
@@ -167,7 +167,8 @@ To add the node-authorization pallet to the Substrate runtime:
 
 ### Add an administrative rule
 
-To simulate governance in this tutorial, you can configure the pallet to use the `EnsureRoot` administrative rule that is built-in to the node template by default. 
+To simulate governance in this tutorial, you can configure the pallet to use the `EnsureRoot` privileged function that can be called using the Sudo pallet.
+The Sudo pallet is included in the node template by default and enables you to make calls through the root-level administrative account.
 In a production environment, you would use more realistic governance-based checking.
 
 To enable the `EnsureRoot` rule in your runtime:
@@ -232,6 +233,7 @@ To implement the `node-authorization` pallet in your runtime:
       }
     );
     ```
+1. Save your changes and close the file.
 
 1. Check that the configuration can compile by running the following command:
 
