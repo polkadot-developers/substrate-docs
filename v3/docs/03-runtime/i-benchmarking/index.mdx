@@ -63,7 +63,7 @@ In summary, it:
 - Outputs a Rust file with ready to use weight functions that can be easily integrated in your
   runtime.
 
-This framework uses Rust macros to help developers easily integrate bencharking into their runtimes.
+This framework uses Rust macros to help developers easily integrate benchmarking into their runtimes.
 A Substrate benchmark will look something like this:
 
 ```rust
@@ -115,7 +115,7 @@ interactions away to provide a clean and friendly user experience.
 
 ### Separate benchmarks per logical path and use the worst case
 
-If your extrinsic has multiple logical paths with signficantly different execution time, separate
+If your extrinsic has multiple logical paths with significantly different execution time, separate
 these paths in multiple benchmarking cases and measure them. In the actual pallet weight macro above
 the extrinsics, you could combine them with a `max` function, e.g.
 
