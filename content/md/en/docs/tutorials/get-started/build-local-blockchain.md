@@ -20,7 +20,7 @@ Substrate provides a flexible, open, and extensible development environment that
 ## Get started
 
 The first step in becoming a blockchain developer is to learn how to compile and launch a single local blockchain node.
-In this tutorial, you build and start a single node blockchain using the node template.
+In this tutorial, you'll build and start a single node blockchain using the node template.
 
 The Substrate node template provides a working single-node blockchain that you can run locally in your development environment.
 The node template includes several predefined components—such as user accounts and account balances—so that you can experiment with performing common tasks.
@@ -72,16 +72,16 @@ To compile the Substrate node template:
 
 1. Open a terminal shell on your computer.
 
-1. Clone the node template repository using the version `latest` branch by running the following command:
+1. Clone the node template repository by running the following command:
 
    ```bash
    git clone https://github.com/substrate-developer-hub/substrate-node-template
    ```
 
-1. Change to the root of the node template directory by running the following command:
+1. Change to the root of the node template directory and checkout the `latest` branch by running the following command:
 
    ```bash
-   cd substrate-node-template
+   cd substrate-node-template && git checkout latest
    ```
 
 1. Compile the node template by running the following command:
