@@ -417,22 +417,21 @@ This React component enables you to expose the proof-of-existence capabilities a
 1. Copy and paste the following code into the`src/TemplateModule.js` file:
 
    ```javascript
-   // React and Semantic UI elements.
-   import React, { useState, useEffect } from 'react'
+   import React, { useEffect, useState } from 'react'
    import { Form, Input, Grid, Message } from 'semantic-ui-react'
-
+   
    // Pre-built Substrate front-end utilities for connecting to a node
    // and making a transaction.
-   import { useSubstrate } from './substrate-lib'
+   import { useSubstrateState } from './substrate-lib'
    import { TxButton } from './substrate-lib/components'
-
+   
    // Polkadot-JS utilities for hashing data.
    import { blake2AsHex } from '@polkadot/util-crypto'
-
+   
    // Main Proof Of Existence component is exported.
    export function Main(props) {
      // Establish an API to talk to the Substrate node.
-     const { api } = useSubstrate()
+     const { api } = useSubstrateState()
      // Get the selected user from the `AccountSelector` component.
      const { accountPair } = props
      // React hooks for all the state variables we track.
@@ -452,14 +451,14 @@ This React component enables you to expose the proof-of-existence capabilities a
        const hash = blake2AsHex(content, 256)
        setDigest(hash)
      }
-
+   
      // Callback function for when a new file is selected.
      const handleFileChosen = file => {
        fileReader = new FileReader()
        fileReader.onloadend = bufferToDigest
        fileReader.readAsArrayBuffer(file)
      }
-
+   
      // React hook to update the owner and block number information for a file
      useEffect(() => {
        let unsubscribe
@@ -469,8 +468,9 @@ This React component enables you to expose the proof-of-existence capabilities a
        api.query.templateModule
          .proofs(digest, result => {
            // Our storage item returns a tuple, which is represented as an array.
-           setOwner(result[0].toString())
-           setBlock(result[1].toNumber())
+           let [tmpOwner, tmpBlock] = result.unwrapOrDefault();
+           setOwner(tmpOwner.toString())
+           setBlock(tmpBlock.toNumber())
          })
          .then(unsub => {
            unsubscribe = unsub
@@ -480,12 +480,12 @@ This React component enables you to expose the proof-of-existence capabilities a
        // (when a new file is chosen), or when the storage subscription says the
        // value of the storage item has updated.
      }, [digest, api.query.templateModule])
-
-     // We can say a file digest is claimed if the stored block number is not 0
+   
+     // We can say a file digest is claimed if the stored block number is not `None`
      function isClaimed() {
        return block !== 0
      }
-
+   
      // The actual UI elements which are returned from our component.
      return (
        <Grid.Column>
@@ -513,7 +513,6 @@ This React component enables you to expose the proof-of-existence capabilities a
            <Form.Field>
              {/* Button to create a claim. Only active if a file is selected, and not already claimed. Updates the `status`. */}
              <TxButton
-               accountPair={accountPair}
                label={'Create Claim'}
                setStatus={setStatus}
                type="SIGNED-TX"
@@ -527,11 +526,10 @@ This React component enables you to expose the proof-of-existence capabilities a
              />
              {/* Button to revoke a claim. Only active if a file is selected, and is already claimed. Updates the `status`. */}
              <TxButton
-               accountPair={accountPair}
                label="Revoke Claim"
                setStatus={setStatus}
                type="SIGNED-TX"
-               disabled={!isClaimed() || owner !== accountPair.address}
+               disabled={!isClaimed()}
                attrs={{
                  palletRpc: 'templateModule',
                  callable: 'revokeClaim',
@@ -546,9 +544,9 @@ This React component enables you to expose the proof-of-existence capabilities a
        </Grid.Column>
      )
    }
-
+   
    export default function TemplateModule(props) {
-     const { api } = useSubstrate()
+     const { api } = useSubstrateState()
      return api.query.templateModule && api.query.templateModule.proofs ? (
        <Main {...props} />
      ) : null
@@ -560,10 +558,12 @@ This React component enables you to expose the proof-of-existence capabilities a
 1. Start the front-end template by running the following command:
 
    ```bash
-   yarn start
+   nvm install # use the correct node version 
+   yarn        # instal deps
+   yarn start  #start a dev server
    ```
 
-This will open up a new tab with the front-end serving at **http://localhost:8000**.
+This will open up a new tab with the front-end serving at **<http://localhost:8000>**.
 
 ### Submit a proof
 
