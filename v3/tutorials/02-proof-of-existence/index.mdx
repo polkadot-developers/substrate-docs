@@ -148,15 +148,15 @@ Therefore, the first step is to remove some files and content from the files in 
    }
    ```
 
-   You now have a framework that includes placeholders for _events_, _errors_, _storage_, and _callable functions_.
+   You now have a scaffold that includes placeholders for _events_, _errors_, _storage_, and _callable functions_.
 
-1. Save your changes.
+1. Save your changes, but don't build yet.
 
 ## Configure the pallet to emit events
 
 Every pallet has a [Rust "trait"](https://doc.rust-lang.org/book/ch10-02-traits.html) called `Config`.
-You use this trait to configure the settings that your specific pallet requires.
-For this tutorial, the configuration setting enables the pallet to emit events.
+This trait is used to set the interface for the FRAME system and sets the required [associated types](https://doc.rust-lang.org/reference/items/associated-items.html#associated-types) to be concretely defined in a runtime that includes this pallet.
+For this tutorial, the configuration setting only enables the pallet to emit events, as almost every pallet does.
 
 To define the `Config` trait for the proof-of-existence pallet:
 
@@ -208,47 +208,6 @@ To implement the pallet events:
    ```
 
 1. Save your changes.
-
-## Include `sp-std` library
-
-You might notice that the proof-of-existence pallet uses the `Vec<u8>` type.
-This type is included in the `std` Rust library.
-However, you _cannot_ use the `std` library for pallet development.
-Instead, the proof-of-existence pallet uses the [sp-std crate](/rustdocs/latest/sp_std/index.html) to declare the `Vec<u8>` type under the `mod pallet` section:
-
-```rust
-use sp_std::vec::Vec;
-```
-
-The `sp-std` crate provides many standard Rust library functions modified to be compatible with `no_std` configuration.
-To use the `sp-std` crate, you must update the pallet dependencies in the `Cargo.toml` file.
-
-To add the `sp-std` crate to the pallet:
-
-1. Open the `pallets/template/Cargo.toml` file in a text editor.
-
-1. Add the following `sp-std` dependencies section to the file:
-
-   ```toml
-   [dependencies.sp-std]
-   default-features = false
-   git = 'https://github.com/paritytech/substrate.git'
-   tag = 'devhub/latest'      # or another tag that is **uniform** for you project
-   version = '4.0.0-dev'      # or the latest version
-   ```
-
-1. Add the `sp-std` crate to the list of features.
-
-   ```toml
-   [features]
-   default = ['std']
-   std = [
-       # -- snip --
-       'sp-std/std',
-   ]
-   ```
-
-1. Save your changes and close the file.
 
 ## Include pallet errors
 
@@ -382,14 +341,38 @@ To implement this logic in the proof-of-existence pallet:
 
 1. Save your changes and close the file.
 
-1. Check that your code compiles by running the following command:
+At this point you have a completed pallet! Now to _use_ the pallet, we must correctly configure it in your runtime. 
+
+## Include `MaxBytesInHash` runtime configuration
+
+You should be curious that the proof-of-existence pallet uses the `BoundedVec<u8, T::MaxBytesInHash>` type for proofs, but thus far we have no concrete notion of what `MaxBytesInHash` is.
+This constant should be set in the runtime to something reasonable for use in your blockchain.
+One very typical hash type used in many web3 applications is a [CID](https://github.com/multiformats/cid), and the V1 instance of these is uniformly `60 bytes` in length.
+So here we specify hashes will be of this length or less in the runtime:
+
+1. Open the `runtime/src/lib.rs` file in a text editor.
+
+1. Update the `pallet_template::Config` block to include:
+
+   ```rust
+   /// Configure the pallet-template in pallets/template.
+   impl pallet_template::Config for Runtime {
+   	type Event = Event;
+   	type MaxBytesInHash = frame_support::traits::ConstU32<60>;
+   }
+   ```
+
+1. Save your changes and close the file.
+
+1. (Optionally) check that your code compiles by running the following command:
 
    ```bash
    cargo check -p node-template-runtime
    ```
 
-There is a full Node Template solution [here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/proof-of-existence) to use as a reference if you're stuck.
-Check the [commit diff from the base template](https://github.com/substrate-developer-hub/substrate-node-template/commit/773d72752f3598e5d405b48c6f716f4153c95070#diff-f191d0eb0afa874a64fb9be550a275f957e220b9076c87d4085c2797ca4e310c) for the exact changes.
+<!-- FIXME:  -->
+<!-- There is a full Node Template solution [here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/proof-of-existence) to use as a reference if you're stuck.
+Check the [commit diff from the base template](https://github.com/substrate-developer-hub/substrate-node-template/commit/773d72752f3598e5d405b48c6f716f4153c95070#diff-f191d0eb0afa874a64fb9be550a275f957e220b9076c87d4085c2797ca4e310c) for the exact changes. -->
 
 ## Build the runtime with your new pallet
 
