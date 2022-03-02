@@ -1,6 +1,8 @@
-Section: Build
-Sub-section: Front-end development
-Type: reference 
+---
+title: Front-end development
+description: 
+keywords:
+---
 
 Most applications that run on a Substrate blockchain require some form of front-end or user-facing interface—such as a browser, desktop, mobile, or hardware client—that enables users or other programs to access and modify the data that the blockchain stores.
 For example, you might develop a browser-based application for interactive gaming or a hardware-specific application to implement a hardware wallet.

@@ -14,11 +14,12 @@ Road map of resources available, where to go for what.
 * Where to find reference docs
 * Where to find videos
 
-# Developer Playground
+## Developer Playground
 
 TODO: All of the info in this page is mainly reference for navigation purposes.
 Copy page from: https://docs.substrate.io/playground/
-# Build a local blockchain
+
+## Build a local blockchain
 
 TODO: What resources are at my disposal?
 
@@ -37,3 +38,8 @@ TODO
 ## Videos
 
 TODO: Where to find videos (seminar, sub0 and other events).
+
+## Seminars
+
+
+## Events
