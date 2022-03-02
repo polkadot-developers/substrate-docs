@@ -134,7 +134,7 @@ Here's an example of launching a node with benchmarking features enabled:
     --extrinsic '\*' \          # Select the benchmark case name, using '*' for all
     --steps 20 \                # Number of steps across component ranges
     --repeat 10 \               # Number of times we repeat a benchmark
-    --raw \                     # Optionally output raw benchmark data to stdout
+    --json-file=raw.json \      # Optionally output json benchmark data to a file
     --output ./                 # Output results into a Rust file
 ```
 
@@ -170,7 +170,7 @@ For example:
     --extrinsic '\*' \
     --steps 20 \
     --repeat 10 \
-    --raw \
+    --json \
     --output ./pallets/example/weights.rs
 ```
 
