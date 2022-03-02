@@ -310,13 +310,7 @@ To start the first node:
 
 1. Change to the root directory where you compiled the Substrate node template.
 
-1. Purge old chain data, if needed, by running the following command:
-    
-    ```bash
-    ./target/release/node-template purge-chain --base-path /tmp/node01 --chain local -y
-    ```
-    
-1. Start the first node using the custom chain specification by running the following command:
+1. Start the first node using the custom chain specification by running a command similar to the following:
     
     ```bash
     ./target/release/node-template \
@@ -331,16 +325,20 @@ To start the first node:
     --name MyNode01
     ```
     
-    Note the following changes to the command you are running to start the node:
+    Note the following command-line options you are using to start the node:
     
-    * Instead of a predefined account, you are using your own keys.
-      You'll add your keys to the keystore in a separate step.
+    * The `--base-path` command-line option specifies a custom location for the chain associated with this first node.
     
     * The `--chain` command-line option specifies the custom chain specification.
     
-    * The `--name` command-line option enables you to give your node a human-readable name in the telemetry UI.
+    * The `--validator` command-line option indicates that this node is an authority for the chain.
     
     * The `--rpc-methods Unsafe` command-line option allows you to continue the tutorial using an unsafe communication mode because your blockchain is not being used in a production setting.
+
+    * The `--name` command-line option enables you to give your node a human-readable name in the telemetry UI.
+
+    This command also starts the node using your own keys instead of a predefined account.
+    Because you aren't using a predefined account with known keys, you'll need to add your keys to the keystore in a separate step.
 
 ## View information about node operations
 
@@ -370,7 +368,7 @@ In that terminal, verify that you see output similar to the following:
 Take note of the following information:
 
 * The output indicates that the chain specification being used is the custom chain specification you created and specified using the `--chain` command-line option.
-* The output indicates that the node is an authority because you started the node using the `--vslidator` command-line option.
+* The output indicates that the node is an authority because you started the node using the `--validator` command-line option.
 * The output shows the **genesis block** being initialized with the block hash `(state: 0x2bde…8f66, header-hash: 0x6c78…37de)`.
 * The output specifies the **Local node identity** for your node.
   In this example, the node identity is `12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX`.
@@ -378,6 +376,9 @@ Take note of the following information:
 
 These values are for this specific tutorial example.
 The values in your output will be specific to your node and you must provide the values for your node to other network participants to connect to the bootnode.
+
+Now that you have successfully started a validator node using your own keys and taken note of the node identity, you can continue to the next step.
+Before you add your keys to the keystore, however, stop the node by pressing Control-c.
 
 ## Add keys to the keystore
 
@@ -425,6 +426,8 @@ To insert keys into the keystore:
     ./target/release/node-template key insert --help
     ```
 
+1. Type the password you used to generate the keys.
+
 1. Insert the `grandpa` secret key generated from the `key` subcommand by running a command similar to the following:
     
     ```bash
@@ -444,6 +447,8 @@ To insert keys into the keystore:
     --suri "pig giraffe ceiling enter weird liar orange decline behind total despair fly"
     ```
 
+1. Type the password you used to generate the keys.
+
 1. Verify that your keys are in the keystore for `node01` by running the following command:
     
     ```bash
@@ -457,6 +462,8 @@ To insert keys into the keystore:
     6772616e1441ddcb22724420b87ee295c6d47c5adff0ce598c87d3c749b776ba9a647f04
     ```
 
+After you have added your keys to the keystore for the first node under /tmp/node01, you can restart the node using the command you used previously in [Start the first node](#start-the-first-node).
+
 ## Enable other participants to join
 
 You can now allow other validators to join the network using the `--bootnodes` and `--validator` command-line options.
@@ -467,13 +474,7 @@ To add a second validator to the private network:
 
 1. Change to the root directory where you compiled the Substrate node template.
 
-1. Purge old chain data, if needed, by running the following command:
-    
-    ```bash
-    ./target/release/node-template purge-chain --base-path /tmp/node02 --chain local -y
-    ```
-
-1. Start a second blockchain node by running the following command:
+1. Start a second blockchain node by running a command similar to the following:
     
     ```bash
     ./target/release/node-template \
@@ -486,14 +487,16 @@ To add a second validator to the private network:
     --validator \
     --rpc-methods Unsafe \
     --name MyNode02 \
-    --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX
+    --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX \
+    --password-interactive
     ```
     
-    This command uses the `base-path`, `name` and `validator` command-line options to identify this node as a validator for the private network.
+    This command uses the `base-path`, `name` and `validator` command-line options to identify this node as a second  validator for the private network.
     The `--chain` command-line option specifies the chain specification file to use.
     This file must be _identical_ for all validators in the network.
     
-    Be sure to set the correct information for the  `--bootnodes` command-line option. In particular, be sure you have specified the local node identifier from the first node in the network.
+    Be sure to set the correct information for the  `--bootnodes` command-line option. 
+    In particular, be sure you have specified the local node identifier from the first node in the network.
     If you don't set the correct `bootnode` identifier, you see errors like this: 
     
     `💔 The bootnode you want to connect to at ... provided a different peer ID than the one you expect: ...`
@@ -511,6 +514,8 @@ To add a second validator to the private network:
     Replace `<second-participant-secret-seed>` with the secret phrase or secret seed that you generated in [Generate a second key pair](#generate-a-second-set-of-keys).
     The `aura` key type is required to enable block production.
 
+1. Type the password you used to generate the keys.
+
 1. Add the `grandpa` secret key generated from the `key` subcommand to the local keystore by running a command similar to the following:
     
     ```bash
@@ -527,6 +532,8 @@ To add a second validator to the private network:
     
     Block finalization requires at least two-thirds of the validators to add their keys to their respective keystores.
     Because this network is configured with two validators in the chain specification, block finalization can only start after the second node has added its keys.
+
+1. Type the password you used to generate the keys.
 
 1. Verify that your keys are in the keystore for `node02` by running the following command:
     
@@ -558,13 +565,14 @@ To add a second validator to the private network:
     --validator \
     --rpc-methods Unsafe \
     --name MyNode02 \
-    --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX
+    --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX \
+    --password-interactive
     ```
 
-    After both nodes have added their keys to their respective keystores and been restarted, you should see the same genesis block and state root hashes.
+    After both nodes have added their keys to their respective keystores—located under `/tmp/node01` and `/tmp/node02`—and been restarted, you should see the same genesis block and state root hashes.
     
     You should also see that each node has one peer (`1 peers`), and they have produced a block proposal (`best: #2 (0xe111…c084)`).
-    After a few seconds, you should see new blocks being finalized.
+    After a few seconds, you should see new blocks being finalized on both nodes.
     
 ## Next steps
 
