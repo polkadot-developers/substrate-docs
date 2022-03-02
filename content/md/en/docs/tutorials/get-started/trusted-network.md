@@ -310,12 +310,6 @@ To start the first node:
 
 1. Change to the root directory where you compiled the Substrate node template.
 
-1. Purge old chain data, if needed, by running the following command:
-    
-    ```bash
-    ./target/release/node-template purge-chain --base-path /tmp/node01 --chain local -y
-    ```
-    
 1. Start the first node using the custom chain specification by running the following command:
     
     ```bash
@@ -467,12 +461,6 @@ To add a second validator to the private network:
 
 1. Change to the root directory where you compiled the Substrate node template.
 
-1. Purge old chain data, if needed, by running the following command:
-    
-    ```bash
-    ./target/release/node-template purge-chain --base-path /tmp/node02 --chain local -y
-    ```
-
 1. Start a second blockchain node by running the following command:
     
     ```bash
@@ -486,7 +474,8 @@ To add a second validator to the private network:
     --validator \
     --rpc-methods Unsafe \
     --name MyNode02 \
-    --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX
+    --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX \
+    --password-interactive
     ```
     
     This command uses the `base-path`, `name` and `validator` command-line options to identify this node as a validator for the private network.
@@ -558,7 +547,8 @@ To add a second validator to the private network:
     --validator \
     --rpc-methods Unsafe \
     --name MyNode02 \
-    --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX
+    --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX \
+    --password-interactive
     ```
 
     After both nodes have added their keys to their respective keystores and been restarted, you should see the same genesis block and state root hashes.
