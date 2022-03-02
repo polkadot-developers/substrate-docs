@@ -5,9 +5,7 @@ category:
 keywords: Frame, pallets, API
 ---
 
-The FRAME development environment provides modules—called pallets—and support libraries that you can use, modify, and extend to build the runtime logic to suite the needs of your blockchain.
-
-<!--TODO-Compare against Rust doc-->
+The FRAME development environment provides modules—called pallets—and support libraries that you can use, modify, and extend to build the runtime logic to suit the needs of your blockchain.
 
 This section provides an overview of the predefined pallets and links to the Rust API reference documentation, where you can find details about each pallet's interfaces.
 
@@ -15,11 +13,11 @@ This section provides an overview of the predefined pallets and links to the Rus
 
 The FRAME system pallets are integral to the Substrate runtime and provide core functionality that all other pallets depend on.
 
-|<div style="width:125px;">System pallet name </div>  | What it's for
-|: -------------------- |: ------------------------------------
+| System pallet name | What it's for
+| ------------------ | ------------------------------------
 | [`frame_executive`](https://paritytech.github.io/substrate/master/frame_executive/index.html) | Orchestrates incoming function calls by sending them to the appropriate pallets in the runtime.
-|[`frame_support`](https://paritytech.github.io/substrate/master/frame_support/index.html) | Provides Rust macros, types, traits, and modules that generate boilerplate code for the pallet structure when compiled.
-|[`frame_system`](https://paritytech.github.io/substrate/master/frame_system/index.html) | Defines low-level types for Substrate primitives, storage items, and core functions for the blockchain. All other pallets depend on the `frame_system` crate.
+| [`frame_support`](https://paritytech.github.io/substrate/master/frame_support/index.html) | Provides Rust macros, types, traits, and modules that generate boilerplate code for the pallet structure when compiled.
+| [`frame_system`](https://paritytech.github.io/substrate/master/frame_system/index.html) | Defines low-level types for Substrate primitives, storage items, and core functions for the blockchain. All other pallets depend on the `frame_system` crate.
 
 ## Functional pallets
 
@@ -42,7 +40,7 @@ These functional pallets are prebuilt and freely available to enable the communi
 | [`pallet_elections_phragmen`](https://paritytech.github.io/substrate/master/pallet_elections_phragmen/index.html) | Provides an election module based on [sequential Phragmén](https://wiki.polkadot.network/docs/en/learn-phragmen).
 | [`pallet_elections`](https://paritytech.github.io/substrate/master/pallet_elections/index.html) | Provides an election module for stake-weighted membership in a collective. This pallet is no longer maintained.
 | [`pallet_example`](https://paritytech.github.io/substrate/master/pallet_example/index.html) | Demonstrates concepts, APIs, and structures that are applicable for most pallets.
-| [pallet_example_offchain_worker](https://paritytech.github.io/substrate/master/pallet_example_offchain_worker/index.html) | Demonstrates concepts, APIs, and structures that are applicable for most offchain workers.
+| [`pallet_example_offchain_worker`](https://paritytech.github.io/substrate/master/pallet_example_offchain_worker/index.html) | Demonstrates concepts, APIs, and structures that are applicable for most offchain workers.
 | [`pallet_grandpa`](https://paritytech.github.io/substrate/master/pallet_grandpa/index.html) | Extends the GRANDPA consensus by managing the GRANDPA authority set ready for the native code.
 | [`pallet_identity`](https://paritytech.github.io/substrate/master/pallet_identity/index.html) | Enables a federated naming system that allows multiple registrars to be added from a specified origin. Registrars can set a fee to provide identity-verification service.
 | [`pallet_im_online`](https://paritytech.github.io/substrate/master/pallet_im_online/index.html) | Allows validators to gossip a heartbeat transaction with each new session to signal that the node is online.
@@ -65,6 +63,21 @@ These functional pallets are prebuilt and freely available to enable the communi
 | [`pallet_treasury`](https://paritytech.github.io/substrate/master/pallet_treasury/index.html) | Provides a reserve of funds that can be managed by stakeholders in the system and a structure for making spending proposals from this reserve.
 | [`pallet_utility`](https://paritytech.github.io/substrate/master/pallet_utility/index.html) | Provides a stateless helper module for managing dispatches.
 | [`pallet_vesting`](https://paritytech.github.io/substrate/master/pallet_vesting/index.html) | Places a linear curve on an account's locked balance. This module ensures that there is a lock in place to prevent the balance to drop below the unvested amount for any reason other than transaction fee payment.
+
+## Parachain pallets
+
+In addition to the functional pallets that are generally useful for any blockchain, there are prebuilt pallets that provide features specifically for blockchains that are intended to connect to a relay chain. 
+The following pallets provide features for parachain development.
+
+| Prebuilt pallet name | What it's for
+| -------------------- | ------------------------------------
+| [`cumulus-pallet-aura-ext`](https://github.com/paritytech/cumulus/tree/master/pallets/aura-ext) | Provides AURA consensus for parachains.
+| [`pallet-collator-selection`](https://github.com/paritytech/cumulus/tree/master/pallets/collator-selection) | Manages collators in a parachain.
+| [`cumulus-pallet-dmp-queue`](https://github.com/paritytech/cumulus/tree/master/pallets/dmp-queue) | Implements a message queue for receiving messages from the relay chain.
+| [`cumulus-pallet-parachain-system`](https://github.com/paritytech/cumulus/tree/master/pallets/parachain-system) | Provides basic functionality for cumulus-based parachains.
+| [`cumulus-pallet-solo-to-para`](https://github.com/paritytech/cumulus/tree/master/pallets/solo-to-para) | Enables migration from a solo chain to a parachain.
+| [`cumulus-pallet-xcm`](https://github.com/paritytech/cumulus/tree/master/pallets/xcm) | Adds support for cross-chain message passing (XCMP) to a parachain.
+| [`cumulus-pallet-xcmp-queue`](https://github.com/paritytech/cumulus/tree/master/pallets/xcmp-queue) |  Enables the XCMP transport layer to handle both incoming and outgoing message sending and dispatch, queuing, signalling, and backpressure.
 
 ## Additional information
 
