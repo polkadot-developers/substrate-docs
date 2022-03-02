@@ -54,9 +54,9 @@ To install and compile the `subkey` program:
     cargo +nightly build --package subkey --release
     ```
 
-    Because of the number of packages involved, compiling the node can take several minutes.
+    Because of the number of packages involved, compiling the program can take several minutes.
 
-1. Verify that your node is ready to use and information about the options available by running the following command:
+1. Verify that the `subkey` program is ready to use and view information about the options available by running the following command:
     
     ```bash
     ./target/release/subkey --help
@@ -106,7 +106,7 @@ For reference information and examples that illustrate using subkey subcommands,
 | ------- | -----------
 | [`generate`](#subkey-generate) | Generates a random account key.
 | [`generate-node-key`](#subkey-generate-node-key) | Generates a random node `libp2p` secret key. You can save the secret key to a file or display it as standard output (`stdout`).
-| [`help`](#subkey-help) | Displays usage message for `subkey` or for a specified subcommand.
+| [`help`](#subkey-help) | Displays usage information for `subkey` or for a specified subcommand.
 | [`inspect`](#subkey-inspect) | Displays the public key and SS58 address for the secret URI you specify.
 | [`inspect-node-key`](#subkey-inspect-node-key) | Displays the peer ID that corresponds with the secret node key in the file name you specify.
 | [`sign`](#subkey-sign) | Signs a message with the secret key you specify.
@@ -236,7 +236,7 @@ Remember that it is important to keep passwords, secret phrases, and secret seed
 
 Use the `subkey generate-node-key` command to generate random public and private keys for peer-to-peer (`libp2p`) communication between Substrate nodes.
 The public key is the peer identifier that is used in chain specification files or as a command-line argument to identify a node participating in the blockchain network.
-In most cases, you use run this command with a command-line option to save the private key to a file.
+In most cases, you run this command with a command-line option to save the private key to a file.
 
 #### Basic usage
 

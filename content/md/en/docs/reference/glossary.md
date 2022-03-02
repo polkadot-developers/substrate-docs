@@ -484,6 +484,20 @@ deterministic, machine-executable logic.
 the [Rust](http://rust-lang.org/) programming language.
 Substrate-based chains use a WebAssembly binary to provide portable [runtimes](#runtime) that can be included as part of the chain's [state](#state).
 
+## weight
+
+A convention used in Substrate-based blockchains to measure and manage the time it takes to validate a block.
+Substrate defines one unit of weight as one picosecond of execution time on reference hardware.
+
+The maximum block weight should be equivalent to one-third of the target block time with an allocation of:
+
+* One third for block construction
+* One third for network propagation
+* One third for import and verification
+
+By defining weights, you can make trade-off decisions between the number of transactions per second and the hardware required to maintain the target block time as appropriate for your use case. 
+Because weights are defined in the runtime, you can tune them using runtime updates to keep up with hardware and software improvements.
+
 ## Westend
 
-Westend is a [Parity](https://www.parity.io/)-maintained, Substrate-based [blockchain](#blockchain) that serves as a test network for the [Polkadot network](#polkadot-network).
+Westend is a Parity-maintained, Substrate-based [blockchain](#blockchain) that serves as a test network for the [Polkadot network](#polkadot-network).

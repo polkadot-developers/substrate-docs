@@ -93,15 +93,15 @@ You can explore the following resources to learn more.
 
 #### Tell me
 
-* [why Substrate?]()
-* [Fundamentals](./index.md)
-* [Node architecture]()
-* [Network topologies]()
+* [why Substrate?](/main-docs/why-substrate/)
+* [Fundamentals](main-docs/fundamentals/)
+* [Node architecture](main-docs/fundamentals/node-architecture/)
+* [Network topologies](main-docs/fundamentals/network-topologies/)
 
 #### Guide me
 
-* [Build a local blockchain](../../tutorials/01-build-local-blockchain.md)
-* [Simulate a network](../../tutorials/02-simulate-network.md)
-* [Start a trusted validator network](../../tutorials/03-private-network.md)
+* [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
+* [Simulate a network](/tutorials/get-started/simulate-network/)
+* [Start a trusted validator network](/tutorials/get-started/trusted-network/)
 
 If you prefer to explore code directly, you can start building in the Developer Playground and consult the API reference to get details about the Rust crates you use.
