@@ -93,17 +93,6 @@ export default function Footer() {
           </a>
           <a
             className="mr-11 md:mr-0 md:ml-9 transform transition-all duration-300 ease-in-out hover:opacity-50"
-            href={siteMetadata.stackOverflow}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Icon
-              name="stackOverflowWhite"
-              className="fill-current text-substrateWhite"
-            />
-          </a>
-          <a
-            className="mr-11 md:mr-0 md:ml-9 transform transition-all duration-300 ease-in-out hover:opacity-50"
             href={siteMetadata.github}
             target="_blank"
             rel="noreferrer"

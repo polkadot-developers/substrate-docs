@@ -6,7 +6,6 @@ import tutsIcon from '../images/svgs/tuts.svg'
 import feTemplate from '../images/svgs/fe-template.svg'
 import nodeTemplate from '../images/svgs/node-template.svg'
 import elementOrg from '../images/svgs/element-original.svg'
-import stackOverflowOrg from '../images/svgs/stack-overflow-original.svg'
 import gradHat from '../images/svgs/grad-hat.svg'
 import calendar from '../images/svgs/calendar.svg'
 import grantsDollar from '../images/svgs/grants-dollar.svg'
@@ -21,7 +20,6 @@ import docsNavIcon from '../images/svgs/docs-nav-icon.svg'
 import arrowDown from '../images/svgs/arrow-down.svg'
 import copyText from '../images/svgs/copy-text.svg'
 import elementWhite from '../images/svgs/element-white.svg'
-import stackOverflowWhite from '../images/svgs/stack-overflow-white.svg'
 import stackExchange from '../images/svgs/stack-exchange-white.svg'
 import twitter from '../images/svgs/twitter.svg'
 import feedbackIcon from '../images/svgs/feedback-icon.svg'
@@ -52,8 +50,6 @@ iconsMap.set('nodeTemplate', nodeTemplate)
 /* social-media */
 iconsMap.set('elementOrg', elementOrg)
 iconsMap.set('elementWhite', elementWhite)
-iconsMap.set('stackOverflowOrg', stackOverflowOrg)
-iconsMap.set('stackOverflowWhite', stackOverflowWhite)
 iconsMap.set('stackExchange', stackExchange)
 iconsMap.set('github', github)
 iconsMap.set('twitter', twitter)
