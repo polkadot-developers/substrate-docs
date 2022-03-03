@@ -36,6 +36,7 @@ module.exports = {
     youtube: 'https://www.youtube.com/c/ParityTech',
     crowdcast: 'https://www.crowdcast.io/e/substrate-seminar-2',
     substrateIO: `${process.env.GATSBY_IO_URL}`,
+    stackExchange: 'https://substrate.stackexchange.com',
   },
   flags: {
     DEV_SSR: false,

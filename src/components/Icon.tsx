@@ -22,6 +22,7 @@ import arrowDown from '../images/svgs/arrow-down.svg'
 import copyText from '../images/svgs/copy-text.svg'
 import elementWhite from '../images/svgs/element-white.svg'
 import stackOverflowWhite from '../images/svgs/stack-overflow-white.svg'
+import stackExchange from '../images/svgs/stack-exchange-white.svg'
 import twitter from '../images/svgs/twitter.svg'
 import feedbackIcon from '../images/svgs/feedback-icon.svg'
 import externalIcon from '../images/svgs/external-icon.svg'
@@ -53,6 +54,7 @@ iconsMap.set('elementOrg', elementOrg)
 iconsMap.set('elementWhite', elementWhite)
 iconsMap.set('stackOverflowOrg', stackOverflowOrg)
 iconsMap.set('stackOverflowWhite', stackOverflowWhite)
+iconsMap.set('stackExchange', stackExchange)
 iconsMap.set('github', github)
 iconsMap.set('twitter', twitter)
 /* UI specific */

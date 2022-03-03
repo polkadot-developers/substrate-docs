@@ -82,12 +82,12 @@ export default function Footer() {
         <div className="flex items-center py-4">
           <a
             className="mr-11 md:mr-0 md:ml-9 transform transition-all duration-300 ease-in-out hover:opacity-50"
-            href={siteMetadata.element}
+            href={siteMetadata.stackExchange}
             target="_blank"
             rel="noreferrer"
           >
             <Icon
-              name="elementWhite"
+              name="stackExchange"
               className="fill-current text-substrateWhite"
             />
           </a>

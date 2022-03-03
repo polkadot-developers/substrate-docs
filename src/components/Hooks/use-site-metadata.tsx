@@ -26,6 +26,7 @@ export const useSiteMetadata = () => {
             substrateIO
             terms
             privacy
+            stackExchange
           }
         }
       }
