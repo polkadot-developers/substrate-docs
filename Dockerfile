@@ -1,4 +1,4 @@
-FROM node:14 AS builder
+FROM node:fermium-stretch-slim AS builder
 EXPOSE 9000
 
 WORKDIR /app
