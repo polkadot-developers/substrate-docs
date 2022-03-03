@@ -5,6 +5,5 @@ WORKDIR /app
 COPY . .
 RUN echo "GATSBY_IO_URL=https://www.substrate.io\nGATSBY_DOCS_URL=http://localhost:9000" \
   > .env.production
-RUN yarn
-RUN yarn build
+RUN yarn && yarn build
 CMD ["yarn", "gatsby", "serve", "-H", "0.0.0.0"]
