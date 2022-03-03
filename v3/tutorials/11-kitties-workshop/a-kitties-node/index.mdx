@@ -255,11 +255,7 @@ Just like the [helper files](https://github.com/substrate-developer-hub/substrat
    Ensure that this is declared as a dependency in your pallet's `Cargo.toml` file:
 
    ```toml
-   [dependencies.sp-io]
-   default-features = false
-   git = 'https://github.com/paritytech/substrate.git'
-   tag = 'devhub/latest'
-   version = '4.0.0-dev'
+   sp-io = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.17" }
    ```
 
 1. Now try running the following command to build your pallet. We won't build the entire chain just yet because we haven't yet implemented the `Currency` type in our runtime.
@@ -423,12 +419,7 @@ pub mod pallet {
 ```
 
 Along with this code, we'll need to import `serde`.
-Add this to your pallet's Cargo.toml file:
-
-```toml
-[dependencies.serde]
-version =  '1.0.129'
-```
+Add this to your pallet's Cargo.toml file, using the matching version as Substrate upstream.
 
 ### Scaffold Kitty struct
 
@@ -523,13 +514,7 @@ To create it, you'll build out the following parts:
 
    Notice the use of the [derive macro][derive-macro-rust] which must precede the enum declaration.
    This wraps our enum in the data structures it will need to interface with other types in our runtime.
-   In order to use `Serialize` and `Deserialize`, you will need to add the `serde` crate in `pallets/kitties/Cargo.toml`:
-
-   ```toml
-   [dependencies.serde]
-   default-features = false
-   version = '1.0.119'
-   ```
+   In order to use `Serialize` and `Deserialize`, you will need to add the `serde` crate in `pallets/kitties/Cargo.toml`, using the matching version as Substrate upstream.
 
    Great, we now know how to create a custom struct.
    But what about providing a way for a Kitty struct to be _assigned_ a gender value?
@@ -796,13 +781,7 @@ pub fn create_kitty(origin: OriginFor<T>) -> DispatchResult {
 ```
 
 We won't go into [debugging](/v3/runtime/debugging/), but logging to the console is a useful tip to make sure your pallet is behaving as expected.
-In order to use `log::info`, add this to your pallet's `Cargo.toml` file:
-
-```toml
-[dependencies.log]
-default-features = false
-version = '0.4.14'
-```
+In order to use `log::info`, add this to your pallet's `Cargo.toml` file, using the matching version as Substrate upstream.
 
 ### Write the `mint()` function
 

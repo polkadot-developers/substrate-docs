@@ -230,11 +230,7 @@ To add the `sp-std` crate to the pallet:
 1. Add the following `sp-std` dependencies section to the file:
 
    ```toml
-   [dependencies.sp-std]
-   default-features = false
-   git = 'https://github.com/paritytech/substrate.git'
-   tag = 'devhub/latest'      # or another tag that is **uniform** for you project
-   version = '4.0.0-dev'      # or the latest version
+   sp-std = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.17" }
    ```
 
 1. Add the `sp-std` crate to the list of features.
