@@ -170,7 +170,6 @@ For example:
     --extrinsic '\*' \
     --steps 20 \
     --repeat 10 \
-    --json \
     --output ./pallets/example/weights.rs
 ```
 

@@ -275,7 +275,7 @@ To convert a chain specification to use the raw format:
 1. Convert the `customSpec.json` chain specification to the raw format with the file name `customSpecRaw.json` by running the following command: 
     
     ```bash
-    ./target/release/node-template build-spec --chain=customSpec.json --json --disable-default-bootnode > customSpecRaw.json
+    ./target/release/node-template build-spec --chain=customSpec.json --disable-default-bootnode > customSpecRaw.json
     ```
 
 ## Share the chain specification with others
