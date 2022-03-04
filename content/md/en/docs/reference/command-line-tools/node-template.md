@@ -143,7 +143,8 @@ For reference information and examples that illustrate using these subcommands, 
 
 ## benchmark <a name="node-benchmark"></a>
 
-Use the `node-template benchmark` command to benchmark runtime pallets.
+Use the `node-template benchmark` command to analyze the resources required to execute extrinsic calls in runtime pallets.
+You can analyze individual extrinsic calls in specific pallets or all extrinsic calls in all pallets. 
 
 #### Basic usage
 
@@ -203,26 +204,158 @@ You can use the following command-line options with the `node-template benchmark
 
 ## build-spec <a name="node-buildspec"></a>
 
+Use the `node-template build-spec` command to create a chain specification file for your runtime.
+
+#### Basic usage
+
+```
+node-template build-spec [FLAGS] [OPTIONS]
+```
+
+#### Flags
+
+You can use the following optional flags with the `node-template build-spec` command.
+
+| Flag   | Description
+| ------ | -----------
+| `--detailed-log-output` | Enables detailed log output, including the log target name, the log level, and the thread name. This option is used automatically if you enable a logging level any higher level than `info`.
+| `--dev` | Starts the node in development mode. Using this flag also enables the `--chain=dev`, `--force-authoring`, `--rpc-cors=all`, `--alice`, and `--tmp` flags by default.
+| `--disable-default-bootnode` | Disables adding the default bootnode to the specification. By default, the `/ip4/127.0.0.1/tcp/30333/p2p/NODE_PEER_ID` bootnode is added to the specification when no bootnode exists.
+| `--disable-log-color` | Disables log color output.
+| `--enable-log-reloading` | Enables the log filter to be dynamically updated and reloaded. Note that this option can significantly decrease performance. Setting this option does not affect the `system_addLogFilter` and `system_resetLogFilter` RPC methods.
+| `-h`, `--help` | Displays usage information.
+| `--raw` |  Formats the chain specification as raw genesis storage output.
+| `-V`, `--version` | Displays version information.
+
+
+OPTIONS:
+    -d, --base-path <PATH>               
+            Specify custom base path
+
+        --chain <CHAIN_SPEC>             
+            Specify the chain specification.
+            
+            It can be one of the predefined ones (dev, local, or staging) or it can be a path to a file with the
+            chainspec (such as one exported by the `build-spec` subcommand).
+    -l, --log <LOG_PATTERN>...           
+            Sets a custom logging filter. Syntax is <target>=<level>, e.g. -lsync=debug.
+            
+            Log levels (least to most verbose) are error, warn, info, debug, and trace. By default, all targets log
+            `info`. The global log level can be set with -l<level>.
+        --node-key <KEY>                 
+            The secret key to use for libp2p networking.
+            
+            The value is a string that is parsed according to the choice of `--node-key-type` as follows:
+            
+            `ed25519`: The value is parsed as a hex-encoded Ed25519 32 byte secret key, i.e. 64 hex characters.
+            
+            The value of this option takes precedence over `--node-key-file`.
+            
+            WARNING: Secrets provided as command-line arguments are easily exposed. Use of this option should be limited
+            to development and testing. To use an externally managed secret key, use `--node-key-file` instead.
+        --node-key-file <FILE>           
+            The file from which to read the node's secret key to use for libp2p networking.
+            
+            The contents of the file are parsed according to the choice of `--node-key-type` as follows:
+            
+            `ed25519`: The file must contain an unencoded 32 byte or hex encoded Ed25519 secret key.
+            
+            If the file does not exist, it is created with a newly generated secret key of the chosen type.
+        --node-key-type <TYPE>           
+            The type of secret key to use for libp2p networking.
+            
+            The secret key of the node is obtained as follows:
+            
+            * If the `--node-key` option is given, the value is parsed as a secret key according to the type. See the
+            documentation for `--node-key`.
+            
+            * If the `--node-key-file` option is given, the secret key is read from the specified file. See the
+            documentation for `--node-key-file`.
+            
+            * Otherwise, the secret key is read from a file with a predetermined, type-specific name from the chain-
+            specific network config directory inside the base directory specified by `--base-dir`. If this file
+            does not exist, it is created with a newly generated secret key of the chosen type.
+            
+            The node's secret key determines the corresponding public key and hence the node's peer ID in the context of
+            libp2p. [default: Ed25519]  [possible values: Ed25519]
+        --tracing-receiver <RECEIVER>    
+            Receiver to process tracing messages [default: Log]  [possible values: Log]
+
+        --tracing-targets <TARGETS>      
+            Sets a custom profiling filter. Syntax is the same as for logging: <target>=<level>
+
 
 ## check-block <a name="node-checkblock"></a>
 
+Use the `node-template check-block` command to .
 
 ## export-blocks <a name="node-exportblock"></a>
 
+Use the `node-template export-blocks` command to .
 
 ## export-state <a name="node-exportstate"></a>
 
+Use the `node-template export-state` command to 
 
 ## help <a name="node-help"></a>
 
+Use the `node-template help` command to display usage information for `node-template` or for any `node-template` subcommand.
 
 ## import-blocks <a name="node-importblock"></a>
 
+Use the `node-template import-blocks` command to 
 
 ## key <a name="node-key"></a>
 
+Use the `node-template key` command to generate, inspect, and manage private and public key pairs and addresses.
 
 ## purge-chain <a name="node-purge"></a>
 
+Use the `node-template purge-chain` command to remove a blockchain and all-blockchain-related infomration.
 
 ## revert <a name="node-revert"></a>
+
+Use the `node-template rever` command to revert the chain to a previous state.
+
+#### Basic usage
+
+```
+node-template revert [FLAGS] [OPTIONS] [--] [num]
+```
+
+#### Flags
+
+You can use the following optional flags with the `node-template revert` command.
+
+| Flag   | Description
+| ------ | -----------
+| `--detailed-log-output` | Enables detailed log output, including the log target name, the log level, and the thread name. This option is used automatically if you enable a logging level any higher level than `info`.
+| `--dev` | Starts the node in development mode. Using this flag also enables the `--chain=dev`, `--force-authoring`, `--rpc-cors=all`, `--alice`, and `--tmp` flags by default.
+| `--disable-log-color` | Disables log color output.
+| `--enable-log-reloading` | Enables the log filter to be dynamically updated and reloaded. Note that this option can significantly decrease performance. Setting this option does not affect the `system_addLogFilter` and `system_resetLogFilter` RPC methods.
+| `-h`, `--help` | Displays usage information.
+| `-V`, `--version` | Displays version information.
+
+#### Options
+
+You can use the following command-line options with the `node-template rever` command.
+
+| Option   | Description
+| -------- | -----------
+| `-d`, `--base-path <path>` | Specifies a custom base path.
+| `--chain <chain-specification>` | Specifies the chain specification to use. You can set this option using a predefined chain specification name, such as `dev`, `local`, or `staging`or you can specify the path to a file that contains the chain specification, for example, the chain specification generated by using the `build-spec` subcommand.
+| `--keep-blocks <count>` | Specifies the number of finalized blocks to keep in the database. The default is to keep all blocks.
+| `-l`, `--log <log-pattern>...` | Sets a custom logging filter. The syntax to use is `<log-target>=<level>`, for example `-lsync=debug`. The valid log levels from least to most verbose are `error`, `warn`, `info`, `debug`, and `trace`. By default, all targets log `info` level messages. You can set the global log level with `-l<level>`.
+| `--pruning <pruning-mode>` | Specifies the maximum number of block states to keep or `archive` to keep all block states. If the node is running as a validator, the default is to keep all block states. If the node does not run as a validator, only state for the last 256 blocks is kept.
+| `--tracing-receiver <receiver>` | Specifies the receiver to process tracing messages. The default is Log.
+| `--tracing-targets <targets>` | Sets a custom profiling filter. Syntax is the same as for logging: `<target>=<level>`.
+
+#### Arguments
+
+You can use the following command-line argument with the `node-template revert` command.
+
+| Argument | Description
+| -------- | -----------
+| `<num>` | Specifies the number of blocks to revert. The default is 256 blocks.
+
+
