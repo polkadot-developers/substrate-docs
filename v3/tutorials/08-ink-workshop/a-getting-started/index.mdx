@@ -1,5 +1,5 @@
 ---
-title: Getting Started
+title: Getting started
 slug: /tutorials/v3/ink-workshop/pt1
 version: '3.0'
 sideNav: inkWorkshop
@@ -16,75 +16,81 @@ relevantSkills:
   - Smart Contracts
 ---
 
-This part will teach you everything you need to know to get started building smart contracts on Substrate with ink!.
+Decentralized applications are most often written as **smart contracts**.
+Although Substrate is primarily a framework and toolkit for building custom blockchains, it can also provide a platform for smart contracts.
+This tutorial demonstrates how to build a basic smart contract to run on a Substrate-based chain. 
+In this tutorial, you'll explore using ink! as a programming language for writing Rust-based smart contracts.
 
-<TutorialObjective
-  data={{
-    textLineOne: '1. Installing prerequisites on your computer',
-    url: '#prerequisites',
-  }}
-/>
-<TutorialObjective
-  data={{
-    textLineOne: '2. Starting a new project with cargo-contract',
-    url: '#creating-an-ink-project',
-  }}
-/>
-<TutorialObjective
-  data={{
-    textLineOne: '3. Building and testing our contract',
-    url: '#running-a-substrate-smart-contracts-node',
-  }}
-/>
-<TutorialObjective
-  data={{
-    textLineOne: '4. Deploying our contract on a local Substrate node',
-    url: '#deploying-your-contract',
-  }}
-/>
-<TutorialObjective
-  data={{
-    textLineOne: '5. Interacting with our contract using the Contracts UI',
-    url: '#calling-your-contract',
-  }}
-/>
-<TutorialObjective
-  data={{
-    textLineOne: '6. Troubleshooting',
-    url: '#troubleshooting',
-  }}
-/>
+## Before you begin
 
-## Learning outcomes
+Before you begin, verify the following:
 
-- Learn the basic of writing smart contracts with ink!
-- Learn how to deploy an ERC20 contract in a Substrate node using ink!
+* You have good internet connection and access to a shell terminal on your local computer.
 
-<AccentButton text={`Sound reasonable? Let's begin!`} link={`#prerequisites`} />
+* You are generally familiar with software development and using command-line interfaces.
 
-To follow this tutorial, you will need to set up some stuff on your computer.
+* You are generally familiar with blockchains and smart contract platforms.
 
-## Prerequisites
+* You have installed Rust and set up your development environment as described in [Installation](/v3/getting-started/installation).
 
-Follow the
-[official installation steps](/v3/getting-started/installation) to install the prerequisites.
+## Tutorial objectives
 
-Once you have done the above you will also need to run:
+By completing this tutorial, you will accomplish the following objectives:
 
-```
-rustup component add rust-src --toolchain nightly
-rustup target add wasm32-unknown-unknown --toolchain nightly
-```
+* Learn how to create a smart contract project.
 
-### 1. Installing The Substrate Contracts Node
+* Build and test a smart contract using the ink! smart contract language.
 
-We need to use a Substrate node with the built-in `pallet-contracts` pallet. For this workshop we'll use a pre-configured Substrate node client.
+* Deploy a smart contract on a local Substrate node.
 
-```bash
-cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag v0.6.0 --force --locked
-```
+* Interact with a smart contract through a browser.
 
-### 2. ink! CLI
+* Troubleshoot common issues.
+
+## Update your Rust environment
+
+For this tutorial, you need to add some Rust source code to your Substrate development environment.
+
+To update your development environment:
+
+1. Open a terminal shell on your computer.
+
+1. Change to the root directory where you compiled the Substrate node template.
+
+1. Update your Rust environment by running the following command:
+    
+    ```bash
+    rustup component add rust-src --toolchain nightly
+    ```
+
+1. Verify that you have the WebAssembly target installed by running the following command:
+    
+    ```bash
+    rustup target add wasm32-unknown-unknown --toolchain nightly
+    ```
+
+    If the target is installed and up-to-date, the command displays output similar to the following:
+
+    ```bash
+    info: component 'rust-std' for target 'wasm32-unknown-unknown' is up to date
+    ```
+
+## Install the Substrate contracts node
+
+To simplify this tutorial, you can install a Substrate node that is preconfigured with the FRAME pallet for smart contracts.
+The`pallet-contracts` is included by default in the Substrate `contracts-node` sample code.\
+
+To install the contracts node:
+
+1. Open a terminal shell on your computer.
+
+1. Install the contracts node by running the following command:
+    
+    ```bash
+    cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag v0.6.0 --force --locked
+    ```
+
+## Install the ink! command-line interface
 
 The final tool we will be installing is the ink! command line utility which will make setting up Substrate smart contract projects easier.
 
