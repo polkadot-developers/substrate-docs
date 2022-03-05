@@ -87,117 +87,152 @@ To install the contracts node:
 1. Install the contracts node by running the following command:
     
     ```bash
-    cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag v0.6.0 --force --locked
+    cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag v0.8.0 --force --locked
     ```
 
-## Install the ink! command-line interface
+    Note the tag is subject to change.
+    To see if a new tag is available, check the [substrate-contracts-node repository](https://github.com/paritytech/substrate-contracts-node/tags).
 
-The final tool we will be installing is the ink! command line utility which will make setting up Substrate smart contract projects easier.
 
-As a prerequisite for the tool you need to install the **binaryen** package, which is used to optimize the WebAssembly bytecode of the contract.
+## Install additional packages
 
-If you are using Ubuntu, Debian or MacOS, you could install it directly:
+After compiling the contrcts node, you need to install two additional packages:
 
-```bash
-# For Ubuntu or Debian users
-sudo apt install binaryen
-# For MacOS users
-brew install binaryen
-```
+* The WebAssembly  **binaryen** package for your operating system to optimize the WebAssembly bytecode for the contract.
+* The cargo-contract command line interface you'll use to set up smart contract projects.
 
-<br />
-<Message
-  type={`gray`}
-  title={`Note`}
-  text={`If you're unable to find a version of \`binaryen\` compatible with your OS, you can [download the binary release directly](https://github.com/WebAssembly/binaryen/releases).`}
-/>
+### Install the WebAssemvly binary
 
-After you've installed the package execute:
+To install the **binaryen** package:
 
-```bash
-cargo install cargo-contract --vers ^0.17 --force --locked
-```
+1. Open a terminal shell on your computer.
 
-You can then use `cargo contract --help` to start exploring the commands made available to you.
+1. Use the approproate package manager for your operating system to install the package.
+    
+    For example:
+    
+    ```ubuntu | debian
+    sudo apt install binaryen
+    ```
+    
+    ```macOS
+    brew install binaryen
+    ```
+    
+    If you an operating system that's not listed, you can download the `binaryen` release directly from [WebAssebly releases](https://github.com/WebAssembly/binaryen/releases).
 
-## Creating An ink! Project
+### Install the cargo-contract package
 
-We are going to use the ink! CLI to generate the files we need for a Substrate smart contract project.
+After you've installed the WebAssembly `binaryen` package, you can install the `cargo-contract` package.
+The `cargo-contract` package provides a command-line interface for working with smart contracts using the ink! language.
 
-From your working directory, run:
+1. Open a terminal shell on your computer.
 
-```bash
-cargo contract new flipper
-```
+1. Install `cargo-contract` by running the following command:
+    
+    ```bash
+    cargo install cargo-contract --vers ^0.17 --force --locked
+    ```
 
-This command will create a new project folder named `flipper` which we will explore:
+1. Verify the installation and explore the commands avilable by running the following command:
+    
+    ```bash
+    cargo contract --help
+    ```
 
-```bash
-cd flipper/
-```
+## Create a new smart contract project
 
-**ink! Contract Project**
+You are now ready to start developing a new smart contract project.
 
-```bash
-flipper
-  └─ lib.rs                <-- Contract Source Code
-  └─ Cargo.toml            <-- Rust Dependencies and ink! Configuration
-  └─ .gitignore
-```
+To generate the files for a smart contract project:
 
-### 1. Contract Source Code
+1. Open a terminal shell on your computer.
 
-The ink! CLI automatically generates the source code for the "Flipper" contract, which is about the
-simplest "smart" contract you can build. You can take a sneak peak as to what will come by looking
-at the [Flipper Example](https://github.com/paritytech/ink/blob/v3.0.0-rc9/examples/flipper/lib.rs).
+1. Create a new project folder named `flipper`  by running the following command:
+    
+    ```bash
+    cargo contract new flipper
+    ```
 
-The Flipper contract is nothing more than a `bool` which gets flipped from true to false through the `flip()` function. We won't go deep into the details of this source code because we will be walking you through the steps of building a more advanced contract!
+1. Change to the new project folder by running the following command:
+    
+    ```bash
+    cd flipper/
+    ```
 
-### 2. Testing Your Contract
+1. List all of the contents of the directory by running the following command:
+    
+    ```bash
+    ls -al
+    ```
+    
+    You should see that the directory contains the following files:
+    
+    -rwxr-xr-x   1 docs  staff   285 Mar  4 14:49 .gitignore
+    -rwxr-xr-x   1 docs  staff  1023 Mar  4 14:49 Cargo.toml
+    -rwxr-xr-x   1 docs  staff  2262 Mar  4 14:49 lib.rs
+    
+    Like other Rust projects, the `Cargo.toml` file is used to provides package dependencies and configuration information. 
+    The lib.rs file is used for the smart contract business logic.
 
-You will see at the bottom of the source code there are simple test cases which verify the functionality of the contract. We can quickly test this code is functioning as expected using the **off-chain test environment** that ink! provides.
+### Explore the default project source code
 
-In your project folder run:
+By default, creating a new smart contract project generates some template source code for a very simple contract that has one function—`flip()`—that changes a Boolean variable from true to false.
 
-```bash
-cargo +nightly test
-```
+As you progress through the tutorial, you'll modify different parts of the starter code.
+By the end of the tutorial, you'll have a more advanced smart contract that looks like the [Flipper example](https://github.com/paritytech/ink/blob/v3.0.0-rc9/examples/flipper/lib.rs).
 
-To which you should see a successful test completion:
+### Test the default contract
 
-```bash
-$ cargo +nightly test
+At the bottom of the `lib.rs` source code file, there are simple test cases to verify the functionality of the contract. 
+You can test whether this code is functioning as expected using the **off-chain test environment**.
+
+To test the contract:
+
+1. Open a terminal shell on your computer, if needed.
+
+1. Verify that you are in the `flipper` project folder.
+
+1. Use the `test` subcommand and `nightly` toolchain to execute the default tests for the `flipper` contract by running the following command:
+    
+    ```bash
+    cargo +nightly test
+    ```
+    
+    The command should display output similar to the following to indicate successful test completion:
+    
+    ```bash
     running 2 tests
     test flipper::tests::it_works ... ok
     test flipper::tests::default_works ... ok
-
+    
     test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
-```
+    ```
 
-Now that we are feeling confident things are working, we can actually compile this contract to Wasm.
+### Build the contract
 
-### 3. Building Your Contract
+After testing the default contract, you are ready to compile this project to WebAssmebly.
 
-Run the following command to compile your smart contract in the Flipper project directory:
+To build the WebAssmeby for this smart contract:
 
-```bash
-cargo +nightly contract build
-```
+1. Open a terminal shell on your computer, if needed.
 
-<br />
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text={`If you run into a \`call to unsafe function\` error, run \`cargo install --force cargo-contract && rustup update\`
-  to make sure everything is up to date.`}
-/>
+1. Verify that you are in the `flipper` project folder.
 
-This command will build a Wasm binary for the ink! project, a metadata file (which contains the
-contract's ABI) and a `.contract` file which bundles both. This `.contract` file can be used for
-deploying your contract to your chain. If all goes well, you should see a `target` folder which
-contains these files:
+1. Compile the `flipper` smart contract vy running the following command: 
+    
+    ```bash
+    cargo +nightly contract build
+    ```
+    
+    This command builds a WebAssembly binary for the `flipper` project, a metadata file that contains the Contract Application Binary Interface (ABI), and a `.contract` file that contains both files. 
+    The `.contract` file can be used for deploying your contract to your chain. 
 
-```bash
+1. Check the `target` folder for your smart contract.
+    
+    The `target` folder contains the following files:
+    
+    ```bash
 target
   └─ ink
     └─ release
@@ -244,10 +279,9 @@ In the next section we will start a
 [Substrate Smart Contracts node](https://github.com/paritytech/substrate-contracts-node) and
 configure the [Contracts UI](https://github.com/paritytech/contracts-ui) to interact with it.
 
-## Running a Substrate Smart Contracts Node
+## Run a Substrate smart contracts node
 
-After successfully installing [`substrate-contracts-node`](https://github.com/paritytech/substrate-contracts-node),
-you can start a local development chain by running:
+After successfully installing [`substrate-contracts-node`](https://github.com/paritytech/substrate-contracts-node), you can start a local development chain by running:
 
 ```bash
 substrate-contracts-node --dev
@@ -257,7 +291,7 @@ substrate-contracts-node --dev
 
 You should start seeing blocks being produced by your node in your terminal.
 
-## Deploying your Contract
+## Deploy your Contract
 
 Go to the [hosted version of Contracts UI](https://paritytech.github.io/contracts-ui) to interact with
 your node. You first need to configure the UI to connect to it:
