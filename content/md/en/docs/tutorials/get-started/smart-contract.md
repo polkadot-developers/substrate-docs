@@ -168,14 +168,32 @@ To generate the files for a smart contract project:
     -rwxr-xr-x   1 docs  staff  2262 Mar  4 14:49 lib.rs
     
     Like other Rust projects, the `Cargo.toml` file is used to provides package dependencies and configuration information. 
-    The lib.rs file is used for the smart contract business logic.
+    The `lib.rs` file is used for the smart contract business logic.
 
-### Explore the default project source code
+### Explore the default project files
 
 By default, creating a new smart contract project generates some template source code for a very simple contract that has one function—`flip()`—that changes a Boolean variable from true to false.
+The `lib.rs` file also contains two functions for testing that the contract works as expected.
 
 As you progress through the tutorial, you'll modify different parts of the starter code.
 By the end of the tutorial, you'll have a more advanced smart contract that looks like the [Flipper example](https://github.com/paritytech/ink/blob/v3.0.0-rc9/examples/flipper/lib.rs).
+
+To explore the default project files:
+
+1. Open a terminal shell on your computer, if needed.
+
+1. Change to project folder for the `flipper` smart contract, if needed:
+
+1. Open the `Cargo.toml` file in a text editor and review the dependencies for the contract.
+
+<!--Modified Cargo.toml
+scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
+scale-info = { version = "2", default-features = false, features = ["derive"], optional = true }
+-->
+
+1. Save any changes to the `Cargo.toml` file, then close the file.
+
+1. Open the `lib.rs` file in a text editor and review the functions defined for the contract.
 
 ### Test the default contract
 
@@ -186,7 +204,7 @@ To test the contract:
 
 1. Open a terminal shell on your computer, if needed.
 
-1. Verify that you are in the `flipper` project folder.
+1. Verify that you are in the `flipper` project folder, if needed.
 
 1. Use the `test` subcommand and `nightly` toolchain to execute the default tests for the `flipper` contract by running the following command:
     
@@ -208,7 +226,7 @@ To test the contract:
 
 After testing the default contract, you are ready to compile this project to WebAssmebly.
 
-To build the WebAssmeby for this smart contract:
+To build the WebAssebly for this smart contract:
 
 1. Open a terminal shell on your computer, if needed.
 
@@ -220,25 +238,22 @@ To build the WebAssmeby for this smart contract:
     cargo +nightly contract build
     ```
     
-    This command builds a WebAssembly binary for the `flipper` project, a metadata file that contains the Contract Application Binary Interface (ABI), and a `.contract` file that contains both files. 
-    The `.contract` file can be used for deploying your contract to your chain. 
+    This command builds a WebAssembly binary for the `flipper` project, a metadata file that contains the contract Application Binary Interface (ABI), and a `.contract` file that you use to deploy the contract.
+    For example, you should see output similar to the following:
 
-1. Check the `target` folder for your smart contract.
+    ```text
+    Original wasm size: 47.9K, Optimized: 22.8K
     
-    The `target` folder contains the following files:
-
-
-```bash
-target
-  └─ ink
-    └─ release
-      └─ ...
-    └─ .rustc_info.json
-    └─ CACHEDIR.TAG
-    └─ flipper.contract
-    └─ flipper.wasm
-    └─ metadata.json
-```
+    The contract was built in DEBUG mode.
+    
+    Your contract artifacts are ready. You can find them in:
+    /Users/docs/flipper/target/ink
+    
+    - flipper.contract (code + metadata)
+    - flipper.wasm (the contract's code)
+    - metadata.json (the contract's metadata)
+    The `.contract` file can be used for deploying your contract to your chain.
+    ```
 
 Let's take a look at the structure of `metadata.json`:
 
