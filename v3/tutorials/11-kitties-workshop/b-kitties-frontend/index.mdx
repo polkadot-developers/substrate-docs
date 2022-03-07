@@ -177,7 +177,7 @@ the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.js`.
 
     The above code handles a few important things for our application:
 
-    - `parseKitty` is a function to hold all kitty data and return an object
+    - `parseKitty` is a function to hold all kitty data and return an object.
     - `Kitties` enables us to subscribe to chain storage item changes and use the `useEffect`
     React hook to update the state of our other components.
 
@@ -240,7 +240,7 @@ the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.js`.
     ```
 
     `kitties` is a [storage map](https://paritytech.github.io/substrate/latest/frame_support/storage/types/struct.StorageMap.html), Substrate supports returning the whole map of objects and we use Polkadot-JS API to iterate through the map.
-    For each dataset, `parseKitty()` function is called to return a kitty object.
+    For each dataset, the `parseKitty()` function is called to return a kitty object.
 
     Lastly, notice the clean-up function is being returned:
 
@@ -256,7 +256,7 @@ the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.js`.
     So we return a clean up function for the effect hook.
     Refer to [Effects with Cleanup](https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup) to learn more about cleanup functions.
 
-1.  Now, all that's left to do in order for our component to listen for changes in our node's storage is to pass in `subscribeCount` and `subscribeKitties` functions to React's `useEffect()`.
+1.  Now, all that's left to do in order for our component to listen for changes in our node's storage is to pass in the `subscribeCount` and `subscribeKitties` functions to React's `useEffect()`.
 
     Add these lines to enable this:
 
@@ -355,7 +355,7 @@ Since it's mostly all Javascript, we won't be going into much detail.
 
 Our `KittyCards.js` component will have three sections to it:
 
-- `TransferModal`, `SetPrice`, `BuyKitty`: they are modal dialogs that uses the `TxButton` component to transfer a kitty, set a kitty price, and to buy a kitty.
+- `TransferModal`, `SetPrice` and `BuyKitty`: each of which are modal dialogs that use the `TxButton` component to transfer a kitty, set a kitty price, and to buy a kitty.
 
 - `KittyCard`: a card that renders the Kitty avatar using the `KittyAvatar` component as well
   as all other Kitty information (id, dna, owner, gender and price).
@@ -397,7 +397,7 @@ Our `KittyCards.js` component will have three sections to it:
 
     ![Kitty Transfer](../../../../src/images/tutorials/11-kitties-workshop/kitty-transfer-shot.png)
 
-    The other two modal dialogs, `SetPrice` and `BuyKitty`, follow the similar logics.
+    The other two modal dialogs, `SetPrice` and `BuyKitty`, follow the similar logic.
 
 1.  The first thing we'll do is to extract the properties (or "props") we need using React hooks.
     These are: `kitty`, `accountPair` and `setStatus`. Do this by pasting in the following code snippet:
@@ -487,8 +487,8 @@ The next part of our `KittyCards.js` component is to create the part that render
 
 ### Write `KittyCard` in `KittyCards.js`
 
-We'll use Semantic UI `Card` component to create a card that renders the Kitty avatar as well as the
-Kitty ID, DNA, gender, owner and price.
+We'll use a Semantic UI `Card` component to create a card that renders the Kitty avatar as well as the
+Kitty DNA, gender, owner and price.
 
 1. As you might have guessed, we'll use React props to pass in data to our KittyCard. Paste the
    following code snippet:
@@ -597,7 +597,7 @@ Kitty ID, DNA, gender, owner and price.
    export default KittyCards
    ```
 
-> Notes: We didn't go through the `SetPrice` and `BuyKitty` components above. Please [refer to the solutions](https://github.com/substrate-developer-hub/substrate-front-end-template/blob/tutorials%2Fsolutions%2Fkitties/src/KittyCards.js) for that.
+> Note: We didn't go through the `SetPrice` and `BuyKitty` components above. Please [refer to the solution code](https://github.com/substrate-developer-hub/substrate-front-end-template/blob/tutorials%2Fsolutions%2Fkitties/src/KittyCards.js) for learning how to write those.
 
 ### Complete `Kitties.js`
 
@@ -661,9 +661,9 @@ If you get stuck in any of the above section. You can refer back to the complete
 - [`src/kittyAvatar.js`](https://github.com/substrate-developer-hub/substrate-front-end-template/blob/tutorials%2Fsolutions%2Fkitties/src/KittyAvatar.js)
 
 **🎉\***Congratulations!**\*🎉** You have finished the Substrate Kitties front-end tutorial!
-We encourage you to write additional functions for other capabilities exposed by your runtime, such as "Set Price", "Buy" or "Breed".
 In [our solution](https://github.com/substrate-developer-hub/substrate-front-end-template/blob/tutorials%2Fsolutions%2Fkitties/src/KittyCards.js), we implemented the Set Price modal for you to use as an additional example.
-There are lots of ways you can extend what you've learnt here, such as creating a marketplace for different types of avatars, or recreating this front-end with your own UI components.
+There are lots of ways you can extend what you've learnt here, such as adding a "Breed Kitty" component, creating a marketplace for different types of avatars, or recreating this front-end with your own UI components.
+We encourage you to keep learning!
 
 ## Next steps
 
