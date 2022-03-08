@@ -1,10 +1,7 @@
 ---
-title: Build an ERC20 Token Contract
-slug: /tutorials/v3/ink-workshop/pt3
-version: '3.0'
-sideNav: inkWorkshop
-section: tutorials
-category: ink workshop
+title: Build an ERC20 token contract
+slug: /tutorials/smart-contracts/erc20-token/
+description:
 keywords:
   - smart contracts
   - erc20

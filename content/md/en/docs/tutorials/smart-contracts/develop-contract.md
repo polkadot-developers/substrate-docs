@@ -1,10 +1,7 @@
 ---
-title: Develop a Smart Contract
-slug: /tutorials/v3/ink-workshop/pt2
-version: '3.0'
-sideNav: inkWorkshop
-section: tutorials
-category: ink workshop
+title: Develop a smart contract
+slug: /tutorials/smart-contracts/develop-contract/
+description: tutorials
 keywords:
   - smart contracts
   - erc20

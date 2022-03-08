@@ -159,7 +159,17 @@ tutorials:
           url: /tutorials/connect-other-chains/parachain/
         - title: Connect to Ethereum
           url: /tutorials/connect-other-chains/connect-to-evm/
-
+    - title: Develop smart contracts
+      url: /tutorials/smart-contracts/
+      pages:
+        - title: Prepare your first contract
+          url: /tutorials/smart-contract/first-smart-contract/
+        - title: Develop a smart contract
+          url: /tutorials/smart-contract/develop-contract/
+        - title: Build an ERC20 token contract
+          url: /tutorials/smart-contract/erc20-token/
+        - title: Troubleshoot smart contracts
+          url: /tutorials/smart-contract/sc-common-issues/
 reference:
   title: Reference
   url: /reference/

@@ -1,5 +1,5 @@
 ---
-title: Prepare for writing smart contracts
+title: Prepare your first contract
 slug: /tutorials/get-started/smart-contract/
 description: 
 keywords:

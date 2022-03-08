@@ -1,5 +1,5 @@
 ---
-title: Troubleshoot smart contract issues
+title: Troubleshoot smart contracts
 slug: /tutorials/smart-contracts/sc-common-issues/
 description: 
 keywords:
