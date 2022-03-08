@@ -97,7 +97,7 @@ After compiling the `contracts-node` package, you need to install two additional
 * The WebAssembly  **binaryen** package for your operating system to optimize the WebAssembly bytecode for the contract.
 * The cargo-contract command line interface you'll use to set up smart contract projects.
 
-### Install the WebAssemvly binary
+### Install the WebAssembly optimizer
 
 To install the **binaryen** package:
 
@@ -105,17 +105,19 @@ To install the **binaryen** package:
 
 1. Use the appropriate package manager for your operating system to install the package.
     
-    For example:
+    For example, on Ubuntu or Debian, run the following command:
     
-    ```ubuntu | debian
+    ```bash
     sudo apt install binaryen
     ```
     
-    ```macOS
+    On macOS, run the following command:
+    
+    ```bash
     brew install binaryen
     ```
     
-    If you an operating system that's not listed, you can download the `binaryen` release directly from [WebAssebly releases](https://github.com/WebAssembly/binaryen/releases).
+    For other operating systems, you can download the `binaryen` release directly from [WebAssebly releases](https://github.com/WebAssembly/binaryen/releases).
 
 ### Install the cargo-contract package
 
@@ -164,9 +166,11 @@ To generate the files for a smart contract project:
     
     You should see that the directory contains the following files:
     
+    ```bash
     -rwxr-xr-x   1 dev-doc  staff   285 Mar  4 14:49 .gitignore
     -rwxr-xr-x   1 dev-doc  staff  1023 Mar  4 14:49 Cargo.toml
     -rwxr-xr-x   1 dev-doc  staff  2262 Mar  4 14:49 lib.rs
+    ```
     
     Like other Rust projects, the `Cargo.toml` file is used to provides package dependencies and configuration information. 
     The `lib.rs` file is used for the smart contract business logic.
@@ -187,10 +191,12 @@ To explore the default project files:
 
 1. Open the `Cargo.toml` file in a text editor and review the dependencies for the contract.
 
-<!--Modified Cargo.toml
-scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
-scale-info = { version = "2", default-features = false, features = ["derive"], optional = true }
--->
+1. In the `[dependencies]` section, modify the `scale` and `scale-info` settings, if necessary.
+    
+    ```toml
+    scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
+    scale-info = { version = "2", default-features = false, features = ["derive"], optional = true }
+    ```
 
 1. Save any changes to the `Cargo.toml` file, then close the file.
 
@@ -279,6 +285,8 @@ To start the preconfigured `contracts-node`:
    ```
    
    You should see output in the terminal similar to the following:
+
+   ```text
    2022-03-07 14:46:25 Substrate Contracts Node    
    2022-03-07 14:46:25 ✌️  version 0.8.0-382b446-x86_64-macos    
    2022-03-07 14:46:25 ❤️  by Parity Technologies <admin@parity.io>, 2021-2022    
@@ -292,6 +300,7 @@ To start the preconfigured `contracts-node`:
    2022-03-07 14:46:26 🏷  Local node identity is: 12D3KooWQ3P8BH7Z1C1ZoNSXhdGPCiPR7irRSeQCQMFg5k3W9uVd    
    2022-03-07 14:46:26 📦 Highest known block at #0
    ...
+   ```
 
    After a few seconds, you should see blocks being finalized.
 
@@ -302,7 +311,7 @@ To start the preconfigured `contracts-node`:
 
 1. Select **Local Node**.
     
-    ![Connect to the local node](/media/tutorials/ink-workshop/connect-to-local-node.png)
+    ![Connect to the local node](/media/images/tutorials/ink-workshop/connect-to-local-node.png)
 
 ## Deploy the contract
 
@@ -351,7 +360,7 @@ To upload the smart contract source code:
 
 1. Browse and select or drag and drop the `flipper.contract` file that contains the bundled Wasm blob and metadata into the upload section. 
         
-    ![Flipper Contract 01](/media/tutorials/ink-workshop/upload-contract.png)
+    ![Flipper Contract 01](/media/images/docs/tutorials/ink-workshop/upload-contract.png)
 
 1. Click **Next** to continue.
 
@@ -368,21 +377,21 @@ To create the instance:
 
 1. Review and accept the default **Max Gas Allowed** of `200000`.
     
-    ![Create an instance of the smart contract](/media/tutorials/ink-workshop/create-instance.png)
+    ![Create an instance of the smart contract](/media/images/docs/tutorials/ink-workshop/create-instance.png)
 
 1. Click **Next**.
     
     The transaction is now queued.
     If you needed to make changes, you could click **Go Back** to modify the input.
 
-    ![Complete instantiation](/media/tutorials/ink-workshop/complete-upload.png)
+    ![Complete instantiation](/media/images/docs/tutorials/ink-workshop/complete-upload.png)
     
 1. Click **Upload and Instantiate**.
     
     Depending on the account you used, you might be prompted for the account password.
     If you used a predefined account, you won't need to provide a password.
     
-    ![Successfully deployed instance of the smart contract](/media/tutorials/ink-workshop/first-contract.png)
+    ![Successfully deployed instance of the smart contract](/media/images/docs/tutorials/ink-workshop/first-contract.png)
 
 ## Call the smart contract
 
@@ -406,7 +415,7 @@ To test the `get()` function:
 
 1. Verify that the value `false` is returned in the Call Results.
 
-![Calling the get() function returns false](/media/tutorials/ink-workshop/call-results-get.png)
+![Calling the get() function returns false](/media/images/docs/tutorials/ink-workshop/call-results-get.png)
 
 ### flip() function
 
@@ -425,7 +434,7 @@ To test the `flip()` function:
 
 1. Verify that the transaction is successful in the Call Results.
     
-    ![Successful transaction](/media/tutorials/ink-workshop/ssuccessful-transaction.png)
+    ![Successful transaction](/media/images/docs/tutorials/ink-workshop/ssuccessful-transaction.png)
 
 1. Select **get(): bool** from the **Message to Send** list.
 
@@ -433,7 +442,7 @@ To test the `flip()` function:
 
 1. Verify the new value is `true` in the Call Results.
     
-    ![The get() function displays the current value is true](/media/tutorials/ink-workshop/flipped-true.png)
+    ![The get() function displays the current value is true](/media/images/docs/tutorials/ink-workshop/flipped-true.png)
 
 
 ## Next steps
@@ -456,16 +465,15 @@ Additional smart contract tutorials build on what you learned in this tutorial a
 The sample code for each tutorial includes tests that you should execute.
 If the tests pass when your run `cargo +nightly test`, you know that your smart contract logic is correct. 
 
-You can explore these components on your own or learn more in the following topics:
+You can learn more about smart contract development in the following topics:
 
-- [Node architecture](/main-docs/fundamentals/architecture/).
-- [Network topologies](/main-docs/fundamentals/)node-and-network-types/.
-- [Simulate a network](tutorials/get-started/simulate-network/)
-- [Add a new pallet](/tutorials/get-started/add-a-pallet/).
+- [Develop a smart contract](/tutorials/smart-contracts/develop-contract/)
+- [Build an ERC20 token contract](/tutorials/smart-contracts/erc20-token/)
+- [Troubleshoot smart contracts](tutorials/smart-contracts/sc-common-issues/)
 
 If you experienced any issues with this tutorial, submit an issue, ask questions or provide feedback.
 
 - [Submit an issue](https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose).
 
-- Ask questions on [Substrate Stack Exchange](https://substrate.stackexchange.com/).
+- [Substrate Stack Exchange](https://substrate.stackexchange.com/).
 
