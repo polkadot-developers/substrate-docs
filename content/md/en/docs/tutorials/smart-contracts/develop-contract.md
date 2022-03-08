@@ -1,0 +1,528 @@
+---
+title: Develop a Smart Contract
+slug: /tutorials/v3/ink-workshop/pt2
+version: '3.0'
+sideNav: inkWorkshop
+section: tutorials
+category: ink workshop
+keywords:
+  - smart contracts
+  - erc20
+  - wasm
+---
+
+This chapter will get you started developing smart contracts with ink!.
+
+We will build a simple **Incrementer** contract which holds a number which you can increase with a function call.
+
+<TutorialObjective
+  data={{
+    textLineOne: '1. ink! Smart Contract Template',
+    url: '#contract-template',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne: '2. Storing a Value',
+    url: '#storing-a-value',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne: '3. Interacting with a Storage Value',
+    url: '#interacting-with-a-storage-value',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne: '4. Incrementing the Value',
+    url: '#incrementing-the-value',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne: '5. Storing a Mapping',
+    url: '#storing-a-mapping',
+  }}
+/>
+<TutorialObjective
+  data={{
+    textLineOne: '6. Updating a Value',
+    url: '#updating-a-value',
+  }}
+/>
+
+## Learning outcomes
+
+- Learn the structure of ink! smart contracts
+- To store single values and hash maps
+- To safely get and set these values
+- To build public and private functions
+- To configure Rust to use safe math
+
+## Contract Template
+
+Let's take a look at a high level what is available to you when developing a smart contract using ink!.
+
+### 1. ink!
+
+ink! is an [Embedded Domain Specific Language](https://wiki.haskell.org/Embedded_domain_specific_language)
+(EDSL) that you can use to write WebAssembly based smart contracts in the Rust programming language.
+
+ink! is just standard Rust in a well defined "contract format" with specialized `#[ink(...)]` attribute macros. These attribute macros tell ink! what the different parts of your Rust smart contract represent, and ultimately allow ink! to do all the magic needed to create Substrate compatible Wasm bytecode!
+
+### 2. Start a New Project
+
+Let's start a new project for the Incrementer contract that you will build in this chapter.
+
+Change into your working directory and run:
+
+```bash
+cargo contract new incrementer
+```
+
+Just like in previous example, this will create a new project folder named `incrementer` which we
+will use for the rest of this chapter.
+
+```bash
+cd incrementer/
+```
+
+In the `lib.rs` file, replace the "Flipper" contract source code with the template code provided
+here.
+
+Quickly check that it compiles and the trivial test passes with:
+
+```bash
+cargo +nightly test
+```
+
+Also check that you can build the Wasm file by running:
+
+```bash
+cargo +nightly contract build
+```
+
+If everything looks good, then we are ready to start programming!
+
+#### Solution
+
+[template-code-final](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/1/assets/1.1-finished-code.rs)
+
+## Storing a Value
+
+The first thing we are going to do to the contract template is introduce some storage values.
+
+Here is how you would store simple values in storage:
+
+```rust
+#[ink(storage)]
+pub struct MyContract {
+	// Store a bool
+	my_bool: bool,
+	// Store some number
+	my_number: u32,
+}
+/* --snip-- */
+```
+
+### 1. Supported Types
+
+Substrate contracts may store types that are encodable and decodable with
+[Parity Codec](https://github.com/paritytech/parity-codec) which includes most Rust common data
+types such as `bool`, `u{8,16,32,64,128}`, `i{8,16,32,64,128}`, `String`, tuples, and arrays.
+
+ink! provides Substrate specific types like `AccountId`, `Balance`, and `Hash` to smart contracts as if
+they were primitive types.
+
+ink! also provides a [`Mapping`](https://paritytech.github.io/ink/ink_storage/struct.Mapping.html)
+type, which is a mapping of key-value pairs in storage.
+
+```rust
+use ink_storage::Mapping;
+```
+
+Here is an example of how you would store an `AccountId` and `Balance`:
+
+```rust
+// We are importing the default ink! types
+use ink_lang as ink;
+
+#[ink::contract]
+mod MyContract {
+
+	// Our struct will use those default ink! types
+	#[ink(storage)]
+	pub struct MyContract {
+		// Store some AccountId
+		my_account: AccountId,
+		// Store some Balance
+		my_balance: Balance,
+	}
+	/* --snip-- */
+}
+```
+
+You may also use some of the Rust standard library collections exposed by the
+[`ink_prelude`](https://paritytech.github.io/ink/ink_prelude/index.html), such as
+[`ink_prelude::vec::Vec`](https://paritytech.github.io/ink/ink_prelude/vec/struct.Vec.html) and
+[`ink_prelude::collections::HashMap`](https://paritytech.github.io/ink/ink_prelude/collections/struct.HashMap.html),
+as part of your contract's storage struct. Note however, that they are not optimized for
+being used as part of contract storage and will be
+[loaded eagerly](https://paritytech.github.io/ink-docs/datastructures/overview#eager-loading).
+This may have some performance implications depending on your use case.
+
+### 2. Contract Deployment
+
+Every ink! smart contract must have a constructor which is run once when a contract is created. ink!
+smart contracts can have multiple constructors:
+
+```rust
+use ink_lang as ink;
+
+#[ink::contract]
+mod mycontract {
+
+	#[ink(storage)]
+	pub struct MyContract {
+		number: u32,
+	}
+
+	impl MyContract {
+		/// Constructor that initializes the `u32` value to the given `init_value`.
+		#[ink(constructor)]
+		pub fn new(init_value: u32) -> Self {
+			Self {
+				number: init_value,
+			}
+		}
+
+		/// Constructor that initializes the `u32` value to the `u32` default.
+		///
+		/// Constructors can delegate to other constructors.
+		#[ink(constructor)]
+		pub fn default() -> Self {
+			Self {
+				number: Default::default(),
+			}
+		}
+	/* --snip-- */
+	}
+}
+```
+
+### 3. Your Turn
+
+Follow the `ACTION`s in the [template](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/1/assets/1.2-template.rs).
+
+Remember to run `cargo +nightly test` to test your work.
+
+#### ** Solution **
+
+[template-code-final](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/1/assets/1.2-finished-code.rs)
+
+#### ** Previous Solution **
+
+[template-code-previous](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/1/assets/1.1-finished-code.rs)
+
+## Interacting with a Storage Value
+
+Now that we have created and initialized a storage value, we are going to start to interact with it!
+
+### 1. Contract Functions
+
+As you see in the contract template, all of your contract functions are part of your contract pallet.
+
+```rust
+impl MyContract {
+	// Public and Private functions go here
+}
+```
+
+### 2. Public and Private Functions
+
+In Rust, you can make as many implementations as you want. As a stylistic choice, we recommend
+breaking up your implementation definitions for your private and public functions:
+
+```rust
+impl MyContract {
+	/// Public function
+	#[ink(message)]
+	pub fn my_public_function(&self) {
+		/* --snip-- */
+	}
+
+	/// Private function
+	fn my_private_function(&self) {
+		/* --snip-- */
+	}
+
+	/* --snip-- */
+}
+```
+
+You can also choose to split things up however is most clear for your project.
+
+Note that all public functions must use the `#[ink(message)]` attribute.
+
+### 3. Getting a Value
+
+We already showed you how to initialize a storage value. Getting the value is just as simple:
+
+```rust
+impl MyContract {
+	#[ink(message)]
+	pub fn my_getter(&self) -> u32 {
+		self.number
+	}
+}
+```
+
+In Rust, if the last expression in a function does not have a semicolon, then it will be the return value.
+
+### 4. Your Turn
+
+Follow the `ACTION`s on the code template provided.
+
+Remember to run `cargo +nightly test` to test your work.
+
+#### ** Template **
+
+[template-code](/assets/tutorials/ink-workshop/1.3-template.rs)
+
+#### ** Solution **
+
+[template-code-final](/assets/tutorials/ink-workshop/1.3-finished-code.rs)
+
+#### ** Previous Solution **
+
+[template-code-previous](/assets/tutorials/ink-workshop/1.2-finished-code.rs)
+
+## Incrementing the Value
+
+It's time to let our users modify the storage.
+
+### 1. Mutable and Immutable Functions
+
+You may have noticed that the function template included `self` as the first parameter of the
+contract functions. It is through `self` that you gain access to all your contract functions and
+storage items.
+
+If you are simply _reading_ from the contract storage, you only need to pass `&self`. But if you want to _modify_ storage items, you will need to explicitly mark it as mutable, `&mut self`.
+
+```rust
+impl MyContract {
+	#[ink(message)]
+	pub fn my_getter(&self) -> u32 {
+		self.my_number
+	}
+
+	#[ink(message)]
+	pub fn my_setter(&mut self, new_value: u32) {
+		self.my_number = new_value;
+	}
+}
+```
+
+### 2. Your Turn
+
+Follow the `ACTION`s in the template code.
+
+Remember to run `cargo +nightly test` to test your work.
+
+<!-- tabs:start -->
+
+#### ** Template **
+
+[template-code](/assets/tutorials/ink-workshop/1.4-template.rs)
+
+#### ** Solution **
+
+[template-code-final](/assets/tutorials/ink-workshop/1.4-finished-code.rs)
+
+#### ** Previous Solution **
+
+[template-code-previous](/assets/tutorials/ink-workshop/1.3-finished-code.rs)
+
+<!-- tabs:end -->
+
+## Storing a Mapping
+
+Let's now extend our Incrementer to not only manage one number, but to manage one number per user!
+
+### 1. Storage Mapping
+
+In addition to storing individual values, ink! also provides a [`Mapping`](https://paritytech.github.io/ink/ink_storage/struct.Mapping.html)
+type which allows you to store items in a key-value mapping.
+
+Here is an example of a mapping from a user to a number:
+
+```rust
+#[ink(storage)]
+pub struct MyContract {
+	// Store a mapping from AccountIds to a u32
+	my_number_map: ink_storage::Mapping<AccountId, u32>,
+}
+```
+
+This means that for a given key, you can store a unique instance of a value type. In this case, each "user" gets their own number, and we can build logic so that only they can modify their own numbers.
+
+### 2.Initializing a Mapping
+
+
+In order to correctly initialize a `Mapping` we need two things:
+1. An implementation of the [`SpreadAllocate`](https://paritytech.github.io/ink/ink_storage/traits/trait.SpreadAllocate.html) trait on our storage struct
+2. The [`ink_lang::utils::initalize_contract`](https://paritytech.github.io/ink/ink_lang/utils/fn.initialize_contract.html) initializer
+
+Not initializing storage before you use it is a common error that can break your smart
+contract. If you do not initialize your `Mapping`'s correctly you may end up with
+different `Mapping`'s operating on the same set of storage entries 😱.
+
+Below is an example of how to correctly initialize a `Mapping`, as well as how to write
+and read entries from it.
+
+```rust
+
+#![cfg_attr(not(feature = "std"), no_std)]
+
+use ink_lang as ink;
+
+#[ink::contract]
+mod mycontract {
+    use ink_storage::traits::SpreadAllocate;
+
+    #[ink(storage)]
+    #[derive(SpreadAllocate)]
+    pub struct MyContract {
+        // Store a mapping from AccountIds to a u32
+        map: ink_storage::Mapping<AccountId, u32>,
+    }
+
+    impl MyContract {
+        #[ink(constructor)]
+        pub fn new(count: u32) -> Self {
+            // This call is required in order to correctly initialize the
+            // `Mapping`s of our contract.
+            ink_lang::utils::initialize_contract(|contract: &mut Self| {
+                let caller = Self::env().caller();
+                contract.map.insert(&caller, &count);
+            })
+        }
+
+        #[ink(constructor)]
+        pub fn default() -> Self {
+            // Even though we're not explicitly initializing the `Mapping`,
+            // we still need to call this
+            ink_lang::utils::initialize_contract(|_| {})
+        }
+
+        // Grab the number at the caller's AccountID, if it exists
+        #[ink(message)]
+        pub fn get(&self) -> u32 {
+            let caller = Self::env().caller();
+            self.map.get(&caller).unwrap_or_default()
+        }
+    }
+}
+```
+
+### 3. Contract Caller
+
+As you might have noticed in the example above, we use a special function called `self.env().caller()`. This function is available throughout the contract logic and will always return to you the contract caller.
+
+<Message
+  type={`gray`}
+  title={`Note`}
+  text={`The contract caller is not the same as the origin caller.
+  If a user triggers a contract which then calls a subsequent contract,
+  the \`self.env().caller()\` in the second contract will be the address
+  of the first contract, not the original user.`}
+/>
+
+`self.env().caller()` can be used in a number of different ways. In the example above, we are basically creating an "access control" layer which only allows users to access their own values. You can also save the contract owner during contract deployment for future references:
+
+```rust
+
+#![cfg_attr(not(feature = "std"), no_std)]
+
+use ink_lang as ink;
+
+#[ink::contract]
+mod mycontract {
+
+	#[ink(storage)]
+	pub struct MyContract {
+		// Store a contract owner
+		owner: AccountId,
+	}
+
+	impl MyContract {
+		#[ink(constructor)]
+		pub fn new() -> Self {
+			Self {
+				owner: Self::env().caller();
+			}
+		}
+		/* --snip-- */
+	}
+}
+```
+
+Then you can write permissioned functions which checks that the current caller is the owner of the contract.
+
+### 4. Your Turn
+
+Follow the `ACTION`s in the template code to introduce a storage map to your contract.
+
+Remember to run `cargo +nightly test` to test your work.
+
+#### ** Template **
+
+[template-code](/assets/tutorials/ink-workshop/1.5-template.rs)
+
+#### ** Solution **
+
+[template-code-final](/assets/tutorials/ink-workshop/1.5-finished-code.rs)
+
+#### ** Previous Solution **
+
+[template-code-previous](/assets/tutorials/ink-workshop/1.4-finished-code.rs)
+
+## Updating a Value
+
+The final step in our Incrementer contract is to allow users to update their own values.
+
+### 1. Updating a Mapping
+
+The `Mapping` API is quite low level. We can directly override a previous value held at a
+storage entry by calling `Mapping::insert()` with an existing key. The `Mapping` will do
+nothing to "protect" us in this case.
+
+We can also update values by first reading them from storage using `Mapping::get()`, and
+then overriding the entry with `Mapping::insert()`.
+
+Note that if there is no existing value at a given key, `Mapping::get()` will return
+`None`.
+
+### 2. Cleaning up
+
+Since `Mapping` is low level we're required to do clean-up ourselves. `Mapping` provides
+a `Mapping::remove()` method which clears the value at a given key from storage.
+
+### 3. Your Turn
+
+Follow the `ACTION`s to finish your Incrementer smart contract.
+
+Remember to run `cargo +nightly test` to test your work.
+
+#### ** Template **
+
+[template-code](/assets/tutorials/ink-workshop/1.6-template.rs)
+
+#### ** Solution **
+
+[template-code-final](/assets/tutorials/ink-workshop/1.6-finished-code.rs)
+
+#### ** Previous Solution **
+
+[template-code-previous](/assets/tutorials/ink-workshop/1.5-finished-code.rs)
