@@ -456,8 +456,9 @@ type BalanceOf<T> =
 	<<T as Config>::Currency as Currency<<T as frame_system::Config>::AccountId>>::Balance;
 
 // Struct for holding Kitty information.
-#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
+#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo, MaxEncodedLen)]
 #[scale_info(skip_type_params(T))]
+#[codec(mel_bound())]
 pub struct Kitty<T: Config> {
 	pub dna: [u8; 16],
 	pub price: Option<BalanceOf<T>>,
@@ -503,8 +504,7 @@ To create it, you'll build out the following parts:
    Replace ACTION item #2 with the following enum declaration:
 
    ```rust
-   #[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
-   #[scale_info(skip_type_params(T))]
+   #[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo, MaxEncodedLen)]
    #[cfg_attr(feature = "std", derive(Serialize, Deserialize))]
    pub enum Gender {
    	Male,
