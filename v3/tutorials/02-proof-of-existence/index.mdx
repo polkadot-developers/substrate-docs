@@ -111,40 +111,65 @@ Therefore, the first step is to remove some files and content from the files in 
    You won't be using the template code in this tutorial.
    However, you can review the template code to see what it provides before you delete it.
 
-1. Replace all contents of `pallets/template/src/lib.rs` with the following skeleton code that includes all of the [**_mandatory_** macros for FRAME V2](https://docs.substrate.io/rustdocs/latest/frame_support/attr.pallet.html):
+1. Replace all contents of `pallets/template/src/lib.rs` with the following skeleton code that includes a few minimal [macros for FRAME V2](https://docs.substrate.io/rustdocs/latest/frame_support/attr.pallet.html):
 
    ```rust
    //! Substrate Proof-of-Existence Pallet
    #![cfg_attr(not(feature = "std"), no_std)]
-
+   
    // Re-export pallet items so that they can be accessed from the crate namespace.
    pub use pallet::*;
-
+   
    #[frame_support::pallet]
    pub mod pallet {
    	use frame_support::{pallet_prelude::*, storage::bounded_vec::BoundedVec};
    	use frame_system::pallet_prelude::*;
-
+   
    	// Define the pallet struct placeholder, various pallet function are implemented on it.
    	#[pallet::pallet]
    	#[pallet::generate_store(pub(super) trait Store)]
    	pub struct Pallet<T>(_);
-
-   	#[pallet::config]  // TODO: Replace me!
-
-   	#[pallet::event]   // TODO: Replace me!
-
-   	#[pallet::error]   // TODO: Replace me!
-
-   	#[pallet::storage] // TODO: Replace me!
-
-   	#[pallet::call]    // TODO: Replace me!
+   
+   	// TODO: Update the `Config` block below
+   	/// Configure the pallet by specifying the parameters and types on which it depends.
+   	#[pallet::config]
+   	pub trait Config: frame_system::Config {
+   		/// Because this pallet emits events, it depends on the runtime's definition of an event.
+   		type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+   	}
+   
+   	// TODO: Update the `event` block below
+   	#[pallet::event]
+   	#[pallet::generate_deposit(pub(super) fn deposit_event)]
+   	pub enum Event<T: Config> {
+   		/// Event documentation should end with an array that provides descriptive names for event
+   		/// parameters. [something, who]
+   		SomethingHappened(),
+   	}
+   	// TODO: add #[pallet::error] block
+   
+   	// TODO: add #[pallet::storage] block
+   
+   	// TODO: add #[pallet::call] block
    }
    ```
 
    You now have a scaffold that includes placeholders for _events_, _errors_, _storage_, and _callable functions_.
+   You will replace the `TODO` blocks step by step to build out the full PoE pallet.
 
-1. Save your changes, but don't build yet.
+1. Save your changes.
+
+1. (Optionally) check that your code compiles by running the following command:
+
+   ```bash
+   # Quick Check the template works *only* 
+   cargo check -p node-template-runtime 
+   # --- AND/OR ---
+   # Full release build of the node template, inclusive of the template
+   cargo build -r
+   ```
+   
+   This will include some warnings, but should be compilable
 
 ## Configure the pallet to emit events
 
@@ -152,7 +177,7 @@ Every pallet has a [Rust "trait"](https://doc.rust-lang.org/book/ch10-02-traits.
 This trait is used to set the interface for the FRAME system and sets the required [associated types](https://doc.rust-lang.org/reference/items/associated-items.html#associated-types) to be concretely defined in a runtime that includes this pallet.
 For this tutorial, the configuration setting only enables the pallet to emit events, as almost every pallet does.
 
-To define the `Config` trait for the proof-of-existence pallet, open the `pallets/template/src/lib.rs` file in a text editor and replace the `#[pallet::config]` line with the following code block:
+To define the `Config` trait for the proof-of-existence pallet, open the `pallets/template/src/lib.rs` file in a text editor and update the `#[pallet::config]` block with to match the following code block:
 
 ```rust
 	/// Configure the pallet by specifying the parameters and types on which it depends.
@@ -176,7 +201,7 @@ As described in [Design the application](#design-the-application), the proof-of-
 Each event also displays an `AccountId` to identify who triggered the event and the proof-of-existence data (as `BoundedVec<u8, T::MaxBytesInHash>`) that is being stored or removed.
 By convention, each event includes an array with descriptive names for its parameters.
 
-To implement the pallet events, replace the `#[pallet::event]` line with the following code block:
+To implement the pallet events, update the `#[pallet::event]` block with to match the following code block:
 
 ```rust
 	// Pallets use events to inform users when important changes are made.
@@ -204,7 +229,7 @@ For this tutorial, you define the following error conditions:
 
 - An attempt to revoke a proof that has been claimed by another account.
 
-To implement the errors for the proof-of-existence pallet, replace the `#[pallet::error]` line with the following code block:
+To implement the errors for the proof-of-existence pallet, replace the `// TODO: add #[pallet::error] block` line with the following code block:
 
 ```rust
 	#[pallet::error]
@@ -224,7 +249,7 @@ To add a new proof to the blockchain, the proof-of-existence pallet requires a s
 To address this requirement, you can create a [hash map](https://en.wikipedia.org/wiki/Hash_table) that maps each proof to its owner and records the block number when the proof was made.
 To create this hash map, you can use the FRAME [`StorageMap`](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) trait.
 
-To implement storage for the proof-of-existence pallet, replace the `#[pallet::storage]` line with the following code block:
+To implement storage for the proof-of-existence pallet, replace the `// TODO: add #[pallet::storage] block` line with the following code block:
 
 ```rust
 	#[pallet::storage]
@@ -251,7 +276,7 @@ These functions use the `StorageMap` to implement the following logic:
 - If a proof has an owner and a block number, then it has been claimed.
 - If a proof does not have an owner and a block number, then it is available to be claimed and written to storage.
 
-To implement this logic in the proof-of-existence pallet, replace the `#[pallet::call]` line with the following code block:
+To implement this logic in the proof-of-existence pallet, replace the `// TODO: add #[pallet::call] block` line with the following code block:
 
 ```rust
 	// Dispatchable functions allow users to interact with the pallet and invoke state changes.
