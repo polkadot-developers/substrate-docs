@@ -446,7 +446,7 @@ const DevNavMenu = {
             title: 'Runtime Upgrades',
             link: '/how-to-guides/v3/parachains/runtime-upgrades/',
           },
-		  {
+          {
             title: 'Auctions and Crowdloans',
             link: '/how-to-guides/v3/parachains/auctions-crowdloans/',
           },

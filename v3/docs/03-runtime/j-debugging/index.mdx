@@ -77,7 +77,7 @@ pub fn cause_error(origin) -> dispatch::DispatchResult {
 	// Check it was signed and get the signer. See also: ensure_root and ensure_none
 	let _who = ensure_signed(origin)?;
 
-	print("My Test Message");
+	print!("My Test Message");
 
 	match Something::get() {
 		None => {
@@ -134,14 +134,14 @@ use sp_runtime::print;
 
 // --snip--
 pub fn do_something(origin) -> DispatchResult {
-	print("Execute do_something");
+	print!("Execute do_something");
 
 	let who = ensure_signed(origin)?;
 	let my_val: u32 = 777;
 
 	Something::put(my_val);
 
-	print("After storing my_val");
+	print!("After storing my_val");
 
 	Self::deposit_event(RawEvent::SomethingStored(my_val, who));
 	Ok(())

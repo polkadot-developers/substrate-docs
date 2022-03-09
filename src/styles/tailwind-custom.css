@@ -75,17 +75,3 @@
 .underline-animate-thin a::after {
   height: 1px;
 }
-
-/* Banner */
-
-.banner p {
-  @apply mb-0;
-}
-
-.banner strong {
-  @apply font-bold;
-}
-
-.banner a {
-  @apply text-substrateDarkThemeBlue dark:text-substrateBlue;
-}

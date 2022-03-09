@@ -140,12 +140,8 @@ First we must add the pallet to our runtime dependencies:
 
 **`runtime/Cargo.toml`**
 
-```TOML
-[dependencies.pallet-node-authorization]
-default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'devhub/latest'
-version = '4.0.0-dev'
+```toml
+pallet-node-authorization = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.17" }
 
 #--snip--
 [features]
@@ -214,7 +210,7 @@ construct_runtime!(
 
 **`node/cargo.toml`**
 
-```TOML
+```toml
 [dependencies]
 #--snip--
 bs58 = "0.4.0"

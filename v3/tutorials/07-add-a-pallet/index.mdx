@@ -77,26 +77,22 @@ To add the Nicks pallet to the Substrate node template:
 1. Import the `pallet-nicks` crate to make it available to the node template runtime by adding it to the
    list of dependencies.
 
-   ```TOML
-   [dependencies.pallet-nicks]
-   default-features = false
-   git = 'https://github.com/paritytech/substrate.git'
-   tag = 'devhub/latest'
-   version = '4.0.0-dev'
+   ```toml
+   pallet-nicks = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.17" }
    ```
 
-In this `dependencies.pallet-nicks` section, the`default-features = false` setting specifies that the pallet features are not used by default when compiling the runtime.
+In this `dependencies` section, the`default-features = false` setting specifies that the pallet features are not used by default when compiling the runtime.
 Instead, the features that are compiled for the runtime are controlled by specifying which features to include when compiling the native Rust binary listed in a separate `features` section.
 
-Because the Substrate runtime compiles to both a native Rust binary with standard library functions [`std`](https://doc.rust-lang.org/std/) and a [WebAssembly (Wasm)](https://webassembly.org/) binary that does not include the standard library, the pallet features that get compiled depend on whether you are compiling the Rust binary (`std` feaures) or the WebAssembly binary (`no-std`). For more information about compiling [`std`](https://doc.rust-lang.org/std/) and [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html) features, see the [Rust Embedded Book](https://docs.rust-embedded.org/book/intro/no-std.html#summary).
+Because the Substrate runtime compiles to both a native Rust binary with standard library functions [`std`](https://doc.rust-lang.org/std/) and a [WebAssembly (Wasm)](https://webassembly.org/) binary that does not include the standard library, the pallet features that get compiled depend on whether you are compiling the Rust binary (`std` features) or the WebAssembly binary (`no-std`). For more information about compiling [`std`](https://doc.rust-lang.org/std/) and [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html) features, see the [Rust Embedded Book](https://docs.rust-embedded.org/book/intro/no-std.html#summary).
 
-   The remaining lines specify that Cargo should use the `pallet-nicks` crate from the `paritytech/substrate` repository with the commit tag identified using the `devhub/latest` tag.
+   The remaining lines specify that Cargo should use the `pallet-nicks` crate from the `paritytech/substrate` repository with the correct *matching* version of substrate all other crates are using.
 
    For an introduction to editing `Cargo.toml` files, see the [Cargo reference documentation](https://doc.rust-lang.org/cargo/reference/index.html).
 
 1. Add the `pallet-nicks` crate to the list of `features` to be included in the `std` feature set by adding the following line `features` section.
 
-   ```TOML
+   ```toml
    [features]
    default = ['std']
    std = [
@@ -484,16 +480,13 @@ Once published, other developers could refer to your pallet in their `Cargo.toml
 
 **`runtime/Cargo.toml`**
 
-```TOML
-[dependencies.your-pallet-name]
-default_features = false
-git = 'https://github.com/your-username/your-pallet'
-version = '1.0.0'
-branch = 'master'
+```toml
+your-pallet-name = { default_features = false, git = "https://github.com/your-username/your-pallet", version = "1.0.0" }
 
-# You may choose to refer to a specific commit or tag instead of branch
-# rev = '<git-commit>'
-# tag = '<some tag>
+# You may choose to refer to a specific commit, tag, or branch instead of (or in addition to, over-specifying) a version
+# rev = "<git-commit>""
+# tag = "<some tag>"
+# branch = "<some branch>"
 ```
 
 ### Option 2: Publishing on crates.io
@@ -505,10 +498,9 @@ Once published, other developers could refer to your pallet in their `Cargo.toml
 
 **`runtime/Cargo.toml`**
 
-```TOML
-[dependencies.your-pallet-name]
-default_features = false
-version = 'some-compatible-version'
+```toml
+[dependencies]
+your-pallet-name = { default_features = false, version = "some-compatible-version"}
 ```
 
 We do not specify any target destination on the above, and by default it will search for the package in **crates.io** repository.
