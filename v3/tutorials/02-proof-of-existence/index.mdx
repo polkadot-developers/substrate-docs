@@ -37,13 +37,13 @@ Blockchains use [public keys](https://en.wikipedia.org/wiki/Public-key_cryptogra
 The blockchain records the account you use to store the hash for a digital object as part of the transaction.
 Because the account information is stored as part of the transaction, the controller of the account can later prove ownership as the person who initially uploaded the file.
 
-## How much time do you need to complete this tutorial?
+## Time needed to complete this tutorial
 
 This tutorial requires compiling Rust code and takes approximately one to two hours to complete.
 
 ## Before you begin
 
-For this tutorial, you download and use working code. Before you begin, verify the following:
+Before you begin, verify the following:
 
 - You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/v3/getting-started/installation).
 
@@ -76,10 +76,9 @@ These functions only require you to store information about the proofs that have
 ## Build a custom pallet
 
 The Substrate node template has a FRAME-based [runtime](/v3/concepts/runtime).
-[FRAME](/v3/runtime/frame) is a library of code that allows
-you to build a Substrate runtime by composing modules called "pallets". You can think of the
-pallets as individual pieces of logic that define what your blockchain can do. Substrate provides
-you with a number of pre-built pallets for use in FRAME-based runtimes.
+[FRAME](/v3/runtime/frame) is a library of code that allows you to build a Substrate runtime by composing modules called "pallets".
+You can think of the pallets as individual pieces of logic that define what your blockchain can do.
+Substrate provides you with a number of pre-built pallets for use in FRAME-based runtimes.
 
 ![Runtime composition](../../../src/images/tutorials/02-proof-of-existence/frame-runtime.png)
 
@@ -112,7 +111,7 @@ Therefore, the first step is to remove some files and content from the files in 
    You won't be using the template code in this tutorial.
    However, you can review the template code to see what it provides before you delete it.
 
-1. Replace all contents of `pallets/template/src/lib.rs` with the following skeleton code that includes all of the [***mandatory*** macros for FRAME V2](https://docs.substrate.io/rustdocs/latest/frame_support/attr.pallet.html):
+1. Replace all contents of `pallets/template/src/lib.rs` with the following skeleton code that includes all of the [**_mandatory_** macros for FRAME V2](https://docs.substrate.io/rustdocs/latest/frame_support/attr.pallet.html):
 
    ```rust
    //! Substrate Proof-of-Existence Pallet
@@ -174,8 +173,7 @@ As described in [Design the application](#design-the-application), the proof-of-
 - When a new proof is added to the blockchain.
 - When a proof is revoked.
 
-Each event also displays an `AccountId` to identify who triggered the
-event and the proof-of-existence data (as `Vec<u8>`) that is being stored or removed.
+Each event also displays an `AccountId` to identify who triggered the event and the proof-of-existence data (as `BoundedVec<u8, T::MaxBytesInHash>`) that is being stored or removed.
 By convention, each event includes an array with descriptive names for its parameters.
 
 To implement the pallet events, replace the `#[pallet::event]` line with the following code block:
@@ -317,7 +315,7 @@ To implement this logic in the proof-of-existence pallet, replace the `#[pallet:
 ```
 
 **At this point you have a completed pallet!**
-Now to _use_ the pallet, we must correctly configure it in your runtime. 
+Now to _use_ the pallet, we must correctly configure it in your runtime.
 
 ## Include `MaxBytesInHash` runtime configuration
 
@@ -346,7 +344,7 @@ So here we specify `MaxBytesInHash` to be this length (or less) in the runtime:
    cargo check -p node-template-runtime
    ```
 
-> ***Something not working?***
+> **_Something not working?_**
 > There is a full Node Template solution [here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/proof-of-existence) to use as a reference if you're stuck.
 > Check the [commit diff from the base template](https://github.com/substrate-developer-hub/substrate-node-template/compare/polkadot-v0.9.17...tutorials/solutions/proof-of-existence) for the exact changes built on the `polkadot-v0.9.17` release of the templates.
 
@@ -371,7 +369,7 @@ To compile and start the updated Substrate node:
    ```bash
    ./target/release/node-template --dev
    ```
-   
+
    The `--dev` option starts the node using the predefined `development` chain specification.
    Using the `--dev` option ensures that you have a clean working state any time you stop and restart the node.
 
@@ -395,15 +393,15 @@ This React component enables you to expose the proof-of-existence capabilities a
    ```javascript
    import React, { useEffect, useState } from 'react'
    import { Form, Input, Grid, Message } from 'semantic-ui-react'
-   
+
    // Pre-built Substrate front-end utilities for connecting to a node
    // and making a transaction.
    import { useSubstrateState } from './substrate-lib'
    import { TxButton } from './substrate-lib/components'
-   
+
    // Polkadot-JS utilities for hashing data.
    import { blake2AsHex } from '@polkadot/util-crypto'
-   
+
    // Main Proof Of Existence component
    function Main(props) {
      // Establish an API to talk to the Substrate node.
@@ -414,7 +412,7 @@ This React component enables you to expose the proof-of-existence capabilities a
      const [digest, setDigest] = useState('')
      const [owner, setOwner] = useState('')
      const [block, setBlock] = useState(0)
-   
+
      // Our `FileReader()` which is accessible from our functions below.
      let fileReader
      // Takes our file, and creates a digest using the Blake2 256 hash function
@@ -426,14 +424,14 @@ This React component enables you to expose the proof-of-existence capabilities a
        const hash = blake2AsHex(content, 256)
        setDigest(hash)
      }
-   
+
      // Callback function for when a new file is selected.
      const handleFileChosen = file => {
        fileReader = new FileReader()
        fileReader.onloadend = bufferToDigest
        fileReader.readAsArrayBuffer(file)
      }
-   
+
      // React hook to update the owner and block number information for a file
      useEffect(() => {
        let unsubscribe
@@ -443,15 +441,14 @@ This React component enables you to expose the proof-of-existence capabilities a
        api.query.templateModule
          .proofs(digest, result => {
            // Our storage item returns a tuple, which is represented as an array.
-   		if (result.inspect().inner) {
-   			let [tmpAddress, tmpBlock] = result.toHuman()
-   			setOwner(tmpAddress)
-   			setBlock(tmpBlock)
-   		}
-   		else {
-   			setOwner('')
-   			setBlock(0)
-   		}
+           if (result.inspect().inner) {
+             let [tmpAddress, tmpBlock] = result.toHuman()
+             setOwner(tmpAddress)
+             setBlock(tmpBlock)
+           } else {
+             setOwner('')
+             setBlock(0)
+           }
          })
          .then(unsub => {
            unsubscribe = unsub
@@ -461,12 +458,12 @@ This React component enables you to expose the proof-of-existence capabilities a
        // (when a new file is chosen), or when the storage subscription says the
        // value of the storage item has updated.
      }, [digest, api.query.templateModule])
-   
+
      // We *assume* a file digest is claimed if the stored block number is not 0
      function isClaimed() {
        return block !== 0
      }
-   
+
      // The actual UI elements which are returned from our component.
      return (
        <Grid.Column>
@@ -525,7 +522,7 @@ This React component enables you to expose the proof-of-existence capabilities a
        </Grid.Column>
      )
    }
-   
+
    export default function TemplateModule(props) {
      const { api } = useSubstrateState()
      return api.query.templateModule ? <Main {...props} /> : null
@@ -537,14 +534,14 @@ This React component enables you to expose the proof-of-existence capabilities a
 1. Start the front-end template by running the following commands:
 
    ```bash
-   nvm install # use the correct node version 
+   nvm install # use the correct node version
    yarn        # instal deps
    yarn start  # start a dev server
    ```
 
 This will open up a new tab with the front-end serving at **http://localhost:8000**.
 
-> ***Something not working?***
+> **_Something not working?_**
 > There is a full Front End Template solution [here](https://github.com/substrate-developer-hub/substrate-front-end-template/tree/tutorials/solutions/proof-of-existence) to use as a reference if you're stuck.
 > Check the [commit diff from the base template](https://github.com/substrate-developer-hub/substrate-front-end-template/compare/latest...tutorials/solutions/proof-of-existence?expand=1) for the exact changes built on the `polkadot-v0.9.17` release of the templates.
 
@@ -592,6 +589,5 @@ This tutorial covered the basics without diving too deeply into the code.
 However, there's much more you can do as you work toward building your own fully-customized blockchain.
 Custom pallets enable you to expose the features you want your blockchain to support.
 
-To learn more about what's possible by creating custom pallets, explore the
-[FRAME documentation](/v3/runtime/frame) and the [how-to guides](/how-to-guides).
+To learn more about what's possible by creating custom pallets, explore the [FRAME documentation](/v3/runtime/frame) and the [how-to guides](/how-to-guides).
 For a more challenging version of this tutorial, move onto the [Substrate Kitties tutorial](/tutorials/v3/kitties/pt1/).
