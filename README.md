@@ -161,15 +161,10 @@ You can further configure it in `package.json` file. Currently it has a list of 
 excluded. These paths are not regex-supported and just doing a plain string matching. They are
 excluded because for:
 
-- `/substrate-io-staging.netlify.app`: internal staging site.
-
 - `/rustdocs`: all paths to `/rustdocs/<splat>` are going to be redirected to
   [https://paritytech.github.io/substrate/<splat>](https://paritytech.github.io/substrate). The
   redirection is handled by netlify redirect feature. Gatsby server will just rendered them as 404
   pages.
-
-- `/www.substrate.io`, `/docs.substrate.io`: these are public substrate.io pages that can be remove
-  from the excluded list once [substrate.io](https://www.substrate.io) is launched.
 
 - `/crates.io`, `/fonts.gstatic.com`, `/github.com`, `/wwww.nuget.org`: they either have
   rate-limiting check or doesn't welcome web crawlers to fetch them and just return a 404 page.
