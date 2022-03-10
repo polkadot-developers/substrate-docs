@@ -113,7 +113,7 @@ const MainNav = {
               {
                 linkTitle: 'Careers',
                 link: `https://careers.substrate.io`,
-                external: true,
+                external: false,
               },
             ],
           },
