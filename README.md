@@ -69,10 +69,6 @@ guidelines if making any non-trivial PRs here.
 
 - `main` branch is available at: https://docs.substrate.io/
 
-### Staging deployment
-
-- `develop` branch is available at: https://develop--substrate-docs.netlify.app/
-
 ## 🚀 Quick start
 
 1.  **Clone the repo**
