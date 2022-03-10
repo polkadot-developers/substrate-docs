@@ -41,19 +41,14 @@ This guide does not cover updating weights with benchmarked values.
    `pallets/example/Cargo.toml`
 
    ```toml
-   [dependencies.frame-benchmarking]
-   default-features = false
-   git = 'https://github.com/paritytech/substrate.git'
-   optional = true
-   tag = '<monthly>'
-   version = '<version>'
+   frame-benchmarking = { default-features = false, git = "https://github.com/paritytech/substrate.git", optional = true, branch = "<polkadot-vM.m.p>" }
 
    [features]
    # -- snip --
    runtime-benchmarks = ["frame-benchmarking"]
    std = [
      # -- snip --
-     'frame-benchmarking/std',
+     "frame-benchmarking/std",
    ]
    ```
 
@@ -133,10 +128,7 @@ benchmarking.
 1. Update your runtime's `Cargo.toml` file to include the `runtime-benchmarking` features:
 
    ```toml
-   [dependencies.pallet-you-created]
-   default-features = false
-   path = '../pallets/pallet-you-created'
-   version = '4.0.0-dev'
+   pallet-you-created = { default-features = false, path = "../pallets/pallet-you-created"}
 
    [features]
    runtime-benchmarks = [
@@ -211,7 +203,7 @@ Execute the following command to run standard benchmarking for your `pallet_you_
     --extrinsic '\*' \
     --steps 20 \
     --repeat 10 \
-    --raw \
+    --json-file=raw.json \
     --output ./pallets/src/pallet-created/weights.rs
 ```
 

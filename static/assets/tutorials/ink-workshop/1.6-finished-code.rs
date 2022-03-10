@@ -5,27 +5,34 @@ use ink_lang as ink;
 
 #[ink::contract]
 mod incrementer {
+    use ink_storage::traits::SpreadAllocate;
+
     #[ink(storage)]
+    #[derive(SpreadAllocate)]
     pub struct Incrementer {
         value: i32,
-        my_value: ink_storage::collections::HashMap<AccountId, i32>,
+        my_value: ink_storage::Mapping<AccountId, i32>,
     }
 
     impl Incrementer {
         #[ink(constructor)]
         pub fn new(init_value: i32) -> Self {
-            Self {
-                value: init_value,
-                my_value: ink_storage::collections::HashMap::new(),
-            }
+            // This call is required in order to correctly initialize the
+            // `Mapping`s of our contract.
+            ink_lang::utils::initialize_contract(|contract: &mut Self| {
+                contract.value = init_value;
+                let caller = Self::env().caller();
+                contract.my_value.insert(&caller, &0);
+            })
         }
 
         #[ink(constructor)]
         pub fn default() -> Self {
-            Self {
-                value: 0,
-                my_value: Default::default(),
-            }
+            // Even though we're not explicitly initializing the `Mapping`,
+            // we still need to call this
+            ink_lang::utils::initialize_contract(|contract: &mut Self| {
+                contract.value = Default::default();
+            })
         }
 
         #[ink(message)]
@@ -40,18 +47,19 @@ mod incrementer {
 
         #[ink(message)]
         pub fn get_mine(&self) -> i32 {
-            self.my_value_or_zero(&self.env().caller())
+            self.my_value.get(&self.env().caller()).unwrap_or_default()
         }
 
         #[ink(message)]
         pub fn inc_mine(&mut self, by: i32) {
             let caller = self.env().caller();
-            let my_value = self.my_value_or_zero(&caller);
-            self.my_value.insert(caller, my_value + by);
+            let my_value = self.get_mine();
+            self.my_value.insert(caller, &(my_value + by));
         }
 
-        fn my_value_or_zero(&self, of: &AccountId) -> i32 {
-            *self.my_value.get(of).unwrap_or(&0)
+        #[ink(message)]
+        pub fn remove_mine(&self) {
+            self.my_value.remove(&self.env().caller())
         }
     }
 
@@ -86,6 +94,26 @@ mod incrementer {
             assert_eq!(contract.get_mine(), 5);
             contract.inc_mine(10);
             assert_eq!(contract.get_mine(), 15);
+        }
+
+        #[ink::test]
+        fn inc_mine_works() {
+            let mut contract = Incrementer::new(11);
+            assert_eq!(contract.get_mine(), 0);
+            contract.inc_mine(5);
+            assert_eq!(contract.get_mine(), 5);
+            contract.inc_mine(5);
+            assert_eq!(contract.get_mine(), 10);
+        }
+
+        #[ink::test]
+        fn remove_mine_works() {
+            let mut contract = Incrementer::new(11);
+            assert_eq!(contract.get_mine(), 0);
+            contract.inc_mine(5);
+            assert_eq!(contract.get_mine(), 5);
+            contract.remove_mine();
+            assert_eq!(contract.get_mine(), 0);
         }
     }
 }

@@ -30,6 +30,8 @@ import adviceIcon from '../images/svgs/advice.svg'
 import noteIcon from '../images/svgs/note.svg'
 import searchIcon from '../images/svgs/search.svg'
 import closeIcon from '../images/svgs/close-icon.svg'
+import paperplane from '../images/svgs/paperplane.svg'
+import checkMark from '../images/svgs/check-mark.svg'
 
 const iconsMap = new Map()
 /* homepage */
@@ -66,6 +68,8 @@ iconsMap.set('adviceIcon', adviceIcon)
 iconsMap.set('noteIcon', noteIcon)
 iconsMap.set('searchIcon', searchIcon)
 iconsMap.set('closeIcon', closeIcon)
+iconsMap.set('checkMark', checkMark)
+iconsMap.set('paperplane', paperplane)
 
 interface IconProps {
   name: string

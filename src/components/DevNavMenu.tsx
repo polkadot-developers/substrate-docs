@@ -282,7 +282,7 @@ const DevNavMenu = {
           },
           {
             title: 'Custom Chain Specifications',
-            link: '/how-to-guides/v3/basics/custom-chain-spec',
+            link: '/how-to-guides/v3/basics/custom-chain-spec/',
           },
           {
             title: 'Helper Functions',
@@ -373,8 +373,8 @@ const DevNavMenu = {
           {
             title: 'Off-chain Indexing',
             link: '/how-to-guides/v3/ocw/indexing/',
-          }
-        ]
+          },
+        ],
       },
       // 5. Testing.
       {
@@ -445,6 +445,10 @@ const DevNavMenu = {
           {
             title: 'Runtime Upgrades',
             link: '/how-to-guides/v3/parachains/runtime-upgrades/',
+          },
+          {
+            title: 'Auctions and Crowdloans',
+            link: '/how-to-guides/v3/parachains/auctions-crowdloans/',
           },
         ],
       },
@@ -668,7 +672,7 @@ DevNavMenuTuts.set('cumulusTutorial', [
       //   link: '/tutorials/v3/cumulus/polkadot-launch/',
       // },
       {
-        title: `Connect to a Live Relay Chain`,
+        title: `Rococo Public Testnet`,
         link: '/tutorials/v3/cumulus/rococo',
       },
     ],
