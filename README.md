@@ -92,14 +92,15 @@ guidelines if making any non-trivial PRs here.
 
     Copy `example.env.development` and rename to `.env.development`
 
-    Config URL variables based on your preferable local setup. URL will be used for links generation between documentation and platform stack
+    Config URL variables based on your preferable local setup. URL will be used for links generation between Substrate websites.
 
-    - `GATSBY_DOCS_URL` represents this project serving documentation
-    - `GATSBY_IO_URL`: represents platform website
+    Default localhost port configuration:
 
-    ```
-    GATSBY_IO_URL=http://localhost:8000  // local or hosted URL
-    GATSBY_DOCS_URL=http://localhost:8001 // default docs.substrate.io if not set
+    ```env
+    GATSBY_WEBSITE_URL=http://localhost:8100
+    GATSBY_DOCS_URL=http://localhost:8200
+    GATSBY_MARKETPLACE_URL=http://localhost:8300
+    GATSBY_CAREERS_URL=https://careers.substrate.io
     ```
 
 4.  **Fire the engine**
@@ -107,7 +108,7 @@ guidelines if making any non-trivial PRs here.
     Navigate into your new site’s directory and use the following command to start the development server locally.
 
     ```bash
-    yarn dev # alias for `yarn start` and `yarn develop`
+    yarn develop
     ```
 
 5.  **Open the code and start customizing!**
