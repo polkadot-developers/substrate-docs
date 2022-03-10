@@ -124,7 +124,7 @@ In the `src/lib.rs` of your pallet:
     let key = Self::derived_key(block_number);
     let storage_ref = StorageValueRef::persistent(&key);
 
-    if let Some(Some(data)) = storage_ref.get::<IndexingData>() {
+    if let Ok(Some(data)) = storage_ref.get::<IndexingData>() {
       debug::info!("local storage data: {:?}, {:?}",
         str::from_utf8(&data.0).unwrap_or("error"), data.1);
     } else {

@@ -29,12 +29,12 @@ module.exports = {
     stackExchange: 'https://substrate.stackexchange.com',
     telegram: 'https://t.me/parity_technologies',
     linkedIn: 'https://www.linkedin.com/company/paritytech',
-    substrateIO: `${process.env.GATSBY_IO_URL}`,
     crowdcast: 'https://www.crowdcast.io/e/substrate-seminar-2',
     twitter: 'https://twitter.com/substrate_io',
     youtube: 'https://www.youtube.com/c/ParityTech',
     github: 'https://github.com/paritytech/substrate',
     githubDevhub: 'https://github.com/substrate-developer-hub/',
+    substrateIO: `${process.env.GATSBY_WEBSITE_URL}`,
   },
   flags: {
     DEV_SSR: false,
