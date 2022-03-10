@@ -239,7 +239,7 @@ To build the WebAssembly for this smart contract:
 
 1. Verify that you are in the `flipper` project folder.
 
-1. Compile the `flipper` smart contract vy running the following command: 
+1. Compile the `flipper` smart contract by running the following command: 
     
     ```bash
     cargo +nightly contract build
@@ -299,7 +299,6 @@ To start the preconfigured `contracts-node`:
    2022-03-07 14:46:25 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.    
    2022-03-07 14:46:26 🏷  Local node identity is: 12D3KooWQ3P8BH7Z1C1ZoNSXhdGPCiPR7irRSeQCQMFg5k3W9uVd    
    2022-03-07 14:46:26 📦 Highest known block at #0
-   ...
    ```
 
    After a few seconds, you should see blocks being finalized.
@@ -360,7 +359,7 @@ To upload the smart contract source code:
 
 1. Browse and select or drag and drop the `flipper.contract` file that contains the bundled Wasm blob and metadata into the upload section. 
         
-    ![Flipper Contract 01](/media/images/docs/tutorials/ink-workshop/upload-contract.png)
+    ![Upload the contract](/media/images/docs/tutorials/ink-workshop/upload-contract.png)
 
 1. Click **Next** to continue.
 
@@ -444,7 +443,6 @@ To test the `flip()` function:
     
     ![The get() function displays the current value is true](/media/images/docs/tutorials/ink-workshop/flipped-true.png)
 
-
 ## Next steps
 
 Congratulations!
@@ -461,9 +459,7 @@ In this tutorial, you learned:
 
 * How to interact with a smart contract using the Contracts UI browser client.
 
-Additional smart contract tutorials build on what you learned in this tutorial and lead you deeper into different stages of contract development.
-The sample code for each tutorial includes tests that you should execute.
-If the tests pass when your run `cargo +nightly test`, you know that your smart contract logic is correct. 
+Additional smart contract tutorials build on what you learned in this tutorial and lead you deeper into different stages of contract development. 
 
 You can learn more about smart contract development in the following topics:
 
@@ -476,4 +472,3 @@ If you experienced any issues with this tutorial, submit an issue, ask questions
 - [Submit an issue](https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose).
 
 - [Substrate Stack Exchange](https://substrate.stackexchange.com/).
-

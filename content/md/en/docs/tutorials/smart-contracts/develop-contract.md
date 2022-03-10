@@ -8,138 +8,134 @@ keywords:
   - wasm
 ---
 
-This chapter will get you started developing smart contracts with ink!.
+In [Prepare your first contract](/tutorials/smart-contracts/first-smart-contract/), you learned the basic steps for building and deploying a smart contract on a Substrate-based blockchain using a default first project.
+For this tutorial, you'll develop a new smart contract that increments a counter value each time you execute a function call.
 
-We will build a simple **Incrementer** contract which holds a number which you can increase with a function call.
+## Before you begin
 
-<TutorialObjective
-  data={{
-    textLineOne: '1. ink! Smart Contract Template',
-    url: '#contract-template',
-  }}
-/>
-<TutorialObjective
-  data={{
-    textLineOne: '2. Storing a Value',
-    url: '#storing-a-value',
-  }}
-/>
-<TutorialObjective
-  data={{
-    textLineOne: '3. Interacting with a Storage Value',
-    url: '#interacting-with-a-storage-value',
-  }}
-/>
-<TutorialObjective
-  data={{
-    textLineOne: '4. Incrementing the Value',
-    url: '#incrementing-the-value',
-  }}
-/>
-<TutorialObjective
-  data={{
-    textLineOne: '5. Storing a Mapping',
-    url: '#storing-a-mapping',
-  }}
-/>
-<TutorialObjective
-  data={{
-    textLineOne: '6. Updating a Value',
-    url: '#updating-a-value',
-  }}
-/>
+Before you begin, verify the following:
 
-## Learning outcomes
+* You have good internet connection and access to a shell terminal on your local computer.
 
-- Learn the structure of ink! smart contracts
-- To store single values and hash maps
-- To safely get and set these values
-- To build public and private functions
-- To configure Rust to use safe math
+* You are generally familiar with software development and using command-line interfaces.
 
-## Contract Template
+* You are generally familiar with blockchains and smart contract platforms.
 
-Let's take a look at a high level what is available to you when developing a smart contract using ink!.
+* You have installed Rust and set up your development environment as described in [Install](/main-docs/install/).
 
-### 1. ink!
+* You have completed [Prepare your first contract](/tutorials/smart-contracts/first-smart-contract/) and have the Substrate contracts node installed locally.
 
-ink! is an [Embedded Domain Specific Language](https://wiki.haskell.org/Embedded_domain_specific_language)
-(EDSL) that you can use to write WebAssembly based smart contracts in the Rust programming language.
+## Tutorial objectives
 
-ink! is just standard Rust in a well defined "contract format" with specialized `#[ink(...)]` attribute macros. These attribute macros tell ink! what the different parts of your Rust smart contract represent, and ultimately allow ink! to do all the magic needed to create Substrate compatible Wasm bytecode!
+By completing this tutorial, you will accomplish the following objectives:
 
-### 2. Start a New Project
+* Learn how to use a smart contract template.
 
-Let's start a new project for the Incrementer contract that you will build in this chapter.
+* Store simple values using a smart contract.
 
-Change into your working directory and run:
+* Increment and retrieve stored values using a smart contract.
 
-```bash
-cargo contract new incrementer
-```
+* Add public and private functions to a smart contract.
 
-Just like in previous example, this will create a new project folder named `incrementer` which we
-will use for the rest of this chapter.
+## Smart contracts and ink!
 
-```bash
-cd incrementer/
-```
+In [Prepare your first contract](/tutorials/smart-contracts/first-smart-contract/), you installed the `cargo-contract` package for command-line access to the ink! programming language.
+The ink! language is an [embedded domain specific language](https://wiki.haskell.org/Embedded_domain_specific_language).
+This language enables you to write WebAssembly-based smart contracts using the Rust programming language.
 
-In the `lib.rs` file, replace the "Flipper" contract source code with the template code provided
-here.
+The language uses standard Rust patterns with specialized `#[ink(...)]` attribute macros. These attribute macros describe what different parts of your smart contract represent so they can be transformed into Substrate-compatible WebAssembly bytecode.
 
-Quickly check that it compiles and the trivial test passes with:
+## Create a new smart contract project
 
-```bash
-cargo +nightly test
-```
+Smart contracts that run on Substrate start as projects. 
+You create projects using `cargo contract` commands.
 
-Also check that you can build the Wasm file by running:
+For this tutorial, you'll create a new project for the `incrementer` smart contract. 
+Creating a new project adds a new project directory and default starter files—also called **template files**—to the project directory.
+You will modify these starter template files to build the smart contract logic for the `incrementer` project.
 
-```bash
-cargo +nightly contract build
-```
+To create a new project for your smart contract:
 
-If everything looks good, then we are ready to start programming!
+1. Open a terminal shell on your local computer, if you don’t already have one open.
 
-#### Solution
+1. Create a new project named `incrementer` by running the following command:
+    
+    ```bash
+    cargo contract new incrementer
+    ```
 
-[template-code-final](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/1/assets/1.1-finished-code.rs)
+1. Change to the new project directory by running the following command:
+    
+    ```bash
+    cd incrementer/
+    ```
 
-## Storing a Value
+1. Open the `lib.rs` file in a text editor.
+    
+    By default, the template `lib.rs` file contains the source code for the `flipper` smart contract with instances of the `flipper` contract name renamed `incrementer`.
 
-The first thing we are going to do to the contract template is introduce some storage values.
+1. Replace the default template source code with new [incrementer](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/1/assets/1.1-finished-code.rs) source code.
 
-Here is how you would store simple values in storage:
+1. Save the changes to the `lib.rs` file, then close the file.
+
+1. Open the `Cargo.toml` file in a text editor and review the dependencies for the contract.
+
+1. In the `[dependencies]` section, modify the `scale` and `scale-info` settings, if necessary.
+    
+    ```toml
+    scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
+    scale-info = { version = "2", default-features = false, features = ["derive"], optional = true }
+    ```
+
+1. Save changes to the `Cargo.toml` file, then close the file.
+
+1. Verify that the program compiles and passes the trivial test by running the following command:
+    
+    ```bash
+    cargo +nightly test
+    ```
+
+    You can ignore any warnings because this template code is simply a skeleton.
+    The command should display output similar to the following to indicate successful test completion:
+
+    ```text
+    running 1 test
+    test incrementer::tests::default_works ... ok
+    
+    test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+    ```
+
+1. Verify that you can build the WebAssembly for the contract by running the following command:
+    
+    ```bash
+    cargo +nightly contract build
+    ```
+    
+    If the program compiles successfully, you are ready to start programming.
+
+## Store simple values
+
+Now that you have some starter source code for the `incrementer` smart contract, you can introduce some new functionality.
+For example, this smart contract requires storage of simple values.
+The following code illustrates how to store simple values for this contract using the `#[ink(storage)]` attribute macro:
 
 ```rust
 #[ink(storage)]
 pub struct MyContract {
 	// Store a bool
 	my_bool: bool,
-	// Store some number
+	// Store a number
 	my_number: u32,
 }
-/* --snip-- */
 ```
 
-### 1. Supported Types
+### Supported types
 
-Substrate contracts may store types that are encodable and decodable with
-[Parity Codec](https://github.com/paritytech/parity-codec) which includes most Rust common data
-types such as `bool`, `u{8,16,32,64,128}`, `i{8,16,32,64,128}`, `String`, tuples, and arrays.
+Substrate smart contracts support most Rust common data types, including Booleans, unsigned and signed integers, strings, tuples, and arrays.
+These data types are encoded and decoded using the [Parity scale codec](https://github.com/paritytech/parity-codec) for efficient transmission over the network. 
 
-ink! provides Substrate specific types like `AccountId`, `Balance`, and `Hash` to smart contracts as if
-they were primitive types.
-
-ink! also provides a [`Mapping`](https://paritytech.github.io/ink/ink_storage/struct.Mapping.html)
-type, which is a mapping of key-value pairs in storage.
-
-```rust
-use ink_storage::Mapping;
-```
-
-Here is an example of how you would store an `AccountId` and `Balance`:
+In addition to common Rust type that can be encoded and decoded using the scale codec, the ink! language supports Substrate-specific types—like `AccountId`, `Balance`, and `Hash`—as if they were primitive types.
+The following code illustrates how to store an `AccountId` and `Balance` for this contract:
 
 ```rust
 // We are importing the default ink! types
@@ -160,19 +156,11 @@ mod MyContract {
 }
 ```
 
-You may also use some of the Rust standard library collections exposed by the
-[`ink_prelude`](https://paritytech.github.io/ink/ink_prelude/index.html), such as
-[`ink_prelude::vec::Vec`](https://paritytech.github.io/ink/ink_prelude/vec/struct.Vec.html) and
-[`ink_prelude::collections::HashMap`](https://paritytech.github.io/ink/ink_prelude/collections/struct.HashMap.html),
-as part of your contract's storage struct. Note however, that they are not optimized for
-being used as part of contract storage and will be
-[loaded eagerly](https://paritytech.github.io/ink-docs/datastructures/overview#eager-loading).
-This may have some performance implications depending on your use case.
+### Constructors
 
-### 2. Contract Deployment
-
-Every ink! smart contract must have a constructor which is run once when a contract is created. ink!
-smart contracts can have multiple constructors:
+Every ink! smart contract must have at least one constructor that runs when the contract is created. 
+However, a smart contract can have multiple constructors, if needed.
+The following code illustrates using multiple constructors:
 
 ```rust
 use ink_lang as ink;
@@ -208,318 +196,238 @@ mod mycontract {
 }
 ```
 
-### 3. Your Turn
+## Update your smart contract 
 
-Follow the `ACTION`s in the [template](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/1/assets/1.2-template.rs).
+Now that you have learned about storing simple values, declaring data types, and using constructors, you can update your smart contract source code to implement the following:
 
-Remember to run `cargo +nightly test` to test your work.
+* Create a storage value called `value` with a data type of `i32`.
+* Create a new `Incrementer` constructor and set its `value` to `init_value`.
+* Create a second constructor function named `default` that has no input, and creates a new `Incrementer` with its `value` set to `0`.
 
-#### ** Solution **
+To update the smart contract:
 
-[template-code-final](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/1/assets/1.2-finished-code.rs)
+1. Open the `lib.rs` file in a text editor.
 
-#### ** Previous Solution **
-
-[template-code-previous](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/1/assets/1.1-finished-code.rs)
-
-## Interacting with a Storage Value
-
-Now that we have created and initialized a storage value, we are going to start to interact with it!
-
-### 1. Contract Functions
-
-As you see in the contract template, all of your contract functions are part of your contract pallet.
-
-```rust
-impl MyContract {
-	// Public and Private functions go here
-}
-```
-
-### 2. Public and Private Functions
-
-In Rust, you can make as many implementations as you want. As a stylistic choice, we recommend
-breaking up your implementation definitions for your private and public functions:
-
-```rust
-impl MyContract {
-	/// Public function
-	#[ink(message)]
-	pub fn my_public_function(&self) {
-		/* --snip-- */
-	}
-
-	/// Private function
-	fn my_private_function(&self) {
-		/* --snip-- */
-	}
-
-	/* --snip-- */
-}
-```
-
-You can also choose to split things up however is most clear for your project.
-
-Note that all public functions must use the `#[ink(message)]` attribute.
-
-### 3. Getting a Value
-
-We already showed you how to initialize a storage value. Getting the value is just as simple:
-
-```rust
-impl MyContract {
-	#[ink(message)]
-	pub fn my_getter(&self) -> u32 {
-		self.number
-	}
-}
-```
-
-In Rust, if the last expression in a function does not have a semicolon, then it will be the return value.
-
-### 4. Your Turn
-
-Follow the `ACTION`s on the code template provided.
-
-Remember to run `cargo +nightly test` to test your work.
-
-#### ** Template **
-
-[template-code](/assets/tutorials/ink-workshop/1.3-template.rs)
-
-#### ** Solution **
-
-[template-code-final](/assets/tutorials/ink-workshop/1.3-finished-code.rs)
-
-#### ** Previous Solution **
-
-[template-code-previous](/assets/tutorials/ink-workshop/1.2-finished-code.rs)
-
-## Incrementing the Value
-
-It's time to let our users modify the storage.
-
-### 1. Mutable and Immutable Functions
-
-You may have noticed that the function template included `self` as the first parameter of the
-contract functions. It is through `self` that you gain access to all your contract functions and
-storage items.
-
-If you are simply _reading_ from the contract storage, you only need to pass `&self`. But if you want to _modify_ storage items, you will need to explicitly mark it as mutable, `&mut self`.
-
-```rust
-impl MyContract {
-	#[ink(message)]
-	pub fn my_getter(&self) -> u32 {
-		self.my_number
-	}
-
-	#[ink(message)]
-	pub fn my_setter(&mut self, new_value: u32) {
-		self.my_number = new_value;
-	}
-}
-```
-
-### 2. Your Turn
-
-Follow the `ACTION`s in the template code.
-
-Remember to run `cargo +nightly test` to test your work.
-
-<!-- tabs:start -->
-
-#### ** Template **
-
-[template-code](/assets/tutorials/ink-workshop/1.4-template.rs)
-
-#### ** Solution **
-
-[template-code-final](/assets/tutorials/ink-workshop/1.4-finished-code.rs)
-
-#### ** Previous Solution **
-
-[template-code-previous](/assets/tutorials/ink-workshop/1.3-finished-code.rs)
-
-<!-- tabs:end -->
-
-## Storing a Mapping
-
-Let's now extend our Incrementer to not only manage one number, but to manage one number per user!
-
-### 1. Storage Mapping
-
-In addition to storing individual values, ink! also provides a [`Mapping`](https://paritytech.github.io/ink/ink_storage/struct.Mapping.html)
-type which allows you to store items in a key-value mapping.
-
-Here is an example of a mapping from a user to a number:
-
-```rust
-#[ink(storage)]
-pub struct MyContract {
-	// Store a mapping from AccountIds to a u32
-	my_number_map: ink_storage::Mapping<AccountId, u32>,
-}
-```
-
-This means that for a given key, you can store a unique instance of a value type. In this case, each "user" gets their own number, and we can build logic so that only they can modify their own numbers.
-
-### 2.Initializing a Mapping
-
-
-In order to correctly initialize a `Mapping` we need two things:
-1. An implementation of the [`SpreadAllocate`](https://paritytech.github.io/ink/ink_storage/traits/trait.SpreadAllocate.html) trait on our storage struct
-2. The [`ink_lang::utils::initalize_contract`](https://paritytech.github.io/ink/ink_lang/utils/fn.initialize_contract.html) initializer
-
-Not initializing storage before you use it is a common error that can break your smart
-contract. If you do not initialize your `Mapping`'s correctly you may end up with
-different `Mapping`'s operating on the same set of storage entries 😱.
-
-Below is an example of how to correctly initialize a `Mapping`, as well as how to write
-and read entries from it.
-
-```rust
-
-#![cfg_attr(not(feature = "std"), no_std)]
-
-use ink_lang as ink;
-
-#[ink::contract]
-mod mycontract {
-    use ink_storage::traits::SpreadAllocate;
-
+1. Replace the `Storage Declaration` comment by declaring the storage item named `value` with the data type of `i32`.
+    
+    ```rust
     #[ink(storage)]
-    #[derive(SpreadAllocate)]
-    pub struct MyContract {
-        // Store a mapping from AccountIds to a u32
-        map: ink_storage::Mapping<AccountId, u32>,
+    pub struct Incrementer {
+        value: i32,
     }
+    ```
 
-    impl MyContract {
-        #[ink(constructor)]
-        pub fn new(count: u32) -> Self {
-            // This call is required in order to correctly initialize the
-            // `Mapping`s of our contract.
-            ink_lang::utils::initialize_contract(|contract: &mut Self| {
-                let caller = Self::env().caller();
-                contract.map.insert(&caller, &count);
-            })
-        }
+1. Modify the `Incrementer` constructor to set its `value` to `init_value`.
+    
+    ```rust
+    impl Incrementer {
+      #[ink(constructor)]
+      pub fn new(init_value: i32) -> Self {
+            Self {
+              value: init_value,
+            }
+      }
+    }
+    ```
 
-        #[ink(constructor)]
-        pub fn default() -> Self {
-            // Even though we're not explicitly initializing the `Mapping`,
-            // we still need to call this
-            ink_lang::utils::initialize_contract(|_| {})
-        }
-
-        // Grab the number at the caller's AccountID, if it exists
-        #[ink(message)]
-        pub fn get(&self) -> u32 {
-            let caller = Self::env().caller();
-            self.map.get(&caller).unwrap_or_default()
+1. Add a second constructor function named `default` that creates a new `Incrementer` with its `value` set to `0`.
+    
+    ```rust
+    #[ink(constructor)]
+    pub fn default() -> Self {
+        Self {
+            value: 0,
         }
     }
-}
-```
+    ```
+    
+1. Save your changes and close the file.
 
-### 3. Contract Caller
+1. Use the `test` subcommand and `nightly` toolchain to test your work by running the following command:
+    
+    ```bash
+    cargo +nightly test
+    ```
+    
+    The command should display output similar to the following to indicate successful test completion:
 
-As you might have noticed in the example above, we use a special function called `self.env().caller()`. This function is available throughout the contract logic and will always return to you the contract caller.
+    ```text
+    running 1 test
+    test incrementer::tests::default_works ... ok
+    
+    est result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+    ```
 
-<Message
-  type={`gray`}
-  title={`Note`}
-  text={`The contract caller is not the same as the origin caller.
-  If a user triggers a contract which then calls a subsequent contract,
-  the \`self.env().caller()\` in the second contract will be the address
-  of the first contract, not the original user.`}
-/>
+## Add a function to get a storage value
 
-`self.env().caller()` can be used in a number of different ways. In the example above, we are basically creating an "access control" layer which only allows users to access their own values. You can also save the contract owner during contract deployment for future references:
+Now that you have created and initialized a storage value, you can interact with it using public and private functions.
+For this tutorial, you add a public function to get a storage value.
+Note that all public functions must use the `#[ink(message)]` attribute macro.
 
-```rust
+To add the public function to the smart contract:
 
-#![cfg_attr(not(feature = "std"), no_std)]
+1. Open the `lib.rs` file in a text editor.
 
-use ink_lang as ink;
+1. Update the `get` public function to return the data for the `value` storage item that has the `i32` data type.
+    
+    ```rust
+    #[ink(message)]
+    pub fn get(&self) -> i32 {
+        self.value
+        }
+    }
+    ```
+    
+    Because this function only _reads_ from the contract storage, it uses the `&self` parameter to access the contract functions and storage items. 
+    This function does not allow changes to the state of the `value` storage item.
 
-#[ink::contract]
-mod mycontract {
+    If the last expression in a function does not have a semicolon (;), Rust treats it as the return value.
 
-	#[ink(storage)]
-	pub struct MyContract {
-		// Store a contract owner
-		owner: AccountId,
-	}
+1. Replace the `Test Your Contract` comment in the private `default_works` function with code to test the `get` function.
+    
+    ```rust
+    fn default_works() {
+        let contract = Incrementer::default();
+        assert_eq!(contract.get(), 0);
+    }
+    ```
 
-	impl MyContract {
-		#[ink(constructor)]
-		pub fn new() -> Self {
-			Self {
-				owner: Self::env().caller();
-			}
-		}
-		/* --snip-- */
-	}
-}
-```
+1. Save your changes and close the file.
 
-Then you can write permissioned functions which checks that the current caller is the owner of the contract.
+1. Use the `test` subcommand and `nightly` toolchain to test your work by running the following command:
+    
+    ```bash
+    cargo +nightly test
+    ```
+    
+## Add a function to modify the storage value
 
-### 4. Your Turn
+At this point, the smart contract does not allow users modify the storage.
+To enable users to _modify_ storage items, you must explicitly mark `value` as a mutable variable.
 
-Follow the `ACTION`s in the template code to introduce a storage map to your contract.
+To add a function for incrementing the stored value:
 
-Remember to run `cargo +nightly test` to test your work.
+1. Open the `lib.rs` file in a text editor.
 
-#### ** Template **
+1. Add a new `inc` public function to increment the `value` stored using the `by` parameter that has data type of `i32`.
+    
+    ```rust
+    #[ink(message)]
+    pub fn inc(&mut self, by: i32) {
+        self.value += by;
+        }
+    }
+    ```
 
-[template-code](/assets/tutorials/ink-workshop/1.5-template.rs)
+1. Add a new test to the source code to verify this function.
+    
+    ```rust
+    #[ink::test]
+        fn it_works() {
+            let mut contract = Incrementer::new(42);
+            assert_eq!(contract.get(), 42);
+            contract.inc(5);
+            assert_eq!(contract.get(), 47);
+            contract.inc(-50);
+            assert_eq!(contract.get(), -3);
+    }
+    ```
 
-#### ** Solution **
+1. Save your changes and close the file.
 
-[template-code-final](/assets/tutorials/ink-workshop/1.5-finished-code.rs)
+1. Use the `test` subcommand and `nightly` toolchain to test your work by running the following command:
+    
+    ```bash
+    cargo +nightly test
+    ```
+    
+    The command should display output similar to the following to indicate successful test completion:
 
-#### ** Previous Solution **
+    ```bash
+    running 2 tests
+    test incrementer::tests::it_works ... ok
+    test incrementer::tests::default_works ... ok
+    
+    test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+    ```
 
-[template-code-previous](/assets/tutorials/ink-workshop/1.4-finished-code.rs)
+### Build the WebAssembly for the contract
 
-## Updating a Value
+After you test the `incrementer` contract, you are ready to compile this project to WebAssembly.
+After you compile the smart contract to WebAssembly, you can use the [Contracts UI](https://paritytech.github.io/contracts-ui) to deploy and test the smart contract on your local contracts node.
 
-The final step in our Incrementer contract is to allow users to update their own values.
+To build the WebAssembly for this smart contract:
 
-### 1. Updating a Mapping
+1. Open a terminal shell on your computer, if needed.
 
-The `Mapping` API is quite low level. We can directly override a previous value held at a
-storage entry by calling `Mapping::insert()` with an existing key. The `Mapping` will do
-nothing to "protect" us in this case.
+1. Verify that you are in the `incrementer` project folder.
 
-We can also update values by first reading them from storage using `Mapping::get()`, and
-then overriding the entry with `Mapping::insert()`.
+1. Compile the `incrementer` smart contract by running the following command: 
+    
+    ```bash
+    cargo +nightly contract build
+    ```
 
-Note that if there is no existing value at a given key, `Mapping::get()` will return
-`None`.
+    The command displays output similar to the following:
 
-### 2. Cleaning up
+    ```text
+    Your contract artifacts are ready. You can find them in:
+    /Users/dev-docs/incrementer/target/ink
+    
+    - incrementer.contract (code + metadata)
+    - incrementer.wasm (the contract's code)
+    - metadata.json (the contract's metadata)
+    ```
 
-Since `Mapping` is low level we're required to do clean-up ourselves. `Mapping` provides
-a `Mapping::remove()` method which clears the value at a given key from storage.
+## Deploy and test the smart contract
 
-### 3. Your Turn
+If you have the [`substrate-contracts-node`](https://github.com/paritytech/substrate-contracts-node) node installed locally, you can start a local blockchain node for your smart contract, then use the [Contracts UI](https://paritytech.github.io/contracts-ui) to deploy and test the smart contract.
 
-Follow the `ACTION`s to finish your Incrementer smart contract.
+To deploy on the local node:
 
-Remember to run `cargo +nightly test` to test your work.
+1. Open a terminal shell on your computer, if needed.
 
-#### ** Template **
+1. Start the contracts node in local development mode by running the following command:
 
-[template-code](/assets/tutorials/ink-workshop/1.6-template.rs)
+   ```bash
+   substrate-contracts-node --dev
+   ```
 
-#### ** Solution **
+1. Open the [Contracts UI](https://paritytech.github.io/contracts-ui) and verify that it is connected to the local node.
 
-[template-code-final](/assets/tutorials/ink-workshop/1.6-finished-code.rs)
+1. Click **Add New Contract**.
 
-#### ** Previous Solution **
+1. Click **Upload New Contract Code**.
 
-[template-code-previous](/assets/tutorials/ink-workshop/1.5-finished-code.rs)
+1. Select the `incrementer.contract` file, then click **Next**.
+
+1. Click **Upload and Instantiate**.
+
+1. Explore and interact with the smart contract using the Contracts UI.
+
+## Next steps
+
+In this tutorial, you learned some basic techniques for creating smart contracts using the ink! programming language and attribute macros.
+For example, this tutorial illustrated:
+
+* How to add storage items, specify data types, and implement constructors in a new smart contract project.
+
+* How to add functions to a smart contract.
+
+* How to add a test to a smart contract.
+
+* How to upload and instantiate the contract using the Contracts UI.
+
+Additional smart contract tutorials build on what you learned in this tutorial and lead you deeper into different stages of contract development.
+
+You can learn more about smart contract development in the following topics:
+
+- [Use hashmaps for key-value pairs](/tutorials/smart-contracts/use-mappingt/)
+- [Build an ERC20 token contract](/tutorials/smart-contracts/erc20-token/)
+- [Troubleshoot smart contracts](tutorials/smart-contracts/sc-common-issues/)
+
+If you experienced any issues with this tutorial, submit an issue, ask questions or provide feedback.
+
+- [Submit an issue](https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose).
+
+- [Substrate Stack Exchange](https://substrate.stackexchange.com/).
