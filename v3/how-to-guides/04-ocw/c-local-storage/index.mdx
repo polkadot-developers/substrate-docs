@@ -25,7 +25,7 @@ Nonetheless there are also times when the data is not suitable to be saved on-ch
 This includes temporary data or intermediate calculations that can be discarded once the computation is completed.
 
 In this guide, we will instruct off-chain workers to write data to the local storage without passing the data among the whole blockchain network.
-The concept of a **Storage Lock** is introduced to have value accessible consistently among mutliple OCWs.
+The concept of a **Storage Lock** is introduced to have value accessible consistently among multiple OCWs.
 OCWs are asynchronously run at the end of each block production and they are not limited by how long they run, so at any point of time there could be multiple OCW instances being initiated as shown below.
 
 ![Multiple OCW Instances](../../../../src/images/how-to-guides/ocw/local-storage/multiple-ocws.png)
@@ -35,7 +35,7 @@ The local storage APIs are similar to their on-chain counterpart, using `get`, `
 This is done as a single atomic operation.
 The atomicity guarantees that the new value is calculated based on up-to-date information; if the value had been updated by another thread in the meantime, the write would fail.
 
-Note that as values stored in local storage has not gone through the consensus mechanism among the network, so they are subject to manupulation of the node operator.
+Note that as values stored in local storage has not gone through the consensus mechanism among the network, so they are subject to manipulation of the node operator.
 
 In this how-to guide, we will first check from the storage, which acts as a cache, if the computed value exists.
 If the cached value is found, off-chain worker returns; else it will try to acquire a lock, perform the intensive computation, and save it to the storage/cache.
@@ -165,5 +165,5 @@ If the cached value is found, off-chain worker returns; else it will try to acqu
 
 ## Examples
 
-- [**Off-chain worker example pallet** in Substrate](https://github.com/paritytech/substrate/blob/monthly-2021-12/frame/examples/offchain-worker/src/lib.rs#L374-L437)
+- [**Off-chain worker example pallet** in Substrate](https://github.com/paritytech/substrate/blob/polkadot-v0.9.17/frame/examples/offchain-worker/src/lib.rs#L372-L441)
 - [**OCW pallet** demo](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/master/pallets/ocw/src/lib.rs#L299-L342)

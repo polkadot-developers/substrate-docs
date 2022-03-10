@@ -99,6 +99,9 @@ We can now bring our attention to creating the intended capabilities of our pall
 
      let sender = ensure_signed(origin)?;
 
+     // Check if the kitty does not already exist in our storage map
+		 ensure!(Self::kitties(&kitty_id) == None, <Error<T>>::KittyExists);
+
      // Update storage.
      <BalanceToAccount<T>>::insert(&sender, amount);
 
@@ -167,12 +170,12 @@ Refer to [this guide](../pallet-integration) if you’re not yet familiar with t
   type={`green`}
   title={`Further Learning`}
   text={`
-    - **Safety.** The mint function takes in an amount to 'mint' which is *not good practice* because it implies that users have unlimited access to writing to storage.
+- **Safety.** The mint function takes in an amount to 'mint' which is *not good practice* because it implies that users have unlimited access to writing to storage.
       Safer approaches include: using configuring 'GenesisConfig' or
       fixing a predetermined maximum value in runtime.
-    - **Weights.** All the weights were set to 10_000 in the above code snippets.
+- **Weights.** All the weights were set to 10_000 in the above code snippets.
       Learn more about weight configuration in this [basic guide on weights](../weights).
-    - **Origins.** This guide assumes that the origin will always be the sudo user.
+- **Origins.** This guide assumes that the origin will always be the sudo user.
       Origins are a powerful capability in Substrate.
       Learn more about how they work [here](/v3/runtime/origins).
   `}

@@ -22,8 +22,9 @@ pub mod pallet {
 		<<T as Config>::Currency as Currency<<T as frame_system::Config>::AccountId>>::Balance;
 
 	// Struct for holding Kitty information.
-	#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
+	#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo, MaxEncodedLen)]
 	#[scale_info(skip_type_params(T))]
+	#[codec(mel_bound())]
 	pub struct Kitty<T: Config> {
 		pub dna: [u8; 16],   // Using 16 bytes to represent a kitty DNA
 		pub price: Option<BalanceOf<T>>,
@@ -32,8 +33,7 @@ pub mod pallet {
 	}
 
 	// Enum declaration for Gender.
-	#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
-	#[scale_info(skip_type_params(T))]
+	#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo, MaxEncodedLen)]
 	#[cfg_attr(feature = "std", derive(Serialize, Deserialize))]
 	pub enum Gender {
 		Male,
@@ -301,6 +301,7 @@ pub mod pallet {
 		fn gen_dna() -> [u8; 16] {
 			let payload = (
 				T::KittyRandomness::random(&b"dna"[..]).0,
+				<frame_system::Pallet<T>>::extrinsic_index().unwrap_or_default(),
 				<frame_system::Pallet<T>>::block_number(),
 			);
 			payload.using_encoded(blake2_128)
@@ -336,6 +337,9 @@ pub mod pallet {
 			let new_cnt = Self::kitty_cnt().checked_add(1)
 				.ok_or(<Error<T>>::KittyCntOverflow)?;
 
+			// Check if the kitty does not already exist in our storage map
+			ensure!(Self::kitties(&kitty_id) == None, <Error<T>>::KittyExists);
+			
 			// Performs this operation first because as it may fail
 			<KittiesOwned<T>>::try_mutate(&owner, |kitty_vec| {
 				kitty_vec.try_push(kitty_id)

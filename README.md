@@ -69,13 +69,6 @@ guidelines if making any non-trivial PRs here.
 
 - `main` branch is available at: https://docs.substrate.io/
 
-### Staging deployment
-
-- `develop` branch is available at: https://develop--substrate-docs.netlify.app/
-
-If you are submitting a PR, make sure to submit it to the `develop` branch. Only once PRs are merged into
-develop will they get merged into `main`.
-
 ## 🚀 Quick start
 
 1.  **Clone the repo**
@@ -160,7 +153,7 @@ finally serving it at `https://localhost:9000`.
 In another terminal, run:
 
 ```bash
-yarn checklinks
+yarn checklinks-local
 ```
 
 You can further configure it in `package.json` file. Currently it has a list of paths being

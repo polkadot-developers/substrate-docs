@@ -44,7 +44,7 @@ The Substrate HTTP library supports the following methods:
   ```rust
   // We want to keep the offchain worker execution time reasonable, so we set a hard-coded
   // deadline to 2s to complete the external call.
-  // You can also wait idefinitely for the response, however you may still get a timeout
+  // You can also wait indefinitely for the response, however you may still get a timeout
   // coming from the host machine.
   let deadline = sp_io::offchain::timestamp().add(Duration::from_millis(2_000));
   ```
@@ -102,6 +102,6 @@ The Substrate HTTP library supports the following methods:
 
 ## Examples
 
-- [**Offchain Worker Example Pallet** in Substrate](https://github.com/paritytech/substrate/blob/monthly-2021-12/frame/examples/offchain-worker/src/lib.rs#L568-#L621)
+- [**Offchain Worker Example Pallet** in Substrate](https://github.com/paritytech/substrate/blob/polkadot-v0.9.17/frame/examples/offchain-worker/src/lib.rs#L571-L625)
 - [**OCW Pallet** in Substrate Offchain Worker Demo](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/master/pallets/ocw/src/lib.rs#L363-#L401)
 - [**Offchain HTTP source** in Substrate Core](https://github.com/paritytech/substrate/blob/master/primitives/runtime/src/offchain/http.rs#L63-L76)

@@ -68,7 +68,7 @@ This part covers the basic patterns involved with using the Substrate node templ
 
 ### Set-up your template node
 
-The [Substrate node template][substrate-node-template] provides us with an customizable blockchain node, with built-in networking and consensus layers included.
+The [Substrate node template][substrate-node-template] provides us with a customizable blockchain node, with built-in networking and consensus layers included.
 All we need to focus on is building out the logic of our [runtime][runtime-kb] and [pallets][pallets-kb].
 
 To kick things off, we need to set-up our project name and dependencies.
@@ -240,7 +240,7 @@ Just like the [helper files](https://github.com/substrate-developer-hub/substrat
    		// TODO Part III: breed_kitty
    	}
 
-   	// TODO Parts II: helper function for Kitty struct
+   	// TODO Part II: helper function for Kitty struct
 
    	impl<T: Config> Pallet<T> {
    		// TODO Part III: helper functions for dispatchable functions
@@ -255,11 +255,7 @@ Just like the [helper files](https://github.com/substrate-developer-hub/substrat
    Ensure that this is declared as a dependency in your pallet's `Cargo.toml` file:
 
    ```toml
-   [dependencies.sp-io]
-   default-features = false
-   git = 'https://github.com/paritytech/substrate.git'
-   tag = 'devhub/latest'
-   version = '4.0.0-dev'
+   sp-io = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.17" }
    ```
 
 1. Now try running the following command to build your pallet. We won't build the entire chain just yet because we haven't yet implemented the `Currency` type in our runtime.
@@ -413,7 +409,7 @@ pub mod pallet {
 
 		// TODO Part III: helper functions for dispatchable functions
 
-		// ACTION #6: funtion to randomly generate DNA
+		// ACTION #6: function to randomly generate DNA
 
 		// TODO Part III: mint
 
@@ -423,12 +419,7 @@ pub mod pallet {
 ```
 
 Along with this code, we'll need to import `serde`.
-Add this to your pallet's Cargo.toml file:
-
-```toml
-[dependencies.serde]
-version =  '1.0.129'
-```
+Add this to your pallet's Cargo.toml file, using the matching version as Substrate upstream.
 
 ### Scaffold Kitty struct
 
@@ -465,8 +456,9 @@ type BalanceOf<T> =
 	<<T as Config>::Currency as Currency<<T as frame_system::Config>::AccountId>>::Balance;
 
 // Struct for holding Kitty information.
-#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
+#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo, MaxEncodedLen)]
 #[scale_info(skip_type_params(T))]
+#[codec(mel_bound())]
 pub struct Kitty<T: Config> {
 	pub dna: [u8; 16],
 	pub price: Option<BalanceOf<T>>,
@@ -512,8 +504,7 @@ To create it, you'll build out the following parts:
    Replace ACTION item #2 with the following enum declaration:
 
    ```rust
-   #[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
-   #[scale_info(skip_type_params(T))]
+   #[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo, MaxEncodedLen)]
    #[cfg_attr(feature = "std", derive(Serialize, Deserialize))]
    pub enum Gender {
    	Male,
@@ -523,13 +514,7 @@ To create it, you'll build out the following parts:
 
    Notice the use of the [derive macro][derive-macro-rust] which must precede the enum declaration.
    This wraps our enum in the data structures it will need to interface with other types in our runtime.
-   In order to use `Serialize` and `Deserialize`, you will need to add the `serde` crate in `pallets/kitties/Cargo.toml`:
-
-   ```toml
-   [dependencies.serde]
-   default-features = false
-   version = '1.0.119'
-   ```
+   In order to use `Serialize` and `Deserialize`, you will need to add the `serde` crate in `pallets/kitties/Cargo.toml`, using the matching version as Substrate upstream.
 
    Great, we now know how to create a custom struct.
    But what about providing a way for a Kitty struct to be _assigned_ a gender value?
@@ -570,7 +555,7 @@ It will be able to generate a random seed which we'll create unique Kitties with
 
 1. In your pallet's configuration trait, define a new type bound by the `Randomness` trait.
 
-   The `Randomness` trait from `frame_support` requires specifying it with a paramater to replace the `Output` and `BlockNumber` generics.
+   The `Randomness` trait from `frame_support` requires specifying it with a parameter to replace the `Output` and `BlockNumber` generics.
    Take a look at [the documentation][randomness-rustdocs] and the source code implementation to understand how this works.
    For our purposes, we want the output of functions using this trait to be [`Blake2 128-bit hash`][blake2-rustdocs] which you'll notice should already be declared at the top of your working codebase.
 
@@ -604,12 +589,14 @@ It will be able to generate a random seed which we'll create unique Kitties with
 
    Generating DNA is similar to using randomness to randomly assign a gender type.
    The difference is that we'll be making use of `blake2_128` we imported in the previous part.
+   We will also be using the [extrinsic_index](https://docs.rs/frame-system/latest/frame_system/pallet/struct.Pallet.html#method.extrinsic_index) from the `frame_system` pallet in order to generate different hashes if we call this function more then once within the same block.
    Replace the ACTION #6 line with:
 
    ```rust
    fn gen_dna() -> [u8; 16] {
    	let payload = (
    		T::KittyRandomness::random(&b"dna"[..]).0,
+		<frame_system::Pallet<T>>::extrinsic_index().unwrap_or_default(),
    		<frame_system::Pallet<T>>::block_number(),
    	);
    	payload.using_encoded(blake2_128)
@@ -796,13 +783,7 @@ pub fn create_kitty(origin: OriginFor<T>) -> DispatchResult {
 ```
 
 We won't go into [debugging](/v3/runtime/debugging/), but logging to the console is a useful tip to make sure your pallet is behaving as expected.
-In order to use `log::info`, add this to your pallet's `Cargo.toml` file:
-
-```toml
-[dependencies.log]
-default-features = false
-version = '0.4.14'
-```
+In order to use `log::info`, add this to your pallet's `Cargo.toml` file, using the matching version as Substrate upstream.
 
 ### Write the `mint()` function
 
@@ -839,6 +820,9 @@ pub fn mint(
 	let new_cnt = Self::kitty_cnt().checked_add(1)
 		.ok_or(<Error<T>>::KittyCntOverflow)?;
 
+	// Check if the kitty does not already exist in our storage map
+	ensure!(Self::kitties(&kitty_id) == None, <Error<T>>::KittyExists);
+
 	// Performs this operation first because as it may fail
 	<KittiesOwned<T>>::try_mutate(&owner, |kitty_vec| {
 		kitty_vec.try_push(kitty_id)
@@ -856,9 +840,12 @@ The first thing we're doing is creating a new Kitty object.
 Then, we create a unique `kitty_id` using a hashing function based on the current properties of the kitty.
 
 Next, we increment the `KittyCnt` using the storage getter function `Self::kitty_cnt()`.
-We also checking for overflow with `check_add()` function.
+We are also checking for an overflow with the `check_add()` function.
 
-Once we've done with the check, we proceed with updating our storage items by:
+Our last validation is to make sure the `kitty_id` does not already exist in our `Kitties` StorageMap.
+This is to avoid any possible hash key duplication insertions.
+
+Once our checks have passed, we proceed with updating our storage items by:
 
 1. Making use of [`try_mutate`](/rustdocs/latest/frame_support/storage/trait.StorageMap.html#tymethod.try_mutate) to update the kitty's owner vector.
 2. Using the [`insert`][insert-rustdocs] method provided by Substrate's StorageMap API to store the actually Kitty object and associate it with its `kitty_id`.
@@ -1014,7 +1001,7 @@ In the next section you'll be able to see everything you've built so far in acti
    ./target/release/node-kitties --tmp --dev
    ```
 
-   By doing this, we're specifying to run a temporary chain in developer mode, so as not to need to purge storage each time we want to start a fresh chain.
+   By doing this, we're specifying to run a temporary chain in development mode, so as not to need to purge storage each time we want to start a fresh chain.
    You should be seeing block finalization happening in your terminal.
 
 1. Head over to [Polkadot.js Apps UI][polkadotjsapps].
@@ -1289,7 +1276,7 @@ if let Some(ask_price) = kitty.price {
 ensure!(T::Currency::free_balance(&buyer) >= bid_price, <Error<T>>::NotEnoughBalance);
 ```
 
-In a similar vain, we have to verify whether the user has the capacity to receive a Kitty.
+In a similar vein, we have to verify whether the user has the capacity to receive a Kitty.
 Remember we're using a [`BoundedVec`](/rustdocs/latest/frame_support/storage/bounded_vec/struct.BoundedVec.html) that can only hold a fixed number of Kitties, defined in our pallet's `MaxKittyOwned` constant.
 Replace ACTION #7 with:
 

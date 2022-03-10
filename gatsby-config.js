@@ -148,23 +148,6 @@ module.exports = {
       },
     },
 
-    /* transformer for markdown files */
-    {
-      resolve: 'gatsby-transformer-remark',
-      options: {
-        plugins: [],
-      },
-    },
-
-    /* source file system for content dir */
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `content`,
-        path: `./content/`,
-      },
-    },
-
     {
       resolve: 'gatsby-plugin-eslint',
       options: {

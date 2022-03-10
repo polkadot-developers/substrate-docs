@@ -485,7 +485,7 @@ been met.
 Creating bounds on the size of storage items is an extremely effective way to control the use of
 runtime storage and one that is used repeatedly throughout the Substrate codebase. In general, any
 storage item whose size is determined by user action should have a bound on it.
-[The multi-signature capabilities from the Utility pallet](/rustdocs/latest/pallet_utility/trait.Config.html#associatedtype.MaxSignatories)
+[The multi-signature capabilities from the Multisig pallet](/rustdocs/latest/pallet_multisig/pallet/trait.Config.html#associatedtype.MaxSignatories)
 that were described above are one such example. In this case, the list of signatories associated
 with a multi-signature operation is provided by the multi-signature participants. Because this
 signatory list is [necessary to come to consensus](#what-to-store) on the state of the

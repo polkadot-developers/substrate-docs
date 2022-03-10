@@ -19,7 +19,6 @@ const ActiveCampaign = () => (
 
 export default function Newsletter({ layout = 'default' }) {
   const [formSubmitted, setFormSubmitted] = useState(false)
-  const [failedSubmission, setFailedSubmission] = useState(false)
   const [loading, setLoading] = useState(false)
   const { siteMetadata } = useSiteMetadata()
 
@@ -43,7 +42,6 @@ export default function Newsletter({ layout = 'default' }) {
       })
       .catch(error => {
         setLoading(false)
-        setFailedSubmission(true)
         console.log('Request failed', error)
       })
   }
@@ -118,16 +116,6 @@ export default function Newsletter({ layout = 'default' }) {
                 >
                   {loading ? 'Sending...' : 'Subscribe'}
                 </button>
-                {failedSubmission && (
-                  <p className="text-sm mb-2 lg:text-center text-substrateYellow">
-                    Submission Failed. Please disable ad-blocker or{' '}
-                    <span className="underline-animate underline-animate-thin">
-                      <Link to="https://paritytechnologies.activehosted.com/f/11">
-                        sign up here
-                      </Link>
-                    </span>
-                  </p>
-                )}
                 <p
                   className={cn('mb-6 text-sm', {
                     'mb-0 lg:text-center': !widget,

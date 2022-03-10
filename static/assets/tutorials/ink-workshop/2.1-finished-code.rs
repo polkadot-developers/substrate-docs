@@ -4,24 +4,26 @@ use ink_lang as ink;
 
 #[ink::contract]
 mod erc20 {
+    use ink_storage::traits::SpreadAllocate;
+
     #[cfg(not(feature = "ink-as-dependency"))]
     #[ink(storage)]
+    #[derive(SpreadAllocate)]
     pub struct Erc20 {
         /// The total supply.
         total_supply: Balance,
         /// The balance of each user.
-        balances: ink_storage::collections::HashMap<AccountId, Balance>,
+        balances: ink_storage::Mapping<AccountId, Balance>,
     }
 
     impl Erc20 {
         #[ink(constructor)]
         pub fn new(initial_supply: Balance) -> Self {
-            let mut balances = ink_storage::collections::HashMap::new();
-            balances.insert(Self::env().caller(), initial_supply);
-            Self {
-                total_supply: initial_supply,
-                balances
-            }
+            ink_lang::utils::initialize_contract(|contract: &mut Self| {
+                contract.total_supply = initial_supply;
+                let caller = Self::env().caller();
+                contract.balances.insert(&caller, &initial_supply);
+            })
         }
 
         #[ink(message)]
@@ -31,11 +33,7 @@ mod erc20 {
 
         #[ink(message)]
         pub fn balance_of(&self, owner: AccountId) -> Balance {
-            self.balance_of_or_zero(&owner)
-        }
-
-        fn balance_of_or_zero(&self, owner: &AccountId) -> Balance {
-            *self.balances.get(owner).unwrap_or(&0)
+            self.balances.get(&owner).unwrap_or_default()
         }
     }
 
