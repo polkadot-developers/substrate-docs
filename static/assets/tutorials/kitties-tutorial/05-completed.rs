@@ -301,6 +301,7 @@ pub mod pallet {
 		fn gen_dna() -> [u8; 16] {
 			let payload = (
 				T::KittyRandomness::random(&b"dna"[..]).0,
+				<frame_system::Pallet<T>>::extrinsic_index().unwrap_or_default(),
 				<frame_system::Pallet<T>>::block_number(),
 			);
 			payload.using_encoded(blake2_128)
@@ -336,6 +337,9 @@ pub mod pallet {
 			let new_cnt = Self::kitty_cnt().checked_add(1)
 				.ok_or(<Error<T>>::KittyCntOverflow)?;
 
+			// Check if the kitty does not already exist in our storage map
+			ensure!(Self::kitties(&kitty_id) == None, <Error<T>>::KittyExists);
+			
 			// Performs this operation first because as it may fail
 			<KittiesOwned<T>>::try_mutate(&owner, |kitty_vec| {
 				kitty_vec.try_push(kitty_id)
