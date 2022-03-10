@@ -9,6 +9,7 @@
     "clean": "gatsby clean",
     "start": "gatsby develop -p 8200",
     "develop": "gatsby develop -p 8200",
+    "dev": "yarn develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "serve:fresh": "yarn clean; yarn build; yarn serve",
