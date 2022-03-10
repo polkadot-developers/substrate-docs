@@ -1,3 +1,5 @@
+const CAREERS_URL = process.env.GATSBY_CAREERS_URL
+
 const MainNav = {
   global: () => {
     const site = process.env.GATSBY_IO_URL
@@ -112,7 +114,7 @@ const MainNav = {
               },
               {
                 linkTitle: 'Careers',
-                link: `https://careers.substrate.io`,
+                link: CAREERS_URL,
                 external: false,
               },
             ],
