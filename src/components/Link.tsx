@@ -105,9 +105,15 @@ export default function Link({ to, children, className }: LinkProps) {
 }
 
 const testInfraLink = (href: string) => {
-  // eslint-disable-next-line
-  const regex = new RegExp(process.env.GATSBY_IO_URL, 'i')
-  const match = regex.test(href)
+  const regexList = [
+    /* eslint-disable security/detect-non-literal-regexp */
+    new RegExp(process.env.GATSBY_WEBSITE_URL, 'i'),
+    new RegExp(process.env.GATSBY_DOCS_URL, 'i'),
+    new RegExp(process.env.GATSBY_MARKETPLACE_URL, 'i'),
+    new RegExp(process.env.GATSBY_CAREERS_URL, 'i'),
+    /* eslint-enable security/detect-non-literal-regexp */
+  ]
+  const match = regexList.some(rx => rx.test(href))
   return match
 }
 

@@ -1,6 +1,8 @@
+const CAREERS_URL = process.env.GATSBY_CAREERS_URL
+
 const MainNav = {
   global: () => {
-    const site = process.env.GATSBY_IO_URL
+    const site = process.env.GATSBY_WEBSITE_URL
     return [
       {
         name: `Technology`,
@@ -111,9 +113,9 @@ const MainNav = {
                 external: true,
               },
               {
-                linkTitle: 'Jobs',
-                link: `${site}/ecosystem/opportunities/jobs`,
-                external: true,
+                linkTitle: 'Careers',
+                link: CAREERS_URL,
+                external: false,
               },
             ],
           },
