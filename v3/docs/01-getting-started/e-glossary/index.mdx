@@ -108,7 +108,7 @@ Typically, a distributed network is considered byzantine fault tolerant if it ca
 
 ### byzantine failure
 
-The loss of a network service due to node failures that exceed the proprortion of nodes required to reach consensus.
+The loss of a network service due to node failures that exceed the proportion of nodes required to reach consensus.
 
 ### practical byzantine fault tolerance (pBFT)
 
@@ -134,7 +134,7 @@ Because most consensus algorithms assume that up to one-third of the actors or n
 Consensus algorithms are generately concerned with ensuring two properties:
 
 - **safety** indicating that all honest nodes eventually agreed on the state of the chain.
-- **liveness**" indicating the ability for the chain to keep making progress. 
+- **liveness** indicating the ability for the chain to keep making progress. 
 
 For detailed information about the consensus strategies of the [Polkadot network](#polkadot-network), see the [Polkadot Consensus](https://polkadot.network/polkadot-consensus-part-1-introduction/) blog series.
 
@@ -263,9 +263,9 @@ An acronym for the _Framework for Runtime Aggregation of Modularized Entities_ t
 
 Runtime developers interact with FRAME using [macros](#macro) such as the following:
 
-* [`#[pallet::event]`](/v3/runtime/macros#palletevents),
-* [`#[pallet::error]`](/v3/runtime/macros#palleterror),
-* [`#[pallet::storage]`](/v3/runtime/macros#palletstorage),
+* [`#[pallet::event]`](/v3/runtime/macros#palletevents)
+* [`#[pallet::error]`](/v3/runtime/macros#palleterror)
+* [`#[pallet::storage]`](/v3/runtime/macros#palletstorage)
 * [`#[frame_support::pallet]`](/v3/runtime/macros#frame_supportpallet)
 
 The macros make it easy to define custom pallets and compose pallets to create a working runtime using the [`construct_runtime!`](/v3/runtime/macros#construct_runtime)
