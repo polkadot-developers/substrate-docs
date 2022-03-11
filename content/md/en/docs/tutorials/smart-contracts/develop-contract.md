@@ -422,12 +422,12 @@ Additional smart contract tutorials build on what you learned in this tutorial a
 
 You can learn more about smart contract development in the following topics:
 
-- [Use hashmaps for key-value pairs](/tutorials/smart-contracts/use-mappingt/)
-- [Build an ERC20 token contract](/tutorials/smart-contracts/erc20-token/)
-- [Troubleshoot smart contracts](tutorials/smart-contracts/sc-common-issues/)
+* [Use maps for storing values](/tutorials/smart-contracts/use-mappingt/)
+* [Build an ERC20 token contract](/tutorials/smart-contracts/erc20-token/)
+* [Troubleshoot smart contracts](tutorials/smart-contracts/sc-common-issues/)
 
 If you experienced any issues with this tutorial, submit an issue, ask questions or provide feedback.
 
-- [Submit an issue](https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose).
+* [Submit an issue](https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose).
 
-- [Substrate Stack Exchange](https://substrate.stackexchange.com/).
+* [Substrate Stack Exchange](https://substrate.stackexchange.com/).
