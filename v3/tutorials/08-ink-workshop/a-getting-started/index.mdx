@@ -80,8 +80,10 @@ rustup target add wasm32-unknown-unknown --toolchain nightly
 
 We need to use a Substrate node with the built-in `pallet-contracts` pallet. For this workshop we'll use a pre-configured Substrate node client.
 
+You can [download a binary from our releases page](https://github.com/paritytech/substrate-contracts-node/releases) (Linux and Mac). Alternatively you can build the node by yourself:
+
 ```bash
-cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag v0.8.0 --force --locked
+cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag v0.9.0 --force --locked
 ```
 
 ### 2. ink! CLI
@@ -109,7 +111,7 @@ brew install binaryen
 After you've installed the package execute:
 
 ```bash
-cargo install cargo-contract --vers ^0.17 --force --locked
+cargo install cargo-contract --vers ^0.18 --force --locked
 ```
 
 You can then use `cargo contract --help` to start exploring the commands made available to you.
