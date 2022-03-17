@@ -316,6 +316,7 @@ For example, this tutorial illustrated:
 
 * How to add functions that enable users to insert and remove the values stored for them in a map using a smart contract.
 
+You can find an example of the final code for this tutorial in the assets for the [ink-workshop](https://docs.substrate.io/assets/tutorials/ink-workshop/1.6-finished-code.rs) 
 You can learn more about smart contract development in the following topics:
 
 * [Build an ERC20 token contract](/tutorials/smart-contracts/erc20-token/)

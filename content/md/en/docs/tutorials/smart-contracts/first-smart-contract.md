@@ -461,6 +461,7 @@ In this tutorial, you learned:
 
 Additional smart contract tutorials build on what you learned in this tutorial and lead you deeper into different stages of contract development. 
 
+You can find an example of the final code for this tutorial in the assets for the [ink-workshop](https://docs.substrate.io/assets/tutorials/ink-workshop/1.4-finished-code.rs).
 You can learn more about smart contract development in the following topics:
 
 - [Develop a smart contract](/tutorials/smart-contracts/develop-contract/)

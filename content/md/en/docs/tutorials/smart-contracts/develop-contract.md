@@ -255,7 +255,7 @@ To update the smart contract:
     running 1 test
     test incrementer::tests::default_works ... ok
     
-    est result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+    test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
     ```
 
 ## Add a function to get a storage value
@@ -418,11 +418,10 @@ For example, this tutorial illustrated:
 
 * How to upload and instantiate the contract using the Contracts UI.
 
-Additional smart contract tutorials build on what you learned in this tutorial and lead you deeper into different stages of contract development.
-
+You can find an example of the final code for this tutorial in the assets for the [ink-workshop](https://docs.substrate.io/assets/tutorials/ink-workshop/1.5-finished-code.rs)
 You can learn more about smart contract development in the following topics:
 
-* [Use maps for storing values](/tutorials/smart-contracts/use-mappingt/)
+* [Use maps for storing values](/tutorials/smart-contracts/use-mapping/)
 * [Build an ERC20 token contract](/tutorials/smart-contracts/erc20-token/)
 * [Troubleshoot smart contracts](tutorials/smart-contracts/sc-common-issues/)
 
