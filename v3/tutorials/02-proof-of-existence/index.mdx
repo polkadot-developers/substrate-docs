@@ -125,7 +125,7 @@ Therefore, the first step is to remove some files and content from the files in 
    	use frame_support::{pallet_prelude::*, storage::bounded_vec::BoundedVec};
    	use frame_system::pallet_prelude::*;
    
-   	// Define the pallet struct placeholder, various pallet function are implemented on it.
+   	// Define the pallet struct placeholder, various pallet functions are implemented on it.
    	#[pallet::pallet]
    	#[pallet::generate_store(pub(super) trait Store)]
    	pub struct Pallet<T>(_);
@@ -201,7 +201,7 @@ As described in [Design the application](#design-the-application), the proof-of-
 Each event also displays an `AccountId` to identify who triggered the event and the proof-of-existence data (as `BoundedVec<u8, T::MaxBytesInHash>`) that is being stored or removed.
 By convention, each event includes an array with descriptive names for its parameters.
 
-To implement the pallet events, update the `#[pallet::event]` block with to match the following code block:
+To implement the pallet events, update the `#[pallet::event]` block to match the following code block:
 
 ```rust
 	// Pallets use events to inform users when important changes are made.
