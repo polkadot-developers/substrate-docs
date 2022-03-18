@@ -1,7 +1,21 @@
-name: Request New or Edited Content
+name: Request New or Updated Content
 description: Submit your requests and suggestions to help us improve!
-labels: ['new content 💡✍️']
+labels: ["new content 💡✍️"]
 body:
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue for this?
+      description: Please search to see if an issue already exists for this.
+      options:
+        - label: I have searched the existing issues
+          required: true
+  - type: checkboxes
+    attributes:
+      label: If experiencing a problem using software described oon this site, have you tried Stack Exchange first?
+      description: Please search <https://substrate.stackexchange.com> to see if an post already exists, and ask if not. Please do not file support issues here.
+      options:
+        - label: This is not a support question.
+          required: true
   - type: markdown
     attributes:
       value: |

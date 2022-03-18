@@ -1,8 +1,7 @@
 blank_issues_enabled: true
 contact_links:
-  - name: Substrate Stack Exchange
+  - name: Support & Troubleshooting with the Substrate Stack Exchange Community
     url: https://substrate.stackexchange.com
-    about: Please ask and answer questions on Stack Exchange.
-  - name: Substrate Devhub Github
-    url: https://github.com/substrate-developer-hub/
-    about: Please open issues and PRs on problems encountered with this site.
+    about: |
+      For general problems with Substrate or related technologies, please search here first
+      for solutions, by keyword and tags. If you discover no solution, please then ask and questions in our community! We highly encourage everyone also share their understanding by answering questions for others.
