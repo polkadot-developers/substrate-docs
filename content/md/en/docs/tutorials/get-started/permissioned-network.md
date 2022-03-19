@@ -21,7 +21,7 @@ However, there are use cases where creating a permissioned blockchain might be a
 For example, a permissioned blockchain would be suitable for the following types of projects:
 
 * For a private or consortium network, such as a private enterprise or a non-profit organization.
-* In a highly-regulated data environments, such as healthcare, finance, or business-to-business ledgers.
+* In highly-regulated data environments, such as healthcare, finance, or business-to-business ledgers.
 * For testing of a pre-public blockchain network at scale.
 
 This tutorial illustrates how you can build a permissioned network with Substrate by using the
@@ -53,7 +53,7 @@ They are always allowed to connect with each other.
 
 The `node-authorization` pallet uses an [offchain worker](/main-docs/fundamentals/offchain-operations)
 to configure its node connections. 
-Make sure to enable the offchain worker with the right CLI flag as offchain worker is disabled by default for non-authority nodes.
+Make sure to enable the offchain worker when you start the node because it is disabled by default for non-authority nodes.
 
 ## Before you begin
 
@@ -115,14 +115,15 @@ For Rust programs, you use the `Cargo.toml` file to define the configuration set
 Because the Substrate runtime compiles to both a native Rust binary that includes standard library functions and a [WebAssembly (Wasm)](https://webassembly.org/) binary that does not include the standard library, the `Cargo.toml` file controls two important pieces of information:
 
 * The pallets to be imported as dependencies for the runtime, including the location and version of the pallets to import.
+
 * The features in each pallet that should be enabled when compiling the native Rust binary. By enabling the standard (`std`) feature set from each pallet, you can compile the runtime to include functions, types, and primitives that would otherwise be missing when you build the WebAssembly binary.
 
-For information about adding dependencies in `Cargo.toml` files, see [Dependencies](https://doc.rust-lang.org/cargo/guide/dependencies.html) in the Cargo documentation.
+For general information about adding dependencies in `Cargo.toml` files, see [Dependencies](https://doc.rust-lang.org/cargo/guide/dependencies.html) in the Cargo documentation.
 For information about enabling and managing features from dependent packages, see [Features](https://doc.rust-lang.org/cargo/reference/features.html) in the Cargo documentation.
 
 ### Add note-authorization dependencies
 
-To add the node-authorization pallet to the Substrate runtime:
+To add the `node-authorization` pallet to the Substrate runtime:
 
 1. Open a terminal shell and change to the root directory for the node template.
 
