@@ -2,7 +2,7 @@
 title: Connect a Parachain
 slug: /tutorials/v3/cumulus/connect-parachain
 sideNav: cumulusTutorial
-version: 'polkadot-v0.9.13'
+version: 'polkadot-v0.9.17'
 section: tutorials
 category: parachains
 duration: 3 Hours
@@ -260,7 +260,7 @@ But for this tutorial we will do it with `sudo` call.
 
 The transaction can be submitted **on a relay chain node** via Polkadot-JS Apps UI.
 There are multiple options to go about this, and we can pick any one of the following.
-Note that all options here depend on a [`paraID` being reserved](#1-reserve-a-para-id) - so be sure to do that first.
+Note that all options here depend on a [`paraID` being reserved](#reserve-a-para-id) - so be sure to do that first.
 
 If you are running a network with more than two validators you can add more parachains through the same interface with the parameters adjusted accordingly.
 More details on this can be found [in here](/tutorials/v3/cumulus/start-relay#starting-additional-validators-optional).
@@ -388,7 +388,7 @@ Now we can also connect to the parachain collator.
 Open another instance of Apps UI in a new browser window, and connect it to the appropriate endpoint.
 If you have followed this workshop so far, you can connect to the parachain node at:
 
-https://polkadot.js.org/apps/?rpc=ws%3A%2F%2Flocalhost%3A9945#/
+https://polkadot.js.org/apps/?rpc=ws%3A%2F%2Flocalhost%3A8844#/
 
 ### Submit extrinsics
 

@@ -125,18 +125,18 @@ type SomePrivateValue<T> = StorageValue<_, u32, ValueQuery>;
 pub(super) type SomePrimitiveValue<T> = StorageValue<_, u32, ValueQuery>;
 
 #[pallet::storage]
-pub(super) type SomeComplexValue<T> = StorageValue<_, T::AccountId, ValueQuery>;
+pub(super) type SomeComplexValue<T: Config> = StorageValue<_, T::AccountId, ValueQuery>;
 
 #[pallet::storage]
 #[pallet::getter(fn some_map)]
-pub(super) type SomeMap<T> = StorageMap<_, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
+pub(super) type SomeMap<T: Config> = StorageMap<_, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
 
 #[pallet::storage]
-pub(super) type SomeDoubleMap<T> = StorageDoubleMap<_, Blake2_128Concat, u32, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
+pub(super) type SomeDoubleMap<T: Config> = StorageDoubleMap<_, Blake2_128Concat, u32, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
 
 #[pallet::storage]
 #[pallet::getter(fn some_nmap)]
-pub(super) type SomeNMap<T> = StorageNMap<
+pub(super) type SomeNMap<T: Config> = StorageNMap<
     _,
     (
         NMapKey<Blake2_128Concat, u32>,
@@ -295,7 +295,7 @@ Substrate's runtime storage APIs include capabilities to initialize storage item
 block of your blockchain. The genesis storage configuration APIs expose a number of mechanisms for
 initializing storage, all of which have entry points in `#[pallet::genesis_config]`.
 The `GenesisConfig` data type is defined under the attribute `#[pallet::genesis_config]` and
-the attribute [`pallet::genesis_build`] is used to build the genesis configuration.
+the attribute `#[pallet::genesis_build]` is used to build the genesis configuration.
 
 In order to consume a pallet's genesis configuration capabilities, you must include the
 `Config` element when adding the pallet to your runtime.
@@ -485,7 +485,7 @@ been met.
 Creating bounds on the size of storage items is an extremely effective way to control the use of
 runtime storage and one that is used repeatedly throughout the Substrate codebase. In general, any
 storage item whose size is determined by user action should have a bound on it.
-[The multi-signature capabilities from the Utility pallet](/rustdocs/latest/pallet_utility/trait.Config.html#associatedtype.MaxSignatories)
+[The multi-signature capabilities from the Multisig pallet](/rustdocs/latest/pallet_multisig/pallet/trait.Config.html#associatedtype.MaxSignatories)
 that were described above are one such example. In this case, the list of signatories associated
 with a multi-signature operation is provided by the multi-signature participants. Because this
 signatory list is [necessary to come to consensus](#what-to-store) on the state of the

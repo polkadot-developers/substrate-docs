@@ -15,14 +15,14 @@ mod incrementer {
         #[ink(constructor)]
         pub fn new(init_value: i32) -> Self {
             Self {
-                value: init_value
+                value: init_value,
             }
         }
 
         #[ink(constructor)]
         pub fn default() -> Self {
             Self {
-                value: 0
+                value: Default::default(),
             }
         }
 

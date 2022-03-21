@@ -17,13 +17,14 @@ export const useSiteMetadata = () => {
             email
             twitter
             linkedIn
-            element
             github
+            githubDevhub
             telegram
-            gitter
-            stackOverflow
             keywords
             substrateIO
+            terms
+            privacy
+            stackExchange
           }
         }
       }

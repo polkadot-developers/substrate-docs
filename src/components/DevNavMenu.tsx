@@ -282,7 +282,7 @@ const DevNavMenu = {
           },
           {
             title: 'Custom Chain Specifications',
-            link: '/how-to-guides/v3/basics/genesis/',
+            link: '/how-to-guides/v3/basics/custom-chain-spec/',
           },
           {
             title: 'Helper Functions',
@@ -354,7 +354,29 @@ const DevNavMenu = {
           },
         ],
       },
-      // 4. Testing.
+      // 4. Off-chain Workers
+      {
+        name: 'Off-chain Workers',
+        items: [
+          {
+            title: 'Making Transactions',
+            link: '/how-to-guides/v3/ocw/transactions/',
+          },
+          {
+            title: 'Making HTTP Requests',
+            link: '/how-to-guides/v3/ocw/http-requests/',
+          },
+          {
+            title: 'Local Storage',
+            link: '/how-to-guides/v3/ocw/local-storage/',
+          },
+          {
+            title: 'Off-chain Indexing',
+            link: '/how-to-guides/v3/ocw/indexing/',
+          },
+        ],
+      },
+      // 5. Testing.
       {
         name: 'Testing',
         items: [
@@ -368,7 +390,7 @@ const DevNavMenu = {
           },
         ],
       },
-      // 5. Storage Migrations.
+      // 6. Storage Migrations.
       {
         name: 'Storage Migrations',
         items: [
@@ -386,7 +408,7 @@ const DevNavMenu = {
           },
         ],
       },
-      // 6. Consensus.
+      // 7. Consensus.
       {
         name: 'Consensus',
         items: [
@@ -400,7 +422,7 @@ const DevNavMenu = {
           },
         ],
       },
-      // 7. Parachains.
+      // 8. Parachains.
       {
         name: 'Parachains',
         items: [
@@ -424,9 +446,13 @@ const DevNavMenu = {
             title: 'Runtime Upgrades',
             link: '/how-to-guides/v3/parachains/runtime-upgrades/',
           },
+          {
+            title: 'Auctions and Crowdloans',
+            link: '/how-to-guides/v3/parachains/auctions-crowdloans/',
+          },
         ],
       },
-      // 8. Tools
+      // 9. Tools
       {
         name: 'Tools',
         items: [
@@ -646,7 +672,7 @@ DevNavMenuTuts.set('cumulusTutorial', [
       //   link: '/tutorials/v3/cumulus/polkadot-launch/',
       // },
       {
-        title: `Connect to a Live Relay Chain`,
+        title: `Rococo Public Testnet`,
         link: '/tutorials/v3/cumulus/rococo',
       },
     ],

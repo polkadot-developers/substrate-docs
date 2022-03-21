@@ -22,8 +22,9 @@ pub mod pallet {
 		<<T as Config>::Currency as Currency<<T as frame_system::Config>::AccountId>>::Balance;
 
 	// Struct for holding Kitty information.
-	#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
+	#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo, MaxEncodedLen)]
 	#[scale_info(skip_type_params(T))]
+	#[codec(mel_bound())]
 	pub struct Kitty<T: Config> {
 		pub dna: [u8; 16],   // Using 16 bytes to represent a kitty DNA
 		pub price: Option<BalanceOf<T>>,
@@ -31,8 +32,7 @@ pub mod pallet {
 		pub owner: AccountOf<T>,
 	}
 	// Enum declaration for Gender.
-	#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
-	#[scale_info(skip_type_params(T))]
+	#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo, MaxEncodedLen)]
 	#[cfg_attr(feature = "std", derive(Serialize, Deserialize))]
 	pub enum Gender {
 		Male,
@@ -132,6 +132,7 @@ pub mod pallet {
 		fn gen_dna() -> [u8; 16] {
 			let payload = (
 				T::KittyRandomness::random(&b"dna"[..]).0,
+				<frame_system::Pallet<T>>::extrinsic_index().unwrap_or_default(),
 				<frame_system::Pallet<T>>::block_number(),
 			);
 			payload.using_encoded(blake2_128)

@@ -62,11 +62,9 @@ You will learn how to include a custom internal pallet that implements an event 
 
    In `/runtime/Cargo.toml`, include your pallet as a local dependency in `std` and add `runtime-benchmarks`. For example:
 
-   ```TOML
+   ```toml
    # --snip--
-   [dependencies.pallet-something]
-   default-features = false
-   path = '../pallets/something'
+   pallet-something = { default-features = false,   path = '../pallets/something'
    version = '3.0.0'
    # --snip--
    [features]
@@ -83,14 +81,12 @@ You will learn how to include a custom internal pallet that implements an event 
 
 **External pallets**
 
-The following is an example of how you would add an external pallet if the pallet is hosted in [crates.parity.io](https://crates.parity.io/):
+The following is an example of how you would add an external pallet if the pallet is hosted on [crates.parity.io](https://crates.parity.io/):
 
-```TOML
-[dependencies.pallet-external]
-default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-rev = 'd6c33e7ec313f9bd5e319dc0a5a3ace5543f9617'
-version = '3.0.0'
+```toml
+[dependencies]
+pallet-external = {default-features = false, git = "https://github.com/paritytech/substrate.git", version = "4.0.0-dev"}
+
 # --snip--
 runtime-benchmarks = [
   /* --snip */

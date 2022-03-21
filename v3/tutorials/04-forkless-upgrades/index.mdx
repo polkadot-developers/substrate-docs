@@ -50,19 +50,14 @@ function from the Scheduler pallet will be used to perform an upgrade that incre
 [existential (minimum) balance](/v3/getting-started/glossary#existential-deposit)
 for network accounts.
 
-If you have problems with this tutorial, the Substrate community is full of helpful resources! We
-maintain an active
-[Substrate Technical chat room](https://matrix.to/#/#substrate-technical:matrix.org) and
-monitor the
-[`substrate` tag on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate). You can
-also use the [`subport` GitHub repository](https://github.com/paritytech/subport/issues/new) to
-create an Issue.
+If you have problems with this tutorial, the Substrate community is full of helpful resources!
+We actively monitor the [Substrate Stack Exchange](https://substrate.stackexchange.com).
 
 <Message
   type={`yellow`}
   title={`Information`}
-  text="Please do note that your problem may already solved on Stackoverflow or Subport
-    do a search first for keywords in your error messages and concepts, and if you found them useful
+  text="Please do note that your problem may have already been solved on Stack Exchange.
+    Do a search first for keywords in your error messages and concepts, and if you found them useful
     as well, comment to let us know that it\'s a common issue to escalate for a fix.
     "
 />
@@ -221,11 +216,7 @@ First, add the Scheduler pallet as a dependency in the template node's runtime C
 **`runtime/Cargo.toml`**
 
 ```toml
-[dependencies.pallet-scheduler]
-default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'devhub/latest'
-version = '4.0.0-dev'
+pallet-scheduler = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.17" }
 
 #--snip--
 
@@ -392,7 +383,7 @@ Next up, we will:
 ## Schedule an Upgrade
 
 Now that the node template has been upgraded to include the Scheduler pallet,
-[the `schedule` function](rustdocs/latest/pallet_scheduler/pallet/enum.Call.html#variant.schedule)
+[the `schedule` function](/rustdocs/latest/pallet_scheduler/pallet/enum.Call.html#variant.schedule)
 can be used to perform the next runtime upgrade. In the previous part, the
 `sudo_unchecked_weight` function was used to override the weight associated with the `set_code`
 function; in this section, the runtime upgrade will be _scheduled_ so that it can be processed as
@@ -447,7 +438,7 @@ This will _override_ any previous build artifacts! So if you want to have a copy
 ### Upgrade the Runtime
 
 In the previous section, the Scheduler pallet was configured with the `Root` origin as its
-[`ScheduleOrigin`](/rustdocs/latest/pallet_scheduler/trait.Config.html#associatedtype.ScheduleOrigin),
+[`ScheduleOrigin`](/rustdocs/latest/pallet_scheduler/pallet/trait.Config.html#associatedtype.ScheduleOrigin),
 which means that the `sudo` function (_not_ `sudo_unchecked_weight`) can be used to invoke the
 `schedule` function. Use this link to open the Polkadot JS Apps UI's Sudo tab:
 https://polkadot.js.org/apps/#/sudo?rpc=ws://127.0.0.1:9944.

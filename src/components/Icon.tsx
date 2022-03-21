@@ -6,7 +6,6 @@ import tutsIcon from '../images/svgs/tuts.svg'
 import feTemplate from '../images/svgs/fe-template.svg'
 import nodeTemplate from '../images/svgs/node-template.svg'
 import elementOrg from '../images/svgs/element-original.svg'
-import stackOverflowOrg from '../images/svgs/stack-overflow-original.svg'
 import gradHat from '../images/svgs/grad-hat.svg'
 import calendar from '../images/svgs/calendar.svg'
 import grantsDollar from '../images/svgs/grants-dollar.svg'
@@ -21,7 +20,7 @@ import docsNavIcon from '../images/svgs/docs-nav-icon.svg'
 import arrowDown from '../images/svgs/arrow-down.svg'
 import copyText from '../images/svgs/copy-text.svg'
 import elementWhite from '../images/svgs/element-white.svg'
-import stackOverflowWhite from '../images/svgs/stack-overflow-white.svg'
+import stackExchange from '../images/svgs/stack-exchange-white.svg'
 import twitter from '../images/svgs/twitter.svg'
 import feedbackIcon from '../images/svgs/feedback-icon.svg'
 import externalIcon from '../images/svgs/external-icon.svg'
@@ -30,6 +29,8 @@ import adviceIcon from '../images/svgs/advice.svg'
 import noteIcon from '../images/svgs/note.svg'
 import searchIcon from '../images/svgs/search.svg'
 import closeIcon from '../images/svgs/close-icon.svg'
+import paperplane from '../images/svgs/paperplane.svg'
+import checkMark from '../images/svgs/check-mark.svg'
 
 const iconsMap = new Map()
 /* homepage */
@@ -49,8 +50,7 @@ iconsMap.set('nodeTemplate', nodeTemplate)
 /* social-media */
 iconsMap.set('elementOrg', elementOrg)
 iconsMap.set('elementWhite', elementWhite)
-iconsMap.set('stackOverflowOrg', stackOverflowOrg)
-iconsMap.set('stackOverflowWhite', stackOverflowWhite)
+iconsMap.set('stackExchange', stackExchange)
 iconsMap.set('github', github)
 iconsMap.set('twitter', twitter)
 /* UI specific */
@@ -66,6 +66,8 @@ iconsMap.set('adviceIcon', adviceIcon)
 iconsMap.set('noteIcon', noteIcon)
 iconsMap.set('searchIcon', searchIcon)
 iconsMap.set('closeIcon', closeIcon)
+iconsMap.set('checkMark', checkMark)
+iconsMap.set('paperplane', paperplane)
 
 interface IconProps {
   name: string
