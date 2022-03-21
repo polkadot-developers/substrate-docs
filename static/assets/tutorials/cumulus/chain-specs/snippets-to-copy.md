@@ -1,8 +1,7 @@
 # Copyable snippets for chain specs
 
 To get these, you _must rebuild polkadot_ with the `chain_spec.rs` set with the authorities (and more) you want configured.
-Then follow the [instructions](../../en/1-prep/2-chain-spec#generate-a-plain-chain-spec)
-
+Then follow the [instructions](../../../../../v3/how-to-guides/01-basics/e-custom-chainspec/index.mdx) for modifying the chainspec
 ## Two Validators
 
 ```json
