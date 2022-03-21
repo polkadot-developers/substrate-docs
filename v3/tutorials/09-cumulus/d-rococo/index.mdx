@@ -2,7 +2,7 @@
 title: Connect to the Rococo Public Testnet
 slug: /tutorials/v3/cumulus/rococo
 sideNav: cumulusTutorial
-version: 'polkadot-v0.9.17'
+version: 'polkadot-v0.9.18'
 section: tutorials
 category: parachains
 duration: 3 Hours
@@ -27,9 +27,6 @@ keywords:
 
 Rococo is Parity's public test network for cumulus-based parachains.
 This section of the workshop steps through how you can onboard your parachain to it.
-
-> NOTE: We're continually improving the onboarding procedure and documentation.
-> Please feel free to reach out in the [Parachain Technical matrix channel](https://matrix.to/#/#parachain-technical:matrix.parity.io) if you're facing any issues connecting your parachain!
 
 ## Before you begin
 
@@ -95,7 +92,7 @@ Follow these steps to request a temporary slot:
 1. Select `Current` for the `LeasePeriodStart`. If the current slot is full, you will be assigned the next available slot.
 1. Sign and submit the transaction.
 
-> The Rococo `sudo` key is controlled by Parity tech at this time, so to have the operation required to get a slot, please on the [Parachain Technical matrix channel](https://matrix.to/#/#parachain-technical:matrix.parity.io) once you complete the above and are ready to connect!
+> The Rococo `sudo` key is controlled by Parity tech at this time, so to have the operation required to get a slot, please on the [Subport repo `Rococo Request` issue template](https://matrix.to/#/#parachain-technical:matrix.parity.io) once you complete the above and are ready to connect!
 > They will initiate the slot for you ASAP.
 
 Given a period lease duration of 1 day, the current settings for assigned parachain slots on Rococo are (at the time of writing):
