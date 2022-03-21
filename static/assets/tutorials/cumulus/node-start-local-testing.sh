@@ -39,10 +39,11 @@ rm -rf /tmp/relay /tmp/parachain
 # Parachain collators gen wasm for correct chain spec with right paraID included
 ./target/release/parachain-collator export-genesis-wasm --chain rococo-local-parachain-2000-raw.json > para-2000-wasm
 
-# Register parathread that charlie reserved (2000)
 
-# Parachain collator launch
+# Start Parachain collator
 ./target/release/parachain-collator --alice --collator --force-authoring --chain rococo-local-parachain-2000-raw.json --base-path /tmp/parachain/alice --port 40333 --ws-port 8844 -- --execution wasm --chain ../docs/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json --port 30343 --ws-port 9977
+
+# Onboard parathread -> parachain with sudo that charlie reserved (2000)
 
 # Submit (as sudo) parasSudoWrapper -> sudoScheduleParaInitialize(id, genesis) for parachain 2000
 # https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/sudo
