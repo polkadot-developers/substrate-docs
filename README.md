@@ -113,9 +113,9 @@ guidelines if making any non-trivial PRs here.
 
 5.  **Open the code and start customizing!**
 
-    Your site is now running at [http://localhost:8001](http://localhost:8001)
+    Your site is now running at [http://localhost:8200/](http://localhost:8200/)
     and your GraphQL data layer is running at
-    [http://localhost:8000\_\_graphql](http://localhost:8000__graphql).
+    [http://localhost:8200\_\_graphql](http://localhost:8200/__graphql).
 
     Edit to see your site update in real-time on save.
 
