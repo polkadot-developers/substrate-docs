@@ -90,13 +90,13 @@ The Substrate HTTP library supports the following methods:
    let request = http::Request::post("https://reqres.in/api/users", vec![request_body.clone()])
      .add_header("x-api-key", "test_api_key")
      .add_header("content-type", "application/json");
-   
+
    let pending = request
      .deadline(deadline)
      .body(vec![request_body.clone()])
      .send()
      .map_err(|_| http::Error::IoError)?;
-   
+
    // Wait for response
    let response = pending
      .try_wait(deadline)

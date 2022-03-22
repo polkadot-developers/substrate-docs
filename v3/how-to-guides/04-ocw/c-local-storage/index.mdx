@@ -65,7 +65,7 @@ If the cached value is found, off-chain worker returns; else it will try to acqu
    fn offchain_worker(block_number: T::BlockNumber) {
      // ...
      let storage = StorageValueRef::persistent(b"pallet::my-storage");
-   
+
      if let Ok(Some(res)) = storage.get::<u64>() {
        log::info!("cached result: {:?}", res);
        return Ok(());
@@ -86,19 +86,19 @@ If the cached value is found, off-chain worker returns; else it will try to acqu
    ```rust
    const LOCK_BLOCK_EXPIRATION: u32 = 3; // in block number
    const LOCK_TIMEOUT_EXPIRATION: u64 = 10000; // in milli-seconds
-   
+
    fn offchain_worker(block_number: T::BlockNumber) {
      // ...
      let storage = StorageValueRef::persistent(b"pallet::my-storage");
-   
+
      if let Ok(Some(res)) = storage.get::<u64>() {
        log::info!("cached result: {:?}", res);
        return Ok(());
      }
-   
+
      // Very intensive computation here
      let val: u64 = 100 + 100;
-   
+
      // Define the storage lock
      let mut lock = StorageLock::<BlockAndTime<Self>>::with_block_and_time_deadline(
        b"pallet::storage-lock",
@@ -118,9 +118,9 @@ If the cached value is found, off-chain worker returns; else it will try to acqu
    ```rust
    fn offchain_worker(block_number: T::BlockNumber) {
      // ...
-   
+
      let mut lock = /* .... */;
-   
+
      if let Ok(_guard) = lock.try_lock() {
        storage.set(&val);
      }
@@ -139,25 +139,25 @@ If the cached value is found, off-chain worker returns; else it will try to acqu
    ```rust
    const LOCK_BLOCK_EXPIRATION: u32 = 3; // in block number
    const LOCK_TIMEOUT_EXPIRATION: u64 = 10000; // in milli-seconds
-   
+
    fn offchain_worker(block_number: T::BlockNumber) {
      let storage = StorageValueRef::persistent(b"pallet::my-storage");
-   
+
      if let Ok(Some(res)) = storage.get::<u64>() {
        log::info!("cached result: {:?}", res);
        return Ok(());
      }
-   
+
      // Very intensive computation here
      let val: u64 = 100 + 100;
-   
+
      // Define the storage lock
      let mut lock = StorageLock::<BlockAndTime<Self>>::with_block_and_time_deadline(
        b"pallet::storage-lock",
        LOCK_BLOCK_EXPIRATION,
        Duration::from_millis(LOCK_TIMEOUT_EXPIRATION)
      );
-   
+
      if let Ok(_guard) = lock.try_lock() {
        storage.set(&val);
      }

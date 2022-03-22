@@ -229,9 +229,9 @@ For example:
 
    ```rust
    pub fn new_partial(config: &Configuration) -> Result <SomeStruct, SomeError> {
-   
+
    	//...
-   
+
    	if config.offchain_worker.enabled {
    	// Initialize seed for signing transaction using off-chain workers. This is a convenience
    	// so learners can see the transactions submitted simply running the node.

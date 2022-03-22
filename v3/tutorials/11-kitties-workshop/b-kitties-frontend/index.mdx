@@ -171,10 +171,10 @@ So it does the heavy lifting, with the help of `KittyAvatar.js` and `KittCards.j
     - `Kitties` enables us to subscribe to chain storage item changes and use the `useEffect` React hook to update the state of our other components.
 
     There are two things our app needs to subscribe to: storage changes in the amount of Kitties and changes in Kitty objects.
-	To do this we'll create [a subscription](https://reactjs.org/docs/hooks-reference.html#useeffect) function for each.
+    To do this we'll create [a subscription](https://reactjs.org/docs/hooks-reference.html#useeffect) function for each.
 
     We'll use `api.query.substrateKitties.countForKitties` to listen for a change in the amount of Kitties, which will query `CountForKitties` from our Kitties pallet storage item.
-	Then, we'll use the `api.query.substrateKitties.kitties` method from Polkadot-JS API to get all kitty data and transform them with the `parseKitty()` function.
+    Then, we'll use the `api.query.substrateKitties.kitties` method from Polkadot-JS API to get all kitty data and transform them with the `parseKitty()` function.
 
 1.  To enable this, paste the following snippet:
 
@@ -461,7 +461,7 @@ The next part of our `KittyCards.js` component is to create the part that render
 We'll use a Semantic UI `Card` component to create a card that renders the Kitty avatar as well as the Kitty DNA, gender, owner and price.
 
 1. As you might have guessed, we'll use React props to pass in data to our KittyCard.
-Paste the following code snippet:
+   Paste the following code snippet:
 
    ```js
    // Use props
