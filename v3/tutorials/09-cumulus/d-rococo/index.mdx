@@ -37,7 +37,8 @@ This implies that:
 - You have your parachain's genesis state exported as a JSON file.
 - You have your parachain's runtime Wasm blob.
 
-In addition, you will need 5 ROCs from the [Rococo faucet](https://matrix.to/#/#rococo-faucet:matrix.org) to register a para ID.
+**In addition, you will need 5 ROCs from the [Rococo faucet](https://matrix.to/#/#rococo-faucet:matrix.org) to register a para ID.**
+Use the `!drip <accountID>` command in that channel to get 100 ROC before you continue.
 
 Lastly, you MUST have you collator's peering ports for the embedded relay chain and your parachain publicly accessible and discoverable.
 This way you are able to peer with Rococo validator nodes, otherwise you will not be able to produce blocks.
@@ -70,7 +71,7 @@ After the extrinsic succeeds, it takes 2 sessions for the chain to fully onboard
 
 ## Request your parachain slot
 
-Once the parachain is active as a parathread, the related project team should request either a **permanent** or a **temporary parachain slot** on Rococo.
+Once the parachain is active as a parathread, the related project team should [open a request](https://github.com/paritytech/subport/issues/new?assignees=&labels=Rococo&template=rococo.yaml) for either a **permanent** or a **temporary parachain slot** on Rococo.
 
 - **Permanent slots** are parachain slots assigned to teams who currently have a parachain slot on Polkadot (following a successful slot lease auction) and thus have the needs for continuously testing their codebase for compatibility with the latest bleeding edge features in a real-world live environment (Rococo).
   There is a limited number of permanent slots made available (see note below).
@@ -81,20 +82,25 @@ Once the parachain is active as a parathread, the related project team should re
   The temporary slots are meant to be used by teams who do not have a parachain slot yet on Polkadot, and are aiming for one in the near future.
 
 The goal of this more dynamic allocations aims at helping teams to test their runtimes more often, and in a more streamlined manner.
-At this point, requesting a permanent or temporary parachain slot still a privileged (sudo) operation to be performed by the test chain's operator (using a call to the `assignedSlots` pallet's dispatchable functions) but the long-term plan is to make it a community-driven process via Rococo's governance framework.
 
-Follow these steps to request a temporary slot:
+> **NOTE:**
+>
+> Rococo's runtime sets `AssignSlotOrigin = EnsureRoot<Self::AccountId>;` at this time, thus ONLY someone with sudo access can assign slots!
+>
+> The Rococo `sudo` key is presently controlled by Parity Technologies at this time, so to have the operation required to get a slot, please go to the [Subport repo and open a `Rococo Slot Request`](https://github.com/paritytech/subport/issues/new?assignees=&labels=Rococo&template=rococo.yaml) once you complete the above and are ready to connect!
+> A Parity team member will initiate the slot for you ASAP.
+>
+> Long-term, the plan is to make it a community-driven process via Rococo's governance framework.
 
-1. In the [Polkadot-JS Apps for Rococo](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#), go to `Developer -> Extrinsics`.
+Using an account with the `AssignSlotOrigin` origin, follow these steps to assign a temporary slot:
+
+1. In the [Polkadot-JS Apps for Rococo](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/extrinsics), go to `Developer -> Extrinsics`.
 1. Select the account with enough ROC balance that you wish to use to submit a transaction with.
 1. Select the `assignedSlots` pallet.
 1. Choose the `assignTempParachainSlot` function.
 1. Insert your reserved para ID. Make sure this matches the one you reserved from the previous section!
 1. Select `Current` for the `LeasePeriodStart`. If the current slot is full, you will be assigned the next available slot.
 1. Sign and submit the transaction.
-
-> The Rococo `sudo` key is controlled by Parity tech at this time, so to have the operation required to get a slot, please on the [Subport repo `Rococo Request` issue template](https://matrix.to/#/#parachain-technical:matrix.parity.io) once you complete the above and are ready to connect!
-> They will initiate the slot for you ASAP.
 
 Given a period lease duration of 1 day, the current settings for assigned parachain slots on Rococo are (at the time of writing):
 
@@ -106,6 +112,7 @@ Given a period lease duration of 1 day, the current settings for assigned parach
 
 These are subject to change, based on the needs of the community.
 
-🎉**_Congratulations!_**🎉  
+🎉**_Congratulations!_**🎉
+
 With your slot activated by the Parity team, you're now able to test your parachain on the Rococo test net!
 Please do note that when your temporary slot's lease ends, the parachain is automatically downgraded to a parathread. Registered and approved slots are cycled through automatically in a round-robin fashion, so you will expect to come back online as a parachain from time to time.
