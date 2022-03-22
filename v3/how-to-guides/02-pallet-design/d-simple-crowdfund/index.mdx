@@ -131,12 +131,12 @@ Create a function that provides the pallet's dispatchables with the account ID f
 
 1. Inside `impl<T: Config> Pallet<T>`, write:
 
-```rust
-pub fn fund_account_id(index: FundIndex) -> T::AccountId {
-	const PALLET_ID: ModuleId = ModuleId(*b"ex/cfund");
-	PALLET_ID.into_sub_account(index)
-}
-```
+   ```rust
+   pub fn fund_account_id(index: FundIndex) -> T::AccountId {
+   	const PALLET_ID: ModuleId = ModuleId(*b"ex/cfund");
+   	PALLET_ID.into_sub_account(index)
+   }
+   ```
 
 1. Generate unique [ChildInfo][childinfo-rustdocs] IDs:
 
@@ -172,8 +172,6 @@ its [associated methods][storage-map-rustdocs]. Our pallet's `create` function a
    - create an imbalance variable using [`T::Currency::withdraw`][imb-var-rustdocs]
    - update the `Funds` storage item using the `FundInfo` struct from [step 2](#2-create-a-custom-metadata-struct)
    - deposit a `Created` event
-
-   {' '}
 
    <Message
      type={`green`}
