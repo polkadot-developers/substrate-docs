@@ -1,8 +1,7 @@
 blank_issues_enabled: true
 contact_links:
-  - name: StackOverflow [tagged substrate]
-    url: https://stackoverflow.com/questions/tagged/substrate
-    about: Please seek support and ask questions on StackOverflow and tag them `substrate`.
-  - name: Substrate Community Chat
-    url: https://matrix.to/#/#substrate-technical:matrix.org
-    about: Join the community chat!
+  - name: Support & Troubleshooting with the Substrate Stack Exchange Community
+    url: https://substrate.stackexchange.com
+    about: |
+      For general problems with Substrate or related technologies, please search here first
+      for solutions, by keyword and tags. If you discover no solution, please then ask and questions in our community! We highly encourage everyone also share their understanding by answering questions for others.

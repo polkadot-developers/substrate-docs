@@ -456,8 +456,9 @@ type BalanceOf<T> =
 	<<T as Config>::Currency as Currency<<T as frame_system::Config>::AccountId>>::Balance;
 
 // Struct for holding Kitty information.
-#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
+#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo, MaxEncodedLen)]
 #[scale_info(skip_type_params(T))]
+#[codec(mel_bound())]
 pub struct Kitty<T: Config> {
 	pub dna: [u8; 16],
 	pub price: Option<BalanceOf<T>>,
@@ -503,8 +504,7 @@ To create it, you'll build out the following parts:
    Replace ACTION item #2 with the following enum declaration:
 
    ```rust
-   #[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
-   #[scale_info(skip_type_params(T))]
+   #[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo, MaxEncodedLen)]
    #[cfg_attr(feature = "std", derive(Serialize, Deserialize))]
    pub enum Gender {
    	Male,
@@ -589,12 +589,14 @@ It will be able to generate a random seed which we'll create unique Kitties with
 
    Generating DNA is similar to using randomness to randomly assign a gender type.
    The difference is that we'll be making use of `blake2_128` we imported in the previous part.
+   We will also be using the [extrinsic_index](https://docs.rs/frame-system/latest/frame_system/pallet/struct.Pallet.html#method.extrinsic_index) from the `frame_system` pallet in order to generate different hashes if we call this function more then once within the same block.
    Replace the ACTION #6 line with:
 
    ```rust
    fn gen_dna() -> [u8; 16] {
    	let payload = (
    		T::KittyRandomness::random(&b"dna"[..]).0,
+		<frame_system::Pallet<T>>::extrinsic_index().unwrap_or_default(),
    		<frame_system::Pallet<T>>::block_number(),
    	);
    	payload.using_encoded(blake2_128)
@@ -818,6 +820,9 @@ pub fn mint(
 	let new_cnt = Self::kitty_cnt().checked_add(1)
 		.ok_or(<Error<T>>::KittyCntOverflow)?;
 
+	// Check if the kitty does not already exist in our storage map
+	ensure!(Self::kitties(&kitty_id) == None, <Error<T>>::KittyExists);
+
 	// Performs this operation first because as it may fail
 	<KittiesOwned<T>>::try_mutate(&owner, |kitty_vec| {
 		kitty_vec.try_push(kitty_id)
@@ -837,7 +842,10 @@ Then, we create a unique `kitty_id` using a hashing function based on the curren
 Next, we increment the `KittyCnt` using the storage getter function `Self::kitty_cnt()`.
 We are also checking for an overflow with the `check_add()` function.
 
-Once we're done with the check, we proceed with updating our storage items by:
+Our last validation is to make sure the `kitty_id` does not already exist in our `Kitties` StorageMap.
+This is to avoid any possible hash key duplication insertions.
+
+Once our checks have passed, we proceed with updating our storage items by:
 
 1. Making use of [`try_mutate`](/rustdocs/latest/frame_support/storage/trait.StorageMap.html#tymethod.try_mutate) to update the kitty's owner vector.
 2. Using the [`insert`][insert-rustdocs] method provided by Substrate's StorageMap API to store the actually Kitty object and associate it with its `kitty_id`.

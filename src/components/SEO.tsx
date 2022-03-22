@@ -49,7 +49,7 @@ const SEO = ({ description, title, children }: SEOProps) => {
       `${siteMetadata.twitter}`,
       `${siteMetadata.linkedIn}`,
       `${siteMetadata.github}`,
-      `${siteMetadata.stackOverflow}`,
+      `${siteMetadata.stackExchange}`,
     ],
   }
 

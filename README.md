@@ -69,10 +69,6 @@ guidelines if making any non-trivial PRs here.
 
 - `main` branch is available at: https://docs.substrate.io/
 
-### Staging deployment
-
-- `develop` branch is available at: https://develop--substrate-docs.netlify.app/
-
 ## 🚀 Quick start
 
 1.  **Clone the repo**
@@ -96,14 +92,15 @@ guidelines if making any non-trivial PRs here.
 
     Copy `example.env.development` and rename to `.env.development`
 
-    Config URL variables based on your preferable local setup. URL will be used for links generation between documentation and platform stack
+    Config URL variables based on your preferable local setup. URL will be used for links generation between Substrate websites.
 
-    - `GATSBY_DOCS_URL` represents this project serving documentation
-    - `GATSBY_IO_URL`: represents platform website
+    Default localhost port configuration:
 
-    ```
-    GATSBY_IO_URL=http://localhost:8000  // local or hosted URL
-    GATSBY_DOCS_URL=http://localhost:8001 // default docs.substrate.io if not set
+    ```env
+    GATSBY_WEBSITE_URL=http://localhost:8100
+    GATSBY_DOCS_URL=http://localhost:8200
+    GATSBY_MARKETPLACE_URL=http://localhost:8300
+    GATSBY_CAREERS_URL=https://careers.substrate.io
     ```
 
 4.  **Fire the engine**
@@ -111,7 +108,7 @@ guidelines if making any non-trivial PRs here.
     Navigate into your new site’s directory and use the following command to start the development server locally.
 
     ```bash
-    yarn dev # alias for `yarn start` and `yarn develop`
+    yarn develop
     ```
 
 5.  **Open the code and start customizing!**
@@ -164,15 +161,10 @@ You can further configure it in `package.json` file. Currently it has a list of 
 excluded. These paths are not regex-supported and just doing a plain string matching. They are
 excluded because for:
 
-- `/substrate-io-staging.netlify.app`: internal staging site.
-
 - `/rustdocs`: all paths to `/rustdocs/<splat>` are going to be redirected to
   [https://paritytech.github.io/substrate/<splat>](https://paritytech.github.io/substrate). The
   redirection is handled by netlify redirect feature. Gatsby server will just rendered them as 404
   pages.
-
-- `/www.substrate.io`, `/docs.substrate.io`: these are public substrate.io pages that can be remove
-  from the excluded list once [substrate.io](https://www.substrate.io) is launched.
 
 - `/crates.io`, `/fonts.gstatic.com`, `/github.com`, `/wwww.nuget.org`: they either have
   rate-limiting check or doesn't welcome web crawlers to fetch them and just return a 404 page.
