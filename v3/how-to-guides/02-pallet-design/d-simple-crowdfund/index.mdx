@@ -118,7 +118,7 @@ use super::*;
    	FundInfoOf<T>,
    	OptionQuery,
    >;
-   
+
    #[pallet::storage]
    #[pallet::getter(fn fund_count)]
    /// The total number of funds that have so far been allocated.
@@ -145,7 +145,7 @@ pub fn fund_account_id(index: FundIndex) -> T::AccountId {
    		let mut buf = Vec::new();
    		buf.extend_from_slice(b"crowdfnd");
    		buf.extend_from_slice(&index.to_le_bytes()[..]);
-   
+
    		child::ChildInfo::new_default(T::Hashing::hash(&buf[..]).as_ref())
    }
    ```
@@ -174,6 +174,7 @@ its [associated methods][storage-map-rustdocs]. Our pallet's `create` function a
    - deposit a `Created` event
 
    {' '}
+
    <Message
      type={`green`}
      title={`Tip`}
@@ -191,7 +192,7 @@ its [associated methods][storage-map-rustdocs]. Our pallet's `create` function a
 
 1. Withdraw full balance of a contributor to a fund
 
-  `fn withdraw`:
+   `fn withdraw`:
 
    - perform preliminary safety checks using `ensure!`
    - return funds by using [`T::Currency::resolve_into_existing`][resolve-into-existing-rustdocs]
@@ -201,7 +202,7 @@ its [associated methods][storage-map-rustdocs]. Our pallet's `create` function a
 1. Dissolve an entire crowdfund after its retirement period has expired.
 
    `fn dissolve`:
-   
+
    - perform preliminary safety checks using `ensure!`
    - allow dissolver to collect funds by using [`T::Currency::resolve_creating`][resolve-creating-rustdocs] for dissolver to collect funds
    - use the child trie helper function `crowdfund_kill` to remove contributor info from storage
@@ -210,7 +211,7 @@ its [associated methods][storage-map-rustdocs]. Our pallet's `create` function a
 1. Dispense a payment to the beneficiary of a successful crowdfund
 
    `fn dispense`:
-   
+
    - use [`T::Currency::resolve_creating`][resolve-creating-rustdocs] for beneficiary and caller (separately) to collect funds
    - give initial deposit to account who calls this function as an incentive to clean up storage
    - remove the fund from storage using `<Funds<T>>::remove(index);` and `Self::crowdfund_kill(index);` to remove all contributors from storage in a single write
