@@ -4,10 +4,10 @@
 ./target/release/polkadot build-spec --chain rococo-local --disable-default-bootnode > rococo-custom-2-plain.json
 ./target/release/polkadot build-spec --chain rococo-custom-2-plain.json --raw --disable-default-bootnode > rococo-custom-2-raw.json
 
-# modify from snipets to copy and make 3 & 4 validator plain specs
+# (OPTIONAL) modify from snipets to copy and make 3 & 4 validator plain specs
 
-./target/release/polkadot build-spec --chain rococo-custom-3-plain.json --raw --disable-default-bootnode > rococo-custom-3-raw.json
-./target/release/polkadot build-spec --chain rococo-custom-4-plain.json --raw --disable-default-bootnode > rococo-custom-4-raw.json
+# ./target/release/polkadot build-spec --chain rococo-custom-3-plain.json --raw --disable-default-bootnode > rococo-custom-3-raw.json
+# ./target/release/polkadot build-spec --chain rococo-custom-4-plain.json --raw --disable-default-bootnode > rococo-custom-4-raw.json
 
 # Clear old DBs
 
@@ -19,6 +19,8 @@ rm -rf /tmp/relay /tmp/parachain
 ./target/release/polkadot --bob --validator --base-path /tmp/relay/bob --chain ../docs/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json --port 30334 --ws-port 9945
 
 # ./target/release/polkadot --charlie --validator --base-path /tmp/relay/charlie --chain ../docs/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json --port 30335 --ws-port 9946
+
+# Be sure to UPDATE the ./static/assets/tutorials/cumulus/chain-specs/rococo-custom-<raw,plain,various nodes>.json files here.
 
 # Register para ID 2000 with `Charlie`
 # https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/parachains/parathreads
@@ -39,10 +41,11 @@ rm -rf /tmp/relay /tmp/parachain
 # Parachain collators gen wasm for correct chain spec with right paraID included
 ./target/release/parachain-collator export-genesis-wasm --chain rococo-local-parachain-2000-raw.json > para-2000-wasm
 
-# Register parathread that charlie reserved (2000)
 
-# Parachain collator launch
+# Start Parachain collator, assumes ../docs/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json was updated in docs (working dir for this repo is set as `docs` below, beside the working dirs for polkadot and for the parachain template).
 ./target/release/parachain-collator --alice --collator --force-authoring --chain rococo-local-parachain-2000-raw.json --base-path /tmp/parachain/alice --port 40333 --ws-port 8844 -- --execution wasm --chain ../docs/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json --port 30343 --ws-port 9977
+
+# Onboard parathread -> parachain with sudo that charlie reserved (2000)
 
 # Submit (as sudo) parasSudoWrapper -> sudoScheduleParaInitialize(id, genesis) for parachain 2000
 # https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/sudo
