@@ -116,20 +116,20 @@ Therefore, the first step is to remove some files and content from the files in 
    ```rust
    //! Substrate Proof-of-Existence Pallet
    #![cfg_attr(not(feature = "std"), no_std)]
-   
+
    // Re-export pallet items so that they can be accessed from the crate namespace.
    pub use pallet::*;
-   
+
    #[frame_support::pallet]
    pub mod pallet {
    	use frame_support::{pallet_prelude::*, storage::bounded_vec::BoundedVec};
    	use frame_system::pallet_prelude::*;
-   
+
    	// Define the pallet struct placeholder, various pallet functions are implemented on it.
    	#[pallet::pallet]
    	#[pallet::generate_store(pub(super) trait Store)]
    	pub struct Pallet<T>(_);
-   
+
    	// TODO: Update the `Config` block below
    	/// Configure the pallet by specifying the parameters and types on which it depends.
    	#[pallet::config]
@@ -137,7 +137,7 @@ Therefore, the first step is to remove some files and content from the files in 
    		/// Because this pallet emits events, it depends on the runtime's definition of an event.
    		type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
    	}
-   
+
    	// TODO: Update the `event` block below
    	#[pallet::event]
    	#[pallet::generate_deposit(pub(super) fn deposit_event)]
@@ -147,9 +147,9 @@ Therefore, the first step is to remove some files and content from the files in 
    		SomethingHappened(),
    	}
    	// TODO: add #[pallet::error] block
-   
+
    	// TODO: add #[pallet::storage] block
-   
+
    	// TODO: add #[pallet::call] block
    }
    ```
@@ -162,13 +162,13 @@ Therefore, the first step is to remove some files and content from the files in 
 1. (Optionally) check that your code compiles by running the following command:
 
    ```bash
-   # Quick Check the template works *only* 
-   cargo check -p node-template-runtime 
+   # Quick Check the template works *only*
+   cargo check -p node-template-runtime
    # --- AND/OR ---
    # Full release build of the node template, inclusive of the template
    cargo build -r
    ```
-   
+
    This will include some warnings, but should be compilable
 
 ## Configure the pallet to emit events
@@ -439,27 +439,27 @@ This React component enables you to expose the proof-of-existence capabilities a
      const [block, setBlock] = useState(0)
 
      // Our `FileReader()` which is accessible from our functions below.
-     let fileReader
+     let fileReader;
      // Takes our file, and creates a digest using the Blake2 256 hash function
      const bufferToDigest = () => {
        // Turns the file content to a hexadecimal representation.
        const content = Array.from(new Uint8Array(fileReader.result))
          .map(b => b.toString(16).padStart(2, '0'))
-         .join('')
-       const hash = blake2AsHex(content, 256)
-       setDigest(hash)
-     }
-
+         .join('');
+       const hash = blake2AsHex(content, 256);
+       setDigest(hash);
+     };
+ 
      // Callback function for when a new file is selected.
      const handleFileChosen = file => {
-       fileReader = new FileReader()
-       fileReader.onloadend = bufferToDigest
-       fileReader.readAsArrayBuffer(file)
-     }
-
+       fileReader = new FileReader();
+       fileReader.onloadend = bufferToDigest;
+       fileReader.readAsArrayBuffer(file);
+     };
+ 
      // React hook to update the owner and block number information for a file
      useEffect(() => {
-       let unsubscribe
+       let unsubscribe;
        // Polkadot-JS API query to the `proofs` storage item in our pallet.
        // This is a subscription, so it will always get the latest value,
        // even if it changes.
@@ -476,9 +476,9 @@ This React component enables you to expose the proof-of-existence capabilities a
            }
          })
          .then(unsub => {
-           unsubscribe = unsub
-         })
-       return () => unsubscribe && unsubscribe()
+           unsubscribe = unsub;
+         });
+       return () => unsubscribe && unsubscribe();
        // This tells the React hook to update whenever the file digest changes
        // (when a new file is chosen), or when the storage subscription says the
        // value of the storage item has updated.
@@ -488,7 +488,7 @@ This React component enables you to expose the proof-of-existence capabilities a
      function isClaimed() {
        return block !== 0
      }
-
+ 
      // The actual UI elements which are returned from our component.
      return (
        <Grid.Column>
@@ -524,7 +524,7 @@ This React component enables you to expose the proof-of-existence capabilities a
                  palletRpc: 'templateModule',
                  callable: 'createClaim',
                  inputParams: [digest],
-                 paramFields: [true],
+                 paramFields: [true]
                }}
              />
              {/* Button to revoke a claim. Only active if a file is selected, and is already claimed. Updates the `status`. */}
@@ -537,7 +537,7 @@ This React component enables you to expose the proof-of-existence capabilities a
                  palletRpc: 'templateModule',
                  callable: 'revokeClaim',
                  inputParams: [digest],
-                 paramFields: [true],
+                 paramFields: [true]
                }}
              />
            </Form.Field>
@@ -545,12 +545,13 @@ This React component enables you to expose the proof-of-existence capabilities a
            <div style={{ overflowWrap: 'break-word' }}>{status}</div>
          </Form>
        </Grid.Column>
-     )
+     );
    }
 
    export default function TemplateModule(props) {
      const { api } = useSubstrateState()
      return api.query.templateModule ? <Main {...props} /> : null
+
    }
    ```
 

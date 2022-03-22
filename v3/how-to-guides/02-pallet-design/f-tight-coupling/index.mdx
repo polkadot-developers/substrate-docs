@@ -21,33 +21,33 @@ Use the [template pallet](https://github.com/substrate-developer-hub/substrate-n
 
 1. Configure your workspace
 
-    Assume you want to use a pallet called `special-pallet`, which is a pallet in your local workspace. 
-    Import it by providing its path in your pallet's `Cargo.toml` file:
+   Assume you want to use a pallet called `special-pallet`, which is a pallet in your local workspace.
+   Import it by providing its path in your pallet's `Cargo.toml` file:
 
-    ```toml
-    special-pallet = { path = '../special-pallet', default-features = false }
-    ```
+   ```toml
+   special-pallet = { path = '../special-pallet', default-features = false }
+   ```
 
 1. Add a trait bound to your pallet
 
-    Now all you need to do is create a trait bound around your pallet's configuration trait:
+   Now all you need to do is create a trait bound around your pallet's configuration trait:
 
-    ```rust
-    pub trait Config: frame_system::Config + special_pallet::Config {
-        // --snip--
-    }
-    ```
+   ```rust
+   pub trait Config: frame_system::Config + special_pallet::Config {
+       // --snip--
+   }
+   ```
 
-1. Use a getter function 
+1. Use a getter function
 
-    In order to use a method from `special_pallet`, call it the following way:
+   In order to use a method from `special_pallet`, call it the following way:
 
-    ```rust
-    // Get the members from `special-pallet` pallet
-    let who = special_pallet::Pallet::<T>::get();
-    ```
+   ```rust
+   // Get the members from `special-pallet` pallet
+   let who = special_pallet::Pallet::<T>::get();
+   ```
 
-    The above snippet assumes that `special_pallet` contains a method called `get()` which returns a vector of account IDs.
+   The above snippet assumes that `special_pallet` contains a method called `get()` which returns a vector of account IDs.
 
 ## Examples
 
