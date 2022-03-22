@@ -96,18 +96,18 @@ We can now bring our attention to creating the intended capabilities of our pall
    		origin: OriginFor<T>,
    		#[pallet::compact] amount: T::Balance
    		) -> DispatchResultWithPostInfo {
-   
+
    		let sender = ensure_signed(origin)?;
-   
+
    		// Check if the kitty does not already exist in our storage map
    		 ensure!(Self::kitties(&kitty_id) == None, <Error<T>>::KittyExists);
-   
+
    		// Update storage.
    		<BalanceToAccount<T>>::insert(&sender, amount);
-   
+
    		// Emit an event.
    		Self::deposit_event(Event::MintedNewSupply(sender));
-   
+
    		// Return a successful DispatchResultWithPostInfo.
    		Ok(().into())
    	}

@@ -47,25 +47,25 @@ So developers should be careful in forming the right indexing key to prevent pot
 > For example: `./target/release/substrate-node --enable-offchain-indexing true`
 
 1. Create a unique key used for indexing.
-  
+
    In the `src/lib.rs` of your pallet:
 
    ```rust
    const ONCHAIN_TX_KEY: &[u8] = b"my_pallet::indexing1";
-   
+
    #[pallet::call]
    impl<T: Config> Pallet<T> {
    	#[pallet::weight(100)]
    	pub fn extrinsic(origin: OriginFor<T>, number: u64) -> DispatchResult {
    		let who = ensure_signed(origin)?;
-   
+
    		let key = Self::derived_key(frame_system::Module::<T>::block_number());
    		// ...
-   
+
    		Ok(())
    	}
    }
-   
+
    impl<T: Config> Pallet<T> {
    	fn derived_key(block_number: T::BlockNumber) -> Vec<u8> {
    		block_number.using_encoded(|encoded_bn| {
@@ -87,23 +87,23 @@ So developers should be careful in forming the right indexing key to prevent pot
    ```rust
    use sp_io::offchain_index;
    const ONCHAIN_TX_KEY: &[u8] = b"my_pallet::indexing1";
-   
+
    #[derive(Debug, Deserialize, Encode, Decode, Default)]
    struct IndexingData(Vec<u8>, u64);
-   
+
    #[pallet::call]
    impl<T: Config> Pallet<T> {
    	#[pallet::weight(100)]
    	pub fn extrinsic(origin: OriginFor<T>, number: u64) -> DispatchResult {
    		let who = ensure_signed(origin)?;
-   
+
    		let key = Self::derived_key(frame_system::Module::<T>::block_number());
    		let data = IndexingData(b"submit_number_unsigned".to_vec(), number);
    		offchain_index::set(&key, &data.encode());
    		Ok(())
    	}
    }
-   
+
    impl<T: Config> Pallet<T> {
    	// -- skipped for brevity --
    }
@@ -116,23 +116,23 @@ So developers should be careful in forming the right indexing key to prevent pot
 
    ```rust
    use sp_runtime::offchain::StorageValueRef;
-   
+
    #[derive(Debug, Deserialize, Encode, Decode, Default)]
    struct IndexingData(Vec<u8>, u64);
-   
+
    fn offchain_worker(block_number: T::BlockNumber) {
    	// Reading back the off-chain indexing value. This is exactly the same as reading from
    	// ocw local storage.
    	let key = Self::derived_key(block_number);
    	let storage_ref = StorageValueRef::persistent(&key);
-   
+
    	if let Ok(Some(data)) = storage_ref.get::<IndexingData>() {
    		debug::info!("local storage data: {:?}, {:?}",
    			str::from_utf8(&data.0).unwrap_or("error"), data.1);
    	} else {
    		debug::info!("Error reading from local storage.");
    	}
-   
+
    	// -- snip --
    }
    ```
