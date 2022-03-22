@@ -46,124 +46,124 @@ If the cached value is found, off-chain worker returns; else it will try to acqu
 
 1. Define a storage reference in your pallet's `offchain_worker` function hook:
 
-```rust
-fn offchain_worker(block_number: T::BlockNumber) {
-  // Create a reference to Local Storage value.
-  // Since the local storage is common for all offchain workers, it's a good practice
-  // to prepend our entry with the pallet name.
-  let storage = StorageValueRef::persistent(b"pallet::my-storage");
-}
-```
+   ```rust
+   fn offchain_worker(block_number: T::BlockNumber) {
+     // Create a reference to Local Storage value.
+     // Since the local storage is common for all offchain workers, it's a good practice
+     // to prepend our entry with the pallet name.
+     let storage = StorageValueRef::persistent(b"pallet::my-storage");
+   }
+   ```
 
-In the above code, a persistent local storage is defined using [`StorageValueRef::persistent()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.persistent) which is identified by `pallet::my-storage` key.
-The key is in a byte array type instead of a `str` type.
-This local storage is persisted and shared across runs of the off-chain workers.
+   In the above code, a persistent local storage is defined using [`StorageValueRef::persistent()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.persistent) which is identified by `pallet::my-storage` key.
+   The key is in a byte array type instead of a `str` type.
+   This local storage is persisted and shared across runs of the off-chain workers.
 
-2. Check if the storage contains a cached value.
+1. Check if the storage contains a cached value.
 
-```rust
-fn offchain_worker(block_number: T::BlockNumber) {
-  // ...
-  let storage = StorageValueRef::persistent(b"pallet::my-storage");
+   ```rust
+   fn offchain_worker(block_number: T::BlockNumber) {
+     // ...
+     let storage = StorageValueRef::persistent(b"pallet::my-storage");
+   
+     if let Ok(Some(res)) = storage.get::<u64>() {
+       log::info!("cached result: {:?}", res);
+       return Ok(());
+     }
+   }
+   ```
 
-  if let Ok(Some(res)) = storage.get::<u64>() {
-    log::info!("cached result: {:?}", res);
-    return Ok(());
-  }
-}
-```
+   The result is fetched using [`get<T: Decode>()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.get) function, returning a `Result<Option<T>, StorageRetrievalError>` type.
+   We only care about the case of having a valid value. If yes, return `Ok(())`.
+   Note we also need to define the type of the returned value.
 
-The result is fetched using [`get<T: Decode>()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.get) function, returning a `Result<Option<T>, StorageRetrievalError>` type.
-We only care about the case of having a valid value. If yes, return `Ok(())`.
-Note we also need to define the type of the returned value.
+   Use [`set()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.get) to write to storage and [`mutate<T, E, F>()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.mutate) to read and change the storage atomically.
 
-Use [`set()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.get) to write to storage and [`mutate<T, E, F>()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.mutate) to read and change the storage atomically.
+1. If there is no valid value (`None`) or having a `StorageRetrievalError`, proceed to compute the required result and acquire the storage lock.
 
-3. If there is no valid value (`None`) or having a `StorageRetrievalError`, proceed to compute the required result and acquire the storage lock.
+   First define the storage lock as follows.
 
-First define the storage lock as follows.
+   ```rust
+   const LOCK_BLOCK_EXPIRATION: u32 = 3; // in block number
+   const LOCK_TIMEOUT_EXPIRATION: u64 = 10000; // in milli-seconds
+   
+   fn offchain_worker(block_number: T::BlockNumber) {
+     // ...
+     let storage = StorageValueRef::persistent(b"pallet::my-storage");
+   
+     if let Ok(Some(res)) = storage.get::<u64>() {
+       log::info!("cached result: {:?}", res);
+       return Ok(());
+     }
+   
+     // Very intensive computation here
+     let val: u64 = 100 + 100;
+   
+     // Define the storage lock
+     let mut lock = StorageLock::<BlockAndTime<Self>>::with_block_and_time_deadline(
+       b"pallet::storage-lock",
+       LOCK_BLOCK_EXPIRATION,
+       Duration::from_millis(LOCK_TIMEOUT_EXPIRATION)
+     );
+   }
+   ```
 
-```rust
-const LOCK_BLOCK_EXPIRATION: u32 = 3; // in block number
-const LOCK_TIMEOUT_EXPIRATION: u64 = 10000; // in milli-seconds
+   In the above code snippet, a storage lock is defined with both the [block and time deadline specified](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.with_block_and_time_deadline).
+   This function takes in a lock identifier, block number expiration, and time expiration.
+   The above lock expires when it either passes the specified amount of block number or time duration.
+   We can also specify the expiration period with [just the block number](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.with_block_deadline) or [time duration](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.with_deadline).
 
-fn offchain_worker(block_number: T::BlockNumber) {
-  // ...
-  let storage = StorageValueRef::persistent(b"pallet::my-storage");
+1. Acquire the storage lock using [`.try_lock()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.try_lock).
 
-  if let Ok(Some(res)) = storage.get::<u64>() {
-    log::info!("cached result: {:?}", res);
-    return Ok(());
-  }
+   ```rust
+   fn offchain_worker(block_number: T::BlockNumber) {
+     // ...
+   
+     let mut lock = /* .... */;
+   
+     if let Ok(_guard) = lock.try_lock() {
+       storage.set(&val);
+     }
+   }
+   ```
 
-  // Very intensive computation here
-  let val: u64 = 100 + 100;
+   It returns `Result<StorageLockGuard<'a, '_, L>, <L as Lockable>::Deadline>`.
+   The mechanism here is to get a hold of the lock guard first which can only be held by one process at a time before writing to storage.
+   Then the value is written to the storage using `set()`.
+   The data type of the value passed into `set()` must be the same as the type specified above in the `get<T>()` call.
 
-  // Define the storage lock
-  let mut lock = StorageLock::<BlockAndTime<Self>>::with_block_and_time_deadline(
-    b"pallet::storage-lock",
-    LOCK_BLOCK_EXPIRATION,
-    Duration::from_millis(LOCK_TIMEOUT_EXPIRATION)
-  );
-}
-```
+1. Finally, return from the off-chain worker function.
 
-In the above code snippet, a storage lock is defined with both the [block and time deadline specified](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.with_block_and_time_deadline).
-This function takes in a lock identifier, block number expiration, and time expiration.
-The above lock expires when it either passes the specified amount of block number or time duration.
-We can also specify the expiration period with [just the block number](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.with_block_deadline) or [time duration](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.with_deadline).
+   The full code looks similar to the following:
 
-4. Acquire the storage lock using [`.try_lock()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.try_lock).
-
-```rust
-fn offchain_worker(block_number: T::BlockNumber) {
-  // ...
-
-  let mut lock = /* .... */;
-
-  if let Ok(_guard) = lock.try_lock() {
-    storage.set(&val);
-  }
-}
-```
-
-It returns `Result<StorageLockGuard<'a, '_, L>, <L as Lockable>::Deadline>`.
-The mechanism here is to get a hold of the lock guard first which can only be held by one process at a time before writing to storage.
-Then the value is written to the storage using `set()`.
-The data type of the value passed into `set()` must be the same as the type specified above in the `get<T>()` call.
-
-5. Finally, return from the off-chain worker function.
-
-The full code looks similar to the following:
-
-```rust
-const LOCK_BLOCK_EXPIRATION: u32 = 3; // in block number
-const LOCK_TIMEOUT_EXPIRATION: u64 = 10000; // in milli-seconds
-
-fn offchain_worker(block_number: T::BlockNumber) {
-  let storage = StorageValueRef::persistent(b"pallet::my-storage");
-
-  if let Ok(Some(res)) = storage.get::<u64>() {
-    log::info!("cached result: {:?}", res);
-    return Ok(());
-  }
-
-  // Very intensive computation here
-  let val: u64 = 100 + 100;
-
-  // Define the storage lock
-  let mut lock = StorageLock::<BlockAndTime<Self>>::with_block_and_time_deadline(
-    b"pallet::storage-lock",
-    LOCK_BLOCK_EXPIRATION,
-    Duration::from_millis(LOCK_TIMEOUT_EXPIRATION)
-  );
-
-  if let Ok(_guard) = lock.try_lock() {
-    storage.set(&val);
-  }
-  Ok(())
-}
-```
+   ```rust
+   const LOCK_BLOCK_EXPIRATION: u32 = 3; // in block number
+   const LOCK_TIMEOUT_EXPIRATION: u64 = 10000; // in milli-seconds
+   
+   fn offchain_worker(block_number: T::BlockNumber) {
+     let storage = StorageValueRef::persistent(b"pallet::my-storage");
+   
+     if let Ok(Some(res)) = storage.get::<u64>() {
+       log::info!("cached result: {:?}", res);
+       return Ok(());
+     }
+   
+     // Very intensive computation here
+     let val: u64 = 100 + 100;
+   
+     // Define the storage lock
+     let mut lock = StorageLock::<BlockAndTime<Self>>::with_block_and_time_deadline(
+       b"pallet::storage-lock",
+       LOCK_BLOCK_EXPIRATION,
+       Duration::from_millis(LOCK_TIMEOUT_EXPIRATION)
+     );
+   
+     if let Ok(_guard) = lock.try_lock() {
+       storage.set(&val);
+     }
+     Ok(())
+   }
+   ```
 
 ## Examples
 

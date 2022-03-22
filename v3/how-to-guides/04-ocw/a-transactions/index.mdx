@@ -54,7 +54,7 @@ For example:
    }
    ```
 
-2. Add the [`CreateSignedTransaction` trait](https://paritytech.github.io/substrate/latest/frame_system/offchain/trait.CreateSignedTransaction.html) to the Config trait for your pallet.
+1. Add the [`CreateSignedTransaction` trait](https://paritytech.github.io/substrate/latest/frame_system/offchain/trait.CreateSignedTransaction.html) to the Config trait for your pallet.
    For example, your pallet `Config` trait should look similar to this:
 
    ```rust
@@ -65,7 +65,7 @@ For example:
    }
    ```
 
-3. Add a `crypto` module with an sr25519 signature key to ensure that your pallet owns an account that can be used for signing transactions.
+1. Add a `crypto` module with an sr25519 signature key to ensure that your pallet owns an account that can be used for signing transactions.
 
    ```rust
    use sp_core::{crypto::KeyTypeId};
@@ -101,7 +101,7 @@ For example:
    The macro simply declares that a crypto account is available for this pallet.
    You will need to initialize this account in the next step.
 
-4. Initialize a signing account for sending a signed transaction to on-chain storage.
+1. Initialize a signing account for sending a signed transaction to on-chain storage.
 
    ```rust
    fn offchain_worker(block_number: T::BlockNumber) {
@@ -113,7 +113,7 @@ For example:
 
    Call `Signer<T, C>::all_accounts()` to retrieve all signers this pallet owned. You will later (in step #9) inject one account into this pallet for this retrieval.
 
-5. Use `send_signed_transaction()` to send an extrinsic call:
+1. Use `send_signed_transaction()` to send an extrinsic call:
 
    ```rust
    fn offchain_worker(block_number: T::BlockNumber) {
@@ -133,7 +133,7 @@ For example:
    }
    ```
 
-6. Check if the transaction is successfully submitted on-chain and perform proper error handling by checking the returned `results`.
+1. Check if the transaction is successfully submitted on-chain and perform proper error handling by checking the returned `results`.
 
    ```rust
    fn offchain_worker(block_number: T::BlockNumber) {
@@ -150,7 +150,7 @@ For example:
    }
    ```
 
-7. Implement the `CreateSignedTransaction` trait in the runtime.
+1. Implement the `CreateSignedTransaction` trait in the runtime.
 
    Because you configured the `Config` trait for this pallet to implement the `CreateSignedTransaction` trait, you also need to implement that trait for the runtime.
 
@@ -205,7 +205,7 @@ For example:
 
    You can see a full example of the code in the [**Substrate** code base](https://github.com/paritytech/substrate/blob/polkadot-v0.9.17/bin/node/runtime/src/lib.rs).
 
-8. Implement `SigningTypes` and `SendTransactionTypes` in the runtime to support submitting transactions, whether they are signed or unsigned.
+1. Implement `SigningTypes` and `SendTransactionTypes` in the runtime to support submitting transactions, whether they are signed or unsigned.
 
    ```rust
    impl frame_system::offchain::SigningTypes for Runtime {
@@ -224,30 +224,30 @@ For example:
 
    You can see an example of this implementation in the [**Substrate** code base](https://github.com/paritytech/substrate/blob/polkadot-v0.9.17/bin/node/runtime/src/lib.rs#L1103-L1114).
 
-9. Inject an account for this pallet to own.
+1. Inject an account for this pallet to own.
    In a development environment (node running with `--dev` flag), this account key is inserted in the `node/src/service.rs` file as follows:
 
-```rust
-pub fn new_partial(config: &Configuration) -> Result <SomeStruct, SomeError> {
+   ```rust
+   pub fn new_partial(config: &Configuration) -> Result <SomeStruct, SomeError> {
+   
+   	//...
+   
+   	if config.offchain_worker.enabled {
+   	// Initialize seed for signing transaction using off-chain workers. This is a convenience
+   	// so learners can see the transactions submitted simply running the node.
+   	// Typically these keys should be inserted with RPC calls to `author_insertKey`.
+   	sp_keystore::SyncCryptoStore::sr25519_generate_new(
+   		&*keystore,
+   		node_template_runtime::pallet_your_ocw_pallet::KEY_TYPE,
+   		Some("//Alice"),
+   	).expect("Creating key with account Alice should succeed.");
+   	}
+   }
+   ```
 
-	//...
-
-	if config.offchain_worker.enabled {
-	// Initialize seed for signing transaction using off-chain workers. This is a convenience
-	// so learners can see the transactions submitted simply running the node.
-	// Typically these keys should be inserted with RPC calls to `author_insertKey`.
-	sp_keystore::SyncCryptoStore::sr25519_generate_new(
-		&*keystore,
-		node_template_runtime::pallet_your_ocw_pallet::KEY_TYPE,
-		Some("//Alice"),
-	).expect("Creating key with account Alice should succeed.");
-	}
-}
-```
-
-Refer to [this file](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/v2.0.0/node/src/service.rs#L87-L105) for a working example.
-This example adds the key for the `Alice` account to the key store identified by the pallet-defined `KEY_TYPE`.
-In production, one or more accounts are injected via chain spec configuration.
+   Refer to [this file](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/v2.0.0/node/src/service.rs#L87-L105) for a working example.
+   This example adds the key for the `Alice` account to the key store identified by the pallet-defined `KEY_TYPE`.
+   In production, one or more accounts are injected via chain spec configuration.
 
 Now, your pallet is ready to send signed transactions on-chain from off-chain workers.
 
@@ -305,7 +305,7 @@ To enable Substrate to accept certain unsigned transactions, you must implement 
 
    To see a full example of how `ValidateUnsigned` is implemented in a pallet, refer to [`pallet-example-offchain-worker` in **Substrate**](https://github.com/paritytech/substrate/blob/polkadot-v0.9.17/frame/examples/offchain-worker/src/lib.rs#L301-L329).
 
-2. In the off-chain worker function, you can send unsigned transactions as follows:
+1. In the off-chain worker function, you can send unsigned transactions as follows:
 
    ```rust
    #[pallet::hooks]
@@ -328,7 +328,7 @@ To enable Substrate to accept certain unsigned transactions, you must implement 
 
    This code prepares the call in the `let call = ...` line, submits the transaction using [`SubmitTransaction::submit_unsigned_transaction`](https://paritytech.github.io/substrate/latest/frame_system/offchain/struct.SubmitTransaction.html), and performs any necessary error handling in the callback function passed in.
 
-3. Enable the `ValidateUnsigned` trait for the pallet in the runtime by adding the `ValidateUnsigned` type to the `construct_runtime` macro.
+1. Enable the `ValidateUnsigned` trait for the pallet in the runtime by adding the `ValidateUnsigned` type to the `construct_runtime` macro.
 
    For example:
 
@@ -345,7 +345,7 @@ To enable Substrate to accept certain unsigned transactions, you must implement 
    );
    ```
 
-4. Implement the `SendTransactionTypes` trait for the runtime as described in [sending signed transactions](#sending-signed-transactions).
+1. Implement the `SendTransactionTypes` trait for the runtime as described in [sending signed transactions](#sending-signed-transactions).
 
    You can see a full example in [`pallet-example-offchain-worker` in **Substrate** code base](https://github.com/paritytech/substrate/blob/polkadot-v0.9.17/frame/examples/offchain-worker).
 
