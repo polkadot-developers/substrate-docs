@@ -848,7 +848,7 @@ This is to avoid any possible hash key duplication insertions.
 Once our checks have passed, we proceed with updating our storage items by:
 
 1. Making use of [`try_mutate`](/rustdocs/latest/frame_support/storage/trait.StorageMap.html#tymethod.try_mutate) to update the kitty's owner vector.
-2. Using the [`insert`][insert-rustdocs] method provided by Substrate's StorageMap API to store the actually Kitty object and associate it with its `kitty_id`.
+2. Using the [`insert`][insert-rustdocs] method provided by Substrate's StorageMap API to store the actual Kitty object and associate it with its `kitty_id`.
 3. Using [`put`](/rustdocs/latest/frame_support/storage/trait.StorageValue.html#tymethod.put) provided by the StorageValue API to store the latest Kitty count.
 
 <Message
