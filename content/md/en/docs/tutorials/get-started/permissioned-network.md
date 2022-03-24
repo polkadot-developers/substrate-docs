@@ -284,7 +284,7 @@ To configure genesis storage for authorized nodes:
       _enable_println: bool,
       ) -> GenesisConfig {
         
-1. Within the GenesisConfig declaration, add the following code block:
+1. Within the `GenesisConfig` declaration, add the following code block:
     
     ```rust
       node_authorization: NodeAuthorizationConfig {
@@ -452,10 +452,8 @@ To start the third node:
 
 ### Authorize access for the third node
 
-Remember that we are using `sudo` pallet for our governance, we can make a sudo call
-on `add_well_known_node` dispatch call provided by node-authorization pallet to add
-our node. You can find more avaliable calls in this
-[reference doc](/rustdocs/latest/pallet_node_authorization/pallet/enum.Call.html).
+This tutorial uses the `sudo` pallet for governance.
+Therefore, yu can use the `sudo` pallet to call the `add_well_known_node` function provided by `node-authorization` pallet to add the third node. 
 
 Go to **Developer** page, **Sudo** tab, in apps and submit the `nodeAuthorization` -
 `add_well_known_node` call with the peer id in hex of Charlie's node and the
@@ -463,29 +461,20 @@ owner is Charlie, of course. Note Alice is the valid sudo origin for this call.
 
 ![add_well_known_node](../img/tutorials/03-permissioned-network/add_well_known_node.png)
 
-After the transaction is included in the block, you should see Charlie's node is
-connected to Alice and Bob's nodes, and starts to sync blocks. 
+After the transaction is included in the block, you should see the `charlie` node is
+connected to the `alice` and `bob` nodes, and starts to sync blocks. 
 The three nodes can find each other using the [mDNS](/rustdocs/latest/sc_network/index.html) discovery mechanism is that is enabled by default in a local network.
 
-<Message
-  type={`gray`}
-  title={`Note`}
-  text="If your nodes are not on the same local network, you don't need mDNS and should use
-    `--no-mdns` to disable it. If running node in a public internet, you need to use
-    `--no-mdns` to disable it. 
-    "
-/>
+If your nodes are not on the same local network, you should use the command-line option `--no-mdns` to disable it.
 
-Now we have 3 well known nodes all validating blocks together!
+### Add a sub-node
 
-### Add Dave as a Sub-Node to Charlie
+The fourth node in this network is not as a well-known node.
+This node is owned by the user `dave`, but is a sub-node of the `charlie` node.
+The sub-node can only access the network by connecting to the node owned by `charlie`.
+The parent node is responsible for any sub-node it authorizes to connect and controls access if the sub-node needs to be removed or audited.
 
-Let's add Dave's node, not as a well-known node, but a "sub-node" of Charlie.
-Dave will _only_ be able to connect to Charlie to access the network.
-This is a security feature: as Charlie is therefore solely responsible for any connected sub-node peer. 
-There is one point of access control for David in case they need to be removed or audited.
-
-Start Dave's node with following command:
+To start the fourth node:
 
 ```bash
 ./target/release/node-template \
@@ -519,19 +508,9 @@ Similarly, Dave can add connection from Charlie's node.
 You should now see Dave is catching up blocks and only has one peer which belongs to Charlie!
 Restart Dave's node in case it's not connecting with Charlie right away.
 
-<Message
-  type={`gray`}
-  title={`Note`}
-  text="_Any_ node may issue _extrinsics_ that effect other node\'s behavior, as long as it
-    is _on chain data_ that is used for reference, and you have the _singing key_ in the keystore 
-    available for the account in question for the extrinsics\' required origin. 
-    All nodes in this demonstration have access to the developer signing keys, thus 
-    we were able to issue commands that effected Chalie\'s sub-nodes from _any_ connected node 
-    on our network on behalf of Charlie. In a real world application, node operators would 
-    _only_ have access to their node keys, and would be the only ones able to sign and submit 
-    extrinsics properly, very likely from their own node where they have control of the key\'s security.
-    "
-/>
+Any node can issue _extrinsics_ that affect the behavior of other nodes, as long as it is _on chain data_ that is used for reference, and you have the _singing key_ in the keystore available for the account in question for the required origin. 
+All nodes in this demonstration have access to the developer signing keys, thus we were able to issue commands that affected charlie's sub-nodes from _any_ connected node on our network on behalf of Charlie. 
+In a real world application, node operators would _only_ have access to their node keys, and would be the only ones able to sign and submit extrinsics properly, very likely from their own node where they have control of the key's security.
 
 **Congratulations!**
 
