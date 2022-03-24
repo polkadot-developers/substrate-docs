@@ -75,21 +75,22 @@ To update your development environment:
 
 ## Install the Substrate contracts node
 
-To simplify this tutorial, you can install a Substrate node that is preconfigured with the FRAME pallet for smart contracts.
-The`pallet-contracts` is included by default in the Substrate `contracts-node` sample code.\
+To simplify this tutorial, you can [download](https://github.com/paritytech/substrate-contracts-node/releases) a precompiled Substrate node for Linux or macOS.The precompiled binary includes the FRAME pallet for smart contracts by default. 
+Alternatively, you can build the preconfigured  `contracts-node` manually by running `cargo install contracts-node` on your local computer.
 
-To install the contracts node:
+To install the contracts node on macOS or Linux:
 
-1. Open a terminal shell on your computer.
+1. Open the [Releases](https://github.com/paritytech/substrate-contracts-node/releases) page.
 
-1. Install the contracts node by running the following command:
+1. Download the appropriate compressed archive for your local computer.
+
+1. Open the downloaded file and extract the contents to a working directory.
+
+If you can't download the precompiled node, you can compile it locally with a command similar to the following:
     
-    ```bash
-    cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag v0.8.0 --force --locked
-    ```
-
-    Note the tag is subject to change.
-    To see if a new tag is available, check the [substrate-contracts-node repository](https://github.com/paritytech/substrate-contracts-node/tags).
+```bash
+cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag <latest-tag> --forece --locked
+```
 
 ## Install additional packages
 
