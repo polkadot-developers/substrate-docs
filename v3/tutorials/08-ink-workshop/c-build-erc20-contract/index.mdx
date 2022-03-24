@@ -1,5 +1,5 @@
 ---
-title: Build an ERC20 Token Contract
+title: Build an ERC-20 token contract
 slug: /tutorials/v3/ink-workshop/pt3
 version: '3.0'
 sideNav: inkWorkshop
@@ -11,57 +11,44 @@ keywords:
   - wasm
 ---
 
-In this chapter, we will show you how you can build an ERC20 token contract with ink!.
+This tutorial illustrates how you can build an ERC-20 token contract using the ink! language.
+The ERC-20 specification defines a common standard for fungible tokens.
+Having a standard for the properties that define a token enables developers who follow the specification to build applications that can interoperate with other products and services.
 
-<TutorialObjective
-  data={{
-    textLineOne: '1. Understanding the ERC20 Standard',
-    url: '#erc20-standard',
-  }}
-/>
-<TutorialObjective
-  data={{
-    textLineOne: '2. Creating the ERC20 Template',
-    url: '#creating-the-erc20-template',
-  }}
-/>
-<TutorialObjective
-  data={{
-    textLineOne: '3. Transferring Tokens',
-    url: '#transferring-tokens',
-  }}
-/>
-<TutorialObjective
-  data={{
-    textLineOne: '4. Creating Events',
-    url: '#creating-events',
-  }}
-/>
-<TutorialObjective
-  data={{
-    textLineOne: '5. Supporting Approvals and Transfer From',
-    url: '#supporting-approval-and-transfer_from',
-  }}
-/>
-<TutorialObjective
-  data={{
-    textLineOne: '5. Testing',
-    url: '#testing-our-contract',
-  }}
-/>
+The ERC-20 token standard is not the only token standard, but it is one of the most commonly used.
 
-## Learning outcomes
+## Before you begin
 
-- Initial token minting
-- Tokens transfer
-- Approvals and third party transfers
-- Emitting runtime events through Substrate
+Before you begin, verify the following:
 
-But first, we will go over the ERC20 standard for those of you who are not familiar.
+* You are generally familiar with smart contracts, tokens, and cryptocurrency concepts and terminology.
 
-## ERC20 Standard
+* You have installed Rust and set up your development environment as described in [Installation](/v3/getting-started/installation).
 
-The [ERC20 token standard](https://eips.ethereum.org/EIPS/eip-20) defines the interface for the most popular Ethereum smart contract.
+* You have completed [Prepare your first contract](/tutorials/v3/ink-workshop/pt1) and have the Substrate contracts node installed locally.
+
+* You have completed [Develop a smart contract](/tutorials/v3/ink-workshop/pt2) and are familiar with how ink! uses Rust attribute macros to build smart contracts.
+
+## Tutorial objectives
+
+By completing this tutorial, you will accomplish the following objectives:
+
+* Learn the basic properties and interfaces defined in the ERC-20 standard.
+
+* Create tokens that adhere to the ERC-20 standard.
+
+* Transfer tokens between contracts.
+
+* Handle routing of transfer activity involving approvals or third-parties.
+
+* Create events related to token activity.
+
+## Basics of the ERC-20 standard
+
+The [ERC-20 token standard](https://eips.ethereum.org/EIPS/eip-20) defines the interface for most of the smart contracts that run on the Ethereum blockchain.
+Thse standard interfaces allow individuals to deploy their own cryptocurrency on top of an existing smart contract platform.
+
+If you review the standard, you'll notice the following core functions are defined.
 
 ```javascript
 // ----------------------------------------------------------------------------
@@ -86,449 +73,571 @@ contract ERC20Interface {
 }
 ```
 
-In summary, it allows individuals to deploy their own cryptocurrency on top of an existing smart
-contract platform. There isn't much magic happening in this contract. Users balances are stored in a
-`Mapping`, and a set of APIs are built to allow users to transfer tokens they own or allow a third
-party to transfer some amount of tokens on their behalf. Most importantly, all of this logic is
-implemented ensuring that funds are not unintentionally created or destroyed, and that a user's
-funds are protected from malicious actors.
+Users balances are mapped to account addresses and the interfaces allow users to transfer tokens that they own or allow a third party to transfer tokens on their behalf. 
+Most importantly, the smart contract logic must be implemented to ensure that funds are not unintentionally created or destroyed, and that a user's funds are protected from malicious actors.
 
-Note that all the public functions return a `bool` which specifies if the call was
-successful or not. Note that while a more idiomatic Rust approach would be to return
-`Result`s we will adhere to the Solidity specification for the sake of demonstration.
+Note that all of the public functions return a `bool` that only indicates whether the call was successful or not.
+In Rust, these functions would typically return a `Result`.
 
-## Creating the ERC20 Template
+## Create the token supply
 
-We are going to start another ink! project to build an ERC20 token contract.
+A smart contract for handling ERC-20 tokens is similar to the Incrementer contract that used maps to store values in [Use maps for storing values](/tutorials/smart-contracts/use-mapping/).
+For this tutorial, the ERC-20 contract consists of a fixed supply of tokens that are all deposited into the account associated with the contract owner when the contract is deployed. 
+The contract owner can then distribute the tokens to other users.
 
-Back in your working directory, run:
+The simple ERC-20 contract you create in this tutorial does not represent the only way you can mint and distribute tokens.
+However, this ERC-20 contract provides a good foundation for extending what you've learned in other tutorials and how to use the ink! language for building more robust smart contracts.
 
-```bash
-cargo contract new erc20
-```
+For the ERC-20 token contract, the initial storage consists of:
 
-Again, we will replace the `lib.rs` file content with the template provided on the right panel.
+* `total_supply` representing the total supply of tokens in the contract.
+* `balances` representing the individual balance of each account.
 
-You will notice that the template for the ERC20 token is VERY similar to the Incrementer contract.
-(Coincidence? ¯\\_(ツ)_/¯)
+To get started, lets create a new project with some template code.
 
-The storage (so far) consists of:
+To build an ERC-20 token smart contract:
 
-- `total_supply`: a storage `Value`, representing the total supply of tokens in our contract.
-- `balances`: a storage `Mapping`, representing the individual balance of each account.
+1. Open a terminal shell on your local computer, if you don’t already have one open.
 
-### 1. ERC20 Deployment
+1. Create a new project named `erc20` by running the following command:
+    
+    ```bash
+    cargo contract new erc20
+    ```
 
-The most basic ERC20 token contract is a fixed supply token. During contract deployment, all the
-tokens will be automatically given to the contract creator. It is then up to the creator to
-distribute those tokens to other users as he sees fit.
+1. Change to the new project directory by running the following command:
+    
+    ```bash
+    cd erc20/
+    ```
 
-Of course, this is not the only way to mint and distribute tokens, but the most simple one, and what
-we will be doing here.
+1. Open the `lib.rs` file in a text editor.
+    
+1. Replace the default template source code with new [erc20](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.1-template.rs) source code.
 
-So remember to `set` the total balance and `insert` the balance of the `Self::env().caller()`
+1. Save the changes to the `lib.rs` file, then close the file.
 
-### 2. Your Turn
+1. Open the `Cargo.toml` file in a text editor and review the dependencies for the contract.
 
-This chapter should be nothing more than a quick refresher of the content you already learned.
+1. In the `[dependencies]` section, modify the `scale` and `scale-info` settings, if necessary.
+    
+    ```toml
+    scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
+    scale-info = { version = "2", default-features = false, features = ["derive"], optional = true }
+    ```
 
-You need to:
+1. Save changes to the `Cargo.toml` file, then close the file.
 
-- Set up a constructor function which initializes the two storage items
-- Create getters for both storage items
+1. Verify that the program compiles and passes the trivial test by running the following command:
+    
+    ```bash
+    cargo +nightly test
+    ```
 
-Remember to run `cargo +nightly test` to test your work.
+    The command should display output similar to the following to indicate successful test completion:
 
-#### ** Template **
+    ```text
+    running 2 tests
+    test erc20::tests::new_works ... ok
+    test erc20::tests::balance_works ... ok
+    
+    test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+    ```
 
-[template-code](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.1-template.rs)
+1. Verify that you can build the WebAssembly for the contract by running the following command:
+    
+    ```bash
+    cargo +nightly contract build
+    ```
+    
+    If the program compiles successfully, you are ready to upload it in its current state or start adding functionality to the contract.
 
-#### ** Solution **
+## Upload and instantiate the contract
 
-[template-code-final](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.1-finished-code.rs)
+If you want to test what you have so far, you can upload the contract using the [Contracts UI](https://paritytech.github.io/contracts-ui).
 
-## Transferring Tokens
+To test the ERC-20 contract before adding new functions:
 
-So at this point, we have a single user that owns all the tokens for the contract. However, it's not
-_really_ a useful token unless you can transfer them to other people...
+1. Start the local contract node.
 
-Let's do that!
+1. Upload the `erc20.contract` file.
 
-### 1. Transfer Functions
+1. Specify an initial supply of tokens for the `new` constructor.
 
-The `transfer` function does exactly what you might expect: it allows the user calling the contract
-to transfer some funds they own to another user.
+1. Instantiate the contract on the running local node.
 
-You will notice in our template code there is a public function `transfer` and an internal function
-`transfer_from_to`. We have done this because in the future, we will be reusing the logic for a
-token transfer when we enable third party allowances and spending on-behalf-of.
+1. Select `totalSupply` as the Message to Send, then click **Read** to verify that the total supply of tokens is the same as the initial supply.
 
-#### transfer_from_to()
+1. Select `balanceOf` as the Message to Send.
 
-```rust
-fn transfer_from_to(&mut self, from: AccountId, to: AccountId, value: Balance) -> bool {
-	/* --snip-- */
-}
-```
+1. Select the `AccountId` of the account used to instantiate the contract, then click **Read**.
+    
+    If you select any other AccountId, then click **Read**, the balance is zero because all of the tokens are owned by the contract owner.
 
-The `transfer_from_to` function will be built without any _authorization_ checks. Because it is an
-internal function we fully control when it gets called. However, it will have all logical checks
-around managing the balances between accounts.
+## Transfer tokens
 
-Really we just need to check for one thing: make sure that the `from` account has enough funds to
-send to the `to` account, something likes the following:
+At this point, the ERC-20 contract has one user account that owns the total_supply of the tokens for the contract. 
+To make this contract useful, the contract owner must be able to transfer tokens to other accounts.
 
-```rust
-if balance_from < value {
-	return false
-}
-```
+For this simple ERC-20 contract, you are going to add a public `transfer` function that enables you—as the contract caller—to transfer tokens that you own to another user.
 
-Remember that the `transfer` function and other public functions return a bool to indicate success.
-If the `from` account does not have enough balance to satisfy the transfer, we will exit early and
-return false, not making any changes to the contract state. Our `transfer_from_to` will simply
-forward the "success" `bool` up to the function that calls it.
+The public `transfer` function calls a private `transfer_from_to()` function.
+Because this is an internal function, it can be called without any authorization checks. 
+However, the logic for the transfer must be able to determine whether the `from` account has tokens available to transfer to the receiving `to` account.
+The `transfer_from_to()` function uses the contract caller (`self.env().caller()`) as the `from` account. 
+With this context, the `transfer_from_to()` function then does the following:
 
-#### transfer()
+* Gets the current balance of the `from` and `to` accounts.
 
-```rust
-#[ink(message)]
-pub fn transfer(&mut self, to: AccountId, value: Balance) -> bool {
-	/* --snip-- */
-}
-```
+* Checks that the `from` balance is less than the `value` number of tokens to be sent.
+    
+    ```rust
+    let from_balance = self.balance_of(from);
+      if from_balance < value {
+      return Err(Error::InsufficientBalance)
+    }
 
-Finally, the `transfer` function will simply call into the `transfer_from_to` with the `from`
-parameter automatically set to the `self.env().caller()`. This is our "authorization check" since
-the contract caller is always authorized to move their own funds.
+* Subtracts the `value` from  transferring account and adds the `value` to the receiving account.
+    
+    ```rust
+    self.balances.insert(from, &(from_balance - value));
+    let to_balance = self.balance_of(to);
+    self.balances.insert(to, &(to_balance + value));
+    ```
 
-### 2. Transfer Math
+To add the transfer functions to the smart contract:
 
-There really is not much to say about the simple math executed within a token transfer.
+1. Open a terminal shell on your local computer, if you don’t already have one open.
 
-1. First we get the current balance of both the `from` and `to` account, making sure to use our
-   `balance_of` getter.
-2. Then we make the logic check mentioned above to ensure the `from` balance has enough funds to
-   send `value`.
-3. Finally, we subtract that `value` from the `from` balance and add it to the `to` balance and
-   insert those new values back in.
+1. Verify your are in the `erc20` project directory.
 
-### 3. Your Turn
+1. Open `lib.rs` in a text editor.
 
-Follow the `ACTION`s in the template code to build your transfer function.
+1. Add an `Error` declaration to return an error if there aren't enough tokens in an account to complete a transfer.
+    
+    ```rust
+    /// Specify ERC-20 error type.
+    #[derive(Debug, PartialEq, Eq, scale::Encode, scale::Decode)]
+    #[cfg_attr(feature = "std", derive(scale_info::TypeInfo))]
+    pub enum Error {
+        /// Return if the balance cannot fulfill a request.
+        InsufficientBalance,
+    }
+    ```
 
-Remember to run `cargo +nightly test` to test your work.
+1. Add an `Result` return type to return the `InsufficientBalance` error .
+    
+    ```rust
+    /// Specify the ERC-20 result type.
+    pub type Result<T> = core::result::Result<T, Error>;
+    ```
 
-#### ** Template **
+1. Add the `transfer()` public function to enable the contract caller to transfer tokens to another account.
+    
+    ```rust
+    #[ink(message)]
+    pub fn transfer(&mut self, to: AccountId, value: Balance) {
+      let from = self.env().caller();
+      self.transfer_from_to(&from, &to, value)
+    }
+    ```
 
-[template-code](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.2-template.rs)
+1. Add the `transfer_from_to()` private function to transfer tokens from account associated with the contract caller to a receiving account.
+    
+    ```rust
+    fn transfer_from_to(
+      &mut self,
+      from: &AccountId,
+      to: &AccountId,
+      value: Balance,
+    ) -> Result<()> {
+      let from_balance = self.balance_of_impl(from);
+      if from_balance < value {
+        return Err(Error::InsufficientBalance)
+      }
 
-#### ** Solution **
+      self.balances.insert(from, &(from_balance - value));
+      let to_balance = self.balance_of_impl(to);
+      self.balances.insert(to, &(to_balance + value));
+      Ok(())
+    }
+    ```
 
-[template-code-final](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.2-finished-code.rs)
+    This code snippet uses the `balance_of_impl()` function.
+    The `balance_of_impl()` function is the same as the `balance_of` function except that it uses references to look up the account balances in a more efficient way in WebAssembly.
+    Add the following function to the smart contract to use this function:
 
-#### ** Previous Solution **
+    ```rust
+    #[inline]
+    fn balance_of_impl(&self, owner: &AccountId) -> Balance {
+      self.balances.get(owner).unwrap_or_default()
+    }
+    ```
+1. Verify that the program compiles and passes the trivial test by running the following command:
+    
+    ```bash
+    cargo +nightly test
+    ```
 
-[template-code-previous](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.1-finished-code.rs)
+    The command should display output similar to the following to indicate successful test completion:
 
-## Creating Events
+    running 2 tests
+    test erc20::tests::new_works ... ok
+    test erc20::tests::balance_works ... ok
+    
+    test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+    ```
 
-Recall that contract calls cannot directly return a value to the outside world when submitting a
-transaction. However, often we will want to indicate to the outside world that something has taken
-place (e.g. a transaction has occurred or a certain state has been reached). We can alert others
-that this has occurred using an `event`.
+## Create events
 
-### 1. Declaring Events
+The ERC-20 token standard specifies that contract calls cannot directly return a value when submitting a transaction. 
+However, you might want your smart contract to signal in some way that an event has occurred.
+For example, you might want your smart contract to indicate when a transaction was made or that a transfer was approved.
+You can use events to send these kinds of signals.
 
-An event can communicate an arbitrary amount of data, defined in a similar manner as a `struct`.
+You can use events to communicate any kind of data.
+Defining the data for an event is similar to defining a `struct`.
 Events should be declared using the `#[ink(event)]` attribute.
 
-For example,
+### Add a transfer event
 
-```rust
-#[ink(event)]
-pub struct Transfer {
-	#[ink(topic)]
-	from: Option<AccountId>,
-	#[ink(topic)]
-	to: Option<AccountId>,
-	value: Balance,
-}
-```
+For this tutorial, you'll declare a `Transfer` event to provide information about completed the transfer operations.
+The `Transfer` event contains the following information:
 
-This `Transfer` event will contain three pieces of data - a value of type `Balance` and two
-Option-wrapped `AccountId` variables indicating the `from` and `to` accounts. For faster access to
-the event data they can have _indexed fields_. We can do this by using the `#[ink(topic)]` attribute
-tag on that field.
+* A value of type `Balance`.
+* An Option-wrapped `AccountId` variable for the `from` account.
+* An Option-wrapped `AccountId` variable for the `to` account.
 
-One way of retrieving data from an `Option<T>` variable is using the `.unwrap_or()` function. You may
-recall using this in the `my_value_or_zero()` and `balance_of()` functions in this project
-and the Incrementer project.
+For faster access to the event data they can have _indexed fields_. 
+You can do this by using the `#[ink(topic)]` attribute tag on that field.
 
-### 2. Emitting Events
+To add the `Transfer` event:
 
-Now that we have defined what data will be contained within the event and how to declare it, it's
-time to actually emit some events. We do this by calling `self.env().emit_event()` and include an
-event as the sole argument to the method call.
+1. Open the `lib.rs` file in a text editor.
 
-Remember that since the `from` and `to` fields are `Option<AccountId>`, we can't just set them to
-particular values. Let's assume we want to set a value of 100 for the initial deployer. This value
-does not come from any other account, and so the `from` value should be `None`.
+1. Declare the event using the `#[ink(event)]` attribute macro.
+    
+    ```rust
+    #[ink(event)]
+    pub struct Transfer {
+      #[ink(topic)]
+      from: Option<AccountId>,
+      #[ink(topic)]
+      to: Option<AccountId>,
+      value: Balance,
+    }
+    ```
+      
+    You can retrieve data for an `Option<T>` variable is using the `.unwrap_or()` function.
 
-```rust
-self.env()
-	.emit_event(
-		Transfer {
-			from: None,
-			to: Some(self.env().caller()),
-			value: 100,
-		}
-	);
-```
+### Emit the event
 
-Notice that `value` does not need a `Some()`, as the value is not stored in an `Option`.
+Now that you have declared the event and defined the information the event contains, you need to add the code that emits the event. 
+You do this by calling the `self.env().emit_event()` function with the event name as the sole argument to the call.
 
-We want to emit a `Transfer` event every time that a transfer takes place. In the ERC-20 template
-that we have been working on, this occurs in two places: first, during the `new` call, and second,
-every time that `transfer_from_to` is called.
+In this ERC-20 contract, you want to emit a `Transfer` event every time that a transfer takes place. 
+There are two places in the code where this occurs in two places:
 
-### 3. Your Turn
+* During the `new` call to initialize the contract.
 
-Follow the ACTIONs in the template code to emit a `Transfer` event every time a token transfer occurs.
+* Every time that `transfer_from_to` is called.
 
-Remember to run `cargo +nightly test` to test your work.
+The values for the `from` and `to` fields are `Option<AccountId>` data types.
+However, during the initial transfer of tokens the value set for the initial_supply_
+doesn't come from any other account.
+In the case, the Transfer event has a `from` value of `None`.
 
-<!-- tabs:start -->
+To emit the Transfer event:
 
-#### ** Template **
+1. Open the `lib.rs` file in a text editor.
 
-[template-code](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.3-template.rs)
+1. Add the `Transfer` event to the `new_init()` function in the `new` constructor.
+    
+    ```rust
+    fn new_init(&mut self, initial_supply: Balance) {
+      let caller = Self::env().caller();
+      self.balances.insert(&caller, &initial_supply);
+      self.total_supply = initial_supply;
+      Self::env().emit_event(Transfer {
+          from: None,
+          to: Some(caller),
+          value: initial_supply,
+      });
+    }
+    ```
 
-#### ** Solution **
+1. Add the `Transfer` event to the `transfer_from_to()` function.
+    
+    ```rust
+    self.balances.insert(from, &(from_balance - value));
+    let to_balance = self.balance_of_impl(to);
+    self.balances.insert(to, &(to_balance + value));
+    self.env().emit_event(Transfer {
+      from: Some(*from),
+      to: Some(*to),
+      value,
+    });
+    ```
+    
+    Notice that `value` does not need a `Some()` because the value is not stored in an `Option`.
 
-[template-code-final](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.3-finished-code.rs)
+1. Add a test that transfers tokens from one account to another.
+    
+    ```rust
+    #[ink::test]
+    fn transfer_works() {
+      let mut erc20 = Erc20::new(100);
+      assert_eq!(erc20.balance_of(AccountId::from([0x0; 32])), 0);
+      assert_eq!(erc20.transfer((AccountId::from([0x0; 32])), 10), Ok(()));
+      assert_eq!(erc20.balance_of(AccountId::from([0x0; 32])), 10);
+    }
 
-#### ** Previous Solution **
+1. Verify that the program compiles and passes all tests by running the following command:
+    
+    ```bash
+    cargo +nightly test
+    ```
 
-[template-code-previous](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.2-finished-code.rs)
+    The command should display output similar to the following to indicate successful test completion:
 
-<!-- tabs:end -->
+    ```text
+    running 3 tests
+    test erc20::tests::new_works ... ok
+    test erc20::tests::balance_works ... ok
+    test erc20::tests::transfer_works ... ok
+    
+    test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+    ```
 
-## Supporting `approval` and `transfer_from`
+## Enable third-party transfers
 
-We are almost there! Our token contract can now transfer funds from user to user and tell the
-outside world what is going on when this happens. All that is left to do is introduce the `approve`
-and `transfer_from` functions.
+The ERC-20 token contract can now transfer tokens between accounts and emit events when this happens. 
+As a final step, you can add the `approve` and `transfer_from` functions to enable third party transfers.
 
-### 1. Third Parity Transfers
+Enabling one account to spend tokens on behalf of another account allows your smart contract to support decentralized exchanges. 
+Instead of transferring your tokens directly to another user in a contract, you can approve some number of the tokens you own to be traded on your behalf.
+While you wait for a trade to execute, you can still control and spend your tokens, if needed. 
+You can also approve multiple contracts or users to access your tokens, so if one contract offers the best trade, you don't need to move tokens from one contract to another, which can be a costly and time-consuming process.
 
-This section is all about adding the ability for other accounts to safely spend some amount of your
-tokens.
+To ensure approvals and transfers can be done safely, the ERC-20 token contracts uses a two-step process, with separate  **approve** and **transfer From** operations.
 
-The immediate question should be: "Why the heck would I want that?"
+### Add the approval logic
 
-Well, one such scenario is to support Decentralized Exchanges. Basically, other smart contracts can
-allow you to exchange tokens with other users, usually one type of token for another. However, these
-"bids" do not always execute right away. Maybe you want to get a really good deal for token trade,
-and will hold out until that trade is met.
+Approving another account to spend your tokens is the first step in the third party transfer process.
+As a token owner, you can specify any account and any number of tokens that the designated account can transfer on your behalf. 
+You don't have approve all tokens in your account and you can specify an maximum number that an approved account is allowed to transfer.
 
-Well, rather than giving your tokens directly to the contract (an escrow), you can simply "approve"
-them to spend some of your tokens on your behalf! This means that during the time while you are
-waiting for a trade to execute, you can still control and spend your funds if needed. Better yet,
-you can approve multiple different contracts or users to access your funds, so if one contract
-offers the best trade, you do not need to pull out funds from the other and move them, a sometimes
-costly and time consuming process.
+When you call `approve` multiple times, you overwrite the previously-approved value with the new value. 
+By default, the approved value between any two accounts is `0`.
+If you want to revoke access to the tokens in your account, you can call the `approve` function with a value of `0`.
 
-So hopefully you can see why a feature like this would be useful, but how can we do it safely?
+To store approvals in the ERC-20 contract, you need to use a slightly more complex `Mapping` key.
 
-We use a two step process: **Approve** and **Transfer From**.
-
-#### Approve
-
-Approving another account to spend your funds is the first step in the third party transfer process.
-A token owner can specify another account and any arbitrary number of tokens it can spend on the
-owner's behalf. The owner need not have all their funds approved to be spent by others; in the
-situation where there is not enough funds, the approved account can spend up to the approved amount
-from the owner's balance.
-
-When an account calls `approve` multiple times, the approved value simply overwrites any existing
-value that was approved in the past. By default, the approved value between any two accounts is `0`,
-and a user can always call approve for `0` to revoke access to their funds from another account.
-
-To store approvals in our contract, we need to use a slightly more fancy `Mapping` key.
-
-Since each account can have a different amount approved for any other accounts to use, we need to
-use a tuple as our key which simply points to a balance value. Here is an example of what that
-would look like:
+Since each account can have a different amount approved for any other accounts to use, you need to use a tuple as the key that maps to a balance value. 
+For example:
 
 ```rust
 pub struct Erc20 {
-	/// Balances that are spendable by non-owners: (owner, spender) -> allowed
+	/// Balances that can be transferred by non-owners: (owner, spender) -> allowed
 	allowances: ink_storage::Mapping<(AccountId, AccountId), Balance>,
 }
 ```
 
-Here we have defined the tuple to represent `(owner, spender)` such that we can look up how much a
-"spender" can spend from an "owner's" balance using the `AccountId`s in this tuple. Remember that we
-will need to again create an `allowance_of_or_zero` function to help us get the allowance of an
-account when it is not initialized, and a getter function called `allowance` to look up the current
-value for any pair of accounts.
+The tuple uses `(owner, spender)` to identify the `spender` account that is allowed to access tokens on behalf of the `owner` up to a specified `allowance`.
 
-```rust
-/// Approve the passed AccountId to spend the specified amount of tokens
-/// on the behalf of the message's sender.
-#[ink(message)]
-pub fn approve(&mut self, spender: AccountId, value: Balance) -> bool {/* --snip-- */}
-```
+To add the approval logic to the smart contract:
 
-When you call the `approve` function, you simply insert the `value` specified into storage. The `owner` is always the `self.env().caller()`, ensuring that the function call is always authorized.
+1. Open the `lib.rs` file in a text editor.
 
-#### Transfer From
+1. Declare the `Approval` event using the `#[ink(event)]` attribute macro.
+    
+    ```rust
+    #[ink(event)]
+    pub struct Approval {
+        #[ink(topic)]
+        owner: AccountId,
+        #[ink(topic)]
+        spender: AccountId,
+        value: Balance,
+    }
+    ```
 
-Finally, once we have set up an approval for one account to spend on-behalf-of another, we need to create a special `transfer_from` function which enables an approved user to transfer those funds.
+1. Add an `Error` declaration to return an error if the transfer request exceeds the account allowance.
+    
+    ```rust
+    #[derive(Debug, PartialEq, Eq, scale::Encode, scale::Decode)]
+    #[cfg_attr(feature = "std", derive(scale_info::TypeInfo))]
+    pub enum Error {
+        InsufficientBalance,
+        InsufficientAllowance,
+    }
+    ```
 
-As mentioned earlier, we will take advantage of the private `transfer_from_to` function to do the bulk of our transfer logic. All we need to introduce is the _authorization_ logic again.
+1. Add the storage mapping for an owner and non-owner combination to an account balance.
+    
+    ```rust
+    allowances: Mapping<(AccountId, AccountId), Balance>,
+    ```
 
-So what does it mean to be authorized to call this function?
+1. Add the `approve()` function to authorize a `spender` account to withdraw tokens from the caller's account up to a maximum `value`.
+    
+    ```rust
+    #[ink(message)]
+    pub fn approve(&mut self, spender: AccountId, value: Balance) -> Result<()> {
+      let owner = self.env().caller();
+      self.allowances.insert((&owner, &spender), &value);
+      self.env().emit_event(Approval {
+        owner,
+        spender,
+        value,
+      });
+      Ok(())
+    }
+    ```
 
-1. The `self.env().caller()` must have some allowance to spend funds from the `from` account.
-2. The allowance must not be less than the value trying to be transferred.
+1. Add an `allowance()` function to return the number of tokens a `spender` is allowed to withdraw from the `owner` account.
+    
+    ```rust
+    #[ink(message)]
+    pub fn allowance(&self, owner: AccountId, spender: AccountId) -> Balance {
+        self.allowance_impl(&owner, &spender)
+    }
+    ```
 
-In code, that can easily be represented like so:
+    This code snippet uses the `allowance_impl()` function.
+    The `allowance_impl()` function is the same as the `allowance` function except that it uses references to look up the token allowance in a more efficient way in WebAssembly.
+    Add the following function to the smart contract to use this function:
 
-```rust
-let allowance = self.allowance_of_or_zero(&from, &self.env().caller());
-if allowance < value {
-	return false
-}
-/* --snip-- */
-true
-```
+    ```rust
+    #[inline]
+    fn allowance_impl(&self, owner: &AccountId, spender: &AccountId) -> Balance {
+        self.allowances.get((owner, spender)).unwrap_or_default()
+    }
+    ```
 
-Again, we exit early and return false if our authorization does not pass.
+### Add the transfer from logic
 
-If everything looks good though, we simply `insert` the updated allowance into the `allowance` `Mapping` (`let new_allowance = allowance - value`), and call the `transfer_from_to` between the specified `from` and `to` accounts.
+Now that you have set up an approval for one account to transfer tokens on behalf of another, you need to create a `transfer_from` function to enable an approved user to transfer the tokens.
+The `transfer_from` function calls the private `transfer_from_to` function to do most of the transfer logic. 
+There are a few requirements to authorize a non-owner to transfer tokens:
 
-### 2. Be Careful!
+* The `self.env().caller()` contract caller must be allocated tokens that are available in the `from` account.
 
-If you glaze over the logic of this function too quickly, you may introduce a bug into your smart contract. Remember when calling `transfer_from`, the `self.env().caller()` and the `from` account is used to look up the current allowance, but the `transfer_from` function is called between the `from` and `to` account specified.
+* The allocation stored as an `allowance` must be more than the value to be transferred.
 
-There are three account variables in play whenever `transfer_from` is called, and you need to make sure to use them correctly! Hopefully our test will catch any mistake you make.
+If these requirements are met, the contract inserts the updated allowance into the `allowance` variable and calls the `transfer_from_to()` function using the specified `from` and `to` accounts.
 
-### 3. Your Turn!
+Remember when calling `transfer_from`, the `self.env().caller()` and the `from` account are used to look up the current allowance, but the `transfer_from` function is called between the `from` and `to` accounts specified.
 
-You are almost there! This is the last piece of the ERC20 token contract.
+There are three account variables in play whenever `transfer_from` is called, and you need to make sure to use them correctly.
 
-Follow the `ACTION`s in the contract template to finish your ERC20 implementation.
+To add the `transfer_from` logic to the smart contract:
 
-Remember to run `cargo +nightly test` to test your work.
+1. Open the `lib.rs` file in a text editor.
 
-<!-- tabs:start -->
+1. Add the `transfer_from()` function to transfer the `value` number of tokens on behalf to the `from` account to the `to` account.
+    
+    ```rust
+    /// Transfers tokens on the behalf of the `from` account to the `to account
+    #[ink(message)]
+    pub fn transfer_from(
+        &mut self,
+        from: AccountId,
+        to: AccountId,
+        value: Balance,
+    ) -> Result<()> {
+        let caller = self.env().caller();
+        let allowance = self.allowance_impl(&from, &caller);
+        if allowance < value {
+            return Err(Error::InsufficientAllowance)
+        }
+        self.transfer_from_to(&from, &to, value)?;
+        self.allowances
+            .insert((&from, &caller), &(allowance - value));
+            Ok(())
+        }
+    }
+    ```
 
-#### ** Template **
+1. Add a test for the `transfer_from()` function.
+    
+    ```rust
+    #[ink::test]
+	fn transfer_from_works() {
+		let mut contract = Erc20::new(100);
+		assert_eq!(contract.balance_of(AccountId::from([0x1; 32])), 100);
+		contract.approve(AccountId::from([0x1; 32]), 20);
+		contract.transfer_from(AccountId::from([0x1; 32]), AccountId::from([0x0; 32]), 10);
+		assert_eq!(contract.balance_of(AccountId::from([0x0; 32])), 10);
+	}
+    ```
 
-[template-code](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.4-template.rs)
+1. Add a test for the `allowance()` function.
+    
+    ```rust
+    #[ink::test]
+	fn allowances_works() {
+		let mut contract = Erc20::new(100);
+		assert_eq!(contract.balance_of(AccountId::from([0x1; 32])), 100);
+		contract.approve(AccountId::from([0x1; 32]), 200);
+		assert_eq!(contract.allowance(AccountId::from([0x1; 32]), AccountId::from([0x1; 32])), 200);
 
-#### ** Solution **
+		contract.transfer_from(AccountId::from([0x1; 32]), AccountId::from([0x0; 32]), 50);
+		assert_eq!(contract.balance_of(AccountId::from([0x0; 32])), 50);
+		assert_eq!(contract.allowance(AccountId::from([0x1; 32]), AccountId::from([0x1; 32])), 150);
 
-[template-code-final](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.4-finished-code.rs)
+		contract.transfer_from(AccountId::from([0x1; 32]), AccountId::from([0x0; 32]), 100);
+		assert_eq!(contract.balance_of(AccountId::from([0x0; 32])), 50);
+		assert_eq!(contract.allowance(AccountId::from([0x1; 32]), AccountId::from([0x1; 32])), 150);
+	}
+    ```
 
-#### ** Previous Solution **
+1. Verify that the program compiles and passes all tests by running the following command:
+    
+    ```bash
+    cargo +nightly test
+    ```
 
-[template-code-previous](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.3-finished-code.rs)
+    The command should display output similar to the following to indicate successful test completion:
 
-<!-- tabs:end -->
+    ```text
+    running 5 tests
+    test erc20::tests::new_works ... ok
+    test erc20::tests::balance_works ... ok
+    test erc20::tests::transfer_works ... ok
+    test erc20::tests::transfer_from_works ... ok
+    test erc20::tests::allowances_works ... ok
+    
+    test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+    ```
 
-## Testing Our Contract
+1. Verify that you can build the WebAssembly for the contract by running the following command:
+    
+    ```bash
+    cargo +nightly contract build
+    ```
 
-Now let's conclude our ERC20 token implementation by walking through some test cases we have put forward
-when you are filling in the code in the previous sections. In fact if you have been following along
-on the coding exercise and running `cargo +nightly test` at the end to make sure the output are okay,
-you have been running the test cases all along.
+    After you build the WebAssembly for the contract, you can upload and instantiate it using the Contracts UI as described in [Upload and instantiate the contract](#upload-and-instantiate-the-contract).
 
-### 1. Motivation
+## Write test cases
 
-In software engineering practice, it is true that writing automatic test cases cannot be emphasized
-enough. There are many type of tests one can write and here we are focusing on writing **Unit Tests**.
-This means we as developers know the code logic (versus testing and not knowing the logic, a.k.a.
-[black-box testing](https://en.wikipedia.org/wiki/Black-box_testing)) and we write test cases to
-verify a function performs as we expected by giving it certain inputs and verifying it is returning
-the result we expect. Along the way we also test for edge cases, e.g. how it would handle an empty value,
-or a value that is out of its expected bound, and test for certain error handling mechanisms being executed
-or error messages being returned.
+In this tutorial, you added simple unit tests to the `lib.rs` file.
+The basic test cases illustrate that functions work as expected by giving specifying input values and verifying the result returned. 
+You could improve the quality of the code by writing additional test cases.
+For example, you might add tests that exercise error handling for invalid input, empty values, or values that are out of expected bounds.
 
-The benefit of having unit tests written is that once our program gets big or during
-future code refactoring, we can run these tests and if we see them pass, we are confident that
-our main program still works.
+## Next steps
 
-### 2. Unit Test Structure
+In this tutorial, you learned how to write a simple ERC-20 token smart contract using ink! to run on a Substrate blockchain.
+For example, this tutorial illustrated:
 
-Now let's get to walking through some test cases for smart contracts. They can be seen at the
-bottom section of the code on the right panel.
+* How to create a contract with a fixed number of tokens.
 
-```rust
-#[cfg(test)]
-mod tests {
-	use super::*;
-	use ink_lang as ink;
-	// snip...
-}
-```
+* How to transfer tokens from the contract owner to other accounts.
 
-`#[cfg(test)]` is specified so the code section immediately below it is run only when `cargo test`
-is executed but not in the normally-executed `cargo run`. We shorthand all code logic defined above
-with `use super::*`, and alias `ink_lang` as `ink`.
+* How to add tests to a smart contract.
 
-The first test case is just:
-
-```rust
-#[ink::test]
-fn new_works() {
-	let contract = Erc20::new(777);
-	assert_eq!(contract.total_supply(), 777);
-}
-```
-
-Each test case is a normal function definition returning nothing prepended by the `#[ink::test]`
-attribute macro. Inside the function, we setup for certain conditions and then assert for certain
-results. If the assert statement fails, it will panic and the test will abort with an error message.
-
-In the above test case, we just define a new contract with `777` as the total supply, and verify
-the total supply is indeed `777`.
-
-Now, let's walk through a more complex one, the last test case.
-
-```rust
-#[ink::test]
-fn transfer_from_works() {
-  let mut contract = Erc20::new(100);
-  assert_eq!(contract.balance_of(AccountId::from([0x1; 32])), 100);
-  contract.approve(AccountId::from([0x1; 32]), 20);
-  contract.transfer_from(AccountId::from([0x1; 32]), AccountId::from([0x0; 32]), 10);
-  assert_eq!(contract.balance_of(AccountId::from([0x0; 32])), 10);
-}
-```
-
-We first define a contract with `100` total supply. By default in testing, the account calling for
-all contract code is `0x00000001`. So here we assert that the contract creator has all the total supply
-at the beginning.
-
-Then we approve `0x00000001` to have an allowance of 20 to transfer his own fund.
-
-> **Note**: Notice this line is called with account `0x00000001`, so it may look silly that `0x00000001` has
-> to approve himself to use his own funds. In fact if he calls `transfer()` directly, he can still
-> transfer funds to others. But with `transfer_from()` we know that `approve()` has the logic to set the
-> allowance amount so `0x00000001` can call `transfer_from()` later and succeed.
-
-Afterward, we make a `transfer_from()` call, and ensure the destination account has the expected
-amount.
-
-You could also refer to the API doc on further usage of
-[`assert!()`](https://doc.rust-lang.org/std/macro.assert.html) and
-[`assert_eq!()`](https://doc.rust-lang.org/std/macro.assert_eq.html).
-
-Congratulations! You have completed the tutorial and you can write your own ERC20 token smart contract
-using ink! in Substrate.
+* How to enable third-party transfers.
 
 You can learn more about smart contract development in the following topics:
 
