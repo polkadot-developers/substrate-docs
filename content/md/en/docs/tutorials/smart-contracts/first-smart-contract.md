@@ -89,6 +89,8 @@ If you can't download the precompiled node, you can compile it locally with a co
 cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag <latest-tag> --force --locked
 ```
 
+You can find the latest tag to use on the [Tags](https://github.com/paritytech/substrate-contracts-node/tags) page.
+
 ## Install additional packages
 
 After compiling the `contracts-node` package, you need to install two additional packages:
