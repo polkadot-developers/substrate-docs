@@ -1,10 +1,7 @@
 ---
 title: Prepare your first contract
-slug: /tutorials/v3/ink-workshop/pt1
-version: '3.0'
-sideNav: inkWorkshop
-section: tutorials
-category: ink workshop
+slug: /tutorials/get-started/smart-contract/
+description: 
 keywords:
   - smart contracts
   - erc20
@@ -16,7 +13,7 @@ relevantSkills:
   - Smart Contracts
 ---
 
-Decentralized applications are most often written as **smart contracts**.
+As you learned in [Blockchain basics](/main-docs/fundamentals/blockchain-basics/) decentralized applications are most often written as **smart contracts**.
 Although Substrate is primarily a framework and toolkit for building custom blockchains, it can also provide a platform for smart contracts.
 This tutorial demonstrates how to build a basic smart contract to run on a Substrate-based chain. 
 In this tutorial, you'll explore using ink! as a programming language for writing Rust-based smart contracts.
@@ -31,7 +28,7 @@ Before you begin, verify the following:
 
 * You are generally familiar with blockchains and smart contract platforms.
 
-* You have installed Rust and set up your development environment as described in [Installation](/v3/getting-started/installation).
+* You have installed Rust and set up your development environment as described in [Install](/main-docs/install/).
 
 ## Tutorial objectives
 
@@ -88,36 +85,38 @@ To install the contracts node:
     cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag v0.8.0 --force --locked
     ```
 
-    Note the tag is subject to change.
+    Note the `tag` is subject to change.
     To see if a new tag is available, check the [substrate-contracts-node repository](https://github.com/paritytech/substrate-contracts-node/tags).
+
+    Because of the number of packages required, compiling the node can take several minutes.
 
 ## Install additional packages
 
-After compiling the contrcts node, you need to install two additional packages:
+After compiling the `contracts-node` package, you need to install two additional packages:
 
 * The WebAssembly  **binaryen** package for your operating system to optimize the WebAssembly bytecode for the contract.
 * The cargo-contract command line interface you'll use to set up smart contract projects.
 
-### Install the WebAssemvly binary
+### Install the WebAssembly optimizer
 
 To install the **binaryen** package:
 
 1. Open a terminal shell on your computer.
 
-1. Use the approproate package manager for your operating system to install the package.
+1. Use the appropriate package manager for your operating system to install the package.
     
     For example, on Ubuntu or Debian, run the following command:
-
+    
     ```bash
     sudo apt install binaryen
     ```
-
+    
     On macOS, run the following command:
-
+    
     ```bash
     brew install binaryen
     ```
-
+    
     For other operating systems, you can download the `binaryen` release directly from [WebAssebly releases](https://github.com/WebAssembly/binaryen/releases).
 
 ### Install the cargo-contract package
@@ -167,16 +166,19 @@ To generate the files for a smart contract project:
     
     You should see that the directory contains the following files:
     
+    ```bash
     -rwxr-xr-x   1 dev-doc  staff   285 Mar  4 14:49 .gitignore
     -rwxr-xr-x   1 dev-doc  staff  1023 Mar  4 14:49 Cargo.toml
     -rwxr-xr-x   1 dev-doc  staff  2262 Mar  4 14:49 lib.rs
+    ```
     
     Like other Rust projects, the `Cargo.toml` file is used to provides package dependencies and configuration information. 
     The `lib.rs` file is used for the smart contract business logic.
 
 ### Explore the default project files
 
-By default, creating a new smart contract project generates some template source code for a very simple contract that has one function—`flip()`—that changes a Boolean variable from true to false.
+By default, creating a new smart contract project generates some template source code for a very simple contract that has one function—`flip()`—that changes a Boolean variable from true to false and a second function—`get`—that gets the current value of the Boolean.
+The `lib.rs` file also contains two functions for testing that the contract works as expected.
 
 As you progress through the tutorial, you'll modify different parts of the starter code.
 By the end of the tutorial, you'll have a more advanced smart contract that looks like the [Flipper example](https://github.com/paritytech/ink/blob/v3.0.0-rc9/examples/flipper/lib.rs).
@@ -190,7 +192,7 @@ To explore the default project files:
 1. Open the `Cargo.toml` file in a text editor and review the dependencies for the contract.
 
 1. In the `[dependencies]` section, modify the `scale` and `scale-info` settings, if necessary.
-
+    
     ```toml
     scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
     scale-info = { version = "2", default-features = false, features = ["derive"], optional = true }
@@ -209,7 +211,7 @@ To test the contract:
 
 1. Open a terminal shell on your computer, if needed.
 
-1. Verify that you are in the `flipper` project folder.
+1. Verify that you are in the `flipper` project folder, if needed.
 
 1. Use the `test` subcommand and `nightly` toolchain to execute the default tests for the `flipper` contract by running the following command:
     
@@ -229,23 +231,21 @@ To test the contract:
 
 ### Build the contract
 
-After testing the default contract, you are ready to compile this project to WebAssmebly.
+After testing the default contract, you are ready to compile this project to WebAssembly.
 
-To build the WebAssmeby for this smart contract:
+To build the WebAssembly for this smart contract:
 
 1. Open a terminal shell on your computer, if needed.
 
 1. Verify that you are in the `flipper` project folder.
 
-1. Compile the `flipper` smart contract vy running the following command: 
+1. Compile the `flipper` smart contract by running the following command: 
     
     ```bash
     cargo +nightly contract build
     ```
     
-    This command builds a WebAssembly binary for the `flipper` project, a metadata file that contains the Contract Application Binary Interface (ABI), and a `.contract` file that contains both files. 
-    The `.contract` file can be used for deploying your contract to your chain. 
-
+    This command builds a WebAssembly binary for the `flipper` project, a metadata file that contains the contract Application Binary Interface (ABI), and a `.contract` file that you use to deploy the contract.
     For example, you should see output similar to the following:
 
     ```text
@@ -261,16 +261,16 @@ To build the WebAssmeby for this smart contract:
     - metadata.json (the contract's metadata)
     The `.contract` file can be used for deploying your contract to your chain.
     ```
-
+    
     The `metadata.json` file in the `target/ink` directory describes all the interfaces that you can use to interact with this contract. This file contains several important sections:
 
     * The `spec` section includes information about the functions—like **constructors** and **messages**—that can be called, the **events** that are emitted, and any documentation that can be displayed. This section also includes a `selector` field that contains a 4-byte hash of the function name and is used to route  contract calls to the correct functions.
 
     * The `storage` section defines all the **storage** items managed by the contract and how to access them.
-
+    
     * The `types` section provides the custom **data types** used throughout the rest of the JSON.
 
-## Run a Substrate smart contracts node
+## Start the Substrate smart contracts node
 
 If you have successfully installed [`substrate-contracts-node`](https://github.com/paritytech/substrate-contracts-node), you can start a local blockchain node for your smart contract.
 
@@ -283,17 +283,34 @@ To start the preconfigured `contracts-node`:
    ```bash
    substrate-contracts-node --dev
    ```
+   
+   You should see output in the terminal similar to the following:
 
-   You should see output in the terminal and after a few seconds, you should see blocks being finalized.
+   ```text
+   2022-03-07 14:46:25 Substrate Contracts Node    
+   2022-03-07 14:46:25 ✌️  version 0.8.0-382b446-x86_64-macos    
+   2022-03-07 14:46:25 ❤️  by Parity Technologies <admin@parity.io>, 2021-2022    
+   2022-03-07 14:46:25 📋 Chain specification: Development    
+   2022-03-07 14:46:25 🏷  Node name: possible-plants-8517    
+   2022-03-07 14:46:25 👤 Role: AUTHORITY    
+   2022-03-07 14:46:25 💾 Database: RocksDb at /var/folders/2_/g86ns85j5l7fdnl621ptzn500000gn/T/substrateEdrJW9/chains/dev/db/full    
+   2022-03-07 14:46:25 ⛓  Native runtime: substrate-contracts-node-100 (substrate-contracts-node-1.tx1.au1)    
+   2022-03-07 14:46:25 🔨 Initializing Genesis block/state (state: 0xe9f1…4b89, header-hash: 0xa1b6…0194)    
+   2022-03-07 14:46:25 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.    
+   2022-03-07 14:46:26 🏷  Local node identity is: 12D3KooWQ3P8BH7Z1C1ZoNSXhdGPCiPR7irRSeQCQMFg5k3W9uVd    
+   2022-03-07 14:46:26 📦 Highest known block at #0
+   ```
+
+   After a few seconds, you should see blocks being finalized.
 
    To interact with the blockchain, you need to connect to this node.
    You can connect to the node through a browser by opening the [Contracts UI](https://paritytech.github.io/contracts-ui).
 
-1. Navigate to the [Contracts UI](https://paritytech.github.io/contracts-ui) in a web browser.
+1. Navigate to the [Contracts UI](https://paritytech.github.io/contracts-ui) in a web browser, then click **Yes allow this application access**.
 
 1. Select **Local Node**.
     
-    ![Connect to local node](/assets/tutorials/ink-workshop/canvas-connect-to-local.png)
+    ![Connect to the local node](/media/images/tutorials/ink-workshop/connect-to-local-node.png)
 
 ## Deploy the contract
 
@@ -335,14 +352,14 @@ To upload the smart contract source code:
 1. Click **Upload New Contract Code**.
 
 1. Select an **Account** to use to create a contract instance.
-
+    
     You can select any existing account, including a predefined account such as `alice`.
 
 1. Type a descriptive **Name** for the smart contract, for example, Flipper Contract.
 
 1. Browse and select or drag and drop the `flipper.contract` file that contains the bundled Wasm blob and metadata into the upload section. 
-    
-    ![Upload the contract](/assets/tutorials/ink-workshop/flipper-instantiate-01.png)
+        
+    ![Upload the contract](/media/images/docs/tutorials/ink-workshop/upload-contract.png)
 
 1. Click **Next** to continue.
 
@@ -359,21 +376,21 @@ To create the instance:
 
 1. Review and accept the default **Max Gas Allowed** of `200000`.
     
-    ![Create an instance of the smart contract](/assets/tutorials/ink-workshop/flipper-instantiate-02.png)
+    ![Create an instance of the smart contract](/media/images/docs/tutorials/ink-workshop/create-instance.png)
 
 1. Click **Next**.
-
+    
     The transaction is now queued.
     If you needed to make changes, you could click **Go Back** to modify the input.
 
-    ![Complete instantiation](/assets/tutorials/ink-workshop/flipper-instantiate-03.png)
-
+    ![Complete instantiation](/media/images/docs/tutorials/ink-workshop/complete-upload.png)
+    
 1. Click **Upload and Instantiate**.
-
+    
     Depending on the account you used, you might be prompted for the account password.
     If you used a predefined account, you won't need to provide a password.
-
-    ![Successfully deployed instance of the smart contract](/assets/tutorials/ink-workshop/flipper-instantiate-04.png)
+    
+    ![Successfully deployed instance of the smart contract](/media/images/docs/tutorials/ink-workshop/first-contract.png)
 
 ## Call the smart contract
 
@@ -388,7 +405,7 @@ You can use the `get()` function to verify the current value is `false`.
 To test the `get()` function:
 
 1. Select any account from the **Account** list.
-
+    
     This contract doesn't place restrictions on who is allowed to send the `get()` request.
 
 1. Select **get(): bool** from the **Message to Send** list.
@@ -396,8 +413,8 @@ To test the `get()` function:
 1. Click **Read**.
 
 1. Verify that the value `false` is returned in the Call Results.
-    
-    ![Calling the get() function returns false](/assets/tutorials/ink-workshop/flipper-false.png)
+
+![Calling the get() function returns false](/media/images/docs/tutorials/ink-workshop/call-results-get.png)
 
 ### flip() function
 
@@ -406,7 +423,7 @@ The `flip()` function changes the value from `false` to `true`.
 To test the `flip()` function:
 
 1. Select any predefined account from the **Account** list.
-
+    
     The `flip()` function is a transaction that changes the chain state and requires an account with funds to be used to execute the call. 
     Therefore, you should select an account that has a predefined account balance, such as the `alice` account.
 
@@ -415,12 +432,16 @@ To test the `flip()` function:
 1. Click **Call**.
 
 1. Verify that the transaction is successful in the Call Results.
+    
+    ![Successful transaction](/media/images/docs/tutorials/ink-workshop/ssuccessful-transaction.png)
 
 1. Select **get(): bool** from the **Message to Send** list.
 
 1. Click **Read**.
 
 1. Verify the new value is `true` in the Call Results.
+    
+    ![The get() function displays the current value is true](/media/images/docs/tutorials/ink-workshop/flipped-true.png)
 
 ## Next steps
 
@@ -443,7 +464,12 @@ Additional smart contract tutorials build on what you learned in this tutorial a
 You can find an example of the final code for this tutorial in the assets for the [ink-workshop](https://docs.substrate.io/assets/tutorials/ink-workshop/1.4-finished-code.rs).
 You can learn more about smart contract development in the following topics:
 
-* [Smart Contract development with Substrate](/v3/runtime/smart-contracts)
-* [ink! documentation](https://paritytech.github.io/ink-docs/)
-* [Develop a smart contract](/tutorials/v3/ink-workshop/pt2)
-* [Build an ERC-20 token contract](/tutorials/v3/ink-workshop/pt3)
+- [Develop a smart contract](/tutorials/smart-contracts/develop-contract/)
+- [Build an ERC20 token contract](/tutorials/smart-contracts/erc20-token/)
+- [Troubleshoot smart contracts](tutorials/smart-contracts/sc-common-issues/)
+
+If you experienced any issues with this tutorial, submit an issue, ask questions or provide feedback.
+
+- [Submit an issue](https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose).
+
+- [Substrate Stack Exchange](https://substrate.stackexchange.com/).
