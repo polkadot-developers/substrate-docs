@@ -116,20 +116,20 @@ Therefore, the first step is to remove some files and content from the files in 
    ```rust
    //! Substrate Proof-of-Existence Pallet
    #![cfg_attr(not(feature = "std"), no_std)]
-   
+
    // Re-export pallet items so that they can be accessed from the crate namespace.
    pub use pallet::*;
-   
+
    #[frame_support::pallet]
    pub mod pallet {
    	use frame_support::{pallet_prelude::*, storage::bounded_vec::BoundedVec};
    	use frame_system::pallet_prelude::*;
-   
+
    	// Define the pallet struct placeholder, various pallet functions are implemented on it.
    	#[pallet::pallet]
    	#[pallet::generate_store(pub(super) trait Store)]
    	pub struct Pallet<T>(_);
-   
+
    	// TODO: Update the `Config` block below
    	/// Configure the pallet by specifying the parameters and types on which it depends.
    	#[pallet::config]
@@ -137,7 +137,7 @@ Therefore, the first step is to remove some files and content from the files in 
    		/// Because this pallet emits events, it depends on the runtime's definition of an event.
    		type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
    	}
-   
+
    	// TODO: Update the `event` block below
    	#[pallet::event]
    	#[pallet::generate_deposit(pub(super) fn deposit_event)]
@@ -147,9 +147,9 @@ Therefore, the first step is to remove some files and content from the files in 
    		SomethingHappened(),
    	}
    	// TODO: add #[pallet::error] block
-   
+
    	// TODO: add #[pallet::storage] block
-   
+
    	// TODO: add #[pallet::call] block
    }
    ```
@@ -162,13 +162,13 @@ Therefore, the first step is to remove some files and content from the files in 
 1. (Optionally) check that your code compiles by running the following command:
 
    ```bash
-   # Quick Check the template works *only* 
-   cargo check -p node-template-runtime 
+   # Quick Check the template works *only*
+   cargo check -p node-template-runtime
    # --- AND/OR ---
    # Full release build of the node template, inclusive of the template
    cargo build -r
    ```
-   
+
    This will include some warnings, but should be compilable
 
 ## Configure the pallet to emit events
@@ -371,7 +371,7 @@ So here we specify `MaxBytesInHash` to be this length (or less) in the runtime:
 
 > **_Something not working?_**
 > There is a full Node Template solution [here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/proof-of-existence) to use as a reference if you're stuck.
-> Check the [commit diff from the base template](https://github.com/substrate-developer-hub/substrate-node-template/compare/polkadot-v0.9.17...tutorials/solutions/proof-of-existence) for the exact changes built on the `polkadot-v0.9.17` release of the templates.
+> Check the [commit diff from the base template](https://github.com/substrate-developer-hub/substrate-node-template/compare/polkadot-v0.9.18...tutorials/solutions/proof-of-existence) for the exact changes built on the `polkadot-v0.9.18` release of the templates.
 
 ## Build the runtime with your new pallet
 
@@ -569,7 +569,7 @@ This will open up a new tab with the front-end serving at **http://localhost:800
 
 > **_Something not working?_**
 > There is a full Front End Template solution [here](https://github.com/substrate-developer-hub/substrate-front-end-template/tree/tutorials/solutions/proof-of-existence) to use as a reference if you're stuck.
-> Check the [commit diff from the base template](https://github.com/substrate-developer-hub/substrate-front-end-template/compare/latest...tutorials/solutions/proof-of-existence?expand=1) for the exact changes built on the `polkadot-v0.9.17` release of the templates.
+> Check the [commit diff from the base template](https://github.com/substrate-developer-hub/substrate-front-end-template/compare/latest...tutorials/solutions/proof-of-existence?expand=1) for the exact changes built on the `polkadot-v0.9.18` release of the templates.
 
 ### Submit a proof
 

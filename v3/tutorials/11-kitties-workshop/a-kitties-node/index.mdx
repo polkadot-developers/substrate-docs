@@ -596,7 +596,7 @@ It will be able to generate a random seed which we'll create unique Kitties with
    fn gen_dna() -> [u8; 16] {
    	let payload = (
    		T::KittyRandomness::random(&b"dna"[..]).0,
-		<frame_system::Pallet<T>>::extrinsic_index().unwrap_or_default(),
+   		<frame_system::Pallet<T>>::extrinsic_index().unwrap_or_default(),
    		<frame_system::Pallet<T>>::block_number(),
    	);
    	payload.using_encoded(blake2_128)
@@ -848,7 +848,7 @@ This is to avoid any possible hash key duplication insertions.
 Once our checks have passed, we proceed with updating our storage items by:
 
 1. Making use of [`try_mutate`](/rustdocs/latest/frame_support/storage/trait.StorageMap.html#tymethod.try_mutate) to update the kitty's owner vector.
-2. Using the [`insert`][insert-rustdocs] method provided by Substrate's StorageMap API to store the actually Kitty object and associate it with its `kitty_id`.
+2. Using the [`insert`][insert-rustdocs] method provided by Substrate's StorageMap API to store the actual Kitty object and associate it with its `kitty_id`.
 3. Using [`put`](/rustdocs/latest/frame_support/storage/trait.StorageValue.html#tymethod.put) provided by the StorageValue API to store the latest Kitty count.
 
 <Message
@@ -1426,6 +1426,7 @@ Once your chain is running and connected to the PolkadotJS Apps UI, perform thes
 After all of these actions, confirm that all users have the correct number of Kitties; that the total Kitty count is correct; and any other storage variables are correctly represented.
 
 🎉**_Congratulations!_**🎉
+
 You've successfully created the backend of a fully functional Substrate chain capable of creating and managing Substrate Kitties.
 The basic capabilities of our Kitties application could also be abstracted to other NFT-like use cases.
 Most importantly, at this point in the tutorial you should have all the knowledge you need to start creating your own pallet logic and dispatchable functions.

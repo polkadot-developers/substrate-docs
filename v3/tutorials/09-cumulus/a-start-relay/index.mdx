@@ -2,7 +2,7 @@
 title: Start a Relay Chain
 slug: /tutorials/v3/cumulus/start-relay
 sideNav: cumulusTutorial
-version: 'polkadot-v0.9.17'
+version: 'polkadot-v0.9.18'
 section: tutorials
 category: parachains
 duration: 3 Hours
@@ -124,9 +124,9 @@ RUSTFLAGS="-C codegen-units=1" cargo build --release
 
 This tutorial has been tested on:
 
-- [Polkadot `v0.9.17`](https://github.com/paritytech/polkadot/tree/v0.9.17)
-- [Substrate Parachain Template `polkadot-v0.9.17`](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.17)
-- [Polkadot-JS Apps `v0.106.2-29`](https://github.com/polkadot-js/apps/commit/129508461b062907c85bfa32ade096296cd3fe76).
+- [Polkadot `v0.9.18`](https://github.com/paritytech/polkadot/tree/release-v0.9.18)
+- [Substrate Parachain Template `polkadot-v0.9.18`](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.18)
+- [Polkadot-JS Apps `v0.106.2-29`](https://github.com/polkadot-js/apps/commit/087af7bc9ad388bd98216f2ed9b3d655429ce249).
   It is generally expected that the [hosted Polkadot-JS Apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/explorer) should work.
   If you have issues, build and run this UI yourself at this tagged version/commit.
 
@@ -139,12 +139,12 @@ conflicts.\n
 At the moment, parachains are _very tightly coupled_ with the relay chain codebase they are
 connecting to. To have the least amount of hiccups, be sure to use the corresponding tagged
 version of Polkadot and Parachain Template when working on this tutorial. So if you are using
-[**Polkadot \`v0.9.17\`**](https://github.com/paritytech/polkadot/tree/v0.9.17), use the equivalent
-version of [**Parachain Template \`polkadot-v0.9.17\`**](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.17).
+[**Polkadot \`v0.9.18\`**](https://github.com/paritytechtree/release-), use the equivalent
+version of [**Parachain Template \`polkadot-v0.9.18\`**](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.18).
 `}
 />
 
-We're doing our best to keep the parachain template and this tutorial updated presently with the <ExternalLink url="https://github.com/paritytech/polkadot/releases">latest release of Polkadot.</ExternalLink>
+We're doing our best to keep the parachain template and this tutorial updated presently with the <ExternalLink url="https://github.com/paritytechreleases">latest release of Polkadot.</ExternalLink>
 
 **Please join the [Parachain Technical matrix channel](https://matrix.to/#/#parachain-technical:matrix.parity.io) to report any issues you run into and get further support!**
 />
@@ -165,7 +165,7 @@ git clone https://github.com/paritytech/polkadot.git
 cd polkadot
 
 # Checkout the proper commit
-git checkout v0.9.17
+git checkout release-v0.9.18
 
 # Build the relay chain Node
 cargo build --release
@@ -197,7 +197,7 @@ git clone https://github.com/substrate-developer-hub/substrate-parachain-templat
 cd substrate-parachain-template
 
 # Checkout the proper commit
-git checkout polkadot-v0.9.17
+git checkout polkadot-v0.9.18
 
 # Build the parachain template collator
 cargo build --release

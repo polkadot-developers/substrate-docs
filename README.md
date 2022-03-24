@@ -4,12 +4,26 @@
   </a>
 </h1>
 <h1 align="center"> Substrate Developer Hub </h1>
-<h3 align="center"> https://docs.substrate.io/ </h3>
+<h2 align="center"> <a href="https://docs.substrate.io/"> https://docs.substrate.io/ </a></h3>
 <br/>
 
 <!-- Badges -->
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/42dec01f-3723-4828-9f01-45ac5b3c8a11/deploy-status)](https://app.netlify.com/sites/substrate-docs/deploys) ![linkcheck workflow](https://github.com/substrate-developer-hub/substrate-docs/actions/workflows/check-links.yml/badge.svg) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://docs.substrate.io/v3/contribute/style-guide/) [![Matrix](https://img.shields.io/matrix/frontier:matrix.org)](https://matrix.to/#/#substrate-technical:matrix.org)
+<p align="center">
+    <a href="https://app.netlify.com/sites/substrate-docs/deploys" alt="Netlify Status">
+        <img src="https://api.netlify.com/api/v1/badges/42dec01f-3723-4828-9f01-45ac5b3c8a11/deploy-status" /></a>
+    <a href="https://docs.substrate.io/v3/contribute/style-guide/" alt="PRs Welcome!">
+        <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat" /></a>
+	<br>
+	<br>
+	<a href="https://substrate.stackexchange.com/" alt="Substrate Stack Exchange">
+        <img style= "height: 30px" src="https://img.shields.io/static/v1?style=for-the-badge&logo=stackexchange&label=Substrate&message=Stack%20Exchange&color=green" /></a>
+	<br>
+	<br>
+    <a href="https://twitter.com/intent/follow?screen_name=substrate_io">
+        <img src="https://img.shields.io/twitter/follow/substrate_io?style=social&logo=twitter"
+            alt="follow on Twitter"></a>
+</p>
 
 <!-- Description -->
 
@@ -113,9 +127,9 @@ guidelines if making any non-trivial PRs here.
 
 5.  **Open the code and start customizing!**
 
-    Your site is now running at [http://localhost:8001](http://localhost:8001)
+    Your site is now running at [http://localhost:8200/](http://localhost:8200/)
     and your GraphQL data layer is running at
-    [http://localhost:8000\_\_graphql](http://localhost:8000__graphql).
+    [http://localhost:8200\_\_graphql](http://localhost:8200/__graphql).
 
     Edit to see your site update in real-time on save.
 

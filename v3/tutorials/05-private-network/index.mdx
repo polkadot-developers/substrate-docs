@@ -19,7 +19,7 @@ relevantSkills:
   - FRAME
 ---
 
-This tutorial provides a basic introduction to the **consensus** model used in the Substrate node template and how to start a blockchain network with an **authority set** of private **validators**.
+This tutorial illustrates how you can start a small, standalone blockchain network with an **authority set** of private **validators**.
 
 All blockchains require the nodes in the network to agree on the set of messages and their order to successfully create blocks and progress from one block to the next.
 Each block represents the state of data at a specific point in time and the nodes' agreement on the state is called **consensus**.
@@ -312,9 +312,10 @@ Instead of using predefined keys or the more secure `subkey` program, this tutor
 You have already used some command-line options to start your local blockchain node using the predefined `alice` and `bob` accounts.
 You can also use command-line options to generate random keys to use with Substrate.
 
-For this tutorial, you can remain connected to the internet and use your local node to generate your keys.
-As a best practice, you should use an air-gapped computer that has never been connected to the internet when you generate keys for a production blockchain.
-At a minimum, you should disconnect from the internet before you generate any keys you intend to use on a public blockchain.
+As a best practice, you should use an air-gapped computer that has never been connected to the internet when you generate keys for a production blockchain. 
+At a minimum, you should disconnect from the internet before you generate any keys you intend to use on a public or private blockchain that is not under your control.
+
+For this tutorial, however, you can use node template `key` subcommand to generate random keys locally and can remain connected to the internet.
 
 To generate keys using the node template:
 
@@ -347,14 +348,14 @@ To generate keys using the node template:
    `5CfBuoHDvZ4fd8jkLQicNL8tgjnK8pVG9AiuJrsNrRAx6CNW`
 
 1. Use the **secret phrase** for the account you just generated to derive keys using the Ed25519 signature scheme.
-   
+
    For example, run a command similar to the following:
 
    ```bash
    ./target/release/node-template key inspect --password-interactive --scheme Ed25519 "pig giraffe ceiling enter weird liar orange decline behind total despair fly"
    ```
 
-1. Type the password you used to the generated keys.
+1. Type the password you used to generate keys.
 
    The command displays output similar to the following:
 
@@ -377,11 +378,11 @@ To generate keys using the node template:
 For this tutorial, the private network consists of just two nodes, so you need two sets of keys.
 You have a few options to continue the tutorial:
 
-- You can use the keys for one or two of the predefined accounts.
+- You can use the keys for one of the predefined accounts.
 
 - You can repeat the steps in the previous section using a different identity on your local computer to generate a second key pair.
 
-- You can derive a child key pair to simulate a second identity on your local computer. 
+- You can derive a child key pair to simulate a second identity on your local computer.
 
 - You can recruit other participants to generate the keys required to join your private network.
 
@@ -542,7 +543,7 @@ For more information about this issue, see [Hunting down a non-determinism-bug i
 
 After you distribute the custom chain specification to all network participants, you're ready to launch your own private blockchain.
 The steps are similar to the steps you followed in [Start the blockchain using predefined accounts](#Start-the-blockchain-using-predefined-accounts).
-To continue with this part of the tutorial, you are no longer using a single physical computer or a single binary.
+If you follow the steps in this tutorial, however, you can add multiple computers to your network.
 
 To continue, verify the following:
 
@@ -562,14 +563,8 @@ To start the first node:
 
 1. Change to the root directory where you compiled the Substrate node template.
 
-1. Purge old chain data, if needed, by running the following command:
-
-   ```bash
-   ./target/release/node-template purge-chain --base-path /tmp/node01 --chain local -y
-   ```
-
-1. Start the first node using the custom chain specification by running the following command:
-
+1. Start the first node using the custom chain specification by running a command similar to the following:
+    
    ```bash
    ./target/release/node-template \
    --base-path /tmp/node01 \
@@ -582,48 +577,52 @@ To start the first node:
    --rpc-methods Unsafe \
    --name MyNode01
    ```
+    
+   Note the following command-line options you are using to start the node:
+    
+   * The `--base-path` command-line option specifies a custom location for the chain associated with this first node.
+    
+   * The `--chain` command-line option specifies the custom chain specification.
+   
+   * The `--rpc-methods Unsafe` command-line option allows you to continue the tutorial using an unsafe communication mode because your blockchain is not being used in a production setting.
 
-   Note the following changes to the command you are running to start the node:
+   * The `--name` command-line option enables you to give your node a human-readable name in the telemetry UI.
 
-   - Instead of the predefined `--alice` account, you are using your own keys.
-     You'll add your keys to the keystore in a separate step.
+   This command also starts the node using your own keys instead of a predefined account.
+   Because you aren't using a predefined account with known keys, you'll need to add your keys to the keystore in a separate step.
 
-   - The `--chain` command-line option specifies the custom chain specification.
+### View information about node operations
 
-   - The `--name` command-line option enables you to give your node a human-readable name in the telemetry UI.
+After you start the local node, information about the operations performed is displayed in the terminal shell.
+In that terminal, verify that you see output similar to the following:
 
-   - The `--rpc-methods Unsafe` command-line option allows you to continue the tutorial using an unsafe communication mode because your blockchain is not being used in a production setting.
+```bash
+2021-11-03 15:32:14 Substrate Node
+2021-11-03 15:32:14 ✌️  version 3.0.0-monthly-2021-09+1-bf52814-x86_64-macos
+2021-11-03 15:32:14 ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2021
+2021-11-03 15:32:14 📋 Chain specification: My Custom Testnet
+2021-11-03 15:32:14 🏷 Node name: MyNode01
+2021-11-03 15:32:14 👤 Role: AUTHORITY
+2021-11-03 15:32:14 💾 Database: RocksDb at /tmp/node01/chains/local_testnet/db
+2021-11-03 15:32:14 ⛓  Native runtime: node-template-100 (node-template-1.tx1.au1)
+2021-11-03 15:32:15 🔨 Initializing Genesis block/state (state: 0x2bde…8f66, header-hash: 0x6c78…37de)
+2021-11-03 15:32:15 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
+2021-11-03 15:32:15 ⏱  Loaded block-time = 6s from block 0x6c78abc724f83285d1487ddcb1f948a2773cb38219c4674f84c727833be737de
+2021-11-03 15:32:15 Using default protocol ID "sup" because none is configured in the chain specs
+2021-11-03 15:32:15 🏷 Local node identity is: 12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX
+2021-11-03 15:32:15 📦 Highest known block at #0
+2021-11-03 15:32:15 〽️ Prometheus exporter started at 127.0.0.1:9615
+2021-11-03 15:32:15 Listening for new connections on 127.0.0.1:9945.
+2021-11-03 15:32:20 💤 Idle (0 peers), best: #0 (0x6c78…37de), finalized #0 (0x6c78…37de), ⬇ 0 ⬆ 0
+```
 
-1. Verify that you see output similar to the following:
+Take note of the following information:
 
-   ```bash
-   2021-11-03 15:32:14 Substrate Node
-   2021-11-03 15:32:14 ✌️  version 3.0.0-monthly-2021-09+1-bf52814-x86_64-macos
-   2021-11-03 15:32:14 ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2021
-   2021-11-03 15:32:14 📋 Chain specification: My Custom Testnet
-   2021-11-03 15:32:14 🏷 Node name: MyNode01
-   2021-11-03 15:32:14 👤 Role: AUTHORITY
-   2021-11-03 15:32:14 💾 Database: RocksDb at /tmp/node01/chains/local_testnet/db
-   2021-11-03 15:32:14 ⛓  Native runtime: node-template-100 (node-template-1.tx1.au1)
-   2021-11-03 15:32:15 🔨 Initializing Genesis block/state (state: 0x2bde…8f66, header-hash: 0x6c78…37de)
-   2021-11-03 15:32:15 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
-   2021-11-03 15:32:15 ⏱  Loaded block-time = 6s from block 0x6c78abc724f83285d1487ddcb1f948a2773cb38219c4674f84c727833be737de
-   2021-11-03 15:32:15 Using default protocol ID "sup" because none is configured in the chain specs
-   2021-11-03 15:32:15 🏷 Local node identity is: 12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX
-   2021-11-03 15:32:15 📦 Highest known block at #0
-   2021-11-03 15:32:15 〽️ Prometheus exporter started at 127.0.0.1:9615
-   2021-11-03 15:32:15 Listening for new connections on 127.0.0.1:9945.
-   2021-11-03 15:32:20 💤 Idle (0 peers), best: #0 (0x6c78…37de), finalized #0 (0x6c78…37de), ⬇ 0 ⬆ 0
-   ```
+* The output shows the genesis block being initialized with the block hash `(state: 0x2bde…8f66, header-hash: 0x6c78…37de)`.
 
-   Take note of the following information:
+* The output specifies the **Local node identity** for your node. In this example, the node identity is `12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX`.
 
-   - The output shows the genesis block being initialized with the block hash `(state: 0x2bde…8f66, header-hash: 0x6c78…37de)`.
-
-   - The output specifies the **Local node identity** for your node.
-     In this example, the node identity is `12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX`.
-
-   - The output specifies the **IP address** used for the node is the local host `127.0.0.1`.
+* The output specifies the **IP address** used for the node is the local host `127.0.0.1`.
 
    These values are for this specific tutorial example.
    The values will be different for your node and you must provide the values for your node to other network participants to connect to the bootnode.
@@ -659,7 +658,7 @@ To insert keys into the keystore:
    --key-type aura
    ```
 
-   Replace `<your-secret-seed>` with the secret phrase or secret seed for the first key pair that you generated in [Generate local keys using node template](#generate-local-keys-using-the-node-template). 
+   Replace `<your-secret-seed>` with the secret phrase or secret seed for the first key pair that you generated in [Generate local keys using node template](#generate-local-keys-using-the-node-template).
    In this tutorial, the secret phrase is `pig giraffe ceiling enter weird liar orange decline behind total despair fly`, so the `--suri` command-line option specifies that string to insert the key into the keystore.
 
    You can also insert a key from a specified file location.
@@ -668,6 +667,8 @@ To insert keys into the keystore:
    ```bash
    ./target/release/node-template key insert --help
    ```
+
+1. Type the password you used to generate the keys.
 
 1. Insert the `grandpa` secret key generated from the `key` subcommand by running a command similar to the following:
 
@@ -679,6 +680,8 @@ To insert keys into the keystore:
    --password-interactive \
    --key-type gran
    ```
+
+1. Type the password you used to generate the keys.
 
 1. Verify that your keys are in the keystore for `node01` by running the following command:
 
@@ -703,12 +706,6 @@ To add a second validator to the private network:
 
 1. Change to the root directory where you compiled the Substrate node template.
 
-1. Purge old chain data, if needed, by running the following command:
-
-   ```bash
-   ./target/release/node-template purge-chain --base-path /tmp/node02 --chain local -y
-   ```
-
 1. Start a second blockchain node by running the following command:
 
    ```bash
@@ -722,7 +719,8 @@ To add a second validator to the private network:
    --validator \
    --rpc-methods Unsafe \
    --name MyNode02 \
-   --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX
+   --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX \
+   --password-interactive
    ```
 
    Be sure to set the correct `bootnode` identifier in the command.
@@ -748,6 +746,8 @@ To add a second validator to the private network:
    Replace `<second-participant-secret-seed>` with the secret phrase or secret seed that you generated in [Generate a second key pair](#generate-a-second-set-of-keys).
    The `aura` key type is required to enable block production.
 
+1. Type the password you used to generate the keys.
+
 1. Add the `grandpa` secret key generated from the `key` subcommand to the local keystore by running a command similar to the following:
 
    ```bash
@@ -764,6 +764,8 @@ To add a second validator to the private network:
 
    Block finalization requires at least two-thirds of the validators to add their keys to their respective keystores.
    Because this network is configured with two validators in the chain specification, block finalization starts after the second node has added its keys.
+
+1. Type the password you used to generate the keys.
 
 1. Verify that your keys are in the keystore for `node02` by running the following command:
 
@@ -795,22 +797,15 @@ To add a second validator to the private network:
    --validator \
    --rpc-methods Unsafe \
    --name MyNode02 \
-   --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX
+   --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX \
+   --password-interactive
    ```
 
-   Note that the command includes the `base-path` and `name` command-line options plus an additional `validator` option to specify that this node is a validator for the private network.
-   Also note that all validators must be using _identical chain specifications_ to peer.
-
-   Be sure to set the correct `bootnode` identifier in the command.
-   If you don't set the correct `bootnode` identifier, you see errors like this:
-
-   `💔 The bootnode you want to connect to at ... provided a different peer ID than the one you expect: ...`
-
-   After both nodes have added their keys to their respective keystores and been restarted, you should see the same genesis block and state root hashes.
-
+   After both nodes have added their keys to their respective keystores—located under `/tmp/node01` and `/tmp/node02`—and been restarted, you should see the same genesis block and state root hashes.
+    
    You should also see that each node has one peer (`1 peers`), and they have produced a block proposal (`best: #2 (0xe111…c084)`).
-   After a few seconds, you should see new blocks being finalized.
-
+   After a few seconds, you should see new blocks being finalized on both nodes.
+   
 ## Next steps
 
 You have now seen how you can start a private blockchain with trusted participants.

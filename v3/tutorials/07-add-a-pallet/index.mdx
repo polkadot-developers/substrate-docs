@@ -78,7 +78,7 @@ To add the Nicks pallet to the Substrate node template:
    list of dependencies.
 
    ```toml
-   pallet-nicks = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.17" }
+   pallet-nicks = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.18" }
    ```
 
 In this `dependencies` section, the`default-features = false` setting specifies that the pallet features are not used by default when compiling the runtime.
@@ -86,9 +86,9 @@ Instead, the features that are compiled for the runtime are controlled by specif
 
 Because the Substrate runtime compiles to both a native Rust binary with standard library functions [`std`](https://doc.rust-lang.org/std/) and a [WebAssembly (Wasm)](https://webassembly.org/) binary that does not include the standard library, the pallet features that get compiled depend on whether you are compiling the Rust binary (`std` features) or the WebAssembly binary (`no-std`). For more information about compiling [`std`](https://doc.rust-lang.org/std/) and [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html) features, see the [Rust Embedded Book](https://docs.rust-embedded.org/book/intro/no-std.html#summary).
 
-   The remaining lines specify that Cargo should use the `pallet-nicks` crate from the `paritytech/substrate` repository with the correct *matching* version of substrate all other crates are using.
+The remaining lines specify that Cargo should use the `pallet-nicks` crate from the `paritytech/substrate` repository with the correct _matching_ version of substrate all other crates are using.
 
-   For an introduction to editing `Cargo.toml` files, see the [Cargo reference documentation](https://doc.rust-lang.org/cargo/reference/index.html).
+For an introduction to editing `Cargo.toml` files, see the [Cargo reference documentation](https://doc.rust-lang.org/cargo/reference/index.html).
 
 1. Add the `pallet-nicks` crate to the list of `features` to be included in the `std` feature set by adding the following line `features` section.
 
