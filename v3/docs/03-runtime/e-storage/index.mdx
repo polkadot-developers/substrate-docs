@@ -140,7 +140,7 @@ pub(super) type SomeNMap<T: Config> = StorageNMap<
     _,
     (
         NMapKey<Blake2_128Concat, u32>,
-        NMapKey<Blake2_128Concat, T::AccountId)>,
+        NMapKey<Blake2_128Concat, T::AccountId>,
         NMapKey<Twox64Concat, u32>,
     ),
     u32,
