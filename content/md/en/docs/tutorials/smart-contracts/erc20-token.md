@@ -169,7 +169,7 @@ To test the ERC-20 contract before adding new functions:
 
 1. Select the `AccountId` of the account used to instantiate the contract, then click **Read**.
     
-    If you select any other AccountId, then click **Read**, the balance is zero because all of the tokens are owned by the contract owner.
+    If you select any other `AccountId`, then click **Read**, the balance is zero because all of the tokens are owned by the contract owner.
 
 ## Transfer tokens
 

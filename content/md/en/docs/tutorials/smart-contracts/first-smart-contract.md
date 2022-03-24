@@ -94,8 +94,8 @@ To install the contracts node:
 
 After compiling the `contracts-node` package, you need to install two additional packages:
 
-* The WebAssembly  **binaryen** package for your operating system to optimize the WebAssembly bytecode for the contract.
-* The cargo-contract command line interface you'll use to set up smart contract projects.
+* The WebAssembly **binaryen** package for your operating system to optimize the WebAssembly bytecode for the contract.
+* The `cargo-contract` command line interface you'll use to set up smart contract projects.
 
 ### Install the WebAssembly optimizer
 
