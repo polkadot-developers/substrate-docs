@@ -418,7 +418,7 @@ For example, this tutorial illustrated:
 
 * How to upload and instantiate the contract using the Contracts UI.
 
-You can find an example of the final code for this tutorial in the assets for the [ink-workshop](https://docs.substrate.io/assets/tutorials/ink-workshop/1.5-finished-code.rs)
+You can find an example of the final code for this tutorial in the assets for the [ink-workshop](https://docs.substrate.io/assets/tutorials/ink-workshop/1.4-finished-code.rs)
 You can learn more about smart contract development in the following topics:
 
 * [Use maps for storing values](/tutorials/smart-contracts/use-mapping/)

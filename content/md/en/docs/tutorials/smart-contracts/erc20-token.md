@@ -270,19 +270,21 @@ To add the transfer functions to the smart contract:
       self.balances.get(owner).unwrap_or_default()
     }
     ```
-1. Verify that the program compiles and passes the trivial test by running the following command:
+1. Verify that the program compiles and passes the test cases by running the following command:
     
     ```bash
     cargo +nightly test
     ```
 
     The command should display output similar to the following to indicate successful test completion:
-
-    running 2 tests
+    
+    ```text
+    running 3 tests
     test erc20::tests::new_works ... ok
     test erc20::tests::balance_works ... ok
+    test erc20::tests::transfer_works ... ok
     
-    test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+    test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
     ```
 
 ## Create events
@@ -636,7 +638,7 @@ For example, this tutorial illustrated:
 
 * How to enable third-party transfers.
 
-You can find an example of the code for this tutorial in the assets for the [ink-workshop](https://docs.substrate.io/assets/tutorials/ink-workshop/1.5-finished-code.rs)
+You can find an example of the code for this tutorial in the assets for the [ink-workshop](https://docs.substrate.io/assets/tutorials/ink-workshop/2.4-finished-code.rs)
 You can learn more about smart contract development in the following topics:
 
 * [Use maps for storing values](/tutorials/smart-contracts/use-mapping/)
