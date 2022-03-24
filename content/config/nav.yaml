@@ -168,7 +168,7 @@ tutorials:
           url: /tutorials/smart-contracts/develop-contract/
         - title: Use maps for storing values
           url: /tutorials/smart-contracts/use-mapping/
-        - title: Build an ERC20 token contract
+        - title: Build an ERC-20 token contract
           url: /tutorials/smart-contracts/erc20-token/
         - title: Troubleshoot smart contracts
           url: /tutorials/smart-contracts/sc-common-issues/
