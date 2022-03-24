@@ -72,8 +72,9 @@ To update your development environment:
 
 ## Install the Substrate contracts node
 
-To simplify this tutorial, you can [download](https://github.com/paritytech/substrate-contracts-node/releases) a precompiled Substrate node for Linux or macOS.The precompiled binary includes the FRAME pallet for smart contracts by default. 
-Alternatively, you can build the preconfigured  `contracts-node` manually by running `cargo install contracts-node` on your local computer.
+To simplify this tutorial, you can [download](https://github.com/paritytech/substrate-contracts-node/releases) a precompiled Substrate node for Linux or macOS.
+The precompiled binary includes the FRAME pallet for smart contracts by default. 
+Alternatively, you can build the preconfigured `contracts-node` manually by running `cargo install contracts-node` on your local computer.
 
 To install the contracts node on macOS or Linux:
 
