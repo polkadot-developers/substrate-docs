@@ -134,7 +134,7 @@ The `cargo-contract` package provides a command-line interface for working with 
     cargo install cargo-contract --vers ^0.17 --force --locked
     ```
 
-1. Verify the installation and explore the commands avilable by running the following command:
+1. Verify the installation and explore the commands available by running the following command:
     
     ```bash
     cargo contract --help
