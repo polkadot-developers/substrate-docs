@@ -113,45 +113,45 @@ Therefore, the first step is to remove some files and content from the files in 
 
 1. Replace all contents of `pallets/template/src/lib.rs` with the following skeleton code that includes a few minimal [macros for FRAME V2](https://docs.substrate.io/rustdocs/latest/frame_support/attr.pallet.html):
 
-   ```rust
-   //! Substrate Proof-of-Existence Pallet
-   #![cfg_attr(not(feature = "std"), no_std)]
+  ```rust
+    #![cfg_attr(not(feature = "std"), no_std)]
 
-   // Re-export pallet items so that they can be accessed from the crate namespace.
-   pub use pallet::*;
+    pub use pallet::*;
 
-   #[frame_support::pallet]
-   pub mod pallet {
-   	use frame_support::{pallet_prelude::*, storage::bounded_vec::BoundedVec};
-   	use frame_system::pallet_prelude::*;
+    #[frame_support::pallet]
+    pub mod pallet {
+        use frame_support::pallet_prelude::*;
+        use frame_system::pallet_prelude::*;
 
-   	// Define the pallet struct placeholder, various pallet functions are implemented on it.
-   	#[pallet::pallet]
-   	#[pallet::generate_store(pub(super) trait Store)]
-   	pub struct Pallet<T>(_);
+        // The struct on which we build all of our Pallet logic.
+        #[pallet::pallet]
+        #[pallet::generate_store(pub(super) trait Store)]
+        pub struct Pallet<T>(_);
 
-   	// TODO: Update the `Config` block below
-   	/// Configure the pallet by specifying the parameters and types on which it depends.
-   	#[pallet::config]
-   	pub trait Config: frame_system::Config {
-   		/// Because this pallet emits events, it depends on the runtime's definition of an event.
-   		type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
-   	}
+        /* Placeholder for defining custom types. */
 
-   	// TODO: Update the `event` block below
-   	#[pallet::event]
-   	#[pallet::generate_deposit(pub(super) fn deposit_event)]
-   	pub enum Event<T: Config> {
-   		/// Event documentation should end with an array that provides descriptive names for event
-   		/// parameters. [something, who]
-   		SomethingHappened(),
-   	}
-   	// TODO: add #[pallet::error] block
+        // TODO: Update the `config` block below
+        #[pallet::config]
+        pub trait Config: frame_system::Config {
+            type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+        }
 
-   	// TODO: add #[pallet::storage] block
+        // TODO: Update the `event` block below
+        #[pallet::event]
+        #[pallet::generate_deposit(pub(super) fn deposit_event)]
+        pub enum Event<T: Config> {}
 
-   	// TODO: add #[pallet::call] block
-   }
+        // TODO: Update the `error` block below
+        #[pallet::error]
+        pub enum Error<T> {}
+
+        // TODO: add #[pallet::storage] block
+
+        // TODO: Update the `call` block below
+        #[pallet::call]
+        impl<T: Config> Pallet<T> {}
+    }
+
    ```
 
    You now have a scaffold that includes placeholders for _events_, _errors_, _storage_, and _callable functions_.
