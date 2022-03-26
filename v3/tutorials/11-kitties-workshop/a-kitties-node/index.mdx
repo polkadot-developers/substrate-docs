@@ -1228,7 +1228,7 @@ pub fn transfer_kitty_to(
 
 	let prev_owner = kitty.owner.clone();
 
-	// Remove `kitty_id` from the KittyOwned vector of `prev_kitty_owner`
+	// Remove `kitty_id` from the KittiesOwned vector of `prev_owner`
 	<KittiesOwned<T>>::try_mutate(&prev_owner, |owned| {
 		if let Some(ind) = owned.iter().position(|&id| id == *kitty_id) {
 			owned.swap_remove(ind);
