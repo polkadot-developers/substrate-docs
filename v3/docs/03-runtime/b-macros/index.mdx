@@ -191,8 +191,7 @@ pub struct Pallet<T>(_);
 
 **When to use**
 
-This attribute is now a no_op. It is now assumed by default that all of the pallet storage items are bounded (i.e. have a fixed size).
-You should not need to use this attribute.
+This attribute no longer exists. `generate_storage_info` is now assumed by default: all pallet storage items are expected to be bounded (i.e. have a fixed size).
 
 **What it does**
 
