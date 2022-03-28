@@ -180,7 +180,6 @@ This is an example of its definition:
 ```rust
 #[pallet::pallet]
 #[pallet::generate_store(pub(super) trait Store)]
-#[pallet::generate_storage_info]
 pub struct Pallet<T>(_);
 ```
 
@@ -192,20 +191,23 @@ pub struct Pallet<T>(_);
 
 **When to use**
 
-Highly encouraged, but optional which will help ensure all of your pallet storage items are bounded.
+This attribute no longer exists. `generate_storage_info` is now assumed by default: all pallet storage items are expected to be bounded (i.e. have a fixed size).
 
 **What it does**
 
-This requires all storage to implement the trait `traits::StorageInfoTrait`, thus all keys and value types must bound `pallet_prelude::MaxEncodedLen`. Some individual storage can opt-out from this constraint by using `#[pallet::unbounded]`, see `#[pallet::storage]` documentation.
+All storage is now required to implement the trait `traits::StorageInfoTrait`, and thus all keys and value types must have the bound `pallet_prelude::MaxEncodedLen`.
+Individual storage can opt-out from this constraint by using `#[pallet::unbounded]`, see `#[pallet::storage]` documentation.
 
-This is an example of its definition:
+In the unlikely event that the entire pallet's storage needs to be unbounded by default, one can add the `#[pallet::without_storage_info]` attribute to the pallet struct like so:
 
 ```rust
 #[pallet::pallet]
 #[pallet::generate_store(pub(super) trait Store)]
-#[pallet::generate_storage_info]
+#[pallet::without_storage_info]
 pub struct Pallet<T>(_);
 ```
+
+(but as discussed it would be more typical to place `#[pallet::unbounded]` on specific storage items)
 
 **Docs**
 
