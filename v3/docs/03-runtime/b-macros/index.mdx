@@ -191,24 +191,24 @@ pub struct Pallet<T>(_);
 
 **When to use**
 
-You should not need to explicitly add this attribute.
-It is now assumed by default that all of the pallet storage items are bounded (i.e. have a fixed size).
+This attribute is now a no_op. It is now assumed by default that all of the pallet storage items are bounded (i.e. have a fixed size).
+You should not need to use this attribute.
 
 **What it does**
 
-This requires all storage to implement the trait `traits::StorageInfoTrait`, thus all keys and value types must bound `pallet_prelude::MaxEncodedLen`.
+All storage is now required to implement the trait `traits::StorageInfoTrait`, and thus all keys and value types must have the bound `pallet_prelude::MaxEncodedLen`.
 Individual storage can opt-out from this constraint by using `#[pallet::unbounded]`, see `#[pallet::storage]` documentation.
 
-This is an example of its definition:
+In the unlikely event that the entire pallet's storage needs to be unbounded by default, one can add the `#[pallet::without_storage_info]` attribute to the pallet struct like so:
 
 ```rust
 #[pallet::pallet]
 #[pallet::generate_store(pub(super) trait Store)]
-#[pallet::generate_storage_info]
+#[pallet::without_storage_info]
 pub struct Pallet<T>(_);
 ```
 
-In the unlikely event that the pallet's storage needs to be unbounded by default, you can add the `#[pallet::without_storage_info]` attribute.
+(but as discussed it would be more typical to place `#[pallet::unbounded]` on specific storage items)
 
 **Docs**
 
