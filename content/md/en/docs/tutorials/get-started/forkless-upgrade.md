@@ -48,7 +48,7 @@ By completing this tutorial, you will accomplish the following objectives:
 ## Authorize an upgrade using the Sudo pallet
 
 In FRAME, the `Root` origin identifies the runtime administrator.
-Only this administrator can update the runtime by calling the `set_code` function. 
+Only this administrator can update the runtime by calling the `set_code` function.
 To invoke this function using the `Root` origin, you can use the the `sudo` function in the Sudo pallet to specify the account that has superuser administrative permissions.
 
 By default, the chain specification file for the node template specifies that the `alice` development account is the owner of the Sudo administrative account.
@@ -61,7 +61,7 @@ The FRAME System module sets boundaries on the block length and block weight tha
 However, the `set_code` function is intentionally designed to consume the maximum weight that can fit in a block.
 Forcing a runtime upgrade to consume an entire block prevents transactions in the same block from executing on different versions of a runtime.
 
-The weight annotation for the `set_code` function also specifies that the function is in the `Operational` class because it provides network capabilities. 
+The weight annotation for the `set_code` function also specifies that the function is in the `Operational` class because it provides network capabilities.
 Functions calls that are identified as operational:
 
 * Can consume the entire weight limit of a block.
@@ -74,7 +74,7 @@ In this tutorial, the [`sudo_unchecked_weight`](/rustdocs/latest/pallet_sudo/pal
 The `sudo_unchecked_weight` function is the same as the `sudo` function except that it supports an additional parameter to specify the weight to use for the call.
 This parameter enables you to work around resource accounting safeguards to specify a weight of zero for the call that dispatches the `set_code` function.
 This setting allows for a block to take _an indefinite time to compute_ to ensure
-that the runtime upgrade does not fail, no matter how complex the operation is. 
+that the runtime upgrade does not fail, no matter how complex the operation is.
 It can take all the time it needs to succeed or fail.
 
 ## Upgrade the runtime to add the Scheduler pallet
@@ -91,7 +91,7 @@ To upgrade the runtime:
    ```bash
    cargo run --release -- --dev
    ```
-   
+
    Leave this node running.
    You can edit and re-compile to upgrade the runtime without stopping or restarting the running node.
 
@@ -100,16 +100,16 @@ To upgrade the runtime:
 1. Open the `substrate-node-template/runtime/Cargo.toml` file in a text editor.
 
 1. Add the Scheduler pallet as a dependency.
-    
+
     ```toml
     [dependencies]
     ...
-    pallet-scheduler = { default-features = false, git = "https://github.com/paritytech/substrate.git", tag = "devhub/latest", version = "3.0.0-dev" }
+    pallet-scheduler = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.18" }
     ...
     ```
 
 1. Add the Scheduler pallet to the `features` list.
-    
+
     ```toml
     [features]
     default = ["std"]
@@ -122,7 +122,7 @@ To upgrade the runtime:
 1. Open the `substrate-node-template/runtime/src/lib.rs` file in a text editor.
 
 1. Add the types required by the Scheduler pallet.
-    
+
     ```rust
     parameter_types! {
       pub MaximumSchedulerWeight: Weight = 10_000_000;
@@ -131,7 +131,7 @@ To upgrade the runtime:
     ```
 
 1. Add the implementation for the Config trait for the Scheduler pallet.
-    
+
     ```rust
     impl pallet_scheduler::Config for Runtime {
       type Event = Event;
@@ -147,7 +147,7 @@ To upgrade the runtime:
     ```
 
 1. Add the Scheduler pallet inside the `construct_runtime!` macro.
-    
+
     ```rust
     construct_runtime!(
       pub enum Runtime where
@@ -162,13 +162,13 @@ To upgrade the runtime:
     ```
 
 1. Add the following trait dependency at the top of the file:
-    
+
     ```rust
     pub use frame_support::traits::EqualPrivilegeOnly;
     ```
 
 1. Increment the [`spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version) in the `RuntimeVersion` struct](/rustdocs/latest/sp_version/struct.RuntimeVersion.html) to upgrade runtime version.
-    
+
     ```rust
     pub const VERSION: RuntimeVersion = RuntimeVersion {
       spec_name: create_runtime_str!("node-template"),
@@ -180,57 +180,57 @@ To upgrade the runtime:
       transaction_version: 1,
     };
     ```
-    
+
     Review the components of the `RuntimeVersion` struct:
-    
-    - `spec_name` specifies the name of the runtime.
-    - `impl_name` specifies the name of the client.
-    - `authoring_version` specifies the version for [block authors](/reference/glossary#author).
-    - `spec_version` specifies the version of the runtime.
-    - `impl_version` specifies the version of the client.
-    - `apis` specifies the list of supported APIs.
-    - `transaction_version` specfies the version of the [dispatchable function](/reference/glossary#dispatch) interface.
-    
+
+    * `spec_name` specifies the name of the runtime.
+    * `impl_name` specifies the name of the client.
+    * `authoring_version` specifies the version for [block authors](/reference/glossary#author).
+    * `spec_version` specifies the version of the runtime.
+    * `impl_version` specifies the version of the client.
+    * `apis` specifies the list of supported APIs.
+    * `transaction_version` specfies the version of the [dispatchable function](/reference/glossary#dispatch) interface.
+
     To upgrade the runtime, you must _increase_ the `spec_version`.
     For more information, see the [FRAME System](https://github.com/paritytech/substrate/blob/v3.0.0/frame/system/src/lib.rs) module and `can_set_code` function.
 
 1. Save your changes and close the `substrate-node-template/runtime/src/lib.rs` file.
 
 1. Build the updated runtime in the second terminal window or tab without stopping the running node.
-    
+
     ```shell
     cargo build --release -p node-template-runtime
     ```
-    
+
     The `--release` command-line option requires a longer compile time.
     However, it generates a smaller build artifact that is better suited for submitting to the blockchain network.
     Storage optimization is _critical_ for any blockchain.
     With this command, the build artifacts are output to the `target/release` directory.
 
 1. Connect to the local node to upgrade the runtime to use the new build artifact.
-    
+
     You can use the [Polkadot-JS application](https://polkadot.js.org/apps/#/extrinsics?rpc=ws://127.0.0.1:9944) to connect to the local node.
 
-1. Select the Alice account to submit a call to the `sudoUncheckedWeight` function and call the `setCode` function from the `system` pallet as its parameter. 
-    
+1. Select the Alice account to submit a call to the `sudoUncheckedWeight` function and call the `setCode` function from the `system` pallet as its parameter.
+
     ![Select the account and functions to call](/media/images/docs/tutorials/forkless-upgrade/select-account-calls.png)
 
 1. Select `file upload`, then select or drag and drop the WebAssembly file that you generated for the runtime.
-    
-    For example, navigate to select the `target/release/wbuild/node-template-runtime/node_template_runtime.compact.wasm` file. 
-    
+
+    For example, navigate to select the `target/release/wbuild/node-template-runtime/node_template_runtime.compact.wasm` file.
+
     Leave the `_weight` parameter with the default of `0`.
 
     ![Sudo upgrade settings](/media/images/docs/tutorials/forkless-upgrade/sudo-upgrade.png)
-    
+
 1. Click **Submit Transaction**.
 
 1. Review the authorization, then click **Sign and Submit**.
-    
+
     After the transaction is included in a block, the version number displayed in the Polkadot-JS application indicates that the runtime version is now `101`.
-    
+
     ![Update runtime version 101](/media/images/docs/tutorials/forkless-upgrade/version-101.png)
-    
+
     If your local node is producing blocks in the terminal that match what is displayed in the browser, you have complete a successful runtime upgrade.
 
 Next up, we will:
@@ -254,20 +254,20 @@ in `runtime/src/lib.rs` aside from the runtime's `spec_version`.
 
 ```rust
 pub const VERSION: RuntimeVersion = RuntimeVersion {
-	spec_name: create_runtime_str!("node-template"),
-	impl_name: create_runtime_str!("node-template"),
-	authoring_version: 1,
-	spec_version: 102,  // *Increment* this value.
-	impl_version: 1,
-	apis: RUNTIME_API_VERSIONS,
-	transaction_version: 1,
+ spec_name: create_runtime_str!("node-template"),
+ impl_name: create_runtime_str!("node-template"),
+ authoring_version: 1,
+ spec_version: 102,  // *Increment* this value.
+ impl_version: 1,
+ apis: RUNTIME_API_VERSIONS,
+ transaction_version: 1,
 };
 
 /*** snip ***/
 
 parameter_types! {
-	pub const ExistentialDeposit: u128 = 1000;  // Update this value.
-	pub const MaxLocks: u32 = 50;
+ pub const ExistentialDeposit: u128 = 1000;  // Update this value.
+ pub const MaxLocks: u32 = 50;
 }
 
 /*** snip ***/
@@ -299,7 +299,7 @@ In the previous section, the Scheduler pallet was configured with the `Root` ori
 [`ScheduleOrigin`](/rustdocs/latest/pallet_scheduler/pallet/trait.Config.html#associatedtype.ScheduleOrigin),
 which means that the `sudo` function (_not_ `sudo_unchecked_weight`) can be used to invoke the
 `schedule` function. Use this link to open the Polkadot JS Apps UI's Sudo tab:
-https://polkadot.js.org/apps/#/sudo?rpc=ws://127.0.0.1:9944.
+<https://polkadot.js.org/apps/#/sudo?rpc=ws://127.0.0.1:9944>.
 
 Wait until all the other fields have
 been filled in before providing the `when` parameter. Leave the `maybe_periodic` parameter empty and
@@ -325,6 +325,6 @@ app to query the `existentialDeposit` constant value from the Balances pallet.
 
 ## Next Steps
 
-- Learn about [storage migrations](/v3/runtime/upgrades#storage-migrations) and
+* Learn about [storage migrations](/v3/runtime/upgrades#storage-migrations) and
   attempt one alongside a runtime upgrade.
-- Explore the [how-to guides section on storage migrations](/how-to-guides/v3/storage-migrations/basics).
+* Explore the [how-to guides section on storage migrations](/how-to-guides/v3/storage-migrations/basics).
