@@ -7,7 +7,7 @@ require('dotenv').config({
 module.exports = {
   siteMetadata: {
     title: 'Substrate_',
-	author: 'Parity/Web3F WebDev Team',
+    author: 'Parity/Web3F WebDev Team',
     siteUrl: `${process.env.GATSBY_DOCS_URL || 'https://docs.substrate.io'}`,
     image_og: `${process.env.GATSBY_DOCS_URL}/img/substrate_og.png`,
     description:
