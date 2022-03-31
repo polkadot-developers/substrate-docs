@@ -82,7 +82,7 @@ export default function Index() {
               Substrate developer knowledge base
             </h4>
           </div>
-          <div className="grid grid-cols-1 gap-10 lg:gap-0 lg:flex flex-col lg:flex-row lg:justify-between z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-8 z-10">
             <DocCard
               title={`Documentation`}
               text={`Discover the principles and design decisions that Substrate is built on. Read about its key features and capabilties as well as the specific skills needed to be an effective Substrate blockchain developer.`}
@@ -111,7 +111,7 @@ export default function Index() {
       </Section>
       {/* Playground Section */}
       <Section>
-        <div className="flex flex-col lg:flex-row lg:items-center">
+        <div className="flex flex-col lg:flex-row lg:items-center overflow-x-hidden">
           <div className="mb-16 lg:m-0 lg:w-1/2">
             <div className="font-title text-5xl lg:text-6xl font-extrabold mb-8">
               Playground
