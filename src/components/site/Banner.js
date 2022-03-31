@@ -1,49 +1,43 @@
 import cx from 'classnames'
 import React, { Fragment } from 'react'
 
-import { useBanner } from '../../hooks/use-banner'
 import { useSessionStorage } from '../../hooks/use-session-storage'
 import Icon from '../Icon'
 
 const Banner = () => {
   const [isBannerOpen, setIsBannerOpen] = useSessionStorage('banner', true)
-  const { banners } = useBanner()
-  const hasActiveBanner = banners.length > 0
 
   return (
     <>
-      {hasActiveBanner && isBannerOpen && (
+      {isBannerOpen && (
         <div
           className={cx(
             'hidden md:block fixed z-50 right-10 bottom-8 max-w-sm p-6 transition-all text-white dark:text-black dark:bg-substrateGray bg-substrateBlackish m-0 shadow-xxl rounded-md'
           )}
         >
-          {banners.map(
-            (
-              {
-                node: {
-                  html,
-                  frontmatter: { title },
-                },
-              },
-              idx
-            ) => (
-              <Fragment key={idx}>
-                {idx > 0 && (
-                  <hr className="mt-3 mb-2 border-substrateDarkThemeGrey dark:border-substrateSubtleGrey" />
-                )}
-                <div className="banner">
-                  <span className="block pr-2 mb-2 font-bold text-xl">
-                    {title}
-                  </span>
-                  <div
-                    dangerouslySetInnerHTML={{ __html: html }}
-                    className="underline-animate underline-animate-thin"
-                  ></div>
-                </div>
-              </Fragment>
-            )
-          )}
+          <Fragment>
+            <div className="banner">
+              <span className="block pr-2 mb-2 font-bold text-xl">
+                Use our StackExchange
+              </span>
+              <div className="underline-animate underline-animate-thin">
+                <p>
+                  The Substrate developer community is in the beta phase of its
+                  Stack Exchange campaign and needs your help.{' '}
+                  <strong>
+                    We have until April 7th to increase the engagement on the
+                    site, otherwise it will get shut down.
+                  </strong>
+                  <a href="https://substrate.stackexchange.com/">
+                    Visit the page here
+                  </a>{' '}
+                  and help us get past the beta phase by asking questions,
+                  upvoting or downvoting existing questions or providing
+                  answers.
+                </p>
+              </div>
+            </div>
+          </Fragment>
 
           <div
             className="absolute right-4 top-4 cursor-pointer duration-150 ease-in-out hover:scale-110"

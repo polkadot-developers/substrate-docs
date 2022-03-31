@@ -79,14 +79,6 @@ module.exports = {
         name: `images`,
       },
     },
-    /* source file system for content dir */
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `content`,
-        path: `./content/`,
-      },
-    },
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {
@@ -126,7 +118,6 @@ module.exports = {
     },
     `gatsby-remark-images`,
     `gatsby-transformer-sharp`,
-    `gatsby-transformer-remark`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
