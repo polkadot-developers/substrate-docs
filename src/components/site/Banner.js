@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import React, { Fragment } from 'react'
+import React from 'react'
 
 import { useSessionStorage } from '../../hooks/use-session-storage'
 import Icon from '../Icon'
