@@ -1,7 +1,18 @@
-The default Substrate block production systems produce blocks at consistent intervals. 
-This is the known as the target block time. 
-Given this requirement, Substrate based blockchains are only be able to execute a limited number of extrinsics per block. The time it takes to execute an extrinsic may vary based on the computational complexity, storage complexity, hardware used, and many other factors. 
-We use generic measurement called [weight](/v3/concepts/weight) to represent how many extrinsics can fit into one block.
+---
+title: Benchmark
+description:
+keywords:
+---
+
+To produce blocks at a consistent rate, Substrate limits the number of transactions executed per block.
+The time required to execute any particular extrinsic call to complete a transaction can vary and depends on a number of factors including the following:
+
+* Computational complexity.
+* Storage complexity.
+* Database read and write operations required.
+* Hardware used. 
+
+As discussed in [Transactions, weights, and fees](/main-docs/fundamentals/tx-weight.fees/) called [weight](/v3/concepts/weight) to represent how many extrinsics can fit into one block.
 
 In Substrate, **10^12 weight units = 1 second**, or 1,000 weight units = 1 nanosecond. 
 This is measured on specific reference hardware: Intel Core i7-7700K CPU with 64GB of RAM and an NVMe SSD.
@@ -86,7 +97,7 @@ Sometimes it may be better to separate the complex logic into multiple extrinsic
 
 ### Separate benchmarks per logical path and use the worst case
 
-If your extrinsic has multiple logical paths with signficantly different execution time, separate these paths in multiple benchmarking cases and measure them. 
+If your extrinsic has multiple logical paths with significantly different execution time, separate these paths in multiple benchmarking cases and measure them. 
 In the actual pallet weight macro above the extrinsics, you could combine them with a `max` function, e.g.
 
 ```rust
@@ -155,9 +166,7 @@ accumulate_dummy {
 }: _ (RawOrigin::Signed(caller), b.into())
 ```
 
-Using the benchmarking CLI, we can specify the number of steps and repeats. This means how many
-steps will be taken to walk through each variable range, and how many times the execution state
-will be repeated.
+Using the benchmarking CLI, you can specify the number of steps to walk through each variable range, and how many times the execution state should be repeated.
 
 For example:
 
