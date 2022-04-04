@@ -76,9 +76,9 @@ pub mod pallet {
 	// Storage items.
 
 	#[pallet::storage]
-	#[pallet::getter(fn count_for_kitty)]
+	#[pallet::getter(fn count_for_kitties)]
 	/// Keeps track of the number of Kitties in existence.
-	pub(super) type CountForKitty<T: Config> = StorageValue<_, u64, ValueQuery>;
+	pub(super) type CountForKitties<T: Config> = StorageValue<_, u64, ValueQuery>;
 
 	#[pallet::storage]
 	#[pallet::getter(fn kitties)]
