@@ -1,4 +1,8 @@
-# Addresses and keys
+---
+title: Addresses and keys
+description:
+keywords:
+---
 
 This article goes over how addresses in Substrate chains are derived using the SS58 format and what this implies for end users and network developers. 
 It then outlines some different types of common network keys.

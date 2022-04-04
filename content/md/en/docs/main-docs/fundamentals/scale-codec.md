@@ -1,7 +1,11 @@
-## SCALE codec
+---
+title: SCALE codec
+description:
+keywords:
+---
 
 SCALE (Simple Concatenated Aggregate Little-Endian) Codec is a lightweight, efficient, binary serialization and deserialization [codec](https://en.wikipedia.org/wiki/Codec).
-This is key to how runtimes and clients can communicate to eachother.
+This is key to how runtimes and clients can communicate to each other.
 
 It is designed for high-performance, copy-free encoding and decoding of data in resource-constrained execution contexts, like the [Substrate Wasm runtime](/v3/concepts/runtime). 
 It is not self-describing in any way and assumes the decoding context has all type knowledge about the encoded data.

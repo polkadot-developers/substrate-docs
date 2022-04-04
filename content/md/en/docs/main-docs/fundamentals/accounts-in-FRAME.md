@@ -1,4 +1,8 @@
-# Accounts in FRAME
+---
+title: Accounts in FRAME
+description:
+keywords:
+---
 
 _This article goes over the account system in FRAME including: runtime specification, behavior, different types of accounts and their uses._
 
