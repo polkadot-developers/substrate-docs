@@ -55,8 +55,8 @@ pub mod pallet {
 	}
 
 	#[pallet::storage]
-	#[pallet::getter(fn all_kitties_count)]
-	pub(super) type KittyCnt<T: Config> = StorageValue<_, u64, ValueQuery>;
+	#[pallet::getter(fn count_for_kitty)]
+	pub(super) type CountForKitty<T: Config> = StorageValue<_, u64, ValueQuery>;
 
 	// ACTION #7: Remaining storage items.
 

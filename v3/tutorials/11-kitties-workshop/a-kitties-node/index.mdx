@@ -281,9 +281,9 @@ In `pallets/kitties/src/lib.rs`, replace the ACTION line with:
 
 ```rust
 #[pallet::storage]
-#[pallet::getter(fn kitty_cnt)]
+#[pallet::getter(fn count_for_kitty)]
 /// Keeps track of the number of Kitties in existence.
-pub(super) type KittyCnt<T: Config> = StorageValue<_, u64, ValueQuery>;
+pub(super) type CountForKitty<T: Config> = StorageValue<_, u64, ValueQuery>;
 ```
 
 This creates a storage item for our pallet to keep track of the total count of Kitties in existence.
@@ -380,8 +380,8 @@ pub mod pallet {
 	}
 
 	#[pallet::storage]
-	#[pallet::getter(fn kitty_cnt)]
-	pub(super) type KittyCnt<T: Config> = StorageValue<_, u64, ValueQuery>;
+	#[pallet::getter(fn count_for_kitty)]
+	pub(super) type CountForKitty<T: Config> = StorageValue<_, u64, ValueQuery>;
 
 	// ACTION #7: Remaining storage items.
 
@@ -817,8 +817,8 @@ pub fn mint(
 	let kitty_id = T::Hashing::hash_of(&kitty);
 
 	// Performs this operation first as it may fail
-	let new_cnt = Self::kitty_cnt().checked_add(1)
-		.ok_or(<Error<T>>::KittyCntOverflow)?;
+	let new_cnt = Self::count_for_kitty().checked_add(1)
+		.ok_or(<Error<T>>::CountForKittyOverflow)?;
 
 	// Check if the kitty does not already exist in our storage map
 	ensure!(Self::kitties(&kitty_id) == None, <Error<T>>::KittyExists);
@@ -829,7 +829,7 @@ pub fn mint(
 	}).map_err(|_| <Error<T>>::ExceedMaxKittyOwned)?;
 
 	<Kitties<T>>::insert(kitty_id, kitty);
-	<KittyCnt<T>>::put(new_cnt);
+	<CountForKitty<T>>::put(new_cnt);
 	Ok(kitty_id)
 }
 ```
@@ -839,7 +839,7 @@ Let's go over what the above code is doing.
 The first thing we're doing is creating a new Kitty object.
 Then, we create a unique `kitty_id` using a hashing function based on the current properties of the kitty.
 
-Next, we increment the `KittyCnt` using the storage getter function `Self::kitty_cnt()`.
+Next, we increment the `CountForKitty` using the storage getter function `Self::count_for_kitty()`.
 We are also checking for an overflow with the `check_add()` function.
 
 Our last validation is to make sure the `kitty_id` does not already exist in our `Kitties` StorageMap.
@@ -858,7 +858,7 @@ Once our checks have passed, we proceed with updating our storage items by:
 - **\`<Kitties<T>>\`**: Stores a Kitty's unique traits and price, by storing the Kitty object and
   associating it with its Kitty ID.
 - **\`<KittyOwned<T>>\`**: Keeps track of what accounts own what Kitties.
-- **\`<KittyCnt<T>>\`**: A count of all Kitties in existence.
+- **\`<CountForKitty<T>>\`**: A count of all Kitties in existence.
 `}
 />
 
@@ -944,7 +944,7 @@ Declare all possible errors using the provided FRAME macro under `#[pallet::erro
 
 ```rust
 /// Handles arithmetic overflow when incrementing the Kitty counter.
-KittyCntOverflow,
+CountForKittyOverflow,
 /// An account cannot own more Kitties than `MaxKittyCount`.
 ExceedMaxKittyOwned,
 /// Buyer cannot be the owner.
@@ -966,7 +966,7 @@ NotEnoughBalance,
 ```
 
 We'll be using these errors once we write the interactive functions in the next section.
-Notice that we've already used `KittyCntOverflow` and `ExceedMaxKittyOwned` in our `mint` function.
+Notice that we've already used `CountForKittyOverflow` and `ExceedMaxKittyOwned` in our `mint` function.
 
 Now's a good time to see if your chain can compile.
 Instead of only checking if your pallet compiles, run the following command to see if everything can build:

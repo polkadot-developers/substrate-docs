@@ -65,7 +65,7 @@ pub mod pallet {
 	#[pallet::error]
 	pub enum Error<T> {
 		/// Handles arithmetic overflow when incrementing the Kitty counter.
-		KittyCntOverflow,
+		CountForKittyOverflow,
 		/// An account cannot own more Kitties than `MaxKittyCount`.
 		ExceedMaxKittyOwned,
 		/// Buyer cannot be the owner.
@@ -101,9 +101,9 @@ pub mod pallet {
 	// Storage items.
 
 	#[pallet::storage]
-	#[pallet::getter(fn kitty_cnt)]
+	#[pallet::getter(fn count_for_kitty)]
 	/// Keeps track of the number of Kitties in existence.
-	pub(super) type KittyCnt<T: Config> = StorageValue<_, u64, ValueQuery>;
+	pub(super) type CountForKitty<T: Config> = StorageValue<_, u64, ValueQuery>;
 
 	#[pallet::storage]
 	#[pallet::getter(fn kitties)]
@@ -334,19 +334,19 @@ pub mod pallet {
 			let kitty_id = T::Hashing::hash_of(&kitty);
 
 			// Performs this operation first as it may fail
-			let new_cnt = Self::kitty_cnt().checked_add(1)
-				.ok_or(<Error<T>>::KittyCntOverflow)?;
+			let new_cnt = Self::count_for_kitty().checked_add(1)
+				.ok_or(<Error<T>>::CountForKittyOverflow)?;
 
 			// Check if the kitty does not already exist in our storage map
 			ensure!(Self::kitties(&kitty_id) == None, <Error<T>>::KittyExists);
-			
+
 			// Performs this operation first because as it may fail
 			<KittiesOwned<T>>::try_mutate(&owner, |kitty_vec| {
 				kitty_vec.try_push(kitty_id)
 			}).map_err(|_| <Error<T>>::ExceedMaxKittyOwned)?;
 
 			<Kitties<T>>::insert(kitty_id, kitty);
-			<KittyCnt<T>>::put(new_cnt);
+			<CountForKitty<T>>::put(new_cnt);
 			Ok(kitty_id)
 		}
 
