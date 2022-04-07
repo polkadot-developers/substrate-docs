@@ -1,18 +1,13 @@
 ---
 title: Simulate a network
-slug: /tutorials/02-simulate-network
-version: '3.0'
-section: tutorials
-category: substrate chain
+slug: /tutorials/simulate-network/
+description:
 keywords: node template, basics, consortium, authority, aura, private network
 difficulty: 1
 duration: 1 Hour
-relevantSkills:
-  - Rust
-  - Blockchain basics
 ---
 
-This tutorial provides a basic introduction to how to start a private blockchain network with an **authority set** of private **validators**.
+This tutorial provides a basic introduction to how you can start a private blockchain network with an **authority set** of private **validators**.
 
 The Substrate node template uses an authority consensus model that limits block production to a rotating list of authorized accounts.
 The authorized accounts—**authorities**—are responsible for creating blocks in a round robin fashion.
@@ -24,9 +19,9 @@ In this simulated network, the two nodes are started using different accounts an
 
 Before you begin, verify the following:
 
-* You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/v3/getting-started/installation).
+* You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/).
 
-* You have completed [Build a local blockchain](./01-build-local-blockchain.md) and have the Substrate node template installed locally.
+* You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and have the Substrate node template installed locally.
 
 * You are generally familiar with software development and using command-line interfaces.
 
@@ -60,7 +55,7 @@ To start the blockchain:
 
 1. Purge old chain data by running the following command:
     
-    ```
+    ```bash
     ./target/release/node-template purge-chain --base-path /tmp/alice --chain local
     ```
 
@@ -74,9 +69,9 @@ To start the blockchain:
     
     You should always remove old chain data when starting a new network.
 
-1. Start the local blockchain node using the alice account by running the following command:
+1. Start the local blockchain node using the `alice` account by running the following command:
     
-    <pre>
+    ```bash
     ./target/release/node-template \
     --base-path /tmp/alice \
     --chain local \
@@ -87,13 +82,13 @@ To start the blockchain:
     --node-key 0000000000000000000000000000000000000000000000000000000000000001 \
     --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
     --validator
-    </pre>
+    ```
 
 ### Review the command-line options
 
-Before moving on, have a look at how the following options are used to start the node template.
+Before moving on, have a look at how the following options are used to start the node.
 
-|:<div style="min-width:110pt;font-weight:bold;">Option</div> |:<div style="font-weight:bold;">Description</div> |
+|<div style="min-width:110pt;font-weight:bold;">Option</div> |<div style="font-weight:bold;">Description</div> |
 |:--------------- |: ---------------------------------------------- |
 | `--base-path` | Specifies the directory for storing all of the data related to this chain.|
 | `--chain local` | Specifies the chain specification to use. Valid predefined chain specifications include `local`, `development`, and `staging`.|
@@ -114,7 +109,7 @@ For more information about the command-line options that are available for the n
 If the node starts successfully, the terminal displays messages describing network operations. 
 For example, you should see output similar to this:
 
-```bash
+```text
 2021-03-10 17:34:27  Substrate Node
 2021-03-10 17:34:27  ✌️  version 3.0.0-1c5b984-x86_64-linux-gnu
 2021-03-10 17:34:27  ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2021
@@ -148,43 +143,6 @@ In particular, you should note the following messages in the output:
 * `2021-03-10 17:34:37  💤 Idle (0 peers), best: #0 (0x9d07…7cce), finalized #0 (0x9d07…7cce), ⬇ 0 ⬆ 0` indicates that there are no other nodes in the network and that no blocks are being produced.
   Another node must join the network before blocks can start to be produced.
 
-<!--
-### Attach a frontend to see information about the node
-
-You can see a lot of information about node operations by watching the output it produces in your terminal.
-You can also view information about node operations by using a web browser to access the Polkadot-JS graphical user interface.
-
-To view node operations using the Polkadot-JS application:
-
-1. Open a web browser.
-
-1. Navigate to the
-[Polkadot-JS Explorer](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9945#/explorer).
-    
-  The Polkadot-JS Explorer link uses the `rpc` URL parameter to connect to the local node.
-
-  Some browsers have ad blocking features that prevent connecting to a local node.
-  If you have trouble connecting to the local node, see if you have ad blocking enabled and disable it, as needed. 
-	If your browser prevents connections to a local node, try using another browser, like Chromium or downloading and hosting the [Polkadot-JS application](https://github.com/polkadot-js/apps#development) locally.
-
-1. Click the network icon displayed in the top left corner of the Polkadot-JS Explorer page.
-
-  ![Display the list of networks](../../../src/images/tutorials/05-private-network/private-network-top-left-network-icon.png)
-
-1. Expand **DEVELOPMENT** in the list of networks available.
-
-  ![Display DEVELOPMENT networks](../../../src/images/tutorials/05-private-network/polkadot-list-networks.png)
-
-1. Verify the custom endpoint is set to your local host and the port number you specified for incoming WebSocket traffic.
-  
-    You can use a single instance of the Polkadot-JS application to connect to different networks, nodes, and endpoints.
-
-    ![Custom endpoint](../../../src/images/tutorials/05-private-network/private-network-custom-endpoint.png)
-
-    You should now see something like this displayed in the Polkadot-JS Explorer **Network** page.
-
-    ![No blocks displayed in Polkadot-JS](../../../src/images/tutorials/05-private-network/private-network-no-blocks.png)-->
-
 ## Add a second node to the blockchain network
 
 Now that the node you started using the `alice` account keys is running, you can add another node to the network using the `bob` account.
@@ -199,7 +157,7 @@ To add a node to the running blockchain:
 
 1. Purge old chain data by running the following command:
         
-    ```
+    ```bash
     ./target/release/node-template purge-chain --base-path /tmp/bob --chain local -y
     ```
 
@@ -207,7 +165,7 @@ To add a node to the running blockchain:
 
 1. Start a second local blockchain node using the `bob` account by running the following command:
     
-    <pre>
+    ```bash
     ./target/release/node-template \
     --base-path /tmp/bob \
     --chain local \
@@ -218,7 +176,7 @@ To add a node to the running blockchain:
     --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
     --validator \
     --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
-    </pre>
+    ```
     
     Note the following differences between this command and the previous one:
     
@@ -229,11 +187,15 @@ To add a node to the running blockchain:
     The `--bootnodes` option specifies the following information:
     
     * `ip4` indicates that the IP address for the node uses the IPv4 format
+    
     * `127.0.0.1` specifies the IP address for the running node.
       In this case, the address for the `localhost`.
+    
     * `tcp` specifies TCP as the protocol used for peer-to-peer communication.
+    
     * `30333` specifies the port number used for peer-to-peer communication. 
       In this case, the port number for TCP traffic.
+    
     * `12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp` identifies the running node to communicate with for this network. 
       In this case, the identifier for the node started using the `alice` account.
       
@@ -245,7 +207,7 @@ To verify blocks are being finalized:
 
 1. Verify that you see lines similar to the following in the terminal where you started the first node:
       
-    ```bash
+    ```text
     2021-03-10 17:47:32  🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
     2021-03-10 17:47:32  🔍 Discovered new external address for our node: /ip4/<your-computer-LAN-IP>/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
     2021-03-10 17:47:33  💤 Idle (1 peers), best: #0 (0x9d07…7cce), finalized #0 (0x9d07…7cce), ⬇ 1.0kiB/s ⬆ 1.0kiB/s
@@ -280,13 +242,6 @@ To verify blocks are being finalized:
 
 1. Shut down both nodes by pressing Control-c in each terminal shell.
 
-<!-- MOVED OUT was step 3 
-1. Open the [Polkadot-JS Explorer](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9945#/explorer) to verify the network is producing and finalizing blocks.
-    
-    ![Blocks are produced and finalized](../../../src/images/tutorials/05-private-network/private-network-displays-blocks.png) 
-
-END OF HIDDEN Step -->
-
 ## Next steps
 
 This tutorial introduced the first basic steps for starting a private blockchain network.
@@ -302,10 +257,16 @@ You learned:
 
 The next tutorial builds on the information you learned in this tutorial to illustrate how you can start a private network with other participants and nodes running on separate computers.
 
-In [Start a private network](./03-private-network.md), you'll learn:
+In [Start a trusted validator network](/tutorials/get-started/trusted-network/), you'll learn:
 
 * How to generate your own secret key pairs.
 
 * How to create a custom chain specification that uses the keys you generated.
 
 * How to add validators to a private network that uses your custom chain specification.
+
+If you experienced any issues with this tutorial, submit an issue, ask questions, or provide feedback.
+
+* [Submit an issue](https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose).
+
+* [Substrate Stack Exchange](https://substrate.stackexchange.com/).

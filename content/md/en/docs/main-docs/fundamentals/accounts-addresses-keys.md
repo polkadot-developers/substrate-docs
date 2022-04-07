@@ -49,10 +49,27 @@ All unregistered Substrate chains start with `5`.
 You can look the a chain-specific address for a public key using the `subkey inspect` commmand and `--network` option ot by using [Subscan](https://polkadot.subscan.io/tools/format_transform).
 
 For information about generating public and private key pairs and inspecting addresses, see [subkey](/reference/command-line-tools/subkey).
-For information about chain-specific address, see the instructios in the [SS58 repository](https://github.com/paritytech/ss58-registry).
+For information about chain-specific address, see the instructions in the [SS58 repository](https://github.com/paritytech/ss58-registry).
 
-## Keyless accounts for special cases
+## Specialized accounts
 
-In some cases, you might want to create an account that is detached from any owner so that it can be used to perform anonymous transactions.
+Although most accounts are used to represent a public/private key pair that controls funds or executes transactions, Substrate supports some specialized accounts to control how specific key pairs can be used.
+For example, you might have accounts that require custom cryptographic schemes or can only be used to perform specific functions or can only access specific pallets.
+
+### Staking accounts and keys
+
+In most cases, specialized accounts are implemented in the context of a specific FRAME pallet.
+For example, nominated proof-of-stake (NPoS) can require node validators and nominators to hold a significant number of tokens.
+To keep the balances in these accounts secure, the Staking pallet provides some account abstractions that separate the key pairs required to perform specific operations.
+
+| Account type | How the account is used
+| -------- | ----------- 
+| Stash account | The **stash account** represents the public/private key pair that defines a staking balance for validators. You should keep stash account keys offline and in cold storage for security. You should not use the stash account to make frequent transactions. because the keys for this account are kept offline, you can designate a **controller account** to make non-spending decisions or a **keyless proxy account** to vote in governance on its behalf. |
+| Controller account | The controller account represents the public/private key pair that signals your intent to validate or nominate, sets preferences like the rewards destination and, in the case of validators, sets the session keys. A controller account only needs to pay transaction fees, so it only needs minimal funds. It can never be used to spend funds from its stash account. Actions taken by the controller can result in slashing, so it should still be well secured.
+| Session account | The session account represents the public/private key pair used by validators to sign consensus-related messages. The session account is not intended to control funds. These keys are also defined generically in the [Session pallet](/rustdocs/latest/pallet_session/index.html) and made concrete in the runtime. To create the session account key pair, you must attest that the account acts on behalf of your stash account and nominators by signing a transaction with your controller key and publishing the session certificate on the chain. You can generate and register new session keys on chain using a [`session.setKeys`](/rustdocs/latest/pallet_session/struct.Module.html#method.set_keys) transaction. You can change session keys using the [`author_rotateKeys`](/rustdocs/latest/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys) RPC call.
+
+### Keyless proxy accounts
+
+In some cases, you might want to create an account that is detached from any owner so that it can be used to perform autonomous transactions.
 For example, you might create an account, then remove yourself from the account so that it is autonomous and can receive funds or be transferred to someone else.
 After you relinquish control, the new account can be used to burn funds because no one has the keys to the account.
