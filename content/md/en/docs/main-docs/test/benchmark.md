@@ -1,30 +1,54 @@
-The default Substrate block production systems produce blocks at consistent intervals. 
-This is the known as the target block time. 
-Given this requirement, Substrate based blockchains are only be able to execute a limited number of extrinsics per block. The time it takes to execute an extrinsic may vary based on the computational complexity, storage complexity, hardware used, and many other factors. 
-We use generic measurement called [weight](/v3/concepts/weight) to represent how many extrinsics can fit into one block.
+---
+title: Benchmarking
+slug: /v3/runtime/benchmarking
+version: '3.0'
+section: docs
+category: runtime
+keywords:
+  - benchmarking
+  - optimizing
+  - weights
+  - runtime
+---
 
-In Substrate, **10^12 weight units = 1 second**, or 1,000 weight units = 1 nanosecond. 
-This is measured on specific reference hardware: Intel Core i7-7700K CPU with 64GB of RAM and an NVMe SSD.
+The default Substrate block production systems produce blocks at consistent intervals. This is the
+known as the target block time. Given this requirement, Substrate based blockchains are only be able
+to execute a limited number of extrinsics per block. The time it takes to execute an extrinsic may
+vary based on the computational complexity, storage complexity, hardware used, and many other
+factors. We use generic measurement called [weight](/v3/concepts/weight) to represent how many extrinsics
+can fit into one block.
 
-Substrate does not use a mechanism similar to "gas metering" for extrinsic measurement due to the large overhead such a process would introduce. 
-Instead, Substrate expects benchmarking to provide an approximate maximum for the worst case scenario of executing an extrinsic. 
-Users are charged assuming this worst case scenario path was taken, and if the extrinsic turns out needing less resources, some of the estimated weight and fees can be returned. 
-This is further explained in the [Transaction Weights and Fees](/v3/runtime/weights-and-fees) chapter.
+In Substrate, **10^12 weight units = 1 second**, or 1,000 weight units = 1 nanosecond. This is measured on
+specific reference hardware: Intel Core i7-7700K CPU with 64GB of RAM and an NVMe SSD.
+
+Substrate does not use a mechanism similar to "gas metering" for extrinsic measurement due to the
+large overhead such a process would introduce. Instead, Substrate expects benchmarking to provide an
+approximate maximum for the worst case scenario of executing an extrinsic. Users are charged assuming
+this worst case scenario path was taken, and if the extrinsic turns out needing less resources, some of
+the estimated weight and fees can be returned. This is further explained in the
+[Transaction Weights and Fees](/v3/runtime/weights-and-fees) chapter.
 
 ## Why benchmark a pallet
 
-Denial-of-service (DoS) is a common attack vector for distributed systems, including blockchain networks. 
-A simple example of such an attack would be for a user to repeatedly execute an extrinsic that involve intensive computation. 
-To prevent users from spamming the network, we charge fee to the user for making that call. The cost of the call should reflect the computation and storage cost incurred to the system such that the more complex the call, the higher the fee. 
-However, we still want to encourage users to use our blockchain system, so we also want this estimated cost to be relatively accurate so we don't charge users more than necessary.
+Denial-of-service (DoS) is a common attack vector for distributed systems, including blockchain
+networks. A simple example of such an attack would be for a user to repeatedly execute an extrinsic
+that involve intensive computation. To prevent users from spamming the network, we charge fee to the
+user for making that call. The cost of the call should reflect the computation and storage cost
+incurred to the system such that the more complex the call, the higher the fee. However, we still want to
+encourage users to use our blockchain system, so we also want this estimated cost to be relatively
+accurate so we don't charge users more than necessary.
 
-Benchmarking allows developers to charge appropriate transaction fees to end users, corresponding to a more accurate representation of the cost an extrinsic has on the system. 
-Setting a proper weight function that accurately reflects the underlying computation and storage is also an important security safeguard in Substrate.
+Benchmarking allows developers to charge appropriate transaction fees to end users, corresponding to a
+more accurate representation of the cost an extrinsic has on the system. Setting a proper weight function
+that accurately reflects the underlying computation and storage is also an important security safeguard in
+Substrate.
 
 ## How to benchmark
 
-The [FRAME benchmarking module](/rustdocs/latest/frame_benchmarking/benchmarking/index.html) has a set of tools to help determine the worst case scenario computation time of runtime extrinsics in order to determine appropriate weights for those extrinsics. 
-It does this by executing a pallet's extrinsics multiple times within a mock runtime environment, and keeps track of the execution time.
+The [FRAME benchmarking module](/rustdocs/latest/frame_benchmarking/benchmarking/index.html) has a set
+of tools to help determine the worst case scenario computation time of runtime extrinsics in order to
+determine appropriate weights for those extrinsics. It does this by executing a pallet's extrinsics
+multiple times within a mock runtime environment, and keeps track of the execution time.
 
 In summary, it:
 
@@ -39,7 +63,7 @@ In summary, it:
 - Outputs a Rust file with ready to use weight functions that can be easily integrated in your
   runtime.
 
-This framework uses Rust macros to help developers easily integrate bencharking into their runtimes.
+This framework uses Rust macros to help developers easily integrate benchmarking into their runtimes.
 A Substrate benchmark will look something like this:
 
 ```rust
@@ -60,34 +84,40 @@ You can see that the benchmark macro:
 2. Measures the execution time, along with the number of database reads and writes.
 3. Verifies the final state of the runtime, ensuring that the benchmark executed as expected.
 
-You can configure your benchmark to run over different varying inputs. 
-For each input, you can configure the range of those variables, and use them within the benchmark set-up or execution logic.
+You can configure your benchmark to run over different varying inputs. For each input, you can
+configure the range of those variables, and use them within the benchmark set-up or execution logic.
 
-The full syntax and functionality can be seen in the [`benchmarks!` macro API documentation](/rustdocs/latest/frame_benchmarking/macro.benchmarks.html).
+The full syntax and functionality can be seen in the [`benchmarks!` macro API
+documentation](/rustdocs/latest/frame_benchmarking/macro.benchmarks.html).
 
 ## Best practices and common patterns
 
-There are a few best practices for writing extrinsics in order to avoid any surprise on your extrinsics computation time and benchmarking.
+There are a few best practices for writing extrinsics in order to avoid any surprise on your
+extrinsics computation time and benchmarking.
 
 ### Initial weight calculation must be lightweight
 
-Extrinsic weight function will be called, probably multiple times, when an extrinsic is going to be called. So the weight function must be lightweight and should not perform any storage read/write, an
+Extrinsic weight function will be called, probably multiple times, when an extrinsic is going to be
+called. So the weight function must be lightweight and should not perform any storage read/write, an
 expensive operation.
 
 ### Set bounds and assume worst case
 
-If the extrinsic computation time depends on an existing storage value, then set a maximum bound on those storage items and assume the worst case. 
-Once the actual weight is known, the difference can be returned in the extrinsic.
+If the extrinsic computation time depends on an existing storage value, then set a maximum bound on
+those storage items and assume the worst case. Once the actual weight is known, the difference can be
+returned in the extrinsic.
 
 ### Keep extrinsics simple
 
-Try to keep an extrinsic simple and to perform only one function. 
-Sometimes it may be better to separate the complex logic into multiple extrinsic calls and have a front-end abstracting these extrinsic interactions away to provide a clean and friendly user experience.
+Try to keep an extrinsic simple and to perform only one function. Sometimes it may be better to separate
+the complex logic into multiple extrinsic calls and have a front-end abstracting these extrinsic
+interactions away to provide a clean and friendly user experience.
 
 ### Separate benchmarks per logical path and use the worst case
 
-If your extrinsic has multiple logical paths with signficantly different execution time, separate these paths in multiple benchmarking cases and measure them. 
-In the actual pallet weight macro above the extrinsics, you could combine them with a `max` function, e.g.
+If your extrinsic has multiple logical paths with significantly different execution time, separate
+these paths in multiple benchmarking cases and measure them. In the actual pallet weight macro above
+the extrinsics, you could combine them with a `max` function, e.g.
 
 ```rust
 #[pallet::weight(
@@ -97,9 +127,9 @@ In the actual pallet weight macro above the extrinsics, you could combine them w
 )]
 ```
 
-Note the weight returned here is more as the worst case of the weight estimate. 
-You can then decide if you want to return some weight value back at the end of the extrinsic once you know what computations have happened. 
-Otherwise it will be always overcharging users for calling this extrinsic.
+Note the weight returned here is more as the worst case of the weight estimate. You can then decide
+if you want to return some weight value back at the end of the extrinsic once you know what computations
+have happened. Otherwise it will be always overcharging users for calling this extrinsic.
 
 ### Minimize usage of `on_finalize`, and transition logic to `on_initialize`
 
@@ -108,12 +138,13 @@ Substrate provides runtime developers with multiple hooks when writing their own
 a block, variable weight requirements in `on_finalize` can easily lead to an overweight block and should be
 avoided.
 
-![on-finalize-blocktime.png](../../img/docs/runtime/benchmarking-on-finalize-blocktime.png)
+![on-finalize-blocktime.png](../../../../src/images/docs/runtime/benchmarking-on-finalize-blocktime.png)
 
-If possible, move the logic to `on_intialize` hook that happens at the beginning of the block. 
-Then the number of extrinsics to be included in the block can be adjusted accordingly. 
-Another trick is to put the weight of `on_finalize` on to `on_initialize` or the extrinsic itself. 
-This leads to another tip of trying to keep the pallet hook execution in constant time for only set up and clean up, but not doing fancy computation.
+If possible, move the logic to `on_intialize` hook that happens at the beginning of the block. Then
+the number of extrinsics to be included in the block can be adjusted accordingly. Another trick is
+to put the weight of `on_finalize` on to `on_initialize` or the extrinsic itself. This leads to
+another tip of trying to keep the pallet hook execution in constant time for only set up and clean
+up, but not doing fancy computation.
 
 ## Command arguments
 
@@ -131,22 +162,26 @@ Here's an example of launching a node with benchmarking features enabled:
     --execution wasm \          # Always test with Wasm
     --wasm-execution compiled \ # Always used `wasm-time`
     --pallet pallet_example \   # Select the pallet
-    --extrinsic '\*' \          # Select the benchmark case name, using '*' for all
+    --extrinsic '*' \          # Select the benchmark case name, using '*' for all
     --steps 20 \                # Number of steps across component ranges
     --repeat 10 \               # Number of times we repeat a benchmark
     --json-file=raw.json \      # Optionally output json benchmark data to a file
     --output ./                 # Output results into a Rust file
 ```
 
-A recent argument that has been introduced is `--template`. 
-With it, you can specify your own weight template file and the benchmarking toolchain will fill in the exact numbers from the measured result. 
-This enables automating weight generation in your desired code format and integrates this in your CI process.
+A recent argument that has been introduced is `--template`. With it, you can specify your own weight
+template file and the benchmarking toolchain will fill in the exact numbers from the measured
+result. This enables automating weight generation in your desired code format and integrates this
+in your CI process.
 
-The template is in [Rust handlebars](https://docs.rs/handlebars/) format.
+(`--raw` has recently been replaced with `--json` and `--json-file`)
+
+The template is in [rust handlebars](https://docs.rs/handlebars/) format.
 
 ## Example
 
-Let's take `accumulate_dummy` benchmark case from the [example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/lib.rs) as an example.
+Let's take `accumulate_dummy` benchmark case from the [example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/lib.rs)
+as an example.
 
 ```rust
 accumulate_dummy {
@@ -170,19 +205,22 @@ For example:
     --extrinsic '\*' \
     --steps 20 \
     --repeat 10 \
+    --json \
     --output ./pallets/example/weights.rs
 ```
 
-With `--steps 20 --repeat 10` in the benchmark input arguments, `b` will walk 20 steps to reach 1,000, so `b` will start from 1 and increment by about 50. 
-For each value of `b`, we will execute the benchmark 10 times and record the benchmark information. 
-The resulting weights will be outputted into a `weights.rs` file.
+With `--steps 20 --repeat 10` in the benchmark input arguments, `b` will walk 20 steps to reach
+1,000, so `b` will start from 1 and increment by about 50. For each value of `b`, we will execute
+the benchmark 10 times and record the benchmark information. The resulting weights will be outputted
+into a `weights.rs` file.
 
-![multi-variables-regression](../../img/docs/runtime/benchmarking-multi-variables-regression.png)
+![multi-variables-regression](../../../../src/images/docs/runtime/benchmarking-multi-variables-regression.png)
 
 ### Raw data output
 
-The first output is the raw data recording how much time is spent on running the execution state when varying the input variables. 
-At the end for each variable, the coefficient, assuming linear relationship, between the execution time with respect to change in the variable is determined.
+The first output is the raw data recording how much time is spent on running the execution state
+when varying the input variables. At the end for each variable, the coefficient, assuming linear
+relationship, between the execution time with respect to change in the variable is determined.
 
 This is a snippet of the output:
 
@@ -256,22 +294,28 @@ With the median slopes analysis, this is the weight function:
   [1 + (0 * b)] * db write time
 ```
 
-We separate the db/storage read and write out because they are particularly expensive and their respective operation time will be retrieved from the runtime. 
-We just need to measure how many db read write are performed with respect to the change of `b`.
+We separate the db/storage read and write out because they are particularly expensive and their
+respective operation time will be retrieved from the runtime. We just need to measure how many db
+read write are performed with respect to the change of `b`.
 
-The benchmark result is telling us that it will always perform 1 db read and 1 db write no matter how `b` changes.
+The benchmark result is telling us that it will always perform 1 db read and 1 db write no matter
+how `b` changes.
 
-The benchmark library gives us both a median slope analysis; that the execution time of a particular `b` value is taken as the median value of the repeated runs, and a [min. square analysis](https://en.wikipedia.org/wiki/Least_squares) that is better explained in a statistics primer.
+The benchmark library gives us both a median slope analysis; that the execution time of a particular
+`b` value is taken as the median value of the repeated runs, and a [min. square
+analysis](https://en.wikipedia.org/wiki/Least_squares) that is better explained in a statistics
+primer.
 
-You can also derive your own coefficients given you have the raw data on each run, say maybe you know the computation time will not be a linear but an _O(nlogn)_ relationship with the input variable. 
-So you need to determine the coefficient differently.
+You can also derive your own coefficients given you have the raw data on each run, say maybe you
+know the computation time will not be a linear but an _O(nlogn)_ relationship with the input
+variable. So you need to determine the coefficient differently.
 
 ### Auto-generated `WeightInfo` implementation
 
-The second output is an auto-generated `WeightInfo` implementation. 
-This file defines weight functions of benchmarked extrinsics with the computed coefficient above. 
-We can directly integrated this file in your pallet or further customize them if so desired. 
-The auto-generated implementation is designed to make end-to-end weight updates easy.
+The second output is an auto-generated `WeightInfo` implementation. This file defines weight
+functions of benchmarked extrinsics with the computed coefficient above. We can directly integrated
+this file in your pallet or further customize them if so desired. The auto-generated implementation
+is designed to make end-to-end weight updates easy.
 
 To use this file, we define a `WeightInfo` trait, for example in the [Example pallet](/v3/runtime/frame#example):
 
@@ -286,5 +330,6 @@ pub trait WeightInfo {
 ## Further learning
 
 - [`frame-benchmarking` README](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/README.md)
-- [Substrate Seminar: Benchmarking Your Substrate Pallet](https://www.youtube.com/watch?v=Qa6sTyUqgek)
+- [Substrate Seminar: Benchmarking Your Substrate
+  Pallet](https://www.youtube.com/watch?v=Qa6sTyUqgek)
 - [Learn how to use benchmarking to configure the weights for your pallet's extrinsics](/how-to-guides/v3/weights/use-benchmark-weights)
