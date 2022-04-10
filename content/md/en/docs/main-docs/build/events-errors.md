@@ -1,5 +1,5 @@
 ---
-title: Events
+title: Events and errors
 slug: /v3/runtime/events-and-errors
 version: '3.0'
 section: docs

@@ -1,9 +1,6 @@
 ---
-title: RPCs
-slug: /v3/runtime/custom-rpcs
-version: '3.0'
-section: docs
-category: runtime
+title: Remote procedure calls
+description:
 keywords:
   - rpc
   - frontend

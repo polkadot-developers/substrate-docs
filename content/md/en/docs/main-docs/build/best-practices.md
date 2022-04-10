@@ -1,9 +1,9 @@
-Section: Build
-Sub-section: Best practices
-Type: reference
-# Best practices
+---
+title: Best practices for builders
+description: reference
+keywords:
+---
 
-[_Note: rough sketch for now.._]
 
 ## Blockchain-specific best practices
 
