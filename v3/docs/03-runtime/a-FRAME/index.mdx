@@ -91,7 +91,7 @@ pub mod pallet {
 	// Use to declare storage items.
 	#[pallet::storage]
 	#[pallet::getter(fn something)]
-	pub MyStorage<T: Config> = StorageValue<_, u32>;
+	pub type MyStorage<T: Config> = StorageValue<_, u32>;
 
 	// 5. Runtime Events
 	// Can stringify event types to metadata.
