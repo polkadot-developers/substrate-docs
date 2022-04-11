@@ -6,6 +6,7 @@ import checkMark from '../../images/svg/check-mark.svg';
 import computer from '../../images/svg/computer.svg';
 import contact from '../../images/svg/contact.svg';
 import desktop from '../../images/svg/desktop.svg';
+import docsIcon from '../../images/svg/docs.svg';
 import dollar from '../../images/svg/dollar.svg';
 import builders from '../../images/svg/ecosystem/builders.svg';
 import connect from '../../images/svg/ecosystem/connect.svg';
@@ -39,6 +40,8 @@ import paperplane from '../../images/svg/paperplane.svg';
 import pen from '../../images/svg/pen.svg';
 import placeholder from '../../images/svg/placeholder.svg';
 import polkadotLogo from '../../images/svg/polkadot-logo.svg';
+import quickStart from '../../images/svg/quick-start.svg';
+import reference from '../../images/svg/reference.svg';
 import seminar from '../../images/svg/seminar.svg';
 import shieldCheckSolid from '../../images/svg/shield-check-solid.svg';
 import smile from '../../images/svg/smile.svg';
@@ -74,6 +77,7 @@ import secure from '../../images/svg/technology/secure.svg';
 import tooling from '../../images/svg/technology/tooling.svg';
 import tools from '../../images/svg/technology/tools.svg';
 import upgradable from '../../images/svg/technology/upgradable.svg';
+import tutorials from '../../images/svg/tutorials.svg';
 import arrowBack from '../../images/svg/ui/arrow-back.svg';
 import arrowDropdown from '../../images/svg/ui/arrow-dropdown.svg';
 import arrowMore from '../../images/svg/ui/arrow-more.svg';
@@ -199,6 +203,11 @@ const iconsMap = {
   composable: composable,
   'future-proof-base': futureProofBase,
   upgradable: upgradable,
+  /* Navigation  */
+  docsIcon: docsIcon,
+  reference: reference,
+  quickStart: quickStart,
+  tutorials: tutorials,
 };
 
 export default function Icon({ name, className, ...others }) {
