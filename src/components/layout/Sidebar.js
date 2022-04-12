@@ -25,9 +25,33 @@ const Sidebar = ({ children }) => {
               })}
             />
           </button>
+          <div className="mt-12">
+            {isOpen ? (
+              <>
+                <Icon
+                  name="quickStart"
+                  className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white')}
+                />
+                <Icon
+                  name="docsIcon"
+                  className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white')}
+                />
+                <Icon
+                  name="tutorials"
+                  className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white')}
+                />
+                <Icon
+                  name="reference"
+                  className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white')}
+                />
+              </>
+            ) : (
+              ''
+            )}
+          </div>
           <div
             className={cx('w-64 mt-10 px-4 z-0 transition-all transform ', {
-              'duration-75 ease-in-out opacity-0': isOpen,
+              'duration-75 ease-in-out opacity-0 hidden': isOpen,
               'duration-500 ease-in-out opacity-100': !isOpen,
             })}
           >

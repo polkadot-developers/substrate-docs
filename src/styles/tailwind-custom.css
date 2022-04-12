@@ -210,3 +210,7 @@ div[aria-label='animation'] {
 .banner a {
   @apply text-substrateDarkThemeBlue dark:text-substrateBlue;
 }
+/* Nav Icons */
+nav ul li span svg {
+  @apply dark:text-substrateDarkThemeBlue;
+}

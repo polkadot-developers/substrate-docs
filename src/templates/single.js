@@ -18,7 +18,7 @@ export default function DocsSinglePage({ data, pageContext }) {
     <Layout>
       <SEO title={title} />
       <div className="flex flex-col lg:flex-row">
-        <Sidebar>
+        <Sidebar currentPath={pagePath}>
           <NavSidebar currentPath={pagePath} />
         </Sidebar>
 

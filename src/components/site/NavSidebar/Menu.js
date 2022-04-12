@@ -1,6 +1,7 @@
 import cx from 'classnames';
 import React, { useState } from 'react';
 
+import Icon from '../../default/Icon';
 import { Link } from '../../default/Link';
 import SubMenu from './SubMenu';
 
@@ -16,13 +17,47 @@ const Menu = ({ page, currentPath }) => {
           })}
         >
           <span className="inline-block py-3 collapse-button w-full" onClick={() => setIsOpen(!isOpen)}>
-            {console.log(page.title)}
-            {page.url ? <Link to={page.url}>{page.title}</Link> : `${page.title}`}
+            {page.title === 'Quick start' && (
+              <Icon
+                name="quickStart"
+                className={cx('p-0 mx-2 inline fill-current text-substrateDark dark:text-white', {
+                  'fill-substrateBlue': currentPath === page.url,
+                })}
+              />
+            )}
+            {page.title === 'Docs' && (
+              <Icon
+                name="docsIcon"
+                className={cx('p-0 mx-2 inline fill-current text-substrateDark dark:text-white', {
+                  'fill-substrateBlue': currentPath === page.url,
+                })}
+              />
+            )}
+            {page.title === 'Tutorials' && (
+              <Icon
+                name="tutorials"
+                className={cx('p-0 mx-2 inline fill-current text-substrateDark dark:text-white', {
+                  'fill-substrateBlue': currentPath === page.url,
+                })}
+              />
+            )}
+            {page.title === 'Reference' && (
+              <Icon
+                name="reference"
+                className={cx('p-0 mx-2 inline fill-current text-substrateDark dark:text-white', {
+                  'fill-substrateBlue': currentPath === page.url,
+                })}
+              />
+            )}
+            <Link className="" to={page.url}>
+              {page.title}
+            </Link>
             {page.pages ? (
               <svg
-                className={`mt-1 fill-current text-substrateDark dark:text-white align-middle float-right inline ${
-                  isOpen ? '-rotate-180 fill-substrateBlue' : null
-                }`}
+                className={cx('mt-1 fill-current text-substrateDark dark:text-white align-middle float-right inline', {
+                  'fill-substrateBlue': currentPath === page.url,
+                  '-rotate-180': isOpen === true,
+                })}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="-5 -8 24 24"
                 width="16"

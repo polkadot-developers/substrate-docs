@@ -32,6 +32,17 @@ next: /reference/glossary/
    }
 ```
 
+<div class='gatsby-highlight' data-language=''>
+  <pre class='language-rust'>
+   // Configure your pallet.
+   /* hide-range{1-3} */
+   impl pallet_something::Config for Runtime {
+   	type Event = Event;
+   	type Call = Call;
+   }
+   </pre>
+</div>
+
 ```bash
    rustup update nightly
    rustup target add wasm32-unknown-unknown --toolchain nightly
