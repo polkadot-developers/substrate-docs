@@ -51,10 +51,19 @@ You can look the a chain-specific address for a public key using the `subkey ins
 For information about generating public and private key pairs and inspecting addresses, see [subkey](/reference/command-line-tools/subkey).
 For information about chain-specific address, see the instructions in the [SS58 repository](https://github.com/paritytech/ss58-registry).
 
+## Account information in FRAME
+
+Conceptually, accounts represent identities that have a public/private key pair with one or more public addresses.
+However, accounts also have specific properties in FRAME that are made concrete in the runtime and in the context of pallets such the balances, staking, and proxy pallets.
+
+In a runtime built with FRAME, an account is defined as a storage map with a 32-byte address identifier and corresponding account information, such as the number of transactions the account has made, the number of modules that depend on the account, and account balance.
+
+For more information about how accounts are defined in the `frame_system` pallet and the account properties in the `Account` storage map, see [here]().
+
 ## Specialized accounts
 
 Although most accounts are used to represent a public/private key pair that controls funds or executes transactions, Substrate supports some specialized accounts to control how specific key pairs can be used.
-For example, you might have accounts that require custom cryptographic schemes or can only be used to perform specific functions or can only access specific pallets.
+For example, you might have accounts that require custom cryptographic schemes, can only be used to perform specific functions, or can only access specific pallets.
 
 ### Staking accounts and keys
 
@@ -71,5 +80,20 @@ To keep the balances in these accounts secure, the Staking pallet provides some 
 ### Keyless proxy accounts
 
 In some cases, you might want to create an account that is detached from any owner so that it can be used to perform autonomous transactions.
-For example, you might create an account, then remove yourself from the account so that it is autonomous and can receive funds or be transferred to someone else.
-After you relinquish control, the new account can be used to burn funds because no one has the keys to the account.
+For example, you might create an account, then delegate permissions to that account so that it can dispatch function calls without your intervention and without access to your keys.
+After the new account with the delegated permissions is created, the account can be used as a recipient to burn funds or to hold tokens awaiting the execution or a transfer.
+
+You can use the Proxy pallet to create an account with permission to dispatch certain types of calls using the delegated account as the signed origin.
+
+## Where to go next
+
+In Substrate, accounts require a public key and a private key to receive funds, sign transactions, and execute transactions.
+At a high level, there are three types of accounts:
+
+* User accounts that enable end users to interact with the blockchain.
+* Network accounts that provide additional security for validators and nominators by restricting some operations for staking and governance.
+* Pallet accounts that are executed by valid origins to perform pallet-specific operations.
+
+For more technical information, see the following resources:
+
+* TBD 
