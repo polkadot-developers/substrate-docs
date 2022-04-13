@@ -38,7 +38,7 @@ const Banner = () => {
               >
                 what makes a good question
               </a>{' '}
-              and ask it 😃
+              and ask it 😃.
             </p>
           </div>
 
