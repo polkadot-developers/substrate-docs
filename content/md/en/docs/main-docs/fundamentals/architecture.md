@@ -1,54 +1,49 @@
 ---
-title: Substrate architecture
-description: An introduction to the core components of a SUbstrate node.
+title: Architecture
+description: Introduces the core components of a Substrate node.
 featured_image:
+keywords: 
 ---
 
-A Substrate node is designed to be modular, extensible and adaptable to change. 
-This article presents the architecture of a Substrate node, using the [node template](https://github.com/substrate-developer-hub/substrate-node-template) as a reference which provides a set of core components ready to use out of the box.
+As noted in [Blockchain basics](/main-docs/fundamentals/blockchain-basics), a blockchain relies on a decentralized network of computers—called **nodes**—that communicate with each other.
+Because the node is a core component of a Substrate blockchain and it takes a lot of nodes working together to build a secure and robust chain, it's important to understand the architecture of a Substrate node, including the core services and libraries that are provided by default and how the node can be customized and extended to suit different project goals.
 
-A Substrate node can be thought of as video gaming environment, where the console is the client (or the "outer part") and the current game being played is the current runtime (i.e. everything executing "on-chain").
-Each of these components are created using Substrate's [core libraries](/main-docs/06-build/libraries/) for building blockchain nodes, i.e. clients and their runtime logic.
+## Node and client architecture
 
-The architecture of a Substrate node contains:
+In a decentralized network, all nodes are both clients that request data and servers that respond to requests for data.
+Conceptually and programmatically, the Substrate architecture divides operational responsibilities along similar lines.
+The following diagram illustrates this separation of responsibilities in simplified form to help you visualize the architecture.
 
-- **[A runtime](#runtime)**: this is what defines how blocks are processed, including state transition and business logic execution.
-Runtime code is compiled to [Wasm](/v3/getting-started/glossary#webassembly-wasm), a key enabler for [forkless runtime upgrades](/v3/runtime/upgrades#forkless-runtime-upgrades). 
-Everything responsible for handling on-chain logic and state persistence happens in the runtime.
-- **[A storage component](#storage)**: storage is used to persist the evolving state of a Substrate blockchain.
-Substrate ships with a simple and highly efficient [key-value storage layer](/v3/advanced/storage).
-- **[An executor](#executor)**: the component of the client that dispatches calls to the runtime is known as the [executor](/v3/advanced/executor), whose role is to select an execution environment for the runtime (either native or Wasm).
-- **A network layer**: the capabilities that allow the client to communicate with other network participants. 
-Substrate uses the Rust implementation of the [`libp2p` network stack](https://libp2p.io/).
-- **A consensus engine**: the logic that allows network participants to agree on the state of the blockchain.
-Substrate makes it possible to supply custom consensus engines and also ships with several consensus mechanisms that have been built on top of [Web3 Foundation research](https://w3f-research.readthedocs.io/en/latest/index.html).
-- **An RPC API**: this provides capabilities for blockchain users to interact with the network. 
-Substrate ships with HTTP and WebSocket RPC servers.
-- **A telemetry layer**: this layer enables viewing node metrics, exposed by an embedded [Prometheus](https://prometheus.io/) server.
+![Substrate architecture](/media/images/docs/main-docs/sub-arch-1.png)
 
-## Runtime and client
+As illustrated in the diagram, Substrate nodes provide a layered environment with three main elements:
 
-The defines what transactions are valid and invalid and determines how the chain's state changes in response to transactions. 
+* A **light client** that accesses the data stored in the blockchain but does not participate in producing blocks or reaching consensus.
 
-The client on the other hand, or everything part of the node that's outside the runtime, is responsible for handling peer discovery, transaction pools, consensus and answering RPC calls from the outside world. 
+* An **outer node** that handles network activity such as peer discovery, managing transaction requests, reaching consensus with peers, and responding to RPC calls.
+
+* A **runtime** that contains all of the business logic for executing transactions, producing blocks, and reaching consensus.
+
+## Outer node responsibilities
+
+The outer node on the other hand, or everything part of the node that's outside the runtime, is responsible for handling peer discovery, transaction pools, consensus and answering RPC calls from the outside world. 
 While performing these tasks, this "outer part" sometimes needs to query the runtime for information, or provide information to the runtime. 
 
-Learn more about [availble runtime APIs](./link-todo-design) in Substrate.
+**[A storage component](#storage)**: storage is used to persist the evolving state of a Substrate blockchain.
+Substrate ships with a simple and highly efficient [key-value storage layer](/v3/advanced/storage).
 
-### Wasm runtimes
+**[An executor](#executor)**: the component of the client that dispatches calls to the runtime is known as the [executor](/v3/advanced/executor), whose role is to select an execution environment for the runtime (either native or Wasm).
 
-A super powerful feature of Substrate runtimes is their ability to compile to [WebAssembly (Wasm)](/v3/getting-started/glossary#webassembly-wasm) bytecode.
-Among a few things, this provides forkless runtime upgrade capabilities, browser compatibility, checking runtime validity and providing validation proofs for relay chain consensus mechanisms.
+**A network layer**: the capabilities that allow the client to communicate with other network participants.
+Substrate uses the Rust implementation of the [`libp2p` network stack](https://libp2p.io/).
 
-Native runtimes &mdash; those that are produced by running the Rust executable only &mdash; mainly have their use in development and testing environments. 
-Compiling to native only is faster, more efficient and easier to debug, especially considering that developers can't use Rust's standard library for debugging Wasm runtimes. 
-However, although native runtimes could in theory be used by operating nodes in production, Substrate nodes will always select the latest available runtime which is always the Wasm runtime, required by forkless upgrades.
-Once a forkless update occurs, nodes will execute the new runtime which is just a new Wasm blob in the chain's storage.
+**A consensus engine**: the logic that allows network participants to agree on the state of the blockchain.
+Substrate makes it possible to supply custom consensus engines and also ships with several consensus mechanisms that have been built on top of [Web3 Foundation research](https://w3f-research.readthedocs.io/en/latest/index.html).
 
-There are ongoing discussions about removing the native runtime altogether to encourage developers to move away from using the native runtime.
-Refer to this open [issue](https://github.com/paritytech/substrate/issues/7288) for more details. 
+**An RPC API**: this provides capabilities for blockchain users to interact with the network. 
+Substrate ships with HTTP and WebSocket RPC servers.
 
-Learn more about the [build process of a Substrate runtime](./build/build-process.md).
+**A telemetry layer**: this layer enables viewing node metrics, exposed by an embedded [Prometheus](https://prometheus.io/) server.
 
 ### Executor
 
@@ -71,6 +66,41 @@ There is a different implementation under developement called [Parity DB](https:
 `db  -- trie -- overlay(s) --  sp_io host functions -- runtime`  
 
 (where "DB" includes all the key-value layer; ["overlays"](https://github.com/paritytech/substrate/blob/ded44948e2d5a398abcb4e342b0513cb690961bb/primitives/state-machine/src/overlayed_changes/mod.rs#L92); host function impls; runtime; and pallet call) -->
+
+## Runtime responsibilities
+
+In essence, the runtime represents everything that executes on-chain and is the core component of the node for building Substrate blockchains.
+
+The [runtime](#runtime) defines how blocks are processed, including state transitions and business logic execution.
+Runtime code is compiled to [WebAssembly (Wasm](/reference/glossary#webassembly-wasm) to enable for [forkless upgrades](/main-docs/maintain/upgrades). 
+Everything responsible for handling on-chain logic and state persistence happens in the runtime.
+
+The runtime defines what transactions are valid and invalid and determines how the chain's state changes in response to transactions. 
+
+Learn more about [available runtime APIs](./link-todo-design) in Substrate.
+
+### WebAssembly runtime
+
+The Substrate runtime compiles as a standard Rust binary and to [WebAssembly (Wasm)](/reference/glossary#webassembly-wasm) byte code.
+The WebAssembly target enables:
+
+* Support for forkless upgrades.
+* Browser compatibility.
+* Runtime validity checking.
+* Validation proofs for relay chain consensus mechanisms.
+
+### Standard Rust runtime
+
+Compiling Rust using the standard Rust libraries results in a Rust binary version of the runtime.
+The standard Rust runtime is mainly used in development and testing environments because compiling a standard Rust executable is faster and more efficient than compiling to the WebAssembly target.
+The Rust runtime is also easier to debug because you can use standard Rust libraries that aren't available for debugging WebAssembly targets.
+
+In theory, you could use the Rust runtime to operate nodes in production.
+However, Substrate nodes always select WebAssembly runtime as the latest available runtime to use as a way to support forkless upgrades.
+After an upgrade, nodes always execute the updated WebAssembly blob that's stored on-chain.
+
+For more information about building the Substrate runtime, see [] ](/main-docs/build/build-process/).
+
 
 ## Learn more
 

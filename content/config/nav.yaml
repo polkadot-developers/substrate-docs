@@ -21,23 +21,23 @@ docs:
           url: /main-docs/fundamentals/blockchain-basics/
         - title: Choosing a development platform
           url: /main-docs/fundamentals/choose-a-dev-platform/
-        - title: Node architecture
+        - title: Architecture
           url: /main-docs/fundamentals/architecture/
         - title: Substrate runtime development
-          url: /main-docs/fundamentals/platform/
+          url: /main-docs/fundamentals/runtime-intro/
         - title: Consensus
           url: /main-docs/fundamentals/consensus/
         - title: Nodes and networks
           url: /main-docs/fundamentals/node-and-network-types/
-        - title: Accounts and keys
-          url: /main-docs/fundamentals/accounts-and-keys/
+        - title: Accounts, addresses, and keys
+          url: /main-docs/fundamentals/accounts-addresses-keys/
         - title: Transaction lifecycle
           url: /main-docs/fundamentals/transaction-lifecycle/
         - title: State transitions and storage
           url: /main-docs/fundamentals/state-transitions-and-storage/
         - title: Offchain operations
           url: /main-docs/fundamentals/offchain-operations/
-        - title: Substrates Rust
+        - title: Rust for Substrate
           url: /main-docs/fundamentals/rust-basics/
     - title: Install
       url: /main-docs/install/
