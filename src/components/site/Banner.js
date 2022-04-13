@@ -20,21 +20,25 @@ const Banner = () => {
           </span>
           <div className="underline-animate underline-animate-thin">
             <p className="mb-0 leading-relaxed">
-              The Substrate developer community is in the beta phase of its
-              Stack Exchange campaign and needs your help.{' '}
-              <strong className="font-bold">
-                We have until April 7th to increase the engagement on the site,
-                otherwise it will get shut down.
-              </strong>
+              Have a question related to something you're building with
+              Substrate? Check out
               <a
                 href="https://substrate.stackexchange.com/"
                 target="_blank"
                 rel="noreferrer"
               >
-                Visit the page here
+                our StackExchange page
               </a>{' '}
-              and help us get past the beta phase by asking questions, upvoting
-              or downvoting existing questions or providing answers.
+              — your question may already be answered. If it isn&apos;t, have a
+              look at{' '}
+              <a
+                href="https://substrate.stackexchange.com/help/how-to-ask"
+                target="_blank"
+                rel="noreferrer"
+              >
+                what makes a good question
+              </a>{' '}
+              and ask it 😃
             </p>
           </div>
 
