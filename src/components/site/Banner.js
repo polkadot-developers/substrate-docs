@@ -20,7 +20,7 @@ const Banner = () => {
           </span>
           <div className="underline-animate underline-animate-thin">
             <p className="mb-0 leading-relaxed">
-              Have a question related to something you're building with
+              Have a question related to something you&apos;re building with
               Substrate? Check out
               <a
                 href="https://substrate.stackexchange.com/"
