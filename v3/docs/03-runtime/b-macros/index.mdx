@@ -109,7 +109,7 @@ Required to define the pallet's generics.
 
 **What it does**
 
-Provides constants that are part of the [`Config` trait](/rustdocs/latest/frame_system/pallet/trait.Config.html) and gives information about external tools to use for the runtime. In other words allows the user to tweak the pallet's behavior.
+Provides constants that are part of the [`Config` trait](/rustdocs/latest/frame_system/pallet/trait.Config.html) to specify how a pallet is configured for the runtime, allowing developers to tweak the pallet's behaviour.
 
 **Docs**
 
@@ -119,7 +119,7 @@ Provides constants that are part of the [`Config` trait](/rustdocs/latest/frame_
 
 **When to use**
 
-To pass values of `Config` trait associated types to metadata, which allows the value of the type to be used by external tools and third parties. Note that this attribute is only usable from inside a `#[pallet::config]` item.
+To pass constant types from the `Config` trait to the pallet's metadata, which allows the value of the type to be used by external tools and third parties. Note that this attribute is only usable from inside a `#[pallet::config]` item.
 
 **What it does**
 
@@ -145,7 +145,7 @@ pub trait Config: frame_system::Config {
 
 **When to use**
 
-Optionally, for additional constants not related to user's configuration one may want to pass to metadata.
+Optionally, to pass metadata for additional constants which are not related to the pallet's configuration.
 
 **What it does**
 
@@ -167,7 +167,7 @@ impl<T: Config> Pallet<T> {
 
 **When to use**
 
-Required to declare the pallet struct place holder, to be later used by `construct_runtime` macro.
+Required to declare the pallet struct place holder, to be later used by the `construct_runtime` macro.
 
 **What it does**
 
@@ -239,12 +239,12 @@ impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
 
 **When to use**
 
-Required, to implement pallet's dispatchables. Each dispatchable:
+Required, to implement dispatchables for the pallet. Each dispatchable:
 
 - defines a weight with the `#[pallet::weight($expr)]` attribute
 - has its first argument as `origin: OriginFor<T>`,
 - returns `DispatchResultWithPostInfo` or `DispatchResult`
-- may use compact encoding for argument using `#[pallet::compact]`
+- may use compact encoding of arguments, using `#[pallet::compact]`
 
 **What it does**
 
@@ -354,7 +354,7 @@ a particular pallet.
 - `Runtime` struct type is defined to represent the Substrate runtime.
 - `Event` enum type is defined with variants of all pallets that emit events, with helper traits and
   encoding/decoding traits implemented for the enum. Among the various conversion traits, `Event` also
-  implements `TryInto<mypallet::Event<Runtime>>` trait to try to convert it into an event declared
+  implements the `TryInto<mypallet::Event<Runtime>>` trait to try to convert it into an event declared
   by the specific pallet `mypallet`.
 - `Origin` enum type is defined with helper traits, e.g. `PartialEq`, `Clone`, `Debug` implemented.
   This enum type defines who calls an extrinsic: `NONE`, `ROOT`, or signed by a particular account.
@@ -362,8 +362,8 @@ a particular pallet.
   may also define origins.
 - `Call` enum type is defined with all integrated pallets as variants. It contains the data and
   metadata of each of the integrated pallets, and redirects calls to the
-  specific pallet by implementing `frame_support::dispatch::Dispatchable` and
-  `frame_support::dispatch::UnfilteredDispatchable` trait.
+  specific pallet by implementing the `frame_support::dispatch::Dispatchable` and
+  `frame_support::dispatch::UnfilteredDispatchable` traits.
 - `GenesisConfig` struct type is defined and implements `sp_runtime::BuildStorage` trait for
   building up the storage genesis config.
 - The macro leverages the `frame_support::unsigned::ValidateUnsigned` trait implementation from each
@@ -374,7 +374,7 @@ a particular pallet.
 
 **When to use**
 
-To declare parameter types to be assigned to pallet's `Config` trait associated types during
+To declare parameter types for a pallet's relevant associated types during
 runtime construction.
 
 **What it does**
@@ -435,7 +435,7 @@ public-private key pair from a seed.
   the public key type, and `sp_application_crypto::RuntimeAppPublic` trait for generating keypairs,
   signing, and verifying signatures.
 - `Signature` struct type is declared, and implements `sp_application_crypto::AppKey` and
-  `core::hash::Hash` trait determining how the data with this signature type is hashed.
+  `core::hash::Hash` traits which determine how the data with this signature type is hashed.
 - `Pair` struct type is declared to wrap over the crypto pair. This type implements
   `sp_application_crypto::AppKey` and `sp_application_crypto::Pair` trait determining how it
   generates public-private key pairs from a phrase or seed.
