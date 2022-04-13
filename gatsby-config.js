@@ -106,6 +106,12 @@ module.exports = {
           /* invoke lazyload manually to fix srcset rehype parsing
           using lazysizes package (loaded in gatsby-browser.js) */
           // `gatsby-remark-lazy-load`,
+          {
+            resolve: `gatsby-remark-embed-snippet`,
+            options: {
+              directory: `${__dirname}/code-snippets/`,
+            },
+          },
           `gatsby-remark-prismjs`,
           {
             resolve: 'gatsby-remark-custom-blocks',

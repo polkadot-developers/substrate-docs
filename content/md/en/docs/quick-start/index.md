@@ -24,10 +24,30 @@ next: /reference/glossary/
 
 ## Code
 
-```rust
+### File view
+
+This file lives at /code-snippets/markdown.js
+
+`embed:markdown.js`
+
+### Highlight view
+
+This file highlights lines 8-12 using a comment inside the file // highlight-range{1-3}
+
+`embed:markdown2.js`
+
+### Subset of a file
+
+This code block only shows a subset of a file (lines 8 to 12) by embedding the file with a suffix of #L8-12
+
+`embed:markdown.js#L8-12`
+
+<hr/>
+
+```diff-rust{numberLines: true}
    // Configure your pallet.
-   impl pallet_something::Config for Runtime {
-   	type Event = Event;
++   impl pallet_something::Config for Runtime {
+-   	type Event = Event;
    	type Call = Call;
    }
 ```
