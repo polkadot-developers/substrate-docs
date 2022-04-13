@@ -1,10 +1,12 @@
 import cx from 'classnames';
+import { Link } from 'gatsby';
 import React, { useState } from 'react';
 
 import Icon from '../default/Icon';
 
-const Sidebar = ({ children }) => {
+const Sidebar = ({ children, currentPath }) => {
   const [isOpen, setIsOpen] = useState(false);
+  console.log(currentPath);
   return (
     <div className="hidden lg:inline-block lg:flex-none lg:h-auto lg:bg-substrateGray-light lg:dark:bg-substrateDark border-r border-gray-200 dark:border-gray-700 min-h-screen">
       <div
@@ -28,22 +30,38 @@ const Sidebar = ({ children }) => {
           <div className="mt-12">
             {isOpen ? (
               <>
-                <Icon
-                  name="quickStart"
-                  className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white')}
-                />
-                <Icon
-                  name="docsIcon"
-                  className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white')}
-                />
-                <Icon
-                  name="tutorials"
-                  className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white')}
-                />
-                <Icon
-                  name="reference"
-                  className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white')}
-                />
+                <Link to="/quick-start/quickstart/">
+                  <Icon
+                    name="quickStart"
+                    className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white', {
+                      'fill-substrateBlue': currentPath.includes('/quick-start/'),
+                    })}
+                  />
+                </Link>
+                <Link to="/main-docs/">
+                  <Icon
+                    name="docsIcon"
+                    className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white', {
+                      'fill-substrateBlue': currentPath.includes('/main-docs/'),
+                    })}
+                  />
+                </Link>
+                <Link to="/tutorials/">
+                  <Icon
+                    name="tutorials"
+                    className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white', {
+                      'fill-substrateBlue': currentPath.includes('/tutorials/'),
+                    })}
+                  />
+                </Link>
+                <Link to="/reference/">
+                  <Icon
+                    name="reference"
+                    className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white', {
+                      'fill-substrateBlue': currentPath.includes('/reference/'),
+                    })}
+                  />
+                </Link>
               </>
             ) : (
               ''
