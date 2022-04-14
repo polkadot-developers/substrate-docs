@@ -28,6 +28,8 @@ export default function DocsSinglePage({ data, pageContext }) {
           <div className="lg:flex-grow">
             <div className="py-8 lg:flex lg:justify-between lg:items-center">
               <div className="text-sm text-gray-400">
+                {pagePath}
+                <br />
                 WIP: Header: Breadcrumbs, Version, Edit
                 <div>Collection: {collection}</div>
               </div>

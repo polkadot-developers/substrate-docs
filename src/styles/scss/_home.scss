@@ -94,3 +94,12 @@
 .fill-substrateBlue {
   fill: #4e73f2;
 }
+
+/* Diff view code highlighting  */
+
+pre code .inserted {
+  color: green;
+}
+pre code .deleted {
+  color: red !important;
+}

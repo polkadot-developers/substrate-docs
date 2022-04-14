@@ -42,15 +42,27 @@ This code block only shows a subset of a file (lines 8 to 12) by embedding the f
 
 `embed:markdown.js#L8-12`
 
-<hr/>
+### Diff view
 
-```diff-rust{numberLines: true}
+Diff view doesn't seem to work with embedded code snippets. Node that comments from remark embed plugin displays comments when showing the entire file.
+
+`embed:markdown.diff`
+
+But it does work with code blocks inserted directly into the markdown file.
+
+```diff
    // Configure your pallet.
 +   impl pallet_something::Config for Runtime {
 -   	type Event = Event;
    	type Call = Call;
    }
 ```
+
+### Embed Snippet from file markdown.diff
+
+`embed:markdown.diff{snippet: "rehype"}`
+
+<hr/>
 
 <div class='gatsby-highlight' data-language=''>
   <pre class='language-rust'>
