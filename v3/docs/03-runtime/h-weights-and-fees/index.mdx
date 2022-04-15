@@ -188,7 +188,7 @@ otherwise in the weight annotation, a dispatch is `Normal`. The developer can sp
 dispatchable uses another class like this:
 
 ```rust
-#[pallet::weight(100_000, DispatchClass::Operational)]
+#[pallet::weight((100_000, DispatchClass::Operational))]
 fn my_dispatchable() {
     // ...
 }
@@ -198,7 +198,7 @@ This tuple notation also allows specifying a final argument that determines whet
 is charged based on the annotated weight. When not defined otherwise, `Pays::Yes` is assumed:
 
 ```rust
-#[pallet::weight(100_000, DispatchClass::Normal, Pays::No)]
+#[pallet::weight((100_000, DispatchClass::Normal, Pays::No))]
 fn my_dispatchable() {
     // ...
 }
