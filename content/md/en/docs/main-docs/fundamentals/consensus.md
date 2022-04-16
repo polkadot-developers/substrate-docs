@@ -1,6 +1,6 @@
 ---
 title: Consensus
-description: An overview of common consensus models that you can deploy in the Substrate runtime.
+description: Describes the consensus models Substrate provides.
 featured_image:
 ---
 
