@@ -4,54 +4,39 @@ description:
 keywords:
 ---
 
-This article goes over the different libraries available for building blockchains with Substrate. 
+Before you start building your blockchain, you might want to be familiar with the different libraries available and how they are used.
+
+In [Architecture](/main-docs/fundamentals/architecture/), you learned about the core components of a Substrate node and how different parts of the node take on different responsibilities. 
+On a more technical level, the separation of duties between different layers of a node are reflected in the core libraries used to build a Substrate-based blockchain.
+The following diagram illustrates how the libraries mirror the outer node and runtime responsibilities and how a library of **primitives** provides the communication layer between the two.
+
+![Libraries mirror the division of labor between the outer node and the runtime](/media/images/docs/main-docs/sub-libraries-1.png)
 
 ## Core libraries
 
-At a high level, Substrate's core libraries consists of libraries to build: clients, runtimes and the communication layer between the two. 
+The libraries that enable a Substrate node to handle its network responsibilities,including consensus and block execution are Rust crates that use the `sc_` prefix in the crate name.
+For example, the [`sc_service`](https://docs.substrate.io/rustdocs/latest/sc_service/index.html) library is responsible for building the networking layer for Substrate blockchains, managing the communication between the network participants and the transaction pool.
 
+The libraries that provide the communication layer between the outer node and the runtime are Rust crates that use the `sp_` prefix in the crate name.
+These libraries orchestrate the activities that require outer node and runtime to interact.
+For example, the[`sp_std`](https://docs.substrate.io/rustdocs/latest/sp_std/index.html) libraris takes useful primitives from Rust's standard library and makes them usable with any code that depends on the runtime.
 
+The libraries that enable you to build the runtime logic and to encode and decode the information passed into and out of the runtime are Rust crates that use the `frame_` prefix in the crate name.
+The `frame_*` libraries provide the infrastructure for the runtime.
+For example, the [`frame_system`](https://docs.substrate.io/rustdocs/latest/frame_system/index.html) library provides a basic set of functions for interacting with other Substrate components and[`frame_support`](https://docs.substrate.io/rustdocs/latest/frame_support/index.html) enables you to  declare runtime storage items, errors, and events.
 
-                                ┌────────────────────────┐
-                                │ Client                 │
-                                │                        │
-                                │                        │
-                                │                        │
-                                │     ┌──────────────────┤
-                                │     │ Primitives       │
-                                │     │                  │
-                                │     │     ┌────────────┤
-                                │     │     │            │
-                                │     │     │            │
-                                │     │     │   Runtime  │
-                                └─────┴─────┴────────────┘
+In addition to the infrastructure provided by the `frame_*` libraries, the runtime can include one or more `pallet_*` libraries.
+Each Rust crate that uses the `pallet_` prefix represents a single FRAME module.
+In most cases, you use the `pallet_*` libraries to assemble the functionality you want to incorporate in the blockchain to suit your project.
 
-> _TODO: Diagram is a rough sketch. Each part is not meant to be interpreted as nested, rather that "primitives" enable communication between the Clients and Runtimes. Need to annotate diagram with below:_
-
-> - **Client**: Libraries that enable the client and networking layer, including consensus and block execution. 
-> - **Primitives**: Libraries responsible for communicating between the client and the runtime, creating the transaction pool and building blocks for the block executor.
-> - **FRAME**: Libraries to facilitate building runtime logic and encoding and decoding information passing to and from the runtime.
-
-Each of these components are built from Rust libraries that fall under four categories:
-
-- `sc_*`: Substrate client libraries encapsulate the numerous crates for node and client facing infrastructure, including consensus critical infrastructure, P2P networking, RPC APIs and block execution.
-For example, [`sc_service`](https://docs.substrate.io/rustdocs/latest/sc_service/index.html) is responsible for building the networking layer for Substrate blockchains, managing the communication between the network, client and transaction pool. 
-
-- `sp_*`: Substrate primitives are libraries to facilitate communication between the client and the runtime. 
-For example, [`sp_std`](https://docs.substrate.io/rustdocs/latest/sp_std/index.html) takes useful primitives from Rust's standard library and makes them usable with any code that depends on the runtime.
-
-- `frame_*`: runtime SDK libraries for building use case specific runtime logic and calling to and from a runtime.
-For example, [`frame_support`](https://docs.substrate.io/rustdocs/latest/frame_support/index.html) enables developers to easily declare runtime storage items, errors and events and [`frame_system`](https://docs.substrate.io/rustdocs/latest/frame_system/index.html) acts as the base layer for other pallets to interact with other Substrate components.
-
-- `pallet_*`: a single FRAME module, of which exists an [existing collection](/frame-pallets) created for Polkadot and Kusama. 
-Other pallet libraries exist such as the [Open Runtime Module Library (ORML)](https://github.com/open-web3-stack/open-runtime-module-library).
-
-Although it is possible to build an alternative to [FRAME](./link-to-frame) using the primitives exposed by Substrate's core libraries, there has not yet been any significant community efforts to do so yet and FRAME remains the easiest and most reliable way to compose Substrate runtimes.
+You can build a Substrate runtime without using the `frame_*` or `pallet_*` libraries using the primitives exposed by the `sp_*` core libraries.
+However, the `frame_*` or `pallet_*` libraries provide the most efficent path to composing a Substrate runtime.
 
 ## Front-end libraries
 
-There are a number of client libraries that can be used to interact with [Substrate nodes](/link-to-architecture-page) to build application specific clients or front-ends.
-In general, the capabilities that these libraries expose are implemented on top of [Substrate remote procedure call (RPC) APIs](./frontend#RPC-APIs).
+In addition to the core libraries that enable you to build a Substrate-based blockchain, there are client libraries that you can use to interact with Substrate nodes.
+You can use the client libraries to build application-specific front-ends.
+In general, the capabilities that the client libraries expose are implemented on top of [Substrate remote procedure call (RPC) APIs](./frontend#RPC-APIs).
 
 ### Parity maintained
 
@@ -73,3 +58,8 @@ In general, the capabilities that these libraries expose are implemented on top 
 | [Python Substrate Interface](https://github.com/polkascan/py-substrate-interface) | A Python library for interacting with the Substrate RPC interface. It supports a wide range of capabilities and powers the [Polkascan multi-chain block explorer](https://polkascan.io/). | [Polkascan Foundation](https://polkascan.org/)
 | [Substrate API Client](https://github.com/scs/substrate-api-client) | A general-purpose Substrate client Rust library. | [Supercomputing Systems](https://www.scs.ch/en/) 
 | [SubstrateNetApi](https://github.com/dotmog/SubstrateNetApi) | A .NET Standard API ([nuget](https://www.nuget.org/packages/SubstrateNetApi)) allowing full Substrate integration in Unity3D for game development. | [DOTMog](https://www.dotmog.com/)
+
+## Where to go next
+
+Now that you are familiar with the libraries used to build and interact with Substrate nodes, you might want to explore the libraries in more depth.
+To learn more about the technical details for any library< you should review the [Rust API](/rustdocs/) documentation for that library.
