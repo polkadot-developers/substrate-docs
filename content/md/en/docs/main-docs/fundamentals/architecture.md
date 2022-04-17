@@ -18,11 +18,11 @@ The following diagram illustrates this separation of responsibilities in simplif
 
 As illustrated in the diagram, Substrate nodes provide a layered environment with three main elements:
 
-* A **light client** that accesses the data stored in the blockchain but does not participate in producing blocks or reaching consensus.
-
 * An **outer node** that handles network activity such as peer discovery, managing transaction requests, reaching consensus with peers, and responding to RPC calls.
 
 * A **runtime** that contains all of the business logic for executing transactions, saving state transitions, and reaching consensus.
+
+* A **light client** that accesses the data stored in the blockchain but does not participate in producing blocks or reaching consensus.
 
 ## Outer node responsibilities
 
@@ -73,7 +73,13 @@ In theory, you could use the Rust runtime to operate nodes in production.
 However, Substrate nodes always select WebAssembly runtime as the latest available runtime to use as a way to support forkless upgrades.
 After an upgrade, nodes always execute the updated WebAssembly blob that's stored on-chain.
 
-For more information about building the Substrate runtime, see [] ](/main-docs/build/build-process/).
+For more information about building the Substrate runtime, see [Build process](/main-docs/build/build-process/).
+
+## Light clients
+
+Light clients connect to the runtime to enable users to interact with the blockchain through a browser, browser extension, mobile device, and desktop computer.
+In most cases, a light client connects to the WebAssembly execution environment to read block headers, submit transactions, and view the results of transactions.
+You can use RPC endpoints with Rust, JavaScript, or other languages to implement a light client.
 
 ## Where to go next
 
