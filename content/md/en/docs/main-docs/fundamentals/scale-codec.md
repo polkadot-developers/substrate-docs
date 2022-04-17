@@ -4,22 +4,24 @@ description:
 keywords:
 ---
 
-SCALE (Simple Concatenated Aggregate Little-Endian) Codec is a lightweight, efficient, binary serialization and deserialization [codec](https://en.wikipedia.org/wiki/Codec).
-This is key to how runtimes and clients can communicate to eachother.
+Substrate uses a lightweight and efficient encoding and decoding program to optimize how data is sent and received over the network.
+The program used to serialize and deserialize data is called the SCALE codec, with SCALE being an acronym for <u>s</u>imple <u>c</u>oncatenated <u>a</u>ggregate <u>l</u>ittle-<u>e</u>ndian.
 
-It is designed for high-performance, copy-free encoding and decoding of data in resource-constrained execution contexts, like the [Substrate Wasm runtime](/v3/concepts/runtime). 
-It is not self-describing in any way and assumes the decoding context has all type knowledge about the encoded data.
-Front-end libraries maintained by Parity use the [`parity-scale-codec`](https://github.com/paritytech/parity-scale-codec) crate (a Rust implementation of the SCALE Codec) to encode and decode interactions between RPCs and the runtime.
+The SCALE codec is a critical component for communication between the runtime and the outer node.
+It is designed for high-performance, copy-free encoding and decoding of data in resource-constrained execution environments like the Substrate [Wasm runtime](/main-docs/fundamentals/runtime/).
+The SCALE codec is not self-describing in any way.
+It assumes the decoding context has all type knowledge about the encoded data.
+Front-end libraries maintained by Parity use the [`parity-scale-codec`](https://github.com/paritytech/parity-scale-codec) crate—which is a Rust implementation of the SCALE codec—to encode and decode interactions between RPCs and the runtime.
 
 SCALE codec is advantageous for Substrate and blockchain systems because:
 
-- It is lightweight relative to generic serialization frameworks like [serde](https://serde.rs/), which add significant boilerplate that can bloat the size of the binary.
-- It does not use Rust `libstd` making it compatible with `no_std` environments that compile to Wasm, such as the Substrate runtime.
-- It is built to have great support in Rust for deriving codec logic for new types using: `#[derive(Encode, Decode)]`.
+* It is lightweight relative to generic serialization frameworks like [serde](https://serde.rs/), which add significant boilerplate that can bloat the size of the binary.
+* It does not use Rust `libstd` making it compatible with `no_std` environments that compile to Wasm, such as the Substrate runtime.
+* It is built to have great support in Rust for deriving codec logic for new types using: `#[derive(Encode, Decode)]`.
 
 It's important to define the encoding scheme used in Substrate rather than reuse an existing Rust codec library because this codec needs to be re-implemented on other platforms and languages that want to support interoperability among Substrate blockchains.
 
-The table below shows how the Rust implementation of Parity's SCALE codec encodes different types.
+The following table shows how the Rust implementation of the Parity SCALE codec encodes different types.
 
 **SCALE codec examples of different types**
 

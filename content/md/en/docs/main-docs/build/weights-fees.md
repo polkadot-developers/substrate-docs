@@ -188,8 +188,7 @@ otherwise in the weight annotation, a dispatch is `Normal`. The developer can sp
 dispatchable uses another class like this:
 
 ```rust
-#[pallet::weight(100_000, DispatchClass::Operational)]
-fn my_dispatchable() {
+#[pallet::weight((100_000, DispatchClass::Operational))]fn my_dispatchable() {
     // ...
 }
 ```
