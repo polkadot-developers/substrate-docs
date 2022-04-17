@@ -1,54 +1,40 @@
 ---
-title: Benchmarking
-slug: /v3/runtime/benchmarking
-version: '3.0'
-section: docs
-category: runtime
+title: Benchmark
+description:
 keywords:
-  - benchmarking
-  - optimizing
-  - weights
-  - runtime
 ---
 
-The default Substrate block production systems produce blocks at consistent intervals. This is the
-known as the target block time. Given this requirement, Substrate based blockchains are only be able
-to execute a limited number of extrinsics per block. The time it takes to execute an extrinsic may
-vary based on the computational complexity, storage complexity, hardware used, and many other
-factors. We use generic measurement called [weight](/v3/concepts/weight) to represent how many extrinsics
-can fit into one block.
+To produce blocks at a consistent rate, Substrate limits the number of transactions executed per block.
+The time required to execute any particular extrinsic call to complete a transaction can vary and depends on a number of factors including the following:
 
-In Substrate, **10^12 weight units = 1 second**, or 1,000 weight units = 1 nanosecond. This is measured on
-specific reference hardware: Intel Core i7-7700K CPU with 64GB of RAM and an NVMe SSD.
+* Computational complexity.
+* Storage complexity.
+* Database read and write operations required.
+* Hardware used. 
 
-Substrate does not use a mechanism similar to "gas metering" for extrinsic measurement due to the
-large overhead such a process would introduce. Instead, Substrate expects benchmarking to provide an
-approximate maximum for the worst case scenario of executing an extrinsic. Users are charged assuming
-this worst case scenario path was taken, and if the extrinsic turns out needing less resources, some of
-the estimated weight and fees can be returned. This is further explained in the
-[Transaction Weights and Fees](/v3/runtime/weights-and-fees) chapter.
+As discussed in [Transactions, weights, and fees](/main-docs/fundamentals/tx-weight.fees/), Substrate-based chains use the concept of weight to represent the time it takes to execute the transactions in a block.
+To calculate an appropriate weight for a transaction, Substrate relies on **benchmarking** to measure the time it takes to execute the function calls that result in transactions to be added to a block.
+Benchmarking enables you to test functions using different variable values and executed multiple times.
+You can then use the results of the benchmarking tests to establish an approximate worst case weight to represent the resources required to execute each function call. 
+Fees are then based on the worst case weight.
+If the actual call performs better than the worst case, the weight is adjusted and any excess fees can be returned.
 
 ## Why benchmark a pallet
 
-Denial-of-service (DoS) is a common attack vector for distributed systems, including blockchain
-networks. A simple example of such an attack would be for a user to repeatedly execute an extrinsic
-that involve intensive computation. To prevent users from spamming the network, we charge fee to the
-user for making that call. The cost of the call should reflect the computation and storage cost
-incurred to the system such that the more complex the call, the higher the fee. However, we still want to
-encourage users to use our blockchain system, so we also want this estimated cost to be relatively
-accurate so we don't charge users more than necessary.
+Denial-of-service (DoS) is a common attack vector for distributed systems, including blockchain networks. 
+For example, a malicious user might attempt to disrupt network service by repeatedly executing a function call that requires intensive computation.
+To prevent this type of activity, the cost associated with a function call should reflect the computation and storage required to perform the operation.
+However, you don't want to discourage users from using the blockchain, so you want the estimated cost to be relatively accurate and aligned with the resources that actually consumed.
 
-Benchmarking allows developers to charge appropriate transaction fees to end users, corresponding to a
-more accurate representation of the cost an extrinsic has on the system. Setting a proper weight function
-that accurately reflects the underlying computation and storage is also an important security safeguard in
-Substrate.
+Benchmarking helps you to determine transaction fees for calls that more accurately represent the resources consumed by executing a transaction on the blockchain.
+Setting a weight that accurately reflects the underlying computation and storage is also an important security safeguard in Substrate.
 
 ## How to benchmark
 
-The [FRAME benchmarking module](/rustdocs/latest/frame_benchmarking/benchmarking/index.html) has a set
-of tools to help determine the worst case scenario computation time of runtime extrinsics in order to
-determine appropriate weights for those extrinsics. It does this by executing a pallet's extrinsics
-multiple times within a mock runtime environment, and keeps track of the execution time.
+The [FRAME benchmarking module](/rustdocs/latest/frame_benchmarking/benchmarking/index.html) includes tools to help you determine the time it takes to execute function calls. 
+You can then use the computation time required to execute a transaction in a worst case scenario to set an appropriate weight for the transaction. 
+It does this by executing a pallet's extrinsics multiple times within a mock runtime environment, and keeps track of the execution time.
+
 
 In summary, it:
 
@@ -115,9 +101,8 @@ interactions away to provide a clean and friendly user experience.
 
 ### Separate benchmarks per logical path and use the worst case
 
-If your extrinsic has multiple logical paths with significantly different execution time, separate
-these paths in multiple benchmarking cases and measure them. In the actual pallet weight macro above
-the extrinsics, you could combine them with a `max` function, e.g.
+If your extrinsic has multiple logical paths with significantly different execution time, separate these paths in multiple benchmarking cases and measure them. 
+In the actual pallet weight macro above the extrinsics, you could combine them with a `max` function, e.g.
 
 ```rust
 #[pallet::weight(
@@ -190,9 +175,7 @@ accumulate_dummy {
 }: _ (RawOrigin::Signed(caller), b.into())
 ```
 
-Using the benchmarking CLI, we can specify the number of steps and repeats. This means how many
-steps will be taken to walk through each variable range, and how many times the execution state
-will be repeated.
+Using the benchmarking CLI, you can specify the number of steps to walk through each variable range, and how many times the execution state should be repeated.
 
 For example:
 
