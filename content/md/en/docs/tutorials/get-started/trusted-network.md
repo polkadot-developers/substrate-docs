@@ -76,7 +76,7 @@ To generate keys using the node template:
 
 1. Generate a random secret phrase and keys by running the following command:
     
-    ```
+    ```bash
     ./target/release/node-template key generate --scheme Sr25519 --password-interactive
     ```
 
@@ -84,14 +84,14 @@ To generate keys using the node template:
     
     The command generates keys and displays output similar to the following:
 
-    <pre>
+    ```text
     Secret phrase:  pig giraffe ceiling enter weird liar orange decline behind total despair fly
     Secret seed:       0x0087016ebbdcf03d1b7b2ad9a958e14a43f2351cd42f2f0a973771b90fb0112f
     Public key (hex):  0x1a4cc824f6585859851f818e71ac63cf6fdc81018189809814677b2a4699cf45
     Account ID:        0x1a4cc824f6585859851f818e71ac63cf6fdc81018189809814677b2a4699cf45
     Public key (SS58): 5CfBuoHDvZ4fd8jkLQicNL8tgjnK8pVG9AiuJrsNrRAx6CNW
     SS58 Address:      5CfBuoHDvZ4fd8jkLQicNL8tgjnK8pVG9AiuJrsNrRAx6CNW
-    </pre>
+    ```
 
     You now have the Sr25519 key for producing blocks using `aura` for one node.
     In this example, the Sr25519 public key for the account is `5CfBuoHDvZ4fd8jkLQicNL8tgjnK8pVG9AiuJrsNrRAx6CNW`.
@@ -108,7 +108,7 @@ To generate keys using the node template:
     
     The command displays output similar to the following:
 
-    ```bash
+    ```text
     Secret phrase `pig giraffe ceiling enter weird liar orange decline behind total despair fly` is account:
     Secret seed:       0x0087016ebbdcf03d1b7b2ad9a958e14a43f2351cd42f2f0a973771b90fb0112f
     Public key (hex):  0x2577ba03f47cdbea161851d737e41200e471cd7a31a5c88242a527837efc1e7b
@@ -176,7 +176,7 @@ To create a new chain specification based on the local specification:
     The command displays the first fields from the file.
     For example:
 
-    ```bash
+    ```json
     {
       "name": "Local Testnet",
       "id": "local_testnet",
@@ -275,7 +275,7 @@ To convert a chain specification to use the raw format:
 1. Convert the `customSpec.json` chain specification to the raw format with the file name `customSpecRaw.json` by running the following command: 
     
     ```bash
-    ./target/release/node-template build-spec --chain=customSpec.json --raw --disable-default-bootnode > customSpecRaw.json
+    ./target/release/node-template build-spec --chain=customSpec.json --disable-default-bootnode > customSpecRaw.json
     ```
 
 ## Share the chain specification with others
@@ -345,7 +345,7 @@ To start the first node:
 After you start the local node, information about the operations performed is displayed in the terminal shell.
 In that terminal, verify that you see output similar to the following:
     
-```bash
+```text
 2021-11-03 15:32:14 Substrate Node    
 2021-11-03 15:32:14 ✌️  version 3.0.0-monthly-2021-09+1-bf52814-x86_64-macos    
 2021-11-03 15:32:14 ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2021    
@@ -415,7 +415,7 @@ To insert keys into the keystore:
     In this tutorial, the secret phrase is `pig giraffe ceiling enter weird liar orange decline behind total despair fly`, so the `--suri` command-line option specifies that string to insert the key into the keystore.
     For example:
     
-    ```bash
+    ```text
     --suri "pig giraffe ceiling enter weird liar orange decline behind total despair fly"
     ```
     
@@ -443,7 +443,7 @@ To insert keys into the keystore:
     In this tutorial, the secret phrase is `pig giraffe ceiling enter weird liar orange decline behind total despair fly`, so the `--suri` command-line option specifies that string to insert the key into the keystore.
     For example:
     
-    ```bash
+    ```text
     --suri "pig giraffe ceiling enter weird liar orange decline behind total despair fly"
     ```
 
@@ -457,7 +457,7 @@ To insert keys into the keystore:
     
     The command displays output similar to the following:
     
-    ```bash
+    ```text
     617572611441ddcb22724420b87ee295c6d47c5adff0ce598c87d3c749b776ba9a647f04
     6772616e1441ddcb22724420b87ee295c6d47c5adff0ce598c87d3c749b776ba9a647f04
     ```
@@ -502,6 +502,7 @@ To add a second validator to the private network:
     `💔 The bootnode you want to connect to at ... provided a different peer ID than the one you expect: ...`
 
 1. Add the `aura` secret key generated from the `key` subcommand by running a command similar to the following:
+
     ```bash
     ./target/release/node-template key insert --base-path /tmp/node02 \
     --chain customSpecRaw.json \
@@ -543,7 +544,7 @@ To add a second validator to the private network:
     
     The command displays output similar to the following:
     
-    ```bash
+    ```text
     617572611a4cc824f6585859851f818e71ac63cf6fdc81018189809814677b2a4699cf45
     6772616e1a4cc824f6585859851f818e71ac63cf6fdc81018189809814677b2a4699cf45  
     ```

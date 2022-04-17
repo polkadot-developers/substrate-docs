@@ -1,6 +1,6 @@
 ---
 title: FRAME
-section: reference
+description:
 category: 
 keywords: Frame, pallets, API
 ---

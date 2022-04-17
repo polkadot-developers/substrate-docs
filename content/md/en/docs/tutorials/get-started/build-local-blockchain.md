@@ -290,13 +290,12 @@ In this tutorial, you learned:
 The front-end template includes several additional components for you to experiment with while you're connected to a local development node.
 You can explore these components on your own or learn more in the following topics:
 
-- [Node architecture](/main-docs/fundamentals/architecture/).
-- [Network topolgies](/main-docs/fundamentals/)node-and-network-types/.
-- [Simulate a network](tutorials/get-started/simulate-network/)
-- [Add a new pallet](/tutorials/get-started/add-a-pallet/).
+* [Node architecture](/main-docs/fundamentals/architecture/).
+* [Network topologies](/main-docs/fundamentals/)node-and-network-types/.
+* [Simulate a network](tutorials/get-started/simulate-network/)
 
-If you experienced any issues with this tutorial, submit an issue, ask questions or provide feedback.
+If you experienced any issues with this tutorial, submit an issue, ask questions, or provide feedback.
 
-- [Submit an issue](https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose).
+* [Submit an issue](https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose).
 
-- Ask questions on [Substrate Stack Exchange](https://substrate.stackexchange.com/).
+* [Substrate Stack Exchange](https://substrate.stackexchange.com/).
