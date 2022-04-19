@@ -24,7 +24,7 @@ export default function CommunityCard() {
       description:
         'Get insights from others building on Substrate, get your questions answered, and build your network.',
       headingOne: 'Participate',
-      iconOne: 'gradHat',
+      iconOne: 'graduation',
       linkTextOne: 'Substrate Seminar',
       linkOne: `${siteMetadata.substrateIO}/ecosystem/resources/seminar`,
       headingTwo: 'Learn more',

@@ -27,7 +27,7 @@ export default function PrimaryFixedButton({ children, link, fullWidth = false, 
             'px-1 -right-5 group-hover:-translate-x-5': !hero,
           })}
         >
-          <Icon name="arrowMore" className="self-center" />
+          <Icon name="arrow-more" className="self-center" />
         </div>
       </div>
     </Link>

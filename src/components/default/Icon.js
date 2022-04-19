@@ -20,6 +20,7 @@ import flag from '../../images/svg/flag.svg';
 import forklessUpgrades from '../../images/svg/forkless-upgrades.svg';
 import globeSolid from '../../images/svg/globe-solid.svg';
 import graduation from '../../images/svg/graduation.svg';
+import grantsDollar from '../../images/svg/grants-dollar.svg';
 import graph from '../../images/svg/graph.svg';
 import hackathons from '../../images/svg/hackathons.svg';
 import developers from '../../images/svg/home/developers.svg';
@@ -30,6 +31,7 @@ import security from '../../images/svg/home/security.svg';
 import technology from '../../images/svg/home/technology.svg';
 import house from '../../images/svg/house.svg';
 import htgIcon from '../../images/svg/htg.svg';
+import ideCode from '../../images/svg/ide-code.svg';
 import knight from '../../images/svg/knight.svg';
 import kusamaLogo from '../../images/svg/kusama_logo.svg';
 import layers from '../../images/svg/layers.svg';
@@ -59,6 +61,7 @@ import so2 from '../../images/svg/social/so2.svg';
 import twitter from '../../images/svg/social/twitter.svg';
 import twitter2 from '../../images/svg/social/twitter2.svg';
 import youtube from '../../images/svg/social/youtube.svg';
+import stackExchange from '../../images/svg/stack-exchange-white.svg';
 import subconnectBrowserTab from '../../images/svg/subconnectBrowserTab.svg';
 import substrate from '../../images/svg/substrate.svg';
 import adaptable from '../../images/svg/technology/adaptable.svg';
@@ -117,6 +120,9 @@ const iconsMap = {
   tutsIcon: tutsIcon,
   feTemplate: feTemplate,
   nodeTemplate: nodeTemplate,
+  stackExchange: stackExchange,
+  ideCode: ideCode,
+  grantsDollar: grantsDollar,
   /* ecosystem */
   opportunities: opportunities,
   resources: resources,

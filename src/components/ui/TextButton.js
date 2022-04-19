@@ -19,7 +19,7 @@ export function TextButton(props) {
               {props.children}
             </p>{' '}
             <span className={`fill-current text-substrateDark dark:text-white inline-block ${accentStyle()}`}>
-              <Icon name="arrowMore" />
+              <Icon name="arrow-more" />
             </span>
           </a>
         </div>
@@ -31,7 +31,7 @@ export function TextButton(props) {
             {props.children}
           </p>{' '}
           <span className={`fill-current text-substrateDark dark:text-white inline-block ${accentStyle()}`}>
-            <Icon name={`arrowMore`} />
+            <Icon name={`arrow-more`} />
           </span>
         </div>
       )}

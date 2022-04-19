@@ -7,7 +7,7 @@ import Lottie from 'react-lottie';
 import Icon from '../components/default/Icon';
 import { Link } from '../components/default/Link';
 import Section from '../components/layout/Section';
-// import CommunityCard from '../components/site/CommunityCard';
+import CommunityCard from '../components/site/CommunityCard';
 import ExploreDocs from '../components/site/ExploreDocs';
 import Layout from '../components/site/Layout';
 import SEO from '../components/site/SEO';
@@ -177,14 +177,16 @@ export default function Home() {
           <div className="lg:p-6 lg:pr-0 md:w-1/2">
             <StaticImage
               backgroundColor="transparent"
-              src="../images/photos/homepage/connect-with-the-community.jpg"
+              src="../images/homepage/connect-with-the-community.jpg"
               alt="Connect With Substrate Community"
               layout="constrained"
               className="rounded-lg overflow-hidden"
             />
           </div>
         </div>
-        <div className="mt-12 mb-24 grid grid-cols-1 lg:grid-cols-3 gap-6"></div>
+        <div className="mt-12 mb-24 grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <CommunityCard />
+        </div>
       </Section>
     </Layout>
   );
