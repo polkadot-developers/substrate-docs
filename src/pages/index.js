@@ -9,6 +9,7 @@ import { Link } from '../components/default/Link';
 import Section from '../components/layout/Section';
 import CommunityCard from '../components/site/CommunityCard';
 import ExploreDocs from '../components/site/ExploreDocs';
+import ExploreLinkSection from '../components/site/ExploreLinkSection';
 import Layout from '../components/site/Layout';
 import SEO from '../components/site/SEO';
 import DocCard from '../components/ui/DocCard';
@@ -188,6 +189,7 @@ export default function Home() {
           <CommunityCard />
         </div>
       </Section>
+      <ExploreLinkSection links={['technology', 'vision', 'ecosystem']} />
     </Layout>
   );
 }
