@@ -1,6 +1,7 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 
+import { Link } from '../components/default/Link';
 import Markdown from '../components/default/Markdown';
 import Sidebar from '../components/layout/Sidebar';
 import Layout from '../components/site/Layout';
@@ -13,12 +14,21 @@ export default function DocsSinglePage({ data, pageContext }) {
   const { htmlAst, tableOfContents, frontmatter } = markdownRemark;
   const { title } = frontmatter;
   const { pagePath, collection } = pageContext;
+  function titleize(slug) {
+    var words = slug.split('-');
+    return words
+      .map(function (word) {
+        return word.charAt(0).toUpperCase() + word.substring(1).toLowerCase();
+      })
+      .join(' ');
+  }
 
   return (
     <Layout>
       <SEO title={title} />
       <div className="flex flex-col lg:flex-row">
         <Sidebar currentPath={pagePath}>
+          {console.log(pageContext.breadcrumb.crumbs)}
           <NavSidebar currentPath={pagePath} />
         </Sidebar>
 
@@ -27,12 +37,19 @@ export default function DocsSinglePage({ data, pageContext }) {
         <article className="px-4 mb-20 lg:flex lg:mx-auto">
           <div className="lg:flex-grow">
             <div className="py-8 lg:flex lg:justify-between lg:items-center">
-              <div className="text-sm text-gray-400">
-                {pagePath}
-                <br />
-                WIP: Header: Breadcrumbs, Version, Edit
-                <div>Collection: {collection}</div>
+              <div className="text-sm font-medium text-substrateBlue dark:text-substrateBlue-light mdx-ancho">
+                {pageContext.breadcrumb.crumbs.map(index => (
+                  <span key={index} className="breadcrumb text-substrateDark dark:text-white">
+                    <Link
+                      to={index.pathname}
+                      className="text-sm font-medium text-substrateBlue dark:text-substrateBlue-light mdx-anchor"
+                    >
+                      {titleize(index.crumbLabel)}
+                    </Link>
+                  </span>
+                ))}
               </div>
+              {collection}
             </div>
             <div className="w-screen max-w-full lg:max-w-2xl 2xl:max-w-3xl markdown-body mdx-anchor">
               <header>

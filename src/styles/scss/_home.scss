@@ -85,6 +85,9 @@
     }
   }
 }
+
+/* Fills for SVG */
+
 .fill-black {
   fill: black;
 }
@@ -95,11 +98,27 @@
   fill: #4e73f2;
 }
 
+
+
 /* Diff view code highlighting  */
+pre {
+  padding-top: 1rem!important;
+  padding-bottom: 1rem!important;
+}
 
 pre code .inserted {
   color: green;
 }
 pre code .deleted {
   color: red !important;
+}
+
+/* Breadcrumb seperators */
+.breadcrumb:after {
+  content: '\002F';
+  margin: 0 0.5rem;
+}
+.breadcrumb:last-child:after {
+  content: '';
+  margin-right: 0rem;
 }
