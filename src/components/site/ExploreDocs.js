@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Link } from '../default/Link';
+import { TextButton } from '../ui/TextButton';
 
 export default function ExploreDocs() {
   const content = [
@@ -91,7 +92,11 @@ export default function ExploreDocs() {
                 </Link>
               ))}
             </ul>
-            <div className="pl-4"></div>
+            <div className="pl-4">
+              <TextButton accent cta link={section.link}>
+                {section.cta}
+              </TextButton>
+            </div>
           </div>
         </div>
       ))}
