@@ -940,7 +940,7 @@ for this part) you'll need to add \`Ok(())\` and properly close the \`create_kit
 
 FRAME provides us with an error handling system using [`[#pallet::error]`][errors-kb] which allows us to specify errors for our pallet and use them across our pallet's functions.
 
-Declare all possible errors using the provided FRAME macro under `#[pallet::error]`, replace line ACTION #5a with:
+Declare all possible errors using the provided FRAME macro under `#[pallet::error]`, replace line ACTION #5 with:
 
 ```rust
 /// Handles arithmetic overflow when incrementing the Kitty counter.
@@ -952,7 +952,7 @@ BuyerIsKittyOwner,
 /// Cannot transfer a kitty to its owner.
 TransferToSelf,
 /// This kitty already exists
-KittyExists
+KittyExists,
 /// This kitty doesn't exist
 KittyNotExist,
 /// Handles checking that the Kitty is owned by the account transferring, buying or setting a price for it.
