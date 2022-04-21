@@ -44,11 +44,11 @@ This code block only shows a subset of a file (lines 8 to 12) by embedding the f
 
 ### Diff view
 
-Diff view doesn't seem to work with embedded code snippets. Node that comments from remark embed plugin displays comments when showing the entire file.
+Diff view didn't work until additional styling was added. This could mean there will need to be custom styling employed in order to achieve what we are looking for. Node that comments from remark embed plugin displays comments when showing the entire file.
 
 `embed:markdown.diff`
 
-But it does work with code blocks inserted directly into the markdown file.
+It also works with code blocks inserted directly into the markdown file.
 
 ```diff
    // Configure your pallet.

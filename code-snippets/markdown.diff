@@ -6,17 +6,16 @@ import { Image } from './resolvers/Image';
 // import Code from '../ui/Code'
 
 const components = {
-  /* highlight-range{1-3} */
   a,
   img: Image,
 };
 
-/* start-snippet{rehype} */
+// start-snippet{rehype}
 const renderAst = new rehypeReact({
   createElement: React.createElement,
   components,
 }).Compiler;
-/* end-snippet{rehype} */
+// end-snippet{rehype}
 
 + export default function Markdown({ htmlAst }) {
 +  return renderAst(htmlAst);

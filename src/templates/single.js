@@ -8,12 +8,14 @@ import Layout from '../components/site/Layout';
 import NavSidebar from '../components/site/NavSidebar';
 import SEO from '../components/site/SEO';
 import TableOfContents from '../components/site/TableOfContents';
+import EditOnGithubButton from '../components/ui/EditOnGithubButton';
 
 export default function DocsSinglePage({ data, pageContext }) {
   const { markdownRemark } = data;
   const { htmlAst, tableOfContents, frontmatter } = markdownRemark;
   const { title } = frontmatter;
-  const { pagePath, collection } = pageContext;
+  const { pagePath /*collection*/ } = pageContext;
+  const pagePathNoSlash = pagePath.endsWith('/') ? pagePath.slice(0, -1) : pagePath;
   function titleize(slug) {
     var words = slug.split('-');
     return words
@@ -28,7 +30,7 @@ export default function DocsSinglePage({ data, pageContext }) {
       <SEO title={title} />
       <div className="flex flex-col lg:flex-row">
         <Sidebar currentPath={pagePath}>
-          {console.log(pageContext.breadcrumb.crumbs)}
+          {console.log(pagePath.pathname)}
           <NavSidebar currentPath={pagePath} />
         </Sidebar>
 
@@ -39,7 +41,8 @@ export default function DocsSinglePage({ data, pageContext }) {
             <div className="py-8 lg:flex lg:justify-between lg:items-center">
               <div className="text-sm font-medium text-substrateBlue dark:text-substrateBlue-light mdx-ancho">
                 {pageContext.breadcrumb.crumbs.map(index => (
-                  <span key={index} className="breadcrumb text-substrateDark dark:text-white">
+                  <span key={index.crumblabel} className="breadcrumb text-substrateDark dark:text-white">
+                    {console.log(index)}
                     <Link
                       to={index.pathname}
                       className="text-sm font-medium text-substrateBlue dark:text-substrateBlue-light mdx-anchor"
@@ -49,7 +52,16 @@ export default function DocsSinglePage({ data, pageContext }) {
                   </span>
                 ))}
               </div>
-              {collection}
+              <div className="flex justify-items-end items-center">
+                <p className="text-sm mb-0 mr-2">Version 4</p>
+                <EditOnGithubButton
+                  link={
+                    'https://github.com/substrate-developer-hub/substrate-docs/blob/main-md-navigation/content/md/en/docs' +
+                    `${pagePathNoSlash}` +
+                    '.md'
+                  }
+                />
+              </div>
             </div>
             <div className="w-screen max-w-full lg:max-w-2xl 2xl:max-w-3xl markdown-body mdx-anchor">
               <header>
@@ -69,7 +81,7 @@ export default function DocsSinglePage({ data, pageContext }) {
           </div>
 
           <div className="hidden xl:inline-block">
-            <TableOfContents data={tableOfContents} />
+            <TableOfContents pageContext={pageContext} data={tableOfContents} />
           </div>
         </article>
       </div>

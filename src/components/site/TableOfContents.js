@@ -1,6 +1,8 @@
+//import { useLocation } from '@reach/router';
 import React from 'react';
 
 export default function TableOfContents({ data }) {
+  //const location = useLocation();
   return (
     <>
       <div className="w-60 sticky top-20 max-h-[calc(100vh)] pb-32 ml-11 overflow-y-auto overscroll-contain">
