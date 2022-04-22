@@ -53,7 +53,7 @@ export default function DocsSinglePage({ data, pageContext }) {
                 ))}
               </div>
               <div className="flex justify-items-end items-center">
-                <p className="text-sm mb-0">Version 4.0 |&nbsp;</p>
+                <p className="text-sm mb-0">Version 4.0 |&nbsp;&nbsp;</p>
                 <EditOnGithubButton
                   link={
                     'https://github.com/substrate-developer-hub/substrate-docs/blob/main-md-navigation/content/md/en/docs' +
