@@ -2,7 +2,7 @@
 title: Connect a Parachain
 slug: /tutorials/v3/cumulus/connect-parachain
 sideNav: cumulusTutorial
-version: 'polkadot-v0.9.18'
+version: "polkadot-v0.9.18"
 section: tutorials
 category: parachains
 duration: 3 Hours
@@ -23,30 +23,31 @@ keywords:
   - xcm
   - xcmp
   - collator
+featured_image: /tutorial-card-images/tuts-8.jpeg
 ---
 
 In this part of the workshop, we'll connect a parachain to our relay chain and add additional nodes.
 
 <TutorialObjective
-  data={{
+data={{
     textLineOne: '1. Launching a Parachain',
     url: '#launching-a-parachain',
   }}
 />
 <TutorialObjective
-  data={{
+data={{
     textLineOne: '2. Parachain Registration',
     url: '#parachain-registration',
   }}
 />
 <TutorialObjective
-  data={{
+data={{
     textLineOne: '3. Interact with a Parachain',
     url: '#interact-with-a-parachain',
   }}
 />
 <TutorialObjective
-  data={{
+data={{
     textLineOne: '4. Connecting Additional Parachain Nodes',
     url: '#connecting-additional-parachain-nodes',
   }}
@@ -114,13 +115,9 @@ Then generate a raw chain spec derived **from your modified plain chain spec**:
 ```
 
 <Message
-  type={`yellow`}
-  title={`Save and distribute your raw spec`}
-  text={`
-If you intend to let others connect to your network, they must have the associated chain spec for your network generated once and distributed to your peers.
-They cannot reliably produce this themselves, and need to acquire it from a **single source**.
-This stems from the [non-deterministic issue](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1) in the way Wasm runtimes are compiled, at least for now.
-`}
+type={`yellow`}
+title={`Save and distribute your raw spec`}
+text={`If you intend to let others connect to your network, they must have the associated chain spec for your network generated once and distributed to your peers. They cannot reliably produce this themselves, and need to acquire it from a **single source**. This stems from the [non-deterministic issue](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1) in the way Wasm runtimes are compiled, at least for now.`}
 />
 
 Chain specs _conventionally_ live in a `/res` folder that is published in your node's codebase for others to use.
@@ -153,15 +150,9 @@ Go to your Parachain Template folder, the following command will create a file c
 ```
 
 <Message
-  type={`yellow`}
-  title={`No pre-genesis blocks allowed`}
-  text={`
-This runtime and state is for the parachain's _genesis_ block only.
-You cannot, at this time, connect a parachain with any previous state to a relay chain.
-All parachains must start from block 0 on the relay chain. Eventually, migrating the block history of a solo chain built on Substrate is expected to be possible, but this functionality is not planned anytime soon.
-\n
-See the guide on [converting a solo chain to a parachain](/how-to-guides/v3/parachains/convert) for details on how the Parachain Template was created, and how to convert your chain's logic (not history/state migrations!) to a parachain.
-`}
+type={`yellow`}
+title={`No pre-genesis blocks allowed`}
+text={`This runtime and state is for the parachain's _genesis_ block only. You cannot, at this time, connect a parachain with any previous state to a relay chain. All parachains must start from block 0 on the relay chain. Eventually, migrating the block history of a solo chain built on Substrate is expected to be possible, but this functionality is not planned anytime soon. \n See the guide on [converting a solo chain to a parachain](/how-to-guides/v3/parachains/convert) for details on how the Parachain Template was created, and how to convert your chain's logic (not history/state migrations!) to a parachain.`}
 />
 
 ### Start the collator node
@@ -408,23 +399,17 @@ The defining feature of connecting parachains to a _common_ relay chain is the a
 This area of functionality is at the cutting edge development, and for now is not demonstrated in this workshop.
 
 <Message
-  type={`green`}
-  title={`Learn more about XCMP`}
-  text={`
-For a detailed overview, refer to [Polkadot wiki on XCMP](https://wiki.polkadot.network/docs/en/learn-crosschain)
-`}
+type={`green`}
+title={`Learn more about XCMP`}
+text={`For a detailed overview, refer to [Polkadot wiki on XCMP](https://wiki.polkadot.network/docs/en/learn-crosschain)`}
 />
 
 ## Chain purging
 
 <Message
-  type={`red`}
-  title={`Warning`}
-  text={`
-Your sole collator is the only home of the parachain data as there is only one node
-on your entire parachain network. Relay chains only store parachains header information. If the
-parachain data is lost, you will **not** be able to recover the chain!
-`}
+type={`red`}
+title={`Warning`}
+text={`Your sole collator is the only home of the parachain data as there is only one node on your entire parachain network. Relay chains only store parachains header information. If the parachain data is lost, you will **not** be able to recover the chain!`}
 />
 
 To purge your parachain chain data, you need to deregister and re-register the parachain collator.

@@ -2,7 +2,7 @@
 title: Connect to the Rococo Public Testnet
 slug: /tutorials/v3/cumulus/rococo
 sideNav: cumulusTutorial
-version: 'polkadot-v0.9.18'
+version: "polkadot-v0.9.18"
 section: tutorials
 category: parachains
 duration: 3 Hours
@@ -23,6 +23,7 @@ keywords:
   - xcm
   - xcmp
   - collator
+featured_image: /tutorial-card-images/tuts-9.jpeg
 ---
 
 Rococo is Parity's public test network for cumulus-based parachains.

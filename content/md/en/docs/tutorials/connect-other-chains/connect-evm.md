@@ -1,7 +1,7 @@
 ---
 title: Frontier Workshop
 slug: /tutorials/v3/frontier
-version: '3.0'
+version: "3.0"
 sideNav: frontierWorkshop
 section: tutorials
 hideNav: true
@@ -16,6 +16,7 @@ relevantSkills:
   - Rust
   - Ethereum
   - Smart Contracts
+featured_image: /tutorial-card-images/tuts-9.jpeg
 ---
 
 [Frontier](https://github.com/paritytech/frontier) is a set of modules to build an

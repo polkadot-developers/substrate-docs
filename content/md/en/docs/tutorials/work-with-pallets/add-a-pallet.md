@@ -8,6 +8,7 @@ duration: 2 Hour
 relevantSkills:
   - Rust
   - FRAME
+featured_image: /tutorial-card-images/tuts-3.jpg
 ---
 
 As you saw [Build a local blockchain](/tutorials/get-started/build-local-blockchain/), the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) provides a working **runtime** that includes some default FRAME development modules—**pallets**—to get you started building a custom blockchain.
@@ -18,33 +19,33 @@ However, each pallet requires specific configuration settings—for example, the
 For this tutorial, you'll add the [Nicks pallet](https://paritytech.github.io/substrate/master/pallet_nicks/index.html) to the runtime for the node template, so you'll see how to configure the settings that are specific to the Nicks pallet.
 The Nicks pallet allows blockchain users to pay a deposit to reserve a nickname for an account they control. It implements the following functions:
 
-* The `set_name` function to collect a deposit and set the name of an account if the name is not already taken.
-* The `clear_name`  function to remove the name associated with an account and return the deposit.
-* The `kill_name` function to forcibly remove an account name without returning the deposit.
+- The `set_name` function to collect a deposit and set the name of an account if the name is not already taken.
+- The `clear_name` function to remove the name associated with an account and return the deposit.
+- The `kill_name` function to forcibly remove an account name without returning the deposit.
 
-Note that this tutorial is a stepping stone to more advanced tutorials that illustrate how to add pallets with more complex configuration settings, how to create custom pallets, and how to publish pallets. 
+Note that this tutorial is a stepping stone to more advanced tutorials that illustrate how to add pallets with more complex configuration settings, how to create custom pallets, and how to publish pallets.
 
 ## Before you begin
 
 Before you begin, verify the following:
 
-* You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/rust-builds/).
+- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/rust-builds/).
 
-* You have completed the [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) tutorial and have the Substrate node template installed locally.
+- You have completed the [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) tutorial and have the Substrate node template installed locally.
 
-* You are generally familiar with software development and using command-line interfaces.
+- You are generally familiar with software development and using command-line interfaces.
 
-* You are generally familiar with blockchains and smart contract platforms.
+- You are generally familiar with blockchains and smart contract platforms.
 
 ## Tutorial objectives
 
 By completing this tutorial, you will use the Nicks pallet to accomplish the following objectives:
 
-* Learn how to update runtime dependencies to include a new pallet.
+- Learn how to update runtime dependencies to include a new pallet.
 
-* Learn how to configure a pallet-specific Rust trait.
+- Learn how to configure a pallet-specific Rust trait.
 
-* See changes to the runtime by interacting with the new pallet using the front-end template.
+- See changes to the runtime by interacting with the new pallet using the front-end template.
 
 ## Add the Nicks pallet dependencies
 
@@ -53,8 +54,8 @@ Before you can use a new pallet, you must add some information about it to the c
 For Rust programs, you use the `Cargo.toml` file to define the configuration settings and dependencies that determine what gets compiled in the resulting binary.
 Because the Substrate runtime compiles to both a native Rust binary that includes standard library functions and a [WebAssembly (Wasm)](https://webassembly.org/) binary that does not include the standard library, the `Cargo.toml` file controls two important pieces of information:
 
-* The pallets to be imported as dependencies for the runtime, including the location and version of the pallets to import.
-* The features in each pallet that should be enabled when compiling the native Rust binary. By enabling the standard (`std`) feature set from each pallet, you can compile the runtime to include functions, types, and primitives that would otherwise be missing when you build the WebAssembly binary.
+- The pallets to be imported as dependencies for the runtime, including the location and version of the pallets to import.
+- The features in each pallet that should be enabled when compiling the native Rust binary. By enabling the standard (`std`) feature set from each pallet, you can compile the runtime to include functions, types, and primitives that would otherwise be missing when you build the WebAssembly binary.
 
 For information about adding dependencies in `Cargo.toml` files, see [Dependencies](https://doc.rust-lang.org/cargo/guide/dependencies.html) in the Cargo documentation.
 For information about enabling and managing features from dependent packages, see [Features](https://doc.rust-lang.org/cargo/reference/features.html) in the Cargo documentation.
@@ -67,39 +68,39 @@ To add the dependencies for the Nicks pallet to the runtime:
 
 1. Import the `pallet-nicks` crate to make it available to the node template runtime by adding it to the list of dependencies.
 
-    ```toml
-    [dependencies.pallet-nicks]
-    default-features = false
-    git = 'https://github.com/paritytech/substrate.git'
-    tag = 'monthly-2021-10'
-    version = '4.0.0-dev'
-    ```
+   ```toml
+   [dependencies.pallet-nicks]
+   default-features = false
+   git = 'https://github.com/paritytech/substrate.git'
+   tag = 'monthly-2021-10'
+   version = '4.0.0-dev'
+   ```
 
-   * The first line imports the `pallet-nicks` crate as a dependency.
-    * The second line specifies that the pallet features are not enabled by default when compiling the runtime.
-    * The third line specifies the repository location for retrieving the `pallet-nicks` crate.
-    * The fourth line specifies a commit tag using the `monthly-YYYY-MM` naming convention for retrieving the crate.
-    * The fifth line specifies a version identifier for the crate.
+   - The first line imports the `pallet-nicks` crate as a dependency.
+   - The second line specifies that the pallet features are not enabled by default when compiling the runtime.
+   - The third line specifies the repository location for retrieving the `pallet-nicks` crate.
+   - The fourth line specifies a commit tag using the `monthly-YYYY-MM` naming convention for retrieving the crate.
+   - The fifth line specifies a version identifier for the crate.
 
 1. Add the `pallet-nicks/std` features to the list of `features` to enable when compiling the runtime.
 
-    ```toml
-    [features]
-    default = ['std']
-    std = [
-      ...
-      'pallet-aura/std',
-      'pallet-balances/std',
-      'pallet-nicks/std',    # add this line
-      ...
-    ]
-    ```
-    
-    This section specifies the default feature set to compile for this runtime is the `std` features set. 
-    When the runtime is compiled using the `std` feature set, the `std` features from all of the pallets listed as dependencies are enabled.
-    For more detailed information about how the runtime is compiled as a native Rust binary with the standard library and as a WebAssembly binary using the `no_std` attribute, see [Building the runtime](/main-docs/build/build-runtime/).
-    
-    If you forget to update the `features` section in the `Cargo.toml` file, you might see `cannot find function` errors when you compile the runtime binary.
+   ```toml
+   [features]
+   default = ['std']
+   std = [
+     ...
+     'pallet-aura/std',
+     'pallet-balances/std',
+     'pallet-nicks/std',    # add this line
+     ...
+   ]
+   ```
+
+   This section specifies the default feature set to compile for this runtime is the `std` features set.
+   When the runtime is compiled using the `std` feature set, the `std` features from all of the pallets listed as dependencies are enabled.
+   For more detailed information about how the runtime is compiled as a native Rust binary with the standard library and as a WebAssembly binary using the `no_std` attribute, see [Building the runtime](/main-docs/build/build-runtime/).
+
+   If you forget to update the `features` section in the `Cargo.toml` file, you might see `cannot find function` errors when you compile the runtime binary.
 
 1. Check that the new dependencies resolve correctly by running the following command:
 
@@ -188,11 +189,11 @@ To review the `Config` trait for the Balances pallet:
    	type Event = Event;
    }
    ```
-   
+
    As you can see in this example, the `impl pallet_balances::Config` block allows you to configure the types and parameters that are specified by the Balances pallet `Config` trait.
    For example, this `impl` block configures the Balances pallet to use the `u128` type to track balances.
 
-## Implement the Config trait for the pallet 
+## Implement the Config trait for the pallet
 
 Now that you have seen an example of how the `Config` trait is implemented for the Balances pallet, you're ready to implement the `Config` trait for the Nicks pallet.
 
@@ -248,7 +249,7 @@ To implement the `nicks` pallet in your runtime:
    The [Nicks pallet](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs) uses the following types:
 
    - **Storage** because it uses the `#[pallet::storage]` macro.
-   - **Event** because it uses the `#[pallet::events]` macro. 
+   - **Event** because it uses the `#[pallet::events]` macro.
      In the `nicks` pallet, the `Event` keyword is parameterized with respect to a type because at least one of the events defined by the Nicks pallet depends on a type that is
      configured with the `Config` configuration trait.
    - **Call** because it has dispatchable functions in the `#[pallet::call]` macro.
@@ -307,7 +308,7 @@ To start the local Substrate node:
    In this case, the `--dev` option specifies that the node runs in developer mode using the predefined `development` chain specification.
    By default, this option also deletes all active data—such as keys, the blockchain database, and networking information—when you stop the node by pressing Control-c.
    Using the `--dev` option ensures that you have a clean working state any time you stop and restart the node.
-   
+
 1. Verify your node is up and running successfully by reviewing the output displayed in the terminal.
 
    If the number after `finalized` is increasing in the console output, your blockchain is producing new blocks and reaching consensus about the state they describe.
@@ -382,8 +383,8 @@ To return the information stored for Alice:
 
 ## Explore additional functions
 
-This tutorial illustrates how to add a simple pallet to the runtime and demonstrates how to interact with the new pallet using the front-end template. 
-In this case, you added the `nicks` pallet to the runtime and called the `set_name` function using the front-end template. 
+This tutorial illustrates how to add a simple pallet to the runtime and demonstrates how to interact with the new pallet using the front-end template.
+In this case, you added the `nicks` pallet to the runtime and called the `set_name` function using the front-end template.
 The `nicks` pallet also provides two additional functions—the `clear_name` function and the `kill_name` function—that enable an account owner to remove the reserved name or a root-level user to forcibly remove an account name.
 You can learn about additional features—such as the use of the Sudo pallet and origin accounts—by exploring how these functions work.
 However, these features are beyond the intended scope of this tutorial.
@@ -393,12 +394,12 @@ If you want to explore additional features exposed through the Nicks and Sudo pa
 
 There are several [tutorials](/tutorials/) that can serve as next steps for learning more about Substrate development.
 
-* [Specify the origin for invoking a function](/tutorials/work-with-pallets/) explores calling functions using different originating accounts.
-* [Configure the contracts pallet](/tutorials/work-with-pallets/) demonstrates more complex configuration requirements by adding the Contracts pallet to the runtime.
-* [Create a custom pallet using macros](/tutorials/work-with-pallets/) 
+- [Specify the origin for invoking a function](/tutorials/work-with-pallets/) explores calling functions using different originating accounts.
+- [Configure the contracts pallet](/tutorials/work-with-pallets/) demonstrates more complex configuration requirements by adding the Contracts pallet to the runtime.
+- [Create a custom pallet using macros](/tutorials/work-with-pallets/)
 
 ### References
 
-* [Basic Example Pallet](https://github.com/paritytech/substrate/tree/master/frame/examples/basic) provides detailed comments about what you can access within FRAME.
-* [The Cargo book](https://doc.rust-lang.org/stable/cargo/) introduces the Cargo package manager, including reference information for Cargo features and commands.
-* [Rust and WebAssembly Documentation](https://rustwasm.github.io/docs.html) highlights several resources for learning about Rust and WebAssembly.
+- [Basic Example Pallet](https://github.com/paritytech/substrate/tree/master/frame/examples/basic) provides detailed comments about what you can access within FRAME.
+- [The Cargo book](https://doc.rust-lang.org/stable/cargo/) introduces the Cargo package manager, including reference information for Cargo features and commands.
+- [Rust and WebAssembly Documentation](https://rustwasm.github.io/docs.html) highlights several resources for learning about Rust and WebAssembly.
