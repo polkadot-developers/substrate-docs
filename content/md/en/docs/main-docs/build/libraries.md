@@ -4,7 +4,8 @@ description:
 keywords:
 ---
 
-Before you start building your blockchain, you might want to be familiar with the different libraries available and how they are used.
+In working with the node template, you don’t need to know anything about the underlying architecture or libraries being used because the basic components are already associated and really to use.  
+However, if you want to design and build a custom blockchain, you might to be familiar with the libraries available and know what these different libraries do.
 
 In [Architecture](/main-docs/fundamentals/architecture/), you learned about the core components of a Substrate node and how different parts of the node take on different responsibilities. 
 On a more technical level, the separation of duties between different layers of a node are reflected in the core libraries used to build a Substrate-based blockchain.
