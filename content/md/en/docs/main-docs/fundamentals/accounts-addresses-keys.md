@@ -54,11 +54,13 @@ For information about chain-specific address, see the instructions in the [SS58 
 ## Account information in FRAME
 
 Conceptually, accounts represent identities that have a public/private key pair with one or more public addresses.
-However, accounts also have specific properties in FRAME that are made concrete in the runtime and in the context of pallets such the balances, staking, and proxy pallets.
+However, in a runtime built with FRAME, an account is defined as a storage map with a 32-byte address identifier and corresponding account information, such as the number of transactions the account has made, the number of modules that depend on the account, and account balance.
 
-In a runtime built with FRAME, an account is defined as a storage map with a 32-byte address identifier and corresponding account information, such as the number of transactions the account has made, the number of modules that depend on the account, and account balance.
+The account properties—such as the `AccountId`—can be defined generically in the `frame_system` module, then assigned a specific value in the runtime implementation. 
+For example, the `Account` type in FRAME relies on an associated `AccountId` type. The `AccountId` type remains a generic type until it is assigned a value in the node’s runtime implementation.
 
-For more information about how accounts are defined in the `frame_system` pallet and the account properties in the `Account` storage map, see [here]().
+For more information about how accounts are defined in the `frame_system` pallet and the account properties in the `Account` storage map, see [Account data structures](/reference/account-properties/).
+For more information about working with generic types, see [Rust for Substrate](/main-docs/fundamentals/rust-basics/#generic-types).
 
 ## Specialized accounts
 
