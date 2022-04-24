@@ -4,16 +4,16 @@ description:
 keywords:
 ---
 
-In working with the node template, you don’t need to know anything about the underlying architecture or libraries being used because the basic components are already associated and really to use.  
-However, if you want to design and build a custom blockchain, you might to be familiar with the libraries available and know what these different libraries do.
+In working with the node template, you don’t need to know anything about the underlying architecture or libraries being used because the basic components are already assembled and ready to use.  
+However, if you want to design and build a custom blockchain, you might want to be familiar with the libraries available and know what these different libraries do.
 
 In [Architecture](/main-docs/fundamentals/architecture/), you learned about the core components of a Substrate node and how different parts of the node take on different responsibilities. 
 On a more technical level, the separation of duties between different layers of a node are reflected in the core libraries used to build a Substrate-based blockchain.
 The following diagram illustrates how the libraries mirror the outer node and runtime responsibilities and how a library of **primitives** provides the communication layer between the two.
 
-![Libraries mirror the division of labor between the outer node and the runtime](/media/images/docs/main-docs/sub-libraries-1.png)
+![Core node libraries for the outer node and runtime](/media/images/docs/main-docs/sub-libraries-1.png)
 
-## Core libraries
+## Core node libraries
 
 The libraries that enable a Substrate node to handle its network responsibilities,including consensus and block execution are Rust crates that use the `sc_` prefix in the crate name.
 For example, the [`sc_service`](https://docs.substrate.io/rustdocs/latest/sc_service/index.html) library is responsible for building the networking layer for Substrate blockchains, managing the communication between the network participants and the transaction pool.
