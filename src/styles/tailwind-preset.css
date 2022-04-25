@@ -14,7 +14,6 @@ body.dark {
 
 main.main-container {
   min-height: calc(100vh - 394px);
-  overflow-x: hidden;
 }
 
 /* Headings */
