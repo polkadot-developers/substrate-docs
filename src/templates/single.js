@@ -1,4 +1,5 @@
 import { graphql } from 'gatsby';
+import moment from 'moment';
 import React from 'react';
 
 import { Link } from '../components/default/Link';
@@ -15,6 +16,7 @@ export default function DocsSinglePage({ data, pageContext }) {
   const { htmlAst, tableOfContents, frontmatter } = markdownRemark;
   const { title } = frontmatter;
   const { pagePath /*collection*/ } = pageContext;
+  const { gitLogLatestDate } = data.markdownRemark.parent.fields;
   const pagePathNoSlash = pagePath.endsWith('/') ? pagePath.slice(0, -1) : pagePath;
   function titleize(slug) {
     var words = slug.split('-');
@@ -72,7 +74,7 @@ export default function DocsSinglePage({ data, pageContext }) {
               </main>
               <footer>
                 <div className="py-8 text-sm text-gray-400">
-                  WIP: Footer: Last edit
+                  Last edit: {moment(gitLogLatestDate).format('MMMM DD, YYYY')}
                   <hr />
                   Issue report
                 </div>
@@ -105,6 +107,15 @@ export const query = graphql`
       tableOfContents(maxDepth: 2)
       frontmatter {
         title
+      }
+      parent {
+        ... on File {
+          id
+          name
+          fields {
+            gitLogLatestDate
+          }
+        }
       }
     }
   }

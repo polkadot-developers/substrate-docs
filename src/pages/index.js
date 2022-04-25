@@ -21,12 +21,6 @@ export default function Home() {
   return (
     <Layout mode="full">
       <SEO title="Home" />
-      <Section>
-        <h1 className="mt-20 text-5xl lg:text-6xl font-extrabold mb-6">Docs</h1>
-        <h2 className="text-xl xl:text-3xl font-semibold text-substrateBlue">
-          <Link to="/quick-start/">{'→'} Quick start</Link>
-        </h2>
-      </Section>
       <Section styles="mt-12">
         <div className="flex flex-col md:flex-row md:items-center doc-hero">
           <div className="md:w-1/2 mb-10 lg:m-0">
@@ -38,7 +32,7 @@ export default function Home() {
               Substrate is powered by best-in-class cryptographic research and comes with peer-to-peer networking,
               consensus mechanisms, and much more.
             </p>
-            <PrimaryFixedButton hero link="/v3/">
+            <PrimaryFixedButton hero link="/quick-start/">
               Get Started
             </PrimaryFixedButton>
           </div>

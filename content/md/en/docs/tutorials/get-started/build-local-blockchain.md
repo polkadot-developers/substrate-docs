@@ -1,7 +1,6 @@
 ---
 title: Build a local blockchain
 description: Compile, start, and interact with your first Substrate blockchain node.
-featured_image: /media/images/docs/tutorials/build-blockchain/thumbnail.jpg
 keywords:
   - node
   - template

@@ -36,6 +36,7 @@ module.exports = {
     'gatsby-plugin-remove-serviceworker',
     /* add seo headers and page titles, from pages/components */
     'gatsby-plugin-react-helmet',
+    `gatsby-transformer-gitinfo`,
     /* generate an application manifest.json */
     {
       resolve: `gatsby-plugin-manifest`,
