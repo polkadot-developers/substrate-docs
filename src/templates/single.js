@@ -42,7 +42,7 @@ export default function DocsSinglePage({ data, pageContext }) {
 
         <article className="px-4 mb-20 lg:flex lg:mx-auto">
           <div className="lg:flex-grow">
-            <div className="py-8 lg:flex lg:justify-between lg:items-center">
+            <div className="py-8 flex justify-between items-center">
               <div className="text-sm font-medium text-substrateBlue dark:text-substrateBlue-light mdx-ancho">
                 {pageContext.breadcrumb.crumbs.map(index => (
                   <span key={index.crumblabel} className="breadcrumb text-substrateDark dark:text-white">
@@ -56,7 +56,7 @@ export default function DocsSinglePage({ data, pageContext }) {
                   </span>
                 ))}
               </div>
-              <div className="flex justify-items-end items-center">
+              <div className="flex justify-end items-center">
                 <Icon name="flag" width="14" className="fill-current dark:text-white mr-1" />
                 {'  '}
                 <p className="text-sm mb-0">Version 4.0 |&nbsp;&nbsp;</p>

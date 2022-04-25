@@ -10,8 +10,8 @@ export default function Feedback() {
       <SecondaryButton external link={githubLink}>
         <div className="flex items-center pt-2 mb-2">
           <span className="font-semibold">Submit an issue</span>
-          <Icon name="github" className="m-2 fill-current dark:text-substrateDark text-substrateWhite" />
-          <Icon name="external-link" className="fill-current dark:text-substrateDark text-substrateWhite" />
+          <Icon name="github" width="20" className="m-2 fill-current dark:text-substrateDark text-substrateWhite" />
+          <Icon name="external-link" width="20" className="fill-current dark:text-substrateDark text-substrateWhite" />
         </div>
       </SecondaryButton>
     </div>
