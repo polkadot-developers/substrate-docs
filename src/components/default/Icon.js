@@ -84,6 +84,7 @@ import secure from '../../images/svg/technology/secure.svg';
 import tooling from '../../images/svg/technology/tooling.svg';
 import tools from '../../images/svg/technology/tools.svg';
 import upgradable from '../../images/svg/technology/upgradable.svg';
+import time from '../../images/svg/time.svg';
 import tutorials from '../../images/svg/tutorials.svg';
 import tutsIcon from '../../images/svg/tuts.svg';
 import arrowBack from '../../images/svg/ui/arrow-back.svg';
@@ -224,6 +225,7 @@ const iconsMap = {
   reference: reference,
   quickStart: quickStart,
   tutorials: tutorials,
+  time: time,
 };
 
 export default function Icon({ name, className, ...others }) {
