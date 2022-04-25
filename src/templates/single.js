@@ -8,6 +8,7 @@ import Markdown from '../components/default/Markdown';
 import Sidebar from '../components/layout/Sidebar';
 import Layout from '../components/site/Layout';
 import NavSidebar from '../components/site/NavSidebar';
+import MobileNavigation from '../components/site/NavSidebar/MobileNavigation';
 import SEO from '../components/site/SEO';
 import TableOfContents from '../components/site/TableOfContents';
 import EditOnGithubButton from '../components/ui/EditOnGithubButton';
@@ -34,10 +35,9 @@ export default function DocsSinglePage({ data, pageContext }) {
       <SEO title={title} />
       <div className="flex flex-col lg:flex-row">
         <Sidebar currentPath={pagePath}>
-          {console.log(pagePath.pathname)}
           <NavSidebar currentPath={pagePath} />
         </Sidebar>
-
+        <MobileNavigation className="hidden" currentPath={pagePath} />
         {/* <DocsSingle collection={collection} /> */}
 
         <article className="px-4 mb-20 lg:flex lg:mx-auto">
