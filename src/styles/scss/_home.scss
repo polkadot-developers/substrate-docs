@@ -122,3 +122,11 @@ pre code .deleted {
   content: '';
   margin-right: 0rem;
 }
+
+/* Markdown */
+.secondary-button {
+  text-decoration: none!important;
+  &::before {
+    display: none!important;
+  }
+}

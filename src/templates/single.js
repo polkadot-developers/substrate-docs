@@ -2,6 +2,7 @@ import { graphql } from 'gatsby';
 import moment from 'moment';
 import React from 'react';
 
+import Icon from '../components/default/Icon';
 import { Link } from '../components/default/Link';
 import Markdown from '../components/default/Markdown';
 import Sidebar from '../components/layout/Sidebar';
@@ -10,6 +11,7 @@ import NavSidebar from '../components/site/NavSidebar';
 import SEO from '../components/site/SEO';
 import TableOfContents from '../components/site/TableOfContents';
 import EditOnGithubButton from '../components/ui/EditOnGithubButton';
+import Feedback from '../components/ui/Feedback';
 
 export default function DocsSinglePage({ data, pageContext }) {
   const { markdownRemark } = data;
@@ -55,6 +57,8 @@ export default function DocsSinglePage({ data, pageContext }) {
                 ))}
               </div>
               <div className="flex justify-items-end items-center">
+                <Icon name="flag" width="14" className="fill-current dark:text-white mr-1" />
+                {'  '}
                 <p className="text-sm mb-0">Version 4.0 |&nbsp;&nbsp;</p>
                 <EditOnGithubButton
                   link={
@@ -76,12 +80,11 @@ export default function DocsSinglePage({ data, pageContext }) {
                 <div className="py-8 text-sm text-gray-400">
                   Last edit: {moment(gitLogLatestDate).format('MMMM DD, YYYY')}
                   <hr />
-                  Issue report
+                  <Feedback />
                 </div>
               </footer>
             </div>
           </div>
-
           <div className="hidden xl:inline-block">
             <TableOfContents pageContext={pageContext} data={tableOfContents} />
           </div>

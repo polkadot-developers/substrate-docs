@@ -6,7 +6,7 @@ import { Link } from '../default/Link';
 
 const SecondaryButton = ({ children, link, hero }) => {
   return (
-    <Link to={link}>
+    <Link to={link} className="secondary-button">
       <div
         className={cx(
           'bg-substrateBlackish dark:bg-substrateDarkThemeLightGrey inline-block rounded-md hover:opacity-80 transition-opacity',
