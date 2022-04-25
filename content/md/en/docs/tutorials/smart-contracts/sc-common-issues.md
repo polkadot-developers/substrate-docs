@@ -1,12 +1,15 @@
 ---
 title: Troubleshoot smart contracts
 slug: /tutorials/smart-contracts/sc-common-issues/
-description:
+description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.
 keywords:
   - smart contracts
   - erc20
   - wasm
 featured_image: /tutorial-card-images/tuts-4.jpg
+difficulty:
+time:
+category:
 ---
 
 This section describes some of the common issues you might encounter when writing and deploying smart contracts on a Substrate-based blockchain and how you can address them.

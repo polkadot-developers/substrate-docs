@@ -4,6 +4,7 @@ slug: /tutorials/v3/frontier
 version: "3.0"
 sideNav: frontierWorkshop
 section: tutorials
+description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.
 hideNav: true
 category: Parachains
 keywords:
@@ -11,7 +12,7 @@ keywords:
   - workshop
   - frontier
 difficulty: 3
-duration: 3 Hour
+time: 3 Hour
 relevantSkills:
   - Rust
   - Ethereum

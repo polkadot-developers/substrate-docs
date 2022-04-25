@@ -3,9 +3,10 @@ title: Start a trusted validator network
 slug: /tutorials/trusted-network/
 section: tutorials
 category: private network
+description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.
 keywords: private blockchain, consortium, authority, aura, round robin, validators,network
 difficulty: 1
-duration: 2 Hour
+time: 2 Hour
 relevantSkills:
   - Rust
   - Blockchain basics

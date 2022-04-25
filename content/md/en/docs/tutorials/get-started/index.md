@@ -1,5 +1,5 @@
 ---
-title: Tutorials
+title: Get Started
 description: Get firsthand experience building with Substrate.
 featured_image: /tutorial-card-images/tuts-2.jpeg
 keywords:

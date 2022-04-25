@@ -4,8 +4,9 @@ slug: /tutorials/v3/cumulus/connect-parachain
 sideNav: cumulusTutorial
 version: "polkadot-v0.9.18"
 section: tutorials
+description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.
 category: parachains
-duration: 3 Hours
+time: 3 Hours
 difficulty: 3
 relevantSkills:
   - Rust

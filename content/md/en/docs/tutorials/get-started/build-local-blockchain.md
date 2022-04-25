@@ -6,7 +6,7 @@ keywords:
   - template
   - basics
 difficulty: 1
-duration: 60
+time: 1 hour
 skills:
   - Rust
   - Blockchain basics

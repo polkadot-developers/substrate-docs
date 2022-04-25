@@ -1,12 +1,15 @@
 ---
 title: Build a token contract
 slug: /tutorials/smart-contracts/erc20-token/
-description:
+description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.
 keywords:
   - smart contracts
   - erc20
   - wasm
 featured_image: /tutorial-card-images/tuts-6.jpeg
+difficulty:
+time:
+category:
 ---
 
 This tutorial illustrates how you can build an ERC-20 token contract using the ink! language.

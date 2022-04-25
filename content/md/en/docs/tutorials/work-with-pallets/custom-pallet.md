@@ -3,12 +3,13 @@ title: Create a custom pallet using macros
 slug: /tutorials/v3/proof-of-existence
 sideNav: poe
 section: tutorials
+description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.
 category: pallets, macros, runtime
 keywords:
   - dapp
   - substrate
 difficulty: 1
-duration: 1 Hour
+time: 1 Hour
 relevantSkills:
   - Rust
   - FRAME

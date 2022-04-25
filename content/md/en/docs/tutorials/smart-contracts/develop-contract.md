@@ -1,12 +1,15 @@
 ---
 title: Develop a smart contract
 slug: /tutorials/smart-contracts/develop-contract/
-description: tutorials
+description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.
 keywords:
   - smart contracts
   - erc20
   - wasm
 featured_image: /tutorial-card-images/tuts-1.jpeg
+difficulty:
+time:
+category:
 ---
 
 In [Prepare your first contract](/tutorials/smart-contracts/first-smart-contract/), you learned the basic steps for building and deploying a smart contract on a Substrate-based blockchain using a default first project.

@@ -1,9 +1,9 @@
 ---
 title: Authorize specific nodes
-description: permissioned network
+description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.
 keywords: permissioned, consortium,
 difficulty: 1
-duration: 1 Hour
+time: 1 Hour
 relevantSkills:
   - Rust
   - Blockchain basics

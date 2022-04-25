@@ -1,10 +1,10 @@
 ---
 title: Simulate a network
 slug: /tutorials/simulate-network/
-description:
+description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.
 keywords: node template, basics, consortium, authority, aura, private network
 difficulty: 1
-duration: 1 Hour
+time: 1 Hour
 featured_image: /tutorial-card-images/tuts-8.jpeg
 ---
 

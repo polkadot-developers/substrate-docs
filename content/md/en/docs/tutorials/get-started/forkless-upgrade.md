@@ -1,12 +1,12 @@
 ---
 title: Upgrade a runtime
-description:
+description: Perform a forkless runtime upgrade on a running Substrate network.
 keywords:
   - runtime upgrades
   - forkless
   - schedular pallet
 difficulty: 1
-duration: 2 Hour
+time: 2 Hours
 relevantSkills:
   - Rust
   - Blockchain basics
