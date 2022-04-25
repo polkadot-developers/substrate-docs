@@ -111,7 +111,7 @@ export default function Index() {
       </Section>
       {/* Playground Section */}
       <Section>
-        <div className="flex flex-col lg:flex-row lg:items-center overflow-x-hidden">
+        <div className="flex flex-col lg:flex-row lg:items-center">
           <div className="mb-16 lg:m-0 lg:w-1/2">
             <div className="font-title text-5xl lg:text-6xl font-extrabold mb-8">
               Playground
