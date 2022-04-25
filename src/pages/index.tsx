@@ -54,7 +54,7 @@ export default function Index() {
       </Section>
       {/* Learn Subsrate Section */}
       <Section styles="relative">
-        <div className="absolute inset-0 md:mt-20">
+        <div className="absolute inset-0 md:mt-20 overflow-hidden">
           <div className="lg:hidden">
             <StaticImage
               src={'../images/backgrounds/backgroundTwo.png'}
@@ -73,7 +73,7 @@ export default function Index() {
             />
           </div>
         </div>
-        <div className="h-full relative">
+        <div className="relative">
           <div className="text-center mb-16">
             <div className="text-5xl lg:text-6xl font-extrabold mb-3">
               Learn Substrate
@@ -82,7 +82,7 @@ export default function Index() {
               Substrate developer knowledge base
             </h4>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-8 z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-8 z-10 pb-12">
             <DocCard
               title={`Documentation`}
               text={`Discover the principles and design decisions that Substrate is built on. Read about its key features and capabilties as well as the specific skills needed to be an effective Substrate blockchain developer.`}
