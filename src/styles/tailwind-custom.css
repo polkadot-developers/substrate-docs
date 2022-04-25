@@ -75,9 +75,3 @@
 .underline-animate-thin a::after {
   height: 1px;
 }
-
-/* Prevent horizontal scrolling */
-
-.container {
-  overflow-x: hidden;
-}
