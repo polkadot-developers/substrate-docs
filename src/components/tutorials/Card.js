@@ -6,7 +6,7 @@ import { Link } from '../default/Link';
 
 const TutorialCard = ({ model }) => {
   const { frontmatter, fields } = model;
-  const { title, description, featured_image, difficulty, time, skills, relevantSkills } = frontmatter;
+  const { title, description, featured_image, difficulty, time, relevantSkills } = frontmatter;
   const { path } = fields;
   // const imageData = getImage(featured_image)
 
@@ -77,7 +77,6 @@ const TutorialCard = ({ model }) => {
                   );
                 })}
             </div>
-            {console.log(skills)}
           </div>
         </article>
       </Link>

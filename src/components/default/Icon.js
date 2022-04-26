@@ -49,6 +49,7 @@ import placeholder from '../../images/svg/placeholder.svg';
 import polkadotLogo from '../../images/svg/polkadot-logo.svg';
 import quickStart from '../../images/svg/quick-start.svg';
 import reference from '../../images/svg/reference.svg';
+import search from '../../images/svg/search.svg';
 import seminar from '../../images/svg/seminar.svg';
 import shieldCheckSolid from '../../images/svg/shield-check-solid.svg';
 import smile from '../../images/svg/smile.svg';
@@ -111,6 +112,7 @@ import waLogo from '../../images/svg/wa-logo.svg';
 
 const iconsMap = {
   /* home */
+  search: search,
   developers: developers,
   projects: projects,
   technology: technology,

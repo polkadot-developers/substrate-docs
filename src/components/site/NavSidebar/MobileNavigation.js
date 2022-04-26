@@ -14,7 +14,7 @@ const MobileNavigation = ({ currentPath }) => {
         className="pt-4 flex content-center items-center justify-center w-full text-center mx-auto font-bold py-4 bg-substrateGray dark:bg-gray-700 cursor-pointer"
         onClick={() => setNav(!toggleNav)}
       >
-        <Icon name="docsNavIcon" />
+        <Icon name="docsNavIcon" className="fill-current text-black dark:text-white" />
         &nbsp; Documentation
         <svg
           className={cx('ml-2 fill-current text-black dark:text-white transform', {

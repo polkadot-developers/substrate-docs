@@ -4,7 +4,7 @@ slug: /tutorials/v3/frontier
 version: "3.0"
 sideNav: frontierWorkshop
 section: tutorials
-description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.
+description: Wafer powder toffee dessert sugar plum jelly icing tart. Topping sugar plum gingerbread cookie cake cupcake. Shortbread cupcake tart muffin danish. Sugar plum cupcake soufflé chocolate bar marshmallow carrot cake tootsie roll.
 hideNav: true
 category: Parachains
 keywords:
