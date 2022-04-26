@@ -6,6 +6,7 @@ import Icon from '../components/default/Icon';
 import { Link } from '../components/default/Link';
 import Markdown from '../components/default/Markdown';
 import Sidebar from '../components/layout/Sidebar';
+//import BottomButtons from '../components/site/BottomButtons';
 import Layout from '../components/site/Layout';
 import NavSidebar from '../components/site/NavSidebar';
 import MobileNavigation from '../components/site/NavSidebar/MobileNavigation';
@@ -46,7 +47,6 @@ export default function DocsSinglePage({ data, pageContext }) {
               <div className="text-sm font-medium text-substrateBlue dark:text-substrateBlue-light mdx-ancho">
                 {pageContext.breadcrumb.crumbs.map(index => (
                   <span key={index.crumblabel} className="breadcrumb text-substrateDark dark:text-white">
-                    {console.log(index)}
                     <Link
                       to={index.pathname}
                       className="text-sm font-medium text-substrateBlue dark:text-substrateBlue-light mdx-anchor"

@@ -8,7 +8,6 @@ const SubMenu = ({ pages, currentPath }) => {
   return (
     <ul className="p-0 m-0 pl-3">
       {pages.map((page, index) => {
-        console.log(currentPath + 'The page: ' + page.url);
         const [isOpen, setIsOpen] = useState(currentPath.includes(page.url));
         return (
           <li

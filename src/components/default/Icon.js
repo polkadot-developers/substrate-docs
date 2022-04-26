@@ -8,6 +8,7 @@ import contact from '../../images/svg/contact.svg';
 import desktop from '../../images/svg/desktop.svg';
 import docIcon from '../../images/svg/doc-icon.svg';
 import docsIcon from '../../images/svg/docs.svg';
+import docsNavIcon from '../../images/svg/docs-nav-icon.svg';
 import dollar from '../../images/svg/dollar.svg';
 import builders from '../../images/svg/ecosystem/builders.svg';
 import connect from '../../images/svg/ecosystem/connect.svg';
@@ -226,6 +227,7 @@ const iconsMap = {
   quickStart: quickStart,
   tutorials: tutorials,
   time: time,
+  docsNavIcon: docsNavIcon,
 };
 
 export default function Icon({ name, className, ...others }) {
