@@ -48,7 +48,7 @@ const Layout = ({ children }: any) => {
     <React.Fragment>
       <Banner />
       <Header />
-      <main className="main-container">
+      <main className="main-container overflow-x-hidden">
         <MDXProvider components={components}>{children}</MDXProvider>
       </main>
       <Footer />
