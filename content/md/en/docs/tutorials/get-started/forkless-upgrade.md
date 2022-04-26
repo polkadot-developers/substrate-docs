@@ -9,7 +9,6 @@ difficulty: 1
 time: 2 Hours
 relevantSkills:
   - Rust
-  - Blockchain basics
   - FRAME
   - Wasm
 featured_image: /tutorial-card-images/tuts-6.jpeg

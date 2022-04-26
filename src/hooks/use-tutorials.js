@@ -20,6 +20,8 @@ export const useTutorials = () => {
                 featured_image
                 difficulty
                 time
+                skills
+                relevantSkills
               }
               fields {
                 slug

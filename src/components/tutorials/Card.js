@@ -6,7 +6,7 @@ import { Link } from '../default/Link';
 
 const TutorialCard = ({ model }) => {
   const { frontmatter, fields } = model;
-  const { title, description, featured_image, difficulty, time } = frontmatter;
+  const { title, description, featured_image, difficulty, time, skills, relevantSkills } = frontmatter;
   const { path } = fields;
   // const imageData = getImage(featured_image)
 
@@ -64,6 +64,20 @@ const TutorialCard = ({ model }) => {
               </div>
             </div>
             <hr />
+            <div className="h-full">
+              {relevantSkills &&
+                relevantSkills.map(i => {
+                  return (
+                    <div
+                      key={i}
+                      className="inline-block m-2 px-4 p-2 text-sm rounded border border-substrateDark dark:border-substrateWhite"
+                    >
+                      {i}
+                    </div>
+                  );
+                })}
+            </div>
+            {console.log(skills)}
           </div>
         </article>
       </Link>
