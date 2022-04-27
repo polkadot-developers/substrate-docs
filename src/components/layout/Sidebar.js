@@ -8,7 +8,7 @@ const Sidebar = ({ children, currentPath }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
-      <div className="hidden lg:inline-block lg:flex-none lg:h-auto lg:bg-substrateGray-light lg:dark:bg-substrateDark border-r border-gray-200 dark:border-gray-700 min-h-screen">
+      <div className="hidden lg:inline-block lg:flex-none h-full lg:bg-substrateGray-light lg:dark:bg-substrateDark border-r border-gray-200 dark:border-gray-700 min-h-screen">
         <div
           className={cx('sticky top-20 mb-12', {
             'w-16 overflow-y-hidden': isOpen,

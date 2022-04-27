@@ -9,7 +9,6 @@ import Logo from '../site/Logo';
 import DocsButton from './DocsButton';
 import NavMain from './NavMain';
 import NavMobile from './NavMobile';
-import SearchForm from './SearchForm';
 import ThemeToggle from './ThemeToggle';
 
 const Header = ({ mode, header }) => {
@@ -64,7 +63,6 @@ const Header = ({ mode, header }) => {
               <NavMain header={header} isScrolled={isScrolled} />
             </div>
             <div className=" w-1/2 flex items-center justify-end">
-              <SearchForm />
               <div className="pl-8 pr-6">
                 <DocsButton />
               </div>
