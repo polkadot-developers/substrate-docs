@@ -7,11 +7,11 @@ keywords:
 The `subkey` program is a key generation and management utility that is included in the Substrate repository.
 You can use the `subkey` program to perform the following tasks:
 
-* Generate and inspect cryptographically-secure public and private key pairs.
-* Restore keys from secret phrases and raw seeds.
-* Sign and verify signatures on messages.
-* Sign and verify signatures for encoded transactions.
-* Derive hierarchical deterministic child key pairs.
+- Generate and inspect cryptographically-secure public and private key pairs.
+- Restore keys from secret phrases and raw seeds.
+- Sign and verify signatures on messages.
+- Sign and verify signatures for encoded transactions.
+- Derive hierarchical deterministic child key pairs.
 
 ## Signature schemes
 
@@ -38,34 +38,34 @@ To install and compile the `subkey` program:
 
 1. Clone the Substrate repository, if necessary, by running the following command:
 
-    ```bash
-    git clone https://github.com/paritytech/substrate.git
-    ```
+   ```bash
+   git clone https://github.com/paritytech/substrate.git
+   ```
 
 1. Change to the root directory of the Substrate repository by running the following command:
-    
-    ```bash
-    cd substrate
-    ```
+
+   ```bash
+   cd substrate
+   ```
 
 1. Compile the `subkey` program using the `nightly` toolchain by running the following command:
-    
-    ```bash
-    cargo +nightly build --package subkey --release
-    ```
 
-    Because of the number of packages involved, compiling the program can take several minutes.
+   ```bash
+   cargo +nightly build --package subkey --release
+   ```
+
+   Because of the number of packages involved, compiling the program can take several minutes.
 
 1. Verify that the `subkey` program is ready to use and view information about the options available by running the following command:
-    
-    ```bash
-    ./target/release/subkey --help
-    ```
+
+   ```bash
+   ./target/release/subkey --help
+   ```
 
 ## Hierarchical deterministic keys
 
 The `subkey` program supports hierarchical deterministic keys.
-Hierarchical deterministic (HD) keys enable you to use a parent seed to derive child key pairs in a hierarchical tree structure. 
+Hierarchical deterministic (HD) keys enable you to use a parent seed to derive child key pairs in a hierarchical tree structure.
 In this hierarchical structure, each child derived from a parent has its own key pair.
 The derived keys can also be used to derive additional child key pairs, similar to how a file system can have nested directories in a hierarchical directory structure.
 For background information about how hierarchical deterministic keys are derived, see the [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) specification for hierarchical deterministic wallets.
@@ -80,8 +80,8 @@ The basic syntax for running `subkey` commands is:
 subkey [subcommand] [flag]
 ```
 
-Depending on the subcommand you specify, additional arguments, options, and flags might apply or be required. 
-To view usage information for a specific `subkey` subcommand, specify the subcommand and the `--help` flag. 
+Depending on the subcommand you specify, additional arguments, options, and flags might apply or be required.
+To view usage information for a specific `subkey` subcommand, specify the subcommand and the `--help` flag.
 For example, to see usage information for `subkey inspect`, you can run the following command:
 
 ```
@@ -92,39 +92,39 @@ subkey inspect --help
 
 You can use the following optional flags with the `subkey` command.
 
-| Flag   | Description
-| ------ | -----------
-| -h, --help | Displays usage information.
-| -V, --version | Displays version information.
+| Flag          | Description                   |
+| ------------- | ----------------------------- |
+| -h, --help    | Displays usage information.   |
+| -V, --version | Displays version information. |
 
 ### Subcommands
 
-You can use the following subcommands with the `subkey` command. 
+You can use the following subcommands with the `subkey` command.
 For reference information and examples that illustrate using subkey subcommands, select an appropriate command.
 
-| Command | Description
-| ------- | -----------
-| [`generate`](#subkey-generate) | Generates a random account key.
-| [`generate-node-key`](#subkey-generate-node-key) | Generates a random node `libp2p` secret key. You can save the secret key to a file or display it as standard output (`stdout`).
-| [`help`](#subkey-help) | Displays usage information for `subkey` or for a specified subcommand.
-| [`inspect`](#subkey-inspect) | Displays the public key and SS58 address for the secret URI you specify.
-| [`inspect-node-key`](#subkey-inspect-node-key) | Displays the peer ID that corresponds with the secret node key in the file name you specify.
-| [`sign`](#subkey-sign) | Signs a message with the secret key you specify.
-| [`vanity`](#subkey-vanity) | Generates a seed that provides a vanity address.
-| [`verify`](#subkey-verify) | Verifies the signature for a message is valid for the public or secret key you specify.
+| Command                                          | Description                                                                                                                     |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| [`generate`](#subkey-generate)                   | Generates a random account key.                                                                                                 |
+| [`generate-node-key`](#subkey-generate-node-key) | Generates a random node `libp2p` secret key. You can save the secret key to a file or display it as standard output (`stdout`). |
+| [`help`](#subkey-help)                           | Displays usage information for `subkey` or for a specified subcommand.                                                          |
+| [`inspect`](#subkey-inspect)                     | Displays the public key and SS58 address for the secret URI you specify.                                                        |
+| [`inspect-node-key`](#subkey-inspect-node-key)   | Displays the peer ID that corresponds with the secret node key in the file name you specify.                                    |
+| [`sign`](#subkey-sign)                           | Signs a message with the secret key you specify.                                                                                |
+| [`vanity`](#subkey-vanity)                       | Generates a seed that provides a vanity address.                                                                                |
+| [`verify`](#subkey-verify)                       | Verifies the signature for a message is valid for the public or secret key you specify.                                         |
 
 ### Output
 
 Depending on the subcommand you specify, the output from the subkey program displays some or all of the following information:
 
-| This field | Contains
-| ---------- | ----------
-| Secret phrase | A series of English words that encodes the secret key in a human-friendly way. This series of words—also referred to as a mnemonic phrase or seed phrase—can be used to recover a secret key if the correct set of words are provided in the correct order.
-| Secret Seed | The minimum information necessary to restore a key pair. The secret seed is also sometimes referred to as a private key or raw seed. All other information is calculated from this value.
-| Public Key (hex) | The public half of the cryptographic key pair in hexadecimal format.
-| Public Key (SS58) | The public half of the cryptographic key pair in SS58 encoding.
-| Account ID | An alias for the public key in hexadecimal format.
-| SS58 Address | An SS58-encoded public address based on the public key.
+| This field        | Contains                                                                                                                                                                                                                                                    |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Secret phrase     | A series of English words that encodes the secret key in a human-friendly way. This series of words—also referred to as a mnemonic phrase or seed phrase—can be used to recover a secret key if the correct set of words are provided in the correct order. |
+| Secret Seed       | The minimum information necessary to restore a key pair. The secret seed is also sometimes referred to as a private key or raw seed. All other information is calculated from this value.                                                                   |
+| Public Key (hex)  | The public half of the cryptographic key pair in hexadecimal format.                                                                                                                                                                                        |
+| Public Key (SS58) | The public half of the cryptographic key pair in SS58 encoding.                                                                                                                                                                                             |
+| Account ID        | An alias for the public key in hexadecimal format.                                                                                                                                                                                                          |
+| SS58 Address      | An SS58-encoded public address based on the public key.                                                                                                                                                                                                     |
 
 ### Examples
 
@@ -155,26 +155,26 @@ subkey generate [FLAGS] [OPTIONS]
 
 You can use the following optional flags with the `subkey generate` command.
 
-| Flag   | Description
-| ------ | -----------
-| `-h`, `--help` | Displays usage information.
-| `--password-interactive` | Enables you to enter the password for accessing the keystore interactively in the terminal.
-| `-V`, `--version` | Displays version information.
+| Flag                     | Description                                                                                 |
+| ------------------------ | ------------------------------------------------------------------------------------------- |
+| `-h`, `--help`           | Displays usage information.                                                                 |
+| `--password-interactive` | Enables you to enter the password for accessing the keystore interactively in the terminal. |
+| `-V`, `--version`        | Displays version information.                                                               |
 
 #### Options
 
 You can use the following command-line options with the `subkey generate` command.
 
-| Option   | Description
-| -------- | -----------
-| `--keystore-path <path>` | Specifies a custom keystore path.
-| `--keystore-uri <keystore-uri>` | Specifies a custom URI to connect to for keystore services
-| `-n`, `--network <network>` | Specifies the network address format to use. For example, `kusama` or `polkadot`. For a complete list of networks supported, see the online usage information.
-| `--output-type <format>` | Specifies the output format to use. Valid values are Json and Text. The default output format is Text.
-| `--password <password>` | Specifies the password used by the keystore. This option enables you to append an extra secret to the seed.
-| `--password-filename <path>` | Specifies the name of a file that contains the password used by the keystore.
-| `--scheme <scheme>` | Specifies the cryptographic scheme for the key you are generating. Valid values are `Ecdsa`, `Ed25519`, `Sr25519`. The default scheme is `Sr25519`.
-|`-w`, `--words <words>` | Specifies the number of words in the secret phrase for the key you are generating. Valid values are 12, 15, 18, 21, 24. By default, the secret phrase consists of 12 words.
+| Option                          | Description                                                                                                                                                                 |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--keystore-path <path>`        | Specifies a custom keystore path.                                                                                                                                           |
+| `--keystore-uri <keystore-uri>` | Specifies a custom URI to connect to for keystore services                                                                                                                  |
+| `-n`, `--network <network>`     | Specifies the network address format to use. For example, `kusama` or `polkadot`. For a complete list of networks supported, see the online usage information.              |
+| `--output-type <format>`        | Specifies the output format to use. Valid values are Json and Text. The default output format is Text.                                                                      |
+| `--password <password>`         | Specifies the password used by the keystore. This option enables you to append an extra secret to the seed.                                                                 |
+| `--password-filename <path>`    | Specifies the name of a file that contains the password used by the keystore.                                                                                               |
+| `--scheme <scheme>`             | Specifies the cryptographic scheme for the key you are generating. Valid values are `Ecdsa`, `Ed25519`, `Sr25519`. The default scheme is `Sr25519`.                         |
+| `-w`, `--words <words>`         | Specifies the number of words in the secret phrase for the key you are generating. Valid values are 12, 15, 18, 21, 24. By default, the secret phrase consists of 12 words. |
 
 #### Examples
 
@@ -183,6 +183,7 @@ To generate a new key pair that uses the sr25519 signature scheme, run the follo
 ```bash
 subkey generate
 ```
+
 The command displays output similar to the following with a 12-word secret phrase:
 
 ```text
@@ -194,8 +195,8 @@ Secret phrase:       bread tongue spell stadium clean grief coin rent spend tota
   SS58 Address:      5GCCgshTQCfGkXy6kAkFDW1TZXAdsbCNZJ9Uz2c7ViBnwcVg
 ```
 
-The `subkey` program encodes the address associated with a public/private key pair differently depending on the format required for the network where it is used. 
-If you want to use the **same private key** on the Kusama and Polkadot networks, you can use the `--network` option to generate the separate address formats for the Kusama and Polkadot networks. 
+The `subkey` program encodes the address associated with a public/private key pair differently depending on the format required for the network where it is used.
+If you want to use the **same private key** on the Kusama and Polkadot networks, you can use the `--network` option to generate the separate address formats for the Kusama and Polkadot networks.
 The public key is the same, but the address formats are network-specific.
 To generate a key pair for a specific network, run a command similar to the following:
 
@@ -208,7 +209,7 @@ The command displays the same fields as output, but uses the address format for 
 To generate a more secure key pair that uses the `ed25519` signature scheme and an 24-word secret phrase for the `moonriver` network, you would run the following command:
 
 ```bash
-subkey generate --scheme ed25519 --words 24 --network moonriver 
+subkey generate --scheme ed25519 --words 24 --network moonriver
 ```
 
 The command displays the same fields as output, but uses the Ed25519 signature scheme, a 24-word secret phrase, and the address format for the `moonriver` network.
@@ -248,18 +249,18 @@ subkey generate-node-key [FLAGS] [OPTIONS]
 
 You can use the following optional flags with the `subkey generate-node-key` command.
 
-| Flag   | Description
-| ------ | -----------
-| `-h`, `--help` | Displays usage information.
-| `-V`, `--version` | Displays version information.
+| Flag              | Description                   |
+| ----------------- | ----------------------------- |
+| `-h`, `--help`    | Displays usage information.   |
+| `-V`, `--version` | Displays version information. |
 
 #### Options
 
 You can use the following command-line option with the `subkey generate-node-key` command.
 
-| Option   | Description
-| -------- | -----------
-| `--file <file-name>` | Specifies the file location you want to use to save the secret key generated for the local node. If you don't specify this option, the generated keys are displayed as standard output (`stdout`).
+| Option               | Description                                                                                                                                                                                        |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--file <file-name>` | Specifies the file location you want to use to save the secret key generated for the local node. If you don't specify this option, the generated keys are displayed as standard output (`stdout`). |
 
 #### Examples
 
@@ -308,34 +309,34 @@ subkey inspect [FLAGS] [OPTIONS] uri
 
 You can use the following optional flags with the `subkey inspect` command.
 
-| Flag   | Description
-| ------ | -----------
-| `-h`, `--help` | Displays usage information.
-| `--password-interactive` | Enables you to enter the password for accessing the keystore interactively in the terminal.
-| `--public` | Indicates that the `uri` you specify to inspect is a hex-encoded public key.
-| `-V`, `--version` | Displays version information.
+| Flag                     | Description                                                                                 |
+| ------------------------ | ------------------------------------------------------------------------------------------- |
+| `-h`, `--help`           | Displays usage information.                                                                 |
+| `--password-interactive` | Enables you to enter the password for accessing the keystore interactively in the terminal. |
+| `--public`               | Indicates that the `uri` you specify to inspect is a hex-encoded public key.                |
+| `-V`, `--version`        | Displays version information.                                                               |
 
 #### Options
 
 You can use the following command-line options with the `subkey inspect` command.
 
-| Option   | Description
-| -------- | -----------
-| `--keystore-path <path>` | Specifies a custom keystore path.
-| `--keystore-uri <keystore-uri>` | Specifies a custom URI to connect to for keystore services.
-| `-n`, `--network <network>` | Specifies the network address format to use. For example, `kusama` or `polkadot`. For a complete list of networks supported, see the online usage information.
-| `--output-type <format>` | Specifies the output format to use. Valid values are Json and Text. The default output format is Text.
-| `--password <password>` | Specifies the password used by the keystore. This option enables you to append an extra secret to the seed.
-| `--password-filename <path>` | Specifies the name of a file that contains the password used by the keystore.
-| `--scheme <scheme>` | Specifies the cryptographic scheme for the key you are inspecting. Valid values are `Ecdsa`, `Ed25519`, `Sr25519`. The default scheme is `Sr25519`.
+| Option                          | Description                                                                                                                                                    |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--keystore-path <path>`        | Specifies a custom keystore path.                                                                                                                              |
+| `--keystore-uri <keystore-uri>` | Specifies a custom URI to connect to for keystore services.                                                                                                    |
+| `-n`, `--network <network>`     | Specifies the network address format to use. For example, `kusama` or `polkadot`. For a complete list of networks supported, see the online usage information. |
+| `--output-type <format>`        | Specifies the output format to use. Valid values are Json and Text. The default output format is Text.                                                         |
+| `--password <password>`         | Specifies the password used by the keystore. This option enables you to append an extra secret to the seed.                                                    |
+| `--password-filename <path>`    | Specifies the name of a file that contains the password used by the keystore.                                                                                  |
+| `--scheme <scheme>`             | Specifies the cryptographic scheme for the key you are inspecting. Valid values are `Ecdsa`, `Ed25519`, `Sr25519`. The default scheme is `Sr25519`.            |
 
 #### Arguments
 
 You must specify the following required argument with the `subkey inspect` command.
 
-| Argument | Description
-| -------- | -----------
-| `uri` | Specifies the key URI you want to inspect. You can specify the key using its secret phrase, secret seed (with derivation paths and password), SS58 address, public key, or hex-encoded public key. If you specify the `uri` using a hex-encoded public key, you must also include the `--public` flag on the command line. If you specify a file name for the `uri`, the file content is used as the URI. 
+| Argument | Description                                                                                                                                                                                                                                                                                                                                                                                               |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `uri`    | Specifies the key URI you want to inspect. You can specify the key using its secret phrase, secret seed (with derivation paths and password), SS58 address, public key, or hex-encoded public key. If you specify the `uri` using a hex-encoded public key, you must also include the `--public` flag on the command line. If you specify a file name for the `uri`, the file content is used as the URI. |
 
 #### Examples
 
@@ -385,8 +386,8 @@ Network ID/version: substrate
   SS58 Address:       5Gv8YYFu8H1btvmrJy9FjjAWfb99wrhV3uhPFoNEr918utyR
 ```
 
-The `subkey` program encodes the address associated with a public/private key pair differently depending on the format required for the network where it is used. 
-If you use the **same private key** on the Kusama and Polkadot networks, you can use the `--network` option to inspect the address used for a specific network. 
+The `subkey` program encodes the address associated with a public/private key pair differently depending on the format required for the network where it is used.
+If you use the **same private key** on the Kusama and Polkadot networks, you can use the `--network` option to inspect the address used for a specific network.
 The public key is the same, but the address format is network-specific.
 To inspect a key pair for a specific network, run a command similar to the following:
 
@@ -463,31 +464,31 @@ subkey inspect-node-key [FLAGS] [OPTIONS] --file <file-name>
 
 You can use the following optional flags with the `subkey inspect-node-key` command.
 
-| Flag   | Description
-| ------ | -----------
-| `-h`, `--help` | Displays usage information.
-| `-V`, `--version` | Displays version information.
+| Flag              | Description                   |
+| ----------------- | ----------------------------- |
+| `-h`, `--help`    | Displays usage information.   |
+| `-V`, `--version` | Displays version information. |
 
 #### Options
 
 You can use the following command-line option with the `subkey inspect-node-key` command.
 
-| Option   | Description
-| -------- | -----------
-| `-n, --network <network>` | Specifies the network address format to use. For example, `kusama` or `polkadot`. For a complete list of networks supported, see the online usage information.
+| Option                    | Description                                                                                                                                                    |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-n, --network <network>` | Specifies the network address format to use. For example, `kusama` or `polkadot`. For a complete list of networks supported, see the online usage information. |
 
 #### Arguments
 
 You must specify the following required argument with the `subkey inspect-node-key` command.
 
-| Argument   | Description
-| ------ | -----------
-| `--file <file-name>` | Specifies the file that contains the secret key generated for the peer-to-peer communication with a node.
+| Argument             | Description                                                                                               |
+| -------------------- | --------------------------------------------------------------------------------------------------------- |
+| `--file <file-name>` | Specifies the file that contains the secret key generated for the peer-to-peer communication with a node. |
 
 ## subkey sign
 
-Use the `subkey sign` command to sign a message by passing the message as standard input (`stdin`). 
-You can sign messages using your secret seed or secret phrase. 
+Use the `subkey sign` command to sign a message by passing the message as standard input (`stdin`).
+You can sign messages using your secret seed or secret phrase.
 
 #### Basic usage
 
@@ -499,26 +500,26 @@ subkey sign [FLAGS] [OPTIONS]
 
 You can use the following optional flags with the `subkey sign` command.
 
-| Flag   | Description
-| ------ | -----------
-| `-h`, `--help` | Displays usage information.
-| `--hex` | Indicates that the message you specify as standard input is a hex-encoded message.
-| `--password-interactive` | Enables you to enter the password for accessing the keystore interactively in the terminal.
-| `-V`, `--version` | Displays version information.
+| Flag                     | Description                                                                                 |
+| ------------------------ | ------------------------------------------------------------------------------------------- |
+| `-h`, `--help`           | Displays usage information.                                                                 |
+| `--hex`                  | Indicates that the message you specify as standard input is a hex-encoded message.          |
+| `--password-interactive` | Enables you to enter the password for accessing the keystore interactively in the terminal. |
+| `-V`, `--version`        | Displays version information.                                                               |
 
 #### Options
 
 You can use the following command-line options with the `subkey sign` command.
 
-| Option   | Description
-| -------- | -----------
-| `--keystore-path <path>` | Specifies a custom keystore path.
-| `--keystore-uri <keystore-uri>` | Specifies a custom URI to connect to for keystore services.
-| `--message <network>` | Specifies the message string to sign.
-| `--password <password>` | Specifies the password used by the keystore. This option enables you to append an extra secret to the seed.
-| `--password-filename <path>` | Specifies the name of a file that contains the password used by the keystore.
-| `--scheme <scheme>` | Specifies the cryptographic signature scheme for the key. Valid values are `Ecdsa`, `Ed25519`, `Sr25519`. The default scheme is `Sr25519`.
-| `--suri <secret-seed>` | Specifies the secret key URI you want to use to sign the message. You can specify the key using its secret phrase, secret seed (with derivation paths and password). If you specify a file name for the `--suri` option, the file content is used as the URI. If you omit this option, you are prompted for the URI.
+| Option                          | Description                                                                                                                                                                                                                                                                                                          |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--keystore-path <path>`        | Specifies a custom keystore path.                                                                                                                                                                                                                                                                                    |
+| `--keystore-uri <keystore-uri>` | Specifies a custom URI to connect to for keystore services.                                                                                                                                                                                                                                                          |
+| `--message <network>`           | Specifies the message string to sign.                                                                                                                                                                                                                                                                                |
+| `--password <password>`         | Specifies the password used by the keystore. This option enables you to append an extra secret to the seed.                                                                                                                                                                                                          |
+| `--password-filename <path>`    | Specifies the name of a file that contains the password used by the keystore.                                                                                                                                                                                                                                        |
+| `--scheme <scheme>`             | Specifies the cryptographic signature scheme for the key. Valid values are `Ecdsa`, `Ed25519`, `Sr25519`. The default scheme is `Sr25519`.                                                                                                                                                                           |
+| `--suri <secret-seed>`          | Specifies the secret key URI you want to use to sign the message. You can specify the key using its secret phrase, secret seed (with derivation paths and password). If you specify a file name for the `--suri` option, the file content is used as the URI. If you omit this option, you are prompted for the URI. |
 
 #### Examples
 
@@ -551,7 +552,7 @@ For example:
 
 ## subkey vanity
 
-Use the `subkey vanity` command to create an address that contains a specified string patter. 
+Use the `subkey vanity` command to create an address that contains a specified string patter.
 This command does not generate a secret phrase for the custom address.
 
 #### Basic usage
@@ -564,28 +565,28 @@ subkey vanity [FLAGS] [OPTIONS] --pattern <pattern>
 
 You can use the following optional flags with the `subkey vanity` command.
 
-| Flag   | Description
-| ------ | -----------
-| `-h`, `--help` | Displays usage information.
-| `-V`, `--version` | Displays version information.
+| Flag              | Description                   |
+| ----------------- | ----------------------------- |
+| `-h`, `--help`    | Displays usage information.   |
+| `-V`, `--version` | Displays version information. |
 
 #### Options
 
 You can use the following command-line options with the `subkey vanity` command.
 
-| Option   | Description
-| -------- | -----------
-| `-n, --network <network>` | Specifies the network address format to use. For example, `kusama` or `polkadot`. For a complete list of networks supported, see the online usage information.
-|`--output-type <format>` | Specifies the output format to use. Valid values are Json and Text. The default output format is Text.
-| `--scheme <scheme>` | Specifies the cryptographic signature scheme for the key. Valid values are `Ecdsa`, `Ed25519`, `Sr25519`. The default scheme is `Sr25519`.
+| Option                    | Description                                                                                                                                                    |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-n, --network <network>` | Specifies the network address format to use. For example, `kusama` or `polkadot`. For a complete list of networks supported, see the online usage information. |
+| `--output-type <format>`  | Specifies the output format to use. Valid values are Json and Text. The default output format is Text.                                                         |
+| `--scheme <scheme>`       | Specifies the cryptographic signature scheme for the key. Valid values are `Ecdsa`, `Ed25519`, `Sr25519`. The default scheme is `Sr25519`.                     |
 
 #### Arguments
 
 You must specify the following required argument with the `subkey vanity` command.
 
-| Argument | Description
-| -------- | -----------
-| `--pattern <pattern>` | Specifies the string you want to include in the generated address.
+| Argument              | Description                                                        |
+| --------------------- | ------------------------------------------------------------------ |
+| `--pattern <pattern>` | Specifies the string you want to include in the generated address. |
 
 #### Examples
 
@@ -633,29 +634,29 @@ subkey verify [FLAGS] [OPTIONS] <signature> <uri>
 
 You can use the following optional flags with the `subkey verify` command.
 
-| Flag   | Description
-| ------ | -----------
-| `-h`, `--help` | Displays usage information.
-| `--hex` | Indicates that the message you specify as standard input is a hex-encoded message.
-| `-V`, `--version` | Displays version information.
+| Flag              | Description                                                                        |
+| ----------------- | ---------------------------------------------------------------------------------- |
+| `-h`, `--help`    | Displays usage information.                                                        |
+| `--hex`           | Indicates that the message you specify as standard input is a hex-encoded message. |
+| `-V`, `--version` | Displays version information.                                                      |
 
 #### Options
 
 You can use the following command-line options with the `subkey verify` command.
 
-| Option   | Description
-| -------- | -----------
-| `--message <message>` | Specifies the message to verify.
-| `--scheme <scheme>` | Specifies the cryptographic signature scheme for the key. Valid values are `Ecdsa`, `Ed25519`, `Sr25519`. The default scheme is `Sr25519`.
+| Option                | Description                                                                                                                                |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `--message <message>` | Specifies the message to verify.                                                                                                           |
+| `--scheme <scheme>`   | Specifies the cryptographic signature scheme for the key. Valid values are `Ecdsa`, `Ed25519`, `Sr25519`. The default scheme is `Sr25519`. |
 
 #### Arguments
 
 You must specify the following required argument with the `subkey verify` command.
 
-| Argument | Description
-| -------- | -----------
-| `<signature>` | Specifies the hex-encoded signature to verify.
-| `<uri>` | Specifies the public or secret key URI that you want to use to verify the message. If you specify a file name for the `uri`, the file content is used as the URI. If you omit this option, you are prompted for the URI.
+| Argument      | Description                                                                                                                                                                                                              |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `<signature>` | Specifies the hex-encoded signature to verify.                                                                                                                                                                           |
+| `<uri>`       | Specifies the public or secret key URI that you want to use to verify the message. If you specify a file name for the `uri`, the file content is used as the URI. If you omit this option, you are prompted for the URI. |
 
 #### Examples
 
@@ -664,8 +665,10 @@ The following example uses the `echo` command to pipe a test message as input to
 ```bash
 echo "test message" | subkey verify f052504de653a5617c46eeb1daa73e2dbbf625b6bf8f16d9d8de6767bc40d91dfbd38c13207f8a03594221c9f68c00a158eb3120311b80ab2da563b82a995b86 5Gv8YYFu8H1btvmrJy9FjjAWfb99wrhV3uhPFoNEr918utyR
 ```
+
 If the message signature is verified, the command output confirms the signature,
 For example:
+
 ```text
 Signature verifies correctly.
 ```
@@ -690,7 +693,7 @@ For example, hard keys can only be derived using the parent **private key** and 
 The parent public key cannot be used to derive a hard key.
 
 Soft keys can be derived using either the parent private key or the parent **public key** and a derivation path.
-Because soft keys can be derived using the parent public key, they can be used to identify the parent key without exposing the parent seed. 
+Because soft keys can be derived using the parent public key, they can be used to identify the parent key without exposing the parent seed.
 You can derive either hard keys or soft keys by using different syntax in `subkey` commands.
 You can then use the addresses associated with derived keys to sign messages with the same security as messages signed by their root key.
 
@@ -736,7 +739,7 @@ Secret Key URI `caution juice atom organ advance problem want pledge someone sen
   SS58 Address:      5F9DtrPk3SaFs6U6S8HxnuJcoQ2jF8Wdt3ygwbbBnbVcsdiC
 ```
 
-To derive a soft child key pair from a parent public key, you can use the public SS58 address instead of the secret phrase. 
+To derive a soft child key pair from a parent public key, you can use the public SS58 address instead of the secret phrase.
 Because you are deriving a soft key, you use a single slash (`/`) to delimit the derivation path and index fields.
 For example:
 
@@ -776,13 +779,13 @@ Public Key URI `5Gv8YYFu8H1btvmrJy9FjjAWfb99wrhV3uhPFoNEr918utyR/derived-soft-ke
 
 ### Combine derivation paths and passwords
 
-Note that the secret seed _is not_ password protected. 
+Note that the secret seed _is not_ password protected.
 Although it can still recover _an_ account, the key pair that's derived _is not the same_ account as recovered with _any_ password!
 The same seed with different derivation paths passwords will derive different keys.
 The secret phrase is not sufficient to recover a key pair.
 Keep your paths and passwords secure, as without it your key pair cannot be recovered!
 
-You can derive a soft key as a child of a hard key. 
+You can derive a soft key as a child of a hard key.
 Doing so enables you to use the public address of the derived hard—with an optional password—to derive new public addresses.
 For example, the following command derives a hard key (`//derived-hard-key`) with a soft key leaf (`/0`):
 
@@ -854,7 +857,7 @@ For example:
 subkey inspect //Alice
 ```
 
-The command 
+The command
 
 ```text
 Secret Key URI `//Alice` is account:
@@ -891,5 +894,5 @@ Secret Key URI `bottom drive obey lake curtain smoke basket hold race lonely fit
 ## Further resources
 
 - [Subkey README](https://github.com/paritytech/substrate/tree/master/bin/utils/subkey).
-- [PolkadotJS Apps UI](https://polkadot.js.org/apps/). 
+- [PolkadotJS Apps UI](https://polkadot.js.org/apps/).
 - [Cryptographic algorithms and choosing between them](https://wiki.polkadot.network/docs/en/learn-cryptography).

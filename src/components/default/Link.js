@@ -5,23 +5,23 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 
 const addTrailingSlash = uri => {
   const addSlash = uri => {
-    uri += uri.endsWith('/') ? '' : '/';
+    uri && (uri += uri.endsWith('/')) ? '' : '/';
     return uri;
   };
 
   const removeSlash = uri => {
-    return uri.replace(/\/$/, '');
+    return uri && uri.replace(/\/$/, '');
   };
 
   const getHash = uri => {
-    if (uri.indexOf('#') > 0) {
+    if (uri && uri.indexOf('#') > 0) {
       return uri.substring(uri.indexOf('#'), uri.length);
     }
     return '';
   };
 
   const getSearch = uri => {
-    if (uri.indexOf('?') > 0) {
+    if (uri && uri.indexOf('?') > 0) {
       return uri.substring(uri.indexOf('?'), uri.length);
     }
     return '';
