@@ -5,8 +5,10 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 
 const addTrailingSlash = uri => {
   const addSlash = uri => {
-    uri && (uri += uri.endsWith('/')) ? '' : '/';
-    return uri;
+    if (uri != undefined) {
+      uri += uri.endsWith('/') ? '' : '/';
+      return uri;
+    }
   };
 
   const removeSlash = uri => {
