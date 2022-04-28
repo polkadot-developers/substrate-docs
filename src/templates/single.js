@@ -80,6 +80,7 @@ export default function DocsSinglePage({ data, pageContext }) {
                 <div className="py-8 text-sm text-gray-400">
                   Last edit: {moment(gitLogLatestDate).format('MMMM DD, YYYY')}
                   <hr />
+                  {/*<BottomButtons pagePath={pagePath} articles={data} />*/}
                   <Feedback />
                 </div>
               </footer>
