@@ -163,6 +163,11 @@ const MainNav = {
               },
             ],
           },
+          {
+            linkTitle: `Square One`,
+            link: `${site}/ecosystem/square-one`,
+            external: true,
+          },
         ],
       },
     ]
