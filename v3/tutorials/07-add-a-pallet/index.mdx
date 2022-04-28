@@ -265,23 +265,7 @@ To implement the nicks pallet in your runtime:
    	type Event = Event;
    }
    ```
-
-1. Identify the types that the Nicks pallet exposes.
-
-   You can find a complete list of types in the
-   [`construct_runtime!` macro](/rustdocs/latest/frame_support/macro.construct_runtime.html) documentation.
-
-   The [Nicks pallet](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs) uses
-   the following types:
-
-   - Pallet **Storage**: Because it uses the `#[pallet::storage]` macro.
-   - Pallet **Event**s: Because it uses the `#[pallet::events]` macro. You will notice that in the case of
-     the Nicks pallet, the `Event` keyword is parameterized with respect to a type, `T`; this is
-     because at least one of the events defined by the Nicks pallet depends on a type that is
-     configured with the `Config` configuration trait.
-   - **Call**able Functions: Because it has dispatchable functions in the `#[pallet::call]` macro.
-   - The **Pallet** type from the `#[pallet::pallet]` macro.
-
+   
 1. Add Nicks to the `construct_runtime!` macro.
 
    For example:
