@@ -15,7 +15,7 @@ function SearchSectionLabel({ index, section, setSection, children }) {
     } else if (index === 2) {
       setSection(prevState => ({
         ...prevState,
-        htgs: !section.htgs,
+        ref: !section.ref,
       }));
     }
   };
@@ -25,7 +25,7 @@ function SearchSectionLabel({ index, section, setSection, children }) {
     } else if (index === 1) {
       return section.tuts;
     } else if (index === 2) {
-      return section.htgs;
+      return section.ref;
     }
   };
   return (

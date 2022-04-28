@@ -14,21 +14,22 @@ function SearchModal({ id, closeModal }) {
   const [query, setQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [displayedResults, setDisplayedResults] = useState([]);
-  const types = ['Docs', 'Tutorials', 'How-to Guides'];
+  const types = ['Docs', 'Tutorials', 'Reference'];
   const { store, index } = useLunrIndex();
 
   const [section, setSection] = useState({
     docs: false,
     tuts: false,
-    htgs: false,
+    ref: false,
   });
 
-  console.log(id, closeModal, setQuery, displayedResults, types, setSection);
+  //console.log(id, closeModal, setQuery, displayedResults, types, setSection);
+  // console.log(displayedResults);
 
   const sectionNames = {
-    docs: 'docs',
+    docs: 'main-docs',
     tuts: 'tutorials',
-    htgs: 'how to guides',
+    ref: 'reference',
   };
 
   const processQuery = query => {
@@ -78,7 +79,34 @@ function SearchModal({ id, closeModal }) {
     const selectedSectionNames = Object.entries(sectionNames)
       .filter(([key]) => selectedSections.indexOf(key) >= 0)
       .map(([, val]) => val);
-    const filteredResults = searchResults.filter(result => selectedSectionNames.indexOf(result.section) >= 0);
+    console.log(selectedSectionNames);
+    console.log(searchResults);
+    console.log(selectedSectionNames.includes(searchResults[0].slug));
+    // console.log(
+    //   Object.keys(searchResults).map(function (key) {
+    //     return searchResults[key];
+    //   })
+    // );
+    //console.log(searchResults.filter(result => selectedSectionNames.includes(result.section)));
+    function filterResult(i) {
+      // selectedSectionNames.map(name => {
+      //   console.log(name);
+      //i.filter(item => item.slug.includes(name));
+      // });
+      if (i.slug.includes(selectedSectionNames[0])) {
+        return true;
+      }
+      if (i.slug.includes(selectedSectionNames[1])) {
+        return true;
+      }
+      if (i.slug.includes(selectedSectionNames[2])) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    const filteredResults = searchResults.filter(result => filterResult(result));
+    console.log(filteredResults);
     setDisplayedResults(filteredResults);
   }, [searchResults, section]);
 

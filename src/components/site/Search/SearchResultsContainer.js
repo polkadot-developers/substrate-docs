@@ -3,7 +3,13 @@ import React from 'react';
 import SearchResult from './SearchResult';
 
 function SearchResultsContainer({ results, query, setQuery }) {
-  const suggestedTerms = ['Runtime', 'Storage', 'FRAME', 'Weights', 'Pallet Design'];
+  const suggestedTerms = [
+    'Install',
+    'Smart contract pallets',
+    'Build a local blockchain',
+    'Command line tools',
+    'Pallet Design',
+  ];
 
   return (
     <div className="h-full">
