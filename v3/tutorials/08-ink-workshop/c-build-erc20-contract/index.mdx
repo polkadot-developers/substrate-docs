@@ -113,7 +113,7 @@ To build an ERC-20 token smart contract:
 
 1. Open the `lib.rs` file in a text editor.
     
-1. Replace the default template source code with new [erc20](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.1-template.rs) source code.
+1. Replace the default template source code with new [erc20](https://substrate.io/assets/tutorials/ink-workshop/erc20-template.rs) source code.
 
 1. Save the changes to the `lib.rs` file, then close the file.
 
@@ -128,7 +128,7 @@ To build an ERC-20 token smart contract:
 
 1. Save changes to the `Cargo.toml` file, then close the file.
 
-1. Verify that the program compiles and passes the trivial test by running the following command:
+1. Verify that the program compiles and passes a simple predefined test by running the following command:
     
     ```bash
     cargo +nightly test
@@ -137,11 +137,14 @@ To build an ERC-20 token smart contract:
     The command should display output similar to the following to indicate successful test completion:
 
     ```text
-    running 2 tests
-    test erc20::tests::new_works ... ok
-    test erc20::tests::balance_works ... ok
-    
-    test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+    Compiling erc20 v0.1.0 (/Users/lisagunn/erc20)
+    Finished test [unoptimized + debuginfo] target(s) in 2.52s
+     Running unittests lib.rs (target/debug/deps/erc20-f177d094d58ca577)
+     
+     running 1 test
+     test erc20::tests::new_works ... ok
+     
+     test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
     ```
 
 1. Verify that you can build the WebAssembly for the contract by running the following command:
@@ -167,12 +170,6 @@ To test the ERC-20 contract before adding new functions:
 1. Instantiate the contract on the running local node.
 
 1. Select `totalSupply` as the Message to Send, then click **Read** to verify that the total supply of tokens is the same as the initial supply.
-
-1. Select `balanceOf` as the Message to Send.
-
-1. Select the `AccountId` of the account used to instantiate the contract, then click **Read**.
-    
-    If you select any other AccountId, then click **Read**, the balance is zero because all of the tokens are owned by the contract owner.
 
 ## Transfer tokens
 
