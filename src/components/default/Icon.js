@@ -3,6 +3,7 @@ import React from 'react';
 import caseStudy from '../../images/svg/case-study.svg';
 import chain from '../../images/svg/chain.svg';
 import checkMark from '../../images/svg/check-mark.svg';
+import closeIcon from '../../images/svg/close-icon.svg';
 import computer from '../../images/svg/computer.svg';
 import contact from '../../images/svg/contact.svg';
 import desktop from '../../images/svg/desktop.svg';
@@ -133,6 +134,7 @@ const iconsMap = {
   connect: connect,
   builders: builders,
   explore: explore,
+  closeIcon: closeIcon,
   /* brand */
   'logo-white': logoWhite,
   'w3f-logo': w3fLogo,

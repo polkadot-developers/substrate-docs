@@ -20,7 +20,7 @@ export default function DocsSinglePage({ data, pageContext }) {
   const { htmlAst, tableOfContents, frontmatter } = markdownRemark;
   const { title } = frontmatter;
   const { pagePath /*collection*/ } = pageContext;
-  const { gitLogLatestDate } = data.markdownRemark.parent.fields;
+  const { gitLogLatestDate } = data.markdownRemark.parent.fields != null ? data.markdownRemark.parent.fields : '';
   const pagePathNoSlash = pagePath.endsWith('/') ? pagePath.slice(0, -1) : pagePath;
   function titleize(slug) {
     var words = slug.split('-');

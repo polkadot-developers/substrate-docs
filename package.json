@@ -24,7 +24,7 @@
     "aos": "^2.3.4",
     "classnames": "^2.3.1",
     "date-fns": "^2.25.0",
-    "gatsby": "^3.2.1",
+    "gatsby": "^3.13.0",
     "gatsby-plugin-breadcrumb": "^12.1.1",
     "gatsby-plugin-eslint": "^2.0.8",
     "gatsby-plugin-force-trailing-slashes": "^1.0.5",
