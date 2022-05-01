@@ -57,8 +57,6 @@ docs:
     - title: Design
       url: /main-docs/design/
       pages:
-        - title: Designing your runtime logic
-          url: /main-docs/design/runtime/
         - title: Pallet design
           url: /main-docs/design/pallet-design/
         - title: Smart contract pallets
