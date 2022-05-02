@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 import configNav from '../../../../content/config/nav.yaml';
 import Icon from '../../default/Icon';
+import ModalButton from '../Search/ModalButton';
 import MobileMenu from './MobileMenu';
 
 const MobileNavigation = ({ currentPath }) => {
@@ -34,6 +35,7 @@ const MobileNavigation = ({ currentPath }) => {
           hidden: !toggleNav,
         })}
       >
+        <ModalButton className="fixed" />
         {menu.map(item => {
           const page = configNav[item];
           return <MobileMenu page={page} currentPath={currentPath} key={item} />;
