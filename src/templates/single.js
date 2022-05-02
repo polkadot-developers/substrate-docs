@@ -22,6 +22,7 @@ export default function DocsSinglePage({ data, pageContext }) {
   const { pagePath /*collection*/ } = pageContext;
   const { gitLogLatestDate } = data.markdownRemark.parent.fields != null ? data.markdownRemark.parent.fields : '';
   const pagePathNoSlash = pagePath.endsWith('/') ? pagePath.slice(0, -1) : pagePath;
+  console.log(pagePath);
   function titleize(slug) {
     var words = slug.split('-');
     return words
@@ -87,7 +88,7 @@ export default function DocsSinglePage({ data, pageContext }) {
             </div>
           </div>
           <div className="hidden xl:inline-block">
-            <TableOfContents pageContext={pageContext} data={tableOfContents} />
+            <TableOfContents data={tableOfContents} />
           </div>
         </article>
       </div>
@@ -109,6 +110,11 @@ export const query = graphql`
     markdownRemark: markdownRemark(fields: { slug: { eq: $slug } }, fileAbsolutePath: { regex: "//(md)/" }) {
       htmlAst
       tableOfContents(maxDepth: 2)
+      headings(depth: h2) {
+        id
+        value
+        depth
+      }
       frontmatter {
         title
       }
