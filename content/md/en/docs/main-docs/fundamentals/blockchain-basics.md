@@ -1,6 +1,6 @@
 ---
 title: Blockchain basics
-description: An introduction to common blockchain concepts, components, and terminology.
+description: Introduces common blockchain concepts, components, and terminology.
 featured_image:
 ---
 
