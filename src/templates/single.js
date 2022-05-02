@@ -17,7 +17,7 @@ import Feedback from '../components/ui/Feedback';
 
 export default function DocsSinglePage({ data, pageContext }) {
   const { markdownRemark } = data;
-  const { htmlAst, tableOfContents, frontmatter } = markdownRemark;
+  const { htmlAst, tableOfContents, frontmatter, headings } = markdownRemark;
   const { title } = frontmatter;
   const { pagePath /*collection*/ } = pageContext;
   const { gitLogLatestDate } = data.markdownRemark.parent.fields != null ? data.markdownRemark.parent.fields : '';
@@ -88,7 +88,7 @@ export default function DocsSinglePage({ data, pageContext }) {
             </div>
           </div>
           <div className="hidden xl:inline-block">
-            <TableOfContents data={tableOfContents} />
+            <TableOfContents data={tableOfContents} headings={headings} />
           </div>
         </article>
       </div>

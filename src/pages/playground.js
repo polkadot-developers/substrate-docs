@@ -1,3 +1,4 @@
+import { graphql } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 import React, { useEffect, useState } from 'react';
 
@@ -77,3 +78,17 @@ export default function playground() {
     </Layout>
   );
 }
+
+export const query = graphql`
+  query {
+    locales: allLocale {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`;

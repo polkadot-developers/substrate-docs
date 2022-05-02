@@ -1,6 +1,7 @@
 import React from 'react';
 
-export default function TableOfContents({ data }) {
+export default function TableOfContents({ data, headings }) {
+  console.log(headings);
   return (
     <div className="w-60 sticky top-20 max-h-[calc(100vh)] pb-32 ml-11 overflow-y-auto overscroll-contain">
       {data && (
