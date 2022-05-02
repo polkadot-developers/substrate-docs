@@ -12,29 +12,26 @@ The topics in Fundamentals are intended to help you learn what's possible when y
 
 Before you start building, though, you want to make sure you are in the right place.
 
-* [Blockchain basics](main-docs/02-fundamentals/blockchain-basics.md) provides context about the complexity associated with blockchain development and how Substrate simplifies the process by taking an approach that is modular, flexible, and interoperable.
+* [Blockchain basics](/main-docs/fundamentals/blockchain-basics/) provides context about the complexity associated with blockchain development and how Substrate simplifies the process by taking an approach that is modular, flexible, and interoperable.
 
-* [Choosing a development platform](main-docs/01-why-substrate/choose-a-dev-platform.md) discusses how developing on a traditional smart contract platform differs from developing with Substrate and why Substrate might—or might not—suit your project requirements and goals.
+* [Why Substrate?](/main-docs/fundamentals/why-substrate/) discusses how developing on a traditional smart contract platform differs from developing with Substrate and why Substrate might—or might not—suit your project requirements and goals.
 
-* [Blockchain network topology]() defines the network topology for different blockchain deployment scenarios and how they apply to Substrate-based blockchains. 
-  - Private solo chain
-  - Private enterprise chain (permissioned?)
-  - Parachain
-  - Relay chain
-  - Substrate as the foundation for Polkadot, Kusama, testnets
+* [Architecture](/main-docs/fundamentals/architecture/) describes the key components of the Substrate node architecture and how these components relate to the design and architecture of your custom blockchain.
 
-* [Substrate node architecture](main-docs/02-fundamentals/substrate-client.md) describes the key components of the Substrate node architecture and how these components relate to the design and architecture of your custom blockchain.
+* [Networks and blockchains](/main-docs/fundamentals/node-and-network-types/) defines the network topology for different blockchain deployment scenarios and how they apply to Substrate-based blockchains. 
 
-* [Runtime as the core of Substrate chains](main-docs/02-fundamentals/runtime.md) highlights the importance of the Substrate runtime and introduces the core application interfaces and primitives required for Substrate runtime development.
+* [Runtime development](/main-docs/fundamentals/runtime-intro) highlights the importance of the Substrate runtime and introduces the core application interfaces and primitives required for Substrate runtime development.
+
+* [Consensus](/main-docs/fundamentals/consensus/) describes the most common consensus models and the types of consensus you can implement for a Substrate blockchain.
+
+* [Transactions and block input](/main-docs/fundamentals/transaction-types/)
+
+* [Transaction lifecycle]((/main-docs/02-fundamentals/transaction-lifecycle/))
+
+* [State transitions and storage]((/main-docs/02-fundamentals/state-transitions-and-storage.md))
+
+* [Accounts, addresses, and keys](main-docs/02-fundamentals/accounts-addresses-keys.md)
+
+* [Rust for Substrate](main-docs/02-fundamentals/runtime.md)
 
 After you digest the information in these introductory sections, you'll be ready to start designing, building, and testing your own custom blockchain solution.
-
-- Inbound request pool (extrinsic, peer-to-peer induction, 
-
-- Consensus (models, block authoring, selection, validation, finalization,life cycle of a message))
-
-- Economics (incentives, safety of the network, guardrails)
-
-- Governance 
-
-- Software development (Rust, Wasm, frame and pallets, data storage, tech stack)
