@@ -1,9 +1,10 @@
 ---
 title: Frontier Workshop
 slug: /tutorials/v3/frontier
-version: '3.0'
+version: "3.0"
 sideNav: frontierWorkshop
 section: tutorials
+description: Wafer powder toffee dessert sugar plum jelly icing tart. Topping sugar plum gingerbread cookie cake cupcake. Shortbread cupcake tart muffin danish. Sugar plum cupcake soufflé chocolate bar marshmallow carrot cake tootsie roll.
 hideNav: true
 category: Parachains
 keywords:
@@ -11,11 +12,12 @@ keywords:
   - workshop
   - frontier
 difficulty: 3
-duration: 3 Hour
+time: 3 Hour
 relevantSkills:
   - Rust
   - Ethereum
   - Smart Contracts
+featured_image: /tutorial-card-images/tuts-9.jpeg
 ---
 
 [Frontier](https://github.com/paritytech/frontier) is a set of modules to build an

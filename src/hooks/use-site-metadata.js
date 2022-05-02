@@ -27,6 +27,9 @@ export const useSiteMetadata = () => {
             telegram
             gitter
             stackoverflow
+            stackExchange
+            githubDevhub
+            substrateIO
           }
         }
       }

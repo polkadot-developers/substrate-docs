@@ -59,8 +59,6 @@ docs:
     - title: Design
       url: /main-docs/design/
       pages:
-        - title: Designing your runtime logic
-          url: /main-docs/design/runtime/
         - title: Pallet design
           url: /main-docs/design/pallet-design/
         - title: Smart contract pallets
@@ -76,8 +74,6 @@ docs:
           url: /main-docs/build/libraries/
         - title: Build process
           url: /main-docs/build/build-process/
-        - title: Storage and data structures
-          url: /main-docs/build/storage/
         - title: Transaction weights and fees
           url: /main-docs/build/tx-weights-fees/
         - title: Custom pallets
@@ -99,22 +95,9 @@ docs:
           url: /main-docs/test/deploy-on-testnet/
     - title: Deploy
       url: /main-docs/deploy/
-      pages:
-        - title: Validators
-          url: /main-docs/deploy/validators/
-        - title: Networking basics
-          url: /main-docs/deploy/networking-basics/
-        - title: Finality
-          url: /main-docs/deploy/finality/
-        - title: Genesis construction
-          url: /main-docs/deploy/genesis/
-        - title: Protecting your network from attacks
-          url: /main-docs/deploy/attacks/
     - title: Maintain
       url: /main-docs/maintain/
       pages:
-        - title: Monitoring tools
-          url: /main-docs/maintain/monitor/
         - title: Upgrades
           url: /main-docs/maintain/upgrade/
 
@@ -138,7 +121,7 @@ tutorials:
         - title: Upgrade the runtime
           url: /tutorials/get-started/forkless-upgrade/
     - title: Work with pallets
-      url: /tutorials/pallets/
+      url: /tutorials/work-with-pallets/
       pages:
         - title: Add a simple pallet to the runtime
           url: /tutorials/work-with-pallets/add-a-pallet/

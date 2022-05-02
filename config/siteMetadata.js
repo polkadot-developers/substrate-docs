@@ -21,4 +21,7 @@ module.exports = {
   telegram: 'https://t.me/parity_technologies',
   gitter: 'https://gitter.im/paritytech/parity',
   stackoverflow: 'https://stackoverflow.com/questions/tagged/substrate',
+  substrateIO: `${process.env.GATSBY_WEBSITE_URL}`,
+  stackExchange: 'https://substrate.stackexchange.com',
+  githubDevhub: 'https://github.com/substrate-developer-hub/',
 };

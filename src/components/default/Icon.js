@@ -3,9 +3,13 @@ import React from 'react';
 import caseStudy from '../../images/svg/case-study.svg';
 import chain from '../../images/svg/chain.svg';
 import checkMark from '../../images/svg/check-mark.svg';
+import closeIcon from '../../images/svg/close-icon.svg';
 import computer from '../../images/svg/computer.svg';
 import contact from '../../images/svg/contact.svg';
 import desktop from '../../images/svg/desktop.svg';
+import docIcon from '../../images/svg/doc-icon.svg';
+import docsIcon from '../../images/svg/docs.svg';
+import docsNavIcon from '../../images/svg/docs-nav-icon.svg';
 import dollar from '../../images/svg/dollar.svg';
 import builders from '../../images/svg/ecosystem/builders.svg';
 import connect from '../../images/svg/ecosystem/connect.svg';
@@ -13,10 +17,12 @@ import explore from '../../images/svg/ecosystem/explore.svg';
 import opportunities from '../../images/svg/ecosystem/opportunities.svg';
 import resources from '../../images/svg/ecosystem/resources.svg';
 import event from '../../images/svg/event.svg';
+import feTemplate from '../../images/svg/fe-template.svg';
 import flag from '../../images/svg/flag.svg';
 import forklessUpgrades from '../../images/svg/forkless-upgrades.svg';
 import globeSolid from '../../images/svg/globe-solid.svg';
 import graduation from '../../images/svg/graduation.svg';
+import grantsDollar from '../../images/svg/grants-dollar.svg';
 import graph from '../../images/svg/graph.svg';
 import hackathons from '../../images/svg/hackathons.svg';
 import developers from '../../images/svg/home/developers.svg';
@@ -26,6 +32,8 @@ import projects from '../../images/svg/home/projects.svg';
 import security from '../../images/svg/home/security.svg';
 import technology from '../../images/svg/home/technology.svg';
 import house from '../../images/svg/house.svg';
+import htgIcon from '../../images/svg/htg.svg';
+import ideCode from '../../images/svg/ide-code.svg';
 import knight from '../../images/svg/knight.svg';
 import kusamaLogo from '../../images/svg/kusama_logo.svg';
 import layers from '../../images/svg/layers.svg';
@@ -35,10 +43,14 @@ import logoAstar from '../../images/svg/logo-astar.svg';
 import logoMoonbeam from '../../images/svg/logo-moonbeam.svg';
 import logoWhite from '../../images/svg/logo-white.svg';
 import mail from '../../images/svg/mail.svg';
+import nodeTemplate from '../../images/svg/node-template.svg';
 import paperplane from '../../images/svg/paperplane.svg';
 import pen from '../../images/svg/pen.svg';
 import placeholder from '../../images/svg/placeholder.svg';
 import polkadotLogo from '../../images/svg/polkadot-logo.svg';
+import quickStart from '../../images/svg/quick-start.svg';
+import reference from '../../images/svg/reference.svg';
+import search from '../../images/svg/search.svg';
 import seminar from '../../images/svg/seminar.svg';
 import shieldCheckSolid from '../../images/svg/shield-check-solid.svg';
 import smile from '../../images/svg/smile.svg';
@@ -52,6 +64,7 @@ import so2 from '../../images/svg/social/so2.svg';
 import twitter from '../../images/svg/social/twitter.svg';
 import twitter2 from '../../images/svg/social/twitter2.svg';
 import youtube from '../../images/svg/social/youtube.svg';
+import stackExchange from '../../images/svg/stack-exchange-white.svg';
 import subconnectBrowserTab from '../../images/svg/subconnectBrowserTab.svg';
 import substrate from '../../images/svg/substrate.svg';
 import adaptable from '../../images/svg/technology/adaptable.svg';
@@ -74,6 +87,9 @@ import secure from '../../images/svg/technology/secure.svg';
 import tooling from '../../images/svg/technology/tooling.svg';
 import tools from '../../images/svg/technology/tools.svg';
 import upgradable from '../../images/svg/technology/upgradable.svg';
+import time from '../../images/svg/time.svg';
+import tutorials from '../../images/svg/tutorials.svg';
+import tutsIcon from '../../images/svg/tuts.svg';
 import arrowBack from '../../images/svg/ui/arrow-back.svg';
 import arrowDropdown from '../../images/svg/ui/arrow-dropdown.svg';
 import arrowMore from '../../images/svg/ui/arrow-more.svg';
@@ -97,18 +113,28 @@ import waLogo from '../../images/svg/wa-logo.svg';
 
 const iconsMap = {
   /* home */
+  search: search,
   developers: developers,
   projects: projects,
   technology: technology,
   governance: governance,
   interoperability: interoperability,
   security: security,
+  docIcon: docIcon,
+  htgIcon: htgIcon,
+  tutsIcon: tutsIcon,
+  feTemplate: feTemplate,
+  nodeTemplate: nodeTemplate,
+  stackExchange: stackExchange,
+  ideCode: ideCode,
+  grantsDollar: grantsDollar,
   /* ecosystem */
   opportunities: opportunities,
   resources: resources,
   connect: connect,
   builders: builders,
   explore: explore,
+  closeIcon: closeIcon,
   /* brand */
   'logo-white': logoWhite,
   'w3f-logo': w3fLogo,
@@ -199,6 +225,13 @@ const iconsMap = {
   composable: composable,
   'future-proof-base': futureProofBase,
   upgradable: upgradable,
+  /* Navigation  */
+  docsIcon: docsIcon,
+  reference: reference,
+  quickStart: quickStart,
+  tutorials: tutorials,
+  time: time,
+  docsNavIcon: docsNavIcon,
 };
 
 export default function Icon({ name, className, ...others }) {
