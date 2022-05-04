@@ -112,13 +112,15 @@ Given a period lease duration of 1 day, the current settings for assigned parach
 
 These are subject to change, based on the needs of the community.
 
-Here's an example with parathreads `3000`-`3005` registered for a temporary slot (including chain spec and Wasm blob), starting at lease period 0:
+Here's an example with parathreads `3000`-`3010` registered for a temporary slot (including chain spec and Wasm blob), starting at lease period 0:
 
 * On the first lease day (period 0), all parathreads `3000`-`3005` will onboard as parachains and remain onboarded for 3 lease periods (3 days).
-* At the start of the 4th lease day (period 4), parachains `3000` - `3005` will automatically get off-boarded and become parathreads again. Following this, the next batch of parathreads registered with IDs `3006`-`3010` will be onboarded as a parachain for 3 days if present.
-* At the start of the 7th lease day (period 7), parachains with IDs `3006`-`3010` will be downgraded to parathreads and the next batch of registered parathreads `3011`-`3015` will automatically get onboarded as parachains for 3 days.
-* At the start of the 10th lease day (period 10), parachains `3011`-`3015` get off-boarded and become parathreads again.
-* Assuming there's no newly registered parathreads for temporary slots, parathread `3000`-`3005` will be automatically onboarded as a parachain and the rotation of slots starts over.
+At the end of lease period 3, parachains with IDs `3000` - `3005` will automatically be offboarded and will become parathreads again.
+* At the start of the 4th lease day (period 4), the next batch of parathreads registered with IDs `3006`-`3010` will be onboarded as a parachain for 3 days.
+Then by the end of lease period 6, parachains with IDs `3006` - `3010` wbe offboarded and will become parathreads again.
+* At the start of the 7th lease day (period 7), the next batch of registered parathreads to onboard will be `3000`-`3005`, which will automatically get onboarded as parachains for 3 days. And the cycle repeats.
+
+If you are interested in discovering how this lease management is done, pelase check the [source](https://github.com/paritytech/polkadot/blob/master/runtime/common/src/assigned_slots.rs)
 
 🎉**_Congratulations!_**🎉
 
