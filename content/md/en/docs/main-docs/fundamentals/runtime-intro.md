@@ -15,7 +15,7 @@ Because the runtime handles this operation, the runtime is sometimes described a
 
 Because state transitions occur in the runtime, the runtime is where you define the **storage items** that represent the blockchain [state](/reference/glossary#state) and the [functions](/main-docs/fundamentals/extrinsics) that allow blockchain users to make changes to this state.
 
-![State and functions in the runtime](/media/images/docs/main-docs/state-transistion-function.png)
+![State and functions in the runtime](/media/images/docs/main-docs/state-transition-function.png)
 
 The Substrate runtime determines which transactions are valid and invalid and how the chain state is changed in response to transactions.
 
