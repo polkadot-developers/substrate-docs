@@ -9,6 +9,8 @@
 # ./target/release/polkadot build-spec --chain rococo-custom-3-plain.json --raw --disable-default-bootnode > rococo-custom-3-raw.json
 # ./target/release/polkadot build-spec --chain rococo-custom-4-plain.json --raw --disable-default-bootnode > rococo-custom-4-raw.json
 
+# MOVE THE GENERATED SPECS TO THIS REPO
+
 # Clear old DBs
 
 rm -rf /tmp/relay /tmp/parachain
