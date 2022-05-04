@@ -1,17 +1,11 @@
 ---
 title: Connect to the Rococo Public Testnet
-slug: /tutorials/v3/cumulus/rococo
+slug: /how-to-guides/v3/parachains/rococo
 sideNav: cumulusTutorial
 version: 'polkadot-v0.9.19'
 section: tutorials
 category: parachains
-duration: 3 Hours
-difficulty: 3
-relevantSkills:
-  - Rust
-  - Parachains
-  - Cumulus
-  - XCMP
+difficulty: 2
 keywords:
   - cumulus
   - relay chain
@@ -19,9 +13,11 @@ keywords:
   - parathread
   - paraID
   - template
-  - rococo
-  - xcm
-  - xcmp
+  - Rococo
+  - testnet
+  - faucet
+  - XCM
+  - XCMP
   - collator
 ---
 
@@ -30,20 +26,20 @@ This section of the workshop steps through how you can onboard your parachain to
 
 ## Before you begin
 
-Make sure you have successfully completed the [previous section](/tutorials/v3/cumulus/connect-parachain) of this workshop and tested your parachain on your local machine.
-This implies that:
+1. **Complete the [Cumulus Tutorial](/tutorials/v3/cumulus/) and fully test your parachain on your local machine!**
 
-- You're familiar with registering and reserving your unique para ID.
-- You have your parachain's genesis state exported as a JSON file.
-- You have your parachain's runtime Wasm blob.
+   This ensures that:
+   - You're familiar with registering and reserving your unique para ID.
+   - You have your parachain's genesis state exported as a JSON file.
+   - You have your parachain's runtime Wasm blob.
 
-**In addition, you will need 5 ROCs from the [Rococo faucet](https://matrix.to/#/#rococo-faucet:matrix.org) to register a para ID.**
-Use the `!drip <accountID>` command in that channel to get 100 ROC before you continue.
+1. You will need 5 ROCs from the [Rococo faucet](https://matrix.to/#/#rococo-faucet:matrix.org) to register a para ID.
+   Use the `!drip <accountID>` command in that channel to get 100 ROC before you continue.
 
-Lastly, you MUST have you collator's peering ports for the embedded relay chain and your parachain publicly accessible and discoverable.
-This way you are able to peer with Rococo validator nodes, otherwise you will not be able to produce blocks.
-The peering port is set with the `--port <collator node>-- --port <relay node>` CLI flags, be sure to do this for _both_ nodes separately.
-It's very likely you want at least your collator's `--ws-port <ws port>` port open as well to allow for yourself (and others) to connect with it via the Polkadot Apps UI or API calls.
+3. You ***must*** have you collator's peering ports for the embedded relay chain and your parachain publicly accessible and discoverable.
+   This way you are able to peer with Rococo validator nodes, otherwise you will not be able to produce blocks.
+   The peering port is set with the `--port <collator node>-- --port <relay node>` CLI flags, be sure to do this for _both_ nodes separately.
+   It's very likely you want at least your collator's `--ws-port <ws port>` port open as well to allow for yourself (and others) to connect with it via the Polkadot Apps UI or API calls.
 
 ## Register as a parathread
 
