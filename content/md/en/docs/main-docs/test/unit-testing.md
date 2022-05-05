@@ -1,18 +1,28 @@
-Runtime tests allow you to verify the logic in your runtime module by mocking a Substrate runtime environment.
+---
+title: Runtime unit testing
+description: Illustrates basic unit testing for runtime logic.
+keywords:
+---
 
-## Unit testing
+As you build the logic for your runtime, you'll want to routinely test that the logic works as expected.
+You can create unit test for the runtime using [unit testing framework](https://doc.rust-lang.org/rust-by-example/testing/unit_testing.html) provided by Rust.
+After you create one or more unit tests, you can use the `cargo test` command to execute the test.
+For example, you can run all of the tests you have created for a runtime by running the following command:
 
-Substrate uses the existing [unit testing](https://doc.rust-lang.org/rust-by-example/testing/unit_testing.html) framework provided by Rust. 
-To run tests, the command is:
+```shell
+cargo test
+```
 
-```bash
-cargo test <optional: test_name>
+For more information about using the Rust cargo test command and testing framework, run the following command:
+
+```shell
+cargo help test
 ```
 
 ## Mock runtime environment
 
-To test a Substrate runtime, construct a mock runtime environment. 
-The configuration type `Test` is defined as a Rust enum with implementations for each of the pallet configuration trait that are used in the mock runtime.
+In addition to the unit testing you can do with the Rust testing framework, you to verify the logic in your runtime by constructing a mock runtime environment.
+The configuration type `Test` is defined as a Rust enum with implementations for each of the pallet configuration traits that are used in the mock runtime.
 
 ```rust
 frame_support::construct_runtime!(

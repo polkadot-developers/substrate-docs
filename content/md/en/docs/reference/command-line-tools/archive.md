@@ -5,8 +5,9 @@ keywords:
 ---
 
 The `archive` program is used to index all blocks, state, and transaction data for a Substrate-based chain and store the indexed data in a relational SQL database.
-The database created by the `archive` program mirrors all data from a running Substrate blockchain, which can then be used for querying and fetching information about the blockchain state.
-For examples of queries you can run against a Substrate archive database, see [Useful queries](https://github.com/paritytech/substrate-archive/wiki/Useful-Queries).
+The database created by the `archive` program mirrors all data from a running Substrate blockchain.
+After you archive the data, you can use the database to query and retrieve information about the blockchain state.
+For examples of queries you might want to run against a Substrate archive database, see [Useful queries](https://github.com/paritytech/substrate-archive/wiki/Useful-Queries).
 
 ## Before you begin
 
