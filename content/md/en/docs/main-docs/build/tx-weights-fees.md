@@ -186,8 +186,7 @@ If a dispatch is not defined as `Operational` or `Mandatory` in the weight annot
 You can specify that the dispatchable uses another class like this:
 
 ```rust
-#[pallet::weight(100_000, DispatchClass::Operational)]
-fn my_dispatchable() {
+#[pallet::weight((100_000, DispatchClass::Operational))]fn my_dispatchable() {
     // ...
 }
 ```

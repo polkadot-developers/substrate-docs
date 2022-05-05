@@ -468,7 +468,7 @@ The tagged transaction pool implementation is designed to be extensible and gene
 
 A data structure that is used to represent sets of key-value pairs.
 
-The Patricia Merkle trie data structure enables the items in the data set to be stores and retrieved using a cryptographic hash. Because incremental changes to the data set result in a new hash, retireving data is efficient even if the data set is very large. With this data structure, you can also prove whether the data set includes any particlar key-value pair without the access to the entire data set.
+The Patricia Merkle trie data structure enables the items in the data set to be stores and retrieved using a cryptographic hash. Because incremental changes to the data set result in a new hash, retrieving data is efficient even if the data set is very large. With this data structure, you can also prove whether the data set includes any particular key-value pair without the access to the entire data set.
 
 ## validator
 

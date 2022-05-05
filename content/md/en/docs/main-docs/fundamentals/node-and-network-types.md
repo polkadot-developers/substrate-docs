@@ -1,9 +1,12 @@
 ---
-title: Network topologies
-description: An overview of network deployment scenarios for Substrate nodes.
+title: Networks and blockchains
+description: Describes network types and deployment scenarios.
 featured_image:
 ---
 
+When thinking about building a blockchain, it's useful to consider that boundaries are what define a network.
+For example, a set of computers connected to a single router can be considered a home network.
+A firewall might be the boundary that defines an enterprise network.
 Substrate provides tools to build all types of blockchain networks and protocols. 
 This implies application specific networks and nodes.
 
