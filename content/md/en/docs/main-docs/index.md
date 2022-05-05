@@ -34,7 +34,7 @@ Explore the following resources to learn more.
 
 * [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
 * [Simulate a network](/tutorials/get-started/simulate-network/)
-* [Start a trusted validator network](/tutorials/get-started/trusted-network/)
+* [Add trusted validators](/tutorials/get-started/trusted-network/)
 
 <!--
 #### Show me (related video content)
