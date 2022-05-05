@@ -1,5 +1,5 @@
 ---
-title: Start a trusted validator network
+title: Add trusted validators
 slug: /tutorials/trusted-network/
 section: tutorials
 category: private network

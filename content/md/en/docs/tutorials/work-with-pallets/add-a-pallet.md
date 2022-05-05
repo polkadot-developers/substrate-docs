@@ -1,5 +1,5 @@
 ---
-title: Add a module to the runtime
+title: Add a pallet to the runtime
 slug: /tutorials/work-with-pallets/add-a-pallet/
 section: tutorials
 keywords: FRAME, runtime, custom pallet
