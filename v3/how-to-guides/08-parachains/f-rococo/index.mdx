@@ -23,16 +23,16 @@ keywords:
 This guide steps through how you can onboard your parachain to it for a temporary slot.
 Only existing parachains on Polkadot or Kusama are eligible for a permanent slot.
 
-**Permanent slots** are parachain slots assigned to teams who currently have a parachain slot on Polkadot or Kusama (following a successful slot lease auction) and thus have the needs for continuously testing their codebase for compatibility with the latest bleeding edge features in a real-world live environment (Rococo).
+- **Permanent slots** are parachain slots assigned to teams who currently have a parachain slot on Polkadot or Kusama (following a successful slot lease auction) and thus have the needs for continuously testing their codebase for compatibility with the latest bleeding edge features in a real-world live environment (Rococo).
 There is a limited number of permanent slots made available (see note below).
 
-**Temporary slots** are parachain slots that are dynamically allocated in a continuous rollover manner.
+- **Temporary slots** are parachain slots that are dynamically allocated in a continuous rollover manner.
 Concretely, at every start of a lease period, a certain number of parathreads (up to a maximum defined in the relay chain's configuration) will be automatically upgraded to parachains for a certain duration.
 The parachains that were active during the ending lease period will be automatically downgraded to parathreads to free the slots for others to use in the subsequent one.
 The temporary slots are meant to be used by teams who do not have a parachain slot yet on Polkadot, and are aiming for one in the near future.
 
 The goal of this more dynamic allocations aims at helping teams to test their runtimes more often, and in a more streamlined manner.
-Once the parachain is active as a parathread, the related project team should [open a request](https://github.com/paritytech/subport/issues/new?assignees=&labels=Rococo&template=rococo.yaml) for either a **permanent** or a **temporary parachain slot**.
+Once the parachain is active as a parathread, you must [open a slot request](#register-as-a-parathread).
 
 ## Before you begin
 
@@ -67,7 +67,7 @@ Note: it's very likely you want at least your collator's `--ws-port <ws port>` p
 
 ## Register as a parathread
 
-The easiest way to register your chain as a parathread is by using Polkadot JS apps.
+The easiest way to register as a parathread is by using Polkadot JS apps.
 
 1. Go to [the Polkadot-JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/parachains/parathreads) parathreads section for Rococo.
 
@@ -118,9 +118,10 @@ For reference, here are a few examples of PRs adding Rococo parathreads to the A
 This is not strictly required though, so long as you communicate to those that need access to your network how they can go about doing so in some other way.
 For example, using the Apps UI with a static IP set in the `Development -> Custom` network.
 
-## Request your parachain slot
+## Request a Rococo parachain slot
 
-Once you've gone through the above steps and are ready to connect, **open a request for a slot by filling out the [Rococo Slot Request Form](https://github.com/paritytech/subport/issues/new?assignees=&labels=Rococo&template=rococo.yaml).**
+Once you've gone through the above steps and are ready to connect, **open a request for a slot by filling out the [Rococo Slot Request Form](https://github.com/paritytech/subport/issues/new?assignees=&labels=Rococo&template=rococo.yaml)** for a **temporary** or **permanent** slot.
+Presently, permanent slots are only allotted to parachains that already have a parachain with established paraID running on Kusama or Polkadot, that matches the Rococo request.
 
 Rococo's runtime sets `AssignSlotOrigin` to `EnsureRoot<Self::AccountId>`, meaning that only someone with sudo access can assign slots.
 The Rococo `sudo` key is controlled by Parity Technologies, thus all slots are assigned manually by them at this time.
