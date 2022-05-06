@@ -117,39 +117,6 @@ Now that you know how Substrate relies on a few key Rust features—like traits,
 * [Why Rust for smart contracts?](https://paritytech.github.io/ink-docs/why-rust-for-smart-contracts)
 
 
-## Rewrite
-
-Learning objectives:
-
-- For Rust developers: recognize things that Substrate leverages in Rust, which libraries etc. (no_std, error catching)
-
-- Justify and identify Substrate's use of macros
-
-- For non-Rust devs: understand the key features of Rust (borrow checker, generics, and traits) and which are most important for becoming a runtime engineer (skip async alltogether)
-
-
-Keith:
-
-- we write a piece of code that depends on language features that aren't stabilized or doesn't even exist yet
-- about what is necessary for how we use Rust in Substrate, the one important thing that we often don't use quite as often is the concept of borrowing and lifetimes
-- we sometimes avoid it altogether because we know most people aren't expert Rust developers, and so most of the runtime code doesn't require users to fiddle around with lifetime issues until some code finally compiles
-
-
-Macros:
-- the unique things about what we do with Rust in Substrate is the amount of macros that we use to create Rust-like syntax for runtime development 
-- construct_runtime for example doesn't contain proper Rust code, yet it feels Rustic because we try very hard not to veer off too far from what feels like proper Rust syntax when the situation calls for it
-- however it's good to keep in mind that at the end of the day, it's all Rust code, so even the macro magic that we have created for the pallets interoperates with other Rust constructs seamlessly
-
-Crates / no_std compatibility:
-- if there are some Rust crates that you want to include to your runtime and utilize exported functions thereof, they would just work out of the box (literally and figuratively), because it's all Rust code
-
-- but do remember that pallets run in no_std, so the crates that you include must also be no_std compatible
-- the other thing is that most code in Substrate is no_std, meaning we can't rely on some standard library types and functions, such as BTreeMap, but we do have the basic one such as Vec
-
-Sam:
-- for what devs need to know about substrate, id say understanding how to use Cargo,building, running locally, how pallets are added and referenced, benchmarking framework and tests!
-
-
 
 
 
