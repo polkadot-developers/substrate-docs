@@ -4,7 +4,7 @@ description: Highlights the Rust programming conventions that are of particular 
 featured_image:
 --- 
 
-[Rust](https://www.rust-lang.org/) is a highly performant, type sound, and memory efficient programming language.
+[Rust](https://www.rust-lang.org/) is a highly performant, type safe, and memory efficient programming language.
 When you write programs in Rust, the Rust compiler checks your code before producing an executable, reducing the likelihood that your code will introduce memory leaks or other errors.
 
 Substrate takes advantage of some key features of the Rust programming language to provide a flexible framework for creating mission-critical software.
