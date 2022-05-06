@@ -20,9 +20,10 @@ export default function useActiveId(itemIds) {
     });
 
     return () => {
-      itemIds.forEach(id => {
-        observer.unobserve(document.getElementById(id));
-      });
+      observer &&
+        itemIds.forEach(id => {
+          observer.unobserve(document.getElementById(id));
+        });
     };
   }, [itemIds]);
 

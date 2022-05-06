@@ -157,7 +157,7 @@ module.exports = {
           {
             resolve: `gatsby-remark-embed-snippet`,
             options: {
-              directory: `${__dirname}/code-snippets/`,
+              directory: `${__dirname}/content/code-snippets/`,
             },
           },
           `gatsby-remark-prismjs`,

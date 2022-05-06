@@ -45,7 +45,7 @@ export default function DocsSinglePage({ data, pageContext }) {
             <div className="py-8 flex justify-between items-center">
               <div className="text-sm font-medium text-substrateBlue dark:text-substrateBlue-light mdx-ancho">
                 {pageContext.breadcrumb.crumbs.map(index => (
-                  <span key={index.crumblabel} className="breadcrumb text-substrateDark dark:text-white">
+                  <span key={index.pathname} className="breadcrumb text-substrateDark dark:text-white">
                     <Link
                       to={index.pathname}
                       className="text-sm font-medium text-substrateBlue dark:text-substrateBlue-light mdx-anchor"
