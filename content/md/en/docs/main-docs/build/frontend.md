@@ -1,6 +1,6 @@
 ---
 title: Front-end development
-description: 
+description: Examines how Substrate metadata and RPC libraries are used in building application interfaces.
 keywords:
 ---
 
@@ -9,10 +9,9 @@ For example, you might develop a browser-based application for interactive gamin
 Different libraries exist to build these types of applications, depending on your needs.
 This article explains the process of querying a Substrate node and using the metadata it exposes to help you understand how you can use the metadata when creating front-end client applications and using client-specific libraries.
 
+## Metadata system
 
-## Metadata system 
-
-Substrate nodes provide an RPC call, `state_getMetadata`, that returns a complete description of all the types in the current runtime. 
+Substrate nodes provide an RPC call, `state_getMetadata`, that returns a complete description of all the types in the current runtime.
 Client applications use the metadata to interact with the node, to parse responses, and to format message payloads sent to the node.
 This metadata includes information about a pallet's storage items, transactions, events, errors, and constants.
 The current metadata version (V14) differs significantly from its predecessors as it contains much richer type information. 
@@ -197,7 +196,7 @@ Connecting via HTTP is commonly used for fetching data in off-chain workers-lear
 An alternative (and still experimental) way to connect to a Substrate node is by using `Substrate Connect`, which allows applications to spawn their own light clients and connect directly to the exposed JSON-RPC end-point.
 These applications would rely on in-browser local memory to establish a connection with the light client. 
 
-## Start building 
+## Start building
 
 Parity maintains the following libraries built on top of the [JSON-RPC API](https://github.com/paritytech/jsonrpc) for interacting with a Substrate node:
 

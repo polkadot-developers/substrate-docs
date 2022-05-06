@@ -1,5 +1,5 @@
 ---
-title: Transaction weights and fees
+title: Transactions, weights, and fees
 section: docs
 category: runtime
 keywords:

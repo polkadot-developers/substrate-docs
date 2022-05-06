@@ -74,7 +74,7 @@ docs:
           url: /main-docs/build/build-process/
         - title: Storage and data structures
           url: /main-docs/build/storage/
-        - title: Transaction weights and fees
+        - title: Transactions, weights, and fees
           url: /main-docs/build/tx-weights-fees/
         - title: Custom pallets
           url: /main-docs/build/custom-pallets/
