@@ -1,9 +1,6 @@
 ---
 title: Runtime unit testing
 description: /v3/runtime/testing
-version: '3.0'
-section: docs
-category: runtime
 keywords: []
 ---
 
