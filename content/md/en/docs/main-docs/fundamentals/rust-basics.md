@@ -7,7 +7,7 @@ featured_image:
 [Rust](https://www.rust-lang.org/) is a highly performant, type sound, and memory efficient programming language.
 When you write programs in Rust, the Rust compiler checks your code before producing an executable, reducing the likelihood that your code will introduce memory leaks or other errors.
 
-Substrate takes advantage of some key features of the Rust programming language to provide a flexible framework for creating mission-critical software with fewer errors.
+Substrate takes advantage of some key features of the Rust programming language to provide a flexible framework for creating mission-critical software.
 Substrate abstracts some elements of the Rust programming language to make it easier to build the software to suit your needs without requiring you to become an expert in Rust.
 Although some familiarity with Rust in essential—and there are many resources available for learning Rust, including the [Rust Language Programming Book](https://doc.rust-lang.org/book/) and [Rust by Example](https://doc.rust-lang.org/rust-by-example/)—this section focuses on the core components of Rust that are most important for building a Substrate blockchain and developing the runtime logic.
 
@@ -16,15 +16,15 @@ Although some familiarity with Rust in essential—and there are many resources 
 One of the powerful features of Rust that Substrate takes full advantage of is the Rust **trait** system.
 In Rust, traits define what can be done by different types and how different types can interact with each other.
 Traits enable you to define shared behavior in an abstract way.
-You can then use **trait bounds** to specify that a **generic type** can be any type that has certain behavior.
+You can then use **trait bounds** to specify that a **generic type** can be any type that has a certain behavior.
 
-The trait system enables different types to call the same set of methods to return different results.
+Rust's trait system enables different types to call the same set of methods to return different results.
 Substrate uses the trait system to specify the set of operations that can be performed on a generic type.
 Because the behaviors are defined on a generic type, you can reuse and adapt domain-specific logic by modifying the type bounds to suit a specific context.
 Substrate maximizes the use of generic types to provide maximum flexibility.
 You define how the generic types are resolved to suit your purpose.
 
-For more information about generic types and traits in Rust, see [Generic Types, Traits, and Lifetimesr](hhttps://doc.rust-lang.org/book/ch10-00-generics.html) and [Advanced traitx](https://doc.rust-lang.org/book/ch19-03-advanced-traits.html).
+For more information about generic types and traits in Rust, see [Generic Types, Traits, and Lifetimes](https://doc.rust-lang.org/book/ch10-00-generics.html) and [Advanced traits](https://doc.rust-lang.org/book/ch19-03-advanced-traits.html).
 
 ## Configuration traits
 
@@ -37,7 +37,7 @@ Instead, any pallet can refer to an `AccountId` type by using the generic `T`:
 T::AccountId;
 ```
 
-The generic type is only assigned a specific type in the context of the runtime implementation.
+The generic type is only assigned a concrete type for a specific runtime implementation.
 For example, the `AccountId` type remains a generic type until the runtime implementation of `frame_system::Config` where `AccountId` is specified as:
 
 ```rust
@@ -100,7 +100,7 @@ Given that [`pallet_balances`](https://docs.substrate.io/rustdocs/latest/pallet_
 
 ## Macros and metaprogramming
 
-As in most programming languages, Rust macros encapsulate code that writes other code.
+Put simply, Rust macros are single lines of code that writes other code.
 In Rust, there are declarative macros and three kinds of procedural macros:
 
 * Custom macros that specify code added with the derive attribute that you can use on structs and enums.
@@ -113,7 +113,7 @@ Similarly, ink! smart contract language uses macros to handle common type creati
 
 By using macros, you can avoid writing duplicate code and ensure logic checks are performed and passed before the code compiles.
 Macros can require the logic to be formatted in a specific way, require specific checks, or consist of specific data structures.
-For example, the `#[frame_system::pallet]` macro is required in all FRAME pallets to prevents you from compiling pallets that don't correctly implement certain required attributes.
+For example, the `#[frame_system::pallet]` macro is required in all FRAME pallets to prevent you from compiling pallets that don't correctly implement certain required attributes, such as storage items or externally callable functions.
 
 ## Where to go next
 
