@@ -1,5 +1,5 @@
 ---
-title: Basics
+title: Pallet design
 description:
 keywords:
 ---

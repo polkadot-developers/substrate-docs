@@ -1,5 +1,5 @@
 ---
-title: Basics
+title: Consensus
 description:
 keywords:
 ---

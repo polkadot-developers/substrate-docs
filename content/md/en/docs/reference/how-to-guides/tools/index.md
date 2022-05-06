@@ -1,5 +1,5 @@
 ---
-title: Basics
+title: Tools
 description:
 keywords:
 ---

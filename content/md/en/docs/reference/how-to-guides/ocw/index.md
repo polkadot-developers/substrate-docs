@@ -1,5 +1,5 @@
 ---
-title: Basics
+title: Off-chain workers
 description:
 keywords:
 ---
