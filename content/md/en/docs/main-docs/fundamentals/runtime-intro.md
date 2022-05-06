@@ -1,60 +1,55 @@
 ---
-title: Runtime
-slug: /v3/concepts/runtime
-version: '3.0'
-section: docs
-category: concepts
+title: Runtime development
+description: Introduces the core programming interfaces, primitives, and modules that are essential to developing the runtime for a Substrate blockchain.
 keywords: []
 ---
 
-The runtime of a blockchain is the business logic that defines its behavior. In Substrate-based
-chains, the runtime is referred to as the
-"[state transition function](/v3/getting-started/glossary#state-transition-function-stf)";
-it is where Substrate developers define the storage items that are used to represent the
-blockchain's [state](/v3/getting-started/glossary#state) as well as the
-[functions](/v3/concepts/extrinsics) that allow blockchain users to make
-changes to this state.
+As discussed in [Architecture](/main-docs/fundamentals/architecture/), the **runtime** for a Substrate node contains all of the business logic for executing transactions, saving state transitions, and interacting with the outer node.
+Substrate provides all of the tools required to build common blockchain components so you can focus on developing the runtime logic that defines the blockchain behavior.
 
-![substrate-runtime-client.png](../../../../src/images/docs/concepts/substrate-runtime-client.png)
+## State transitions and the runtime
 
-Each Substrate node contains a runtime. The runtime contains the business logic of the chain. It
-defines what transactions are valid and invalid and determines how the chain's state changes in
-response to transactions. The "outer node", everything other than the runtime, does not compile
-to Wasm, only to native. The outer node is responsible for handling peer discovery, transaction
-pooling, block and transaction gossiping, consensus, and answering RPC calls from the outside
-world. While performing these tasks, the outer node sometimes needs to query the runtime for
-information, or provide information to the runtime. A Runtime API facilitates this kind of
-communication between the outer node and the runtime.
+At the most basic level, every blockchain is essentially a ledger or record of each change that takes place on-chain.
+In Substrate-based chains, these changes to state are recorded in the runtime.
+Because the runtime handles this operation, the runtime is sometimes described as providing the [state transition function](/reference/glossary#state-transition-function-stf).
 
-## Runtime APIs
+Because state transitions occur in the runtime, the runtime is where you define the **storage items** that represent the blockchain [state](/reference/glossary#state) and the [functions](/main-docs/fundamentals/extrinsics) that allow blockchain users to make changes to this state.
 
-In Substrate, the `sp_api` crate provides an interface to implement a runtime API. It is designed to give
-developers the ability to define their own custom runtime APIs using the [`impl_runtime_apis`](/rustdocs/latest/sp_api/macro.impl_runtime_apis.html)
-macro. However, every runtime must implement the [`Core`](/rustdocs/latest/sp_api/trait.Core.html) and
-[`Metadata`](/rustdocs/latest/sp_api/trait.Metadata.html) runtime APIs. In addition to these, a basic Substrate Node
-has the following runtime APIs implemented:
+![State and functions in the runtime](/media/images/docs/main-docs/state-transition-function.png)
 
-- [`BlockBuilder`](/rustdocs/latest/sp_block_builder/trait.BlockBuilder.html): Provides the functionality required for building a block.
-- [`TaggedTransactionQueue`](/rustdocs/latest/sp_transaction_pool/runtime_api/trait.TaggedTransactionQueue.html): Handles validating transactions in the transaction queue.
-- [`OffchainWorkerApi`](/rustdocs/latest/sp_offchain/trait.OffchainWorkerApi.html): Handles [off-chain capabilities](/v3/concepts/off-chain-features).
-- [`AuraApi`](/rustdocs/latest/sp_consensus_aura/trait.AuraApi.html): Handles block authorship with [Aura consensus](/v3/advanced/consensus#aura).
-- [`SessionKeys`](/rustdocs/latest/sp_session/trait.SessionKeys.html): Generates and decodes [session keys](/v3/concepts/session-keys).
-- [`GrandpaApi`](/rustdocs/latest/sp_finality_grandpa/trait.GrandpaApi.html): Integrates the [GRANDPA](/v3/advanced/consensus#grandpa) finality gadget into the runtime.
-- [`AccountNonceApi`](/rustdocs/latest/frame_system_rpc_runtime_api/trait.AccountNonceApi.html): Handles querying transaction indices.
-- [`TransactionPaymentApi`](/rustdocs/latest/pallet_transaction_payment_rpc_runtime_api/trait.TransactionPaymentApi.html): Handles querying information about transactions.
-- [`Benchmark`](/rustdocs/latest/frame_benchmarking/trait.Benchmark.html): Provides a way to [benchmark](/v3/runtime/benchmarking) a FRAME runtime.
+The Substrate runtime determines which transactions are valid and invalid and how the chain state is changed in response to transactions.
 
-In order to provide its defining forkless runtime upgrade capabilities, Substrate runtimes
-are built as [WebAssembly (Wasm)](/v3/getting-started/glossary#webassembly-wasm)
-bytecode. Substrate also defines the core primitives that the runtime must implement.
+## Runtime interfaces
+
+As you learned in [Architecture](/main-docs/fundamentals/architecture/), the outer node is responsible for handling peer discovery, transaction pooling, block and transaction gossiping, consensus, and answering RPC calls from the outside world.
+These tasks frequently require the outer node to query the runtime for
+information or to provide information to the runtime.
+The runtime API facilitates this kind of communication between the outer node and the runtime.
+
+In Substrate, the `sp_api` crate provides an interface to implement a runtime API.
+It is designed to give you flexibility in defining your own custom interfaces using the [`impl_runtime_apis`](/rustdocs/latest/sp_api/macro.impl_runtime_apis.html)
+macro.
+However, every runtime must implement the [`Core`](/rustdocs/latest/sp_api/trait.Core.html) and [`Metadata`](/rustdocs/latest/sp_api/trait.Metadata.html) interfacess.
+In addition to these required interfaces, most Substrate nodes—like the node template—implement the following runtime interfaces:
+
+- [`BlockBuilder`](/rustdocs/latest/sp_block_builder/trait.BlockBuilder.html) for the functionality required to build a block.
+- [`TaggedTransactionQueue`](/rustdocs/latest/sp_transaction_pool/runtime_api/trait.TaggedTransactionQueue.html) for validating transactions.
+- [`OffchainWorkerApi`](/rustdocs/latest/sp_offchain/trait.OffchainWorkerApi.html) for enabling off-chain operations.
+- [`AuraApi`](/rustdocs/latest/sp_consensus_aura/trait.AuraApi.html) for block authoring and validation using a round-robin method of consensus.
+- [`SessionKeys`](/rustdocs/latest/sp_session/trait.SessionKeys.html) for generating and decoding session keys.
+- [`GrandpaApi`](/rustdocs/latest/sp_finality_grandpa/trait.GrandpaApi.html) for block finalization into the runtime.
+- [`AccountNonceApi`](/rustdocs/latest/frame_system_rpc_runtime_api/trait.AccountNonceApi.html) for querying transaction indices.
+- [`TransactionPaymentApi`](/rustdocs/latest/pallet_transaction_payment_rpc_runtime_api/trait.TransactionPaymentApi.html) for querying information about transactions.
+- [`Benchmark`](/rustdocs/latest/frame_benchmarking/trait.Benchmark.html) for estimating and measuring execution time required to complete tranactions.
 
 ## Core primitives
 
-The Substrate framework makes minimal assumptions about what your runtime must provide to the other
-layers of Substrate. But there are a few data types that need to be defined and must fulfill a particular
-interface in order to work within the Substrate framework.
+Substrate also defines the core primitives that the runtime must implement.
+The Substrate framework makes minimal assumptions about what your runtime must provide to the other layers of Substrate.
+However, there are a few data types that must be defined and must fulfill a particular
+interface to work within the Substrate framework.
 
-They are:
+These core primitives are:
 
 - `Hash`: A type which encodes a cryptographic digest of some data. Typically just a 256-bit
   quantity.
@@ -80,60 +75,108 @@ They are:
 - `BlockNumber`: A type which encodes the total number of ancestors any valid block has. Typically a
   32-bit quantity.
 
-## FRAME primitives
+## FRAME
 
-The core Substrate codebase ships with [FRAME](/v3/runtime/frame), Parity's system
-for Substrate runtime development that is used for chains like
-[Kusama](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/lib.rs) and
-[Polkadot](https://github.com/paritytech/polkadot/blob/master/runtime/polkadot/src/lib.rs). FRAME
-defines additional runtime primitives and
-provides a framework that makes it easy to construct a runtime by composing modules, called
-[pallets](/v3/runtime/frame#pallets). Each pallet encapsulates domain-specific logic that is
-expressed as a set of a [storage items](/v3/runtime/storage),
-[events](/v3/runtime/events-and-errors),
-[errors](/v3/runtime/events-and-errors#errors), and
-[dispatchable functions](/v3/getting-started/glossary#dispatch). FRAME developers
-can [create their own pallets](/v3/runtime/frame#pallets) and reuse existing pallets,
-including [over 50 of those shipped with Substrate](/v3/runtime/frame#prebuilt-pallets).
+[FRAME](/reference/glossary/#frame) is one of the most powerful tools available to you as a runtime developer.
+As mentioned in [Substrate empowers developers](/main-docs/), FRAME is an acronym for **Framework for Runtime Aggregation of Modularized Entities** and it encompasses a significant number of modules and support libraries that simplify runtime development.
+In Substrate, these modules—called **pallets**—offer customizable business logic for different use cases and features that you might want to include in your runtime.
+For example, there are pallets that provide a framework of business logic for staking, consensus, governance, and other common activities.
 
-![Runtime Composition](../../../../src/images/docs/concepts/frame-runtime.png)
+For a summary of the pallets available, see [FRAME pallets](/reference/frame-pallets/).
 
-There are an additional set of primitives that are assumed about a runtime built with the Substrate
-FRAME. These are:
+In addition to pallets, FRAME provides services to interact with the runtime through the following libraries and modules
 
-- `Call`: The dispatch type that can be called via an extrinsic.
+- [FRAME system crate `frame_system`](/rustdocs/latest/frame_system/index.html) provides low-level types, storage, and functions for the runtime.
 
-- `Origin`: Represents where a call came from. For example, a signed message (a transaction), an
-  unsigned message (an inherent extrinsic), or a call from the runtime itself (a root call).
+- [FRAME support crate `frame_support`](/rustdocs/latest/frame_support/index.html) is a collection of Rust macros, types, traits, and modules that simplify the development of Substrate pallets.
 
-- `Index`: An account index (aka nonce) type. This stores the number of previous transactions
-  associated with a sender account.
+- [FRAME executive pallet `frame_executive`](/rustdocs/latest/frame_executive/index.html) orchestrates the execution of incoming function calls to the respective
+pallets in the runtime.
 
-- `Hashing`: The hashing algorithm being used in the runtime (e.g. Blake2).
+The following diagram illustrates how FRAME and its system, support, and executives modules provide services for the runtime environment.
 
-- `AccountId`: The type used to identify user accounts in the runtime.
+![FRAME and the runtime architecture](/media/images/docs/runtime-frame.png)
 
-- `Event`: The type used for events emitted by the runtime.
+### Composing a runtime with pallets
 
-- `Version`: A type which represents the version of the runtime.
+You can build a Substrate-based blockchain without using FRAME.
+However, FRAME pallets enable you to compose custom runtime logic using predefined components as a starting point.
+Each pallet defines specific types, storage items, and functions to implement a specific set of features or functionality for a runtime.
 
-Although a lot of core runtime development can be enabled with FRAME and
-its related primitives, FRAME is not the only system for developing
-Substrate based blockchains.
+The following diagram illustrates how you can select and combine FRAME pallets to compose a runtime.
 
-## Next steps
+![Compose a runtime with FRAME](/media/images/docs/runtime/compose-runtime.png)
 
-### Learn more
+### Building custom pallets
 
-- Learn about the [Substrate FRAME](/v3/runtime/frame).
-- Follow a
-  [tutorial to develop your first Substrate chain](/tutorials/v3/create-your-first-substrate-chain).
-- Follow a [tutorial to add a pallet to your Substrate runtime](/tutorials/v3/add-a-pallet).
+In addition to the library of pre-build FRAME pallets, you can use the FRAME libraries and services to build your own custom pallets.
+With custom pallets, you have the flexibility to define the runtime behavior that best suits your purposes.
+Because each pallet has its own discrete logic, you can combine pre-built and custom pallets to control the features and functionality your blockchain provides and achieve the results you want.
 
-### References
+For example, you might include the [Balances pallet](https://github.com/paritytech/substrate/tree/master/frame/balances) in your runtime to use its cryptocurrency-related storage items and functions for managing tokens, but add custom logic to call a pallet you write when an account balance changes.
 
-- See the
-  [primitive types defined in `node-primitives`](/rustdocs/latest/node_primitives/index.html).
+Most pallets are composed with some combination of the following sections:
 
-- See the
-  [`traits` defined in `sp-runtime`](/rustdocs/latest/sp_runtime/traits/index.html).
+- Imports and dependencies
+- Pallet type declaration
+- Runtime configuration trait
+- Runtime storage
+- Runtime events
+- Hooks for logic that should be executed in a specific context
+- Function calls that can be used to execute transactions
+
+For example, if you wanted to define a custom pallet, you might start with a skeleton structure for the pallet similar to the following:
+
+```rust
+// Add required imports and dependencies
+pub use pallet::*;
+#[frame_support::pallet]
+pub mod pallet {
+ use frame_support::pallet_prelude::*;
+ use frame_system::pallet_prelude::*;
+
+ // Declare the pallet type
+ // This is a placeholder to implement traits and methods.
+    #[pallet::pallet]
+    #[pallet::generate_store(pub(super) trait Store)]
+    pub struct Pallet<T>(_);
+
+ // Add the runtime configuration trait
+ // All types and constants go here.
+ #[pallet::config]
+ pub trait Config: frame_system::Config { ... }
+
+ // Add runtime storage to declare storage items.
+ #[pallet::storage]
+ #[pallet::getter(fn something)]
+ pub type MyStorage<T: Config> = StorageValue<_, u32>;
+
+ // Add runtime events
+ #[pallet::event]
+ #[pallet::generate_deposit(pub(super) fn deposit_event)]
+ pub enum Event<T: Config> { ... }
+
+ //  Add hooks to define some logic that should be executed
+ //  in a specific context, for example on_initialize.
+ #[pallet::hooks]
+ impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> { ... }
+
+ // Add functions that are callable from outside the runtime.
+ #[pallet::call]
+ impl<T:Config> Pallet<T> { ... }
+
+}
+```
+
+You can compose pallets with some or all of the sections, as needed.
+As you start to design and build your custom runtime, you'll learn more about FRAME libraries and the runtime primitives used to define configuration traits, storage items, events, and errors, and how to write the function calls that are dispatched to the runtime for execution.
+
+## Where to go next
+
+Now that you are familiar with the basics of Substrate runtime development and working with pallets, explore the following topics and tutorials to learn more.
+
+- [Frame pallets](/reference/frame-pallets/)
+- [Add a module to the runtime](/tutorials/work-with-pallets/add-a-pallet).
+- [Rust for Substrate](/main-docs/fundamentals/rust-basics/)
+- [Macro reference](/reference/frame-macros/)
+- [Create a custom pallet using macros](/tutorials/work-with-pallets/custom-pallet/)
