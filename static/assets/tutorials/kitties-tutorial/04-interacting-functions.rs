@@ -72,6 +72,8 @@ pub mod pallet {
 		BuyerIsKittyOwner,
 		/// Cannot transfer a kitty to its owner.
 		TransferToSelf,
+		/// This kitty already exists
+		KittyExists,
 		/// Handles checking whether the Kitty exists.
 		KittyNotExist,
 		/// Handles checking that the Kitty is owned by the account transferring, buying or setting a price for it.
