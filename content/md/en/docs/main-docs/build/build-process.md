@@ -1,6 +1,8 @@
-Section: Build
-Sub-section: Build process
-Type: reference + conceptual
+---
+title: Build process
+description:
+keywords:
+---
 
 This article describes what happens under the hood when building and executing a Substrate node.
 
