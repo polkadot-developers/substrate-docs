@@ -4,17 +4,26 @@ import configNav from '../../../content/config/nav.yaml';
 //import NextButton from './NextButton';
 //import PreviousButton from './PreviousButton';
 
-const BottomButtons = ({ pagePath }) => {
-  const { menu } = configNav;
-  const docs = configNav.docs.pages;
+const BottomButtons = () => {
+  //const { menu } = configNav;
+  //const docs = configNav.docs.pages;
   // const [nextButton, setNextButton] = useState(menu, pagePath);
   // const [prevButton, setPrevButton] = useState(menu, pagePath);
 
-  const pages = [];
+  const flatten = (obj, path = '') => {
+    if (!(obj instanceof Object)) return { [path.replace(/\.$/g, '')]: obj };
 
-  docs.map(items => {
-    console.log(items);
-  });
+    return Object.keys(obj).reduce((output, key) => {
+      return obj instanceof Array
+        ? { ...output, ...flatten(obj[key], path + '[' + key + '].') }
+        : { ...output, ...flatten(obj[key], path + key + '.') };
+    }, {});
+  };
+
+  const FlatNav = flatten(configNav);
+  console.log(FlatNav);
+
+  //const pages = [menu, docs, pagePath];
 
   // useEffect(() => {
   //   const pages = [];
@@ -43,9 +52,9 @@ const BottomButtons = ({ pagePath }) => {
   //   });
   // }, []);
 
-  console.log(pagePath + menu);
-  console.log(configNav);
-  console.log(docs + pages);
+  // console.log(pagePath + menu);
+  // console.log(configNav);
+  // console.log(docs + pages);
   // console.log(nextButton + ' ' + setNextButton);
   // console.log(prevButton + ' ' + setPrevButton);
   return (

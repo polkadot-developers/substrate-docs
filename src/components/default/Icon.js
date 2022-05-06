@@ -4,6 +4,7 @@ import caseStudy from '../../images/svg/case-study.svg';
 import chain from '../../images/svg/chain.svg';
 import checkMark from '../../images/svg/check-mark.svg';
 import closeIcon from '../../images/svg/close-icon.svg';
+import collapse from '../../images/svg/collapse.svg';
 import computer from '../../images/svg/computer.svg';
 import contact from '../../images/svg/contact.svg';
 import desktop from '../../images/svg/desktop.svg';
@@ -17,6 +18,7 @@ import explore from '../../images/svg/ecosystem/explore.svg';
 import opportunities from '../../images/svg/ecosystem/opportunities.svg';
 import resources from '../../images/svg/ecosystem/resources.svg';
 import event from '../../images/svg/event.svg';
+import expand from '../../images/svg/expand.svg';
 import feTemplate from '../../images/svg/fe-template.svg';
 import flag from '../../images/svg/flag.svg';
 import forklessUpgrades from '../../images/svg/forkless-upgrades.svg';
@@ -128,6 +130,8 @@ const iconsMap = {
   stackExchange: stackExchange,
   ideCode: ideCode,
   grantsDollar: grantsDollar,
+  expand: expand,
+  collapse: collapse,
   /* ecosystem */
   opportunities: opportunities,
   resources: resources,

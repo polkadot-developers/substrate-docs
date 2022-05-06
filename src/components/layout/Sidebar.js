@@ -17,17 +17,19 @@ const Sidebar = ({ children, currentPath }) => {
         >
           <div className="pt-4 relative">
             <button
+              title={!isOpen ? 'minimize' : 'maximize'}
               onClick={() => setIsOpen(!isOpen)}
-              className="absolute right-4 top-4 mr-0.5 bg-substrateDark dark:bg-white p-2 rounded-lg transform transition-opacity duration-300 ease-in-out hover:opacity-80 focus:outline-none z-10"
+              className="absolute right-4 top-6 mr-0.5 transform transition-opacity duration-300 ease-in-out hover:opacity-80 focus:outline-none z-10"
             >
               <Icon
-                name="sidebar-toggle"
+                name={!isOpen ? 'collapse' : 'expand'}
                 className={cx('fill-current text-white dark:text-substrateDark', {
                   'rotate-180': isOpen,
+                  'mr-1': isOpen,
                 })}
               />
             </button>
-            <div className="mt-12">
+            <div className="mt-14">
               {isOpen ? (
                 <>
                   <Link to="/quick-start/quickstart/">

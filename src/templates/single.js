@@ -2,7 +2,6 @@ import { graphql } from 'gatsby';
 import moment from 'moment';
 import React from 'react';
 
-import Icon from '../components/default/Icon';
 import { Link } from '../components/default/Link';
 import Markdown from '../components/default/Markdown';
 import Sidebar from '../components/layout/Sidebar';
@@ -22,7 +21,6 @@ export default function DocsSinglePage({ data, pageContext }) {
   const { pagePath /*collection*/ } = pageContext;
   const { gitLogLatestDate } = data.markdownRemark.parent.fields != null ? data.markdownRemark.parent.fields : '';
   const pagePathNoSlash = pagePath.endsWith('/') ? pagePath.slice(0, -1) : pagePath;
-  console.log(pagePath);
   function titleize(slug) {
     var words = slug.split('-');
     return words
@@ -58,9 +56,6 @@ export default function DocsSinglePage({ data, pageContext }) {
                 ))}
               </div>
               <div className="flex justify-end items-center">
-                <Icon name="flag" width="14" className="fill-current dark:text-white mr-1" />
-                {'  '}
-                <p className="text-sm mb-0">Version 4.0 |&nbsp;&nbsp;</p>
                 <EditOnGithubButton
                   link={
                     'https://github.com/substrate-developer-hub/substrate-docs/blob/main-md-navigation/content/md/en/docs' +
@@ -81,7 +76,6 @@ export default function DocsSinglePage({ data, pageContext }) {
                 <div className="py-8 text-sm text-gray-400">
                   Last edit: {moment(gitLogLatestDate).format('MMMM DD, YYYY')}
                   <hr />
-                  {/*<BottomButtons pagePath={pagePath} articles={data} />*/}
                   <Feedback />
                 </div>
               </footer>
