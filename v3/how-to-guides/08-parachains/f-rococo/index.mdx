@@ -39,7 +39,7 @@ Once the parachain is active as a parathread, the related project team should [o
 Make sure that you have completed the [Cumulus Tutorial](/tutorials/v3/cumulus/) and have fully tested your parachain on your local machine.
 This will ensure that:
 
-- You are familiar with registering and reserving your unique para ID.
+- You are familiar with registering and reserving your unique paraID.
 - You have your parachain's **genesis state exported as a JSON file**.
 - You have your parachain's **runtime Wasm blob**.
 
@@ -71,11 +71,11 @@ The easiest way to register your chain as a parathread is by using Polkadot JS a
 
 1. Go to [the Polkadot-JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/parachains/parathreads) parathreads section for Rococo.
 
-1. Reserve a unique para ID. You will be assigned to the next available ID.
+1. Reserve a unique paraID. You will be assigned to the next available ID.
 
    ![paraid-reserve.png](../../../../src/images/tutorials/09-cumulus/paraid-reserve.png)
 
-1. After successfully reserving your para ID, you can now register as a **parathread**.
+1. After successfully reserving your paraID, you can now register as a **parathread**.
 
    ![register-parathread.png](../../../../src/images/tutorials/09-cumulus/register-parathread.png)
 
@@ -89,31 +89,11 @@ The easiest way to register your chain as a parathread is by using Polkadot JS a
 
 After the extrinsic succeeds, it takes 2 sessions for the chain to fully onboard as a parathread.
 
-## Request your parachain slot
-
-Presently, Rococo's runtime sets `AssignSlotOrigin` to `EnsureRoot<Self::AccountId>;`, meaning that also someone with sudo access can assign slots.
-
-The Rococo `sudo` key is controlled by Parity Technologies at this time.
-To request a slot, you need to go to the [Subport repo and open a `Rococo Slot Request`](https://github.com/paritytech/subport/issues/new?assignees=&labels=Rococo&template=rococo.yaml) once you've gone through the above steps and are ready to connect.
-Assuming you've submitted your genesis state and genesis runtime Wasm, a Parity team member will initiate the slot for you.
-
-In the long-term, the plan is to make it a community-driven process via Rococo's governance framework and remove the need to rely on a sudo key.
-
-Using an account with the `AssignSlotOrigin` origin, follow these steps to assign a temporary slot:
-
-1. Go to the [Polkadot-JS Apps for Rococo](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/extrinsics), under `Developer -> Extrinsics`.
-1. Select the account with ROC balance that you wish to use to submit a transaction with. You will need at least 5 ROCs.
-1. From the `assignedSlots` pallet, select the `assignTempParachainSlot` function.
-1. Insert your reserved para ID (make sure this matches the one you reserved from the previous section) and select `Current` for the `LeasePeriodStart`.
-1. Sign and submit the transaction.
-
-If the current slot is full, you will be assigned the next available slot.
-
 ## Run public RPC nodes for your network
 
-If you want a more broad audience to access have access to your parachain, having public RPC node(s) available to connect to is required.
+If you want a more broad audience to access have access to your parathread, having public RPC node(s) available to connect to is required.
 As there are typically no incentives around running these, it likely needs to be your team that maintains this public testnet infrastructure for the duration of your testing on Rococo.
-You will need to get the word out about these by publishing your endpoints for substrate clients like the Polkadot-JS [`apps`](https://github.com/polkadot-js/apps/) User Interface (UI) to connect to your parachain.
+You will need to get the word out about these by publishing your endpoints for substrate clients like the Polkadot-JS [`apps`](https://github.com/polkadot-js/apps/) User Interface (UI) to connect to your parathread.
 
 > NOTE: all nodes must sync fully with Rococo _before_ it can be connected to by client apps!
 > All WS connections are expected to fail while this is processing, any takes typically hours to complete.
@@ -124,13 +104,13 @@ You will need to get the word out about these by publishing your endpoints for s
 ## Add your parachain details to the Polakdot-JS `apps` User Interface
 
 So others can easily interact with your public RPC node(s), it is common practice to add your parachain to the [`apps`](https://github.com/polkadot-js/apps/) User Interface (UI) via a standardized PR.
-Once merged, this will have your parachain appear in the listing of available networks under the Rococo section of the `Network Selection` navigation. It optionally can also include style just for your network as well.
+Once merged, this will have your parathread appear in the listing of available networks under the Rococo section of the `Network Selection` navigation. It optionally can also include style just for your network as well.
 
 > NOTE: Your collator endpoint _MUST_ be reachable on a daily basis.
 > This is [verified by a `cron` job](https://github.com/polkadot-js/apps/blob/master/.github/chain-endpoints.md), and if your endpoints are down, they are removed (disabled) from the listing in the UI.
 > You must submit another PR to to re-enable your listing after getting your endpoint back up if this occurs.
 
-For reference, here are a few examples of PRs adding Rococo parachains to the Apps UI:
+For reference, here are a few examples of PRs adding Rococo parathreads to the Apps UI:
 
 - A full addition of logo, styling, and endpoint details from OriginTrail [here](https://github.com/polkadot-js/apps/pull/7544/files)
 - A minimal addition of only the endpoint to appear in the left side nav-bar from Nodle [here](https://github.com/polkadot-js/apps/pull/7349/files)
@@ -138,11 +118,30 @@ For reference, here are a few examples of PRs adding Rococo parachains to the Ap
 This is not strictly required though, so long as you communicate to those that need access to your network how they can go about doing so in some other way.
 For example, using the Apps UI with a static IP set in the `Development -> Custom` network.
 
+## Request your parachain slot
+
+Once you've gone through the above steps and are ready to connect, **open a request for a slot by filling out the [Rococo Slot Request Form](https://github.com/paritytech/subport/issues/new?assignees=&labels=Rococo&template=rococo.yaml).**
+
+Rococo's runtime sets `AssignSlotOrigin` to `EnsureRoot<Self::AccountId>`, meaning that only someone with sudo access can assign slots.
+The Rococo `sudo` key is controlled by Parity Technologies, thus all slots are assigned manually by them at this time.
+In the long-term, the plan is to make it a community-driven process via Rococo's governance framework and remove the need to rely on a sudo key.
+
+For reference: the `AssignSlotOrigin` origin can allot a temporary slot by doing the following:
+
+1. Go to the [Polkadot-JS Apps for Rococo](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/extrinsics), under `Developer -> Extrinsics`.
+1. Select the account with ROC balance that you wish to use to submit a transaction with. You will need at least 5 ROCs.
+1. From the `assignedSlots` pallet, select the `assignTempParachainSlot` function.
+1. Insert a reserved paraID with associated parathread and select `Current` for the `LeasePeriodStart`.
+1. Sign and submit the transaction.
+
+If the current slots are full, the parathread will be assigned and upgraded to a parachain with the next available slot.
+
+
 🎉**_Congratulations!_**🎉
 
-With your slot activated, you're now able to test your parachain on the Rococo test net.
-Please do note that when your temporary slot's lease ends, the parachain is automatically downgraded to a parathread.
-Registered and approved slots are cycled through automatically in a round-robin fashion, so you will expect to come back online as a parachain from time to time.
+With your slot activated, you're now able to test your parachain on the Rococo testnet!
+Please do note that when your temporary slot's lease ends, the parachain is **automatically downgraded** to a parathread.
+Registered and approved slots are **cycled through automatically** in a round-robin fashion, so you will expect to come back online as a parachain from time to time.
 
 Given a period lease duration of 1 day, the current settings for assigned parachain slots on Rococo are (subject to change, based on the needs of the community):
 
