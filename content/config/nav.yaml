@@ -147,10 +147,16 @@ tutorials:
     - title: Connect with other chains
       url: /tutorials/connect-other-chains/
       pages:
-        - title: Connect to a local relay chain
+        - title: Start a local relay chain
           url: /tutorials/connect-other-chains/relay-chain/
-        - title: Connect to Polkadot
+        - title: Connect to a relay chain
           url: /tutorials/connect-other-chains/parachain/
+        - title: Deploy a parachain
+          url: /tutorials/connect-other-chains/deploy-parachain/
+        - title: Connect to Rococo testnet
+          url: /tutorials/connect-other-chains/connect-rococo/
+        #- title: Connect to Polkadot
+          #url: /tutorials/connect-other-chains/connect-polkadot/
         - title: Connect to Ethereum
           url: /tutorials/connect-other-chains/connect-to-evm/
     - title: Develop smart contracts
