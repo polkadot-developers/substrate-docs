@@ -12,7 +12,7 @@ Relevant context:
 - Runtimes should be compressed Wasm binaries for on-chain upgrades and relay chain validation capabilities to function correctly.
 - Read about the anatomy of a full Substrate node [here](/todo) in order to understand how the client interacts with the runtime. 
 
-## Build process
+## Native Rust binary
 
 The native runtime is used as a regular Rust crate dependency to the Substrate client.
 You can see this when running `cargo tree -i node-template-runtime` from a standard Substrate node template:
