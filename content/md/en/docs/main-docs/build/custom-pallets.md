@@ -4,45 +4,50 @@ description:
 keywords:
 ---
 
-Writing a pallet is the first step towards composing custom runtime logic. 
-Building ontop of [existing pallets](/relevant-link-here) is common when building a custom runtime. 
-For example, one could build an application specific staking pallet that uses the already existing Collective and Balances pallets.
+The most common approach to building a custom runtime is to start with [existing pallets](/reference/frame-pallets/).
+For example, you might start building an application-specific staking pallet that uses the types exposed in existing Collective and Balances pallets, but includes custom runtime logic required by your application and its staking rules.
 
-### Pallet architecture 
+## Pallet macros and attributes
 
-Building a custom pallet is made easy with FRAME. 
-Each part of the pallet is declared using the [`pallet`](https://docs.substrate.io/rustdocs/latest/frame_support/attr.pallet.html) macro which contains a long list of attributes, a few of which are:
+FRAME makes extensive use of Rust macros to encapsulate complex blocks of code.
+bThe most import macros for building custom pallets is the [`pallet`](https://docs.substrate.io/rustdocs/latest/frame_support/attr.pallet.html) macro.
+The `pallet` macro defines the core set of attributes that a pallet must provide.
+For example:
 
-- `#[pallet::pallet]`: This mandatory pallet attribute helps define a struct for the pallet, to carry information such as pallet storage which can then easily be accessed.
-- `#[pallet::config]`: This mandatory pallet attribute allows defining the configuration trait for the pallet. 
-- `#[pallet::call]`: This attribute allows implementing a pallet's dispatchables.
-- `#[pallet::error]`: This attribute generates dispatchable errors. 
-- `#[pallet::event]`: This attribute generates dispatchable events.
-- `#[pallet::storage]`: This attribute generates a storage instance in the runtime along with its metadata.
+- `#[pallet::pallet]` is a mandatory pallet attribute that enables you to define a structure (struct) for the pallet so it can store data that can be easily retrieved.
+- `#[pallet::config]`: is a mandatory pallet attribute that enables you to define the configuration trait for the pallet.
 
-Although these macros give developers more flexibility to write Rust code, some of these macros enforce particular requirements on function declarations.
-For instance, the `Config` trait must be bound by `frame_system::Config` and the `#[pallet::pallet]` struct must be declared as `pub struct Pallet<T>(_);`.
+The `pallet` macro also defines the core set of attributes that pallets typically provide.
+For example:
 
-[ insert / use excerpts from : https://docs.substrate.io/v3/runtime/macros/]
+- `#[pallet::call]` is the attribute that enables you to implement dispatchable function calls for the pallet.
+- `#[pallet::error]` is the attribute that enables you to generate dispatchable errors.
+- `#[pallet::event]` is the attribute that enables you to generate dispatchable events.
+- `#[pallet::storage]` is the attribute that enables you to generate a storage instance in the runtime and its metadata.
 
-There are several architectural considerations to be made when writing a pallet.
+These core attributes align with the decisions you need to make when writing a custom pallet.
+For example, you need to consider:
 
-- Storage. What will your pallet need to store? Are these items to be stored on or off-chain?
-- Dispatchables. What publicly callable functions does your pallet require?
-- Transactionality. What dispatchables are designed to atomically modify storage?
+- Storage. What data does your pallet store? Is the data stored on-chain or off-chain?
+- Functions. What are the callable functions that your pallet exposes?
+- Transactionality. Are your function calls designed to atomically modify storage?
 - Hooks. Will your pallet be making calls to any runtime hooks?
-- Weights. What considerations must be taken into account to generate the correct weights for your disptachables?
 
-### Useful FRAME traits
+Macros simplify the code you need to write to implement custom runtime logic.
+However, some macros enforce particular requirements on function declarations.
+For example, the `Config` trait must be bound by `frame_system::Config` and the `#[pallet::pallet]` struct must be declared as `pub struct Pallet<T>(_);`.
+For an overview of the macros used in FRAME pallets, see [FRAME macros](/reference/frame-macros/).
+
+## Useful FRAME traits
 
 - Pallet Origin
 - Origins: EnsureOrigin, EnsureOneOf
 ...
 
-### Runtime implementation 
+## Runtime implementation
 
 Writing a pallet and implementing it for a runtime go hand in hand.
-Your pallet's `Config` trait is what get's implemented for `Runtime` which is a special struct used to compile all implemented pallets in the `construct_runtime` macro. 
+Your pallet's `Config` trait is what get's implemented for `Runtime` which is a special struct used to compile all implemented pallets in the `construct_runtime` macro.
 
 - [`parameter_types`](https://docs.substrate.io/rustdocs/latest/frame_support/macro.parameter_types.html) and [`ord_parameter_types`](https://docs.substrate.io/rustdocs/latest/frame_support/macro.ord_parameter_types.html) macros are useful for passing in values to configurable pallet constants.
 - [ other considerations like no_std ]
@@ -51,4 +56,3 @@ Your pallet's `Config` trait is what get's implemented for `Runtime` which is a 
 - Api endpoints: on_initialize, off_chain workers ?
 
 Write content that links to basic and intermediate how-to guides.
-

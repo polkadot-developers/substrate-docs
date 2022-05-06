@@ -1,18 +1,14 @@
 ---
-title: Coupling Pallets
-slug: /v3/runtime/pallet-coupling
-version: '3.0'
-section: docs
-category: runtime
+title: Coupling pallets
+description: 
 keywords:
   - coupling
   - pallet design
 ---
 
-In computer science, [coupling](<https://en.wikipedia.org/wiki/Coupling_(computer_programming)>)
-is the degree to which two software modules depend on each other. System designers use the terms high and low coupling to
-describe how computer systems are structured. The term also applies to object oriented programming paradigms, whereby tight
-coupling is when two groups of classes are dependant on each other, and loose coupling is when a class uses an interface that
+In computer science, [coupling](<https://en.wikipedia.org/wiki/Coupling_(computer_programming)>) is the degree to which two software modules depend on each other. 
+System designers use the terms high and low coupling to describe how computer systems are structured. 
+The term also applies to object oriented programming paradigms, whereby tight coupling is when two groups of classes are dependant on each other, and loose coupling is when a class uses an interface that
 another class exposes.
 
 In Substrate, tight and loose pallet coupling is used to for calling a function that lives inside another pallet.
