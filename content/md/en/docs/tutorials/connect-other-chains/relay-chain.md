@@ -1,17 +1,6 @@
 ---
-title: Start a Relay Chain
-slug: /tutorials/v3/cumulus/start-relay
-sideNav: cumulusTutorial
-version: 'polkadot-v0.9.18'
-section: tutorials
-category: parachains
-duration: 3 Hours
-difficulty: 3
-relevantSkills:
-  - Rust
-  - Parachains
-  - Cumulus
-  - XCMP
+title: Start a local relay chain
+description: /tutorials/v3/cumulus/start-relay
 keywords:
   - cumulus
   - relay chain
@@ -25,7 +14,7 @@ keywords:
   - collator
 ---
 
-In this tutorial you will start a Polkadot-like chain (the relay chain), use [Cumulus](https://github.com/paritytech/cumulus) to create your own parachain, and connect it to the relay chain all in a local testnet environment.
+In this tutorial, you will create a local relay chain—like Polkadot—use [Cumulus](https://github.com/paritytech/cumulus) to create your own parachain, and connect it to the relay chain in a local test environment.
 
 ## Before you begin
 

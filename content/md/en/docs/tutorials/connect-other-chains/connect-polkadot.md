@@ -1,17 +1,6 @@
 ---
-title: Launch a Parachain Testnet
-slug: /tutorials/v3/cumulus/polkadot-launch
-sideNav: cumulusTutorial
-version: 'polkadot-v0.9.18'
-section: tutorials
-category: parachains
-duration: 3 Hours
-difficulty: 3
-relevantSkills:
-  - Rust
-  - Parachains
-  - Cumulus
-  - XCMP
+title: Connect to Polkadot
+description:
 keywords:
   - cumulus
   - relay chain
