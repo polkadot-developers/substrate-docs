@@ -20,13 +20,13 @@ const Sidebar = ({ children, currentPath }) => {
               <button
                 title={!isOpen ? 'minimize' : 'maximize'}
                 onClick={() => setIsOpen(!isOpen)}
-                className="absolute right-4 top-6 mr-0.5 transform transition-opacity duration-300 ease-in-out hover:opacity-80 focus:outline-none z-10"
+                className="absolute right-4 top-6 mr-0.5 transform transition-opacity duration-300 ease-in-out focus:outline-none z-10"
               >
                 <Icon
                   name={!isOpen ? 'collapse' : 'expand'}
-                  className={cx('fill-current text-substrateDark dark:text-white', {
-                    'rotate-180': isOpen,
-                    'mr-1': isOpen,
+                  className={cx('fill-current text-substrateDark mr-1 dark:text-white hover-fill-green transform-gpu', {
+                    'rotate-180 hover:scale-110': isOpen,
+                    'hover:scale-90': !isOpen,
                   })}
                 />
               </button>
