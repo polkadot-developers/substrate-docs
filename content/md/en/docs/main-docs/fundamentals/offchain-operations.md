@@ -1,6 +1,6 @@
 ---
-title: Offchain operations
-description: 
+title: "Offchain operations"
+description:
 featured_image:
 keywords:
 ---

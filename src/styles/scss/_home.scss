@@ -85,3 +85,53 @@
     }
   }
 }
+
+/* Fills for SVG */
+
+.fill-black {
+  fill: black;
+}
+.fill-white {
+  fill: white;
+}
+.fill-substrateBlue {
+  fill: #4e73f2;
+}
+.hover-fill-green:hover {
+  fill: #24CC85!important;
+  color: #24CC85!important;
+  transition: 0.33s;
+}
+
+
+
+/* Diff view code highlighting  */
+pre {
+  padding-top: 1rem!important;
+  padding-bottom: 1rem!important;
+}
+
+pre code .inserted {
+  color: green;
+}
+pre code .deleted {
+  color: red !important;
+}
+
+/* Breadcrumb seperators */
+.breadcrumb:after {
+  content: '\002F';
+  margin: 0 0.5rem;
+}
+.breadcrumb:last-child:after {
+  content: '';
+  margin-right: 0rem;
+}
+
+/* Markdown */
+.secondary-button {
+  text-decoration: none!important;
+  &::before {
+    display: none!important;
+  }
+}

@@ -95,22 +95,9 @@ docs:
           url: /main-docs/test/deploy-on-testnet/
     - title: Deploy
       url: /main-docs/deploy/
-      pages:
-        - title: Validators
-          url: /main-docs/deploy/validators/
-        - title: Networking basics
-          url: /main-docs/deploy/networking-basics/
-        - title: Finality
-          url: /main-docs/deploy/finality/
-        - title: Genesis construction
-          url: /main-docs/deploy/genesis/
-        - title: Protecting your network from attacks
-          url: /main-docs/deploy/attacks/
     - title: Maintain
       url: /main-docs/maintain/
       pages:
-        - title: Monitoring tools
-          url: /main-docs/maintain/monitor/
         - title: Upgrades
           url: /main-docs/maintain/upgrade/
 
@@ -134,7 +121,7 @@ tutorials:
         - title: Upgrade the runtime
           url: /tutorials/get-started/forkless-upgrade/
     - title: Work with pallets
-      url: /tutorials/pallets/
+      url: /tutorials/work-with-pallets/
       pages:
         - title: Add a pallet to the runtime
           url: /tutorials/work-with-pallets/add-a-pallet/
