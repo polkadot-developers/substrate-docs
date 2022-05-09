@@ -1,35 +1,6 @@
 ---
-<<<<<<< HEAD
-title: Connect a Parachain
-slug: /tutorials/v3/cumulus/connect-parachain
-sideNav: cumulusTutorial
-version: "polkadot-v0.9.18"
-section: tutorials
-description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.
-category: parachains
-time: 3 Hours
-difficulty: 3
-relevantSkills:
-  - Rust
-  - Parachains
-  - Cumulus
-  - XCMP
-=======
-title: Connect to a relay chain
-description: /tutorials/v3/cumulus/connect-parachain
->>>>>>> main-md
-keywords:
-  - cumulus
-  - relay chain
-  - parachain
-  - parathread
-  - paraID
-  - template
-  - rococo
-  - xcm
-  - xcmp
-  - collator
-featured_image: /tutorial-card-images/tuts-8.jpeg
+title: "Connect to a relay chain"
+description: "/tutorials/v3/cumulus/connect-parachain"
 ---
 
 In this part of the workshop, we'll connect a parachain to our relay chain and add additional nodes.
