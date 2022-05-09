@@ -36,6 +36,8 @@ This file highlights lines 8-12 using a comment inside the file // highlight-ran
 
 `embed:markdown2.js`
 
+`embed:markdown.rs`
+
 ### Subset of a file
 
 This code block only shows a subset of a file (lines 8 to 12) by embedding the file with a suffix of #L8-12

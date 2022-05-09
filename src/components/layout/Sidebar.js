@@ -33,38 +33,46 @@ const Sidebar = ({ children, currentPath }) => {
               <div className="mt-14">
                 {isOpen ? (
                   <>
-                    <Link to="/quick-start/quickstart/">
-                      <Icon
-                        name="quickStart"
-                        className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white', {
-                          'fill-substrateBlue': currentPath.includes('/quick-start/'),
-                        })}
-                      />
-                    </Link>
-                    <Link to="/main-docs/">
-                      <Icon
-                        name="docsIcon"
-                        className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white', {
-                          'fill-substrateBlue': currentPath.includes('/main-docs/'),
-                        })}
-                      />
-                    </Link>
-                    <Link to="/tutorials/">
-                      <Icon
-                        name="tutorials"
-                        className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white', {
-                          'fill-substrateBlue': currentPath.includes('/tutorials/'),
-                        })}
-                      />
-                    </Link>
-                    <Link to="/reference/">
-                      <Icon
-                        name="reference"
-                        className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white', {
-                          'fill-substrateBlue': currentPath.includes('/reference/'),
-                        })}
-                      />
-                    </Link>
+                    <span title="Quick Start">
+                      <Link to="/quick-start/quickstart/">
+                        <Icon
+                          name="quickStart"
+                          className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white', {
+                            'fill-substrateBlue': currentPath.includes('/quick-start/'),
+                          })}
+                        />
+                      </Link>
+                    </span>
+                    <span title="Docs">
+                      <Link to="/main-docs/">
+                        <Icon
+                          name="docsIcon"
+                          className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white', {
+                            'fill-substrateBlue': currentPath.includes('/main-docs/'),
+                          })}
+                        />
+                      </Link>
+                    </span>
+                    <span title="Tutorials">
+                      <Link to="/tutorials/">
+                        <Icon
+                          name="tutorials"
+                          className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white', {
+                            'fill-substrateBlue': currentPath.includes('/tutorials/'),
+                          })}
+                        />
+                      </Link>
+                    </span>
+                    <span title="Reference">
+                      <Link to="/reference/">
+                        <Icon
+                          name="reference"
+                          className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white', {
+                            'fill-substrateBlue': currentPath.includes('/reference/'),
+                          })}
+                        />
+                      </Link>
+                    </span>
                   </>
                 ) : (
                   ''
