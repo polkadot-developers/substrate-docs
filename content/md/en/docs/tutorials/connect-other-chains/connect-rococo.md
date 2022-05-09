@@ -1,5 +1,5 @@
 ---
-title: Connect to the Rococo Public Testnet
+title: Connect to Rococo testnet
 slug: /tutorials/v3/cumulus/rococo
 sideNav: cumulusTutorial
 version: "polkadot-v0.9.18"

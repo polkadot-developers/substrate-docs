@@ -1,5 +1,5 @@
 ---
-title: Start a trusted validator network
+title: Add trusted validators
 slug: /tutorials/trusted-network/
 section: tutorials
 category: private network
@@ -78,11 +78,21 @@ To generate keys using the node template:
 
 1. Generate a random secret phrase and keys by running the following command:
 
+<<<<<<< HEAD
    ```bash
    ./target/release/node-template key generate --scheme Sr25519 --password-interactive
    ```
 
 1. Type a password for the generated keys.
+=======
+    ```bash
+    ./target/release/node-template key generate --scheme Sr25519 --password-interactive
+    ```
+
+1. Type a password for the generated keys.
+
+    The command generates keys and displays output similar to the following:
+>>>>>>> main-md
 
    The command generates keys and displays output similar to the following:
 
@@ -99,6 +109,11 @@ To generate keys using the node template:
    In this example, the Sr25519 public key for the account is `5CfBuoHDvZ4fd8jkLQicNL8tgjnK8pVG9AiuJrsNrRAx6CNW`.
 
 1. Use the **secret phrase** for the account you just generated to derive keys using the Ed25519 signature scheme.
+<<<<<<< HEAD
+=======
+
+    For example, run a command similar to the following:
+>>>>>>> main-md
 
    For example, run a command similar to the following:
 
@@ -108,6 +123,7 @@ To generate keys using the node template:
 
 1. Type the password you used to generate the keys.
 
+<<<<<<< HEAD
    The command displays output similar to the following:
 
    ```text
@@ -121,6 +137,21 @@ To generate keys using the node template:
 
    You now have the Ed25519 key for finalizing blocks using `grandpa` for one node.
    In this example, the Ed25519 public key for the account is `5CuqCGfwqhjGzSqz5mnq36tMe651mU9Ji8xQ4JRuUTvPcjVN`.
+=======
+    The command displays output similar to the following:
+
+    ```text
+    Secret phrase `pig giraffe ceiling enter weird liar orange decline behind total despair fly` is account:
+    Secret seed:       0x0087016ebbdcf03d1b7b2ad9a958e14a43f2351cd42f2f0a973771b90fb0112f
+    Public key (hex):  0x2577ba03f47cdbea161851d737e41200e471cd7a31a5c88242a527837efc1e7b
+    Public key (SS58): 5CuqCGfwqhjGzSqz5mnq36tMe651mU9Ji8xQ4JRuUTvPcjVN
+    Account ID:        0x2577ba03f47cdbea161851d737e41200e471cd7a31a5c88242a527837efc1e7b
+    SS58 Address:      5CuqCGfwqhjGzSqz5mnq36tMe651mU9Ji8xQ4JRuUTvPcjVN
+    ```
+
+    You now have the Ed25519 key for finalizing blocks using `grandpa` for one node.
+    In this example, the Ed25519 public key for the account is `5CuqCGfwqhjGzSqz5mnq36tMe651mU9Ji8xQ4JRuUTvPcjVN`.
+>>>>>>> main-md
 
 ### Generate a second set of keys
 
@@ -131,7 +162,11 @@ You have a few options to continue the tutorial:
 
 - You can repeat the steps in the previous section using a different identity on your local computer to generate a second key pair.
 
+<<<<<<< HEAD
 - You can derive a child key pair to simulate a second identity on your local computer.
+=======
+* You can derive a child key pair to simulate a second identity on your local computer.
+>>>>>>> main-md
 
 - You can recruit other participants to generate the keys required to join your private network.
 
@@ -161,6 +196,13 @@ To create a new chain specification based on the local specification:
 1. Change to the root directory where you compiled the Substrate node template.
 
 1. Export the `local` chain specification to a file named `customSpec.json` by running the following command:
+<<<<<<< HEAD
+=======
+
+    ```bash
+    ./target/release/node-template build-spec --disable-default-bootnode --chain local > customSpec.json
+    ```
+>>>>>>> main-md
 
    ```bash
    ./target/release/node-template build-spec --disable-default-bootnode --chain local > customSpec.json
@@ -171,6 +213,7 @@ To create a new chain specification based on the local specification:
 
 1. Preview the first few fields in the `customSpec.json` file by running the following command:
 
+<<<<<<< HEAD
    ```bash
    head customSpec.json
    ```
@@ -198,10 +241,44 @@ To create a new chain specification based on the local specification:
    ```
 
    This command displays the last sections following the Wasm binary field, including the details for several of the pallets—such as the `sudo` and `balances` pallets—that are used in the runtime.
+=======
+    ```bash
+    head customSpec.json
+    ```
+
+    The command displays the first fields from the file.
+    For example:
+
+    ```json
+    {
+      "name": "Local Testnet",
+      "id": "local_testnet",
+      "chainType": "Local",
+      "bootNodes": [],
+      "telemetryEndpoints": null,
+      "protocolId": null,
+      "properties": null,
+      "consensusEngine": null,
+      "codeSubstitutes": {},
+    ```
+
+1. Preview the last fields in the `customSpec.json` file by running the following command:
+
+    ```bash
+    tail -n 80 customSpec.json
+    ```
+
+    This command displays the last sections following the Wasm binary field, including the details for several of the pallets—such as the `sudo` and `balances` pallets—that are used in the runtime.
+>>>>>>> main-md
 
 1. Open the `customSpec.json` file in a text editor.
 
 1. Modify the `name` field to identify this chain specification as a custom chain specification.
+<<<<<<< HEAD
+=======
+
+    For example:
+>>>>>>> main-md
 
    For example:
 
@@ -211,6 +288,7 @@ To create a new chain specification based on the local specification:
 
 1. Modify `aura` field to specify the nodes with the authority to create blocks by adding the Sr25519 SS58 address keys for each network participant.
 
+<<<<<<< HEAD
    ```json
    "aura": {
        "authorities": [
@@ -241,6 +319,38 @@ To create a new chain specification based on the local specification:
    The first value is the address key.
    The second value is used to support **weighted votes**.
    In this example, each validator has a weight of **1** vote.
+=======
+    ```json
+    "aura": {
+        "authorities": [
+          "5CfBuoHDvZ4fd8jkLQicNL8tgjnK8pVG9AiuJrsNrRAx6CNW",
+          "5CXGP4oPXC1Je3zf5wEDkYeAqGcGXyKWSRX2Jm14GdME5Xc5"
+        ]
+      },
+    ```
+
+1. Modify the `grandpa` field to specify the nodes with the authority to finalize blocks by adding the Ed25519 SS58 address keys for each network participant.
+
+    ```json
+    "grandpa": {
+        "authorities": [
+          [
+            "5CuqCGfwqhjGzSqz5mnq36tMe651mU9Ji8xQ4JRuUTvPcjVN",
+            1
+          ],
+          [
+            "5DpdMN4bVTMy67TfMMtinQTcUmLhZBWoWarHvEYPM4jYziqm",
+            1
+          ]
+        ]
+      },
+      ```
+
+      Note that there are two data values for the `authorities` field in the `grandpa` section.
+      The first value is the address key.
+      The second value is used to support **weighted votes**.
+      In this example, each validator has a weight of **1** vote.
+>>>>>>> main-md
 
 1. Save your changes and close the file.
 
@@ -254,7 +364,11 @@ To add validators:
 
 - Modify the `aura` section to include **Sr25519** addresses.
 
+<<<<<<< HEAD
 - Modify the `grandpa` section to include **Ed25519** addresses and a voting weight.
+=======
+* Modify the `grandpa` section to include **Ed25519** addresses and a voting weight.
+>>>>>>> main-md
 
 Be sure to use unique keys for each validator.
 If two validators have the same keys, they produce conflicting blocks.
@@ -276,9 +390,15 @@ To convert a chain specification to use the raw format:
 
 1. Convert the `customSpec.json` chain specification to the raw format with the file name `customSpecRaw.json` by running the following command:
 
+<<<<<<< HEAD
    ```bash
    ./target/release/node-template build-spec --chain=customSpec.json --disable-default-bootnode > customSpecRaw.json
    ```
+=======
+    ```bash
+    ./target/release/node-template build-spec --chain=customSpec.json --disable-default-bootnode > customSpecRaw.json
+    ```
+>>>>>>> main-md
 
 ## Share the chain specification with others
 
@@ -314,6 +434,7 @@ To start the first node:
 
 1. Start the first node using the custom chain specification by running a command similar to the following:
 
+<<<<<<< HEAD
    ```bash
    ./target/release/node-template \
    --base-path /tmp/node01 \
@@ -341,6 +462,35 @@ To start the first node:
 
    This command also starts the node using your own keys instead of a predefined account.
    Because you aren't using a predefined account with known keys, you'll need to add your keys to the keystore in a separate step.
+=======
+    ```bash
+    ./target/release/node-template \
+    --base-path /tmp/node01 \
+    --chain ./customSpecRaw.json \
+    --port 30333 \
+    --ws-port 9945 \
+    --rpc-port 9933 \
+    --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
+    --validator \
+    --rpc-methods Unsafe \
+    --name MyNode01
+    ```
+
+    Note the following command-line options you are using to start the node:
+
+    * The `--base-path` command-line option specifies a custom location for the chain associated with this first node.
+
+    * The `--chain` command-line option specifies the custom chain specification.
+
+    * The `--validator` command-line option indicates that this node is an authority for the chain.
+
+    * The `--rpc-methods Unsafe` command-line option allows you to continue the tutorial using an unsafe communication mode because your blockchain is not being used in a production setting.
+
+    * The `--name` command-line option enables you to give your node a human-readable name in the telemetry UI.
+
+    This command also starts the node using your own keys instead of a predefined account.
+    Because you aren't using a predefined account with known keys, you'll need to add your keys to the keystore in a separate step.
+>>>>>>> main-md
 
 ## View information about node operations
 
@@ -404,6 +554,7 @@ To insert keys into the keystore:
 
 1. Insert the `aura` secret key generated from the `key` subcommand by running a command similar to the following:
 
+<<<<<<< HEAD
    ```bash
    ./target/release/node-template key insert --base-path /tmp/node01 \
    --chain customSpecRaw.json \
@@ -427,11 +578,37 @@ To insert keys into the keystore:
    ```bash
    ./target/release/node-template key insert --help
    ```
+=======
+    ```bash
+    ./target/release/node-template key insert --base-path /tmp/node01 \
+    --chain customSpecRaw.json \
+    --scheme Sr25519 \
+    --suri <your-secret-seed> \
+    --password-interactive \
+    --key-type aura
+    ```
+
+    Replace `<your-secret-seed>` with the secret phrase or secret seed for the first key pair that you generated in [Generate local keys using node template](#generate-local-keys-using-the-node-template).
+    In this tutorial, the secret phrase is `pig giraffe ceiling enter weird liar orange decline behind total despair fly`, so the `--suri` command-line option specifies that string to insert the key into the keystore.
+    For example:
+
+    ```text
+    --suri "pig giraffe ceiling enter weird liar orange decline behind total despair fly"
+    ```
+
+    You can also insert a key from a specified file location.
+    For information about the command-line options available, run the following command:
+
+    ```bash
+    ./target/release/node-template key insert --help
+    ```
+>>>>>>> main-md
 
 1. Type the password you used to generate the keys.
 
 1. Insert the `grandpa` secret key generated from the `key` subcommand by running a command similar to the following:
 
+<<<<<<< HEAD
    ```bash
    ./target/release/node-template key insert --base-path /tmp/node01 \
    --chain customSpecRaw.json \
@@ -448,11 +625,30 @@ To insert keys into the keystore:
    ```text
    --suri "pig giraffe ceiling enter weird liar orange decline behind total despair fly"
    ```
+=======
+    ```bash
+    ./target/release/node-template key insert --base-path /tmp/node01 \
+    --chain customSpecRaw.json \
+    --scheme Ed25519 \
+    --suri <your-secret-key> \
+    --password-interactive \
+    --key-type gran
+    ```
+
+    Replace `<your-secret-seed>` with the secret phrase or secret seed for the first key pair that you generated in [Generate local keys using the node template](#generate-local-keys-using-the-node-template).
+    In this tutorial, the secret phrase is `pig giraffe ceiling enter weird liar orange decline behind total despair fly`, so the `--suri` command-line option specifies that string to insert the key into the keystore.
+    For example:
+
+    ```text
+    --suri "pig giraffe ceiling enter weird liar orange decline behind total despair fly"
+    ```
+>>>>>>> main-md
 
 1. Type the password you used to generate the keys.
 
 1. Verify that your keys are in the keystore for `node01` by running the following command:
 
+<<<<<<< HEAD
    ```bash
    ls /tmp/node01/chains/local_testnet/keystore
    ```
@@ -463,6 +659,18 @@ To insert keys into the keystore:
    617572611441ddcb22724420b87ee295c6d47c5adff0ce598c87d3c749b776ba9a647f04
    6772616e1441ddcb22724420b87ee295c6d47c5adff0ce598c87d3c749b776ba9a647f04
    ```
+=======
+    ```bash
+    ls /tmp/node01/chains/local_testnet/keystore
+    ```
+
+    The command displays output similar to the following:
+
+    ```text
+    617572611441ddcb22724420b87ee295c6d47c5adff0ce598c87d3c749b776ba9a647f04
+    6772616e1441ddcb22724420b87ee295c6d47c5adff0ce598c87d3c749b776ba9a647f04
+    ```
+>>>>>>> main-md
 
 After you have added your keys to the keystore for the first node under /tmp/node01, you can restart the node using the command you used previously in [Start the first node](#start-the-first-node).
 
@@ -478,6 +686,7 @@ To add a second validator to the private network:
 
 1. Start a second blockchain node by running a command similar to the following:
 
+<<<<<<< HEAD
    ```bash
    ./target/release/node-template \
    --base-path /tmp/node02 \
@@ -516,11 +725,52 @@ To add a second validator to the private network:
 
    Replace `<second-participant-secret-seed>` with the secret phrase or secret seed that you generated in [Generate a second key pair](#generate-a-second-set-of-keys).
    The `aura` key type is required to enable block production.
+=======
+    ```bash
+    ./target/release/node-template \
+    --base-path /tmp/node02 \
+    --chain ./customSpecRaw.json \
+    --port 30334 \
+    --ws-port 9946 \
+    --rpc-port 9934 \
+    --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
+    --validator \
+    --rpc-methods Unsafe \
+    --name MyNode02 \
+    --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX \
+    --password-interactive
+    ```
+
+    This command uses the `base-path`, `name` and `validator` command-line options to identify this node as a second  validator for the private network.
+    The `--chain` command-line option specifies the chain specification file to use.
+    This file must be _identical_ for all validators in the network.
+
+    Be sure to set the correct information for the  `--bootnodes` command-line option.
+    In particular, be sure you have specified the local node identifier from the first node in the network.
+    If you don't set the correct `bootnode` identifier, you see errors like this:
+
+    `💔 The bootnode you want to connect to at ... provided a different peer ID than the one you expect: ...`
+
+1. Add the `aura` secret key generated from the `key` subcommand by running a command similar to the following:
+
+    ```bash
+    ./target/release/node-template key insert --base-path /tmp/node02 \
+    --chain customSpecRaw.json \
+    --scheme Sr25519 \
+    --suri <second-participant-secret-seed> \
+    --password-interactive \
+    --key-type aura
+    ```
+
+    Replace `<second-participant-secret-seed>` with the secret phrase or secret seed that you generated in [Generate a second key pair](#generate-a-second-set-of-keys).
+    The `aura` key type is required to enable block production.
+>>>>>>> main-md
 
 1. Type the password you used to generate the keys.
 
 1. Add the `grandpa` secret key generated from the `key` subcommand to the local keystore by running a command similar to the following:
 
+<<<<<<< HEAD
    ```bash
    ./target/release/node-template key insert --base-path /tmp/node02 \
    --chain customSpecRaw.json \
@@ -535,11 +785,28 @@ To add a second validator to the private network:
 
    Block finalization requires at least two-thirds of the validators to add their keys to their respective keystores.
    Because this network is configured with two validators in the chain specification, block finalization can only start after the second node has added its keys.
+=======
+    ```bash
+    ./target/release/node-template key insert --base-path /tmp/node02 \
+    --chain customSpecRaw.json \
+    --scheme Ed25519
+    --suri <second-participant-secret-seed> \
+    --password-interactive \
+    --key-type gran
+    ```
+
+    Replace `<second-participant-secret-seed>` with the secret phrase or secret seed that you generated in [Generate a second key pair](#generate-a-second-set-of-keys).
+    The `gran` key type is required to enable block finalization.
+
+    Block finalization requires at least two-thirds of the validators to add their keys to their respective keystores.
+    Because this network is configured with two validators in the chain specification, block finalization can only start after the second node has added its keys.
+>>>>>>> main-md
 
 1. Type the password you used to generate the keys.
 
 1. Verify that your keys are in the keystore for `node02` by running the following command:
 
+<<<<<<< HEAD
    ```bash
    ls /tmp/node02/chains/local_testnet/keystore
    ```
@@ -552,11 +819,26 @@ To add a second validator to the private network:
    ```
 
    Substrate nodes require a restart after inserting a `grandpa` key, so you must shut down and restart nodes before you see blocks being finalized.
+=======
+    ```bash
+    ls /tmp/node02/chains/local_testnet/keystore
+    ```
+
+    The command displays output similar to the following:
+
+    ```text
+    617572611a4cc824f6585859851f818e71ac63cf6fdc81018189809814677b2a4699cf45
+    6772616e1a4cc824f6585859851f818e71ac63cf6fdc81018189809814677b2a4699cf45  
+    ```
+
+    Substrate nodes require a restart after inserting a `grandpa` key, so you must shut down and restart nodes before you see blocks being finalized.
+>>>>>>> main-md
 
 1. Shut down the node by pressing Control-c.
 
 1. Restart the second blockchain node by running the following command:
 
+<<<<<<< HEAD
    ```bash
    ./target/release/node-template \
    --base-path /tmp/node02 \
@@ -576,6 +858,27 @@ To add a second validator to the private network:
 
    You should also see that each node has one peer (`1 peers`), and they have produced a block proposal (`best: #2 (0xe111…c084)`).
    After a few seconds, you should see new blocks being finalized on both nodes.
+=======
+    ```bash
+    ./target/release/node-template \
+    --base-path /tmp/node02 \
+    --chain ./customSpecRaw.json \
+    --port 30334 \
+    --ws-port 9946 \
+    --rpc-port 9934 \
+    --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
+    --validator \
+    --rpc-methods Unsafe \
+    --name MyNode02 \
+    --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX \
+    --password-interactive
+    ```
+
+    After both nodes have added their keys to their respective keystores—located under `/tmp/node01` and `/tmp/node02`—and been restarted, you should see the same genesis block and state root hashes.
+
+    You should also see that each node has one peer (`1 peers`), and they have produced a block proposal (`best: #2 (0xe111…c084)`).
+    After a few seconds, you should see new blocks being finalized on both nodes.
+>>>>>>> main-md
 
 ## Next steps
 

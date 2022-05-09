@@ -1,6 +1,6 @@
 ---
 title: Front-end development
-description:
+description: Examines how Substrate metadata and RPC libraries are used in building application interfaces.
 keywords:
 ---
 

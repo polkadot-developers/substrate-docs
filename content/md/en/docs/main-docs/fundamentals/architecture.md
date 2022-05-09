@@ -20,7 +20,7 @@ As illustrated in the diagram, Substrate nodes provide a layered environment wit
 
 - An **outer node** that handles network activity such as peer discovery, managing transaction requests, reaching consensus with peers, and responding to RPC calls.
 
-- A **runtime** that contains all of the business logic for executing transactions, saving state transitions, and reaching consensus.
+* A **runtime** that contains all of the business logic for executing transactions, saving state transitions, and interacting with the outer node to prepare blocks for consensus.
 
 - A **light client** that accesses the data stored in the blockchain but does not participate in producing blocks or reaching consensus.
 

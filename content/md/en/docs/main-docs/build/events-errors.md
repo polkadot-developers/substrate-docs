@@ -1,9 +1,6 @@
 ---
-title: Events
-slug: /v3/runtime/events-and-errors
-version: '3.0'
-section: docs
-category: runtime
+title: Events and errors
+description: Explains how to emit events and errors from the runtime.
 keywords: []
 ---
 

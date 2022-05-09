@@ -1,10 +1,10 @@
-Section: Design
-Sub-section: Runtime design
-Type: conceptual 
-Index: 1
+---
+title: Design
+description: Suggests blockchain and application design decisions for you to consider in planning your project.
+keywords:  
+---
 
-_This article describes ways to create the application logic of your blockchain._
-_This is important for parachain builders to understand why they are building pallets and what it implies, also giving insight on the value of using pallets vs. smart contracts._
+The topics in this section suggest the design decisions and application architectural options you should consider in planning how you will implement the blockchain logic.
 
 You've got an application that requires a blockchain and you've started sketching out its components but you're not sure whether you should use smart contracts or write your own pallets. 
 What should you do?

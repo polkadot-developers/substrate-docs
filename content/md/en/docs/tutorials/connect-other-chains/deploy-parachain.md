@@ -1,31 +1,7 @@
 ---
-<<<<<<< HEAD
-title: Launch a Parachain Testnet
-slug: /tutorials/v3/cumulus/polkadot-launch
-sideNav: cumulusTutorial
-version: "polkadot-v0.9.18"
-section: tutorials
-description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.
-category: parachains
-time: 3 Hours
-difficulty: 3
-relevantSkills:
-  - Rust
-  - Parachains
-  - Cumulus
-  - XCMP
+title: Deploy a parachain
+description:
 keywords:
-  - cumulus
-  - relay chain
-  - parachain
-  - parathread
-  - paraID
-  - template
-  - rococo
-  - xcm
-  - xcmp
-  - collator
-featured_image: /tutorial-card-images/tuts-9.jpeg
 ---
 
 ## NOTE: BREAKING CHANGES
@@ -92,10 +68,11 @@ Specifically, you will perform the following to use `polkadot-launch`:
 The important new aspect here is the config file in step 2. Here is one to get started:
 
 - <a
-  href="/assets/tutorials/cumulus/polkadot-launch-config/relay-3-validators--2paras-1collator.json"
-  download
-  > relay-3-validators--2paras-1collator.json
-  > </a>
+    href="/assets/tutorials/cumulus/polkadot-launch-config/relay-3-validators--2paras-1collator.json"
+    download
+  >
+    relay-3-validators--2paras-1collator.json
+  </a>
 
 Let's take a brief look inside the file. Inside the `relaychain` section, there are:
 
@@ -153,9 +130,10 @@ Another way to verify the setup is by going to:
 After configuring the Apps to connect to the local **relay chain node**, you should see the UI showing two parachains being connected to the relay chain.
 
 <Message
-type={`green`}
-title={`All done!`}
-text={` You have automated the launch of a 3-node relay chain, and two parachains with a single node using \`polkadot-launch\` CLI utility and avoided all the initial manual overhead of starting nodes and registering parachains!
+  type={`green`}
+  title={`All done!`}
+  text={`
+You have automated the launch of a 3-node relay chain, and two parachains with a single node using \`polkadot-launch\` CLI utility and avoided all the initial manual overhead of starting nodes and registering parachains!
 `}
 />
 
@@ -346,11 +324,3 @@ FIXME TODO: once rococo registration is live again, uncomment the next page
 -->
 
 (_To be written..._)
-=======
-title: Connect to Polkadot
-description: Explains the steps required to connect a production-ready parachain to Polkadot. 
-keywords:
----
-
-This tutorial explains how to connect your production-ready parachain to the Polkadot relay chain and become part of the Polkadot ecosystem.
->>>>>>> main-md

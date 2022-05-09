@@ -1,6 +1,8 @@
-_Different CLI use cases for building or running a chain._
-
-## Execution strategy 
+---
+title: Execution strategies
+description:
+keywords:
+---
 
 [ NOTE: taken from https://docs.substrate.io/v3/advanced/executor/ ]
 

@@ -1,7 +1,8 @@
 ---
-title: Off-chain operations
+title: Offchain operations
 description: 
 featured_image:
+keywords
 ---
 
 There is often a need to query and/or process off-chain data before it can be included in the on-chain state.

@@ -1,87 +1,71 @@
 ---
-title: Chain Specification
-slug: /v3/runtime/chain-specs
-version: '3.0'
-section: docs
-category: runtime
+title: Chain specification
+description:
 keywords:
   - genesis
   - configuration
   - chain spec
 ---
 
-A chain specification, or "chain spec", is a collection of configuration information that dictates
-which network a blockchain node will connect to, which entities it will initially communicate with,
-and what consensus-critical state it must have at genesis.
+In Substrate, a **chain specification** is the collection of information that describes a Substrate-based blockchain network.
+For example, the chain specification identifies the network that a blockchain node connects to, the other nodes that it initially communicates with, and the initial state that nodes must agree on to produce blocks.
 
-## Structure of a chain specification
+The chain specification is defined using the [`ChainSpec` struct](/rustdocs/latest/sc_service/struct.GenericChainSpec.html).
+The `ChainSpec` struct separates the information required for a chain into two parts:
 
-The [`ChainSpec` struct](/rustdocs/latest/sc_service/struct.GenericChainSpec.html)
-separates the information contained in a chain spec into two parts. A node can use a `ChainSpec`
-instance to create a genesis block.
+* A client specification that contains information used by the Substrate **client** to communicate with network participants and send data to telemetry endpoints.
+  Many of the client specification settings an be overridden by command-line options when starting a node or can be changed after the blockchain has started.
 
-### The client spec
+* The initial **genesis state** that all nodes in the network agree on.
+  The genesis state must be established when the blockchain is first started and it cannot be changed thereafter without starting an entirely new blockchain.
+  
+## Customizing client settings
 
-The first part of the chain spec, is the `ClientSpec`. The `ClientSpec` contains configuration
-information used by the Substrate client, the part of the node outside of the runtime. Much of this
-information is used to communicate with other parties in the network such as a set of bootnodes, a
-set of telemetry endpoints to which the node will send data, and human- and machine-readable names
-for the network to which the node will connect. Many of these items can be overridden by
-command-line flags, and the values can be changed after the blockchain has been launched.
+The Substrate client is the part of the node that runs outside of the runtime.
+The client portion of the chain specification controls information such as:
 
-<Message
-  type={`red`}
-  title={`Warning`}
-  text={`While all properties in this section can be changed after genesis, nodes will only add
-  peers who use the same \`protocolId\`.`}
-/>
+* The boot nodes the client communicates with.
 
-#### Extension
+* The server endpoints for the client to send telemetry data to.
 
-Because the Substrate framework is extensible, it provides a way to customize the client spec with
-additional data to configure customized parts of the client. One example use case is telling the
-node about well-known blocks at specific heights, to prevent long range attacks when syncing a new
-node from genesis.
+* The human- and machine-readable names for the network the client connects to.
 
-### The genesis state
+Because the Substrate framework is extensible, you can also customize the client specification to include additional information.
+For example, you can to configure the client to connect to specific blocks at specific heights to prevent long range attacks when syncing a new node from genesis.
 
-The second part of the chain spec is the consensus-critical genesis configuration. All nodes in the
-network must agree on this initial state before they can agree on any subsequent blocks. Therefore,
-this information must be established at the outset of the chain and cannot be changed thereafter
-without starting an entirely new blockchain. There are no command-line flags to override values in
-the genesis portion of a chain spec.
+Note that you can customize client settings after genesis.
+However, nodes only add peers that use the same `protocolId`.
 
-Examples of what information might be included in the genesis portion of a chain spec include
-initial token balances, the accounts that are initially part of a governance council, or the holder
-of the sudo key. Substrate nodes also place the compiled Wasm runtime logic on chain, so the initial
-runtime must also be supplied in the chain spec.
+## Customizing the genesis configuration
 
-It is this second part of the chain spec that is used when creating a genesis block.
+All nodes in the network must agree on the genesis state before they can agree on any subsequent blocks.
+The information configured in the genesis portion of a chain specification is used to create a genesis block.
+It takes effect when you start the first node and cannot be overridden with command-line options.
+However, you can configure some information in the genesis portion of a chain specification.
+For example, you can customize the genesis portion of the chain specification to include information such as:
+
+* Initial token holder balances.
+
+* Accounts that are initially part of a governance council.
+
+* The administrative account that controls the sudo key.
+
+Substrate nodes also include the compiled WebAssembly for the runtime logic on the chain, so the initial runtime must also be supplied in the chain spec.
 
 ## Storing chain specification information
 
-The information that comprises a chain spec can be stored in either of two ways. Being a Rust
-struct, the first way to store this information is as Rust code. Indeed, Substrate nodes typically
-include at least one, and often many, chain specs hard-coded into the client. Including this
-information directly in the client ensures that the node will know how to connect to at least one
-chain without any additional information supplied by the node operator. In protocols that have a
-notion of "main net" this spec is usually hard-coded in the client.
+The information in the chain specification can be stored in as Rust code or as a JSON file.
+Substrate nodes typically include at least one, and often many, chain specifications hard-coded into the client.
+Including this information as Rust code directly in the client ensures that the node can connect to at least one chain without any additional information supplied by the node operator. 
+In protocols that have a notion of main network, this main network specification is usually hard-coded in the client.
 
-Another common way to store chain spec information is in JSON format. The chain spec struct has a
-method for serializing its data into JSON as well as a function for de-serializing JSON data into an
-instance of a chain spec. When launching testnets or private chains, it is common to distribute a
-JSON-encoded chain spec along with the node binary.
+Alternatively, you can use the build-spec subcommand serialize the chain specification into a JSON file. 
+It is common to distribute a JSON-encoded chain specification with a node binary when launching a test network or a private chain.
 
-## Using chain specifications
+## Providing the chain specification to start a node
 
-Node operators and runtime developers will encounter chain specifications when performing common
-tasks.
-
-### Launching a chain
-
-Each time a node operator starts a node, they provide a chain specification that the node should
-use. In the simplest case, the chain spec is provided implicitly and the node uses a default chain
-spec that is hard-coded into the node binary.
+Each time a node operator starts a node, they provide a chain specification that the node should use. 
+In the simplest case, the chain spec is provided implicitly and the node uses a default chain spec that is hard-coded into the node binary.
 
 A common task is to start a testnet or private network that behaves similarly to an existing
 protocol, but is not connected to the mainnet. To achieve this, the operator may choose an

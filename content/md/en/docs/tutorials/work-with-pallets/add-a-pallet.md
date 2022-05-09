@@ -1,5 +1,5 @@
 ---
-title: Add a module to the runtime
+title: Add a pallet to the runtime
 slug: /tutorials/work-with-pallets/add-a-pallet/
 section: tutorials
 description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.

@@ -102,6 +102,7 @@ To build an ERC-20 token smart contract:
 
 1. Create a new project named `erc20` by running the following command:
 
+<<<<<<< HEAD
    ```bash
    cargo contract new erc20
    ```
@@ -114,6 +115,21 @@ To build an ERC-20 token smart contract:
 
 1. Open the `lib.rs` file in a text editor.
 1. Replace the default template source code with new [erc20](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/2/assets/2.1-template.rs) source code.
+=======
+    ```bash
+    cargo contract new erc20
+    ```
+
+1. Change to the new project directory by running the following command:
+
+    ```bash
+    cd erc20/
+    ```
+
+1. Open the `lib.rs` file in a text editor.
+
+1. Replace the default template source code with new [erc20](https://docs.substrate.io/assets/tutorials/ink-workshop/erc-template-lib-0.rs) source code.
+>>>>>>> main-md
 
 1. Save the changes to the `lib.rs` file, then close the file.
 
@@ -121,14 +137,28 @@ To build an ERC-20 token smart contract:
 
 1. In the `[dependencies]` section, modify the `scale` and `scale-info` settings, if necessary.
 
+<<<<<<< HEAD
    ```toml
    scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
    scale-info = { version = "2", default-features = false, features = ["derive"], optional = true }
    ```
+=======
+    ```toml
+    scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
+    scale-info = { version = "2", default-features = false, features = ["derive"], optional = true }
+    ```
+>>>>>>> main-md
 
 1. Save changes to the `Cargo.toml` file, then close the file.
 
 1. Verify that the program compiles and passes the trivial test by running the following command:
+<<<<<<< HEAD
+=======
+
+    ```bash
+    cargo +nightly test
+    ```
+>>>>>>> main-md
 
    ```bash
    cargo +nightly test
@@ -146,11 +176,19 @@ To build an ERC-20 token smart contract:
 
 1. Verify that you can build the WebAssembly for the contract by running the following command:
 
+<<<<<<< HEAD
    ```bash
    cargo +nightly contract build
    ```
 
    If the program compiles successfully, you are ready to upload it in its current state or start adding functionality to the contract.
+=======
+    ```bash
+    cargo +nightly contract build
+    ```
+
+    If the program compiles successfully, you are ready to upload it in its current state or start adding functionality to the contract.
+>>>>>>> main-md
 
 ## Upload and instantiate the contract
 
@@ -172,7 +210,11 @@ To test the ERC-20 contract before adding new functions:
 
 1. Select the `AccountId` of the account used to instantiate the contract, then click **Read**.
 
+<<<<<<< HEAD
    If you select any other `AccountId`, then click **Read**, the balance is zero because all of the tokens are owned by the contract owner.
+=======
+    If you select any other `AccountId`, then click **Read**, the balance is zero because all of the tokens are owned by the contract owner.
+>>>>>>> main-md
 
 ## Transfer tokens
 
@@ -191,6 +233,7 @@ With this context, the `transfer_from_to()` function then does the following:
 
 - Checks that the `from` balance is less than the `value` number of tokens to be sent.
 
+<<<<<<< HEAD
   ```rust
   let from_balance = self.balance_of(from);
     if from_balance < value {
@@ -205,6 +248,23 @@ With this context, the `transfer_from_to()` function then does the following:
   let to_balance = self.balance_of(to);
   self.balances.insert(to, &(to_balance + value));
   ```
+=======
+* Checks that the `from` balance is less than the `value` number of tokens to be sent.
+
+    ```rust
+    let from_balance = self.balance_of(from);
+      if from_balance < value {
+      return Err(Error::InsufficientBalance)
+    }
+
+* Subtracts the `value` from  transferring account and adds the `value` to the receiving account.
+
+    ```rust
+    self.balances.insert(from, &(from_balance - value));
+    let to_balance = self.balance_of(to);
+    self.balances.insert(to, &(to_balance + value));
+    ```
+>>>>>>> main-md
 
 To add the transfer functions to the smart contract:
 
@@ -216,6 +276,7 @@ To add the transfer functions to the smart contract:
 
 1. Add an `Error` declaration to return an error if there aren't enough tokens in an account to complete a transfer.
 
+<<<<<<< HEAD
    ```rust
    /// Specify ERC-20 error type.
    #[derive(Debug, PartialEq, Eq, scale::Encode, scale::Decode)]
@@ -291,6 +352,83 @@ To add the transfer functions to the smart contract:
 
    test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
    ```
+=======
+    ```rust
+    /// Specify ERC-20 error type.
+    #[derive(Debug, PartialEq, Eq, scale::Encode, scale::Decode)]
+    #[cfg_attr(feature = "std", derive(scale_info::TypeInfo))]
+    pub enum Error {
+        /// Return if the balance cannot fulfill a request.
+        InsufficientBalance,
+    }
+    ```
+
+1. Add an `Result` return type to return the `InsufficientBalance` error .
+
+    ```rust
+    /// Specify the ERC-20 result type.
+    pub type Result<T> = core::result::Result<T, Error>;
+    ```
+
+1. Add the `transfer()` public function to enable the contract caller to transfer tokens to another account.
+
+    ```rust
+    #[ink(message)]
+    pub fn transfer(&mut self, to: AccountId, value: Balance) {
+      let from = self.env().caller();
+      self.transfer_from_to(&from, &to, value)
+    }
+    ```
+
+1. Add the `transfer_from_to()` private function to transfer tokens from account associated with the contract caller to a receiving account.
+
+    ```rust
+    fn transfer_from_to(
+      &mut self,
+      from: &AccountId,
+      to: &AccountId,
+      value: Balance,
+    ) -> Result<()> {
+      let from_balance = self.balance_of_impl(from);
+      if from_balance < value {
+        return Err(Error::InsufficientBalance)
+      }
+
+      self.balances.insert(from, &(from_balance - value));
+      let to_balance = self.balance_of_impl(to);
+      self.balances.insert(to, &(to_balance + value));
+      Ok(())
+    }
+    ```
+
+    This code snippet uses the `balance_of_impl()` function.
+    The `balance_of_impl()` function is the same as the `balance_of` function except that it uses references to look up the account balances in a more efficient way in WebAssembly.
+    Add the following function to the smart contract to use this function:
+
+    ```rust
+    #[inline]
+    fn balance_of_impl(&self, owner: &AccountId) -> Balance {
+      self.balances.get(owner).unwrap_or_default()
+    }
+    ```
+
+1. Verify that the program compiles and passes the test cases by running the following command:
+
+    ```bash
+    cargo +nightly test
+    ```
+
+    The command should display output similar to the following to indicate successful test completion:
+
+    ```text
+    running 3 tests
+    test erc20::tests::new_works ... ok
+    test erc20::tests::balance_works ... ok
+    test erc20::tests::transfer_works ... ok
+    
+    test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+    ```
+>>>>>>> main-md
 
 ## Create events
 
@@ -321,6 +459,7 @@ To add the `Transfer` event:
 
 1. Declare the event using the `#[ink(event)]` attribute macro.
 
+<<<<<<< HEAD
    ```rust
    #[ink(event)]
    pub struct Transfer {
@@ -333,6 +472,20 @@ To add the `Transfer` event:
    ```
 
    You can retrieve data for an `Option<T>` variable is using the `.unwrap_or()` function.
+=======
+    ```rust
+    #[ink(event)]
+    pub struct Transfer {
+      #[ink(topic)]
+      from: Option<AccountId>,
+      #[ink(topic)]
+      to: Option<AccountId>,
+      value: Balance,
+    }
+    ```
+
+    You can retrieve data for an `Option<T>` variable is using the `.unwrap_or()` function.
+>>>>>>> main-md
 
 ### Emit the event
 
@@ -357,6 +510,7 @@ To emit the Transfer event:
 
 1. Add the `Transfer` event to the `new_init()` function in the `new` constructor.
 
+<<<<<<< HEAD
    ```rust
    fn new_init(&mut self, initial_supply: Balance) {
      let caller = Self::env().caller();
@@ -414,6 +568,63 @@ To emit the Transfer event:
 
    test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
    ```
+=======
+    ```rust
+    fn new_init(&mut self, initial_supply: Balance) {
+      let caller = Self::env().caller();
+      self.balances.insert(&caller, &initial_supply);
+      self.total_supply = initial_supply;
+      Self::env().emit_event(Transfer {
+          from: None,
+          to: Some(caller),
+          value: initial_supply,
+      });
+    }
+    ```
+
+1. Add the `Transfer` event to the `transfer_from_to()` function.
+
+    ```rust
+    self.balances.insert(from, &(from_balance - value));
+    let to_balance = self.balance_of_impl(to);
+    self.balances.insert(to, &(to_balance + value));
+    self.env().emit_event(Transfer {
+      from: Some(*from),
+      to: Some(*to),
+      value,
+    });
+    ```
+
+    Notice that `value` does not need a `Some()` because the value is not stored in an `Option`.
+
+1. Add a test that transfers tokens from one account to another.
+
+    ```rust
+    #[ink::test]
+    fn transfer_works() {
+      let mut erc20 = Erc20::new(100);
+      assert_eq!(erc20.balance_of(AccountId::from([0x0; 32])), 0);
+      assert_eq!(erc20.transfer((AccountId::from([0x0; 32])), 10), Ok(()));
+      assert_eq!(erc20.balance_of(AccountId::from([0x0; 32])), 10);
+    }
+
+1. Verify that the program compiles and passes all tests by running the following command:
+
+    ```bash
+    cargo +nightly test
+    ```
+
+    The command should display output similar to the following to indicate successful test completion:
+
+    ```text
+    running 3 tests
+    test erc20::tests::new_works ... ok
+    test erc20::tests::balance_works ... ok
+    test erc20::tests::transfer_works ... ok
+    
+    test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+    ```
+>>>>>>> main-md
 
 ## Enable third-party transfers
 
@@ -444,8 +655,8 @@ For example:
 
 ```rust
 pub struct Erc20 {
-	/// Balances that can be transferred by non-owners: (owner, spender) -> allowed
-	allowances: ink_storage::Mapping<(AccountId, AccountId), Balance>,
+ /// Balances that can be transferred by non-owners: (owner, spender) -> allowed
+ allowances: ink_storage::Mapping<(AccountId, AccountId), Balance>,
 }
 ```
 
@@ -457,6 +668,7 @@ To add the approval logic to the smart contract:
 
 1. Declare the `Approval` event using the `#[ink(event)]` attribute macro.
 
+<<<<<<< HEAD
    ```rust
    #[ink(event)]
    pub struct Approval {
@@ -520,6 +732,71 @@ To add the approval logic to the smart contract:
        self.allowances.get((owner, spender)).unwrap_or_default()
    }
    ```
+=======
+    ```rust
+    #[ink(event)]
+    pub struct Approval {
+        #[ink(topic)]
+        owner: AccountId,
+        #[ink(topic)]
+        spender: AccountId,
+        value: Balance,
+    }
+    ```
+
+1. Add an `Error` declaration to return an error if the transfer request exceeds the account allowance.
+
+    ```rust
+    #[derive(Debug, PartialEq, Eq, scale::Encode, scale::Decode)]
+    #[cfg_attr(feature = "std", derive(scale_info::TypeInfo))]
+    pub enum Error {
+        InsufficientBalance,
+        InsufficientAllowance,
+    }
+    ```
+
+1. Add the storage mapping for an owner and non-owner combination to an account balance.
+
+    ```rust
+    allowances: Mapping<(AccountId, AccountId), Balance>,
+    ```
+
+1. Add the `approve()` function to authorize a `spender` account to withdraw tokens from the caller's account up to a maximum `value`.
+
+    ```rust
+    #[ink(message)]
+    pub fn approve(&mut self, spender: AccountId, value: Balance) -> Result<()> {
+      let owner = self.env().caller();
+      self.allowances.insert((&owner, &spender), &value);
+      self.env().emit_event(Approval {
+        owner,
+        spender,
+        value,
+      });
+      Ok(())
+    }
+    ```
+
+1. Add an `allowance()` function to return the number of tokens a `spender` is allowed to withdraw from the `owner` account.
+
+    ```rust
+    #[ink(message)]
+    pub fn allowance(&self, owner: AccountId, spender: AccountId) -> Balance {
+        self.allowance_impl(&owner, &spender)
+    }
+    ```
+
+    This code snippet uses the `allowance_impl()` function.
+    The `allowance_impl()` function is the same as the `allowance` function except that it uses references to look up the token allowance in a more efficient way in WebAssembly.
+    Add the following function to the smart contract to use this function:
+
+    ```rust
+    #[inline]
+    fn allowance_impl(&self, owner: &AccountId, spender: &AccountId) -> Balance {
+        self.allowances.get((owner, spender)).unwrap_or_default()
+    }
+    ```
+>>>>>>> main-md
 
 ### Add the transfer from logic
 
@@ -543,6 +820,7 @@ To add the `transfer_from` logic to the smart contract:
 
 1. Add the `transfer_from()` function to transfer the `value` number of tokens on behalf to the `from` account to the `to` account.
 
+<<<<<<< HEAD
    ```rust
    /// Transfers tokens on the behalf of the `from` account to the `to account
    #[ink(message)]
@@ -618,6 +896,87 @@ To add the `transfer_from` logic to the smart contract:
    ```
 
 1. Verify that you can build the WebAssembly for the contract by running the following command:
+=======
+    ```rust
+    /// Transfers tokens on the behalf of the `from` account to the `to account
+    #[ink(message)]
+    pub fn transfer_from(
+        &mut self,
+        from: AccountId,
+        to: AccountId,
+        value: Balance,
+    ) -> Result<()> {
+        let caller = self.env().caller();
+        let allowance = self.allowance_impl(&from, &caller);
+        if allowance < value {
+            return Err(Error::InsufficientAllowance)
+        }
+        self.transfer_from_to(&from, &to, value)?;
+        self.allowances
+            .insert((&from, &caller), &(allowance - value));
+            Ok(())
+        }
+    }
+    ```
+
+1. Add a test for the `transfer_from()` function.
+
+    ```rust
+    #[ink::test]
+ fn transfer_from_works() {
+  let mut contract = Erc20::new(100);
+  assert_eq!(contract.balance_of(AccountId::from([0x1; 32])), 100);
+  contract.approve(AccountId::from([0x1; 32]), 20);
+  contract.transfer_from(AccountId::from([0x1; 32]), AccountId::from([0x0; 32]), 10);
+  assert_eq!(contract.balance_of(AccountId::from([0x0; 32])), 10);
+ }
+    ```
+
+1. Add a test for the `allowance()` function.
+
+    ```rust
+    #[ink::test]
+ fn allowances_works() {
+  let mut contract = Erc20::new(100);
+  assert_eq!(contract.balance_of(AccountId::from([0x1; 32])), 100);
+  contract.approve(AccountId::from([0x1; 32]), 200);
+  assert_eq!(contract.allowance(AccountId::from([0x1; 32]), AccountId::from([0x1; 32])), 200);
+
+  contract.transfer_from(AccountId::from([0x1; 32]), AccountId::from([0x0; 32]), 50);
+  assert_eq!(contract.balance_of(AccountId::from([0x0; 32])), 50);
+  assert_eq!(contract.allowance(AccountId::from([0x1; 32]), AccountId::from([0x1; 32])), 150);
+
+  contract.transfer_from(AccountId::from([0x1; 32]), AccountId::from([0x0; 32]), 100);
+  assert_eq!(contract.balance_of(AccountId::from([0x0; 32])), 50);
+  assert_eq!(contract.allowance(AccountId::from([0x1; 32]), AccountId::from([0x1; 32])), 150);
+ }
+    ```
+
+1. Verify that the program compiles and passes all tests by running the following command:
+
+    ```bash
+    cargo +nightly test
+    ```
+
+    The command should display output similar to the following to indicate successful test completion:
+
+    ```text
+    running 5 tests
+    test erc20::tests::new_works ... ok
+    test erc20::tests::balance_works ... ok
+    test erc20::tests::transfer_works ... ok
+    test erc20::tests::transfer_from_works ... ok
+    test erc20::tests::allowances_works ... ok
+    
+    test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+    ```
+
+1. Verify that you can build the WebAssembly for the contract by running the following command:
+
+    ```bash
+    cargo +nightly contract build
+    ```
+>>>>>>> main-md
 
    ```bash
    cargo +nightly contract build

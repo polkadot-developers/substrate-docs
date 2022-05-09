@@ -1,9 +1,8 @@
 ---
 title: How-to quick reference guides
-slug: /how-to-guides
-version: '3.0'
-section: how to guides
-category: overview
+description:
+keywords: 
+featured_image: 
 ---
 
 Substrate _How-to_ quick reference guides provide instructions for achieving specific goals.
@@ -11,36 +10,36 @@ Each guide explains how to perform a specific task with the assumption that you 
 
 The _How-to_ quick reference guides are organized into the following categories:
 
-## Basics
+## [Basics](/reference/how-to-guides/basics)
   
 Learn the simple patterns that runtime engineers know inside out. 
 These guides cover the basics that will help you understand more complex topics.
   
-## Pallet Design
+## [Pallet design](/refernce/how-to-guides/pallet-design)
   
 A collection of best practices on building pallets using FRAME.
 
-## Weights
+## [Weights]()
 
 All guides about benchmarking and weight configurations for runtime engineers.
 
-## Testing
+## [Testing]()
 
 Guides to cover different use cases for testing pallets and other runtime logic.
 
-## Storage migrations
+## [Storage migrations]()
 
 A collection of guides to help runtime engineers with different types of storage migrations.
 
-## Consensus
+## [Consensus]()
 
 Discover different ways to implement consensus mechanisms in your runtimes.
 
-## Parachains
+## [Parachains]()
 
 All things related to integrating and extending standalone Substrate chains to parachains.
 
-## Tools
+## [Tools]()
 
 Guides for tools that are not included out-of-the-box to help you managing Substrate chains in production.
 

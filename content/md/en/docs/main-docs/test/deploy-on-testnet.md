@@ -1,3 +1,9 @@
+---
+title: Deploy on a testnet
+description:
+keywords:
+---
+
 A typical parachain project will undergo several network testing phases before it is ready for a production environment.
 Projects that are ready to deploy their chain to a live testnet are highly recommended to create and maintain their own testnet before connecting to one.
 Here's what the progression from starting as a solo chain to deploying on a parachain test network looks like:

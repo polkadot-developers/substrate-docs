@@ -1,13 +1,10 @@
 ---
 title: Account data structures
-slug: /v3/advanced/account-info
-version: '3.0'
-section: docs
-category: advanced
+description: Describes the storage map data structure used for accounts in FRAME.
 keywords: []
 ---
 
-Accounts are a fundamental part of any blockchain, and, in Substrate, accounts can be used in many different ways. 
+Accounts are a fundamental part of any blockchain, and, in Substrate, accounts can be used in many different ways.
 This article describes how accounts are stored in Substrate and how the account data
 structure is used to manage the account lifecycle in the runtime logic.
 

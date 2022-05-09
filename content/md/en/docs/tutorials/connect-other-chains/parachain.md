@@ -1,4 +1,5 @@
 ---
+<<<<<<< HEAD
 title: Connect a Parachain
 slug: /tutorials/v3/cumulus/connect-parachain
 sideNav: cumulusTutorial
@@ -13,6 +14,10 @@ relevantSkills:
   - Parachains
   - Cumulus
   - XCMP
+=======
+title: Connect to a relay chain
+description: /tutorials/v3/cumulus/connect-parachain
+>>>>>>> main-md
 keywords:
   - cumulus
   - relay chain
