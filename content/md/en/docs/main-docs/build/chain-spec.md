@@ -1,6 +1,6 @@
 ---
 title: Chain specification
-description:
+description: Describes the role of the chain specification in a Substrate-based nework, how to specify the chain specification to use when starting a node, and how to customize and distribute chain specifications.
 keywords:
   - genesis
   - configuration
@@ -13,27 +13,26 @@ For example, the chain specification identifies the network that a blockchain no
 The chain specification is defined using the [`ChainSpec` struct](/rustdocs/latest/sc_service/struct.GenericChainSpec.html).
 The `ChainSpec` struct separates the information required for a chain into two parts:
 
-* A client specification that contains information used by the Substrate **client** to communicate with network participants and send data to telemetry endpoints.
-  Many of the client specification settings an be overridden by command-line options when starting a node or can be changed after the blockchain has started.
+* A client specification that contains information used by the Substrate **outer node** to communicate with network participants and send data to telemetry endpoints.
+  Many of these chain specification settings an be overridden by command-line options when starting a node or can be changed after the blockchain has started.
 
 * The initial **genesis state** that all nodes in the network agree on.
   The genesis state must be established when the blockchain is first started and it cannot be changed thereafter without starting an entirely new blockchain.
   
-## Customizing client settings
+## Customizing outer node settings
 
-The Substrate client is the part of the node that runs outside of the runtime.
-The client portion of the chain specification controls information such as:
+For the outer node, the chain specification controls information such as:
 
-* The boot nodes the client communicates with.
+* The boot nodes the node communicates with.
 
-* The server endpoints for the client to send telemetry data to.
+* The server endpoints for the node to send telemetry data to.
 
-* The human- and machine-readable names for the network the client connects to.
+* The human- and machine-readable names for the network the node connects to.
 
-Because the Substrate framework is extensible, you can also customize the client specification to include additional information.
-For example, you can to configure the client to connect to specific blocks at specific heights to prevent long range attacks when syncing a new node from genesis.
+Because the Substrate framework is extensible, you can also customize the chain specification to include additional information.
+For example, you can to configure the outer node to connect to specific blocks at specific heights to prevent long range attacks when syncing a new node from genesis.
 
-Note that you can customize client settings after genesis.
+Note that you can customize outer node settings after genesis.
 However, nodes only add peers that use the same `protocolId`.
 
 ## Customizing the genesis configuration
@@ -48,68 +47,67 @@ For example, you can customize the genesis portion of the chain specification to
 
 * Accounts that are initially part of a governance council.
 
-* The administrative account that controls the sudo key.
+* The administrative account that controls the `sudo` key.
 
 Substrate nodes also include the compiled WebAssembly for the runtime logic on the chain, so the initial runtime must also be supplied in the chain spec.
 
 ## Storing chain specification information
 
-The information in the chain specification can be stored in as Rust code or as a JSON file.
-Substrate nodes typically include at least one, and often many, chain specifications hard-coded into the client.
-Including this information as Rust code directly in the client ensures that the node can connect to at least one chain without any additional information supplied by the node operator. 
-In protocols that have a notion of main network, this main network specification is usually hard-coded in the client.
+The information in the chain specification can be stored as Rust code or as a JSON file.
+Substrate nodes typically include at least one, and often many, hard-coded chain specifications.
+Including this information as Rust code directly in the node ensures that the node can connect to at least one chain without any additional information supplied by the node operator.
+If you are building a blockchain with the intent to define a main network, this main network specification is usually hard-coded in the outer node.
 
-Alternatively, you can use the build-spec subcommand serialize the chain specification into a JSON file. 
+Alternatively, you can use the `build-spec` subcommand to serialize the chain specification into a JSON file.
 It is common to distribute a JSON-encoded chain specification with a node binary when launching a test network or a private chain.
 
 ## Providing the chain specification to start a node
 
-Each time a node operator starts a node, they provide a chain specification that the node should use. 
-In the simplest case, the chain spec is provided implicitly and the node uses a default chain spec that is hard-coded into the node binary.
+Each time you start a node, you provide the chain specification that the node should use.
+In the simplest case, the node uses a default chain specification that is hard-coded into the node binary.
+You can choose an alternative hard-coded chain spec by using the `--chain` command-line option when you start a node.
+For example, you can instruct the node to use the chain spec associated with the string "local" by specifying `--chain local` as a command-line option.
 
-A common task is to start a testnet or private network that behaves similarly to an existing
-protocol, but is not connected to the mainnet. To achieve this, the operator may choose an
-alternative hard-coded chain spec by using a command-line flag such as `--chain local` that
-instructs the node to use the spec associated with the string "local". A third option available to
-node operators is to provide a chain spec as a JSON file with a command-line flag such as
-`--chain=someCustomSpec.json`, in which case the node will attempt to de-serialize the provided JSON
+If you don't want to start a node with a hard-coded chain specification, you can  provide it as a JSON file.
+For example, you can instruct the node to use the chain spec in the `someCustomSpec.json` file by specifying `--chain=someCustomSpec.json` as a command-line option.
+If you specify a JSON file, the node attempts to de-serialize the provided JSON
 chain spec, and then use it.
 
-### Developing a runtime
+## Declaring storage items for a runtime
 
-Nearly every Substrate runtime will have storage items that need to be configured at genesis. When
-developing with [FRAME](/v3/runtime/frame), any storage item that is declared with the `config()`
-option requires configuration at genesis. It is the job of the chain spec, specifically the genesis
-portion, to configure such storage values.
+In most cases, a Substrate runtime will require storage items to be configured at genesis.
+For example, if you are developing the runtime with FRAME, any storage item that is declared with the `Config` trait requires configuration at genesis.
+These storage values are configured in the genesis portion of the chain spec.
 
-### Customizing a chain spec
+### Creating a custom chain specification
 
-When creating a one-off network for development, testing, or demonstration purposes, a truly
-customized chain spec may be desired. Node operators may export the default chain spec for the
-protocol to JSON format and then make edits. Substrate-based nodes are equipped with a `build-spec`
-sub-command that does this exporting.
+If you are creating a one-off network for development, testing, or demonstration purposes, you might want a fully customized chain specification.
+To create a completely customized chain spec, you can export the default chain spec  to JSON format, then edit the fields in the JSON file.
+For example, you can use the `build-spec`sub-command to export the chain specification to a JSON file:
 
 ```bash
 substrate build-spec > myCustomSpec.json
 ```
 
-Once the chain spec has been exported, the node operator is free to modify any of its fields. It is
-common to modify the network's name and bootnodes as well as any genesis storage items, such as
-token balances, that the operator wishes. Once the edits are made, the operator may launch their
-customized chain by supplying the customized JSON.
+After you export the chain spec, you can modify any of its fields in a text editor.
+For example, you might want to change the network name, bootnodes, and any genesis storage items, such as token balances.
+After editing the JSON file, you can start the node using the customized JSON.
+For example:
 
 ```bash
 substrate --chain=myCustomSpec.json
 ```
 
-See the [custom chain spec how-to guide](/how-to-guides/v3/basics/custom-chain-spec) for a more concrete example.
+See the [custom chain spec how-to guide](/reference/how-to-guides/basics/custom-chain-spec) for a more concrete example.
 
 ## Raw chain specifications
 
-Substrate nodes support runtime upgrades, which means a blockchain's runtime may be different than
-when the chain began. Chain specs, as discussed so far, contain information structured in a way that
-can be understood by the node's runtime. For example, consider this excerpt from the default
-Substrate node's chain specification `.json` file:
+Substrate nodes support runtime upgrades.
+With runtime upgrades, the blockchain's runtime can be different than
+when the chain began.
+Chain specifications contain information structured in a way that
+can be understood by the node's runtime.
+For example, consider this excerpt from the default Substrate node's chain specification `.json` file:
 
 ```json
 "sudo": {
@@ -117,43 +115,29 @@ Substrate node's chain specification `.json` file:
 }
 ```
 
-Before this spec can be used to initialize a node's genesis storage, the human-readable keys must be
-transformed into actual storage keys for the [storage trie](/v3/advanced/storage). This
-transformation is straight-forward, but it requires that the node's runtime be able to understand
-the chain spec.
+Before this chain spec can be used to initialize a node's genesis storage, the human-readable keys must be transformed into actual storage keys for the [storage trie](/main-docs/build/storage).
+This transformation is straight-forward, but it requires that the node's runtime be able to understand the chain spec.
 
-If a node with an upgraded runtime attempts to synchronize a chain from genesis, it will not
-understand the information in this human-readable chain spec. For this reason, there is a second
-encoding of the chain spec known as the "raw" chain spec.
+If a node with an upgraded runtime attempts to synchronize a chain from genesis, it will not understand the information in this human-readable chain spec.
+For this reason, there is a second encoding of the chain spec.
+This second encoding creates a **raw** version of the chain spec.
 
-When distributing chain specs in JSON format, they should be distributed in this raw format to
-ensure that all nodes can sync the chain even after runtime upgrades. Substrate-based nodes support
-the `--raw` flag to produce such raw chain specs.
+When distributing chain specs in JSON format, you should distribute then in the raw format to ensure that all nodes can sync the chain even after runtime upgrades. Substrate-based nodes support the `--raw` flag to produce the raw chain specs.
 
 ```bash
 substrate build-spec --chain=myCustomSpec.json --raw > customSpecRaw.json
 ```
 
-After the conversion process, the above snippet looks like this:
+After the conversion to the raw format, the `sudo key` snippet looks like this:
 
 ```json
 "0x50a63a871aced22e88ee6466fe5aa5d9": "0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d",
 ```
 
-## Next steps
+## Where to go next
 
-### Learn more
-
-- Have a look at the [how-to guide on basic genesis configuration](/how-to-guides/v3/basics/genesis/)
-- Rustdocs for the
-  [`ChainSpec` struct](/rustdocs/latest/sc_service/struct.GenericChainSpec.html)
-- Rustdocs for the
-  [`ProtocolId` struct](/rustdocs/latest/sc_network/config/struct.ProtocolId.html)
-
-### Examples
-
-- Gain hands-on experience with chain specs by
-  [starting a private network](/tutorials/v3/private-network).
-- The
-  [node template's chain specification](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs)
-  stored as rust code.
+* [Add trusted validators](/tutorials/get-started/trusted-network/)
+* [How-to: Ggenesis configuration](/reference/how-to-guides/basics/genesis/)
+* [`ChainSpec` struct](/rustdocs/latest/sc_service/struct.GenericChainSpec.html)
+* [`ProtocolId` struct](/rustdocs/latest/sc_network/config/struct.ProtocolId.html)
+* [Node template chain specification](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs)

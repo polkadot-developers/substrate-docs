@@ -206,6 +206,7 @@ Parity maintains the following libraries built on top of the [JSON-RPC API](http
 As a library that uses the Polkadot JS API, Connect is useful for applications that need to connect to multiple chains, providing end users with a single experience when interacting with multiple chains for the same app.
 
 ## Learn more
+
 - Learn how a transaction is formatted in Susbtrate 
 - Launch a front-end app using Substrate's front-end template 
 - Use a [QR code metadata generation tool](https://github.com/paritytech/metadata-portal) for offline signing devices
