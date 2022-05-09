@@ -80,8 +80,6 @@ This cryptographic digest serves two purposes:
 * It prevents any alterations to the series of transactions after the header has been built and distributed.
 * It enables light clients to succinctly verify that any given transaction exists in a block given only knowledge of the header.
 
-* [Block Reference](/rustdocs/latest/sp_runtime/traits/trait.Block.html)
-
 ## Where to go next
 
 Now that you are familiar with transaction types and the information that constitutes a block, explore the following topics to learn more.
@@ -90,3 +88,4 @@ Now that you are familiar with transaction types and the information that consti
 * [State transitions and storage](/main-docs/fundamentals/state-transitions-and-storage/)
 * [Transactions, weights, and fees](/main-docs/build/tx-weights-fees/)
 * [Transaction formats](/reference/transaction-formats/)
+* [Block reference](/rustdocs/latest/sp_runtime/traits/trait.Block.html)
