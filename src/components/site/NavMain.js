@@ -99,7 +99,7 @@ const DropDown = ({ menuItem, header, isScrolled }) => {
     <li className="list-none m-0" key={menuItem.id} ref={ref}>
       <button className="group focus:outline-none" onClick={() => setIsComponentVisible(!isComponentVisible)}>
         <span
-          className={cx('font-medium', {
+          className={cx('font-medium capitalize', {
             'text-substrateGreen':
               (isComponentVisible && header === 'default') || (isComponentVisible && header === 'home' && isScrolled),
             'text-white': isComponentVisible && header === 'home' && !isScrolled,

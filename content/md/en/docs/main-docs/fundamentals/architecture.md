@@ -2,7 +2,7 @@
 title: Architecture
 description: Introduces the core components of a Substrate node.
 featured_image:
-keywords: 
+keywords:
 ---
 
 As noted in [Blockchain basics](/main-docs/fundamentals/blockchain-basics), a blockchain relies on a decentralized network of computers—called **nodes**—that communicate with each other.
@@ -18,11 +18,11 @@ The following diagram illustrates this separation of responsibilities in simplif
 
 As illustrated in the diagram, Substrate nodes provide a layered environment with three main elements:
 
-* An **outer node** that handles network activity such as peer discovery, managing transaction requests, reaching consensus with peers, and responding to RPC calls.
+- An **outer node** that handles network activity such as peer discovery, managing transaction requests, reaching consensus with peers, and responding to RPC calls.
 
 * A **runtime** that contains all of the business logic for executing transactions, saving state transitions, and interacting with the outer node to prepare blocks for consensus.
 
-* A **light client** that accesses the data stored in the blockchain but does not participate in producing blocks or reaching consensus.
+- A **light client** that accesses the data stored in the blockchain but does not participate in producing blocks or reaching consensus.
 
 ## Outer node responsibilities
 
@@ -32,17 +32,17 @@ Performing these tasks often requires the outer node to query the runtime for in
 
 Some of the most important activities that are handled by the outer node involve the following components:
 
-* [Storage](/main-docs/fundamentals/storage/): The outer node persists the evolving state of a Substrate blockchain using a simple and highly efficient key-value storage layer.
+- [Storage](/main-docs/fundamentals/storage/): The outer node persists the evolving state of a Substrate blockchain using a simple and highly efficient key-value storage layer.
 
-* [Peer-to-peer networking](/main-docs/fundamentals/networking): The outer node uses the Rust implementation of the [`libp2p` network stack](https://libp2p.io/) to communicate with other network participants.
+- [Peer-to-peer networking](/main-docs/fundamentals/networking): The outer node uses the Rust implementation of the [`libp2p` network stack](https://libp2p.io/) to communicate with other network participants.
 
-* [Consensus](/main-docs/fundamentals/consensus/): The outer node communicates with other network participants to ensure they agree on the state of the blockchain.
+- [Consensus](/main-docs/fundamentals/consensus/): The outer node communicates with other network participants to ensure they agree on the state of the blockchain.
 
-* [Remote procedure call (RPC) API](/main-docs/fundamentals/networking): The outer node accepts inbound HTTP and WebSocket requests to allow blockchain users to interact with the network.
+- [Remote procedure call (RPC) API](/main-docs/fundamentals/networking): The outer node accepts inbound HTTP and WebSocket requests to allow blockchain users to interact with the network.
 
-* [Telemetry](): The outer node collects and provides access to node metrics through an embedded [Prometheus](https://prometheus.io/) server.
+- [Telemetry](): The outer node collects and provides access to node metrics through an embedded [Prometheus](https://prometheus.io/) server.
 
-* [Executor](/reference/glossary/#executor): The outer node is responsible for selecting the execution environment—WebAssembly or native Rust—for the runtime to use then dispatching calls to the runtime selected.
+- [Executor](/reference/glossary/#executor): The outer node is responsible for selecting the execution environment—WebAssembly or native Rust—for the runtime to use then dispatching calls to the runtime selected.
 
 ## Runtime responsibilities
 
@@ -58,10 +58,10 @@ It is also the core component of the node for building Substrate blockchains.
 The Substrate runtime compiles as a standard Rust binary and to [WebAssembly (Wasm)](/reference/glossary#webassembly-wasm) byte code.
 The WebAssembly target enables:
 
-* Support for forkless upgrades.
-* Browser compatibility.
-* Runtime validity checking.
-* Validation proofs for relay chain consensus mechanisms.
+- Support for forkless upgrades.
+- Browser compatibility.
+- Runtime validity checking.
+- Validation proofs for relay chain consensus mechanisms.
 
 ### Standard Rust runtime
 
@@ -85,7 +85,7 @@ You can use RPC endpoints with Rust, JavaScript, or other languages to implement
 
 Now that you have an overview of the Substrate architecture and core node components, explore the following topics to learn more.
 
-* [Blockchain basics](/main-docs/fundamentals/blockchain-basics)
-* [State transitions and storage](/main-docs/fundamentals/state-transitions-and-storage/)
-* [Transaction lifecycle](/main-docs/fundamentals/transaction-lifecycle/)
-* [Runtime APIs](/reference/runtime-apis/)
+- [Blockchain basics](/main-docs/fundamentals/blockchain-basics)
+- [State transitions and storage](/main-docs/fundamentals/state-transitions-and-storage/)
+- [Transaction lifecycle](/main-docs/fundamentals/transaction-lifecycle/)
+- [Runtime APIs](/reference/runtime-apis/)

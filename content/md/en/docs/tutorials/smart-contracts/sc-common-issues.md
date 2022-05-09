@@ -1,11 +1,15 @@
 ---
 title: Troubleshoot smart contracts
 slug: /tutorials/smart-contracts/sc-common-issues/
-description: 
+description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.
 keywords:
   - smart contracts
   - erc20
   - wasm
+featured_image: /tutorial-card-images/tuts-4.jpg
+difficulty:
+time:
+category:
 ---
 
 This section describes some of the common issues you might encounter when writing and deploying smart contracts on a Substrate-based blockchain and how you can address them.
@@ -18,7 +22,7 @@ If you interrupt a running node without properly stopping it—for example, by c
 ClientImport("Unexpected epoch change")
 ```
 
-If you see this error, restart your node with the following command: 
+If you see this error, restart your node with the following command:
 
 ```bash
 substrate-contracts-node --dev
@@ -30,8 +34,7 @@ For example, redeploy any contracts you previously uploaded.
 
 ### Outdated contracts in local storage
 
-The Contracts UI uses its own local storage to track the contracts that you have deployed. 
+The Contracts UI uses its own local storage to track the contracts that you have deployed.
 If you deploy a contract using the Contracts UI, then purge chain data for your node, you are prompted to
-reset your local storage. 
+reset your local storage.
 After you reset local storage for the Contracts UI, repeat any steps you performed before purging the node and redeploy any contracts you previously uploaded.
-

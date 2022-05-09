@@ -1,17 +1,6 @@
 ---
-title: Start a local relay chain
+title: "Start a local relay chain"
 description: /tutorials/v3/cumulus/start-relay
-keywords:
-  - cumulus
-  - relay chain
-  - parachain
-  - parathread
-  - paraID
-  - template
-  - rococo
-  - xcm
-  - xcmp
-  - collator
 ---
 
 In this tutorial, you will create a local relay chain—like Polkadot—use [Cumulus](https://github.com/paritytech/cumulus) to create your own parachain, and connect it to the relay chain in a local test environment.
@@ -35,37 +24,37 @@ With those complete, let's dive in!
 ## What you will be doing
 
 <TutorialObjective
-  data={{
+data={{
     textLineOne: '1. Hardware and software requirements',
     url: '#hardware-and-software-requirements',
   }}
 />
 <TutorialObjective
-  data={{
+data={{
     textLineOne: '2. Build your nodes',
     url: '#build-your-nodes',
   }}
 />
 <TutorialObjective
-  data={{
+data={{
     textLineOne: '3. Parachain node template overview',
     url: '#parachain-node-template-overview',
   }}
 />
 <TutorialObjective
-  data={{
+data={{
     textLineOne: '4. Relay chain specification',
     url: '#relay-chain-specification',
   }}
 />
 <TutorialObjective
-  data={{
+data={{
     textLineOne: '5. Start your relay chain ',
     url: '#start-your-relay-chain',
   }}
 />
 <TutorialObjective
-  data={{
+data={{
     textLineOne: '6. Create a custom relay chain spec (optional)',
     url: '#create-a-custom-relay-chain-spec-optional',
   }}
@@ -80,19 +69,20 @@ With those complete, let's dive in!
 ## Hardware and software requirements
 
 <Message
-  type={`yellow`}
-  title={`Hardware requirements`}
-  text={`
+type={`yellow`}
+title={`Hardware requirements`}
+text={`
 Compiling this project is a resource intensive process! We suggest using a machine with **no less than**:
 \n
+
 - 8 GB of RAM (16 GB is suggested)
 - 4 CPU cores (8 cores are suggested)
 - 50 GB of free HDD/SSD space
-\n
-Without the minimal RAM here, you are likely run out of memory resulting in a \`SIGKILL\` error during the compilation process, generally happens on building the \`polkadot-service\` crate.
-So be sure to monitor your RAM usage with tools like [htop](https://htop.dev/) and look out as swap memory starting to be used.
-`}
-/>
+  \n
+  Without the minimal RAM here, you are likely run out of memory resulting in a \`SIGKILL\` error during the compilation process, generally happens on building the \`polkadot-service\` crate.
+  So be sure to monitor your RAM usage with tools like [htop](https://htop.dev/) and look out as swap memory starting to be used.
+  `}
+  />
 
 ### Build with underpowered hardware
 
@@ -120,16 +110,10 @@ This tutorial has been tested on:
   If you have issues, build and run this UI yourself at this tagged version/commit.
 
 <Message
-  type={`red`}
-  title={`Exact Versions Matter`}
-  text={`
-You **must** use the _exact_ versions set forth in this tutorial to ensure that you do not run into
-conflicts.\n
-At the moment, parachains are _very tightly coupled_ with the relay chain codebase they are
-connecting to. To have the least amount of hiccups, be sure to use the corresponding tagged
-version of Polkadot and Parachain Template when working on this tutorial. So if you are using
-[**Polkadot \`v0.9.18\`**](https://github.com/paritytechtree/release-), use the equivalent
-version of [**Parachain Template \`polkadot-v0.9.18\`**](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.18).
+type={`red`}
+title={`Exact Versions Matter`}
+text={` You **must** use the _exact_ versions set forth in this tutorial to ensure that you do not run into conflicts.\n At the moment, parachains are _very tightly coupled_ with the relay chain codebase they are connecting to. To have the least amount of hiccups, be sure to use the corresponding tagged version of Polkadot and Parachain Template when working on this tutorial. So if you are using [**Polkadot \`v0.9.18\`**](https://github.com/paritytechtree/release-), use the equivalent
+version of [**Parachain Template \`polkadot-v0.9.18\`\*\*](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.18).
 `}
 />
 
@@ -204,12 +188,9 @@ If the help page is printed, you have succeeded in building a Cumulus-based para
 You will need a chain specification ([chain spec](/v3/runtime/chain-specs)) for your relay chain network.
 
 <Message
-  type={`yellow`}
-  title={`Minimal validators per collator`}
-  text={`
-Always have one or more relay chain validator nodes running than the total connected parachains. For
-example, if you want to connect two parachains, run three or more relay chain validator nodes.
-`}
+type={`yellow`}
+title={`Minimal validators per collator`}
+text={`Always have one or more relay chain validator nodes running than the total connected parachains. For example, if you want to connect two parachains, run three or more relay chain validator nodes.`}
 />
 
 Whichever chain spec file you choose to use we will refer to the file simply as `chain-spec.json`
@@ -299,9 +280,8 @@ You just need to make sure that nodes on the same local machine do not have conf
 Optionally, explore the [how-to guide on configuring a custom chain spec](/how-to-guides/v3/basics/custom-chain-spec) for instructions to tweak the provided [plain chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-plain.json) for addition of more validators without modification of Polkadot's source code.
 
 <Message
-  type={`yellow`}
-  title={`chain spec testing with \`rococo-local\``}
-  text={`
+type={`yellow`}
+title={`chain spec testing with \`rococo-local\``} text={`
 For this tutorial, your final chain spec filename **must** start with \`rococo\` or the node will not know what runtime logic to include.
 `}
 />

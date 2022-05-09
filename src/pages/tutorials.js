@@ -14,7 +14,7 @@ export default function TutorialsPage() {
     <Layout>
       <SEO title="Tutorials" />
       <div className="flex flex-col lg:flex-row">
-        <Sidebar>
+        <Sidebar currentPath="/tutorials/">
           <NavSidebar currentPath="/tutorials/" />
         </Sidebar>
 
