@@ -10,48 +10,56 @@ const Menu = ({ page, currentPath }) => {
   //console.log(currentPath + 'The page: ' + page.url);
   return (
     <nav role="navigation">
-      <ul className="p-0 m-0">
+      <ul className="p-0 m-0 list-outside">
         <li
-          className={cx('p-0 m-0 list-none font-semibold', {
+          className={cx('p-0 m-0 list-none font-semibold cursor-pointer', {
             'text-substrateBlue': currentPath === page.url,
           })}
         >
           <span className="inline-block py-3 collapse-button w-full" onClick={() => setIsOpen(!isOpen)}>
-            <span className="w-10 inline-block text-center">
-              {page.title === 'Quick start' && (
-                <Icon
-                  name="quickStart"
-                  className={cx('p-0 mx-2 inline fill-current text-substrateDark dark:text-white', {
-                    'fill-substrateBlue': currentPath === page.url,
-                  })}
-                />
-              )}
-              {page.title === 'Docs' && (
-                <Icon
-                  name="docsIcon"
-                  className={cx('p-0 mx-2 inline fill-current text-substrateDark dark:text-white', {
-                    'fill-substrateBlue': currentPath === page.url,
-                  })}
-                />
-              )}
-              {page.title === 'Tutorials' && (
-                <Icon
-                  name="tutorials"
-                  className={cx('p-0 mx-2 inline fill-current text-substrateDark dark:text-white', {
-                    'fill-substrateBlue': currentPath === page.url,
-                  })}
-                />
-              )}
-              {page.title === 'Reference' && (
-                <Icon
-                  name="reference"
-                  className={cx('p-0 mx-2 inline fill-current text-substrateDark dark:text-white', {
-                    'fill-substrateBlue': currentPath === page.url,
-                  })}
-                />
-              )}
-            </span>
             <Link className="" to={page.url}>
+              <span className="w-10 inline-block text-center">
+                {page.title === 'Quick start' && (
+                  <span title="Quick Start">
+                    <Icon
+                      name="quickStart"
+                      className={cx('p-0 mx-2 inline fill-current text-substrateDark dark:text-white', {
+                        'fill-substrateBlue': currentPath === page.url,
+                      })}
+                    />
+                  </span>
+                )}
+                {page.title === 'Docs' && (
+                  <span title="Docs">
+                    <Icon
+                      name="docsIcon"
+                      className={cx('p-0 mx-2 inline fill-current text-substrateDark dark:text-white', {
+                        'fill-substrateBlue': currentPath === page.url,
+                      })}
+                    />
+                  </span>
+                )}
+                {page.title === 'Tutorials' && (
+                  <span title="Tutorials">
+                    <Icon
+                      name="tutorials"
+                      className={cx('p-0 mx-2 inline fill-current text-substrateDark dark:text-white', {
+                        'fill-substrateBlue': currentPath === page.url,
+                      })}
+                    />
+                  </span>
+                )}
+                {page.title === 'Reference' && (
+                  <span title="Docs">
+                    <Icon
+                      name="reference"
+                      className={cx('p-0 mx-2 inline fill-current text-substrateDark dark:text-white', {
+                        'fill-substrateBlue': currentPath === page.url,
+                      })}
+                    />
+                  </span>
+                )}
+              </span>
               {page.title}
             </Link>
             {page.pages ? (

@@ -19,12 +19,14 @@ const MobileMenu = ({ page, currentPath }) => {
         >
           <span className="inline-block py-3 collapse-button w-full" onClick={() => setIsOpen(!isOpen)}>
             {page.title === 'Quick start' && (
-              <Icon
-                name="quickStart"
-                className={cx('p-0 mx-2 inline fill-current text-substrateDark dark:text-white', {
-                  'fill-substrateBlue': currentPath === page.url,
-                })}
-              />
+              <span title="Quick Start">
+                <Icon
+                  name="quickStart"
+                  className={cx('p-0 mx-2 inline fill-current text-substrateDark dark:text-white', {
+                    'fill-substrateBlue': currentPath === page.url,
+                  })}
+                />
+              </span>
             )}
             {page.title === 'Docs' && (
               <Icon

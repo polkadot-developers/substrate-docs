@@ -79,9 +79,9 @@ function SearchModal({ id, closeModal }) {
     const selectedSectionNames = Object.entries(sectionNames)
       .filter(([key]) => selectedSections.indexOf(key) >= 0)
       .map(([, val]) => val);
-    console.log(selectedSectionNames);
-    console.log(searchResults);
-    console.log(selectedSectionNames.includes(searchResults[0].slug));
+    //console.log(selectedSectionNames);
+    //console.log(searchResults);
+    //console.log(selectedSectionNames.includes(searchResults[0].slug));
     // console.log(
     //   Object.keys(searchResults).map(function (key) {
     //     return searchResults[key];
