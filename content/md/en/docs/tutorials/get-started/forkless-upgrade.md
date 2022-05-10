@@ -1,17 +1,6 @@
 ---
 title: Upgrade a runtime
 description: Perform a forkless runtime upgrade on a running Substrate network.
-keywords:
-  - runtime upgrades
-  - forkless
-  - schedular pallet
-difficulty: 1
-time: 2 Hours
-relevantSkills:
-  - Rust
-  - FRAME
-  - Wasm
-featured_image: /tutorial-card-images/tuts-6.jpeg
 ---
 
 Unlike many blockchains, the Substrate development framework supports **forkless upgrades** to the runtime that is the core of the blockchain.
@@ -34,10 +23,11 @@ Before you begin, verify the following:
 - You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and have the Substrate node template installed locally.
 
 <<<<<<< HEAD
-- You have reviewed [Add a module to the runtime](/tutorials/work-with-pallets/add-a-pallet) for an introduction to adding a new pallet to the runtime.
-=======
+
+- # You have reviewed [Add a module to the runtime](/tutorials/work-with-pallets/add-a-pallet) for an introduction to adding a new pallet to the runtime.
+
 * You have reviewed [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet) for an introduction to adding a new pallet to the runtime.
->>>>>>> main-md
+  > > > > > > > main-md
 
 ## Tutorial objectives
 

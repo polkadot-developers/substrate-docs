@@ -1,7 +1,6 @@
 ---
 title: Deploy a parachain
 description:
-keywords:
 ---
 
 ## NOTE: BREAKING CHANGES
@@ -68,11 +67,10 @@ Specifically, you will perform the following to use `polkadot-launch`:
 The important new aspect here is the config file in step 2. Here is one to get started:
 
 - <a
-    href="/assets/tutorials/cumulus/polkadot-launch-config/relay-3-validators--2paras-1collator.json"
-    download
-  >
-    relay-3-validators--2paras-1collator.json
-  </a>
+  href="/assets/tutorials/cumulus/polkadot-launch-config/relay-3-validators--2paras-1collator.json"
+  download
+  > relay-3-validators--2paras-1collator.json
+  > </a>
 
 Let's take a brief look inside the file. Inside the `relaychain` section, there are:
 
@@ -130,10 +128,9 @@ Another way to verify the setup is by going to:
 After configuring the Apps to connect to the local **relay chain node**, you should see the UI showing two parachains being connected to the relay chain.
 
 <Message
-  type={`green`}
-  title={`All done!`}
-  text={`
-You have automated the launch of a 3-node relay chain, and two parachains with a single node using \`polkadot-launch\` CLI utility and avoided all the initial manual overhead of starting nodes and registering parachains!
+type={`green`}
+title={`All done!`}
+text={` You have automated the launch of a 3-node relay chain, and two parachains with a single node using \`polkadot-launch\` CLI utility and avoided all the initial manual overhead of starting nodes and registering parachains!
 `}
 />
 

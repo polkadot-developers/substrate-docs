@@ -1,17 +1,6 @@
 ---
 title: Prepare your first contract
-slug: /tutorials/get-started/smart-contract/
 description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.
-keywords:
-  - smart contracts
-  - erc20
-  - wasm
-difficulty: 2
-time: 2.5 Hours
-relevantSkills:
-  - ink!
-  - Smart Contracts
-featured_image: /tutorial-card-images/tuts-5.jpeg
 ---
 
 As you learned in [Blockchain basics](/main-docs/fundamentals/blockchain-basics/) decentralized applications are most often written as **smart contracts**.

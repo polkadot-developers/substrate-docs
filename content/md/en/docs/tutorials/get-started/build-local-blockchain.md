@@ -1,16 +1,6 @@
 ---
 title: Build a local blockchain
 description: Compile, start, and interact with your first Substrate blockchain node.
-keywords:
-  - node
-  - template
-  - basics
-difficulty: 1
-time: 1 hour
-skills:
-  - Rust
-  - Blockchain basics
-featured_image: /tutorial-card-images/tuts-4.jpg
 ---
 
 As you learned in [Blockchain basics](/main-docs/fundamentals/blockchain-basics/), a blockchain consists of decentralized computers—called nodes—to form a network.

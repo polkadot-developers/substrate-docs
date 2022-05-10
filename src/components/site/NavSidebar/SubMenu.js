@@ -12,7 +12,7 @@ const SubMenu = ({ pages, currentPath }) => {
         return (
           <li
             key={index}
-            className={cx('m-0 pb-2 m-0 list-none font-medium', {
+            className={cx('m-0 pb-2 m-0 list-none font-medium cursor-pointer', {
               'text-substrateDark dark:text-white': currentPath !== page.url,
               'text-substrateBlue': currentPath === page.url,
             })}
@@ -21,10 +21,13 @@ const SubMenu = ({ pages, currentPath }) => {
             {page.url ? <Link to={page.url}>{page.title}</Link> : `${page.title}`}
             {page.pages ? (
               <svg
-                className={cx('mt-1 fill-current text-substrateDark dark:text-white align-middle float-right inline', {
-                  'fill-substrateBlue': currentPath === page.url,
-                  '-rotate-180': isOpen === true,
-                })}
+                className={cx(
+                  'mt-1 fill-current text-substrateDark dark:text-white align-middle float-right inline cursor-pointer',
+                  {
+                    'fill-substrateBlue': currentPath === page.url,
+                    '-rotate-180': isOpen === true,
+                  }
+                )}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="-5 -8 24 24"
                 width="16"
