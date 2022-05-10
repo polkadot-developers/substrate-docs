@@ -1,19 +1,13 @@
 import cx from 'classnames';
 import React, { useState } from 'react';
 
+import snakecase from '../../../hooks/snakecase';
 import Icon from '../../default/Icon';
 import { Link } from '../../default/Link';
 import SubMenu from './SubMenu';
 
 const Menu = ({ page, currentPath }) => {
   const [isOpen, setIsOpen] = useState(currentPath.includes(page.url));
-  const snakecase = string => {
-    return string
-      .replace(/\W+/g, ' ')
-      .split(/ |\B(?=[A-Z])/)
-      .map(word => word.toLowerCase())
-      .join('_');
-  };
   return (
     <nav role="navigation">
       <ul className="p-0 m-0 list-outside">
