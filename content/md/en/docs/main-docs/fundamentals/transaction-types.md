@@ -1,34 +1,91 @@
 ---
-title: Extrinsics
+title: Transactions and block basics
 description: 
 featured_image:
+keywords:
 --- 
 
-_This article teaches you about "extrinsics" in Substrate as well as the different types that exist and examples of how they can be used in a runtime._
-_Understanding these naming conventions and the purpose of each type is important for blockchain builders to identify what type to use appropriately._ 
- 
-Transactions in Substrate can be considered as any piece of data to be included in a block.
-They can be one of 3 distinct types, all of which fall under a broader category called  "extrinsics"-i.e. any information that originates from _outside_ a runtime.
-These are:
+In this article, you'll learn about the different types of transactions that you can create and how you can use them in a runtime.
+Broadly-speaking, transactions determine the data that makes its way into the blocks in your blockchain.
+By learning how different transaction types are used, you'll be better prepared to select the appropriate type for your needs.
 
-* **Signed transactions**: must contain the signature of an account sending an inbound request to execute some runtime call.
-  With a signed transaction, the account used to submit the request typically pays a transaction fee and must sign it using the account's private key.
-* **Unsigned transactions**: don't carry any information about who submitted the transaction, since the format of this type of transaction doesn't require a signature.
-Developers can define what conditions must be met for these transactions to be validated.
-For this reason, this transaction type consumes more resources than a signed transaction because some custom validation mechanisms must be checked to validate the request.
-  With an unsigned transaction, there's no economic deterrent to prevent spam or replay attacks, so custom logic is required to protect the network from these types of transactions being misused.
-* **Inherents**: are a special type of unsigned transaction made by block authors which carry information required to build a block such as timestamps, storage proofs and uncle blocks.
+## What is a transaction?
 
-Here are some examples of each type of extrinsic being used in different scenarios:
+In general, transactions provide a mechanism for making changes to state that can be included in a block.
+There are three distinct transaction types in Substrate:
 
-| Scenario | Function call example | Type | Reason |
-| -------- | ---- | -------------- | ----------- 
-| Bob wants to send some tokens to Alice and tip the block author to give this transaction more priority, using the Balances pallet. | `pallet_balances::Call::transfer` in [Polkadot](https://polkadot.subscan.io/extrinsic/8749664-2) | Signed transaction | This function can be called by any account, so we must ensure that the caller signs the transaction and pays a fee for it to be processed.
-| Charlie proposes a tip to reward Dave using the Tipping pallet. | `pallet_tips::Call::report_awesome` in [Polkadot](https://polkadot.subscan.io/extrinsic/8818237-2) | Signed transaction | This function is designed so that any account can call it, by depositing some amount and giving a reason for the tip which will be stored on-chain.
-| The on-chain council passes some motion that includes submitting a batch of valid transactions to be executed. | `pallet_utility::Call::batch` in [Polkadot](https://polkadot.subscan.io/council/131) | Unsigned transaction | This type of extrinsic can only be submitted if a majority of the council approves it and cannot be executed by any single account.
-| A validator node sends a signal to the network to indicate it's online. | `pallet_im_online::Call::heartbeat` in [Kusama](https://kusama.subscan.io/extrinsic/11232100-5) | Unsigned transaction | This can only be called by a node that's registered as a validator in the network, which is verified as part of an internal check of the function's logic and allows the node to call it without paying any fees. 
-| The network wants block authoring nodes to include the current timestamp into the blocks they produce. | `pallet_timestamp::Call::now` in [Kusama](https://kusama.subscan.io/extrinsic/11232115-0) | Inherent | This is a special extrinsic that can only be included in a block by an authoring node. 
-| A parachain needs to send its relay chain the validation data the relay chain expects. | `paras_inherent::Call::enter` in [Kusama](https://kusama.subscan.io/extrinsic/11232398-1) | Inherent | This is a special type of extrinsic that can only be sent by a collator node. 
+* [Signed transactions](#signed-transactions)
+* [Unsigned transactions](#unsigned-transactions)
+* [Inherent transactions](#inherent-transactions)
 
-The way signed and unsigned transactions are formatted, validated and executed provides an important foundation for understanding the design of different types of extrinsics and their intended behaviors available in Substrate.
-Learn about how this works by reading the [Transaction lifecycle]() article.
+In Substrate, all three transaction types are often more broadly referred to as **extrinsics**.
+The term extrinsic is generally used to mean any information that originates outside of the a runtime.
+However, for practical purposes, it is more useful to consider each transaction type independently and identify scenarios where each type would be most applicable.
+
+### Signed transactions
+
+Signed transactions must include the signature of an account sending an inbound request to execute some runtime call.
+Typically, the request is signed using the private key for the account that is submitting the request.
+In most cases, the account submitting the request also pays a transaction fee.However, transaction fees and other elements of transaction processing depend on how the runtime logic is defined.
+
+Signed transactions are the most common type of transaction.
+As an example, assume you have an account with some number of tokens.
+If you want to transfer tokens to Alice, you can call the `pallet_balances::Call::transfer` function in the Balances pallet.
+Because your account is used to make this call, your account key is used to sign the transaction.
+As the requester, you would typically be responsible for paying a fee to have your request processed.
+Optionally, you could also tip the block author to give your transaction higher priority.
+
+### Unsigned transactions
+
+Unsigned transactions don't require a signature and don't include any information about who submitted the transaction.
+
+With an unsigned transaction, there's no economic deterrent to prevent spam or replay attacks.
+You must define the conditions for validating unsigned transactions and the logic required to protect the network from misuse and attacks.
+Because unsigned transactions require custom validation, this transaction type consumes more resources than a signed transaction.
+
+The `pallet_im_online::Call::heartbeat` function uses unsigned transactions to enable validator nodes to send a signal to the network to indicate that the node is online.
+This function can only be called by a node that's registered as a validator in the network.
+The function includes internal logic to verify that the node is a validator, allowing the node to call the function using an unsigned transaction to avoid paying any fees. 
+
+### Inherent transactions
+
+Inherent transactions—sometimes referred to as inherents—are a special type of unsigned transaction.
+With this type of transaction, block authoring nodes can add information directly to a block.
+Inherent transactions can only be inserted into a block by the block authoring node that calls them.
+Typically, this type of transaction is not gossiped to other nodes or stored in the transaction queue.
+The data inserted using an inherent transaction is assumed to be valid without requiring specific validation.
+
+For example, if a block authoring node inserts a timestamp into a block, there is no way to prove that a timestamp is accurate.
+Instead, validators might accept or reject the block based on whether the timestamp it is within some acceptable range of their own system clocks.
+
+As an example, the  `pallet_timestamp::Call::now` function enables a block authoring node to insert a current timestamp in each block the node produces.
+Similarly, the `paras_inherent::Call::enter` function enable a parachain collator node to send its relay chain the validation data the relay chain expects.
+
+## What is a block?
+
+In Substrate, a block consists of a header and an array of transactions.
+The header contains the following properties:
+
+* Block height
+* Parent hash
+* Transaction root
+* State root
+* Digest
+
+All of the transactions are bundled together as a series to be executed as defined in the runtime.
+You'll learn more about transaction ordering in [Transaction lifecycle](/main-docs/fundamentals/transaction-lifecycle/).
+The transaction root is a cryptographic digest of this series. 
+This cryptographic digest serves two purposes:
+
+* It prevents any alterations to the series of transactions after the header has been built and distributed.
+* It enables light clients to succinctly verify that any given transaction exists in a block given only knowledge of the header.
+
+## Where to go next
+
+Now that you are familiar with transaction types and the information that constitutes a block, explore the following topics to learn more.
+
+* [Transaction lifecycle](/main-docs/fundamentals/transaction-lifecycle/)
+* [State transitions and storage](/main-docs/fundamentals/state-transitions-and-storage/)
+* [Transactions, weights, and fees](/main-docs/build/tx-weights-fees/)
+* [Transaction formats](/reference/transaction-formats/)
+* [Block reference](/rustdocs/latest/sp_runtime/traits/trait.Block.html)

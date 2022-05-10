@@ -24,7 +24,7 @@ Before you start building, though, you want to make sure you are in the right pl
 
 * [Consensus](/main-docs/fundamentals/consensus/) describes the most common consensus models and the types of consensus you can implement for a Substrate blockchain.
 
-* [Transactions and block input](/main-docs/fundamentals/transaction-types/) introduces transaction types and the components that make up a block.
+* [Transactions and block basics](/main-docs/fundamentals/transaction-types/) introduces transaction types and the components that make up a block.
 
 * [Transaction lifecycle](/main-docs/fundamentals/transaction-lifecycle/) explains how transactions are received, queued, and executed to eventually be included in a block.
 
