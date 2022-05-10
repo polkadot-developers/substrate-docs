@@ -79,15 +79,15 @@ docs:
         - title: Custom pallets
           url: /main-docs/build/custom-pallets/
         - title: Pallet coupling
-          url: /main-docs/build/frontend/
+          url: /main-docs/build/pallet-coupling/
         - title: Events and errors
           url: /main-docs/build/events-errors/
         - title: Randomness
           url: /main-docs/build/randomness/
-        - title: Chain specifications
+        - title: Chain specification
           url: /main-docs/build/chain-spec/
         - title: Origins
-          url: /main-docs/build/orgins/
+          url: /main-docs/build/origins/
         - title: Remote procedure calls
           url: /main-docs/build/custom-rpc/
         - title: Application development
