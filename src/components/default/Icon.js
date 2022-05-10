@@ -50,7 +50,7 @@ import paperplane from '../../images/svg/paperplane.svg';
 import pen from '../../images/svg/pen.svg';
 import placeholder from '../../images/svg/placeholder.svg';
 import polkadotLogo from '../../images/svg/polkadot-logo.svg';
-import quickStart from '../../images/svg/quick-start.svg';
+import quick_start from '../../images/svg/quick-start.svg';
 import reference from '../../images/svg/reference.svg';
 import search from '../../images/svg/search.svg';
 import seminar from '../../images/svg/seminar.svg';
@@ -232,7 +232,7 @@ const iconsMap = {
   /* Navigation  */
   docsIcon: docsIcon,
   reference: reference,
-  quickStart: quickStart,
+  quick_start: quick_start,
   tutorials: tutorials,
   time: time,
   docsNavIcon: docsNavIcon,

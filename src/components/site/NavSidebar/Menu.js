@@ -7,7 +7,13 @@ import SubMenu from './SubMenu';
 
 const Menu = ({ page, currentPath }) => {
   const [isOpen, setIsOpen] = useState(currentPath.includes(page.url));
-  //console.log(currentPath + 'The page: ' + page.url);
+  const snakecase = string => {
+    return string
+      .replace(/\W+/g, ' ')
+      .split(/ |\B(?=[A-Z])/)
+      .map(word => word.toLowerCase())
+      .join('_');
+  };
   return (
     <nav role="navigation">
       <ul className="p-0 m-0 list-outside">
@@ -19,46 +25,14 @@ const Menu = ({ page, currentPath }) => {
           <span className="inline-block py-3 collapse-button w-full" onClick={() => setIsOpen(!isOpen)}>
             <Link className="" to={page.url}>
               <span className="w-10 inline-block text-center">
-                {page.title === 'Quick start' && (
-                  <span title="Quick Start">
-                    <Icon
-                      name="quickStart"
-                      className={cx('p-0 mx-2 inline fill-current text-substrateDark dark:text-white', {
-                        'fill-substrateBlue': currentPath === page.url,
-                      })}
-                    />
-                  </span>
-                )}
-                {page.title === 'Docs' && (
-                  <span title="Docs">
-                    <Icon
-                      name="docsIcon"
-                      className={cx('p-0 mx-2 inline fill-current text-substrateDark dark:text-white', {
-                        'fill-substrateBlue': currentPath === page.url,
-                      })}
-                    />
-                  </span>
-                )}
-                {page.title === 'Tutorials' && (
-                  <span title="Tutorials">
-                    <Icon
-                      name="tutorials"
-                      className={cx('p-0 mx-2 inline fill-current text-substrateDark dark:text-white', {
-                        'fill-substrateBlue': currentPath === page.url,
-                      })}
-                    />
-                  </span>
-                )}
-                {page.title === 'Reference' && (
-                  <span title="Docs">
-                    <Icon
-                      name="reference"
-                      className={cx('p-0 mx-2 inline fill-current text-substrateDark dark:text-white', {
-                        'fill-substrateBlue': currentPath === page.url,
-                      })}
-                    />
-                  </span>
-                )}
+                <span title={page.title}>
+                  <Icon
+                    name={snakecase(page.title)}
+                    className={cx('p-0 mx-2 inline fill-current text-substrateDark dark:text-white', {
+                      'fill-substrateBlue': currentPath === page.url,
+                    })}
+                  />
+                </span>
               </span>
               {page.title}
             </Link>
