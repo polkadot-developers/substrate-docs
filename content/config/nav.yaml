@@ -54,17 +54,17 @@ docs:
           url: /main-docs/install/other-tools/
         - title: Troubleshoot Rust issues
           url: /main-docs/install/troubleshooting/
-    - title: Design
-      url: /main-docs/design/
-      pages:
-        - title: Pallet design
-          url: /main-docs/design/pallet-design/
-        - title: Smart contract pallets
-          url: /main-docs/design/smart-contract-pallets/
-        - title: Storage design decisions
-          url: /main-docs/design/storage-design/
-        - title: Economic models
-          url: /main-docs/design/economic-models/
+    #- title: Design
+      #url: /main-docs/design/
+      #pages:
+        #- title: Pallet design
+          #url: /main-docs/design/pallet-design/
+        #- title: Smart contract pallets
+          #url: /main-docs/design/smart-contract-pallets/
+        #- title: Storage design decisions
+          #url: /main-docs/design/storage-design/
+        #- title: Economic models
+          #url: /main-docs/design/economic-models/
     - title: Build
       url: /main-docs/build/
       pages:
@@ -73,15 +73,27 @@ docs:
         - title: Build process
           url: /main-docs/build/build-process/
         - title: Storage and data structures
-          url: /main-docs/build/storage/
+          url: /main-docs/build/runtime-storage/
         - title: Transactions, weights, and fees
           url: /main-docs/build/tx-weights-fees/
         - title: Custom pallets
           url: /main-docs/build/custom-pallets/
+        - title: Pallet coupling
+          url: /main-docs/build/frontend/
+        - title: Events and errors
+          url: /main-docs/build/events-errors/
+        - title: Randomness
+          url: /main-docs/build/randomness/
+        - title: Chain specifications
+          url: /main-docs/build/chain-spec/
+        - title: Origins
+          url: /main-docs/build/orgins/
+        - title: Remote procedure calls
+          url: /main-docs/build/custom-rpc/
         - title: Application development
           url: /main-docs/build/frontend/
-        - title: Best practices
-          url: /main-docs/build/best-practices/
+        #- title: Best practices
+          #url: /main-docs/build/best-practices/
     - title: Test
       url: /main-docs/test/
       pages:
@@ -93,8 +105,8 @@ docs:
           url: /main-docs/test/debug/
         - title: Deploy on a testnet
           url: /main-docs/test/deploy-on-testnet/
-    - title: Deploy
-      url: /main-docs/deploy/
+    #- title: Deploy
+      #url: /main-docs/deploy/
     - title: Maintain
       url: /main-docs/maintain/
       pages:
