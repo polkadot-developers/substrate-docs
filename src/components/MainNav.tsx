@@ -130,6 +130,11 @@ const MainNav = {
                 external: true,
               },
               {
+                linkTitle: 'Past Seminars',
+                link: `${site}/ecosystem/resources/past-seminars`,
+                external: true,
+              },
+              {
                 linkTitle: 'Awesome Substrate',
                 link: `${site}/ecosystem/resources/awesome-substrate`,
                 external: true,
