@@ -6,7 +6,7 @@ featured_image:
 
 [Rust](https://www.rust-lang.org/) is a highly performant, memory safe and efficient programming language and a first choice for Substrate for the following reasons:
 
-- Rust is friendly: it's compiled, meaning that the compiler won’t ever let you write unsafe code that could crash your program at runtime.
+- Rust has a friendly compiler: it checks each and every variable you use and every memory address you reference to make it hard for you to write poor quality code.
 
 - Rust is fast: it's statically typed at compile time, making it possible for the compiler to optimize the code for speed and for developers to optimize for a specific compilation target.
 
