@@ -4,15 +4,13 @@ description: Highlights the Rust programming conventions that are of particular 
 featured_image:
 --- 
 
-[Rust](https://www.rust-lang.org/) is a highly performant, memory safe and efficient programming language and a first choice for Substrate for the following reasons:
-
-- Rust has a friendly compiler: it checks each and every variable you use and every memory address you reference to make it hard for you to write poor quality code.
+[Rust](https://www.rust-lang.org/) is a highly performant programming language and a first choice for Substrate for the following reasons:
 
 - Rust is fast: it's statically typed at compile time, making it possible for the compiler to optimize the code for speed and for developers to optimize for a specific compilation target.
 
 - Rust is portable: it's designed to run on embedded devices with support for any type of operating system.
 
-- Rust is memory safe: it has no garage collector and employs a robust ownership paradigm to avoid any memory leaks.
+- Rust is memory safe: it has no garage collector and it checks each and every variable you use and every memory address you reference to avoid any memory leaks.
 
 - Rust is Wasm first: it has first class support for compiling to WebAssembly.
 
@@ -39,39 +37,13 @@ When you're getting started with Substrate, it isn't so important to know exactl
 Derive attributes are useful for custom runtime types that need to satisfy a number of traits. 
 For instance, any type of this sort needs to be encodable and decodable so that a node can interact with it during runtime execution.
 
-Substrate provides its own set of traits to help declare the intended behaviour of a custom type for the runtime and uses the `#[derive]` macro to do this.
-
-These include:
-
-* `Encode`: Enables the runtime to serialize a custom type into bytes.
-* `Decode`: Enables any application to be able to deserialize bytes into the specific custom type.
-* `TypeInfo`: Provides useful information to the Runtime Metadata about the type.
-* `MaxEncodedLen`: Ensures that the type is bounded in size.
-* `RuntimeDebug`: Allow a type to be printed to the console; useful for tests.
-
-In Substrate, the Rust compiler will likely give you errors if you don't correctly implement these traits for your runtime types.
-So to enforce any requirements a type may need, you must tell the compiler what to expect. 
-For example:
-
-```rust
-#[derive(Encode, Decode, TypeInfo, MaxEncodedLen, RuntimeDebug, Eq, PartialEq, Clone, Copy)]
-pub struct RuntimeType {
-    pub field1: [u8; 16],
-    pub field2: Option<u32>,
-}
-```
-
-Other traits from Rust's standard library are useful too in some cases, such as:
-
-* `Eq` and `PartialEq`: To check that two structs are equal.
-* `Clone` and `Copy`: To allow an struct to be duplicated.
-
 Other attribute like macros are also common throughout Substrate's codebase for:
+
 * Telling the compiler if code snippets are meant to compile to `no_std` or may access the `std` library or not.
 * Custom FRAME support macros for writing pallets.
 * Specifying the way the runtime in built.
 
-## Configuration traits
+## Generics and configuration traits
 
 Often compared to interfaces in languages like Java, traits in Rust provide ways to give advanced functionality to a type.
 
@@ -82,8 +54,6 @@ In addition, in any FRAME pallet the `Config` trait is generic over `T` (more on
 Some common examples of these core runtime types could be `T::AccountId`, the common type for identifying user accounts in the runtime or `T::BlockNumber`, the block number type used by the runtime.
 
 For more information about generic types and traits in Rust, see the sections on [Generic Types](https://doc.rust-lang.org/book/ch10-01-syntax.html), [Traits](https://doc.rust-lang.org/book/ch10-02-traits.html) and [Advanced traits](https://doc.rust-lang.org/book/ch19-03-advanced-traits.html) from the Rust book.
-
-## Generics
 
 With Rust generics, Substrate runtime developers can write pallets that are completely agnostic to specific implementation details and therefore make full use of Substrate's flexibility, extensibility and modularity. 
 
@@ -96,17 +66,6 @@ Substrate maximizes the use of generic types to provide maximum flexibility.
 You define how the generic types are resolved to suit your purpose.
 
 For more information about generic types and traits in Rust, see the sections on [Generic Types](https://doc.rust-lang.org/book/ch10-01-syntax.html) from the Rust book.
-
-## Common traits
-
-In many cases, multiple pallets need to use a common set of traits and types.
-For example, an account balance should have the same set of traits and types—the same meaning—in any pallet that needs access to this information.
-Instead of defining the same implementation of balances in each pallet that requires it, you can add any pallet that implements a `Currency` trait to convert generic types into specific types in the runtime implementation.
-
-If the associated type adheres to the trait bounds of a [`Currency`](https://docs.substrate.io/rustdocs/latest/frame_support/traits/tokens/currency/index.html) trait, it can simply pass in the runtime's instance of [`pallet_balances`](https://docs.substrate.io/rustdocs/latest/pallet_balances/index.html) across all pallets that rely on the same notion for currency.
-
-For example, [`pallet_staking`](https://docs.substrate.io/rustdocs/latest/pallet_staking/trait.Config.html) has an associated type `Currency` whose trait bound is [`LockableCurrency`](https://docs.substrate.io/rustdocs/latest/frame_support/traits/tokens/currency/trait.LockableCurrency.html).
-Given that [`pallet_balances`](https://docs.substrate.io/rustdocs/latest/pallet_balances/index.html) implements this trait, any runtime that includes the balances pallet can make the generic associated type concrete assigning it the balances pallets' runtime instance.
 ## Where to go next
 
 Now that you know how Substrate relies on a few key Rust features—like traits, generic types, and macros—you can explore the following resources to learn more.
