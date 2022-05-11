@@ -3,7 +3,6 @@ import './src/styles/markdown.css';
 import './src/styles/custom-blocks.css';
 import './src/styles/language-tabs.css';
 import './src/styles/scss/styles.scss';
-import 'gatsby-prismjs-dracula';
 
 import React from 'react';
 
