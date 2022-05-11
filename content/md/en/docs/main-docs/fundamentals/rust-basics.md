@@ -29,13 +29,12 @@ With them, you're able to focus on writing idiomatic Rust, minimizing the overhe
 
 Rust macros are a powerful tool to help ensure certain requirements are met (without re-writing code) such as the logic to be formatted in a specific way, specific checks are made, or some logic consists of specific data structures.
 This is especially useful to help developers write code that can integrate with the complexity of a Substrate runtime.
-For example, the `#[frame_system::pallet]` macro is required in all FRAME pallets to prevent you from compiling pallets that don't correctly implement certain required attributes, such as storage items or externally callable functions.
+For example, the `#[frame_system::pallet]` macro is required in all FRAME pallets to help you correctly implement certain required attributes-such as storage items or externally callable functions-and make it compatible with the build process in `construct_runtime`.
 
-The reality is that developing Substrate runtimes involves heavy use of Rust's attribute macros, which come in two flavors: derive attributes and custom attributes.
+Developing Substrate runtimes involves heavy use of Rust's attribute macros, which come in two flavors: derive attributes and custom attributes.
 When you're getting started with Substrate, it isn't so important to know exactly how they work, but rather to know that they exist that they empower you to write correct runtime code.
 
-Derive attributes are useful for custom runtime types that need to satisfy a number of traits. 
-For instance, any type of this sort needs to be encodable and decodable so that a node can interact with it during runtime execution.
+Derive attributes are useful for custom runtime types that need to satisfy certain traits, for instance, to have types be decodable by a node during runtime execution.
 
 Other attribute like macros are also common throughout Substrate's codebase for:
 
