@@ -12,12 +12,12 @@ const Menu = ({ page, currentPath }) => {
     <nav role="navigation">
       <ul className="p-0 m-0 list-outside">
         <li
-          className={cx('p-0 m-0 list-none font-semibold cursor-pointer', {
+          className={cx('p-0 m-0 list-none mt-3 font-semibold cursor-pointer', {
             'text-substrateBlue': currentPath === page.url,
           })}
         >
-          <span className="inline-block py-3 collapse-button w-full" onClick={() => setIsOpen(!isOpen)}>
-            <Link className="w-full inline-block" to={page.url}>
+          <span className="inline-block collapse-button w-full" onClick={() => setIsOpen(!isOpen)}>
+            <Link className="w-full inline-block h-full" to={page.url}>
               <span className="w-10 inline-block text-center">
                 <span title={page.title}>
                   <Icon

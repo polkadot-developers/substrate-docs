@@ -49,7 +49,7 @@ export default function PlaygroundCard(props) {
             </ul>
           </div>
           <div>
-            <a href={props.link}>
+            <a href={props.link} target="_blank" rel="noopener noreferrer">
               <button
                 className={cx(
                   'w-full sm:w-56 py-3 rounded bg-substrateDark bg-opacity-50 group-hover:bg-opacity-100 dark:bg-substrateWhite transform transition-all duration-300 ease-in-out hover:bg-opacity-80 dark:hover:bg-opacity-80 text-white dark:text-substrateDark text-lg font-bold focus:outline-none',

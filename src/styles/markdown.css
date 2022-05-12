@@ -825,12 +825,19 @@
 
 .markdown-body .gatsby-highlight pre,
 .markdown-body pre {
-  padding: 16px;
+  margin: 0.5em 0;
+  padding: 1em;
   overflow: auto;
-  font-size: 85%;
+  font-size: 100%;
   line-height: 1.45;
-  background: white;
-  border-radius: 3px;
+  border-radius: 10px;
+}
+
+.light .markdown-body pre {
+  background-color: #fcfcfc;
+}
+.dark .markdown-body pre {
+  background-color: #272935!important;
 }
 
 .markdown-body pre code {
