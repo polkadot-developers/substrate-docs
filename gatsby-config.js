@@ -171,6 +171,9 @@ module.exports = {
                 danger: {
                   classes: 'danger',
                 },
+                advice: {
+                  classes: 'advice',
+                },
               },
             },
           },
