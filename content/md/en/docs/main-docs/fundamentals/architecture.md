@@ -5,30 +5,26 @@ featured_image:
 keywords:
 ---
 
-As noted in [Blockchain basics](/main-docs/fundamentals/blockchain-basics), a blockchain relies on a decentralized network of computers—called **nodes**—that communicate with each other.
-Because the node is a core component of a Substrate blockchain and it takes a lot of nodes working together to build a secure and robust chain, it's important to understand the architecture of a Substrate node, including the core services and libraries that are provided by default and how the node can be customized and extended to suit different project goals.
+As noted in [Blockchain](/main-docs/fundamentals/blockchain-basics) basics, a blockchain relies on a decentralized network of computers—called nodes—that communicate with each other.
 
-## Node and client architecture
+Because the node is a core component of any blockchain, it’s important to understand what makes a Substrate node unique, including the core services and libraries that are provided by default and how the node can be customized and extended to suit different project goals.
 
-In a decentralized network, all nodes are both clients that request data and servers that respond to requests for data.
-Conceptually and programmatically, the Substrate architecture divides operational responsibilities along similar lines.
-The following diagram illustrates this separation of responsibilities in simplified form to help you visualize the architecture.
+Understanding the architecture of a Substrate node will also help you appreciate what is meant when Substrate is described as an extensible and modular framework for building blockchains.
+
+## High level overview
 
 ![Substrate architecture](/media/images/docs/main-docs/sub-arch-1.png)
 
-As illustrated in the diagram, Substrate nodes provide a layered environment with three main elements:
+At a high level, a Substrate node provides a layered environment with 2 main elements:
 
-- An **outer node** that handles network activity such as peer discovery, managing transaction requests, reaching consensus with peers, and responding to RPC calls.
+* An **outer node** that handles network activity such as peer discovery, managing transaction requests, reaching consensus with peers, and responding to RPC calls.
 
-* A **runtime** that contains all of the business logic for executing transactions, saving state transitions, and interacting with the outer node to prepare blocks for consensus.
+* A **runtime** that contains all of the business logic for executing the state transition function of the blockchain.
 
-- A **light client** that accesses the data stored in the blockchain but does not participate in producing blocks or reaching consensus.
-
-## Outer node responsibilities
+### Outer node
 
 The outer node is responsible for activity that takes place outside of the runtime.
-For example, the outer node is responsible for handling peer discovery, managing transaction pools, communicating with other nodes to reach consensus, and answering RPC calls or browser requests from the outside world.
-Performing these tasks often requires the outer node to query the runtime for information or to provide information to the runtime.
+For example, the outer node is responsible for handling peer discovery, managing the transaction pool, communicating with other nodes to reach consensus, and answering RPC calls or browser requests from the outside world.
 
 Some of the most important activities that are handled by the outer node involve the following components:
 
@@ -44,41 +40,30 @@ Some of the most important activities that are handled by the outer node involve
 
 - [Executor](/reference/glossary/#executor): The outer node is responsible for selecting the execution environment—WebAssembly or native Rust—for the runtime to use then dispatching calls to the runtime selected.
 
-## Runtime responsibilities
+Performing these tasks often requires the outer node to query the runtime for information or to provide information to the runtime, which is done by specialized [runtime APIs](/reference/runtime-apis.md).
 
-The [runtime](/nain-docs/fundamentals/runtime/) defines the business logic of your blockchain.
-The runtime determines whether transactions are valid or invalid and the runtime is responsible for handling the state changes that occur in response to transactions.
+### Runtime 
+
+The runtime determines whether transactions are valid or invalid and is responsible for handling changes to the blockchain's state transition function.
 
 Because the runtime executes the functions it receives, it controls how transactions are included in blocks and how blocks are returned to the outer node for gossiping or importing to other nodes.
 In essence, the runtime is responsible for handling everything that happens on-chain.
 It is also the core component of the node for building Substrate blockchains.
 
-### WebAssembly runtime
-
-The Substrate runtime compiles as a standard Rust binary and to [WebAssembly (Wasm)](/reference/glossary#webassembly-wasm) byte code.
-The WebAssembly target enables:
+Substrate runtimes are designed to compile to [WebAssembly (Wasm)](/reference/glossary#webassembly-wasm) byte code.
+This design decision enables:
 
 - Support for forkless upgrades.
-- Browser compatibility.
+- Multi-platform compatibility.
 - Runtime validity checking.
 - Validation proofs for relay chain consensus mechanisms.
 
-### Standard Rust runtime
-
-Compiling Rust using the standard Rust libraries results in a Rust binary version of the runtime.
-The standard Rust runtime is mainly used in development and testing environments because compiling a standard Rust executable is faster and more efficient than compiling to the WebAssembly target.
-The Rust runtime is also easier to debug because you can use standard Rust libraries that aren't available for debugging WebAssembly targets.
-
-In theory, you could use the Rust runtime to operate nodes in production.
-However, Substrate nodes always select WebAssembly runtime as the latest available runtime to use as a way to support forkless upgrades.
-After an upgrade, nodes always execute the updated WebAssembly blob that's stored on-chain.
-
-For more information about building the Substrate runtime, see [Build process](/main-docs/build/build-process/).
+Similar to how the outer node has a way to provide information to the runtime, the runtime uses specialized [host functions](https://paritytech.github.io/substrate/master/sp_io/index.html) to communicate to provide information to the outside world.
 
 ## Light clients
 
-Light clients connect to the runtime to enable users to interact with the blockchain through a browser, browser extension, mobile device, and desktop computer.
-In most cases, a light client connects to the WebAssembly execution environment to read block headers, submit transactions, and view the results of transactions.
+Light clients are special nodes designed to connect to a Substrate runtime directly through end-user devices, such as a browser, a browser extension, a mobile device or desktop computer.
+A light client connects to the WebAssembly execution environment to read block headers, submit transactions, and view the results of transactions.
 You can use RPC endpoints with Rust, JavaScript, or other languages to implement a light client.
 
 ## Where to go next
