@@ -4,7 +4,8 @@ description: Highlights the Rust programming conventions that are of particular 
 featured_image:
 --- 
 
-[Rust](https://www.rust-lang.org/) is a highly performant programming language and a first choice for Substrate for the following reasons:
+Much of what makes Substrate a flexible and extensible framework for creating mission-critical software is owed to [Rust](https://www.rust-lang.org/). 
+Being the language of choice for Substrate, Rust is a highly performant programming language and a first choice for the following reasons:
 
 - Rust is fast: it's statically typed at compile time, making it possible for the compiler to optimize the code for speed and for developers to optimize for a specific compilation target.
 
@@ -14,9 +15,18 @@ featured_image:
 
 - Rust is Wasm first: it has first class support for compiling to WebAssembly.
 
-Much of what makes Substrate a flexible and extensible framework for creating mission-critical software is owed to Rust.
+## What Rust?
 
-Although general familiarity with Rust is essential before diving into Substrate—and there are many resources available for learning Rust, including the [Rust Language Programming Book](https://doc.rust-lang.org/book/) and [Rust by Example](https://doc.rust-lang.org/rust-by-example/)—this section highlights ways Substrate uses some of Rust's core features for developers getting started with runtime engineering.
+In the [Architecture]() section, you will learn that Substrate is made of two distinct architectural components: the outer node and the runtime.
+While more complex features in Rust-such as multithreading and asynchronous Rust-are used in the outer node code, they aren't directly exposed to runtime engineers, making it easier for runtime engineers to focus on the business logic of their node.
+
+Generally, depending on their focus, developers should expect to know:
+
+* Basic [Rust idioms](https://rust-unofficial.github.io/patterns/idioms/index.html), [working with `no_std`](https://docs.rust-embedded.org/book/intro/no-std.html) and what macros are used and why (for runtime engineering).
+* [Asynchronous Rust](https://rust-lang.github.io/async-book/01_getting_started/01_chapter.html) (for more advanced developers working with outer node (client) code).
+
+Although general familiarity with Rust is essential before diving into Substrate—and there are many resources available for learning Rust, including the [Rust Language Programming Book](https://doc.rust-lang.org/book/) and [Rust by Example](https://doc.rust-lang.org/rust-by-example/)—the remainder of this section highlights ways Substrate uses some of Rust's core features for developers getting started with runtime engineering.
+
 ## Compilation target
 
 When building a Substrate node, we use the `wasm32-unknown-unknown` compilation target which means that Substrate runtime engineers are constrained to writing runtimes that must compile to Wasm. 
@@ -70,9 +80,9 @@ For more information about generic types and traits in Rust, see the sections on
 Now that you know how Substrate relies on a few key Rust features—like traits, generic types, and macros—you can explore the following resources to learn more.
 
 * [Rust book](https://doc.rust-lang.org/book/)
-* [Why Rust?](https://www.parity.io/blog/why-rust)
+* [Why Rust?](https://www.parity.io/blog/why-rust) (blog by Parity)
 * [Cargo and crates.io](https://doc.rust-lang.org/book/ch14-00-more-about-cargo.html)
-* [Why Rust for smart contracts?](https://paritytech.github.io/ink-docs/why-rust-for-smart-contracts)
+* [Why Rust for smart contracts?](https://paritytech.github.io/ink-docs/why-rust-for-smart-contracts) (ink! documentation)
 
 
 
