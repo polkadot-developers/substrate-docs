@@ -87,6 +87,9 @@ It also works with code blocks inserted directly into the markdown file.
 [[info]]
 | This custom block uses **simple** `[[info]]` markup directly in vanilla markdown and renders as html
 
+[[advice]]
+| This custom block uses **simple** `[[advice]]` markup directly in vanilla markdown and renders as html
+
 [[danger]]
 | This custom block uses **simple** `[[danger]]` markup directly in vanilla markdown and renders as html
 

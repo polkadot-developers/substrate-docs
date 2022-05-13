@@ -20,4 +20,10 @@
   @apply font-bold text-lg mb-2 inline-block;
 }
 
-
+.custom-block.advice {
+  @apply bg-mdxGreen dark:bg-mdxGreen-dark border-mdxGreen dark:border-mdxGreen-dark dark:border-opacity-40 dark:bg-opacity-20 bg-opacity-50;
+}
+.custom-block.advice::before {
+  content: 'Advice';
+  @apply font-bold text-lg mb-2 inline-block;
+}

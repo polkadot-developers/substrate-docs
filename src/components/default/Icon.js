@@ -8,8 +8,7 @@ import collapse from '../../images/svg/collapse.svg';
 import computer from '../../images/svg/computer.svg';
 import contact from '../../images/svg/contact.svg';
 import desktop from '../../images/svg/desktop.svg';
-import docIcon from '../../images/svg/doc-icon.svg';
-import docsIcon from '../../images/svg/docs.svg';
+import docs from '../../images/svg/docs.svg';
 import docsNavIcon from '../../images/svg/docs-nav-icon.svg';
 import dollar from '../../images/svg/dollar.svg';
 import builders from '../../images/svg/ecosystem/builders.svg';
@@ -50,7 +49,7 @@ import paperplane from '../../images/svg/paperplane.svg';
 import pen from '../../images/svg/pen.svg';
 import placeholder from '../../images/svg/placeholder.svg';
 import polkadotLogo from '../../images/svg/polkadot-logo.svg';
-import quickStart from '../../images/svg/quick-start.svg';
+import quick_start from '../../images/svg/quick-start.svg';
 import reference from '../../images/svg/reference.svg';
 import search from '../../images/svg/search.svg';
 import seminar from '../../images/svg/seminar.svg';
@@ -102,7 +101,6 @@ import diamondGreen from '../../images/svg/ui/diamond-green.svg';
 import diamondPink from '../../images/svg/ui/diamond-pink.svg';
 import diamondPurple from '../../images/svg/ui/diamond-purple.svg';
 import diamondYellow from '../../images/svg/ui/diamond-yellow.svg';
-import docs from '../../images/svg/ui/docs.svg';
 import externalLink from '../../images/svg/ui/external-link.svg';
 import hamburger from '../../images/svg/ui/hamburger-toggle.svg';
 import moon from '../../images/svg/ui/moon.svg';
@@ -122,7 +120,6 @@ const iconsMap = {
   governance: governance,
   interoperability: interoperability,
   security: security,
-  docIcon: docIcon,
   htgIcon: htgIcon,
   tutsIcon: tutsIcon,
   feTemplate: feTemplate,
@@ -230,9 +227,8 @@ const iconsMap = {
   'future-proof-base': futureProofBase,
   upgradable: upgradable,
   /* Navigation  */
-  docsIcon: docsIcon,
   reference: reference,
-  quickStart: quickStart,
+  quick_start: quick_start,
   tutorials: tutorials,
   time: time,
   docsNavIcon: docsNavIcon,

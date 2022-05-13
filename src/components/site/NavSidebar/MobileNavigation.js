@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import configNav from '../../../../content/config/nav.yaml';
 import Icon from '../../default/Icon';
 import ModalButton from '../Search/ModalButton';
-import MobileMenu from './MobileMenu';
+import Menu from './Menu';
 
 const MobileNavigation = ({ currentPath }) => {
   const { menu } = configNav;
@@ -38,7 +38,7 @@ const MobileNavigation = ({ currentPath }) => {
         <ModalButton className="fixed" />
         {menu.map(item => {
           const page = configNav[item];
-          return <MobileMenu page={page} currentPath={currentPath} key={item} />;
+          return <Menu page={page} currentPath={currentPath} key={item} />;
         })}
       </div>
     </div>

@@ -46,7 +46,7 @@ const Sidebar = ({ children, currentPath }) => {
                     <span title="Docs">
                       <Link to="/main-docs/">
                         <Icon
-                          name="docsIcon"
+                          name="docs"
                           className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white', {
                             'fill-substrateBlue': currentPath.includes('/main-docs/'),
                           })}
@@ -79,7 +79,7 @@ const Sidebar = ({ children, currentPath }) => {
                 )}
               </div>
               <div
-                className={cx('w-64 mt-10 px-4 z-0 transition-all transform ', {
+                className={cx('w-64 mt-10 px-4 z-0 transition-all transform pb-10', {
                   'duration-75 ease-in-out opacity-0 hidden': isOpen,
                   'duration-500 ease-in-out opacity-100': !isOpen,
                 })}

@@ -20,7 +20,8 @@ export default function DocsSinglePage({ data, pageContext }) {
   const { title } = frontmatter;
   const { pagePath /*collection*/ } = pageContext;
   const { gitLogLatestDate } = data.markdownRemark.parent.fields != null ? data.markdownRemark.parent.fields : '';
-  const pagePathNoSlash = pagePath.endsWith('/') ? pagePath.slice(0, -1) : pagePath;
+  //const pagePathNoSlash = pagePath.endsWith('/') ? pagePath.slice(0, -1) : pagePath;
+  const relativeFilePath = data.markdownRemark.parent.relativePath;
   function titleize(slug) {
     var words = slug.split('-');
     return words
@@ -58,9 +59,8 @@ export default function DocsSinglePage({ data, pageContext }) {
               <div className="flex justify-end items-center">
                 <EditOnGithubButton
                   link={
-                    'https://github.com/substrate-developer-hub/substrate-docs/blob/main-md-navigation/content/md/en/docs' +
-                    `${pagePathNoSlash}` +
-                    '.md'
+                    'https://github.com/substrate-developer-hub/substrate-docs/blob/main-md/content/md/' +
+                    `${relativeFilePath}`
                   }
                 />
               </div>
@@ -75,7 +75,8 @@ export default function DocsSinglePage({ data, pageContext }) {
               <footer>
                 <div className="py-8 text-sm text-gray-400">
                   Last edit: {moment(gitLogLatestDate).format('MMMM DD, YYYY')}
-                  <hr />
+                </div>
+                <div className="py-8 text-sm text-gray-400">
                   <Feedback />
                 </div>
               </footer>
@@ -116,6 +117,7 @@ export const query = graphql`
         ... on File {
           id
           name
+          relativePath
           fields {
             gitLogLatestDate
           }
