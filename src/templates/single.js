@@ -75,7 +75,8 @@ export default function DocsSinglePage({ data, pageContext }) {
               <footer>
                 <div className="py-8 text-sm text-gray-400">
                   Last edit: {moment(gitLogLatestDate).format('MMMM DD, YYYY')}
-                  <hr />
+                </div>
+                <div className="py-8 text-sm text-gray-400">
                   <Feedback />
                 </div>
               </footer>

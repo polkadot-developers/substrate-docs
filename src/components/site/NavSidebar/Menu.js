@@ -9,10 +9,10 @@ import SubMenu from './SubMenu';
 const Menu = ({ page, currentPath }) => {
   const [isOpen, setIsOpen] = useState(currentPath.includes(page.url));
   return (
-    <nav role="navigation">
+    <nav role="navigation" className="min-h-[40px]">
       <ul className="p-0 m-0 list-outside">
         <li
-          className={cx('p-0 m-0 list-none mt-3 font-semibold cursor-pointer', {
+          className={cx('p-0 m-0 list-none mt-3 font-semibold cursor-pointer min-h-max', {
             'text-substrateBlue': currentPath === page.url,
           })}
         >
