@@ -10,13 +10,14 @@ const SubMenu = ({ pages, currentPath }) => {
       {pages.map((page, index) => {
         const [isOpen, setIsOpen] = useState(currentPath.includes(page.url));
         return page.url ? (
-          <Link to={page.url} key={index}>
-            <li
-              className={cx('m-0 pb-2 list-none font-medium cursor-pointer', {
-                'text-substrateDark dark:text-white': currentPath !== page.url,
-                'text-substrateBlue': currentPath === page.url,
-              })}
-            >
+          <li
+            key={index}
+            className={cx('m-0 pb-2 list-none font-medium cursor-pointer', {
+              'text-substrateDark dark:text-white': currentPath !== page.url,
+              'text-substrateBlue': currentPath === page.url,
+            })}
+          >
+            <Link to={page.url} className="w-full block">
               <span onClick={() => setIsOpen(!isOpen)}>
                 {page.title}{' '}
                 {page.pages ? (
@@ -40,9 +41,9 @@ const SubMenu = ({ pages, currentPath }) => {
                   ''
                 )}
               </span>
-              {isOpen && page.pages && <ChildMenu pages={page.pages} currentPath={currentPath} />}
-            </li>
-          </Link>
+            </Link>
+            {isOpen && page.pages && <ChildMenu pages={page.pages} currentPath={currentPath} />}
+          </li>
         ) : (
           `${page.title}`
         );
