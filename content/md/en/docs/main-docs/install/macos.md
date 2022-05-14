@@ -183,10 +183,9 @@ Here are a few additional suggestions for where you can learn more.
 
 #### Tell me
 
-* [Node architecture](main-docs/node-architecture/)
-* [Design runtime logic](/main-docs/design/)
-Network topologies
-* [Build process](main-docs/build/)
+* [Architecture](/main-docs/fundamentals/architecture/)
+* [Networks and blockchains](/main-docs/fundamentals/node-and-network-types/)
+* [Build process](/main-docs/build/build-process)
 
 #### Guide me
 

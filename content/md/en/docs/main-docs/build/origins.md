@@ -1,9 +1,6 @@
 ---
-title: Origins
-slug: /v3/runtime/origins
-version: '3.0'
-section: docs
-category: runtime
+title: Privileged calls and origins
+description: 
 keywords:
   - origins
 ---

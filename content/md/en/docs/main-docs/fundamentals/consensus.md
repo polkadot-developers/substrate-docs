@@ -4,15 +4,15 @@ description: Describes the consensus models Substrate provides.
 featured_image:
 ---
 
-_This article presents reference and conceptual information about the different consensus mechanisms used in Substrate._ 
+_This article presents reference and conceptual information about the different consensus mechanisms used in Substrate._
 
 Blockchain nodes use consensus engines to agree on the blockchain's state. 
 There are different consensus engines with various tradeoffs that are supported "out-of-the-box" in Substrate. 
 Generally, two components are necessary for achieving consensus:
 
-1. Block authoring (or construction): the mechanism for nodes to create new blocks.
+* Block authoring (or construction): the mechanism for nodes to create new blocks.
 
-2. Block finalization: the mechanism to handle forks and choose which chain is the canonical chain.
+* Block finalization: the mechanism to handle forks and choose which chain is the canonical chain.
 
 ## Block authoring
 

@@ -1,5 +1,5 @@
 ---
-title: Create custom pallets
+title: Custom pallets
 description:
 keywords:
 ---

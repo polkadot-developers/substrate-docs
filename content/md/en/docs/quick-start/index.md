@@ -1,106 +1,121 @@
 ---
-title: Markup Test page
-featured_image: /media/images/docs/tutorials/build-blockchain/thumbnail.jpg
-keywords:
-  - node
-  - template
-  - basics
-# tutorial data
-difficulty: 1
-duration: 60
-skills:
-  - Rust
-  - Blockchain basics
-# related pages
-previous: /main-docs/why-substrate/choose-a-dev-platform/
-next: /reference/glossary/
+title: Quick start
+description: Get started with Substrate.
 ---
 
-## Links
+All of the Substrate tutorials and how-to guides require you to run a Substrate node in your development environment.
+To provide you with a working environment that includes the most common set of features to build a blockchain, the Substrate Developer Hub repository maintains its own snapshot of the Substrate **node template**.
 
-[link internal /main-docs](/main-docs)
+The node template includes everything you need to get started without any of the extraneous modules or tools that you might want to add later.
+Although you can also compile the node template by cloning files directly the Substrate repository, it isn't recommended because frequent code changes are likely to introduce stability and compatibility issues that cause tutorials or how-to examples to fail.
 
-[link external](https://example.com)
+This _Quick start_ assumes that you are setting up a development environment for the first time and want to try out running a single blockchain client—called a node—on your local computer.
 
-## Code
+To keep things simple, you'll connect to the local node using a web browser and look up a balance for a predefined sample account.
 
-### File view
+## Before you begin
 
-This file lives at /code-snippets/markdown.js
+Before you begin, verify the following:
 
-`embed:markdown.js`
+- You have good internet connection and access to a shell terminal on your local computer.
 
-### Highlight view
+- You are generally familiar with software development and using command-line interfaces.
 
-This file highlights lines 8-12 using a comment inside the file // highlight-range{1-3}
+- You have the Rust compiler and toolchain installed.
 
-`embed:markdown2.js`
+  To check whether you have Rust installed, run the `rustup show` command.
+  If Rust is installed, this command displays version information for the toolchain and compiler.
 
-`embed:markdown.rs`
+  If Rust is not installed, the command doesn't return any output.
+  For information about installing Rust, see [Install Rust](https://www.rust-lang.org/tools/install) and [Rust compiler and toolchain](../03-install/rust-builds.md).
 
-### Subset of a file
+## Build the development environment node
 
-This code block only shows a subset of a file (lines 8 to 12) by embedding the file with a suffix of #L8-12
+1. Clone the node template repository using the `latest` branch by running the following command:
 
-`embed:markdown.js#L8-12`
+   ```bash
+   git clone https://github.com/substrate-developer-hub/substrate-node-template
+   ```
 
-### Diff view
+1. Change to the root of the cloned directory by running the following command:
 
-Diff view didn't work until additional styling was added. This could mean there will need to be custom styling employed in order to achieve what we are looking for. Node that comments from remark embed plugin displays comments when showing the entire file.
+   ```bash
+   cd substrate-node-template
+   ```
 
-`embed:markdown.diff`
+1. Compile the node template using the nightly toolchain by running the following command:
 
-It also works with code blocks inserted directly into the markdown file.
+   ```bash
+   cargo +nightly build --package node-template --release
+   ```
 
-```diff
-   // Configure your pallet.
-+   impl pallet_something::Config for Runtime {
--   	type Event = Event;
-   	type Call = Call;
-   }
-```
+   Because of the number of packages involved, compiling the node can take several minutes.
 
-### Embed Snippet from file markdown.diff
+## Verify and start the node
 
-`embed:markdown.diff{snippet: "rehype"}`
+1. Verify that your node is ready to use and see information about the command-line options available by running the following command:
 
-<hr/>
+   ```bash
+   ./target/release/node-template --help
+   ```
 
-<div class='gatsby-highlight' data-language=''>
-  <pre class='language-rust'>
-   // Configure your pallet.
-   /* hide-range{1-3} */
-   impl pallet_something::Config for Runtime {
-   	type Event = Event;
-   	type Call = Call;
-   }
+   The usage information displays the command-line options you can use to:
+
+   - start the node
+   - work with accounts
+   - modify node operations
+
+1. View account information for the predefined `alice` account by running the following command:
+
+   ```bash
+   ./target/release/node-template key inspect //alice
+   ```
+
+   The command displays the following account information:
+
+   <pre>
+   Secret Key URI //alice is account:
+   Secret seed:       0xc166b100911b1e9f780bb66d13badf2c1edbe94a1220f1a0584c09490158be31
+   Public key (hex):  0xc81ebbec0559a6acf184535eb19da51ed3ed8c4ac65323999482aaf9b6696e27
+   Account ID:        0xc81ebbec0559a6acf184535eb19da51ed3ed8c4ac65323999482aaf9b6696e27
+   Public key (SS58): 5Gb6Zfe8K8NSKrkFLCgqs8LUdk7wKweXM5pN296jVqDpdziR
+   SS58 Address:      5Gb6Zfe8K8NSKrkFLCgqs8LUdk7wKweXM5pN296jVqDpdziR
    </pre>
-</div>
 
-```bash
-   rustup update nightly
-   rustup target add wasm32-unknown-unknown --toolchain nightly
-```
+1. Start the node in development mode by running the following command:
 
-## Custom blocks feature
+   ```
+   ./target/release/node-template --dev
+   ```
 
-[[info]]
-| This custom block uses **simple** `[[info]]` markup directly in vanilla markdown and renders as html
+   In development mode, the chain doesn't require any peer computers to finalize blocks.
+   As the node starts, the terminal displays output about the operations performed.
+   If you see messages that blocks are being proposed and finalized, you have a running node.
 
-[[advice]]
-| This custom block uses **simple** `[[advice]]` markup directly in vanilla markdown and renders as html
+   <pre>
+   ... Idle (0 peers), best: #3 (0xcc78…5cb1), finalized #1 ...
+   ... Starting consensus session on top of parent ...
+   ... Prepared block for proposing at 4 (0 ms) ...  
+   </pre>
 
-[[danger]]
-| This custom block uses **simple** `[[danger]]` markup directly in vanilla markdown and renders as html
+## Connect to the node
 
-### Custom components
+1. Create a simple HTML file with JavaScript to interact with the blockchain.
 
-We can use `<example-component data="string">Custom native HTML component</example-component>` for more complex UI components if needed.
+   For example, create an `index.html` file that uses JavaScript and HTML to:
 
-## Images
+   - take an account address as input
+   - look up the account balance using an onClick event
+   - display the balance for the account as output.
 
-![Image1 caption](/media/images/docs/reference/substrate-arch.png)
+   This sample [index.html](examples/quickstart/index.html) provides a simple example of how to use JavaScript and HTMLto get an account balance.
 
-### Remote image without caption
+1. Open the [index.html](examples/quickstart/index.html) file in a web browser.
 
-![](https://docs.substrate.io/static/399a08a0da5e076e00f1b6b39cfa2b2f/416ee/kitties-tutorial.png)
+1. Copy and paste the SS58 Address for the `alice` account in the input field, then click **Get Balance**.
+
+## Stop the node
+
+1. Go to the terminal that displays blockchain operations.
+
+1. Stop the local blockchain and clear all state by pressing Control-c.
