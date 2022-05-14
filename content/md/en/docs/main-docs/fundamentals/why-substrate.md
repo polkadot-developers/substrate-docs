@@ -70,10 +70,10 @@ Depending on your background and interests, explore the following resources to l
 
 #### Tell me
 
-* [Fundamentals](/main-docs/fundamentals/)
 * [Blockchain basics](/main-docs/fundamentals/blockchain-basics/)
-* [Node architecture](/main-docs/fundamentals/node-architecture/)
-* [Network topologies](/main-docs/fundamentals/network-topologies/)
+* [Architecture](/main-docs/fundamentals/architecture/)
+* [Runtime development](/main-docs/fundamentals/runtime-intro)
+* [Networks and blockchains](/main-docs/fundamentals/node-and-network-types/)
 * [Install](/main-docs/install/)
 
 #### Guide me

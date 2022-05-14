@@ -163,7 +163,7 @@ that the node knows about.
 In most cases, you don't need to know details about how transactions are gossiped or how blocks are imported by other nodes on the network.
 However, if you plan to write any custom consensus logic or want to know more about the implementation of the block import queue, you can find details in the Rust API documentation.
 
-* [`ImportQueue`](/rustdocs/latest/sc_consensus/import_queue/trait.ImportQueue.html).
+* [`ImportQueue`](/rustdocs/latest/sc_consensus/import_queue/trait.ImportQueue.html)
 * [`Link`](/rustdocs/latest/sc_consensus/import_queue/trait.Link.html) 
 * [`BasicQueue`](/rustdocs/latest/sc_consensus/import_queue/struct.BasicQueue.html)
 * [`Verifier`](/rustdocs/latest/sc_consensus/import_queue/trait.Verifier.html)
@@ -171,7 +171,6 @@ However, if you plan to write any custom consensus logic or want to know more ab
 
 ## Where to go next
 
-* [Transaction types and block input](/main-docs/fundamentals/transaction-types/)
 * [Seminar: Lifecycle of a transaction](https://www.youtube.com/watch?v=3pfM0GOp02c)
 * [Accounts, addresses, and keys](/main-docs/fundamentals/accounts-addresses-keys/)
 * [Transaction formats](/reference/transaction-formats/)

@@ -95,8 +95,8 @@ You can explore the following resources to learn more.
 
 * [why Substrate?](/main-docs/why-substrate/)
 * [Fundamentals](main-docs/fundamentals/)
-* [Node architecture](main-docs/fundamentals/node-architecture/)
-* [Network topologies](main-docs/fundamentals/network-topologies/)
+* [Architecture](main-docs/fundamentals/architecture/)
+* [Networks and blockchains](main-docs/fundamentals/node-and-network-types/)
 
 #### Guide me
 

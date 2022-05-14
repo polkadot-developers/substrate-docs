@@ -1,7 +1,7 @@
 ---
 title: State transitions and storage
 description: 
-featured_image:
+keywords:
 --- 
 
 Substrate uses a simple key-value data store implemented as a database-backed, modified Merkle tree.
@@ -109,21 +109,14 @@ malicious users of your blockchain.
 
 ### Storage map keys
 
-Like Storage Values, the keys for [Storage Maps](/v3/runtime/storage#storage-map) are equal to the
-TwoX 128 hash of the name of the pallet that contains the map prepended to the TwoX 128 hash of the
-name of the Storage Map itself. To retrieve an element from a map, simply append the hash of the
-desired map key to the storage key of the Storage Map. For maps with two keys (Storage Double Maps),
-append the hash of the first map key followed by the hash of the second map key to the Storage
-Double Map's storage key. Like Storage Values, Substrate will use the TwoX 128 hashing algorithm for
-the pallet and Storage Map names, but you will need to make sure to use the correct
-[hashing algorithm](/v3/runtime/storage#hashing-algorithms) (the one that was declared in
-[the `#[pallet::storage]` macro](/v3/runtime/storage#declaring-storage-items)) when determining the hashed
-keys for the elements in a map.
+Like Storage Values, the keys for [Storage Maps](/v3/runtime/storage#storage-map) are equal to the TwoX 128 hash of the name of the pallet that contains the map prepended to the TwoX 128 hash of the name of the Storage Map itself.
+To retrieve an element from a map, append the hash of the desired map key to the storage key of the Storage Map.
+For maps with two keys (Storage Double Maps), append the hash of the first map key followed by the hash of the second map key to the Storage Double Map's storage key.
 
-Here is an example that illustrates querying a Storage Map named `FreeBalance` from a pallet named
-"Balances" for the balance of the familiar `Alice` account. In this example, the `FreeBalance` map
-is using
-[the transparent Blake2 128 Concat hashing algorithm](/v3/runtime/storage#transparent-hashing-algorithms):
+Like Storage Values, Substrate uses the TwoX 128 hashing algorithm for the pallet and Storage Map names, but you will need to make sure to use the correct [hashing algorithm](/v3/runtime/storage#hashing-algorithms) (the one that was declared in [the `#[pallet::storage]` macro](/v3/runtime/storage#declaring-storage-items)) when determining the hashed keys for the elements in a map.
+
+Here is an example that illustrates querying a Storage Map named `FreeBalance` from a pallet named `Balances` for the balance of the `Alice` account.
+In this example, the `FreeBalance` map is using [the transparent Blake2 128 Concat hashing algorithm](/v3/runtime/storage#transparent-hashing-algorithms):
 
 ```
 twox_128("Balances")                                             = "0xc2261276cc9d1f8598ea4b6a74b15c2f"
@@ -135,20 +128,15 @@ blake2_128_concat("0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56
 state_getStorage("0xc2261276cc9d1f8598ea4b6a74b15c2f6482b9ade7bc6657aaca787ba1add3b4de1e86a9a8c739864cf3cc5ec2bea59fd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d") = "0x0000a0dec5adc9353600000000000000"
 ```
 
-The value that is returned from the storage query (`"0x0000a0dec5adc9353600000000000000"` in the
-example above) is the [SCALE](../scale-codec)-encoded value of Alice's account balance
-(`"1000000000000000000000"` in this example). Notice that before hashing Alice's account ID it has
-to be SCALE-encoded. Also notice that the output of the `blake2_128_concat` function consists of 32
-hexadecimal characters followed by the function's input. This is because the Blake2 128 Concat is
-[a transparent hashing algorithm](/v3/runtime/storage#transparent-hashing-algorithms). Although the
-above example may make this characteristic seem superfluous, its utility becomes more apparent when
-the goal is to iterate over the keys in a map (as opposed to retrieving the value associated with a
-single key). The ability to iterate over the keys in a map is a common requirement in order to allow
-_people_ to use the map in a way that seems natural (such as UIs): first, a user is presented with a
-list of elements in the map, then, that user can select the element that they are interested in and
-query the map for more details about that particular element. Here is another example that uses the
-same example Storage Map (a map named `FreeBalances` that uses a Blake2 128 Concat hashing algorithm
-in a pallet named "Balances") that will demonstrate using the Substrate RPC to query a Storage Map
+The value that is returned from the storage query (`"0x0000a0dec5adc9353600000000000000"` in the example above) is the [SCALE](/reference/scale-codec/)-encoded value of Alice's account balance (`"1000000000000000000000"` in this example).
+Notice that before hashing Alice's account ID it has to be SCALE-encoded.
+Also notice that the output of the `blake2_128_concat` function consists of 32 hexadecimal characters followed by the function's input. 
+This is because the Blake2 128 Concat is [a transparent hashing algorithm](/v3/runtime/storage#transparent-hashing-algorithms). 
+
+Although the above example may make this characteristic seem superfluous, its utility becomes more apparent when the goal is to iterate over the keys in a map (as opposed to retrieving the value associated with a single key).
+The ability to iterate over the keys in a map is a common requirement in order to allow _people_ to use the map in a way that seems natural (such as UIs): first, a user is presented with a list of elements in the map, then, that user can select the element that they are interested in and query the map for more details about that particular element. 
+
+Here is another example that uses the same example Storage Map (a map named `FreeBalances` that uses a Blake2 128 Concat hashing algorithm in a pallet named `Balances` that demonstrates using the Substrate RPC to query a Storage Map
 for its list of keys via the `state_getKeys` RPC endpoint:
 
 ```
@@ -156,9 +144,9 @@ twox_128("Balances")                                      = "0xc2261276cc9d1f859
 twox_128("FreeBalance")                                   = "0x6482b9ade7bc6657aaca787ba1add3b4"
 
 state_getKeys("0xc2261276cc9d1f8598ea4b6a74b15c2f6482b9ade7bc6657aaca787ba1add3b4") = [
-	"0xc2261276cc9d1f8598ea4b6a74b15c2f6482b9ade7bc6657aaca787ba1add3b4de1e86a9a8c739864cf3cc5ec2bea59fd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d",
-	"0xc2261276cc9d1f8598ea4b6a74b15c2f6482b9ade7bc6657aaca787ba1add3b432a5935f6edc617ae178fef9eb1e211fbe5ddb1579b72e84524fc29e78609e3caf42e85aa118ebfe0b0ad404b5bdd25f",
-	...
+ "0xc2261276cc9d1f8598ea4b6a74b15c2f6482b9ade7bc6657aaca787ba1add3b4de1e86a9a8c739864cf3cc5ec2bea59fd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d",
+ "0xc2261276cc9d1f8598ea4b6a74b15c2f6482b9ade7bc6657aaca787ba1add3b432a5935f6edc617ae178fef9eb1e211fbe5ddb1579b72e84524fc29e78609e3caf42e85aa118ebfe0b0ad404b5bdd25f",
+ ...
 ]
 ```
 
@@ -193,13 +181,7 @@ provides utilities for generating unique, deterministic keys for your runtime's 
 storage items are placed in the [state trie](#trie-abstraction) and are accessible by
 [querying the trie by key](#querying-storage).
 
-## Next steps
+## Where to go next
 
-### Learn more
-
-- Learn how to add [storage items](/v3/runtime/storage) into your Substrate runtime pallets.
-
-### References
-
-- Visit the reference docs for
-  [`paritytech/trie`](/rustdocs/latest/trie_db/trait.Trie.html).
+- [Runtime storage](/main-docs/build/runtime-storage)
+- [Type encoding (SCALE)](/reference/scale-codec/)

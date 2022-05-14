@@ -1,7 +1,6 @@
 ---
 title: Transactions, weights, and fees
-section: docs
-category: runtime
+description: docs
 keywords:
 ---
 
@@ -387,27 +386,14 @@ impl<T: Get<Perquintill>> Convert<Fixed128, Fixed128> for TargetedFeeAdjustment<
 }
 ```
 
-## Next steps
-
-The entire logic of fees is encapsulated in `pallet-transaction-payment` using a [`SignedExtension`](/v3/concepts/tx-pool#signed-extensions).
-This pallet provides flexibility for implementing transaction payments.
-Alternatively, you can refer to the transaction payment pallet for inspiration and build a completely custom payment module.
+## Where to go next
 
 You now know what the weight system is, how it affects transaction fee computation, and how to specify weights for your dispatchable calls.
 The next step is determining the correct weight to account for the operations your dispatchable performs.
-You can use Substrate **benchmarking functions** and `frame-benchmarking` calls to test your functions with different parameters and empirically determine the correct weight in their worst case scenarios. For more information, see [Benchmarking](/v3/runtime/benchmarking).
+You can use Substrate **benchmarking functions** and `frame-benchmarking` calls to test your functions with different parameters and empirically determine the correct weight in their worst case scenarios. 
 
-- Dedicated [weight documentation](/v3/concepts/weight)
-- [Example pallet](https://github.com/paritytech/substrate/tree/master/frame/examples/basic)
+- [Benchmark](/main-docs/test/benchmark/)
+- [Calculate weight](/reference/how-to-guides/weights/)
 - [SignedExtension](/rustdocs/latest/sp_runtime/traits/trait.SignedExtension.html)
-
-### Examples
-
-You can find examples of custom weights and fees in the following repositories:
-
 - [Custom weights for the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/weights.rs)
-- [Custom WeightToFee how-to guide](/how-to-guides/v3/weights/calculate-fees)
-
-### References
-
 - [Web3 Foundation Research](https://w3f-research.readthedocs.io/en/latest/polkadot/overview/2-token-economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits)

@@ -26,9 +26,9 @@ Explore the following resources to learn more.
 #### Tell me more
 
 * [Blockchain basics](/main-docs/fundamentals/blockchain-basics/)
-* [Choosing a development platform](/main-docs/fundamentals/choose-a-dev-platform)
-* [Substrate node architecture](/main-docs/fundamentals/substrate-client/)
-* [Runtime development and FRAME](/main-docs/fundamentals/runtime/)
+* [Why substrate?](/main-docs/fundamentals/why-substrate)
+* [Architecture](/main-docs/fundamentals/architecture/)
+* [Runtime development](/main-docs/fundamentals/runtime-intro/)
 
 #### Guide me
 

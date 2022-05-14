@@ -6,7 +6,7 @@ menu:
 
 quick-start:
   title: Quick start
-  url: /quick-start/quickstart/
+  url: /quickstart/
 
 docs:
   title: Docs
@@ -27,7 +27,7 @@ docs:
           url: /main-docs/fundamentals/runtime-intro/
         - title: Consensus
           url: /main-docs/fundamentals/consensus/
-        - title: Transactions and block input
+        - title: Transactions and block basics
           url: /main-docs/fundamentals/transaction-types/  
         - title: Transaction lifecycle
           url: /main-docs/fundamentals/transaction-lifecycle/
@@ -72,7 +72,7 @@ docs:
           url: /main-docs/build/libraries/
         - title: Build process
           url: /main-docs/build/build-process/
-        - title: Storage and data structures
+        - title: Runtime storage
           url: /main-docs/build/runtime-storage/
         - title: Transactions, weights, and fees
           url: /main-docs/build/tx-weights-fees/
@@ -86,7 +86,7 @@ docs:
           url: /main-docs/build/randomness/
         - title: Chain specification
           url: /main-docs/build/chain-spec/
-        - title: Origins
+        - title: Privileged calls and origins
           url: /main-docs/build/origins/
         - title: Remote procedure calls
           url: /main-docs/build/custom-rpc/
@@ -107,11 +107,11 @@ docs:
           url: /main-docs/test/deploy-on-testnet/
     #- title: Deploy
       #url: /main-docs/deploy/
-    - title: Maintain
-      url: /main-docs/maintain/
-      pages:
-        - title: Upgrades
-          url: /main-docs/maintain/upgrade/
+    #- title: Maintain
+      #url: /main-docs/maintain/
+      #pages:
+        #- title: Upgrades
+          #url: /main-docs/maintain/upgrade/
 
 tutorials:
   title: Tutorials

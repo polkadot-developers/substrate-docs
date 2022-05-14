@@ -1,15 +1,7 @@
 ---
-title: Create a PoS-PoW Hybrid Node
-slug: /how-to-guides/v3/consensus/hybrid-pos-pow
-keywords:
-  - node
-  - client
-  - consensus
-  - proof-of-work
-  - proof-of-stake
-version: '3.0'
-section: how to guides
-category: consensus
+title: Create a hybrid node
+description:
+keywords: consensus
 ---
 
 <Objectives

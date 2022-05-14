@@ -1,5 +1,5 @@
 ---
-title: Configure a Chain to POW Consensus
+title: Configure a chain to use proof-of-work
 slug: /how-to-guides/v3/consensus/pow
 keywords:
   - node

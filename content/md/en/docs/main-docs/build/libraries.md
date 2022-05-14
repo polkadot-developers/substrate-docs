@@ -63,4 +63,4 @@ In general, the capabilities that the client libraries expose are implemented on
 ## Where to go next
 
 Now that you are familiar with the libraries used to build and interact with Substrate nodes, you might want to explore the libraries in more depth.
-To learn more about the technical details for any library< you should review the [Rust API](/rustdocs/) documentation for that library.
+To learn more about the technical details for any library, you should review the [Rust API](/rustdocs/) documentation for that library.
