@@ -138,7 +138,7 @@ tutorials:
         - title: Add a pallet to the runtime
           url: /tutorials/work-with-pallets/add-a-pallet/
         - title: Configure the contracts pallet
-          url: /tutorials/work-with-pallets/contracts-pallet/
+          url: /tutorials/work-with-pallets/add-contracts-pallet/
         - title: Use macros in a custom pallet
           url: /tutorials/work-with-pallets/custom-pallet/
         #- title: Publish a custom pallet
