@@ -4,18 +4,10 @@ description:
 keywords:
 ---
 
-[Import a pallet](/reference/how-to-guides/basics/pallet-integration/)
+[Making transactions](/reference/how-to-guides/ocw/ocw-transactions/)
 
-[Instantiate a pallet](/reference/how-to-guides/basics/instantiable-pallets/)
+[Making HTTP requests](/reference/how-to-guides/ocw/ocw-http-requests/)
 
-[Configure runtime constants](/reference/how-to-guides/basics/runtime-constants/)
+[Local storage](/reference/how-to-guides/oce/ocw-local-storage/)
 
-[Configure genesis](/reference/how-to-guides/basics/genesis-config)
-
-[Custom chain specification](/reference/how-to-guides/basics/custom-chainspec)
-
-[Use helper functions](/reference/how-to-guides/basics/helper-functions)
-
-[Mint primitive tokens](/reference/how-to-guides/basics/min-tokens/)
-
-[Calculate weight](/reference/how-to-guides/basics/calc-weights/)
+[Offchain indexing](/reference/how-to-guides/ocw/ocw-indexing)
