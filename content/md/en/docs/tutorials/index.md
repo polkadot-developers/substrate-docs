@@ -29,7 +29,6 @@ You'll learn how to:
 
 - Add a simple predefined pallet to the runtime.
 - Configure a predefined pallet to work with smart contracts.
-- Write a basic smart contract to deploy in the runtime.
 - Create a custom pallet using macros.
 - Publish a custom pallet for others to use.
 
