@@ -1,53 +1,14 @@
 ---
-title: Get Started
+title: Get started
 description: Get firsthand experience building with Substrate.
 ---
 
-If you are someone who likes to learn by doing, the Substrate tutorials are a great place to start your journey.
-Tutorials don't provide much background about _why_ you are performing certain steps or explain the coding details.
-Instead, the tutorials give you hands-on experience performing the tasks essential to building your own blockchain and focus on ensuring a successful result.
+The **Get started** tutorials illustrate the basics for working with Substrate-based blockchain nodes, including how to make nodes communicate with each other in a network of peers and how to collect metrics about node operations.
+In general, you should complete the tutorials in the order listed because they lay the foundation for trying later tutorials or performing more complex tasks.
+Later tutorials reinforce or expand on the basic topics you learn in the Get started tutorials.
 
-If you prefer to experiment on your own with less guidance, you might want to explore the [Developer Playground]().
-If you prefer to dig into the details of the code directly, you might want to start with the [Rust API]() documentation.
-But if you want to start your journey with a guided tour, try out the following tutorials.
-
-## Get started
-
-The **Get started** tutorials illustrate the basics for working with blockchains nodes, including how to make nodes communicate with each other in a network of peers and how to collect metrics about node operations.
-You'll learn how to:
-
-- Build a local node in your development environment.
-- Simulate a two-node network using predefined accounts.
-- Start a small network of trusted validator nodes.
-- Monitor node operations by collecting metrics.
-- Upgrade the runtime for a node.
-
-## Work with pallets
-
-The **Work with pallets** tutorials focus on how you can customize the runtime using pallets, including how to add simple and complex pallets to the runtime and how to use pallets in combincation with smart contracts.
-You'll learn how to:
-
-- Add a simple predefined pallet to the runtime.
-- Configure a predefined pallet to work with smart contracts.
-- Write a basic smart contract to deploy in the runtime.
-- Create a custom pallet using macros.
-- Publish a custom pallet for others to use.
-
-## Connect with other chains
-
-The **Connect with other chains** tutorials delve into more advanced topics for moving beyond solo chain development, including how to connect your chain to other chains.
-You'll learn how to:
-
-- Turn a solo chain into a parachain.
-- Deploy a local test network and interact with multiple connected parachains.
-- Connect your parachain to a public test network.
-
-## Develop smart contracts
-
-The **Develop smart contracts** tutorials guide you through how you can use the ink programming language to build smart contracts to run on a Substrate-based blockchain.
-You'll learn how to:
-
-- Create a smart contract project the ink! programming language.
-- Store, increment, and retrieve stored values using a smart contract.
-- Use maps to store and retrieve values in a smart contract.
-- Build a smart contract for transferring ERC-20 tokens.
+- [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) shows you how to set up and interact with a local node in your development environment.
+- [Simulate a network](/tutorials/get-started/simulate-network/) helps you simulate a two-node network using predefined accounts.
+- [Add trusted validators](/tutorials/get-started/trusted-network/) demonstrates how to generate keys and distribute a chain specification to create a small network of trusted validator nodes.
+- [Monitor node metrics](/tutorials/get-started/monitor/) highlights how you can take advantage of the node metrics Substrate exposes.
+- [Upgrade a runtime](/tutorials/get-started/forkless-upgrade) illustrates forkless upgrades by modifying the runtime for a running Substrate node.
