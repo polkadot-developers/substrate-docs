@@ -193,8 +193,8 @@ With this context, the `transfer_from_to()` function then does the following:
     
     ```rust
     let from_balance = self.balance_of(from);
-      if from_balance < value {
-      return Err(Error::InsufficientBalance)
+        if from_balance < value {
+        return Err(Error::InsufficientBalance)
     }
 
 * Subtracts the `value` from  transferring account and adds the `value` to the receiving account.
@@ -236,9 +236,9 @@ To add the transfer functions to the smart contract:
     
     ```rust
     #[ink(message)]
-    pub fn transfer(&mut self, to: AccountId, value: Balance) {
-      let from = self.env().caller();
-      self.transfer_from_to(&from, &to, value)
+    pub fn transfer(&mut self, to: AccountId, value: Balance) -> Result<()> {
+        let from = self.env().caller();
+        self.transfer_from_to(&from, &to, value)
     }
     ```
 
@@ -246,20 +246,20 @@ To add the transfer functions to the smart contract:
     
     ```rust
     fn transfer_from_to(
-      &mut self,
-      from: &AccountId,
-      to: &AccountId,
-      value: Balance,
+        &mut self,
+        from: &AccountId,
+        to: &AccountId,
+        value: Balance,
     ) -> Result<()> {
-      let from_balance = self.balance_of_impl(from);
-      if from_balance < value {
-        return Err(Error::InsufficientBalance)
-      }
+        let from_balance = self.balance_of_impl(from);
+        if from_balance < value {
+            return Err(Error::InsufficientBalance)
+        }
 
-      self.balances.insert(from, &(from_balance - value));
-      let to_balance = self.balance_of_impl(to);
-      self.balances.insert(to, &(to_balance + value));
-      Ok(())
+        self.balances.insert(from, &(from_balance - value));
+        let to_balance = self.balance_of_impl(to);
+        self.balances.insert(to, &(to_balance + value));
+        Ok(())
     }
     ```
 
@@ -270,7 +270,7 @@ To add the transfer functions to the smart contract:
     ```rust
     #[inline]
     fn balance_of_impl(&self, owner: &AccountId) -> Balance {
-      self.balances.get(owner).unwrap_or_default()
+        self.balances.get(owner).unwrap_or_default()
     }
     ```
 1. Verify that the program compiles and passes the trivial test by running the following command:
@@ -280,7 +280,8 @@ To add the transfer functions to the smart contract:
     ```
 
     The command should display output similar to the following to indicate successful test completion:
-
+    
+    ```
     running 2 tests
     test erc20::tests::new_works ... ok
     test erc20::tests::balance_works ... ok
@@ -320,11 +321,11 @@ To add the `Transfer` event:
     ```rust
     #[ink(event)]
     pub struct Transfer {
-      #[ink(topic)]
-      from: Option<AccountId>,
-      #[ink(topic)]
-      to: Option<AccountId>,
-      value: Balance,
+        #[ink(topic)]
+        from: Option<AccountId>,
+        #[ink(topic)]
+        to: Option<AccountId>,
+        value: Balance,
     }
     ```
       
@@ -355,14 +356,14 @@ To emit the Transfer event:
     
     ```rust
     fn new_init(&mut self, initial_supply: Balance) {
-      let caller = Self::env().caller();
-      self.balances.insert(&caller, &initial_supply);
-      self.total_supply = initial_supply;
-      Self::env().emit_event(Transfer {
-          from: None,
-          to: Some(caller),
-          value: initial_supply,
-      });
+        let caller = Self::env().caller();
+        self.balances.insert(&caller, &initial_supply);
+        self.total_supply = initial_supply;
+        Self::env().emit_event(Transfer {
+            from: None,
+            to: Some(caller),
+            value: initial_supply,
+        });
     }
     ```
 
@@ -373,9 +374,9 @@ To emit the Transfer event:
     let to_balance = self.balance_of_impl(to);
     self.balances.insert(to, &(to_balance + value));
     self.env().emit_event(Transfer {
-      from: Some(*from),
-      to: Some(*to),
-      value,
+        from: Some(*from),
+        to: Some(*to),
+        value,
     });
     ```
     
@@ -386,10 +387,10 @@ To emit the Transfer event:
     ```rust
     #[ink::test]
     fn transfer_works() {
-      let mut erc20 = Erc20::new(100);
-      assert_eq!(erc20.balance_of(AccountId::from([0x0; 32])), 0);
-      assert_eq!(erc20.transfer((AccountId::from([0x0; 32])), 10), Ok(()));
-      assert_eq!(erc20.balance_of(AccountId::from([0x0; 32])), 10);
+        let mut erc20 = Erc20::new(100);
+        assert_eq!(erc20.balance_of(AccountId::from([0x0; 32])), 0);
+        assert_eq!(erc20.transfer((AccountId::from([0x0; 32])), 10), Ok(()));
+        assert_eq!(erc20.balance_of(AccountId::from([0x0; 32])), 10);
     }
 
 1. Verify that the program compiles and passes all tests by running the following command:
@@ -484,14 +485,14 @@ To add the approval logic to the smart contract:
     ```rust
     #[ink(message)]
     pub fn approve(&mut self, spender: AccountId, value: Balance) -> Result<()> {
-      let owner = self.env().caller();
-      self.allowances.insert((&owner, &spender), &value);
-      self.env().emit_event(Approval {
-        owner,
-        spender,
-        value,
-      });
-      Ok(())
+        let owner = self.env().caller();
+        self.allowances.insert((&owner, &spender), &value);
+        self.env().emit_event(Approval {
+            owner,
+            spender,
+            value,
+        });
+        Ok(())
     }
     ```
 
@@ -554,8 +555,7 @@ To add the `transfer_from` logic to the smart contract:
         self.transfer_from_to(&from, &to, value)?;
         self.allowances
             .insert((&from, &caller), &(allowance - value));
-            Ok(())
-        }
+        Ok(())
     }
     ```
 
