@@ -229,9 +229,9 @@ To add the transfer functions to the smart contract:
 
     ```rust
     #[ink(message)]
-    pub fn transfer(&mut self, to: AccountId, value: Balance) {
-      let from = self.env().caller();
-      self.transfer_from_to(&from, &to, value)
+    pub fn transfer(&mut self, to: AccountId, value: Balance) -> Result<()> {
+        let from = self.env().caller();
+        self.transfer_from_to(&from, &to, value)
     }
     ```
 
@@ -239,20 +239,20 @@ To add the transfer functions to the smart contract:
 
     ```rust
     fn transfer_from_to(
-      &mut self,
-      from: &AccountId,
-      to: &AccountId,
-      value: Balance,
+        &mut self,
+        from: &AccountId,
+        to: &AccountId,
+        value: Balance,
     ) -> Result<()> {
-      let from_balance = self.balance_of_impl(from);
-      if from_balance < value {
-        return Err(Error::InsufficientBalance)
-      }
+         let from_balance = self.balance_of_impl(from);
+         if from_balance < value {
+             return Err(Error::InsufficientBalance)
+         }
 
-      self.balances.insert(from, &(from_balance - value));
-      let to_balance = self.balance_of_impl(to);
-      self.balances.insert(to, &(to_balance + value));
-      Ok(())
+         self.balances.insert(from, &(from_balance - value));
+         let to_balance = self.balance_of_impl(to);
+         self.balances.insert(to, &(to_balance + value));
+         Ok(())
     }
     ```
 
@@ -263,7 +263,7 @@ To add the transfer functions to the smart contract:
     ```rust
     #[inline]
     fn balance_of_impl(&self, owner: &AccountId) -> Balance {
-      self.balances.get(owner).unwrap_or_default()
+        self.balances.get(owner).unwrap_or_default()
     }
     ```
 
@@ -369,9 +369,9 @@ To emit the Transfer event:
     let to_balance = self.balance_of_impl(to);
     self.balances.insert(to, &(to_balance + value));
     self.env().emit_event(Transfer {
-      from: Some(*from),
-      to: Some(*to),
-      value,
+        from: Some(*from),
+        to: Some(*to),
+        value,
     });
     ```
 
@@ -382,10 +382,10 @@ To emit the Transfer event:
     ```rust
     #[ink::test]
     fn transfer_works() {
-      let mut erc20 = Erc20::new(100);
-      assert_eq!(erc20.balance_of(AccountId::from([0x0; 32])), 0);
-      assert_eq!(erc20.transfer((AccountId::from([0x0; 32])), 10), Ok(()));
-      assert_eq!(erc20.balance_of(AccountId::from([0x0; 32])), 10);
+        let mut erc20 = Erc20::new(100);
+        assert_eq!(erc20.balance_of(AccountId::from([0x0; 32])), 0);
+        assert_eq!(erc20.transfer((AccountId::from([0x0; 32])), 10), Ok(()));
+        assert_eq!(erc20.balance_of(AccountId::from([0x0; 32])), 10);
     }
 
     ```
@@ -482,14 +482,14 @@ pub struct Approval {
     ```rust
     #[ink(message)]
     pub fn approve(&mut self, spender: AccountId, value: Balance) -> Result<()> {
-      let owner = self.env().caller();
-      self.allowances.insert((&owner, &spender), &value);
-      self.env().emit_event(Approval {
-        owner,
-        spender,
-        value,
-      });
-      Ok(())
+        let owner = self.env().caller();
+        self.allowances.insert((&owner, &spender), &value);
+        self.env().emit_event(Approval {
+          owner,
+          spender,
+          value,
+        });
+        Ok(())
     }
     ```
 
@@ -552,7 +552,7 @@ pub fn transfer_from(
     self.transfer_from_to(&from, &to, value)?;
     self.allowances
         .insert((&from, &caller), &(allowance - value));
-        Ok(())
+    Ok(())
     }
 }
 ```
