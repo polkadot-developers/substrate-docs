@@ -24,7 +24,7 @@ You'll learn how to:
 
 ## Work with pallets
 
-The **Work with pallets** tutorials focus on how you can customize the runtime using pallets, including how to add simple and complex pallets to the runtime and how to use pallets in combincation with smart contracts.
+The **Work with pallets** tutorials focus on how you can customize the runtime using pallets, including how to add simple and complex pallets to the runtime and how to use pallets in combination with smart contracts.
 You'll learn how to:
 
 - Add a simple predefined pallet to the runtime.
@@ -40,3 +40,13 @@ You'll learn how to:
 - Turn a solo chain into a parachain.
 - Deploy a local test network and interact with multiple connected parachains.
 - Connect your parachain to a public test network.
+
+## Develop smart contracts
+
+The **Develop smart contracts** tutorials guide you through how you can use the ink programming language to build smart contracts that run on a Substrate-based blockchain.
+You'll learn how to:
+
+- Create a smart contract project the ink! programming language.
+- Store, increment, and retrieve simple values using a smart contract.
+- Use maps to store and retrieve values in a smart contract.
+- Build a smart contract for transferring ERC-20 tokens.
