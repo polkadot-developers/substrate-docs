@@ -1,6 +1,6 @@
 ---
 title: Use maps for storing values
-description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.
+description: Use maps in a smart contract to store and retrieve key-value pairs.
 ---
 
 In [Develop a smart contract](/tutorials/smart-contracts/develop-contract/), you developed a smart contract for storing and retrieving a single numeric value.

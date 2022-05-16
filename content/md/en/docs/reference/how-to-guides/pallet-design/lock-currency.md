@@ -1,14 +1,11 @@
 ---
-title: Implement a Lockable Currency
-slug: /how-to-guides/v3/pallet-design/lockable-currency
+title: Implement lockable currency
+description:
 keywords:
   - pallet design
   - currency
   - intermediate
   - runtime
-version: '3.0'
-section: how to guides
-category: pallet design
 ---
 
 This guide shows you how to write a pallet that allows users to lock funds for staking and voting.

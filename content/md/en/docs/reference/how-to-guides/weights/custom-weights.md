@@ -1,13 +1,10 @@
 ---
-title: Use Custom Weights from Benchmarking
-slug: /how-to-guides/v3/weights/use-benchmark-weights
+title: Use custom weights from benchmarking
+description:
 keywords:
   - weights
   - benchmarking
   - runtime
-version: '3.0'
-section: how to guides
-category: weights
 ---
 
 <Objectives

@@ -1,9 +1,6 @@
 ---
-title: Tightly Coupling a Pallet
-slug: /how-to-guides/v3/pallet-design/tight-coupling
-version: '3.0'
-section: how to guides
-category: pallet design
+title: Use tight pallet coupling
+description:
 keywords: []
 ---
 

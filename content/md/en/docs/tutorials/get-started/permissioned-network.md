@@ -1,6 +1,6 @@
 ---
 title: Authorize specific nodes
-description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.
+description: Build a network where only authorized Substrate nodes are allowed to perform certain network activities.
 ---
 
 In [Add trusted validators](/tutorials/get-started/trusted-network/), you saw how to build a simple network with a known set of validator nodes.

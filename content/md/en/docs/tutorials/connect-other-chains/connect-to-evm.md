@@ -1,6 +1,6 @@
 ---
-title: "Connect to Ethereum"
-description: "Illustrates how to build an Ethereum-compatible blockchain with Substrate."
+title: Connect to Ethereum
+description: Illustrates how to build an Ethereum-compatible blockchain with Substrate.
 ---
 
 This tutorial illustrates how to build an **Ethereum-compatible** blockchain with Substrate using crates from the [Frontier](https://github.com/paritytech/frontier) project.

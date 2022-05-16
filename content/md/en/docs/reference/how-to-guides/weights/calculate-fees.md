@@ -1,14 +1,11 @@
 ---
-title: Calculating Fees
-slug: /how-to-guides/v3/weights/calculate-fees
+title: Calculate fees
+description:
 keywords:
   - weights
   - fees
   - runtime
   - FRAME v1
-version: '3.0'
-section: how to guides
-category: weights
 ---
 
 <Objectives

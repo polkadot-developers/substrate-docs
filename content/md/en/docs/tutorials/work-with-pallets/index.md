@@ -1,6 +1,6 @@
 ---
 title: Work with pallets
-description: Demonstrates how you can add pallets to customize the runtime environment 
+description: Demonstrates how you can add pallets to customize the Substrate runtime environment.
 keywords:
 ---
 

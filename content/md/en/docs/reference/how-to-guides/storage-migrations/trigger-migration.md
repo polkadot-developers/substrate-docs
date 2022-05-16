@@ -1,13 +1,10 @@
 ---
-title: Trigger a Migration
-slug: /how-to-guides/v3/storage-migrations/trigger-with-apps
+title: Trigger a migration
+description: 
 keywords:
   - storage migration
   - runtime
   - advanced
-version: '3.0'
-section: how to guides
-category: storage migrations
 ---
 
 <Objectives

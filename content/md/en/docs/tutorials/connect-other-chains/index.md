@@ -1,6 +1,6 @@
 ---
 title: Connect other chains
-description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.
+description: Introduces tutorials and workshops for connecting to testnets and public relay chains.
 ---
 
 The **Connect other chains** tutorials delve into more advanced topics for moving beyond solo chain development, including how to connect your chain to other chains.

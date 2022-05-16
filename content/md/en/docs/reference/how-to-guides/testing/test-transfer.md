@@ -1,13 +1,10 @@
 ---
-title: Testing a Transfer Function
-slug: /how-to-guides/v3/testing/transfer-function
+title: Test a transfer function
+description:
 keywords:
   - testing
   - runtime
   - beginner
-version: '3.0'
-section: how to guides
-category: testing
 ---
 
 <Objectives

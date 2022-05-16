@@ -1,6 +1,6 @@
 ---
 title: Monitor node metrics
-description: Illustrates how you can use observability tools to capute and view information about Substrate nodes.
+description: Use observability tools to capture and view information about Substrate nodes.
 ---
 
 Substrate exposes metrics about the operation of your network.

@@ -1,35 +1,26 @@
 ---
-title: Conditional weighting struct
-slug: /how-to-guides/v3/weights/conditional-weighting-struct
+title: Conditional weighting
+description:
 keywords:
   - weights
   - benchmarking
   - runtime
-version: '3.0'
-section: how to guides
-category: weights
 ---
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description: 'Create and use a custom weighting struct in your pallet.',
-    },
-    {
-      title: 'Use Cases',
-      description: `Applying totally different weight functions based on certain condition on computing
-        extrinsic's weight value.`,
-    },
-    {
-      title: 'Overview',
-      description: `Substrate provides a mechanism known as [transaction weighting](/v3/concepts/weight) to quantify the
-      resources consumed while executing a transaction. Typically we will just use the weight
-      functions returned from our benchmarking for this. But Substrate also allow us to apply a
-      totally different weight function based on certain condition. We will walk through an example
-      in this guide. Once defined, it can be used directly in your pallet, written as such:
-      \`#[pallet::weight(Conditional(\<your condition\>)]\`.
-      
+Substrate provides a mechanism known as [transaction weighting](/main-docs/build/tx-weights-fees) to quantify the resources consumed while executing a transaction. 
+Typically, we use the weight functions returned from our benchmarking for this.
+But Substrate also allow us to apply a totally different weight function based on certain condition.
+We will walk through an example in this guide.
+Once defined, it can be used directly in your pallet, written as such:
+
+#[pallet::weight(Conditional(\<your condition\>)
+
+## Objectives
+
+- Create and use custom weighting in your pallet.
+
+- Apply different weight functions based on certain condition on computing extrinsic's weight value.
+
 Here are the different traits we'll be implementing:
   - [\`WeighData\`](/rustdocs/latest/frame_support/weights/trait.WeighData.html#impl-WeighData<T>-for-(Weight%2C%20DispatchClass%2C%20Pays)): Weigh the data in a function. 
     \`pallet::weight\` expects whatever implements \`WeighData<T>\` to replace \`T\` with a tuple of the dispatch arguments.

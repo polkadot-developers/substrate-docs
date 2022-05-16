@@ -1,6 +1,6 @@
 ---
-title: Smart contracts
-description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.
+title: Develop smart contracts
+description: Introduces tutorials for using the ink! programming language to build smart contracts.
 ---
 
 The **Develop smart contracts** tutorials guide you through how you can use the ink programming language to build smart contracts that run on a Substrate-based blockchain.

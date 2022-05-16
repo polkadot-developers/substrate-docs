@@ -1,10 +1,10 @@
 ---
 title: Use macros in a custom pallet
-description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.
+description: Create a custom pallet for a Substrate runtime using a skeleton of FRAME macros.
 ---
 
 This tutorial illustrates how to create a custom pallet for a Substrate
-runtime using **macros** that are part of the [FRAME](/v3/runtime/frame) development environment.
+runtime using **macros** that are part of the [FRAME](/reference/frame-macros/) development environment.
 
 For this tutorial, you'll build a simple **proof of existence** application. Proof of existence is an approach to validating the authenticity and ownership of a digital object by using the object information stored on the blockchain.
 Because the blockchain associates a timestamp and signature with the object, the blockchain record can be used to verify—to serve as proof—that a particular object existed at a specific date and time. It can also verify who the owner of a record was at that date and time.

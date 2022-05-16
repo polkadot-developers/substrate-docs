@@ -1,13 +1,10 @@
 ---
-title: Use a Struct in Storage
-slug: /how-to-guides/v3/pallet-design/storage-value
+title: Create a storage structure (struct)
+description:
 keywords:
   - pallet design
   - intermediate
   - runtime
-version: '3.0'
-section: how to guides
-category: pallet design
 ---
 
 Creating a struct of similarly grouped storage items is an orderly way to keep track of them.
