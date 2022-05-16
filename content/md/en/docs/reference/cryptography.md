@@ -1,9 +1,6 @@
 ---
 title: Cryptography
-slug: /v3/advanced/cryptography
-version: '3.0'
-section: docs
-category: advanced
+description:
 keywords: []
 ---
 

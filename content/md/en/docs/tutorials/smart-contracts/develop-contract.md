@@ -1,6 +1,6 @@
 ---
 title: Develop a smart contract
-description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.
+description: Store, increment, and retrieve values in a smart contract.
 ---
 
 In [Prepare your first contract](/tutorials/smart-contracts/first-smart-contract/), you learned the basic steps for building and deploying a smart contract on a Substrate-based blockchain using a default first project.

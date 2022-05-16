@@ -1,9 +1,6 @@
 ---
 title: Substrate SS58 address format
-slug: /v3/advanced/ss58
-version: '3.0'
-section: docs
-category: advanced
+description:
 keywords: []
 ---
 

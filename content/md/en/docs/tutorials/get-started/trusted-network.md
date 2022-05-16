@@ -1,6 +1,6 @@
 ---
 title: Add trusted validators
-description: Generate keys and a chain specification to add **authority set** of private **validators** for a blockchain network.
+description: Generate keys and a chain specification to add authority set of private validators for a blockchain network.
 ---
 
 This tutorial illustrates how you can start a small, standalone blockchain network with an **authority set** of private **validators**.

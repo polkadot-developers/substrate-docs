@@ -1,6 +1,6 @@
 ---
 title: Glossary
-section: reference
+description: Defines and explains concepts and terminology that are specific to blockchain technology or to the Substrate ecosystem.
 keywords:
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Configure the contracts pallet
-description:
+description: Configure the Substrate runtime to prepare for writing smart contracts.
 ---
 
 If you completed the [Build a local blockchain](/tutorials/get-started/build-local-chain) tutorial, you already know that the Substrate [node template](https://github.com/substrate-developer-hub/substrate-node-template) provides a working runtime that includes some **pallets** to get you started.
@@ -23,7 +23,7 @@ Before starting this tutorial, verify the following:
   [Substrate front-end template](https://github.com/substrate-developer-hub/substrate-node-template/tree/latest) as described in 
   [Buiild a local blockchain](../../tutorials/create-your-first-substrate-chain/).
 
-## Add the Nicks pallet dependencies
+## Add the pallet dependencies
 
 Any time you add a pallet to the runtime, you need to import the appropriate crate and update the dependencies for the runtime. 
 For the Contracts pallet, you need to import the `pallet-contracts` crate.

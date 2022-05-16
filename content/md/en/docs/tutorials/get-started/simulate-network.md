@@ -1,6 +1,6 @@
 ---
 title: Simulate a network
-description: I'm baby pBR&B polaroid listicle celiac ennui raw denim reprehenderit sartorial godard four dollar toast. Aliquip cillum VHS brooklyn letterpress sustainable green juice excepteur proident hoodie keytar culpa PBR&B do.
+description: Simulate a Substrate blockchain with an authority consensus model using predefined development accounts.
 ---
 
 This tutorial provides a basic introduction to how you can start a private blockchain network with an **authority set** of private **validators**.
