@@ -1,12 +1,9 @@
 ---
-title: Inspect a Runtime with Subwasm
-slug: /how-to-guides/v3/tools/subwasm
+title: Verify a runtime Wasm binary
+description:
 keywords:
   - tooling
   - wasm
-version: '3.0'
-section: how to guides
-category: tools
 ---
 
 [Subwasm](https://github.com/chevdor/subwasm) provides a way to expose the features of the runtime for any Substrate chain.

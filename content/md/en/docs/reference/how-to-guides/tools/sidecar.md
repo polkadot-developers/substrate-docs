@@ -1,39 +1,27 @@
 ---
-title: Track Parachain auction winners using Sidecar
-slug: /how-to-guides/v3/tools/sidecar
+title: Use REST endpoints to get chain data
+description:
 keywords:
   - node
   - client
   - tooling
-version: '3.0'
-section: how to guides
-category: tools
 ---
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description: `Find the winner of a completed parachain auction using \`sidecar\`.`,
-    },
-    {
-      title: 'Use Cases',
-      description: `Interact with a Substrate blockchain node using a REST service.`,
-    },
-    {
-      title: 'Overview',
-      description: `To find the winner of a completed auction we will need to know the block 
-      number the auction ended at. Since [Sidecar](https://github.com/paritytech/substrate-api-sidecar) 
-      is a stateless API and the auction info is stored at the final block of an auction, once the 
-      auction is over we need the block number to make historic queries to retrieve the event and data 
-      stored in it.`,
-    },
-  ]}
-/>
+This how-to guide illustrates using REST endpoints providing by the sidecar service to interact with a Substrate blockchain node.
+
+To find the winner of a completed auction we will need to know the block number the auction ended at. Since [Sidecar](https://github.com/paritytech/substrate-api-sidecar) is a stateless API and the auction info is stored at the final block of an auction, once the auction is over we need the block number to make historic queries to retrieve the event and data stored in it.
+
+## Goal
+
+Find the winner of a completed parachain auction using `sidecar`
+
+## Use Cases
+
+Interact with a Substrate blockchain node using a REST service.
 
 ## Steps
 
-### 1. Leverage the `/experimental/paras/auctions/current` endpoint
+### 1. Leverage the /experimental/paras/auctions/current endpoint
 
 We will track and store `finishEnd`, `auctionIndex`, and `leasePeriods` in a Database:
 
@@ -59,7 +47,7 @@ auctionIndex: {
 }
 ```
 
-### 3. Query the `/blocks/:blockId` endpoint
+### 3. Query the /blocks/:blockId endpoint
 
 This step queries all blocks at the block height specified in the `finishEnd` field and retrieves all events inside of `on_initialize`. An example response would be:
 

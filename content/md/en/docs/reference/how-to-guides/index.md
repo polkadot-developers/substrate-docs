@@ -7,40 +7,89 @@ featured_image:
 
 Substrate _How-to_ quick reference guides provide instructions for achieving specific goals.
 Each guide explains how to perform a specific task with the assumption that you are already familiar with Substrate and programming in Rust.
+Learn more about contributing to these guides [here](/community/contribute/templates).
 
-The _How-to_ quick reference guides are organized into the following categories:
-
-## [Basics](/reference/how-to-guides/basics)
+## Basics
   
-Learn the simple patterns that runtime engineers know inside out. 
-These guides cover the basics that will help you understand more complex topics.
+See the following guides to learn common patterns in runtime development.
+
+- [Import a pallet](/reference/how-to-guides/basics/pallet-integration/)
+- [Instantiate a pallet](/reference/how-to-guides/basics/instantiable-pallets/)
+- [Configure runtime constants](/reference/how-to-guides/basics/runtime-constants/)
+- [Configure genesis](/reference/how-to-guides/basics/genesis-config)
+- [Custom chain specification](/reference/how-to-guides/basics/custom-chainspec)
+- [Use helper functions](/reference/how-to-guides/basics/helper-functions)
+- [Mint primitive tokens](/reference/how-to-guides/basics/min-tokens/)
+- [Calculate weight](/reference/how-to-guides/basics/calc-weights/)
+
+## Pallet design
   
-## [Pallet design](/refernce/how-to-guides/pallet-design)
-  
-A collection of best practices on building pallets using FRAME.
+See the following guides for best practices on building pallets using FRAME.
 
-## [Weights]()
+- [Integrate the contracts pallet](/reference/how-to-guides/pallet-design/add-contracts-pallet/)
+- [Implement lockable currency](/reference/how-to-guides/pallet-design/lock-currency/)
+- [Implement randomness](/reference/how-to-guides/pallet-design/randomness/)
+- [Configure crowdfunding](/reference/how-to-guides/pallet-design/crowdfund/)
+- [Create a storage structure (struct)](/reference/how-to-guides/pallet-design/storage-value/)
+- [Use tight pallet coupling](/reference/how-to-guides/pallet-design/tight-coupling/)
+- [Use loose pallet coupling](/reference/how-to-guides/pallet-design/loose-coupling/)
 
-All guides about benchmarking and weight configurations for runtime engineers.
+## Weights
 
-## [Testing]()
+See the following guides for help with benchmarking and weight configurations.
 
-Guides to cover different use cases for testing pallets and other runtime logic.
+- [Calculate fees](/reference/how-to-guides/weights/calculate-fees/)
+- [Add benchmarks](/reference/how-to-guides/weights/add-benchmarks/)
+- [Use custom weights in benchmarks](/reference/how-to-guides/custom-weights/helper-functions)
+- [Create conditional weights](/reference/how-to-guides/weights/conditional-weights/)
 
-## [Storage migrations]()
+## Testing
 
-A collection of guides to help runtime engineers with different types of storage migrations.
+See the following guides for help with testing pallets and runtime logic.
 
-## [Consensus]()
+- [Set up basic tests](/reference/how-to-guides/testing/basic-tests/)
+- [Test a transfer function](reference/how-to-guides/testing/test-transfer/)
 
-Discover different ways to implement consensus mechanisms in your runtimes.
+## Storage migrations
 
-## [Parachains]()
+See the following guides for with different types of storage migrations.
 
-All things related to integrating and extending standalone Substrate chains to parachains.
+- [Basic storage migration](/reference/how-to-guides/storage/basic-migration/)
+- [Test migration](/reference/how-to-guides/storage/test-migration/)
+- [Trigger a migration](/reference/how-to-guides/storage/trigger-migration/)
 
-## [Tools]()
+## Consensus
 
-Guides for tools that are not included out-of-the-box to help you managing Substrate chains in production.
+See the following guides to implement consensus mechanisms in your runtimes.
 
-Learn more about contributing to these guides [here](/v3/contribute/templates).
+- [Create a hybrid node](/reference/how-to-guides/consensus/hybrid-node/)
+- [Configure a chain to use proof-of-work](/reference/how-to-guides/consensus/proof-of-work/)
+
+## Parachains
+
+See the following guides for help working with Substrate parachains.
+
+- [Convert a solo chain](/reference/how-to-guides/parachain/solo-to-parachain/)
+- [Connect to a relay chain](/reference/how-to-guides/tools/connect-relay/)
+- [Select collators](/reference/how-to-guides/tools/collator-selection/)
+- [Prepare for launch](/reference/how-to-guides/tools/prelaunch/)
+- [Runtime upgrades](/reference/how-to-guides/tools/runtime-upgrade/)
+- [Auctions and crowdloans](/reference/how-to-guides/tools/auctions-loans/)
+
+## Tools
+
+See the following guides for add-on tools that help you manage Substrate chains in production.
+
+- [Integrate try-runtime](/reference/how-to-guides/tools/try-runtime/)
+- [Create a txwrapper for a chain](/reference/how-to-guides/tools/txwrapper/)
+- [Use REST endpoints to get chain data](/reference/how-to-guides/tools/sidecar/)
+- [Verify a runtime Wasm binary](/reference/how-to-guides/tools/subwasm/)
+
+## Offchain workers
+
+See the following guides for help working with offchain data.
+
+- [Making transactions](/reference/how-to-guides/ocw/ocw-transactions/)
+- [Making HTTP requests](/reference/how-to-guides/ocw/ocw-http-requests/)
+- [Local storage](/reference/how-to-guides/oce/ocw-local-storage/)
+- [Offchain indexing](/reference/how-to-guides/ocw/ocw-indexing)

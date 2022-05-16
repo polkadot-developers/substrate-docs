@@ -1,13 +1,10 @@
 ---
-title: Setting up Tests for Your Pallet
-slug: /how-to-guides/v3/testing/basics
+title: Set up basic tests
+description:
 keywords:
   - basics
   - testing
   - runtime
-version: '3.0'
-section: how to guides
-category: testing
 ---
 
 <Objectives

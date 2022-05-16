@@ -1,13 +1,10 @@
 ---
-title: Migration Tests
-slug: /how-to-guides/v3/storage-migrations/tests
+title: Test migration
+description:
 keywords:
   - storage migration
   - testing
   - runtime
-version: '3.0'
-section: how to guides
-category: storage migrations
 ---
 
 <Objectives

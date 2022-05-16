@@ -1,13 +1,10 @@
 ---
-title: Basic Storage Migration
-slug: /how-to-guides/v3/storage-migrations/basics
+title: Basic storage migration
+description:
 keywords:
   - storage migration
   - runtime
   - upgrades
-version: '3.0'
-section: how to guides
-category: storage migrations
 ---
 
 <Objectives

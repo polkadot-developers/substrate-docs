@@ -1,41 +1,23 @@
 ---
-title: Integrate Try Runtime
-slug: /how-to-guides/v3/tools/try-runtime
+title: Integrate try-runtime
+description:
 keywords:
   - storage migration
   - testing
   - runtime
   - tooling
-version: '3.0'
-section: how to guides
-category: tools
 ---
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description: `Include \`try-runtime\` to use it in a Substrate node.`,
-    },
-    {
-      title: 'Use Cases',
-      description: `Use \`try-runtime\` to test a storage migration.`,
-    },
-    {
-      title: 'Overview',
-      description: `
-The \`try-runtime\` tool is useful for running tests before launching a runtime to production. This is a simple guide 
-which steps through which dependencies to include and where to include them in order to use it inside a runtime. 
-`,
-    },
-  ]}
-/>
-<br />
-<Message
-  type={`red`}
-  title={`Match versions!`}
-  text={`Be sure to use the correct tag/branch when adding your dependencies!`}
-/>
+The `try-runtime` tool is useful for running tests before launching a runtime to production. This is a simple guide 
+which steps through which dependencies to include and where to include them in order to use it inside a runtime.
+
+## Goal
+
+Include `try-runtime` to use it in a Substrate node.
+
+## Use Cases
+
+Use `try-runtime` to test a storage migration.
 
 ## Steps
 

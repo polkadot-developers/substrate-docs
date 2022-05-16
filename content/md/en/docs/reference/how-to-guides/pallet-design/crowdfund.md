@@ -1,14 +1,11 @@
 ---
-title: Simple Crowdfund
-slug: /how-to-guides/v3/pallet-design/crowdfund
+title: Configure crowdfunding
+description:
 keywords:
   - pallet design
   - intermediate
   - runtime
   - child trie
-version: '3.0'
-section: how to guides
-category: pallet design
 ---
 
 This guide shows you how to build a pallet that controls multiple token accounts and stores data in child storage. This structure is useful for building crowdfunding apps.

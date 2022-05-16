@@ -1,13 +1,10 @@
 ---
-title: Integrate the Contracts Pallet
-slug: /how-to-guides/v3/pallet-design/contracts-pallet
+title: Integrate the contracts pallet
+description:
 keywords:
   - pallet design
   - intermediate
   - runtime
-version: '3.0'
-section: how to guides
-category: pallet design
 ---
 
 This guide will show you how to add the [Contracts pallet](/rustdocs/latest/pallet_contracts/index.html) to your runtime so that your blockchain can support Wasm smart contracts.

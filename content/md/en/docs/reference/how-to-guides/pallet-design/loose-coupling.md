@@ -1,31 +1,20 @@
 ---
-title: Loosely Coupling a Pallet
-slug: /how-to-guides/v3/pallet-design/loose-coupling
-version: '3.0'
-section: how to guides
-category: pallet design
+title: Use loose pallet coupling
+description:
 keywords: []
 ---
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description: 'Learn how to use a function from another pallet.',
-    },
-    {
-      title: 'Use Cases',
-      description: `Reuse a specific type from another pallet.`,
-    },
-    {
-      title: 'Overview',
-      description: `Loose coupling is a technique that enables re-using logic from another pallet inside a pallet. In this guide
-        we show the simple pattern of using a type from an outside pallet in our working pallet, by using
-        trait bounds in our pallet's configuration trait. We will loosely couple a pallet to make use of the \`Currency\` trait
-        from [\`frame_support\`](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html).`,
-    },
-  ]}
-/>
+Loose coupling is a technique that enables re-using logic from another pallet inside a pallet.
+In this guide, we show the simple pattern of using a type from an outside pallet in our working pallet, by using trait bounds in our pallet's configuration trait. 
+We will loosely couple a pallet to make use of the \`Currency\` trait from [\`frame_support\`](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html).
+
+## Goal
+
+Learn how to use a function from another pallet.
+
+## Use Cases
+
+Reuse a specific type from another pallet.
 
 ## Steps
 

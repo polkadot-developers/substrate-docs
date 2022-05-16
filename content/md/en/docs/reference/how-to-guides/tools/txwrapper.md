@@ -1,41 +1,26 @@
 ---
 title: Create a txwrapper for a chain
-slug: /how-to-guides/v3/tools/txwrapper
+description:
 keywords:
   - runtime
   - tooling
-version: '3.0'
-section: how to guides
-category: tools
 ---
+Creating a `txwrapper` package will expand the offline signing options for users of your chain.
+This is important for security conscious users who need to facilitate transaction signing, construction and/or decoding with an air-gapped device(s). 
+This includes (but is not limited to) custodians, exchanges, and cold storage users.
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description: `Structure the public API of a chain's \`txwrapper\` package.`,
-    },
-    {
-      title: 'Use Cases',
-      description: `For existing \`txwrapper\` users to easily integrate new txwrappers.`,
-    },
-    {
-      title: 'Overview',
-      description: `Creating a \`txwrapper\` package will expand the offline signing options for 
-      users of your chain. This is important for security conscious users who need to facilitate 
-      transaction signing, construction and/or decoding with an air-gapped device(s). This includes 
-      (but is not limited to) custodians, exchanges, and cold storage users.`,
-    },
-  ]}
-/>
-<br />
-<Message
-  type={`green`}
-  title={`Tip`}
-  text={`Prior to building a \`txwrapper\` for your own chain, have a look at the [\`txwrapper-examples\`](https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-examples/README.md). 
-  Make sure you understand the Polkadot example and take a look at the \`txwrapper-core\` methods an end user is expected to use (see \`decode\`, \`construct.{signingPayload, signedTx, txHash}\`). 
-  Your package will be re-exporting these so be sure to understand the public API you will create.`}
-/>{' '}
+Prior to building a `txwrapper` for your own chain, have a look at the [`txwrapper-examples`](https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-examples/README.md). 
+
+Make sure you understand the Polkadot example and take a look at the `txwrapper-core` methods an end user is expected to use (see `decode`, `construct.{signingPayload, signedTx, txHash}`). 
+Your package will be re-exporting these so be sure to understand the public API you will create.
+
+## Goal
+
+Structure the public API of a chain's `txwrapper` package.
+
+## Use cases
+
+For existing `txwrapper` users to easily integrate new txwrappers.
 
 ## Steps
 
