@@ -79,7 +79,7 @@ For more information about generic types and traits in Rust, see the sections on
 
 ## Where to go next
 
-Now that you know how Substrate relies on a few key Rust features like traits, generic types, and macros—you can explore the following resources to learn more.
+Now that you know how Substrate relies on a few key Rust features—like traits, generic types, and macros—you can explore the following resources to learn more.
 
 * [Rust book](https://doc.rust-lang.org/book/)
 * [Why Rust?](https://www.parity.io/blog/why-rust) (blog by Parity)
