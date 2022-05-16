@@ -11,14 +11,14 @@ Being the language of choice for Substrate, Rust is a highly performant programm
 
 - Rust is portable: it's designed to run on embedded devices with support for any type of operating system.
 
-- Rust is memory safe: it has no garage collector and it checks each and every variable you use and every memory address you reference to avoid any memory leaks.
+- Rust is memory safe: it has no garbage collector and it checks each and every variable you use and every memory address you reference to avoid any memory leaks.
 
 - Rust is Wasm first: it has first class support for compiling to WebAssembly.
 
-## What Rust?
+## Rust in Substrate
 
 In the [Architecture]() section, you will learn that Substrate is made of two distinct architectural components: the outer node and the runtime.
-While more complex features in Rust-such as multithreading and asynchronous Rust-are used in the outer node code, they aren't directly exposed to runtime engineers, making it easier for runtime engineers to focus on the business logic of their node.
+While more complex features in Rust such as multithreading and asynchronous Rust are used in the outer node code, they aren't directly exposed to runtime engineers, making it easier for runtime engineers to focus on the business logic of their node.
 
 Generally, depending on their focus, developers should expect to know:
 
@@ -32,6 +32,7 @@ Although general familiarity with Rust is essential before diving into Substrate
 When building a Substrate node, we use the `wasm32-unknown-unknown` compilation target which means that Substrate runtime engineers are constrained to writing runtimes that must compile to Wasm. 
 This implies that you can't rely on some typical standard library types and functions and must only use `no_std` compatible crates for the majority of runtime code. 
 Substrate has a lot of its of own primitive types and associated traits that make it possible to work around the `no_std` requirement. 
+
 ## Macros 
 
 When you learn about writing FRAME pallets, you will quickly come across a variety of different types of macros designed to abstract and enforce any runtime specific requirements.
@@ -75,6 +76,7 @@ Substrate maximizes the use of generic types to provide maximum flexibility.
 You define how the generic types are resolved to suit your purpose.
 
 For more information about generic types and traits in Rust, see the sections on [Generic Types](https://doc.rust-lang.org/book/ch10-01-syntax.html) from the Rust book.
+
 ## Where to go next
 
 Now that you know how Substrate relies on a few key Rust features—like traits, generic types, and macros—you can explore the following resources to learn more.
