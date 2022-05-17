@@ -70,7 +70,7 @@ In this hierarchical structure, each child derived from a parent has its own key
 The derived keys can also be used to derive additional child key pairs, similar to how a file system can have nested directories in a hierarchical directory structure.
 For background information about how hierarchical deterministic keys are derived, see the [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) specification for hierarchical deterministic wallets.
 
-For information about deriving hierarchical deterministic keys using subkey commands, see [Working with derived keys](#derived-keys).
+For information about deriving hierarchical deterministic keys using subkey commands, see [Working with derived keys](#working-with-derived-keys).
 
 ## Basic command usage
 
@@ -686,7 +686,7 @@ For example:
 Signature verifies correctly.
 ```
 
-## Working with derived keys<a name="derived-keys"></a>
+## Working with derived keys
 
 In Substrate, hierarchical deterministic derived keys are classified as hard keys or as soft keys based on how they are derived.
 For example, hard keys can only be derived using the parent **private key** and a derivation path.
