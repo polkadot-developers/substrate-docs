@@ -132,6 +132,8 @@ To upgrade the runtime:
      type MaxScheduledPerBlock = MaxScheduledPerBlock;
      type WeightInfo = ();
      type OriginPrivilegeCmp = EqualPrivilegeOnly;
+     type PreimageProvider = ();
+     type NoPreimagePostponement = ();
    }
    ```
 
