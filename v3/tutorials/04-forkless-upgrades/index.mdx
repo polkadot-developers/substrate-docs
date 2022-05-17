@@ -251,6 +251,8 @@ impl pallet_scheduler::Config for Runtime {
 	type MaxScheduledPerBlock = MaxScheduledPerBlock;
 	type WeightInfo = ();
 	type OriginPrivilegeCmp = EqualPrivilegeOnly;
+  type PreimageProvider = ();
+  type NoPreimagePostponement = ();
 }
 
 // Add the Scheduler pallet inside the construct_runtime! macro.
