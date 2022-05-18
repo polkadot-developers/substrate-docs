@@ -87,7 +87,7 @@
 }
 
 /* GLOBAL OVERWITES */
-.dark .text-substrateBlue, .dark .mdx-anchor a {
+.dark .text-substrateBlue, .dark .mdx-anchor a, .dark .hover\:text-substrateBlue:hover {
   color:#0e92f9;
 }
 .dark .mdx-anchor a::before {
