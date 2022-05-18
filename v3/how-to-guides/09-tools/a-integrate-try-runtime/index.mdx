@@ -47,7 +47,7 @@ Add the FRAME dependency:
 
 ```rust
 [dependencies]
-frame-try-runtime = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.20", optional = true }
+frame-try-runtime = { git = "https://github.com/paritytech/substrate.git", default-features = false, branch = "polkadot-v0.9.20", optional = true }
 try-runtime-cli = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.20", optional = true }
 
 /* --snip-- */
@@ -64,6 +64,17 @@ try-runtime = [
 	"frame-executive/try-runtime",
 	"frame-try-runtime",
 	"frame-system/try-runtime",
+  # add "pallet/try-runtime",
+]
+```
+
+#### In `pallets/pallet_name/Cargo.toml`, for every pallet from your runtime:
+
+```rust
+[features]
+...
+try-runtime = [
+  "frame-support/try-runtime",
 ]
 ```
 
@@ -96,7 +107,7 @@ try-runtime = [
 ]
 
 /* --snip-- */
-frame-try-runtime = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.20", optional = true }
+frame-try-runtime = { git = "https://github.com/paritytech/substrate.git", default-features = false, branch = "polkadot-v0.9.20", optional = true }
 try-runtime-cli = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.20", optional = true }
 /* --snip-- */
 
