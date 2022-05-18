@@ -163,7 +163,9 @@ pre {
 }
 
 /* Code View */ 
-
+.markdown-body a.anchor {
+  display:none;
+}
 .gatsby-highlight {
   border-radius: 10px;
   margin: 0.5em 0;
@@ -174,6 +176,9 @@ pre {
 .gatsby-highlight pre[class*='language-']::before {
   right: unset;
   left: 16px;
+}
+.markdown-body .gatsby-highlight pre {
+  margin-right: 4rem!important;
 }
 .light .gatsby-highlight {
   background-color: #fcfcfc;

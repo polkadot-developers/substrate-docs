@@ -73,18 +73,18 @@ Before you begin, verify the following:
 
    The command displays the following account information:
 
-   <pre>
+   ```bash
    Secret Key URI //alice is account:
    Secret seed:       0xc166b100911b1e9f780bb66d13badf2c1edbe94a1220f1a0584c09490158be31
    Public key (hex):  0xc81ebbec0559a6acf184535eb19da51ed3ed8c4ac65323999482aaf9b6696e27
    Account ID:        0xc81ebbec0559a6acf184535eb19da51ed3ed8c4ac65323999482aaf9b6696e27
    Public key (SS58): 5Gb6Zfe8K8NSKrkFLCgqs8LUdk7wKweXM5pN296jVqDpdziR
    SS58 Address:      5Gb6Zfe8K8NSKrkFLCgqs8LUdk7wKweXM5pN296jVqDpdziR
-   </pre>
+   ```
 
 1. Start the node in development mode by running the following command:
 
-   ```
+   ```copy
    ./target/release/node-template --dev
    ```
 
@@ -92,11 +92,11 @@ Before you begin, verify the following:
    As the node starts, the terminal displays output about the operations performed.
    If you see messages that blocks are being proposed and finalized, you have a running node.
 
-   <pre>
+   ```
    ... Idle (0 peers), best: #3 (0xcc78…5cb1), finalized #1 ...
    ... Starting consensus session on top of parent ...
-   ... Prepared block for proposing at 4 (0 ms) ...  
-   </pre>
+   ... Prepared block for proposing at 4 (0 ms) ...
+   ```
 
 ## Connect to the node
 
