@@ -136,7 +136,7 @@ const MainNav = {
               },
               {
                 linkTitle: 'Awesome Substrate',
-                link: `${site}/ecosystem/resources/awesome-substrate`,
+                link: `https://github.com/substrate-developer-hub/awesome-substrate/blob/master/README.md`,
                 external: true,
               },
             ],
