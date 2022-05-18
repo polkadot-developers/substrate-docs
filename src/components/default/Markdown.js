@@ -1,6 +1,7 @@
 import React from 'react';
 import rehypeReact from 'rehype-react';
 
+import { Code } from './resolvers/Code';
 import { Image } from './resolvers/Image';
 import { a } from './resolvers/Link';
 // import Code from '../ui/Code'
@@ -8,6 +9,7 @@ import { a } from './resolvers/Link';
 const components = {
   a,
   img: Image,
+  pre: Code,
   // code: Code,
 };
 

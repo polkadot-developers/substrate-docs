@@ -160,7 +160,14 @@ module.exports = {
               directory: `${__dirname}/content/code-snippets/`,
             },
           },
-          `gatsby-remark-prismjs`,
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              aliases: {
+                sh: 'bash',
+              },
+            },
+          },
           {
             resolve: 'gatsby-remark-custom-blocks',
             options: {

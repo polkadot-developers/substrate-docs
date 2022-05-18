@@ -97,6 +97,13 @@
   fill: #0e92f9;
 }
 
+.gatsby-remark-prismjs-copy-button-container {
+  width: 100%;
+}
+.gatsby-remark-prismjs-copy-button {
+  background: hotpink;
+}
+
 /* Fills for SVG */
 
 .fill-black {
@@ -116,7 +123,7 @@
   color: black;
   fill: black;
 }
-.hover-fill-green:hover {
+.hover-fill-green:hover, .text-green {
   fill: #24CC85!important;
   color: #24CC85!important;
   transition: 0.33s;
@@ -164,6 +171,10 @@ pre {
   overflow: auto;
   font-size:1em;
 }
+.gatsby-highlight pre[class*='language-']::before {
+  right: unset;
+  left: 16px;
+}
 .light .gatsby-highlight {
   background-color: #fcfcfc;
   border: 1px solid #E7E5E5;
@@ -172,9 +183,6 @@ pre {
 .markdown-body .gatsby-highlight pre, .markdown-body pre{
   font-size: 100%;
 }
-// .gatsby-highlight pre[class*="language-"]{
-//   padding:0!important;
-// }
 
 .dark .gatsby-highlight {
   background-color: #272935!important;
