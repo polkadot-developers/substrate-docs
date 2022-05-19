@@ -30,13 +30,8 @@ authorities from the runtime via the
   ]}
 />
 <br />
-<Message
-  type={`gray`}
-  title={`Note`}
-  text={`Grandpa relies on getting its authority sets from the runtime via the
-[GrandpaAPI](/rustdocs/latest/sp_finality_grandpa/trait.GrandpaApi.html), so you'll need a runtime
-that provides this API to successfully compile a node implementing this guide. `}
-/>
+Grandpa relies on getting its authority sets from the runtime using the [GrandpaAPI](/rustdocs/latest/sp_finality_grandpa/trait.GrandpaApi.html), so you'll need a runtime
+that provides this API to successfully compile a node implementing this guide.
 
 ## Steps
 

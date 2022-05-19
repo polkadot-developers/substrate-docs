@@ -77,15 +77,8 @@ With a plain spec available, you generate a final raw chain spec by:
 
 ### 4. Publish the chain specification
 
-<Message
-  type={`yellow`}
-  title={`Non-Determinism in Wasm & chain specs`}
-  text="Because Rust -> Wasm optimized builds aren't reproducible, each person will get a slightly
-    different Wasm blob which will break consensus if each participant generates the file themselves.
-    For the curious, learn more about this issue in
-    [this blog post](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1).
-    "
-/>
+Because Rust builds that target WebAssembly are optimized, the binaries aren't deterministically reproducible.
+If each network participant were to generate the chain specification, the differences in the resulting Wasm blob would break consensus.
 
 It is _conventional_ to include the chain specification files for your node _within the source code itself_ so that anyone can build your node in the same way, whereby it becomes easy to check for non-determinism by comparing a genesis blob with another.
 Polkadot, Kusama, Rococo, and more network chain spec files are found [in the source here](https://github.com/paritytech/polkadot/tree/master/node/service/res) along with a `.gitignore` file to ensure that you don't accidentally change these `!/*.json` files as you build further on your node's software and do [runtime upgrades](/tutorials/v3/forkless-upgrades).

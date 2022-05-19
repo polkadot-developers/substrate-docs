@@ -60,15 +60,9 @@ expensive RPC queries, namely:
 - `set --rpc-max-payload 1000` to ensure large RPC queries can work.
 - `set --rpc-cors all` to ensure ws connections can come through.
 
-<Message
-  type="green"
-  title="Tip"
-  text={` Combine \`try-runtime\` with 
-[\`fork-off-substrate\`](https://github.com/maxsam4/fork-off-substrate) to test your chain before
- production. Use \`try-runtime\` to test your chain's migration and its pre and post states. Then,
- use \`fork-off-substrate\` if you want to check that block production continues fine after the
- migration, and do some other arbitrary testing.`}
-/>
+You can combine `try-runtime` with [`fork-off-substrate`](https://github.com/maxsam4/fork-off-substrate) to test your chain before production. 
+Use `try-runtime` to test your chain's migration and its pre and post states. 
+Then, use `fork-off-substrate` if you want to check that block production continues after the migration.
 
 ### Calling into hooks from `OnRuntimeUpgrade`
 

@@ -43,16 +43,10 @@ the Polkadot-JS API right away.
 
 ### Connecting to local node
 
-To connect the Polkadot-JS Apps to your local node, you must go into `Settings` and change the
-"endpoint to connect to" to `Local Node (127.0.0.1:9944)`.
+To connect the Polkadot-JS Apps to your local node, you must go into `Settings` and change the **endpoint to connect to** to `Local Node (127.0.0.1:9944)`.
 
-<Message
-  type={`gray`}
-  title={`Note`}
-  text={`If you are connected to the Polkadot-JS Apps over a secure HTTPS connection, you will
-  need to use a browser which also supports bridging to an insecure WebSocket endpoint. For example,
-  Google Chrome supports this, but Mozilla Firefox does not.`}
-/>
+If you connect to the Polkadot-JS Apps over a secure HTTPS connection, you must use a browser that also supports bridging to an insecure WebSocket endpoint.
+For example, Google Chrome supports this, but Mozilla Firefox does not.
 
 ## Polkadot-JS extension
 

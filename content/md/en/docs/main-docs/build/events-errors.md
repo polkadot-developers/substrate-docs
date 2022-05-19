@@ -63,13 +63,8 @@ construct_runtime!(
 );
 ```
 
-<br />
-<Message
-  type={`gray`}
-  title={`Note`}
-  text={`You may or may not need the \`<T>\` parameter depending on whether your events use generic
-  types. In our example it does, and is included above.`}
-/>
+In this example, the event is a generic type and requires the `<T>` parameter.
+The `<T>` parameter isn't needed if your events don't use generic types.
 
 ## Depositing an event
 

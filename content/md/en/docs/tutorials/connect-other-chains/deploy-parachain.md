@@ -127,12 +127,7 @@ Another way to verify the setup is by going to:
 
 After configuring the Apps to connect to the local **relay chain node**, you should see the UI showing two parachains being connected to the relay chain.
 
-<Message
-type={`green`}
-title={`All done!`}
-text={` You have automated the launch of a 3-node relay chain, and two parachains with a single node using \`polkadot-launch\` CLI utility and avoided all the initial manual overhead of starting nodes and registering parachains!
-`}
-/>
+You have automated the launch of a 3-node relay chain, and two parachains with a single node using `polkadot-launch` CLI utility and avoided all the initial manual overhead of starting nodes and registering parachains.
 
 Next, we will go through in details the configuration parameters that `polkadot-launch` recognizes in the config file.
 

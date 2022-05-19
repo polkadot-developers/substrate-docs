@@ -47,13 +47,7 @@ of something like GRANDPA that is common for other Substrate solo-chains.
 
 <!-- FIXME TODO WORK IN PROGRESS - NOT COMPLETE! -->
 
-<Message
-  type={`yellow`}
-  title={`DOC WORK IN PROGRESS`}
-  text={`
 This is an _overview_, not a proper how-to guide presently!
-`}
-/>
 
 ## Parachain node template overview
 
@@ -103,10 +97,4 @@ The collator service ([`node/src/service.rs`](https://github.com/substrate-devel
 While you can find similarities, the structure of the service is much different.
 This new service is the primary change that cumulus provides.
 
-<Message
-  type={`gray`}
-  title={`Note`}
-  text={`
 When modifying an existing Substrate chain to use Cumulus, it is generally best to copy the service code from the parachain template.
-  `}
-/>

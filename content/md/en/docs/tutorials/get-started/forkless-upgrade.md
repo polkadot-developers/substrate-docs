@@ -264,17 +264,12 @@ parameter_types! {
 ```
 
 This change increases the value of the Balances pallet's
-[`ExistentialDeposit`](/v3/getting-started/glossary#existential-deposit) - the
+[`ExistentialDeposit`](/reference/glossary#existential-deposit) - the
 minimum balance needed to keep an account alive from the point-of-view of the Balances pallet.
 
-<Message
-type={`yellow`}
-title={`Information`}
-text="Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000 to be reaped - that would require a [storage migration](/v3/runtime/upgrades#storage-migrations), which is out of scope for this tutorial.
-"
-/>
+Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000 to be reaped - that would require a [storage migration](/v3/runtime/upgrades#storage-migrations), which is out of scope for this tutorial.
 
-### Build the Upgraded Runtime
+### Build the upgraded runtime
 
 ```bash
 cargo build --release -p node-template-runtime

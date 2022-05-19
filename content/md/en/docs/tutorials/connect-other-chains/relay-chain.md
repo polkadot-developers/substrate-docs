@@ -68,21 +68,16 @@ data={{
 
 ## Hardware and software requirements
 
-<Message
-type={`yellow`}
-title={`Hardware requirements`}
-text={`
-Compiling this project is a resource intensive process! We suggest using a machine with **no less than**:
-\n
+Compiling this project is a resource intensive process. 
+You should ensure your hardware meets the following minimum requirements:
 
 - 8 GB of RAM (16 GB is suggested)
 - 4 CPU cores (8 cores are suggested)
 - 50 GB of free HDD/SSD space
-  \n
-  Without the minimal RAM here, you are likely run out of memory resulting in a \`SIGKILL\` error during the compilation process, generally happens on building the \`polkadot-service\` crate.
-  So be sure to monitor your RAM usage with tools like [htop](https://htop.dev/) and look out as swap memory starting to be used.
-  `}
-  />
+  
+  Without the minimal RAM here, you are likely run out of memory resulting in a `SIGKILL` error during the compilation process.
+  This error typically occurs when building the `polkadot-service` crate.
+  You should monitor your RAM usage with tools like [htop](https://htop.dev/) and be aware if swap memory starts to be used.
 
 ### Build with underpowered hardware
 
@@ -109,13 +104,12 @@ This tutorial has been tested on:
   It is generally expected that the [hosted Polkadot-JS Apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/explorer) should work.
   If you have issues, build and run this UI yourself at this tagged version/commit.
 
-<Message
-type={`red`}
-title={`Exact Versions Matter`}
-text={` You **must** use the _exact_ versions set forth in this tutorial to ensure that you do not run into conflicts.\n At the moment, parachains are _very tightly coupled_ with the relay chain codebase they are connecting to. To have the least amount of hiccups, be sure to use the corresponding tagged version of Polkadot and Parachain Template when working on this tutorial. So if you are using [**Polkadot \`v0.9.18\`**](https://github.com/paritytechtree/release-), use the equivalent
-version of [**Parachain Template \`polkadot-v0.9.18\`\*\*](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.18).
-`}
-/>
+## Exact Versions Matter
+
+You **must** use the _exact_ versions set forth in this tutorial to ensure that you do not run into conflicts.
+Parachains are _very tightly coupled_ with the relay chain codebase they are connecting to. 
+To have the least amount of hiccups, be sure to use the corresponding tagged version of Polkadot and the parachain template when working on this tutorial. 
+For example, if you are using [Polkadot `v0.9.18`](https://github.com/paritytechtree/release-), use the `polkadot-v0.9.18` version of the [parachain template](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.18).
 
 We're doing our best to keep the parachain template and this tutorial updated presently with the <ExternalLink url="https://github.com/paritytechreleases">latest release of Polkadot.</ExternalLink>
 
@@ -187,14 +181,10 @@ If the help page is printed, you have succeeded in building a Cumulus-based para
 
 You will need a chain specification ([chain spec](/v3/runtime/chain-specs)) for your relay chain network.
 
-<Message
-type={`yellow`}
-title={`Minimal validators per collator`}
-text={`Always have one or more relay chain validator nodes running than the total connected parachains. For example, if you want to connect two parachains, run three or more relay chain validator nodes.`}
-/>
+Always have one or more relay chain validator nodes running than the total connected parachains. 
+For example, if you want to connect two parachains, run three or more relay chain validator nodes.
 
-Whichever chain spec file you choose to use we will refer to the file simply as `chain-spec.json`
-in the instructions below. You will need to supply the proper path to the chain spec you are using.
+Whichever chain spec file you choose to use we will refer to the file simply as `chain-spec.json` in the instructions below. You will need to supply the proper path to the chain spec you are using.
 
 ### Pre-configured chain spec files
 
@@ -279,9 +269,4 @@ You just need to make sure that nodes on the same local machine do not have conf
 
 Optionally, explore the [how-to guide on configuring a custom chain spec](/how-to-guides/v3/basics/custom-chain-spec) for instructions to tweak the provided [plain chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-plain.json) for addition of more validators without modification of Polkadot's source code.
 
-<Message
-type={`yellow`}
-title={`chain spec testing with \`rococo-local\``} text={`
-For this tutorial, your final chain spec filename **must** start with \`rococo\` or the node will not know what runtime logic to include.
-`}
-/>
+For this tutorial, your final chain spec filename **must** start with `rococo` or the node will not know what runtime logic to include.

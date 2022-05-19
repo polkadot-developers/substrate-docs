@@ -81,20 +81,11 @@ use to remedy this problem:
      transactions you can make, you can batch multiple transactions to occur
      over time via the scheduler.
 
-<Message
-  type={`red`}
-  title={`You need to test!`}
-  text={`
-After your migration strategy is established, you absolutely should test this migration on a
-non-production testnet to _ensure_ it will work _before_ you continue!
-See the [how-to guide on storage migration testing](/how-to-guides/v3/storage-migrations/tests) to
-proceed.
-\n
-Also keep in mind that testing in a confined small dummy network will tests your failure modes in a
-real network with latency and many collators and validators. The closer you can get to testing this
-in the same environment, the more sure you can be that your runtime upgrades will not fail.
-`}
-/>
+After your migration strategy is established, you should test the migration on a non-production testnet to ensure it will work _before_ you continue.
+See the [how-to guide on storage migration testing](/reference/how-to-guides/storage-migrations/tests) to proceed.
+
+Testing in a confined network will help you prepare for potential failures in a real network with many collators and validators and constraints like bandwidth and latency.
+The more closely you can simulate a real network for testing, the more sure you can be that your runtime upgrades will succeeds.
 
 ### 2. Authorize -> enact an upgrade flow
 
