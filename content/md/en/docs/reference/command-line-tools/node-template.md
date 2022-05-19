@@ -4,23 +4,23 @@ section: reference
 keywords:
 ---
 
-The `node-template` program provides a working Substrate node with FRAME system pallets and a subset of additional pallets for working with common blockchain functional operations.`
+The `node-template` program provides a working Substrate node with FRAME system pallets and a subset of additional pallets for working with common blockchain functional operations.
 With its baseline of functional pallets, the `node-template` serves as a starter kit for building your own blockchain and developing a custom runtime.
-You can use the `node-template` program to perform the following tasks:
+You can use the `node-template` program to start a Substrate node and to perform the tasks listed in [Subcommands](#subcommands).
 
 ## Basic command usage
 
 The basic syntax for running `node-template` commands is:
 
-```
+```shell
 node-template [subcommand] [flags] [options]
 ```
 
-Depending on the subcommand you specify, additional arguments, options, and flags might apply or be required. 
-To view usage information for a specific `node-template` subcommand, specify the subcommand and the `--help` flag. 
+Depending on the subcommand you specify, additional arguments, options, and flags might apply or be required.
+To view usage information for a specific `node-template` subcommand, specify the subcommand and the `--help` flag.
 For example, to see usage information for `node-template key`, you can run the following command:
 
-```
+```shell
 node-template key --help
 ```
 
@@ -130,18 +130,18 @@ For reference information and examples that illustrate using these subcommands, 
 
 | Command | Description
 | ------- | -----------
-| [`benchmark`](#node-benchmark) | Benchmarks runtime pallets.
-| [`build-spec`](#node-buildspec) | Builds a chain specification.
-| [`check-block`](#node-checkblock) | Validates blocks.
-| [`export-blocks`](#node-exportblock) | Exports blocks.
-| [`export-state`](#node-exportstate) | Exports the state of a given block into a chain specification.
-| [`help`](#node-help) | Displays usage information for `node-template` or for a specified subcommand.
-| [`import-blocks`](#node-importblock) | Imports blocks.
-| [`key`](#node-key) | Provides local key management utilities.
-| [`purge-chain`](#node-purge) | Removes all chain data.
-| [`revert`]#node-revert() | Reverts the chain to a previous state.
+| `benchmark` | Benchmarks runtime pallets.
+| `build-spec` | Builds a chain specification.
+| `check-block` | Validates blocks.
+| `export-blocks` | Exports blocks.
+| `export-state` | Exports the state of a given block into a chain specification.
+| `help` | Displays usage information for `node-template` or for a specified subcommand.
+| `import-blocks` | Imports blocks.
+| `key` | Provides local key management utilities.
+| `purge-chain` | Removes all chain data.
+| `revert` | Reverts the chain to a previous state.
 
-## benchmark <a name="node-benchmark"></a>
+## benchmark
 
 Use the `node-template benchmark` command to analyze the resources required to execute the transactions in extrinsic calls you have configured in runtime pallets.
 You can analyze individual extrinsic calls in specific pallets or all extrinsic calls in all pallets.
@@ -228,7 +228,7 @@ With this command, each extrinsic call is executed once with a single value and 
 Depending on the function you want to benchmark, you can add the `--steps` and `--repeat` command line options to execute the call multiple times with different values.
 For more information about how to add benchmarking to the runtime, see [Benchmarking](/mains-docs/test/benchmark/)
 
-## build-spec <a name="node-buildspec"></a>
+## build-spec
 
 Use the `node-template build-spec` command to create a chain specification file for your runtime.
 
@@ -282,7 +282,7 @@ If you have previously created a JSON file that contains a custom chain specific
 ./target/release/node-template build-spec --chain ./my-test-chain.json --raw
 ```
 
-## check-block <a name="node-checkblock"></a>
+## check-block
 
 Use the `node-template check-block` command to validate a specific block.
 You must specify the block to validate by the block hash or block number.
@@ -342,7 +342,7 @@ You must specify the following command-line argument when you run the `node-temp
 | -------- | -----------
 | `block-identifier` | Specifies the block hash or block number to check.
 
-## export-blocks <a name="node-exportblock"></a>
+## export-blocks
 
 Use the `node-template export-blocks` command to export blocks.
 
@@ -393,7 +393,7 @@ You can specify the following command-line argument when you run the `node-templ
 | -------- | -----------
 | `<output>` | Specifies the output file name for the exported blocks. If you don't specify an output file name, blocks are exported to standard output (`stdout`).
 
-## export-state <a name="node-exportstate"></a>
+## export-state
 
 Use the `node-template export-state` command to export the state of a given block into a chain specification.
 
@@ -438,7 +438,7 @@ You can specify the following command-line argument when you run the `node-templ
 | -------- | -----------
 | `<block-identifier>` | Specifies the block hash or block number to export.
 
-## help <a name="node-help"></a>
+## help
 
 Use the `node-template help` command to display usage information for `node-template` or a summary of command-line usage information for any `node-template` subcommand.
 
@@ -456,7 +456,7 @@ To display a summary of usage information for the `export-blocks` subcommand, ru
 node-template help export-blocks
 ```
 
-## import-blocks <a name="node-importblock"></a>
+## import-blocks
 
 Use the `node-template import-blocks` command to import blocks.
 
@@ -516,7 +516,7 @@ You can specify the following command-line argument when you run the `node-templ
 | -------- | -----------
 | `<input>` | Specifies the input file to use for importing blocks. If you don't specify an input file, blocks are imported from standard input (`stdin`).
 
-## key <a name="node-key"></a>
+## key
 
 Use the `node-template key` command to generate, inspect, and manage private and public key pairs and addresses.
 The `node-template key` command provides convenient access to a subset of key management services that are available in the standalone `subkey` program.
@@ -557,7 +557,7 @@ You can use the following subcommands with the `node-template key` command.
 | [`inspect`](/reference/command-line-tools/subkey/#subkey-inspect) | Displays the public key and SS58 address for the secret URI you specify.
 | [`inspect-node-key`](/reference/command-line-tools/subkey/#subkey-inspect-node-key) | Displays the peer ID that corresponds with the secret node key in the file name you specify.
 
-### Insert a key on a node <a name="node-key-insert"></a>
+### Insert a key on a node
 
 Use the `node-template key insert` command to add the keys used for performing node operations to the node keystore. 
 For example, keys are required to secure peer-to-peer communication between nodes and to enable nodes to act as validating authorities for consensus.
@@ -601,7 +601,7 @@ You can use the following command-line options with the `node-template key inser
 | `--tracing-receiver <receiver>` | Specifies the receiver to process tracing messages. The default is Log.
 | `--tracing-targets <targets>` | Sets a custom profiling filter. Syntax is the same as for logging: `<target>=<level>`.
 
-## purge-chain <a name="node-purge"></a>
+## purge-chain
 
 Use the `node-template purge-chain` command to remove a blockchain and all blockchain-related information.
 
@@ -641,7 +641,7 @@ You can use the following command-line options with the `node-template purge-cha
 | `--tracing-receiver <receiver>` | Specifies the receiver to process tracing messages. The default is Log.
 | `--tracing-targets <targets>` | Sets a custom profiling filter. Syntax is the same as for logging: `<target>=<level>`.
 
-## revert <a name="node-revert"></a>
+## revert
 
 Use the `node-template revert` command to revert the chain to a previous state.
 
