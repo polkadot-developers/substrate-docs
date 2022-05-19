@@ -31,6 +31,22 @@ Before you begin, verify the following:
 
 ## Build the development environment node
 
+```bash
+git clone https://github.com/substrate-developer-hub/substrate-node-template
+```
+
+   <figure class="tabbed-codeblock">
+   <code class="language-javascript">
+onclick='document.getElementById("demo").innerHTML = "Hello JavaScript!"'
+   </code>
+   <code  class="language-rust">
+   fn main() {
+   println!("Hello World!");
+   }
+
+   </code>
+</figure>
+
 1. Clone the node template repository using the `latest` branch by running the following command:
 
    ```bash

@@ -17,6 +17,7 @@ const copyToClipboard = str => {
 
 function Code({ children, className }) {
   const [isCopied, setIsCopied] = useState(false);
+  console.log(children);
   return (
     <pre className={className}>
       {children}

@@ -4,12 +4,14 @@ import rehypeReact from 'rehype-react';
 import { Code } from './resolvers/Code';
 import { Image } from './resolvers/Image';
 import { a } from './resolvers/Link';
+import { TabbedCode } from './resolvers/TabbedCode';
 // import Code from '../ui/Code'
 
 const components = {
   a,
   img: Image,
   pre: Code,
+  figure: TabbedCode,
   // code: Code,
 };
 
