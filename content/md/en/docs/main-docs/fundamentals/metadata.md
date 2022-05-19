@@ -187,12 +187,8 @@ Here is a condensed example of a single element in the `modules` array:
 Every element contains the name of the pallet that it represents, as well as a `storage` object,
 `calls` array, `events` array, and `errors` array.
 
-<Message
-  type={`gray`}
-  title={`Note`}
-  text={`If \`calls\` or \`events\` are empty, they will be represented as \`null\`; if \`constants\` or
- \`errors\` are empty, they will be represented as an empty array.`}
-/>
+If `calls` or `events` are empty, they are represented as `null`.
+If `constants` or `errors` are empty, they are represented as an empty array.
 
 ##### Storage
 

@@ -42,13 +42,8 @@ After successfully registering your parachain, you will be able to obtain a para
     },
   ]}
 />
-<br />
 
-<Message
-  type={`gray`}
-  title={`Cumulus tutorial first`}
-  text={`
-The [Cumulus Tutorial](/tutorials/v3/cumulus/start-relay) is the best place to start if you are new to parachain development.
+The [Cumulus Tutorial](/tutorials/connect-other-chains/start-relay) is the best place to start if you are new to parachain development.
 This guide is a quick reference and leaves out important details to consider when performing these steps.
 `}
 />
@@ -70,14 +65,9 @@ For example, for providing the Wasm blob or genesis state, creating channels to 
 
 - Reserve the para ID. This operation requires a deposit that is relay chain specific.
 
-<Message
-  type={`gray`}
-  title={`Make note of your para ID and registering account`}
-  text={`
+Make note of your para ID and registering account.
 The para ID is unique to the relay chain you are connecting to, along with the account that reserved it.
-**This is required to be specified in the following steps, and cannot generally be reused between different relay chains!**
-`}
-/>
+This identifier is required in the following steps, and cannot generally be reused between different relay chains.
 
 In the next steps it is assumed you use Cumulus, and thus have the proper commands for the `parachain-collator` binary that is produced for your collator nodes.
 
@@ -112,15 +102,11 @@ Then generate a raw chain spec derived **from your modified plain chain spec**:
 ./target/release/parachain-collator build-spec --chain parachain-plain.json --raw --disable-default-bootnode > parachain-raw.json
 ```
 
-<Message
-  type={`yellow`}
-  title={`Save and distribute your raw spec`}
-  text={`
-    If you intend to let others connect to your network, they must have the associated chain spec for your network generated once and distributed to your peers.
-    They cannot reliably produce this themselves, and need to acquire it from a **single source**.
-    This stems from the [non-deterministic issue](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1) in the way Wasm runtimes are compiled, at least for now.
-  `}
-/>
+## Save and distribute your raw spec
+
+If you intend to let others connect to your network, they must have the associated chain spec for your network generated once and distributed to your peers.
+They cannot reliably produce this themselves, and need to acquire it from a **single source**.
+This stems from the [non-deterministic issue](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1) in the way Wasm runtimes are compiled.
 
 Chain specs _conventionally_ live in a `/res` folder that is published in your node's codebase for others to use.
 For example:

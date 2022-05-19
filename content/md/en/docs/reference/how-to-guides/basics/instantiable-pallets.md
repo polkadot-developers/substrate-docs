@@ -1,20 +1,12 @@
 ---
-title: Intantiable Pallets
-slug: /how-to-guides/v3/basics/instantiable-pallets
+title: Instantiable pallets
+description: 
 keywords:
   - basics
   - intermediate
   - runtime
-version: '3.0'
-section: how to guides
-category: basics
 ---
-
-<Message
-  type={`red`}
-  title={`Warning`}
-  text={`This guide is based on FRAME v1 macros and will soon be deprecated.`}
-/>
+This guide is based on FRAME v1 macros and will soon be deprecated.
 
 <Objectives
   data={[

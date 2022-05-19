@@ -31,13 +31,9 @@ Copy the [`txwrapper-template`][txwrapper-template-gh] directory into your worki
 The template provides the basics of a typescript package near ready for being published to `NPM`. The exports show some methods
 that are relevant to a FRAME based chain using at least the `balances`, `proxy`, and `utility pallets`.
 
-<Message
-  type={`gray`}
-  title={`Note`}
-  text={`\`txwrapper-core\`](https://github.com/paritytech/txwrapper-core) is re-exported at the top level to give the user access to its tools.`}
-/>
+Note that the [`txwrapper-core\`](https://github.com/paritytech/txwrapper-core) is re-exported at the top level to give the user access to its tools.
 
-### 2. Update `package.json`
+### 2. Update package.json
 
 Modify the following fields to reflect your chains information:
 
@@ -62,14 +58,9 @@ Additionally, add the following field to give publishing permission:
 You will need to choose what pallet methods you want your `txwrapper` to expose. It is recommended to choose methods that are likely to be
 signed by keys stored offline.
 
-<Message
-  type={`green`}
-  title={`Tip`}
-  text={`If you just need methods from Substrate or ORML pallets, checkout [txwrapper-substrate](https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-substrate/README.md) 
-  and [txwrapper-orml](https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-orml/README.md) to see if the methods are already defined.`}
-/>
+If you just need methods from Substrate or ORML pallets, checkout [txwrapper-substrate](https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-substrate/README.md) and [txwrapper-orml](https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-orml/README.md) to see if the methods are already defined.
 
-### 4. Create a `getRegistry` method
+### 4. Create a getRegistry method
 
 Your txwrapper will need to export a `getRegistry` method so users can get a Polkadot-js `TypeRegistry` with the most up-to-date types for your chain.
 
@@ -159,13 +150,8 @@ export * as methods from './methods'
 
 ### 5. Create a working example
 
-<Message
-  type={`green`}
-  title={`Tip`}
-  text={`A good example can ease user friction and reduce workload for maintainers. 
-  Create an end-to-end example so users have a clear understanding of the full flow for 
-  offline transaction generation for your chain.`}
-/>
+A good example can ease user friction and reduce workload for maintainers.
+Create an end-to-end example so users have a clear understanding of the full flow for offline transaction generation for your chain.
 
 1. Rename `template-example.ts` to something appropriate to your chain and update all the sections in the file marked TODO.
 2. Update `examples/README.md` in the sections marked TODO.

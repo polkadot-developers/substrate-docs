@@ -40,16 +40,12 @@ keywords:
 
 ### 1. Set a unique `protocolId`
 
-<Message
-  type={`red`}
-  title={`Network collisions can cause major headaches`}
-  text={`
-_All_ chains should use a **unique** \`protocolId\` that _no other network_ (testnets, relay chain,
-parachains, etc) uses. This ensures your nodes do not incorrectly peer with
-nodes from other libp2p networks. You want to isolate them to a distinct peer group with this ID.
-Protocol ID collisions will cause _many_ issues for your nodes!
-`}
-/>
+Network collisions can cause major headaches.
+_All_ chains should use a **unique** `protocolId` that no other network of any type—whether a test network, relay chain, or parachain—uses. 
+Having a unique protocol identifier ensures your nodes connect with the correct peer 
+nodes and not with nodes from other libp2p networks. 
+You want to isolate them to a distinct peer group with this ID.
+Protocol ID collisions will cause _many_ issues for your nodes.
 
 In order to set a unique protocol ID, change make sure you use some nonce or salt value. This is set
 (for the [parachain node template](https://github.com/substrate-developer-hub/substrate-parachain-template/))
@@ -94,23 +90,19 @@ the amount of resource consumption as much as possible for the relay chain.
   PoVBlock size limit. If the runtime is not included in the state proof, the size limit of the new
   runtime will be much higher.
 
-<Message
-  type={`yellow`}
-  title={`Critical parachain constraints`}
-  text={`
-You can check the maximum sizes [in the Polkadot
-repo](https://github.com/paritytech/polkadot/blob/master/primitives/src/v1/mod.rs#L247-L253)
-for all relay chains (these are common constants). Make note of:
+## Critical parachain constraints`}
+
+You can check the maximum sizes [in the Polkadot repo](https://github.com/paritytech/polkadot/blob/master/primitives/src/v1/mod.rs#L247-L253) for all relay chains (these are common constants).
+Make note of:
+
 - The runtime version of the relay chain you are targeting (these _may_ change)
-- \`MAX_CODE_SIZE\`
-- \`MAX_HEAD_DATA_SIZE\`
-- \`MAX_POV_SIZE\`
-\n
+- `MAX_CODE_SIZE`
+- `MAX_HEAD_DATA_SIZE`
+- `MAX_POV_SIZE`
+
 You **must** have your parachain fit comfortably within these maxima.
 You can also use the the Polkadot-JS Apps UI connected to a relay node to see these
 constants: _Developers_ -> _ParachainsConfiguration_ -> _ActiveConfiguration_
-  `}
-/>
 
 ### 4. Use proper weights
 
@@ -134,17 +126,9 @@ stabilizes the weight limit can be increased to 2 seconds.
 Especially when launching a parachain, you might need to highly constrict what is enabled for
 _specific classes_ of users. This can be accomplished with **call filters**.
 
-<Message
-  type={`gray`}
-  title={`Call Filter Examples`}
-  text={`
-Here you can see an example of how to
-[limit](https://github.com/paritytech/cumulus/blob/59cdbb6a56b1c49009413d66ba2232494563b57c/polkadot-parachains/statemine/src/lib.rs#L148) 
-and [enable](https://github.com/paritytech/cumulus/pull/476/files#diff-09b95657e9aa1b646722afa7944a00ddc2541e8753254a86180b338d3376f93eL151) 
-functionality with filters as implemented in
-the [Statemine runtime deployment](https://github.com/paritytech/cumulus/pull/476).
-`}
-/>
+## Call Filter Examples
+
+Here you can see an example of how to [limit](https://github.com/paritytech/cumulus/blob/59cdbb6a56b1c49009413d66ba2232494563b57c/polkadot-parachains/statemine/src/lib.rs#L148) and [enable](https://github.com/paritytech/cumulus/pull/476/files#diff-09b95657e9aa1b646722afa7944a00ddc2541e8753254a86180b338d3376f93eL151) functionality with filters as implemented in the [Statemine runtime deployment](https://github.com/paritytech/cumulus/pull/476).
 
 ### 6. Incremental runtime deployments
 
@@ -170,21 +154,11 @@ to go about actually performing these incremental runtime upgrades.
 
 ### 7. Launch simulation
 
-Before you try anything on a production testnet or mainnet, be sure to _as close as possible_
-simulate the behavior of a mock network to launch your chain.
+Before you try anything on a production testnet or mainnet, you should launch your chain on a network that simulates the behavior of a real network as closely as possible.
+Testing in a confined network will help you prepare for potential failures in a real network with many collators and validators and constraints like bandwidth and latency.
+The more closely you can simulate a real network for testing, the more sure you can be that your runtime upgrades will succeeds.
 
-<Message
-  type={`yellow`}
-  title={`You need to test!`}
-  text={`
-See the [cumulus tutorial](/tutorials/v3/cumulus/start-relay) to learn the \`polkadot-launch\` tool
-for such testing.
-\n
-Also keep in mind that testing in a confined small dummy network will tests your failure modes in a
-real network with latency and many collators and validators. The closer you can get to testing this
-in the same environment, the more sure you can be that your runtime upgrades will not fail.
-`}
-/>
+See the [cumulus tutorial](/tutorials/connect-other-networks/start-relay) to learn how to use the `polkadot-launch` tool for such testing.
 
 ## Examples
 

@@ -34,13 +34,7 @@ use frame_system::{pallet_prelude::*, ensure_signed};
 use super::*;
 ```
 
-<Message
-  type={`gray`}
-  title={`Note`}
-  text={`This guide assumes that you know how to 
-  create your own Errors and Events according to the 
-  pallet logic your creating.`}
-/>
+This guide assumes that you know how to create your own errors and events according to the pallet logic your creating.
 
 ## Configure your pallet
 
@@ -169,12 +163,6 @@ its [associated methods][storage-map-rustdocs]. Our pallet's `create` function a
    - create an imbalance variable using [`T::Currency::withdraw`][imb-var-rustdocs]
    - update the `Funds` storage item using the `FundInfo` struct from [step 2](#2-create-a-custom-metadata-struct)
    - deposit a `Created` event
-
-   <Message
-     type={`green`}
-     title={`Tip`}
-     text={`Not yet familiar with using a struct in storage? Refer to [this how-to guide](../storage-value) to learn how.`}
-   />
 
 1. Contribute to an existing fund
 

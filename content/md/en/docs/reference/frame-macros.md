@@ -24,15 +24,11 @@ There are four kinds of macro in Rust:
 Most Substrate runtime macros are defined using either **declarative macros** or **function-like macros**, with a recent adoption of
 **attribute-like macros** in FRAME v2 pallets.
 
-<Message
-  type={`green`}
-  title={`Tips to learn more about Substrate runtime macros`}
-  text={`
-   - Read the [documentation](/rustdocs/latest/frame_support/index.html#macros) on commonly used macros in FRAME.
-   - Use [\`cargo expand\`](https://github.com/dtolnay/cargo-expand) to review a macro's expanded code and understand what's happening under the hood.
-   - Read more on [macro rules of expression pattern matching](https://danielkeep.github.io/tlborm/book/pim-README.html).
-  `}
-/>
+To learn more about Substrate runtime macros:
+
+- Read the [Rust documentation](/rustdocs/latest/frame_support/index.html#macros) on commonly used macros in FRAME.
+- Use [\`cargo expand\`](https://github.com/dtolnay/cargo-expand) to review a macro's expanded code and understand what's happening under the hood.
+- Read more on [macro rules of expression pattern matching](https://danielkeep.github.io/tlborm/book/pim-README.html).
 
 ## Substrate runtime macros
 
@@ -63,14 +59,7 @@ sections will go over each in more detail. Here's a general overview of Substrat
 - in `sp_std`: [function-like](/rustdocs/latest/sp_std/index.html#macros) macros
 - in `sp_version`: [function-like](/rustdocs/latest/sp_version/index.html#macros) macros
 
-<Message
-  type={`gray`}
-  title={`Note`}
-  text={`Refer to \`#Substrate dependencies\` in the \`Cargo.toml\` file of the
-  [node template runtime](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/runtime/Cargo.toml#L21)
-  to see where these are put to use.
-  `}
-/>
+Refer to `#Substrate dependencies` in the `Cargo.toml` file of the [node template runtime](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/runtime/Cargo.toml#L21) to see where these macros are used.
 
 ## FRAME macros and attributes
 

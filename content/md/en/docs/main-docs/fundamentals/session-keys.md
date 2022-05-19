@@ -76,13 +76,7 @@ As a node operator, you can generate keys using the RPC call
 [`author_rotateKeys`](/rustdocs/latest/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys).
 You will then need to register the new keys on chain using a [`session.setKeys`](/rustdocs/latest/pallet_session/pallet/struct.Pallet.html#method.set_keys) transaction.
 
-<Message
-  type={`yellow`}
-  title={`Important`}
-  text={`For increased security, session keys should be changed every session. This can be done by creating 
-  new session keys, putting the session public keys into an extrinsic, and applying this extrinsic on chain.
-  `}
-/>
+For increased security, session keys should be changed every session. This can be done by creating new session keys, putting the session public keys into an extrinsic, and applying this extrinsic on chain.
 
 Since session keys are hot keys that must be kept online, the individual keys should **not** be used to
 control funds. All the logic for handling session keys is in the Substrate client, primitives, and

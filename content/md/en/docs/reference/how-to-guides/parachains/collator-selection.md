@@ -75,13 +75,8 @@ collator selection:
         }
 ```
 
-<Message
-  type={`gray`}
-  title={`Note`}
-  text="There are also different ways to implement incentives for collators. 
-    Take a look at [this example](https://github.com/PureStake/moonbeam/blob/master/pallets/parachain-staking/src/lib.rs) 
-    to explore how."
-/>
+There are also different ways to implement incentives for collators. 
+Take a look at [this example](https://github.com/PureStake/moonbeam/blob/master/pallets/parachain-staking/src/lib.rs) to explore how.
 
 ## Examples
 

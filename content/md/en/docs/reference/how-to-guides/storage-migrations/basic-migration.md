@@ -152,13 +152,7 @@ NameOf::<T>::translate::<(Vec<u8>, BalanceOf<T>), _>(
 	);
 ```
 
-<br />
-<Message
-  type={`green`}
-  title={`Tip`}
-  text={`Remove 'Option' wrapping to make sure 
-  decoding works properly.`}
-/>
+Remove 'Option' wrapping to make sure decoding works properly.
 
 #### Return the consumed weight
 

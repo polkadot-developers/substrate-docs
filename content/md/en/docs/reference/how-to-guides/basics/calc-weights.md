@@ -1,24 +1,17 @@
 ---
-title: Calculating Transaction Weights
-slug: /how-to-guides/v3/basics/weights
+title: Calculate transaction weights
+description:
 keywords:
   - basics
   - weights
   - runtime
   - FRAME v1
-version: '3.0'
-section: how to guides
-category: basics
 ---
 
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text="
 This guide shows a basic procedure for configuring weights.
 There are more advanced methods that suit different use cases.
 For simple functions with fixed amounts of storage reads, this method works well.
-For other use cases, see the section [on weights](/how-to-guides/v3/weights/calculate-fees).
+For other use cases, see the section [on weights](/reference/how-to-guides/weights/calculate-fees).
 "
 />
 
