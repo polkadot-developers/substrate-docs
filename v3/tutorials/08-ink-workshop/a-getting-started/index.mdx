@@ -130,10 +130,10 @@ The `cargo-contract` package provides a command-line interface for working with 
 
 1. Open a terminal shell on your computer.
 
-1. Install `dylint-link`, required to lint ink! contracts, warning you about things like using API's in a way that could lead to security issues.
+1. Install `cargo-dylint` and `dylint-link`, required to lint ink! contracts, warning you about things like using API's in a way that could lead to security issues.
 
    ```bash
-   cargo install dylint-link
+   cargo install cargo-dylint dylint-link
    ```
 
 1. Install `cargo-contract` by running the following command:
@@ -176,9 +176,11 @@ To generate the files for a smart contract project:
     
     You should see that the directory contains the following files:
     
+    ```bash
     -rwxr-xr-x   1 dev-doc  staff   285 Mar  4 14:49 .gitignore
     -rwxr-xr-x   1 dev-doc  staff  1023 Mar  4 14:49 Cargo.toml
     -rwxr-xr-x   1 dev-doc  staff  2262 Mar  4 14:49 lib.rs
+    ```
     
     Like other Rust projects, the `Cargo.toml` file is used to provides package dependencies and configuration information. 
     The `lib.rs` file is used for the smart contract business logic.
