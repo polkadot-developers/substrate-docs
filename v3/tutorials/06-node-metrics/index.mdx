@@ -107,7 +107,7 @@ Prometheus->Grafana: `substrate_peers_count (1582023828, 5), (1582023847, 4) [..
 ## Install Prometheus and Grafana
 
 - Install Prometheus [here](https://prometheus.io/docs/prometheus/latest/installation/).
-- Install Grafana [here](https://grafana.com/get).
+- Install OSS Grafana [here](https://grafana.com/grafana/download?edition=oss).
 
 <Message
   type={`green`}
@@ -140,10 +140,7 @@ be accessed over an interface other than local host with
 `--prometheus-external`.
 
 ```bash
-# clear the dev database
-./target/release/node-template purge-chain --dev -y
-# start the template node  in dev & tmp mode to experiment
-# optionally add the `--prometheus-port <PORT>`
+# Optionally add the `--prometheus-port <PORT>`
 # or `--prometheus-external` flags
 ./target/release/node-template --dev
 ```
@@ -235,20 +232,20 @@ all available metric data.
 
 ## Visualizing Prometheus Metrics with Grafana
 
-Once you have Grafana running, navigate to it in a browser (**the default is https://localhost:3000/**).
-Log in (default user `admin` and password `admin`) and navigate to the data sources page at
-`localhost:3000/datasources`.
+Now startup Grafana, and you will log in and navigate to it in a browser (**the default is http://localhost:3000/**).
+Log in (with the default user `admin` and password `admin`) and navigate to the data sources page at
+http://localhost:3000/datasources .
 
 You then need to select a `Prometheus` data source type and specify where Grafana needs to look for it.
 
 <Message
   type={`green`}
   title={`Tip`}
-  text={`The Prometheus port Grafana needs is NOT the one you set in the \`prometheus.yml\` file (https://localhost:9615) for where your node is publishing it's data.`}
+  text={`The Prometheus port Grafana needs is NOT the one you set in the \`prometheus.yml\` file (http://localhost:9615) for where your node is publishing it's data.`}
 />
 
-With your substrate node and Prometheus are running, configure Grafana to look for Prometheus
-on it's default port: https://localhost:9090 (unless you customized it).
+With your substrate node and Prometheus are running, configure Grafana to look for Prometheus on it's default port: http://localhost:9090 (unless you customized it).
+
 
 Hit `Save & Test` to ensure that you have the data source set correctly. Now you can configure a new dashboard!
 
