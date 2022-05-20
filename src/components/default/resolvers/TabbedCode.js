@@ -9,7 +9,12 @@ function TabbedCode({ children, className }) {
   const onlyDivs = Children.filter(children, child => child.type === 'code');
   //console.log(tabNames);
   //const OnlyValid = ({ children }) => <div>{onlyValid(children)}</div>;
-  const [selectedTab, setSelectedTab] = useTabs(['language-bash', 'language-javascript', 'language-rust']);
+  const [selectedTab, setSelectedTab] = useTabs([
+    'language-bash',
+    'language-javascript',
+    'language-rust',
+    'language-c',
+  ]);
   console.log(onlyDivs);
   if (className.includes('tabbed-codeblock')) {
     return (
@@ -22,7 +27,7 @@ function TabbedCode({ children, className }) {
                 isActive={selectedTab === div.props.className}
                 onClick={() => setSelectedTab(div.props.className)}
               >
-                {div.props.className}
+                {div.props.className.split('-').pop()}
               </TabSelector>
             );
           })}
@@ -34,7 +39,7 @@ function TabbedCode({ children, className }) {
               className={`gatsby-highlight ${div.props.className}`}
               hidden={selectedTab !== div.props.className}
             >
-              <Code className={div.props.className} data-language="javascript">
+              <Code className={div.props.className} data-language={div.props.className}>
                 {div.props.children}
               </Code>
             </TabPanel>

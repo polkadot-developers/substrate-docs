@@ -97,13 +97,6 @@
   fill: #0e92f9;
 }
 
-.gatsby-remark-prismjs-copy-button-container {
-  width: 100%;
-}
-.gatsby-remark-prismjs-copy-button {
-  background: hotpink;
-}
-
 /* Fills for SVG */
 
 .fill-black {
@@ -196,38 +189,16 @@ pre {
 
 /* TABBED CODE BLOCKS */
 
-/* Style the tab */
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
+/* Overwrite plugin styles react-headless-tabs */
+.dark .border-indigo-500 {
+  border-color: #0e92f9!important;
 }
-
-/* Style the buttons that are used to open the tab content */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
+.light .border-indigo-500 {
+  border-color:rgba(78, 115, 242, 1)!important;
 }
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
+.dark .text-indigo-600{
+  color: #0e92f9!important;
 }
-
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
-}
-
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
+.light .text-indigo-600 {
+  color:rgba(78, 115, 242, 1)!important;
 }
