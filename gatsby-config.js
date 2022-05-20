@@ -181,6 +181,9 @@ module.exports = {
                 advice: {
                   classes: 'advice',
                 },
+                tabbedCode: {
+                  classes: 'tabbedCode',
+                },
               },
             },
           },

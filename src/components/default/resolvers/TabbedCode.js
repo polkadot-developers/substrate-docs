@@ -16,18 +16,19 @@ function TabbedCode({ children, className }) {
     'language-c',
   ]);
   console.log(onlyDivs);
-  if (className.includes('tabbed-codeblock')) {
+  if (className && className.includes('tabbed-code')) {
     return (
       <>
         <nav className="flex border-b border-gray-300">
           {onlyDivs.map(div => {
+            const languageName = div.props.className.split('-').pop();
             return (
               <TabSelector
                 key={div.id}
                 isActive={selectedTab === div.props.className}
                 onClick={() => setSelectedTab(div.props.className)}
               >
-                {div.props.className.split('-').pop()}
+                {languageName.charAt(0).toUpperCase() + languageName.slice(1)}
               </TabSelector>
             );
           })}

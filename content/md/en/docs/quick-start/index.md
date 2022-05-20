@@ -7,17 +7,38 @@ Example tabbed code block: for testing only
 
 <figure class="tabbed-codeblock">
    <code class="language-bash">
-   git clone https://github.com/substrate-developer-hub/substrate-node-template
+git clone https://github.com/substrate-developer-hub/substrate-node-template
    </code>
    <code class="language-javascript">
-   onclick='document.getElementById("demo").innerHTML = "Hello JavaScript!"'
+onclick='document.getElementById("demo").innerHTML = "Hello JavaScript!"'
    </code>
    <code  class="language-rust">
-   fn main() {
-   println!("Hello World!");
-   }
+fn main() {
+println!("Hello World!");
+}
    </code>
 </figure>
+
+[[tabbedCode]]
+| ```javascript
+|onclick='document.getElementById("demo").innerHTML = "Hello JavaScript!"
+|onclick='document.getElementById("demo").innerHTML = "Hello JavaScript!"
+
+[[tabbedCode]]
+|```sh
+| git clone something
+
+[[tabbedCode]]
+|```text
+| hello hello hello what
+
+```sh
+git clone https://github.com/substrate-developer-hub/substrate-node-template
+```
+
+```text
+git clone https://github.com/substrate-developer-hub/substrate-node-template
+```
 
 All of the Substrate tutorials and how-to guides require you to run a Substrate node in your development environment.
 To provide you with a working environment that includes the most common set of features to build a blockchain, the Substrate Developer Hub repository maintains its own snapshot of the Substrate **node template**.
