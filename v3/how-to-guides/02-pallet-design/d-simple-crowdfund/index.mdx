@@ -40,8 +40,8 @@ use super::*;
 <Message
   type={`gray`}
   title={`Note`}
-  text={`This guide assumes that you know how to 
-  create your own Errors and Events according to the 
+  text={`This guide assumes that you know how to
+  create your own Errors and Events according to the
   pallet logic your creating.`}
 />
 
@@ -83,7 +83,7 @@ use super::*;
    #[derive(Encode, Decode, Default, PartialEq, Eq, TypeInfo)]
    #[cfg_attr(feature = "std", derive(Debug))]
    pub struct FundInfo<AccountId, Balance, BlockNumber> {
-   	/// The account that will recieve the funds if the campaign is successful.
+   	/// The account that will receive the funds if the campaign is successful.
    	beneficiary: AccountId,
    	/// The amount of deposit placed.
    	deposit: Balance,

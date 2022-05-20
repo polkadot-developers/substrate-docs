@@ -21,9 +21,9 @@ category: tools
     },
     {
       title: 'Overview',
-      description: `Creating a \`txwrapper\` package will expand the offline signing options for 
-      users of your chain. This is important for security conscious users who need to facilitate 
-      transaction signing, construction and/or decoding with an air-gapped device(s). This includes 
+      description: `Creating a \`txwrapper\` package will expand the offline signing options for
+      users of your chain. This is important for security conscious users who need to facilitate
+      transaction signing, construction and/or decoding with an air-gapped device(s). This includes
       (but is not limited to) custodians, exchanges, and cold storage users.`,
     },
   ]}
@@ -32,8 +32,8 @@ category: tools
 <Message
   type={`green`}
   title={`Tip`}
-  text={`Prior to building a \`txwrapper\` for your own chain, have a look at the [\`txwrapper-examples\`](https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-examples/README.md). 
-  Make sure you understand the Polkadot example and take a look at the \`txwrapper-core\` methods an end user is expected to use (see \`decode\`, \`construct.{signingPayload, signedTx, txHash}\`). 
+  text={`Prior to building a \`txwrapper\` for your own chain, have a look at the [\`txwrapper-examples\`](https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-examples/README.md).
+  Make sure you understand the Polkadot example and take a look at the \`txwrapper-core\` methods an end user is expected to use (see \`decode\`, \`construct.{signingPayload, signedTx, txHash}\`).
   Your package will be re-exporting these so be sure to understand the public API you will create.`}
 />{' '}
 
@@ -80,7 +80,7 @@ signed by keys stored offline.
 <Message
   type={`green`}
   title={`Tip`}
-  text={`If you just need methods from Substrate or ORML pallets, checkout [txwrapper-substrate](https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-substrate/README.md) 
+  text={`If you just need methods from Substrate or ORML pallets, checkout [txwrapper-substrate](https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-substrate/README.md)
   and [txwrapper-orml](https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-orml/README.md) to see if the methods are already defined.`}
 />
 
@@ -177,8 +177,8 @@ export * as methods from './methods'
 <Message
   type={`green`}
   title={`Tip`}
-  text={`A good example can ease user friction and reduce workload for maintainers. 
-  Create an end-to-end example so users have a clear understanding of the full flow for 
+  text={`A good example can ease user friction and reduce workload for maintainers.
+  Create an end-to-end example so users have a clear understanding of the full flow for
   offline transaction generation for your chain.`}
 />
 

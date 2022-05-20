@@ -449,14 +449,14 @@ This React component enables you to expose the proof-of-existence capabilities a
        const hash = blake2AsHex(content, 256);
        setDigest(hash);
      };
- 
+
      // Callback function for when a new file is selected.
      const handleFileChosen = file => {
        fileReader = new FileReader();
        fileReader.onloadend = bufferToDigest;
        fileReader.readAsArrayBuffer(file);
      };
- 
+
      // React hook to update the owner and block number information for a file
      useEffect(() => {
        let unsubscribe;
@@ -488,7 +488,7 @@ This React component enables you to expose the proof-of-existence capabilities a
      function isClaimed() {
        return block !== 0
      }
- 
+
      // The actual UI elements which are returned from our component.
      return (
        <Grid.Column>
@@ -561,7 +561,7 @@ This React component enables you to expose the proof-of-existence capabilities a
 
    ```bash
    nvm install # use the correct node version
-   yarn        # instal deps
+   yarn        # install deps
    yarn start  # start a dev server
    ```
 

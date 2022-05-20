@@ -133,7 +133,7 @@ guidelines if making any non-trivial PRs here.
 
     Edit to see your site update in real-time on save.
 
-6.  **Learn more about GatbsyJS**
+6.  **Learn more about GatsbyJS**
 
     - [Documentation](https://www.gatsbyjs.com/docs/)
 
@@ -180,7 +180,7 @@ excluded because for:
   redirection is handled by netlify redirect feature. Gatsby server will just rendered them as 404
   pages.
 
-- `/crates.io`, `/fonts.gstatic.com`, `/github.com`, `/wwww.nuget.org`: they either have
+- `/crates.io`, `/fonts.gstatic.com`, `/github.com`, `/www.nuget.org`: they either have
   rate-limiting check or doesn't welcome web crawlers to fetch them and just return a 404 page.
 
 ## Link checking as part of Github workflow

@@ -19,7 +19,7 @@ relevantSkills:
 <Message
   type="gray"
   title="Note"
-  text={`If you haven't completed [Part I](/tutorials/v3/kitties/pt2) and just want to focus on building the Kitties front-end, 
+  text={`If you haven't completed [Part I](/tutorials/v3/kitties/pt2) and just want to focus on building the Kitties front-end,
 clone the Kitty node solution from [this branch](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/kitties)
 and use that to follow this part of the tutorial.`}
 />
@@ -56,7 +56,7 @@ yarn install
 ```
 
 Open the template in a code editor.
-You'll notice the following structure (we're only including the directories we care about for thistutorial):
+You'll notice the following structure (we're only including the directories we care about for this tutorial):
 
 ```
 substrate-front-end-template
@@ -114,7 +114,7 @@ We'll be building out a total of 3 components:
 
 ### Polkadot JS API Basics
 
-Before moving on to the next section, we reccommend you read a little Polkadot JS API documentation to understand the basics of how we will be querying storage and triggering transactions.
+Before moving on to the next section, we recommend you read a little Polkadot JS API documentation to understand the basics of how we will be querying storage and triggering transactions.
 Here are some good resources:
 
 - [Basics and Metadata](https://polkadot.js.org/docs/api/start/basics)
@@ -504,7 +504,7 @@ We'll use a Semantic UI `Card` component to create a card that renders the Kitty
        // snip...
    ```
 
-   Before closing the `<Card/>` component we want to render the `TransferModal` and `SetPrice` components we previously built &mdash; **only if the Kitty is transferrable by its owner**. Paste this code snippet to handle this functionality:
+   Before closing the `<Card/>` component we want to render the `TransferModal` and `SetPrice` components we previously built &mdash; **only if the Kitty is transferable by its owner**. Paste this code snippet to handle this functionality:
 
    ```js
    <Card.Content extra style={{ textAlign: 'center' }}>

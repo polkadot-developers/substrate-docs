@@ -312,7 +312,7 @@ Instead of using predefined keys or the more secure `subkey` program, this tutor
 You have already used some command-line options to start your local blockchain node using the predefined `alice` and `bob` accounts.
 You can also use command-line options to generate random keys to use with Substrate.
 
-As a best practice, you should use an air-gapped computer that has never been connected to the internet when you generate keys for a production blockchain. 
+As a best practice, you should use an air-gapped computer that has never been connected to the internet when you generate keys for a production blockchain.
 At a minimum, you should disconnect from the internet before you generate any keys you intend to use on a public or private blockchain that is not under your control.
 
 For this tutorial, however, you can use node template `key` subcommand to generate random keys locally and can remain connected to the internet.
@@ -564,7 +564,7 @@ To start the first node:
 1. Change to the root directory where you compiled the Substrate node template.
 
 1. Start the first node using the custom chain specification by running a command similar to the following:
-    
+
    ```bash
    ./target/release/node-template \
    --base-path /tmp/node01 \
@@ -577,13 +577,13 @@ To start the first node:
    --rpc-methods Unsafe \
    --name MyNode01
    ```
-    
+
    Note the following command-line options you are using to start the node:
-    
+
    * The `--base-path` command-line option specifies a custom location for the chain associated with this first node.
-    
+
    * The `--chain` command-line option specifies the custom chain specification.
-   
+
    * The `--rpc-methods Unsafe` command-line option allows you to continue the tutorial using an unsafe communication mode because your blockchain is not being used in a production setting.
 
    * The `--name` command-line option enables you to give your node a human-readable name in the telemetry UI.
@@ -762,7 +762,7 @@ To add a second validator to the private network:
    Replace `<second-participant-secret-seed>` with the secret phrase or secret seed that you generated in [Generate a second key pair](#generate-a-second-set-of-keys).
    The `gran` key type is required to enable block finalization.
 
-   Block finalization requires at least two-thirds of the validators to add their keys to their respective keystores.
+   Block finalization requires at least two-thirds of the validators to add their keys to their respective keystore.
    Because this network is configured with two validators in the chain specification, block finalization starts after the second node has added its keys.
 
 1. Type the password you used to generate the keys.
@@ -801,11 +801,11 @@ To add a second validator to the private network:
    --password-interactive
    ```
 
-   After both nodes have added their keys to their respective keystores—located under `/tmp/node01` and `/tmp/node02`—and been restarted, you should see the same genesis block and state root hashes.
-    
+   After both nodes have added their keys to their respective keystore (located under `/tmp/node01` and `/tmp/node02`) and been restarted, you should see the same genesis block and state root hashes.
+
    You should also see that each node has one peer (`1 peers`), and they have produced a block proposal (`best: #2 (0xe111…c084)`).
    After a few seconds, you should see new blocks being finalized on both nodes.
-   
+
 ## Next steps
 
 You have now seen how you can start a private blockchain with trusted participants.

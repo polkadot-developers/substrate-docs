@@ -18,7 +18,7 @@ relevantSkills:
 
 Decentralized applications are most often written as **smart contracts**.
 Although Substrate is primarily a framework and toolkit for building custom blockchains, it can also provide a platform for smart contracts.
-This tutorial demonstrates how to build a basic smart contract to run on a Substrate-based chain. 
+This tutorial demonstrates how to build a basic smart contract to run on a Substrate-based chain.
 In this tutorial, you'll explore using ink! as a programming language for writing Rust-based smart contracts.
 
 ## Before you begin
@@ -56,13 +56,13 @@ To update your development environment:
 1. Change to the root directory where you compiled the Substrate node template.
 
 1. Update your Rust environment by running the following command:
-    
+
     ```bash
     rustup component add rust-src --toolchain nightly
     ```
 
 1. Verify that you have the WebAssembly target installed by running the following command:
-    
+
     ```bash
     rustup target add wasm32-unknown-unknown --toolchain nightly
     ```
@@ -75,7 +75,7 @@ To update your development environment:
 
 ## Install the Substrate contracts node
 
-To simplify this tutorial, you can [download](https://github.com/paritytech/substrate-contracts-node/releases) a precompiled Substrate node for Linux or macOS.The precompiled binary includes the FRAME pallet for smart contracts by default. 
+To simplify this tutorial, you can [download](https://github.com/paritytech/substrate-contracts-node/releases) a precompiled Substrate node for Linux or macOS.The precompiled binary includes the FRAME pallet for smart contracts by default.
 Alternatively, you can build the preconfigured  `contracts-node` manually by running `cargo install contracts-node` on your local computer.
 
 To install the contracts node on macOS or Linux:
@@ -87,7 +87,7 @@ To install the contracts node on macOS or Linux:
 1. Open the downloaded file and extract the contents to a working directory.
 
 If you can't download the precompiled node, you can compile it locally with a command similar to the following:
-    
+
 ```bash
 cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag <latest-tag> --force --locked
 ```
@@ -96,19 +96,19 @@ You can find the latest tag to use on the [Tags](https://github.com/paritytech/s
 
 ## Install additional packages
 
-After compiling the contrcts node, you need to install two additional packages:
+After compiling the contracts node, you need to install two additional packages:
 
 * The WebAssembly  **binaryen** package for your operating system to optimize the WebAssembly bytecode for the contract.
 * The cargo-contract command line interface you'll use to set up smart contract projects.
 
-### Install the WebAssemvly binary
+### Install the WebAssembly binary
 
 To install the **binaryen** package:
 
 1. Open a terminal shell on your computer.
 
-1. Use the approproate package manager for your operating system to install the package.
-    
+1. Use the appropriate package manager for your operating system to install the package.
+
     For example, on Ubuntu or Debian, run the following command:
 
     ```bash
@@ -121,7 +121,7 @@ To install the **binaryen** package:
     brew install binaryen
     ```
 
-    For other operating systems, you can download the `binaryen` release directly from [WebAssebly releases](https://github.com/WebAssembly/binaryen/releases).
+    For other operating systems, you can download the `binaryen` release directly from [WebAssembly releases](https://github.com/WebAssembly/binaryen/releases).
 
 ### Install the cargo-contract package
 
@@ -130,20 +130,20 @@ The `cargo-contract` package provides a command-line interface for working with 
 
 1. Open a terminal shell on your computer.
 
-1. Install `cargo-dylint` and `dylint-link`, required to lint ink! contracts, warning you about things like using API's in a way that could lead to security issues.
+1. Install `cargo-dylint` and `dylint-link`, required to lint ink! contracts, warning you about things like using APIs in a way that could lead to security issues.
 
    ```bash
    cargo install cargo-dylint dylint-link
    ```
 
 1. Install `cargo-contract` by running the following command:
-    
+
     ```bash
     cargo install cargo-contract --force
     ```
 
-1. Verify the installation and explore the commands avilable by running the following command:
-    
+1. Verify the installation and explore the commands available by running the following command:
+
     ```bash
     cargo contract --help
     ```
@@ -157,32 +157,32 @@ To generate the files for a smart contract project:
 1. Open a terminal shell on your computer.
 
 1. Create a new project folder named `flipper`  by running the following command:
-    
+
     ```bash
     cargo contract new flipper
     ```
 
 1. Change to the new project folder by running the following command:
-    
+
     ```bash
     cd flipper/
     ```
 
 1. List all of the contents of the directory by running the following command:
-    
+
     ```bash
     ls -al
     ```
-    
+
     You should see that the directory contains the following files:
-    
+
     ```bash
     -rwxr-xr-x   1 dev-doc  staff   285 Mar  4 14:49 .gitignore
     -rwxr-xr-x   1 dev-doc  staff  1023 Mar  4 14:49 Cargo.toml
     -rwxr-xr-x   1 dev-doc  staff  2262 Mar  4 14:49 lib.rs
     ```
-    
-    Like other Rust projects, the `Cargo.toml` file is used to provides package dependencies and configuration information. 
+
+    Like other Rust projects, the `Cargo.toml` file is used to provides package dependencies and configuration information.
     The `lib.rs` file is used for the smart contract business logic.
 
 ### Explore the default project files
@@ -213,7 +213,7 @@ To explore the default project files:
 
 ### Test the default contract
 
-At the bottom of the `lib.rs` source code file, there are simple test cases to verify the functionality of the contract. 
+At the bottom of the `lib.rs` source code file, there are simple test cases to verify the functionality of the contract.
 You can test whether this code is functioning as expected using the **off-chain test environment**.
 
 To test the contract:
@@ -223,50 +223,50 @@ To test the contract:
 1. Verify that you are in the `flipper` project folder.
 
 1. Use the `test` subcommand and `nightly` toolchain to execute the default tests for the `flipper` contract by running the following command:
-    
+
     ```bash
     cargo +nightly test
     ```
-    
+
     The command should display output similar to the following to indicate successful test completion:
-    
+
     ```bash
     running 2 tests
     test flipper::tests::it_works ... ok
     test flipper::tests::default_works ... ok
-    
+
     test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
     ```
 
 ### Build the contract
 
-After testing the default contract, you are ready to compile this project to WebAssmebly.
+After testing the default contract, you are ready to compile this project to WebAssembly.
 
-To build the WebAssmeby for this smart contract:
+To build the WebAssembly for this smart contract:
 
 1. Open a terminal shell on your computer, if needed.
 
 1. Verify that you are in the `flipper` project folder.
 
-1. Compile the `flipper` smart contract vy running the following command: 
-    
+1. Compile the `flipper` smart contract vy running the following command:
+
     ```bash
     cargo +nightly contract build
     ```
-    
-    This command builds a WebAssembly binary for the `flipper` project, a metadata file that contains the Contract Application Binary Interface (ABI), and a `.contract` file that contains both files. 
-    The `.contract` file can be used for deploying your contract to your chain. 
+
+    This command builds a WebAssembly binary for the `flipper` project, a metadata file that contains the Contract Application Binary Interface (ABI), and a `.contract` file that contains both files.
+    The `.contract` file can be used for deploying your contract to your chain.
 
     For example, you should see output similar to the following:
 
     ```text
     Original wasm size: 47.9K, Optimized: 22.8K
-    
+
     The contract was built in DEBUG mode.
-    
+
     Your contract artifacts are ready. You can find them in:
     /Users/dev-doc/flipper/target/ink
-    
+
     - flipper.contract (code + metadata)
     - flipper.wasm (the contract's code)
     - metadata.json (the contract's metadata)
@@ -303,7 +303,7 @@ To start the preconfigured `contracts-node`:
 1. Navigate to the [Contracts UI](https://paritytech.github.io/contracts-ui) in a web browser.
 
 1. Select **Local Node**.
-    
+
     ![Connect to local node](/assets/tutorials/ink-workshop/canvas-connect-to-local.png)
 
 ## Deploy the contract
@@ -313,7 +313,7 @@ At this point, you have completed the following steps:
 * Installed the packages for local development.
 * Generated the WebAssembly binary for the `flipper` smart contract.
 * Started the local node in development mode.
-* Connected to a local node through the Contracts UI front-end. 
+* Connected to a local node through the Contracts UI front-end.
 
 The next step is to deploy the `flipper` contract on your Substrate chain.
 
@@ -328,10 +328,10 @@ In Substrate, the contract deployment process is split into two steps:
 * Upload the contract code to the blockchain.
 * Create an instance of the contract.
 
-With this pattern, you can store the code for a smart contract like the ERC20 standard on the blockchain once, then instantiate it any number of times. 
+With this pattern, you can store the code for a smart contract like the ERC20 standard on the blockchain once, then instantiate it any number of times.
 You don't need to reload the same source code repeatedly, so your smart contract doesn't consume unnecessary resources on the blockchain.
 
-### Upload the contract code 
+### Upload the contract code
 
 For this tutorial, you use the Contracts UI front-end to deploy the `flipper` contract on the Substrate chain.
 
@@ -351,15 +351,15 @@ To upload the smart contract source code:
 
 1. Type a descriptive **Name** for the smart contract, for example, Flipper Contract.
 
-1. Browse and select or drag and drop the `flipper.contract` file that contains the bundled Wasm blob and metadata into the upload section. 
-    
+1. Browse and select or drag and drop the `flipper.contract` file that contains the bundled Wasm blob and metadata into the upload section.
+
     ![Upload the contract](/assets/tutorials/ink-workshop/flipper-instantiate-01.png)
 
 1. Click **Next** to continue.
 
 ### Create an instance on the blockchain
 
-Smart contracts exist as an extension of the account system on the Substrate blockchain. 
+Smart contracts exist as an extension of the account system on the Substrate blockchain.
 When you create an instance of this smart contract, Substrate creates a new `AccountId` to store any balance managed by the smart contract and to allow you to interact with the contract.
 
 After you upload the smart contract and click **Next**, the Contracts UI displays information about the content of the smart contract.
@@ -369,7 +369,7 @@ To create the instance:
 1. Review and accept the default **Deployment Constructor** options for the initial version of the smart contract.
 
 1. Review and accept the default **Max Gas Allowed** of `200000`.
-    
+
     ![Create an instance of the smart contract](/assets/tutorials/ink-workshop/flipper-instantiate-02.png)
 
 1. Click **Next**.
@@ -407,7 +407,7 @@ To test the `get()` function:
 1. Click **Read**.
 
 1. Verify that the value `false` is returned in the Call Results.
-    
+
     ![Calling the get() function returns false](/assets/tutorials/ink-workshop/flipper-false.png)
 
 ### flip() function
@@ -418,7 +418,7 @@ To test the `flip()` function:
 
 1. Select any predefined account from the **Account** list.
 
-    The `flip()` function is a transaction that changes the chain state and requires an account with funds to be used to execute the call. 
+    The `flip()` function is a transaction that changes the chain state and requires an account with funds to be used to execute the call.
     Therefore, you should select an account that has a predefined account balance, such as the `alice` account.
 
 1. Select **flip()** from the **Message to Send** list.
@@ -449,7 +449,7 @@ In this tutorial, you learned:
 
 * How to interact with a smart contract using the Contracts UI browser client.
 
-Additional smart contract tutorials build on what you learned in this tutorial and lead you deeper into different stages of contract development. 
+Additional smart contract tutorials build on what you learned in this tutorial and lead you deeper into different stages of contract development.
 
 You can find an example of the final code for this tutorial in the assets for the [ink-workshop](https://docs.substrate.io/assets/tutorials/ink-workshop/1.4-finished-code.rs).
 You can learn more about smart contract development in the following topics:
