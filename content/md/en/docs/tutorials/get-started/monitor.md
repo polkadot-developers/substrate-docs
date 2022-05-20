@@ -104,11 +104,7 @@ Substrate exposes an endpoint that serves metrics in the [Prometheus exposition 
 You can change the port with `--prometheus-port <PORT>` and enable it to be accessed over an interface other than local host with `--prometheus-external`.
 
 ```bash
-# clear the dev database
-./target/release/node-template purge-chain --dev -y
-# start the template node  in dev & tmp mode to experiment
-# optionally add the `--prometheus-port <PORT>`
-# or `--prometheus-external` flags
+# Optionally add the `--prometheus-port <PORT>`
 ./target/release/node-template --dev
 ```
 
