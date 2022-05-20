@@ -14,6 +14,33 @@ This guide will show you how to add the [Contracts pallet](/rustdocs/latest/pall
 
 You can follow similar patterns to add additional FRAME pallets to your runtime, however you should note that each pallet is a little different in terms of the specific configuration settings needed to use it correctly.
 
+## What is the Contracts Pallet for?
+
+Broadly speaking there are two big use-cases you can apply it to.
+We'll only shortly describe those, for more information please check
+[the pallet reamde][pallet-readme].
+
+### Smart contracts as first-class citizens
+
+You want to build a general-purpose smart contracts chain, with them being the main focus of your chain.
+Maybe you have an innovative idea and want to have a smart contracts base layer which you complement
+with your chains unique selling point.
+
+### Smart contracts for users to customize how they interact with your chain
+
+You've built a chain that doesn't have smart contracts as first-class citizens,
+instead most of the logic is built using Substrate pallets that use weight-metering.
+
+But now you want to expose limited parts of your chains business logic to be customizable
+by users. Say you have e.g. a decentralized exchange chain and want to enable users
+uploading their own trading algorithms.
+Smart contracts are ideal for that ‒ they treat all user input as untrusted and potentially adversarial.
+With gas fees users have to pay for the execution time of their trading algorithms.
+
+The Contracts pallet provides the [Chain extension][chain-extension] primitive for exactly that.
+This way programming languages (like [ink!][ink]) can easily make use of your chains
+exposed business logic primitives.
+
 ## Before you begin
 
 Make sure you have the latest version of the Substrate node template compiled on your computer.
@@ -279,3 +306,6 @@ that includes all pallets shipped with Substrate.
 [contracts-parachain]: https://github.com/paritytech/cumulus/tree/master/polkadot-parachains/contracts-rococo
 [storage-migrations-tutorial]: /how-to-guides/v3/storage-migrations/basics/
 [ink-tutorial]: /tutorials/v3/ink-workshop/pt1/
+[ink]: https://ink.substrate.io/
+[chain-extension]: https://ink.substrate.io/macros-attributes/chain-extension
+[pallet-readme]: https://github.com/paritytech/substrate/blob/master/frame/contracts/README.md
