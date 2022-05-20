@@ -56,21 +56,21 @@ Implement the Contracts pallet [configuration traits][contracts-config-rustdocs]
 
    ```rust
    /* --snip-- */
-   Contracts: pallet_contracts::{Pallet, Call, Config<T>, Storage, Event<T>},
-   /* --snip-- */
-   ```
-
-   For example, the following shows how the parameter type, `DeletionQueueDepth`, should be added:
-
-   ```rust
-   parameter_types! {
-   	/* --snip-- */
+   	parameter_types! {
+   	pub const DepositPerItem: Balance = deposit(1, 0);
+   	pub const DepositPerByte: Balance = deposit(0, 1);
+   	// The lazy deletion runs inside on_initialize.
+   	pub DeletionWeightLimit: Weight = AVERAGE_ON_INITIALIZE_RATIO *
+   		RuntimeBlockWeights::get().max_block;
+   	// The weight needed for decoding the queue should be less or equal than a fifth
+   	// of the overall weight dedicated to the lazy deletion.
    	pub DeletionQueueDepth: u32 = ((DeletionWeightLimit::get() / (
-   		<Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(1) -
-   		<Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(0)
+   			<Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(1) -
+   			<Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(0)
    		)) / 5) as u32;
-   		/* --snip-- */
+   	pub Schedule: pallet_contracts::Schedule<Runtime> = Default::default();
    	}
+   /* --snip-- */
    ```
 
    Notice how the above parameter type depends on `WeightInfo`. This requires you to add the following to the top of `runtime/src/lib.rs`:
