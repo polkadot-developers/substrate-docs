@@ -56,9 +56,12 @@ Implement the Contracts pallet [configuration traits][contracts-config-rustdocs]
 
    ```rust
    /* --snip-- */
-   	parameter_types! {
-   	pub const DepositPerItem: Balance = deposit(1, 0);
-   	pub const DepositPerByte: Balance = deposit(0, 1);
+   parameter_types! {
+   	pub ContractDeposit: Balance = deposit(
+   		1,
+   		<pallet_contracts::Pallet<Runtime>>::contract_info_size(),
+   	);
+   	pub const MaxValueSize: u32 = 16 * 1024;
    	// The lazy deletion runs inside on_initialize.
    	pub DeletionWeightLimit: Weight = AVERAGE_ON_INITIALIZE_RATIO *
    		RuntimeBlockWeights::get().max_block;
@@ -69,7 +72,7 @@ Implement the Contracts pallet [configuration traits][contracts-config-rustdocs]
    			<Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(0)
    		)) / 5) as u32;
    	pub Schedule: pallet_contracts::Schedule<Runtime> = Default::default();
-   	}
+   }
    /* --snip-- */
    ```
 
