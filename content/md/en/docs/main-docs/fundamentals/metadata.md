@@ -425,17 +425,11 @@ These are errors that could occur during the submission or execution of an extri
 the FRAME System pallet is declaring that it may raise the
 the [`InvalidSpecName` error](/rustdocs/latest/frame_system/pallet/enum.Error.html#variant.InvalidSpecName).
 
-## Next steps
-
-### Learn more
+## Where to go next
 
 - [Storage](/main-docs/build/runtime-storage)
-- [SCALE](/v3/advanced/scale-codec)
-- [Macros](/v3/runtime/macros)
-- [Events](/v3/runtime/events-and-errors)
-- [Extrinsics](/v3/concepts/extrinsics)
-
-### References
-
+- [SCALE](/reference/scale-codec)
+- [Macros](/reference/frame-macros)
+- [Events](/main-docs/build/events-and-errors)
 - [Metadata](/rustdocs/latest/frame_metadata/index.html)
 - [FRAME v2 macro documentation](/rustdocs/latest/frame_support/attr.pallet.html)
