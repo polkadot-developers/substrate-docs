@@ -63,7 +63,7 @@ For example, you should avoid using the following RPC methods:
 These RPCs are declared by using the `#[rpc(name = "rpc_method")]` macro, where `rpc_method` is be the name of the function—for example `author_submitExtrinsic` corresponding to [`submit_extrinsic`](/rustdocs/latest/sc_rpc/author/trait.AuthorApi.html#tymethod.submit_extrinsic).
 
 It's critical to filter out these kind of calls if the requests are coming from untrusted users.
-The way to do it is through a [JSON-RPC](/v3/getting-started/glossary#json-rpc) proxy that is able to inspect calls and only pass allowed-set of APIs.
+The way to do it is through a [JSON-RPC](/reference/glossary#json-rpc) proxy that is able to inspect calls and only pass allowed-set of APIs.
 
 ## RPCs for remote_externalities
 
@@ -89,7 +89,7 @@ curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method":
 The return value of this command is not in human-readable format. For that, it needs to use [Type encoding (SCALE)](/reference/scale-codec/).
 
 Each storage item has a relative storage key associated to it which is used to
-[query storage](/v3/advanced/storage#querying-storage). This is how RPC endpoints know where to look.
+[query storage](/main-docs/build/runtime-storage#querying-storage). This is how RPC endpoints know where to look.
 
 ## Examples
 
@@ -159,4 +159,4 @@ function get_runtime_storage_parameter_with_key(
 
 - [Rust implementation of JSON-RPC](https://github.com/paritytech/jsonrpc)
 - [Type encoding (SCALE)](/reference/scale-codec)
-- [Substrate Storage](/v3/advanced/storage)
+- [Runtime storage](/main-docs/build/runtime-storage/)

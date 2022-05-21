@@ -62,17 +62,8 @@ Different ways to use the extension:
 
 - [Fork on GitHub](https://github.com/polkadot-js/extension)
 
-## Next steps
+## Where to go next
 
-### Examples
-
-- Clone the
-  [Substrate Front End Template](https://github.com/substrate-developer-hub/substrate-front-end-template)
-  to start building a custom ReactJS app for your blockchain using Polkadot-JS API.
-- Complete [part II of the Kitties tutorial](/tutorials/v3/kitties/pt2/) to use PolkadotJS API in action
-
-### References
-
-- Visit the reference docs for the [Polkadot-JS API](https://polkadot.js.org/api/)
-
-- Visit the reference docs for the [Polkadot-JS Common Utilities](https://polkadot.js.org/common/)
+- [Substrate front-end template](https://github.com/substrate-developer-hub/substrate-front-end-template)
+- [Polkadot-JS API](https://polkadot.js.org/api/)
+- [Polkadot-JS common utilities](https://polkadot.js.org/common/)

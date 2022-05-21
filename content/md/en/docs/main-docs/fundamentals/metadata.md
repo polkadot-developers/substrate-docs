@@ -1,19 +1,17 @@
 ---
 title: Metadata
-slug: /v3/runtime/metadata
-version: '3.0'
-section: docs
-category: runtime
+description:
 keywords: []
 ---
 
-Blockchains you build on Substrate expose metadata in order to make it easier to interact with them. This metadata is separated by the different [pallets](/v3/runtime/frame#pallets) that inform your blockchain.
+Blockchains you build on Substrate expose metadata in order to make it easier to interact with them. This metadata is separated by the different [pallets](/main-docs/fundamentals/runtime-intro) that inform your blockchain.
 
-For each pallet, the metadata provides information about the [storage items](/v3/runtime/storage), [extrinsic calls](/v3/concepts/extrinsics), [events](/v3/runtime/events-and-errors), constants, and errors that are exposed by that pallet. Substrate automatically generates this metadata for you and makes it available through RPC calls.
+For each pallet, the metadata provides information about the [storage items](/main-docs/build/runtime-storage), [extrinsic calls](/main-docs/fundamentals/transaction-types), [events](/main-docs/build/events-and-errors), constants, and errors that are exposed by that pallet. Substrate automatically generates this metadata for you and makes it available through RPC calls.
 
 Since the runtime of a Substrate blockchain is an evolving part of the blockchain's state,
-blockchain metadata is stored on a per-block basis. Be aware that querying the metadata for an older block (with an archive node, for example) could result in acquiring out-of-date metadata that is not compatible with a blockchain's current state. As described in the [Upgrades documentation](/v3/runtime/upgrades), developers building on top of Substrate chains can expect that the metadata for a chain should only change when the chain's
-[runtime `spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version) changes.
+blockchain metadata is stored on a per-block basis. 
+Be aware that querying the metadata for an older block (with an archive node, for example) could result in acquiring out-of-date metadata that is not compatible with a blockchain's current state. 
+As described in [Forkless upgrades](/main-docs/maintain/upgrade), metadata for a chain should only change when the chain's [runtime `spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version) changes.
 
 All examples in this document were taken from block 1,768,321 on Kusama. You can look at the
 [full metadata](https://gist.github.com/insipx/db5e49c0160b1f1bd421a3c34fefdf48) before reading the rest of this document and continue to refer to it as you proceed.
@@ -88,10 +86,11 @@ The response has the following format:
 }
 ```
 
-The `result` field contains the blockchain metadata as a [SCALE-encoded](/v3/advanced/scale-codec)
-hexadecimal string. The example above represents the actual value that is returned for block
-1,768,321; you can check for yourself by using a WebSocket client to query a node. Continue reading
-to learn more about the format of this encoded blob as well as
+The `result` field contains the blockchain metadata as a [SCALE-encoded](/reference/scale-codec) hexadecimal string.
+The example above represents the actual value that is returned for block
+1,768,321.
+You can check for yourself by using a WebSocket client to query a node. 
+Continue reading to learn more about the format of this encoded blob as well as
 [its decoded format](https://gist.githubusercontent.com/insipx/db5e49c0160b1f1bd421a3c34fefdf48/raw/2c33ff080bec84f0627610124c732deb30a0adc7/meta_block_1768321.json).
 
 ## Metadata formats
@@ -156,7 +155,7 @@ As described above, the integer `1635018093` is a "magic number" that represents
 text. The rest of the metadata has two sections: `modules` and `extrinsic`. The `modules` section
 contains information about the runtime's pallets, while the extrinsic section describes the version
 of extrinsics that the runtime is using. Different extrinsic versions may have different formats,
-especially when considering [signed extrinsics](/v3/concepts/extrinsics).
+especially when considering [signed transactions](/main-docs/fundamentals/transaction-types).
 
 #### Modules
 
@@ -244,7 +243,7 @@ about the module's storage:
 ```
 
 Every storage item that is defined in a pallet will have a corresponding metadata entry.
-Metadata entries like these are generated from [macros](/v3/runtime/macros) using associated types from the [`frame-system`](/rustdocs/latest/frame_system/pallet/trait.Config.html) crate. For example:
+Metadata entries like these are generated from [macros](/reference/frame-macros) using associated types from the [`frame-system`](/rustdocs/latest/frame_system/pallet/trait.Config.html) crate. For example:
 
 ```rust
 #[pallet::config]
@@ -430,7 +429,7 @@ the [`InvalidSpecName` error](/rustdocs/latest/frame_system/pallet/enum.Error.ht
 
 ### Learn more
 
-- [Storage](/v3/runtime/storage)
+- [Storage](/main-docs/build/runtime-storage)
 - [SCALE](/v3/advanced/scale-codec)
 - [Macros](/v3/runtime/macros)
 - [Events](/v3/runtime/events-and-errors)

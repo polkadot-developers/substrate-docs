@@ -1,13 +1,10 @@
 ---
-title: Making Transactions
-slug: /how-to-guides/v3/ocw/transactions
+title: Making transactions
+description:
 keywords:
   - off-chain worker
   - ocw
   - transactions
-version: '3.0'
-section: how to guides
-category: ocw
 ---
 
 <Objectives
@@ -473,4 +470,4 @@ You have now seen how you can use off-chain workers to send data for on-chain st
 
 ## Related material
 
-- [Off-chain features](/v3/concepts/off-chain-features/)
+- [Off-chain features](/main-docs/fundamentals/offchain-operations/)

@@ -1,9 +1,5 @@
 ---
 title: Connect to a Relay Chain
-slug: /how-to-guides/v3/parachains/connect
-version: polkadot-v0.9.18
-section: how to guides
-category: parachains
 difficulty: 1
 keywords:
   - collator
@@ -74,7 +70,7 @@ In the next steps it is assumed you use Cumulus, and thus have the proper comman
 ### 2. Customize parachain specification
 
 > Your parachain _must_ configure the correct para ID in your chain specification.
-> See the [how-to guide on configuring a custom chain spec](/how-to-guides/v3/basics/custom-chain-spec) for more in-depth instructions to generate a plain spec, modify it, and generate a raw spec.
+> See the [how-to guide on configuring a custom chain spec](/reference/how-to-guides/basics/custom-chain-spec) for more in-depth instructions to generate a plain spec, modify it, and generate a raw spec.
 
 We first generate a plain spec with:
 
@@ -129,7 +125,7 @@ The parachain collator node also has a command to produce this Wasm blob:
 
 ### 4. Generate a parachain genesis state
 
-To register a parachain, the relay chain needs to know the parachain's [genesis state](/v3/runtime/chain-specs#the-genesis-state).
+To register a parachain, the relay chain needs to know the parachain's [genesis state](/main-docs/build/chain-specs#the-genesis-state).
 The collator node can export that state to a file.
 Go to your Parachain Template folder, the following command will create a file containing the parachain's entire genesis state, hex-encoded:
 
@@ -226,4 +222,4 @@ We can keep track of what parachains are registered and what their latest head d
 
 ## Examples
 
-- [Cumulus tutorial](/tutorials/v3/cumulus/start-relay)
+- [Cumulus tutorial](/tutorials/connect-other-chains/cumulus/start-relay)

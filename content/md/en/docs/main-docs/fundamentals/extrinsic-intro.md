@@ -1,9 +1,6 @@
 ---
 title: Extrinsics
-slug: /v3/concepts/extrinsics
-version: '3.0'
-section: docs
-category: concepts
+description:
 keywords: []
 ---
 
@@ -66,7 +63,7 @@ protection difficult. A few transactions warrant using the unsigned variant, but
 some form of spam prevention based on a custom implementation of
 [signed extension](/v3/concepts/tx-pool#signed-extensions), which can exist on unsigned transactions.
 
-An example of unsigned transactions in Substrate is the [I'm Online](/v3/runtime/frame#im-online)
+An example of unsigned transactions in Substrate is the [I'm Online](/reference/frame-pallets#im-online)
 heartbeat transaction sent by authorities. The transaction includes a signature from a Session key,
 which does not control funds and therefore cannot pay a fee. The transaction pool controls spam by
 checking if a heartbeat has already been submitted in the session.

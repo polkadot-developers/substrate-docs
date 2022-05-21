@@ -566,9 +566,10 @@ In this tutorial you learned:
 
 To learn more about the topics introduced in this tutorial, see the following sections:
 
-- [Accounts](https://wiki.polkadot.network/docs/learn-accounts) and [Key management](https://wiki.polkadot.network/docs/learn-account-generation) for more information about key generation and storage options.
-
-- [Cryptography](https://docs.substrate.io/v3/advanced/cryptography/) for more information about the signature schemes used for different keys.
+- [Accounts, addresses, and keys](/main-docs/fundamentals/accounts-addresses-keys)
+- [Chain specification](/main-docs/build/chain-spec/)
+- [subkey](/reference/command-line-tools/subkey/)
+- [Cryptography](/reference/cryptography/)
 
 <!-- TODO link to the followup tutorial about starting a 3 node network using the demo substrate node
 Details in https://github.com/substrate-developer-hub/tutorials/issues/16 -->

@@ -1,10 +1,6 @@
 ---
 title: Collator Selection
-slug: /how-to-guides/v3/parachains/start-collator-node
-version: polkadot-v0.9.18
-section: how to guides
-category: parachains
-difficulty: 1
+description:
 keywords:
   - collator
   - parachain

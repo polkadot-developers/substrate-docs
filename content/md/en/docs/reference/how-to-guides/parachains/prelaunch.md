@@ -1,10 +1,6 @@
 ---
 title: Pre-Launch Requirements
-slug: /how-to-guides/v3/parachains/pre-launch
-version: polkadot-v0.9.18
-section: how to guides
-category: parachains
-difficulty: 2
+description:
 keywords:
   - collator
   - parachain
@@ -51,7 +47,7 @@ In order to set a unique protocol ID, change make sure you use some nonce or sal
 (for the [parachain node template](https://github.com/substrate-developer-hub/substrate-parachain-template/))
 as a CLI item in `/client/network/src/command.rs`, and passed to extend the `/client/network/src/chain_spec.rs`
 
-All [chain specification](/v3/runtime/chain-specs) files include this item as a field. For example,
+All [chain specification](/main-docs/build/chain-specs) files include this item as a field. For example,
 the primary [relay chain
 runtime](https://github.com/paritytech/polkadot/tree/master/node/service/res)
 chain specs have unique protocol IDs. For Polkadot:
@@ -71,7 +67,7 @@ that will address a better method to safely configure this constant in the futur
 
 ### 2. Memory profiling
 
-[Profiling your collator](/v3/tools/memory-profiling) should be done to analyze memory leaks,
+[Profiling your collator](/reference/command-line-tools/memory-profiler) should be done to analyze memory leaks,
 identify where memory consumption is happening, define temporary allocations, and investigate
 excessive memory fragmentation within applications.
 
@@ -106,7 +102,7 @@ constants: _Developers_ -> _ParachainsConfiguration_ -> _ActiveConfiguration_
 
 ### 4. Use proper weights
 
-Use [runtime benchmarking](/v3/runtime/benchmarking) to ensure that your runtime weights are
+Use [runtime benchmarking](/main-docs/test/benchmark) to ensure that your runtime weights are
 actually indicative of the resources used by your runtime.
 
 #### Custom weights
@@ -149,7 +145,7 @@ In these cases, you can:
    without having to do storage migrations. For more information on on-chain runtime upgrades refer to
    the next section.
 
-**See the [parachain runtime upgrade guide](/how-to-guides/v3/parachains/runtime-upgrades)** for how
+**See the [parachain runtime upgrade guide](/reference/how-to-guides/parachains/runtime-upgrades)** for how
 to go about actually performing these incremental runtime upgrades.
 
 ### 7. Launch simulation
@@ -166,8 +162,8 @@ See the [cumulus tutorial](/tutorials/connect-other-networks/start-relay) to lea
 
 ## Resources
 
-- [Reference documentation for runtime upgrades](/v3/runtime/upgrades)
-- [A how-to guide to use benchmarked weights](/how-to-guides/v3/weights/use-benchmark-weights)
-- [Reference for `try-runtime` documentation](/v3/tools/try-runtime)
+- [Reference documentation for runtime upgrades](/main-docs/maintain/upgrade)
+- [A how-to guide to use benchmarked weights](/reference/how-to-guides/weights/add-benchmarks)
+- [Reference for `try-runtime` documentation](/reference/command-line-tools/try-runtime)
   - [`try-runtime` video workshop](https://www.crowdcast.io/e/substrate-seminar/41)
 - [Fork Off Substrate tool](https://github.com/maxsam4/fork-off-substrate)

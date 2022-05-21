@@ -138,7 +138,7 @@ Just like writing unit tests, to use `try-runtime` create an externalities insta
 
 #### Docs
 
-[Try runtime](/v3/tools/try-runtime/)
+[Try runtime](/reference/command-line-tools/try-runtime/)
 
 #### Other
 
