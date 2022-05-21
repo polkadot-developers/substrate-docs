@@ -1,36 +1,23 @@
 ---
 title: Add benchmarking to your pallet
-slug: /how-to-guides/v3/weights/add-benchmarking
+description:
 keywords:
   - weights
   - benchmarking
   - runtime
-version: '3.0'
-section: how to guides
-category: weights
 ---
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description:
-        "Add [FRAME's benchmarking tool](/rustdocs/latest/frame_benchmarking/macro.benchmarks.html) to your pallet and write a simple benchmark.",
-    },
-    {
-      title: 'Use Cases',
-      description: `Setting up your pallet to be able to benchmark your extrinsics.`,
-    },
-    {
-      title: 'Overview',
-      description: `
 This guide steps through the process of adding benchmarking to a pallet and runtime.
 In addition, it covers the steps of writing a simple benchmark for a pallet as well as testing and running the benchmarking tool.
 This guide does not cover updating weights with benchmarked values.
-      `,
-    },
-  ]}
-/>
+
+## Goal
+
+Add [FRAME's benchmarking tool](/rustdocs/latest/frame_benchmarking/macro.benchmarks.html) to your pallet and write a simple benchmark.",
+
+## Use cases
+
+Setting up your pallet to be able to benchmark your extrinsics.`,
 
 ## Steps
 
@@ -142,7 +129,7 @@ benchmarking.
    ```
 
 1. Add your new pallet to your runtime just as you would any other pallet.
-   If you need more details check out the [Add a Pallet to Your Runtime Tutorial](/tutorials/v3/add-a-pallet) or [this guide on integrating a pallet to your runtime](/how-to-guides/v3/basics/pallet-integration).
+   If you need more details check out the [Add a Pallet to Your Runtime Tutorial](/tutorials/work-with-pallets/add-a-pallet) or [this guide on integrating a pallet to your runtime](/reference/how-to-guides/basics/pallet-integration).
 
 1. Then, in addition to your normal runtime configuration, you also need to update the benchmarking section of your runtime.
    To add our new benchmarks, we simply add a new line with the `add_benchmark!` macro:
@@ -208,7 +195,7 @@ Execute the following command to run standard benchmarking for your `pallet_you_
 ```
 
 This will create a `weights.rs` file inside your pallet's directory.
-Refer to [this guide](/how-to-guides/v3/weights/use-benchmark-weights) to learn how to configure your pallet to use those weights.
+Refer to [this guide](/reference/how-to-guides/weights/use-benchmark-weights) to learn how to configure your pallet to use those weights.
 
 ## Examples
 

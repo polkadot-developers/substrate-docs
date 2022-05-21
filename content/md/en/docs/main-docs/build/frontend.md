@@ -87,7 +87,7 @@ Here is a condensed version of decoded metadata for a runtime using the V14 meta
 As described above, the integer `1635018093` is a "magic number" that represents "meta" in plain text.
 The rest of the metadata has two sections: `pallets` and `extrinsic`.
 The `pallets` section contains information about the runtime's pallets, while the `extrinsic` section describes the version of extrinsics that the runtime is using.
-Different extrinsic versions may have different formats, especially when considering [signed extrinsics](/v3/concepts/extrinsics).
+Different extrinsic versions may have different formats, especially when considering [signed transactions](/main-docs/fundamentals/transaction-types).
 
 ### Pallets
 

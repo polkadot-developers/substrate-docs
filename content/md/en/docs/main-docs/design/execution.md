@@ -1,13 +1,10 @@
 ---
 title: Execution
-slug: /v3/concepts/execution
-version: '3.0'
-section: docs
-category: runtime
+description:
 keywords: []
 ---
 
-The execution of the Substrate runtime is orchestrated by the [Executive module](/v3/runtime/frame#executive-module).
+The execution of the Substrate runtime is orchestrated by the [Executive module](/reference/frame-pallets#executive-module).
 
 Unlike the other modules within FRAME, this is not a _runtime_ module. Rather it is a normal Rust module
 that calls into the various runtime modules included in your blockchain.

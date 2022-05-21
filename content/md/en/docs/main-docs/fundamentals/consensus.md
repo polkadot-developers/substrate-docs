@@ -40,7 +40,7 @@ Substrate provides a proof-of-work block production engine.
 
 ## Fork choice rules
 
-<!-- As a primitive, a block contains a header and a batch of [extrinsics](/v3/concepts/extrinsics). 
+<!-- As a primitive, a block contains a header and a batch of [extrinsics](/main-docs/fundamentals/transaction-types). 
 The header must contain a reference to its parent block such that one can trace the chain to its genesis.  -->
 
 Forks occur when two blocks reference the same parent.

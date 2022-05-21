@@ -126,7 +126,5 @@ Use the conditional weighting struct on your pallet's extrinsics like this:
 
 ## Related material
 
-#### Docs
-
-- [Benchmarking](/v3/runtime/benchmarking)
-- [Calculate custom fees](/how-to-guides/v3/weights/calculate-fees)
+- [Benchmarking](/main-docs/test/benchmark)
+- [Calculate custom fees](/refernce/how-to-guides/weights/calculate-fees)

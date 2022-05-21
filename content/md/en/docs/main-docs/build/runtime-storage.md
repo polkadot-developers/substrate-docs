@@ -158,7 +158,7 @@ still be able to access the storage item's value, but you will not be able to do
 getter method implemented on the module; instead, you will need to use
 [the storage item's `get` method](#methods).
 
-The optional \`getter\` extension only impact the way that a storage item can be accessed from _within_ Substrate code&mdash;you will always be able to [query the storage of your runtime](/v3/advanced/storage#Querying-Storage) to get the value of a storage item.
+The optional `getter` extension only impact the way that a storage item can be accessed from _within_ Substrate code&mdash;you will always be able to [query the storage of your runtime](/main-docs/build/runtime-storage#Querying-Storage) to get the value of a storage item.
 
 Here is an example that implements a getter method named `some_value` for a Storage Value named `SomeValue`. 
 This pallet would now have access to a `Self::some_value()` method in addition to the `SomeValue::get()` method:

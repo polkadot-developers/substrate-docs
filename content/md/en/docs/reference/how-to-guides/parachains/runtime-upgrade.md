@@ -1,10 +1,6 @@
 ---
 title: Runtime Upgrades
-slug: /how-to-guides/v3/parachains/runtime-upgrades
-version: 'polkadot-v0.9.18'
-section: how to guides
-category: parachains
-difficulty: 3
+description:
 keywords:
   - collators
   - parachains
@@ -41,11 +37,10 @@ keywords:
 
 ## Before you continue
 
-Please do the folowing:
+Please do the following:
 
-- Read the general [runtime upgrade docs](/v3/runtime/upgrades).
-- Complete the [cumulus tutorial](/tutorials/v3/cumulus/start-relay), and learn the
-  `polkadot-launch` tool for testing.
+- Read the general [runtime upgrade docs](/main-docs/maintain/upgrade).
+- Complete the [cumulus tutorial](/tutorials/connect-other-chains/start-relay), and learn the `polkadot-launch` tool for testing.
 
 ## Steps
 
@@ -107,10 +102,9 @@ upgrade has been scheduled.
 
 ## Resources
 
-- [Regular runtime upgrade docs](/v3/runtime/upgrades)
-  - [Fork Off Substrate tool](https://github.com/maxsam4/fork-off-substrate)
-- [`try-runtime` tool](/v3/tools/try-runtime)
-  - [`try-runtime` video workshop](https://www.crowdcast.io/e/substrate-seminar/41)
-- [Storage migrations Guide](/how-to-guides/v3/storage-migrations/basics)
-  - [Storage migration testing Guide](/how-to-guides/v3/storage-migrations/tests)
-  - [Substrate Builders Program Storage Migration Discussion](https://drive.google.com/file/d/19HPFUmSQIxVkxaVSg1SWveSdvjHUw1b8/view?usp=sharing)
+- [Runtime upgrade](/main-docs/maintain/upgrade)
+- [Fork off Substrate](https://github.com/maxsam4/fork-off-substrate)
+- [`try-runtime`](/reference/command-line-tools/try-runtime)
+- [`try-runtime` video workshop](https://www.crowdcast.io/e/substrate-seminar/41)
+- [How-to: Storage migration](/reference/how-to-guides/storage-migrations/basic-migration)- [How to: Test storage migration](/reference/how-to-guides/storage-migrations/test-migration)
+- [Substrate Builders Program: Storage Mmgration](https://drive.google.com/file/d/19HPFUmSQIxVkxaVSg1SWveSdvjHUw1b8/view?usp=sharing)

@@ -6,7 +6,7 @@ keywords:
 ---
 
 There is often a need to query and/or process off-chain data before it can be included in the on-chain state.
-The conventional way of doing this is through [oracles](/v3/getting-started/glossary#oracle).
+The conventional way of doing this is through [oracles](/reference/glossary#oracle).
 While this approach works, it still has several flaws with respect to security, scalability, and infrastructure efficiency.
 
 To make the off-chain data integration secure and more efficient, Substrate provides off-chain features:

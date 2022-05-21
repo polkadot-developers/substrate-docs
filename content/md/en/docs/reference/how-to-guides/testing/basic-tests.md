@@ -153,8 +153,8 @@ cargo test
 
 #### How-to guides
 
-- [Testing a transfer function](/how-to-guides/v3/testing/transfer-function)
-- [Migration tests](/how-to-guides/v3/storage-migrations/tests)
+- [Testing a transfer function](/reference/how-to-guides/testing/test-transfer)
+- [Migration tests](/reference/how-to-guides/storage-migrations/test-migration)
 
 #### Docs
 
@@ -167,4 +167,4 @@ cargo test
 
 [template-node-mock-rs]: https://github.com/substrate-developer-hub/substrate-node-template/blob/467927bda05a56dfe57690aec93ff504a6009daa/pallets/template/src/mock.rs#L1-L61
 [template-node-mock-rs]: https://github.com/substrate-developer-hub/substrate-node-template/blob/467927bda05a56dfe57690aec93ff504a6009daa/pallets/template/src/tests.rs#L1-L23
-[mock-runtime]: /v3/runtime/testing#mock-runtime-environment
+[mock-runtime]: /runtime/testing#mock-runtime-environment

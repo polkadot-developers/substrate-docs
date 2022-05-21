@@ -31,13 +31,15 @@ This tutorial requires compiling Rust code and takes approximately one to two ho
 
 For this tutorial, you download and use working code. Before you begin, verify the following:
 
-- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/v3/getting-started/installation).
+- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/).
 
-- You have completed the
-  [Build a local blockchain](../01-build-local-blockchain) and have the [node](https://github.com/substrate-developer-hub/substrate-node-template) and
-  [front-end](https://github.com/substrate-developer-hub/substrate-front-end-template) templates installed.
+- You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and have the Substrate node template installed locally.
+
+- You have used predefined accounts as described in [Simulate a network](/tutorials/get-started/simulate-network/) to start nodes on a single computer.
 
 - You are generally familiar with software development and use command-line interfaces.
+
+## Tutorial objectives
 
 By completing this tutorial, you will accomplish the following objectives:
 
@@ -61,15 +63,14 @@ These functions only require you to store information about the proofs that have
 
 ## Build a custom pallet
 
-The Substrate node template has a FRAME-based [runtime](/v3/concepts/runtime).
-[FRAME](/v3/runtime/frame) is a library of code that allows
-you to build a Substrate runtime by composing modules called "pallets". You can think of the
-pallets as individual pieces of logic that define what your blockchain can do. Substrate provides
-you with a number of pre-built pallets for use in FRAME-based runtimes.
+The Substrate node template has a FRAME-based runtime.
+As you learned in [Runtime development](/main-docs/fundamentals/runtime-intro), FRAME is a library of code that allows you to build a Substrate runtime by composing modules called pallets. 
+You can think of the pallets as individual pieces of logic that define what your blockchain can do. 
+Substrate provides you with a number of pre-built pallets for use in FRAME-based runtimes.
 
 ![Runtime composition](/media/images/docs/tutorials/custom-pallet/frame-runtime.png)
 
-This tutorial shows you how to create your own FRAME pallet to be included in your custom blockchain.
+This tutorial demonstrates how to create your own FRAME pallet to be included in your custom blockchain.
 
 ### Set up scaffolding for your pallet
 
@@ -108,7 +109,7 @@ Therefore, the first step is to remove some files and content from the files in 
 
    All of the pallets used in a runtime must be set to compile with the `no_std` features.
 
-1. Add a skeleton set of pallet dependencies and [macros](/v3/runtime/macros) that the custom pallet requires by copying the following code:
+1. Add a skeleton set of pallet dependencies and [macros](/reference/frame-macros) that the custom pallet requires by copying the following code:
 
    ```rust
    // Re-export pallet items so that they can be accessed from the crate namespace.
@@ -183,7 +184,6 @@ To implement the pallet events:
    ```rust
    // Pallets use events to inform users when important changes are made.
    // Event documentation should end with an array that provides descriptive names for parameters.
-   // https://docs.substrate.io/v3/runtime/events-and-errors
    #[pallet::event]
    #[pallet::generate_deposit(pub(super) fn deposit_event)]
    pub enum Event<T: Config> {
@@ -320,7 +320,6 @@ To implement this logic in the proof-of-existence pallet:
    	) -> DispatchResult {
    		// Check that the extrinsic was signed and get the signer.
    		// This function will return an error if the extrinsic is not signed.
-   		// https://docs.substrate.io/v3/runtime/origins
    		let sender = ensure_signed(origin)?;
 
    		// Verify that the specified proof has not already been claimed.
@@ -345,7 +344,6 @@ To implement this logic in the proof-of-existence pallet:
    	) -> DispatchResult {
    		// Check that the extrinsic was signed and get the signer.
    		// This function will return an error if the extrinsic is not signed.
-   		// https://docs.substrate.io/v3/runtime/origins
    		let sender = ensure_signed(origin)?;
 
    		// Verify that the specified proof has been claimed.
@@ -549,5 +547,5 @@ However, there's much more you can do as you work toward building your own fully
 Custom pallets enable you to expose the features you want your blockchain to support.
 
 To learn more about what's possible by creating custom pallets, explore the
-[FRAME documentation](/v3/runtime/frame) and the [how-to guides](/how-to-guides).
-For a more challenging version of this tutorial, move onto the [Substrate Kitties tutorial](/tutorials/v3/kitties/pt1/).
+FRAME documentation and the [how-to guides](/reference/how-to-guides).
+For a more challenging version of this tutorial, try the [Substrate Kitties tutorial](/workshops/kitties/pt1/).

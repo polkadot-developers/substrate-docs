@@ -511,13 +511,9 @@ In a real world application, node operators would _only_ have access to their no
 
 **Congratulations!**
 
-You are at the end of this tutorial and are already learned about how to build a
-permissioned network. You can also play with other dispatchable calls like
-`remove_well_known_node`, `remove_connections`.
+You have now learned how to build a network where some nodes have limited permissions and restricted access to network resources.
+To learn more about the topics introduced in this tutorial, see the following sections:
 
-## Next steps
-
-- Complete the [Private Network Tutorial](/tutorials/v3/private-network)
-- Read more about the [Subkey tool](/v3/tools/subkey)
-
-[Modified node template example](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/permissioned-network-v3)
+- [Monitor node metrics](/tutorials/get-started/monitor/)
+- [Upgrade the runtime](/tutorials/get-started/forkless-upgrade/)
+- [Accounts, addresses, and keys](/main-docs/fundamentals/accounts-addresses-keys)

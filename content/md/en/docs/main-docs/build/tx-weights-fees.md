@@ -246,9 +246,8 @@ fn handle_users(origin, calls: Vec<User>) {
 
 ## Post dispatch weight correction
 
-Depending on the execution logic, a dispatchable might consume less weight than was prescribed pre-dispatch. 
-Why this is useful is explained in the [weights article](/v3/concepts/weight#post-dispatch-weight-correction). 
-To correct weight, the dispatchable declares a different return type and returns its actual weight:
+Depending on the execution logic, a dispatchable function might consume less weight than was prescribed pre-dispatch.
+To correct weight, the function declares a different return type and returns its actual weight:
 
 ```rust
 #[pallet::weight(10_000 + 500_000_000)]
