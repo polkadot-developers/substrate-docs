@@ -361,7 +361,7 @@ To return the information stored for Alice:
 
 1. Copy and paste the address for the `alice` account in the Account field, then click **Query**.
 
-   ![Read a name](/media/images/tutorials/add-a-pallet/name-of-alice.png)
+   ![Read a name](/media/images/docs/tutorials/add-a-pallet/name-of-alice.png)
 
    The return type is a tuple that contains two values:
 
@@ -371,7 +371,7 @@ To return the information stored for Alice:
 
    If you were to query the Nicks pallet for the `nameOf` for Bob's account, you would see the `None` value returned because Bob has not invoked the `setName` function to reserve a nickname.
 
-   ![Read an empty name](/media/images/tutorials/add-a-pallet/name-of-bob.png)
+   ![Read an empty name](/media/images/docs/tutorials/add-a-pallet/name-of-bob.png)
 
 ## Explore additional functions
 
@@ -386,9 +386,9 @@ If you want to explore additional features exposed through the Nicks and Sudo pa
 
 There are several [tutorials](/tutorials/) that can serve as next steps for learning more about Substrate development.
 
-- [Specify the origin for invoking a function](/tutorials/work-with-pallets/) explores calling functions using different originating accounts.
-- [Configure the contracts pallet](/tutorials/work-with-pallets/) demonstrates more complex configuration requirements by adding the Contracts pallet to the runtime.
-- [Create a custom pallet using macros](/tutorials/work-with-pallets/)
+- [Specify the origin for a call](/tutorials/work-with-pallets/specify-origin) explores calling functions using different originating accounts.
+- [Configure the contracts pallet](/tutorials/work-with-pallets/contracts-pallet) demonstrates more complex configuration requirements by adding the Contracts pallet to the runtime.
+- [Use macros in a custom pallet](/tutorials/work-with-pallets/custom-pallet) illustrates how you can use macros to create your own pallets.
 
 ### References
 
