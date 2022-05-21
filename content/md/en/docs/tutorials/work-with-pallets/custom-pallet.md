@@ -15,7 +15,7 @@ Instead of individual files, the blockchain stores digital records using a [cryp
 The hash enables the blockchain to store files of arbitrary size efficiently by using a small and unique hash value.
 Because any change to a file would result in a different hash, users can prove the validity of a file by computing the hash and comparing that hash with the hash stored on chain.
 
-![File Hash](../../img/tutorials/02-proof-of-existence/file-hash.png)
+![File Hash](/media/images/docs/tutorials/custom-pallet/file-hash.png)
 
 ## Digital objects and account signatures
 
@@ -67,7 +67,7 @@ you to build a Substrate runtime by composing modules called "pallets". You can 
 pallets as individual pieces of logic that define what your blockchain can do. Substrate provides
 you with a number of pre-built pallets for use in FRAME-based runtimes.
 
-![Runtime composition](../../img/tutorials/02-proof-of-existence/frame-runtime.png)
+![Runtime composition](/media/images/docs/tutorials/custom-pallet/frame-runtime.png)
 
 This tutorial shows you how to create your own FRAME pallet to be included in your custom blockchain.
 
@@ -519,14 +519,14 @@ To test the proof-of-existence pallet using the new front-end component:
 
 1. Click **Create Claim** to take ownership of the file.
 
-   ![Proof Of Existence Component](../../img/tutorials/02-proof-of-existence/poe-component.png)
+   ![Proof Of Existence Component](/media/images/docs/tutorials/custom-pallet/poe-component.png)
 
    Clicking **Create Claim** calls the `create_claim` function in the custom proof-of-existence pallet.
    The front-end component displays the file digest, account identifier, and block number for the completed transaction.
 
 1. Verify the claim is successful and a new `claimCreated` event appears in the Events component.
 
-   ![Claimed File](../../img/tutorials/02-proof-of-existence/poe-claimed.png)
+   ![Claimed File](/media/images/docs/tutorials/custom-pallet/poe-claimed.png)
 
    The front-end component recognizes that the file is now claimed, and gives you the option to revoke the claim.
 

@@ -103,13 +103,12 @@ This function places the event in the System pallet's runtime storage for that b
 beginning of a new block, the System pallet automatically removes all events that were stored from
 the previous block.
 
-Events deposited using the default implementation will be directly supported by downstream libraries
-like the [Polkadot-JS API](/v3/integration/polkadot-js), however you can implement your own
-`deposit_event` function if you want to handle events differently.
+Events deposited using the default implementation are directly supported by downstream libraries like the [Polkadot-JS API](https://github.com/polkadot-js/api).
+However, you can implement your own `deposit_event` function if you want to handle events differently.
 
 ## Supported types
 
-Events can emit any type which supports the [Parity SCALE codec](/v3/advanced/scale-codec).
+Events can emit any type which supports type encoding using [SCALE codec](/reference/scale-codec).
 
 In the case where you want to use Runtime generic types like `AccountId` or `Balances`, you need to
 include a [`where` clause](https://doc.rust-lang.org/rust-by-example/generics/where.html) to define
@@ -117,10 +116,9 @@ those types as shown in the example above.
 
 ## Listening to events
 
-The Substrate RPC does not directly expose an endpoint for querying events. If you used the default
-implementation, you can see the list of events for the current block by querying the storage of the
-System pallet. Otherwise, the [Polkadot-JS API](/v3/integration/polkadot-js) supports a WebSocket
-subscription on runtime events.
+The Substrate RPC does not directly expose an endpoint for querying events. 
+If you used the default implementation, you can see the list of events for the current block by querying the storage of the System pallet. 
+Otherwise, the [Polkadot-JS API](https://github.com/polkadot-js/api) supports a WebSocket subscription on runtime events.
 
 ## Errors
 
@@ -161,19 +159,10 @@ used to check pre-conditions and emit an errors if they are not met.
 frame_support::ensure!(param < T::MaxVal::get(), Error::<T>::InvalidParameter);
 ```
 
-## Next steps
+## Where to go next
 
-### Learn more
-
-- Learn more about the [macros](/v3/runtime/macros) used in Substrate runtime development.
-- Learn more about using the [Polkadot-JS API](/v3/integration/polkadot-js).
-
-### Examples
-
-- Learn about Events and Errors by completing the [Substrate Kitties tutorial](/tutorials/v3/kitties/pt1#dispatchables-events-and-errors)
-
-### References
-
+- [Frame macros](/reference/frame-macros)
+- [Polkadot-JS API](https://github.com/polkadot-js/api).
 - [`construct_runtime!` macro](/rustdocs/latest/frame_support/macro.construct_runtime.html)
 - [`#[frame_support::pallet]` macro](/rustdocs/latest/frame_support/attr.pallet.html)
 - [`[pallet::error]` macro](/rustdocs/latest/frame_support/attr.pallet.html#error-palleterror-optional)

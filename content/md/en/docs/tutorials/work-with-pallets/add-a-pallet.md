@@ -343,7 +343,7 @@ To set a nickname for an account:
 
 1. Click `Signed` to execute the function.
 
-   ![Set a name](../img/tutorials/07-add-a-pallet/set-name.png)
+   ![Set a name](/media/images/docs/tutorials/add-a-pallet/set-name.png)
 
 1. Observe the status of the call and the [events](/rustdocs/latest/pallet_nicks/enum.RawEvent.html) emitted by the Nicks pallet.
 
