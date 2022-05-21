@@ -92,7 +92,7 @@ These are configurable using Substrate's [CLI](./link-to-build-cli).
 The Wasm representation of the Substrate runtime is considered the canonical runtime and will always be preferred by block authoring nodes.
 Because this Wasm runtime is placed in the blockchain's storage, the network must come to consensus about this binary which can easily be verified for consistency across all syncing nodes.
 
-The native runtime will only be used by the executor when it is chosen as the execution strategy and it is compatible with the requested [runtime version](/main-docs/maintain/upgrades#runtime-versioning)).
+The native runtime will only be used by the executor when it is chosen as the execution strategy and it is compatible with the requested [runtime version](/main-docs/maintain/upgrade#runtime-versioning)).
 
 Note: a Wasm runtime always executes in a 32-bit environment with a configurable memory limit (up to 4 GB).
 

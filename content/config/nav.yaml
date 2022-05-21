@@ -107,11 +107,11 @@ docs:
           url: /main-docs/test/deploy-on-testnet/
     #- title: Deploy
       #url: /main-docs/deploy/
-    #- title: Maintain
-      #url: /main-docs/maintain/
-      #pages:
-        #- title: Upgrades
-          #url: /main-docs/maintain/upgrade/
+    - title: Maintain
+      url: /main-docs/maintain/
+      pages:
+        - title: Upgrades
+          url: /main-docs/maintain/upgrade/
 
 tutorials:
   title: Tutorials
@@ -200,7 +200,6 @@ reference:
       url: /reference/account-properties/
     - title: Type encoding (SCALE)
       url: /reference/scale-codec/
-
     - title: Rust API
       url: 'https://docs.substrate.io/rustdocs/"target="_blank'
     - title: How-to reference guides
