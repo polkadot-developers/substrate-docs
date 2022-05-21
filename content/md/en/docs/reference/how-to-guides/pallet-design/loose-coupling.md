@@ -108,5 +108,5 @@ construct_runtime! (
 
 ## Resources
 
-- [Pallet Coupling](/v3/runtime/pallet-coupling)
-- A how-to guide on [Tightly Coupling two pallets](../tight-coupling)
+- [Pallet coupling](/vmain-docs/build/pallet-coupling)
+- [Tightly Coupling two pallets](../tight-coupling)

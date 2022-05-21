@@ -153,8 +153,8 @@ cargo test
 
 #### How-to guides
 
-- [Testing a transfer function](/how-to-guides/v3/testing/transfer-function)
-- [Migration tests](/how-to-guides/v3/storage-migrations/tests)
+- [Testing a transfer function](/reference/how-to-guides/testing/test-transfer)
+- [Migration tests](/reference/how-to-guides/storage-migrations/test-migration)
 
 #### Docs
 

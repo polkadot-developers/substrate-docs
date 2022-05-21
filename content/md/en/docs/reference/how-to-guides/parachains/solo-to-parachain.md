@@ -1,10 +1,6 @@
 ---
 title: Convert a Solo-Chain to a Parachain
-slug: /how-to-guides/v3/parachains/convert
-version: polkadot-v0.9.18
-section: how to guides
-category: parachains
-difficulty: 2
+description:
 keywords:
   - collator
   - parachain

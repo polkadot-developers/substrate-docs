@@ -1,10 +1,7 @@
 ---
 title: Local Storage in Off-chain Workers
-slug: /how-to-guides/v3/ocw/local-storage
+description:
 keywords: ['off-chain worker', 'ocw', 'local', 'storage']
-version: '3.0'
-section: how to guides
-category: ocw
 ---
 
 <Objectives
