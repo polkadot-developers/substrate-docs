@@ -163,7 +163,6 @@ frame_support::ensure!(param < T::MaxVal::get(), Error::<T>::InvalidParameter);
 
 - [Frame macros](/reference/frame-macros)
 - [Polkadot-JS API](https://github.com/polkadot-js/api).
-- [Substrate Kitties tutorial](/tutorials/v3/kitties/pt1#dispatchables-events-and-errors)
 - [`construct_runtime!` macro](/rustdocs/latest/frame_support/macro.construct_runtime.html)
 - [`#[frame_support::pallet]` macro](/rustdocs/latest/frame_support/attr.pallet.html)
 - [`[pallet::error]` macro](/rustdocs/latest/frame_support/attr.pallet.html#error-palleterror-optional)

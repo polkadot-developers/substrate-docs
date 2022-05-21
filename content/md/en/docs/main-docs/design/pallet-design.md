@@ -21,7 +21,7 @@ FRAME defines additional runtime primitives and provides a framework that makes 
 Each pallet encapsulates domain-specific logic that is expressed as a set of a [storage items](/main-docs/build/runtime-storage), [events](/main-docs/build/events-and-errors), [errors](/main-docs/build/events-and-errors#errors), and [dispatchable functions](/reference/glossary#dispatch). 
 FRAME developers can [create their own pallets](/main-docs/fundamentals/runtime-intro#pallets) and reuse existing pallets, including [over 50 of those shipped with Substrate](/main-docs/fundamentals/runtime-intro#prebuilt-pallets).
 
-![Runtime Composition](../../img/docs/concepts/frame-runtime.png)
+![Runtime Composition](/media/images/docs/main-docs/frame-runtime.png)
 
 There are an additional set of primitives that are assumed about a runtime built with the Substrate FRAME. These are:
 
