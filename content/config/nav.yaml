@@ -92,6 +92,8 @@ docs:
           url: /main-docs/build/custom-rpc/
         - title: Application development
           url: /main-docs/build/frontend/
+        - title: Upgrade the runtime
+          url: /main-docs/build/upgrade/
         #- title: Best practices
           #url: /main-docs/build/best-practices/
     - title: Test
@@ -107,12 +109,11 @@ docs:
           url: /main-docs/test/deploy-on-testnet/
     #- title: Deploy
       #url: /main-docs/deploy/
-    - title: Maintain
-      url: /main-docs/maintain/
-      pages:
-        - title: Upgrades
-          url: /main-docs/maintain/upgrade/
-
+    #- title: Maintain
+      #url: /main-docs/maintain/
+      #pages:
+        #- title: Upgrades
+          #url: /main-docs/maintain/upgrade/
 tutorials:
   title: Tutorials
   url: /tutorials/
@@ -130,7 +131,7 @@ tutorials:
           url: /tutorials/get-started/permissioned-network/
         - title: Monitor node metrics
           url: /tutorials/get-started/monitor/
-        - title: Upgrade the runtime
+        - title: Upgrade a running node
           url: /tutorials/get-started/forkless-upgrade/
     - title: Work with pallets
       url: /tutorials/work-with-pallets/

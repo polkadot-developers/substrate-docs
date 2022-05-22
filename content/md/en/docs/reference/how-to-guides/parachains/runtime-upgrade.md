@@ -39,7 +39,7 @@ keywords:
 
 Please do the following:
 
-- Read the general [runtime upgrade docs](/main-docs/maintain/upgrade).
+- Read the general [runtime upgrade docs](/main-docs/build/upgrade).
 - Complete the [cumulus tutorial](/tutorials/connect-other-chains/start-relay), and learn the `polkadot-launch` tool for testing.
 
 ## Steps
@@ -102,7 +102,7 @@ upgrade has been scheduled.
 
 ## Resources
 
-- [Runtime upgrade](/main-docs/maintain/upgrade)
+- [Runtime upgrade](/main-docs/build/upgrade)
 - [Fork off Substrate](https://github.com/maxsam4/fork-off-substrate)
 - [`try-runtime`](/reference/command-line-tools/try-runtime)
 - [`try-runtime` video workshop](https://www.crowdcast.io/e/substrate-seminar/41)

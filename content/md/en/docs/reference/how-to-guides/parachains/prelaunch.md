@@ -162,7 +162,7 @@ See the [cumulus tutorial](/tutorials/connect-other-networks/start-relay) to lea
 
 ## Resources
 
-- [Reference documentation for runtime upgrades](/main-docs/maintain/upgrade)
+- [Reference documentation for runtime upgrades](/main-docs/build/upgrade)
 - [A how-to guide to use benchmarked weights](/reference/how-to-guides/weights/add-benchmarks)
 - [Reference for `try-runtime` documentation](/reference/command-line-tools/try-runtime)
   - [`try-runtime` video workshop](https://www.crowdcast.io/e/substrate-seminar/41)

@@ -11,7 +11,7 @@ For each pallet, the metadata provides information about the [storage items](/ma
 Since the runtime of a Substrate blockchain is an evolving part of the blockchain's state,
 blockchain metadata is stored on a per-block basis. 
 Be aware that querying the metadata for an older block (with an archive node, for example) could result in acquiring out-of-date metadata that is not compatible with a blockchain's current state. 
-As described in [Forkless upgrades](/main-docs/maintain/upgrade), metadata for a chain should only change when the chain's [runtime `spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version) changes.
+As described in [Forkless upgrades](/main-docs/build/upgrade), metadata for a chain should only change when the chain's [runtime `spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version) changes.
 
 All examples in this document were taken from block 1,768,321 on Kusama. You can look at the
 [full metadata](https://gist.github.com/insipx/db5e49c0160b1f1bd421a3c34fefdf48) before reading the rest of this document and continue to refer to it as you proceed.
