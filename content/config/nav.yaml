@@ -92,6 +92,8 @@ docs:
           url: /main-docs/build/custom-rpc/
         - title: Application development
           url: /main-docs/build/frontend/
+        - title: Upgrade the runtime
+          url: /main-docs/build/upgrade/
         #- title: Best practices
           #url: /main-docs/build/best-practices/
     - title: Test
@@ -112,7 +114,6 @@ docs:
       #pages:
         #- title: Upgrades
           #url: /main-docs/maintain/upgrade/
-
 tutorials:
   title: Tutorials
   url: /tutorials/
@@ -130,7 +131,7 @@ tutorials:
           url: /tutorials/get-started/permissioned-network/
         - title: Monitor node metrics
           url: /tutorials/get-started/monitor/
-        - title: Upgrade the runtime
+        - title: Upgrade a running node
           url: /tutorials/get-started/forkless-upgrade/
     - title: Work with pallets
       url: /tutorials/work-with-pallets/
@@ -141,6 +142,8 @@ tutorials:
           url: /tutorials/work-with-pallets/contracts-pallet/
         - title: Use macros in a custom pallet
           url: /tutorials/work-with-pallets/custom-pallet/
+        #- title: Specify the origin for a call
+          #url: /tutorials/work-with-pallets/specify-origin/
         #- title: Publish a custom pallet
           #url: /tutorials/work-with-pallets/publish-pallet/
     - title: Connect with other chains
@@ -150,14 +153,14 @@ tutorials:
           url: /tutorials/connect-other-chains/relay-chain/
         - title: Connect to a relay chain
           url: /tutorials/connect-other-chains/parachain/
-        - title: Deploy a parachain
-          url: /tutorials/connect-other-chains/deploy-parachain/
-        - title: Connect to Rococo testnet
-          url: /tutorials/connect-other-chains/connect-rococo/
+        #- title: Deploy a parachain
+          #url: /tutorials/connect-other-chains/deploy-parachain/
+        #- title: Connect to Rococo testnet
+          #url: /tutorials/connect-other-chains/connect-rococo/
         #- title: Connect to Polkadot
           #url: /tutorials/connect-other-chains/connect-polkadot/
-        - title: Connect to Ethereum
-          url: /tutorials/connect-other-chains/connect-to-evm/
+        #- title: Connect to Ethereum
+          #url: /tutorials/connect-other-chains/connect-to-evm/
     - title: Develop smart contracts
       url: /tutorials/smart-contracts/
       pages:
@@ -198,30 +201,29 @@ reference:
       url: /reference/account-properties/
     - title: Type encoding (SCALE)
       url: /reference/scale-codec/
-
     - title: Rust API
       url: 'https://docs.substrate.io/rustdocs/"target="_blank'
     - title: How-to reference guides
       url: /reference/how-to-guides/
-      pages:
-        - title: Basics
-          url: /reference/how-to-guides/basics/
-        - title: Pallet design
-          url: /reference/how-to-guides/pallet-design/
-        - title: Weights
-          url: /reference/how-to-guides/weights/
-        - title: Testing
-          url: /reference/how-to-guides/testing/
-        - title: Storage migrations
-          url: /reference/how-to-guides/storage-migrations/
-        - title: Consensus
-          url: /reference/how-to-guides/consensus/
-        - title: Parachains
-          url: /reference/how-to-guides/parachains/
-        - title: Tools
-          url: /reference/how-to-guides/tools/
-        - title: Off-chain workers
-          url: /reference/how-to-guides/ocw/
+      #pages:
+        #- title: Basics
+          #url: /reference/how-to-guides/basics/
+        #- title: Pallet design
+          #url: /reference/how-to-guides/pallet-design/
+        #- title: Weights
+          #url: /reference/how-to-guides/weights/
+        #- title: Testing
+          #url: /reference/how-to-guides/testing/
+        #- title: Storage migrations
+          #url: /reference/how-to-guides/storage-migrations/
+        #- title: Consensus
+          #url: /reference/how-to-guides/consensus/
+        #- title: Parachains
+          #url: /reference/how-to-guides/parachains/
+        #- title: Tools
+          #url: /reference/how-to-guides/tools/
+        #- title: Off-chain workers
+          #url: /reference/how-to-guides/ocw/
     - title: Cryptography
       url: /reference/cryptography/
 

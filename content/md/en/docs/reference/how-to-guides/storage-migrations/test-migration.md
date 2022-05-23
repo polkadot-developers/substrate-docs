@@ -7,31 +7,21 @@ keywords:
   - runtime
 ---
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description: 'Write tests for a simple storage migration.',
-    },
-    {
-      title: 'Use Cases',
-      description: `Testing a migration module inside a pallet.`,
-    },
-    {
-      title: 'Overview',
-      description: `When writing a runtime migration module it is important to test it to avoid any critical issues caused by mangling storage items. This
-		guide provides a walk through of the tests to include for a simple storage migration of a single pallet, using the Nicks pallet
-		migration from the [basic storage migration guide](/how-to-guides/v3/storage-migrations/basics) as a reference.
-        `,
-    },
-  ]}
-/>
+When writing a runtime migration module it is important to test it to avoid any critical issues caused by mangling storage items. 
+This guide provides a walk through of the tests to include for a simple storage migration of a single pallet, using the Nicks pallet migration from the [basic storage migration guide](/reference/how-to-guides/storage-migrations/basic-migration) as a reference.
+
+## Goal
+Write tests for a simple storage migration.
+
+## Use cases
+
+Testing a migration module inside a pallet.
 
 ## Steps
 
 ### 1. Write mock runtime
 
-Refer to [this guide](/how-to-guides/v3/testing/basics/) to learn how to set up the dependencies for your test environment.
+Refer to [Set up basic tests](/reference/how-to-guides/testing/basic-tests/) to learn how to set up the dependencies for your test environment.
 
 ### 2. Specify unit tests
 

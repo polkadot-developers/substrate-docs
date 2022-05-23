@@ -450,6 +450,7 @@ To add a second validator to the private network:
 1. Change to the root directory where you compiled the Substrate node template.
 
 1. Start a second blockchain node by running a command similar to the following:
+<<<<<<< HEAD
 
    ```bash
    ./target/release/node-template \ --base-path /tmp/node02 \
@@ -476,6 +477,34 @@ To add a second validator to the private network:
    ```text
     The bootnode you want to connect to at ... provided a different peer ID than the one you expect: ...
    ```
+=======
+    
+    ```bash
+    ./target/release/node-template \ --base-path /tmp/node02 \
+    --chain ./customSpecRaw.json \
+    --port 30334 \
+    --ws-port 9946 \
+    --rpc-port 9934 \
+    --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
+    --validator \
+    --rpc-methods Unsafe \
+    --name MyNode02 \
+    --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX \
+    --password-interactive
+    ```
+
+    This command uses the `base-path`, `name` and `validator` command-line options to identify this node as a second  validator for the private network.
+    The `--chain` command-line option specifies the chain specification file to use.
+    This file must be _identical_ for all validators in the network.
+    
+    Be sure to set the correct information for the  `--bootnodes` command-line option.
+    In particular, be sure you have specified the local node identifier from the first node in the network.
+    If you don't set the correct `bootnode` identifier, you see errors like this:
+
+    ```text
+    The bootnode you want to connect to at ... provided a different peer ID than the one you expect: ...
+    ```
+>>>>>>> main-md
 
 1. Add the `aura` secret key generated from the `key` subcommand by running a command similar to the following:
 
@@ -566,9 +595,10 @@ In this tutorial you learned:
 
 To learn more about the topics introduced in this tutorial, see the following sections:
 
-- [Accounts](https://wiki.polkadot.network/docs/learn-accounts) and [Key management](https://wiki.polkadot.network/docs/learn-account-generation) for more information about key generation and storage options.
-
-- [Cryptography](https://docs.substrate.io/v3/advanced/cryptography/) for more information about the signature schemes used for different keys.
+- [Accounts, addresses, and keys](/main-docs/fundamentals/accounts-addresses-keys)
+- [Chain specification](/main-docs/build/chain-spec/)
+- [subkey](/reference/command-line-tools/subkey/)
+- [Cryptography](/reference/cryptography/)
 
 <!-- TODO link to the followup tutorial about starting a 3 node network using the demo substrate node
 Details in https://github.com/substrate-developer-hub/tutorials/issues/16 -->

@@ -1,59 +1,38 @@
 ---
-title: Calculating Transaction Weights
-slug: /how-to-guides/v3/basics/weights
+title: Calculate transaction weights
+description:
 keywords:
   - basics
   - weights
   - runtime
   - FRAME v1
-version: '3.0'
-section: how to guides
-category: basics
 ---
 
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text="
+As discussed in [Transactions, weights, and fees](/main-docs/build/tx-weights-fees/), calculating weight plays an important part in protecting a Substrate network from misuse. Weight also plays a key role in runtime development because it provides a means for evaluating the relative cost of executing the functions that can go into a block.
+
+Not only do they help add security checks around the functions we create, but they also force us to think about the computational resources consumed by a transaction.
+From that, we can figure out what fees to charge users.
+This guide demonstrates how to do the following:
+
+- Calculate the maximum weight for a dispatch call.
+- Calculate the actual weight after execution.
+- Reimburse the difference.
+
+Here's an overview of the traits we'll be implementing:
+
+- [`PaysFee`](/rustdocs/latest/frame_support/weights/trait.PaysFee.html): to specify whether or not a dispatch pays the fee.
+- [`GetDispatchInfo`](/rustdocs/latest/frame_support/weights/trait.GetDispatchInfo.html): carries weight information using the \`#[weight]\` attribute.
+- [`DispatchResultWithPostInfo`](/rustdocs/latest/frame_support/dispatch/type.DispatchResultWithPostInfo.html): provides new weight info once the extrinsic function has been executed.
+
 This guide shows a basic procedure for configuring weights.
 There are more advanced methods that suit different use cases.
 For simple functions with fixed amounts of storage reads, this method works well.
-For other use cases, see the section [on weights](/how-to-guides/v3/weights/calculate-fees).
-"
-/>
+For other use cases, see the section [on weights](/reference/how-to-guides/weights/calculate-fees).
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description: `
 Understand how to calculate transaction weights for a basic dispatch function.
-      `,
-    },
-    {
-      title: 'Use Cases',
-      description: `
+
 - Assign the correct weight before a function call to storage.
 - Calculate transaction fees.
-      `,
-    },
-    {
-      title: 'Overview',
-      description: `
-Weights are an important part of Substrate development because they provide information about the maximum cost of a function in terms of the block size it will take up.
-This way, the [weighting system](/v3/concepts/weight) checks what the cost will be before a function is executed.
-As runtime engineers, we care a lot about weights.
-Not only do they help add security checks around the functions we create, but they also force us to think about the computational resources consumed by a transaction.
-From that, we can figure out [what fees to charge](/v3/runtime/weights-and-fees) users.
-This guide will cover how to calculate the maximum weight for a dispatch call; calculate the actual weight after execution; and reimburse the difference.
-Here's an overview of the traits we'll be implementing:
-- [\`PaysFee\`](/rustdocs/latest/frame_support/weights/trait.PaysFee.html): to specify whether or not a dispatch pays the fee.
-- [\`GetDispatchInfo\`](/rustdocs/latest/frame_support/weights/trait.GetDispatchInfo.html): carries weight information using the \`#[weight]\` attribute.
-- [\`DispatchResultWithPostInfo\`](/rustdocs/latest/frame_support/dispatch/type.DispatchResultWithPostInfo.html): provides new weight info once the extrinsic function has been executed.
-	    `,
-    },
-  ]}
-/>
 
 ## Steps
 
@@ -106,22 +85,9 @@ Ok(Pays::Yes.into())
 ## Examples
 
 - [Feeless transaction use case](https://github.com/shawntabrizi/substrate-feeless-token-factory#user-story)
-
-## Related material
-
-#### Docs
-
-- [Transaction Weights](/v3/concepts/weight)
-- [Transaction Fees](/v3/runtime/weights-and-fees)
-
-#### Rust docs
-
+- [Transactions, weights, and fees](/main-docs/build/tx-weight-fees)
 - [`ClassifyDispatch`](/rustdocs/latest/frame_support/weights/trait.ClassifyDispatch.html)
 - [`WeightData`](/rustdocs/latest/frame_support/weights/trait.WeighData.html)
-
-#### Other
-
-- Polkadot's [Transaction Fees](https://wiki.polkadot.network/docs/en/learn-transaction-fees)
-
-[pays-rustdocs]: /rustdocs/latest/frame_support/weights/enum.Pays.html
-[dbweight-rustdocs]: /rustdocs/latest/frame_system/pallet/trait.Config.html#associatedtype.DbWeight
+- [Polkadot transaction fees](https://wiki.polkadot.network/docs/en/learn-transaction-fees)
+- [`pays-rustdocs`](/rustdocs/latest/frame_support/weights/enum.Pays.html)
+- [`dbweight-rustdocs`](/rustdocs/latest/frame_system/pallet/trait.Config.html#associatedtype.DbWeight)

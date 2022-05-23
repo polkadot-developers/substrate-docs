@@ -1,6 +1,6 @@
 ---
 title: The Block Import Pipeline
-slug: /v3/advanced/block-import
+description: /v3/advanced/block-import
 version: '3.0'
 section: docs
 category: advanced

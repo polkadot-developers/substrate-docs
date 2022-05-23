@@ -1,6 +1,6 @@
 ---
 title: Primitive Token Mint
-slug: /how-to-guides/v3/basics/mint-token
+description: /how-to-guides/v3/basics/mint-token
 keywords:
   - basics
   - beginner
@@ -11,19 +11,11 @@ section: how to guides
 category: basics
 ---
 
-<Message
-  type={`yellow`}
-  title={`Information`}
-  text="This is a beginner guide intended for new
-    Substrate developers looking to explore ways to create tokens in Substrate.
-    This approach _is not_ a recommended best practice.
-    Use this guide to learn how to improve upon your runtime logic
-    capabilities and code quality. See the
-    [Examples section](#examples)
-    for practical implementations of this guide.'
-	"
-/>
-
+This is a beginner guide intended for new Substrate developers looking to explore ways to create tokens in Substrate.
+This approach _is not_ a recommended best practice.
+Use this guide to learn how to improve upon your runtime logic capabilities and code quality. 
+See the [Examples section](#examples) for practical implementations of this guide.
+s
 <Objectives
   data={[
     {
@@ -40,7 +32,7 @@ Give any account the ability to create a token supply in exchange for native tok
       title: 'Overview',
       description: `
 This guide will step you through an effective way to mint a token by leveraging the primitive capabilities that [StorageMap](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) gives us.
-To achieve this, this "primitive" approach uses the [blake2_128_concat](/v3/runtime/storage#hashing-algorithms) \`hasher\` to map balances to account IDs, similar to how the [Balances](/rustdocs/latest/pallet_balances/index.html) pallet makes use of it to store and keep track of account balances.
+To achieve this, this "primitive" approach uses the [blake2_128_concat](/main-docs/build/runtime-storage#hashing-algorithms) \`hasher\` to map balances to account IDs, similar to how the [Balances](/rustdocs/latest/pallet_balances/index.html) pallet makes use of it to store and keep track of account balances.
 	    `,
     },
   ]}
@@ -166,18 +158,15 @@ If `checked_sub()` returns `None`, the operation caused an overflow and throws a
 
 Refer to [this guide](../pallet-integration) if you’re not yet familiar with this procedure.
 
-<Message
-  type={`green`}
-  title={`Further Learning`}
-  text={`
+## Further Learning
+
 - **Safety.** The mint function takes in an amount to 'mint' which is *not good practice* because it implies that users have unlimited access to writing to storage.
-      Safer approaches include: using configuring 'GenesisConfig' or
-      fixing a predetermined maximum value in runtime.
+  Safer approaches include: using configuring 'GenesisConfig' or fixing a predetermined maximum value in runtime.
 - **Weights.** All the weights were set to 10_000 in the above code snippets.
-      Learn more about weight configuration in this [basic guide on weights](../weights).
+  Learn more about weight configuration in this [basic guide on weights](../weights).
 - **Origins.** This guide assumes that the origin will always be the sudo user.
-      Origins are a powerful capability in Substrate.
-      Learn more about how they work [here](/v3/runtime/origins).
+  Origins are a powerful capability in Substrate.
+  Learn more about how they work in [Privileged calls and origins](/main-docs/fundamentals/origins).
   `}
 />
 

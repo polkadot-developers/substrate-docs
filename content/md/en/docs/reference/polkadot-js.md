@@ -43,16 +43,10 @@ the Polkadot-JS API right away.
 
 ### Connecting to local node
 
-To connect the Polkadot-JS Apps to your local node, you must go into `Settings` and change the
-"endpoint to connect to" to `Local Node (127.0.0.1:9944)`.
+To connect the Polkadot-JS Apps to your local node, you must go into `Settings` and change the **endpoint to connect to** to `Local Node (127.0.0.1:9944)`.
 
-<Message
-  type={`gray`}
-  title={`Note`}
-  text={`If you are connected to the Polkadot-JS Apps over a secure HTTPS connection, you will
-  need to use a browser which also supports bridging to an insecure WebSocket endpoint. For example,
-  Google Chrome supports this, but Mozilla Firefox does not.`}
-/>
+If you connect to the Polkadot-JS Apps over a secure HTTPS connection, you must use a browser that also supports bridging to an insecure WebSocket endpoint.
+For example, Google Chrome supports this, but Mozilla Firefox does not.
 
 ## Polkadot-JS extension
 
@@ -68,17 +62,8 @@ Different ways to use the extension:
 
 - [Fork on GitHub](https://github.com/polkadot-js/extension)
 
-## Next steps
+## Where to go next
 
-### Examples
-
-- Clone the
-  [Substrate Front End Template](https://github.com/substrate-developer-hub/substrate-front-end-template)
-  to start building a custom ReactJS app for your blockchain using Polkadot-JS API.
-- Complete [part II of the Kitties tutorial](/tutorials/v3/kitties/pt2/) to use PolkadotJS API in action
-
-### References
-
-- Visit the reference docs for the [Polkadot-JS API](https://polkadot.js.org/api/)
-
-- Visit the reference docs for the [Polkadot-JS Common Utilities](https://polkadot.js.org/common/)
+- [Substrate front-end template](https://github.com/substrate-developer-hub/substrate-front-end-template)
+- [Polkadot-JS API](https://polkadot.js.org/api/)
+- [Polkadot-JS common utilities](https://polkadot.js.org/common/)

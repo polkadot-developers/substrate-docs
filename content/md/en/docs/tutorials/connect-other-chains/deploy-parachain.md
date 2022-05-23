@@ -11,8 +11,8 @@ description:
 
 The final part of the workshop will step you through how to use the [`polkadot-launch`](https://github.com/paritytech/polkadot-launch) tool to automate the launch of a full parachain testnet with multiple parachains and a common relay chain.
 
-> It is still **_highly recommended_** to understand [the manual process](/tutorials/v3/cumulus/start-relay), as this script is not a perfect fit for all use cases.
-> When things go wrong with `polkadot-launch`, you know how to troubleshoot.
+It is still **_highly recommended_** to understand [the manual process](/tutorials/connect-other-chains/start-relay), as this script is not a perfect fit for all use cases.
+When things go wrong with `polkadot-launch`, you know how to troubleshoot.
 
 ## Learning outcomes
 
@@ -57,7 +57,7 @@ It also leverages on Polkadot-JS API to connect to these spawned nodes over thei
 Specifically, you will perform the following to use `polkadot-launch`:
 
 1. Compile and have your relay chain node and parachain collator binaries ready.
-   [Instructions here](/tutorials/v3/cumulus/start-relay).
+   [Instructions here](/tutorials/connect-other-chains/start-relay).
    Beware to match their corresponding tagged version.
 
 1. Write a config file for `polkadot-launch` to fit your needs.
@@ -127,12 +127,7 @@ Another way to verify the setup is by going to:
 
 After configuring the Apps to connect to the local **relay chain node**, you should see the UI showing two parachains being connected to the relay chain.
 
-<Message
-type={`green`}
-title={`All done!`}
-text={` You have automated the launch of a 3-node relay chain, and two parachains with a single node using \`polkadot-launch\` CLI utility and avoided all the initial manual overhead of starting nodes and registering parachains!
-`}
-/>
+You have automated the launch of a 3-node relay chain, and two parachains with a single node using `polkadot-launch` CLI utility and avoided all the initial manual overhead of starting nodes and registering parachains.
 
 Next, we will go through in details the configuration parameters that `polkadot-launch` recognizes in the config file.
 

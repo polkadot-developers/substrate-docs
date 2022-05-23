@@ -1,6 +1,6 @@
 ---
-title: Smart Contract Toolkits
-slug: /v3/runtime/smart-contracts
+title: Smart contracts
+description: /v3/runtime/smart-contracts
 version: '3.0'
 section: docs
 category: smart contracts
@@ -162,13 +162,8 @@ decisions on which approach to use based on different situations.
   </tbody>
 </table>
 
-<Message
-  type={`green`}
-  title={`Further learning`}
-  text={`If you are building on Polkadot, you can also
-  [deploy smart contracts on its parachain](https://wiki.polkadot.network/docs/en/build-smart-contracts). Check [here](https://wiki.polkadot.network/docs/build-build-with-polkadot#what-is-the-difference-between-building-a-parachain-a-parathread-or-a-smart-contract) for
-  a comparison between developing on a parachain, parathread, and smart contract.`}
-/>
+If you are building on Polkadot, you can also [deploy smart contracts on its parachain](https://wiki.polkadot.network/docs/en/build-smart-contracts). 
+Check [here](https://wiki.polkadot.network/docs/build-build-with-polkadot#what-is-the-difference-between-building-a-parachain-a-parathread-or-a-smart-contract) for a comparison between developing on a parachain, parathread, and smart contract.
 
 Substrate provides two smart contract virtual machines which can be added to your runtime: the [Contracts pallet](#contracts-pallet) and
 the [EVM pallet](#evm-pallet). Each come with additional tools to ease development depending on your use cases.
@@ -340,23 +335,14 @@ Observable differences include:
 - Difficulty and coinbase, which do not make sense in this pallet and is currently hard coded to
   zero.
 
-We currently do not aim to make unobservable behaviors, such as state root, to be the same. We also
-don't aim to follow the exact same transaction / receipt format. However, given one Ethereum
-transaction and one Substrate account's private key, one should be able to convert any Ethereum
-transaction into a transaction compatible with this pallet.
+We currently do not aim to make unobservable behaviors, such as state root, to be the same. We also don't aim to follow the exact same transaction / receipt format. 
+However, given one Ethereum transaction and one Substrate account's private key, one should be able to convert any Ethereum transaction into a transaction compatible with this pallet.
 
-The gas configurations are currently hard-coded to the Istanbul hard fork. It can later be expanded
-to support earlier hard fork configurations.
+The gas configurations are currently hard-coded to the Istanbul hard fork. It can later be expanded to support earlier hard fork configurations.
 
-<Message
-  type={`gray`}
-  title={`Note`}
-  text={`Substrate is built to enable developers to extend what's provided out of the box.
-  We encourage further development of alternative smart contract platforms on top of the Substrate
-  runtime.
-  Use these pre-built pallets to inform how you might design your own system or how you could port over an
-  existing system to work on a Substrate-based chain.`}
-/>
+Substrate is built to enable developers to extend what's provided out of the box.
+We encourage further development of alternative smart contract platforms on top of the Substrate runtime.
+Use these pre-built pallets to inform how you might design your own system or how you could port over an existing system to work on a Substrate-based chain.
 
 ## FAQ
 

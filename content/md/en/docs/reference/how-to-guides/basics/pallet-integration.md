@@ -1,16 +1,13 @@
 ---
 title: Basic Pallet Integration
-slug: /how-to-guides/v3/basics/pallet-integration
+description: 
 keywords:
   - basics
   - beginner
   - runtime
-version: '3.0'
-section: how to guides
-category: basics
 ---
 
-This guide is an extension to the ["Add a Pallet to Your Runtime" tutorial](/tutorials/v3/add-a-pallet) and explains how to quickly integrate both local and external pallets in a runtime.
+This guide is an extension to the ["Add a Pallet to Your Runtime" tutorial](/tutorials/work-with-pallets/add-a-pallet) and explains how to quickly integrate both local and external pallets in a runtime.
 
 You will learn how to include a custom internal pallet that implements an event and a call for runtime, and how to include an external pallet from `Crates.io` to a runtime.
 
@@ -37,7 +34,7 @@ You will learn how to include a custom internal pallet that implements an event 
    ```
 
 1. Declare your pallet and the items it exposes.
-   Include the additional `Pallet` and `Storage` types for the [runtime macro](/v3/runtime/macros/#construct_runtime). In `construct_runtime!`, add the following:
+   Include the additional `Pallet` and `Storage` types for the [runtime macro](/reference/frame-macros/#construct_runtime). In `construct_runtime!`, add the following:
 
    ```rust
    construct_runtime!(
@@ -109,7 +106,7 @@ std = [
 - [Timestamp Pallet associated types][timestamp-rustdocs]
 - [FRAME `pallet-timestamp`](https://crates.io/crates/pallet-timestamp)
 
-[mock-runtime]: /v3/runtime/testing#mock-runtime-environment
+[mock-runtime]: /main-docs/test/#mock-runtime-environment
 [timestamp-frame]: https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs#L413-L422
 [timestamp-rustdocs]: /rustdocs/latest/pallet_timestamp/pallet/trait.Config.html#associated-types
 [template-frame]: https://github.com/substrate-developer-hub/substrate-node-template/blob/master/pallets/template/src/lib.rs#L1-L107

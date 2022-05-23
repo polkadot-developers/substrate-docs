@@ -100,8 +100,7 @@ Run the node binary with the RUST_LOG environment variable to print the values.
 RUST_LOG=runtime=debug ./target/release/node-template --dev
 ```
 
-The values are printed in the terminal or the standard output every time that the runtime function
-gets called.
+The values are printed in the terminal or the standard output every time that the runtime function gets called.
 
 ```rust
 2020-01-01 tokio-blocking-driver DEBUG runtime  My Test Message  <-- str implements Printable by default
@@ -112,13 +111,7 @@ gets called.
 2020-01-01 tokio-blocking-driver DEBUG runtime  NoneValue        <-- str which holds the name of the ident of the error
 ```
 
-<br />
-<Message
-  type={`yellow`}
-  title={`Important`}
-  text={`Adding many print functions to the runtime will produce a bigger binary and wasm blob
-  with debug code not needed in production.`}
-/>
+Keep in mind that adding print functions to the runtime increases the size of the Rust and Wasm binaries with debug code not needed in production.
 
 ## Substrate's own `print` function
 

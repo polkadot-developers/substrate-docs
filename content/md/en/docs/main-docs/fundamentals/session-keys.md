@@ -1,9 +1,6 @@
 ---
 title: Session Keys
-slug: /v3/concepts/session-keys
-version: '3.0'
-section: docs
-category: concepts
+description:
 keywords: []
 ---
 
@@ -60,8 +57,8 @@ mod app {
 ```
 
 Typically, these keys are also initially configured in the genesis state to launch your
-chain with pre-established validators. You can see this demonstrated in the
-[private network tutorial](/tutorials/v3/private-network/).
+chain with pre-established validators. You can see this demonstrated in
+[Add trusted validators](/tutorials/get-started/trusted-network/).
 
 ### Strongly typed wrappers
 
@@ -76,32 +73,16 @@ As a node operator, you can generate keys using the RPC call
 [`author_rotateKeys`](/rustdocs/latest/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys).
 You will then need to register the new keys on chain using a [`session.setKeys`](/rustdocs/latest/pallet_session/pallet/struct.Pallet.html#method.set_keys) transaction.
 
-<Message
-  type={`yellow`}
-  title={`Important`}
-  text={`For increased security, session keys should be changed every session. This can be done by creating 
-  new session keys, putting the session public keys into an extrinsic, and applying this extrinsic on chain.
-  `}
-/>
+For increased security, session keys should be changed every session. This can be done by creating new session keys, putting the session public keys into an extrinsic, and applying this extrinsic on chain.
 
 Since session keys are hot keys that must be kept online, the individual keys should **not** be used to
 control funds. All the logic for handling session keys is in the Substrate client, primitives, and
 Session pallet. If one of the Session keys is compromised, the attacker could commit slashable
 behavior.
 
-### Examples
+## Where to go next
 
-- Follow our
-  [tutorial to create a local network and generate keys](/tutorials/v3/private-network).
+- [Add trusted validators](/tutorials/get-started/trusted-network)
+- [Session keys API](/rustdocs/latest/sp_session/trait.SessionKeys.html)
+- [`sp_application_crypto`](/rustdocs/latest/sp_application_crypto/index.html)
 
-### References
-
-- Visit the reference docs for the
-  [session keys runtime API](/rustdocs/latest/sp_session/trait.SessionKeys.html).
-
-- Take a look at the default
-  [session keys in the Substrate node runtime](/rustdocs/latest/node_runtime/struct.SessionKeys.html).
-
-- Take a look at the
-  [`sp_application_crypto`](/rustdocs/latest/sp_application_crypto/index.html),
-  crate, used for constructing application-specific strongly typed crypto wrappers.

@@ -300,7 +300,7 @@ functions of benchmarked extrinsics with the computed coefficient above. We can 
 this file in your pallet or further customize them if so desired. The auto-generated implementation
 is designed to make end-to-end weight updates easy.
 
-To use this file, we define a `WeightInfo` trait, for example in the [Example pallet](/v3/runtime/frame#example):
+To use this file, we define a `WeightInfo` trait, for example in the [Example pallet](/reference/frame-pallets#example):
 
 ```rust
 pub trait WeightInfo {
@@ -310,9 +310,8 @@ pub trait WeightInfo {
 }
 ```
 
-## Further learning
+## Where to go next
 
 - [`frame-benchmarking` README](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/README.md)
-- [Substrate Seminar: Benchmarking Your Substrate
-  Pallet](https://www.youtube.com/watch?v=Qa6sTyUqgek)
-- [Learn how to use benchmarking to configure the weights for your pallet's extrinsics](/how-to-guides/v3/weights/use-benchmark-weights)
+- [Substrate Seminar: Benchmarking Your Substrate Pallet](https://www.youtube.com/watch?v=Qa6sTyUqgek)
+- [How-to: Add benchmarks to your pallet](/reference/how-to-guides/weights/add-benchmarks)

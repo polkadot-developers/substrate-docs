@@ -28,8 +28,8 @@ into `TestExternalities`.
 ## How it works
 
 The `try-runtime` tool has its own implementation of externalities called [`remote_externalities`][remoteextern-rustdocs]
-which is just a builder wrapper around `TestExternalities` that uses a generic [key-value store](/v3/advanced/storage)
-where data is [SCALE encoded](/v3/advanced/scale-codec).
+which is just a builder wrapper around `TestExternalities` that uses a generic [key-value store](/main-docs/fundamentals/state-transitions-and-storage)
+where data is [type encoded](/reference/scale-codec).
 
 The diagram below illustrates the way externalities sits outside a compiled runtime as a means to capture
 the storage of that runtime.
@@ -60,15 +60,9 @@ expensive RPC queries, namely:
 - `set --rpc-max-payload 1000` to ensure large RPC queries can work.
 - `set --rpc-cors all` to ensure ws connections can come through.
 
-<Message
-  type="green"
-  title="Tip"
-  text={` Combine \`try-runtime\` with 
-[\`fork-off-substrate\`](https://github.com/maxsam4/fork-off-substrate) to test your chain before
- production. Use \`try-runtime\` to test your chain's migration and its pre and post states. Then,
- use \`fork-off-substrate\` if you want to check that block production continues fine after the
- migration, and do some other arbitrary testing.`}
-/>
+You can combine `try-runtime` with [`fork-off-substrate`](https://github.com/maxsam4/fork-off-substrate) to test your chain before production. 
+Use `try-runtime` to test your chain's migration and its pre and post states. 
+Then, use `fork-off-substrate` if you want to check that block production continues after the migration.
 
 ### Calling into hooks from `OnRuntimeUpgrade`
 
@@ -222,12 +216,10 @@ RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
     --at <block-hash>
 ```
 
-## Next steps
-
-### Learn more
+## Where to go next
 
 - Refer to [this how-to guide][integrate-try-runtime-htg] on how to integrate `try-runtime` to your project.
-- Read more about [Storage keys](/v3/advanced/storage#storage-value-keys)
+- [Storage keys](/main-docs/build/runtime-storage#storage-value-keys)
 - [`OnRuntimeUpgrade`][onruntimeupgrade-method-rustdocs] FRAME trait
 - [`try-runtime-upgrade`][executive-try-runtime-rustdocs] from `frame_executive`
 - [`set_storage`][get-storage-rustdocs] from `sp_core::traits::Externalities`

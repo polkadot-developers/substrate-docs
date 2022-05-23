@@ -13,12 +13,12 @@ You can follow similar patterns to add additional FRAME pallets to your runtime,
 ## Before you begin
 
 Make sure you have the latest version of the Substrate node template compiled on your computer.
-If you haven't already done so, see [Create your first substrate chain](/tutorials/v3/create-your-first-substrate-chain/).
+If you haven't already done so, see [Create your first substrate chain](/tutorials/get-started/build-local-blockchain/).
 
 ## Import the dependencies
 
 1. Add Contracts to your runtime.
-   To learn how to include Contracts in your runtime, see [Basic pallet integration](/how-to-guides/v3/basics/pallet-integration).
+   To learn how to include Contracts in your runtime, see [Basic pallet integration](/reference/how-to-guides/basics/pallet-integration).
 
 1. Update `runtime/Cargo.toml` with the following entries:
    - `pallet-contracts`
@@ -184,7 +184,7 @@ cargo build --release
 - [`pallet_contracts` crate](/rustdocs/latest/pallet_contracts/index.html)
 - [`pallet_contracts_rpc` crate](/rustdocs/latest/pallet_contracts_rpc/index.html)
 
-[create-first-chain-tutorial]: /tutorials/v3/create-your-first-substrate-chain
+[create-first-chain-tutorial]: /tutorials/get-started/build-local-blockchain
 [contracts-config-rustdocs]: /rustdocs/latest/pallet_contracts/trait.Config.html
 [contracts-frame-gh]: https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs#L144
 [bin-runtime-contracts-frame]: https://github.com/paritytech/substrate/blob/632b32300eb9376767c2ae7b38e79b3f7f5329b1/bin/node/runtime/src/lib.rs#L887-L903

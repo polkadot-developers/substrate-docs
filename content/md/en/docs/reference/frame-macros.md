@@ -6,7 +6,7 @@ keywords:
 
 Substrate uses [Rust macros](https://doc.rust-lang.org/book/ch19-06-macros.html) to aggregate the logic derived from the pallets you implement for a runtime.
 These runtime macros allow developers to focus on runtime logic rather than encoding and decoding on-chain
-variables or writing extensive blocks of code to achieve [basic blockchain fundamentals](/v3/concepts/runtime#core-primitives). This offloads a lot of the heavy lifting from blockchain development efforts and removes the need to duplicate code.
+variables or writing extensive blocks of code to achieve [basic blockchain fundamentals](/main-docs/fundamentals/runtime-intro#core-primitives). This offloads a lot of the heavy lifting from blockchain development efforts and removes the need to duplicate code.
 
 The purpose of this article is to give a basic overview of Rust macros and explain the Substrate macros
 that runtime engineers most frequently use.
@@ -24,15 +24,11 @@ There are four kinds of macro in Rust:
 Most Substrate runtime macros are defined using either **declarative macros** or **function-like macros**, with a recent adoption of
 **attribute-like macros** in FRAME v2 pallets.
 
-<Message
-  type={`green`}
-  title={`Tips to learn more about Substrate runtime macros`}
-  text={`
-   - Read the [documentation](/rustdocs/latest/frame_support/index.html#macros) on commonly used macros in FRAME.
-   - Use [\`cargo expand\`](https://github.com/dtolnay/cargo-expand) to review a macro's expanded code and understand what's happening under the hood.
-   - Read more on [macro rules of expression pattern matching](https://danielkeep.github.io/tlborm/book/pim-README.html).
-  `}
-/>
+To learn more about Substrate runtime macros:
+
+- Read the [Rust documentation](/rustdocs/latest/frame_support/index.html#macros) on commonly used macros in FRAME.
+- Use [\`cargo expand\`](https://github.com/dtolnay/cargo-expand) to review a macro's expanded code and understand what's happening under the hood.
+- Read more on [macro rules of expression pattern matching](https://danielkeep.github.io/tlborm/book/pim-README.html).
 
 ## Substrate runtime macros
 
@@ -43,14 +39,14 @@ Developers who want to know about the implementation details are encouraged to f
 Substrate Primitives and FRAME both rely on a collection of various types of macros. The following
 sections will go over each in more detail. Here's a general overview of Substrate macros:
 
-**Macros in the FRAME [Support Library](/v3/runtime/frame#support-library):**
+**Macros in the FRAME support library**
 
 - in `frame_support`:
   - [function-like](/rustdocs/latest/frame_support/index.html#macros) macros
   - [derive](/rustdocs/latest/frame_support/index.html#derives) macros
   - [attribute](/rustdocs/latest/frame_support/index.html#attributes) macros
 
-**Macros in the Substrate [System Library](/v3/runtime/frame#system-library):**
+**Macros in the FRAME system library**
 
 - in `sp_core`:
   - [function-like macros](/rustdocs/latest/sp_core/index.html#macros) macros
@@ -63,19 +59,13 @@ sections will go over each in more detail. Here's a general overview of Substrat
 - in `sp_std`: [function-like](/rustdocs/latest/sp_std/index.html#macros) macros
 - in `sp_version`: [function-like](/rustdocs/latest/sp_version/index.html#macros) macros
 
-<Message
-  type={`gray`}
-  title={`Note`}
-  text={`Refer to \`#Substrate dependencies\` in the \`Cargo.toml\` file of the
-  [node template runtime](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/runtime/Cargo.toml#L21)
-  to see where these are put to use.
-  `}
-/>
+Refer to `#Substrate dependencies` in the `Cargo.toml` file of the [node template runtime](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/runtime/Cargo.toml#L21) to see where these macros are used.
 
 ## FRAME macros and attributes
 
-This sections covers all of the different macros that ship with FRAME. Refer to the [structure of a pallet](/v3/runtime/frame#pallets)
-to understand the composition of a Substrate pallet.
+As discussed in [Building custom pallets](/main-docs/fundamentals/runtime-intro#building-custom-pallets), most FRAME pallets are composed using a common set of sections.
+Macros make building each of those sections more modular and extensible.
+This section describes the macros available and how to use them to build your custom runtime.
 
 ### #[frame_support::pallet]
 
@@ -243,13 +233,11 @@ Required, to implement a pallet's dispatchables. Each dispatchable must:
 
 **What it does**
 
-[Extrinsics](/v3/concepts/extrinsics) can use calls to
-trigger specific logic. Calls can also be used in on-chain governance, demonstrated by the democracy
-pallet where calls can be voted on.
-`#[pallet::call]` allows to create dispatchable functions which will generate associated items
-from the `impl` code blocks. In other words, it aggregates all dispatchable logic using the
-[`Call` enum](/rustdocs/latest/frame_system/pallet/enum.Call.html) which will aggregate all
-dispatchable calls into a single runtime call.
+Extrinsic requests coming into the runtime can use calls to trigger specific logic.
+Calls can also be used in on-chain governance, demonstrated by the democracy pallet where calls can be voted on.
+The `#[pallet::call]` aggregates all dispatchable function call logic using the [`Call` enum](/rustdocs/latest/frame_system/pallet/enum.Call.html).
+The [aggregation](/reference/glossary#aggregation) enables FRAME to batch functions of the same type into a single runtime call.
+The runtime then generates the associated items from the implementation defined in the `impl` code blocks.
 
 **Docs**
 

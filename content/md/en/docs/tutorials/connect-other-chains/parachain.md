@@ -64,7 +64,7 @@ We'll begin by generating a few files based on the parachain template with the r
 #### Custom parachain specification
 
 Your parachain _must_ configure the correct para ID in your chain specification.
-See the [how-to guide on configuring a custom chain spec](/how-to-guides/v3/basics/custom-chain-spec) for more in-depth instructions to generate a plain spec, modify it, and generate a raw spec.
+See the [how-to guide on configuring a custom chain spec](/reference/how-to-guides/basics/custom-chain-spec) for more in-depth instructions to generate a plain spec, modify it, and generate a raw spec.
 We first generate a plain spec with:
 
 ```bash
@@ -91,11 +91,11 @@ Then generate a raw chain spec derived **from your modified plain chain spec**:
 ./target/release/parachain-collator build-spec --chain rococo-local-parachain-plain.json --raw --disable-default-bootnode > rococo-local-parachain-2000-raw.json
 ```
 
-<Message
-type={`yellow`}
-title={`Save and distribute your raw spec`}
-text={`If you intend to let others connect to your network, they must have the associated chain spec for your network generated once and distributed to your peers. They cannot reliably produce this themselves, and need to acquire it from a **single source**. This stems from the [non-deterministic issue](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1) in the way Wasm runtimes are compiled, at least for now.`}
-/>
+## Save and distribute your raw spec
+
+If you intend to let others connect to your network, they must have the associated chain spec for your network generated once and distributed to your peers. 
+They cannot reliably produce this themselves, and need to acquire it from a **single source**. 
+This stems from the [non-deterministic issue](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1) in the way Wasm runtimes are compiled.
 
 Chain specs _conventionally_ live in a `/res` folder that is published in your node's codebase for others to use.
 For example:
@@ -118,7 +118,7 @@ The parachain collator node also has a command to produce this Wasm blob:
 
 #### Generate a parachain genesis state
 
-To register a parachain, the relay chain needs to know the parachain's [genesis state](/v3/runtime/chain-specs#the-genesis-state).
+To register a parachain, the relay chain needs to know the parachain's [genesis state](/main-docs/build/chain-specs#the-genesis-state).
 The collator node can export that state to a file.
 Go to your Parachain Template folder, the following command will create a file containing the parachain's entire genesis state, hex-encoded:
 
@@ -126,11 +126,13 @@ Go to your Parachain Template folder, the following command will create a file c
 ./target/release/parachain-collator export-genesis-state --chain rococo-local-parachain-2000-raw.json > para-2000-genesis
 ```
 
-<Message
-type={`yellow`}
-title={`No pre-genesis blocks allowed`}
-text={`This runtime and state is for the parachain's _genesis_ block only. You cannot, at this time, connect a parachain with any previous state to a relay chain. All parachains must start from block 0 on the relay chain. Eventually, migrating the block history of a solo chain built on Substrate is expected to be possible, but this functionality is not planned anytime soon. \n See the guide on [converting a solo chain to a parachain](/how-to-guides/v3/parachains/convert) for details on how the Parachain Template was created, and how to convert your chain's logic (not history/state migrations!) to a parachain.`}
-/>
+## No pre-genesis blocks allowed
+
+This runtime and state is for the parachain's _genesis_ block only. 
+You can't connect a parachain with any previous state to a relay chain. All parachains must start from block 0 on the relay chain.
+Eventually, migrating the block history of a solo chain built on Substrate is expected to be possible, but this functionality is not planned anytime soon.
+
+See the guide on [converting a solo chain to a parachain](/reference/how-to-guides/parachains/convert) for details on how the parachain template was created and how to convert your chain's logic—not its history or state migrations—to a parachain.
 
 ### Start the collator node
 
@@ -211,7 +213,7 @@ At this point your _collator's logs_ should look something like this:
 
 You should see your collator node running (alone) and peering with the already running relay chain nodes.
 
-> Note if you do not see the embedded relaychain peering with local relay chain node, try disabling your firewall or adding the `bootnodes` parameter with the relay node's address.
+Note if you do not see the embedded relay chain peering with local relay chain node, try disabling your firewall or adding the `bootnodes` parameter with the relay node's address.
 
 It has not started authoring parachain blocks yet.
 Authoring will begin when the collator is actually **registered on the relay chain**.
@@ -232,7 +234,7 @@ There are multiple options to go about this, and we can pick any one of the foll
 Note that all options here depend on a [`paraID` being reserved](#reserve-a-para-id) - so be sure to do that first.
 
 If you are running a network with more than two validators you can add more parachains through the same interface with the parameters adjusted accordingly.
-More details on this can be found [in here](/tutorials/v3/cumulus/start-relay#starting-additional-validators-optional).
+More details on this can be found in [Start a local relay chain](/tutorials/connect-other-chains/relay-chain#starting-additional-validators-optional).
 
 #### Option 1: `paraSudoWrapper.sudoScheduleParaInitialize`
 
@@ -375,19 +377,13 @@ Read on for more optional material.
 The defining feature of connecting parachains to a _common_ relay chain is the ability to communicate _between_ all connected chains.
 This area of functionality is at the cutting edge development, and for now is not demonstrated in this workshop.
 
-<Message
-type={`green`}
-title={`Learn more about XCMP`}
-text={`For a detailed overview, refer to [Polkadot wiki on XCMP](https://wiki.polkadot.network/docs/en/learn-crosschain)`}
-/>
+To learn more about XCMP, refer to [Polkadot wiki on XCMP](https://wiki.polkadot.network/docs/en/learn-crosschain).
 
 ## Chain purging
 
-<Message
-type={`red`}
-title={`Warning`}
-text={`Your sole collator is the only home of the parachain data as there is only one node on your entire parachain network. Relay chains only store parachains header information. If the parachain data is lost, you will **not** be able to recover the chain!`}
-/>
+Your sole collator is the only home of the parachain data as there is only one node on your entire parachain network. 
+Relay chains only store parachains header information. 
+If the parachain data is lost, you will **not** be able to recover the chain.
 
 To purge your parachain chain data, you need to deregister and re-register the parachain collator.
 It may be easier in testing to instead just purge all the chains.
@@ -413,7 +409,7 @@ An adversary would only need to take down a single node to stall the parachain.
 
 You should have _at least_ two **validators** (relay chain nodes) running for every **collator** (parachain nodes) on your network.
 
-> You can **modify** [the first section's](/tutorials/v3/cumulus/start-relay#pre-configured-chain-spec-files) provided **plain** relay chain spec to include more validators for testing, or go the more "correct" route used for production of modifying the **source** for genesis state in `chain_spec.rs` for your **relay chain** to add more validators.
+You can **modify** [the first section's](/tutorials/connect-other-chains/relay-chain#pre-configured-chain-spec-files) provided **plain** relay chain spec to include more validators for testing, or go the more "correct" route used for production of modifying the **source** for genesis state in `chain_spec.rs` for your **relay chain** to add more validators.
 
 ### Start a second collator
 

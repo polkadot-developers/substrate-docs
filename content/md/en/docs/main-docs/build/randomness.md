@@ -60,5 +60,5 @@ A runtime developer must ensure that the randomness source used meets the securi
 ## Where to go next
 
 
-- [How-to: Randomness](/how-to-guides/v3/pallet-design/randomness/)
+- [How-to: Randomness](/reference/how-to-guides/pallet-design/randomness/)
 - [`Randomness`](/rustdocs/latest/frame_support/traits/trait.Randomness.html)

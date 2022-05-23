@@ -1,10 +1,6 @@
 ---
 title: Runtime Upgrades
-slug: /how-to-guides/v3/parachains/runtime-upgrades
-version: 'polkadot-v0.9.18'
-section: how to guides
-category: parachains
-difficulty: 3
+description:
 keywords:
   - collators
   - parachains
@@ -41,11 +37,10 @@ keywords:
 
 ## Before you continue
 
-Please do the folowing:
+Please do the following:
 
-- Read the general [runtime upgrade docs](/v3/runtime/upgrades).
-- Complete the [cumulus tutorial](/tutorials/v3/cumulus/start-relay), and learn the
-  `polkadot-launch` tool for testing.
+- Read the general [runtime upgrade docs](/main-docs/build/upgrade).
+- Complete the [cumulus tutorial](/tutorials/connect-other-chains/start-relay), and learn the `polkadot-launch` tool for testing.
 
 ## Steps
 
@@ -81,20 +76,11 @@ use to remedy this problem:
      transactions you can make, you can batch multiple transactions to occur
      over time via the scheduler.
 
-<Message
-  type={`red`}
-  title={`You need to test!`}
-  text={`
-After your migration strategy is established, you absolutely should test this migration on a
-non-production testnet to _ensure_ it will work _before_ you continue!
-See the [how-to guide on storage migration testing](/how-to-guides/v3/storage-migrations/tests) to
-proceed.
-\n
-Also keep in mind that testing in a confined small dummy network will tests your failure modes in a
-real network with latency and many collators and validators. The closer you can get to testing this
-in the same environment, the more sure you can be that your runtime upgrades will not fail.
-`}
-/>
+After your migration strategy is established, you should test the migration on a non-production testnet to ensure it will work _before_ you continue.
+See the [how-to guide on storage migration testing](/reference/how-to-guides/storage-migrations/tests) to proceed.
+
+Testing in a confined network will help you prepare for potential failures in a real network with many collators and validators and constraints like bandwidth and latency.
+The more closely you can simulate a real network for testing, the more sure you can be that your runtime upgrades will succeeds.
 
 ### 2. Authorize -> enact an upgrade flow
 
@@ -116,10 +102,9 @@ upgrade has been scheduled.
 
 ## Resources
 
-- [Regular runtime upgrade docs](/v3/runtime/upgrades)
-  - [Fork Off Substrate tool](https://github.com/maxsam4/fork-off-substrate)
-- [`try-runtime` tool](/v3/tools/try-runtime)
-  - [`try-runtime` video workshop](https://www.crowdcast.io/e/substrate-seminar/41)
-- [Storage migrations Guide](/how-to-guides/v3/storage-migrations/basics)
-  - [Storage migration testing Guide](/how-to-guides/v3/storage-migrations/tests)
-  - [Substrate Builders Program Storage Migration Discussion](https://drive.google.com/file/d/19HPFUmSQIxVkxaVSg1SWveSdvjHUw1b8/view?usp=sharing)
+- [Runtime upgrade](/main-docs/build/upgrade)
+- [Fork off Substrate](https://github.com/maxsam4/fork-off-substrate)
+- [`try-runtime`](/reference/command-line-tools/try-runtime)
+- [`try-runtime` video workshop](https://www.crowdcast.io/e/substrate-seminar/41)
+- [How-to: Storage migration](/reference/how-to-guides/storage-migrations/basic-migration)- [How to: Test storage migration](/reference/how-to-guides/storage-migrations/test-migration)
+- [Substrate Builders Program: Storage Mmgration](https://drive.google.com/file/d/19HPFUmSQIxVkxaVSg1SWveSdvjHUw1b8/view?usp=sharing)

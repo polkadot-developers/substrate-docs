@@ -189,8 +189,7 @@ To install the front-end template:
 
 ## Start the front-end template
 
-The Substrate front-end template consists of user interface components to enable you to interact
-with the Substrate node and perform a few common tasks.
+The Substrate front-end template consists of user interface components to enable you to interact with the Substrate node and perform a few common tasks.
 
 To use the front-end template:
 
@@ -207,12 +206,12 @@ To use the front-end template:
    The top section has an Account selection list for selecting the account to work with when you want to perform on-chain operations.
    The top section of the template also displays information about the chain to which you're connected.
 
-   ![Front-end template top section](../img/tutorials/01-create-your-first-chain/blockchain-top.png)
+   ![Front-end template top section](/media/images/docs/tutorials/build-local-blockchain/blockchain-top.png)
 
    You might also notice that the front-end template displays a Balances table with some predefined accounts and that a few of those accounts are preconfigured with funds.
    You can use this sample data to try out operations like transferring funds.
 
-   ![Predefined accounts and balances](../img/tutorials/01-create-your-first-chain/balances.png)
+   ![Predefined accounts and balances](/media/images/docs/tutorials/build-local-blockchain/balances.png)
 
 ## Transfer funds from an account
 
@@ -225,7 +224,7 @@ To transfer funds to an account:
 
 1. In the Balances table, notice the predefined accounts—such as dave—that have no funds associated with them.
 
-   ![Locate an account with zero funds](../img/tutorials/01-create-your-first-chain/dave-account.png)
+   ![Locate an account with zero funds](/media/images/docs/tutorials/build-local-blockchain/dave-account.png)
 
    Under the Balances table, the front-end template also displays a **Transfer** component.
    You use this component to transfer funds from one account to another.
@@ -234,11 +233,11 @@ To transfer funds to an account:
 
 1. Specify at least **1000000000000** as the amount to transfer, then click **Submit**.
 
-   ![Transfer funds to an account](../img/tutorials/01-create-your-first-chain/transfer-filled.png)
+   ![Transfer funds to an account](/media/images/docs/tutorials/build-local-blockchain/transfer-filled.png)
 
 1. Notice that the values in Balances table is updated with the transfer.
 
-   ![Updated balance displayed](../img/tutorials/01-create-your-first-chain/balance-result.png)
+   ![Updated balance displayed](/media/images/docs/tutorials/build-local-blockchain/balance-result.png)
 
 1. Check the **Events** component to see events related to the transfer you just completed.
 
@@ -246,7 +245,7 @@ To transfer funds to an account:
    use the Events components to see details about each operation performed as part of the transfer.
    For example:
 
-   ![Events recorded as results from asynchronous operations](../img/tutorials/01-create-your-first-chain/event-panel.png)
+   ![Events recorded as results from asynchronous operations](/media/images/docs/tutorials/build-local-blockchain/event-panel.png)
 
 1. When the transaction has been completed and included in a block, you see a confirmation message similar to the following:
 
@@ -280,8 +279,8 @@ In this tutorial, you learned:
 The front-end template includes several additional components for you to experiment with while you're connected to a local development node.
 You can explore these components on your own or learn more in the following topics:
 
-- [Node architecture](/main-docs/fundamentals/architecture/).
-- [Network topologies](/main-docs/fundamentals/)node-and-network-types/.
+- [Architecture](/main-docs/fundamentals/architecture/)
+- [Networks and blockchains](/main-docs/fundamentals/)node-and-network-types/
 - [Simulate a network](tutorials/get-started/simulate-network/)
 
 If you experienced any issues with this tutorial, submit an issue, ask questions, or provide feedback.

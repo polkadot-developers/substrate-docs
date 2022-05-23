@@ -126,14 +126,7 @@ Some(Subcommand::TryRuntime) => {
 /* --snip-- */
 ```
 
-<br />
-<Message
-  type={`gray`}
-  title={`Note`}
-  text={`If you're using custom pallets in your workspace, make sure you included 
-  \`try-runtime\` in the dependencies inside the \`pallets/pallet_name/Cargo.toml\` file of your workspace.
-  `}
-/>
+If you're using custom pallets in your workspace, make sure you included `try-runtime` in the dependencies inside the `pallets/pallet_name/Cargo.toml` file of your workspace.
 
 ### 3. Using `try-runtime`
 
@@ -145,7 +138,7 @@ Just like writing unit tests, to use `try-runtime` create an externalities insta
 
 #### Docs
 
-[Try runtime](/v3/tools/try-runtime/)
+[Try runtime](/reference/command-line-tools/try-runtime/)
 
 #### Other
 

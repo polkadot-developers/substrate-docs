@@ -16,12 +16,12 @@ Scenario: I have my application logic broken up into the pallets my runtime will
 Substrate comes with an opinionated toolkit for building runtimes in Rust called FRAME.
 That said, the runtime can be built in any way, with any language, so long as it can communicate to the client.
 
-The core Substrate codebase ships with [FRAME](/v3/runtime/frame), Parity's system for Substrate runtime development that is used for chains like [Kusama](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/lib.rs) and [Polkadot](https://github.com/paritytech/polkadot/blob/master/runtime/polkadot/src/lib.rs). 
-FRAME defines additional runtime primitives and provides a framework that makes it easy to construct a runtime by composing modules, called [pallets](/v3/runtime/frame#pallets). 
-Each pallet encapsulates domain-specific logic that is expressed as a set of a [storage items](/v3/runtime/storage), [events](/v3/runtime/events-and-errors), [errors](/v3/runtime/events-and-errors#errors), and [dispatchable functions](/v3/getting-started/glossary#dispatch). 
-FRAME developers can [create their own pallets](/v3/runtime/frame#pallets) and reuse existing pallets, including [over 50 of those shipped with Substrate](/v3/runtime/frame#prebuilt-pallets).
+The core Substrate codebase ships with [FRAME](/main-docs/fundamentals/runtime-intro), Parity's system for Substrate runtime development that is used for chains like [Kusama](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/lib.rs) and [Polkadot](https://github.com/paritytech/polkadot/blob/master/runtime/polkadot/src/lib.rs). 
+FRAME defines additional runtime primitives and provides a framework that makes it easy to construct a runtime by composing modules, called [pallets](/main-docs/fundamentals/runtime-intro#pallets). 
+Each pallet encapsulates domain-specific logic that is expressed as a set of a [storage items](/main-docs/build/runtime-storage), [events](/main-docs/build/events-and-errors), [errors](/main-docs/build/events-and-errors#errors), and [dispatchable functions](/reference/glossary#dispatch). 
+FRAME developers can [create their own pallets](/main-docs/fundamentals/runtime-intro#pallets) and reuse existing pallets, including [over 50 of those shipped with Substrate](/main-docs/fundamentals/runtime-intro#prebuilt-pallets).
 
-![Runtime Composition](../../img/docs/concepts/frame-runtime.png)
+![Runtime Composition](/media/images/docs/main-docs/frame-runtime.png)
 
 There are an additional set of primitives that are assumed about a runtime built with the Substrate FRAME. These are:
 
@@ -45,14 +45,11 @@ Although a lot of core runtime development can be enabled with FRAME and
 its related primitives, FRAME is not the only system for developing
 Substrate based blockchains.
 
-## Next steps
+## Where to go next
 
-### Learn more
-
-- Learn about the [Substrate FRAME](/v3/runtime/frame).
-- Follow a
-  [tutorial to develop your first Substrate chain](/tutorials/v3/create-your-first-substrate-chain).
-- Follow a [tutorial to add a pallet to your Substrate runtime](/tutorials/v3/add-a-pallet).
+- [Runtime development](/main-docs/fundamentals/runtime-intro).
+- [Build a local blockchain](/tutorials/get-started/build-local-blockchain).
+- [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet).
 
 ### References
 

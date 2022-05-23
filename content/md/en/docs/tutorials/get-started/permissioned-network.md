@@ -456,7 +456,7 @@ Go to **Developer** page, **Sudo** tab, in apps and submit the `nodeAuthorizatio
 `add_well_known_node` call with the peer id in hex of Charlie's node and the
 owner is Charlie, of course. Note Alice is the valid sudo origin for this call.
 
-![add_well_known_node](../img/tutorials/03-permissioned-network/add_well_known_node.png)
+![add_well_known_node](/media/images/docs/tutorials/permissioned-network/add_well_known_node.png)
 
 After the transaction is included in the block, you should see the `charlie` node is
 connected to the `alice` and `bob` nodes, and starts to sync blocks.
@@ -491,16 +491,16 @@ In the **Developer Extrinsics** page, get Charlie to submit an `addConnections` 
 The first PeerId is the peer id in hex of Charlie's node. The connections is a list
 of allowed peer ids for Charlie's node, here we only add Dave's.
 
-![charlie_add_connections](../img/tutorials/03-permissioned-network/charlie_add_connections.png)
+![charlie_add_connections](/media/images/docs/tutorials/permissioned-network/charlie_add_connections.png)
 
 Then, Dave needs to configure his node to allow the connection from Charlie's node.
 But before he adds this, Dave needs to _claim_ his node, hopefully it's not too late!
 
-![dave_claim_node](../img/tutorials/03-permissioned-network/dave_claim_node.png)
+![dave_claim_node](/media/images/docs/tutorials/permissioned-network/dave_claim_node.png)
 
 Similarly, Dave can add connection from Charlie's node.
 
-![dave_add_connections](../img/tutorials/03-permissioned-network/dave_add_connections.png)
+![dave_add_connections](/media/images/docs/tutorials/permissioned-network/dave_add_connections.png)
 
 You should now see Dave is catching up blocks and only has one peer which belongs to Charlie!
 Restart Dave's node in case it's not connecting with Charlie right away.
@@ -511,13 +511,9 @@ In a real world application, node operators would _only_ have access to their no
 
 **Congratulations!**
 
-You are at the end of this tutorial and are already learned about how to build a
-permissioned network. You can also play with other dispatchable calls like
-`remove_well_known_node`, `remove_connections`.
+You have now learned how to build a network where some nodes have limited permissions and restricted access to network resources.
+To learn more about the topics introduced in this tutorial, see the following sections:
 
-## Next steps
-
-- Complete the [Private Network Tutorial](/tutorials/v3/private-network)
-- Read more about the [Subkey tool](/v3/tools/subkey)
-
-[Modified node template example](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/permissioned-network-v3)
+- [Monitor node metrics](/tutorials/get-started/monitor/)
+- [Upgrade the runtime](/tutorials/get-started/forkless-upgrade/)
+- [Accounts, addresses, and keys](/main-docs/fundamentals/accounts-addresses-keys)

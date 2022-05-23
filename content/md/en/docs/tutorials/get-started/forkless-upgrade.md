@@ -1,5 +1,5 @@
 ---
-title: Upgrade a runtime
+title: Upgrade a running node
 description: Perform a forkless runtime upgrade on a running Substrate network.
 ---
 
@@ -234,7 +234,7 @@ Now that the node template has been upgraded to include the Scheduler pallet,
 can be used to perform the next runtime upgrade. In the previous part, the
 `sudo_unchecked_weight` function was used to override the weight associated with the `set_code`
 function; in this section, the runtime upgrade will be _scheduled_ so that it can be processed as
-the only [extrinsic](/v3/concepts/extrinsics) in a block.
+the only [extrinsic](/main-docs/fundamentals/transaction-types) in a block.
 
 ### Prepare an Upgraded Runtime
 
@@ -264,17 +264,12 @@ parameter_types! {
 ```
 
 This change increases the value of the Balances pallet's
-[`ExistentialDeposit`](/v3/getting-started/glossary#existential-deposit) - the
+[`ExistentialDeposit`](/reference/glossary#existential-deposit) - the
 minimum balance needed to keep an account alive from the point-of-view of the Balances pallet.
 
-<Message
-type={`yellow`}
-title={`Information`}
-text="Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000 to be reaped - that would require a [storage migration](/v3/runtime/upgrades#storage-migrations), which is out of scope for this tutorial.
-"
-/>
+Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000 to be reaped - that would require a [storage migration](/main-docs/build/upgrade#storage-migrations), which is out of scope for this tutorial.
 
-### Build the Upgraded Runtime
+### Build the upgraded runtime
 
 ```bash
 cargo build --release -p node-template-runtime
@@ -312,8 +307,7 @@ You can then observe the specific changes that were made in the upgrade by using
 [Polkadot JS Apps UI Chain State](https://polkadot.js.org/apps/#/chainstate/constants?rpc=ws://127.0.0.1:9944)
 app to query the `existentialDeposit` constant value from the Balances pallet.
 
-## Next Steps
+## Where to go next
 
-- Learn about [storage migrations](/v3/runtime/upgrades#storage-migrations) and
-  attempt one alongside a runtime upgrade.
-- Explore the [how-to guides section on storage migrations](/how-to-guides/v3/storage-migrations/basics).
+- [Storage migrations](//main-docs/build/upgrade#storage-migrations)
+- [How-to: Storage migration](/reference/how-to-guides/storage-migrations/basic-migration)

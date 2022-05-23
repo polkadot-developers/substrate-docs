@@ -66,29 +66,16 @@ the other way around. Wasm execution can help to ensure that block producers cre
 
 ### Native execution
 
-The native runtime will only be used by the executor when it is chosen as the execution strategy and
-it is compatible with the requested runtime version (see
-[Runtime Versioning](/v3/runtime/upgrades#runtime-versioning)).
-For all other execution processes other than block construction, the native runtime is preferred
-since it is more performant. In any situation where the native executable should not be run, the
-canonical Wasm runtime is executed instead.
+The native runtime will only be used by the executor when it is chosen as the execution strategy and it is compatible with the requested runtime version (see [runtime versioning](/main-docs/build/upgrade#runtime-versioning)).
+For all other execution processes other than block construction, the native runtime is preferred since it is more performant. 
+In any situation where the native executable should not be run, the canonical Wasm runtime is executed instead.
 
-## Next steps
+## Where to go next
 
-### Learn more
-
-- Read more about runtime upgrades in the [Runtime documentation](/v3/runtime/upgrades).
-
-### References
-
-- Check out the different
-  [Execution Strategies](/rustdocs/latest/sc_client_api/execution_extensions/struct.ExecutionStrategies.html).
-
-- Take a look at the different
-  [Execution Strategy Options](/rustdocs/latest/sp_state_machine/enum.ExecutionStrategy.html)
-
-- Review the
-  [Runtime Version definition](/rustdocs/latest/sp_version/struct.RuntimeVersion.html).
+- [Upgrade](/main-docs/build/upgrade).
+- [Execution strategies](/rustdocs/latest/sc_client_api/execution_extensions/struct.ExecutionStrategies.html)
+- [Execution strategy primitive](/rustdocs/latest/sp_state_machine/enum.ExecutionStrategy.html)
+- [Runtime version primitive](/rustdocs/latest/sp_version/struct.RuntimeVersion.html).
 
 ## Footnotes
 

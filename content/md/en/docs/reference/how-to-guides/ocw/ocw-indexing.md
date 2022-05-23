@@ -1,13 +1,10 @@
 ---
 title: Off-chain Indexing
-slug: /how-to-guides/v3/ocw/indexing
+description:
 keywords:
   - off-chain worker
   - ocw
   - indexing
-version: '3.0'
-section: how to guides
-category: ocw
 ---
 
 <Objectives
@@ -138,9 +135,9 @@ So developers should be careful in forming the right indexing key to prevent pot
    ```
 
    With this, an off-chain worker could read the corresponding data from a node's local storage.
-   [This how-to guide](/how-to-guides/v3/ocw/local-storage/) explains how to do that.
+   [This how-to guide](/reference/how-to-guides/ocw/local-storage/) explains how to do that.
 
 ## Related material
 
-- [Off-Chain Features](/v3/concepts/off-chain-features/)
-- [Local Storage in Off-chain Workers](/how-to-guides/v3/ocw/local-storage/)
+- [Off-Chain Features](/main-docs/fundamentals/offchain-operations/)
+- [Local Storage in Off-chain Workers](/reference/how-to-guides/ocw/local-storage/)
