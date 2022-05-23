@@ -17,29 +17,23 @@ You can follow similar patterns to add additional FRAME pallets to your runtime,
 ## What is the Contracts Pallet for?
 
 Broadly speaking there are two big use-cases you can apply it to.
-We'll only shortly describe those, for more information please check
-[the pallet readme][pallet-readme].
+We'll only shortly describe those, for more information please check [the pallet reamde][pallet-readme].
 
 ### Smart contracts as first-class citizens
 
 You want to build a general-purpose smart contracts chain, with them being the main focus of your chain.
-Maybe you have an innovative idea and want to have a smart contracts base layer which you complement
-with your chains unique selling point.
+Maybe you have an innovative idea and want to have a smart contracts base layer which you complement with your chains unique selling point.
 
 ### Smart contracts for users to customize how they interact with your chain
 
-You've built a chain that doesn't have smart contracts as first-class citizens,
-instead most of the logic is built using Substrate pallets.
+You've built a chain that doesn't have smart contracts as first-class citizens, instead most of the logic is built using Substrate pallets.
 
-But now you want to expose limited parts of your chains business logic to be customizable
-by users. Say you have e.g. a decentralized exchange chain and want to enable users
-uploading their own trading algorithms.
+But now you want to expose limited parts of your chains business logic to be customizable by users. Say you have e.g. a decentralized exchange chain and want to enable users uploading their own trading algorithms.
 Smart contracts are ideal for that ‒ they treat all user input as untrusted and potentially adversarial.
 With gas fees users have to pay for the execution time of their trading algorithms.
 
 The Contracts pallet provides the [Chain extension][chain-extension] primitive for exactly that.
-This way programming languages (like [ink!][ink]) can easily make use of your chains
-exposed business logic primitives.
+This way programming languages (like [ink!][ink]) can easily make use of your chains exposed business logic primitives.
 
 ## Before you begin
 
@@ -53,15 +47,13 @@ If you haven't already done so, see [Create your first substrate chain](/tutoria
    - `pallet-contracts-primitives`
    - `pallet-contracts-rpc-runtime-api`
    - `pallet-contracts-rpc`
-1. Integrate the Contracts pallet into your runtime as described in the
-   [Basic pallet integration](/how-to-guides/v3/basics/pallet-integration) guide.
+1. Integrate the Contracts pallet into your runtime as described in the [Basic pallet integration](/how-to-guides/v3/basics/pallet-integration) guide.
 
 ## Add the Contracts pallet to your runtime
 
 1. Implement the Contracts pallet [configuration trait][contracts-config-rustdocs] trait for your `runtime/src/lib.rs`.
 
-   You should check that the version of the pallet behind this link is the same
-   as the `Cargo.toml` dependencies for the Contracts pallet.
+   You should check that the version of the pallet behind this link is the same as the `Cargo.toml` dependencies for the Contracts pallet.
 
    Implementing the trait will require you to define the trait types, like so:
 
@@ -140,14 +132,11 @@ If you haven't already done so, see [Create your first substrate chain](/tutoria
 
 The Contracts pallet exposes custom runtime APIs and RPC endpoints.
 
-An example of such an API + RPC is to execute a contract call as a dry-run ‒ so without
-actually modifying any storage.
+An example of such an API + RPC is to execute a contract call as a dry-run ‒ so without actually modifying any storage.
 This dry-run is often used by off-chain tooling (e.g. a frontend) to display a contracts state.
-Think of an ERC-20 contract, in order to display the balance of an account the frontend
-would execute a dry-run of the balance function via this RPC.
+Think of an ERC-20 contract, in order to display the balance of an account the frontend would execute a dry-run of the balance function via this RPC.
 
-In order to use the Contracts pallet for this you'll use two other pallets: the
-Contracts RPC Runtime API pallet and the Contracts RPC pallet.
+In order to use the Contracts pallet for this you'll use two other pallets: the Contracts RPC Runtime API pallet and the Contracts RPC pallet.
 
 1. Import the dependencies.
 
@@ -171,11 +160,9 @@ Contracts RPC Runtime API pallet and the Contracts RPC pallet.
 	 }
    ```
 
-   For the implementation of the individual trait functions it is very unlikely that you want a
-   different implementation than the one used in the templates. These functions merely forward
-   the calls to the pallet. You can copy the implementation straight from
-   [Substrate][bin-runtime-contracts-rpc]. Make sure that the version where you copy from is the
-   same as used in your `Cargo.toml`.
+   For the implementation of the individual trait functions it is very unlikely that you want a different implementation than the one used in the templates.
+   These functions merely forward the calls to the pallet. You can copy the implementation straight from [Substrate][bin-runtime-contracts-rpc].
+   Make sure that the version where you copy from is the same as used in your `Cargo.toml`.
 
 1. Add the RPC API extension.
 
@@ -233,10 +220,8 @@ Contracts RPC Runtime API pallet and the Contracts RPC pallet.
   >;
   ```
 
-  This is only the most simple solution of how to do storage migrations, if you have a lot of
-  state in your chain the migration might take longer than the time allowed for building a block.
-  This would be very bad, since it would effectively brick your chain, since it would be unable
-  to continue building blocks due to always exhausting the slot duration.
+  This is only the most simple solution of how to do storage migrations, if you have a lot of state in your chain the migration might take longer than the time allowed for building a block.
+  This would be very bad, since it would effectively brick your chain, since it would be unable to continue building blocks due to always exhausting the slot duration.
 
   See the how-to guide on [Storage Migrations][storage-migrations-tutorial] for more details on migrations.
 
@@ -256,10 +241,8 @@ cargo build --release
 
 ## Examples
 
-These are a couple of repositories that contain node configurations with
-the Contracts pallet. In case you want to look up how something can
-be configured in specific scenarios these node configurations can be
-helpful.
+These are a couple of repositories that contain node configurations with the Contracts pallet.
+In case you want to look up how something can be configured in specific scenarios these node configurations can be helpful.
 
 ### Developer Node
 
@@ -268,21 +251,17 @@ based on Substrate's [`node-template`](https://github.com/paritytech/substrate/t
 The node was configured to include the Contracts pallet.
 It is tracking Substrate's `master` branch.
 
-This particular node contains a couple of modifications that make it unsuitable for a
-production deployment, but a great fit for development and testing.
+This particular node contains a couple of modifications that make it unsuitable for a production deployment, but a great fit for development and testing.
 The modifications are described in the readme.
 
 ### Parachain Node
 
-The [`contracts-parachain`][contracts-parachain] node has been configured to be
-a parachain for Rococo, a testnet for Polkadot and Kusama parachains.
-It has been configured as a common good parachain, as such it uses the Rococo relay
-chain's native token `ROC` instead of defining a token of its own.
+The [`contracts-parachain`][contracts-parachain] node has been configured to be a parachain for Rococo, a testnet for Polkadot and Kusama parachains.
+It has been configured as a common good parachain, as such it uses the Rococo relay chain's native token `ROC` instead of defining a token of its own.
 
 ### Default Node from Substrate repository
 
-The Substrate repository contains a [node configuration][bin-runtime-contracts-config]
-that includes all pallets shipped with Substrate.
+The Substrate repository contains a [node configuration][bin-runtime-contracts-config] that includes all pallets shipped with Substrate.
 
 ## Related material
 
