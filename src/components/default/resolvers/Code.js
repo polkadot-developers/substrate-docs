@@ -17,7 +17,7 @@ const copyToClipboard = str => {
 
 function Code({ children, className }) {
   const [isCopied, setIsCopied] = useState(false);
-  if (!className.includes('language-text') && className.includes('language-')) {
+  if (className && !className.includes('language-text') && className.includes('language-')) {
     return (
       <pre className={className}>
         {children}
@@ -37,7 +37,7 @@ function Code({ children, className }) {
         </button>
       </pre>
     );
-  } else if (className.includes('language-text')) {
+  } else if (className && className.includes('language-text')) {
     return <pre className={className}>{children}</pre>;
   } else return <pre className={className}>{children}</pre>;
 }

@@ -24,7 +24,7 @@ function TabbedCode({ children, className }) {
             const languageName = div.props.children[0].props.children[0].props.children[0].props.className
               .split('-')
               .pop();
-            console.log(div.props.children[0].props.children[0].props.children[0].props.className);
+            //console.log(div.props.children[0].props.children[0].props.children[0].props.className);
             return (
               <TabSelector
                 key={div.id}
