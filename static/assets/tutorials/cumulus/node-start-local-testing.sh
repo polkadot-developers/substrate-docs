@@ -18,7 +18,7 @@ rm -rf /tmp/relay /tmp/parachain
 # Relay Validators with 2 validator chain spec
 ./target/release/polkadot --alice --validator --base-path /tmp/relay/alice --chain ../docs/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json --port 30333 --ws-port 9944
 
-./target/release/polkadot --bob --validator --base-path /tmp/relay/bob --chain ../docs/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json --port 30334 --ws-port 9945
+./target/release/polkadot --bob --validator --base-path /tmp/relay/bob --chain ../docs/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWP2XSK96JraZ5PxK6uC33ae8fMRfmugP5DtuwxhrbGPUH --port 30334 --ws-port 9945
 
 # ./target/release/polkadot --charlie --validator --base-path /tmp/relay/charlie --chain ../docs/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json --port 30335 --ws-port 9946
 
