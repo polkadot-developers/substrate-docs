@@ -12,7 +12,7 @@ keywords:
 ---
 
 [Substrate Connect](https://paritytech.github.io/substrate-connect/) is
-a JavaScript library and browser extension that builds on the [Polkadot JS
+a JavaScript library that builds on the [Polkadot JS
 API](/v3/integration/polkadot-js#polkadot-js-api) to enable developers to build application
 specific light clients for Substrate chains. By using light clients available to all
 Substrate built blockchains, application developers no longer need to rely on single RPC
@@ -21,25 +21,19 @@ a new paradigm for decentralization: instead of specifying a centralized RPC nod
 just need to specify the blockchain's [chain specification](/v3/runtime/chain-specs) for
 their application to synchronize with the chain.
 
+In addition to the Substrate Connect JavaScript library, Substrate Connect is also a
+browser extension that the library can leverage. The Substrate Connect browser extension
+is targeted at end users.
+
 ## What it enables
 
-Substrate Connect provides application developers ways to run a Substrate light client in any
-NodeJS environment, from in-browser applications and extensions, to Electron apps,
-IOT devices, and mobile phones.
+The Substrate Connect JavaScript library provides application developers ways to run a
+Substrate light client in any NodeJS environment, from in-browser applications and
+extensions, to Electron apps, IOT devices, and mobile phones.
 
-For in-browser end-users, Substrate Connect is a browser extension designed to facilitate
-using applications with multiple blockchains, where all light clients can run in a single tab.
-
-This implies two key features:
-
-1. **Ready-to-use light clients for Substrate chains.** Light clients are
-   part of the Substrate framework and with that, available for every Substrate based blockchain. This
-   means that all you need in order to connect a Substrate chain to your application is provide the
-   [chain specification](/v3/runtime/chain-specs) of the chain you want to connect to.
-
-2. **Bundling light-clients of multiple chains.** With the browser extension, end-users are able to
-   interact with applications connected to multiple blockchains or connect their own blockchains to
-   applications that support it.
+For in-browser end-users, the Substrate Connect library can connect to the Substrate Connect
+browser extension in order to provide better loading times, better chain connectivity,
+and optimized resources usage.
 
 ## Motivation
 
@@ -54,11 +48,11 @@ the background, making applications on a Substrate chain faster.
 
 ## How it works
 
-The extension runs a single light client, [Smoldot](https://github.com/paritytech/smoldot) that
+The library and extension run a light client, [Smoldot](https://github.com/paritytech/smoldot), that
 manages connecting to different blockchains. Whenever a user opens an app in a new browser tab it
-asks the extension to connect to whatever blockchains the app is interested in. The light client is
-smart enough to share resources so that it only connects to a network once even if there are
-multiple apps talking to it.
+asks the extension to connect to whatever blockchains the app is interested in. If the browser
+extension is installed, the same light client is shared between all browser tabs, meaning that it
+will only connect to a network once even if there are multiple apps talking to it.
 
 The [`@substrate/connect`](https://www.npmjs.com/package/@substrate/connect) library has the following
 capabilities:
@@ -66,16 +60,8 @@ capabilities:
 - It detects whether a user has the Substrate Connect browser extension installed. If it
   isn't installed, it falls back to instantiating a light client directly in the page.
 
-- It handles receiving and listening for messages from the browser extension and provider.
-
-- It manages an app's connection to multiple blockchains, creating an instance of Smoldot
-  and connecting the app to it.
-
-### Usage
-
-When used in individual projects, the Substrate Connect node module will first check for the
-installed extension. If available, it will try to connect to the light client running inside the
-extension. Only if the extension is not installed will it start a light client in the browser tab.
+- It implements the same JSON-RPC API as regular RPC nodes, enabling the use of the
+  [Polkadot JS API](/v3/integration/polkadot-js#polkadot-js-api) on top of it.
 
 ### Ways to use it
 
