@@ -246,8 +246,7 @@ In case you want to look up how something can be configured in specific scenario
 
 ### Developer Node
 
-[`substrate-contracts-node`][substrate-contracts-node] is a standalone node,
-based on Substrate's [`node-template`](https://github.com/paritytech/substrate/tree/master/bin/node-template).
+[`substrate-contracts-node`][substrate-contracts-node] is a standalone node, based on Substrate's [`node-template`][substrate-node-template].
 The node was configured to include the Contracts pallet.
 It is tracking Substrate's `master` branch.
 
@@ -256,7 +255,7 @@ The modifications are described in the readme.
 
 ### Parachain Node
 
-The [`contracts-parachain`][contracts-parachain] node has been configured to be a parachain for Rococo, a testnet for Polkadot and Kusama parachains.
+The [`contracts-rococo`][contracts-parachain] node has been configured to include the Contracts pallet and be a parachain for Rococo, a testnet for Polkadot and Kusama parachains.
 It has been configured as a common good parachain, as such it uses the Rococo relay chain's native token `ROC` instead of defining a token of its own.
 
 ### Default Node from Substrate repository
