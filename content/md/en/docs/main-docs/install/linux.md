@@ -10,7 +10,7 @@ In general, your development environment should include a linker or C-compatible
 
 ## Before you begin
 
-Check the documentation for your operating system for information about the packages that are installed and how to download and install any additional packages you might need. 
+Check the documentation for your operating system for information about the packages that are installed and how to download and install any additional packages you might need.
 For example, if you use Ubuntu, you can use the Ubuntu Advanced Packaging Tool (`apt`) to install the `build-essential` package:
 
 ```bash
@@ -36,113 +36,113 @@ To install the Rust toolchain on Linux:
 1. Check the packages you have installed on the local computer by running an appropriate package management command for your Linux distribution.
 
 1. Add any package dependencies you are missing to your local development environment by running an appropriate package management command for your Linux distribution.
-    
-    For example, on Ubuntu Desktop or Ubuntu Server, you might run a command similar to the following:
-    
-    ```bash
-    sudo apt install --assume-yes git clang curl libssl-dev
-    ```
 
-    Remember that different distributions might use different package managers and bundle packages in different ways. 
-    For example, depending on your installation selections, Ubuntu Desktop and Ubuntu Server might have different packages and different requirements.
-    However, the four packages listed in this command-line example are applicable for many common Linux distributions, including Debian, Linux Mint, MX Linux, and Elementary OS.
+   For example, on Ubuntu Desktop or Ubuntu Server, you might run a command similar to the following:
+
+   ```bash
+   sudo apt install --assume-yes git clang curl libssl-dev
+   ```
+
+   Remember that different distributions might use different package managers and bundle packages in different ways.
+   For example, depending on your installation selections, Ubuntu Desktop and Ubuntu Server might have different packages and different requirements.
+   However, the four packages listed in this command-line example are applicable for many common Linux distributions, including Debian, Linux Mint, MX Linux, and Elementary OS.
 
 1. Download the `rustup` installation program and use it to install Rust by running the following command:
-    
-    ```bash
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    ```
+
+   ```bash
+   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+   ```
 
 1. Follow the prompts displayed to proceed with a default installation.
 
 1. Update your current shell to include Cargo by running the following command:
-    
-    ```bash
-    source $HOME/.cargo/env
-    ```
+
+   ```bash
+   source $HOME/.cargo/env
+   ```
 
 1. Verify your installation by running the following command:
-    
-    ```bash
-    rustc --version
-    ```
+
+   ```bash
+   rustc --version
+   ```
 
 1. Configure the Rust toolchain to default to the latest stable version by running the following commands:
-    
-    ```bash
-    rustup default stable
-    rustup update
-    ```
+
+   ```bash
+   rustup default stable
+   rustup update
+   ```
 
 1. Add the `nightly` release and the `nightly` WebAssembly (wasm) targets to your development environment by running the following commands:
-    
-    ```bash
-    rustup update nightly
-    rustup target add wasm32-unknown-unknown --toolchain nightly
-    ```
+
+   ```bash
+   rustup update nightly
+   rustup target add wasm32-unknown-unknown --toolchain nightly
+   ```
 
 1. Verify the configuration of your development environment by running the following command:
-    
-    ```bash
-    rustup show
-    ```
 
-    The command displays output similar to the following:
+   ```bash
+   rustup show
+   ```
 
-    <pre>
-    Default host: x86_64-unknown-linux-gnu
-    rustup home:  /home/subdocs/.rustup
-    
-    installed toolchains
-    --------------------
-    
-    stable-x86_64-unknown-linux-gnu (default)
-    nightly-x86_64-unknown-linux-gnu
-    
-    active toolchain
-    ----------------
-    
-    stable-x86_64-unknown-linux-gnu (default)
-    rustc 1.58.1 (db9d1b20b 2022-01-20)
-    </pre>
+   The command displays output similar to the following:
+
+   ```
+   Default host: x86_64-unknown-linux-gnu
+   rustup home:  /home/subdocs/.rustup
+
+   installed toolchains
+   --------------------
+
+   stable-x86_64-unknown-linux-gnu (default)
+   nightly-x86_64-unknown-linux-gnu
+
+   active toolchain
+   ----------------
+
+   stable-x86_64-unknown-linux-gnu (default)
+   rustc 1.58.1 (db9d1b20b 2022-01-20)
+   ```
 
 ## Compile a Substrate node
 
 Now that you have Rust installed and the Rust toolchains configured for Substrate development, you are ready to finish setting up your development environment by cloning the Substrate **node template** files and compiling a Substrate node.
 
-The node template provides a working environment that includes all of the most common features you need to build a blockchain without any extraneous modules or tools. 
-To ensure that the node template offers a relatively stable working environment for you to experiment with, the recommended best practice is to clone Substrate node template from the Substrate Developer Hub  repository, rather than from the core Substrate repository.
+The node template provides a working environment that includes all of the most common features you need to build a blockchain without any extraneous modules or tools.
+To ensure that the node template offers a relatively stable working environment for you to experiment with, the recommended best practice is to clone Substrate node template from the Substrate Developer Hub repository, rather than from the core Substrate repository.
 
 To compile the Substrate node template:
 
 1. Clone the node template repository by running the following command:
-    
-    ```bash
-    git clone https://github.com/substrate-developer-hub/substrate-node-template
-    ```
+
+   ```bash
+   git clone https://github.com/substrate-developer-hub/substrate-node-template
+   ```
 
 1. Change to the root of the node template directory by running the following command:
-    
-    ```bash
-    cd substrate-node-template
-    ```
+
+   ```bash
+   cd substrate-node-template
+   ```
 
 1. Switch to the version of the repository that has the `latest` tag by running the following command:
-    
-    ```bash
-    git checkout latest
-    ```
 
-    This command checks out the repository in a detached state.
-    If you want to save your changes, you can create a branch from this state.
+   ```bash
+   git checkout latest
+   ```
+
+   This command checks out the repository in a detached state.
+   If you want to save your changes, you can create a branch from this state.
 
 1. Compile the node template by running the following command:
-    
-    ```bash
-    cargo build --release
-    ```
 
-    Because of the number of packages required, compiling the node can take several minutes.
+   ```bash
+   cargo build --release
+   ```
+
+   Because of the number of packages required, compiling the node can take several minutes.
 
 After the build completes successfully, your local computer is ready for Substrate development activity.
 
@@ -157,12 +157,12 @@ Here are a few additional suggestions for where you can learn more.
 
 #### Tell me
 
-* [Architecture](/main-docs/fundamentals/architecture/)
-* [Networks and blockchains](/main-docs/fundamentals/node-and-network-types/)
-* [Build process](/main-docs/build/build-process)
+- [Architecture](/main-docs/fundamentals/architecture/)
+- [Networks and blockchains](/main-docs/fundamentals/node-and-network-types/)
+- [Build process](/main-docs/build/build-process)
 
 #### Guide me
 
-* [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
-* [Simulate a network](/tutorials/get-started/simulate-network/)
-* [Add trusted validators](/tutorials/get-started/trusted-network/)
+- [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
+- [Simulate a network](/tutorials/get-started/simulate-network/)
+- [Add trusted validators](/tutorials/get-started/trusted-network/)

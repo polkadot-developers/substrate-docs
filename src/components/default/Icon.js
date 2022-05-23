@@ -7,6 +7,7 @@ import closeIcon from '../../images/svg/close-icon.svg';
 import collapse from '../../images/svg/collapse.svg';
 import computer from '../../images/svg/computer.svg';
 import contact from '../../images/svg/contact.svg';
+import copy from '../../images/svg/copy.svg';
 import desktop from '../../images/svg/desktop.svg';
 import docs from '../../images/svg/docs.svg';
 import docsNavIcon from '../../images/svg/docs-nav-icon.svg';
@@ -129,6 +130,7 @@ const iconsMap = {
   grantsDollar: grantsDollar,
   expand: expand,
   collapse: collapse,
+  copy: copy,
   /* ecosystem */
   opportunities: opportunities,
   resources: resources,
