@@ -161,14 +161,6 @@ module.exports = {
             },
           },
           {
-            resolve: `gatsby-remark-prismjs`,
-            options: {
-              aliases: {
-                sh: 'bash',
-              },
-            },
-          },
-          {
             resolve: 'gatsby-remark-custom-blocks',
             options: {
               blocks: {
@@ -191,6 +183,14 @@ module.exports = {
             resolve: 'gatsby-remark-component',
             /* for strict declaration (required to escape default components like <img />) */
             options: { components: ['a', 'img'] },
+          },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              aliases: {
+                sh: 'bash',
+              },
+            },
           },
         ],
       },

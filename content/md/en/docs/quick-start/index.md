@@ -5,19 +5,7 @@ description: Get started with Substrate.
 
 Example tabbed code block: for testing only
 
-<figure class="tabbed-codeblock">
-   <code class="language-bash">
-git clone https://github.com/substrate-developer-hub/substrate-node-template
-   </code>
-   <code class="language-javascript">
-onclick='document.getElementById("demo").innerHTML = "Hello JavaScript!"'
-   </code>
-   <code  class="language-rust">
-fn main() {
-println!("Hello World!");
-}
-   </code>
-</figure>
+<figure class='tabbed'>
 
 [[tabbedCode]]
 | ```javascript
@@ -31,6 +19,31 @@ println!("Hello World!");
 [[tabbedCode]]
 |```text
 | hello hello hello what
+
+</figure>
+
+<figure class="">
+
+[[tabbedCode]]
+| ```javascript
+|onclick='document.getElementById("demo").innerHTML = "Hello JavaScript!"
+|onclick='document.getElementById("demo").innerHTML = "Hello JavaScript!"
+
+[[tabbedCode]]
+|```sh
+| git clone something
+
+[[tabbedCode]]
+|```text
+| hello hello hello what
+
+</figure>
+
+```rust
+fn main() {
+println!("Hello World!");
+}
+```
 
 ```sh
 git clone https://github.com/substrate-developer-hub/substrate-node-template

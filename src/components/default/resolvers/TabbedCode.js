@@ -6,27 +6,32 @@ import { Code } from './Code';
 import { TabSelector } from './TabSelector';
 
 function TabbedCode({ children, className }) {
-  const onlyDivs = Children.filter(children, child => child.type === 'code');
-  //console.log(tabNames);
-  //const OnlyValid = ({ children }) => <div>{onlyValid(children)}</div>;
+  const onlyDivs = Children.filter(children, child => child.type === 'div');
+  //console.log(onlyDivs + className);
   const [selectedTab, setSelectedTab] = useTabs([
     'language-bash',
     'language-javascript',
     'language-rust',
     'language-c',
+    'language-text',
   ]);
-  console.log(onlyDivs);
-  if (className && className.includes('tabbed-code')) {
+  //console.log(onlyDivs);
+  if (className && className.includes('tabbed')) {
     return (
       <>
         <nav className="flex border-b border-gray-300">
           {onlyDivs.map(div => {
-            const languageName = div.props.className.split('-').pop();
+            const languageName = div.props.children[0].props.children[0].props.children[0].props.className
+              .split('-')
+              .pop();
+            console.log(div.props.children[0].props.children[0].props.children[0].props.className);
             return (
               <TabSelector
                 key={div.id}
-                isActive={selectedTab === div.props.className}
-                onClick={() => setSelectedTab(div.props.className)}
+                isActive={selectedTab === div.props.children[0].props.children[0].props.children[0].props.className}
+                onClick={() =>
+                  setSelectedTab(div.props.children[0].props.children[0].props.children[0].props.className)
+                }
               >
                 {languageName.charAt(0).toUpperCase() + languageName.slice(1)}
               </TabSelector>
@@ -37,18 +42,18 @@ function TabbedCode({ children, className }) {
           return (
             <TabPanel
               key={div.key}
-              className={`gatsby-highlight ${div.props.className}`}
-              hidden={selectedTab !== div.props.className}
+              className={`gatsby-highlight ${div.props.children[0].props.children[0].props.className}`}
+              hidden={selectedTab !== div.props.children[0].props.children[0].props.children[0].props.className}
             >
-              <Code className={div.props.className} data-language={div.props.className}>
-                {div.props.children}
+              <Code className={div.props.children[0].props.children[0].props.children[0].props.className}>
+                {div.props.children[0].props.children[0].props.children[0].props.children}
               </Code>
             </TabPanel>
           );
         })}
       </>
     );
-  } else return <code className={className}>{children}</code>;
+  } else return <figure className={className}>{children}</figure>;
 }
 
 export { TabbedCode };
