@@ -34,7 +34,7 @@ const Sidebar = ({ children, currentPath }) => {
                 {isOpen ? (
                   <>
                     <span title="Quick Start">
-                      <Link to="/quick-start/quickstart/">
+                      <Link to="/quick-start/">
                         <Icon
                           name="quickStart"
                           className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white', {
