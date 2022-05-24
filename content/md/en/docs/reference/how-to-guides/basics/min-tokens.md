@@ -1,46 +1,48 @@
 ---
-title: Primitive Token Mint
-description: /how-to-guides/v3/basics/mint-token
+title: Mint primitive tokens
+description: Demonstrates how to create a simple token mint pallet.
+
 keywords:
   - basics
   - beginner
   - runtime
   - tokens
-version: '3.0'
-section: how to guides
-category: basics
 ---
 
-This is a beginner guide intended for new Substrate developers looking to explore ways to create tokens in Substrate.
+This guide demonstrates how you can mint a token by leveraging the primitive capabilities of a [StorageMap](/rustdocs/latest/frame_support/storage/trait.StorageMap.html).
+In this guide, the `StorageMap` primitive uses the [blake2_128_concat](/main-docs/build/runtime-storage#hashing-algorithms) `hasher` to map balances to account IDs.
+This approach is similar to how the [Balances](/rustdocs/latest/pallet_balances/index.html) pallet makes use of it to store to keep track of account balances.
+
+You should note that this guide is only intended to illustrate a simple approach to creating tokens in Substrate.
 This approach _is not_ a recommended best practice.
-Use this guide to learn how to improve upon your runtime logic capabilities and code quality. 
+You should keep in mind the following limitations and assumptions used in this guide:
+
+- **Safety.** The `mint` function takes in an amount to mint which is *not good practice* because it implies that users have unlimited access to writing to storage.
+  Safer approaches include using a `GenesisConfig` or fixing a predetermined maximum value in runtime.
+- **Weights.** This guide uses an arbitrary weight of 10_000 in the code snippets.
+  Learn more about weight configuration in [Calculate transaction weights](/reference/how-to-guides/basics/calc-weights).
+- **Origins.** This guide assumes that the origin will always be the `sudo` user.
+  Origins are a powerful capability in Substrate.
+  Learn more about how they work in [Privileged calls and origins](/main-docs/fundamentals/origins).
+
+
 See the [Examples section](#examples) for practical implementations of this guide.
-s
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description: 'Create a simple token mint pallet.',
-    },
-    {
-      title: 'Use Cases',
-      description: `
+
+## Use cases
+
 Give any account the ability to create a token supply in exchange for native token fee.
-      `,
-    },
-    {
-      title: 'Overview',
-      description: `
-This guide will step you through an effective way to mint a token by leveraging the primitive capabilities that [StorageMap](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) gives us.
-To achieve this, this "primitive" approach uses the [blake2_128_concat](/main-docs/build/runtime-storage#hashing-algorithms) \`hasher\` to map balances to account IDs, similar to how the [Balances](/rustdocs/latest/pallet_balances/index.html) pallet makes use of it to store and keep track of account balances.
-	    `,
-    },
-  ]}
-/>
 
-## Steps
+## Steps preview
 
-### 1. Setup your pallet's `Config` trait.
+1. Set up the `Config` trait.
+1. Declare your `StorageMap` storage item.
+1. Create the `mint` function.
+1. Create the `transfer` function.
+1. Add checks and error handling.
+1. Write to storage.
+1. Add your new pallet to the runtime.
+
+## Set up the Config trait
 
 Using the node template as a starting point, specify the types your pallet depends on and the [`Events`][events-kb] it emits:
 
@@ -57,9 +59,10 @@ pub enum Event<T: Config> {
 }
 ```
 
-### 2. Declare your storage item `StorageMap`.
+## Declare your storage item
 
-This pallet only keeps track of the balance to account ID mapping. Call it `BalanceToAccount`:
+This pallet only keeps track of the balance to account ID mapping. 
+Call it `BalanceToAccount`:
 
 ```rust
 /* --snip-- */
@@ -75,11 +78,10 @@ pub(super) type BalanceToAccount<T: Config> = StorageMap<
 /* --snip-- */
 ```
 
-### 3. Create your pallet’s functions.
+## Create the mint function
 
-We can now bring our attention to creating the intended capabilities of our pallet with the following functions:
-
-1. `mint()`: to issue a token supply from any origin.
+We can now bring our attention to creating the intended capabilities of our pallet.
+Create the `mint()` function to issue a token supply from any origin.
 
    ```rust
    	/* --snip-- */
@@ -106,12 +108,11 @@ We can now bring our attention to creating the intended capabilities of our pall
    	/* --snip-- */
    ```
 
-1. `transfer()`: to allow the minting account to transfer a given balance to another account.
+## Create the transfer function
 
-#### Define transfer variables
+Create the `transfer()` function to allow the minting account to transfer a given balance to another account.
 
-Start with writing out the variables, using `get_balance` to reference to `StorageMap` of balances previously
-declared in storage:
+Start with writing out the variables, using `get_balance` to reference to `StorageMap` of balances previously declared in storage:
 
 ```rust
 pub(super) fn transfer(
@@ -125,7 +126,7 @@ pub(super) fn transfer(
 /* --snip-- */
 ```
 
-#### Verify and add error handling.
+## Add checks and error handling
 
 When performing balance updates, use `checked_sub` and `checked_add` to handle potential errors with overflow:
 
@@ -137,7 +138,7 @@ let updated_to_balance = receiver_balance.checked_add(value).expect("Entire supp
 /* --snip-- */
 ```
 
-#### Write to storage
+## Write to storage
 
 Once the new balances are calculated, write their values to storage and deposit the event to the current block:
 
@@ -154,22 +155,10 @@ Once the new balances are calculated, write their values to storage and deposit 
 
 If `checked_sub()` returns `None`, the operation caused an overflow and throws an error.
 
-### 4. Include your pallet in your runtime
+## Add your pallet to the runtime
 
-Refer to [this guide](../pallet-integration) if you’re not yet familiar with this procedure.
-
-## Further Learning
-
-- **Safety.** The mint function takes in an amount to 'mint' which is *not good practice* because it implies that users have unlimited access to writing to storage.
-  Safer approaches include: using configuring 'GenesisConfig' or fixing a predetermined maximum value in runtime.
-- **Weights.** All the weights were set to 10_000 in the above code snippets.
-  Learn more about weight configuration in this [basic guide on weights](../weights).
-- **Origins.** This guide assumes that the origin will always be the sudo user.
-  Origins are a powerful capability in Substrate.
-  Learn more about how they work in [Privileged calls and origins](/main-docs/fundamentals/origins).
-  `}
-/>
-
+See [Import a pallet](../pallet-integration) if you’re not yet familiar with this procedure.
+  
 ## Examples
 
 - [mint-token](https://github.com/substrate-developer-hub/substrate-how-to-guides/blob/main/example-code/template-node/pallets/mint-token/src/lib.rs) example pallet

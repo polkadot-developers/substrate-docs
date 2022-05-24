@@ -1,13 +1,10 @@
 ---
-title: Configuring Genesis for Balances
-slug: /how-to-guides/v3/basics/genesis
+title: Configure genesis for balances
+description:
 keywords:
   - basics
   - beginner
   - runtime
-version: '3.0'
-section: how to guides
-category: basics
 ---
 
 Genesis configuration defines the initial state for things such as accounts, balances, genesis for custom pallets, and more.

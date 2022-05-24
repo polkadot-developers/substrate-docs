@@ -1,10 +1,7 @@
 ---
 title: Making HTTP Requests
-slug: /how-to-guides/v3/ocw/http-requests
+description:
 keywords: ['off-chain worker', 'ocw', 'http', 'https', 'requests']
-version: '3.0'
-section: how to guides
-category: ocw
 ---
 
 Making HTTP Requests

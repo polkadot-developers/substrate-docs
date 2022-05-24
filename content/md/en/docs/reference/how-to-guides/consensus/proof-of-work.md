@@ -1,45 +1,32 @@
 ---
 title: Configure a chain to use proof-of-work
-slug: /how-to-guides/v3/consensus/pow
+description:
 keywords:
   - node
   - client
   - consensus
   - proof-of-work
-version: '3.0'
-section: how to guides
-category: consensus
 ---
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description:
-        'To understand how link a POW consensus engine to a service client.',
-    },
-    {
-      title: 'Use Cases',
-      description: `- Launching a POW chain.
-- Upgrading a chain from Authority based to POW based.`,
-    },
-    {
-      title: 'Overview',
-      description: `The basic-pow node demonstrates how to wire up a custom consensus engine into the Substrate Service. 
-        It uses a minimal proof of work consensus engine to reach agreement over the blockchain. This guide will 
-        teach us many useful aspects of dealing with consensus and prepare us to understand more advanced consensus 
-        engines in the future.
-        `,
-    },
-  ]}
-/>
+The `basic-pow` node demonstrates how to add a custom consensus engine to a Substrate-based blockchain.
+In this example, the node uses a minimal proof-of-work consensus engine to reach agreement over the blockchain.
+This guide introduces a few core principles for working with consensus engines.
 
-## Steps
+## Use cases
 
-### 1. Make a function that defines a full node using `sc_consensus_pow` and `sc_service`
+- Launch a chain that uses a proof-of-work consensus engine.
+- Upgrade a chain from an authority-based consensus engine to a proof-of-work consensus engine.
 
-In `src/service.rs`, make a function called `new_full1` that defines [`PartialComponents`][partialcomponents-rustdocs] and
-[`PowBlockImport`][powblockimport-rustdocs] :
+## Steps preview
+
+1. Define a full node that uses proof-of-work consensus.
+1. Create an import queue for data providers.
+1. Define the `proposer` and `worker` functions.
+1. Define a light client service.
+
+## Define a full node using sc_consensus_pow and sc_service
+
+In `src/service.rs`, make a function called `new_full1` that defines [`PartialComponents`][partialcomponents-rustdocs] and [`PowBlockImport`][powblockimport-rustdocs]:
 
 ```rust
 let pow_block_import = sc_consensus_pow::PowBlockImport::new(
@@ -64,7 +51,7 @@ let import_queue = sc_consensus_pow::import_queue(
 
 See the [Rust docs][powblockimport-new-rustdocs] on to configure the `pow_block_import` function.
 
-### 2. Create import queue
+## Create an import queue
 
 Define your node's [inherents][inherents-kb] by using [`InherentDataProviders`][inherents-rustdocs] in a function that defines the providers of your POW system:
 
@@ -81,7 +68,7 @@ pub fn build_inherent_data_providers() -> Result<InherentDataProviders, ServiceE
 }
 ```
 
-### 3. Define the `proposer` and `worker`
+## Define the proposer and worker
 
 In the `new_full` function, define `proposer`:
 
@@ -118,7 +105,7 @@ task_manager
     .spawn_blocking("pow", worker_task);
 ```
 
-### 4. Construct the light client's service
+## Define the light client service
 
 The construction of the [light client][lightclient-parity] service is quite similar to the construction of the `new_full` function.
 Follow the pattern from the previous step to create `new_light`.
@@ -129,19 +116,11 @@ Follow the pattern from the previous step to create `new_light`.
 
 ## Resources
 
-#### Rust docs
-
 - [POW Algorithm][pow-rustdocs] trait
 - [`PowBlockimport`][powblockimport-rustdocs]
-
-#### Docs
-
-- [Inherents][inherents-kb]
-
-[partialcomponents-rustdocs]: /rustdocs/latest/sc_service/struct.PartialComponents.html
-[powblockimport-rustdocs]: /rustdocs/latest/sc_consensus_pow/struct.PowBlockImport.html
-[powblockimport-new-rustdocs]: /rustdocs/latest/sc_consensus_pow/struct.PowBlockImport.html#method.new_full
-[inherents-kb]: /v3/concepts/extrinsics#inherents
-[inherents-rustdocs]: /rustdocs/latest/sp_inherents/struct.InherentDataProviders.html
-[lightclient-parity]: https://www.parity.io/what-is-a-light-client/
-[pow-rustdocs]: /rustdocs/latest/sc_consensus_pow/trait.PowAlgorithm.html
+- [partialcomponents-rustdocs](/rustdocs/latest/sc_service/struct.PartialComponents.html)
+- [powblockimport-rustdocs](/rustdocs/latest/sc_consensus_pow/struct.PowBlockImport.html)
+- [powblockimport-new-rustdocs](/rustdocs/latest/sc_consensus_pow/struct.PowBlockImport.html#method.new_full)
+- [inherents-rustdocs](/rustdocs/latest/sp_inherents/struct.InherentDataProviders.html)
+- [lightclient-parity](https://www.parity.io/what-is-a-light-client/)
+- [pow-rustdocs](/rustdocs/latest/sc_consensus_pow/trait.PowAlgorithm.html)
