@@ -99,3 +99,11 @@ Before you begin, verify the following:
    <https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/explorer>
 
 1. Navigate to the Accounts page, and attempt a transfer from some development pre-funded accounts.
+
+## Next steps
+
+🎉**_Congratulations!_**🎉
+
+You now have a operational blockchain and are ready to start learning how to customize it!
+
+To 
