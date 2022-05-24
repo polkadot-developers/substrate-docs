@@ -201,10 +201,3 @@ Refer to [this guide](/reference/how-to-guides/weights/use-benchmark-weights) to
 
 - [Benchmarking in the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/benchmarking.rs)
 - [Weights in the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/weights.rs)
-
-## Related material
-
-#### Docs
-
-- [Benchmarking](/v3/runtime/benchmarking)
-- [Use custom weights from benchmarking](/how-to-guides/v3/weights/use-benchmark-weights)

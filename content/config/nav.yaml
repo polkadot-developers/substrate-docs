@@ -99,12 +99,12 @@ docs:
     - title: Test
       url: /main-docs/test/
       pages:
-        - title: Benchmark
-          url: /main-docs/test/benchmark/
-        - title: Unit testing
+        - title: Unit test
           url: /main-docs/test/unit-testing/
         - title: Debug
           url: /main-docs/test/debug/
+        - title: Benchmark
+          url: /main-docs/test/benchmark/
         - title: Deploy on a testnet
           url: /main-docs/test/deploy-on-testnet/
     #- title: Deploy

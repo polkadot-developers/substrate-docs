@@ -1,5 +1,5 @@
 ---
-title: Basic Pallet Integration
+title: Import a pallet
 description: 
 keywords:
   - basics
@@ -7,15 +7,19 @@ keywords:
   - runtime
 ---
 
-This guide is an extension to the ["Add a Pallet to Your Runtime" tutorial](/tutorials/work-with-pallets/add-a-pallet) and explains how to quickly integrate both local and external pallets in a runtime.
+This guide demonstrates how to quickly integrate both local and external pallets in a runtime.
+For more detailed step-by-step instructions, see [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet).
 
-You will learn how to include a custom internal pallet that implements an event and a call for runtime, and how to include an external pallet from `Crates.io` to a runtime.
+This guide illustrates:
 
-## Import a pallet
+- How to include a custom local pallet that implements an event and a call for the  runtime.
+- How to include an external pallet from `Crates.io` in the runtime.
+
+## Create a local pallet
 
 1. Create a local pallet called `pallet_something`.
 
-   Import this pallet by adding the following to `/runtime/src/lib.rs`:
+1. Import this pallet by adding the following to `/runtime/src/lib.rs`:
 
    ```rust
    // Import your pallet.
@@ -50,14 +54,10 @@ You will learn how to include a custom internal pallet that implements an event 
    );
    ```
 
-> **NOTE:** To add an external pallet, you use a similar method to the one you used with the local pallet, but you must include all of the types your pallet exposes.
-> You must also include the relevant parameter types and constants. For examples of how to declare parameters and constants, see [`pallet_timestamp`][timestamp-frame].
-
 1. Update `/runtime/Cargo.toml`
 
-   **Local pallets**
-
-   In `/runtime/Cargo.toml`, include your pallet as a local dependency in `std` and add `runtime-benchmarks`. For example:
+   In `/runtime/Cargo.toml`, include your pallet as a local dependency in `std` and add `runtime-benchmarks`.
+   For example:
 
    ```toml
    # --snip--
@@ -76,9 +76,13 @@ You will learn how to include a custom internal pallet that implements an event 
    ]
    ```
 
-**External pallets**
+## Import an external pallet
 
-The following is an example of how you would add an external pallet if the pallet is hosted on [crates.parity.io](https://crates.parity.io/):
+To add an external pallet, you use a similar method to the one you used with the local pallet, but you must include all of the types your pallet exposes.
+You must also include the relevant parameter types and constants. 
+For examples of how to declare parameters and constants, see [`pallet_timestamp`][timestamp-frame].
+
+The following is an example of how you would add an external pallet to the  `/runtime/Cargo.toml` dependencies if the pallet is hosted on [crates.parity.io](https://crates.parity.io/):
 
 ```toml
 [dependencies]
@@ -105,8 +109,7 @@ std = [
 - [Mock runtime][mock-runtime]
 - [Timestamp Pallet associated types][timestamp-rustdocs]
 - [FRAME `pallet-timestamp`](https://crates.io/crates/pallet-timestamp)
-
-[mock-runtime]: /main-docs/test/#mock-runtime-environment
-[timestamp-frame]: https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs#L413-L422
-[timestamp-rustdocs]: /rustdocs/latest/pallet_timestamp/pallet/trait.Config.html#associated-types
-[template-frame]: https://github.com/substrate-developer-hub/substrate-node-template/blob/master/pallets/template/src/lib.rs#L1-L107
+- [mock-runtime](/main-docs/test/#mock-runtime-environment)
+- [timestamp-frame](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs#L413-L422)
+- [timestamp-rustdocs](/rustdocs/latest/pallet_timestamp/pallet/trait.Config.html#associated-types)
+- [template-frame](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/pallets/template/src/lib.rs#L1-L107)

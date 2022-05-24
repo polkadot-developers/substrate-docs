@@ -16,7 +16,7 @@ In traditional non-blockchain computing, an application that required randomness
 Applications that run on the blockchain are more tightly constrained because all authorities in the network must agree on any on-chain value, including any randomness data that is injected. 
 Because of this constraint, using real randomness directly is impossible.
 
-Luckily, advancements in cryptographic primitives like [Verifiable Random Functions](https://en.wikipedia.org/wiki/Verifiable_random_function) and the development of multi-party randomness computation allow application that require randomness to still be used in the blockchain.
+Luckily, advancements in cryptographic primitives like [Verifiable Random Functions](https://en.wikipedia.org/wiki/Verifiable_random_function) and the development of multi-party randomness computation allow applications that require randomness to still be used in the blockchain.
 
 ## Substrate's randomness trait
 
@@ -34,7 +34,7 @@ It takes no parameters and gives back a raw piece of randomness.
 Calling this method multiple times in a block will return the same value each time.
 Thus, it is not recommended to use this method directly.
 
-The second method is called random.
+The second method is called `random`.
 It takes a byte-array which is used as a context identifier and returns a result as unique to this context and as independently from other contexts as allowed by the underlying randomness source.
 
 ### Generating randomness
