@@ -174,35 +174,30 @@ Just like you used the Balances pallet as a template for importing the Nicks pal
 
 1. Open the `runtime/src/lib.rs` file in a text editor.
 
-1. Locate the Balances pallet section and note that the implementation consists of two parts:
-
-   - The `parameter_types!` block where constant values are defined.
-
-     ```rust
-     parameter_types! {
-     	// The u128 constant value 500 is aliased to a type named ExistentialDeposit.
-     	pub const ExistentialDeposit: u128 = 500;
-     	// A heuristic that is used for weight estimation.
-     	pub const MaxLocks: u32 = 50;
-     }
-
-     ```
-
-   - The `impl` block where the types and values defined by the `Config` interface are configured.
+2. Locate the Balances pallet section and note that the implementation consists of an `impl` block where the types and values defined by the `Config` interface are configured:
 
      ```rust
      impl pallet_balances::Config for Runtime {
-     	// The previously defined parameter_type is used as a configuration parameter.
-     	type MaxLocks = MaxLocks;
-
+     	// A heuristic that is used for weight estimation.
+     	type MaxLocks = ConstU32<50>;
+      
+      // The maximum number of named reserves that can exist on an account
+     	type MaxReserves = ();
+      
+      // The id type for named reserves.
+     	type ReserveIdentifier = [u8; 8];
+ 
      	// The "Balance" that appears after the equal sign is an alias for the u128 type.
      	type Balance = Balance;
 
+     	// The ubiquitous event type.
+     	type Event = Event;
+
      	// The empty value, (), is used to specify a no-op callback function.
      	type DustRemoval = ();
-
-     	// The previously defined parameter_type is used as a configuration parameter.
-     	type ExistentialDeposit = ExistentialDeposit;
+      
+      // The minimum amount required to keep an account open.
+     	type ExistentialDeposit = ConstU128<500>;
 
      	// The FRAME runtime system is used to track the accounts that hold balances.
      	type AccountStore = System;
@@ -210,9 +205,6 @@ Just like you used the Balances pallet as a template for importing the Nicks pal
      	// Weight information is supplied to the Balances pallet by the node template runtime.
      	// type WeightInfo = (); // old way
      	type WeightInfo = pallet_balances::weights::SubstrateWeight<Runtime>;
-
-     	// The ubiquitous event type.
-     	type Event = Event;
      }
      ```
 
