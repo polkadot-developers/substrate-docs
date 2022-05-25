@@ -181,10 +181,10 @@ Just like you used the Balances pallet as a template for importing the Nicks pal
      	// A heuristic that is used for weight estimation.
      	type MaxLocks = ConstU32<50>;
       
-      // The maximum number of named reserves that can exist on an account
+     	// The maximum number of named reserves that can exist on an account
      	type MaxReserves = ();
       
-      // The id type for named reserves.
+     	// The id type for named reserves.
      	type ReserveIdentifier = [u8; 8];
  
      	// The "Balance" that appears after the equal sign is an alias for the u128 type.
@@ -196,7 +196,7 @@ Just like you used the Balances pallet as a template for importing the Nicks pal
      	// The empty value, (), is used to specify a no-op callback function.
      	type DustRemoval = ();
       
-      // The minimum amount required to keep an account open.
+     	// The minimum amount required to keep an account open.
      	type ExistentialDeposit = ConstU128<500>;
 
      	// The FRAME runtime system is used to track the accounts that hold balances.
