@@ -235,7 +235,7 @@ To implement the nicks pallet in your runtime:
    impl pallet_nicks::Config for Runtime {
    	// The Balances pallet implements the ReservableCurrency trait.
    	// `Balances` is defined in `construct_runtime!` macro. See below.
-   	// https://docs.substrate.io/rustdocs/latest/pallet_balances/index.html#implementations-2
+   	// https://docs.substrate.io/rustdocs/latest/pallet_balances/index.html#implementations-1
    	type Currency = Balances;
 
    	// Use the NickReservationFee from the parameter_types block.
@@ -329,7 +329,7 @@ To start the local Substrate node:
 
    The node-template command-line options specify how you want the running node to operate.
    In this case, the `--dev` option specifies that the node runs in developer mode using the predefined `development` chain specification.
-   By default, this option also deletes all active data—such as keys, the blockchain database, and networking information when you stop the node by pressing Control-c.
+   By default, this option also deletes all active data – such as keys, the blockchain database, and networking information – when you stop the node by pressing Control-C.
    Using the `--dev` option ensures that you have a clean working state any time you stop and restart the node.
 
 1. Verify your node is up and running successfully by reviewing the output displayed in the terminal.
@@ -376,7 +376,7 @@ To set a nickname for an account:
 
    ![Set a name](../../../src/images/tutorials/07-add-a-pallet/set-name.png)
 
-1. Observe the status of the call and the [events](/rustdocs/latest/pallet_nicks/enum.RawEvent.html) emitted by the Nicks pallet.
+1. Observe the status of the call and the [events](/rustdocs/latest/pallet_nicks/pallet/enum.Event.html) emitted by the Nicks pallet.
 
 ### Query information for an account using the Nicks pallet
 
@@ -384,13 +384,13 @@ Next, you can use Query capability to read the value of Alice's nickname from th
 
 To return the information stored for Alice:
 
-1. In the Pallet Interactor component, select **Query**.
+1. In the Pallet Interactor component, select an Interaction Type of **Query**.
 
 1. Select `nicks` from the list of pallets available to query.
 
-1. Select the [`nameOf`](/rustdocs/latest/pallet_nicks/pallet/enum.Call.html#variant.set_name).
+1. Select [`nameOf`]([/rustdocs/latest/pallet_nicks/pallet/enum.Call.html#variant.set_name](https://docs.rs/pallet-nicks/3.0.0/src/pallet_nicks/lib.rs.html#83)) as the callable function.
 
-1. Copy and paste the address for the alice account in the Account field, then click **Query**.
+1. Copy and paste the address for the alice account in the AccountId field, then click **Query**.
 
    ![Read a name](../../../src/images/tutorials/07-add-a-pallet/name-of-alice.png)
 
