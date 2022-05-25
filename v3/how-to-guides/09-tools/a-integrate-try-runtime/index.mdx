@@ -48,11 +48,10 @@ Add the FRAME dependency:
 ```rust
 [dependencies]
 frame-try-runtime = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.22", optional = true }
-try-runtime-cli = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.22", optional = true }
 
 /* --snip-- */
-    std = [
-    /* --snip-- */
+std = [
+     /* --snip-- */
     "frame-try-runtime/std",
 ]
 ```
@@ -70,13 +69,28 @@ try-runtime = [
 #### In `runtime/src/lib.rs`, implement it for your runtime:
 
 ```rust
-#[cfg(feature = "try-runtime")]
-impl frame_try_runtime::TryRuntime<Block> for Runtime {
-	fn on_runtime_upgrade() -> Result<(Weight, Weight), sp_runtime::RuntimeString> {
-		log::info!("try-runtime::on_runtime_upgrade.");
-		let weight = Executive::try_runtime_upgrade()?;
-		Ok((weight, BlockWeights::get().max_block))
-	}
+// Implementation of runtime's apis
+impl_runtime_apis! {
+    /* --snip-- */
+    #[cfg(feature = "try-runtime")]
+    impl frame_try_runtime::TryRuntime<Block> for Runtime {
+        fn on_runtime_upgrade() -> (frame_support::weights::Weight, frame_support::weights::Weight) {
+            log::info!("try-runtime::on_runtime_upgrade.");
+            // NOTE: intentional unwrap: we don't want to propagate the error backwards, and want to
+            // have a backtrace here. If any of the pre/post migration checks fail, we shall stop
+            // right here and right now.
+            let weight = Executive::try_runtime_upgrade().map_err(|err|{
+                log::info!("try-runtime::on_runtime_upgrade failed with: {:?}", err);
+                err
+            }).unwrap();
+            (weight, RuntimeBlockWeights::get().max_block)
+        }
+
+        fn execute_block_no_check(block: Block) -> frame_support::weights::Weight {
+            Executive::execute_block_no_check(block)
+        }
+    }
+    /* --snip-- */
 }
 ```
 
@@ -96,7 +110,6 @@ try-runtime = [
 ]
 
 /* --snip-- */
-frame-try-runtime = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.22", optional = true }
 try-runtime-cli = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.22", optional = true }
 /* --snip-- */
 
@@ -128,11 +141,11 @@ Some(Subcommand::TryRuntime(cmd)) => {
 		// manager to do `async_run`.
 		let registry = config.prometheus_config.as_ref().map(|cfg| &cfg.registry);
 		let task_manager = sc_service::TaskManager::new(
-			config.task_executor.clone(),
+			config.tokio_handle.clone(),
 			registry,
 		).map_err(|e| sc_cli::Error::Service(sc_service::Error::Prometheus(e)))?;
 
-		Ok((cmd.run::<Block, Executor>(config), task_manager))
+		Ok((cmd.run::<Block, service::ExecutorDispatch>(config), task_manager))
 	})
 },
 
