@@ -8,13 +8,13 @@ Example tabbed code block: for testing only
 <figure class='tabbed'>
 
 [[tabbedCode]]
+|```sh
+| git clone something
+
+[[tabbedCode]]
 | ```javascript
 |onclick='document.getElementById("demo").innerHTML = "Hello JavaScript!"
 |onclick='document.getElementById("demo").innerHTML = "Hello JavaScript!"
-
-[[tabbedCode]]
-|```sh
-| git clone something
 
 [[tabbedCode]]
 |```text
@@ -127,9 +127,9 @@ git clone https://github.com/substrate-developer-hub/substrate-node-template
    - look up the account balance using an onClick event
    - display the balance for the account as output.
 
-   This sample [index.html](examples/quickstart/index.html) provides a simple example of how to use JavaScript and HTMLto get an account balance.
+   This sample [index.html](examples/quick-start/index.html) provides a simple example of how to use JavaScript and HTMLto get an account balance.
 
-1. Open the [index.html](examples/quickstart/index.html) file in a web browser.
+1. Open the [index.html](examples/quick-start/index.html) file in a web browser.
 
 1. Copy and paste the SS58 Address for the `alice` account in the input field, then click **Get Balance**.
 

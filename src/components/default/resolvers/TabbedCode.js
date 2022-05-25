@@ -27,7 +27,7 @@ function TabbedCode({ children, className }) {
             //console.log(div.props.children[0].props.children[0].props.children[0].props.className);
             return (
               <TabSelector
-                key={div.id}
+                key={div.props.children[0].props.children[0].props.children[0].id}
                 isActive={selectedTab === div.props.children[0].props.children[0].props.children[0].props.className}
                 onClick={() =>
                   setSelectedTab(div.props.children[0].props.children[0].props.children[0].props.className)

@@ -41,8 +41,8 @@ export default function DocsSinglePage({ data, pageContext }) {
         <MobileNavigation className="hidden" currentPath={pagePath} />
         {/* <DocsSingle collection={collection} /> */}
 
-        <article className="px-4 mb-20 lg:flex lg:mx-auto">
-          <div className="lg:flex-grow">
+        <article className="mb-20 grid grid-cols-12 gap-1">
+          <div className="xl:col-start-2 xl:col-end-9 col-start-2 col-end-12">
             <div className="py-8 flex justify-between items-center">
               <div className="text-sm font-medium text-substrateBlue dark:text-substrateBlue-light mdx-ancho">
                 {pageContext.breadcrumb.crumbs.map(index => (
@@ -65,7 +65,7 @@ export default function DocsSinglePage({ data, pageContext }) {
                 />
               </div>
             </div>
-            <div className="w-screen max-w-full lg:max-w-2xl 2xl:max-w-3xl markdown-body mdx-anchor">
+            <div className="w-screen max-w-full markdown-body mdx-anchor">
               <header>
                 <h1>{title}</h1>
               </header>
@@ -82,7 +82,7 @@ export default function DocsSinglePage({ data, pageContext }) {
               </footer>
             </div>
           </div>
-          <div className="hidden xl:inline-block">
+          <div className="hidden xl:block col-start-10 col-end-12">
             <TableOfContents data={tableOfContents} headings={headings} />
           </div>
         </article>
