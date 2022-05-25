@@ -55,7 +55,7 @@ The following steps describes the entire build process:
 
 **D. Result**
 
-- The runtime crate requires the Wasm blob from the first step and [embeds it](https://github.com/paritytech/substrate/blob/0e6cc5668d9ee8d852a3aa3f85a2ab5fcb4c75a1/bin/node-template/runtime/src/lib.rs#L7) into its compilation result.
+- The runtime crate requires the Wasm blob from the first step and embeds it into its compilation result (notice `include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));` at the top of a node's `runtime/src/lib.rs` file).
 - The final executable binary is `node-template`.
 - The `./target/release/node-template --dev` command initializes a new chain, i.e. generates a new chainspec.
 - The Wasm runtime is put as an item in storage (with the magic key named “:code”).
