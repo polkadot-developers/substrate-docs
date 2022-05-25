@@ -18,7 +18,7 @@ rm -rf /tmp/relay /tmp/parachain
 # Relay Validators with 2 validator chain spec
 ./target/release/polkadot --alice --validator --base-path /tmp/relay/alice --chain ../docs/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json --port 30333 --ws-port 9944
 
-./target/release/polkadot --bob --validator --base-path /tmp/relay/bob --chain ../docs/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/<bootnode_id_here> --port 30334 --ws-port 9945
+./target/release/polkadot --bob --validator --base-path /tmp/relay/bob --chain ../docs/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json --port 30334 --ws-port 9945
 
 # ./target/release/polkadot --charlie --validator --base-path /tmp/relay/charlie --chain ../docs/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json --port 30335 --ws-port 9946
 
@@ -45,7 +45,7 @@ rm -rf /tmp/relay /tmp/parachain
 
 
 # Start Parachain collator, assumes ../docs/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json was updated in docs (working dir for this repo is set as `docs` below, beside the working dirs for polkadot and for the parachain template).
-./target/release/parachain-collator --alice --collator --force-authoring --chain rococo-local-parachain-2000-raw.json --base-path /tmp/parachain/alice --port 40333 --ws-port 8844 -- --execution wasm --chain ../docs/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/<bootnode_id_here> --port 30343 --ws-port 9977
+./target/release/parachain-collator --alice --collator --force-authoring --chain rococo-local-parachain-2000-raw.json --base-path /tmp/parachain/alice --port 40333 --ws-port 8844 -- --execution wasm --chain ../docs/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json --port 30343 --ws-port 9977
 
 # Onboard parathread -> parachain with sudo that charlie reserved (2000)
 
