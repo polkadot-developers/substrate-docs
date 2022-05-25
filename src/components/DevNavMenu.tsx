@@ -450,6 +450,10 @@ const DevNavMenu = {
             title: 'Auctions and Crowdloans',
             link: '/how-to-guides/v3/parachains/auctions-crowdloans/',
           },
+          {
+            title: `Rococo Public Testnet`,
+            link: '/how-to-guides/v3/parachains/rococo',
+          },
         ],
       },
       // 9. Tools
@@ -671,10 +675,6 @@ DevNavMenuTuts.set('cumulusTutorial', [
       //   title: `Launch a Local Parachain Testnet`,
       //   link: '/tutorials/v3/cumulus/polkadot-launch/',
       // },
-      {
-        title: `Rococo Public Testnet`,
-        link: '/tutorials/v3/cumulus/rococo',
-      },
     ],
   },
 ])
