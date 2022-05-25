@@ -9,7 +9,7 @@ This article describes what happens under the hood when building and executing a
 Relevant context:
 
 - Runtimes should always be compressed Wasm binaries for on-chain upgrades and relay chain validation capabilities to function correctly.
-- Read about Substrate's [Architecture](../fundamentals/architecture.md) in order to understand how the client interacts with the runtime.
+- Read about Substrate's [Architecture](/main-docs/fundamentals/architecture) in order to understand how the client interacts with the runtime.
 
 ## Compilation
 
@@ -78,7 +78,7 @@ There really is no need for using any other of the Wasm artifacts.
 
 Once a runtime is built and a chain is launched, the Substrate client proposes which runtime execution environment should be used.
 This is controlled by the execution strategy, which can be configured for the different parts of the blockchain execution process.
-The strategies are listed in the [`ExecutionStrategy` enum](/rustdocs/latest/sp_state_machine/enum.ExecutionStrategy.html):
+The strategies are listed in the [`ExecutionStrategy`](/rustdocs/latest/sp_state_machine/enum.ExecutionStrategy.html) enum:
 
 - `NativeWhenPossible`: Execute with native build (if available, WebAssembly otherwise).
 - `AlwaysWasm`: Only execute with the WebAssembly build.
@@ -86,12 +86,12 @@ The strategies are listed in the [`ExecutionStrategy` enum](/rustdocs/latest/sp_
 - `NativeElseWasm`: Execute with the native build if possible; if it fails, then execute with WebAssembly.
 
 All strategies respect the runtime version, meaning if the native and Wasm runtime versions differ, the Wasm runtime is chosen.
-These are configurable using Substrate's [node template CLI](/content/md/en/docs/reference/command-line-tools/node-template.md).
+These are configurable using Substrate's [node template CLI](/reference/command-line-tools/node-template).
 
 The Wasm representation of the Substrate runtime is considered the canonical runtime and will always be preferred by block authoring nodes.
 Because this Wasm runtime is placed in the blockchain's storage, the network must come to consensus about this binary which can easily be verified for consistency across all syncing nodes.
 
-The native runtime will only be used by the executor when it is chosen as the execution strategy and it is compatible with the requested [runtime version](/main-docs/build/upgrade#runtime-versioning).
+The native runtime will only be used by the executor when it is chosen as the execution strategy and it is compatible with the requested [runtime version](/main-docs/build/upgrade/#runtime-versioning).
 
 ## Build options
 
@@ -99,7 +99,7 @@ It can make sense to compile the Wasm binary only, if for example you are just t
 Usually when performing a runtime upgrade, you want to provide both a native and Wasm binary.
 
 When starting a new chain the initial Wasm binary is a requirement. 
-In production the Wasm runtime comes from the [chain specification](/content/md/en/docs/main-docs/build/chain-spec.md)) of a chain.
+In production the Wasm runtime comes from the [chain specification](/main-docs/build/chain-spec) of a chain.
 However, when starting a chain in developer mode at block 0, it uses the embedded Wasm from the native runtime.
 
 There are several ways to configure a chain to meet your specific requirements:
