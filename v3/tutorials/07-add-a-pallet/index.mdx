@@ -86,11 +86,11 @@ Instead, the features that are compiled for the runtime are controlled by specif
 
 Because the Substrate runtime compiles to both a native Rust binary with standard library functions [`std`](https://doc.rust-lang.org/std/) and a [WebAssembly (Wasm)](https://webassembly.org/) binary that does not include the standard library, the pallet features that get compiled depend on whether you are compiling the Rust binary (`std` features) or the WebAssembly binary (`no-std`). For more information about compiling [`std`](https://doc.rust-lang.org/std/) and [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html) features, see the [Rust Embedded Book](https://docs.rust-embedded.org/book/intro/no-std.html#summary).
 
-The remaining lines specify that Cargo should use the `pallet-nicks` crate from the `paritytech/substrate` repository with the correct _matching_ version of substrate all other crates are using.
+The remainder of the line specifies that Cargo should use the `pallet-nicks` crate from the `paritytech/substrate` repository with the correct _matching_ version of Substrate that all other crates are using.
 
 For an introduction to editing `Cargo.toml` files, see the [Cargo reference documentation](https://doc.rust-lang.org/cargo/reference/index.html).
 
-1. Add the `pallet-nicks` crate to the list of `features` to be included in the `std` feature set by adding the following line `features` section.
+1. Add the `pallet-nicks` crate to the list of `features` to be included in the `std` feature set by adding the following line to the `features` section.
 
    ```toml
    [features]
@@ -99,6 +99,7 @@ For an introduction to editing `Cargo.toml` files, see the [Cargo reference docu
        ...
        'pallet-aura/std',
        'pallet-balances/std',
+       # Add this line
        'pallet-nicks/std',
        ...
    ]
@@ -173,35 +174,30 @@ Just like you used the Balances pallet as a template for importing the Nicks pal
 
 1. Open the `runtime/src/lib.rs` file in a text editor.
 
-1. Locate the Balances pallet section and note that the implementation consists of two parts:
-
-   - The `parameter_types!` block where constant values are defined.
-
-     ```rust
-     parameter_types! {
-     	// The u128 constant value 500 is aliased to a type named ExistentialDeposit.
-     	pub const ExistentialDeposit: u128 = 500;
-     	// A heuristic that is used for weight estimation.
-     	pub const MaxLocks: u32 = 50;
-     }
-
-     ```
-
-   - The `impl` block where the types and values defined by the `Config` interface are configured.
+1. Locate the Balances pallet section and note that the implementation consists of an `impl` block where the types and values defined by the `Config` interface are configured:
 
      ```rust
      impl pallet_balances::Config for Runtime {
-     	// The previously defined parameter_type is used as a configuration parameter.
-     	type MaxLocks = MaxLocks;
-
+     	// A heuristic that is used for weight estimation.
+     	type MaxLocks = ConstU32<50>;
+      
+     	// The maximum number of named reserves that can exist on an account
+     	type MaxReserves = ();
+      
+     	// The id type for named reserves.
+     	type ReserveIdentifier = [u8; 8];
+ 
      	// The "Balance" that appears after the equal sign is an alias for the u128 type.
      	type Balance = Balance;
+
+     	// The ubiquitous event type.
+     	type Event = Event;
 
      	// The empty value, (), is used to specify a no-op callback function.
      	type DustRemoval = ();
 
-     	// The previously defined parameter_type is used as a configuration parameter.
-     	type ExistentialDeposit = ExistentialDeposit;
+     	// The minimum amount required to keep an account open.
+     	type ExistentialDeposit = ConstU128<500>;
 
      	// The FRAME runtime system is used to track the accounts that hold balances.
      	type AccountStore = System;
@@ -209,9 +205,6 @@ Just like you used the Balances pallet as a template for importing the Nicks pal
      	// Weight information is supplied to the Balances pallet by the node template runtime.
      	// type WeightInfo = (); // old way
      	type WeightInfo = pallet_balances::weights::SubstrateWeight<Runtime>;
-
-     	// The ubiquitous event type.
-     	type Event = Event;
      }
      ```
 
@@ -242,7 +235,7 @@ To implement the nicks pallet in your runtime:
    impl pallet_nicks::Config for Runtime {
    	// The Balances pallet implements the ReservableCurrency trait.
    	// `Balances` is defined in `construct_runtime!` macro. See below.
-   	// https://docs.substrate.io/rustdocs/latest/pallet_balances/index.html#implementations-2
+   	// https://docs.substrate.io/rustdocs/latest/pallet_balances/index.html#implementations-1
    	type Currency = Balances;
 
    	// Use the NickReservationFee from the parameter_types block.
@@ -336,7 +329,7 @@ To start the local Substrate node:
 
    The node-template command-line options specify how you want the running node to operate.
    In this case, the `--dev` option specifies that the node runs in developer mode using the predefined `development` chain specification.
-   By default, this option also deletes all active data—such as keys, the blockchain database, and networking information when you stop the node by pressing Control-c.
+   By default, this option also deletes all active data – such as keys, the blockchain database, and networking information – when you stop the node by pressing Control-C.
    Using the `--dev` option ensures that you have a clean working state any time you stop and restart the node.
 
 1. Verify your node is up and running successfully by reviewing the output displayed in the terminal.
@@ -383,7 +376,7 @@ To set a nickname for an account:
 
    ![Set a name](../../../src/images/tutorials/07-add-a-pallet/set-name.png)
 
-1. Observe the status of the call and the [events](/rustdocs/latest/pallet_nicks/enum.RawEvent.html) emitted by the Nicks pallet.
+1. Observe the status of the call and the [events](/rustdocs/latest/pallet_nicks/pallet/enum.Event.html) emitted by the Nicks pallet.
 
 ### Query information for an account using the Nicks pallet
 
@@ -391,13 +384,13 @@ Next, you can use Query capability to read the value of Alice's nickname from th
 
 To return the information stored for Alice:
 
-1. In the Pallet Interactor component, select **Query**.
+1. In the Pallet Interactor component, select an Interaction Type of **Query**.
 
 1. Select `nicks` from the list of pallets available to query.
 
-1. Select the [`nameOf`](/rustdocs/latest/pallet_nicks/pallet/enum.Call.html#variant.set_name).
+1. Select [`nameOf`](/rustdocs/latest/pallet_nicks/pallet/enum.Call.html#variant.set_name) as the callable function.
 
-1. Copy and paste the address for the alice account in the Account field, then click **Query**.
+1. Copy and paste the address for the alice account in the AccountId field, then click **Query**.
 
    ![Read a name](../../../src/images/tutorials/07-add-a-pallet/name-of-alice.png)
 
