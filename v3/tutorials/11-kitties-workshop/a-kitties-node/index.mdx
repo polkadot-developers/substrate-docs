@@ -847,9 +847,9 @@ This is to avoid any possible hash key duplication insertions.
 
 Once our checks have passed, we proceed with updating our storage items by:
 
-1. Making use of [`try_mutate`](/rustdocs/latest/frame_support/storage/trait.StorageMap.html#tymethod.try_mutate) to update the kitty's owner vector.
+1. Making use of [`try_mutate`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html#tymethod.try_mutate) to update the kitty's owner vector.
 2. Using the [`insert`][insert-rustdocs] method provided by Substrate's StorageMap API to store the actual Kitty object and associate it with its `kitty_id`.
-3. Using [`put`](/rustdocs/latest/frame_support/storage/trait.StorageValue.html#tymethod.put) provided by the StorageValue API to store the latest Kitty count.
+3. Using [`put`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html#tymethod.put) provided by the StorageValue API to store the latest Kitty count.
 
 <Message
   type="gray"
@@ -1253,7 +1253,7 @@ pub fn transfer_kitty_to(
 }
 ```
 
-Notice the use of [`#[transactional]`](/rustdocs/latest/frame_support/attr.transactional.html) which we imported at the very beginning of this tutorial.
+Notice the use of [`#[transactional]`](https://paritytech.github.io/substrate/master/frame_support/attr.transactional.html) which we imported at the very beginning of this tutorial.
 It allows us to write dispatchable functions that commit changes to the storage only if the annotated function returns `Ok`.
 Otherwise all changes are discarded.
 
@@ -1279,7 +1279,7 @@ ensure!(T::Currency::free_balance(&buyer) >= bid_price, <Error<T>>::NotEnoughBal
 ```
 
 In a similar vein, we have to verify whether the user has the capacity to receive a Kitty.
-Remember we're using a [`BoundedVec`](/rustdocs/latest/frame_support/storage/bounded_vec/struct.BoundedVec.html) that can only hold a fixed number of Kitties, defined in our pallet's `MaxKittyOwned` constant.
+Remember we're using a [`BoundedVec`](https://paritytech.github.io/substrate/master/frame_support/storage/bounded_vec/struct.BoundedVec.html) that can only hold a fixed number of Kitties, defined in our pallet's `MaxKittyOwned` constant.
 Replace ACTION #7 with:
 
 ```rust
@@ -1441,44 +1441,44 @@ Move on to [Part II](/tutorials/v3/kitties/pt2/) to connect your chain to the fr
 [frame-balances-rustdocs]: https://crates.parity.io/frame_support/traits/tokens/currency/trait.Currency.html
 [polkadotjs-ui]: https://polkadot.js.org/apps/#/explorer
 [rust-u8]: https://doc.rust-lang.org/std/primitive.u8.html
-[currency-frame-rustdocs]: /rustdocs/latest/frame_support/traits/tokens/currency/index.html
-[currency-balances-rustdocs]: /rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html#associatedtype.Balance
-[balances-frame]: /rustdocs/latest/pallet_balances/index.html
-[currency-transfer-rustdocs]: /rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html#tymethod.transfer
+[currency-frame-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/index.html
+[currency-balances-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html#associatedtype.Balance
+[balances-frame]: https://paritytech.github.io/substrate/master/pallet_balances/index.html
+[currency-transfer-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html#tymethod.transfer
 [installation]: /v3/getting-started/installation
 [substrate-node-template]: https://github.com/substrate-developer-hub/substrate-node-template
 [pallets-kb]: /v3/runtime/frame#pallets
 [macros-kb]: /v3/runtime/macros#frame-macros-and-attributes
-[storagevalue-rustdocs]: /rustdocs/latest/frame_support/storage/trait.StorageValue.html
-[storage-api-rustdocs]: /rustdocs/latest/frame_support/storage/index.html
+[storagevalue-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html
+[storage-api-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/storage/index.html
 [template-code]: https://github.com/substrate-developer-hub/substrate-how-to-guides/tree/main/static/code/kitties-tutorial
 [runtime-kb]: /v3/concepts/runtime
 [kickstart-tool]: https://github.com/Keats/kickstart
 [storage-macro-kb]: /v3/runtime/macros#palletstorage
 [default-rustdocs]: https://doc.rust-lang.org/std/default/trait.Default.html
-[randomness-rustdocs]: /rustdocs/latest/frame_support/traits/trait.Randomness.html
-[hash-rustdocs]: /rustdocs/latest/sp_runtime/traits/trait.Hash.html
-[blake2-rustdocs]: /rustdocs/latest/sp_core/hashing/fn.blake2_128.html
-[randomness-collective-flip-frame]: /rustdocs/latest/pallet_randomness_collective_flip/index.html
-[nonce-rustdocs]: /rustdocs/latest/frame_system/struct.AccountInfo.html#structfield.nonce
-[2x64-rustdocs]: /rustdocs/latest/frame_support/struct.Twox64Concat.html
-[prelude-traits-rustdocs]: /rustdocs/latest/sp_std/prelude/index.html#traits
+[randomness-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/traits/trait.Randomness.html
+[hash-rustdocs]: https://paritytech.github.io/substrate/master/sp_runtime/traits/trait.Hash.html
+[blake2-rustdocs]: https://paritytech.github.io/substrate/master/sp_core/hashing/fn.blake2_128.html
+[randomness-collective-flip-frame]: https://paritytech.github.io/substrate/master/pallet_randomness_collective_flip/index.html
+[nonce-rustdocs]: https://paritytech.github.io/substrate/master/frame_system/struct.AccountInfo.html#structfield.nonce
+[2x64-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/struct.Twox64Concat.html
+[prelude-traits-rustdocs]: https://paritytech.github.io/substrate/master/sp_std/prelude/index.html#traits
 [derive-macro-rust]: https://doc.rust-lang.org/reference/procedural-macros.html#derive-macros
 [storage-best-practice-kb]: /v3/runtime/storage#best-practices
 [storage-map-kb]: /v3/runtime/storage/#storage-map
 [storage-value-kb]: /v3/runtime/storage#storage-value
-[currency-frame]: /rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html#associatedtype.Balance
+[currency-frame]: https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html#associatedtype.Balance
 [frame-macros-kb]: /v3/runtime/macros#palletcall
 [txn-fees-kb]: /v3/runtime/weights-and-fees
 [weights-kb]: /v3/concepts/weight
-[contains-key-rustdocs]: /rustdocs/latest/frame_support/storage/trait.StorageMap.html#tymethod.contains_key
-[insert-rustdocs]: /rustdocs/latest/frame_support/storage/trait.StorageMap.html#tymethod.insert
-[storage-value-rustdocs]: /rustdocs/latest/frame_support/storage/types/struct.StorageValue.html#method.put
-[storagemap-rustdocs]: /rustdocs/latest/frame_support/storage/types/struct.StorageMap.html#method.insert
-[events-rustdocs]: /rustdocs/latest/frame_support/attr.pallet.html#event-palletevent-optional
+[contains-key-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html#tymethod.contains_key
+[insert-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html#tymethod.insert
+[storage-value-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.StorageValue.html#method.put
+[storagemap-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.StorageMap.html#method.insert
+[events-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#event-palletevent-optional
 [events-kb]: /v3/runtime/events-and-errors
 [polkadotjsapps]: https://polkadot.js.org/apps/#/explorer
-[dispatchresult-rustdocs]: /rustdocs/latest/frame_support/dispatch/type.DispatchResult.html
+[dispatchresult-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/dispatch/type.DispatchResult.html
 [dispatchable-kb]: /v3/getting-started/glossary#dispatch
 [extrinsics-kb]: /v3/concepts/execution#executing-extrinsics
 [errors-kb]: /v3/runtime/events-and-errors

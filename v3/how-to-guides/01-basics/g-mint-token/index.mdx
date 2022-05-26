@@ -39,8 +39,8 @@ Give any account the ability to create a token supply in exchange for native tok
     {
       title: 'Overview',
       description: `
-This guide will step you through an effective way to mint a token by leveraging the primitive capabilities that [StorageMap](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) gives us.
-To achieve this, this "primitive" approach uses the [blake2_128_concat](/v3/runtime/storage#hashing-algorithms) \`hasher\` to map balances to account IDs, similar to how the [Balances](/rustdocs/latest/pallet_balances/index.html) pallet makes use of it to store and keep track of account balances.
+This guide will step you through an effective way to mint a token by leveraging the primitive capabilities that [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html) gives us.
+To achieve this, this "primitive" approach uses the [blake2_128_concat](/v3/runtime/storage#hashing-algorithms) \`hasher\` to map balances to account IDs, similar to how the [Balances](https://paritytech.github.io/substrate/master/pallet_balances/index.html) pallet makes use of it to store and keep track of account balances.
 	    `,
     },
   ]}
@@ -197,4 +197,4 @@ Refer to [this guide](../pallet-integration) if you’re not yet familiar with t
 - [Deposit event method][deposit-event-rustdocs]
 
 [events-kb]: /v3/runtime/events-and-errors
-[deposit-event-rustdocs]: /rustdocs/latest/frame_system/pallet/struct.Pallet.html#method.deposit_event
+[deposit-event-rustdocs]: https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.deposit_event

@@ -12,8 +12,8 @@ category: pallet design
 ---
 
 This guide shows you how to write a pallet that allows users to lock funds for staking and voting.
-The [`LockableCurrency`](/rustdocs/latest/frame_support/traits/trait.LockableCurrency.html) trait is useful in the context of economic systems that enforce accountability by collateralizing fungible resources.
-You can use the Substrate [staking pallet](/rustdocs/latest/pallet_staking/index.html) to manage locked funds in time-based increments.
+The [`LockableCurrency`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.LockableCurrency.html) trait is useful in the context of economic systems that enforce accountability by collateralizing fungible resources.
+You can use the Substrate [staking pallet](https://paritytech.github.io/substrate/master/pallet_staking/index.html) to manage locked funds in time-based increments.
 
 In this guide, we will implement the `set_lock`, `extend_lock` and `remove_lock` methods in our own custom pallet.
 
@@ -25,7 +25,7 @@ You can use the template pallet in the [node template](https://github.com/substr
 
 ## Declare the necessary dependencies
 
-The methods from [`LockableCurrency`](/rustdocs/latest/frame_support/traits/trait.LockableCurrency.html) require us to import a few traits from `frame_support`.
+The methods from [`LockableCurrency`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.LockableCurrency.html) require us to import a few traits from `frame_support`.
 
 1. Ensure you have the following traits imported in the top section of your pallet:
 
@@ -57,7 +57,7 @@ Defining your custom configuration type will allow your pallet to inherit the me
    	type StakeCurrency: LockableCurrency<Self::AccountId, Moment = Self::BlockNumber>;
    ```
 
-1. Define a type to satisfy the associated type [`Balance`](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html#associatedtype.Balance) from the [`Currency`](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html#) trait we're using:
+1. Define a type to satisfy the associated type [`Balance`](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html#associatedtype.Balance) from the [`Currency`](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html#) trait we're using:
 
    ```rust
    	type BalanceOf<T> =
@@ -164,9 +164,9 @@ The required methods are:
 
 ## Related material
 
-- [Currency trait](/rustdocs/latest/frame_support/traits/trait.Currency.html)
+- [Currency trait](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Currency.html)
 - [LockableCurrency][lockable-rustdocs]
 - [LockIdentifier][lockidentifier-rustdocs]
 
-[lockable-rustdocs]: /rustdocs/latest/frame_support/traits/trait.LockableCurrency.html
-[lockidentifier-rustdocs]: /rustdocs/latest/frame_support/traits/type.LockIdentifier.html
+[lockable-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/traits/trait.LockableCurrency.html
+[lockidentifier-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/traits/type.LockIdentifier.html

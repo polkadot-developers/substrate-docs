@@ -59,12 +59,12 @@ only requires tracking a `(AccountId: u64, Balance: u64)` mapping.
 
 ### Mock runtime storage
 
-The [`sp-io`](/rustdocs/latest/sp_io/index.html) crate exposes a
-[`TestExternalities`](/rustdocs/latest/sp_io/type.TestExternalities.html)
+The [`sp-io`](https://paritytech.github.io/substrate/master/sp_io/index.html) crate exposes a
+[`TestExternalities`](https://paritytech.github.io/substrate/master/sp_io/type.TestExternalities.html)
 implementation frequently used for mocking storage in tests. It is the type alias for an in-memory,
 hashmap-based externalities implementation in
-[`substrate_state_machine`](/rustdocs/latest/sp_state_machine/index.html) referred to as
-[`TestExternalities`](/rustdocs/latest/sp_state_machine/struct.TestExternalities.html).
+[`substrate_state_machine`](https://paritytech.github.io/substrate/master/sp_state_machine/index.html) referred to as
+[`TestExternalities`](https://paritytech.github.io/substrate/master/sp_state_machine/struct.TestExternalities.html).
 
 This example demonstrates defining a struct called `ExtBuilder` to build an instance of
 `TestExternalities`, and setting the block number to 1.
@@ -94,10 +94,10 @@ fn fake_test_example() {
 }
 ```
 
-Custom implementations of [Externalities](/rustdocs/latest/sp_externalities/index.html) allow developers
+Custom implementations of [Externalities](https://paritytech.github.io/substrate/master/sp_externalities/index.html) allow developers
 to construct runtime environments that provide access to features of the outer node. Another example
-of this can be found in [`offchain`](/rustdocs/latest/sp_core/offchain/index.html), which maintains its own
-[Externalities](/rustdocs/latest/sp_core/offchain/trait.Externalities.html) implementation.
+of this can be found in [`offchain`](https://paritytech.github.io/substrate/master/sp_core/offchain/index.html), which maintains its own
+[Externalities](https://paritytech.github.io/substrate/master/sp_core/offchain/trait.Externalities.html) implementation.
 
 #### Genesis config
 
@@ -139,7 +139,7 @@ Account 1 has balance 10, account 2 has balance 20, and so on.
 
 The exact struct of how to define the genesis config of a certain pallet depends on the pallet
 `GenesisConfig` struct definition. For Balances Pallet, as shown
-[in the rustdocs](/rustdocs/latest/pallet_balances/pallet/struct.GenesisConfig.html), it is defined
+[in the rustdocs](https://paritytech.github.io/substrate/master/pallet_balances/pallet/struct.GenesisConfig.html), it is defined
 as:
 
 ```rust
@@ -194,7 +194,7 @@ fn my_runtime_test() {
 
 It can be useful to test that the emitted events conforms to some expectations.
 
-We can access events emitted from the `frame_system` pallet using the [`events()` method](https://docs.substrate.io/rustdocs/latest/frame_system/pallet/struct.Pallet.html#method.events):
+We can access events emitted from the `frame_system` pallet using the [`events()` method](https://docs.substrate.iohttps://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.events):
 
 ```rust
 #[test]

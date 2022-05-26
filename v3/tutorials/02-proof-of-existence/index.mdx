@@ -111,7 +111,7 @@ Therefore, the first step is to remove some files and content from the files in 
    You won't be using the template code in this tutorial.
    However, you can review the template code to see what it provides before you delete it.
 
-1. Replace all contents of `pallets/template/src/lib.rs` with the following skeleton code that includes a few minimal [macros for FRAME V2](https://docs.substrate.io/rustdocs/latest/frame_support/attr.pallet.html):
+1. Replace all contents of `pallets/template/src/lib.rs` with the following skeleton code that includes a few minimal [macros for FRAME V2](https://docs.substrate.iohttps://paritytech.github.io/substrate/master/frame_support/attr.pallet.html):
 
   ```rust
     #![cfg_attr(not(feature = "std"), no_std)]
@@ -247,7 +247,7 @@ To implement the errors for the proof-of-existence pallet, replace the `// TODO:
 
 To add a new proof to the blockchain, the proof-of-existence pallet requires a storage mechanism.
 To address this requirement, you can create a [hash map](https://en.wikipedia.org/wiki/Hash_table) that maps each proof to its owner and records the block number when the proof was made.
-To create this hash map, you can use the FRAME [`StorageMap`](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) trait.
+To create this hash map, you can use the FRAME [`StorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html) trait.
 
 To implement storage for the proof-of-existence pallet, replace the `// TODO: add #[pallet::storage] block` line with the following code block:
 

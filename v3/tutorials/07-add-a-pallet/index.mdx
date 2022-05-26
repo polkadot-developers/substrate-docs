@@ -29,7 +29,7 @@ relevantSkills:
 
 As you saw in the [Create your first Substrate blockchain](/tutorials/v3/create-your-first-substrate-chain) tutorial, the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) provides a working runtime that you can use to start building your own blockchain.
 The node template includes a [runtime](/v3/getting-started/glossary#runtime) that is constructed using [FRAME](/v3/runtime/frame) development framework and a few modules—called **pallets**—to get you started.
-In this tutorial, you'll learn how to add the [Nicks pallet](/rustdocs/latest/pallet_nicks/index.html) to the node template.
+In this tutorial, you'll learn how to add the [Nicks pallet](https://paritytech.github.io/substrate/master/pallet_nicks/index.html) to the node template.
 You can follow similar patterns to add other FRAME pallets to your runtime.
 However, you need to configure each pallet with the specific settings it requires to use it.
 This tutorial illustrates how to configure the settings each pallet requires but not the specific settings that apply to each pallet you decide to add to your runtime.
@@ -136,7 +136,7 @@ Every pallet has a [Rust **trait**](https://doc.rust-lang.org/book/ch10-02-trait
 If you review the comments for the runtime in the [node template](https://github.com/substrate-developer-hub/substrate-node-template), you will see examples of using the `Config` configuration trait to define and tune parameters for each pallet.
 
 Most of the pallet-specific code required to add a pallet is implemented using the `Config` trait.
-To see what you need to implement for the Nicks pallet specifically, see the [`pallet_nicks::Config` documentation](/rustdocs/latest/pallet_nicks/pallet/trait.Config.html) or the definition of the trait itself in [the source code](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs) of the Nicks pallet.
+To see what you need to implement for the Nicks pallet specifically, see the [`pallet_nicks::Config` documentation](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/trait.Config.html) or the definition of the trait itself in [the source code](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs) of the Nicks pallet.
 
 In the source code for the `nicks` pallet, the `Config` trait declares the following types:
 
@@ -210,7 +210,7 @@ Just like you used the Balances pallet as a template for importing the Nicks pal
 
 The `impl pallet_balances::Config` block allows you to configure the types and parameters that are specified by the Balances pallet `Config` trait.
 For example, this `impl` block configures the Balances pallet to use the `u128` type to track balances.
-If you were developing a chain where it was important to optimize storage, you could use any unsigned integer type that was at least 32-bits in size because the [`Balance` type](/rustdocs/latest/pallet_balances/pallet/trait.Config.html#associatedtype.Balance) for the Balances pallet `Config` trait is bound by the [`AtLeast32BitUnsigned` trait](/rustdocs/latest/sp_arithmetic/traits/trait.AtLeast32BitUnsigned.html).
+If you were developing a chain where it was important to optimize storage, you could use any unsigned integer type that was at least 32-bits in size because the [`Balance` type](https://paritytech.github.io/substrate/master/pallet_balances/pallet/trait.Config.html#associatedtype.Balance) for the Balances pallet `Config` trait is bound by the [`AtLeast32BitUnsigned` trait](https://paritytech.github.io/substrate/master/sp_arithmetic/traits/trait.AtLeast32BitUnsigned.html).
 
 ## Implement the Nicks pallet `Config` trait
 
@@ -235,7 +235,7 @@ To implement the nicks pallet in your runtime:
    impl pallet_nicks::Config for Runtime {
    	// The Balances pallet implements the ReservableCurrency trait.
    	// `Balances` is defined in `construct_runtime!` macro. See below.
-   	// https://docs.substrate.io/rustdocs/latest/pallet_balances/index.html#implementations-1
+   	// https://docs.substrate.iohttps://paritytech.github.io/substrate/master/pallet_balances/index.html#implementations-1
    	type Currency = Balances;
 
    	// Use the NickReservationFee from the parameter_types block.
@@ -245,7 +245,7 @@ To implement the nicks pallet in your runtime:
    	type Slashed = ();
 
    	// Configure the FRAME System Root origin as the Nick pallet admin.
-   	// https://docs.substrate.io/rustdocs/latest/frame_system/enum.RawOrigin.html#variant.Root
+   	// https://docs.substrate.iohttps://paritytech.github.io/substrate/master/frame_system/enum.RawOrigin.html#variant.Root
    	type ForceOrigin = frame_system::EnsureRoot<AccountId>;
 
    	// Use the MinNickLength from the parameter_types block.
@@ -262,7 +262,7 @@ To implement the nicks pallet in your runtime:
 1. Identify the types that the Nicks pallet exposes.
 
    You can find a complete list of types in the
-   [`construct_runtime!` macro](/rustdocs/latest/frame_support/macro.construct_runtime.html) documentation.
+   [`construct_runtime!` macro](https://paritytech.github.io/substrate/master/frame_support/macro.construct_runtime.html) documentation.
 
    The [Nicks pallet](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs) uses
    the following types:
@@ -311,7 +311,7 @@ To implement the nicks pallet in your runtime:
 
 ## Start the blockchain node and use the Nicks pallet
 
-After your node compiles, you are ready to start the node that has been enhanced with nickname capabilities from the [Nicks pallet](/rustdocs/latest/pallet_nicks/index.html) and interact with it using the front-end template.
+After your node compiles, you are ready to start the node that has been enhanced with nickname capabilities from the [Nicks pallet](https://paritytech.github.io/substrate/master/pallet_nicks/index.html) and interact with it using the front-end template.
 
 ### Start the local Substrate node
 
@@ -368,7 +368,7 @@ To set a nickname for an account:
 
 1. Select `nicks` from the list of pallets available to call.
 
-1. Select the [`setName` dispatchable](/rustdocs/latest/pallet_nicks/pallet/enum.Call.html#variant.set_name) as the function to call from the `nicks` pallet.
+1. Select the [`setName` dispatchable](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Call.html#variant.set_name) as the function to call from the `nicks` pallet.
 
 1. Type a name that is longer than the `MinNickLength` (8 characters)and no longer than the `MaxNickLength` (32 characters).
 
@@ -376,7 +376,7 @@ To set a nickname for an account:
 
    ![Set a name](../../../src/images/tutorials/07-add-a-pallet/set-name.png)
 
-1. Observe the status of the call and the [events](/rustdocs/latest/pallet_nicks/pallet/enum.Event.html) emitted by the Nicks pallet.
+1. Observe the status of the call and the [events](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Event.html) emitted by the Nicks pallet.
 
 ### Query information for an account using the Nicks pallet
 
@@ -388,7 +388,7 @@ To return the information stored for Alice:
 
 1. Select `nicks` from the list of pallets available to query.
 
-1. Select [`nameOf`](/rustdocs/latest/pallet_nicks/pallet/enum.Call.html#variant.set_name) as the callable function.
+1. Select [`nameOf`](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Call.html#variant.set_name) as the callable function.
 
 1. Copy and paste the address for the alice account in the AccountId field, then click **Query**.
 
@@ -406,13 +406,13 @@ To return the information stored for Alice:
 
 ## Explore more advanced topics
 
-This tutorial uses the `Signed` button to invoke [the `killName` dispatchable](/rustdocs/latest/pallet_nicks/pallet/enum.Call.html#variant.kill_name) function and uses Bob's account ID as the function's argument.
+This tutorial uses the `Signed` button to invoke [the `killName` dispatchable](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Call.html#variant.kill_name) function and uses Bob's account ID as the function's argument.
 The `killName` function must be called by the `ForceOrigin` that was configured with the Nicks pallet's `Config` interface in the previous section.
 You may recall that we configured this to be the FRAME system's `Root` origin.
-The node template's [chain specification](https://github.com/substrate-developer-hub/substrate-node-template/blob/latest/node/src/chain_spec.rs) file is used to configure the [Sudo pallet](/rustdocs/latest/pallet_sudo/index.html) to give Alice access to this origin.
+The node template's [chain specification](https://github.com/substrate-developer-hub/substrate-node-template/blob/latest/node/src/chain_spec.rs) file is used to configure the [Sudo pallet](https://paritytech.github.io/substrate/master/pallet_sudo/index.html) to give Alice access to this origin.
 
 The front-end template makes it easy to use the Sudo pallet to dispatch a call from the `Root` origin - just use the `SUDO` button to invoke the dispatchable.
-Since we just used the `Signed` button as opposed to the `SUDO` button, the function was _dispatched_ by [the `Signed` origin](/rustdocs/latest/frame_system/enum.RawOrigin.html#variant.Signed) associated with Alice's account as opposed to the `Root` origin.
+Since we just used the `Signed` button as opposed to the `SUDO` button, the function was _dispatched_ by [the `Signed` origin](https://paritytech.github.io/substrate/master/frame_system/enum.RawOrigin.html#variant.Signed) associated with Alice's account as opposed to the `Root` origin.
 
 ![`BadOrigin` Error](../../../src/images/tutorials/07-add-a-pallet/kill-name-bad-origin.png)
 
@@ -422,14 +422,14 @@ Now use the `SUDO` button to dispatch the same call with the same parameter.
 
 ![Nicks Pallet Error](../../../src/images/tutorials/07-add-a-pallet/clear-name-error.png)
 
-The Sudo pallet emits a [`Sudid` event](/rustdocs/latest/pallet_sudo/pallet/enum.Event.html#variant.Sudid) to inform network participants that the `Root` origin dispatched a call, however, you will notice that the inner dispatch failed with a [`DispatchError`](/rustdocs/latest/sp_runtime/enum.DispatchError.html) (the Sudo pallet's [`sudo` function](/rustdocs/latest/pallet_sudo/pallet/enum.Call.html#variant.sudo) is the "outer" dispatch).
-In particular, this was an instance of [the `DispatchError::Module` variant](/rustdocs/latest/frame_support/dispatch/enum.DispatchError.html#variant.Module), which reports two pieces of metadata: an `index` number and an `error` number.
+The Sudo pallet emits a [`Sudid` event](https://paritytech.github.io/substrate/master/pallet_sudo/pallet/enum.Event.html#variant.Sudid) to inform network participants that the `Root` origin dispatched a call, however, you will notice that the inner dispatch failed with a [`DispatchError`](https://paritytech.github.io/substrate/master/sp_runtime/enum.DispatchError.html) (the Sudo pallet's [`sudo` function](https://paritytech.github.io/substrate/master/pallet_sudo/pallet/enum.Call.html#variant.sudo) is the "outer" dispatch).
+In particular, this was an instance of [the `DispatchError::Module` variant](https://paritytech.github.io/substrate/master/frame_support/dispatch/enum.DispatchError.html#variant.Module), which reports two pieces of metadata: an `index` number and an `error` number.
 The `index` number relates to the pallet from which the error originated; it corresponds with the _index_ (position) of the pallet within the `construct_runtime!` macro.
 The `error` number corresponds with the index of the relevant variant from that pallet's `Error` enum.
 When using these numbers to find pallet errors, remember that the _first_ position corresponds with index _zero_.
 In the screenshot above, the `index` is `9` (the _tenth_ pallet) and the `error` is `2` (the _third_ error).
 Depending on the position of the Nicks pallet in your `construct_runtime!` macro, you may see a different number for `index`.
-Regardless of the value of `index`, you should see that the `error` value is `2`, which corresponds to the _third_ variant of the Nick's pallet's `Error` enum, [the `Unnamed` variant](/rustdocs/latest/pallet_nicks/enum.Error.html#variant.Unnamed).
+Regardless of the value of `index`, you should see that the `error` value is `2`, which corresponds to the _third_ variant of the Nick's pallet's `Error` enum, [the `Unnamed` variant](https://paritytech.github.io/substrate/master/pallet_nicks/enum.Error.html#variant.Unnamed).
 This shouldn't be a surprise since Bob has not yet reserved a nickname, thus it cannot be cleared!
 
 You should confirm that Alice can use the `SUDO` button to invoke the `killName` dispatchable and forcibly clear the nickname associated with any account (including her own) that actually has a nickname associated with it.
