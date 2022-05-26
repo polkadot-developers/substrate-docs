@@ -1,7 +1,7 @@
 import { graphql } from 'gatsby';
-import moment from 'moment';
 import React from 'react';
 
+import configNav from '../../content/config/nav.yaml';
 import { Link } from '../components/default/Link';
 import Markdown from '../components/default/Markdown';
 import Sidebar from '../components/layout/Sidebar';
@@ -13,6 +13,7 @@ import SEO from '../components/site/SEO';
 import TableOfContents from '../components/site/TableOfContents';
 import EditOnGithubButton from '../components/ui/EditOnGithubButton';
 import Feedback from '../components/ui/Feedback';
+import PreviousNextButtons from '../components/ui/PreviousNextButtons';
 
 export default function DocsSinglePage({ data, pageContext }) {
   const { markdownRemark } = data;
@@ -30,6 +31,52 @@ export default function DocsSinglePage({ data, pageContext }) {
       })
       .join(' ');
   }
+
+  function flatten(obj, parent, res = {}) {
+    for (let key in obj) {
+      let propName = parent ? parent + '_' + key : key;
+      if (typeof obj[key] == 'object') {
+        flatten(obj[key], propName, res);
+      } else {
+        res[propName] = obj[key];
+      }
+    }
+    return res;
+  }
+
+  const nextPrevItemsFlat = flatten(configNav);
+  const nextPrevItems = Object.values(nextPrevItemsFlat);
+  function checkIfValidURLSlug(str) {
+    // Regular expression to check if string is a valid url slug
+    //const regexExp = /^[a-z0-9]+(?:-[a-z0-9]+)*$/g;
+    if (str.startsWith('/') && str.endsWith('/')) {
+      return str;
+    }
+  }
+  const nextPrevSlugs = nextPrevItems.filter(checkIfValidURLSlug);
+  const index = nextPrevSlugs.indexOf(pagePath);
+
+  console.log(nextPrevSlugs);
+  const nextPage = nextPrevSlugs[index + 1];
+  const previousPage = nextPrevSlugs[index - 1];
+
+  //console.log(nextPrevItems);
+
+  console.log('NEXT ===>>> ' + nextPage);
+  console.log('Prev ===>>> ' + previousPage);
+
+  //console.log(nextPrevItems.indexOf(pagePath) !== -1);
+
+  // nextPrevItems.forEach((element, index) => {
+  //   if (element === pagePath) {
+  //     // const prev = element[index - 1];
+  //     // const next = element[index + 1];
+  //     // console.log(element + ' ||| here is the index =>>> ' + index);
+  //     // console.log('PREVIOUS ===>>> ' + prev);
+  //     // console.log('NEXT ===>>> ' + next);
+  //   }
+  // });
+  //console.log(Object.values(nextprevitems));
 
   return (
     <Layout>
@@ -73,10 +120,10 @@ export default function DocsSinglePage({ data, pageContext }) {
                 <Markdown htmlAst={htmlAst} />
               </main>
               <footer>
-                <div className="py-8 text-sm text-gray-400">
-                  Last edit: {moment(gitLogLatestDate).format('MMMM DD, YYYY')}
-                </div>
-                <div className="py-8 text-sm text-gray-400">
+                <div className="py-8 text-sm text-gray-400">Last edit: {gitLogLatestDate}</div>
+                <PreviousNextButtons previous={previousPage} next={nextPage} />
+                <div className="py-12 text-sm text-gray-400">
+                  <hr />
                   <Feedback />
                 </div>
               </footer>

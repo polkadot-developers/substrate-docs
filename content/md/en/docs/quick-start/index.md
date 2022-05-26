@@ -22,6 +22,29 @@ Example tabbed code block: for testing only
 
 </figure>
 
+<figure class='tabbed'>
+
+[[tabbedCode]]
+| ```ubuntu
+| sudo apt install --assume-yes git clang curl libssl-dev
+
+[[tabbedCode]]
+|```arch-linux
+| pacman -Syu --needed --noconfirm curl git clang
+
+[[tabbedCode]]
+|``` fedora
+| sudo dnf update
+| sudo dnf install clang curl git openssl-devel
+
+[[tabbedCode]]
+| ```openSuse
+| sudo zypper install clang curl git openssl-devel llvm-devel libudev-devel
+
+</figure>
+
+[Here's a link yo](/main-docs/fundamentals/blockchain-basics/#blockchain-economics)
+
 All of the Substrate tutorials and how-to guides require you to run a Substrate node in your development environment.
 To provide you with a working environment that includes the most common set of features to build a blockchain, the Substrate Developer Hub repository maintains its own snapshot of the Substrate **node template**.
 
