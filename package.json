@@ -95,5 +95,5 @@
   "resolutions": {
     "minipass": "2.7.0"
   },
-  "packageManager": "yarn@3.0.2"
+  "packageManager": "yarn@3.2.1"
 }
