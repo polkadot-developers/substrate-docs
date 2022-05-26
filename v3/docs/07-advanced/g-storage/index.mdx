@@ -84,7 +84,7 @@ To calculate the key for a simple [Storage Value](/v3/runtime/storage#storage-va
 Storage Value and append to it the TwoX 128 hash of the name of the Storage Value itself. For
 example, the [Sudo](https://paritytech.github.io/substrate/master/pallet_sudo/index.html) pallet exposes a
 Storage Value item named
-[`Key`](https://paritytech.github.io/substrate/master/pallet_sudo/struct.Module.html#method.key):
+[`Key`](https://paritytech.github.io/substrate/master/pallet_sudo/pallet/struct.Pallet.html#method.key):
 
 ```
 twox_128("Sudo")                   = "0x5c0d1176a568c1f92944340dbfed9e9c"

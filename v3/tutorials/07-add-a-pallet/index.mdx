@@ -235,7 +235,7 @@ To implement the nicks pallet in your runtime:
    impl pallet_nicks::Config for Runtime {
    	// The Balances pallet implements the ReservableCurrency trait.
    	// `Balances` is defined in `construct_runtime!` macro. See below.
-   	// https://docs.substrate.iohttps://paritytech.github.io/substrate/master/pallet_balances/index.html#implementations-1
+   	// https://paritytech.github.io/substrate/master/pallet_balances/index.html#implementations-1
    	type Currency = Balances;
 
    	// Use the NickReservationFee from the parameter_types block.
@@ -245,7 +245,7 @@ To implement the nicks pallet in your runtime:
    	type Slashed = ();
 
    	// Configure the FRAME System Root origin as the Nick pallet admin.
-   	// https://docs.substrate.iohttps://paritytech.github.io/substrate/master/frame_system/enum.RawOrigin.html#variant.Root
+   	// https://paritytech.github.io/substrate/master/frame_system/enum.RawOrigin.html#variant.Root
    	type ForceOrigin = frame_system::EnsureRoot<AccountId>;
 
    	// Use the MinNickLength from the parameter_types block.
@@ -429,7 +429,7 @@ The `error` number corresponds with the index of the relevant variant from that 
 When using these numbers to find pallet errors, remember that the _first_ position corresponds with index _zero_.
 In the screenshot above, the `index` is `9` (the _tenth_ pallet) and the `error` is `2` (the _third_ error).
 Depending on the position of the Nicks pallet in your `construct_runtime!` macro, you may see a different number for `index`.
-Regardless of the value of `index`, you should see that the `error` value is `2`, which corresponds to the _third_ variant of the Nick's pallet's `Error` enum, [the `Unnamed` variant](https://paritytech.github.io/substrate/master/pallet_nicks/enum.Error.html#variant.Unnamed).
+Regardless of the value of `index`, you should see that the `error` value is `2`, which corresponds to the _third_ variant of the Nick's pallet's `Error` enum, [the `Unnamed` variant](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Error.html#variant.Unnamed).
 This shouldn't be a surprise since Bob has not yet reserved a nickname, thus it cannot be cleared!
 
 You should confirm that Alice can use the `SUDO` button to invoke the `killName` dispatchable and forcibly clear the nickname associated with any account (including her own) that actually has a nickname associated with it.

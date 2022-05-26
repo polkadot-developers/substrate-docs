@@ -113,10 +113,8 @@ binary representation (`11111` or `0x1F` in hex), shifting it two bits to the le
 encoding that as hex.
 
 The remaining blob encodes
-[the metadata of each pallet](https://paritytech.github.io/substrate/master/frame_metadata/struct.ModuleMetadata.html),
-which will be reviewed below as well as some
-[extrinsic metadata](https://paritytech.github.io/substrate/master/frame_metadata/struct.ExtrinsicMetadata.html), which
-is mostly out of the scope of this document.
+[the metadata of each pallet](https://paritytech.github.io/substrate/master/frame_metadata/index.html),
+which will be reviewed below.
 
 ### Decoded metadata format
 
@@ -258,9 +256,7 @@ pub trait Config: frame_system::Config {
 }
 ```
 
-[Storage metadata](https://paritytech.github.io/substrate/master/frame_metadata/struct.StorageMetadata.html) provides blockchain clients with the information that is required to query
-[the JSON-RPC's storage function](https://paritytech.github.io/substrate/master/sc_rpc/state/struct.StateClient.html#method.storage)
-to get information for a specific storage item.
+Storage metadata provides blockchain clients with the information that is required to query [the JSON-RPC's storage function](https://paritytech.github.io/substrate/master/sc_rpc/state/struct.StateClient.html#method.storage) to get information for a specific storage item.
 
 ##### Dispatchable calls
 
