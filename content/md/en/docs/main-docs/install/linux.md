@@ -43,6 +43,29 @@ To install the Rust toolchain on Linux:
    sudo apt install --assume-yes git clang curl libssl-dev
    ```
 
+   Click the tab titles to see examples for other Linux operating systems:
+
+   <figure class='tabbed'>
+
+   [[tabbedCode]]
+   |```Debian
+   | sudo apt install --assume-yes git clang curl libssl-dev
+
+   [[tabbedCode]]
+   |```arch-linux
+   | pacman -Syu --needed --noconfirm curl git clang
+
+   [[tabbedCode]]
+   | ```fedora
+   | sudo dnf update
+   | sudo dnf install clang curl git openssl-devel
+
+   [[tabbedCode]]
+   | ```opensuse
+   | sudo zypper install clang curl git openssl-devel llvm-devel libudev-devel
+   
+   </figure>
+
    Remember that different distributions might use different package managers and bundle packages in different ways.
    For example, depending on your installation selections, Ubuntu Desktop and Ubuntu Server might have different packages and different requirements.
    However, the four packages listed in this command-line example are applicable for many common Linux distributions, including Debian, Linux Mint, MX Linux, and Elementary OS.

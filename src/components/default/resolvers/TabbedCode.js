@@ -14,6 +14,11 @@ function TabbedCode({ children, className }) {
     'language-rust',
     'language-c',
     'language-text',
+    'language-ubuntu',
+    'language-debian',
+    'language-arch-linux',
+    'language-fedora',
+    'language-opensuse',
   ]);
   //console.log(onlyDivs);
   if (className && className.includes('tabbed')) {
