@@ -6,33 +6,22 @@ keywords:
   - intermediate
   - runtime
 ---
-This guide is based on FRAME v1 macros and will soon be deprecated.
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description: 'Learn how to configure instantiable pallets.',
-    },
-    {
-      title: 'Use Cases',
-      description: `
-  - A token chain hosts two independent cryptocurrencies.
-  - Governance has two (or more) houses which act similarly internally.
-  - A social network chain that maintains different treasuries.
-      `,
-    },
-    {
-      title: 'Overview',
-      description: `
 Instantiable pallets provide separate storage items for a runtime that contains more than one reference to the same pallet.
 This is useful in cases where you want to reuse the logic provided by a single pallet.
 This procedure shows you how to create two instances of the same pallet and how to configure their
 capabilities.
-      `,
-    },
-  ]}
-/>
+This guide is based on FRAME v1 macros and will soon be deprecated.
+
+## Goal
+
+Learn how to configure instantiable pallets.
+
+## Use Cases
+
+- A token chain hosts two independent cryptocurrencies.
+- Governance has two (or more) houses which act similarly internally.
+- A social network chain that maintains different treasuries.
 
 ## Steps
 

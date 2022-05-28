@@ -36,7 +36,7 @@ You will need:
 
 The procedure will be as followed:
 
-- Goto Polkadot-JS Apps parathreads section on the **_correct relay chain_** [here](https://polkadot.js.org/apps/#/parachains/parathreads).
+- Go to Polkadot-JS Apps parathreads section on the **_correct relay chain_** [here](https://polkadot.js.org/apps/#/parachains/parathreads).
 
 - Reserve for the next available para ID.
 
