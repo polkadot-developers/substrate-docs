@@ -16,7 +16,7 @@ function TabbedCode({ children, className }) {
     'language-text',
     'language-ubuntu',
     'language-debian',
-    'language-arch-linux',
+    'language-arch',
     'language-fedora',
     'language-opensuse',
   ]);

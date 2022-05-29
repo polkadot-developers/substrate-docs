@@ -52,7 +52,7 @@ To install the Rust toolchain on Linux:
    | sudo apt install --assume-yes git clang curl libssl-dev
 
    [[tabbedCode]]
-   |```arch-linux
+   |```Arch
    | pacman -Syu --needed --noconfirm curl git clang
 
    [[tabbedCode]]
