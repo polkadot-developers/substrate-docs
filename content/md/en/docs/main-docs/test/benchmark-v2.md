@@ -212,4 +212,3 @@ To get a full list of available options when running benchmarks, run:
 ./target/production/substrate benchmark --help
 ```
 
-License: Apache-2.0
