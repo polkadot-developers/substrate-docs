@@ -56,16 +56,8 @@ export default function DocsSinglePage({ data, pageContext }) {
   const nextPrevSlugs = nextPrevItems.filter(checkIfValidURLSlug);
   const index = nextPrevSlugs.indexOf(pagePath);
 
-  console.log(nextPrevSlugs);
   const nextPage = nextPrevSlugs[index + 1];
   const previousPage = nextPrevSlugs[index - 1];
-
-  //console.log(nextPrevItems);
-
-  console.log('NEXT ===>>> ' + nextPage);
-  console.log('Prev ===>>> ' + previousPage);
-
-  //console.log(nextPrevItems.indexOf(pagePath) !== -1);
 
   // nextPrevItems.forEach((element, index) => {
   //   if (element === pagePath) {
