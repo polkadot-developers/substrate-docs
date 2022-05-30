@@ -8,19 +8,13 @@ import { TabSelector } from './TabSelector';
 function TabbedCode({ children, className }) {
   const onlyDivs = Children.filter(children, child => child.type === 'div');
   //console.log(onlyDivs + className);
-  const [selectedTab, setSelectedTab] = useTabs([
-    'language-bash',
-    'language-javascript',
-    'language-rust',
-    'language-c',
-    'language-text',
-    'language-ubuntu',
-    'language-arch-linux',
-    'language-fedora',
-    'language-opensuse',
-  ]);
   //console.log(onlyDivs);
   if (className && className.includes('tabbed')) {
+    const langArray = [];
+    onlyDivs.map(div => {
+      langArray.push(div.props.children[0].props.children[0].props.children[0].props.className);
+    });
+    const [selectedTab, setSelectedTab] = useTabs(langArray);
     return (
       <>
         <nav className="flex border-b border-gray-300">
@@ -28,7 +22,7 @@ function TabbedCode({ children, className }) {
             const languageName = div.props.children[0].props.children[0].props.children[0].props.className
               .split('-')
               .pop();
-            //console.log(div.props.children[0].props.children[0].props.children[0].props.className);
+
             return (
               <TabSelector
                 key={div.props.children[0].props.children[0].props.children[0].id}
