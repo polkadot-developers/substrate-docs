@@ -27,7 +27,7 @@ Before you begin, verify the following:
   If Rust is installed, this command displays version information for the toolchain and compiler.
 
   If Rust is not installed, the command doesn't return any output.
-  For information about installing Rust, see [Install Rust](https://www.rust-lang.org/tools/install) and [Rust compiler and toolchain](/main-docs/install/rust-builds).
+  For information about installing Rust, see [Install Rust](https://www.rust-lang.org/tools/install) and [Rust toolchain](/main-docs/install/rust-builds).
 
 ## Build the development environment node
 

@@ -189,10 +189,24 @@ reference:
           url: /reference/command-line-tools/memory-profiler/
         - title: node-template
           url: /reference/command-line-tools/node-template/
+        - title: polkadot-launch
+          url: /reference/command-line-tools/polkadot-launch/
+        - title: polkadot-apps
+          url: /reference/command-line-tools/polkadot-apps/
+        - title: sidecar
+          url: /reference/command-line-tools/sidecar/
+        - title: srtool
+          url: /reference/command-line-tools/srtool/
+        - title: sub-flood
+          url: /reference/command-line-tools/sub-flood/
         - title: subkey
           url: /reference/command-line-tools/subkey/
+        - title: subxt
+          url: /reference/command-line-tools/subxt/
         - title: try-runtime
           url: /reference/command-line-tools/try-runtime/
+        - title: tx-wrapper
+          url: /reference/command-line-tools/tx-wrapper/
     - title: FRAME pallets
       url: /reference/frame-pallets/
     - title: Frame macros

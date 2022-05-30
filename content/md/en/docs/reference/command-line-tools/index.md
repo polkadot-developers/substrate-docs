@@ -9,7 +9,7 @@ This section provides reference information for Substrate command-line tools.
 | <div style="width:138px;">Command entry point | Description
 | ------------------- | -----------
 | [archive](/reference/command-line-tools/archive) | Index and store all blocks, state, and transaction data for a Substrate-based chain in a relational SQL database.
-| [memory-profiler]((/reference/command-line-tools/memory-profiler) | Collect information about memory allocation and the behavior of blockchain applications over time.
+| [memory-profiler](/reference/command-line-tools/memory-profiler) | Collect information about memory allocation and the behavior of blockchain applications over time.
 | [node-template](/reference/command-line-tools/node-template) | Start and manage a Substrate node preconfigured with a subset of commonly-used FRAME pallets.
 | [polkadot-launch](https://github.com/paritytech/polkadot-launch) | Launch a local Polkadot test network.
 | [polkadot-apps](https://polkadot.js.org/apps) | Interact with Polkadot or a Substrate node using a browser.
