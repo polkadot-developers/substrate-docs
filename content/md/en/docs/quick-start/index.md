@@ -4,6 +4,7 @@ description: Get started with Substrate.
 ---
 
 All of the Substrate tutorials and how-to guides require you to build and run a Substrate node in your development environment.
+
 To provide you with a working environment that includes the most common set of features to build a blockchain, the Substrate Developer Hub repository maintains its own snapshot of the Substrate **node template**.
 
 The node template includes everything you need to get started without any of the extraneous modules or tools that you might want to add later.
@@ -27,6 +28,7 @@ Before you begin, verify the following:
   If Rust is installed, this command displays version information for the toolchain and compiler.
 
   If Rust is not installed, the command doesn't return any output.
+
   For information about installing Rust, see [Install Rust](https://www.rust-lang.org/tools/install) and [Rust toolchain](/main-docs/install/rust-builds).
 
 ## Build the development environment node

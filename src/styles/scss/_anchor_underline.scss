@@ -51,6 +51,9 @@
   transform-origin: top left;
   transition: transform 0.3s ease;
 }
+.mdx-anchor .primary-button::before  {
+  display: none;
+}
 
 .mdx-anchor a.md-button:hover::before {
   transform: scaleX(0);

@@ -91,7 +91,7 @@ In addition to pallets, FRAME provides services to interact with the runtime thr
 - [FRAME support crate `frame_support`](/rustdocs/latest/frame_support/index.html) is a collection of Rust macros, types, traits, and modules that simplify the development of Substrate pallets.
 
 - [FRAME executive pallet `frame_executive`](/rustdocs/latest/frame_executive/index.html) orchestrates the execution of incoming function calls to the respective
-pallets in the runtime.
+  pallets in the runtime.
 
 The following diagram illustrates how FRAME and its system, support, and executives modules provide services for the runtime environment.
 

@@ -6,7 +6,7 @@ import { Link } from '../default/Link';
 
 export default function PrimaryFixedButton({ children, link, fullWidth = false, onClick, hero = false }) {
   return (
-    <Link to={link}>
+    <Link to={link} className="primary-button">
       <div
         onClick={onClick}
         className={cx('group bg-substrateGreen inline-flex relative rounded-md overflow-hidden', {
