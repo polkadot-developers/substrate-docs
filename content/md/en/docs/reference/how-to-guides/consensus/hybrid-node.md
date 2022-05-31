@@ -4,44 +4,33 @@ description:
 keywords: consensus
 ---
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description:
-        'Provide a GRANPA and PoW consensus engine to a service client.',
-    },
-    {
-      title: 'Use Cases',
-      description: `Customizing the consensus mechanisms of a Substrate chain`,
-    },
-    {
-      title: 'Overview',
-      description: `
-This guide demonstrates how to create a Substrate-based node that employs hybrid consensus, using
-[Sha3 Proof of Work](../pow) to dictate block authoring and the
+This guide demonstrates how to create a Substrate-based node that employs hybrid consensus, using [Sha3 proof of work](../pow) to dictate block authoring and the
 [Grandpa](/rustdocs/latest/sc_finality_grandpa/index.html) finality gadget to provide
-[deterministic finality](/v3/advanced/consensus#finality). The minimal proof
-of work consensus lives entirely outside of the runtime while the grandpa finality obtains its
-authorities from the runtime via the
-[GrandpaAPI](/rustdocs/latest/sp_finality_grandpa/trait.GrandpaApi.html). Read about Substrate's
-[block import pipeline](/v3/runtime/upgrades), to better understand how to make use of this guide.`,
-    },
-  ]}
-/>
-<br />
-Grandpa relies on getting its authority sets from the runtime using the [GrandpaAPI](/rustdocs/latest/sp_finality_grandpa/trait.GrandpaApi.html), so you'll need a runtime
-that provides this API to successfully compile a node implementing this guide.
+[deterministic finality](/main-docs/fundamentals/consensus#finality).
+The minimal proof of work consensus lives entirely outside of the runtime.
 
-## Steps
+The Grandpa finality relies on getting its authority sets from the runtime using the
+[Grandpa API](/rustdocs/latest/sp_finality_grandpa/trait.GrandpaApi.html).
+Therefore, you need a runtime that provides this API to successfully compile a node implementing this guide.
 
-### 1. Configure the Block Import pipeline
+## Use cases
 
-We begin by creating the block import for Grandpa. In addition to the block import itself, we get
-back a `grandpa_link`. This link is a channel over which the block import can communicate with the
-background task that actually casts Grandpa votes. The
-[details of the Grandpa protocol](https://research.web3.foundation/en/latest/polkadot/finality.html)
-are beyond the scope of this guide.
+Customize the consensus mechanisms of a Substrate chain.
+
+## Steps preview
+
+1. Configure the block import pipeline.
+1. Create an import queue.
+1. Spawn the proof-of-work authorship task.
+1. Spawn the Grandpa task.
+
+## Configure the block import pipeline
+
+We begin by creating the block import for Grandpa.
+In addition to the block import itself, we get back a `grandpa_link`. 
+This link is a channel over which the block import can communicate with the
+background task that actually casts Grandpa votes.
+The [details of the Grandpa protocol](https://research.web3.foundation/en/latest/polkadot/finality.html) are beyond the scope of this guide.
 
 In `node/src/service.rs`, create the Grandpa block import:
 
@@ -53,8 +42,8 @@ let (grandpa_block_import, grandpa_link) = sc_finality_grandpa::block_import(
 )?;
 ```
 
-With the grandpa block import created, we can now create the PoW block import. The Pow block import
-is the outer-most layer of the block import onion and it wraps the grandpa block import.
+With the grandpa block import created, we can now create the PoW block import. 
+The Pow block import is the outer-most layer of the block import onion and it wraps the grandpa block import.
 
 ```rust
 let pow_block_import = sc_consensus_pow::PowBlockImport::new(
@@ -68,12 +57,11 @@ let pow_block_import = sc_consensus_pow::PowBlockImport::new(
 );
 ```
 
-### 2. Create import queue
+## Create an import queue
 
-With the block imports setup, we can proceed to create the import queue. We make it using PoW's
-[`import_queue` helper function](/rustdocs/latest/sc_consensus_pow/fn.import_queue.html).
-Notice that it requires the entire block import pipeline which we refer to as `pow_block_import`
-because PoW is the outermost layer.
+With the block imports set up, we can proceed to create the import queue. 
+We make it using PoW's [`import_queue` helper function](/rustdocs/latest/sc_consensus_pow/fn.import_queue.html).
+Notice that it requires the entire block import pipeline which we refer to as `pow_block_import` because PoW is the outermost layer.
 
 ```rust
 let import_queue = sc_consensus_pow::import_queue(
@@ -86,10 +74,9 @@ let import_queue = sc_consensus_pow::import_queue(
 )?;
 ```
 
-### 3. Spawning the PoW Authorship Task
+## Spawn the PoW authorship task
 
-Any node that is acting as an authority, typically called "miners" in the PoW context, must run a
-mining worker that is spawned by the task manager.
+Any node that is acting as an authority, typically called "miners" in the PoW context, must run a mining worker that is spawned by the task manager.
 
 ```rust
 let (_worker, worker_task) = sc_consensus_pow::start_mining_worker(
@@ -113,11 +100,11 @@ task_manager
 	.spawn_blocking("pow", worker_task);
 ```
 
-### 4. Spawning the Grandpa Task
+## Spawn the Grandpa task
 
-Grandpa is _not_ CPU intensive, so we will use a standard `async` worker to listen to and cast
-Grandpa votes. We begin by creating a Grandpa
-[`Config`](/rustdocs/latest/sc_finality_grandpa/struct.Config.html):
+Grandpa is _not_ CPU intensive, so we use a standard `async` worker to listen to and cast
+Grandpa votes. 
+We begin by creating a Grandpa [`Config`](/rustdocs/latest/sc_finality_grandpa/struct.Config.html):
 
 ```rust
 let grandpa_config = sc_finality_grandpa::Config {
@@ -130,8 +117,7 @@ let grandpa_config = sc_finality_grandpa::Config {
 };
 ```
 
-We can then use this config to create an instance of
-[`GrandpaParams`](/rustdocs/latest/sc_finality_grandpa/struct.GrandpaParams.html).
+We can then use this config to create an instance of [`GrandpaParams`](/rustdocs/latest/sc_finality_grandpa/struct.GrandpaParams.html).
 
 ```rust
 let grandpa_config = sc_finality_grandpa::GrandpaParams {
@@ -156,21 +142,14 @@ task_manager.spawn_essential_handle().spawn_blocking(
 
 ## Examples
 
-- [Hybrid Consensus](https://github.com/substrate-developer-hub/recipes/blob/master/nodes/hybrid-consensus/src/service.rs)
+- [Hybrid consensus](https://github.com/substrate-developer-hub/recipes/blob/master/nodes/hybrid-consensus/src/service.rs)
 
 ## Resources
 
-#### Rust docs
-
 - [POW Algorithm][pow-rustdocs] trait
 - [`PowBlockimport`][powblockimport-rustdocs]
-
-#### Docs
-
 - [Inherents][inherents-kb]
-
-[powblockimport-rustdocs]: /rustdocs/latest/sc_consensus_pow/struct.PowBlockImport.html
-[powblockimport-new-rustdocs]: /rustdocs/latest/sc_consensus_pow/struct.PowBlockImport.html#method.new_full
-[inherents-kb]: /v3/concepts/extrinsics/#inherents
-[inherents-rustdocs]: /rustdocs/latest/sp_inherents/struct.InherentDataProviders.html
-[pow-rustdocs]: /rustdocs/latest/sc_consensus_pow/trait.PowAlgorithm.html
+- [powblockimport-rustdocs](/rustdocs/latest/sc_consensus_pow/struct.PowBlockImport.html)
+- [powblockimport-new-rustdocs](/rustdocs/latest/sc_consensus_pow/struct.PowBlockImport.html#method.new_full)
+- [inherents-rustdocs](/rustdocs/latest/sp_inherents/struct.InherentDataProviders.html)
+- [pow-rustdocs](/rustdocs/latest/sc_consensus_pow/trait.PowAlgorithm.html)

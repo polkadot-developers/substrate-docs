@@ -1,12 +1,9 @@
 ---
 title: Using Helper Functions
-slug: /how-to-guides/v3/basics/helper-functions
+description:
 keywords:
   - basics
   - runtime
-version: '3.0'
-section: how to guides
-category: basics
 ---
 
 <Objectives

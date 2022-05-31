@@ -3,49 +3,8 @@ title: Quick start
 description: Get started with Substrate.
 ---
 
-Example tabbed code block: for testing only
+All of the Substrate tutorials and how-to guides require you to build and run a Substrate node in your development environment.
 
-<figure class='tabbed'>
-
-[[tabbedCode]]
-|```sh
-| git clone something
-
-[[tabbedCode]]
-| ```javascript
-|onclick='document.getElementById("demo").innerHTML = "Hello JavaScript!"
-|onclick='document.getElementById("demo").innerHTML = "Hello JavaScript!"
-
-[[tabbedCode]]
-|```text
-| hello hello hello what
-
-</figure>
-
-<figure class='tabbed'>
-
-[[tabbedCode]]
-| ```ubuntu
-| sudo apt install --assume-yes git clang curl libssl-dev
-
-[[tabbedCode]]
-|```arch-linux
-| pacman -Syu --needed --noconfirm curl git clang
-
-[[tabbedCode]]
-|``` fedora
-| sudo dnf update
-| sudo dnf install clang curl git openssl-devel
-
-[[tabbedCode]]
-| ```openSuse
-| sudo zypper install clang curl git openssl-devel llvm-devel libudev-devel
-
-</figure>
-
-[Here's a link yo](/main-docs/fundamentals/blockchain-basics/#blockchain-economics)
-
-All of the Substrate tutorials and how-to guides require you to run a Substrate node in your development environment.
 To provide you with a working environment that includes the most common set of features to build a blockchain, the Substrate Developer Hub repository maintains its own snapshot of the Substrate **node template**.
 
 The node template includes everything you need to get started without any of the extraneous modules or tools that you might want to add later.
@@ -69,15 +28,16 @@ Before you begin, verify the following:
   If Rust is installed, this command displays version information for the toolchain and compiler.
 
   If Rust is not installed, the command doesn't return any output.
-  For information about installing Rust, see [Install Rust](https://www.rust-lang.org/tools/install) and [Rust compiler and toolchain](../03-install/rust-builds.md).
+
+  For information about installing Rust, see [Install Rust](https://www.rust-lang.org/tools/install) and [Rust toolchain](/main-docs/install/rust-builds).
 
 ## Build the development environment node
 
 1. Clone the node template repository using the `latest` branch by running the following command:
 
-```bash
-git clone https://github.com/substrate-developer-hub/substrate-node-template
-```
+   ```bash
+   git clone https://github.com/substrate-developer-hub/substrate-node-template
+   ```
 
 1. Change to the root of the cloned directory by running the following command:
 
@@ -150,9 +110,9 @@ git clone https://github.com/substrate-developer-hub/substrate-node-template
    - look up the account balance using an onClick event
    - display the balance for the account as output.
 
-   This sample [index.html](examples/quick-start/index.html) provides a simple example of how to use JavaScript and HTMLto get an account balance.
+   This sample [index.html](examples/quickstart/index.html) provides a simple example of how to use JavaScript and HTMLto get an account balance.
 
-1. Open the [index.html](examples/quick-start/index.html) file in a web browser.
+1. Open the [index.html](examples/quickstart/index.html) file in a web browser.
 
 1. Copy and paste the SS58 Address for the `alice` account in the input field, then click **Get Balance**.
 

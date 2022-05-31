@@ -373,9 +373,8 @@ To implement this logic in the proof-of-existence pallet:
    cargo check -p node-template-runtime
    ```
 
-There is a full Node Template solution [here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/proof-of-existence) to use as a reference if you're stuck.
-Check the [commit diff from the base template](https://github.com/substrate-developer-hub/substrate-node-template/commit/773d72752f3598e5d405b48c6f716f4153c95070#diff-f191d0eb0afa874a64fb9be550a275f957e220b9076c87d4085c2797ca4e310c) for the exact changes.
-/>
+You can refer to the node template [solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/proof-of-existence) if you get stuck.
+You can also check the [commit diff](https://github.com/substrate-developer-hub/substrate-node-template/commit/773d72752f3598e5d405b48c6f716f4153c95070#diff-f191d0eb0afa874a64fb9be550a275f957e220b9076c87d4085c2797ca4e310c) to see the exact changes from the base template.
 
 ## Build the runtime with your new pallet
 

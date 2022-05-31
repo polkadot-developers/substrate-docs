@@ -198,7 +198,7 @@ Substrate comes with the following APIs to interact with a node:
 Querying a Substrate node can either be done by using a Hypertext Transfer Protocol (HTTP) or WebSocket (WS) based JSON-RPC client.
 The main advantage of WS (used in most applications) is that a single connection can be reused for many messages to and from a node, whereas a typical HTTP connection allows only for a single message from, and then response to the client at a time.
 For this reason, if you want to subscribe to some RPC endpoint that could lead to multiple messages being returned to the client, you must use a websocket connection and not an HTTP one.
-Connecting via HTTP is commonly used for fetching data in off-chain workers-learn more about that [here]().
+Connecting via HTTP is commonly used for fetching data in off-chain workers-learn more about that in [Offchain operations](/main-docs/fundamentals/offchain-operations).
 
 An alternative (and still experimental) way to connect to a Substrate node is by using `Substrate Connect`, which allows applications to spawn their own light clients and connect directly to the exposed JSON-RPC end-point.
 These applications would rely on in-browser local memory to establish a connection with the light client.
@@ -207,14 +207,14 @@ These applications would rely on in-browser local memory to establish a connecti
 
 Parity maintains the following libraries built on top of the [JSON-RPC API](https://github.com/paritytech/jsonrpc) for interacting with a Substrate node:
 
-- [subxt](./libraries#subxt): provides a way to create an interface for static front-ends built for specific chains.
-- [Polkadot JS API](./libraries#polkadot-js): provides a library to build dynamic interfaces for any Substrate built blockchain.
-- [Substrate Connect](./libraries#substrate-connect): provides a library and a browser extension to build applications that connect directly with an in-browser light client created for its target chain.
+- [subxt](https://github.com/paritytech/subxt) provides a way to create an interface for static front-ends built for specific chains.
+- [Polkadot JS API](https://polkadot.js.org/) provides a library to build dynamic interfaces for any Substrate built blockchain.
+- [Substrate Connect](https://github.com/paritytech/substrate-connect) provides a library and a browser extension to build applications that connect directly with an in-browser light client created for its target chain.
   As a library that uses the Polkadot JS API, Connect is useful for applications that need to connect to multiple chains, providing end users with a single experience when interacting with multiple chains for the same app.
 
-## Learn more
+## Where to go next
 
-- Learn how a transaction is formatted in Susbtrate
-- Launch a front-end app using Substrate's front-end template
-- Use a [QR code metadata generation tool](https://github.com/paritytech/metadata-portal) for offline signing devices
-- Decode a Substrate node with backwards-compatible metadata with [desub](https://github.com/paritytech/desub)
+- [Substrate Connect](https://github.com/paritytech/substrate-connect)
+- [Install the front-end template](/tutorials/get-started/build-local-blockchain/#install-the-front-end-template)
+- [Generate a metadata QR code](https://github.com/paritytech/metadata-portal)
+- [Get backwards-compatible metadata (desub)](https://github.com/paritytech/desub).

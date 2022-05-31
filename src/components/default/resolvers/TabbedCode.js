@@ -7,7 +7,6 @@ import { TabSelector } from './TabSelector';
 
 function TabbedCode({ children, className }) {
   const onlyDivs = Children.filter(children, child => child.type === 'div');
-  //console.log(onlyDivs + className);
   //console.log(onlyDivs);
   if (className && className.includes('tabbed')) {
     const langArray = [];

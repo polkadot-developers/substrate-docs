@@ -13,7 +13,7 @@ At the most basic level, every blockchain is essentially a ledger or record of e
 In Substrate-based chains, these changes to state are recorded in the runtime.
 Because the runtime handles this operation, the runtime is sometimes described as providing the [state transition function](/reference/glossary#state-transition-function-stf).
 
-Because state transitions occur in the runtime, the runtime is where you define the **storage items** that represent the blockchain [state](/reference/glossary#state) and the [functions](/main-docs/fundamentals/extrinsics) that allow blockchain users to make changes to this state.
+Because state transitions occur in the runtime, the runtime is where you define the **storage items** that represent the blockchain [state](/reference/glossary#state) and the [transactions](/main-docs/fundamentals/transaction-types) that allow blockchain users to make changes to this state.
 
 ![State and functions in the runtime](/media/images/docs/main-docs/state-transition-function.png)
 
@@ -29,7 +29,7 @@ The runtime API facilitates this kind of communication between the outer node an
 In Substrate, the `sp_api` crate provides an interface to implement a runtime API.
 It is designed to give you flexibility in defining your own custom interfaces using the [`impl_runtime_apis`](/rustdocs/latest/sp_api/macro.impl_runtime_apis.html)
 macro.
-However, every runtime must implement the [`Core`](/rustdocs/latest/sp_api/trait.Core.html) and [`Metadata`](/rustdocs/latest/sp_api/trait.Metadata.html) interfacess.
+However, every runtime must implement the [`Core`](/rustdocs/latest/sp_api/trait.Core.html) and [`Metadata`](/rustdocs/latest/sp_api/trait.Metadata.html) interfaces.
 In addition to these required interfaces, most Substrate nodes—like the node template—implement the following runtime interfaces:
 
 - [`BlockBuilder`](/rustdocs/latest/sp_block_builder/trait.BlockBuilder.html) for the functionality required to build a block.
@@ -176,7 +176,7 @@ As you start to design and build your custom runtime, you'll learn more about FR
 Now that you are familiar with the basics of Substrate runtime development and working with pallets, explore the following topics and tutorials to learn more.
 
 - [Frame pallets](/reference/frame-pallets/)
-- [Add a module to the runtime](/tutorials/work-with-pallets/add-a-pallet).
+- [Add a module to the runtime](/tutorials/work-with-pallets/add-a-pallet)
 - [Rust for Substrate](/main-docs/fundamentals/rust-basics/)
 - [Macro reference](/reference/frame-macros/)
 - [Create a custom pallet using macros](/tutorials/work-with-pallets/custom-pallet/)
