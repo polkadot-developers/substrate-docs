@@ -7,17 +7,7 @@ keywords:
   - transactions
 ---
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description: `Learn how to save data that has been handled by an off-chain worker using signed and unsigned transactions.
-    To do so, a transaction must be sent on-chain from off-chain workers.`,
-    },
-  ]}
-/>
-
-## Overview
+This guide will teach you how to save data that has been handled by an off-chain worker using signed and unsigned transactions.
 
 You cannot save data processed by off-chain workers directly to on-chain storage.
 To store any data from an off-chain worker on-chain, you must create a transaction that sends the data from the off-chain worker to the on-chain storage system.
@@ -146,6 +136,8 @@ For example:
    	Ok(())
    }
    ```
+
+## Give you pallet the ability to make transactions
 
 1. Implement the `CreateSignedTransaction` trait in the runtime.
 

@@ -7,20 +7,7 @@ keywords:
   - indexing
 ---
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description: `Having on-chain extrinsics able to write data to node local storage.`,
-    },
-    {
-      title: 'Use Cases',
-      description: `Passing data from on-chain extrinsics to off-chain workers without writing to on-chain storage.`,
-    },
-  ]}
-/>
-
-## Overview
+This guide will step you through how to pass data from an extrinsic to an off-chain worker without writing to storage.
 
 Occasionally on-chain extrinsics need to pass data to off-chain workers with predictable write behavior.
 This data could be written to on-chain storage for off-chain workers to read, but this could potentially incur a huge cost to the blockchain.
@@ -36,12 +23,10 @@ Notice that the same extrinsic could be run multiple times when there are forked
 The consequence is that in case non-unique keys are used, the data might be overwritten by different forked blocks and the content in the local storage will be different between nodes.
 So developers should be careful in forming the right indexing key to prevent potential overwrites.
 
-## Steps
+Note: In order to see the off-chain indexing feature in action, run your Substrate node with the off-chain indexing flag _ON_.
+For example: `./target/release/substrate-node --enable-offchain-indexing true`
 
-> **Note:**
->
-> In order to see the off-chain indexing feature in action, run your Substrate node with the off-chain indexing flag _ON_.
-> For example: `./target/release/substrate-node --enable-offchain-indexing true`
+## Steps
 
 1. Create a unique key used for indexing.
 

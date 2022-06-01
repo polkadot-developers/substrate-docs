@@ -5,32 +5,9 @@ description:
 
 In this part of the workshop, we'll connect a parachain to our relay chain and add additional nodes.
 
-<TutorialObjective
-data={{
-    textLineOne: '1. Launching a Parachain',
-    url: '#launching-a-parachain',
-  }}
-/>
-<TutorialObjective
-data={{
-    textLineOne: '2. Parachain Registration',
-    url: '#parachain-registration',
-  }}
-/>
-<TutorialObjective
-data={{
-    textLineOne: '3. Interact with a Parachain',
-    url: '#interact-with-a-parachain',
-  }}
-/>
-<TutorialObjective
-data={{
-    textLineOne: '4. Connecting Additional Parachain Nodes',
-    url: '#connecting-additional-parachain-nodes',
-  }}
-/>
+## Tutorial objectives
 
-## Learning outcomes
+By completing this tutorial, you will accomplish the following objectives:
 
 - Register a para ID
 - Initialize a parachain
@@ -38,7 +15,6 @@ data={{
 - Connect additional parachain nodes
 
 ## Launching a parachain
-
 ### Reserve a para ID
 
 To connect to any relay chain, you must first reserve a para ID for your parachain.

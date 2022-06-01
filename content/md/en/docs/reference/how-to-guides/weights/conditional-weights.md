@@ -13,7 +13,7 @@ But Substrate also allow us to apply a totally different weight function based o
 We will walk through an example in this guide.
 Once defined, it can be used directly in your pallet, written as such:
 
-#[pallet::weight(Conditional(\<your condition\>)
+`#[pallet::weight(Conditional(\<your condition\>)`
 
 ## Objectives
 
@@ -25,10 +25,7 @@ Here are the different traits we'll be implementing:
   - [\`WeighData\`](/rustdocs/latest/frame_support/weights/trait.WeighData.html#impl-WeighData<T>-for-(Weight%2C%20DispatchClass%2C%20Pays)): Weigh the data in a function. 
     \`pallet::weight\` expects whatever implements \`WeighData<T>\` to replace \`T\` with a tuple of the dispatch arguments.
   - [\`PaysFee\`](rustdocs/latest/frame_support/weights/trait.PaysFee.html): Designate whether the dispatch pays a fee or not.
-  - [\`ClassifyDispatch\`](/rustdocs//latest/frame_support/weights/trait.ClassifyDispatch.html): A way to tell the runtime about the type of dispatch being made.`,
-    },
-  ]}
-/>
+  - [\`ClassifyDispatch\`](/rustdocs//latest/frame_support/weights/trait.ClassifyDispatch.html): A way to tell the runtime about the type of dispatch being made.
 
 ## Steps
 

@@ -4,27 +4,12 @@ description:
 keywords: ['off-chain worker', 'ocw', 'http', 'https', 'requests']
 ---
 
-Making HTTP Requests
-
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description: `Send HTTP requests offchain.`,
-    },
-    {
-      title: 'Use Cases',
-      description: `GET data from offchain, or POST data offchain.`,
-    },
-  ]}
-/>
-
-## Overview
+This guide steps through making an HTTP request using an offchain workeR, to GET or POST data offchain.
 
 Off-chain workers (**OCW** for short) were introduced to extend oracle-like capabilities for Substrate blockchains.
 Because a blockchain does not have access to data outside its own network, oracles are a useful tool to enable interactions between on and off-chain worlds.
 
-In this guide we will look through retrieving the price of bitcoin from the `cryptocompare` api as well as submitting data via an OCW API.
+In this guide we will look through retrieving the price of bitcoin from the `cryptocompare` API as well as submitting data via an OCW API.
 
 Remember that although Rust provides various libraries for issuing HTTP requests, an OCW runs in an [no-std](https://docs.rust-embedded.org/book/intro/no-std.html) environment.
 Luckily, Substrate provides us with a few `no_std` libraries we can use to issue HTTP requests to an API.
@@ -37,28 +22,28 @@ The Substrate HTTP library supports the following methods:
 - PATCH
 - DELETE
 
-## Steps
+## Set a deadline and instantiate an HTTP request
 
-1. Create a deadline of 2 seconds
+1. Create a deadline of 2 seconds.
+
+   We want to keep the offchain worker execution time reasonable, so we set a hard-coded deadline to 2s to complete the external call.
+   You can also wait indefinitely for the response, however you may still get a timeout coming from the host machine.
 
    ```rust
-   // We want to keep the offchain worker execution time reasonable, so we set a hard-coded
-   // deadline to 2s to complete the external call.
-   // You can also wait indefinitely for the response, however you may still get a timeout
-   // coming from the host machine.
    let deadline = sp_io::offchain::timestamp().add(Duration::from_millis(2_000));
    ```
 
-1. Initiate an external HTTP GET request
+1. Initiate an external HTTP GET request.
 
    ```rust
-   // Initiate an external HTTP GET request.
    let request = http::Request::get("https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD");
    let pending = request.deadline(deadline).send().map_err(|_| http::Error::IoError)?;
    let response = pending.try_wait(deadline).map_err(|_| http::Error::DeadlineReached)??;
    ```
 
-1. Check the response
+## Read and submit the response
+
+1. First, you must check the response.
 
    ```rust
    // Let's check the status code before we proceed to reading the response.
@@ -68,7 +53,7 @@ The Substrate HTTP library supports the following methods:
    }
    ```
 
-1. Read the response
+1. Read the response.
 
    ```rust
    let body = response.body().collect::<Vec<u8>>();
@@ -79,7 +64,7 @@ The Substrate HTTP library supports the following methods:
    })?;
    ```
 
-1. Submit data to an API via a POST request
+1. Now, here's how you can submit data to an API via a POST request.
 
    ```rust
     // Send a POST request

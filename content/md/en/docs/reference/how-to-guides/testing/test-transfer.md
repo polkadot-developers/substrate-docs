@@ -7,28 +7,10 @@ keywords:
   - beginner
 ---
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description:
-        'Learn how to write tests and improve the correctness of a `transfer` function.',
-    },
-    {
-      title: 'Use Cases',
-      description: `Testing a custom transfer function.`,
-    },
-    {
-      title: 'Overview',
-      description: `Testing each function is an important part of developing pallets for production.
-      This guide steps you through best practices for writing test cases for a basic \`transfer\` function.`,
-    },
-  ]}
-/>
+Testing each function is an important part of developing pallets for production.
+This guide steps you through best practices for writing test cases for a basic `transfer` function.
 
-## Steps
-
-### 1. Outline the `transfer` function
+## Outline the `transfer` function
 
 A transfer function has two key elements: subtracting a balance from an account and adding that
 balance to another account.
@@ -55,7 +37,7 @@ pub (super) fn transfer(
 }
 ```
 
-### 2. Check that the sender has enough balance
+## Check that the sender has enough balance
 
 The first thing to verify, is whether the sender has enough balance.
 In a separate `tests.rs` file, write out this first test case:
@@ -75,7 +57,7 @@ fn transfer_works() {
     asset_noop!(RewardCoin::transfer(Origin::signed(2), 3, 50), Error::<T>::InsufficientBalance);
 ```
 
-#### Configure error handling
+### Configure error handling
 
 To implement some error check, replace `mutate` with `try_mutate` to use `ensure!`.
 This will check whether _bal is greater or equal to amount_ and throw an error message if not:
@@ -90,7 +72,7 @@ Accounts::<T>::try_mutate(&sender, |bal| {
 
 Run `cargo test` from your pallet's directory.
 
-### 3. Check that sending account doesn't go below minimum balance
+## Check that sending account doesn't go below minimum balance
 
 Inside your `transfer_works` function:
 
@@ -98,7 +80,7 @@ Inside your `transfer_works` function:
 assert_noop!(RewardCoin::transfer(Origin::signed(2), 3, 50), Error::<Test>::InsufficientBalance);
 ```
 
-### 4. Check that both tests work together
+## Check that both tests work together
 
 Use `#[transactional]` to generate a wrapper around both checks:
 
@@ -108,7 +90,7 @@ pub(super) fn transfer(
 /*--snip--*/
 ```
 
-### 5. Handle dust accounts
+## Handle dust accounts
 
 Make sure that sending and receiving accounts aren't dust accounts. Use `T::MinBalance::get()`:
 
@@ -124,8 +106,6 @@ ensure!(new_bal >= T::MinBalance::get(), Error::<T>::BelowMinBalance);
 - Tests in the [`reward-coin` example pallet](https://github.com/substrate-developer-hub/substrate-how-to-guides/blob/main/example-code/template-node/pallets/reward-coin/src/tests.rs).
 
 ## Resources
-
-#### Rust docs
 
 - [`assert_ok!`](/rustdocs/latest/frame_support/macro.assert_ok.html)
 - [`assert_noop!`](/rustdocs/latest/frame_support/macro.assert_noop.html)

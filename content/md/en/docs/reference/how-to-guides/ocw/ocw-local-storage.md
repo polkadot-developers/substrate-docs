@@ -4,20 +4,7 @@ description:
 keywords: ['off-chain worker', 'ocw', 'local', 'storage']
 ---
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description: `Store data crunched in off-chain workers to local node storage that doesn't require consensus among the whole blockchain network.`,
-    },
-    {
-      title: 'Use Cases',
-      description: `Save data from off-chain workers for future access, but the data may not be appropriate to be saved on-chain.`,
-    },
-  ]}
-/>
-
-## Overview
+This guide will teach you how to use an off-chain worker to save retrieved data in local storage for future access.
 
 In the last section, we mentioned that off-chain workers (**OCW** for short) cannot modify the blockchain state directly, so they have to submit transactions to save their computed results back on-chain.
 Nonetheless there are also times when the data is not suitable to be saved on-chain yet still needs to be stored somewhere for future access.
