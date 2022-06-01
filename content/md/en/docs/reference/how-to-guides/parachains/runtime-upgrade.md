@@ -10,30 +10,15 @@ keywords:
   - migration
 ---
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description: 'Ensure that parachain runtime upgrades succeed.',
-    },
-    {
-      title: 'Use Cases',
-      description: `
-  - Modifying parachain runtimes (add/remove pallets)
-  - Parachain storage migrations
-      `,
-    },
-    {
-      title: 'Overview',
-      description: `
-  Runtime upgrades on a parachain have _much_ stricter requirements and a slightly different
-  flow required as they you _must_ coordinate with the relay chain to facilitate this. Because
-  of this, and the very confined nature of state transition coordination both
-  **quickly and succinctly** enough for the block inclusion in the relay chain.
-      `,
-    },
-  ]}
-/>
+The goal of this guide is to help parachain developers ensure that runtime upgrades succeed.
+ 
+ This guide illustrates:
+
+  - How to modify parachain runtimes (add/remove pallets)
+  - How to do a parachain storage migration
+
+Runtime upgrades on a parachain have _much_ stricter requirements and a slightly different flow required as they you _must_ coordinate with the relay chain to facilitate this. 
+Because of this, and the very confined nature of state transition coordination both **quickly and succinctly** enough for the block inclusion in the relay chain.
 
 ## Before you continue
 
@@ -42,9 +27,7 @@ Please do the following:
 - Read the general [runtime upgrade docs](/main-docs/build/upgrade).
 - Complete the [cumulus tutorial](/tutorials/connect-other-chains/start-relay), and learn the `polkadot-launch` tool for testing.
 
-## Steps
-
-### 1. Choose your upgrade approach
+## Choose your upgrade approach
 
 If your existing Substrate chain has a very large state which you are migrating
 between different storage formats, it might not be possible to run all of the
@@ -82,7 +65,7 @@ See the [how-to guide on storage migration testing](/reference/how-to-guides/sto
 Testing in a confined network will help you prepare for potential failures in a real network with many collators and validators and constraints like bandwidth and latency.
 The more closely you can simulate a real network for testing, the more sure you can be that your runtime upgrades will succeeds.
 
-### 2. Authorize -> enact an upgrade flow
+## Authorize -> enact an upgrade flow
 
 When finally ready to upgrade a parachain, the relay chain needs to be informed about the runtime
 upgrade of your chain before it happens.
