@@ -4,66 +4,48 @@ description:
 keywords:
 ---
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description: `
-Generate a \`chain-spec.json\` and include it for other nodes to join a common network
-      `,
-    },
-    {
-      title: 'Use Cases',
-      description: `
-- Starting a private network
-- Modify an existing plain chain spec without editing the node source code
-      `,
-    },
-    {
-      title: 'Overview',
-      description: `
 Once you have a Substrate node crafted, you want to start a network with many peers!
 This guide shows one method to create chain specification files uniformly and distribute them so other nodes can discover and peer with your network _explicitly_.
-      `,
-    },
-  ]}
-/>
 
-## Steps
+This guide illustrates:
 
-### 1. Create a plain chain specification
+- How to generate a `chain-spec.json` and include it for other nodes to join a common network
+- How to modify an existing plain chain spec without editing the node source code
 
-Starting in the working directory of your node's working directory, and assuming the bin is `node-template`:
+## Create a plain chain specification
 
-```bash
-./target/release/node-template build-spec > chain-spec-plain.json
-```
+1. Start in your node's working directory, generate a plain chain spec with this command:
 
-We have just generated a **plain chain spec** file for the _default_ network set in your
-`chain_spec.rs` file. This file can be passed to other nodes
+    ```bash
+    ./target/release/node-template build-spec > chain-spec-plain.json
+    ```
 
-### 2. Modify the plain chain specification (optional)
+    We have just generated a **plain chain spec** file for the _default_ network set in your
+    `chain_spec.rs` file. 
+    This file can be passed to other nodes.
 
-This optional step we can leverage an _existing_ plain chain specification for a network that otherwise would require modification of the _source_ of the node to run on a _new network_.
-For example, this can be quite useful in the [Cumulus Tutorial](/tutorials/connect-other-chains/start-relay) where we want to create a custom _relay chain_ without customizing Polkadot's source.
+1. Modify the plain chain specification (optional): 
 
-Here we use the _same_ chain spec, but pass a flag to disable bootnodes, as we want a _new_ network where these nodes will be different.
+    This optional step we can leverage an _existing_ plain chain specification for a network that otherwise would require modification of the _source_ of the node to run on a _new network_.
+    For example, this can be quite useful in the [Cumulus Tutorial](/tutorials/connect-other-chains/start-relay) where we want to create a custom _relay chain_ without customizing Polkadot's source.
 
-```bash
-./target/release/node-template build-spec --chain chain-spec-plain.json --raw --disable-default-bootnode > no-bootnodes-chain-spec-plain.json
-```
+    Here we use the _same_ chain spec, but pass a flag to disable bootnodes, as we want a _new_ network where these nodes will be different.
 
-This `no-bootnodes-chain-spec-plain.json` can be used to generate a SCALE storage encoded, distributable raw chain spec.
+    ```bash
+    ./target/release/node-template build-spec --chain chain-spec-plain.json --raw --disable-default-bootnode > no-bootnodes-chain-spec-plain.json
+    ```
 
-### 3. Generate the raw chain specification
+    This `no-bootnodes-chain-spec-plain.json` can be used to generate a SCALE storage encoded, distributable raw chain spec.
 
-With a plain spec available, you generate a final raw chain spec by:
+1. Generate the raw chain specification.
 
-```bash
-./target/release/node-template build-spec --chain chain-spec-plain.json --raw > chain-spec.json
-```
+    With a plain spec available, you can generate a final raw chain spec by running:
 
-### 4. Publish the chain specification
+    ```bash
+    ./target/release/node-template build-spec --chain chain-spec-plain.json --raw > chain-spec.json
+    ```
+
+## Publish the chain specification
 
 Because Rust builds that target WebAssembly are optimized, the binaries aren't deterministically reproducible.
 If each network participant were to generate the chain specification, the differences in the resulting Wasm blob would break consensus.
@@ -71,7 +53,7 @@ If each network participant were to generate the chain specification, the differ
 It is _conventional_ to include the chain specification files for your node _within the source code itself_ so that anyone can build your node in the same way, whereby it becomes easy to check for non-determinism by comparing a genesis blob with another.
 Polkadot, Kusama, Rococo, and more network chain spec files are found [in the source here](https://github.com/paritytech/polkadot/tree/master/node/service/res) along with a `.gitignore` file to ensure that you don't accidentally change these `!/*.json` files as you build further on your node's software and do [runtime upgrades](/tutorials/get-started/forkless-upgrades).
 
-### 5. Start a new node
+## Start a new node
 
 If you publish a node binary, or have users build their own and then they want to join your network, all then need is the _same_ chain spec file and to run your binary with:
 
