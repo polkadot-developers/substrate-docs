@@ -7,81 +7,57 @@ keywords:
   - runtime
 ---
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description:
-        'Learn how to setup the scaffolding required to write tests for your pallet.',
-    },
-    {
-      title: 'Use Cases',
-      description: `Writing and running unit tests for a pallet.`,
-    },
-    {
-      title: 'Overview',
-      description: `This guide steps through how to use \`mock.rs\` and \`test.rs\` as a basis for
-      testing your pallet. We'll be using the node template for the scaffolding of the \`mock.rs\`
-      file and an arbitrary pallet &mdash; called \`pallet-testing\` &mdash; to give this guide some
-      context. This pallet will contain a single function called \`add_value\`, that takes an origin
-      and a \`u32\` and returns \`Ok(())\` if the value is less than or equal to a constant called
-      \`MaxValue\` that we specify in the mock runtime.`,
-    },
-  ]}
-/>
+Learn how to setup the scaffolding required to write tests for your pallet.
 
-## Steps
+This guide steps through how to use `mock.rs` and `test.rs` as a basis for testing your pallet. 
+We'll be using the node template for the scaffolding of the `mock.rs` file and an arbitrary pallet &mdash; called `pallet-testing` &mdash; to give this guide some context. 
+This pallet will contain a single function called `add_value`, that takes an origin and a `u32` and returns `Ok(())` if the value is less than or equal to a constant called `MaxValue` that we specify in the mock runtime.
 
-### 1. Use the template node as boilerplate
+## Use the template node as boilerplate
 
 Inside `pallet-testing/src`, the first thing we need to do is create two empty files: `mock.rs` and `tests.rs`.
 
 Paste in the contents from [`template/src/mock.rs`][template-node-mock-rs]. We'll use this as boilerplate
 which we'll customize for our `pallet-testing` pallet.
 
-### 2. Create a mock runtime to test your pallet
+## Create a mock runtime to test your pallet
 
-Start by modifying `pallet-testing/src/mock.rs` to include the `pallet-testing` pallet. This involves changes in the following code sections:
+1. Start by modifying `pallet-testing/src/mock.rs` to include the `pallet-testing` pallet. This involves changes in the following code sections:
 
-#### Dependencies
+1. Replace the first line with the name of the pallet, in our case `pallet_testing`:
 
-Replace the first line with the name of the pallet, in our case `pallet_testing`:
+  ```rust
+  use crate as pallet_testing;
+  /*--snip--*/
+  ```
 
-```rust
-use crate as pallet_testing;
-/*--snip--*/
-```
+## Configure the mock runtime
 
-#### Configure the mock runtime
-
-In `frame_support::construct_runtime!`, replace `pallet_template` with the name of your pallet, in our
+1. In `frame_support::construct_runtime!`, replace `pallet_template` with the name of your pallet, in our
 case `pallet_testing`:
 
-```rust
-/*--snip--*/
-TestingPallet: pallet_testing::{Pallet, Call, Storage, Event<T>},
-/*--snip--*/
-```
+  ```rust
+  /*--snip--*/
+  TestingPallet: pallet_testing::{Pallet, Call, Storage, Event<T>},
+  /*--snip--*/
+  ```
 
-#### Implement your pallet for the mock runtime
+1. Implement your pallet for the mock runtime. Replace `impl pallet_template::Config for Test {...}` with your configuration types and any constant values your pallet requires:
 
-Replace `impl pallet_template::Config for Test {...}` with your configuration types and any
-constant values your pallet requires:
+  ```rust
+  parameter_types! {
+    pub const MaxValue: u32 = 50;
+  }
 
-```rust
-parameter_types! {
-	pub const MaxValue: u32 = 50;
-}
-
-impl pallet_testing::Config for Test {
-	type Event = Event;
-	type MaxValue = MaxValue;
-}
-```
+  impl pallet_testing::Config for Test {
+    type Event = Event;
+    type MaxValue = MaxValue;
+  }
+  ```
 
 To put the mock runtime to use, we need to set up our `tests.rs` file for the `pallet-testing` pallet.
 
-### 3. Setup and create tests
+## Setup and create tests
 
 In `tests.rs`, start by importing the dependencies you'll need from `lib.rs` using `super`:
 
@@ -89,54 +65,48 @@ In `tests.rs`, start by importing the dependencies you'll need from `lib.rs` usi
 use super::*;
 ```
 
-#### Testing that errors work
+1. Test that errors work as intended:
 
-This will test whether the error works as intended:
+  ```rust
+  #[test]
+  fn error_works(){
+    new_test_ext().execute_with(|| {
+      assert_err!(
+        TestingPallet::add_value(Origin::signed(1), 51),
+        "value must be <= maximum add amount constant"
+      );
+    })
+  }
 
-```rust
-#[test]
-fn error_works(){
-	new_test_ext().execute_with(|| {
-		assert_err!(
-			TestingPallet::add_value(Origin::signed(1), 51),
-			"value must be <= maximum add amount constant"
-		);
-	})
-}
+  ```
 
-```
+1. Create a test that should work:
 
-#### Testing known working case
+  ```rust
+  #[test]
+  fn test_should_work() {
+    new_test_ext().execute_with(|| {
+      assert_ok!(
+        TestingPallet::add_value(Origin::signed(1), 10)
+      );
+    })
+  }
+  ```
 
-Create a test that should work:
+1. And another that should fail:
 
-```rust
-#[test]
-fn test_should_work() {
-	new_test_ext().execute_with(|| {
-		assert_ok!(
-			TestingPallet::add_value(Origin::signed(1), 10)
-		);
-	})
-}
-```
+  ```rust
+  #[test]
+  fn test_should_fail() {
+    new_test_ext().execute_with(|| {
+      assert_ok!(
+        TestingPallet::add_value(Origin::signed(1), 100)
+      );
+    })
+  }
+  ```
 
-#### Testing known failing case
-
-And another that should fail:
-
-```rust
-#[test]
-fn test_should_fail() {
-	new_test_ext().execute_with(|| {
-		assert_ok!(
-			TestingPallet::add_value(Origin::signed(1), 100)
-		);
-	})
-}
-```
-
-### 4. Run your tests
+## Run your tests
 
 Execute the following command from your pallet's directory:
 
