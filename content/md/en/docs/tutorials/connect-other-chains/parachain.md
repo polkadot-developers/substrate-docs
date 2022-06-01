@@ -5,7 +5,9 @@ description:
 
 In this part of the workshop, we'll connect a parachain to our relay chain and add additional nodes.
 
-## Learning outcomes
+## Tutorial objectives
+
+By completing this tutorial, you will accomplish the following objectives:
 
 - Register a para ID
 - Initialize a parachain
