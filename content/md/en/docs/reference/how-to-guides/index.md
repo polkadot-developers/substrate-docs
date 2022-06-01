@@ -50,14 +50,6 @@ See the following guides for help with testing pallets and runtime logic.
 - [Set up basic tests](/reference/how-to-guides/testing/basic-tests/)
 - [Test a transfer function](reference/how-to-guides/testing/test-transfer/)
 
-## Storage migrations
-
-See the following guides for with different types of storage migrations.
-
-- [Basic storage migration](/reference/how-to-guides/storage/basic-migration/)
-- [Test migration](/reference/how-to-guides/storage/test-migration/)
-- [Trigger a migration](/reference/how-to-guides/storage/trigger-migration/)
-
 ## Consensus
 
 See the following guides to implement consensus mechanisms in your runtimes.
