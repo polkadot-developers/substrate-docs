@@ -1,5 +1,5 @@
 ---
-title: Mint primitive tokens
+title: Basic token mint
 description: Demonstrates how to create a simple token mint pallet.
 
 keywords:
@@ -166,12 +166,7 @@ See [Import a pallet](../pallet-integration) if you’re not yet familiar with t
 
 ## Related material
 
-#### How-to guides
-
 - [Configure a runtime constant](../configurable-constants)
-
-#### Rust docs
-
 - [Deposit event method][deposit-event-rustdocs]
 
 [events-kb]: /v3/runtime/events-and-errors
