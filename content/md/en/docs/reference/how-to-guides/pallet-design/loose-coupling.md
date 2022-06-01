@@ -4,43 +4,34 @@ description:
 keywords: []
 ---
 
+This guide steps through how to reuse a function or type from another pallet using a technique called loose coupling.
+
 Loose coupling is a technique that enables re-using logic from another pallet inside a pallet.
 In this guide, we show the simple pattern of using a type from an outside pallet in our working pallet, by using trait bounds in our pallet's configuration trait. 
 We will loosely couple a pallet to make use of the \`Currency\` trait from [\`frame_support\`](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html).
 
-## Goal
-
-Learn how to use a function from another pallet.
-
-## Use Cases
-
-Reuse a specific type from another pallet.
-
-## Steps
-
-### 1. Configure your workspace
+## Configure your workspace
 
 In the `Cargo.toml` file of the pallet in your working directory, make sure you specify the
 pallet you want to couple to accordingly:
 
-```toml
-[dependencies]
-frame-support = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.18", version = "4.0.0-dev" }
+  ```toml
+  [dependencies]
+  frame-support = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.18", version = "4.0.0-dev" }
 
-# -- snip
+  # -- snip
 
-[features]
-default = ['std']
-std = [
-	'frame-support/std',
-# -- snip
-]
-```
+  [features]
+  default = ['std']
+  std = [
+    'frame-support/std',
+  # -- snip
+  ]
+  ```
 
-### 2. Import the trait
+## Import the trait you want to use
 
-We want to use the [`Currency` trait](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html) so
-that we can give our pallet access to the its methods.
+In this example, we want to use the [`Currency` trait](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html) from `frame_support` so that we can give our pallet access to the its methods.
 
 Import the trait in your pallet:
 
@@ -48,33 +39,31 @@ Import the trait in your pallet:
 use frame_support::traits::Currency;
 ```
 
-### 3. Create a type for your pallet's `Config` trait
+## Create a type for your pallet's `Config` trait
 
-In your configuration trait, create a type that is bound by the type you want to expose to your pallet  
+1. In your configuration trait, create a type that is bound by the type you want to expose to your pallet  
 (in `this-pallet/src/lib.rs`):
 
-```rust
-pub trait Config: frame_system::Config {
-    // --snip--
+  ```rust
+  pub trait Config: frame_system::Config {
+      // --snip--
 
-    /// A type that is accessing our loosely coupled pallet `my-pallet`
-    type LocalCurrency: Currency<Self::AccountId>;
-}
-```
+      /// A type that is accessing our loosely coupled pallet `my-pallet`
+      type LocalCurrency: Currency<Self::AccountId>;
+  }
+  ```
 
-### 4. Use the type
+1. Use the method that the type of your loosely coupled pallet provides (in `this-pallet/src/lib.rs`):
 
-Use the method that the type of your loosely coupled pallet provides (in `this-pallet/src/lib.rs`):
+  ```rust
+  // Use the getter from `my-pallet`
+  let total_balance = T::LocalCurrency::total_issuance();
+  ```
 
-```rust
-// Use the getter from `my-pallet`
-let total_balance = T::LocalCurrency::total_issuance();
-```
+  In the above snippet, we're using [`total_issuance`](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html#tymethod.total_issuance)
+  that the Currency trait exposes from `frame_support`.
 
-In the above snippet, we're using [`total_issuance`](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html#tymethod.total_issuance)
-that the Currency trait exposes from `frame_support`.
-
-### 5. Provide the implementation in runtime configuration
+## Provide the implementation in runtime configuration
 
 In our runtime configuration, usually `runtime/src/lib.rs`, we specify the `LocalCurrency` to be
 `Balances`, which is defined inside `construct_runtime!` macro and has a type of `pallet_balances`
@@ -95,7 +84,6 @@ construct_runtime! (
   }
 )
 ```
-
 ## Examples
 
 - `try_origin` from the [`EnsureOrigin`](/rustdocs/latest/frame_support/traits/trait.EnsureOrigin.html) trait
