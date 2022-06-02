@@ -1,66 +1,73 @@
 ---
 title: Build process
-description: This article describes what happens under the hood when building and executing a Substrate node.
+description: Describes how a Substrate node is compiled into Rust and WebAssembly binaries and how the binaries are used to execute calls into the Substrate runtime.
 keywords:
 ---
 
-This article describes what happens under the hood when building and executing a Substrate node.
+In [Architecture](/main-docs/fundamentals/architecture), you learned that a Substrate node consists of two main environments—an outer node host environment and a runtime execution environment—and that these environments communicate with each other through runtime API calls and host function calls.
+In this section, you'll learn more about how the Substrate runtime is compiled into a standard Rust executable that is included as part of the node executable and into a WebAssembly (Wasm) binary that is stored on the blockchain.
+After you see the inner-working of how the binaries are compiled, you'll learn more about why there are two binaries, when they are used, and how you can change the execution strategies, if you need to.
 
-Relevant context:
+## Rust runtime
 
-- Runtimes should always be compressed Wasm binaries for on-chain upgrades and relay chain validation capabilities to function correctly.
-- Read about Substrate's [Architecture](/main-docs/fundamentals/architecture) in order to understand how the client interacts with the runtime.
+The Rust version of the runtime is used as a regular Rust crate dependency to the Substrate node executable.
+You can see this by displaying the package dependencies for the `node-template-runtime` package.
+For example:
 
-## Compilation
+1. Open a terminal on a computer where you have the node template installed.
 
-Substrate runtimes are compiled to both native and Wasm.
-The native runtime is used as a regular Rust crate dependency to the Substrate client.
-You can see this when running `cargo tree -i node-template-runtime` from the terminal of a standard Substrate node template:
+1. Change to the root of the node template directory.
 
-```bash
-# Displays all packages that depend on the node-template-runtime package.
-node-template-runtime devhub/latest (...)
-└── node-template devhub/latest (...)
-```
+1. Display an inverted dependency graph by running the following command:
 
-But how is the Wasm runtime created?
-What really happens when `cargo build --release` is executed in the directory of a Substrate node project?
+    ```bash
+    cargo tree -i node-template-runtime
+    ```
 
-At a very high level, this command builds the project in it's local directory &mdash; including both native and Wasm binaries &mdash; with optimized artifacts, meaning that the output executable goes through some post-processing.
-These artifacts then result in the final executable program that enables launching a chain with the following command:
-`./target/release/node-template --dev`.
+    The command displays output similar to the following:
 
-During the build process, the Wasm runtime binary goes through 3 different stages, each containing the various steps.
-In the first stage of the build cycle, the initial Wasm runtime is built and embedded into the client.
-Once the node is compiled, the compressed Wasm binary is placed on-chain at the [`:code`](https://docs.substrate.io/rustdocs/latest/sp_storage/well_known_keys/constant.CODE.html) storage key and executed by the client.
+    ```bash
+    node-template-runtime devhub/latest
+    └── node-template devhub/latest
+    ```
 
-The following steps describes the entire build process:
+## Wasm runtime
 
-**A. Create the initial runtime Wasm binary**
+You probably already know that you can compile a Substrate node by running the `cargo build --release` command in the root directory for a Substrate node project.
+This command builds both the Rust and Wasm binaries for the project in the local directory and produces an **optimized** executable artifact.
+Producing the optimized executable artifact includes some post-compilation processing to result in a program that enables you to launch a blockchain that includes both runtime binaries.
+
+As part of the optimization process, the Wasm runtime binary is compiled, compressed, and placed on-chain through a series of internal steps.
+To give you a better understanding of the process, the following diagram summarizes the steps.
+
+![WebAssembly compiled and compressed before placed on-chain](/media/images/docs/main-docs/node-executable.png)
+
+The following sections describe the build process in more detail.
+
+### Create the initial runtime Wasm binary
 
 - Cargo builds the entire graph of dependencies in all project TOML files.
-- The runtime's `build.rs` module uses the `substrate-wasm-builder` crate.
-- This `build.rs` module executes and compiles the runtime into a Wasm binary, creating `wasm_binary.rs`, i.e. the initial wasm (largest size). 
+- The runtime `build.rs` module uses the `substrate-wasm-builder` crate.
+- The `build.rs` module executes to compile the runtime into a Wasm binary, creating the initial `wasm_binary.rs` binary. 
 
-**B. Post-processing**
+### Post-processing
 
-- Then the `substrate-wasm-builder` wasm linker invokes the optimizations to create a Compact wasm binary.
-- It optimizes some instruction sequences and removes any unnecessary sections, such as the ones for debugging, using a tool called [wasm-opt](https://www.npmjs.com/package/wasm-opt).
+- The `substrate-wasm-builder` wasm linker invokes [wasm-opt](https://www.npmjs.com/package/wasm-opt) to create a compact wasm binary.
+- The [wasm-opt](https://www.npmjs.com/package/wasm-opt) tools optimizes some instruction sequences and removes any unnecessary sections—such as the ones for debugging.
 - The runtime crate is a dependency of the node.
 
-**C. Compression**
+### Compression
 
-- A [zstd lossless compression](https://en.wikipedia.org/wiki/Zstandard) algorithm is applied to minimize the size of the final Wasm binary. 
+- A [zstd lossless compression](https://en.wikipedia.org/wiki/Zstandard) algorithm is applied to minimize the size of the final Wasm binary.
 - All users should use this Wasm binary. 
 
-**D. Result**
+### Runtime result
 
 - The runtime crate requires the Wasm blob from the first step and embeds it into its compilation result (notice `include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));` at the top of a node's `runtime/src/lib.rs` file).
 - The final executable binary is `node-template`.
 - The `./target/release/node-template --dev` command initializes a new chain, i.e. generates a new chainspec.
 - The Wasm runtime is put as an item in storage (with the magic key named “:code”).
 - The chain spec has the genesis state and includes the Wasm binary, which was fetched from the node-runtime crate.
-
 
 At each stage, the Wasm binary is compressed to a smaller and smaller size.
 See the sizes of each Wasm binary in Polkadot for example:
@@ -74,7 +81,7 @@ See the sizes of each Wasm binary in Polkadot for example:
 It's important to always use the compressed version especially for maintaining a chain in production.
 There really is no need for using any other of the Wasm artifacts.
 
-## Execution 
+## Execution
 
 Once a runtime is built and a chain is launched, the Substrate client proposes which runtime execution environment should be used.
 This is controlled by the execution strategy, which can be configured for the different parts of the blockchain execution process.
