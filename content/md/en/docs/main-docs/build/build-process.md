@@ -44,33 +44,25 @@ To give you a better understanding of the process, the following diagram summari
 
 The following sections describe the build process in more detail.
 
-### Create the initial runtime Wasm binary
+### Build the initial Wasm binary
 
-- Cargo builds the entire graph of dependencies in all project TOML files.
-- The runtime `build.rs` module uses the `substrate-wasm-builder` crate.
-- The `build.rs` module executes to compile the runtime into a Wasm binary, creating the initial `wasm_binary.rs` binary. 
+- Cargo builds a dependency graph from all of the Cargo.toml in the project.
+- The runtime `build.rs` module uses the `substrate-wasm-builder` crate to compile the runtime Rust code into a Wasm binary, creating the initial binary artifact.
 
-### Post-processing
+### Compact the initial binary
 
-- The `substrate-wasm-builder` wasm linker invokes [wasm-opt](https://www.npmjs.com/package/wasm-opt) to create a compact wasm binary.
-- The [wasm-opt](https://www.npmjs.com/package/wasm-opt) tools optimizes some instruction sequences and removes any unnecessary sections—such as the ones for debugging.
-- The runtime crate is a dependency of the node.
+- The `substrate-wasm-builder` wasm linker invokes [wasm-opt](https://www.npmjs.com/package/wasm-opt).
+- The [wasm-opt](https://www.npmjs.com/package/wasm-opt) tools optimizes some instruction sequences and removes any unnecessary sections—such as the ones for debugging—to create a compact wasm binary.
+- The runtime crate is added as a dependency of the node.
 
-### Compression
+### Compress and embed the optimized binary
 
 - A [zstd lossless compression](https://en.wikipedia.org/wiki/Zstandard) algorithm is applied to minimize the size of the final Wasm binary.
-- All users should use this Wasm binary. 
+- The `runtime/src/lib.rs` file for the node requires the Wasm blob from the first step and embeds it into its compilation result.
+- The final executable binary is generated for the project.
 
-### Runtime result
-
-- The runtime crate requires the Wasm blob from the first step and embeds it into its compilation result (notice `include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));` at the top of a node's `runtime/src/lib.rs` file).
-- The final executable binary is `node-template`.
-- The `./target/release/node-template --dev` command initializes a new chain, i.e. generates a new chainspec.
-- The Wasm runtime is put as an item in storage (with the magic key named “:code”).
-- The chain spec has the genesis state and includes the Wasm binary, which was fetched from the node-runtime crate.
-
-At each stage, the Wasm binary is compressed to a smaller and smaller size.
-See the sizes of each Wasm binary in Polkadot for example:
+At each stage of the build process, the Wasm binary is compressed to a smaller and smaller size.
+For example, you can compare the sizes of each Wasm binary artifact for Polkadot:
 
 ```bash
 .rw-r--r-- 1.2M pep  1 Dec 16:13 │  ├── polkadot_runtime.compact.compressed.wasm
@@ -78,12 +70,15 @@ See the sizes of each Wasm binary in Polkadot for example:
 .rwxr-xr-x 5.5M pep  1 Dec 16:13 │  └── polkadot_runtime.wasm
 ```
 
-It's important to always use the compressed version especially for maintaining a chain in production.
-There really is no need for using any other of the Wasm artifacts.
+You should always use the fully compressed runtime (`*_runtime.compact.compressed.wasm`) Wasm binaries for on-chain upgrades and relay chain validation.
+The initial Wasm binary and compact artifacts.
 
-## Execution
+## Execution strategies
 
-Once a runtime is built and a chain is launched, the Substrate client proposes which runtime execution environment should be used.
+After you have compiled the node with the Rust and Wasm runtime, you use command-line options to start, initialize the chain with a chain specification, and generate the genesis block.
+The Wasm runtime is put as an item in storage (with the `:code` key).
+
+After you stat the node, the Substrate client proposes which runtime execution environment should be used.
 This is controlled by the execution strategy, which can be configured for the different parts of the blockchain execution process.
 The strategies are listed in the [`ExecutionStrategy`](/rustdocs/latest/sp_state_machine/enum.ExecutionStrategy.html) enum:
 
