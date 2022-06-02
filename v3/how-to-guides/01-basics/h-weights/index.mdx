@@ -47,9 +47,9 @@ Not only do they help add security checks around the functions we create, but th
 From that, we can figure out [what fees to charge](/v3/runtime/weights-and-fees) users.
 This guide will cover how to calculate the maximum weight for a dispatch call; calculate the actual weight after execution; and reimburse the difference.
 Here's an overview of the traits we'll be implementing:
-- [\`PaysFee\`](/rustdocs/latest/frame_support/weights/trait.PaysFee.html): to specify whether or not a dispatch pays the fee.
-- [\`GetDispatchInfo\`](/rustdocs/latest/frame_support/weights/trait.GetDispatchInfo.html): carries weight information using the \`#[weight]\` attribute.
-- [\`DispatchResultWithPostInfo\`](/rustdocs/latest/frame_support/dispatch/type.DispatchResultWithPostInfo.html): provides new weight info once the extrinsic function has been executed.
+- [\`PaysFee\`](https://paritytech.github.io/substrate/master/frame_support/weights/trait.PaysFee.html): to specify whether or not a dispatch pays the fee.
+- [\`GetDispatchInfo\`](https://paritytech.github.io/substrate/master/frame_support/weights/trait.GetDispatchInfo.html): carries weight information using the \`#[weight]\` attribute.
+- [\`DispatchResultWithPostInfo\`](https://paritytech.github.io/substrate/master/frame_support/dispatch/type.DispatchResultWithPostInfo.html): provides new weight info once the extrinsic function has been executed.
 	    `,
     },
   ]}
@@ -116,12 +116,12 @@ Ok(Pays::Yes.into())
 
 #### Rust docs
 
-- [`ClassifyDispatch`](/rustdocs/latest/frame_support/weights/trait.ClassifyDispatch.html)
-- [`WeightData`](/rustdocs/latest/frame_support/weights/trait.WeighData.html)
+- [`ClassifyDispatch`](https://paritytech.github.io/substrate/master/frame_support/weights/trait.ClassifyDispatch.html)
+- [`WeightData`](https://paritytech.github.io/substrate/master/frame_support/weights/trait.WeighData.html)
 
 #### Other
 
 - Polkadot's [Transaction Fees](https://wiki.polkadot.network/docs/en/learn-transaction-fees)
 
-[pays-rustdocs]: /rustdocs/latest/frame_support/weights/enum.Pays.html
-[dbweight-rustdocs]: /rustdocs/latest/frame_system/pallet/trait.Config.html#associatedtype.DbWeight
+[pays-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/weights/enum.Pays.html
+[dbweight-rustdocs]: https://paritytech.github.io/substrate/master/frame_system/pallet/trait.Config.html#associatedtype.DbWeight

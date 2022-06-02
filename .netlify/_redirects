@@ -127,9 +127,6 @@
 /docs/en/knowledgebase/advanced/*             /v3/advanced/:splat                       301!
 /docs/low-level-data-formats                          /v3/advanced/scale-codec/         301!
 
-## Production: rustdocs
-/rustdocs/*          https://paritytech.github.io/substrate/:splat             200
-
 # ---------------
 # --- Others ----
 # ---------------
