@@ -212,7 +212,7 @@ Now you can configure a new dashboard.
 If you would like a basic dashboard to start [here is a template example](/assets/tutorials/node-metrics/substrate-node-template-metrics.json) that you can `Import`
 in Grafana to get basic information about your node:
 
-![Grafana Dashboard](../../../src/images/tutorials/06-visualize-node-metrics/grafana.png)
+![Grafana Dashboard](/media/images/docs/tutorials/visualize-node-metrics/grafana.png)
 
 If you want to create your own dashboard, see the [prometheus docs for Grafana](https://prometheus.io/docs/visualization/grafana/).
 

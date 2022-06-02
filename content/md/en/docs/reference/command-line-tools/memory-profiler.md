@@ -170,7 +170,7 @@ Eventually you should see something like this being printed out:
 
 Now you can open your web browser and access the GUI at `http://localhost:8080/`.
 
-![Graphs from the web UI](../../img/docs/tools/mem-profiling-memory-graph.png)
+![Graphs from the web UI](/media/images/docs/reference/mem-profiling-memory-graph.png)
 
 There's also [a REST API](https://github.com/koute/memory-profiler#rest-api-exposed-by-memory-profiler-cli-server)
 that you can access you'd like to export the data into another format or inspect it programmatically.

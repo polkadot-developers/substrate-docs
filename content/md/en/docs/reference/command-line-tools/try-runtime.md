@@ -36,11 +36,11 @@ the storage of that runtime.
 
 ### Storage externalities
 
-![Storage externalities](../../img/docs/advanced/try-runtime-ext-1.png)
+![Storage externalities](/media/images/docs/reference/try-runtime-ext-1.png)
 
 ### Testing with externalities
 
-![Testing with externalities](../../img/docs/advanced/try-runtime-ext-2.png)
+![Testing with externalities](/media/images/docs/reference/try-runtime-ext-2.png)
 
 With `remote_externalities`, developers can capture some chain state and run tests on it. Essentially, `RemoteExternalities`
 will populate a `TestExternalities` with a real chain's data.
