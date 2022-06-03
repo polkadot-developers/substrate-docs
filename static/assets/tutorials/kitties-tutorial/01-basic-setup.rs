@@ -7,9 +7,8 @@ pub mod pallet {
     use frame_support::{sp_runtime::traits::{Hash, Zero},
                         dispatch::{DispatchResultWithPostInfo, DispatchResult},
                         traits::{Currency, ExistenceRequirement, Randomness},
-                        pallet_prelude::*};
+                        pallet_prelude::*, sp_io::hashing::blake2_128};
     use frame_system::pallet_prelude::*;
-    use sp_io::hashing::blake2_128;
 
     // TODO Part II: Struct for holding Kitty information.
 

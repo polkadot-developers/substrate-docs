@@ -9,9 +9,8 @@ pub mod pallet {
 	use frame_support::{
 		sp_runtime::traits::Hash,
 		traits::{ Randomness, Currency, tokens::ExistenceRequirement },
-		transactional
+		transactional, sp_io::hashing::blake2_128,
 	};
-	use sp_io::hashing::blake2_128;
 	use scale_info::TypeInfo;
 
 	#[cfg(feature = "std")]
