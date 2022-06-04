@@ -75,46 +75,81 @@ The initial Wasm binary and compact artifacts.
 
 ## Execution strategies
 
-After you have compiled the node with the Rust and Wasm runtime, you use command-line options to start, initialize the chain with a chain specification, and generate the genesis block.
-The Wasm runtime is put as an item in storage (with the `:code` key).
+After you have compiled the node with the Rust and Wasm runtime, you use command-line options to specify how the node should operate.
+For details about the command-line options you can use to start the node, see the [node-template](/reference/command-line-tools/node-template) command-line reference.
 
-After you stat the node, the Substrate client proposes which runtime execution environment should be used.
-This is controlled by the execution strategy, which can be configured for the different parts of the blockchain execution process.
-The strategies are listed in the [`ExecutionStrategy`](/rustdocs/latest/sp_state_machine/enum.ExecutionStrategy.html) enum:
+When you start the node, the node executable uses the command-line options you specify to initialize the chain and generate the genesis block.
+As part of this process, the node adds the Wasm runtime as a storage item value and a corresponding `:code` key.
 
-- `NativeWhenPossible`: Execute with native build (if available, WebAssembly otherwise).
-- `AlwaysWasm`: Only execute with the WebAssembly build.
-- `Both`: Execute with both native (where available) and WebAssembly builds.
-- `NativeElseWasm`: Execute with the native build if possible; if it fails, then execute with WebAssembly.
+After you start the node, the running node selects the runtime execution environment to use.
+The execution environment selected is controlled by a configurable **execution strategy**.
+These strategies are defined in the [`ExecutionStrategy`](/rustdocs/latest/sp_state_machine/enum.ExecutionStrategy.html) enum and specify the following execution rules:
 
-All strategies respect the runtime version, meaning if the native and Wasm runtime versions differ, the Wasm runtime is chosen.
-These are configurable using Substrate's [node template CLI](/reference/command-line-tools/node-template).
+- `NativeWhenPossible`: Execute with the Rust runtime if it's available, or WebAssembly if it's not.
+- `AlwaysWasm`: Only execute with the WebAssembly runtime.
+- `Both`: Execute with both the Rust runtime (where available) and WebAssembly runtime.
+- `NativeElseWasm`: Only execute with the WebAssembly runtime if execution with the Rust runtime fails.
 
-The Wasm representation of the Substrate runtime is considered the canonical runtime and will always be preferred by block authoring nodes.
-Because this Wasm runtime is placed in the blockchain's storage, the network must come to consensus about this binary which can easily be verified for consistency across all syncing nodes.
+### Default execution strategies
 
-The native runtime will only be used by the executor when it is chosen as the execution strategy and it is compatible with the requested [runtime version](/main-docs/build/upgrade/#runtime-versioning).
+By default, different parts of the blockchain execution process use the following execution strategies:
 
-## Build options
+| Operation | Default strategy
+| --------- | ----------------
+| Syncing | NativeElseWasm
+| Block import for non-validator nodes | NativeElseWasm
+| Block import for validator nodes | AlwaysWasm
+| Block authoring | AlwaysWasm
+| Offchain and other operations | NativeWhenPossible
 
-It can make sense to compile the Wasm binary only, if for example you are just trying to provide an upgraded Wasm to perform a forkless upgrade. 
+### Selection of the WebAssembly runtime
+
+The execution strategy is important because the two representations of the runtime can be different.
+For example, if you make changes to the runtime, you must generate a new WebAssembly blob and update the chain to use the new version of the WebAssembly runtime.
+After the update, the WebAssembly runtime differs from the Rust runtime.
+To account for this difference, all of the execution strategies treat the WebAssembly representation of the runtime as the canonical runtime.
+If the Rust runtime and the WebAssembly runtime versions are different, the WebAssembly runtime is always selected.
+
+Because the WebAssembly runtime is stored as part of the blockchain state, the network must come to consensus about the representation of this binary.
+To reach consensus about the binary, the blob that represents the WebAssembly runtime must be exactly the same across all synchronizing nodes.
+
+### WebAssembly execution environment
+
+The WebAssembly execution environment can be more restrictive than the Rust execution environment.
+For example, the WebAssembly execution environment is a 32-bit architecture with a maximum 4GB of memory.
+Logic that can be executed in the WebAssembly runtime can always be executed in the Rust execution environment.
+However, not all logic that can be executed in the Rust runtime can be executed in the WebAssembly runtime.
+Block authoring nodes typically use the WebAssembly execution environment to help ensure that they produce valid blocks.
+
+### Rust execution environment
+
+As noted in [Default execution strategies](#default-execution-strategies), the Rust execution environment is used in some parts of the block handling process.
+However, this is only true if the Rust execution environment is compatible with the WebAssembly [runtime version](/main-docs/build/upgrade/#runtime-versioning).
+
+For most execution processes—except block authoring—the Rust execution environment is preferred because it provides better performance and has fewer restriction.
+However, you can override the default execution strategy for ny part of the block handling process by specifying command-line options.
+For example, if you want to use the Rust execution environment for block authoring, you can specify add `--execution-block-construction Native` to the command you use to start a node.
+
+## Building WebAssembly without a Rust runtime
+
+A WebAssembly runtime is required to start a new chain.
+After an initial WebAssembly runtime is provided, the blob that represents the WebAssembly runtime can be passed to other nodes as part of a [chain specification](/main-docs/build/chain-spec).
+In some rare cases, you might want to compile the WebAssembly target without the Rust runtime.
+For example, if you're testing a WebAssembly runtime to prepare for a forkless upgrade, you might want to compile just the new WebAssembly binary.
+
+Although it's a rare use case, you can use the [build-only-wasm.sh](https://github.com/paritytech/substrate/blob/master/.maintain/build-only-wasm.sh) script to build the `no_std` WebAssembly binary without compiling the Rust runtime.
+
+You can also use the `wasm-runtime-overrides` command-line option to load the WebAssembly from the filesystem.
+
 Usually when performing a runtime upgrade, you want to provide both a native and Wasm binary.
 
-When starting a new chain the initial Wasm binary is a requirement. 
-In production the Wasm runtime comes from the [chain specification](/main-docs/build/chain-spec) of a chain.
-However, when starting a chain in developer mode at block 0, it uses the embedded Wasm from the native runtime.
+## Compiling Rust without a WebAssembly runtime
 
-There are several ways to configure a chain to meet your specific requirements:
+If you want to compile the Rust code for a node without building the WebAssembly runtime, you can use the `SKIP_WASM_BUILD` as a build option.
+If this is the first run and there doesn't exist a Wasm binary, this will set both variables to `None`.
 
-- `SKIP_WASM_BUILD` - Skips building any Wasm binary. This is useful when only native should be recompiled.
-    If this is the first run and there doesn't exist a Wasm binary, this will set both variables to `None`.
+## Where to go next
 
-- Use [this script](https://github.com/paritytech/substrate/blob/master/.maintain/build-only-wasm.sh) to build the `no_std` Wasm binary only. 
-
-- Use the `wasm-runtime-overrides` CLI flag to load the Wasm from the filesystem.
-
-## Learn more
-
-- Have a look at the [README for Wasm builder](https://github.com/paritytech/substrate/blob/master/utils/wasm-builder/README.md)
-- Rust compilation options from the [Cargo Book](https://doc.rust-lang.org/cargo/commands/cargo-build.html#compilation-options)
-- Read the open discussions about [removing the native runtime](https://github.com/paritytech/substrate/issues/10579)
+- [Wasm-builder README](https://github.com/paritytech/substrate/blob/master/utils/wasm-builder/README.md)
+- [Rust compilation options](https://doc.rust-lang.org/cargo/commands/cargo-build.html#compilation-options)
+- [Discussion: Removing the Rust runtime](https://github.com/paritytech/substrate/issues/10579)
