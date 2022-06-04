@@ -73,7 +73,6 @@ non-zero. Valid only for values `(2**30)-(2**536-1)`.
 
 * `0x00` if it is `None` ("empty" or "null").
 * `0x01` followed by the encoded value if it is `Some`.
-* Exception: in the case that the type is a boolean, then it is always one byte.
 
 SCALE Codec has been implemented in other languages, including:
 
