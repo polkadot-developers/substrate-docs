@@ -1,5 +1,5 @@
 ---
-title: How to open HRMP channels between parachains
+title: Open HRMP channels between parachains
 keywords:
   - parachain
   - channel
@@ -8,113 +8,120 @@ keywords:
   - crosschain
 ---
 
-**channels are unidirectional**
+In this guide, you will learn how to make a request for parachain B to accept a channel with parachain A.
+Read more about HRMP channels in the [Polkadot wiki](https://wiki.polkadot.network/docs/build-hrmp-channels).
 
-The general flow is that one of the parachains interested in stablishing the channels requests opening a channel against the desired parachain.
-Then, the other parachain needs to accept this request for openning a chain, this sets a channel in one direction, so for bidirectional communication we need to open another channel in the oposite way.
+**Channels are unidirectional**
+
+The general flow is that one of the parachains interested in opening a channel must make a request to the parachain it wishes to open one with.
+Then, the other parachain needs to accept this request for opening a channel, meaning that the channel is unidirectional by default.
+For bidirectional communication we need to open another channel in the opposite way.
 
 A channel can be opened only after the recipient confirms it and only on a session change.
 
-Here an example
+For the purpose of this guide, we'll assume we have:
+- A Relay chain
+- A Parachain A with ParaId 2000
+- A Parachain B with ParaId 3000
 
-Suppose the following scenario:
-- Relay chain
-- - Parachain A - ParaId 2000
-- - Parachain B - ParaId 3000
+## Parachain A actions
 
-### Channel Para A -> Para B
+1. On the relay chain, prepare the following call:
 
-- Para A actions:
-1. On the relay chain the following call should be prepared
-```
-hrmp.hrmpInitOpenChannel(
-    recipient: 3000                    //the other parachain you want to open the channel with 
-    proposedMaxCapacity: 1000          // specifies how many messages can be in the channel at once
-    proposed_max_message_size: 102400  //specifies the maximum size of the messages
-    
-)
+    ```
+    hrmp.hrmpInitOpenChannel(
+        recipient: 3000                    //the other parachain you want to open the channel with 
+        proposedMaxCapacity: 1000          // specifies how many messages can be in the channel at once
+        proposed_max_message_size: 102400  //specifies the maximum size of the messages
+    )
+    ```
 
-> These numbers are a subject to the relay-chain configuration limits.
-```
-After setting the desired parameters we save the encoded call data.
-Encoded call data for this call in Rococo: [`0x1700b80b0000e803000000900100`](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/extrinsics/decode/0x1700b80b0000e803000000900100)
+    Note that these numbers are subject to the relay chain's configuration limits.
 
-2. On the parachain now we have to compose an XCM message to let notify the relay chain this that we want to open a chanel with parachain B
+    After setting the desired parameters, save the encoded call data.
+    For example, the encoded call data for this call in Rococo is: [`0x1700b80b0000e803000000900100`](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/extrinsics/decode/0x1700b80b0000e803000000900100).
 
-The message should look similiar to the following:
-```
-polkadotXcm.send(
-    dest: V1
-        parents: 1
-        interior: Here
-    message: V2
-        XcmV2Instruction: WithdrawAsset
-            id: Concrete
-                parents: 0
-                interior: Here
-            fun: Fungible
-                Fungible: 1_000_000_000_000
-        XcmV2Instruction: BuyExecution
-            id: Concrete
-                parents: 0
-                interior: Here
-            fun: Fungible
-                Fungible: 1_000_000_000_000
-            weightLimit: Unlimited
-        XcmV2Instruction: Transact
-            originType: Native
-            requireWeightAtMost: 4_000_000_000
-                encoded: 0x1700b80b0000e803000000900100 // our hrmpInitOpenChannel encoded call data
+1. On the parachain now we have to compose an XCM message to notify the relay chain that we want to open a chanel with parachain B.
 
-)
+    The message should look similar to the following (using the encoded call data from the previous step):
 
-> Keep in mind that you should compose your message taking into account the active xcm configuration, this is just an example.
-```
+    ```
+    polkadotXcm.send(
+        dest: V1
+            parents: 1
+            interior: Here
+        message: V2
+            XcmV2Instruction: WithdrawAsset
+                id: Concrete
+                    parents: 0
+                    interior: Here
+                fun: Fungible
+                    Fungible: 1_000_000_000_000
+            XcmV2Instruction: BuyExecution
+                id: Concrete
+                    parents: 0
+                    interior: Here
+                fun: Fungible
+                    Fungible: 1_000_000_000_000
+                weightLimit: Unlimited
+            XcmV2Instruction: Transact
+                originType: Native
+                requireWeightAtMost: 4_000_000_000
+                    encoded: 0x1700b80b0000e803000000900100 // our hrmpInitOpenChannel encoded call data
 
-Alright, so far Parachain A has done its part, the request to Parachain B is sent. Now this request has to be accepted by Parachain B
+    )
+    ```
 
-- Para B actions:
+    Keep in mind that you should compose your message taking into account the active XCM configuration, this is just an example.
 
-Basically the process repeats itself, but this time we will have to encode a different call, so for that on the relaychain we want to compose the following extrinsic:
+## Parachain B actions
 
-```
-hrmp.hrmpAcceptOpenChannel(
-    sender: 2000
-)
-```
+So far Parachain A has done its part: the request to Parachain B is sent. 
+Now this request has to be accepted by Parachain B.
 
-Encoded call data on Rococo: [`0x1701d0070000`](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/extrinsics/decode/0x1701d0070000)
+The process repeats itself, but this time we will have to encode a different call.
 
-Now on Parachain B we can basically use the last xcm message as a skeleton to compose this one, and execute on the relaychain the call we have composed:
+1. On the relay chain, submit the following extrinsic and save the encoded call data:
 
-```
-polkadotXcm.send(
-    dest: V1
-        parents: 1
-        interior: Here
-    message: V2
-        XcmV2Instruction: WithdrawAsset
-            id: Concrete
-                parents: 0
-                interior: Here
-            fun: Fungible
-                Fungible: 1_000_000_000_000
-        XcmV2Instruction: BuyExecution
-            id: Concrete
-                parents: 0
-                interior: Here
-            fun: Fungible
-                Fungible: 1_000_000_000_000
-            weightLimit: Unlimited
-        XcmV2Instruction: Transact
-            originType: Native
-            requireWeightAtMost: 4_000_000_000
-                encoded: 0x1701d0070000 // our hrmpAcceptOpenChannel encoded call data
+    ```
+    hrmp.hrmpAcceptOpenChannel(
+        sender: 2000
+    )
+    ```
 
-)
+    The encoded call data on Rococo is: [`0x1701d0070000`](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/extrinsics/decode/0x1701d0070000)
 
-> Keep in mind that you should compose your message taking into account the active xcm configuration, this is just an example.
-```
+1. Now on Parachain B we can use our last XCM message as a basis to compose this one, and execute it as a call on the relay chain (using the encoded call data from the previous step).
 
-And that is it, the channel has been accepted and it will be open, so communications Parachain A -> Parachain B can now flow.
-For making this a bidirectional communication we need to open another channel, Parachain B -> Parachain A, following these steps you should be able to do the request from B and accept it from A.
+    ```
+    polkadotXcm.send(
+        dest: V1
+            parents: 1
+            interior: Here
+        message: V2
+            XcmV2Instruction: WithdrawAsset
+                id: Concrete
+                    parents: 0
+                    interior: Here
+                fun: Fungible
+                    Fungible: 1_000_000_000_000
+            XcmV2Instruction: BuyExecution
+                id: Concrete
+                    parents: 0
+                    interior: Here
+                fun: Fungible
+                    Fungible: 1_000_000_000_000
+                weightLimit: Unlimited
+            XcmV2Instruction: Transact
+                originType: Native
+                requireWeightAtMost: 4_000_000_000
+                    encoded: 0x1701d0070000 // our hrmpAcceptOpenChannel encoded call data
+
+    )
+    ```
+
+Keep in mind that you should compose your message taking into account the active XCM configuration, this is just an example.
+
+And that's it &mdash; the channel has been accepted and it will remain open, such that communication from Parachain A to Parachain B can now flow.
+For making this a bidirectional channel you'll need to open another channel, from Parachain B to Parachain A.
+You can do this by making a request from B and accepting it from A by following the same steps in this guide.
