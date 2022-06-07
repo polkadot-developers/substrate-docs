@@ -61,12 +61,13 @@ See the following guides to implement consensus mechanisms in your runtimes.
 
 See the following guides for help working with Substrate parachains.
 
-- [Convert a solo chain](/reference/how-to-guides/parachain/solo-to-parachain/)
-- [Connect to a relay chain](/reference/how-to-guides/tools/connect-relay/)
-- [Select collators](/reference/how-to-guides/tools/collator-selection/)
-- [Prepare for launch](/reference/how-to-guides/tools/prelaunch/)
-- [Runtime upgrades](/reference/how-to-guides/tools/runtime-upgrade/)
-- [Auctions and crowdloans](/reference/how-to-guides/tools/auctions-loans/)
+- [Convert a solo chain](/reference/how-to-guides/parachains/solo-to-parachain/)
+- [Connect to a relay chain](/reference/how-to-guides/parachains/connect-relay/)
+- [Select collators](/reference/how-to-guides/parachains/collator-selection/)
+- [Prepare for launch](/reference/how-to-guides/parachains/prelaunch/)
+- [Runtime upgrades](/reference/how-to-guides/parachains/runtime-upgrade/)
+- [Auctions and crowdloans](/reference/how-to-guides/parachains/auctions-loans/)
+- [How to open HRMP channels between parachains](/reference/how-to-guides/parachains/add-hrmp-channel/)
 
 ## Tools
 
