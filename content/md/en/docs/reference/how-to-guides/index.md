@@ -67,7 +67,7 @@ See the following guides for help working with Substrate parachains.
 - [Prepare for launch](/reference/how-to-guides/parachains/prelaunch/)
 - [Runtime upgrades](/reference/how-to-guides/parachains/runtime-upgrade/)
 - [Auctions and crowdloans](/reference/how-to-guides/parachains/auctions-loans/)
-- [How to open HRMP channels between parachains](/reference/how-to-guides/parachains/add-hrmp-channel/)
+- [Open HRMP channels between parachains](/reference/how-to-guides/parachains/add-hrmp-channel/)
 
 ## Tools
 
