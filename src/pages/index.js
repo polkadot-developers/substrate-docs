@@ -82,9 +82,9 @@ export default function Home() {
             <DocCard
               title={`Documentation`}
               text={`Discover the principles and design decisions that Substrate is built on. Read about its key features and capabilties as well as the specific skills needed to be an effective Substrate blockchain developer.`}
-              link={`/v3/`}
+              link={`/quick-start/`}
               cta={`Get started`}
-              iconName={`docIcon`}
+              iconName={`docsIcon`}
             />
             <DocCard
               title={`How-to Guides`}

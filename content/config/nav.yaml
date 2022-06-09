@@ -215,8 +215,6 @@ reference:
       url: /reference/account-properties/
     - title: Type encoding (SCALE)
       url: /reference/scale-codec/
-    - title: Rust API
-      url: 'https://docs.substrate.io/rustdocs/"target="_blank'
     - title: How-to reference guides
       url: /reference/how-to-guides/
       #pages:

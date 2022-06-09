@@ -1,6 +1,6 @@
 const WEBSITE_URL = process.env.GATSBY_WEBSITE_URL;
 // const DOCS_URL = process.env.GATSBY_DOCS_URL;
-const MARKETPLACE_URL = process.env.GATSBY_MARKETPLACE_URL;
+//const MARKETPLACE_URL = process.env.GATSBY_MARKETPLACE_URL;
 
 /* the main menu, ids of items must match
    the submenu's key of this js object */
@@ -55,14 +55,6 @@ const developers = [
   {
     url: '/quick-start',
     id: 'developers.docs',
-  },
-  {
-    url: MARKETPLACE_URL,
-    id: 'developers.marketplace',
-  },
-  {
-    url: '/rustdocs',
-    id: 'developers.rustdocs',
   },
   {
     url: '/playground',
