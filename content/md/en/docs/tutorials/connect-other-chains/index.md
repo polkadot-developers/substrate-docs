@@ -1,6 +1,5 @@
 ---
 title: Connect other chains
-description: Introduces tutorials and workshops for connecting to testnets and public relay chains.
 ---
 
 The **Connect other chains** tutorials delve into more advanced topics for moving beyond solo chain development, including how to connect your chain to other chains.

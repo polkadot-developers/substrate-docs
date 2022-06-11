@@ -1,6 +1,5 @@
 ---
 title: Configure crowdfunding
-description:
 keywords:
   - pallet design
   - intermediate

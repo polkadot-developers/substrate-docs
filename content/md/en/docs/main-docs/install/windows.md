@@ -1,6 +1,5 @@
 ---
 title: Windows development environment
-description: Set up a local development environment for Substrate on Windows.
 keywords:
 ---
 

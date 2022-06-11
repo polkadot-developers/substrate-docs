@@ -1,6 +1,5 @@
 ---
 title: State transitions and storage
-description: 
 keywords:
 --- 
 

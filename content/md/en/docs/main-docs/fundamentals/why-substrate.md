@@ -1,6 +1,5 @@
 ---
 title: Why Substrate?
-description: docs
 keywords: vision, smart contracts, runtime development, blockchain, consensus, substrate, architecture
 ---
 

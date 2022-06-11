@@ -1,6 +1,5 @@
 ---
 title: Calculate fees
-description:
 keywords:
   - weights
   - fees

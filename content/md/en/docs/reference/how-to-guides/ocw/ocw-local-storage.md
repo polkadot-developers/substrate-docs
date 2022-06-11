@@ -1,6 +1,5 @@
 ---
 title: Local Storage in Off-chain Workers
-description:
 keywords: ['off-chain worker', 'ocw', 'local', 'storage']
 ---
 

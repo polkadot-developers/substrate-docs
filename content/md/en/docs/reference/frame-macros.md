@@ -1,6 +1,5 @@
 ---
 title: Macros
-description:
 keywords:
 ---
 

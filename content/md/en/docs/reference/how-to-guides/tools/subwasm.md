@@ -1,6 +1,5 @@
 ---
 title: Verify a runtime Wasm binary
-description:
 keywords:
   - tooling
   - wasm

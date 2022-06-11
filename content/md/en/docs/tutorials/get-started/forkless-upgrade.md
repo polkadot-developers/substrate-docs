@@ -1,6 +1,5 @@
 ---
 title: Upgrade a running node
-description: Perform a forkless runtime upgrade on a running Substrate network.
 ---
 
 Unlike many blockchains, the Substrate development framework supports **forkless upgrades** to the runtime that is the core of the blockchain.

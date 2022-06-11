@@ -1,6 +1,5 @@
 ---
 title: Runtime development
-description: Introduces the core programming interfaces, primitives, and modules that are essential to developing the runtime for a Substrate blockchain.
 keywords: []
 ---
 

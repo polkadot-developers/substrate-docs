@@ -1,6 +1,5 @@
 ---
 title: Use custom weights from benchmarking
-description:
 keywords:
   - weights
   - benchmarking

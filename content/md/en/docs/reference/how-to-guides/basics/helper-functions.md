@@ -1,6 +1,5 @@
 ---
 title: Using Helper Functions
-description:
 keywords:
   - basics
   - runtime

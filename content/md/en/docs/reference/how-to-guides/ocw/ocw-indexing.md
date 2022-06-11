@@ -1,6 +1,5 @@
 ---
 title: Off-chain Indexing
-description:
 keywords:
   - off-chain worker
   - ocw

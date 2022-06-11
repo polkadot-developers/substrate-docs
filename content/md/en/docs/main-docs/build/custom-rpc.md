@@ -1,6 +1,5 @@
 ---
 title: Remote procedure calls
-description: Describes the use of remote procedure calls and RPC methods to interact with a Substrate node.
 keywords:
   - rpc
   - frontend

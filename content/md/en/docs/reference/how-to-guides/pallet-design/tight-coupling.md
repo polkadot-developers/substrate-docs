@@ -1,6 +1,5 @@
 ---
 title: Use tight pallet coupling
-description:
 keywords: []
 ---
 

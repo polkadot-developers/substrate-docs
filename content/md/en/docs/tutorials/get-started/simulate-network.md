@@ -1,6 +1,5 @@
 ---
 title: Simulate a network
-description: Simulate a Substrate blockchain with an authority consensus model using predefined development accounts.
 ---
 
 This tutorial provides a basic introduction to how you can start a private blockchain network with an **authority set** of private **validators**.

@@ -1,6 +1,5 @@
 ---
 title: Tutorials
-description: Get firsthand experience building with Substrate.
 ---
 
 If you are someone who likes to learn by doing, the Substrate tutorials are a great place to start your journey.

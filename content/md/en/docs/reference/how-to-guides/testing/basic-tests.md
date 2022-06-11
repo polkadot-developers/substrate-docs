@@ -1,6 +1,5 @@
 ---
 title: Set up basic tests
-description:
 keywords:
   - basics
   - testing

@@ -1,6 +1,5 @@
 ---
 title: How-to quick reference guides
-description:
 keywords: 
 ---
 

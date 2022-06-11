@@ -1,6 +1,5 @@
 ---
 title: Create a txwrapper for a chain
-description:
 keywords:
   - runtime
   - tooling

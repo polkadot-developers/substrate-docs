@@ -1,6 +1,5 @@
 ---
 title: Metadata
-description:
 keywords: []
 ---
 

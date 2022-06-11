@@ -1,6 +1,5 @@
 ---
 title: Runtime Upgrades
-description:
 keywords:
   - collators
   - parachains

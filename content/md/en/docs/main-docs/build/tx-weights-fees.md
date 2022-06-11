@@ -1,6 +1,5 @@
 ---
 title: Transactions, weights, and fees
-description: docs
 keywords:
 ---
 

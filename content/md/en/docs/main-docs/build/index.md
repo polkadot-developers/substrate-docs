@@ -1,6 +1,5 @@
 ---
 title: Build
-description: Exposes details about how Substrate nodes are constructed and compiled.
 keywords:
 ---
 

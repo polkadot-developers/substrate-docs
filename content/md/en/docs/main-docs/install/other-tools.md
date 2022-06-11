@@ -1,6 +1,5 @@
 ---
 title: Developer tools
-description:
 keywords:
 ---
 

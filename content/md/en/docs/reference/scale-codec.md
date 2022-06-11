@@ -1,6 +1,5 @@
 ---
 title: Type encoding (SCALE)
-description:
 keywords:
 ---
 

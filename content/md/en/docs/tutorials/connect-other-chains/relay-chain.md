@@ -1,6 +1,5 @@
 ---
 title: "Start a local relay chain"
-description: 
 ---
 
 In this tutorial, you will create a local relay chain—like Polkadot—use [Cumulus](https://github.com/paritytech/cumulus) to create your own parachain, and connect it to the relay chain in a local test environment.

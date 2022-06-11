@@ -1,6 +1,5 @@
 ---
 title: Conditional weighting
-description:
 keywords:
   - weights
   - benchmarking

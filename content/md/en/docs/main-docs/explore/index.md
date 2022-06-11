@@ -1,6 +1,5 @@
 ---
 title: Explore
-description:
 keywords:
 ---
 

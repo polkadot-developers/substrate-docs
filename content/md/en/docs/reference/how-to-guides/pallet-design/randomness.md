@@ -1,6 +1,5 @@
 ---
 title: Implement randomness
-description:
 keywords:
   - pallet design
   - intermediate

@@ -1,6 +1,5 @@
 ---
 title: Cryptography
-description:
 keywords: []
 ---
 

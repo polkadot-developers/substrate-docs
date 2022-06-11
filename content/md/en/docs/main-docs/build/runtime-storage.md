@@ -1,6 +1,5 @@
 ---
 title: Runtime storage
-description:
 keywords: []
 ---
 

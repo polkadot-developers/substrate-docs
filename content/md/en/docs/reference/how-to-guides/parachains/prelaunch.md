@@ -1,6 +1,5 @@
 ---
 title: Pre-Launch Requirements
-description:
 keywords:
   - collator
   - parachain

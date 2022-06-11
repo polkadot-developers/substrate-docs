@@ -1,6 +1,5 @@
 ---
 title: FRAME pallets
-description:
 keywords: Frame, pallets, API
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: Use maps for storing values
-description: Use maps in a smart contract to store and retrieve key-value pairs.
 ---
 
 In [Develop a smart contract](/tutorials/smart-contracts/develop-contract/), you developed a smart contract for storing and retrieving a single numeric value.

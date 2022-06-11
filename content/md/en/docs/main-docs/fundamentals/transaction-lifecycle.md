@@ -1,6 +1,5 @@
 ---
 title: Transaction lifecycle
-description: Explains how transactions are received, queued, and executed to eventually be included in a block.
 keywords: transaction, pool, order, ordering, sorting, validity
 ---
 

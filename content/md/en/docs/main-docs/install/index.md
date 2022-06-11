@@ -1,6 +1,5 @@
 ---
 title: Install
-description:
 keywords:
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: Execution strategies
-description:
 keywords:
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: Architecture
-description: Introduces the core components of a Substrate node.
 keywords:
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: Import a pallet
-description: 
 keywords:
   - basics
   - beginner

@@ -1,6 +1,5 @@
 ---
 title: Fundamentals
-description: Explains the core principles and unique features of the Substrate-based blockchains and Substrate runtime development.
 section: docs
 keywords: blockchain, consensus, substrate, architecture
 ---

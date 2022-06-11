@@ -1,6 +1,5 @@
 ---
 title: Extrinsics
-description:
 keywords: []
 ---
 

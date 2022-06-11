@@ -1,6 +1,5 @@
 ---
 title: Chain specification
-description: Describes the role of the chain specification in a Substrate-based network, how to specify the chain specification to use when starting a node, and how to customize and distribute chain specifications.
 keywords:
   - genesis
   - configuration

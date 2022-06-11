@@ -1,6 +1,5 @@
 ---
 title: Pallet coupling
-description: 
 keywords:
   - coupling
   - pallet design

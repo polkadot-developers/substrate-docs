@@ -1,6 +1,5 @@
 ---
 title: Custom pallets
-description:
 keywords:
 ---
 

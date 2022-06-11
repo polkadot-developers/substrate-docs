@@ -1,6 +1,5 @@
 ---
 title: Create a storage structure (struct)
-description:
 keywords:
   - pallet design
   - intermediate

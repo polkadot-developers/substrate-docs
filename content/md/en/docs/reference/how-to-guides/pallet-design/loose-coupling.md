@@ -1,6 +1,5 @@
 ---
 title: Use loose pallet coupling
-description:
 keywords: []
 ---
 

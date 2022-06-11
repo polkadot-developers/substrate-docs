@@ -1,6 +1,5 @@
 ---
 title: Substrate SS58 address format
-description:
 keywords: []
 ---
 

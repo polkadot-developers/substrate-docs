@@ -1,6 +1,5 @@
 ---
 title: Custom Chain Specifications
-description: 
 keywords:
 ---
 

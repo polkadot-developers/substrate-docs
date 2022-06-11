@@ -1,6 +1,5 @@
 ---
 title: Integrate the contracts pallet
-description:
 keywords:
   - pallet design
   - intermediate

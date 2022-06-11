@@ -1,6 +1,5 @@
 ---
 title: Configure genesis for balances
-description:
 keywords:
   - basics
   - beginner

@@ -1,6 +1,5 @@
 ---
 title: Implement lockable currency
-description:
 keywords:
   - pallet design
   - currency

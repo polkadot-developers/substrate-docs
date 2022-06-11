@@ -1,6 +1,5 @@
 ---
 title: Networks and blockchains
-description: Describes network types and deployment scenarios.
 ---
 
 When thinking about building a blockchain, it's useful to consider that boundaries are what define a network.

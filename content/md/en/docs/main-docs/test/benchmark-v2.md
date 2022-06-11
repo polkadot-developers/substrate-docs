@@ -1,6 +1,5 @@
 ---
 title: Benchmark
-description:
 keywords:
 ---
 # Substrate Runtime Benchmarking Framework

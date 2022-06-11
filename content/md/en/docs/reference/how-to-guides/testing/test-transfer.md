@@ -1,6 +1,5 @@
 ---
 title: Test a transfer function
-description:
 keywords:
   - testing
   - runtime

@@ -1,6 +1,5 @@
 ---
 title: "Offchain operations"
-description:
 keywords:
 ---
 

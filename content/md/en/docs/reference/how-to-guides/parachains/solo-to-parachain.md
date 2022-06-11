@@ -1,6 +1,5 @@
 ---
 title: Convert a Solo-Chain to a Parachain
-description:
 keywords:
   - collator
   - parachain

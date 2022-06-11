@@ -1,6 +1,5 @@
 ---
 title: Connect to a relay chain
-description: 
 ---
 
 In this part of the workshop, we'll connect a parachain to our relay chain and add additional nodes.

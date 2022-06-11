@@ -1,6 +1,5 @@
 ---
 title: Design
-description:  
 keywords: 
 ---
 

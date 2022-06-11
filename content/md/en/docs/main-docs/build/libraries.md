@@ -1,6 +1,5 @@
 ---
 title: Introduction to libraries
-description: 
 keywords:
 ---
 

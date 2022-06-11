@@ -1,6 +1,5 @@
 ---
 title: Transaction formats
-description:
 --- 
 
 _This article describes in detail what the format of an extrinsic (in particular signed and unsigned transactions) looks like in Substrate._

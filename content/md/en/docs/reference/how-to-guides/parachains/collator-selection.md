@@ -1,6 +1,5 @@
 ---
 title: Collator Selection
-description:
 keywords:
   - collator
   - parachain

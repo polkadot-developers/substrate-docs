@@ -1,6 +1,5 @@
 ---
 title: Troubleshoot smart contracts
-description: Troubleshoot and address common issues in smart contracts.
 ---
 
 This section describes some of the common issues you might encounter when writing and deploying smart contracts on a Substrate-based blockchain and how you can address them.

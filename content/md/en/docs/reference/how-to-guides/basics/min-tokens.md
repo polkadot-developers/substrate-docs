@@ -1,6 +1,5 @@
 ---
 title: Basic token mint
-description: Demonstrates how to create a simple token mint pallet.
 
 keywords:
   - basics

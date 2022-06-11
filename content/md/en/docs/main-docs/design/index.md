@@ -1,6 +1,5 @@
 ---
 title: Design
-description: Suggests blockchain and application design decisions for you to consider in planning your project.
 keywords:  
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: Events and errors
-description: Explains how to emit events and errors from the runtime.
 keywords: []
 ---
 

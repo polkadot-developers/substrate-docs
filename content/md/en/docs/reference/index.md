@@ -1,6 +1,5 @@
 ---
 title: Reference
-description: Provides access to Rust documentation and technical reference materials for Substrate and FRAME.
 keywords:
 ---
 

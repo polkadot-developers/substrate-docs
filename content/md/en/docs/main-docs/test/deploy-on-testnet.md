@@ -1,6 +1,5 @@
 ---
 title: Deploy on a testnet
-description:
 keywords:
 ---
 

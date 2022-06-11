@@ -1,6 +1,5 @@
 ---
 title: Rust toolchain
-description:
 keywords:
 ---
 

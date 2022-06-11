@@ -1,6 +1,5 @@
 ---
 title: Making HTTP Requests
-description:
 keywords: ['off-chain worker', 'ocw', 'http', 'https', 'requests']
 ---
 

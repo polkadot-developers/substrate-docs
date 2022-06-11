@@ -1,6 +1,5 @@
 ---
 title: Build a local blockchain
-description: Compile, start, and interact with your first Substrate blockchain node.
 ---
 
 As you learned in [Blockchain basics](/main-docs/fundamentals/blockchain-basics/), a blockchain consists of decentralized computers—called nodes—to form a network.

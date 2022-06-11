@@ -1,6 +1,5 @@
 ---
 title: Best practices for builders
-description: reference
 keywords:
 ---
 

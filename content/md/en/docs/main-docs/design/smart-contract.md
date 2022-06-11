@@ -1,6 +1,5 @@
 ---
 title: Smart contracts
-description: /v3/runtime/smart-contracts
 version: '3.0'
 section: docs
 category: smart contracts

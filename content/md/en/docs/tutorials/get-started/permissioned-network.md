@@ -1,6 +1,5 @@
 ---
 title: Authorize specific nodes
-description: Build a network where only authorized Substrate nodes are allowed to perform certain network activities.
 ---
 
 In [Add trusted validators](/tutorials/get-started/trusted-network/), you saw how to build a simple network with a known set of validator nodes.

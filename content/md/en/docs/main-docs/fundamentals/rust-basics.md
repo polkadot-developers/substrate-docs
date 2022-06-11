@@ -1,6 +1,5 @@
 ---
 title: Rust for Substrate
-description: Highlights the Rust programming conventions that are of particular importance when developing a Substrate blockchain.
 --- 
 
 Much of what makes Substrate a flexible and extensible framework for creating mission-critical software is owed to [Rust](https://www.rust-lang.org/). 

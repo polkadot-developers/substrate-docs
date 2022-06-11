@@ -1,6 +1,5 @@
 ---
 title: Build a token contract
-description: Build a smart contract to create ERC-20 tokens and transfer them between accounts.
 ---
 
 This tutorial illustrates how you can build an ERC-20 token contract using the ink! language.

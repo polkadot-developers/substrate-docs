@@ -1,6 +1,5 @@
 ---
 title: Configure the contracts pallet
-description: Configure the Substrate runtime to prepare for writing smart contracts.
 ---
 
 If you completed the [Build a local blockchain](/tutorials/get-started/build-local-chain) tutorial, you already know that the Substrate [node template](https://github.com/substrate-developer-hub/substrate-node-template) provides a working runtime that includes some **pallets** to get you started.

@@ -1,6 +1,5 @@
 ---
 title: Configure a Runtime Constant
-description: /how-to-guides/v3/basics/configurable-constants
 keywords:
   - basics
   - runtime

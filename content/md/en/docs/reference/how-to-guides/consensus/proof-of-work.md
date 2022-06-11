@@ -1,6 +1,5 @@
 ---
 title: Configure a chain to use proof-of-work
-description:
 keywords:
   - node
   - client

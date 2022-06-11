@@ -1,6 +1,5 @@
 ---
 title: Create a hybrid node
-description:
 keywords: consensus
 ---
 

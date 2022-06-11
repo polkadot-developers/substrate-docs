@@ -1,6 +1,5 @@
 ---
 title: Linux development environment
-description: Set up a local development environment for Substrate on Linux.
 keywords:
 ---
 

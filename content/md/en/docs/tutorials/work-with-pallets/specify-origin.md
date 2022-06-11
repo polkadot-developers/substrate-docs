@@ -1,6 +1,5 @@
 ---
 title: Specify the origin for a call
-description: 
 keywords: FRAME, runtime, custom pallet
 
 ---

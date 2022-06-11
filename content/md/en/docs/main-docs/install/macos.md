@@ -1,6 +1,5 @@
 ---
 title: macOS development environment
-description: et up a local development environment for Substrate on macOS.
 keywords:
 ---
 

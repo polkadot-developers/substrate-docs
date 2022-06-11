@@ -1,6 +1,5 @@
 ---
 title: Use REST endpoints to get chain data
-description:
 keywords:
   - node
   - client

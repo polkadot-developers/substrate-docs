@@ -1,6 +1,5 @@
 ---
 title: subxt-cli
-description:
 keywords:
 ---
 

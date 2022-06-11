@@ -1,6 +1,5 @@
 ---
 title: Making transactions
-description:
 keywords:
   - off-chain worker
   - ocw

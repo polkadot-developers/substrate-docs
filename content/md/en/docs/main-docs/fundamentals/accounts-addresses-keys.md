@@ -1,6 +1,5 @@
 ---
 title: Accounts, addresses, and keys
-description:
 keywords:
 ---
 

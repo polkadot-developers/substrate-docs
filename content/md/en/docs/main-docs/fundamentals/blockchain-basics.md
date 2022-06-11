@@ -1,6 +1,5 @@
 ---
 title: Blockchain basics
-description: Introduces common blockchain concepts, components, and terminology.
 ---
 
 A blockchain is a decentralized ledger that records transactions in a sequence of encrypted blocks that are immutable and distributed across a network of connected computers.

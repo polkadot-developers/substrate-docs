@@ -1,6 +1,5 @@
 ---
 title: Deploy a parachain
-description:
 ---
 
 ## NOTE: BREAKING CHANGES

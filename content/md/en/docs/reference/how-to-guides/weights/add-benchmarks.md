@@ -1,6 +1,5 @@
 ---
 title: Add benchmarking to your pallet
-description:
 keywords:
   - weights
   - benchmarking

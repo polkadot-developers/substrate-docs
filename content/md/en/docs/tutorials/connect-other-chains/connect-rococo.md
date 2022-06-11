@@ -1,6 +1,5 @@
 ---
 title: Connect to Rococo testnet
-description:
 ---
 
 Rococo is Parity's public test network for cumulus-based parachains.

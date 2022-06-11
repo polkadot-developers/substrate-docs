@@ -1,6 +1,5 @@
 ---
 title: Use macros in a custom pallet
-description: Create a custom pallet for a Substrate runtime using a skeleton of FRAME macros.
 ---
 
 This tutorial illustrates how to create a custom pallet for a Substrate

@@ -1,6 +1,5 @@
 ---
 title: Privileged calls and origins
-description: 
 keywords:
   - origins
 ---

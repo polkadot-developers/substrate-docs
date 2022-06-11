@@ -1,6 +1,5 @@
 ---
 title: Build process
-description: This article describes what happens under the hood when building and executing a Substrate node.
 keywords:
 ---
 
