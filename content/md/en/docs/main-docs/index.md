@@ -1,6 +1,6 @@
 ---
 title: Substrate empowers builders
-featured_image: /media/images/docs/main-docs/technical-freedom.png
+featured_image: /media/images/docs/technical-freedom.png
 ---
 
 Substrate takes a modular and flexible approach to blockchain development.
@@ -8,7 +8,7 @@ With every design decision, you can choose between the complexity of technical f
 
 The following diagram illustrates the nature of this flexibility.
 
-![Technical freedom vs development ease](/media/images/docs/main-docs/technical-freedom.png)
+![Technical freedom vs development ease](/media/images/docs/technical-freedom.png)
 
 The main use cases for Substrate blockchains reflect this sliding scale between technical freedom and development ease.
 At one end of the spectrum, you can deploy predefined Substrate nodes with minimal configuration and launch a blockchain with virtually no development effort.
@@ -25,10 +25,10 @@ Explore the following resources to learn more.
 
 #### Tell me more
 
-* [Blockchain basics](/main-docs/fundamentals/blockchain-basics/)
-* [Why substrate?](/main-docs/fundamentals/why-substrate)
-* [Architecture](/main-docs/fundamentals/architecture/)
-* [Runtime development](/main-docs/fundamentals/runtime-intro/)
+* [Blockchain basics](/fundamentals/blockchain-basics/)
+* [Why substrate?](/fundamentals/why-substrate)
+* [Architecture](/fundamentals/architecture/)
+* [Runtime development](/fundamentals/runtime-intro/)
 
 #### Guide me
 

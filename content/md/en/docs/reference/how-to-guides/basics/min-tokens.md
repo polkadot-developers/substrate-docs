@@ -10,7 +10,7 @@ keywords:
 ---
 
 This guide demonstrates how you can mint a token by leveraging the primitive capabilities of a [StorageMap](/rustdocs/latest/frame_support/storage/trait.StorageMap.html).
-In this guide, the `StorageMap` primitive uses the [blake2_128_concat](/main-docs/build/runtime-storage#hashing-algorithms) `hasher` to map balances to account IDs.
+In this guide, the `StorageMap` primitive uses the [blake2_128_concat](/build/runtime-storage#hashing-algorithms) `hasher` to map balances to account IDs.
 This approach is similar to how the [Balances](/rustdocs/latest/pallet_balances/index.html) pallet makes use of it to store to keep track of account balances.
 
 You should note that this guide is only intended to illustrate a simple approach to creating tokens in Substrate.
@@ -23,7 +23,7 @@ You should keep in mind the following limitations and assumptions used in this g
   Learn more about weight configuration in [Calculate transaction weights](/reference/how-to-guides/basics/calc-weights).
 - **Origins.** This guide assumes that the origin will always be the `sudo` user.
   Origins are a powerful capability in Substrate.
-  Learn more about how they work in [Privileged calls and origins](/main-docs/fundamentals/origins).
+  Learn more about how they work in [Privileged calls and origins](/fundamentals/origins).
 
 
 See the [Examples section](#examples) for practical implementations of this guide.

@@ -3,7 +3,7 @@ title: Prepare your first contract
 description: Create a new smart contract project and a simple first contract.
 ---
 
-As you learned in [Blockchain basics](/main-docs/fundamentals/blockchain-basics/) decentralized applications are most often written as **smart contracts**.
+As you learned in [Blockchain basics](/fundamentals/blockchain-basics/) decentralized applications are most often written as **smart contracts**.
 Although Substrate is primarily a framework and toolkit for building custom blockchains, it can also provide a platform for smart contracts.
 This tutorial demonstrates how to build a basic smart contract to run on a Substrate-based chain.
 In this tutorial, you'll explore using ink! as a programming language for writing Rust-based smart contracts.
@@ -18,7 +18,7 @@ Before you begin, verify the following:
 
 - You are generally familiar with blockchains and smart contract platforms.
 
-- You have installed Rust and set up your development environment as described in [Install](/main-docs/install/).
+- You have installed Rust and set up your development environment as described in [Install](/install/).
 
 ## Tutorial objectives
 

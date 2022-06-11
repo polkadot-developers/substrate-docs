@@ -4,14 +4,14 @@ description:
 keywords: []
 ---
 
-Blockchains you build on Substrate expose metadata in order to make it easier to interact with them. This metadata is separated by the different [pallets](/main-docs/fundamentals/runtime-intro) that inform your blockchain.
+Blockchains you build on Substrate expose metadata in order to make it easier to interact with them. This metadata is separated by the different [pallets](/fundamentals/runtime-intro) that inform your blockchain.
 
-For each pallet, the metadata provides information about the [storage items](/main-docs/build/runtime-storage), [extrinsic calls](/main-docs/fundamentals/transaction-types), [events](/main-docs/build/events-and-errors), constants, and errors that are exposed by that pallet. Substrate automatically generates this metadata for you and makes it available through RPC calls.
+For each pallet, the metadata provides information about the [storage items](/build/runtime-storage), [extrinsic calls](/fundamentals/transaction-types), [events](/build/events-and-errors), constants, and errors that are exposed by that pallet. Substrate automatically generates this metadata for you and makes it available through RPC calls.
 
 Since the runtime of a Substrate blockchain is an evolving part of the blockchain's state,
 blockchain metadata is stored on a per-block basis. 
 Be aware that querying the metadata for an older block (with an archive node, for example) could result in acquiring out-of-date metadata that is not compatible with a blockchain's current state. 
-As described in [Forkless upgrades](/main-docs/build/upgrade), metadata for a chain should only change when the chain's [runtime `spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version) changes.
+As described in [Forkless upgrades](/build/upgrade), metadata for a chain should only change when the chain's [runtime `spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version) changes.
 
 All examples in this document were taken from block 1,768,321 on Kusama. You can look at the
 [full metadata](https://gist.github.com/insipx/db5e49c0160b1f1bd421a3c34fefdf48) before reading the rest of this document and continue to refer to it as you proceed.
@@ -155,7 +155,7 @@ As described above, the integer `1635018093` is a "magic number" that represents
 text. The rest of the metadata has two sections: `modules` and `extrinsic`. The `modules` section
 contains information about the runtime's pallets, while the extrinsic section describes the version
 of extrinsics that the runtime is using. Different extrinsic versions may have different formats,
-especially when considering [signed transactions](/main-docs/fundamentals/transaction-types).
+especially when considering [signed transactions](/fundamentals/transaction-types).
 
 #### Modules
 
@@ -427,9 +427,9 @@ the [`InvalidSpecName` error](/rustdocs/latest/frame_system/pallet/enum.Error.ht
 
 ## Where to go next
 
-- [Storage](/main-docs/build/runtime-storage)
+- [Storage](/build/runtime-storage)
 - [SCALE](/reference/scale-codec)
 - [Macros](/reference/frame-macros)
-- [Events](/main-docs/build/events-and-errors)
+- [Events](/build/events-and-errors)
 - [Metadata](/rustdocs/latest/frame_metadata/index.html)
 - [FRAME v2 macro documentation](/rustdocs/latest/frame_support/attr.pallet.html)

@@ -124,5 +124,5 @@ For example: `./target/release/substrate-node --enable-offchain-indexing true`
 
 ## Related material
 
-- [Off-Chain Features](/main-docs/fundamentals/offchain-operations/)
+- [Off-Chain Features](/fundamentals/offchain-operations/)
 - [Local Storage in Off-chain Workers](/reference/how-to-guides/ocw/local-storage/)

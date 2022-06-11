@@ -24,7 +24,7 @@ Because of this, and the very confined nature of state transition coordination b
 
 Please do the following:
 
-- Read the general [runtime upgrade docs](/main-docs/build/upgrade).
+- Read the general [runtime upgrade docs](/build/upgrade).
 - Complete the [cumulus tutorial](/tutorials/connect-other-chains/start-relay), and learn the `polkadot-launch` tool for testing.
 
 ## Choose your upgrade approach
@@ -85,7 +85,7 @@ upgrade has been scheduled.
 
 ## Resources
 
-- [Runtime upgrade](/main-docs/build/upgrade)
+- [Runtime upgrade](/build/upgrade)
 - [Fork off Substrate](https://github.com/maxsam4/fork-off-substrate)
 - [`try-runtime`](/reference/command-line-tools/try-runtime)
 - [`try-runtime` video workshop](https://www.crowdcast.io/e/substrate-seminar/41)

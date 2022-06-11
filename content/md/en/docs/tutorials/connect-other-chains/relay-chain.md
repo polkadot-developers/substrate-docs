@@ -9,7 +9,7 @@ In this tutorial, you will create a local relay chain—like Polkadot—use [Cum
 
 Before you begin, verify the following:
 
-- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/).
+- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/
 
 - You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and have the Substrate node template installed locally.
 
@@ -134,7 +134,7 @@ If the help page is printed, you have succeeded in building a Cumulus-based para
 
 ## Relay chain specification
 
-You will need a [chain specification](/main-docs/build/chain-specs)) for your relay chain network.
+You will need a [chain specification](/n-specs)) for your relay chain network.
 
 Always have one or more relay chain validator nodes running than the total connected parachains. 
 For example, if you want to connect two parachains, run three or more relay chain validator nodes.

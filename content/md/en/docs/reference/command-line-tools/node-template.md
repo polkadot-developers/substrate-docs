@@ -201,7 +201,7 @@ You can use the following command-line options with the `node-template benchmark
 | `-l`, `--log <log-pattern>...` | Sets a custom logging filter. The syntax to use is `<log-target>=<level>`, for example `-lsync=debug`. The valid log levels from least to most verbose are `error`, `warn`, `info`, `debug`, and `trace`. By default, all targets log `info` level messages. You can set the global log level with `-l<level>`.
 | `--low <lowest-range-values>...` | Indicates lowest values for each of the component ranges.
 | `--output <output>` | Outputs the benchmarks to a Rust file at the given path.
-| `--output-analysis <analysis-type> ` | Specifies the analysis function to use when outputting benchmarks: Valid vales are `min-squares`, `median-slopes`, or `max`. The default is the `min-squares` analysis. For more information about benchmarking analysis, see [Benchmark](/main-docs/test/benchmark/).
+| `--output-analysis <analysis-type> ` | Specifies the analysis function to use when outputting benchmarks: Valid vales are `min-squares`, `median-slopes`, or `max`. The default is the `min-squares` analysis. For more information about benchmarking analysis, see [Benchmark](/mark/).
 | `-p`, `--pallet <pallet>` | Specifies the FRAME pallet to benchmark, or `*` to benchmark all pallets. If you benchmark all pallets, you must also specify `--extrinsic *` to benchmark all extrinsic calls.
 | `-r`, `--repeat <repeat>` | Specifies the number of times to repeat the execution of a benchmark from within the Wasm binary. The default is one execution.
 | `-s`, `--steps <steps>` | Specifies how many samples to take across the variable components. The default is one sample.

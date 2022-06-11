@@ -45,7 +45,7 @@ and your node or between your node and other non-predefined nodes.
 You can't change the connections for predefined nodes.
 They are always allowed to connect with each other.
 
-The `node-authorization` pallet uses an [offchain worker](/main-docs/fundamentals/offchain-operations)
+The `node-authorization` pallet uses an [offchain worker](/ls/offchain-operations)
 to configure its node connections.
 Make sure to enable the offchain worker when you start the node because it is disabled by default for non-authority nodes.
 
@@ -53,7 +53,7 @@ Make sure to enable the offchain worker when you start the node because it is di
 
 Before you begin, verify the following:
 
-- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/).
+- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/
 
 - You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and have the Substrate node template installed locally.
 
@@ -99,7 +99,7 @@ If you have completed previous tutorials, you should have the Substrate node tem
    ```
 
    The node template should compile without any errors.
-   If you encounter issues when you compile, you can try the troubleshooting tips in [Troubleshoot Rust issues](/main-docs/install/troubleshoting/).
+   If you encounter issues when you compile, you can try the troubleshooting tips in [Troubleshoot Rust issues](/oubleshoting/).
 
 ## Add the node authorization pallet
 
@@ -151,7 +151,7 @@ To add the `node-authorization` pallet to the Substrate runtime:
 
    This section specifies the default feature set to compile for this runtime is the `std` features set.
    When the runtime is compiled using the `std` feature set, the `std` features from all of the pallets listed as dependencies are enabled.
-   For more detailed information about how the runtime is compiled as a native Rust binary with the standard library and as a WebAssembly binary using the `no_std` attribute, see [Building the runtime](/main-docs/build/build-runtime/).
+   For more detailed information about how the runtime is compiled as a native Rust binary with the standard library and as a WebAssembly binary using the `no_std` attribute, see [Building the runtime](/d-runtime/).
 
    If you forget to update the `features` section in the `Cargo.toml` file, you might see `cannot find function` errors when you compile the runtime binary.
 
@@ -420,7 +420,7 @@ To start the second node:
 ### Add a third node to the list of well-known nodes
 
 You can start the third node with the `--name charlie` command.
-The `node-authorization` pallet uses an [offchain worker](/main-docs/fundamentals/offchain-operations) to configure node connections.
+The `node-authorization` pallet uses an [offchain worker](/ls/offchain-operations) to configure node connections.
 Because the third node is not a well-known node and it will have the fourth node in the network configured as a read-only sub-node, you must include the command line option to enable the offchain worker.
 
 To start the third node:
@@ -516,4 +516,4 @@ To learn more about the topics introduced in this tutorial, see the following se
 
 - [Monitor node metrics](/tutorials/get-started/monitor/)
 - [Upgrade the runtime](/tutorials/get-started/forkless-upgrade/)
-- [Accounts, addresses, and keys](/main-docs/fundamentals/accounts-addresses-keys)
+- [Accounts, addresses, and keys](/ls/accounts-addresses-keys)

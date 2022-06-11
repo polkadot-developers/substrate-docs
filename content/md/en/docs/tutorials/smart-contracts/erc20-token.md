@@ -15,7 +15,7 @@ Before you begin, verify the following:
 
 - You are generally familiar with smart contracts, tokens, and cryptocurrency concepts and terminology.
 
-- You have installed Rust and set up your development environment as described in [Install](/main-docs/install/).
+- You have installed Rust and set up your development environment as described in [Install](/
 
 - You have completed [Prepare your first contract](/tutorials/smart-contracts/first-smart-contract/) and have the Substrate contracts node installed locally.
 

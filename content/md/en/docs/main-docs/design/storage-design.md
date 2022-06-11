@@ -41,12 +41,12 @@ instead.
 Blockchains that are built with Substrate expose a remote procedure call (RPC) server that can be
 used to query runtime storage. When you use the Substrate RPC to access a storage item, you only
 need to provide [the key](#key-value-database) associated with that item.
-[Substrate's runtime storage APIs](/main-docs/build/runtime-storage) expose a number of storage item types; keep
+[Substrate's runtime storage APIs](/build/runtime-storage) expose a number of storage item types; keep
 reading to learn how to calculate storage keys for the different types of storage items.
 
 ### Storage value keys
 
-To calculate the key for a simple [Storage Value](/main-docs/build/runtime-storage#storage-value), take the
+To calculate the key for a simple [Storage Value](/build/runtime-storage#storage-value), take the
 [TwoX 128 hash](https://github.com/Cyan4973/xxHash) of the name of the pallet that contains the
 Storage Value and append to it the TwoX 128 hash of the name of the Storage Value itself. For
 example, the [Sudo](/rustdocs/latest/pallet_sudo/index.html) pallet exposes a
@@ -71,7 +71,7 @@ In this case, the value that is returned
 [SCALE](../scale-codec)-encoded account ID (`5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY`).
 
 You may have noticed that the
-[non-cryptographic](/main-docs/build/runtime-storage#cryptographic-hashing-algorithms) TwoX 128 hash algorithm is
+[non-cryptographic](/build/runtime-storage#cryptographic-hashing-algorithms) TwoX 128 hash algorithm is
 used to generate Storage Value keys. This is because it is not necessary to pay the performance
 costs associated with a cryptographic hash function since the input to the hash function (the names
 of the pallet and storage item) are determined by the runtime developer and not by potentially
@@ -79,21 +79,21 @@ malicious users of your blockchain.
 
 ### Storage map keys
 
-Like Storage Values, the keys for [Storage Maps](/main-docs/build/runtime-storage#storage-map) are equal to the
+Like Storage Values, the keys for [Storage Maps](/build/runtime-storage#storage-map) are equal to the
 TwoX 128 hash of the name of the pallet that contains the map prepended to the TwoX 128 hash of the
 name of the Storage Map itself. To retrieve an element from a map, simply append the hash of the
 desired map key to the storage key of the Storage Map. For maps with two keys (Storage Double Maps),
 append the hash of the first map key followed by the hash of the second map key to the Storage
 Double Map's storage key. Like Storage Values, Substrate will use the TwoX 128 hashing algorithm for
 the pallet and Storage Map names, but you will need to make sure to use the correct
-[hashing algorithm](/main-docs/build/runtime-storage#hashing-algorithms) (the one that was declared in
-[the `#[pallet::storage]` macro](/main-docs/build/runtime-storage#declaring-storage-items)) when determining the hashed
+[hashing algorithm](/build/runtime-storage#hashing-algorithms) (the one that was declared in
+[the `#[pallet::storage]` macro](/build/runtime-storage#declaring-storage-items)) when determining the hashed
 keys for the elements in a map.
 
 Here is an example that illustrates querying a Storage Map named `FreeBalance` from a pallet named
 "Balances" for the balance of the familiar `Alice` account. In this example, the `FreeBalance` map
 is using
-[the transparent Blake2 128 Concat hashing algorithm](/main-docs/build/runtime-storage#transparent-hashing-algorithms):
+[the transparent Blake2 128 Concat hashing algorithm](/build/runtime-storage#transparent-hashing-algorithms):
 
 ```
 twox_128("Balances")                                             = "0xc2261276cc9d1f8598ea4b6a74b15c2f"
@@ -110,7 +110,7 @@ example above) is the [SCALE](../scale-codec)-encoded value of Alice's account b
 (`"1000000000000000000000"` in this example). Notice that before hashing Alice's account ID it has
 to be SCALE-encoded. Also notice that the output of the `blake2_128_concat` function consists of 32
 hexadecimal characters followed by the function's input. This is because the Blake2 128 Concat is
-[a transparent hashing algorithm](/main-docs/build/runtime-storage#transparent-hashing-algorithms). Although the
+[a transparent hashing algorithm](/build/runtime-storage#transparent-hashing-algorithms). Although the
 above example may make this characteristic seem superfluous, its utility becomes more apparent when
 the goal is to iterate over the keys in a map (as opposed to retrieving the value associated with a
 single key). The ability to iterate over the keys in a map is a common requirement in order to allow

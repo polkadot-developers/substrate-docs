@@ -4,7 +4,7 @@ description: Introduces the core programming interfaces, primitives, and modules
 keywords: []
 ---
 
-As discussed in [Architecture](/main-docs/fundamentals/architecture/), the **runtime** for a Substrate node contains all of the business logic for executing transactions, saving state transitions, and interacting with the outer node.
+As discussed in [Architecture](/fundamentals/architecture/), the **runtime** for a Substrate node contains all of the business logic for executing transactions, saving state transitions, and interacting with the outer node.
 Substrate provides all of the tools required to build common blockchain components so you can focus on developing the runtime logic that defines the blockchain behavior.
 
 ## State transitions and the runtime
@@ -13,15 +13,15 @@ At the most basic level, every blockchain is essentially a ledger or record of e
 In Substrate-based chains, these changes to state are recorded in the runtime.
 Because the runtime handles this operation, the runtime is sometimes described as providing the [state transition function](/reference/glossary#state-transition-function-stf).
 
-Because state transitions occur in the runtime, the runtime is where you define the **storage items** that represent the blockchain [state](/reference/glossary#state) and the [transactions](/main-docs/fundamentals/transaction-types) that allow blockchain users to make changes to this state.
+Because state transitions occur in the runtime, the runtime is where you define the **storage items** that represent the blockchain [state](/reference/glossary#state) and the [transactions](/fundamentals/transaction-types) that allow blockchain users to make changes to this state.
 
-![State and functions in the runtime](/media/images/docs/main-docs/state-transition-function.png)
+![State and functions in the runtime](/media/images/docs/state-transition-function.png)
 
 The Substrate runtime determines which transactions are valid and invalid and how the chain state is changed in response to transactions.
 
 ## Runtime interfaces
 
-As you learned in [Architecture](/main-docs/fundamentals/architecture/), the outer node is responsible for handling peer discovery, transaction pooling, block and transaction gossiping, consensus, and answering RPC calls from the outside world.
+As you learned in [Architecture](/fundamentals/architecture/), the outer node is responsible for handling peer discovery, transaction pooling, block and transaction gossiping, consensus, and answering RPC calls from the outside world.
 These tasks frequently require the outer node to query the runtime for
 information or to provide information to the runtime.
 The runtime API facilitates this kind of communication between the outer node and the runtime.
@@ -78,7 +78,7 @@ These core primitives are:
 ## FRAME
 
 [FRAME](/reference/glossary/#frame) is one of the most powerful tools available to you as a runtime developer.
-As mentioned in [Substrate empowers developers](/main-docs/), FRAME is an acronym for **Framework for Runtime Aggregation of Modularized Entities** and it encompasses a significant number of modules and support libraries that simplify runtime development.
+As mentioned in [Substrate empowers developers](/), FRAME is an acronym for **Framework for Runtime Aggregation of Modularized Entities** and it encompasses a significant number of modules and support libraries that simplify runtime development.
 In Substrate, these modules—called **pallets**—offer customizable business logic for different use cases and features that you might want to include in your runtime.
 For example, there are pallets that provide a framework of business logic for staking, consensus, governance, and other common activities.
 
@@ -177,6 +177,6 @@ Now that you are familiar with the basics of Substrate runtime development and w
 
 - [Frame pallets](/reference/frame-pallets/)
 - [Add a module to the runtime](/tutorials/work-with-pallets/add-a-pallet)
-- [Rust for Substrate](/main-docs/fundamentals/rust-basics/)
+- [Rust for Substrate](/fundamentals/rust-basics/)
 - [Macro reference](/reference/frame-macros/)
 - [Create a custom pallet using macros](/tutorials/work-with-pallets/custom-pallet/)

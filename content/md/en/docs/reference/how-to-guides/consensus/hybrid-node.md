@@ -6,7 +6,7 @@ keywords: consensus
 
 This guide demonstrates how to create a Substrate-based node that employs hybrid consensus, using [Sha3 proof of work](../pow) to dictate block authoring and the
 [Grandpa](/rustdocs/latest/sc_finality_grandpa/index.html) finality gadget to provide
-[deterministic finality](/main-docs/fundamentals/consensus#finality).
+[deterministic finality](/fundamentals/consensus#finality).
 The minimal proof of work consensus lives entirely outside of the runtime.
 
 The Grandpa finality relies on getting its authority sets from the runtime using the

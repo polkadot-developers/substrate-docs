@@ -61,7 +61,7 @@ Prometheus->Grafana: `substrate_peers_count (1582023828, 5), (1582023847, 4) [..
 
 Before you begin, verify the following:
 
-- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/).
+- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/
 
 - You have completed at least some of the previous tutorials, including [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and [Simulte a network](/tutorials/get-started/simulate-network/).
 

@@ -58,7 +58,7 @@ However, because the runtime versioning is set manually, the orchestration engin
 
 The FRAME system exposes the runtime version information through the `state.getRuntimeVersion` RPC endpoint.
 The endpoint accepts an optional block identifier.
-However, in most cases, you use the runtime [metadata](/main-docs/build/frontend#metadata-system) to understand the APIs the runtime exposes
+However, in most cases, you use the runtime [metadata](/build/frontend#metadata-system) to understand the APIs the runtime exposes
 and how to interact with these APIs. 
 The runtime metadata should _only_ change when the chain's
 [runtime `spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version) changes.
@@ -85,7 +85,7 @@ If you don't make these kinds of changes to how data is stored when needed, the 
 
 FRAME storage migrations are implemented using the [`OnRuntimeUpgrade`](/rustdocs/latest/frame_support/traits/trait.OnRuntimeUpgrade.html) trait.
 The `OnRuntimeUpgrade` trait specifies a single function—`on_runtime_upgrade`—that allows
-you to specify logic to run immediately _after_ a runtime upgrade but _before_ any [`on_initialize`](/main-docs/fundamentals/transaction-lifecycle#initialize-a-block) functions or transactions are executed.
+you to specify logic to run immediately _after_ a runtime upgrade but _before_ any [`on_initialize`](/fundamentals/transaction-lifecycle#initialize-a-block) functions or transactions are executed.
 
 ### Preparing for storage migration
 

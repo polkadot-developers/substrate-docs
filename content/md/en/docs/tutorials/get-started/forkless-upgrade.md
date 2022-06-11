@@ -18,7 +18,7 @@ This tutorial illustrates how to perform forkless upgrades by deploying the foll
 
 Before you begin, verify the following:
 
-- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/).
+- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/
 
 - You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and have the Substrate node template installed locally.
 
@@ -234,7 +234,7 @@ Now that the node template has been upgraded to include the Scheduler pallet,
 can be used to perform the next runtime upgrade. In the previous part, the
 `sudo_unchecked_weight` function was used to override the weight associated with the `set_code`
 function; in this section, the runtime upgrade will be _scheduled_ so that it can be processed as
-the only [extrinsic](/main-docs/fundamentals/transaction-types) in a block.
+the only [extrinsic](/tion-types) in a block.
 
 ### Prepare an Upgraded Runtime
 
@@ -267,7 +267,7 @@ This change increases the value of the Balances pallet's
 [`ExistentialDeposit`](/reference/glossary#existential-deposit) - the
 minimum balance needed to keep an account alive from the point-of-view of the Balances pallet.
 
-Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000 to be reaped - that would require a [storage migration](/main-docs/build/upgrade#storage-migrations), which is out of scope for this tutorial.
+Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000 to be reaped - that would require a [storage migration](/e-migrations), which is out of scope for this tutorial.
 
 ### Build the upgraded runtime
 
@@ -309,5 +309,5 @@ app to query the `existentialDeposit` constant value from the Balances pallet.
 
 ## Where to go next
 
-- [Storage migrations](//main-docs/build/upgrade#storage-migrations)
+- [Storage migrations](//e-migrations)
 - [How-to: Storage migration](/reference/how-to-guides/storage-migrations/basic-migration)

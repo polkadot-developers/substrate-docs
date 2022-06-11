@@ -8,7 +8,7 @@ keywords:
   - randomness
 ---
 
-[Randomness](/main-docs/build/randomness/) is used in computer programs for many applications. For example, gaming applications, NFT creation, and selecting block authors all require a degree of randomness.
+[Randomness](/build/randomness/) is used in computer programs for many applications. For example, gaming applications, NFT creation, and selecting block authors all require a degree of randomness.
 
 True randomness is hard to come by in deterministic computers. This is particularly true in the context of a blockchain, when all the nodes in the network must agree on the state of the chain. FRAME provides runtime engineers with a source of randomness, using the [Randomness trait](/rustdocs/latest/frame_support/traits/trait.Randomness.html).
 

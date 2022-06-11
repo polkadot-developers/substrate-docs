@@ -92,7 +92,7 @@ You can explore the following resources to learn more.
 
 #### Tell me
 
-* [Why Substrate?](/main-docs/why-substrate/)
+* [Why Substrate?](/why-substrate/)
 * [Fundamentals](main-docs/fundamentals/)
 * [Architecture](main-docs/fundamentals/architecture/)
 * [Networks and blockchains](main-docs/fundamentals/node-and-network-types/)

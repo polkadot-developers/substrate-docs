@@ -19,7 +19,7 @@ This tutorial illustrateS why calling these functions using different originatin
 
 Before you begin, verify the following:
 
-* You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/).
+* You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
 * You have the Substrate node template installed locally.
 

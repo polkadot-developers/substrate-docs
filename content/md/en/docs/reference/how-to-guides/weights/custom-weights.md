@@ -109,5 +109,5 @@ Once you recompile your node, your extrinsic will now be using the custom weight
 
 ## Related material
 
-- [Benchmarking](/main-docs/test/benchmark)
+- [Benchmarking](/test/benchmark)
 - [Calculate custom fees](/reference/how-to-guides/weights/calculate-fees)

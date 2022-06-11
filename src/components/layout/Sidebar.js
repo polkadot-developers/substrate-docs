@@ -44,11 +44,11 @@ const Sidebar = ({ children, currentPath }) => {
                       </Link>
                     </span>
                     <span title="Docs">
-                      <Link to="/main-docs/">
+                      <Link to="/">
                         <Icon
                           name="docs"
                           className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white', {
-                            'fill-substrateBlue': currentPath.includes('/main-docs/'),
+                            'fill-substrateBlue': currentPath.includes('/'),
                           })}
                         />
                       </Link>

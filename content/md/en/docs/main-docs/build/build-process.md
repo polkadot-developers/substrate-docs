@@ -9,7 +9,7 @@ This article describes what happens under the hood when building and executing a
 Relevant context:
 
 - Runtimes should always be compressed Wasm binaries for on-chain upgrades and relay chain validation capabilities to function correctly.
-- Read about Substrate's [Architecture](/main-docs/fundamentals/architecture) in order to understand how the client interacts with the runtime.
+- Read about Substrate's [Architecture](/fundamentals/architecture) in order to understand how the client interacts with the runtime.
 
 ## Compilation
 
@@ -91,7 +91,7 @@ These are configurable using Substrate's [node template CLI](/reference/command-
 The Wasm representation of the Substrate runtime is considered the canonical runtime and will always be preferred by block authoring nodes.
 Because this Wasm runtime is placed in the blockchain's storage, the network must come to consensus about this binary which can easily be verified for consistency across all syncing nodes.
 
-The native runtime will only be used by the executor when it is chosen as the execution strategy and it is compatible with the requested [runtime version](/main-docs/build/upgrade/#runtime-versioning).
+The native runtime will only be used by the executor when it is chosen as the execution strategy and it is compatible with the requested [runtime version](/build/upgrade/#runtime-versioning).
 
 ## Build options
 
@@ -99,7 +99,7 @@ It can make sense to compile the Wasm binary only, if for example you are just t
 Usually when performing a runtime upgrade, you want to provide both a native and Wasm binary.
 
 When starting a new chain the initial Wasm binary is a requirement. 
-In production the Wasm runtime comes from the [chain specification](/main-docs/build/chain-spec) of a chain.
+In production the Wasm runtime comes from the [chain specification](/build/chain-spec) of a chain.
 However, when starting a chain in developer mode at block 0, it uses the embedded Wasm from the native runtime.
 
 There are several ways to configure a chain to meet your specific requirements:

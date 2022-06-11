@@ -4,7 +4,7 @@ description:
 keywords: []
 ---
 
-As discussed in [Accounts, addresses, and keys](/main-docs/fundamentals/accounts-addresses-keys/), SS58 is the default address format for Substrate-based chains.
+As discussed in [Accounts, addresses, and keys](/fundamentals/accounts-addresses-keys/), SS58 is the default address format for Substrate-based chains.
 The SS58 address format provides a base-58 encoded value that can be used to identify a specific account on a Substrate-based chain.
 This format enables a single public/private key pair to derive multiple public addresses that are specific to different network chains.
 

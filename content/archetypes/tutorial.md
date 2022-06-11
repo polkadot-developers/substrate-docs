@@ -11,6 +11,6 @@ duration: 60
 skills:
   - Rust
   - Blockchain basics
-previous: /main-docs/why-substrate/choose-a-dev-platform/
+previous: /why-substrate/choose-a-dev-platform/
 next: /reference/glossary/
 ---

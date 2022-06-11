@@ -109,7 +109,7 @@ std = [
 - [Mock runtime][mock-runtime]
 - [Timestamp Pallet associated types][timestamp-rustdocs]
 - [FRAME `pallet-timestamp`](https://crates.io/crates/pallet-timestamp)
-- [mock-runtime](/main-docs/test/#mock-runtime-environment)
+- [mock-runtime](/test/#mock-runtime-environment)
 - [timestamp-frame](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs#L413-L422)
 - [timestamp-rustdocs](/rustdocs/latest/pallet_timestamp/pallet/trait.Config.html#associated-types)
 - [template-frame](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/pallets/template/src/lib.rs#L1-L107)

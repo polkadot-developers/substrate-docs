@@ -41,7 +41,7 @@ Substrate provides a proof-of-work block production engine.
 
 ## Finalization and forks
 
-As a primitive, a block contains a header and [transactions](/main-docs/fundamentals/transaction-types).
+As a primitive, a block contains a header and [transactions](/fundamentals/transaction-types).
 Each block header contains a reference to its parent block, so you can trace the chain back to its genesis.
 Forks occur when two blocks reference the same parent.
 Block finalization is a mechanism that resolves forks such that only the canonical chain exists.
@@ -54,11 +54,11 @@ In the GRANDPA protocol, the longest chain rule simply says that the best chain 
 Substrate provides this chain selection rule with the [`LongestChain`](/rustdocs/latest/sc_consensus/struct.LongestChain.html) struct.
 GRANDPA uses the longest chain rule in its voting mechanism.
 
-![longest chain rule](/media/images/docs/main-docs/consensus-longest-chain.png)
+![longest chain rule](/media/images/docs/consensus-longest-chain.png)
 
 The Greedy Heaviest Observed SubTree (GHOST) rule says that, starting at the genesis block, each fork is resolved by choosing the branch that has the most blocks built on it recursively.
 
-![GHOST rule](/media/images/docs/main-docs/consensus-ghost.png)
+![GHOST rule](/media/images/docs/consensus-ghost.png)
 
 ## Deterministic finality
 

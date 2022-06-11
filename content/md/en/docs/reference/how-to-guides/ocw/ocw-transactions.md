@@ -462,4 +462,4 @@ You have now seen how you can use off-chain workers to send data for on-chain st
 
 ## Related material
 
-- [Off-chain features](/main-docs/fundamentals/offchain-operations/)
+- [Off-chain features](/fundamentals/offchain-operations/)
