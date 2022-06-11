@@ -1,7 +1,6 @@
 ---
 title: "Offchain operations"
 description:
-featured_image:
 keywords:
 ---
 
