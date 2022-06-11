@@ -1,6 +1,5 @@
 ---
 title: Build a local blockchain
-description: Launch and interact with your first Substrate chain in this minimal end-to-end guide.
 keywords:
   - node
   - template
