@@ -1,6 +1,6 @@
 ---
 title: Use tight pallet coupling
-keywords: []
+keywords:
 ---
 
 Tight coupling two pallets is a technique to write pallets that re-use types and methods from an existing pallet.

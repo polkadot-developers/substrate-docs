@@ -1,6 +1,6 @@
 ---
 title: Runtime storage
-keywords: []
+keywords:
 ---
 
 Runtime storage allows you to store data in your blockchain that is persisted between blocks and can be accessed from within your runtime logic.

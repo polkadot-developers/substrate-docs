@@ -1,6 +1,6 @@
 ---
 title: Use loose pallet coupling
-keywords: []
+keywords:
 ---
 
 This guide steps through how to reuse a function or type from another pallet using a technique called loose coupling.

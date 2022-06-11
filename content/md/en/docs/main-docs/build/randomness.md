@@ -1,6 +1,6 @@
 ---
 title: Randomness
-keywords: []
+keywords:
 ---
 
 Randomness has many applications in computer science and beyond. 

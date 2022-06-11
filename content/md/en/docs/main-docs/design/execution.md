@@ -1,6 +1,6 @@
 ---
 title: Execution
-keywords: []
+keywords:
 ---
 
 The execution of the Substrate runtime is orchestrated by the [Executive module](/reference/frame-pallets#executive-module).

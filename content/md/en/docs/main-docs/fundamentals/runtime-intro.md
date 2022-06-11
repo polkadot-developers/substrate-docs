@@ -1,6 +1,6 @@
 ---
 title: Runtime development
-keywords: []
+keywords:
 ---
 
 As discussed in [Architecture](/main-docs/fundamentals/architecture/), the **runtime** for a Substrate node contains all of the business logic for executing transactions, saving state transitions, and interacting with the outer node.

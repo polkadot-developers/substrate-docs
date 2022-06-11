@@ -1,6 +1,6 @@
 ---
 title: Account data structures
-keywords: []
+keywords:
 ---
 
 Accounts are a fundamental part of any blockchain, and, in Substrate, accounts can be used in many different ways.

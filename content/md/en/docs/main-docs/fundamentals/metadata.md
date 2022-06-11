@@ -1,6 +1,6 @@
 ---
 title: Metadata
-keywords: []
+keywords:
 ---
 
 Blockchains you build on Substrate expose metadata in order to make it easier to interact with them. This metadata is separated by the different [pallets](/main-docs/fundamentals/runtime-intro) that inform your blockchain.

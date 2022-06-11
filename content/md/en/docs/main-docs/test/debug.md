@@ -1,6 +1,6 @@
 ---
 title: Debug
-keywords: []
+keywords:
 ---
 
 Debugging is a necessity in all walks of software development, and blockchain is no exception. Most

@@ -1,6 +1,6 @@
 ---
 title: Upgrade the runtime
-keywords: []
+keywords:
 ---
 
 Forkless runtime upgrades are a defining feature of the Substrate framework for blockchain development.

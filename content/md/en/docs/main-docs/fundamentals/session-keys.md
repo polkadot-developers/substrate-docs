@@ -1,6 +1,6 @@
 ---
 title: Session Keys
-keywords: []
+keywords:
 ---
 
 Substrate provides the [Session pallet](/rustdocs/latest/pallet_session/index.html),

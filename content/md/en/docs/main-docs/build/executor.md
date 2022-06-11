@@ -1,6 +1,6 @@
 ---
 title: Executor
-keywords: []
+keywords:
 ---
 
 The [executor](/v3/getting-started/glossary#executor) is responsible for dispatching and executing

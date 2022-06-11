@@ -1,6 +1,6 @@
 ---
 title: Events and errors
-keywords: []
+keywords:
 ---
 
 A pallet can emit events when it wants to notify external entities about changes
