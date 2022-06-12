@@ -49,7 +49,7 @@ As a node operator, you use command-line options to control the operation of the
 For example, you use the `--chain` command-line option to specify the [chain specification](/main-docs/build/chain-specification/) your network should use and the `--validator` command-line option to specify that your node is authorized to author blocks and participate in consensus.
 
 With information from the chain specification, the first node in the blockchain generates the genesis block.
-To seals the first block, a validator node starts with the blockchain state from the genesis block. 
+To seals the first block, a validator node starts with the blockchain state from the genesis block.
 The node applies all pending changes to state, and emits the events that are the result of these changes.
 The state of the chain from the first block is used in the same way by the validator node building the state of the chain at the second block, and so on.
 After two thirds of the validators nodes agree that a specific block is valid, it is finalized.
@@ -59,12 +59,12 @@ After two thirds of the validators nodes agree that a specific block is valid, i
 Depending on the command-line options you specify, nodes can play different roles in the progression of the chain and can provide different levels of access to the on-chain state.
 For example, an **archive node** keeps all the past blocks.
 An archive node makes it convenient to query the past state of the chain at any point in time. You can query an archive node to look up an account balance in a certain block or to see which transaction resulted in a certain state change.
-There types of queries are fast operations when you use an archive node. 
+There types of queries are fast operations when you use an archive node.
 However, an archive node requires a lot of disk space.
 
 Archive nodes are used by utilities—such as block explorers and wallets—that need access to past on-chain information.
 A **full node** discards all finalized blocks older than a configurable number except the genesis block
-By default, a full node is pruned to only include the last 256 blocks. 
+By default, a full node is pruned to only include the last 256 blocks.
 A node that is pruned this way requires much less space than an archive node.
 Full nodes allow you to read the current state of the chain and to submit and validate extrinsics directly on the network without relying on a centralized infrastructure provider.
 If you need to query historical blocks that have been pruned, you must purge the node then restart the node in archive mode.
@@ -73,8 +73,8 @@ However, a full node requires more computation to query state or retrieve inform
 
 In addition to archive nodes and full nodes, you can deploy a **light node**.
 A light node has only the runtime and the current state.
-It does not store any past blocks and so cannot read historical data without requesting it from a node that has it. 
-Light nodes are useful for devices with limited resources. 
+It does not store any past blocks and so cannot read historical data without requesting it from a node that has it.
+Light nodes are useful for devices with limited resources.
 
 ## Specify the node type
 
@@ -84,8 +84,8 @@ You can use the following command-line option to specify whether a node is an `a
 --pruning <PRUNING_MODE>
 ```
 
-Specifies the maximum number of block states to keep or `archive` to keep all block states. 
-If the node is running as a validator, the default is to keep all block states. 
+Specifies the maximum number of block states to keep or `archive` to keep all block states.
+If the node is running as a validator, the default is to keep all block states.
 If the node does not run as a validator, only state for the last 256 blocks is kept by default.
 
 If the node is a full node, you can use the following command-line option to specify the number of finalized blocks to keep in the database:
@@ -97,5 +97,5 @@ If the node is a full node, you can use the following command-line option to spe
 You can use the following command-line option to run a node as a light node:
 
 ```bash
---light                            
+--light
 ```

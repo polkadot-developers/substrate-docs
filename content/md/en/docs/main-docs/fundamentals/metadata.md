@@ -1,7 +1,7 @@
 ---
 title: Metadata
 description:
-keywords: []
+keywords:
 ---
 
 Blockchains you build on Substrate expose metadata in order to make it easier to interact with them. This metadata is separated by the different [pallets](/main-docs/fundamentals/runtime-intro) that inform your blockchain.
@@ -9,8 +9,8 @@ Blockchains you build on Substrate expose metadata in order to make it easier to
 For each pallet, the metadata provides information about the [storage items](/main-docs/build/runtime-storage), [extrinsic calls](/main-docs/fundamentals/transaction-types), [events](/main-docs/build/events-and-errors), constants, and errors that are exposed by that pallet. Substrate automatically generates this metadata for you and makes it available through RPC calls.
 
 Since the runtime of a Substrate blockchain is an evolving part of the blockchain's state,
-blockchain metadata is stored on a per-block basis. 
-Be aware that querying the metadata for an older block (with an archive node, for example) could result in acquiring out-of-date metadata that is not compatible with a blockchain's current state. 
+blockchain metadata is stored on a per-block basis.
+Be aware that querying the metadata for an older block (with an archive node, for example) could result in acquiring out-of-date metadata that is not compatible with a blockchain's current state.
 As described in [Forkless upgrades](/main-docs/build/upgrade), metadata for a chain should only change when the chain's [runtime `spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version) changes.
 
 All examples in this document were taken from block 1,768,321 on Kusama. You can look at the
@@ -37,10 +37,10 @@ You can use the following code snippets to fetch the metadata in this
 [Polkadot-JS App - JavaScript page](https://polkadot.js.org/apps/#/js):
 
 ```javascript
-const metadata = await api.rpc.state.getMetadata()
-console.log('version: ' + metadata.version)
-console.log('Magic number: ' + metadata.magicNumber)
-console.log('Metadata: ' + JSON.stringify(metadata.asLatest.toHuman(), null, 2))
+const metadata = await api.rpc.state.getMetadata();
+console.log("version: " + metadata.version);
+console.log("Magic number: " + metadata.magicNumber);
+console.log("Metadata: " + JSON.stringify(metadata.asLatest.toHuman(), null, 2));
 ```
 
 ### HTTP & websocket APIs
@@ -67,9 +67,7 @@ block's hash:
   "id": 1,
   "jsonrpc": "2.0",
   "method": "state_getMetadata",
-  "params": [
-    "0xca15c2f1e1540517697b6b5f2cc6bc0c60876a1a1af604269b7215970798bbed"
-  ]
+  "params": ["0xca15c2f1e1540517697b6b5f2cc6bc0c60876a1a1af604269b7215970798bbed"]
 }
 ```
 
@@ -89,7 +87,7 @@ The response has the following format:
 The `result` field contains the blockchain metadata as a [SCALE-encoded](/reference/scale-codec) hexadecimal string.
 The example above represents the actual value that is returned for block
 1,768,321.
-You can check for yourself by using a WebSocket client to query a node. 
+You can check for yourself by using a WebSocket client to query a node.
 Continue reading to learn more about the format of this encoded blob as well as
 [its decoded format](https://gist.githubusercontent.com/insipx/db5e49c0160b1f1bd421a3c34fefdf48/raw/2c33ff080bec84f0627610124c732deb30a0adc7/meta_block_1768321.json).
 
@@ -212,9 +210,7 @@ about the module's storage:
           }
         },
         "fallback": "0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
-        "documentation": [
-          " The full account information for a particular account ID."
-        ]
+        "documentation": [" The full account information for a particular account ID."]
       },
       {
         "name": "ExtrinsicCount"

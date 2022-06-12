@@ -1,7 +1,7 @@
 ---
 title: Why Substrate?
 description: docs
-keywords: vision, smart contracts, runtime development, blockchain, consensus, substrate, architecture
+keywords: vision, runtime development, blockchain, consensus, substrate, architecture
 ---
 
 Blockchain development is complex.
@@ -13,21 +13,21 @@ With this in mind, the first question to answer is: what do you want to build?
 Substrate isn't a perfect fit for every use case, application, or project.
 However, Substrate might be the perfect choice if you want to build:
 
-* A blockchain that is tailored to a specific purpose.
-* A blockchain that can connect and communicate with other blockchains.
-* A blockchain that can be customized with predefined mix-and-match components.
-* A blockchain that can evolve and change with upgrades.
-* A blockchain that overcomes many of the limitations that are inherent in other blockchain platforms.
+- A blockchain that is tailored to a specific purpose.
+- A blockchain that can connect and communicate with other blockchains.
+- A blockchain that can be customized with predefined mix-and-match components.
+- A blockchain that can evolve and change with upgrades.
+- A blockchain that overcomes many of the limitations that are inherent in other blockchain platforms.
 
 Substrate is a software development kit (SDK) specifically designed for building blockchains with the capability to run as solo chains or to connect to other chains through the Polkadot ecosystem.
 The pioneers and web3 leaders who are behind Substrate believe you shouldn't have to recreate blockchain fundamentals but should have the freedom to innovate without the restrictions and limitation imposed by the blockchain platform.
 
 Unlike other distributed ledger platforms, Substrate is:
 
-* [Flexible](#flexible)
-* [Open](#open)
-* [Interoperable](#interoperable)
-* [Future-proof](#future-proof)
+- [Flexible](#flexible)
+- [Open](#open)
+- [Interoperable](#interoperable)
+- [Future-proof](#future-proof)
 
 ## Flexible
 
@@ -39,15 +39,15 @@ With Substrate, you can deploy a blockchain that's designed and built for your s
 
 ## Open
 
-All of the Substrate architecture and tooling is available under open-source licensing. Core components of the Substrate framework use open protocols such as `libp2p` and `jsonRPC` while empowering you decide how much you want to customize your blockchain architecture. 
-Substrate also has a large, active, and helpful builder community contributing to the ecosystem. 
+All of the Substrate architecture and tooling is available under open-source licensing. Core components of the Substrate framework use open protocols such as `libp2p` and `jsonRPC` while empowering you decide how much you want to customize your blockchain architecture.
+Substrate also has a large, active, and helpful builder community contributing to the ecosystem.
 Contributions from the community enhance the capabilities available for you to incorporate into your own blockchain as it evolves.
 
 ## Interoperable
 
 Most blockchain platforms provided limited ability to interact with data that exists off-chain or on other chain platforms.
-Substrate enables you to choose whether you blockchain operates independently as a solo chain, can connect as a solo chain to another chain using a bridge, or is integrated through a relay chain to connect with other chains. 
-Independent Substrate-based blockchains can interoperate with the other blockchains through cross-chain message passing (XCMP). 
+Substrate enables you to choose whether you blockchain operates independently as a solo chain, can connect as a solo chain to another chain using a bridge, or is integrated through a relay chain to connect with other chains.
+Independent Substrate-based blockchains can interoperate with the other blockchains through cross-chain message passing (XCMP).
 The XCMP protocol enables chains—referred to as **parachains**—to share trusted logic, for example, transferring tokens between networks, without any additional trust assumptions.
 
 Substrate chains inherit security from relay chains like Polkadot or Kusama. As a result, even a small blockchain network can leverage the security guarantees of a large scale network.
@@ -56,30 +56,30 @@ Substrate chains inherit security from relay chains like Polkadot or Kusama. As 
 
 Substrate is built to be upgradeable, composable, and adaptable.
 Its base layer—the Substrate runtime—is intentionally simple and based on the widely-accepted open protocol WebAssembly.
-Keeping the foundation simple enables Substrate to adopt new technology as it evolves because it doesn't require alterations to the foundation. 
+Keeping the foundation simple enables Substrate to adopt new technology as it evolves because it doesn't require alterations to the foundation.
 As a core design principle, Substrate enables you to build a blockchain comprised of components specific to your needs.
 
 ## Where to go next
 
-Substrate provides a unique and powerful framework for building blockchain networks and blockchain applications. 
+Substrate provides a unique and powerful framework for building blockchain networks and blockchain applications.
 You can get started with something asa simple as a single node deployed using a JSON configuration file.
 You can use Substrate to build a solo chain that runs independent of any other blockchains or you can connect your Substrate chain to a relay chain like Polkadot or Kusama and realize the benefits of a larger network.
-If you are even more ambitious, you can use the Substrate core to design and implement a fully customized blockchain runtime from scratch and do so in any language that can compile to WebAssembly. 
+If you are even more ambitious, you can use the Substrate core to design and implement a fully customized blockchain runtime from scratch and do so in any language that can compile to WebAssembly.
 
 Depending on your background and interests, explore the following resources to learn more.
 
 #### Tell me
 
-* [Blockchain basics](/main-docs/fundamentals/blockchain-basics/)
-* [Architecture](/main-docs/fundamentals/architecture/)
-* [Runtime development](/main-docs/fundamentals/runtime-intro)
-* [Networks and blockchains](/main-docs/fundamentals/node-and-network-types/)
-* [Install](/main-docs/install/)
+- [Blockchain basics](/main-docs/fundamentals/blockchain-basics/)
+- [Architecture](/main-docs/fundamentals/architecture/)
+- [Runtime development](/main-docs/fundamentals/runtime-intro)
+- [Networks and blockchains](/main-docs/fundamentals/node-and-network-types/)
+- [Install](/main-docs/install/)
 
 #### Guide me
 
-* [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
-* [Simulate a network](/tutorials/get-started/simulate-network/)
-* [Add trusted validators](/tutorials/get-started/trusted-network/)
+- [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
+- [Simulate a network](/tutorials/get-started/simulate-network/)
+- [Add trusted validators](/tutorials/get-started/trusted-network/)
 
 If you prefer to explore code directly, you can start building in the Developer Playground and consult the API reference to get details about the Rust crates you use.

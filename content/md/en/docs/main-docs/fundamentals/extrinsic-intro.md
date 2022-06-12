@@ -1,7 +1,7 @@
 ---
 title: Extrinsics
 description:
-keywords: []
+keywords:
 ---
 
 An extrinsic is a piece of information that comes from outside the chain and is included in a block.

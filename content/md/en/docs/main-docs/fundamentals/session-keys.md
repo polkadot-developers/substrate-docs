@@ -85,4 +85,3 @@ behavior.
 - [Add trusted validators](/tutorials/get-started/trusted-network)
 - [Session keys API](/rustdocs/latest/sp_session/trait.SessionKeys.html)
 - [`sp_application_crypto`](/rustdocs/latest/sp_application_crypto/index.html)
-

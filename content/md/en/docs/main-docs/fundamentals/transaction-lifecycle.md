@@ -17,9 +17,9 @@ In most cases, the account submitting the request also pays a transaction fee.Ho
 
 As discussed in [Runtime development](/main-docs/fundamentals/runtime-intro/), the Substrate runtime contains the business logic that defines transaction properties, including:
 
-* What constitutes a valid transaction.
-* Whether the transactions are sent as signed or unsigned.
-* How transactions change the state of the chain.
+- What constitutes a valid transaction.
+- Whether the transactions are sent as signed or unsigned.
+- How transactions change the state of the chain.
 
 Typically, you use pallets to compose the runtime functions and to implement the transactions that you want your chain to support.
 After you compile the runtime, users interact with the blockchain to submit requests that are processed as transactions.
@@ -48,9 +48,9 @@ Using rules that are defined in the runtime, the transaction pool checks the val
 The checks ensure that only valid transactions that meet specific conditions are queued to be included in a block.
 For example, the transaction pool might perform the following checks to determine whether a transaction is valid:
 
-* Is the transaction index—also referred to as the transaction nonce—correct?
-* Does the account used to sign the transaction have enough funds to pay the associated fees?
-* Is the signature used to sign the transaction valid?
+- Is the transaction index—also referred to as the transaction nonce—correct?
+- Does the account used to sign the transaction have enough funds to pay the associated fees?
+- Is the signature used to sign the transaction valid?
 
 After the initial validity check, the transaction pool periodically checks whether existing transactions in the pool are still valid.
 If a transaction is found to be invalid or has expired, it is dropped from the pool.
@@ -63,10 +63,9 @@ Specific details on how the validation mechanism works—including handling for 
 If a transaction is identified as valid, the transaction pool moves the transaction into a transaction queue.
 There are two transaction queues for valid transactions:
 
-* The **ready queue** contains transactions that can be included in a new pending block.
+- The **ready queue** contains transactions that can be included in a new pending block.
   If the runtime is built with FRAME, transactions must follow the exact order that they are placed in the ready queue.
-  
-* The **future queue** contains transactions that might become valid in the future.
+- The **future queue** contains transactions that might become valid in the future.
   For example, if a transaction has a `nonce` that is too high for its account, it can wait in the future queue until the appropriate number of transactions for the account have been included in the chain.
 
 ### Invalid transaction handling
@@ -74,9 +73,9 @@ There are two transaction queues for valid transactions:
 If a transaction is invalid—for example, because it is too large or doesn't contain a valid signature—it is rejected and won't be added to a block.
 A transaction might be rejected for any of the following reasons:
 
-* The transaction has already been included in a block so it is dropped from the verifying queue.
-* The transaction's signature is invalid, so it is immediately be rejected.
-* The transaction is too large to fit in the current block, so it is be put back in a queue for a new verification round.
+- The transaction has already been included in a block so it is dropped from the verifying queue.
+- The transaction's signature is invalid, so it is immediately be rejected.
+- The transaction is too large to fit in the current block, so it is be put back in a queue for a new verification round.
 
 ## Transactions ordered by priority
 
@@ -97,9 +96,9 @@ The block authoring node can use the nonce when ordering the transactions to inc
 For transactions that have dependencies, the ordering takes into account the fees that the transaction pays and any dependency on other transactions it contains.
 For example:
 
-* If there is an unsigned transaction with `TransactionPriority::max_value()` and another signed transaction, the unsigned transaction is placed first in the queue.
-* If there are two transactions from _different_ senders, the `priority` determines which transaction is more important and should be included in the block first.
-* If there are two transactions from the _same_ sender with an identical `nonce`: only one transaction can be included in the block, so only the transaction with the higher fee is included in the queue.
+- If there is an unsigned transaction with `TransactionPriority::max_value()` and another signed transaction, the unsigned transaction is placed first in the queue.
+- If there are two transactions from _different_ senders, the `priority` determines which transaction is more important and should be included in the block first.
+- If there are two transactions from the _same_ sender with an identical `nonce`: only one transaction can be included in the block, so only the transaction with the higher fee is included in the queue.
 
 ## Executing transactions and producing blocks
 
@@ -108,9 +107,9 @@ The executive module calls functions in the runtime modules and executes those f
 
 As a runtime developer, it's important to understand how the executive module interacts with the system pallet and the other pallets that compose the business logic for your blockchain because you can insert logic for the executive module to perform as part of the following operations:
 
-* Initializing a block
-* Executing the transactions to be included in a block
-* Finalizing block building
+- Initializing a block
+- Executing the transactions to be included in a block
+- Finalizing block building
 
 ### Initialize a block
 
@@ -163,14 +162,14 @@ that the node knows about.
 In most cases, you don't need to know details about how transactions are gossiped or how blocks are imported by other nodes on the network.
 However, if you plan to write any custom consensus logic or want to know more about the implementation of the block import queue, you can find details in the Rust API documentation.
 
-* [`ImportQueue`](/rustdocs/latest/sc_consensus/import_queue/trait.ImportQueue.html)
-* [`Link`](/rustdocs/latest/sc_consensus/import_queue/trait.Link.html) 
-* [`BasicQueue`](/rustdocs/latest/sc_consensus/import_queue/struct.BasicQueue.html)
-* [`Verifier`](/rustdocs/latest/sc_consensus/import_queue/trait.Verifier.html)
-* [`BlockImport`](/rustdocs/latest/sc_consensus/block_import/trait.BlockImport.html)
+- [`ImportQueue`](/rustdocs/latest/sc_consensus/import_queue/trait.ImportQueue.html)
+- [`Link`](/rustdocs/latest/sc_consensus/import_queue/trait.Link.html)
+- [`BasicQueue`](/rustdocs/latest/sc_consensus/import_queue/struct.BasicQueue.html)
+- [`Verifier`](/rustdocs/latest/sc_consensus/import_queue/trait.Verifier.html)
+- [`BlockImport`](/rustdocs/latest/sc_consensus/block_import/trait.BlockImport.html)
 
 ## Where to go next
 
-* [Seminar: Lifecycle of a transaction](https://www.youtube.com/watch?v=3pfM0GOp02c)
-* [Accounts, addresses, and keys](/main-docs/fundamentals/accounts-addresses-keys/)
-* [Transaction formats](/reference/transaction-formats/)
+- [Seminar: Lifecycle of a transaction](https://www.youtube.com/watch?v=3pfM0GOp02c)
+- [Accounts, addresses, and keys](/main-docs/fundamentals/accounts-addresses-keys/)
+- [Transaction formats](/reference/transaction-formats/)
