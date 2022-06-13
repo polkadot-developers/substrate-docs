@@ -79,19 +79,22 @@ export default function DocsSinglePage({ data, pageContext }) {
         </Sidebar>
         <MobileNavigation className="hidden" currentPath={pagePath} />
         {/* <DocsSingle collection={collection} /> */}
-
         <article className="mb-20 grid grid-cols-12 gap-1">
           <div className="xl:col-start-2 xl:col-end-9 col-start-2 col-end-12">
             <div className="py-8 flex justify-between items-center">
-              <div className="text-sm font-medium text-substrateBlue dark:text-substrateBlue-light mdx-ancho">
-                {pageContext.breadcrumb.crumbs.map(index => (
+              <div className="text-sm font-medium text-substrateBlue dark:text-substrateBlue-light mdx-anchor">
+                {pageContext.breadcrumb.crumbs.map((index, i, crumbs) => (
                   <span key={index.pathname} className="breadcrumb text-substrateDark dark:text-white">
-                    <Link
-                      to={index.pathname}
-                      className="text-sm font-medium text-substrateBlue dark:text-substrateBlue-light mdx-anchor"
-                    >
-                      {titleize(index.crumbLabel)}
-                    </Link>
+                    {i + 1 === crumbs.length ? (
+                      titleize(index.crumbLabel)
+                    ) : (
+                      <Link
+                        to={index.pathname}
+                        className="text-sm font-medium text-substrateBlue dark:text-substrateBlue-light mdx-anchor"
+                      >
+                        {titleize(index.crumbLabel)}
+                      </Link>
+                    )}
                   </span>
                 ))}
               </div>
