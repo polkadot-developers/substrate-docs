@@ -178,7 +178,7 @@ To upgrade the runtime:
    - `spec_version` specifies the version of the runtime.
    - `impl_version` specifies the version of the client.
    - `apis` specifies the list of supported APIs.
-   - `transaction_version` specfies the version of the [dispatchable function](/reference/glossary#dispatch) interface.
+   - `transaction_version` specifies the version of the [dispatchable function](/reference/glossary#dispatch) interface.
 
    To upgrade the runtime, you must _increase_ the `spec_version`.
    For more information, see the [FRAME System](https://github.com/paritytech/substrate/blob/v3.0.0/frame/system/src/lib.rs) module and `can_set_code` function.
@@ -267,7 +267,11 @@ This change increases the value of the Balances pallet's
 [`ExistentialDeposit`](/reference/glossary#existential-deposit) - the
 minimum balance needed to keep an account alive from the point-of-view of the Balances pallet.
 
-Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000 to be reaped - that would require a [storage migration](/main-docs/build/upgrade#storage-migrations), which is out of scope for this tutorial.
+Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000 to be reaped - that would require a storage migration, which is out of scope for this tutorial.
+
+<!-- TODO NAV.YAML -->
+<!-- add  back ABOVE -->
+<!--[storage migration](/reference/how-to-guides/storage-migrations/) -->
 
 ### Build the upgraded runtime
 

@@ -1,7 +1,5 @@
 ---
 title: Basic token mint
-description: Demonstrates how to create a simple token mint pallet.
-
 keywords:
   - basics
   - beginner
@@ -44,12 +42,9 @@ Give any account the ability to create a token supply in exchange for native tok
 
 ## Set up the Config trait
 
-Using the node template as a starting point, specify the types your pallet depends on and the [`Events`][events-kb] it emits:
+Using the node template as a starting point, specify the types your pallet depends on and the [`Events`](/main-docs/build/events-errors/) it emits:
 
-```rust
-// The configuration trait
-pub trait Config: system::Config {
-	type Event: From<Event<Self>> + Into<<Self as frame_system::Config>::Event>;
+```rust][events-kbm::Config>::Event>;
 	type Balance: Member + Parameter + AtLeast32BitUnsigned + Default + Copy;
 }
 /* --snip-- */
@@ -167,7 +162,4 @@ See [Import a pallet](../pallet-integration) if you’re not yet familiar with t
 ## Related material
 
 - [Configure a runtime constant](../configurable-constants)
-- [Deposit event method][deposit-event-rustdocs]
-
-[events-kb]: /v3/runtime/events-and-errors
-[deposit-event-rustdocs]: https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.deposit_event
+- [Deposit event method](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.deposit_event)

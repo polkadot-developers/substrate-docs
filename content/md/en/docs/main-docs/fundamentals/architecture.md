@@ -43,7 +43,7 @@ Some of the most important activities that are handled by the outer node involve
 * [Executor](/reference/glossary/#executor): The outer node is responsible for selecting the execution environment—WebAssembly or native Rust—for the runtime to use then dispatching calls to the runtime selected.
 
 Performing these tasks often requires the outer node to query the runtime for information or to provide information to the runtime.
-This communication is handled by calling specialized [runtime APIs](/reference/runtime-apis.md).
+This communication is handled by calling specialized [runtime APIs](/reference/runtime-apis/).
 
 ### Runtime
 

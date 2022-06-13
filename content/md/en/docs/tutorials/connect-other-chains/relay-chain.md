@@ -107,7 +107,7 @@ We will use the [Substrate parachain template](https://github.com/substrate-deve
 The parachain template is similar but not identical to the [node template](https://github.com/substrate-developer-hub/substrate-node-template).
 Later, we will use this parachain template as the starting point for developing our own parachains.
 
-See the guide on [converting a solo chain to a parachain](/refeerence/how-to-guides/parachains/convert) for details on how the parachain template was created, and how to convert your chain's logic (not state migrations!) to a parachain.**
+<!-- See the guide on [converting a solo chain to a parachain](/reference/how-to-guides/parachains/convert) for details on how the parachain template was created, and how to convert your chain's logic (not state migrations!) to a parachain.** -->
 
 In a new terminal window:
 

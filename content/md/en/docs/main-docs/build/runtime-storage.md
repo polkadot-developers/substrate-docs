@@ -418,9 +418,11 @@ Because this signatory list is [necessary to come to consensus](#what-to-store) 
 
 Check out some guides covering various topics on storage:
 
-- [Using a storage map](/reference/how-to-guides/basics/mint-token)
+<!-- TODO NAV.YAML -->
+<!-- add these back -->
+<!-- - [Using a storage map](/reference/how-to-guides/basics/mint-token) -->
 - [Structs in storage](/reference/how-to-guides/pallet-design/storage-value)
-- [Storage migration](/reference/how-to-guides/storage-migrations/basics)
+<!-- - [Storage migration](/reference/how-to-guides/storage-migrations/basics) -->
 - [StorageValue](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.StorageValue.html)
 - [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.StorageMap.html)
 - [StorageDoubleMap](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.StorageDoubleMap.html)

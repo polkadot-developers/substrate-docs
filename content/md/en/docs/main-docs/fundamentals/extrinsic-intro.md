@@ -7,7 +7,7 @@ keywords: []
 An extrinsic is a piece of information that comes from outside the chain and is included in a block.
 Extrinsics fall into three categories: inherents, signed transactions, and unsigned transactions.
 
-Note that [events](/v3/runtime/events-and-errors) are not extrinsics. The chain emits events for pieces of
+Note that [events](/main-docs/build/events-errors/) are not extrinsics. The chain emits events for pieces of
 information that are intrinsic to the chain itself. For example, staking rewards are events, not
 extrinsics, because the reward is triggered by circumstances intrinsic to the chain's logic.
 
@@ -23,7 +23,7 @@ First, it prevents any alterations to the series of extrinsics after the header 
 distributed. Second, it provides a means of allowing light clients to succinctly verify that any
 given extrinsic did indeed exist in a block given only knowledge of the header.
 
-- [Block Reference](https://paritytech.github.io/substrate/master/sp_runtime/traits/trait.Block.html)
+- [Block Reference](/rustdocs/latest/sp_runtime/traits/trait.Block.html)
 
 ## Inherents
 
@@ -41,7 +41,7 @@ to prove that a timestamp is true the way the desire to send funds is proved wit
 Rather, validators accept or reject the block based on how reasonable the other validators find the
 timestamp, which may mean it is within some acceptable range of their own system clocks.
 
-- [Inherents Reference](https://paritytech.github.io/substrate/master/sp_inherents/index.html)
+- [Inherents Reference](/rustdocs/latest/sp_inherents/index.html)
 
 ## Signed transactions
 
@@ -58,10 +58,8 @@ Some cases call for unsigned transactions. Use unsigned transactions with care, 
 logic can be difficult.
 
 Since the transaction is not signed, there is nobody to pay a fee. Because of this, the transaction
-queue lacks economic logic to prevent spam. Unsigned transactions also lack a nonce, making replay
-protection difficult. A few transactions warrant using the unsigned variant, but they will require
-some form of spam prevention based on a custom implementation of
-[signed extension](/v3/concepts/tx-pool#signed-extensions), which can exist on unsigned transactions.
+queue lacks economic logic to prevent spam. Unsigned transactions also lack a nonce, making replay protection difficult.
+A few transactions warrant using the unsigned variant, but they will require some form of spam prevention based on a custom implementation of signed extension, which can exist on unsigned transactions.
 
 An example of unsigned transactions in Substrate is the [I'm Online](/reference/frame-pallets#im-online)
 heartbeat transaction sent by authorities. The transaction includes a signature from a Session key,
@@ -70,7 +68,4 @@ checking if a heartbeat has already been submitted in the session.
 
 ## Further reading
 
-- [Reference Documentation](https://paritytech.github.io/substrate/master/sp_runtime/traits/trait.Extrinsic.html)
-- [Runtime Execution](/v3/concepts/execution)
-- [Transaction Fees](/v3/runtime/weights-and-fees)
-- [Transaction Pool](/v3/concepts/tx-pool)
+- [Reference Documentation](/rustdocs/latest/sp_runtime/traits/trait.Extrinsic.html)

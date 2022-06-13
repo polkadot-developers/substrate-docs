@@ -97,8 +97,9 @@ For example:
 ```bash
 substrate --chain=myCustomSpec.json
 ```
-
-See the [custom chain spec how-to guide](/reference/how-to-guides/basics/custom-chain-spec) for a more concrete example.
+<!-- TODO NAV.YAML -->
+<!-- add these back -->
+<!-- See the [custom chain spec how-to guide](/reference/how-to-guides/basics/custom-chain-spec) for a more concrete example. -->
 
 ## Raw chain specifications
 
@@ -115,7 +116,7 @@ For example, consider this excerpt from the default Substrate node's chain speci
 }
 ```
 
-Before this chain spec can be used to initialize a node's genesis storage, the human-readable keys must be transformed into actual storage keys for the [storage trie](/main-docs/build/storage).
+Before this chain spec can be used to initialize a node's genesis storage, the human-readable keys must be transformed into actual storage keys for the [storage trie](/main-docs/build/runtime-storage/).
 This transformation is straight-forward, but it requires that the node's runtime be able to understand the chain spec.
 
 If a node with an upgraded runtime attempts to synchronize a chain from genesis, it will not understand the information in this human-readable chain spec.
@@ -136,8 +137,11 @@ After the conversion to the raw format, the `sudo key` snippet looks like this:
 
 ## Where to go next
 
+
+<!-- TODO NAV.YAML -->
+<!-- add these back -->
 * [Add trusted validators](/tutorials/get-started/trusted-network/)
-* [How-to: Ggenesis configuration](/reference/how-to-guides/basics/genesis/)
+<!-- * [How-to: Genesis configuration](/reference/how-to-guides/basics/genesis-config/) -->
 * [`ChainSpec` struct](https://paritytech.github.io/substrate/master/sc_service/struct.GenericChainSpec.html)
 * [`ProtocolId` struct](https://paritytech.github.io/substrate/master/sc_network/config/struct.ProtocolId.html)
 * [Node template chain specification](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs)

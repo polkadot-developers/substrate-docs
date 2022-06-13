@@ -11,7 +11,7 @@ description:
 
 The final part of the workshop will step you through how to use the [`polkadot-launch`](https://github.com/paritytech/polkadot-launch) tool to automate the launch of a full parachain testnet with multiple parachains and a common relay chain.
 
-It is still **_highly recommended_** to understand [the manual process](/tutorials/connect-other-chains/start-relay), as this script is not a perfect fit for all use cases.
+It is still **_highly recommended_** to understand the manual process, as this script is not a perfect fit for all use cases.
 When things go wrong with `polkadot-launch`, you know how to troubleshoot.
 
 ## Learning outcomes
@@ -57,7 +57,6 @@ It also leverages on Polkadot-JS API to connect to these spawned nodes over thei
 Specifically, you will perform the following to use `polkadot-launch`:
 
 1. Compile and have your relay chain node and parachain collator binaries ready.
-   [Instructions here](/tutorials/connect-other-chains/start-relay).
    Beware to match their corresponding tagged version.
 
 1. Write a config file for `polkadot-launch` to fit your needs.

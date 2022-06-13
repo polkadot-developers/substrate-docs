@@ -135,7 +135,7 @@ that _could_ be a
 [`DispatchError` variant](https://paritytech.github.io/substrate/master/frame_support/dispatch/enum.DispatchError.html)
 if the dispatchable function encountered an error.
 
-Each FRAME pallet may define a custom `DispatchError` by using the [`#[pallet::error]` macro](../macros#palleterror).
+Each FRAME pallet may define a custom `DispatchError` by using the `#[pallet::error]` macro.
 For example:
 
 ```rust

@@ -40,7 +40,7 @@ mod app {
 
 Typically, these keys are also initially configured in the genesis state to launch your
 chain with pre-established validators. You can see this demonstrated in the
-[private network tutorial](/tutorials/v3/private-network/).
+[trusted network tutorial](/tutorials/get-started/trusted-network/).
 
 The Session keys from a Substrate node could use the same cryptography, but serve _very_ different purposes in your runtime logic. 
 To prevent the wrong key being used for the wrong operation, strong Rust types wrap these keys, keeping them incompatible with one another and ensuring they are only used for their intended purpose.

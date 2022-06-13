@@ -45,7 +45,7 @@ Primitive types and traits are exposed in their own separate crates, so they are
 
 In addition to the core libraries that enable you to build a Substrate-based blockchain, there are client libraries that you can use to interact with Substrate nodes.
 You can use the client libraries to build application-specific front-ends.
-In general, the capabilities that the client libraries expose are implemented on top of [Substrate remote procedure call (RPC) APIs](./frontend#RPC-APIs).
+In general, the capabilities that the client libraries expose are implemented on top of Substrate remote procedure call (RPC) APIs.
 
 | Name | Description  | Language  | Use case  |
 |---|---|---|---|

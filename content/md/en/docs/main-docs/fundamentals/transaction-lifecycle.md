@@ -128,7 +128,7 @@ Instead, state changes are written directly to storage during execution.
 If a transaction were to fail mid-execution, any state changes that took place before the failure would not be reverted, leaving the block in an unrecoverable state.
 Before committing any state changes to storage, the runtime logic should perform all necessary checks to ensure the extrinsic will succeed.
 
-Note that [events](/main-docs/build/events-and-errors/) are also written to storage.
+Note that [events](/main-docs/build/events-errors/) are also written to storage.
 Therefore, the runtime logic should not emit an event before performing the complementary actions.
 If a transaction fails after an event is emitted, the event is not be reverted.
 
@@ -171,6 +171,9 @@ However, if you plan to write any custom consensus logic or want to know more ab
 
 ## Where to go next
 
+<!-- TODO NAV.YAML -->
+<!-- add these back -->
 * [Seminar: Lifecycle of a transaction](https://www.youtube.com/watch?v=3pfM0GOp02c)
 * [Accounts, addresses, and keys](/main-docs/fundamentals/accounts-addresses-keys/)
-* [Transaction formats](/reference/transaction-formats/)
+<!-- * [Transaction formats](/main-docs/fundamentals/transaction-format/
+) -->

@@ -172,4 +172,6 @@ fn my_runtime_test() {
 
 ## Where to go next
 
-- [Set up tests for your pallet](/reference/how-to-guides/testing/)
+<!-- TODO NAV.YAML -->
+<!-- add these back -->
+<!-- - [Set up tests for your pallet](/reference/how-to-guides/testing/) -->

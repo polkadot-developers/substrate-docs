@@ -4,8 +4,6 @@ description:
 keywords:
 ---
 
-[ NOTE: taken from https://docs.substrate.io/v3/advanced/executor/ ]
-
 The default execution strategies for the different parts of the blockchain execution process are:
 
 - Syncing: `NativeElseWasm`

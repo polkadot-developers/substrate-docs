@@ -96,7 +96,7 @@ To remove a nickname:
 
 You can learn about additional features—such as the use of the Sudo pallet and origin accounts—by exploring how these functions work.
 However, those features are beyond the scope of this tutorial.
-If you want to explore additional features exposed through the Nicks and Sudo pallets, see [Next steps]() and select [Specify the origin for a call]().
+If you want to explore additional features exposed through the Nicks and Sudo pallets, see [Next steps](#next-steps).
 
 For example, if you select the `killName`function and specify the account for Bob as the function's argument, you must be the `Root` origin account to submit the call.
 The `killName` function must be called by the `ForceOrigin` that was configured with the Nicks pallet's `Config` interface in the previous section.
@@ -110,13 +110,13 @@ Because the call requires the `Root` origin, an error is returned.
 ![`BadOrigin` Error](/media/images/docs/tutorials/specify-origin/kill-name-bad-origin.png)
 
 Even though the function call was successfully dispatched, the `BadOrigin` error is emitted and displayed in the Events pane.
-Alice's account is charged a fee for the dispatch, but there aren't any state changes because the Nicks pallet follows the important [verify-first-write-last](/v3/runtime/storage#verify-first-write-last) pattern.
+Alice's account is charged a fee for the dispatch, but there aren't any state changes because the Nicks pallet follows the important `verify-first-write-last` pattern.
 
 If you invoke the `killName` function by clicking **SUDO**, the call is dispatched by the `Root` origin.
 
 ![Nicks Pallet Error](/media/images/docs/tutorials/specify-origin/clear-name-error.png)
 
-The Sudo pallet emits a [`Sudid` event](https://paritytech.github.io/substrate/master/pallet_sudo/enum.RawEvent.html#variant.Sudid) to inform network participants that the `Root` origin dispatched a call. 
+The Sudo pallet emits a [`Sudid` event](https://paritytech.github.io/substrate/master/pallet_sudo/pallet/enum.Event.html#variant.Sudid) to inform network participants that the `Root` origin dispatched a call. 
 However, the inner dispatch failed with a [`DispatchError`](https://paritytech.github.io/substrate/master/sp_runtime/enum.DispatchError.html) (the Sudo pallet's [`sudo` function](https://paritytech.github.io/substrate/master/pallet_sudo/pallet/enum.Call.html#variant.sudo) is the "outer" dispatch).
 In particular, this was an instance of [the `DispatchError::Module` variant](https://paritytech.github.io/substrate/master/frame_support/dispatch/enum.DispatchError.html#variant.Module), which reports two pieces of metadata: an `index` number and an `error` number.
 The `index` number relates to the pallet from which the error originated; it corresponds with the _index_ (position) of the pallet within the `construct_runtime!` macro.
@@ -124,7 +124,7 @@ The `error` number corresponds with the index of the relevant variant from that 
 When using these numbers to find pallet errors, remember that the _first_ position corresponds with index _zero_.
 In the screenshot above, the `index` is `9` (the _tenth_ pallet) and the `error` is `2` (the _third_ error).
 Depending on the position of the Nicks pallet in your `construct_runtime!` macro, you may see a different number for `index`.
-Regardless of the value of `index`, you should see that the `error` value is `2`, which corresponds to the _third_ variant of the Nick's pallet's `Error` enum, [the `Unnamed` variant](https://paritytech.github.io/substrate/master/pallet_nicks/enum.Error.html#variant.Unnamed).
+Regardless of the value of `index`, you should see that the `error` value is `2`, which corresponds to the _third_ variant of the Nick's pallet's `Error` enum, [the `Unnamed` variant](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Error.html#variant.Unnamed).
 This shouldn't be a surprise since Bob has not yet reserved a nickname, thus it cannot be cleared!
 
 You should confirm that Alice can use the `SUDO` button to invoke the `killName` dispatchable and forcibly clear the nickname associated with any account (including her own) that actually has a nickname associated with it.
@@ -137,7 +137,7 @@ Here are some other things you may want to try:
 ## Next steps
 
 - We have [plenty of tutorials](/tutorials) to showcase Substrate development concepts and techniques.
-- For more information about runtime development tips and patterns, refer to our [How-to Guides](/how-to-guides).
+- For more information about runtime development tips and patterns, refer to our [How-to Guides](/reference/how-to-guides).
 - For a bare FRAME pallet with detailed comments about what you can access within FRAME, see [this example in `substrate`](https://github.com/paritytech/substrate/tree/master/frame/examples/basic).
 
 ### References
