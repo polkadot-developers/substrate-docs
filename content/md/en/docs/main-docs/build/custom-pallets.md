@@ -10,7 +10,7 @@ For example, you might start building an application-specific staking pallet tha
 ## Pallet macros and attributes
 
 FRAME makes extensive use of Rust macros to encapsulate complex blocks of code.
-bThe most import macros for building custom pallets is the [`pallet`](https://docs.substrate.io/rustdocs/latest/frame_support/attr.pallet.html) macro.
+bThe most import macros for building custom pallets is the [`pallet`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html) macro.
 The `pallet` macro defines the core set of attributes that a pallet must provide.
 For example:
 
@@ -49,7 +49,7 @@ For an overview of the macros used in FRAME pallets, see [FRAME macros](/referen
 Writing a pallet and implementing it for a runtime go hand in hand.
 Your pallet's `Config` trait is what get's implemented for `Runtime` which is a special struct used to compile all implemented pallets in the `construct_runtime` macro.
 
-- [`parameter_types`](https://docs.substrate.io/rustdocs/latest/frame_support/macro.parameter_types.html) and [`ord_parameter_types`](https://docs.substrate.io/rustdocs/latest/frame_support/macro.ord_parameter_types.html) macros are useful for passing in values to configurable pallet constants.
+- [`parameter_types`](https://paritytech.github.io/substrate/master/frame_support/macro.parameter_types.html) and [`ord_parameter_types`](https://paritytech.github.io/substrate/master/frame_support/macro.ord_parameter_types.html) macros are useful for passing in values to configurable pallet constants.
 - [ other considerations like no_std ]
 - Minimilistic runtime references
 - Side chain architecture references 

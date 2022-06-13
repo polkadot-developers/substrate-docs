@@ -7,7 +7,7 @@ If you completed the [Build a local blockchain](/tutorials/get-started/build-loc
 In [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet/), you learned the basic common steps for adding a new pallet to the runtime.
 However, each pallet requires you to configure specific parameters and types.
 To see what that entails, this tutorial demonstrates adding a more complex pallet to the runtime.
-In this tutorial, you'll add the [Contracts pallet](/rustdocs/latest/pallet_contracts/) so that you can support smart contract development for your blockchain.
+In this tutorial, you'll add the [Contracts pallet](https://paritytech.github.io/substrate/master/pallet_contracts/) so that you can support smart contract development for your blockchain.
 
 If you completed the [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet/) tutorial, you'll notice some familiar patterns when adding the Contracts pallet.
 This tutorial focuses less on those common patterns and more on the the settings that are specifically required to add the Contracts pallet.
@@ -70,7 +70,7 @@ To import the `pallet-contracts` crate:
 Now that you have successfully imported the Contracts pallet crate, you are ready to add it to the runtime.
 If you have explored other tutorials, you might already know that every pallet has a configuration trait—called `Config`—that the runtime must implement.
 
-To see what you need to implement for the Contracts pallet, you can refer to the Rust API documentation for [`pallet_contracts::Config`](https://substrate.dev/rustdocs/latest/pallet_contracts/pallet/trait.Config.html).
+To see what you need to implement for the Contracts pallet, you can refer to the Rust API documentation for [`pallet_contracts::Config`](https://paritytech.github.io/substrate/master/pallet_contracts/pallet/trait.Config.html).
 
 To implement the `Config` trait for the Contracts pallet in the runtime:
 
@@ -412,7 +412,7 @@ If there are no errors, you are ready to compile.
 
 ## Start the local Substrate node
 
-After your node compiles, you are ready to start the Substrate node that has been enhanced with smart contract capabilities from the [Contracts pallet](https://substrate.dev/rustdocs/latest/pallet_contracts/index.html) and interact with it using the front-end template.
+After your node compiles, you are ready to start the Substrate node that has been enhanced with smart contract capabilities from the [Contracts pallet](https://paritytech.github.io/substrate/master/pallet_contracts/index.html) and interact with it using the front-end template.
 
 To start the local node:
 

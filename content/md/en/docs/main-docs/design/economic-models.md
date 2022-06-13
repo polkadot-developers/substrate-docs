@@ -34,7 +34,7 @@ This capability is provided by the [balances]() pallet and FRAME's [currency tra
 
 - **A transaction payment handling layer**. Custom logic for handling and administering transaction fees.
 This is where the fees are calculated and the tipping logic is implemented. 
-Read the documentation about how this is implemented in FRAME's [transaction payment pallet](https://docs.substrate.io/rustdocs/latest/pallet_transaction_payment/index.html).
+Read the documentation about how this is implemented in FRAME's [transaction payment pallet](https://paritytech.github.io/substrate/master/pallet_transaction_payment/index.html).
 
 - **A token implementation layer**. These are mechanisms built ontop of a blockchain's underlying currency system, to be used either as application-specific units of value or as alternative currencies for participating in the network such as multi-asset staking or voting mechanisms.
 The FRAME library provides the [assets]() palelt for fungible token types and the [uniques]() pallet for non-fungible token types to allow developers to build applications that require different value bearing token types.

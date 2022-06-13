@@ -7,7 +7,7 @@ keywords:
   - runtime
 ---
 
-This guide will show you how to add the [Contracts pallet](/rustdocs/latest/pallet_contracts/index.html) to your runtime so that your blockchain can support Wasm smart contracts.
+This guide will show you how to add the [Contracts pallet](https://paritytech.github.io/substrate/master/pallet_contracts/index.html) to your runtime so that your blockchain can support Wasm smart contracts.
 You can follow similar patterns to add additional FRAME pallets to your runtime, however you should note that each pallet is a little different in terms of the specific configuration settings needed to use it correctly.
 
 ## Before you begin
@@ -181,11 +181,11 @@ cargo build --release
 
 ## Related material
 
-- [`pallet_contracts` crate](/rustdocs/latest/pallet_contracts/index.html)
-- [`pallet_contracts_rpc` crate](/rustdocs/latest/pallet_contracts_rpc/index.html)
+- [`pallet_contracts` crate](https://paritytech.github.io/substrate/master/pallet_contracts/index.html)
+- [`pallet_contracts_rpc` crate](https://paritytech.github.io/substrate/master/pallet_contracts_rpc/index.html)
 
 [create-first-chain-tutorial]: /tutorials/get-started/build-local-blockchain
-[contracts-config-rustdocs]: /rustdocs/latest/pallet_contracts/trait.Config.html
+[contracts-config-rustdocs]: https://paritytech.github.io/substrate/master/pallet_contracts/trait.Config.html
 [contracts-frame-gh]: https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs#L144
 [bin-runtime-contracts-frame]: https://github.com/paritytech/substrate/blob/632b32300eb9376767c2ae7b38e79b3f7f5329b1/bin/node/runtime/src/lib.rs#L887-L903
-[contracts-api-rustdocs]: /rustdocs/latest/pallet_contracts_rpc_runtime_api/trait.ContractsApi.html
+[contracts-api-rustdocs]: https://paritytech.github.io/substrate/master/pallet_contracts_rpc_runtime_api/trait.ContractsApi.html

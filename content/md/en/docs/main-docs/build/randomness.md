@@ -20,7 +20,7 @@ Luckily, advancements in cryptographic primitives like [Verifiable Random Functi
 
 ## Substrate's randomness trait
 
-Substrate provides a trait called [`Randomness`](/rustdocs/latest/frame_support/traits/trait.Randomness.html) that codifies the interface between the logic that generates randomness and the logic that consumes it. 
+Substrate provides a trait called [`Randomness`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Randomness.html) that codifies the interface between the logic that generates randomness and the logic that consumes it. 
 This trait allows the two pieces of logic to be written independently of each other.
 
 ### Consuming randomness
@@ -42,12 +42,12 @@ It takes a byte-array which is used as a context identifier and returns a result
 There are many different ways to implement the `Randomness` trait, each of which represents different trade-offs between performance, complexity, and security. 
 Substrate ships with two implementations, and developers are able to provide their own implementation if they would like to make different tradeoffs.
 
-The first implementation provided by Substrate is the [Randomness Collective Flip Pallet](/rustdocs/latest/pallet_randomness_collective_flip/index.html).
+The first implementation provided by Substrate is the [Randomness Collective Flip Pallet](https://paritytech.github.io/substrate/master/pallet_randomness_collective_flip/index.html).
 This pallet is based on collective coin flipping.
 It is quite performant, but not very secure.
 This pallet should be used only when testing randomness-consuming pallets, not it production.
 
-The second implementation is the [BABE pallet](/rustdocs/latest/pallet_babe/index.html), which uses verifiable random functions. 
+The second implementation is the [BABE pallet](https://paritytech.github.io/substrate/master/pallet_babe/index.html), which uses verifiable random functions. 
 This pallet provides production-grade randomness, and is used in Polkadot. 
 Selecting this randomness source dictates that your blockchain use Babe consensus.
 
@@ -61,4 +61,4 @@ A runtime developer must ensure that the randomness source used meets the securi
 
 
 - [How-to: Randomness](/reference/how-to-guides/pallet-design/randomness/)
-- [`Randomness`](/rustdocs/latest/frame_support/traits/trait.Randomness.html)
+- [`Randomness`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Randomness.html)

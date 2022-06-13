@@ -170,7 +170,7 @@ the [EVM pallet](#evm-pallet). Each come with additional tools to ease developme
 
 ## Contracts pallet
 
-The [Contracts pallet](/rustdocs/latest/pallet_contracts/index.html) provides
+The [Contracts pallet](https://paritytech.github.io/substrate/master/pallet_contracts/index.html) provides
 the ability for the runtime to deploy and execute [WebAssembly (Wasm)](https://webassembly.org/)
 smart contracts. It uses [ink!](https://paritytech.github.io/ink-docs/), a [Rust](https://www.rust-lang.org/)-based embedded domain specific language
 ([eDSL](https://wiki.haskell.org/Embedded_domain_specific_language)) for writing
@@ -331,7 +331,7 @@ including gas cost and balance changes.
 Observable differences include:
 
 - The available length of block hashes may not be 256 depending on the configuration of the
-  [System pallet](/rustdocs/latest/frame_system/index.html#system-pallet) in the Substrate runtime.
+  [System pallet](https://paritytech.github.io/substrate/master/frame_system/index.html#system-pallet) in the Substrate runtime.
 - Difficulty and coinbase, which do not make sense in this pallet and is currently hard coded to
   zero.
 
@@ -388,7 +388,7 @@ and other FRAME pallets to your blockchain's runtime.
 ### References
 
 - Visit the reference docs for the
-  [Contracts pallet](/rustdocs/latest/pallet_contracts/index.html).
+  [Contracts pallet](https://paritytech.github.io/substrate/master/pallet_contracts/index.html).
 - View source code and documentation of the
   [EVM pallet](https://github.com/paritytech/frontier/tree/master/frame/evm).
 - Visit the

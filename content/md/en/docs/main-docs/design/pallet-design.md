@@ -54,10 +54,10 @@ Substrate based blockchains.
 ### References
 
 - See the
-  [primitive types defined in `node-primitives`](/rustdocs/latest/node_primitives/index.html).
+  [primitive types defined in `node-primitives`](https://paritytech.github.io/substrate/master/node_primitives/index.html).
 
 - See the
-  [`traits` defined in `sp-runtime`](/rustdocs/latest/sp_runtime/traits/index.html).
+  [`traits` defined in `sp-runtime`](https://paritytech.github.io/substrate/master/sp_runtime/traits/index.html).
 
 _[NOTE: Everything below is rough material that hasn't really found its place yet. TODO.]_
 

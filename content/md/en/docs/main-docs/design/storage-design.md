@@ -9,7 +9,7 @@ Questions:
 **storage**
 
 FRAME macros are used to hash storage items, encode and decode them.
-Commonly used hashers in Substrate are: [`Blake2_128`](https://docs.substrate.io/rustdocs/latest/frame_support/struct.Blake2_128.html), [`Blake2_128`](https://docs.substrate.io/rustdocs/latest/frame_support/struct.Blake2_256.html), [`Twox128`](https://docs.substrate.io/rustdocs/latest/frame_support/struct.Twox128.html) and [`Twox256`](https://docs.substrate.io/rustdocs/latest/frame_support/struct.Twox256.html).
+Commonly used hashers in Substrate are: [`Blake2_128`](https://paritytech.github.io/substrate/master/frame_support/struct.Blake2_128.html), [`Blake2_128`](https://paritytech.github.io/substrate/master/frame_support/struct.Blake2_256.html), [`Twox128`](https://paritytech.github.io/substrate/master/frame_support/struct.Twox128.html) and [`Twox256`](https://paritytech.github.io/substrate/master/frame_support/struct.Twox256.html).
 
 ## Trie abstraction
 
@@ -49,9 +49,9 @@ reading to learn how to calculate storage keys for the different types of storag
 To calculate the key for a simple [Storage Value](/main-docs/build/runtime-storage#storage-value), take the
 [TwoX 128 hash](https://github.com/Cyan4973/xxHash) of the name of the pallet that contains the
 Storage Value and append to it the TwoX 128 hash of the name of the Storage Value itself. For
-example, the [Sudo](/rustdocs/latest/pallet_sudo/index.html) pallet exposes a
+example, the [Sudo](https://paritytech.github.io/substrate/master/pallet_sudo/index.html) pallet exposes a
 Storage Value item named
-[`Key`](/rustdocs/latest/pallet_sudo/struct.Module.html#method.key):
+[`Key`](https://paritytech.github.io/substrate/master/pallet_sudo/struct.Module.html#method.key):
 
 ```
 twox_128("Sudo")                   = "0x5c0d1176a568c1f92944340dbfed9e9c"
@@ -158,7 +158,7 @@ example, after you remove the first 32 hexadecimal characters that represent the
 
 ## Runtime storage API
 
-Substrate's [FRAME Support crate](/rustdocs/latest/frame_support/index.html)
+Substrate's [FRAME Support crate](https://paritytech.github.io/substrate/master/frame_support/index.html)
 provides utilities for generating unique, deterministic keys for your runtime's storage items. These
 storage items are placed in the [state trie](#trie-abstraction) and are accessible by
 [querying the trie by key](#querying-storage).

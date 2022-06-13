@@ -4,7 +4,7 @@ description:
 keywords: []
 ---
 
-Substrate provides the [Session pallet](/rustdocs/latest/pallet_session/index.html),
+Substrate provides the [Session pallet](https://paritytech.github.io/substrate/master/pallet_session/index.html),
 which allows validators to manage their session keys.
 
 Session keys are "hot keys" that are used by validators to sign consensus-related messages. They are
@@ -20,7 +20,7 @@ publishing the Session certificate in a transaction on the chain.
 
 ## Implementation
 
-Session keys are used by validators to sign consensus-related messages. [`SessionKeys`](/rustdocs/latest/sp_session/trait.SessionKeys.html)
+Session keys are used by validators to sign consensus-related messages. [`SessionKeys`](https://paritytech.github.io/substrate/master/sp_session/trait.SessionKeys.html)
 is a generic, indexable type that is made concrete in the runtime.
 
 You can declare any number of Session keys. For example, the default Substrate node uses four. Other
@@ -33,7 +33,7 @@ This on-chain registration links a validator _node_ with an _account_ that holds
 that account can be credited with rewards or slashed based on the node's behavior.
 
 The runtime declares what session keys will be implemented with the help of a macro. An
-[example](/rustdocs/latest/src/node_runtime/lib.rs.html#435-442):
+[example](https://paritytech.github.io/substrate/master/src/node_runtime/lib.rs.html#435-442):
 
 ```rust
 impl_opaque_keys! {
@@ -47,7 +47,7 @@ impl_opaque_keys! {
 ```
 
 The actual cryptographic curve that each key uses gets defined in `primitives`. For example,
-[BABE's key uses sr25519](/rustdocs/latest/src/sp_consensus_babe/lib.rs.html#44-47):
+[BABE's key uses sr25519](https://paritytech.github.io/substrate/master/src/sp_consensus_babe/lib.rs.html#44-47):
 
 ```rust
 mod app {
@@ -70,8 +70,8 @@ used for their intended purpose.
 ## Generation and use
 
 As a node operator, you can generate keys using the RPC call
-[`author_rotateKeys`](/rustdocs/latest/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys).
-You will then need to register the new keys on chain using a [`session.setKeys`](/rustdocs/latest/pallet_session/pallet/struct.Pallet.html#method.set_keys) transaction.
+[`author_rotateKeys`](https://paritytech.github.io/substrate/master/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys).
+You will then need to register the new keys on chain using a [`session.setKeys`](https://paritytech.github.io/substrate/master/pallet_session/pallet/struct.Pallet.html#method.set_keys) transaction.
 
 For increased security, session keys should be changed every session. This can be done by creating new session keys, putting the session public keys into an extrinsic, and applying this extrinsic on chain.
 
@@ -83,6 +83,6 @@ behavior.
 ## Where to go next
 
 - [Add trusted validators](/tutorials/get-started/trusted-network)
-- [Session keys API](/rustdocs/latest/sp_session/trait.SessionKeys.html)
-- [`sp_application_crypto`](/rustdocs/latest/sp_application_crypto/index.html)
+- [Session keys API](https://paritytech.github.io/substrate/master/sp_session/trait.SessionKeys.html)
+- [`sp_application_crypto`](https://paritytech.github.io/substrate/master/sp_application_crypto/index.html)
 

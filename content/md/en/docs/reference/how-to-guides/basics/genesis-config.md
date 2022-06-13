@@ -50,7 +50,7 @@ The `GenesisConfig` code should go after your storage items.
    }
    ```
 
-1. Using the `#[pallet::genesis_build]` attribute, implement the [`GenesisBuild`](/rustdocs/latest/frame_support/traits/trait.GenesisBuild.html) trait.
+1. Using the `#[pallet::genesis_build]` attribute, implement the [`GenesisBuild`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.GenesisBuild.html) trait.
 
    ```rust
    #[pallet::genesis_build]
@@ -110,9 +110,9 @@ We'll assume our pallet is called `pallet_something`, declared as `PalletSomethi
 ## Example
 
 - [Node template 'chain_spec.rs'](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs#L142-L144)
-- [Example pallet `GenesisConfig`](/rustdocs/latest/src/pallet_example/lib.rs.html#607)
+- [Example pallet `GenesisConfig`](https://paritytech.github.io/substrate/master/src/pallet_example/lib.rs.html#607)
 
 ## Related material
 
-- Learn how to customize a chain's genesis configuration for the [balances pallet](/rustdocs/latest/pallet_balances/index.html).
-- [`BalancesConfig`](/rustdocs/latest/node_template_runtime/type.BalancesConfig.html)
+- Learn how to customize a chain's genesis configuration for the [balances pallet](https://paritytech.github.io/substrate/master/pallet_balances/index.html).
+- [`BalancesConfig`](https://paritytech.github.io/substrate/master/node_template_runtime/type.BalancesConfig.html)

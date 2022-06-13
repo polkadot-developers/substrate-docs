@@ -88,4 +88,4 @@ Now that you are familiar with transaction types and the information that consti
 * [State transitions and storage](/main-docs/fundamentals/state-transitions-and-storage/)
 * [Transactions, weights, and fees](/main-docs/build/tx-weights-fees/)
 * [Transaction formats](/reference/transaction-formats/)
-* [Block reference](/rustdocs/latest/sp_runtime/traits/trait.Block.html)
+* [Block reference](https://paritytech.github.io/substrate/master/sp_runtime/traits/trait.Block.html)

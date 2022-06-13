@@ -23,7 +23,7 @@ First, it prevents any alterations to the series of extrinsics after the header 
 distributed. Second, it provides a means of allowing light clients to succinctly verify that any
 given extrinsic did indeed exist in a block given only knowledge of the header.
 
-- [Block Reference](/rustdocs/latest/sp_runtime/traits/trait.Block.html)
+- [Block Reference](https://paritytech.github.io/substrate/master/sp_runtime/traits/trait.Block.html)
 
 ## Inherents
 
@@ -41,7 +41,7 @@ to prove that a timestamp is true the way the desire to send funds is proved wit
 Rather, validators accept or reject the block based on how reasonable the other validators find the
 timestamp, which may mean it is within some acceptable range of their own system clocks.
 
-- [Inherents Reference](/rustdocs/latest/sp_inherents/index.html)
+- [Inherents Reference](https://paritytech.github.io/substrate/master/sp_inherents/index.html)
 
 ## Signed transactions
 
@@ -70,7 +70,7 @@ checking if a heartbeat has already been submitted in the session.
 
 ## Further reading
 
-- [Reference Documentation](/rustdocs/latest/sp_runtime/traits/trait.Extrinsic.html)
+- [Reference Documentation](https://paritytech.github.io/substrate/master/sp_runtime/traits/trait.Extrinsic.html)
 - [Runtime Execution](/v3/concepts/execution)
 - [Transaction Fees](/v3/runtime/weights-and-fees)
 - [Transaction Pool](/v3/concepts/tx-pool)

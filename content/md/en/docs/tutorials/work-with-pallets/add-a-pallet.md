@@ -106,7 +106,7 @@ Every pallet has a [Rust **trait**](https://doc.rust-lang.org/book/ch10-02-trait
 
 Most of the pallet-specific code required to add a pallet is implemented using the `Config` trait.
 You can review what you to need to implement for any pallet by referring to its Rust documentation or the source code for the pallet.
-For example, to see what you need to implement for the `nicks` pallet, you can refer to the Rust documentation for [`pallet_nicks::Config`](/rustdocs/latest/pallet_nicks/pallet/trait.Config.html) or the trait definition in the [Nicks pallet source code](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs).
+For example, to see what you need to implement for the `nicks` pallet, you can refer to the Rust documentation for [`pallet_nicks::Config`](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/trait.Config.html) or the trait definition in the [Nicks pallet source code](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs).
 
 For this tutorial, you can see that the `Config` trait in the `nicks` pallet declares the following types:
 
@@ -210,7 +210,7 @@ To implement the `nicks` pallet in your runtime:
    impl pallet_nicks::Config for Runtime {
    	// The Balances pallet implements the ReservableCurrency trait.
    	// `Balances` is defined in `construct_runtime!` macro. See below.
-   	// https://docs.substrate.io/rustdocs/latest/pallet_balances/index.html#implementations-2
+   	// https://paritytech.github.io/substrate/master/pallet_balances/index.html#implementations-2
    	type Currency = Balances;
 
    	// Use the NickReservationFee from the parameter_types block.
@@ -220,7 +220,7 @@ To implement the `nicks` pallet in your runtime:
    	type Slashed = ();
 
    	// Configure the FRAME System Root origin as the Nick pallet admin.
-   	// https://docs.substrate.io/rustdocs/latest/frame_system/enum.RawOrigin.html#variant.Root
+   	// https://paritytech.github.io/substrate/master/frame_system/enum.RawOrigin.html#variant.Root
    	type ForceOrigin = frame_system::EnsureRoot<AccountId>;
 
    	// Use the MinNickLength from the parameter_types block.
@@ -236,7 +236,7 @@ To implement the `nicks` pallet in your runtime:
 
 1. Identify the types that the Nicks pallet exposes.
 
-   You can find a complete list of types in the [`construct_runtime!` macro](/rustdocs/latest/frame_support/macro.construct_runtime.html) documentation.
+   You can find a complete list of types in the [`construct_runtime!` macro](https://paritytech.github.io/substrate/master/frame_support/macro.construct_runtime.html) documentation.
 
    The [Nicks pallet](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs) uses the following types:
 
@@ -283,7 +283,7 @@ To implement the `nicks` pallet in your runtime:
 
 ## Start the blockchain node
 
-After your node compiles, you are ready to start the node that has been enhanced with nickname capabilities from the [Nicks pallet](/rustdocs/latest/pallet_nicks/index.html) and interact with it using the front-end template.
+After your node compiles, you are ready to start the node that has been enhanced with nickname capabilities from the [Nicks pallet](https://paritytech.github.io/substrate/master/pallet_nicks/index.html) and interact with it using the front-end template.
 
 To start the local Substrate node:
 
@@ -337,7 +337,7 @@ To set a nickname for an account:
 
 1. Select `nicks` from the list of pallets available to call.
 
-1. Select the [`setName` dispatchable](/rustdocs/latest/pallet_nicks/pallet/enum.Call.html#variant.set_name) as the function to call from the `nicks` pallet.
+1. Select the [`setName` dispatchable](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Call.html#variant.set_name) as the function to call from the `nicks` pallet.
 
 1. Type a name that is longer than the `MinNickLength` (8 characters) and no longer than the `MaxNickLength` (32 characters).
 
@@ -345,7 +345,7 @@ To set a nickname for an account:
 
    ![Set a name](/media/images/docs/tutorials/add-a-pallet/set-name.png)
 
-1. Observe the status of the call and the [events](/rustdocs/latest/pallet_nicks/enum.RawEvent.html) emitted by the Nicks pallet.
+1. Observe the status of the call and the [events](https://paritytech.github.io/substrate/master/pallet_nicks/enum.RawEvent.html) emitted by the Nicks pallet.
 
 ## Query information for an account using the Nicks pallet
 
@@ -357,7 +357,7 @@ To return the information stored for Alice:
 
 1. Select `nicks` from the list of pallets available to query.
 
-1. Select the [`nameOf`](/rustdocs/latest/pallet_nicks/pallet/enum.Call.html#variant.set_name).
+1. Select the [`nameOf`](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Call.html#variant.set_name).
 
 1. Copy and paste the address for the `alice` account in the Account field, then click **Query**.
 

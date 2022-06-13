@@ -118,9 +118,9 @@ Follow the pattern from the previous step to create `new_light`.
 
 - [POW Algorithm][pow-rustdocs] trait
 - [`PowBlockimport`][powblockimport-rustdocs]
-- [partialcomponents-rustdocs](/rustdocs/latest/sc_service/struct.PartialComponents.html)
-- [powblockimport-rustdocs](/rustdocs/latest/sc_consensus_pow/struct.PowBlockImport.html)
-- [powblockimport-new-rustdocs](/rustdocs/latest/sc_consensus_pow/struct.PowBlockImport.html#method.new_full)
-- [inherents-rustdocs](/rustdocs/latest/sp_inherents/struct.InherentDataProviders.html)
+- [partialcomponents-rustdocs](https://paritytech.github.io/substrate/master/sc_service/struct.PartialComponents.html)
+- [powblockimport-rustdocs](https://paritytech.github.io/substrate/master/sc_consensus_pow/struct.PowBlockImport.html)
+- [powblockimport-new-rustdocs](https://paritytech.github.io/substrate/master/sc_consensus_pow/struct.PowBlockImport.html#method.new_full)
+- [inherents-rustdocs](https://paritytech.github.io/substrate/master/sp_inherents/struct.InherentDataProviders.html)
 - [lightclient-parity](https://www.parity.io/what-is-a-light-client/)
-- [pow-rustdocs](/rustdocs/latest/sc_consensus_pow/trait.PowAlgorithm.html)
+- [pow-rustdocs](https://paritytech.github.io/substrate/master/sc_consensus_pow/trait.PowAlgorithm.html)

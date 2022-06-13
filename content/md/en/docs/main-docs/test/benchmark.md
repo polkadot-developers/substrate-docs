@@ -56,7 +56,7 @@ The benchmarking framework automatically generates a file with those formulas fo
 
 ## Benchmarking tools
 
-The [FRAME benchmarking framework](/rustdocs/latest/frame_benchmarking/benchmarking/index.html) includes the following tools to help you determine the time it takes to execute function calls:
+The [FRAME benchmarking framework](https://paritytech.github.io/substrate/master/frame_benchmarking/benchmarking/index.html) includes the following tools to help you determine the time it takes to execute function calls:
 
 * [Benchmark macros](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/src/lib.rs) to help you write, test, and add runtime benchmarks.
 * [Linear regression analysis functions](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/src/analysis.rs) for processing benchmark data.

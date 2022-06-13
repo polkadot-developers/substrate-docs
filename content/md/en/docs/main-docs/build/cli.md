@@ -34,11 +34,11 @@ When specifying on cli, the following shorthand strategy names are used:
 ### References
 
 - Check out the different
-  [Execution Strategies](/rustdocs/latest/sc_client_api/execution_extensions/struct.ExecutionStrategies.html).
+  [Execution Strategies](https://paritytech.github.io/substrate/master/sc_client_api/execution_extensions/struct.ExecutionStrategies.html).
 
 - Take a look at the different
-  [Execution Strategy Options](/rustdocs/latest/sp_state_machine/enum.ExecutionStrategy.html)
+  [Execution Strategy Options](https://paritytech.github.io/substrate/master/sp_state_machine/enum.ExecutionStrategy.html)
 
 - Review the
-  [Runtime Version definition](/rustdocs/latest/sp_version/struct.RuntimeVersion.html).
+  [Runtime Version definition](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html).
   

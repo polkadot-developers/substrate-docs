@@ -10,7 +10,7 @@ keywords:
 In Substrate, a **chain specification** is the collection of information that describes a Substrate-based blockchain network.
 For example, the chain specification identifies the network that a blockchain node connects to, the other nodes that it initially communicates with, and the initial state that nodes must agree on to produce blocks.
 
-The chain specification is defined using the [`ChainSpec` struct](/rustdocs/latest/sc_service/struct.GenericChainSpec.html).
+The chain specification is defined using the [`ChainSpec` struct](https://paritytech.github.io/substrate/master/sc_service/struct.GenericChainSpec.html).
 The `ChainSpec` struct separates the information required for a chain into two parts:
 
 * A client specification that contains information used by the Substrate **outer node** to communicate with network participants and send data to telemetry endpoints.
@@ -138,6 +138,6 @@ After the conversion to the raw format, the `sudo key` snippet looks like this:
 
 * [Add trusted validators](/tutorials/get-started/trusted-network/)
 * [How-to: Ggenesis configuration](/reference/how-to-guides/basics/genesis/)
-* [`ChainSpec` struct](/rustdocs/latest/sc_service/struct.GenericChainSpec.html)
-* [`ProtocolId` struct](/rustdocs/latest/sc_network/config/struct.ProtocolId.html)
+* [`ChainSpec` struct](https://paritytech.github.io/substrate/master/sc_service/struct.GenericChainSpec.html)
+* [`ProtocolId` struct](https://paritytech.github.io/substrate/master/sc_network/config/struct.ProtocolId.html)
 * [Node template chain specification](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs)

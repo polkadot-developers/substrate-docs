@@ -132,8 +132,8 @@ cargo test
 
 #### Rust docs
 
-- [`assert_ok!`](/rustdocs/latest/frame_support/macro.assert_ok.html)
-- [`assert_err!`](/rustdocs/latest/frame_support/macro.assert_err.html)
+- [`assert_ok!`](https://paritytech.github.io/substrate/master/frame_support/macro.assert_ok.html)
+- [`assert_err!`](https://paritytech.github.io/substrate/master/frame_support/macro.assert_err.html)
 
 [template-node-mock-rs]: https://github.com/substrate-developer-hub/substrate-node-template/blob/467927bda05a56dfe57690aec93ff504a6009daa/pallets/template/src/mock.rs#L1-L61
 [template-node-mock-rs]: https://github.com/substrate-developer-hub/substrate-node-template/blob/467927bda05a56dfe57690aec93ff504a6009daa/pallets/template/src/tests.rs#L1-L23

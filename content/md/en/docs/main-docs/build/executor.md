@@ -22,7 +22,7 @@ upgraded. The executor determines which version of the runtime to use when dispa
 Before runtime execution begins, the Substrate client proposes which runtime execution environment
 should be used. This is controlled by the execution strategy, which can be configured for the
 different parts of the blockchain execution process. The strategies are listed in the
-[`ExecutionStrategy` enum](/rustdocs/latest/sp_state_machine/enum.ExecutionStrategy.html):
+[`ExecutionStrategy` enum](https://paritytech.github.io/substrate/master/sp_state_machine/enum.ExecutionStrategy.html):
 
 - `NativeWhenPossible`: Execute with native build (if available, WebAssembly otherwise).
 - `AlwaysWasm`: Only execute with the WebAssembly build.
@@ -73,9 +73,9 @@ In any situation where the native executable should not be run, the canonical Wa
 ## Where to go next
 
 - [Upgrade](/main-docs/build/upgrade).
-- [Execution strategies](/rustdocs/latest/sc_client_api/execution_extensions/struct.ExecutionStrategies.html)
-- [Execution strategy primitive](/rustdocs/latest/sp_state_machine/enum.ExecutionStrategy.html)
-- [Runtime version primitive](/rustdocs/latest/sp_version/struct.RuntimeVersion.html).
+- [Execution strategies](https://paritytech.github.io/substrate/master/sc_client_api/execution_extensions/struct.ExecutionStrategies.html)
+- [Execution strategy primitive](https://paritytech.github.io/substrate/master/sp_state_machine/enum.ExecutionStrategy.html)
+- [Runtime version primitive](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html).
 
 ## Footnotes
 

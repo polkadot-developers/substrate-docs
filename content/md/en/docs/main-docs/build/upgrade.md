@@ -11,7 +11,7 @@ This capability is made possible by including the definition of the runtime exec
 Because the runtime is part of the blockchain state, network maintainers can leverage the blockchain's capabilities for trustless, decentralized consensus to securely make enhancements to the runtime.
 
 In the FRAME system for runtime development, the system library defines
-[the `set_code` call](/rustdocs/latest/frame_system/pallet/enum.Call.html#variant.set_code)
+[the `set_code` call](https://paritytech.github.io/substrate/master/frame_system/pallet/enum.Call.html#variant.set_code)
 that is used to update the definition of the runtime. 
 The tutorial [Upgrade a runtime](/tutorials/get-started/forkless-upgrades/) demonstrates two ways that you can upgrade a runtime without shutting down a node or interrupting operations.
 However, both of the upgrades in the tutorial illustrate adding functionality to the runtime as opposed to _updating_ the existing runtime state.
@@ -25,7 +25,7 @@ For the orchestration logic to be able to select the appropriate runtime executi
 - `spec_version`
 - `authoring_version`
 
-To provide this information, the runtime includes a [runtime version struct](/rustdocs/latest/sp_version/struct.RuntimeVersion.html) similar to the following:
+To provide this information, the runtime includes a [runtime version struct](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html) similar to the following:
 
 ```rust
 pub const VERSION: RuntimeVersion = RuntimeVersion {
@@ -49,7 +49,7 @@ The parameters in the struct provide the following information:
 | `spec_version` | The version of the runtime specification. A full node will not attempt to use its native runtime in substitute for the on-chain Wasm runtime unless all of `spec_name`, `spec_version`, and `authoring_version` are the same between the Wasm and native binaries. Updates to the `spec_version` can be automated as a CI process, as is done for the [Polkadot network](https://gitlab.parity.io/parity/polkadot/-/blob/master/scripts/gitlab/check_extrinsics_ordering.sh). This paramenter is typically incremented when there's an update to the `transaction_version`.
 | `impl_version` | The version of the implementation of the specification. Nodes can ignore this. It is only used to indicate that the code is different. As long as the `authoring_version` and the `spec_version` are the same, the code itself might have changed, but the native and Wasm binaries do the same thing. In general, only non-logic-breaking optimizations would result in a change of the `impl_version`.
 | `transaction_version` | The version of the interface for handling transactions. This parameter can be useful to synchronize firmware updates for hardware wallets or other signing devices to verify that runtime transactions are valid. The parameter allows hardware wallets to know which transactions they can safely sign. This number must be bumped if there is a change in the index of the pallets in the `construct_runtime!` macro or if there are any changes to dispatchable functions, such as the number of parameters or parameter types. If this number is updated, then the `spec_version` must also be updated. 
-| `apis` | A list of supported [runtime APIs](/rustdocs/latest/sp_api/macro.impl_runtime_apis.html) along with their versions.
+| `apis` | A list of supported [runtime APIs](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html) along with their versions.
 
 The orchestration engine—sometimes referred to as the executor—verifies that the native runtime has the same consensus-driven logic as the WebASsembly before it chooses to execute it.
 However, because the runtime versioning is set manually, the orchestration engine can still make inappropriate decisions if the runtime version is misrepresented.
@@ -61,7 +61,7 @@ The endpoint accepts an optional block identifier.
 However, in most cases, you use the runtime [metadata](/main-docs/build/frontend#metadata-system) to understand the APIs the runtime exposes
 and how to interact with these APIs. 
 The runtime metadata should _only_ change when the chain's
-[runtime `spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version) changes.
+[runtime `spec_version`](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html#structfield.spec_version) changes.
 
 ## Forkless runtime upgrades
 
@@ -83,7 +83,7 @@ If you don't make these kinds of changes to how data is stored when needed, the 
 
 ### Storage migrations with FRAME
 
-FRAME storage migrations are implemented using the [`OnRuntimeUpgrade`](/rustdocs/latest/frame_support/traits/trait.OnRuntimeUpgrade.html) trait.
+FRAME storage migrations are implemented using the [`OnRuntimeUpgrade`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.OnRuntimeUpgrade.html) trait.
 The `OnRuntimeUpgrade` trait specifies a single function—`on_runtime_upgrade`—that allows
 you to specify logic to run immediately _after_ a runtime upgrade but _before_ any [`on_initialize`](/main-docs/fundamentals/transaction-lifecycle#initialize-a-block) functions or transactions are executed.
 

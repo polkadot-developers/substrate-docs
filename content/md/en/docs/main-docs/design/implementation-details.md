@@ -4,7 +4,7 @@ _This page is a dump of information for that type of material, intended for curi
 ## Session keys
 
 Session keys are used by validators to sign consensus-related messages. 
-[`SessionKeys`](/rustdocs/latest/sp_session/trait.SessionKeys.html) is a generic, indexable type that is made concrete in the runtime.
+[`SessionKeys`](https://paritytech.github.io/substrate/master/sp_session/trait.SessionKeys.html) is a generic, indexable type that is made concrete in the runtime.
 
 You can declare any number of session keys. 
 For example, the default Substrate node uses four. 
@@ -15,7 +15,7 @@ This on-chain registration links a validator _node_ with an _account_ that holds
 As such, that account can be credited with rewards or slashed based on the node's behavior.
 
 The runtime declares what session keys will be implemented with the help of a macro. 
-An [example](/rustdocs/latest/src/node_runtime/lib.rs.html#435-442):
+An [example](https://paritytech.github.io/substrate/master/src/node_runtime/lib.rs.html#435-442):
 
 ```rust
 impl_opaque_keys! {
@@ -29,7 +29,7 @@ impl_opaque_keys! {
 ```
 
 The actual cryptographic curve that each key uses gets defined in `primitives`. 
-For example, [BABE's key uses sr25519](/rustdocs/latest/src/sp_consensus_babe/lib.rs.html#44-47):
+For example, [BABE's key uses sr25519](https://paritytech.github.io/substrate/master/src/sp_consensus_babe/lib.rs.html#44-47):
 
 ```rust
 mod app {

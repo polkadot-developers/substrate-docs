@@ -93,12 +93,12 @@ impl my_pallet::Config for Runtime {
 ```
 
 The `Balances` type is specified in `construct_runtime!` macro as part of the
-[`pallet_balances`](/rustdocs/latest/pallet_balances/index.html)
-that implements the [`Currency` trait](/rustdocs/latest/pallet_balances/index.html#implementations-1).
+[`pallet_balances`](https://paritytech.github.io/substrate/master/pallet_balances/index.html)
+that implements the [`Currency` trait](https://paritytech.github.io/substrate/master/pallet_balances/index.html#implementations-1).
 
 With the implementation provided by the runtime, you can make use of `Currency<AccountId>` trait in your loosely coupled pallet.
 
-Many FRAME pallets are coupled to this [Currency trait](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html) in this way. 
+Many FRAME pallets are coupled to this [Currency trait](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html) in this way. 
 
 ## Choosing a pallet coupling strategy
 

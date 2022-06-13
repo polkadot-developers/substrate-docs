@@ -168,7 +168,7 @@ Submitting the resulting constructed extrinsic via RPC returns this decoded meta
 
 ## Signed extensions
 
-Substrate provides the concept of **signed extensions** to extend an extrinsic with additional data, provided by the [`SignedExtension`](/rustdocs/latest/sp_runtime/traits/trait.SignedExtension.html) trait.
+Substrate provides the concept of **signed extensions** to extend an extrinsic with additional data, provided by the [`SignedExtension`](https://paritytech.github.io/substrate/master/sp_runtime/traits/trait.SignedExtension.html) trait.
 
 The transaction queue regularly calls signed extensions to keep checking that a transaction is valid before it gets put in the ready queue. 
 This is a useful safeguard for verifying that transactions won't fail in a block.
@@ -181,7 +181,7 @@ By default in FRAME, a signed extension can hold any of the following types:
 - `AdditionalSigned`: to handle any additional data to go into the signed payload. This makes it possible to attach any custom logic prior to dispatching a transaction.
 - `Pre`: to encode the information that can be passed from before a call is dispatch to after it gets dispatched.
 
-FRAME's [system pallet](todo) provides a set of [useful `SignedExtensions`](https://docs.substrate.io/rustdocs/latest/frame_system/index.html#signed-extensions) out of the box.
+FRAME's [system pallet](todo) provides a set of [useful `SignedExtensions`](https://paritytech.github.io/substrate/master/frame_system/index.html#signed-extensions) out of the box.
 
 ### Practical examples
 

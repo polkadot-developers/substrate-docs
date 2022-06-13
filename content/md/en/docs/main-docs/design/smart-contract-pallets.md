@@ -7,7 +7,7 @@ Each come with additional tools to ease development depending on your use cases.
 
 ## Contracts pallet
 
-The [Contracts pallet](/rustdocs/latest/pallet_contracts/index.html) provides the ability for the runtime to deploy and execute [WebAssembly (Wasm)](https://webassembly.org/) smart contracts. 
+The [Contracts pallet](https://paritytech.github.io/substrate/master/pallet_contracts/index.html) provides the ability for the runtime to deploy and execute [WebAssembly (Wasm)](https://webassembly.org/) smart contracts. 
 It uses [ink!](https://paritytech.github.io/ink-docs/), a [Rust](https://www.rust-lang.org/)-based embedded domain specific language ([eDSL](https://wiki.haskell.org/Embedded_domain_specific_language)) for writing [WebAssembly](https://webassembly.org/) smart contracts.
 
 Here are some of ink!'s key features:
@@ -145,7 +145,7 @@ The EVM pallet should be able to produce nearly identical results as the Ethereu
 Observable differences include:
 
 - The available length of block hashes may not be 256 depending on the configuration of the Substrate System pallet in the Substrate runtime. 
-For more information on the System pallet, see the [System pallet rust documentation](/rustdocs/latest/frame_system/index.html#system-pallet).
+For more information on the System pallet, see the [System pallet rust documentation](https://paritytech.github.io/substrate/master/frame_system/index.html#system-pallet).
   
 - Difficulty and coinbase, which do not make sense in this pallet and are currently hard-coded to zero.
 
@@ -185,7 +185,7 @@ cargo +nightly test
 
 ### References
 
-- Visit the reference docs for the [Contracts pallet](/rustdocs/latest/pallet_contracts/index.html).
+- Visit the reference docs for the [Contracts pallet](https://paritytech.github.io/substrate/master/pallet_contracts/index.html).
 
 - Take a look at the [repository for `wasmi`](https://github.com/paritytech/wasmi).
 

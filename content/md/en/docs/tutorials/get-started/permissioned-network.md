@@ -19,7 +19,7 @@ For example, a permissioned blockchain would be suitable for the following types
 - For testing of a pre-public blockchain network at scale.
 
 This tutorial illustrates how you can build a permissioned network with Substrate by using the
-[node authorization pallet](/rustdocs/latest/pallet_node_authorization/index.html).
+[node authorization pallet](https://paritytech.github.io/substrate/master/pallet_node_authorization/index.html).
 
 ## Node authorization and ownership
 
@@ -184,7 +184,7 @@ The `Config` trait is used to identify the parameters and types that the pallet 
 
 Most of the pallet-specific code required to add a pallet is implemented using the `Config` trait.
 You can review what you to need to implement for any pallet by referring to its Rust documentation or the source code for the pallet.
-For example, to see what you need to implement for the `Config` trait in the node-authorization pallet, you can refer to the Rust documentation for [`pallet_node_authorization::Config`](/rustdocs/latest/pallet_node_authorization/pallet/trait.Config.html).
+For example, to see what you need to implement for the `Config` trait in the node-authorization pallet, you can refer to the Rust documentation for [`pallet_node_authorization::Config`](https://paritytech.github.io/substrate/master/pallet_node_authorization/pallet/trait.Config.html).
 
 To implement the `node-authorization` pallet in your runtime:
 
@@ -460,7 +460,7 @@ owner is Charlie, of course. Note Alice is the valid sudo origin for this call.
 
 After the transaction is included in the block, you should see the `charlie` node is
 connected to the `alice` and `bob` nodes, and starts to sync blocks.
-The three nodes can find each other using the [mDNS](/rustdocs/latest/sc_network/index.html) discovery mechanism is that is enabled by default in a local network.
+The three nodes can find each other using the [mDNS](https://paritytech.github.io/substrate/master/sc_network/index.html) discovery mechanism is that is enabled by default in a local network.
 
 If your nodes are not on the same local network, you should use the command-line option `--no-mdns` to disable it.
 

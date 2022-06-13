@@ -107,7 +107,7 @@ ensure!(new_bal >= T::MinBalance::get(), Error::<T>::BelowMinBalance);
 
 ## Resources
 
-- [`assert_ok!`](/rustdocs/latest/frame_support/macro.assert_ok.html)
-- [`assert_noop!`](/rustdocs/latest/frame_support/macro.assert_noop.html)
-- [`ensure!`](/rustdocs/latest/frame_support/macro.ensure.html)
-- [`try_mutate`](/rustdocs/latest/frame_support/storage/trait.StorageMap.html#tymethod.try_mutate)
+- [`assert_ok!`](https://paritytech.github.io/substrate/master/frame_support/macro.assert_ok.html)
+- [`assert_noop!`](https://paritytech.github.io/substrate/master/frame_support/macro.assert_noop.html)
+- [`ensure!`](https://paritytech.github.io/substrate/master/frame_support/macro.ensure.html)
+- [`try_mutate`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html#tymethod.try_mutate)

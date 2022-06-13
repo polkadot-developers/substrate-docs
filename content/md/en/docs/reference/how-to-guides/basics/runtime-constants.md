@@ -149,5 +149,5 @@ This value, we'll call `SingleValue`, can also be modified using a method called
 - [`Get` from `frame_support`][get-trait-rustdocs]
 - [`#[pallet::extra_constants]` macro][extra-constants-rustdocs]
 
-[get-trait-rustdocs]: /rustdocs/latest/frame_support/traits/trait.Get.html
-[extra-constants-rustdocs]: /rustdocs/latest/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional
+[get-trait-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/traits/trait.Get.html
+[extra-constants-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional

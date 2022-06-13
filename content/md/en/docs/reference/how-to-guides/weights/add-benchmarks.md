@@ -13,7 +13,7 @@ This guide does not cover updating weights with benchmarked values.
 
 ## Goal
 
-Add [FRAME's benchmarking tool](/rustdocs/latest/frame_benchmarking/macro.benchmarks.html) to your pallet and write a simple benchmark.",
+Add [FRAME's benchmarking tool](https://paritytech.github.io/substrate/master/h.github.io/substrate/master/frame_benchmarking/macro.benchmarks.html) to your pallet and write a simple benchmark.",
 
 ## Use cases
 

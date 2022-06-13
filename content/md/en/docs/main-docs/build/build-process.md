@@ -32,7 +32,7 @@ These artifacts then result in the final executable program that enables launchi
 
 During the build process, the Wasm runtime binary goes through 3 different stages, each containing the various steps.
 In the first stage of the build cycle, the initial Wasm runtime is built and embedded into the client.
-Once the node is compiled, the compressed Wasm binary is placed on-chain at the [`:code`](https://docs.substrate.io/rustdocs/latest/sp_storage/well_known_keys/constant.CODE.html) storage key and executed by the client.
+Once the node is compiled, the compressed Wasm binary is placed on-chain at the [`:code`](https://paritytech.github.io/substrate/master/sp_storage/well_known_keys/constant.CODE.html) storage key and executed by the client.
 
 The following steps describes the entire build process:
 
@@ -78,7 +78,7 @@ There really is no need for using any other of the Wasm artifacts.
 
 Once a runtime is built and a chain is launched, the Substrate client proposes which runtime execution environment should be used.
 This is controlled by the execution strategy, which can be configured for the different parts of the blockchain execution process.
-The strategies are listed in the [`ExecutionStrategy`](/rustdocs/latest/sp_state_machine/enum.ExecutionStrategy.html) enum:
+The strategies are listed in the [`ExecutionStrategy`](https://paritytech.github.io/substrate/master/sp_state_machine/enum.ExecutionStrategy.html) enum:
 
 - `NativeWhenPossible`: Execute with native build (if available, WebAssembly otherwise).
 - `AlwaysWasm`: Only execute with the WebAssembly build.
