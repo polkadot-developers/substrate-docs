@@ -5,7 +5,7 @@ keywords:
 ---
 
 In general, UNIX-based operating systems—like macOS or Linux—provide a better development environment for building Substrate-based blockchains.
-All of the code examples and command-line instructions in Substrate [Tutorials](../tutorials) and [How-to guides](../reference/how-to-guides) illustrate how to interact with Substrate using UNIX-compatible commands in a terminal.
+All of the code examples and command-line instructions in Substrate [Tutorials](/tutorials/) and [How-to guides](/reference/how-to-guides/) illustrate how to interact with Substrate using UNIX-compatible commands in a terminal.
 
 However, if your local computer uses Microsoft Windows instead of a UNIX-based operating system, you can configure it with additional packages to make it a suitable development environment for building Substrate-based blockchains.
 To prepare a development environment on a computer running Microsoft Windows, you can use Windows Subsystem for Linux (WSL) to emulate a UNIX operating environment.
@@ -185,8 +185,8 @@ After the build completes successfully, your local computer is ready for Substra
 
 The Substrate Developer Hub acts as a central portal for access to the many resources available to the community.
 Depending on your interests and learning style, you might prefer one avenue over another.
-For example, if you prefer to read source code and are familiar with Rust, you might want to start by digging into the [Rust API](reference/rust-docs/).
-If you are new to Substrate and the Substrate ecosystem, you might want broader exposure to what resources are available and where to find them by checking out [Explore](/main-docs/explore/).
+For example, if you prefer to read source code and are familiar with Rust, you might want to start by digging into the [Rust API](https://paritytech.github.io/substrate/master).
+<!--If you are new to Substrate and the Substrate ecosystem, you might want broader exposure to what resources are available and where to find them by checking out [Explore](/main-docs/explore/).-->
 
 Here are a few additional suggestions for where you can learn more.
 

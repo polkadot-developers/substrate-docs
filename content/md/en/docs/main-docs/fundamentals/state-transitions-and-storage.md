@@ -47,7 +47,7 @@ each block header. This is used to easily verify the state of the blockchain and
 light clients to verify proofs.
 
 This trie only stores content for the canonical chain, not forks. There is a separate
-[`state_db` layer](/rustdocs/latest/sc_state_db/index.html) that maintains the
+[`state_db` layer](https://paritytech.github.io/substrate/master/sc_state_db/index.html) that maintains the
 trie state with references counted in memory for all that is non-canonical.
 
 ### Child trie
@@ -75,14 +75,10 @@ reading to learn how to calculate storage keys for the different types of storag
 
 ### Storage value keys
 
-To calculate the key for a simple [Storage Value](/main-docs/build/runtime-storage#storage-value), take the
-[TwoX 128 hash](https://github.com/Cyan4973/xxHash) of the name of the pallet that contains the
-Storage Value and append to it the TwoX 128 hash of the name of the Storage Value itself. For
-example, the [Sudo](/rustdocs/latest/pallet_sudo/index.html) pallet exposes a
-Storage Value item named
-[`Key`](/rustdocs/latest/pallet_sudo/struct.Module.html#method.key):
+To calculate the key for a simple [storage value](/main-docs/build/runtime-storage#storage-value), take the [TwoX 128 hash](https://github.com/Cyan4973/xxHash) of the name of the pallet that contains the storage value and append to it the TwoX 128 hash of the name of the storage value itself.
+For example, the [Sudo](https://paritytech.github.io/substrate/master/pallet_sudo/index.html) pallet exposes a storage value item named `Key`:
 
-```
+```text
 twox_128("Sudo")                   = "0x5c0d1176a568c1f92944340dbfed9e9c"
 twox_128("Key")                    = "0x530ebca703c85910e7164cb7d1c9e47b"
 twox_128("Sudo") + twox_128("Key") = "0x5c0d1176a568c1f92944340dbfed9e9c530ebca703c85910e7164cb7d1c9e47b"
@@ -161,20 +157,20 @@ element in the list, you are left with
 `0x32a5935f6edc617ae178fef9eb1e211fbe5ddb1579b72e84524fc29e78609e3caf42e85aa118ebfe0b0ad404b5bdd25f`.
 
 You saw in the previous example that this represents the Blake2 128 Concat hash of some
-[SCALE](../scale-codec)-encoded account ID. The Blake 128 Concat hashing algorithm consists of appending
+[SCALE](/reference/scale-codec)-encoded account ID. The Blake 128 Concat hashing algorithm consists of appending
 (concatenating) the hashing algorithm's input to its Blake 128 hash. This means that the first 128
 bits (or 32 hexadecimal characters) of a Blake2 128 Concat hash represents a Blake2 128 hash, and
 the remainder represents the value that was passed to the Blake 2 128 hashing algorithm. In this
 example, after you remove the first 32 hexadecimal characters that represent the Blake2 128 hash
 (i.e. `0x32a5935f6edc617ae178fef9eb1e211f`) what is left is the hexadecimal value
 `0xbe5ddb1579b72e84524fc29e78609e3caf42e85aa118ebfe0b0ad404b5bdd25f`, which is a
-[SCALE](../scale-codec)-encoded account ID. Decoding this value yields the result
+[SCALE](/reference/scale-codec)-encoded account ID. Decoding this value yields the result
 `5GNJqTPyNqANBkUVMN1LPPrxXnFouWXoe2wNSmmEoLctxiZY`, which is the account ID for the familiar
 `Alice_Stash` account.
 
 ## Runtime storage API
 
-Substrate's [FRAME Support crate](/rustdocs/latest/frame_support/index.html)
+Substrate's [FRAME Support crate](https://paritytech.github.io/substrate/master/frame_support/index.html)
 provides utilities for generating unique, deterministic keys for your runtime's storage items. These
 storage items are placed in the [state trie](#trie-abstraction) and are accessible by
 [querying the trie by key](#querying-storage).

@@ -1,13 +1,10 @@
 ---
-title: Configure a Runtime Constant
-description: /how-to-guides/v3/basics/configurable-constants
+title: Configure a runtime constant
+description: 
 keywords:
   - basics
   - runtime
   - configurable constants
-version: '3.0'
-section: how to guides
-category: basics
 ---
 
 Declaring a constant value in a runtime is a useful tool to either define fixed values or define values that change dynamically according to some factor.
@@ -145,9 +142,6 @@ This value, we'll call `SingleValue`, can also be modified using a method called
 
 ## Resources
 
-- [Nick's forkless upgrade tutorial](/tutorials/v3/forkless-upgrades)
-- [`Get` from `frame_support`][get-trait-rustdocs]
-- [`#[pallet::extra_constants]` macro][extra-constants-rustdocs]
-
-[get-trait-rustdocs]: /rustdocs/latest/frame_support/traits/trait.Get.html
-[extra-constants-rustdocs]: /rustdocs/latest/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional
+- [Forkless upgrade](/tutorials/get-started/forkless-upgrade/)
+- [Get trait](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Get.html)
+- [Extra_constants](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional)

@@ -23,8 +23,7 @@ You should keep in mind the following limitations and assumptions used in this g
   Learn more about weight configuration in [Transactions, weights, and fees](/main-docs/build/tx-weights-fees).
 - **Origins.** This guide assumes that the origin will always be the `sudo` user.
   Origins are a powerful capability in Substrate.
-  Learn more about how they work in [Privileged calls and origins](/main-docs/fundamentals/origins).
-
+  Learn more about how they work in [Privileged calls and origins](/main-docs/fundamentals/origins/).
 
 See the [Examples section](#examples) for practical implementations of this guide.
 
@@ -44,7 +43,7 @@ Give any account the ability to create a token supply in exchange for native tok
 
 ## Set up the Config trait
 
-Using the node template as a starting point, specify the types your pallet depends on and the [`Events`][events-kb] it emits:
+Using the node template as a starting point, specify the types your pallet depends on and the events it emits:
 
 ```rust
 // The configuration trait
@@ -157,7 +156,7 @@ If `checked_sub()` returns `None`, the operation caused an overflow and throws a
 
 ## Add your pallet to the runtime
 
-See [Import a pallet](../pallet-integration) if you’re not yet familiar with this procedure.
+See [Import a pallet](/reference/how-to-guides/basics/pallet-integration) if you’re not yet familiar with this procedure.
   
 ## Examples
 
@@ -166,8 +165,7 @@ See [Import a pallet](../pallet-integration) if you’re not yet familiar with t
 
 ## Related material
 
-- [Configure a runtime constant](../configurable-constants)
-- [Deposit event method][deposit-event-rustdocs]
+- [Configure a runtime constant](/reference/how-to-guides/runtime-constants)
+- [Deposit event method](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.deposit_event)
 
-[events-kb]: /v3/runtime/events-and-errors
-[deposit-event-rustdocs]: /rustdocs/latest/frame_system/pallet/struct.Pallet.html#method.deposit_event
+<!--[events-kb]: /v3/runtime/events-and-errors-->

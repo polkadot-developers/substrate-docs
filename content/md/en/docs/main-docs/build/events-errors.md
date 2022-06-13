@@ -96,8 +96,7 @@ Depositing an event has the following structure:
 ```
 
 The default behavior of this function is to call
-[`deposit_event`](/rustdocs/latest/frame_system/pallet/struct.Pallet.html#method.deposit_event)
-from the FRAME system, which writes the event to storage.
+[`deposit_event`](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html) from the FRAME system, which writes the event to storage.
 
 This function places the event in the System pallet's runtime storage for that block. At the
 beginning of a new block, the System pallet automatically removes all events that were stored from
@@ -117,7 +116,7 @@ those types as shown in the example above.
 ## Listening to events
 
 The Substrate RPC does not directly expose an endpoint for querying events. 
-If you used the default implementation, you can see the list of events for the current block by querying the storage of the System pallet. 
+If you used the default implementation, you can see the list of events for the current block by querying the storage of the System pallet.
 Otherwise, the [Polkadot-JS API](https://github.com/polkadot-js/api) supports a WebSocket subscription on runtime events.
 
 ## Errors
@@ -126,16 +125,16 @@ Runtime code should explicitly and gracefully handle all error cases, which is t
 code **must** be "non-throwing", or must never
 "[panic](https://doc.rust-lang.org/book/ch09-03-to-panic-or-not-to-panic.html)" to use Rust
 terminology. A common idiom for writing non-throwing Rust code is to write functions that return
-[`Result` types](/rustdocs/latest/frame_support/dispatch/result/enum.Result.html).
+[`Result` types](https://paritytech.github.io/substrate/master/frame_support/dispatch/result/enum.Result.html).
 The `Result` enum type possesses an `Err` variant that allows a function to indicate that it failed
 to execute successfully without needing to panic. Dispatchable calls in the FRAME system for runtime
 development _must_ return a
-[`DispatchResult` type](/rustdocs/latest/frame_support/dispatch/type.DispatchResult.html)
+[`DispatchResult` type](https://paritytech.github.io/substrate/master/frame_support/dispatch/type.DispatchResult.html)
 that _could_ be a
-[`DispatchError` variant](/rustdocs/latest/frame_support/dispatch/enum.DispatchError.html)
+[`DispatchError` variant](https://paritytech.github.io/substrate/master/frame_support/dispatch/enum.DispatchError.html)
 if the dispatchable function encountered an error.
 
-Each FRAME pallet may define a custom `DispatchError` by using the [`#[pallet::error]` macro](../macros#palleterror).
+Each FRAME pallet may define a custom `DispatchError` by using the `#[pallet::error` macro.
 For example:
 
 ```rust

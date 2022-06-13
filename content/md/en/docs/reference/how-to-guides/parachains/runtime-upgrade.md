@@ -25,7 +25,7 @@ Because of this, and the very confined nature of state transition coordination b
 Please do the following:
 
 - Read the general [runtime upgrade docs](/main-docs/build/upgrade).
-- Complete the [cumulus tutorial](/tutorials/connect-other-chains/start-relay), and learn the `polkadot-launch` tool for testing.
+- Complete the [cumulus tutorial](/tutorials/connect-other-chains/relay-chain), and learn the `polkadot-launch` tool for testing.
 
 ## Choose your upgrade approach
 

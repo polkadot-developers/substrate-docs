@@ -26,7 +26,7 @@ In a completely decentralized network without any trusted nodes, an algorithm mu
 For a Substrate-based blockchain, you can choose one of the following block authoring algorithms or create your own:
 
 * Authority-based round-robin scheduling [(Aura)](/reference/glossary/#authority-round-(Aura)).
-* Blind assignment of blockchain extension [(BABE)](blind-assignment-of-blockchain-extension-(BABE)) slot-based scheduling.
+* Blind assignment of blockchain extension [(BABE)](/reference/glossary/#blind-assignment-of-blockchain-extension-(BABE)) slot-based scheduling.
 * Proof of work computation-based scheduling.
 
 The Aura and BABE consensus models require require you to have a known set of **validator nodes** that are permitted to produce blocks.

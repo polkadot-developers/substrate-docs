@@ -56,7 +56,7 @@ After the initial validity check, the transaction pool periodically checks wheth
 If a transaction is found to be invalid or has expired, it is dropped from the pool.
 
 The transaction pool only deals with the validity of the transaction and the ordering of valid transactions placed in a transaction queue.
-Specific details on how the validation mechanism works—including handling for fees, accounts, or signatures—can be found in the [`validate_transaction`](/rustdocs/latest/sp_transaction_pool/runtime_api/trait.TaggedTransactionQueue.html#method.validate_transaction) method.
+Specific details on how the validation mechanism works—including handling for fees, accounts, or signatures—can be found in the [`validate_transaction`](https://paritytech.github.io/substrate/mastersp_transaction_pool/runtime_api/trait.TaggedTransactionQueue.html#method.validate_transaction) method.
 
 ### Adding valid transactions to a transaction queue
 
@@ -128,7 +128,7 @@ Instead, state changes are written directly to storage during execution.
 If a transaction were to fail mid-execution, any state changes that took place before the failure would not be reverted, leaving the block in an unrecoverable state.
 Before committing any state changes to storage, the runtime logic should perform all necessary checks to ensure the extrinsic will succeed.
 
-Note that [events](/main-docs/build/events-and-errors/) are also written to storage.
+Note that [events](/main-docs/build/events-errors/) are also written to storage.
 Therefore, the runtime logic should not emit an event before performing the complementary actions.
 If a transaction fails after an event is emitted, the event is not be reverted.
 
@@ -173,4 +173,4 @@ However, if you plan to write any custom consensus logic or want to know more ab
 
 * [Seminar: Lifecycle of a transaction](https://www.youtube.com/watch?v=3pfM0GOp02c)
 * [Accounts, addresses, and keys](/main-docs/fundamentals/accounts-addresses-keys/)
-* [Transaction formats](/reference/transaction-formats/)
+* [Transaction formats](/reference/transaction-format/)

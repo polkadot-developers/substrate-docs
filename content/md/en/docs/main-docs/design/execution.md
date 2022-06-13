@@ -46,7 +46,7 @@ directly on storage. Therefore, runtime developers should perform all necessary 
 extrinsic will succeed before mutating storage. If an extrinsic fails mid-execution, previous
 storage mutations will not be reverted.
 
-[Events](/v3/runtime/events-and-errors) that are emitted from an extrinsic are also written to storage. Therefore, you
+[Events](/main-docs/build/events-errors) that are emitted from an extrinsic are also written to storage. Therefore, you
 should not emit an event before performing the complementary actions. If an extrinsic fails after an
 event is emitted, the event will not be reverted.
 

@@ -109,10 +109,10 @@ We'll assume our pallet is called `pallet_something`, declared as `PalletSomethi
 
 ## Example
 
-- [Node template 'chain_spec.rs'](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs#L142-L144)
-- [Example pallet `GenesisConfig`](/rustdocs/latest/src/pallet_example/lib.rs.html#607)
+- [Node template 'chain_spec.rs'](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs)
+- [Example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/lib.rs)
 
 ## Related material
 
-- Learn how to customize a chain's genesis configuration for the [balances pallet](/rustdocs/latest/pallet_balances/index.html).
-- [`BalancesConfig`](/rustdocs/latest/node_template_runtime/type.BalancesConfig.html)
+- Learn how to customize a chain's genesis configuration for the [balances pallet](https://github.com/paritytech/substrate/master/pallet_balances/index.html).
+- [`BalancesConfig`](https://github.com/paritytech/substrate/master/node_template_runtime/type.BalancesConfig.html)

@@ -197,8 +197,8 @@ reference:
           url: /reference/command-line-tools/sidecar/
         - title: srtool
           url: /reference/command-line-tools/srtool/
-        - title: sub-flood
-          url: /reference/command-line-tools/sub-flood/
+        - title: subflood
+          url: /reference/command-line-tools/subflood/
         - title: subkey
           url: /reference/command-line-tools/subkey/
         - title: subxt
