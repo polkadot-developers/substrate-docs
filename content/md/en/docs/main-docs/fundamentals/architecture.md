@@ -59,13 +59,6 @@ This design decision enables:
 - Runtime validity checking.
 - Validation proofs for relay chain consensus mechanisms.
 
-## Light client nodes
-
-A light client node is a leaner version of a typical Substrate node that cannot participate in progressing network consensus but provides a robust subset of features for network participants.
-Light client nodes connect to a Substrate network with minimal hardware requirements in a fast, trustless, way.
-As such, these are commonly embedded into websites, browser extensions, mobile device apps, and even IoT devices.
-Light client nodes exposes the same RPC endpoints written in Rust, JavaScript, or other languages to read block headers, submit transactions, and view the results of transactions.
-
 ## Where to go next
 
 Now that you have an overview of the Substrate architecture and core node components, explore the following topics to learn more.
