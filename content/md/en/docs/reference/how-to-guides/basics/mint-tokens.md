@@ -20,7 +20,7 @@ You should keep in mind the following limitations and assumptions used in this g
 - **Safety.** The `mint` function takes in an amount to mint which is *not good practice* because it implies that users have unlimited access to writing to storage.
   Safer approaches include using a `GenesisConfig` or fixing a predetermined maximum value in runtime.
 - **Weights.** This guide uses an arbitrary weight of 10_000 in the code snippets.
-  Learn more about weight configuration in [Calculate transaction weights](/reference/how-to-guides/basics/calc-weights).
+  Learn more about weight configuration in [Transactions, weights, and fees](/main-docs/build/tx-weights-fees).
 - **Origins.** This guide assumes that the origin will always be the `sudo` user.
   Origins are a powerful capability in Substrate.
   Learn more about how they work in [Privileged calls and origins](/main-docs/fundamentals/origins/).

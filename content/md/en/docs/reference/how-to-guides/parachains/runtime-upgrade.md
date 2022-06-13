@@ -60,7 +60,7 @@ use to remedy this problem:
      over time via the scheduler.
 
 After your migration strategy is established, you should test the migration on a non-production testnet to ensure it will work _before_ you continue.
-See the [how-to guide on storage migration testing](/reference/how-to-guides/storage-migrations/tests) to proceed.
+<!--See the [how-to guide on storage migration testing](/reference/how-to-guides/storage-migrations/tests) to proceed.-->
 
 Testing in a confined network will help you prepare for potential failures in a real network with many collators and validators and constraints like bandwidth and latency.
 The more closely you can simulate a real network for testing, the more sure you can be that your runtime upgrades will succeeds.
@@ -89,5 +89,8 @@ upgrade has been scheduled.
 - [Fork off Substrate](https://github.com/maxsam4/fork-off-substrate)
 - [`try-runtime`](/reference/command-line-tools/try-runtime)
 - [`try-runtime` video workshop](https://www.crowdcast.io/e/substrate-seminar/41)
-- [How-to: Storage migration](/reference/how-to-guides/storage-migrations/basic-migration)- [How to: Test storage migration](/reference/how-to-guides/storage-migrations/test-migration)
+<!-->
+- [How-to: Storage migration](/reference/how-to-guides/storage-migrations/basic-migration)
+- [How to: Test storage migration](/reference/how-to-guides/storage-migrations/test-migration)
+-->
 - [Substrate Builders Program: Storage Mmgration](https://drive.google.com/file/d/19HPFUmSQIxVkxaVSg1SWveSdvjHUw1b8/view?usp=sharing)
