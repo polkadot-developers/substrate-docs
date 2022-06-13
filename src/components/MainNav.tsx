@@ -67,6 +67,11 @@ const MainNav = {
             link: `/playground`,
             external: false,
           },
+          {
+            linkTitle: `Smart Contracts`,
+            link: `${site}/smart-contracts`,
+            external: true,
+          },
         ],
       },
       {
