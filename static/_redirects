@@ -1,2 +1,4 @@
 # Redirects from what the browser requests to what we serve
-/v3/*              /
+/v3/*                        /
+/how-to-guides/v3/*          /reference/how-to-guides/
+/tutorials/v3/*              /tutorials/
