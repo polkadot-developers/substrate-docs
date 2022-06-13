@@ -121,20 +121,13 @@ cargo test
 
 ## Related material
 
-#### How-to guides
-
+- [Unit testing](/main-docs/test/unit-testing/)
 - [Testing a transfer function](/reference/how-to-guides/testing/test-transfer)
+- [`assert_ok!`](https://paritytech.github.io/substrate/master/frame_support/macro.assert_ok.html)
+- [`assert_err!`](https://paritytech.github.io/substrate/master/frame_support/macro.assert_err.html)
+<!--
 - [Migration tests](/reference/how-to-guides/storage-migrations/test-migration)
-
-#### Docs
-
-- [Mock runtime environment][mock-runtime]
-
-#### Rust docs
-
-- [`assert_ok!`](/rustdocs/latest/frame_support/macro.assert_ok.html)
-- [`assert_err!`](/rustdocs/latest/frame_support/macro.assert_err.html)
-
 [template-node-mock-rs]: https://github.com/substrate-developer-hub/substrate-node-template/blob/467927bda05a56dfe57690aec93ff504a6009daa/pallets/template/src/mock.rs#L1-L61
 [template-node-mock-rs]: https://github.com/substrate-developer-hub/substrate-node-template/blob/467927bda05a56dfe57690aec93ff504a6009daa/pallets/template/src/tests.rs#L1-L23
 [mock-runtime]: /runtime/testing#mock-runtime-environment
+-->

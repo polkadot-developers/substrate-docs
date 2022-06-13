@@ -420,7 +420,7 @@ Check out some guides covering various topics on storage:
 
 - [Using a storage map](/reference/how-to-guides/basics/mint-token)
 - [Structs in storage](/reference/how-to-guides/pallet-design/storage-value)
-- [Storage migration](/reference/how-to-guides/storage-migrations/basics)
+<!--- [Storage migration](/reference/how-to-guides/storage-migrations/basic-migration)-->
 - [StorageValue](/rustdocs/latest/frame_support/storage/types/struct.StorageValue.html)
 - [StorageMap](/rustdocs/latest/frame_support/storage/types/struct.StorageMap.html)
 - [StorageDoubleMap](/rustdocs/latest/frame_support/storage/types/struct.StorageDoubleMap.html)

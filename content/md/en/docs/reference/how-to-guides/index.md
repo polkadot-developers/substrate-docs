@@ -20,7 +20,7 @@ See the following guides to learn common patterns in runtime development.
 - [Custom chain specification](/reference/how-to-guides/basics/custom-chainspec)
 - [Use helper functions](/reference/how-to-guides/basics/helper-functions)
 - [Mint primitive tokens](/reference/how-to-guides/basics/min-tokens/)
-- [Calculate weight](/reference/how-to-guides/basics/calc-weights/)
+<!--- [Calculate weight](/reference/how-to-guides/basics/calc-weights/)-->
 
 ## Pallet design
   
