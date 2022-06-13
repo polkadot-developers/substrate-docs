@@ -1,0 +1,17 @@
+name: General feedback
+description: Let us know about your experience with the new site information architecture.
+assignees: lisa-parity
+title: [Feedback:]
+labels: "feedback 📝"
+body:
+  - type: checkboxes
+    attributes:
+      label: Love it! ':thumbsup:'
+      label: Needs work... ':pencil2:'
+      label: Hate it! 'thumbsdown:'
+  - type: textarea
+    id: general
+    attributes:
+      label: 'Tell us more:'
+    validations:
+      required: false
