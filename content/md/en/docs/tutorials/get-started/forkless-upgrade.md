@@ -267,7 +267,7 @@ This change increases the value of the Balances pallet's
 [`ExistentialDeposit`](/reference/glossary#existential-deposit) - the
 minimum balance needed to keep an account alive from the point-of-view of the Balances pallet.
 
-Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000 to be reaped - that would require a [storage migration](/main-docs/build/upgrade#storage-migrations), which is out of scope for this tutorial.
+Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000 to be reaped - that would require a [storage migration](/main-docs/build/upgrade#storage-migration/), which is out of scope for this tutorial.
 
 ### Build the upgraded runtime
 

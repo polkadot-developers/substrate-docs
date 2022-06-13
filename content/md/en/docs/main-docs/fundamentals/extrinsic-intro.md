@@ -7,7 +7,7 @@ keywords: []
 An extrinsic is a piece of information that comes from outside the chain and is included in a block.
 Extrinsics fall into three categories: inherents, signed transactions, and unsigned transactions.
 
-Note that [events](/v3/runtime/events-and-errors) are not extrinsics. The chain emits events for pieces of
+Note that [events](/v3/runtime/events-errors) are not extrinsics. The chain emits events for pieces of
 information that are intrinsic to the chain itself. For example, staking rewards are events, not
 extrinsics, because the reward is triggered by circumstances intrinsic to the chain's logic.
 

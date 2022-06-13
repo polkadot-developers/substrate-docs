@@ -46,7 +46,7 @@ As new nodes join the network, you'll want to preserve state rather than purge i
 You'll also want the chain to progress by adding new blocks, so you'll want to allow additional nodes to author blocks.
 
 As a node operator, you use command-line options to control the operation of the node and how it communicates with its peers.
-For example, you use the `--chain` command-line option to specify the [chain specification](/main-docs/build/chain-specification/) your network should use and the `--validator` command-line option to specify that your node is authorized to author blocks and participate in consensus.
+For example, you use the `--chain` command-line option to specify the [chain specification](/main-docs/build/chain-spec/) your network should use and the `--validator` command-line option to specify that your node is authorized to author blocks and participate in consensus.
 
 With information from the chain specification, the first node in the blockchain generates the genesis block.
 To seals the first block, a validator node starts with the blockchain state from the genesis block. 

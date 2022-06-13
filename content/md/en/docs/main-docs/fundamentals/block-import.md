@@ -79,7 +79,6 @@ Polkadot's block import pipeline consists of a `BabeBlockImport`, which wraps a
 
 Have a look at these guides that cover the block import pipeline:
 
-- [Basic PoW](/how-to-guides/v3/consensus/pow) - the import pipeline includes
-  PoW and the client
-- [Hybrid Consensus](/how-to-guides/v3/consensus/hybrid-pos-pow) - the import
+- [Basic proof-of-work](/reference/how-to-guides/consensus/proof-of-work) - the import pipeline includes PoW and the client
+- [Hybrid consensus](/reference/how-to-guides/consensus/hybrid-node) - the import
   pipeline is PoW, then Grandpa, then the client

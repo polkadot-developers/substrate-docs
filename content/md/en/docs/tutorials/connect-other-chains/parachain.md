@@ -40,7 +40,7 @@ We'll begin by generating a few files based on the parachain template with the r
 #### Custom parachain specification
 
 Your parachain _must_ configure the correct para ID in your chain specification.
-See the [how-to guide on configuring a custom chain spec](/reference/how-to-guides/basics/custom-chain-spec) for more in-depth instructions to generate a plain spec, modify it, and generate a raw spec.
+See the [how-to guide on configuring a custom chain spec](/reference/how-to-guides/basics/custom-chainspec/) for more in-depth instructions to generate a plain spec, modify it, and generate a raw spec.
 We first generate a plain spec with:
 
 ```bash
@@ -94,7 +94,7 @@ The parachain collator node also has a command to produce this Wasm blob:
 
 #### Generate a parachain genesis state
 
-To register a parachain, the relay chain needs to know the parachain's [genesis state](/main-docs/build/chain-specs#the-genesis-state).
+To register a parachain, the relay chain needs to know the parachain's [genesis state](/main-docs/build/chain-spec#the-genesis-state).
 The collator node can export that state to a file.
 Go to your Parachain Template folder, the following command will create a file containing the parachain's entire genesis state, hex-encoded:
 
@@ -108,7 +108,7 @@ This runtime and state is for the parachain's _genesis_ block only.
 You can't connect a parachain with any previous state to a relay chain. All parachains must start from block 0 on the relay chain.
 Eventually, migrating the block history of a solo chain built on Substrate is expected to be possible, but this functionality is not planned anytime soon.
 
-See the guide on [converting a solo chain to a parachain](/reference/how-to-guides/parachains/convert) for details on how the parachain template was created and how to convert your chain's logic—not its history or state migrations—to a parachain.
+See the guide on [converting a solo chain to a parachain](/reference/how-to-guides/parachains/solo-to-parachain) for details on how the parachain template was created and how to convert your chain's logic—not its history or state migrations—to a parachain.
 
 ### Start the collator node
 
@@ -261,7 +261,7 @@ The collator should start producing parachain blocks (aka collating) once the re
 
 > This may take a while!
 > Be patient as you wait for the next epoch to start.
-> This is 10 blocks for the example [`rococo-custom-2-raw.json`](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json) included in this tutorial.
+> This is 10 blocks for the example [`rococo-custom-2-raw.json`](/assets/tutorials/cumulus/chain-spec/rococo-custom-2-raw.json) included in this tutorial.
 
 Finally, the collator should start producing log messages like the following:
 

@@ -501,7 +501,7 @@ This React component enables you to expose the proof-of-existence capabilities a
    yarn start
    ```
 
-This will open up a new tab with the front-end serving at **http://localhost:8000**.
+This will open up a new tab with the front-end serving at `http://localhost:8000`.
 
 ### Submit a proof
 
@@ -547,4 +547,4 @@ Custom pallets enable you to expose the features you want your blockchain to sup
 
 To learn more about what's possible by creating custom pallets, explore the
 FRAME documentation and the [how-to guides](/reference/how-to-guides).
-For a more challenging version of this tutorial, try the [Substrate Kitties tutorial](/workshops/kitties/pt1/).
+<!--For a more challenging version of this tutorial, try the [Substrate Kitties tutorial](/workshops/kitties/pt1/).-->

@@ -13,7 +13,7 @@ You can follow similar patterns to add additional FRAME pallets to your runtime,
 ## Before you begin
 
 Make sure you have the latest version of the Substrate node template compiled on your computer.
-If you haven't already done so, see [Create your first substrate chain](/tutorials/get-started/build-local-blockchain/).
+If you haven't already done so, see [Build a local blockchain](/tutorials/get-started/build-local-blockchain/).
 
 ## Import the dependencies
 
@@ -26,7 +26,7 @@ If you haven't already done so, see [Create your first substrate chain](/tutoria
 
 ## Add the Contracts pallet to your runtime
 
-Implement the Contracts pallet [configuration traits][contracts-config-rustdocs] in order for your runtime to use it properly.
+Implement the [Contracts pallet](https://paritytech.github.io/substrate/master/pallet_contracts/) in order for your runtime to use it properly.
 
 1. Implement `pallet_contracts`.
 
@@ -112,11 +112,11 @@ which enables reading a contracts state from off chain. To use
 the Contracts pallet to make calls to your node's storage without making a transaction, you'll use two other pallets: the Contracts RPC Runtime API pallet and the Contracts RPC pallet.
 
 1. Import the dependencies.
-   As in the [first step of this guide](#1-import-the-dependencies), update `/runtime/Cargo.toml` to add `pallet-contracts-rpc-runtime-api`.
+   As in the first step of this guide, update `/runtime/Cargo.toml` to add `pallet-contracts-rpc-runtime-api`.
 
 1. Include `pallet-contracts` and `pallet-contracts-rpc` inside `node/Cargo.toml` so that your runtime can interact with your node.
 
-1. Add the [`ContractsApi`][contracts-api-rustdocs] dependency required to implement the Contracts runtime API.
+1. Add the `ContractsApi` dependency required to implement the Contracts runtime API.
 
    Add this with the other `use` statements in `node/src/rpc.rs`:
 
@@ -184,8 +184,10 @@ cargo build --release
 - [`pallet_contracts` crate](/rustdocs/latest/pallet_contracts/index.html)
 - [`pallet_contracts_rpc` crate](/rustdocs/latest/pallet_contracts_rpc/index.html)
 
+<!--
 [create-first-chain-tutorial]: /tutorials/get-started/build-local-blockchain
 [contracts-config-rustdocs]: /rustdocs/latest/pallet_contracts/trait.Config.html
 [contracts-frame-gh]: https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs#L144
 [bin-runtime-contracts-frame]: https://github.com/paritytech/substrate/blob/632b32300eb9376767c2ae7b38e79b3f7f5329b1/bin/node/runtime/src/lib.rs#L887-L903
 [contracts-api-rustdocs]: /rustdocs/latest/pallet_contracts_rpc_runtime_api/trait.ContractsApi.html
+-->

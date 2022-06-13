@@ -18,10 +18,10 @@ That said, the runtime can be built in any way, with any language, so long as it
 
 The core Substrate codebase ships with [FRAME](/main-docs/fundamentals/runtime-intro), Parity's system for Substrate runtime development that is used for chains like [Kusama](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/lib.rs) and [Polkadot](https://github.com/paritytech/polkadot/blob/master/runtime/polkadot/src/lib.rs). 
 FRAME defines additional runtime primitives and provides a framework that makes it easy to construct a runtime by composing modules, called [pallets](/main-docs/fundamentals/runtime-intro#pallets). 
-Each pallet encapsulates domain-specific logic that is expressed as a set of a [storage items](/main-docs/build/runtime-storage), [events](/main-docs/build/events-and-errors), [errors](/main-docs/build/events-and-errors#errors), and [dispatchable functions](/reference/glossary#dispatch). 
+Each pallet encapsulates domain-specific logic that is expressed as a set of a [storage items](/main-docs/build/runtime-storage), [events](/main-docs/build/events-errors), [errors](/main-docs/build/events-errors#errors), and [dispatchable functions](/reference/glossary#dispatch). 
 FRAME developers can [create their own pallets](/main-docs/fundamentals/runtime-intro#pallets) and reuse existing pallets, including [over 50 of those shipped with Substrate](/main-docs/fundamentals/runtime-intro#prebuilt-pallets).
 
-![Runtime Composition](/media/images/docs/main-docs/frame-runtime.png)
+![Runtime composition](/media/images/docs/main-docs/frame-runtime.png)
 
 There are an additional set of primitives that are assumed about a runtime built with the Substrate FRAME. These are:
 

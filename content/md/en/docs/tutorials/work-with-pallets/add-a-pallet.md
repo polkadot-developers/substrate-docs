@@ -90,7 +90,7 @@ To add the dependencies for the Nicks pallet to the runtime:
 
    This section specifies the default feature set to compile for this runtime is the `std` features set.
    When the runtime is compiled using the `std` feature set, the `std` features from all of the pallets listed as dependencies are enabled.
-   For more detailed information about how the runtime is compiled as a native Rust binary with the standard library and as a WebAssembly binary using the `no_std` attribute, see [Building the runtime](/main-docs/build/build-runtime/).
+   For more detailed information about how the runtime is compiled as a native Rust binary with the standard library and as a WebAssembly binary using the `no_std` attribute, see [Build process](/main-docs/build/build-process/).
 
    If you forget to update the `features` section in the `Cargo.toml` file, you might see `cannot find function` errors when you compile the runtime binary.
 
@@ -323,7 +323,7 @@ To start the front-end template:
    yarn start
    ```
 
-1. Open http://localhost:8000/ in a browser to view the front-end template.
+1. Open `http://localhost:8000/` in a browser to view the front-end template.
 
 ## Set a nickname using the Nicks pallet
 
@@ -345,7 +345,7 @@ To set a nickname for an account:
 
    ![Set a name](/media/images/docs/tutorials/add-a-pallet/set-name.png)
 
-1. Observe the status of the call and the [events](/rustdocs/latest/pallet_nicks/enum.RawEvent.html) emitted by the Nicks pallet.
+1. Observe the status of the call and the events emitted by the Nicks pallet.
 
 ## Query information for an account using the Nicks pallet
 

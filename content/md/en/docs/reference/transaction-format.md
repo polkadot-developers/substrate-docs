@@ -4,12 +4,12 @@ description:
 featured_image:
 --- 
 
-_This article describes in detail what the format of an extrinsic (in particular signed and unsigned transactions) looks like in Substrate._
-_This is particularly useful for understanding how the transaction pool checks incoming tranactions._
-_Parachain builders will find this useful for customizing how their transactions are formatted as well as writing client applications that need to adhere to a chosen format._
+This article describes in detail what the format of signed and unsigned transactions in Substrate.
+This is particularly useful for understanding how the transaction pool checks incoming tranactions.
+Parachain builders will find this useful for customizing how their transactions are formatted as well as writing client applications that need to adhere to a chosen format.
 
 Extrinsics normally contain a signature, some data to describe if the extrinsic has passed some validity checks and a reference to the pallet and call that it is intended for.
-This format provides a way for applications to ensure the requirements for an extrinisic are met and correctly constructed. 
+This format provides a way for applications to ensure the requirements for an extrinsic are met and correctly constructed. 
 
 - Unchecked: signed transactions that require some validation check before they can be accepted in the transaction pool.
 Any unchecked extrinsic contains the signature for the data being sent plus some extra data.
@@ -32,7 +32,7 @@ node_runtime::UncheckedExtrinsic::new_signed(
 	)
 ```
 
-## How transactions are constructed 
+## How transactions are constructed
 
 Substrate defines its transaction formats generically to allow developers to implement custom ways to define valid transactions. 
 In a runtime built with FRAME however (assuming transaction version 4), a transaction must be constructed by submitting the following encoded data:
@@ -55,7 +55,7 @@ When submitting a signed transaction, the signature is constructed by signing:
 Then, some additional data that's not part of what gets signed is required, which includes:
 
   - The spec version and the transaction version. 
-  This ensures the transation is being submitted to a compatible runtime.
+  This ensures the transaction is being submitted to a compatible runtime.
   - The genesis hash. This ensures that the transaction is valid for the correct chain.
   - The block hash. This corresponds to the hash of the checkpoint block, which enables the signature to verify that the transaction doesn't execute on the wrong fork, by checking against the block number provided by the era information.
 
@@ -76,16 +76,14 @@ An extrinsic is encoded into the following sequence of bytes just prior to being
 
 where:
 
-- `[1]` contains the compact encoded length in bytes of all of the following data. Learn how compact encoding works using [SCALE](). 
+- `[1]` contains the compact encoded length in bytes of all of the following data. Learn how compact encoding works using [SCALE](/reference/scale-codec/). 
 - `[2]` is a `u8` containing 1 byte to indicate whether the transaction is signed or unsigned (1 bit), and the encoded transaction version ID (7 bits).
 - `[3]` if a signature is present, this field contains an account ID, an SR25519 signature and some extra data. If unsigned this field contains 0 bytes.
 - `[4]` is the encoded call data. This comprises of 1 byte denoting the pallet to call into, 1 byte denoting the call to make in that pallet, and then as many bytes as needed to encode the arguments expected by that call.
 
-The way applications know how to construct a transaction correctly is provided by the [metadata interface](./frontend#metadata).
+The way applications know how to construct a transaction correctly is provided by the [metadata interface](/main-docs/build/frontend/#metadata).
 An application will know how to correctly encode a transaction by using the metadata types and transaction format.
 If a call doesn't need to be signed, then the first bit in [2] will be 0 and so an application will know not to try decoding a signature.
-
-<!-- TODO: How are inherents constructed? -->
 
 **Example:**
 
@@ -168,7 +166,7 @@ Submitting the resulting constructed extrinsic via RPC returns this decoded meta
 
 ## Signed extensions
 
-Substrate provides the concept of **signed extensions** to extend an extrinsic with additional data, provided by the [`SignedExtension`](/rustdocs/latest/sp_runtime/traits/trait.SignedExtension.html) trait.
+Substrate provides the concept of **signed extensions** to extend an extrinsic with additional data, provided by the [`SignedExtension`](https://paritytech.github.io/substrate/master/sp_runtime/traits/trait.SignedExtension.html) trait.
 
 The transaction queue regularly calls signed extensions to keep checking that a transaction is valid before it gets put in the ready queue. 
 This is a useful safeguard for verifying that transactions won't fail in a block.
@@ -181,7 +179,7 @@ By default in FRAME, a signed extension can hold any of the following types:
 - `AdditionalSigned`: to handle any additional data to go into the signed payload. This makes it possible to attach any custom logic prior to dispatching a transaction.
 - `Pre`: to encode the information that can be passed from before a call is dispatch to after it gets dispatched.
 
-FRAME's [system pallet](todo) provides a set of [useful `SignedExtensions`](https://docs.substrate.io/rustdocs/latest/frame_system/index.html#signed-extensions) out of the box.
+FRAME's [system pallet](https://paritytech.github.io/substrate/master/frame_system/) provides a set of [useful `SignedExtensions`](https://docs.substrate.io/rustdocs/latest/frame_system/index.html#signed-extensions) out of the box.
 
 ### Practical examples
 
@@ -199,7 +197,6 @@ These are:
 The priority depends on the dispatch class and the amount of tip-per-weight or tip-per-length (whatever is more limiting) the sender is willing to pay.
 Transactions without a tip use a minimal tip value of `1` for priority calculations to make sure that not all transactions end up having a priority of `0`. 
 The consequence of this is that "smaller" transactions are preferred over "larger" ones.
-
 
 ## Learn more
 
