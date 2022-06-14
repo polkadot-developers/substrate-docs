@@ -1,12 +1,12 @@
-# Page not found
+# Substrate documentation roadmap
 
-The Developer Hub documentation site has gone through a significant transformation and the page you are looking for is no longer available at this location.
-This page provides you with information to navigate the new site.
-However: 
+The Developer Hub documentation site has gone through a significant transformation.
+If you have bookmarked pages in the old site, the page you are looking is most likely no longer available at that location.
+This roadmap provides suggestions to help you navigate to the information you're looking for in the new site.
 
-* If you have arrived here through a post on the Substrate and Polkadot Stack Exchange page, please flag the broken link by letting the author of the post know in the comment of that post.
-* If you have arrived here from an external resource (such as a blog, other repository or other content maintained externally), please inform the authors of that content.
-* If you have arrived here from a link that is internal to the Substrate Developer Hub, please open an issue to report the broken link.
+* If you arrived here from a post on the Substrate and Polkadot Stack Exchange, please either edit the post directly with the correct link, or add a comment to the post to notify the author and community that the location has changed.
+* If you arrived here from an external resource—such as a blog or a repository that is maintained externally—please inform the authors of that content.
+* If you arrived here from a link in the Substrate Developer Hub, please [open an issue to report the broken link](https://github.com/substrate-developer-hub/substrate-docs/issues/new?title=Broken%20Link&template=broken-link.yaml&labels=Broken%20Link).
 
 ## Getting started
 
@@ -41,8 +41,6 @@ However:
 
 * [Reference](https://docs.substrate.io/reference/)
 
-<!-- TODO 
-Simplify issue templates to capture something like this:
 If you would like to provide feedback about your experience with the new site, click any of the following links:
 
 General feedback :thumb-up: :thumb-down:
