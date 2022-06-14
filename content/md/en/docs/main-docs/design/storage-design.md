@@ -1,3 +1,9 @@
+---
+title: Storage design
+description:
+keywords:
+---
+
 Questions: 
 
 - What will I need to consider when designing the storage abstractions of my chain?

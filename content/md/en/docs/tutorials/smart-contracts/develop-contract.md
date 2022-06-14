@@ -1,6 +1,7 @@
 ---
 title: Develop a smart contract
-description: Store, increment, and retrieve values in a smart contract.
+description:
+keywords:
 ---
 
 In [Prepare your first contract](/tutorials/smart-contracts/first-smart-contract/), you learned the basic steps for building and deploying a smart contract on a Substrate-based blockchain using a default first project.

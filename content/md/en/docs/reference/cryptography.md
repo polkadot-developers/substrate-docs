@@ -1,7 +1,7 @@
 ---
 title: Cryptography
 description:
-keywords: []
+keywords:
 ---
 
 This document offers a conceptual overview of the cryptography used in Substrate.

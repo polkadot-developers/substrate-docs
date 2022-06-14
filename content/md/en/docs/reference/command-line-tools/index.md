@@ -1,6 +1,6 @@
 ---
 title: Command-line tools
-section: reference
+description:
 keywords:
 ---
 

@@ -1,6 +1,8 @@
-Section: Design
-Sub-section: Smart contract pallets
-Type: conceptual
+---
+title: Smart contract pallets
+description:
+keywords:
+---
 
 Substrate provides two smart contract virtual machines which can be added to your runtime: the [Contracts pallet](#contracts-pallet) and the [EVM pallet](#evm-pallet).
 Each come with additional tools to ease development depending on your use cases.
@@ -21,7 +23,7 @@ Here are some of ink!'s key features:
 
 Virtual machines, such as EVM or Wasm, can support different programming languages to write smart contracts.
 For example, Solidity can be used for both EVM and Wasm environments using purpose built compilers.
-With the contracts pallet as the execution environment, any language can be used so long as it compiles to Wasm, [ink!]() being the most widely supported language.
+With the contracts pallet as the execution environment, any language can be used so long as it compiles to Wasm, ink! being the most widely supported language.
 See [some examples](https://paritytech.github.io/ink-docs/examples/) on how to write a smart contract using ink!.
 
 ### Features
@@ -36,7 +38,7 @@ The Contracts pallet depends on a Wasm sandboxing interface defining the Wasm ex
 
 The Contracts pallet uses an account-based system similar to many existing smart contract platforms.
 To the Substrate runtime, contract accounts are just like normal user accounts; however, in addition to an `AccountID` and `Balance` that normal accounts have, a contract account also has associated contract code and some persistent contract storage.
-A notable behaviour that arises from this is that a contract's account can receive balances without having its code executed by a plain transfer transaction.
+A notable behavior that arises from this is that a contract's account can receive balances without having its code executed by a plain transfer transaction.
 
 ### Deploying and calling contracts
 
@@ -97,7 +99,7 @@ You can follow [the tutorial here](/tutorials/work-with-pallets/) for instructio
 
 # EVM pallet
 
-The FRAME Ethereum Virtual Machine (EVM) provides an execution environment for Substrate's Ethereum compatibility layer, known as Frontier.
+The FRAME Ethereum Virtual Machine (EVM) provides an execution environment for Substrate's Ethereum compatibility layer, known as [Frontier](https://github.com/paritytech/frontier/).
 Frontier allows unmodified EVM code to be executed in a Substrate-based blockchain, designed to closely emulate the functionality of executing contracts on the Ethereum mainnet within the Substrate runtime.
 
 For more information on the FRAME EVM, see [FRAME EVM pallet reference](https://docs.rs/pallet_evm/).
@@ -108,7 +110,7 @@ The Substrate runtime works alongside the [Ethereum pallet](https://docs.rs/pall
 
 ## EVM engine
 
-The EVM pallet uses [SputnikVM](https://github.com/rust-blockchain/evm) as the underlying EVM engine. The engine is overhauled to be modular.
+Frontier's EVM pallet uses [SputnikVM](https://github.com/rust-blockchain/evm) as the underlying EVM engine. The engine is overhauled to be modular.
 For more information see [Core Paper Project of EVM](https://github.com/corepaper/evm).
 
 The EVM is a good theoretical execution environment, but it is not very practical to use with modern hardware.
@@ -157,7 +159,7 @@ Use these pre-built pallets to inform how you might design your own system or ho
 
 ### What is the difference between memory and storage?
 
-In ink! `memory` is the computer memory that is commonly known to programmers, while `storage` is the contract instance memory. The `storage` is backed up by the runtime in a database. <!--Accesses to it are considered to be slow.-->
+In ink! `memory` is the computer memory that is commonly known to programmers, while `storage` is the contract instance memory. The `storage` is backed up by the runtime in a database. Accesses to it are considered to be slow.
 
 ### How do I run tests?
 

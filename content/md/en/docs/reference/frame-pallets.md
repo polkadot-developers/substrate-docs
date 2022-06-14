@@ -1,7 +1,10 @@
 ---
 title: FRAME pallets
 description:
-keywords: Frame, pallets, API
+keywords:
+  - Frame
+  - pallets
+  - API
 ---
 
 The FRAME development environment provides modules—called pallets—and support libraries that you can use, modify, and extend to build the runtime logic to suit the needs of your blockchain.

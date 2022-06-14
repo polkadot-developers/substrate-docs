@@ -1,10 +1,7 @@
 ---
 title: The Block Import Pipeline
-description: /v3/advanced/block-import
-version: '3.0'
-section: docs
-category: advanced
-keywords: []
+description:
+keywords:
 ---
 
 The block import pipeline is an abstract worker queue present in every Substrate node. It is not part of the

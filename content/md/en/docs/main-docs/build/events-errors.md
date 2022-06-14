@@ -1,7 +1,7 @@
 ---
 title: Events and errors
-description: Explains how to emit events and errors from the runtime.
-keywords: []
+description:
+keywords:
 ---
 
 A pallet can emit events when it wants to notify external entities about changes

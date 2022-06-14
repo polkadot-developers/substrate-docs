@@ -1,8 +1,10 @@
 ---
 title: Specify the origin for a call
 description: 
-keywords: FRAME, runtime, custom pallet
-
+keywords:
+  - FRAME
+  - runtime
+  - custom pallet
 ---
 
 In [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet), you added functions from the `frame_nicks` pallet to the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) runtime.

@@ -1,7 +1,6 @@
 ---
 title: Transactions and block basics
 description:
-featured_image:
 keywords:
 ---
 

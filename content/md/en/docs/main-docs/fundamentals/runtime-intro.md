@@ -1,7 +1,7 @@
 ---
 title: Runtime development
 description: Introduces the core programming interfaces, primitives, and modules that are essential to developing the runtime for a Substrate blockchain.
-keywords: []
+keywords:
 ---
 
 As discussed in [Architecture](/main-docs/fundamentals/architecture/), the **runtime** for a Substrate node contains all of the business logic for executing transactions, saving state transitions, and interacting with the outer node.

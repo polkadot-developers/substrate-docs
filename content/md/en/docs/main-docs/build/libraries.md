@@ -24,7 +24,7 @@ For example, the[`sp_std`](https://paritytech.github.io/substrate/master/sp_std/
 
 The libraries that enable you to build the runtime logic and to encode and decode the information passed into and out of the runtime are Rust crates that use the `frame_` prefix in the crate name.
 The `frame_*` libraries provide the infrastructure for the runtime.
-For example, the [`frame_system`](https://paritytech.github.io/substrate/master/frame_system/index.html) library provides a basic set of functions for interacting with other Substrate components and[`frame_support`](https://paritytech.github.io/substrate/master/frame_support/index.html) enables you to  declare runtime storage items, errors, and events.
+For example, the [`frame_system`](https://paritytech.github.io/substrate/master/frame_system/index.html) library provides a basic set of functions for interacting with other Substrate components and[`frame_support`](https://paritytech.github.io/substrate/master/frame_support/index.html) enables you to declare runtime storage items, errors, and events.
 
 In addition to the infrastructure provided by the `frame_*` libraries, the runtime can include one or more `pallet_*` libraries.
 Each Rust crate that uses the `pallet_` prefix represents a single FRAME module.

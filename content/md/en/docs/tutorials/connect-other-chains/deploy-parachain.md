@@ -1,9 +1,12 @@
 ---
 title: Deploy a parachain
 description:
+keywords:
 ---
 
 ## NOTE: BREAKING CHANGES
+
+TODO zombinet https://github.com/substrate-developer-hub/substrate-docs/issues/1098
 
 > The following is for **reference only**.
 > There is a temporary breaking issue in the launch tool that is traced in https://github.com/substrate-developer-hub/substrate-docs/issues/634 .

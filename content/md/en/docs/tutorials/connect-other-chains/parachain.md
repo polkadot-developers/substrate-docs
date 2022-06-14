@@ -1,6 +1,7 @@
 ---
 title: Connect to a relay chain
-description: 
+description:
+keywords:
 ---
 
 In this part of the workshop, we'll connect a parachain to our relay chain and add additional nodes.
@@ -15,6 +16,7 @@ By completing this tutorial, you will accomplish the following objectives:
 - Connect additional parachain nodes
 
 ## Launching a parachain
+
 ### Reserve a para ID
 
 To connect to any relay chain, you must first reserve a para ID for your parachain.
@@ -41,8 +43,11 @@ We'll begin by generating a few files based on the parachain template with the r
 
 <!-- TODO NAV.YAML -->
 <!-- add these back -->
+
 Your parachain _must_ configure the correct para ID in your chain specification.
+
 <!-- See the [how-to guide on configuring a custom chain spec](/reference/how-to-guides/basics/custom-chainspec/) for more in-depth instructions to generate a plain spec, modify it, and generate a raw spec. -->
+
 We first generate a plain spec with:
 
 ```bash
@@ -71,8 +76,8 @@ Then generate a raw chain spec derived **from your modified plain chain spec**:
 
 ## Save and distribute your raw spec
 
-If you intend to let others connect to your network, they must have the associated chain spec for your network generated once and distributed to your peers. 
-They cannot reliably produce this themselves, and need to acquire it from a **single source**. 
+If you intend to let others connect to your network, they must have the associated chain spec for your network generated once and distributed to your peers.
+They cannot reliably produce this themselves, and need to acquire it from a **single source**.
 This stems from the [non-deterministic issue](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1) in the way Wasm runtimes are compiled.
 
 Chain specs _conventionally_ live in a `/res` folder that is published in your node's codebase for others to use.
@@ -106,7 +111,7 @@ Go to your Parachain Template folder, the following command will create a file c
 
 ## No pre-genesis blocks allowed
 
-This runtime and state is for the parachain's _genesis_ block only. 
+This runtime and state is for the parachain's _genesis_ block only.
 You can't connect a parachain with any previous state to a relay chain. All parachains must start from block 0 on the relay chain.
 Eventually, migrating the block history of a solo chain built on Substrate is expected to be possible, but this functionality is not planned anytime soon.
 
@@ -265,8 +270,10 @@ The collator should start producing parachain blocks (aka collating) once the re
 
 <!-- TODO NAV.YAML -->
 <!-- add these back -->
+
 > This may take a while!
 > Be patient as you wait for the next epoch to start.
+
 <!-- > This is 10 blocks for the example [`rococo-custom-2-raw.json`](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json) included in this tutorial. -->
 
 Finally, the collator should start producing log messages like the following:
@@ -363,8 +370,8 @@ To learn more about XCMP, refer to [Polkadot wiki on XCMP](https://wiki.polkadot
 
 ## Chain purging
 
-Your sole collator is the only home of the parachain data as there is only one node on your entire parachain network. 
-Relay chains only store parachains header information. 
+Your sole collator is the only home of the parachain data as there is only one node on your entire parachain network.
+Relay chains only store parachains header information.
 If the parachain data is lost, you will **not** be able to recover the chain.
 
 To purge your parachain chain data, you need to deregister and re-register the parachain collator.

@@ -1,7 +1,8 @@
 ---
 title: Create a hybrid node
 description:
-keywords: consensus
+keywords:
+  - consensus
 ---
 
 This guide demonstrates how to create a Substrate-based node that employs hybrid consensus, using [Sha3 proof of work](../pow) to dictate block authoring and the

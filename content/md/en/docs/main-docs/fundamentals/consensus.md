@@ -1,7 +1,7 @@
 ---
 title: Consensus
 description: Describes the consensus models Substrate provides.
-featured_image:
+keywords:
 ---
 
 All blockchains require some type of consensus mechanism to agree on the blockchain state. Because Substrate provides a modular framework for building blockchains, it supports a few different models for nodes to reach consensus.

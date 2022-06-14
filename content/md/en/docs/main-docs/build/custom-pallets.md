@@ -42,7 +42,7 @@ For an overview of the macros used in FRAME pallets, see [FRAME macros](/referen
 
 - Pallet Origin
 - Origins: EnsureOrigin, EnsureOneOf
-...
+  ...
 
 ## Runtime implementation
 
@@ -52,7 +52,7 @@ Your pallet's `Config` trait is what get's implemented for `Runtime` which is a 
 - [`parameter_types`](https://paritytech.github.io/substrate/master/frame_support/macro.parameter_types.html) and [`ord_parameter_types`](https://paritytech.github.io/substrate/master/frame_support/macro.ord_parameter_types.html) macros are useful for passing in values to configurable pallet constants.
 - [ other considerations like no_std ]
 - Minimilistic runtime references
-- Side chain architecture references 
+- Side chain architecture references
 - Api endpoints: on_initialize, off_chain workers ?
 
 Write content that links to basic and intermediate how-to guides.

@@ -1,6 +1,10 @@
 ---
-title: Add trusted validators
-description: Generate keys and a chain specification to add authority set of private validators for a blockchain network.
+title: Trusted node network
+description:
+keywords:
+  - enterprize
+  - private
+  - permission
 ---
 
 This tutorial illustrates how you can start a small, standalone blockchain network with an **authority set** of private **validators**.
@@ -445,40 +449,13 @@ You can now allow other validators to join the network using the `--bootnodes` a
 
 To add a second validator to the private network:
 
-1. Open a terminal shell on a second computer.
+1.  Open a terminal shell on a second computer.
 
-1. Change to the root directory where you compiled the Substrate node template.
+1.  Change to the root directory where you compiled the Substrate node template.
 
-1. Start a second blockchain node by running a command similar to the following:
-<<<<<<< HEAD
+1.  Start a second blockchain node by running a command similar to the following:
+    <<<<<<< HEAD
 
-   ```bash
-   ./target/release/node-template \ --base-path /tmp/node02 \
-   --chain ./customSpecRaw.json \
-   --port 30334 \
-   --ws-port 9946 \
-   --rpc-port 9934 \
-   --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
-   --validator \
-   --rpc-methods Unsafe \
-   --name MyNode02 \
-   --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX \
-   --password-interactive
-   ```
-
-   This command uses the `base-path`, `name` and `validator` command-line options to identify this node as a second validator for the private network.
-   The `--chain` command-line option specifies the chain specification file to use.
-   This file must be _identical_ for all validators in the network.
-
-   Be sure to set the correct information for the `--bootnodes` command-line option.
-   In particular, be sure you have specified the local node identifier from the first node in the network.
-   If you don't set the correct `bootnode` identifier, you see errors like this:
-
-   ```text
-    The bootnode you want to connect to at ... provided a different peer ID than the one you expect: ...
-   ```
-=======
-    
     ```bash
     ./target/release/node-template \ --base-path /tmp/node02 \
     --chain ./customSpecRaw.json \
@@ -493,91 +470,120 @@ To add a second validator to the private network:
     --password-interactive
     ```
 
-    This command uses the `base-path`, `name` and `validator` command-line options to identify this node as a second  validator for the private network.
+    This command uses the `base-path`, `name` and `validator` command-line options to identify this node as a second validator for the private network.
     The `--chain` command-line option specifies the chain specification file to use.
     This file must be _identical_ for all validators in the network.
-    
-    Be sure to set the correct information for the  `--bootnodes` command-line option.
+
+    Be sure to set the correct information for the `--bootnodes` command-line option.
     In particular, be sure you have specified the local node identifier from the first node in the network.
     If you don't set the correct `bootnode` identifier, you see errors like this:
 
     ```text
-    The bootnode you want to connect to at ... provided a different peer ID than the one you expect: ...
+     The bootnode you want to connect to at ... provided a different peer ID than the one you expect: ...
     ```
->>>>>>> main-md
 
-1. Add the `aura` secret key generated from the `key` subcommand by running a command similar to the following:
+    =======
 
-   ```bash
-   ./target/release/node-template key insert --base-path /tmp/node02 \
-   --chain customSpecRaw.json \
-   --scheme Sr25519 \
-   --suri <second-participant-secret-seed> \
-   --password-interactive \
-   --key-type aura
-   ```
+        ```bash
+        ./target/release/node-template \ --base-path /tmp/node02 \
+        --chain ./customSpecRaw.json \
+        --port 30334 \
+        --ws-port 9946 \
+        --rpc-port 9934 \
+        --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
+        --validator \
+        --rpc-methods Unsafe \
+        --name MyNode02 \
+        --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX \
+        --password-interactive
+        ```
 
-   Replace `<second-participant-secret-seed>` with the secret phrase or secret seed that you generated in [Generate a second key pair](#generate-a-second-set-of-keys).
-   The `aura` key type is required to enable block production.
+        This command uses the `base-path`, `name` and `validator` command-line options to identify this node as a second  validator for the private network.
+        The `--chain` command-line option specifies the chain specification file to use.
+        This file must be _identical_ for all validators in the network.
 
-1. Type the password you used to generate the keys.
+        Be sure to set the correct information for the  `--bootnodes` command-line option.
+        In particular, be sure you have specified the local node identifier from the first node in the network.
+        If you don't set the correct `bootnode` identifier, you see errors like this:
 
-1. Add the `grandpa` secret key generated from the `key` subcommand to the local keystore by running a command similar to the following:
+        ```text
+        The bootnode you want to connect to at ... provided a different peer ID than the one you expect: ...
+        ```
 
-   ```bash
-   ./target/release/node-template key insert --base-path /tmp/node02 \
-   --chain customSpecRaw.json \
-   --scheme Ed25519 --suri <second-participant-secret-seed> \
-   --password-interactive \
-   --key-type gran
-   ```
+    > > > > > > > main-md
 
-   Replace `<second-participant-secret-seed>` with the secret phrase or secret seed that you generated in [Generate a second key pair](#generate-a-second-set-of-keys).
-   The `gran` key type is required to enable block finalization.
+1.  Add the `aura` secret key generated from the `key` subcommand by running a command similar to the following:
 
-   Block finalization requires at least two-thirds of the validators to add their keys to their respective keystores.
-   Because this network is configured with two validators in the chain specification, block finalization can only start after the second node has added its keys.
+    ```bash
+    ./target/release/node-template key insert --base-path /tmp/node02 \
+    --chain customSpecRaw.json \
+    --scheme Sr25519 \
+    --suri <second-participant-secret-seed> \
+    --password-interactive \
+    --key-type aura
+    ```
 
-1. Type the password you used to generate the keys.
+    Replace `<second-participant-secret-seed>` with the secret phrase or secret seed that you generated in [Generate a second key pair](#generate-a-second-set-of-keys).
+    The `aura` key type is required to enable block production.
 
-1. Verify that your keys are in the keystore for `node02` by running the following command:
+1.  Type the password you used to generate the keys.
 
-   ```bash
-   ls /tmp/node02/chains/local_testnet/keystore
-   ```
+1.  Add the `grandpa` secret key generated from the `key` subcommand to the local keystore by running a command similar to the following:
 
-   The command displays output similar to the following:
+    ```bash
+    ./target/release/node-template key insert --base-path /tmp/node02 \
+    --chain customSpecRaw.json \
+    --scheme Ed25519 --suri <second-participant-secret-seed> \
+    --password-interactive \
+    --key-type gran
+    ```
 
-   ```text
-   617572611a4cc824f6585859851f818e71ac63cf6fdc81018189809814677b2a4699cf45
-   6772616e1a4cc824f6585859851f818e71ac63cf6fdc81018189809814677b2a4699cf45
-   ```
+    Replace `<second-participant-secret-seed>` with the secret phrase or secret seed that you generated in [Generate a second key pair](#generate-a-second-set-of-keys).
+    The `gran` key type is required to enable block finalization.
 
-   Substrate nodes require a restart after inserting a `grandpa` key, so you must shut down and restart nodes before you see blocks being finalized.
+    Block finalization requires at least two-thirds of the validators to add their keys to their respective keystores.
+    Because this network is configured with two validators in the chain specification, block finalization can only start after the second node has added its keys.
 
-1. Shut down the node by pressing Control-c.
+1.  Type the password you used to generate the keys.
 
-1. Restart the second blockchain node by running the following command:
+1.  Verify that your keys are in the keystore for `node02` by running the following command:
 
-   ```bash
-   ./target/release/node-template \
-   --base-path /tmp/node02 \
-   --chain ./customSpecRaw.json \
-   --port 30334 \
-   --ws-port 9946 \
-   --rpc-port 9934 \
-   --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
-   --validator \
-   --rpc-methods Unsafe \
-   --name MyNode02 \
-   --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX \
-   --password-interactive
-   ```
+    ```bash
+    ls /tmp/node02/chains/local_testnet/keystore
+    ```
 
-   After both nodes have added their keys to their respective keystores—located under `/tmp/node01` and `/tmp/node02`—and been restarted, you should see the same genesis block and state root hashes.
+    The command displays output similar to the following:
 
-   You should also see that each node has one peer (`1 peers`), and they have produced a block proposal (`best: #2 (0xe111…c084)`).
-   After a few seconds, you should see new blocks being finalized on both nodes.
+    ```text
+    617572611a4cc824f6585859851f818e71ac63cf6fdc81018189809814677b2a4699cf45
+    6772616e1a4cc824f6585859851f818e71ac63cf6fdc81018189809814677b2a4699cf45
+    ```
+
+    Substrate nodes require a restart after inserting a `grandpa` key, so you must shut down and restart nodes before you see blocks being finalized.
+
+1.  Shut down the node by pressing Control-c.
+
+1.  Restart the second blockchain node by running the following command:
+
+    ```bash
+    ./target/release/node-template \
+    --base-path /tmp/node02 \
+    --chain ./customSpecRaw.json \
+    --port 30334 \
+    --ws-port 9946 \
+    --rpc-port 9934 \
+    --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
+    --validator \
+    --rpc-methods Unsafe \
+    --name MyNode02 \
+    --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX \
+    --password-interactive
+    ```
+
+    After both nodes have added their keys to their respective keystores—located under `/tmp/node01` and `/tmp/node02`—and been restarted, you should see the same genesis block and state root hashes.
+
+    You should also see that each node has one peer (`1 peers`), and they have produced a block proposal (`best: #2 (0xe111…c084)`).
+    After a few seconds, you should see new blocks being finalized on both nodes.
 
 ## Next steps
 

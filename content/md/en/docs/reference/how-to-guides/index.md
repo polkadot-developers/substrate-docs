@@ -1,8 +1,7 @@
 ---
 title: How-to quick reference guides
 description:
-keywords: 
-featured_image: 
+keywords:
 ---
 
 Substrate _How-to_ quick reference guides provide instructions for achieving specific goals.

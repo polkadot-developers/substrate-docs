@@ -1,6 +1,7 @@
 ---
 title: Prepare your first contract
-description: Create a new smart contract project and a simple first contract.
+description:
+keywords:
 ---
 
 As you learned in [Blockchain basics](/main-docs/fundamentals/blockchain-basics/) decentralized applications are most often written as **smart contracts**.

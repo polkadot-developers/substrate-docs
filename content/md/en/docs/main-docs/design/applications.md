@@ -1,4 +1,8 @@
-## Designing runtime applications
+---
+title: Designing runtime applications
+description:
+keywords:
+---
 
 This diagram depicts how metadata is generated, at build time and then accessible at run time.
 

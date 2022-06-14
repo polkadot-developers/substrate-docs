@@ -1,6 +1,7 @@
 ---
-title: Upgrade a running node
-description: Perform a forkless runtime upgrade on a running Substrate network.
+title: Upgrade a running network
+description:
+keywords:
 ---
 
 Unlike many blockchains, the Substrate development framework supports **forkless upgrades** to the runtime that is the core of the blockchain.
@@ -316,4 +317,4 @@ app to query the `existentialDeposit` constant value from the Balances pallet.
 - [Storage migrations](//main-docs/build/upgrade#storage-migrations)
 <!--
 - [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/)
--->
+  -->

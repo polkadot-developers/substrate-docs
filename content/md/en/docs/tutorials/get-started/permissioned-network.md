@@ -1,6 +1,11 @@
 ---
 title: Authorize specific nodes
-description: Build a network where only authorized Substrate nodes are allowed to perform certain network activities.
+description:
+keywords:
+  - permissioned
+  - private
+  - authorize
+  - enterprize
 ---
 
 In [Add trusted validators](/tutorials/get-started/trusted-network/), you saw how to build a simple network with a known set of validator nodes.
@@ -285,17 +290,17 @@ To configure genesis storage for authorized nodes:
 
    ```rust
      node_authorization: NodeAuthorizationConfig {
-   		nodes: vec![
-   			(
-   				OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
-   				endowed_accounts[0].clone()
-   			),
-   			(
-   				OpaquePeerId(bs58::decode("12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust").into_vec().unwrap()),
-   				endowed_accounts[1].clone()
-   			),
-   		],
-   	},
+       nodes: vec![
+         (
+           OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
+           endowed_accounts[0].clone()
+         ),
+         (
+           OpaquePeerId(bs58::decode("12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust").into_vec().unwrap()),
+           endowed_accounts[1].clone()
+         ),
+       ],
+     },
    ```
 
    In this code, `NodeAuthorizationConfig` contains a `nodes` property, which is a vector with a tuple of two elements.

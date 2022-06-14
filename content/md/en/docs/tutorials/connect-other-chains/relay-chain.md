@@ -1,6 +1,7 @@
 ---
 title: "Start a local relay chain"
-description: 
+description:
+keywords:
 ---
 
 In this tutorial, you will create a local relay chain—like Polkadot—use [Cumulus](https://github.com/paritytech/cumulus) to create your own parachain, and connect it to the relay chain in a local test environment.
@@ -28,13 +29,13 @@ By completing this tutorial, you will accomplish the following objectives:
 
 ## Hardware and software requirements
 
-Compiling this project is a resource intensive process. 
+Compiling this project is a resource intensive process.
 You should ensure your hardware meets the following minimum requirements:
 
 - 8 GB of RAM (16 GB is suggested)
 - 4 CPU cores (8 cores are suggested)
 - 50 GB of free HDD/SSD space
-  
+
   Without the minimal RAM here, you are likely run out of memory resulting in a `SIGKILL` error during the compilation process.
   This error typically occurs when building the `polkadot-service` crate.
   You should monitor your RAM usage with tools like [htop](https://htop.dev/) and be aware if swap memory starts to be used.
@@ -67,8 +68,8 @@ This tutorial has been tested on:
 ## Exact Versions Matter
 
 You **must** use the _exact_ versions set forth in this tutorial to ensure that you do not run into conflicts.
-Parachains are _very tightly coupled_ with the relay chain codebase they are connecting to. 
-To have the least amount of hiccups, be sure to use the corresponding tagged version of Polkadot and the parachain template when working on this tutorial. 
+Parachains are _very tightly coupled_ with the relay chain codebase they are connecting to.
+To have the least amount of hiccups, be sure to use the corresponding tagged version of Polkadot and the parachain template when working on this tutorial.
 For example, if you are using [Polkadot `v0.9.18`](https://github.com/paritytechtree/release-), use the `polkadot-v0.9.18` version of the [parachain template](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.18).
 
 We're doing our best to keep the parachain template and this tutorial updated presently with the <ExternalLink url="https://github.com/paritytechreleases"> latest release of Polkadot.</ExternalLink>
@@ -136,7 +137,7 @@ If the help page is printed, you have succeeded in building a Cumulus-based para
 
 You will need a [chain specification](/main-docs/build/chain-spec/)) for your relay chain network.
 
-Always have one or more relay chain validator nodes running than the total connected parachains. 
+Always have one or more relay chain validator nodes running than the total connected parachains.
 For example, if you want to connect two parachains, run three or more relay chain validator nodes.
 
 Whichever chain spec file you choose to use we will refer to the file simply as `chain-spec.json` in the instructions below. You will need to supply the proper path to the chain spec you are using.

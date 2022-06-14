@@ -1,7 +1,7 @@
 ---
 title: Executor
 description:
-keywords: []
+keywords:
 ---
 
 The [executor](/reference/glossary#executor) is responsible for dispatching and executing
@@ -67,7 +67,7 @@ the other way around. Wasm execution can help to ensure that block producers cre
 ### Native execution
 
 The native runtime will only be used by the executor when it is chosen as the execution strategy and it is compatible with the requested runtime version (see [runtime versioning](/main-docs/build/upgrade#runtime-versioning)).
-For all other execution processes other than block construction, the native runtime is preferred since it is more performant. 
+For all other execution processes other than block construction, the native runtime is preferred since it is more performant.
 In any situation where the native executable should not be run, the canonical Wasm runtime is executed instead.
 
 ## Where to go next

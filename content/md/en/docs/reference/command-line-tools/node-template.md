@@ -1,6 +1,6 @@
 ---
 title: node-template
-section: reference
+description:
 keywords:
 ---
 

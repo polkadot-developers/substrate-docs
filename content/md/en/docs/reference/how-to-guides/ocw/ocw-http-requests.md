@@ -1,7 +1,12 @@
 ---
 title: Making HTTP Requests
 description:
-keywords: ['off-chain worker', 'ocw', 'http', 'https', 'requests']
+keywords:
+  - off-chain worker
+  - ocw
+  - http
+  - https
+  - requests
 ---
 
 This guide steps through making an HTTP request using an offchain workeR, to GET or POST data offchain.

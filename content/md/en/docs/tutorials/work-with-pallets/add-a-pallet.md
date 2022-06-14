@@ -1,6 +1,7 @@
 ---
 title: Add a pallet to the runtime
-description: Learn the basic patterns for adding a new pallet to the Substrate runtime.
+description:
+keywords:
 ---
 
 As you saw [Build a local blockchain](/tutorials/get-started/build-local-blockchain/), the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) provides a working **runtime** that includes some default FRAME development modules—**pallets**—to get you started building a custom blockchain.

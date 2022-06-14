@@ -1,16 +1,15 @@
 ---
 title: Best practices for builders
-description: reference
+description:
 keywords:
 ---
 
-
 ## Blockchain-specific best practices
 
-* write efficient code
-* simple or complex functions
-* minimize database reads/writes
-* be mindful of constraints (processing time for computation, network bandwidth, storage, memory)
+- write efficient code
+- simple or complex functions
+- minimize database reads/writes
+- be mindful of constraints (processing time for computation, network bandwidth, storage, memory)
 
 ## Rust and Substrate-specific syntax
 

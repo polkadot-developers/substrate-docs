@@ -1,5 +1,6 @@
 ---
 title: Basic token mint
+description:
 keywords:
   - basics
   - beginner

@@ -1,7 +1,7 @@
 ---
 title: Session Keys
 description:
-keywords: []
+keywords:
 ---
 
 Substrate provides the [Session pallet](https://paritytech.github.io/substrate/master/pallet_session/index.html),
