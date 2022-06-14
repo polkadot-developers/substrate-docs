@@ -1,6 +1,6 @@
 ---
 title: Account data structures
-description:
+description: Describes the storage map data structure used for accounts in FRAME.
 keywords:
 ---
 

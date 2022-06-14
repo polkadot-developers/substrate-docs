@@ -1,6 +1,6 @@
 ---
 title: Quick start
-description:
+description: Get started with Substrate.
 keywords:
 ---
 

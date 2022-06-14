@@ -204,6 +204,8 @@ reference:
   pages:
     - title: Glossary
       url: /reference/glossary/
+    - title: Polkadot-JS
+      url: /reference/polkadot-js/
     - title: Command-line tools
       url: /reference/command-line-tools/
       pages:
@@ -226,8 +228,8 @@ reference:
           url: /reference/command-line-tools/subflood/
         - title: subkey
           url: /reference/command-line-tools/subkey/
-        - title: subxt
-          url: /reference/command-line-tools/subxt/
+        - title: subxt-cli
+          url: /reference/command-line-tools/subxt-cli/
         - title: try-runtime
           url: /reference/command-line-tools/try-runtime/
         - title: tx-wrapper

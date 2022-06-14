@@ -1,6 +1,6 @@
 ---
 title: Randomness
-description:
+description: Describes how you can introduce randomness in a Substrate runtime.
 keywords:
 ---
 

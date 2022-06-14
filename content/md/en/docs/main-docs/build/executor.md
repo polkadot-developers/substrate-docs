@@ -4,7 +4,7 @@ description:
 keywords:
 ---
 
-The [executor](/reference/glossary#executor) is responsible for dispatching and executing
+The [executor](/reference/glossary/#executor) is responsible for dispatching and executing
 calls into the Substrate runtime.
 
 ## Runtime execution
