@@ -1,6 +1,6 @@
 ---
 title: memory-profiler
-section: reference
+description:
 keywords:
 ---
 

@@ -90,7 +90,7 @@ upgrade has been scheduled.
 - [`try-runtime`](/reference/command-line-tools/try-runtime)
 - [`try-runtime` video workshop](https://www.crowdcast.io/e/substrate-seminar/41)
 <!-->
-- [How-to: Storage migration](/reference/how-to-guides/storage-migrations/basic-migration)
+- [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/)
 - [How to: Test storage migration](/reference/how-to-guides/storage-migrations/test-migration)
 -->
 - [Substrate Builders Program: Storage Mmgration](https://drive.google.com/file/d/19HPFUmSQIxVkxaVSg1SWveSdvjHUw1b8/view?usp=sharing)

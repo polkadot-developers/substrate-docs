@@ -1,7 +1,14 @@
 ---
 title: Why Substrate?
 description: docs
-keywords: vision, smart contracts, runtime development, blockchain, consensus, substrate, architecture
+keywords:
+  - vision
+  - smart contracts
+  - runtime development
+  - blockchain
+  - consensus
+  - substrate
+  - architecture
 ---
 
 Blockchain development is complex.
@@ -82,4 +89,4 @@ Depending on your background and interests, explore the following resources to l
 * [Simulate a network](/tutorials/get-started/simulate-network/)
 * [Add trusted validators](/tutorials/get-started/trusted-network/)
 
-If you prefer to explore code directly, you can start building in the Developer Playground and consult the API reference to get details about the Rust crates you use.
+If you prefer to explore code directly, you can start building in the [Substrate Playground](https://docs.substrate.io/playground/) and consult the API reference to get details about the Rust crates you use.

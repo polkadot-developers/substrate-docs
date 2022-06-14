@@ -10,7 +10,7 @@ keywords:
 
 This guide shows you how to write a pallet that allows users to lock funds for staking and voting.
 The [`LockableCurrency`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.LockableCurrency.html) trait is useful in the context of economic systems that enforce accountability by collateralizing fungible resources.
-You can use the Substrate [staking pallet](https://paritytech.github.io/substrate/master/pallet_staking/) to manage locked funds in time-based increments.
+You can use the Substrate [staking pallet](https://paritytech.github.io/substrate/master/pallet_staking/index.html) to manage locked funds in time-based increments.
 
 In this guide, we will implement the `set_lock`, `extend_lock` and `remove_lock` methods in our own custom pallet.
 

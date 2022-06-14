@@ -35,7 +35,7 @@ This is an _overview_, not a proper how-to guide presently!
 Substrate developers who are familiar with the Substrate node template will find the Substrate parachain template familiar.
 They have the same general structure featuring `node`, `runtime`, and `pallets` directories.
 Their runtimes are similar and feature many of the same pallets. Apart from a few new traits, the `pallet-template` itself is essentially identical.
-Many of the [tutorials](/tutorials/v3) can be used with few modifications on the parachain template.
+Many of the [tutorials](/tutorials/) can be used with few modifications on the parachain template.
 
 The similarities between these two templates should give you confidence that if you've built a Substrate chain, you will have no problem building a parachain!
 

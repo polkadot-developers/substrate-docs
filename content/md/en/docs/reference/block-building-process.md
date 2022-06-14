@@ -1,3 +1,9 @@
+---
+title: Building block process
+description:
+keywords:
+---
+
 ### Extrinsics in a block produced locally
 
 If a signed or unsigned transaction is included in a block produced by the local node, its lifecycle follows a path like this:
@@ -20,4 +26,3 @@ Inherents don't follow the same execution path: they are included in every block
 1. A 2/3 majority of nodes reach consensus that this block is part of the canonical chain.
 1. All other nodes on the network receive and build the block.
 1. All transactions in that block are executed and state changes are updated in runtime storage.
-

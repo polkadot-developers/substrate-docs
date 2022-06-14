@@ -116,12 +116,7 @@ Follow the pattern from the previous step to create `new_light`.
 
 ## Resources
 
-<!--
-- [POW Algorithm][pow-rustdocs] trait
-- [`PowBlockimport`][powblockimport-rustdocs]
--->
 - [Partial components](https://paritytech.github.io/substrate/master/sc_service/struct.PartialComponents.html)
 - [Pow block import](https://paritytech.github.io/substrate/master/sc_consensus_pow/struct.PowBlockImport.html)
 - [Create inherent data providers](https://paritytech.github.io/substrate/master/sp_inherents/trait.CreateInherentDataProviders.html)
 - [Pow algorithm](https://paritytech.github.io/substrate/master/sc_consensus_pow/trait.PowAlgorithm.html)
--->

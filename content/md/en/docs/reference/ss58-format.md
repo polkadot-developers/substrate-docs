@@ -1,7 +1,7 @@
 ---
-title: Substrate SS58 address format
+title: SS58 address format
 description:
-keywords: []
+keywords:
 ---
 
 As discussed in [Accounts, addresses, and keys](/main-docs/fundamentals/accounts-addresses-keys/), SS58 is the default address format for Substrate-based chains.

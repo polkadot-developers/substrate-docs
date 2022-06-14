@@ -1,7 +1,7 @@
 ---
 title: Account data structures
 description: Describes the storage map data structure used for accounts in FRAME.
-keywords: []
+keywords:
 ---
 
 Accounts are a fundamental part of any blockchain, and, in Substrate, accounts can be used in many different ways.
@@ -11,7 +11,7 @@ structure is used to manage the account lifecycle in the runtime logic.
 ## Account
 
 The `Account` data type is a storage map that is defined generically in the
-[`frame-system` pallet](/rustdocs/latest/src/frame_system/lib.rs.html#530):
+[`frame-system` pallet](https://paritytech.github.io/substrate/master/src/frame_system/lib.rs.html#530):
 
 ```rust
 /// The full account information for a particular account ID.
@@ -32,11 +32,11 @@ The `StorageMap` for an `Account` consists of the following parameters:
 * `Blake2_128Concat` specifies the hashing algorithm to use.
 * `T::AccountId` is used as the key for over the `AccountInfo<T::Index, T::AccountData>` struct.
 
-See [`StorageMap` API](/rustdocs/latest/frame_support/storage/types/struct.StorageMap.html#impl) for details.
+See [`StorageMap` API](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.StorageMap.html#impl) for details.
 
 ## AccountInfo
 
-The `AccountInfo` for an account is defined in the [`frame_system` pallet](/rustdocs/latest/src/frame_system/lib.rs.html#788-803):
+The `AccountInfo` for an account is defined in the [`frame_system` pallet](https://paritytech.github.io/substrate/master/src/frame_system/lib.rs.html#788-803):
 
 ```rust
 #[derive(Clone, Eq, PartialEq, Default, RuntimeDebug, Encode, Decode)]
@@ -100,19 +100,19 @@ There are also three query functions to ease usage on these counters:
 * `is_provider_required()` to check if an account has outstanding consumer references
   (`consumers` > 0).
 
-See [`frame-system` API](/rustdocs/latest/frame_system/pallet/struct.Pallet.html#impl-11) for details.
+See [`frame-system` API](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#impl-11) for details.
 
 ## AccountData trait and implementation
 
-The `AccountInfo` can be any struct as long as the struct satisfies the associated type `AccountData` trait bound defined in the [`frame-system::pallet::Config` trait](/rustdocs/latest/frame_system/pallet/trait.Config.html#associatedtype.AccountData). 
-By default, the Substrate runtime configures `AccountInfo`  to beas defined in [`pallet-balances`](/rustdocs/latest/pallet_balances/struct.AccountData.html).
+The `AccountInfo` can be any struct as long as the struct satisfies the associated type `AccountData` trait bound defined in the [`frame-system::pallet::Config` trait](https://paritytech.github.io/substrate/master/frame_system/pallet/trait.Config.html#associatedtype.AccountData). 
+By default, the Substrate runtime configures `AccountInfo`  to beas defined in [`pallet-balances`](https://paritytech.github.io/substrate/master/pallet_balances/struct.AccountData.html).
 
 ## Where to go next
 
 For addtional technical details, see the following resources:
 
-* [`frame_system::AccountInfo` API](/rustdocs/latest/frame_system/struct.AccountInfo.html)
-* [`pallet_balances::AccountData` API](/rustdocs/latest/pallet_balances/struct.AccountData.html).
-* [`pallet_session::Pallet::set_keys` dispatchable call](/rustdocs/latest/src/pallet_session/lib.rs.html#508-571)
-* [`frame_system::Provider` `HandleLifetime` implementation](/rustdocs/latest/src/frame_system/lib.rs.html#1549-1561)
-* [`pallet_assets` `new_account` function](/rustdocs/latest/src/pallet_assets/functions.rs.html#46-61)
+* [`frame_system::AccountInfo` API](https://paritytech.github.io/substrate/master/frame_system/struct.AccountInfo.html)
+* [`pallet_balances::AccountData` API](https://paritytech.github.io/substrate/master/pallet_balances/struct.AccountData.html).
+* [`pallet_session::Pallet::set_keys` dispatchable call](https://paritytech.github.io/substrate/master/src/pallet_session/lib.rs.html#508-571)
+* [`frame_system::Provider` `HandleLifetime` implementation](https://paritytech.github.io/substrate/master/src/frame_system/lib.rs.html#1549-1561)
+* [`pallet_assets` `new_account` function](https://paritytech.github.io/substrate/master/src/pallet_assets/functions.rs.html#46-61)

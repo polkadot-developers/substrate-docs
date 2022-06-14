@@ -1,6 +1,6 @@
 ---
 title: sidecar
-section: reference
+description:
 keywords:
 ---
 

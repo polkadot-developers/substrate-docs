@@ -1,45 +1,30 @@
-# Polkadot-JS reference
+---
+title: Polkadot-JS
+description:
+keywords:
+  - polkadot
+  - apps
+  - UI
+  - frontend
+  - cli
+  - api
+  - javascript
+  - library
+---
 
-The Polkadot-JS project is a collection of tools, interfaces, and libraries that can be used with any Substrate-based blockchain.
+The [Polkadot-JS project](https://github.com/polkadot-js) is a collection of tools, interfaces, and libraries that can be used with any Substrate-based blockchain.
 
 ## Polkadot-JS API
 
-<RelatedMaterialBlock
-  title={``}
-  text={`The API provides application developers the ability to query a node and interact with any Substrate-based blockchain using Javascript.`}
-  linkText={`Go to Documentation`}
-  link={`https://polkadot.js.org/docs/api`}
-/>
+The [API](https://polkadot.js.org/docs/api) provides application developers the ability to query a node and interact with any Substrate-based blockchain using Javascript.
 
-<RelatedMaterialBlock
-  title={``}
-  text={`The Polkadot-JS API is a library of interfaces for communicating with Polkadot and Substrate nodes.`}
-  linkText={`GitHub`}
-  link={`https://github.com/polkadot-js/api`}
-/>
-
-### Getting started
-
-Follow the
-[Getting Started](https://polkadot.js.org/docs/api/) guide to learn how to install and start using
-the Polkadot-JS API right away.
+Follow the [Getting Started](https://polkadot.js.org/docs/api/) guide to learn how to install and start using the Polkadot-JS API right away.
 
 ## Polkadot-JS Apps
 
-<RelatedMaterialBlock
-  title={``}
-  text={`The Polkadot-JS Apps is a flexible UI for interacting with a Polkadot or Substrate based node..`}
-  linkText={`Go to Documentation`}
-  link={`https://polkadot.js.org/apps`}
-/>
+The [Polkadot-JS Apps UI](https://github.com/polkadot-js/apps) is a flexible UI for interacting with a Polkadot or Substrate based node.
 
-<RelatedMaterialBlock
-  title={``}
-  text={`This is pre-built user-facing application, allowing access to all features available on Substrate
-  chains.`}
-  linkText={`GitHub`}
-  link={`https://github.com/polkadot-js/apps`}
-/>
+This is pre-built user-facing application, allowing access to all features available on Substrate, a hosted version is available at https://polkadot.js.org/apps.
 
 ### Connecting to local node
 

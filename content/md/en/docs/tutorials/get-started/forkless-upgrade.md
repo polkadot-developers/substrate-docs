@@ -1,12 +1,13 @@
 ---
-title: Upgrade a running node
-description: Perform a forkless runtime upgrade on a running Substrate network.
+title: Upgrade a running network
+description:
+keywords:
 ---
 
 Unlike many blockchains, the Substrate development framework supports **forkless upgrades** to the runtime that is the core of the blockchain.
 Most blockchain projects require a [hard fork](/reference/glossary/#fork) of the code base to support ongoing development of new features or enhancements to existing features.
 With Substrate, you can deploy enhanced runtime capabilities—including breaking changes—without a hard fork.
-Because the definition of the runtime is itself an element in a Substrate chain's state, network participants can update this value by calling the [`set_code` function](/rustdocs/latest/frame_system/pallet/enum.Call.html#variant.set_code) in a transaction.
+Because the definition of the runtime is itself an element in a Substrate chain's state, network participants can update this value by calling the [`set_code` function](https://paritytech.github.io/substrate/master/frame_system/pallet/enum.Call.html#variant.set_code) in a transaction.
 Because updates to the runtime state are validates using the blockchain's consensus mechanisms and cryptographic guarantees, network participants can use the blockchain itself to distribute updated or extended runtime logic without needing to fork the chain or release a new blockchain client.
 
 This tutorial illustrates how to perform forkless upgrades by deploying the following changes to an existing Substrate runtime:
@@ -59,7 +60,7 @@ Functions calls that are identified as operational:
 
 ### Managing resource accounting
 
-In this tutorial, the [`sudo_unchecked_weight`](/rustdocs/latest/pallet_sudo/pallet/enum.Call.html#variant.sudo_unchecked_weight) function is used to invoke the `set_code` function for the runtime upgrade.
+In this tutorial, the [`sudo_unchecked_weight`](https://paritytech.github.io/substrate/master/pallet_sudo/pallet/enum.Call.html#variant.sudo_unchecked_weight) function is used to invoke the `set_code` function for the runtime upgrade.
 The `sudo_unchecked_weight` function is the same as the `sudo` function except that it supports an additional parameter to specify the weight to use for the call.
 This parameter enables you to work around resource accounting safeguards to specify a weight of zero for the call that dispatches the `set_code` function.
 This setting allows for a block to take _an indefinite time to compute_ to ensure
@@ -68,7 +69,7 @@ It can take all the time it needs to succeed or fail.
 
 ## Upgrade the runtime to add the Scheduler pallet
 
-The node template doesn't include the [Scheduler pallet](/rustdocs/latest/pallet_scheduler/index.html) in its runtime.
+The node template doesn't include the [Scheduler pallet](https://paritytech.github.io/substrate/master/pallet_scheduler/index.html) in its runtime.
 To illustrate a runtime upgrade, let's add the Scheduler pallet to a running node.
 
 To upgrade the runtime:
@@ -156,7 +157,7 @@ To upgrade the runtime:
    pub use frame_support::traits::EqualPrivilegeOnly;
    ```
 
-1. Increment the [`spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version) in the `RuntimeVersion` struct](/rustdocs/latest/sp_version/struct.RuntimeVersion.html) to upgrade runtime version.
+1. Increment the [`spec_version`](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html#structfield.spec_version) in the `RuntimeVersion` struct](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html) to upgrade runtime version.
 
    ```rust
    pub const VERSION: RuntimeVersion = RuntimeVersion {
@@ -178,7 +179,7 @@ To upgrade the runtime:
    - `spec_version` specifies the version of the runtime.
    - `impl_version` specifies the version of the client.
    - `apis` specifies the list of supported APIs.
-   - `transaction_version` specfies the version of the [dispatchable function](/reference/glossary#dispatch) interface.
+   - `transaction_version` specifies the version of the [dispatchable function](/reference/glossary#dispatch) interface.
 
    To upgrade the runtime, you must _increase_ the `spec_version`.
    For more information, see the [FRAME System](https://github.com/paritytech/substrate/blob/v3.0.0/frame/system/src/lib.rs) module and `can_set_code` function.
@@ -230,7 +231,7 @@ Next up, we will:
 ## Schedule an Upgrade
 
 Now that the node template has been upgraded to include the Scheduler pallet,
-[the `schedule` function](/rustdocs/latest/pallet_scheduler/pallet/enum.Call.html#variant.schedule)
+[the `schedule` function](https://paritytech.github.io/substrate/master/pallet_scheduler/pallet/enum.Call.html#variant.schedule)
 can be used to perform the next runtime upgrade. In the previous part, the
 `sudo_unchecked_weight` function was used to override the weight associated with the `set_code`
 function; in this section, the runtime upgrade will be _scheduled_ so that it can be processed as
@@ -267,7 +268,11 @@ This change increases the value of the Balances pallet's
 [`ExistentialDeposit`](/reference/glossary#existential-deposit) - the
 minimum balance needed to keep an account alive from the point-of-view of the Balances pallet.
 
-Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000 to be reaped - that would require a [storage migration](/main-docs/build/upgrade#storage-migration/), which is out of scope for this tutorial.
+Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000 to be reaped - that would require a storage migration, which is out of scope for this tutorial.
+
+<!-- TODO NAV.YAML -->
+<!-- add  back ABOVE -->
+<!--[storage migration](/reference/how-to-guides/storage-migrations/) -->
 
 ### Build the upgraded runtime
 
@@ -280,7 +285,7 @@ This will _override_ any previous build artifacts! So if you want to have a copy
 ### Upgrade the Runtime
 
 In the previous section, the Scheduler pallet was configured with the `Root` origin as its
-[`ScheduleOrigin`](/rustdocs/latest/pallet_scheduler/pallet/trait.Config.html#associatedtype.ScheduleOrigin),
+[`ScheduleOrigin`](https://paritytech.github.io/substrate/master/pallet_scheduler/pallet/trait.Config.html#associatedtype.ScheduleOrigin),
 which means that the `sudo` function (_not_ `sudo_unchecked_weight`) can be used to invoke the
 `schedule` function. Use this link to open the Polkadot JS Apps UI's Sudo tab:
 <https://polkadot.js.org/apps/#/sudo?rpc=ws://127.0.0.1:9944>.
@@ -309,7 +314,9 @@ app to query the `existentialDeposit` constant value from the Balances pallet.
 
 ## Where to go next
 
-- [Storage migrations](//main-docs/build/upgrade#storage-migrations)
+- [Storage migrations](/main-docs/build/upgrade/#storage-migration)
+<!-- TODO NAV.YAML -->
+<!-- add  back ABOVE -->
 <!--
-- [How-to: Storage migration](/reference/how-to-guides/storage-migrations/basic-migration)
--->
+- [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/)
+  -->

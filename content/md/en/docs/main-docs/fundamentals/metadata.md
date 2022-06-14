@@ -1,7 +1,7 @@
 ---
 title: Metadata
 description:
-keywords: []
+keywords:
 ---
 
 Blockchains you build on Substrate expose metadata in order to make it easier to interact with them. This metadata is separated by the different [pallets](/main-docs/fundamentals/runtime-intro) that inform your blockchain.
@@ -11,7 +11,7 @@ For each pallet, the metadata provides information about the [storage items](/ma
 Since the runtime of a Substrate blockchain is an evolving part of the blockchain's state,
 blockchain metadata is stored on a per-block basis. 
 Be aware that querying the metadata for an older block (with an archive node, for example) could result in acquiring out-of-date metadata that is not compatible with a blockchain's current state. 
-As described in [Forkless upgrades](/main-docs/build/upgrade), metadata for a chain should only change when the chain's [runtime `spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version) changes.
+As described in [Forkless upgrades](/main-docs/build/upgrade), metadata for a chain should only change when the chain's [runtime `spec_version`](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html#structfield.spec_version) changes.
 
 All examples in this document were taken from block 1,768,321 on Kusama. You can look at the
 [full metadata](https://gist.github.com/insipx/db5e49c0160b1f1bd421a3c34fefdf48) before reading the rest of this document and continue to refer to it as you proceed.
@@ -23,8 +23,8 @@ Substrate node, as well as language-agnostic HTTP and WebSocket APIs.
 
 ### Rust
 
-The easiest way to get the metadata is by querying the automatically-generated JSON-RPC function `state_getMetadata`. This will return a vector of SCALE-encoded bytes. You can decode this using the [`frame-metadata`](/rustdocs/latest/frame_metadata/index.html) and
-[`parity-scale-codec`](/rustdocs/latest/parity_scale_codec/index.html) libraries.
+The easiest way to get the metadata is by querying the automatically-generated JSON-RPC function `state_getMetadata`. This will return a vector of SCALE-encoded bytes. You can decode this using the [`frame-metadata`](https://paritytech.github.io/substrate/master/frame_metadata/index.html) and
+[`parity-scale-codec`](https://paritytech.github.io/substrate/master/parity_scale_codec/index.html) libraries.
 
 Some helpful libraries like [`substrate-subxt`](https://github.com/paritytech/substrate-subxt) fetch the metadata and decode them for you. Once decoded, the structure may be serialized into JSON with [`serde`](https://serde.rs/). If you'd prefer to use the RPC more directly, you can use the [JSONRPC](https://github.com/paritytech/jsonrpc) and [jsonrpsee](https://github.com/paritytech/jsonrpsee) Rust libraries.
 
@@ -45,9 +45,9 @@ console.log('Metadata: ' + JSON.stringify(metadata.asLatest.toHuman(), null, 2))
 
 ### HTTP & websocket APIs
 
-Substrate nodes expose [a JSON-RPC API](/rustdocs/latest/sc_rpc/index.html) that you can
+Substrate nodes expose [a JSON-RPC API](https://paritytech.github.io/substrate/master/sc_rpc/index.html) that you can
 access by way of **HTTP** or **WebSocket** requests. The message to
-[request metadata](/rustdocs/latest/sc_rpc/state/struct.StateClient.html#method.metadata)
+[request metadata](https://paritytech.github.io/substrate/master/sc_rpc/state/struct.StateClient.html#method.metadata)
 from a node looks like this:
 
 ```json
@@ -104,7 +104,7 @@ The hex blob that is returned by the JSON-RPCs `state_getMetadata` method starts
 magic number, `0x6d657461`, which represents "meta" in plain text. The next piece of data (`0x0b` in
 the example above) represents the metadata version; decoding the hexadecimal value `0x0b` yields the
 decimal value 11, which is
-[the version of the Substrate metadata format](/rustdocs/latest/frame_metadata/enum.RuntimeMetadata.html)
+[the version of the Substrate metadata format](https://paritytech.github.io/substrate/master/frame_metadata/enum.RuntimeMetadata.html)
 that the result encodes. After the metadata version, the next piece of information encoded in the
 result field is the number of pallets that inform the blockchain's runtime; in the example above,
 the hexadecimal value `0x7c` represents the decimal number 31, which is SCALE-encoded by taking its
@@ -112,9 +112,9 @@ binary representation (`11111` or `0x1F` in hex), shifting it two bits to the le
 encoding that as hex.
 
 The remaining blob encodes
-[the metadata of each pallet](/rustdocs/latest/frame_metadata/struct.ModuleMetadata.html),
+[the metadata of each pallet](https://paritytech.github.io/substrate/master/frame_metadata/struct.ModuleMetadata.html),
 which will be reviewed below as well as some
-[extrinsic metadata](/rustdocs/latest/frame_metadata/struct.ExtrinsicMetadata.html), which
+[extrinsic metadata](https://paritytech.github.io/substrate/master/frame_metadata/struct.ExtrinsicMetadata.html), which
 is mostly out of the scope of this document.
 
 ### Decoded metadata format
@@ -243,7 +243,7 @@ about the module's storage:
 ```
 
 Every storage item that is defined in a pallet will have a corresponding metadata entry.
-Metadata entries like these are generated from [macros](/reference/frame-macros) using associated types from the [`frame-system`](/rustdocs/latest/frame_system/pallet/trait.Config.html) crate. For example:
+Metadata entries like these are generated from [macros](/reference/frame-macros) using associated types from the [`frame-system`](https://paritytech.github.io/substrate/master/frame_system/pallet/trait.Config.html) crate. For example:
 
 ```rust
 #[pallet::config]
@@ -253,8 +253,8 @@ pub trait Config: frame_system::Config {
 }
 ```
 
-[Storage metadata](/rustdocs/latest/frame_metadata/struct.StorageMetadata.html) provides blockchain clients with the information that is required to query
-[the JSON-RPC's storage function](/rustdocs/latest/sc_rpc/state/struct.StateClient.html#method.storage)
+[Storage metadata](https://paritytech.github.io/substrate/master/frame_metadata/struct.StorageMetadata.html) provides blockchain clients with the information that is required to query
+[the JSON-RPC's storage function](https://paritytech.github.io/substrate/master/sc_rpc/state/struct.StateClient.html#method.storage)
 to get information for a specific storage item.
 
 ##### Dispatchable calls
@@ -423,7 +423,7 @@ This will expose the following metadata:
 
 These are errors that could occur during the submission or execution of an extrinsic. In this case,
 the FRAME System pallet is declaring that it may raise the
-the [`InvalidSpecName` error](/rustdocs/latest/frame_system/pallet/enum.Error.html#variant.InvalidSpecName).
+the [`InvalidSpecName` error](https://paritytech.github.io/substrate/master/frame_system/pallet/enum.Error.html#variant.InvalidSpecName).
 
 ## Where to go next
 
@@ -431,5 +431,5 @@ the [`InvalidSpecName` error](/rustdocs/latest/frame_system/pallet/enum.Error.ht
 - [SCALE](/reference/scale-codec)
 - [Macros](/reference/frame-macros)
 - [Events](/main-docs/build/events-and-errors)
-- [Metadata](/rustdocs/latest/frame_metadata/index.html)
-- [FRAME v2 macro documentation](/rustdocs/latest/frame_support/attr.pallet.html)
+- [Metadata](https://paritytech.github.io/substrate/master/frame_metadata/index.html)
+- [FRAME v2 macro documentation](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html)

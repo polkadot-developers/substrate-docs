@@ -164,7 +164,7 @@ All of the well-known development accounts—Alice, Bob, Charlie, Dave, Eve, and
 The secret phrase is:
 `bottom drive obey lake curtain smoke basket hold race lonely fit walk`
 
-Many tools in the Substrate ecosystem, such as [`subkey`](/reference/command-line-tools/subkeye), allow you to implicitly specify an account using a derivation path such as `//Alice`.
+Many tools in the Substrate ecosystem, such as [`subkey`](/reference/command-line-tools/subkey), allow you to implicitly specify an account using a derivation path such as `//Alice`.
 
 ## digest
 
@@ -219,8 +219,8 @@ In general, there are two types of extrinsics:
 The minimum balance an account is allowed to have in the [Balances pallet](/reference/frame-pallets#balances). 
 Accounts cannot be created with a balance less than the existential deposit amount.
 If an account balance drops below this amount, the Balances pallet uses
-[a FRAME System API](/rustdocs/latest/frame_system/pallet/struct.Pallet.html#method.dec_ref) to drop its references to that account. 
-If all of the references to an account are dropped, the account can be [reaped](/rustdocs/latest/frame_system/pallet/struct.Pallet.html#method.allow_death).
+[a FRAME System API](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.dec_ref) to drop its references to that account. 
+If all of the references to an account are dropped, the account can be [reaped](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.allow_death).
 
 ## finality
 
@@ -337,7 +337,7 @@ The [FRAME](#frame)development environment provides several [macros](/reference/
 ## metadata
 
 Data that provides information about one or more aspects of a system.
-The [metadata](/main-docs/build/frontend) that exposes information about a Substrate [blockchain](#blockchain) enables you to interact with that system. 
+The metadata that exposes information about a Substrate [blockchain](#blockchain) enables you to interact with that system. 
 
 ## node
 
@@ -355,7 +355,7 @@ A method for determining [validators](#validator) or _[authorities](#authority)_
 
 A [FRAME](#frame) primitive that identifies the source of a [dispatched](#dispatch) function call into the [runtime](#runtime). 
 The FRAME `system` module defines three built-in [origins](/main-docs/build/origins#raw-origins). 
-As a [pallet](#pallet) developer, you can also define custom origins, such as those defined by the [Collective pallet](/rustdocs/latest/pallet_collective/enum.RawOrigin.html).
+As a [pallet](#pallet) developer, you can also define custom origins, such as those defined by the [Collective pallet](https://paritytech.github.io/substrate/master/pallet_collective/enum.RawOrigin.html).
 
 ## pallet
 

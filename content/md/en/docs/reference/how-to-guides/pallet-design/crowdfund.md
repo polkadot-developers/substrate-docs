@@ -203,22 +203,20 @@ its [associated methods][storage-map-rustdocs]. Our pallet's `create` function a
 
 - [`pallet_simple_crowdfund`](https://github.com/substrate-developer-hub/substrate-how-to-guides/blob/main/example-code/template-node/pallets/simple-crowdfund/src/lib.rs#L1)
 
-<!-- ## Resources
+## Resources
 
-- [Currency Imbalance trait](/rustdocs/latest/frame_support/traits/trait.Imbalance.html)
+- [Currency Imbalance trait](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/imbalance/trait.Imbalance.html)
 - [Child trie API][child-api-rustdocs]
-- [`extend_from_slice`](/rustdocs/latest/frame_support/dispatch/struct.Vec.html#method.extend_from_slice)
-- [`using_encode`](/rustdocs/latest/frame_support/pallet_prelude/trait.Encode.html#method.using_encoded)
+- [`extend_from_slice`](https://paritytech.github.io/substrate/master/frame_support/dispatch/struct.Vec.html#method.extend_from_slice)
+- [`using_encode`](https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/trait.Encode.html#method.using_encoded)
 
-[storage-value-struct-htg]: /storage-value-struct
-[storage-map-rustdocs]: /rustdocs/latest/frame_support/pallet_prelude/struct.StorageMap.html
-[imb-var-rustdocs]: /rustdocs/latest/frame_support/traits/trait.Currency.html#tymethod.withdraw
-[resolve-into-existing-rustdocs]: /rustdocs/latest/frame_support/traits/trait.Currency.html#method.resolve_into_existing
-[resolve-creating-rustdocs]: /rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html#method.resolve_creating
-[childinfo-rustdocs]: /rustdocs/latest/frame_support/storage/child/enum.ChildInfo.html
-[child-api-rustdocs]: /rustdocs/latest/frame_support/storage/child/index.html#functions
-[child-api-put-rustdocs]: /rustdocs/latest/frame_support/storage/child/fn.put.html
-[child-api-get-rustdocs]: /rustdocs/latest/frame_support/storage/child/fn.get_or_default.html
-[child-api-kill-rustdocs]: /rustdocs/latest/frame_support/storage/child/fn.kill.html
-[child-api-killstorage-rustdocs]: /rustdocs/latest/frame_support/storage/child/fn.kill_storage.html
--->
+[storage-map-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/struct.StorageMap.html
+[imb-var-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html#tymethod.withdraw
+[resolve-into-existing-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html#tymethod.deposit_into_existing
+[resolve-creating-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html#method.resolve_creating
+[childinfo-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/storage/child/enum.ChildInfo.html
+[child-api-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/storage/child/index.html#functions
+[child-api-put-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/storage/child/fn.put.html
+[child-api-get-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/storage/child/fn.get_or_default.html
+[child-api-kill-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/storage/child/fn.kill.html
+[child-api-killstorage-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/storage/child/fn.kill_storage.html

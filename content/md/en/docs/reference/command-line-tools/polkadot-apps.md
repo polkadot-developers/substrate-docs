@@ -1,6 +1,6 @@
 ---
 title: polkadot-js
-section: reference
+description:
 keywords:
 ---
 

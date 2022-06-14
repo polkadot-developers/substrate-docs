@@ -1,11 +1,12 @@
 ---
 title: Monitor node metrics
-description: Use observability tools to capture and view information about Substrate nodes.
+description:
+keywords:
 ---
 
 Substrate exposes metrics about the operation of your network.
-For example, you can collect information about how many peers your node is connected to and how much memory your node is using. 
-To visualize these metrics, you can use tools like [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/). 
+For example, you can collect information about how many peers your node is connected to and how much memory your node is using.
+To visualize these metrics, you can use tools like [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/).
 This tutorial demonstrates how to use Grafana and Prometheus to scrape and visualize these types of node metrics.
 
 A possible architecture could look like:
@@ -65,19 +66,18 @@ Before you begin, verify the following:
 
 - You have completed at least some of the previous tutorials, including [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and [Simulte a network](/tutorials/get-started/simulate-network/).
 
-
 ## Tutorial objectives
 
 By completing this tutorial, you will accomplish the following objectives:
 
-* Install Prometheus and Grafana.
-* Configure Prometheus to capture a time series for your Substrate node.
-* Configure Grafana to visualize the node metrics collected using the Prometheus endpoint.
+- Install Prometheus and Grafana.
+- Configure Prometheus to capture a time series for your Substrate node.
+- Configure Grafana to visualize the node metrics collected using the Prometheus endpoint.
 
 ## Install Prometheus and Grafana
 
 For testing and demonstration purposes, you should download the compiled `bin` programs for Prometheus and Grafana rather than building the tools yourself or using a Docker image.
-Use the following links to download the appropriate binaries for your architecture. 
+Use the following links to download the appropriate binaries for your architecture.
 This tutorials assumes you are using the compiled binaries in a working directory.
 
 To install the tools for this tutorial:
@@ -88,9 +88,9 @@ To install the tools for this tutorial:
 
 1. Uncompress and extract the download archive into a working folder.
 
-    ```shell
-    gunzip prometheus-2.35.0.darwin-amd64.tar.gz && tar -xvf prometheus-2.35.0.darwin-amd64.tar
-    ```
+   ```shell
+   gunzip prometheus-2.35.0.darwin-amd64.tar.gz && tar -xvf prometheus-2.35.0.darwin-amd64.tar
+   ```
 
 1. Navigate to [Grafana self-managed](https://grafana.com/get/?tab=self-managed), then click [Download Grafance](https://grafana.com/grafana/download?pg=get&plcmt=selfmanaged-box1-cta1).
 
@@ -98,16 +98,16 @@ To install the tools for this tutorial:
 
 1. Open a terminal shell on your computer and run the appropriate command to install on your architecture.
 
-  For example, on macOS, run:
+For example, on macOS, run:
 
-  ```shell
-  curl -O https://dl.grafana.com/enterprise/release/grafana-enterprise-8.5.2.darwin-amd64.tar.gz \
-  tar -zxvf grafana-enterprise-8.5.2.darwin-amd64.tar.gz
-  ```
+```shell
+curl -O https://dl.grafana.com/enterprise/release/grafana-enterprise-8.5.2.darwin-amd64.tar.gz \
+tar -zxvf grafana-enterprise-8.5.2.darwin-amd64.tar.gz
+```
 
 ## Start a Substrate node
 
-Substrate exposes an endpoint that serves metrics in the [Prometheus exposition format](https://prometheus.io/docs/concepts/data_model/) available on port `9615`. 
+Substrate exposes an endpoint that serves metrics in the [Prometheus exposition format](https://prometheus.io/docs/concepts/data_model/) available on port `9615`.
 You can change the port with `--prometheus-port <PORT>` and enable it to be accessed over an interface other than local host with `--prometheus-external`.
 
 ```bash
@@ -122,7 +122,7 @@ You can change the port with `--prometheus-port <PORT>` and enable it to be acce
 ### Configure Prometheus to scrape your Substrate node
 
 In the working directory where you installed Prometheus, you will find a `prometheus.yml` configuration file.
-You can modify this file—or create a custom file—to configure Prometheus to scrape the exposed endpoint by adding it to the targets array. 
+You can modify this file—or create a custom file—to configure Prometheus to scrape the exposed endpoint by adding it to the targets array.
 If you modify the default configuration file, here is what will be different:
 
 ```yml
@@ -131,8 +131,8 @@ If you modify the default configuration file, here is what will be different:
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
 scrape_configs:
-  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-  - job_name: 'substrate_node'
+  # The job name is added as a label `job=<job_name>` to any time series scraped from this config.
+  - job_name: "substrate_node"
 
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
@@ -143,12 +143,12 @@ scrape_configs:
     scrape_interval: 5s
 
     static_configs:
-      - targets: ['localhost:9615']
+      - targets: ["localhost:9615"]
 ```
 
 You want to have `scrape_interval` _less than_ the block time in order to ensure that you have a data point for every block!
 
-Now you can start a Prometheus instance with the modified `prometheus.yml` configuration file. 
+Now you can start a Prometheus instance with the modified `prometheus.yml` configuration file.
 
 Presuming you downloaded the binary, `cd` into the working directory and run the following command:
 
@@ -191,20 +191,20 @@ substrate_finality_grandpa_prevotes_total 31
 #
 ```
 
-Alternatively, you can open same [URL](http://localhost:9615/metrics) in a browser to view all available metric data.
+Alternatively, you can open same URL (`http://localhost:9615/metrics`) in a browser to view all available metric data.
 
 ## Visualizing Prometheus metrics with Grafana
 
-After you have Grafana running, navigate to it in a browser (**the default is https://localhost:3000/**).
+After you have Grafana running, navigate to it in a browser (**the default is `https://localhost:3000/`**).
 Log in using the default user `admin` and password `admin` and navigate to the data sources page at `localhost:3000/datasources`.
 
 You then need to select a `Prometheus` data source type and specify where Grafana needs to look for it.
 
 The Prometheus port Grafana needs is NOT the one you set in the `prometheus.yml` file (https://localhost:9615) for where your node is publishing it's data.
 
-With both the Substrate node and Prometheus running, configure Grafana to look for Prometheus on it's default port: https://localhost:9090 (unless you customized it).
+With both the Substrate node and Prometheus running, configure Grafana to look for Prometheus on it's default port: `https://localhost:9090` (unless you customized it).
 
-Click `Save & Test` to ensure that you have the data source set correctly. 
+Click `Save & Test` to ensure that you have the data source set correctly.
 Now you can configure a new dashboard.
 
 ### Template Grafana Dashboard

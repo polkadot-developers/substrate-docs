@@ -1,7 +1,7 @@
 ---
 title: Consensus
 description: Describes the consensus models Substrate provides.
-featured_image:
+keywords:
 ---
 
 All blockchains require some type of consensus mechanism to agree on the blockchain state. Because Substrate provides a modular framework for building blockchains, it supports a few different models for nodes to reach consensus.
@@ -47,11 +47,11 @@ Forks occur when two blocks reference the same parent.
 Block finalization is a mechanism that resolves forks such that only the canonical chain exists.
 
 A fork choice rule is an algorithm that selects the best chain that should be extended.
-Substrate exposes this fork choice rule through the [`SelectChain`](/rustdocs/latest/sp_consensus/trait.SelectChain.html) trait.
+Substrate exposes this fork choice rule through the [`SelectChain`](https://paritytech.github.io/substrate/master/sp_consensus/trait.SelectChain.html) trait.
 You can use the trait to write your custom fork choice rule, or use [GRANDPA](https://github.com/w3f/consensus/blob/master/pdf/grandpa.pdf), the finality mechanism used in Polkadot and similar chains.
 
 In the GRANDPA protocol, the longest chain rule simply says that the best chain is the longest chain.
-Substrate provides this chain selection rule with the [`LongestChain`](/rustdocs/latest/sc_consensus/struct.LongestChain.html) struct.
+Substrate provides this chain selection rule with the [`LongestChain`](https://paritytech.github.io/substrate/master/sc_consensus/struct.LongestChain.html) struct.
 GRANDPA uses the longest chain rule in its voting mechanism.
 
 ![longest chain rule](/media/images/docs/main-docs/consensus-longest-chain.png)
@@ -88,12 +88,12 @@ Substrate also provides implementations of BABE and proof-of-work consensus mode
 
 ### Aura
 
-[Aura](/rustdocs/latest/sc_consensus_aura/index.html) provides a slot-based block authoring mechanism.
+[Aura](https://paritytech.github.io/substrate/master/sc_consensus_aura/index.html) provides a slot-based block authoring mechanism.
 In Aura a known set of authorities take turns producing blocks.
 
 ### BABE
 
-[BABE](/rustdocs/latest/sc_consensus_babe/index.html) provides slot-based block authoring with a known set of validators and is typically used in proof-of-stake blockchains.
+[BABE](https://paritytech.github.io/substrate/master/sc_consensus_babe/index.html) provides slot-based block authoring with a known set of validators and is typically used in proof-of-stake blockchains.
 Unlike Aura, slot assignment is based on the evaluation of a Verifiable Random Function (VRF). 
 Each validator is assigned a weight for an _epoch._
 This epoch is broken up into slots and the validator evaluates its VRF at each slot.
@@ -106,13 +106,13 @@ These secondary slot assignments allow BABE to achieve a constant block time.
 
 ### Proof of work
 
-[Proof-of-work](/rustdocs/latest/sc_consensus_pow/index.html) block authoring is not slot-based and does not require a known authority set.
+[Proof-of-work](https://paritytech.github.io/substrate/master/sc_consensus_pow/index.html) block authoring is not slot-based and does not require a known authority set.
 In proof of work, anyone can produce a block at any time, so long as they can solve a computationally challenging problem (typically a hash preimage search). 
 The difficulty of this problem can be tuned to provide a statistical target block time.
 
 ### GRANDPA
 
-[GRANDPA](/rustdocs/latest/sc_finality_grandpa/index.html) provides block finalization.
+[GRANDPA](https://paritytech.github.io/substrate/master/sc_finality_grandpa/index.html) provides block finalization.
 It has a known weighted authority set like BABE.
 However, GRANDPA does not author blocks.
 It just listens to gossip about blocks that have been produced by block authoring nodes.

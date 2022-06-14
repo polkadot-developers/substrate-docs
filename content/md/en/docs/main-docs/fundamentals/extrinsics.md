@@ -1,13 +1,13 @@
 ---
 title: Extrinsics
 description:
-keywords: []
+keywords:
 ---
 
 An extrinsic is a piece of information that comes from outside the chain and is included in a block.
 Extrinsics fall into three categories: inherents, signed transactions, and unsigned transactions.
 
-Note that [events](/v3/runtime/events-errors) are not extrinsics. The chain emits events for pieces of
+Note that [events](/main-docs/build/events-errors/) are not extrinsics. The chain emits events for pieces of
 information that are intrinsic to the chain itself. For example, staking rewards are events, not
 extrinsics, because the reward is triggered by circumstances intrinsic to the chain's logic.
 
@@ -58,10 +58,8 @@ Some cases call for unsigned transactions. Use unsigned transactions with care, 
 logic can be difficult.
 
 Since the transaction is not signed, there is nobody to pay a fee. Because of this, the transaction
-queue lacks economic logic to prevent spam. Unsigned transactions also lack a nonce, making replay
-protection difficult. A few transactions warrant using the unsigned variant, but they will require
-some form of spam prevention based on a custom implementation of
-[signed extension](/v3/concepts/tx-pool#signed-extensions), which can exist on unsigned transactions.
+queue lacks economic logic to prevent spam. Unsigned transactions also lack a nonce, making replay protection difficult.
+A few transactions warrant using the unsigned variant, but they will require some form of spam prevention based on a custom implementation of signed extension, which can exist on unsigned transactions.
 
 An example of unsigned transactions in Substrate is the [I'm Online](/reference/frame-pallets#im-online)
 heartbeat transaction sent by authorities. The transaction includes a signature from a Session key,
@@ -71,6 +69,3 @@ checking if a heartbeat has already been submitted in the session.
 ## Further reading
 
 - [Reference Documentation](/rustdocs/latest/sp_runtime/traits/trait.Extrinsic.html)
-- [Runtime Execution](/v3/concepts/execution)
-- [Transaction Fees](/v3/runtime/weights-and-fees)
-- [Transaction Pool](/v3/concepts/tx-pool)

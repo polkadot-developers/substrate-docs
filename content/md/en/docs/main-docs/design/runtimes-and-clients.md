@@ -1,3 +1,9 @@
+---
+title: Runtimes and clients
+description:
+keywords:
+---
+
 _This article gives theoretical background on how Substrate could be used to implement any type of protocol._
 _It goes over the general runtime / client architecture, describing that it's possible do implement custom protocols and primitives without relying on FRAME._ 
 

@@ -1,6 +1,6 @@
 ---
 title: Configure a runtime constant
-description: 
+description:
 keywords:
   - basics
   - runtime

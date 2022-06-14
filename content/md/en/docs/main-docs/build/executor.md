@@ -1,10 +1,10 @@
 ---
 title: Executor
 description:
-keywords: []
+keywords:
 ---
 
-The [executor](/v3/getting-started/glossary#executor) is responsible for dispatching and executing
+The [executor](/reference/glossary/#executor) is responsible for dispatching and executing
 calls into the Substrate runtime.
 
 ## Runtime execution
@@ -22,7 +22,7 @@ upgraded. The executor determines which version of the runtime to use when dispa
 Before runtime execution begins, the Substrate client proposes which runtime execution environment
 should be used. This is controlled by the execution strategy, which can be configured for the
 different parts of the blockchain execution process. The strategies are listed in the
-[`ExecutionStrategy` enum](/rustdocs/latest/sp_state_machine/enum.ExecutionStrategy.html):
+[`ExecutionStrategy` enum](https://paritytech.github.io/substrate/master/sp_state_machine/enum.ExecutionStrategy.html):
 
 - `NativeWhenPossible`: Execute with native build (if available, WebAssembly otherwise).
 - `AlwaysWasm`: Only execute with the WebAssembly build.
@@ -67,15 +67,15 @@ the other way around. Wasm execution can help to ensure that block producers cre
 ### Native execution
 
 The native runtime will only be used by the executor when it is chosen as the execution strategy and it is compatible with the requested runtime version (see [runtime versioning](/main-docs/build/upgrade#runtime-versioning)).
-For all other execution processes other than block construction, the native runtime is preferred since it is more performant. 
+For all other execution processes other than block construction, the native runtime is preferred since it is more performant.
 In any situation where the native executable should not be run, the canonical Wasm runtime is executed instead.
 
 ## Where to go next
 
 - [Upgrade](/main-docs/build/upgrade).
-- [Execution strategies](/rustdocs/latest/sc_client_api/execution_extensions/struct.ExecutionStrategies.html)
-- [Execution strategy primitive](/rustdocs/latest/sp_state_machine/enum.ExecutionStrategy.html)
-- [Runtime version primitive](/rustdocs/latest/sp_version/struct.RuntimeVersion.html).
+- [Execution strategies](https://paritytech.github.io/substrate/master/sc_client_api/execution_extensions/struct.ExecutionStrategies.html)
+- [Execution strategy primitive](https://paritytech.github.io/substrate/master/sp_state_machine/enum.ExecutionStrategy.html)
+- [Runtime version primitive](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html).
 
 ## Footnotes
 

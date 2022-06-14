@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <script type="text/javascript" src="./web3.min.js"></script>
     <script type="text/javascript">
-        function getBalance() {
-            var address, funds, balance
-            address = document.getElementById("address").value
-            try {
-                web3.eth.getBalance(address, function (error, wei) {
-                    if (!error) {
-                        var balance = web3.fromWei(wei, 'ether');
-                        document.getElementById("output").innerHTML = balance + " in this account";
-                    }
-                });
-            } catch (err) {
-                document.getElementById("output").innerHTML = err;
+      function getBalance() {
+        var address, funds, balance;
+        address = document.getElementById('address').value;
+        try {
+          web3.eth.getBalance(address, function (error, wei) {
+            if (!error) {
+              var balance = web3.fromWei(wei, 'ether');
+              document.getElementById('output').innerHTML = balance + ' in this account';
             }
+          });
+        } catch (err) {
+          document.getElementById('output').innerHTML = err;
         }
+      }
     </script>
-</head>
-<body>
-    <h1 style="font-family: sans-serif; font-weight: 500;">Display an account balance</h1>
-    <p style="font-family: sans-serif;">Enter a development account address, then click <b>Get Balance</b>.</p>
+  </head>
+  <body>
+    <h1 style="font-family: sans-serif; font-weight: 500">Display an account balance</h1>
+    <p style="font-family: sans-serif">Enter a development account address, then click <b>Get Balance</b>.</p>
     <input type="text" size="50" id="address" />
     <button type="button" onClick="getBalance();">Get Balance</button>
     <br />
     <br />
     <div id="output"></div>
-</body>
+  </body>
 </html>
