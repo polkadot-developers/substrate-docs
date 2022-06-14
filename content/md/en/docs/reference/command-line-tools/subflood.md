@@ -1,6 +1,6 @@
 ---
 title: subflood
-description:
+description: Command-line reference information for the subflood program.
 keywords:
 ---
 

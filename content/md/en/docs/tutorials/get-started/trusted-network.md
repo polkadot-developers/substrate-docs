@@ -1,5 +1,5 @@
 ---
-title: Trusted node network
+title: Add trusted nodes
 description:
 keywords:
   - enterprize

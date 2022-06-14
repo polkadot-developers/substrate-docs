@@ -1,26 +1,26 @@
 ---
-title: subxt-cli
+title: subxt
 description:
 keywords:
 ---
 
-`subxt-cli` is a CLI utility to generate a client API from the metadata of a Substrate node.
+`subxt` is a CLI utility to generate a client API from the metadata of a Substrate node.
 This tool was originally designed for the [`subxt` library](https://github.com/paritytech/subxt) to build the runtime API from the metadata of a target node. 
 It can be used as a standalone tool to download the metadata or generate the API for the runtime of any node that uses metadata V14 and above. 
 
 ## Installation 
 
-To install `subxt-cli`:
+To install `subxt`:
 
 1. Open a terminal shell, if necessary.
 1. Verify that you have the Rust compiler and toolchain, if necessary.
 1. Download the required packages with the following command: 
 
-    `cargo install subxt-cli`
+    `cargo install subxt`
 
 ## Basic command usage
 
-The basic syntax for running `subxt-cli` commands is:
+The basic syntax for running `subxt` commands is:
 
 `subxt <SUBCOMMAND>`
 

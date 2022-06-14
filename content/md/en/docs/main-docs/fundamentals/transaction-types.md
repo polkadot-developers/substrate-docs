@@ -1,6 +1,6 @@
 ---
 title: Transactions and block basics
-description:
+description: Describes the transaction types used to create blocks and the basic components of a block.
 keywords:
 ---
 
@@ -83,11 +83,8 @@ This cryptographic digest serves two purposes:
 
 Now that you are familiar with transaction types and the information that constitutes a block, explore the following topics to learn more.
 
-<!-- TODO NAV.YAML -->
-<!-- add these back -->
-
 - [Transaction lifecycle](/main-docs/fundamentals/transaction-lifecycle/)
 - [State transitions and storage](/main-docs/fundamentals/state-transitions-and-storage/)
 - [Transactions, weights, and fees](/main-docs/build/tx-weights-fees/)
-<!-- - [Transaction formats](/reference/transaction-formats/) -->
+- [Transaction formats](/reference/transaction-formats/)
 - [Block reference](https://paritytech.github.io/substrate/master/sp_runtime/traits/trait.Block.html)

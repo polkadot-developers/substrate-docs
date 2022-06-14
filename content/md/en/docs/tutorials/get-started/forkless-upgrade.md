@@ -1,6 +1,6 @@
 ---
 title: Upgrade a running network
-description:
+description: Illustrates ways you can update a running node.
 keywords:
 ---
 

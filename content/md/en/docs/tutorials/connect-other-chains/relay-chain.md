@@ -14,7 +14,7 @@ Before you begin, verify the following:
 
 - You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and have the Substrate node template installed locally.
 
-- You have generated accounts and chain specifications for a private network of trusted validators as described in [Add trusted validators](/tutorials/get-started/trusted-network/).
+- You have generated accounts and chain specifications for a private network of trusted validators as described in [Add trusted nodes](/tutorials/get-started/trusted-network/).
 
 - You are generally familiar with Polkadot and [parachain basic concepts](https://wiki.polkadot.network/docs/learn-parachains) and [parachain development](https://wiki.polkadot.network/docs/build-build-with-polkadot).
 

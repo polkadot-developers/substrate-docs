@@ -1,6 +1,6 @@
 ---
 title: Accounts, addresses, and keys
-description:
+description: Provides an overview of how public/private key pairs are used to generate addresses and identify accounts.
 keywords:
 ---
 
@@ -36,10 +36,10 @@ TIn addition to allowing you to derive multiple addresses from the same public k
 Because a single public key can be used to derive addresses for different Substrate chains, a single account can multiple chain-specific addresses.
 For example, if you inspect the addresses for the `alice` account public key `0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d` depends on the chain-specific address type.
 
-| Chain address type             | Address                                          |
-| ------------------------------ | ------------------------------------------------ |
-| Polkadot (SS58)                | 15oF4uVJwmo4TdGW7VfQxNLavjCXviqxT9S1MgbjMNHr6Sp5 |
-| Kusama (SS58)                  | HNZata7iMYWmk5RvZRTiAsSDhV8366zq2YGb3tLH5Upf74F  |
+| Chain address type | Address |
+| ------------------ | ------- |
+| Polkadot (SS58) | 15oF4uVJwmo4TdGW7VfQxNLavjCXviqxT9S1MgbjMNHr6Sp5 |
+| Kusama (SS58) | HNZata7iMYWmk5RvZRTiAsSDhV8366zq2YGb3tLH5Upf74F  |
 | Generic Substrate chain (SS58) | 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY |
 
 Each Substrate blockchain can register a custom prefix to create a chain-specific address type.
@@ -74,11 +74,11 @@ In most cases, specialized accounts are implemented in the context of a specific
 For example, nominated proof-of-stake (NPoS) can require node validators and nominators to hold a significant number of tokens.
 To keep the balances in these accounts secure, the Staking pallet provides some account abstractions that separate the key pairs required to perform specific operations.
 
-| Account type       | How the account is used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Stash account      | The **stash account** represents the public/private key pair that defines a staking balance for validators. You should keep stash account keys offline and in cold storage for security. You should not use the stash account to make frequent transactions. because the keys for this account are kept offline, you can designate a **controller account** to make non-spending decisions or a **keyless proxy account** to vote in governance on its behalf.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| Controller account | The controller account represents the public/private key pair that signals your intent to validate or nominate, sets preferences like the rewards destination and, in the case of validators, sets the session keys. A controller account only needs to pay transaction fees, so it only needs minimal funds. It can never be used to spend funds from its stash account. Actions taken by the controller can result in slashing, so it should still be well secured.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| Session account    | The session account represents the public/private key pair used by validators to sign consensus-related messages. The session account is not intended to control funds. These keys are also defined generically in the [Session pallet](https://paritytech.github.io/substrate/master/pallet_session/index.html) and made concrete in the runtime. To create the session account key pair, you must attest that the account acts on behalf of your stash account and nominators by signing a transaction with your controller key and publishing the session certificate on the chain. You can generate and register new session keys on chain using a [`session.setKeys`](https://paritytech.github.io/substrate/master/pallet_session/pallet/struct.Pallet.html#method.set_keys) transaction. You can change session keys using the [`author_rotateKeys`](https://paritytech.github.io/substrate/master/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys) RPC call. |
+| Account type | How the account is used |
+| ------------ | ----------------------- |
+| Stash account | The **stash account** represents the public/private key pair that defines a staking balance for validators. You should keep stash account keys offline and in cold storage for security. You should not use the stash account to make frequent transactions. because the keys for this account are kept offline, you can designate a **controller account** to make non-spending decisions or a **keyless proxy account** to vote in governance on its behalf. |
+| Controller account | The controller account represents the public/private key pair that signals your intent to validate or nominate, sets preferences like the rewards destination and, in the case of validators, sets the session keys. A controller account only needs to pay transaction fees, so it only needs minimal funds. It can never be used to spend funds from its stash account. Actions taken by the controller can result in slashing, so it should still be well secured. |
+| Session account | The session account represents the public/private key pair used by validators to sign consensus-related messages. The session account is not intended to control funds. These keys are also defined generically in the [Session pallet](https://paritytech.github.io/substrate/master/pallet_session/index.html) and made concrete in the runtime. To create the session account key pair, you must attest that the account acts on behalf of your stash account and nominators by signing a transaction with your controller key and publishing the session certificate on the chain. You can generate and register new session keys on chain using a [`session.setKeys`](https://paritytech.github.io/substrate/master/pallet_session/pallet/struct.Pallet.html#method.set_keys) transaction. You can change session keys using the [`author_rotateKeys`](https://paritytech.github.io/substrate/master/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys) RPC call. |
 
 ### Keyless proxy accounts
 
@@ -95,8 +95,11 @@ At a high level, there are three types of accounts:
 
 - User accounts that enable end users to interact with the blockchain.
 - Network accounts that provide additional security for validators and nominators by restricting some operations for staking and governance.
-- Pallet accounts that are executed by valid origins to perform pallet-specific operations.
+- Pallet accounts that are executed by valid **origins** to perform pallet-specific operations.
 
-For more technical information, see the following resources:
+For more information about working with accounts, addresses, and keys, see the following resources:
 
-- TBD
+- [Command reference: subkey](/reference/command-line-tools/subkey/)
+- [Account data structures](/reference/account-data-structures/)
+- [Cryptography](/reference/cryptography/)
+

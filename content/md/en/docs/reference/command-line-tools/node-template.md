@@ -1,6 +1,6 @@
 ---
 title: node-template
-description:
+description: Command-line reference information for the node-template.
 keywords:
 ---
 

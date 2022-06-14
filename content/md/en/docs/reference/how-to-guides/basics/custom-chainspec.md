@@ -68,6 +68,6 @@ For reference, you can see how [Polkadot implements](https://github.com/parityte
 
 ## Examples
 
-- [Add trusted validators](/tutorials/get-started/trusted-network#add-keys-to-keystore)
+- [Add trusted nodes](/tutorials/get-started/trusted-network#add-keys-to-keystore)
 - [Polkadot-like network chain specs](https://github.com/paritytech/polkadot/tree/master/node/service/res)
 - [Polkadot commands for many networks](https://github.com/paritytech/polkadot/commits/master/cli/src/command.rs)

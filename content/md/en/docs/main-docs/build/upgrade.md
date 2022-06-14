@@ -1,6 +1,6 @@
 ---
 title: Upgrade the runtime
-description:
+description: Explains how runtime versioning and storage migration support forkless upgrades for Substrate-based networks.
 keywords:
 ---
 
@@ -10,22 +10,22 @@ This capability is made possible by including the definition of the runtime exec
 
 Because the runtime is part of the blockchain state, network maintainers can leverage the blockchain's capabilities for trustless, decentralized consensus to securely make enhancements to the runtime.
 
-In the FRAME system for runtime development, the system library defines
-[the `set_code` call](https://paritytech.github.io/substrate/master/frame_system/pallet/enum.Call.html#variant.set_code)
-that is used to update the definition of the runtime.
-The tutorial [Upgrade a runtime](/tutorials/get-started/forkless-upgrade/) demonstrates two ways that you can upgrade a runtime without shutting down a node or interrupting operations.
+In the FRAME system for runtime development, the system library defines [the `set_code` call](https://paritytech.github.io/substrate/master/frame_system/pallet/enum.Call.html#variant.set_code) that is used to update the definition of the runtime.
+The tutorial [Upgrade a running network](/tutorials/get-started/forkless-upgrade/) demonstrates two ways that you can upgrade a runtime without shutting down a node or interrupting operations.
 However, both of the upgrades in the tutorial illustrate adding functionality to the runtime as opposed to _updating_ the existing runtime state.
 If a runtime upgrade requires changes to the existing state, it is likely to require storagevmigration.
 
 ## Runtime versioning
 
-For the orchestration logic to be able to select the appropriate runtime execution environment to communication with, it needs to know the following information for both the native Rust and Wasm runtime binaries:
+In [Build process](/main-docs/build/build-process/), you learned that compiling a node generated both a platform-native binary and a WebAssembly binary and that selecting which binary to use at different points in the block production process can be controlled by execution strategy command-line options.
+The component that selects the runtime execution environment to communication with is called the **executor**.
+Although you can override the default execution strategies for custom scenarios, in most cases, or the executor select the appropriate binary to use by evaluating the following information for both the native and WebAssembly runtime binaries:
 
 - `spec_name`
 - `spec_version`
 - `authoring_version`
 
-To provide this information, the runtime includes a [runtime version struct](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html) similar to the following:
+To provide this information to the executor process, the runtime includes a [runtime version struct](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html) similar to the following:
 
 ```rust
 pub const VERSION: RuntimeVersion = RuntimeVersion {
@@ -41,15 +41,15 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
 
 The parameters in the struct provide the following information:
 
-| This parameter        | Provides this                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `spec_name`           | The identifier for the different Substrate runtimes.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| `impl_name`           | The name of the implementation of the spec. This is of little consequence for the node and serves only to differentiate code of different implementation teams.                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `authoring_version`   | The version of the authorship interface. An authoring node will not attempt to author blocks unless this is equal to its native runtime.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `spec_version`        | The version of the runtime specification. A full node will not attempt to use its native runtime in substitute for the on-chain Wasm runtime unless all of `spec_name`, `spec_version`, and `authoring_version` are the same between the Wasm and native binaries. Updates to the `spec_version` can be automated as a CI process, as is done for the [Polkadot network](https://gitlab.parity.io/parity/polkadot/-/blob/master/scripts/gitlab/check_extrinsics_ordering.sh). This paramenter is typically incremented when there's an update to the `transaction_version`.                                 |
-| `impl_version`        | The version of the implementation of the specification. Nodes can ignore this. It is only used to indicate that the code is different. As long as the `authoring_version` and the `spec_version` are the same, the code itself might have changed, but the native and Wasm binaries do the same thing. In general, only non-logic-breaking optimizations would result in a change of the `impl_version`.                                                                                                                                                                                                    |
+| This parameter | Provides this |
+| -------------- | ------------- |
+| `spec_name` | The identifier for the different Substrate runtimes. |
+| `impl_name` | The name of the implementation of the spec. This is of little consequence for the node and serves only to differentiate code of different implementation teams. |
+| `authoring_version` | The version of the authorship interface. An authoring node will not attempt to author blocks unless this is equal to its native runtime. |
+| `spec_version` | The version of the runtime specification. A full node will not attempt to use its native runtime in substitute for the on-chain Wasm runtime unless all of `spec_name`, `spec_version`, and `authoring_version` are the same between the Wasm and native binaries. Updates to the `spec_version` can be automated as a CI process, as is done for the [Polkadot network](https://gitlab.parity.io/parity/polkadot/-/blob/master/scripts/gitlab/check_extrinsics_ordering.sh). This paramenter is typically incremented when there's an update to the `transaction_version`.                                 |
+| `impl_version` | The version of the implementation of the specification. Nodes can ignore this. It is only used to indicate that the code is different. As long as the `authoring_version` and the `spec_version` are the same, the code itself might have changed, but the native and Wasm binaries do the same thing. In general, only non-logic-breaking optimizations would result in a change of the `impl_version`. |
 | `transaction_version` | The version of the interface for handling transactions. This parameter can be useful to synchronize firmware updates for hardware wallets or other signing devices to verify that runtime transactions are valid. The parameter allows hardware wallets to know which transactions they can safely sign. This number must be bumped if there is a change in the index of the pallets in the `construct_runtime!` macro or if there are any changes to dispatchable functions, such as the number of parameters or parameter types. If this number is updated, then the `spec_version` must also be updated. |
-| `apis`                | A list of supported [runtime APIs](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html) along with their versions.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `apis` | A list of supported [runtime APIs](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html) along with their versions. |
 
 The orchestration engine—sometimes referred to as the executor—verifies that the native runtime has the same consensus-driven logic as the WebASsembly before it chooses to execute it.
 However, because the runtime versioning is set manually, the orchestration engine can still make inappropriate decisions if the runtime version is misrepresented.

@@ -149,7 +149,7 @@ tutorials:
           url: /tutorials/get-started/build-local-blockchain/
         - title: Simulate a network
           url: /tutorials/get-started/simulate-network/
-        - title: Trusted node network
+        - title: Add trusted nodes
           url: /tutorials/get-started/trusted-network/
         - title: Authorize specific nodes
           url: /tutorials/get-started/permissioned-network/
@@ -194,7 +194,7 @@ tutorials:
           url: /tutorials/smart-contracts/develop-contract/
         - title: Use maps for storing values
           url: /tutorials/smart-contracts/use-mapping/
-        - title: Build a ERC20
+        - title: Build a token contract
           url: /tutorials/smart-contracts/erc20-token/
         - title: Troubleshoot smart contracts
           url: /tutorials/smart-contracts/sc-common-issues/
@@ -204,8 +204,6 @@ reference:
   pages:
     - title: Glossary
       url: /reference/glossary/
-    - title: Polkadot-JS
-      url: /reference/polkadot-js/
     - title: Command-line tools
       url: /reference/command-line-tools/
       pages:
@@ -228,8 +226,8 @@ reference:
           url: /reference/command-line-tools/subflood/
         - title: subkey
           url: /reference/command-line-tools/subkey/
-        - title: subxt-cli
-          url: /reference/command-line-tools/subxt-cli/
+        - title: subxt
+          url: /reference/command-line-tools/subxt/
         - title: try-runtime
           url: /reference/command-line-tools/try-runtime/
         - title: tx-wrapper
@@ -242,52 +240,17 @@ reference:
       url: /reference/frame-macros/
     - title: Account data structures
       url: /reference/account-data-structures/
-    # - title: Building block process
-    # url: /reference/block-building-process/
-    # - title: Client libraries
-    # url: /reference/client-lib/
     - title: Type encoding (SCALE)
       url: /reference/scale-codec/
-    - title: SS58 address format
-      url: /reference/ss58-format/
-    # - title: Transaction formats
-    # url: /main-docs/reference/transaction-format/
+    - title: Transaction formats
+      url: /main-docs/reference/transaction-format/
     - title: Cryptography
       url: /reference/cryptography/
     - title: How-to reference guides
       url: /reference/how-to-guides/
-      #pages:
-      #- title: Basics
-      #url: /reference/how-to-guides/basics/
-      #- title: Genesis
-      #url: /reference/how-to-guides/basics/genesis-config/
-      #- title: Chainspec
-      #url: /reference/how-to-guides/basics/custom-chainspec/
-      #- title: Storage migrations
-      #url: /reference/how-to-guides/basics/storage-migrations/
-      #- title: Constants
-      #url: /reference/how-to-guides/runtime-constants/
-      #- title: Pallet design
-      #url: /reference/how-to-guides/pallet-design/
-      #- title: Weights
-      #url: /reference/how-to-guides/weights/
-      #- title: Testing
-      #url: /reference/how-to-guides/testing/
-      #- title: Basic token mint
-      #url: /reference/how-to-guides/basics/mint-tokens
-      #- title: Consensus
-      #url: /reference/how-to-guides/consensus/
-      #- title: Parachains
-      #url: /reference/how-to-guides/parachains/
-      #- title: Tools
-      #url: /reference/how-to-guides/tools/
-      #- title: Off-chain workers
-      #url: /reference/how-to-guides/ocw/
 #   - 'Community':
 #       - 'community/index.md'
-#      - 'Writing style guidelines': 'community/style-guide.md'
-#     - 'Site builder guidelines': 'community/site-building.md'
-#- 'How-to topic template': 'https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/contribute-templates/how-to-template.md/"target="_blank'
-#- 'Bounties': 'community/bounty.md'
-#- 'Dropbox': 'faq-dropbox/index.md'
-#- 'Playground': 'https://docs.substrate.io/playground/"target="_blank'
+#       - 'Style guidelines': 'community/style-guide.md'
+#       - 'How-to template': 'https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/contribute-templates/how-to-template.md/"target="_blank'
+       #- 'Bounties': 'community/bounty.md'
+       #- 'Dropbox': 'faq-dropbox/index.md'

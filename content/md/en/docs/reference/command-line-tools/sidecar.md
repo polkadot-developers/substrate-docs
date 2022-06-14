@@ -1,6 +1,6 @@
 ---
 title: sidecar
-description:
+description: Command-line reference information for the sidecar program.
 keywords:
 ---
 

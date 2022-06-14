@@ -253,7 +253,7 @@ You learned:
 
 The next tutorial builds on the information you learned in this tutorial to illustrate how you can start a private network with other participants and nodes running on separate computers.
 
-In [Add trusted validators](/tutorials/get-started/trusted-network/), you'll learn:
+In [Add trusted nodes](/tutorials/get-started/trusted-network/), you'll learn:
 
 - How to generate your own secret key pairs.
 

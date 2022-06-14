@@ -137,11 +137,9 @@ After the conversion to the raw format, the `sudo key` snippet looks like this:
 
 ## Where to go next
 
-
-<!-- TODO NAV.YAML -->
-<!-- add these back -->
-* [Add trusted validators](/tutorials/get-started/trusted-network/)
-<!-- * [How-to: Genesis configuration](/reference/how-to-guides/basics/genesis-config/) -->
-* [`ChainSpec` struct](https://paritytech.github.io/substrate/master/sc_service/struct.GenericChainSpec.html)
-* [`ProtocolId` struct](https://paritytech.github.io/substrate/master/sc_network/config/struct.ProtocolId.html)
+* [Add trusted nodes](/tutorials/get-started/trusted-network/)
+* [How-to: Genesis configuration](/reference/how-to-guides/basics/genesis-config/)
+* [How-to: Custom chain specification](/reference/how-to-guides/basics/genesis-config/)
 * [Node template chain specification](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs)
+* [ChainSpec struct](https://paritytech.github.io/substrate/master/sc_service/struct.GenericChainSpec.html)
+* [ProtocolId struct](https://paritytech.github.io/substrate/master/sc_network/config/struct.ProtocolId.html)

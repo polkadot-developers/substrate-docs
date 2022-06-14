@@ -1,6 +1,6 @@
 ---
 title: archive
-description:
+description: Command-line reference information for the archive program.
 keywords:
 ---
 

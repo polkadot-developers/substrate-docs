@@ -4,11 +4,19 @@ description:
 keywords:
 ---
 
-TODO 
+Parachains and parathreads.
 
-Construct Cumulus
+## Before you begin
 
-Launch Parachain
+Steps to complete
+
+## Preview deployment checklist
+
+Preflight checklist to make sure you're ready.
+
+## Migrate your chain
+
+Steps to complete.
 
 * PoV
 * Limitations that apply to parachains

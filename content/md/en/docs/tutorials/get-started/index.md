@@ -10,6 +10,6 @@ Later tutorials reinforce or expand on the basic topics you learn in the Get sta
 
 - [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) shows you how to set up and interact with a local node in your development environment.
 - [Simulate a network](/tutorials/get-started/simulate-network/) helps you simulate a two-node network using predefined accounts.
-- [Add trusted validators](/tutorials/get-started/trusted-network/) demonstrates how to generate keys and distribute a chain specification to create a small network of trusted validator nodes.
-- [Monitor node metrics](/tutorials/get-started/monitor/) highlights how you can take advantage of the node metrics Substrate exposes.
+- [Add trusted nodes](/tutorials/get-started/trusted-network/) demonstrates how to generate keys and distribute a chain specification to create a small network of trusted validator nodes.
+- [Monitor node metrics](/tutorials/get-started/node-metrics/) highlights how you can take advantage of the node metrics Substrate exposes.
 - [Upgrade a running node](/tutorials/get-started/forkless-upgrade) illustrates forkless upgrades by modifying the runtime for a running Substrate node.
