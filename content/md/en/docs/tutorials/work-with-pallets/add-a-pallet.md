@@ -346,7 +346,7 @@ To set a nickname for an account:
 
    ![Set a name](/media/images/docs/tutorials/add-a-pallet/set-name.png)
 
-1. Observe the status of the call and the [events](https://paritytech.github.io/substrate/master/pallet_nicks/enum.RawEvent.html) emitted by the Nicks pallet.
+1. Observe the status of the call and the [events](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Event.html) emitted by the Nicks pallet.
 
 ## Query information for an account using the Nicks pallet
 

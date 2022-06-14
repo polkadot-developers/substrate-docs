@@ -164,7 +164,7 @@ All of the well-known development accounts—Alice, Bob, Charlie, Dave, Eve, and
 The secret phrase is:
 `bottom drive obey lake curtain smoke basket hold race lonely fit walk`
 
-Many tools in the Substrate ecosystem, such as [`subkey`](/reference/command-line-tools/subkeye), allow you to implicitly specify an account using a derivation path such as `//Alice`.
+Many tools in the Substrate ecosystem, such as [`subkey`](/reference/command-line-tools/subkey), allow you to implicitly specify an account using a derivation path such as `//Alice`.
 
 ## digest
 
@@ -337,7 +337,7 @@ The [FRAME](#frame)development environment provides several [macros](/reference/
 ## metadata
 
 Data that provides information about one or more aspects of a system.
-The [metadata](/main-docs/build/frontend) that exposes information about a Substrate [blockchain](#blockchain) enables you to interact with that system. 
+The metadata that exposes information about a Substrate [blockchain](#blockchain) enables you to interact with that system. 
 
 ## node
 

@@ -6,7 +6,6 @@ keywords:
 
 Substrate _How-to_ quick reference guides provide instructions for achieving specific goals.
 Each guide explains how to perform a specific task with the assumption that you are already familiar with Substrate and programming in Rust.
-Learn more about contributing to these guides [here](/community/contribute/templates).
 
 ## Basics
   
@@ -38,7 +37,7 @@ See the following guides for help with benchmarking and weight configurations.
 
 - [Calculate fees](/reference/how-to-guides/weights/calculate-fees/)
 - [Add benchmarks](/reference/how-to-guides/weights/add-benchmarks/)
-- [Use custom weights in benchmarks](/reference/how-to-guides/custom-weights/)
+- [Use custom weights in benchmarks](/reference/how-to-guides/weights/custom-weights/)
 - [Create conditional weights](/reference/how-to-guides/weights/conditional-weights/)
 
 ## Testing

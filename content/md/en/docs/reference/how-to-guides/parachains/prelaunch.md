@@ -134,7 +134,7 @@ Before you try anything on a production testnet or mainnet, you should launch yo
 Testing in a confined network will help you prepare for potential failures in a real network with many collators and validators and constraints like bandwidth and latency.
 The more closely you can simulate a real network for testing, the more sure you can be that your runtime upgrades will succeeds.
 
-See the [cumulus tutorial](/tutorials/connect-other-networks/relay-chain) to learn how to use the `polkadot-launch` tool for such testing.
+See the [Cumulus tutorial](/tutorials/connect-other-chains/relay-chain/) to learn how to use the `polkadot-launch` tool for such testing.
 
 ## Examples
 

@@ -58,7 +58,7 @@ However, because the runtime versioning is set manually, the orchestration engin
 
 The FRAME system exposes the runtime version information through the `state.getRuntimeVersion` RPC endpoint.
 The endpoint accepts an optional block identifier.
-However, in most cases, you use the runtime [metadata](/main-docs/build/frontend#metadata-system) to understand the APIs the runtime exposes
+However, in most cases, you use the runtime [metadata](/main-docs/build/application-dev/#metadata-system) to understand the APIs the runtime exposes
 and how to interact with these APIs.
 The runtime metadata should _only_ change when the chain's
 [runtime `spec_version`](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html#structfield.spec_version) changes.

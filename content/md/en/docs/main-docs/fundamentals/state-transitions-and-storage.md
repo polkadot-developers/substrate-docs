@@ -58,7 +58,7 @@ Blockchains that are built with Substrate expose a remote procedure call (RPC) s
 ### Storage value keys
 
 To calculate the key for a simple [Storage Value](/main-docs/build/runtime-storage#storage-value), take the [TwoX 128 hash](https://github.com/Cyan4973/xxHash) of the name of the pallet that contains the Storage Value and append to it the TwoX 128 hash of the name of the Storage Value itself.
-For example, the [Sudo](https://paritytech.github.io/substrate/master/pallet_sudo/index.html) pallet exposes a Storage Value item named [`Key`](https://paritytech.github.io/substrate/master/pallet_sudo/struct.Module.html#method.key):
+For example, the [Sudo](https://paritytech.github.io/substrate/master/pallet_sudo/index.html) pallet exposes a Storage Value item named `Key`:
 
 ```rust
 twox_128("Sudo")                   = "0x5c0d1176a568c1f92944340dbfed9e9c"

@@ -45,11 +45,10 @@ runtime state or input becomes too complex.
 
 The benchmarking framework comes with the following tools:
 
-- [A set of macros](./src/lib.rs) (`benchmarks!`, `add_benchmark!`, etc...) to make it easy to
+- A set of macros (`benchmarks!`, `add_benchmark!`, etc...) to make it easy to
   write, test, and add runtime benchmarks.
-- [A set of linear regression analysis functions](./src/analysis.rs) for processing benchmark data.
-- [A CLI extension](../../utils/frame/benchmarking-cli/README.md) to make it easy to execute benchmarks on your
-  node.
+- A set of linear regression analysis functions for processing benchmark data.
+- A CLI extension to make it easy to execute benchmarks on your  node.
 
 The end-to-end benchmarking pipeline is disabled by default when compiling a node. If you want to
 run benchmarks, you need to enable it by compiling with a Rust feature flag `runtime-benchmarks`.
@@ -90,9 +89,7 @@ be a hint that you should enforce sane boundaries for how a user can use your pa
 limiting the number of elements in a vector, limiting the number of iterations in a `for` loop,
 etc...
 
-Examples of end-to-end benchmarks can be found in the [pallets provided by Substrate](../), and the
-specific details on how to use the `benchmarks!` macro can be found in [its
-documentation](./src/lib.rs).
+Examples of end-to-end benchmarks can be found in the pallets provided by Substrate, and the specific details on how to use the `benchmarks!` macro can be found in its' documentation.
 
 ## Testing Benchmarks
 
@@ -198,8 +195,7 @@ requirements.
 The benchmarking CLI uses a Handlebars template to format the final output file. You can optionally
 pass the flag `--template` pointing to a custom template that can be used instead. Within the
 template, you have access to all the data provided by the `TemplateData` struct in the
-[benchmarking CLI writer](../../utils/frame/benchmarking-cli/src/writer.rs). You can find the
-default template used [here](../../utils/frame/benchmarking-cli/src/template.hbs).
+benchmarking CLI writer.
 
 There are some custom Handlebars helpers included with our output generation:
 

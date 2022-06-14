@@ -31,7 +31,7 @@ Some of the most important activities that are handled by the outer node involve
 
 * [Storage](/main-docs/fundamentals/state-transitions-and-storage/): The outer node persists the evolving state of a Substrate blockchain using a simple and highly efficient key-value storage layer.
 
-* [Peer-to-peer networking](/main-docs/fundamentals/nodes-and-network-types): The outer node uses the Rust implementation of the [`libp2p` network stack](https://libp2p.io/) to communicate with other network participants.
+* [Peer-to-peer networking](/main-docs/fundamentals/node-and-network-types/): The outer node uses the Rust implementation of the [`libp2p` network stack](https://libp2p.io/) to communicate with other network participants.
 
 * [Consensus](/main-docs/fundamentals/consensus/): The outer node communicates with other network participants to ensure they agree on the state of the blockchain.
 

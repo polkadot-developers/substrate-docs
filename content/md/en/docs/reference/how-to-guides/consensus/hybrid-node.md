@@ -152,5 +152,5 @@ task_manager.spawn_essential_handle().spawn_blocking(
 - [Inherents][inherents-kb]
 - [powblockimport-rustdocs](https://paritytech.github.io/substrate/master/sc_consensus_pow/struct.PowBlockImport.html)
 - [powblockimport-new-rustdocs](https://paritytech.github.io/substrate/master/sc_consensus_pow/struct.PowBlockImport.html#method.new_full)
-- [inherents-rustdocs](https://paritytech.github.io/substrate/master/sp_inherents/struct.InherentDataProviders.html)
+- [inherents-rustdocs](https://paritytech.github.io/substrate/master/sp_inherents/index.html)
 - [pow-rustdocs](https://paritytech.github.io/substrate/master/sc_consensus_pow/trait.PowAlgorithm.html)

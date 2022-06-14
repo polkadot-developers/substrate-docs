@@ -74,8 +74,8 @@ The [`rpc_api`](https://paritytech.github.io/substrate/master/remote_externaliti
 
 When starting any Substrate node, these two endpoints are available to you:
 
-- HTTP endpoint: http://localhost:9933/
-- Websocket endpoint: ws://localhost:9944/
+- HTTP endpoint: `http://localhost:9933/`
+- Websocket endpoint: `ws://localhost:9944/`
 
 Most of the Substrate front-end libraries and tools use the more powerful WebSocket endpoint to interact with the blockchain. 
 Through WebSockets, you can subscribe to the chain states, such as events, and receive push notifications whenever changes in your blockchain occur.

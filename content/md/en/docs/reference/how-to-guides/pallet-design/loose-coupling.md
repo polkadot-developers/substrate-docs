@@ -97,4 +97,4 @@ construct_runtime! (
 ## Resources
 
 - [Pallet coupling](/main-docs/build/pallet-coupling)
-- [Tightly Coupling two pallets](reference/how-to-guides/tight-coupling)
+- [Tightly Coupling two pallets](/reference/how-to-guides/pallet-design/loose-coupling/)

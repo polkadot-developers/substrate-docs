@@ -131,7 +131,7 @@ If you modify the default configuration file, here is what will be different:
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
 scrape_configs:
-  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  # The job name is added as a label `job=<job_name>` to any time series scraped from this config.
   - job_name: "substrate_node"
 
     # metrics_path defaults to '/metrics'
@@ -191,18 +191,18 @@ substrate_finality_grandpa_prevotes_total 31
 #
 ```
 
-Alternatively, you can open same [URL](http://localhost:9615/metrics) in a browser to view all available metric data.
+Alternatively, you can open same URL (`http://localhost:9615/metrics`) in a browser to view all available metric data.
 
 ## Visualizing Prometheus metrics with Grafana
 
-After you have Grafana running, navigate to it in a browser (**the default is https://localhost:3000/**).
+After you have Grafana running, navigate to it in a browser (**the default is `https://localhost:3000/`**).
 Log in using the default user `admin` and password `admin` and navigate to the data sources page at `localhost:3000/datasources`.
 
 You then need to select a `Prometheus` data source type and specify where Grafana needs to look for it.
 
 The Prometheus port Grafana needs is NOT the one you set in the `prometheus.yml` file (https://localhost:9615) for where your node is publishing it's data.
 
-With both the Substrate node and Prometheus running, configure Grafana to look for Prometheus on it's default port: https://localhost:9090 (unless you customized it).
+With both the Substrate node and Prometheus running, configure Grafana to look for Prometheus on it's default port: `https://localhost:9090` (unless you customized it).
 
 Click `Save & Test` to ensure that you have the data source set correctly.
 Now you can configure a new dashboard.

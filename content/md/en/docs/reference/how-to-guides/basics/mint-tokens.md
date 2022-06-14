@@ -22,7 +22,7 @@ You should keep in mind the following limitations and assumptions used in this g
   Learn more about weight configuration in [Transactions, weights, and fees](/main-docs/build/tx-weights-fees).
 - **Origins.** This guide assumes that the origin will always be the `sudo` user.
   Origins are a powerful capability in Substrate.
-  Learn more about how they work in [Privileged calls and origins](/main-docs/fundamentals/origins/).
+  Learn more about how they work in [Privileged calls and origins](/main-docs/build/origins/).
 
 See the [Examples section](#examples) for practical implementations of this guide.
 
@@ -162,5 +162,5 @@ See [Import a pallet](/reference/how-to-guides/basics/pallet-integration) if you
 
 ## Related material
 
-- [Configure a runtime constant](/reference/how-to-guides/runtime-constants)
+- [Configure a runtime constant](/reference/how-to-guides/basics/runtime-constants/)
 - [Deposit event method](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.deposit_event)
