@@ -1,14 +1,14 @@
 ---
 title: Use loose pallet coupling
 description:
-keywords: []
+keywords:
 ---
 
 This guide steps through how to reuse a function or type from another pallet using a technique called loose coupling.
 
 Loose coupling is a technique that enables re-using logic from another pallet inside a pallet.
 In this guide, we show the simple pattern of using a type from an outside pallet in our working pallet, by using trait bounds in our pallet's configuration trait. 
-We will loosely couple a pallet to make use of the \`Currency\` trait from [\`frame_support\`](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html).
+We will loosely couple a pallet to make use of the \`Currency\` trait from [\`frame_support\`](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html).
 
 ## Configure your workspace
 
@@ -31,7 +31,7 @@ pallet you want to couple to accordingly:
 
 ## Import the trait you want to use
 
-In this example, we want to use the [`Currency` trait](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html) from `frame_support` so that we can give our pallet access to the its methods.
+In this example, we want to use the [`Currency` trait](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html) from `frame_support` so that we can give our pallet access to the its methods.
 
 Import the trait in your pallet:
 
@@ -60,14 +60,14 @@ use frame_support::traits::Currency;
   let total_balance = T::LocalCurrency::total_issuance();
   ```
 
-  In the above snippet, we're using [`total_issuance`](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html#tymethod.total_issuance)
+  In the above snippet, we're using [`total_issuance`](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html#tymethod.total_issuance)
   that the Currency trait exposes from `frame_support`.
 
 ## Provide the implementation in runtime configuration
 
 In our runtime configuration, usually `runtime/src/lib.rs`, we specify the `LocalCurrency` to be
 `Balances`, which is defined inside `construct_runtime!` macro and has a type of `pallet_balances`
-that [implements the `Currency` trait](/rustdocs/latest/pallet_balances/index.html#implementations-1).
+that [implements the `Currency` trait](https://paritytech.github.io/substrate/master/pallet_balances/index.html#implementations-1).
 
 ```rust
 impl my_pallet::Config for Runtime {
@@ -86,15 +86,15 @@ construct_runtime! (
 ```
 ## Examples
 
-- `try_origin` from the [`EnsureOrigin`](/rustdocs/latest/frame_support/traits/trait.EnsureOrigin.html) trait
+- `try_origin` from the [`EnsureOrigin`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.EnsureOrigin.html) trait
   in FRAME's [Democracy pallet](https://github.com/paritytech/substrate/blob/master/frame/democracy/src/lib.rs#L294-L352)
 - the use of `WeightInfo` in all FRAME pallets, such as the
   the [Identity pallet](https://github.com/paritytech/substrate/blob/master/frame/identity/src/lib.rs#L149-L151) and its use of its
   [specific weighting methods](https://github.com/paritytech/substrate/blob/master/frame/identity/src/weights.rs#L46-L64)
-- the [`KeyOwnerProofSystem` trait](/rustdocs/latest/frame_support/traits/trait.KeyOwnerProofSystem.html)
+- the [`KeyOwnerProofSystem` trait](https://paritytech.github.io/substrate/master/frame_support/traits/trait.KeyOwnerProofSystem.html)
   [used in `pallet_grandpa`](https://github.com/paritytech/substrate/blob/master/frame/grandpa/src/lib.rs#L106)
 
 ## Resources
 
 - [Pallet coupling](/main-docs/build/pallet-coupling)
-- [Tightly Coupling two pallets](reference/how-to-guides/tight-coupling)
+- [Tightly Coupling two pallets](/reference/how-to-guides/pallet-design/loose-coupling/)

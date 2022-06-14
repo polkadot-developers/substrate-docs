@@ -1,7 +1,6 @@
 ---
 title: "Offchain operations"
 description:
-featured_image:
 keywords:
 ---
 
@@ -32,16 +31,16 @@ they can easily access on-chain state for their computations.
 Off-chain workers have access to extended APIs for communicating with the external world:
 
 - Ability to
-  [submit transactions](/rustdocs/latest/sp_runtime/offchain/trait.TransactionPool.html)
+  [submit transactions](https://paritytech.github.io/substrate/master/sp_runtime/offchain/trait.TransactionPool.html)
   (either signed or unsigned) to the chain to publish computation results.
 - A fully-featured HTTP client allowing the worker to access and fetch data from external services.
 - Access to the local keystore to sign and verify statements or transactions.
 - An additional, local
-  [key-value database](/rustdocs/latest/sp_runtime/offchain/trait.OffchainStorage.html)
+  [key-value database](https://paritytech.github.io/substrate/master/sp_runtime/offchain/trait.OffchainStorage.html)
   shared between all off-chain workers.
 - A secure, local entropy source for random number generation.
 - Access to the node's precise
-  [local time](/rustdocs/latest/sp_runtime/offchain/struct.Timestamp.html).
+  [local time](https://paritytech.github.io/substrate/master/sp_runtime/offchain/struct.Timestamp.html).
 - The ability to sleep and resume work.
 
 Note that the results from off-chain workers are not subject to regular transaction verification. A

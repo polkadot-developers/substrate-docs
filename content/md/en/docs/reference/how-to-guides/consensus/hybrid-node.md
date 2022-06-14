@@ -1,16 +1,17 @@
 ---
 title: Create a hybrid node
 description:
-keywords: consensus
+keywords:
+  - consensus
 ---
 
 This guide demonstrates how to create a Substrate-based node that employs hybrid consensus, using [Sha3 proof of work](../pow) to dictate block authoring and the
-[Grandpa](/rustdocs/latest/sc_finality_grandpa/index.html) finality gadget to provide
+[Grandpa](https://paritytech.github.io/substrate/master/sc_finality_grandpa/index.html) finality gadget to provide
 [deterministic finality](/main-docs/fundamentals/consensus#finality).
 The minimal proof of work consensus lives entirely outside of the runtime.
 
 The Grandpa finality relies on getting its authority sets from the runtime using the
-[Grandpa API](/rustdocs/latest/sp_finality_grandpa/trait.GrandpaApi.html).
+[Grandpa API](https://paritytech.github.io/substrate/master/sp_finality_grandpa/trait.GrandpaApi.html).
 Therefore, you need a runtime that provides this API to successfully compile a node implementing this guide.
 
 ## Use cases
@@ -60,7 +61,7 @@ let pow_block_import = sc_consensus_pow::PowBlockImport::new(
 ## Create an import queue
 
 With the block imports set up, we can proceed to create the import queue. 
-We make it using PoW's [`import_queue` helper function](/rustdocs/latest/sc_consensus_pow/fn.import_queue.html).
+We make it using PoW's [`import_queue` helper function](https://paritytech.github.io/substrate/master/sc_consensus_pow/fn.import_queue.html).
 Notice that it requires the entire block import pipeline which we refer to as `pow_block_import` because PoW is the outermost layer.
 
 ```rust
@@ -104,7 +105,7 @@ task_manager
 
 Grandpa is _not_ CPU intensive, so we use a standard `async` worker to listen to and cast
 Grandpa votes. 
-We begin by creating a Grandpa [`Config`](/rustdocs/latest/sc_finality_grandpa/struct.Config.html):
+We begin by creating a Grandpa [`Config`](https://paritytech.github.io/substrate/master/sc_finality_grandpa/struct.Config.html):
 
 ```rust
 let grandpa_config = sc_finality_grandpa::Config {
@@ -117,7 +118,7 @@ let grandpa_config = sc_finality_grandpa::Config {
 };
 ```
 
-We can then use this config to create an instance of [`GrandpaParams`](/rustdocs/latest/sc_finality_grandpa/struct.GrandpaParams.html).
+We can then use this config to create an instance of [`GrandpaParams`](https://paritytech.github.io/substrate/master/sc_finality_grandpa/struct.GrandpaParams.html).
 
 ```rust
 let grandpa_config = sc_finality_grandpa::GrandpaParams {
@@ -149,7 +150,7 @@ task_manager.spawn_essential_handle().spawn_blocking(
 - [POW Algorithm][pow-rustdocs] trait
 - [`PowBlockimport`][powblockimport-rustdocs]
 - [Inherents][inherents-kb]
-- [powblockimport-rustdocs](/rustdocs/latest/sc_consensus_pow/struct.PowBlockImport.html)
-- [powblockimport-new-rustdocs](/rustdocs/latest/sc_consensus_pow/struct.PowBlockImport.html#method.new_full)
-- [inherents-rustdocs](/rustdocs/latest/sp_inherents/struct.InherentDataProviders.html)
-- [pow-rustdocs](/rustdocs/latest/sc_consensus_pow/trait.PowAlgorithm.html)
+- [powblockimport-rustdocs](https://paritytech.github.io/substrate/master/sc_consensus_pow/struct.PowBlockImport.html)
+- [powblockimport-new-rustdocs](https://paritytech.github.io/substrate/master/sc_consensus_pow/struct.PowBlockImport.html#method.new_full)
+- [inherents-rustdocs](https://paritytech.github.io/substrate/master/sp_inherents/index.html)
+- [pow-rustdocs](https://paritytech.github.io/substrate/master/sc_consensus_pow/trait.PowAlgorithm.html)

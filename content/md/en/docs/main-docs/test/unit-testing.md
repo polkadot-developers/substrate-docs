@@ -56,7 +56,7 @@ By assigning `pallet_balances::Balance` and `frame_system::AccountId` to `u64`, 
 
 ## Test storage in a mock runtime
 
-The [`sp-io`](/rustdocs/latest/sp_io/index.html) crate exposes a [`TestExternalities`](https://paritytech.github.io/substrate/master/sp_io/type.TestExternalities.html) implementation that you can use to test storage in a mock environment.
+The [`sp-io`](https://paritytech.github.io/substrate/master/sp_io/index.html) crate exposes a [`TestExternalities`](https://paritytech.github.io/substrate/master/sp_io/type.TestExternalities.html) implementation that you can use to test storage in a mock environment.
 It is the type alias for an in-memory, hashmap-based externalities implementation in [`substrate_state_machine`](https://paritytech.github.io/substrate/master/sp_state_machine/index.html) referred to as [`TestExternalities`](https://paritytech.github.io/substrate/master/sp_state_machine/struct.TestExternalities.html).
 
 The following example demonstrates defining a struct called `ExtBuilder` to build an instance of `TestExternalities`, and setting the block number to 1.
@@ -172,4 +172,6 @@ fn my_runtime_test() {
 
 ## Where to go next
 
-- [Set up tests for your pallet](/reference/how-to-guides/testing/basic-tests/)
+<!-- TODO NAV.YAML -->
+<!-- add these back -->
+<!-- - [Set up tests for your pallet](/reference/how-to-guides/testing/) -->

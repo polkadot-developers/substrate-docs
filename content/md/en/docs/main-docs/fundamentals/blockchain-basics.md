@@ -1,15 +1,15 @@
 ---
 title: Blockchain basics
 description: Introduces common blockchain concepts, components, and terminology.
-featured_image:
+keywords:
 ---
 
 A blockchain is a decentralized ledger that records transactions in a sequence of encrypted blocks that are immutable and distributed across a network of connected computers.
 
 In a blockchain network, individual computers—called nodes—communicate with each other to form a decentralized peer-to-peer (P2P) network.
-There is no central authority that controls the network and each node stores a copy of the  blocks that make up the canonical chain.
+There is no central authority that controls the network and each node stores a copy of the blocks that make up the canonical chain.
 
-In most cases, users interact with a blockchain by initiating transaction requests. 
+In most cases, users interact with a blockchain by initiating transaction requests.
 The transactions are gossiped to other nodes on the network and assembled into a block by a block author.
 To ensure the security of the data on the chain and the ongoing progress of the chain, the nodes use some form of consensus to agree on the state of the data in each block and the order in which transactions are processed.
 
@@ -31,11 +31,11 @@ Similarly, the Ethereum repository was forked to create Quorum, POA Network, Kod
 However, most blockchain platforms are not designed to allow for modification or customization.
 As a result, building a new blockchain by forking has serious limitations, including limitations such as scalability that are inherent in the originating blockchain code.
 Before you explore how Substrate alleviates many of the limitations associated with other blockchain projects, it's important to understand some of the common properties that all blockchains share.
-By learning about how most blockchains operate, you'll be better prepared to see how Substrate provides alternatives and capabilities for building a blockchain best suited to your needs.  
+By learning about how most blockchains operate, you'll be better prepared to see how Substrate provides alternatives and capabilities for building a blockchain best suited to your needs.
 
 ## State transitions and conflicts
 
-A blockchain is essentially a [state machine](https://en.wikipedia.org/wiki/Finite-state_machine). 
+A blockchain is essentially a [state machine](https://en.wikipedia.org/wiki/Finite-state_machine).
 At any point in time, the blockchain has a current internal state.
 As inbound transactions are executed, they result in changes to state so the blockchain must transition from its current state to a new state.
 However, there can be multiple valid transitions that would result in different future states, and the blockchain must select a single state transition that can be agreed upon.
@@ -92,15 +92,15 @@ You can explore the following resources to learn more.
 
 #### Tell me
 
-* [Fundamentals](main-docs/fundamentals/)
-* [Why Substrate?](/main-docs/fundamentals/why-substrate/)
-* [Architecture](main-docs/fundamentals/architecture/)
-* [Networks and blockchains](main-docs/fundamentals/node-and-network-types/)
+- [Fundamentals](main-docs/fundamentals/)
+- [Why Substrate?](/main-docs/fundamentals/why-substrate/)
+- [Architecture](main-docs/fundamentals/architecture/)
+- [Networks and blockchains](main-docs/fundamentals/node-and-network-types/)
 
 #### Guide me
 
-* [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
-* [Simulate a network](/tutorials/get-started/simulate-network/)
-* [Add trusted validators](/tutorials/get-started/trusted-network/)
+- [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
+- [Simulate a network](/tutorials/get-started/simulate-network/)
+- [Add trusted nodes](/tutorials/get-started/trusted-network/)
 
-If you prefer to explore code directly, you can start building in the Developer Playground and consult the API reference to get details about the Rust crates you use.
+If you prefer to explore code directly, you can start building in the [Substrate Playground](https://docs.substrate.io/playground/) and consult the API reference to get details about the Rust crates you use.

@@ -1,98 +1,143 @@
 ---
 title: subxt
-section: reference
+description:
 keywords:
 ---
 
-A library to submit extrinsics to a Substrate node via RPC.
-[Go to documentation](https://github.com/paritytech/substrate-subxt).
+`subxt` is a CLI utility to generate a client API from the metadata of a Substrate node.
+This tool was originally designed for the [`subxt` library](https://github.com/paritytech/subxt) to build the runtime API from the metadata of a target node. 
+It can be used as a standalone tool to download the metadata or generate the API for the runtime of any node that uses metadata V14 and above. 
 
-Rough notes [WIP]:
+## Installation 
 
-- What does subxt do?
-    - Download the metadata of a substrate node using subxt-cli
-    - Generates runtime API from the downloaded metadata 
+To install `subxt`:
 
+1. Open a terminal shell, if necessary.
+1. Verify that you have the Rust compiler and toolchain, if necessary.
+1. Download the required packages with the following command: 
 
-Architecture / HL :
-- ClientBuilder core 
-- What the relationship between tokio and jsonrpsee?
-- How is subxt different from https://github.com/scs/substrate-api-client/ ?
-    - without TypeInfo it's likely stuck in the same way subxt was for a long time: it can work but has to be recompiled for each runtime upgrade.
+    `cargo install subxt`
 
-- What's the difference between using metadata at compile time to generate the API and using metadata at runtime to constuct exstrinsic indices and decode events?
+## Basic command usage
 
-## Reference structure
+The basic syntax for running `subxt` commands is:
 
-- what is it used for?
-- any requirements? 
-- what options/parameters/arguments does it support? 
-- command-line examples input/output?
+`subxt <SUBCOMMAND>`
 
+In order to use the commands exposed by `subxt`, you must either be running a node locally or specify the chain you're targeting.
+If the metadata is already provided, it is possible to use the `codegen` subcommand without running a node.
 
-Notes:
+### Flags
 
-- topic is metadata and how it relates to subxt
-- what is the metadata problem?
-- problem: everyone who develops clients run into this issue: 1. only javascript to interact to substrate and 2. if you want to have multiple substrate chains you need to maintain a registry of types on the client
-- solving the problem of clients needing to maintain their own types. 
-- Solution is that types are moved to the metadata itself
+You can use the following optional flags with the `subxt` command.
 
-- subxt is the rust client solution
-- purely based on the metadata
+| Flag | Description
+| ------- | -----------
+| -h, --help | Displays usage information. 
+| -V, --version | Displays version information.
 
-**Prelude**
-Stack:
-- pallets used in runtimes
-- they are exposed in frame and metadata
-- used in rpcs responses
-- which uses scale codec from crate
-- that type information is extracted or turned into presentable form with scale-info crate which is able to describe types and derive descriptions for all the types below the stack 
+### Subcommands
 
-This is preparatory work for tools like subxt to be possible to write.
+You can use the following subcommands with the `subxt` command. 
+For reference information and examples that illustrate using `subxt` subcommands, select an appropriate command.
 
-**What's the lifecycle of a Substrate type?**
+| Command | Description
+| ------- | -----------
+| [`codegen`](#codegen) | Generate runtime API client code from metadata.  
+| [`metadata`](#metadata) | Download metadata from a Substrate node, for use with `subxt` codegen.
 
-Users / use:
-- everyone that uses polkadot js could and should be able to use subxt 
-- it hasn't been possible to do something robust worth investing outside of the Javascript land.
-- This is a tool to be used outside the Wasm context.
-- Anyone who's a rust client developer
-- Tool for lower level applications, maybe non-browser GUIs
-- Benchmarking
-- CLI in rust
-- Interlay is using it 
-- Phala is using it too 
-- SGX hardware use cases
-- tinkerer hobbyist who prefers Rust
-- devops tool / infrastructure stuff
-- also runtime engineers
+### Output
 
-Whats missing?
-- event subscription api needs some work
-- it used to be opinionated. It should be clear it'll only return an event for an extrinsics. It does the filtering for you. 
+Depending on how you specify the subcommand, the output from `subxt` displays some or all of the following information:
 
-Pain points:
-- Need to upgrade firmware each time a chain changes (for hardware wallets)
-- Previously you needed to recompile substrate every time
+| This field | Contains
+| ---------- | ----------
+| Metadata | A file with the metadata of a target chain.
+| API | A file with the API of the target chain.
 
+### Examples
 
-Nice to have:
-- Not no_std compatible because json_rpsee
+To display version information for the `subxt` program, run the following command:
 
-See Rust docs
+`subxt --version`
 
-Macros from partiy-scale-codec derive all
+To display usage information for the `subxt metadata` command, run the following command:
 
-Subxt cli:
-- encourage usability
-- used to download the metadata - creates a json serialized metadata file
-- used to generate the api 
-- subxt macro uses the metadata file to generate the api
-    - It generates a bunch of types and an api in order to submit txns and read from storage
+`subxt metadata --help`
 
-Requirements:
-- connects to the rpc of a node 
-- node needs to be running rpc
+## codegen
 
-What other things can you put in the module?
+Use the `subxt codegen` command to generate an interface for some target Substrate node.
+
+This could be useful for debugging or modifying a node's API to meet certain hardware constraints.
+
+#### Basic usage
+
+`subxt codegen [OPTIONS]`
+
+#### Flags
+
+You can use the following optional flags with the `subxt codegen` command.
+
+| Flag   | Description
+| ------ | -----------
+| `-h, --help`  | Displays usage information.
+| `-V, --version` | Prints version information.
+
+#### Options
+
+You can use the following command-line options with the `subxt codegen` command.
+
+| Option   | Description
+| -------- | -----------
+| `-f, --file <file>` | The path to the encoded metadata file.
+| `--url <url>` | The url of the Substrate node to query for metadata for codegen.
+
+#### Examples
+
+To format the generated API and print it to the terminal:
+
+`subxt codegen | rustfmt`
+
+To save the generated API in a file:
+
+`subxt codegen | rustfmt --edition=2018 > api.rs`
+## metadata
+
+Use the `subxt metadata` command to get the metadata of some target Substrate node.
+
+#### Basic usage
+
+`subxt metadata [OPTIONS]`
+
+#### Flags
+
+You can use the following optional flags with the `subxt metadata` command.
+
+| Flag   | Description
+| ------ | -----------
+| `-h, --help`  | Displays usage information.
+| `-V, --version` | Prints version information.
+
+#### Options
+
+You can use the following command-line options with the `subxt metadata` command.
+
+| Option   | Description
+| -------- | -----------
+| `-f, --format <format>` | The format of the metadata to display: `json`, `hex` or `bytes` [default: json].
+| `--url <url>` | The url of the Substrate node to query for metadata [default: http://localhost:9933].
+
+#### Examples
+
+To save the metadata to a file from a local node in bytes:
+
+`subxt metadata -f bytes > metadata.scale`
+
+To save the metadata from the Rococo network to a JSON file:
+
+`subxt metadata --url https://rococo-rpc.polkadot.io:443 > metadata.json`
+
+To query type `125` from the array of types in the metadata and output in JSON: 
+
+`subxt metadata --format json | jq '.[1].V14.types.types | .[125]'`

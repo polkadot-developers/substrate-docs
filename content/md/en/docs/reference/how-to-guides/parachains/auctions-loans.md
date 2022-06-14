@@ -29,10 +29,10 @@ You will need:
   This integer will be greater than `2000`, as `0-999` are reserved for [system parachains](https://wiki.polkadot.network/docs/learn-common-goods#system-level-chains) and `1000-1999` are reserved for [public utility parachains](https://wiki.polkadot.network/docs/learn-common-goods#public-utility-chains).
 
 - Your parachain genesis state.
-  Refer to the genesis state export process in the [Cumulus tutorial](/tutorials/connect-other-chains/relay-chain).
+  Refer to the genesis state export process in the [Cumulus tutorial](/tutorials/connect-other-chains/relay-chain/).
 
 - Your parachain Wasm runtime.
-  Refer to the Wasm runtime export process in the [Cumulus tutorial](/tutorials/connect-other-chains/relay-chain).
+  Refer to the Wasm runtime export process in the [Cumulus tutorial](/tutorials/connect-other-chains/relay-chain/).
 
 The procedure will be as followed:
 

@@ -1,6 +1,6 @@
 ---
 title: memory-profiler
-section: reference
+description: Command-line reference information for the memory-profiler program.
 keywords:
 ---
 

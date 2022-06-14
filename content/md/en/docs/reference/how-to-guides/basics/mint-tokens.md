@@ -1,7 +1,6 @@
 ---
 title: Basic token mint
 description: Demonstrates how to create a simple token mint pallet.
-
 keywords:
   - basics
   - beginner
@@ -9,9 +8,9 @@ keywords:
   - tokens
 ---
 
-This guide demonstrates how you can mint a token by leveraging the primitive capabilities of a [StorageMap](/rustdocs/latest/frame_support/storage/trait.StorageMap.html).
+This guide demonstrates how you can mint a token by leveraging the primitive capabilities of a [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html).
 In this guide, the `StorageMap` primitive uses the [blake2_128_concat](/main-docs/build/runtime-storage#hashing-algorithms) `hasher` to map balances to account IDs.
-This approach is similar to how the [Balances](/rustdocs/latest/pallet_balances/index.html) pallet makes use of it to store to keep track of account balances.
+This approach is similar to how the [Balances](https://paritytech.github.io/substrate/master/pallet_balances/index.html) pallet makes use of it to store to keep track of account balances.
 
 You should note that this guide is only intended to illustrate a simple approach to creating tokens in Substrate.
 This approach _is not_ a recommended best practice.
@@ -23,7 +22,7 @@ You should keep in mind the following limitations and assumptions used in this g
   Learn more about weight configuration in [Transactions, weights, and fees](/main-docs/build/tx-weights-fees).
 - **Origins.** This guide assumes that the origin will always be the `sudo` user.
   Origins are a powerful capability in Substrate.
-  Learn more about how they work in [Privileged calls and origins](/main-docs/fundamentals/origins/).
+  Learn more about how they work in [Privileged calls and origins](/main-docs/build/origins/).
 
 See the [Examples section](#examples) for practical implementations of this guide.
 
@@ -43,14 +42,12 @@ Give any account the ability to create a token supply in exchange for native tok
 
 ## Set up the Config trait
 
-Using the node template as a starting point, specify the types your pallet depends on and the events it emits:
+Using the node template as a starting point, specify the types your pallet depends on and the [`Events`](/main-docs/build/events-errors/) it emits:
 
 ```rust
-// The configuration trait
-pub trait Config: system::Config {
-	type Event: From<Event<Self>> + Into<<Self as frame_system::Config>::Event>;
-	type Balance: Member + Parameter + AtLeast32BitUnsigned + Default + Copy;
-}
+
+// TODO - this block was malformed 
+
 /* --snip-- */
 pub enum Event<T: Config> {
 	MintedNewSupply(T::AccountId),
@@ -165,7 +162,5 @@ See [Import a pallet](/reference/how-to-guides/basics/pallet-integration) if you
 
 ## Related material
 
-- [Configure a runtime constant](/reference/how-to-guides/runtime-constants)
+- [Configure a runtime constant](/reference/how-to-guides/basics/runtime-constants/)
 - [Deposit event method](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.deposit_event)
-
-<!--[events-kb]: /v3/runtime/events-and-errors-->

@@ -1,7 +1,10 @@
 ---
 title: FRAME pallets
 description:
-keywords: Frame, pallets, API
+keywords:
+  - Frame
+  - pallets
+  - API
 ---
 
 The FRAME development environment provides modules—called pallets—and support libraries that you can use, modify, and extend to build the runtime logic to suit the needs of your blockchain.
@@ -85,4 +88,4 @@ The following pallets provide features for parachain development.
 
 ## Additional information
 
-For detailed information about any pallet, refer to the [Rust-generated API](https://docs.substrate.io/rustdocs/) documentation or the source code for the individual pallet.
+For detailed information about any pallet, refer to the [Rust-generated API](https://paritytech.github.io/substrate/master/) documentation or the source code for the individual pallet.

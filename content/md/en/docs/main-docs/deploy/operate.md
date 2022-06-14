@@ -10,7 +10,7 @@ DevOps concerns
 
 Network maintenance
 
-Sychronizing with Polkadot updates
+Synchronizing with Polkadot updates
 
 
 Keeping up with Substrate metadata updates.

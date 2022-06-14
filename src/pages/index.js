@@ -89,7 +89,7 @@ export default function Home() {
             <DocCard
               title={`How-to Guides`}
               text={`The Substrate how-to guides have everything you need to produce robust Substrate based blockchains. From beginner to expert, you can use them flexibly to suit your current needs.`}
-              link={`/how-to-guides/`}
+              link={`/reference/how-to-guides/`}
               cta={`Learn and contribute`}
               iconName={`htgIcon`}
               animationDelay={200}

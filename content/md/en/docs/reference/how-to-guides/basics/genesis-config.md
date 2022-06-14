@@ -50,7 +50,7 @@ The `GenesisConfig` code should go after your storage items.
    }
    ```
 
-1. Using the `#[pallet::genesis_build]` attribute, implement the [`GenesisBuild`](/rustdocs/latest/frame_support/traits/trait.GenesisBuild.html) trait.
+1. Using the `#[pallet::genesis_build]` attribute, implement the [`GenesisBuild`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.GenesisBuild.html) trait.
 
    ```rust
    #[pallet::genesis_build]
