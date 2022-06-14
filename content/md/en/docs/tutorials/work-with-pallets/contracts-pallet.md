@@ -21,7 +21,7 @@ Before starting this tutorial, verify the following:
 
 - You have downloaded and installed the
   [Substrate front-end template](https://github.com/substrate-developer-hub/substrate-node-template/tree/latest) as described in 
-  [Buiild a local blockchain](/tutorials/get-started/).
+  [Buiild a local blockchain](/tutorials/get-started/build-local-blockchain/).
 
 ## Add the pallet dependencies
 
@@ -440,7 +440,7 @@ To start the local node:
    yarn start
    ```
 
-1. Open http://localhost:8000/ in a browser to view the front-end template.
+1. Open `http://localhost:8000/` in a browser to view the front-end template.
 
 1. In the Pallet Interactor component, verify that Extrinsic is selected.
 

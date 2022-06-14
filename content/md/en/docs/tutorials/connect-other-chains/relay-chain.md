@@ -134,7 +134,7 @@ If the help page is printed, you have succeeded in building a Cumulus-based para
 
 ## Relay chain specification
 
-You will need a [chain specification](/main-docs/build/chain-specs)) for your relay chain network.
+You will need a [chain specification](/main-docs/build/chain-spec/)) for your relay chain network.
 
 Always have one or more relay chain validator nodes running than the total connected parachains. 
 For example, if you want to connect two parachains, run three or more relay chain validator nodes.
@@ -146,8 +146,8 @@ Whichever chain spec file you choose to use we will refer to the file simply as 
 We have included a two-validator relay chain with Alice and Bob as authorities chan spec file in this tutorial that you can use **without modification** for a local test network.
 This is useful for registering a **single** parachain:
 
-- [_Plain_ `rococo-local` **relay** chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-plain.json)
-- [_Raw_ `rococo-local` **relay** chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json)
+- [_Plain_ `rococo-local` **relay** chain spec](/assets/tutorials/cumulus/chain-spec/rococo-custom-2-plain.json)
+- [_Raw_ `rococo-local` **relay** chain spec](/assets/tutorials/cumulus/chain-spec/rococo-custom-2-raw.json)
 
 Plain chain spec files are in a more human readable and modifiable format for your inspection.
 You will need to convert it to a SCALE encoded **raw** chain spec to use when starting your nodes.
@@ -158,7 +158,7 @@ The above raw chain specs were created according to the steps in the [create you
 ## Start your relay chain
 
 Before we can attach any cumulus-based parachains, we need to launch a relay chain for them to connect to.
-This section describes in detail how to start both nodes using the above [two-validator raw chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json) as well as the general instructions for starting additional nodes.
+This section describes in detail how to start both nodes using the above [two-validator raw chain spec](/assets/tutorials/cumulus/chain-spec/rococo-custom-2-raw.json) as well as the general instructions for starting additional nodes.
 
 ### Start the `alice` validator
 
@@ -205,7 +205,7 @@ This flag is not strictly necessary if you are running the entire network on a s
 
 ### Starting additional validators (optional)
 
-If you are using the [two-validator raw chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json), you do not need to start additional nodes, but others may need to start more nodes.
+If you are using the [two-validator raw chain spec](/assets/tutorials/cumulus/chain-spec/rococo-custom-2-raw.json), you do not need to start additional nodes, but others may need to start more nodes.
 Again, this command is entirely analogous.
 You just need to make sure that nodes on the same local machine do not have conflicting ports or base paths.
 
@@ -222,6 +222,6 @@ You just need to make sure that nodes on the same local machine do not have conf
 
 ## Custom relay chain specifications
 
-Optionally, explore the [how-to guide on configuring a custom chain spec](/reference/how-to-guides/basics/custom-chain-spec) for instructions to tweak the provided [plain chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-plain.json) for addition of more validators without modification of Polkadot's source code.
+Optionally, explore the [how-to guide on configuring a custom chain spec](/reference/how-to-guides/basics/custom-chainspec) for instructions to tweak the provided [plain chain spec](/assets/tutorials/cumulus/chain-spec/rococo-custom-2-plain.json) for addition of more validators without modification of Polkadot's source code.
 
 For this tutorial, your final chain spec filename **must** start with `rococo` or the node will not know what runtime logic to include.

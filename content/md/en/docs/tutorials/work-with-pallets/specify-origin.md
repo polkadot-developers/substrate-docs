@@ -110,7 +110,7 @@ Because the call requires the `Root` origin, an error is returned.
 ![`BadOrigin` Error](/media/images/docs/tutorials/specify-origin/kill-name-bad-origin.png)
 
 Even though the function call was successfully dispatched, the `BadOrigin` error is emitted and displayed in the Events pane.
-Alice's account is charged a fee for the dispatch, but there aren't any state changes because the Nicks pallet follows the important `verify-first-write-last` pattern.
+Alice's account is charged a fee for the dispatch, but there aren't any state changes because the Nicks pallet follows the important [Verify first, write-last](/main-docs/build/runtime-storage#verify-first-write-last) pattern.
 
 If you invoke the `killName` function by clicking **SUDO**, the call is dispatched by the `Root` origin.
 
@@ -136,8 +136,8 @@ Here are some other things you may want to try:
 
 ## Next steps
 
-- We have [plenty of tutorials](/tutorials) to showcase Substrate development concepts and techniques.
-- For more information about runtime development tips and patterns, refer to our [How-to Guides](/reference/how-to-guides).
+- We have [plenty of tutorials](/tutorials/) to showcase Substrate development concepts and techniques.
+- For more information about runtime development tips and patterns, refer to the [How-to quick reference guides](/reference/how-to-guides/).
 - For a bare FRAME pallet with detailed comments about what you can access within FRAME, see [this example in `substrate`](https://github.com/paritytech/substrate/tree/master/frame/examples/basic).
 
 ### References

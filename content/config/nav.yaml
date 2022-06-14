@@ -202,8 +202,8 @@ reference:
           url: /reference/command-line-tools/sidecar/
         - title: srtool
           url: /reference/command-line-tools/srtool/
-        - title: sub-flood
-          url: /reference/command-line-tools/sub-flood/
+        - title: subflood
+          url: /reference/command-line-tools/subflood/
         - title: subkey
           url: /reference/command-line-tools/subkey/
         - title: subxt
@@ -231,6 +231,8 @@ reference:
           #url: /reference/how-to-guides/basics/genesis-config/
         #- title: Chainspec
           #url: /reference/how-to-guides/basics/custom-chainspec/
+        #- title: Storage migrations
+          #url: /reference/how-to-guides/basics/storage-migrations/
         #- title: Constants
           #url: /reference/how-to-guides/runtime-constants/
         #- title: Pallet design
@@ -239,8 +241,6 @@ reference:
           #url: /reference/how-to-guides/weights/
         #- title: Testing
           #url: /reference/how-to-guides/testing/
-        #- title: Storage migrations
-          #url: /reference/how-to-guides/storage-migrations/
         #- title: Basic token mint
           #url: /reference/how-to-guides/basics/mint-tokens
         #- title: Consensus

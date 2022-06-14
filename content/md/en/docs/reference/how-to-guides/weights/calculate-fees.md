@@ -94,12 +94,10 @@ impl pallet_transaction_payment::Config for Runtime {
 
 ## Related material
 
-- [Add benchmarking to your runtime](/reference/how-to-guides/weights/add-benchmarking)
-- [Use benchmarked weights in your pallet](/reference/how-to-guides/weights/use-benchmark-weights)
+- [Add benchmarking to your runtime](/reference/how-to-guides/weights/add-benchmarks/)
+- [Use benchmarked weights in your pallet](/reference/how-to-guides/weights/custom-weights)
 - [Weights](/reference/glossary#weight)
 - [Transaction Weights and Fees](/main-docs/build/tx-weights-fees)
 - [`WeightToFeeCoefficients`](https://paritytech.github.io/substrate/master/frame_support/weights/type.WeightToFeeCoefficients.html)
 - [`WeightToFeeCoefficient`](https://paritytech.github.io/substrate/master/frame_support/weights/type.WeightToFeeCoefficient.html)
 - [`WeightToFeePolynomial`](https://paritytech.github.io/substrate/master/frame_support/weights/trait.WeightToFeePolynomial.html)
-
-[transaction-frame]: https://github.com/paritytech/substrate/tree/master/frame/transaction-payment

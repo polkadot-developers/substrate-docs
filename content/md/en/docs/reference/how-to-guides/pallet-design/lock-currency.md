@@ -35,7 +35,7 @@ The methods from [`LockableCurrency`](https://paritytech.github.io/substrate/mas
 
 1. Declare the `LockIdentifier` constant.
 
-   To use `LockableCurrency`, you must declare a [`LockIdentifier`][lockidentifier-rustdocs].
+   To use `LockableCurrency`, you must declare a `LockIdentifier`.
    Given that it requires a `[u8; 8]` type, this identifier must be eight characters long.
 
    ```rust
@@ -54,7 +54,7 @@ Defining your custom configuration type will allow your pallet to inherit the me
    	type StakeCurrency: LockableCurrency<Self::AccountId, Moment = Self::BlockNumber>;
    ```
 
-1. Define a type to satisfy the associated type [`Balance`](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html#associatedtype.Balance) from the [`Currency`](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html#) trait we're using:
+1. Define a type to satisfy the associated type [`Balance`](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html#associatedtype.Balance) from the [`Currency`](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html) trait we're using:
 
    ```rust
    	type BalanceOf<T> =
@@ -161,9 +161,6 @@ The required methods are:
 
 ## Related material
 
-- [Currency trait](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Currency.html)
-- [LockableCurrency][lockable-rustdocs]
-- [LockIdentifier][lockidentifier-rustdocs]
-
-[lockable-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/traits/trait.LockableCurrency.html
-[lockidentifier-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/traits/type.LockIdentifier.html
+- [Currency trait](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html)
+- [LockableCurrency](https://paritytech.github.io/substrate/master/frame_support/traits/trait.LockableCurrency.html)
+- [LockIdentifier](https://paritytech.github.io/substrate/master/frame_support/traits/type.LockIdentifier.html)

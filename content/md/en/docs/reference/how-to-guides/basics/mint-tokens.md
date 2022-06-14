@@ -18,11 +18,10 @@ You should keep in mind the following limitations and assumptions used in this g
 - **Safety.** The `mint` function takes in an amount to mint which is *not good practice* because it implies that users have unlimited access to writing to storage.
   Safer approaches include using a `GenesisConfig` or fixing a predetermined maximum value in runtime.
 - **Weights.** This guide uses an arbitrary weight of 10_000 in the code snippets.
-  Learn more about weight configuration in [Calculate transaction weights](/reference/how-to-guides/basics/calc-weights).
+  Learn more about weight configuration in [Transactions, weights, and fees](/main-docs/build/tx-weights-fees).
 - **Origins.** This guide assumes that the origin will always be the `sudo` user.
   Origins are a powerful capability in Substrate.
-  Learn more about how they work in [Privileged calls and origins](/main-docs/fundamentals/origins).
-
+  Learn more about how they work in [Privileged calls and origins](/main-docs/fundamentals/origins/).
 
 See the [Examples section](#examples) for practical implementations of this guide.
 
@@ -44,9 +43,10 @@ Give any account the ability to create a token supply in exchange for native tok
 
 Using the node template as a starting point, specify the types your pallet depends on and the [`Events`](/main-docs/build/events-errors/) it emits:
 
-```rust][events-kbm::Config>::Event>;
-	type Balance: Member + Parameter + AtLeast32BitUnsigned + Default + Copy;
-}
+```rust
+
+// TODO - this block was malformed 
+
 /* --snip-- */
 pub enum Event<T: Config> {
 	MintedNewSupply(T::AccountId),
@@ -152,7 +152,7 @@ If `checked_sub()` returns `None`, the operation caused an overflow and throws a
 
 ## Add your pallet to the runtime
 
-See [Import a pallet](../pallet-integration) if you’re not yet familiar with this procedure.
+See [Import a pallet](/reference/how-to-guides/basics/pallet-integration) if you’re not yet familiar with this procedure.
   
 ## Examples
 
@@ -161,5 +161,5 @@ See [Import a pallet](../pallet-integration) if you’re not yet familiar with t
 
 ## Related material
 
-- [Configure a runtime constant](../configurable-constants)
+- [Configure a runtime constant](/reference/how-to-guides/runtime-constants)
 - [Deposit event method](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.deposit_event)

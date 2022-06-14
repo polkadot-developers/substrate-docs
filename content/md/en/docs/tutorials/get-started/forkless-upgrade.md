@@ -314,4 +314,6 @@ app to query the `existentialDeposit` constant value from the Balances pallet.
 ## Where to go next
 
 - [Storage migrations](//main-docs/build/upgrade#storage-migrations)
-- [How-to: Storage migration](/reference/how-to-guides/storage-migrations/basic-migration)
+<!--
+- [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/)
+-->

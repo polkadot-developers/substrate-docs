@@ -53,5 +53,5 @@ Use the [template pallet](https://github.com/substrate-developer-hub/substrate-n
 
 ## Resources
 
-- [Pallet Ccupling](/main-docs/build/pallet-coupling)
-- [Loosely Coupling two pallets](../loose-coupling)
+- [Pallet coupling](/main-docs/build/pallet-coupling)
+- [Loosely coupling two pallets](/reference/how-to-guides/loose-coupling)

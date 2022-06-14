@@ -80,7 +80,7 @@ This guide illustrates:
 
 To add an external pallet, you use a similar method to the one you used with the local pallet, but you must include all of the types your pallet exposes.
 You must also include the relevant parameter types and constants. 
-For examples of how to declare parameters and constants, see [`pallet_timestamp`][timestamp-frame].
+For examples of how to declare parameters and constants, see [`pallet_timestamp`](https://paritytech.github.io/substrate/master/pallet_timestamp/index.html).
 
 The following is an example of how you would add an external pallet to the  `/runtime/Cargo.toml` dependencies if the pallet is hosted on [crates.parity.io](https://crates.parity.io/):
 
@@ -102,14 +102,10 @@ std = [
 ## Examples
 
 - [Template pallet][template-frame]
-- [Timestamp pallet][timestamp-frame]
+- [Timestamp pallet](https://paritytech.github.io/substrate/master/pallet_timestamp/index.html)
 
 ## Related material
 
-- [Mock runtime][mock-runtime]
-- [Timestamp Pallet associated types][timestamp-rustdocs]
+- [Timestamp Pallet associated types](https://paritytech.github.io/substrate/master/pallet_timestamp/index.html)
 - [FRAME `pallet-timestamp`](https://crates.io/crates/pallet-timestamp)
-- [mock-runtime](/main-docs/test/#mock-runtime-environment)
-- [timestamp-frame](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs#L413-L422)
-- [timestamp-rustdocs](https://paritytech.github.io/substrate/master/pallet_timestamp/pallet/trait.Config.html#associated-types)
-- [template-frame](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/pallets/template/src/lib.rs#L1-L107)
+- [Unit test](/main-docs/test/unit-testing)

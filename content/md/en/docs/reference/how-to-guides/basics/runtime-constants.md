@@ -1,5 +1,6 @@
 ---
-title: Configure a Runtime Constant
+title: Configure a runtime constant
+description:
 keywords:
   - basics
   - runtime
@@ -141,9 +142,6 @@ This value, we'll call `SingleValue`, can also be modified using a method called
 
 ## Resources
 
-- [Nick's forkless upgrade tutorial](/tutorials/get-started/forkless-upgrade/)
-- [`Get` from `frame_support`][get-trait-rustdocs]
-- [`#[pallet::extra_constants]` macro][extra-constants-rustdocs]
-
-[get-trait-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/traits/trait.Get.html
-[extra-constants-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional
+- [Forkless upgrade](/tutorials/get-started/forkless-upgrade/)
+- [Get trait](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Get.html)
+- [Extra_constants](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional)

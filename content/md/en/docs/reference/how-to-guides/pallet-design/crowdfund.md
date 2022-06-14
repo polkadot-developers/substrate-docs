@@ -10,7 +10,7 @@ keywords:
 
 This guide shows you how to build a pallet that controls multiple token accounts and stores data in child storage. This structure is useful for building crowdfunding apps.
 
-For this guide, we will focus on the use of a child storage trie, which allows any contributor to prove that they contributed using a small Merkle Proof.
+For this guide, we will focus on the use of a child storage trie, which allows any contributor to prove that they contributed using a small Merkle proof.
 Being able to make a simple proof of contribution can help users claim rewards for participating in a crowdloan.
 
 In this guide, you'll see how to create a new child trie for each different crowdfund campaign.
@@ -154,14 +154,14 @@ Create a function that provides the pallet's dispatchables with the account ID f
 ## Write your dispatchable functions
 
 The follow steps outline how to write the dispatchables for this pallet. After various checks within the dispatchables' logic, each function alters the `Funds<T>` storage map using
-its [associated methods][storage-map-rustdocs]. Our pallet's `create` function also makes use of the `FundInfo` struct created in [step 2](#2-create-a-custom-metadata-struct).
+its [associated methods][storage-map-rustdocs]. Our pallet's `create` function also makes use of the `FundInfo` struct created in step 2.
 
 1. Create a new fund
 
    `fn create`:
 
    - create an imbalance variable using [`T::Currency::withdraw`][imb-var-rustdocs]
-   - update the `Funds` storage item using the `FundInfo` struct from [step 2](#2-create-a-custom-metadata-struct)
+   - update the `Funds` storage item using the `FundInfo` struct from step 2
    - deposit a `Created` event
 
 1. Contribute to an existing fund
@@ -210,7 +210,6 @@ its [associated methods][storage-map-rustdocs]. Our pallet's `create` function a
 - [`extend_from_slice`](https://paritytech.github.io/substrate/master/frame_support/dispatch/struct.Vec.html#method.extend_from_slice)
 - [`using_encode`](https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/trait.Encode.html#method.using_encoded)
 
-[storage-value-struct-htg]: /storage-value-struct
 [storage-map-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/struct.StorageMap.html
 [imb-var-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/traits/trait.Currency.html#tymethod.withdraw
 [resolve-into-existing-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/traits/trait.Currency.html#method.resolve_into_existing

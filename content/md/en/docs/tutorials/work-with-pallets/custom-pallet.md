@@ -501,7 +501,7 @@ This React component enables you to expose the proof-of-existence capabilities a
    yarn start
    ```
 
-This will open up a new tab with the front-end serving at **http://localhost:8000**.
+This will open up a new tab with the front-end serving at `http://localhost:8000`.
 
 ### Submit a proof
 
