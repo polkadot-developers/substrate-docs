@@ -59,17 +59,6 @@ export default function DocsSinglePage({ data, pageContext }) {
   const nextPage = nextPrevSlugs[index + 1];
   const previousPage = nextPrevSlugs[index - 1];
 
-  // nextPrevItems.forEach((element, index) => {
-  //   if (element === pagePath) {
-  //     // const prev = element[index - 1];
-  //     // const next = element[index + 1];
-  //     // console.log(element + ' ||| here is the index =>>> ' + index);
-  //     // console.log('PREVIOUS ===>>> ' + prev);
-  //     // console.log('NEXT ===>>> ' + next);
-  //   }
-  // });
-  //console.log(Object.values(nextprevitems));
-
   return (
     <Layout>
       <SEO title={title} />

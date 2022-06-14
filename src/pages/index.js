@@ -4,6 +4,7 @@ import { StaticImage } from 'gatsby-plugin-image';
 import React from 'react';
 import Lottie from 'react-lottie';
 
+import Banner from '..//components/site/Banner';
 import Icon from '../components/default/Icon';
 import { Link } from '../components/default/Link';
 import Section from '../components/layout/Section';
@@ -20,6 +21,7 @@ import * as animationData from '../images/animations/dev-hero.json';
 export default function Home() {
   return (
     <Layout mode="full">
+      <Banner />
       <SEO title="Home" />
       <Section styles="mt-12">
         <div className="flex flex-col md:flex-row md:items-center doc-hero">
