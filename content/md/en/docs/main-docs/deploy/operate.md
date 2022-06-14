@@ -1,6 +1,17 @@
-# Operate
+---
+title: Operate
+description:
+keywords:
+---
 
 Maintain the blockchain you have deployed
+
+DevOps concerns
+
+Network maintenance
+
+Sychronizing with Polkadot updates
+
 
 Keeping up with Substrate metadata updates.
 

@@ -23,7 +23,7 @@ Setting a weight that accurately reflects the underlying computation and storage
 At a high level, benchmarking requires you to perform the following steps:
 
 * Write custom benchmarking logic that executes a specific code path for a function.
-* Execute the benchmark logic in the Wasm execution environment on a specific set of hardware and with a specific runtime configuration.
+* Execute the benchmark logic in the Wasm execution environment on specific hardware and with a specific runtime configuration.
 * Execute the benchmark logic across a controlled range of possible values that might affect the result of the benchmark.
 * Execute the benchmark multiple times at each point in order to isolate and remove outliers.
 * Use the results of the benchmark to create a linear model of the function across its components.
