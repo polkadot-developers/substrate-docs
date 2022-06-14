@@ -50,3 +50,11 @@ You'll learn how to:
 - Store, increment, and retrieve simple values using a smart contract.
 - Use maps to store and retrieve values in a smart contract.
 - Build a smart contract for transferring ERC-20 tokens.
+
+## Run a Light Client in your browser
+
+The **Run a Light Client in your browser** tutorials show how you can bypass the need to connect to an RPC node and push decentralization even further. You'll learn how to:
+
+- Download the browser extension
+- Connect with a well-known relay-chain
+- Connect with a parachain

@@ -174,6 +174,15 @@ tutorials:
           url: /tutorials/smart-contracts/erc20-token/
         - title: Troubleshoot smart contracts
           url: /tutorials/smart-contracts/sc-common-issues/
+    - title: Run a Light Client in your browser
+      url: /tutorials/light-clients/
+      pages:
+        - title: Download the browser extension
+          url: /tutorials/light-clients/browser-extension/
+        - title: Connect with a well-known relay-chain
+          url: /tutorials/light-clients/well-known-relay/
+        - title: Connect with a parachain
+          url: /tutorials/light-clients/parachains/
 reference:
   title: Reference
   url: /reference/
