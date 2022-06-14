@@ -9,7 +9,6 @@ import Icon from '../components/default/Icon';
 import { Link } from '../components/default/Link';
 import Section from '../components/layout/Section';
 import CommunityCard from '../components/site/CommunityCard';
-import ExploreDocs from '../components/site/ExploreDocs';
 import ExploreLinkSection from '../components/site/ExploreLinkSection';
 import Layout from '../components/site/Layout';
 import SEO from '../components/site/SEO';
@@ -147,16 +146,6 @@ export default function Home() {
               />
             </Link>
           </div>
-        </div>
-      </Section>
-      {/* Explore Documentation Section */}
-      <Section>
-        <div className="mb-14">
-          <div className="text-4xltext-5xl lg:text-6xl font-extrabold mb-8 break-normal">Explore Documentation</div>
-          <div className="text-xl">Browse through the use case specific highlights that meet your needs.</div>
-        </div>
-        <div className="md:flex md:justify-start xl:justify-between">
-          <ExploreDocs />
         </div>
       </Section>
       {/* Connect With Community Section */}
