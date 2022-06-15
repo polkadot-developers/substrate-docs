@@ -57,7 +57,7 @@ window.onload = () => {
 
 This code is very similar to the previous one. The main differences are
 - we are loading `statemint.json` into the `parachainSpec` variable.
-- we are creating a `relayProvider` object for the Relay chain, and using it in the construction of the `provider` object for the Parachain, along with `parachainSpec`.
+- `ScProvider` is created for relay chain but without connecting (since we will not be communicating with the relay chain). This is needed as a parameter when creating the Parachain's provider as an extra parameter. Rpc Provider of substrate-connect need this, in order to connect the parachain to the respective relay chain.
 
 In the directory of the webapp, run the following again:
 
