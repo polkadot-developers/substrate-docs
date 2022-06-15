@@ -122,7 +122,7 @@ To install `openssl` and the Rust toolchain on macOS:
    active toolchain
    ----------------
 
-   stable-x86_64-unknown-linux-gnu (default)
+   stable-x86_64-apple-darwin (default)
    rustc 1.61.0 (fe5b13d68 2022-05-18)
 
    # rustup +nightly show
@@ -130,7 +130,7 @@ To install `openssl` and the Rust toolchain on macOS:
    active toolchain
    ----------------
 
-   nightly-x86_64-unknown-linux-gnu (overridden by +toolchain on the command line)
+   nightly-x86_64-apple-darwin (overridden by +toolchain on the command line)
    rustc 1.63.0-nightly (e71440575 2022-06-02)
    ```
 
