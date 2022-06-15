@@ -22,7 +22,7 @@ Once defined, it can be used directly in your pallet, written as such:
 - Apply different weight functions based on certain condition on computing extrinsic's weight value.
 
 Here are the different traits we'll be implementing:
-  - [\`WeighData\`](/rustdocs/latest/frame_support/weights/trait.WeighData.html#impl-WeighData<T>-for-(Weight%2C%20DispatchClass%2C%20Pays)): Weigh the data in a function. 
+  - [\`WeighData\`](https://paritytech.github.io/substrate/master/frame_support/weights/trait.WeighData.html#impl-WeighData<T>-for-(Weight%2C%20DispatchClass%2C%20Pays)): Weigh the data in a function. 
     \`pallet::weight\` expects whatever implements \`WeighData<T>\` to replace \`T\` with a tuple of the dispatch arguments.
   - [\`PaysFee\`](rustdocs/latest/frame_support/weights/trait.PaysFee.html): Designate whether the dispatch pays a fee or not.
   - [\`ClassifyDispatch\`](/rustdocs//latest/frame_support/weights/trait.ClassifyDispatch.html): A way to tell the runtime about the type of dispatch being made.
@@ -66,7 +66,7 @@ impl WeighData<(&bool, &u32)> for Conditional {
 ### 2. Classify dispatch calls
 
 Add `weights::{ClassifyDispatch, DispatchClass, Pays, Weight}` to your pallet's `frame_support` imports.
-Since this implementation of `WeighData` requires a [`DispatchClass`](/rustdocs/latest/frame_support/weights/enum.DispatchClass.html), use `default`
+Since this implementation of `WeighData` requires a [`DispatchClass`](https://paritytech.github.io/substrate/master/frame_support/weights/enum.DispatchClass.html), use `default`
 to classify all calls as normal:
 
 `pallets/example/src/lib.rs`
@@ -124,4 +124,4 @@ Use the conditional weighting struct on your pallet's extrinsics like this:
 ## Related material
 
 - [Benchmarking](/main-docs/test/benchmark)
-- [Calculate custom fees](/refernce/how-to-guides/weights/calculate-fees)
+- [Calculate custom fees](/reference/how-to-guides/weights/calculate-fees)

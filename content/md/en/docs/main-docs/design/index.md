@@ -1,7 +1,7 @@
 ---
 title: Design
 description: Suggests blockchain and application design decisions for you to consider in planning your project.
-keywords:  
+keywords:
 ---
 
 The topics in this section suggest the design decisions and application architectural options you should consider in planning how you will implement the blockchain logic.

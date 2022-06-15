@@ -1,26 +1,23 @@
 ---
 title: How-to quick reference guides
 description:
-keywords: 
-featured_image: 
+keywords:
 ---
 
 Substrate _How-to_ quick reference guides provide instructions for achieving specific goals.
 Each guide explains how to perform a specific task with the assumption that you are already familiar with Substrate and programming in Rust.
-Learn more about contributing to these guides [here](/community/contribute/templates).
 
 ## Basics
   
 See the following guides to learn common patterns in runtime development.
 
 - [Import a pallet](/reference/how-to-guides/basics/pallet-integration/)
-- [Instantiate a pallet](/reference/how-to-guides/basics/instantiable-pallets/)
 - [Configure runtime constants](/reference/how-to-guides/basics/runtime-constants/)
 - [Configure genesis](/reference/how-to-guides/basics/genesis-config)
 - [Custom chain specification](/reference/how-to-guides/basics/custom-chainspec)
 - [Use helper functions](/reference/how-to-guides/basics/helper-functions)
-- [Mint primitive tokens](/reference/how-to-guides/basics/min-tokens/)
-- [Calculate weight](/reference/how-to-guides/basics/calc-weights/)
+- [Mint primitive tokens](/reference/how-to-guides/basics/mint-tokens/)
+<!--- [Calculate weight](/reference/how-to-guides/basics/calc-weights/)-->
 
 ## Pallet design
   
@@ -40,7 +37,7 @@ See the following guides for help with benchmarking and weight configurations.
 
 - [Calculate fees](/reference/how-to-guides/weights/calculate-fees/)
 - [Add benchmarks](/reference/how-to-guides/weights/add-benchmarks/)
-- [Use custom weights in benchmarks](/reference/how-to-guides/custom-weights/helper-functions)
+- [Use custom weights in benchmarks](/reference/how-to-guides/weights/custom-weights/)
 - [Create conditional weights](/reference/how-to-guides/weights/conditional-weights/)
 
 ## Testing
@@ -84,5 +81,5 @@ See the following guides for help working with offchain data.
 
 - [Making transactions](/reference/how-to-guides/ocw/ocw-transactions/)
 - [Making HTTP requests](/reference/how-to-guides/ocw/ocw-http-requests/)
-- [Local storage](/reference/how-to-guides/oce/ocw-local-storage/)
-- [Offchain indexing](/reference/how-to-guides/ocw/ocw-indexing)
+- [Local storage](/reference/how-to-guides/ocw/ocw-local-storage/)
+- [Offchain indexing](/reference/how-to-guides/ocw/ocw-indexing/)

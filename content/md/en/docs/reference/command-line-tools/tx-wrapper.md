@@ -1,6 +1,6 @@
 ---
 title: tx-wrapper
-section: reference
+description:
 keywords:
 ---
 

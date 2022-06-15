@@ -120,9 +120,9 @@ For example: `./target/release/substrate-node --enable-offchain-indexing true`
    ```
 
    With this, an off-chain worker could read the corresponding data from a node's local storage.
-   [This how-to guide](/reference/how-to-guides/ocw/local-storage/) explains how to do that.
+   The [Local storage in offchain workers](/reference/how-to-guides/ocw/ocw-local-storage/) how-to guide explains how to do that.
 
 ## Related material
 
 - [Off-Chain Features](/main-docs/fundamentals/offchain-operations/)
-- [Local Storage in Off-chain Workers](/reference/how-to-guides/ocw/local-storage/)
+- [Local Storage in Off-chain Workers](/reference/how-to-guides/ocw/ocw-local-storage/)

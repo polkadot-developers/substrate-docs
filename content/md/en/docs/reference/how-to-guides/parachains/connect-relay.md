@@ -25,7 +25,7 @@ Launching a parachain requires a series of steps to ensure that the relay chain 
 In order to achieve this, you will need to have previously successfully generated a **para ID, genesis state and Wasm runtime blob**.
 After successfully registering your parachain, you will be able to obtain a parachain slot (in testing though `sudo`, and in production via auctions and crowdloans) and start producing blocks.
 
-The [Cumulus Tutorial](/tutorials/connect-other-chains/start-relay) is the best place to start if you are new to parachain development.
+The [Cumulus Tutorial](/tutorials/connect-other-chains/relay-chain/) is the best place to start if you are new to parachain development.
 This guide is a quick reference and leaves out important details to consider when performing these steps.
 
 ## Reserve a para ID
@@ -52,7 +52,7 @@ In the next steps it is assumed you use Cumulus, and thus have the proper comman
 ## Customize parachain specification
 
 Your parachain _must_ configure the correct para ID in your chain specification.
-See the [how-to guide on configuring a custom chain spec](/reference/how-to-guides/basics/custom-chain-spec) for more in-depth instructions to generate a plain spec, modify it, and generate a raw spec.
+See the [how-to guide on configuring a custom chain spec](/reference/how-to-guides/basics/custom-chainspec) for more in-depth instructions to generate a plain spec, modify it, and generate a raw spec.
 
 We first generate a plain spec with:
 
@@ -107,7 +107,7 @@ The parachain collator node also has a command to produce this Wasm blob:
 
 ## Generate a parachain genesis state
 
-To register a parachain, the relay chain needs to know the parachain's [genesis state](/main-docs/build/chain-specs#the-genesis-state).
+To register a parachain, the relay chain needs to know the parachain's [genesis state](/main-docs/build/chain-spec#the-genesis-state).
 The collator node can export that state to a file.
 Go to your Parachain Template folder, the following command will create a file containing the parachain's entire genesis state, hex-encoded:
 
@@ -204,4 +204,4 @@ We can keep track of what parachains are registered and what their latest head d
 
 ## Examples
 
-- [Cumulus tutorial](/tutorials/connect-other-chains/cumulus/start-relay)
+- [Cumulus tutorial](/tutorials/connect-other-chains/cumulus/relay-chain)

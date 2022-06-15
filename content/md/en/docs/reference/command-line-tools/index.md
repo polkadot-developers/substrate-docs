@@ -1,6 +1,6 @@
 ---
 title: Command-line tools
-section: reference
+description:
 keywords:
 ---
 
@@ -13,10 +13,10 @@ This section provides reference information for Substrate command-line tools.
 | [node-template](/reference/command-line-tools/node-template) | Start and manage a Substrate node preconfigured with a subset of commonly-used FRAME pallets.
 | [polkadot-launch](https://github.com/paritytech/polkadot-launch) | Launch a local Polkadot test network.
 | [polkadot-apps](https://polkadot.js.org/apps) | Interact with Polkadot or a Substrate node using a browser.
-| [sidecar](/reference/command-line-tools/sidecar) | Use a REST service to interact with blockchain nodes built using FRAME.
+| [sidecar](/reference/command-line-tools/sidecar/) | Use a REST service to interact with blockchain nodes built using FRAME.
 | [srtool](/reference/command-line-tools/srtool) | Build WASM runtime in a deterministic way, allowing continuous integration pipelines and users to produce a strictly identical WASM runtime.
-| [sub-flood](/reference/command-line-tools/sub-flood) | Flood a Substrate node with transactions.
+| [subflood](/reference/command-line-tools/subflood/) | Flood a Substrate node with transactions.
 | [subkey](/reference/command-line-tools/subkey) | Generate and manage public and private key pairs for accounts.
-| [subxt](/reference/command-line-tools/subxt) | Submit extrinsics to a Substrate node using RPC.
-| [try-runtime](/reference/command-line-tools/try-runtime) | Query a snapshot of runtime storage to retrieve state.
-| [tx-wrapper](/reference/command-line-tools/tx-wrapper) | Publish chain specific offline transaction generation libraries.
+| [subxt](/reference/command-line-tools/subxt/) | Submit extrinsics to a Substrate node using RPC.
+| [try-runtime](/reference/command-line-tools/try-runtime/) | Query a snapshot of runtime storage to retrieve state.
+| [tx-wrapper](/reference/command-line-tools/tx-wrapper/) | Publish chain specific offline transaction generation libraries.

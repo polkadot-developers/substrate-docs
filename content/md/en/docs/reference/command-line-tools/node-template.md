@@ -1,6 +1,6 @@
 ---
 title: node-template
-section: reference
+description: Command-line reference information for the node-template.
 keywords:
 ---
 
@@ -31,7 +31,7 @@ You can use the following optional flags with the `node-template` command.
 | Flag   | Description
 | ------ | -----------
 | `--alice`  | Adds the session keys for the predefined `Alice` account to the local keystore. This flag is equivalent to running the node using `--name alice --validator` as command-line options.
-| `--allow-private-ipv4` | Allows the node to connect to private IPv4 addresses (as specified in [RFC1918](https://tools.ietf.org/html/rfc1918)). This flag is enabled by default if the chain specifications for the node is identified as `local` or you start the node in development mode with the `--dev` flag.
+| `--allow-private-ipv4` | Allows the node to connect to private IPv4 addresses. This flag is enabled by default if the chain specifications for the node is identified as `local` or you start the node in development mode with the `--dev` flag.
 | `--bob` | Adds the session keys for the predefined `Bob` account to the local keystore. This flag is equivalent to running the node using `--name bob --validator` as command-line options.
 | `--charlie` | Adds the session keys for the predefined `Charlie` account to the local keystore. This flag is equivalent to running the node using `--name charlie --validator` as command-line options.
 | `--dave` | Adds the session keys for the predefined `Dave` account to the local keystore. This flag is equivalent to running the node using `--name dave --validator` as command-line options.
@@ -48,7 +48,7 @@ You can use the following optional flags with the `node-template` command.
 | `--light` | Runs the node in light client mode (experimental).
 | `--no-grandpa` | Disables the GRANDPA voter if the node is running as a validator mode.If the node is not running as a validator, the option disables the GRANDPA observer.
 | `--no-mdns` | Disables mDNS discovery. By default, the network uses mDNS to discover other nodes on the local network. This option disables discovery and is automatically applied if you start the node using the `--dev` option.
-| `--no-private-ipv4` | Prevents connecting to private IPv4 addresses (as specified in [RFC1918](https://tools.ietf.org/html/rfc1918)), unless the address was passed with the `--reserved-nodes` or `--bootnodes` option. This setting is enabled by default for chains that are marked as "live" in their chain specifications.
+| `--no-private-ipv4` | Prevents connecting to private IPv4 addresses, unless the address was passed with the `--reserved-nodes` or `--bootnodes` option. This setting is enabled by default for chains that are marked as "live" in their chain specifications.
 | `--no-prometheus` | Disables the exposure of a Prometheus endpoint for receiving metrics. By default, metrics are exported to a Prometheus endpoint.
 | `--no-telemetry` | Disables connecting to the Substrate telemetry server. Telemetry is enabled for global chains by default.
 | `--one` | Provides a shortcut for specifying `--name One --validator` to add session keys for `One` to the keystore.
@@ -226,7 +226,7 @@ To start a node and benchmark all of the extrinsic calls in all of the pallets, 
 
 With this command, each extrinsic call is executed once with a single value and the resulting weight is recorded in the `weights.rs` file.
 Depending on the function you want to benchmark, you can add the `--steps` and `--repeat` command line options to execute the call multiple times with different values.
-For more information about how to add benchmarking to the runtime, see [Benchmarking](/mains-docs/test/benchmark/)
+For more information about how to add benchmarking to the runtime, see [Benchmarking](/main-docs/test/benchmark/)
 
 ## build-spec
 

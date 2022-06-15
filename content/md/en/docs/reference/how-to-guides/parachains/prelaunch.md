@@ -30,10 +30,9 @@ In order to set a unique protocol ID, change make sure you use some nonce or sal
 (for the [parachain node template](https://github.com/substrate-developer-hub/substrate-parachain-template/))
 as a CLI item in `/client/network/src/command.rs`, and passed to extend the `/client/network/src/chain_spec.rs`
 
-All [chain specification](/main-docs/build/chain-specs) files include this item as a field. For example,
-the primary [relay chain
-runtime](https://github.com/paritytech/polkadot/tree/master/node/service/res)
-chain specs have unique protocol IDs. For Polkadot:
+All [chain specification](/main-docs/build/chain-spec/) files include this item as a field. 
+For example, the primary [relay chain runtime](https://github.com/paritytech/polkadot/tree/master/node/service/res) chain specs have unique protocol IDs.
+For Polkadot:
 
 ```json
 // raw chain spec file in polkadot repo `/node/service/res/polkadot.json`
@@ -126,7 +125,7 @@ In these cases, you can:
    without having to do storage migrations. For more information on on-chain runtime upgrades refer to
    the next section.
 
-**See the [parachain runtime upgrade guide](/reference/how-to-guides/parachains/runtime-upgrades)** for how
+**See the [parachain runtime upgrade guide](/reference/how-to-guides/parachains/runtime-upgrade)** for how
 to go about actually performing these incremental runtime upgrades.
 
 ## Launch simulation
@@ -135,7 +134,7 @@ Before you try anything on a production testnet or mainnet, you should launch yo
 Testing in a confined network will help you prepare for potential failures in a real network with many collators and validators and constraints like bandwidth and latency.
 The more closely you can simulate a real network for testing, the more sure you can be that your runtime upgrades will succeeds.
 
-See the [cumulus tutorial](/tutorials/connect-other-networks/start-relay) to learn how to use the `polkadot-launch` tool for such testing.
+See the [Cumulus tutorial](/tutorials/connect-other-chains/relay-chain/) to learn how to use the `polkadot-launch` tool for such testing.
 
 ## Examples
 

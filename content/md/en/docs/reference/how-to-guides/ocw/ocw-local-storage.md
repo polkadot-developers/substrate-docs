@@ -1,7 +1,11 @@
 ---
-title: Local Storage in Off-chain Workers
+title: Local storage in offchain workers
 description:
-keywords: ['off-chain worker', 'ocw', 'local', 'storage']
+keywords:
+  - off-chain worker
+  - ocw
+  - local
+  - storage
 ---
 
 This guide will teach you how to use an off-chain worker to save retrieved data in local storage for future access.

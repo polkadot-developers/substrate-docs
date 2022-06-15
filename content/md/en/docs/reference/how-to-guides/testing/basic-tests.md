@@ -17,8 +17,8 @@ This pallet will contain a single function called `add_value`, that takes an ori
 
 Inside `pallet-testing/src`, the first thing we need to do is create two empty files: `mock.rs` and `tests.rs`.
 
-Paste in the contents from [`template/src/mock.rs`][template-node-mock-rs]. We'll use this as boilerplate
-which we'll customize for our `pallet-testing` pallet.
+Paste in the contents from [`template/src/mock.rs`](https://github.com/substrate-developer-hub/substrate-node-template/blob/latest/pallets/template/src/mock.rs).
+We'll use this as boilerplate which we'll customize for our `pallet-testing` pallet.
 
 ## Create a mock runtime to test your pallet
 
@@ -121,20 +121,8 @@ cargo test
 
 ## Related material
 
-#### How-to guides
-
+- [Unit testing](/main-docs/test/unit-testing/)
 - [Testing a transfer function](/reference/how-to-guides/testing/test-transfer)
+- [`assert_ok!`](https://paritytech.github.io/substrate/master/frame_support/macro.assert_ok.html)
+- [`assert_err!`](https://paritytech.github.io/substrate/master/frame_support/macro.assert_err.html)
 - [Migration tests](/reference/how-to-guides/storage-migrations/test-migration)
-
-#### Docs
-
-- [Mock runtime environment][mock-runtime]
-
-#### Rust docs
-
-- [`assert_ok!`](/rustdocs/latest/frame_support/macro.assert_ok.html)
-- [`assert_err!`](/rustdocs/latest/frame_support/macro.assert_err.html)
-
-[template-node-mock-rs]: https://github.com/substrate-developer-hub/substrate-node-template/blob/467927bda05a56dfe57690aec93ff504a6009daa/pallets/template/src/mock.rs#L1-L61
-[template-node-mock-rs]: https://github.com/substrate-developer-hub/substrate-node-template/blob/467927bda05a56dfe57690aec93ff504a6009daa/pallets/template/src/tests.rs#L1-L23
-[mock-runtime]: /runtime/testing#mock-runtime-environment

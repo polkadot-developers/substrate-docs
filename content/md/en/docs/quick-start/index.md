@@ -1,6 +1,7 @@
 ---
 title: Quick start
 description: Get started with Substrate.
+keywords:
 ---
 
 All of the Substrate tutorials and how-to guides require you to build and run a Substrate node in your development environment.
