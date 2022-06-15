@@ -79,7 +79,7 @@ If you’re familiar with PolkadotJS, you might have noticed this code is very s
 
 Also, notice that instead of a WebSocket URL, which would have been the address of a client, we used `WellKnownChain.polkadot`, which represents the chainspec for the Polkadot network.
 
-You can provide any of these network names:
+You can provide any of these network ids:
 - `polkadot`
 - `ksmcc3`
 - `westend2`
