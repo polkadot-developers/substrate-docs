@@ -7,7 +7,7 @@ keywords:
 In general, UNIX-based operating systems—like macOS or Linux—provide a better development environment for building Substrate-based blockchains.
 All of the code examples and command-line instructions in Substrate [Tutorials](/tutorials/) and [How-to guides](/reference/how-to-guides/) illustrate how to interact with Substrate using UNIX-compatible commands in a terminal.
 
-However, if your local computer uses Microsoft Windows instead of a UNIX-based operating system, you can configure it with additional packages to make it a suitable development environment for building Substrate-based blockchains.
+However, if your local computer uses Microsoft Windows instead of a UNIX-based operating system, you can configure it with additional software to make it a suitable development environment for building Substrate-based blockchains.
 To prepare a development environment on a computer running Microsoft Windows, you can use Windows Subsystem for Linux (WSL) to emulate a UNIX operating environment.
 
 ## Before you begin
@@ -79,7 +79,7 @@ To install the Rust toolchain on WSL:
 1. Add the required packages for the Ubuntu distribution by running the following command:
    
    ```
-   sudo apt install --assume-yes git clang curl libssl-dev
+   sudo apt install --assume-yes git clang curl libssl-dev llvm libudev-dev make protobuf-compiler
    ```
 
 1. Download the `rustup` installation program and use it to install Rust for the Ubuntu distribution by running the following command:
@@ -120,26 +120,28 @@ To install the Rust toolchain on WSL:
     
     ```bash
     rustup show
+    rustup +nightly show
     ```
 
     The command displays output similar to the following:
 
-    <pre>
-    Default host: x86_64-unknown-linux-gnu
-    rustup home:  /home/subdocs/.rustup
-    
-    installed toolchains
-    --------------------
-    
-    stable-x86_64-unknown-linux-gnu (default)
-    nightly-x86_64-unknown-linux-gnu
-    
-    active toolchain
-    ----------------
-    
-    stable-x86_64-unknown-linux-gnu (default)
-    rustc 1.58.1 (db9d1b20b 2022-01-20)
-    </pre>
+   ```bash
+   # rustup show
+
+   active toolchain
+   ----------------
+
+   stable-x86_64-unknown-linux-gnu (default)
+   rustc 1.61.0 (fe5b13d68 2022-05-18)
+
+   # rustup +nightly show
+
+   active toolchain
+   ----------------
+
+   nightly-x86_64-unknown-linux-gnu (overridden by +toolchain on the command line)
+   rustc 1.63.0-nightly (e71440575 2022-06-02)
+   ```
 
 ## Compile a Substrate node
 
@@ -153,7 +155,7 @@ To compile the Substrate node template:
 1. Clone the node template repository by running the following command:
     
     ```bash
-    git clone https://github.com/substrate-developer-hub/substrate-node-template
+    git clone --branch latest --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
     ```
 
 1. Change to the root of the node template directory by running the following command:
@@ -161,23 +163,14 @@ To compile the Substrate node template:
     ```bash
     cd substrate-node-template
     ```
-
-1. Switch to the version of the repository that has the `latest` tag by running the following command:
-    
-    ```bash
-    git checkout latest
-    ```
-
-    This command checks out the repository in a detached state.
-    If you want to save your changes, you can create a branch from this state.
-
 1. Compile the node template by running the following command:
     
     ```bash
-    cargo build --release
+	# We always want to build in release mode when intending to run and/or test any node
+    cargo b -r
     ```
 
-    Because of the number of packages required, compiling the node can take several minutes.
+    Because of the number of crates required, compiling the node can take several minutes.
 
 After the build completes successfully, your local computer is ready for Substrate development activity.
 
