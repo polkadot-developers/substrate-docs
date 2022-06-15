@@ -60,6 +60,14 @@ const developers = [
     url: '/playground',
     id: 'developers.playground',
   },
+  {
+    url: 'https://paritytech.github.io/substrate/master/sc_service/',
+    id: 'developers.rustdocs',
+  },
+  {
+    url: WEBSITE_URL + '/smart-contracts',
+    id: 'developers.smart-contracts',
+  },
 ];
 
 const vision = [
