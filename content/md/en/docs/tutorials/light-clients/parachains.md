@@ -70,3 +70,4 @@ That should open a browser on `http://localhost:3001/`. Open the JavaScript cons
 
 From here onwards, the usage is very similar to what would have been usually done via PolkadotJS. All you have to do is follow the [official documentation](https://polkadot.js.org/docs/) and interact with the chain.
 
+One important detail is that we used `@polkadot/rpc-provider/substrate-connect` as our dependency, and that is fine for a fast and easy integration into a simple webapp. However, more advanced implementations (e.g.: library authors) should install and use `@substrate-connect` instead.

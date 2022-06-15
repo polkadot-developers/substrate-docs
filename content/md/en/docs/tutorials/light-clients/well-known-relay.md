@@ -99,3 +99,5 @@ That should open a browser on `http://localhost:3001/`. Open the JavaScript cons
 Tip: different browsers running on different Operating Systems will have different shortcuts to display the JavaScript  console. [Here](https://webmasters.stackexchange.com/a/77337) is a convenient cheat sheet.
 
 To recap what we achieved so far: we fetched block hashes without using any URL for a RPC node, which is arguably a centralised entry point to the network. And we could have done much more, not only block hashes! The point here is that after `WsProvider` is replaced with `ScProvider`, the code can be written as if it was any other app based on PolkadotJS. From here onwards, you can just follow [PolkadotJS docs](https://polkadot.js.org/docs/) and do much more.
+
+One important detail is that we used `@polkadot/rpc-provider/substrate-connect` as our dependency, and that is fine for a fast and easy integration into a simple webapp. However, more advanced implementations (e.g.: library authors) should install and use `@substrate-connect` instead.
