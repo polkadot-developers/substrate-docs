@@ -46,7 +46,7 @@ To install the Rust toolchain on Linux:
 
    [[tabbedCode]]
    |```Arch
-   | pacman -Syu --needed --noconfirm curl git clang protobuf-compiler
+   | pacman -Syu --needed --noconfirm curl git clang protobuf
 
    [[tabbedCode]]
    | ```fedora
