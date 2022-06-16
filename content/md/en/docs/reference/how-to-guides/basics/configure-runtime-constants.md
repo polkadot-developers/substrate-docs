@@ -1,5 +1,5 @@
 ---
-title: Configure a runtime constant
+title: Configure runtime constants
 description:
 keywords:
   - basics

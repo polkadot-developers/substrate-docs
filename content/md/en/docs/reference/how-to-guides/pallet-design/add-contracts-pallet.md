@@ -18,7 +18,7 @@ If you haven't already done so, see [Build a local blockchain](/tutorials/get-st
 ## Import the dependencies
 
 1. Add Contracts to your runtime.
-   To learn how to include Contracts in your runtime, see [Basic pallet integration](/reference/how-to-guides/basics/pallet-integration).
+   To learn how to include Contracts in your runtime, see [Basic pallet integration](/reference/how-to-guides/basics/import-a-pallet).
 
 1. Update `runtime/Cargo.toml` with the following entries:
    - `pallet-contracts`

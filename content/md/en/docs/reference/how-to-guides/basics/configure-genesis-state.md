@@ -1,5 +1,5 @@
 ---
-title: Configure genesis for balances
+title: Configure genesis state
 description:
 keywords:
   - basics

@@ -223,6 +223,6 @@ You just need to make sure that nodes on the same local machine do not have conf
 
 ## Custom relay chain specifications
 
-Optionally, explore the [how-to guide on configuring a custom chain spec](/reference/how-to-guides/basics/custom-chainspec) for instructions to tweak the provided [plain chain spec](/assets/tutorials/cumulus/chain-spec/rococo-custom-2-plain.json) for addition of more validators without modification of Polkadot's source code.
+Optionally, explore the [how-to guide on configuring a custom chain spec](/reference/how-to-guides/basics/customize-a-chain-specification) for instructions to tweak the provided [plain chain spec](/assets/tutorials/cumulus/chain-spec/rococo-custom-2-plain.json) for addition of more validators without modification of Polkadot's source code.
 
 For this tutorial, your final chain spec filename **must** start with `rococo` or the node will not know what runtime logic to include.

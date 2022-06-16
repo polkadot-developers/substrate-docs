@@ -52,7 +52,7 @@ In the next steps it is assumed you use Cumulus, and thus have the proper comman
 ## Customize parachain specification
 
 Your parachain _must_ configure the correct para ID in your chain specification.
-See the [how-to guide on configuring a custom chain spec](/reference/how-to-guides/basics/custom-chainspec) for more in-depth instructions to generate a plain spec, modify it, and generate a raw spec.
+See the [how-to guide on configuring a custom chain spec](/reference/how-to-guides/basics/customize-a-chain-specification) for more in-depth instructions to generate a plain spec, modify it, and generate a raw spec.
 
 We first generate a plain spec with:
 

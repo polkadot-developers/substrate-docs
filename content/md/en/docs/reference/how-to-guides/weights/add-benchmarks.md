@@ -129,7 +129,7 @@ benchmarking.
    ```
 
 1. Add your new pallet to your runtime just as you would any other pallet.
-   If you need more details, check out the [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet) or [Import a pallet](/reference/how-to-guides/basics/pallet-integration).
+   If you need more details, check out the [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet) or [Import a pallet](/reference/how-to-guides/basics/import-a-pallet).
 
 1. Then, in addition to your normal runtime configuration, you also need to update the benchmarking section of your runtime.
    To add our new benchmarks, we simply add a new line with the `add_benchmark!` macro:

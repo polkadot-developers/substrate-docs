@@ -1,5 +1,5 @@
 ---
-title: Custom chain specifications
+title: Customize a chain specification
 description: 
 keywords:
 ---

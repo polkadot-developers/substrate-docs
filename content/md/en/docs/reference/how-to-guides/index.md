@@ -11,12 +11,13 @@ Each guide explains how to perform a specific task with the assumption that you 
   
 See the following guides to learn common patterns in runtime development.
 
-- [Import a pallet](/reference/how-to-guides/basics/pallet-integration/)
-- [Configure runtime constants](/reference/how-to-guides/basics/runtime-constants/)
-- [Configure genesis](/reference/how-to-guides/basics/genesis-config)
-- [Custom chain specification](/reference/how-to-guides/basics/custom-chainspec)
-- [Use helper functions](/reference/how-to-guides/basics/helper-functions)
-- [Mint primitive tokens](/reference/how-to-guides/basics/mint-tokens/)
+- [Import a pallet](/reference/how-to-guides/basics/import-a-pallet/)
+- [Configure runtime constants](/reference/how-to-guides/basics/configure-runtime-constants/)
+- [Configure genesis](/reference/how-to-guides/basics/configure-genesis-state)
+- [Customize a chain specification](/reference/how-to-guides/basics/customize-a-chain-specification)
+- [Use helper functions](/reference/how-to-guides/basics/use-helper-functions)
+- [Mint primitive tokens](/reference/how-to-guides/basics/mint-basic-tokens/)
+
 <!--- [Calculate weight](/reference/how-to-guides/basics/calc-weights/)-->
 
 ## Pallet design
