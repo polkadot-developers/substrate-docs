@@ -25,7 +25,7 @@ For example:
    ```rust
    #[pallet::hooks]
    impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
-   	/// Offchain Worker entry point.
+   	/// Offchain worker entry point.
    	///
    	/// By implementing `fn offchain_worker` you declare a new offchain worker.
    	/// This function will be called when the node is fully synced and a new best block is
@@ -299,7 +299,7 @@ To enable Substrate to accept certain unsigned transactions, you must implement 
    ```rust
    #[pallet::hooks]
    impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
-   	/// Offchain Worker entry point.
+   	/// Offchain worker entry point.
    	fn offchain_worker(block_number: T::BlockNumber) {
    		let value: u64 = 10;
    		// This is your call to on-chain extrinsic together with any necessary parameters.
@@ -376,7 +376,7 @@ The differences between sending unsigned transactions and sending unsigned trans
    ```rust
    #[pallet::hooks]
    impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
-   	/// Offchain Worker entry point.
+   	/// Offchain worker entry point.
    	fn offchain_worker(block_number: T::BlockNumber) {
    		let value: u64 = 10;
 

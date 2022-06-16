@@ -393,6 +393,6 @@ There are several [tutorials](/tutorials/) that can serve as next steps for lear
 
 ### References
 
-- [Basic Example Pallet](https://github.com/paritytech/substrate/tree/master/frame/examples/basic) provides detailed comments about what you can access within FRAME.
+- [Basic example pallet](https://github.com/paritytech/substrate/tree/master/frame/examples/basic) provides detailed comments about what you can access within FRAME.
 - [The Cargo book](https://doc.rust-lang.org/stable/cargo/) introduces the Cargo package manager, including reference information for Cargo features and commands.
 - [Rust and WebAssembly Documentation](https://rustwasm.github.io/docs.html) highlights several resources for learning about Rust and WebAssembly.

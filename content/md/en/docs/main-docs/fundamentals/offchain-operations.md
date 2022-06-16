@@ -10,12 +10,12 @@ While this approach works, it still has several flaws with respect to security, 
 
 To make the offchain data integration secure and more efficient, Substrate provides offchain features:
 
-- **Off-Chain Worker (OCW)** subsystems allows execution of long-running and possibly non-deterministic tasks (e.g. web requests, encryption/decryption and signing of data, random number generation, CPU-intensive computations, enumeration/aggregation of on-chain data, etc.) that could otherwise require longer than the block execution time.
+- **Offchain worker (OCW)** subsystems allows execution of long-running and possibly non-deterministic tasks (e.g. web requests, encryption/decryption and signing of data, random number generation, CPU-intensive computations, enumeration/aggregation of on-chain data, etc.) that could otherwise require longer than the block execution time.
 
-- **Off-Chain Storage** offers storage that is local to a Substrate node that can be accessed both by offchain workers (both read and write access) and on-chain logic (write access via offchain indexing but not read access).
+- **Offchain storage** offers storage that is local to a Substrate node that can be accessed both by offchain workers (both read and write access) and on-chain logic (write access via offchain indexing but not read access).
   This allows different worker threads to communicate to each other and to store user or node-specific data that does not require consensus over the whole network.
 
-- **Off-Chain Indexing** allows the runtime, if opted-in, to write directly to the offchain storage
+- **Offchain indexing** allows the runtime, if opted-in, to write directly to the offchain storage
   independently from OCWs. This serves as a local/temporary storage for on-chain logic and
   complement to its on-chain state.
 
