@@ -59,5 +59,5 @@ A runtime developer must ensure that the randomness source used meets the securi
 
 ## Where to go next
 
-- [How-to: Randomness](/reference/how-to-guides/pallet-design/randomness/)
+- [How-to: Randomness](/reference/how-to-guides/pallet-design/incorporate-randomness/)
 - [`Randomness`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Randomness.html)

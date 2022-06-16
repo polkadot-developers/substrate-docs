@@ -95,5 +95,6 @@ Explore the following resources to learn more.
 * See [The Polkadot Wiki](https://wiki.polkadot.network/docs/build-build-with-polkadot#what-is-the-difference-between-building-a-parachain-a-parathread-or-a-smart-contract) for a comparison between developing on a parachain, parathread, and smart contracts.
 
 #### Guide me 
-* Build a proof of existence blockchain
-* ink! tutorial
+
+- [Work with pallets](/tutorials/work-with-pallets/)
+- [Develop smart contracts](/tutorials/smart-contracts/)

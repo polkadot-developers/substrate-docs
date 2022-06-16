@@ -1,5 +1,5 @@
 ---
-title: Using Helper Functions
+title: Use helper functions
 description:
 keywords:
   - basics

@@ -1,5 +1,5 @@
 ---
-title: Collator Selection
+title: Select collators
 description:
 keywords:
   - collator

@@ -1,5 +1,5 @@
 ---
-title: Off-chain Indexing
+title: Offchain indexing
 description:
 keywords:
   - off-chain worker
@@ -120,9 +120,9 @@ For example: `./target/release/substrate-node --enable-offchain-indexing true`
    ```
 
    With this, an off-chain worker could read the corresponding data from a node's local storage.
-   The [Local storage in offchain workers](/reference/how-to-guides/ocw/ocw-local-storage/) how-to guide explains how to do that.
+   The [Offchain local storage](/reference/how-to-guides/offchain-workers/offchain-local-storage/) how-to guide explains how to do that.
 
 ## Related material
 
-- [Off-Chain Features](/main-docs/fundamentals/offchain-operations/)
-- [Local Storage in Off-chain Workers](/reference/how-to-guides/ocw/ocw-local-storage/)
+- [Offchain operations](/main-docs/fundamentals/offchain-operations/)
+- [Offchain local storage](/reference/how-to-guides/offchain-workers/offchain-local-storage/)

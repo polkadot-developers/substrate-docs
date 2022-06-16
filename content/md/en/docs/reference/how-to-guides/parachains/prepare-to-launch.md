@@ -1,5 +1,5 @@
 ---
-title: Pre-Launch Requirements
+title: Prepare to launch
 description:
 keywords:
   - collator

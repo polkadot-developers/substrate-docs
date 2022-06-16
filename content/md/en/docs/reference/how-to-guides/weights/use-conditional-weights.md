@@ -1,5 +1,5 @@
 ---
-title: Conditional weighting
+title: Use conditional weights
 description:
 keywords:
   - weights
@@ -124,4 +124,5 @@ Use the conditional weighting struct on your pallet's extrinsics like this:
 ## Related material
 
 - [Benchmarking](/main-docs/test/benchmark)
-- [Calculate custom fees](/reference/how-to-guides/weights/calculate-fees)
+- [Calculate fees](/reference/how-to-guides/weights/calculate-fees)
+- [Use custom weights](/reference/how-to-guides/weights/use-custom-weights)

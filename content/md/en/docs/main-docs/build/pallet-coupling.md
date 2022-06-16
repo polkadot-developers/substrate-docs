@@ -116,5 +116,5 @@ This evokes a concept in computer science called [cohesion](<https://en.wikipedi
 
 ## Where to go next
 
-- [How-to: Loose coupling](/reference/how-to-guides/pallet-design/loose-coupling/)
-- [How-to: Tight coupling](/reference/how-to-guides/pallet-design/tight-coupling/)
+- [How-to: Use loose coupling](/reference/how-to-guides/pallet-design/use-loose-coupling/)
+- [How-to: Use tight coupling](/reference/how-to-guides/pallet-design/use-tight-coupling/)

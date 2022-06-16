@@ -1,5 +1,5 @@
 ---
-title: Local storage in offchain workers
+title: Offchain local storage
 description:
 keywords:
   - off-chain worker
