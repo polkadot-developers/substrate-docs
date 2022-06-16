@@ -49,7 +49,7 @@ Before you begin, verify the following:
 1. Compile the node template using the nightly toolchain by running the following command:
 
    ```bash
-   cargo +nightly build --package node-template --release
+   cargo build --package node-template --release
    ```
 
    Because of the number of packages involved, compiling the node can take several minutes.
@@ -95,7 +95,7 @@ Before you begin, verify the following:
    As the node starts, the terminal displays output about the operations performed.
    If you see messages that blocks are being proposed and finalized, you have a running node.
 
-   ```
+   ```text
    ... Idle (0 peers), best: #3 (0xcc78…5cb1), finalized #1 ...
    ... Starting consensus session on top of parent ...
    ... Prepared block for proposing at 4 (0 ms) ...
@@ -109,11 +109,11 @@ Before you begin, verify the following:
 
    - take an account address as input
    - look up the account balance using an onClick event
-   - display the balance for the account as output.
+   - display the balance for the account as output
 
-   This sample [index.html](examples/quickstart/index.html) provides a simple example of how to use JavaScript and HTMLto get an account balance.
+   This sample [index.html](/examples/quickstart/index.html) provides a simple example of how to use JavaScript and HTML to get an account balance.
 
-1. Open the [index.html](examples/quickstart/index.html) file in a web browser.
+1. Open the [index.html](/examples/quickstart/index.html) file in a web browser.
 
 1. Copy and paste the SS58 Address for the `alice` account in the input field, then click **Get Balance**.
 
