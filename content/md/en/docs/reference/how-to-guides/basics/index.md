@@ -18,4 +18,6 @@ The _How-to_ guides in the Basics category illustrate many of the common pattern
 
 - [Mint basic tokens](/reference/how-to-guides/basics/mint-basic-tokens/)
 
-[Calculate weight](/reference/how-to-guides/basics/calc-weights/)
+<!--
+- [Calculate weight](/reference/how-to-guides/basics/calculate-weight/)
+-->
