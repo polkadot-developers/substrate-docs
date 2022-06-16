@@ -1,5 +1,5 @@
 ---
-title: Verify a runtime Wasm binary
+title: Verify a Wasm binary
 description:
 keywords:
   - tooling

@@ -1,5 +1,5 @@
 ---
-title: Use custom weights from benchmarking
+title: Use custom weights
 description:
 keywords:
   - weights
@@ -7,9 +7,6 @@ keywords:
   - runtime
 ---
 
-<!-- TODO NAV.YAML -->
-<!-- add  back ABOVE -->
-<!-- This guide builds on the [Add benchmarking to your pallet](/reference/how-to-guides/weights/add-benchmarking) guide.  -->
 Here, you'll learn how to use the weights in your pallet from the output of benchmarking your pallet's extrinsics.
 It assumes that you have a file in your pallet's directory called `weights.rs`, containing the auto generated weights from running FRAME's benchmarking tool.
 
@@ -112,6 +109,5 @@ Once you recompile your node, your extrinsic will now be using the custom weight
 ## Related material
 
 - [Benchmarking](/main-docs/test/benchmark)
-<!-- TODO NAV.YAML -->
-<!-- add  back ABOVE -->
-<!-- - [Calculate custom fees](/reference/how-to-guides/weights/calculate-fees) -->
+- [Calculate fees](/reference/how-to-guides/weights/calculate-fees)
+- [Add benchmarks](/reference/how-to-guides/weights/add-benchmarks/)

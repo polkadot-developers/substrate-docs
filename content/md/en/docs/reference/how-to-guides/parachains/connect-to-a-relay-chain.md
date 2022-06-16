@@ -1,5 +1,5 @@
 ---
-title: Connect to a Relay Chain
+title: Connect to a relay chain
 difficulty: 1
 keywords:
   - collator

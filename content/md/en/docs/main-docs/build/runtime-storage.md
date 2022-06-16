@@ -422,7 +422,7 @@ Check out some guides covering various topics on storage:
 <!-- add these back -->
 <!-- - [Using a storage map](/reference/how-to-guides/basics/mint-token) -->
 
-- [Structs in storage](/reference/how-to-guides/pallet-design/storage-value)
+- [How-to: Create a storage structure](/reference/how-to-guides/pallet-design/create-a-storage-structure)
 <!-- - [Storage migration](/reference/how-to-guides/storage-migrations/basics) -->
 - [StorageValue](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.StorageValue.html)
 - [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.StorageMap.html)

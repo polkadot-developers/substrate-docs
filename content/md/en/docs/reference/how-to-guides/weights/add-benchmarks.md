@@ -1,5 +1,5 @@
 ---
-title: Add benchmarking to your pallet
+title: Add benchmarks
 description:
 keywords:
   - weights
@@ -199,5 +199,6 @@ Refer to [Use custom weights from benchmarking](/reference/how-to-guides/weights
 
 ## Examples
 
-- [Benchmarking in the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/benchmarking.rs)
-- [Weights in the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/weights.rs)
+- [Benchmarking](/main-docs/test/benchmark)
+- [Example pallet: Benchmarks](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/benchmarking.rs)
+- [Example pallet: Weights](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/weights.rs)

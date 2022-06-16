@@ -1,5 +1,5 @@
 ---
-title: Making HTTP Requests
+title: Make offchain HTTP requests
 description:
 keywords:
   - off-chain worker

@@ -1,5 +1,5 @@
 ---
-title: Integrate the contracts pallet
+title: Add the contracts pallet
 description:
 keywords:
   - pallet design

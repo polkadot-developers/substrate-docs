@@ -1,5 +1,5 @@
 ---
-title: Making transactions
+title: Make offchain transactions
 description:
 keywords:
   - off-chain worker

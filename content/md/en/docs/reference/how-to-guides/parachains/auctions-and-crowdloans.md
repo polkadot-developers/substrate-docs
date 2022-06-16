@@ -1,5 +1,5 @@
 ---
-title: Parachain Slot Auctions and Crowdloans
+title: Auctions and crowdloans
 description:
 keywords:
   - parachain

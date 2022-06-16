@@ -1,5 +1,5 @@
 ---
-title: Implement randomness
+title: Incorporate randomness
 description:
 keywords:
   - pallet design

@@ -1,5 +1,5 @@
 ---
-title: Integrate try-runtime
+title: Use try-runtime
 description:
 keywords:
   - storage migration
@@ -8,8 +8,8 @@ keywords:
   - tooling
 ---
 
-The `try-runtime` tool is useful for running tests before launching a runtime to production. This is a simple guide 
-which steps through which dependencies to include and where to include them in order to use it inside a runtime.
+The `try-runtime` tool is useful for running tests before launching a runtime to production.
+This is a simple guide which steps through which dependencies to include and where to include them in order to use it inside a runtime.
 
 ## Goal
 
@@ -138,8 +138,5 @@ Just like writing unit tests, to use `try-runtime` create an externalities insta
 
 #### Docs
 
-[Try runtime](/reference/command-line-tools/try-runtime/)
-
-#### Other
-
-[tryruntime-api-rustdocs]: https://crates.parity.io/frame_try_runtime/trait.TryRuntime.html
+[Command-line reference: try-runtime](/reference/command-line-tools/try-runtime/)
+[TryRuntime API](https://crates.parity.io/frame_try_runtime/trait.TryRuntime.html)

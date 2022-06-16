@@ -1,5 +1,5 @@
 ---
-title: Open HRMP channels between parachains
+title: Add HRMP channels
 keywords:
   - parachain
   - channel

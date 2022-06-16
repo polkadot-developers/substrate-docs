@@ -7,7 +7,7 @@ keywords:
   - tooling
 ---
 
-This how-to guide illustrates using REST endpoints providing by the sidecar service to interact with a Substrate blockchain node.
+This how-to guide illustrates using REST endpoints providing by the `sidecar` service to interact with a Substrate blockchain node.
 
 To find the winner of a completed auction we will need to know the block number the auction ended at. Since [Sidecar](https://github.com/paritytech/substrate-api-sidecar) is a stateless API and the auction info is stored at the final block of an auction, once the auction is over we need the block number to make historic queries to retrieve the event and data stored in it.
 

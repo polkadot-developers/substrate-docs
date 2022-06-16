@@ -4,7 +4,7 @@ description: Quick reference guides that illustrate common runtime development p
 keywords:
 ---
 
-The _How-to_ guides in the Basics category illustrate many of the common patterns that you'll use most frequently as a runtime developer.
+The _How-to_ guides in the _Basics_ category illustrate many of the common patterns that you'll use most frequently as a runtime developer.
 
 - [Import a pallet](/reference/how-to-guides/basics/import-a-pallet/)
 

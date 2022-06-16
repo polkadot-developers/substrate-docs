@@ -1,5 +1,5 @@
 ---
-title: Runtime Upgrades
+title: Runtime upgrades
 description:
 keywords:
   - collators
