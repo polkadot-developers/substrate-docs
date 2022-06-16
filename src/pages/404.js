@@ -16,21 +16,14 @@ export default function NotFoundPage() {
         <div className="w-2/3 mx-auto mt-20 text-center self-center">
           <h1 className="mb-10 four-oh-four-title text-9xl xl:text-four-oh-four font-body">{t('404.title')}</h1>
           <h2 className="w-1/2 text-2xl mb-10 mx-auto">
-            Sorry! This content is unavailable.{' '}
+            Sorry! The content you are looking for is not here.<br>
+            Learn more about the{' '}
             <a
-              href="https://github.com/substrate-developer-hub/substrate-docs/issues/new?title=Broken%20Link&template=broken-link.yaml&labels=Broken%20Link"
-              className="text-substrateBlue dark:text-substrateBlue-light mdx-anchor underline hover:opacity-90"
+              href="https://github.com/substrate-developer-hub/substrate-docs/issues/1132"
             >
-              Report a broken link
+              new Substrate documentation
             </a>{' '}
-            or learn more about{' '}
-            <a
-              href=""
-              className="text-substrateBlue dark:text-substrateBlue-light mdx-anchor underline hover:opacity-90"
-            >
-              documentation updates
-            </a>
-            .
+            where it likely exits now.
           </h2>
           <PrimaryButtonLink link="/">Go to the homepage</PrimaryButtonLink>
         </div>
