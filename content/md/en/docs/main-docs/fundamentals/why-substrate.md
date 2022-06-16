@@ -52,7 +52,7 @@ Contributions from the community enhance the capabilities available for you to i
 
 ## Interoperable
 
-Most blockchain platforms provided limited ability to interact with data that exists off-chain or on other chain platforms.
+Most blockchain platforms provided limited ability to interact with data that exists offchain or on other chain platforms.
 Substrate enables you to choose whether you blockchain operates independently as a solo chain, can connect as a solo chain to another chain using a bridge, or is integrated through a relay chain to connect with other chains. 
 Independent Substrate-based blockchains can interoperate with the other blockchains through cross-chain message passing (XCMP). 
 The XCMP protocol enables chains—referred to as **parachains**—to share trusted logic, for example, transferring tokens between networks, without any additional trust assumptions.

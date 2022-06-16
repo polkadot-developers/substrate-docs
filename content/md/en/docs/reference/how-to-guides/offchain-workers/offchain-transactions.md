@@ -2,16 +2,16 @@
 title: Make offchain transactions
 description:
 keywords:
-  - off-chain worker
+  - offchain worker
   - ocw
   - transactions
 ---
 
-This guide will teach you how to save data that has been handled by an off-chain worker using signed and unsigned transactions.
+This guide will teach you how to save data that has been handled by an offchain worker using signed and unsigned transactions.
 
-You cannot save data processed by off-chain workers directly to on-chain storage.
-To store any data from an off-chain worker on-chain, you must create a transaction that sends the data from the off-chain worker to the on-chain storage system.
-You can create transactions that send data from off-chain workers to on-chain storage as signed transactions or unsigned transactions depending on how you want the transaction calling account to be handled.
+You cannot save data processed by offchain workers directly to on-chain storage.
+To store any data from an offchain worker on-chain, you must create a transaction that sends the data from the offchain worker to the on-chain storage system.
+You can create transactions that send data from offchain workers to on-chain storage as signed transactions or unsigned transactions depending on how you want the transaction calling account to be handled.
 For example:
 
 - Use **signed transactions** if you want to record the associated transaction caller and deduct the transaction fee from the caller account.
@@ -20,7 +20,7 @@ For example:
 
 ## Sending signed transactions
 
-1. In your pallet, call the hook for off-chain workers as follows:
+1. In your pallet, call the hook for offchain workers as follows:
 
    ```rust
    #[pallet::hooks]
@@ -35,7 +35,7 @@ For example:
    	/// so the code should be able to handle that.
    	fn offchain_worker(block_number: T::BlockNumber) {
    		log::info!("Hello from pallet-ocw.");
-   		// The entry point of your code called by off-chain worker
+   		// The entry point of your code called by offchain worker
    	}
    	// ...
    }
@@ -222,7 +222,7 @@ For example:
    	//...
 
    	if config.offchain_worker.enabled {
-   	// Initialize seed for signing transaction using off-chain workers. This is a convenience
+   	// Initialize seed for signing transaction using offchain workers. This is a convenience
    	// so learners can see the transactions submitted simply running the node.
    	// Typically these keys should be inserted with RPC calls to `author_insertKey`.
    	sp_keystore::SyncCryptoStore::sr25519_generate_new(
@@ -238,7 +238,7 @@ For example:
    This example adds the key for the `Alice` account to the key store identified by the pallet-defined `KEY_TYPE`.
    In production, one or more accounts are injected via chain spec configuration.
 
-Now, your pallet is ready to send signed transactions on-chain from off-chain workers.
+Now, your pallet is ready to send signed transactions on-chain from offchain workers.
 
 ## Sending unsigned transactions
 
@@ -294,7 +294,7 @@ To enable Substrate to accept certain unsigned transactions, you must implement 
 
    To see a full example of how `ValidateUnsigned` is implemented in a pallet, refer to [`pallet-example-offchain-worker` in **Substrate**](https://github.com/paritytech/substrate/blob/polkadot-v0.9.17/frame/examples/offchain-worker/src/lib.rs#L301-L329).
 
-1. In the off-chain worker function, you can send unsigned transactions as follows:
+1. In the offchain worker function, you can send unsigned transactions as follows:
 
    ```rust
    #[pallet::hooks]
@@ -447,9 +447,9 @@ The differences between sending unsigned transactions and sending unsigned trans
 
    This example uses [`SignedPayload`](https://paritytech.github.io/substrate/latest/frame_system/offchain/trait.SignedPayload.html) to verify that the public key in the payload has the same signature as the one provided.
 
-Refer to the [off-chain function call](https://github.com/paritytech/substrate/blob/polkadot-v0.9.18/frame/examples/offchain-worker/src/lib.rs#L508-L536) and [the implementation of `ValidateUnsigned`](https://github.com/paritytech/substrate/blob/polkadot-v0.9.18/frame/examples/offchain-worker/src/lib.rs#L305-L329) for a working example of the above.
+Refer to the [offchain function call](https://github.com/paritytech/substrate/blob/polkadot-v0.9.18/frame/examples/offchain-worker/src/lib.rs#L508-L536) and [the implementation of `ValidateUnsigned`](https://github.com/paritytech/substrate/blob/polkadot-v0.9.18/frame/examples/offchain-worker/src/lib.rs#L305-L329) for a working example of the above.
 
-You have now seen how you can use off-chain workers to send data for on-chain storage using:
+You have now seen how you can use offchain workers to send data for on-chain storage using:
 
 - Signed transactions
 - Unsigned transactions

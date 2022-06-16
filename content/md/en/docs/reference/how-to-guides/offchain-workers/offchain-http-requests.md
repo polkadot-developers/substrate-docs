@@ -2,7 +2,7 @@
 title: Make offchain HTTP requests
 description:
 keywords:
-  - off-chain worker
+  - offchain worker
   - ocw
   - http
   - https
@@ -12,7 +12,7 @@ keywords:
 This guide steps through making an HTTP request using an offchain workeR, to GET or POST data offchain.
 
 Off-chain workers (**OCW** for short) were introduced to extend oracle-like capabilities for Substrate blockchains.
-Because a blockchain does not have access to data outside its own network, oracles are a useful tool to enable interactions between on and off-chain worlds.
+Because a blockchain does not have access to data outside its own network, oracles are a useful tool to enable interactions between on and offchain worlds.
 
 In this guide we will look through retrieving the price of bitcoin from the `cryptocompare` API as well as submitting data via an OCW API.
 

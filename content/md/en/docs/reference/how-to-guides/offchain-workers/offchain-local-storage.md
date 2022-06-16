@@ -2,19 +2,19 @@
 title: Offchain local storage
 description:
 keywords:
-  - off-chain worker
+  - offchain worker
   - ocw
   - local
   - storage
 ---
 
-This guide will teach you how to use an off-chain worker to save retrieved data in local storage for future access.
+This guide will teach you how to use an offchain worker to save retrieved data in local storage for future access.
 
-In the last section, we mentioned that off-chain workers (**OCW** for short) cannot modify the blockchain state directly, so they have to submit transactions to save their computed results back on-chain.
+In the last section, we mentioned that offchain workers (**OCW** for short) cannot modify the blockchain state directly, so they have to submit transactions to save their computed results back on-chain.
 Nonetheless there are also times when the data is not suitable to be saved on-chain yet still needs to be stored somewhere for future access.
 This includes temporary data or intermediate calculations that can be discarded once the computation is completed.
 
-In this guide, we will instruct off-chain workers to write data to the local storage without passing the data among the whole blockchain network.
+In this guide, we will instruct offchain workers to write data to the local storage without passing the data among the whole blockchain network.
 The concept of a **Storage Lock** is introduced to have value accessible consistently among multiple OCWs.
 OCWs are asynchronously run at the end of each block production and they are not limited by how long they run, so at any point of time there could be multiple OCW instances being initiated as shown below.
 
@@ -28,7 +28,7 @@ The atomicity guarantees that the new value is calculated based on up-to-date in
 Note that as values stored in local storage has not gone through the consensus mechanism among the network, so they are subject to manipulation of the node operator.
 
 In this how-to guide, we will first check from the storage, which acts as a cache, if the computed value exists.
-If the cached value is found, off-chain worker returns; else it will try to acquire a lock, perform the intensive computation, and save it to the storage/cache.
+If the cached value is found, offchain worker returns; else it will try to acquire a lock, perform the intensive computation, and save it to the storage/cache.
 
 ## Steps
 
@@ -45,7 +45,7 @@ If the cached value is found, off-chain worker returns; else it will try to acqu
 
    In the above code, a persistent local storage is defined using [`StorageValueRef::persistent()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.persistent) which is identified by `pallet::my-storage` key.
    The key is in a byte array type instead of a `str` type.
-   This local storage is persisted and shared across runs of the off-chain workers.
+   This local storage is persisted and shared across runs of the offchain workers.
 
 1. Check if the storage contains a cached value.
 
@@ -120,7 +120,7 @@ If the cached value is found, off-chain worker returns; else it will try to acqu
    Then the value is written to the storage using `set()`.
    The data type of the value passed into `set()` must be the same as the type specified above in the `get<T>()` call.
 
-1. Finally, return from the off-chain worker function.
+1. Finally, return from the offchain worker function.
 
    The full code looks similar to the following:
 

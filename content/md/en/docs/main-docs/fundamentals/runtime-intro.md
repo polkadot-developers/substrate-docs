@@ -34,7 +34,7 @@ In addition to these required interfaces, most Substrate nodes—like the node t
 
 - [`BlockBuilder`](https://paritytech.github.io/substrate/master/sp_block_builder/trait.BlockBuilder.html) for the functionality required to build a block.
 - [`TaggedTransactionQueue`](https://paritytech.github.io/substrate/master/sp_transaction_pool/runtime_api/trait.TaggedTransactionQueue.html) for validating transactions.
-- [`OffchainWorkerApi`](https://paritytech.github.io/substrate/master/sp_offchain/trait.OffchainWorkerApi.html) for enabling off-chain operations.
+- [`OffchainWorkerApi`](https://paritytech.github.io/substrate/master/sp_offchain/trait.OffchainWorkerApi.html) for enabling offchain operations.
 - [`AuraApi`](https://paritytech.github.io/substrate/master/sp_consensus_aura/trait.AuraApi.html) for block authoring and validation using a round-robin method of consensus.
 - [`SessionKeys`](https://paritytech.github.io/substrate/master/sp_session/trait.SessionKeys.html) for generating and decoding session keys.
 - [`GrandpaApi`](https://paritytech.github.io/substrate/master/sp_finality_grandpa/trait.GrandpaApi.html) for block finalization into the runtime.
