@@ -26,21 +26,11 @@ import process running smoothly.
 
 To achieve this, we need to model how long it takes to run each function in the runtime by:
 
-<<<<<<< HEAD
 * Write custom benchmarking logic that executes a specific code path for a function.
 * Execute the benchmark logic in the Wasm execution environment on specific hardware and with a specific runtime configuration.
 * Execute the benchmark logic across a controlled range of possible values that might affect the result of the benchmark.
 * Execute the benchmark multiple times at each point in order to isolate and remove outliers.
 * Use the results of the benchmark to create a linear model of the function across its components.
-=======
-- Creating custom benchmarking logic that executes a specific code path of a function.
-- Executing the benchmark in the Wasm execution environment, on a specific set of hardware, with a
-  custom runtime configuration, etc...
-- Executing the benchmark across controlled ranges of possible values that may affect the result of
-  the benchmark (called "components").
-- Executing the benchmark multiple times at each point in order to isolate and remove outliers.
-- Using the results of the benchmark to create a linear model of the function across its components.
->>>>>>> main-md
 
 With this linear model, we are able to estimate ahead of time how long it takes to execute some
 logic, and thus make informed decisions without actually spending any significant resources at
