@@ -4,19 +4,24 @@ description:
 keywords:
 ---
 
-`subxt` is a CLI utility to generate a client API from the metadata of a Substrate node.
-This tool was originally designed for the [`subxt` library](https://github.com/paritytech/subxt) to build the runtime API from the metadata of a target node. 
-It can be used as a standalone tool to download the metadata or generate the API for the runtime of any node that uses metadata V14 and above. 
+The [`subxt`](https://github.com/paritytech/subxt) library enables you to submit transactions to a Substrate node through remote procedure calls.
+Before you use the `subxt` library, you can use the standalone `subxt` command-line interface to download the metadata for the Substrate node you want to use as the target for submitting transactions.
+The `subxt-cli` tool enables you to perform two key tasks that are critical to using the `subxt` library:
 
-## Installation 
+* You can use the `subxt-cli` tool to download the metadata from any target Substrate node.
+* You can use the `subxt-cli` tool to generate the runtime API code from the metadata from any target Substrate node.
 
-To install `subxt`:
+You can use the `subxt` library and `subxt-cli` tool for any node that uses metadata v14 and later.
+For examples of how to use the `subxt` library, see the [examples](https://github.com/paritytech/subxt/tree/master/examples/examples) folder.
+
+## Installation
+
+To install `subxt-cli`:
 
 1. Open a terminal shell, if necessary.
 1. Verify that you have the Rust compiler and toolchain, if necessary.
-1. Download the required packages with the following command: 
-
-    `cargo install subxt`
+1. Download the required packages with the following command:
+    `cargo install subxt-cli`
 
 ## Basic command usage
 
@@ -24,7 +29,7 @@ The basic syntax for running `subxt` commands is:
 
 `subxt <SUBCOMMAND>`
 
-In order to use the commands exposed by `subxt`, you must either be running a node locally or specify the chain you're targeting.
+To use the commands exposed by `subxt`, you must either be running a node locally or specify the chain you're targeting.
 If the metadata is already provided, it is possible to use the `codegen` subcommand without running a node.
 
 ### Flags
@@ -38,13 +43,12 @@ You can use the following optional flags with the `subxt` command.
 
 ### Subcommands
 
-You can use the following subcommands with the `subxt` command. 
-For reference information and examples that illustrate using `subxt` subcommands, select an appropriate command.
+You can use the following subcommands with the `subxt` command-line interface.
 
 | Command | Description
 | ------- | -----------
-| [`codegen`](#codegen) | Generate runtime API client code from metadata.  
-| [`metadata`](#metadata) | Download metadata from a Substrate node, for use with `subxt` codegen.
+| `codegen` | Generates runtime API client code from metadata.  
+| `metadata` | Downloads metadata from a Substrate node for use with `subxt` codegen.
 
 ### Output
 
@@ -90,21 +94,22 @@ You can use the following command-line options with the `subxt codegen` command.
 
 | Option   | Description
 | -------- | -----------
-| `-f, --file <file>` | The path to the encoded metadata file.
-| `--url <url>` | The url of the Substrate node to query for metadata for codegen.
+| `-f, --file <file>` | Specifies the path to the encoded metadata file.
+| `--url <url>` | Specifies the URL of the Substrate node to query for metadata for codegen.
 
 #### Examples
 
-To format the generated API and print it to the terminal:
+To format the generated API and print it to the terminal, run the following command:
 
 `subxt codegen | rustfmt`
 
-To save the generated API in a file:
+To save the generated API in a file, run the following command:
 
 `subxt codegen | rustfmt --edition=2018 > api.rs`
+
 ## metadata
 
-Use the `subxt metadata` command to get the metadata of some target Substrate node.
+Use the `subxt metadata` command to get the metadata of the target Substrate node.
 
 #### Basic usage
 
@@ -125,19 +130,19 @@ You can use the following command-line options with the `subxt metadata` command
 
 | Option   | Description
 | -------- | -----------
-| `-f, --format <format>` | The format of the metadata to display: `json`, `hex` or `bytes` [default: json].
-| `--url <url>` | The url of the Substrate node to query for metadata [default: http://localhost:9933].
+| `-f, --format <format>` | Specifies the format of the metadata to display. Valid formats are `json`, `hex` or `bytes`. The default format is `json`.
+| `--url <url>` | Specifies the URL of the Substrate node to query for metadata. The default URL is `http://localhost:9933`.
 
 #### Examples
 
-To save the metadata to a file from a local node in bytes:
+To save the metadata from the local node encoded in bytes to a file, run the following command:
 
 `subxt metadata -f bytes > metadata.scale`
 
-To save the metadata from the Rococo network to a JSON file:
+To save the metadata from the Rococo network to a JSON file, run the following command:
 
 `subxt metadata --url https://rococo-rpc.polkadot.io:443 > metadata.json`
 
-To query type `125` from the array of types in the metadata and output in JSON: 
+To query type `125` from the array of types in the metadata and output in JSON, run the following command:
 
 `subxt metadata --format json | jq '.[1].V14.types.types | .[125]'`
