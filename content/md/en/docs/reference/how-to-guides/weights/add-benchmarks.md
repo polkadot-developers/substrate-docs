@@ -187,7 +187,7 @@ Execute the following command to run standard benchmarking for your `pallet_you_
     --execution wasm \
     --wasm-execution compiled \
     --pallet pallet_you_crated \
-    --extrinsic '\*' \
+    --extrinsic '*' \
     --steps 20 \
     --repeat 10 \
     --json-file=raw.json \
