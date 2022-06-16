@@ -29,8 +29,8 @@ Add the FRAME dependency:
 
 ```rust
 [dependencies]
-frame-try-runtime = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.18", optional = true }
-try-runtime-cli = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.18", optional = true }
+frame-try-runtime = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.23", optional = true }
+try-runtime-cli = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.23", optional = true }
 
 /* --snip-- */
     std = [
@@ -78,8 +78,8 @@ try-runtime = [
 ]
 
 /* --snip-- */
-frame-try-runtime = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.18", optional = true }
-try-runtime-cli = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.18", optional = true }
+frame-try-runtime = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.23", optional = true }
+try-runtime-cli = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.23", optional = true }
 /* --snip-- */
 
 ```
