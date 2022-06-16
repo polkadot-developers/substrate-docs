@@ -8,7 +8,7 @@ Substrate ships with the following runtime APIs:
 
 - [`BlockBuilder`](https://paritytech.github.io/substrate/master/sp_block_builder/trait.BlockBuilder.html): Provides the functionality required for building a block.
 - [`TaggedTransactionQueue`](https://paritytech.github.io/substrate/master/sp_transaction_pool/runtime_api/trait.TaggedTransactionQueue.html): Handles validating transactions in the transaction queue.
-- [`OffchainWorkerApi`](https://paritytech.github.io/substrate/master/sp_offchain/trait.OffchainWorkerApi.html): Handles [off-chain capabilities](/main-docs/fundamentals/offchain-operations/).
+- [`OffchainWorkerApi`](https://paritytech.github.io/substrate/master/sp_offchain/trait.OffchainWorkerApi.html): Handles [offchain capabilities](/main-docs/fundamentals/offchain-operations/).
 - [`AuraApi`](https://paritytech.github.io/substrate/master/sp_consensus_aura/trait.AuraApi.html): Handles block authorship with [Aura consensus](/main-docs/fundamentals/consensus/).
 - [`SessionKeys`](https://paritytech.github.io/substrate/master/sp_session/trait.SessionKeys.html): Generates and decodes [session keys](/main-docs/fundamentals/accounts-addresses-keys/).
 - [`GrandpaApi`](https://paritytech.github.io/substrate/master/sp_finality_grandpa/trait.GrandpaApi.html): Integrates the [GRANDPA](/main-docs/fundamentals/consensus/) finality gadget into the runtime.

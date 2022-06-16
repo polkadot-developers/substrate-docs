@@ -2,7 +2,7 @@
 title: Make offchain HTTP requests
 description:
 keywords:
-  - off-chain worker
+  - offchain worker
   - ocw
   - http
   - https
@@ -12,7 +12,7 @@ keywords:
 This guide steps through making an HTTP request using an offchain workeR, to GET or POST data offchain.
 
 Off-chain workers (**OCW** for short) were introduced to extend oracle-like capabilities for Substrate blockchains.
-Because a blockchain does not have access to data outside its own network, oracles are a useful tool to enable interactions between on and off-chain worlds.
+Because a blockchain does not have access to data outside its own network, oracles are a useful tool to enable interactions between on and offchain worlds.
 
 In this guide we will look through retrieving the price of bitcoin from the `cryptocompare` API as well as submitting data via an OCW API.
 
@@ -92,6 +92,6 @@ The Substrate HTTP library supports the following methods:
 
 ## Examples
 
-- [**Offchain Worker Example Pallet** in Substrate](https://github.com/paritytech/substrate/blob/polkadot-v0.9.18/frame/examples/offchain-worker/src/lib.rs#L571-L625)
-- [**OCW Pallet** in Substrate Offchain Worker Demo](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/master/pallets/ocw/src/lib.rs#L363-#L401)
-- [**Offchain HTTP source** in Substrate Core](https://github.com/paritytech/substrate/blob/master/primitives/runtime/src/offchain/http.rs#L63-L76)
+- [Example pallet: Offchain worker](https://github.com/paritytech/substrate/blob/polkadot-v0.9.18/frame/examples/offchain-worker/src/lib.rs#L571-L625)
+- [Demo: OCW pallet](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/master/pallets/ocw/src/lib.rs#L363-#L401)
+- [Source: Substrate core primitives](https://github.com/paritytech/substrate/blob/master/primitives/runtime/src/offchain/http.rs#L63-L76)

@@ -2,28 +2,28 @@
 title: Offchain indexing
 description:
 keywords:
-  - off-chain worker
+  - offchain worker
   - ocw
   - indexing
 ---
 
-This guide will step you through how to pass data from an extrinsic to an off-chain worker without writing to storage.
+This guide will step you through how to pass data from an extrinsic to an offchain worker without writing to storage.
 
-Occasionally on-chain extrinsics need to pass data to off-chain workers with predictable write behavior.
-This data could be written to on-chain storage for off-chain workers to read, but this could potentially incur a huge cost to the blockchain.
-Another way of handing data from on-chain to off-chain worlds is by saving it in the local storage of a node via **off-chain indexing**.
+Occasionally on-chain extrinsics need to pass data to offchain workers with predictable write behavior.
+This data could be written to on-chain storage for offchain workers to read, but this could potentially incur a huge cost to the blockchain.
+Another way of handing data from on-chain to offchain worlds is by saving it in the local storage of a node via **offchain indexing**.
 
 Off-chain indexing is called from on-chain extrinsics which implies that the data written locally is expected to be consistent across all nodes in the network.
 
-Another use case is when needing to store large chunks of data on-chain for off-chain workers to process.
+Another use case is when needing to store large chunks of data on-chain for offchain workers to process.
 This would be too expensive.
-The solution would be to use off-chain indexing to store a hash of that data on-chain and have the corresponding raw data stored locally for an off-chain worker to read later on.
+The solution would be to use offchain indexing to store a hash of that data on-chain and have the corresponding raw data stored locally for an offchain worker to read later on.
 
 Notice that the same extrinsic could be run multiple times when there are forked blocks.
 The consequence is that in case non-unique keys are used, the data might be overwritten by different forked blocks and the content in the local storage will be different between nodes.
 So developers should be careful in forming the right indexing key to prevent potential overwrites.
 
-Note: In order to see the off-chain indexing feature in action, run your Substrate node with the off-chain indexing flag _ON_.
+Note: In order to see the offchain indexing feature in action, run your Substrate node with the offchain indexing flag _ON_.
 For example: `./target/release/substrate-node --enable-offchain-indexing true`
 
 ## Steps
@@ -64,7 +64,7 @@ For example: `./target/release/substrate-node --enable-offchain-indexing true`
    In the above code within a regular extrinsic, the `Self::derived_key()` helper method is called to generate the key used later for indexing.
    It concatenates a predefined prefix with the current encoded block number and returns it as a vector of bytes.
 
-1. Define the indexing data and save it using off-chain indexing:
+1. Define the indexing data and save it using offchain indexing:
 
    ```rust
    use sp_io::offchain_index;
@@ -92,9 +92,9 @@ For example: `./target/release/substrate-node --enable-offchain-indexing true`
    ```
 
    The indexing data can be any data type that can be bound by the `Encode`, `Decode`, and `Deserialize` traits.
-   In the above code, data is stored via off-chain indexing using the [`offchain_index::set()`](https://paritytech.github.io/substrate/latest/sp_io/offchain_index/fn.set.html) method.
+   In the above code, data is stored via offchain indexing using the [`offchain_index::set()`](https://paritytech.github.io/substrate/latest/sp_io/offchain_index/fn.set.html) method.
 
-1. Use the `offchain_worker` hook method to read the data in the off-chain workers' database:
+1. Use the `offchain_worker` hook method to read the data in the offchain workers' database:
 
    ```rust
    use sp_runtime::offchain::StorageValueRef;
@@ -103,7 +103,7 @@ For example: `./target/release/substrate-node --enable-offchain-indexing true`
    struct IndexingData(Vec<u8>, u64);
 
    fn offchain_worker(block_number: T::BlockNumber) {
-   	// Reading back the off-chain indexing value. This is exactly the same as reading from
+   	// Reading back the offchain indexing value. This is exactly the same as reading from
    	// ocw local storage.
    	let key = Self::derived_key(block_number);
    	let storage_ref = StorageValueRef::persistent(&key);
@@ -119,7 +119,7 @@ For example: `./target/release/substrate-node --enable-offchain-indexing true`
    }
    ```
 
-   With this, an off-chain worker could read the corresponding data from a node's local storage.
+   With this, an offchain worker could read the corresponding data from a node's local storage.
    The [Offchain local storage](/reference/how-to-guides/offchain-workers/offchain-local-storage/) how-to guide explains how to do that.
 
 ## Related material

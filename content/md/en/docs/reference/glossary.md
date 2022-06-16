@@ -191,7 +191,7 @@ It was developed by [a team led by Tim Hughes](https://github.com/ethereum/ethas
 
 ## events
 
-A means of recording, for the benefit of the off-chain world, that some particular [state](#state) transition happened. 
+A means of recording, for the benefit of the offchain world, that some particular [state](#state) transition happened. 
 In the context of [FRAME](#frame), events are a composable data types that each [pallet](#pallet) can individually define. 
 Events in FRAME are implemented as a set of transient storage items that are inspected immediately after a block has executed and reset during block-initialization.
 

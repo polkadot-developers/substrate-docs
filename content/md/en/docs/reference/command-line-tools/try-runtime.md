@@ -172,7 +172,7 @@ cargo run --release --features=try-runtime try-runtime on-runtime-upgrade live w
 
 #### Other scenarios
 
-Using it to re-execute code from a `ElectionProviderMultiPhase` off-chain worker on `localhost:9944`:
+Using it to re-execute code from a `ElectionProviderMultiPhase` offchain worker on `localhost:9944`:
 
 ```bash
 cargo run -- --release \
