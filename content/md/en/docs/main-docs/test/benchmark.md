@@ -1,7 +1,10 @@
 ---
 title: Benchmark
-description:
+description: Describes the benchmarking framework you can use to estimate the computational resources required to execute the functions in the runtime logic.
 keywords:
+  - weight
+  - resource consumption
+  - execution time
 ---
 
 Substrate and FRAME provide a flexible framework for developing custom logic for your blockchain. However, this flexibility can also introduce complexity that can make your blockchain vulnerable to denial of service (DoS) attacks by malicious actors.
