@@ -60,7 +60,7 @@ In a proof-of-work blockchain, these nodes are called _miners_.
 
 ## authority
 
-The [nodes](#node) that act as a collective to manage [consensus](#consensus) on a[blockchain](#blockchain) network. 
+The [nodes](#node) that act as a collective to manage [consensus](#consensus) on a [blockchain](#blockchain) network. 
 In a [proof-of-stake](#nominated-proof-of-stake-npos) blockchain—for example, a blockchain that us the [Staking pallet](/reference/frame-pallets#staking) from [FRAME](#frame)—authorities are determined through a token-weighted nomination and voting system.
 
 > The terms _authorities_ and _[validators](#validator)_ sometimes seem to refer the same thing.
@@ -105,12 +105,18 @@ Typically, a distributed network is considered byzantine fault tolerant if it ca
 
 ### byzantine failure
 
-The loss of a network service due to node failures that exceed the proprortion of nodes required to reach consensus.
+The loss of a network service due to node failures that exceed the proportion of nodes required to reach consensus.
 
 ### practical byzantine fault tolerance (pBFT)
 
 An early approach to byzantine fault tolerance. pBFT systems tolerate byzantine behavior from up to one-third of participants. 
 The communication overhead for such systems is `O(n²)`, where `n` is the number of nodes (participants) in the system.
+
+## collator
+
+An [author](#author) of a [parachain](#parachain) network.
+They are not [authorities](#authority) in themselves, as they require a [relay chain](#relay-chain) to coordinate [consensus](#consensus).
+More details are found on the [Polkadot Wiki on collators](https://wiki.polkadot.network/docs/learn-collator).
 
 ## consensus
 
@@ -270,10 +276,10 @@ For example, the preceding macros are all defined in the [`frame_support`](/refe
 [`frame_system`](/reference/frame-pallets#system-library) module. 
 After the `frame_support::construct_runtime` macro has been used to create a runtime that includes the `frame_system` module, optional pallets such as the [Balances](/reference/frame-pallets#balances) pallet can be used to extend the core capabilities of the runtime.
 
-## full client
+## full node
 
 A [node](#node) that is able to synchronize a blockchain in a secure manner through execution and verification of all logic.
-Full clients stand in contrast to [light clients](#light-client).
+Full nodes stand in contrast to [light clients](#light-client).
 
 ## genesis configuration
 
@@ -415,6 +421,13 @@ In Substrate, the runtime is stored as a [WebAssembly](#webassembly-wasm) binary
 
 A fixed, equal interval of time used by consensus engines such as [Aura](#aura-aka-authority-round) and [BABE](#blind-assignment-of-blockchain-extension-babe). 
 In each slot, a subset of [authorities](#authority) is permitted—or obliged—to [author](#author) a [block](#block).
+
+## SS58
+
+SS58 is a simple address format designed for Substrate based chains.
+It is heavily based on Bitcoin's [`Base-58-check` format](https://en.bitcoin.it/wiki/Base58Check_encoding) with a few alterations.
+These are represented by a `base-58` encoded value to identify a specific account on a specific Substrate chain.
+The [canonical `ss58-registry`](https://github.com/paritytech/ss58-registry) details account metadata, like the network prefix and website, for various networks. 
 
 ## stake-weighted voting
 

@@ -2,6 +2,11 @@
 title: Connect a local parachain
 description:
 keywords:
+  - parachain
+  - testnet
+  - local
+  - collator
+  - chain specification
 ---
 
 In this tutorial, we'll connect a parachain to a local relay chain.
@@ -19,23 +24,10 @@ Before you begin, verify the following:
 
 - You have competed the [start a local relay chain](/tutorials/connect-other-chains/local-testnet/) tutorial, and have a running local network with no les than two validators.
 
-## Exact Versions Matter
+## Matching versions are critical
 
-You **must** use the _exact_ versions set forth in this tutorial to ensure that you do not run into conflicts.
-Parachains are _very tightly coupled_ with the relay chain codebase they are connecting to.
-To have the least amount of hiccups, be sure to use the corresponding tagged version of Polkadot and the parachain template when working on this tutorial.
-For example, if you are using [Polkadot `v0.9.24`](https://github.com/paritytechtree/release-v0.9.24), use the `polkadot-v0.9.24` version of the [parachain template](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.24).
-
-### Software versioning
-
-This tutorial has been tested on:
-
-- [Polkadot `v0.9.24`](https://github.com/paritytech/polkadot/tree/release-v0.9.24)
-- [Substrate Parachain Template `polkadot-v0.9.24`](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.24)
-- [Polkadot-JS Apps `v0.116.2-34 `](https://github.com/polkadot-js/apps/commit/151c4cd75b6eb68ac275d90fd17f98b28b6e57a7).
-  It is generally expected that the [hosted Polkadot-JS Apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/explorer) should work.
-  If you have issues, build and run this UI yourself at this tagged version/commit.
-
+You **must** use the _exact_ software versions defined in the [relay chain tutorial](/tutorials/connect-other-chains/local-relay/#matching-versions-are-critical) for this tutorial to function!
+For example, if you are using [Polkadot `release-v0.9.24`](https://github.com/paritytechtree/release-v0.9.24), use the `polkadot-v0.9.24` version of the [parachain template](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.24).
 
 ## Building the parachain template
 
@@ -59,16 +51,19 @@ cd substrate-parachain-template
 git checkout polkadot-v0.9.24
 
 # Build the parachain template collator
-cargo build --release
+cargo b -r
+```
 
+**After you start the compilation, it will take a while (commonly 15 to 60 minuets) to complete.**
+In the mean time, [Reserve a para ID](#reserve-a-para-id) on the running relay chain to prepare, and make not of the `ParaID` you acquire.
+If still waiting, take a moment to explore the runtime of the [parachain template runtime](https://github.com/substrate-developer-hub/substrate-parachain-template/blob/polkadot-v0.9.24/runtime/src/lib.rs) you have locally now, to understand what pallets are included within it.
+
+```bash
 # Check if the help page prints to ensure the node is built correctly
 ./target/release/parachain-collator --help
 ```
 
-> Again, this will take 15 to 60 mins to complete.
-
-If the help page is printed, you have succeeded in building a Cumulus-based parachain collator.
-
+If the help page is printed, you have succeeded in building a [Cumulus](https://github.com/paritytech/cumulus)-based parachain template.
 
 ## Launching a parachain
 
@@ -423,11 +418,14 @@ This area of functionality is at the cutting edge development, and for now is no
 
 To learn more about XCMP, refer to [Polkadot wiki on XCMP](https://wiki.polkadot.network/docs/en/learn-crosschain).
 
+<!-- TODO /tutorials/connect-other-chains/xcm/  page implemented and referenced here-->
+
 ## Chain purging
 
-Your sole collator is the only home of the parachain data as there is only one node on your entire parachain network.
+Your sole collator is the **only home of the parachain blockchain data** as there is only one node on your entire parachain network.
 Relay chains only store parachains header information.
-If the parachain data is lost, you will **not** be able to recover the chain.
+If the parachain data is lost, you will **not** be able to recover the chain!
+In testing though, you may need to start things from scratch.
 
 To purge your parachain chain data, you need to deregister and re-register the parachain collator.
 It may be easier in testing to instead just purge all the chains.
@@ -435,67 +433,22 @@ To purge all chains, run:
 
 ```bash
 # Purge the collator(s)
-./target/release/parachain-collator purge-chain\
+./target/release/parachain-collator purge-chain \
   --base-path <your collator DB path set above>
 
 # Purge the validator(s)
-polkadot purge-chain\
+polkadot purge-chain \
   --base-path <your relay chain DB path set above>
 ```
 
 Then register from a blank slate again.
 
-## Connecting additional parachain nodes
-
-A parachain can work with only a single collator as we've shown already.
-But that configuration is not very decentralized.
-An adversary would only need to take down a single node to stall the parachain.
-
-You should have _at least_ two **validators** (relay chain nodes) running for every **collator** (parachain nodes) on your network.
-
-You can **modify** [the first section's](/tutorials/connect-other-chains/relay-chain#pre-configured-chain-spec-files) provided **plain** relay chain spec to include more validators for testing, or go the more "correct" route used for production of modifying the **source** for genesis state in `chain_spec.rs` for your **relay chain** to add more validators.
-
-### Start a second collator
-
-The command to run additional collators is as follows.
-This command is nearly identical to the one we used to start the first collator, but we need to avoid conflicting ports and `base-path` directories.
-
-```bash
-./target/release/parachain-collator \
---bob \
---collator \
---force-authoring \
---chain rococo-local-parachain-2000-raw.json \
---base-path /tmp/parachain/bob \
---bootnodes <a running collator node> \
---port 40334 \
---ws-port 9946 \
--- \
---execution wasm \
---chain <relay-chain chain spec> \
---port 30344 \
---ws-port 9978
---bootnodes <other relay chain node>
-```
-
-### Non-collating parachain full nodes
-
-It is also possible to start a non-collating full node for a parachain.
-In this case, simply leave out the `--collator` flag.
-
-```bash
-./target/release/parachain-collator \
-  --base-path <a DB base path> \
-  --bootnodes <Your first collator> \
-  --ws-port <Your chosen websocket port> \
-  --port <Your chosen libp2p port> \
-  --parachain-id <Your ID> \
-  -- \
-  --chain <relay-chain chain spec> \
-  --bootnodes <other relay chain node>
-```
 
 ## Next steps
 
 That was quite a lot of work to get a parachain up and running!
-Don't fret though, in the next section we will learn about how to completely automate all the steps we did in this tutorial thus far, and much more!
+
+- Learn more about collators on the [Polkadot Wiki](https://wiki.polkadot.network/docs/learn-collator).
+
+<!-- TODO NAV.YAML -->
+<!-- - [Add more parachain nodes](/reference/how-to-guides/parachains/add-paranodes/) to your parachain network. -->

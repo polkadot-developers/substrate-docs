@@ -38,16 +38,17 @@ By completing this tutorial, you will accomplish the following objectives:
 - Prepare a relay chain specification.
 - Start a relay chain locally.
 
-## Exact Versions Matter
+## Matching versions are critical
 
-You **must** use the _exact_ versions set forth in this tutorial to ensure that you do not run into conflicts.
-Parachains are _very tightly coupled_ with the relay chain codebase they are connecting to.
-To have the least amount of hiccups, be sure to use the corresponding tagged version of Polkadot and the parachain template when working on this tutorial.
-For example, if you are using [Polkadot `v0.9.24`](https://github.com/paritytechtree/release-v0.9.24), use the `polkadot-v0.9.24` version of the [parachain template](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.24).
+You **must** use the _exact_ versions set forth in this tutorial.
+Parachains are _very tightly coupled_ with the relay chain codebase they are connecting to as they share so many common dependancies.
+Be sure to use the corresponding version of Polkadot with any other software when working on _any_ examples throughout the Substrate documentation.
+This also applies when in production: running a parachain _requires_ that you follow relay chain upgrades!
+Falling behind is very likely to have your network _stop producing blocks_!
 
-### Software versioning
+### Documentation examples versioning
 
-This tutorial has been tested on:
+**All tutorials in the docs** have been tested to work with:
 
 - [Polkadot `v0.9.24`](https://github.com/paritytech/polkadot/tree/release-v0.9.24)
 - [Substrate Parachain Template `polkadot-v0.9.24`](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.24)
@@ -70,16 +71,17 @@ cd polkadot
 
 # Build the relay chain Node
 cargo b -r
+```
 
+**After you start the compilation, it will take a while (commonly 15 to 60 minuets) to complete.**
+While waiting, perhaps reviewing how to [create your own chain spec](/tutorials/get-started/trusted-network/#create-a-custom-chain-specification) would be in order, as it's something you may with to do latter on here.
+
+```bash
 # Check if the help page prints to ensure the node is built correctly
 ./target/release/polkadot --help
 ```
 
-**After you start the compilation, it will take a while (commonly 15 mins to 60 mins) to complete.**
-So go ahead and continue to read through the rest of the tutorial during the wait. 😉
-
 If the help page is printed, you have succeeded in building a Polkadot node.
-
 
 ## Relay chain specification
 
@@ -87,8 +89,8 @@ You will need a [chain specification](/main-docs/build/chain-spec/)) for your re
 
 Whichever chain spec file you choose to use we will refer to the file simply as `chain-spec.json` in the instructions below. You will need to supply the proper path to the chain spec you are using.
 
-In defining these, keep in mind that a relay chain _must_ have one more validator nodes running than the total of connected parachains.
-For example, if you want to connect two parachains, run three or more relay chain validator nodes.
+In defining these, keep in mind that a relay chain _must_ have one more validator nodes running than the total of connected parachain collators.
+For example, if you want to connect two parachains with a single collator, run three or more relay chain validator nodes.
 
 ### Pre-configured chain spec files
 
@@ -103,6 +105,7 @@ You will need to convert it to a SCALE encoded **raw** chain spec to use when st
 Jump to the [raw chainspec generation](/tutorials/connect-other-chains/connect-parachain/#configure-a-parachain-for-a-specific-relay-chain-and-para-id) section to see how to do that.
 
 The above raw chain specs were created according to the steps in the [create your own chain spec](/tutorials/get-started/trusted-network/#create-a-custom-chain-specification) section.
+If you need more validators to add additional parachains to your relay chain, or want to use custom non-development keys for example, you _must_ create a custom chain specification to fit your needs.
 
 ## Start your relay chain
 
@@ -160,6 +163,16 @@ Optionally, explore the [how-to guide on configuring a custom chain spec](/refer
 
 For this tutorial, your final chain spec filename **must** start with `rococo` or the node will not know what runtime logic to include. -->
 
+## Further resources
+
+Manually building and configuring a relay chain is a great exercise, but once you have done this a few times it is likely that you would want to automate this process.
+There are many ways to go about this, here are a few for reference:
+
+<!-- TODO: add details about these in HTG pages and link here in stead on these https://github.com/substrate-developer-hub/substrate-docs/issues/1098 -->
+
+- [`parachain-launch`](https://github.com/open-web3-stack/parachain-launch) - A script that generates a docker compose file allowing you to launch a testnet of multiple blockchain nodes.
+- [`zombienet`](https://github.com/paritytech/zombienet) - A featureful CLI tool to easily spawn ephemeral Polkadot/Substrate networks and perform tests against them.
+
 ## Next steps
 
-With a running relay and 
+With a running relay chain, naturally you will want to [connect a parachain](/tutorials/connect-other-chains/parachain/) to it!
