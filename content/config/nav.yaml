@@ -173,9 +173,9 @@ tutorials:
     - title: Connect with other chains
       url: /tutorials/connect-other-chains/
       pages:
-        - title: Start a local relay chain
-          url: /tutorials/connect-other-chains/relay-chain/
-        - title: Connect to a relay chain
+        - title:  Start a local relay chain
+          url: /tutorials/connect-other-chains/local-relay/
+        - title: Connect a local parachain
           url: /tutorials/connect-other-chains/parachain/
         - title: Connect to Rococo testnet
           url: /tutorials/connect-other-chains/connect-rococo/

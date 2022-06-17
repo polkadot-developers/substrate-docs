@@ -1,19 +1,74 @@
 ---
-title: Connect to a relay chain
+title: Connect a local parachain
 description:
 keywords:
 ---
 
-In this part of the workshop, we'll connect a parachain to our relay chain and add additional nodes.
+In this tutorial, we'll connect a parachain to a local relay chain.
 
 ## Tutorial objectives
 
 By completing this tutorial, you will accomplish the following objectives:
 
-- Register a para ID
-- Initialize a parachain
-- Start and connect a collator
-- Connect additional parachain nodes
+- Register a para ID for your parachain on a relay chain
+- Start block production of a parachain on a relay chain
+
+## Before you begin
+
+Before you begin, verify the following:
+
+- You have competed the [start a local relay chain](/tutorials/connect-other-chains/local-testnet/) tutorial, and have a running local network with no les than two validators.
+
+## Exact Versions Matter
+
+You **must** use the _exact_ versions set forth in this tutorial to ensure that you do not run into conflicts.
+Parachains are _very tightly coupled_ with the relay chain codebase they are connecting to.
+To have the least amount of hiccups, be sure to use the corresponding tagged version of Polkadot and the parachain template when working on this tutorial.
+For example, if you are using [Polkadot `v0.9.24`](https://github.com/paritytechtree/release-v0.9.24), use the `polkadot-v0.9.24` version of the [parachain template](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.24).
+
+### Software versioning
+
+This tutorial has been tested on:
+
+- [Polkadot `v0.9.24`](https://github.com/paritytech/polkadot/tree/release-v0.9.24)
+- [Substrate Parachain Template `polkadot-v0.9.24`](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.24)
+- [Polkadot-JS Apps `v0.116.2-34 `](https://github.com/polkadot-js/apps/commit/151c4cd75b6eb68ac275d90fd17f98b28b6e57a7).
+  It is generally expected that the [hosted Polkadot-JS Apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/explorer) should work.
+  If you have issues, build and run this UI yourself at this tagged version/commit.
+
+
+## Building the parachain template
+
+We will use the [Substrate parachain template](https://github.com/substrate-developer-hub/substrate-parachain-template) to launch a parachain on your local relay chain.
+The parachain template is similar to the [node template](https://github.com/substrate-developer-hub/substrate-node-template) used in solo chain development, so it should be quite familiar.
+Later, we will use this parachain template as the starting point for developing our own parachains.
+
+<!-- TODO NEW CONTENT -->
+<!-- See the guide on [converting a solo chain to a parachain](/reference/how-to-guides/parachains/convert) for details on how the parachain template was created, and how to convert your chain's logic (not state migrations!) to a parachain.** -->
+
+In a new terminal window:
+
+```bash
+# Clone the parachain template
+git clone --depth 1 --branch polkadot-v0.9.24 https://github.com/substrate-developer-hub/substrate-parachain-template
+
+# Switch into the parachain template directory
+cd substrate-parachain-template
+
+# Checkout the proper commit
+git checkout polkadot-v0.9.24
+
+# Build the parachain template collator
+cargo build --release
+
+# Check if the help page prints to ensure the node is built correctly
+./target/release/parachain-collator --help
+```
+
+> Again, this will take 15 to 60 mins to complete.
+
+If the help page is printed, you have succeeded in building a Cumulus-based parachain collator.
+
 
 ## Launching a parachain
 
@@ -30,7 +85,7 @@ These chains use a different method to allocate para IDs.
 In this exercise, we will reserve a para ID using [Polkadot-JS Apps connecting to your local relay chain](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/parachains/parathreads).
 Under the **Network** > **Parachains** sub-page, click on **Parathreads** tab and use the **+ ParaId** button.
 
-![Reserve a para ID](../../../../src/images/tutorials/09-cumulus/paraid-reserve.png)
+![Reserve a para ID](/media/images/docs/tutorials/09-cumulus/paraid-reserve.png)
 
 Note that the account used to reserve the para ID must also be the origin for using this para ID.
 Once you submit this extrinsic successfully (you must see a successful `registrar.Reserved` event with your `paraID`), you can now launch your parachain or parathread using this reserved ID.
@@ -80,13 +135,13 @@ If you intend to let others connect to your network, they must have the associat
 They cannot reliably produce this themselves, and need to acquire it from a **single source**.
 This stems from the [non-deterministic issue](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1) in the way Wasm runtimes are compiled.
 
-Chain specs _conventionally_ live in a `/res` folder that is published in your node's codebase for others to use.
+Chain specs _conventionally_ live in a `/chain-specs` folder that is published in somewhere within your node's codebase for others to use.
 For example:
 
 - Polkadot includes these **relay chain** chain specs
-  [under `node/service/res`](https://github.com/paritytech/polkadot/tree/master/node/service/res)
+  [under `node/service/res`](https://github.com/paritytech/polkadot/tree/master/node/service/chain-specs)
 - Cumulus includes these **parachain** chain specs
-  [under `res`](https://github.com/paritytech/cumulus/tree/master/polkadot-parachains/res)
+  [under `chain-specs`](https://github.com/paritytech/cumulus/tree/master/parachains/chain-specs)
 
 It is good practice to commit this raw chain spec into your source before proceeding.
 
@@ -196,7 +251,7 @@ At this point your _collator's logs_ should look something like this:
 2021-05-30 16:58:00 [Relaychain] ✨ Imported #10 (0xc9c9…1ca3)
 ```
 
-You should see your collator node running (alone) and peering with the already running relay chain nodes.
+You should see your collator node running (alone) and relay node peering with the already running relay chain validators nodes.
 
 Note if you do not see the embedded relay chain peering with local relay chain node, try disabling your firewall or adding the `bootnodes` parameter with the relay node's address.
 
@@ -231,7 +286,7 @@ But note that the parachain will also be automatically off-boarded at the next p
 - Execute a sudo extrinsic on the relay chain by going to `Developer` -> `sudo` page.
 - Pick `paraSudoWrapper` -> `sudoScheduleParaInitialize(id, genesis)` as the extrinsic type, shown below.
 
-![parachain-registration-sudo.png](../../../../src/images/tutorials/09-cumulus/parachain-registration-sudo.png)
+![parachain-registration-sudo.png](/media/images/docs/tutorials/09-cumulus/parachain-registration-sudo.png)
 
 - In the extrinsics parameters, specify:
   - Set the `id: ParaId` to 2,000
@@ -248,13 +303,13 @@ This is the more formal flow for registration used in production (with the excep
 Here we will use `sudo` to grant ourselves a lease.
 You should have an onboarded parathread:
 
-![parathread-onboarding.png](../../../../src/images/tutorials/09-cumulus/parathread-onboarding.png)
+![parathread-onboarding.png](../../../../../media/images/docs/tutorials/09-cumulus/parathread-onboarding.png)
 
 - Go to [Polkadot Apps UI](https://polkadot.js.org/apps/), connecting to your **relay chain**.
 - Execute a sudo extrinsic on the relay chain by going to `Developer` -> `sudo` page.
 - Pick `slots`->`forceLease(para, leaser, amount, period_begin, period_end)` as the extrinsic type, shown below.
 
-![forceLease.png](../../../../src/images/tutorials/09-cumulus/forceLease.png)
+![forceLease.png](/media/images/docs/tutorials/09-cumulus/forceLease.png)
 
 Be sure to set the begin period to the slot you wish to start at.
 In testing, this is very likely to be the already active slot `0` if you started a fresh new relay chain.
@@ -262,7 +317,7 @@ Extending this out to beyond the time you wish to test this parachain is likely 
 onboarding and offboarding cycles.
 In that case, then electing slot leases that have gaps for a `paraID` would be in order. Once fully onboarded and after block production starts you should see:
 
-![parachain-active-lease.png](../../../../src/images/tutorials/09-cumulus/parachain-active-lease.png)
+![parachain-active-lease.png](/media/images/docs/tutorials/09-cumulus/parachain-active-lease.png)
 
 ### Block production
 
@@ -334,7 +389,7 @@ This is how Polkadot achieves **pooled, shared security** for it's parachains!
 
 We can observed what parachains are registered and what their latest head data is on the `Network > Parachains` tab in the Apps UI.
 
-![parachain-summary-screenshot.png](../../../../src/images/tutorials/09-cumulus/parachain-summary-screenshot.png)
+![parachain-summary-screenshot.png](/media/images/docs/tutorials/09-cumulus/parachain-summary-screenshot.png)
 
 ## Interact with a parachain
 
@@ -346,7 +401,7 @@ We are finally ready to submit extrinsics on our parachains!
 We've already connected the Apps UI to the relay chain node.
 Now we can also connect to the parachain collator.
 Open another instance of Apps UI in a new browser window, and connect it to the appropriate endpoint.
-If you have followed this workshop so far, you can connect to the parachain node at:
+If you have followed this tutorial so far, you can connect to the parachain node at:
 
 https://polkadot.js.org/apps/?rpc=ws%3A%2F%2Flocalhost%3A8844#/
 
@@ -364,7 +419,7 @@ Read on for more optional material.
 #### Cross-chain Message Passing (XCMP)
 
 The defining feature of connecting parachains to a _common_ relay chain is the ability to communicate _between_ all connected chains.
-This area of functionality is at the cutting edge development, and for now is not demonstrated in this workshop.
+This area of functionality is at the cutting edge development, and for now is not demonstrated in this tutorial.
 
 To learn more about XCMP, refer to [Polkadot wiki on XCMP](https://wiki.polkadot.network/docs/en/learn-crosschain).
 

@@ -5,11 +5,11 @@ keywords:
 ---
 
 Rococo is Parity's public test network for cumulus-based parachains.
-This section of the workshop steps through how you can onboard your parachain to it.
+This section of the tutorial steps through how you can onboard your parachain to it.
 
 ## Before you begin
 
-Make sure you have successfully completed the [previous section](/tutorials/connect-other-chains/parachain) of this workshop and tested your parachain on your local machine.
+Make sure you have successfully completed the [previous section](/tutorials/connect-other-chains/parachain) of this tutorial and tested your parachain on your local machine.
 This implies that:
 
 - You're familiar with registering and reserving your unique para ID.
@@ -32,19 +32,19 @@ To get started with registering your chain as a parathread:
 
 1. Reserve a unique para ID. You will be assigned to the next available ID.
 
-![paraid-reserve.png](../../../../src/images/tutorials/09-cumulus/paraid-reserve.png)
+![paraid-reserve.png](../../../../../media/images/docs/tutorials/09-cumulus/paraid-reserve.png)
 
 1. After successfully reserving your para ID, you can now register as a **parathread**.
 
-![register-parathread.png](../../../../src/images/tutorials/09-cumulus/register-parathread.png)
+![register-parathread.png](../../../../../media/images/docs/tutorials/09-cumulus/register-parathread.png)
 
 1. Once your extrinsic succeeds, you will see a `registrar.Registered` event emitted.
 
-![parathread-register-success.png](../../../../src/images/tutorials/09-cumulus/parathread-register-success.png)
+![parathread-register-success.png](../../../../../media/images/docs/tutorials/09-cumulus/parathread-register-success.png)
 
 1. Go to the [Parachains -> Parathreads](https://polkadot.js.org/apps/#/parachains/parathreads) page and you will see that your parathread registration is **Onboarding**:
 
-![parathread-onboarding.png](../../../../src/images/tutorials/09-cumulus/parathread-onboarding.png)
+![parathread-onboarding.png](../../../../../media/images/docs/tutorials/09-cumulus/parathread-onboarding.png)
 
 After the extrinsic succeeds, it takes 2 sessions for the chain to fully onboard as a parathread.
 

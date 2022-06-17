@@ -37,7 +37,7 @@ For example, for providing the Wasm blob or genesis state, creating channels to 
   will be:
   https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/parachains/parathreads
 
-![Reserve a para ID](../../../../src/images/tutorials/09-cumulus/paraid-reserve.png)
+![Reserve a para ID](../../../../../media/images/docs/tutorials/09-cumulus/paraid-reserve.png)
 
 - Go to the `Parathread` tab and click on `+ParaID` (a parachain always begins as a parathread with a para ID)
 
@@ -170,7 +170,7 @@ In the a production network, this will typically be accomplished with on Polkado
 
 - Pick `paraSudoWrapper` -> `sudoScheduleParaInitialize(id, genesis)` as the extrinsic type, shown below.
 
-![parachain-registration-sudo.png](../../../../src/images/tutorials/09-cumulus/parachain-registration-sudo.png)
+![parachain-registration-sudo.png](../../../../../media/images/docs/tutorials/09-cumulus/parachain-registration-sudo.png)
 
 - In the extrinsics parameters, specify the correct para ID and files to use.
 
@@ -184,13 +184,13 @@ This dispatch, if successful, will emit the `sudo.Sudid` event, viewable in the 
 
 - Pick `slots`->`forceLease(para, leaser, amount, period_begin, period_end)` as the extrinsic type, shown below.
 
-![forceLease.png](../../../../src/images/tutorials/09-cumulus/forceLease.png)
+![forceLease.png](../../../../../media/images/docs/tutorials/09-cumulus/forceLease.png)
 
 Be sure to set the begin period to the slot you wish to start at, in testing this very likely is the already active slot `0` if you started from scratch.
 Extending this out to beyond the scope of the time you wish to test this parachain is likely best, unless you wish to test onboarding and offboarding cycles, then electing slot leases that have gaps for a para ID would be in order.
 Once fully onboarded and after block production starts you should see:
 
-![parachain-active-lease.png](../../../../src/images/tutorials/09-cumulus/parachain-active-lease.png)
+![parachain-active-lease.png](../../../../../media/images/docs/tutorials/09-cumulus/parachain-active-lease.png)
 
 ## Block production and finalization
 
@@ -200,7 +200,7 @@ The collator should start producing parachain blocks (aka collating) once the re
 
 We can keep track of what parachains are registered and what their latest head data is on the `Network > Parachains` tab in the Apps UI.
 
-![parachain-summary-screenshot.png](../../../../src/images/tutorials/09-cumulus/parachain-summary-screenshot.png)
+![parachain-summary-screenshot.png](../../../../../media/images/docs/tutorials/09-cumulus/parachain-summary-screenshot.png)
 
 ## Examples
 
