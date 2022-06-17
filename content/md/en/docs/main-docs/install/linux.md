@@ -55,7 +55,7 @@ To install the Rust toolchain on Linux:
 
    [[tabbedCode]]
    | ```opensuse
-   | sudo zypper install clang curl git openssl-devel llvm-devel libudev-devel protobuf-compiler
+   | sudo zypper install clang curl git openssl-devel llvm-devel libudev-devel protobuf
 
    </figure>
 
