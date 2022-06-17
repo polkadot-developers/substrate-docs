@@ -33,7 +33,7 @@ For example, if you are using [Polkadot `release-v0.9.24`](https://github.com/pa
 
 We will use the [Substrate parachain template](https://github.com/substrate-developer-hub/substrate-parachain-template) to launch a parachain on your local relay chain.
 The parachain template is similar to the [node template](https://github.com/substrate-developer-hub/substrate-node-template) used in solo chain development, so it should be quite familiar.
-Later, we will use this parachain template as the starting point for developing our own parachains.
+Later, you'll use this parachain template as the starting point for developing your own parachains.
 
 <!-- TODO NEW CONTENT -->
 <!-- See the guide on [converting a solo chain to a parachain](/reference/how-to-guides/parachains/convert) for details on how the parachain template was created, and how to convert your chain's logic (not state migrations!) to a parachain.** -->
