@@ -54,7 +54,7 @@ git checkout polkadot-v0.9.24
 cargo b -r
 ```
 
-**After you start the compilation, it will take a while (commonly 15 to 60 minuets) to complete.**
+Compiling the node can take 15 to 60 minuets.
 In the mean time, [Reserve a para ID](#reserve-a-para-id) on the running relay chain to prepare, and make not of the `ParaID` you acquire.
 If still waiting, take a moment to explore the runtime of the [parachain template runtime](https://github.com/substrate-developer-hub/substrate-parachain-template/blob/polkadot-v0.9.24/runtime/src/lib.rs) you have locally now, to understand what pallets are included within it.
 
