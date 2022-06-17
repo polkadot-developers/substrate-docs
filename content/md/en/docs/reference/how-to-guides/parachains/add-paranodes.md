@@ -1,5 +1,5 @@
 ---
-title: Additional parachain nodes
+title: Add parachain nodes
 description: How-to connect additional parachain nodes to an established local relay testnet 
 keywords:
   - parachain
@@ -10,8 +10,8 @@ keywords:
 <!-- TODO NAV.YAML -->
 <!-- content/md/en/docs/tutorials/connect-other-chains/parachain.md in next steps once in nav -->
 
-A [parachain](/reference/glossary/#parachain) can work with only a single [collator](/reference/glossary/#collator) as we've shown already in the [parachain tutorial](/tutorials/connect-other-chains/parachain/).
-But such a configuration is not very decentralized!
+As you learned in [Connect a local parachain](/tutorials/connect-other-chains/parachain/), a parachain can work with a single collator.
+However, a parachain that relied on a single collator wouldn't be a sustainable configuration.
 An adversary would only need to take down a single node to stall the parachain.
 
 ## Additional relay chain nodes

@@ -40,7 +40,7 @@ The procedure will be as followed:
 
 - Reserve for the next available para ID.
 
-  ![paraid-reserve.png](../../../../../media/images/docs/tutorials/09-cumulus/paraid-reserve.png)
+  ![paraid-reserve.png](/media/images/docs/tutorials/09-cumulus/paraid-reserve.png)
 
 - After successfully reserving your para ID, you can now register as a **Parathread**.
 

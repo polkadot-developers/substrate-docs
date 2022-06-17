@@ -186,11 +186,13 @@ This dispatch, if successful, will emit the `sudo.Sudid` event, viewable in the 
 
 ![forceLease.png](../../../../../media/images/docs/tutorials/09-cumulus/forceLease.png)
 
-Be sure to set the begin period to the slot you wish to start at, in testing this very likely is the already active slot `0` if you started from scratch.
-Extending this out to beyond the scope of the time you wish to test this parachain is likely best, unless you wish to test onboarding and offboarding cycles, then electing slot leases that have gaps for a para ID would be in order.
-Once fully onboarded and after block production starts you should see:
+Be sure to set the `period_begin` to the slot you want to start with.
+For example, if you started from scratch in a test environment, the begin period is likely is to be the already active slot `0`.
+In general, you should set the  `period_end` to extend beyond the time you have set aside for testing the parachain.
+However, if you want to test onboarding and offboarding cycles, you should select slot leases that have gaps for a `ParaID`.
+After fully onboarded and after block production starts you should see:
 
-![parachain-active-lease.png](../../../../../media/images/docs/tutorials/09-cumulus/parachain-active-lease.png)
+![parachain-active-lease.png](/media/images/docs/tutorials/09-cumulus/parachain-active-lease.png)
 
 ## Block production and finalization
 
@@ -198,7 +200,7 @@ The collator should start producing parachain blocks (aka collating) once the re
 
 > This may take a while! Be patient as you wait for a new epoch to begin.
 
-We can keep track of what parachains are registered and what their latest head data is on the `Network > Parachains` tab in the Apps UI.
+You can keep track of what parachains are registered and what their latest head data is on the `Network > Parachains` tab in the Apps UI.
 
 ![parachain-summary-screenshot.png](../../../../../media/images/docs/tutorials/09-cumulus/parachain-summary-screenshot.png)
 

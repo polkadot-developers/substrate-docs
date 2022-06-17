@@ -9,14 +9,14 @@ keywords:
   - chain specification
 ---
 
-In this tutorial, we'll connect a parachain to a local relay chain.
+In this tutorial, you'll connect a parachain to a local relay chain.
 
 ## Tutorial objectives
 
 By completing this tutorial, you will accomplish the following objectives:
 
-- Register a para ID for your parachain on a relay chain
-- Start block production of a parachain on a relay chain
+- Register a para ID for your parachain on a relay chain.
+- Start block production of a parachain on a relay chain.
 
 ## Before you begin
 
@@ -24,14 +24,13 @@ Before you begin, verify the following:
 
 - You have competed the [start a local relay chain](/tutorials/connect-other-chains/local-testnet/) tutorial, and have a running local network with no les than two validators.
 
-## Matching versions are critical
 
-You **must** use the _exact_ software versions defined in the [relay chain tutorial](/tutorials/connect-other-chains/local-relay/#matching-versions-are-critical) for this tutorial to function!
-For example, if you are using [Polkadot `release-v0.9.24`](https://github.com/paritytechtree/release-v0.9.24), use the `polkadot-v0.9.24` version of the [parachain template](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.24).
+- You have the specific software versions defined in the [Prepare a local parachain testnet](/tutorials/connect-other-chains/local-relay/#matching-versions-are-critical).
+  For example, if you are using [Polkadot `release-v0.9.24`](https://github.com/paritytechtree/release-v0.9.24), use the `polkadot-v0.9.24` version of the [parachain template](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.24).
 
 ## Building the parachain template
 
-We will use the [Substrate parachain template](https://github.com/substrate-developer-hub/substrate-parachain-template) to launch a parachain on your local relay chain.
+This tutorial uses the [Substrate parachain template](https://github.com/substrate-developer-hub/substrate-parachain-template) to launch a parachain on your local relay chain.
 The parachain template is similar to the [node template](https://github.com/substrate-developer-hub/substrate-node-template) used in solo chain development, so it should be quite familiar.
 Later, you'll use this parachain template as the starting point for developing your own parachains.
 
