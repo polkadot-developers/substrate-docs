@@ -16,7 +16,7 @@ To keep things simple, you'll connect to the local node using a web browser and 
 
 Before you begin, verify the following:
 
-- You have an internet connection and access to a terminal prompt on your local computer.
+- You have an internet connection and access to a shell prompt on your local computer's terminal.
 
 - You are generally familiar with software development and using command-line interfaces.
 
