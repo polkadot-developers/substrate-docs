@@ -2,7 +2,11 @@
 title: Fundamentals
 description: Explains the core principles and unique features of the Substrate-based blockchains and Substrate runtime development.
 section: docs
-keywords: blockchain, consensus, substrate, architecture
+keywords:
+  - blockchain
+  - consensus
+  - substrate
+  - architecture
 ---
 
 The topics in Fundamentals explain many of the core principles and unique features of the Substrate development environment and highlights some of the design decisions available to you as a blockchain builder. 
@@ -28,11 +32,11 @@ Before you start building, though, you want to make sure you are in the right pl
 
 * [Transaction lifecycle](/main-docs/fundamentals/transaction-lifecycle/) explains how transactions are received, queued, and executed to eventually be included in a block.
 
-* [State transitions and storage](/main-docs/fundamentals/state-transitions-and-storage.md) describes how the state changes processed in the runtime are stored and managed using trie data structures and a key-value database.
+* [State transitions and storage](/main-docs/fundamentals/state-transitions-and-storage/) describes how the state changes processed in the runtime are stored and managed using trie data structures and a key-value database.
 
-* [Accounts, addresses, and keys](/main-docs/fundamentals/accounts-addresses-keys.md) explains the relationship between accounts, addresses, and keys and how they are used.
+* [Accounts, addresses, and keys](/main-docs/fundamentals/accounts-addresses-keys/) explains the relationship between accounts, addresses, and keys and how they are used.
 
-* [Rust for Substrate](/main-docs/fundamentals/rust-basics.md) highlights the specific Rust features—including traits, generics, associated types, and macros—that you should be most familiar with to build a Substrate-based blockchain.
+* [Rust for Substrate](/main-docs/fundamentals/rust-basics/) highlights the specific Rust features—including traits, generics, associated types, and macros—that you should be most familiar with to build a Substrate-based blockchain.
 
 * [Offchain operations](/main-docs/fundamentals/offchain-operations/) explores reasons for handling some operations off the chain and alternatives for performing those offchain operations.
 

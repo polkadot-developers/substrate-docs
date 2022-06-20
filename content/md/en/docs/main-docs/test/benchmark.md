@@ -1,7 +1,10 @@
 ---
 title: Benchmark
-description:
+description: Describes the benchmarking framework you can use to estimate the computational resources required to execute the functions in the runtime logic.
 keywords:
+  - weight
+  - resource consumption
+  - execution time
 ---
 
 Substrate and FRAME provide a flexible framework for developing custom logic for your blockchain. However, this flexibility can also introduce complexity that can make your blockchain vulnerable to denial of service (DoS) attacks by malicious actors.
@@ -34,7 +37,7 @@ runtime state or input becomes too complex.
 
 ## Benchmarking and weight
 
-As discussed in [Transactions, weights, and fees](/main-docs/fundamentals/tx-weight.fees/), Substrate-based chains use the concept of **weight** to represent the time it takes to execute the transactions in a block.
+As discussed in [Transactions, weights, and fees](/main-docs/build/tx-weights-fees/), Substrate-based chains use the concept of **weight** to represent the time it takes to execute the transactions in a block.
 The time required to execute any particular call in a transaction depends on a several factors, including the following:
 
 * Computational complexity.

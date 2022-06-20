@@ -1,6 +1,7 @@
 ---
 title: Prepare your first contract
-description: Create a new smart contract project and a simple first contract.
+description:
+keywords:
 ---
 
 As you learned in [Blockchain basics](/main-docs/fundamentals/blockchain-basics/) decentralized applications are most often written as **smart contracts**.
@@ -197,7 +198,7 @@ To explore the default project files:
 ### Test the default contract
 
 At the bottom of the `lib.rs` source code file, there are simple test cases to verify the functionality of the contract.
-You can test whether this code is functioning as expected using the **off-chain test environment**.
+You can test whether this code is functioning as expected using the **offchain test environment**.
 
 To test the contract:
 

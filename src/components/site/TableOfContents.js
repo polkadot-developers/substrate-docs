@@ -23,18 +23,18 @@ export default function TableOfContents({ data, headings }) {
         {data && (
           <div className="mb-5 font-semibold pt-9 table-of-contents">
             <div className="mb-5">ON THIS PAGE</div>
-            <ul className="mt-5 list-disc list-outside">
+            <div className="mt-5 text-left block">
               {headings.map(heading => (
-                <li
+                <p
                   key={heading.id}
-                  className={`mb-2 ml-5 hover:text-substrateBlue dark:hover:text-substrateBlue-light ${
+                  className={`mb-4 ml-0 text-sm hover:text-substrateBlue dark:hover:text-substrateBlue-light ${
                     activeId === heading.id && 'text-substrateBlue dark:text-substrateBlue-light'
                   }`}
                 >
                   <a href={`#${heading.id}`}>{heading.value}</a>
-                </li>
+                </p>
               ))}
-            </ul>
+            </div>
           </div>
         )}
       </div>

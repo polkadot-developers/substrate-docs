@@ -4,11 +4,11 @@ import { StaticImage } from 'gatsby-plugin-image';
 import React from 'react';
 import Lottie from 'react-lottie';
 
+import Banner from '..//components/site/Banner';
 import Icon from '../components/default/Icon';
 import { Link } from '../components/default/Link';
 import Section from '../components/layout/Section';
 import CommunityCard from '../components/site/CommunityCard';
-import ExploreDocs from '../components/site/ExploreDocs';
 import ExploreLinkSection from '../components/site/ExploreLinkSection';
 import Layout from '../components/site/Layout';
 import SEO from '../components/site/SEO';
@@ -20,6 +20,7 @@ import * as animationData from '../images/animations/dev-hero.json';
 export default function Home() {
   return (
     <Layout mode="full">
+      <Banner />
       <SEO title="Home" />
       <Section styles="mt-12">
         <div className="flex flex-col md:flex-row md:items-center doc-hero">
@@ -82,14 +83,14 @@ export default function Home() {
             <DocCard
               title={`Documentation`}
               text={`Discover the principles and design decisions that Substrate is built on. Read about its key features and capabilties as well as the specific skills needed to be an effective Substrate blockchain developer.`}
-              link={`/v3/`}
+              link={`/quick-start/`}
               cta={`Get started`}
-              iconName={`docIcon`}
+              iconName={`docsIcon`}
             />
             <DocCard
-              title={`How-to Guides`}
-              text={`The Substrate how-to guides have everything you need to produce robust Substrate based blockchains. From beginner to expert, you can use them flexibly to suit your current needs.`}
-              link={`/how-to-guides/`}
+              title={`Reference`}
+              text={`The Substrate reference section has everything you need to produce robust Substrate based blockchains. From beginner to expert, you can use this information with flexibly to suit your current needs.`}
+              link={`/reference/`}
               cta={`Learn and contribute`}
               iconName={`htgIcon`}
               animationDelay={200}
@@ -145,16 +146,6 @@ export default function Home() {
               />
             </Link>
           </div>
-        </div>
-      </Section>
-      {/* Explore Documentation Section */}
-      <Section>
-        <div className="mb-14">
-          <div className="text-4xltext-5xl lg:text-6xl font-extrabold mb-8 break-normal">Explore Documentation</div>
-          <div className="text-xl">Browse through the use case specific highlights that meet your needs.</div>
-        </div>
-        <div className="md:flex md:justify-start xl:justify-between">
-          <ExploreDocs />
         </div>
       </Section>
       {/* Connect With Community Section */}

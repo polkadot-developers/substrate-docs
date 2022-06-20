@@ -10,6 +10,7 @@ import contact from '../../images/svg/contact.svg';
 import copy from '../../images/svg/copy.svg';
 import desktop from '../../images/svg/desktop.svg';
 import docs from '../../images/svg/docs.svg';
+import docsIcon from '../../images/svg/docs-icon.svg';
 import docsNavIcon from '../../images/svg/docs-nav-icon.svg';
 import dollar from '../../images/svg/dollar.svg';
 import builders from '../../images/svg/ecosystem/builders.svg';
@@ -121,6 +122,7 @@ const iconsMap = {
   governance: governance,
   interoperability: interoperability,
   security: security,
+  docsIcon: docsIcon,
   htgIcon: htgIcon,
   tutsIcon: tutsIcon,
   feTemplate: feTemplate,

@@ -1,6 +1,7 @@
 ---
 title: Substrate empowers builders
-featured_image: /media/images/docs/main-docs/technical-freedom.png
+description:
+keywords:
 ---
 
 Substrate takes a modular and flexible approach to blockchain development.
@@ -34,7 +35,7 @@ Explore the following resources to learn more.
 
 * [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
 * [Simulate a network](/tutorials/get-started/simulate-network/)
-* [Add trusted validators](/tutorials/get-started/trusted-network/)
+* [Add trusted nodes](/tutorials/get-started/trusted-network/)
 
 <!--
 #### Show me (related video content)

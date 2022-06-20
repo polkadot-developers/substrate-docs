@@ -139,7 +139,7 @@ pre {
 
 /* Breadcrumb seperators */
 .breadcrumb:after {
-  content: '\002F';
+  content: '\00BB';
   margin: 0 0.5rem;
 }
 .breadcrumb:last-child:after {

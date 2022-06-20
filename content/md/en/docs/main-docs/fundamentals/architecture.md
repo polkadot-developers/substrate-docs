@@ -1,7 +1,6 @@
 ---
 title: Architecture
 description: Introduces the core components of a Substrate node.
-featured_image:
 keywords:
 ---
 
@@ -30,20 +29,20 @@ For example, the outer node is responsible for handling peer discovery, managing
 
 Some of the most important activities that are handled by the outer node involve the following components:
 
-* [Storage](/main-docs/fundamentals/storage/): The outer node persists the evolving state of a Substrate blockchain using a simple and highly efficient key-value storage layer.
+* [Storage](/main-docs/fundamentals/state-transitions-and-storage/): The outer node persists the evolving state of a Substrate blockchain using a simple and highly efficient key-value storage layer.
 
-* [Peer-to-peer networking](/main-docs/fundamentals/networking): The outer node uses the Rust implementation of the [`libp2p` network stack](https://libp2p.io/) to communicate with other network participants.
+* [Peer-to-peer networking](/main-docs/fundamentals/node-and-network-types/): The outer node uses the Rust implementation of the [`libp2p` network stack](https://libp2p.io/) to communicate with other network participants.
 
 * [Consensus](/main-docs/fundamentals/consensus/): The outer node communicates with other network participants to ensure they agree on the state of the blockchain.
 
-* [Remote procedure call (RPC) API](/main-docs/fundamentals/networking): The outer node accepts inbound HTTP and WebSocket requests to allow blockchain users to interact with the network.
+* [Remote procedure call (RPC) API](/main-docs/build/custom-rpc): The outer node accepts inbound HTTP and WebSocket requests to allow blockchain users to interact with the network.
 
 * [Telemetry](): The outer node collects and provides access to node metrics through an embedded [Prometheus](https://prometheus.io/) server.
 
-* [Executor](/reference/glossary/#executor): The outer node is responsible for selecting the execution environment—WebAssembly or native Rust—for the runtime to use then dispatching calls to the runtime selected.
+* [Execution environment](/main-docs/build/build-process/): The outer node is responsible for selecting the execution environment—WebAssembly or native Rust—for the runtime to use then dispatching calls to the runtime selected.
 
 Performing these tasks often requires the outer node to query the runtime for information or to provide information to the runtime.
-This communication is handled by calling specialized [runtime APIs](/reference/runtime-apis.md).
+This communication is handled by calling specialized [runtime APIs](/reference/runtime-apis/).
 
 ### Runtime
 

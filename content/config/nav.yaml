@@ -28,9 +28,17 @@ docs:
         - title: Consensus
           url: /main-docs/fundamentals/consensus/
         - title: Transactions and block basics
-          url: /main-docs/fundamentals/transaction-types/  
+          url: /main-docs/fundamentals/transaction-types/
         - title: Transaction lifecycle
           url: /main-docs/fundamentals/transaction-lifecycle/
+        # - title: Block import pipeline
+        # url: /main-docs/fundamentals/block-import/
+        # - title: Extrinsics
+        # url: /main-docs/fundamentals/extrinsics/
+        # - title: Execution
+        # url: /main-docs/fundamentals/execution/
+        # - title: Runtimes and clients
+        # url: /main-docs/fundamentals/runtimes-and-clients/
         - title: State transitions and storage
           url: /main-docs/fundamentals/state-transitions-and-storage/
         - title: Accounts, addresses, and keys
@@ -55,16 +63,22 @@ docs:
         - title: Troubleshoot Rust issues
           url: /main-docs/install/troubleshooting/
     #- title: Design
-      #url: /main-docs/design/
-      #pages:
-        #- title: Pallet design
-          #url: /main-docs/design/pallet-design/
-        #- title: Smart contract pallets
-          #url: /main-docs/design/smart-contract-pallets/
-        #- title: Storage design decisions
-          #url: /main-docs/design/storage-design/
-        #- title: Economic models
-          #url: /main-docs/design/economic-models/
+    #url: /main-docs/design/
+    #pages:
+    #- title: Applications
+    #url: /main-docs/design/applications/
+    #- title: Execution
+    #url: /main-docs/design/execution/
+    #- title: Runtimes and clients
+    #url: /main-docs/design/runtimes-and-clients/
+    #- title: Pallet design
+    #url: /main-docs/design/pallet-design/
+    #- title: Smart contract pallets
+    #url: /main-docs/design/smart-contract-pallets/
+    #- title: Storage design decisions
+    #url: /main-docs/design/storage-design/
+    #- title: Economic models
+    #url: /main-docs/design/economic-models/
     - title: Build
       url: /main-docs/build/
       pages:
@@ -91,11 +105,13 @@ docs:
         - title: Remote procedure calls
           url: /main-docs/build/custom-rpc/
         - title: Application development
-          url: /main-docs/build/frontend/
+          url: /main-docs/build/application-dev/
         - title: Upgrade the runtime
           url: /main-docs/build/upgrade/
         #- title: Best practices
-          #url: /main-docs/build/best-practices/
+        #url: /main-docs/build/best-practices/
+        #- title: Executor
+        #url: /main-docs/build/executor/
     - title: Test
       url: /main-docs/test/
       pages:
@@ -108,12 +124,20 @@ docs:
         - title: Deploy on a testnet
           url: /main-docs/test/deploy-on-testnet/
     #- title: Deploy
-      #url: /main-docs/deploy/
+    #url: /main-docs/deploy/
+    # pages:
+    #   - title: Migrations
+    #     url: /docs/main-docs/deploy/migrate/
+    #   - title: Monitor
+    #     url: /docs/main-docs/deploy/metrics/
+    #   - title: Operate
+    #     url: /docs/main-docs/deploy/operate/
+    #   - title: Migrations
     #- title: Maintain
-      #url: /main-docs/maintain/
-      #pages:
-        #- title: Upgrades
-          #url: /main-docs/maintain/upgrade/
+    #url: /main-docs/maintain/
+    #pages:
+    #- title: Upgrades
+    #url: /main-docs/maintain/upgrade/
 tutorials:
   title: Tutorials
   url: /tutorials/
@@ -125,13 +149,13 @@ tutorials:
           url: /tutorials/get-started/build-local-blockchain/
         - title: Simulate a network
           url: /tutorials/get-started/simulate-network/
-        - title: Add trusted validators
+        - title: Add trusted nodes
           url: /tutorials/get-started/trusted-network/
         - title: Authorize specific nodes
           url: /tutorials/get-started/permissioned-network/
         - title: Monitor node metrics
           url: /tutorials/get-started/monitor/
-        - title: Upgrade a running node
+        - title: Upgrade a running network
           url: /tutorials/get-started/forkless-upgrade/
     - title: Work with pallets
       url: /tutorials/work-with-pallets/
@@ -143,9 +167,9 @@ tutorials:
         - title: Use macros in a custom pallet
           url: /tutorials/work-with-pallets/custom-pallet/
         #- title: Specify the origin for a call
-          #url: /tutorials/work-with-pallets/specify-origin/
+        #url: /tutorials/work-with-pallets/specify-origin/
         #- title: Publish a custom pallet
-          #url: /tutorials/work-with-pallets/publish-pallet/
+        #url: /tutorials/work-with-pallets/publish-pallet/
     - title: Connect with other chains
       url: /tutorials/connect-other-chains/
       pages:
@@ -153,14 +177,14 @@ tutorials:
           url: /tutorials/connect-other-chains/relay-chain/
         - title: Connect to a relay chain
           url: /tutorials/connect-other-chains/parachain/
+        - title: Connect to Rococo testnet
+          url: /tutorials/connect-other-chains/connect-rococo/
         #- title: Deploy a parachain
-          #url: /tutorials/connect-other-chains/deploy-parachain/
-        #- title: Connect to Rococo testnet
-          #url: /tutorials/connect-other-chains/connect-rococo/
+        #url: /tutorials/connect-other-chains/deploy-parachain/
         #- title: Connect to Polkadot
-          #url: /tutorials/connect-other-chains/connect-polkadot/
+        #url: /tutorials/connect-other-chains/connect-polkadot/
         #- title: Connect to Ethereum
-          #url: /tutorials/connect-other-chains/connect-to-evm/
+        #url: /tutorials/connect-other-chains/connect-to-evm/
     - title: Develop smart contracts
       url: /tutorials/smart-contracts/
       pages:
@@ -189,16 +213,17 @@ reference:
           url: /reference/command-line-tools/memory-profiler/
         - title: node-template
           url: /reference/command-line-tools/node-template/
-        - title: polkadot-launch
-          url: /reference/command-line-tools/polkadot-launch/
+        # DEPRICATION NOTICE: https://github.com/paritytech/polkadot-launch/issues/189 TODO
+        # - title: polkadot-launch
+        #   url: /reference/command-line-tools/polkadot-launch/
         - title: polkadot-apps
           url: /reference/command-line-tools/polkadot-apps/
         - title: sidecar
           url: /reference/command-line-tools/sidecar/
         - title: srtool
           url: /reference/command-line-tools/srtool/
-        - title: sub-flood
-          url: /reference/command-line-tools/sub-flood/
+        - title: subflood
+          url: /reference/command-line-tools/subflood/
         - title: subkey
           url: /reference/command-line-tools/subkey/
         - title: subxt
@@ -207,45 +232,25 @@ reference:
           url: /reference/command-line-tools/try-runtime/
         - title: tx-wrapper
           url: /reference/command-line-tools/tx-wrapper/
+    - title: Runtime APIs
+      url: /reference/runtime-apis/
     - title: FRAME pallets
       url: /reference/frame-pallets/
     - title: Frame macros
       url: /reference/frame-macros/
     - title: Account data structures
-      url: /reference/account-properties/
+      url: /reference/account-data-structures/
     - title: Type encoding (SCALE)
       url: /reference/scale-codec/
-    - title: Rust API
-      url: 'https://docs.substrate.io/rustdocs/"target="_blank'
-    - title: How-to reference guides
-      url: /reference/how-to-guides/
-      #pages:
-        #- title: Basics
-          #url: /reference/how-to-guides/basics/
-        #- title: Pallet design
-          #url: /reference/how-to-guides/pallet-design/
-        #- title: Weights
-          #url: /reference/how-to-guides/weights/
-        #- title: Testing
-          #url: /reference/how-to-guides/testing/
-        #- title: Storage migrations
-          #url: /reference/how-to-guides/storage-migrations/
-        #- title: Consensus
-          #url: /reference/how-to-guides/consensus/
-        #- title: Parachains
-          #url: /reference/how-to-guides/parachains/
-        #- title: Tools
-          #url: /reference/how-to-guides/tools/
-        #- title: Off-chain workers
-          #url: /reference/how-to-guides/ocw/
+    - title: Transaction formats
+      url: /main-docs/reference/transaction-format/
     - title: Cryptography
       url: /reference/cryptography/
-
-#   - 'Community': 
+    - title: How-to reference guides
+      url: /reference/how-to-guides/
+#   - 'Community':
 #       - 'community/index.md'
-#      - 'Writing style guidelines': 'community/style-guide.md'
-#     - 'Site builder guidelines': 'community/site-building.md'
-#- 'How-to topic template': 'https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/contribute-templates/how-to-template.md/"target="_blank'
-#- 'Bounties': 'community/bounty.md'
-#- 'Dropbox': 'faq-dropbox/index.md'
-#- 'Playground': 'https://docs.substrate.io/playground/"target="_blank'
+#       - 'Style guidelines': 'community/style-guide.md'
+#       - 'How-to template': 'https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/contribute-templates/how-to-template.md/"target="_blank'
+       #- 'Bounties': 'community/bounty.md'
+       #- 'Dropbox': 'faq-dropbox/index.md'

@@ -1,7 +1,7 @@
 ---
 title: Runtime development
 description: Introduces the core programming interfaces, primitives, and modules that are essential to developing the runtime for a Substrate blockchain.
-keywords: []
+keywords:
 ---
 
 As discussed in [Architecture](/main-docs/fundamentals/architecture/), the **runtime** for a Substrate node contains all of the business logic for executing transactions, saving state transitions, and interacting with the outer node.
@@ -27,20 +27,20 @@ information or to provide information to the runtime.
 The runtime API facilitates this kind of communication between the outer node and the runtime.
 
 In Substrate, the `sp_api` crate provides an interface to implement a runtime API.
-It is designed to give you flexibility in defining your own custom interfaces using the [`impl_runtime_apis`](/rustdocs/latest/sp_api/macro.impl_runtime_apis.html)
+It is designed to give you flexibility in defining your own custom interfaces using the [`impl_runtime_apis`](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html)
 macro.
-However, every runtime must implement the [`Core`](/rustdocs/latest/sp_api/trait.Core.html) and [`Metadata`](/rustdocs/latest/sp_api/trait.Metadata.html) interfaces.
+However, every runtime must implement the [`Core`](https://paritytech.github.io/substrate/master/sp_api/trait.Core.html) and [`Metadata`](https://paritytech.github.io/substrate/master/sp_api/trait.Metadata.html) interfaces.
 In addition to these required interfaces, most Substrate nodes—like the node template—implement the following runtime interfaces:
 
-- [`BlockBuilder`](/rustdocs/latest/sp_block_builder/trait.BlockBuilder.html) for the functionality required to build a block.
-- [`TaggedTransactionQueue`](/rustdocs/latest/sp_transaction_pool/runtime_api/trait.TaggedTransactionQueue.html) for validating transactions.
-- [`OffchainWorkerApi`](/rustdocs/latest/sp_offchain/trait.OffchainWorkerApi.html) for enabling off-chain operations.
-- [`AuraApi`](/rustdocs/latest/sp_consensus_aura/trait.AuraApi.html) for block authoring and validation using a round-robin method of consensus.
-- [`SessionKeys`](/rustdocs/latest/sp_session/trait.SessionKeys.html) for generating and decoding session keys.
-- [`GrandpaApi`](/rustdocs/latest/sp_finality_grandpa/trait.GrandpaApi.html) for block finalization into the runtime.
-- [`AccountNonceApi`](/rustdocs/latest/frame_system_rpc_runtime_api/trait.AccountNonceApi.html) for querying transaction indices.
-- [`TransactionPaymentApi`](/rustdocs/latest/pallet_transaction_payment_rpc_runtime_api/trait.TransactionPaymentApi.html) for querying information about transactions.
-- [`Benchmark`](/rustdocs/latest/frame_benchmarking/trait.Benchmark.html) for estimating and measuring execution time required to complete tranactions.
+- [`BlockBuilder`](https://paritytech.github.io/substrate/master/sp_block_builder/trait.BlockBuilder.html) for the functionality required to build a block.
+- [`TaggedTransactionQueue`](https://paritytech.github.io/substrate/master/sp_transaction_pool/runtime_api/trait.TaggedTransactionQueue.html) for validating transactions.
+- [`OffchainWorkerApi`](https://paritytech.github.io/substrate/master/sp_offchain/trait.OffchainWorkerApi.html) for enabling offchain operations.
+- [`AuraApi`](https://paritytech.github.io/substrate/master/sp_consensus_aura/trait.AuraApi.html) for block authoring and validation using a round-robin method of consensus.
+- [`SessionKeys`](https://paritytech.github.io/substrate/master/sp_session/trait.SessionKeys.html) for generating and decoding session keys.
+- [`GrandpaApi`](https://paritytech.github.io/substrate/master/sp_finality_grandpa/trait.GrandpaApi.html) for block finalization into the runtime.
+- [`AccountNonceApi`](https://paritytech.github.io/substrate/master/frame_system_rpc_runtime_api/trait.AccountNonceApi.html) for querying transaction indices.
+- [`TransactionPaymentApi`](https://paritytech.github.io/substrate/master/pallet_transaction_payment_rpc_runtime_api/trait.TransactionPaymentApi.html) for querying information about transactions.
+- [`Benchmark`](https://paritytech.github.io/substrate/master/frame_benchmarking/trait.Benchmark.html) for estimating and measuring execution time required to complete tranactions.
 
 ## Core primitives
 
@@ -86,11 +86,11 @@ For a summary of the pallets available, see [FRAME pallets](/reference/frame-pal
 
 In addition to pallets, FRAME provides services to interact with the runtime through the following libraries and modules
 
-- [FRAME system crate `frame_system`](/rustdocs/latest/frame_system/index.html) provides low-level types, storage, and functions for the runtime.
+- [FRAME system crate `frame_system`](https://paritytech.github.io/substrate/master/frame_system/index.html) provides low-level types, storage, and functions for the runtime.
 
-- [FRAME support crate `frame_support`](/rustdocs/latest/frame_support/index.html) is a collection of Rust macros, types, traits, and modules that simplify the development of Substrate pallets.
+- [FRAME support crate `frame_support`](https://paritytech.github.io/substrate/master/frame_support/index.html) is a collection of Rust macros, types, traits, and modules that simplify the development of Substrate pallets.
 
-- [FRAME executive pallet `frame_executive`](/rustdocs/latest/frame_executive/index.html) orchestrates the execution of incoming function calls to the respective
+- [FRAME executive pallet `frame_executive`](https://paritytech.github.io/substrate/master/frame_executive/index.html) orchestrates the execution of incoming function calls to the respective
   pallets in the runtime.
 
 The following diagram illustrates how FRAME and its system, support, and executives modules provide services for the runtime environment.

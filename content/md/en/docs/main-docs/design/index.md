@@ -1,7 +1,7 @@
 ---
 title: Design
 description: Suggests blockchain and application design decisions for you to consider in planning your project.
-keywords:  
+keywords:
 ---
 
 The topics in this section suggest the design decisions and application architectural options you should consider in planning how you will implement the blockchain logic.
@@ -95,5 +95,6 @@ Explore the following resources to learn more.
 * See [The Polkadot Wiki](https://wiki.polkadot.network/docs/build-build-with-polkadot#what-is-the-difference-between-building-a-parachain-a-parathread-or-a-smart-contract) for a comparison between developing on a parachain, parathread, and smart contracts.
 
 #### Guide me 
-* Build a proof of existence blockchain
-* ink! tutorial
+
+- [Work with pallets](/tutorials/work-with-pallets/)
+- [Develop smart contracts](/tutorials/smart-contracts/)

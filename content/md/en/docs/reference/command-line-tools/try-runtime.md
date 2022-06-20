@@ -1,10 +1,10 @@
 ---
 title: try-runtime
-section: reference
+description:
 keywords:
 ---
 
-The `try-runtime` tool is built to query a snapshot of runtime storage, using an [in-memory-externalities](https://docs.substrate.io/rustdocs/latest/sp_state_machine/struct.TestExternalities.html) to store state. 
+The `try-runtime` tool is built to query a snapshot of runtime storage, using an [in-memory-externalities](https://paritytech.github.io/substrate/master/sp_state_machine/struct.TestExternalities.html) to store state. 
 In this way, it enables runtime engineers to write tests for a specified runtime state, for testing against real chain state _before_ going to production. 
 It is designed to be used as a command line interface to specify at which block to query state.
 
@@ -172,7 +172,7 @@ cargo run --release --features=try-runtime try-runtime on-runtime-upgrade live w
 
 #### Other scenarios
 
-Using it to re-execute code from a `ElectionProviderMultiPhase` off-chain worker on `localhost:9944`:
+Using it to re-execute code from a `ElectionProviderMultiPhase` offchain worker on `localhost:9944`:
 
 ```bash
 cargo run -- --release \

@@ -1,6 +1,6 @@
 ---
 title: subkey
-section: reference
+description: Provides command-line reference information for using the subkey program to generate and manage keys.
 keywords:
 ---
 

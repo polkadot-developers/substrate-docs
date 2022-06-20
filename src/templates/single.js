@@ -5,6 +5,7 @@ import configNav from '../../content/config/nav.yaml';
 import { Link } from '../components/default/Link';
 import Markdown from '../components/default/Markdown';
 import Sidebar from '../components/layout/Sidebar';
+import InfoRibbon from '../components/RibbonBanners/InfoRibbon';
 //import BottomButtons from '../components/site/BottomButtons';
 import Layout from '../components/site/Layout';
 import NavSidebar from '../components/site/NavSidebar';
@@ -59,17 +60,6 @@ export default function DocsSinglePage({ data, pageContext }) {
   const nextPage = nextPrevSlugs[index + 1];
   const previousPage = nextPrevSlugs[index - 1];
 
-  // nextPrevItems.forEach((element, index) => {
-  //   if (element === pagePath) {
-  //     // const prev = element[index - 1];
-  //     // const next = element[index + 1];
-  //     // console.log(element + ' ||| here is the index =>>> ' + index);
-  //     // console.log('PREVIOUS ===>>> ' + prev);
-  //     // console.log('NEXT ===>>> ' + next);
-  //   }
-  // });
-  //console.log(Object.values(nextprevitems));
-
   return (
     <Layout>
       <SEO title={title} />
@@ -79,52 +69,58 @@ export default function DocsSinglePage({ data, pageContext }) {
         </Sidebar>
         <MobileNavigation className="hidden" currentPath={pagePath} />
         {/* <DocsSingle collection={collection} /> */}
-
-        <article className="mb-20 grid grid-cols-12 gap-1">
-          <div className="xl:col-start-2 xl:col-end-9 col-start-2 col-end-12">
-            <div className="py-8 flex justify-between items-center">
-              <div className="text-sm font-medium text-substrateBlue dark:text-substrateBlue-light mdx-ancho">
-                {pageContext.breadcrumb.crumbs.map(index => (
-                  <span key={index.pathname} className="breadcrumb text-substrateDark dark:text-white">
-                    <Link
-                      to={index.pathname}
-                      className="text-sm font-medium text-substrateBlue dark:text-substrateBlue-light mdx-anchor"
-                    >
-                      {titleize(index.crumbLabel)}
-                    </Link>
-                  </span>
-                ))}
-              </div>
-              <div className="flex justify-end items-center">
-                <EditOnGithubButton
-                  link={
-                    'https://github.com/substrate-developer-hub/substrate-docs/blob/main-md/content/md/' +
-                    `${relativeFilePath}`
-                  }
-                />
-              </div>
-            </div>
-            <div className="w-screen max-w-full markdown-body mdx-anchor">
-              <header>
-                <h1>{title}</h1>
-              </header>
-              <main>
-                <Markdown htmlAst={htmlAst} />
-              </main>
-              <footer>
-                <div className="py-8 text-sm text-gray-400">Last edit: {gitLogLatestDate}</div>
-                <PreviousNextButtons previous={previousPage} next={nextPage} />
-                <div className="py-12 text-sm text-gray-400">
-                  <hr />
-                  <Feedback />
+        <div className="flex flex-col">
+          <InfoRibbon />
+          <article className="mb-20 grid grid-cols-12 gap-1 grid-rows-2">
+            <div className="xl:col-start-2 xl:col-end-9 col-start-2 col-end-12">
+              <div className="py-8 flex justify-between items-center">
+                <div className="text-sm font-medium text-substrateBlue dark:text-substrateBlue-light mdx-anchor">
+                  {pageContext.breadcrumb.crumbs.map((index, i, crumbs) => (
+                    <span key={index.pathname} className="breadcrumb text-substrateDark dark:text-white">
+                      {i + 1 === crumbs.length ? (
+                        titleize(index.crumbLabel)
+                      ) : (
+                        <Link
+                          to={index.pathname}
+                          className="text-sm font-medium text-substrateBlue dark:text-substrateBlue-light mdx-anchor"
+                        >
+                          {titleize(index.crumbLabel)}
+                        </Link>
+                      )}
+                    </span>
+                  ))}
                 </div>
-              </footer>
+                <div className="flex justify-end items-center">
+                  <EditOnGithubButton
+                    link={
+                      'https://github.com/substrate-developer-hub/substrate-docs/blob/main-md/content/md/' +
+                      `${relativeFilePath}`
+                    }
+                  />
+                </div>
+              </div>
+              <div className="w-screen max-w-full markdown-body mdx-anchor">
+                <header>
+                  <h1>{title}</h1>
+                </header>
+                <main>
+                  <Markdown htmlAst={htmlAst} />
+                </main>
+                <footer>
+                  <div className="py-8 text-sm text-gray-400">Last edit: {gitLogLatestDate}</div>
+                  <PreviousNextButtons previous={previousPage} next={nextPage} />
+                  <div className="py-12 text-sm text-gray-400">
+                    <hr />
+                    <Feedback />
+                  </div>
+                </footer>
+              </div>
             </div>
-          </div>
-          <div className="hidden xl:block col-start-10 col-end-12">
-            <TableOfContents data={tableOfContents} headings={headings} />
-          </div>
-        </article>
+            <div className="hidden xl:block col-start-10 col-end-12">
+              <TableOfContents data={tableOfContents} headings={headings} />
+            </div>
+          </article>
+        </div>
       </div>
     </Layout>
   );

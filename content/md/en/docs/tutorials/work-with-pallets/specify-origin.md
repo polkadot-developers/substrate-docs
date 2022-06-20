@@ -1,8 +1,10 @@
 ---
 title: Specify the origin for a call
 description: 
-keywords: FRAME, runtime, custom pallet
-
+keywords:
+  - FRAME
+  - runtime
+  - custom pallet
 ---
 
 In [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet), you added functions from the `frame_nicks` pallet to the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) runtime.
@@ -47,7 +49,7 @@ In the implementation (`impl`) block for the `Config` trait, you added code to c
 For example:
 
 ```rust
-// https://docs.substrate.io/rustdocs/latest/frame_system/enum.RawOrigin.html#variant.Root
+// https://paritytech.github.io/substrate/master/frame_system/enum.RawOrigin.html#variant.Root
 type ForceOrigin = frame_system::EnsureRoot<AccountId>;
 ```
 
@@ -96,12 +98,12 @@ To remove a nickname:
 
 You can learn about additional features—such as the use of the Sudo pallet and origin accounts—by exploring how these functions work.
 However, those features are beyond the scope of this tutorial.
-If you want to explore additional features exposed through the Nicks and Sudo pallets, see [Next steps]() and select [Specify the origin for a call]().
+If you want to explore additional features exposed through the Nicks and Sudo pallets, see [Next steps](#next-steps).
 
 For example, if you select the `killName`function and specify the account for Bob as the function's argument, you must be the `Root` origin account to submit the call.
 The `killName` function must be called by the `ForceOrigin` that was configured with the Nicks pallet's `Config` interface in the previous section.
 You may recall that we configured this to be the FRAME system's .
-By default, the node template is configured with the predefined Alice account as the system `Root` origin account using the [Sudo pallet](/rustdocs/latest/pallet_sudo/index.html).
+By default, the node template is configured with the predefined Alice account as the system `Root` origin account using the [Sudo pallet](https://paritytech.github.io/substrate/master/pallet_sudo/index.html).
 
 The front-end template exposes access the `Root` origin through the Sudo pallet by providing a clickable **SUDO** button.
 If you invoke the `killName` function by clicking **Signed**, the call is dispatched by the Signed origin associated with Alice's account. 
@@ -110,21 +112,21 @@ Because the call requires the `Root` origin, an error is returned.
 ![`BadOrigin` Error](/media/images/docs/tutorials/specify-origin/kill-name-bad-origin.png)
 
 Even though the function call was successfully dispatched, the `BadOrigin` error is emitted and displayed in the Events pane.
-Alice's account is charged a fee for the dispatch, but there aren't any state changes because the Nicks pallet follows the important [verify-first-write-last](/v3/runtime/storage#verify-first-write-last) pattern.
+Alice's account is charged a fee for the dispatch, but there aren't any state changes because the Nicks pallet follows the important [Verify first, write-last](/main-docs/build/runtime-storage#verify-first-write-last) pattern.
 
 If you invoke the `killName` function by clicking **SUDO**, the call is dispatched by the `Root` origin.
 
 ![Nicks Pallet Error](/media/images/docs/tutorials/specify-origin/clear-name-error.png)
 
-The Sudo pallet emits a [`Sudid` event](/rustdocs/latest/pallet_sudo/enum.RawEvent.html#variant.Sudid) to inform network participants that the `Root` origin dispatched a call. 
-However, the inner dispatch failed with a [`DispatchError`](/rustdocs/latest/sp_runtime/enum.DispatchError.html) (the Sudo pallet's [`sudo` function](/rustdocs/latest/pallet_sudo/pallet/enum.Call.html#variant.sudo) is the "outer" dispatch).
-In particular, this was an instance of [the `DispatchError::Module` variant](/rustdocs/latest/frame_support/dispatch/enum.DispatchError.html#variant.Module), which reports two pieces of metadata: an `index` number and an `error` number.
+The Sudo pallet emits a [`Sudid` event](https://paritytech.github.io/substrate/master/pallet_sudo/pallet/enum.Event.html#variant.Sudid) to inform network participants that the `Root` origin dispatched a call. 
+However, the inner dispatch failed with a [`DispatchError`](https://paritytech.github.io/substrate/master/sp_runtime/enum.DispatchError.html) (the Sudo pallet's [`sudo` function](https://paritytech.github.io/substrate/master/pallet_sudo/pallet/enum.Call.html#variant.sudo) is the "outer" dispatch).
+In particular, this was an instance of [the `DispatchError::Module` variant](https://paritytech.github.io/substrate/master/frame_support/dispatch/enum.DispatchError.html#variant.Module), which reports two pieces of metadata: an `index` number and an `error` number.
 The `index` number relates to the pallet from which the error originated; it corresponds with the _index_ (position) of the pallet within the `construct_runtime!` macro.
 The `error` number corresponds with the index of the relevant variant from that pallet's `Error` enum.
 When using these numbers to find pallet errors, remember that the _first_ position corresponds with index _zero_.
 In the screenshot above, the `index` is `9` (the _tenth_ pallet) and the `error` is `2` (the _third_ error).
 Depending on the position of the Nicks pallet in your `construct_runtime!` macro, you may see a different number for `index`.
-Regardless of the value of `index`, you should see that the `error` value is `2`, which corresponds to the _third_ variant of the Nick's pallet's `Error` enum, [the `Unnamed` variant](/rustdocs/latest/pallet_nicks/enum.Error.html#variant.Unnamed).
+Regardless of the value of `index`, you should see that the `error` value is `2`, which corresponds to the _third_ variant of the Nick's pallet's `Error` enum, [the `Unnamed` variant](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Error.html#variant.Unnamed).
 This shouldn't be a surprise since Bob has not yet reserved a nickname, thus it cannot be cleared!
 
 You should confirm that Alice can use the `SUDO` button to invoke the `killName` dispatchable and forcibly clear the nickname associated with any account (including her own) that actually has a nickname associated with it.
@@ -136,8 +138,8 @@ Here are some other things you may want to try:
 
 ## Next steps
 
-- We have [plenty of tutorials](/tutorials) to showcase Substrate development concepts and techniques.
-- For more information about runtime development tips and patterns, refer to our [How-to Guides](/how-to-guides).
+- We have [plenty of tutorials](/tutorials/) to showcase Substrate development concepts and techniques.
+- For more information about runtime development tips and patterns, refer to the [How-to quick reference guides](/reference/how-to-guides/).
 - For a bare FRAME pallet with detailed comments about what you can access within FRAME, see [this example in `substrate`](https://github.com/paritytech/substrate/tree/master/frame/examples/basic).
 
 ### References
