@@ -22,7 +22,7 @@ Before you begin, verify the following:
 - You are generally familiar with software development and using command-line interfaces.
 
 - You have the required packages for Substrate development installed.
-  See the [Install section](/main-docs/install/) before you continue to ensure you have all you need.
+  **See the [Install section](/main-docs/install/) before you continue to ensure you will not run into compilation errors.**
 
 ## Build the node template
 
