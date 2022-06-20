@@ -133,7 +133,7 @@ Chain specs _conventionally_ live in a `/chain-specs` folder that is published i
 For example:
 
 - Polkadot includes these **relay chain** chain specs
-  [under `node/service/res`](https://github.com/paritytech/polkadot/tree/master/node/service/chain-specs)
+  [under `node/service/chain-specs`](https://github.com/paritytech/polkadot/tree/master/node/service/chain-specs)
 - Cumulus includes these **parachain** chain specs
   [under `chain-specs`](https://github.com/paritytech/cumulus/tree/master/parachains/chain-specs)
 

@@ -86,13 +86,13 @@ If you intend to let others connect to your network, they must have the associat
 They cannot reliably produce this themselves, and need to acquire it from a **single source**.
 This stems from the [non-deterministic issue](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1) in the way Wasm runtimes are compiled.
 
-Chain specs _conventionally_ live in a `/res` folder that is published in your node's codebase for others to use.
+Chain specs _conventionally_ live in a `/chain-specs` folder that is published in your node's codebase for others to use.
 For example:
 
 - Polkadot includes these **relay chain** chain specs
-  [under `node/service/res`](https://github.com/paritytech/polkadot/tree/master/node/service/res)
+  [under `node/service/chain-specs`](https://github.com/paritytech/polkadot/tree/master/node/service/chain-specs)
 - Cumulus includes these **parachain** chain specs
-  [under `res`](https://github.com/paritytech/cumulus/tree/master/polkadot-parachains/res)
+  [under `chain-specs`](https://github.com/paritytech/cumulus/tree/master/polkadot-parachains/chain-specs)
 
 It is good practice to commit this raw chain spec into your source before proceeding.
 
