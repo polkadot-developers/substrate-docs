@@ -27,7 +27,7 @@ function Code({ children, className }) {
             setIsCopied(true);
             setTimeout(() => setIsCopied(false), 1300);
           }}
-          className="absolute top-0 bottom-0 right-0 dark:fill-white p-1 text-small w-20 hover-fill-green"
+          className="z-50 absolute top-0 bottom-0 right-0 dark:fill-white p-1 text-small w-20 hover-fill-green"
         >
           {isCopied ? (
             <span className="text-green">Copied</span>

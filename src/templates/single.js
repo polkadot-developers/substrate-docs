@@ -116,7 +116,7 @@ export default function DocsSinglePage({ data, pageContext }) {
                 </footer>
               </div>
             </div>
-            <div className="hidden xl:block col-start-10 col-end-12">
+            <div className="hidden lg:block col-start-10 col-end-12">
               <TableOfContents data={tableOfContents} headings={headings} />
             </div>
           </article>
