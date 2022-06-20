@@ -25,7 +25,7 @@ export default function NotFoundPage() {
             </a>{' '}
             or learn more about{' '}
             <a
-              href=""
+              href="https://github.com/substrate-developer-hub/substrate-docs/issues/1132"
               className="text-substrateBlue dark:text-substrateBlue-light mdx-anchor underline hover:opacity-90"
             >
               documentation updates
