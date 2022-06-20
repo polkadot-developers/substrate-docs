@@ -61,7 +61,7 @@ Over time, your network's runtime protocols can seamlessly, and perhaps radicall
 Substrate provides a unique and powerful framework for building blockchain networks and blockchain applications.
 
 - You can get started with a pre-configured node and start a solo chain with no code.
-- You can use Substrate to build a custom solo chain that runs independent of any other blockchains
+- You can use Substrate to build a custom solo chain that runs independent of any other blockchains.
 - You can couple your Substrate chain to a relay chain like Polkadot or Kusama.
 
 Depending on your background and interests, explore the following resources to learn more.
