@@ -2,7 +2,7 @@
 title: Connect a Parachain
 slug: /tutorials/v3/cumulus/connect-parachain
 sideNav: cumulusTutorial
-version: 'polkadot-v0.9.19'
+version: 'polkadot-v0.9.23'
 section: tutorials
 category: parachains
 duration: 3 Hours
@@ -123,13 +123,13 @@ This stems from the [non-deterministic issue](https://dev.to/gnunicorn/hunting-d
 `}
 />
 
-Chain specs _conventionally_ live in a `/res` folder that is published in your node's codebase for others to use.
+Chain specs _conventionally_ live in a `chain-specs` folder that is published in your node's codebase for others to use.
 For example:
 
-- Polkadot includes these **relay chain** chain specs
-  [under `node/service/res`](https://github.com/paritytech/polkadot/tree/master/node/service/res)
-- Cumulus includes these **parachain** chain specs
-  [under `res`](https://github.com/paritytech/cumulus/tree/master/polkadot-parachains/res)
+- Polkadot includes these **relay** chain specs under
+  [`node/service/chain-specs`](https://github.com/paritytech/polkadot/tree/master/node/service/chain-specs)
+- Cumulus includes these **parachain** chain specs under
+  [`parachains/chain-specs`](https://github.com/paritytech/cumulus/tree/master/parachains/chain-specs)
 
 It is good practice to commit this raw chain spec into your source before proceeding.
 
@@ -189,7 +189,6 @@ The first thing to notice about this command is that several arguments are passe
 A parachain collator contains the actual collator node and also an **embedded relay chain node**. The arguments before the `--` are for the collator, and the arguments after the `--` are for the embedded relay chain node.
 
 We give the collator a base path and ports as we did for the relay chain node previously.
-We also specify the para ID.
 
 Remember to change the collator-specific values if you are executing these instructions a second time for a second parachain.
 You will use the same relay chain chain spec, but different para ID,base path, and ports the second parachain collator binds to.
@@ -495,5 +494,8 @@ In this case, simply leave out the `--collator` flag.
 
 ## Next steps
 
-That was quite a lot of work to get a parachain up and running!
-Don't fret though, in the next section we will learn about how to completely automate all the steps we did in this tutorial thus far, and much more!
+Now we have the ability to configure complex networks to thoroughly test locally.
+But what about transitioning to a production system?
+How do you connect to a relay chain that exists already and get a parachain slot there?
+
+This is the purpose of the **Rococo Testnet **! The process to obtain a parachain slot is outlined in the [Connect to the Rococo Public Testnet](/how-to-guides/v3/parachains/rococo) How-to Guide.

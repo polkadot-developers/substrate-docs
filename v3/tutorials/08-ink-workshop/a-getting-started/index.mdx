@@ -130,10 +130,18 @@ The `cargo-contract` package provides a command-line interface for working with 
 
 1. Open a terminal shell on your computer.
 
+1. Install `cargo-dylint` and `dylint-link`, required to lint ink! contracts, warning you about things like using API's in a way that could lead to security issues.
+
+   If you're on macOS you might have to run `brew install openssl` first.
+
+   ```bash
+   cargo install cargo-dylint dylint-link
+   ```
+
 1. Install `cargo-contract` by running the following command:
     
     ```bash
-    cargo install cargo-contract --force --locked
+    cargo install cargo-contract --force
     ```
 
 1. Verify the installation and explore the commands avilable by running the following command:
@@ -443,7 +451,7 @@ In this tutorial, you learned:
 
 Additional smart contract tutorials build on what you learned in this tutorial and lead you deeper into different stages of contract development. 
 
-You can find an example of the final code for this tutorial in the assets for the [ink-workshop](https://docs.substrate.io/assets/tutorials/ink-workshop/1.4-finished-code.rs).
+You can find an example of the final code for this tutorial in the assets for the [ink-workshop](/assets/tutorials/ink-workshop/1.4-finished-code.rs).
 You can learn more about smart contract development in the following topics:
 
 * [Smart Contract development with Substrate](/v3/runtime/smart-contracts)

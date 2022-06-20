@@ -33,7 +33,7 @@ Substrate makes it possible to deploy enhanced runtime capabilities (**including
 without a [hard fork](/v3/getting-started/glossary#fork). Because the definition of the
 runtime is itself an element in a Substrate chain's state, network participants may update this
 value by way of an [extrinsic](/v3/concepts/extrinsics), specifically
-[the `set_code` function](/rustdocs/latest/frame_system/pallet/enum.Call.html#variant.set_code).
+[the `set_code` function](https://paritytech.github.io/substrate/master/frame_system/pallet/enum.Call.html#variant.set_code).
 Since updates to runtime state are bound by the blockchain's consensus mechanisms and cryptographic
 guarantees, network participants can use the blockchain itself to trustlessly distribute updated or
 extended runtime logic without needing to fork the chain or even release a new blockchain client.
@@ -42,10 +42,10 @@ This tutorial will use the Substrate Developer Hub
 [node template](https://github.com/substrate-developer-hub/substrate-node-template) to explore two
 mechanisms for forkless upgrades of [FRAME](/v3/runtime/frame)-based runtimes.
 First, the
-[`sudo_unchecked_weight`](/rustdocs/latest/pallet_sudo/pallet/enum.Call.html#variant.sudo_unchecked_weight)
+[`sudo_unchecked_weight`](https://paritytech.github.io/substrate/master/pallet_sudo/pallet/enum.Call.html#variant.sudo_unchecked_weight)
 function from the [Sudo pallet](/v3/runtime/frame#sudo) will be used to perform an
 upgrade that adds the [Scheduler pallet](/v3/runtime/frame#scheduler). Then, the
-[`schedule`](/rustdocs/latest/pallet_scheduler/pallet/enum.Call.html#variant.schedule)
+[`schedule`](https://paritytech.github.io/substrate/master/pallet_scheduler/pallet/enum.Call.html#variant.schedule)
 function from the Scheduler pallet will be used to perform an upgrade that increases the
 [existential (minimum) balance](/v3/getting-started/glossary#existential-deposit)
 for network accounts.
@@ -138,8 +138,8 @@ that Alice's account will be the one used to perform runtime upgrades throughout
 Dispatchable calls in Substrate are always associated with a
 [weight](/v3/concepts/weight), which is used for resource accounting. FRAME's
 System module bounds extrinsics to a block
-[`BlockLength`](/rustdocs/latest/frame_system/limits/struct.BlockLength.html) and
-[`BlockWeights`](/rustdocs/latest/frame_system/limits/struct.BlockWeights.html) limit.
+[`BlockLength`](https://paritytech.github.io/substrate/master/frame_system/limits/struct.BlockLength.html) and
+[`BlockWeights`](https://paritytech.github.io/substrate/master/frame_system/limits/struct.BlockWeights.html) limit.
 The `set_code` function in
 [the `System` module](https://github.com/paritytech/substrate/blob/v3.0.0/frame/system/src/lib.rs) is
 intentionally designed to consume the maximum weight that may fit in a block.
@@ -153,12 +153,12 @@ intentionally designed to consume the maximum weight that may fit in a block.
   "
 />
 
-The [`set_code` function](/rustdocs/latest/src/frame_system/lib.rs.html#345-352)'s
+The [`set_code` function](https://paritytech.github.io/substrate/master/src/frame_system/lib.rs.html#345-352)'s
 weight annotation also specifies that the extrinsic call is in
 [the `Operational` class](/v3/runtime/weights-and-fees#operational-dispatches) of dispatchable
 function, which identifies it as relating to network _operations_ and impacts the accounting of its
 resources, such as by exempting it from the
-[`TransactionByteFee`](/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.TransactionByteFee).
+[`TransactionByteFee`](https://paritytech.github.io/substrate/master/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.TransactionByteFee).
 
 ### Use `sudo` to dispatch
 
@@ -167,7 +167,7 @@ capabilities related to the management of a single
 [`sudo` ("superuser do")](https://en.wikipedia.org/wiki/Sudo) administrator. In FRAME, the `Root`
 Origin is used to identify the runtime administrator; some of FRAME's features, including the
 ability to update the runtime by way of
-[the `set_code` function](/rustdocs/latest/frame_system/pallet/enum.Call.html#variant.set_code),
+[the `set_code` function](https://paritytech.github.io/substrate/master/frame_system/pallet/enum.Call.html#variant.set_code),
 are only accessible to this administrator. The Sudo pallet maintains a single
 [storage item](/v3/runtime/storage): the ID of the account that has access to the
 pallet's [dispatchable functions](/v3/getting-started/glossary#dispatch). The Sudo
@@ -193,7 +193,7 @@ fn sudo(origin, call) -> Result {
 #### `sudo` to Override Resource Accounting
 
 In order to work around resource accounting within FRAME's safeguards, the Sudo pallet provides the
-[`sudo_unchecked_weight`](/rustdocs/latest/pallet_sudo/pallet/enum.Call.html#variant.sudo_unchecked_weight)
+[`sudo_unchecked_weight`](https://paritytech.github.io/substrate/master/pallet_sudo/pallet/enum.Call.html#variant.sudo_unchecked_weight)
 function, which provides the same capability as the `sudo` function, but accepts an additional
 parameter that is used to specify the (possibly zero) weight to use for the call. The
 `sudo_unchecked_weight` function is what will be used to invoke the runtime upgrade in this section
@@ -209,14 +209,14 @@ the time it needs to succeed or fail.
 #### Add the `Scheduler` Pallet
 
 Because the template node doesn't come with the
-[Scheduler pallet](/rustdocs/latest/pallet_scheduler/index.html) included in
+[Scheduler pallet](https://paritytech.github.io/substrate/master/pallet_scheduler/index.html) included in
 its runtime, the first runtime upgrade performed in this tutorial will add that pallet.
 First, add the Scheduler pallet as a dependency in the template node's runtime Cargo file.
 
 **`runtime/Cargo.toml`**
 
 ```toml
-pallet-scheduler = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.19" }
+pallet-scheduler = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.23" }
 
 #--snip--
 
@@ -251,6 +251,8 @@ impl pallet_scheduler::Config for Runtime {
 	type MaxScheduledPerBlock = MaxScheduledPerBlock;
 	type WeightInfo = ();
 	type OriginPrivilegeCmp = EqualPrivilegeOnly;
+  type PreimageProvider = ();
+  type NoPreimagePostponement = ();
 }
 
 // Add the Scheduler pallet inside the construct_runtime! macro.
@@ -273,9 +275,9 @@ pub use frame_support::traits::EqualPrivilegeOnly;
 ```
 
 The final step to preparing an upgraded FRAME runtime is to increment its
-[`spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version),
+[`spec_version`](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html#structfield.spec_version),
 which is a member of
-[the `RuntimeVersion` struct](/rustdocs/latest/sp_version/struct.RuntimeVersion.html):
+[the `RuntimeVersion` struct](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html):
 
 **`runtime/src/lib.rs`**
 
@@ -383,7 +385,7 @@ Next up, we will:
 ## Schedule an Upgrade
 
 Now that the node template has been upgraded to include the Scheduler pallet,
-[the `schedule` function](/rustdocs/latest/pallet_scheduler/pallet/enum.Call.html#variant.schedule)
+[the `schedule` function](https://paritytech.github.io/substrate/master/pallet_scheduler/pallet/enum.Call.html#variant.schedule)
 can be used to perform the next runtime upgrade. In the previous part, the
 `sudo_unchecked_weight` function was used to override the weight associated with the `set_code`
 function; in this section, the runtime upgrade will be _scheduled_ so that it can be processed as
@@ -438,7 +440,7 @@ This will _override_ any previous build artifacts! So if you want to have a copy
 ### Upgrade the Runtime
 
 In the previous section, the Scheduler pallet was configured with the `Root` origin as its
-[`ScheduleOrigin`](/rustdocs/latest/pallet_scheduler/pallet/trait.Config.html#associatedtype.ScheduleOrigin),
+[`ScheduleOrigin`](https://paritytech.github.io/substrate/master/pallet_scheduler/pallet/trait.Config.html#associatedtype.ScheduleOrigin),
 which means that the `sudo` function (_not_ `sudo_unchecked_weight`) can be used to invoke the
 `schedule` function. Use this link to open the Polkadot JS Apps UI's Sudo tab:
 https://polkadot.js.org/apps/#/sudo?rpc=ws://127.0.0.1:9944.

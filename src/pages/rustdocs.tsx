@@ -39,7 +39,7 @@ export default function RustDocs() {
                   Monthly-2021-09+1
                 </Link>
                 {` `}
-                <Link to="https://paritytech.github.io/substrate/latest/sc_service/index.html">
+                <Link to="https://paritytech.github.io/substrate/master/sc_service/index.html">
                   {`(latest)`}
                 </Link>
               </li>

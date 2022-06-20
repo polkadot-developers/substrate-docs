@@ -12,7 +12,7 @@ keywords:
 ---
 
 The default Substrate block production systems produce blocks at consistent intervals. This is the
-known as the target block time. Given this requirement, Substrate based blockchains are only be able
+known as the target block time. Given this requirement, Substrate based blockchains are only able
 to execute a limited number of extrinsics per block. The time it takes to execute an extrinsic may
 vary based on the computational complexity, storage complexity, hardware used, and many other
 factors. We use generic measurement called [weight](/v3/concepts/weight) to represent how many extrinsics
@@ -45,7 +45,7 @@ Substrate.
 
 ## How to benchmark
 
-The [FRAME benchmarking module](/rustdocs/latest/frame_benchmarking/benchmarking/index.html) has a set
+The [FRAME benchmarking module](https://paritytech.github.io/substrate/master/frame_benchmarking/benchmarking/index.html) has a set
 of tools to help determine the worst case scenario computation time of runtime extrinsics in order to
 determine appropriate weights for those extrinsics. It does this by executing a pallet's extrinsics
 multiple times within a mock runtime environment, and keeps track of the execution time.
@@ -88,7 +88,7 @@ You can configure your benchmark to run over different varying inputs. For each 
 configure the range of those variables, and use them within the benchmark set-up or execution logic.
 
 The full syntax and functionality can be seen in the [`benchmarks!` macro API
-documentation](/rustdocs/latest/frame_benchmarking/macro.benchmarks.html).
+documentation](https://paritytech.github.io/substrate/master/frame_benchmarking/macro.benchmarks.html).
 
 ## Best practices and common patterns
 

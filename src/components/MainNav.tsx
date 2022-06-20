@@ -67,6 +67,11 @@ const MainNav = {
             link: `/playground`,
             external: false,
           },
+          {
+            linkTitle: `Smart Contracts`,
+            link: `${site}/smart-contracts`,
+            external: true,
+          },
         ],
       },
       {
@@ -130,8 +135,13 @@ const MainNav = {
                 external: true,
               },
               {
+                linkTitle: 'Past Seminars',
+                link: `${site}/ecosystem/resources/past-seminars`,
+                external: true,
+              },
+              {
                 linkTitle: 'Awesome Substrate',
-                link: `${site}/ecosystem/resources/awesome-substrate`,
+                link: `https://github.com/substrate-developer-hub/awesome-substrate/blob/master/README.md`,
                 external: true,
               },
             ],
@@ -162,6 +172,11 @@ const MainNav = {
                 external: true,
               },
             ],
+          },
+          {
+            linkTitle: `Square One`,
+            link: `${site}/ecosystem/square-one`,
+            external: true,
           },
         ],
       },
