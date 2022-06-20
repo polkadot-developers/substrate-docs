@@ -111,7 +111,7 @@ Therefore, the first step is to remove some files and content from the files in 
    You won't be using the template code in this tutorial.
    However, you can review the template code to see what it provides before you delete it.
 
-1. Replace all contents of `pallets/template/src/lib.rs` with the following skeleton code that includes a few minimal [macros for FRAME V2](https://docs.substrate.io/rustdocs/latest/frame_support/attr.pallet.html):
+1. Replace all contents of `pallets/template/src/lib.rs` with the following skeleton code that includes a few minimal [macros for FRAME V2](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html):
 
   ```rust
     #![cfg_attr(not(feature = "std"), no_std)]
@@ -247,7 +247,7 @@ To implement the errors for the proof-of-existence pallet, replace the `// TODO:
 
 To add a new proof to the blockchain, the proof-of-existence pallet requires a storage mechanism.
 To address this requirement, you can create a [hash map](https://en.wikipedia.org/wiki/Hash_table) that maps each proof to its owner and records the block number when the proof was made.
-To create this hash map, you can use the FRAME [`StorageMap`](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) trait.
+To create this hash map, you can use the FRAME [`StorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html) trait.
 
 To implement storage for the proof-of-existence pallet, replace the `// TODO: add #[pallet::storage] block` line with the following code block:
 
@@ -371,7 +371,7 @@ So here we specify `MaxBytesInHash` to be this length (or less) in the runtime:
 
 > **_Something not working?_**
 > There is a full Node Template solution [here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/proof-of-existence) to use as a reference if you're stuck.
-> Check the [commit diff from the base template](https://github.com/substrate-developer-hub/substrate-node-template/compare/polkadot-v0.9.20...tutorials/solutions/proof-of-existence) for the exact changes built on the `polkadot-v0.9.20` release of the templates.
+> Check the [commit diff from the base template](https://github.com/substrate-developer-hub/substrate-node-template/compare/polkadot-v0.9.23...tutorials/solutions/proof-of-existence) for the exact changes built on the `polkadot-v0.9.23` release of the templates.
 
 ## Build the runtime with your new pallet
 
@@ -569,7 +569,7 @@ This will open up a new tab with the front-end serving at **http://localhost:800
 
 > **_Something not working?_**
 > There is a full Front End Template solution [here](https://github.com/substrate-developer-hub/substrate-front-end-template/tree/tutorials/solutions/proof-of-existence) to use as a reference if you're stuck.
-> Check the [commit diff from the base template](https://github.com/substrate-developer-hub/substrate-front-end-template/compare/latest...tutorials/solutions/proof-of-existence?expand=1) for the exact changes built on the `polkadot-v0.9.20` release of the templates.
+> Check the [commit diff from the base template](https://github.com/substrate-developer-hub/substrate-front-end-template/compare/latest...tutorials/solutions/proof-of-existence?expand=1) for the exact changes built on the `polkadot-v0.9.23` release of the templates.
 
 ### Submit a proof
 

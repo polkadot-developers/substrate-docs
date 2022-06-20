@@ -14,7 +14,7 @@ evolving runtime state. This allows network maintainers to leverage the blockcha
 for trustless, decentralized consensus to securely make enhancements to the runtime.
 
 In the FRAME system for runtime development, the System library defines
-[the `set_code` call](/rustdocs/latest/frame_system/pallet/enum.Call.html#variant.set_code)
+[the `set_code` call](https://paritytech.github.io/substrate/master/frame_system/pallet/enum.Call.html#variant.set_code)
 that is used to update the definition of the runtime. The
 [Forkless Upgrade a Chain tutorial](/tutorials/v3/forkless-upgrades#schedule-an-upgrade) describes the details
 of FRAME runtime upgrades and demonstrates two mechanisms for performing them. Both upgrades
@@ -30,7 +30,7 @@ execution environment, it needs to know the `spec_name`, `spec_version` and `aut
 both the native and Wasm runtime.
 
 The runtime provides a
-[runtime version struct](/rustdocs/latest/sp_version/struct.RuntimeVersion.html).
+[runtime version struct](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html).
 A sample runtime version struct is shown below:
 
 ```rust
@@ -68,7 +68,7 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
   This includes any change in pallet and dispatchable runtime parameter types.
   If this number is updated, then the `spec_version` must also be updated. Updates to the `spec_version` can be automated as a CI process, as is done for the [Polkadot network](https://gitlab.parity.io/parity/polkadot/-/blob/master/scripts/gitlab/check_extrinsics_ordering.sh).
 
-- `apis` is a list of supported [runtime APIs](/rustdocs/latest/sp_api/macro.impl_runtime_apis.html) along with their versions.
+- `apis` is a list of supported [runtime APIs](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html) along with their versions.
 
 As mentioned above, the executor always verifies that the native runtime has the same consensus-driven logic before it chooses to execute it, independent of whether the version is higher or lower.
 
@@ -87,7 +87,7 @@ RPC endpoint, which accepts an optional block identifier. Most developers buildi
 blockchain will use the [runtime's metadata](../metadata) to understand the APIs the runtime exposes
 and the requirements for interacting with these APIs. The runtime's metadata should _only_ change
 when the chain's
-[runtime `spec_version`](/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version)
+[runtime `spec_version`](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html#structfield.spec_version)
 changes.
 
 ## Forkless runtime upgrades
@@ -124,7 +124,7 @@ storage migrations fall into a category of storage management broadly referred t
 ### Storage migrations with FRAME
 
 FRAME storage migrations are implemented by way of
-[the `OnRuntimeUpgrade` trait](/rustdocs/latest/frame_support/traits/trait.OnRuntimeUpgrade.html),
+[the `OnRuntimeUpgrade` trait](https://paritytech.github.io/substrate/master/frame_support/traits/trait.OnRuntimeUpgrade.html),
 which specifies a single function, `on_runtime_upgrade`. This function provides a hook that allows
 runtime developers to specify logic that will run immediately _after_ a runtime upgrade but _before_
 any [extrinsics or even the `on_initialize` function](/v3/concepts/execution#executing-a-block) has executed.
@@ -133,7 +133,7 @@ any [extrinsics or even the `on_initialize` function](/v3/concepts/execution#exe
 
 Preparing for a storage migration means understanding the changes that are defined by a runtime
 upgrade. The Substrate repository uses
-[the `D1-runtime-migration` label](https://github.com/paritytech/substrate/pulls?q=is%3Apr+label%3AD1-runtime-migration)
+[the `E1-runtimemigration` label](https://github.com/paritytech/substrate/pulls?q=is%3Apr+label%3AE1-runtimemigration)
 to designate such changes.
 
 ### Writing a migration

@@ -236,7 +236,7 @@ To add the transfer functions to the smart contract:
 
     ```rust
     #[ink(message)]
-    pub fn transfer(&mut self, to: AccountId, value: Balance) {
+    pub fn transfer(&mut self, to: AccountId, value: Balance) -> Result<()> {
       let from = self.env().caller();
       self.transfer_from_to(&from, &to, value)
     }
@@ -281,6 +281,7 @@ To add the transfer functions to the smart contract:
 
     The command should display output similar to the following to indicate successful test completion:
 
+    ```text
     running 2 tests
     test erc20::tests::new_works ... ok
     test erc20::tests::balance_works ... ok

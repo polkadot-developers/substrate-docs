@@ -104,15 +104,15 @@ impl my_pallet::Config for Runtime {
 ```
 
 `Balances`, which is specified in `construct_runtime!` macro, is of type
-[`pallet_balances`](/rustdocs/latest/pallet_balances/index.html)
-that [implements `Currency` trait](/rustdocs/latest/pallet_balances/index.html#implementations-1).
+[`pallet_balances`](https://paritytech.github.io/substrate/master/pallet_balances/index.html)
+that [implements `Currency` trait](https://paritytech.github.io/substrate/master/pallet_balances/index.html#implementations-1).
 
 By now we have closed the loop and provide on implementation to `Currency<AccountId>` trait.
 
 ## Further notes
 
 Notice that many FRAME pallets are coupled to this
-[Currency trait](/rustdocs/latest/frame_support/traits/tokens/currency/trait.Currency.html)
+[Currency trait](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html)
 in this way.
 
 In general, loose coupling will provide more flexibility than tight coupling and is considered

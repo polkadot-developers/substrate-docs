@@ -21,14 +21,14 @@ interfaces. Please refer to [the advanced storage documentation](/v3/advanced/st
 
 In Substrate, any pallet can introduce new storage items that will become part of your blockchain’s state. These storage items can be simple single value items, or more complex storage maps. The type of storage items you choose to implement depends entirely on their intended role within your runtime logic.
 
-FRAME's [`Storage` module](/rustdocs/latest/frame_support/storage) gives runtime developers access to Substrate's flexible storage APIs, which can support any value that is encodable
+FRAME's [`Storage` module](https://paritytech.github.io/substrate/master/frame_support/storage) gives runtime developers access to Substrate's flexible storage APIs, which can support any value that is encodable
 by [SCALE codec](/v3/advanced/scale-codec). These include:
 
-- [Storage Value](/rustdocs/latest/frame_support/storage/trait.StorageValue.html) - used to store any single value, such as a `u64`.
-- [Storage Map](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) - used to store a key-value mapping, such as account-to-balance.
-- [Storage Double Map](/rustdocs/latest/frame_support/storage/trait.StorageDoubleMap.html) - used as an implementation of a storage map with two keys to provide the ability to efficiently remove
+- [Storage Value](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html) - used to store any single value, such as a `u64`.
+- [Storage Map](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html) - used to store a key-value mapping, such as account-to-balance.
+- [Storage Double Map](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageDoubleMap.html) - used as an implementation of a storage map with two keys to provide the ability to efficiently remove
   all entries that have a common first key.
-- [Storage N Map](/rustdocs/latest/frame_support/storage/trait.StorageNMap.html) - used to store a mapping with any arbitrary number of keys, it can be used as a basis to build a Triple Storage Map, a Quadruple Storage Map and so on.
+- [Storage N Map](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageNMap.html) - used to store a mapping with any arbitrary number of keys, it can be used as a basis to build a Triple Storage Map, a Quadruple Storage Map and so on.
 
 ### Storage value
 
@@ -48,7 +48,7 @@ If this occurs for [parachains](/v3/getting-started/glossary/#parachain), the bl
 />
 
 Refer to the Storage Value documentation for
-[a comprehensive list of the methods that Storage Value exposes](/rustdocs/latest/frame_support/storage/trait.StorageValue.html#required-methods).
+[a comprehensive list of the methods that Storage Value exposes](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html#required-methods).
 
 ### Storage map
 
@@ -59,11 +59,11 @@ for enabling random lookups. In order to give runtime engineers increased contro
 which hashing algorithms suits their use case the best for generating a map's keys. This is covered in the section on [hashing algorithms](#hashing-algorithms).
 
 Refer to the Storage Map documentation for
-[a comprehensive list of the methods that Storage Map exposes](/rustdocs/latest/frame_support/storage/trait.StorageMap.html#required-methods).
+[a comprehensive list of the methods that Storage Map exposes](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html#required-methods).
 
 ### Double storage map
 
-[Double Storage Maps](/rustdocs/latest/frame_support/storage/trait.StorageDoubleMap.html) are very similar to single Storage Maps except they contain two keys, which is useful for querying values with common keys.
+[Double Storage Maps](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageDoubleMap.html) are very similar to single Storage Maps except they contain two keys, which is useful for querying values with common keys.
 
 Refer to the documentation on
 [advanced storage](/v3/advanced/storage) to learn more about how different Storage Maps, including Double Storage Maps, are implemented.
@@ -74,7 +74,7 @@ N Storage Maps are also very similar to its siblings, namely Storage Maps and Do
 
 To specify the keys in an N Storage Map in FRAMEv2, a tuple containing the special `NMapKey` struct must be provided as a type to the Key (i.e. second) type parameter while declaring the `StorageNMap`.
 
-Refer to the [N Storage Map documentation](/rustdocs/latest/frame_support/storage/trait.StorageNMap.html) for more details about the syntaxes in using a N Storage Map.
+Refer to the [N Storage Map documentation](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageNMap.html) for more details about the syntaxes in using a N Storage Map.
 
 ### Iterating over Storage Maps
 
@@ -97,23 +97,23 @@ Substrate's Iterable Storage Map interfaces define the following methods:
 
 - `iter()` - enumerate all elements in the map in no particular order. If you alter the map while
   doing this, you'll get undefined results. See the docs:
-  [`IterableStorageMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageMap.html#tymethod.iter),
-  [`IterableStorageDoubleMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter) and
-  [`IterableStorageNMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageNMap.html#tymethod.iter).
+  [`IterableStorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.iter),
+  [`IterableStorageDoubleMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter) and
+  [`IterableStorageNMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageNMap.html#tymethod.iter).
 - `drain()` - remove all elements from the map and iterate through them in no particular order. If you
   add elements to the map while doing this, you'll get undefined results. See the docs:
-  [`IterableStorageMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain),
-  [`IterableStorageDoubleMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain) and
-  [`IterableStorageNMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageNMap.html#tymethod.drain).
+  [`IterableStorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain),
+  [`IterableStorageDoubleMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain) and
+  [`IterableStorageNMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageNMap.html#tymethod.drain).
 - `translate()` - use the provided function to translate all elements of the map, in no particular
   order. To remove an element from the map, return `None` from the translation function. See the docs:
-  [`IterableStorageMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate),
-  [`IterableStorageDoubleMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.translate) and
-  [`IterableStorageNMap`](/rustdocs/latest/frame_support/storage/trait.IterableStorageNMap.html#tymethod.translate).
+  [`IterableStorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate),
+  [`IterableStorageDoubleMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.translate) and
+  [`IterableStorageNMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageNMap.html#tymethod.translate).
 
 ## Declaring storage items
 
-Runtime storage items are created with [`#[pallet::storage]`](/rustdocs/latest/frame_support/attr.pallet.html#storage-palletstorage-optional)
+Runtime storage items are created with [`#[pallet::storage]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#storage-palletstorage-optional)
 in any FRAME-based pallet. Here is an example of declaring the four different types of storage items:
 
 ```rust
@@ -153,10 +153,10 @@ be used.
 
 ### QueryKindTrait
 
-The implementation of the [`QueryKindTrait`](/rustdocs/latest/frame_support/storage/types/trait.QueryKindTrait.html) passed
+The implementation of the [`QueryKindTrait`](https://paritytech.github.io/substrate/master/frame_support/storage/types/trait.QueryKindTrait.html) passed
 to the storage item determines how the storage should be handled when there is no value in storage.
-With [`OptionQuery`](/rustdocs/latest/frame_support/storage/types/struct.OptionQuery.html), when no value is in storage
-the `get` method will return `None`. With [`ValueQuery`](/rustdocs/latest/frame_support/storage/types/struct.ValueQuery.html),
+With [`OptionQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.OptionQuery.html), when no value is in storage
+the `get` method will return `None`. With [`ValueQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.ValueQuery.html),
 when no value is in storage the `get` method will return the value configured with the `OnEmpty` generic.
 For cases with a specific default value to configure, it is recommended to use `ValueQuery`.
 
@@ -281,9 +281,9 @@ those that are transparent:
 
 | Hasher                                                                           | Cryptographic | Transparent |
 | -------------------------------------------------------------------------------- | ------------- | ----------- |
-| [Blake2 128 Concat](/rustdocs/latest/frame_support/struct.Blake2_128Concat.html) | X             | X           |
-| [TwoX 64 Concat](/rustdocs/latest/frame_support/struct.Twox64Concat.html)        |               | X           |
-| [Identity](/rustdocs/latest/frame_support/struct.Identity.html)                  |               | X           |
+| [Blake2 128 Concat](https://paritytech.github.io/substrate/master/frame_support/struct.Blake2_128Concat.html) | X             | X           |
+| [TwoX 64 Concat](https://paritytech.github.io/substrate/master/frame_support/struct.Twox64Concat.html)        |               | X           |
+| [Identity](https://paritytech.github.io/substrate/master/frame_support/struct.Identity.html)                  |               | X           |
 
 The Identity hasher encapsulates a hashing algorithm that has an output equal to its input (the
 identity function). This type of hasher should only be used when the starting key is already a
@@ -301,11 +301,11 @@ In order to consume a pallet's genesis configuration capabilities, you must incl
 `Config` element when adding the pallet to your runtime.
 All the `GenesisConfig` types for the pallets that inform a runtime will be aggregated into a single
 `GenesisConfig` type for that runtime, which implements
-the [`BuildStorage` trait](/rustdocs/latest/sp_runtime/trait.BuildStorage.html). For example, in the
-[`node_template_runtime::GenesisConfig`](/rustdocs/latest/node_template_runtime/struct.GenesisConfig.html) struct,
+the [`BuildStorage` trait](https://paritytech.github.io/substrate/master/sp_runtime/trait.BuildStorage.html). For example, in the
+[`node_template_runtime::GenesisConfig`](https://paritytech.github.io/substrate/master/node_template_runtime/struct.GenesisConfig.html) struct,
 each attribute on this type corresponds to a `GenesisConfig` from the runtime's pallets that has a `Config` element.
 Ultimately, the runtime's `GenesisConfig` is exposed by way of
-the [`ChainSpec` trait](/rustdocs/latest/sc_chain_spec/trait.ChainSpec.html).
+the [`ChainSpec` trait](https://paritytech.github.io/substrate/master/sc_chain_spec/trait.ChainSpec.html).
 
 For a complete
 and concrete example of using Substrate's genesis storage configuration capabilities, refer to
@@ -315,7 +315,7 @@ Keep reading for a more detailed descriptions of these capabilities.
 
 ### `genesis_config`
 
-The [`#[pallet::genesis_config]`](/rustdocs/latest/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional)
+The [`#[pallet::genesis_config]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional)
 macro provides an extension that will add an attribute to the pallet's
 `GenesisConfig` data type. The value of this attribute will be used as the initial value of the storage
 item in your chain's genesis block. The `config` extension takes a parameter that will determine the
@@ -348,7 +348,7 @@ GenesisConfig {
 
 ### `genesis_build`
 
-The [`#[pallet::genesis_build]`](/rustdocs/latest/frame_support/attr.pallet.html#genesis-build-palletgenesis_build-optional)
+The [`#[pallet::genesis_build]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#genesis-build-palletgenesis_build-optional)
 attribute allows you to define how `genesis_configuration` is built within the pallet itself (this gives you access to the pallet's private
 functions).
 
@@ -434,7 +434,7 @@ Remember, the fundamental principle of blockchain runtime storage is to minimize
 _consensus-critical_ data should be stored in your runtime. When possible, use techniques like
 hashing to reduce the amount of data you must store. For instance, many of Substrate's governance
 capabilities (e.g.
-the Democracy pallet's [`propose` dispatchable](/rustdocs/latest/pallet_democracy/pallet/enum.Call.html#variant.propose))
+the Democracy pallet's [`propose` dispatchable](https://paritytech.github.io/substrate/master/pallet_democracy/pallet/enum.Call.html#variant.propose))
 allow network participants to vote on the _hash_ of a dispatchable call, which is always bounded in
 size, as opposed to the call itself, which may be unbounded in length. This is especially true in
 the case of runtime upgrades where the dispatchable call takes an entire runtime Wasm blob as its
@@ -473,7 +473,7 @@ Do not use runtime storage to store intermediate or transient data within the co
 operation that is logically atomic or data that will not be needed if the operation is to fail. This
 does not mean that runtime storage should not be used to track the state of ongoing actions that
 require multiple atomic operations, as in the case of
-[the multi-signature capabilities from the Utility pallet](/rustdocs/latest/pallet_utility/pallet/enum.Call.html#variant.as_multi).
+[the multi-signature capabilities from the Utility pallet](https://paritytech.github.io/substrate/master/pallet_utility/pallet/enum.Call.html#variant.as_multi).
 In this case, runtime storage is used to track the signatories on a dispatchable call even though a
 given call may never receive enough signatures to actually be invoked. In this case, each signature
 is considered an atomic event in the ongoing multi-signature operation; the data needed to record a
@@ -485,7 +485,7 @@ been met.
 Creating bounds on the size of storage items is an extremely effective way to control the use of
 runtime storage and one that is used repeatedly throughout the Substrate codebase. In general, any
 storage item whose size is determined by user action should have a bound on it.
-[The multi-signature capabilities from the Multisig pallet](/rustdocs/latest/pallet_multisig/pallet/trait.Config.html#associatedtype.MaxSignatories)
+[The multi-signature capabilities from the Multisig pallet](https://paritytech.github.io/substrate/master/pallet_multisig/pallet/trait.Config.html#associatedtype.MaxSignatories)
 that were described above are one such example. In this case, the list of signatories associated
 with a multi-signature operation is provided by the multi-signature participants. Because this
 signatory list is [necessary to come to consensus](#what-to-store) on the state of the
@@ -511,11 +511,11 @@ Check out some guides covering various topics on storage:
 ### References
 
 - Visit the reference docs for the
-  [#[frame_support::pallet] macro](/rustdocs/latest/frame_support/attr.pallet.html#storage-palletstorage-optional)
+  [#[frame_support::pallet] macro](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#storage-palletstorage-optional)
   for more details about the available storage declarations.
 
 - Visit the reference docs for
-  [StorageValue](/rustdocs/latest/frame_support/storage/types/struct.StorageValue.html),
-  [StorageMap](/rustdocs/latest/frame_support/storage/types/struct.StorageMap.html),
-  [StorageDoubleMap](/rustdocs/latest/frame_support/storage/types/struct.StorageDoubleMap.html)
-  and [StorageNMap](/rustdocs/latest/frame_support/storage/types/struct.StorageNMap.html) to learn more about their APIs.
+  [StorageValue](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.StorageValue.html),
+  [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.StorageMap.html),
+  [StorageDoubleMap](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.StorageDoubleMap.html)
+  and [StorageNMap](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.StorageNMap.html) to learn more about their APIs.

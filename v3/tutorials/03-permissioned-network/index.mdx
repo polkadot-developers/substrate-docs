@@ -19,7 +19,7 @@ relevantSkills:
 ## Introduction
 
 In this tutorial, you will learn how to build a permissioned network with Substrate by using the
-[node-authorization pallet](/rustdocs/latest/pallet_node_authorization/index.html).
+[node-authorization pallet](https://paritytech.github.io/substrate/master/pallet_node_authorization/index.html).
 This tutorial should take you about **1 hour** to complete.
 
 You are probably already familiar with public or _permissionless_ blockchain, where everyone
@@ -66,7 +66,7 @@ Before we get started, let's layout the objectives of this tutorial:
 
 ## Learning outcomes
 
-- Learn how to use the [node-authorization pallet](/rustdocs/latest/pallet_node_authorization/pallet/index.html) in your runtime
+- Learn how to use the [node-authorization pallet](https://paritytech.github.io/substrate/master/pallet_node_authorization/pallet/index.html) in your runtime
 - Learn how to create a permissioned network consisting of multiple nodes
 
 ## Add node-authorization pallet
@@ -76,7 +76,7 @@ a configurable set of nodes for a permissioned network.
 Each node is identified by a `PeerId` which is simply a wrapper on `Vec<u8>`.
 Each `PeerId` is owned by an `AccountId` that claims it
 (these are
-[associated in a map](/rustdocs/latest/pallet_node_authorization/pallet/type.Owners.html)
+[associated in a map](https://paritytech.github.io/substrate/master/pallet_node_authorization/pallet/type.Owners.html)
 ). With this pallet, you have two ways to authorize a node which wants to join the network:
 
 1. Join the set of well known nodes between which the connections are allowed.
@@ -140,7 +140,7 @@ First we must add the pallet to our runtime dependencies:
 **`runtime/Cargo.toml`**
 
 ```toml
-pallet-node-authorization = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.20" }
+pallet-node-authorization = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.23" }
 
 #--snip--
 [features]
@@ -154,7 +154,7 @@ std = [
 
 We need to simulate the governance in our simple blockchain, so we just let a `sudo` admin rule, configuring the pallet's interface to `EnsureRoot`.
 In a production environment we should want to have governance based checking implemented here.
-More details of this `Config` can be found in the pallet's [reference docs](/rustdocs/latest/pallet_node_authorization/pallet/trait.Config.html).
+More details of this `Config` can be found in the pallet's [reference docs](https://paritytech.github.io/substrate/master/pallet_node_authorization/pallet/trait.Config.html).
 
 **`runtime/src/lib.rs`**
 
@@ -487,7 +487,7 @@ the genesis `chain_spec.rs`, where all others must be added manually via extrins
 Remember that we are using `sudo` pallet for our governance, we can make a sudo call
 on `add_well_known_node` dispatch call provided by node-authorization pallet to add
 our node. You can find more available calls in this
-[reference doc](/rustdocs/latest/pallet_node_authorization/pallet/enum.Call.html).
+[reference doc](https://paritytech.github.io/substrate/master/pallet_node_authorization/pallet/enum.Call.html).
 
 Go to **Developer** page, **Sudo** tab, in apps and submit the `nodeAuthorization` -
 `add_well_known_node` call with the peer id in hex of Charlie's node and the
@@ -498,7 +498,7 @@ owner is Charlie, of course. Note Alice is the valid sudo origin for this call.
 After the transaction is included in the block, you should see Charlie's node is
 connected to Alice and Bob's nodes, and starts to sync blocks. Notice the reason
 the three nodes can find each other is
-[mDNS](/rustdocs/latest/sc_network/index.html) discovery mechanism is enabled
+[mDNS](https://paritytech.github.io/substrate/master/sc_network/index.html) discovery mechanism is enabled
 by default in a local network.
 
 <Message

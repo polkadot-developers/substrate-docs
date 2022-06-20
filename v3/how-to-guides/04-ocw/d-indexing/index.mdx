@@ -110,7 +110,7 @@ So developers should be careful in forming the right indexing key to prevent pot
    ```
 
    The indexing data can be any data type that can be bound by the `Encode`, `Decode`, and `Deserialize` traits.
-   In the above code, data is stored via off-chain indexing using the [`offchain_index::set()`](https://paritytech.github.io/substrate/latest/sp_io/offchain_index/fn.set.html) method.
+   In the above code, data is stored via off-chain indexing using the [`offchain_index::set()`](https://paritytech.github.io/substrate/master/sp_io/offchain_index/fn.set.html) method.
 
 1. Use the `offchain_worker` hook method to read the data in the off-chain workers' database:
 
