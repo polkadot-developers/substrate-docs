@@ -1,6 +1,7 @@
 ---
 title: Use macros in a custom pallet
 description: Create a custom pallet for a Substrate runtime using a skeleton of FRAME macros.
+keywords:
 ---
 
 This tutorial illustrates how to create a custom pallet for a Substrate
@@ -15,7 +16,7 @@ Instead of individual files, the blockchain stores digital records using a [cryp
 The hash enables the blockchain to store files of arbitrary size efficiently by using a small and unique hash value.
 Because any change to a file would result in a different hash, users can prove the validity of a file by computing the hash and comparing that hash with the hash stored on chain.
 
-![File Hash](../../img/tutorials/02-proof-of-existence/file-hash.png)
+![File Hash](/media/images/docs/tutorials/custom-pallet/file-hash.png)
 
 ## Digital objects and account signatures
 
@@ -31,13 +32,15 @@ This tutorial requires compiling Rust code and takes approximately one to two ho
 
 For this tutorial, you download and use working code. Before you begin, verify the following:
 
-- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/v3/getting-started/installation).
+- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/).
 
-- You have completed the
-  [Build a local blockchain](../01-build-local-blockchain) and have the [node](https://github.com/substrate-developer-hub/substrate-node-template) and
-  [front-end](https://github.com/substrate-developer-hub/substrate-front-end-template) templates installed.
+- You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and have the Substrate node template installed locally.
+
+- You have used predefined accounts as described in [Simulate a network](/tutorials/get-started/simulate-network/) to start nodes on a single computer.
 
 - You are generally familiar with software development and use command-line interfaces.
+
+## Tutorial objectives
 
 By completing this tutorial, you will accomplish the following objectives:
 
@@ -61,15 +64,14 @@ These functions only require you to store information about the proofs that have
 
 ## Build a custom pallet
 
-The Substrate node template has a FRAME-based [runtime](/v3/concepts/runtime).
-[FRAME](/v3/runtime/frame) is a library of code that allows
-you to build a Substrate runtime by composing modules called "pallets". You can think of the
-pallets as individual pieces of logic that define what your blockchain can do. Substrate provides
-you with a number of pre-built pallets for use in FRAME-based runtimes.
+The Substrate node template has a FRAME-based runtime.
+As you learned in [Runtime development](/main-docs/fundamentals/runtime-intro), FRAME is a library of code that allows you to build a Substrate runtime by composing modules called pallets. 
+You can think of the pallets as individual pieces of logic that define what your blockchain can do. 
+Substrate provides you with a number of pre-built pallets for use in FRAME-based runtimes.
 
-![Runtime composition](../../img/tutorials/02-proof-of-existence/frame-runtime.png)
+![Runtime composition](/media/images/docs/tutorials/custom-pallet/frame-runtime.png)
 
-This tutorial shows you how to create your own FRAME pallet to be included in your custom blockchain.
+This tutorial demonstrates how to create your own FRAME pallet to be included in your custom blockchain.
 
 ### Set up scaffolding for your pallet
 
@@ -108,7 +110,7 @@ Therefore, the first step is to remove some files and content from the files in 
 
    All of the pallets used in a runtime must be set to compile with the `no_std` features.
 
-1. Add a skeleton set of pallet dependencies and [macros](/v3/runtime/macros) that the custom pallet requires by copying the following code:
+1. Add a skeleton set of pallet dependencies and [macros](/reference/frame-macros) that the custom pallet requires by copying the following code:
 
    ```rust
    // Re-export pallet items so that they can be accessed from the crate namespace.
@@ -183,7 +185,6 @@ To implement the pallet events:
    ```rust
    // Pallets use events to inform users when important changes are made.
    // Event documentation should end with an array that provides descriptive names for parameters.
-   // https://docs.substrate.io/v3/runtime/events-and-errors
    #[pallet::event]
    #[pallet::generate_deposit(pub(super) fn deposit_event)]
    pub enum Event<T: Config> {
@@ -201,7 +202,7 @@ To implement the pallet events:
 You might notice that the proof-of-existence pallet uses the `Vec<u8>` type.
 This type is included in the `std` Rust library.
 However, you _cannot_ use the `std` library for pallet development.
-Instead, the proof-of-existence pallet uses the [sp-std crate](/rustdocs/latest/sp_std/index.html) to declare the `Vec<u8>` type under the `mod pallet` section:
+Instead, the proof-of-existence pallet uses the [sp-std crate](https://paritytech.github.io/substrate/master/sp_std/index.html) to declare the `Vec<u8>` type under the `mod pallet` section:
 
 ```rust
 use sp_std::vec::Vec;
@@ -273,7 +274,7 @@ To implement the errors for the proof-of-existence pallet:
 
 To add a new proof to the blockchain, the proof-of-existence pallet requires a storage mechanism.
 To address this requirement, you can create a [hash map](https://en.wikipedia.org/wiki/Hash_table) that maps each proof to its owner and records the block number when the proof was made.
-To create this hash map, you can use the FRAME [`StorageMap`](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) trait.
+To create this hash map, you can use the FRAME [`StorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html) trait.
 
 To implement storage for the proof-of-existence pallet:
 
@@ -320,7 +321,6 @@ To implement this logic in the proof-of-existence pallet:
    	) -> DispatchResult {
    		// Check that the extrinsic was signed and get the signer.
    		// This function will return an error if the extrinsic is not signed.
-   		// https://docs.substrate.io/v3/runtime/origins
    		let sender = ensure_signed(origin)?;
 
    		// Verify that the specified proof has not already been claimed.
@@ -345,7 +345,6 @@ To implement this logic in the proof-of-existence pallet:
    	) -> DispatchResult {
    		// Check that the extrinsic was signed and get the signer.
    		// This function will return an error if the extrinsic is not signed.
-   		// https://docs.substrate.io/v3/runtime/origins
    		let sender = ensure_signed(origin)?;
 
    		// Verify that the specified proof has been claimed.
@@ -375,9 +374,8 @@ To implement this logic in the proof-of-existence pallet:
    cargo check -p node-template-runtime
    ```
 
-There is a full Node Template solution [here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/proof-of-existence) to use as a reference if you're stuck.
-Check the [commit diff from the base template](https://github.com/substrate-developer-hub/substrate-node-template/commit/773d72752f3598e5d405b48c6f716f4153c95070#diff-f191d0eb0afa874a64fb9be550a275f957e220b9076c87d4085c2797ca4e310c) for the exact changes.
-/>
+You can refer to the node template [solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/proof-of-existence) if you get stuck.
+You can also check the [commit diff](https://github.com/substrate-developer-hub/substrate-node-template/commit/773d72752f3598e5d405b48c6f716f4153c95070#diff-f191d0eb0afa874a64fb9be550a275f957e220b9076c87d4085c2797ca4e310c) to see the exact changes from the base template.
 
 ## Build the runtime with your new pallet
 
@@ -504,7 +502,7 @@ This React component enables you to expose the proof-of-existence capabilities a
    yarn start
    ```
 
-This will open up a new tab with the front-end serving at **http://localhost:8000**.
+This will open up a new tab with the front-end serving at `http://localhost:8000`.
 
 ### Submit a proof
 
@@ -519,14 +517,14 @@ To test the proof-of-existence pallet using the new front-end component:
 
 1. Click **Create Claim** to take ownership of the file.
 
-   ![Proof Of Existence Component](../../img/tutorials/02-proof-of-existence/poe-component.png)
+   ![Proof Of Existence Component](/media/images/docs/tutorials/custom-pallet/poe-component.png)
 
    Clicking **Create Claim** calls the `create_claim` function in the custom proof-of-existence pallet.
    The front-end component displays the file digest, account identifier, and block number for the completed transaction.
 
 1. Verify the claim is successful and a new `claimCreated` event appears in the Events component.
 
-   ![Claimed File](../../img/tutorials/02-proof-of-existence/poe-claimed.png)
+   ![Claimed File](/media/images/docs/tutorials/custom-pallet/poe-claimed.png)
 
    The front-end component recognizes that the file is now claimed, and gives you the option to revoke the claim.
 
@@ -549,5 +547,4 @@ However, there's much more you can do as you work toward building your own fully
 Custom pallets enable you to expose the features you want your blockchain to support.
 
 To learn more about what's possible by creating custom pallets, explore the
-[FRAME documentation](/v3/runtime/frame) and the [how-to guides](/how-to-guides).
-For a more challenging version of this tutorial, move onto the [Substrate Kitties tutorial](/tutorials/v3/kitties/pt1/).
+FRAME documentation and the [how-to guides](/reference/how-to-guides).

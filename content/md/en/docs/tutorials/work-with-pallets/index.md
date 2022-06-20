@@ -10,5 +10,3 @@ You'll learn how to:
 - [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet/) introduces the common steps for adding a simple predefined pallet to the node template runtime.
 - [Configure the contracts pallet](/tutorials/work-with-pallets/contracts-pallet/)demonstrates how to configure a complex pallet to work with smart contracts.
 - [Use macros in a custom pallet](/tutorials/work-with-pallets/custom-pallet) illustrates how to create a custom pallet using macros.
-<!-- - Specify the origin for a transaction.
-- Publish a custom pallet for others to use. -->

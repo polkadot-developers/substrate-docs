@@ -1,6 +1,6 @@
 const WEBSITE_URL = process.env.GATSBY_WEBSITE_URL;
 // const DOCS_URL = process.env.GATSBY_DOCS_URL;
-const MARKETPLACE_URL = process.env.GATSBY_MARKETPLACE_URL;
+//const MARKETPLACE_URL = process.env.GATSBY_MARKETPLACE_URL;
 
 /* the main menu, ids of items must match
    the submenu's key of this js object */
@@ -57,16 +57,16 @@ const developers = [
     id: 'developers.docs',
   },
   {
-    url: MARKETPLACE_URL,
-    id: 'developers.marketplace',
+    url: '/playground',
+    id: 'developers.playground',
   },
   {
-    url: '/rustdocs',
+    url: 'https://paritytech.github.io/substrate/master/sc_service/',
     id: 'developers.rustdocs',
   },
   {
-    url: '/playground',
-    id: 'developers.playground',
+    url: WEBSITE_URL + '/smart-contracts',
+    id: 'developers.smart-contracts',
   },
 ];
 

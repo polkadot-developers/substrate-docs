@@ -1,6 +1,6 @@
 ---
 title: srtool
-section: reference
+description: Command-line reference information for the srtool program.
 keywords:
 ---
 

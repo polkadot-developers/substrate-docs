@@ -1,9 +1,12 @@
 ---
 title: Deploy a parachain
 description:
+keywords:
 ---
 
 ## NOTE: BREAKING CHANGES
+
+TODO zombinet https://github.com/substrate-developer-hub/substrate-docs/issues/1098
 
 > The following is for **reference only**.
 > There is a temporary breaking issue in the launch tool that is traced in https://github.com/substrate-developer-hub/substrate-docs/issues/634 .
@@ -11,8 +14,8 @@ description:
 
 The final part of the workshop will step you through how to use the [`polkadot-launch`](https://github.com/paritytech/polkadot-launch) tool to automate the launch of a full parachain testnet with multiple parachains and a common relay chain.
 
-> It is still **_highly recommended_** to understand [the manual process](/tutorials/v3/cumulus/start-relay), as this script is not a perfect fit for all use cases.
-> When things go wrong with `polkadot-launch`, you know how to troubleshoot.
+It is still **_highly recommended_** to understand the manual process, as this script is not a perfect fit for all use cases.
+When things go wrong with `polkadot-launch`, you know how to troubleshoot.
 
 ## Learning outcomes
 
@@ -57,7 +60,6 @@ It also leverages on Polkadot-JS API to connect to these spawned nodes over thei
 Specifically, you will perform the following to use `polkadot-launch`:
 
 1. Compile and have your relay chain node and parachain collator binaries ready.
-   [Instructions here](/tutorials/v3/cumulus/start-relay).
    Beware to match their corresponding tagged version.
 
 1. Write a config file for `polkadot-launch` to fit your needs.

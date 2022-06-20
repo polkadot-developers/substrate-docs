@@ -20,8 +20,8 @@ const BottomButtons = () => {
     }, {});
   };
 
-  const FlatNav = flatten(configNav);
-  console.log(FlatNav);
+  //const FlatNav = flatten(configNav);
+  //console.log(FlatNav);
 
   //const pages = [menu, docs, pagePath];
 

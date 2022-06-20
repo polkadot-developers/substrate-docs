@@ -1,6 +1,7 @@
 ---
 title: Quick start
-description: Get started with Substrate
+description: Get started with Substrate.
+keywords:
 ---
 
 All of the Substrate tutorials and how-to guides require you to build and run a Substrate node in your development environment.
@@ -67,7 +68,7 @@ Before you begin, verify the following:
 
    The command displays the following account information:
 
-   ```
+   ```sh
    Secret Key URI //alice is account:
    Secret seed:       0xc166b100911b1e9f780bb66d13badf2c1edbe94a1220f1a0584c09490158be31
    Public key (hex):  0xc81ebbec0559a6acf184535eb19da51ed3ed8c4ac65323999482aaf9b6696e27
@@ -86,10 +87,10 @@ Before you begin, verify the following:
    As the node starts, the terminal displays output about the operations performed.
    If you see messages that blocks are being proposed and finalized, you have a running node.
 
-   ```
+   ```text
    ... Idle (0 peers), best: #3 (0xcc78…5cb1), finalized #1 ...
    ... Starting consensus session on top of parent ...
-   ... Prepared block for proposing at 4 (0 ms) ...  
+   ... Prepared block for proposing at 4 (0 ms) ...
    ```
 
 ## Connect to the node
@@ -100,10 +101,14 @@ Before you begin, verify the following:
 
 1. Navigate to the Accounts page, and attempt a transfer from some development pre-funded accounts.
 
+## Stop the node
+
+1. Go to the terminal that displays blockchain operations.
+
+1. Stop the local blockchain and clear all state by pressing `ctrl-c`.
+
 ## Next steps
 
 🎉**_Congratulations!_**🎉
 
 You now have a operational blockchain and are ready to start learning how to customize it!
-
-To 

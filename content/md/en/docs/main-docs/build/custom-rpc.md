@@ -15,8 +15,8 @@ In many cases, it is useful to add custom RPCs to your node.
 ## RPC extension builder
 
 To connect a custom RPC client to a Substrate node, you must provide a function known as an RPC extension builder.
-This function takes a parameter for whether the node should accept or deny unsafe RPC calls, and returns an [`IoHandler`](/rustdocs/latest/node_rpc/type.IoHandler.html) that the node needs to create a JSON RPC. 
-For more context, read more by looking at the [`RpcExtensionBuilder` trait API](/rustdocs/latest/sc_service/trait.RpcExtensionBuilder.html) documentation.
+This function takes a parameter for whether the node should accept or deny unsafe RPC calls, and returns an [`IoHandler`](https://paritytech.github.io/substrate/master/node_rpc/type.IoHandler.html) that the node needs to create a JSON RPC. 
+For more context, read more by looking at the [`RpcExtensionBuilder` trait API](https://paritytech.github.io/substrate/master/sc_service/trait.RpcExtensionBuilder.html) documentation.
 
 ## RPC types
 
@@ -47,35 +47,35 @@ Exposing RPC interfaces can open up a huge surface of attacks and has to be care
 There are quite a few RPC methods that you can use to control the node's behavior, but you should avoid exposing.
 For example, you should not expose the following RPC methods:
 
-- [`author_submitExtrinsic`](/rustdocs/latest/sc_rpc/author/trait.AuthorApi.html#tymethod.submit_extrinsic) - allows submitting transactions to local pool.
-- [`author_insertKey`](/rustdocs/latest/sc_rpc_api/author/trait.AuthorApi.html#tymethod.insert_key) - allows inserting private keys to local keystore.
-- [`author_rotateKeys`](/rustdocs/latest/sc_rpc_api/author/trait.AuthorApi.html#tymethod.rotate_keys) - session keys rotation.
-- [`author_removeExtrinsic`](/rustdocs/latest/sc_rpc_api/author/trait.AuthorApi.html#tymethod.remove_extrinsic) - remove and ban extrinsic from the pool.
-- [`system_addReservedPeer`](/rustdocs/latest/sc_rpc_api/system/trait.SystemApi.html#tymethod.system_add_reserved_peer) - add reserved node.
-- [`system_removeReservedPeer`](/rustdocs/latest/sc_rpc_api/system/trait.SystemApi.html#tymethod.system_remove_reserved_peer) - removed reserved node.
+- [`author_submitExtrinsic`](https://paritytech.github.io/substrate/master/sc_rpc/author/trait.AuthorApi.html#tymethod.submit_extrinsic) - allows submitting transactions to local pool.
+- [`author_insertKey`](https://paritytech.github.io/substrate/master/sc_rpc_api/author/trait.AuthorApi.html#tymethod.insert_key) - allows inserting private keys to local keystore.
+- [`author_rotateKeys`](https://paritytech.github.io/substrate/master/sc_rpc_api/author/trait.AuthorApi.html#tymethod.rotate_keys) - session keys rotation.
+- [`author_removeExtrinsic`](https://paritytech.github.io/substrate/master/sc_rpc_api/author/trait.AuthorApi.html#tymethod.remove_extrinsic) - remove and ban extrinsic from the pool.
+- [`system_addReservedPeer`](https://paritytech.github.io/substrate/master/sc_rpc_api/system/trait.SystemApi.html#tymethod.system_add_reserved_peer) - add reserved node.
+- [`system_removeReservedPeer`](https://paritytech.github.io/substrate/master/sc_rpc_api/system/trait.SystemApi.html#tymethod.system_remove_reserved_peer) - removed reserved node.
 
 You should also avoid exposing RPC methods that can take a long time to execute, potentially blocking the client from syncing. 
 For example, you should avoid using the following RPC methods:
 
-- [`storage_keys_paged`](/rustdocs/latest/sc_rpc_api/state/trait.StateApi.html#tymethod.storage_keys_paged) - get all the keys in the state with a particular prefix and pagination support.
-- [`state_getPairs`](/rustdocs/latest/sc_rpc_api/state/trait.StateApi.html#tymethod.storage_pairs) - get all the keys in the state with a particular prefix together with their values.
+- [`storage_keys_paged`](https://paritytech.github.io/substrate/master/sc_rpc_api/state/trait.StateApi.html#tymethod.storage_keys_paged) - get all the keys in the state with a particular prefix and pagination support.
+- [`state_getPairs`](https://paritytech.github.io/substrate/master/sc_rpc_api/state/trait.StateApi.html#tymethod.storage_pairs) - get all the keys in the state with a particular prefix together with their values.
 
-These RPCs are declared by using the `#[rpc(name = "rpc_method")]` macro, where `rpc_method` is be the name of the function—for example `author_submitExtrinsic` corresponding to [`submit_extrinsic`](/rustdocs/latest/sc_rpc/author/trait.AuthorApi.html#tymethod.submit_extrinsic).
+These RPCs are declared by using the `#[rpc(name = "rpc_method")]` macro, where `rpc_method` is be the name of the function—for example `author_submitExtrinsic` corresponding to [`submit_extrinsic`](https://paritytech.github.io/substrate/master/sc_rpc/author/trait.AuthorApi.html#tymethod.submit_extrinsic).
 
 It's critical to filter out these kind of calls if the requests are coming from untrusted users.
-The way to do it is through a [JSON-RPC](/v3/getting-started/glossary#json-rpc) proxy that is able to inspect calls and only pass allowed-set of APIs.
+The way to do it is through a [JSON-RPC](/reference/glossary#json-rpc) proxy that is able to inspect calls and only pass allowed-set of APIs.
 
 ## RPCs for remote_externalities
 
 There exists a special type of using RPCs in the context of `remote_externalities`.
-The [`rpc_api`](/rustdocs/latest/remote_externalities/rpc_api/index.html) allows you to make one-off RPC calls to a Substrate node, useful for testing purposes with tools like [`try-runtime`](/reference/command-line-tools/try-runtime/) for example.
+The [`rpc_api`](https://paritytech.github.io/substrate/master/remote_externalities/rpc_api/index.html) allows you to make one-off RPC calls to a Substrate node, useful for testing purposes with tools like [`try-runtime`](/reference/command-line-tools/try-runtime/) for example.
 
 ## Endpoints
 
 When starting any Substrate node, these two endpoints are available to you:
 
-- HTTP endpoint: http://localhost:9933/
-- Websocket endpoint: ws://localhost:9944/
+- HTTP endpoint: `http://localhost:9933/`
+- Websocket endpoint: `ws://localhost:9944/`
 
 Most of the Substrate front-end libraries and tools use the more powerful WebSocket endpoint to interact with the blockchain. 
 Through WebSockets, you can subscribe to the chain states, such as events, and receive push notifications whenever changes in your blockchain occur.
@@ -89,7 +89,7 @@ curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method":
 The return value of this command is not in human-readable format. For that, it needs to use [Type encoding (SCALE)](/reference/scale-codec/).
 
 Each storage item has a relative storage key associated to it which is used to
-[query storage](/v3/advanced/storage#querying-storage). This is how RPC endpoints know where to look.
+[query storage](/main-docs/build/runtime-storage#querying-storage). This is how RPC endpoints know where to look.
 
 ## Examples
 
@@ -159,4 +159,4 @@ function get_runtime_storage_parameter_with_key(
 
 - [Rust implementation of JSON-RPC](https://github.com/paritytech/jsonrpc)
 - [Type encoding (SCALE)](/reference/scale-codec)
-- [Substrate Storage](/v3/advanced/storage)
+- [Runtime storage](/main-docs/build/runtime-storage/)

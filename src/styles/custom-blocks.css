@@ -2,6 +2,10 @@
   @apply px-4 pt-4 pb-2 mb-8 border-t-8 rounded;
 }
 
+.tabbedCode {
+  @apply p-0 m-0 border-t-0;
+}
+
 .custom-block.info {
   @apply bg-mdxYellow dark:bg-mdxYellow-dark border-mdxYellow dark:border-mdxYellow-dark dark:border-opacity-40 dark:bg-opacity-20 bg-opacity-50;
 }

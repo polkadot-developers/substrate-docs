@@ -1,7 +1,7 @@
 ---
 title: Cryptography
 description:
-keywords: []
+keywords:
 ---
 
 This document offers a conceptual overview of the cryptography used in Substrate.
@@ -11,7 +11,7 @@ This document offers a conceptual overview of the cryptography used in Substrate
 Hash functions are used in Substrate to map arbitrary sized data to fixed-sized values.
 
 Substrate provides two hash algorithms out of the box, but can support any hash algorithm which
-implements the [`Hasher` trait](/rustdocs/latest/sp_core/trait.Hasher.html).
+implements the [`Hasher` trait](https://paritytech.github.io/substrate/master/sp_core/trait.Hasher.html).
 
 ### xxHash
 
@@ -41,7 +41,7 @@ Public-key cryptography is used in Substrate to provide a robust authentication 
 
 Substrate provides multiple different cryptographic schemes and is generic such that it can support
 anything which implements the
-[`Pair` trait](/rustdocs/latest/sp_core/crypto/trait.Pair.html).
+[`Pair` trait](https://paritytech.github.io/substrate/master/sp_core/crypto/trait.Pair.html).
 
 ### ECDSA
 
@@ -73,23 +73,10 @@ Schnorr signatures bring some noticeable features over the [ECDSA](#ecdsa)/EdDSA
 One sacrifice that is made when using Schnorr signatures over ECDSA is that both require 64 bytes,
 but only ECDSA signatures communicate their public key.
 
-## Next steps
+## Where to go next
 
-### Learn more
-
-- Learn about the [Substrate account abstractions](/v3/concepts/account-abstractions).
-- For more detailed descriptions, please see the more advanced
-  [research wiki](https://research.web3.foundation).
-
-### Examples
-
-- Look at the Polkadot claims module to see how you can
-  [verify Ethereum signatures in the Substrate runtime](https://github.com/paritytech/polkadot/blob/master/runtime/common/src/claims.rs).
-
-### References
-
-- Take a look at the
-  [`Hash`](/rustdocs/latest/sp_runtime/traits/trait.Hash.html) trait needed for
-  implementing new hashing algorithms.
-- Take a look at the [`Pair`](/rustdocs/latest/sp_core/crypto/trait.Pair.html)
-  trait needed for implementing new cryptographic schemes.
+- [Accounts, addresses, and keys](/main-docs/fundamentals/accounts-addresses-keys).
+- [Web 3 research](https://research.web3.foundation).
+- [Polkadot claims module](https://github.com/paritytech/polkadot/blob/master/runtime/common/src/claims.rs) to see how you can verify Ethereum signatures in the Substrate runtime.
+- [`Hash`](https://paritytech.github.io/substrate/master/sp_runtime/traits/trait.Hash.html) trait for implementing new hashing algorithms.
+- [`Pair`](https://paritytech.github.io/substrate/master/sp_core/crypto/trait.Pair.html) trait for implementing new cryptographic schemes.

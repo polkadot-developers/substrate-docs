@@ -36,7 +36,7 @@ const Sidebar = ({ children, currentPath }) => {
                     <span title="Quick Start">
                       <Link to="/quick-start/">
                         <Icon
-                          name="quickStart"
+                          name="quick_start"
                           className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white', {
                             'fill-substrateBlue': currentPath.includes('/quick-start/'),
                           })}

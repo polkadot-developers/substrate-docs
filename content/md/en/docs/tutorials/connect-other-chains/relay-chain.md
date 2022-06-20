@@ -1,80 +1,41 @@
 ---
 title: "Start a local relay chain"
-description: /tutorials/v3/cumulus/start-relay
+description:
+keywords:
 ---
 
 In this tutorial, you will create a local relay chain—like Polkadot—use [Cumulus](https://github.com/paritytech/cumulus) to create your own parachain, and connect it to the relay chain in a local test environment.
 
 ## Before you begin
 
-If you aren't familiar with the concept of parachains, please learn about them first **before** continuing:
+Before you begin, verify the following:
 
-- [Parachain Basics](https://wiki.polkadot.network/docs/learn-parachains)
-- [The Path of a Parachain Block](https://polkadot.network/the-path-of-a-parachain-block/)
-- [Parachain Development Overview](https://wiki.polkadot.network/docs/build-build-with-polkadot)
+- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/).
 
-If you are here _without_ any former Substrate experience, you will likely not be able to understand or complete this tutorial.
-We assume you have completed these tutorials:
+- You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and have the Substrate node template installed locally.
 
-- [Create Your First Substrate Chain](/tutorials/v3/create-your-first-substrate-chain)
-- [Start a Private Network](/tutorials/v3/private-network)
+- You have generated accounts and chain specifications for a private network of trusted validators as described in [Add trusted nodes](/tutorials/get-started/trusted-network/).
 
-With those complete, let's dive in!
+- You are generally familiar with Polkadot and [parachain basic concepts](https://wiki.polkadot.network/docs/learn-parachains) and [parachain development](https://wiki.polkadot.network/docs/build-build-with-polkadot).
 
-## What you will be doing
+## Tutorial objectives
 
-<TutorialObjective
-data={{
-    textLineOne: '1. Hardware and software requirements',
-    url: '#hardware-and-software-requirements',
-  }}
-/>
-<TutorialObjective
-data={{
-    textLineOne: '2. Build your nodes',
-    url: '#build-your-nodes',
-  }}
-/>
-<TutorialObjective
-data={{
-    textLineOne: '3. Parachain node template overview',
-    url: '#parachain-node-template-overview',
-  }}
-/>
-<TutorialObjective
-data={{
-    textLineOne: '4. Relay chain specification',
-    url: '#relay-chain-specification',
-  }}
-/>
-<TutorialObjective
-data={{
-    textLineOne: '5. Start your relay chain ',
-    url: '#start-your-relay-chain',
-  }}
-/>
-<TutorialObjective
-data={{
-    textLineOne: '6. Create a custom relay chain spec (optional)',
-    url: '#create-a-custom-relay-chain-spec-optional',
-  }}
-/>
+By completing this tutorial, you will accomplish the following objectives:
 
-## Learning outcomes
-
-- Set up your parachain build environment
-- Start a relay chain
-- Customize a relay chain specification
+- Identify hardware and software requirements.
+- Set up your parachain build environment.
+- Prepare a relay chain specification.
+- Start a relay chain locally.
 
 ## Hardware and software requirements
 
-Compiling this project is a resource intensive process. 
+Compiling this project is a resource intensive process.
 You should ensure your hardware meets the following minimum requirements:
 
 - 8 GB of RAM (16 GB is suggested)
 - 4 CPU cores (8 cores are suggested)
 - 50 GB of free HDD/SSD space
-  
+
   Without the minimal RAM here, you are likely run out of memory resulting in a `SIGKILL` error during the compilation process.
   This error typically occurs when building the `polkadot-service` crate.
   You should monitor your RAM usage with tools like [htop](https://htop.dev/) and be aware if swap memory starts to be used.
@@ -107,20 +68,15 @@ This tutorial has been tested on:
 ## Exact Versions Matter
 
 You **must** use the _exact_ versions set forth in this tutorial to ensure that you do not run into conflicts.
-Parachains are _very tightly coupled_ with the relay chain codebase they are connecting to. 
-To have the least amount of hiccups, be sure to use the corresponding tagged version of Polkadot and the parachain template when working on this tutorial. 
+Parachains are _very tightly coupled_ with the relay chain codebase they are connecting to.
+To have the least amount of hiccups, be sure to use the corresponding tagged version of Polkadot and the parachain template when working on this tutorial.
 For example, if you are using [Polkadot `v0.9.18`](https://github.com/paritytechtree/release-), use the `polkadot-v0.9.18` version of the [parachain template](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.18).
 
-We're doing our best to keep the parachain template and this tutorial updated presently with the <ExternalLink url="https://github.com/paritytechreleases">latest release of Polkadot.</ExternalLink>
+We're doing our best to keep the parachain template and this tutorial updated presently with the <ExternalLink url="https://github.com/paritytechreleases"> latest release of Polkadot.</ExternalLink>
 
 **Please join the [Parachain Technical matrix channel](https://matrix.to/#/#parachain-technical:matrix.parity.io) to report any issues you run into and get further support!**
-/>
 
-## Build your nodes
-
-In case you haven't, please follow the instructions to [setup a local development environment](/v3/getting-started/overview) for Substrate.
-
-### Building the relay chain node
+## Build the relay chain node
 
 Polkadot network will serve as our relay chain in this workshop. So clone the **Polkadot** repository and build the node:
 
@@ -152,7 +108,7 @@ We will use the [Substrate parachain template](https://github.com/substrate-deve
 The parachain template is similar but not identical to the [node template](https://github.com/substrate-developer-hub/substrate-node-template).
 Later, we will use this parachain template as the starting point for developing our own parachains.
 
-> **See the guide on [converting a solo chain to a parachain](/how-to-guides/v3/parachains/convert) for details on how the parachain template was created, and how to convert your chain's logic (not state migrations!) to a parachain.**
+<!-- See the guide on [converting a solo chain to a parachain](/reference/how-to-guides/parachains/convert) for details on how the parachain template was created, and how to convert your chain's logic (not state migrations!) to a parachain.** -->
 
 In a new terminal window:
 
@@ -179,9 +135,9 @@ If the help page is printed, you have succeeded in building a Cumulus-based para
 
 ## Relay chain specification
 
-You will need a chain specification ([chain spec](/v3/runtime/chain-specs)) for your relay chain network.
+You will need a [chain specification](/main-docs/build/chain-spec/)) for your relay chain network.
 
-Always have one or more relay chain validator nodes running than the total connected parachains. 
+Always have one or more relay chain validator nodes running than the total connected parachains.
 For example, if you want to connect two parachains, run three or more relay chain validator nodes.
 
 Whichever chain spec file you choose to use we will refer to the file simply as `chain-spec.json` in the instructions below. You will need to supply the proper path to the chain spec you are using.
@@ -191,19 +147,19 @@ Whichever chain spec file you choose to use we will refer to the file simply as 
 We have included a two-validator relay chain with Alice and Bob as authorities chan spec file in this tutorial that you can use **without modification** for a local test network.
 This is useful for registering a **single** parachain:
 
-- [_Plain_ `rococo-local` **relay** chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-plain.json)
-- [_Raw_ `rococo-local` **relay** chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json)
+- [_Plain_ `rococo-local` **relay** chain spec](/assets/tutorials/cumulus/chain-spec/rococo-custom-2-plain.json)
+- [_Raw_ `rococo-local` **relay** chain spec](/assets/tutorials/cumulus/chain-spec/rococo-custom-2-raw.json)
 
 Plain chain spec files are in a more human readable and modifiable format for your inspection.
 You will need to convert it to a SCALE encoded **raw** chain spec to use when starting your nodes.
-Jump to the [raw chainspec generation](/tutorials/v3/cumulus/connect-parachain/#configure-a-parachain-for-a-specific-relay-chain-and-para-id) section to see how to do that.
+Jump to the [raw chainspec generation](/tutorials/connect-other-chains/connect-parachain/#configure-a-parachain-for-a-specific-relay-chain-and-para-id) section to see how to do that.
 
-> The above raw chain specs were created according to the steps in the [create your own chain spec](/tutorials/v3/private-network/#create-a-custom-chain-specification) section.
+The above raw chain specs were created according to the steps in the [create your own chain spec](/tutorials/get-started/trusted-network/#create-a-custom-chain-specification) section.
 
 ## Start your relay chain
 
 Before we can attach any cumulus-based parachains, we need to launch a relay chain for them to connect to.
-This section describes in detail how to start both nodes using the above [two-validator raw chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json) as well as the general instructions for starting additional nodes.
+This section describes in detail how to start both nodes using the above [two-validator raw chain spec](/assets/tutorials/cumulus/chain-spec/rococo-custom-2-raw.json) as well as the general instructions for starting additional nodes.
 
 ### Start the `alice` validator
 
@@ -250,7 +206,7 @@ This flag is not strictly necessary if you are running the entire network on a s
 
 ### Starting additional validators (optional)
 
-If you are using the [two-validator raw chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json), you do not need to start additional nodes, but others may need to start more nodes.
+If you are using the [two-validator raw chain spec](/assets/tutorials/cumulus/chain-spec/rococo-custom-2-raw.json), you do not need to start additional nodes, but others may need to start more nodes.
 Again, this command is entirely analogous.
 You just need to make sure that nodes on the same local machine do not have conflicting ports or base paths.
 
@@ -267,6 +223,6 @@ You just need to make sure that nodes on the same local machine do not have conf
 
 ## Custom relay chain specifications
 
-Optionally, explore the [how-to guide on configuring a custom chain spec](/how-to-guides/v3/basics/custom-chain-spec) for instructions to tweak the provided [plain chain spec](/assets/tutorials/cumulus/chain-specs/rococo-custom-2-plain.json) for addition of more validators without modification of Polkadot's source code.
+Optionally, explore the [how-to guide on configuring a custom chain spec](/reference/how-to-guides/basics/customize-a-chain-specification) for instructions to tweak the provided [plain chain spec](/assets/tutorials/cumulus/chain-spec/rococo-custom-2-plain.json) for addition of more validators without modification of Polkadot's source code.
 
 For this tutorial, your final chain spec filename **must** start with `rococo` or the node will not know what runtime logic to include.

@@ -4,7 +4,8 @@ const useHeadingsData = () => {
   const [headings, setHeadings] = useState([]);
 
   useEffect(() => {
-    const headingElements = Array.from(document.querySelectorAll('h2, h3'));
+    const main = document.querySelector('main');
+    const headingElements = Array.from(main.querySelectorAll('h2, h3'));
 
     const headingTitles = [];
 

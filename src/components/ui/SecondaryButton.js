@@ -12,7 +12,7 @@ const SecondaryButton = ({ children, link, hero }) => {
           'bg-substrateBlackish dark:bg-substrateDarkThemeLightGrey inline-block rounded-md hover:opacity-80 transition-opacity',
           {
             'px-8 py-4 text-xl': hero,
-            'px-5 py-2': !hero,
+            'px-5 py-3': !hero,
           }
         )}
       >

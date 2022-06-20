@@ -1,6 +1,7 @@
 ---
 title: Add a pallet to the runtime
-description: Learn the basic patterns for adding a new pallet to the Substrate runtime.
+description:
+keywords:
 ---
 
 As you saw [Build a local blockchain](/tutorials/get-started/build-local-blockchain/), the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) provides a working **runtime** that includes some default FRAME development modules—**pallets**—to get you started building a custom blockchain.
@@ -90,7 +91,7 @@ To add the dependencies for the Nicks pallet to the runtime:
 
    This section specifies the default feature set to compile for this runtime is the `std` features set.
    When the runtime is compiled using the `std` feature set, the `std` features from all of the pallets listed as dependencies are enabled.
-   For more detailed information about how the runtime is compiled as a native Rust binary with the standard library and as a WebAssembly binary using the `no_std` attribute, see [Building the runtime](/main-docs/build/build-runtime/).
+   For more detailed information about how the runtime is compiled as a native Rust binary with the standard library and as a WebAssembly binary using the `no_std` attribute, see [Build process](/main-docs/build/build-process/).
 
    If you forget to update the `features` section in the `Cargo.toml` file, you might see `cannot find function` errors when you compile the runtime binary.
 
@@ -106,7 +107,7 @@ Every pallet has a [Rust **trait**](https://doc.rust-lang.org/book/ch10-02-trait
 
 Most of the pallet-specific code required to add a pallet is implemented using the `Config` trait.
 You can review what you to need to implement for any pallet by referring to its Rust documentation or the source code for the pallet.
-For example, to see what you need to implement for the `nicks` pallet, you can refer to the Rust documentation for [`pallet_nicks::Config`](/rustdocs/latest/pallet_nicks/pallet/trait.Config.html) or the trait definition in the [Nicks pallet source code](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs).
+For example, to see what you need to implement for the `nicks` pallet, you can refer to the Rust documentation for [`pallet_nicks::Config`](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/trait.Config.html) or the trait definition in the [Nicks pallet source code](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs).
 
 For this tutorial, you can see that the `Config` trait in the `nicks` pallet declares the following types:
 
@@ -210,7 +211,7 @@ To implement the `nicks` pallet in your runtime:
    impl pallet_nicks::Config for Runtime {
    	// The Balances pallet implements the ReservableCurrency trait.
    	// `Balances` is defined in `construct_runtime!` macro. See below.
-   	// https://docs.substrate.io/rustdocs/latest/pallet_balances/index.html#implementations-2
+   	// https://paritytech.github.io/substrate/master/pallet_balances/index.html#implementations-2
    	type Currency = Balances;
 
    	// Use the NickReservationFee from the parameter_types block.
@@ -220,7 +221,7 @@ To implement the `nicks` pallet in your runtime:
    	type Slashed = ();
 
    	// Configure the FRAME System Root origin as the Nick pallet admin.
-   	// https://docs.substrate.io/rustdocs/latest/frame_system/enum.RawOrigin.html#variant.Root
+   	// https://paritytech.github.io/substrate/master/frame_system/enum.RawOrigin.html#variant.Root
    	type ForceOrigin = frame_system::EnsureRoot<AccountId>;
 
    	// Use the MinNickLength from the parameter_types block.
@@ -236,7 +237,7 @@ To implement the `nicks` pallet in your runtime:
 
 1. Identify the types that the Nicks pallet exposes.
 
-   You can find a complete list of types in the [`construct_runtime!` macro](/rustdocs/latest/frame_support/macro.construct_runtime.html) documentation.
+   You can find a complete list of types in the [`construct_runtime!` macro](https://paritytech.github.io/substrate/master/frame_support/macro.construct_runtime.html) documentation.
 
    The [Nicks pallet](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs) uses the following types:
 
@@ -283,7 +284,7 @@ To implement the `nicks` pallet in your runtime:
 
 ## Start the blockchain node
 
-After your node compiles, you are ready to start the node that has been enhanced with nickname capabilities from the [Nicks pallet](/rustdocs/latest/pallet_nicks/index.html) and interact with it using the front-end template.
+After your node compiles, you are ready to start the node that has been enhanced with nickname capabilities from the [Nicks pallet](https://paritytech.github.io/substrate/master/pallet_nicks/index.html) and interact with it using the front-end template.
 
 To start the local Substrate node:
 
@@ -323,7 +324,7 @@ To start the front-end template:
    yarn start
    ```
 
-1. Open http://localhost:8000/ in a browser to view the front-end template.
+1. Open `http://localhost:8000/` in a browser to view the front-end template.
 
 ## Set a nickname using the Nicks pallet
 
@@ -337,15 +338,15 @@ To set a nickname for an account:
 
 1. Select `nicks` from the list of pallets available to call.
 
-1. Select the [`setName` dispatchable](/rustdocs/latest/pallet_nicks/pallet/enum.Call.html#variant.set_name) as the function to call from the `nicks` pallet.
+1. Select the [`setName` dispatchable](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Call.html#variant.set_name) as the function to call from the `nicks` pallet.
 
 1. Type a name that is longer than the `MinNickLength` (8 characters) and no longer than the `MaxNickLength` (32 characters).
 
 1. Click `Signed` to execute the function.
 
-   ![Set a name](../img/tutorials/07-add-a-pallet/set-name.png)
+   ![Set a name](/media/images/docs/tutorials/add-a-pallet/set-name.png)
 
-1. Observe the status of the call and the [events](/rustdocs/latest/pallet_nicks/enum.RawEvent.html) emitted by the Nicks pallet.
+1. Observe the status of the call and the [events](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Event.html) emitted by the Nicks pallet.
 
 ## Query information for an account using the Nicks pallet
 
@@ -357,11 +358,11 @@ To return the information stored for Alice:
 
 1. Select `nicks` from the list of pallets available to query.
 
-1. Select the [`nameOf`](/rustdocs/latest/pallet_nicks/pallet/enum.Call.html#variant.set_name).
+1. Select the [`nameOf`](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Call.html#variant.set_name).
 
 1. Copy and paste the address for the `alice` account in the Account field, then click **Query**.
 
-   ![Read a name](/media/images/tutorials/add-a-pallet/name-of-alice.png)
+   ![Read a name](/media/images/docs/tutorials/add-a-pallet/name-of-alice.png)
 
    The return type is a tuple that contains two values:
 
@@ -371,7 +372,7 @@ To return the information stored for Alice:
 
    If you were to query the Nicks pallet for the `nameOf` for Bob's account, you would see the `None` value returned because Bob has not invoked the `setName` function to reserve a nickname.
 
-   ![Read an empty name](/media/images/tutorials/add-a-pallet/name-of-bob.png)
+   ![Read an empty name](/media/images/docs/tutorials/add-a-pallet/name-of-bob.png)
 
 ## Explore additional functions
 
@@ -386,12 +387,12 @@ If you want to explore additional features exposed through the Nicks and Sudo pa
 
 There are several [tutorials](/tutorials/) that can serve as next steps for learning more about Substrate development.
 
-- [Specify the origin for invoking a function](/tutorials/work-with-pallets/) explores calling functions using different originating accounts.
-- [Configure the contracts pallet](/tutorials/work-with-pallets/) demonstrates more complex configuration requirements by adding the Contracts pallet to the runtime.
-- [Create a custom pallet using macros](/tutorials/work-with-pallets/)
+- [Specify the origin for a call](/tutorials/work-with-pallets/specify-origin) explores calling functions using different originating accounts.
+- [Configure the contracts pallet](/tutorials/work-with-pallets/contracts-pallet) demonstrates more complex configuration requirements by adding the Contracts pallet to the runtime.
+- [Use macros in a custom pallet](/tutorials/work-with-pallets/custom-pallet) illustrates how you can use macros to create your own pallets.
 
 ### References
 
-- [Basic Example Pallet](https://github.com/paritytech/substrate/tree/master/frame/examples/basic) provides detailed comments about what you can access within FRAME.
+- [Basic example pallet](https://github.com/paritytech/substrate/tree/master/frame/examples/basic) provides detailed comments about what you can access within FRAME.
 - [The Cargo book](https://doc.rust-lang.org/stable/cargo/) introduces the Cargo package manager, including reference information for Cargo features and commands.
 - [Rust and WebAssembly Documentation](https://rustwasm.github.io/docs.html) highlights several resources for learning about Rust and WebAssembly.

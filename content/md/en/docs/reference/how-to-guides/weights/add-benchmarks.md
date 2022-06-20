@@ -1,36 +1,23 @@
 ---
-title: Add benchmarking to your pallet
-slug: /how-to-guides/v3/weights/add-benchmarking
+title: Add benchmarks
+description:
 keywords:
   - weights
   - benchmarking
   - runtime
-version: '3.0'
-section: how to guides
-category: weights
 ---
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description:
-        "Add [FRAME's benchmarking tool](/rustdocs/latest/frame_benchmarking/macro.benchmarks.html) to your pallet and write a simple benchmark.",
-    },
-    {
-      title: 'Use Cases',
-      description: `Setting up your pallet to be able to benchmark your extrinsics.`,
-    },
-    {
-      title: 'Overview',
-      description: `
 This guide steps through the process of adding benchmarking to a pallet and runtime.
 In addition, it covers the steps of writing a simple benchmark for a pallet as well as testing and running the benchmarking tool.
 This guide does not cover updating weights with benchmarked values.
-      `,
-    },
-  ]}
-/>
+
+## Goal
+
+Add [FRAME's benchmarking tool](https://paritytech.github.io/substrate/master/frame_benchmarking/macro.benchmarks.html) to your pallet and write a simple benchmark.",
+
+## Use cases
+
+Setting up your pallet to be able to benchmark your extrinsics.`,
 
 ## Steps
 
@@ -84,7 +71,7 @@ This guide does not cover updating weights with benchmarked values.
    }
    ```
 
-   We'll refer to an extremely basic example of a benchmark from the [Example Pallet](https://github.com/paritytech/substrate/tree/master/frame/examples/basic).
+   We'll refer to an extremely basic example of a benchmark from the [Example pallet](https://github.com/paritytech/substrate/tree/master/frame/examples/basic).
    Take a look at the extrinsic we'll be benchmarking for:
 
    ```rust
@@ -142,7 +129,7 @@ benchmarking.
    ```
 
 1. Add your new pallet to your runtime just as you would any other pallet.
-   If you need more details check out the [Add a Pallet to Your Runtime Tutorial](/tutorials/v3/add-a-pallet) or [this guide on integrating a pallet to your runtime](/how-to-guides/v3/basics/pallet-integration).
+   If you need more details, check out the [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet) or [Import a pallet](/reference/how-to-guides/basics/import-a-pallet).
 
 1. Then, in addition to your normal runtime configuration, you also need to update the benchmarking section of your runtime.
    To add our new benchmarks, we simply add a new line with the `add_benchmark!` macro:
@@ -195,12 +182,12 @@ The Benchmarking CLI has a lot of options which can help you automate your bench
 Execute the following command to run standard benchmarking for your `pallet_you_created`:
 
 ```bash
-./target/release/node-template benchmark \
+./target/release/node-template benchmark pallet \
     --chain dev \
     --execution wasm \
     --wasm-execution compiled \
     --pallet pallet_you_crated \
-    --extrinsic '\*' \
+    --extrinsic '*' \
     --steps 20 \
     --repeat 10 \
     --json-file=raw.json \
@@ -208,16 +195,10 @@ Execute the following command to run standard benchmarking for your `pallet_you_
 ```
 
 This will create a `weights.rs` file inside your pallet's directory.
-Refer to [this guide](/how-to-guides/v3/weights/use-benchmark-weights) to learn how to configure your pallet to use those weights.
+Refer to [Use custom weights from benchmarking](/reference/how-to-guides/weights/custom-weights) to learn how to configure your pallet to use those weights.
 
 ## Examples
 
-- [Benchmarking in the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/benchmarking.rs)
-- [Weights in the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/weights.rs)
-
-## Related material
-
-#### Docs
-
-- [Benchmarking](/v3/runtime/benchmarking)
-- [Use custom weights from benchmarking](/how-to-guides/v3/weights/use-benchmark-weights)
+- [Benchmarking](/main-docs/test/benchmark)
+- [Example pallet: Benchmarks](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/benchmarking.rs)
+- [Example pallet: Weights](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/weights.rs)
