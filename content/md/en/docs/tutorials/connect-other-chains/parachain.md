@@ -193,7 +193,6 @@ The first thing to notice about this command is that several arguments are passe
 A parachain collator contains the actual collator node and also an **embedded relay chain node**. The arguments before the `--` are for the collator, and the arguments after the `--` are for the embedded relay chain node.
 
 We give the collator a base path and ports as we did for the relay chain node previously.
-We also specify the para ID.
 
 Remember to change the collator-specific values if you are executing these instructions a second time for a second parachain.
 You will use the same relay chain chain spec, but different para ID,base path, and ports the second parachain collator binds to.

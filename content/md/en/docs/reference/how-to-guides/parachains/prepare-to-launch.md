@@ -31,11 +31,11 @@ In order to set a unique protocol ID, change make sure you use some nonce or sal
 as a CLI item in `/client/network/src/command.rs`, and passed to extend the `/client/network/src/chain_spec.rs`
 
 All [chain specification](/main-docs/build/chain-spec/) files include this item as a field. 
-For example, the primary [relay chain runtime](https://github.com/paritytech/polkadot/tree/master/node/service/res) chain specs have unique protocol IDs.
+For example, the primary [relay chain runtime](https://github.com/paritytech/polkadot/tree/master/node/service/chain-specs) chain specs have unique protocol IDs.
 For Polkadot:
 
 ```json
-// raw chain spec file in polkadot repo `/node/service/res/polkadot.json`
+// raw chain spec file in polkadot repo `/node/service/chain-specs/polkadot.json`
 {
   //--snip--
   "protocolId": "dot"
