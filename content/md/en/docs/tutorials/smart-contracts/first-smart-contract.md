@@ -119,10 +119,16 @@ The `cargo-contract` package provides a command-line interface for working with 
 
 1. Open a terminal shell on your computer.
 
+1. Install `dylint-link`, required to lint ink! contracts, warning you about things like using API's in a way that could lead to security issues.
+
+   ```bash
+   cargo install dylint-link
+   ```
+
 1. Install `cargo-contract` by running the following command:
 
    ```bash
-   cargo install cargo-contract --vers ^0.17 --force --locked
+   cargo install cargo-contract --force
    ```
 
 1. Verify the installation and explore the commands available by running the following command:
