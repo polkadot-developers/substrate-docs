@@ -60,8 +60,7 @@ If you don't keep up with relay chain upgrades, it's likely that your network wi
 
 <!-- TODO NEW CONTENT docker and using prebuilt bins suggested https://github.com/substrate-developer-hub/substrate-docs/issues/1073 -->
 
-A slightly modified version of Polkadot's built in `rococo-local` network configuration will serve as our relay chain.
-So clone the Polkadot repository and build the node:
+A slightly modified version of Polkadot's built in `rococo-local` network configuration will serve as the relay chain for this tutorial. 
 
 ```bash
 # Clone the Polkadot Repository, with correct version
