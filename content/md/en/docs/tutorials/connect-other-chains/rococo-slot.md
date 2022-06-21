@@ -44,6 +44,9 @@ With a minimal 5 `ROC` free balance, register as a parathread on Rococo:
 
 ![paraid-reserve.png](/media/images/docs/tutorials/09-cumulus/paraid-reserve.png)
 
+Note that on Rococo, `ParaID` numbers `0-999` are reserved for [system parachains](https://wiki.polkadot.network/docs/learn-common-goods#system-level-chains) and `1000-1999` are reserved for [public utility parachains](https://wiki.polkadot.network/docs/learn-common-goods#public-utility-chains).
+Only numbers `2000` and above that aren't already reserved can be used for community parachains.
+
 ## Generate parachain genesis and Wasm files
 
 These required files to register a parachain include details set in your chain specifications that must explicitly target the correct relay chain and use the right `ParaID` - in this case, `rococo` (instead of `rococo-local` used in the [parachain tutorial](/tutorials/connect-other-chains/parachain)).

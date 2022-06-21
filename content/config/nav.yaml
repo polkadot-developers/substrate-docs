@@ -121,8 +121,6 @@ docs:
           url: /main-docs/test/debug/
         - title: Benchmark
           url: /main-docs/test/benchmark/
-        - title: Deploy on a testnet
-          url: /main-docs/test/deploy-on-testnet/
     #- title: Deploy
     #url: /main-docs/deploy/
     # pages:
