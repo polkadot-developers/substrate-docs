@@ -11,14 +11,14 @@ keywords:
 This guides steps through the process of customizing `WeightToFee` for your runtime's implementation of `pallet_transaction_payment`.
 Fees are broken down into three components:
 
-- **Byte fee** - A fee proportional to the transaction's length in bytes. 
+- **Byte fee** - A fee proportional to the transaction's length in bytes.
   The proportionality constant is a parameter in the Transaction Payment Pallet.
-- **Weight fee** - A fee calculated from the [transaction weight](/main-docs/build/tx-weights-fees). 
-  The conversion doesn't need to be linear, although it often is. 
+- **Weight fee** - A fee calculated from the [transaction weight](/main-docs/build/tx-weights-fees).
+  The conversion doesn't need to be linear, although it often is.
   The same conversion function is applied across all transactions for all pallets in the runtime.
 - **Fee Multiplier** - A multiplier for the computed fee, that can change as the chain progresses.
 
-FRAME provides the [Transaction Payment Pallet](https://paritytech.github.io/substrate/master/pallet_transaction_payment/index.html) for calculating and collecting fees for executing transactions. 
+FRAME provides the [Transaction Payment Pallet](https://paritytech.github.io/substrate/master/pallet_transaction_payment/index.html) for calculating and collecting fees for executing transactions.
 It can be useful to modify the way fees are calculated to more accurately charge fees.
 
 ## Goal
@@ -28,11 +28,6 @@ Customize `WeightToFee` to modify how fees are calculated for your runtime.
 ## Use Cases
 
 Modify the way fees are calculated, instead of using [`IdentityFee`](https://paritytech.github.io/substrate/master/frame_support/weights/struct.IdentityFee.html) which maps one unit of fee to one unit of weight.
-
-`,
-    },
-  ]}
-/>
 
 ## Steps
 

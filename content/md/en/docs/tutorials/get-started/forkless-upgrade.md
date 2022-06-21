@@ -94,7 +94,7 @@ To upgrade the runtime:
    ```toml
    [dependencies]
    ...
-   pallet-scheduler = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.18" }
+   pallet-scheduler = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.23" }
    ...
    ```
 
@@ -133,6 +133,8 @@ To upgrade the runtime:
      type MaxScheduledPerBlock = MaxScheduledPerBlock;
      type WeightInfo = ();
      type OriginPrivilegeCmp = EqualPrivilegeOnly;
+     type PreimageProvider = ();
+     type NoPreimagePostponement = ();
    }
    ```
 
@@ -297,13 +299,13 @@ as the `call` parameter and provide the Wasm binary as before. Leave the "with w
 option deactivated. Once all the other fields have been filled in, use a block number about 10
 blocks (1 minute) in the future to fill in the `when` parameter and quickly submit the transaction.
 
-![Scheduled Upgrade Panel](../../../src/images/tutorials/04-forkless-upgrade/scheduled-upgrade.png)
+![Scheduled Upgrade Panel](/media/images/docs/tutorials/forkless-upgrade/scheduled-upgrade.png)
 
 You can use the template node's command line output or the
 [Polkadot JS Apps UI block explorer](https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944)
 to watch as this scheduled call takes place.
 
-![Scheduled Success Runtime Upgrade Version 102](../../../src/images/tutorials/04-forkless-upgrade/scheduled-upgrade-success.png)
+![Scheduled Success Runtime Upgrade Version 102](/media/images/docs/tutorials/forkless-upgrade/scheduled-upgrade-success.png)
 
 After the target block has been included in the chain, the version number in the upper-left-hand
 corner of Polkadot JS Apps UI should reflect that the runtime version is now `102`.
@@ -315,8 +317,7 @@ app to query the `existentialDeposit` constant value from the Balances pallet.
 ## Where to go next
 
 - [Storage migrations](/main-docs/build/upgrade/#storage-migration)
-<!-- TODO NAV.YAML -->
-<!-- add  back ABOVE -->
-<!--
-- [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/)
-  -->
+  <!-- TODO NAV.YAML -->
+  <!-- add  back ABOVE -->
+  <!-- - [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/) -->
+  

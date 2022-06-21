@@ -11,13 +11,13 @@ keywords:
 ---
 
 The goal of this guide is to help parachain developers ensure that runtime upgrades succeed.
- 
- This guide illustrates:
 
-  - How to modify parachain runtimes (add/remove pallets)
-  - How to do a parachain storage migration
+This guide illustrates:
 
-Runtime upgrades on a parachain have _much_ stricter requirements and a slightly different flow required as they you _must_ coordinate with the relay chain to facilitate this. 
+- How to modify parachain runtimes (add/remove pallets)
+- How to do a parachain storage migration
+
+Runtime upgrades on a parachain have _much_ stricter requirements and a slightly different flow required as they you _must_ coordinate with the relay chain to facilitate this.
 Because of this, and the very confined nature of state transition coordination both **quickly and succinctly** enough for the block inclusion in the relay chain.
 
 ## Before you continue
@@ -60,6 +60,7 @@ use to remedy this problem:
      over time via the scheduler.
 
 After your migration strategy is established, you should test the migration on a non-production testnet to ensure it will work _before_ you continue.
+
 <!--See the [how-to guide on storage migration testing](/reference/how-to-guides/storage-migrations/tests) to proceed.-->
 
 Testing in a confined network will help you prepare for potential failures in a real network with many collators and validators and constraints like bandwidth and latency.
@@ -92,5 +93,5 @@ upgrade has been scheduled.
 <!-->
 - [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/)
 - [How to: Test storage migration](/reference/how-to-guides/storage-migrations/test-migration)
--->
+  -->
 - [Substrate Builders Program: Storage Mmgration](https://drive.google.com/file/d/19HPFUmSQIxVkxaVSg1SWveSdvjHUw1b8/view?usp=sharing)

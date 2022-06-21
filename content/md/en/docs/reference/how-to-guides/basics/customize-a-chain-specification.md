@@ -1,6 +1,6 @@
 ---
 title: Customize a chain specification
-description: 
+description:
 keywords:
 ---
 
@@ -16,34 +16,34 @@ This guide illustrates:
 
 1. Start in your node's working directory, generate a plain chain spec with this command:
 
-    ```bash
-    ./target/release/node-template build-spec > chain-spec-plain.json
-    ```
+   ```bash
+   ./target/release/node-template build-spec > chain-spec-plain.json
+   ```
 
-    We have just generated a **plain chain spec** file for the _default_ network set in your
-    `chain_spec.rs` file. 
-    This file can be passed to other nodes.
+   We have just generated a **plain chain spec** file for the _default_ network set in your
+   `chain_spec.rs` file.
+   This file can be passed to other nodes.
 
 1. Modify the plain chain specification (optional):
 
-    This optional step we can leverage an _existing_ plain chain specification for a network that otherwise would require modification of the _source_ of the node to run on a _new network_.
-    For example, this can be quite useful in the [Cumulus Tutorial](/tutorials/connect-other-chains/relay-chain/) where we want to create a custom _relay chain_ without customizing Polkadot's source.
+   This optional step we can leverage an _existing_ plain chain specification for a network that otherwise would require modification of the _source_ of the node to run on a _new network_.
+   For example, this can be quite useful in the [Cumulus Tutorial](/tutorials/connect-other-chains/relay-chain/) where we want to create a custom _relay chain_ without customizing Polkadot's source.
 
-    Here we use the _same_ chain spec, but pass a flag to disable bootnodes, as we want a _new_ network where these nodes will be different.
+   Here we use the _same_ chain spec, but pass a flag to disable bootnodes, as we want a _new_ network where these nodes will be different.
 
-    ```bash
-    ./target/release/node-template build-spec --chain chain-spec-plain.json --raw --disable-default-bootnode > no-bootnodes-chain-spec-plain.json
-    ```
+   ```bash
+   ./target/release/node-template build-spec --chain chain-spec-plain.json --raw --disable-default-bootnode > no-bootnodes-chain-spec-plain.json
+   ```
 
-    This `no-bootnodes-chain-spec-plain.json` can be used to generate a SCALE storage encoded, distributable raw chain spec.
+   This `no-bootnodes-chain-spec-plain.json` can be used to generate a SCALE storage encoded, distributable raw chain spec.
 
 1. Generate the raw chain specification.
 
-    With a plain spec available, you can generate a final raw chain spec by running:
+   With a plain spec available, you can generate a final raw chain spec by running:
 
-    ```bash
-    ./target/release/node-template build-spec --chain chain-spec-plain.json --raw > chain-spec.json
-    ```
+   ```bash
+   ./target/release/node-template build-spec --chain chain-spec-plain.json --raw > chain-spec.json
+   ```
 
 ## Publish the chain specification
 

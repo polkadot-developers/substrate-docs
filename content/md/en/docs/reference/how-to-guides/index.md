@@ -8,7 +8,7 @@ Substrate _How-to_ quick reference guides provide instructions for achieving spe
 Each guide explains how to perform a specific task with the assumption that you are already familiar with Substrate and programming in Rust.
 
 ## Basics
-  
+
 See the following guides to learn common patterns in runtime development.
 
 - [Import a pallet](/reference/how-to-guides/basics/import-a-pallet/)
@@ -21,7 +21,7 @@ See the following guides to learn common patterns in runtime development.
 <!--- [Calculate weight](/reference/how-to-guides/basics/calc-weights/)-->
 
 ## Pallet design
-  
+
 See the following guides for best practices on building pallets using FRAME.
 
 - [Add the contracts pallet](/reference/how-to-guides/pallet-design/add-contracts-pallet/)

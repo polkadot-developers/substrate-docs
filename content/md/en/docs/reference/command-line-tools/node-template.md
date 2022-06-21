@@ -125,7 +125,7 @@ You can use the following options with the `node-template` command.
 
 ### Subcommands
 
-You can use the following subcommands with the `node-template` command. 
+You can use the following subcommands with the `node-template` command.
 For reference information and examples that illustrate using these subcommands, select an appropriate command.
 
 | Command | Description
@@ -546,7 +546,7 @@ You can use the following optional flags with the `node-template key` command.
 
 #### Subcommands
 
-You can use the following subcommands with the `node-template key` command. 
+You can use the following subcommands with the `node-template key` command.
 
 | Command | Description
 | ------- | -----------
@@ -559,7 +559,7 @@ You can use the following subcommands with the `node-template key` command.
 
 ### Insert a key on a node
 
-Use the `node-template key insert` command to add the keys used for performing node operations to the node keystore. 
+Use the `node-template key insert` command to add the keys used for performing node operations to the node keystore.
 For example, keys are required to secure peer-to-peer communication between nodes and to enable nodes to act as validating authorities for consensus.
 
 #### Basic command usage

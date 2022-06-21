@@ -20,9 +20,9 @@ The runtime constraints on a parachain are much stricter than a solochain, as yo
 ## Set a unique `protocolId`
 
 Network collisions can cause major headaches.
-_All_ chains should use a **unique** `protocolId` that no other network of any type—whether a test network, relay chain, or parachain—uses. 
-Having a unique protocol identifier ensures your nodes connect with the correct peer 
-nodes and not with nodes from other libp2p networks. 
+_All_ chains should use a **unique** `protocolId` that no other network of any type—whether a test network, relay chain, or parachain—uses.
+Having a unique protocol identifier ensures your nodes connect with the correct peer
+nodes and not with nodes from other libp2p networks.
 You want to isolate them to a distinct peer group with this ID.
 Protocol ID collisions will cause _many_ issues for your nodes.
 
@@ -30,7 +30,7 @@ In order to set a unique protocol ID, change make sure you use some nonce or sal
 (for the [parachain node template](https://github.com/substrate-developer-hub/substrate-parachain-template/))
 as a CLI item in `/client/network/src/command.rs`, and passed to extend the `/client/network/src/chain_spec.rs`
 
-All [chain specification](/main-docs/build/chain-spec/) files include this item as a field. 
+All [chain specification](/main-docs/build/chain-spec/) files include this item as a field.
 For example, the primary [relay chain runtime](https://github.com/paritytech/polkadot/tree/master/node/service/chain-specs) chain specs have unique protocol IDs.
 For Polkadot:
 

@@ -116,7 +116,7 @@ those types as shown in the example above.
 
 ## Listening to events
 
-The Substrate RPC does not directly expose an endpoint for querying events. 
+The Substrate RPC does not directly expose an endpoint for querying events.
 If you used the default implementation, you can see the list of events for the current block by querying the storage of the System pallet.
 Otherwise, the [Polkadot-JS API](https://github.com/polkadot-js/api) supports a WebSocket subscription on runtime events.
 

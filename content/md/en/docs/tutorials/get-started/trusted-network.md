@@ -454,6 +454,7 @@ To add a second validator to the private network:
 1.  Change to the root directory where you compiled the Substrate node template.
 
 1.  Start a second blockchain node by running a command similar to the following:
+
     ```bash
     ./target/release/node-template \ --base-path /tmp/node02 \
     --chain ./customSpecRaw.json \

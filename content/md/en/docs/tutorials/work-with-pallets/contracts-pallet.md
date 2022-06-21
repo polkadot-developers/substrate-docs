@@ -21,12 +21,12 @@ Before starting this tutorial, verify the following:
   [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template/tree/latest).
 
 - You have downloaded and installed the
-  [Substrate front-end template](https://github.com/substrate-developer-hub/substrate-node-template/tree/latest) as described in 
+  [Substrate front-end template](https://github.com/substrate-developer-hub/substrate-node-template/tree/latest) as described in
   [Buiild a local blockchain](/tutorials/get-started/build-local-blockchain/).
 
 ## Add the pallet dependencies
 
-Any time you add a pallet to the runtime, you need to import the appropriate crate and update the dependencies for the runtime. 
+Any time you add a pallet to the runtime, you need to import the appropriate crate and update the dependencies for the runtime.
 For the Contracts pallet, you need to import the `pallet-contracts` crate.
 
 To import the `pallet-contracts` crate:
@@ -327,7 +327,7 @@ To expose the Contracts RPC API:
 
 ## Update the outer node
 
-At this point, you have finished adding the Contracts pallet to the runtime. 
+At this point, you have finished adding the Contracts pallet to the runtime.
 Now, you need to consider whether the outer node requires any corresponding updates.
 For the Contracts pallet to take advantage of the RPC endpoint API, you need to add the custom RPC endpoint to the node configuration.
 
@@ -361,8 +361,8 @@ To add the RPC API extension to the outer node:
 
 1. Open the `node/src/rpc.rs` file in a text editor.
 
-   Substrate provides an RPC to interact with the node. 
-   However, it does not contain access to the Contracts pallet by default. 
+   Substrate provides an RPC to interact with the node.
+   However, it does not contain access to the Contracts pallet by default.
    To interact with the Contracts pallet, you must extend the existing RPC and add the Contracts pallet and its API.
 
    ```rust
@@ -424,7 +424,7 @@ To start the local node:
 1. Start the node in development mode by running the following command:
 
    ```shell
-   ./target/release/node-template --dev 
+   ./target/release/node-template --dev
    ```
 
 1. Verify your node is up and running successfully by reviewing the output displayed in the terminal.
@@ -458,7 +458,7 @@ In this tutorial, you learned:
 - How to update the outer node.
 - How to verify the Contracts pallet is available in the runtime using the front-end template.
 
-To begin using the Contracts pallet, you'll need to start writing some smart contracts to deploy. 
+To begin using the Contracts pallet, you'll need to start writing some smart contracts to deploy.
 Explore the following topics and tutorials to learn more.
 
 - [Custom RPCs](/main-docs/build/custom-rpc/)

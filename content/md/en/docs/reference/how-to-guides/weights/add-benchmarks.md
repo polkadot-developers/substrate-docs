@@ -182,12 +182,12 @@ The Benchmarking CLI has a lot of options which can help you automate your bench
 Execute the following command to run standard benchmarking for your `pallet_you_created`:
 
 ```bash
-./target/release/node-template benchmark \
+./target/release/node-template benchmark pallet \
     --chain dev \
     --execution wasm \
     --wasm-execution compiled \
     --pallet pallet_you_crated \
-    --extrinsic '\*' \
+    --extrinsic '*' \
     --steps 20 \
     --repeat 10 \
     --json-file=raw.json \

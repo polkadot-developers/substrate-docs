@@ -7,10 +7,10 @@ keywords:
 ---
 
 This short guide steps through an example of creating and re-using helper functions to perform common "verify" checks within a pallet's code.
-  
+
 Sometimes a dispatchable function inside a pallet reuses logic that is common to other dispatchables.
 In this case, it's useful to refactor this logic into its own private function.
-At other times, dispatchable functions get increasingly difficult to read as the amount of code increases to perform various checks within the dispatchable. 
+At other times, dispatchable functions get increasingly difficult to read as the amount of code increases to perform various checks within the dispatchable.
 In both instances, using helper functions that cannot be accessed from outside the pallet are a useful tool to optimize for code readability and reusability.
 In this guide, we'll see how to create an adder helper that checks for arithmetic overflow and can be reused in any dispatchable.
 

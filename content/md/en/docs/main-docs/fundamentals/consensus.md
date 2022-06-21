@@ -12,9 +12,9 @@ The consensus models that Substrate supports by default require minimal configur
 
 Unlike some blockchains, Substrate splits the requirement to reach consensus into two separate phases:
 
-* **Block authoring** is the process nodes use to create new blocks.
+- **Block authoring** is the process nodes use to create new blocks.
 
-* **Block finalization** is the process used to handle forks and choose the **canonical** chain.
+- **Block finalization** is the process used to handle forks and choose the **canonical** chain.
 
 ## Block authoring
 
@@ -25,9 +25,9 @@ In a completely decentralized network without any trusted nodes, an algorithm mu
 
 For a Substrate-based blockchain, you can choose one of the following block authoring algorithms or create your own:
 
-* Authority-based round-robin scheduling [(Aura)](/reference/glossary/#authority-round-(Aura)).
-* Blind assignment of blockchain extension [(BABE)](/reference/glossary/#blind-assignment-of-blockchain-extension-(BABE)) slot-based scheduling.
-* Proof of work computation-based scheduling.
+- Authority-based round-robin scheduling [(Aura)](</reference/glossary/#authority-round-(Aura)>).
+- Blind assignment of blockchain extension [(BABE)](</reference/glossary/#blind-assignment-of-blockchain-extension-(BABE)>) slot-based scheduling.
+- Proof of work computation-based scheduling.
 
 The Aura and BABE consensus models require require you to have a known set of **validator nodes** that are permitted to produce blocks.
 In both of these consensus models, time is divided up into discrete slots.
@@ -94,20 +94,20 @@ In Aura a known set of authorities take turns producing blocks.
 ### BABE
 
 [BABE](https://paritytech.github.io/substrate/master/sc_consensus_babe/index.html) provides slot-based block authoring with a known set of validators and is typically used in proof-of-stake blockchains.
-Unlike Aura, slot assignment is based on the evaluation of a Verifiable Random Function (VRF). 
+Unlike Aura, slot assignment is based on the evaluation of a Verifiable Random Function (VRF).
 Each validator is assigned a weight for an _epoch._
 This epoch is broken up into slots and the validator evaluates its VRF at each slot.
 For each slot that the validator's VRF output is below its weight, it is allowed to author a block.
 
 Because multiple validators might be able to produce a block during the same slot, forks are more common in BABE than they are in Aura, even in good network conditions.
 
-Substrate's implementation of BABE also has a fallback mechanism for when no authorities are chosen in a given slot. 
+Substrate's implementation of BABE also has a fallback mechanism for when no authorities are chosen in a given slot.
 These secondary slot assignments allow BABE to achieve a constant block time.
 
 ### Proof of work
 
 [Proof-of-work](https://paritytech.github.io/substrate/master/sc_consensus_pow/index.html) block authoring is not slot-based and does not require a known authority set.
-In proof of work, anyone can produce a block at any time, so long as they can solve a computationally challenging problem (typically a hash preimage search). 
+In proof of work, anyone can produce a block at any time, so long as they can solve a computationally challenging problem (typically a hash preimage search).
 The difficulty of this problem can be tuned to provide a statistical target block time.
 
 ### GRANDPA
@@ -124,10 +124,10 @@ All deterministic finality algorithms, including GRANDPA, require at least `2f +
 Learn more about where this threshold comes from and why it is ideal in the seminal paper [Reaching Agreement in the Presence of Faults](https://lamport.azurewebsites.net/pubs/reaching.pdf) or on [Wikipedia: Byzantine Fault](https://en.wikipedia.org/wiki/Byzantine_fault).
 
 Not all consensus protocols define a single, canonical chain.
-Some protocols validate [directed acyclic graphs](https://en.wikipedia.org/wiki/Directed_acyclic_graph) (DAG) when two blocks with the same parent do not have conflicting state changes. 
+Some protocols validate [directed acyclic graphs](https://en.wikipedia.org/wiki/Directed_acyclic_graph) (DAG) when two blocks with the same parent do not have conflicting state changes.
 See [AlephBFT](https://github.com/aleph-zero-foundation/aleph-node) for such an example.
 
 ## Where to go next
 
-* [BABE research](https://research.web3.foundation/en/latest/polkadot/block-production/Babe.html)
-* [GRANDPA research](https://research.web3.foundation/en/latest/polkadot/finality.html)
+- [BABE research](https://research.web3.foundation/en/latest/polkadot/block-production/Babe.html)
+- [GRANDPA research](https://research.web3.foundation/en/latest/polkadot/finality.html)

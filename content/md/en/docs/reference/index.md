@@ -20,7 +20,7 @@ This section contains links to the Rust API documentation and technical referenc
 
 [Rust API]() links to the Rust documentation that is generated directly from the source code for Substrate.
 
-[How-to reference guides](/reference/how-to-guides) lists the _How-to_ quick reference guides that provide abbreviated instructions for accomplishing specific tasks. 
+[How-to reference guides](/reference/how-to-guides) lists the _How-to_ quick reference guides that provide abbreviated instructions for accomplishing specific tasks.
 The _How-to_ guides assume that you are already familiar with Substrate and programming in Rust.
 
 [Cryptography](/reference/cryptography) provides a conceptual overview of the cryptography used in Substrate.

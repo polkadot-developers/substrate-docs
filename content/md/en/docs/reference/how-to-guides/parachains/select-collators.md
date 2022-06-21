@@ -13,14 +13,14 @@ keywords:
 
 This guide is useful for teams getting ready for their parachain launch in production, exploring the different options in collator selection.
 
-It is important for a parachain networks' collators are set to ensure that there exist _some_ neutral collators to prevent censorship &mdash; but not necessarily a majority. 
-It is also important to avoid having too many collators as they may slow down the network. 
+It is important for a parachain networks' collators are set to ensure that there exist _some_ neutral collators to prevent censorship &mdash; but not necessarily a majority.
+It is also important to avoid having too many collators as they may slow down the network.
 This guide steps through the considerations to take into account when designing a parachain network.
 
 ## Collator selection
 
-You are free to choose your method of collator selection. 
-Common methods include stake voting or directly assigning collators via committee or other origins such as democracy. 
+You are free to choose your method of collator selection.
+Common methods include stake voting or directly assigning collators via committee or other origins such as democracy.
 In both cases, create a pallet to implement the logic that best fits your needs.
 
 ### Stake voting
@@ -51,7 +51,7 @@ collator selection:
         }
 ```
 
-There are also different ways to implement incentives for collators. 
+There are also different ways to implement incentives for collators.
 Take a look at [this example](https://github.com/PureStake/moonbeam/blob/master/pallets/parachain-staking/src/lib.rs) to explore how.
 
 ## Examples
