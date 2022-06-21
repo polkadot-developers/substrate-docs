@@ -18,8 +18,8 @@ Preflight checklist to make sure you're ready.
 
 Steps to complete.
 
-* PoV
-* Limitations that apply to parachains
-* Collators
+- PoV
+- Limitations that apply to parachains
+- Collators
 
 Maintain a parachain

@@ -5,13 +5,14 @@ keywords:
   - runtime
   - tooling
 ---
+
 Creating a `txwrapper` package will expand the offline signing options for users of your chain.
 This is important for security conscious users who need to facilitate transaction signing, construction and/or decoding with an air-gapped device(s).
 This includes (but is not limited to) custodians, exchanges, and cold storage users.
 
-Prior to building a `txwrapper` for your own chain, have a look at the [`txwrapper-examples`](https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-examples/README.md). 
+Prior to building a `txwrapper` for your own chain, have a look at the [`txwrapper-examples`](https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-examples/README.md).
 
-Make sure you understand the Polkadot example and take a look at the `txwrapper-core` methods an end user is expected to use (see `decode`, `construct.{signingPayload, signedTx, txHash}`). 
+Make sure you understand the Polkadot example and take a look at the `txwrapper-core` methods an end user is expected to use (see `decode`, `construct.{signingPayload, signedTx, txHash}`).
 Your package will be re-exporting these so be sure to understand the public API you will create.
 
 ## Goal
@@ -140,12 +141,12 @@ And add relevant exports:
 // src/methods/currencies/index.ts
 
 // export the method, effectively making available under the `currencies` namespace
-export * from './transfer'
+export * from "./transfer";
 // src/methods
 
 // Export everything from within `methods`, including the `currencies` namespace, making it so we can
 // access the method via `methods.currencies.transfer`
-export * as methods from './methods'
+export * as methods from "./methods";
 ```
 
 ### 5. Create a working example

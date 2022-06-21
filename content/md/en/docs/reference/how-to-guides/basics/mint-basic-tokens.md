@@ -16,7 +16,7 @@ You should note that this guide is only intended to illustrate a simple approach
 This approach _is not_ a recommended best practice.
 You should keep in mind the following limitations and assumptions used in this guide:
 
-- **Safety.** The `mint` function takes in an amount to mint which is *not good practice* because it implies that users have unlimited access to writing to storage.
+- **Safety.** The `mint` function takes in an amount to mint which is _not good practice_ because it implies that users have unlimited access to writing to storage.
   Safer approaches include using a `GenesisConfig` or fixing a predetermined maximum value in runtime.
 - **Weights.** This guide uses an arbitrary weight of 10_000 in the code snippets.
   Learn more about weight configuration in [Transactions, weights, and fees](/main-docs/build/tx-weights-fees).
@@ -46,7 +46,7 @@ Using the node template as a starting point, specify the types your pallet depen
 
 ```rust
 
-// TODO - this block was malformed 
+// TODO - this block was malformed
 
 /* --snip-- */
 pub enum Event<T: Config> {
@@ -57,7 +57,7 @@ pub enum Event<T: Config> {
 
 ## Declare your storage item
 
-This pallet only keeps track of the balance to account ID mapping. 
+This pallet only keeps track of the balance to account ID mapping.
 Call it `BalanceToAccount`:
 
 ```rust
@@ -79,30 +79,30 @@ pub(super) type BalanceToAccount<T: Config> = StorageMap<
 We can now bring our attention to creating the intended capabilities of our pallet.
 Create the `mint()` function to issue a token supply from any origin.
 
-   ```rust
-   	/* --snip-- */
-   	#[pallet::weight(10_000 + T::DbWeight::get().writes(1))]
-   	pub(super) fn mint(
-   		origin: OriginFor<T>,
-   		#[pallet::compact] amount: T::Balance
-   		) -> DispatchResultWithPostInfo {
+```rust
+	/* --snip-- */
+	#[pallet::weight(10_000 + T::DbWeight::get().writes(1))]
+	pub(super) fn mint(
+		origin: OriginFor<T>,
+		#[pallet::compact] amount: T::Balance
+		) -> DispatchResultWithPostInfo {
 
-   		let sender = ensure_signed(origin)?;
+		let sender = ensure_signed(origin)?;
 
-   		// Check if the kitty does not already exist in our storage map
-   		 ensure!(Self::kitties(&kitty_id) == None, <Error<T>>::KittyExists);
+		// Check if the kitty does not already exist in our storage map
+		 ensure!(Self::kitties(&kitty_id) == None, <Error<T>>::KittyExists);
 
-   		// Update storage.
-   		<BalanceToAccount<T>>::insert(&sender, amount);
+		// Update storage.
+		<BalanceToAccount<T>>::insert(&sender, amount);
 
-   		// Emit an event.
-   		Self::deposit_event(Event::MintedNewSupply(sender));
+		// Emit an event.
+		Self::deposit_event(Event::MintedNewSupply(sender));
 
-   		// Return a successful DispatchResultWithPostInfo.
-   		Ok(().into())
-   	}
-   	/* --snip-- */
-   ```
+		// Return a successful DispatchResultWithPostInfo.
+		Ok(().into())
+	}
+	/* --snip-- */
+```
 
 ## Create the transfer function
 
@@ -154,7 +154,7 @@ If `checked_sub()` returns `None`, the operation caused an overflow and throws a
 ## Add your pallet to the runtime
 
 See [Import a pallet](/reference/how-to-guides/import-a-pallet) if you’re not yet familiar with this procedure.
-  
+
 ## Examples
 
 - [mint-token](https://github.com/substrate-developer-hub/substrate-how-to-guides/blob/main/example-code/template-node/pallets/mint-token/src/lib.rs) example pallet

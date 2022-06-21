@@ -16,14 +16,14 @@ keywords:
 ---
 
 This guide will show you how to add Cumulus to a solo chain and use a relay chain to provide finality.
-  
+
 You will learn how to:
 
 - Bootstrap a solo-chain's security
 - Access XCMP with Parachains on a common relay chain
 
 The integration of Cumulus for any Substrate chain enables this chain to couple it's _finality_ with a
-relay chain, like Polkadot. 
+relay chain, like Polkadot.
 This guide does _not_ inform on how to migrate a _running solo-chain_, only the steps required to convert the _codebase_ of a node to use Cumulus for consensus instead of something like GRANDPA that is common for other Substrate solo-chains.
 
 <!-- FIXME TODO WORK IN PROGRESS - NOT COMPLETE! -->

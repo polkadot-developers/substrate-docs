@@ -73,7 +73,7 @@ You should check the [Rust documentation](https://paritytech.github.io/substrate
 
 ## Parachain pallets
 
-In addition to the functional pallets that are generally useful for any blockchain, there are prebuilt pallets that provide features specifically for blockchains that are intended to connect to a relay chain. 
+In addition to the functional pallets that are generally useful for any blockchain, there are prebuilt pallets that provide features specifically for blockchains that are intended to connect to a relay chain.
 The following pallets provide features for parachain development.
 
 | Prebuilt pallet name | What it's for

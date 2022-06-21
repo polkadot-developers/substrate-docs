@@ -7,7 +7,7 @@ keywords:
   - runtime
 ---
 
-Substrate provides a mechanism known as [transaction weighting](/main-docs/build/tx-weights-fees) to quantify the resources consumed while executing a transaction. 
+Substrate provides a mechanism known as [transaction weighting](/main-docs/build/tx-weights-fees) to quantify the resources consumed while executing a transaction.
 Typically, we use the weight functions returned from our benchmarking for this.
 But Substrate also allow us to apply a totally different weight function based on certain condition.
 We will walk through an example in this guide.
@@ -22,10 +22,11 @@ Once defined, it can be used directly in your pallet, written as such:
 - Apply different weight functions based on certain condition on computing extrinsic's weight value.
 
 Here are the different traits we'll be implementing:
-  - [\`WeighData\`](https://paritytech.github.io/substrate/master/frame_support/weights/trait.WeighData.html#impl-WeighData<T>-for-(Weight%2C%20DispatchClass%2C%20Pays)): Weigh the data in a function. 
-    \`pallet::weight\` expects whatever implements \`WeighData<T>\` to replace \`T\` with a tuple of the dispatch arguments.
-  - [\`PaysFee\`](rustdocs/latest/frame_support/weights/trait.PaysFee.html): Designate whether the dispatch pays a fee or not.
-  - [\`ClassifyDispatch\`](/rustdocs//latest/frame_support/weights/trait.ClassifyDispatch.html): A way to tell the runtime about the type of dispatch being made.
+
+- [\`WeighData\`](<https://paritytech.github.io/substrate/master/frame_support/weights/trait.WeighData.html#impl-WeighData<T>-for-(Weight%2C%20DispatchClass%2C%20Pays)>): Weigh the data in a function.
+  \`pallet::weight\` expects whatever implements \`WeighData<T>\` to replace \`T\` with a tuple of the dispatch arguments.
+- [\`PaysFee\`](rustdocs/latest/frame_support/weights/trait.PaysFee.html): Designate whether the dispatch pays a fee or not.
+- [\`ClassifyDispatch\`](/rustdocs//latest/frame_support/weights/trait.ClassifyDispatch.html): A way to tell the runtime about the type of dispatch being made.
 
 ## Steps
 

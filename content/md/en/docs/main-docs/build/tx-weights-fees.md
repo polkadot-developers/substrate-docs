@@ -1,6 +1,6 @@
 ---
 title: Transactions, weights, and fees
-description: Describes how the resources required to execute transactions are accounted for through the Substrate weight system and the calculation of transaction fees. 
+description: Describes how the resources required to execute transactions are accounted for through the Substrate weight system and the calculation of transaction fees.
 keywords:
 ---
 

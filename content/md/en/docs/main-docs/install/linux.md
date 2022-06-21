@@ -162,7 +162,6 @@ The Substrate Developer Hub acts as a central portal for access to the many reso
 Depending on your interests and learning style, you might prefer one avenue over another.
 For example, if you prefer to read source code and are familiar with Rust, you might want to start by digging into the [Rust API](https://paritytech.github.io/substrate/master).
 
-
 <!-- TODO NAV.YAML -->
 <!-- add these back -->
 <!--If you are new to Substrate and the Substrate ecosystem, you might want broader exposure to what resources are available and where to find them by checking out [Explore](/main-docs/explore/).-->
