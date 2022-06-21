@@ -422,7 +422,7 @@ In Substrate, the runtime is stored as a [WebAssembly](#webassembly-wasm) binary
 A fixed, equal interval of time used by consensus engines such as [Aura](#aura-aka-authority-round) and [BABE](#blind-assignment-of-blockchain-extension-babe). 
 In each slot, a subset of [authorities](#authority) is permitted—or obliged—to [author](#author) a [block](#block).
 
-## SS58
+## SS58 address format
 
 The SS58 address format is a public key address based on the Bitcoin [`Base-58-check`](https://en.bitcoin.it/wiki/Base58Check_encoding) encoding.
 Each Substrate SS58 address uses a `base-58` encoded value to identify a specific account on a specific Substrate-based chain.

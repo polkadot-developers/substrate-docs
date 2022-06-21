@@ -24,7 +24,7 @@ Instead of using the public key directly, Substrate allows you generate multiple
 ## Address encoding and chain-specific addresses
 
 Substrate enables you to use a single public key to derive multiple addresses so you can interact with multiple chains without creating separate public and private key pairs for each network.
-By default, the addresses associated with the public key for an account use the Substrate [**SS58 address format**](/reference/glossary/#ss58).
+By default, the addresses associated with the public key for an account use the Substrate [**SS58 address format**](/reference/glossary/#ss58-address-format).
 This address format is based on [base-58 encoding](https://tools.ietf.org/id/draft-msporny-base58-01.html).
 TIn addition to allowing you to derive multiple addresses from the same public key, base-58 encoding has the following benefits:
 

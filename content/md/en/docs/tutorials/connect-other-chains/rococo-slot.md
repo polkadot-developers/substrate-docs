@@ -30,7 +30,7 @@ You will also need to:
 To perform any action on Rococo, you need `ROC` tokens.
 To store these, you need a wallet, as we will _not_ be able to use [development keys and accounts](/reference/command-line-tools/subkey/#predefined-accounts-and-keys).
 There are many options, a few are described on the [Polkadot Wiki](https://wiki.polkadot.network/docs/build-wallets), and if you are just getting started, the [`polkadot-js` extension](https://github.com/polkadot-js/extension) is suggested.
-Once you have an account, make sure you **back up your seed phrase** and make note of **the `accountID`** that is using the default 42 [SS58 prefix](/reference/glossary/#ss58) for use with Rococo.
+Once you have an account, make sure you **back up your seed phrase** and make note of **the `accountID`** that is using the default 42 [SS58 prefix](/reference/glossary/#ss58-address-format) for use with Rococo.
 
 To acquire `ROC`, join the [Rococo faucet matrix channel](https://matrix.to/#/#rococo-faucet:matrix.org) and use the `!drip <accountID>` command in the faucet channel to get 100 `ROC` in your wallet.
 
