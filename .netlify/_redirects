@@ -1,7 +1,7 @@
 # Redirects from what the browser requests to what we serve
-/                            /quick-start/
-/v3/*                        /
-/how-to-guides/v3/*          /reference/how-to-guides/
-/tutorials/v3/*              /tutorials/
-/rustdocs/                   https://paritytech.github.io/substrate/master/sc_service/
-/how-to-guides/              /reference/
+/                            /quick-start/ 301!
+/v3/*                        / 301!
+/how-to-guides/v3/*          /reference/how-to-guides/ 301!
+/tutorials/v3/*              /tutorials/ 301!
+/rustdocs/                   https://paritytech.github.io/substrate/master/sc_service/ 301!
+/how-to-guides/              /reference/ 301!
