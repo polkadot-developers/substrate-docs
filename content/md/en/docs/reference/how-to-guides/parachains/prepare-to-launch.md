@@ -108,28 +108,35 @@ As the execution time of the network stabilizes the weight limit can be increase
 
 ## Setup call filters
 
-Especially when launching a parachain, you might need to highly constrict what is enabled for _specific classes_ of users.
+Especially when launching a parachain, you likely need to *highly* constrict what is calls are enabled for specific classes of users.
 This can be accomplished with **call filters**.
 
-Here you can see an example of how to [limit](https://github.com/paritytech/cumulus/blob/59cdbb6a56b1c49009413d66ba2232494563b57c/polkadot-parachains/statemine/src/lib.rs#L148) and [enable](https://github.com/paritytech/cumulus/pull/476/files#diff-09b95657e9aa1b646722afa7944a00ddc2541e8753254a86180b338d3376f93eL151) functionality with filters as implemented in the [Statemine runtime deployment](https://github.com/paritytech/cumulus/pull/476).
+### `BaseCallFilter` for native `Origin`s
+
+Here you can see an example of how [`BaseCallFilter`](https://paritytech.github.io/substrate/master/frame_system/pallet/trait.Config.html#associatedtype.BaseCallFilter) is implemented to [limit](https://github.com/paritytech/cumulus/blob/59cdbb6a56b1c49009413d66ba2232494563b57c/polkadot-parachains/statemine/src/lib.rs#L148) and [enable](https://github.com/paritytech/cumulus/pull/476/files#diff-09b95657e9aa1b646722afa7944a00ddc2541e8753254a86180b338d3376f93eL151) functionality with filters as implemented in the [Statemine runtime deployment](https://github.com/paritytech/cumulus/pull/476).
+Note `Filter` has since been deprecated in favor of [`Contains`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Contains.html)
+
+### `Barrier` for XCM `Origin`s
+
+
 
 ## Incremental runtime deployments
 
-If you are approaching the limits of the [critical constraints outline above](#gather-critical-parachain-constraint-information) before launch (like a too-large large runtime) it is highly advisable to prune down functionality as much as practical and **incrementally upgrade**.
+If you are approaching the limits of the [critical constraints outline above](#gather-critical-parachain-constraint-information) before launch (like a too-large large runtime) it is highly advisable to cut down functionality as much as practical and **incrementally upgrade** a minimal runtime.
 In these cases, you can:
 
-1. Generate the genesis state of your chain with full runtime functionality (including all the pallets)
+1. Ensuring that your runtime's feature-complete set of pallet indices and names in `construct_runtime!` are final, as you must not change these before this process is complete
+
+1. Export the genesis state of your chain with the `export-genesis-state` subcommand of your feature-complete runtime functionality (including all the pallets)
 
 1. Remove all pallets that you will not need upon parachain launch from your runtime
 
-1. Re-build the WASM blob (validation logic) and the runtime of the chain
+1. Re-build the runtime Wasm blob (validation logic) of your chain and generate the **compact & compressed** Wasm with the `export-genesis-wasm` subcommand of your node
 
-1. Register your parachain with the updated genesis and the WASM blob generated in (3)
+1. Register your parachain with the full genesis and the **compact & compressed** Wasm blob generated with the `export-genesis-wasm` subcommand of your node, using the minimal runtime in (3)
 
-1. After your parachain is live you can upgrade your runtime on-chain to include the missing pallets (ensure that pallet indices and names match those used to generate the genesis state in step (1) without having to do storage migrations. 
-
-**See the [parachain runtime upgrade guide](/reference/how-to-guides/parachains/runtime-upgrade)** for how
-to go about actually performing these incremental runtime upgrades.
+1. After your parachain is live you can upgrade your runtime to include the missing pallets, with the  [parachain runtime upgrade guide](/reference/how-to-guides/parachains/runtime-upgrade). 
+   **Ensure that pallet indices and names match those used to generate the genesis state in step (1) so you do not have to do storage migrations as these are added.**
 
 ## Launch simulation
 
