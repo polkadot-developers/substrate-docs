@@ -47,7 +47,7 @@ There are, however, a few important differences between the two templates that a
 
 Parachain template runtime ([`runtime/Cargo.toml`](https://github.com/substrate-developer-hub/substrate-parachain-template/blob/latest/runtime/Cargo.toml)) has integrated [`parachain-info` pallet](https://paritytech.github.io/cumulus/parachain_info/pallet/index.html) in.
 This pallet is designed to inject information about the parachain's registration into its own runtime.
-Currently it just injects the para ID that the chain is registered at.
+Currently it just injects the `ParaID` that the chain is registered at.
 This allows the runtime to know which cross-chain messages are intended for it.
 
 #### `register_validate_block!` macro

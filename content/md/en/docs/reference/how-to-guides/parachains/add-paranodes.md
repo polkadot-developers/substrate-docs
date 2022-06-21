@@ -1,5 +1,5 @@
 ---
-title: Add parachain nodes
+title: Add local parachain nodes
 description: How-to connect additional parachain nodes to an established local relay testnet 
 keywords:
   - parachain
@@ -11,8 +11,6 @@ keywords:
 <!-- content/md/en/docs/tutorials/connect-other-chains/parachain.md in next steps once in nav -->
 
 As you learned in [Connect a local parachain](/tutorials/connect-other-chains/parachain/), a parachain can work with a single collator.
-However, a parachain that relied on a single collator wouldn't be a sustainable configuration.
-An adversary would only need to take down a single node to stall the parachain.
 
 ## Additional relay chain nodes
 
@@ -20,11 +18,35 @@ You should have _at least_ two [**validators**](/reference/glossary/#validators)
 
 Assuming you are running a [local relay testnet](/tutorials/connect-other-chains/local-relay/), 
 You can **modify** the provided **plain** [relay chain spec file](/tutorials/connect-other-chains/relay-chain#pre-configured-chain-spec-files) to include more validators, or go the more "correct" route used for production of modifying the **source** for genesis state in `chain_spec.rs` for your **relay chain** to add more testnet validators at genesis.
+Recall how to generate chain specifications in the [add trusted nodes](/tutorials/get-started/trusted-network/) tutorial.
+
+### Start a collator
+
+### Start the collator node
+
+With chain spec in hand, you can now start the collator node.
+Notice that we need to supply the same relay chain chain spec we used for launching relay chain nodes at the second half of the command:
+
+```bash
+./target/release/parachain-collator \
+--alice \
+--collator \
+--force-authoring \
+--chain rococo-local-parachain-2000-raw.json \
+--base-path /tmp/parachain/alice \
+--port 40333 \
+--ws-port 8844 \
+-- \
+--execution wasm \
+--chain <relay chain raw chain spec> \
+--port 30343 \
+--ws-port 9977
+```
 
 ### Start a second collator
 
 The command to run additional collators is as follows, assuming `Alice` node is running already.
-This command is nearly identical to the one we used to start the first collator, but we need to avoid conflicting ports and `base-path` directories.
+This command is nearly identical to the one we used to start the first collator, but we need to avoid conflicting ports and `base-path` directories:
 
 ```bash
 ./target/release/parachain-collator \

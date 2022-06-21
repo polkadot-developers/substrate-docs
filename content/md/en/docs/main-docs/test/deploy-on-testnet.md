@@ -37,17 +37,17 @@ The goal of having dynamic allocations aims to help teams to test their runtimes
 Requesting a permanent or temporary parachain slot is currently a privileged (sudo) operation performed by the test chain's operator.
 The long-term plan is to make it a community-driven process via the chain's governance framework.
 
-Note that on Rococo, para ID numbers `0-999` are reserved for [system parachains](https://wiki.polkadot.network/docs/learn-common-goods#system-level-chains) and `1000-1999` are reserved for [public utility parachains](https://wiki.polkadot.network/docs/learn-common-goods#public-utility-chains).
+Note that on Rococo, `ParaID` numbers `0-999` are reserved for [system parachains](https://wiki.polkadot.network/docs/learn-common-goods#system-level-chains) and `1000-1999` are reserved for [public utility parachains](https://wiki.polkadot.network/docs/learn-common-goods#public-utility-chains).
 Only numbers `2000` and above that aren't already reserved can be used for community parachains.
 
 ### Checklist
 
 Things to be mindful of when setting up a test network and connecting to it:
 
-- [ ] Reserve a unique para ID, choosing an integer greater than `2000`. 
+- [ ] Reserve a unique `ParaID`, choosing an integer greater than `2000`. 
 - [ ] Your parachain genesis state starts at block 0. It is not possible to connect a parachain with any previous state to a relay chain.
-- [ ] Make sure that the para ID for your parachain is the same in the chain spec of both the relay chain and your parachain. You can verify this by checking that the genesis head of the parathread you create matches the genesis head from your relay chain node.
-- [ ] After you modify a plain chain spec with a new para ID for example, make sure to generate the new raw chain spec, name it appropriately and discard the plain chain spec to avoid potential confusion.
+- [ ] Make sure that the `ParaID` for your parachain is the same in the chain spec of both the relay chain and your parachain. You can verify this by checking that the genesis head of the parathread you create matches the genesis head from your relay chain node.
+- [ ] After you modify a plain chain spec with a new `ParaID` for example, make sure to generate the new raw chain spec, name it appropriately and discard the plain chain spec to avoid potential confusion.
 - [ ] For better security, verify that the chain specification for your relay chain has a minimum of 2 relay chain nodes per collator node. 
 ## Learn how 
 

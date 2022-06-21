@@ -23,9 +23,9 @@ Before you begin, verify the following:
 
 - You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/).
 
-- You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) tutorial previously.
+- You have completed the [build a local blockchain](/tutorials/get-started/build-local-blockchain/) tutorial previously.
 
-- You understand how to generated chain specifications for a private network of trusted validators as described in the [Add trusted nodes](/tutorials/get-started/trusted-network/) tutorial .
+- You understand how to generated chain specifications for a private network of trusted validators as described in the [add trusted nodes](/tutorials/get-started/trusted-network/) tutorial.
 
 - You are generally familiar with the [architecture of Polkadot](https://wiki.polkadot.network/docs/learn-architecture) and [parachains](https://wiki.polkadot.network/docs/learn-parachains).
 
@@ -60,7 +60,8 @@ If you don't keep up with relay chain upgrades, it's likely that your network wi
 
 <!-- TODO NEW CONTENT docker and using prebuilt bins suggested https://github.com/substrate-developer-hub/substrate-docs/issues/1073 -->
 
-A slightly modified version of Polkadot's built in `rococo-local` network configuration will serve as our relay chain. So clone the Polkadot repository and build the node:
+A slightly modified version of Polkadot's built in `rococo-local` network configuration will serve as our relay chain.
+So clone the Polkadot repository and build the node:
 
 ```bash
 # Clone the Polkadot Repository, with correct version
@@ -87,14 +88,16 @@ If the help page is printed, you have succeeded in building a Polkadot node.
 
 You will need a [chain specification](/main-docs/build/chain-spec/)) for your relay chain network.
 
-Whichever chain spec file you choose to use we will refer to the file simply as `chain-spec.json` in the instructions below. You will need to supply the proper path to the chain spec you are using.
+Keep in mind that a relay chain _must_ have one more validator nodes running than the total of connected parachain collators.
+For testing these typically must be hard coded into your chain specs.
+For example, if you want to connect two parachains with a single collator, run three or more relay chain validator nodes, and ensure they all are specified in your chain spec.
 
-In defining these, keep in mind that a relay chain _must_ have one more validator nodes running than the total of connected parachain collators.
-For example, if you want to connect two parachains with a single collator, run three or more relay chain validator nodes.
+Whichever chain spec file you choose to use we will refer to the file simply as `chain-spec.json` in the instructions below.
+You will need to supply the proper path to the chain spec you are using.
 
 ### Pre-configured chain spec files
 
-This tutorial includes a sample chain specification file with two validator relay chain nodes—Alice and Bob—as authorities. 
+This tutorial includes a sample chain specification file with two validator relay chain nodes—Alice and Bob—as authorities.
 You can use this sample chain specification without modification for a local test network and a single parachain.
 This is useful for registering a **single** parachain:
 
@@ -103,9 +106,8 @@ This is useful for registering a **single** parachain:
 
 You can read and edit the plain chain specification file.
 However, the chain specification file must be converged to the SCALE-encoded raw format before it can be used to start a node.
-For information about converting a chain specification to use the raw format, see [raw chainspec generation](/tutorials/connect-other-chains/connect-parachain/#configure-a-parachain-for-a-specific-relay-chain-and-para-id).
+For information about converting a chain specification to use the raw format, see [raw chainspec generation](/tutorials/connect-other-chains/parachain/#configure-a-parachain-for-a-specific-relay-chain-and-para-id).
 
-The above raw chain specs were created according to the steps in the [create your own chain spec](/tutorials/get-started/trusted-network/#create-a-custom-chain-specification) section.
 The sample chain specification is only valid for a single parachain with two validator nodes.
 If you add other validators, add additional parachains to your relay chain, or want to use custom non-development keys, you'll need to create a custom chain specification that fit your needs.
 
@@ -130,20 +132,19 @@ The steps are similar for starting additional nodes.
 
 The port (`port`) and websocket port (`ws-port`) specified in this command use default values and can be omitted.
 However, the values are included here as a reminder to always check these values.
-After the node istarts, no other nodes on the same local machine can use these ports.
-
-When the node starts, you will see several log messages. 
-Take note of the node's **Peer ID** in the logs.
-We will need it when connecting other nodes to it.
-It will look something like this:
+After the node starts, no other nodes on the same local machine can use these ports.
 
 ```bash
 🏷 Local node identity is: 12D3KooWGjsmVmZCM1jPtVNp6hRbbkGBK3LADYNniJAKJ19NUYiq
 ```
 
+When the node starts you will see several log messages, including the node's **Peer ID**.
+Take note of this, as you will need it when connecting other nodes to it.
+
 ### Start the `bob` validator
 
 The command to start the second node is similar to the command to start the first node with a few important differences.
+
 ```bash
 ./target/release/polkadot \
 --bob \

@@ -17,41 +17,41 @@ keywords:
 This guide steps through how to connect a parachain to a relay chain.
 
 This guide illustrates:
-- How to obtain a para ID
+- How to obtain a `ParaID`
 - How to register a parachain
 - How to obtain a parachain slot
 
 Launching a parachain requires a series of steps to ensure that the relay chain knows exactly what the parachain's runtime logic is once a slot on the relay chain is secured.
-In order to achieve this, you will need to have previously successfully generated a **para ID, genesis state and Wasm runtime blob**.
+In order to achieve this, you will need to have previously successfully generated a **`ParaID`, genesis state and Wasm runtime blob**.
 After successfully registering your parachain, you will be able to obtain a parachain slot (in testing though `sudo`, and in production via auctions and crowdloans) and start producing blocks.
 
 The [Cumulus Tutorial](/tutorials/connect-other-chains/relay-chain/) is the best place to start if you are new to parachain development.
 This guide is a quick reference and leaves out important details to consider when performing these steps.
 
-## Reserve a para ID
+## Reserve a `ParaID`
 
-First, you need a para ID to perform any operation referencing your parachain/parathread for a specific relay chain.
+First, you need a `ParaID` to perform any operation referencing your parachain/parathread for a specific relay chain.
 For example, for providing the Wasm blob or genesis state, creating channels to other parachains for XCM, starting a crowdloan, etc.
 
 - Navigate to the `Network` -> `Parachains` section in the apps UI. If running a node with ws on port 9944, this
   will be:
   https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/parachains/parathreads
 
-![Reserve a para ID](../../../../../media/images/docs/tutorials/09-cumulus/paraid-reserve.png)
+![Reserve a `ParaID`](../../../../../media/images/docs/tutorials/09-cumulus/paraid-reserve.png)
 
-- Go to the `Parathread` tab and click on `+ParaID` (a parachain always begins as a parathread with a para ID)
+- Go to the `Parathread` tab and click on `+ParaID` (a parachain always begins as a parathread with a `ParaID`)
 
-- Reserve the para ID. This operation requires a deposit that is relay chain specific.
+- Reserve the `ParaID`. This operation requires a deposit that is relay chain specific.
 
-Make note of your para ID and registering account.
-The para ID is unique to the relay chain you are connecting to, along with the account that reserved it.
+Make note of your `ParaID` and registering account.
+The `ParaID` is unique to the relay chain you are connecting to, along with the account that reserved it.
 This identifier is required in the following steps, and cannot generally be reused between different relay chains.
 
 In the next steps it is assumed you use Cumulus, and thus have the proper commands for the `parachain-collator` binary that is produced for your collator nodes.
 
 ## Customize parachain specification
 
-Your parachain _must_ configure the correct para ID in your chain specification.
+Your parachain _must_ configure the correct `ParaID` in your chain specification.
 See the [how-to guide on configuring a custom chain spec](/reference/how-to-guides/basics/customize-a-chain-specification) for more in-depth instructions to generate a plain spec, modify it, and generate a raw spec.
 
 We first generate a plain spec with:
@@ -61,15 +61,15 @@ We first generate a plain spec with:
 ./target/release/parachain-collator build-spec --disable-default-bootnode > rococo-local-parachain-plain.json
 ```
 
-Default para ID is `1000` from Cumulus, so you must correctly set it for your parachain based on **the reserved para ID from above**.
-Assuming your reserved para ID is `2000`, you will open `rococo-local-parachain-plain.json` and modify two fields:
+Default `ParaID` is `1000` from Cumulus, so you must correctly set it for your parachain based on **the reserved `ParaID` from above**.
+Assuming your reserved `ParaID` is `2000`, you will open `rococo-local-parachain-plain.json` and modify two fields:
 
 ```json
   // --snip--
-  "para_id": <your para ID> , // <--- = your already registered ID
+  "para_id": <your `ParaID`> , // <--- = your already registered ID
   // --snip--
       "parachainInfo": {
-        "parachainId": <your para ID> // <--- = your already registered ID
+        "parachainId": <your `ParaID`> // <--- = your already registered ID
       },
   // --snip--
 ```
@@ -172,7 +172,7 @@ In the a production network, this will typically be accomplished with on Polkado
 
 ![parachain-registration-sudo.png](../../../../../media/images/docs/tutorials/09-cumulus/parachain-registration-sudo.png)
 
-- In the extrinsics parameters, specify the correct para ID and files to use.
+- In the extrinsics parameters, specify the correct `ParaID` and files to use.
 
 This dispatch, if successful, will emit the `sudo.Sudid` event, viewable in the relay chain explorer page.
 
