@@ -87,7 +87,8 @@ If the help page is printed, you have succeeded in building a Polkadot node.
 
 You will need a [chain specification](/main-docs/build/chain-spec/)) for your relay chain network.
 
-Whichever chain spec file you choose to use we will refer to the file simply as `chain-spec.json` in the instructions below. You will need to supply the proper path to the chain spec you are using.
+The instructions in this tutorial refer to the chain specification file as `chain-spec.json`.
+When following these instructions, replace  `chain-spec.json` with the path to the chain specification you are using.
 
 In defining these, keep in mind that a relay chain _must_ have one more validator nodes running than the total of connected parachain collators.
 For example, if you want to connect two parachains with a single collator, run three or more relay chain validator nodes.
