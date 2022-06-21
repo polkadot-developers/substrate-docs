@@ -177,7 +177,8 @@ pre {
   margin: 0.5em 0;
   padding-top: 1em!important;
   padding-bottom: 1em!important;
-  padding-right: 0.5em;
+  padding-right: 1.5em;
+  padding-left: 0.5em;
   overflow: auto;
   font-size:1em;
 }
@@ -186,7 +187,7 @@ pre {
   left: 16px;
 }
 .markdown-body .gatsby-highlight pre {
-  margin-right: 4rem!important;
+    margin-right: 6rem!important;
 }
 /* TABBED CODE BLOCKS */
 
