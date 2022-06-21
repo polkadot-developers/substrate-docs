@@ -9,7 +9,7 @@ keywords:
 TODO zombinet https://github.com/substrate-developer-hub/substrate-docs/issues/1098
 
 > The following is for **reference only**.
-> There is a temporary breaking issue in the launch tool that is traced in https://github.com/substrate-developer-hub/substrate-docs/issues/634 .
+> There is a temporary breaking issue in the launch tool that is traced in [this issue](https://github.com/substrate-developer-hub/substrate-docs/issues/634).
 > Thus the examples below are not expected to work!
 
 The final part of the workshop will step you through how to use the [`polkadot-launch`](https://github.com/paritytech/polkadot-launch) tool to automate the launch of a full parachain testnet with multiple parachains and a common relay chain.

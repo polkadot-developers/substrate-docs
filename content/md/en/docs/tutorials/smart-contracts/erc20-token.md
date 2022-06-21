@@ -224,7 +224,7 @@ To add the transfer functions to the smart contract:
    }
    ```
 
-1. Add an `Result` return type to return the `InsufficientBalance` error .
+1. Add an `Result` return type to return the `InsufficientBalance` error.
 
    ```rust
    /// Specify the ERC-20 result type.
