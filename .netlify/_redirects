@@ -9,6 +9,7 @@
 
 /v3/*                        /quick-start/ 301!
 
+/playground                  https://substrate.io/developers/playground/
 /how-to-guides/v3/*          /reference/how-to-guides/ 301!
 /tutorials/v3/*              /tutorials/ 301!
 /substrate-how-to-guides     /reference/how-to-guides/ 301!
