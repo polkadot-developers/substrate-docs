@@ -26,12 +26,21 @@ nodes and not with nodes from other libp2p networks.
 You want to isolate them to a distinct peer group with this ID.
 Protocol ID collisions will cause _many_ issues for your nodes.
 
-In order to set a unique protocol ID, change make sure you use some nonce or salt value. This is set
-(for the [parachain node template](https://github.com/substrate-developer-hub/substrate-parachain-template/))
-as a CLI item in `/client/network/src/command.rs`, and passed to extend the `/client/network/src/chain_spec.rs`
+> Protocol ID should not be confused with `ParaID`, described in the [Connect to a relay chain](/reference/how-to-guides/parachains/connect-to-a-relay-chain) guide).
+
+In order to set a unique protocol ID, change make sure you use some nonce or salt value.
+These are set for the [parachain node template](https://github.com/substrate-developer-hub/substrate-parachain-template/) for each network you define in `/node/src/chain_spec.rs`, for example:
+
+```rust
+pub fn local_testnet_config() -> ChainSpec {
+  // --snip--
+		// Protocol ID
+		Some("template-local"),
+  // --snip--
+```
 
 All [chain specification](/main-docs/build/chain-spec/) files include this item as a field.
-For example, the primary [relay chain runtime](https://github.com/paritytech/polkadot/tree/master/node/service/res) chain specs have unique protocol IDs.
+For example, the primary [relay chain runtime](https://github.com/paritytech/polkadot/tree/master/node/service/chain-specs) chain specs have unique protocol IDs.
 For Polkadot:
 
 ```json
@@ -43,9 +52,7 @@ For Polkadot:
 }
 ```
 
-Keep an eye (subscribe)
-to [this issue](https://github.com/paritytech/substrate/issues/7746)
-that will address a better method to safely configure this constant in the future.
+Subscribe to [this issue](https://github.com/paritytech/substrate/issues/7746) that will address a better method to automatically and safely configure this constant in the future.
 
 ## Memory profiling
 
@@ -68,62 +75,58 @@ the amount of resource consumption as much as possible for the relay chain.
   PoVBlock size limit. If the runtime is not included in the state proof, the size limit of the new
   runtime will be much higher.
 
-## Critical parachain constraints
+## Gather critical parachain constraint information
 
-You can check the maximum sizes [in the Polkadot repo](https://github.com/paritytech/polkadot/blob/master/primitives/src/v1/mod.rs#L247-L253) for all relay chains (these are common constants).
+You can check the present maximum sizes [in the Polkadot `primitives`](https://github.com/paritytech/polkadot/blob/master/primitives/) for the release of every  relay chain (these are common constants).
 Make note of:
 
-- The runtime version of the relay chain you are targeting (these _may_ change)
+- The runtime version of the relay chain you are targeting (these _will_ change over time)
 - `MAX_CODE_SIZE`
 - `MAX_HEAD_DATA_SIZE`
 - `MAX_POV_SIZE`
 
 You **must** have your parachain fit comfortably within these maxima.
 You can also use the the Polkadot-JS Apps UI connected to a relay node to see these
-constants: _Developers_ -> _ParachainsConfiguration_ -> _ActiveConfiguration_
+constants: _Developers_ -> _ParachainsConfiguration_ -> _ActiveConfiguration_.
+
+Polkadot is an ever improving protocol, so do watch for changes over time, as your parachain can grow with the relay chain's capabilities.
 
 ## Use proper weights
 
-Use [runtime benchmarking](/main-docs/test/benchmark) to ensure that your runtime weights are
-actually indicative of the resources used by your runtime.
+Use [runtime benchmarking](/main-docs/test/benchmark) to ensure that your runtime weights are actually indicative of the resources used by your runtime.
+Failure to set appropriate weights on your network will at least lead to end user pain with allocating resources to extrinsics as typically fees are coupled to weights. At worst, incorrect weights can lead to extrinsics _brick your chain_!
 
 ### Custom weights
 
-If you need to diverge from benchmarks, make sure that each pallet in your runtime employs the
-correct weighting system. Default and "guessed at" weights **are not** to be used in production, as
-a general rule.
+If you need to diverge from benchmarks, make sure that each pallet in your runtime employs the correct weighting system.
+Default and "guessed at" weights **are not** to be used in production, as a general rule.
 
 ### Set block weight limit
 
-It is recommended to have a block weight limit (block production time) of 0.5 seconds in the
-beginning due to uncertainties in block execution time. As the execution time of the network
-stabilizes the weight limit can be increased to 2 seconds.
+It is recommended to have a block weight limit (block production time) of 0.5 seconds in the beginning due to uncertainties in block execution time.
+As the execution time of the network stabilizes the weight limit can be increased to 2 seconds.
 
 ## Setup call filters
 
-Especially when launching a parachain, you might need to highly constrict what is enabled for
-_specific classes_ of users. This can be accomplished with **call filters**.
+Especially when launching a parachain, you might need to highly constrict what is enabled for _specific classes_ of users.
+This can be accomplished with **call filters**.
 
 Here you can see an example of how to [limit](https://github.com/paritytech/cumulus/blob/59cdbb6a56b1c49009413d66ba2232494563b57c/polkadot-parachains/statemine/src/lib.rs#L148) and [enable](https://github.com/paritytech/cumulus/pull/476/files#diff-09b95657e9aa1b646722afa7944a00ddc2541e8753254a86180b338d3376f93eL151) functionality with filters as implemented in the [Statemine runtime deployment](https://github.com/paritytech/cumulus/pull/476).
 
 ## Incremental runtime deployments
 
-If you are approaching limits outline above before launch (like a too-large large runtime) it is
-highly advisable to prune down functionality as much as practical and **incrementally upgrade**.
+If you are approaching the limits of the [critical constraints outline above](#gather-critical-parachain-constraint-information) before launch (like a too-large large runtime) it is highly advisable to prune down functionality as much as practical and **incrementally upgrade**.
 In these cases, you can:
 
 1. Generate the genesis state of your chain with full runtime functionality (including all the pallets)
 
-2. Remove all pallets that you will not need upon parachain launch from your runtime
+1. Remove all pallets that you will not need upon parachain launch from your runtime
 
-3. Re-build the WASM blob (validation logic) and the runtime of the chain
+1. Re-build the WASM blob (validation logic) and the runtime of the chain
 
-4. Register your parachain with the updated genesis and the WASM blob generated in (3)
+1. Register your parachain with the updated genesis and the WASM blob generated in (3)
 
-5. After your parachain is live you can upgrade your runtime on-chain to include the missing pallets
-   (ensure that pallet indices and names match those used to generate the genesis state in step (1)
-   without having to do storage migrations. For more information on on-chain runtime upgrades refer to
-   the next section.
+1. After your parachain is live you can upgrade your runtime on-chain to include the missing pallets (ensure that pallet indices and names match those used to generate the genesis state in step (1) without having to do storage migrations. 
 
 **See the [parachain runtime upgrade guide](/reference/how-to-guides/parachains/runtime-upgrade)** for how
 to go about actually performing these incremental runtime upgrades.
