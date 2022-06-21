@@ -4,10 +4,6 @@
 
 const redirects = [
   {
-    fromPath: '/',
-    toPath: `/quick-start/`,
-  },
-  {
     fromPath: '/playground/',
     toPath: `https://substrate.io/developers/playground/`,
   },
