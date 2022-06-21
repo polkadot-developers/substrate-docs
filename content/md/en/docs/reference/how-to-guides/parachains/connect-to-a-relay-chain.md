@@ -37,7 +37,7 @@ For example, for providing the Wasm blob or genesis state, creating channels to 
   will be:
   https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/parachains/parathreads
 
-![Reserve a `ParaID`](../../../../../media/images/docs/tutorials/09-cumulus/paraid-reserve.png)
+![Reserve a `ParaID`](/media/images/docs/tutorials/09-cumulus/paraid-reserve.png)
 
 - Go to the `Parathread` tab and click on `+ParaID` (a parachain always begins as a parathread with a `ParaID`)
 
@@ -170,7 +170,7 @@ In the a production network, this will typically be accomplished with on Polkado
 
 - Pick `paraSudoWrapper` -> `sudoScheduleParaInitialize(id, genesis)` as the extrinsic type, shown below.
 
-![parachain-registration-sudo.png](../../../../../media/images/docs/tutorials/09-cumulus/parachain-registration-sudo.png)
+![parachain-registration-sudo.png](/media/images/docs/tutorials/09-cumulus/parachain-registration-sudo.png)
 
 - In the extrinsics parameters, specify the correct `ParaID` and files to use.
 
@@ -184,7 +184,7 @@ This dispatch, if successful, will emit the `sudo.Sudid` event, viewable in the 
 
 - Pick `slots`->`forceLease(para, leaser, amount, period_begin, period_end)` as the extrinsic type, shown below.
 
-![forceLease.png](../../../../../media/images/docs/tutorials/09-cumulus/forceLease.png)
+![forceLease.png](/media/images/docs/tutorials/09-cumulus/forceLease.png)
 
 Be sure to set the `period_begin` to the slot you want to start with.
 For example, if you started from scratch in a test environment, the begin period is likely is to be the already active slot `0`.
@@ -202,7 +202,7 @@ The collator should start producing parachain blocks (aka collating) once the re
 
 You can keep track of what parachains are registered and what their latest head data is on the `Network > Parachains` tab in the Apps UI.
 
-![parachain-summary-screenshot.png](../../../../../media/images/docs/tutorials/09-cumulus/parachain-summary-screenshot.png)
+![parachain-summary-screenshot.png](/media/images/docs/tutorials/09-cumulus/parachain-summary-screenshot.png)
 
 ## Examples
 

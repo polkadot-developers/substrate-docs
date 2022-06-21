@@ -44,15 +44,15 @@ The procedure will be as followed:
 
 - After successfully reserving your `ParaID`, you can now register as a **Parathread**.
 
-  ![register-parathread.png](../../../../../media/images/docs/tutorials/09-cumulus/register-parathread.png)
+  ![register-parathread.png](/media/images/docs/tutorials/09-cumulus/register-parathread.png)
 
 - Once your extrinsic succeeds, you will see the `registrar.Registered` event being emitted.
 
-  ![parathread-register-success.png](../../../../../media/images/docs/tutorials/09-cumulus/parathread-register-success.png)
+  ![parathread-register-success.png](/media/images/docs/tutorials/09-cumulus/parathread-register-success.png)
 
 - Also in the Polkadot-JS Apps [Parachains -> Parathreads](https://polkadot.js.org/apps/#/parachains/parathreads) page and you will see your parathread registration is **Onboarding**:
 
-  ![parathread-onboarding.png](../../../../../media/images/docs/tutorials/09-cumulus/parathread-onboarding.png)
+  ![parathread-onboarding.png](/media/images/docs/tutorials/09-cumulus/parathread-onboarding.png)
 
 After the extrinsic succeeds, it takes [**2 sessions**](#relevant-settings) for the chain to fully onboard as a parathread.
 
@@ -87,7 +87,7 @@ You can do so in Polkadot-JS App [Network -> Parachains -> Auctions](https://pol
 
 Pick your `ParaID`, how much you want to bid, and the slots you want to bid for:
 
-![parachain-bid.png](../../../../../media/images/docs/tutorials/09-cumulus/parachain-bid.png)
+![parachain-bid.png](/media/images/docs/tutorials/09-cumulus/parachain-bid.png)
 
 ### Crowdloans
 
@@ -101,7 +101,7 @@ You will not do this for a testnet parachain slot, but you may consider this opt
 
 In the following, we are getting ready to submit an extrinsic to start a crowdloan.
 
-![parachain-bid.png](../../../../../media/images/docs/tutorials/09-cumulus/parachain-crowdloan.png)
+![parachain-bid.png](/media/images/docs/tutorials/09-cumulus/parachain-crowdloan.png)
 
 Notes on the parameters:
 
@@ -122,7 +122,7 @@ Notes on the parameters:
 
 If your extrinsic succeeds, you can see your new crowdloan entry in [Network -> Parachains -> Crowdloan page](https://polkadot.js.org/apps/#/parachains/crowdloan):
 
-![crowdloan-success.png](../../../../../media/images/docs/tutorials/09-cumulus/crowdloan-success.png)
+![crowdloan-success.png](/media/images/docs/tutorials/09-cumulus/crowdloan-success.png)
 
 #### Fund a Crowdloan Campaign
 
@@ -132,6 +132,6 @@ You can goto the same [Crowdloan page](https://polkadot.js.org/apps/#/parachains
 
 You will see an extrinsic pop up similar to the following:
 
-![crowdloan-contribute.png](../../../../../media/images/docs/tutorials/09-cumulus/crowdloan-contribute.png)
+![crowdloan-contribute.png](/media/images/docs/tutorials/09-cumulus/crowdloan-contribute.png)
 
 Input the funding amount your want to support and submit the transaction.

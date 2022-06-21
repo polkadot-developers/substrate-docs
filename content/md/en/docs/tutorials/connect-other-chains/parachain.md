@@ -295,7 +295,7 @@ This is the more formal flow for registration used in production (with the excep
 Here we will use `sudo` to grant ourselves a lease.
 You should have an onboarded parathread:
 
-![parathread-onboarding.png](../../../../../media/images/docs/tutorials/09-cumulus/parathread-onboarding.png)
+![parathread-onboarding.png](/media/images/docs/tutorials/09-cumulus/parathread-onboarding.png)
 
 - Go to [Polkadot Apps UI](https://polkadot.js.org/apps/), connecting to your **relay chain**.
 - Execute a sudo extrinsic on the relay chain by going to `Developer` -> `sudo` page.

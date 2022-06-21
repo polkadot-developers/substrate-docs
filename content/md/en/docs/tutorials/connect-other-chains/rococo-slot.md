@@ -42,7 +42,7 @@ With a minimal 5 `ROC` free balance, register as a parathread on Rococo:
 
 1. Reserve a unique `ParaID`. You will be assigned to the next available ID - **make note of this**.
 
-![paraid-reserve.png](../../../../../media/images/docs/tutorials/09-cumulus/paraid-reserve.png)
+![paraid-reserve.png](/media/images/docs/tutorials/09-cumulus/paraid-reserve.png)
 
 ## Generate parachain genesis and Wasm files
 
@@ -68,15 +68,15 @@ Before you can become a parachain, you must register as a parathread on Rococo:
 
 1. Using your reserved `ParaID` from above, you can now register as a **parathread**.
 
-![register-parathread.png](../../../../../media/images/docs/tutorials/09-cumulus/register-parathread.png)
+![register-parathread.png](/media/images/docs/tutorials/09-cumulus/register-parathread.png)
 
 1. Once your extrinsic succeeds, you will see a `registrar.Registered` event emitted.
 
-![parathread-register-success.png](../../../../../media/images/docs/tutorials/09-cumulus/parathread-register-success.png)
+![parathread-register-success.png](/media/images/docs/tutorials/09-cumulus/parathread-register-success.png)
 
 1. Go to the [Parachains -> Parathreads](https://polkadot.js.org/apps/#/parachains/parathreads) page and you will see that your parathread registration is **Onboarding**:
 
-![parathread-onboarding.png](../../../../../media/images/docs/tutorials/09-cumulus/parathread-onboarding.png)
+![parathread-onboarding.png](/media/images/docs/tutorials/09-cumulus/parathread-onboarding.png)
 
 After the extrinsic succeeds, it takes 2 sessions for the chain to fully onboard as a parathread.
 
