@@ -1,5 +1,5 @@
 {
-"name": "substrate-docs",
+	"name": "substrate-docs",
 	"private": true,
 	"description": "Substrate Docs",
 	"version": "0.1.0",
@@ -14,7 +14,7 @@
 		"serve": "gatsby serve",
 		"serve:fresh": "yarn clean; yarn build; yarn serve",
 		"clean": "gatsby clean",
-		"format": "prettier --config .prettierrc.js --write \"{!**/*.{js,jsx,json},**/*.{md}}\"",
+		"format": "prettier --config .prettierrc.js --write content/md/en/docs/**/*.md",
 		"format:code": "prettier --config .prettierrc.js --write \"{**/*.{js,jsx,json},!**/*.{md}}\"",
 		"lint": "npm-run-all lint:**",
 		"lint:eslint": "eslint . --ext js --ext jsx",

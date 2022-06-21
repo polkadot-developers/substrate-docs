@@ -1,8 +1,8 @@
 ---
 title: State transitions and storage
-description: 
+description:
 keywords:
---- 
+---
 
 Substrate uses a simple key-value data store implemented as a database-backed, modified Merkle tree.
 All of Substrate's [higher-level storage abstractions](/main-docs/build/runtime-storage) are built on top of this simple key-value store.
@@ -100,11 +100,11 @@ state_getStorage("0xc2261276cc9d1f8598ea4b6a74b15c2f6482b9ade7bc6657aaca787ba1ad
 
 The value that is returned from the storage query (`"0x0000a0dec5adc9353600000000000000"` in the example above) is the [SCALE](/reference/scale-codec/)-encoded value of Alice's account balance (`"1000000000000000000000"` in this example).
 Notice that before hashing Alice's account ID it has to be SCALE-encoded.
-Also notice that the output of the `blake2_128_concat` function consists of 32 hexadecimal characters followed by the function's input. 
-This is because the Blake2 128 Concat is [a transparent hashing algorithm](/main-docs/build/runtime-storage#transparent-hashing-algorithms). 
+Also notice that the output of the `blake2_128_concat` function consists of 32 hexadecimal characters followed by the function's input.
+This is because the Blake2 128 Concat is [a transparent hashing algorithm](/main-docs/build/runtime-storage#transparent-hashing-algorithms).
 
 Although the above example may make this characteristic seem superfluous, its utility becomes more apparent when the goal is to iterate over the keys in a map (as opposed to retrieving the value associated with a single key).
-The ability to iterate over the keys in a map is a common requirement in order to allow _people_ to use the map in a way that seems natural (such as UIs): first, a user is presented with a list of elements in the map, then, that user can select the element that they are interested in and query the map for more details about that particular element. 
+The ability to iterate over the keys in a map is a common requirement in order to allow _people_ to use the map in a way that seems natural (such as UIs): first, a user is presented with a list of elements in the map, then, that user can select the element that they are interested in and query the map for more details about that particular element.
 
 Here is another example that uses the same example Storage Map (a map named `FreeBalances` that uses a Blake2 128 Concat hashing algorithm in a pallet named `Balances` that demonstrates using the Substrate RPC to query a Storage Map
 for its list of keys via the `state_getKeys` RPC endpoint:

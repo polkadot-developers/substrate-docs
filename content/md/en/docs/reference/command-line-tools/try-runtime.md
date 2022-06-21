@@ -4,8 +4,8 @@ description:
 keywords:
 ---
 
-The `try-runtime` tool is built to query a snapshot of runtime storage, using an [in-memory-externalities](https://paritytech.github.io/substrate/master/sp_state_machine/struct.TestExternalities.html) to store state. 
-In this way, it enables runtime engineers to write tests for a specified runtime state, for testing against real chain state _before_ going to production. 
+The `try-runtime` tool is built to query a snapshot of runtime storage, using an [in-memory-externalities](https://paritytech.github.io/substrate/master/sp_state_machine/struct.TestExternalities.html) to store state.
+In this way, it enables runtime engineers to write tests for a specified runtime state, for testing against real chain state _before_ going to production.
 It is designed to be used as a command line interface to specify at which block to query state.
 
 In its simplest form, `try-runtime` is a tool that enables:
@@ -13,7 +13,6 @@ In its simplest form, `try-runtime` is a tool that enables:
 1. Connecting to a remote node and calling into some runtime API.
 2. Scraping the specified state from a node at a given block.
 3. Writing tests for that data.
-
 
 ## Motivation
 
@@ -60,8 +59,8 @@ expensive RPC queries, namely:
 - `set --rpc-max-payload 1000` to ensure large RPC queries can work.
 - `set --rpc-cors all` to ensure ws connections can come through.
 
-You can combine `try-runtime` with [`fork-off-substrate`](https://github.com/maxsam4/fork-off-substrate) to test your chain before production. 
-Use `try-runtime` to test your chain's migration and its pre and post states. 
+You can combine `try-runtime` with [`fork-off-substrate`](https://github.com/maxsam4/fork-off-substrate) to test your chain before production.
+Use `try-runtime` to test your chain's migration and its pre and post states.
 Then, use `fork-off-substrate` if you want to check that block production continues after the migration.
 
 ### Calling into hooks from `OnRuntimeUpgrade`

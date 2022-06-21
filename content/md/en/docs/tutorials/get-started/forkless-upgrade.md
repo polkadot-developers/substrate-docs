@@ -317,8 +317,7 @@ app to query the `existentialDeposit` constant value from the Balances pallet.
 ## Where to go next
 
 - [Storage migrations](/main-docs/build/upgrade/#storage-migration)
-<!-- TODO NAV.YAML -->
-<!-- add back ABOVE TOO -->
-<!--
-- [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/)
-  -->
+  <!-- TODO NAV.YAML -->
+  <!-- add  back ABOVE -->
+  <!-- - [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/) -->
+  

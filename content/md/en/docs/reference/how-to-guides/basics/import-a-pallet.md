@@ -1,6 +1,6 @@
 ---
 title: Import a pallet
-description: 
+description:
 keywords:
   - basics
   - beginner
@@ -12,7 +12,7 @@ For more detailed step-by-step instructions, see [Add a pallet to the runtime](/
 
 This guide illustrates:
 
-- How to include a custom local pallet that implements an event and a call for the  runtime.
+- How to include a custom local pallet that implements an event and a call for the runtime.
 - How to include an external pallet from `Crates.io` in the runtime.
 
 ## Create a local pallet
@@ -79,10 +79,10 @@ This guide illustrates:
 ## Import an external pallet
 
 To add an external pallet, you use a similar method to the one you used with the local pallet, but you must include all of the types your pallet exposes.
-You must also include the relevant parameter types and constants. 
+You must also include the relevant parameter types and constants.
 For examples of how to declare parameters and constants, see [`pallet_timestamp`](https://paritytech.github.io/substrate/master/pallet_timestamp/index.html).
 
-The following is an example of how you would add an external pallet to the  `/runtime/Cargo.toml` dependencies if the pallet is hosted on [crates.parity.io](https://crates.parity.io/):
+The following is an example of how you would add an external pallet to the `/runtime/Cargo.toml` dependencies if the pallet is hosted on [crates.parity.io](https://crates.parity.io/):
 
 ```toml
 [dependencies]

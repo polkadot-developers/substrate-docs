@@ -12,7 +12,6 @@ Network maintenance
 
 Synchronizing with Polkadot updates
 
-
 Keeping up with Substrate metadata updates.
 
 Maintain runtime uptime

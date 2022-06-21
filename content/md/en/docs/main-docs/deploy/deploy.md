@@ -10,6 +10,6 @@ Construct Cumulus
 
 Launch Parachain
 
-* PoV
-* Limitations that apply to parachains
-* Collators
+- PoV
+- Limitations that apply to parachains
+- Collators

@@ -12,7 +12,7 @@ For an overview of some of the most commonly-used tools, see [command-line tools
 
 ## Where to go next
 
-* [Command-line tools](/reference/command-line-tools/)
-* [node-template](/reference/command-line-tools/node-template/)
-* [subkey](/reference/command-line-tools/subkey/)
-* [try-runtime](/reference/command-line-tools/try-runtime/)
+- [Command-line tools](/reference/command-line-tools/)
+- [node-template](/reference/command-line-tools/node-template/)
+- [subkey](/reference/command-line-tools/subkey/)
+- [try-runtime](/reference/command-line-tools/try-runtime/)

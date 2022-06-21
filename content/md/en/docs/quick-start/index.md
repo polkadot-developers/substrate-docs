@@ -30,7 +30,7 @@ Before you begin, verify the following:
 
    ```sh
    git clone --branch latest --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
-	```
+   ```
 
 1. Change to the root of the cloned directory:
 
@@ -95,7 +95,7 @@ Before you begin, verify the following:
 
 ## Connect to the node
 
-1. Use the hosted version of the feature-rich [Polkadot Apps](https://github.com/polkadot-js/apps/) User Interface (UI). 
+1. Use the hosted version of the feature-rich [Polkadot Apps](https://github.com/polkadot-js/apps/) User Interface (UI).
 
    <https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/explorer>
 

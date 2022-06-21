@@ -17,6 +17,7 @@ keywords:
 This guide steps through how to connect a parachain to a relay chain.
 
 This guide illustrates:
+
 - How to obtain a para ID
 - How to register a parachain
 - How to obtain a parachain slot

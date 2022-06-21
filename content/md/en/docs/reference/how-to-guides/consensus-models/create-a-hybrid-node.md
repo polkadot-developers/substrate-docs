@@ -28,7 +28,7 @@ Customize the consensus mechanisms of a Substrate chain.
 ## Configure the block import pipeline
 
 We begin by creating the block import for Grandpa.
-In addition to the block import itself, we get back a `grandpa_link`. 
+In addition to the block import itself, we get back a `grandpa_link`.
 This link is a channel over which the block import can communicate with the
 background task that actually casts Grandpa votes.
 The [details of the Grandpa protocol](https://research.web3.foundation/en/latest/polkadot/finality.html) are beyond the scope of this guide.
@@ -43,7 +43,7 @@ let (grandpa_block_import, grandpa_link) = sc_finality_grandpa::block_import(
 )?;
 ```
 
-With the grandpa block import created, we can now create the PoW block import. 
+With the grandpa block import created, we can now create the PoW block import.
 The Pow block import is the outer-most layer of the block import onion and it wraps the grandpa block import.
 
 ```rust
@@ -60,7 +60,7 @@ let pow_block_import = sc_consensus_pow::PowBlockImport::new(
 
 ## Create an import queue
 
-With the block imports set up, we can proceed to create the import queue. 
+With the block imports set up, we can proceed to create the import queue.
 We make it using PoW's [`import_queue` helper function](https://paritytech.github.io/substrate/master/sc_consensus_pow/fn.import_queue.html).
 Notice that it requires the entire block import pipeline which we refer to as `pow_block_import` because PoW is the outermost layer.
 
@@ -104,7 +104,7 @@ task_manager
 ## Spawn the Grandpa task
 
 Grandpa is _not_ CPU intensive, so we use a standard `async` worker to listen to and cast
-Grandpa votes. 
+Grandpa votes.
 We begin by creating a Grandpa [`Config`](https://paritytech.github.io/substrate/master/sc_finality_grandpa/struct.Config.html):
 
 ```rust

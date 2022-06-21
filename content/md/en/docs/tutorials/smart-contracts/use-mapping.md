@@ -178,7 +178,7 @@ To add a storage map to the `incrementer` contract:
    }
    ```
 
-1. Add a `get_mine` function to read `my_value` using the Mapping API `get` function and return `my_value` for the contract caller .
+1. Add a `get_mine` function to read `my_value` using the Mapping API `get` function and return `my_value` for the contract caller.
 
    ```rust
    #[ink(message)]

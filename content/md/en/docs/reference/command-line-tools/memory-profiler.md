@@ -4,8 +4,8 @@ description: Command-line reference information for the memory-profiler program.
 keywords:
 ---
 
-Memory profiling enables you to understand the memory allocation and behavior of your blockchain applications over time in Substrate-based clients. 
-It identifies method calls in the context of how memory was allocated, combining this information with the number of allocated objects. 
+Memory profiling enables you to understand the memory allocation and behavior of your blockchain applications over time in Substrate-based clients.
+It identifies method calls in the context of how memory was allocated, combining this information with the number of allocated objects.
 In addition, profiling can be used to analyze memory leaks, identify where memory consumption is happening, define temporary allocations, and investigate excessive memory fragmentation within applications.
 
 The profiler we recommend is [koute's memory profiler](https://github.com/koute/memory-profiler).
@@ -193,8 +193,8 @@ that you can access you'd like to export the data into another format or inspect
   $ echo "-1" | sudo tee /proc/sys/kernel/perf_event_paranoid
   ```
 
-  Although please note that this might have some security implications. 
+  Although please note that this might have some security implications.
   Take a look at `man perf_event_open` for more details.
 
-- During analysis the whole data file has to be loaded into memory. 
+- During analysis the whole data file has to be loaded into memory.
   If you don't have enough RAM and you'll try to load up a big file the analyzer might run out of memory and crash.
