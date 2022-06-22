@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function InfoRibbon() {
+export default function InfoRibbon({ link }) {
   return (
     <div
       className="flex flex-row bg-blue-100 border-l border-r border-t border-b border-blue-500 w-100 h-16 text-blue-700 px-4 py-3 items-center content-center"
@@ -17,11 +17,8 @@ export default function InfoRibbon() {
         />
       </svg>
       <p className="mb-0 leading-4">
-        We are updating the documentation. Some content might be unavailable. Learn more about{' '}
-        <a
-          href="https://github.com/substrate-developer-hub/substrate-docs/blob/main-md/doc-update-roadmap.md"
-          className="hover:opacity-90 underline"
-        >
+        We are updating the documentation. Learn more about{' '}
+        <a href={link} className="hover:opacity-90 underline">
           documentation updates
         </a>
         .

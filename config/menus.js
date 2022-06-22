@@ -49,15 +49,15 @@ const technology = [
 
 const developers = [
   {
-    url: '',
+    url: WEBSITE_URL + '/developers/',
     id: 'developers.home',
   },
   {
-    url: '/quick-start',
+    url: '/',
     id: 'developers.docs',
   },
   {
-    url: '/playground',
+    url: WEBSITE_URL + '/developers/playground/',
     id: 'developers.playground',
   },
   {
@@ -65,7 +65,7 @@ const developers = [
     id: 'developers.rustdocs',
   },
   {
-    url: WEBSITE_URL + '/smart-contracts',
+    url: WEBSITE_URL + '/developers/smart-contracts/',
     id: 'developers.smart-contracts',
   },
 ];
