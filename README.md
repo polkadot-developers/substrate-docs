@@ -23,7 +23,7 @@
             alt="follow on Twitter"></a>
 </p>
 
-# Contributing
+## Contributing
 
 Thank you for your interest in contributing to documentation for the Substrate development
 framework. As a member of the community, you are invited and encouraged to contribute by submitting
@@ -33,9 +33,9 @@ provide new content. If you have any further questions, please do not hesitate t
 [Substrate technical community channel](https://matrix.to/#/#substrate-technical:matrix.org)! We
 would love to get to know you and your work!
 
-## Working with `/docs` content
+### Working with `/docs` content
 
-### URL paths
+#### URL paths
 
 All `.md` files added to `./content/md/en/docs/` folder will output an URL path without the `/docs` prefix, eg.:
 
@@ -44,12 +44,12 @@ All `.md` files added to `./content/md/en/docs/` folder will output an URL path 
 
 You can use any structure nesting needed, there is no limit of depth.
 
-### Media / Images
+#### Media / Images
 
 - use `./content/media/images/docs/` folder for images to be included in `/docs/*/*.md` files
 - source images in `.md`: `/media/images/docs/path/to/your/image/<image>.ext`
 
-### Navigation config
+#### Navigation config
 
 - Use file `./content/config/nav.yaml` to add items and linking to your content
 
@@ -59,9 +59,9 @@ This config file is used to generate sidebar menu where:
 - menu supports three level hierarchy
 - menu accepts external links, eg.: `https://substrate.io`
 
-# Local Development
+## Local Development
 
-## Install
+### Install
 
 Navigate into your cloned local repo directory and install all dependencies.
 
