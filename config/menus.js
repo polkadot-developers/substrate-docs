@@ -106,7 +106,7 @@ const ecosystem = [
     child: 'connect',
   },
   {
-    url: WEBSITE_URL + '/square-one',
+    url: WEBSITE_URL + '/ecosystem/square-one',
     id: 'ecosystem.square-one',
   },
 ];
