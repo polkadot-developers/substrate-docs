@@ -1,7 +1,7 @@
 const redirects = [
   {
-    fromPath: '',
-    toPath: ``,
+    fromPath: '/',
+    toPath: '/quick-start/',
   },
 ];
 
