@@ -57,12 +57,12 @@ const developers = [
     id: 'developers.docs',
   },
   {
-    url: WEBSITE_URL + '/developers/playground/',
-    id: 'developers.playground',
-  },
-  {
     url: 'https://paritytech.github.io/substrate/master/sc_service/',
     id: 'developers.rustdocs',
+  },
+  {
+    url: WEBSITE_URL + '/developers/playground/',
+    id: 'developers.playground',
   },
   {
     url: WEBSITE_URL + '/developers/smart-contracts/',
