@@ -103,7 +103,7 @@ export default function DocsSinglePage({ data, pageContext }) {
                 <header>
                   <h1>{title}</h1>
                 </header>
-                <main>
+                <main className="markdown-body">
                   <Markdown htmlAst={htmlAst} />
                 </main>
                 <footer>

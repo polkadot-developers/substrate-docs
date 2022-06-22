@@ -87,6 +87,10 @@
 }
 
 /* GLOBAL OVERWITES */
+.markdown-body .gatsby-image-wrapper {
+  max-width: 600px;
+}
+
 .dark .text-substrateBlue, .dark .mdx-anchor a, .dark .hover\:text-substrateBlue:hover {
   color:#0e92f9;
 }
