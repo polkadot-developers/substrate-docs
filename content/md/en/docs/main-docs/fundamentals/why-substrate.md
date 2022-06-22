@@ -28,10 +28,10 @@ However, Substrate might be the perfect choice if you want to build a blockchain
 Substrate is a Software Development Kit (SDK) specifically designed to provide you with all the blockchain's fundamentals components and enables you to focus on crafting the logic that makes your chain unique and innovative.
 Unlike other distributed ledger platforms, Substrate is:
 
-- [Flexible](#flexible)
-- [Open](#open)
-- [Interoperable](#interoperable)
-- [Future-proof](#future-proof)
+- [Flexible](/#flexible)
+- [Open](/#open)
+- [Interoperable](/#interoperable)
+- [Future-proof](/#future-proof)
 
 ## Flexible
 
