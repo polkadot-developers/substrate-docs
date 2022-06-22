@@ -32,3 +32,22 @@
 /seminar	                          https://substrate.io/ecosystem/resources/seminar/              301!
 /terms	                              https://www.parity.io/terms/                                   301!
 /awesome-substrate                    https://github.com/substrate-developer-hub/awesome-substrate/blob/master/README.md    301!
+
+# 
+
+https://docs.substrate.io/reference/how-to-guides/pallet-design/loose-coupling/                 /reference/how-to-guides/ 301!
+https://docs.substrate.io/rustdocs/latest/frame_benchmarking/benchmarking/index.html/           / 301!
+https://docs.substrate.io/pow/                                                                  / 301!
+https://docs.substrate.io/rustdocs//latest/frame_support/weights/trait.ClassifyDispatch.html/   / 301!
+https://docs.substrate.io/assets/tutorials/cumulus/chain-spec/rococo-custom-2-raw.json/         / 301!
+https://docs.substrate.io/rustdocs/latest/frame_support/weights/trait.PaysFee.html/             / 301!
+https://docs.substrate.io/reference/how-to-guides/weights/custom-weights/                       / 301!
+https://docs.substrate.io/assets/tutorials/cumulus/chain-spec/rococo-custom-2-plain.json/       / 301!
+https://docs.substrate.io/reference/transaction-formats/                                        / 301!
+https://docs.substrate.io/reference/how-to-guides/storage-migrations/test-migration/            / 301!
+https://docs.substrate.io/tutorials/connect-other-chainsconnect-rococo/                         / 301!
+https://docs.substrate.io/reference/how-to-guides/import-a-pallet/                              / 301!
+https://docs.substrate.io/reference/how-to-guides/basics/storage-migration/                     / 301!
+https://docs.substrate.io/reference/how-to-guides/configure-runtime-constants/                  / 301!
+https://docs.substrate.io/tutorials/connect-other-chains/connect-parachain/                     / 301!
+https://docs.substrate.io/tutorials/connect-other-chains/cumulus/relay-chain/                   / 301!
