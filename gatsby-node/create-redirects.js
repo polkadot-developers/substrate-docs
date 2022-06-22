@@ -1,7 +1,7 @@
 const redirects = [
   {
-    // fromPath: '/example/',
-    // toPath: `https://example.com`,
+    fromPath: '',
+    toPath: ``,
   },
 ];
 
