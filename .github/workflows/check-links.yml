@@ -7,7 +7,7 @@ on:
     # ref:
     #   - https://github.com/open-telemetry/opentelemetry-python/issues/1370
     #   - https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#pull_request
-    branches: [ main, develop ]
+    branches: [ main ]
 
 jobs:
   build-website-image:
