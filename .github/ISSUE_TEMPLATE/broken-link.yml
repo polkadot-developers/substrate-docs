@@ -1,0 +1,32 @@
+name: Broken link
+description: Report a broken link to help us fix them.
+labels: ["broken link ❌"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Found a broken link? Thanks for helping us identify them. Please fill in the sections below and hit the "Submit new issue" button when you're done.
+  - type: textarea
+    id: url
+    attributes:
+      label: Broken Link
+      description: What link lead to a 404?
+      placeholder: The URL that you clicked leading to a 404 or improper page.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected Location
+      description: Where was the link you clicked supposed to go?
+      placeholder: The URL of where you expected it to go (if you know it).
+    validations:
+      required: false
+  - type: textarea
+    id: other
+    attributes:
+      label: Context and Origin
+      description: Was this found in a Google search? Embedded in a blog or other documentation? Other?
+      placeholder: Help us understand where we should look to fix this outside the devhub.
+    validations:
+      required: false
