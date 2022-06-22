@@ -105,6 +105,10 @@ const ecosystem = [
     id: 'ecosystem.connect',
     child: 'connect',
   },
+  {
+    url: WEBSITE_URL + '/square-one',
+    id: 'ecosystem.square-one',
+  },
 ];
 
 /* child menus for sub menus, matching the parent menu items with "child: id" */
@@ -130,7 +134,11 @@ const resources = [
     id: 'ecosystem.resources.seminar',
   },
   {
-    url: WEBSITE_URL + '/ecosystem/resources/awesome-substrate',
+    url: WEBSITE_URL + '/ecosystem/resources/past-seminars',
+    id: 'ecosystem.resources.past-seminars',
+  },
+  {
+    url: 'https://github.com/substrate-developer-hub/awesome-substrate/blob/master/README.md',
     id: 'ecosystem.resources.awesome-substrate',
   },
 ];
