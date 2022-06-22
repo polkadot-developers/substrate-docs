@@ -91,3 +91,14 @@ Navigate into your new site’s directory and use the following command to start
 ```shell
 yarn develop
 ```
+
+## Security
+
+Please report _security_ bugs as stated in the [`static/security.txt` file](static/security.txt) in
+this repository.
+
+## License
+
+TBD
+
+<!-- Substrate **documentation** is license under the [Apache 2 license](./LICENSE). -->
