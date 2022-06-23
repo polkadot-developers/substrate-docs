@@ -208,12 +208,14 @@ RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
     cargo run try-runtime \
     --execution Native \
     --chain dev \
-    --no-spec-name-check \ # mind this one!
+    --no-spec-name-check \
     on-runtime-upgrade \
     live \
     --uri wss://rpc.polkadot.io \
     --at <block-hash>
 ```
+
+> Notice `--no-spec-name-check` in particular is needed.
 
 ## Where to go next
 

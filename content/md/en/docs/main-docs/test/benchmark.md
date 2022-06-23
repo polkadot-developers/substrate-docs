@@ -161,14 +161,14 @@ To execute the benchmarks, you can start the node by running a command similar t
 
 ```bash
 ./target/production/substrate benchmark pallet \
-    --chain dev \                  # Configurable Chain Spec
-    --execution=wasm \             # Always test with Wasm
-    --wasm-execution=compiled \    # Always used `wasm-time`
-    --pallet pallet_balances \     # Select the pallet
-    --extrinsic transfer \         # Select the extrinsic
-    --steps 50 \                   # Number of samples across component ranges
-    --repeat 20 \                  # Number of times we repeat a benchmark
-    --output <path> \              # Output benchmark results into a folder or file
+    --chain dev \
+    --execution=wasm \
+    --wasm-execution=compiled \
+    --pallet pallet_balances \
+    --extrinsic transfer \
+    --steps 50 \
+    --repeat 20 \
+    --output <path>
 ```
 
 This command creates an output file for the selected pallet—for example, `pallet_balance.rs`—that implements the `WeightInfo` trait for your pallet.
