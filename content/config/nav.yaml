@@ -15,8 +15,8 @@ docs:
     - title: Fundamentals
       url: /main-docs/fundamentals/
       pages:
-        - title: Blockchain basics
-          url: /main-docs/fundamentals/blockchain-basics/
+        # - title: Blockchain basics
+        #   url: /main-docs/fundamentals/blockchain-basics/
         - title: Why Substrate?
           url: /main-docs/fundamentals/why-substrate/
         - title: Architecture
