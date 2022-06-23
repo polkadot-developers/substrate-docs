@@ -26,7 +26,7 @@ Explore the following resources to learn more.
 
 #### Tell me more
 
-- [Blockchain basics](/main-docs/fundamentals/blockchain-basics/)
+<!-- - [Blockchain basics](/main-docs/fundamentals/blockchain-basics/) -->
 - [Why substrate?](/main-docs/fundamentals/why-substrate)
 - [Architecture](/main-docs/fundamentals/architecture/)
 - [Runtime development](/main-docs/fundamentals/runtime-intro/)

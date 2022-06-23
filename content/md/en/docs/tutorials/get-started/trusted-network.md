@@ -9,7 +9,7 @@ keywords:
 
 This tutorial illustrates how you can start a small, standalone blockchain network with an **authority set** of private **validators**.
 
-As you learned in [Blockchain basics](/main-docs/fundamentals/blockchain-basics/), all blockchains require the nodes in the network to agree on the state of data at any specific point in time and this agreement about the state is called **consensus**.
+<!-- As you learned in [Blockchain basics](/main-docs/fundamentals/blockchain-basics/), all blockchains require the nodes in the network to agree on the state of data at any specific point in time and this agreement about the state is called **consensus**. -->
 
 The Substrate node template uses a proof of authority consensus model also referred to as **authority round** or **Aura** consensus.
 The Aura consensus protocol limits block production to a rotating list of authorized accounts.

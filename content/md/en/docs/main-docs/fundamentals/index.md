@@ -16,7 +16,7 @@ The topics in Fundamentals are intended to help you learn what's possible when y
 
 Before you start building, though, you want to make sure you are in the right place.
 
-- [Blockchain basics](/main-docs/fundamentals/blockchain-basics/) provides context about the complexity associated with blockchain development and how Substrate simplifies the process by taking an approach that is modular, flexible, and interoperable.
+<!-- - [Blockchain basics](/main-docs/fundamentals/blockchain-basics/) provides context about the complexity associated with blockchain development and how Substrate simplifies the process by taking an approach that is modular, flexible, and interoperable. -->
 
 - [Why Substrate?](/main-docs/fundamentals/why-substrate/) discusses how developing on a traditional smart contract platform differs from developing with Substrate and why Substrate might—or might not—suit your project requirements and goals.
 
