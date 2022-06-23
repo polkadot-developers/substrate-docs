@@ -100,8 +100,8 @@ This tutorial includes a sample chain specification file with two validator rela
 You can use this sample chain specification without modification for a local test network and a single parachain.
 This is useful for registering a **single** parachain:
 
-- [_Plain_ `rococo-local` **relay** chain spec](https://github.com/substrate-developer-hub/substrate-docs/blob/main-md/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-plain.json)
-- [_Raw_ `rococo-local` **relay** chain spec](https://github.com/substrate-developer-hub/substrate-docs/blob/main-md/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json)
+- [_Plain_ `rococo-local` **relay** chain spec](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-plain.json)
+- [_Raw_ `rococo-local` **relay** chain spec](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json)
 
 You can read and edit the plain chain specification file.
 However, the chain specification file must be converged to the SCALE-encoded raw format before it can be used to start a node.
