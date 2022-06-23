@@ -1,7 +1,6 @@
 ---
 title: Transactions and block basics
-description:
-featured_image:
+description: Describes the transaction types used to create blocks and the basic components of a block.
 keywords:
 ---
 
@@ -88,4 +87,4 @@ Now that you are familiar with transaction types and the information that consti
 - [State transitions and storage](/main-docs/fundamentals/state-transitions-and-storage/)
 - [Transactions, weights, and fees](/main-docs/build/tx-weights-fees/)
 - [Transaction formats](/reference/transaction-formats/)
-- [Block reference](/rustdocs/latest/sp_runtime/traits/trait.Block.html)
+- [Block reference](https://paritytech.github.io/substrate/master/sp_runtime/traits/trait.Block.html)

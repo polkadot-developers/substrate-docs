@@ -1,0 +1,41 @@
+name: Request New or Updated Content
+description: Submit your requests and suggestions to help us improve!
+labels: ["new content 💡✍️"]
+body:
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue?
+      description: Please search to see if an issue already exists and leave a comment that you also experienced this issue or add your specifics that are related to an existing issue.
+      options:
+        - label: I have searched the existing issues
+          required: true
+  - type: checkboxes
+    attributes:
+      label: Experiencing problems? Have you tried our Stack Exchange first?
+      description: Please search <https://substrate.stackexchange.com> to see if an post already exists, and ask if not. Please do not file support issues here.
+      options:
+        - label: This is not a support question.
+          required: true
+  - type: markdown
+    attributes:
+      value: |
+        Thank you so much for taking the time to request new or modified content!
+  - type: textarea
+    id: content
+    attributes:
+      label: Content request
+      description: What lead you to make this request? What action should we take on it?
+      placeholder: Describe what you would like to see added or changed.
+    validations:
+      required: true
+  - type: dropdown
+    id: help
+    attributes:
+      label: Are you willing to help with this request?
+      multiple: true
+      options:
+        - Yes!
+        - No.
+        - Maybe (please elaborate above)
+    validations:
+      required: true

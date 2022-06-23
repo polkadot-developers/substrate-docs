@@ -1,6 +1,7 @@
 ---
 title: Connect to Ethereum
 description: Illustrates how to build an Ethereum-compatible blockchain with Substrate.
+keywords:
 ---
 
 This tutorial illustrates how to build an **Ethereum-compatible** blockchain with Substrate using crates from the [Frontier](https://github.com/paritytech/frontier) project.
@@ -72,8 +73,7 @@ cd frontier-node-template
 
 The Substrate Developer Hub has generated the template using the [included release guide](https://github.com/paritytech/frontier/blob/master/docs/node-template-release.md), and intends to update with major releases of Frontier moving forward.
 
-You can `use` the pre-generated template or `fork` it from here:
-https://github.com/substrate-developer-hub/frontier-node-template/ .
+You can `use` the pre-generated template or [`fork` it from here](https://github.com/substrate-developer-hub/frontier-node-template/).
 
 ## Genesis configuration
 

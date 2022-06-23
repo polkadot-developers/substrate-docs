@@ -1,6 +1,7 @@
 ---
 title: Use macros in a custom pallet
 description: Create a custom pallet for a Substrate runtime using a skeleton of FRAME macros.
+keywords:
 ---
 
 This tutorial illustrates how to create a custom pallet for a Substrate
@@ -64,8 +65,8 @@ These functions only require you to store information about the proofs that have
 ## Build a custom pallet
 
 The Substrate node template has a FRAME-based runtime.
-As you learned in [Runtime development](/main-docs/fundamentals/runtime-intro), FRAME is a library of code that allows you to build a Substrate runtime by composing modules called pallets. 
-You can think of the pallets as individual pieces of logic that define what your blockchain can do. 
+As you learned in [Runtime development](/main-docs/fundamentals/runtime-intro), FRAME is a library of code that allows you to build a Substrate runtime by composing modules called pallets.
+You can think of the pallets as individual pieces of logic that define what your blockchain can do.
 Substrate provides you with a number of pre-built pallets for use in FRAME-based runtimes.
 
 ![Runtime composition](/media/images/docs/tutorials/custom-pallet/frame-runtime.png)
@@ -201,7 +202,7 @@ To implement the pallet events:
 You might notice that the proof-of-existence pallet uses the `Vec<u8>` type.
 This type is included in the `std` Rust library.
 However, you _cannot_ use the `std` library for pallet development.
-Instead, the proof-of-existence pallet uses the [sp-std crate](/rustdocs/latest/sp_std/index.html) to declare the `Vec<u8>` type under the `mod pallet` section:
+Instead, the proof-of-existence pallet uses the [sp-std crate](https://paritytech.github.io/substrate/master/sp_std/index.html) to declare the `Vec<u8>` type under the `mod pallet` section:
 
 ```rust
 use sp_std::vec::Vec;
@@ -273,7 +274,7 @@ To implement the errors for the proof-of-existence pallet:
 
 To add a new proof to the blockchain, the proof-of-existence pallet requires a storage mechanism.
 To address this requirement, you can create a [hash map](https://en.wikipedia.org/wiki/Hash_table) that maps each proof to its owner and records the block number when the proof was made.
-To create this hash map, you can use the FRAME [`StorageMap`](/rustdocs/latest/frame_support/storage/trait.StorageMap.html) trait.
+To create this hash map, you can use the FRAME [`StorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html) trait.
 
 To implement storage for the proof-of-existence pallet:
 
@@ -501,7 +502,7 @@ This React component enables you to expose the proof-of-existence capabilities a
    yarn start
    ```
 
-This will open up a new tab with the front-end serving at **http://localhost:8000**.
+This will open up a new tab with the front-end serving at `http://localhost:8000`.
 
 ### Submit a proof
 
@@ -547,4 +548,3 @@ Custom pallets enable you to expose the features you want your blockchain to sup
 
 To learn more about what's possible by creating custom pallets, explore the
 FRAME documentation and the [how-to guides](/reference/how-to-guides).
-For a more challenging version of this tutorial, try the [Substrate Kitties tutorial](/workshops/kitties/pt1/).

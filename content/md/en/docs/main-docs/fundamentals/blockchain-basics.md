@@ -1,10 +1,10 @@
 ---
 title: Blockchain basics
 description: Introduces common blockchain concepts, components, and terminology.
-featured_image:
+keywords:
 ---
 
-A blockchain is a decentralized ledger that records transactions in a sequence of encrypted blocks that are immutable and distributed across a network of connected computers.
+A blockchain is a decentralized ledger that records transactions in a sequence of blocks that are immutable and distributed across a network of connected computers.
 
 In a blockchain network, individual computers—called nodes—communicate with each other to form a decentralized peer-to-peer (P2P) network.
 There is no central authority that controls the network and each node stores a copy of the blocks that make up the canonical chain.
@@ -92,8 +92,7 @@ You can explore the following resources to learn more.
 
 #### Tell me
 
-- [Why Substrate?](/main-docs/why-substrate/)
-- [Fundamentals](main-docs/fundamentals/)
+- [Why Substrate?](/main-docs/fundamentals/why-substrate/)
 - [Architecture](main-docs/fundamentals/architecture/)
 - [Networks and blockchains](main-docs/fundamentals/node-and-network-types/)
 
@@ -101,6 +100,6 @@ You can explore the following resources to learn more.
 
 - [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
 - [Simulate a network](/tutorials/get-started/simulate-network/)
-- [Add trusted validators](/tutorials/get-started/trusted-network/)
+- [Add trusted nodes](/tutorials/get-started/trusted-network/)
 
-If you prefer to explore code directly, you can start building in the Developer Playground and consult the API reference to get details about the Rust crates you use.
+If you prefer to explore code directly, you can start building in the [Substrate Playground](https://docs.substrate.io/playground/) and consult the API reference to get details about the Rust crates you use.

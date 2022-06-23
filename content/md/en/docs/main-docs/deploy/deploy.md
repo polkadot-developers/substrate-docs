@@ -1,13 +1,15 @@
-# Deploy
+---
+title: Prepare for production
+description:
+keywords:
+---
 
-Launch a solo chain (public chain? private chain? permissioned chain?)
+How do you move from deployment on a test network to the deployment of you chain in a production environment?
 
-Some of these topics might have been touched on in earlier phases, but it this section the focus is on what's relevant to deploying your customized blockchain.
+Construct Cumulus
 
-* Validators / consensus 
-* Networking basics
-* Finality
-* Genesis construction
-* Protecting the network from attacks
+Launch Parachain
 
-Potentially, this bucket might cover DevOps material, maintenance, monitoring, and operations topics.
+- PoV
+- Limitations that apply to parachains
+- Collators

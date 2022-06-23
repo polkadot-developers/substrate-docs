@@ -56,8 +56,8 @@ By assigning `pallet_balances::Balance` and `frame_system::AccountId` to `u64`, 
 
 ## Test storage in a mock runtime
 
-The [`sp-io`](/rustdocs/latest/sp_io/index.html) crate exposes a [`TestExternalities`](/rustdocs/latest/sp_io/type.TestExternalities.html) implementation that you can use to test storage in a mock environment.
-It is the type alias for an in-memory, hashmap-based externalities implementation in [`substrate_state_machine`](/rustdocs/latest/sp_state_machine/index.html) referred to as [`TestExternalities`](/rustdocs/latest/sp_state_machine/struct.TestExternalities.html).
+The [`sp-io`](https://paritytech.github.io/substrate/master/sp_io/index.html) crate exposes a [`TestExternalities`](https://paritytech.github.io/substrate/master/sp_io/type.TestExternalities.html) implementation that you can use to test storage in a mock environment.
+It is the type alias for an in-memory, hashmap-based externalities implementation in [`substrate_state_machine`](https://paritytech.github.io/substrate/master/sp_state_machine/index.html) referred to as [`TestExternalities`](https://paritytech.github.io/substrate/master/sp_state_machine/struct.TestExternalities.html).
 
 The following example demonstrates defining a struct called `ExtBuilder` to build an instance of `TestExternalities`, and setting the block number to 1.
 
@@ -85,9 +85,9 @@ fn fake_test_example() {
 }
 ```
 
-Custom implementations of [Externalities](/rustdocs/latest/sp_externalities/index.html) allow you to construct runtime environments that provide access to features of the outer node.
-Another example of this can be found in the [`offchain`](/rustdocs/latest/sp_core/offchain/index.html) module.
-The `offchain` module maintains its own [Externalities](/rustdocs/latest/sp_core/offchain/trait.Externalities.html) implementation.
+Custom implementations of [Externalities](https://paritytech.github.io/substrate/master/sp_externalities/index.html) allow you to construct runtime environments that provide access to features of the outer node.
+Another example of this can be found in the [`offchain`](https://paritytech.github.io/substrate/master/sp_core/offchain/index.html) module.
+The `offchain` module maintains its own [Externalities](https://paritytech.github.io/substrate/master/sp_core/offchain/trait.Externalities.html) implementation.
 
 ## Genesis config
 
@@ -172,4 +172,6 @@ fn my_runtime_test() {
 
 ## Where to go next
 
-- [Set up tests for your pallet](/reference/how-to-guides/testing/)
+<!-- TODO NAV.YAML -->
+<!-- add these back -->
+<!-- - [Set up tests for your pallet](/reference/how-to-guides/testing/) -->

@@ -1,6 +1,7 @@
 ---
 title: Prepare your first contract
-description: Create a new smart contract project and a simple first contract.
+description:
+keywords:
 ---
 
 As you learned in [Blockchain basics](/main-docs/fundamentals/blockchain-basics/) decentralized applications are most often written as **smart contracts**.
@@ -118,10 +119,16 @@ The `cargo-contract` package provides a command-line interface for working with 
 
 1. Open a terminal shell on your computer.
 
+1. Install `dylint-link`, required to lint ink! contracts, warning you about things like using API's in a way that could lead to security issues.
+
+   ```bash
+   cargo install dylint-link
+   ```
+
 1. Install `cargo-contract` by running the following command:
 
    ```bash
-   cargo install cargo-contract --vers ^0.17 --force --locked
+   cargo install cargo-contract --force
    ```
 
 1. Verify the installation and explore the commands available by running the following command:
@@ -197,7 +204,7 @@ To explore the default project files:
 ### Test the default contract
 
 At the bottom of the `lib.rs` source code file, there are simple test cases to verify the functionality of the contract.
-You can test whether this code is functioning as expected using the **off-chain test environment**.
+You can test whether this code is functioning as expected using the **offchain test environment**.
 
 To test the contract:
 

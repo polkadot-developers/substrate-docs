@@ -1,11 +1,25 @@
-# Migrate to Polkadot
+---
+title: Migrate to Polkadot
+description:
+keywords:
+---
 
-Construct Cumulus
+Parachains and parathreads.
 
-Launch Parachain
+## Before you begin
 
-* PoV
-* Limitations that apply to parachains
-* Collators
+Steps to complete
+
+## Preview deployment checklist
+
+Preflight checklist to make sure you're ready.
+
+## Migrate your chain
+
+Steps to complete.
+
+- PoV
+- Limitations that apply to parachains
+- Collators
 
 Maintain a parachain

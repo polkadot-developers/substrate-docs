@@ -1,7 +1,13 @@
 ---
 title: Transaction lifecycle
 description: Explains how transactions are received, queued, and executed to eventually be included in a block.
-keywords: transaction, pool, order, ordering, sorting, validity
+keywords:
+  - transaction
+  - pool
+  - order
+  - ordering
+  - sorting
+  - validity
 ---
 
 In Substrate, transactions contain data to be included in a block.
@@ -56,7 +62,7 @@ After the initial validity check, the transaction pool periodically checks wheth
 If a transaction is found to be invalid or has expired, it is dropped from the pool.
 
 The transaction pool only deals with the validity of the transaction and the ordering of valid transactions placed in a transaction queue.
-Specific details on how the validation mechanism works—including handling for fees, accounts, or signatures—can be found in the [`validate_transaction`](/rustdocs/latest/sp_transaction_pool/runtime_api/trait.TaggedTransactionQueue.html#method.validate_transaction) method.
+Specific details on how the validation mechanism works—including handling for fees, accounts, or signatures—can be found in the [`validate_transaction`](https://paritytech.github.io/substrate/master/sp_transaction_pool/runtime_api/trait.TaggedTransactionQueue.html#method.validate_transaction) method.
 
 ### Adding valid transactions to a transaction queue
 
@@ -85,7 +91,7 @@ The transactions are ordered from high to low priority until the block reaches t
 Transaction priority is calculated in the runtime and provided to the outer node as a tag on the transaction.
 In a FRAME runtime, a special pallet is used to calculate priority based on the weights and fees associated with the transaction.
 This priority calculation applies to all types of transactions with the exception of inherents.
-Inherents are always placed first using the [`EnsureInherentsAreFirst`](https://docs.substrate.io/rustdocs/latest/frame_support/traits/trait.EnsureInherentsAreFirst.html) trait.
+Inherents are always placed first using the [`EnsureInherentsAreFirst`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.EnsureInherentsAreFirst.html) trait.
 
 ### Account-based transaction ordering
 
@@ -127,7 +133,7 @@ Instead, state changes are written directly to storage during execution.
 If a transaction were to fail mid-execution, any state changes that took place before the failure would not be reverted, leaving the block in an unrecoverable state.
 Before committing any state changes to storage, the runtime logic should perform all necessary checks to ensure the extrinsic will succeed.
 
-Note that [events](/main-docs/build/events-and-errors/) are also written to storage.
+Note that [events](/main-docs/build/events-errors/) are also written to storage.
 Therefore, the runtime logic should not emit an event before performing the complementary actions.
 If a transaction fails after an event is emitted, the event is not be reverted.
 
@@ -162,14 +168,14 @@ that the node knows about.
 In most cases, you don't need to know details about how transactions are gossiped or how blocks are imported by other nodes on the network.
 However, if you plan to write any custom consensus logic or want to know more about the implementation of the block import queue, you can find details in the Rust API documentation.
 
-- [`ImportQueue`](/rustdocs/latest/sc_consensus/import_queue/trait.ImportQueue.html)
-- [`Link`](/rustdocs/latest/sc_consensus/import_queue/trait.Link.html)
-- [`BasicQueue`](/rustdocs/latest/sc_consensus/import_queue/struct.BasicQueue.html)
-- [`Verifier`](/rustdocs/latest/sc_consensus/import_queue/trait.Verifier.html)
-- [`BlockImport`](/rustdocs/latest/sc_consensus/block_import/trait.BlockImport.html)
+- [`ImportQueue`](https://paritytech.github.io/substrate/master/sc_consensus/import_queue/trait.ImportQueue.html)
+- [`Link`](https://paritytech.github.io/substrate/master/sc_consensus/import_queue/trait.Link.html)
+- [`BasicQueue`](https://paritytech.github.io/substrate/master/sc_consensus/import_queue/struct.BasicQueue.html)
+- [`Verifier`](https://paritytech.github.io/substrate/master/sc_consensus/import_queue/trait.Verifier.html)
+- [`BlockImport`](https://paritytech.github.io/substrate/master/sc_consensus/block_import/trait.BlockImport.html)
 
 ## Where to go next
 
+
 - [Seminar: Lifecycle of a transaction](https://www.youtube.com/watch?v=3pfM0GOp02c)
 - [Accounts, addresses, and keys](/main-docs/fundamentals/accounts-addresses-keys/)
-- [Transaction formats](/reference/transaction-formats/)
