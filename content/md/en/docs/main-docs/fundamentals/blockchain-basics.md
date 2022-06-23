@@ -2,6 +2,11 @@
 title: Blockchain basics
 description: Introduces common blockchain concepts, components, and terminology.
 keywords:
+  - blockchain
+  - block
+  - consensus
+  - state machine
+  - limitations
 ---
 
 A blockchain is a decentralized ledger that records information in a sequence of blocks. 
