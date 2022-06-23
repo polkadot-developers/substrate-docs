@@ -7,6 +7,7 @@ import Header from '../site/Header';
 import NavBreadcrumb from '../site/NavBreadcrumb';
 import NavSidebar from '../site/NavSidebar';
 import ArticleNav from './ArticleNav';
+import Banner from './Banner';
 
 function LayoutSidebar({ children, hasArticleNav, hasBreadcrumbs }) {
   return (
@@ -64,6 +65,7 @@ export default function Layout({
 
   return (
     <>
+      <Banner />
       <Header mode={mode} header={header} />
       <main
         className={cx('min-h-screen', {
