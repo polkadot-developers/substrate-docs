@@ -93,7 +93,7 @@ export default function DocsSinglePage({ data, pageContext }) {
                 <div className="flex justify-end items-center">
                   <EditOnGithubButton
                     link={
-                      'https://github.com/substrate-developer-hub/substrate-docs/blob/main-md/content/md/' +
+                      'https://github.com/substrate-developer-hub/substrate-docs/blob/main/content/md/' +
                       `${relativeFilePath}`
                     }
                   />
