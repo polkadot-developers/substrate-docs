@@ -51,7 +51,7 @@ const addLeadingSlash = uri => {
 };
 
 const addSlashes = uri => {
-  return addLeadingSlash(addTrailingSlash(uri));
+  return !uri.startsWith('#') ? addLeadingSlash(addTrailingSlash(uri)) : uri;
 };
 
 const InfraLink = ({ to, title, children, ...other }) => {

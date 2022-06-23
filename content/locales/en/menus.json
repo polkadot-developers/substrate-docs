@@ -28,12 +28,14 @@
   "ecosystem.opportunities": "Opportunities",
   "ecosystem.resources": "Resources",
   "ecosystem.connect": "Connect",
+  "ecosystem.square-one": "Square One",
 
   "ecosystem.opportunities.hackathons": "Hackathons",
   "ecosystem.opportunities.grants": "Grants",
   "ecosystem.opportunities.jobs": "Jobs",
 
   "ecosystem.resources.seminar": "Substrate Seminar",
+  "ecosystem.resources.past-seminars": "Past Seminars",
   "ecosystem.resources.awesome-substrate": "Awesome Substrate",
   "ecosystem.resources.community-resources": "Community Resources",
 

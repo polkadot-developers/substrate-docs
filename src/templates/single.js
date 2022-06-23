@@ -70,7 +70,7 @@ export default function DocsSinglePage({ data, pageContext }) {
         <MobileNavigation className="hidden" currentPath={pagePath} />
         {/* <DocsSingle collection={collection} /> */}
         <div className="flex flex-col">
-          <InfoRibbon />
+          <InfoRibbon link="https://github.com/substrate-developer-hub/substrate-docs/issues/1132" />
           <article className="mb-20 grid grid-cols-12 gap-1 grid-rows-2">
             <div className="xl:col-start-2 xl:col-end-9 col-start-2 col-end-12">
               <div className="py-8 flex justify-between items-center">
@@ -103,7 +103,7 @@ export default function DocsSinglePage({ data, pageContext }) {
                 <header>
                   <h1>{title}</h1>
                 </header>
-                <main>
+                <main className="markdown-body">
                   <Markdown htmlAst={htmlAst} />
                 </main>
                 <footer>

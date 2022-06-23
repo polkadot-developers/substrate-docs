@@ -152,7 +152,7 @@ tutorials:
         - title: Authorize specific nodes
           url: /tutorials/get-started/permissioned-network/
         - title: Monitor node metrics
-          url: /tutorials/get-started/monitor/
+          url: /tutorials/get-started/node-metrics/
         - title: Upgrade a running network
           url: /tutorials/get-started/forkless-upgrade/
     - title: Work with pallets
@@ -237,7 +237,7 @@ reference:
     - title: Type encoding (SCALE)
       url: /reference/scale-codec/
     - title: Transaction formats
-      url: /main-docs/reference/transaction-format/
+      url: /reference/transaction-format/
     - title: Cryptography
       url: /reference/cryptography/
     - title: How-to reference guides
