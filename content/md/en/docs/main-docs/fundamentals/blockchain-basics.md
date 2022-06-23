@@ -4,7 +4,8 @@ description: Introduces common blockchain concepts, components, and terminology.
 keywords:
 ---
 
-A blockchain is a decentralized ledger that records transactions in a sequence of encrypted blocks that are immutable and distributed across a network of connected computers.
+A blockchain is a decentralized ledger that records information in a sequence of blocks. 
+The information contained in a block is an ordered set of instructions that might result in a change in state.
 
 In a blockchain network, individual computers—called nodes—communicate with each other to form a decentralized peer-to-peer (P2P) network.
 There is no central authority that controls the network and each node stores a copy of the blocks that make up the canonical chain.
@@ -22,7 +23,6 @@ At a high level, all blockchain nodes require the following core components:
 - Consensus methodology to protect against malicious activity and ensure the ongoing progress of the chain.
 - Logic for ordering and processing incoming transactions.
 - Cryptography for signing and verifying the signatures associated with transactions.
-- An execution environment for authoring and finalizing blocks.
 
 Because of the complexity involved in building the core components a blockchain requires, most blockchains start with a complete copy of an existing blockchain repository—a fork—so that developers can modify existing code to add new features instead of writing everything from scratch.
 For example, the Bitcoin repository was forked to create Litecoin, ZCash, Namecoin and Bitcoin Cash.
@@ -30,7 +30,7 @@ Similarly, the Ethereum repository was forked to create Quorum, POA Network, Kod
 
 However, most blockchain platforms are not designed to allow for modification or customization.
 As a result, building a new blockchain by forking has serious limitations, including limitations such as scalability that are inherent in the originating blockchain code.
-Before you explore how Substrate alleviates many of the limitations associated with other blockchain projects, it's important to understand some of the common properties that all blockchains share.
+Before you explore how Substrate alleviates many of the limitations associated with other blockchain projects, it's important to understand some of the common properties that most blockchains share.
 By learning about how most blockchains operate, you'll be better prepared to see how Substrate provides alternatives and capabilities for building a blockchain best suited to your needs.
 
 ## State transitions and conflicts
@@ -69,9 +69,9 @@ Network participants can then deposit the tokens to create a stake of funds that
 
 ## Blockchain governance
 
-Most blockchains also enable network participants to submit and vote on proposals that affect network operations or the blockchain community.
+Some blockchains allow network participants to submit and vote on proposals that affect network operations or the blockchain community.
 By submitting and voting on proposals—referenda—the blockchain community can determine how the blockchain evolves in an essentially democratic process.
-To participate in governance, however, most blockchains require users to maintain a significant stake of tokens in an account.
+On-chain governance is relatively rare, however, and to participate, a blockchain might require users to maintain a significant stake of tokens in an account or to be selected as a representative for other users.
 
 ## Applications running on a blockchain
 
