@@ -428,7 +428,7 @@ To insert keys into the keystore:
 1. Insert the `grandpa` secret key generated from the `key` subcommand by running a command similar to the following:
 
    ```bash
-    ./target/release/node-template key insert --base-path /tmp/node01 --chain customSpecRaw.json --scheme Ed25519 --suri  <your-secret-key> --password-interactive --key-type gran
+    ./target/release/node-template key insert --base-path /tmp/node01 --chain customSpecRaw.json --scheme Ed25519 --suri <your-secret-key> --password-interactive --key-type gran
 
    ```
 
