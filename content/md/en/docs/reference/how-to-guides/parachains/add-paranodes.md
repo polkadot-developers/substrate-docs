@@ -16,7 +16,6 @@ As you learned in [Connect a local parachain](/tutorials/connect-other-chains/pa
 
 You should have _at least_ two [**validators**](/reference/glossary/#validators) (relay chain nodes) running for every [**collator**](/reference/glossary/#collator) (parachain block authoring nodes) on your network.
 
-Assuming you are running a [local relay testnet](/tutorials/connect-other-chains/local-relay/), 
 You can **modify** the provided **plain** [relay chain spec file](/tutorials/connect-other-chains/relay-chain#pre-configured-chain-spec-files) to include more validators, or go the more "correct" route used for production of modifying the **source** for genesis state in `chain_spec.rs` for your **relay chain** to add more testnet validators at genesis.
 Recall how to generate chain specifications in the [add trusted nodes](/tutorials/get-started/trusted-network/) tutorial.
 
