@@ -23,9 +23,9 @@ Before you begin, verify the following:
 
 - You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/).
 
-- You have completed the [build a local blockchain](/tutorials/get-started/build-local-blockchain/) tutorial previously.
+- You have completed the [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) tutorial previously.
 
-- You understand how to generated chain specifications for a private network of trusted validators as described in the [add trusted nodes](/tutorials/get-started/trusted-network/) tutorial.
+- You know how to generate chain specifications for a private network of trusted validators as described in [Add trusted nodes](/tutorials/get-started/trusted-network/).
 
 - You are generally familiar with the [architecture of Polkadot](https://wiki.polkadot.network/docs/learn-architecture) and [parachains](https://wiki.polkadot.network/docs/learn-parachains).
 
@@ -74,7 +74,6 @@ cargo b -r
 ```
 
 Compiling the node can take 15 to 60 minuets to complete.
-While waiting, perhaps reviewing how to [create your own chain spec](/tutorials/get-started/trusted-network/#create-a-custom-chain-specification) would be in order, as it's something you may with to do latter on here.
 
 ```bash
 # Check if the help page prints to ensure the node is built correctly
