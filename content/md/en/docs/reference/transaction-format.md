@@ -1,10 +1,10 @@
 ---
 title: Transaction formats
-description:
+description: Describes the format of signed and unsigned transactions in Substrate.
 keywords:
 ---
 
-This article describes in detail what the format of signed and unsigned transactions in Substrate.
+This article describes in detail the data structure of signed and unsigned transactions in Substrate.
 This is particularly useful for understanding how the transaction pool checks incoming transactions.
 Parachain builders will find this useful for customizing how their transactions are formatted as well as writing client applications that need to adhere to a chosen format.
 
@@ -194,10 +194,13 @@ These are:
 
 The priority depends on the dispatch class and the amount of tip-per-weight or tip-per-length (whatever is more limiting) the sender is willing to pay.
 Transactions without a tip use a minimal tip value of `1` for priority calculations to make sure that not all transactions end up having a priority of `0`.
-The consequence of this is that "smaller" transactions are preferred over "larger" ones.
+The consequence of this is that _smaller_ transactions are preferred over _larger_ ones.
 
-## Learn more
+## Where to go next
 
-- Submit offline transactions using `tx-wrapper`
-- Submit transactions using `sidecar`
-- Learn how to configure transaction fees for your chain
+Now that you have seen how transactions are constructed, you might want to review how they progress from the transaction pool to the runtime and get add to blocks or how to use that enable you to submit transactions offline or using a REST API.
+
+- [Transaction lifecycle](/main-docs/fundamentals/transaction-lifecycle/)
+- [Transactions, weights, and fees](/main-docs/build/tx-weights-fees/)
+- [tx-wrapper](/reference/command-line-tools/tx-wrapper) for offline transactions
+- [sidecar](/reference/command-line-tools/sidecar) for REST-based transactions
