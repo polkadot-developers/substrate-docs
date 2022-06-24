@@ -151,4 +151,4 @@ task_manager.spawn_essential_handle().spawn_blocking(
 
 - [POW Algorithm](https://paritytech.github.io/substrate/master/sc_consensus_pow/trait.powalgorithm.html) trait
 - [`PowBlockimport`](https://paritytech.github.io/substrate/master/sc_consensus_pow/struct.powblockimport.html)
-- [Inherents][(ttps://paritytech.github.io/substrate/master/sp_inherents/index.html)
+- [Inherents](https://paritytech.github.io/substrate/master/sp_inherents/index.html)
