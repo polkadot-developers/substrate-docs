@@ -186,10 +186,9 @@ Alternatively, you can open same [URL](http://localhost:9615/metrics) in a brows
 
 After you start Grafana, you can navigate to it in a browser.
 
-1.  Open a browser and navigate to the port Grafana uses.
-    By default, the URL is https://localhost:3000/\*\*).
-1.  Log in using the default user `admin` and password `admin` and navigate to the data sources page at
-    `localhost:3000/datasources`.
+1. Open a browser and navigate to the port Grafana uses.
+   By default, the URL is https://localhost:3000/\*\*).
+1. Log in using the default user `admin` and password `admin` and navigate to the data sources page at `localhost:3000/datasources`.
 
 You then need to select a `Prometheus` data source type and specify where Grafana needs to look for it.
 
@@ -202,7 +201,7 @@ With both the Substrate node and Prometheus running, configure Grafana to look f
 
 ### Template Grafana Dashboard
 
-If you would like a basic dashboard to start [here is a template example](/media/images/docs/tutorials/06-visualize-node-metrics/substrate-node-template-metrics.json) that you can `Import` in Grafana to get basic information about your node:
+If you would like a basic dashboard to start [here is a template example](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/monitor-node/substrate-node-template-metrics.json) that you can `Import` in Grafana to get basic information about your node:
 
 ![Grafana Dashboard](/media/images/docs/tutorials/06-visualize-node-metrics/grafana.png)
 
