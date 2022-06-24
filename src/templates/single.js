@@ -96,6 +96,7 @@ export default function DocsSinglePage({ data, pageContext }) {
                       'https://github.com/substrate-developer-hub/substrate-docs/blob/main/content/md/' +
                       `${relativeFilePath}`
                     }
+                    text="Edit this page"
                   />
                 </div>
               </div>
@@ -106,11 +107,19 @@ export default function DocsSinglePage({ data, pageContext }) {
                 <main className="markdown-body">
                   <Markdown htmlAst={htmlAst} />
                 </main>
-                <footer>
-                  <div className="py-8 text-sm text-gray-400">Last edit: {gitLogLatestDate}</div>
+                <footer className="mt-10">
                   <PreviousNextButtons previous={previousPage} next={nextPage} />
-                  <div className="py-12 text-sm text-gray-400">
+                  <div className="py-5 text-sm">
                     <hr />
+                    <div className="mb-8 text-sm inline-block">
+                      <EditOnGithubButton
+                        link={
+                          'https://github.com/substrate-developer-hub/substrate-docs/blob/main/content/md/' +
+                          `${relativeFilePath}`
+                        }
+                        text={'Last edit: ' + gitLogLatestDate}
+                      />
+                    </div>
                     <Feedback />
                   </div>
                 </footer>
@@ -154,7 +163,7 @@ export const query = graphql`
           name
           relativePath
           fields {
-            gitLogLatestDate
+            gitLogLatestDate(formatString: "LL")
           }
         }
       }
