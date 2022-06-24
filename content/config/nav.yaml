@@ -178,11 +178,11 @@ tutorials:
       url: /tutorials/light-clients/
       pages:
         - title: Download the browser extension
-          url: /tutorials/light-clients/browser-extension/
+          url: /tutorials/light-clients/substrate-connect/
         - title: Connect with a well-known relay-chain
-          url: /tutorials/light-clients/well-known-relay/
+          url: /tutorials/light-clients/production-relays/
         - title: Connect with a parachain
-          url: /tutorials/light-clients/parachains/
+          url: /tutorials/light-clients/production-parachains/
 reference:
   title: Reference
   url: /reference/

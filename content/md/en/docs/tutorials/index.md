@@ -56,5 +56,5 @@ You'll learn how to:
 The **Run a Light Client in your browser** tutorials show how you can bypass the need to connect to an RPC node and push decentralization even further. You'll learn how to:
 
 - Download the browser extension
-- Connect with a well-known relay-chain
+- Connect with a well-known relay chain
 - Connect with a parachain

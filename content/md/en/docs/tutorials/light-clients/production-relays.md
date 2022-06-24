@@ -1,11 +1,12 @@
 ---
-title: Connect with a well-known relay-chain
-description: How to connect to a well-known relay chain via Substrate Connect
+title: Connect with a production relay chain
+description: How to connect to a well-known relay chain via Substrate Connect.
+keywords:
 ---
 
 ## Before you begin
 
-Before you begin, make sure you have [installed the Browser Extension](/tutorials/light-clients/browser-extension/).
+Before you begin, make sure you have installed the [Substrate Connect browser extension](/tutorials/light-clients/substrate-connect/).
 
 ## Tutorial objectives
 
@@ -15,21 +16,21 @@ By completing this tutorial, you will accomplish the following objectives:
 
 - Create a basic webapp that loads a light client into the browser.
 
-- Learn how to use an embedded chainspec on Substrate Connect for a well-known relay-chain.
+- Learn how to use an embedded chainspec on Substrate Connect for a well-known relay chain.
 
 ## Basics of Chainspec 
 
 In order to connect to some network, a light client needs to be provided with a [chainspec](https://docs.substrate.io/v3/runtime/chain-specs/). It dictates which network the light client will connect to, which entities it will initially communicate with, and what consensus-critical state it must have at genesis.
 
-Connecting with the well-known relay-chains is very straightforward, because Substrate Connect already comes with their chainspecs ready for usage out-of-the-box, so you don’t have to worry about them.
+Connecting with the well-known relay chains is very straightforward, because Substrate Connect already comes with their chainspecs ready for usage out-of-the-box, so you don’t have to worry about them.
 
-Those well-known relay-chains are:
+Those well-known relay chains are:
 - Polkadot
 - Kusama
 - Rococo
 - Westend
 
-If you eventually want to connect to a different relay-chain, then you will need to handle some chainspec file. But that will be explained later on in this tutorial, for now, let’s focus on the well-known chains!
+If you eventually want to connect to a different relay chain, then you will need to handle some chainspec file. But that will be explained later on in this tutorial, for now, let’s focus on the well-known chains!
 
 ## Connect to Polkadot
 
@@ -94,10 +95,10 @@ yarn
 yarn dev
 ```
 
-That should open a browser on `http://localhost:3001/`. Open the JavaScript console from your browser and observe the output. You should see smoldot (the actual wasm light client) being initialised, followed by the hashes of the incoming blocks of Polkadot.
+That should open a browser on `http://localhost:3001/`. Open the JavaScript console from your browser and observe the output. You should see smoldot (the actual wasm light client) being initialized, followed by the hashes of the incoming blocks of Polkadot.
 
 Tip: different browsers running on different Operating Systems will have different shortcuts to display the JavaScript  console. [Here](https://webmasters.stackexchange.com/a/77337) is a convenient cheat sheet.
 
-To recap what we achieved so far: we fetched block hashes without using any URL for a RPC node, which is arguably a centralised entry point to the network. And we could have done much more, not only block hashes! The point here is that after `WsProvider` is replaced with `ScProvider`, the code can be written as if it was any other app based on PolkadotJS. From here onwards, you can just follow [PolkadotJS docs](https://polkadot.js.org/docs/) and do much more.
+To recap what we achieved so far: we fetched block hashes without using any URL for a RPC node, which is arguably a centralized entry point to the network. And we could have done much more, not only block hashes! The point here is that after `WsProvider` is replaced with `ScProvider`, the code can be written as if it was any other app based on PolkadotJS. From here onwards, you can just follow [PolkadotJS docs](https://polkadot.js.org/docs/) and do much more.
 
 One important detail is that we used `@polkadot/rpc-provider/substrate-connect` as our dependency, and that is fine for a fast and easy integration into a simple webapp. However, more advanced implementations (e.g.: library authors) should install and use `@substrate-connect` instead.
