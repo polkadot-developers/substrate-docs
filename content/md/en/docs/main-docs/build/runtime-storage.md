@@ -143,20 +143,13 @@ For cases with a specific default value to configure, it is recommended to use `
 
 ### Visibility
 
-In the examples above, all the storage items except `SomePrivateValue` are made public by way of the
-`pub` keyword. Blockchain storage is always publicly
-[visible from _outside_ of the runtime](#accessing-storage-items); the visibility of Substrate
-storage items only impacts whether or not other pallets _within_ the runtime will be able to access
-a storage item.
+In the examples above, all the storage items except `SomePrivateValue` are made public by way of the `pub` keyword.
+Blockchain storage is always publicly [visible from _outside_ of the runtime](#accessing-storage-items); the visibility of Substrate storage items only impacts whether or not other pallets _within_ the runtime will be able to access a storage item.
 
 ### Getter methods
 
-The `#[pallet::getter(..)]` macro provides an optional `get` extension that can be used to implement a getter
-method for a storage item on the module that contains that storage item; the extension takes the
-desired name of the getter function as an argument. If you omit this optional extension, you will
-still be able to access the storage item's value, but you will not be able to do so by way of a
-getter method implemented on the module; instead, you will need to use
-[the storage item's `get` method](#methods).
+The `#[pallet::getter(..)]` macro provides an optional `get` extension that can be used to implement a getter method for a storage item on the module that contains that storage item; the extension takes the desired name of the getter function as an argument.
+If you omit this optional extension, you will still be able to access the storage item's value, but you will not be able to do so by way of a getter method implemented on the module; instead, you will need to use [the storage item's `get` method](#methods).
 
 The optional `getter` extension only impact the way that a storage item can be accessed from _within_ Substrate code&mdash;you will always be able to [query the storage of your runtime](/main-docs/build/runtime-storage#Querying-Storage) to get the value of a storage item.
 
@@ -188,12 +181,7 @@ Notice that for the sake of adding clarity to each storage field, the syntax abo
 
 ## Accessing storage items
 
-Blockchains that are built with Substrate expose a remote procedure call (RPC) server that can be
-used to query runtime storage. You can use software libraries like
-[Polkadot JS](https://polkadot.js.org/) to easily interact with the RPC server from your code and
-access storage items. The Polkadot JS team also maintains
-[the Polkadot Apps UI](https://polkadot.js.org/apps), which is a fully-featured web app for
-interacting with Substrate-based blockchains, including querying storage.
+Blockchains that are built with Substrate expose a remote procedure call (RPC) server that can be used to query runtime storage. You can use software libraries like [Polkadot JS](https://polkadot.js.org/) to easily interact with the RPC server from your code and access storage items. The Polkadot JS team also maintains [the Polkadot Apps UI](https://polkadot.js.org/apps), which is a fully-featured web app for interacting with Substrate-based blockchains, including querying storage.
 
 ## Hashing algorithms
 
@@ -400,17 +388,15 @@ In general, code blocks that may result in mutating storage should be structured
 ```
 
 Do not use runtime storage to store intermediate or transient data within the context of an operation that is logically atomic or data that will not be needed if the operation is to fail.
-This does not mean that runtime storage should not be used to track the state of ongoing actions that require multiple atomic operations, as in the case of
-[the multi-signature capabilities from the Utility pallet](https://paritytech.github.io/substrate/master/pallet_utility/pallet/enum.Call.html#variant.as_multi).
+This does not mean that runtime storage should not be used to track the state of ongoing actions that require multiple atomic operations, as in the case of [the multi-signature capabilities from the Utility pallet](https://paritytech.github.io/substrate/master/pallet_utility/pallet/enum.Call.html#variant.as_multi).
 In this case, runtime storage is used to track the signatories on a dispatchable call even though a given call may never receive enough signatures to actually be invoked.
-In this case, each signature is considered an atomic event in the ongoing multi-signature operation; the data needed to record a single signature is not stored until after all the preconditions associated with that signature have
-been met.
+In this case, each signature is considered an atomic event in the ongoing multi-signature operation; the data needed to record a single signature is not stored until after all the preconditions associated with that signature have been met.
 
 ### Create bounds
 
 Creating bounds on the size of storage items is an extremely effective way to control the use of runtime storage and one that is used repeatedly throughout the Substrate codebase.
 In general, any storage item whose size is determined by user action should have a bound on it.
-[The multi-signature capabilities from the Multisig pallet](https://paritytech.github.io/substrate/master/pallet_multisig/pallet/trait.Config.html#associatedtype.MaxSignatories) that were described above are one such example.
+The multi-signature capabilities from the [Multisig pallet](https://paritytech.github.io/substrate/master/pallet_multisig/pallet/trait.Config.html#associatedtype.MaxSignatories) that were described above are one such example.
 In this case, the list of signatories associated with a multi-signature operation is provided by the multi-signature participants.
 Because this signatory list is [necessary to come to consensus](#what-to-store) on the state of the multi-signature operation, it must be stored in the runtime. However, in order to give runtime developers control over how much space in storage these lists may occupy, the Utility pallet requires users to configure a bound on this number that will be included as a [precondition](#verify-first-write-last) before anything is written to storage.
 

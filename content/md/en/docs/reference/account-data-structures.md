@@ -10,8 +10,7 @@ structure is used to manage the account lifecycle in the runtime logic.
 
 ## Account
 
-The `Account` data type is a storage map that is defined generically in the
-[`frame-system` pallet](https://paritytech.github.io/substrate/master/src/frame_system/lib.rs.html#530):
+The `Account` data type is a storage map that is defined generically in the [`frame-system` pallet](https://paritytech.github.io/substrate/master/src/frame_system/lib.rs.html#530):
 
 ```rust
 /// The full account information for a particular account ID.

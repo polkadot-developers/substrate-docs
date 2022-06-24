@@ -124,8 +124,7 @@ If you wish to monitor the logs in real time, you can do so with:
 tail -f <log file>
 ```
 
-Another way to verify the setup is by going to:
-[Polkadot-JS Apps > Network > Parachains](https://polkadot.js.org/apps/#/parachains).
+Another way to verify the setup is by going to: [Polkadot-JS Apps > Network > Parachains](https://polkadot.js.org/apps/#/parachains).
 
 After configuring the Apps to connect to the local **relay chain node**, you should see the UI showing two parachains being connected to the relay chain.
 

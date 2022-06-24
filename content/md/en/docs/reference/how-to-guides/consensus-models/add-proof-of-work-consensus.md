@@ -26,7 +26,7 @@ This guide introduces a few core principles for working with consensus engines.
 
 ## Define a full node using sc_consensus_pow and sc_service
 
-In `src/service.rs`, make a function called `new_full1` that defines [`PartialComponents`][partialcomponents-rustdocs] and [`PowBlockImport`][powblockimport-rustdocs]:
+In `src/service.rs`, make a function called `new_full1` that defines [`PartialComponents`](https://paritytech.github.io/substrate/master/sc_service/struct.PartialComponents.html) and [`PowBlockImport`](https://paritytech.github.io/substrate/master/sc_consensus_pow/struct.PowBlockImport.html):
 
 ```rust
 let pow_block_import = sc_consensus_pow::PowBlockImport::new(
@@ -49,11 +49,9 @@ let import_queue = sc_consensus_pow::import_queue(
 )?;
 ```
 
-See the [Rust docs][powblockimport-new-rustdocs] on to configure the `pow_block_import` function.
-
 ## Create an import queue
 
-Define your node's [inherents][inherents-kb] by using [`InherentDataProviders`][inherents-rustdocs] in a function that defines the providers of your POW system:
+Define your node's inherents by using [`InherentDataProviders`](https://paritytech.github.io/substrate/master/sp_authorship/struct.InherentDataProvider.html) in a function that defines the providers of your POW system:
 
 ```rust
 pub fn build_inherent_data_providers() -> Result<InherentDataProviders, ServiceError> {
@@ -104,11 +102,6 @@ task_manager
     .spawn_essential_handle()
     .spawn_blocking("pow", worker_task);
 ```
-
-## Define the light client service
-
-The construction of the [light client][lightclient-parity] service is quite similar to the construction of the `new_full` function.
-Follow the pattern from the previous step to create `new_light`.
 
 ## Examples
 
