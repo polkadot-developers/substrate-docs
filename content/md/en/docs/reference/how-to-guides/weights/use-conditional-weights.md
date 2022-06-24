@@ -23,10 +23,10 @@ Once defined, it can be used directly in your pallet, written as such:
 
 Here are the different traits we'll be implementing:
 
-- [\`WeighData\`](<https://paritytech.github.io/substrate/master/frame_support/weights/trait.WeighData.html#impl-WeighData<T>-for-(Weight%2C%20DispatchClass%2C%20Pays)>): Weigh the data in a function.
+- [\`WeighData\`](https://paritytech.github.io/substrate/master/frame_support/weights/trait.WeighData.html#): Weigh the data in a function.
   \`pallet::weight\` expects whatever implements \`WeighData<T>\` to replace \`T\` with a tuple of the dispatch arguments.
-- [\`PaysFee\`](rustdocs/latest/frame_support/weights/trait.PaysFee.html): Designate whether the dispatch pays a fee or not.
-- [\`ClassifyDispatch\`](/rustdocs//latest/frame_support/weights/trait.ClassifyDispatch.html): A way to tell the runtime about the type of dispatch being made.
+- [\`PaysFee\`](https://paritytech.github.io/substrate/master/frame_support/weights/trait.PaysFee.html): Designate whether the dispatch pays a fee or not.
+- [\`ClassifyDispatch\`](https://paritytech.github.io/substrate/master/frame_support/weights/trait.ClassifyDispatch.html): A way to tell the runtime about the type of dispatch being made.
 
 ## Steps
 

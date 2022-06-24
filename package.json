@@ -20,7 +20,7 @@
 		"lint:eslint": "eslint . --ext js --ext jsx",
 		"lint:fix": "eslint --fix --ext js --ext jsx .",
 		"extract-locales": "yarn run babel --config-file ./babel-extract-locales.config.js -o tmp/chunk.js 'src/**/*.{js,jsx}' && rm -rf tmp",
-		"checklinks": "yarn blc --filter-level=3 -rof --requests=10 --exclude='/rustdocs' --exclude='/crates.io' --exclude='/fonts.gstatic.com' --exclude='/github.com'  --exclude='/help.github.com' --exclude='/www.nuget.org' --exclude='/www.chicagomanualofstyle.org' --exclude='/localhost:8000' --exclude='/localhost:8100' --exclude='undefined' http://localhost:9000 | tee checklinks.log"
+		"checklinks": "yarn blc --filter-level=3 -rof --requests=10 --exclude='/localhost:8000' --exclude='/localhost:8100' --exclude='undefined' http://localhost:9000 | tee checklinks.log"
 	},
 	"dependencies": {
 		"aos": "^2.3.4",

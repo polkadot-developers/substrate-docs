@@ -1,6 +1,6 @@
 ---
 title: Configure crowdfunding
-description:
+description: How to use FRAME pallets to create a crowdfunding campaign.
 keywords:
   - pallet design
   - intermediate
@@ -8,7 +8,8 @@ keywords:
   - child trie
 ---
 
-This guide shows you how to build a pallet that controls multiple token accounts and stores data in child storage. This structure is useful for building crowdfunding apps.
+This guide shows you how to build a pallet that controls multiple token accounts and stores data in child storage.
+This structure is useful for building crowdfunding apps.
 
 For this guide, we will focus on the use of a child storage trie, which allows any contributor to prove that they contributed using a small Merkle proof.
 Being able to make a simple proof of contribution can help users claim rewards for participating in a crowdloan.
@@ -42,9 +43,9 @@ This guide assumes that you know how to create your own errors and events accord
 
    In addition to the `Event` type, this pallet will need the following traits:
 
-   - **`Currency`**. The currency in which the crowdfunds will be denominated.
-   - **`SubmissionDeposit`**. The amount to be held on deposit by the owner of a crowdfund.
-   - **`MinContribution`**. The minimum amount that may be contributed to a crowdfund.
+   - **`Currency`** - The currency in which the crowdfunds will be denominated.
+   - **`SubmissionDeposit`** - The amount to be held on deposit by the owner of a crowdfund.
+   - **`MinContribution`** - The minimum amount that may be contributed to a crowdfund.
 
    Extend your trait with the following types:
 
@@ -96,7 +97,8 @@ This guide assumes that you know how to create your own errors and events accord
 
 1. Declare your storage items.
 
-   Your storage items will keep track of which user contributed to what fund as well as how much they contributed. Define the following types which will be used to declare your storage items:
+   Your storage items will keep track of which user contributed to what fund as well as how much they contributed.
+   Define the following types which will be used to declare your storage items:
 
    ```rust
    #[pallet::storage]
@@ -129,7 +131,7 @@ Create a function that provides the pallet's dispatchables with the account ID f
    }
    ```
 
-1. Generate unique [ChildInfo][childinfo-rustdocs] IDs:
+1. Generate unique [ChildInfo](https://paritytech.github.io/substrate/master/sp_storage/enum.ChildInfo.html) IDs:
 
    ```rust
    pub fn id_from_index(index: FundIndex) -> child::ChildInfo {
@@ -141,26 +143,27 @@ Create a function that provides the pallet's dispatchables with the account ID f
    }
    ```
 
-1. Write the following helper functions that make use of the [Child API][child-api-rustdocs]:
+1. Write the following helper functions that make use of the [Child API](https://paritytech.github.io/substrate/master/frame_support/storage/child/index.html):
 
-   - **`pub fn contribution_put`**: record a contribution in the associated child trie using [`put`][child-api-put-rustdocs]
+   - **`pub fn contribution_put`**: record a contribution in the associated child trie using [`put`](https://paritytech.github.io/substrate/master/frame_support/storage/child/fn.put.html)
 
-   - **`pub fn contribution_get`**: lookup a contribution in the associated child trie using [`get`][child-api-get-rustdocs]
+   - **`pub fn contribution_get`**: lookup a contribution in the associated child trie using [`get`](https://paritytech.github.io/substrate/master/frame_support/storage/child/fn.get.html)
 
-   - **`pub fn contribution_kil`**: remove a contribution from an associated child trie using [`kill`][child-api-kill-rustdocs]
+   - **`pub fn contribution_kil`**: remove a contribution from an associated child trie using [`kill`](https://paritytech.github.io/substrate/master/frame_support/storage/child/fn.kill.html)
 
-   - **`pub fn crowdfund_kill`**: remove the entire record of contributions in the associated child trie in a single storage write using [`kill_storage`][child-api-killstorage-rustdocs]
+   - **`pub fn crowdfund_kill`**: remove the entire record of contributions in the associated child trie in a single storage write using [`kill_storage`](https://paritytech.github.io/substrate/master/frame_support/storage/child/fn.kill_storage.html)
 
 ## Write your dispatchable functions
 
-The follow steps outline how to write the dispatchables for this pallet. After various checks within the dispatchables' logic, each function alters the `Funds<T>` storage map using
-its [associated methods][storage-map-rustdocs]. Our pallet's `create` function also makes use of the `FundInfo` struct created in step 2.
+The follow steps outline how to write the dispatchables for this pallet.
+After various checks within the dispatchables' logic, each function alters the `Funds<T>` storage map using its associated methods.
+Our pallet's `create` function also makes use of the `FundInfo` struct created in step 2.
 
 1. Create a new fund
 
    `fn create`:
 
-   - create an imbalance variable using [`T::Currency::withdraw`][imb-var-rustdocs]
+   - create an imbalance variable using [`T::Currency::withdraw`](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html#tymethod.withdraw)
    - update the `Funds` storage item using the `FundInfo` struct from step 2
    - deposit a `Created` event
 
@@ -178,7 +181,7 @@ its [associated methods][storage-map-rustdocs]. Our pallet's `create` function a
    `fn withdraw`:
 
    - perform preliminary safety checks using `ensure!`
-   - return funds by using [`T::Currency::resolve_into_existing`][resolve-into-existing-rustdocs]
+   - return funds by using [`T::Currency::resolve_into_existing`](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html#method.resolve_into_existing)
    - calculate new balances and update storage using child trie helper functions `funds`, `contribution_get` and `contribution_kill`
    - deposit `Withdrew` event
 
@@ -187,7 +190,7 @@ its [associated methods][storage-map-rustdocs]. Our pallet's `create` function a
    `fn dissolve`:
 
    - perform preliminary safety checks using `ensure!`
-   - allow dissolver to collect funds by using [`T::Currency::resolve_creating`][resolve-creating-rustdocs] for dissolver to collect funds
+   - allow dissolver to collect funds by using [`T::Currency::resolve_creating`](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html#method.resolve_creating) for dissolver to collect funds
    - use the child trie helper function `crowdfund_kill` to remove contributor info from storage
    - deposit `Dissolved` event
 
@@ -195,7 +198,7 @@ its [associated methods][storage-map-rustdocs]. Our pallet's `create` function a
 
    `fn dispense`:
 
-   - use [`T::Currency::resolve_creating`][resolve-creating-rustdocs] for beneficiary and caller (separately) to collect funds
+   - use [`T::Currency::resolve_creating`](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html#method.resolve_creating) for beneficiary and caller (separately) to collect funds
    - give initial deposit to account who calls this function as an incentive to clean up storage
    - remove the fund from storage using `<Funds<T>>::remove(index);` and `Self::crowdfund_kill(index);` to remove all contributors from storage in a single write
 
@@ -206,17 +209,6 @@ its [associated methods][storage-map-rustdocs]. Our pallet's `create` function a
 ## Resources
 
 - [Currency Imbalance trait](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/imbalance/trait.Imbalance.html)
-- [Child trie API][child-api-rustdocs]
+- [Child trie API](https://paritytech.github.io/substrate/master/frame_support/storage/child/index.html)
 - [`extend_from_slice`](https://paritytech.github.io/substrate/master/frame_support/dispatch/struct.Vec.html#method.extend_from_slice)
 - [`using_encode`](https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/trait.Encode.html#method.using_encoded)
-
-[storage-map-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/struct.StorageMap.html
-[imb-var-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html#tymethod.withdraw
-[resolve-into-existing-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html#tymethod.deposit_into_existing
-[resolve-creating-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html#method.resolve_creating
-[childinfo-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/storage/child/enum.ChildInfo.html
-[child-api-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/storage/child/index.html#functions
-[child-api-put-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/storage/child/fn.put.html
-[child-api-get-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/storage/child/fn.get_or_default.html
-[child-api-kill-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/storage/child/fn.kill.html
-[child-api-killstorage-rustdocs]: https://paritytech.github.io/substrate/master/frame_support/storage/child/fn.kill_storage.html

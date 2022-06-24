@@ -1,12 +1,13 @@
 ---
 title: Verify a Wasm binary
-description:
+description: Expose the features of the runtime for any Substrate chain.
 keywords:
   - tooling
   - wasm
+  - runtime
 ---
 
-[Subwasm](https://github.com/chevdor/subwasm) provides a way to expose the features of the runtime for any Substrate chain.
+Teh [subwasm](https://github.com/chevdor/subwasm) tool provides a way to expose the features of the runtime for any Substrate chain.
 This guide shows you how to use Subwasm to do the following:
 
 - Get a snapshot of the modules in a runtime.

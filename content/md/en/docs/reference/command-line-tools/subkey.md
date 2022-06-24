@@ -21,8 +21,7 @@ The `subkey` program currently supporting the following signature schemes:
 - [ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519): SHA-512 (SHA-2) on Curve25519.
 - [secp256k1](https://en.bitcoin.it/wiki/Secp256k1): ECDSA signatures on secp256k1.
 
-In Substrate-based networks, the `sr25519` encoded keys are used to produce
-[SS58 addresses]() as the public keys for interacting with the blockchain.
+In Substrate-based networks, the `sr25519` encoded keys are used to produce SS58 addresses as the public keys for interacting with the blockchain.
 
 ## Installation
 

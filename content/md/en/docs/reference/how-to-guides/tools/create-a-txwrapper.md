@@ -1,6 +1,6 @@
 ---
 title: Create a txwrapper for a chain
-description:
+description: Expand the offline signing options for users of your chain.
 keywords:
   - runtime
   - tooling
@@ -27,10 +27,9 @@ For existing `txwrapper` users to easily integrate new txwrappers.
 
 ### 1. Create a repo using `txwrapper-template`
 
-Copy the [`txwrapper-template`][txwrapper-template-gh] directory into your working repository.
+Copy the [`txwrapper-template`](https://github.com/paritytech/txwrapper-core/tree/main/packages/txwrapper-template) directory into your working repository.
 
-The template provides the basics of a typescript package near ready for being published to `NPM`. The exports show some methods
-that are relevant to a FRAME based chain using at least the `balances`, `proxy`, and `utility pallets`.
+The template provides the basics of a typescript package near ready for being published to `NPM`. The exports show some methods that are relevant to a FRAME based chain using at least the `balances`, `proxy`, and `utility pallets`.
 
 Note that the [`txwrapper-core\`](https://github.com/paritytech/txwrapper-core) is re-exported at the top level to give the user access to its tools.
 
@@ -56,8 +55,8 @@ Additionally, add the following field to give publishing permission:
 
 ### 3. Choose relevant methods to re-export
 
-You will need to choose what pallet methods you want your `txwrapper` to expose. It is recommended to choose methods that are likely to be
-signed by keys stored offline.
+You will need to choose what pallet methods you want your `txwrapper` to expose.
+It is recommended to choose methods that are likely to be signed by keys stored offline.
 
 If you just need methods from Substrate or ORML pallets, checkout [txwrapper-substrate](https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-substrate/README.md) and [txwrapper-orml](https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-orml/README.md) to see if the methods are already defined.
 
@@ -160,8 +159,7 @@ Create an end-to-end example so users have a clear understanding of the full flo
 
 ### 6. Publish your package
 
-Once you've made sure that versioning make sense and that the [package works locally][npm-pack],
-refer to [this guide][npm-publish] to learn how publish your package to `NPM`.
+Once you've made sure that versioning make sense and that the [package works locally](https://docs.npmjs.com/cli/v6/commands/npm-pack), refer to [this guide](https://docs.npmjs.com/cli/v6/commands/npm-publish) to learn how publish your package to `NPM`.
 
 ## Examples
 
@@ -169,11 +167,5 @@ refer to [this guide][npm-publish] to learn how publish your package to `NPM`.
 
 ## Resources
 
-- How-to use [`tx-wrapper-polkadot`][txwrapper-examples-gh]
+- How-to use [`tx-wrapper-polkadot`](https://github.com/paritytech/txwrapper-core/blob/main/packages/)
 - Serialization/deserialization [unit tests using `jest`](https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-orml/src/methods/currencies/transfer.spec.ts)
-
-[txwrapper-examples-gh]: https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-examples/README.md
-[txwrapper-template-gh]: https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-template
-[txwrapper-substrate-gh]: https://github.com/paritytech/txwrapper-core/blob/main/packages/txwrapper-substrate/README.md
-[npm-publish]: https://docs.npmjs.com/cli/v6/commands/npm-publish
-[npm-pack]: https://docs.npmjs.com/cli/v6/commands/npm-pack

@@ -60,8 +60,7 @@ The FRAME system exposes the runtime version information through the `state.getR
 The endpoint accepts an optional block identifier.
 However, in most cases, you use the runtime [metadata](/main-docs/build/application-dev/#metadata-system) to understand the APIs the runtime exposes
 and how to interact with these APIs.
-The runtime metadata should _only_ change when the chain's
-[runtime `spec_version`](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html#structfield.spec_version) changes.
+The runtime metadata should _only_ change when the chain's [runtime `spec_version`](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html#structfield.spec_version) changes.
 
 ## Forkless runtime upgrades
 
@@ -107,8 +106,7 @@ However, you can use the following recommended practices to guide you when you n
 
 By default, FRAME orders the execution of `on_runtime_upgrade` functions based on the order in which the pallets appear in the `construct_runtime!` macro.
 For upgrades, the functions run in _reverse_ order, starting with the last pallet executed first.
-You can impose a custom order, if needed (see an
-[example here](https://github.com/hicommonwealth/edgeware-node/blob/7b66f4f0a9ec184fdebcccd41533acc728ebe9dc/node/runtime/src/lib.rs#L845-L866)).
+You can impose a custom order, if needed (see an [example here](https://github.com/hicommonwealth/edgeware-node/blob/7b66f4f0a9ec184fdebcccd41533acc728ebe9dc/node/runtime/src/lib.rs#L845-L866)).
 
 FRAME storage migrations run in this order:
 

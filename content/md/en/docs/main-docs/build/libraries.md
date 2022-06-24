@@ -39,7 +39,7 @@ The separate of the core libraries provides a flexible and modular architecture 
 The primitives library provides a foundation that both the outer node and the runtime can build on without communicating directly with each other.
 Primitive types and traits are exposed in their own separate crates, so they are available to the outer node and runtime components without introducing cyclic dependency issues.
 
-[Visualizing the Substrate code base](https://octo-repo-visualization.vercel.app/?repo=paritytech%2Fsubstrate).
+- [Visualizing the Substrate code base](https://octo-repo-visualization.vercel.app/?repo=paritytech%2Fsubstrate).
 
 ## Front-end libraries
 
