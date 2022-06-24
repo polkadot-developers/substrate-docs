@@ -129,7 +129,7 @@ tutorials:
         - title: Authorize specific nodes
           url: /tutorials/get-started/permissioned-network/
         - title: Monitor node metrics
-          url: /tutorials/get-started/monitor-node/
+          url: /tutorials/get-started/node-metrics/
         - title: Upgrade the runtime
           url: /tutorials/get-started/forkless-upgrade/
     - title: Work with pallets
