@@ -23,7 +23,7 @@ Setting up your pallet to be able to benchmark your extrinsics.`,
 
 ### 1. Set-up benchmarking for your pallet
 
-1. In [the pallet's `Cargo.toml`](https://github.com/paritytech/substrate/blob/master/frame/example/Cargo.toml), add the `frame-benchmarking` crate (with appropriate tag and version) and the `runtime-benchmarks` feature.
+1. In [the pallet's `Cargo.toml`](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/Cargo.toml), add the `frame-benchmarking` crate (with appropriate tag and version) and the `runtime-benchmarks` feature.
 
    `pallets/example/Cargo.toml`
 
@@ -39,7 +39,7 @@ Setting up your pallet to be able to benchmark your extrinsics.`,
    ]
    ```
 
-1. Create a new Rust module for your benchmarks in your pallet's folder (an example of [`/pallets/template/src/benchmarking.rs`](https://github.com/substrate-developer-hub/substrate-node-template/blob/latest/pallets/template/src/benchmarking.rs)), and create the basic structure:
+1. Create a new Rust module for your benchmarks in your pallet's folder (an example of [`/pallets/template/src/benchmarking.rs`](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/benchmarking.rs)), and create the basic structure:
 
    `pallets/example/src/benchmarking.rs`
 
@@ -195,7 +195,7 @@ Execute the following command to run standard benchmarking for your `pallet_you_
 ```
 
 This will create a `weights.rs` file inside your pallet's directory.
-Refer to [Use custom weights from benchmarking](/reference/how-to-guides/weights/custom-weights) to learn how to configure your pallet to use those weights.
+Refer to [Use custom weights from benchmarking](/reference/how-to-guides/weights/use-custom-weights/) to learn how to configure your pallet to use those weights.
 
 ## Examples
 

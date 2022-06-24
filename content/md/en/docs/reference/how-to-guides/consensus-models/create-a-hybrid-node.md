@@ -7,7 +7,7 @@ keywords:
   - PoW
 ---
 
-This guide demonstrates how to create a Substrate-based node that employs hybrid consensus, using [Sha3 proof of work](../pow) to dictate block authoring and the [Grandpa](https://paritytech.github.io/substrate/master/sc_finality_grandpa/index.html) finality gadget to provide [deterministic finality](/main-docs/fundamentals/consensus#finality).
+This guide demonstrates how to create a Substrate-based node that employs hybrid consensus, using SHA3 proof of work to dictate block authoring and the [Grandpa](https://paritytech.github.io/substrate/master/sc_finality_grandpa/index.html) finality gadget to provide [deterministic finality](/main-docs/fundamentals/consensus#finality).
 The minimal proof of work consensus lives entirely outside of the runtime.
 
 The Grandpa finality relies on getting its authority sets from the runtime using the [Grandpa API](https://paritytech.github.io/substrate/master/sp_finality_grandpa/trait.GrandpaApi.html).
@@ -144,6 +144,6 @@ task_manager.spawn_essential_handle().spawn_blocking(
 
 ## Resources
 
-- [POW Algorithm](https://paritytech.github.io/substrate/master/sc_consensus_pow/trait.powalgorithm.html) trait
-- [`PowBlockimport`](https://paritytech.github.io/substrate/master/sc_consensus_pow/struct.powblockimport.html)
+- [POW Algorithm](https://paritytech.github.io/substrate/master/sc_consensus_pow/trait.PowAlgorithm.html) trait
+- [`PowBlockimport`](https://paritytech.github.io/substrate/master/sc_consensus_pow/struct.PowBlockImport.html)
 - [Inherents](https://paritytech.github.io/substrate/master/sp_inherents/index.html)

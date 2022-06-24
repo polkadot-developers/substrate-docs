@@ -214,4 +214,4 @@ RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
 - [`try-runtime-upgrade`](https://paritytech.github.io/substrate/master/frame_executive/struct.Executive.html#method.try_runtime_upgrade) from `frame_executive`
 - [`set_storage`](https://paritytech.github.io/substrate/master/sp_core/traits/trait.Externalities.html#method.set_storage) from `sp_core::traits::Externalities`
 - [`storage_keys_paged`](https://paritytech.github.io/substrate/master/sc_rpc/state/trait.StateApi.html#tymethod.storage_keys_paged) from `sc_rpc::state::StateApi`
-- `try-runtime` in [FRAME's Staking pallet](https://paritytech.github.io/substrate/master/pallet_staking/index.htmls)
+- `try-runtime` in [FRAME's Staking pallet](https://paritytech.github.io/substrate/master/pallet_staking/index.html)
