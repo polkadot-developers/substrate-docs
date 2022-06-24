@@ -86,7 +86,7 @@ If a call doesn't need to be signed, then the first bit in `[2]` will be 0 and s
 
 **Polkadot JS Apps example:**
 
-Here we demonstrate a detailed, manual extrinsic construction an submission of a balance transfer from Bob to Dave: Bob sends `42 UNIT`s to Dave.
+Here we demonstrate a detailed, manual extrinsic construction and submission of a balance transfer from Bob to Dave: Bob sends `42 UNIT`s to Dave.
 
 1. Start a [node template](https://github.com/substrate-developer-hub/substrate-node-template) in `--dev` mode (see the [quick start](/quick-start) guide for how to set this up)
 1. Navigate to <https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/extrinsics>
