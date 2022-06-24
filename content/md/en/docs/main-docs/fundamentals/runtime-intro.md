@@ -105,7 +105,7 @@ Each pallet defines specific types, storage items, and functions to implement a 
 
 The following diagram illustrates how you can select and combine FRAME pallets to compose a runtime.
 
-![Compose a runtime with FRAME](/media/images/docs/runtime/compose-runtime.png)
+![Compose a runtime with FRAME](/media/images/docs/main-docs/compose-runtime.png)
 
 ### Building custom pallets
 
