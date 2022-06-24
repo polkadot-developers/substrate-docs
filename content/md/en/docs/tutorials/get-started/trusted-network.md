@@ -428,7 +428,13 @@ To insert keys into the keystore:
 1. Insert the `grandpa` secret key generated from the `key` subcommand by running a command similar to the following:
 
    ```bash
-    ./target/release/node-template key insert --base-path /tmp/node01 --chain customSpecRaw.json --scheme Ed25519 --suri <your-secret-key> --password-interactive --key-type gran
+   ./target/release/node-template key insert \
+      --base-path /tmp/node01 \
+      --chain customSpecRaw.json \
+      --scheme Ed25519 \
+      --suri <your-secret-key> \
+      --password-interactive \
+      --key-type gran
    ```
 
    Replace `<your-secret-seed>` with the secret phrase or secret seed for the first key pair that you generated in [Generate local keys using the node template](#generate-local-keys-using-the-node-template).
@@ -499,11 +505,11 @@ To add a second validator to the private network:
 
    ```bash
    ./target/release/node-template key insert --base-path /tmp/node02 \
-   --chain customSpecRaw.json \
-   --scheme Sr25519 \
-   --suri <second-participant-secret-seed> \
-   --password-interactive \
-   --key-type aura
+      --chain customSpecRaw.json \
+      --scheme Sr25519 \
+      --suri <second-participant-secret-seed> \
+      --password-interactive \
+      --key-type aura
    ```
 
    Replace `<second-participant-secret-seed>` with the secret phrase or secret seed that you generated in [Generate a second key pair](#generate-a-second-set-of-keys).
