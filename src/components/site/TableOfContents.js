@@ -19,7 +19,7 @@ export default function TableOfContents({ data, headings }) {
   const activeId = useActiveId(idList);
   return (
     <>
-      <div className="w-100 sticky top-20 max-h-[calc(100vh)] pb-32 ml-11 overflow-y-auto overscroll-contain">
+      <div className="w-100 sticky top-20 max-h-[calc(100vh)] pb-32 ml-0 overflow-y-auto overscroll-contain">
         {data && (
           <div className="font-semibold mb-5 mr-1 pt-9 table-of-contents">
             <div className="mb-5">ON THIS PAGE</div>
