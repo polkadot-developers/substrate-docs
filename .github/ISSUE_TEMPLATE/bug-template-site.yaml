@@ -1,0 +1,47 @@
+name: Website Bug Report
+description: Let us know about an issue you experienced on https://docs.substrate.io/
+labels: ["bug 🐛", "web-dev 🕸"]
+body:
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue?
+      description: Please search to see if an issue already exists and leave a comment that you also experienced this issue or add your specifics that are related to an existing issue.
+      options:
+        - label: I have searched the existing issues
+          required: true
+  - type: checkboxes
+    attributes:
+      label: Experiencing problems? Have you tried our Stack Exchange first?
+      description: Please search <https://substrate.stackexchange.com> to see if an post already exists, and ask if not. Please do not file support issues here.
+      options:
+        - label: This is not a support question.
+          required: true
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: What browsers are you seeing the problem on?
+      multiple: true
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
+        - Other (please write below)
+    validations:
+      required: false
+  - type: textarea
+    id: bug
+    attributes:
+      label: Bug report for the website
+      description: What happened?
+      placeholder: Describe the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce the problem
+      description: Provide the steps that led to the discovery of the issue.
+      placeholder: Describe what you were doing so we can reproduce the problem.
+    validations:
+      required: false

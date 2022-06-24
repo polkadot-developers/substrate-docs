@@ -1,6 +1,6 @@
 ---
 title: Privileged calls and origins
-description: 
+description:
 keywords:
   - origins
 ---
@@ -42,12 +42,13 @@ proposal.dispatch(system::RawOrigin::None.into())
 ```
 
 You can look at the source code of the
-[Sudo module](/rustdocs/latest/pallet_sudo/index.html) for a practical
+[Sudo module](https://paritytech.github.io/substrate/master/pallet_sudo/index.html) for a practical
 implementation of this.
 
 ## Custom origins
 
-In addition to the 3 core origin types, runtime developers are also able to define custom origins. These can be used as authorization checks inside functions from specific modules in your runtime, or to define custom access-control logic around the sources of runtime requests.
+In addition to the three core origin types, runtime developers are also able to define custom origins.
+These can be used as authorization checks inside functions from specific modules in your runtime, or to define custom access-control logic around the sources of runtime requests.
 
 Customizing origins allows runtime developers to specify valid origins depending on their runtime logic. For example, it may be desirable to restrict access of certain functions to special custom origins and authorize dispatch calls only from members of a [collective](https://github.com/paritytech/substrate/tree/master/frame/collective). The advantage of using custom origins is that it provides runtime developers a way to configure privileged access over dispatch calls to the runtime.
 
@@ -55,7 +56,7 @@ Customizing origins allows runtime developers to specify valid origins depending
 
 ### Learn more
 
-- Learn about how origin is used in the [`#[pallet::call]`](/rustdocs/latest/frame_support/attr.pallet.html#call-palletcall-optional) macro.
+- Learn about how origin is used in the [`#[pallet::call]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#call-palletcall-optional) macro.
 
 ### Examples
 
@@ -70,4 +71,4 @@ Customizing origins allows runtime developers to specify valid origins depending
 ### References
 
 - Visit the reference docs for the
-  [`RawOrigin` enum](/rustdocs/latest/frame_system/enum.RawOrigin.html).
+  [`RawOrigin` enum](https://paritytech.github.io/substrate/master/frame_system/enum.RawOrigin.html).

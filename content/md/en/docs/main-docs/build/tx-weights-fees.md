@@ -1,6 +1,6 @@
 ---
 title: Transactions, weights, and fees
-description: docs
+description: Describes how the resources required to execute transactions are accounted for through the Substrate weight system and the calculation of transaction fees.
 keywords:
 ---
 
@@ -48,7 +48,7 @@ The inclusion fee is the minimum fee that must be available for a transaction to
 
 ## Using the transaction payment pallet
 
-The [Transaction Payment pallet](/rustdocs/latest/pallet_transaction_payment/index.html) provides the basic logic for calculating the inclusion fee.
+The [Transaction Payment pallet](https://paritytech.github.io/substrate/master/pallet_transaction_payment/index.html) provides the basic logic for calculating the inclusion fee.
 
 You can also use the Transaction Payment pallet to:
 
@@ -58,7 +58,7 @@ You can also use the Transaction Payment pallet to:
 
 - Manage the withdrawal, refund, and deposit of transaction fees using `Config::OnChargeTransaction`.
 
-You can learn more about these configuration traits in the [Transaction Payment](/rustdocs/latest/pallet_transaction_payment/index.html) documentation.
+You can learn more about these configuration traits in the [Transaction Payment](https://paritytech.github.io/substrate/master/pallet_transaction_payment/index.html) documentation.
 
 You should note that transaction fees are withdrawn before the transaction is executed.
 After the transaction is executed, the transaction weight can be adjusted to reflect the actual resources the transaction used.
@@ -101,10 +101,10 @@ However, this scenario would be a rare occurrence because the transaction queue 
 
 The inclusion fee formula always results in the same fee for the same input.
 However, weight can be dynamic and—based on how
-[`WeightToFee`](/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.WeightToFee)
+[`WeightToFee`](https://paritytech.github.io/substrate/master/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.WeightToFee)
 is defined—the final fee can include some degree of variability.
 
-To account for this variability, the Transaction Payment pallet provides the [`FeeMultiplierUpdate`](/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.FeeMultiplierUpdate) configurable parameter.
+To account for this variability, the Transaction Payment pallet provides the [`FeeMultiplierUpdate`](https://paritytech.github.io/substrate/master/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.FeeMultiplierUpdate) configurable parameter.
 
 The default update function is inspired by the Polkadot network and implements a targeted adjustment in which a target saturation level of block weight is defined.
 If the previous block is more saturated, then the fees are slightly increased.
@@ -163,9 +163,9 @@ fn my_dispatchable() {
 }
 ```
 
-This dispatchable does one database read and two database writes in addition to other things that add the additional 20,000. 
-A database access is generally every time a value that is declared inside the `#[pallet::storage]` block is accessed. 
-However, only unique accesses are counted because after a value is accessed it is cached and accessing it again does not result in a database operation. 
+This dispatchable does one database read and two database writes in addition to other things that add the additional 20,000.
+A database access is generally every time a value that is declared inside the `#[pallet::storage]` block is accessed.
+However, only unique accesses are counted because after a value is accessed it is cached and accessing it again does not result in a database operation.
 That is:
 
 - Multiple reads of the same value count as one read.
@@ -175,13 +175,13 @@ That is:
 
 ### Dispatch classes
 
-Dispatches are broken into three classes: 
+Dispatches are broken into three classes:
 
-* `Normal`
-* `Operational`
-* `Mandatory`
+- `Normal`
+- `Operational`
+- `Mandatory`
 
-If a dispatch is not defined as `Operational` or `Mandatory` in the weight annotation, the dispatch is identified as `Normal` by default. 
+If a dispatch is not defined as `Operational` or `Mandatory` in the weight annotation, the dispatch is identified as `Normal` by default.
 You can specify that the dispatchable uses another class like this:
 
 ```rust
@@ -190,7 +190,7 @@ You can specify that the dispatchable uses another class like this:
 }
 ```
 
-This tuple notation also allows you to specify a final argument that determines whether or not the user is charged based on the annotated weight. 
+This tuple notation also allows you to specify a final argument that determines whether or not the user is charged based on the annotated weight.
 If you don't specify otherwise, `Pays::Yes` is assumed:
 
 ```rust
@@ -202,35 +202,35 @@ fn my_dispatchable() {
 
 #### Normal dispatches
 
-Dispatches in this class represent normal user-triggered transactions. 
+Dispatches in this class represent normal user-triggered transactions.
 These types of dispatches only consume a portion of a block's total weight limit.
-For information about the maximum portion of a block that can be consumed for normal dispatches, see [`AvailableBlockRatio`](/rustdocs/latest/frame_system/limits/struct.BlockLength.html#method.max_with_normal_ratio).
+For information about the maximum portion of a block that can be consumed for normal dispatches, see [`AvailableBlockRatio`](https://paritytech.github.io/substrate/master/frame_system/limits/struct.BlockLength.html#method.max_with_normal_ratio).
 Normal dispatches are sent to the [transaction pool]().
 
 #### Operational dispatches
 
-Unlike normal dispatches, which represent _usage_ of network capabilities, operational dispatches are those that _provide_ network capabilities. 
+Unlike normal dispatches, which represent _usage_ of network capabilities, operational dispatches are those that _provide_ network capabilities.
 Operational dispatches can consume the entire weight limit of a block.
-They are not bound by the [`AvailableBlockRatio`](/rustdocs/latest/frame_system/limits/struct.BlockLength.html#method.max_with_normal_ratio).
+They are not bound by the [`AvailableBlockRatio`](https://paritytech.github.io/substrate/master/frame_system/limits/struct.BlockLength.html#method.max_with_normal_ratio).
 Dispatches in this class are given maximum priority and are exempt from paying the `length_fee`.
 
 #### Mandatory dispatches
 
-Mandatory dispatches are included in a block even if they cause the block to surpass its weight limit. 
+Mandatory dispatches are included in a block even if they cause the block to surpass its weight limit.
 You can only use the mandatory dispatch class for [inherents]().
-This dispatch class is intended to represent functions that are part of the block validation process. 
-Because these dispatches are always included in a block regardless of the function weight, it is critical that the validation process prevents malicious nodes from abusing the function to craft blocks that are valid but impossibly heavy. 
+This dispatch class is intended to represent functions that are part of the block validation process.
+Because these dispatches are always included in a block regardless of the function weight, it is critical that the validation process prevents malicious nodes from abusing the function to craft blocks that are valid but impossibly heavy.
 You can typically accomplish this by ensuring that:
 
-* The operation performed is always light.
-* The operation can only be included in a block once.
+- The operation performed is always light.
+- The operation can only be included in a block once.
 
-To make it more difficult for malicious nodes to abuse mandatory dispatches, they cannot be included in blocks that return errors. 
+To make it more difficult for malicious nodes to abuse mandatory dispatches, they cannot be included in blocks that return errors.
 This dispatch class exists to serve the assumption that it is better to allow an overweight block to be created than to not allow any block to be created at all.
 
 ### Dynamic weights
 
-In addition to purely fixed weights and constants, the weight calculation can consider the input arguments of a dispatchable. 
+In addition to purely fixed weights and constants, the weight calculation can consider the input arguments of a dispatchable.
 The weight should be trivially computable from the input arguments with some basic arithmetic:
 
 ```rust
@@ -246,9 +246,8 @@ fn handle_users(origin, calls: Vec<User>) {
 
 ## Post dispatch weight correction
 
-Depending on the execution logic, a dispatchable might consume less weight than was prescribed pre-dispatch. 
-Why this is useful is explained in the [weights article](/v3/concepts/weight#post-dispatch-weight-correction). 
-To correct weight, the dispatchable declares a different return type and returns its actual weight:
+Depending on the execution logic, a dispatchable function might consume less weight than was prescribed pre-dispatch.
+To correct weight, the function declares a different return type and returns its actual weight:
 
 ```rust
 #[pallet::weight(10_000 + 500_000_000)]
@@ -271,18 +270,18 @@ You can also define custom fee systems through custom weight functions or inclus
 
 ### Custom weights
 
-Instead of using the default weight annotations, you can create a custom weight calculation type. 
+Instead of using the default weight annotations, you can create a custom weight calculation type.
 The custom weight calculation type must implement the follow traits:
 
 - [`WeighData<T>`] to determine the weight of the dispatch.
 - [`ClassifyDispatch<T>`] to determine the class of the dispatch.
 - [`PaysFee<T>`] to determine whether the dispatchable's sender pays fees.
 
-Substrate then bundles the output information of the two traits into the [`DispatchInfo`] struct and provides it by implementing the [`GetDispatchInfo`] for all `Call` variants and opaque extrinsic types. 
+Substrate then bundles the output information of the two traits into the [`DispatchInfo`] struct and provides it by implementing the [`GetDispatchInfo`] for all `Call` variants and opaque extrinsic types.
 This is used internally by the System and Executive modules.
 
-`ClassifyDispatch`, `WeighData`, and `PaysFee` are generic over `T`, which gets resolved into the tuple of all dispatch arguments except for the origin. 
-The following example illustrates a `struct` that calculates the weight as `m * len(args)` where `m` is a given multiplier and `args` is the concatenated tuple of all dispatch arguments. 
+`ClassifyDispatch`, `WeighData`, and `PaysFee` are generic over `T`, which gets resolved into the tuple of all dispatch arguments except for the origin.
+The following example illustrates a `struct` that calculates the weight as `m * len(args)` where `m` is a given multiplier and `args` is the concatenated tuple of all dispatch arguments.
 In this example, the dispatch class is `Operational` if the transaction has more than 100 bytes of length in arguments and will pay fees if the encoded length is greater than 10 bytes.
 
 ```rust
@@ -318,7 +317,7 @@ impl<T> PaysFee<T> {
 }
 ```
 
-A weight calculator function can also be coerced to the final type of the argument, instead of defining it as a vague type that can be encoded. 
+A weight calculator function can also be coerced to the final type of the argument, instead of defining it as a vague type that can be encoded.
 The code would roughly look like this:
 
 ```rust
@@ -341,7 +340,7 @@ In this example, the `CustomWeight` can only be used in conjunction with a dispa
 
 ### Custom inclusion fee
 
-The following example illustrates how to customize your inclusion fee. 
+The following example illustrates how to customize your inclusion fee.
 You must configure the appropriate associated types in the respective module.
 
 ```rust
@@ -390,10 +389,13 @@ impl<T: Get<Perquintill>> Convert<Fixed128, Fixed128> for TargetedFeeAdjustment<
 
 You now know what the weight system is, how it affects transaction fee computation, and how to specify weights for your dispatchable calls.
 The next step is determining the correct weight to account for the operations your dispatchable performs.
-You can use Substrate **benchmarking functions** and `frame-benchmarking` calls to test your functions with different parameters and empirically determine the correct weight in their worst case scenarios. 
+You can use Substrate **benchmarking functions** and `frame-benchmarking` calls to test your functions with different parameters and empirically determine the correct weight in their worst case scenarios.
+
+<!-- TODO NAV.YAML -->
+<!-- add these back -->
 
 - [Benchmark](/main-docs/test/benchmark/)
-- [Calculate weight](/reference/how-to-guides/weights/)
-- [SignedExtension](/rustdocs/latest/sp_runtime/traits/trait.SignedExtension.html)
+<!-- - [Calculate weight](/reference/how-to-guides/weights/) -->
+- [SignedExtension](https://paritytech.github.io/substrate/master/sp_runtime/traits/trait.SignedExtension.html)
 - [Custom weights for the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/weights.rs)
 - [Web3 Foundation Research](https://w3f-research.readthedocs.io/en/latest/polkadot/overview/2-token-economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits)

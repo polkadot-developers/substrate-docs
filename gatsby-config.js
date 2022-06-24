@@ -160,7 +160,6 @@ module.exports = {
               directory: `${__dirname}/content/code-snippets/`,
             },
           },
-          `gatsby-remark-prismjs`,
           {
             resolve: 'gatsby-remark-custom-blocks',
             options: {
@@ -174,6 +173,9 @@ module.exports = {
                 advice: {
                   classes: 'advice',
                 },
+                tabbedCode: {
+                  classes: 'tabbedCode',
+                },
               },
             },
           },
@@ -181,6 +183,14 @@ module.exports = {
             resolve: 'gatsby-remark-component',
             /* for strict declaration (required to escape default components like <img />) */
             options: { components: ['a', 'img'] },
+          },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              aliases: {
+                sh: 'bash',
+              },
+            },
           },
         ],
       },
@@ -237,15 +247,15 @@ module.exports = {
       },
     },
     'gatsby-plugin-sitemap',
-    // {
-    //   resolve: 'gatsby-plugin-simple-analytics',
-    //   options: {
-    //     domain: 'api-sa.substrate.io',
-    //     eventsGlobal: 'sa',
-    //     events: true,
-    //     trackPageViews: true,
-    //   },
-    // },
+    {
+      resolve: 'gatsby-plugin-simple-analytics',
+      options: {
+        domain: 'api-sa.substrate.io',
+        eventsGlobal: 'sa',
+        events: true,
+        trackPageViews: true,
+      },
+    },
     {
       resolve: `gatsby-plugin-force-trailing-slashes`,
       options: {

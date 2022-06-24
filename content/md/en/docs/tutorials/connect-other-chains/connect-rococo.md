@@ -1,6 +1,7 @@
 ---
 title: Connect to Rococo testnet
 description:
+keywords:
 ---
 
 Rococo is Parity's public test network for cumulus-based parachains.
@@ -8,7 +9,7 @@ This section of the workshop steps through how you can onboard your parachain to
 
 ## Before you begin
 
-Make sure you have successfully completed the [previous section](/tutorials/v3/cumulus/connect-parachain) of this workshop and tested your parachain on your local machine.
+Make sure you have successfully completed the [previous section](/tutorials/connect-other-chains/parachain) of this workshop and tested your parachain on your local machine.
 This implies that:
 
 - You're familiar with registering and reserving your unique para ID.

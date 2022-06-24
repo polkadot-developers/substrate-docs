@@ -1,9 +1,14 @@
 ---
 title: Authorize specific nodes
-description: Build a network where only authorized Substrate nodes are allowed to perform certain network activities.
+description:
+keywords:
+  - permissioned
+  - private
+  - authorize
+  - enterprize
 ---
 
-In [Add trusted validators](/tutorials/get-started/trusted-network/), you saw how to build a simple network with a known set of validator nodes.
+In [Add trusted nodes](/tutorials/get-started/trusted-network/), you saw how to build a simple network with a known set of validator nodes.
 That tutorial illustrated a simplified version of a **permissioned network**.
 In a permissioned network, only **authorized nodes** are allowed to perform specific network activities.
 For example, you might grant some nodes the permission to validate blocks and other nodes the permission to propagate transactions.
@@ -19,7 +24,7 @@ For example, a permissioned blockchain would be suitable for the following types
 - For testing of a pre-public blockchain network at scale.
 
 This tutorial illustrates how you can build a permissioned network with Substrate by using the
-[node authorization pallet](/rustdocs/latest/pallet_node_authorization/index.html).
+[node authorization pallet](https://paritytech.github.io/substrate/master/pallet_node_authorization/index.html).
 
 ## Node authorization and ownership
 
@@ -57,7 +62,7 @@ Before you begin, verify the following:
 
 - You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and have the Substrate node template installed locally.
 
-* You have completed the [Add trusted validators](/tutorials/get-started/trusted-network/) tutorial.
+* You have completed the [Add trusted nodes](/tutorials/get-started/trusted-network/) tutorial.
 
 - You are generally familiar with [peer-to-peer networking](https://wiki.polkadot.network/docs/faq#networking) in Substrate.
 
@@ -99,7 +104,7 @@ If you have completed previous tutorials, you should have the Substrate node tem
    ```
 
    The node template should compile without any errors.
-   If you encounter issues when you compile, you can try the troubleshooting tips in [Troubleshoot Rust issues](/main-docs/install/troubleshoting/).
+   If you encounter issues when you compile, you can try the troubleshooting tips in [Troubleshoot Rust issues](/main-docs/install/troubleshooting/).
 
 ## Add the node authorization pallet
 
@@ -151,7 +156,7 @@ To add the `node-authorization` pallet to the Substrate runtime:
 
    This section specifies the default feature set to compile for this runtime is the `std` features set.
    When the runtime is compiled using the `std` feature set, the `std` features from all of the pallets listed as dependencies are enabled.
-   For more detailed information about how the runtime is compiled as a native Rust binary with the standard library and as a WebAssembly binary using the `no_std` attribute, see [Building the runtime](/main-docs/build/build-runtime/).
+   For more detailed information about how the runtime is compiled as a native Rust binary with the standard library and as a WebAssembly binary using the `no_std` attribute, see [Building the runtime](/main-docs/build/build-process/).
 
    If you forget to update the `features` section in the `Cargo.toml` file, you might see `cannot find function` errors when you compile the runtime binary.
 
@@ -184,7 +189,7 @@ The `Config` trait is used to identify the parameters and types that the pallet 
 
 Most of the pallet-specific code required to add a pallet is implemented using the `Config` trait.
 You can review what you to need to implement for any pallet by referring to its Rust documentation or the source code for the pallet.
-For example, to see what you need to implement for the `Config` trait in the node-authorization pallet, you can refer to the Rust documentation for [`pallet_node_authorization::Config`](/rustdocs/latest/pallet_node_authorization/pallet/trait.Config.html).
+For example, to see what you need to implement for the `Config` trait in the node-authorization pallet, you can refer to the Rust documentation for [`pallet_node_authorization::Config`](https://paritytech.github.io/substrate/master/pallet_node_authorization/pallet/trait.Config.html).
 
 To implement the `node-authorization` pallet in your runtime:
 
@@ -285,17 +290,17 @@ To configure genesis storage for authorized nodes:
 
    ```rust
      node_authorization: NodeAuthorizationConfig {
-   		nodes: vec![
-   			(
-   				OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
-   				endowed_accounts[0].clone()
-   			),
-   			(
-   				OpaquePeerId(bs58::decode("12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust").into_vec().unwrap()),
-   				endowed_accounts[1].clone()
-   			),
-   		],
-   	},
+       nodes: vec![
+         (
+           OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
+           endowed_accounts[0].clone()
+         ),
+         (
+           OpaquePeerId(bs58::decode("12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust").into_vec().unwrap()),
+           endowed_accounts[1].clone()
+         ),
+       ],
+     },
    ```
 
    In this code, `NodeAuthorizationConfig` contains a `nodes` property, which is a vector with a tuple of two elements.
@@ -456,11 +461,11 @@ Go to **Developer** page, **Sudo** tab, in apps and submit the `nodeAuthorizatio
 `add_well_known_node` call with the peer id in hex of Charlie's node and the
 owner is Charlie, of course. Note Alice is the valid sudo origin for this call.
 
-![add_well_known_node](../img/tutorials/03-permissioned-network/add_well_known_node.png)
+![add_well_known_node](/media/images/docs/tutorials/permissioned-network/add_well_known_node.png)
 
 After the transaction is included in the block, you should see the `charlie` node is
 connected to the `alice` and `bob` nodes, and starts to sync blocks.
-The three nodes can find each other using the [mDNS](/rustdocs/latest/sc_network/index.html) discovery mechanism is that is enabled by default in a local network.
+The three nodes can find each other using the [mDNS](https://paritytech.github.io/substrate/master/sc_network/index.html) discovery mechanism is that is enabled by default in a local network.
 
 If your nodes are not on the same local network, you should use the command-line option `--no-mdns` to disable it.
 
@@ -491,16 +496,16 @@ In the **Developer Extrinsics** page, get Charlie to submit an `addConnections` 
 The first PeerId is the peer id in hex of Charlie's node. The connections is a list
 of allowed peer ids for Charlie's node, here we only add Dave's.
 
-![charlie_add_connections](../img/tutorials/03-permissioned-network/charlie_add_connections.png)
+![charlie_add_connections](/media/images/docs/tutorials/permissioned-network/charlie_add_connections.png)
 
 Then, Dave needs to configure his node to allow the connection from Charlie's node.
 But before he adds this, Dave needs to _claim_ his node, hopefully it's not too late!
 
-![dave_claim_node](../img/tutorials/03-permissioned-network/dave_claim_node.png)
+![dave_claim_node](/media/images/docs/tutorials/permissioned-network/dave_claim_node.png)
 
 Similarly, Dave can add connection from Charlie's node.
 
-![dave_add_connections](../img/tutorials/03-permissioned-network/dave_add_connections.png)
+![dave_add_connections](/media/images/docs/tutorials/permissioned-network/dave_add_connections.png)
 
 You should now see Dave is catching up blocks and only has one peer which belongs to Charlie!
 Restart Dave's node in case it's not connecting with Charlie right away.
@@ -511,13 +516,9 @@ In a real world application, node operators would _only_ have access to their no
 
 **Congratulations!**
 
-You are at the end of this tutorial and are already learned about how to build a
-permissioned network. You can also play with other dispatchable calls like
-`remove_well_known_node`, `remove_connections`.
+You have now learned how to build a network where some nodes have limited permissions and restricted access to network resources.
+To learn more about the topics introduced in this tutorial, see the following sections:
 
-## Next steps
-
-- Complete the [Private Network Tutorial](/tutorials/v3/private-network)
-- Read more about the [Subkey tool](/v3/tools/subkey)
-
-[Modified node template example](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/permissioned-network-v3)
+- [Monitor node metrics](/tutorials/get-started/node-metrics/)
+- [Upgrade the runtime](/tutorials/get-started/forkless-upgrade/)
+- [Accounts, addresses, and keys](/main-docs/fundamentals/accounts-addresses-keys)

@@ -1,14 +1,15 @@
 ---
 title: Tutorials
-description: Get firsthand experience building with Substrate.
+description:
+keywords:
 ---
 
 If you are someone who likes to learn by doing, the Substrate tutorials are a great place to start your journey.
 Tutorials don't provide much background about _why_ you are performing certain steps or explain the coding details.
 Instead, the tutorials give you hands-on experience performing the tasks essential to building your own blockchain and focus on ensuring a successful result.
 
-If you prefer to experiment on your own with less guidance, you might want to explore the [Developer Playground]().
-If you prefer to dig into the details of the code directly, you might want to start with the [Rust API]() documentation.
+If you prefer to experiment on your own with less guidance, you might want to explore the [Substrate Playground](https://docs.substrate.io/playground/).
+If you prefer to dig into the details of the code directly, you might want to start with the [Rust API](https://paritytech.github.io/substrate/master/sc_service/index.html) documentation.
 But if you want to start your journey with a guided tour, try out the following tutorials.
 
 ## Get started

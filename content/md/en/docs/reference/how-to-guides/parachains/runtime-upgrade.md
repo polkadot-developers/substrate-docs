@@ -1,10 +1,6 @@
 ---
-title: Runtime Upgrades
-slug: /how-to-guides/v3/parachains/runtime-upgrades
-version: 'polkadot-v0.9.18'
-section: how to guides
-category: parachains
-difficulty: 3
+title: Runtime upgrades
+description:
 keywords:
   - collators
   - parachains
@@ -14,42 +10,24 @@ keywords:
   - migration
 ---
 
-<Objectives
-  data={[
-    {
-      title: 'Goal',
-      description: 'Ensure that parachain runtime upgrades succeed.',
-    },
-    {
-      title: 'Use Cases',
-      description: `
-  - Modifying parachain runtimes (add/remove pallets)
-  - Parachain storage migrations
-      `,
-    },
-    {
-      title: 'Overview',
-      description: `
-  Runtime upgrades on a parachain have _much_ stricter requirements and a slightly different
-  flow required as they you _must_ coordinate with the relay chain to facilitate this. Because
-  of this, and the very confined nature of state transition coordination both
-  **quickly and succinctly** enough for the block inclusion in the relay chain.
-      `,
-    },
-  ]}
-/>
+The goal of this guide is to help parachain developers ensure that runtime upgrades succeed.
+
+This guide illustrates:
+
+- How to modify parachain runtimes (add/remove pallets)
+- How to do a parachain storage migration
+
+Runtime upgrades on a parachain have _much_ stricter requirements and a slightly different flow required as they you _must_ coordinate with the relay chain to facilitate this.
+Because of this, and the very confined nature of state transition coordination both **quickly and succinctly** enough for the block inclusion in the relay chain.
 
 ## Before you continue
 
-Please do the folowing:
+Please do the following:
 
-- Read the general [runtime upgrade docs](/v3/runtime/upgrades).
-- Complete the [cumulus tutorial](/tutorials/v3/cumulus/start-relay), and learn the
-  `polkadot-launch` tool for testing.
+- Read the general [runtime upgrade docs](/main-docs/build/upgrade).
+- Complete the [cumulus tutorial](/tutorials/connect-other-chains/relay-chain), and learn the `polkadot-launch` tool for testing.
 
-## Steps
-
-### 1. Choose your upgrade approach
+## Choose your upgrade approach
 
 If your existing Substrate chain has a very large state which you are migrating
 between different storage formats, it might not be possible to run all of the
@@ -82,12 +60,13 @@ use to remedy this problem:
      over time via the scheduler.
 
 After your migration strategy is established, you should test the migration on a non-production testnet to ensure it will work _before_ you continue.
-See the [how-to guide on storage migration testing](/reference/how-to-guides/storage-migrations/tests) to proceed.
+
+<!--See the [how-to guide on storage migration testing](/reference/how-to-guides/storage-migrations/tests) to proceed.-->
 
 Testing in a confined network will help you prepare for potential failures in a real network with many collators and validators and constraints like bandwidth and latency.
 The more closely you can simulate a real network for testing, the more sure you can be that your runtime upgrades will succeeds.
 
-### 2. Authorize -> enact an upgrade flow
+## Authorize -> enact an upgrade flow
 
 When finally ready to upgrade a parachain, the relay chain needs to be informed about the runtime
 upgrade of your chain before it happens.
@@ -107,10 +86,12 @@ upgrade has been scheduled.
 
 ## Resources
 
-- [Regular runtime upgrade docs](/v3/runtime/upgrades)
-  - [Fork Off Substrate tool](https://github.com/maxsam4/fork-off-substrate)
-- [`try-runtime` tool](/v3/tools/try-runtime)
-  - [`try-runtime` video workshop](https://www.crowdcast.io/e/substrate-seminar/41)
-- [Storage migrations Guide](/how-to-guides/v3/storage-migrations/basics)
-  - [Storage migration testing Guide](/how-to-guides/v3/storage-migrations/tests)
-  - [Substrate Builders Program Storage Migration Discussion](https://drive.google.com/file/d/19HPFUmSQIxVkxaVSg1SWveSdvjHUw1b8/view?usp=sharing)
+- [Runtime upgrade](/main-docs/build/upgrade)
+- [Fork off Substrate](https://github.com/maxsam4/fork-off-substrate)
+- [`try-runtime`](/reference/command-line-tools/try-runtime)
+- [`try-runtime` video workshop](https://www.crowdcast.io/e/substrate-seminar/41)
+<!-->
+- [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/)
+- [How to: Test storage migration](/reference/how-to-guides/storage-migrations/test-migration)
+  -->
+- [Substrate Builders Program: Storage Mmgration](https://drive.google.com/file/d/19HPFUmSQIxVkxaVSg1SWveSdvjHUw1b8/view?usp=sharing)

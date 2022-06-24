@@ -1,11 +1,11 @@
 ---
 title: try-runtime
-section: reference
+description:
 keywords:
 ---
 
-The `try-runtime` tool is built to query a snapshot of runtime storage, using an [in-memory-externalities](https://docs.substrate.io/rustdocs/latest/sp_state_machine/struct.TestExternalities.html) to store state. 
-In this way, it enables runtime engineers to write tests for a specified runtime state, for testing against real chain state _before_ going to production. 
+The `try-runtime` tool is built to query a snapshot of runtime storage, using an [in-memory-externalities](https://paritytech.github.io/substrate/master/sp_state_machine/struct.TestExternalities.html) to store state.
+In this way, it enables runtime engineers to write tests for a specified runtime state, for testing against real chain state _before_ going to production.
 It is designed to be used as a command line interface to specify at which block to query state.
 
 In its simplest form, `try-runtime` is a tool that enables:
@@ -13,7 +13,6 @@ In its simplest form, `try-runtime` is a tool that enables:
 1. Connecting to a remote node and calling into some runtime API.
 2. Scraping the specified state from a node at a given block.
 3. Writing tests for that data.
-
 
 ## Motivation
 
@@ -28,19 +27,19 @@ into `TestExternalities`.
 ## How it works
 
 The `try-runtime` tool has its own implementation of externalities called [`remote_externalities`][remoteextern-rustdocs]
-which is just a builder wrapper around `TestExternalities` that uses a generic [key-value store](/v3/advanced/storage)
-where data is [SCALE encoded](/v3/advanced/scale-codec).
+which is just a builder wrapper around `TestExternalities` that uses a generic [key-value store](/main-docs/fundamentals/state-transitions-and-storage)
+where data is [type encoded](/reference/scale-codec).
 
 The diagram below illustrates the way externalities sits outside a compiled runtime as a means to capture
 the storage of that runtime.
 
 ### Storage externalities
 
-![Storage externalities](../../img/docs/advanced/try-runtime-ext-1.png)
+![Storage externalities](/media/images/docs/reference/try-runtime-ext-1.png)
 
 ### Testing with externalities
 
-![Testing with externalities](../../img/docs/advanced/try-runtime-ext-2.png)
+![Testing with externalities](/media/images/docs/reference/try-runtime-ext-2.png)
 
 With `remote_externalities`, developers can capture some chain state and run tests on it. Essentially, `RemoteExternalities`
 will populate a `TestExternalities` with a real chain's data.
@@ -60,8 +59,8 @@ expensive RPC queries, namely:
 - `set --rpc-max-payload 1000` to ensure large RPC queries can work.
 - `set --rpc-cors all` to ensure ws connections can come through.
 
-You can combine `try-runtime` with [`fork-off-substrate`](https://github.com/maxsam4/fork-off-substrate) to test your chain before production. 
-Use `try-runtime` to test your chain's migration and its pre and post states. 
+You can combine `try-runtime` with [`fork-off-substrate`](https://github.com/maxsam4/fork-off-substrate) to test your chain before production.
+Use `try-runtime` to test your chain's migration and its pre and post states.
 Then, use `fork-off-substrate` if you want to check that block production continues after the migration.
 
 ### Calling into hooks from `OnRuntimeUpgrade`
@@ -172,7 +171,7 @@ cargo run --release --features=try-runtime try-runtime on-runtime-upgrade live w
 
 #### Other scenarios
 
-Using it to re-execute code from a `ElectionProviderMultiPhase` off-chain worker on `localhost:9944`:
+Using it to re-execute code from a `ElectionProviderMultiPhase` offchain worker on `localhost:9944`:
 
 ```bash
 cargo run -- --release \
@@ -209,45 +208,21 @@ RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
     cargo run try-runtime \
     --execution Native \
     --chain dev \
-    --no-spec-name-check \ # mind this one!
+    --no-spec-name-check \
     on-runtime-upgrade \
     live \
     --uri wss://rpc.polkadot.io \
     --at <block-hash>
 ```
 
-## Next steps
+> Notice `--no-spec-name-check` in particular is needed.
 
-### Learn more
+## Where to go next
 
 - Refer to [this how-to guide][integrate-try-runtime-htg] on how to integrate `try-runtime` to your project.
-- Read more about [Storage keys](/v3/advanced/storage#storage-value-keys)
+- [Storage keys](/main-docs/build/runtime-storage#storage-value-keys)
 - [`OnRuntimeUpgrade`][onruntimeupgrade-method-rustdocs] FRAME trait
 - [`try-runtime-upgrade`][executive-try-runtime-rustdocs] from `frame_executive`
 - [`set_storage`][get-storage-rustdocs] from `sp_core::traits::Externalities`
 - [`storage_keys_paged`][storage-keys-paged-rustdocs] from `sc_rpc::state::StateApi`
-
-## Examples
-
 - `try-runtime` in [FRAME's Staking pallet][staking-frame]
-
-[tryruntime-api-rustdocs]: /rustdocs/latest/frame_try_runtime/trait.TryRuntime.html
-[testextern-rustdocs]: /rustdocs/latest/sp_state_machine/struct.TestExternalities.html
-[basicextern-rustdocs]: /rustdocs/latest/sp_state_machine/struct.BasicExternalities.html
-[remoteextern-rustdocs]: /rustdocs/latest/remote_externalities/index.html
-[stateapi-rustdocs]: /rustdocs/latest/sc_rpc/state/trait.StateApi.html
-[stateapi-storage-rustdocs]: /rustdocs/latest/sc_rpc/state/trait.StateApi.html#tymethod.storage
-[stateapi-storage-keys-paged-rustdocs]: /rustdocs/latest/sc_rpc/state/trait.StateApi.html#tymethod.storage_keys_paged
-[executive-example-frame]: /rustdocs/latest/src/frame_executive/lib.rs.html#221-238
-[oru-helpers-ext-rustdocs]: /rustdocs/latest/frame_support/traits/trait.OnRuntimeUpgradeHelpersExt.html
-[hooks-rustdocs]: /rustdocs/latest/src/frame_support/traits/hooks.rs.html#109
-[executive-rustdocs]: /rustdocs/latest/frame_executive/struct.Executive.html
-[sc-cli-rustdocs]: /rustdocs/latest/sc_cli/index.html#
-[staking-frame]: https://github.com/paritytech/substrate/blob/fc49802f263529160635471c8a17888846035f5d/frame/staking/src/lib.rs#L1399-L1406
-[onruntimeupgrade-method-rustdocs]: /rustdocs/latest/frame_support/traits/trait.OnRuntimeUpgrade.html#on_runtime_upgrade
-[executive-try-runtime-rustdocs]: /rustdocs/latest/frame_executive/struct.Executive.html#method.try_runtime_upgrade
-[get-storage-rustdocs]: /rustdocs/latest/sp_core/traits/trait.Externalities.html#method.set_storage
-[get-storage]: https://polkadot.js.org/docs/substrate/rpc/#getstoragechildkey-prefixedstoragekey-key-storagekey-at-hash-optionstoragedata
-[storage-keys-paged]: https://polkadot.js.org/docs/substrate/rpc/#getkeyspagedchildkey-prefixedstoragekey-prefix-storagekey-count-u32-startkey-storagekey-at-hash-vecstoragekey
-[storage-keys-paged-rustdocs]: /rustdocs/latest/sc_rpc/state/trait.StateApi.html#tymethod.storage_keys_paged
-[integrate-try-runtime-htg]: /how-to-guides/v3/tools/try-runtime
