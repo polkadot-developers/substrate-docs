@@ -84,22 +84,38 @@ The way applications know how to construct a transaction correctly is provided b
 An application will know how to correctly encode a transaction by using the metadata types and transaction format.
 If a call doesn't need to be signed, then the first bit in `[2]` will be 0 and so an application will know not to try decoding a signature.
 
-**Example:**
+**Polkadot JS Apps example:**
 
-Balances transfer from Bob to Dave: Bob sends `42` units to Dave.
+Here we demonstrate a detailed, manual extrinsic construction and submission of a balance transfer from Bob to Dave: Bob sends `42 UNIT`s to Dave.
 
-- Encoded call data: `0x050000306721211d5404bd9da88e0204360a1a9ab8b87c66c1bc2fcdd37f3c2222cc20a8`
-- Encoded call hash: >
-- Compact encoded length of encoded data: `2d02`
+1. Start a [node template](https://github.com/substrate-developer-hub/substrate-node-template) in `--dev` mode (see the [quick start](/quick-start) guide for how to set this up)
+1. Navigate to <https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/extrinsics>
+1. Set `Bob` as sender and select `balances` pallet and the `transfer(dest, value)` call
+1. Set `MultiAddress` to `Id` and the `AccountID` to `Dave` for the `dest`
+1. Set `value` to `42000000000000` (this is `42 UNIT` as defined in the [chain spec](/main-docs/build/chain-spec/) of the node template)
+1. Click `Submit Transaction` button (lower right) and **un-check** _sign and submit_ to generate a signed transaction with the default `nonce = 0` and `Lifetime = 64` for inspection
 
-- Resulting extrinsic: `0x2d028400cebf28ce763780c72973e16ddb0b86c33f8868d37ef0eb95691b416f838e7e6201a05bdb6cdfaf0a7fa47b73eace5f3ad03d3395544210fb10a2c3d31865d4db587f45b71b185059411dd95c28943842748035bf089e553b1e5869d2bf599eaa82d5030000050000306721211d5404bd9da88e0204360a1a9ab8b87c66c1bc2fcdd37f3c2222cc20a8`
+![Bob to Dave `transfer` 42 unit](/media/images/docs/reference/apps-extrinsic-transfer-bob-to-dave-42.png)
 
-Submitting the resulting constructed extrinsic using RPC returns this decoded metadata:
+- Encoded call data: `0x050300306721211d5404bd9da88e0204360a1a9ab8b87c66c1bc2fcdd37f3c2222cc200b00a014e33226`
+- Encoded call hash: `0x26c333c22ec93ac431ee348168530b7d77e85d766f130af60890c0fd6ab20d5b`
+- Resulting signed transaction call hash: `0x450284008eaf04151687736326c9fea17e25fc5287613693c912909cb226aa4794f26a48018eeaeb6a3496444c08b5c3e10e0c5f94776774591504ef4ef26e3873799831285a1a7cbd8ba2babe6fba94ea3585bf20e46c80ce7baeb25b149529ece931478c45020c00050000306721211d5404bd9da88e0204360a1a9ab8b87c66c1bc2fcdd37f3c2222cc200b00a014e33226`
+
+![Bob to Dave `transfer` 42 unit signed hash](/media/images/docs/reference/apps-extrinsic-transfer-bob-to-dave-42-signed-hash.png)
+
+Here you can _Copy_ the `Signed transaction` data to submit via RPC directly, or for inspection on the `Developer` -> `Extrinsics` -> `Decode` section.
+We will use this window now to submit the transaction and _watch_ the result.
+
+1. Close the `authorize transaction` card
+1. Click `Submit Transaction` button (lower right) and keep _sign and submit_ checked
+1. Navigate to the `Developer` -> `RPC Calls` tab
+
+In the RPC tab, you should see the result of your `author_submitAndWatchExtrinsic` call as something similar to:
 
 ```json
 {
   dispatchInfo: {
-    weight: 195,952,000
+    weight: 159,200,000
     class: Normal
     paysFee: Yes
   }
@@ -112,10 +128,39 @@ Submitting the resulting constructed extrinsic using RPC returns this decoded me
         method: Withdraw
         section: balances
         index: 0x0508
-        data: [
-          5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty
-          125,000,141
-        ]
+        data: {
+          who: 5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty
+          amount: 125,000,147
+        }
+      }
+      topics: []
+    }
+    {
+      phase: {
+        ApplyExtrinsic: 1
+      }
+      event: {
+        method: NewAccount
+        section: system
+        index: 0x0003
+        data: {
+          account: 5DAAnrj7VHTznn2AWBemMuyBwZWs6FNFjdyVXUeYum3PTXFy
+        }
+      }
+      topics: []
+    }
+    {
+      phase: {
+        ApplyExtrinsic: 1
+      }
+      event: {
+        method: Endowed
+        section: balances
+        index: 0x0500
+        data: {
+          account: 5DAAnrj7VHTznn2AWBemMuyBwZWs6FNFjdyVXUeYum3PTXFy
+          freeBalance: 42,000,000,000,000
+        }
       }
       topics: []
     }
@@ -127,11 +172,11 @@ Submitting the resulting constructed extrinsic using RPC returns this decoded me
         method: Transfer
         section: balances
         index: 0x0502
-        data: [
-          5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty
-          5DAAnrj7VHTznn2AWBemMuyBwZWs6FNFjdyVXUeYum3PTXFy
-          42
-        ]
+        data: {
+          from: 5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty
+          to: 5DAAnrj7VHTznn2AWBemMuyBwZWs6FNFjdyVXUeYum3PTXFy
+          amount: 42,000,000,000,000
+        }
       }
       topics: []
     }
@@ -143,22 +188,31 @@ Submitting the resulting constructed extrinsic using RPC returns this decoded me
         method: ExtrinsicSuccess
         section: system
         index: 0x0000
-        data: [
-          {
-            weight: 195,952,000
+        data: {
+          dispatchInfo: {
+            weight: 159,200,000
             class: Normal
             paysFee: Yes
           }
-        ]
+        }
       }
       topics: []
     }
   ]
   status: {
-    InBlock: 0x6543a4d4b44f5acc9ad111f0218296f1da5a5493599431ce9eecb55ed0a4d3fb
+    InBlock: 0x501c8f15883bb2b686fb5ea1ca35e99dace8bd6216bfc571a31d7088aea000f7
   }
 }
 ```
+
+1. Navigate to the `Network` -> `Explorer` tab
+1. Open the `balances.Transfer` extrinsic details by clicking the `<block number>-<extrinsic number>` in the top right of the card
+1. Inspect the on-chain details of your transaction
+
+![Bob to Dave `transfer` 42 unit result](/media/images/docs/reference/apps-extrinsic-transfer-bob-to-dave-42-result.png)
+
+Click the `#/extrinsics/decode/0x....` link to open the decoded details of the above `Signed transaction` data and notice it is identical to what we submitted.
+Thus before or after submitting an extrinsic, this tool can be used to decode and introspect transaction call data.
 
 ## Signed extensions
 
