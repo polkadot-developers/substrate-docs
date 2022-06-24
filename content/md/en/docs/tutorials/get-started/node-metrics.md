@@ -92,7 +92,7 @@ To install the tools for this tutorial:
    gunzip prometheus-2.35.0.darwin-amd64.tar.gz && tar -xvf prometheus-2.35.0.darwin-amd64.tar
    ```
 
-1. Navigate to [Grafana OSS download](https://grafana.com/grafana/download?edition=oss).).
+1. Navigate to [Grafana OSS download](https://grafana.com/grafana/download?edition=oss).
 
 1. Select the appropriate precompiled binary for your architecture.
 
@@ -213,7 +213,7 @@ You can let the Substrate builder community know your dashboard exists by listin
 
 ## Where to go next
 
-- [Add trusted nodes](/tutorials/get-started/trusted-network).
-  [Monitor your node](https://wiki.polkadot.network/docs/en/maintain-guides-how-to-monitor-your-node).
-  [Substrate Prometheus Exporter](https://github.com/paritytech/substrate/tree/master/utils/prometheus).
-- [Polkadot network dashboard](https://github.com/w3f/polkadot-dashboard).
+- [Add trusted nodes](/tutorials/get-started/trusted-network)
+- [Monitor your node](https://wiki.polkadot.network/docs/en/maintain-guides-how-to-monitor-your-node)
+-  [Substrate Prometheus Exporter](https://github.com/paritytech/substrate/tree/master/utils/prometheus)
+- [Polkadot network dashboard](https://github.com/w3f/polkadot-dashboard)
