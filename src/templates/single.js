@@ -111,7 +111,7 @@ export default function DocsSinglePage({ data, pageContext }) {
                   <PreviousNextButtons previous={previousPage} next={nextPage} />
                   <div className="py-5 text-sm">
                     <hr />
-                    <div className="mb-8 text-sm">
+                    <div className="mb-8 text-sm inline-block">
                       <EditOnGithubButton
                         link={
                           'https://github.com/substrate-developer-hub/substrate-docs/blob/main/content/md/' +
