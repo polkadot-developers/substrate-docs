@@ -63,9 +63,9 @@ In a proof-of-work blockchain, these nodes are called _miners_.
 The [nodes](#node) that act as a collective to manage [consensus](#consensus) on a[blockchain](#blockchain) network.
 In a [proof-of-stake](#nominated-proof-of-stake-npos) blockchain—for example, a blockchain that us the [Staking pallet](/reference/frame-pallets#staking) from [FRAME](#frame)—authorities are determined through a token-weighted nomination and voting system.
 
-> The terms _authorities_ and _[validators](#validator)_ sometimes seem to refer the same thing.
-> However, _validators_ is a broader term that can include other aspects of chain maintenance such as parachain validation.
-> In general, authorities are a (non-strict) subset of validators and many validators are authorities.
+The terms _authorities_ and _[validators](#validator)_ sometimes seem to refer the same thing.
+However, _validators_ is a broader term that can include other aspects of chain maintenance such as parachain validation.
+In general, authorities are a (non-strict) subset of validators and many validators are authorities.
 
 ## authority round (Aura)
 
@@ -86,9 +86,23 @@ Learn more about BABE by referring to its [official Web3 Foundation research doc
 
 ## block
 
-Describes a single element of a blockchain that [cryptographically](#cryptographic-primitives) binds a set of [extrinsic](#extrinsic) data—the body—to a [header](#header).
-Blocks are arranged into a tree through parent pointers.
-The pointer to a parent block is a hash of the parent and the tree is pruned into a list using a [fork-choice rule](/main-docs/fundamentals/consensus#fork-choice-rules) and an optional [finality](#finality) mechanism.
+A block is a single element of a blockchain that contains an ordered set of instructions—often in the form of transactions—that might result in a state change.
+
+Each block is identified by a [cryptographic digest](#cryptographic-primitives)—a hash—and includes a pointer back to the hash of its parent block.
+Every block has a [header](#header) and a body that contains the executed instructions that made it into the block within certain parameters.
+Blocks are most often visualized as a vertical stack with each block referencing its parent block until there are conflicts that must be resolved using a [fork-choice rule](/main-docs/fundamentals/consensus#fork-choice-rules) and an optional [finality](#finality) mechanism.
+
+## block height
+
+Because blocks are often visualized as a vertical stack, block height is used to describe the distance a specific block is away from the first block.
+The block height for any particular block in a blockchain indicates how many blocks preceded that block.
+
+Similarly, the terms _top_ or _tip_ are used to describe the most recently-added block in a chain.
+
+## block number
+
+Similar to block height, a block number is used to describe the distance a specific block is away from the first block.
+The block number for any particular block in a blockchain indicates how many blocks preceded that block.
 
 ## blockchain
 
