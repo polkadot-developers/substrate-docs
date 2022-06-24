@@ -1,8 +1,10 @@
 ---
 title: Create a hybrid node
-description:
+description: How to create a Substrate-based node that employs hybrid consensus
 keywords:
   - consensus
+  - proof of work
+  - PoW
 ---
 
 This guide demonstrates how to create a Substrate-based node that employs hybrid consensus, using [Sha3 proof of work](../pow) to dictate block authoring and the
@@ -147,10 +149,6 @@ task_manager.spawn_essential_handle().spawn_blocking(
 
 ## Resources
 
-- [POW Algorithm][pow-rustdocs] trait
-- [`PowBlockimport`][powblockimport-rustdocs]
-- [Inherents][inherents-kb]
-- [powblockimport-rustdocs](https://paritytech.github.io/substrate/master/sc_consensus_pow/struct.PowBlockImport.html)
-- [powblockimport-new-rustdocs](https://paritytech.github.io/substrate/master/sc_consensus_pow/struct.PowBlockImport.html#method.new_full)
-- [inherents-rustdocs](https://paritytech.github.io/substrate/master/sp_inherents/index.html)
-- [pow-rustdocs](https://paritytech.github.io/substrate/master/sc_consensus_pow/trait.PowAlgorithm.html)
+- [POW Algorithm](https://paritytech.github.io/substrate/master/sc_consensus_pow/trait.powalgorithm.html) trait
+- [`PowBlockimport`](https://paritytech.github.io/substrate/master/sc_consensus_pow/struct.powblockimport.html)
+- [Inherents][(ttps://paritytech.github.io/substrate/master/sp_inherents/index.html)

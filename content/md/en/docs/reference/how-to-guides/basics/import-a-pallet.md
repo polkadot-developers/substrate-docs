@@ -101,7 +101,7 @@ std = [
 
 ## Examples
 
-- [Template pallet][template-frame]
+- [Template pallet](https://paritytech.github.io/substrate/master/pallet_template/index.html)
 - [Timestamp pallet](https://paritytech.github.io/substrate/master/pallet_timestamp/index.html)
 
 ## Related material
