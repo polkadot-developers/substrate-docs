@@ -1,10 +1,10 @@
 ---
 title: Transaction formats
-description:
+description: Describes the format of signed and unsigned transactions in Substrate.
 keywords:
 ---
 
-This article describes in detail what the format of signed and unsigned transactions in Substrate.
+This article describes in detail the data structure of signed and unsigned transactions in Substrate.
 This is particularly useful for understanding how the transaction pool checks incoming transactions.
 Parachain builders will find this useful for customizing how their transactions are formatted as well as writing client applications that need to adhere to a chosen format.
 
@@ -88,15 +88,13 @@ If a call doesn't need to be signed, then the first bit in `[2]` will be 0 and s
 
 Balances transfer from Bob to Dave: Bob sends `42` units to Dave.
 
-[ TODO: polkadotjs apps screenshot ]
-
 - Encoded call data: `0x050000306721211d5404bd9da88e0204360a1a9ab8b87c66c1bc2fcdd37f3c2222cc20a8`
 - Encoded call hash: >
 - Compact encoded length of encoded data: `2d02`
 
 - Resulting extrinsic: `0x2d028400cebf28ce763780c72973e16ddb0b86c33f8868d37ef0eb95691b416f838e7e6201a05bdb6cdfaf0a7fa47b73eace5f3ad03d3395544210fb10a2c3d31865d4db587f45b71b185059411dd95c28943842748035bf089e553b1e5869d2bf599eaa82d5030000050000306721211d5404bd9da88e0204360a1a9ab8b87c66c1bc2fcdd37f3c2222cc20a8`
 
-Submitting the resulting constructed extrinsic via RPC returns this decoded metadata:
+Submitting the resulting constructed extrinsic using RPC returns this decoded metadata:
 
 ```json
 {
@@ -168,9 +166,9 @@ Substrate provides the concept of **signed extensions** to extend an extrinsic w
 
 The transaction queue regularly calls signed extensions to keep checking that a transaction is valid before it gets put in the ready queue.
 This is a useful safeguard for verifying that transactions won't fail in a block.
-They are commonly used to enforce some validation, spam and replay protection logic needed by the transaction pool.
+They are commonly used to enforce validation logic to protect the transaction pool from spam and replay attacks.
 
-By default in FRAME, a signed extension can hold any of the following types:
+In FRAME, a signed extension can hold any of the following types by default:
 
 - `AccountId`: to encode the sender's identity.
 - `Call`: to encode the pallet call to be dispatched. This data is used to calculate transaction fees.
@@ -194,10 +192,13 @@ These are:
 
 The priority depends on the dispatch class and the amount of tip-per-weight or tip-per-length (whatever is more limiting) the sender is willing to pay.
 Transactions without a tip use a minimal tip value of `1` for priority calculations to make sure that not all transactions end up having a priority of `0`.
-The consequence of this is that "smaller" transactions are preferred over "larger" ones.
+The consequence of this is that _smaller_ transactions are preferred over _larger_ ones.
 
-## Learn more
+## Where to go next
 
-- Submit offline transactions using `tx-wrapper`
-- Submit transactions using `sidecar`
-- Learn how to configure transaction fees for your chain
+Now that you have seen how transactions are constructed, you might want to review how they progress from the transaction pool to the runtime and get added to blocks or how to use tools that enable you to submit transactions offline or using a REST API.
+
+- [Transaction lifecycle](/main-docs/fundamentals/transaction-lifecycle/)
+- [Transactions, weights, and fees](/main-docs/build/tx-weights-fees/)
+- [tx-wrapper](/reference/command-line-tools/tx-wrapper) for offline transactions
+- [sidecar](/reference/command-line-tools/sidecar) for REST-based transactions
