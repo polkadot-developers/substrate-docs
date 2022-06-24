@@ -1,11 +1,11 @@
 ---
 title: memory-profiler
-section: reference
+description: Command-line reference information for the memory-profiler program.
 keywords:
 ---
 
-Memory profiling enables you to understand the memory allocation and behavior of your blockchain applications over time in Substrate-based clients. 
-It identifies method calls in the context of how memory was allocated, combining this information with the number of allocated objects. 
+Memory profiling enables you to understand the memory allocation and behavior of your blockchain applications over time in Substrate-based clients.
+It identifies method calls in the context of how memory was allocated, combining this information with the number of allocated objects.
 In addition, profiling can be used to analyze memory leaks, identify where memory consumption is happening, define temporary allocations, and investigate excessive memory fragmentation within applications.
 
 The profiler we recommend is [koute's memory profiler](https://github.com/koute/memory-profiler).
@@ -104,7 +104,7 @@ $ echo "LD_PRELOAD=/opt/memory-profiler/bin/libmemory_profiler.so" | sudo tee -a
 
 Now you want to open your `systemd` unit file for your node and add the following in the `[Service]` section:
 
-```
+```text
 [Service]
 EnvironmentFile=/opt/memory-profiler/env
 ```
@@ -162,7 +162,7 @@ $ ./memory-profiler-cli server *.dat
 This might take a while, depending or your exact hardware and on the amount of data you're trying to load.
 Eventually you should see something like this being printed out:
 
-```
+```text
 [2020-05-06T08:59:20Z INFO  cli_core::loader] Loaded data in 315s 820
 [2020-05-06T08:59:20Z INFO  actix_server::builder] Starting 8 workers
 [2020-05-06T08:59:20Z INFO  actix_server::builder] Starting server on 127.0.0.1:8080
@@ -182,7 +182,7 @@ that you can access you'd like to export the data into another format or inspect
 - You might see the the following error or warning in the profiler's logs depending on which Linux
   distribution you're running:
 
-  ```
+  ```text
   The perf_event_open syscall failed for PID 0: Operation not permitted (os error 1)`
   ```
 
@@ -193,8 +193,8 @@ that you can access you'd like to export the data into another format or inspect
   $ echo "-1" | sudo tee /proc/sys/kernel/perf_event_paranoid
   ```
 
-  Although please note that this might have some security implications. 
+  Although please note that this might have some security implications.
   Take a look at `man perf_event_open` for more details.
 
-- During analysis the whole data file has to be loaded into memory. 
+- During analysis the whole data file has to be loaded into memory.
   If you don't have enough RAM and you'll try to load up a big file the analyzer might run out of memory and crash.

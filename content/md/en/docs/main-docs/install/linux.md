@@ -5,7 +5,7 @@ keywords:
 ---
 
 Rust supports most Linux distributions.
-Depending on the specific distribution and version of the operating system you use, you might need to add some package dependencies to your environment.
+Depending on the specific distribution and version of the operating system you use, you might need to add some software dependencies to your environment.
 In general, your development environment should include a linker or C-compatible compiler such as `clang` and an appropriate integrated development environment (IDE).
 
 ## Before you begin
@@ -36,34 +36,27 @@ To install the Rust toolchain on Linux:
 1. Check the packages you have installed on the local computer by running an appropriate package management command for your Linux distribution.
 
 1. Add any package dependencies you are missing to your local development environment by running an appropriate package management command for your Linux distribution.
-
-   For example, on Ubuntu Desktop or Ubuntu Server, you might run a command similar to the following:
-
-   ```bash
-   sudo apt install --assume-yes git clang curl libssl-dev
-   ```
-
    Click the tab titles to see examples for other Linux operating systems:
 
    <figure class='tabbed'>
 
    [[tabbedCode]]
    |```Debian
-   | sudo apt install --assume-yes git clang curl libssl-dev
+   | sudo apt install --assume-yes git clang curl libssl-dev llvm libudev-dev make protobuf-compiler
 
    [[tabbedCode]]
    |```Arch
-   | pacman -Syu --needed --noconfirm curl git clang
+   | pacman -Syu --needed --noconfirm curl git clang protobuf
 
    [[tabbedCode]]
    | ```fedora
    | sudo dnf update
-   | sudo dnf install clang curl git openssl-devel
+   | sudo dnf install clang curl git openssl-devel protobuf-compiler
 
    [[tabbedCode]]
    | ```opensuse
-   | sudo zypper install clang curl git openssl-devel llvm-devel libudev-devel
-   
+   | sudo zypper install clang curl git openssl-devel llvm-devel libudev-devel protobuf
+
    </figure>
 
    Remember that different distributions might use different package managers and bundle packages in different ways.
@@ -108,25 +101,27 @@ To install the Rust toolchain on Linux:
 
    ```bash
    rustup show
+   rustup +nightly show
    ```
 
    The command displays output similar to the following:
 
-   ```
-   Default host: x86_64-unknown-linux-gnu
-   rustup home:  /home/subdocs/.rustup
-
-   installed toolchains
-   --------------------
-
-   stable-x86_64-unknown-linux-gnu (default)
-   nightly-x86_64-unknown-linux-gnu
+   ```bash
+   # rustup show
 
    active toolchain
    ----------------
 
    stable-x86_64-unknown-linux-gnu (default)
-   rustc 1.58.1 (db9d1b20b 2022-01-20)
+   rustc 1.61.0 (fe5b13d68 2022-05-18)
+
+   # rustup +nightly show
+
+   active toolchain
+   ----------------
+
+   nightly-x86_64-unknown-linux-gnu (overridden by +toolchain on the command line)
+   rustc 1.63.0-nightly (e71440575 2022-06-02)
    ```
 
 ## Compile a Substrate node
@@ -141,7 +136,7 @@ To compile the Substrate node template:
 1. Clone the node template repository by running the following command:
 
    ```bash
-   git clone https://github.com/substrate-developer-hub/substrate-node-template
+   git clone --branch latest --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
    ```
 
 1. Change to the root of the node template directory by running the following command:
@@ -150,22 +145,14 @@ To compile the Substrate node template:
    cd substrate-node-template
    ```
 
-1. Switch to the version of the repository that has the `latest` tag by running the following command:
-
-   ```bash
-   git checkout latest
-   ```
-
-   This command checks out the repository in a detached state.
-   If you want to save your changes, you can create a branch from this state.
-
 1. Compile the node template by running the following command:
 
    ```bash
-   cargo build --release
+   # We always want to build in release mode when intending to run and/or test any node
+   cargo b -r
    ```
 
-   Because of the number of packages required, compiling the node can take several minutes.
+   Because of the number of crates required, compiling the node can take several minutes.
 
 After the build completes successfully, your local computer is ready for Substrate development activity.
 
@@ -174,6 +161,9 @@ After the build completes successfully, your local computer is ready for Substra
 The Substrate Developer Hub acts as a central portal for access to the many resources available to the community.
 Depending on your interests and learning style, you might prefer one avenue over another.
 For example, if you prefer to read source code and are familiar with Rust, you might want to start by digging into the [Rust API](https://paritytech.github.io/substrate/master).
+
+<!-- TODO NAV.YAML -->
+<!-- add these back -->
 <!--If you are new to Substrate and the Substrate ecosystem, you might want broader exposure to what resources are available and where to find them by checking out [Explore](/main-docs/explore/).-->
 
 Here are a few additional suggestions for where you can learn more.
@@ -188,4 +178,4 @@ Here are a few additional suggestions for where you can learn more.
 
 - [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
 - [Simulate a network](/tutorials/get-started/simulate-network/)
-- [Add trusted validators](/tutorials/get-started/trusted-network/)
+- [Add trusted nodes](/tutorials/get-started/trusted-network/)

@@ -1,7 +1,10 @@
 ---
 title: FRAME pallets
-description:
-keywords: Frame, pallets, API
+description: Provides an overview of the most commonly-used predefined FRAME pallets.
+keywords:
+  - Frame
+  - pallets
+  - API
 ---
 
 The FRAME development environment provides modules—called pallets—and support libraries that you can use, modify, and extend to build the runtime logic to suit the needs of your blockchain.
@@ -34,7 +37,7 @@ You should check the [Rust documentation](https://paritytech.github.io/substrate
 | [`pallet_aura`](https://paritytech.github.io/substrate/master/pallet_aura/index.html) | Extends the authority round (Aura) consensus model by managing offline reporting.
 | [`pallet_authority_discovery`](https://paritytech.github.io/substrate/master/pallet_authority_discovery/index.html) | Retrieves the current set of authorities, learns its own authority ID, and signs and verifies messages to and from other authorities.
 | [`pallet_authorship`](https://paritytech.github.io/substrate/master/pallet_authorship/index.html) | Tracks the current author of the block and recent uncles.
-| [`pallet_babe`](https://paritytech.github.io/substrate/master/pallet_babe/index.html) | Extends BABE consensus by |collecting on-chain randomness from VRF outputs and managing epoch transitions.
+| [`pallet_babe`](https://paritytech.github.io/substrate/master/pallet_babe/index.html) | Extends BABE consensus by collecting on-chain randomness from VRF outputs and managing epoch transitions.
 | [pallet_balances](https://paritytech.github.io/substrate/master/pallet_balances/index.html) | Provides functionality for handling accounts and balances.
 | [`frame_benchmarking`](https://paritytech.github.io/substrate/master/frame_benchmarking/trait.Benchmark.html) | Contains common runtime patterns for benchmarking and testing purposes.
 | [`pallet_collective`](https://paritytech.github.io/substrate/master/pallet_collective/index.html) | Allows a set of account IDs to make their collective feelings known through dispatched calls from specialized origins.
@@ -70,7 +73,7 @@ You should check the [Rust documentation](https://paritytech.github.io/substrate
 
 ## Parachain pallets
 
-In addition to the functional pallets that are generally useful for any blockchain, there are prebuilt pallets that provide features specifically for blockchains that are intended to connect to a relay chain. 
+In addition to the functional pallets that are generally useful for any blockchain, there are prebuilt pallets that provide features specifically for blockchains that are intended to connect to a relay chain.
 The following pallets provide features for parachain development.
 
 | Prebuilt pallet name | What it's for
@@ -85,4 +88,4 @@ The following pallets provide features for parachain development.
 
 ## Additional information
 
-For detailed information about any pallet, refer to the [Rust-generated API](https://docs.substrate.io/rustdocs/) documentation or the source code for the individual pallet.
+For detailed information about any pallet, refer to the [Rust-generated API](https://paritytech.github.io/substrate/master/) documentation or the source code for the individual pallet.

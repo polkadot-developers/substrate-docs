@@ -42,17 +42,17 @@ rustc 1.50.0 (cb75ad5db 2021-02-10)
 ```
 
 In this example, the default toolchain is from the `stable` release channel for Linux running on x86_64 architecture.
-The sample output also indicates that the `nightly-x86_64-unknown-linux-gnu` toolchain is installed and there are two targets installed: 
+The sample output also indicates that the `nightly-x86_64-unknown-linux-gnu` toolchain is installed and there are two targets installed:
 
-* `x86_64-unknown-linux-gnu` the native Rust target for Linux.
-* `wasm32-unknown-unknown` the WebAssembly target.
+- `x86_64-unknown-linux-gnu` the native Rust target for Linux.
+- `wasm32-unknown-unknown` the WebAssembly target.
 
 This environment also has the `nightly-2020-10-06-x86_64-unknown-linux-gnu` toolchain installed, but this toolchain is only used if explicitly specified as a command-line option.
 For an example of specifying a specific toolchain as a command line option, see [Specify a nightly version](#specifying-nightly-version).
 
 ## Use the nightly release channel for WebAssembly
 
-Substrate uses [WebAssembly](https://webassembly.org) (Wasm) to produce a portable blockchain runtime. 
+Substrate uses [WebAssembly](https://webassembly.org) (Wasm) to produce a portable blockchain runtime.
 You must configure the Rust compiler to use [`nightly` builds](https://doc.rust-lang.org/book/appendix-07-nightly-rust.html) to allow you to
 compile Substrate runtime code to the Wasm target.
 
@@ -74,9 +74,8 @@ For more information about getting an earlier version of the `nightly` toolchain
 ## Use a specific nightly toolchain
 
 If you want to guarantee that your build works on your computer as you update Rust and other dependencies, you should use a specific Rust `nightly` toolchain that you know to be compatible with the version of Substrate you are using.
-How you identify and communicate the specific `nightly` toolchain version to use for a project can vary. 
-For example, Polkadot publishes this information in its
-[release notes](https://github.com/paritytech/polkadot/releases).
+How you identify and communicate the specific `nightly` toolchain version to use for a project can vary.
+For example, Polkadot publishes this information in its [release notes](https://github.com/paritytech/polkadot/releases).
 
 After you identify the specific `nightly` toolchain version to use, you can install it in your development environment by running a command similar to the following:
 
@@ -110,7 +109,7 @@ You can set the `WASM_BUILD_TOOLCHAIN` environment variable to specify the versi
 WASM_BUILD_TOOLCHAIN=nightly-<yyyy-MM-dd> cargo build --release
 ```
 
-This command builds the _runtime_ using the specified nightly toolchain. 
+This command builds the _runtime_ using the specified nightly toolchain.
 The rest of project is compiled using the _default_ toolchain, that is, the latest version of the `stable` toolchain that you have installed.
 
 ### Downgrade the nightly toolcahin

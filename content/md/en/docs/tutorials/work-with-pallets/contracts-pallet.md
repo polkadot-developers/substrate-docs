@@ -1,13 +1,14 @@
 ---
 title: Configure the contracts pallet
 description: Configure the Substrate runtime to prepare for writing smart contracts.
+keywords:
 ---
 
 If you completed the [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) tutorial, you already know that the Substrate [node template](https://github.com/substrate-developer-hub/substrate-node-template) provides a working runtime that includes some **pallets** to get you started.
 In [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet/), you learned the basic common steps for adding a new pallet to the runtime.
 However, each pallet requires you to configure specific parameters and types.
 To see what that entails, this tutorial demonstrates adding a more complex pallet to the runtime.
-In this tutorial, you'll add the [Contracts pallet](/rustdocs/latest/pallet_contracts/) so that you can support smart contract development for your blockchain.
+In this tutorial, you'll add the [Contracts pallet](https://paritytech.github.io/substrate/master/pallet_contracts/) so that you can support smart contract development for your blockchain.
 
 If you completed the [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet/) tutorial, you'll notice some familiar patterns when adding the Contracts pallet.
 This tutorial focuses less on those common patterns and more on the the settings that are specifically required to add the Contracts pallet.
@@ -20,12 +21,12 @@ Before starting this tutorial, verify the following:
   [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template/tree/latest).
 
 - You have downloaded and installed the
-  [Substrate front-end template](https://github.com/substrate-developer-hub/substrate-node-template/tree/latest) as described in 
+  [Substrate front-end template](https://github.com/substrate-developer-hub/substrate-node-template/tree/latest) as described in
   [Buiild a local blockchain](/tutorials/get-started/build-local-blockchain/).
 
 ## Add the pallet dependencies
 
-Any time you add a pallet to the runtime, you need to import the appropriate crate and update the dependencies for the runtime. 
+Any time you add a pallet to the runtime, you need to import the appropriate crate and update the dependencies for the runtime.
 For the Contracts pallet, you need to import the `pallet-contracts` crate.
 
 To import the `pallet-contracts` crate:
@@ -70,7 +71,7 @@ To import the `pallet-contracts` crate:
 Now that you have successfully imported the Contracts pallet crate, you are ready to add it to the runtime.
 If you have explored other tutorials, you might already know that every pallet has a configuration trait—called `Config`—that the runtime must implement.
 
-To see what you need to implement for the Contracts pallet, you can refer to the Rust API documentation for [`pallet_contracts::Config`](https://substrate.dev/rustdocs/latest/pallet_contracts/pallet/trait.Config.html).
+To see what you need to implement for the Contracts pallet, you can refer to the Rust API documentation for [`pallet_contracts::Config`](https://paritytech.github.io/substrate/master/pallet_contracts/pallet/trait.Config.html).
 
 To implement the `Config` trait for the Contracts pallet in the runtime:
 
@@ -326,7 +327,7 @@ To expose the Contracts RPC API:
 
 ## Update the outer node
 
-At this point, you have finished adding the Contracts pallet to the runtime. 
+At this point, you have finished adding the Contracts pallet to the runtime.
 Now, you need to consider whether the outer node requires any corresponding updates.
 For the Contracts pallet to take advantage of the RPC endpoint API, you need to add the custom RPC endpoint to the node configuration.
 
@@ -360,8 +361,8 @@ To add the RPC API extension to the outer node:
 
 1. Open the `node/src/rpc.rs` file in a text editor.
 
-   Substrate provides an RPC to interact with the node. 
-   However, it does not contain access to the Contracts pallet by default. 
+   Substrate provides an RPC to interact with the node.
+   However, it does not contain access to the Contracts pallet by default.
    To interact with the Contracts pallet, you must extend the existing RPC and add the Contracts pallet and its API.
 
    ```rust
@@ -412,7 +413,7 @@ If there are no errors, you are ready to compile.
 
 ## Start the local Substrate node
 
-After your node compiles, you are ready to start the Substrate node that has been enhanced with smart contract capabilities from the [Contracts pallet](https://substrate.dev/rustdocs/latest/pallet_contracts/index.html) and interact with it using the front-end template.
+After your node compiles, you are ready to start the Substrate node that has been enhanced with smart contract capabilities from the [Contracts pallet](https://paritytech.github.io/substrate/master/pallet_contracts/index.html) and interact with it using the front-end template.
 
 To start the local node:
 
@@ -423,7 +424,7 @@ To start the local node:
 1. Start the node in development mode by running the following command:
 
    ```shell
-   ./target/release/node-template --dev 
+   ./target/release/node-template --dev
    ```
 
 1. Verify your node is up and running successfully by reviewing the output displayed in the terminal.
@@ -457,7 +458,7 @@ In this tutorial, you learned:
 - How to update the outer node.
 - How to verify the Contracts pallet is available in the runtime using the front-end template.
 
-To begin using the Contracts pallet, you'll need to start writing some smart contracts to deploy. 
+To begin using the Contracts pallet, you'll need to start writing some smart contracts to deploy.
 Explore the following topics and tutorials to learn more.
 
 - [Custom RPCs](/main-docs/build/custom-rpc/)

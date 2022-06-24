@@ -1,5 +1,5 @@
 ---
-title: Integrate the contracts pallet
+title: Add the contracts pallet
 description:
 keywords:
   - pallet design
@@ -7,7 +7,7 @@ keywords:
   - runtime
 ---
 
-This guide will show you how to add the [Contracts pallet](/rustdocs/latest/pallet_contracts/index.html) to your runtime so that your blockchain can support Wasm smart contracts.
+This guide will show you how to add the [Contracts pallet](https://paritytech.github.io/substrate/master/pallet_contracts/index.html) to your runtime so that your blockchain can support Wasm smart contracts.
 You can follow similar patterns to add additional FRAME pallets to your runtime, however you should note that each pallet is a little different in terms of the specific configuration settings needed to use it correctly.
 
 ## Before you begin
@@ -18,7 +18,7 @@ If you haven't already done so, see [Build a local blockchain](/tutorials/get-st
 ## Import the dependencies
 
 1. Add Contracts to your runtime.
-   To learn how to include Contracts in your runtime, see [Basic pallet integration](/reference/how-to-guides/basics/pallet-integration).
+   To learn how to include Contracts in your runtime, see [Basic pallet integration](/reference/how-to-guides/basics/import-a-pallet).
 
 1. Update `runtime/Cargo.toml` with the following entries:
    - `pallet-contracts`
@@ -28,10 +28,11 @@ If you haven't already done so, see [Build a local blockchain](/tutorials/get-st
 
 Implement the [Contracts pallet](https://paritytech.github.io/substrate/master/pallet_contracts/) in order for your runtime to use it properly.
 
-1. Implement `pallet_contracts`.
+1. Implement [`pallet_contracts`](https://paritytech.github.io/substrate/master/pallet_contracts/index.html).
 
    Make sure you've included all of the types that `pallet_contracts` exposes.
-   You can copy these from [FRAME's source code][contracts-frame-gh]. Always check that versioning is equivalent to the imported crate.
+   You can copy these from the source code.
+   Always check that versioning is equivalent to the imported crate.
 
    Add these types to `runtime/src/lib.rs`.
    The following code snippet shows four types:
@@ -47,7 +48,7 @@ Implement the [Contracts pallet](https://paritytech.github.io/substrate/master/p
 
 1. Add parameter types.
 
-   Note that some of these types require `parameter_types`. To see an example of how they should be added, see [this example][bin-runtime-contracts-frame].
+   Note that some of these types require `parameter_types`.
 
    Add the parameter types directly above `impl pallet_contracts::Config for Runtime`.
 
@@ -181,13 +182,5 @@ cargo build --release
 
 ## Related material
 
-- [`pallet_contracts` crate](/rustdocs/latest/pallet_contracts/index.html)
-- [`pallet_contracts_rpc` crate](/rustdocs/latest/pallet_contracts_rpc/index.html)
-
-<!--
-[create-first-chain-tutorial]: /tutorials/get-started/build-local-blockchain
-[contracts-config-rustdocs]: /rustdocs/latest/pallet_contracts/trait.Config.html
-[contracts-frame-gh]: https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs#L144
-[bin-runtime-contracts-frame]: https://github.com/paritytech/substrate/blob/632b32300eb9376767c2ae7b38e79b3f7f5329b1/bin/node/runtime/src/lib.rs#L887-L903
-[contracts-api-rustdocs]: /rustdocs/latest/pallet_contracts_rpc_runtime_api/trait.ContractsApi.html
--->
+- [`pallet_contracts` crate](https://paritytech.github.io/substrate/master/pallet_contracts/index.html)
+- [`pallet_contracts_rpc` crate](https://paritytech.github.io/substrate/master/pallet_contracts_rpc/index.html)

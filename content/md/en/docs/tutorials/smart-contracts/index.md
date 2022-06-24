@@ -1,6 +1,7 @@
 ---
 title: Develop smart contracts
-description: Introduces tutorials for using the ink! programming language to build smart contracts.
+description:
+keywords:
 ---
 
 The **Develop smart contracts** tutorials guide you through how you can use the ink programming language to build smart contracts that run on a Substrate-based blockchain.

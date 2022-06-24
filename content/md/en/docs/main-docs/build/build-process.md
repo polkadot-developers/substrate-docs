@@ -32,7 +32,7 @@ These artifacts then result in the final executable program that enables launchi
 
 During the build process, the Wasm runtime binary goes through 3 different stages, each containing the various steps.
 In the first stage of the build cycle, the initial Wasm runtime is built and embedded into the client.
-Once the node is compiled, the compressed Wasm binary is placed on-chain at the [`:code`](https://docs.substrate.io/rustdocs/latest/sp_storage/well_known_keys/constant.CODE.html) storage key and executed by the client.
+Once the node is compiled, the compressed Wasm binary is placed on-chain at the [`:code`](https://paritytech.github.io/substrate/master/sp_storage/well_known_keys/constant.CODE.html) storage key and executed by the client.
 
 The following steps describes the entire build process:
 
@@ -40,7 +40,7 @@ The following steps describes the entire build process:
 
 - Cargo builds the entire graph of dependencies in all project TOML files.
 - The runtime's `build.rs` module uses the `substrate-wasm-builder` crate.
-- This `build.rs` module executes and compiles the runtime into a Wasm binary, creating `wasm_binary.rs`, i.e. the initial wasm (largest size). 
+- This `build.rs` module executes and compiles the runtime into a Wasm binary, creating `wasm_binary.rs`, i.e. the initial wasm (largest size).
 
 **B. Post-processing**
 
@@ -50,8 +50,8 @@ The following steps describes the entire build process:
 
 **C. Compression**
 
-- A [zstd lossless compression](https://en.wikipedia.org/wiki/Zstandard) algorithm is applied to minimize the size of the final Wasm binary. 
-- All users should use this Wasm binary. 
+- A [zstd lossless compression](https://en.wikipedia.org/wiki/Zstandard) algorithm is applied to minimize the size of the final Wasm binary.
+- All users should use this Wasm binary.
 
 **D. Result**
 
@@ -60,7 +60,6 @@ The following steps describes the entire build process:
 - The `./target/release/node-template --dev` command initializes a new chain, i.e. generates a new chainspec.
 - The Wasm runtime is put as an item in storage (with the magic key named “:code”).
 - The chain spec has the genesis state and includes the Wasm binary, which was fetched from the node-runtime crate.
-
 
 At each stage, the Wasm binary is compressed to a smaller and smaller size.
 See the sizes of each Wasm binary in Polkadot for example:
@@ -74,11 +73,11 @@ See the sizes of each Wasm binary in Polkadot for example:
 It's important to always use the compressed version especially for maintaining a chain in production.
 There really is no need for using any other of the Wasm artifacts.
 
-## Execution 
+## Execution
 
 Once a runtime is built and a chain is launched, the Substrate client proposes which runtime execution environment should be used.
 This is controlled by the execution strategy, which can be configured for the different parts of the blockchain execution process.
-The strategies are listed in the [`ExecutionStrategy`](/rustdocs/latest/sp_state_machine/enum.ExecutionStrategy.html) enum:
+The strategies are listed in the [`ExecutionStrategy`](https://paritytech.github.io/substrate/master/sp_state_machine/enum.ExecutionStrategy.html) enum:
 
 - `NativeWhenPossible`: Execute with native build (if available, WebAssembly otherwise).
 - `AlwaysWasm`: Only execute with the WebAssembly build.
@@ -95,19 +94,19 @@ The native runtime will only be used by the executor when it is chosen as the ex
 
 ## Build options
 
-It can make sense to compile the Wasm binary only, if for example you are just trying to provide an upgraded Wasm to perform a forkless upgrade. 
+It can make sense to compile the Wasm binary only, if for example you are just trying to provide an upgraded Wasm to perform a forkless upgrade.
 Usually when performing a runtime upgrade, you want to provide both a native and Wasm binary.
 
-When starting a new chain the initial Wasm binary is a requirement. 
+When starting a new chain the initial Wasm binary is a requirement.
 In production the Wasm runtime comes from the [chain specification](/main-docs/build/chain-spec) of a chain.
 However, when starting a chain in developer mode at block 0, it uses the embedded Wasm from the native runtime.
 
 There are several ways to configure a chain to meet your specific requirements:
 
 - `SKIP_WASM_BUILD` - Skips building any Wasm binary. This is useful when only native should be recompiled.
-    If this is the first run and there doesn't exist a Wasm binary, this will set both variables to `None`.
+  If this is the first run and there doesn't exist a Wasm binary, this will set both variables to `None`.
 
-- Use [this script](https://github.com/paritytech/substrate/blob/master/.maintain/build-only-wasm.sh) to build the `no_std` Wasm binary only. 
+- Use [this script](https://github.com/paritytech/substrate/blob/master/.maintain/build-only-wasm.sh) to build the `no_std` Wasm binary only.
 
 - Use the `wasm-runtime-overrides` CLI flag to load the Wasm from the filesystem.
 

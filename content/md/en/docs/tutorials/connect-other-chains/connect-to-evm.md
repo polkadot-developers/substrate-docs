@@ -1,6 +1,7 @@
 ---
 title: Connect to Ethereum
 description: Illustrates how to build an Ethereum-compatible blockchain with Substrate.
+keywords:
 ---
 
 This tutorial illustrates how to build an **Ethereum-compatible** blockchain with Substrate using crates from the [Frontier](https://github.com/paritytech/frontier) project.
@@ -55,8 +56,7 @@ To compile the Frontier node template:
 
 ### Generating a node template
 
-As an alternative to using the pre-built Frontier template, you can generate a stand-alone template for use in an independent project by running the
-[template generation script](https://github.com/paritytech/frontier/blob/master/.maintain/node-template-release.sh).
+As an alternative to using the pre-built Frontier template, you can generate a stand-alone template for use in an independent project by running the [template generation script](https://github.com/paritytech/frontier/blob/master/.maintain/node-template-release.sh).
 
 ```bash
 # from the top working dir of Frontier:
@@ -72,8 +72,7 @@ cd frontier-node-template
 
 The Substrate Developer Hub has generated the template using the [included release guide](https://github.com/paritytech/frontier/blob/master/docs/node-template-release.md), and intends to update with major releases of Frontier moving forward.
 
-You can `use` the pre-generated template or `fork` it from here:
-https://github.com/substrate-developer-hub/frontier-node-template/ .
+You can `use` the pre-generated template or [`fork` it from here](https://github.com/substrate-developer-hub/frontier-node-template/).
 
 ## Genesis configuration
 
@@ -193,8 +192,8 @@ The following steps are also available as a [Typescript script](https://github.c
 The [`truffle`](https://github.com/paritytech/frontier/tree/master/template/examples/contract-erc20/truffle) directory contains a [Truffle](https://www.trufflesuite.com/truffle) project that defines [an ERC-20 token](https://github.com/paritytech/frontier/tree/master/template/examples/contract-erc20/truffle/contracts/MyToken.sol).
 For convenience, this repository also contains [the compiled bytecode of this token contract](https://github.com/paritytech/frontier/tree/master/template/examples/contract-erc20/truffle/contracts/MyToken.json#L259), which can be used to deploy it to the Substrate blockchain.
 
-Further reading:
-[the ERC-20 token standard](https://github.com/danforbes/danforbes/blob/master/writings/eth-dev.md#EIP-20-ERC-20-Token-Standard)
+- Further reading: [the ERC-20 token standard](https://github.com/danforbes/danforbes/blob/master/writings/eth-dev.md#EIP-20-ERC-20-Token-Standard).
+
 Use the Polkadot UI `Extrinsics` app to deploy the contract from Alice's account (submit the extrinsic as a signed transaction) using `evm > create` with the following parameters:
 
 ```text

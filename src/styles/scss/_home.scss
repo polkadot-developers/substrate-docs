@@ -87,6 +87,10 @@
 }
 
 /* GLOBAL OVERWITES */
+.markdown-body .gatsby-image-wrapper {
+  max-width: 600px;
+}
+
 .dark .text-substrateBlue, .dark .mdx-anchor a, .dark .hover\:text-substrateBlue:hover {
   color:#0e92f9;
 }
@@ -109,10 +113,19 @@
   fill: #4e73f2;
 }
 .fill-opposite {
+  color: black;
+  fill: black;
+}
+.dark .fill-opposite {
+
   color: white;
   fill: white;
 }
-.dark .fill-opposite {
+.fill-same {
+  color: white;
+  fill: white;
+}
+.dark .fill-same {
   color: black;
   fill: black;
 }
@@ -120,6 +133,16 @@
   fill: #24CC85!important;
   color: #24CC85!important;
   transition: 0.33s;
+}
+
+/* Hide scrollbar on windows */
+
+.nav-sidebar {
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+}
+.nav-sidebar::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
 }
 
 
@@ -139,7 +162,7 @@ pre {
 
 /* Breadcrumb seperators */
 .breadcrumb:after {
-  content: '\002F';
+  content: '\00BB';
   margin: 0 0.5rem;
 }
 .breadcrumb:last-child:after {
@@ -165,7 +188,10 @@ pre {
 .gatsby-highlight {
   border-radius: 10px;
   margin: 0.5em 0;
-  padding: 1em!important;
+  padding-top: 1em!important;
+  padding-bottom: 1em!important;
+  padding-right: 1.5em;
+  padding-left: 0.5em;
   overflow: auto;
   font-size:1em;
 }
@@ -174,7 +200,7 @@ pre {
   left: 16px;
 }
 .markdown-body .gatsby-highlight pre {
-  margin-right: 4rem!important;
+    margin-right: 6rem!important;
 }
 /* TABBED CODE BLOCKS */
 

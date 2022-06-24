@@ -11,7 +11,7 @@ const Sidebar = ({ children, currentPath }) => {
       <div className="hidden lg:inline-block lg:flex-none lg:bg-substrateGray-light lg:dark:bg-substrateDark border-r border-gray-200 dark:border-gray-700 h-full">
         <div className={cx('sticky top-20 mb-12', {})}>
           <div
-            className={cx('h-screen pb-24 overflow-y-scroll', {
+            className={cx('h-screen pb-24 overflow-y-scroll nav-sidebar', {
               'w-16 overflow-y-hidden': isOpen,
               'w-64 overflow-y-auto': !isOpen,
             })}

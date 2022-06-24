@@ -1,5 +1,5 @@
 ---
-title: Add benchmarking to your pallet
+title: Add benchmarks
 description:
 keywords:
   - weights
@@ -129,7 +129,7 @@ benchmarking.
    ```
 
 1. Add your new pallet to your runtime just as you would any other pallet.
-   If you need more details, check out the [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet) or [Import a pallet](/reference/how-to-guides/basics/pallet-integration).
+   If you need more details, check out the [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet) or [Import a pallet](/reference/how-to-guides/basics/import-a-pallet).
 
 1. Then, in addition to your normal runtime configuration, you also need to update the benchmarking section of your runtime.
    To add our new benchmarks, we simply add a new line with the `add_benchmark!` macro:
@@ -182,12 +182,12 @@ The Benchmarking CLI has a lot of options which can help you automate your bench
 Execute the following command to run standard benchmarking for your `pallet_you_created`:
 
 ```bash
-./target/release/node-template benchmark \
+./target/release/node-template benchmark pallet \
     --chain dev \
     --execution wasm \
     --wasm-execution compiled \
     --pallet pallet_you_crated \
-    --extrinsic '\*' \
+    --extrinsic '*' \
     --steps 20 \
     --repeat 10 \
     --json-file=raw.json \
@@ -199,5 +199,6 @@ Refer to [Use custom weights from benchmarking](/reference/how-to-guides/weights
 
 ## Examples
 
-- [Benchmarking in the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/benchmarking.rs)
-- [Weights in the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/weights.rs)
+- [Benchmarking](/main-docs/test/benchmark)
+- [Example pallet: Benchmarks](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/benchmarking.rs)
+- [Example pallet: Weights](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/weights.rs)

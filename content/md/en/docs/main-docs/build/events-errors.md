@@ -1,7 +1,7 @@
 ---
 title: Events and errors
 description: Explains how to emit events and errors from the runtime.
-keywords: []
+keywords:
 ---
 
 A pallet can emit events when it wants to notify external entities about changes
@@ -95,12 +95,10 @@ Depositing an event has the following structure:
 	}
 ```
 
-The default behavior of this function is to call
-[`deposit_event`](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html) from the FRAME system, which writes the event to storage.
+The default behavior of this function is to call [`deposit_event`](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.deposit_event) from the FRAME system, which writes the event to storage.
 
-This function places the event in the System pallet's runtime storage for that block. At the
-beginning of a new block, the System pallet automatically removes all events that were stored from
-the previous block.
+This function places the event in the System pallet's runtime storage for that block.
+At the beginning of a new block, the System pallet automatically removes all events that were stored from the previous block.
 
 Events deposited using the default implementation are directly supported by downstream libraries like the [Polkadot-JS API](https://github.com/polkadot-js/api).
 However, you can implement your own `deposit_event` function if you want to handle events differently.
@@ -115,26 +113,19 @@ those types as shown in the example above.
 
 ## Listening to events
 
-The Substrate RPC does not directly expose an endpoint for querying events. 
+The Substrate RPC does not directly expose an endpoint for querying events.
 If you used the default implementation, you can see the list of events for the current block by querying the storage of the System pallet.
 Otherwise, the [Polkadot-JS API](https://github.com/polkadot-js/api) supports a WebSocket subscription on runtime events.
 
 ## Errors
 
-Runtime code should explicitly and gracefully handle all error cases, which is to say that runtime
-code **must** be "non-throwing", or must never
+Runtime code should explicitly and gracefully handle all error cases, which is to say that runtime code **must** be "non-throwing", or must never
 "[panic](https://doc.rust-lang.org/book/ch09-03-to-panic-or-not-to-panic.html)" to use Rust
-terminology. A common idiom for writing non-throwing Rust code is to write functions that return
-[`Result` types](https://paritytech.github.io/substrate/master/frame_support/dispatch/result/enum.Result.html).
-The `Result` enum type possesses an `Err` variant that allows a function to indicate that it failed
-to execute successfully without needing to panic. Dispatchable calls in the FRAME system for runtime
-development _must_ return a
-[`DispatchResult` type](https://paritytech.github.io/substrate/master/frame_support/dispatch/type.DispatchResult.html)
-that _could_ be a
-[`DispatchError` variant](https://paritytech.github.io/substrate/master/frame_support/dispatch/enum.DispatchError.html)
-if the dispatchable function encountered an error.
+terminology.
+A common idiom for writing non-throwing Rust code is to write functions that return [`Result` types](https://paritytech.github.io/substrate/master/frame_support/dispatch/result/enum.Result.html).
+The `Result` enum type possesses an `Err` variant that allows a function to indicate that it failed to execute successfully without needing to panic. Dispatchable calls in the FRAME system for runtime development _must_ return a [`DispatchResult` type](https://paritytech.github.io/substrate/master/frame_support/dispatch/type.DispatchResult.html) that _could_ be a [`DispatchError` variant](https://paritytech.github.io/substrate/master/frame_support/dispatch/enum.DispatchError.html) if the dispatchable function encountered an error.
 
-Each FRAME pallet may define a custom `DispatchError` by using the `#[pallet::error` macro.
+Each FRAME pallet may define a custom `DispatchError` by using the `#[pallet::error]` macro.
 For example:
 
 ```rust
@@ -147,12 +138,7 @@ pub enum Error<T> {
 	}
 ```
 
-The
-[Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/pallets/template/src/lib.rs#L85-L103)
-demonstrates some ways to correctly handle errors in dispatchable functions. The FRAME Support
-module also includes a helpful
-[`ensure!` macro](/rustdocs/latest/frame_support/macro.ensure.html) that can be
-used to check pre-conditions and emit an errors if they are not met.
+The FRAME Support module also includes a helpful [`ensure!` macro](https://paritytech.github.io/substrate/master/frame_support/macro.ensure.html) that can be used to check pre-conditions and emit an errors if they are not met.
 
 ```rust
 frame_support::ensure!(param < T::MaxVal::get(), Error::<T>::InvalidParameter);
@@ -162,6 +148,6 @@ frame_support::ensure!(param < T::MaxVal::get(), Error::<T>::InvalidParameter);
 
 - [Frame macros](/reference/frame-macros)
 - [Polkadot-JS API](https://github.com/polkadot-js/api).
-- [`construct_runtime!` macro](/rustdocs/latest/frame_support/macro.construct_runtime.html)
-- [`#[frame_support::pallet]` macro](/rustdocs/latest/frame_support/attr.pallet.html)
-- [`[pallet::error]` macro](/rustdocs/latest/frame_support/attr.pallet.html#error-palleterror-optional)
+- [`construct_runtime!` macro](https://paritytech.github.io/substrate/master/frame_support/macro.construct_runtime.html)
+- [`#[frame_support::pallet]` macro](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html)
+- [`[pallet::error]` macro](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#error-palleterror-optional)

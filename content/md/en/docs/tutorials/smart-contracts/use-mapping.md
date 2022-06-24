@@ -1,6 +1,7 @@
 ---
 title: Use maps for storing values
-description: Use maps in a smart contract to store and retrieve key-value pairs.
+description:
+keywords:
 ---
 
 In [Develop a smart contract](/tutorials/smart-contracts/develop-contract/), you developed a smart contract for storing and retrieving a single numeric value.
@@ -177,7 +178,7 @@ To add a storage map to the `incrementer` contract:
    }
    ```
 
-1. Add a `get_mine` function to read `my_value` using the Mapping API `get` function and return `my_value` for the contract caller .
+1. Add a `get_mine` function to read `my_value` using the Mapping API `get` function and return `my_value` for the contract caller.
 
    ```rust
    #[ink(message)]
