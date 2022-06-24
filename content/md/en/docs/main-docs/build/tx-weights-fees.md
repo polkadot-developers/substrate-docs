@@ -100,17 +100,14 @@ However, this scenario would be a rare occurrence because the transaction queue 
 ### Fee multiplier
 
 The inclusion fee formula always results in the same fee for the same input.
-However, weight can be dynamic and—based on how
-[`WeightToFee`](https://paritytech.github.io/substrate/master/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.WeightToFee)
-is defined—the final fee can include some degree of variability.
+However, weight can be dynamic and—based on how [`WeightToFee`](https://paritytech.github.io/substrate/master/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.WeightToFee) is defined—the final fee can include some degree of variability.
 
 To account for this variability, the Transaction Payment pallet provides the [`FeeMultiplierUpdate`](https://paritytech.github.io/substrate/master/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.FeeMultiplierUpdate) configurable parameter.
 
 The default update function is inspired by the Polkadot network and implements a targeted adjustment in which a target saturation level of block weight is defined.
 If the previous block is more saturated, then the fees are slightly increased.
 Similarly, if the previous block has fewer transactions than the target, fees are decreased by a small amount.
-For more information about fee multiplier adjustments, see the
-[Web3 research page](https://w3f-research.readthedocs.io/en/latest/polkadot/overview/2-token-economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits).
+For more information about fee multiplier adjustments, see the [Web3 research page](https://w3f-research.readthedocs.io/en/latest/polkadot/overview/2-token-economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits).
 
 ## Transactions with special requirements
 

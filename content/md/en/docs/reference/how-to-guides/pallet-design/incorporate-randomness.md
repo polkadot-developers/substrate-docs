@@ -1,6 +1,6 @@
 ---
 title: Incorporate randomness
-description: On-chain randomness techniques and tools detailed. 
+description: On-chain randomness techniques and tools detailed.
 keywords:
   - pallet design
   - intermediate
@@ -8,10 +8,11 @@ keywords:
   - randomness
 ---
 
-[Randomness](/main-docs/build/randomness/) is used in computer programs for many applications. For example, gaming applications, NFT creation, and selecting block authors all require a degree of randomness.
+Randomness is used in computer programs for many applications. For example, gaming applications, NFT creation, and selecting block authors all require a degree of randomness.
 
 True randomness is hard to come by in deterministic computers.
-This is particularly true in the context of a blockchain, when all the nodes in the network must agree on the state of the chain. FRAME provides runtime engineers with a source of randomness, using the [Randomness trait](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Randomness.html).
+This is particularly true in the context of a blockchain, when all the nodes in the network must agree on the state of the chain.
+FRAME provides runtime engineers with a source of [on-chain randomness](<](/main-docs/build/randomness/)>), using the [Randomness trait](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Randomness.html).
 
 This guide explains how to make use of FRAME's Randomness trait by using the `random` method and a nonce as a subject.
 The guide also illustrates how to add entropy to the randomness value by assigning the `RandomCollectiveFlip` pallet to the configuration trait of a pallet that exposes a "random" type.
@@ -107,6 +108,4 @@ Use a nonce to serve as a subject for the `frame_support::traits::Randomness::ra
 
 ## Related material
 
-[Verifiable Random Functions](https://en.wikipedia.org/wiki/Verifiable_random_function)
-
-[rcf-pallet-rustdocs]: https://paritytech.github.io/substrate/master/pallet_randomness_collective_flip/index.html
+- [Verifiable Random Functions](https://en.wikipedia.org/wiki/Verifiable_random_function)

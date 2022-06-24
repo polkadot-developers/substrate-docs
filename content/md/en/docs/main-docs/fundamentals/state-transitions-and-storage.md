@@ -53,7 +53,7 @@ Subsections of a trie do not have a root-hash-like representation that satisfy t
 ## Querying storage
 
 Blockchains that are built with Substrate expose a remote procedure call (RPC) server that can be used to query runtime storage. When you use the Substrate RPC to access a storage item, you only need to provide [the key](#key-value-database) associated with that item.
-[Substrate's runtime storage APIs](/main-docs/build/runtime-storage) expose a number of storage item types; keep reading to learn how to calculate storage keys for the different types of storage items.
+Substrate's [runtime storage APIs](/main-docs/build/runtime-storage) expose a number of storage item types; keep reading to learn how to calculate storage keys for the different types of storage items.
 
 ### Storage value keys
 

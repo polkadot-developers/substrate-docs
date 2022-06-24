@@ -70,14 +70,11 @@ In a [proof-of-stake](#nominated-proof-of-stake-npos) blockchain—for example, 
 ## authority round (Aura)
 
 Deterministic [consensus](#consensus) protocol where [block](#block) production is limited to a rotating list of [authorities](#authority) that take turns creating blocks.
-With authority round (Aura) consensus, the majority of online
-authorities are assumed to be honest.
+With authority round (Aura) consensus, the majority of online authorities are assumed to be honest.
 
 Learn more by reading [the official wiki article](https://openethereum.github.io/Aura) for the Aura consensus algorithm.
 
-The Aura protocol is often used in combination with GRANDPA as a [hybrid consensus](#hybrid-consensus) protocol where [Aura](#aura) is used for block production and
-short-term [probabilistic finality](#probabilistic-finality), with
-[deterministic finality](#deterministic-finality) provided by [GRANDPA](#grandpa).
+The Aura protocol is often used in combination with GRANDPA as a [hybrid consensus](#hybrid-consensus) protocol where [Aura](#aura) is used for block production and short-term [probabilistic finality](#probabilistic-finality), with [deterministic finality](#deterministic-finality) provided by [GRANDPA](#grandpa).
 
 ## blind assignment of blockchain extension (BABE)
 
@@ -217,8 +214,7 @@ In general, there are two types of extrinsics:
 
 The minimum balance an account is allowed to have in the [Balances pallet](/reference/frame-pallets#balances).
 Accounts cannot be created with a balance less than the existential deposit amount.
-If an account balance drops below this amount, the Balances pallet uses
-[a FRAME System API](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.dec_ref) to drop its references to that account.
+If an account balance drops below this amount, the Balances pallet uses [a FRAME System API](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.dec_ref) to drop its references to that account.
 If all of the references to an account are dropped, the account can be [reaped](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.allow_death).
 
 ## finality
@@ -265,8 +261,7 @@ The macros make it easy to define custom pallets and compose pallets to create a
 macro to deploy a Substrate-based blockchain.
 
 The convention used in [the Substrate codebase](https://github.com/paritytech/substrate/tree/master/frame) is to preface core FRAME modules with `frame_` and the optional pallets with `pallet_*`.
-For example, the preceding macros are all defined in the [`frame_support`](/reference/frame-pallets#support-library) module and all FRAME-based runtimes _must_ include the
-[`frame_system`](/reference/frame-pallets#system-library) module.
+For example, the preceding macros are all defined in the [`frame_support`](/reference/frame-pallets#support-library) module and all FRAME-based runtimes _must_ include the [`frame_system`](/reference/frame-pallets#system-library) module.
 After the `frame_support::construct_runtime` macro has been used to create a runtime that includes the `frame_system` module, optional pallets such as the [Balances](/reference/frame-pallets#balances) pallet can be used to extend the core capabilities of the runtime.
 
 ## full client
@@ -278,8 +273,7 @@ Full clients stand in contrast to [light clients](#light-client).
 
 A mechanism for specifying the initial [state](#state) of a [blockchain](#blockchain).
 By convention, this initial state or first block is commonly referred to as the genesis state or genesis block.
-The genesis configuration for Substrate-based chains is accomplished by way of a
-[chain specification](/main-docs/build/chain-spec/) file.
+The genesis configuration for Substrate-based chains is accomplished by way of a [chain specification](/main-docs/build/chain-spec/) file.
 The chain specification file makes it easy to use a single Substrate codebase as the foundation for multiple independently-configured chains.
 
 ## GRANDPA
@@ -427,15 +421,12 @@ This trie is exposed to the [runtime](#runtime) as [a simple key/value map](/mai
 
 ## state transition function (STF)
 
-The logic of a [blockchain](#blockchain) that determines how the state changes when a
-[block](#block) is processed.
-In Substrate, the state transition function is effectively equivalent to the
-[runtime](#runtime).
+The logic of a [blockchain](#blockchain) that determines how the state changes when a [block](#block) is processed.
+In Substrate, the state transition function is effectively equivalent to the [runtime](#runtime).
 
 ## storage item
 
-[FRAME](#frame) primitives that provide type-safe data persistence capabilities to the
-[runtime](#runtime).
+[FRAME](#frame) primitives that provide type-safe data persistence capabilities to the [runtime](#runtime).
 Learn more about storage items in this article about [runtime storage](/main-docs/build/runtime-storage).
 
 ## Substrate

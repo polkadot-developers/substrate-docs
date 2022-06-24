@@ -33,8 +33,7 @@ Modify the way fees are calculated, instead of using [`IdentityFee`](https://par
 
 ### 1. Write the `LinearWeightToFee` struct
 
-In `runtime/src/lib.rs`, create the struct called `LinearWeightToFee` that implements
-[`WeightToFeePolynomial`](https://paritytech.github.io/substrate/master/frame_support/weights/trait.WeightToFeePolynomial.html).
+In `runtime/src/lib.rs`, create the struct called `LinearWeightToFee` that implements [`WeightToFeePolynomial`](https://paritytech.github.io/substrate/master/frame_support/weights/trait.WeightToFeePolynomial.html).
 It must returns a smallvec of `WeightToFeeCoefficient` integers.
 
 `runtime/src/lib.rs`

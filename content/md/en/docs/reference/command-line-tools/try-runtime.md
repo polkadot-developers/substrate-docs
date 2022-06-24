@@ -103,8 +103,7 @@ fn post_upgrade() -> Result<(), &'static str> { Ok(()) }
 
 ### Helper functions
 
-[`OnRuntimeUpgradeHelpersExt`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.OnRuntimeUpgradeHelpersExt.html) are a set of helper functions made available from
-[`frame_support::hooks`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Hooks.html) in order to use `try-runtime` for testing storage migrations.
+[`OnRuntimeUpgradeHelpersExt`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.OnRuntimeUpgradeHelpersExt.html) are a set of helper functions made available from [`frame_support::hooks`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Hooks.html) in order to use `try-runtime` for testing storage migrations.
 These include:
 
 - **`storage_key`**: Generates a storage key unique to this runtime upgrade. This can be used to communicate data from pre-upgrade to post-upgrade state and check them.
@@ -121,7 +120,7 @@ impl OnRuntimeUpgrade for CheckTotalIssuance {
 		// iterate over all accounts, sum their balance and ensure that sum is correct.
 	}
 }
-	
+
 pub struct EnsureAccountsWontDie;
 impl OnRuntimeUpgrade for EnsureAccountsWontDie {
 	#[cfg(feature = "try-runtime")]
