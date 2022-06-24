@@ -90,7 +90,7 @@ Here we demonstrate a detailed, manual extrinsic construction and submission of 
 
 1. Start a [node template](https://github.com/substrate-developer-hub/substrate-node-template) in `--dev` mode (see the [quick start](/quick-start) guide for how to set this up)
 1. Navigate to <https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/extrinsics>
-1. Set `Bob` as sender and select `balances` pallet and it's `transfer(dest, value)` call
+1. Set `Bob` as sender and select `balances` pallet and the `transfer(dest, value)` call
 1. Set `MultiAddress` to `Id` and the `AccountID` to `Dave` for the `dest`
 1. Set `value` to `42000000000000` (this is `42 UNIT` as defined in the [chain spec](/main-docs/build/chain-spec/) of the node template)
 1. Click `Submit Transaction` button (lower right) and **un-check** _sign and submit_ to generate a signed transaction with the default `nonce = 0` and `Lifetime = 64` for inspection
