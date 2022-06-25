@@ -93,5 +93,4 @@ impl pallet_transaction_payment::Config for Runtime {
 - [Use custom weights](/reference/how-to-guides/weights/use-custom-weights)
 - [Transaction Weights and Fees](/main-docs/build/tx-weights-fees)
 - [`WeightToFeeCoefficients`](https://paritytech.github.io/substrate/master/frame_support/weights/type.WeightToFeeCoefficients.html)
-- [`WeightToFeeCoefficient`](https://paritytech.github.io/substrate/master/frame_support/weights/type.WeightToFeeCoefficient.html)
 - [`WeightToFeePolynomial`](https://paritytech.github.io/substrate/master/frame_support/weights/trait.WeightToFeePolynomial.html)

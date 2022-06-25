@@ -114,5 +114,5 @@ We'll assume our pallet is called `pallet_something`, declared as `PalletSomethi
 
 ## Related material
 
-- Learn how to customize a chain's genesis configuration for the [balances pallet](https://github.com/paritytech/substrate/master/pallet_balances/index.html).
-- [`BalancesConfig`](https://github.com/paritytech/substrate/master/node_template_runtime/type.BalancesConfig.html)
+- Learn how to customize a chain's genesis configuration for the [balances pallet](https://paritytech.github.io/substrate/master/pallet_balances/index.html).
+- [`BalancesConfig`](https://paritytech.github.io/substrate/master/node_template_runtime/type.BalancesConfig.html)

@@ -124,12 +124,5 @@ A few of the tools available for you to test storage migration include the follo
 
 ## Where to go next
 
-<!-- TODO NAV.YAML -->
-<!-- add these back -->
-
 - [Upgrade a runtime](/tutorials/get-started/forkless-upgrade/)
 - [Substrate migrations](https://github.com/apopiak/substrate-migrations)
-<!--
-- [How-to: Basic storage migration](/reference/how-to-guides/basics/storage-migration/)
-- [How-to: Test migration](/reference/how-to-guides/storage-migrations/test-migration/)
-  -->
