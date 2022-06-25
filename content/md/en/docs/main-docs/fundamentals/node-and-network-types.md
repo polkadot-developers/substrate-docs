@@ -26,7 +26,7 @@ For example, Substrate blockchains are used to build the following network types
   To connect to other Substrate blockchains in an ecosystem, however, all of the chains must implement a common communication channel.
 
 Regardless of the type of chain you want to create, you should plan for deploying to a test network before deploying to a live production network.
-For example, there are there are currently test networks like Kusama for deploying real-world economics in a canary network and test networks like Rococo for deploying a chain without issuing tokens or having any real-world economic impact.
+For example, there are currently test networks like Kusama for deploying real-world economics in a canary network and test networks like Rococo for deploying a chain without issuing tokens or having any real-world economic impact.
 Polkadot is a production relay chain.
 
 <!--[ TODO: Diagrams / illustrations for each type of chain ]-->
