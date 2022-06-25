@@ -1,6 +1,6 @@
 ---
 title: FRAME pallets
-description:
+description: Provides an overview of the most commonly-used predefined FRAME pallets.
 keywords:
   - Frame
   - pallets
@@ -37,7 +37,7 @@ You should check the [Rust documentation](https://paritytech.github.io/substrate
 | [`pallet_aura`](https://paritytech.github.io/substrate/master/pallet_aura/index.html) | Extends the authority round (Aura) consensus model by managing offline reporting.
 | [`pallet_authority_discovery`](https://paritytech.github.io/substrate/master/pallet_authority_discovery/index.html) | Retrieves the current set of authorities, learns its own authority ID, and signs and verifies messages to and from other authorities.
 | [`pallet_authorship`](https://paritytech.github.io/substrate/master/pallet_authorship/index.html) | Tracks the current author of the block and recent uncles.
-| [`pallet_babe`](https://paritytech.github.io/substrate/master/pallet_babe/index.html) | Extends BABE consensus by |collecting on-chain randomness from VRF outputs and managing epoch transitions.
+| [`pallet_babe`](https://paritytech.github.io/substrate/master/pallet_babe/index.html) | Extends BABE consensus by collecting on-chain randomness from VRF outputs and managing epoch transitions.
 | [pallet_balances](https://paritytech.github.io/substrate/master/pallet_balances/index.html) | Provides functionality for handling accounts and balances.
 | [`frame_benchmarking`](https://paritytech.github.io/substrate/master/frame_benchmarking/trait.Benchmark.html) | Contains common runtime patterns for benchmarking and testing purposes.
 | [`pallet_collective`](https://paritytech.github.io/substrate/master/pallet_collective/index.html) | Allows a set of account IDs to make their collective feelings known through dispatched calls from specialized origins.

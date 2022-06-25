@@ -63,21 +63,18 @@ In a proof-of-work blockchain, these nodes are called _miners_.
 The [nodes](#node) that act as a collective to manage [consensus](#consensus) on a[blockchain](#blockchain) network.
 In a [proof-of-stake](#nominated-proof-of-stake-npos) blockchain—for example, a blockchain that us the [Staking pallet](/reference/frame-pallets#staking) from [FRAME](#frame)—authorities are determined through a token-weighted nomination and voting system.
 
-> The terms _authorities_ and _[validators](#validator)_ sometimes seem to refer the same thing.
-> However, _validators_ is a broader term that can include other aspects of chain maintenance such as parachain validation.
-> In general, authorities are a (non-strict) subset of validators and many validators are authorities.
+The terms _authorities_ and _[validators](#validator)_ sometimes seem to refer the same thing.
+However, _validators_ is a broader term that can include other aspects of chain maintenance such as parachain validation.
+In general, authorities are a (non-strict) subset of validators and many validators are authorities.
 
 ## authority round (Aura)
 
 Deterministic [consensus](#consensus) protocol where [block](#block) production is limited to a rotating list of [authorities](#authority) that take turns creating blocks.
-With authority round (Aura) consensus, the majority of online
-authorities are assumed to be honest.
+With authority round (Aura) consensus, the majority of online authorities are assumed to be honest.
 
 Learn more by reading [the official wiki article](https://openethereum.github.io/Aura) for the Aura consensus algorithm.
 
-The Aura protocol is often used in combination with GRANDPA as a [hybrid consensus](#hybrid-consensus) protocol where [Aura](#aura) is used for block production and
-short-term [probabilistic finality](#probabilistic-finality), with
-[deterministic finality](#deterministic-finality) provided by [GRANDPA](#grandpa).
+The Aura protocol is often used in combination with GRANDPA as a [hybrid consensus](#hybrid-consensus) protocol where [Aura](#aura) is used for block production and short-term [probabilistic finality](#probabilistic-finality), with [deterministic finality](#deterministic-finality) provided by [GRANDPA](#grandpa).
 
 ## blind assignment of blockchain extension (BABE)
 
@@ -89,9 +86,23 @@ Learn more about BABE by referring to its [official Web3 Foundation research doc
 
 ## block
 
-Describes a single element of a blockchain that [cryptographically](#cryptographic-primitives) binds a set of [extrinsic](#extrinsic) data—the body—to a [header](#header).
-Blocks are arranged into a tree through parent pointers.
-The pointer to a parent block is a hash of the parent and the tree is pruned into a list using a [fork-choice rule](/main-docs/fundamentals/consensus#fork-choice-rules) and an optional [finality](#finality) mechanism.
+A block is a single element of a blockchain that contains an ordered set of instructions—often in the form of transactions—that might result in a state change.
+
+Each block is identified by a [cryptographic digest](#cryptographic-primitives)—a hash—and includes a pointer back to the hash of its parent block.
+Every block has a [header](#header) and a body that contains the executed instructions that made it into the block within certain parameters.
+Blocks are most often visualized as a vertical stack with each block referencing its parent block until there are conflicts that must be resolved using a [fork-choice rule](/main-docs/fundamentals/consensus#fork-choice-rules) and an optional [finality](#finality) mechanism.
+
+## block height
+
+Because blocks are often visualized as a vertical stack, block height is used to describe the distance a specific block is away from the first block.
+The block height for any particular block in a blockchain indicates how many blocks preceded that block.
+
+Similarly, the terms _top_ or _tip_ are used to describe the most recently-added block in a chain.
+
+## block number
+
+Similar to block height, a block number is used to describe the distance a specific block is away from the first block.
+The block number for any particular block in a blockchain indicates how many blocks preceded that block.
 
 ## blockchain
 
@@ -217,8 +228,7 @@ In general, there are two types of extrinsics:
 
 The minimum balance an account is allowed to have in the [Balances pallet](/reference/frame-pallets#balances).
 Accounts cannot be created with a balance less than the existential deposit amount.
-If an account balance drops below this amount, the Balances pallet uses
-[a FRAME System API](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.dec_ref) to drop its references to that account.
+If an account balance drops below this amount, the Balances pallet uses [a FRAME System API](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.dec_ref) to drop its references to that account.
 If all of the references to an account are dropped, the account can be [reaped](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.allow_death).
 
 ## finality
@@ -265,8 +275,7 @@ The macros make it easy to define custom pallets and compose pallets to create a
 macro to deploy a Substrate-based blockchain.
 
 The convention used in [the Substrate codebase](https://github.com/paritytech/substrate/tree/master/frame) is to preface core FRAME modules with `frame_` and the optional pallets with `pallet_*`.
-For example, the preceding macros are all defined in the [`frame_support`](/reference/frame-pallets#support-library) module and all FRAME-based runtimes _must_ include the
-[`frame_system`](/reference/frame-pallets#system-library) module.
+For example, the preceding macros are all defined in the [`frame_support`](/reference/frame-pallets#support-library) module and all FRAME-based runtimes _must_ include the [`frame_system`](/reference/frame-pallets#system-library) module.
 After the `frame_support::construct_runtime` macro has been used to create a runtime that includes the `frame_system` module, optional pallets such as the [Balances](/reference/frame-pallets#balances) pallet can be used to extend the core capabilities of the runtime.
 
 ## full client
@@ -278,8 +287,7 @@ Full clients stand in contrast to [light clients](#light-client).
 
 A mechanism for specifying the initial [state](#state) of a [blockchain](#blockchain).
 By convention, this initial state or first block is commonly referred to as the genesis state or genesis block.
-The genesis configuration for Substrate-based chains is accomplished by way of a
-[chain specification](/main-docs/build/chain-spec/) file.
+The genesis configuration for Substrate-based chains is accomplished by way of a [chain specification](/main-docs/build/chain-spec/) file.
 The chain specification file makes it easy to use a single Substrate codebase as the foundation for multiple independently-configured chains.
 
 ## GRANDPA
@@ -427,15 +435,12 @@ This trie is exposed to the [runtime](#runtime) as [a simple key/value map](/mai
 
 ## state transition function (STF)
 
-The logic of a [blockchain](#blockchain) that determines how the state changes when a
-[block](#block) is processed.
-In Substrate, the state transition function is effectively equivalent to the
-[runtime](#runtime).
+The logic of a [blockchain](#blockchain) that determines how the state changes when a [block](#block) is processed.
+In Substrate, the state transition function is effectively equivalent to the [runtime](#runtime).
 
 ## storage item
 
-[FRAME](#frame) primitives that provide type-safe data persistence capabilities to the
-[runtime](#runtime).
+[FRAME](#frame) primitives that provide type-safe data persistence capabilities to the [runtime](#runtime).
 Learn more about storage items in this article about [runtime storage](/main-docs/build/runtime-storage).
 
 ## Substrate

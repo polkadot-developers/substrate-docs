@@ -138,5 +138,5 @@ Just like writing unit tests, to use `try-runtime` create an externalities insta
 
 #### Docs
 
-[Command-line reference: try-runtime](/reference/command-line-tools/try-runtime/)
-[TryRuntime API](https://crates.parity.io/frame_try_runtime/trait.TryRuntime.html)
+- [Command-line reference: try-runtime](/reference/command-line-tools/try-runtime/)
+- [TryRuntime API](https://crates.parity.io/frame_try_runtime/trait.TryRuntime.html)

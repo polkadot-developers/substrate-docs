@@ -113,10 +113,19 @@
   fill: #4e73f2;
 }
 .fill-opposite {
+  color: black;
+  fill: black;
+}
+.dark .fill-opposite {
+
   color: white;
   fill: white;
 }
-.dark .fill-opposite {
+.fill-same {
+  color: white;
+  fill: white;
+}
+.dark .fill-same {
   color: black;
   fill: black;
 }

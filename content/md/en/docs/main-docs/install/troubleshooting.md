@@ -75,8 +75,7 @@ For more information about getting an earlier version of the `nightly` toolchain
 
 If you want to guarantee that your build works on your computer as you update Rust and other dependencies, you should use a specific Rust `nightly` toolchain that you know to be compatible with the version of Substrate you are using.
 How you identify and communicate the specific `nightly` toolchain version to use for a project can vary.
-For example, Polkadot publishes this information in its
-[release notes](https://github.com/paritytech/polkadot/releases).
+For example, Polkadot publishes this information in its [release notes](https://github.com/paritytech/polkadot/releases).
 
 After you identify the specific `nightly` toolchain version to use, you can install it in your development environment by running a command similar to the following:
 

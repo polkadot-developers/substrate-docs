@@ -28,10 +28,11 @@ If you haven't already done so, see [Build a local blockchain](/tutorials/get-st
 
 Implement the [Contracts pallet](https://paritytech.github.io/substrate/master/pallet_contracts/) in order for your runtime to use it properly.
 
-1. Implement `pallet_contracts`.
+1. Implement [`pallet_contracts`](https://paritytech.github.io/substrate/master/pallet_contracts/index.html).
 
    Make sure you've included all of the types that `pallet_contracts` exposes.
-   You can copy these from [FRAME's source code][contracts-frame-gh]. Always check that versioning is equivalent to the imported crate.
+   You can copy these from the source code.
+   Always check that versioning is equivalent to the imported crate.
 
    Add these types to `runtime/src/lib.rs`.
    The following code snippet shows four types:
@@ -47,7 +48,7 @@ Implement the [Contracts pallet](https://paritytech.github.io/substrate/master/p
 
 1. Add parameter types.
 
-   Note that some of these types require `parameter_types`. To see an example of how they should be added, see [this example][bin-runtime-contracts-frame].
+   Note that some of these types require `parameter_types`.
 
    Add the parameter types directly above `impl pallet_contracts::Config for Runtime`.
 
