@@ -86,5 +86,5 @@ Now that you are familiar with transaction types and the information that consti
 - [Transaction lifecycle](/main-docs/fundamentals/transaction-lifecycle/)
 - [State transitions and storage](/main-docs/fundamentals/state-transitions-and-storage/)
 - [Transactions, weights, and fees](/main-docs/build/tx-weights-fees/)
-- [Transaction format](/reference/transaction-formats/)
+- [Transaction format](/reference/transaction-format/)
 - [Block reference](https://paritytech.github.io/substrate/master/sp_runtime/traits/trait.Block.html)
