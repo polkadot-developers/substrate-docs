@@ -33,39 +33,11 @@ This tutorial uses the [Substrate parachain template](https://github.com/substra
 The parachain template is similar to the [node template](https://github.com/substrate-developer-hub/substrate-node-template) used in solo chain development, so it should be quite familiar.
 Later, you'll use this parachain template as the starting point for developing your own parachains.
 
-<!-- TODO NEW CONTENT -->
-<!-- See the guide on [converting a solo chain to a parachain](/reference/how-to-guides/parachains/convert) for details on how the parachain template was created, and how to convert your chain's logic (not state migrations!) to a parachain.** -->
-
 In a new terminal window:
 
 ```bash
-# Clone the parachain template
-git clone --depth 1 --branch polkadot-v0.9.24 https://github.com/substrate-developer-hub/substrate-parachain-template
+# Clone the parachain template with the **correct versioSee the guide on [converting a solo chain to a parachain](/reference/how-to-guides/parachains/convert) for details on how the parachain template was created, and how to convert your chain's logic (not state migrations!) to a parachain.**
 
-# Switch into the parachain template directory
-cd substrate-parachain-template
-
-# Checkout the proper commit
-git checkout polkadot-v0.9.24
-
-# Build the parachain template collator
-cargo b -r
-```
-
-Compiling the node can take 15 to 60 minuets.
-In the mean time, [reserve a `ParaID`](#reserve-a-para-id) on the running relay chain to prepare, and make not of the `ParaID` you acquire.
-
-```bash
-# Check if the help page prints to ensure the node is built correctly
-./target/release/parachain-collator --help
-```
-
-## Launching a parachain
-
-### Reserve a `ParaID`
-
-To connect to any relay chain, you must first reserve a `ParaID` for your parachain.
-It is called a `ParaID` because the same identifier can be used as a parachain ID or a parathread ID, depending on your current relay chain slot state.
 You must have a sufficient funds to reserve a ParaID.
 Refer to your target relay chain to determine the number of tokens required.
 
@@ -392,7 +364,7 @@ You can also make some on-chain remarks by going to the `Extrinsics` page, choos
 
 If the transaction go through as expected, you have a working parachain.
 
-🎉**_Congratulations!_**🎉
+**_Congratulations!_**
 
 Read on for more optional material.
 
@@ -435,3 +407,4 @@ Then register from a blank slate again.
 - [Add more parachain nodes](/reference/how-to-guides/parachains/add-paranodes/) to your parachain network.
 - Very rigorously [Test](/main-docs/test/index) your local parachain network.
 - Connect your parachain to rococo by getting a [Rococo testnet slot](/tutorials/connect-other-chains/rococo-slot/).
+- See the guide on [converting a solo chain to a parachain](/reference/how-to-guides/parachains/convert)  to convert your chain's logic-not state or running-chain migrations-to a parachain.
