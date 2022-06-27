@@ -17,7 +17,8 @@ Therefore, this discussion of the transaction lifecycle focuses on how signed tr
 
 You've already learned that signed transactions include the signature of the account sending the request to execute some runtime call.
 Typically, the request is signed using the private key for the account that is submitting the request.
-In most cases, the account submitting the request also pays a transaction fee.However, transaction fees and other elements of transaction processing depend on how the runtime logic is defined.
+In most cases, the account submitting the request also pays a transaction fee.
+However, transaction fees and other elements of transaction processing depend on how the runtime logic is defined.
 
 ## Where transactions are defined
 

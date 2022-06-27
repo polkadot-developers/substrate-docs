@@ -49,9 +49,7 @@ that will address a better method to safely configure this constant in the futur
 
 ## Memory profiling
 
-[Profiling your collator](/reference/command-line-tools/memory-profiler) should be done to analyze memory leaks,
-identify where memory consumption is happening, define temporary allocations, and investigate
-excessive memory fragmentation within applications.
+Collator [memory profiling](/reference/command-line-tools/memory-profiler) should be done to analyze memory leaks, identify where memory consumption is happening, define temporary allocations, and investigate excessive memory fragmentation within applications.
 
 ## Minimize your runtime size
 

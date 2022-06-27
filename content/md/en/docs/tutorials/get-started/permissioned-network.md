@@ -23,8 +23,7 @@ For example, a permissioned blockchain would be suitable for the following types
 - In highly-regulated data environments, such as healthcare, finance, or business-to-business ledgers.
 - For testing of a pre-public blockchain network at scale.
 
-This tutorial illustrates how you can build a permissioned network with Substrate by using the
-[node authorization pallet](https://paritytech.github.io/substrate/master/pallet_node_authorization/index.html).
+This tutorial illustrates how you can build a permissioned network with Substrate by using the [node authorization pallet](https://paritytech.github.io/substrate/master/pallet_node_authorization/index.html).
 
 ## Node authorization and ownership
 
@@ -45,13 +44,11 @@ To protect against false claims, you should claim the node _before_ you start th
 After you start the node, its `PeerID` is visible to the network and _anyone_ could subsequently claim it.
 
 As the owner of a node, you can add and remove connections for your node.
-For example, you can manipulate the connection between a predefined node
-and your node or between your node and other non-predefined nodes.
+For example, you can manipulate the connection between a predefined node and your node or between your node and other non-predefined nodes.
 You can't change the connections for predefined nodes.
 They are always allowed to connect with each other.
 
-The `node-authorization` pallet uses an [offchain worker](/main-docs/fundamentals/offchain-operations)
-to configure its node connections.
+The `node-authorization` pallet uses an [offchain worker](/main-docs/fundamentals/offchain-operations) to configure its node connections.
 Make sure to enable the offchain worker when you start the node because it is disabled by default for non-authority nodes.
 
 ## Before you begin

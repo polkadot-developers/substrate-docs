@@ -41,9 +41,7 @@ proposal.dispatch(system::RawOrigin::Signed(who).into())
 proposal.dispatch(system::RawOrigin::None.into())
 ```
 
-You can look at the source code of the
-[Sudo module](https://paritytech.github.io/substrate/master/pallet_sudo/index.html) for a practical
-implementation of this.
+You can look at the source code of the [Sudo module](https://paritytech.github.io/substrate/master/pallet_sudo/index.html) for a practical implementation of this.
 
 ## Custom origins
 

@@ -1,6 +1,6 @@
 ---
 title: Monitor node metrics
-description:
+description: Use observability tools to capture and view information about Substrate nodes.
 keywords:
 ---
 
@@ -92,18 +92,11 @@ To install the tools for this tutorial:
    gunzip prometheus-2.35.0.darwin-amd64.tar.gz && tar -xvf prometheus-2.35.0.darwin-amd64.tar
    ```
 
-1. Navigate to [Grafana self-managed](https://grafana.com/get/?tab=self-managed), then click [Download Grafance](https://grafana.com/grafana/download?pg=get&plcmt=selfmanaged-box1-cta1).
+1. Navigate to [Grafana OSS download](https://grafana.com/grafana/download?edition=oss).
 
 1. Select the appropriate precompiled binary for your architecture.
 
 1. Open a terminal shell on your computer and run the appropriate command to install on your architecture.
-
-For example, on macOS, run:
-
-```shell
-curl -O https://dl.grafana.com/enterprise/release/grafana-enterprise-8.5.2.darwin-amd64.tar.gz \
-tar -zxvf grafana-enterprise-8.5.2.darwin-amd64.tar.gz
-```
 
 ## Start a Substrate node
 
@@ -111,11 +104,7 @@ Substrate exposes an endpoint that serves metrics in the [Prometheus exposition 
 You can change the port with `--prometheus-port <PORT>` and enable it to be accessed over an interface other than local host with `--prometheus-external`.
 
 ```bash
-# clear the dev database
-./target/release/node-template purge-chain --dev -y
-# start the template node  in dev & tmp mode to experiment
-# optionally add the `--prometheus-port <PORT>`
-# or `--prometheus-external` flags
+# Optionally add the `--prometheus-port <PORT>`
 ./target/release/node-template --dev
 ```
 
@@ -131,7 +120,7 @@ If you modify the default configuration file, here is what will be different:
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
 scrape_configs:
-  # The job name is added as a label `job=<job_name>` to any time series scraped from this config.
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: "substrate_node"
 
     # metrics_path defaults to '/metrics'
@@ -195,24 +184,26 @@ Alternatively, you can open same URL (`http://localhost:9615/metrics`) in a brow
 
 ## Visualizing Prometheus metrics with Grafana
 
-After you have Grafana running, navigate to it in a browser (**the default is `https://localhost:3000/`**).
-Log in using the default user `admin` and password `admin` and navigate to the data sources page at `localhost:3000/datasources`.
+After you start Grafana, you can navigate to it in a browser.
+
+1. Open a browser and navigate to the port Grafana uses.
+   By default, the URL is `https://localhost:3000/`.
+1. Log in using the default user `admin` and password `admin` and navigate to the data sources page at `localhost:3000/datasources`.
 
 You then need to select a `Prometheus` data source type and specify where Grafana needs to look for it.
 
-The Prometheus port Grafana needs is NOT the one you set in the `prometheus.yml` file (https://localhost:9615) for where your node is publishing it's data.
+The Prometheus port Grafana needs is NOT the one you set in the `prometheus.yml` file (`http://localhost:9615`) for where your node is publishing its data.
 
-With both the Substrate node and Prometheus running, configure Grafana to look for Prometheus on it's default port: `https://localhost:9090` (unless you customized it).
+With both the Substrate node and Prometheus running, configure Grafana to look for Prometheus on its default port `http://localhost:9090` or the port you configured if you customized it.
 
-Click `Save & Test` to ensure that you have the data source set correctly.
-Now you can configure a new dashboard.
+1. Click **Save & Test** to ensure that you have the data source set correctly.
+   Now you can configure a new dashboard.
 
 ### Template Grafana Dashboard
 
-If you would like a basic dashboard to start [here is a template example](/assets/tutorials/node-metrics/substrate-node-template-metrics.json) that you can `Import`
-in Grafana to get basic information about your node:
+If you would like a basic dashboard to start [here is a template example](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/monitor-node/substrate-node-template-metrics.json) that you can `Import` in Grafana to get basic information about your node:
 
-![Grafana Dashboard](/media/images/docs/tutorials/visualize-node-metrics/grafana.png)
+![Grafana Dashboard](/media/images/docs/tutorials/06-visualize-node-metrics/grafana.png)
 
 If you want to create your own dashboard, see the [prometheus docs for Grafana](https://prometheus.io/docs/visualization/grafana/).
 
@@ -222,7 +213,7 @@ You can let the Substrate builder community know your dashboard exists by listin
 
 ## Where to go next
 
-- [Add trusted nodes](/tutorials/get-started/trusted-network).
-  [Monitor your node](https://wiki.polkadot.network/docs/en/maintain-guides-how-to-monitor-your-node).
-  [Substrate Prometheus Exporter](https://github.com/paritytech/substrate/tree/master/utils/prometheus).
-- [Polkadot network dashboard](https://github.com/w3f/polkadot-dashboard).
+- [Add trusted nodes](/tutorials/get-started/trusted-network)
+- [Monitor your node](https://wiki.polkadot.network/docs/en/maintain-guides-how-to-monitor-your-node)
+-  [Substrate Prometheus Exporter](https://github.com/paritytech/substrate/tree/master/utils/prometheus)
+- [Polkadot network dashboard](https://github.com/w3f/polkadot-dashboard)

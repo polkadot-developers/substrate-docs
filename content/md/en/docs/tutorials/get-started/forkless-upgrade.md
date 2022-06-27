@@ -232,12 +232,7 @@ Next up, we will:
 
 ## Schedule an Upgrade
 
-Now that the node template has been upgraded to include the Scheduler pallet,
-[the `schedule` function](https://paritytech.github.io/substrate/master/pallet_scheduler/pallet/enum.Call.html#variant.schedule)
-can be used to perform the next runtime upgrade. In the previous part, the
-`sudo_unchecked_weight` function was used to override the weight associated with the `set_code`
-function; in this section, the runtime upgrade will be _scheduled_ so that it can be processed as
-the only [extrinsic](/main-docs/fundamentals/transaction-types) in a block.
+Now that the node template has been upgraded to include the Scheduler pallet, [the `schedule` function](https://paritytech.github.io/substrate/master/pallet_scheduler/pallet/enum.Call.html#variant.schedule) can be used to perform the next runtime upgrade. In the previous part, the `sudo_unchecked_weight` function was used to override the weight associated with the `set_code` function; in this section, the runtime upgrade will be _scheduled_ so that it can be processed as the only [extrinsic](/main-docs/fundamentals/transaction-types) in a block.
 
 ### Prepare an Upgraded Runtime
 
@@ -266,9 +261,7 @@ parameter_types! {
 
 ```
 
-This change increases the value of the Balances pallet's
-[`ExistentialDeposit`](/reference/glossary#existential-deposit) - the
-minimum balance needed to keep an account alive from the point-of-view of the Balances pallet.
+This change increases the value of the Balances pallet's [`ExistentialDeposit`](/reference/glossary#existential-deposit) - the minimum balance needed to keep an account alive from the point-of-view of the Balances pallet.
 
 Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000 to be reaped - that would require a storage migration, which is out of scope for this tutorial.
 
@@ -286,33 +279,22 @@ This will _override_ any previous build artifacts! So if you want to have a copy
 
 ### Upgrade the Runtime
 
-In the previous section, the Scheduler pallet was configured with the `Root` origin as its
-[`ScheduleOrigin`](https://paritytech.github.io/substrate/master/pallet_scheduler/pallet/trait.Config.html#associatedtype.ScheduleOrigin),
-which means that the `sudo` function (_not_ `sudo_unchecked_weight`) can be used to invoke the
-`schedule` function. Use this link to open the Polkadot JS Apps UI's Sudo tab:
-<https://polkadot.js.org/apps/#/sudo?rpc=ws://127.0.0.1:9944>.
+In the previous section, the Scheduler pallet was configured with the `Root` origin as its [`ScheduleOrigin`](https://paritytech.github.io/substrate/master/pallet_scheduler/pallet/trait.Config.html#associatedtype.ScheduleOrigin), which means that the `sudo` function (_not_ `sudo_unchecked_weight`) can be used to invoke the `schedule` function.
+Use this link to open the Polkadot JS Apps UI's `Sudo` tab: <https://polkadot.js.org/apps/#/sudo?rpc=ws://127.0.0.1:9944>.
 
-Wait until all the other fields have
-been filled in before providing the `when` parameter. Leave the `maybe_periodic` parameter empty and
-the `priority` parameter at its default value of `0`. Select the System pallet's `set_code` function
-as the `call` parameter and provide the Wasm binary as before. Leave the "with weight override"
-option deactivated. Once all the other fields have been filled in, use a block number about 10
-blocks (1 minute) in the future to fill in the `when` parameter and quickly submit the transaction.
+Wait until all the other fields have been filled in before providing the `when` parameter. Leave the `maybe_periodic` parameter empty and the `priority` parameter at its default value of `0`. Select the System pallet's `set_code` function as the `call` parameter and provide the Wasm binary as before.
+Leave the "with weight override" option deactivated.
+Once all the other fields have been filled in, use a block number about 10 blocks (1 minute) in the future to fill in the `when` parameter and quickly submit the transaction.
 
 ![Scheduled Upgrade Panel](/media/images/docs/tutorials/forkless-upgrade/scheduled-upgrade.png)
 
-You can use the template node's command line output or the
-[Polkadot JS Apps UI block explorer](https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944)
-to watch as this scheduled call takes place.
+You can use the template node's command line output or the [Polkadot JS Apps UI block explorer](https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944) to watch as this scheduled call takes place.
 
 ![Scheduled Success Runtime Upgrade Version 102](/media/images/docs/tutorials/forkless-upgrade/scheduled-upgrade-success.png)
 
-After the target block has been included in the chain, the version number in the upper-left-hand
-corner of Polkadot JS Apps UI should reflect that the runtime version is now `102`.
+After the target block has been included in the chain, the version number in the upper-left-hand corner of Polkadot JS Apps UI should reflect that the runtime version is now `102`.
 
-You can then observe the specific changes that were made in the upgrade by using the
-[Polkadot JS Apps UI Chain State](https://polkadot.js.org/apps/#/chainstate/constants?rpc=ws://127.0.0.1:9944)
-app to query the `existentialDeposit` constant value from the Balances pallet.
+You can then observe the specific changes that were made in the upgrade by using the [Polkadot JS Apps UI Chain State](https://polkadot.js.org/apps/#/chainstate/constants?rpc=ws://127.0.0.1:9944) app to query the `existentialDeposit` constant value from the Balances pallet.
 
 ## Where to go next
 
@@ -320,4 +302,3 @@ app to query the `existentialDeposit` constant value from the Balances pallet.
   <!-- TODO NAV.YAML -->
   <!-- add  back ABOVE -->
   <!-- - [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/) -->
-  

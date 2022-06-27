@@ -92,9 +92,7 @@ impl my_pallet::Config for Runtime {
 }
 ```
 
-The `Balances` type is specified in `construct_runtime!` macro as part of the
-[`pallet_balances`](https://paritytech.github.io/substrate/master/pallet_balances/index.html)
-that implements the [`Currency` trait](https://paritytech.github.io/substrate/master/pallet_balances/index.html#implementations-1).
+The `Balances` type is specified in `construct_runtime!` macro as part of the [`pallet_balances`](https://paritytech.github.io/substrate/master/pallet_balances/index.html) that implements the [`Currency` trait](https://paritytech.github.io/substrate/master/pallet_balances/index.html#implementations-1).
 
 With the implementation provided by the runtime, you can make use of `Currency<AccountId>` trait in your loosely coupled pallet.
 

@@ -1,6 +1,6 @@
 ---
 title: Incorporate randomness
-description:
+description: On-chain randomness techniques and tools detailed.
 keywords:
   - pallet design
   - intermediate
@@ -8,9 +8,11 @@ keywords:
   - randomness
 ---
 
-[Randomness](/main-docs/build/randomness/) is used in computer programs for many applications. For example, gaming applications, NFT creation, and selecting block authors all require a degree of randomness.
+Randomness is used in computer programs for many applications. For example, gaming applications, NFT creation, and selecting block authors all require a degree of randomness.
 
-True randomness is hard to come by in deterministic computers. This is particularly true in the context of a blockchain, when all the nodes in the network must agree on the state of the chain. FRAME provides runtime engineers with a source of randomness, using the [Randomness trait](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Randomness.html).
+True randomness is hard to come by in deterministic computers.
+This is particularly true in the context of a blockchain, when all the nodes in the network must agree on the state of the chain.
+FRAME provides runtime engineers with a source of [on-chain randomness](/main-docs/build/randomness/), using the [Randomness trait](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Randomness.html).
 
 This guide explains how to make use of FRAME's Randomness trait by using the `random` method and a nonce as a subject.
 The guide also illustrates how to add entropy to the randomness value by assigning the `RandomCollectiveFlip` pallet to the configuration trait of a pallet that exposes a "random" type.
@@ -34,8 +36,7 @@ The guide also illustrates how to add entropy to the randomness value by assigni
 
    Note that the `Randomness` trait specifies a generic return of type `Output` and `BlockNumber`.
    Use [`BlockNumber`](https://paritytech.github.io/substrate/master/frame_system/pallet/trait.Config.html#associatedtype.BlockNumber)
-   and [`Hash`](https://paritytech.github.io/substrate/master/frame_system/pallet/trait.Config.html#associatedtype.Hash) from `frame_system`
-   in your pallet to satisfy that trait requirement.
+   and [`Hash`](https://paritytech.github.io/substrate/master/frame_system/pallet/trait.Config.html#associatedtype.Hash) from `frame_system` in your pallet to satisfy that trait requirement.
 
    As stated in [this trait's documentation](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Randomness.html), at best, this trait can give you randomness which was hard to predict a long time ago but that has become easy to predict recently.
    Keep this in mind when you evaluate your use of it.
@@ -61,12 +62,12 @@ Use a nonce to serve as a subject for the `frame_support::traits::Randomness::ra
    }
    ```
 
-   To learn more about the wrapping and encoding methods, see [`wrapping_add`](https://doc.rust-lang.org/std/intrinsics/fn.wrapping_add.html) and [`encode()`](https://paritytech.github.io/substrate/master/frame_support/dispatch/trait.Encode.html#method.encode) in the Rust documentation.
+   To learn more about the wrapping and encoding methods, see [`wrapping_add`](https://doc.rust-lang.org/std/intrinsics/fn.wrapping_add.html) and [`encode`](https://paritytech.github.io/substrate/master/frame_support/dispatch/trait.Encode.html#method.encode) in the Rust documentation.
 
 1. Use Randomness in a dispatchable.
 
-   Using the nonce, you can call the `random()` method that `Randomness` exposes. The code snippet below is a mock example that assumes
-   relevant events and storage items have been implemented:
+   Using the nonce, you can call the `random()` method that `Randomness` exposes.
+   The code snippet below is a mock example that assumes relevant events and storage items have been implemented:
 
    ```rust
    #[pallet::weight(100)]
@@ -86,13 +87,12 @@ Use a nonce to serve as a subject for the `frame_support::traits::Randomness::ra
 
 1. Update your pallet's runtime implementation.
 
-   Because you have added a type to your pallet's configuration trait, `Config` opens up the opportunity to further enhance the randomness
-   derived by the `Randomness` trait. This is accomplished by using the [Randomness Collective Flip pallet][rcf-pallet-rustdocs].
+   Because you have added a type to your pallet's configuration trait, `Config` opens up the opportunity to further enhance the randomness derived by the `Randomness` trait.
+   This is accomplished by using the [Randomness Collective Flip pallet](https://paritytech.github.io/substrate/master/pallet_randomness_collective_flip/index.html).
 
    Using this pallet alongside the `Randomness` trait will significantly improve the entropy being processed by `random()`.
 
-   In `runtime/src/lib.rs`, assuming `pallet_random_collective_flip` is instantiated in `construct_runtime` as `RandomCollectiveFlip`,
-   specify your exposed type in the following way:
+   In `runtime/src/lib.rs`, assuming `pallet_random_collective_flip` is instantiated in `construct_runtime` as `RandomCollectiveFlip`, specify your exposed type in the following way:
 
    ```rust
    impl my_pallet::Config for Runtime{
@@ -108,6 +108,4 @@ Use a nonce to serve as a subject for the `frame_support::traits::Randomness::ra
 
 ## Related material
 
-[Verifiable Random Functions](https://en.wikipedia.org/wiki/Verifiable_random_function)
-
-[rcf-pallet-rustdocs]: https://paritytech.github.io/substrate/master/pallet_randomness_collective_flip/index.html
+- [Verifiable Random Functions](https://en.wikipedia.org/wiki/Verifiable_random_function)

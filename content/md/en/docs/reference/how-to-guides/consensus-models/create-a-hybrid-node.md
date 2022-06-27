@@ -1,17 +1,16 @@
 ---
 title: Create a hybrid node
-description:
+description: How to create a Substrate-based node that employs hybrid consensus
 keywords:
   - consensus
+  - proof of work
+  - PoW
 ---
 
-This guide demonstrates how to create a Substrate-based node that employs hybrid consensus, using [Sha3 proof of work](../pow) to dictate block authoring and the
-[Grandpa](https://paritytech.github.io/substrate/master/sc_finality_grandpa/index.html) finality gadget to provide
-[deterministic finality](/main-docs/fundamentals/consensus#finality).
+This guide demonstrates how to create a Substrate-based node that employs hybrid consensus, using SHA3 proof of work to dictate block authoring and the [Grandpa](https://paritytech.github.io/substrate/master/sc_finality_grandpa/index.html) finality gadget to provide [deterministic finality](/main-docs/fundamentals/consensus#finality).
 The minimal proof of work consensus lives entirely outside of the runtime.
 
-The Grandpa finality relies on getting its authority sets from the runtime using the
-[Grandpa API](https://paritytech.github.io/substrate/master/sp_finality_grandpa/trait.GrandpaApi.html).
+The Grandpa finality relies on getting its authority sets from the runtime using the [Grandpa API](https://paritytech.github.io/substrate/master/sp_finality_grandpa/trait.GrandpaApi.html).
 Therefore, you need a runtime that provides this API to successfully compile a node implementing this guide.
 
 ## Use cases
@@ -29,8 +28,7 @@ Customize the consensus mechanisms of a Substrate chain.
 
 We begin by creating the block import for Grandpa.
 In addition to the block import itself, we get back a `grandpa_link`.
-This link is a channel over which the block import can communicate with the
-background task that actually casts Grandpa votes.
+This link is a channel over which the block import can communicate with the background task that actually casts Grandpa votes.
 The [details of the Grandpa protocol](https://research.web3.foundation/en/latest/polkadot/finality.html) are beyond the scope of this guide.
 
 In `node/src/service.rs`, create the Grandpa block import:
@@ -103,8 +101,7 @@ task_manager
 
 ## Spawn the Grandpa task
 
-Grandpa is _not_ CPU intensive, so we use a standard `async` worker to listen to and cast
-Grandpa votes.
+Grandpa is _not_ CPU intensive, so we use a standard `async` worker to listen to and cast Grandpa votes.
 We begin by creating a Grandpa [`Config`](https://paritytech.github.io/substrate/master/sc_finality_grandpa/struct.Config.html):
 
 ```rust
@@ -147,10 +144,6 @@ task_manager.spawn_essential_handle().spawn_blocking(
 
 ## Resources
 
-- [POW Algorithm][pow-rustdocs] trait
-- [`PowBlockimport`][powblockimport-rustdocs]
-- [Inherents][inherents-kb]
-- [powblockimport-rustdocs](https://paritytech.github.io/substrate/master/sc_consensus_pow/struct.PowBlockImport.html)
-- [powblockimport-new-rustdocs](https://paritytech.github.io/substrate/master/sc_consensus_pow/struct.PowBlockImport.html#method.new_full)
-- [inherents-rustdocs](https://paritytech.github.io/substrate/master/sp_inherents/index.html)
-- [pow-rustdocs](https://paritytech.github.io/substrate/master/sc_consensus_pow/trait.PowAlgorithm.html)
+- [POW Algorithm](https://paritytech.github.io/substrate/master/sc_consensus_pow/trait.PowAlgorithm.html) trait
+- [`PowBlockimport`](https://paritytech.github.io/substrate/master/sc_consensus_pow/struct.PowBlockImport.html)
+- [Inherents](https://paritytech.github.io/substrate/master/sp_inherents/index.html)

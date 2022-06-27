@@ -59,7 +59,7 @@ The benchmarking framework automatically generates a file with those formulas fo
 
 ## Benchmarking tools
 
-The [FRAME benchmarking framework](/rustdocs/latest/frame_benchmarking/benchmarking/index.html) includes the following tools to help you determine the time it takes to execute function calls:
+The [FRAME benchmarking framework](https://paritytech.github.io/substrate/master/frame_benchmarking/index.html) includes the following tools to help you determine the time it takes to execute function calls:
 
 - [Benchmark macros](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/src/lib.rs) to help you write, test, and add runtime benchmarks.
 - [Linear regression analysis functions](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/src/analysis.rs) for processing benchmark data.
@@ -161,14 +161,14 @@ To execute the benchmarks, you can start the node by running a command similar t
 
 ```bash
 ./target/production/substrate benchmark pallet \
-    --chain dev \                  # Configurable Chain Spec
-    --execution=wasm \             # Always test with Wasm
-    --wasm-execution=compiled \    # Always used `wasm-time`
-    --pallet pallet_balances \     # Select the pallet
-    --extrinsic transfer \         # Select the extrinsic
-    --steps 50 \                   # Number of samples across component ranges
-    --repeat 20 \                  # Number of times we repeat a benchmark
-    --output <path> \              # Output benchmark results into a folder or file
+    --chain dev \
+    --execution=wasm \
+    --wasm-execution=compiled \
+    --pallet pallet_balances \
+    --extrinsic transfer \
+    --steps 50 \
+    --repeat 20 \
+    --output <path>
 ```
 
 This command creates an output file for the selected pallet—for example, `pallet_balance.rs`—that implements the `WeightInfo` trait for your pallet.

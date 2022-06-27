@@ -25,13 +25,8 @@
 
 ## Contributing
 
-Thank you for your interest in contributing to documentation for the Substrate development
-framework. As a member of the community, you are invited and encouraged to contribute by submitting
-issues, offering suggestions for improvements to existing content, adding review comments to
-existing pull requests, proposing new content, or creating new pull requests to fix issues or
-provide new content. If you have any further questions, please do not hesitate to reach out on our
-[Substrate technical community channel](https://matrix.to/#/#substrate-technical:matrix.org)! We
-would love to get to know you and your work!
+Thank you for your interest in contributing to documentation for Substrate!
+As a member of the community, you are invited and encouraged to contribute by submitting issues, offering suggestions for improvements to existing content in the form of a pull request, adding review comments to existing pull requests and issues, proposing new content, or creating new pull requests to fix issues or provide new content.
 
 ### Working with `/docs` content
 
@@ -51,7 +46,8 @@ You can use any structure nesting needed, there is no limit of depth.
 
 #### Navigation config
 
-- Use file `./content/config/nav.yaml` to add items and linking to your content
+- update `./content/config/nav.yaml` to add or amend items and linking to your content
+  - an exception being `./content/md/en/docs/reference/how-to-guides/...` files that should _only_ be listed on the main how-to guide page in the index page for these pages: `./content/md/en/docs/reference/how-to-guides/index.md`, not to be included in the side bar.
 
 This config file is used to generate sidebar menu where:
 
@@ -66,14 +62,20 @@ This config file is used to generate sidebar menu where:
 Navigate into your cloned local repo directory and install all dependencies.
 
 ```shell
+# https://github.com/nvm-sh/nvm is suggested, so that you
+# switch to the correct version of node set in the .nvmrc file
+nvm i
+
+# Install dependancies
 yarn
 ```
 
 **Configure environment variables**
 
-Copy `example.env.development` and rename to `.env.development`
+Copy `example.env.development` into a new `.env.development` file.
 
-Config URL variables based on your preferable local setup. URL will be used for links generation between Substrate websites.
+Config URL variables based on your preferable local setup.
+URL will be used for links generation between Substrate websites.
 
 Default localhost port configuration:
 
@@ -92,6 +94,16 @@ Navigate into your new site’s directory and use the following command to start
 yarn develop
 ```
 
+**Troubleshooting**
+
+It is sometimes the case that gastby's cache gets corrupted when making changes.
+If you run into issues in local development, try to clean this and restart:
+
+```shell
+yarn clean
+yarn develop
+```
+
 ## Security
 
 Please report _security_ bugs as stated in the [`static/security.txt` file](static/security.txt) in
@@ -99,6 +111,6 @@ this repository.
 
 ## License
 
-TBD
+TBD, please open an issue to request any use outside of the official host https://docs.substrate.io/ at this time.
 
 <!-- Substrate **documentation** is license under the [Apache 2 license](./LICENSE). -->

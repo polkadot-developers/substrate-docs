@@ -10,12 +10,12 @@ For example, you might start building an application-specific staking pallet tha
 ## Pallet macros and attributes
 
 FRAME makes extensive use of Rust macros to encapsulate complex blocks of code.
-bThe most import macros for building custom pallets is the [`pallet`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html) macro.
+The most import macros for building custom pallets is the [`pallet`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html) macro.
 The `pallet` macro defines the core set of attributes that a pallet must provide.
 For example:
 
 - `#[pallet::pallet]` is a mandatory pallet attribute that enables you to define a structure (struct) for the pallet so it can store data that can be easily retrieved.
-- `#[pallet::config]`: is a mandatory pallet attribute that enables you to define the configuration trait for the pallet.
+- `#[pallet::config]` is a mandatory pallet attribute that enables you to define the configuration trait for the pallet.
 
 The `pallet` macro also defines the core set of attributes that pallets typically provide.
 For example:
