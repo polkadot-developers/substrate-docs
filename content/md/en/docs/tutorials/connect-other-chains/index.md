@@ -1,6 +1,6 @@
 ---
 title: Connect other chains
-description:
+description: Tutorials that cover parachains, bridges, and messaging between them.
 keywords:
 ---
 
@@ -8,11 +8,8 @@ The **Connect other chains** tutorials delve into more advanced topics for movin
 
 ## Tutorials under construction
 
-- [Start a local relay chain](/tutorials/connect-other-chains/relay-chain/) helps you prepare a local relay chain as a first step for converting a solo chain into a parachain.
-- [Connect to a local relay chain](/tutorials/connect-other-chains/parachain/) highlights the steps necessary to connect your local parachain to a relay chain.
-
-<!-- TODO NAV.YAML -->
-<!-- add  back ABOVE -->
-<!-- - [Deploy a parachain](/tutorials/connect-other-chains/deploy-parachain/) introduces the steps for connecting your parachain to a public test network.
-- [Connect to Rococo testnet](/tutorials/connect-other-chains/connect-rococo/) summarizes the specific steps for connecting a parachain to the Rococo test network.
-- [Connect to Ethereum](/tutorials/connect-other-chains/connect-to-evm/) illustrates how to build an Ethereum-compatible blockchain project. -->
+- [Prepare a local parachain testnet](/tutorials/connect-other-chains/local-relay/) helps you prepare a local relay chain as a first step for converting a solo chain into a parachain.
+- [Connect a local parachain](/tutorials/connect-other-chains/local-parachain/) highlights the steps necessary to connect your local parachain to a relay chain.
+- [Connect to Rococo testnet](/tutorials/connect-other-chains/rococo-slot/) summarizes the steps for connecting a parachain to the Rococo test network.
+<!-- TODO: WIP page on XCM -->
+<!-- - [Send cross-consensus messages (XCM)](/tutorials/connect-other-chains/xcm/) summarizes the steps for connecting a parachain to the Rococo test network. -->

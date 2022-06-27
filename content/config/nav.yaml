@@ -174,9 +174,10 @@ tutorials:
         - title: Start a local relay chain
           url: /tutorials/connect-other-chains/local-relay/
         - title: Connect a local parachain
-          url: /tutorials/connect-other-chains/parachain/
+          url: /tutorials/connect-other-chains/local-
+          parachain/
         - title: Connect to Rococo testnet
-          url: /tutorials/connect-other-chains/connect-rococo/
+          url: /tutorials/connect-other-chains/rococo-slot/
         #- title: Send cross-consensus messages (XCM)
         #url: /tutorials/connect-other-chains/xcm/
     - title: Develop smart contracts

@@ -25,7 +25,7 @@ Launching a parachain requires a series of steps to ensure that the relay chain 
 In order to achieve this, you will need to have previously successfully generated a **`ParaID`, genesis state and Wasm runtime blob**.
 After successfully registering your parachain, you will be able to obtain a parachain slot (in testing though `sudo`, and in production via auctions and crowdloans) and start producing blocks.
 
-The [Cumulus Tutorial](/tutorials/connect-other-chains/relay-chain/) is the best place to start if you are new to parachain development.
+The [Prepare a local parachain testnet](/tutorials/connect-other-chains/local-relay/) is the best place to start if you are new to parachain development.
 This guide is a quick reference and leaves out important details to consider when performing these steps.
 
 ## Reserve a `ParaID`

@@ -1,16 +1,13 @@
 ---
 title: Add local parachain nodes
-description: How-to connect additional parachain nodes to an established local relay testnet 
+description: How-to connect additional parachain nodes to an established local relay testnet
 keywords:
   - parachain
   - collator
   - full node
 ---
 
-<!-- TODO NAV.YAML -->
-<!-- content/md/en/docs/tutorials/connect-other-chains/parachain.md in next steps once in nav -->
-
-As you learned in [Connect a local parachain](/tutorials/connect-other-chains/parachain/), a parachain can work with a single collator.
+As you learned in [Prepare a local parachain testnet](/tutorials/connect-other-chains/local-relay/), a parachain can work with a single collator.
 
 ## Additional relay chain nodes
 
@@ -65,25 +62,7 @@ This command is nearly identical to the one we used to start the first collator,
 --bootnodes <other relay chain node>
 ```
 
-### Non-collating parachain full nodes
-
-It is also possible to start a non-collating [full node](/reference/glossary/#full-node) for a parachain.
-In this case, simply omit the `--collator` flag.
-
-```bash
-./target/release/parachain-collator \
-  --base-path <a DB base path> \
-  --bootnodes <Your first collator> \
-  --ws-port <Your chosen websocket port> \
-  --port <Your chosen libp2p port> \
-  --parachain-id <Your ID> \
-  -- \
-  --chain <relay-chain chain spec> \
-  --bootnodes <other relay chain node>
-```
-
 ## Related material
 
 - [Polkadot Wiki: Collator](https://wiki.polkadot.network/docs/learn-collator).
-- [Relay chain tutorial](/tutorials/connect-other-chains/relay-chain).
-- [Parachain tutorial](/tutorials/connect-other-chains/parachain/).
+- [Prepare a local parachain testnet](/tutorials/connect-other-chains/local-relay/) tutorial.

@@ -18,25 +18,30 @@ This will guide you through how you can onboard your parachain to it.
 
 ## Before you begin
 
-As Rococo is a shared testnet, you will need to [prepare some keys](#setup-a-wallet), [acquire a Rococo `ParaID`](#acquire-a-paraid) and configure your parachain beyond what is needed for local testing.
-You will also need to:
+Because Rococo is a shared test network, this tutorial requires additional steps to prepare your environment that aren't required for local testing.
+Before you begin, verify the following:
 
-1. Complete the [trusted network tutorial](/tutorials/get-started/trusted-network/), to understand custom keys chain spec modifications we need.
-1. [Setup a wallet](#setup-a-wallet) for `ROC` tokens and ensure you have your seed words backed up!
-1. Complete the [parachain tutorial](/tutorials/connect-other-chains/parachain) and **test your parachain on your locally** before you attempt _anything on Rococo_!
+- You know how to generate and modify chain specification files as described in [Add trusted nodes](/tutorials/get-started/trusted-network/).
+- You know how to generate and store keys using one of the methods described in [Add trusted nodes](/tutorials/get-started/trusted-network/).
+- You have completed the [parachain tutorial](/tutorials/connect-other-chains/local-parachain/) and tested a parachain on your local computer.
 
-## Setup a wallet
+## Set up a wallet
 
-To perform any action on Rococo, you need `ROC` tokens.
-To store these, you need a wallet, as we will _not_ be able to use [development keys and accounts](/reference/command-line-tools/subkey/#predefined-accounts-and-keys).
-There are many options, a few are described on the [Polkadot Wiki](https://wiki.polkadot.network/docs/build-wallets), and if you are just getting started, the [`polkadot-js` extension](https://github.com/polkadot-js/extension) is suggested.
-Once you have an account, make sure you **back up your seed phrase** and make note of **the `accountID`** that is using the default 42 [SS58 prefix](/reference/glossary/#ss58-address-format) for use with Rococo.
+To perform any action on Rococo, you need ROC tokens.
+To store these, you need a Substrate compatible cryptocurrency wallet.
+For this operations in any public setting, you can not use [development keys and accounts](/reference/command-line-tools/subkey/#predefined-accounts-and-keys).
+There are many options available for setting up wallet account.
+For information about some of these options, see the [Build wallets](https://wiki.polkadot.network/docs/build-wallets) on the Polkadot wiki.
+If you are just getting started, you can use the [`polkadot-js` extension](https://github.com/polkadot-js/extension).
+After you have an account, be sure to:
+- Back up your secret seed phrase.
+- Make note of your `accountID` that is using the default 42 [SS58 prefix](/reference/glossary/#ss58-address-format) for use with Rococo.
 
-To acquire `ROC`, join the [Rococo faucet matrix channel](https://matrix.to/#/#rococo-faucet:matrix.org) and use the `!drip <accountID>` command in the faucet channel to get 100 `ROC` in your wallet.
+To acquire ROC, join the [Rococo faucet matrix channel](https://matrix.to/#/#rococo-faucet:matrix.org) and use the `!drip <accountID>` command in the faucet channel to get 100 ROC in your wallet.
 
-## Acquire a `ParaID`
+## Acquire a ParaID
 
-With a minimal 5 `ROC` free balance, register as a parathread on Rococo:
+With a minimal 5 ROC free balance, register as a parathread on Rococo:
 
 1. Go to [the Polkadot-JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/parachains/parathreads) parathreads section for Rococo.
 
@@ -49,7 +54,8 @@ Only numbers `2000` and above that aren't already reserved can be used for commu
 
 ## Generate parachain genesis and Wasm files
 
-These required files to register a parachain include details set in your chain specifications that must explicitly target the correct relay chain and use the right `ParaID` - in this case, `rococo` (instead of `rococo-local` used in the [parachain tutorial](/tutorials/connect-other-chains/parachain)).
+The files required to register a parachain must explicitly specify the correct relay chain and the right `ParaID`.
+In this tutorial, the relay chain is `rococo` instead of `rococo-local` used in the [Connect a local parachain](/tutorials/connect-other-chains/local-parachain/) tutorial.
 
 1. Configure your chain specification to use:
    - Your Rococo `ParaID`.
@@ -69,51 +75,50 @@ It's very likely you want at least your collator's `--ws-port <ws port>` port op
 
 Before you can become a parachain, you must register as a parathread on Rococo:
 
-1. Using your reserved `ParaID` from above, you can now register as a **parathread**.
+1. Register as a **parathread**. using your reserved `ParaID`.
 
 ![register-parathread.png](/media/images/docs/tutorials/09-cumulus/register-parathread.png)
 
-1. Once your extrinsic succeeds, you will see a `registrar.Registered` event emitted.
+1. Check that you see a `registrar.Registered` event in the Polkadot-JS application to verify registration succeeded.
 
 ![parathread-register-success.png](/media/images/docs/tutorials/09-cumulus/parathread-register-success.png)
 
-1. Go to the [Parachains -> Parathreads](https://polkadot.js.org/apps/#/parachains/parathreads) page and you will see that your parathread registration is **Onboarding**:
+1. Click [Parachains -> Parathreads](https://polkadot.js.org/apps/#/parachains/parathreads) and verify that your parathread registration is **Onboarding**:
 
 ![parathread-onboarding.png](/media/images/docs/tutorials/09-cumulus/parathread-onboarding.png)
 
-After the extrinsic succeeds, it takes 2 sessions for the chain to fully onboard as a parathread.
+After the extrinsic succeeds, it takes [2 sessions](https://wiki.polkadot.network/docs/glossary#session) for the chain to fully onboard as a parathread.
 
 ## Request your parachain slot
 
-Once the parachain is active as a parathread, the related project team should [open a request](https://github.com/paritytech/subport/issues/new?assignees=&labels=Rococo&template=rococo.yaml) for either a **permanent** or a **temporary parachain slot** on Rococo.
+After the parachain is active as a parathread, the related project team should [open a request](https://github.com/paritytech/subport/issues/new?assignees=&labels=Rococo&template=rococo.yaml) for either a **permanent** or a **temporary parachain slot** on Rococo.
 
 - **Permanent slots** are parachain slots assigned to teams who currently have a parachain slot on Polkadot (following a successful slot lease auction) and thus have the needs for continuously testing their codebase for compatibility with the latest bleeding edge features in a real-world live environment (Rococo).
-  There is a limited number of permanent slots made available (see note below).
+  Only a limited number of permanent slots are available (see note below).
 
-- **Temporary slots** are parachain slots that are dynamically allocated in a continuous rollover manner.
-  Concretely, at every start of a lease period, a certain number of parathreads (up to a maximum defined in the relay chain's configuration) will be automatically upgraded to parachains for a certain duration.
-  The parachains that were active during the ending lease period will be automatically downgraded to parathreads to free the slots for others to use in the subsequent one.
+- **Temporary slots** are parachain slots that are dynamically allocated in a continuous, round-robbin style roation.
+  At the start of every lease period, a certain number of parathreads—up to a maximum defined in the relay chain's configuration—are automatically upgraded to parachains for a certain duration.
+  The parachains that were active during the ending lease period are automatically downgraded to parathreads to free the slots for others to use in the subsequent period.
   The temporary slots are meant to be used by teams who do not have a parachain slot yet on Polkadot, and are aiming for one in the near future.
 
-The goal of this more dynamic allocations aims at helping teams to test their runtimes more often, and in a more streamlined manner.
+The goal dynamic allocations is to help teams test their runtimes more often, and in a more streamlined manner.
 
-> **NOTE:**
->
-> Rococo's runtime sets `AssignSlotOrigin = EnsureRoot<Self::AccountId>;` at this time, thus ONLY someone with sudo access can assign slots!
->
-> The Rococo `sudo` key is presently controlled by Parity Technologies at this time, so to have the operation required to get a slot, please go to the [Subport repo and open a `Rococo Slot Request`](https://github.com/paritytech/subport/issues/new?assignees=&labels=Rococo&template=rococo.yaml) once you complete the above and are ready to connect!
-> A Parity team member will initiate the slot for you ASAP.
->
-> Long-term, the plan is to make it a community-driven process via Rococo's governance framework.
+The Rococo runtime requires `sudo` access to assign slots (`AssignSlotOrigin = EnsureRoot<Self::AccountId>;`).
+The Rococo `sudo` key is currently controlled by Parity Technologies at this time, so to have the operation required to get a slot, please go to the [Subport repo and open a `Rococo Slot Request`](https://github.com/paritytech/subport/issues/new?assignees=&labels=Rococo&template=rococo.yaml) once you complete the above and are ready to connect!
+A Parity team member will respond once your slot has been activated.
+Eventually, this process is intended to be community-driven through the Rococo governance framework.
 
 Using an account with the `AssignSlotOrigin` origin, follow these steps to assign a temporary slot:
 
-1. In the [Polkadot-JS Apps for Rococo](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/extrinsics), go to `Developer -> Extrinsics`.
-1. Select the account with enough `ROC` balance that you wish to use to submit a transaction with.
+1. Open [Polkadot-JS Apps for Rococo](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/extrinsics).
+1. Click **Developer** > **Extrinsics**.
+1. Select the account you want to use to submit the transaction.
 1. Select the `assignedSlots` pallet.
 1. Choose the `assignTempParachainSlot` function.
-1. Insert your reserved `ParaID`. Make sure this matches the one you reserved from the previous section!
-1. Select `Current` for the `LeasePeriodStart`. If the current slot is full, you will be assigned the next available slot.
+1. Insert your reserved `ParaID`. 
+   Make sure you use the ParaID you previously reserved.
+1. Select `Current` for the `LeasePeriodStart`.
+   If the current slot is full, you will be assigned the next available slot.
 1. Sign and submit the transaction.
 
 Given a period lease duration of 1 day, the current settings for assigned parachain slots on Rococo are (at the time of writing):
@@ -126,11 +131,11 @@ Given a period lease duration of 1 day, the current settings for assigned parach
 
 These are subject to change, based on the needs of the community.
 
-🎉**_Congratulations!_**🎉
+**_Congratulations!_**
 
-With your slot activated by the Parity team, you're now able to test your parachain on the Rococo test net!
-Please do note that when your temporary slot's lease ends, the parachain is automatically downgraded to a parathread. Registered and approved slots are cycled through automatically in a round-robin fashion, so you will expect to come back online as a parachain from time to time.
-
+After your slot is activated by the Parity team, you can test your parachain on the Rococo test network.
+Note that when your temporary slot's lease ends, the parachain is automatically downgraded to a parathread.
+Registered and approved slots are cycled through automatically in a round-robin fashion, so you can expect to come back online as a parachain from time to time.
 
 ## Next steps
 

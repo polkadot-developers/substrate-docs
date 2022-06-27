@@ -85,8 +85,9 @@ If the help page is printed, you have succeeded in building a Polkadot node.
 ## Relay chain specification
 
 You will need a [chain specification](/main-docs/build/chain-spec/)) for your relay chain network.
+As we want to use a local testnet, a custom configuration may be needed to set development or custom keys for validators, boot node addresses, etc.
 
-Keep in mind that a relay chain _must_ have one more validator nodes running than the total of connected parachain collators.
+**A relay chain _must_ have one more validator nodes running than the total of connected parachain collators.**
 For testing these typically must be hard coded into your chain specs.
 For example, if you want to connect two parachains with a single collator, run three or more relay chain validator nodes, and ensure they all are specified in your chain spec.
 
@@ -104,7 +105,7 @@ This is useful for registering a **single** parachain:
 
 You can read and edit the plain chain specification file.
 However, the chain specification file must be converged to the SCALE-encoded raw format before it can be used to start a node.
-For information about converting a chain specification to use the raw format, see [raw chainspec generation](/tutorials/connect-other-chains/parachain/#configure-a-parachain-for-a-specific-relay-chain-and-para-id).
+For information about converting a chain specification to use the raw format, see the [Customize a chain specification](/reference/how-to-guides/basics/customize-a-chain-specification/) guide.
 
 The sample chain specification is only valid for a single parachain with two validator nodes.
 If you add other validators, add additional parachains to your relay chain, or want to use custom non-development keys, you'll need to create a custom chain specification that fit your needs.
@@ -159,21 +160,19 @@ Notice that this command uses a a different base path ( `/tmp/relay-bob`), valid
 The command to start the second node also includes the `--bootnodes` command-line option to specify the IP address and peer identifier of the first node.
 The `bootnodes` option is not strictly necessary if you are running the entire network on a single local machine, but it is necessary when operating over the network.
 
-<!-- TODO NAV.YAML -->
-<!-- add these back -->
-<!-- ## Custom relay chain specifications
+## Custom relay chain specifications
 
-Optionally, explore the [how-to guide on configuring a custom chain spec](/reference/how-to-guides/basics/customize-a-chain-specification) for an example of how to modify the [plain chain spec](/assets/tutorials/cumulus/chain-spec/rococo-custom-2-plain.json) to add more validators without modifying any Polkadot source code.
+Optionally, explore the [how-to guide on configuring a custom chain spec](/reference/how-to-guides/basics/customize-a-chain-specification) for an example of how to modify the [plain chain spec](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/cumulus (copy)/chain-specs/rococo-custom-2-plain.json) to add more validators without modifying any Polkadot source code.
 
-For this tutorial, your final chain spec filename **must** start with `rococo` or the node will not know what runtime logic to include. -->
+For this tutorial, your final chain spec filename **must** start with `rococo` or the node will not know what runtime logic to include.
 
 ## Further resources
 
 Manually building and configuring a relay chain is a great exercise.
-However, after you have done it a few times, you might want to automate the process.
+However, after you have done it a few times, you likely want to automate the process.
 There are many ways to go about this, here are a few for reference:
 
-<!-- TODO: add details about these in HTG pages and link here in stead on these https://github.com/substrate-developer-hub/substrate-docs/issues/1098 -->
+<!-- TODO NEW CONTENT add details about these in HTG pages and link here in stead on these https://github.com/substrate-developer-hub/substrate-docs/issues/1098 -->
 
 - [`parachain-launch`](https://github.com/open-web3-stack/parachain-launch) is a script that generates a docker compose file allowing you to launch a testnet of multiple blockchain nodes.
 - [`zombienet`](https://github.com/paritytech/zombienet) is a CLI tool that enables you to spawn ephemeral Polkadot/Substrate networks and perform tests against them.

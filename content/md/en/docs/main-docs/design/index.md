@@ -37,7 +37,7 @@ Learn about best practices for designing your pallet [here]().
 
 On the other hand, smart contracts have built-in economic incentives.
 In order to use smart contracts in a Substrate node, the runtime must be configured with a specialized pallet that defines the type of execution environments the application requires.
-This could be the [EVM pallet](/pallet-todo-link), for example, used in Ethereum compatible Substrate-based chains, or the [contracts pallet](/pallet-todo-link) which provides a way to execute Wasm contracts written in a specialized language called ink!.
+This could be the [EVM pallet](), for example, used in Ethereum compatible Substrate-based chains, or the [contracts pallet](/pallet-todo-link) which provides a way to execute Wasm contracts written in a specialized language called ink!.
 
 Learn more about the different [smart contract pallets]() you can implement in your runtimes.
 
