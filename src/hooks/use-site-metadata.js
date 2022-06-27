@@ -16,7 +16,6 @@ export const useSiteMetadata = () => {
             websiteUrl
             docsUrl
             marketplaceUrl
-            docsVersion
             author
             pressEmail
             email
@@ -29,7 +28,6 @@ export const useSiteMetadata = () => {
             stackoverflow
             stackExchange
             githubDevhub
-            substrateIO
           }
         }
       }
