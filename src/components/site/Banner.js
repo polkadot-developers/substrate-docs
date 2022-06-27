@@ -10,6 +10,12 @@ const Banner = () => {
   const { banners } = useBanner();
   const hasActiveBanner = banners.length > 0;
 
+  const handleKeypress = e => {
+    if (e.key === 'Enter') {
+      setIsBannerOpen(false);
+    }
+  };
+
   return (
     <>
       {hasActiveBanner && isBannerOpen && (
@@ -43,7 +49,9 @@ const Banner = () => {
 
           <div
             className="absolute right-4 top-4 cursor-pointer duration-150 ease-in-out hover:scale-110"
+            tabIndex="0"
             onClick={() => setIsBannerOpen(false)}
+            onKeyPress={handleKeypress}
           >
             <Icon name="close-x" className="fill-current h-4 w-4" />
           </div>
