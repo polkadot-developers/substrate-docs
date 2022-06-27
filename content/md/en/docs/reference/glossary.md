@@ -19,14 +19,6 @@ With a **negative turnout bias**, the passing threshold _increases_ as more vote
 Negative turnout bias is also sometimes called a "default carries" position because if there's an apathetic voting body, the referendum passes by default.
 A **neutral turnout bias** specifies a simple majority passing threshold.
 
-<!--
-## AFG
-
-An internal codename for "Al's Finality Gadget," which is named after [Alistair Stewart](https://w3f-research.readthedocs.io/en/latest/team_members/alistair.html)
-who invented it.
-AFG is synonymous with [GRANDPA](#grandpa).
--->
-
 ## aggregation
 
 Used in the context of [FRAME](#frame), _aggregation_ or _[pallet](#pallet) aggregation_ is the process of combining analogous types from multiple runtime modules into a single type.

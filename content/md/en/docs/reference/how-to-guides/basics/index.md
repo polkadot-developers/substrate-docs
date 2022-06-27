@@ -17,7 +17,3 @@ The _How-to_ guides in the _Basics_ category illustrate many of the common patte
 - [Use helper functions](/reference/how-to-guides/basics/use-helper-functions)
 
 - [Mint basic tokens](/reference/how-to-guides/basics/mint-basic-tokens/)
-
-<!--
-- [Calculate weight](/reference/how-to-guides/basics/calculate-weight/)
--->
