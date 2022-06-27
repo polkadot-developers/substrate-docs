@@ -6,6 +6,7 @@ keywords:
 
 The _How-to_ guides in the _Parachains_ category illustrate the key steps to prepare for migrating a solo Substrate chain as a parachain.
 
+- [Add local parachain nodes](/reference/how-to-guides/parachains/add-paranodes/)
 - [Convert a solo chain](/reference/how-to-guides/parachains/convert-a-solo-chain/)
 - [Connect to a relay chain](/reference/how-to-guides/parachains/connect-to-a-relay-chain/)
 - [Select collators](/reference/how-to-guides/parachains/select-collators/)

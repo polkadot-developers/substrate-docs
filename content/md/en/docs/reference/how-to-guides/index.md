@@ -46,7 +46,7 @@ See the following guides for help with benchmarking and weight configurations.
 See the following guides for help with testing pallets and runtime logic.
 
 - [Set up basic tests](/reference/how-to-guides/testing/set-up-basic-tests/)
-- [Test a transfer function](reference/how-to-guides/testing/test-a-transfer-function/)
+- [Test a transfer function](/reference/how-to-guides/testing/test-a-transfer-function/)
 
 ## Consensus models
 

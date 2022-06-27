@@ -19,14 +19,6 @@ With a **negative turnout bias**, the passing threshold _increases_ as more vote
 Negative turnout bias is also sometimes called a "default carries" position because if there's an apathetic voting body, the referendum passes by default.
 A **neutral turnout bias** specifies a simple majority passing threshold.
 
-<!--
-## AFG
-
-An internal codename for "Al's Finality Gadget," which is named after [Alistair Stewart](https://w3f-research.readthedocs.io/en/latest/team_members/alistair.html)
-who invented it.
-AFG is synonymous with [GRANDPA](#grandpa).
--->
-
 ## aggregation
 
 Used in the context of [FRAME](#frame), _aggregation_ or _[pallet](#pallet) aggregation_ is the process of combining analogous types from multiple runtime modules into a single type.
@@ -116,12 +108,18 @@ Typically, a distributed network is considered byzantine fault tolerant if it ca
 
 ### byzantine failure
 
-The loss of a network service due to node failures that exceed the proprortion of nodes required to reach consensus.
+The loss of a network service due to node failures that exceed the proportion of nodes required to reach consensus.
 
 ### practical byzantine fault tolerance (pBFT)
 
 An early approach to byzantine fault tolerance. pBFT systems tolerate byzantine behavior from up to one-third of participants.
 The communication overhead for such systems is `O(n²)`, where `n` is the number of nodes (participants) in the system.
+
+## collator
+
+An [author](#author) of a [parachain](#parachain) network.
+They are not [authorities](#authority) in themselves, as they require a [relay chain](#relay-chain) to coordinate [consensus](#consensus).
+More details are found on the [Polkadot Wiki on collators](https://wiki.polkadot.network/docs/learn-collator).
 
 ## consensus
 
@@ -278,10 +276,10 @@ The convention used in [the Substrate codebase](https://github.com/paritytech/su
 For example, the preceding macros are all defined in the [`frame_support`](/reference/frame-pallets#support-library) module and all FRAME-based runtimes _must_ include the [`frame_system`](/reference/frame-pallets#system-library) module.
 After the `frame_support::construct_runtime` macro has been used to create a runtime that includes the `frame_system` module, optional pallets such as the [Balances](/reference/frame-pallets#balances) pallet can be used to extend the core capabilities of the runtime.
 
-## full client
+## full node
 
 A [node](#node) that is able to synchronize a blockchain in a secure manner through execution and verification of all logic.
-Full clients stand in contrast to [light clients](#light-client).
+Full nodes stand in contrast to [light clients](#light-client).
 
 ## genesis configuration
 
@@ -422,6 +420,13 @@ In Substrate, the runtime is stored as a [WebAssembly](#webassembly-wasm) binary
 
 A fixed, equal interval of time used by consensus engines such as [Aura](#aura-aka-authority-round) and [BABE](#blind-assignment-of-blockchain-extension-babe).
 In each slot, a subset of [authorities](#authority) is permitted—or obliged—to [author](#author) a [block](#block).
+
+## SS58 address format
+
+The SS58 address format is a public key address based on the Bitcoin [`Base-58-check`](https://en.bitcoin.it/wiki/Base58Check_encoding) encoding.
+Each Substrate SS58 address uses a `base-58` encoded value to identify a specific account on a specific Substrate-based chain.
+These are represented by a `base-58` encoded value to identify a specific account on a specific Substrate chain.
+The [canonical `ss58-registry`](https://github.com/paritytech/ss58-registry) provide additional details about the address format used by different Substrate-based chains, including the network prefix and website used for different networks. 
 
 ## stake-weighted voting
 

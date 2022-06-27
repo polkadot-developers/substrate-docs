@@ -13,7 +13,7 @@ Because the runtime is part of the blockchain state, network maintainers can lev
 In the FRAME system for runtime development, the system library defines [the `set_code` call](https://paritytech.github.io/substrate/master/frame_system/pallet/enum.Call.html#variant.set_code) that is used to update the definition of the runtime.
 The tutorial [Upgrade a running network](/tutorials/get-started/forkless-upgrade/) demonstrates two ways that you can upgrade a runtime without shutting down a node or interrupting operations.
 However, both of the upgrades in the tutorial illustrate adding functionality to the runtime as opposed to _updating_ the existing runtime state.
-If a runtime upgrade requires changes to the existing state, it is likely to require storagevmigration.
+If a runtime upgrade requires changes to the existing state, it is likely to require storage migration.
 
 ## Runtime versioning
 

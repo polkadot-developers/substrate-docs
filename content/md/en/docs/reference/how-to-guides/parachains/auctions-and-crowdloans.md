@@ -12,7 +12,7 @@ keywords:
 Ready to launch a parachain on a _production network_ like Polkadot or Kusama?
 You must to acquire a slot in a [parachain slot auction](https://wiki.polkadot.network/docs/learn-auction).
 
-> Please first try everything out on the [Rococo Testnet](/tutorials/connect-other-chainsconnect-rococo) before you attempt to go on a production network!
+> Please first try everything out on the [Rococo Testnet](/tutorials/connect-other-chains/rococo-slot/) before you attempt to go on a production network!
 
 As the total amount of DOT or KSM required to be locked for a slot is relatively large for most, [crowdloans](https://wiki.polkadot.network/docs/learn-crowdloans) are typically used to as the community to contribute to a pool used to participate in the auction.
 
@@ -23,36 +23,36 @@ Once you have read the two articles above, please see below for the more develop
 All parachains will need to register as a parathread first.
 You will need:
 
-- A deposit to register a para ID (network dependant)
+- A deposit to register a `ParaID` (network dependant)
 
-- Reserve a unique para ID. This will be assigned to the next available ID.
+- Reserve a unique `ParaID`. This will be assigned to the next available ID.
   This integer will be greater than `2000`, as `0-999` are reserved for [system parachains](https://wiki.polkadot.network/docs/learn-common-goods#system-level-chains) and `1000-1999` are reserved for [public utility parachains](https://wiki.polkadot.network/docs/learn-common-goods#public-utility-chains).
 
 - Your parachain genesis state.
-  Refer to the genesis state export process in the [Cumulus tutorial](/tutorials/connect-other-chains/relay-chain/).
+  Refer to the genesis state export process in the [Prepare a local parachain testnet](/tutorials/connect-other-chains/local-relay/).
 
 - Your parachain Wasm runtime.
-  Refer to the Wasm runtime export process in the [Cumulus tutorial](/tutorials/connect-other-chains/relay-chain/).
+  Refer to the Wasm runtime export process in the [Prepare a local parachain testnet](/tutorials/connect-other-chains/local-relay/).
 
 The procedure will be as followed:
 
 - Go to Polkadot-JS Apps parathreads section on the **_correct relay chain_** [here](https://polkadot.js.org/apps/#/parachains/parathreads).
 
-- Reserve for the next available para ID.
+- Reserve for the next available `ParaID`.
 
-  ![paraid-reserve.png](../../../../src/images/tutorials/09-cumulus/paraid-reserve.png)
+  ![paraid-reserve.png](/media/images/docs/tutorials/09-cumulus/paraid-reserve.png)
 
-- After successfully reserving your para ID, you can now register as a **Parathread**.
+- After successfully reserving your `ParaID`, you can now register as a **Parathread**.
 
-  ![register-parathread.png](../../../../src/images/tutorials/09-cumulus/register-parathread.png)
+  ![register-parathread.png](/media/images/docs/tutorials/09-cumulus/register-parathread.png)
 
 - Once your extrinsic succeeds, you will see the `registrar.Registered` event being emitted.
 
-  ![parathread-register-success.png](../../../../src/images/tutorials/09-cumulus/parathread-register-success.png)
+  ![parathread-register-success.png](/media/images/docs/tutorials/09-cumulus/parathread-register-success.png)
 
 - Also in the Polkadot-JS Apps [Parachains -> Parathreads](https://polkadot.js.org/apps/#/parachains/parathreads) page and you will see your parathread registration is **Onboarding**:
 
-  ![parathread-onboarding.png](../../../../src/images/tutorials/09-cumulus/parathread-onboarding.png)
+  ![parathread-onboarding.png](/media/images/docs/tutorials/09-cumulus/parathread-onboarding.png)
 
 After the extrinsic succeeds, it takes [**2 sessions**](#relevant-settings) for the chain to fully onboard as a parathread.
 
@@ -80,14 +80,14 @@ It is _absolutely essential_ that you understand these parameters before you com
 
 #### Bidding
 
-Anyone with a fully onboarded parathread can make a bid to win a parachain slot for their para ID.
+Anyone with a fully onboarded parathread can make a bid to win a parachain slot for their `ParaID`.
 They need to out-bid all others participating in the slot auction.
 
 You can do so in Polkadot-JS App [Network -> Parachains -> Auctions](https://polkadot.js.org/apps/#/parachains/auctions) page (make sure you are on the right network).
 
-Pick your para ID, how much you want to bid, and the slots you want to bid for:
+Pick your `ParaID`, how much you want to bid, and the slots you want to bid for:
 
-![parachain-bid.png](../../../../src/images/tutorials/09-cumulus/parachain-bid.png)
+![parachain-bid.png](/media/images/docs/tutorials/09-cumulus/parachain-bid.png)
 
 ### Crowdloans
 
@@ -101,11 +101,11 @@ You will not do this for a testnet parachain slot, but you may consider this opt
 
 In the following, we are getting ready to submit an extrinsic to start a crowdloan.
 
-![parachain-bid.png](../../../../src/images/tutorials/09-cumulus/parachain-crowdloan.png)
+![parachain-bid.png](/media/images/docs/tutorials/09-cumulus/parachain-crowdloan.png)
 
 Notes on the parameters:
 
-- `parachain id`: You can only create a crowdloan campaign for a para ID that you registered.
+- `parachain id`: You can only create a crowdloan campaign for a `ParaID` that you registered.
 
 - `crowdfund cap`: The maximum amount your crowdloan campaign can collect.
   This is just a responsible measure for getting external support.
@@ -122,7 +122,7 @@ Notes on the parameters:
 
 If your extrinsic succeeds, you can see your new crowdloan entry in [Network -> Parachains -> Crowdloan page](https://polkadot.js.org/apps/#/parachains/crowdloan):
 
-![crowdloan-success.png](../../../../src/images/tutorials/09-cumulus/crowdloan-success.png)
+![crowdloan-success.png](/media/images/docs/tutorials/09-cumulus/crowdloan-success.png)
 
 #### Fund a Crowdloan Campaign
 
@@ -132,6 +132,6 @@ You can goto the same [Crowdloan page](https://polkadot.js.org/apps/#/parachains
 
 You will see an extrinsic pop up similar to the following:
 
-![crowdloan-contribute.png](../../../../src/images/tutorials/09-cumulus/crowdloan-contribute.png)
+![crowdloan-contribute.png](/media/images/docs/tutorials/09-cumulus/crowdloan-contribute.png)
 
 Input the funding amount your want to support and submit the transaction.
