@@ -648,7 +648,7 @@ You can learn more about smart contract development in the following topics:
 
 - [Use maps for storing values](/tutorials/smart-contracts/use-mapping/)
 
-- [Troubleshoot smart contracts](tutorials/smart-contracts/sc-common-issues/)
+- [Troubleshoot smart contracts](/tutorials/smart-contracts/sc-common-issues/)
 
 - [ink! documentation](https://paritytech.github.io/ink-docs/)
 

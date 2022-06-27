@@ -60,7 +60,7 @@ If you don't keep up with relay chain upgrades, it's likely that your network wi
 
 <!-- TODO NEW CONTENT docker and using prebuilt bins suggested https://github.com/substrate-developer-hub/substrate-docs/issues/1073 -->
 
-A slightly modified version of Polkadot's built in `rococo-local` network configuration will serve as the relay chain for this tutorial. 
+A slightly modified version of Polkadot's built in `rococo-local` network configuration will serve as the relay chain for this tutorial.
 
 ```bash
 # Clone the Polkadot Repository, with correct version
@@ -113,7 +113,7 @@ If you add other validators, add additional parachains to your relay chain, or w
 ## Start your relay chain
 
 Before you can start block production for a parachains, you need to launch a relay chain for them to connect to.
-This section describes how to start both nodes using the [two-validator raw chain spec](/assets/tutorials/cumulus/chain-spec/rococo-custom-2-raw.json).
+This section describes how to start both nodes using the [two-validator raw chain spec](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json).
 The steps are similar for starting additional nodes.
 
 ### Start the `alice` validator
@@ -158,11 +158,7 @@ The command to start the second node is similar to the command to start the firs
 Notice that this command uses a a different base path ( `/tmp/relay-bob`), validator key (`--bob`), and ports (`30334` and `9945`).
 
 The command to start the second node also includes the `--bootnodes` command-line option to specify the IP address and peer identifier of the first node.
-The `bootnodes` option is not strictly necessary if you are running the entire network on a single local machine, but it is necessary when operating over the network.
-
-## Custom relay chain specifications
-
-Optionally, explore the [how-to guide on configuring a custom chain spec](/reference/how-to-guides/basics/customize-a-chain-specification) for an example of how to modify the [plain chain spec](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/cumulus (copy)/chain-specs/rococo-custom-2-plain.json) to add more validators without modifying any Polkadot source code.
+The `bootnodes` option is not strictly necessary if you are running the entire network on a single local machine, but it is necessary when /relay-chainttps://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/cumulus (copy)/chain-specs/rococo-custom-2-plain.json) to add more validators without modifying any Polkadot source code.
 
 For this tutorial, your final chain spec filename **must** start with `rococo` or the node will not know what runtime logic to include.
 
@@ -179,4 +175,4 @@ There are many ways to go about this, here are a few for reference:
 
 ## Next steps
 
-With a running relay chain, naturally you will want to [connect a parachain](/tutorials/connect-other-chains/parachain/) to it!
+With a running relay chain, naturally you will want to [connect a parachain](/tutorials/connect-other-chains/local-parachain/) to it!

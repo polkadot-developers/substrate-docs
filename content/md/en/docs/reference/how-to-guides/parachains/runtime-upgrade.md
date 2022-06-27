@@ -25,7 +25,7 @@ Because of this, and the very confined nature of state transition coordination b
 Please do the following:
 
 - Read the general [runtime upgrade docs](/main-docs/build/upgrade).
-- Complete the [cumulus tutorial](/tutorials/connect-other-chains/relay-chain), and learn the `polkadot-launch` tool for testing.
+- Complete the [Prepare a local parachain testnet](/tutorials/connect-other-chains/relay-chain) tutorial, and learn the `polkadot-launch` tool for testing.
 
 ## Choose your upgrade approach
 
@@ -68,7 +68,6 @@ With both these functions called, the relay chain will be notified that the new 
 ## Resources
 
 - [Runtime upgrade](/main-docs/build/upgrade)
-- [Substrate Builders Program: Storage Migration](https://drive.google.com/file/d/19HPFUmSQIxVkxaVSg1SWveSdvjHUw1b8/view?usp=sharing)
 - [Fork off Substrate](https://github.com/maxsam4/fork-off-substrate)
 - [`try-runtime`](/reference/command-line-tools/try-runtime)
 - [`try-runtime` video workshop](https://www.crowdcast.io/e/substrate-seminar/41)

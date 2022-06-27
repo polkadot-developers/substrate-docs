@@ -40,7 +40,7 @@ In addition to these required interfaces, most Substrate nodes—like the node t
 - [`GrandpaApi`](https://paritytech.github.io/substrate/master/sp_finality_grandpa/trait.GrandpaApi.html) for block finalization into the runtime.
 - [`AccountNonceApi`](https://paritytech.github.io/substrate/master/frame_system_rpc_runtime_api/trait.AccountNonceApi.html) for querying transaction indices.
 - [`TransactionPaymentApi`](https://paritytech.github.io/substrate/master/pallet_transaction_payment_rpc_runtime_api/trait.TransactionPaymentApi.html) for querying information about transactions.
-- [`Benchmark`](https://paritytech.github.io/substrate/master/frame_benchmarking/trait.Benchmark.html) for estimating and measuring execution time required to complete tranactions.
+- [`Benchmark`](https://paritytech.github.io/substrate/master/frame_benchmarking/trait.Benchmark.html) for estimating and measuring execution time required to complete transactions.
 
 ## Core primitives
 

@@ -17,6 +17,7 @@ keywords:
 This guide steps through how to connect a parachain to a relay chain.
 
 This guide illustrates:
+
 - How to obtain a `ParaID`
 - How to register a parachain
 - How to obtain a parachain slot
@@ -188,7 +189,7 @@ This dispatch, if successful, will emit the `sudo.Sudid` event, viewable in the 
 
 Be sure to set the `period_begin` to the slot you want to start with.
 For example, if you started from scratch in a test environment, the begin period is likely is to be the already active slot `0`.
-In general, you should set the  `period_end` to extend beyond the time you have set aside for testing the parachain.
+In general, you should set the `period_end` to extend beyond the time you have set aside for testing the parachain.
 However, if you want to test onboarding and offboarding cycles, you should select slot leases that have gaps for a `ParaID`.
 After fully onboarded and after block production starts you should see:
 
@@ -206,4 +207,4 @@ You can keep track of what parachains are registered and what their latest head 
 
 ## Examples
 
-- [Cumulus tutorial](/tutorials/connect-other-chains/cumulus/relay-chain)
+- [Prepare a local parachain testnet](/tutorials/connect-other-chains/relay-chain) tutorial

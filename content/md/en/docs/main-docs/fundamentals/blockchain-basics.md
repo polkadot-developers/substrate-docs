@@ -9,7 +9,7 @@ keywords:
   - limitations
 ---
 
-A blockchain is a decentralized ledger that records information in a sequence of blocks. 
+A blockchain is a decentralized ledger that records information in a sequence of blocks.
 The information contained in a block is an ordered set of instructions that might result in a change in state.
 
 In a blockchain network, individual computers—called nodes—communicate with each other to form a decentralized peer-to-peer (P2P) network.
@@ -97,10 +97,10 @@ You can explore the following resources to learn more.
 
 #### Tell me
 
-- [Fundamentals](main-docs/fundamentals/)
+- [Fundamentals](/main-docs/fundamentals/)
 - [Why Substrate?](/main-docs/fundamentals/why-substrate/)
-- [Architecture](main-docs/fundamentals/architecture/)
-- [Networks and blockchains](main-docs/fundamentals/node-and-network-types/)
+- [Architecture](/main-docs/fundamentals/architecture/)
+- [Networks and blockchains](/main-docs/fundamentals/node-and-network-types/)
 
 #### Guide me
 

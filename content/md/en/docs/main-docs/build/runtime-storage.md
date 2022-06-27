@@ -404,7 +404,7 @@ Because this signatory list is [necessary to come to consensus](#what-to-store) 
 
 Check out some guides covering various topics on storage:
 
-- [Mint basic tokens](/reference/how-to-guides/basics/mint-token) using a storage map.
+- [Mint basic tokens](/reference/how-to-guides/basics/mint-basic-tokens) using a storage map.
 - [How-to: Create a storage structure](/reference/how-to-guides/pallet-design/create-a-storage-structure)
 - [StorageValue](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.StorageValue.html)
 - [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.StorageMap.html)
