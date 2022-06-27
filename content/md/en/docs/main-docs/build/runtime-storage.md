@@ -354,9 +354,7 @@ The following sections outline best practices for using Substrate storage and al
 Remember, the fundamental principle of blockchain runtime storage is to minimize its use.
 Only _consensus-critical_ data should be stored in your runtime.
 When possible, use techniques like hashing to reduce the amount of data you must store.
-For example, many of Substrate's governance
-capabilities—such as the Democracy pallet's [`propose`](https://paritytech.github.io/substrate/master/pallet_democracy/pallet/enum.Call.html#variant.propose)) function allow network participants to vote on the _hash_ of a dispatchable call, which is always bounded in
-size, as opposed to the call itself, which may be unbounded in length.
+For example, many of Substrate's governance capabilities—such as the Democracy pallet's [`propose`](https://paritytech.github.io/substrate/master/pallet_democracy/pallet/enum.Call.html#variant.propose) function allow network participants to vote on the _hash_ of a dispatchable call, which is always bounded in size, as opposed to the call itself, which may be unbounded in length.
 This is especially true in the case of runtime upgrades where the dispatchable call takes an entire runtime Wasm blob as its parameter.
 Because these governance mechanisms are implemented _on-chain_, all the information that is needed to come to consensus on the state of a given proposal must also be stored on-chain - this includes _what_ is being voted on.
 However, by binding an on-chain proposal to its hash, Substrate's governance mechanisms allow this to be done in a way that defers bringing all the data associated
