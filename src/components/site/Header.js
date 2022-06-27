@@ -2,8 +2,8 @@ import cx from 'classnames';
 import { Link } from 'gatsby';
 import React, { useEffect, useState } from 'react';
 
+import { WEBSITE_URL } from '../../../config/webConsts';
 import useScrollListener from '../../hooks/use-scroll-listener';
-import { useSiteMetadata } from '../../hooks/use-site-metadata';
 import Icon from '../default/Icon';
 import Logo from '../site/Logo';
 import DocsButton from './DocsButton';
@@ -17,9 +17,6 @@ const Header = ({ mode, header }) => {
   const scroll = useScrollListener();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-  const {
-    siteMetadata: { websiteUrl },
-  } = useSiteMetadata();
 
   const toggleMenu = () => {
     setIsMobileNavOpen(!isMobileNavOpen);
@@ -52,7 +49,7 @@ const Header = ({ mode, header }) => {
           })}
         >
           <div className="w-40 relative transform transition-all duration-300 ease-in-out hover:opacity-50">
-            <Link to={websiteUrl}>
+            <Link to={WEBSITE_URL}>
               <Logo />
             </Link>
           </div>
