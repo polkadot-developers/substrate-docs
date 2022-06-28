@@ -18,6 +18,7 @@ const HeaderNav = () => {
           className="mr-11 md:mr-0 md:ml-9 transform transition-all duration-300 ease-in-out hover:opacity-50"
           to={siteMetadata.element}
           name="Element"
+          aria-label="Element"
         >
           <Icon name="element" />
         </Link>
@@ -25,6 +26,7 @@ const HeaderNav = () => {
           className="mr-11 md:mr-0 md:ml-9 transform transition-all duration-300 ease-in-out hover:opacity-50"
           to={siteMetadata.stackoverflow}
           name="Stack Overflow"
+          aria-label="Stack Overflow"
         >
           <Icon name="stack-overflow" />
         </Link>
@@ -32,6 +34,7 @@ const HeaderNav = () => {
           className="mr-11 md:mr-0 md:ml-9 transform transition-all duration-300 ease-in-out hover:opacity-50"
           to={siteMetadata.github}
           name="Github"
+          aria-label="Github"
         >
           <Icon name="github" className="fill-current text-white w-6 h-6" />
         </Link>
@@ -39,6 +42,7 @@ const HeaderNav = () => {
           className="mr-11 md:mr-0 md:ml-9 transform transition-all duration-300 ease-in-out hover:opacity-50"
           to={siteMetadata.twitter}
           name="Twitter"
+          aria-label="Twitter"
         >
           <Icon name="twitter" />
         </Link>

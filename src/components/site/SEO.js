@@ -6,9 +6,9 @@ import { useSiteMetadata } from '../../hooks/use-site-metadata';
 export default function SEO({ children = null, description, lang = 'en', meta = [], title, excerpt }) {
   const { siteMetadata } = useSiteMetadata();
 
-  const metaDescription = description || siteMetadata.description || '';
-  const defaultTitle = siteMetadata.title;
-  const titleMeta = siteMetadata.title_meta;
+  const metaDescription = description || excerpt || siteMetadata.description;
+  const metaTitle = siteMetadata.title_meta;
+  const defaultTitle = title + ' | ' + siteMetadata.title || siteMetadata.title_meta;
   const image = siteMetadata.image_og;
   const siteUrl = siteMetadata.siteUrl;
   return (
@@ -17,7 +17,7 @@ export default function SEO({ children = null, description, lang = 'en', meta = 
         lang,
       }}
       title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : `%s`}
+      titleTemplate={defaultTitle ? `%s | ${siteMetadata.title}` : `%s`}
       meta={[
         {
           name: `og:url`,
@@ -29,7 +29,7 @@ export default function SEO({ children = null, description, lang = 'en', meta = 
         },
         {
           property: `og:title`,
-          content: title + ' | ' + siteMetadata.title,
+          content: defaultTitle || metaTitle,
         },
         {
           property: `og:description`,
@@ -57,11 +57,11 @@ export default function SEO({ children = null, description, lang = 'en', meta = 
         },
         {
           name: `twitter:title`,
-          content: title + ' | ' + defaultTitle || titleMeta,
+          content: defaultTitle || metaTitle,
         },
         {
           name: `twitter:description`,
-          content: description || excerpt,
+          content: metaDescription,
         },
         {
           name: 'twitter:image',
