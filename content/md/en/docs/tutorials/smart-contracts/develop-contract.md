@@ -350,7 +350,7 @@ To add a function for incrementing the stored value:
 ### Build the WebAssembly for the contract
 
 After you test the `incrementer` contract, you are ready to compile this project to WebAssembly.
-After you compile the smart contract to WebAssembly, you can use the [Contracts UI](https://paritytech.github.io/contracts-ui) to deploy and test the smart contract on your local contracts node.
+After you compile the smart contract to WebAssembly, you can use the [Contracts UI](https://contracts-ui.substrate.io) to deploy and test the smart contract on your local contracts node.
 
 To build the WebAssembly for this smart contract:
 
@@ -377,7 +377,7 @@ To build the WebAssembly for this smart contract:
 
 ## Deploy and test the smart contract
 
-If you have the [`substrate-contracts-node`](https://github.com/paritytech/substrate-contracts-node) node installed locally, you can start a local blockchain node for your smart contract, then use the [Contracts UI](https://paritytech.github.io/contracts-ui) to deploy and test the smart contract.
+If you have the [`substrate-contracts-node`](https://github.com/paritytech/substrate-contracts-node) node installed locally, you can start a local blockchain node for your smart contract, then use the [Contracts UI](https://contracts-ui.substrate.io) to deploy and test the smart contract.
 
 To deploy on the local node:
 
@@ -389,7 +389,7 @@ To deploy on the local node:
    substrate-contracts-node --dev
    ```
 
-1. Open the [Contracts UI](https://paritytech.github.io/contracts-ui) and verify that it is connected to the local node.
+1. Open the [Contracts UI](https://contracts-ui.substrate.io) and verify that it is connected to the local node.
 
 1. Click **Add New Contract**.
 
