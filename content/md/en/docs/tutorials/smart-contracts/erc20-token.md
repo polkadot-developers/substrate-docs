@@ -152,7 +152,7 @@ To build an ERC-20 token smart contract:
 
 ## Upload and instantiate the contract
 
-If you want to test what you have so far, you can upload the contract using the [Contracts UI](https://paritytech.github.io/contracts-ui).
+If you want to test what you have so far, you can upload the contract using the [Contracts UI](https://contracts-ui.substrate.io).
 
 To test the ERC-20 contract before adding new functions:
 

@@ -5,7 +5,7 @@ keywords:
 ---
 
 The **Develop smart contracts** tutorials guide you through how you can use the ink programming language to build smart contracts that run on a Substrate-based blockchain.
-The tutorials in this section use a preconfigured `contracts-node` and a hosted [Contracts UI](https://paritytech.github.io/contracts-ui).
+The tutorials in this section use a preconfigured `contracts-node` and a hosted [Contracts UI](https://contracts-ui.substrate.io).
 If you want to use the standard node template, you need to add the Contracts pallet and a few other components to your development environment.
 Preparing the node template for building smart contracts is covered in []().
 

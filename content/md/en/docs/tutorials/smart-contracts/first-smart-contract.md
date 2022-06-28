@@ -303,9 +303,9 @@ To start the preconfigured `contracts-node`:
    After a few seconds, you should see blocks being finalized.
 
    To interact with the blockchain, you need to connect to this node.
-   You can connect to the node through a browser by opening the [Contracts UI](https://paritytech.github.io/contracts-ui).
+   You can connect to the node through a browser by opening the [Contracts UI](https://contracts-ui.substrate.io).
 
-1. Navigate to the [Contracts UI](https://paritytech.github.io/contracts-ui) in a web browser, then click **Yes allow this application access**.
+1. Navigate to the [Contracts UI](https://contracts-ui.substrate.io) in a web browser, then click **Yes allow this application access**.
 
 1. Select **Local Node**.
 
@@ -342,7 +342,7 @@ For this tutorial, you use the Contracts UI front-end to deploy the `flipper` co
 
 To upload the smart contract source code:
 
-1. Open to the [Contracts UI](https://paritytech.github.io/contracts-ui) in a web browser.
+1. Open to the [Contracts UI](https://contracts-ui.substrate.io) in a web browser.
 
 1. Verify that you are connected to the **Local Node**.
 
