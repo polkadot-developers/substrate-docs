@@ -57,7 +57,7 @@ export default function SEO({ children = null, description, lang = 'en', meta = 
         },
         {
           name: `twitter:title`,
-          content: title + ' | ' + siteMetadata.title || titleMeta,
+          content: title + ' | ' + defaultTitle || titleMeta,
         },
         {
           name: `twitter:description`,
