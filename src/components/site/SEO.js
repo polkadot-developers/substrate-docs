@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 
 import { useSiteMetadata } from '../../hooks/use-site-metadata';
 
-export default function SEO({ children = null, description = '', lang = 'en', meta = [], title }) {
+export default function SEO({ children = null, description, lang = 'en', meta = [], title, excerpt }) {
   const { siteMetadata } = useSiteMetadata();
 
   const metaDescription = description || siteMetadata.description || '';
@@ -11,7 +11,6 @@ export default function SEO({ children = null, description = '', lang = 'en', me
   const titleMeta = siteMetadata.title_meta;
   const image = siteMetadata.image_og;
   const siteUrl = siteMetadata.siteUrl;
-
   return (
     <Helmet
       htmlAttributes={{
@@ -30,7 +29,7 @@ export default function SEO({ children = null, description = '', lang = 'en', me
         },
         {
           property: `og:title`,
-          content: titleMeta,
+          content: title + ' | ' + siteMetadata.title,
         },
         {
           property: `og:description`,
@@ -58,11 +57,11 @@ export default function SEO({ children = null, description = '', lang = 'en', me
         },
         {
           name: `twitter:title`,
-          content: titleMeta,
+          content: title + ' | ' + siteMetadata.title || titleMeta,
         },
         {
           name: `twitter:description`,
-          content: metaDescription,
+          content: description || excerpt,
         },
         {
           name: 'twitter:image',
