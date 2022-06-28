@@ -100,8 +100,8 @@ This tutorial includes a sample chain specification file with two validator rela
 You can use this sample chain specification without modification for a local test network and a single parachain.
 This is useful for registering a **single** parachain:
 
-- [_Plain_ `rococo-local` **relay** chain spec](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-plain.json)
-- [_Raw_ `rococo-local` **relay** chain spec](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json)
+- [_Plain_ `rococo-local` **relay** chain spec](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/cumulus%20(copy)/chain-specs/rococo-custom-2-plain.json)
+- [_Raw_ `rococo-local` **relay** chain spec](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/cumulus%20(copy)/chain-specs/rococo-custom-2-raw.json)
 
 You can read and edit the plain chain specification file.
 However, the chain specification file must be converged to the SCALE-encoded raw format before it can be used to start a node.
@@ -113,7 +113,7 @@ If you add other validators, add additional parachains to your relay chain, or w
 ## Start your relay chain
 
 Before you can start block production for a parachains, you need to launch a relay chain for them to connect to.
-This section describes how to start both nodes using the [two-validator raw chain spec](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json).
+This section describes how to start both nodes using the [two-validator raw chain spec](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/cumulus%20(copy)/chain-specs/rococo-custom-2-raw.json).
 The steps are similar for starting additional nodes.
 
 ### Start the `alice` validator
@@ -158,7 +158,7 @@ The command to start the second node is similar to the command to start the firs
 Notice that this command uses a a different base path ( `/tmp/relay-bob`), validator key (`--bob`), and ports (`30334` and `9945`).
 
 The command to start the second node also includes the `--bootnodes` command-line option to specify the IP address and peer identifier of the first node.
-The `bootnodes` option is not strictly necessary if you are running the entire network on a single local machine, but it is necessary when /relay-chainttps://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/cumulus (copy)/chain-specs/rococo-custom-2-plain.json) to add more validators without modifying any Polkadot source code.
+The `bootnodes` option is not strictly necessary if you are running the entire network on a single local machine, but it is necessary to add more validators without modifying any Polkadot source code.
 
 For this tutorial, your final chain spec filename **must** start with `rococo` or the node will not know what runtime logic to include.
 
