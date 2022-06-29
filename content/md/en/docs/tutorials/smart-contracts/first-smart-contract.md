@@ -1,6 +1,6 @@
 ---
 title: Prepare your first contract
-description:
+description: Build and test a simple smart contract using the ink! smart contract language.
 keywords:
 ---
 

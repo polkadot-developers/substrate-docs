@@ -1,6 +1,6 @@
 ---
 title: Simulate a network
-description:
+description: Start a private blockchain network using predefined accounts as authorized validators.
 keywords:
 ---
 

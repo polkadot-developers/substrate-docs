@@ -1,11 +1,11 @@
 ---
 title: Authorize specific nodes
-description:
+description: Configure a network that has authorized nodes and nodes with restricted access.
 keywords:
   - permissioned
   - private
-  - authorize
-  - enterprize
+  - authorization
+  - restricted access
 ---
 
 In [Add trusted nodes](/tutorials/get-started/trusted-network/), you saw how to build a simple network with a known set of validator nodes.

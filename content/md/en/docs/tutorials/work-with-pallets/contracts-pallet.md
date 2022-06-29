@@ -1,6 +1,6 @@
 ---
 title: Configure the contracts pallet
-description: Configure the Substrate runtime to prepare for writing smart contracts.
+description: Add the contracts pallet to the Substrate node template runtime to prepare for writing smart contracts.
 keywords:
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Develop a smart contract
-description:
+description: Develop a smart contract that increments a value.
 keywords:
 ---
 

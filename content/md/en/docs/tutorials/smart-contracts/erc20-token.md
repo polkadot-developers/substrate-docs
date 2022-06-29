@@ -1,6 +1,6 @@
 ---
-title: Build an ERC20
-description:
+title: Build a token contract
+description: Build an ERC-20 token supply using a smart contract written in the ink! language.
 keywords:
   - erc20
   - ethereum
