@@ -8,7 +8,7 @@ export default function SEO({ children = null, description, lang = 'en', meta = 
 
   const metaDescription = description || excerpt || siteMetadata.description;
   const metaTitle = siteMetadata.title_meta;
-  const defaultTitle = title + ' | ' + siteMetadata.title || siteMetadata.title_meta;
+  const defaultTitle = `${title} | ${siteMetadata.title}` || siteMetadata.title_meta;
   const image = siteMetadata.image_og;
   const siteUrl = siteMetadata.siteUrl;
   return (
