@@ -49,7 +49,7 @@ const Header = ({ mode, header }) => {
           })}
         >
           <div className="w-40 relative transform transition-all duration-300 ease-in-out hover:opacity-50">
-            <Link to={WEBSITE_URL} alt="Substrate home" aria-label="Substrate home">
+            <Link to={WEBSITE_URL} aria-label="Substrate home">
               <Logo />
             </Link>
           </div>
