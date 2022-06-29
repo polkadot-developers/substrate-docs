@@ -1,6 +1,6 @@
 ---
 title: Build a local blockchain
-description:
+description: Compile, launch, and interact with a single local blockchain node in a development environment.
 keywords:
 ---
 

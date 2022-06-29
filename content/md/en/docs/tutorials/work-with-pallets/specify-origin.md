@@ -1,10 +1,10 @@
 ---
 title: Specify the origin for a call
-description:
+description: Demonstrates how you can specify the account to use the originator of a function call.
 keywords:
   - FRAME
   - runtime
-  - custom pallet
+  - origins
 ---
 
 In [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet), you added functions from the `frame_nicks` pallet to the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) runtime.

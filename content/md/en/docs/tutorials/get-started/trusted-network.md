@@ -1,6 +1,6 @@
 ---
 title: Add trusted nodes
-description:
+description: Generate account keys and a custom chain specification for a private blockchain network.
 keywords:
   - enterprize
   - private

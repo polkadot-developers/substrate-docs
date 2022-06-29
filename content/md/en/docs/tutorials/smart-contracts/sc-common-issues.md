@@ -1,6 +1,6 @@
 ---
 title: Troubleshoot smart contracts
-description:
+description: Troubleshoot common issues you might encounter when writing and deploying smart contracts.
 keywords:
 ---
 

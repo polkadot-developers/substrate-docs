@@ -1,6 +1,6 @@
 ---
 title: Use maps for storing values
-description:
+description: Use mapping to store data as key-value pairs.
 keywords:
 ---
 
