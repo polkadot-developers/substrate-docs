@@ -158,7 +158,7 @@ The command to start the second node is similar to the command to start the firs
 Notice that this command uses a a different base path ( `/tmp/relay-bob`), validator key (`--bob`), and ports (`30334` and `9945`).
 
 The command to start the second node also includes the `--bootnodes` command-line option to specify the IP address and peer identifier of the first node.
-The `bootnodes` option is not strictly necessary if you are running the entire network on a single local machine, but it is necessary when /relay-chainttps://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/cumulus (copy)/chain-specs/rococo-custom-2-plain.json) to add more validators without modifying any Polkadot source code.
+The `bootnodes` option is not strictly necessary if you are running the entire network on a single local machine, but it is necessary when using a connection to a non-local network without any specified bootnodes in the chain spec, as is the case with the [rococo-custom-2-plain.json](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-plain.json) example we are using. 
 
 For this tutorial, your final chain spec filename **must** start with `rococo` or the node will not know what runtime logic to include.
 
