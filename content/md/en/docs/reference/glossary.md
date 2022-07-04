@@ -356,6 +356,11 @@ Nodes that run [light-clients](#light-client) facilitate scalable interactions i
 
 A method for determining [validators](#validator) or _[authorities](#authority)_ based on a willingness to commit their stake to the proper functioning of one or more block producing nodes.
 
+## oracle
+
+In a blockchain network, an oracle is a mechanism for connecting the blockchain to a non-blockchain data source.
+Oracles enable the blockchain to access and act upon information from existing data sources and incorporate data from non-blockchain systems and services.
+
 ## origin
 
 A [FRAME](#frame) primitive that identifies the source of a [dispatched](#dispatch) function call into the [runtime](#runtime).
