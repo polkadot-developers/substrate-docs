@@ -79,8 +79,6 @@ To generate keys using the node template:
 
    The command generates keys and displays output similar to the following:
 
-   The command generates keys and displays output similar to the following:
-
    ```text
    Secret phrase:  pig giraffe ceiling enter weird liar orange decline behind total despair fly
    Secret seed:       0x0087016ebbdcf03d1b7b2ad9a958e14a43f2351cd42f2f0a973771b90fb0112f
