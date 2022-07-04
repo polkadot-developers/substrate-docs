@@ -23,7 +23,7 @@ Off-chain features run in their own Wasm execution environment outside of the Su
 This separation of concerns makes sure that block production is not impacted by long-running offchain tasks.
 However, as the offchain features are declared in the same code as the runtime, they can easily access on-chain state for their computations.
 
-![Off-chain workers](/media/images/docs/reference/offchain-workers-v2.png)
+![Off-chain workers](/media/images/docs/main-docs/off-chain-workers-v2.png)
 
 ## Off-chain workers
 
