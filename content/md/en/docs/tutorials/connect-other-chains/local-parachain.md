@@ -295,7 +295,7 @@ The collator should start producing parachain blocks (aka collating) once the re
 
 > This may take a while!
 > Be patient as you wait for the next epoch to start.
-> This is 10 blocks for the example [`rococo-custom-2-raw.json`](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json) included in the [Prepare a local parachain testnet](/tutorials/connect-other-chains/local-relay/) tutorial.
+> This is 10 blocks for the example [`rococo-custom-2-raw.json`](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-plain.json) included in the [Prepare a local parachain testnet](/tutorials/connect-other-chains/local-relay/) tutorial.
 
 Finally, the collator should start producing log messages like the following:
 
