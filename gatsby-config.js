@@ -297,8 +297,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://www.docs.substrate.io',
-        sitemap: 'https://www.docs.substrate.io/sitemap.xml',
+        host: 'https://docs.substrate.io',
+        sitemap: 'https://docs.substrate.io/sitemap.xml',
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },
