@@ -315,7 +315,8 @@ To start the first node:
       --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
       --validator \
       --rpc-methods Unsafe \
-      --name MyNode01
+      --name MyNode01 \
+      --password-interactive
    ```
 
 Note the following command-line options you are using to start the node:
