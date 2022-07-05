@@ -3,10 +3,10 @@ title: Get Technical
 description: Playground allows you to skip preliminary set-up and prerequisites, and tutorials take you trough the initial.
 order: 3
 image: "../media/images/get-technical.jpg"
-bodyLinkOneURL: /blockchain-basics
-bodyLinkOneTitle: Blockchain Basics
-bodyLinkTwoURL: /main-docs
-bodyLinkTwoTitle: Substrate empowers builders
-bodyLinkThreeURL: /
-bodyLinkThreeTitle: Substrate architecture
+bodyLinkOneURL: /main-docs/build/build-process/
+bodyLinkOneTitle: Build process
+bodyLinkTwoURL: /main-docs/fundamentals/rust-basics/
+bodyLinkTwoTitle: Rust for Substrate
+bodyLinkThreeURL: /main-docs/build/custom-pallets/
+bodyLinkThreeTitle: Custom pallets
 ---

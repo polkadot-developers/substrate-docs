@@ -2,7 +2,7 @@ import cx from 'classnames';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import React from 'react';
 
-import { Link } from '../../default/Link';
+import CardLink from './CardLink';
 
 export default function Card({
   title,
@@ -29,15 +29,15 @@ export default function Card({
         <p className="text-2xl lg:text-4xl font-bold capitalize">{title}</p>
         <p className="sm:h-24 block">{text}</p>
         <div className="block sm:text-left">
-          <Link className="mdx-anchor text-substrateGreen block my-2" to={bodyLinkOneURL}>
+          <CardLink className="mdx-anchor text-substrateGreen block my-2" link={bodyLinkOneURL}>
             {bodyLinkOneTitle}
-          </Link>
-          <Link className="mdx-anchor text-substrateGreen block my-2" to={bodyLinkTwoURL}>
+          </CardLink>
+          <CardLink className="mdx-anchor text-substrateGreen block my-2" link={bodyLinkTwoURL}>
             {bodyLinkTwoTitle}
-          </Link>
-          <Link className="mdx-anchor text-substrateGreen block my-2" to={bodyLinkThreeURL}>
+          </CardLink>
+          <CardLink className="mdx-anchor text-substrateGreen block my-2" link={bodyLinkThreeURL}>
             {bodyLinkThreeTitle}
-          </Link>
+          </CardLink>
         </div>
       </div>
     </div>
