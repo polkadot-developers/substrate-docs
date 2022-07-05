@@ -110,7 +110,7 @@ Before you begin, verify the following:
 
    <!--This sample [index.html](/examples/quickstart/index.html) provides a simple example of how to use JavaScript, the Polkadot-JS API, and HTML to get an account balance. -->
    
-   This following is a simple example of how to use JavaScript, the Polkadot-JS API, and HTML to get an account balance.
+   This following `index.html` is a simple example of how to use JavaScript, the Polkadot-JS API, and HTML to get an account balance.
 
    ```html
    <!DOCTYPE html>
