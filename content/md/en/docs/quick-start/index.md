@@ -99,6 +99,8 @@ Before you begin, verify the following:
 
    <https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/explorer>
 
+   <a href="assets/tutorials/cumulus/chain-specs/rococo-custom-2-plain.json" download target="_blank">Click here to download</a>
+
 1. Navigate to the Accounts page, and attempt a transfer from some development pre-funded accounts.
 
 ## Stop the node

@@ -4,9 +4,10 @@ import React, { useEffect } from 'react';
 
 import Footer from '../site/Footer';
 import Header from '../site/Header';
+import ModalButton from '../site/Search/ModalButton';
 import Banner from './Banner';
 
-export default function Layout({ layout = 'default', mode = 'default', header = 'default', children }) {
+export default function LandingLayout({ layout = 'default', mode = 'default', header = 'default', children }) {
   useEffect(() => {
     AOS.init({
       disable: 'mobile',
@@ -20,11 +21,12 @@ export default function Layout({ layout = 'default', mode = 'default', header = 
       <Header mode={mode} header={header} />
       <main
         className={cx('min-h-screen', {
-          'mt-0': layout === 'default',
+          'mt-12': layout === 'default',
         })}
       >
         {layout === 'default' && <>{children}</>}
       </main>
+      <ModalButton />
       <Footer />
     </>
   );
