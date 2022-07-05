@@ -281,7 +281,7 @@ The front-end template includes several additional components for you to experim
 You can explore these components on your own or learn more in the following topics:
 
 - [Architecture](/main-docs/fundamentals/architecture/)
-- [Networks and blockchains](/main-docs/fundamentals/)node-and-network-types/
+- [Networks and blockchains](/main-docs/fundamentals/node-and-network-types/)
 - [Simulate a network](/tutorials/get-started/simulate-network/)
 
 If you experienced any issues with this tutorial, submit an issue, ask questions, or provide feedback.
