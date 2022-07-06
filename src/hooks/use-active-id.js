@@ -16,7 +16,9 @@ export default function useActiveId(itemIds) {
     );
 
     itemIds.forEach(id => {
-      observer.observe(document.getElementById(id));
+      if (observer.type === Element) {
+        observer.observe(document.getElementById(id));
+      }
     });
 
     return () => {

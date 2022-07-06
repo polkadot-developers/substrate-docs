@@ -44,6 +44,10 @@ const addTrailingSlash = uri => {
   // add slash if missing
   uri = addSlash(uri);
 
+  if (uri === '/examples/index.html/') {
+    return uri.slice(0, -1);
+  }
+
   return uri + search + hash;
 };
 

@@ -112,6 +112,12 @@ Before you begin, verify the following:
    
    This following `index.html` is a simple example of how to use JavaScript, the Polkadot-JS API, and HTML to get an account balance.
 
+
+
+   <iframe id="someframe" width="100%" height="400px" src="../examples/index.html"></iframe>
+
+
+
    ```html
    <!DOCTYPE html>
    <html>
@@ -170,7 +176,7 @@ Before you begin, verify the following:
    </html>
    ```
 
-1. Open the [index.html](/examples/quickstart/index.html) file in a web browser.
+1. Open the <a className="noTrailingSlash" href="/examples/index.html">index.html</a> file in a web browser.
 
 1. Copy and paste the SS58 Address for the `Alice` account in the input field, then click **Get Balance**.
 
