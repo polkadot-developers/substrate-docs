@@ -101,7 +101,7 @@ Before you begin, verify the following:
 ## Connect to the node
 
 1. Create a simple HTML file with JavaScript and the [Polkadot-JS API](https://polkadot.js.org/docs/) to interact with the blockchain.
-   
+
    For example, create an `index.html` file that uses JavaScript and HTML to:
 
    - take an account address as input
@@ -109,8 +109,8 @@ Before you begin, verify the following:
    - display the balance for the account as output
 
    <!--This sample [index.html](/examples/quickstart/index.html) provides a simple example of how to use JavaScript, the Polkadot-JS API, and HTML to get an account balance. -->
-   
-   This following `index.html` is a simple example of how to use JavaScript, the Polkadot-JS API, and HTML to get an account balance.
+
+   The following `index.html` is a simple example of how to use JavaScript, the Polkadot-JS API, and HTML to get an account balance.
 
    ```html
    <!DOCTYPE html>
@@ -170,9 +170,13 @@ Before you begin, verify the following:
    </html>
    ```
 
-1. Open the [index.html](/examples/quickstart/index.html) file in a web browser.
+1. Copy and paste the `index.html` sample code into a new file in your text editor and save the file on your local computer.
+
+1. Open the `index.html` file in a web browser.
 
 1. Copy and paste the SS58 Address for the `Alice` account in the input field, then click **Get Balance**.
+
+<!--1. Open the [index.html](/examples/quickstart/index.html) file in a web browser.-->
 
 ## Stop the node
 
