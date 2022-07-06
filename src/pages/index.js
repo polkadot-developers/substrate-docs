@@ -2,10 +2,11 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 
-import CardsList from '../components/layout/Documentation/CardList';
+import CardsList from '../components/layout/documentation/CardList';
 import Section from '../components/layout/Section';
 import Layout from '../components/site/Layout';
 import SEO from '../components/site/SEO';
+import PrimaryFixedButton from '../components/ui/PrimaryFixedButton';
 import SearchDocumentation from '../components/ui/SearchDocumentation';
 
 export default function Home({ data }) {
@@ -14,13 +15,21 @@ export default function Home({ data }) {
     <Layout mode="full">
       <SEO title="Home" />
       <Section className="text-center mt-12">
-        <h1 className="mb-8 text-4xl lg:text-6xl md:text-6xl font-title font-extrabold">Substrate Documentation</h1>
+        <h1 className="mb-8 text-4xl lg:text-6xl md:text-6xl font-title font-extrabold">
+          substrate<span className="text-substrateGreen relative -top-3">_</span> documentation
+        </h1>
         <div className="sm:max-w-lg mx-auto mb-10">
           <p className="max-w-lg text-xl">
             Where blockchain innovators discover & share reusable pallets for use with Parity Substrate, the open-source
             blockchain framework.
           </p>
         </div>
+        <PrimaryFixedButton
+          link="/quick-start/"
+          className="inline-flex items-center relative rounded-md px-8 py-4 text-xl"
+        >
+          Quick start
+        </PrimaryFixedButton>
         <SearchDocumentation />
       </Section>
       <Section className="flex justify-center">
@@ -55,6 +64,7 @@ export const query = graphql`
             bodyLinkTwoTitle
             bodyLinkThreeURL
             bodyLinkThreeTitle
+            icon
             image {
               childImageSharp {
                 gatsbyImageData

@@ -12,11 +12,14 @@ export default function SearchDocumentation() {
   return (
     <>
       <button
-        className="bg-substrateGreen inline-flex items-center relative rounded-md px-8 py-4 text-xl hover:opacity-80"
+        className="dark:bg-substrateDark dark:text-white text-substrateDark text-opacity-50 dark:text-opacity-90 bg-substrateGray inline-flex items-center relative rounded-md px-8 py-4 text-xl hover:opacity-80"
         onClick={() => setIsComponentVisible(!isComponentVisible)}
       >
-        <span className="font-bold text-white mb-0 mr-4">Search Documentation</span>
-        <Icon name="search" className="h-4 w-4 lg:h-6 lg:w-6 fill-current text-white dark:text-white" />
+        <span className="font-bold mb-0 mr-4">Search Documentation</span>
+        <Icon
+          name="search"
+          className="h-4 w-4 lg:h-6 lg:w-6 fill-current dark:text-white text-substrateDark opacity-50"
+        />
       </button>
       {isComponentVisible && <SearchModal id={ref} closeModal={setIsComponentVisible} />}
     </>

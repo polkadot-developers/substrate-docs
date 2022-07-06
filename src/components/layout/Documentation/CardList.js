@@ -13,6 +13,7 @@ export default function CardsList({ data }) {
           const {
             title,
             description,
+            icon,
             image,
             link,
             bodyLinkOneURL,
@@ -27,6 +28,7 @@ export default function CardsList({ data }) {
               <Card
                 title={title}
                 text={description}
+                icon={icon}
                 image={image}
                 link={link}
                 bodyLinkOneURL={bodyLinkOneURL}

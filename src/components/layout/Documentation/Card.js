@@ -1,13 +1,13 @@
 import cx from 'classnames';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import React from 'react';
 
+import Icon from '../../default/Icon';
 import CardLink from './CardLink';
 
 export default function Card({
   title,
   text,
-  image,
+  icon,
   bodyLinkOneURL,
   bodyLinkOneTitle,
   bodyLinkTwoURL,
@@ -15,17 +15,15 @@ export default function Card({
   bodyLinkThreeURL,
   bodyLinkThreeTitle,
 }) {
-  const imageStyles = 'block h-28 object-cover rounded-t-md';
-  const cardImage = getImage(image);
   return (
     <div
       className={cx(
-        'bg-substrateGray-light rounded-md mb-4 lg:mx-4 lg:mb-8 md:md-10 shadow-md md:w-full lg:w-[280px] xl:w-[350px]',
+        'bg-substrateGray rounded-md mb-4 lg:mx-4 lg:mb-8 md:md-10 shadow-xl md:w-full lg:w-[280px] xl:w-[350px]',
         'dark:bg-substrateBlackish'
       )}
     >
-      <GatsbyImage className={imageStyles} image={cardImage} alt={`Substrate Documentation ${title}`} />
-      <div className="p-6 lg:p-9">
+      <div className="p-6 lg:p-9 xs:text-center sm:text-left">
+        <Icon name={icon} className="h-10 w-10 block fill-current mb-6 xs:mx-auto sm:mx-0" />
         <p className="text-2xl lg:text-4xl font-bold capitalize">{title}</p>
         <p className="sm:h-24 block">{text}</p>
         <div className="block sm:text-left">

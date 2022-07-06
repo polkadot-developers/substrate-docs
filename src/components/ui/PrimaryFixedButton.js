@@ -4,9 +4,9 @@ import React from 'react';
 import Icon from '../default/Icon';
 import { Link } from '../default/Link';
 
-export default function PrimaryFixedButton({ children, link, fullWidth = false, onClick, hero = false }) {
+export default function PrimaryFixedButton({ children, link, fullWidth = false, onClick, hero = false, className }) {
   return (
-    <Link to={link} className="primary-button">
+    <Link to={link} className={`${className} primary-button`}>
       <div
         onClick={onClick}
         className={cx('group bg-substrateGreen inline-flex relative rounded-md overflow-hidden', {
