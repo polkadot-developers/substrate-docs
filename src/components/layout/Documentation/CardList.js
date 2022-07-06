@@ -2,7 +2,7 @@ import React from 'react';
 
 import Card from './Card';
 
-export default function CardsList({ data }) {
+export default function CardList({ data }) {
   return (
     <div className="flex flex-wrap justify-start xl:w-[1148px]">
       {data

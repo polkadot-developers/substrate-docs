@@ -2,7 +2,7 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 
-import CardsList from '../components/layout/documentation/CardList';
+import CardList from '../components/layout/documentation/CardList';
 import Section from '../components/layout/Section';
 import Layout from '../components/site/Layout';
 import SEO from '../components/site/SEO';
@@ -33,7 +33,7 @@ export default function Home({ data }) {
         <SearchDocumentation />
       </Section>
       <Section className="flex justify-center">
-        <CardsList data={content.edges} />
+        <CardList data={content.edges} />
       </Section>
     </Layout>
   );
