@@ -113,11 +113,6 @@ Before you begin, verify the following:
    This following `index.html` is a simple example of how to use JavaScript, the Polkadot-JS API, and HTML to get an account balance.
 
 
-
-   <iframe id="someframe" width="100%" height="400px" src="../examples/index.html"></iframe>
-
-
-
    ```html
    <!DOCTYPE html>
    <html>
