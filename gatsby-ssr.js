@@ -25,6 +25,10 @@ const MagicScriptTag = () => {
     const colorMode = getInitialColorMode();
 
     document.documentElement.classList.add(colorMode);
+
+    if (sessionStorage.banner === undefined){
+      sessionStorage.banner = true;
+      }
   })()
     `;
   // eslint-disable-next-line react/no-danger
