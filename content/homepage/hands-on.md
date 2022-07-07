@@ -1,12 +1,12 @@
 ---
 title: Hands on!
-description: Playground allows you to skip preliminary set-up and prerequisites, and tutorials take you trough the initial.
+description: If you learn best by doing, start with the tutorials for first hand experience building your own blockchain from a template.
 order: 2
-image: "../media/images/hands-on.jpg"
+image: "../media/images/hands-on.png"
+bodyLinkOneTitle: Build a local blockchain
 bodyLinkOneURL: /tutorials/get-started/build-local-blockchain/
-bodyLinkOneTitle: Create your first blockchain
-bodyLinkTwoURL: /tutorials/smart-contracts/
-bodyLinkTwoTitle: Develop smart contracts
-bodyLinkThreeURL: /tutorials/connect-other-chains/
-bodyLinkThreeTitle: Connect other chains
+bodyLinkTwoTitle: Simulate a network
+bodyLinkTwoURL: /tutorials/get-started/simulate-network/
+bodyLinkThreeTitle: Add a pallet
+bodyLinkThreeURL: /tutorials/work-with-pallets/add-a-pallet/
 ---

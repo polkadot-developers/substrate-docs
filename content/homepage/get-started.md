@@ -1,12 +1,12 @@
 ---
 title: Get Started
-description: Start by learning from the resources we have carefully selected to get you up to speed.
+description: Learn the fundamental concepts and terminology to start building your blockchain using the Substrate framework.
 order: 1
-image: "../media/images/get-started.jpg"
-bodyLinkOneURL: /main-docs/fundamentals/blockchain-basics/
+image: "../media/images/get-started.png"
 bodyLinkOneTitle: Blockchain Basics
-bodyLinkTwoURL: /main-docs/fundamentals/blockchain-basics/
-bodyLinkTwoTitle: Substrate empowers builders
+bodyLinkOneURL: /main-docs/fundamentals/blockchain-basics/
+bodyLinkTwoTitle: Why Substate?
+bodyLinkTwoURL: /main-docs/fundamentals/why-substrate/
+bodyLinkThreeTitle: Architecture
 bodyLinkThreeURL: /main-docs/fundamentals/architecture/
-bodyLinkThreeTitle: Substrate Architecture
 ---

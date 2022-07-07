@@ -1,12 +1,12 @@
 ---
 title: Get Technical
-description: Playground allows you to skip preliminary set-up and prerequisites, and tutorials take you trough the initial.
+description: For a deeper dive into the source code and how a blockchain is built from core components written in Rust, explore the reference documentation.
 order: 3
-image: "../media/images/get-technical.jpg"
-bodyLinkOneURL: /main-docs/build/build-process/
-bodyLinkOneTitle: Build process
-bodyLinkTwoURL: /main-docs/fundamentals/rust-basics/
-bodyLinkTwoTitle: Rust for Substrate
-bodyLinkThreeURL: /main-docs/build/custom-pallets/
-bodyLinkThreeTitle: Custom pallets
+image: "../media/images/get-technical.png"
+bodyLinkOneTitle: Rust for Substrate
+bodyLinkOneURL: /main-docs/fundamentals/rust-basics/
+bodyLinkTwoTitle: Core libraries
+bodyLinkTwoURL: /main-docs/build/libraries/
+bodyLinkThreeTitle: Rust API
+bodyLinkThreeURL: https://paritytech.github.io/substrate/master/sc_service/
 ---

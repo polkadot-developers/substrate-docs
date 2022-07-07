@@ -17,8 +17,8 @@ export default function Home({ data }) {
         <h1 className="mb-8 text-4xl lg:text-6xl md:text-6xl font-title font-extrabold">Substrate Documentation</h1>
         <div className="sm:max-w-lg mx-auto mb-10">
           <p className="max-w-lg text-xl">
-            Where blockchain innovators discover & share reusable pallets for use with Parity Substrate, the open-source
-            blockchain framework.
+            Substrate documentation includes conceptual, procedural, and reference information for blockchain builders
+            and parachain project teams.
           </p>
         </div>
         <SearchDocumentation />

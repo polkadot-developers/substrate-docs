@@ -75,7 +75,7 @@
   height: 1px;
   bottom: 0;
   left: 0;
-  background-color: green;
+  @apply bg-substrateDark dark:bg-white;
   transform: scaleX(0);
   transform-origin: top left;
   transition: transform 0.3s ease;
