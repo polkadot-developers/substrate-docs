@@ -15,19 +15,25 @@ export default function Card({
   bodyLinkThreeURL,
   bodyLinkThreeTitle,
 }) {
-  const imageStyles = 'block h-28 object-cover rounded-t-md';
+  const imageStyles = 'block h-28 sm:h-40 xs:h-40 object-cover rounded-t-md';
   const cardImage = getImage(image);
   return (
     <div
       className={cx(
-        'bg-substrateGray-light rounded-md mb-4 lg:mx-4 lg:mb-8 md:md-10 shadow-md md:w-full lg:w-[280px] xl:w-[350px]',
-        'dark:bg-substrateBlackish'
+        'bg-substrateGray-light rounded-md shadow-md mb-8',
+        'xl:w-[350px]',
+        'lg:w-[280px] lg:mx-4',
+        'md:mb-10',
+        'sm:mb-20',
+        'xs:w-full',
+        'dark:bg-substrateBlackish',
+        'hover:scale-105 transition-transform'
       )}
     >
       <GatsbyImage className={imageStyles} image={cardImage} alt={`Substrate Documentation ${title}`} />
-      <div className="p-6 lg:p-9">
-        <p className="text-2xl lg:text-4xl font-bold capitalize">{title}</p>
-        <p className="sm:h-24 block">{text}</p>
+      <div className="lg:p-6 md:p-10 sm:p-6 xs:p-6">
+        <p className="text-2xl lg:text-3xl xl:text-4xl capitalize font-title font-extrabold">{title}</p>
+        <p className="xl:h-32 lg:h-44 md:h-12 sm:h-22 block">{text}</p>
         <div className="block sm:text-left">
           <CardLink className="mdx-anchor text-substrateGreen block my-2" link={bodyLinkOneURL}>
             {bodyLinkOneTitle}
