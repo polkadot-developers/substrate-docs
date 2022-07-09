@@ -21,11 +21,13 @@ The two main goals of the Frontier project are to enable you to do the following
 
 This tutorial uses a predefined node template to provide a working environment.
 The template was generated using the instructions in the [Frontier release guide](https://github.com/paritytech/frontier/blob/master/docs/node-template-release.md).
-If you want to generate a standalone template for yourself, you can use the [`node-template-release.sh`]](<https://github.com/paritytech/frontier/blob/master/.maintain/node-template-release.sh>) template generation script.
+
+If you want to generate a standalone template for yourself, you can use the [node-template-release.sh](https://github.com/paritytech/frontier/blob/master/.maintain/node-template-release.sh) template generation script.
+If you build your own node using from the [frontier](https://github.com/paritytech/frontier) repository or using the template generation script, be aware that Frontier uses its own versions of Substrate crates and you might need to update the dependencies in your `Cargo` files to match the dependencies in your project.
 
 ## Before you begin
 
-You should have completed _at least_ the following three Substrate tutorials before attempting this tutorial:
+You should have completed the following Substrate tutorials before attempting this tutorial:
 
 - [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
 - [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet/)
@@ -35,7 +37,7 @@ From the tutorials, you should be familiar with how to perform the following tas
 
 - Launch a Substrate blockchain node.
 - Add, remove, and configure pallets in a runtime.
-- Submit transactions by connecting to a node using Polkadot-JS applications or another front-end.
+- Submit transactions by connecting to a node using Polkadot-JS or another front-end.
 
 Before starting this tutorial, you should also be familiar with the following:
 
@@ -43,11 +45,6 @@ Before starting this tutorial, you should also be familiar with the following:
 - Ethereum Virtual Machine (EVM) basics
 - Decentralized applications and smart contracts
 - Pallet design principles
-
-You should note that parts of this tutorial refer to an older version of the Substrate node template and might be inconsistent with the version of the code you are using.
-You should also note that the Frontier project uses its own versions of Substrate
-crates and you might need to update the dependencies in your `Cargo` files.
-You must use the _matching_ versions of Substrate and Frontier dependencies in your project.
 
 ## Genesis configuration
 
