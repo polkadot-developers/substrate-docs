@@ -327,5 +327,6 @@ After you submit the transaction, the contract is deployed on the network and yo
 ## Where to go next
 
 - [Moonbeam: Ethereum compatibility](https://docs.moonbeam.network/learn/features/eth-compatibility/)
+- [Ethereum integration](/tutorials/connect-other-chains/evm-integration/)
 - [EVM ABI specification](https://solidity.readthedocs.io/en/latest/abi-spec.html)
 - [ERC-20 token standard](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/)
