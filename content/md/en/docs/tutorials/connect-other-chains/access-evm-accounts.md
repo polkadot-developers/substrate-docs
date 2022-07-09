@@ -49,6 +49,13 @@ You should also note that the Frontier project uses its own versions of Substrat
 crates and you might need to update the dependencies in your `Cargo` files.
 You must use the _matching_ versions of Substrate and Frontier dependencies in your project.
 
+## Genesis configuration
+
+The development [chain specification](https://github.com/substrate-developer-hub/frontier-node-template/blob/main/node/src/chain_spec.rs) in the `frontier-node-template` defines a genesis block that is been pre-configured with an EVM account for the `alice` account.
+When you start this node in development mode, the EVM account for `alice` is funded with a default amount of Ether.
+You'll be using this account to view EVM account details and to call Ethereum smart contracts.
+After you start the node, you'll be able to use the [Polkadot-JS application](https://polkadot.js.org/apps/#?rpc=ws://127.0.0.1:9944) to see the details of the EVM account for `alice`.
+
 ## Compile a Frontier node
 
 The [Frontier node template](https://github.com/substrate-developer-hub/frontier-node-template) provides a working development environment so that you can start building on Substrate right away.
@@ -75,14 +82,7 @@ To compile the Frontier node template:
    cargo build --release
    ```
 
-## Genesis configuration
-
-The development [chain specification](https://github.com/substrate-developer-hub/frontier-node-template/blob/main/node/src/chain_spec.rs) in the `frontier-node-template` defines a genesis block that is been pre-configured with an EVM account for the `alice` account.
-When you start this node in development mode, the EVM account for `alice` is funded with a default amount of Ether.
-You'll be using this account to view EVM account details and to call Ethereum smart contracts.
-After you start the node, you'll be able to use the [Polkadot-JS application](https://polkadot.js.org/apps/#?rpc=ws://127.0.0.1:9944) to see the details of the EVM account for `alice`.
-
-## Start and connect to the node
+## Connect to the node
 
 After your node compiles, you must start the node to begin exploring the preconfigured EVM accounts.
 
@@ -118,37 +118,38 @@ To start the local Substrate node:
 
 1. Click **Settings**, then click **Developer**.
   
-  ![Developer settings](/media/images/docs/tutorials/evm-ethereum/settings-developer.png)
+   ![Developer settings](/media/images/docs/tutorials/evm-ethereum/settings-developer.png)
 
 1. Define the following account information to create an EVM `Account` type and enable the account to send transactions and to inspect blocks.
 
-  To send transactions, you must define `Address` and `LookupSource` settings.
-  To inspect blocks, you must define `Transaction` and `Signature` settings.
+   To send transactions, you must define `Address` and `LookupSource` settings.
+   <br>
+   To inspect blocks, you must define `Transaction` and `Signature` settings.
 
-  ```json
-  {
-    "Address": "MultiAddress",
-    "LookupSource": "MultiAddress",
-    "Account": {
-      "nonce": "U256",
-      "balance": "U256"
-    },
-    "Transaction": {
-      "nonce": "U256",
-      "action": "String",
-      "gas_price": "u64",
-      "gas_limit": "u64",
-      "value": "U256",
-      "input": "Vec<u8>",
-      "signature": "Signature"
-    },
-    "Signature": {
-      "v": "u64",
-      "r": "H256",
-      "s": "H256"
-    }
-  }
-  ```
+   ```json
+   {
+      "Address": "MultiAddress",
+      "LookupSource": "MultiAddress",
+      "Account": {
+         "nonce": "U256",
+         "balance": "U256"
+      },
+      "Transaction": {
+         "nonce": "U256",
+         "action": "String",
+         "gas_price": "u64",
+         "gas_limit": "u64",
+         "value": "U256",
+         "input": "Vec<u8>",
+         "signature": "Signature"
+      },
+      "Signature": {
+         "v": "u64",
+         "r": "H256",
+         "s": "H256"
+      }
+   }
+   ```
 
 1. Click **Save**.
 
@@ -166,19 +167,19 @@ After you have configured settings for the EVM account, you can use the Polkadot
 
 1. Specify the EVM account identifier for the `alice` account for the address.
   
-  The predefined account address is `0xd43593c715fdd31c61141abd04a99fd6822c8558`.
-  The address for the account was calculated from the public key for the `alice` account using [Substrate EVM utilities](https://github.com/substrate-developer-hub/frontier-node-template/tree/main/utils/README.md#--evm-address-address).
+   The predefined account address is `0xd43593c715fdd31c61141abd04a99fd6822c8558`.
+   The address for the account was calculated from the public key for the `alice` account using [Substrate EVM utilities](https://github.com/substrate-developer-hub/frontier-node-template/tree/main/utils/README.md#--evm-address-address).
 
 1. Click **Submit RPC call**.
   
-  The call should return output similar to the following:
+   The call should return output similar to the following:
   
-  ```text
-  2: eth.getBalance: U256
-  340,282,366,920,938,463,463,374,607,431,768,210,955
-  ```
+   ```text
+   2: eth.getBalance: U256
+   340,282,366,920,938,463,463,374,607,431,768,210,955
+   ```
 
-## Deploy and call Ethereum smart contracts
+## Deploy a smart contract
 
 Now that you'e seen how to query the balance for an Ethereum address, you might want to explore how you can deploy and call Ethereum smart contracts and test the related functionality.
 This tutorial uses a [Truffle](https://www.trufflesuite.com/truffle) sample contract that defines an [ERC-20 token](https://github.com/substrate-developer-hub/frontier-node-template/blob/main/examples/contract-erc20/truffle/contracts/MyToken.sol).
@@ -186,7 +187,7 @@ You can also create an ERC-20 token contract using Polkadot JS SDK and [Typescri
 
 1. Create the ERC-20 contract.
   
-  For convenience, you can use the compiled `bytecode` from the token contract in [MyToken.json](https://github.com/substrate-developer-hub/frontier-node-template/blob/main/examples/contract-erc20/truffle/contracts/MyToken.json) to deploy the contract on the Substrate blockchain.
+   For convenience, you can use the compiled `bytecode` from the token contract in [MyToken.json](https://github.com/substrate-developer-hub/frontier-node-template/blob/main/examples/contract-erc20/truffle/contracts/MyToken.json) to deploy the contract on the Substrate blockchain.
 
 1. Verify that your node is still running and the [Polkadot-JS application](https://polkadot.js.org/apps/#?rpc=ws://127.0.0.1:9944) is connected to the node.
 
@@ -216,11 +217,19 @@ You can also create an ERC-20 token contract using Polkadot JS SDK and [Typescri
 
 1. Click **Sign and Submit** to authorize the transaction.
 
+## View the smart contract
+
+After you submit the transaction, the contract is deployed on the network and you can view information about it using the [Polkadot-JS application](https://polkadot.js.org/apps/#?rpc=ws://127.0.0.1:9944).
+
+1. Verify that your node is still running and the [Polkadot-JS application](https://polkadot.js.org/apps/#?rpc=ws://127.0.0.1:9944) is connected to the node.
+
 1. Click **Network**, then select **Explorer**.
 
 1. Click the **evm.Created** event to verify the address of the newly-created contract is `0x8a50db1e0f9452cfd91be8dc004ceb11cb08832f`.
 
-   You can also view details about the transaction use the Console in the browser Developer Tools.
+   ![Successful contract created event](/media/images/docs/tutorials/evm-ethereum/evm-created.png)
+
+   You can also view details about the transaction using the Console in the Developer Tools for your browser.
 
    Because EVM contract addresses are determined by the account identifier and nonce of the contract creator, the address where the contract is deployed is calculated using the well-known account identifier `0xd43593c715fdd31c61141abd04a99fd6822c8558` and nonce `0x0` for the `alice` account.
 
@@ -232,9 +241,12 @@ You can also create an ERC-20 token contract using Polkadot JS SDK and [Typescri
 
 1. Specify the contract address `0x8a50db1e0f9452cfd91be8dc004ceb11cb08832f` for the contract you deployed using the `alice` development account and notice that contract account code is the bytecode from the Solidity contract.
 
-  The ERC-20 contract you deployed is based on the [OpenZeppelin ERC-20 implementation](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol).
-  However, this contract includes a constructor that mints a maximum amount of tokens to the contract creator.
-  You can view this information for the deployed contract by querying the account storage.
+## View account storage
+
+The ERC-20 contract you deployed is based on the [OpenZeppelin ERC-20 implementation](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol).
+This contract includes a constructor that mints a maximum number of tokens and stores them in the account associated with the contract creator.
+
+To query the account storage associated with the smart contract:
 
 1. In Chain State with **evm** as the state to query, select **accountStorages**.
 
@@ -242,18 +254,17 @@ You can also create an ERC-20 token contract using Polkadot JS SDK and [Typescri
 
 1. Specify the storage slot to read as the second parameter `0x045c0350b9cf0df39c4b40400c965118df2dca5ce0fbcf0de4aafc099aea4a14`.
 
-  The storage slot for the address was calculated using [Substrate EVM utilities](https://github.com/substrate-developer-hub/frontier-node-template/tree/main/utils/README.md#--erc20-slot-slot-address) based on slot 0 and the account identifier `0xd43593c715fdd31c61141abd04a99fd6822c8558`.
+   The storage slot for the address was calculated using [Substrate EVM utilities](https://github.com/substrate-developer-hub/frontier-node-template/tree/main/utils/README.md#--erc20-slot-slot-address) based on slot 0 and the account identifier `0xd43593c715fdd31c61141abd04a99fd6822c8558`.
 
-  The value that is returned should be `0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff`.
-  115,792,089,237,316,195,423,570,985,008,687,907,853,269,984,665,640,564,039,457,584,007,913,129,639,936
-  
-  If you check the balance for the `alice` account after deploying the contract, you see that a fee was withdrawn from the account and the `getBalance(address, number)` call returns a value similar to the following:
+   The value that is returned should be `0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff`.
 
-  ```text
-  340,282,366,920,938,463,463,374,603,530,233,757,803
-  ```
+   If you check the balance for the `alice` account after deploying the contract, you see that a fee was withdrawn from the account and the `getBalance(address, number)` call returns a value similar to the following:
 
-## Transfer tokens using the deployed contract
+   ```text
+   340,282,366,920,938,463,463,374,603,530,233,757,803
+   ```
+
+## Transfer tokens
 
 So far, you have worked exclusively with the `alice` development account.
 The next step is to use the deployed contract to transfer tokens to another account.
@@ -292,9 +303,17 @@ The next step is to use the deployed contract to transfer tokens to another acco
 
 1. Click **Sign and Submit** to authorize the transaction.
 
+## Verify the token transfer
+
+After you submit the transaction, the contract is deployed on the network and you can view information about it using the [Polkadot-JS application](https://polkadot.js.org/apps/#?rpc=ws://127.0.0.1:9944).
+
+1. Verify that your node is still running and the [Polkadot-JS application](https://polkadot.js.org/apps/#?rpc=ws://127.0.0.1:9944) is connected to the node.
+
 1. Click **Network**, then select **Explorer**.
 
 1. Click the **evm.Executed** event to verify the address of the executed contract is `0x8a50db1e0f9452cfd91be8dc004ceb11cb08832f`.
+
+   ![Successful execution event](/media/images/docs/tutorials/evm-ethereum/evm-executed.png)
 
 1. Click **Developer**, then select **Chain State**.
 
@@ -302,11 +321,11 @@ The next step is to use the deployed contract to transfer tokens to another acco
 
 1. Check the storage for the contract address `0x8a50db1e0f9452cfd91be8dc004ceb11cb08832f` and storage slot `0x045c0350b9cf0df39c4b40400c965118df2dca5ce0fbcf0de4aafc099aea4a14`.
 
-  0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff22
+   0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff22
   
-  If you check the balance for the `alice` account after deploying the contract, you see that a fee was withdrawn from the account and the `getBalance(address, number)` call returns a value similar to the following:
+   If you check the balance for the `alice` account after deploying the contract, you see that a fee was withdrawn from the account and the `getBalance(address, number)` call returns a value similar to the following:
   
-  340,282,366,920,938,463,463,374,603,530,233,366,411
+   340,282,366,920,938,463,463,374,603,530,233,366,411
 
 ## Where to go next
 

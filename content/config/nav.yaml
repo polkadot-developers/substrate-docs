@@ -168,17 +168,6 @@ tutorials:
         #url: /tutorials/work-with-pallets/specify-origin/
         #- title: Publish a custom pallet
         #url: /tutorials/work-with-pallets/publish-pallet/
-    - title: Connect with other chains
-      url: /tutorials/connect-other-chains/
-      pages:
-        - title: Start a local relay chain
-          url: /tutorials/connect-other-chains/local-relay/
-        - title: Connect a local parachain
-          url: /tutorials/connect-other-chains/local-parachain/
-        - title: Connect to Rococo testnet
-          url: /tutorials/connect-other-chains/rococo-slot/
-        #- title: Send cross-consensus messages (XCM)
-        #  url: /tutorials/connect-other-chains/xcm/
     - title: Develop smart contracts
       url: /tutorials/smart-contracts/
       pages:
@@ -192,6 +181,19 @@ tutorials:
           url: /tutorials/smart-contracts/erc20-token/
         - title: Troubleshoot smart contracts
           url: /tutorials/smart-contracts/sc-common-issues/
+    - title: Connect with other chains
+      url: /tutorials/connect-other-chains/
+      pages:
+        - title: Start a local relay chain
+          url: /tutorials/connect-other-chains/local-relay/
+        - title: Connect a local parachain
+          url: /tutorials/connect-other-chains/local-parachain/
+        - title: Connect to Rococo testnet
+          url: /tutorials/connect-other-chains/rococo-slot/
+        - title: Access EVM accounts
+          url: /tutorials/connect-other-chains/access-evm-accounts/
+        #- title: Send cross-consensus messages (XCM)
+        #  url: /tutorials/connect-other-chains/xcm/
 reference:
   title: Reference
   url: /reference/
