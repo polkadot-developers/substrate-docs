@@ -1,5 +1,5 @@
 ---
-title: Access Ethereum-based accounts
+title: Access EVM accounts
 description: Illustrates how to integrate access to Ethereum-based accounts and contracts through a Substrate blockchain node.
 keywords:
   - ethereum
@@ -82,7 +82,7 @@ When you start this node in development mode, the EVM account for `alice` is fun
 You'll be using this account to view EVM account details and to call Ethereum smart contracts.
 After you start the node, you'll be able to use the [Polkadot-JS application](https://polkadot.js.org/apps/#?rpc=ws://127.0.0.1:9944) to see the details of the EVM account for `alice`.
 
-## Start and connect to the node with preconfigured accounts
+## Start and connect to the node
 
 After your node compiles, you must start the node to begin exploring the preconfigured EVM accounts.
 
@@ -310,8 +310,6 @@ The next step is to use the deployed contract to transfer tokens to another acco
 
 ## Where to go next
 
+- [Moonbeam: Ethereum compatibility](https://docs.moonbeam.network/learn/features/eth-compatibility/)
 - [EVM ABI specification](https://solidity.readthedocs.io/en/latest/abi-spec.html)
-- [EVM accounts](https://github.com/danforbes/danforbes/blob/master/writings/eth-dev.md#Accounts)
-- [ERC-20 token standard](https://github.com/danforbes/danforbes/blob/master/writings/eth-dev.md#EIP-20-ERC-20-Token-Standard)
-Further reading:
-- [EVM layout of state variables in storage](https://docs.soliditylang.org/en/v0.8.6/internals/layout_in_storage.html#layout-of-state-variables-in-storage)
+- [ERC-20 token standard](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/)
