@@ -720,7 +720,7 @@ Secret Key URI `caution juice atom organ advance problem want pledge someone sen
 ### Derive a soft key
 
 To derive a soft child key pair from a parent private key, you add one slash (`/`), a derivation path, and an index after the secret phrase associated with the parent key.
-Because you are deriving a new key pair and address from a key that ahs been previously generated, you use the `subkey inspect` command.
+Because you are deriving a new key pair and address from a key that has been previously generated, you use the `subkey inspect` command.
 For example:
 
 ```bash
@@ -778,14 +778,14 @@ Public Key URI `5Gv8YYFu8H1btvmrJy9FjjAWfb99wrhV3uhPFoNEr918utyR/derived-soft-ke
 
 ### Combine derivation paths and passwords
 
-Note that the secret seed _is not_ password protected.
-Although it can still recover _an_ account, the key pair that's derived _is not the same_ account as recovered with _any_ password!
-The same seed with different derivation paths passwords will derive different keys.
-The secret phrase is not sufficient to recover a key pair.
-Keep your paths and passwords secure, as without it your key pair cannot be recovered!
+Note that the secret seed _is not_ password protected by default.
+You can add a password as extra protection for your derived keys.
+However, the key pair that's derived from a secret seed is not the same as the key pair derived when you use a password.
+The same secret seed will derive different keys if you use a different derivation path or add a password.
+If you use a password to protect your key pair, both the secret seed phrase and the password will be required to recover the key pair.
 
 You can derive a soft key as a child of a hard key.
-Doing so enables you to use the public address of the derived hard—with an optional password—to derive new public addresses.
+Doing so enables you to use the public address of the derived hard key—with an optional password—to derive new public addresses.
 For example, the following command derives a hard key (`//derived-hard-key`) with a soft key leaf (`/0`):
 
 ```bash
@@ -820,16 +820,18 @@ Secret Key URI `caution juice atom organ advance problem want pledge someone sen
   SS58 Address:      5D8JkugWWMDmQ4h2yUuBLWwQXaBi2nBdiDmY4DR7hW76QmuW
 ```
 
-The following command creates a soft key derived from a public address with a hidden seed, hard key derivation path, and a password.
+Notice that adding a password for the derived key generates a different public key for the same secret phrase.
+You can use this password-protected hard key to derive a soft key using the public address of the hard key.
+ a hidden seed, hard key derivation path, and a password.
 
 ```bash
-subkey inspect "5GsbzysSK8TKahXBC7FpS2myx3nWehMyYU7q8CLrzZCjpKbM/0"
+subkey inspect "5D8JkugWWMDmQ4h2yUuBLWwQXaBi2nBdiDmY4DR7hW76QmuW/0"
 ```
 
 The command displays output similar to the following:
 
 ```text
-Public Key URI `5GsbzysSK8TKahXBC7FpS2myx3nWehMyYU7q8CLrzZCjpKbM/0` is account:
+Public Key URI `5D8JkugWWMDmQ4h2yUuBLWwQXaBi2nBdiDmY4DR7hW76QmuW/0` is account:
   Network ID/version: substrate
   Public key (hex):   0xcaf1f5ec14b507b5c365c6528cc06de74a5615274694a0c895ed4109c0ff0d32
   Public key (SS58):  5GeoQa3nkeNmzZSfgBFuK3BkAggnTHcX3S1j94sffJYYphrP
@@ -837,7 +839,7 @@ Public Key URI `5GsbzysSK8TKahXBC7FpS2myx3nWehMyYU7q8CLrzZCjpKbM/0` is account:
   SS58 Address:       5GeoQa3nkeNmzZSfgBFuK3BkAggnTHcX3S1j94sffJYYphrP
 ```
 
-This example illustrates that the soft key derived using the _SS58-address/derivation path_ produces the same address as the _secret phrase//derivation path/index///password_. With this strategy for combining hard and soft keys, you can reveal a parent public address and soft derivation paths without revealing your secret phrase or password, retaining control of all derived addresses.
+With this strategy for combining hard and soft keys, you can reveal a parent public address and soft derivation paths without revealing your secret phrase or password, retaining control of all derived addresses.
 
 ### Predefined accounts and keys
 
