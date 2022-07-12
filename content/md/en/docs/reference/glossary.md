@@ -297,7 +297,7 @@ maintained by the [Web3 Foundation](https://web3.foundation/).
 ## header
 
 The structure that aggregates the information used to summarize a [block](#block).
-A header consists primarily of [cryptographic](#cryptographic-primitives) information that is used by [light-clients](#light-client) to get a minimally-secure but very efficient
+A header consists primarily of [cryptographic](#cryptographic-primitives) information that is used by [light clients](#light-client) to get a minimally-secure but very efficient
 synchronization of the chain.
 
 ## hybrid consensus
