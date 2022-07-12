@@ -25,30 +25,6 @@ For example, Substrate blockchains are used to build the following network types
 - **Parachains** that are built to connect to a relay chain and have the ability to communicate with other chains that use the same relay chain.
   Because parachains depend on the relay chain to finalize the blocks produced, parachains must implement the same consensus protocol as the relay chain they target.
 
-## Development, test, and production networks
-
-Regardless of the type of chain you ultimately want to build, you are likely to start with a local development network before you attempt to deploy on a test network or a live production network.
-For local development, you can start and stop the node, modify and recompile the runtime, clear stored state, and use predefined accounts for testing and experimentation.
-
-For example, there are currently test networks like Kusama for deploying real-world economics in a canary network and test networks like Rococo for deploying a chain without issuing tokens or having any real-world economic impact.
-Polkadot is a production relay chain.
-
-
-
-## Validator nodes produce blocks
-
-As new nodes join the network, you'll want to preserve state rather than purge it.
-You'll also want the chain to progress by adding new blocks, so you'll want to allow additional nodes to author blocks.
-
-As a node operator, you use command-line options to control the operation of the node and how it communicates with its peers.
-For example, you use the `--chain` command-line option to specify the [chain specification](/main-docs/build/chain-spec/) your network should use and the `--validator` command-line option to specify that your node is authorized to author blocks and participate in consensus.
-
-With information from the chain specification, the first node in the blockchain generates the genesis block.
-To seals the first block, a validator node starts with the blockchain state from the genesis block.
-The node applies all pending changes to state, and emits the events that are the result of these changes.
-The state of the chain from the first block is used in the same way by the validator node building the state of the chain at the second block, and so on.
-After two thirds of the validators nodes agree that a specific block is valid, it is finalized.
-
 ## Querying and storing state
 
 Depending on the command-line options you specify, nodes can play different roles in the progression of the chain and can provide different levels of access to the on-chain state.
