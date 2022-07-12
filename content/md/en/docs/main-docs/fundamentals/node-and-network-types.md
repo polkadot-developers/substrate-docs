@@ -19,26 +19,21 @@ For example, Substrate blockchains are used to build the following network types
 
 - **Private networks** that limit access to a restricted set of nodes.
 - **Solo chains** that implement their own security protocol and don't connect or communicate with any other chains.
-- **Relay chains** that provide decentralized security to other chains that connect to them.
+  Bitcoin and Ethereum are examples of non-Substrate based solo chains.
+- **Relay chains** that provide decentralized security and communication for other chains that connect to them.
   Kusama and Polkadot are examples of relay chains.
-- **Parachains** that are built to connect to a relay chain and have the ability to connect to other chains.
-  Parachains must implement the same consensus protocol as the relay chain they target.
-  To connect to other Substrate blockchains in an ecosystem, however, all of the chains must implement a common communication channel.
+- **Parachains** that are built to connect to a relay chain and have the ability to communicate with other chains that use the same relay chain.
+  Because parachains depend on the relay chain to finalize the blocks produced, parachains must implement the same consensus protocol as the relay chain they target.
 
-Regardless of the type of chain you want to create, you should plan for deploying to a test network before deploying to a live production network.
+## Development, test, and production networks
+
+Regardless of the type of chain you ultimately want to build, you are likely to start with a local development network before you attempt to deploy on a test network or a live production network.
+For local development, you can start and stop the node, modify and recompile the runtime, clear stored state, and use predefined accounts for testing and experimentation.
+
 For example, there are currently test networks like Kusama for deploying real-world economics in a canary network and test networks like Rococo for deploying a chain without issuing tokens or having any real-world economic impact.
 Polkadot is a production relay chain.
 
-<!--[ TODO: Diagrams / illustrations for each type of chain ]-->
 
-## Local development
-
-The nodes that participate in your blockchain define the boundaries of your network.
-For example, if you are developing a runtime on a local computer, you must install the software required for a Substrate node on the local computer.
-In most cases, you'll run that local node in development mode by specifying the `--dev` command-line option.
-In development mode, the node creates a temporary directory to store state while the chain is running.
-The state in the temporary directory is purged each time you stop the node.
-Development mode is primarily for testing and experimentation.
 
 ## Validator nodes produce blocks
 
