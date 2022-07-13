@@ -18,14 +18,14 @@ There are three distinct transaction types in Substrate:
 - [Inherent transactions](#inherent-transactions)
 
 In Substrate, all three transaction types are often more broadly referred to as **extrinsics**.
-The term extrinsic is generally used to mean any information that originates outside of the a runtime.
+The term extrinsic is generally used to mean any information that originates outside the runtime.
 However, for practical purposes, it is more useful to consider each transaction type independently and identify scenarios where each type would be most applicable.
 
 ### Signed transactions
 
 Signed transactions must include the signature of an account sending an inbound request to execute some runtime call.
 Typically, the request is signed using the private key for the account that is submitting the request.
-In most cases, the account submitting the request also pays a transaction fee.However, transaction fees and other elements of transaction processing depend on how the runtime logic is defined.
+In most cases, the account submitting the request also pays a transaction fee. However, transaction fees and other elements of transaction processing depend on how the runtime logic is defined.
 
 Signed transactions are the most common type of transaction.
 As an example, assume you have an account with some number of tokens.
