@@ -71,7 +71,7 @@ To add the dependencies for the Nicks pallet to the runtime:
    [dependencies.pallet-nicks]
    default-features = false
    git = 'https://github.com/paritytech/substrate.git'
-   tag = 'monthly-2021-10'
+   branch = "polkadot-v0.9.24"
    version = '4.0.0-dev'
    ```
 

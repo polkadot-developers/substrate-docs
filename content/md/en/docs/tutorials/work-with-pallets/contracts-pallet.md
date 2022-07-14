@@ -41,14 +41,10 @@ To import the `pallet-contracts` crate:
    [dependencies.pallet-contracts]
    default-features = false
    git = 'https://github.com/paritytech/substrate.git'
-   tag = 'latest'
-   version = '4.0.0-dev'
 
    [dependencies.pallet-contracts-primitives]
    default-features = false
    git = 'https://github.com/paritytech/substrate.git'
-   tag = 'latest'
-   version = '4.0.0-dev'
    ```
 
 1. Add the Contracts pallet to the list of `std` features so that its features are included when the runtime is built as a native Rust binary.
