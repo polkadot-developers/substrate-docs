@@ -72,8 +72,7 @@ To add the dependencies for the Nicks pallet to the runtime:
    For example, add a line similar to the following:
    
    ```toml
-   pallet-nicks = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.23" }
-
+   pallet-nicks = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
    ```
 
    This line imports the `pallet-nicks` crate as a dependency and specifies the following:
@@ -158,38 +157,28 @@ To review the `Config` trait for the Balances pallet:
 
 1. Locate the `Balances` pallet section.
 
-1. Note that the implementation for the `Balances` pallet consists of two parts:
-
-   - The `parameter_types!` block where constant values are defined.
-
-   ```rust
-   parameter_types! {
-   	// The u128 constant value 500 is aliased to a type named ExistentialDeposit.
-   	pub const ExistentialDeposit: u128 = 500;
-   	// A heuristic that is used for weight estimation.
-   	pub const MaxLocks: u32 = 50;
-   }
-   ```
+1. Note that the implementation for the `Balances` pallet consists of a single block:
 
    - The `impl` block where the types and values defined by the `Config` interface are configured.
 
    ```rust
    impl pallet_balances::Config for Runtime {
-   	// The previously defined parameter_type is used as a configuration parameter.
-   	type MaxLocks = MaxLocks;
-   	// The "Balance" that appears after the equal sign is an alias for the u128 type.
-   	type Balance = Balance;
-   	// The empty value, (), is used to specify a no-op callback function.
-   	type DustRemoval = ();
-   	// The previously defined parameter_type is used as a configuration parameter.
-   	type ExistentialDeposit = ExistentialDeposit;
-   	// The FRAME runtime system is used to track the accounts that hold balances.
-   	type AccountStore = System;
-   	// Weight information is supplied to the Balances pallet by the node template runtime.
-   	// type WeightInfo = (); // old way
-   	type WeightInfo = pallet_balances::weights::SubstrateWeight<Runtime>;
-   	// The ubiquitous event type.
-   	type Event = Event;
+      // A heuristic that is used for weight estimation
+	   type MaxLocks = ConstU32<50>;
+	   type MaxReserves = ();
+	   type ReserveIdentifier = [u8; 8];
+	   /// The type for recording an account's balance.
+	   type Balance = Balance;
+	   /// The ubiquitous event type.
+	   type Event = Event;
+      // The empty value, (), is used to specify a no-op callback function.
+	   type DustRemoval = ();
+      // Set the minimum balanced required for an account to exist on-chain
+	   type ExistentialDeposit = ConstU128<500>;
+      // The FRAME runtime system is used to track the accounts that hold balances.
+	   type AccountStore = System;
+      // Weight information is supplied to the Balances pallet by the node template runtime.
+	   type WeightInfo = pallet_balances::weights::SubstrateWeight<Runtime>;
    }
    ```
 
@@ -209,41 +198,32 @@ To implement the `nicks` pallet in your runtime:
 1. Add the following code block for the Nicks pallet:
 
    ```rust
-   /// Add this code block to your template for Nicks:
-   parameter_types! {
-   	// Choose a fee that incentivizes desireable behavior.
-   	pub const NickReservationFee: u128 = 100;
-   	pub const MinNickLength: u32 = 8;
-   	// Maximum bounds on storage are important to secure your chain.
-   	pub const MaxNickLength: u32 = 32;
-   }
-
    impl pallet_nicks::Config for Runtime {
-   	// The Balances pallet implements the ReservableCurrency trait.
-   	// `Balances` is defined in `construct_runtime!` macro. See below.
-   	// https://paritytech.github.io/substrate/master/pallet_balances/index.html#implementations-2
-   	type Currency = Balances;
+	   // The Balances pallet implements the ReservableCurrency trait.
+	   // `Balances` is defined in `construct_runtime!` macro. See below.
+	   // https://paritytech.github.io/substrate/master/pallet_balances/index.html#implementations-2
+	   type Currency = Balances;
 
-   	// Use the NickReservationFee from the parameter_types block.
-   	type ReservationFee = NickReservationFee;
+	   // Set ReservationFee to a value.
+	   type ReservationFee = ConstU128<100>;
 
-   	// No action is taken when deposits are forfeited.
-   	type Slashed = ();
+	   // No action is taken when deposits are forfeited.
+	   type Slashed = ();
 
-   	// Configure the FRAME System Root origin as the Nick pallet admin.
-   	// https://paritytech.github.io/substrate/master/frame_system/enum.RawOrigin.html#variant.Root
-   	type ForceOrigin = frame_system::EnsureRoot<AccountId>;
+	   // Configure the FRAME System Root origin as the Nick pallet admin.
+	   // https://paritytech.github.io/substrate/master/frame_system/enum.RawOrigin.html#variant.Root
+	   type ForceOrigin = frame_system::EnsureRoot<AccountId>;
 
-   	// Use the MinNickLength from the parameter_types block.
-   	type MinLength = MinNickLength;
+	   // Set MinLength of nick name to a desired value.
+	   type MinLength = ConstU32<8>;
 
-   	// Use the MaxNickLength from the parameter_types block.
-   	type MaxLength = MaxNickLength;
+	   // Set MaxLength of nick name to a desired value.
+	   type MaxLength = ConstU32<32>;
 
-   	// The ubiquitous event type.
-   	type Event = Event;
+	   // The ubiquitous event type.
+	   type Event = Event;
    }
-   ```
+   
 
 1. Add Nicks to the `construct_runtime!` macro.
 
@@ -257,10 +237,10 @@ To implement the `nicks` pallet in your runtime:
        UncheckedExtrinsic = UncheckedExtrinsic
      {
        /* --snip-- */
-       Balances: pallet_balances::{Pallet, Call, Storage, Config<T>, Event<T>},
+       Balances: pallet_balances,
 
        /*** Add This Line ***/
-       Nicks: pallet_nicks::{Pallet, Call, Storage, Event<T>},
+       Nicks: pallet_nicks,
      }
    );
    ```
