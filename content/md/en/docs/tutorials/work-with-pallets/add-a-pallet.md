@@ -30,7 +30,7 @@ Before you begin, verify the following:
 
 - You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/rust-builds/).
 
-- You have completed the [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) tutorial and have the Substrate node template installed locally.
+- You have completed the [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) tutorial and have the Substrate node template from the Developer Hub `latest` branch installed locally.
 
 - You are generally familiar with software development and using command-line interfaces.
 
@@ -51,7 +51,7 @@ By completing this tutorial, you will use the Nicks pallet to accomplish the fol
 Before you can use a new pallet, you must add some information about it to the configuration file that the compiler uses to build the runtime binary.
 
 For Rust programs, you use the `Cargo.toml` file to define the configuration settings and dependencies that determine what gets compiled in the resulting binary.
-Because the Substrate runtime compiles to both a native Rust binary that includes standard library functions and a [WebAssembly (Wasm)](https://webassembly.org/) binary that does not include the standard library, the `Cargo.toml` file controls two important pieces of information:
+Because the Substrate runtime compiles to both a native platform binary that includes standard library Rust functions and a [WebAssembly (Wasm)](https://webassembly.org/) binary that does not include the standard Rust library, the `Cargo.toml` file controls two important pieces of information:
 
 - The pallets to be imported as dependencies for the runtime, including the location and version of the pallets to import.
 - The features in each pallet that should be enabled when compiling the native Rust binary. By enabling the standard (`std`) feature set from each pallet, you can compile the runtime to include functions, types, and primitives that would otherwise be missing when you build the WebAssembly binary.
@@ -65,32 +65,42 @@ To add the dependencies for the Nicks pallet to the runtime:
 
 1. Open the `runtime/Cargo.toml` configuration file in a text editor.
 
-1. Import the `pallet-nicks` crate to make it available to the node template runtime by adding it to the list of dependencies.
+1. Locate the [dependencies] section and note how other pallets are imported.
 
+1. Copy an existing pallet dependency description and replace the pallet name with `pallet-nicks` to make the pallet available to the node template runtime.
+
+   For example, add a line similar to the following:
+   
    ```toml
    pallet-nicks = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
    ```
 
-   Ensure that the branch version matches with the rest of the dependencies listed
-   in the `runtime/Cargo.toml` file.
+   This line imports the `pallet-nicks` crate as a dependency and specifies the following:
+
+   - Version to identify which version of the crate you want to import.
+   - The default behavior for including pallet features when compiling the runtime with the standard Rust libraries.
+   - Repository location for retrieving the `pallet-nicks` crate.
+   - Branch to use for retrieving the crate.
+
+   These details should be the same for every pallet in any given version of the node template.
 
 1. Add the `pallet-nicks/std` features to the list of `features` to enable when compiling the runtime.
 
    ```toml
    [features]
-   default = ['std']
+   default = ["std"]
    std = [
-     ...
-     'pallet-aura/std',
-     'pallet-balances/std',
-     'pallet-nicks/std',    # add this line
-     ...
+      ...
+      "pallet-aura/std",
+      "pallet-balances/std",
+      "pallet-nicks/std",
+      ...
    ]
    ```
 
    This section specifies the default feature set to compile for this runtime is the `std` features set.
    When the runtime is compiled using the `std` feature set, the `std` features from all of the pallets listed as dependencies are enabled.
-   For more detailed information about how the runtime is compiled as a native Rust binary with the standard library and as a WebAssembly binary using the `no_std` attribute, see [Build process](/main-docs/build/build-process/).
+   For more detailed information about how the runtime is compiled as a platform-native binary with the standard Rust library and as a WebAssembly binary using the `no_std` attribute, see [Build process](/main-docs/build/build-process/).
 
    If you forget to update the `features` section in the `Cargo.toml` file, you might see `cannot find function` errors when you compile the runtime binary.
 
