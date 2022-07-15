@@ -71,14 +71,14 @@ To add the dependencies for the Nicks pallet to the runtime:
    [dependencies.pallet-nicks]
    default-features = false
    git = 'https://github.com/paritytech/substrate.git'
-   tag = 'monthly-2021-10'
+   branch = "polkadot-v0.9.26"
    version = '4.0.0-dev'
    ```
 
    - The first line imports the `pallet-nicks` crate as a dependency.
    - The second line specifies that the pallet features are not enabled by default when compiling the runtime.
    - The third line specifies the repository location for retrieving the `pallet-nicks` crate.
-   - The fourth line specifies a commit tag using the `monthly-YYYY-MM` naming convention for retrieving the crate.
+   - The fourth line specifies a branch using the `semver` naming convention for retrieving the crate.
    - The fifth line specifies a version identifier for the crate.
 
 1. Add the `pallet-nicks/std` features to the list of `features` to enable when compiling the runtime.
