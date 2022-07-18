@@ -49,7 +49,7 @@ To import the `pallet-contracts` crate:
 
    In most cases, you specify the same information for every pallet in any given version of the node template.
    However, if the compiler indicates a different version than the one you have specified is found, you might need to modify the dependency to match the version the compiler identifies.
-   For example, if the compile found version 6.0.0 for the `pallet-contracts-primitives` crate:
+   For example, if the compiler found version 6.0.0 for the `pallet-contracts-primitives` crate:
 
    ```toml
    pallet-contracts-primitives = { version = "6.0.0", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.24" }
