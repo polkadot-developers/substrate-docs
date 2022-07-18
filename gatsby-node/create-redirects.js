@@ -3,6 +3,10 @@ const redirects = [
     fromPath: '/v3',
     toPath: '/',
   },
+  {
+    fromPath: '/v3/',
+    toPath: '/',
+  },
 ];
 
 const createPageRedirects = ({ actions }) => {
