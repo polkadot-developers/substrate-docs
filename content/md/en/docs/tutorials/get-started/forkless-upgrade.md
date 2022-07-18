@@ -94,7 +94,7 @@ To upgrade the runtime:
    ```toml
    [dependencies]
    ...
-   pallet-scheduler = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-vv0.9.24" }
+   pallet-scheduler = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.24" }
    ...
    ```
 
@@ -209,7 +209,7 @@ To upgrade the runtime:
 
 1. Select `file upload`, then select or drag and drop the WebAssembly file that you generated for the runtime.
 
-   For example, navigate to select the `target/release/wbuild/node-template-runtime/node_template_runtime.compact.wasm` file.
+   For example, navigate to select the `target/release/wbuild/node-template-runtime/node_template_runtime.compact.compressed.wasm` file.
 
    Leave the `_weight` parameter with the default of `0`.
 

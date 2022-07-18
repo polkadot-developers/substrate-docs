@@ -22,7 +22,7 @@ Before starting this tutorial, verify the following:
 
 - You have downloaded and installed the
   [Substrate front-end template](https://github.com/substrate-developer-hub/substrate-node-template/tree/latest) as described in
-  [Buiild a local blockchain](/tutorials/get-started/build-local-blockchain/).
+  [Build a local blockchain](/tutorials/get-started/build-local-blockchain/).
 
 ## Add the pallet dependencies
 
@@ -212,7 +212,7 @@ To implement the `Config` trait for the Contracts pallet in the runtime:
    	 UncheckedExtrinsic = UncheckedExtrinsic
    	{
    	 /* --snip-- */
-   	 /*** Add this ine ***/
+   	 /*** Add this line ***/
    	 Contracts: pallet_contracts::{Pallet, Call, Storage, Event<T>},
    	}
    );

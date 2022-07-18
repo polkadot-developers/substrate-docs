@@ -13,11 +13,11 @@ A blockchain is a decentralized ledger that records information in a sequence of
 The information contained in a block is an ordered set of instructions that might result in a change in state.
 
 In a blockchain network, individual computers—called nodes—communicate with each other to form a decentralized peer-to-peer (P2P) network.
-There is no central authority that controls the network and each node stores a copy of the blocks that make up the canonical chain.
+There is no central authority that controls the network and, typically, each node that participates in block production stores a copy of the blocks that make up the canonical chain.
 
-In most cases, users interact with a blockchain by initiating transaction requests.
-The transactions are gossiped to other nodes on the network and assembled into a block by a block author.
-To ensure the security of the data on the chain and the ongoing progress of the chain, the nodes use some form of consensus to agree on the state of the data in each block and the order in which transactions are processed.
+In most cases, users interact with a blockchain by submitting a request that might result in a change in state, for example, a request to change the owner of a file or to transfer funds from one account to another.
+These transactions requests are gossiped to other nodes on the network and assembled into a block by a block author.
+To ensure the security of the data on the chain and the ongoing progress of the chain, the nodes use some form of consensus to agree on the state of the data in each block and on the order of transactions executed.
 
 ## What is a blockchain node?
 
@@ -27,9 +27,9 @@ At a high level, all blockchain nodes require the following core components:
 - Peer-to-peer networking for decentralized communication between nodes.
 - Consensus methodology to protect against malicious activity and ensure the ongoing progress of the chain.
 - Logic for ordering and processing incoming transactions.
-- Cryptography for signing and verifying the signatures associated with transactions.
+- Cryptography for generating hash digests for blocks and for signing and verifying the signatures associated with transactions.
 
-Because of the complexity involved in building the core components a blockchain requires, most blockchains start with a complete copy of an existing blockchain repository—a fork—so that developers can modify existing code to add new features instead of writing everything from scratch.
+Because of the complexity involved in building the core components a blockchain requires, most blockchain projects start with a complete copy of an existing blockchain code base so that developers can modify existing code to add new features instead of writing everything from scratch.
 For example, the Bitcoin repository was forked to create Litecoin, ZCash, Namecoin and Bitcoin Cash.
 Similarly, the Ethereum repository was forked to create Quorum, POA Network, KodakCoin, and Musicoin.
 
@@ -51,14 +51,15 @@ For the chain to progress successfully, a majority of the nodes must agree on al
 - The series of state transitions that result from executed transactions that are recorded in each block.
 - A final state for the block to be included in the chain.
 
-In centralized networks, a central authority can choose between mutually exclusive state transitions by recording the changes to state transition in the order it sees them, and choosing the first of the competing alternatives when a conflict arises.
+In centralized networks, a central authority can choose between mutually exclusive state transitions.
+For example, a server configured as the primary authority might record changes to state transition in the order it sees them or use a weighting process to choose between competing alternatives when a conflict arises.
 In a decentralized network, the nodes see transactions in different orders, so they must use a more elaborate method to select transactions and choose between conflicting state transition.
 
 The method that a blockchain uses to batch transactions into blocks and to select which node can submit a block to the chain is called the blockchain's consensus model or consensus algorithm.
 The most commonly-used consensus model is called the proof-of-work consensus model.
 With the proof-of-work consensus model, the node that completes a computational problem first has the right to submit a block to the chain.
 
-For a blockchain to be fault tolerant and provide a consistent view of state even if some nodes are compromised by malicious actors or network outages, most consensus models require at least two-thirds of the nodes to agree on state at all time.
+For a blockchain to be fault tolerant and provide a consistent view of state even if some nodes are compromised by malicious actors or network outages, some consensus models require at least two-thirds of the nodes to agree on state at all time.
 This two-thirds majority ensure that the network is fault tolerant and can withstand some network participants behaving badly, regardless of whether the behavior is intentional or accidental.
 
 ## Blockchain economics
@@ -70,7 +71,7 @@ The nodes create a distributed, decentralized network that serves the needs of a
 To support a community and make a blockchain sustainable, most blockchains require users to pay for the network resources they use in the form of transaction fees.
 The payment of transaction fees requires user identities to be associated with accounts that hold assets of some type.
 Blockchains typically use tokens to represent the value of assets in an account and network participants purchase tokens outside of the chain through an exchange.
-Network participants can then deposit the tokens to create a stake of funds that enable them to pay for transactions.
+Network participants can then deposit the tokens to enable them to pay for transactions.
 
 ## Blockchain governance
 
@@ -80,10 +81,10 @@ On-chain governance is relatively rare, however, and to participate, a blockchai
 
 ## Applications running on a blockchain
 
-Applications that run on a blockchain—often referred to as decentralized applications or dApps—are typically written as **smart contracts**.
+Applications that run on a blockchain—often referred to as decentralized applications or dApps—are typically web applications that are written using front-end frameworks but with backend **smart contracts** for changing the blockchain state.
 
 A smart contract is a program that runs on a blockchain and executes transactions on behalf of users under specific conditions.
-Developers can write smart contracts to ensure that the outcome of programmatically-executed transactions is recorded and can never be changed.
+Developers can write smart contracts to ensure that the outcome of programmatically-executed transactions is recorded and can't be tampered with.
 Yet, with smart contracts alone, developers don't have access to some underlying blockchain functionality—such as the consensus, storage, or transaction layers—and instead, abide by a chain's fixed rules and restrictions.
 Smart contract developers often accept these limitations as a tradeoff that enables faster development time with fewer core design decisions to make.
 
@@ -108,4 +109,4 @@ You can explore the following resources to learn more.
 - [Simulate a network](/tutorials/get-started/simulate-network/)
 - [Add trusted nodes](/tutorials/get-started/trusted-network/)
 
-If you prefer to explore code directly, you can start building in the [Substrate Playground](https://docs.substrate.io/playground/) and consult the API reference to get details about the Rust crates you use.
+If you prefer to explore code directly, you can start building in the [Substrate Playground](https://docs.substrate.io/playground/) or consult the API reference to get details about the Rust crates you use.

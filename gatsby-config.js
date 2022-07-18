@@ -301,5 +301,13 @@ module.exports = {
         excludedPaths: [`/404.html`],
       },
     },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://docs.substrate.io',
+        sitemap: 'https://docs.substrate.io/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }],
+      },
+    },
   ],
 };

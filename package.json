@@ -37,6 +37,7 @@
 		"gatsby-plugin-react-i18next": "^1.1.1",
 		"gatsby-plugin-react-svg": "^3.0.1",
 		"gatsby-plugin-remove-serviceworker": "^1.0.0",
+		"gatsby-plugin-robots-txt": "^1.7.1",
 		"gatsby-plugin-sass": "^4.2.0",
 		"gatsby-plugin-sharp": "^3.10.2",
 		"gatsby-plugin-simple-analytics": "^1.0.4",

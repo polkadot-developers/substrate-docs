@@ -297,7 +297,7 @@ maintained by the [Web3 Foundation](https://web3.foundation/).
 ## header
 
 The structure that aggregates the information used to summarize a [block](#block).
-A header consists primarily of [cryptographic](#cryptographic-primitives) information that is used by [light-clients](#light-client) to get a minimally-secure but very efficient
+A header consists primarily of [cryptographic](#cryptographic-primitives) information that is used by [light clients](#light-client) to get a minimally-secure but very efficient
 synchronization of the chain.
 
 ## hybrid consensus
@@ -355,6 +355,11 @@ Nodes that run [light-clients](#light-client) facilitate scalable interactions i
 ## nominated proof-of-stake (NPoS)
 
 A method for determining [validators](#validator) or _[authorities](#authority)_ based on a willingness to commit their stake to the proper functioning of one or more block producing nodes.
+
+## oracle
+
+In a blockchain network, an oracle is a mechanism for connecting the blockchain to a non-blockchain data source.
+Oracles enable the blockchain to access and act upon information from existing data sources and incorporate data from non-blockchain systems and services.
 
 ## origin
 
