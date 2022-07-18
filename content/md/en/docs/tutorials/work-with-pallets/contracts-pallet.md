@@ -35,36 +35,52 @@ To import the `pallet-contracts` crate:
 
 1. Open the `runtime/Cargo.toml` configuration file in a text editor.
 
-1. Import the `pallet-contracts` crate to make it available to the node template runtime by adding it to the list of dependencies.
+1. Locate the [dependencies] section and note how other pallets are imported.
+
+1. Copy an existing pallet dependency description and replace the pallet name with `pallet-contracts` to make the pallet available to the node template runtime.
+
+   For example, add a line similar to the following:
 
    ```toml
-   [dependencies.pallet-contracts]
-   default-features = false
-   git = 'https://github.com/paritytech/substrate.git'
-   tag = 'latest'
-   version = '4.0.0-dev'
-
-   [dependencies.pallet-contracts-primitives]
-   default-features = false
-   git = 'https://github.com/paritytech/substrate.git'
-   tag = 'latest'
-   version = '4.0.0-dev'
+   pallet-contracts = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.24" }
    ```
 
-1. Add the Contracts pallet to the list of `std` features so that its features are included when the runtime is built as a native Rust binary.
+1. Import the `pallet-contracts-primitives` crate to make it available to the node template runtime by adding it to the list of dependencies.
+   
+   In most cases, you specify the same information for every pallet in any given version of the node template.
+   However, if the compiler indicates a different version than the one you have specified is found, you might need to modify the dependency to match the version the compiler identifies.
+   For example, if the compile found version 6.0.0 for the `pallet-contracts-primitives` crate:
+
+   ```toml
+   pallet-contracts-primitives = { version = "6.0.0", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.24" }
+   ```
+
+1. Add the Contracts pallet to the list of `std` features so that its features are included when the runtime is built as a platform native binary.
 
    ```toml
    [features]
-   default = ['std']
+   default = ["std"]
    std = [
-   	#--snip--
-   	'pallet-contracts/std',
-   	'pallet-contracts-primitives/std',
-   	#--snip--
-    ]
+      "codec/std",
+      "scale-info/std",
+      "frame-executive/std",
+      "frame-support/std",
+      "frame-system-rpc-runtime-api/std",
+      "frame-system/std",
+      "pallet-aura/std",
+      "pallet-balances/std",
+      "pallet-contracts/std",
+      "pallet-contracts-primitives/std",
+   ]
    ```
 
 1. Save your changes and close the `runtime/Cargo.toml` file.
+
+1. Check that your runtime compiles correctly by running the following command:
+
+   ```bash
+   cargo check -p node-template-runtime
+   ```
 
 ## Implement the Contracts configuration trait
 
