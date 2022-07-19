@@ -70,7 +70,7 @@ To add the dependencies for the Nicks pallet to the runtime:
 1. Copy an existing pallet dependency description and replace the pallet name with `pallet-nicks` to make the pallet available to the node template runtime.
 
    For example, add a line similar to the following:
-   
+
    ```toml
    pallet-nicks = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
    ```
@@ -122,29 +122,29 @@ For this tutorial, you can see that the `Config` trait in the `nicks` pallet dec
 
 ```rust
 pub trait Config: frame_system::Config {
-	/// The overarching event type.
-	type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+ /// The overarching event type.
+ type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
 
-	/// The currency trait.
-	type Currency: ReservableCurrency<Self::AccountId>;
+ /// The currency trait.
+ type Currency: ReservableCurrency<Self::AccountId>;
 
-	/// Reservation fee.
-	#[pallet::constant]
-	type ReservationFee: Get<BalanceOf<Self>>;
+ /// Reservation fee.
+ #[pallet::constant]
+ type ReservationFee: Get<BalanceOf<Self>>;
 
-	/// What to do with slashed funds.
-	type Slashed: OnUnbalanced<NegativeImbalanceOf<Self>>;
+ /// What to do with slashed funds.
+ type Slashed: OnUnbalanced<NegativeImbalanceOf<Self>>;
 
-	/// The origin account that can forcibly set or remove a name. Root can always do this.
-	type ForceOrigin: EnsureOrigin<Self::Origin>;
+ /// The origin account that can forcibly set or remove a name. Root can always do this.
+ type ForceOrigin: EnsureOrigin<Self::Origin>;
 
-	/// The minimum length for a name.
-	#[pallet::constant]
-	type MinLength: Get<u32>;
+ /// The minimum length for a name.
+ #[pallet::constant]
+ type MinLength: Get<u32>;
 
-	/// The maximum length for a name.
-	#[pallet::constant]
-	type MaxLength: Get<u32>;
+ /// The maximum length for a name.
+ #[pallet::constant]
+ type MaxLength: Get<u32>;
 }
 ```
 
@@ -163,22 +163,22 @@ To review the `Config` trait for the Balances pallet:
 
    ```rust
    impl pallet_balances::Config for Runtime {
-      // A heuristic that is used for weight estimation
-	   type MaxLocks = ConstU32<50>;
-	   type MaxReserves = ();
-	   type ReserveIdentifier = [u8; 8];
-	   /// The type for recording an account's balance.
-	   type Balance = Balance;
-	   /// The ubiquitous event type.
-	   type Event = Event;
-      // The empty value, (), is used to specify a no-op callback function.
-	   type DustRemoval = ();
-      // Set the minimum balanced required for an account to exist on-chain
-	   type ExistentialDeposit = ConstU128<500>;
-      // The FRAME runtime system is used to track the accounts that hold balances.
-	   type AccountStore = System;
-      // Weight information is supplied to the Balances pallet by the node template runtime.
-	   type WeightInfo = pallet_balances::weights::SubstrateWeight<Runtime>;
+      /// A heuristic that is used for weight estimation
+      type MaxLocks = ConstU32<50>;
+      type MaxReserves = ();
+      type ReserveIdentifier = [u8; 8];
+      /// The type for recording an account's balance.
+      type Balance = Balance;
+      /// The ubiquitous event type.
+      type Event = Event;
+      /// The empty value, (), is used to specify a no-op callback function.
+      type DustRemoval = ();
+      /// Set the minimum balanced required for an account to exist on-chain
+      type ExistentialDeposit = ConstU128<500>;
+      /// The FRAME runtime system is used to track the accounts that hold balances.
+      type AccountStore = System;
+      /// Weight information is supplied to the Balances pallet by the node template runtime.
+      type WeightInfo = pallet_balances::weights::SubstrateWeight<Runtime>;
    }
    ```
 
@@ -199,31 +199,30 @@ To implement the `nicks` pallet in your runtime:
 
    ```rust
    impl pallet_nicks::Config for Runtime {
-	   // The Balances pallet implements the ReservableCurrency trait.
-	   // `Balances` is defined in `construct_runtime!` macro. See below.
-	   // https://paritytech.github.io/substrate/master/pallet_balances/index.html#implementations-2
-	   type Currency = Balances;
+    // The Balances pallet implements the ReservableCurrency trait.
+    // `Balances` is defined in `construct_runtime!` macro. See below.
+    // https://paritytech.github.io/substrate/master/pallet_balances/index.html#implementations-2
+    type Currency = Balances;
 
-	   // Set ReservationFee to a value.
-	   type ReservationFee = ConstU128<100>;
+    // Set ReservationFee to a value.
+    type ReservationFee = ConstU128<100>;
 
-	   // No action is taken when deposits are forfeited.
-	   type Slashed = ();
+    // No action is taken when deposits are forfeited.
+    type Slashed = ();
 
-	   // Configure the FRAME System Root origin as the Nick pallet admin.
-	   // https://paritytech.github.io/substrate/master/frame_system/enum.RawOrigin.html#variant.Root
-	   type ForceOrigin = frame_system::EnsureRoot<AccountId>;
+    // Configure the FRAME System Root origin as the Nick pallet admin.
+    // https://paritytech.github.io/substrate/master/frame_system/enum.RawOrigin.html#variant.Root
+    type ForceOrigin = frame_system::EnsureRoot<AccountId>;
 
-	   // Set MinLength of nick name to a desired value.
-	   type MinLength = ConstU32<8>;
+    // Set MinLength of nick name to a desired value.
+    type MinLength = ConstU32<8>;
 
-	   // Set MaxLength of nick name to a desired value.
-	   type MaxLength = ConstU32<32>;
+    // Set MaxLength of nick name to a desired value.
+    type MaxLength = ConstU32<32>;
 
-	   // The ubiquitous event type.
-	   type Event = Event;
+    // The ubiquitous event type.
+    type Event = Event;
    }
-   
 
 1. Add Nicks to the `construct_runtime!` macro.
 
