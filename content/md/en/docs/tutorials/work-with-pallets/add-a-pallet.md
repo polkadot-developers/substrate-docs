@@ -295,13 +295,13 @@ To set a nickname for an account:
 
 1. Select [`setName`](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Call.html#variant.set_name) as the function to call from the `nicks` pallet.
 
-   ![Select the pallet and the function to call](/media/images/docs/tutorials/add-a-pallet/set-name-function.png)
-
 1. Type a name that is longer than the `MinNickLength` (8 characters) and no longer than the `MaxNickLength` (32 characters).
+
+   ![Select the pallet and the function to call](/media/images/docs/tutorials/add-a-pallet/set-name-function.png)
 
 1. Click **Signed** to execute the function.
 
-1. Observe the status of the call and the [events](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Event.html) emitted by the Nicks pallet.
+1. Observe the status of the call change from Ready to InBlock to Finalized and the note the [events](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Event.html) emitted by the Nicks pallet.
 
    ![Successful update to the nickname for Alice](/media/images/docs/tutorials/add-a-pallet/set-name-result.png)
 
