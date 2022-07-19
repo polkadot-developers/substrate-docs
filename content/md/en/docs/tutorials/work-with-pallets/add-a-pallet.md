@@ -200,8 +200,7 @@ To implement the `nicks` pallet in your runtime:
    ```rust
    impl pallet_nicks::Config for Runtime {
     // The Balances pallet implements the ReservableCurrency trait.
-    // `Balances` is defined in `construct_runtime!` macro. See below.
-    // https://paritytech.github.io/substrate/master/pallet_balances/index.html#implementations-2
+    // `Balances` is defined in `construct_runtime!` macro.
     type Currency = Balances;
 
     // Set ReservationFee to a value.
@@ -270,7 +269,7 @@ To start the local Substrate node:
 
 1. Start the node in development mode by running the following command:
 
-   ```
+   ```bash
    ./target/release/node-template --dev
    ```
 
@@ -310,7 +309,7 @@ To set a nickname for an account:
 
 1. Check the account selection list to verify that the Alice account is currently selected.
 
-1. In the Pallet Interactor component, verify that Extrinsic is selected.
+1. In the Pallet Interactor component, verify that **Extrinsic** is selected.
 
 1. Select `nicks` from the list of pallets available to call.
 
@@ -330,13 +329,13 @@ Next, you can use Query capability to read the value of Alice's nickname from th
 
 To return the information stored for Alice:
 
-1. In the Pallet Interactor component, select **Query**.
+1. In the Pallet Interactor component, select **Query** as the Interaction Type.
 
 1. Select `nicks` from the list of pallets available to query.
 
-1. Select the [`nameOf`](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Call.html#variant.set_name).
+1. Select the [`nameOf`](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Call.html#variant.set_name) as the callable function.
 
-1. Copy and paste the address for the `alice` account in the Account field, then click **Query**.
+1. Copy and paste the address for the `alice` account in the AccountID field, then click **Query**.
 
    ![Read a name](/media/images/docs/tutorials/add-a-pallet/name-of-alice.png)
 
@@ -357,7 +356,7 @@ In this case, you added the `nicks` pallet to the runtime and called the `set_na
 The `nicks` pallet also provides two additional functions—the `clear_name` function and the `kill_name` function—that enable an account owner to remove the reserved name or a root-level user to forcibly remove an account name.
 You can learn about additional features—such as the use of the Sudo pallet and origin accounts—by exploring how these functions work.
 However, these features are beyond the intended scope of this tutorial.
-If you want to explore additional features exposed through the Nicks and Sudo pallets, see [Next steps](#next-steps) and select [Specify the origin for invoking a function]().
+If you want to explore additional features exposed through the Nicks and Sudo pallets, see [Next steps](#next-steps) and select [Specify the origin for a call](/tutorials/work-with-pallets/specify-origin).
 
 ## Next steps
 
