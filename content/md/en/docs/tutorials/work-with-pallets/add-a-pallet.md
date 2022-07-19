@@ -110,9 +110,10 @@ To add the dependencies for the Nicks pallet to the runtime:
    cargo check -p node-template-runtime
    ```
 
-## Review the configuration trait for the pallet
+## Review the configuration for Balances
 
-Every pallet has a [Rust **trait**](https://doc.rust-lang.org/book/ch10-02-traits.html) called `Config`. The `Config` trait is used to identify the parameters and types that the pallet needs to carry out its functions.
+Every pallet has a [Rust **trait**](https://doc.rust-lang.org/book/ch10-02-traits.html) called `Config`.
+The `Config` trait is used to identify the parameters and types that the pallet needs to carry out its functions.
 
 Most of the pallet-specific code required to add a pallet is implemented using the `Config` trait.
 You can review what you to need to implement for any pallet by referring to its Rust documentation or the source code for the pallet.
@@ -121,49 +122,28 @@ For example, to see what you need to implement for the `nicks` pallet, you can r
 For this tutorial, you can see that the `Config` trait in the `nicks` pallet declares the following types:
 
 ```rust
-pub trait Config: frame_system::Config {
- /// The overarching event type.
- type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
-
- /// The currency trait.
- type Currency: ReservableCurrency<Self::AccountId>;
-
- /// Reservation fee.
- #[pallet::constant]
- type ReservationFee: Get<BalanceOf<Self>>;
-
- /// What to do with slashed funds.
- type Slashed: OnUnbalanced<NegativeImbalanceOf<Self>>;
-
- /// The origin account that can forcibly set or remove a name. Root can always do this.
- type ForceOrigin: EnsureOrigin<Self::Origin>;
-
- /// The minimum length for a name.
- #[pallet::constant]
- type MinLength: Get<u32>;
-
- /// The maximum length for a name.
- #[pallet::constant]
- type MaxLength: Get<u32>;
+pub trait Config: Config {
+    type Event: From<Event<Self>> + IsType<<Self as Config>::Event>;
+    type Currency: ReservableCurrency<Self::AccountId>;
+    type ReservationFee: Get<<<Self as Config>::Currency as Currency<<Self as Config>::AccountId>>::Balance>;
+    type Slashed: OnUnbalanced<<<Self as Config>::Currency as Currency<<Self as Config>::AccountId>>::NegativeImbalance>;
+    type ForceOrigin: EnsureOrigin<Self::Origin>;
+    type MinLength: Get<u32>;
+    type MaxLength: Get<u32>;
 }
 ```
 
 After you identify the types your pallet requires, you need to add code to the runtime to implement the `Config` trait.
-To learn how to implement the `Config` trait for a pallet, you can use the **Balances** pallet—which is already implemented in the node template runtime—as an example.
+To see how to implement the `Config` trait for a pallet, let's use the **Balances** pallet as an example.
 
 To review the `Config` trait for the Balances pallet:
 
 1. Open the `runtime/src/lib.rs` file in a text editor.
 
-1. Locate the `Balances` pallet section.
-
-1. Note that the implementation for the `Balances` pallet consists of a single block:
-
-   - The `impl` block where the types and values defined by the `Config` interface are configured.
+1. Locate the `Balances` pallet and note that it consists of the following implementation (`impl`)code block:
 
    ```rust
    impl pallet_balances::Config for Runtime {
-      /// A heuristic that is used for weight estimation
       type MaxLocks = ConstU32<50>;
       type MaxReserves = ();
       type ReserveIdentifier = [u8; 8];
@@ -185,7 +165,7 @@ To review the `Config` trait for the Balances pallet:
    As you can see in this example, the `impl pallet_balances::Config` block allows you to configure the types and parameters that are specified by the Balances pallet `Config` trait.
    For example, this `impl` block configures the Balances pallet to use the `u128` type to track balances.
 
-## Implement the Config trait for the pallet
+## Implement the configuration for Nicks
 
 Now that you have seen an example of how the `Config` trait is implemented for the Balances pallet, you're ready to implement the `Config` trait for the Nicks pallet.
 
@@ -313,15 +293,17 @@ To set a nickname for an account:
 
 1. Select `nicks` from the list of pallets available to call.
 
-1. Select the [`setName` dispatchable](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Call.html#variant.set_name) as the function to call from the `nicks` pallet.
+1. Select [`setName`](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Call.html#variant.set_name) as the function to call from the `nicks` pallet.
+
+   ![Select the pallet and the function to call](/media/images/docs/tutorials/add-a-pallet/set-name-function.png)
 
 1. Type a name that is longer than the `MinNickLength` (8 characters) and no longer than the `MaxNickLength` (32 characters).
 
-1. Click `Signed` to execute the function.
-
-   ![Set a name](/media/images/docs/tutorials/add-a-pallet/set-name.png)
+1. Click **Signed** to execute the function.
 
 1. Observe the status of the call and the [events](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Event.html) emitted by the Nicks pallet.
+
+   ![Successful update to the nickname for Alice](/media/images/docs/tutorials/add-a-pallet/set-name-result.png)
 
 ## Query information for an account using the Nicks pallet
 
@@ -333,26 +315,24 @@ To return the information stored for Alice:
 
 1. Select `nicks` from the list of pallets available to query.
 
-1. Select the [`nameOf`](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Call.html#variant.set_name) as the callable function.
+1. Select [`nameOf`](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Call.html#variant.set_name) as the function to call.
 
-1. Copy and paste the address for the `alice` account in the AccountID field, then click **Query**.
+1. Copy and paste the address for the `alice` account in the AccountId field, then click **Query**.
 
-   ![Read a name](/media/images/docs/tutorials/add-a-pallet/name-of-alice.png)
+   ![Read a name](/media/images/docs/tutorials/add-a-pallet/Alice-query-result.png)
 
    The return type is a tuple that contains two values:
 
-   - The hex-encoded nickname for the Alice account.
+   - The hex-encoded nickname for the Alice account `53756273747261746520737570657273746172202d20416c696365`.
 
-   - The amount that was reserved from Alice's account to secure the nickname.
+   - The amount that was reserved from Alice's account to secure the nickname (`100`).
 
-   If you were to query the Nicks pallet for the `nameOf` for Bob's account, you would see the `None` value returned because Bob has not invoked the `setName` function to reserve a nickname.
-
-   ![Read an empty name](/media/images/docs/tutorials/add-a-pallet/name-of-bob.png)
+   If you were to query the Nicks pallet for the `nameOf` for Bob's account, you would see the value `None` returned because Bob has not invoked the `setName` function to reserve a nickname.
 
 ## Explore additional functions
 
 This tutorial illustrates how to add a simple pallet to the runtime and demonstrates how to interact with the new pallet using the front-end template.
-In this case, you added the `nicks` pallet to the runtime and called the `set_name` function using the front-end template.
+In this case, you added the `nicks` pallet to the runtime and called the `set_name` and `nameOf` functions using the front-end template.
 The `nicks` pallet also provides two additional functions—the `clear_name` function and the `kill_name` function—that enable an account owner to remove the reserved name or a root-level user to forcibly remove an account name.
 You can learn about additional features—such as the use of the Sudo pallet and origin accounts—by exploring how these functions work.
 However, these features are beyond the intended scope of this tutorial.
@@ -365,9 +345,3 @@ There are several [tutorials](/tutorials/) that can serve as next steps for lear
 - [Specify the origin for a call](/tutorials/work-with-pallets/specify-origin) explores calling functions using different originating accounts.
 - [Configure the contracts pallet](/tutorials/work-with-pallets/contracts-pallet) demonstrates more complex configuration requirements by adding the Contracts pallet to the runtime.
 - [Use macros in a custom pallet](/tutorials/work-with-pallets/custom-pallet) illustrates how you can use macros to create your own pallets.
-
-### References
-
-- [Basic example pallet](https://github.com/paritytech/substrate/tree/master/frame/examples/basic) provides detailed comments about what you can access within FRAME.
-- [The Cargo book](https://doc.rust-lang.org/stable/cargo/) introduces the Cargo package manager, including reference information for Cargo features and commands.
-- [Rust and WebAssembly Documentation](https://rustwasm.github.io/docs.html) highlights several resources for learning about Rust and WebAssembly.
