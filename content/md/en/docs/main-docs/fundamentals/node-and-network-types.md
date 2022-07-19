@@ -39,21 +39,26 @@ To make it easier to maintain the security and integrity of the chain but reduce
 ### Full nodes
 
 Full nodes are a critical part of the blockchain network infrastructure and are the most common node type.
-Full nodes store blockchain data and, typically, participate in many common blockchain operations, such as authoring and validating blocks, receiving and verifying transactions, and serving data is response to user requests.
+Full nodes store blockchain data and, typically, participate in common blockchain operations, such as authoring and validating blocks, receiving and verifying transactions, and serving data is response to user requests.
 
 ![Full node](/media/images/docs/main-docs/full-node.png)
 
 By default, full nodes are configured to store only the most recent 256 blocks and to discard state older than that—with the exception of the genesis block—to prevent the full node from growing indefinitely and consuming all available disk space.
 You can configure the number of blocks a full node retains.
 
-Although older blocks are discarded, full nodes retain all of the [block headers](/reference/glossary/#header) from the genesis block to the most recent block to validate the state is correct.
-Because the full node has access to all of the block headers, it can rebuild the state of the entire blockchain by executing all of the blocks from the genesis block.
+Although older blocks are discarded, full nodes retain all of the [block headers](/reference/glossary/#header) from the genesis block to the most recent block to validate that the state is correct.
+Because the full node has access to all of the block headers, it can be used to rebuild the state of the entire blockchain by executing all of the blocks from the genesis block.
 Thus it requires much more computation to retrieve information about some previous state, and an archive should generally be used instead.
+
+Full nodes allow you to read the current state of the chain and to submit and validate transactions directly on the network.
+By discarding state from older blocks, a full node requires much less disk space than an archive node.
+However, a full node requires far more computational resources to query and retrieve information about some previous state.
+If you need to query historical blocks, you should purge the full node then restart it as an archive mode.
 
 ### Archive nodes
 
 Archive nodes are similar to full nodes except that they store all past blocks with complete state available for every block.
-Archive nodes are most often used by utilities—such as block explorers, wallets, and similar applications—that need access to historical information.
+Archive nodes are most often used by utilities—such as block explorers, wallets, discussion forums, and similar applications—that need access to historical information.
 
 ![Archive nodes](/media/images/docs/main-docs/archive-node.png)
 
@@ -63,46 +68,34 @@ However, archive nodes make it convenient to query the past state of the chain a
 For example, you can query an archive node to look up an account balance in a certain block or to see details about a transaction resulted in a specific state change.
 These types of queries are faster and more efficient when you run them on the data in an archive node.
 
-
-
-Depending on the command-line options you specify, nodes can play different roles in the progression of the chain and can provide different levels of access to the on-chain state.
-
-
-
-A **full node** discards all finalized blocks older than a configurable number except the genesis block
-By default, a full node is pruned to only include the last 256 blocks.
-A node that is pruned this way requires much less space than an archive node.
-Full nodes allow you to read the current state of the chain and to submit and validate extrinsics directly on the network without relying on a centralized infrastructure provider.
-If you need to query historical blocks that have been pruned, you must purge the node then restart the node in archive mode.
-It is possible to rebuild the state of the entire blockchain by using a full node and executing all the blocks from the genesis block.
-However, a full node requires more computation to query state or retrieve information about some previous state.
-
 ### Light client nodes
 
-A light client node is a leaner node that provides a robust subset of features for network participants.
+Light client nodes enable you to connect to a Substrate network with minimal hardware requirements.
 
 ![Light client nodes](/media/images/docs/main-docs/light-node.png)
 
-Light client nodes connect to a Substrate network with minimal hardware requirements in a fast, trustless, way.
-As such, these are commonly embedded into websites, browser extensions, mobile device apps, and even IoT devices.
-Light client nodes expose the same RPC endpoints written in Rust, JavaScript, or other languages to read block headers, submit transactions, and view the results of transactions.
+Because light client nodes require minimal system resources, they can be embedded into web-based applications, browser extensions, mobile device applications, or internet of things (IoT) devices.
+Light client nodes provide a runtime and access to the current state through RPC endpoints.
+The RPC endpoints for light client nodes can be written in Rust, JavaScript, or other languages ans used to read block headers, submit transactions, and view the results of transactions.
 
-Light client nodes do not have participate in progressing network consensus though, as we will discuss next.
-
-In addition to archive nodes and full nodes, you can deploy a **light node**.
-A light node has only the runtime and the current state.
-It does not store any past blocks and so cannot read historical data without requesting it from a node that has it.
-Light nodes are useful for devices with limited resources.
+Light client nodes don't participate in blockchain or network operations.
+For example, light client nodes aren't responsible for block authoring or validation, gossipping transactions or reaching consensus.
+The light client node doesn't store any past blocks, so it can't read historical data without requesting it from a node that has it.
 
 ## Node roles
 
-Substrate nodes can be instructed to play different roles in the progression of the chain and can provide different levels of access to the on-chain state.
+Depending on the command-line options you specify when you start a node, nodes can play different roles in the progression of the chain and can provide different levels of access to the on-chain state.
+For example, you can limit the nodes that are authorized to author new blocks and which nodes can communicate with peers.
+Peer nodes that aren't authorized as block producers can import new blocks, receive transactions, and send and receive gossip about new transactions to other nodes.
+Nodes can also be prevented from connecting to the broader network and restricted to communicating with specific nodes.
 
-- Authority (block author)
-- Normal peer
-- ... others?
+## Where to go next
 
-All gossip with all other peers about:
-- new blocks
-- new transactions to be included in blocks
-- ...others?
+You can use Substrate to build virtually any type of network—from a completely self-contained and private solo-chain to your own relay chain ecosystem or compatible parachains.
+
+To take a deeper dive into networks and nodes types, explore the following topics.
+
+- [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
+- [Simulate a network](/tutorials/get-started/simulate-network/)
+- [Add trusted nodes](/tutorials/get-started/trusted-network/)
+- [Authorize specific nodes](/tutorials/get-started/permissioned-network/)
