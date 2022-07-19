@@ -20,9 +20,7 @@ sudo apt install build-essential
 At a minimum, you need the following packages before you install Rust:
 
 ```bash
-clang
-curl
-git
+clang curl git make
 ```
 
 Because the blockchain requires standard cryptography to support the generation of public/private key pairs and the validation of transaction signatures, you must also have a package that provides cryptography, such as `libssl-dev` or `openssl-devel`.
@@ -46,22 +44,22 @@ To install the Rust toolchain on Linux:
 
    [[tabbedCode]]
    |```Arch
-   | pacman -Syu --needed --noconfirm curl git clang protobuf
+   | pacman -Syu --needed --noconfirm curl git clang make protobuf
 
    [[tabbedCode]]
    | ```fedora
    | sudo dnf update
-   | sudo dnf install clang curl git openssl-devel protobuf-compiler
+   | sudo dnf install clang curl git openssl-devel make protobuf-compiler
 
    [[tabbedCode]]
    | ```opensuse
-   | sudo zypper install clang curl git openssl-devel llvm-devel libudev-devel protobuf
+   | sudo zypper install clang curl git openssl-devel llvm-devel libudev-devel make protobuf
 
    </figure>
 
    Remember that different distributions might use different package managers and bundle packages in different ways.
    For example, depending on your installation selections, Ubuntu Desktop and Ubuntu Server might have different packages and different requirements.
-   However, the four packages listed in this command-line example are applicable for many common Linux distributions, including Debian, Linux Mint, MX Linux, and Elementary OS.
+   However, the packages listed in the command-line examples are applicable for many common Linux distributions, including Debian, Linux Mint, MX Linux, and Elementary OS.
 
 1. Download the `rustup` installation program and use it to install Rust by running the following command:
 
