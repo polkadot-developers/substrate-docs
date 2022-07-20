@@ -12,7 +12,7 @@ You can follow similar patterns to add additional FRAME pallets to your runtime,
 
 ## Before you begin
 
-Make sure you have the latest version of the Substrate node template compiled on your computer.
+Make sure you have the latest version (`polkadot-v0.9.26`) of the Substrate node template compiled on your computer.
 If you haven't already done so, see [Build a local blockchain](/tutorials/get-started/build-local-blockchain/).
 
 ## Import the dependencies
