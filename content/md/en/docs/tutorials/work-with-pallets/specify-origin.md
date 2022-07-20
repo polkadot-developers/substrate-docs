@@ -1,21 +1,23 @@
 ---
 title: Specify the origin for a call
-description: Demonstrates how you can specify the account to use the originator of a function call.
+description: Demonstrates how you can specify the account to use as the originator of a function call.
 keywords:
   - FRAME
   - runtime
   - origins
 ---
 
-In [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet), you added functions from the `frame_nicks` pallet to the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) runtime.
+In [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet), you added functions from `pallet_nicks` to the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) runtime.
 
-The Nicks pallet allows blockchain users to pay a deposit to reserve a nickname for an account they control. It implements the following functions:
+The Nicks pallet allows blockchain users to pay a deposit to reserve a nickname for an account they control.
+It implements the following functions:
 
-- The `set_name` function to collect a deposit and set the name of an account if the name is not already taken.
-- The `clear_name` function to remove the name associated with an account and return the deposit.
-- The `kill_name` function to forcibly remove an account name without returning the deposit.
+- The `set_name` function to enable an account owner to set the name of his or her own account if the name is not already reserved.
+- The `clear_name` function to enable an account owner to remove the name associated with an account and return the deposit.
+- The `kill_name` function to forcibly remove an account name for another party without returning the deposit.
+- The `force_name` function to set an account name for another party without requiring a deposit.
 
-This tutorial illustrateS why calling these functions using different originating accounts matters and how the call and write operations can lead to failed or successful results.
+This tutorial illustrates how you can call these functions using using different originating accounts and why calling the functions using different originating accounts matters.
 
 ## Before you begin
 
@@ -39,110 +41,159 @@ By completing this tutorial, you will accomplish the following objectives:
 - Call the `clear_name` function using an account that has permission to execute the call.
 - Call the `kill_name` function using an origin that doesn't have administrative privileges.
 - Call the `kill_name` function using the `Root` origin account.
+- See how calling function using different origin account can lead to failed or successful results.
 
-## Review the configuration trait for the pallet
+## Identify the administrative account
 
-The `Config` trait in the `nicks` pallet declares several types.
-For this tutorial, the focus is on the `ForceOrigin` type that specifies the account that can forcibly set or remove a name.
-For example, the owner of an account or the Root account can set or remove a reserved nickname.
-In the implementation (`impl`) block for the `Config` trait, you added code to configure the FRAME System `Root` origin as the `nicks` pallet administrator.
+As you saw in [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet), the `Config` trait for the `nicks` pallet declares several types.
+For this tutorial, the focus is on the `ForceOrigin` type.
+The `ForceOrigin` type is used to specify the account that can perform certain options.
+For this pallet, the `ForceOrigin` type specifies that account that can set or remove a name for another account.
+Typically, only an account with administrative privileges—such as a root superuser account—can act on behalf of another account.
+In the case of the Nicks pallet, only the owner of an account or the Root account can set or remove a reserved nickname.
+You configured this Root account in the implementation (`impl`) block when you identifies the FRAME System [`Root` origin](https://paritytech.github.io/substrate/master/frame_system/enum.RawOrigin.html#variant.Root) as the `nicks` pallet administrator.
 For example:
 
 ```rust
-// https://paritytech.github.io/substrate/master/frame_system/enum.RawOrigin.html#variant.Root
 type ForceOrigin = frame_system::EnsureRoot<AccountId>;
 ```
 
-If you previously configured the `nicks` pallet as described in [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet), you were able compile the runtime in release mode by running the following command:
+In the development [chain specification](https://github.com/substrate-developer-hub/substrate-node-template/blob/latest/node/src/chain_spec.rs) for the node template, the [Sudo pallet](/rustdocs/latest/pallet_sudo/index.html) is configured to use the Alice account as the FRAME system `Root` origin.
+As a result of this configuration, by default, only the Alice account can call the functions that require the `ForceOrigin` type.
 
-```bash
-cargo build --release
-```
+If you attempt to call the `kill_name` or `force_name` with an account other than the Alice account, the call will fail to be executed.
 
-## Start the blockchain node and front-end template
+## Set the name for an account
 
-After you compile the runtime, you are ready to start the node and interact with it using the front-end template.
+To demonstrate on the origin for a call affects operations, let's set and try to forcibly remove the account name for another account.
+For this demonstration, be sure you have:
 
-To start the local Substrate node:
+- The node template running in development mode: ./target/release/node-template --dev
+- The frontend template running and connecting to the local node: yarn start
+- Your browser connected to the local web server: <http://localhost:8000/>
 
-1. Open a terminal shell, if necessary.
+1. Change the active account in the front-end template from Alice to Bob.
 
-1. Change to the root directory of the Substrate node template.
+1. With **Extrinsic** selected in the Pallet Interactor:
 
-1. Start the node in development mode by running the following command:
+   - Select the `nicks` pallet.
+   - Select the `setName` function.
+   - Type a name for the account.
+   - Click **Signed** to submit this transaction signed by Bob.
 
-   ```bash
-   ./target/release/node-template --dev
+   Because Bob is the owner of this account, the transaction is successful.
+   As the owner of the account, Bob can also execute the `clearName` function in a signed transaction to remove the nickname for the account.
+
+1. With **Extrinsic** selected:
+
+   - Select the `nicks` pallet.
+   - Select the `clearName` function.
+   - Click **Signed** to submit this transaction signed by Bob.
+
+      Because Bob is the owner of this account, the transaction is successful.
+      For Bob to set or remove the nickname for another account, he must call the `forceName` or `killName` function using the `ForceOrigin` that was configured for the pallet.
+
+1. With **Extrinsic** selected:
+
+   - Select the `nicks` pallet.
+   - Select the `forceName` function.
+   - Copy and paste the account address for Charlie as the target.
+   - Type a name for the account.
+   - Click **Signed** to submit this transaction signed by Bob.
+
+   Because you signed this transaction using Bob's account, the function is dispatched using the [`Signed` origin](https://paritytech.github.io/substrate/master/frame_system/enum.RawOrigin.html#variant.Signed) rather than the `Root` origin.
+   In this case, the function call itself is successful.
+   However, the name reservation can't be completed and a `BadOrigin` error is emitted as a result.
+
+   ![BadOrigin error](/media/images/docs/tutorials/add-a-pallet/badOrigin.png)
+
+   As you can see in the Events, the transaction resulted in a withdrawal from Bob's account as a [fee](/main-docs/build/tx-weights-fees/) for submitting the transaction, but there were no state changes because the `Root` origin didn't submit the transaction.
+   The failure to change state also illustrates the [verify-first-write-last](/main-docs/build/runtime-storage#verify-first-write-last) principle for database reads and writes to ensure only successful operations are committed to disk.
+
+## Use the Root origin to dispatch a call
+
+   The Sudo pallet enables you to dispatch a call using the `Root` origin.
+   In the Nick pallet, the forceName and killName functions must be called using the `Root` origin as specified by the `ForceOrigin` configuration.
+   In the front-end template, you can access the Sudo pallet to dispatch a call using the `Root` origin by clicking **SUDO**.
+
+For this demonstration, be sure you have:
+
+- The node template running in development mode: ./target/release/node-template --dev
+- The frontend template running and connecting to the local node: yarn start
+- Your browser connected to the local web server: <http://localhost:8000/>
+
+1. Change the active account to Alice.
+
+   As mentioned in [Identify the administrative account](#identify-the-administrative-account), Alice is the account associated with the `Root` origin when running the chain in development mode.
+
+1. With **Extrinsic** selected in the Pallet Interactor:
+
+   - Select the `nicks` pallet.
+   - Select the `forceName` function.
+   - Copy and paste the account address for Charlie as the target.
+   - Type a name for the account.
+   - Click **SUDO** to submit this transaction using the `Root` origin.
+
+   ![Use SUDO to submit a transaction](/media/images/docs/tutorials/add-a-pallet/sudo-tx.png)
+
+1. With **Extrinsic** selected:
+
+   - Select the `nicks` pallet.
+   - Select the `killName` function.
+   - Copy and paste the account address for Bob as the target.
+   - Click **SUDO** to submit this transaction using the `Root` origin.
+
+   In this case, the Sudo pallet emits a [`Sudid` event](https://paritytech.github.io/substrate/master/pallet_sudo/pallet/enum.Event.html) to inform network participants that the `Root` origin dispatched a call, but an error occurred.
+
+   ![Submitting a killName function emitted an error](/media/images/docs/tutorials/add-a-pallet/sudo-error.png)
+
+   This dispatch error includes two pieces of metadata:
+
+   - an `index` number that indicates the pallet from which the error originated.
+   - an `error` number that indicates the error emitted from that pallet's `Error` enum.
+
+   The `index` number corresponds with the position of the pallet within the `construct_runtime!` macro, with the _first_ pallet in the `construct_runtime!` macro having an index number of zero (0).
+
+   In this example, the `index` is `6` (the _seventh_ pallet) and the `error` is `2` (the _third_ error).
+
+   ```rust
+   construct_runtime!(
+    pub enum Runtime where
+      Block = Block,
+      NodeBlock = opaque::Block,
+      UncheckedExtrinsic = UncheckedExtrinsic
+    {
+      System: frame_system,                                        // index 0
+      RandomnessCollectiveFlip: pallet_randomness_collective_flip, // index 1
+      Timestamp: pallet_timestamp,                                 // index 2
+      Aura: pallet_aura,                                           // index 3
+      Grandpa: pallet_grandpa,                                     // index 4
+      Balances: pallet_balances,                                   // index 5
+      Nicks: pallet_nicks,                                         // index 6
+    }
    ```
 
-1. Keep the terminal that displays the node output open to continue.
+   Regardless of the value of `index`, the `error` value `2` corresponds to the [`Unnamed` error](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Error.html) in the Nicks pallet.
+   This is the error you would expect if Bob has not reserved a nickname or has previously cleared the name reservation.
 
-1. Open a second terminal shell on your computer.
+   You can confirm that Alice can use SUDO to invoke the `killName` function to remove the nickname reserved for any account that has currently has a name reserved.
 
-1. In the new terminal, change to the root directory where you installed the front-end template.
+1. With **Extrinsic** selected:
 
-1. Start the web server for the front-end template by running the following command:
+   - Select the `nicks` pallet.
+   - Select the `killName` function.
+   - Copy and paste the account address for Charlie as the target.
+   - Click **SUDO** to submit this transaction using the `Root` origin.
 
-   ```bash
-   yarn start
-   ```
+   ![Submitting a successfuk killName transaction](/media/images/docs/tutorials/add-a-pallet/sudo-error.png)
 
-1. Open http://localhost:8000/ in a browser to view the front-end template.
+## Where to go next
 
-## Remove a nickname
+This tutorial introduced the use of `Root` and `Signed` origins to specify the account used to submit a transaction and demonstrated the results of using different originating accounts to call functions.
+There are several [tutorials](/tutorials/) that can serve as next steps for learning more about Substrate development.
 
-In [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet), you set a nickname for the Alice account.
-The `nicks` pallet also provides two additional functions—the `clear_name` function and the `kill_name` function—that enable an account owner to remove the reserved name or a root-level user to forcibly remove an account name.
+In addition to tutorials, you might want to explore the following resources to learn more.
 
-To remove a nickname:
-
-You can learn about additional features—such as the use of the Sudo pallet and origin accounts—by exploring how these functions work.
-However, those features are beyond the scope of this tutorial.
-If you want to explore additional features exposed through the Nicks and Sudo pallets, see [Next steps](#next-steps).
-
-For example, if you select the `killName`function and specify the account for Bob as the function's argument, you must be the `Root` origin account to submit the call.
-The `killName` function must be called by the `ForceOrigin` that was configured with the Nicks pallet's `Config` interface in the previous section.
-You may recall that we configured this to be the FRAME system's.
-By default, the node template is configured with the predefined Alice account as the system `Root` origin account using the [Sudo pallet](https://paritytech.github.io/substrate/master/pallet_sudo/index.html).
-
-The front-end template exposes access the `Root` origin through the Sudo pallet by providing a clickable **SUDO** button.
-If you invoke the `killName` function by clicking **Signed**, the call is dispatched by the Signed origin associated with Alice's account.
-Because the call requires the `Root` origin, an error is returned.
-
-![`BadOrigin` Error](/media/images/docs/tutorials/specify-origin/kill-name-bad-origin.png)
-
-Even though the function call was successfully dispatched, the `BadOrigin` error is emitted and displayed in the Events pane.
-Alice's account is charged a fee for the dispatch, but there aren't any state changes because the Nicks pallet follows the important [Verify first, write-last](/main-docs/build/runtime-storage#verify-first-write-last) pattern.
-
-If you invoke the `killName` function by clicking **SUDO**, the call is dispatched by the `Root` origin.
-
-![Nicks Pallet Error](/media/images/docs/tutorials/specify-origin/clear-name-error.png)
-
-The Sudo pallet emits a [`Sudid` event](https://paritytech.github.io/substrate/master/pallet_sudo/pallet/enum.Event.html#variant.Sudid) to inform network participants that the `Root` origin dispatched a call.
-However, the inner dispatch failed with a [`DispatchError`](https://paritytech.github.io/substrate/master/sp_runtime/enum.DispatchError.html) (the Sudo pallet's [`sudo` function](https://paritytech.github.io/substrate/master/pallet_sudo/pallet/enum.Call.html#variant.sudo) is the "outer" dispatch).
-In particular, this was an instance of [the `DispatchError::Module` variant](https://paritytech.github.io/substrate/master/frame_support/dispatch/enum.DispatchError.html#variant.Module), which reports two pieces of metadata: an `index` number and an `error` number.
-The `index` number relates to the pallet from which the error originated; it corresponds with the _index_ (position) of the pallet within the `construct_runtime!` macro.
-The `error` number corresponds with the index of the relevant variant from that pallet's `Error` enum.
-When using these numbers to find pallet errors, remember that the _first_ position corresponds with index _zero_.
-In the screenshot above, the `index` is `9` (the _tenth_ pallet) and the `error` is `2` (the _third_ error).
-Depending on the position of the Nicks pallet in your `construct_runtime!` macro, you may see a different number for `index`.
-Regardless of the value of `index`, you should see that the `error` value is `2`, which corresponds to the _third_ variant of the Nick's pallet's `Error` enum, [the `Unnamed` variant](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Error.html#variant.Unnamed).
-This shouldn't be a surprise since Bob has not yet reserved a nickname, thus it cannot be cleared!
-
-You should confirm that Alice can use the `SUDO` button to invoke the `killName` dispatchable and forcibly clear the nickname associated with any account (including her own) that actually has a nickname associated with it.
-Here are some other things you may want to try:
-
-- Add a nickname that is shorter than the `MinNickLength` or longer than the `MaxNickLength` that you configured with the Nick's pallet's `Config` configuration trait.
-- Add a nickname for Bob then use Alice's account and the `SUDO` button to forcibly kill Bob's nickname.
-  Switch back to Bob's account and dispatch the `clearName` function.
-
-## Next steps
-
-- We have [plenty of tutorials](/tutorials/) to showcase Substrate development concepts and techniques.
-- For more information about runtime development tips and patterns, refer to the [How-to quick reference guides](/reference/how-to-guides/).
-- For a bare FRAME pallet with detailed comments about what you can access within FRAME, see [this example in `substrate`](https://github.com/paritytech/substrate/tree/master/frame/examples/basic).
-
-### References
-
-- [The Cargo book](https://doc.rust-lang.org/stable/cargo/)
-- [Rust and WebAssembly](https://rustwasm.github.io/)
+- [Privileged calls and origins](/main-docs/build/origins) provides a closer look at the default raw origin types and how to create custom origins.
+- [Events and errors](/main-docs/build/events-errors) xplains how to emit events and errors from the runtime.
+- [FRAME pallets](/reference/frame-pallets/) offers an overview of the most commonly-used predefined FRAME pallets.
