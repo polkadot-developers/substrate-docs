@@ -47,6 +47,7 @@ export const query = graphql`
           id
           frontmatter {
             title
+            link
             order
             description
             bodyLinkOneURL

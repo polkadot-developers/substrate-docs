@@ -1,6 +1,7 @@
 ---
 title: Get Started
 description: Learn the fundamental concepts and terminology to start building your blockchain using the Substrate framework.
+link: /main-docs/fundamentals/
 order: 1
 image: "../media/images/get-started.png"
 bodyLinkOneTitle: Blockchain Basics

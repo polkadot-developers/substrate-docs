@@ -2,12 +2,14 @@ import cx from 'classnames';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import React from 'react';
 
+import { Link } from '../../default/Link';
 import CardLink from './CardLink';
 
 export default function Card({
   title,
   text,
   image,
+  link,
   bodyLinkOneURL,
   bodyLinkOneTitle,
   bodyLinkTwoURL,
@@ -30,10 +32,14 @@ export default function Card({
         'hover:scale-105 transition-transform'
       )}
     >
-      <GatsbyImage className={imageStyles} image={cardImage} alt={`Substrate Documentation ${title}`} />
+      <Link to={link}>
+        <GatsbyImage className={imageStyles} image={cardImage} alt={`Substrate Documentation ${title}`} />
+      </Link>
       <div className="lg:p-6 md:p-10 sm:p-6 xs:p-6">
-        <p className="text-2xl lg:text-3xl xl:text-4xl capitalize font-title font-extrabold">{title}</p>
-        <p className="xl:h-32 lg:h-44 md:h-12 sm:h-22 block">{text}</p>
+        <Link to={link}>
+          <p className="text-2xl lg:text-3xl xl:text-4xl capitalize font-title font-extrabold">{title}</p>
+          <p className="xl:h-32 lg:h-44 md:h-12 sm:h-22 block">{text}</p>
+        </Link>
         <div className="block sm:text-left">
           <CardLink className="mdx-anchor text-substrateGreen block my-2" link={bodyLinkOneURL}>
             {bodyLinkOneTitle}
