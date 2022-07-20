@@ -222,7 +222,6 @@ To add the `sp-std` crate to the pallet:
    default-features = false
    git = 'https://github.com/paritytech/substrate.git'
    tag = 'polkadot-v0.9.26'  # Must *match* the rest of your Substrate deps!
-   version = '4.0.0'
    ```
 
 1. Add the `sp-std` crate to the list of features.

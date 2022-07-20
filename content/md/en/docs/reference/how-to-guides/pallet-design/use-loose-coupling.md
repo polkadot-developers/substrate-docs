@@ -17,7 +17,7 @@ pallet you want to couple to accordingly:
 
 ```toml
 [dependencies]
-frame-support = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-vv0.9.26", version = "4.0.0-dev" }
+frame-support = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26"}
 
 # -- snip
 
