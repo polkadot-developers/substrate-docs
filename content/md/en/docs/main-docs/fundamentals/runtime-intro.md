@@ -179,4 +179,4 @@ Now that you are familiar with the basics of Substrate runtime development and w
 - [Add a module to the runtime](/tutorials/work-with-pallets/add-a-pallet)
 - [Rust for Substrate](/main-docs/fundamentals/rust-basics/)
 - [Macro reference](/reference/frame-macros/)
-- [Create a custom pallet using macros](/tutorials/work-with-pallets/custom-pallet/)
+- [Use macros in a custom pallet](/tutorials/work-with-pallets/use-macros-in-a-custom-pallet/)

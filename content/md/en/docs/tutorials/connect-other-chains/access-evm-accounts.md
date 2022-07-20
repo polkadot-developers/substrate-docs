@@ -31,7 +31,7 @@ You should have completed the following Substrate tutorials before attempting th
 
 - [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
 - [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet/)
-- [Use macros in a custom pallet](/tutorials/work-with-pallets/custom-pallet/)
+- [Use macros in a custom pallet](/tutorials/work-with-pallets/use-macros-in-a-custom-pallet/)
 
 From the tutorials, you should be familiar with how to perform the following tasks:
 
