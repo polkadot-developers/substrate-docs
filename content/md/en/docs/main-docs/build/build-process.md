@@ -19,8 +19,8 @@ You can see this when running `cargo tree -i node-template-runtime` from the ter
 
 ```bash
 # Displays all packages that depend on the node-template-runtime package.
-node-template-runtime devhub/latest (...)
-└── node-template devhub/latest (...)
+node-template-runtime devhub/polkadot-v0.9.26 (...)
+└── node-template devhub/polkadot-v0.9.26 (...)
 ```
 
 But how is the Wasm runtime created?

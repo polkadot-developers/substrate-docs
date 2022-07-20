@@ -85,10 +85,10 @@ If you have completed previous tutorials, you should have the Substrate node tem
    cd substrate-node-template
    ```
 
-1. Switch to the version of the repository that has the `latest` tag by running the following command:
+1. Switch to the version of the repository that has the `polkadot-v0.9.26` tag by running the following command:
 
    ```bash
-   git checkout latest
+   git checkout polkadot-v0.9.26
    ```
 
    This command checks out the repository in a detached state.
