@@ -36,6 +36,13 @@ To install the Rust toolchain on Linux:
 1. Check the packages you have installed on the local computer by running an appropriate package management command for your Linux distribution.
 
 1. Add any package dependencies you are missing to your local development environment by running an appropriate package management command for your Linux distribution.
+
+   For example, on Ubuntu Desktop or Ubuntu Server, you might run a command similar to the following:
+
+   ```bash
+   sudo apt install --assume-yes git clang curl libssl-dev
+   ```
+
    Click the tab titles to see examples for other Linux operating systems:
 
    <figure class='tabbed'>
@@ -148,11 +155,10 @@ To compile the Substrate node template:
 1. Compile the node template by running the following command:
 
    ```bash
-   # We always want to build in release mode when intending to run and/or test any node
-   cargo b -r
+   cargo build --release
    ```
 
-   Because of the number of crates required, compiling the node can take several minutes.
+   Because of the number of packages required, compiling the node can take several minutes.
 
 After the build completes successfully, your local computer is ready for Substrate development activity.
 
