@@ -37,11 +37,12 @@ Before you begin, verify the following:
 
 By completing this tutorial, you will accomplish the following objectives:
 
-- Call the `clear_name` function using an account that isn't allowed to execute the call.
+- Call the `set_name` function using an account that has permission to execute the call.
 - Call the `clear_name` function using an account that has permission to execute the call.
+- Call the `force_name` function using an account that isn't allowed to execute the call.
 - Call the `kill_name` function using an origin that doesn't have administrative privileges.
 - Call the `kill_name` function using the `Root` origin account.
-- See how calling function using different origin account can lead to failed or successful results.
+- See how calling function using different origin accounts can lead to failed or successful results.
 
 ## Identify the administrative account
 
