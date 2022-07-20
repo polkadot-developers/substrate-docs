@@ -166,8 +166,8 @@ tutorials:
           url: /tutorials/work-with-pallets/use-macros-in-a-custom-pallet/
         - title: Specify the origin for a call
           url: /tutorials/work-with-pallets/specify-the-origin-for-a-call/
-        #- title: Publish a custom pallet
-        #url: /tutorials/work-with-pallets/publish-pallet/
+        - title: Publish custom pallets
+          url: /tutorials/work-with-pallets/publish-custom-pallets/
     - title: Develop smart contracts
       url: /tutorials/smart-contracts/
       pages:
