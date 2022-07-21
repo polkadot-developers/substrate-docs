@@ -30,6 +30,8 @@ Broadly-speaking, there are two main reasons for adding the Contracts pallet to 
   
   The Contracts pallet provides the [Chain extension](https://ink.substrate.io/macros-attributes/chain-extension/) primitive for exactly that functionality and programming languages—like [ink!](https://paritytech.github.io/ink/)—can make use of the business logic primitives your chain exposes.
 
+  Ror more information about use cases for the Contracts pallet, see the pallet [README][pallet-readme].
+
 ## Before you begin
 
 Make sure you have the latest version (`polkadot-v0.9.26`) of the Substrate node template compiled on your computer.
@@ -52,7 +54,7 @@ If you haven't already done so, see [Build a local blockchain](/tutorials/get-st
 
 ## Add the Contracts pallet to your runtime
 
-1. Implement the [Contracts pallet](https://paritytech.github.io/substrate/master/pallet_contracts/) configuration trait for your `runtime/src/lib.rs`.
+1. Implement the Contracts pallet [configuration trait](https://paritytech.github.io/substrate/master/pallet_contracts/pallet/trait.Config.html) for your `runtime/src/lib.rs`.
 
    You should check that the version of the pallet you are configuring is the same version specified in the `Cargo.toml` dependencies for the Contracts pallet.
 
@@ -71,7 +73,7 @@ If you haven't already done so, see [Build a local blockchain](/tutorials/get-st
 
    - [Substrate repository node](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs)
    - [`substrate-contracts-node`](https://github.com/paritytech/substrate-contracts-node) is a standalone node.
-   [`contracts-parachain`][contracts-parachain] is a parachain node.
+   - [`contracts-parachain`][contracts-parachain] is a parachain node.
 
    The [configuration trait documentation](https://paritytech.github.io/substrate/master/pallet_contracts/pallet/trait.Config.html) also has explanations for each type.
 
@@ -79,8 +81,8 @@ If you haven't already done so, see [Build a local blockchain](/tutorials/get-st
 
    Note that some of these types require `parameter_types`.
    To see an example of how they should be added, see [this example][bin-runtime-contracts-frame].
-   Add the parameter types directly above `impl pallet_contracts::Config for Runtime`.
 
+   Add the parameter types directly above `impl pallet_contracts::Config for Runtime`.
    For example, the following snippet shows how to add the `DeletionQueueDepth` parameter type:
 
    ```rust
@@ -139,14 +141,11 @@ As an example, there is a custom API and RPC endpoint that enables you to execut
 This dry-run is often used by offchain tooling—such as a frontend—to display a contract's state.
 For example, if your application deploys an ERC-20 contract and you want to display the balance of an account, you can configure the frontend to execute a dry-run of the balance function using this custom API and RPC endpoint.
 
-To use the custom runtime APIs and RPC endpoints exposed in the Contracts pallet, you need to include two additional pallets in the runtime:
-
-- [pallet_contracts_rpc_runtime_api](https://paritytech.github.io/substrate/master/pallet_contracts_rpc_runtime_api/index.html)
-- [pallet_contracts_rpc](https://paritytech.github.io/substrate/master/pallet_contracts_rpc/)
+To use the custom runtime APIs and RPC endpoints exposed in the Contracts pallet, you need to include two additional pallets in the runtime: [`pallet_contracts_rpc_runtime_api`](https://paritytech.github.io/substrate/master/pallet_contracts_rpc_runtime_api/index.html) and [`pallet_contracts_rpc`](https://paritytech.github.io/substrate/master/pallet_contracts_rpc/).
 
 1. Import the dependencies.
 
-   As in the [first step of this guide](#1-import-the-dependencies), update `runtime/Cargo.toml` to add `pallet-contracts-rpc-runtime-api`.
+   As in the first step of this guide, update the `runtime/Cargo.toml` file to add `pallet-contracts-rpc-runtime-api`.
 
 1. Include `pallet-contracts` and `pallet-contracts-rpc` inside `node/Cargo.toml`.
 
@@ -199,39 +198,37 @@ To use the custom runtime APIs and RPC endpoints exposed in the Contracts pallet
 
 1. Storage migrations
 
-  You should also account for storage migrations.
+   The most naive way to account for storage migration is to include the following code in your `runtime/src/lib.rs`.
 
-  The most naive way is to include the following code in your `runtime/src/lib.rs`.
+   ```rust
+   use pallet_contracts::migration;
 
-  ```rust
-  use pallet_contracts::migration;
-
-  pub struct Migrations;
-  impl OnRuntimeUpgrade for Migrations {
-   fn on_runtime_upgrade() -> Weight {
-    migration::migrate::<Runtime>()
+   pub struct Migrations;
+   impl OnRuntimeUpgrade for Migrations {
+    fn on_runtime_upgrade() -> Weight {
+     migration::migrate::<Runtime>()
+    }
    }
-  }
-  ```
+   ```
 
-  You also need to modify your `Executive` type by adding `Migrations` as a type parameter:
+   You also need to modify your `Executive` type by adding `Migrations` as a type parameter:
 
-  ```rust
-  pub type Executive = frame_executive::Executive<
-    Runtime,
-    Block,
-    frame_system::ChainContext<Runtime>,
-    Runtime,
-    AllPalletsWithSystem,
-    Migrations,
-  >;
-  ```
+   ```rust
+   pub type Executive = frame_executive::Executive<
+     Runtime,
+     Block,
+     frame_system::ChainContext<Runtime>,
+     Runtime,
+     AllPalletsWithSystem,
+     Migrations,
+   >;
+   ```
 
-  This is only the most simple solution of how to do storage migrations.
-  If you have a lot of state in your chain, the migration might take longer than the time allowed for building a block.
-  If a migration takes longer than the time allowed for building a block, the chain will stop progressing and be unable to resume building blocks.
+   This is only the most simple solution of how to do storage migrations.
+   If you have a lot of state in your chain, the migration might take longer than the time allowed for building a block.
+   If a migration takes longer than the time allowed for building a block, the chain will stop progressing and be unable to resume building blocks.
 
-  <!-- See the how-to guide on [Storage migrations][storage-migrations-tutorial] for more details on migrations. -->
+   <!-- See the how-to guide on [Storage migrations][storage-migrations-tutorial] for more details on migrations. -->
 
 ## Start your upgraded chain
 
@@ -251,16 +248,16 @@ cargo build --release
 
 See the following repositories for examples of node configurations that include the Contracts pallet.
 
-[Default node configuration][bin-runtime-contracts-config] includes all pallets shipped with Substrate.
-[`substrate-contracts-node`][substrate-contracts-node] is a node template based on the [`node-template`][substrate-node-template].
-[`contracts-rococo`][contracts-parachain] is a parachain node template for the Rococo testnet.
+- [Default `node` configuration][bin-runtime-contracts-config] includes all pallets shipped with Substrate.
+- [`substrate-contracts-node`][substrate-contracts-node] is a node template based on the - [`node-template`][substrate-node-template].
+- [`contracts-rococo`][contracts-parachain] is a parachain node template for the Rococo testnet.
 
-## Related material
+## Where to go next
 
-- [`substrate-contracts-node`](https://github.com/paritytech/substrate-contracts-node)
-- [`pallet_contracts`](https://paritytech.github.io/substrate/master/pallet_contracts/index.html).
-- [`pallet_contracts_rpc`](https://paritytech.github.io/substrate/master/pallet_contracts_rpc/index.html).
+- [Why Rust for smart contracts?](https://ink.substrate.io/why-rust-for-smart-contracts)
+- [Why WebAssembly for smart contracts?](https://ink.substrate.io/why-webassembly-for-smart-contracts).
 - [Develop smart contracts](/tutorials/smart-contracts/)
+- [Smart contract code examples](https://github.com/paritytech/ink/tree/master/examples)
 
 [contracts-frame-gh]: https://github.com/paritytech/substrate/blob/b75a253f148aa36fa17cf795b9f2fc2f22d0fcc5/frame/contracts/src/lib.rs
 [bin-runtime-contracts-frame]: https://github.com/paritytech/substrate/blob/b75a253f148aa36fa17cf795b9f2fc2f22d0fcc5/bin/node/runtime/src/lib.rs#L1078-L1095
