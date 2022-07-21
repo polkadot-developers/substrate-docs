@@ -249,7 +249,7 @@ cargo build --release
 See the following repositories for examples of node configurations that include the Contracts pallet.
 
 - [Default `node` configuration][bin-runtime-contracts-config] includes all pallets shipped with Substrate.
-- [`substrate-contracts-node`][substrate-contracts-node] is a node template based on the - [`node-template`][substrate-node-template].
+- [`substrate-contracts-node`][substrate-contracts-node] is a node template based on the [`node-template`][substrate-node-template].
 - [`contracts-rococo`][contracts-parachain] is a parachain node template for the Rococo testnet.
 
 ## Where to go next
