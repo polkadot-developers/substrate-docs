@@ -1,6 +1,6 @@
 ---
 title: "Use our StackExchange"
-active: false
+active: true
 ---
 
 Have a question related to something you're building with Substrate?
