@@ -16,21 +16,19 @@ However, each pallet requires specific configuration settings and type definitio
 Broadly-speaking, there are two main reasons for adding the Contracts pallet to the runtime:
 
 - You want to deploy smart contracts as first-class citizens.
-- You want users to be able to customize how they interact with your chain.
+  
+  Adding the Contracts pallet to a Substrate runtime enables you to build a general-purpose blockchain that uses smart contracts to provide the core functionality you want to deliver.
+  For example, if you have an innovative idea that focuses on the use of smart contracts, you can use the Contracts pallet to build the base layer of your chain, then complement the base layer with other pallets to achieve application-specific goals with minimal blockchain-specific customization.
 
-### Smart contracts as first-class citizens
-
-Adding the Contracts pallet to a Substrate runtime enables you to build a general-purpose smart contracts chain.
-For example, if you have an innovative idea that requires smart contracts to be the main focus of your chain, you can build a chain with smart contracts as a base layer that you complement with other pallets to achieve application-specific goals with minimal blockchain-specific customization.
-
-### Smart contracts for users to customize how they interact with your chain
-
-If you are building a chain that doesn't focus on smart contracts—with most of the logic is defined using other Substrate pallets—you still might want to use the Contracts pallet to expose parts of the chain logic for customization.
-For example, if you are building a decentralized exchange blockchain, you might want to enable users to upload their own trading algorithms.
-Smart contracts are ideal for that type of use case because they treat all user input as untrusted and potentially adversarial.
-With the gas fees associated with executing a smart contract, users have to pay for the execution time of their trading algorithms.
-
-The Contracts pallet provides the [Chain extension][chain-extension] primitive for exactly that functionality and programming languages—like [ink!][https://paritytech.github.io/ink/]—can make use of the business logic primitives your chain exposes.
+- You want to build a blockchain with flexibility for how users interact with the chain.
+  
+  If you are building a chain that doesn't focus on smart contracts—with most of the logic is defined using other Substrate pallets—you still might want to use the Contracts pallet to expose parts of the chain logic for customization.
+  
+  For example, if you are building a decentralized exchange blockchain, you might want to enable users to upload their own trading algorithms.
+  Smart contracts are ideal for that type of use case because they treat all user input as untrusted and potentially adversarial.
+  With the gas fees associated with executing a smart contract, users have to pay for the execution time of their trading algorithms.
+  
+  The Contracts pallet provides the [Chain extension][chain-extension] primitive for exactly that functionality and programming languages—like [ink!][https://paritytech.github.io/ink/]—can make use of the business logic primitives your chain exposes.
 
 ## Before you begin
 
@@ -40,9 +38,11 @@ If you haven't already done so, see [Build a local blockchain](/tutorials/get-st
 ## Import the dependencies
 
 1. Add Contracts to your runtime.
-   To learn how to include Contracts in your runtime, see [Basic pallet integration](/reference/how-to-guides/basics/import-a-pallet).
+
+   To learn how to include Contracts in your runtime, see [Import a pallet](/reference/how-to-guides/basics/import-a-pallet).
 
 1. Update `runtime/Cargo.toml` with the following entries:
+
    - `pallet-contracts`
    - `pallet-contracts-primitives`
    - `pallet-contracts-rpc-runtime-api`
@@ -56,44 +56,46 @@ If you haven't already done so, see [Build a local blockchain](/tutorials/get-st
 
    You should check that the version of the pallet you are configuring is the same version specified in the `Cargo.toml` dependencies for the Contracts pallet.
 
-   Implementing the trait will require you to define the trait types, like so:
+   To implement the trait, define the following trait types:
 
    ```rust
    impl pallet_contracts::Config for Runtime {
-   	type Time = Timestamp;
-   	type Randomness = RandomnessCollectiveFlip;
-   	type Currency = Balances;
-   	type Event = Event;
-   	/* --snip-- */
+    type Time = Timestamp;
+    type Randomness = RandomnessCollectiveFlip;
+    type Currency = Balances;
+    type Event = Event;
+    /* --snip-- */
    ```
 
-   For the Contracts pallet a couple template nodes exist at which you can take a look on how they set up the specific parameters for this pallet:
-   * [Substrate repository node][bin-runtime-contracts-config]
-   * [`substrate-contracts-node`][substrate-contracts-node] is a standalone node.
-   * [`contracts-parachain`][contracts-parachain] is a parachain node.
+   For examples of how to configure specific parameters for the Contracts pallet, see the `runtime/src/lib.rs` for following template nodes:
 
-   The [configuration trait documentation][contracts-config-rustdocs] also has explanations for each type.
+   - [Substrate repository node](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs)
+   - [`substrate-contracts-node`](https://github.com/paritytech/substrate-contracts-node) is a standalone node.
+   <!--- [`contracts-parachain`][contracts-parachain] is a parachain node.-->
+
+   The [configuration trait documentation](https://paritytech.github.io/substrate/master/pallet_contracts/pallet/trait.Config.html) also has explanations for each type.
 
 1. Add parameter types.
 
-   Note that some of these types require `parameter_types`. To see an example of how they should be added, see [this example][bin-runtime-contracts-frame].
-
+   Note that some of these types require `parameter_types`.
+   <!--To see an example of how they should be added, see [this example][bin-runtime-contracts-frame].-->
    Add the parameter types directly above `impl pallet_contracts::Config for Runtime`.
 
-   For example, the following snippet shows how the parameter type `DeletionQueueDepth` can be added:
+   For example, the following snippet shows how to add the `DeletionQueueDepth` parameter type:
 
    ```rust
    parameter_types! {
      /* --snip-- */
-   	 pub DeletionQueueDepth: u32 = ((DeletionWeightLimit::get() / (
-   	   <Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(1) -
-   		 <Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(0)
-   	 )) / 5) as u32;
+     pub DeletionQueueDepth: u32 = ((DeletionWeightLimit::get() / (
+      <Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(1) -
+      <Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(0)
+      )) / 5) as u32;
      /* --snip-- */
    }
    ```
 
-   Notice how the above parameter type depends on `WeightInfo`. This requires you to add the following to the top of `runtime/src/lib.rs`:
+   Notice how the parameter type depends on `WeightInfo`.
+   This requires you to add the following to the top of `runtime/src/lib.rs`:
 
    ```rust
    use pallet_contracts::weights::WeightInfo;
@@ -133,11 +135,14 @@ If you haven't already done so, see [Build a local blockchain](/tutorials/get-st
 
 The Contracts pallet exposes custom runtime APIs and RPC endpoints.
 
-An example of such an API + RPC is to execute a contract call as a dry-run ‒ so without actually modifying any storage.
-This dry-run is often used by off-chain tooling (e.g. a frontend) to display a contracts state.
-Think of an ERC-20 contract, in order to display the balance of an account the frontend would execute a dry-run of the balance function via this RPC.
+As an example, there is a custom API and RPC endpoint that enables you to execute a contract call as a dry-run—that is, without actually modifying any storage.
+This dry-run is often used by offchain tooling—such as a frontend—to display a contract's state.
+For example, if your application deploys an ERC-20 contract and you want to display the balance of an account, you can configure the frontend to execute a dry-run of the balance function using this custom API and RPC endpoint.
 
-In order to use the Contracts pallet for this you'll use two other pallets: the Contracts RPC Runtime API pallet and the Contracts RPC pallet.
+To use the custom runtime APIs and RPC endpoints exposed in the Contracts pallet, you need to include two additional pallets in the runtime:
+
+- [pallet_contracts_rpc_runtime_api](https://paritytech.github.io/substrate/master/pallet_contracts_rpc_runtime_api/index.html)
+- [pallet_contracts_rpc](https://paritytech.github.io/substrate/master/pallet_contracts_rpc/)
 
 1. Import the dependencies.
 
@@ -147,23 +152,24 @@ In order to use the Contracts pallet for this you'll use two other pallets: the 
 
    This way your runtime can interact with your node.
 
-1. Implement the [`ContractsApi`][contracts-rpc-api-rustdocs] trait.
+1. Implement the [`ContractsApi`](https://paritytech.github.io/substrate/master/pallet_contracts_rpc_runtime_api/trait.ContractsApi.html) trait.
 
    Navigate to the `impl_runtime_apis!` macro near the end of your runtime.
 
    Add the trait implementation inside the macro:
 
    ```rust
-	 impl pallet_contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, BlockNumber, Hash>
-		 for Runtime
-	 {
-	   // TODO: Implement the functions
-	 }
+   impl pallet_contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, BlockNumber, Hash>
+     for Runtime
+   {
+   // TODO: Implement the functions
+   }
    ```
 
-   For the implementation of the individual trait functions it is very unlikely that you want a different implementation than the one used in the templates.
-   These functions merely forward the calls to the pallet. You can copy the implementation straight from [Substrate][bin-runtime-contracts-rpc].
-   Make sure that the version where you copy from is the same as used in your `Cargo.toml`.
+   For the implementation of the individual trait functions, it is very unlikely that you want a different implementation than the one used in the templates.
+   These functions merely forward the calls to the pallet.
+   You can copy the implementation straight from [Substrate](https://github.com/paritytech/substrate-contracts-node/blob/main/runtime/src/lib.rs).
+   Make sure that the version where you copy from is the same version as the one used in your `Cargo.toml` file.
 
 1. Add the RPC API extension.
 
@@ -177,7 +183,7 @@ In order to use the Contracts pallet for this you'll use two other pallets: the 
    pub fn create_full
    ```
 
-   And add the following trait bound to it (in the `where` clause):
+   And add the following trait bound to it in the `where` clause:
 
    ```rust
    C::Api: pallet_contracts_rpc::ContractsRuntimeApi<Block, AccountId, Balance, BlockNumber, Hash>,
@@ -186,29 +192,29 @@ In order to use the Contracts pallet for this you'll use two other pallets: the 
    In the function body, before the function returns, you need to add the contracts RPC API extension:
 
    ```rust
- 	 // Contracts RPC API extension
+   // Contracts RPC API extension
    use pallet_contracts_rpc::{ContractsApiServer, ContractsRpc};
-	 module.merge(ContractsRpc::new(client.clone()).into_rpc())?;
+   module.merge(ContractsRpc::new(client.clone()).into_rpc())?;
    ```
 
-1. Storage Migrations
+1. Storage migrations
 
   You should also account for storage migrations.
 
-  The most naive way is to include this code into your `runtime/src/lib.rs`.
+  The most naive way is to include the following code in your `runtime/src/lib.rs`.
 
   ```rust
   use pallet_contracts::migration;
 
   pub struct Migrations;
   impl OnRuntimeUpgrade for Migrations {
-	  fn on_runtime_upgrade() -> Weight {
-		  migration::migrate::<Runtime>()
-	  }
+   fn on_runtime_upgrade() -> Weight {
+    migration::migrate::<Runtime>()
+   }
   }
   ```
 
-  And you need to adapt your `Executive` type, by adding `Migrations` as a type parrameter:
+  You also need to modify your `Executive` type by adding `Migrations` as a type parameter:
 
   ```rust
   pub type Executive = frame_executive::Executive<
@@ -221,10 +227,11 @@ In order to use the Contracts pallet for this you'll use two other pallets: the 
   >;
   ```
 
-  This is only the most simple solution of how to do storage migrations, if you have a lot of state in your chain the migration might take longer than the time allowed for building a block.
-  This would be very bad, since it would effectively brick your chain, since it would be unable to continue building blocks due to always exhausting the slot duration.
+  This is only the most simple solution of how to do storage migrations.
+  If you have a lot of state in your chain, the migration might take longer than the time allowed for building a block.
+  If a migration takes longer than the time allowed for building a block, the chain will stop progressing and be unable to resume building blocks.
 
-  See the how-to guide on [Storage Migrations][storage-migrations-tutorial] for more details on migrations.
+  <!-- See the how-to guide on [Storage migrations][storage-migrations-tutorial] for more details on migrations. -->
 
 ## Start your upgraded chain
 
@@ -243,8 +250,8 @@ cargo build --release
 ## Related material
 
 - [`substrate-contracts-node`](https://github.com/paritytech/substrate-contracts-node)
-- [`pallet_contracts` crate documentation](https://paritytech.github.io/substrate/master/pallet_contracts/index.html).
-- [`pallet_contracts_rpc` crate documentation](https://paritytech.github.io/substrate/master/pallet_contracts_rpc/index.html).
+- [`pallet_contracts`](https://paritytech.github.io/substrate/master/pallet_contracts/index.html).
+- [`pallet_contracts_rpc`](https://paritytech.github.io/substrate/master/pallet_contracts_rpc/index.html).
 - [Develop smart contracts](/tutorials/smart-contracts/)
 
 <!--
