@@ -1,6 +1,6 @@
 ---
 title: Add the contracts pallet
-description:
+description: How to add the pallets that enable you to use WebAssembly smart contracts on a Substrate-based chain.
 keywords:
   - pallet design
   - intermediate
@@ -28,7 +28,7 @@ Broadly-speaking, there are two main reasons for adding the Contracts pallet to 
   Smart contracts are ideal for that type of use case because they treat all user input as untrusted and potentially adversarial.
   With the gas fees associated with executing a smart contract, users have to pay for the execution time of their trading algorithms.
   
-  The Contracts pallet provides the [Chain extension][chain-extension] primitive for exactly that functionality and programming languages—like [ink!][https://paritytech.github.io/ink/]—can make use of the business logic primitives your chain exposes.
+  The Contracts pallet provides the [Chain extension](https://ink.substrate.io/macros-attributes/chain-extension/) primitive for exactly that functionality and programming languages—like [ink!](https://paritytech.github.io/ink/)—can make use of the business logic primitives your chain exposes.
 
 ## Before you begin
 
@@ -71,14 +71,14 @@ If you haven't already done so, see [Build a local blockchain](/tutorials/get-st
 
    - [Substrate repository node](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs)
    - [`substrate-contracts-node`](https://github.com/paritytech/substrate-contracts-node) is a standalone node.
-   <!--- [`contracts-parachain`][contracts-parachain] is a parachain node.-->
+   [`contracts-parachain`][contracts-parachain] is a parachain node.
 
    The [configuration trait documentation](https://paritytech.github.io/substrate/master/pallet_contracts/pallet/trait.Config.html) also has explanations for each type.
 
 1. Add parameter types.
 
    Note that some of these types require `parameter_types`.
-   <!--To see an example of how they should be added, see [this example][bin-runtime-contracts-frame].-->
+   To see an example of how they should be added, see [this example][bin-runtime-contracts-frame].
    Add the parameter types directly above `impl pallet_contracts::Config for Runtime`.
 
    For example, the following snippet shows how to add the `DeletionQueueDepth` parameter type:
@@ -168,7 +168,7 @@ To use the custom runtime APIs and RPC endpoints exposed in the Contracts pallet
 
    For the implementation of the individual trait functions, it is very unlikely that you want a different implementation than the one used in the templates.
    These functions merely forward the calls to the pallet.
-   You can copy the implementation straight from [Substrate](https://github.com/paritytech/substrate-contracts-node/blob/main/runtime/src/lib.rs).
+   You can copy the implementation straight from [Substrate][bin-runtime-contracts-rpc].
    Make sure that the version where you copy from is the same version as the one used in your `Cargo.toml` file.
 
 1. Add the RPC API extension.
@@ -247,6 +247,14 @@ cargo build --release
 ./target/release/node-template --dev
 ```
 
+## Examples
+
+See the following repositories for examples of node configurations that include the Contracts pallet.
+
+[Default node configuration][bin-runtime-contracts-config] includes all pallets shipped with Substrate.
+[`substrate-contracts-node`][substrate-contracts-node] is a node template based on the [`node-template`][substrate-node-template].
+[`contracts-rococo`][contracts-parachain] is a parachain node template for the Rococo testnet.
+
 ## Related material
 
 - [`substrate-contracts-node`](https://github.com/paritytech/substrate-contracts-node)
@@ -254,20 +262,13 @@ cargo build --release
 - [`pallet_contracts_rpc`](https://paritytech.github.io/substrate/master/pallet_contracts_rpc/index.html).
 - [Develop smart contracts](/tutorials/smart-contracts/)
 
-<!--
-[create-first-chain-tutorial]: /tutorials/v3/create-your-first-substrate-chain
-[contracts-config-rustdocs]: /docs.substrate.io/rustdocs/latest/pallet_contracts/pallet/trait.Config.html
 [contracts-frame-gh]: https://github.com/paritytech/substrate/blob/b75a253f148aa36fa17cf795b9f2fc2f22d0fcc5/frame/contracts/src/lib.rs
 [bin-runtime-contracts-frame]: https://github.com/paritytech/substrate/blob/b75a253f148aa36fa17cf795b9f2fc2f22d0fcc5/bin/node/runtime/src/lib.rs#L1078-L1095
 [bin-runtime-contracts-config]: https://github.com/paritytech/substrate/blob/b75a253f148aa36fa17cf795b9f2fc2f22d0fcc5/bin/node/runtime/src/lib.rs#L1097-L1123
 [bin-runtime-contracts-rpc]: https://github.com/paritytech/substrate/blob/b75a253f148aa36fa17cf795b9f2fc2f22d0fcc5/bin/node/runtime/src/lib.rs#L1797-L1841
-[contracts-rpc-api-rustdocs]: /rustdocs/latest/pallet_contracts_rpc_runtime_api/trait.ContractsApi.html
 [substrate-contracts-node]: https://github.com/paritytech/substrate-contracts-node
 [contracts-parachain]: https://github.com/paritytech/cumulus/tree/eb643b89b87fd818cbb78c08883b4bfded7a1f6c/parachains/runtimes/contracts/contracts-rococo
-[storage-migrations-tutorial]: /how-to-guides/v3/storage-migrations/basics/
-[ink-tutorial]: /tutorials/v3/ink-workshop/pt1/
 [ink]: https://ink.substrate.io/
 [chain-extension]: https://ink.substrate.io/macros-attributes/chain-extension
 [pallet-readme]: https://github.com/paritytech/substrate/blob/b75a253f148aa36fa17cf795b9f2fc2f22d0fcc5/frame/contracts/README.md
 [substrate-node-template]: https://github.com/paritytech/substrate/tree/b75a253f148aa36fa17cf795b9f2fc2f22d0fcc5/bin/node-template
--->
