@@ -20,9 +20,7 @@ sudo apt install build-essential
 At a minimum, you need the following packages before you install Rust:
 
 ```bash
-clang
-curl
-git
+clang curl git make
 ```
 
 Because the blockchain requires standard cryptography to support the generation of public/private key pairs and the validation of transaction signatures, you must also have a package that provides cryptography, such as `libssl-dev` or `openssl-devel`.
@@ -36,6 +34,13 @@ To install the Rust toolchain on Linux:
 1. Check the packages you have installed on the local computer by running an appropriate package management command for your Linux distribution.
 
 1. Add any package dependencies you are missing to your local development environment by running an appropriate package management command for your Linux distribution.
+
+   For example, on Ubuntu Desktop or Ubuntu Server, you might run a command similar to the following:
+
+   ```bash
+   sudo apt install --assume-yes git clang curl libssl-dev
+   ```
+
    Click the tab titles to see examples for other Linux operating systems:
 
    <figure class='tabbed'>
@@ -46,22 +51,22 @@ To install the Rust toolchain on Linux:
 
    [[tabbedCode]]
    |```Arch
-   | pacman -Syu --needed --noconfirm curl git clang protobuf
+   | pacman -Syu --needed --noconfirm curl git clang make protobuf
 
    [[tabbedCode]]
    | ```fedora
    | sudo dnf update
-   | sudo dnf install clang curl git openssl-devel protobuf-compiler
+   | sudo dnf install clang curl git openssl-devel make protobuf-compiler
 
    [[tabbedCode]]
    | ```opensuse
-   | sudo zypper install clang curl git openssl-devel llvm-devel libudev-devel protobuf
+   | sudo zypper install clang curl git openssl-devel llvm-devel libudev-devel make protobuf
 
    </figure>
 
    Remember that different distributions might use different package managers and bundle packages in different ways.
    For example, depending on your installation selections, Ubuntu Desktop and Ubuntu Server might have different packages and different requirements.
-   However, the four packages listed in this command-line example are applicable for many common Linux distributions, including Debian, Linux Mint, MX Linux, and Elementary OS.
+   However, the packages listed in the command-line examples are applicable for many common Linux distributions, including Debian, Linux Mint, MX Linux, and Elementary OS.
 
 1. Download the `rustup` installation program and use it to install Rust by running the following command:
 
@@ -148,11 +153,10 @@ To compile the Substrate node template:
 1. Compile the node template by running the following command:
 
    ```bash
-   # We always want to build in release mode when intending to run and/or test any node
-   cargo b -r
+   cargo build --release
    ```
 
-   Because of the number of crates required, compiling the node can take several minutes.
+   Because of the number of packages required, compiling the node can take several minutes.
 
 After the build completes successfully, your local computer is ready for Substrate development activity.
 

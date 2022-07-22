@@ -127,7 +127,6 @@ Therefore, the first step is to remove some files and content from the files in 
    	#[pallet::error]   // <-- Step 4. code block will replace this.
    	#[pallet::pallet]
    	#[pallet::generate_store(pub(super) trait Store)]
-   	#[pallet::generate_storage_info]
    	pub struct Pallet<T>(_);
 
    	#[pallet::storage] // <-- Step 5. code block will replace this.
@@ -221,7 +220,7 @@ To add the `sp-std` crate to the pallet:
    [dependencies.sp-std]
    default-features = false
    git = 'https://github.com/paritytech/substrate.git'
-   tag = 'polkadot-v0.9.26'  # Must *match* the rest of your Substrate deps!
+   branch = 'polkadot-v0.9.26'  # Must *match* the rest of your Substrate deps!
    ```
 
 1. Add the `sp-std` crate to the list of features.

@@ -107,7 +107,7 @@ The values are printed in the terminal or the standard output every time that th
 
 Keep in mind that adding print functions to the runtime increases the size of the Rust and Wasm binaries with debug code not needed in production.
 
-## Substrate's own `print` function
+## Substrate's own print function
 
 For legacy use cases, Substrate provides extra tools for `Print` debugging (or tracing). You can use the [`print` function](https://paritytech.github.io/substrate/master/sp_runtime/fn.print.html) to log the status of the runtime execution.
 
@@ -144,7 +144,7 @@ The values are printed in the terminal or the standard output if the Error gets 
 2020-01-01 00:00:00 tokio-blocking-driver DEBUG runtime  After storing my_val
 ```
 
-## If `std`
+## If std
 
 The legacy `print` function allows you to print and have an implementation of the `Printable` trait.
 However, in some legacy cases you may want to do more than print, or not bother with Substrate-specific traits just for debugging purposes.
