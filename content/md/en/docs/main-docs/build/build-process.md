@@ -12,35 +12,54 @@ After you see the inner-working of how the binaries are compiled, you'll learn m
 ## Compiling an optimized artifact
 
 You probably already know that you can compile a Substrate node by running the `cargo build --release` command in the root directory for a Substrate node project.
-This command builds both the platform-specific executable and Wasm binaries for the project in the local directory and produces an **optimized** executable artifact.
+This command builds both the platform-specific executable and Wasm binaries for the project and produces an **optimized** executable artifact.
 Producing the optimized executable artifact includes some post-compilation processing.
 
-As part of the optimization process, the Wasm runtime binary is compiled and compressed through a series of internal steps before it's included in the genesis state for a chain.
+As part of the optimization process, the WebAssembly runtime binary is compiled and compressed through a series of internal steps before it's included in the genesis state for a chain.
 To give you a better understanding of the process, the following diagram summarizes the steps.
 
 ![WebAssembly compiled and compressed before included on-chain](/media/images/docs/main-docs/node-executable.png)
 
 The following sections describe the build process in more detail.
 
-### Build the initial Wasm binary
+### Build the WebAssembly binary
 
 The `wasm-builder` is a tool that integrates the process of building the WebAssembly binary for your project into the main `cargo` build process.
 This tool is published in the `substrate-wasm-builder` crate.
 
-- Cargo builds a dependency graph from all of the `Cargo.toml` in the project.
-- The runtime `build.rs` module uses the `substrate-wasm-builder` crate to compile the Rust code for the runtime into a Wasm binary, creating the initial binary artifact.
+When you start the build process, `cargo` builds a dependency graph from all of the `Cargo.toml` in the project.
+The runtime `build.rs` module then uses the `substrate-wasm-builder` crate to compile the Rust code for the runtime into a WebAssembly binary, creating the initial binary artifact.
 
-### Compact the initial binary
+#### Features included in WebAssembly
 
-- The `substrate-wasm-builder` wasm linker invokes [wasm-opt](https://www.npmjs.com/package/wasm-opt).
-- The [wasm-opt](https://www.npmjs.com/package/wasm-opt) tool optimizes some instruction sequences and removes any unnecessary sections—such as the ones for debugging—to create a compact WebAssembly binary.
-- The runtime crate is added as a dependency of the node.
+By default, the `wasm-builder` enables all of the features defined for the project in both the WebAssembly binary and platform-native executable except for the `default` and `std` features that are only enabled for the native build. 
 
-### Compress and embed the optimized binary
+#### Environment variables to customize the build process
 
-- A [zstd lossless compression](https://en.wikipedia.org/wiki/Zstandard) algorithm is applied to minimize the size of the final WebAssembly binary.
-- The `runtime/src/lib.rs` file for the node requires the WebAssembly blob from the first step and embeds it into its compilation result.
-- The final executable binary is generated for the project.
+You can use the following environment variables to customize how the WebAssembly binaries are built:
+
+| Use this variable | If you want to do this
+| ----------------- | ----------------------
+| `SKIP_WASM_BUILD` | Skip building the WebAssembly binary. This is useful when you only need to recompile the native binary. However, if the WebAssembly binary doesn't exist, no binaries are compiled. You can skip WebAssembly builds for individual projects by including the PROJECT_NAME in the environment variable. For example, to skip build the WebAssembly binary for the cargo project node-runtime, you can use the environment variable SKIP_NODE_RUNTIME_WASM_BUILD.
+| `WASM_BUILD_TYPE` | Specify whether the WebAssembly binary is a `release` build or a `debug` build. By default, the build type you specify for the `cargo` command is used.
+| `FORCE_WASM_BUILD` | Force a WebAssembly build. This environment variable is rarely required because the `wasm-builder` instructs `cargo` to check for file changes.
+| `WASM_BUILD_RUSTFLAGS` | Extend the `RUSTFLAGS` passed to the `cargo build` command while building the WebAssembly binary.
+| `WASM_BUILD_NO_COLOR` | Disable color output of the WebAssembly build.
+| `WASM_TARGET_DIRECTORY` | Copy the WebAssembly binary to the specified directory. The path needs to be absolute.
+| `WASM_BUILD_TOOLCHAIN` | Specify the toolchain to use to build the WebAssembly binaries. The format needs to be the same as used by `cargo`, for example, `nightly-2020-02-20`.
+| `CARGO_NET_OFFLINE` | Prevent network access for some or all processes launched to support offline environments.
+
+#### Compact and compress the WebAssembly binary
+
+The `substrate-wasm-builder` crate uses lower-level processes to optimize instruction sequences and remove any unnecessary code—such as the code used for debugging—to create a compact WebAssembly binary.
+The binary is then further compressed to minimize the size of the final WebAssembly binary.
+When the compiler processes the `runtime/src/lib.rs` file for the node, it sees the requirement to include the generated WebAssembly binary:
+
+```rust
+include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));
+```
+
+This code includes the compact WebAssembly binary (`WASM_BINARY`) and the uncompressed WebAssembly binary generated by the compiler (`WASM_BINARY_BLOATY`) in its compilation result, and the final executable binary for the project is generated.
 
 At each stage of the build process, the WebAssembly binary is compressed to a smaller and smaller size.
 For example, you can compare the sizes of each WebAssembly binary artifact for Polkadot:
@@ -54,43 +73,6 @@ For example, you can compare the sizes of each WebAssembly binary artifact for P
 You should always use the fully compressed runtime (`*_runtime.compact.compressed.wasm`) WebAssembly binaries for on-chain upgrades and relay chain validation.
 In most cases, there's no need to use the initial WebAssembly binary or interim compact artifacts.
 
-The build.rs file needs to contain the following code:
-
-use substrate_wasm_builder::WasmBuilder;
-
-fn main() {
-    WasmBuilder::new()
-        // Tell the builder to build the project (crate) this `build.rs` is part of.
-        .with_current_project()
-        // Make sure to export the `heap_base` global, this is required by Substrate
-        .export_heap_base()
-        // Build the Wasm file so that it imports the memory (need to be provided by at instantiation)
-        .import_memory()
-        // Build it.
-        .build()
-}
-As the final step, you need to add the following to your project:
-
-include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));
-This will include the generated Wasm binary as two constants WASM_BINARY and WASM_BINARY_BLOATY. The former is a compact Wasm binary and the latter is the Wasm binary as being generated by the compiler. Both variables have Option<&'static [u8]> as type.
-
-Features
-Wasm builder supports to enable cargo features while building the Wasm binary. By default it will enable all features in the wasm build that are enabled for the native build except the default and std features. Besides that, wasm builder supports the special runtime-wasm feature. This runtime-wasm feature will be enabled by the wasm builder when it compiles the Wasm binary. If this feature is not present, it will not be enabled.
-
-Environment variables
-By using environment variables, you can configure which Wasm binaries are built and how:
-
-SKIP_WASM_BUILD - Skips building any Wasm binary. This is useful when only native should be recompiled. If this is the first run and there doesn't exist a Wasm binary, this will set both variables to None.
-WASM_BUILD_TYPE - Sets the build type for building Wasm binaries. Supported values are release or debug. By default the build type is equal to the build type used by the main build.
-FORCE_WASM_BUILD - Can be set to force a Wasm build. On subsequent calls the value of the variable needs to change. As wasm-builder instructs cargo to watch for file changes this environment variable should only be required in certain circumstances.
-WASM_BUILD_RUSTFLAGS - Extend RUSTFLAGS given to cargo build while building the wasm binary.
-WASM_BUILD_NO_COLOR - Disable color output of the wasm build.
-WASM_TARGET_DIRECTORY - Will copy any build Wasm binary to the given directory. The path needs to be absolute.
-WASM_BUILD_TOOLCHAIN - The toolchain that should be used to build the Wasm binaries. The format needs to be the same as used by cargo, e.g. nightly-2020-02-20.
-CARGO_NET_OFFLINE - If true, --offline will be passed to all processes launched to prevent network access. Useful in offline environments.
-Each project can be skipped individually by using the environment variable SKIP_PROJECT_NAME_WASM_BUILD. Where PROJECT_NAME needs to be replaced by the name of the cargo project, e.g. node-runtime will be NODE_RUNTIME.
-
------
 ## Execution strategies
 
 After you have compiled the node with the Rust and Wasm runtime, you use command-line options to specify how the node should operate.
