@@ -81,34 +81,21 @@ For details about the command-line options you can use to start the node, see th
 When you start the node, the node executable uses the command-line options you specify to initialize the chain and generate the genesis block.
 As part of this process, the node adds the WebAssembly runtime as a storage item value and a corresponding `:code` key.
 
-After you start the node, the running node selects the runtime execution environment to use.
-The execution environment selected is controlled by a configurable **execution strategy**.
-These strategies are defined in the [`ExecutionStrategy`](https://paritytech.github.io/substrate/master/sp_state_machine/enum.ExecutionStrategy.html) enum and specify the following execution rules:
+After you start the node, the running node selects the runtime to use.
+By default, the node always uses the WebAssembly runtime for all operations, including: 
 
-- `NativeWhenPossible`: Execute with the Rust runtime if it's available, or WebAssembly if it's not.
-- `AlwaysWasm`: Only execute with the WebAssembly runtime.
-- `Both`: Execute with both the Rust runtime (where available) and WebAssembly runtime.
-- `NativeElseWasm`: Only execute with the WebAssembly runtime if execution with the Rust runtime fails.
-
-### Default execution strategies
-
-By default, different parts of the blockchain execution process use the following execution strategies:
-
-| Operation | Default strategy
-| --------- | ----------------
-| Syncing | NativeElseWasm
-| Block import for non-validator nodes | NativeElseWasm
-| Block import for validator nodes | AlwaysWasm
-| Block authoring | AlwaysWasm
-| Offchain and other operations | NativeWhenPossible
+- Synchronization
+- Authoring new block 
+- Importing blocks
+- Interacting with offchain workers
 
 ### Selection of the WebAssembly runtime
 
-The execution strategy is important because the two representations of the runtime can be different.
+Using the WebAssembly runtime is important because the WebAssembly and native runtimes can diverge.
 For example, if you make changes to the runtime, you must generate a new WebAssembly blob and update the chain to use the new version of the WebAssembly runtime.
-After the update, the WebAssembly runtime differs from the Rust runtime.
+After the update, the WebAssembly runtime differs from the native runtime.
 To account for this difference, all of the execution strategies treat the WebAssembly representation of the runtime as the canonical runtime.
-If the Rust runtime and the WebAssembly runtime versions are different, the WebAssembly runtime is always selected.
+If the native runtime and the WebAssembly runtime versions are different, the WebAssembly runtime is always selected.
 
 Because the WebAssembly runtime is stored as part of the blockchain state, the network must come to consensus about the representation of this binary.
 To reach consensus about the binary, the blob that represents the WebAssembly runtime must be exactly the same across all synchronizing nodes.
@@ -121,14 +108,17 @@ Logic that can be executed in the WebAssembly runtime can always be executed in 
 However, not all logic that can be executed in the Rust runtime can be executed in the WebAssembly runtime.
 Block authoring nodes typically use the WebAssembly execution environment to help ensure that they produce valid blocks.
 
-### Native execution environment
+### Native runtime
 
-As noted in [Default execution strategies](#default-execution-strategies), the native runtime is used in some parts of the block handling process.
-However, this is only true if the native runtime is compatible with the WebAssembly [runtime version](/main-docs/build/upgrade/#runtime-versioning).
+Although the WebAssembly runtime is selected by default, it is possible for you to override the runtime selected for all or specific operations by specifying an **execution strategy** as a command-line option.
 
-For most execution processes—except block authoring—the native runtime is preferred because it provides better performance and has fewer restriction.
-However, you can override the default execution strategy for ny part of the block handling process by specifying command-line options.
-For example, if you want to use the native runtime for block authoring, you can specify add `--execution-block-construction Native` to the command you use to start a node.
+If the native runtime and the WebAssembly runtime share the same [version](/main-docs/build/upgrade/#runtime-versioning), you can selectively use the native runtime instead of the WebAssembly runtime, in addition to the WebAssembly runtime, or as a fallback if using the WebAssembly runtime fails.
+In general, you would only choose to use the native runtime for performance reasons or because it's a less restrictive environment than the WebAssembly runtime.
+For example, you might want to use the native runtime for initial synchronization.
+To use the native runtime for this synchronizing blocks, you can start the node using `--execution-syncing native` or `--execution-syncing native-else-wasm` the command-line option.
+
+For information about using the command-line options to specify an execution strategy for all or specific operation, see [node-template](/reference/command-line-tools/node-template).
+For information about the execution strategy variant, see [ExecutionStrategy](https://paritytech.github.io/substrate/master/sp_state_machine/enum.ExecutionStrategy.html)
 
 ## Building WebAssembly without a native runtime
 
@@ -140,8 +130,6 @@ For example, if you're testing a WebAssembly runtime to prepare for a forkless u
 Although it's a rare use case, you can use the [build-only-wasm.sh](https://github.com/paritytech/substrate/blob/master/.maintain/build-only-wasm.sh) script to build the `no_std` WebAssembly binary without compiling the native runtime.
 
 You can also use the `wasm-runtime-overrides` command-line option to load the WebAssembly from the file system.
-
-Usually when performing a runtime upgrade, you want to provide both a native and WebAssembly binary.
 
 ## Compiling Rust without WebAssembly
 
