@@ -344,4 +344,4 @@ There are several [tutorials](/tutorials/) that can serve as next steps for lear
 
 - [Specify the origin for a call](/tutorials/work-with-pallets/specify-the-origin-for-a-call) explores calling functions using different originating accounts.
 - [Configure the contracts pallet](/tutorials/work-with-pallets/contracts-pallet) demonstrates more complex configuration requirements by adding the Contracts pallet to the runtime.
-- [Use macros in a custom pallet](/tutorials/work-with-pallets/custom-pallet) illustrates how you can use macros to create your own pallets.
+- [Use macros in a custom pallet](/tutorials/work-with-pallets/use-macros-in-a-custom-pallet) illustrates how you can use macros to create your own pallets.
