@@ -12,7 +12,7 @@ After you see the inner-working of how the binaries are compiled, you'll learn m
 ## Compiling an optimized artifact
 
 You probably already know that you can compile a Substrate node by running the `cargo build --release` command in the root directory for a Substrate node project.
-This command builds both the platform-specific executable and Wasm binaries for the project and produces an **optimized** executable artifact.
+This command builds both the platform-specific executable and WebAssembly binaries for the project and produces an **optimized** executable artifact.
 Producing the optimized executable artifact includes some post-compilation processing.
 
 As part of the optimization process, the WebAssembly runtime binary is compiled and compressed through a series of internal steps before it's included in the genesis state for a chain.
@@ -75,15 +75,15 @@ In most cases, there's no need to use the initial WebAssembly binary or interim 
 
 ## Execution strategies
 
-After you have compiled the node with the Rust and Wasm runtime, you use command-line options to specify how the node should operate.
+After you have compiled the node with the native and WebAssembly runtime, you use command-line options to specify how the node should operate.
 For details about the command-line options you can use to start the node, see the [node-template](/reference/command-line-tools/node-template) command-line reference.
 
 When you start the node, the node executable uses the command-line options you specify to initialize the chain and generate the genesis block.
-As part of this process, the node adds the Wasm runtime as a storage item value and a corresponding `:code` key.
+As part of this process, the node adds the WebAssembly runtime as a storage item value and a corresponding `:code` key.
 
 After you start the node, the running node selects the runtime execution environment to use.
 The execution environment selected is controlled by a configurable **execution strategy**.
-These strategies are defined in the [`ExecutionStrategy`](/rustdocs/latest/sp_state_machine/enum.ExecutionStrategy.html) enum and specify the following execution rules:
+These strategies are defined in the [`ExecutionStrategy`](https://paritytech.github.io/substrate/master/sp_state_machine/enum.ExecutionStrategy.html) enum and specify the following execution rules:
 
 - `NativeWhenPossible`: Execute with the Rust runtime if it's available, or WebAssembly if it's not.
 - `AlwaysWasm`: Only execute with the WebAssembly runtime.
@@ -121,14 +121,14 @@ Logic that can be executed in the WebAssembly runtime can always be executed in 
 However, not all logic that can be executed in the Rust runtime can be executed in the WebAssembly runtime.
 Block authoring nodes typically use the WebAssembly execution environment to help ensure that they produce valid blocks.
 
-### Rust execution environment
+### Native execution environment
 
-As noted in [Default execution strategies](#default-execution-strategies), the Rust execution environment is used in some parts of the block handling process.
-However, this is only true if the Rust execution environment is compatible with the WebAssembly [runtime version](/main-docs/build/upgrade/#runtime-versioning).
+As noted in [Default execution strategies](#default-execution-strategies), the native runtime is used in some parts of the block handling process.
+However, this is only true if the native runtime is compatible with the WebAssembly [runtime version](/main-docs/build/upgrade/#runtime-versioning).
 
-For most execution processes—except block authoring—the Rust execution environment is preferred because it provides better performance and has fewer restriction.
+For most execution processes—except block authoring—the native runtime is preferred because it provides better performance and has fewer restriction.
 However, you can override the default execution strategy for ny part of the block handling process by specifying command-line options.
-For example, if you want to use the Rust execution environment for block authoring, you can specify add `--execution-block-construction Native` to the command you use to start a node.
+For example, if you want to use the native runtime for block authoring, you can specify add `--execution-block-construction Native` to the command you use to start a node.
 
 ## Building WebAssembly without a native runtime
 
@@ -141,7 +141,7 @@ Although it's a rare use case, you can use the [build-only-wasm.sh](https://gith
 
 You can also use the `wasm-runtime-overrides` command-line option to load the WebAssembly from the file system.
 
-Usually when performing a runtime upgrade, you want to provide both a native and Wasm binary.
+Usually when performing a runtime upgrade, you want to provide both a native and WebAssembly binary.
 
 ## Compiling Rust without WebAssembly
 
