@@ -2,6 +2,8 @@ import cx from 'classnames';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import React from 'react';
 
+import analytics from '../../../analytics';
+import snakecase from '../../../hooks/snakecase';
 import { Link } from '../../default/Link';
 import CardLink from './CardLink';
 
@@ -32,7 +34,12 @@ export default function Card({
         'hover:scale-105 transition-transform'
       )}
     >
-      <Link to={link}>
+      <Link
+        to={link}
+        onClick={() => {
+          analytics.click(snakecase(link));
+        }}
+      >
         <GatsbyImage className={imageStyles} image={cardImage} alt={`Substrate Documentation ${title}`} />
       </Link>
       <div className="lg:p-6 md:p-10 sm:p-6 xs:p-6">

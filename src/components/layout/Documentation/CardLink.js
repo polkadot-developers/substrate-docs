@@ -1,10 +1,18 @@
 import React from 'react';
 
+import analytics from '../../../analytics';
+import snakecase from '../../../hooks/snakecase';
 import { Link } from '../../default/Link';
 
 export default function CardLink({ link, children }) {
   return (
-    <Link className="CardLink font-bold mdx-anchor text-substrateDark dark:text-white block my-2 group" to={link}>
+    <Link
+      className="CardLink font-bold mdx-anchor text-substrateDark dark:text-white block my-2 group"
+      to={link}
+      onClick={() => {
+        analytics.click(snakecase(link));
+      }}
+    >
       <span>{children}</span>
       <svg
         className="inline ml-1 group-hover:ml-2 duration-300 fill-current"
