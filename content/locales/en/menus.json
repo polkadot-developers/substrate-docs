@@ -17,6 +17,7 @@
   "developers.marketplace": "Marketplace",
   "developers.playground": "Playground",
   "developers.smart-contracts": "Smart Contracts",
+  "developers.substrate-connect": "Substrate Connect",
 
   "vision.substrate-and-polkadot": "Substrate & Polkadot",
 
@@ -45,6 +46,5 @@
   "legal.privacy": "Privacy Policy",
   "legal.terms": "Terms of Services",
 
-  "extra.substrate-connect": "Substrate Connect",
   "extra.enterprise": "Enterprise"
 }

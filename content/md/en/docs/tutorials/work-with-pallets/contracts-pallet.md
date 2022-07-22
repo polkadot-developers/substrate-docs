@@ -17,11 +17,11 @@ This tutorial focuses less on those common patterns and more on the the settings
 
 Before starting this tutorial, verify the following:
 
-- You have downloaded and compiled the `latest` version of the
-  [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template/tree/latest).
+- You have downloaded and compiled the `polkadot-v0.9.26` version of the
+  [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template/tree/polkadot-v0.9.26).
 
 - You have downloaded and installed the
-  [Substrate front-end template](https://github.com/substrate-developer-hub/substrate-node-template/tree/latest) as described in
+  [Substrate front-end template](https://github.com/substrate-developer-hub/substrate-node-template/tree/polkadot-v0.9.26) as described in
   [Build a local blockchain](/tutorials/get-started/build-local-blockchain/).
 
 ## Add the pallet dependencies
@@ -35,43 +35,59 @@ To import the `pallet-contracts` crate:
 
 1. Open the `runtime/Cargo.toml` configuration file in a text editor.
 
-1. Import the `pallet-contracts` crate to make it available to the node template runtime by adding it to the list of dependencies.
+1. Locate the `[dependencies]` section and note how other pallets are imported.
+
+1. Copy an existing pallet dependency description and replace the pallet name with `pallet-contracts` to make the pallet available to the node template runtime.
+
+   For example, add a line similar to the following:
 
    ```toml
-   [dependencies.pallet-contracts]
-   default-features = false
-   git = 'https://github.com/paritytech/substrate.git'
-   tag = 'latest'
-   version = '4.0.0-dev'
-
-   [dependencies.pallet-contracts-primitives]
-   default-features = false
-   git = 'https://github.com/paritytech/substrate.git'
-   tag = 'latest'
-   version = '4.0.0-dev'
+   pallet-contracts = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
    ```
 
-1. Add the Contracts pallet to the list of `std` features so that its features are included when the runtime is built as a native Rust binary.
+1. Import the `pallet-contracts-primitives` crate to make it available to the node template runtime by adding it to the list of dependencies.
+
+   In most cases, you specify the same information for every pallet in any given version of the node template.
+   However, if the compiler indicates a different version than the one you have specified is found, you might need to modify the dependency to match the version the compiler identifies.
+   For example, if the compiler found version 6.0.0 for the `pallet-contracts-primitives` crate:
+
+   ```toml
+   pallet-contracts-primitives = { version = "6.0.0", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
+   ```
+
+1. Add the Contracts pallet to the list of `std` features so that its features are included when the runtime is built as a platform native binary.
 
    ```toml
    [features]
-   default = ['std']
+   default = ["std"]
    std = [
-   	#--snip--
-   	'pallet-contracts/std',
-   	'pallet-contracts-primitives/std',
-   	#--snip--
-    ]
+      "codec/std",
+      "scale-info/std",
+      "frame-executive/std",
+      "frame-support/std",
+      "frame-system-rpc-runtime-api/std",
+      "frame-system/std",
+      "pallet-aura/std",
+      "pallet-balances/std",
+      "pallet-contracts/std",
+      "pallet-contracts-primitives/std",
+   ]
    ```
 
 1. Save your changes and close the `runtime/Cargo.toml` file.
 
+1. Check that your runtime compiles correctly by running the following command:
+
+   ```bash
+   cargo check -p node-template-runtime
+   ```
+
 ## Implement the Contracts configuration trait
 
-Now that you have successfully imported the Contracts pallet crate, you are ready to add it to the runtime.
+Now that you have successfully imported the pallets for smart contracts, you are ready to implement the parameters and types in the runtime.
 If you have explored other tutorials, you might already know that every pallet has a configuration trait—called `Config`—that the runtime must implement.
 
-To see what you need to implement for the Contracts pallet, you can refer to the Rust API documentation for [`pallet_contracts::Config`](https://paritytech.github.io/substrate/master/pallet_contracts/pallet/trait.Config.html).
+If you review the Rust API documentation for [`pallet_contracts::Config`](https://paritytech.github.io/substrate/master/pallet_contracts/pallet/trait.Config.html), you'll notice that—unlike the Nicks pallet—this pallet has many associated types, so the code in this tutorial is going to be more complex than previous tutorials.
 
 To implement the `Config` trait for the Contracts pallet in the runtime:
 
@@ -83,25 +99,27 @@ To implement the `Config` trait for the Contracts pallet in the runtime:
 
    ```rust
    pub use frame_support::{
-   	construct_runtime, parameter_types,
-   	traits::{KeyOwnerProofSystem, Randomness, StorageInfo, Nothing},
-   	weights::{
-   	constants::{BlockExecutionWeight, ExtrinsicBaseWeight, RocksDbWeight, WEIGHT_PER_SECOND},
-   	IdentityFee, Weight,
-   },
-   StorageValue,
+    construct_runtime, parameter_types,
+    traits::{
+      ConstU128, ConstU32, ConstU64, ConstU8, KeyOwnerProofSystem, Randomness, StorageInfo,Nothing
+    },
+    weights::{
+     constants::{BlockExecutionWeight, ExtrinsicBaseWeight, RocksDbWeight, WEIGHT_PER_SECOND},
+     IdentityFee, Weight,
+    },
+    StorageValue,
    };
    ```
 
-1. Add the `WeightInfo` property to the runtime.
-
+1. Add a line to import the default contract weight from the Contracts pallet.
    For example:
 
    ```rust
-   /* After this line */
+   pub use frame_system::Call as SystemCall;
+   pub use pallet_balances::Call as BalancesCall;
+   pub use pallet_timestamp::Call as TimestampCall;
    use pallet_transaction_payment::CurrencyAdapter;
-   /*** Add this line ***/
-   use pallet_contracts::weights::WeightInfo;
+   use pallet_contracts::DefaultContractAccessWeight; // Add this line
    ```
 
 1. Add the constants required by the Contracts pallet to the runtime.
@@ -122,99 +140,74 @@ To implement the `Config` trait for the Contracts pallet in the runtime:
    pub const DOLLARS: Balance = 100 * CENTS;
 
    const fn deposit(items: u32, bytes: u32) -> Balance {
-   	items as Balance * 15 * CENTS + (bytes as Balance) * 6 * CENTS
+    items as Balance * 15 * CENTS + (bytes as Balance) * 6 * CENTS
    }
-
-   /// Assume ~10% of the block weight is consumed by `on_initialize` handlers.
-   /// This is used to limit the maximal weight of a single extrinsic.
    const AVERAGE_ON_INITIALIZE_RATIO: Perbill = Perbill::from_percent(10);
    /*** End Added Block ***/
    ```
 
-1. Add the parameter types and implementation for the Config trait to the runtime.
+1. Add the parameter types and implement the `Config` trait for `pallet_contracts` in the runtime.
 
    For example:
 
    ```rust
-   impl pallet_timestamp::Config for Runtime {
-   /* --snip-- */
-   }
-
-   /*** Add this block ***/
+   /*** Add a block similar to the following ***/
    parameter_types! {
-   	pub TombstoneDeposit: Balance = deposit(
-   		1,
-   		<pallet_contracts::Pallet<Runtime>>::contract_info_size()
-   	);
-   	pub DepositPerContract: Balance = TombstoneDeposit::get();
-   	pub const DepositPerStorageByte: Balance = deposit(0, 1);
-   	pub const DepositPerStorageItem: Balance = deposit(1, 0);
-   	pub RentFraction: Perbill = Perbill::from_rational(1u32, 30 * DAYS);
-   	pub const SurchargeReward: Balance = 150 * MILLICENTS;
-   	pub const SignedClaimHandicap: u32 = 2;
-   	pub const MaxValueSize: u32 = 16 * 1024;
-   	// The lazy deletion runs inside on_initialize.
-   	pub DeletionWeightLimit: Weight = AVERAGE_ON_INITIALIZE_RATIO *
-   	 BlockWeights::get().max_block;
-   	// The weight needed for decoding the queue should be less or equal than a fifth
-   	// of the overall weight dedicated to the lazy deletion.
-   	pub DeletionQueueDepth: u32 = ((DeletionWeightLimit::get() / (
-   		<Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(1) -
-   		<Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(0)
-   	 )) / 5) as u32;
-
-   	pub Schedule: pallet_contracts::Schedule<Runtime> = Default::default();
+      pub const DepositPerItem: Balance = deposit(1, 0);
+      pub const DepositPerByte: Balance = deposit(0, 1);
+      pub const DeletionQueueDepth: u32 = 128;
+      pub DeletionWeightLimit: Weight = AVERAGE_ON_INITIALIZE_RATIO * BlockWeights::get().max_block;
+      pub Schedule: pallet_contracts::Schedule<Runtime> = Default::default();
    }
-
+   
    impl pallet_contracts::Config for Runtime {
-   	type Time = Timestamp;
-   	type Randomness = RandomnessCollectiveFlip;
-   	type Currency = Balances;
-   	type Event = Event;
-   	type RentPayment = ();
-   	type SignedClaimHandicap = SignedClaimHandicap;
-   	type TombstoneDeposit = TombstoneDeposit;
-   	type DepositPerContract = DepositPerContract;
-   	type DepositPerStorageByte = DepositPerStorageByte;
-   	type DepositPerStorageItem = DepositPerStorageItem;
-   	type RentFraction = RentFraction;
-   	type SurchargeReward = SurchargeReward;
-   	type WeightPrice = pallet_transaction_payment::Module<Self>;
-   	type WeightInfo = pallet_contracts::weights::SubstrateWeight<Self>;
-   	type ChainExtension = ();
-   	type DeletionQueueDepth = DeletionQueueDepth;
-   	type DeletionWeightLimit = DeletionWeightLimit;
-   	type Call = Call;
-   	/// The safest default is to allow no calls at all.
-   	///
-   	/// Runtimes should whitelist dispatchables that are allowed to be called from contracts
-   	/// and make sure they are stable. Dispatchables exposed to contracts are not allowed to
-   	/// change because that would break already deployed contracts. The `Call` structure itself
-   	/// is not allowed to change the indices of existing pallets, too.
-   	type CallFilter = Nothing;
-   	type Schedule = Schedule;
-   	type CallStack = [pallet_contracts::Frame<Self>; 31];
+      type Time = Timestamp;
+      type Randomness = RandomnessCollectiveFlip;
+      type Currency = Balances;
+      type Event = Event;
+      type Call = Call;
+      type CallFilter = frame_support::traits::Nothing;
+      type WeightPrice = pallet_transaction_payment::Pallet<Self>;
+      type WeightInfo = pallet_contracts::weights::SubstrateWeight<Self>;
+      type ChainExtension = ();
+      type Schedule = Schedule;
+      type CallStack = [pallet_contracts::Frame<Self>; 31];
+      type DeletionQueueDepth = DeletionQueueDepth;
+      type DeletionWeightLimit = DeletionWeightLimit;
+      type DepositPerByte = DepositPerByte;
+      type DepositPerItem = DepositPerItem;
+      type AddressGenerator = pallet_contracts::DefaultAddressGenerator;
+      type ContractAccessWeight = DefaultContractAccessWeight<BlockWeights>;
+      type MaxCodeLen = ConstU32<{ 256 * 1024 }>;
+      type RelaxedMaxCodeLen = ConstU32<{ 512 * 1024 }>;
    }
    /*** End added block ***/
    ```
 
-   For more information about the configuration of the Contracts pallet and how the types and parameters are use, see the [Contracts pallet source code](https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs).
+   For more information about the configuration of the Contracts pallet and how the types and parameters are used, see the [Contracts pallet source code](https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs).
 
-1. Add the types exposed in the Contracts pallet to the `construct_runtime!` macro.
+1. Add `pallet_contracts` to the `construct_runtime!` macro.
 
    For example:
 
    ```rust
+   // Create the runtime by composing the FRAME pallets that were previously configured
    construct_runtime!(
-   	pub enum Runtime where
-   	 Block = Block,
-   	 NodeBlock = opaque::Block,
-   	 UncheckedExtrinsic = UncheckedExtrinsic
-   	{
-   	 /* --snip-- */
-   	 /*** Add this line ***/
-   	 Contracts: pallet_contracts::{Pallet, Call, Storage, Event<T>},
-   	}
+      pub enum Runtime where
+        Block = Block,
+        NodeBlock = opaque::Block,
+        UncheckedExtrinsic = UncheckedExtrinsic
+      {
+         System: frame_system,
+         RandomnessCollectiveFlip: pallet_randomness_collective_flip,
+         Timestamp: pallet_timestamp,
+         Aura: pallet_aura,
+         Grandpa: pallet_grandpa,
+         Balances: pallet_balances,
+         TransactionPayment: pallet_transaction_payment,
+         Sudo: pallet_sudo,
+         Contracts: pallet_contracts,
+      }
    );
    ```
 
@@ -235,87 +228,92 @@ You are not required to enable the RPC calls on the Contracts pallet to use it o
 However, it is useful to expose the APIs and endpoints for the Contracts pallet because doing so enables you to perform the following tasks:
 
 - Read contract state from off chain.
-
 - Make calls to node storage without making a transaction.
 
 To expose the Contracts RPC API:
 
-1. Open the `runtime/Cargo.toml` file in a text editor and add a dependencies section to import the Contracts RPC endpoints runtime API.
+1. Open the `runtime/Cargo.toml` file in a text editor.
+
+1. Add the description for the `pallet-contracts-rpc-runtime-api` pallet to the `[dependencies]` section using the same version and branch information as other pallets.
 
    For example:
 
    ```toml
-   [dependencies.pallet-contracts-rpc-runtime-api]
-   default-features = false
-   git = 'https://github.com/paritytech/substrate.git'
-   tag = 'latest'
-   version = '4.0.0-dev'
+   pallet-contracts-rpc-runtime-api = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
    ```
 
-1. Add the Contracts RPC API to the list of `std` features so that its features are included when the runtime is built as a native Rust binary.
+1. Add `pallet-contracts-rpc-runtime-api` to the list of `std` features so that its features are included when the runtime is built as a native binary.
 
    ```toml
    [features]
-   default = ['std']
+   default = ["std"]
    std = [
-   	#--snip--
-   	'pallet-contracts-rpc-runtime-api/std',
+      "codec/std",
+      ...
+      "pallet-contracts/std",
+      "pallet-contracts-primitives/std",
+      "pallet-contracts-rpc-runtime-api/std",
+      ...
    ]
    ```
 
 1. Save your changes and close the `runtime/Cargo.toml` file.
 
+1. Open the `runtime/src/lib.rs` file in a text editor and enable debugging for contracts by adding the following constant:
+
+   ```rust
+   const CONTRACTS_DEBUG_OUTPUT: bool = true;
+   ```
+
 1. Open the `runtime/src/lib.rs` file and implement the contracts runtime API in the
    `impl_runtime_apis!` macro near the end of the runtime `lib.rs` file.
 
-   For example:
+   For example within `impl_runtime_apis! { }` the section:
 
    ```rust
-   impl_runtime_apis! {
-   	/* --snip-- */
-   	/*** Add this block ***/
-   	impl pallet_contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, BlockNumber, Hash>
-   	for Runtime {
-   	 fn call(
-   			origin: AccountId,
-   			dest: AccountId,
-   			value: Balance,
-   			gas_limit: u64,
-   			input_data: Vec<u8>,
-   	 ) -> pallet_contracts_primitives::ContractExecResult {
-   			let debug = true;
-   			Contracts::bare_call(origin, dest, value, gas_limit, input_data, debug)
-   	}
-
-   		fn instantiate(
-   			origin: AccountId,
-   			endowment: Balance,
-   			gas_limit: u64,
-   			code: pallet_contracts_primitives::Code<Hash>,
-   			data: Vec<u8>,
-   			salt: Vec<u8>,
-   	 ) -> pallet_contracts_primitives::ContractInstantiateResult<AccountId, BlockNumber> {
-   			let compute_rent_projection = true;
-   			let debug = true;
-   			Contracts::bare_instantiate(origin, endowment, gas_limit, code, data, salt, compute_rent_projection, debug)
-   	 }
-
-   	 fn get_storage(
-   			address: AccountId,
-   			key: [u8; 32],
-   	 ) -> pallet_contracts_primitives::GetStorageResult {
-   			Contracts::get_storage(address, key)
-   	 }
-
-   	 fn rent_projection(
-   			address: AccountId,
-   	 ) -> pallet_contracts_primitives::RentProjectionResult<BlockNumber> {
-   			Contracts::rent_projection(address)
-   	 }
-   	}
-   	/*** End added block ***/
-   }
-   ```
+   /*** Add this block ***/
+   impl pallet_contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, BlockNumber, Hash>
+     for Runtime
+     {
+      fn call(
+         origin: AccountId,
+         dest: AccountId,
+         value: Balance,
+         gas_limit: u64,
+         storage_deposit_limit: Option<Balance>,
+         input_data: Vec<u8>,
+      ) -> pallet_contracts_primitives::ContractExecResult<Balance> {
+         Contracts::bare_call(origin, dest, value, gas_limit, storage_deposit_limit, input_data, CONTRACTS_DEBUG_OUTPUT)
+      }
+      
+      fn instantiate(
+         origin: AccountId,
+         value: Balance,
+         gas_limit: u64,
+         storage_deposit_limit: Option<Balance>,
+         code: pallet_contracts_primitives::Code<Hash>,
+         data: Vec<u8>,
+         salt: Vec<u8>,
+      ) -> pallet_contracts_primitives::ContractInstantiateResult<AccountId, Balance> {
+         Contracts::bare_instantiate(origin, value, gas_limit, storage_deposit_limit, code, data, salt, CONTRACTS_DEBUG_OUTPUT)
+         }
+         
+      fn upload_code(
+         origin: AccountId,
+         code: Vec<u8>,
+         storage_deposit_limit: Option<Balance>,
+      ) -> pallet_contracts_primitives::CodeUploadResult<Hash, Balance> {
+         Contracts::bare_upload_code(origin, code, storage_deposit_limit)
+      }
+      
+      fn get_storage(
+         address: AccountId,
+         key: [u8; 32],
+         ) -> pallet_contracts_primitives::GetStorageResult {
+         Contracts::get_storage(address, key)
+         }
+      }
+      ```
 
 1. Save your changes and close the `runtime/src/lib.rs` file.
 
@@ -329,70 +327,69 @@ To expose the Contracts RPC API:
 
 At this point, you have finished adding the Contracts pallet to the runtime.
 Now, you need to consider whether the outer node requires any corresponding updates.
-For the Contracts pallet to take advantage of the RPC endpoint API, you need to add the custom RPC endpoint to the node configuration.
+Substrate provides an RPC server to interact with the node.
+However, the default RPC server does not provide access to the Contracts pallet.
+To interact with the Contracts pallet, you must extend the existing RPC server to include the Contracts pallet and the Contracts RPC API.
+For the Contracts pallet to take advantage of the RPC endpoint API, you need to add the custom RPC endpoint to the outer node configuration.
 
 To add the RPC API extension to the outer node:
 
-1. Open the `node/Cargo.toml` file and add the dependencies sections to import the Contracts and Contracts RPC crates.
+1. Open the `node/Cargo.toml` file in a text editor and add the Contracts and Contracts RPC crates to the `[dependencies]` sections.
 
    For example:
 
    ```toml
-   [dependencies]
-   jsonrpc-core = '15.1.0'
-   structopt = '0.3.8'
-   #--snip--
-   # *** Add the following lines ***
-
-   [dependencies.pallet-contracts]
-   git = 'https://github.com/paritytech/substrate.git'
-   tag = 'latest'
-   version = '4.0.0-dev'
-
-   [dependencies.pallet-contracts-rpc]
-   git = 'https://github.com/paritytech/substrate.git'
-   tag = 'latest'
-   version = '4.0.0-dev'
+   pallet-contracts = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
+   pallet-contracts-rpc = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
    ```
 
    Because you have exposed the runtime API and are now working in code for the outer node, you don't need to use `no_std` configuration, so you don't have to maintain a dedicated `std` list of features.
 
 1. Save your changes and close the `node/Cargo.toml` file.
 
-1. Open the `node/src/rpc.rs` file in a text editor.
-
-   Substrate provides an RPC to interact with the node.
-   However, it does not contain access to the Contracts pallet by default.
-   To interact with the Contracts pallet, you must extend the existing RPC and add the Contracts pallet and its API.
+1. Open the `node/src/rpc.rs` file in a text editor and locate the following line.
 
    ```rust
-   use node_template_runtime::{opaque::Block, AccountId, Balance, Index, BlockNumber, Hash}; // NOTE THIS IS AN ADJUSTMENT TO AN EXISTING LINE
-   use pallet_contracts_rpc::{Contracts, ContractsApi};
-      /* --snip-- */
+   use node_template_runtime::{opaque::Block, AccountId, Balance, Index};
+   ```
 
+1. Add `BlockNumber` and `Hash` to the existing `use node_template_runtime` declaration.
+
+   ```rust
+   use node_template_runtime::{opaque::Block, AccountId, Balance, Index, BlockNumber, Hash}; 
+   ```
+
+1. Add `use pallet_contracts_rpc` to the file.
+
+   ```rust
+   use pallet_transaction_payment_rpc::{TransactionPayment, TransactionPaymentApiServer};
+   use substrate_frame_rpc_system::{System, SystemApiServer};
+   use pallet_contracts_rpc::{Contracts, ContractsApiServer}; // Add this line
+   ```
+
+1. Add the Contracts RPC pallet to the `create_full` function for RPC extensions.
+
+   ```rust
    /// Instantiate all full RPC extensions.
    pub fn create_full<C, P>(
       deps: FullDeps<C, P>,
-   ) -> jsonrpc_core::IoHandler<sc_rpc::Metadata> where
-      /* --snip-- */
+   ) -> Result<RpcModule<()>, Box<dyn std::error::Error + Send + Sync>>
+   where
+      C: ProvideRuntimeApi<Block>,
+      C: HeaderBackend<Block> + HeaderMetadata<Block, Error = BlockChainError> + 'static,
       C: Send + Sync + 'static,
       C::Api: substrate_frame_rpc_system::AccountNonceApi<Block, AccountId, Index>,
-      /*** Add This Line ***/
-      C::Api: pallet_contracts_rpc::ContractsRuntimeApi<Block, AccountId, Balance, BlockNumber, Hash>,
-      /* --snip-- */
-   {
-      /* --snip-- */
-      io.extend_with(
-   		TransactionPaymentApi::to_delegate(TransactionPayment::new(client.clone()))
-      );
-      /*** Add this block ***/
-      // Contracts RPC API extension
-      io.extend_with(
-   		ContractsApi::to_delegate(Contracts::new(client.clone()))
-      );
-      /*** End added block ***/
-      io
-   }
+      C::Api: pallet_transaction_payment_rpc::TransactionPaymentRuntimeApi<Block, Balance>,
+      C::Api: pallet_contracts_rpc::ContractsRuntimeApi<Block, AccountId, Balance, BlockNumber, Hash>, // Add this line
+      C::Api: BlockBuilder<Block>,
+      P: TransactionPool + 'static,
+
+1. Add the extension for the Contracts RPC API.
+
+   ```rust
+ module.merge(System::new(client.clone(), pool.clone(), deny_unsafe).into_rpc())?;
+ module.merge(TransactionPayment::new(client.clone()).into_rpc())?;
+ module.merge(Contracts::new(client.clone()).into_rpc())?; // Add this line
    ```
 
 1. Save your changes and close the `node/src/rpc.rs` file.
@@ -447,7 +444,7 @@ To start the local node:
 
 1. Select `contracts` from the list of pallets available to call.
 
-   ![View the contracts pallets](assets/tutorials/contracts-pallet.png)
+   ![View the contracts pallets](/media/images/docs/tutorials/add-a-pallet/contracts-pallet.png)
 
 ## Next steps
 

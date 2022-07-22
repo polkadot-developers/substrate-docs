@@ -92,7 +92,7 @@ For example: `./target/release/substrate-node --enable-offchain-indexing true`
    ```
 
    The indexing data can be any data type that can be bound by the `Encode`, `Decode`, and `Deserialize` traits.
-   In the above code, data is stored via offchain indexing using the [`offchain_index::set()`](https://paritytech.github.io/substrate/latest/sp_io/offchain_index/fn.set.html) method.
+   In the above code, data is stored via offchain indexing using the [`offchain_index::set()`](https://paritytech.github.io/substrate/master/sp_io/offchain_index/fn.set.html) method.
 
 1. Use the `offchain_worker` hook method to read the data in the offchain workers' database:
 

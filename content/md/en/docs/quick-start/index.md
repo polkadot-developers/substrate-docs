@@ -7,7 +7,7 @@ keywords:
 All of the Substrate tutorials and how-to guides require you to build and run a Substrate node in your development environment.
 To help you set up a working environment quickly, the [Substrate Developer Hub](https://github.com/substrate-developer-hub/) maintains several _templates_ for you to use.
 
-The Developer Hub snapshot of the [substrate-node-template](https://github.com/substrate-developer-hub/substrate-node-template/releases/tag/latest) includes everything you need to get started with a core set of features.
+The Developer Hub snapshot of the [substrate-node-template](https://github.com/substrate-developer-hub/substrate-node-template/releases/tag/polkadot-v0.9.26) includes everything you need to get started with a core set of features.
 
 This _Quick start_ assumes that you are setting up a development environment for the first time and want to try out running a single blockchain node on your local computer.
 
@@ -30,10 +30,10 @@ Before you begin, verify the following:
 
 ## Build the node template
 
-1. Clone the node template repository using the `latest` tag by running the following command:
+1. Clone the node template repository using the `polkadot-v0.9.26` tag by running the following command:
 
    ```sh
-   git clone --branch latest --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+   git clone --branch polkadot-v0.9.26 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
    ```
 
 1. Change to the root of the cloned directory:

@@ -24,7 +24,7 @@ Before you begin, verify the following:
 
 - You have competed the [Prepare a local parachain testnet](/tutorials/connect-other-chains/local-relay/) tutorial, and have a running local network with no les than two validators.
 - You have the specific software versions defined in the [Prepare a local parachain testnet](/tutorials/connect-other-chains/local-relay/#matching-versions-are-critical) incorporated into your parachain.
-  For example, if you are using [Polkadot `release-v0.9.24`](https://github.com/paritytech/polkadot/tree/release-v0.9.24), use the `polkadot-v0.9.24` version of the [parachain template](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.24).
+  For example, if you are using [Polkadot `release-v0.9.26`](https://github.com/paritytech/polkadot/tree/release-v0.9.26), use the `polkadot-v0.9.26` version of the [parachain template](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.26).
 
 ## Build the parachain template
 
@@ -36,7 +36,7 @@ In a new terminal window:
 
 ```bash
 # Clone the parachain template with the correct Polkadot version
-git clone --depth 1 --branch polkadot-v0.9.24 https://github.com/substrate-developer-hub/substrate-parachain-template
+git clone --depth 1 --branch polkadot-v0.9.26 https://github.com/substrate-developer-hub/substrate-parachain-template
 
 # Switch into the parachain template directory
 cd substrate-parachain-template

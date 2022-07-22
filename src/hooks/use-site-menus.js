@@ -47,10 +47,6 @@ export const useSiteMenus = () => {
               id
               url
             }
-            extra {
-              id
-              url
-            }
           }
         }
       }

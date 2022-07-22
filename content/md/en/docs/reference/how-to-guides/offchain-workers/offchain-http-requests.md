@@ -92,6 +92,6 @@ The Substrate HTTP library supports the following methods:
 
 ## Examples
 
-- [Example pallet: Offchain worker](https://github.com/paritytech/substrate/blob/polkadot-v0.9.24/frame/examples/offchain-worker/src/lib.rs#L571-L625)
+- [Example pallet: Offchain worker](https://github.com/paritytech/substrate/blob/polkadot-v0.9.26/frame/examples/offchain-worker/src/lib.rs#L571-L625)
 - [Demo: OCW pallet](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/master/pallets/ocw/src/lib.rs#L363-#L401)
 - [Source: Substrate core primitives](https://github.com/paritytech/substrate/blob/master/primitives/runtime/src/offchain/http.rs#L63-L76)
