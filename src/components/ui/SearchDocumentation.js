@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 
+import analytics from '../../analytics';
 import useComponentVisible from '../../hooks/use-component-visible';
 import Icon from '../default/Icon';
 import SearchModal from '../site/Search/SearchModal';
@@ -8,6 +9,7 @@ export default function SearchDocumentation() {
   const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false);
   useEffect(() => {
     isComponentVisible ? (document.body.style.overflow = `hidden`) : (document.body.style.overflow = `unset`);
+    isComponentVisible && analytics.track('open_search_modal');
   }, [isComponentVisible]);
   return (
     <>
