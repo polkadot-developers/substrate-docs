@@ -51,7 +51,7 @@ The parameters in the struct provide the following information:
 | `transaction_version` | The version of the interface for handling transactions. This parameter can be useful to synchronize firmware updates for hardware wallets or other signing devices to verify that runtime transactions are valid. The parameter allows hardware wallets to know which transactions they can safely sign. This number must be bumped if there is a change in the index of the pallets in the `construct_runtime!` macro or if there are any changes to dispatchable functions, such as the number of parameters or parameter types. If this number is updated, then the `spec_version` must also be updated. |
 | `apis` | A list of supported [runtime APIs](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html) along with their versions. |
 
-The orchestration engine—sometimes referred to as the executor—verifies that the native runtime has the same consensus-driven logic as the WebASsembly before it chooses to execute it.
+The orchestration engine—sometimes referred to as the executor—verifies that the native runtime has the same consensus-driven logic as the WebAssembly before it chooses to execute it.
 However, because the runtime versioning is set manually, the orchestration engine can still make inappropriate decisions if the runtime version is misrepresented.
 
 ## Accessing the runtime version

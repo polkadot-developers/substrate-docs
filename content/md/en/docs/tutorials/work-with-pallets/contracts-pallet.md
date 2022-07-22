@@ -397,7 +397,7 @@ To add the RPC API extension to the outer node:
 1. Check that your runtime compiles correctly by running the following command:
 
    ```bash
-   cargo check -p node-template-runtime
+   cargo check -p node-template
    ```
 
 If there are no errors, you are ready to compile.
