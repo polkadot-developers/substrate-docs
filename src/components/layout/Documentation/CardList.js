@@ -15,11 +15,15 @@ export default function CardsList({ data }) {
             description,
             image,
             link,
+            linkSAEvent,
             bodyLinkOneURL,
+            bodyLinkOneSAEvent,
             bodyLinkOneTitle,
             bodyLinkTwoURL,
+            bodyLinkTwoSAEvent,
             bodyLinkTwoTitle,
             bodyLinkThreeURL,
+            bodyLinkThreeSAEvent,
             bodyLinkThreeTitle,
           } = node.frontmatter;
           return (
@@ -29,11 +33,15 @@ export default function CardsList({ data }) {
                 text={description}
                 image={image}
                 link={link}
+                linkSAEvent={linkSAEvent}
                 bodyLinkOneURL={bodyLinkOneURL}
+                bodyLinkOneSAEvent={bodyLinkOneSAEvent}
                 bodyLinkOneTitle={bodyLinkOneTitle}
                 bodyLinkTwoURL={bodyLinkTwoURL}
+                bodyLinkTwoSAEvent={bodyLinkTwoSAEvent}
                 bodyLinkTwoTitle={bodyLinkTwoTitle}
                 bodyLinkThreeURL={bodyLinkThreeURL}
+                bodyLinkThreeSAEvent={bodyLinkThreeSAEvent}
                 bodyLinkThreeTitle={bodyLinkThreeTitle}
               />
             </div>

@@ -2,9 +2,14 @@ import React from 'react';
 
 import { Link } from '../../default/Link';
 
-export default function CardLink({ link, children }) {
+export default function CardLink({ link, children, linkSAEvent }) {
   return (
-    <Link className="CardLink font-bold mdx-anchor text-substrateDark dark:text-white block my-2 group" to={link}>
+    <Link
+      className="CardLink font-bold mdx-anchor text-substrateDark dark:text-white block my-2 group"
+      to={link}
+      data-sa-link-event={linkSAEvent}
+      partiallyActive={true}
+    >
       <span>{children}</span>
       <svg
         className="inline ml-1 group-hover:ml-2 duration-300 fill-current"
