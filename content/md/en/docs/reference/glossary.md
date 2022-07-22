@@ -139,7 +139,7 @@ Because most consensus algorithms assume that up to one-third of the actors or n
 Consensus algorithms are generately concerned with ensuring two properties:
 
 - **safety** indicating that all honest nodes eventually agreed on the state of the chain.
-- **liveness**" indicating the ability for the chain to keep making progress.
+- **liveness** indicating the ability for the chain to keep making progress.
 
 For detailed information about the consensus strategies of the [Polkadot network](#polkadot-network), see the [Polkadot Consensus](https://polkadot.network/polkadot-consensus-part-1-introduction/) blog series.
 
@@ -264,7 +264,7 @@ An acronym for the _Framework for Runtime Aggregation of Modularized Entities_ t
 
 Runtime developers interact with FRAME using [macros](#macro) such as the following:
 
-- `#[pallet::event`
+- `#[pallet::event]`
 - `#[pallet::error]`
 - `#[pallet::storage]`
 - `#[frame_support::pallet]`
