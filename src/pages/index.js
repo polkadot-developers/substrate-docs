@@ -48,17 +48,13 @@ export const query = graphql`
           frontmatter {
             title
             link
-            linkSAEvent
             order
             description
             bodyLinkOneURL
-            bodyLinkOneSAEvent
             bodyLinkOneTitle
             bodyLinkTwoURL
-            bodyLinkTwoSAEvent
             bodyLinkTwoTitle
             bodyLinkThreeURL
-            bodyLinkThreeSAEvent
             bodyLinkThreeTitle
             image {
               childImageSharp {
