@@ -19,14 +19,14 @@ However, there are a few important points to be aware of as you prepare your dev
 ## About the Rust toolchain
 
 The core tools in the Rust **toolchain** are the `rustc` compiler, the `cargo` build and package manager, and the `rustup` toolchain manager.
-At any given point in time, there can multiple versions of Rust available. 
+At any given point in time, there can multiple versions of Rust available.
 For example, there are release channels for stable, beta, and nightly builds.
 You use the `rustup` program to manage the builds available in your environment and the versions of the toolchain programs that are used with different Rust builds.
 
-The `rustc` compiler enables you to build binaries for different architectures, referred to as **targets**. 
+The `rustc` compiler enables you to build binaries for different architectures, referred to as **targets**.
 Targets are identified by a string that specifies the kind of output the compiler should produce.
 This feature is important because Substrate is compiled to both a native Rust binary and a WebAssembly target.
 
 WebAssembly is a portable binary format that can be executed on any modern computer hardware and through any browser accessing the internet.
 The WebAssembly (Wasm) target enables Substrate to produce portable blockchain runtimes.
-For more information about how these binaries are used, see [Build process](../06-build/build-process.md).
+For more information about how these binaries are used, see [Build process](/main-docs/build/build-process/).

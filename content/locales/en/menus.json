@@ -13,11 +13,12 @@
 
   "developers.home": "Home",
   "developers.docs": "Docs",
-  "developers.how-to-guides": "How-to Guides",
-  "developers.tutorials": "Tutorials",
-  "developers.marketplace": "Marketplace",
   "developers.rustdocs": "Rust Docs",
+  "developers.marketplace": "Marketplace",
   "developers.playground": "Playground",
+  "developers.smart-contracts": "Smart Contracts",
+  "developers.substrate-connect": "Substrate Connect",
+  "developers.rococo-network": "Rococo Network",
 
   "vision.substrate-and-polkadot": "Substrate & Polkadot",
 
@@ -27,12 +28,14 @@
   "ecosystem.opportunities": "Opportunities",
   "ecosystem.resources": "Resources",
   "ecosystem.connect": "Connect",
+  "ecosystem.square-one": "Square One",
 
   "ecosystem.opportunities.hackathons": "Hackathons",
   "ecosystem.opportunities.grants": "Grants",
-  "ecosystem.opportunities.jobs": "Jobs",
+  "ecosystem.opportunities.careers": "Careers",
 
   "ecosystem.resources.seminar": "Substrate Seminar",
+  "ecosystem.resources.past-seminars": "Past Seminars",
   "ecosystem.resources.awesome-substrate": "Awesome Substrate",
   "ecosystem.resources.community-resources": "Community Resources",
 
@@ -44,6 +47,5 @@
   "legal.privacy": "Privacy Policy",
   "legal.terms": "Terms of Services",
 
-  "extra.substrate-connect": "Substrate Connect",
   "extra.enterprise": "Enterprise"
 }

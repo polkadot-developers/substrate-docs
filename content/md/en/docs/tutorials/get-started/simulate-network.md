@@ -1,6 +1,7 @@
 ---
 title: Simulate a network
-description: Simulate a Substrate blockchain with an authority consensus model using predefined development accounts.
+description: Start a private blockchain network using predefined accounts as authorized validators.
+keywords:
 ---
 
 This tutorial provides a basic introduction to how you can start a private blockchain network with an **authority set** of private **validators**.
@@ -27,7 +28,7 @@ Before you begin, verify the following:
 
 By completing this tutorial, you will accomplish the following objectives:
 
-- Start a blockchain node using using a predefined account.
+- Start a blockchain node using a predefined account.
 
 - Learn the key command-line options used to start a node.
 
@@ -252,7 +253,7 @@ You learned:
 
 The next tutorial builds on the information you learned in this tutorial to illustrate how you can start a private network with other participants and nodes running on separate computers.
 
-In [Add trusted validators](/tutorials/get-started/trusted-network/), you'll learn:
+In [Add trusted nodes](/tutorials/get-started/trusted-network/), you'll learn:
 
 - How to generate your own secret key pairs.
 

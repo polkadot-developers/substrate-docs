@@ -1,6 +1,7 @@
 ---
 title: Use maps for storing values
-description: Use maps in a smart contract to store and retrieve key-value pairs.
+description: Use mapping to store data as key-value pairs.
+keywords:
 ---
 
 In [Develop a smart contract](/tutorials/smart-contracts/develop-contract/), you developed a smart contract for storing and retrieving a single numeric value.
@@ -177,7 +178,7 @@ To add a storage map to the `incrementer` contract:
    }
    ```
 
-1. Add a `get_mine` function to read `my_value` using the Mapping API `get` function and return `my_value` for the contract caller .
+1. Add a `get_mine` function to read `my_value` using the Mapping API `get` function and return `my_value` for the contract caller.
 
    ```rust
    #[ink(message)]
@@ -321,7 +322,7 @@ You can find an example of the final code for this tutorial in the assets for th
 You can learn more about smart contract development in the following topics:
 
 - [Build an ERC20 token contract](/tutorials/smart-contracts/erc20-token/)
-- [Troubleshoot smart contracts](tutorials/smart-contracts/sc-common-issues/)
+- [Troubleshoot smart contracts](/tutorials/smart-contracts/sc-common-issues/)
 
 If you experienced any issues with this tutorial, submit an issue, ask questions or provide feedback.
 

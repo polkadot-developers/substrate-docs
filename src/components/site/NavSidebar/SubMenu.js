@@ -17,8 +17,8 @@ const SubMenu = ({ pages, currentPath }) => {
               'text-substrateBlue': currentPath === page.url,
             })}
           >
-            <Link to={page.url} className="w-full block">
-              <span onClick={() => setIsOpen(!isOpen)}>
+            <span onClick={() => setIsOpen(!isOpen)}>
+              <Link to={page.url} className="w-full block">
                 {page.title}{' '}
                 {page.pages ? (
                   <svg
@@ -40,8 +40,8 @@ const SubMenu = ({ pages, currentPath }) => {
                 ) : (
                   ''
                 )}
-              </span>
-            </Link>
+              </Link>
+            </span>
             {isOpen && page.pages && <ChildMenu pages={page.pages} currentPath={currentPath} />}
           </li>
         ) : (

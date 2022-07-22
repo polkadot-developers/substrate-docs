@@ -1,6 +1,4 @@
-const WEBSITE_URL = process.env.GATSBY_WEBSITE_URL;
-// const DOCS_URL = process.env.GATSBY_DOCS_URL;
-const MARKETPLACE_URL = process.env.GATSBY_MARKETPLACE_URL;
+const { MARKETPLACE_URL, WEBSITE_URL, CAREERS_URL } = require('./webConsts.js');
 
 /* the main menu, ids of items must match
    the submenu's key of this js object */
@@ -49,24 +47,36 @@ const technology = [
 
 const developers = [
   {
-    url: '',
+    url: WEBSITE_URL + '/developers/',
     id: 'developers.home',
   },
   {
-    url: '/quick-start',
+    url: '/',
     id: 'developers.docs',
+  },
+  {
+    url: 'https://paritytech.github.io/substrate/master/sc_service/',
+    id: 'developers.rustdocs',
   },
   {
     url: MARKETPLACE_URL,
     id: 'developers.marketplace',
   },
   {
-    url: '/rustdocs',
-    id: 'developers.rustdocs',
+    url: WEBSITE_URL + '/developers/playground/',
+    id: 'developers.playground',
   },
   {
-    url: '/playground',
-    id: 'developers.playground',
+    url: WEBSITE_URL + '/developers/smart-contracts/',
+    id: 'developers.smart-contracts',
+  },
+  {
+    url: WEBSITE_URL + '/developers/substrate-connect',
+    id: 'developers.substrate-connect',
+  },
+  {
+    url: WEBSITE_URL + '/developers/rococo-network',
+    id: 'developers.rococo-network',
   },
 ];
 
@@ -105,6 +115,10 @@ const ecosystem = [
     id: 'ecosystem.connect',
     child: 'connect',
   },
+  {
+    url: WEBSITE_URL + '/ecosystem/square-one',
+    id: 'ecosystem.square-one',
+  },
 ];
 
 /* child menus for sub menus, matching the parent menu items with "child: id" */
@@ -119,8 +133,8 @@ const opportunities = [
     id: 'ecosystem.opportunities.grants',
   },
   {
-    url: WEBSITE_URL + '/ecosystem/opportunities/jobs',
-    id: 'ecosystem.opportunities.jobs',
+    url: CAREERS_URL,
+    id: 'ecosystem.opportunities.careers',
   },
 ];
 
@@ -130,7 +144,11 @@ const resources = [
     id: 'ecosystem.resources.seminar',
   },
   {
-    url: WEBSITE_URL + '/ecosystem/resources/awesome-substrate',
+    url: WEBSITE_URL + '/ecosystem/resources/past-seminars',
+    id: 'ecosystem.resources.past-seminars',
+  },
+  {
+    url: 'https://github.com/substrate-developer-hub/awesome-substrate/blob/master/README.md',
     id: 'ecosystem.resources.awesome-substrate',
   },
 ];
@@ -165,13 +183,6 @@ const legal = [
   },
 ];
 
-const extra = [
-  {
-    url: WEBSITE_URL + '/substrate-connect',
-    id: 'extra.substrate-connect',
-  },
-];
-
 module.exports = {
   main,
   technology,
@@ -181,6 +192,5 @@ module.exports = {
   opportunities,
   resources,
   connect,
-  extra,
   legal,
 };

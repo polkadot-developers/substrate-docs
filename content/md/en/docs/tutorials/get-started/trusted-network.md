@@ -1,6 +1,10 @@
 ---
-title: Add trusted validators
-description: Generate keys and a chain specification to add authority set of private validators for a blockchain network.
+title: Add trusted nodes
+description: Generate account keys and a custom chain specification for a private blockchain network.
+keywords:
+  - enterprize
+  - private
+  - permission
 ---
 
 This tutorial illustrates how you can start a small, standalone blockchain network with an **authority set** of private **validators**.
@@ -72,8 +76,6 @@ To generate keys using the node template:
    ```
 
 1. Type a password for the generated keys.
-
-   The command generates keys and displays output similar to the following:
 
    The command generates keys and displays output similar to the following:
 
@@ -266,7 +268,7 @@ To convert a chain specification to use the raw format:
 1. Convert the `customSpec.json` chain specification to the raw format with the file name `customSpecRaw.json` by running the following command:
 
    ```bash
-   ./target/release/node-template build-spec --chain=customSpec.json --disable-default-bootnode > customSpecRaw.json
+   ./target/release/node-template build-spec --chain=customSpec.json --raw --disable-default-bootnode > customSpecRaw.json
    ```
 
 ## Share the chain specification with others
@@ -303,9 +305,19 @@ To start the first node:
 
 1. Start the first node using the custom chain specification by running a command similar to the following:
 
-```bash
-./target/release/node-template \ --base-path /tmp/node01 \ --chain ./customSpecRaw.json \ --port 30333 \ --ws-port 9945 \ --rpc-port 9933 \ --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \ --validator \ --rpc-methods Unsafe \ --name MyNode01
-```
+   ```bash
+   ./target/release/node-template \
+      --base-path /tmp/node01 \
+      --chain ./customSpecRaw.json \
+      --port 30333 \
+      --ws-port 9945 \
+      --rpc-port 9933 \
+      --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
+      --validator \
+      --rpc-methods Unsafe \
+      --name MyNode01 \
+      --password-interactive
+   ```
 
 Note the following command-line options you are using to start the node:
 
@@ -385,7 +397,12 @@ To insert keys into the keystore:
 1. Insert the `aura` secret key generated from the `key` subcommand by running a command similar to the following:
 
    ```bash
-   ./target/release/node-template key insert --base-path /tmp/node01 \ --chain customSpecRaw.json \ --scheme Sr25519 \ --suri <your-secret-seed> \ --password-interactive \ --key-type aura
+   ./target/release/node-template key insert --base-path /tmp/node01 \
+      --chain customSpecRaw.json \
+      --scheme Sr25519 \
+      --suri <your-secret-seed> \
+      --password-interactive \
+      --key-type aura
    ```
 
    Replace `<your-secret-seed>` with the secret phrase or secret seed for the first key pair that you generated in [Generate local keys using node template](#generate-local-keys-using-the-node-template).
@@ -410,7 +427,13 @@ To insert keys into the keystore:
 1. Insert the `grandpa` secret key generated from the `key` subcommand by running a command similar to the following:
 
    ```bash
-    ./target/release/node-template key insert --base-path /tmp/node01 \ --chain customSpecRaw.json \ --scheme Ed25519 \ --suri <your-secret-key> \ --password-interactive \ --key-type gran
+   ./target/release/node-template key insert \
+      --base-path /tmp/node01 \
+      --chain customSpecRaw.json \
+      --scheme Ed25519 \
+      --suri <your-secret-key> \
+      --password-interactive \
+      --key-type gran
    ```
 
    Replace `<your-secret-seed>` with the secret phrase or secret seed for the first key pair that you generated in [Generate local keys using the node template](#generate-local-keys-using-the-node-template).
@@ -450,71 +473,42 @@ To add a second validator to the private network:
 1. Change to the root directory where you compiled the Substrate node template.
 
 1. Start a second blockchain node by running a command similar to the following:
-<<<<<<< HEAD
 
    ```bash
-   ./target/release/node-template \ --base-path /tmp/node02 \
-   --chain ./customSpecRaw.json \
-   --port 30334 \
-   --ws-port 9946 \
-   --rpc-port 9934 \
-   --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
-   --validator \
-   --rpc-methods Unsafe \
-   --name MyNode02 \
-   --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX \
-   --password-interactive
+   ./target/release/node-template \
+      --base-path /tmp/node02 \
+      --chain ./customSpecRaw.json \
+      --port 30334 \
+      --ws-port 9946 \
+      --rpc-port 9934 \
+      --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
+      --validator \
+      --rpc-methods Unsafe \
+      --name MyNode02 \
+      --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX \
+      --password-interactive
    ```
 
    This command uses the `base-path`, `name` and `validator` command-line options to identify this node as a second validator for the private network.
    The `--chain` command-line option specifies the chain specification file to use.
    This file must be _identical_ for all validators in the network.
-
    Be sure to set the correct information for the `--bootnodes` command-line option.
    In particular, be sure you have specified the local node identifier from the first node in the network.
    If you don't set the correct `bootnode` identifier, you see errors like this:
 
    ```text
-    The bootnode you want to connect to at ... provided a different peer ID than the one you expect: ...
+   The bootnode you want to connect to at ... provided a different peer ID than the one you expect: ...
    ```
-=======
-    
-    ```bash
-    ./target/release/node-template \ --base-path /tmp/node02 \
-    --chain ./customSpecRaw.json \
-    --port 30334 \
-    --ws-port 9946 \
-    --rpc-port 9934 \
-    --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
-    --validator \
-    --rpc-methods Unsafe \
-    --name MyNode02 \
-    --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX \
-    --password-interactive
-    ```
-
-    This command uses the `base-path`, `name` and `validator` command-line options to identify this node as a second  validator for the private network.
-    The `--chain` command-line option specifies the chain specification file to use.
-    This file must be _identical_ for all validators in the network.
-    
-    Be sure to set the correct information for the  `--bootnodes` command-line option.
-    In particular, be sure you have specified the local node identifier from the first node in the network.
-    If you don't set the correct `bootnode` identifier, you see errors like this:
-
-    ```text
-    The bootnode you want to connect to at ... provided a different peer ID than the one you expect: ...
-    ```
->>>>>>> main-md
 
 1. Add the `aura` secret key generated from the `key` subcommand by running a command similar to the following:
 
    ```bash
    ./target/release/node-template key insert --base-path /tmp/node02 \
-   --chain customSpecRaw.json \
-   --scheme Sr25519 \
-   --suri <second-participant-secret-seed> \
-   --password-interactive \
-   --key-type aura
+      --chain customSpecRaw.json \
+      --scheme Sr25519 \
+      --suri <second-participant-secret-seed> \
+      --password-interactive \
+      --key-type aura
    ```
 
    Replace `<second-participant-secret-seed>` with the secret phrase or secret seed that you generated in [Generate a second key pair](#generate-a-second-set-of-keys).
@@ -526,10 +520,10 @@ To add a second validator to the private network:
 
    ```bash
    ./target/release/node-template key insert --base-path /tmp/node02 \
-   --chain customSpecRaw.json \
-   --scheme Ed25519 --suri <second-participant-secret-seed> \
-   --password-interactive \
-   --key-type gran
+      --chain customSpecRaw.json \
+      --scheme Ed25519 --suri <second-participant-secret-seed> \
+      --password-interactive \
+      --key-type gran
    ```
 
    Replace `<second-participant-secret-seed>` with the secret phrase or secret seed that you generated in [Generate a second key pair](#generate-a-second-set-of-keys).
@@ -561,17 +555,17 @@ To add a second validator to the private network:
 
    ```bash
    ./target/release/node-template \
-   --base-path /tmp/node02 \
-   --chain ./customSpecRaw.json \
-   --port 30334 \
-   --ws-port 9946 \
-   --rpc-port 9934 \
-   --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
-   --validator \
-   --rpc-methods Unsafe \
-   --name MyNode02 \
-   --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX \
-   --password-interactive
+      --base-path /tmp/node02 \
+      --chain ./customSpecRaw.json \
+      --port 30334 \
+      --ws-port 9946 \
+      --rpc-port 9934 \
+      --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
+      --validator \
+      --rpc-methods Unsafe \
+      --name MyNode02 \
+      --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWLmrYDLoNTyTYtRdDyZLWDe1paxzxTw5RgjmHLfzW96SX \
+      --password-interactive
    ```
 
    After both nodes have added their keys to their respective keystores—located under `/tmp/node01` and `/tmp/node02`—and been restarted, you should see the same genesis block and state root hashes.

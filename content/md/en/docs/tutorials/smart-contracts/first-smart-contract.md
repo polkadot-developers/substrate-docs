@@ -1,6 +1,7 @@
 ---
 title: Prepare your first contract
-description: Create a new smart contract project and a simple first contract.
+description: Build and test a simple smart contract using the ink! smart contract language.
+keywords:
 ---
 
 As you learned in [Blockchain basics](/main-docs/fundamentals/blockchain-basics/) decentralized applications are most often written as **smart contracts**.
@@ -80,7 +81,7 @@ If you can't download the precompiled node, you can compile it locally with a co
 cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag <latest-tag> --force --locked
 ```
 
-You can find the latest tag to use on the [Tags](https://github.com/paritytech/substrate-contracts-node/tags) page.
+You can find the latest tag (`polkadot-v0.9.26` to match the rest of the docs example code versions) to use on the [Tags](https://github.com/paritytech/substrate-contracts-node/tags) page.
 
 ## Install additional packages
 
@@ -118,10 +119,16 @@ The `cargo-contract` package provides a command-line interface for working with 
 
 1. Open a terminal shell on your computer.
 
+1. Install `dylint-link`, required to lint ink! contracts, warning you about things like using API's in a way that could lead to security issues.
+
+   ```bash
+   cargo install dylint-link
+   ```
+
 1. Install `cargo-contract` by running the following command:
 
    ```bash
-   cargo install cargo-contract --vers ^0.17 --force --locked
+   cargo install cargo-contract --force
    ```
 
 1. Verify the installation and explore the commands available by running the following command:
@@ -197,7 +204,7 @@ To explore the default project files:
 ### Test the default contract
 
 At the bottom of the `lib.rs` source code file, there are simple test cases to verify the functionality of the contract.
-You can test whether this code is functioning as expected using the **off-chain test environment**.
+You can test whether this code is functioning as expected using the **offchain test environment**.
 
 To test the contract:
 
@@ -296,9 +303,9 @@ To start the preconfigured `contracts-node`:
    After a few seconds, you should see blocks being finalized.
 
    To interact with the blockchain, you need to connect to this node.
-   You can connect to the node through a browser by opening the [Contracts UI](https://paritytech.github.io/contracts-ui).
+   You can connect to the node through a browser by opening the [Contracts UI](https://contracts-ui.substrate.io).
 
-1. Navigate to the [Contracts UI](https://paritytech.github.io/contracts-ui) in a web browser, then click **Yes allow this application access**.
+1. Navigate to the [Contracts UI](https://contracts-ui.substrate.io) in a web browser, then click **Yes allow this application access**.
 
 1. Select **Local Node**.
 
@@ -335,7 +342,7 @@ For this tutorial, you use the Contracts UI front-end to deploy the `flipper` co
 
 To upload the smart contract source code:
 
-1. Open to the [Contracts UI](https://paritytech.github.io/contracts-ui) in a web browser.
+1. Open to the [Contracts UI](https://contracts-ui.substrate.io) in a web browser.
 
 1. Verify that you are connected to the **Local Node**.
 
@@ -458,7 +465,7 @@ You can learn more about smart contract development in the following topics:
 
 - [Develop a smart contract](/tutorials/smart-contracts/develop-contract/)
 - [Build an ERC20 token contract](/tutorials/smart-contracts/erc20-token/)
-- [Troubleshoot smart contracts](tutorials/smart-contracts/sc-common-issues/)
+- [Troubleshoot smart contracts](/tutorials/smart-contracts/sc-common-issues/)
 
 If you experienced any issues with this tutorial, submit an issue, ask questions or provide feedback.
 

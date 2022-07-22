@@ -1,7 +1,10 @@
 ---
 title: FRAME pallets
-description:
-keywords: Frame, pallets, API
+description: Provides an overview of the most commonly-used predefined FRAME pallets.
+keywords:
+  - Frame
+  - pallets
+  - API
 ---
 
 The FRAME development environment provides modules—called pallets—and support libraries that you can use, modify, and extend to build the runtime logic to suit the needs of your blockchain.
@@ -23,6 +26,10 @@ The FRAME system pallets are integral to the Substrate runtime and provide core 
 The Substrate development framework includes many functional pallets that provide features you might find generally useful as composable components of your blockchain.
 These functional pallets are prebuilt and freely available to enable the community to share, reuse, and improve the interfaces to address common use cases.
 
+The following table highlights some of the most commonly used pallets available.
+However, the number of pallets that provide specialized functionality and how they provide that functionality changes frequently.
+You should check the [Rust documentation](https://paritytech.github.io/substrate/) for the most up-to-date listing of pallets and for details about using them.
+
 | Prebuilt pallet name | What it's for
 | -------------------- | ------------------------------------
 | [`pallet_assets`](https://paritytech.github.io/substrate/master/pallet_assets/index.html) | Provides simple and secure methods for dealing with fungible assets.
@@ -30,16 +37,17 @@ These functional pallets are prebuilt and freely available to enable the communi
 | [`pallet_aura`](https://paritytech.github.io/substrate/master/pallet_aura/index.html) | Extends the authority round (Aura) consensus model by managing offline reporting.
 | [`pallet_authority_discovery`](https://paritytech.github.io/substrate/master/pallet_authority_discovery/index.html) | Retrieves the current set of authorities, learns its own authority ID, and signs and verifies messages to and from other authorities.
 | [`pallet_authorship`](https://paritytech.github.io/substrate/master/pallet_authorship/index.html) | Tracks the current author of the block and recent uncles.
-| [`pallet_babe`](https://paritytech.github.io/substrate/master/pallet_babe/index.html) | Extends BABE consensus by |collecting on-chain randomness from VRF outputs and managing epoch transitions.
+| [`pallet_babe`](https://paritytech.github.io/substrate/master/pallet_babe/index.html) | Extends BABE consensus by collecting on-chain randomness from VRF outputs and managing epoch transitions.
 | [pallet_balances](https://paritytech.github.io/substrate/master/pallet_balances/index.html) | Provides functionality for handling accounts and balances.
 | [`frame_benchmarking`](https://paritytech.github.io/substrate/master/frame_benchmarking/trait.Benchmark.html) | Contains common runtime patterns for benchmarking and testing purposes.
 | [`pallet_collective`](https://paritytech.github.io/substrate/master/pallet_collective/index.html) | Allows a set of account IDs to make their collective feelings known through dispatched calls from specialized origins.
 | [`pallet_contracts`](https://paritytech.github.io/substrate/master/pallet_contracts/index.html) | Provides functionality for the runtime to deploy and execute WebAssembly smart contracts.
 | [`pallet_democracy`](https://paritytech.github.io/substrate/master/pallet_democracy/index.html) | Provides a democratic system that handles administration of general stakeholder voting.
+| [`pallet_election_provider_multi_phase`](https://paritytech.github.io/substrate/master/pallet_election_provider_multi_phase/index.html) | Enables an election provider to conduct an election consisting of signed and unsigned phases.
 | [`pallet_elections_phragmen`](https://paritytech.github.io/substrate/master/pallet_elections_phragmen/index.html) | Provides an election module based on [sequential Phragmén](https://wiki.polkadot.network/docs/en/learn-phragmen).
-| [`pallet_elections`](https://paritytech.github.io/substrate/master/pallet_elections/index.html) | Provides an election module for stake-weighted membership in a collective. This pallet is no longer maintained.
-| [`pallet_example`](https://paritytech.github.io/substrate/master/pallet_example/index.html) | Demonstrates concepts, APIs, and structures that are applicable for most pallets.
+| [`pallet_example_basic`](https://paritytech.github.io/substrate/master/pallet_example_basic/index.html) | Demonstrates concepts, APIs, and structures that are applicable for most pallets.
 | [`pallet_example_offchain_worker`](https://paritytech.github.io/substrate/master/pallet_example_offchain_worker/index.html) | Demonstrates concepts, APIs, and structures that are applicable for most offchain workers.
+| [pallet_example_parallel](https://paritytech.github.io/substrate/master/pallet_example_parallel/index.html) | Demonstrates parallelizing validation of the enlisted participants.
 | [`pallet_grandpa`](https://paritytech.github.io/substrate/master/pallet_grandpa/index.html) | Extends the GRANDPA consensus by managing the GRANDPA authority set ready for the native code.
 | [`pallet_identity`](https://paritytech.github.io/substrate/master/pallet_identity/index.html) | Enables a federated naming system that allows multiple registrars to be added from a specified origin. Registrars can set a fee to provide identity-verification service.
 | [`pallet_im_online`](https://paritytech.github.io/substrate/master/pallet_im_online/index.html) | Allows validators to gossip a heartbeat transaction with each new session to signal that the node is online.
@@ -65,7 +73,7 @@ These functional pallets are prebuilt and freely available to enable the communi
 
 ## Parachain pallets
 
-In addition to the functional pallets that are generally useful for any blockchain, there are prebuilt pallets that provide features specifically for blockchains that are intended to connect to a relay chain. 
+In addition to the functional pallets that are generally useful for any blockchain, there are prebuilt pallets that provide features specifically for blockchains that are intended to connect to a relay chain.
 The following pallets provide features for parachain development.
 
 | Prebuilt pallet name | What it's for
@@ -80,4 +88,4 @@ The following pallets provide features for parachain development.
 
 ## Additional information
 
-For detailed information about any pallet, refer to the [Rust-generated API](https://docs.substrate.io/rustdocs/) documentation or the source code for the individual pallet.
+For detailed information about any pallet, refer to the [Rust-generated API](https://paritytech.github.io/substrate/master/) documentation or the source code for the individual pallet.

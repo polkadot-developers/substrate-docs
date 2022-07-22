@@ -11,7 +11,7 @@ const copyToClipboard = str => {
   el.style.left = '-9999px';
   document.body.appendChild(el);
   el.select();
-  navigator.clipboard.writeText(el.value);
+  document.execCommand('copy');
   document.body.removeChild(el);
 };
 
@@ -19,23 +19,24 @@ function Code({ children, className }) {
   const [isCopied, setIsCopied] = useState(false);
   if (className && !className.includes('language-text') && className.includes('language-')) {
     return (
-      <pre className={className}>
-        {children}
+      <div>
+        <pre className={className}>{children}</pre>
         <button
           onClick={() => {
             copyToClipboard(Children.onlyText(children));
             setIsCopied(true);
             setTimeout(() => setIsCopied(false), 1300);
           }}
-          className="absolute top-0 bottom-0 right-0 dark:fill-white p-1 text-small w-20 hover-fill-green"
+          className="sm:w-20 sm:block absolute top-0 bottom-0 right-0 dark:fill-white text-small hover-fill-green"
+          aria-label="Copy code button"
         >
           {isCopied ? (
-            <span className="text-green">Copied</span>
+            <span className="text-green w-100 mr-2">Copied</span>
           ) : (
-            <Icon name="copy" className="h-50 w-50 mx-auto block fill-current" />
+            <Icon name="copy" className="h-50 w-20 mx-auto block fill-current" />
           )}
         </button>
-      </pre>
+      </div>
     );
   } else if (className && className.includes('language-text')) {
     return <pre className={className}>{children}</pre>;

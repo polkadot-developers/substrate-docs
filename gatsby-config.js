@@ -246,20 +246,60 @@ module.exports = {
         crumbLabelUpdates: [],
       },
     },
-    'gatsby-plugin-sitemap',
-    // {
-    //   resolve: 'gatsby-plugin-simple-analytics',
-    //   options: {
-    //     domain: 'api-sa.substrate.io',
-    //     eventsGlobal: 'sa',
-    //     events: true,
-    //     trackPageViews: true,
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        output: `/sitemap.xml`,
+        createLinkInHead: true,
+        query: `
+          {
+            site {
+              siteMetadata {
+                siteUrl
+              }
+            }
+
+            allSitePage {
+              nodes {
+                path
+              }
+            }
+          }`,
+        resolveSiteUrl: ({ site }) => {
+          //Alternatively, you may also pass in an environment variable (or any location) at the beginning of your `gatsby-config.js`.
+          return site.siteMetadata.siteUrl;
+        },
+        serialize: ({ site, allSitePage }) =>
+          allSitePage.nodes.map(node => {
+            return {
+              url: `${site.siteMetadata.siteUrl}${node.path}`,
+              changefreq: `daily`,
+              priority: 0.7,
+            };
+          }),
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-simple-analytics',
+      options: {
+        domain: 'api-sa.substrate.io',
+        eventsGlobal: 'sa',
+        events: true,
+        trackPageViews: true,
+      },
+    },
     {
       resolve: `gatsby-plugin-force-trailing-slashes`,
       options: {
         excludedPaths: [`/404.html`],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://docs.substrate.io',
+        sitemap: 'https://docs.substrate.io/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }],
       },
     },
   ],

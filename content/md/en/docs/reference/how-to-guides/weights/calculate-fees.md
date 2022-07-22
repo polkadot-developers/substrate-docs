@@ -11,14 +11,14 @@ keywords:
 This guides steps through the process of customizing `WeightToFee` for your runtime's implementation of `pallet_transaction_payment`.
 Fees are broken down into three components:
 
-- **Byte fee** - A fee proportional to the transaction's length in bytes. 
+- **Byte fee** - A fee proportional to the transaction's length in bytes.
   The proportionality constant is a parameter in the Transaction Payment Pallet.
-- **Weight fee** - A fee calculated from the [transaction weight](/main-docs/build/tx-weights-fees). 
-  The conversion doesn't need to be linear, although it often is. 
+- **Weight fee** - A fee calculated from the [transaction weight](/main-docs/build/tx-weights-fees).
+  The conversion doesn't need to be linear, although it often is.
   The same conversion function is applied across all transactions for all pallets in the runtime.
 - **Fee Multiplier** - A multiplier for the computed fee, that can change as the chain progresses.
 
-FRAME provides the [Transaction Payment Pallet](/rustdocs/latest/pallet_transaction_payment/index.html) for calculating and collecting fees for executing transactions. 
+FRAME provides the [Transaction Payment Pallet](https://paritytech.github.io/substrate/master/pallet_transaction_payment/index.html) for calculating and collecting fees for executing transactions.
 It can be useful to modify the way fees are calculated to more accurately charge fees.
 
 ## Goal
@@ -27,19 +27,13 @@ Customize `WeightToFee` to modify how fees are calculated for your runtime.
 
 ## Use Cases
 
-Modify the way fees are calculated, instead of using [`IdentityFee`](/rustdocs/latest/frame_support/weights/struct.IdentityFee.html) which maps one unit of fee to one unit of weight.
-
-`,
-    },
-  ]}
-/>
+Modify the way fees are calculated, instead of using [`IdentityFee`](https://paritytech.github.io/substrate/master/frame_support/weights/struct.IdentityFee.html) which maps one unit of fee to one unit of weight.
 
 ## Steps
 
 ### 1. Write the `LinearWeightToFee` struct
 
-In `runtime/src/lib.rs`, create the struct called `LinearWeightToFee` that implements
-[`WeightToFeePolynomial`](/rustdocs/latest/frame_support/weights/trait.WeightToFeePolynomial.html).
+In `runtime/src/lib.rs`, create the struct called `LinearWeightToFee` that implements [`WeightToFeePolynomial`](https://paritytech.github.io/substrate/master/frame_support/weights/trait.WeightToFeePolynomial.html).
 It must returns a smallvec of `WeightToFeeCoefficient` integers.
 
 `runtime/src/lib.rs`
@@ -94,12 +88,9 @@ impl pallet_transaction_payment::Config for Runtime {
 
 ## Related material
 
-- [Add benchmarking to your runtime](/reference/how-to-guides/weights/add-benchmarking)
-- [Use benchmarked weights in your pallet](/reference/how-to-guides/weights/use-benchmark-weights)
 - [Weights](/reference/glossary#weight)
+- [Add benchmarks](/reference/how-to-guides/weights/add-benchmarks/)
+- [Use custom weights](/reference/how-to-guides/weights/use-custom-weights)
 - [Transaction Weights and Fees](/main-docs/build/tx-weights-fees)
-- [`WeightToFeeCoefficients`](/rustdocs/latest/frame_support/weights/type.WeightToFeeCoefficients.html)
-- [`WeightToFeeCoefficient`](/rustdocs/latest/frame_support/weights/type.WeightToFeeCoefficient.html)
-- [`WeightToFeePolynomial`](/rustdocs/latest/frame_support/weights/trait.WeightToFeePolynomial.html)
-
-[transaction-frame]: https://github.com/paritytech/substrate/tree/master/frame/transaction-payment
+- [`WeightToFeeCoefficients`](https://paritytech.github.io/substrate/master/frame_support/weights/type.WeightToFeeCoefficients.html)
+- [`WeightToFeePolynomial`](https://paritytech.github.io/substrate/master/frame_support/weights/trait.WeightToFeePolynomial.html)

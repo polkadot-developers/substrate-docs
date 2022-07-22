@@ -1,6 +1,7 @@
 ---
 title: Build a local blockchain
-description: Compile, start, and interact with your first Substrate blockchain node.
+description: Compile, launch, and interact with a single local blockchain node in a development environment.
+keywords:
 ---
 
 As you learned in [Blockchain basics](/main-docs/fundamentals/blockchain-basics/), a blockchain consists of decentralized computers—called nodes—to form a network.
@@ -68,10 +69,10 @@ To compile the Substrate node template:
    git clone https://github.com/substrate-developer-hub/substrate-node-template
    ```
 
-1. Change to the root of the node template directory and checkout the `latest` branch by running the following command:
+1. Change to the root of the node template directory and checkout the `polkadot-v0.9.26` branch by running the following command:
 
    ```bash
-   cd substrate-node-template && git checkout latest
+   cd substrate-node-template && git checkout polkadot-v0.9.26
    ```
 
 1. Compile the node template by running the following command:
@@ -201,7 +202,7 @@ To use the front-end template:
    yarn start
    ```
 
-1. Open **http://localhost:8000** in a browser to view the front-end template.
+1. Open `http://localhost:8000` in a browser to view the front-end template.
 
    The top section has an Account selection list for selecting the account to work with when you want to perform on-chain operations.
    The top section of the template also displays information about the chain to which you're connected.
@@ -280,8 +281,8 @@ The front-end template includes several additional components for you to experim
 You can explore these components on your own or learn more in the following topics:
 
 - [Architecture](/main-docs/fundamentals/architecture/)
-- [Networks and blockchains](/main-docs/fundamentals/)node-and-network-types/
-- [Simulate a network](tutorials/get-started/simulate-network/)
+- [Networks and blockchains](/main-docs/fundamentals/node-and-network-types/)
+- [Simulate a network](/tutorials/get-started/simulate-network/)
 
 If you experienced any issues with this tutorial, submit an issue, ask questions, or provide feedback.
 

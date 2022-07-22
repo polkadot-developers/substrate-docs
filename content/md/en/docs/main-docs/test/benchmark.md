@@ -1,7 +1,10 @@
 ---
 title: Benchmark
-description:
+description: Describes the benchmarking framework you can use to estimate the computational resources required to execute the functions in the runtime logic.
 keywords:
+  - weight
+  - resource consumption
+  - execution time
 ---
 
 Substrate and FRAME provide a flexible framework for developing custom logic for your blockchain. However, this flexibility can also introduce complexity that can make your blockchain vulnerable to denial of service (DoS) attacks by malicious actors.
@@ -22,11 +25,11 @@ Setting a weight that accurately reflects the underlying computation and storage
 
 At a high level, benchmarking requires you to perform the following steps:
 
-* Write custom benchmarking logic that executes a specific code path for a function.
-* Execute the benchmark logic in the Wasm execution environment on a specific set of hardware and with a specific runtime configuration.
-* Execute the benchmark logic across a controlled range of possible values that might affect the result of the benchmark.
-* Execute the benchmark multiple times at each point in order to isolate and remove outliers.
-* Use the results of the benchmark to create a linear model of the function across its components.
+- Write custom benchmarking logic that executes a specific code path for a function.
+- Execute the benchmark logic in the Wasm execution environment on a specific set of hardware and with a specific runtime configuration.
+- Execute the benchmark logic across a controlled range of possible values that might affect the result of the benchmark.
+- Execute the benchmark multiple times at each point in order to isolate and remove outliers.
+- Use the results of the benchmark to create a linear model of the function across its components.
 
 This linear model enables you to estimate how long it takes to execute a specific code path and to make informed decisions without actually spending any significant resources at runtime.
 Benchmarking assumes all transactions have linear complexity because higher complexity functions are considered to be dangerous to the runtime as the weight of these functions may explode as the
@@ -34,13 +37,13 @@ runtime state or input becomes too complex.
 
 ## Benchmarking and weight
 
-As discussed in [Transactions, weights, and fees](/main-docs/fundamentals/tx-weight.fees/), Substrate-based chains use the concept of **weight** to represent the time it takes to execute the transactions in a block.
+As discussed in [Transactions, weights, and fees](/main-docs/build/tx-weights-fees/), Substrate-based chains use the concept of **weight** to represent the time it takes to execute the transactions in a block.
 The time required to execute any particular call in a transaction depends on a several factors, including the following:
 
-* Computational complexity.
-* Storage complexity.
-* Database read and write operations required.
-* Hardware used.
+- Computational complexity.
+- Storage complexity.
+- Database read and write operations required.
+- Hardware used.
 
 To calculate an appropriate weight for a transaction, you can use benchmark parameters to measure the time it takes to execute the function calls on different hardware, using different variable values, and repeated multiple times.
 You can then use the results of the benchmarking tests to establish an approximate worst case weight to represent the resources required to execute each function call and each code path.
@@ -56,11 +59,11 @@ The benchmarking framework automatically generates a file with those formulas fo
 
 ## Benchmarking tools
 
-The [FRAME benchmarking framework](/rustdocs/latest/frame_benchmarking/benchmarking/index.html) includes the following tools to help you determine the time it takes to execute function calls:
+The [FRAME benchmarking framework](https://paritytech.github.io/substrate/master/frame_benchmarking/index.html) includes the following tools to help you determine the time it takes to execute function calls:
 
-* [Benchmark macros](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/src/lib.rs) to help you write, test, and add runtime benchmarks.
-* [Linear regression analysis functions](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/src/analysis.rs) for processing benchmark data.
-* [Command-line interface (CLI)](https://github.com/paritytech/substrate/tree/master/utils/frame/benchmarking-cli) to enable you to execute benchmarks on your node.
+- [Benchmark macros](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/src/lib.rs) to help you write, test, and add runtime benchmarks.
+- [Linear regression analysis functions](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/src/analysis.rs) for processing benchmark data.
+- [Command-line interface (CLI)](https://github.com/paritytech/substrate/tree/master/utils/frame/benchmarking-cli) to enable you to execute benchmarks on your node.
 
 The end-to-end benchmarking pipeline is disabled by default when compiling a node.
 If you want to run benchmarks, you need to compile a node with the `runtime-benchmarks` Rust feature flag.
@@ -77,7 +80,7 @@ For example, if triggering more iterations in a `for` loop increases the number 
 
 If a function executes different code paths depending on user input or other conditions, you might not know which path is the most computationally intensive.
 To help you see where complexity in the code might become unmanageable, you should create a benchmark for each possible execution path.
-The benchmarks can help you identify places in the code where you might want to enforce boundaries—for example, by limiting the number of elements in a vector or limiting the number of iterations in a `for` loop—to control how users interact with your pallet. 
+The benchmarks can help you identify places in the code where you might want to enforce boundaries—for example, by limiting the number of elements in a vector or limiting the number of iterations in a `for` loop—to control how users interact with your pallet.
 
 You can find examples of end-to-end benchmarks in the prebuilt FRAME pallets.
 You can find details about using the `benchmarks!` macro in the [source code](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/src/lib.rs).
@@ -141,7 +144,7 @@ cargo build --profile=production --features runtime-benchmarks
 ```
 
 The `production` profile applies various compiler optimizations.  
-These optimizations slow down the compilation process *a lot*.  
+These optimizations slow down the compilation process _a lot_.  
 If you are just testing things out and don't need final numbers, use `--release` instead.
 
 ## Running benchmarks
@@ -158,29 +161,29 @@ To execute the benchmarks, you can start the node by running a command similar t
 
 ```bash
 ./target/production/substrate benchmark pallet \
-    --chain dev \                  # Configurable Chain Spec
-    --execution=wasm \             # Always test with Wasm
-    --wasm-execution=compiled \    # Always used `wasm-time`
-    --pallet pallet_balances \     # Select the pallet
-    --extrinsic transfer \         # Select the extrinsic
-    --steps 50 \                   # Number of samples across component ranges
-    --repeat 20 \                  # Number of times we repeat a benchmark
-    --output <path> \              # Output benchmark results into a folder or file
+    --chain dev \
+    --execution=wasm \
+    --wasm-execution=compiled \
+    --pallet pallet_balances \
+    --extrinsic transfer \
+    --steps 50 \
+    --repeat 20 \
+    --output <path>
 ```
 
 This command creates an output file for the selected pallet—for example, `pallet_balance.rs`—that implements the `WeightInfo` trait for your pallet.
 Each blockchain should generate its own benchmark file with their custom implementation of the `WeightInfo` trait.
 This means that you will be able to use these modular Substrate pallets while still keeping your network safe for your specific configuration and requirements.
 
-The benchmarking CLI uses a Handlebars template to format the final output file. 
+The benchmarking CLI uses a Handlebars template to format the final output file.
 You can optionally pass the `--template` command-line option to specify a custom template instead of the default.
 Within the template, you have access to all the data provided by the `TemplateData` struct in the
 benchmarking CLI writer.
 
 There are some custom Handlebars helpers included with the output generation:
 
-* `underscore`: Add an underscore to every 3rd character from the right of a string. Primarily to be used for delimiting large numbers.
-* `join`: Join an array of strings into a space-separated string for the template. Primarily to be used for joining all the arguments passed to the CLI.
+- `underscore`: Add an underscore to every 3rd character from the right of a string. Primarily to be used for delimiting large numbers.
+- `join`: Join an array of strings into a space-separated string for the template. Primarily to be used for joining all the arguments passed to the CLI.
 
 To get a full list of available options when running benchmarks, run:
 

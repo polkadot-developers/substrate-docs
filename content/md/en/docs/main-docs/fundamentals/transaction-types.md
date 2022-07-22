@@ -1,9 +1,8 @@
 ---
 title: Transactions and block basics
-description: 
-featured_image:
+description: Describes the transaction types used to create blocks and the basic components of a block.
 keywords:
---- 
+---
 
 In this article, you'll learn about the different types of transactions that you can create and how you can use them in a runtime.
 Broadly-speaking, transactions determine the data that makes its way into the blocks in your blockchain.
@@ -14,9 +13,9 @@ By learning how different transaction types are used, you'll be better prepared 
 In general, transactions provide a mechanism for making changes to state that can be included in a block.
 There are three distinct transaction types in Substrate:
 
-* [Signed transactions](#signed-transactions)
-* [Unsigned transactions](#unsigned-transactions)
-* [Inherent transactions](#inherent-transactions)
+- [Signed transactions](#signed-transactions)
+- [Unsigned transactions](#unsigned-transactions)
+- [Inherent transactions](#inherent-transactions)
 
 In Substrate, all three transaction types are often more broadly referred to as **extrinsics**.
 The term extrinsic is generally used to mean any information that originates outside of the a runtime.
@@ -45,7 +44,7 @@ Because unsigned transactions require custom validation, this transaction type c
 
 The `pallet_im_online::Call::heartbeat` function uses unsigned transactions to enable validator nodes to send a signal to the network to indicate that the node is online.
 This function can only be called by a node that's registered as a validator in the network.
-The function includes internal logic to verify that the node is a validator, allowing the node to call the function using an unsigned transaction to avoid paying any fees. 
+The function includes internal logic to verify that the node is a validator, allowing the node to call the function using an unsigned transaction to avoid paying any fees.
 
 ### Inherent transactions
 
@@ -58,7 +57,7 @@ The data inserted using an inherent transaction is assumed to be valid without r
 For example, if a block authoring node inserts a timestamp into a block, there is no way to prove that a timestamp is accurate.
 Instead, validators might accept or reject the block based on whether the timestamp it is within some acceptable range of their own system clocks.
 
-As an example, the  `pallet_timestamp::Call::now` function enables a block authoring node to insert a current timestamp in each block the node produces.
+As an example, the `pallet_timestamp::Call::now` function enables a block authoring node to insert a current timestamp in each block the node produces.
 Similarly, the `paras_inherent::Call::enter` function enable a parachain collator node to send its relay chain the validation data the relay chain expects.
 
 ## What is a block?
@@ -66,26 +65,26 @@ Similarly, the `paras_inherent::Call::enter` function enable a parachain collato
 In Substrate, a block consists of a header and an array of transactions.
 The header contains the following properties:
 
-* Block height
-* Parent hash
-* Transaction root
-* State root
-* Digest
+- Block height
+- Parent hash
+- Transaction root
+- State root
+- Digest
 
 All of the transactions are bundled together as a series to be executed as defined in the runtime.
 You'll learn more about transaction ordering in [Transaction lifecycle](/main-docs/fundamentals/transaction-lifecycle/).
-The transaction root is a cryptographic digest of this series. 
+The transaction root is a cryptographic digest of this series.
 This cryptographic digest serves two purposes:
 
-* It prevents any alterations to the series of transactions after the header has been built and distributed.
-* It enables light clients to succinctly verify that any given transaction exists in a block given only knowledge of the header.
+- It prevents any alterations to the series of transactions after the header has been built and distributed.
+- It enables light clients to succinctly verify that any given transaction exists in a block given only knowledge of the header.
 
 ## Where to go next
 
 Now that you are familiar with transaction types and the information that constitutes a block, explore the following topics to learn more.
 
-* [Transaction lifecycle](/main-docs/fundamentals/transaction-lifecycle/)
-* [State transitions and storage](/main-docs/fundamentals/state-transitions-and-storage/)
-* [Transactions, weights, and fees](/main-docs/build/tx-weights-fees/)
-* [Transaction formats](/reference/transaction-formats/)
-* [Block reference](/rustdocs/latest/sp_runtime/traits/trait.Block.html)
+- [Transaction lifecycle](/main-docs/fundamentals/transaction-lifecycle/)
+- [State transitions and storage](/main-docs/fundamentals/state-transitions-and-storage/)
+- [Transactions, weights, and fees](/main-docs/build/tx-weights-fees/)
+- [Transaction format](/reference/transaction-format/)
+- [Block reference](https://paritytech.github.io/substrate/master/sp_runtime/traits/trait.Block.html)
