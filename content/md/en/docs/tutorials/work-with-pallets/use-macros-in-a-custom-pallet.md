@@ -125,8 +125,10 @@ Therefore, the first step is to remove some files and content from the files in 
    	#[pallet::config]  // <-- Step 2. code block will replace this.
    	#[pallet::event]   // <-- Step 3. code block will replace this.
    	#[pallet::error]   // <-- Step 4. code block will replace this.
+    
    	#[pallet::pallet]
    	#[pallet::generate_store(pub(super) trait Store)]
+    #[pallet::without_storage_info]
    	pub struct Pallet<T>(_);
 
    	#[pallet::storage] // <-- Step 5. code block will replace this.
@@ -349,7 +351,7 @@ To implement this logic in the proof-of-existence pallet:
    		ensure!(Proofs::<T>::contains_key(&proof), Error::<T>::NoSuchProof);
 
    		// Get owner of the claim.
-   		let (owner, _) = Proofs::<T>::get(&proof);
+   		let (owner, _) = Proofs::<T>::get(&proof).unwrap();
 
    		// Verify that sender of the current call is the claim owner.
    		ensure!(sender == owner, Error::<T>::NotProofOwner);
