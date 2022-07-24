@@ -39,7 +39,7 @@ To make it easier to maintain the security and integrity of the chain but reduce
 ### Full nodes
 
 Full nodes are a critical part of the blockchain network infrastructure and are the most common node type.
-Full nodes store blockchain data and, typically, participate in common blockchain operations, such as authoring and validating blocks, receiving and verifying transactions, and serving data is response to user requests.
+Full nodes store blockchain data and, typically, participate in common blockchain operations, such as authoring and validating blocks, receiving and verifying transactions, and serving data in response to user requests.
 
 ![Full node](/media/images/docs/main-docs/full-node.png)
 
