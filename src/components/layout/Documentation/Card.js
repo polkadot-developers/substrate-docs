@@ -1,10 +1,10 @@
 import cx from 'classnames';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import React from 'react';
 
 import analytics from '../../../analytics';
 import snakecase from '../../../hooks/snakecase';
 import { Link } from '../../default/Link';
+import { Image } from '../../default/resolvers/Image';
 import CardLink from './CardLink';
 
 export default function Card({
@@ -20,7 +20,6 @@ export default function Card({
   bodyLinkThreeTitle,
 }) {
   const imageStyles = 'block h-28 sm:h-40 xs:h-40 object-cover rounded-t-md';
-  const cardImage = getImage(featured_image);
   return (
     <div
       className={cx(
@@ -40,7 +39,7 @@ export default function Card({
           analytics.track(`click_${snakecase(link)}`);
         }}
       >
-        <GatsbyImage className={imageStyles} image={cardImage} alt={`Substrate Documentation ${title}`} />
+        <Image src={featured_image} className={imageStyles} alt={`Substrate Documentation ${title}`} />
       </Link>
       <div className="lg:p-6 md:p-10 sm:p-6 xs:p-6">
         <p className="text-2xl lg:text-3xl xl:text-4xl capitalize font-title font-extrabold">{title}</p>

@@ -204,13 +204,6 @@ module.exports = {
         path: `./content/md/`,
       },
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `homepage-content`,
-        path: `./content/homepage/`,
-      },
-    },
     /* source the locales for gatsby-react-i18next */
     {
       resolve: `gatsby-source-filesystem`,

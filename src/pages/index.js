@@ -56,11 +56,7 @@ export const query = graphql`
             bodyLinkTwoTitle
             bodyLinkThreeURL
             bodyLinkThreeTitle
-            featured_image {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
+            featured_image
           }
         }
       }
