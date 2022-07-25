@@ -1,6 +1,6 @@
 const analytics = {
   track: event => {
-    const e = `click_${event}`;
+    const e = `${event}`;
     window.sa_event && window.sa_event(e);
   },
 };
