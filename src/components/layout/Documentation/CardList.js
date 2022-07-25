@@ -13,7 +13,7 @@ export default function CardsList({ data }) {
           const {
             title,
             description,
-            image,
+            featured_image,
             link,
             bodyLinkOneURL,
             bodyLinkOneTitle,
@@ -27,7 +27,7 @@ export default function CardsList({ data }) {
               <Card
                 title={title}
                 text={description}
-                image={image}
+                featured_image={featured_image}
                 link={link}
                 bodyLinkOneURL={bodyLinkOneURL}
                 bodyLinkOneTitle={bodyLinkOneTitle}

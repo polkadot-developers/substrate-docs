@@ -10,7 +10,7 @@ export default function CardLink({ link, children }) {
       className="CardLink font-bold mdx-anchor text-substrateDark dark:text-white block my-2 group"
       to={link}
       onClick={() => {
-        analytics.click(snakecase(link));
+        analytics.track(`click_${snakecase(link)}`);
       }}
     >
       <span>{children}</span>

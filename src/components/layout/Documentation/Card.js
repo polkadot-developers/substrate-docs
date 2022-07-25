@@ -10,7 +10,7 @@ import CardLink from './CardLink';
 export default function Card({
   title,
   text,
-  image,
+  featured_image,
   link,
   bodyLinkOneURL,
   bodyLinkOneTitle,
@@ -20,7 +20,7 @@ export default function Card({
   bodyLinkThreeTitle,
 }) {
   const imageStyles = 'block h-28 sm:h-40 xs:h-40 object-cover rounded-t-md';
-  const cardImage = getImage(image);
+  const cardImage = getImage(featured_image);
   return (
     <div
       className={cx(
@@ -37,7 +37,7 @@ export default function Card({
       <Link
         to={link}
         onClick={() => {
-          analytics.click(snakecase(link));
+          analytics.track(`click_${snakecase(link)}`);
         }}
       >
         <GatsbyImage className={imageStyles} image={cardImage} alt={`Substrate Documentation ${title}`} />
