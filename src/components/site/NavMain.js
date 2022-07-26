@@ -63,8 +63,7 @@ const DropDownItem = ({ data }) => {
     >
       {data.childMenu ? (
         <div ref={ref}>
-          <div
-            tabIndex="0"
+          <button
             className={cx(itemClass, 'pr-24', {
               'bg-substrateGreen-light dark:bg-green-700 underline': isComponentVisible,
             })}
@@ -75,7 +74,7 @@ const DropDownItem = ({ data }) => {
             <span className="absolute right-6 pt-1.5">
               <Icon name="arrow-next" className="fill-current text-black dark:text-white" />
             </span>
-          </div>
+          </button>
           {isComponentVisible && (
             <ChildMenu slugPrefix={data.menuItem.url + data.subMenuItem.url} childMenu={data.childMenu} />
           )}
