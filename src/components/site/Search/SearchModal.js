@@ -119,6 +119,8 @@ function SearchModal({ id, closeModal }) {
         <div
           ref={id}
           className="bg-white dark:bg-gray-900 w-full max-w-screen-sm h-auto py-10 px-8 rounded-lg border-2 border-substrateDark shadow-xl"
+          aria-modal="true"
+          aria-label="Search Documentation"
         >
           <SearchInput query={query} setQuery={setQuery} closeModal={closeModal} />
           <div className="flex flex-col sm:flex-row mb-6">
