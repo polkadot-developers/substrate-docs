@@ -190,10 +190,15 @@ tutorials:
           url: /tutorials/connect-other-chains/local-parachain/
         - title: Connect to Rococo testnet
           url: /tutorials/connect-other-chains/rococo-slot/
-        - title: Access EVM accounts
-          url: /tutorials/connect-other-chains/access-evm-accounts/
         #- title: Send cross-consensus messages (XCM)
         #  url: /tutorials/connect-other-chains/xcm/
+    - title: Integrate with tools
+      url: /tutorials/integrate-with-tools/
+      pages:
+        - title: Integrate a light client node
+          url: /tutorials/integrate-with-tools/substrate-connect/
+        - title: Access EVM accounts
+          url: /tutorials/integrate-with-tools/access-evm-accounts/
 reference:
   title: Reference
   url: /reference/
