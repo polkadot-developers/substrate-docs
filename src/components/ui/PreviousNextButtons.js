@@ -1,6 +1,5 @@
 import React from 'react';
 
-import PrimaryFixedButton from './PrimaryFixedButton';
 import SecondaryButton from './SecondaryButton';
 
 export default function PreviousNextButtons({ previous, next }) {
@@ -15,7 +14,7 @@ export default function PreviousNextButtons({ previous, next }) {
       )}
       {next ? (
         <div className="absolute right-0">
-          <PrimaryFixedButton link={next}>Next</PrimaryFixedButton>
+          <SecondaryButton link={next}>Next</SecondaryButton>
         </div>
       ) : (
         ''
