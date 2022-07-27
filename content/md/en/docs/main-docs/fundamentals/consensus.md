@@ -29,7 +29,7 @@ For a Substrate-based blockchain, you can choose one of the following block auth
 - Blind assignment of blockchain extension [(BABE)](/reference/glossary/#blind-assignment-of-blockchain-extension-(BABE)) slot-based scheduling.
 - Proof of work computation-based scheduling.
 
-The Aura and BABE consensus models require require you to have a known set of **validator nodes** that are permitted to produce blocks.
+The Aura and BABE consensus models require you to have a known set of **validator nodes** that are permitted to produce blocks.
 In both of these consensus models, time is divided up into discrete slots.
 During each slot only some of the validators can produce a block.
 In the Aura consensus model, validators that can author blocks rotate in a round-robin fashion.

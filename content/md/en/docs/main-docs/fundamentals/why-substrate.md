@@ -45,7 +45,7 @@ With Substrate, you can deploy a blockchain that's designed and built for your s
 ## Open
 
 All of the Substrate architecture and tooling is available under [open-source licensing](https://github.com/paritytech/substrate#license).
-Core components of the Substrate framework use open protocols such as `libp2p` and `jsonRPC` while empowering you decide how much you want to customize your blockchain architecture.
+Core components of the Substrate framework use open protocols such as `libp2p` and `jsonRPC` while empowering you to decide how much you want to customize your blockchain architecture.
 Substrate also has a large, active, and helpful [builder community](https://substrate.io/ecosystem/) contributing to the ecosystem.
 Contributions from the community enhance the capabilities available for you to incorporate into your own blockchain as it evolves.
 

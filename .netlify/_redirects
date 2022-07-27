@@ -1,5 +1,4 @@
 # Redirects from what the browser requests to what we serve
-/                            /quick-start/ 301!
 
 /rustdocs                   https://paritytech.github.io/substrate/master/sc_service/ 301!
 
@@ -8,6 +7,7 @@
 /docs/en/*                   /quick-start/ 301!
 
 /v3/*                        /quick-start/ 301!
+/v3                          /quick-start/ 301!
 
 /playground                  https://substrate.io/developers/playground/
 /how-to-guides/v3/*          /reference/how-to-guides/ 301!
