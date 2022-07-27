@@ -273,6 +273,8 @@ To connect to this chain:
    ```console
    [smoldot] Parachain initialization complete for statemint. Name: "Statemint". Genesis hash: 0x68d5…de2f. State root hash: 0xc1ef26b567de07159e4ecd415fbbb0340c56a09c4d72c82516d0f3bc2b782c80. Network identity: 12D3KooWArq3iZHdK2jtRZSJzJkkWrKm17JTa9kjwjZkq9Htx5xR. Relay chain: polkadot (id: 1000 smoldot-light.js:41 
    [smoldot] Smoldot v0.6.25. Current memory usage: 140 MiB. Average download: 35.4 kiB/s. Average upload: 423 B/s.
+   New block #1785421 has hash 0x88885ed331f94b4324c5f2eae8413cd36170808ef904b0ec0867646fa53770f7 index.ts:13 
+   New block #1785422 has hash 0x2ad4d96e061a681e27403694f1d870bb0c4e5c77b5be232a18c7a2e0b7fb2555 index.ts:13 
    ```
 
 ## Advanced application development
