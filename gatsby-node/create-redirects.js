@@ -1,11 +1,7 @@
 const redirects = [
   {
-    fromPath: '/v3',
-    toPath: '/',
-  },
-  {
-    fromPath: '/v3/',
-    toPath: '/',
+    fromPath: '/example-page/',
+    toPath: '/example-page-redirect/',
   },
 ];
 
