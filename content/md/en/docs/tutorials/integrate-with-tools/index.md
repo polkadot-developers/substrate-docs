@@ -4,10 +4,10 @@ description: Demonstrates use cases for tools that enable you to connect to and 
 keywords:
 ---
 
-The **Integrate with tools** tutorials highlight tools and node extensions that enable you to access, synchronize, and interact with information from Substrate nodes and the blockchain.
+The **Integrate with tools** tutorials highlight tools and node extensions that enable you to deploy nodes that can integrate with other systems and how to use additional ecosystem tools that allow you to access, synchronize, and interact with information your own or other blockchains.
 
-- [Connect to a chain from the browser](/tutorials/integrate-with-tools/substrate-connect/) XXX.
-- [Connect a local parachain](/tutorials/connect-other-chains/local-parachain/) highlights the steps necessary to connect your local parachain to a relay chain.
-- [Connect to Rococo testnet](/tutorials/connect-other-chains/rococo-slot/) summarizes the steps for connecting a parachain to the Rococo test network.
-<!-- TODO: WIP page on XCM -->
-<!-- - [Send cross-consensus messages (XCM)](/tutorials/connect-other-chains/xcm/) summarizes the steps for connecting a parachain to the Rococo test network. -->
+- [Integrate a light client node](/tutorials/integrate-with-tools/substrate-connect/) describes how you can use the Substrate Connect light client node to synchronize and interact with a Substrate chain from a browser.
+- [Access EVM accounts](/tutorials/integrate-with-tools/access-evm-accounts/) illustrates how you can use a customized Substrate node to access to Ethereum-based accounts and contracts.
+
+<!--
+- [Sidecar](/tutorials/integrate-with-tools/sidecar/) summarizes the steps for connecting a parachain to the Rococo test network.

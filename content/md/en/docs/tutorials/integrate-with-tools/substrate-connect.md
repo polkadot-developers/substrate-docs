@@ -1,6 +1,6 @@
 ---
-title: Connect a light client
-description: Introduces tutorials for running in-browser light clients using Substrate Connect.
+title: Integrate a light client node
+description: Demonstrates how you can connect to Substrate-based blockchains using Substrate Connect in a browser.
 keywords:
 ---
 
