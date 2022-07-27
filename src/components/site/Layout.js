@@ -67,7 +67,7 @@ export default function Layout({
     <>
       <Banner />
       <Header mode={mode} header={header} />
-      <main
+      <div
         className={cx('min-h-screen', {
           'mt-0': layout === 'default',
         })}
@@ -78,7 +78,7 @@ export default function Layout({
             {children}
           </LayoutSidebar>
         )}
-      </main>
+      </div>
       <Footer />
     </>
   );

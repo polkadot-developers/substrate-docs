@@ -44,8 +44,8 @@ const DropDownItem = ({ data }) => {
     data.setIsChildMenuOpen(true);
   };
 
-  const handleKeypress = e => {
-    if (e.key === 'Enter') {
+  const handleKeypress = event => {
+    if (event.key === 'Enter') {
       setIsComponentVisible(!isComponentVisible);
       data.setIsChildMenuOpen(true);
     }
@@ -63,18 +63,19 @@ const DropDownItem = ({ data }) => {
     >
       {data.childMenu ? (
         <div ref={ref}>
-          <button
+          <div
             className={cx(itemClass, 'pr-24', {
               'bg-substrateGreen-light dark:bg-green-700 underline': isComponentVisible,
             })}
             onClick={handleChildMenuOpen}
             onKeyPress={handleKeypress}
+            tabIndex="0"
           >
             <span>{t(data.subMenuItem.id)}</span>
             <span className="absolute right-6 pt-1.5">
               <Icon name="arrow-next" className="fill-current text-black dark:text-white" />
             </span>
-          </button>
+          </div>
           {isComponentVisible && (
             <ChildMenu slugPrefix={data.menuItem.url + data.subMenuItem.url} childMenu={data.childMenu} />
           )}
