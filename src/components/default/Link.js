@@ -1,6 +1,7 @@
 import { Link as LinkI18n } from 'gatsby-plugin-react-i18next';
 import React, { useContext } from 'react';
 
+import { CAREERS_URL, DOCS_URL, MARKETPLACE_URL, WEBSITE_URL } from '../../../config/webConsts';
 import { ThemeContext } from '../../contexts/ThemeContext';
 
 const addTrailingSlash = uri => {
@@ -124,9 +125,10 @@ const buildSubMenu = (menus, item) => {
 
 const testInfraLink = href => {
   const regexList = [
-    new RegExp(process.env.GATSBY_WEBSITE_URL, 'i'),
-    new RegExp(process.env.GATSBY_DOCS_URL, 'i'),
-    new RegExp(process.env.GATSBY_MARKETPLACE_URL, 'i'),
+    new RegExp(WEBSITE_URL, 'i'),
+    new RegExp(DOCS_URL, 'i'),
+    new RegExp(MARKETPLACE_URL, 'i'),
+    new RegExp(CAREERS_URL, 'i'),
   ];
   const match = regexList.some(rx => rx.test(href));
   return match;

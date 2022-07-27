@@ -1,6 +1,4 @@
-const WEBSITE_URL = process.env.GATSBY_WEBSITE_URL;
-// const DOCS_URL = process.env.GATSBY_DOCS_URL;
-//const MARKETPLACE_URL = process.env.GATSBY_MARKETPLACE_URL;
+const { MARKETPLACE_URL, WEBSITE_URL, CAREERS_URL } = require('./webConsts.js');
 
 /* the main menu, ids of items must match
    the submenu's key of this js object */
@@ -61,12 +59,24 @@ const developers = [
     id: 'developers.rustdocs',
   },
   {
+    url: MARKETPLACE_URL,
+    id: 'developers.marketplace',
+  },
+  {
     url: WEBSITE_URL + '/developers/playground/',
     id: 'developers.playground',
   },
   {
     url: WEBSITE_URL + '/developers/smart-contracts/',
     id: 'developers.smart-contracts',
+  },
+  {
+    url: WEBSITE_URL + '/developers/substrate-connect',
+    id: 'developers.substrate-connect',
+  },
+  {
+    url: WEBSITE_URL + '/developers/rococo-network',
+    id: 'developers.rococo-network',
   },
 ];
 
@@ -123,8 +133,8 @@ const opportunities = [
     id: 'ecosystem.opportunities.grants',
   },
   {
-    url: WEBSITE_URL + '/ecosystem/opportunities/jobs',
-    id: 'ecosystem.opportunities.jobs',
+    url: CAREERS_URL,
+    id: 'ecosystem.opportunities.careers',
   },
 ];
 
@@ -173,13 +183,6 @@ const legal = [
   },
 ];
 
-const extra = [
-  {
-    url: WEBSITE_URL + '/substrate-connect',
-    id: 'extra.substrate-connect',
-  },
-];
-
 module.exports = {
   main,
   technology,
@@ -189,6 +192,5 @@ module.exports = {
   opportunities,
   resources,
   connect,
-  extra,
   legal,
 };

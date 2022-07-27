@@ -4,11 +4,6 @@ import useLunrIndex from '../../../hooks/use-lunr-index';
 import SearchInput from './SearchInput';
 import SearchResultsContainer from './SearchResultsContainer';
 import SearchSectionLabel from './SearchSectionLabel';
-// import {
-//   SearchSectionLabel,
-//   SearchResultsContainer,
-//   SearchInput,
-// } from '../search-ui'
 
 function SearchModal({ id, closeModal }) {
   const [query, setQuery] = useState('');
@@ -22,9 +17,6 @@ function SearchModal({ id, closeModal }) {
     tuts: false,
     ref: false,
   });
-
-  //console.log(id, closeModal, setQuery, displayedResults, types, setSection);
-  // console.log(displayedResults);
 
   const sectionNames = {
     docs: 'main-docs',
@@ -54,7 +46,6 @@ function SearchModal({ id, closeModal }) {
         return { slug: result.ref, ...store[result.ref] };
       });
     } catch (error) {
-      // console.error(error)
       return [];
     }
   };
@@ -79,20 +70,8 @@ function SearchModal({ id, closeModal }) {
     const selectedSectionNames = Object.entries(sectionNames)
       .filter(([key]) => selectedSections.indexOf(key) >= 0)
       .map(([, val]) => val);
-    //console.log(selectedSectionNames);
-    //console.log(searchResults);
-    //console.log(selectedSectionNames.includes(searchResults[0].slug));
-    // console.log(
-    //   Object.keys(searchResults).map(function (key) {
-    //     return searchResults[key];
-    //   })
-    // );
-    //console.log(searchResults.filter(result => selectedSectionNames.includes(result.section)));
+
     function filterResult(i) {
-      // selectedSectionNames.map(name => {
-      //   console.log(name);
-      //i.filter(item => item.slug.includes(name));
-      // });
       if (i.slug.includes(selectedSectionNames[0])) {
         return true;
       }
@@ -106,7 +85,6 @@ function SearchModal({ id, closeModal }) {
       }
     }
     const filteredResults = searchResults.filter(result => filterResult(result));
-    console.log(filteredResults);
     setDisplayedResults(filteredResults);
   }, [searchResults, section]);
 
@@ -114,11 +92,11 @@ function SearchModal({ id, closeModal }) {
     <>
       <div
         id="content-container"
-        className="flex justify-center items-center lg:items-start lg:mt-24 fixed inset-0 z-50 px-4 animate-fade-in"
+        className="flex justify-center items-center lg:items-start lg:mt-24 fixed inset-0 z-50 animate-fade-in max-h-screen"
       >
         <div
           ref={id}
-          className="bg-white dark:bg-gray-900 w-full max-w-screen-sm h-auto py-10 px-8 rounded-lg border-2 border-substrateDark shadow-xl"
+          className="bg-white dark:bg-gray-900 w-full max-w-screen-sm h-auto py-10 px-8 rounded-lg border-2 border-substrateDark shadow-xl max-h-screen overflow-scroll"
           aria-modal="true"
           aria-label="Search Documentation"
         >

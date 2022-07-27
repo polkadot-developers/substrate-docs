@@ -31,11 +31,11 @@ In order to set a unique protocol ID, change make sure you use some nonce or sal
 as a CLI item in `/client/network/src/command.rs`, and passed to extend the `/client/network/src/chain_spec.rs`
 
 All [chain specification](/main-docs/build/chain-spec/) files include this item as a field.
-For example, the primary [relay chain runtime](https://github.com/paritytech/polkadot/tree/master/node/service/res) chain specs have unique protocol IDs.
+For example, the primary [relay chain runtime](https://github.com/paritytech/polkadot/tree/master/node/service/chain-specs) chain specs have unique protocol IDs.
 For Polkadot:
 
 ```json
-// raw chain spec file in polkadot repo `/node/service/res/polkadot.json`
+// raw chain spec file in polkadot repo `/node/service/chain-specs/polkadot.json`
 {
   //--snip--
   "protocolId": "dot"
@@ -132,7 +132,7 @@ Before you try anything on a production testnet or mainnet, you should launch yo
 Testing in a confined network will help you prepare for potential failures in a real network with many collators and validators and constraints like bandwidth and latency.
 The more closely you can simulate a real network for testing, the more sure you can be that your runtime upgrades will succeeds.
 
-See the [Cumulus tutorial](/tutorials/connect-other-chains/relay-chain/) to learn how to use the `polkadot-launch` tool for such testing.
+See the [Prepare a local parachain testnet](/tutorials/connect-other-chains/local-relay/) to for a selection of tools for automation of such testing.
 
 ## Examples
 

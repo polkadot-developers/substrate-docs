@@ -1,6 +1,6 @@
 ---
 title: "POLKADOT DECODED"
-active: true
+active: false
 ---
 
 June 29th-30th, 2022

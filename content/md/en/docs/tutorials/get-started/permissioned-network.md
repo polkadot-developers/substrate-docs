@@ -1,11 +1,11 @@
 ---
 title: Authorize specific nodes
-description:
+description: Configure a network that has authorized nodes and nodes with restricted access.
 keywords:
   - permissioned
   - private
-  - authorize
-  - enterprize
+  - authorization
+  - restricted access
 ---
 
 In [Add trusted nodes](/tutorials/get-started/trusted-network/), you saw how to build a simple network with a known set of validator nodes.
@@ -85,10 +85,10 @@ If you have completed previous tutorials, you should have the Substrate node tem
    cd substrate-node-template
    ```
 
-1. Switch to the version of the repository that has the `latest` tag by running the following command:
+1. Switch to the version of the repository that has the `polkadot-v0.9.26` tag by running the following command:
 
    ```bash
-   git checkout latest
+   git checkout polkadot-v0.9.26
    ```
 
    This command checks out the repository in a detached state.
@@ -129,7 +129,7 @@ To add the `node-authorization` pallet to the Substrate runtime:
 
    ```toml
    [dependencies]
-   pallet-node-authorization = { default-features = false, git = "https://github.com/paritytech/substrate.git", tag = "devhub/latest", version = "4.0.0-dev" }
+   pallet-node-authorization = { default-features = false, version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
    ```
 
    This line imports the `pallet-node-authorization` crate as a dependency and specifies the following configuration details for the crate:

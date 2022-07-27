@@ -1,6 +1,6 @@
 ---
 title: Add trusted nodes
-description:
+description: Generate account keys and a custom chain specification for a private blockchain network.
 keywords:
   - enterprize
   - private
@@ -76,8 +76,6 @@ To generate keys using the node template:
    ```
 
 1. Type a password for the generated keys.
-
-   The command generates keys and displays output similar to the following:
 
    The command generates keys and displays output similar to the following:
 
@@ -270,7 +268,7 @@ To convert a chain specification to use the raw format:
 1. Convert the `customSpec.json` chain specification to the raw format with the file name `customSpecRaw.json` by running the following command:
 
    ```bash
-   ./target/release/node-template build-spec --chain=customSpec.json --disable-default-bootnode > customSpecRaw.json
+   ./target/release/node-template build-spec --chain=customSpec.json --raw --disable-default-bootnode > customSpecRaw.json
    ```
 
 ## Share the chain specification with others
@@ -317,7 +315,8 @@ To start the first node:
       --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
       --validator \
       --rpc-methods Unsafe \
-      --name MyNode01
+      --name MyNode01 \
+      --password-interactive
    ```
 
 Note the following command-line options you are using to start the node:

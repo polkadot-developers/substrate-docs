@@ -18,8 +18,8 @@ import PreviousNextButtons from '../components/ui/PreviousNextButtons';
 
 export default function DocsSinglePage({ data, pageContext }) {
   const { markdownRemark } = data;
-  const { htmlAst, tableOfContents, frontmatter, headings } = markdownRemark;
-  const { title } = frontmatter;
+  const { htmlAst, tableOfContents, frontmatter, headings, excerpt } = markdownRemark;
+  const { title, description } = frontmatter;
   const { pagePath /*collection*/ } = pageContext;
   const { gitLogLatestDate } = data.markdownRemark.parent.fields != null ? data.markdownRemark.parent.fields : '';
   //const pagePathNoSlash = pagePath.endsWith('/') ? pagePath.slice(0, -1) : pagePath;
@@ -62,7 +62,7 @@ export default function DocsSinglePage({ data, pageContext }) {
 
   return (
     <Layout>
-      <SEO title={title} />
+      <SEO title={title} description={description} excerpt={excerpt} />
       <div className="flex flex-col lg:flex-row">
         <Sidebar currentPath={pagePath}>
           <NavSidebar currentPath={pagePath} />
@@ -156,6 +156,7 @@ export const query = graphql`
       }
       frontmatter {
         title
+        description
       }
       parent {
         ... on File {
@@ -167,6 +168,7 @@ export const query = graphql`
           }
         }
       }
+      excerpt(pruneLength: 80)
     }
   }
 `;

@@ -1,5 +1,5 @@
 ---
-title: Runtime upgrades
+title: Runtime upgrades for parachains
 description:
 keywords:
   - collators
@@ -25,7 +25,7 @@ Because of this, and the very confined nature of state transition coordination b
 Please do the following:
 
 - Read the general [runtime upgrade docs](/main-docs/build/upgrade).
-- Complete the [cumulus tutorial](/tutorials/connect-other-chains/relay-chain), and learn the `polkadot-launch` tool for testing.
+- Complete the [Prepare a local parachain testnet](/tutorials/connect-other-chains/relay-chain) tutorial, and learn the `polkadot-launch` tool for testing.
 
 ## Choose your upgrade approach
 
@@ -46,8 +46,6 @@ There are a handful of strategies you can use to remedy this problem:
      If you are limited in the number of transactions you can make, you can batch multiple transactions to occur over time via the scheduler.
 
 After your migration strategy is established, you should test the migration on a non-production testnet to ensure it will work _before_ you continue.
-
-<!-- See the [how-to guide on storage migration testing](/reference/how-to-guides/storage-migrations/tests) to proceed. -->
 
 Testing in a confined network will help you prepare for potential failures in a real network with many collators and validators and constraints like bandwidth and latency.
 The more closely you can simulate a real network for testing, the more sure you can be that your runtime upgrades will succeeds.
@@ -73,8 +71,3 @@ With both these functions called, the relay chain will be notified that the new 
 - [Fork off Substrate](https://github.com/maxsam4/fork-off-substrate)
 - [`try-runtime`](/reference/command-line-tools/try-runtime)
 - [`try-runtime` video workshop](https://www.crowdcast.io/e/substrate-seminar/41)
-<!-->
-- [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/)
-- [How to: Test storage migration](/reference/how-to-guides/storage-migrations/test-migration)
-  -->
-- [Substrate Builders Program: Storage Mmgration](https://drive.google.com/file/d/19HPFUmSQIxVkxaVSg1SWveSdvjHUw1b8/view?usp=sharing)

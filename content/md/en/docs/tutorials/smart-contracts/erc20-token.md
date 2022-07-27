@@ -1,6 +1,6 @@
 ---
-title: Build an ERC20
-description:
+title: Build a token contract
+description: Build an ERC-20 token supply using a smart contract written in the ink! language.
 keywords:
   - erc20
   - ethereum
@@ -152,7 +152,7 @@ To build an ERC-20 token smart contract:
 
 ## Upload and instantiate the contract
 
-If you want to test what you have so far, you can upload the contract using the [Contracts UI](https://paritytech.github.io/contracts-ui).
+If you want to test what you have so far, you can upload the contract using the [Contracts UI](https://contracts-ui.substrate.io).
 
 To test the ERC-20 contract before adding new functions:
 
@@ -648,7 +648,7 @@ You can learn more about smart contract development in the following topics:
 
 - [Use maps for storing values](/tutorials/smart-contracts/use-mapping/)
 
-- [Troubleshoot smart contracts](tutorials/smart-contracts/sc-common-issues/)
+- [Troubleshoot smart contracts](/tutorials/smart-contracts/sc-common-issues/)
 
 - [ink! documentation](https://paritytech.github.io/ink-docs/)
 

@@ -1,6 +1,6 @@
 ---
 title: Build a local blockchain
-description:
+description: Compile, launch, and interact with a single local blockchain node in a development environment.
 keywords:
 ---
 
@@ -69,10 +69,10 @@ To compile the Substrate node template:
    git clone https://github.com/substrate-developer-hub/substrate-node-template
    ```
 
-1. Change to the root of the node template directory and checkout the `latest` branch by running the following command:
+1. Change to the root of the node template directory and checkout the `polkadot-v0.9.26` branch by running the following command:
 
    ```bash
-   cd substrate-node-template && git checkout latest
+   cd substrate-node-template && git checkout polkadot-v0.9.26
    ```
 
 1. Compile the node template by running the following command:
@@ -281,8 +281,8 @@ The front-end template includes several additional components for you to experim
 You can explore these components on your own or learn more in the following topics:
 
 - [Architecture](/main-docs/fundamentals/architecture/)
-- [Networks and blockchains](/main-docs/fundamentals/)node-and-network-types/
-- [Simulate a network](tutorials/get-started/simulate-network/)
+- [Networks and blockchains](/main-docs/fundamentals/node-and-network-types/)
+- [Simulate a network](/tutorials/get-started/simulate-network/)
 
 If you experienced any issues with this tutorial, submit an issue, ask questions, or provide feedback.
 

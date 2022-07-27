@@ -1,6 +1,6 @@
 ---
 title: macOS development environment
-description: set up a local development environment for Substrate on macOS.
+description: Set up a local development environment for Substrate on macOS.
 keywords:
 ---
 
@@ -146,7 +146,7 @@ To compile the Substrate node template:
 1. Clone the node template repository by running the following command:
 
    ```bash
-   git clone --branch latest --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+   git clone --branch polkadot-v0.9.26 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
    ```
 
 1. Change to the root of the node template directory by running the following command:
@@ -158,11 +158,10 @@ To compile the Substrate node template:
 1. Compile the node template by running the following command:
 
    ```bash
-   # We always want to build in release mode when intending to run and/or test any node
-   cargo b -r
+   cargo build --release
    ```
 
-   Because of the number of crates required, compiling the node can take several minutes.
+   Because of the number of packages required, compiling the node can take several minutes.
 
 After the build completes successfully, your local computer is ready for Substrate development activity.
 

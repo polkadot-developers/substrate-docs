@@ -20,7 +20,7 @@
 		"lint:eslint": "eslint . --ext js --ext jsx",
 		"lint:fix": "eslint --fix --ext js --ext jsx .",
 		"extract-locales": "yarn run babel --config-file ./babel-extract-locales.config.js -o tmp/chunk.js 'src/**/*.{js,jsx}' && rm -rf tmp",
-		"checklinks": "yarn blc --filter-level=3 -rof --requests=10 --exclude='/crates.io' --exclude='/localhost:8000' --exclude='/localhost:8100' --exclude='undefined' http://localhost:9000/quick-start/ | tee checklinks.log"
+		"checklinks": "yarn blc --filter-level=3 -rof --requests=10 --exclude='/crates.io' --exclude='/localhost:8000' --exclude='/localhost:8100' --exclude='/localhost:8300' --exclude='/paritytech.github.io/' --exclude='undefined' http://localhost:9000/quick-start/ | tee checklinks.log"
 	},
 	"dependencies": {
 		"aos": "^2.3.4",
@@ -37,6 +37,7 @@
 		"gatsby-plugin-react-i18next": "^1.1.1",
 		"gatsby-plugin-react-svg": "^3.0.1",
 		"gatsby-plugin-remove-serviceworker": "^1.0.0",
+		"gatsby-plugin-robots-txt": "^1.7.1",
 		"gatsby-plugin-sass": "^4.2.0",
 		"gatsby-plugin-sharp": "^3.10.2",
 		"gatsby-plugin-simple-analytics": "^1.0.4",

@@ -1,6 +1,6 @@
 ---
 title: Prepare your first contract
-description:
+description: Build and test a simple smart contract using the ink! smart contract language.
 keywords:
 ---
 
@@ -81,7 +81,7 @@ If you can't download the precompiled node, you can compile it locally with a co
 cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag <latest-tag> --force --locked
 ```
 
-You can find the latest tag to use on the [Tags](https://github.com/paritytech/substrate-contracts-node/tags) page.
+You can find the latest tag (`polkadot-v0.9.26` to match the rest of the docs example code versions) to use on the [Tags](https://github.com/paritytech/substrate-contracts-node/tags) page.
 
 ## Install additional packages
 
@@ -303,9 +303,9 @@ To start the preconfigured `contracts-node`:
    After a few seconds, you should see blocks being finalized.
 
    To interact with the blockchain, you need to connect to this node.
-   You can connect to the node through a browser by opening the [Contracts UI](https://paritytech.github.io/contracts-ui).
+   You can connect to the node through a browser by opening the [Contracts UI](https://contracts-ui.substrate.io).
 
-1. Navigate to the [Contracts UI](https://paritytech.github.io/contracts-ui) in a web browser, then click **Yes allow this application access**.
+1. Navigate to the [Contracts UI](https://contracts-ui.substrate.io) in a web browser, then click **Yes allow this application access**.
 
 1. Select **Local Node**.
 
@@ -342,7 +342,7 @@ For this tutorial, you use the Contracts UI front-end to deploy the `flipper` co
 
 To upload the smart contract source code:
 
-1. Open to the [Contracts UI](https://paritytech.github.io/contracts-ui) in a web browser.
+1. Open to the [Contracts UI](https://contracts-ui.substrate.io) in a web browser.
 
 1. Verify that you are connected to the **Local Node**.
 
@@ -465,7 +465,7 @@ You can learn more about smart contract development in the following topics:
 
 - [Develop a smart contract](/tutorials/smart-contracts/develop-contract/)
 - [Build an ERC20 token contract](/tutorials/smart-contracts/erc20-token/)
-- [Troubleshoot smart contracts](tutorials/smart-contracts/sc-common-issues/)
+- [Troubleshoot smart contracts](/tutorials/smart-contracts/sc-common-issues/)
 
 If you experienced any issues with this tutorial, submit an issue, ask questions or provide feedback.
 

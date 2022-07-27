@@ -13,7 +13,7 @@ Because the runtime is part of the blockchain state, network maintainers can lev
 In the FRAME system for runtime development, the system library defines [the `set_code` call](https://paritytech.github.io/substrate/master/frame_system/pallet/enum.Call.html#variant.set_code) that is used to update the definition of the runtime.
 The tutorial [Upgrade a running network](/tutorials/get-started/forkless-upgrade/) demonstrates two ways that you can upgrade a runtime without shutting down a node or interrupting operations.
 However, both of the upgrades in the tutorial illustrate adding functionality to the runtime as opposed to _updating_ the existing runtime state.
-If a runtime upgrade requires changes to the existing state, it is likely to require storagevmigration.
+If a runtime upgrade requires changes to the existing state, it is likely to require storage migration.
 
 ## Runtime versioning
 
@@ -51,7 +51,7 @@ The parameters in the struct provide the following information:
 | `transaction_version` | The version of the interface for handling transactions. This parameter can be useful to synchronize firmware updates for hardware wallets or other signing devices to verify that runtime transactions are valid. The parameter allows hardware wallets to know which transactions they can safely sign. This number must be bumped if there is a change in the index of the pallets in the `construct_runtime!` macro or if there are any changes to dispatchable functions, such as the number of parameters or parameter types. If this number is updated, then the `spec_version` must also be updated. |
 | `apis` | A list of supported [runtime APIs](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html) along with their versions. |
 
-The orchestration engine—sometimes referred to as the executor—verifies that the native runtime has the same consensus-driven logic as the WebASsembly before it chooses to execute it.
+The orchestration engine—sometimes referred to as the executor—verifies that the native runtime has the same consensus-driven logic as the WebAssembly before it chooses to execute it.
 However, because the runtime versioning is set manually, the orchestration engine can still make inappropriate decisions if the runtime version is misrepresented.
 
 ## Accessing the runtime version
@@ -100,7 +100,7 @@ However, you can use the following recommended practices to guide you when you n
 - Include logging in migrations to assist in debugging.
 - Remember that migrations are executed within the context of the _upgraded_ runtime.
   The migration code might need to include deprecated types, as in [this example](https://github.com/hicommonwealth/substrate/blob/5f3933f5735a75d2d438341ec6842f269b886aaa/frame/indices/src/migration.rs#L5-L22).
-- Use storage versions to make migrations safer by making them more declarative, as in[this example](https://github.com/paritytech/substrate/blob/c79b522a11bbc7b3cf2f4a9c0a6627797993cb79/frame/elections-phragmen/src/lib.rs#L119-L157).
+- Use storage versions to make migrations safer by making them more declarative, as in [this example](https://github.com/paritytech/substrate/blob/c79b522a11bbc7b3cf2f4a9c0a6627797993cb79/frame/elections-phragmen/src/lib.rs#L119-L157).
 
 ### Ordering migrations
 
@@ -119,7 +119,7 @@ FRAME storage migrations run in this order:
 It is important to test storage migrations.
 A few of the tools available for you to test storage migration include the following:
 
-- The [Substrate debug kit](https://github.com/paritytech/substrate-debug-kit) includes a[remote externalities](https://github.com/paritytech/substrate-debug-kit/tree/master/remote-externalities) tool that allows storage migration unit testing to be safely performed on live chain data.
+- The [Substrate debug kit](https://github.com/paritytech/substrate-debug-kit) includes a [remote externalities](https://github.com/paritytech/substrate-debug-kit/tree/master/remote-externalities) tool that allows storage migration unit testing to be safely performed on live chain data.
 - The [fork-off-substrate](https://github.com/maxsam4/fork-off-substrate) script makes it easy to create a chain specification to bootstrap a local test chain for testing runtime upgrades and storage migrations.
 
 ## Where to go next

@@ -64,4 +64,3 @@ Take a look at [this example](https://github.com/PureStake/moonbeam/blob/master/
 ## Resources
 
 - [Parachain DevOps best practices](https://gist.github.com/lovelaced/cddc1c7234b883ee37e71cf4a1d63cac)
-- [DevOps for parachains office hour](https://drive.google.com/file/d/1-nQ_SI2XK6vxPQvORWuv68Yj0UDz5FrO/view)

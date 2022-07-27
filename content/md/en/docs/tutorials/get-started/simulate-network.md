@@ -1,6 +1,6 @@
 ---
 title: Simulate a network
-description:
+description: Start a private blockchain network using predefined accounts as authorized validators.
 keywords:
 ---
 
@@ -28,7 +28,7 @@ Before you begin, verify the following:
 
 By completing this tutorial, you will accomplish the following objectives:
 
-- Start a blockchain node using using a predefined account.
+- Start a blockchain node using a predefined account.
 
 - Learn the key command-line options used to start a node.
 

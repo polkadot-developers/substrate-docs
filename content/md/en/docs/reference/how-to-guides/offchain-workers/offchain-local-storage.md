@@ -43,7 +43,7 @@ If the cached value is found, offchain worker returns; else it will try to acqui
    }
    ```
 
-   In the above code, a persistent local storage is defined using [`StorageValueRef::persistent()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.persistent) which is identified by `pallet::my-storage` key.
+   In the above code, a persistent local storage is defined using [`StorageValueRef::persistent()`](https://paritytech.github.io/substrate/master/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.persistent) which is identified by `pallet::my-storage` key.
    The key is in a byte array type instead of a `str` type.
    This local storage is persisted and shared across runs of the offchain workers.
 
@@ -61,11 +61,11 @@ If the cached value is found, offchain worker returns; else it will try to acqui
    }
    ```
 
-   The result is fetched using [`get<T: Decode>()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.get) function, returning a `Result<Option<T>, StorageRetrievalError>` type.
+   The result is fetched using [`get<T: Decode>()`](https://paritytech.github.io/substrate/master/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.get) function, returning a `Result<Option<T>, StorageRetrievalError>` type.
    We only care about the case of having a valid value. If yes, return `Ok(())`.
    Note we also need to define the type of the returned value.
 
-   Use [`set()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.get) to write to storage and [`mutate<T, E, F>()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.mutate) to read and change the storage atomically.
+   Use [`set()`](https://paritytech.github.io/substrate/master/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.get) to write to storage and [`mutate<T, E, F>()`](https://paritytech.github.io/substrate/master/sp_runtime/offchain/storage/struct.StorageValueRef.html#method.mutate) to read and change the storage atomically.
 
 1. If there is no valid value (`None`) or having a `StorageRetrievalError`, proceed to compute the required result and acquire the storage lock.
 
@@ -96,12 +96,12 @@ If the cached value is found, offchain worker returns; else it will try to acqui
    }
    ```
 
-   In the above code snippet, a storage lock is defined with both the [block and time deadline specified](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.with_block_and_time_deadline).
+   In the above code snippet, a storage lock is defined with both the [block and time deadline specified](https://paritytech.github.io/substrate/master/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.with_block_and_time_deadline).
    This function takes in a lock identifier, block number expiration, and time expiration.
    The above lock expires when it either passes the specified amount of block number or time duration.
-   We can also specify the expiration period with [just the block number](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.with_block_deadline) or [time duration](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.with_deadline).
+   We can also specify the expiration period with [just the block number](https://paritytech.github.io/substrate/master/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.with_block_deadline) or [time duration](https://paritytech.github.io/substrate/master/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.with_deadline).
 
-1. Acquire the storage lock using [`.try_lock()`](https://paritytech.github.io/substrate/latest/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.try_lock).
+1. Acquire the storage lock using [`.try_lock()`](https://paritytech.github.io/substrate/master/sp_runtime/offchain/storage_lock/struct.StorageLock.html#method.try_lock).
 
    ```rust
    fn offchain_worker(block_number: T::BlockNumber) {
@@ -155,5 +155,5 @@ If the cached value is found, offchain worker returns; else it will try to acqui
 
 ## Examples
 
-- [**Off-chain worker example pallet** in Substrate](https://github.com/paritytech/substrate/blob/polkadot-v0.9.18/frame/examples/offchain-worker/src/lib.rs#L372-L441)
+- [**Off-chain worker example pallet** in Substrate](https://github.com/paritytech/substrate/blob/polkadot-v0.9.26/frame/examples/offchain-worker/src/lib.rs#L372-L441)
 - [**OCW pallet** demo](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/master/pallets/ocw/src/lib.rs#L299-L342)
