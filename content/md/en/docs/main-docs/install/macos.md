@@ -35,19 +35,19 @@ To install Homebrew:
 
 1. Download and install Homebrew by running the following command:
 
-   ```
+   ```bash
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
    ```
 
 1. Verify Homebrew has been successfully installed by running the following command:
 
-   ```
+   ```bash
    brew --version
    ```
 
    The command displays output similar to the following:
 
-   ```
+   ```bash
    Homebrew 3.3.1
    Homebrew/homebrew-core (git revision c6c488fbc0f; last commit 2021-10-30)
    Homebrew/homebrew-cask (git revision 66bab33b26; last commit 2021-10-30)
@@ -63,13 +63,13 @@ To install `openssl` and the Rust toolchain on macOS:
 
 1. Ensure you have an updated version of Homebrew by running the following command:
 
-   ```
+   ```bash
    brew update
    ```
 
 1. Install the `openssl` package by running the following command:
 
-   ```
+   ```bash
    brew install openssl
    ```
 
