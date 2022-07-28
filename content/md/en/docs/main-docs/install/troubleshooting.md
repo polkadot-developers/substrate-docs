@@ -122,3 +122,36 @@ rustup uninstall nightly
 rustup install nightly-<yyyy-MM-dd>
 rustup target add wasm32-unknown-unknown --toolchain nightly-<yyyy-MM-dd>
 ```
+
+### Installing `cmake` or `protobuf`
+
+Currently, there are issues with the pre-compiled binary for the M1 macs. This will result in the following error:
+```
+error: failed to run custom build command for prost-build v0.10.4
+```
+
+If you see this error, there are 2 solutions.
+
+1. (Simplest) Just install `cmake` by running the following command:
+```
+brew install cmake
+```
+2. Alternatively, install the correct pre-compiled `protoc` by running the following:
+
+```
+git clone https://github.com/protocolbuffers/protobuf.git
+cd protobuf
+
+brew install autoconf
+brew install automake
+brew install Libtool
+
+autoreconf -i
+./autogen.sh
+./configure
+make
+make check
+sudo make install
+
+export PATH=/opt/usr/local/bin:$PATH
+```
