@@ -123,7 +123,7 @@ rustup install nightly-<yyyy-MM-dd>
 rustup target add wasm32-unknown-unknown --toolchain nightly-<yyyy-MM-dd>
 ```
 
-### Installing `cmake` or `protobuf`
+## Installing `cmake` or `protobuf`
 
 Currently, there are issues with the pre-compiled binary for the M1 macs. This will result in the following error:
 ```
