@@ -1,9 +1,6 @@
 ---
-title: Template—How-to guide
-slug: /v3/contribute/templates
-version: '3.0'
-section: docs
-category: style guide
+title: 'Template: How-to guide'
+description:
 keywords:
   - template
   - contribute

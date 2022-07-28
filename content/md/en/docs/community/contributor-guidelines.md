@@ -1,125 +1,168 @@
 ---
-title: Welcome to the Substrate community
-slug: /v3/contribute/style-guide
-version: '3.0'
-section: docs
-category: style guide
+title: Contributor guidelines
+description:
 keywords:
   - contribute
   - style guide
 ---
 
-<Message
-  type="yellow"
-  title="Information"
-  text={`This section is still work in progress.`}
-/>
-
 Thank you for your interest in contributing to documentation for the Substrate development framework.
-As a member of the community, you are invited and encouraged to contribute by submitting issues, offering
-suggestions for improvements to existing content, adding review comments to existing pull requests, proposing
-new content, or creating new pull requests to fix issues or provide new content.
+As a member of the community, you are invited and encouraged to contribute to the ever-evolving technical documentation and to the code base.
+There are a lot of ways to get involved.
+For example, you can contribute by:
 
-We value, respect, and appreciate all contributions from the developer community and only ask that you
-agree to abide by our [Code of conduct](https://github.com/paritytech/substrate/blob/master/docs/CODE_OF_CONDUCT.md)
-and review our [Contributor guidelines](#contributor-guidelines).
+- Submitting issues
+- Offering suggestions for improvements to existing content
+- Adding review comments to existing pull requests
+- Proposing new content
+- Creating new pull requests to fix issues yourself
+- Creating pull request for new content other community members might find useful
 
-To learn more about how to contribute, including guidelines for how to structure content and how to participate in our
-bounty program that pays you for contributing, see the following topics:
+We value, respect, and appreciate all contributions from the developer community and only ask that you agree to abide by our [Code of conduct](https://github.com/paritytech/substrate/blob/master/docs/CODE_OF_CONDUCT.md) and review our [Contributor guidelines](/community/contributor-guidelines/).
 
-- [Contributor guidelines](#contributor-guidelines)
-- [Writing guidelines](/v3/contribute/writing)
-- [Bounty program](/v3/contribute/bounties)
+To learn more about how to contribute, including guidelines for how to structure content and how to participate in our bounty program that pays you for contributing, see the following topics:
 
-## Repository working guidelines
+- [Before you contribute](#before-you-contribute)
+- [How to contribute](#how-to-contribute)
+- [What to contribute](#what-to-contribute)
+  
+## Before you contribute
 
-To facilitate a streamlined and pleasant workflow for contributors and maintainers, we follow some
-particular workflows and best practices in this repository.
+Before contributing, please take a few minutes to review these contributor guidelines. 
+The contributor guidelines are intended to make the contribution process easy and effective for everyone involved in addressing your issue, assessing changes, and finalizing your pull requests.
 
-#### Creating PRs
+Before contributing, consider the following:
 
-**Always create your own branch to work on the site, and submit pull requests to `develop`.**
+* If you want to report an issue, click **Issues** and provide as much information about the problem as possible.
 
-All contributions should target `develop` for pushing new content before merging with `main` and
-publishing the site. The `main` branch is production ONLY and must be deployed by a maintainer
-with the access to do so through Forestry.
+* If you have a technical question or need help finding specific information, post your question on [Stack Exchange](https://substrate.stackexchange.com/).
+ 
+If you want to contribute directly to this repository, typical fixes might include any of the following:
 
-The maintainers ask everyone to be responsible about **rebasing**
-([not merging](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)) on top of the present
-`develop` branch just before merging and carefully reviewing any conflicts here - especially
-whenever you are changing globally used config/gatsby files. Any changes in the same pages we make
-in different PRs without this can conflict otherwise!
+* Spelling, grammar, or typo fixes.
+* Code indentation, white space, or formatting changes.
+* Broken or missing links.
 
-Before maintainers merge a PR, they will:
+Note that any contribution to this repository must be submitted in the form of a **pull request**.
+Before you create a pull request, be sure that the pull request only implements one bug fix.
 
-- Get required approvals from other maintainers
-- Clone repo locally
-- Checkout and pull local `develop` up to the head of `origin/develop`
-- Checkout the PR branch from `origin/<pr branch>`
-- `git rebase develop`
-- Review and fix conflicts correctly, especially with respect to links/config files
-- `git push --force` (for the **PR branch**, \_not `develop`! )
-- If some major change was needed in this, get approvals/clarifications on these.
-- `git merge --squash` the PR (on the github PR's page)
+If you are new to working with GitHub repositories and creating pull requests, consider exploring [First Contributions](https://github.com/firstcontributions/first-contributions) or [How to Contribute to an Open Source Project on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github).
 
-## Contributor guidelines
+## How to contribute
 
-The most valuable contributions from the community typically take the form of how-to guides or
-tutorials that help other developers solve specific problems, learn specific skills, or demonstrate
-specific tasks.
+This repository contains the documentation source for the [docs.substrate.io](https://docs.substrate.io) site and is focused primarily on documentation for Substrate blockchain developers and parachain developers.
 
-If you would like to contribute, you might be wondering “What is the difference between a ‘how-to’
-guide and a tutorial?”.
+### Making simple edits
+
+For simple changes, like fixing a typo or making minor changes to a sentence:
+
+1. Click **Edit this page**.
+
+2. Edit the page in GitHub.
+
+3. Replace the default commit message with a short description of your change, then click **Commit Changes**.
+
+4. Select **Create a new branch for this commit and start a pull request**.
+
+### Creating branches and pull requests
+
+If your contribution is more than a simple change, you'll need to follow the full work flow for creating a working branch and submitting a pull request.
+Here's a summary of what you need to do:
+
+1. Navigate to the [substrate-docs](https://github.com/substrate-developer-hub/substrate-docs) public repository in a web browser.
+
+2. Clone or fork the repository to create a copy of the repository on your local machine.
+
+3. Create a new branch for your fix by running a command similar to the following:
+
+   ```bash
+   git switch -c my-initials/my-branch-name-here
+   ```
+
+4. Open the file you want to fix in a text editor and make the appropriate changes for the issue you are trying to address.
+
+5. Add the file contents of the changed files by running a command similar to the following:
+
+  ```bash
+  git add path-to-changed-file
+  ```
+
+6. Commit your changes to store the contents you added along with a descriptive message by running a command similar to the following:
+
+  ```bash
+  git commit -m "Description of the fix being committed."
+  ```
+
+9. Push the changes to the remote repository by running a command similar to the following:
+
+   ```bash
+   git push origin my-initials/my-branch-name-here
+   ```
+
+1. Create a new pull request for the branch you pushed to the upstream GitHub repository.
+
+1. Provide a title that includes a short description of the changes made.
+
+1. Wait for the pull request to be reviewed.
+
+1. Make changes to the pull request, if requested.
+
+2. Celebrate your success your merged pull request :champagne:.
+
+
+## What to contribute
+
+The most valuable contributions from the community typically take the form of how-to guides or tutorials that help other developers solve specific problems, learn specific skills, or demonstrate specific tasks.
+
+If you would like to contribute, you might be wondering “What is the difference between a ‘how-to’ guide and a tutorial?”.
 
 ### How-to guides
 
-A how-to guide describes how to achieve a goal or complete a task. Only the information that is
-pertinent to achieving that goal or completing the task is included. With how-to guides, readers
-have enough information to know what they want to do—for example, open a bank account—but not
-necessarily enough information to know how to do it—for example, 1) select an institution, 2) fill
-out an application, 3) deposit a minimum amount of currency. How-to guides often include links to
-additional information, but should not include explanations that take the focus away from what the
-reader wants to accomplish.
+A how-to guide describes how to achieve a goal or complete a task. 
+Only the information that is pertinent to achieving that goal or completing the task is included. 
+With how-to guides, readers have enough information to know what they want to do—for example, open a bank account—but not necessarily enough information to know how to do it.
+For example, the how-to guide for opening a bank account wouldn't explain what a bank account is or why you might want to open one, but would focus on specific steps such as:
+
+1) Select an institution.
+2) Fill out an application.
+3) Deposit a minimum amount of currency.
+ 
+How-to guides often include links to additional information, but should not include explanations that take the focus away from what the reader wants to accomplish.
 
 ### Tutorials
 
 A tutorial is a hands-on illustration or lesson that enables the reader to achieve a
-highly-predictable result. Tutorials assume that readers have no prior knowledge on the subject
-being covered and that they require explicit guidance to complete each step to reach a well-known
-outcome. Typically, a tutorial is a guided tour that helps the reader complete one organic task from
-start to finish. There are no detours and the information should not be broken out into subtopics
+**highly-predictable** result. 
+Tutorials assume that readers have no prior knowledge on the subject being covered and that they require explicit guidance to complete each step to reach a **well-known** outcome.
+Typically, a tutorial is a guided tour that helps the reader complete one organic task from
+start to finish. 
+There are no detours and the information should not be broken out into subtopics
 because the steps must be completed in order, not in a sequence of the reader’s choosing.
 
-The single most important aspect of a tutorial is that it should always result in a successful,
-expected outcome. The successful outcome is what inspires confidence and delight in the reader. The
-single most important distinction between a how-to guide and a tutorial is that in a tutorial the
-author decides what the goal should be and the author eliminates all distractions that would detract
-from the successful achievement of the goal.
+The single most important aspect of a tutorial is that it should always result in a successful, expected outcome. 
+The successful outcome is what inspires confidence and delight in the reader. 
+The single most important distinction between a how-to guide and a tutorial is that, in a tutorial, the author decides what the goal should be and the author eliminates all distractions that would detract from the successful achievement of the goal.
 
 ### Recommendations for writing how-to guides
 
-The Substrate Developer Hub is intended to provide a modular and extensible framework of resources
-for the Substrate developer community and broader ecosystem. To achieve this goal, we want to make
-it easy for contributors to integrate new content that follows a few guiding principles and basic
-conventions for structure and style. As a content creator, you should keep the following general
-principles in mind:
+The Substrate Developer Hub is intended to provide a modular and extensible framework of resources for the Substrate developer community and broader ecosystem. 
+To achieve this goal, we want to make it easy for contributors to integrate new content that follows a few guiding principles and basic conventions for structure and style. 
+As a content creator, you should keep the following general principles in mind:
 
-- ◼️ Modularity. Each guide has a well-defined and useful focus. However, if there’s information
-  that’s useful in more than one guide, you can abstract it into a standalone topic and reuse it in
-  multiple places.
+- ◼️ Modularity. Each guide has a well-defined and useful focus. 
+  However, if there’s information that’s useful in more than one guide, you can abstract it into a standalone topic and reuse it in multiple places.
 
 - 🔗 Linking. Guides should use links where they are useful—for example, to guide readers to
   concepts or reference topics—but be mindful that stale links frustrate readers.
 
 - ⏯️ Examples. Useful code examples are a critical component of creating a useful guide.
 
-- 🛰️ Related references. Guides can include links to related resources, like Rust docs, video
-  content, or other guides and tutorials.
+- 🛰️ Related references. Guides can include links to related resources, like Rust docs, video content, or other guides and tutorials.
 
-### Content categories and tags
+### Categories for how-to guides
 
-The How-to guides are grouped into categories to help keep them organized in the how-to-guides repository. The current groupings
-reflect the different areas of development within Substrate:
+The How-to guides are grouped into categories to help keep them organized. 
+The current groupings reflect the different areas of development within Substrate:
 
 - Basics. Where the really simple guides live, those that can be referenced by more complex ones.
 
@@ -131,10 +174,12 @@ reflect the different areas of development within Substrate:
 
 - Storage migrations. Anything to do with storage migrations.
 
-- Consensus. Client stuff, bridging, node configurations.
+- Consensus. Peer-to-peer networking, different consensus models, bridges, node configurations.
 
 * Parachains. Guides related to building parachain capabilities.
 
+
+<!--
 The source files use tags to identify the categories that apply. As a content contributor, you
 should use tags to identify the level of complexity and the most appropriate category for your
 content.
@@ -167,3 +212,4 @@ Specify the category for your article by adding the most appropriate tag from th
 - weights
 - parachains
 - contracts
+-->

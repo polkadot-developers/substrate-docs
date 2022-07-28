@@ -3,6 +3,7 @@ menu:
   - docs
   - tutorials
   - reference
+  - community
 
 quick-start:
   title: Quick start
@@ -255,6 +256,8 @@ community:
       url: /community/style-guide/
     - title: Contributor guidelines
       url: /community/contributor-guidelines/
-    - title: Template - How-to guide
-#- 'Bounties': 'community/bounty.md'
-#- 'Dropbox': 'faq-dropbox/index.md'
+    - title: 'Template: How-to guide'
+    #- title: Article bounties
+      #url: /community/article-bounty
+    #- title: Contributor dropbox
+      #url: /community/contributor-dropbox/

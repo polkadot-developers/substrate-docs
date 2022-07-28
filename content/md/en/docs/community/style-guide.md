@@ -1,18 +1,13 @@
 ---
-title: Using this guide for writing and style
-slug: /v3/contribute/writing
-version: '3.0'
-section: docs
-category: style guide
+title: Writing style guide
+description:
 keywords:
   - contribute
   - style guide
 ---
 
-This guide focuses on best practices for writing technical documentation and on the style conventions to use when
-developing documentation for Parity Technologies products and audiences.
-The goal of this guide is to help members of the documentation team and any one interested in contributing to documentation
-write material that is clear, concise, and consistent.
+This guide focuses on best practices for writing technical documentation and on the style conventions to use when developing documentation for Parity Technologies products and audiences.
+The goal of this guide is to help members of the documentation team and any one interested in contributing to documentation write material that is clear, concise, and consistent.
 
 This guide also includes peculiarities to working with this repo specifically for active
 contributors to be aware of available in the [Builder notes](#builder-notes) section.
@@ -22,6 +17,8 @@ If you can't find the answer to a style, voice, or terminology question in this 
 - [Microsoft Style Guide](https://docs.microsoft.com/en-us/style-guide/welcome/)
 - [Chicago Manual of Style](https://www.chicagomanualofstyle.org/book/ed17/frontmatter/toc.html)
 - [Merriam-Webster Dictionary](https://www.merriam-webster.com/)
+
+If you can't the answer in any of these resources, open an issue.
 
 ## General guidance for writing engaging content
 
