@@ -1,5 +1,5 @@
 ---
-title: 'Template: How-to guide'
+title: Template - How-to guide
 description:
 keywords:
   - template
@@ -31,9 +31,8 @@ For example, if the goal of the guide is to illustrate:
 How do I mint a token supply?
 
 You might set the title in the front matter like this:
----
-title: Mint a token supply
----
+
+`title: Mint a token supply`
 
 In general, you should keep titles short so they are easy to scan for keywords.
 
@@ -42,18 +41,12 @@ In general, you should keep titles short so they are easy to scan for keywords.
 The guide description is optional, but if you include it, use a single sentence to convey  any additional information about the content that the title doesn't convey.
 For example:
 
-description: Illustrates how you can mint a token supply owned by a single account.
+`description: Illustrates how you can mint a token supply owned by a single account.`
 
 ### [Guide keywords]
 
 Keyword are optional, but if you include them, indent two spaces, then use a dash and a single keyword per line.
-For example:
-
----
-keywords:
-  - tokens
-  - tokenomics
----
+For an example, see the Markdown template.
 
 ## Introductory paragraph
 

@@ -256,7 +256,8 @@ community:
       url: /community/style-guide/
     - title: Contributor guidelines
       url: /community/contributor-guidelines/
-    - title: 'Template: How-to guide'
+    - title: Template - How-to guide
+      url: /community/template-how-to-guide/
     #- title: Article bounties
       #url: /community/article-bounty
     #- title: Contributor dropbox
