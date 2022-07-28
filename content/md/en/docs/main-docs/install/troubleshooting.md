@@ -112,7 +112,7 @@ WASM_BUILD_TOOLCHAIN=nightly-<yyyy-MM-dd> cargo build --release
 This command builds the _runtime_ using the specified nightly toolchain.
 The rest of project is compiled using the _default_ toolchain, that is, the latest version of the `stable` toolchain that you have installed.
 
-### Downgrade the nightly toolcahin
+### Downgrade the nightly toolchain
 
 If your computer is configured to use the latest Rust `nightly` toolchain and you want to downgrade to a specific nightly version,you must first uninstall the latest `nightly` toolchain.
 For example, you can remove the latest `nightly` toolchain, then use a specific version of the `nightly` toolchain by running commands similar to the following:
@@ -121,4 +121,13 @@ For example, you can remove the latest `nightly` toolchain, then use a specific 
 rustup uninstall nightly
 rustup install nightly-<yyyy-MM-dd>
 rustup target add wasm32-unknown-unknown --toolchain nightly-<yyyy-MM-dd>
+```
+
+### Ensure PATH is set correctly
+
+If after installing Rust the commands don't seem to work, showing errors such as `command not found: rustup`, make sure it your PATH is configured correctly.
+
+Currently, the `rustup` installer installs by default to the bash profile (on mac). If you are using another shell, make sure to add this line to your profile (e.g. `.zshrc`):
+```
+. "$HOME/.cargo/env"
 ```
