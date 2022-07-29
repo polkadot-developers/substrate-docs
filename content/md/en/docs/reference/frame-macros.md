@@ -4,22 +4,32 @@ description:
 keywords:
 ---
 
-Substrate uses [Rust macros](https://doc.rust-lang.org/book/ch19-06-macros.html) to aggregate the logic derived from the pallets you implement for a runtime.
-These runtime macros allow developers to focus on runtime logic rather than encoding and decoding on-chain
-variables or writing extensive blocks of code to achieve [basic blockchain fundamentals](/main-docs/fundamentals/runtime-intro#core-primitives). This offloads a lot of the heavy lifting from blockchain development efforts and removes the need to duplicate code.
+Substrate uses customized [Rust macros](https://doc.rust-lang.org/book/ch19-06-macros.html) to generate code and aggregate the logic from the pallets you implement for a runtime.
+These runtime macros allow you to focus on your runtime logic rather than spending time on encoding and decoding on-chain variables or duplicating the code required for [basic blockchain development](/main-docs/fundamentals/runtime-intro#core-primitives).
 
-The purpose of this article is to give a basic overview of Rust macros and explain the Substrate macros
-that runtime engineers most frequently use.
+This section provides a basic overview of the types of macros available in Rust and highlights how the specific FRAME macros are used in runtime development.
 
 ## Macro basics
 
-Put simply, macros are lines of code that write code. They provide the ability to abstract things out without needing to declare complex data structures explicitly.
-There are four kinds of macro in Rust:
+In computer programming, macros are lines of code that encapsulate a preset sequence of instructions to execute. 
+As code that writes code, macros enable you to abstract repetitive operations and simply the code you need to write.
+With macros, you can declare complex data structures implicitly.
 
-- [declarative macros](https://doc.rust-lang.org/book/ch19-06-macros.html#declarative-macros-with-macro_rules-for-general-metaprogramming) (most widely used)
-- [custom derive](https://doc.rust-lang.org/book/ch19-06-macros.html#how-to-write-a-custom-derive-macro) (a type of procedural macro)
-- [attribute-like macros](https://doc.rust-lang.org/book/ch19-06-macros.html#attribute-like-macros) (a type of procedural macro)
-- [function-like macros](https://doc.rust-lang.org/book/ch19-06-macros.html#function-like-macros) (a type of procedural macro)
+Because macros are expanded before the compiler interprets the lines of code they contain, a macro can define complex operations and manipulate data, for example, the implementation of a trait for a given type.
+However, the abstraction of the operations performed can make code that uses macros more difficult to understand, even when you expand the macros and read its definition.
+
+In Rust, there are four ways macros are used to generate code, so there are four types of macros you can define: 
+
+- [declarative macros](https://doc.rust-lang.org/book/ch19-06-macros.html#declarative-macros-with-macro_rules-for-general-metaprogramming) declare an expression and compare the result of the expression to a pattern.
+  Declarative macros are widely-used in general Rust programming, but not in FRAME macros.
+
+- [attribute-based macros](https://doc.rust-lang.org/book/ch19-06-macros.html#attribute-like-macros) are a type of procedural macro that generates code from attributes.
+  Typically, a Substrate runtime includes many FRAME macros that are attribute-based macros.
+
+- [derive macros](https://doc.rust-lang.org/book/ch19-06-macros.html#how-to-write-a-custom-derive-macro) are a type of procedural macro that enable a type to derive a custom trait implementation.
+  The `derive` macros are particularly useful for defining custom runtime types that must satisfy specific traits.
+
+- [function-like macros](https://doc.rust-lang.org/book/ch19-06-macros.html#function-like-macros) are a type of procedural macro that look like function calls.
 
 Most Substrate runtime macros are defined using either **declarative macros** or **function-like macros**, with a recent adoption of
 **attribute-like macros** in FRAME v2 pallets.
@@ -67,7 +77,7 @@ As discussed in [Building custom pallets](/main-docs/fundamentals/runtime-intro#
 Macros make building each of those sections more modular and extensible.
 This section describes the macros available and how to use them to build your custom runtime.
 
-### #[frame_support::pallet]
+### frame_support::pallet
 
 **When to use**
 
