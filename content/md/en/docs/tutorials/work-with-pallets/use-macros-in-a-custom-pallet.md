@@ -144,7 +144,7 @@ Therefore, the first step is to remove some files and content from the files in 
         #[pallet::storage] // <-- TODO: add #[pallet::storage] block
         #[pallet::hooks]
         impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {}
-        #[pallet::call] // <-- TODO: 
+        #[pallet::call] // <-- TODO: add #[pallet::call] block
     }
    ```
 
