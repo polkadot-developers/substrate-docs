@@ -119,33 +119,35 @@ Therefore, the first step is to remove some files and content from the files in 
 1. Add the following code that includes a minimal skeleton for a FRAME pallet and its required [macros](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html):
 
    ```rust
-    // Re-export pallet items so that they can be accessed from the crate namespace.
-    pub use pallet::*;
-
-    #[frame_support::pallet]
-    pub mod pallet {
-        use frame_support::{pallet_prelude::*, storage::bounded_vec::BoundedVec};
-        use frame_system::pallet_prelude::*;
-
-        // Define the pallet struct placeholder, various pallet function are implemented on it.
-        #[pallet::pallet]
-        #[pallet::generate_store(pub(super) trait Store)]
-        pub struct Pallet<T>(_);
-
-        use sp_std::vec::Vec; // <-- TODO: update this in `Cargo.toml`
-
-        #[pallet::config] // <-- TODO: add your pallet configuration types
-        #[pallet::event] // <-- TODO: add the #[pallet::event] block
-        #[pallet::error] // <-- TODO: add #[pallet::error] block
-        #[pallet::pallet]
-        #[pallet::generate_store(pub(super) trait Store)]
-        pub struct Pallet<T>(_);
-
-        #[pallet::storage] // <-- TODO: add #[pallet::storage] block
-        #[pallet::hooks]
-        impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {}
-        #[pallet::call] // <-- TODO: add #[pallet::call] block
-    }
+   // Re-export pallet items so that they can be accessed from the crate namespace.
+   pub use pallet::*;
+   #[frame_support::pallet]
+   pub mod pallet {
+   	use frame_support::{pallet_prelude::*, storage::bounded_vec::BoundedVec};
+   	use frame_system::pallet_prelude::*;
+   	// Define the pallet struct placeholder, various pallet function are implemented on it.
+   	#[pallet::pallet]
+   	#[pallet::generate_store(pub(super) trait Store)]
+   	pub struct Pallet<T>(_);
+   	// TODO: Update the `Config` block below
+   	/// Configure the pallet by specifying the parameters and types on which it depends.
+   	#[pallet::config]
+   	pub trait Config: frame_system::Config {
+   		/// Because this pallet emits events, it depends on the runtime's definition of an event.
+   		type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+   	}
+   	// TODO: Update the `event` block below
+   	#[pallet::event]
+   	#[pallet::generate_deposit(pub(super) fn deposit_event)]
+   	pub enum Event<T: Config> {
+   		/// Event documentation should end with an array that provides descriptive names for event
+   		/// parameters. [something, who]
+   		SomethingHappened(),
+   	}
+   	// TODO: add #[pallet::error] block
+   	// TODO: add #[pallet::storage] block
+   	// TODO: add #[pallet::call] block
+   }
    ```
 
    You now have a framework that includes placeholders for _events_, _errors_, _storage_, and _callable functions_.
@@ -286,7 +288,7 @@ To implement this logic in the proof-of-existence pallet:
 
 1. Open the `pallets/template/src/lib.rs` file in a text editor.
 
-1. Replace the `#[pallet::call]` line with the following code block:
+1. Replace the `TODO: add #[pallet::call] block` line with the following code block:
 
    ```rust
    	// Dispatchable functions allow users to interact with the pallet and invoke state changes.
