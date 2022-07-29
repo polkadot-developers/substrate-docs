@@ -46,7 +46,7 @@ Each Substrate blockchain can register a custom prefix to create a chain-specifi
 For example, all Polkadot addresses start with `1` and all Kusama addresses start with a capital letter.
 All unregistered Substrate chains start with `5`.
 
-You can look the a chain-specific address for a public key using the `subkey inspect` command and `--network` option ot by using [Subscan](https://polkadot.subscan.io/tools/format_transform).
+You can look up the chain-specific address for a public key using the `subkey inspect` command and `--network` option ot by using [Subscan](https://polkadot.subscan.io/tools/format_transform).
 
 For information about generating public and private key pairs and inspecting addresses, see [subkey](/reference/command-line-tools/subkey).
 For information about chain-specific address, see the instructions in the [SS58 repository](https://github.com/paritytech/ss58-registry).
