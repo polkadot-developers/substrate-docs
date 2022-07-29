@@ -128,7 +128,7 @@ Therefore, the first step is to remove some files and content from the files in 
     
    	#[pallet::pallet]
    	#[pallet::generate_store(pub(super) trait Store)]
-    #[pallet::without_storage_info]
+      #[pallet::without_storage_info]
    	pub struct Pallet<T>(_);
 
    	#[pallet::storage] // <-- Step 5. code block will replace this.
@@ -219,10 +219,9 @@ To add the `sp-std` crate to the pallet:
 1. Add the following `sp-std` dependencies section to the file:
 
    ```toml
-   [dependencies.sp-std]
-   default-features = false
-   git = 'https://github.com/paritytech/substrate.git'
-   branch = 'polkadot-v0.9.26'  # Must *match* the rest of your Substrate deps!
+   [dependencies]
+   # Must *match* the rest of your Substrate deps!
+   sp-std = { default-features = false, version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
    ```
 
 1. Add the `sp-std` crate to the list of features.
@@ -284,7 +283,8 @@ To implement storage for the proof-of-existence pallet:
 
    ```rust
    #[pallet::storage]
-   pub(super) type Proofs<T: Config> = StorageMap<_, Blake2_128Concat, Vec<u8>, (T::AccountId, T::BlockNumber), ValueQuery>;
+   #[pallet::unbounded]
+   pub(super) type Proofs<T: Config> = StorageMap<_, Blake2_128Concat, Vec<u8>, (T::AccountId, T::BlockNumber), OptionQuery>;
    ```
 
 1. Save your changes.
@@ -351,7 +351,7 @@ To implement this logic in the proof-of-existence pallet:
    		ensure!(Proofs::<T>::contains_key(&proof), Error::<T>::NoSuchProof);
 
    		// Get owner of the claim.
-   		let (owner, _) = Proofs::<T>::get(&proof).unwrap();
+			let (owner, _) = Proofs::<T>::get(&proof).expect("This should not fail; qed");
 
    		// Verify that sender of the current call is the claim owner.
    		ensure!(sender == owner, Error::<T>::NotProofOwner);
