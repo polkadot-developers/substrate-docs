@@ -76,7 +76,7 @@ Light client nodes enable you to connect to a Substrate network with minimal har
 
 Because light client nodes require minimal system resources, they can be embedded into web-based applications, browser extensions, mobile device applications, or internet of things (IoT) devices.
 Light client nodes provide a runtime and access to the current state through RPC endpoints.
-The RPC endpoints for light client nodes can be written in Rust, JavaScript, or other languages ans used to read block headers, submit transactions, and view the results of transactions.
+The RPC endpoints for light client nodes can be written in Rust, JavaScript, or other languages and used to read block headers, submit transactions, and view the results of transactions.
 
 Light client nodes don't participate in blockchain or network operations.
 For example, light client nodes aren't responsible for block authoring or validation, gossipping transactions or reaching consensus.
