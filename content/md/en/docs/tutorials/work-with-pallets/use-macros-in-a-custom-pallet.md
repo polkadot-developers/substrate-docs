@@ -116,12 +116,9 @@ Therefore, the first step is to remove some files and content from the files in 
 
    All of the pallets used in a runtime must be set to compile with the `no_std` features.
 
-1. Add the following skeleton code that includes a few minimal [macros for FRAME V2](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html):
+1. Add the following code that includes a minimal skeleton for a FRAME pallet and its required [macros](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html):
 
    ```rust
-   //! Substrate Proof-of-Existence Pallet
-   #![cfg_attr(not(feature = "std"), no_std)]
-
    // Re-export pallet items so that they can be accessed from the crate namespace.
    pub use pallet::*;
 
