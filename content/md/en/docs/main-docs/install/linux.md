@@ -19,7 +19,7 @@ sudo apt install build-essential
 
 At a minimum, you need the following packages before you install Rust:
 
-```bash
+```text
 clang curl git make
 ```
 

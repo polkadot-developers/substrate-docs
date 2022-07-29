@@ -17,5 +17,5 @@ If you already have Rust installed, you can skip the installation instructions.
 For additional information about installing and upgrading the Rust compiler and toolchain or troubleshooting installation issues, see the following topics:
 
 - [Rust toolchain](/main-docs/install/rust-builds/)
-- [Developer tools](/main-docs/install//other-tools/)
+- [Developer tools](/main-docs/install/other-tools/)
 - [Troubleshooting common issues](/main-docs/install/troubleshooting/)

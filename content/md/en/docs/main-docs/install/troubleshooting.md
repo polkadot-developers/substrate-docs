@@ -123,10 +123,47 @@ rustup install nightly-<yyyy-MM-dd>
 rustup target add wasm32-unknown-unknown --toolchain nightly-<yyyy-MM-dd>
 ```
 
-### Ensure PATH is set correctly
+## Ensure PATH is set correctly
 
 If after installing Rust the commands don't seem to work, showing errors such as `command not found: rustup`, make sure it your PATH is configured correctly.
 
 Currently, the `rustup` installer installs by default to the bash profile (on mac). If you are using another shell, make sure to add this line to your profile (e.g. `.zshrc`):
 ```bash
 source "$HOME/.cargo/env"
+
+## Installing `cmake` or `protobuf` for M1 macOS users
+
+Currently, there are issues compiling the Substrate node when using the packages that are pre-installed on macOS computers with the M1 chip.
+
+```sh
+error: failed to run custom build command for prost-build v0.10.4
+```
+
+If you see this error, there are two solutions.
+
+- Install `cmake` by running the following command:
+
+```bash
+brew install cmake
+```
+
+- Install the correct pre-compiled `protoc` by running the following set of commands:
+
+```bash
+git clone https://github.com/protocolbuffers/protobuf.git
+cd protobuf
+
+brew install autoconf
+brew install automake
+brew install Libtool
+
+autoreconf -i
+./autogen.sh
+./configure
+make
+make check
+sudo make install
+
+export PATH=/opt/usr/local/bin:$PATH
+```
+
