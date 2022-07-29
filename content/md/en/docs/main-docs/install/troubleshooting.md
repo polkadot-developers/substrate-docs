@@ -123,24 +123,23 @@ rustup install nightly-<yyyy-MM-dd>
 rustup target add wasm32-unknown-unknown --toolchain nightly-<yyyy-MM-dd>
 ```
 
-## Installing `cmake` or `protobuf` for M1 Mac users
+## Installing `cmake` or `protobuf` for M1 macOS users
 
-Currently, there are issues with the pre-compiled binary for the M1 macs. 
-This will result in the following error:
+Currently, there are issues compiling the Substrate node when using the packages that are pre-installed on macOS computers with the M1 chip.
 
 ```sh
 error: failed to run custom build command for prost-build v0.10.4
 ```
 
-If you run into this error, there are 2 solutions.
+If you see this error, there are two solutions.
 
-1. For the simplest solution, install `cmake` by running the following command:
+1. Install `cmake` by running the following command:
 
 ```bash
 brew install cmake
 ```
 
-1. Alternatively, install the correct pre-compiled `protoc` by running the following:
+1. Install the correct pre-compiled `protoc` by running the following set of commands:
 
 ```bash
 git clone https://github.com/protocolbuffers/protobuf.git
