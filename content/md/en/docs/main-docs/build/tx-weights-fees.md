@@ -202,7 +202,7 @@ fn my_dispatchable() {
 Dispatches in this class represent normal user-triggered transactions.
 These types of dispatches only consume a portion of a block's total weight limit.
 For information about the maximum portion of a block that can be consumed for normal dispatches, see [`AvailableBlockRatio`](https://paritytech.github.io/substrate/master/frame_system/limits/struct.BlockLength.html#method.max_with_normal_ratio).
-Normal dispatches are sent to the [transaction pool]().
+Normal dispatches are sent to the [transaction pool](https://docs.substrate.io/reference/glossary/).
 
 #### Operational dispatches
 
@@ -214,7 +214,7 @@ Dispatches in this class are given maximum priority and are exempt from paying t
 #### Mandatory dispatches
 
 Mandatory dispatches are included in a block even if they cause the block to surpass its weight limit.
-You can only use the mandatory dispatch class for [inherents]().
+You can only use the mandatory dispatch class for [inherents](https://docs.substrate.io/main-docs/fundamentals/transaction-types/).
 This dispatch class is intended to represent functions that are part of the block validation process.
 Because these dispatches are always included in a block regardless of the function weight, it is critical that the validation process prevents malicious nodes from abusing the function to craft blocks that are valid but impossibly heavy.
 You can typically accomplish this by ensuring that:
