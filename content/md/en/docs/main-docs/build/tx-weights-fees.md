@@ -268,13 +268,13 @@ You can also define custom fee systems through custom weight functions or inclus
 ### Custom weights
 
 Instead of using the default weight annotations, you can create a custom weight calculation type.
-The custom weight calculation type must implement the follow traits:
+The custom weight calculation type must implement the following traits:
 
 - [`WeighData<T>`] to determine the weight of the dispatch.
 - [`ClassifyDispatch<T>`] to determine the class of the dispatch.
 - [`PaysFee<T>`] to determine whether the dispatchable's sender pays fees.
 
-Substrate then bundles the output information of the two traits into the [`DispatchInfo`] struct and provides it by implementing the [`GetDispatchInfo`] for all `Call` variants and opaque extrinsic types.
+Substrate then bundles the output information of the three traits into the [`DispatchInfo`] struct and provides it by implementing the [`GetDispatchInfo`] for all `Call` variants and opaque extrinsic types.
 This is used internally by the System and Executive modules.
 
 `ClassifyDispatch`, `WeighData`, and `PaysFee` are generic over `T`, which gets resolved into the tuple of all dispatch arguments except for the origin.
