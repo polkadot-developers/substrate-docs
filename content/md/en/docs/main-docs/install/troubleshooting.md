@@ -128,8 +128,10 @@ rustup target add wasm32-unknown-unknown --toolchain nightly-<yyyy-MM-dd>
 If after installing Rust the commands don't seem to work, showing errors such as `command not found: rustup`, make sure it your PATH is configured correctly.
 
 Currently, the `rustup` installer installs by default to the bash profile (on mac). If you are using another shell, make sure to add this line to your profile (e.g. `.zshrc`):
+
 ```bash
 source "$HOME/.cargo/env"
+```
 
 ## Installing `cmake` or `protobuf` for M1 macOS users
 
