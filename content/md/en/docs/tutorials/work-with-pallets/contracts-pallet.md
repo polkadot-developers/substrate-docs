@@ -180,6 +180,7 @@ To implement the `Config` trait for the Contracts pallet in the runtime:
       type ContractAccessWeight = DefaultContractAccessWeight<BlockWeights>;
       type MaxCodeLen = ConstU32<{ 256 * 1024 }>;
       type RelaxedMaxCodeLen = ConstU32<{ 512 * 1024 }>;
+      type MaxStorageKeyLen = ConstU32<{ 512 * 1024 }>;
    }
    /*** End added block ***/
    ```
