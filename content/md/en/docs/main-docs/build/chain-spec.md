@@ -124,7 +124,7 @@ If a node with an upgraded runtime attempts to synchronize a chain from genesis,
 For this reason, there is a second encoding of the chain spec.
 This second encoding creates a **raw** version of the chain spec.
 
-When distributing chain specs in JSON format, you should distribute then in the raw format to ensure that all nodes can sync the chain even after runtime upgrades. Substrate-based nodes support the `--raw` flag to produce the raw chain specs.
+When distributing chain specs in JSON format, you should distribute them in the raw format to ensure that all nodes can sync the chain even after runtime upgrades. Substrate-based nodes support the `--raw` flag to produce the raw chain specs.
 
 ```bash
 substrate build-spec --chain=myCustomSpec.json --raw > customSpecRaw.json
