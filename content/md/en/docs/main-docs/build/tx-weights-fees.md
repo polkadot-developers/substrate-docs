@@ -214,7 +214,7 @@ Dispatches in this class are given maximum priority and are exempt from paying t
 #### Mandatory dispatches
 
 Mandatory dispatches are included in a block even if they cause the block to surpass its weight limit.
-You can only use the mandatory dispatch class for inherent transactions that are submitted by the block author.
+You can only use the mandatory dispatch class for [inherent transactions](/reference/glossary/#inherent-transactions) that are submitted by the block author.
 This dispatch class is intended to represent functions that are part of the block validation process.
 Because these dispatches are always included in a block regardless of the function weight, it is critical that the validation process prevents malicious nodes from abusing the function to craft blocks that are valid but impossibly heavy.
 You can typically accomplish this by ensuring that:
@@ -389,7 +389,8 @@ The next step is determining the correct weight to account for the operations yo
 You can use Substrate **benchmarking functions** and `frame-benchmarking` calls to test your functions with different parameters and empirically determine the correct weight in their worst case scenarios.
 
 - [Benchmark](/main-docs/test/benchmark/)
-<!-- - [Calculate weight](/reference/how-to-guides/weights/) -->
 - [SignedExtension](https://paritytech.github.io/substrate/master/sp_runtime/traits/trait.SignedExtension.html)
 - [Custom weights for the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/weights.rs)
 - [Web3 Foundation Research](https://w3f-research.readthedocs.io/en/latest/polkadot/overview/2-token-economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits)
+
+<!-- - [Calculate weight](/reference/how-to-guides/weights/) -->

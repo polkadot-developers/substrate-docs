@@ -307,6 +307,13 @@ Hybrid consensus allows the chain to grow as fast as probabilistic consensus pro
 In general, block production algorithms tend to be faster than finality mechanisms.
 Making block production separate from block finalization gives Substrate developers greater control of their chain's performance.
 
+## inherent transactions
+
+Inherent transactions—sometimes referred to as inherents—are a special type of unsigned transaction.
+This type of transaction enables a block authoring node to insert information that doesn't require validation directly to a block.
+Only the block authoring node that calls the inherent transaction function can insert data into its block.
+In general, validators assume the data inserted using an inherent transaction is valid and reasonable even if it can't be deterministically verified.
+
 ## JSON-RPC
 
 A stateless, lightweight remote procedure call protocol that is encoded in JSON. JSON-RPC provides a standard way to call functions on a remote system by using JavaScript Object Notation.
