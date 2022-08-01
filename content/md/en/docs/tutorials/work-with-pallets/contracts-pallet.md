@@ -180,6 +180,7 @@ To implement the `Config` trait for the Contracts pallet in the runtime:
       type ContractAccessWeight = DefaultContractAccessWeight<BlockWeights>;
       type MaxCodeLen = ConstU32<{ 256 * 1024 }>;
       type RelaxedMaxCodeLen = ConstU32<{ 512 * 1024 }>;
+      type MaxStorageKeyLen = ConstU32<{ 512 * 1024 }>;
    }
    /*** End added block ***/
    ```
@@ -308,7 +309,7 @@ To expose the Contracts RPC API:
       
       fn get_storage(
          address: AccountId,
-         key: [u8; 32],
+         key: Vec<u8>,
          ) -> pallet_contracts_primitives::GetStorageResult {
          Contracts::get_storage(address, key)
          }
