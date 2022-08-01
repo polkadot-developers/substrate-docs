@@ -1,6 +1,6 @@
 ---
 title: "Tell us more about yourself"
-active: true
+active: false
 ---
 
 We want to get a clearer picture of the smart contract builders and enthusiasts in the Substrate and Polkadot ecosystem in order to better address their needs.
