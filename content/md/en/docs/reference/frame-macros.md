@@ -18,7 +18,7 @@ With macros, you can declare complex data structures implicitly.
 Because macros are expanded before the compiler interprets the lines of code they contain, a macro can define complex operations and manipulate data, for example, the implementation of a trait for a given type.
 However, the abstraction of the operations performed can make code that uses macros more difficult to understand, even when you expand the macros and read its definition.
 
-In Rust, there are four ways macros are used to generate code, so there are four types of macros you can define: 
+In Rust, there are four types of macros: 
 
 - [declarative macros](https://doc.rust-lang.org/book/ch19-06-macros.html#declarative-macros-with-macro_rules-for-general-metaprogramming) declare an expression and compare the result of the expression to a pattern.
   Declarative macros are widely-used in general Rust programming, but not in FRAME macros.
