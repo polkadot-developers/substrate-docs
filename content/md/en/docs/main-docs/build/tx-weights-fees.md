@@ -214,7 +214,7 @@ Dispatches in this class are given maximum priority and are exempt from paying t
 #### Mandatory dispatches
 
 Mandatory dispatches are included in a block even if they cause the block to surpass its weight limit.
-You can only use the mandatory dispatch class for inherent transactions that are submitted by the block author.
+You can only use the mandatory dispatch class for [inherent transactions](/reference/glossary/#inherent-transactions) that are submitted by the block author.
 This dispatch class is intended to represent functions that are part of the block validation process.
 Because these dispatches are always included in a block regardless of the function weight, it is critical that the validation process prevents malicious nodes from abusing the function to craft blocks that are valid but impossibly heavy.
 You can typically accomplish this by ensuring that:
