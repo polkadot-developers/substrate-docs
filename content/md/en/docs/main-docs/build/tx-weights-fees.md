@@ -214,7 +214,7 @@ Dispatches in this class are given maximum priority and are exempt from paying t
 #### Mandatory dispatches
 
 Mandatory dispatches are included in a block even if they cause the block to surpass its weight limit.
-You can only use the mandatory dispatch class for [inherents](/main-docs/fundamentals/transaction-types/).
+You can only use the mandatory dispatch class for inherent transactions that are submitted by the block author.
 This dispatch class is intended to represent functions that are part of the block validation process.
 Because these dispatches are always included in a block regardless of the function weight, it is critical that the validation process prevents malicious nodes from abusing the function to craft blocks that are valid but impossibly heavy.
 You can typically accomplish this by ensuring that:
@@ -267,14 +267,14 @@ You can also define custom fee systems through custom weight functions or inclus
 
 ### Custom weights
 
-Instead of using the default weight annotations, you can create a custom weight calculation type.
+Instead of using the default weight annotations, you can create a custom weight calculation type using the [weights](https://paritytech.github.io/substrate/master/frame_support/weights/index.html) module.
 The custom weight calculation type must implement the following traits:
 
-- [`WeighData<T>`] to determine the weight of the dispatch.
-- [`ClassifyDispatch<T>`] to determine the class of the dispatch.
-- [`PaysFee<T>`] to determine whether the dispatchable's sender pays fees.
+- `WeighData<T>` to determine the weight of the dispatch.
+- `ClassifyDispatch<T>` to determine the class of the dispatch.
+- `PaysFee<T>` to determine whether the sender of the dispatch pays fees.
 
-Substrate then bundles the output information of the three traits into the [`DispatchInfo`] struct and provides it by implementing the [`GetDispatchInfo`] for all `Call` variants and opaque extrinsic types.
+Substrate then bundles the output information of the three traits into the `DispatchInfo` struct and provides it by implementing the `GetDispatchInfo` for all `Call` variants and opaque extrinsic types.
 This is used internally by the System and Executive modules.
 
 `ClassifyDispatch`, `WeighData`, and `PaysFee` are generic over `T`, which gets resolved into the tuple of all dispatch arguments except for the origin.
@@ -387,9 +387,6 @@ impl<T: Get<Perquintill>> Convert<Fixed128, Fixed128> for TargetedFeeAdjustment<
 You now know what the weight system is, how it affects transaction fee computation, and how to specify weights for your dispatchable calls.
 The next step is determining the correct weight to account for the operations your dispatchable performs.
 You can use Substrate **benchmarking functions** and `frame-benchmarking` calls to test your functions with different parameters and empirically determine the correct weight in their worst case scenarios.
-
-<!-- TODO NAV.YAML -->
-<!-- add these back -->
 
 - [Benchmark](/main-docs/test/benchmark/)
 <!-- - [Calculate weight](/reference/how-to-guides/weights/) -->
