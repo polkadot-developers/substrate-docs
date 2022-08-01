@@ -11,7 +11,7 @@ This article describes how randomness is produced and used in Substrate runtimes
 
 ## Deterministic randomness
 
-In traditional non-blockchain computing, an application that required randomness could choose to use a real random value drawn from hardware, or a pseudo-random value that is actually deterministic, but impractical to predict thanks to cryptography.
+In traditional non-blockchain computing, an application that requires randomness could choose to use a real random value drawn from hardware, or a pseudo-random value that is actually deterministic, but impractical to predict thanks to cryptography.
 
 Applications that run on the blockchain are more tightly constrained because all authorities in the network must agree on any on-chain value, including any randomness data that is injected.
 Because of this constraint, using real randomness directly is impossible.
