@@ -153,7 +153,7 @@ To compile the Substrate node template:
 1. Clone the node template repository by running the following command:
 
    ```bash
-   git clone --branch polkadot-v0.9.26 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+   git clone --branch polkadot-v0.9.25 https://github.com/substrate-developer-hub/substrate-node-template
    ```
 
 1. Change to the root of the node template directory by running the following command:
