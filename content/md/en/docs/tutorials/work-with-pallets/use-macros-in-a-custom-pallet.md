@@ -62,8 +62,6 @@ The proof-of-existence application exposes the following callable functions:
 
 - `revoke_claim()` allows the current owner of a claim to revoke ownership.
 
-These functions only require you to store information about the proofs that have been claimed, and who made those claims.
-
 ## Build a custom pallet
 
 The Substrate node template has a FRAME-based runtime.
@@ -84,58 +82,58 @@ Therefore, the first step is to remove some files and content from the files in 
 
 1. Change to the `pallets/template/src` directory by running the following command:
 
-   ```bash
-   cd pallets/template/src
-   ```
+  ```bash
+  cd pallets/template/src
+  ```
 
 1. Remove the following files:
 
-   ```bash
-   benchmarking.rs
-   mock.rs
-   tests.rs
-   ```
+  ```bash
+  benchmarking.rs
+  mock.rs
+  tests.rs
+  ```
 
 1. Open the `lib.rs` file in a text editor.
 
-   This file contains code that you can use as a template for a new pallet.
-   You won't be using the template code in this tutorial.
-   However, you can review the template code to see what it provides before you delete it.
+  This file contains code that you can use as a template for a new pallet.
+  You won't be using the template code in this tutorial.
+  However, you can review the template code to see what it provides before you delete it.
 
 1. Delete all of the lines in the `lib.rs` file.
 
 1. Add the macro required to build both the native Rust binary (`std`) and the WebAssembly (`no_std`) binary.
 
-   ```rust
-   #![cfg_attr(not(feature = "std"), no_std)]
-   ```
+  ```rust
+  #![cfg_attr(not(feature = "std"), no_std)]
+  ```
 
-   All of the pallets used in a runtime must be set to compile with the `no_std` features.
+  All of the pallets used in a runtime must be set to compile with the `no_std` features.
 
 1. Add a skeleton set of pallet dependencies and [macros](/reference/frame-macros) that the custom pallet requires by copying the following code:
 
-   ```rust
-   // Re-export pallet items so that they can be accessed from the crate namespace.
-   pub use pallet::*;
+  ```rust
+  // Re-export pallet items so that they can be accessed from the crate namespace.
+  pub use pallet::*;
 
-   #[frame_support::pallet]
-   pub mod pallet {
-   	use frame_support::pallet_prelude::*;
-   	use frame_system::pallet_prelude::*;
+  #[frame_support::pallet]
+  pub mod pallet {
+    use frame_support::pallet_prelude::*;
+    use frame_system::pallet_prelude::*;
 
     #[pallet::pallet]
-   	#[pallet::generate_store(pub(super) trait Store)]
-   	pub struct Pallet<T>(_);
+    #[pallet::generate_store(pub(super) trait Store)]
+    pub struct Pallet<T>(_);
 
-   	#[pallet::config]  // <-- Step 2. code block will replace this.
+    #[pallet::config]  // <-- Step 2. code block will replace this.
     #[pallet::event]   // <-- Step 3. code block will replace this.
     #[pallet::error]   // <-- Step 4. code block will replace this.
-   	#[pallet::storage] // <-- Step 5. code block will replace this.
-   	#[pallet::call]    // <-- Step 6. code block will replace this.
-   }
-   ```
+    #[pallet::storage] // <-- Step 5. code block will replace this.
+    #[pallet::call]    // <-- Step 6. code block will replace this.
+  }
+  ```
 
-   You now have a framework that includes placeholders for _events_, _errors_, _storage_, and _callable functions_.
+  You now have a framework that includes placeholders for _events_, _errors_, _storage_, and _callable functions_.
 
 1. Save your changes.
 
@@ -165,8 +163,8 @@ To define the `Config` trait for the proof-of-existence pallet:
 Now that you've configured the pallet to emit events, you are ready to define those events.
 As described in [Design the application](#design-the-application), the proof-of-existence pallet emits an event under the following conditions:
 
-- When a new proof is added to the blockchain.
-- When a proof is revoked.
+- When a new claim is added to the blockchain.
+- When a claim is revoked.
 
 Each event also displays an `AccountId` to identify who triggered the
 event and the proof-of-existence claim (as `Hash`) that is being stored or removed.
@@ -198,11 +196,11 @@ The events you defined indicate when calls to the pallet have completed successf
 Errors indicate when a call has failed, and why it has failed.
 For this tutorial, you define the following error conditions:
 
-- An attempt to claim a proof that has already been claimed.
+- An attempt to make a claim that has already exists.
 
-- An attempt to revoke a proof that does not exist.
+- An attempt to revoke a claim that does not exist.
 
-- An attempt to revoke a proof that has been claimed by another account.
+- An attempt to revoke a claim that is owned by another account.
 
 To implement the errors for the proof-of-existence pallet:
 
@@ -213,12 +211,12 @@ To implement the errors for the proof-of-existence pallet:
   ```rust
   #[pallet::error]
   pub enum Error<T> {
-    /// The proof has already been claimed.
-    ProofAlreadyClaimed,
-    /// The proof does not exist, so it cannot be revoked.
-    NoSuchProof,
-    /// The proof is claimed by another account, so caller can't revoke it.
-    NotProofOwner,
+    /// The claim already exists.
+    AlreadyClaimed,
+    /// The claim does not exist, so it cannot be revoked.
+    NoSuchClaim,
+    /// The claim is owned by another account, so caller can't revoke it.
+    NotClaimOwner,
   }
   ```
 
@@ -227,7 +225,7 @@ To implement the errors for the proof-of-existence pallet:
 ## Implement a storage map for stored items
 
 To add a new claim to the blockchain, the proof-of-existence pallet requires a storage mechanism.
-To address this requirement, you can create a key-value map, where each claim hash points to the owner and the block number when the claim was made.
+To address this requirement, you can create a key-value map, where each claim points to the owner and the block number when the claim was made.
 To create this key-value map, you can use the FRAME [`StorageMap`](https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/struct.StorageMap.html).
 
 To implement storage for the proof-of-existence pallet:
@@ -253,8 +251,8 @@ The proof-of-existence pallet exposes two callable functions to users:
 
 These functions use the `StorageMap` to implement the following logic:
 
-- If a proof has an owner and a block number, then it has been claimed.
-- If a proof does not have an owner and a block number, then it is available to be claimed and written to storage.
+- If a claim is already in storage, then it already has an owner and cannot be claimed again.
+- If a claim does not in storage, then it is available to be claimed and written to storage.
 
 To implement this logic in the proof-of-existence pallet:
 
@@ -262,74 +260,70 @@ To implement this logic in the proof-of-existence pallet:
 
 1. Replace the `#[pallet::call]` line with the following code block:
 
-   ```rust
-   // Dispatchable functions allow users to interact with the pallet and invoke state changes.
-   // These functions materialize as "extrinsics", which are often compared to transactions.
-   // Dispatchable functions must be annotated with a weight and must return a DispatchResult.
-   #[pallet::call]
-   impl<T: Config> Pallet<T> {
-   	#[pallet::weight(1_000)]
-   	pub fn create_claim(
-   		origin: OriginFor<T>,
-   		proof: H256,
-   	) -> DispatchResult {
-   		// Check that the extrinsic was signed and get the signer.
-   		// This function will return an error if the extrinsic is not signed.
-   		let sender = ensure_signed(origin)?;
+  ```rust
+  // Dispatchable functions allow users to interact with the pallet and invoke state changes.
+  // These functions materialize as "extrinsics", which are often compared to transactions.
+  // Dispatchable functions must be annotated with a weight and must return a DispatchResult.
+  #[pallet::call]
+  impl<T: Config> Pallet<T> {
+    #[pallet::weight(0)]
+    pub fn create_claim(
+      origin: OriginFor<T>,
+      claim: T::Hash,
+    ) -> DispatchResult {
+      // Check that the extrinsic was signed and get the signer.
+      // This function will return an error if the extrinsic is not signed.
+      let sender = ensure_signed(origin)?;
 
-   		// Verify that the specified proof has not already been claimed.
-   		ensure!(!Proofs::<T>::contains_key(&proof), Error::<T>::ProofAlreadyClaimed);
+      // Verify that the specified claim has not already been stored.
+      ensure!(!Claims::<T>::contains_key(&claim), Error::<T>::AlreadyClaimed);
 
-   		// Get the block number from the FRAME System pallet.
-   		let current_block = <frame_system::Pallet<T>>::block_number();
+      // Get the block number from the FRAME System pallet.
+      let current_block = <frame_system::Pallet<T>>::block_number();
 
-   		// Store the proof with the sender and block number.
-   		Proofs::<T>::insert(&proof, (&sender, current_block));
+      // Store the claim with the sender and block number.
+      Claims::<T>::insert(&claim, (&sender, current_block));
 
-   		// Emit an event that the claim was created.
-   		Self::deposit_event(Event::ClaimCreated(sender, proof));
+      // Emit an event that the claim was created.
+      Self::deposit_event(Event::ClaimCreated { who: sender, claim });
 
-   		Ok(())
-   	}
+      Ok(())
+    }
 
-   	#[pallet::weight(10_000)]
-   	pub fn revoke_claim(
-   		origin: OriginFor<T>,
-   		proof: Vec<u8>,
-   	) -> DispatchResult {
-   		// Check that the extrinsic was signed and get the signer.
-   		// This function will return an error if the extrinsic is not signed.
-   		let sender = ensure_signed(origin)?;
+    #[pallet::weight(0)]
+    pub fn revoke_claim(
+      origin: OriginFor<T>,
+      claim: T::Hash,
+    ) -> DispatchResult {
+      // Check that the extrinsic was signed and get the signer.
+      // This function will return an error if the extrinsic is not signed.
+      let sender = ensure_signed(origin)?;
 
-   		// Verify that the specified proof has been claimed.
-   		ensure!(Proofs::<T>::contains_key(&proof), Error::<T>::NoSuchProof);
+      // Get owner of the claim, if none return an error.
+      let (owner, _) = Claims::<T>::get(&claim).ok_or(Error::<T>::NoSuchClaim)?;
 
-   		// Get owner of the claim.
-   		let (owner, _) = Proofs::<T>::get(&proof);
+      // Verify that sender of the current call is the claim owner.
+      ensure!(sender == owner, Error::<T>::NotClaimOwner);
 
-   		// Verify that sender of the current call is the claim owner.
-   		ensure!(sender == owner, Error::<T>::NotProofOwner);
+      // Remove claim from storage.
+      Claims::<T>::remove(&claim);
 
-   		// Remove claim from storage.
-   		Proofs::<T>::remove(&proof);
-
-   		// Emit an event that the claim was erased.
-   		Self::deposit_event(Event::ClaimRevoked(sender, proof));
-   		Ok(())
-   	}
-   }
-   ```
+      // Emit an event that the claim was erased.
+      Self::deposit_event(Event::ClaimRevoked { who: sender, claim });
+      Ok(())
+    }
+  }
+  ```
 
 1. Save your changes and close the file.
 
 1. Check that your code compiles by running the following command:
 
-   ```bash
-   cargo check -p node-template-runtime
-   ```
+  ```bash
+  cargo check -p node-template-runtime
+  ```
 
-You can refer to the node template [solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/proof-of-existence) if you get stuck.
-You can also check the [commit diff](https://github.com/substrate-developer-hub/substrate-node-template/commit/773d72752f3598e5d405b48c6f716f4153c95070#diff-f191d0eb0afa874a64fb9be550a275f957e220b9076c87d4085c2797ca4e310c) to see the exact changes from the base template.
+You can refer to the node template [solution](https://github.com/substrate-developer-hub/substrate-node-template/blob/tutorials/solutions/proof-of-existence/pallets/template/src/lib.rs) if you get stuck.
 
 ## Build the runtime with your new pallet
 
@@ -343,18 +337,18 @@ To compile and start the updated Substrate node:
 
 1. Compile the node template by running the following command:
 
-   ```bash
-   cargo build --release
-   ```
+  ```bash
+  cargo build --release
+  ```
 
 1. Start the node in development mode by running the following command:
 
-   ```bash
-   ./target/release/node-template --dev
-   ```
+  ```bash
+  ./target/release/node-template --dev
+  ```
 
-   The `--dev` option starts the node using the predefined `development` chain specification.
-   Using the `--dev` option ensures that you have a clean working state any time you stop and restart the node.
+  The `--dev` option starts the node using the predefined `development` chain specification.
+  Using the `--dev` option ensures that you have a clean working state any time you stop and restart the node.
 
 1. Verify the node produces blocks.
 
@@ -510,15 +504,15 @@ This React component enables you to expose the proof-of-existence capabilities a
 
 1. Install dependencies, if necessary, by running the following command:
 
-   ```bash
+  ```bash
     yarn install
     ```
 
 2. Start the front-end template by running the following command:
 
-   ```bash
-   yarn start
-   ```
+  ```bash
+  yarn start
+  ```
 
 This will open up a new tab with the front-end serving at `http://localhost:8000`.
 
@@ -529,24 +523,24 @@ To test the proof-of-existence pallet using the new front-end component:
 1. Find the component at the bottom of the page.
 1. Click **Choose file** and select any file on your computer.
 
-   The proof-of-existence pallet generates the hash for the selected file and displays it in the File Digest field.
+  The proof-of-existence pallet generates the hash for the selected file and displays it in the File Digest field.
 
-   Because the file does not have an owner or block number, it is available to claim.
+  Because the file does not have an owner or block number, it is available to claim.
 
 1. Click **Create Claim** to take ownership of the file.
 
-   ![Proof-Of-Existence Component](/media/images/docs/tutorials/custom-pallet/poe-component.png)
+  ![Proof-Of-Existence Component](/media/images/docs/tutorials/custom-pallet/poe-component.png)
 
-   Clicking **Create Claim** calls the `create_claim` function in the custom proof-of-existence pallet.
-   The front-end component displays the file digest, account identifier, and block number for the completed transaction.
+  Clicking **Create Claim** calls the `create_claim` function in the custom proof-of-existence pallet.
+  The front-end component displays the file digest, account identifier, and block number for the completed transaction.
 
 1. Verify the claim is successful and a new `claimCreated` event appears in the Events component.
 
-   ![Claimed File](/media/images/docs/tutorials/custom-pallet/poe-claimed.png)
+  ![Claimed File](/media/images/docs/tutorials/custom-pallet/poe-claimed.png)
 
-   The front-end component recognizes that the file is now claimed, and gives you the option to revoke the claim.
+  The front-end component recognizes that the file is now claimed, and gives you the option to revoke the claim.
 
-   Remember, only the owner can revoke the claim. If you select another user account, the revoke option is disabled.
+  Remember, only the owner can revoke the claim. If you select another user account, the revoke option is disabled.
 
 ## Next steps
 
