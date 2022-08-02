@@ -3,6 +3,7 @@ menu:
   - docs
   - tutorials
   - reference
+  - community
 
 quick-start:
   title: Quick start
@@ -247,9 +248,17 @@ reference:
       url: /reference/cryptography/
     - title: How-to reference guides
       url: /reference/how-to-guides/
-#   - 'Community':
-#       - 'community/index.md'
-#       - 'Style guidelines': 'community/style-guide.md'
-#       - 'How-to template': 'https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/contribute-templates/how-to-template.md/"target="_blank'
-#- 'Bounties': 'community/bounty.md'
-#- 'Dropbox': 'faq-dropbox/index.md'
+community:
+  title: Community
+  url: /community/
+  pages:
+    - title: Style guide
+      url: /community/style-guide/
+    - title: Contributor guidelines
+      url: /community/contributor-guidelines/
+    - title: Template - How-to guide
+      url: /community/template-how-to-guide/
+    #- title: Article bounties
+      #url: /community/article-bounty
+    #- title: Contributor dropbox
+      #url: /community/contributor-dropbox/
