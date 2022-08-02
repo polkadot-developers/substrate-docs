@@ -1,5 +1,5 @@
 ---
-title: Frame macros
+title: FRAME macros
 description:
 keywords:
 ---
@@ -15,114 +15,192 @@ In computer programming, macros are lines of code that encapsulate a preset sequ
 As code that writes code, macros enable you to abstract repetitive operations and simply the code you need to write.
 With macros, you can declare complex data structures implicitly.
 
-Because macros are expanded before the compiler interprets the lines of code they contain, a macro can define complex operations and manipulate data, for example, the implementation of a trait for a given type.
-However, the abstraction of the operations performed can make code that uses macros more difficult to understand, even when you expand the macros and read its definition.
+In Rust, macros can be **declarative macros** or **procedural macros**.
 
-In Rust, there are four types of macros: 
+[Declarative macros](https://doc.rust-lang.org/book/ch19-06-macros.html#declarative-macros-with-macro_rules-for-general-metaprogramming) enable you to declare a pattern and compare the result of an expression to the pattern, then execute any additional lines code based on whether the pattern was matched..
+Declarative macros are widely-used in Rust programming.
 
-- [declarative macros](https://doc.rust-lang.org/book/ch19-06-macros.html#declarative-macros-with-macro_rules-for-general-metaprogramming) declare an expression and compare the result of the expression to a pattern.
-  Declarative macros are widely-used in general Rust programming, but not in FRAME macros.
+[Procedural macros](https://doc.rust-lang.org/book/ch19-06-macros.html#procedural-macros-for-generating-code-from-attributes) are similar to functions.
+Unlike the pattern-matching done in declarative macros, procedural macros take code as input, perform some set of instructions on the input, and produce code as output.
+There are three types of procedural macros: 
 
-- [attribute-based macros](https://doc.rust-lang.org/book/ch19-06-macros.html#attribute-like-macros) are a type of procedural macro that generates code from attributes.
-  Typically, a Substrate runtime includes many FRAME macros that are attribute-based macros.
+- [Custom `derive` macros](https://doc.rust-lang.org/book/ch19-06-macros.html#how-to-write-a-custom-derive-macro) enable you to define and reuse the implementation of a trait for a given type.
+  The `derive` macro is particularly useful for defining the implementation for custom runtime types that must satisfy specific traits.
+  
+- [Attribute-like macros](https://doc.rust-lang.org/book/ch19-06-macros.html#attribute-like-macros) enable you to create new attributes to generate code.
 
-- [derive macros](https://doc.rust-lang.org/book/ch19-06-macros.html#how-to-write-a-custom-derive-macro) are a type of procedural macro that enable a type to derive a custom trait implementation.
-  The `derive` macros are particularly useful for defining custom runtime types that must satisfy specific traits.
+- [Function-like macros](https://doc.rust-lang.org/book/ch19-06-macros.html#function-like-macros) enable you to define macros that operate like function calls to generate code.
 
-- [function-like macros](https://doc.rust-lang.org/book/ch19-06-macros.html#function-like-macros) are a type of procedural macro that look like function calls.
+Because macros are expanded before the compiler interprets the lines of code they contain, they can define complex data structures and operations.
+FRAME macros take advantage of the different types of macros to provide shortcut abstractions to what is often complex blocks of code.
+However, the abstraction that macros provide can make the runtime code somewhat difficult to follow.
 
-Most Substrate runtime macros are defined using either **declarative macros** or **function-like macros**, with a recent adoption of
-**attribute-like macros** in FRAME v2 pallets.
-
-To learn more about Substrate runtime macros:
-
-- Read the [Rust documentation](https://paritytech.github.io/substrate/master/frame_support/index.html#macros) on commonly used macros in FRAME.
-- Use [\`cargo expand\`](https://github.com/dtolnay/cargo-expand) to review a macro's expanded code and understand what's happening under the hood.
-- Read more on [macro rules of expression pattern matching](https://danielkeep.github.io/tlborm/book/pim-README.html).
+To learn more about the FRAME macros used in the Substrate runtime, you can install and use [cargo-expand](https://docs.rs/crate/cargo-expand).
+After you install cargo-expand, you can use the `cargo expand` command to display the results of the code contained in the macros the runtime uses.
 
 ## Substrate runtime macros
 
-The following section is a comprehensive explanation of the macros that runtime engineers most frequently encounter.
-Developers who want to know about the implementation details are encouraged to follow the links in
-"Docs and Notes" sub-sections to better understand how each macro expands.
+Substrate primitives and FRAME both rely on a collection of various types of macros.
+This section provides an overview of the macros provided in the FRAME support and FRAME system libraries.
+In most cases, these macros provide the framework that other pallets depend on and you should be familiar with how and where they are used in the runtime logic.
+After the overview, this section describes the macros you are most likely to use as a runtime developer. 
 
-Substrate Primitives and FRAME both rely on a collection of various types of macros. The following
-sections will go over each in more detail. Here's a general overview of Substrate macros:
+### FRAME support macros
 
-**Macros in the FRAME support library**
+The `frame_support` crate provides many of the most important declarative, derive, attribute-like, and function-like macros used in the runtime.
+A few of the important macros that you should be familiar with from the `frame_support` crate include the following:
 
-- in `frame_support`:
-  - [function-like](https://paritytech.github.io/substrate/master/frame_support/index.html#macros) macros
-  - [derive](https://paritytech.github.io/substrate/master/frame_support/index.html#derives) macros
-  - [attribute](https://paritytech.github.io/substrate/master/frame_support/index.html#attributes) macros
+- `construct_runtime`	used to construct runtime from the list of pallets you have implemented.
+- `decl_error` used to declare an error type for a pallet in the runtime.
+- `decl_event`	used to implement event for a pallet in the runtime.
+- `decl_module`	used to declare a Module data structure and a Call enumeration for a dispatch.
+- `decl_storage` used to declare strongly-typed wrappers around codec-compatible types in storage.
+- `match_types`	used to create a type that implements the `Contains` trait with syntax similar to `matches!`.
+- `parameter_types`	used to create new implementations of the `Get` trait.	
 
-**Macros in the FRAME system library**
+For additional information about the macros in the `frame_support` crate, see the Rust documentation for [Macros](https://paritytech.github.io/substrate/master/frame_support/index.html#macros) macros, [Derive macros](https://paritytech.github.io/substrate/master/frame_support/index.html#derives), and [Attribute macros](https://paritytech.github.io/substrate/master/frame_support/index.html#attributes).
 
-- in `sp_core`:
-  - [function-like macros](https://paritytech.github.io/substrate/master/sp_core/index.html#macros) macros
-  - [derive `RuntimeDebug`](https://paritytech.github.io/substrate/master/sp_core/index.html#derives) macro
-- in `sp_runtime`:
-  - [function-like](https://paritytech.github.io/substrate/master/sp_runtime/index.html#macros) macros
-  - [derive](https://paritytech.github.io/substrate/master/sp_runtime/index.html#derives) macros
-- in `serde`: [function-like](https://paritytech.github.io/substrate/master/sp_runtime/index.html#derives) macros
-- in `sp_api`: [function-like](https://paritytech.github.io/substrate/master/sp_api/index.html#macros) macros
-- in `sp_std`: [function-like](https://paritytech.github.io/substrate/master/sp_std/index.html#macros) macros
-- in `sp_version`: [function-like](https://paritytech.github.io/substrate/master/sp_version/index.html#macros) macros
+### FRAME system macros
 
-See the `dependencies` in the `Cargo.toml` file of the node template runtime to see where these macros are used.
+The `frame_system` crate uses macros to define primitives that provide access to core data types and shared utilities. 
+These primitives and associated macros form the foundation for many node operations both in the outer node and in the runtime and act as the base layer for other pallets to interact with the Substrate framework.
 
-## FRAME macros and attributes
+A few of the important primitives and macros that you should be familiar with from the `frame_system` crate include the following:
+
+- [`sp_core`](https://paritytech.github.io/substrate/master/sp_core/index.html)
+  
+  - `map`	used to initialize a key-value collection from array.
+  - `RuntimeDebug` used to debug the runtime.
+  
+  For more information about `sp_core` function-like macros, see [Macros](https://paritytech.github.io/substrate/master/sp_core/index.html#macros).
+
+- [`sp_runtime`](https://paritytech.github.io/substrate/master/sp_runtime/index.html)
+
+  - `bounded_btree_map`	Bused to build a bounded `btree-map` from given literals.
+  - `bounded_vec`	used to build a bounded `vec` from given literals.
+  - `impl_opaque_keys` used to tmplement `OpaqueKeys` for a described data structure.
+  - `parameter_types` used to create new implementations of the `Get` trait.
+
+  For more information about `sp_runtime` function-like macros, see [Macros](https://paritytech.github.io/substrate/master/sp_runtime/index.html#macros).
+  For information about `sp_runtime` derive macros, see [Derive macros](https://paritytech.github.io/substrate/master/sp_runtime/index.html#derives).
+
+- [`sp_api`](https://paritytech.github.io/substrate/master/sp_api/index.html)
+  
+  - `decl_runtime_apis`	used to declare specified traits as runtime APIs.
+  - `impl_runtime_apis`	used to tag specified trait implementations as runtime APIs.
+  
+  For more information about `sp_api` function-like macros, see [Macros](https://paritytech.github.io/substrate/master/sp_api/index.html#macros).
+
+- [`sp_std`](https://paritytech.github.io/substrate/master/sp_std/index.html)
+  
+  - `if_std`	used to indicate code that should only be run when the `std` feature set is enabled.
+  - `map`	used to initialize a key-value collection from array.
+  - `vec`	used to create a vector containing the arguments.
+  
+  For more information about `sp_std` function-like macros, see [Macros](https://paritytech.github.io/substrate/master/sp_std/index.html#macros).
+
+- [`sp_version`](https://paritytech.github.io/substrate/master/sp_version/index.html)
+  
+  - `create_apis_vec`	used to create a vector of API declarations.
+  - `create_runtime_str` used to create a RuntimeString constant.
+  - `runtime_version`	used as an attribute that accepts the version declaration of a runtime and generates a custom WebAssembly section with the equivalent contents.
+
+You'll see these many of these crates listed as dependencies in the runtime and node `Cargo.toml` file for the node template.
+
+## Macros for composing pallets
 
 As discussed in [Building custom pallets](/main-docs/fundamentals/runtime-intro#building-custom-pallets), most FRAME pallets are composed using a common set of sections.
 Macros make building each of those sections more modular and extensible.
 This section describes the macros available and how to use them to build your custom runtime.
 
-### frame_support::pallet
+### #[pallet]
 
-**When to use**
+The `#[pallet]` macro is required to declare a pallet.
+This [attribute macro](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html) describes the attributes used to identify the specific items the pallet requires.
+For example, a pallet typically includes a set of types, functions, and trait implementations that are aggregated by the `construct_runtime!` macro to build to runtime.
 
-Required to declare a pallet consisting of a set of types, functions, and trait implementations that will later be aggregated by `construct_runtime` to build to runtime.
+The `#[pallet]` attribute macro is define by a module item:
 
-**What it does**
+```rust
+#[pallet]
+pub mod pallet {
+...
+}
+```
 
-This is the [attribute macro](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html) that allows the pallet to be used in `construct_runtime!`. This macro
-is made up of the various attributes that will be used to identify the specific items the pallet requires.
+Inside the module, the macro parses item with the attribute `#[pallet::*]`.
+Some `#[pallet::*]` attributes are mandatory and some are optional.
 
-Similar to a derive macro, this macro only expands types and trait implementations by reading the input and its input is _almost_ never touched. The only exception where this macro
-modifies its input (contrary to a derive macro) is:
+You can import system-level types from the `frame_support` and `frame_system` crates automatically by using the pallet_prelude from those crate.
+For example:
 
-- **when a generic is replaced with a type**. For example, in `pallet::pallet` the inner types of the item in `pub struct Pallet<..>(_)` is replaced by `PhantomData`
-  and in `pallet::storage`, the first generic `_` is replaced with a type that implements the `StorageInstance` trait.
-- **some item is changed**. For example, when `pallet::type_value` changes the function item into a struct and trait implementation.
-- **some docs are added when none are provided by the user.** For example, if no documentation is provided the macro `pallet::pallet` will modify the input to add documentation above the item `struct Pallet<T>(_);`.
+```rust
+#[pallet]
+pub mod pallet {
+		use frame_support::pallet_prelude::*;
+		use frame_system::pallet_prelude::*;
+		...
+}
+```
+
+This macro is similar to a derive macro in that it expands the pallet types and trait implementations by reading the input.
+In most cases, the macro doesn't modify any input. 
+However, there are a few specific scenarios where—unlike a derive macro—this macro modifies its input.
+
+The macro will modify the input in the following circumstances:
+
+- If a **generic** is replaced with a **type**
+  
+  For example, this can occur if the inner type of an item in `pub struct Pallet<..>(_)` is replaced in the `pallet::storage` macro with a type that implements the `StorageInstance` trait.
+
+- If a **function or data structure** is **changed** 
+  
+  For example, this can occur if `pallet::type_value` changes a function item into a struct and trait implementation.
+
+- If **docs** are **not provided** by the user
+  
+  For example, if no documentation is provided, the macro `pallet::pallet` modifies the input to add documentation above the `struct Pallet<T>(_);` item.
 
 ### #[pallet::config]
 
-**When to use**
+The [`#[pallet::config]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#config-trait-palletconfig-mandatory) macro is required to define the generic data types the pallet uses.
 
-Required to define the pallet's generics.
+This macro provides the constants that are part of the system-level [`Config` trait](https://paritytech.github.io/substrate/master/frame_system/pallet/trait.Config.html) for the pallet and describes the external tools to use for the runtime.
 
-**What it does**
+The Config trait for this macro must be defined as a regular trait definition named `Config` that includes the system-level `frame_system::Config` trait.
+The definition can include other traits and a where clause.
+For example:
 
-Provides constants that are part of the [`Config` trait](https://paritytech.github.io/substrate/master/frame_system/pallet/trait.Config.html) and gives information about external tools to use for the runtime.
+```rust
+#[pallet::config]
+pub trait Config: frame_system::Config + $optionally_some_other_supertraits
+$optional_where_clause
+{
+...
+}
+```
 
-**Docs**
+To bypass the `frame_system::Config` requirement, you can use the attribute `#[pallet::disable_frame_system_supertrait_check]`.
+For example:
 
-- [Config trait](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#config-trait-palletconfig-mandatory)
+```rust
+#[pallet::config]
+#[pallet::disable_frame_system_supertrait_check]
+pub trait Config: pallet_timestamp::Config {}
+```
 
 ### #[pallet::constant]
 
-**When to use**
+The `#[pallet::constant]` macro provides the `Config` trait—inside the `#[pallet::config]` macro—with the types and attributes it needs for the runtime and generates associated metadata.
 
-To pass values of associated types to metadata, which allows the value of the type to be used by external tools and third parties. Note that this attribute is only usable from inside a `#[pallet::config]` item.
+This macro adds information about the constants used in a pallet to the runtime metadata, including: 
 
-**What it does**
-
-Provides the `Config` trait with the types and attributes it needs for the runtime and generates associated metadata.
-
-Adding the `#[pallet::constant]` attribute will result in the macro adding to the constant metadata, including: the constant's name; the name of the associated type; the constant's value; and the value returned by `Get::get()`.
-
-For example, we can use `#[pallet::constant]` to put `type MyGetParam` in metadata:
+- the constant name
+- the name of the associated types
+- he constant value
+- the value returned by `Get::get()` for the constant
+  
+For example, you can use `#[pallet::constant]` to add `type MyGetParam` to the metadata:
 
 ```rust
 #[pallet::config]
@@ -132,19 +210,12 @@ pub trait Config: frame_system::Config {
 }
 ```
 
-**Docs**
-
-- See use in the context of [#[pallet::config]](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#config-trait-palletconfig-mandatory)
-
 ### #[pallet::extra_constants]
 
-**When to use**
+The [`#[pallet::extra_constants]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional) macro enables you to add constants to the metadata.
 
-Optionally, for additional constants one may want to pass to metadata.
-
-**What it does**
-
-It allows to define some additional constants to put into metadata. For example, you could declare a function that returns a value that will be generated to metadata:
+For example, you can declare a function that returns a generated value. 
+You can then use the  `#[pallet::extra_constants]` macro to add the information for the generated value to the metadata:
 
 ```rust
 #[pallet::extra_constants]
@@ -154,21 +225,21 @@ impl<T: Config> Pallet<T> {
 }
 ```
 
-**Docs**
-
-- See [documentation](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional)
-
 ### #[pallet::pallet]
 
-**When to use**
+The [`#[pallet::pallet]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#pallet-struct-placeholder-palletpallet-mandatory) macro is required to declare the pallet data structure placeholder to be used by `construct_runtime!` macro.
+This macro must be defined as a struct named Pallet with a generic type <T> and no where clause.
 
-Required to declare the pallet struct place holder, to be later used by `construct_runtime`.
+For example:
 
-**What it does**
+```rust
+#[pallet::pallet]
+pub struct Pallet<T>(_);
+```
 
-Generates the `Store` trait if the attribute is provided, which contains an associated type for each storage item. It takes the form of a more explicit Rust struct module and can be written as `pub struct Pallet<T>(_);`, with the appropriate `PhantomData` replacing `_` to make it generic.
+This macro can generate the `Store` trait to contain an associated type for each storage item, if you provide the  `#[pallet::generate_store($vis trait Store)]` attribute macro.
 
-This is an example of its definition:
+For example:
 
 ```rust
 #[pallet::pallet]
@@ -176,9 +247,7 @@ This is an example of its definition:
 pub struct Pallet<T>(_);
 ```
 
-**Docs**
-
-- See the [macro expansion](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#macro-expansion-1) added to the `struct Pallet<T>` definition
+For more information about working with storage within this macro, see the [macro expansion](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#macro-expansion-1) added to the `struct Pallet<T>` definition.
 
 ### #[pallet::generate_storage_info]
 
@@ -436,6 +505,17 @@ public-private key pair from a seed.
 - [The Rust Programming Language ch 19.5 Macros](https://doc.rust-lang.org/book/ch19-06-macros.html)
 - [The Little Book of Rust Macros](https://danielkeep.github.io/tlborm/book)
 
-> As of January 2021, FRAME based pallets have upgraded their use of macros. Refer to [this guide](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#upgrade-guidelines)
-> to learn about migrating a v1 pallet to v2 and [this resource](https://hackmd.io/@fscJ0GEvRb2rqALLZB1kfA/SkSerkamt) to learn more about FRAME's version
-> changes.
+<!--
+As of January 2021, FRAME based pallets have upgraded their use of macros. 
+Refer to [this guide](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#upgrade-guidelines) to learn about migrating a v1 pallet to v2 and [this resource](https://hackmd.io/@fscJ0GEvRb2rqALLZB1kfA/SkSerkamt) to learn more about FRAME's version changes.
+
+cargo expand 
+1. Open a terminal shell and change to the `runtime` directory for the Substrate node template.
+
+2. Install cargo-expand by running the following command:
+
+   ```bash
+   cargo install cargo-expand
+   ```
+
+-->
