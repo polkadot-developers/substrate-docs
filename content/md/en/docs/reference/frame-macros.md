@@ -170,18 +170,20 @@ pub struct Pallet<T>(_);
 
 - See the [macro expansion](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#macro-expansion-1) added to the `struct Pallet<T>` definition
 
-### #[pallet::generate_storage_info]
+### #[pallet::without_storage_info]
 
 **When to use**
 
-This attribute no longer exists. `generate_storage_info` is now assumed by default: all pallet storage items are expected to be bounded (i.e. have a fixed size).
+This attribute is not recommended to use in production, however it may be useful if you need to make all your pallet's storage items unbounded.
+
+Note that all pallet storage items are expected to be bounded (i.e. have a fixed size) by default.
+For parachain developers, this is required in order to estimate the size of the Proof of Validity (PoV) blob.
 
 **What it does**
 
-All storage is now required to implement the trait `traits::StorageInfoTrait`, and thus all keys and value types must have the bound `pallet_prelude::MaxEncodedLen`.
-Individual storage can opt-out from this constraint by using `#[pallet::unbounded]`, see `#[pallet::storage]` documentation.
-
-In the unlikely event that the entire pallet's storage needs to be unbounded by default, one can add the `#[pallet::without_storage_info]` attribute to the pallet struct like so:
+Pallet storage items are required to implement `traits::StorageInfoTrait` by default, meaning that all key and value types must have the bound `pallet_prelude::MaxEncodedLen`.
+This attribute overrides the default behavior in the unlikely event that the entire pallet's storage needs to be unbounded.
+To use it, add the `#[pallet::without_storage_info]` attribute to the pallet struct like so:
 
 ```rust
 #[pallet::pallet]
@@ -190,11 +192,22 @@ In the unlikely event that the entire pallet's storage needs to be unbounded by 
 pub struct Pallet<T>(_);
 ```
 
-(but as discussed it would be more typical to place `#[pallet::unbounded]` on specific storage items)
+It is more typical to opt-out from this constraint on a specific storage item by using `#[pallet::unbounded]`.
 
 **Docs**
 
 - See the [macro expansion](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#pallet-struct-placeholder-palletpallet-mandatory) added to the `struct Pallet<T>` definition
+
+### #[pallet::unbounded]
+
+**When to use**
+
+If you want to override the default requirement that a storage item must be bounded, you can use this attribute on a specific storage item.
+This can be useful for parachain developers who are using storage that will never go into the PoV (Proof of Validity) blob.
+
+**What it does**
+
+Allows developer to declare a storage item as unbounded. 
 
 ### #[pallet::hooks]
 
