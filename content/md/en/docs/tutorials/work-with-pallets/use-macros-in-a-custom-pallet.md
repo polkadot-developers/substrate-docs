@@ -7,12 +7,14 @@ keywords:
 This tutorial illustrates how to create a custom pallet for a Substrate
 runtime using **macros** that are part of the [FRAME](/reference/frame-macros/) development environment.
 
-For this tutorial, you'll build a simple **proof of existence** application. Proof of existence is an approach to validating the authenticity and ownership of a digital object by using the object information stored on the blockchain.
-Because the blockchain associates a timestamp and signature with the object, the blockchain record can be used to verify—to serve as proof—that a particular object existed at a specific date and time. It can also verify who the owner of a record was at that date and time.
+For this tutorial, you'll build a simple **proof-of-existence** application. Proof-of-existence is an approach to validating the authenticity and ownership of a digital object by storing information about the object on the blockchain.
+Because the blockchain associates a timestamp and account with the object, the blockchain record can be used to "prove" that a particular object existed at a specific date and time.
+It can also verify who the owner of a record was at that date and time.
 
 ## Digital objects and hashes
 
-Instead of individual files, the blockchain stores digital records using a [cryptographic hash](https://en.wikipedia.org/wiki/Cryptographic_hash_function).
+Instead of storing an entire file on the blockchain, it can be much more efficient to simply store a [cryptographic hash](https://en.wikipedia.org/wiki/Cryptographic_hash_function) of that file.
+This is also known as a "digital fingerprint".
 The hash enables the blockchain to store files of arbitrary size efficiently by using a small and unique hash value.
 Because any change to a file would result in a different hash, users can prove the validity of a file by computing the hash and comparing that hash with the hash stored on chain.
 
@@ -20,9 +22,9 @@ Because any change to a file would result in a different hash, users can prove t
 
 ## Digital objects and account signatures
 
-Blockchains use [public keys](https://en.wikipedia.org/wiki/Public-key_cryptography) to map digital identities to accounts that have private keys.
+Blockchains use [public key cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography) to map digital identities to accounts that have private keys.
 The blockchain records the account you use to store the hash for a digital object as part of the transaction.
-Because the account information is stored as part of the transaction, the controller of the account can later prove ownership as the person who initially uploaded the file.
+Because the account information is stored as part of the transaction, the controller of the private key for that account can later prove ownership as the person who initially uploaded the file.
 
 ## How much time do you need to complete this tutorial?
 
@@ -54,7 +56,7 @@ By completing this tutorial, you will accomplish the following objectives:
 
 ## Design the application
 
-The proof of existence application exposes the following callable functions:
+The proof-of-existence application exposes the following callable functions:
 
 - `create_claim()` allows a user to claim the existence of a file by uploading a hash.
 
@@ -120,19 +122,16 @@ Therefore, the first step is to remove some files and content from the files in 
    pub mod pallet {
    	use frame_support::pallet_prelude::*;
    	use frame_system::pallet_prelude::*;
-   	use sp_std::vec::Vec; // Step 3.1 will include this in `Cargo.toml`
 
-   	#[pallet::config]  // <-- Step 2. code block will replace this.
-   	#[pallet::event]   // <-- Step 3. code block will replace this.
-   	#[pallet::error]   // <-- Step 4. code block will replace this.
-   	#[pallet::pallet]
+    #[pallet::pallet]
    	#[pallet::generate_store(pub(super) trait Store)]
    	pub struct Pallet<T>(_);
 
+   	#[pallet::config]  // <-- Step 2. code block will replace this.
+    #[pallet::event]   // <-- Step 3. code block will replace this.
+    #[pallet::error]   // <-- Step 4. code block will replace this.
    	#[pallet::storage] // <-- Step 5. code block will replace this.
-   	#[pallet::hooks]
-   	impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {}
-   	#[pallet::call]   // <-- Step 6. code block will replace this.
+   	#[pallet::call]    // <-- Step 6. code block will replace this.
    }
    ```
 
@@ -152,14 +151,12 @@ To define the `Config` trait for the proof-of-existence pallet:
 
 1. Replace the `#[pallet::config]` line with the following code block:
 
-   ```rust
-   /// Configure the pallet by specifying the parameters and types on which it depends.
-   #[pallet::config]
-   pub trait Config: frame_system::Config {
-   	/// Because this pallet emits events, it depends on the runtime's definition of an event.
-   	type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
-   }
-   ```
+  ```rust
+  #[pallet::config]
+  pub trait Config: frame_system::Config {
+    type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+  }
+  ```
 
 1. Save your changes.
 
@@ -172,8 +169,7 @@ As described in [Design the application](#design-the-application), the proof-of-
 - When a proof is revoked.
 
 Each event also displays an `AccountId` to identify who triggered the
-event and the proof-of-existence data (as `Vec<u8>`) that is being stored or removed.
-By convention, each event includes an array with descriptive names for its parameters.
+event and the proof-of-existence claim (as `Hash`) that is being stored or removed.
 
 To implement the pallet events:
 
@@ -181,60 +177,20 @@ To implement the pallet events:
 
 1. Replace the `#[pallet::event]` line with the following code block:
 
-   ```rust
-   // Pallets use events to inform users when important changes are made.
-   // Event documentation should end with an array that provides descriptive names for parameters.
-   #[pallet::event]
-   #[pallet::generate_deposit(pub(super) fn deposit_event)]
-   pub enum Event<T: Config> {
-   	/// Event emitted when a proof has been claimed. [who, claim]
-   	ClaimCreated(T::AccountId, Vec<u8>),
-   	/// Event emitted when a claim is revoked by the owner. [who, claim]
-   	ClaimRevoked(T::AccountId, Vec<u8>),
-   }
-   ```
+  ```rust
+  // Pallets use events to inform users when important changes are made.
+  // Event documentation should end with an array that provides descriptive names for parameters.
+  #[pallet::event]
+  #[pallet::generate_deposit(pub(super) fn deposit_event)]
+  pub enum Event<T: Config> {
+    /// Event emitted when a proof has been claimed.
+    ClaimCreated { who: T::AccountId, claim: T::Hash },
+    /// Event emitted when a claim is revoked by the owner.
+    ClaimRevoked { who: T::AccountId, claim: T::Hash },
+  }
+  ```
 
 1. Save your changes.
-
-## Include `sp-std` library
-
-You might notice that the proof-of-existence pallet uses the `Vec<u8>` type.
-This type is included in the `std` Rust library.
-However, you _cannot_ use the `std` library for pallet development.
-Instead, the proof-of-existence pallet uses the [sp-std crate](https://paritytech.github.io/substrate/master/sp_std/index.html) to declare the `Vec<u8>` type under the `mod pallet` section:
-
-```rust
-use sp_std::vec::Vec;
-```
-
-The `sp-std` crate provides many standard Rust library functions modified to be compatible with `no_std` configuration.
-To use the `sp-std` crate, you must update the pallet dependencies in the `Cargo.toml` file.
-
-To add the `sp-std` crate to the pallet:
-
-1. Open the `pallets/template/Cargo.toml` file in a text editor.
-
-1. Add the following `sp-std` dependencies section to the file:
-
-   ```toml
-   [dependencies.sp-std]
-   default-features = false
-   git = 'https://github.com/paritytech/substrate.git'
-   branch = 'polkadot-v0.9.26'  # Must *match* the rest of your Substrate deps!
-   ```
-
-1. Add the `sp-std` crate to the list of features.
-
-   ```toml
-   [features]
-   default = ['std']
-   std = [
-       # -- snip --
-       'sp-std/std',
-   ]
-   ```
-
-1. Save your changes and close the file.
 
 ## Include pallet errors
 
@@ -254,25 +210,25 @@ To implement the errors for the proof-of-existence pallet:
 
 1. Replace the `#[pallet::error]` line with the following code block:
 
-   ```rust
-   #[pallet::error]
-   pub enum Error<T> {
-   	/// The proof has already been claimed.
-   	ProofAlreadyClaimed,
-   	/// The proof does not exist, so it cannot be revoked.
-   	NoSuchProof,
-   	/// The proof is claimed by another account, so caller can't revoke it.
-   	NotProofOwner,
-   }
-   ```
+  ```rust
+  #[pallet::error]
+  pub enum Error<T> {
+    /// The proof has already been claimed.
+    ProofAlreadyClaimed,
+    /// The proof does not exist, so it cannot be revoked.
+    NoSuchProof,
+    /// The proof is claimed by another account, so caller can't revoke it.
+    NotProofOwner,
+  }
+  ```
 
 1. Save your changes.
 
 ## Implement a storage map for stored items
 
-To add a new proof to the blockchain, the proof-of-existence pallet requires a storage mechanism.
-To address this requirement, you can create a [hash map](https://en.wikipedia.org/wiki/Hash_table) that maps each proof to its owner and records the block number when the proof was made.
-To create this hash map, you can use the FRAME [`StorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html) trait.
+To add a new claim to the blockchain, the proof-of-existence pallet requires a storage mechanism.
+To address this requirement, you can create a key-value map, where each claim hash points to the owner and the block number when the claim was made.
+To create this key-value map, you can use the FRAME [`StorageMap`](https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/struct.StorageMap.html).
 
 To implement storage for the proof-of-existence pallet:
 
@@ -280,10 +236,10 @@ To implement storage for the proof-of-existence pallet:
 
 1. Replace the `#[pallet::storage]` line with the following code block:
 
-   ```rust
-   #[pallet::storage]
-   pub(super) type Proofs<T: Config> = StorageMap<_, Blake2_128Concat, Vec<u8>, (T::AccountId, T::BlockNumber), ValueQuery>;
-   ```
+  ```rust
+  #[pallet::storage]
+  pub(super) type Claims<T: Config> = StorageMap<_, Blake2_128Concat, T::Hash, (T::AccountId, T::BlockNumber)>;
+  ```
 
 1. Save your changes.
 
@@ -291,7 +247,7 @@ To implement storage for the proof-of-existence pallet:
 
 The proof-of-existence pallet exposes two callable functions to users:
 
-- `create_claim()` allows a user to claim the existence of a file with a proof.
+- `create_claim()` allows a user to claim the existence of a file with a hash.
 
 - `revoke_claim()` allows the owner of a claim to revoke the claim.
 
@@ -315,7 +271,7 @@ To implement this logic in the proof-of-existence pallet:
    	#[pallet::weight(1_000)]
    	pub fn create_claim(
    		origin: OriginFor<T>,
-   		proof: Vec<u8>,
+   		proof: H256,
    	) -> DispatchResult {
    		// Check that the extrinsic was signed and get the signer.
    		// This function will return an error if the extrinsic is not signed.
@@ -429,7 +385,7 @@ This React component enables you to expose the proof-of-existence capabilities a
     // Polkadot-JS utilities for hashing data.
     import { blake2AsHex } from '@polkadot/util-crypto'
 
-    // Main Proof Of Existence component is exported.
+    // Main Proof-Of-Existence component is exported.
     function Main(props) {
       // Establish an API to talk to the Substrate node.
       const { api, currentAccount } = useSubstrateState()
@@ -488,7 +444,7 @@ This React component enables you to expose the proof-of-existence capabilities a
       // The actual UI elements which are returned from our component.
       return (
         <Grid.Column>
-          <h1>Proof of Existence</h1>
+          <h1>Proof-of-Existence</h1>
           {/* Show warning or success message if the file is or is not claimed. */}
           <Form success={!!digest && !isClaimed()} warning={isClaimed()}>
             <Form.Field>
@@ -553,7 +509,7 @@ This React component enables you to expose the proof-of-existence capabilities a
 1. Save your changes and close the file.
 
 1. Install dependencies, if necessary, by running the following command:
-   
+
    ```bash
     yarn install
     ```
@@ -579,7 +535,7 @@ To test the proof-of-existence pallet using the new front-end component:
 
 1. Click **Create Claim** to take ownership of the file.
 
-   ![Proof Of Existence Component](/media/images/docs/tutorials/custom-pallet/poe-component.png)
+   ![Proof-Of-Existence Component](/media/images/docs/tutorials/custom-pallet/poe-component.png)
 
    Clicking **Create Claim** calls the `create_claim` function in the custom proof-of-existence pallet.
    The front-end component displays the file digest, account identifier, and block number for the completed transaction.
