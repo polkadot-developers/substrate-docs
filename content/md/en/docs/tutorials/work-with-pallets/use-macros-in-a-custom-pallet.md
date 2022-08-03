@@ -150,8 +150,10 @@ To define the `Config` trait for the proof-of-existence pallet:
 1. Replace the `#[pallet::config]` line with the following code block:
 
   ```rust
+  /// Configure the pallet by specifying the parameters and types on which it depends.
   #[pallet::config]
   pub trait Config: frame_system::Config {
+    /// Because this pallet emits events, it depends on the runtime's definition of an event.
     type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
   }
   ```
@@ -267,10 +269,7 @@ To implement this logic in the proof-of-existence pallet:
   #[pallet::call]
   impl<T: Config> Pallet<T> {
     #[pallet::weight(0)]
-    pub fn create_claim(
-      origin: OriginFor<T>,
-      claim: T::Hash,
-    ) -> DispatchResult {
+    pub fn create_claim(origin: OriginFor<T>, claim: T::Hash) -> DispatchResult {
       // Check that the extrinsic was signed and get the signer.
       // This function will return an error if the extrinsic is not signed.
       let sender = ensure_signed(origin)?;
@@ -291,10 +290,7 @@ To implement this logic in the proof-of-existence pallet:
     }
 
     #[pallet::weight(0)]
-    pub fn revoke_claim(
-      origin: OriginFor<T>,
-      claim: T::Hash,
-    ) -> DispatchResult {
+    pub fn revoke_claim(origin: OriginFor<T>, claim: T::Hash) -> DispatchResult {
       // Check that the extrinsic was signed and get the signer.
       // This function will return an error if the extrinsic is not signed.
       let sender = ensure_signed(origin)?;
