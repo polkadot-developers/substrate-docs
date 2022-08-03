@@ -96,9 +96,9 @@ Therefore, the first step is to remove some files and content from the files in 
 
 1. Open the `lib.rs` file in a text editor.
 
-  This file contains code that you can use as a template for a new pallet.
-  You won't be using the template code in this tutorial.
-  However, you can review the template code to see what it provides before you delete it.
+    This file contains code that you can use as a template for a new pallet.
+    You won't be using the template code in this tutorial.
+    However, you can review the template code to see what it provides before you delete it.
 
 1. Delete all of the lines in the `lib.rs` file.
 
@@ -108,7 +108,7 @@ Therefore, the first step is to remove some files and content from the files in 
     #![cfg_attr(not(feature = "std"), no_std)]
     ```
 
-  All of the pallets used in a runtime must be set to compile with the `no_std` features.
+    All of the pallets used in a runtime must be set to compile with the `no_std` features.
 
 1. Add a skeleton set of pallet dependencies and [macros](/reference/frame-macros) that the custom pallet requires by copying the following code:
 
@@ -133,7 +133,7 @@ Therefore, the first step is to remove some files and content from the files in 
     }
     ```
 
-  You now have a framework that includes placeholders for _events_, _errors_, _storage_, and _callable functions_.
+    You now have a framework that includes placeholders for _events_, _errors_, _storage_, and _callable functions_.
 
 1. Save your changes.
 
@@ -319,7 +319,7 @@ To implement this logic in the proof-of-existence pallet:
     cargo check -p node-template-runtime
     ```
 
-You can refer to the node template [solution](https://github.com/substrate-developer-hub/substrate-node-template/blob/tutorials/solutions/proof-of-existence/pallets/template/src/lib.rs) if you get stuck.
+    You can refer to the node template [solution](https://github.com/substrate-developer-hub/substrate-node-template/blob/tutorials/solutions/proof-of-existence/pallets/template/src/lib.rs) if you get stuck.
 
 ## Build the runtime with your new pallet
 
@@ -343,8 +343,8 @@ To compile and start the updated Substrate node:
     ./target/release/node-template --dev
     ```
 
-  The `--dev` option starts the node using the predefined `development` chain specification.
-  Using the `--dev` option ensures that you have a clean working state any time you stop and restart the node.
+    The `--dev` option starts the node using the predefined `development` chain specification.
+    Using the `--dev` option ensures that you have a clean working state any time you stop and restart the node.
 
 1. Verify the node produces blocks.
 
