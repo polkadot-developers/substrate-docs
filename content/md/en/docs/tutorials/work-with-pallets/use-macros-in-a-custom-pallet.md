@@ -398,7 +398,7 @@ The final step of this tutorial is to check what claims have been stored on your
 
 1. Toggle off the "include option" on the hash input to leave the input empty.
 
-    This will allow us to see all the claims, rather than just one.
+    This will allow us to see all the claims, rather than just one at a time.
 
     ![Query All Claims](/media/images/docs/tutorials/custom-pallet/poe-claims.png)
 
