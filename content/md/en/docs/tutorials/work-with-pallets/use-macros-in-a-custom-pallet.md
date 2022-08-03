@@ -468,8 +468,10 @@ This React component enables you to expose the proof-of-existence capabilities a
         api.query.templateModule
           .proofs(digest, result => {
             // Our storage item returns a tuple, which is represented as an array.
-            setOwner(result[0].toString())
-            setBlock(result[1].toNumber())
+            if(result.value[0] && result.value[1]){
+              setOwner(result.value[0].toString())
+              setBlock(result.value[1].toNumber())
+            }
           })
           .then(unsub => {
             unsubscribe = unsub
