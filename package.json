@@ -71,7 +71,8 @@
 		"react-lottie": "^1.2.3",
 		"rehype-react": "^7.0.4",
 		"strip-markdown": "^5.0.0",
-		"striptags": "^3.2.0"
+		"striptags": "^3.2.0",
+		"gatsby-plugin-substrate-banners": "./plugins/gatsby-plugin-substrate-banners"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.14.3",

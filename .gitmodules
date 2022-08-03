@@ -1,0 +1,3 @@
+[submodule "plugins/gatsby-plugin-substrate-banners"]
+	path = plugins/gatsby-plugin-substrate-banners
+	url = https://github.com/paritytech/substrate-website-banner.git

@@ -2,21 +2,13 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 export const useBanner = () => {
   const {
-    allMarkdownRemark: { edges: banners },
+    allBannersMarkdown: { edges: banners },
   } = useStaticQuery(
     graphql`
       query {
-        allMarkdownRemark(
-          filter: {
-            fileAbsolutePath: { regex: "//(banner)./(?!(__readme__))/" }
-            frontmatter: { active: { eq: true } }
-          }
-          sort: { fields: fields___slug, order: ASC }
-          limit: 2
-        ) {
+        allBannersMarkdown(filter: { frontmatter: { active: { eq: true } } }, limit: 2) {
           edges {
             node {
-              html
               frontmatter {
                 title
               }

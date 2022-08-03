@@ -302,5 +302,6 @@ module.exports = {
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },
+    'gatsby-plugin-substrate-banners',
   ],
 };
