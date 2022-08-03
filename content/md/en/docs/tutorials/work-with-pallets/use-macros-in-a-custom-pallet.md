@@ -183,7 +183,7 @@ To implement the pallet events:
   #[pallet::event]
   #[pallet::generate_deposit(pub(super) fn deposit_event)]
   pub enum Event<T: Config> {
-    /// Event emitted when a proof has been claimed.
+    /// Event emitted when a claim has been created.
     ClaimCreated { who: T::AccountId, claim: T::Hash },
     /// Event emitted when a claim is revoked by the owner.
     ClaimRevoked { who: T::AccountId, claim: T::Hash },
@@ -362,7 +362,7 @@ If your Substrate blockchain is running and Polkadot JS Apps is connected, you s
 
 ![Extrinsic Success](/media/images/docs/tutorials/custom-pallet/poe-explorer.png)
 
-### Submit a proof
+### Submit a claim
 
 To test the proof-of-existence pallet using the front-end:
 
@@ -386,9 +386,9 @@ To test the proof-of-existence pallet using the front-end:
 
   ![Extrinsic Success](/media/images/docs/tutorials/custom-pallet/poe-success.png)
 
-### Read a proof
+### Read a claim
 
-The final step of this tutorial is to check what proofs have been stored on your blockchain.
+The final step of this tutorial is to check what claims have been stored on your blockchain.
 
 1. Navigate to the ["Developer > Chain State"](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/chainstate) tab.
 
