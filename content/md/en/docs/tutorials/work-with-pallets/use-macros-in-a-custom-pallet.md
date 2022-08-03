@@ -352,195 +352,63 @@ To compile and start the updated Substrate node:
 
 1. Verify the node produces blocks.
 
-## Build a custom front-end component
+## Interact with your blockchain
 
-Now that you have a new blockchain running with the custom proof-of-existence pallet, let's add a custom React component to the front-end template.
-This React component enables you to expose the proof-of-existence capabilities and interact with the new pallet you created.
+Now that you have a new blockchain running with the custom proof-of-existence pallet, we can interact with the chain to make sure all the functionality works as expected!
 
-### Add your custom react component
+To do this, we will use Polkadot JS Apps, which is a developer tool that can connect to and interact with any Substrate based blockchain.
 
-1. Open a new terminal shell on your computer, then change to the root directory where you installed the front-end template.
+By default, your blockchain should be running on `ws://127.0.0.1:9944`, so to connect to it we can use this link:
 
-1. Open the `src/TemplateModule.js` file in a text editor.
+https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/
 
-1. Delete the entire contents of that file.
+If your Substrate blockchain is running and Polkadot JS Apps is connected, you should see your block number increase in the top left corner:
 
-1. Copy and paste the following code into the`src/TemplateModule.js` file:
-
-    ```javascript
-    import React, { useEffect, useState } from 'react'
-    import { Form, Input, Grid, Message } from 'semantic-ui-react'
-
-    // Pre-built Substrate front-end utilities for connecting to a node
-    // and making a transaction.
-    import { useSubstrateState } from './substrate-lib'
-    import { TxButton } from './substrate-lib/components'
-
-    // Polkadot-JS utilities for hashing data.
-    import { blake2AsHex } from '@polkadot/util-crypto'
-
-    // Main Proof-Of-Existence component is exported.
-    function Main(props) {
-      // Establish an API to talk to the Substrate node.
-      const { api, currentAccount } = useSubstrateState()
-      // React hooks for all the state variables we track.
-      // Learn more at: https://reactjs.org/docs/hooks-intro.html
-      const [status, setStatus] = useState('')
-      const [digest, setDigest] = useState('')
-      const [owner, setOwner] = useState('')
-      const [block, setBlock] = useState(0)
-
-      // Our `FileReader()` which is accessible from our functions below.
-      let fileReader
-      // Takes our file, and creates a digest using the Blake2 256 hash function
-      const bufferToDigest = () => {
-        // Turns the file content to a hexadecimal representation.
-        const content = Array.from(new Uint8Array(fileReader.result))
-          .map(b => b.toString(16).padStart(2, '0'))
-          .join('')
-        const hash = blake2AsHex(content, 256)
-        setDigest(hash)
-      }
-
-      // Callback function for when a new file is selected.
-      const handleFileChosen = file => {
-        fileReader = new FileReader()
-        fileReader.onloadend = bufferToDigest
-        fileReader.readAsArrayBuffer(file)
-      }
-
-      // React hook to update the owner and block number information for a file
-      useEffect(() => {
-        let unsubscribe
-        // Polkadot-JS API query to the `proofs` storage item in our pallet.
-        // This is a subscription, so it will always get the latest value,
-        // even if it changes.
-        api.query.templateModule
-          .proofs(digest, result => {
-            // Our storage item returns a tuple, which is represented as an array.
-            setOwner(result[0].toString())
-            setBlock(result[1].toNumber())
-          })
-          .then(unsub => {
-            unsubscribe = unsub
-          })
-        return () => unsubscribe && unsubscribe()
-        // This tells the React hook to update whenever the file digest changes
-        // (when a new file is chosen), or when the storage subscription says the
-        // value of the storage item has updated.
-      }, [digest, api.query.templateModule])
-
-      // We can say a file digest is claimed if the stored block number is not 0
-      function isClaimed() {
-        return block !== 0
-      }
-
-      // The actual UI elements which are returned from our component.
-      return (
-        <Grid.Column>
-          <h1>Proof-of-Existence</h1>
-          {/* Show warning or success message if the file is or is not claimed. */}
-          <Form success={!!digest && !isClaimed()} warning={isClaimed()}>
-            <Form.Field>
-              {/* File selector with a callback to `handleFileChosen`. */}
-              <Input
-                type="file"
-                id="file"
-                label="Your File"
-                onChange={e => handleFileChosen(e.target.files[0])}
-              />
-              {/* Show this message if the file is available to be claimed */}
-              <Message success header="File Digest Unclaimed" content={digest} />
-              {/* Show this message if the file is already claimed. */}
-              <Message
-                warning
-                header="File Digest Claimed"
-                list={[digest, `Owner: ${owner}`, `Block: ${block}`]}
-              />
-            </Form.Field>
-            {/* Buttons for interacting with the component. */}
-            <Form.Field>
-              {/* Button to create a claim. Only active if a file is selected, and not already claimed. Updates the `status`. */}
-              <TxButton
-                label="Create Claim"
-                type="SIGNED-TX"
-                setStatus={setStatus}
-                disabled={isClaimed() || !digest}
-                attrs={{
-                  palletRpc: 'templateModule',
-                  callable: 'createClaim',
-                  inputParams: [digest],
-                  paramFields: [true],
-                }}
-              />
-              {/* Button to revoke a claim. Only active if a file is selected, and is already claimed. Updates the `status`. */}
-              <TxButton
-                label="Revoke Claim"
-                type="SIGNED-TX"
-                setStatus={setStatus}
-                disabled={!isClaimed() || owner !== currentAccount.address}
-                attrs={{
-                  palletRpc: 'templateModule',
-                  callable: 'revokeClaim',
-                  inputParams: [digest],
-                  paramFields: [true],
-                }}
-              />
-            </Form.Field>
-            {/* Status message about the transaction. */}
-            <div style={{ overflowWrap: 'break-word' }}>{status}</div>
-          </Form>
-        </Grid.Column>
-      )
-    }
-
-    export default function TemplateModule(props) {
-      const { api } = useSubstrateState()
-      return api.query.templateModule ? <Main {...props} /> : null
-    }
-    ```
-
-1. Save your changes and close the file.
-
-1. Install dependencies, if necessary, by running the following command:
-
-  ```bash
-    yarn install
-    ```
-
-2. Start the front-end template by running the following command:
-
-  ```bash
-  yarn start
-  ```
-
-This will open up a new tab with the front-end serving at `http://localhost:8000`.
+![Extrinsic Success](/media/images/docs/tutorials/custom-pallet/poe-explorer.png)
 
 ### Submit a proof
 
-To test the proof-of-existence pallet using the new front-end component:
+To test the proof-of-existence pallet using the front-end:
 
-1. Find the component at the bottom of the page.
-1. Click **Choose file** and select any file on your computer.
+1. Navigate to the ["Developer > Extrinsics"](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/extrinsics) tab.
 
-  The proof-of-existence pallet generates the hash for the selected file and displays it in the File Digest field.
+  ![Extrinsic Success](/media/images/docs/tutorials/custom-pallet/poe-extrinsics-tab.png)
 
-  Because the file does not have an owner or block number, it is available to claim.
+1. Adjust the extrinsics page to select "ALICE" as the account, and "templateModule > createClaim" as the extrinsic.
 
-1. Click **Create Claim** to take ownership of the file.
+  ![Extrinsic Success](/media/images/docs/tutorials/custom-pallet/poe-create-claim.png)
 
-  ![Proof-Of-Existence Component](/media/images/docs/tutorials/custom-pallet/poe-component.png)
+1. Then you can toggle "hash a file", which will allow you to select a file to hash and claim on the blockchain.
 
-  Clicking **Create Claim** calls the `create_claim` function in the custom proof-of-existence pallet.
-  The front-end component displays the file digest, account identifier, and block number for the completed transaction.
+  ![Extrinsic Success](/media/images/docs/tutorials/custom-pallet/poe-hash-file.png)
 
-1. Verify the claim is successful and a new `claimCreated` event appears in the Events component.
+1. Click "Submit Transaction" in the bottom right corner, then on the pop up click "Sign and Submit".
 
-  ![Claimed File](/media/images/docs/tutorials/custom-pallet/poe-claimed.png)
+  ![Extrinsic Success](/media/images/docs/tutorials/custom-pallet/poe-submit.png)
 
-  The front-end component recognizes that the file is now claimed, and gives you the option to revoke the claim.
+1. If everything was successful, you should see a green extrinsic success notification!
 
-  Remember, only the owner can revoke the claim. If you select another user account, the revoke option is disabled.
+  ![Extrinsic Success](/media/images/docs/tutorials/custom-pallet/poe-success.png)
+
+### Read a proof
+
+The final step of this tutorial is to check what proofs have been stored on your blockchain.
+
+1. Navigate to the ["Developer > Chain State"](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/chainstate) tab.
+
+  ![Extrinsic Success](/media/images/docs/tutorials/custom-pallet/poe-chain-state.png)
+
+1. Adjust the state query to "templateModule > claims".
+
+1. Toggle the "include option" on the hash input. (This will allow us to see all the claims, rather than just one.)
+
+  ![Extrinsic Success](/media/images/docs/tutorials/custom-pallet/poe-claims.png)
+
+1. Press the "+" button to execute the query.
+
+  ![Extrinsic Success](/media/images/docs/tutorials/custom-pallet/poe-query.png)
+
+Now you can see that the claim is stored in the blockchain with the data about the owners address and the block number when the claim was made!
 
 ## Next steps
 
@@ -552,11 +420,19 @@ In this tutorial, you learned the basics of how to create a new custom pallet, i
 
 - How to compile and start a node that includes your custom pallet.
 
-- How you can add a React front-end component to expose the custom pallet to users.
+- How you can use the Polkadot JS Apps developer tool to interact with your custom blockchain.
 
 This tutorial covered the basics without diving too deeply into the code.
 However, there's much more you can do as you work toward building your own fully-customized blockchain.
 Custom pallets enable you to expose the features you want your blockchain to support.
+
+To complete your understanding of the proof-of-existence chain try:
+
+- Claiming the same file again with "ALICE" or even the "BOB" account.
+  - You should get an error!
+- Claiming other files with the "ALICE" and/or "BOB" accounts.
+- Revoking the claims with the appropriate claim owner account.
+- Looking at the final list of claims from reading storage.
 
 To learn more about what's possible by creating custom pallets, explore the
 FRAME documentation and the [how-to guides](/reference/how-to-guides).
