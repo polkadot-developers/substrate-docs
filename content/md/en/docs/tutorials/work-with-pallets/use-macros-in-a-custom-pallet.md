@@ -406,7 +406,7 @@ The final step of this tutorial is to check what claims have been stored on your
 
     ![Query Results](/media/images/docs/tutorials/custom-pallet/poe-query.png)
 
-Now you can see that the claim is stored in the blockchain with the data about the owners address and the block number when the claim was made!
+    Now you can see that the claim is stored in the blockchain with the data about the owners address and the block number when the claim was made!
 
 ## Next steps
 
