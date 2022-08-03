@@ -82,17 +82,17 @@ Therefore, the first step is to remove some files and content from the files in 
 
 1. Change to the `pallets/template/src` directory by running the following command:
 
-  ```bash
-  cd pallets/template/src
-  ```
+    ```bash
+    cd pallets/template/src
+    ```
 
 1. Remove the following files:
 
-  ```bash
-  benchmarking.rs
-  mock.rs
-  tests.rs
-  ```
+    ```bash
+    benchmarking.rs
+    mock.rs
+    tests.rs
+    ```
 
 1. Open the `lib.rs` file in a text editor.
 
@@ -104,34 +104,34 @@ Therefore, the first step is to remove some files and content from the files in 
 
 1. Add the macro required to build both the native Rust binary (`std`) and the WebAssembly (`no_std`) binary.
 
-  ```rust
-  #![cfg_attr(not(feature = "std"), no_std)]
-  ```
+    ```rust
+    #![cfg_attr(not(feature = "std"), no_std)]
+    ```
 
   All of the pallets used in a runtime must be set to compile with the `no_std` features.
 
 1. Add a skeleton set of pallet dependencies and [macros](/reference/frame-macros) that the custom pallet requires by copying the following code:
 
-  ```rust
-  // Re-export pallet items so that they can be accessed from the crate namespace.
-  pub use pallet::*;
+    ```rust
+    // Re-export pallet items so that they can be accessed from the crate namespace.
+    pub use pallet::*;
 
-  #[frame_support::pallet]
-  pub mod pallet {
-    use frame_support::pallet_prelude::*;
-    use frame_system::pallet_prelude::*;
+    #[frame_support::pallet]
+    pub mod pallet {
+      use frame_support::pallet_prelude::*;
+      use frame_system::pallet_prelude::*;
 
-    #[pallet::pallet]
-    #[pallet::generate_store(pub(super) trait Store)]
-    pub struct Pallet<T>(_);
+      #[pallet::pallet]
+      #[pallet::generate_store(pub(super) trait Store)]
+      pub struct Pallet<T>(_);
 
-    #[pallet::config]  // <-- Step 2. code block will replace this.
-    #[pallet::event]   // <-- Step 3. code block will replace this.
-    #[pallet::error]   // <-- Step 4. code block will replace this.
-    #[pallet::storage] // <-- Step 5. code block will replace this.
-    #[pallet::call]    // <-- Step 6. code block will replace this.
-  }
-  ```
+      #[pallet::config]  // <-- Step 2. code block will replace this.
+      #[pallet::event]   // <-- Step 3. code block will replace this.
+      #[pallet::error]   // <-- Step 4. code block will replace this.
+      #[pallet::storage] // <-- Step 5. code block will replace this.
+      #[pallet::call]    // <-- Step 6. code block will replace this.
+    }
+    ```
 
   You now have a framework that includes placeholders for _events_, _errors_, _storage_, and _callable functions_.
 
@@ -149,14 +149,14 @@ To define the `Config` trait for the proof-of-existence pallet:
 
 1. Replace the `#[pallet::config]` line with the following code block:
 
-  ```rust
-  /// Configure the pallet by specifying the parameters and types on which it depends.
-  #[pallet::config]
-  pub trait Config: frame_system::Config {
-    /// Because this pallet emits events, it depends on the runtime's definition of an event.
-    type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
-  }
-  ```
+    ```rust
+    /// Configure the pallet by specifying the parameters and types on which it depends.
+    #[pallet::config]
+    pub trait Config: frame_system::Config {
+      /// Because this pallet emits events, it depends on the runtime's definition of an event.
+      type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+    }
+    ```
 
 1. Save your changes.
 
@@ -177,18 +177,18 @@ To implement the pallet events:
 
 1. Replace the `#[pallet::event]` line with the following code block:
 
-  ```rust
-  // Pallets use events to inform users when important changes are made.
-  // Event documentation should end with an array that provides descriptive names for parameters.
-  #[pallet::event]
-  #[pallet::generate_deposit(pub(super) fn deposit_event)]
-  pub enum Event<T: Config> {
-    /// Event emitted when a claim has been created.
-    ClaimCreated { who: T::AccountId, claim: T::Hash },
-    /// Event emitted when a claim is revoked by the owner.
-    ClaimRevoked { who: T::AccountId, claim: T::Hash },
-  }
-  ```
+    ```rust
+    // Pallets use events to inform users when important changes are made.
+    // Event documentation should end with an array that provides descriptive names for parameters.
+    #[pallet::event]
+    #[pallet::generate_deposit(pub(super) fn deposit_event)]
+    pub enum Event<T: Config> {
+      /// Event emitted when a claim has been created.
+      ClaimCreated { who: T::AccountId, claim: T::Hash },
+      /// Event emitted when a claim is revoked by the owner.
+      ClaimRevoked { who: T::AccountId, claim: T::Hash },
+    }
+    ```
 
 1. Save your changes.
 
@@ -210,17 +210,17 @@ To implement the errors for the proof-of-existence pallet:
 
 1. Replace the `#[pallet::error]` line with the following code block:
 
-  ```rust
-  #[pallet::error]
-  pub enum Error<T> {
-    /// The claim already exists.
-    AlreadyClaimed,
-    /// The claim does not exist, so it cannot be revoked.
-    NoSuchClaim,
-    /// The claim is owned by another account, so caller can't revoke it.
-    NotClaimOwner,
-  }
-  ```
+    ```rust
+    #[pallet::error]
+    pub enum Error<T> {
+      /// The claim already exists.
+      AlreadyClaimed,
+      /// The claim does not exist, so it cannot be revoked.
+      NoSuchClaim,
+      /// The claim is owned by another account, so caller can't revoke it.
+      NotClaimOwner,
+    }
+    ```
 
 1. Save your changes.
 
@@ -236,10 +236,10 @@ To implement storage for the proof-of-existence pallet:
 
 1. Replace the `#[pallet::storage]` line with the following code block:
 
-  ```rust
-  #[pallet::storage]
-  pub(super) type Claims<T: Config> = StorageMap<_, Blake2_128Concat, T::Hash, (T::AccountId, T::BlockNumber)>;
-  ```
+    ```rust
+    #[pallet::storage]
+    pub(super) type Claims<T: Config> = StorageMap<_, Blake2_128Concat, T::Hash, (T::AccountId, T::BlockNumber)>;
+    ```
 
 1. Save your changes.
 
@@ -262,62 +262,62 @@ To implement this logic in the proof-of-existence pallet:
 
 1. Replace the `#[pallet::call]` line with the following code block:
 
-  ```rust
-  // Dispatchable functions allow users to interact with the pallet and invoke state changes.
-  // These functions materialize as "extrinsics", which are often compared to transactions.
-  // Dispatchable functions must be annotated with a weight and must return a DispatchResult.
-  #[pallet::call]
-  impl<T: Config> Pallet<T> {
-    #[pallet::weight(0)]
-    pub fn create_claim(origin: OriginFor<T>, claim: T::Hash) -> DispatchResult {
-      // Check that the extrinsic was signed and get the signer.
-      // This function will return an error if the extrinsic is not signed.
-      let sender = ensure_signed(origin)?;
+    ```rust
+    // Dispatchable functions allow users to interact with the pallet and invoke state changes.
+    // These functions materialize as "extrinsics", which are often compared to transactions.
+    // Dispatchable functions must be annotated with a weight and must return a DispatchResult.
+    #[pallet::call]
+    impl<T: Config> Pallet<T> {
+      #[pallet::weight(0)]
+      pub fn create_claim(origin: OriginFor<T>, claim: T::Hash) -> DispatchResult {
+        // Check that the extrinsic was signed and get the signer.
+        // This function will return an error if the extrinsic is not signed.
+        let sender = ensure_signed(origin)?;
 
-      // Verify that the specified claim has not already been stored.
-      ensure!(!Claims::<T>::contains_key(&claim), Error::<T>::AlreadyClaimed);
+        // Verify that the specified claim has not already been stored.
+        ensure!(!Claims::<T>::contains_key(&claim), Error::<T>::AlreadyClaimed);
 
-      // Get the block number from the FRAME System pallet.
-      let current_block = <frame_system::Pallet<T>>::block_number();
+        // Get the block number from the FRAME System pallet.
+        let current_block = <frame_system::Pallet<T>>::block_number();
 
-      // Store the claim with the sender and block number.
-      Claims::<T>::insert(&claim, (&sender, current_block));
+        // Store the claim with the sender and block number.
+        Claims::<T>::insert(&claim, (&sender, current_block));
 
-      // Emit an event that the claim was created.
-      Self::deposit_event(Event::ClaimCreated { who: sender, claim });
+        // Emit an event that the claim was created.
+        Self::deposit_event(Event::ClaimCreated { who: sender, claim });
 
-      Ok(())
+        Ok(())
+      }
+
+      #[pallet::weight(0)]
+      pub fn revoke_claim(origin: OriginFor<T>, claim: T::Hash) -> DispatchResult {
+        // Check that the extrinsic was signed and get the signer.
+        // This function will return an error if the extrinsic is not signed.
+        let sender = ensure_signed(origin)?;
+
+        // Get owner of the claim, if none return an error.
+        let (owner, _) = Claims::<T>::get(&claim).ok_or(Error::<T>::NoSuchClaim)?;
+
+        // Verify that sender of the current call is the claim owner.
+        ensure!(sender == owner, Error::<T>::NotClaimOwner);
+
+        // Remove claim from storage.
+        Claims::<T>::remove(&claim);
+
+        // Emit an event that the claim was erased.
+        Self::deposit_event(Event::ClaimRevoked { who: sender, claim });
+        Ok(())
+      }
     }
-
-    #[pallet::weight(0)]
-    pub fn revoke_claim(origin: OriginFor<T>, claim: T::Hash) -> DispatchResult {
-      // Check that the extrinsic was signed and get the signer.
-      // This function will return an error if the extrinsic is not signed.
-      let sender = ensure_signed(origin)?;
-
-      // Get owner of the claim, if none return an error.
-      let (owner, _) = Claims::<T>::get(&claim).ok_or(Error::<T>::NoSuchClaim)?;
-
-      // Verify that sender of the current call is the claim owner.
-      ensure!(sender == owner, Error::<T>::NotClaimOwner);
-
-      // Remove claim from storage.
-      Claims::<T>::remove(&claim);
-
-      // Emit an event that the claim was erased.
-      Self::deposit_event(Event::ClaimRevoked { who: sender, claim });
-      Ok(())
-    }
-  }
-  ```
+    ```
 
 1. Save your changes and close the file.
 
 1. Check that your code compiles by running the following command:
 
-  ```bash
-  cargo check -p node-template-runtime
-  ```
+    ```bash
+    cargo check -p node-template-runtime
+    ```
 
 You can refer to the node template [solution](https://github.com/substrate-developer-hub/substrate-node-template/blob/tutorials/solutions/proof-of-existence/pallets/template/src/lib.rs) if you get stuck.
 
@@ -333,15 +333,15 @@ To compile and start the updated Substrate node:
 
 1. Compile the node template by running the following command:
 
-  ```bash
-  cargo build --release
-  ```
+    ```bash
+    cargo build --release
+    ```
 
 1. Start the node in development mode by running the following command:
 
-  ```bash
-  ./target/release/node-template --dev
-  ```
+    ```bash
+    ./target/release/node-template --dev
+    ```
 
   The `--dev` option starts the node using the predefined `development` chain specification.
   Using the `--dev` option ensures that you have a clean working state any time you stop and restart the node.
