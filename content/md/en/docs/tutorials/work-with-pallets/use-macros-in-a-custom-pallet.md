@@ -360,7 +360,7 @@ https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/
 
 If your Substrate blockchain is running and Polkadot JS Apps is connected, you should see your block number increase in the top left corner:
 
-![Extrinsic Success](/media/images/docs/tutorials/custom-pallet/poe-explorer.png)
+![Polkadot JS Explorer](/media/images/docs/tutorials/custom-pallet/poe-explorer.png)
 
 ### Submit a claim
 
@@ -368,23 +368,23 @@ To test the proof-of-existence pallet using the front-end:
 
 1. Navigate to the ["Developer > Extrinsics"](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/extrinsics) tab.
 
-  ![Extrinsic Success](/media/images/docs/tutorials/custom-pallet/poe-extrinsics-tab.png)
+    ![Extrinsics Tab](/media/images/docs/tutorials/custom-pallet/poe-extrinsics-tab.png)
 
 1. Adjust the extrinsics page to select "ALICE" as the account, and "templateModule > createClaim" as the extrinsic.
 
-  ![Extrinsic Success](/media/images/docs/tutorials/custom-pallet/poe-create-claim.png)
+    ![Create Claim](/media/images/docs/tutorials/custom-pallet/poe-create-claim.png)
 
 1. Then you can toggle "hash a file", which will allow you to select a file to hash and claim on the blockchain.
 
-  ![Extrinsic Success](/media/images/docs/tutorials/custom-pallet/poe-hash-file.png)
+    ![Hash File](/media/images/docs/tutorials/custom-pallet/poe-hash-file.png)
 
 1. Click "Submit Transaction" in the bottom right corner, then on the pop up click "Sign and Submit".
 
-  ![Extrinsic Success](/media/images/docs/tutorials/custom-pallet/poe-submit.png)
+    ![Submit Extrinsic](/media/images/docs/tutorials/custom-pallet/poe-submit.png)
 
 1. If everything was successful, you should see a green extrinsic success notification!
 
-  ![Extrinsic Success](/media/images/docs/tutorials/custom-pallet/poe-success.png)
+    ![Extrinsic Success](/media/images/docs/tutorials/custom-pallet/poe-success.png)
 
 ### Read a claim
 
@@ -392,17 +392,17 @@ The final step of this tutorial is to check what claims have been stored on your
 
 1. Navigate to the ["Developer > Chain State"](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/chainstate) tab.
 
-  ![Extrinsic Success](/media/images/docs/tutorials/custom-pallet/poe-chain-state.png)
+    ![Chain State](/media/images/docs/tutorials/custom-pallet/poe-chain-state.png)
 
 1. Adjust the state query to "templateModule > claims".
 
 1. Toggle the "include option" on the hash input. (This will allow us to see all the claims, rather than just one.)
 
-  ![Extrinsic Success](/media/images/docs/tutorials/custom-pallet/poe-claims.png)
+    ![Query All Claims](/media/images/docs/tutorials/custom-pallet/poe-claims.png)
 
 1. Press the "+" button to execute the query.
 
-  ![Extrinsic Success](/media/images/docs/tutorials/custom-pallet/poe-query.png)
+    ![Query Results](/media/images/docs/tutorials/custom-pallet/poe-query.png)
 
 Now you can see that the claim is stored in the blockchain with the data about the owners address and the block number when the claim was made!
 
