@@ -18,14 +18,15 @@ There are three distinct transaction types in Substrate:
 - [Inherent transactions](#inherent-transactions)
 
 In Substrate, all three transaction types are often more broadly referred to as **extrinsics**.
-The term extrinsic is generally used to mean any information that originates outside of the a runtime.
+The term extrinsic is generally used to mean any information that originates outside of the runtime.
+
 However, for practical purposes, it is more useful to consider each transaction type independently and identify scenarios where each type would be most applicable.
 
 ### Signed transactions
 
 Signed transactions must include the signature of an account sending an inbound request to execute some runtime call.
 Typically, the request is signed using the private key for the account that is submitting the request.
-In most cases, the account submitting the request also pays a transaction fee.However, transaction fees and other elements of transaction processing depend on how the runtime logic is defined.
+In most cases, the account submitting the request also pays a transaction fee. However, transaction fees and other elements of transaction processing depend on how the runtime logic is defined.
 
 Signed transactions are the most common type of transaction.
 As an example, assume you have an account with some number of tokens.
@@ -58,7 +59,7 @@ For example, if a block authoring node inserts a timestamp into a block, there i
 Instead, validators might accept or reject the block based on whether the timestamp it is within some acceptable range of their own system clocks.
 
 As an example, the `pallet_timestamp::Call::now` function enables a block authoring node to insert a current timestamp in each block the node produces.
-Similarly, the `paras_inherent::Call::enter` function enable a parachain collator node to send its relay chain the validation data the relay chain expects.
+Similarly, the `paras_inherent::Call::enter` function enables a parachain collator node to send its relay chain the validation data the relay chain expects.
 
 ## What is a block?
 

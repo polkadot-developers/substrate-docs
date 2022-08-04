@@ -138,7 +138,7 @@ pub enum Error<T> {
 	}
 ```
 
-The FRAME Support module also includes a helpful [`ensure!` macro](https://paritytech.github.io/substrate/master/frame_support/macro.ensure.html) that can be used to check pre-conditions and emit an errors if they are not met.
+The FRAME Support module also includes a helpful [`ensure!` macro](https://paritytech.github.io/substrate/master/frame_support/macro.ensure.html) that can be used to check pre-conditions and emit an error if they are not met.
 
 ```rust
 frame_support::ensure!(param < T::MaxVal::get(), Error::<T>::InvalidParameter);

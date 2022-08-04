@@ -15,11 +15,15 @@ const TutorialCard = ({ model }) => {
       <article className="rounded overflow-hidden bg-substrateGray-light dark:bg-substrateDark">
         {featured_image ? (
           <div className="inline-block overflow-hidden w-full">
-            <img
+            <Image
+              src={featured_image}
+              className="w-full gatsby-image-wrapper gatsby-image-wrapper-constrained block h-24 md:h-60 xs:h-96 object-cover rounded-t transform transition-all duration-300 ease-in-out hover:scale-110"
+            />
+            {/* <img
               className="w-full gatsby-image-wrapper gatsby-image-wrapper-constrained block h-24 md:h-60 xs:h-96 object-cover rounded-t transform transition-all duration-300 ease-in-out hover:scale-110"
               src={featured_image}
               alt={title}
-            />
+            /> */}
           </div>
         ) : (
           ''

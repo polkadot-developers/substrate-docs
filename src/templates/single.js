@@ -5,7 +5,6 @@ import configNav from '../../content/config/nav.yaml';
 import { Link } from '../components/default/Link';
 import Markdown from '../components/default/Markdown';
 import Sidebar from '../components/layout/Sidebar';
-import InfoRibbon from '../components/RibbonBanners/InfoRibbon';
 //import BottomButtons from '../components/site/BottomButtons';
 import Layout from '../components/site/Layout';
 import NavSidebar from '../components/site/NavSidebar';
@@ -67,7 +66,6 @@ export default function DocsSinglePage({ data, pageContext }) {
         <MobileNavigation className="hidden" currentPath={pagePath} />
         {/* <DocsSingle collection={collection} /> */}
         <div className="flex flex-col">
-          <InfoRibbon link="https://github.com/substrate-developer-hub/substrate-docs/issues/1132" />
           <article className="mb-20 grid grid-cols-12 gap-1 grid-rows-2">
             <div className="xl:col-start-2 xl:col-end-9 col-start-2 col-end-12">
               <div className="py-8 flex justify-between items-center">

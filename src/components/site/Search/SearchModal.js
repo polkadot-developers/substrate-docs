@@ -92,7 +92,7 @@ function SearchModal({ id, closeModal }) {
     <>
       <div
         id="content-container"
-        className="flex justify-center items-center lg:items-start lg:mt-24 fixed inset-0 z-50 animate-fade-in max-h-screen"
+        className="flex justify-center items-center lg:items-start lg:mt-24 fixed inset-0 z-50 animate-fade-in max-h-screen text-left"
       >
         <div
           ref={id}

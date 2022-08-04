@@ -255,7 +255,7 @@ To add insert and remove functions to the contract:
 
    ```rust
    #[ink(message)]
-   pub fn remove_mine(&self) {
+   pub fn remove_mine(&mut self) {
        self.my_value.remove(&self.env().caller())
    }
    ```
