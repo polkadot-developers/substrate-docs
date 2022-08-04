@@ -39,7 +39,7 @@ By completing this tutorial, you will accomplish the following objectives:
 
 In FRAME, the `Root` origin identifies the runtime administrator.
 Only this administrator can update the runtime by calling the `set_code` function.
-To invoke this function using the `Root` origin, you can use the the `sudo` function in the Sudo pallet to specify the account that has superuser administrative permissions.
+To invoke this function using the `Root` origin, you can use the `sudo` function in the Sudo pallet to specify the account that has superuser administrative permissions.
 
 By default, the chain specification file for the node template specifies that the `alice` development account is the owner of the Sudo administrative account.
 Therefore, this tutorial uses the `alice` account to perform runtime upgrades.
