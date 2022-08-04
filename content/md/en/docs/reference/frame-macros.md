@@ -526,44 +526,42 @@ For more information, see the Rust documentation for [parameter_types]](https://
 
 ### impl_runtime_apis!
 
-The `impl_runtime_apis!` macro generates the runtime API implementations that enable the outer node to communicate with the runtime through the `RuntimeApi` and `RuntimeApiImpl` struct type.
+The `impl_runtime_apis!` macro generates the runtime API for all of the traits that are implemented by the macro. 
+The traits implemented in this macro must first be declared in the `decl_runtime_apis` macro.
+The macro generates the `RuntimeApi` and `RuntimeApiImpl` structs to expose these traits as [runtime APIs](/reference/runtime-apis/).
+The traits exposed by the macro enable outer node components to communicate with the runtime through the `RuntimeApi` type.
 
-This macro defines the `RuntimeApi` and `RuntimeApiImpl` exposed to the outer node components and provides implementation details of the RuntimeApiImpl based on the setup and appended user specified implementation in the `RuntimeApiImpl`.
+The macro declares the `RuntimeApi` and `RuntimeApiImpl` structs and implements various helper traits for the `RuntimeApiImpl` struct.
+If you define additional interfaces for the runtime to expose in the `impl_runtime_apis!` macro, they are appended to the default `RuntimeApiImpl` implementation.
+
+The macro also generates the `RUNTIME_API_VERSIONS` constant to expose version information about all of the implemented `api` traits.
+This constant is used to instantiate the `apis` field of [`RuntimeVersion`](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html).
 
 For more information, see the Rust documentation for [impl_runtime_apis](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html).
-The macro also implements various helper traits for `RuntimeApiImpl`.
-What developers define within `impl_runtime_apis!` macro are appended to the end of
-  `RuntimeApiImpl` implementation.
-To expose version information about the runtime, a constant `RUNTIME_API_VERSIONS` is defined.
-containing the runtime core `ID`/`VERSION`, metadata `ID`/`VERSION`, SessionKeys `ID`/`VERSION`,
-etc.
-A public module `api` is defined with a `dispatch()` function implemented deciding how various
-  strings are mapped to metadata or chain lifecycle calls.
 
 ### app_crypto!
 
-**When to use**
+The `app_crypto!` macro generates application-specific cryptographic key pairs using the specified signature algorithm.
 
-To specify cryptographic key pairs and its signature algorithm that are to be managed by a pallet.
+The macro declares the following struct types:
 
-**What it does**
+- `Public`
+  
+  For the `Public` type, the macro implements the `sp_application_crypto::AppKey` trait to define the public key type and the `sp_application_crypto::RuntimeAppPublic` trait enable generating key pairs, signing transactions, and verifying signatures.
 
-The macro declares three struct types, `Public`, `Signature`, and `Pair`. Aside from having various
-helper traits implemented for these three types, the `Public` type is implemented for generating
-keypairs, signing and verifying signatures; the `Signature` type is to hold the signature property given the chosen signature (e.g. SR25519, ED25519 etc); and the `Pair` type is to generate a
-public-private key pair from a seed.
+- `Signature`
+  
+  For the `Signature` type, the macro implements the `core::hash::Hash` trait to specify the signature algorithm—for example, SR25519 or ED25519—used to hash the signature.
 
-**Docs and notes**
+- `Pair`
+  
+  For the `Pair` type, the macro implements the
+  `sp_application_crypto::Pair` and `sp_application_crypto::AppKey` traits to 
+  generate public-private key pairs from a secret phrase or seed.
 
-- [API Documentation](https://paritytech.github.io/substrate/master/sp_application_crypto/macro.app_crypto.html)
-- `Public` struct type is declared, and implements `sp_application_crypto::AppKey` trait defining
-  the public key type, and `sp_application_crypto::RuntimeAppPublic` trait for generating keypairs,
-  signing, and verifying signatures.
-- `Signature` struct type is declared, and implements `core::hash::Hash` trait on how the data with
-  this signature type is hashed.
-- `Pair` struct type is declared to wrap over the crypto pair. This type implements
-  `sp_application_crypto::Pair` and `sp_application_crypto::AppKey` traits determining how it
-  generates public-private key pairs from a phrase or seed.
+In addition to the traits for these structs, the macro implements helper traits.
+
+For more information, see the Rust documentation for [app_crypto]](https://paritytech.github.io/substrate/master/sp_application_crypto/macro.app_crypto.html).
 
 ## References
 
