@@ -15,6 +15,7 @@ Substrate ships with the following runtime APIs:
 - [`AccountNonceApi`](https://paritytech.github.io/substrate/master/frame_system_rpc_runtime_api/trait.AccountNonceApi.html): Handles querying transaction indices.
 - [`TransactionPaymentApi`](https://paritytech.github.io/substrate/master/pallet_transaction_payment_rpc_runtime_api/trait.TransactionPaymentApi.html): Handles querying information about transactions.
 - [`Benchmark`](https://paritytech.github.io/substrate/master/frame_benchmarking/trait.Benchmark.html): Provides a way to [benchmark](/main-docs/test/benchmark/) a FRAME runtime.
+- [`NominationPoolsApi`](https://paritytech.github.io/substrate/master/pallet_nomination_pools_runtime_api/index.html): Provides a way to get the pending rewards of a member.
 
 ## Learn more
 
