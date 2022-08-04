@@ -247,20 +247,17 @@ For example:
 pub struct Pallet<T>(_);
 ```
 
-For more information about working with storage within this macro, see the [macro expansion](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#macro-expansion-1) added to the `struct Pallet<T>` definition.
+For more information about working with storage and this macro, see the [macro expansion](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#macro-expansion-1) added to the `struct Pallet<T>` definition.
 
-### #[pallet::generate_storage_info]
+### #[pallet::without_storage_info]
 
-**When to use**
+The `#[pallet::without_storage_info]` macro enables you to define pallet storage items that don't have a fixed size.
 
-This attribute no longer exists. `generate_storage_info` is now assumed by default: all pallet storage items are expected to be bounded (i.e. have a fixed size).
+By default, all pallet storage items are required to implement `traits::StorageInfoTrait`, so that all key and value types have a fixed size based on the bound defined in the `pallet_prelude::MaxEncodedLen` attribute.
+This size limitation is required for parachain development in order to estimate the size of the Proof of Validity (PoV) blob.
 
-**What it does**
-
-All storage is now required to implement the trait `traits::StorageInfoTrait`, and thus all keys and value types must have the bound `pallet_prelude::MaxEncodedLen`.
-Individual storage can opt-out from this constraint by using `#[pallet::unbounded]`, see `#[pallet::storage]` documentation.
-
-In the unlikely event that the entire pallet's storage needs to be unbounded by default, one can add the `#[pallet::without_storage_info]` attribute to the pallet struct like so:
+The `#[pallet::without_storage_info]` attribute macro allows you to override the default behavior in the unlikely event that the entire pallet's storage needs to be unbounded.
+To use it, add the `#[pallet::without_storage_info]` attribute to the pallet struct like so:
 
 ```rust
 #[pallet::pallet]
@@ -269,20 +266,22 @@ In the unlikely event that the entire pallet's storage needs to be unbounded by 
 pub struct Pallet<T>(_);
 ```
 
-(but as discussed it would be more typical to place `#[pallet::unbounded]` on specific storage items)
+Note that you should only use the `#[pallet::without_storage_info]` macro to make all your pallet's storage items unbounded, for example in a test or development environment.
+You should never use the `#[pallet::without_storage_info]` attribute macro in a production environment.
+It is more typical to opt-out from the fixed size constraint on a specific storage item by using the `#[pallet::unbounded]` attribute macro.
 
-**Docs**
+For more information about working with storage and this macro, see the [macro expansion](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#pallet-struct-placeholder-palletpallet-mandatory) added to the `struct Pallet<T>` definition.
 
-- See the [macro expansion](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#pallet-struct-placeholder-palletpallet-mandatory) added to the `struct Pallet<T>` definition
+### #[pallet::unbounded]
+
+The `#[pallet::unbounded]` attribute macro enables you to declare a specific storage item as unbounded.
+By default, all pallet storage items are required to have a fixed size.
+You can use this attribute macro to override the default requirement on a specific storage item.
+If you are a parachain developer, you can use this macro for storage items that will never go into the Proof of Validity (PoV) blob.
 
 ### #[pallet::hooks]
 
-**When to use**
-
-Required for declaring pallet hooks.
-
-**What it does**
-
+The `#[pallet::hooks]` macro allows you to declare optional pallet hooks to implement pallet-specific logic at specific points in the block making process.
 [`Hooks`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Hooks.html#provided-methods) are made available by using the `Hooks` trait.
 
 For example:
@@ -294,23 +293,16 @@ impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
 }
 ```
 
-**Docs**
-
-- See the [documentation](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#hooks-pallethooks-mandatory)
-- See the [macro expansion](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#macro-expansion-2)
+For more information about using hooks, see the Rust documentation for [pallet::hooks]](https://paritytech.github.io/substrate/master/frame_support/attr.pallet and [macro expansion](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#macro-expansion-2).
 
 ### #[pallet::call]
 
-**When to use**
-
-Required, to implement a pallet's dispatchables. Each dispatchable must:
+The `#[pallet::call]` is required to implement the dispatchable functions for a pallet. Each dispatchable function must:
 
 - define a weight with the `#[pallet::weight($expr)]` attribute
-- have its first argument as `origin: OriginFor<T>`,
-- use compact encoding for argument using #[pallet::compact]
+- have its first argument as `origin: OriginFor<T>`
+- use compact encoding for arguments using #[pallet::compact]
 - return `DispatchResultWithPostInfo` or `DispatchResult`
-
-**What it does**
 
 Extrinsic requests coming into the runtime can use calls to trigger specific logic.
 Calls can also be used in on-chain governance, demonstrated by the democracy pallet where calls can be voted on.
@@ -318,161 +310,234 @@ The `#[pallet::call]` aggregates all dispatchable function call logic using the 
 The [aggregation](/reference/glossary#aggregation) enables FRAME to batch functions of the same type into a single runtime call.
 The runtime then generates the associated items from the implementation defined in the `impl` code blocks.
 
-**Docs**
-
-- See the [documentation](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#call-palletcall-mandatory)
+For more information. see the Rust documentation for [pallet::call](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#call-palletcall-optional).
 
 ### #[pallet::error]
 
-**When to use**
+The `#[pallet::error]` macro allows you to define the error types that can be returned from dispatchable function calls.
+The error information is included in the runtime metadata.
 
-Optionally, to define error types to be used in dispatchables.
+The macro must be defined as an enumeration named Error with a generic type <T> and variants with or without fields.
 
-**What it does**
+For example:
 
-Puts error variants documentation into metadata.
+```rust
+#[pallet::error]
+pub enum Error<T> {
+	/// $some_optional_doc
+	$SomeFieldLessVariant,
+	/// $some_more_optional_doc
+	$SomeVariantWithOneField(FieldType),
+	...
+}
+```
 
-**Docs**
+Any field type you specify for an enumeration variant must implement the `scale_info::TypeInfo` trait and its encoded size should be as small as possible.
+Field types in enum variants must also implement the [PalletError](https://paritytech.github.io/substrate/master/frame_support/traits/trait.PalletError.html) trait to compile. 
 
-- See [documentation](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#error-palleterror-optional)
+For more information, see the Rust documentation for [pallet::error]](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#error-palleterror-optional).
 
 ### #[pallet::event]
 
-**When to use**
+The [`#[pallet::event]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#event-palletevent-optional) macro allows you to define event types for a pallet.
 
-Optionally, to define a pallet's event types.
-
-**What it does**
-
-It is similar to errors but it can holds more information. They generate the metadata of the event and add_derive. It uses the `#[pallet::metadata(..)]` attribute to define what metadata to put from the events.
+This macro is similar to the `pallet::errors` macro but it can hold more information. 
+The macro is defined as an enumeration named Event.
 
 For example:
 
 ```rust
 #[pallet::event]
-#[pallet::metadata(u32 = "SpecialU32")]
-pub enum Event<T: Config> {
-	Proposed(u32, T::AccountId),
+#[pallet::generate_deposit($visibility fn deposit_event)] // Optional
+pub enum Event<$some_generic> $optional_where_clause {
+	/// Some doc
+	$SomeName($SomeType, $YetanotherType, ...),
+	...
 }
 ```
 
-**Docs**
-
-- See [documentation](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#event-palletevent-optional)
+For more information, see the Rust documentation for [pallet::event]](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#event-palletevent-optional).
 
 ### #[pallet::storage]
 
-**When to use**
+The [`#[pallet::storage]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#storage-palletstorage-optional) macro enables you to define  abstract storage inside runtime storage and to set metadata for that storage.
+This attribute macro can be used multiple times.
 
-Optionally, as it can be used multiple times.
+The `[pallet::storage]` macro can be defined using named or unnamed generics with a type alias of StorageValue, StorageMap or StorageDoubleMap.
 
-**What it does**
+```rust
+#[pallet::storage]
+#[pallet::getter(fn $getter_name)] // optional
+$vis type $StorageName<$some_generic> $optional_where_clause
+	= $StorageType<$generic_name = $some_generics, $other_name = $some_other, ...>;
+```
 
-To define some abstract storage inside runtime storage.
+For more information, see the Rust documentation for [pallet::storage](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#storage-palletstorage-optional) and the following storage data structures:
+- [StorageDoubleMap](https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/struct.StorageDoubleMap.html)
+- [StorageMap](https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/struct.StorageMap.html#implementations)
+- [StorageValue](https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/struct.StorageValue.html)
 
-`[pallet::storage]` is using a Rust-like HashMap to do storage, except it takes a Key, Value,
-Hasher, Prefix, QueryKind and an OnEmpty
-parameter. The prefix generic defines the place where the
-storage will store its `(key, value)` pairs (i.e. the trie) and defines the pallet and storage prefix like such:
+### #[pallet::genesis_build]
 
-`concat(twox_128(pallet_prefix), towx_128(storage_prefix))`, replacing `_` with the generated prefix implementations
-of the pallet and storage names.
+The `#[pallet::genesis_build]` macro allows you to define how a genesis configuration is built.
 
-**Docs**
+The macro is defined as a Rust trait implementation with a generic type <T: Config> of trait GenesisBuild<T> on type GenesisConfig.
 
-- See [macro documentation](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#storage-palletstorage-optional)
-- [`StorageMap` implementation](https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/struct.StorageMap.html#implementations)
-- [Rust HashMap syntax](https://doc.rust-lang.org/book/ch08-03-hash-maps.html)
+For example:
 
-### Other attributes
+```rust
+#[pallet::genesis_build]
+impl<T: Config> GenesisBuild<T> for GenesisConfig {
+	fn build(&self) {}
+}
+```
 
-Other FRAME macro attributes include:
+For more information, see the Rust documentation for [pallet::genesis_build](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#genesis-build-palletgenesis_build-optional).
 
-- [#[pallet::genesis_config]](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional)
-- [#[pallet::type_value]](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#type-value-pallettype_value-optional)
-- [#[pallet::genesis_build]](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#genesis-build-palletgenesis_build-optional)
-- [#[pallet::inherent]](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#inherent-palletinherent-optional)
-- [#[pallet::validate_unsigned]](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#validate-unsigned-palletvalidate_unsigned-optional)
-- [#[pallet::origin]](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#origin-palletorigin-optional)
+### #[pallet::genesis_config]
 
-## Additional FRAME macros
+The `#[pallet::genesis_config` macro allows you to define the genesis configuration of the pallet.
+
+The macro can be defined as an enumeration or a struct, but must be public and implement trait the GenesisBuild with the #[pallet::genesis_build] macro. 
+
+For example:
+
+```rust
+#[pallet::genesis_config]
+pub struct GenesisConfig<T: Config> {
+	_myfield: BalanceOf<T>,
+}
+```
+
+For more information, see the Rust documentation for [pallet::genesis_config](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional).
+
+### #[pallet::inherent]
+
+The `#[pallet::inherent]` macro allows the pallet to provide data in an unsigned inherent transaction.
+
+The macos is defined as a trait implementation with bound <T: Config,> of trait ProvideInherent for type Pallet<T>.
+
+For example:
+
+```rust
+#[pallet::inherent]
+impl<T: Config> ProvideInherent for Pallet<T> {
+	// ... regular trait implementation
+}
+```
+
+For more information, see the Rust documentation for [pallet::inherent](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#inherent-palletinherent-optional)
+
+### #[pallet::origin]
+
+The `#[pallet::origin]` macro allows you to define an origin for the pallet.
+
+The macro must be defined as a type alias, enumeration or a struct. 
+The macro must be public.
+
+For example:
+
+```rust
+#[pallet::origin]
+pub struct Origin<T>(PhantomData<(T)>);
+```
+
+For more information, see the Rust documentation for [pallet::origin](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#origin-palletorigin-optional)
+
+### #[pallet::validate_unsigned]
+
+The `#[pallet::validate_unsigned]` macro allows the pallet to validate unsigned transactions.
+
+The macro is defined as a trait implementation with bound <T: Config> of trait ValidateUnsigned for type Pallet<T>.
+
+For example:
+
+```rust
+#[pallet::validate_unsigned]
+impl<T: Config> ValidateUnsigned for Pallet<T> {
+	// ... regular trait implementation
+}
+```
+
+For more information, see the Rust documentation for [pallet::validate_unsigned](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#validate-unsigned-palletvalidate_unsigned-optional)
+
+## Runtime construction macros
+
+As an introduction to the use of macros, [Substrate runtime macros](#substrate-runtime-macros) highlighted several of the macros that are provided in the `frame_support` and `frame_system` crates.
+However, a few of those macros introduced in [Substrate runtime macros](#substrate-runtime-macros) warrant additional attention because because of the role they play in constructing the runtime logic.
 
 ### construct_runtime!
 
-**When to use**
+The `construct_runtime!` macro generates all of the data structures that have been declared and implemented for the pallets to be included in the runtime.
 
-To construct Substrate runtime and integrating various pallets into the runtime.
+For example, the `construct_runtime!` macro extrapolates information from the pallet attribute macros to generate details such as:
 
-**What it does**
+- Runtime struct to represent the Substrate runtime.
+- Call enumeration variants and metadata for each pallet included in the runtime that has callable functions.
+- Event enumeration variants for each pallet included in the runtime that emits events.
+- Genesis configuration struct for building storage for each pallet included in the runtime that defines storage items.
+- Inherent data for pallets that support inherent transactions. 
+- Origin enumeration variants for pallets that identify the function caller using the default origin definition or pallet-specific custom origins.
+- Validation for unsigned transactions for pallets that support unsigned transactions.
 
-The macro declares and implements various struct and enum, e.g.`Runtime`, `Event`, `Origin`, `Call`,
-`GenesisConfig` etc, and implements various helper traits for these struct types. The macro also
-adds logics of mapping different events and dispatchable calls from the overarching runtime back to
-a particular pallet.
+The  `construct_runtime!` macro also implements helper traits for the data structures and types exposed, generates an index of the pallets listed in the runtime, and maps events, errors, and callable functions from the runtime back to the pallet they originate from.
 
-**Docs and notes**
+By default, the `construct_runtime!` macro includes all pallet attributes for all pallets listed in the macro definition.
+You can override the default behavior to exclude specific parts or to only include specific parts.
+For example, if you don't want the runtime to expose the function calls defined in specific pallet, you can explicitly exclude them in the `construct_runtime!` macro with an entry similar to the following:
 
-- [API Documentation](https://paritytech.github.io/substrate/master/frame_support/macro.construct_runtime.html)
-- `Runtime` struct type is defined to represent the Substrate runtime.
-- `Event` enum type is defined with variants of all pallets that emit events, with helper traits and
-  encoding/decoding traits implemented for the enum. Various conversion traits `Event` also
-  implements `TryInto<pallets::Event<Runtime>>` trait to extract the event out from the enum type.
-- `Origin` enum type is defined with helper traits, e.g. `PartialEq`, `Clone`, `Debug` implemented.
-  This enum type defines who calls an extrinsic: `NONE`, `ROOT`, or signed by a particular account.
-  These three primitive origins are defined by the FRAME System module, but optional FRAME pallets
-  may also define origins.
-- `Call` enum type is defined with all integrated pallets as variants. It contains the data and
-  metadata of each of the integrated pallets, and redirects calls to the specific pallet via
-  implementing `frame_support::traits::UnfilteredDispatchable` trait.
-- `GenesisConfig` struct type is defined and implements `sp_runtime::BuildStorage` trait for
-  building up the storage genesis config.
-- The macro adopts the `frame_support::unsigned::ValidateUnsigned` trait implementation from each
-  pallet. If no `ValidateUnsigned` trait is implemented in any included pallets, all unsigned
-  transactions will be rejected.
+```rust
+MyCustomPallet: pallet_my_custom_pallet exclude_parts { Call }
+```
+
+In this example, `MyCustomPallet` is the name that uniquely identifies the pallet that requires special handling and `pallet_my_custom_pallet` represents the path to the pallet.
+The `exclude_parts` keyword specifies that you only want to exclude certain attributes for the specified pallet.
+In this case, only callable functions for MyCustomPallet are excluded.
+
+Similarly, you can override the default to explicitly include certain parts in the runtime with the `use_parts` keyword.
+For example, if you only want the runtime to expose a subset of attributes for a specific pallet, you can explicitly include them in the `construct_runtime!` macro with an entry similar to the following:
+
+```rust
+MyCustomPallet: pallet_my_custom_pallet use_parts { Pallet, Call, Storage, Event, Origin, Config }
+```
+
+You should note the the order in which pallets are listed in the `construct_runtime!` macro is significant.
+By default, the pallet index starts at zero for the first pallet and is incremented for each pallet thereafter.
+You can manually adjust the indexing in the `construct_runtime!` macro by adding an index number for a pallet.
+For example, you can generate all pallet attributes for the `MyCustomPallet` and set the index to eight with syntax like this:
+
+```rust
+MyCustomPallet: pallet_my_custom_pallet use_parts = 8,
+```
+
+However, you should also note that the order used for defining pallets in the construct_runtime! macro affects the genesis storage configuration.
+If you have one pallet that depends on another pallet, be sure the pallet that is depended upon comes before—that is, is listed before or has a lower index value—than the pallet that depends on it.
+
+For more information, see the Rust documentation for [construct_runtime]](https://paritytech.github.io/substrate/master/frame_support/macro.construct_runtime.html)
 
 ### parameter_types!
 
-**When to use**
+The `parameter_types!` macro declares the parameter types that are to be assigned to the configuration trait for each pallet during runtime construction.
 
-To declare parameter types to be assigned to pallet configurable trait associated types during
-runtime construction.
+This macro converts each parameter specified into a struct type with a `get()` function that returns the specified type. 
+Each parameter struct type also implements a `frame_support::traits::Get<I>` trait to convert the type to its specified value.
 
-**What it does**
-
-The macro replaces each parameter specified into a struct type with a `get()` function returning its
-specified value. Each parameter struct type also implements a `frame_support::traits::Get<I>` trait
-to convert the type to its specified value.
-
-**Docs**
-
-- [API Documentation](https://paritytech.github.io/substrate/master/frame_support/macro.parameter_types.html)
-
-## Substrate system library macros
+For more information, see the Rust documentation for [parameter_types]](https://paritytech.github.io/substrate/master/frame_support/macro.parameter_types.html).
 
 ### impl_runtime_apis!
 
-**When to use**
+The `impl_runtime_apis!` macro generates the runtime API implementations that enable the outer node to communicate with the runtime through the `RuntimeApi` and `RuntimeApiImpl` struct type.
 
-This macro generates the API implementations for the client side through the `RuntimeApi` and
-`RuntimeApiImpl` struct type.
+This macro defines the `RuntimeApi` and `RuntimeApiImpl` exposed to the outer node components and provides implementation details of the RuntimeApiImpl based on the setup and appended user specified implementation in the `RuntimeApiImpl`.
 
-**What it does**
-
-The macro defines the `RuntimeApi` and `RuntimeApiImpl` exposed to the Substrate node client. It
-provides implementation details of the RuntimeApiImpl based on the setup and appended user specified
-implementation in the `RuntimeApiImpl`.
-
-**Docs and notes**
-
-- [API Documentation](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html)
-- `RuntimeApi` and `RuntimeApiImpl` structs are declared. The macro also implements various helper
-  traits for `RuntimeApiImpl`.
-- What developers define within `impl_runtime_apis!` macro are appended to the end of
+For more information, see the Rust documentation for [impl_runtime_apis](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html).
+The macro also implements various helper traits for `RuntimeApiImpl`.
+What developers define within `impl_runtime_apis!` macro are appended to the end of
   `RuntimeApiImpl` implementation.
-- To expose version information about the runtime, a constant `RUNTIME_API_VERSIONS` is defined.
-  containing the runtime core `ID`/`VERSION`, metadata `ID`/`VERSION`, SessionKeys `ID`/`VERSION`,
-  etc.
-- A public module `api` is defined with a `dispatch()` function implemented deciding how various
+To expose version information about the runtime, a constant `RUNTIME_API_VERSIONS` is defined.
+containing the runtime core `ID`/`VERSION`, metadata `ID`/`VERSION`, SessionKeys `ID`/`VERSION`,
+etc.
+A public module `api` is defined with a `dispatch()` function implemented deciding how various
   strings are mapped to metadata or chain lifecycle calls.
 
 ### app_crypto!
@@ -502,7 +567,7 @@ public-private key pair from a seed.
 
 ## References
 
-- [The Rust Programming Language ch 19.5 Macros](https://doc.rust-lang.org/book/ch19-06-macros.html)
+- [The Rust Programming Language](https://doc.rust-lang.org/book/ch19-06-macros.html)
 - [The Little Book of Rust Macros](https://danielkeep.github.io/tlborm/book)
 
 <!--
