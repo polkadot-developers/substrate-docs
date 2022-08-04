@@ -299,7 +299,7 @@ For more information about using hooks, see the Rust documentation for [pallet::
 
 ### #[pallet::call]
 
-The `#[pallet::call]` is required to implement the dispatchable functions for a pallet. Each dispatchable function must:
+The `#[pallet::call]` is required to implement the functions that can be dispatched to the runtime for a pallet. Each function must:
 
 - define a weight with the `#[pallet::weight($expr)]` attribute
 - have its first argument as `origin: OriginFor<T>`
@@ -308,7 +308,7 @@ The `#[pallet::call]` is required to implement the dispatchable functions for a 
 
 Extrinsic requests coming into the runtime can use calls to trigger specific logic.
 Calls can also be used in on-chain governance, demonstrated by the democracy pallet where calls can be voted on.
-The `#[pallet::call]` aggregates all dispatchable function call logic using the [`Call` enum](https://paritytech.github.io/substrate/master/frame_system/pallet/enum.Call.html).
+The `#[pallet::call]` aggregates all of the function call logic using the [`Call` enum](https://paritytech.github.io/substrate/master/frame_system/pallet/enum.Call.html).
 The [aggregation](/reference/glossary#aggregation) enables FRAME to batch functions of the same type into a single runtime call.
 The runtime then generates the associated items from the implementation defined in the `impl` code blocks.
 
@@ -316,7 +316,7 @@ For more information. see the Rust documentation for [pallet::call](https://pari
 
 ### #[pallet::error]
 
-The `#[pallet::error]` macro allows you to define the error types that can be returned from dispatchable function calls.
+The `#[pallet::error]` macro allows you to define the error types that can be returned from the function calls dispatched to the runtime.
 The error information is included in the runtime metadata.
 
 The macro must be defined as an enumeration named Error with a generic type <T> and variants with or without fields.
