@@ -190,7 +190,7 @@ For example one type we can encode is a `BitVec<Order, Store>` type: to decode i
 
 Substrate comes with the following APIs to interact with a node:
 
-- [`AuthorApi`](https://paritytech.github.io/substrate/master/sc_rpc/author/trait.AuthorApi.html): An API to make calls into a full node, incuding authoring extrinsics and verifying session keys.
+- [`AuthorApi`](https://paritytech.github.io/substrate/master/sc_rpc/author/trait.AuthorApi.html): An API to make calls into a full node, including authoring extrinsics and verifying session keys.
 - [`ChainApi`](https://paritytech.github.io/substrate/master/sc_rpc/chain/trait.ChainApi.html): An API to retrieve block header and finality information.
 - [`OffchainApi`](https://paritytech.github.io/substrate/master/sc_rpc/offchain/trait.OffchainApi.html): An API for making RPC calls for offchain workers.
 - [`StateApi`](https://paritytech.github.io/substrate/master/sc_rpc/state/trait.StateApi.html): An API to query information about on-chain state such as runtime version, storage items and proofs.
