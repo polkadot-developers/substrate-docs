@@ -19,4 +19,4 @@ Substrate ships with the following runtime APIs:
 
 ## Learn more
 
-- How to design your custom runtime APIs using the [`impl_runtime_apis`](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html) macro
+- How to design your custom runtime APIs using the [`impl_runtime_apis`](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html) macro.
