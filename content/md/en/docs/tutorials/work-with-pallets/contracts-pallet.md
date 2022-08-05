@@ -460,5 +460,5 @@ To begin using the Contracts pallet, you'll need to start writing some smart con
 Explore the following topics and tutorials to learn more.
 
 - [Custom RPCs](/main-docs/build/custom-rpc/)
-- [Prepare your first contract](/tutorials/smart-contracts/first-smart-contract/)
-- [Develop a smart contract](/tutorials/smart-contracts/develop-contract/)
+- [Prepare your first contract](/tutorials/smart-contracts/prepare-your-first-contract/)
+- [Develop a smart contract](/tutorials/smart-contracts/develop-a-smart-contract/)
