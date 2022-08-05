@@ -102,23 +102,23 @@ export default function DocsSinglePage({ data, pageContext }) {
                 <main className="markdown-body">
                   <Markdown htmlAst={htmlAst} />
                 </main>
-                <footer className="mt-10">
-                  <PreviousNextButtons previous={previousPage} next={nextPage} />
-                  <div className="py-5 text-sm">
-                    <hr />
-                    <div className="mb-8 text-sm inline-block">
-                      <EditOnGithubButton
-                        link={
-                          'https://github.com/substrate-developer-hub/substrate-docs/blob/main/content/md/' +
-                          `${relativeFilePath}`
-                        }
-                        text={'Last edit: ' + gitLogLatestDate}
-                      />
-                    </div>
-                    <Feedback />
-                  </div>
-                </footer>
               </div>
+              <footer className="mt-10">
+                <PreviousNextButtons previous={previousPage} next={nextPage} />
+                <div className="py-5 text-sm">
+                  <hr />
+                  <div className="mb-8 text-sm inline-block">
+                    <EditOnGithubButton
+                      link={
+                        'https://github.com/substrate-developer-hub/substrate-docs/blob/main/content/md/' +
+                        `${relativeFilePath}`
+                      }
+                      text={'Last edit: ' + gitLogLatestDate}
+                    />
+                  </div>
+                  <Feedback />
+                </div>
+              </footer>
             </div>
             <div className="hidden xl:block col-start-10 col-end-12">
               <TableOfContents data={tableOfContents} headings={headings} />
