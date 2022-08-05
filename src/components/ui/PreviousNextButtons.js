@@ -13,7 +13,7 @@ export default function PreviousNextButtons({ previous, next }) {
         ''
       )}
       {next ? (
-        <div className="absolute right-0">
+        <div className="ml-auto">
           <SecondaryButton link={next}>Next</SecondaryButton>
         </div>
       ) : (
