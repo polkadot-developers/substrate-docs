@@ -1,8 +1,7 @@
 import cx from 'classnames';
 import { Link } from 'gatsby';
+import { Icon } from 'gatsby-plugin-substrate';
 import React, { useState } from 'react';
-
-import Icon from '../default/Icon';
 
 const Sidebar = ({ children, currentPath }) => {
   const [isOpen, setIsOpen] = useState(false);

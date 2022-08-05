@@ -1,8 +1,7 @@
+import { Icon, useComponentVisible } from 'gatsby-plugin-substrate';
 import React, { useEffect } from 'react';
 
 import analytics from '../../../analytics';
-import useComponentVisible from '../../../hooks/use-component-visible';
-import Icon from '../../default/Icon';
 import SearchModal from './SearchModal';
 
 function ModalButton() {

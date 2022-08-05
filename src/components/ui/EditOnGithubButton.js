@@ -1,6 +1,5 @@
+import { Icon } from 'gatsby-plugin-substrate';
 import React from 'react';
-
-import Icon from '../default/Icon';
 
 export default function EditOnGithubButton({ link, text }) {
   return (

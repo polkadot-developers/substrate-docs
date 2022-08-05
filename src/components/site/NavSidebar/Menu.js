@@ -1,9 +1,8 @@
 import cx from 'classnames';
+import { Icon, Link } from 'gatsby-plugin-substrate';
 import React, { useState } from 'react';
 
 import snakecase from '../../../hooks/snakecase';
-import Icon from '../../default/Icon';
-import { Link } from '../../default/Link';
 import SubMenu from './SubMenu';
 
 const Menu = ({ page, currentPath }) => {

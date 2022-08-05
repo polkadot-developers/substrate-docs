@@ -1,15 +1,13 @@
 import { graphql } from 'gatsby';
+import { Layout, Link, SEO } from 'gatsby-plugin-substrate';
 import React from 'react';
 
 import configNav from '../../content/config/nav.yaml';
-import { Link } from '../components/default/Link';
 import Markdown from '../components/default/Markdown';
 import Sidebar from '../components/layout/Sidebar';
-//import BottomButtons from '../components/site/BottomButtons';
-import Layout from '../components/site/Layout';
 import NavSidebar from '../components/site/NavSidebar';
 import MobileNavigation from '../components/site/NavSidebar/MobileNavigation';
-import SEO from '../components/site/SEO';
+import ModalButton from '../components/site/Search/ModalButton';
 import TableOfContents from '../components/site/TableOfContents';
 import EditOnGithubButton from '../components/ui/EditOnGithubButton';
 import Feedback from '../components/ui/Feedback';
@@ -19,9 +17,8 @@ export default function DocsSinglePage({ data, pageContext }) {
   const { markdownRemark } = data;
   const { htmlAst, tableOfContents, frontmatter, headings, excerpt } = markdownRemark;
   const { title, description } = frontmatter;
-  const { pagePath /*collection*/ } = pageContext;
+  const { pagePath } = pageContext;
   const { gitLogLatestDate } = data.markdownRemark.parent.fields != null ? data.markdownRemark.parent.fields : '';
-  //const pagePathNoSlash = pagePath.endsWith('/') ? pagePath.slice(0, -1) : pagePath;
   const relativeFilePath = data.markdownRemark.parent.relativePath;
   function titleize(slug) {
     var words = slug.split('-');
@@ -60,15 +57,20 @@ export default function DocsSinglePage({ data, pageContext }) {
   const previousPage = nextPrevSlugs[index - 1];
 
   return (
-    <Layout>
+    <Layout showFooterNewsletter={false}>
       <SEO title={title} description={description} excerpt={excerpt} />
-      <div className="flex flex-col lg:flex-row">
+      <div className="flex flex-col lg:flex-row -mt-12">
         <Sidebar currentPath={pagePath}>
           <NavSidebar currentPath={pagePath} />
         </Sidebar>
         <MobileNavigation className="hidden" currentPath={pagePath} />
         {/* <DocsSingle collection={collection} /> */}
         <div className="flex flex-col">
+          <div className="grid grid-cols-12 gap-1 grid-rows-2 mt-4">
+            <div className="xl:col-start-2 xl:col-end-9 col-start-2 col-end-12">
+              <ModalButton />
+            </div>
+          </div>
           <article className="mb-20 grid grid-cols-12 gap-1 grid-rows-2">
             <div className="xl:col-start-2 xl:col-end-9 col-start-2 col-end-12">
               <div className="py-8 flex justify-between items-center">

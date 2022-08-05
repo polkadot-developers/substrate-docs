@@ -1,7 +1,6 @@
 import cx from 'classnames';
+import { Link } from 'gatsby-plugin-substrate';
 import React from 'react';
-
-import { Link } from '../../default/Link';
 
 const ChildMenu = ({ pages, currentPath }) => {
   return (

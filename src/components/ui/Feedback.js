@@ -1,6 +1,6 @@
+import { Icon } from 'gatsby-plugin-substrate';
 import React from 'react';
 
-import Icon from '../default/Icon';
 import SecondaryButton from './SecondaryButton';
 
 export default function Feedback() {

@@ -1,6 +1,6 @@
+import { PrimaryFixedButton } from 'gatsby-plugin-substrate';
 import React from 'react';
 
-import PrimaryFixedButton from './PrimaryFixedButton';
 import SecondaryButton from './SecondaryButton';
 
 export default function PreviousNextButtons({ previous, next }) {
