@@ -8,7 +8,7 @@ The **Connect other chains** tutorials delve into more advanced topics for movin
 
 ## Tutorials under construction
 
-- [Prepare a local parachain testnet](/tutorials/connect-other-chains/local-relay/) helps you prepare a local relay chain as a first step for converting a solo chain into a parachain.
+- [Prepare a local parachain testnet](/tutorials/connect-other-chains/local-relay/) helps you prepare a local relay chain network, required to operate a parachain.
 - [Connect a local parachain](/tutorials/connect-other-chains/local-parachain/) highlights the steps necessary to connect your local parachain to a relay chain.
 - [Connect to Rococo testnet](/tutorials/connect-other-chains/rococo-slot/) summarizes the steps for connecting a parachain to the Rococo test network.
   
