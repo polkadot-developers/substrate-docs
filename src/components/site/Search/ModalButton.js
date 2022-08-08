@@ -12,15 +12,15 @@ function ModalButton() {
   }, [isComponentVisible]);
   return (
     <>
-      <div
+      <button
         onClick={() => setIsComponentVisible(!isComponentVisible)}
-        className="flex items-center justify-between p-2 border-b-2 border-substrateGray cursor-text active:outline-none focus:outline-none"
+        className="flex items-center justify-between p-2 border-b-2 border-substrateGray cursor-text active:outline-none w-full"
       >
         <p className="mb-0 pr-4 text-sm text-substrateDark dark:text-white text-opacity-25 dark:text-opacity-90">
           Search Documentation
         </p>
         <Icon name="search" className="h-4 w-4 fill-current text-substrateDark dark:text-white" />
-      </div>
+      </button>
       {isComponentVisible && <SearchModal id={ref} closeModal={setIsComponentVisible} />}
     </>
   );

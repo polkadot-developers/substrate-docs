@@ -21,12 +21,9 @@ export default function DocsSinglePage({ data, pageContext }) {
   const { gitLogLatestDate } = data.markdownRemark.parent.fields != null ? data.markdownRemark.parent.fields : '';
   const relativeFilePath = data.markdownRemark.parent.relativePath;
   function titleize(slug) {
-    var words = slug.split('-');
-    return words
-      .map(function (word) {
-        return word.charAt(0).toUpperCase() + word.substring(1).toLowerCase();
-      })
-      .join(' ');
+    let words = slug.toLowerCase().replace(/-/g, ' ');
+    words = words[0].toUpperCase() + words.substring(1);
+    return words;
   }
 
   function flatten(obj, parent, res = {}) {
@@ -74,7 +71,7 @@ export default function DocsSinglePage({ data, pageContext }) {
           <article className="mb-20 grid grid-cols-12 gap-1 grid-rows-2">
             <div className="xl:col-start-2 xl:col-end-9 col-start-2 col-end-12">
               <div className="py-8 flex justify-between items-center">
-                <div className="text-sm font-medium text-substrateBlue dark:text-substrateBlue-light mdx-anchor">
+                <div className="text-sm font-medium text-substrateGreen dark:text-substrateBlue-light mdx-anchor">
                   {pageContext.breadcrumb.crumbs.map((index, i, crumbs) => (
                     <span key={index.pathname} className="breadcrumb text-substrateDark dark:text-white">
                       {i + 1 === crumbs.length ? (
@@ -107,23 +104,23 @@ export default function DocsSinglePage({ data, pageContext }) {
                 <main className="markdown-body">
                   <Markdown htmlAst={htmlAst} />
                 </main>
-                <footer className="mt-10">
-                  <PreviousNextButtons previous={previousPage} next={nextPage} />
-                  <div className="py-5 text-sm">
-                    <hr />
-                    <div className="mb-8 text-sm inline-block">
-                      <EditOnGithubButton
-                        link={
-                          'https://github.com/substrate-developer-hub/substrate-docs/blob/main/content/md/' +
-                          `${relativeFilePath}`
-                        }
-                        text={'Last edit: ' + gitLogLatestDate}
-                      />
-                    </div>
-                    <Feedback />
-                  </div>
-                </footer>
               </div>
+              <footer className="mt-10">
+                <PreviousNextButtons previous={previousPage} next={nextPage} />
+                <div className="py-5 text-sm">
+                  <hr />
+                  <div className="mb-8 text-sm inline-block">
+                    <EditOnGithubButton
+                      link={
+                        'https://github.com/substrate-developer-hub/substrate-docs/blob/main/content/md/' +
+                        `${relativeFilePath}`
+                      }
+                      text={'Last edit: ' + gitLogLatestDate}
+                    />
+                  </div>
+                  <Feedback />
+                </div>
+              </footer>
             </div>
             <div className="hidden xl:block col-start-10 col-end-12">
               <TableOfContents data={tableOfContents} headings={headings} />
