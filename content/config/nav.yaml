@@ -173,15 +173,15 @@ tutorials:
       url: /tutorials/smart-contracts/
       pages:
         - title: Prepare your first contract
-          url: /tutorials/smart-contracts/first-smart-contract/
+          url: /tutorials/smart-contracts/prepare-your-first-contract/
         - title: Develop a smart contract
-          url: /tutorials/smart-contracts/develop-contract/
+          url: /tutorials/smart-contracts/develop-a-smart-contract/
         - title: Use maps for storing values
-          url: /tutorials/smart-contracts/use-mapping/
+          url: /tutorials/smart-contracts/use-maps-for-storing-values/
         - title: Build a token contract
-          url: /tutorials/smart-contracts/erc20-token/
+          url: /tutorials/smart-contracts/build-a-token-contract/
         - title: Troubleshoot smart contracts
-          url: /tutorials/smart-contracts/sc-common-issues/
+          url: /tutorials/smart-contracts/troubleshoot-smart-contracts/
     - title: Connect with other chains
       url: /tutorials/connect-other-chains/
       pages:
