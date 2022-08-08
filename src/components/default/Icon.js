@@ -5,6 +5,7 @@ import chain from '../../images/svg/chain.svg';
 import checkMark from '../../images/svg/check-mark.svg';
 import closeIcon from '../../images/svg/close-icon.svg';
 import collapse from '../../images/svg/collapse.svg';
+import community from '../../images/svg/community.svg';
 import computer from '../../images/svg/computer.svg';
 import contact from '../../images/svg/contact.svg';
 import copy from '../../images/svg/copy.svg';
@@ -72,7 +73,7 @@ import subconnectBrowserTab from '../../images/svg/subconnectBrowserTab.svg';
 import substrate from '../../images/svg/substrate.svg';
 import adaptable from '../../images/svg/technology/adaptable.svg';
 import architecture from '../../images/svg/technology/architecture.svg';
-import community from '../../images/svg/technology/community.svg';
+import community2 from '../../images/svg/technology/community.svg';
 import compatible from '../../images/svg/technology/compatible.svg';
 import composable from '../../images/svg/technology/composable.svg';
 import fast from '../../images/svg/technology/fast.svg';
@@ -221,6 +222,7 @@ const iconsMap = {
   intentional: intentional,
   architecture: architecture,
   community: community,
+  community2: community2,
   'open-base': openBase,
   tooling: tooling,
   compatible: compatible,

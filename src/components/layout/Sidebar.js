@@ -73,6 +73,16 @@ const Sidebar = ({ children, currentPath }) => {
                         />
                       </Link>
                     </span>
+                    <span title="Community">
+                      <Link to="/community/">
+                        <Icon
+                          name="community"
+                          className={cx('p-0 my-7 mx-auto block fill-current text-substrateDark dark:text-white', {
+                            'fill-substrateBlue': currentPath.includes('/community/'),
+                          })}
+                        />
+                      </Link>
+                    </span>
                   </>
                 ) : (
                   ''

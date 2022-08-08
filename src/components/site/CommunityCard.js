@@ -48,7 +48,7 @@ export default function CommunityCard() {
   return (
     <>
       {data.map((item, index) => (
-        <div key={index} data-aos="fade-up" data-aos-delay={index === 1 ? '200' : index === 2 ? '400' : ''}>
+        <div key={index} data-aos="fade-up" data-aos-delay={index === 1 ? '200' : index === 2 ? '400' : '100'}>
           <div className="cursor-pointer shadow-xl px-6 py-8 transition-transform rounded-md bg-white dark:bg-substrateDark mdx-anchor relative min-h-full hover:scale-105">
             <div className="text-2xl font-bold mb-5">{item.title}</div>
             <p className="h-[72px]">{item.description}</p>
