@@ -285,7 +285,7 @@ You can use the following optional flags with the `node-template build-spec` com
 | ------ | -----------
 | `--detailed-log-output` | Enables detailed log output, including the log target name, the log level, and the thread name. This option is used automatically if you enable a logging level any higher level than `info`.
 | `--dev` | Starts the node in development mode. Using this flag also enables the `--chain=dev`, `--force-authoring`, `--rpc-cors=all`, `--alice`, and `--tmp` flags by default.
-| `--disable-default-bootnode` | Disables adding the default bootnode to the specification. By default, the `/ip4/127.0.0.1/tcp/30333/p2p/NODE_PEER_ID` bootnode is added to the specification when no bootnode exists.
+| `--disable-default-bootnode` | Disables adding the default boot node to the specification. By default, the `/ip4/127.0.0.1/tcp/30333/p2p/NODE_PEER_ID` boot node is added to the specification when no boot node exists.
 | `--disable-log-color` | Disables log color output.
 | `--enable-log-reloading` | Enables the log filter to be dynamically updated and reloaded. Note that this option can significantly decrease performance. Setting this option does not affect the `system_addLogFilter` and `system_resetLogFilter` RPC methods.
 | `-h`, `--help` | Displays usage information.
