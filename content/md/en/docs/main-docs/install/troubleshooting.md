@@ -1,7 +1,11 @@
 ---
 title: Troubleshoot Rust issues
-description:
+description: Diagnose and fix Rust and Substrate development environment issues.
 keywords:
+  - Rust
+  - toolchain
+  - compiler
+  - rustup
 ---
 
 If compiling the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) fails, the problem is most likely to be caused by how Rust is configured in your development environment.
