@@ -8,7 +8,7 @@ keywords:
 ---
 
 Substrate and FRAME provide a flexible framework for developing custom logic for your blockchain.
-This flexibility enables you to design complex and interactive pallets and sophisticated runtime logic.
+This flexibility enables you to design complex and interactive pallets and implement sophisticated runtime logic.
 However, determining the appropriate [weight](/reference/glossary/#weight) to assign to the functions in your pallets can be a difficult task.
 Benchmarking enables you to measure the time it takes to execute different functions in the runtime and under different conditions.
 If you use benchmarking to assign accurate weights to function calls, you can prevent your blockchain from being overloaded and unable to produce blocks or vulnerable to denial of service (DoS) attacks by malicious actors.
@@ -18,7 +18,7 @@ If you use benchmarking to assign accurate weights to function calls, you can pr
 It is important to understand the computational resources required to execute different functions—including runtime functions like `on_initialize` and `verify_unsigned`—to keep the runtime safe and to enable the runtime to include or exclude transactions based on the resources available.
 
 The ability to include or exclude transactions based on available resources ensures that the runtime can continue to produce and import block without service interruptions.
-For example, if you have a function call that requires particularly intensive computation, executing the call might exceed the maximum time allowed for producing or importing block, disrupting the block handling process or stopping blockchain progress altogether.
+For example, if you have a function call that requires particularly intensive computation, executing the call might exceed the maximum time allowed for producing or importing a block, disrupting the block handling process or stopping blockchain progress altogether.
 Benchmarking helps you validate that the execution time required for different functions is within reasonable boundaries.
 
 Similarly, a malicious user might attempt to disrupt network service by repeatedly executing a function call that requires intensive computation or that doesn't accurately reflect the computation it requires.
@@ -87,7 +87,7 @@ To help you see where complexity in the code might become unmanageable, you shou
 The benchmarks can help you identify places in the code where you might want to enforce boundaries—for example, by limiting the number of elements in a vector or limiting the number of iterations in a `for` loop—to control how users interact with your pallet.
 
 You can find examples of end-to-end benchmarks in the prebuilt FRAME pallets.
-You can find details about using the `benchmarks!` macro in the [source code](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/src/lib.rs).
+You can also find details about using the `benchmarks!` macro in the [source code](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/src/lib.rs).
 
 ## Testing benchmarks
 
