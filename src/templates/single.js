@@ -20,7 +20,7 @@ export default function DocsSinglePage({ data, pageContext }) {
   const { htmlAst, tableOfContents, frontmatter, headings, excerpt } = markdownRemark;
   const { title, description } = frontmatter;
   const { pagePath /*collection*/ } = pageContext;
-  const { gitLogLatestDate } = data.markdownRemark.parent.fields != null ? data.markdownRemark.parent.fields : '';
+  // const { gitLogLatestDate } = data.markdownRemark.parent.fields != null ? data.markdownRemark.parent.fields : '';
   //const pagePathNoSlash = pagePath.endsWith('/') ? pagePath.slice(0, -1) : pagePath;
   const relativeFilePath = data.markdownRemark.parent.relativePath;
   function titleize(slug) {
@@ -91,7 +91,7 @@ export default function DocsSinglePage({ data, pageContext }) {
                       'https://github.com/substrate-developer-hub/substrate-docs/blob/main/content/md/' +
                       `${relativeFilePath}`
                     }
-                    text={'Last edit: ' + gitLogLatestDate}
+                    text={'Edit on Github'}
                   />
                 </div>
               </div>
