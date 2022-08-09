@@ -70,7 +70,7 @@ export default function DocsSinglePage({ data, pageContext }) {
               <div className="py-8 flex sm:justify-between items-center sm:flex-row xs:flex-col-reverse xs:justify-center">
                 <div className="text-sm font-medium text-substrateGreen dark:text-substrateBlue-light mdx-anchor">
                   {pageContext.breadcrumb.crumbs.map((index, i, crumbs) => (
-                    <span key={index.pathname} className="breadcrumb text-substrateDark dark:text-white">
+                    <span key={index.pathname} className="breadcrumb text-substrateDark dark:text-gray-600">
                       {i + 1 === crumbs.length ? (
                         titleize(index.crumbLabel)
                       ) : (
