@@ -25,20 +25,25 @@ You have to provide a well-known chain name (polkadot, ksmcc3, westend2, rococo_
 ## Usage with PolkadotJS API (PolkadotJS provider)
 
 For using `substrate-connect` with the existing polkadotJS api, there is an rpc-provider that has `substrate-connect` already integrated. You can use that by installing in your app, the following packages:
-
+#### **@polkadot/rpc-provider**
+This package contains the `substrate-connect` rpc provider that integrates and uses substrate-connect:
 ```bash
 yarn add @polkadot/rpc-provider
-
-or
-
-npm i  @polkadot/rpc-provider
 ```
+*or*
+```
+npm i @polkadot/rpc-provider
+```
+
+#### **@polkadot/api**
+
+This library provides a clean wrapper around all the methods exposed by a Polkadot/Substrate network client. It is used with the outcome of rpc-provider above
 
 ```bash
 yarn add @polkadot/api
-
-or
-
+```
+*or*
+```
 npm i @polkadot/api
 ```
 
@@ -108,9 +113,9 @@ At the section above, `@polkadot/rpc-provider/substrate-connect` was used, becau
 
 ```bash
 yarn add @substrate/connect
-
+```
 or
-
+```
 npm i @substrate/connect
 ```
 
