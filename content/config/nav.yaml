@@ -6,6 +6,7 @@ menu:
   - test
   - tutorials
   - reference
+  - community
 
 quick-start:
   title: Quick start
@@ -168,24 +169,24 @@ tutorials:
         - title: Configure the contracts pallet
           url: /tutorials/work-with-pallets/contracts-pallet/
         - title: Use macros in a custom pallet
-          url: /tutorials/work-with-pallets/custom-pallet/
-        #- title: Specify the origin for a call
-        #url: /tutorials/work-with-pallets/specify-origin/
-        #- title: Publish a custom pallet
-        #url: /tutorials/work-with-pallets/publish-pallet/
+          url: /tutorials/work-with-pallets/use-macros-in-a-custom-pallet/
+        - title: Specify the origin for a call
+          url: /tutorials/work-with-pallets/specify-the-origin-for-a-call/
+        - title: Publish custom pallets
+          url: /tutorials/work-with-pallets/publish-custom-pallets/
     - title: Develop smart contracts
       url: /tutorials/smart-contracts/
       pages:
         - title: Prepare your first contract
-          url: /tutorials/smart-contracts/first-smart-contract/
+          url: /tutorials/smart-contracts/prepare-your-first-contract/
         - title: Develop a smart contract
-          url: /tutorials/smart-contracts/develop-contract/
+          url: /tutorials/smart-contracts/develop-a-smart-contract/
         - title: Use maps for storing values
-          url: /tutorials/smart-contracts/use-mapping/
+          url: /tutorials/smart-contracts/use-maps-for-storing-values/
         - title: Build a token contract
-          url: /tutorials/smart-contracts/erc20-token/
+          url: /tutorials/smart-contracts/build-a-token-contract/
         - title: Troubleshoot smart contracts
-          url: /tutorials/smart-contracts/sc-common-issues/
+          url: /tutorials/smart-contracts/troubleshoot-smart-contracts/
     - title: Connect with other chains
       url: /tutorials/connect-other-chains/
       pages:
@@ -195,10 +196,15 @@ tutorials:
           url: /tutorials/connect-other-chains/local-parachain/
         - title: Connect to Rococo testnet
           url: /tutorials/connect-other-chains/rococo-slot/
-        - title: Access EVM accounts
-          url: /tutorials/connect-other-chains/access-evm-accounts/
         #- title: Send cross-consensus messages (XCM)
         #  url: /tutorials/connect-other-chains/xcm/
+    - title: Integrate with tools
+      url: /tutorials/integrate-with-tools/
+      pages:
+        - title: Integrate a light client node
+          url: /tutorials/integrate-with-tools/substrate-connect/
+        - title: Access EVM accounts
+          url: /tutorials/integrate-with-tools/access-evm-accounts/
 reference:
   title: Reference
   url: /reference/
@@ -247,9 +253,17 @@ reference:
       url: /reference/cryptography/
     - title: How-to reference guides
       url: /reference/how-to-guides/
-#   - 'Community':
-#       - 'community/index.md'
-#       - 'Style guidelines': 'community/style-guide.md'
-#       - 'How-to template': 'https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/contribute-templates/how-to-template.md/"target="_blank'
-#- 'Bounties': 'community/bounty.md'
-#- 'Dropbox': 'faq-dropbox/index.md'
+community:
+  title: Community
+  url: /community/
+  pages:
+    - title: Style guide
+      url: /community/style-guide/
+    - title: Contributor guidelines
+      url: /community/contributor-guidelines/
+    - title: Template - How-to guide
+      url: /community/template-how-to-guide/
+    #- title: Article bounties
+      #url: /community/article-bounty
+    #- title: Contributor dropbox
+      #url: /community/contributor-dropbox/

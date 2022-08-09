@@ -20,7 +20,7 @@ For example, the [`sc_service`](https://paritytech.github.io/substrate/master/sc
 
 The libraries that provide the communication layer between the outer node and the runtime are Rust crates that use the `sp_` prefix in the crate name.
 These libraries orchestrate the activities that require outer node and runtime to interact.
-For example, the[`sp_std`](https://paritytech.github.io/substrate/master/sp_std/index.html) libraris takes useful primitives from Rust's standard library and makes them usable with any code that depends on the runtime.
+For example, the[`sp_std`](https://paritytech.github.io/substrate/master/sp_std/index.html) library takes useful primitives from Rust's standard library and makes them usable with any code that depends on the runtime.
 
 The libraries that enable you to build the runtime logic and to encode and decode the information passed into and out of the runtime are Rust crates that use the `frame_` prefix in the crate name.
 The `frame_*` libraries provide the infrastructure for the runtime.
@@ -35,11 +35,9 @@ However, the `frame_*` or `pallet_*` libraries provide the most efficient path t
 
 ## Modular architecture
 
-The separate of the core libraries provides a flexible and modular architecture for writing the blockchain logic.
+The separation of the core libraries provides a flexible and modular architecture for writing the blockchain logic.
 The primitives library provides a foundation that both the outer node and the runtime can build on without communicating directly with each other.
 Primitive types and traits are exposed in their own separate crates, so they are available to the outer node and runtime components without introducing cyclic dependency issues.
-
-- [Visualizing the Substrate code base](https://octo-repo-visualization.vercel.app/?repo=paritytech%2Fsubstrate).
 
 ## Front-end libraries
 

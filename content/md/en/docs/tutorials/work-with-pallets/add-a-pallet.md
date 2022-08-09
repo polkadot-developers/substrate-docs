@@ -72,7 +72,7 @@ To add the dependencies for the Nicks pallet to the runtime:
    For example, add a line similar to the following:
 
    ```toml
-   pallet-nicks = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v26" }
+   pallet-nicks = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
    ```
 
    This line imports the `pallet-nicks` crate as a dependency and specifies the following:
@@ -336,12 +336,12 @@ In this case, you added the `nicks` pallet to the runtime and called the `set_na
 The `nicks` pallet also provides two additional functions—the `clear_name` function and the `kill_name` function—that enable an account owner to remove the reserved name or a root-level user to forcibly remove an account name.
 You can learn about additional features—such as the use of the Sudo pallet and origin accounts—by exploring how these functions work.
 However, these features are beyond the intended scope of this tutorial.
-If you want to explore additional features exposed through the Nicks and Sudo pallets, see [Next steps](#next-steps) and select [Specify the origin for a call](/tutorials/work-with-pallets/specify-origin).
+If you want to explore additional features exposed through the Nicks and Sudo pallets, see [Next steps](#next-steps) and select [Specify the origin for a call](/tutorials/work-with-pallets/specify-the-origin-for-a-call).
 
 ## Next steps
 
 There are several [tutorials](/tutorials/) that can serve as next steps for learning more about Substrate development.
 
-- [Specify the origin for a call](/tutorials/work-with-pallets/specify-origin) explores calling functions using different originating accounts.
+- [Specify the origin for a call](/tutorials/work-with-pallets/specify-the-origin-for-a-call) explores calling functions using different originating accounts.
 - [Configure the contracts pallet](/tutorials/work-with-pallets/contracts-pallet) demonstrates more complex configuration requirements by adding the Contracts pallet to the runtime.
-- [Use macros in a custom pallet](/tutorials/work-with-pallets/custom-pallet) illustrates how you can use macros to create your own pallets.
+- [Use macros in a custom pallet](/tutorials/work-with-pallets/use-macros-in-a-custom-pallet) illustrates how you can use macros to create your own pallets.

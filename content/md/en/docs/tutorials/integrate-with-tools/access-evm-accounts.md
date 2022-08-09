@@ -31,7 +31,7 @@ You should have completed the following Substrate tutorials before attempting th
 
 - [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
 - [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet/)
-- [Use macros in a custom pallet](/tutorials/work-with-pallets/custom-pallet/)
+- [Use macros in a custom pallet](/tutorials/work-with-pallets/use-macros-in-a-custom-pallet/)
 
 From the tutorials, you should be familiar with how to perform the following tasks:
 
@@ -327,6 +327,6 @@ After you submit the transaction, the contract is deployed on the network and yo
 ## Where to go next
 
 - [Moonbeam: Ethereum compatibility](https://docs.moonbeam.network/learn/features/eth-compatibility/)
-- [Ethereum integration](/tutorials/connect-other-chains/evm-integration/)
+- [Ethereum integration](/tutorials/integrate-with-tools/evm-integration/)
 - [EVM ABI specification](https://solidity.readthedocs.io/en/latest/abi-spec.html)
 - [ERC-20 token standard](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/)

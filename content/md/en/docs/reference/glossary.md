@@ -139,7 +139,7 @@ Because most consensus algorithms assume that up to one-third of the actors or n
 Consensus algorithms are generately concerned with ensuring two properties:
 
 - **safety** indicating that all honest nodes eventually agreed on the state of the chain.
-- **liveness**" indicating the ability for the chain to keep making progress.
+- **liveness** indicating the ability for the chain to keep making progress.
 
 For detailed information about the consensus strategies of the [Polkadot network](#polkadot-network), see the [Polkadot Consensus](https://polkadot.network/polkadot-consensus-part-1-introduction/) blog series.
 
@@ -264,7 +264,7 @@ An acronym for the _Framework for Runtime Aggregation of Modularized Entities_ t
 
 Runtime developers interact with FRAME using [macros](#macro) such as the following:
 
-- `#[pallet::event`
+- `#[pallet::event]`
 - `#[pallet::error]`
 - `#[pallet::storage]`
 - `#[frame_support::pallet]`
@@ -306,6 +306,13 @@ A blockchain consensus protocol that consists of independent or loosely-coupled 
 Hybrid consensus allows the chain to grow as fast as probabilistic consensus protocols, such as [Aura](#aura-aka-authority-round), while maintaining the same level of security as [deterministic finality](#deterministic-finality) consensus protocols, such as [GRANDPA](#grandpa).
 In general, block production algorithms tend to be faster than finality mechanisms.
 Making block production separate from block finalization gives Substrate developers greater control of their chain's performance.
+
+## inherent transactions
+
+Inherent transactions—sometimes referred to as inherents—are a special type of unsigned transaction.
+This type of transaction enables a block authoring node to insert information that doesn't require validation directly to a block.
+Only the block authoring node that calls the inherent transaction function can insert data into its block.
+In general, validators assume the data inserted using an inherent transaction is valid and reasonable even if it can't be deterministically verified.
 
 ## JSON-RPC
 

@@ -16,9 +16,9 @@ export default function ThemeToggle() {
   }
 
   return (
-    <div className="cursor-pointer opacity-50 hover:opacity-100 transition-opacity" onClick={toggleTheme}>
+    <button className="cursor-pointer opacity-50 hover:opacity-100 transition-opacity" onClick={toggleTheme}>
       {colorMode === 'light' && <Icon name="sun" className="opacity-80 fill-current text-black" />}
       {colorMode === 'dark' && <Icon name="moon" className="transform -rotate-12 fill-current text-white" />}
-    </div>
+    </button>
   );
 }

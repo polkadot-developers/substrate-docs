@@ -18,7 +18,7 @@ If a runtime upgrade requires changes to the existing state, it is likely to req
 ## Runtime versioning
 
 In [Build process](/main-docs/build/build-process/), you learned that compiling a node generated both a platform-native binary and a WebAssembly binary and that selecting which binary to use at different points in the block production process can be controlled by execution strategy command-line options.
-The component that selects the runtime execution environment to communication with is called the **executor**.
+The component that selects the runtime execution environment to communicate with is called the **executor**.
 Although you can override the default execution strategies for custom scenarios, in most cases, or the executor select the appropriate binary to use by evaluating the following information for both the native and WebAssembly runtime binaries:
 
 - `spec_name`
@@ -51,7 +51,7 @@ The parameters in the struct provide the following information:
 | `transaction_version` | The version of the interface for handling transactions. This parameter can be useful to synchronize firmware updates for hardware wallets or other signing devices to verify that runtime transactions are valid. The parameter allows hardware wallets to know which transactions they can safely sign. This number must be bumped if there is a change in the index of the pallets in the `construct_runtime!` macro or if there are any changes to dispatchable functions, such as the number of parameters or parameter types. If this number is updated, then the `spec_version` must also be updated. |
 | `apis` | A list of supported [runtime APIs](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html) along with their versions. |
 
-The orchestration engine—sometimes referred to as the executor—verifies that the native runtime has the same consensus-driven logic as the WebASsembly before it chooses to execute it.
+The orchestration engine—sometimes referred to as the executor—verifies that the native runtime has the same consensus-driven logic as the WebAssembly before it chooses to execute it.
 However, because the runtime versioning is set manually, the orchestration engine can still make inappropriate decisions if the runtime version is misrepresented.
 
 ## Accessing the runtime version

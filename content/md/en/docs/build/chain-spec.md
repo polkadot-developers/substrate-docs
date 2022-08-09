@@ -14,7 +14,7 @@ The chain specification is defined using the [`ChainSpec` struct](https://parity
 The `ChainSpec` struct separates the information required for a chain into two parts:
 
 - A client specification that contains information used by the Substrate **outer node** to communicate with network participants and send data to telemetry endpoints.
-  Many of these chain specification settings an be overridden by command-line options when starting a node or can be changed after the blockchain has started.
+  Many of these chain specification settings can be overridden by command-line options when starting a node or can be changed after the blockchain has started.
 
 - The initial **genesis state** that all nodes in the network agree on.
   The genesis state must be established when the blockchain is first started and it cannot be changed thereafter without starting an entirely new blockchain.
@@ -124,7 +124,7 @@ If a node with an upgraded runtime attempts to synchronize a chain from genesis,
 For this reason, there is a second encoding of the chain spec.
 This second encoding creates a **raw** version of the chain spec.
 
-When distributing chain specs in JSON format, you should distribute then in the raw format to ensure that all nodes can sync the chain even after runtime upgrades. Substrate-based nodes support the `--raw` flag to produce the raw chain specs.
+When distributing chain specs in JSON format, you should distribute them in the raw format to ensure that all nodes can sync the chain even after runtime upgrades. Substrate-based nodes support the `--raw` flag to produce the raw chain specs.
 
 ```bash
 substrate build-spec --chain=myCustomSpec.json --raw > customSpecRaw.json

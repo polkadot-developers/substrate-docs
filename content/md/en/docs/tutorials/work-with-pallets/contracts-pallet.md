@@ -180,6 +180,7 @@ To implement the `Config` trait for the Contracts pallet in the runtime:
       type ContractAccessWeight = DefaultContractAccessWeight<BlockWeights>;
       type MaxCodeLen = ConstU32<{ 256 * 1024 }>;
       type RelaxedMaxCodeLen = ConstU32<{ 512 * 1024 }>;
+      type MaxStorageKeyLen = ConstU32<{ 512 * 1024 }>;
    }
    /*** End added block ***/
    ```
@@ -308,7 +309,7 @@ To expose the Contracts RPC API:
       
       fn get_storage(
          address: AccountId,
-         key: [u8; 32],
+         key: Vec<u8>,
          ) -> pallet_contracts_primitives::GetStorageResult {
          Contracts::get_storage(address, key)
          }
@@ -397,7 +398,7 @@ To add the RPC API extension to the outer node:
 1. Check that your runtime compiles correctly by running the following command:
 
    ```bash
-   cargo check -p node-template-runtime
+   cargo check -p node-template
    ```
 
 If there are no errors, you are ready to compile.
@@ -459,5 +460,5 @@ To begin using the Contracts pallet, you'll need to start writing some smart con
 Explore the following topics and tutorials to learn more.
 
 - [Custom RPCs](/main-docs/build/custom-rpc/)
-- [Prepare your first contract](/tutorials/smart-contracts/first-smart-contract/)
-- [Develop a smart contract](/tutorials/smart-contracts/develop-contract/)
+- [Prepare your first contract](/tutorials/smart-contracts/prepare-your-first-contract/)
+- [Develop a smart contract](/tutorials/smart-contracts/develop-a-smart-contract/)

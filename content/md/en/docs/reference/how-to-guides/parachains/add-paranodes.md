@@ -56,7 +56,7 @@ This command is nearly identical to the one we used to start the first collator,
 --ws-port 9946 \
 -- \
 --execution wasm \
---chain <relay-chain chain spec> \
+--chain <relay chain chain spec> \
 --port 30344 \
 --ws-port 9978
 --bootnodes <other relay chain node>

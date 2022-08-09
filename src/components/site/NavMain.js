@@ -44,18 +44,22 @@ const DropDownItem = ({ data }) => {
     data.setIsChildMenuOpen(true);
   };
 
+  const handleKeypress = event => {
+    if (event.key === 'Enter') {
+      setIsComponentVisible(!isComponentVisible);
+      data.setIsChildMenuOpen(true);
+    }
+  };
+
   useEffect(() => {
     !isComponentVisible && data.setIsChildMenuOpen(false);
   }, [isComponentVisible]);
 
   return (
     <li
-      className={cx(
-        'm-0 focus:outline-none focus:bg-substrateBlueBg hover:text-substrateGreen hover:underline dark:text-white font-medium cursor-pointer',
-        {
-          'hover:text-black': isComponentVisible,
-        }
-      )}
+      className={cx('m-0 hover:text-substrateGreen hover:underline dark:text-white font-medium cursor-pointer', {
+        'hover:text-black': isComponentVisible,
+      })}
     >
       {data.childMenu ? (
         <div ref={ref}>
@@ -64,6 +68,8 @@ const DropDownItem = ({ data }) => {
               'bg-substrateGreen-light dark:bg-green-700 underline': isComponentVisible,
             })}
             onClick={handleChildMenuOpen}
+            onKeyPress={handleKeypress}
+            tabIndex="0"
           >
             <span>{t(data.subMenuItem.id)}</span>
             <span className="absolute right-6 pt-1.5">
@@ -97,7 +103,7 @@ const DropDown = ({ menuItem, header, isScrolled }) => {
 
   return (
     <li className="list-none m-0" key={menuItem.id} ref={ref}>
-      <button className="group focus:outline-none" onClick={() => setIsComponentVisible(!isComponentVisible)}>
+      <button className="group" onClick={() => setIsComponentVisible(!isComponentVisible)}>
         <span
           className={cx('font-medium capitalize', {
             'text-substrateGreen':

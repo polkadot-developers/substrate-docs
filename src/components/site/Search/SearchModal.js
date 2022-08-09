@@ -92,11 +92,13 @@ function SearchModal({ id, closeModal }) {
     <>
       <div
         id="content-container"
-        className="flex justify-center items-center lg:items-start lg:mt-24 fixed inset-0 z-50 animate-fade-in max-h-screen"
+        className="flex justify-center items-center lg:items-start lg:mt-24 fixed inset-0 z-50 animate-fade-in max-h-screen text-left"
       >
         <div
           ref={id}
           className="bg-white dark:bg-gray-900 w-full max-w-screen-sm h-auto py-10 px-8 rounded-lg border-2 border-substrateDark shadow-xl max-h-screen overflow-scroll"
+          aria-modal="true"
+          aria-label="Search Documentation"
         >
           <SearchInput query={query} setQuery={setQuery} closeModal={closeModal} />
           <div className="flex flex-col sm:flex-row mb-6">

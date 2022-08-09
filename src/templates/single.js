@@ -5,7 +5,6 @@ import configNav from '../../content/config/nav.yaml';
 import { Link } from '../components/default/Link';
 import Markdown from '../components/default/Markdown';
 import Sidebar from '../components/layout/Sidebar';
-import InfoRibbon from '../components/RibbonBanners/InfoRibbon';
 //import BottomButtons from '../components/site/BottomButtons';
 import Layout from '../components/site/Layout';
 import NavSidebar from '../components/site/NavSidebar';
@@ -25,12 +24,9 @@ export default function DocsSinglePage({ data, pageContext }) {
   //const pagePathNoSlash = pagePath.endsWith('/') ? pagePath.slice(0, -1) : pagePath;
   const relativeFilePath = data.markdownRemark.parent.relativePath;
   function titleize(slug) {
-    var words = slug.split('-');
-    return words
-      .map(function (word) {
-        return word.charAt(0).toUpperCase() + word.substring(1).toLowerCase();
-      })
-      .join(' ');
+    let words = slug.toLowerCase().replace(/-/g, ' ');
+    words = words[0].toUpperCase() + words.substring(1);
+    return words;
   }
 
   function flatten(obj, parent, res = {}) {
@@ -70,11 +66,10 @@ export default function DocsSinglePage({ data, pageContext }) {
         <MobileNavigation className="hidden" currentPath={pagePath} />
         {/* <DocsSingle collection={collection} /> */}
         <div className="flex flex-col">
-          <InfoRibbon link="https://github.com/substrate-developer-hub/substrate-docs/issues/1132" />
           <article className="mb-20 grid grid-cols-12 gap-1 grid-rows-2">
             <div className="xl:col-start-2 xl:col-end-9 col-start-2 col-end-12">
               <div className="py-8 flex justify-between items-center">
-                <div className="text-sm font-medium text-substrateBlue dark:text-substrateBlue-light mdx-anchor">
+                <div className="text-sm font-medium text-substrateGreen dark:text-substrateBlue-light mdx-anchor">
                   {pageContext.breadcrumb.crumbs.map((index, i, crumbs) => (
                     <span key={index.pathname} className="breadcrumb text-substrateDark dark:text-white">
                       {i + 1 === crumbs.length ? (
@@ -111,6 +106,22 @@ export default function DocsSinglePage({ data, pageContext }) {
                   <PreviousNextButtons previous={previousPage} next={nextPage} />
                 </footer>
               </div>
+              <footer className="mt-10">
+                <PreviousNextButtons previous={previousPage} next={nextPage} />
+                <div className="py-5 text-sm">
+                  <hr />
+                  <div className="mb-8 text-sm inline-block">
+                    <EditOnGithubButton
+                      link={
+                        'https://github.com/substrate-developer-hub/substrate-docs/blob/main/content/md/' +
+                        `${relativeFilePath}`
+                      }
+                      text={'Last edit: ' + gitLogLatestDate}
+                    />
+                  </div>
+                  <Feedback />
+                </div>
+              </footer>
             </div>
             <div className="hidden xl:block col-start-10 col-end-12 sticky top-20 max-h-[calc(100vh)] pb-32">
               <TableOfContents data={tableOfContents} headings={headings} />

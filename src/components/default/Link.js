@@ -52,7 +52,7 @@ const addLeadingSlash = uri => {
 };
 
 const addSlashes = uri => {
-  return !uri.startsWith('#') ? addLeadingSlash(addTrailingSlash(uri)) : uri;
+  return uri && !uri.startsWith('#') ? addLeadingSlash(addTrailingSlash(uri)) : uri;
 };
 
 const InfraLink = ({ to, title, children, ...other }) => {

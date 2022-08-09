@@ -39,7 +39,7 @@ To prepare a development environment using Windows Subsystem for Linux:
 
 1. In the PowerShell or Command Prompt terminal, run the following command:
 
-   ```
+   ```bash
    wsl --install
    ```
 
@@ -47,7 +47,7 @@ To prepare a development environment using Windows Subsystem for Linux:
 
    If you want to review the other Linux distributions available, run the following command:
 
-   ```
+   ```bash
    wsl --list --online
    ```
 
@@ -72,13 +72,13 @@ To install the Rust toolchain on WSL:
 
 1. Download the latest updates for the Ubuntu distribution using the Ubuntu Advanced Packaging Tool (`apt`) by running the following command:
 
-   ```
+   ```bash
    sudo apt update
    ```
 
 1. Add the required packages for the Ubuntu distribution by running the following command:
 
-   ```
+   ```bash
    sudo apt install --assume-yes git clang curl libssl-dev llvm libudev-dev make protobuf-compiler
    ```
 
@@ -104,14 +104,14 @@ To install the Rust toolchain on WSL:
 
 1. Configure the Rust toolchain to use the latest stable version as the default toolchain by running the following commands:
 
-   ```
+   ```bash
    rustup default stable
    rustup update
    ```
 
 1. Add the `nightly` version of the toolchain and the `nightly` WebAssembly (`wasm`) target to your development environment by running the following commands:
 
-   ```
+   ```bash
    rustup update nightly
    rustup target add wasm32-unknown-unknown --toolchain nightly
    ```
@@ -167,11 +167,10 @@ To compile the Substrate node template:
 1. Compile the node template by running the following command:
 
    ```bash
-   # We always want to build in release mode when intending to run and/or test any node
-   cargo b -r
+   cargo build --release
    ```
 
-   Because of the number of crates required, compiling the node can take several minutes.
+   Because of the number of packages required, compiling the node can take several minutes.
 
 After the build completes successfully, your local computer is ready for Substrate development activity.
 

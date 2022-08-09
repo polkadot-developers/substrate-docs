@@ -25,7 +25,7 @@ However, Substrate might be the perfect choice if you want to build a blockchain
 - customizable with predefined composable modular components
 - able to evolve and change with upgrades over time
 
-Substrate is a Software Development Kit (SDK) specifically designed to provide you with all the blockchain's fundamentals components and enables you to focus on crafting the logic that makes your chain unique and innovative.
+Substrate is a Software Development Kit (SDK) specifically designed to provide you with all of the fundamental components s blockchain requires so you can focus on crafting the logic that makes your chain unique and innovative.
 Unlike other distributed ledger platforms, Substrate is:
 
 - [Flexible](#flexible)
@@ -45,7 +45,7 @@ With Substrate, you can deploy a blockchain that's designed and built for your s
 ## Open
 
 All of the Substrate architecture and tooling is available under [open-source licensing](https://github.com/paritytech/substrate#license).
-Core components of the Substrate framework use open protocols such as `libp2p` and `jsonRPC` while empowering you decide how much you want to customize your blockchain architecture.
+Core components of the Substrate framework use open protocols such as `libp2p` and `jsonRPC` while empowering you to decide how much you want to customize your blockchain architecture.
 Substrate also has a large, active, and helpful [builder community](https://substrate.io/ecosystem/) contributing to the ecosystem.
 Contributions from the community enhance the capabilities available for you to incorporate into your own blockchain as it evolves.
 
@@ -53,7 +53,7 @@ Contributions from the community enhance the capabilities available for you to i
 
 Most blockchain platforms provided limited ability to interact with other blockchain networks.
 All Substrate-based blockchains can interoperate with the other blockchains through [Cross-Consensus Messaging](https://wiki.polkadot.network/docs/learn-crosschain) (XCM).
-Substrate can be used to create chains as independent networks (solo chains), or tightly coupled to a [relay chain](https://wiki.polkadot.network/docs/learn-architecture#relay-chain) to share it's security as a [parachain](https://wiki.polkadot.network/docs/learn-parachains).
+Substrate can be used to create chains as independent networks (solo chains), or tightly coupled to a [relay chain](https://wiki.polkadot.network/docs/learn-architecture#relay-chain) to share its security as a [parachain](https://wiki.polkadot.network/docs/learn-parachains).
 
 ## Future-proof
 
