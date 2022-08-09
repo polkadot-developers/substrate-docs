@@ -182,3 +182,16 @@ For in-browser use, Substrate Connect provides a Browser Extension built upon th
 ### Brave browser WebSocket issue
 
 As of <b>Brave v1.36</b>, extensions and web pages are limited to a maximum of 10 active WebSocket connections (more details concerning this change can be found at the <a href="https://github.com/brave/brave-browser/issues/19990" target="_blank" rel="noreferrer">respective repository</a> of Brave browser).
+
+If an issue is identified concerning WebSockets, this setting can
+be disabled following the next steps:
+<ol>
+  <li>
+    Visit the brave settings (paste <a href="brave://flags/#restrict-websockets-pool" target="_blank">brave://flags/#restrict-websockets-pool</a> in a new tab - on Brave browser);
+  </li>
+  <li>
+    Locate the setting: <b>Restrict WebSockets pool</b>;
+  </li>
+  <li>Switch the setting to `Disabled`;</li>
+  <li>Relaunch the browser.</li>
+</ol>
