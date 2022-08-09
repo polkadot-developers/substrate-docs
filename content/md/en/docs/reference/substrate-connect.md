@@ -13,14 +13,14 @@ Substrate-connect turns a browser into a node on a network allowing end-users of
 
 ## Well known Networks
 
-* [Polkadot](https://polkadot.network/)
-* [Kusama](https://kusama.network/)
-* [Westend](https://wiki.polkadot.network/docs/en/maintain-networks#westend-test-network)
-* [Rococo](https://polkadot.network/rococo-v1-a-holiday-gift-to-the-polkadot-community/)
+* [Polkadot](https://polkadot.network/) (`polkadot`)
+* [Kusama](https://kusama.network/) (`ksmc33`)
+* [Westend](https://wiki.polkadot.network/docs/en/maintain-networks#westend-test-network) (`westend2`)
+* [Rococo](https://polkadot.network/rococo-v1-a-holiday-gift-to-the-polkadot-community/) (`rococo_v2_2`)
 
 [WellKnownChain enumeration docs](https://paritytech.github.io/substrate-connect/api/enums/connect_src.WellKnownChain.html)
 
-You have to provide a well-known chain name (polkadot, ksmcc3, westend2, rococo_v2_2). Note that these are the "real" names of the chains rather than the names they are more commonly known as (such as Kusama or Rococo). For example, "ksmcc3" is the name of Kusama. This is important for chains which have been hard forked. For example, "rococo_v2" and "rococo_v2_2" are two different chains.
+You have to provide a well-known chain name (`polkadot` for Polkadot, `ksmcc3` for Kusama, `westend2` for Westend and `rococo_v2_2` for Rococo). Note that these are the "real" names of the chains rather than the names they are more commonly known as (such as Kusama or Rococo). For example, "ksmcc3" is the name of Kusama. This is important for chains which have been hard forked. For example, "rococo_v2" and "rococo_v2_2" are two different chains.
 
 ## Usage with PolkadotJS API (PolkadotJS provider)
 
