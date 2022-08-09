@@ -2,18 +2,28 @@ import React from 'react';
 
 import Icon from '../default/Icon';
 
+const githubLink = 'https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose';
+
 export default function EditOnGithubButton({ link, text }) {
   return (
     // TODO: add docs link
     // TODO: add docs title i18n
-    <a
-      href={link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="before:hidden opacity-100 transform transition duration-300 ease-in-out hover:opacity-80 flex justify-items-end items-center before:hidden hover:before:hidden"
-    >
-      <Icon name="github" width="14" className="fill-opposite" />
-      <p className="pl-2 mb-0 text-sm text-substrateDark dark:text-white">{text}</p>
-    </a>
+    <div className="flex justify-items-end items-center">
+      <Icon name="github" width="18" className="fill-opposite mb-1" />{' '}
+      <a
+        href={link}
+        className="inline px-1 mb-0 text-sm text-substrateDark dark:text-white before:hidden opacity-100 transform transition duration-300 ease-in-out hover:opacity-80 justify-items-end items-center hover:before:hidden"
+      >
+        {text}
+      </a>
+      <span> | </span>
+      <a
+        href={githubLink}
+        rel="noopener noreferrer"
+        className="inline pl-1 mb-0 text-sm text-substrateDark dark:text-white before:hidden opacity-100 transform transition duration-300 ease-in-out hover:opacity-80 justify-items-end items-center hover:before:hidden"
+      >
+        Submit an issue
+      </a>
+    </div>
   );
 }

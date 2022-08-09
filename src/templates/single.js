@@ -12,7 +12,6 @@ import MobileNavigation from '../components/site/NavSidebar/MobileNavigation';
 import SEO from '../components/site/SEO';
 import TableOfContents from '../components/site/TableOfContents';
 import EditOnGithubButton from '../components/ui/EditOnGithubButton';
-import Feedback from '../components/ui/Feedback';
 import PreviousNextButtons from '../components/ui/PreviousNextButtons';
 
 export default function DocsSinglePage({ data, pageContext }) {
@@ -91,7 +90,7 @@ export default function DocsSinglePage({ data, pageContext }) {
                       'https://github.com/substrate-developer-hub/substrate-docs/blob/main/content/md/' +
                       `${relativeFilePath}`
                     }
-                    text={'Edit on Github'}
+                    text={'Edit this page'}
                   />
                 </div>
               </div>
@@ -109,7 +108,6 @@ export default function DocsSinglePage({ data, pageContext }) {
             </div>
             <div className="hidden xl:block col-start-10 col-end-12 sticky top-20 max-h-[calc(100vh)] pb-32">
               <TableOfContents data={tableOfContents} headings={headings} />
-              <Feedback />
             </div>
           </article>
         </div>

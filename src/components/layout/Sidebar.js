@@ -8,7 +8,7 @@ const Sidebar = ({ children }) => {
         <div className={cx('sticky top-20', {})}>
           <div className={cx('h-screen pb-24 overflow-y-scroll nav-sidebar', {})}>
             <div className="relative">
-              <div className={cx('w-64 pl-6 pr-4 z-0 transition-all transform pb-10')}>{children}</div>
+              <div className={cx('w-64 pl-4 pr-4 z-0 transition-all transform pb-10')}>{children}</div>
             </div>
           </div>
         </div>
