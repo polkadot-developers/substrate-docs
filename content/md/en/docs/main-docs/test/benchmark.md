@@ -154,10 +154,10 @@ benchmarks.
 You can list the available benchmarks by running the following command if you used the `production` profile:
 
 ```bash
-./target/production/substrate benchmark pallet --chain dev --pallet "*" --extrinsic "*" --repeat 0
+./target/production/substrate benchmark pallet --list
 ```
 
-To execute the benchmarks, you can start the node by running a command similar to the following:
+To execute the benchmarks, you can run a command similar to the following:
 
 ```bash
 ./target/production/substrate benchmark pallet \
@@ -171,7 +171,7 @@ To execute the benchmarks, you can start the node by running a command similar t
     --output <path>
 ```
 
-This command creates an output file for the selected pallet—for example, `pallet_balance.rs`—that implements the `WeightInfo` trait for your pallet.
+This command creates an output file for the selected pallet—for example, `weight.rs`—that implements the `WeightInfo` trait for your pallet.
 Each blockchain should generate its own benchmark file with their custom implementation of the `WeightInfo` trait.
 This means that you will be able to use these modular Substrate pallets while still keeping your network safe for your specific configuration and requirements.
 
