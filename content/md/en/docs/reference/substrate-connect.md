@@ -22,18 +22,29 @@ Substrate-connect turns a browser into a node on a network allowing end-users of
 
 You have to provide a well-known chain name (polkadot, ksmcc3, westend2, rococo_v2_2). Note that these are the "real" names of the chains rather than the names they are more commonly known as (such as Kusama or Rococo). For example, "ksmcc3" is the name of Kusama. This is important for chains which have been hard forked. For example, "rococo_v2" and "rococo_v2_2" are two different chains.
 
-## Getting Started - Usage through the PolkadotJS Provider
+## Usage with PolkadotJS API (PolkadotJS provider)
+
+For using `substrate-connect` with the existing polkadotJS api, there is an rpc-provider that has `substrate-connect` already integrated. You can use that by installing in your app, the following packages:
 
 ```bash
 yarn add @polkadot/rpc-provider
+
+or
+
+npm i  @polkadot/rpc-provider
 ```
 
 ```bash
 yarn add @polkadot/api
+
+or
+
+npm i @polkadot/api
 ```
 
-Simple usage (suported chain)
+Below are some examples that shows how the rpc-provider can be used simply with the already integrated networks (e.g. polkadot, kusama, westend, rococo), or with a custom chain by using its chainspec, or connecting to a parachain."
 
+*Simple usage (Using an integrated, suported chain)*
 ```js
 import { ScProvider, WellKnownChain } from '@polkadot/rpc-provider/substrate-connect';
 import { ApiPromise } from '@polkadot/api';
@@ -49,8 +60,7 @@ console.log(lastHeader.hash);
 await api.disconnect();
 ```
 
-Simple usage (custom chain)
-
+*Simple usage (custom chain/chainspec)*
 ```js
 import { ScProvider } from '@polkadot/rpc-provider/substrate-connect';
 import { ApiPromise } from '@polkadot/api';
@@ -68,7 +78,7 @@ console.log(lastHeader.hash);
 await api.disconnect();
 ```
 
-Parachains usage
+*Parachains usage*
 
 ```js
 import { ScProvider, WellKnownChain } from '@polkadot/rpc-provider/substrate-connect';
@@ -93,11 +103,18 @@ await api.disconnect();
 
 ## Advanced Usage
 
+At the section above, `@polkadot/rpc-provider/substrate-connect` was used, because this provider makes if straightforward to create applications that interact with the chain using the Polkadot-JS API. For more advanced application development that doesn't depend on the Polkadot-JS API, you can install and use @substrate-connect. For example, if you are building your own application library or programming interfaces, you should install the Substrate Connect dependencies by running the following command:
+
+
 ```bash
 yarn add @substrate/connect
+
+or
+
+npm i @substrate/connect
 ```
 
-Connecting to a `WellKnownChain`
+*Connecting to a `WellKnownChain`*
 
 ```js
 import { WellKnownChain, createScClient } from '@substrate/connect';
@@ -116,7 +133,7 @@ chain.sendJsonRpc(
 );
 ```
 
-Connecting to a parachain
+*Connecting to a parachain*
 
 ```js
 import { WellKnownChain, createScClient } from '@substrate/connect';
@@ -143,22 +160,20 @@ chain.sendJsonRpc(
 
 ## API Documentation
 
-For learning more about substrate-connect`s API and usage follow the link below:
-
-[Learn more](https://paritytech.github.io/substrate-connect/api/)
+For learning more about substrate-connect`s API and usage follow [this link](https://paritytech.github.io/substrate-connect/api/).
 
 ## Browser Extension
 
-For in-browser use, Substrate Connect provides a Browser Extension built upon the @substrate/light node module that is running the selected light clients inside the extension so that the end-user does not need to fire up a light node in every browser tab. This will also allow the light-node to keep syncing as long as the browser window stays open.
-
-![Substrate Connect](/media/images/docs/reference/substrate-connect-screenshot.png)
-
-* [Learn more](https://github.com/paritytech/substrate-connect/tree/main/projects/extension)
-* [Download for Chrome](https://chrome.google.com/webstore/detail/khccbhhbocaaklceanjginbdheafklai)
-* [Download for Firefox](https://addons.mozilla.org/en-US/firefox/addon/substrate-connect/)
-* [Download zip](https://paritytech.github.io/substrate-connect/extension/packed-extension.zip)
+For in-browser use, Substrate Connect provides a Browser Extension built upon the @substrate/light node module that is running the selected light clients inside the extension so that the end-user does not need to fire up a light node in every browser tab. This will also allow the light-node to keep syncing as long as the browser window stays open. You can download the Chrome and Firefox extensions [here](https://substrate.io/developers/substrate-connect/) or find more info on the [Github repo](https://github.com/paritytech/substrate-connect/tree/main/projects/extension).
 
 ## Projects
 
-* [Burnr](https://paritytech.github.io/substrate-connect/burnr/) - Insecure redeemable wallet
-* [Multi-demo](https://paritytech.github.io/substrate-connect/demo/) - Simple Demo that covers multi and para chain examples
+* [Burnr](https://paritytech.github.io/substrate-connect/burnr/) - Insecure redeemable wallet: A light-client-based, in-browser wallet for Substrate. It's meant to be quick and easy to use but less secure than other solutions. ([Github](https://github.com/paritytech/substrate-connect/tree/main/projects/burnr))
+* [Multi-demo](https://paritytech.github.io/substrate-connect/demo/) - Simple Demo that covers multi and para chain examples ([Github](https://github.com/paritytech/substrate-connect/tree/main/projects/demo))
+* [Smol-ads](https://paritytech.github.io/smoldot-ads/) - Classified Ads demo ([Github](https://github.com/paritytech/smoldot-ads/))
+
+## Troubleshooting
+
+### Brave browser WebSocket issue
+
+As of <b>Brave v1.36</b>, extensions and web pages are limited to a maximum of 10 active WebSocket connections (more details concerning this change can be found at the <a href="https://github.com/brave/brave-browser/issues/19990" target="_blank" rel="noreferrer">respective repository</a> of Brave browser).
