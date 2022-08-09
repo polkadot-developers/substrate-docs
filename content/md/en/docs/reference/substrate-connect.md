@@ -13,9 +13,9 @@ Substrate-connect turns a browser into a node on a network allowing end-users of
 
 ## Well known Networks
 
-* [Westend](https://wiki.polkadot.network/docs/en/maintain-networks#westend-test-network)
-* [Kusama](https://kusama.network/)
 * [Polkadot](https://polkadot.network/)
+* [Kusama](https://kusama.network/)
+* [Westend](https://wiki.polkadot.network/docs/en/maintain-networks#westend-test-network)
 * [Rococo](https://polkadot.network/rococo-v1-a-holiday-gift-to-the-polkadot-community/)
 
 [WellKnownChain enumeration docs](https://paritytech.github.io/substrate-connect/api/enums/connect_src.WellKnownChain.html)
