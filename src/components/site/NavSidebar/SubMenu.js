@@ -6,7 +6,7 @@ import ChildMenu from './ChildMenu';
 
 const SubMenu = ({ pages, currentPath }) => {
   return (
-    <ul className="p-0 m-0 pl-4 pt-4 list-outside">
+    <ul className="p-0 m-0 pl-3 pt-4 list-outside">
       {pages.map((page, index) => {
         const [isOpen, setIsOpen] = useState(currentPath.includes(page.url));
         return page.url ? (
