@@ -67,7 +67,7 @@ export default function DocsSinglePage({ data, pageContext }) {
         <div className="flex flex-col">
           <article className="mb-20 grid grid-cols-12 gap-1 grid-rows-2">
             <div className="xl:col-start-2 xl:col-end-9 col-start-2 col-end-12">
-              <div className="py-8 flex justify-between items-center">
+              <div className="py-8 flex sm:justify-between items-center sm:flex-row xs:flex-col-reverse xs:justify-center">
                 <div className="text-sm font-medium text-substrateGreen dark:text-substrateBlue-light mdx-anchor">
                   {pageContext.breadcrumb.crumbs.map((index, i, crumbs) => (
                     <span key={index.pathname} className="breadcrumb text-substrateDark dark:text-white">
@@ -84,7 +84,7 @@ export default function DocsSinglePage({ data, pageContext }) {
                     </span>
                   ))}
                 </div>
-                <div className="flex justify-end items-center">
+                <div className="flex sm:mb-0 xs:mb-5">
                   <EditOnGithubButton
                     link={
                       'https://github.com/substrate-developer-hub/substrate-docs/blob/main/content/md/' +

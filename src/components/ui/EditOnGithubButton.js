@@ -9,7 +9,7 @@ export default function EditOnGithubButton({ link, text }) {
     // TODO: add docs link
     // TODO: add docs title i18n
     <div className="flex justify-items-end items-center">
-      <Icon name="github" width="18" className="fill-opposite mb-1" />{' '}
+      <Icon name="github" width="16" className="fill-opposite mb-0.5" />{' '}
       <a
         href={link}
         className="inline px-1 mb-0 text-sm text-substrateDark dark:text-white before:hidden opacity-100 transform transition duration-300 ease-in-out hover:opacity-80 justify-items-end items-center hover:before:hidden"
