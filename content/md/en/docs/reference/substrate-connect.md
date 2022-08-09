@@ -31,7 +31,7 @@ This package contains the `substrate-connect` rpc provider that integrates and u
 yarn add @polkadot/rpc-provider
 ```
 *or*
-```
+```bash
 npm i @polkadot/rpc-provider
 ```
 
@@ -43,7 +43,7 @@ This library provides a clean wrapper around all the methods exposed by a Polkad
 yarn add @polkadot/api
 ```
 *or*
-```
+```bash
 npm i @polkadot/api
 ```
 
@@ -115,7 +115,7 @@ At the section above, `@polkadot/rpc-provider/substrate-connect` was used, becau
 yarn add @substrate/connect
 ```
 or
-```
+```bash
 npm i @substrate/connect
 ```
 
