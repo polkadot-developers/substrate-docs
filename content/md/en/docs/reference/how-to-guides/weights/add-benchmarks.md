@@ -53,6 +53,7 @@ This guide does not cover how to use the benchmarking results to update transact
 
    ```rust
    #![cfg(feature = "runtime-benchmarks")]
+   mod benchmarking;
 
    use crate::*;
    use frame_benchmarking::{benchmarks, whitelisted_caller};
@@ -104,7 +105,7 @@ This guide does not cover how to use the benchmarking results to update transact
 
 ## Test the benchmarks
 
-After you have added benchmarks to the `benchmarks!` macros in the benchmarking mdoule for your pallet, you can use a mock runtime to do uniting test and ensure that the test functions for your benchmarks return `Ok(())` as a result.
+After you have added benchmarks to the `benchmarks!` macros in the benchmarking module for your pallet, you can use a mock runtime to do unit testing and ensure that the test functions for your benchmarks return `Ok(())` as a result.
 
 1. Open the `benchmarking.rs` benchmarking module in a text editor.
 
@@ -127,15 +128,13 @@ After you have added benchmarks to the `benchmarks!` macros in the benchmarking 
    This is the same information you use to set up a mock runtime for unit testing.
    If all benchmark tests pass in the mock runtime test environment, it's likely that they will work when you run the benchmarks in the actual runtime.
 
-3. Change to the root directory for your pallet.
-
-4. Execute the benchmark unit tests generated for your pallet in a mock runtime by running a command similar to the following for a pallet named `pallet-mycustom`:
+3. Execute the benchmark unit tests generated for your pallet in a mock runtime by running a command similar to the following for a pallet named `pallet-mycustom`:
    
    ```bash
-   cargo test -p pallet-mycustom --features runtime-benchmarks
+   cargo test --package pallet-mycustom --features runtime-benchmarks
    ```
 
-5.  Verify the test results.
+4.  Verify the test results.
    
    For example:
 
@@ -191,13 +190,10 @@ After you have added benchmarking to your pallet, you must also update the runti
    
    ```rust
    #[cfg(feature = "runtime-benchmarks")]
-   #[macro_use]
-   extern crate frame_benchmarking;
-   
-   #[cfg(feature = "runtime-benchmarks")]
    mod benches {
        define_benchmarks!(
-         [frame_benchmarking, BaselineBench::<Runtime>][pallet_assets, Assets]
+         [frame_benchmarking, BaselineBench::<Runtime>]
+         [pallet_assets, Assets]
          [pallet_babe, Babe]
          ...
          [pallet_mycustom, MyPallet]
@@ -209,24 +205,23 @@ After you have added benchmarking to your pallet, you must also update the runti
 ## Run your benchmarks
 
 After you update the runtime, you are ready to compile it with the `runtime-benchmarks` features enabled and start the benchmarking analysis for your pallet.
-
-1. Change to the root directory for the node template.
    
-2. Build your project with the `runtime-benchmarks` feature enabled by running the following command:
+1. Build your project with the `runtime-benchmarks` feature enabled by running the following command:
 
    ```bash
-   cargo build --release --features runtime-benchmarks
+   cargo build --package node-template --release --features runtime-benchmarks
    ```
 
-3. Review the command-line options for the node `benchmark` subcommand:
+2. Review the command-line options for the node `benchmark pallet` subcommand:
 
    ```bash
-   ./target/release/node-template benchmark --help
+   ./target/release/node-template benchmark pallet --help
    ```
    
-   The `benchmark` subcommand supports several command-line options that can help you automate your benchmarking.
+   The `benchmark pallet` subcommand supports several command-line options that can help you automate your benchmarking.
+   For example, you can set the `--steps` and `--repeat` command-line options to execute function calls multiple times with different values.
    
-4. Start benchmarking for your pallet by running a command similar to the following:
+3. Start benchmarking for your pallet by running a command similar to the following:
    
    ```bash
    ./target/release/node-template benchmark pallet \
@@ -243,6 +238,9 @@ After you update the runtime, you are ready to compile it with the `runtime-benc
 
 ## Examples
 
-- [Benchmark](/main-docs/test/benchmark)
+You can use the `benchmarking.rs` and `weights.rs` files for any prebuilt pallet to learn more about benchmarking different types of functions.
+
 - [Example pallet: Benchmarks](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/benchmarking.rs)
 - [Example pallet: Weights](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/weights.rs)
+- [Balances pallet: Benchmarks](https://github.com/paritytech/substrate/blob/master/frame/balances/src/benchmarking.rs)
+- [Balances pallet: Weights](https://github.com/paritytech/substrate/blob/master/frame/balances/src/weights.rs)
