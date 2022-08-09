@@ -197,7 +197,7 @@ tutorials:
       url: /tutorials/integrate-with-tools/
       pages:
         - title: Integrate a light client node
-          url: /tutorials/integrate-with-tools/substrate-connect/
+          url: /tutorials/integrate-with-tools/substrate-connect-tutorial/
         - title: Access EVM accounts
           url: /tutorials/integrate-with-tools/access-evm-accounts/
 reference:
@@ -248,6 +248,8 @@ reference:
       url: /reference/cryptography/
     - title: How-to reference guides
       url: /reference/how-to-guides/
+    - title: Substrate Connect
+      url: /reference/substrate-connect/
 community:
   title: Community
   url: /community/
