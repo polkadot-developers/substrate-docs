@@ -183,7 +183,7 @@ For in-browser use, Substrate Connect provides a Browser Extension built upon th
 
 As of <b>Brave v1.36</b>, extensions and web pages are limited to a maximum of 10 active WebSocket connections (more details concerning this change can be found at the <a href="https://github.com/brave/brave-browser/issues/19990" target="_blank" rel="noreferrer">respective repository</a> of Brave browser).
 
-<img style="padding: 30px 0 30px 0" height="450" src="./assets/brave.gif">
+<img style="padding: 30px 0 30px 0" height="450" src="./assets/brave.gif" />
 
 If an issue is identified concerning WebSockets, this setting can
 be disabled following the next steps:
