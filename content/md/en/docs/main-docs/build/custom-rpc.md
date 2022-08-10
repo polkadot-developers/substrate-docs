@@ -6,11 +6,10 @@ keywords:
   - frontend
 ---
 
-Remote Procedure Calls, or RPCs, are a way for an external program—for example, a browser or front-end application—to communicate with a Substrate node.
-They are used for checking storage values, submitting transactions, and querying the
-current consensus authorities.
-Substrate comes with several [default RPCs](https://polkadot.js.org/docs/substrate/rpc/).
-In many cases, it is useful to add custom RPCs to your node.
+Remote procedure calls, or RPC methods, are a way for an external program—for example, a browser or front-end application—to communicate with a Substrate node.
+In general, these methods enable an RPC client to connect to an RPC server to request some type of service, such as reading a stored value, submitting a transaction, or querying the current consensus authorities.
+You can access many of the [default RPC methods](https://polkadot.js.org/docs/substrate/rpc/) that Substrate exposes directly through the [Polkadot-JS API](https://polkadot.js.org/docs/api/).
+However, you can also add custom RPC methods to your node.
 
 ## RPC extension builder
 
@@ -47,38 +46,39 @@ Exposing RPC interfaces can open up a huge surface of attacks and has to be care
 There are quite a few RPC methods that you can use to control the node's behavior, but you should avoid exposing.
 For example, you should not expose the following RPC methods:
 
-- [`author_submitExtrinsic`](https://paritytech.github.io/substrate/master/sc_rpc/author/trait.AuthorApi.html#tymethod.submit_extrinsic) - allows submitting transactions to local pool.
-- [`author_insertKey`](https://paritytech.github.io/substrate/master/sc_rpc_api/author/trait.AuthorApi.html#tymethod.insert_key) - allows inserting private keys to local keystore.
-- [`author_rotateKeys`](https://paritytech.github.io/substrate/master/sc_rpc_api/author/trait.AuthorApi.html#tymethod.rotate_keys) - session keys rotation.
-- [`author_removeExtrinsic`](https://paritytech.github.io/substrate/master/sc_rpc_api/author/trait.AuthorApi.html#tymethod.remove_extrinsic) - remove and ban extrinsic from the pool.
-- [`system_addReservedPeer`](https://paritytech.github.io/substrate/master/sc_rpc_api/system/trait.SystemApi.html#tymethod.system_add_reserved_peer) - add reserved node.
-- [`system_removeReservedPeer`](https://paritytech.github.io/substrate/master/sc_rpc_api/system/trait.SystemApi.html#tymethod.system_remove_reserved_peer) - removed reserved node.
+- [`submit_extrinsic`](https://paritytech.github.io/substrate/master/sc_rpc_api/author/trait.AuthorApiClient.html) - allows submitting transactions to local pool.
+- [`insert_key`](https://paritytech.github.io/substrate/master/sc_rpc_api/author/trait.AuthorApiClient.html) - allows inserting private keys to local keystore.
+- [`rotate_keys`](https://paritytech.github.io/substrate/master/sc_rpc_api/author/trait.AuthorApiClient.html) - session keys rotation.
+- [`remove_extrinsic`](https://paritytech.github.io/substrate/master/sc_rpc_api/author/trait.AuthorApi.html#tymethod.remove_extrinsic) - remove and ban extrinsic from the pool.
+- [`add_reserved_peer`](https://paritytech.github.io/substrate/master/sc_rpc_api/system/trait.SystemApiClient.html) - add reserved node.
+- [`remove_reserved_peer`](https://paritytech.github.io/substrate/master/sc_rpc_api/system/trait.SystemApiClient.html) - removed reserved node.
 
 You should also avoid exposing RPC methods that can take a long time to execute, potentially blocking the client from syncing.
 For example, you should avoid using the following RPC methods:
 
-- [`storage_keys_paged`](https://paritytech.github.io/substrate/master/sc_rpc_api/state/trait.StateApi.html#tymethod.storage_keys_paged) - get all the keys in the state with a particular prefix and pagination support.
-- [`state_getPairs`](https://paritytech.github.io/substrate/master/sc_rpc_api/state/trait.StateApi.html#tymethod.storage_pairs) - get all the keys in the state with a particular prefix together with their values.
+- [`storage_keys_paged`](https://paritytech.github.io/substrate/master/sc_rpc_api/state/trait.StateApiClient.html) - get all the keys in the state with a particular prefix and pagination support.
+- [`storage_pairs`](https://paritytech.github.io/substrate/master/sc_rpc_api/state/trait.StateApiClient.html) - get all the keys in the state with a particular prefix together with their values.
 
-These RPCs are declared by using the `#[rpc(name = "rpc_method")]` macro, where `rpc_method` is be the name of the function—for example `author_submitExtrinsic` corresponding to [`submit_extrinsic`](https://paritytech.github.io/substrate/master/sc_rpc/author/trait.AuthorApi.html#tymethod.submit_extrinsic).
+These RPCs are declared by using the `#[rpc(name = "rpc_method")]` macro, where `rpc_method` is be the name of the function, for example, `submit_extrinsic`.
 
 It's critical to filter out these kind of calls if the requests are coming from untrusted users.
-The way to do it is through a [JSON-RPC](/reference/glossary#json-rpc) proxy that is able to inspect calls and only pass allowed-set of APIs.
+The way to do it is through a [JSON-RPC](/reference/glossary#json-rpc) proxy that is able to inspect calls and only pass an allowed set of API calls.
 
 ## RPCs for remote_externalities
 
-There exists a special type of using RPCs in the context of `remote_externalities`.
-The [`rpc_api`](https://paritytech.github.io/substrate/master/remote_externalities/rpc_api/index.html) allows you to make one-off RPC calls to a Substrate node, useful for testing purposes with tools like [`try-runtime`](/reference/command-line-tools/try-runtime/) for example.
+Substrate also provides some specialized RPC methods to call [`remote_externalities`](https://paritytech.github.io/substrate/master/remote_externalities/rpc_api/index.html) for a node.
+These specialized methods for remote externalities enable you to make one-off RPC calls to a Substrate node to get information about blocks and headers.
+The information returned by these calls can be useful for testing purposes with tools like [`try-runtime`](/reference/command-line-tools/try-runtime/).
 
 ## Endpoints
 
 When starting any Substrate node, these two endpoints are available to you:
 
 - HTTP endpoint: `http://localhost:9933/`
-- Websocket endpoint: `ws://localhost:9944/`
+- WebSocket endpoint: `ws://localhost:9944/`
 
-Most of the Substrate front-end libraries and tools use the more powerful WebSocket endpoint to interact with the blockchain.
-Through WebSockets, you can subscribe to the chain states, such as events, and receive push notifications whenever changes in your blockchain occur.
+Most of the Substrate front-end libraries and tools use the WebSocket endpoint to interact with the blockchain.
+Through the WebSocket endpoint, you can subscribe to the chain states, such as events, and receive push notifications whenever changes in your blockchain occur.
 
 To call the `Metadata` endpoint, run this command alongside a running node:
 
@@ -86,7 +86,9 @@ To call the `Metadata` endpoint, run this command alongside a running node:
 curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "state_getMetadata"}' http://localhost:9933/
 ```
 
-The return value of this command is not in human-readable format. For that, it needs to use [Type encoding (SCALE)](/reference/scale-codec/).
+The return value of this command is not in human-readable format. 
+For the return value to be human-readable, you can decode it using SCALE codec.
+For more information about encoding and decoding information, see [Type encoding (SCALE)](/reference/scale-codec/).
 
 Each storage item has a relative storage key associated to it which is used to [query storage](/main-docs/build/runtime-storage#querying-storage).
 This is how RPC endpoints know where to look.
