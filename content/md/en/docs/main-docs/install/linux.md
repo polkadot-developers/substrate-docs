@@ -118,7 +118,7 @@ To install the Rust toolchain on Linux:
    ----------------
 
    stable-x86_64-unknown-linux-gnu (default)
-   rustc 1.61.0 (fe5b13d68 2022-05-18)
+   rustc 1.62.1 (e092d0b6b 2022-07-16)
 
    # rustup +nightly show
 
@@ -126,7 +126,7 @@ To install the Rust toolchain on Linux:
    ----------------
 
    nightly-x86_64-unknown-linux-gnu (overridden by +toolchain on the command line)
-   rustc 1.63.0-nightly (e71440575 2022-06-02)
+   rustc 1.65.0-nightly (34a6cae28 2022-08-09)
    ```
 
 ## Compile a Substrate node
