@@ -1,5 +1,5 @@
 ---
-title: Runtime macros
+title: FRAME macros
 description:
 keywords:
 ---
@@ -51,10 +51,6 @@ The `frame_support` crate provides many of the most important declarative, deriv
 A few of the important macros that you should be familiar with from the `frame_support` crate include the following:
 
 - `construct_runtime`	used to construct runtime from the list of pallets you have implemented.
-- `decl_error` used to declare an error type for a pallet in the runtime.
-- `decl_event`	used to implement event for a pallet in the runtime.
-- `decl_module`	used to declare a Module data structure and a Call enumeration for a dispatch.
-- `decl_storage` used to declare strongly-typed wrappers around codec-compatible types in storage.
 - `match_types`	used to create a type that implements the `Contains` trait with syntax similar to `matches!`.
 - `parameter_types`	used to create new implementations of the `Get` trait.	
 
@@ -116,10 +112,9 @@ This section describes the macros available and how to use them to build your cu
 ### #[pallet]
 
 The `#[pallet]` macro is required to declare a pallet.
-This [attribute macro](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html) describes the attributes used to identify the specific items the pallet requires.
+This [attribute macro](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html) is an attribute of the pallet module (`mod pallet`).
+Within the `pallet` module, the `#[pallet]` macro serves as an entry point for additional `#[pallet::*]` macros that describe the attributes used to identify the specific items the pallet requires.
 For example, a pallet typically includes a set of types, functions, and trait implementations that are aggregated by the `construct_runtime!` macro to build the runtime.
-
-The `#[pallet]` attribute macro defines a pallet as a module:
 
 ```rust
 #[pallet]
@@ -571,9 +566,6 @@ For more information, see the Rust documentation for [app_crypto]](https://parit
 - [The Little Book of Rust Macros](https://danielkeep.github.io/tlborm/book)
 
 <!--
-As of January 2021, FRAME based pallets have upgraded their use of macros. 
-Refer to [this guide](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#upgrade-guidelines) to learn about migrating a v1 pallet to v2 and [this resource](https://hackmd.io/@fscJ0GEvRb2rqALLZB1kfA/SkSerkamt) to learn more about FRAME's version changes.
-
 cargo expand 
 1. Open a terminal shell and change to the `runtime` directory for the Substrate node template.
 
@@ -583,4 +575,9 @@ cargo expand
    cargo install cargo-expand
    ```
 
+3. Run the cargo expand command on a specific file or module:
+
+   ```bash
+   cargo expand path::to::module
+   ```  
 -->
