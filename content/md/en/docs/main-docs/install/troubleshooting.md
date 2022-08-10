@@ -1,7 +1,11 @@
 ---
 title: Troubleshoot Rust issues
-description:
+description: Diagnose and fix Rust and Substrate development environment issues.
 keywords:
+  - Rust
+  - toolchain
+  - compiler
+  - rustup
 ---
 
 If compiling the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) fails, the problem is most likely to be caused by how Rust is configured in your development environment.
@@ -128,10 +132,12 @@ rustup target add wasm32-unknown-unknown --toolchain nightly-<yyyy-MM-dd>
 If after installing Rust the commands don't seem to work, showing errors such as `command not found: rustup`, make sure it your PATH is configured correctly.
 
 Currently, the `rustup` installer installs by default to the bash profile (on mac). If you are using another shell, make sure to add this line to your profile (e.g. `.zshrc`):
+
 ```bash
 source "$HOME/.cargo/env"
+```
 
-## Installing `cmake` or `protobuf` for M1 macOS users
+## Installing cmake or protobuf for M1 macOS users
 
 Currently, there are issues compiling the Substrate node when using the packages that are pre-installed on macOS computers with the M1 chip.
 

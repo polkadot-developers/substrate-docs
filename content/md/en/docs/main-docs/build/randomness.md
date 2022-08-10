@@ -11,7 +11,7 @@ This article describes how randomness is produced and used in Substrate runtimes
 
 ## Deterministic randomness
 
-In traditional non-blockchain computing, an application that required randomness could choose to use a real random value drawn from hardware, or a pseudo-random value that is actually deterministic, but impractical to predict thanks to cryptography.
+In traditional non-blockchain computing, an application that requires randomness could choose to use a real random value drawn from hardware, or a pseudo-random value that is actually deterministic, but impractical to predict thanks to cryptography.
 
 Applications that run on the blockchain are more tightly constrained because all authorities in the network must agree on any on-chain value, including any randomness data that is injected.
 Because of this constraint, using real randomness directly is impossible.
@@ -45,7 +45,7 @@ Substrate ships with two implementations, and developers are able to provide the
 The first implementation provided by Substrate is the [Randomness Collective Flip Pallet](https://paritytech.github.io/substrate/master/pallet_randomness_collective_flip/index.html).
 This pallet is based on collective coin flipping.
 It is quite performant, but not very secure.
-This pallet should be used only when testing randomness-consuming pallets, not it production.
+This pallet should be used only when testing randomness-consuming pallets, not in production.
 
 The second implementation is the [BABE pallet](https://paritytech.github.io/substrate/master/pallet_babe/index.html), which uses verifiable random functions.
 This pallet provides production-grade randomness, and is used in Polkadot.
@@ -55,7 +55,7 @@ Selecting this randomness source dictates that your blockchain use Babe consensu
 
 The `Randomness` trait provides a convenient and useful abstraction over randomness sources in Substrate runtimes.
 But the trait itself does not make any security guarantees.
-A runtime developer must ensure that the randomness source used meets the security requirements of _all_ pallet's that consume its randomness.
+A runtime developer must ensure that the randomness source used meets the security requirements of _all_ pallets that consume its randomness.
 
 ## Where to go next
 

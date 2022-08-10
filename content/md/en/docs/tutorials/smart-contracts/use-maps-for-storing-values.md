@@ -4,7 +4,7 @@ description: Use mapping to store data as key-value pairs.
 keywords:
 ---
 
-In [Develop a smart contract](/tutorials/smart-contracts/develop-contract/), you developed a smart contract for storing and retrieving a single numeric value.
+In [Develop a smart contract](/tutorials/smart-contracts/develop-a-smart-contract/), you developed a smart contract for storing and retrieving a single numeric value.
 This tutorial illustrates how you can extend the functionality of your smart contract to manage one number per user.
 To add this functionality, you'll use the [`Mapping`](https://paritytech.github.io/ink/ink_storage/struct.Mapping.html) type.
 
@@ -318,14 +318,8 @@ For example, this tutorial illustrated:
 
 - How to add functions that enable users to insert and remove the values stored for them in a map using a smart contract.
 
-You can find an example of the final code for this tutorial in the assets for the [ink-workshop](https://docs.substrate.io/assets/tutorials/ink-workshop/1.6-finished-code.rs)
+You can find an example of the final code for this tutorial in the assets for the [smart-contracts](/assets/tutorials/smart-contracts/incrementer-mapping.rs)
 You can learn more about smart contract development in the following topics:
 
-- [Build an ERC20 token contract](/tutorials/smart-contracts/erc20-token/)
-- [Troubleshoot smart contracts](/tutorials/smart-contracts/sc-common-issues/)
-
-If you experienced any issues with this tutorial, submit an issue, ask questions or provide feedback.
-
-- [Submit an issue](https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose).
-
-- [Substrate Stack Exchange](https://substrate.stackexchange.com/).
+- [Build an ERC20 token contract](/tutorials/smart-contracts/build-a-token-contract/)
+- [Troubleshoot smart contracts](/tutorials/smart-contracts/troubleshoot-smart-contracts/)

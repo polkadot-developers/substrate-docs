@@ -227,7 +227,7 @@ To verify blocks are being finalized:
    ...
    ```
 
-   In these lines, you can see the following information aout your blockchain:
+   In these lines, you can see the following information about your blockchain:
 
    - The first node was started by `alice`.
    - The node has a one peer (`1 peers`).

@@ -143,7 +143,7 @@ If a transaction fails after an event is emitted, the event is not be reverted.
 After all queued transactions have been executed, the executive module calls into each pallet's `on_idle` and `on_finalize` functions to perform any final business logic that should take place at the end of the block.
 The modules are again executed in the order that they are defined in the `construct_runtime!` macro, but in this case, the `on_finalize` function in the system pallet is executed last.
 
-After all of the `on_finalize` functions have been executed, the executive modulate checks that the digest and storage root in the block header match what was calculated when the block was initialized.
+After all of the `on_finalize` functions have been executed, the executive module checks that the digest and storage root in the block header match what was calculated when the block was initialized.
 
 The `on_idle` function also passes through the remaining weight of the block to allow for execution based on the usage of the blockchain.
 

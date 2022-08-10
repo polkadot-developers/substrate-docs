@@ -81,7 +81,7 @@ If you can't download the precompiled node, you can compile it locally with a co
 cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag <latest-tag> --force --locked
 ```
 
-You can find the latest tag (`polkadot-v0.9.26` to match the rest of the docs example code versions) to use on the [Tags](https://github.com/paritytech/substrate-contracts-node/tags) page.
+You can find the latest tag to use on the [Tags](https://github.com/paritytech/substrate-contracts-node/tags) page.
 
 ## Install additional packages
 
@@ -171,7 +171,7 @@ To generate the files for a smart contract project:
    -rwxr-xr-x   1 dev-doc  staff  2262 Mar  4 14:49 lib.rs
    ```
 
-   Like other Rust projects, the `Cargo.toml` file is used to provides package dependencies and configuration information.
+   Like other Rust projects, the `Cargo.toml` file is used to provide package dependencies and configuration information.
    The `lib.rs` file is used for the smart contract business logic.
 
 ### Explore the default project files
@@ -180,7 +180,7 @@ By default, creating a new smart contract project generates some template source
 The `lib.rs` file also contains two functions for testing that the contract works as expected.
 
 As you progress through the tutorial, you'll modify different parts of the starter code.
-By the end of the tutorial, you'll have a more advanced smart contract that looks like the [Flipper example](https://github.com/paritytech/ink/blob/v3.0.0-rc9/examples/flipper/lib.rs).
+By the end of the tutorial, you'll have a more advanced smart contract that looks like the [Flipper example](https://github.com/paritytech/ink/blob/master/examples/flipper/lib.rs).
 
 To explore the default project files:
 
@@ -432,7 +432,7 @@ To test the `flip()` function:
 
 1. Verify that the transaction is successful in the Call Results.
 
-   ![Successful transaction](/media/images/docs/tutorials/ink-workshop/ssuccessful-transaction.png)
+   ![Successful transaction](/media/images/docs/tutorials/ink-workshop/successful-transaction.png)
 
 1. Select **get(): bool** from the **Message to Send** list.
 
@@ -460,15 +460,8 @@ In this tutorial, you learned:
 
 Additional smart contract tutorials build on what you learned in this tutorial and lead you deeper into different stages of contract development.
 
-You can find an example of the final code for this tutorial in the assets for the [ink-workshop](https://docs.substrate.io/assets/tutorials/ink-workshop/1.4-finished-code.rs).
 You can learn more about smart contract development in the following topics:
 
-- [Develop a smart contract](/tutorials/smart-contracts/develop-contract/)
-- [Build an ERC20 token contract](/tutorials/smart-contracts/erc20-token/)
-- [Troubleshoot smart contracts](/tutorials/smart-contracts/sc-common-issues/)
-
-If you experienced any issues with this tutorial, submit an issue, ask questions or provide feedback.
-
-- [Submit an issue](https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose).
-
-- [Substrate Stack Exchange](https://substrate.stackexchange.com/).
+- [Develop a smart contract](/tutorials/smart-contracts/develop-a-smart-contract/)
+- [Build an ERC20 token contract](/tutorials/smart-contracts/build-a-token-contract/)
+- [Troubleshoot smart contracts](/tutorials/smart-contracts/troubleshoot-smart-contracts/)

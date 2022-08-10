@@ -8,7 +8,7 @@ An account represents an identity—usually of a person or an organization—tha
 Although accounts are most often used to represent a person, that doesn't have to be the case.
 An account can be used to perform operations on behalf of a user or another entity, or to perform operations autonomously.
 In addition, any single person or entity could have multiple accounts for different purposes.
-For example, Polkadot is a Substrate=based blockchain that has specialized accounts for holding funds that are separate from accounts used for making transactions.
+For example, Polkadot is a Substrate-based blockchain that has specialized accounts for holding funds that are separate from accounts used for making transactions.
 How you implement and use accounts is entirely up to you as a blockchain or parachain developer.
 
 ## Public and private keys
@@ -46,7 +46,7 @@ Each Substrate blockchain can register a custom prefix to create a chain-specifi
 For example, all Polkadot addresses start with `1` and all Kusama addresses start with a capital letter.
 All unregistered Substrate chains start with `5`.
 
-You can look up the chain-specific address for a public key using the `subkey inspect` command and `--network` option ot by using [Subscan](https://polkadot.subscan.io/tools/format_transform).
+You can look up the chain-specific address for a public key using the `subkey inspect` command and `--network` option or by using [Subscan](https://polkadot.subscan.io/tools/format_transform).
 
 For information about generating public and private key pairs and inspecting addresses, see [subkey](/reference/command-line-tools/subkey).
 For information about chain-specific address, see the instructions in the [SS58 repository](https://github.com/paritytech/ss58-registry).

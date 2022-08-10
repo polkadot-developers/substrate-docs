@@ -23,9 +23,9 @@ Before you begin, verify the following:
 
 - You have installed Rust and set up your development environment as described in [Install](/main-docs/install/).
 
-- You have completed [Prepare your first contract](/tutorials/smart-contracts/first-smart-contract/) and have the Substrate contracts node installed locally.
+- You have completed [Prepare your first contract](/tutorials/smart-contracts/prepare-your-first-contract/) and have the Substrate contracts node installed locally.
 
-- You have completed [Develop a smart contract](/tutorials/smart-contracts/develop-contract/) and are familiar with how ink! uses Rust attribute macros to build smart contracts.
+- You have completed [Develop a smart contract](/tutorials/smart-contracts/develop-a-smart-contract/) and are familiar with how ink! uses Rust attribute macros to build smart contracts.
 
 ## Tutorial objectives
 
@@ -79,7 +79,7 @@ In Rust, these functions would typically return a `Result`.
 
 ## Create the token supply
 
-A smart contract for handling ERC-20 tokens is similar to the Incrementer contract that used maps to store values in [Use maps for storing values](/tutorials/smart-contracts/use-mapping/).
+A smart contract for handling ERC-20 tokens is similar to the Incrementer contract that used maps to store values in [Use maps for storing values](/tutorials/smart-contracts/use-maps-for-storing-values/).
 For this tutorial, the ERC-20 contract consists of a fixed supply of tokens that are all deposited into the account associated with the contract owner when the contract is deployed.
 The contract owner can then distribute the tokens to other users.
 
@@ -111,22 +111,22 @@ To build an ERC-20 token smart contract:
 
 1. Open the `lib.rs` file in a text editor.
 
-1. Replace the default template source code with new [erc20](https://docs.substrate.io/assets/tutorials/ink-workshop/erc-template-lib-0.rs) source code.
+2. Replace the default template source code with new [erc20](/assets/tutorials/smart-contracts/erc20-template.rs) source code.
 
-1. Save the changes to the `lib.rs` file, then close the file.
+3. Save the changes to the `lib.rs` file, then close the file.
 
-1. Open the `Cargo.toml` file in a text editor and review the dependencies for the contract.
+4. Open the `Cargo.toml` file in a text editor and review the dependencies for the contract.
 
-1. In the `[dependencies]` section, modify the `scale` and `scale-info` settings, if necessary.
+5. In the `[dependencies]` section, modify the `scale` and `scale-info` settings, if necessary.
 
    ```toml
    scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
    scale-info = { version = "2", default-features = false, features = ["derive"], optional = true }
    ```
 
-1. Save changes to the `Cargo.toml` file, then close the file.
+6. Save changes to the `Cargo.toml` file, then close the file.
 
-1. Verify that the program compiles and passes the trivial test by running the following command
+7. Verify that the program compiles and passes the trivial test by running the following command
 
    ```bash
    cargo +nightly test
@@ -142,7 +142,7 @@ To build an ERC-20 token smart contract:
    test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
    ```
 
-1. Verify that you can build the WebAssembly for the contract by running the following command:
+8. Verify that you can build the WebAssembly for the contract by running the following command:
 
    ```bash
    cargo +nightly contract build
@@ -455,16 +455,16 @@ To add the approval logic to the smart contract:
 
 1. Declare the `Approval` event using the `#[ink(event)]` attribute macro.
 
-```rust
-#[ink(event)]
-pub struct Approval {
-    #[ink(topic)]
-    owner: AccountId,
-    #[ink(topic)]
-    spender: AccountId,
-    value: Balance,
-}
-```
+   ```rust
+   #[ink(event)]
+   pub struct Approval {
+       #[ink(topic)]
+       owner: AccountId,
+       #[ink(topic)]
+       spender: AccountId,
+       value: Balance,
+   }
+   ```
 
 1. Add an `Error` declaration to return an error if the transfer request exceeds the account allowance.
 
@@ -507,7 +507,7 @@ pub struct Approval {
        self.allowance_impl(&owner, &spender)
    }
    ```
-
+   
    This code snippet uses the `allowance_impl()` function.
    The `allowance_impl()` function is the same as the `allowance` function except that it uses references to look up the token allowance in a more efficient way in WebAssembly.
    Add the following function to the smart contract to use this function:
@@ -541,38 +541,37 @@ To add the `transfer_from` logic to the smart contract:
 
 1. Add the `transfer_from()` function to transfer the `value` number of tokens on behalf to the `from` account to the `to` account.
 
-```rust
-/// Transfers tokens on the behalf of the `from` account to the `to account
-#[ink(message)]
-pub fn transfer_from(
-    &mut self,
-    from: AccountId,
-    to: AccountId,
-    value: Balance,
-) -> Result<()> {
-    let caller = self.env().caller();
-    let allowance = self.allowance_impl(&from, &caller);
-    if allowance < value {
-        return Err(Error::InsufficientAllowance)
-    }
-    self.transfer_from_to(&from, &to, value)?;
-    self.allowances
-        .insert((&from, &caller), &(allowance - value));
-    Ok(())
-    }
-}
-```
+   ```rust
+   /// Transfers tokens on the behalf of the `from` account to the `to account
+   #[ink(message)]
+   pub fn transfer_from(
+       &mut self,
+       from: AccountId,
+       to: AccountId,
+       value: Balance,
+   ) -> Result<()> {
+       let caller = self.env().caller();
+       let allowance = self.allowance_impl(&from, &caller);
+       if allowance < value {
+           return Err(Error::InsufficientAllowance)
+       }
+       self.transfer_from_to(&from, &to, value)?;
+       self.allowances
+           .insert((&from, &caller), &(allowance - value));
+       Ok(())
+      }
+   ```
 
 1. Add a test for the `transfer_from()` function.
 
    ```rust
    #[ink::test]
    fn transfer_from_works() {
-    let mut contract = Erc20::new(100);
-    assert_eq!(contract.balance_of(AccountId::from([0x1; 32])), 100);
-    contract.approve(AccountId::from([0x1; 32]), 20);
-    contract.transfer_from(AccountId::from([0x1; 32]), AccountId::from([0x0; 32]), 10);
-    assert_eq!(contract.balance_of(AccountId::from([0x0; 32])), 10);
+       let mut contract = Erc20::new(100);
+       assert_eq!(contract.balance_of(AccountId::from([0x1; 32])), 100);
+       contract.approve(AccountId::from([0x1; 32]), 20);
+       contract.transfer_from(AccountId::from([0x1; 32]), AccountId::from([0x0; 32]), 10);
+       assert_eq!(contract.balance_of(AccountId::from([0x0; 32])), 10);
    }
    ```
 
@@ -581,10 +580,10 @@ pub fn transfer_from(
    ```rust
    #[ink::test]
    fn allowances_works() {
-    let mut contract = Erc20::new(100);
-    assert_eq!(contract.balance_of(AccountId::from([0x1; 32])), 100);
-    contract.approve(AccountId::from([0x1; 32]), 200);
-    assert_eq!(contract.allowance(AccountId::from([0x1; 32]), AccountId::from([0x1; 32])), 200);
+       let mut contract = Erc20::new(100);
+       assert_eq!(contract.balance_of(AccountId::from([0x1; 32])), 100);
+       contract.approve(AccountId::from([0x1; 32]), 200);
+       assert_eq!(contract.allowance(AccountId::from([0x1; 32]), AccountId::from([0x1; 32])), 200);
 
     contract.transfer_from(AccountId::from([0x1; 32]), AccountId::from([0x0; 32]), 50);
     assert_eq!(contract.balance_of(AccountId::from([0x0; 32])), 50);
@@ -643,17 +642,11 @@ For example, this tutorial illustrated:
 
 - How to enable third-party transfers.
 
-You can find an example of the code for this tutorial in the assets for the [ink-workshop](https://docs.substrate.io/assets/tutorials/ink-workshop/2.4-finished-code.rs)
+You can find an example of the code for this tutorial in the assets for [smart contracts](/assets/tutorials/smart-contracts/erc20-final.rs)
 You can learn more about smart contract development in the following topics:
 
-- [Use maps for storing values](/tutorials/smart-contracts/use-mapping/)
+- [Use maps for storing values](/tutorials/smart-contracts/use-maps-for-storing-values/)
 
-- [Troubleshoot smart contracts](/tutorials/smart-contracts/sc-common-issues/)
+- [Troubleshoot smart contracts](/tutorials/smart-contracts/troubleshoot-smart-contracts/)
 
 - [ink! documentation](https://paritytech.github.io/ink-docs/)
-
-If you experienced any issues with this tutorial, submit an issue, ask questions or provide feedback.
-
-- [Submit an issue](https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose).
-
-- [Substrate Stack Exchange](https://substrate.stackexchange.com/).

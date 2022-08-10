@@ -4,7 +4,7 @@ description: Develop a smart contract that increments a value.
 keywords:
 ---
 
-In [Prepare your first contract](/tutorials/smart-contracts/first-smart-contract/), you learned the basic steps for building and deploying a smart contract on a Substrate-based blockchain using a default first project.
+In [Prepare your first contract](/tutorials/smart-contracts/prepare-your-first-contract/), you learned the basic steps for building and deploying a smart contract on a Substrate-based blockchain using a default first project.
 For this tutorial, you'll develop a new smart contract that increments a counter value each time you execute a function call.
 
 ## Before you begin
@@ -19,7 +19,7 @@ Before you begin, verify the following:
 
 - You have installed Rust and set up your development environment as described in [Install](/main-docs/install/).
 
-- You have completed [Prepare your first contract](/tutorials/smart-contracts/first-smart-contract/) and have the Substrate contracts node installed locally.
+- You have completed [Prepare your first contract](/tutorials/smart-contracts/prepare-your-first-contract/) and have the Substrate contracts node installed locally.
 
 ## Tutorial objectives
 
@@ -35,7 +35,7 @@ By completing this tutorial, you will accomplish the following objectives:
 
 ## Smart contracts and ink!
 
-In [Prepare your first contract](/tutorials/smart-contracts/first-smart-contract/), you installed the `cargo-contract` package for command-line access to the ink! programming language.
+In [Prepare your first contract](/tutorials/smart-contracts/prepare-your-first-contract/), you installed the `cargo-contract` package for command-line access to the ink! programming language.
 The ink! language is an [embedded domain specific language](https://wiki.haskell.org/Embedded_domain_specific_language).
 This language enables you to write WebAssembly-based smart contracts using the Rust programming language.
 
@@ -70,22 +70,22 @@ To create a new project for your smart contract:
 
    By default, the template `lib.rs` file contains the source code for the `flipper` smart contract with instances of the `flipper` contract name renamed `incrementer`.
 
-1. Replace the default template source code with new [incrementer](https://github.com/substrate-developer-hub/substrate-contracts-workshop/blob/master/1/assets/1.1-finished-code.rs) source code.
+2. Replace the default template source code with new [incrementer](/assets/tutorials/smart-contracts/incrementer-template.rs) source code.
 
-1. Save the changes to the `lib.rs` file, then close the file.
+3. Save the changes to the `lib.rs` file, then close the file.
 
-1. Open the `Cargo.toml` file in a text editor and review the dependencies for the contract.
+4. Open the `Cargo.toml` file in a text editor and review the dependencies for the contract.
 
-1. In the `[dependencies]` section, modify the `scale` and `scale-info` settings, if necessary.
+5. In the `[dependencies]` section, modify the `scale` and `scale-info` settings, if necessary.
 
    ```toml
    scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
    scale-info = { version = "2", default-features = false, features = ["derive"], optional = true }
    ```
 
-1. Save changes to the `Cargo.toml` file, then close the file.
+6. Save changes to the `Cargo.toml` file, then close the file.
 
-1. Verify that the program compiles and passes the trivial test by running the following command:
+7. Verify that the program compiles and passes the trivial test by running the following command:
 
    ```bash
    cargo +nightly test
@@ -101,7 +101,7 @@ To create a new project for your smart contract:
    test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
    ```
 
-1. Verify that you can build the WebAssembly for the contract by running the following command:
+8. Verify that you can build the WebAssembly for the contract by running the following command:
 
    ```bash
    cargo +nightly contract build
@@ -414,15 +414,9 @@ For example, this tutorial illustrated:
 
 - How to upload and instantiate the contract using the Contracts UI.
 
-You can find an example of the final code for this tutorial in the assets for the [ink-workshop](https://docs.substrate.io/assets/tutorials/ink-workshop/1.4-finished-code.rs)
+You can find an example of the final code for this tutorial in the assets for the [smart-contracts](/assets/tutorials/smart-contracts/incrementer-basics.rs)
 You can learn more about smart contract development in the following topics:
 
-- [Use maps for storing values](/tutorials/smart-contracts/use-mapping/)
-- [Build an ERC20 token contract](/tutorials/smart-contracts/erc20-token/)
-- [Troubleshoot smart contracts](/tutorials/smart-contracts/sc-common-issues/)
-
-If you experienced any issues with this tutorial, submit an issue, ask questions or provide feedback.
-
-- [Submit an issue](https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose).
-
-- [Substrate Stack Exchange](https://substrate.stackexchange.com/).
+- [Use maps for storing values](/tutorials/smart-contracts/use-maps-for-storing-values/)
+- [Build an ERC20 token contract](/tutorials/smart-contracts/build-a-token-contract/)
+- [Troubleshoot smart contracts](/tutorials/smart-contracts/troubleshoot-smart-contracts/)
