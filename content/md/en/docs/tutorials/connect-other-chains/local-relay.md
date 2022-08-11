@@ -54,7 +54,7 @@ If lagging with relay chain upgrades, it's likely that a parachain will stop pro
 - [Substrate Parachain Template `polkadot-v0.9.26`](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.26)
 - [Polkadot-JS Apps `v0.116.2-34 `](https://github.com/polkadot-js/apps/commit/151c4cd75b6eb68ac275d90fd17f98b28b6e57a7).
   It is generally expected that the [hosted Polkadot-JS Apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/explorer) should work.
-  If experiencing have issues, build and run this UI locally at this tagged version/commit.
+  If encountering problems with the hosted version, build and run this UI locally at the tagged version/commit above.
 
 ## Build the relay chain node
 
