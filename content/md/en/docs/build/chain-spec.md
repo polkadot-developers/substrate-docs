@@ -117,7 +117,7 @@ For example, consider this excerpt from the default Substrate node's chain speci
 }
 ```
 
-Before this chain spec can be used to initialize a node's genesis storage, the human-readable keys must be transformed into actual storage keys for the [storage trie](/main-docs/build/runtime-storage/).
+Before this chain spec can be used to initialize a node's genesis storage, the human-readable keys must be transformed into actual storage keys for the [storage trie](/build/runtime-storage/).
 This transformation is straight-forward, but it requires that the node's runtime be able to understand the chain spec.
 
 If a node with an upgraded runtime attempts to synchronize a chain from genesis, it will not understand the information in this human-readable chain spec.

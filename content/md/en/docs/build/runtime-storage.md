@@ -34,7 +34,7 @@ Furthermore, iterating over a large list in your runtime may result in exceeding
 If this occurs for [parachains](/reference/glossary/#parachain), the blockchain will stop producing blocks and stop functioning.
 
 Although wrapping related items in a shared `struct` is an excellent way to reduce the number of storage reads, at some point the size of the object will begin to incur costs that may outweigh the optimization in storage reads.
-Read about [benchmarking](/main-docs/test/benchmark/) to learn how to optimize execution time.
+Read about [benchmarking](/test/benchmark/) to learn how to optimize execution time.
 
 Refer to the Storage Value documentation for [a comprehensive list of the methods that Storage Value exposes](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html#required-methods).
 
@@ -151,7 +151,7 @@ Blockchain storage is always publicly [visible from _outside_ of the runtime](#a
 The `#[pallet::getter(..)]` macro provides an optional `get` extension that can be used to implement a getter method for a storage item on the module that contains that storage item; the extension takes the desired name of the getter function as an argument.
 If you omit this optional extension, you will still be able to access the storage item's value, but you will not be able to do so by way of a getter method implemented on the module; instead, you will need to use [the storage item's `get` method](#methods).
 
-The optional `getter` extension only impact the way that a storage item can be accessed from _within_ Substrate code&mdash;you will always be able to [query the storage of your runtime](/main-docs/build/runtime-storage#Querying-Storage) to get the value of a storage item.
+The optional `getter` extension only impact the way that a storage item can be accessed from _within_ Substrate code&mdash;you will always be able to [query the storage of your runtime](/build/runtime-storage#Querying-Storage) to get the value of a storage item.
 
 Here is an example that implements a getter method named `some_value` for a Storage Value named `SomeValue`.
 This pallet would now have access to a `Self::some_value()` method in addition to the `SomeValue::get()` method:

@@ -37,7 +37,7 @@ runtime state or input becomes too complex.
 
 ## Benchmarking and weight
 
-As discussed in [Transactions, weights, and fees](/main-docs/build/tx-weights-fees/), Substrate-based chains use the concept of **weight** to represent the time it takes to execute the transactions in a block.
+As discussed in [Transactions, weights, and fees](/build/tx-weights-fees/), Substrate-based chains use the concept of **weight** to represent the time it takes to execute the transactions in a block.
 The time required to execute any particular call in a transaction depends on a several factors, including the following:
 
 - Computational complexity.

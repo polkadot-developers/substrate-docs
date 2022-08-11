@@ -33,7 +33,7 @@ Offchain workers run in their own Wasm execution environment outside of the Subs
 This separation of concerns makes sure that block production is not impacted by long-running offchain tasks.
 However, because offchain workers are declared in the same code as the runtime, they can easily access on-chain state for their computations.
 
-![Offchain workers](/media/images/docs/main-docs/off-chain-workers-v2.png)
+![Offchain workers](/media/images/docs/off-chain-workers-v2.png)
 
 Off-chain workers have access to extended APIs for communicating with the external world:
 

@@ -88,7 +88,7 @@ curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method":
 
 The return value of this command is not in human-readable format. For that, it needs to use [Type encoding (SCALE)](/reference/scale-codec/).
 
-Each storage item has a relative storage key associated to it which is used to [query storage](/main-docs/build/runtime-storage#querying-storage).
+Each storage item has a relative storage key associated to it which is used to [query storage](/build/runtime-storage#querying-storage).
 This is how RPC endpoints know where to look.
 
 ## Examples
@@ -151,4 +151,4 @@ function get_runtime_storage_parameter_with_key(module_name, function_name, key)
 
 - [Rust implementation of JSON-RPC](https://github.com/paritytech/jsonrpc)
 - [Type encoding (SCALE)](/reference/scale-codec)
-- [Runtime storage](/main-docs/build/runtime-storage/)
+- [Runtime storage](/build/runtime-storage/)

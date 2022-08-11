@@ -41,7 +41,7 @@ To make it easier to maintain the security and integrity of the chain but reduce
 Full nodes are a critical part of the blockchain network infrastructure and are the most common node type.
 Full nodes store blockchain data and, typically, participate in common blockchain operations, such as authoring and validating blocks, receiving and verifying transactions, and serving data in response to user requests.
 
-![Full node](/media/images/docs/main-docs/full-node.png)
+![Full node](/media/images/docs/full-node.png)
 
 By default, full nodes are configured to store only the most recent 256 blocks and to discard state older than that—with the exception of the genesis block—to prevent the full node from growing indefinitely and consuming all available disk space.
 You can configure the number of blocks a full node retains.
@@ -60,7 +60,7 @@ If you need to query historical blocks, you should purge the full node then rest
 Archive nodes are similar to full nodes except that they store all past blocks with complete state available for every block.
 Archive nodes are most often used by utilities—such as block explorers, wallets, discussion forums, and similar applications—that need access to historical information.
 
-![Archive nodes](/media/images/docs/main-docs/archive-node.png)
+![Archive nodes](/media/images/docs/archive-node.png)
 
 Because archive nodes retain historical state, they require a lot of disk space.
 Because of the disk space required to run them, archive nodes are less common than full nodes.
@@ -72,7 +72,7 @@ These types of queries are faster and more efficient when you run them on the da
 
 Light client nodes enable you to connect to a Substrate network with minimal hardware requirements.
 
-![Light client nodes](/media/images/docs/main-docs/light-node.png)
+![Light client nodes](/media/images/docs/light-node.png)
 
 Because light client nodes require minimal system resources, they can be embedded into web-based applications, browser extensions, mobile device applications, or internet of things (IoT) devices.
 Light client nodes provide a runtime and access to the current state through RPC endpoints.

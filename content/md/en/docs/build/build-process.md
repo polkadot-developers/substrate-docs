@@ -4,7 +4,7 @@ description: Describes how a Substrate node is compiled into platform-native and
 keywords:
 ---
 
-In [Architecture](/main-docs/fundamentals/architecture), you learned that a Substrate node consists of an outer node host and a runtime execution environment.
+In [Architecture](/fundamentals/architecture), you learned that a Substrate node consists of an outer node host and a runtime execution environment.
 These node components communicate with each other through runtime API calls and host function calls.
 In this section, you'll learn more about how the Substrate runtime is compiled into a platform-native executable and into a WebAssembly (Wasm) binary that is stored on the blockchain.
 After you see the inner-working of how the binaries are compiled, you'll learn more about why there are two binaries, when they are used, and how you can change the execution strategies, if you need to.
@@ -18,7 +18,7 @@ Producing the optimized executable artifact includes some post-compilation proce
 As part of the optimization process, the WebAssembly runtime binary is compiled and compressed through a series of internal steps before it's included in the genesis state for a chain.
 To give you a better understanding of the process, the following diagram summarizes the steps.
 
-![WebAssembly compiled and compressed before included on-chain](/media/images/docs/main-docs/node-executable.png)
+![WebAssembly compiled and compressed before included on-chain](/media/images/docs/node-executable.png)
 
 The following sections describe the build process in more detail.
 
@@ -112,7 +112,7 @@ Block authoring nodes typically use the WebAssembly execution environment to hel
 
 Although the WebAssembly runtime is selected by default, it is possible for you to override the runtime selected for all or specific operations by specifying an **execution strategy** as a command-line option.
 
-If the native runtime and the WebAssembly runtime share the same [version](/main-docs/build/upgrade/#runtime-versioning), you can selectively use the native runtime instead of the WebAssembly runtime, in addition to the WebAssembly runtime, or as a fallback if using the WebAssembly runtime fails.
+If the native runtime and the WebAssembly runtime share the same [version](/build/upgrade/#runtime-versioning), you can selectively use the native runtime instead of the WebAssembly runtime, in addition to the WebAssembly runtime, or as a fallback if using the WebAssembly runtime fails.
 In general, you would only choose to use the native runtime for performance reasons or because it's a less restrictive environment than the WebAssembly runtime.
 For example, you might want to use the native runtime for initial synchronization.
 To use the native runtime for this synchronizing blocks, you can start the node using `--execution-syncing native` or `--execution-syncing native-else-wasm` the command-line option.
@@ -123,7 +123,7 @@ For information about the execution strategy variant, see [ExecutionStrategy](ht
 ## Building WebAssembly without a native runtime
 
 A WebAssembly runtime is required to start a new chain.
-After an initial WebAssembly runtime is provided, the blob that represents the WebAssembly runtime can be passed to other nodes as part of a [chain specification](/main-docs/build/chain-spec).
+After an initial WebAssembly runtime is provided, the blob that represents the WebAssembly runtime can be passed to other nodes as part of a [chain specification](/build/chain-spec).
 In some rare cases, you might want to compile the WebAssembly target without the native runtime.
 For example, if you're testing a WebAssembly runtime to prepare for a forkless upgrade, you might want to compile just the new WebAssembly binary.
 

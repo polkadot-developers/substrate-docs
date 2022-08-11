@@ -75,11 +75,11 @@ Depending on your background and interests, explore the following resources to l
 
 #### Tell me
 
-- [Blockchain basics](/main-docs/fundamentals/blockchain-basics/)
-- [Architecture](/main-docs/fundamentals/architecture/)
-- [Runtime development](/main-docs/fundamentals/runtime-intro)
-- [Networks and blockchains](/main-docs/fundamentals/node-and-network-types/)
-- [Install](/main-docs/install/)
+- [Blockchain basics](/fundamentals/blockchain-basics/)
+- [Architecture](/fundamentals/architecture/)
+- [Runtime development](/fundamentals/runtime-intro)
+- [Networks and blockchains](/fundamentals/node-and-network-types/)
+- [Install](/install/)
 
 #### Guide me
 

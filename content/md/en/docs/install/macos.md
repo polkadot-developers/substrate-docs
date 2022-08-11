@@ -180,15 +180,15 @@ For example, if you prefer to read source code and are familiar with Rust, you m
 
 <!-- TODO NAV.YAML -->
 <!-- add these back -->
-<!--If you are new to Substrate and the Substrate ecosystem, you might want broader exposure to what resources are available and where to find them by checking out [Explore](/main-docs/explore/).-->
+<!--If you are new to Substrate and the Substrate ecosystem, you might want broader exposure to what resources are available and where to find them by checking out [Explore](/explore/).-->
 
 Here are a few additional suggestions for where you can learn more.
 
 #### Tell me
 
-- [Architecture](/main-docs/fundamentals/architecture/)
-- [Networks and blockchains](/main-docs/fundamentals/node-and-network-types/)
-- [Build process](/main-docs/build/build-process)
+- [Architecture](/fundamentals/architecture/)
+- [Networks and blockchains](/fundamentals/node-and-network-types/)
+- [Build process](/build/build-process)
 
 #### Guide me
 

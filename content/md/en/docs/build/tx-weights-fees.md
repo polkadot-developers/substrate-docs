@@ -388,7 +388,7 @@ You now know what the weight system is, how it affects transaction fee computati
 The next step is determining the correct weight to account for the operations your dispatchable performs.
 You can use Substrate **benchmarking functions** and `frame-benchmarking` calls to test your functions with different parameters and empirically determine the correct weight in their worst case scenarios.
 
-- [Benchmark](/main-docs/test/benchmark/)
+- [Benchmark](/test/benchmark/)
 - [SignedExtension](https://paritytech.github.io/substrate/master/sp_runtime/traits/trait.SignedExtension.html)
 - [Custom weights for the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/weights.rs)
 - [Web3 Foundation Research](https://w3f-research.readthedocs.io/en/latest/polkadot/overview/2-token-economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits)

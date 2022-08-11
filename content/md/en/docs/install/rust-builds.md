@@ -29,4 +29,4 @@ This feature is important because Substrate is compiled to both a native Rust bi
 
 WebAssembly is a portable binary format that can be executed on any modern computer hardware and through any browser accessing the internet.
 The WebAssembly (Wasm) target enables Substrate to produce portable blockchain runtimes.
-For more information about how these binaries are used, see [Build process](/main-docs/build/build-process/).
+For more information about how these binaries are used, see [Build process](/build/build-process/).

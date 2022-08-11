@@ -90,7 +90,7 @@ Here is a condensed version of decoded metadata for a runtime using the V14 meta
 As described above, the integer `1635018093` is a "magic number" that represents "meta" in plain text.
 The rest of the metadata has two sections: `pallets` and `extrinsic`.
 The `pallets` section contains information about the runtime's pallets, while the `extrinsic` section describes the version of extrinsics that the runtime is using.
-Different extrinsic versions may have different formats, especially when considering [signed transactions](/main-docs/fundamentals/transaction-types).
+Different extrinsic versions may have different formats, especially when considering [signed transactions](/fundamentals/transaction-types).
 
 ### Pallets
 
@@ -201,7 +201,7 @@ Substrate comes with the following APIs to interact with a node:
 Querying a Substrate node can either be done by using a Hypertext Transfer Protocol (HTTP) or WebSocket (WS) based JSON-RPC client.
 The main advantage of WS (used in most applications) is that a single connection can be reused for many messages to and from a node, whereas a typical HTTP connection allows only for a single message from, and then response to the client at a time.
 For this reason, if you want to subscribe to some RPC endpoint that could lead to multiple messages being returned to the client, you must use a websocket connection and not an HTTP one.
-Connecting via HTTP is commonly used for fetching data in offchain workers-learn more about that in [Offchain operations](/main-docs/fundamentals/offchain-operations).
+Connecting via HTTP is commonly used for fetching data in offchain workers-learn more about that in [Offchain operations](/fundamentals/offchain-operations).
 
 An alternative (and still experimental) way to connect to a Substrate node is by using `Substrate Connect`, which allows applications to spawn their own light clients and connect directly to the exposed JSON-RPC end-point.
 These applications would rely on in-browser local memory to establish a connection with the light client.

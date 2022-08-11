@@ -7,11 +7,11 @@ keywords:
 In working with the node template, you don’t need to know anything about the underlying architecture or libraries being used because the basic components are already assembled and ready to use.  
 However, if you want to design and build a custom blockchain, you might want to be familiar with the libraries available and know what these different libraries do.
 
-In [Architecture](/main-docs/fundamentals/architecture/), you learned about the core components of a Substrate node and how different parts of the node take on different responsibilities.
+In [Architecture](/fundamentals/architecture/), you learned about the core components of a Substrate node and how different parts of the node take on different responsibilities.
 On a more technical level, the separation of duties between different layers of a node are reflected in the core libraries used to build a Substrate-based blockchain.
 The following diagram illustrates how the libraries mirror the outer node and runtime responsibilities and how a library of **primitives** provides the communication layer between the two.
 
-![Core node libraries for the outer node and runtime](/media/images/docs/main-docs/libraries.png)
+![Core node libraries for the outer node and runtime](/media/images/docs/libraries.png)
 
 ## Core node libraries
 
@@ -44,7 +44,7 @@ Primitive types and traits are exposed in their own separate crates, so they are
 In addition to the core libraries that enable you to build a Substrate-based blockchain, there are client libraries that you can use to interact with Substrate nodes.
 You can use the client libraries to build application-specific front-ends.
 In general, the capabilities that the client libraries expose are implemented on top of Substrate remote procedure call (RPC) APIs.
-For more information about using metadata and front-end libraries to build applications, see [Application development](/main-docs/build/application-dev/#rpc-apis).
+For more information about using metadata and front-end libraries to build applications, see [Application development](/build/application-dev/#rpc-apis).
 
 ## Where to go next
 

@@ -22,7 +22,7 @@ However, transaction fees and other elements of transaction processing depend on
 
 ## Where transactions are defined
 
-As discussed in [Runtime development](/main-docs/fundamentals/runtime-intro/), the Substrate runtime contains the business logic that defines transaction properties, including:
+As discussed in [Runtime development](/fundamentals/runtime-intro/), the Substrate runtime contains the business logic that defines transaction properties, including:
 
 - What constitutes a valid transaction.
 - Whether the transactions are sent as signed or unsigned.
@@ -39,13 +39,13 @@ Depending on the configuration of your network, you might have a combination of 
 If a Substrate node is authorized to produce blocks, it can process the signed and unsigned transactions it receives.
 The following diagram illustrates the lifecycle of a transaction that's submitted to a network and processed by an authoring node.
 
-![Transaction lifecycle overview](/media/images/docs/main-docs/transaction-lifecycle.png)
+![Transaction lifecycle overview](/media/images/docs/transaction-lifecycle.png)
 
 Any signed or unsigned transaction that's sent to a [non-authoring node]() is gossiped to other nodes in the network and enter their transaction pool until it is received by an authoring node.
 
 ## Validating and queuing transactions
 
-As discussed in [Consensus](/main-docs/fundamentals/consensus/), a majority of nodes in the network must agree on the order of transactions in a block to agree on the state of the blockchain and to continue securely adding blocks.
+As discussed in [Consensus](/fundamentals/consensus/), a majority of nodes in the network must agree on the order of transactions in a block to agree on the state of the blockchain and to continue securely adding blocks.
 To reach consensus, two-thirds of the nodes must agree on the order of the transactions executed and the resulting state change.
 To prepare for consensus, transactions are first validated and queued on the local node in a **transaction pool**.
 
@@ -134,7 +134,7 @@ Instead, state changes are written directly to storage during execution.
 If a transaction were to fail mid-execution, any state changes that took place before the failure would not be reverted, leaving the block in an unrecoverable state.
 Before committing any state changes to storage, the runtime logic should perform all necessary checks to ensure the extrinsic will succeed.
 
-Note that [events](/main-docs/build/events-errors/) are also written to storage.
+Note that [events](/build/events-errors/) are also written to storage.
 Therefore, the runtime logic should not emit an event before performing the complementary actions.
 If a transaction fails after an event is emitted, the event is not be reverted.
 
@@ -181,6 +181,6 @@ However, if you plan to write any custom consensus logic or want to know more ab
 <!-- add these back -->
 
 - [Seminar: Lifecycle of a transaction](https://www.youtube.com/watch?v=3pfM0GOp02c)
-- [Accounts, addresses, and keys](/main-docs/fundamentals/accounts-addresses-keys/)
-<!-- * [Transaction formats](/main-docs/fundamentals/transaction-format/
+- [Accounts, addresses, and keys](/fundamentals/accounts-addresses-keys/)
+<!-- * [Transaction formats](/fundamentals/transaction-format/
 ) -->

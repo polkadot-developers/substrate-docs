@@ -26,7 +26,7 @@ Before you begin, verify the following:
   You can check whether you have Rust installed by running the `rustup show` command.
   If Rust is installed, this command displays version information for the toolchain and compiler.
   If Rust is not installed, the command doesn't return any output.
-  For information about installing Rust, see [Install](/main-docs/install).
+  For information about installing Rust, see [Install](/install).
 
 ## Build the node template
 
@@ -129,6 +129,6 @@ Before you begin, verify the following:
 In this _Quick start_, you learned how to compile and run a single blockchain node on your local computer.
 To start learning how to customize its features, explore the following resources:
 
-- [Architecture](/main-docs/fundamentals/architecture/)
-- [Runtime development](/main-docs/fundamentals/runtime-intro/)
-- [Rust for Substrate](/main-docs/fundamentals/rust-basics/)
+- [Architecture](/fundamentals/architecture/)
+- [Runtime development](/fundamentals/runtime-intro/)
+- [Rust for Substrate](/fundamentals/rust-basics/)

@@ -73,7 +73,7 @@ The header contains the following properties:
 - Digest
 
 All of the transactions are bundled together as a series to be executed as defined in the runtime.
-You'll learn more about transaction ordering in [Transaction lifecycle](/main-docs/fundamentals/transaction-lifecycle/).
+You'll learn more about transaction ordering in [Transaction lifecycle](/fundamentals/transaction-lifecycle/).
 The transaction root is a cryptographic digest of this series.
 This cryptographic digest serves two purposes:
 
@@ -84,8 +84,8 @@ This cryptographic digest serves two purposes:
 
 Now that you are familiar with transaction types and the information that constitutes a block, explore the following topics to learn more.
 
-- [Transaction lifecycle](/main-docs/fundamentals/transaction-lifecycle/)
-- [State transitions and storage](/main-docs/fundamentals/state-transitions-and-storage/)
-- [Transactions, weights, and fees](/main-docs/build/tx-weights-fees/)
+- [Transaction lifecycle](/fundamentals/transaction-lifecycle/)
+- [State transitions and storage](/fundamentals/state-transitions-and-storage/)
+- [Transactions, weights, and fees](/build/tx-weights-fees/)
 - [Transaction format](/reference/transaction-format/)
 - [Block reference](https://paritytech.github.io/substrate/master/sp_runtime/traits/trait.Block.html)
