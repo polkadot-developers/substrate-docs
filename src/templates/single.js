@@ -9,6 +9,7 @@ import Sidebar from '../components/layout/Sidebar';
 import Layout from '../components/site/Layout';
 import NavSidebar from '../components/site/NavSidebar';
 import MobileNavigation from '../components/site/NavSidebar/MobileNavigation';
+import ModalButton from '../components/site/Search/ModalButton';
 import SEO from '../components/site/SEO';
 import TableOfContents from '../components/site/TableOfContents';
 import EditOnGithubButton from '../components/ui/EditOnGithubButton';
@@ -59,9 +60,12 @@ export default function DocsSinglePage({ data, pageContext }) {
     <Layout>
       <SEO title={title} description={description} excerpt={excerpt} />
       <div className="flex flex-col lg:flex-row">
-        <Sidebar currentPath={pagePath}>
-          <NavSidebar currentPath={pagePath} />
-        </Sidebar>
+        <div className="z-50 flex-col pt-6 pl-5 pr-5 pb-2 sticky top-16 hidden lg:inline-block lg:flex-none lg:bg-substrateGray-light lg:dark:bg-substrateDark border-r border-gray-200 dark:border-gray-700 h-full">
+          <ModalButton />
+          <Sidebar currentPath={pagePath}>
+            <NavSidebar currentPath={pagePath} />
+          </Sidebar>
+        </div>
         <MobileNavigation className="hidden" currentPath={pagePath} />
         {/* <DocsSingle collection={collection} /> */}
         <div className="flex flex-col">
@@ -84,7 +88,7 @@ export default function DocsSinglePage({ data, pageContext }) {
                     </span>
                   ))}
                 </div>
-                <div className="flex sm:mb-0 xs:mb-5">
+                <div className="flex sm:mb-0 xs:mb-5 z-10">
                   <EditOnGithubButton
                     link={
                       'https://github.com/substrate-developer-hub/substrate-docs/blob/main/content/md/' +
