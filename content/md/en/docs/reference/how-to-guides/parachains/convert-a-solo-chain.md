@@ -45,7 +45,7 @@ There are, however, a few important differences between the two templates that a
 
 #### Parachain info pallet
 
-Parachain template runtime ([`runtime/Cargo.toml`](https://github.com/substrate-developer-hub/substrate-parachain-template/blob/polkadot-v0.9.26/runtime/Cargo.toml)) has integrated [`parachain-info` pallet](https://paritytech.github.io/cumulus/parachain_info/pallet/index.html) in.
+Parachain template runtime ([`runtime/Cargo.toml`](https://github.com/substrate-developer-hub/substrate-parachain-template/blob/polkadot-v0.9.27/runtime/Cargo.toml)) has integrated [`parachain-info` pallet](https://paritytech.github.io/cumulus/parachain_info/pallet/index.html) in.
 This pallet is designed to inject information about the parachain's registration into its own runtime.
 Currently it just injects the `ParaID` that the chain is registered at.
 This allows the runtime to know which cross-chain messages are intended for it.
@@ -54,7 +54,7 @@ This allows the runtime to know which cross-chain messages are intended for it.
 
 Each parachain must supply a `validate_block` function, expressed as a Wasm blob, to the relay chain when registering.
 The node template does not provide this function, but the parachain template does,
-Thanks to cumulus, creating this function for a Substrate runtime is as simple as adding one line of code as shown [at the bottom of the runtime](https://github.com/substrate-developer-hub/substrate-parachain-template/blob/polkadot-v0.9.26/runtime/src/lib.rs#L648-L652):
+Thanks to cumulus, creating this function for a Substrate runtime is as simple as adding one line of code as shown [at the bottom of the runtime](https://github.com/substrate-developer-hub/substrate-parachain-template/blob/polkadot-v0.9.27/runtime/src/lib.rs#L648-L652):
 
 ```rust
 cumulus_pallet_parachain_system::register_validate_block!(
@@ -74,7 +74,7 @@ This is fundamental to Polkadot's architecture and will not change.
 
 #### Service
 
-The collator service ([`node/src/service.rs`](https://github.com/substrate-developer-hub/substrate-parachain-template/blob/polkadot-v0.9.26/node/src/service.rs)) is entirely different from the one of Node template.
+The collator service ([`node/src/service.rs`](https://github.com/substrate-developer-hub/substrate-parachain-template/blob/polkadot-v0.9.27/node/src/service.rs)) is entirely different from the one of Node template.
 While you can find similarities, the structure of the service is much different.
 This new service is the primary change that cumulus provides.
 

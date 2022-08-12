@@ -17,7 +17,7 @@ This pallet will contain a single function called `add_value`, that takes an ori
 
 Inside `pallet-testing/src`, the first thing we need to do is create two empty files: `mock.rs` and `tests.rs`.
 
-Paste in the contents from [`template/src/mock.rs`](https://github.com/substrate-developer-hub/substrate-node-template/blob/polkadot-v0.9.26/pallets/template/src/mock.rs).
+Paste in the contents from [`template/src/mock.rs`](https://github.com/substrate-developer-hub/substrate-node-template/blob/polkadot-v0.9.27/pallets/template/src/mock.rs).
 We'll use this as boilerplate which we'll customize for our `pallet-testing` pallet.
 
 ## Create a mock runtime to test your pallet

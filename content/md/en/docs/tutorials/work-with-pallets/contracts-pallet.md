@@ -17,11 +17,11 @@ This tutorial focuses less on those common patterns and more on the the settings
 
 Before starting this tutorial, verify the following:
 
-- You have downloaded and compiled the `polkadot-v0.9.26` version of the
-  [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template/tree/polkadot-v0.9.26).
+- You have downloaded and compiled the `polkadot-v0.9.27` version of the
+  [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template/tree/polkadot-v0.9.27).
 
 - You have downloaded and installed the
-  [Substrate front-end template](https://github.com/substrate-developer-hub/substrate-node-template/tree/polkadot-v0.9.26) as described in
+  [Substrate front-end template](https://github.com/substrate-developer-hub/substrate-node-template/tree/polkadot-v0.9.27) as described in
   [Build a local blockchain](/tutorials/get-started/build-local-blockchain/).
 
 ## Add the pallet dependencies
@@ -42,7 +42,7 @@ To import the `pallet-contracts` crate:
    For example, add a line similar to the following:
 
    ```toml
-   pallet-contracts = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
+   pallet-contracts = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.27" }
    ```
 
 1. Import the `pallet-contracts-primitives` crate to make it available to the node template runtime by adding it to the list of dependencies.
@@ -52,7 +52,7 @@ To import the `pallet-contracts` crate:
    For example, if the compiler found version 6.0.0 for the `pallet-contracts-primitives` crate:
 
    ```toml
-   pallet-contracts-primitives = { version = "6.0.0", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
+   pallet-contracts-primitives = { version = "6.0.0", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.27" }
    ```
 
 1. Add the Contracts pallet to the list of `std` features so that its features are included when the runtime is built as a platform native binary.
@@ -240,7 +240,7 @@ To expose the Contracts RPC API:
    For example:
 
    ```toml
-   pallet-contracts-rpc-runtime-api = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
+   pallet-contracts-rpc-runtime-api = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.27" }
    ```
 
 1. Add `pallet-contracts-rpc-runtime-api` to the list of `std` features so that its features are included when the runtime is built as a native binary.
@@ -340,8 +340,8 @@ To add the RPC API extension to the outer node:
    For example:
 
    ```toml
-   pallet-contracts = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
-   pallet-contracts-rpc = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
+   pallet-contracts = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.27" }
+   pallet-contracts-rpc = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.27" }
    ```
 
    Because you have exposed the runtime API and are now working in code for the outer node, you don't need to use `no_std` configuration, so you don't have to maintain a dedicated `std` list of features.

@@ -69,10 +69,10 @@ To compile the Substrate node template:
    git clone https://github.com/substrate-developer-hub/substrate-node-template
    ```
 
-1. Change to the root of the node template directory and checkout the `polkadot-v0.9.26` branch by running the following command:
+1. Change to the root of the node template directory and checkout the `polkadot-v0.9.27` branch by running the following command:
 
    ```bash
-   cd substrate-node-template && git checkout polkadot-v0.9.26
+   cd substrate-node-template && git checkout polkadot-v0.9.27
    ```
 
 1. Compile the node template by running the following command:
