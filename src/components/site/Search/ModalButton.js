@@ -21,9 +21,7 @@ function ModalButton() {
       >
         <Icon name="search" className="h-4 w-4 fill-current text-substrateDark dark:text-white" />
         {'   '}
-        <p className="mb-0 pr-4 ml-2 text-substrateDark dark:text-white dark:text-opacity-90">
-          Search documentation...
-        </p>
+        <p className="mb-0 pr-4 ml-2 text-substrateDark dark:text-white dark:text-opacity-90">Search documentation</p>
       </button>
       {isComponentVisible && <SearchModal id={ref} closeModal={setIsComponentVisible} />}
     </>
