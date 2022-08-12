@@ -80,13 +80,23 @@ When starting any Substrate node, these two endpoints are available to you:
 Most of the Substrate front-end libraries and tools use the WebSocket endpoint to interact with the blockchain.
 Through the WebSocket endpoint, you can subscribe to the chain states, such as events, and receive push notifications whenever changes in your blockchain occur.
 
-To call the `Metadata` endpoint, run this command alongside a running node:
+To call the `Metadata` endpoint:
 
-```bash
-curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "state_getMetadata"}' http://localhost:9933/
-```
+1. Open a terminal shell and change to the root directory for the Substrate node template.
 
-The return value of this command is not in human-readable format. 
+1. Start the node locally in development mode by running the following command:
+   
+   ```bash
+   ./target/release/node-template --dev
+   ```
+
+2. Connect to the local node and call the state_getMetadata endpoint by running the following command:
+   
+   ```bash
+   curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "state_getMetadata"}' http://localhost:9933/
+   ```
+   
+   This command returns the metadata in raw bytes rather than a human-readable format. 
 For the return value to be human-readable, you can decode it using SCALE codec.
 For more information about encoding and decoding information, see [Type encoding (SCALE)](/reference/scale-codec/).
 
