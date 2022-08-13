@@ -431,7 +431,7 @@ To insert keys into the keystore:
       --base-path /tmp/node01 \
       --chain customSpecRaw.json \
       --scheme Ed25519 \
-      --suri <your-secret-key> \
+      --suri <your-secret-seed> \
       --password-interactive \
       --key-type gran
    ```
