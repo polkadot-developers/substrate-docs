@@ -187,7 +187,7 @@ Alternatively, you can open same URL (`http://localhost:9615/metrics`) in a brow
 After you start Grafana, you can navigate to it in a browser.
 
 1. Open a browser and navigate to the port Grafana uses.
-   By default, the URL is `https://localhost:3000/`.
+   By default, the URL is `http://localhost:3000/`.
 1. Log in using the default user `admin` and password `admin` and navigate to the data sources page at `localhost:3000/datasources`.
 
 You then need to select a `Prometheus` data source type and specify where Grafana needs to look for it.
