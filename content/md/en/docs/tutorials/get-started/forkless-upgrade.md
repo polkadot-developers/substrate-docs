@@ -52,7 +52,7 @@ However, the `set_code` function is intentionally designed to consume the maximu
 Forcing a runtime upgrade to consume an entire block prevents transactions in the same block from executing on different versions of a runtime.
 
 The weight annotation for the `set_code` function also specifies that the function is in the `Operational` class because it provides network capabilities.
-Functions calls that are identified as operational:
+Function calls that are identified as operational:
 
 - Can consume the entire weight limit of a block.
 - Are given maximum priority.
