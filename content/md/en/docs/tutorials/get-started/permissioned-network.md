@@ -468,7 +468,7 @@ If your nodes are not on the same local network, you should use the command-line
 
 ### Add a sub-node
 
-The fourth node in this network is not as a well-known node.
+The fourth node in this network is not a well-known node.
 This node is owned by the user `dave`, but is a sub-node of the `charlie` node.
 The sub-node can only access the network by connecting to the node owned by `charlie`.
 The parent node is responsible for any sub-node it authorizes to connect and controls access if the sub-node needs to be removed or audited.
