@@ -117,7 +117,7 @@ Because the Substrate runtime compiles to both a native Rust binary that include
 For general information about adding dependencies in `Cargo.toml` files, see [Dependencies](https://doc.rust-lang.org/cargo/guide/dependencies.html) in the Cargo documentation.
 For information about enabling and managing features from dependent packages, see [Features](https://doc.rust-lang.org/cargo/reference/features.html) in the Cargo documentation.
 
-### Add note-authorization dependencies
+### Add node-authorization dependencies
 
 To add the `node-authorization` pallet to the Substrate runtime:
 
