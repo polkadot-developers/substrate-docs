@@ -151,7 +151,7 @@ To add the `node-authorization` pallet to the Substrate runtime:
    ]
    ```
 
-   This section specifies the default feature set to compile for this runtime is the `std` features set.
+   This section specifies the default feature set to compile for this runtime is the `std` feature set.
    When the runtime is compiled using the `std` feature set, the `std` features from all of the pallets listed as dependencies are enabled.
    For more detailed information about how the runtime is compiled as a native Rust binary with the standard library and as a WebAssembly binary using the `no_std` attribute, see [Building the runtime](/main-docs/build/build-process/).
 
