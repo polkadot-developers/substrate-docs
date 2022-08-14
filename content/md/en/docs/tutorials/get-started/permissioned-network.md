@@ -440,7 +440,7 @@ To start the third node:
    --name charlie  \
    --node-key=3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e \
    --port 30335 \
-   --ws-port=9946 \
+   --ws-port 9946 \
    --offchain-worker always
    ```
 
