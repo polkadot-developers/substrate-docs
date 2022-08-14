@@ -462,7 +462,7 @@ owner is Charlie, of course. Note Alice is the valid sudo origin for this call.
 
 After the transaction is included in the block, you should see the `charlie` node is
 connected to the `alice` and `bob` nodes, and starts to sync blocks.
-The three nodes can find each other using the [mDNS](https://paritytech.github.io/substrate/master/sc_network/index.html) discovery mechanism is that is enabled by default in a local network.
+The three nodes can find each other using the [mDNS](https://paritytech.github.io/substrate/master/sc_network/index.html) discovery mechanism that is enabled by default in a local network.
 
 If your nodes are not on the same local network, you should use the command-line option `--no-mdns` to disable it.
 
