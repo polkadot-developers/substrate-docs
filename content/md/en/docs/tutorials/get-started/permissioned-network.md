@@ -452,7 +452,7 @@ To start the third node:
 ### Authorize access for the third node
 
 This tutorial uses the `sudo` pallet for governance.
-Therefore, yu can use the `sudo` pallet to call the `add_well_known_node` function provided by `node-authorization` pallet to add the third node.
+Therefore, you can use the `sudo` pallet to call the `add_well_known_node` function provided by `node-authorization` pallet to add the third node.
 
 Go to **Developer** page, **Sudo** tab, in apps and submit the `nodeAuthorization` -
 `add_well_known_node` call with the peer id in hex of Charlie's node and the
