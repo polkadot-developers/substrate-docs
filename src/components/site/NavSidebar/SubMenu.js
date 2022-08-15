@@ -24,11 +24,11 @@ const SubMenu = ({ pages, currentPath }) => {
                   '!opacity-100 cursor-default': currentPath === page.url,
                 })}
               >
-                <span className="py-2 block">{page.title} </span>
+                <span className="py-2 inline-block">{page.title} </span>
                 {page.pages ? (
                   <svg
                     className={cx(
-                      'mt-1 fill-current text-substrateDark dark:text-white align-middle float-right inline cursor-pointer',
+                      'my-3 fill-current text-substrateDark dark:text-white align-middle float-right inline cursor-pointer',
                       {
                         'fill-substrateBlue': currentPath === page.url,
                         '-rotate-180': isOpen === true,
