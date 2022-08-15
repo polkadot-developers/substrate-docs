@@ -131,7 +131,7 @@ function SearchModal({ id, closeModal }) {
           <SearchResultsContainer results={displayedResults} query={query} setQuery={setQuery} />
         </div>
       </div>
-      <div id="modal-background" className="opacity-25 dark:opacity-90 fixed inset-0 z-40 bg-substrateDark"></div>
+      <div id="modal-background" className="opacity-70 dark:opacity-90 fixed inset-0 z-40 bg-substrateDark"></div>
     </>
   );
 }
