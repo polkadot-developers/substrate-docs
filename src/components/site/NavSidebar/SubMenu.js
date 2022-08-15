@@ -12,13 +12,13 @@ const SubMenu = ({ pages, currentPath }) => {
         return page.url ? (
           <li
             key={index}
-            className={cx('m-0 pb-4 list-none font-medium cursor-pointer', {
+            className={cx('m-0 mb-4 list-none font-medium', {
               'text-substrateDark dark:text-white': currentPath !== page.url,
               'text-substrateBlue': currentPath === page.url,
             })}
           >
             <span onClick={() => setIsOpen(!isOpen)}>
-              <Link to={page.url} className="w-full block">
+              <Link to={page.url} className="w-full block cursor-pointer">
                 {page.title}{' '}
                 {page.pages ? (
                   <svg
