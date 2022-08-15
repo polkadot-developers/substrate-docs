@@ -146,7 +146,7 @@ Presuming you downloaded the binary, `cd` into the working directory and run the
 ./prometheus --config.file prometheus.yml
 ```
 
-leave this process running.
+Leave this process running.
 
 ### Check all Prometheus metrics
 
