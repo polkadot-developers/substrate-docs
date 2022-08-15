@@ -185,7 +185,7 @@ Every pallet has a [Rust **trait**](https://doc.rust-lang.org/book/ch10-02-trait
 The `Config` trait is used to identify the parameters and types that the pallet needs.
 
 Most of the pallet-specific code required to add a pallet is implemented using the `Config` trait.
-You can review what you to need to implement for any pallet by referring to its Rust documentation or the source code for the pallet.
+You can review what you need to implement for any pallet by referring to its Rust documentation or the source code for the pallet.
 For example, to see what you need to implement for the `Config` trait in the node-authorization pallet, you can refer to the Rust documentation for [`pallet_node_authorization::Config`](https://paritytech.github.io/substrate/master/pallet_node_authorization/pallet/trait.Config.html).
 
 To implement the `node-authorization` pallet in your runtime:
