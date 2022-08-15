@@ -25,14 +25,16 @@ export default function TableOfContents({ data, headings }) {
             <div className="mb-5">ON THIS PAGE</div>
             <div className="mt-5 text-left block">
               {headings.map(heading => (
-                <p
-                  key={heading.id}
-                  className={`mb-4 ml-0 text-sm hover:text-substrateBlue dark:hover:text-substrateBlue-light ${
-                    activeId === heading.id && 'text-substrateBlue dark:text-substrateBlue-light'
-                  }`}
-                >
-                  <a href={`#${heading.id}`}>{heading.value}</a>
-                </p>
+                <a href={`#${heading.id}`} key={heading.id}>
+                  <p
+                    className={`mb-4 ml-0 text-sm hover:opacity-100 opacity-80 ${
+                      activeId === heading.id &&
+                      'text-substrateBlue dark:text-substrateBlue-light !opacity-100 cursor-default'
+                    }`}
+                  >
+                    {heading.value}
+                  </p>
+                </a>
               ))}
             </div>
           </div>
