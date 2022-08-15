@@ -127,16 +127,15 @@ docs:
     # pages:
     #   - title: Migrations
     #     url: /docs/main-docs/deploy/migrate/
+    #- title: Maintain
+    #url: /main-docs/maintain/
+    #pages:
     #   - title: Monitor
     #     url: /docs/main-docs/deploy/metrics/
     #   - title: Operate
     #     url: /docs/main-docs/deploy/operate/
-    #   - title: Migrations
-    #- title: Maintain
-    #url: /main-docs/maintain/
-    #pages:
-    #- title: Upgrades
-    #url: /main-docs/maintain/upgrade/
+    #   - title: Upgrades and migration
+    #url: /main-docs/maintain/upgrades-and-migration/
 tutorials:
   title: Tutorials
   url: /tutorials/
@@ -236,7 +235,7 @@ reference:
       url: /reference/runtime-apis/
     - title: FRAME pallets
       url: /reference/frame-pallets/
-    - title: Frame macros
+    - title: FRAME macros
       url: /reference/frame-macros/
     - title: Account data structures
       url: /reference/account-data-structures/
