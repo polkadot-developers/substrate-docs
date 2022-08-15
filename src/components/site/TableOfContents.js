@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import React from 'react';
 
 import useActiveId from '../../hooks/use-active-id';
@@ -27,10 +28,10 @@ export default function TableOfContents({ data, headings }) {
               {headings.map(heading => (
                 <a href={`#${heading.id}`} key={heading.id}>
                   <p
-                    className={`mb-4 ml-0 text-sm hover:opacity-100 opacity-80 ${
-                      activeId === heading.id &&
-                      'text-substrateBlue dark:text-substrateBlue-light !opacity-100 cursor-default'
-                    }`}
+                    className={cx('mb-4 ml-0 text-sm hover:opacity-100 opacity-80', {
+                      'text-substrateBlue dark:text-substrateBlue-light !opacity-100 cursor-default':
+                        activeId === heading.id,
+                    })}
                   >
                     {heading.value}
                   </p>
