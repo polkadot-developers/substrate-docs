@@ -91,8 +91,8 @@ For this demonstration, be sure you have:
    - Select the `clearName` function.
    - Click **Signed** to submit this transaction signed by Bob.
 
-      Because Bob is the owner of this account, the transaction is successful.
-      For Bob to set or remove the nickname for another account, he must call the `forceName` or `killName` function using the `ForceOrigin` that was configured for the pallet.
+     Because Bob is the owner of this account, the transaction is successful.
+     For Bob to set or remove the nickname for another account, he must call the `forceName` or `killName` function using the `ForceOrigin` that was configured for the pallet.
 
 1. With **Extrinsic** selected:
 
@@ -113,9 +113,9 @@ For this demonstration, be sure you have:
 
 ## Use the Root origin to dispatch a call
 
-   The Sudo pallet enables you to dispatch a call using the `Root` origin.
-   In the Nick pallet, the forceName and killName functions must be called using the `Root` origin as specified by the `ForceOrigin` configuration.
-   In the front-end template, you can access the Sudo pallet to dispatch a call using the `Root` origin by clicking **SUDO**.
+The Sudo pallet enables you to dispatch a call using the `Root` origin.
+In the Nick pallet, the forceName and killName functions must be called using the `Root` origin as specified by the `ForceOrigin` configuration.
+In the front-end template, you can access the Sudo pallet to dispatch a call using the `Root` origin by clicking **SUDO**.
 
 For this demonstration, be sure you have:
 
