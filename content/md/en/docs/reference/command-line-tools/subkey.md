@@ -25,7 +25,7 @@ In Substrate-based networks, the `sr25519` encoded keys are used to produce SS58
 
 ## Installation
 
-You can download, install, an compile `subkey` using `cargo` without cloning the full Substrate repository.
+You can download, install, and compile `subkey` using `cargo` without cloning the full Substrate repository.
 However, you must add Substrate build dependencies to your environment before you can install `subkey` as a standalone binary.
 To ensure dependencies are available, you can build the `subkey` binary from a clone of the Substrate repository.
 
