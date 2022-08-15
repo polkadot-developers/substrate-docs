@@ -275,7 +275,7 @@ Keep in mind that this change will _not_ cause all accounts with balances betwee
 cargo build --release -p node-template-runtime
 ```
 
-This will _override_ any previous build artifacts! So if you want to have a copy on hand of your last runtime Wasm build files, be sure to copy them somewhere else."
+This will _override_ any previous build artifacts! So if you want to have a copy on hand of your last runtime Wasm build files, be sure to copy them somewhere else.
 
 ### Upgrade the Runtime
 
