@@ -199,6 +199,6 @@ Refer to [Use custom weights from benchmarking](/reference/how-to-guides/weights
 
 ## Examples
 
-- [Benchmarking](/main-docs/test/benchmark)
+- [Benchmarking](/test/benchmark)
 - [Example pallet: Benchmarks](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/benchmarking.rs)
 - [Example pallet: Weights](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/weights.rs)

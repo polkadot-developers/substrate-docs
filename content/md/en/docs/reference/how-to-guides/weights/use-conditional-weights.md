@@ -7,7 +7,7 @@ keywords:
   - runtime
 ---
 
-Substrate provides a mechanism known as [transaction weighting](/main-docs/build/tx-weights-fees) to quantify the resources consumed while executing a transaction.
+Substrate provides a mechanism known as [transaction weighting](/build/tx-weights-fees) to quantify the resources consumed while executing a transaction.
 Typically, we use the weight functions returned from our benchmarking for this.
 But Substrate also allow us to apply a totally different weight function based on certain condition.
 We will walk through an example in this guide.
@@ -124,6 +124,6 @@ Use the conditional weighting struct on your pallet's extrinsics like this:
 
 ## Related material
 
-- [Benchmarking](/main-docs/test/benchmark)
+- [Benchmarking](/test/benchmark)
 - [Calculate fees](/reference/how-to-guides/weights/calculate-fees)
 - [Use custom weights](/reference/how-to-guides/weights/use-custom-weights)

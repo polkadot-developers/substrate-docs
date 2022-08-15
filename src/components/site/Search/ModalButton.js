@@ -9,17 +9,18 @@ function ModalButton() {
   useEffect(() => {
     isComponentVisible ? (document.body.style.overflow = `hidden`) : (document.body.style.overflow = `unset`);
     isComponentVisible && analytics.track('open_search_modal');
+    const header = document.getElementById('header');
+    isComponentVisible ? (header.style.zIndex = -1) : (header.style.zIndex = 40);
   }, [isComponentVisible]);
   return (
     <>
       <button
         onClick={() => setIsComponentVisible(!isComponentVisible)}
-        className="flex items-center justify-between p-2 border-b-2 border-substrateGray cursor-text active:outline-none w-full"
+        className="flex items-center p-2 pl-4 border font-semibold w-full opacity-75 border-substrateDark dark:border-substrateGray cursor-pointer active:outline-none hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md"
       >
-        <p className="mb-0 pr-4 text-sm text-substrateDark dark:text-white text-opacity-25 dark:text-opacity-90">
-          Search Documentation
-        </p>
         <Icon name="search" className="h-4 w-4 fill-current text-substrateDark dark:text-white" />
+        {'   '}
+        <p className="mb-0 pr-4 ml-2 text-substrateDark dark:text-white dark:text-opacity-90">Search documentation</p>
       </button>
       {isComponentVisible && <SearchModal id={ref} closeModal={setIsComponentVisible} />}
     </>

@@ -10,15 +10,15 @@ import MobileNavigation from '../components/site/NavSidebar/MobileNavigation';
 import ModalButton from '../components/site/Search/ModalButton';
 import TableOfContents from '../components/site/TableOfContents';
 import EditOnGithubButton from '../components/ui/EditOnGithubButton';
-import Feedback from '../components/ui/Feedback';
 import PreviousNextButtons from '../components/ui/PreviousNextButtons';
 
 export default function DocsSinglePage({ data, pageContext }) {
   const { markdownRemark } = data;
   const { htmlAst, tableOfContents, frontmatter, headings, excerpt } = markdownRemark;
   const { title, description } = frontmatter;
-  const { pagePath } = pageContext;
-  const { gitLogLatestDate } = data.markdownRemark.parent.fields != null ? data.markdownRemark.parent.fields : '';
+  const { pagePath /*collection*/ } = pageContext;
+  // const { gitLogLatestDate } = data.markdownRemark.parent.fields != null ? data.markdownRemark.parent.fields : '';
+  //const pagePathNoSlash = pagePath.endsWith('/') ? pagePath.slice(0, -1) : pagePath;
   const relativeFilePath = data.markdownRemark.parent.relativePath;
   function titleize(slug) {
     let words = slug.toLowerCase().replace(/-/g, ' ');
@@ -54,23 +54,21 @@ export default function DocsSinglePage({ data, pageContext }) {
   const previousPage = nextPrevSlugs[index - 1];
 
   return (
-    <Layout showFooterNewsletter={false}>
+    <Layout>
       <SEO title={title} description={description} excerpt={excerpt} />
       <div className="flex flex-col lg:flex-row -mt-12">
-        <Sidebar currentPath={pagePath}>
-          <NavSidebar currentPath={pagePath} />
-        </Sidebar>
+        <div className="z-30 flex-col pt-8 pl-5 pr-5 pb-2 sticky top-16 hidden lg:inline-block lg:flex-none lg:bg-substrateGray-light lg:dark:bg-substrateDark border-r border-gray-200 dark:border-gray-700 h-full">
+          <ModalButton />
+          <Sidebar currentPath={pagePath}>
+            <NavSidebar currentPath={pagePath} />
+          </Sidebar>
+        </div>
         <MobileNavigation className="hidden" currentPath={pagePath} />
         {/* <DocsSingle collection={collection} /> */}
         <div className="flex flex-col">
-          <div className="grid grid-cols-12 gap-1 grid-rows-2 mt-4">
-            <div className="xl:col-start-2 xl:col-end-9 col-start-2 col-end-12">
-              <ModalButton />
-            </div>
-          </div>
           <article className="mb-20 grid grid-cols-12 gap-1 grid-rows-2">
             <div className="xl:col-start-2 xl:col-end-9 col-start-2 col-end-12">
-              <div className="py-8 flex justify-between items-center">
+              <div className="py-8 flex sm:justify-between items-center sm:flex-row xs:flex-col-reverse xs:justify-center">
                 <div className="text-sm font-medium text-substrateGreen dark:text-substrateBlue-light mdx-anchor">
                   {pageContext.breadcrumb.crumbs.map((index, i, crumbs) => (
                     <span key={index.pathname} className="breadcrumb text-substrateDark dark:text-white">
@@ -87,13 +85,13 @@ export default function DocsSinglePage({ data, pageContext }) {
                     </span>
                   ))}
                 </div>
-                <div className="flex justify-end items-center">
+                <div className="flex sm:mb-0 xs:mb-5">
                   <EditOnGithubButton
                     link={
                       'https://github.com/substrate-developer-hub/substrate-docs/blob/main/content/md/' +
                       `${relativeFilePath}`
                     }
-                    text="Edit this page"
+                    text={'Edit this page'}
                   />
                 </div>
               </div>
@@ -107,22 +105,9 @@ export default function DocsSinglePage({ data, pageContext }) {
               </div>
               <footer className="mt-10">
                 <PreviousNextButtons previous={previousPage} next={nextPage} />
-                <div className="py-5 text-sm">
-                  <hr />
-                  <div className="mb-8 text-sm inline-block">
-                    <EditOnGithubButton
-                      link={
-                        'https://github.com/substrate-developer-hub/substrate-docs/blob/main/content/md/' +
-                        `${relativeFilePath}`
-                      }
-                      text={'Last edit: ' + gitLogLatestDate}
-                    />
-                  </div>
-                  <Feedback />
-                </div>
               </footer>
             </div>
-            <div className="hidden xl:block col-start-10 col-end-12">
+            <div className="hidden xl:block col-start-10 col-end-12 sticky top-20 max-h-[calc(100vh)] pb-32">
               <TableOfContents data={tableOfContents} headings={headings} />
             </div>
           </article>

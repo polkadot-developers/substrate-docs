@@ -15,7 +15,7 @@ export default function SearchDocumentation() {
         className="bg-substrateGreen inline-flex items-center relative rounded-md px-8 py-4 text-xl hover:opacity-80"
         onClick={() => setIsComponentVisible(!isComponentVisible)}
       >
-        <span className="font-bold text-white mb-0 mr-4">Search Documentation</span>
+        <span className="font-bold text-white mb-0 mr-4">Search Documentation...</span>
         <Icon name="search" className="h-4 w-4 lg:h-6 lg:w-6 fill-current text-white dark:text-white" />
       </button>
       {isComponentVisible && <SearchModal id={ref} closeModal={setIsComponentVisible} />}

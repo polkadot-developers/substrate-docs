@@ -23,7 +23,7 @@ This tutorial illustrates how you can call these functions using using different
 
 Before you begin, verify the following:
 
-- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/).
+- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
 - You have the Substrate node template installed locally.
 
@@ -52,7 +52,7 @@ The `ForceOrigin` type is used to specify the account that can perform certain o
 For this pallet, the `ForceOrigin` type specifies that account that can set or remove a name for another account.
 Typically, only an account with administrative privileges—such as a root superuser account—can act on behalf of another account.
 In the case of the Nicks pallet, only the owner of an account or the Root account can set or remove a reserved nickname.
-You configured this Root account in the implementation (`impl`) block when you identifies the FRAME System [`Root` origin](https://paritytech.github.io/substrate/master/frame_system/enum.RawOrigin.html#variant.Root) as the `nicks` pallet administrator.
+You configured this Root account in the implementation (`impl`) block when you identified the FRAME System [`Root` origin](https://paritytech.github.io/substrate/master/frame_system/enum.RawOrigin.html#variant.Root) as the `nicks` pallet administrator.
 For example:
 
 ```rust
@@ -108,8 +108,8 @@ For this demonstration, be sure you have:
 
    ![BadOrigin error](/media/images/docs/tutorials/add-a-pallet/badOrigin.png)
 
-   As you can see in the Events, the transaction resulted in a withdrawal from Bob's account as a [fee](/main-docs/build/tx-weights-fees/) for submitting the transaction, but there were no state changes because the `Root` origin didn't submit the transaction.
-   The failure to change state also illustrates the [verify-first-write-last](/main-docs/build/runtime-storage#verify-first-write-last) principle for database reads and writes to ensure only successful operations are committed to disk.
+   As you can see in the Events, the transaction resulted in a withdrawal from Bob's account as a [fee](/build/tx-weights-fees/) for submitting the transaction, but there were no state changes because the `Root` origin didn't submit the transaction.
+   The failure to change state also illustrates the [verify-first-write-last](/build/runtime-storage#verify-first-write-last) principle for database reads and writes to ensure only successful operations are committed to disk.
 
 ## Use the Root origin to dispatch a call
 
@@ -195,6 +195,6 @@ There are several [tutorials](/tutorials/) that can serve as next steps for lear
 
 In addition to tutorials, you might want to explore the following resources to learn more.
 
-- [Privileged calls and origins](/main-docs/build/origins) provides a closer look at the default raw origin types and how to create custom origins.
-- [Events and errors](/main-docs/build/events-errors) xplains how to emit events and errors from the runtime.
+- [Privileged calls and origins](/build/origins) provides a closer look at the default raw origin types and how to create custom origins.
+- [Events and errors](/build/events-errors) explains how to emit events and errors from the runtime.
 - [FRAME pallets](/reference/frame-pallets/) offers an overview of the most commonly-used predefined FRAME pallets.
