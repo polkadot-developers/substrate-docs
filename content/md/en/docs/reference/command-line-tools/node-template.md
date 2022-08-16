@@ -247,7 +247,65 @@ For example, the following command executes the `do_something` function in the `
     --pallet pallet_template \
     --steps 10 \
     --repeat 20 \
-    --output pallets/weight2.rs
+    --list
+```
+
+With the `--list` option, the command displays the following output:
+
+```shell
+pallet, benchmark
+pallet_template, do_something
+```
+
+With the `--steps` and `--repeat` command-line options, the command displays the following benchmarking results:
+
+```shell
+Pallet: "pallet_template", Extrinsic: "do_something", Lowest values: [], Highest values: [], Steps: 10, Repeat: 20
+Raw Storage Info
+========
+Storage: TemplateModule Something (r:0 w:1)
+
+Median Slopes Analysis
+========
+-- Extrinsic Time --
+
+Model:
+Time ~=       12
+    + s        0
+              µs
+
+Reads = 0 + (0 * s)
+Writes = 1 + (0 * s)
+
+Min Squares Analysis
+========
+-- Extrinsic Time --
+
+Data points distribution:
+    s   mean µs  sigma µs       %
+    0      12.4     0.489    3.9%
+   10      12.1       0.3    2.4%
+   20      12.1       0.3    2.4%
+   30      11.8       0.4    3.3%
+   40        12         0    0.0%
+   50      11.9       0.3    2.5%
+   60        12         0    0.0%
+   70      12.2       0.4    3.2%
+   80        12         0    0.0%
+   90        12         0    0.0%
+  100        12         0    0.0%
+
+Quality and confidence:
+param     error
+s             0
+
+Model:
+Time ~=    12.13
+    + s        0
+              µs
+
+Reads = 0 + (0 * s)
+Writes = 1 + (0 * s)
 ```
 
 To measure the average, median, minimum, and maximum execution time per-block and per-extrinsic, you can run the `node-template benchmark overhead` subcommand:
