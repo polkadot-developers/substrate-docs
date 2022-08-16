@@ -9,9 +9,6 @@ function ModalButton() {
   const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false);
   useEffect(() => {
     isComponentVisible && analytics.track('open_search_modal');
-    const header = document.getElementById('headerZindex');
-    !isComponentVisible && (header.style.zIndex = 30);
-    isComponentVisible && (header.style.zIndex = 1);
     isComponentVisible ? (document.body.style.overflow = `hidden`) : (document.body.style.overflow = `unset`);
   }, [isComponentVisible]);
   return (

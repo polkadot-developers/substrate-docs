@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import * as ReactDOM from 'react-dom';
 
 import useLunrIndex from '../../../hooks/use-lunr-index';
 import SearchInput from './SearchInput';
@@ -105,7 +106,7 @@ function SearchModal({ id, closeModal }) {
     console.log(filteredResults);
   }, [searchResults, section]);
 
-  return (
+  return ReactDOM.createPortal(
     <>
       <div
         id="content-container"
@@ -132,7 +133,8 @@ function SearchModal({ id, closeModal }) {
         </div>
       </div>
       <div id="modal-background" className="opacity-70 dark:opacity-90 fixed inset-0 z-40 bg-substrateDark"></div>
-    </>
+    </>,
+    document.querySelector('#modal')
   );
 }
 
