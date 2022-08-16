@@ -108,7 +108,7 @@ To start the local Substrate node:
 
    The terminal should display output similar to this:
 
-   ```bash
+   ```text
    2022-08-16 13:43:58 Substrate Node    
    2022-08-16 13:43:58 ✌️  version 4.0.0-dev-de262935ede    
    2022-08-16 13:43:58 ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2022    
