@@ -60,7 +60,7 @@ export default function DocsSinglePage({ data, pageContext }) {
     <Layout>
       <SEO title={title} description={description} excerpt={excerpt} />
       <div className="flex flex-col lg:flex-row">
-        <div className="z-20 flex-col pt-8 pl-5 pr-5 pb-0 sticky top-16 hidden lg:inline-block lg:flex-none lg:bg-substrateGray-light lg:dark:bg-substrateDark border-r border-gray-200 dark:border-gray-700 h-full">
+        <div className="z-20 flex-col pt-8 pl-5 pr-5 sticky top-16 hidden lg:inline-block lg:flex-none lg:bg-substrateGray-light lg:dark:bg-substrateDark border-r border-gray-200 dark:border-gray-700 h-full">
           <ModalButton />
           <Sidebar currentPath={pagePath}>
             <NavSidebar currentPath={pagePath} />
