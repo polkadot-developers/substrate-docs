@@ -314,6 +314,31 @@ To measure the average, median, minimum, and maximum execution time per-block an
 ./target/release/node-template benchmark overhead
 ```
 
+The command displays output similar to the following:
+
+```shell
+Running 10 warmups...    
+Executing block 100 times    
+Per-block execution overhead [ns]:
+	Total: 81779519
+	Min: 695173, Max: 1522917
+	Average: 817795, Median: 763360, Stddev: 160759.2
+	Percentiles 99th, 95th, 75th: 1443343, 1263935, 814356    
+	Writing weights to "block_weights.rs"    
+Running 10 warmups...    
+Executing block 100 times    
+Building block, this takes some time...    
+Extrinsics per block: 12000    
+Running 10 warmups...    
+Executing block 100 times
+Per-extrinsic execution overhead [ns]:
+	Total: 8955542
+	Min: 85950, Max: 97448
+	Average: 89555, Median: 88348, Stddev: 2713.05
+	Percentiles 99th, 95th, 75th: 97247, 95040, 91733    
+	Writing weights to "extrinsic_weights.rs"
+```
+
 By default, the command executes the benchmark 100 times, generates results, and writes the output to the `block_weights.rs` and `extrinsics_weights.rs` files.
 You can use command-line options to adjust the calculated weight by adding units or by multiplying the average execution time by some factor.
 
@@ -322,6 +347,42 @@ To measure the storage execution time for the Substrate development chain specif
 ```shell
 ./target/release/node-template benchmark storage --state-version 1
 ```
+
+The command displays output similar to the following:
+
+```shell
+Warmup round 1/1    
+Preparing keys from block BlockId::Number(0)    
+Reading 36 keys    
+Time summary [ns]:
+	Total: 478367
+	Min: 8889, Max: 32258
+	Average: 13287, Median: 12580, Stddev: 4189.73
+	Percentiles 99th, 95th, 75th: 32258, 21863, 14563
+Value size summary:
+	Total: 157217
+	Min: 1, Max: 155944
+	Average: 4367, Median: 16, Stddev: 25621.19
+	Percentiles 99th, 95th, 75th: 155944, 82, 80    
+Warmup round 1/1    
+Preparing keys from block BlockId::Number(0)    
+Writing 36 keys    
+Time summary [ns]:
+	Total: 1877401
+	Min: 13476, Max: 665226
+	Average: 52150, Median: 25740, Stddev: 111805.24
+	Percentiles 99th, 95th, 75th: 665226, 252697, 30427
+Value size summary:
+	Total: 157217
+	Min: 1, Max: 155944
+	Average: 4367, Median: 16, Stddev: 25621.19
+	Percentiles 99th, 95th, 75th: 155944, 82, 80    
+Writing weights to "rocksdb_weights.rs"
+```
+
+To get benchmarking information for the `paritydb` database instead of the default `rocksdb` database, use the `--db paritydb` command-line option.
+TO get storage benchmarking information for Polkadot or any other real chain snapshot, use the command-line option `--state-version 0`. 
+For more information about using the benchmark storage subcommand, see [benchmark storage command](https://github.com/paritytech/substrate/tree/master/utils/frame/benchmarking-cli/src/storage#the-benchmark-storage-command).
 
 For more information about how to add benchmarking to the runtime, see [Benchmark](/main-docs/test/benchmark/) and [Add benchmarks](/reference/how-to-guides/weights/add-benchmarks/).
 
