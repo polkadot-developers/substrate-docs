@@ -147,7 +147,7 @@ Use the `node-template benchmark` command to analyze the resources required to e
 You can analyze individual extrinsic calls in specific pallets or all extrinsic calls in all pallets.
 With the `benchmark` subcommand, you can use additional command-line options to test different execution scenarios and compare the results.
 
-Note that you must add the `benchmarks!` macro to the runtime source and compile the node with benchmarking enabled to use the `node-template benchmark` commands.
+Note that you must compile the node with benchmarking enabled to use all subcommands of `node-template benchmark`.
 To compile the node with benchmarking features enabled, run the following command:
 
 ```shell
