@@ -226,7 +226,7 @@ To verify blocks are being finalized:
 
    In these lines, you can see the following information about your blockchain:
 
-   - The first node was started by `alice`.
+   - The second node identity was discovered on the network (`12D3KooWBCbmQovz78Hq7MzPxdx9d1gZzXMsn6HtWj29bW51YUKB`).
    - The node has a one peer (`1 peers`).
    - The nodes have produced some blocks (`best: #3 (0x0c55…d51b)`).
    - The blocks are being finalized (`finalized #1 (0xf086…9847)`).
