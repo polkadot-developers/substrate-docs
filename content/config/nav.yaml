@@ -52,7 +52,7 @@ docs:
       url: /main-docs/install/
       pages:
         - title: Rust toolchain
-          url: /main-docs/install/rust-builds/
+          url: /main-docs/install/rust-toolchain/
         - title: Linux
           url: /main-docs/install/linux/
         - title: macOS
@@ -60,7 +60,7 @@ docs:
         - title: Windows
           url: /main-docs/install/windows/
         - title: Developer tools
-          url: /main-docs/install/other-tools/
+          url: /main-docs/install/developer-tools/
         - title: Troubleshoot Rust issues
           url: /main-docs/install/troubleshooting/
     #- title: Design
