@@ -233,7 +233,19 @@ To verify blocks are being finalized:
 
 1. Verify that you see similar output in the terminal where you started the second node.
 
-1. Shut down both nodes by pressing Control-c in each terminal shell.
+1. Shut down one of the nodes by pressing Control-c in the terminal shell.
+   
+   After you shut down the node, you'll see that the remaining node now has zero peers and has stopped producing blocks.
+   For example:
+
+   ```text
+   2022-08-16 15:53:45 💤 Idle (1 peers), best: #143 (0x8f11…1684), finalized #141 (0x5fe3…5a25), ⬇ 0.8kiB/s ⬆ 0.7kiB/s
+   2022-08-16 15:53:50 💤 Idle (0 peers), best: #143 (0x8f11…1684), finalized #141 (0x5fe3…5a25), ⬇ 83 B/s ⬆ 83 B/s
+   ```  
+
+2. Shut down the second node by pressing Control-c in the terminal shell.
+   
+   Because you started the nodes in development mode—with the `--dev` command-line option—all state is cleared for both nodes.
 
 ## Next steps
 
