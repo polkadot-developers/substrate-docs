@@ -117,7 +117,7 @@ Because the Substrate runtime compiles to both a native Rust binary that include
 For general information about adding dependencies in `Cargo.toml` files, see [Dependencies](https://doc.rust-lang.org/cargo/guide/dependencies.html) in the Cargo documentation.
 For information about enabling and managing features from dependent packages, see [Features](https://doc.rust-lang.org/cargo/reference/features.html) in the Cargo documentation.
 
-### Add note-authorization dependencies
+### Add node-authorization dependencies
 
 To add the `node-authorization` pallet to the Substrate runtime:
 
@@ -185,7 +185,7 @@ Every pallet has a [Rust **trait**](https://doc.rust-lang.org/book/ch10-02-trait
 The `Config` trait is used to identify the parameters and types that the pallet needs.
 
 Most of the pallet-specific code required to add a pallet is implemented using the `Config` trait.
-You can review what you to need to implement for any pallet by referring to its Rust documentation or the source code for the pallet.
+You can review what you need to implement for any pallet by referring to its Rust documentation or the source code for the pallet.
 For example, to see what you need to implement for the `Config` trait in the node-authorization pallet, you can refer to the Rust documentation for [`pallet_node_authorization::Config`](https://paritytech.github.io/substrate/master/pallet_node_authorization/pallet/trait.Config.html).
 
 To implement the `node-authorization` pallet in your runtime:
@@ -452,7 +452,7 @@ To start the third node:
 ### Authorize access for the third node
 
 This tutorial uses the `sudo` pallet for governance.
-Therefore, yu can use the `sudo` pallet to call the `add_well_known_node` function provided by `node-authorization` pallet to add the third node.
+Therefore, you can use the `sudo` pallet to call the `add_well_known_node` function provided by `node-authorization` pallet to add the third node.
 
 Go to **Developer** page, **Sudo** tab, in apps and submit the `nodeAuthorization` -
 `add_well_known_node` call with the peer id in hex of Charlie's node and the
@@ -462,7 +462,7 @@ owner is Charlie, of course. Note Alice is the valid sudo origin for this call.
 
 After the transaction is included in the block, you should see the `charlie` node is
 connected to the `alice` and `bob` nodes, and starts to sync blocks.
-The three nodes can find each other using the [mDNS](https://paritytech.github.io/substrate/master/sc_network/index.html) discovery mechanism is that is enabled by default in a local network.
+The three nodes can find each other using the [mDNS](https://paritytech.github.io/substrate/master/sc_network/index.html) discovery mechanism that is enabled by default in a local network.
 
 If your nodes are not on the same local network, you should use the command-line option `--no-mdns` to disable it.
 
