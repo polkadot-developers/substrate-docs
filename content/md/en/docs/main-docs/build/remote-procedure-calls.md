@@ -9,18 +9,14 @@ keywords:
 Remote procedure calls, or RPC methods, are a way for an external program—for example, a browser or front-end application—to communicate with a Substrate node.
 In general, these methods enable an RPC client to connect to an RPC server endpoint to request some type of service.
 For example, you might use an RPC method to read a stored value, submit a transaction, or request information about the chain a node is connected to.
+
 The most convenient way to access the default [JSON-RPC methods](https://polkadot.js.org/docs/substrate/rpc/) for a Substrate node is through the [Polkadot-JS API](https://polkadot.js.org/docs/api/).
 
 ## Safe and unsafe RPC methods
 
-RPCs can be interfaces to a node's consensus mechanisms, or interfaces with any outside user to submit transactions to the blockchain.
-In all cases, it's important to consider what endpoints RPCs expose.
+It's important to be aware that RPC methods can provide access to core node operations, including consensus and storage, and can also be exposed as public interfaces to allow external users to submit transactions to or retrieve information from the blockchain.
+Therefore, for the security of the blockchain, it's important to consider what different RPC methods expose and whether they should be restricted to running on a local node or made publicly available.
 
-Launch a node and run this command to see a full list of your node's RPC APIs:
-
-```bash
-curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "rpc_methods"}' http://localhost:9933/
-```
 
 ### Public RPC interfaces
 
@@ -75,7 +71,7 @@ Most of the Substrate front-end libraries and tools use the WebSocket endpoint t
 For example, if you use the Polkadot-JS application to connect to a local node or a public chain, your are typically connecting to the WebSocket endpoint.
 WebSocket connections allow for bidirectional communication between the front-end application and the backend node responding to requests.
 However, you can also call RPC methods individually without keeping an open communication channel by connecting to the HTTP endpoint using `curl` commands.
-For example, you can use curl commands to get system information or subscribe to specific chain states to receive notification when there are changes to the block state.
+For example, you can use curl commands to get system information or subscribe to a chain to receive notification when there are specific types of changes to the block state.
 
 To call RPC methods using the HTTP endpoint:
 
@@ -95,7 +91,7 @@ To call RPC methods using the HTTP endpoint:
 
     This command returns a list of the JSON-RPC methods exposed for the local node.
 
-1. Call additional methods using the appropriate method name.
+4. Call additional methods using the appropriate method name.
    
    For example, you can run the following command to get version information about the local node:
 
