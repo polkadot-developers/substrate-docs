@@ -7,17 +7,11 @@ keywords:
 ---
 
 Remote procedure calls, or RPC methods, are a way for an external program—for example, a browser or front-end application—to communicate with a Substrate node.
-In general, these methods enable an RPC client to connect to an RPC server to request some type of service, such as reading a stored value, submitting a transaction, or querying the current consensus authorities.
-You can access many of the [default RPC methods](https://polkadot.js.org/docs/substrate/rpc/) that Substrate exposes directly through the [Polkadot-JS API](https://polkadot.js.org/docs/api/).
-However, you can also add custom RPC methods to your node.
+In general, these methods enable an RPC client to connect to an RPC server endpoint to request some type of service.
+For example, you might use an RPC method to read a stored value, submit a transaction, or request information about the chain a node is connected to.
+The most convenient way to access the default [JSON-RPC methods](https://polkadot.js.org/docs/substrate/rpc/) for a Substrate node is through the [Polkadot-JS API](https://polkadot.js.org/docs/api/).
 
-## RPC extension builder
-
-To connect a custom RPC client to a Substrate node, you must provide a function known as an RPC extension builder.
-This function takes a parameter for whether the node should accept or deny unsafe RPC calls, and returns an [`IoHandler`](https://paritytech.github.io/substrate/master/node_rpc/type.IoHandler.html) that the node needs to create a JSON RPC.
-For more context, read more by looking at the [`RpcExtensionBuilder` trait API](https://paritytech.github.io/substrate/master/sc_service/trait.RpcExtensionBuilder.html) documentation.
-
-## RPC types
+## Safe and unsafe RPC methods
 
 RPCs can be interfaces to a node's consensus mechanisms, or interfaces with any outside user to submit transactions to the blockchain.
 In all cases, it's important to consider what endpoints RPCs expose.
@@ -28,7 +22,7 @@ Launch a node and run this command to see a full list of your node's RPC APIs:
 curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "rpc_methods"}' http://localhost:9933/
 ```
 
-### Public RPCs
+### Public RPC interfaces
 
 Substrate nodes provide the following command-line options that allow you to expose the RPC interfaces publicly:
 
@@ -72,31 +66,51 @@ The information returned by these calls can be useful for testing purposes with 
 
 ## Endpoints
 
-When starting any Substrate node, these two endpoints are available to you:
+When you start a Substrate node locally, there are two endpoints available by default:
 
 - HTTP endpoint: `http://localhost:9933/`
 - WebSocket endpoint: `ws://localhost:9944/`
 
 Most of the Substrate front-end libraries and tools use the WebSocket endpoint to interact with the blockchain.
-Through the WebSocket endpoint, you can subscribe to the chain states, such as events, and receive push notifications whenever changes in your blockchain occur.
+For example, if you use the Polkadot-JS application to connect to a local node or a public chain, your are typically connecting to the WebSocket endpoint.
+WebSocket connections allow for bidirectional communication between the front-end application and the backend node responding to requests.
+However, you can also call RPC methods individually without keeping an open communication channel by connecting to the HTTP endpoint using `curl` commands.
+For example, you can use curl commands to get system information or subscribe to specific chain states to receive notification when there are changes to the block state.
 
-To call the `Metadata` endpoint:
+To call RPC methods using the HTTP endpoint:
 
 1. Open a terminal shell and change to the root directory for the Substrate node template.
 
-1. Start the node locally in development mode by running the following command:
+2. Start the node locally in development mode by running the following command:
    
    ```bash
    ./target/release/node-template --dev
    ```
 
-2. Connect to the local node and call the state_getMetadata endpoint by running the following command:
+3. Connect to the local node and call the `rpc_methods` endpoint by running the following command:
    
    ```bash
-   curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "state_getMetadata"}' http://localhost:9933/
+   curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "rpc_methods"}' http://localhost:9933/
+   ```
+
+    This command returns a list of the JSON-RPC methods exposed for the local node.
+
+1. Call additional methods using the appropriate method name.
+   
+   For example, you can run the following command to get version information about the local node:
+
+   ```bash
+   curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "system_version"}' http://localhost:9933/
    ```
    
-   This command returns the metadata in raw bytes rather than a human-readable format. 
+   In most cases, connecting to the RPC endpoint directly returns JSON-formatted results.
+   For example:
+
+   ```bash
+   {"jsonrpc":"2.0","result":"4.0.0-dev-de262935ede","id":1}
+   ```
+
+   
 For the return value to be human-readable, you can decode it using SCALE codec.
 For more information about encoding and decoding information, see [Type encoding (SCALE)](/reference/scale-codec/).
 
@@ -105,9 +119,16 @@ This is how RPC endpoints know where to look.
 
 ## Examples
 
-### `state_getMetadata`
+### state_getMetadata
 
-RPC request:
+To get metadata for a local node, you can run the following command:
+
+```bash
+curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "state_getMetadata"}' http://localhost:9933/
+```
+
+This command returns the metadata in hex-encoded bytes rather than a human-readable format. 
+The JavaScript for this RPC request looks like this:
 
 ```javascript
 function get_metadata_request(endpoint) {
