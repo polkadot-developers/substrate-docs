@@ -25,7 +25,7 @@ docs:
         - title: Networks and blockchains
           url: /main-docs/fundamentals/node-and-network-types/
         - title: Runtime development
-          url: /main-docs/fundamentals/runtime-intro/
+          url: /main-docs/fundamentals/runtime-development/
         - title: Consensus
           url: /main-docs/fundamentals/consensus/
         - title: Transactions and block basics

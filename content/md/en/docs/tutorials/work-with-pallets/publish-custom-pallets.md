@@ -67,7 +67,7 @@ After you publish the pallet, other developers can import into their runtime by 
 
 ## Where to go next
 
-- [Runtime development](/main-docs/fundamentals/runtime-intro/)
+- [Runtime development](/main-docs/fundamentals/runtime-development/)
 - [Custom pallets](/main-docs/build/custom-pallets/)
 - [Use macros in a custom pallet](/tutorials/work-with-pallets/use-macros-in-a-custom-pallet/)
 - [How-to: Import a pallet](/reference/how-to-guides/basics/import-a-pallet/).
