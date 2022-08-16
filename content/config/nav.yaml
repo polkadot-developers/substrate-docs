@@ -104,7 +104,7 @@ docs:
         - title: Privileged calls and origins
           url: /main-docs/build/origins/
         - title: Remote procedure calls
-          url: /main-docs/build/custom-rpc/
+          url: /main-docs/build/remote-procedure-calls/
         - title: Application development
           url: /main-docs/build/application-dev/
         - title: Upgrade the runtime
