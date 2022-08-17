@@ -1,5 +1,13 @@
 ---
 title: Get started
+description: Tutorials give you hands-on experience building a Substrate blockchain, adding features, submitting simple transactions, and observing node operations.
+keywords:
+  - blockchain
+  - node
+  - metrics
+  - validators
+  - private networks
+  - generate keys
 ---
 
 The **Get started** tutorials illustrate the basics for working with Substrate-based blockchain nodes, including how to make nodes communicate with each other in a network of peers and how to collect metrics about node operations.
