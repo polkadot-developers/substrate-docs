@@ -108,7 +108,7 @@ The parachain collator node also has a command to produce this Wasm blob:
 
 ## Generate a parachain genesis state
 
-To register a parachain, the relay chain needs to know the parachain's [genesis state](/main-docs/build/chain-spec#the-genesis-state).
+To register a parachain, the relay chain needs to know the parachain's [genesis state](/build/chain-spec#the-genesis-state).
 The collator node can export that state to a file.
 Go to your Parachain Template folder, the following command will create a file containing the parachain's entire genesis state, hex-encoded:
 

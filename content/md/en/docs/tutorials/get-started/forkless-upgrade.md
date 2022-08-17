@@ -19,7 +19,7 @@ This tutorial illustrates how to perform forkless upgrades by deploying the foll
 
 Before you begin, verify the following:
 
-- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/).
+- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
 - You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and have the Substrate node template installed locally.
 
@@ -232,7 +232,7 @@ Next up, we will:
 
 ## Schedule an Upgrade
 
-Now that the node template has been upgraded to include the Scheduler pallet, [the `schedule` function](https://paritytech.github.io/substrate/master/pallet_scheduler/pallet/enum.Call.html#variant.schedule) can be used to perform the next runtime upgrade. In the previous part, the `sudo_unchecked_weight` function was used to override the weight associated with the `set_code` function; in this section, the runtime upgrade will be _scheduled_ so that it can be processed as the only [extrinsic](/main-docs/fundamentals/transaction-types) in a block.
+Now that the node template has been upgraded to include the Scheduler pallet, [the `schedule` function](https://paritytech.github.io/substrate/master/pallet_scheduler/pallet/enum.Call.html#variant.schedule) can be used to perform the next runtime upgrade. In the previous part, the `sudo_unchecked_weight` function was used to override the weight associated with the `set_code` function; in this section, the runtime upgrade will be _scheduled_ so that it can be processed as the only [extrinsic](/fundamentals/transaction-types) in a block.
 
 ### Prepare an Upgraded Runtime
 
@@ -298,7 +298,7 @@ You can then observe the specific changes that were made in the upgrade by using
 
 ## Where to go next
 
-- [Storage migrations](/main-docs/build/upgrade/#storage-migration)
+- [Storage migrations](/build/upgrade/#storage-migration)
   <!-- TODO NAV.YAML -->
   <!-- add  back ABOVE -->
   <!-- - [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/) -->

@@ -214,7 +214,7 @@ For example, you can use the following options with the `node-template benchmark
 | `--no-storage-info` | Disables the display of storage information in the analysis output. This is independent of the storage information appearing in the *output file*. Use a Handlebar template for that purpose.
 | `--no-verify` | Disables verification logic when running benchmarks.
 | `--output <output>` | Outputs the benchmarks to a Rust file at the given path.
-| `--output-analysis <analysis-type> ` | Specifies the analysis function to use in the benchmark output. Valid vales are `min-squares`, `median-slopes`, or `max`. The default is the `min-squares` analysis. For more information about benchmarking analysis, see [Benchmark](/main-docs/test/benchmark/).
+| `--output-analysis <analysis-type> ` | Specifies the analysis function to use in the benchmark output. Valid vales are `min-squares`, `median-slopes`, or `max`. The default is the `min-squares` analysis. For more information about benchmarking analysis, see [Benchmark](/test/benchmark/).
 | `-p`, `--pallet <pallet>` | Specifies the FRAME pallet to benchmark, or `*` to benchmark all pallets. If you benchmark all pallets, you must also specify `--extrinsic *` to benchmark all extrinsic calls.
 | `--record-proof` | Estimates the proof-of-validation (PoV) size.
 | `-r`, `--repeat <repeat>` | Specifies the number of times to repeat the execution of a benchmark from within the WebAssembly binary. The default is one execution.
@@ -384,7 +384,7 @@ To get benchmarking information for the `paritydb` database instead of the defau
 TO get storage benchmarking information for Polkadot or any other real chain snapshot, use the command-line option `--state-version 0`. 
 For more information about using the benchmark storage subcommand, see [benchmark storage command](https://github.com/paritytech/substrate/tree/master/utils/frame/benchmarking-cli/src/storage#the-benchmark-storage-command).
 
-For more information about how to add benchmarking to the runtime, see [Benchmark](/main-docs/test/benchmark/) and [Add benchmarks](/reference/how-to-guides/weights/add-benchmarks/).
+For more information about how to add benchmarking to the runtime, see [Benchmark](/test/benchmark/) and [Add benchmarks](/reference/how-to-guides/weights/add-benchmarks/).
 
 ## build-spec
 
