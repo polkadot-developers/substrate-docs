@@ -59,7 +59,7 @@ For example:
 type ForceOrigin = frame_system::EnsureRoot<AccountId>;
 ```
 
-In the development [chain specification](https://github.com/substrate-developer-hub/substrate-node-template/blob/latest/node/src/chain_spec.rs) for the node template, the [Sudo pallet](/rustdocs/latest/pallet_sudo/index.html) is configured to use the Alice account as the FRAME system `Root` origin.
+In the development [chain specification](https://github.com/substrate-developer-hub/substrate-node-template/blob/main/node/src/chain_spec.rs) for the node template, the [Sudo pallet](https://paritytech.github.io/substrate/master/pallet_sudo/index.html) is configured to use the Alice account as the FRAME system `Root` origin.
 As a result of this configuration, by default, only the Alice account can call the functions that require the `ForceOrigin` type.
 
 If you attempt to call the `kill_name` or `force_name` with an account other than the Alice account, the call will fail to be executed.
