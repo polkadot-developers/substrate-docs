@@ -19,7 +19,7 @@ This tutorial illustrates how to perform forkless upgrades by deploying the foll
 
 Before you begin, verify the following:
 
-- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/).
+- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
 - You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and have the Substrate node template installed locally.
 
@@ -52,7 +52,7 @@ However, the `set_code` function is intentionally designed to consume the maximu
 Forcing a runtime upgrade to consume an entire block prevents transactions in the same block from executing on different versions of a runtime.
 
 The weight annotation for the `set_code` function also specifies that the function is in the `Operational` class because it provides network capabilities.
-Functions calls that are identified as operational:
+Function calls that are identified as operational:
 
 - Can consume the entire weight limit of a block.
 - Are given maximum priority.
@@ -232,7 +232,7 @@ Next up, we will:
 
 ## Schedule an Upgrade
 
-Now that the node template has been upgraded to include the Scheduler pallet, [the `schedule` function](https://paritytech.github.io/substrate/master/pallet_scheduler/pallet/enum.Call.html#variant.schedule) can be used to perform the next runtime upgrade. In the previous part, the `sudo_unchecked_weight` function was used to override the weight associated with the `set_code` function; in this section, the runtime upgrade will be _scheduled_ so that it can be processed as the only [extrinsic](/main-docs/fundamentals/transaction-types) in a block.
+Now that the node template has been upgraded to include the Scheduler pallet, [the `schedule` function](https://paritytech.github.io/substrate/master/pallet_scheduler/pallet/enum.Call.html#variant.schedule) can be used to perform the next runtime upgrade. In the previous part, the `sudo_unchecked_weight` function was used to override the weight associated with the `set_code` function; in this section, the runtime upgrade will be _scheduled_ so that it can be processed as the only [extrinsic](/fundamentals/transaction-types) in a block.
 
 ### Prepare an Upgraded Runtime
 
@@ -275,7 +275,7 @@ Keep in mind that this change will _not_ cause all accounts with balances betwee
 cargo build --release -p node-template-runtime
 ```
 
-This will _override_ any previous build artifacts! So if you want to have a copy on hand of your last runtime Wasm build files, be sure to copy them somewhere else."
+This will _override_ any previous build artifacts! So if you want to have a copy on hand of your last runtime Wasm build files, be sure to copy them somewhere else.
 
 ### Upgrade the Runtime
 
@@ -298,7 +298,7 @@ You can then observe the specific changes that were made in the upgrade by using
 
 ## Where to go next
 
-- [Storage migrations](/main-docs/build/upgrade/#storage-migration)
+- [Storage migrations](/build/upgrade/#storage-migration)
   <!-- TODO NAV.YAML -->
   <!-- add  back ABOVE -->
   <!-- - [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/) -->

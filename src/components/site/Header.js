@@ -10,7 +10,6 @@ import DocsButton from './DocsButton';
 import NavMain from './NavMain';
 import NavMobile from './NavMobile';
 //import SearchForm from './SearchForm';
-import ModalButton from './Search/ModalButton';
 import ThemeToggle from './ThemeToggle';
 
 const Header = ({ mode, header }) => {
@@ -33,7 +32,8 @@ const Header = ({ mode, header }) => {
 
   return (
     <header
-      className={cx('sticky top-0 z-40 border-b border-gray-200 dark:border-substrateDarkThemeGrey', {
+      id="headerZindex"
+      className={cx('sticky z-30 top-0 border-b border-gray-200 dark:border-substrateDarkThemeGrey', {
         'border-transparent dark:border-transparent': mode === 'full' && !isScrolled,
         'bg-transparent transition-colors': header === 'home' && !isScrolled,
         'bg-white dark:bg-substrateDarkest': header === 'default' || (header === 'home' && isScrolled),
@@ -62,13 +62,6 @@ const Header = ({ mode, header }) => {
               <NavMain header={header} isScrolled={isScrolled} />
             </div>
             <div className=" w-1/2 flex items-center justify-end">
-              {mode != 'full' ? (
-                <div>
-                  <ModalButton />
-                </div>
-              ) : (
-                ''
-              )}
               <div className="pl-8 pr-6">
                 <DocsButton />
               </div>

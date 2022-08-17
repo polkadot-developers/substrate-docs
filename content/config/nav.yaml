@@ -1,6 +1,9 @@
 menu:
   - quick-start
-  - docs
+  - fundamentals
+  - install
+  - build
+  - test
   - tutorials
   - reference
   - community
@@ -9,133 +12,142 @@ quick-start:
   title: Quick start
   url: /quick-start/
 
-docs:
-  title: Docs
-  url: /main-docs/
+fundamentals:
+  title: Fundamentals
+  url: /fundamentals/
   pages:
-    - title: Fundamentals
-      url: /main-docs/fundamentals/
-      pages:
-        - title: Blockchain basics
-          url: /main-docs/fundamentals/blockchain-basics/
-        - title: Why Substrate?
-          url: /main-docs/fundamentals/why-substrate/
-        - title: Architecture
-          url: /main-docs/fundamentals/architecture/
-        - title: Networks and blockchains
-          url: /main-docs/fundamentals/node-and-network-types/
-        - title: Runtime development
-          url: /main-docs/fundamentals/runtime-intro/
-        - title: Consensus
-          url: /main-docs/fundamentals/consensus/
-        - title: Transactions and block basics
-          url: /main-docs/fundamentals/transaction-types/
-        - title: Transaction lifecycle
-          url: /main-docs/fundamentals/transaction-lifecycle/
-        # - title: Block import pipeline
-        # url: /main-docs/fundamentals/block-import/
-        # - title: Extrinsics
-        # url: /main-docs/fundamentals/extrinsics/
-        # - title: Execution
-        # url: /main-docs/fundamentals/execution/
-        # - title: Runtimes and clients
-        # url: /main-docs/fundamentals/runtimes-and-clients/
-        - title: State transitions and storage
-          url: /main-docs/fundamentals/state-transitions-and-storage/
-        - title: Accounts, addresses, and keys
-          url: /main-docs/fundamentals/accounts-addresses-keys/
-        - title: Rust for Substrate
-          url: /main-docs/fundamentals/rust-basics/
-        - title: Offchain operations
-          url: /main-docs/fundamentals/offchain-operations/
-    - title: Install
-      url: /main-docs/install/
-      pages:
-        - title: Rust toolchain
-          url: /main-docs/install/rust-builds/
-        - title: Linux
-          url: /main-docs/install/linux/
-        - title: macOS
-          url: /main-docs/install/macos/
-        - title: Windows
-          url: /main-docs/install/windows/
-        - title: Developer tools
-          url: /main-docs/install/other-tools/
-        - title: Troubleshoot Rust issues
-          url: /main-docs/install/troubleshooting/
-    #- title: Design
-    #url: /main-docs/design/
-    #pages:
-    #- title: Applications
-    #url: /main-docs/design/applications/
-    #- title: Execution
-    #url: /main-docs/design/execution/
-    #- title: Runtimes and clients
-    #url: /main-docs/design/runtimes-and-clients/
-    #- title: Pallet design
-    #url: /main-docs/design/pallet-design/
-    #- title: Smart contract pallets
-    #url: /main-docs/design/smart-contract-pallets/
-    #- title: Storage design decisions
-    #url: /main-docs/design/storage-design/
-    #- title: Economic models
-    #url: /main-docs/design/economic-models/
-    - title: Build
-      url: /main-docs/build/
-      pages:
-        - title: Introduction to libraries
-          url: /main-docs/build/libraries/
-        - title: Build process
-          url: /main-docs/build/build-process/
-        - title: Runtime storage
-          url: /main-docs/build/runtime-storage/
-        - title: Transactions, weights, and fees
-          url: /main-docs/build/tx-weights-fees/
-        - title: Custom pallets
-          url: /main-docs/build/custom-pallets/
-        - title: Pallet coupling
-          url: /main-docs/build/pallet-coupling/
-        - title: Events and errors
-          url: /main-docs/build/events-errors/
-        - title: Randomness
-          url: /main-docs/build/randomness/
-        - title: Chain specification
-          url: /main-docs/build/chain-spec/
-        - title: Privileged calls and origins
-          url: /main-docs/build/origins/
-        - title: Remote procedure calls
-          url: /main-docs/build/custom-rpc/
-        - title: Application development
-          url: /main-docs/build/application-dev/
-        - title: Upgrade the runtime
-          url: /main-docs/build/upgrade/
-        #- title: Best practices
-        #url: /main-docs/build/best-practices/
-        #- title: Executor
-        #url: /main-docs/build/executor/
-    - title: Test
-      url: /main-docs/test/
-      pages:
-        - title: Unit test
-          url: /main-docs/test/unit-testing/
-        - title: Debug
-          url: /main-docs/test/debug/
-        - title: Benchmark
-          url: /main-docs/test/benchmark/
-    #- title: Deploy
-    #url: /main-docs/deploy/
-    # pages:
-    #   - title: Migrations
-    #     url: /docs/main-docs/deploy/migrate/
-    #- title: Maintain
-    #url: /main-docs/maintain/
-    #pages:
-    #   - title: Monitor
-    #     url: /docs/main-docs/deploy/metrics/
-    #   - title: Operate
-    #     url: /docs/main-docs/deploy/operate/
-    #   - title: Upgrades and migration
-    #url: /main-docs/maintain/upgrades-and-migration/
+    - title: Blockchain basics
+      url: /fundamentals/blockchain-basics/
+    - title: Why Substrate?
+      url: /fundamentals/why-substrate/
+    - title: Architecture
+      url: /fundamentals/architecture/
+    - title: Networks and blockchains
+      url: /fundamentals/node-and-network-types/
+    - title: Runtime development
+      url: /fundamentals/runtime-intro/
+    - title: Consensus
+      url: /fundamentals/consensus/
+    - title: Transactions and block basics
+      url: /fundamentals/transaction-types/
+    - title: Transaction lifecycle
+      url: /fundamentals/transaction-lifecycle/
+    # - title: Block import pipeline
+    # url: /fundamentals/block-import/
+    # - title: Extrinsics
+    # url: /fundamentals/extrinsics/
+    # - title: Execution
+    # url: /fundamentals/execution/
+    # - title: Runtimes and clients
+    # url: /fundamentals/runtimes-and-clients/
+    - title: State transitions and storage
+      url: /fundamentals/state-transitions-and-storage/
+    - title: Accounts, addresses, and keys
+      url: /fundamentals/accounts-addresses-keys/
+    - title: Rust for Substrate
+      url: /fundamentals/rust-basics/
+    - title: Offchain operations
+      url: /fundamentals/offchain-operations/
+
+install:
+  title: Install
+  url: /install/
+  pages:
+    - title: Rust toolchain
+      url: /install/rust-builds/
+    - title: Linux
+      url: /install/linux/
+    - title: macOS
+      url: /install/macos/
+    - title: Windows
+      url: /install/windows/
+    - title: Developer tools
+      url: /install/other-tools/
+    - title: Troubleshoot Rust issues
+      url: /install/troubleshooting/
+  #- title: Design
+  #url: /design/
+  #pages:
+  #- title: Applications
+  #url: /design/applications/
+  #- title: Execution
+  #url: /design/execution/
+  #- title: Runtimes and clients
+  #url: /design/runtimes-and-clients/
+  #- title: Pallet design
+  #url: /design/pallet-design/
+  #- title: Smart contract pallets
+  #url: /design/smart-contract-pallets/
+  #- title: Storage design decisions
+  #url: /design/storage-design/
+  #- title: Economic models
+  #url: /design/economic-models/
+build:
+  title: Build
+  url: /build/
+  pages:
+    - title: Introduction to libraries
+      url: /build/libraries/
+    - title: Build process
+      url: /build/build-process/
+    - title: Runtime storage
+      url: /build/runtime-storage/
+    - title: Transactions, weights, and fees
+      url: /build/tx-weights-fees/
+    - title: Custom pallets
+      url: /build/custom-pallets/
+    - title: Pallet coupling
+      url: /build/pallet-coupling/
+    - title: Events and errors
+      url: /build/events-errors/
+    - title: Randomness
+      url: /build/randomness/
+    - title: Chain specification
+      url: /build/chain-spec/
+    - title: Privileged calls and origins
+      url: /build/origins/
+    - title: Remote procedure calls
+      url: /build/custom-rpc/
+    - title: Application development
+      url: /build/application-dev/
+    - title: Upgrade the runtime
+      url: /build/upgrade/
+    #- title: Best practices
+    #url: /build/best-practices/
+    #- title: Executor
+    #url: /build/executor/
+
+test:
+  title: Test
+  url: /test/
+  pages:
+    - title: Unit test
+      url: /test/unit-testing/
+    - title: Debug
+      url: /test/debug/
+    - title: Benchmark
+      url: /test/benchmark/
+#- title: Deploy
+#url: /deploy/
+# pages:
+#   - title: Deploy a solo chain
+#     url: /docs/deploy/deploy-a-solo-chain/
+#   - title: Deploy on a test network
+#     url: /docs/deploy/deploy-on-a-test-network/
+#   - title: Deploy a parathread
+#     url: /docs/deploy/deploy-a-parathread/
+#   - title: Deploy a parachain
+#     url: /docs/deploy/deploy-a-parachain/
+#- title: Maintain
+#url: /maintain/
+#pages:
+#   - title: Monitor
+#     url: /docs/main-docs/deploy/metrics/
+#   - title: Operate
+#     url: /docs/main-docs/deploy/operate/
+#   - title: Upgrades and migration
+#     url: /main-docs/maintain/upgrades-and-migration/
+
 tutorials:
   title: Tutorials
   url: /tutorials/
@@ -199,6 +211,7 @@ tutorials:
           url: /tutorials/integrate-with-tools/substrate-connect/
         - title: Access EVM accounts
           url: /tutorials/integrate-with-tools/access-evm-accounts/
+
 reference:
   title: Reference
   url: /reference/
@@ -247,6 +260,7 @@ reference:
       url: /reference/cryptography/
     - title: How-to reference guides
       url: /reference/how-to-guides/
+
 community:
   title: Community
   url: /community/

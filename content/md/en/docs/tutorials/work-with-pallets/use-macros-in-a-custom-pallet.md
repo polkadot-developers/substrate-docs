@@ -34,7 +34,7 @@ This tutorial requires compiling Rust code and takes approximately one to two ho
 
 For this tutorial, you download and use working code. Before you begin, verify the following:
 
-- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/).
+- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
 - You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and have the Substrate node template installed locally.
 
@@ -65,7 +65,7 @@ The proof-of-existence application exposes the following callable functions:
 ## Build a custom pallet
 
 The Substrate node template has a FRAME-based runtime.
-As you learned in [Runtime development](/main-docs/fundamentals/runtime-intro), FRAME is a library of code that allows you to build a Substrate runtime by composing modules called pallets.
+As you learned in [Runtime development](/fundamentals/runtime-intro), FRAME is a library of code that allows you to build a Substrate runtime by composing modules called pallets.
 You can think of the pallets as individual pieces of logic that define what your blockchain can do.
 Substrate provides you with a number of pre-built pallets for use in FRAME-based runtimes.
 

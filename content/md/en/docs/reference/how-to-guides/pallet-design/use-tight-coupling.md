@@ -7,7 +7,7 @@ keywords:
 Tight coupling two pallets is a technique to write pallets that re-use types and methods from an existing pallet.
 
 It is useful for breaking up some runtime logic into separate pallets that need access to common type and methods.
-To learn more about tight coupling and loose coupling between pallets, see [pallet coupling](/main-docs/build/pallet-coupling).
+To learn more about tight coupling and loose coupling between pallets, see [pallet coupling](/build/pallet-coupling).
 
 This guide will show you how to use a method from an exisitng pallet inside your own.
 
@@ -53,5 +53,5 @@ Use the [template pallet](https://github.com/substrate-developer-hub/substrate-n
 
 ## Resources
 
-- [Pallet coupling](/main-docs/build/pallet-coupling)
+- [Pallet coupling](/build/pallet-coupling)
 - [Loosely coupling two pallets](/reference/how-to-guides/pallet-design/use-loose-coupling/)

@@ -48,14 +48,14 @@ For example, you can manipulate the connection between a predefined node and you
 You can't change the connections for predefined nodes.
 They are always allowed to connect with each other.
 
-The `node-authorization` pallet uses an [offchain worker](/main-docs/fundamentals/offchain-operations) to configure its node connections.
+The `node-authorization` pallet uses an [offchain worker](/fundamentals/offchain-operations) to configure its node connections.
 Make sure to enable the offchain worker when you start the node because it is disabled by default for non-authority nodes.
 
 ## Before you begin
 
 Before you begin, verify the following:
 
-- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/).
+- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
 - You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and have the Substrate node template installed locally.
 
@@ -101,7 +101,7 @@ If you have completed previous tutorials, you should have the Substrate node tem
    ```
 
    The node template should compile without any errors.
-   If you encounter issues when you compile, you can try the troubleshooting tips in [Troubleshoot Rust issues](/main-docs/install/troubleshooting/).
+   If you encounter issues when you compile, you can try the troubleshooting tips in [Troubleshoot Rust issues](/install/troubleshooting/).
 
 ## Add the node authorization pallet
 
@@ -117,7 +117,7 @@ Because the Substrate runtime compiles to both a native Rust binary that include
 For general information about adding dependencies in `Cargo.toml` files, see [Dependencies](https://doc.rust-lang.org/cargo/guide/dependencies.html) in the Cargo documentation.
 For information about enabling and managing features from dependent packages, see [Features](https://doc.rust-lang.org/cargo/reference/features.html) in the Cargo documentation.
 
-### Add note-authorization dependencies
+### Add node-authorization dependencies
 
 To add the `node-authorization` pallet to the Substrate runtime:
 
@@ -153,7 +153,7 @@ To add the `node-authorization` pallet to the Substrate runtime:
 
    This section specifies the default feature set to compile for this runtime is the `std` features set.
    When the runtime is compiled using the `std` feature set, the `std` features from all of the pallets listed as dependencies are enabled.
-   For more detailed information about how the runtime is compiled as a native Rust binary with the standard library and as a WebAssembly binary using the `no_std` attribute, see [Building the runtime](/main-docs/build/build-process/).
+   For more detailed information about how the runtime is compiled as a native Rust binary with the standard library and as a WebAssembly binary using the `no_std` attribute, see [Building the runtime](/build/build-process/).
 
    If you forget to update the `features` section in the `Cargo.toml` file, you might see `cannot find function` errors when you compile the runtime binary.
 
@@ -185,7 +185,7 @@ Every pallet has a [Rust **trait**](https://doc.rust-lang.org/book/ch10-02-trait
 The `Config` trait is used to identify the parameters and types that the pallet needs.
 
 Most of the pallet-specific code required to add a pallet is implemented using the `Config` trait.
-You can review what you to need to implement for any pallet by referring to its Rust documentation or the source code for the pallet.
+You can review what you need to implement for any pallet by referring to its Rust documentation or the source code for the pallet.
 For example, to see what you need to implement for the `Config` trait in the node-authorization pallet, you can refer to the Rust documentation for [`pallet_node_authorization::Config`](https://paritytech.github.io/substrate/master/pallet_node_authorization/pallet/trait.Config.html).
 
 To implement the `node-authorization` pallet in your runtime:
@@ -422,7 +422,7 @@ To start the second node:
 ### Add a third node to the list of well-known nodes
 
 You can start the third node with the `--name charlie` command.
-The `node-authorization` pallet uses an [offchain worker](/main-docs/fundamentals/offchain-operations) to configure node connections.
+The `node-authorization` pallet uses an [offchain worker](/fundamentals/offchain-operations) to configure node connections.
 Because the third node is not a well-known node and it will have the fourth node in the network configured as a read-only sub-node, you must include the command line option to enable the offchain worker.
 
 To start the third node:
@@ -452,7 +452,7 @@ To start the third node:
 ### Authorize access for the third node
 
 This tutorial uses the `sudo` pallet for governance.
-Therefore, yu can use the `sudo` pallet to call the `add_well_known_node` function provided by `node-authorization` pallet to add the third node.
+Therefore, you can use the `sudo` pallet to call the `add_well_known_node` function provided by `node-authorization` pallet to add the third node.
 
 Go to **Developer** page, **Sudo** tab, in apps and submit the `nodeAuthorization` -
 `add_well_known_node` call with the peer id in hex of Charlie's node and the
@@ -462,7 +462,7 @@ owner is Charlie, of course. Note Alice is the valid sudo origin for this call.
 
 After the transaction is included in the block, you should see the `charlie` node is
 connected to the `alice` and `bob` nodes, and starts to sync blocks.
-The three nodes can find each other using the [mDNS](https://paritytech.github.io/substrate/master/sc_network/index.html) discovery mechanism is that is enabled by default in a local network.
+The three nodes can find each other using the [mDNS](https://paritytech.github.io/substrate/master/sc_network/index.html) discovery mechanism that is enabled by default in a local network.
 
 If your nodes are not on the same local network, you should use the command-line option `--no-mdns` to disable it.
 
@@ -518,4 +518,4 @@ To learn more about the topics introduced in this tutorial, see the following se
 
 - [Monitor node metrics](/tutorials/get-started/node-metrics/)
 - [Upgrade the runtime](/tutorials/get-started/forkless-upgrade/)
-- [Accounts, addresses, and keys](/main-docs/fundamentals/accounts-addresses-keys)
+- [Accounts, addresses, and keys](/fundamentals/accounts-addresses-keys)
