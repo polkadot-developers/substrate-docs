@@ -99,7 +99,7 @@ build:
     - title: Pallet coupling
       url: /build/pallet-coupling/
     - title: Events and errors
-      url: /build/events-errors/
+      url: /build/events-and-errors/
     - title: Randomness
       url: /build/randomness/
     - title: Chain specification

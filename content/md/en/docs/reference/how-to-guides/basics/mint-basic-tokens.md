@@ -42,7 +42,7 @@ Give any account the ability to create a token supply in exchange for native tok
 
 ## Set up the Config trait
 
-Using the node template as a starting point, specify the types your pallet depends on and the [`Events`](/build/events-errors/) it emits:
+Using the node template as a starting point, specify the types your pallet depends on and the [`Events`](/build/events-and-errors/) it emits:
 
 ```rust
 

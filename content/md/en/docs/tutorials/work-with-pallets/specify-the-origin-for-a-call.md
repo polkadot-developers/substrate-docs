@@ -196,5 +196,5 @@ There are several [tutorials](/tutorials/) that can serve as next steps for lear
 In addition to tutorials, you might want to explore the following resources to learn more.
 
 - [Privileged calls and origins](/build/origins) provides a closer look at the default raw origin types and how to create custom origins.
-- [Events and errors](/build/events-errors) explains how to emit events and errors from the runtime.
+- [Events and errors](/build/events-and-errors) explains how to emit events and errors from the runtime.
 - [FRAME pallets](/reference/frame-pallets/) offers an overview of the most commonly-used predefined FRAME pallets.
