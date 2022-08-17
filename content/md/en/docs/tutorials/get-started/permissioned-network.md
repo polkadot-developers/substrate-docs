@@ -101,7 +101,7 @@ If you have completed previous tutorials, you should have the Substrate node tem
    ```
 
    The node template should compile without any errors.
-   If you encounter issues when you compile, you can try the troubleshooting tips in [Troubleshoot Rust issues](/install/troubleshooting/).
+   If you encounter issues when you compile, you can try the troubleshooting tips in [Troubleshoot Rust issues](/install/troubleshoot-rust-issues/).
 
 ## Add the node authorization pallet
 

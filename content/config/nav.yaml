@@ -54,7 +54,7 @@ install:
   url: /install/
   pages:
     - title: Rust toolchain
-      url: /install/rust-builds/
+      url: /install/rust-toolchain/
     - title: Linux
       url: /install/linux/
     - title: macOS
@@ -62,9 +62,9 @@ install:
     - title: Windows
       url: /install/windows/
     - title: Developer tools
-      url: /install/other-tools/
+      url: /install/developer-tools/
     - title: Troubleshoot Rust issues
-      url: /install/troubleshooting/
+      url: /install/troubleshoot-rust-issues/
   #- title: Design
   #url: /design/
   #pages:
