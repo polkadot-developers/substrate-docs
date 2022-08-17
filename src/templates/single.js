@@ -27,7 +27,7 @@ export default function DocsSinglePage({ data, pageContext }) {
     let words = slug.toLowerCase().replace(/-/g, ' ');
     words = words[0].toUpperCase() + words.substring(1);
     words = words.replace(' substrate', ' Substrate');
-    words = words.replace(' rust', 'Rust');
+    words = words.replace(' rust', ' Rust');
     return words;
   }
 
