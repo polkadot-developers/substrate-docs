@@ -56,7 +56,7 @@ export default function DocsSinglePage({ data, pageContext }) {
   const previousPage = nextPrevSlugs[index - 1];
 
   return (
-    <Layout>
+    <Layout showFooterNewsletter={false}>
       <SEO title={title} description={description} excerpt={excerpt} />
       <div className="flex flex-col lg:flex-row -mt-12">
         <div className="z-20 flex-col pt-8 pl-5 pr-5 sticky top-16 hidden lg:inline-block lg:flex-none lg:bg-substrateGray-light lg:dark:bg-substrateDark border-r border-gray-200 dark:border-gray-700 h-full">
