@@ -9,7 +9,7 @@ keywords:
 
 This tutorial illustrates how you can start a small, standalone blockchain network with an **authority set** of private **validators**.
 
-As you learned in [Blockchain basics](/main-docs/fundamentals/blockchain-basics/), all blockchains require the nodes in the network to agree on the state of data at any specific point in time and this agreement about the state is called **consensus**.
+As you learned in [Blockchain basics](/fundamentals/blockchain-basics/), all blockchains require the nodes in the network to agree on the state of data at any specific point in time and this agreement about the state is called **consensus**.
 
 The Substrate node template uses a proof of authority consensus model also referred to as **authority round** or **Aura** consensus.
 The Aura consensus protocol limits block production to a rotating list of authorized accounts.
@@ -22,7 +22,7 @@ In this tutorial, you'll see how to generate the keys required to authorize a no
 
 Before you begin, verify the following:
 
-- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/).
+- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
 - You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and have the Substrate node template installed locally.
 
@@ -589,8 +589,8 @@ In this tutorial you learned:
 
 To learn more about the topics introduced in this tutorial, see the following sections:
 
-- [Accounts, addresses, and keys](/main-docs/fundamentals/accounts-addresses-keys)
-- [Chain specification](/main-docs/build/chain-spec/)
+- [Accounts, addresses, and keys](/fundamentals/accounts-addresses-keys)
+- [Chain specification](/build/chain-spec/)
 - [subkey](/reference/command-line-tools/subkey/)
 - [Cryptography](/reference/cryptography/)
 

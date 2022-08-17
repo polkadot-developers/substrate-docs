@@ -13,7 +13,7 @@ Fees are broken down into three components:
 
 - **Byte fee** - A fee proportional to the transaction's length in bytes.
   The proportionality constant is a parameter in the Transaction Payment Pallet.
-- **Weight fee** - A fee calculated from the [transaction weight](/main-docs/build/tx-weights-fees).
+- **Weight fee** - A fee calculated from the [transaction weight](/build/tx-weights-fees).
   The conversion doesn't need to be linear, although it often is.
   The same conversion function is applied across all transactions for all pallets in the runtime.
 - **Fee Multiplier** - A multiplier for the computed fee, that can change as the chain progresses.
@@ -91,6 +91,6 @@ impl pallet_transaction_payment::Config for Runtime {
 - [Weights](/reference/glossary#weight)
 - [Add benchmarks](/reference/how-to-guides/weights/add-benchmarks/)
 - [Use custom weights](/reference/how-to-guides/weights/use-custom-weights)
-- [Transaction Weights and Fees](/main-docs/build/tx-weights-fees)
+- [Transaction Weights and Fees](/build/tx-weights-fees)
 - [`WeightToFeeCoefficients`](https://paritytech.github.io/substrate/master/frame_support/weights/type.WeightToFeeCoefficients.html)
 - [`WeightToFeePolynomial`](https://paritytech.github.io/substrate/master/frame_support/weights/trait.WeightToFeePolynomial.html)

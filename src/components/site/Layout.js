@@ -13,7 +13,7 @@ function LayoutSidebar({ children, hasArticleNav, hasBreadcrumbs }) {
   return (
     <div className="flex">
       <div className="hidden lg:block min-h-screen lg:h-auto lg:bg-substrateGray-light border-r lg:dark:bg-substrateBlackish dark:border-substrateDarkThemeGrey">
-        <div className={cx(`sticky top-16 overflow-y-auto w-64`)}>
+        <div className={cx(`sticky top-16 mt-24 overflow-y-auto w-64`)}>
           <NavSidebar />
         </div>
       </div>

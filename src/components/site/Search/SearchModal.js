@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import * as ReactDOM from 'react-dom';
 
 import useLunrIndex from '../../../hooks/use-lunr-index';
 import SearchInput from './SearchInput';
@@ -9,17 +10,23 @@ function SearchModal({ id, closeModal }) {
   const [query, setQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [displayedResults, setDisplayedResults] = useState([]);
-  const types = ['Docs', 'Tutorials', 'Reference'];
+  const types = ['Fundamentals', 'Install', 'Build', 'Test', 'Tutorials', 'Reference'];
   const { store, index } = useLunrIndex();
 
   const [section, setSection] = useState({
-    docs: false,
+    fundamentals: false,
+    install: false,
+    bdl: false,
+    test: false,
     tuts: false,
     ref: false,
   });
 
   const sectionNames = {
-    docs: 'main-docs',
+    fundamentals: 'fundamentals',
+    install: 'install',
+    bdl: 'build',
+    test: 'test',
     tuts: 'tutorials',
     ref: 'reference',
   };
@@ -72,6 +79,7 @@ function SearchModal({ id, closeModal }) {
       .map(([, val]) => val);
 
     function filterResult(i) {
+      console.log(Object.entries(sectionNames));
       if (i.slug.includes(selectedSectionNames[0])) {
         return true;
       }
@@ -80,15 +88,25 @@ function SearchModal({ id, closeModal }) {
       }
       if (i.slug.includes(selectedSectionNames[2])) {
         return true;
+      }
+      if (i.slug.includes(selectedSectionNames[3])) {
+        return true;
+      }
+      if (i.slug.includes(selectedSectionNames[4])) {
+        return true;
+      }
+      if (i.slug.includes(selectedSectionNames[5])) {
+        return true;
       } else {
         return false;
       }
     }
     const filteredResults = searchResults.filter(result => filterResult(result));
     setDisplayedResults(filteredResults);
+    console.log(filteredResults);
   }, [searchResults, section]);
 
-  return (
+  return ReactDOM.createPortal(
     <>
       <div
         id="content-container"
@@ -98,14 +116,15 @@ function SearchModal({ id, closeModal }) {
           ref={id}
           className="bg-white dark:bg-gray-900 w-full max-w-screen-sm h-auto py-10 px-8 rounded-lg border-2 border-substrateDark shadow-xl max-h-screen overflow-scroll"
           aria-modal="true"
-          aria-label="Search Documentation"
+          aria-label="Search documentation"
         >
           <SearchInput query={query} setQuery={setQuery} closeModal={closeModal} />
-          <div className="flex flex-col sm:flex-row mb-6">
+          <div className="grid md:grid-cols-3 gap-3 md:mb-0 sm:mb-10 xs:mb-12 sm:grid-cols-2 xs:grid-cols-2 auto-cols-auto items-center h-20">
             {types.map((type, index) => (
-              <div key={index}>
+              <div key={index} className="justify-items-start">
                 <SearchSectionLabel index={index} section={section} setSection={setSection}>
                   {type}
+                  {section.install}
                 </SearchSectionLabel>
               </div>
             ))}
@@ -113,8 +132,9 @@ function SearchModal({ id, closeModal }) {
           <SearchResultsContainer results={displayedResults} query={query} setQuery={setQuery} />
         </div>
       </div>
-      <div id="modal-background" className="opacity-25 dark:opacity-90 fixed inset-0 z-40 bg-substrateDark"></div>
-    </>
+      <div id="modal-background" className="opacity-70 dark:opacity-90 fixed inset-0 z-40 bg-substrateDark"></div>
+    </>,
+    document.querySelector('#modal')
   );
 }
 

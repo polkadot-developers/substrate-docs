@@ -119,7 +119,7 @@ cargo test
 
 ## Related material
 
-- [Unit testing](/main-docs/test/unit-testing/)
+- [Unit testing](/test/unit-testing/)
 - [Testing a transfer function](/reference/how-to-guides/testing/test-a-transfer-function)
 - [`assert_ok!`](https://paritytech.github.io/substrate/master/frame_support/macro.assert_ok.html)
 - [`assert_err!`](https://paritytech.github.io/substrate/master/frame_support/macro.assert_err.html)

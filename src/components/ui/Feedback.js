@@ -1,19 +1,18 @@
 import React from 'react';
 
 import Icon from '../default/Icon';
-import SecondaryButton from './SecondaryButton';
+import { Link } from '../default/Link';
 
 export default function Feedback() {
   const githubLink = 'https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose';
   return (
-    <div>
-      <SecondaryButton external link={githubLink}>
-        <div className="flex items-center pt-2 mb-2">
-          <span className="font-semibold">Submit an issue</span>
-          <Icon name="github" width="20" className="m-2 fill-current dark:text-substrateDark text-substrateWhite" />
-          <Icon name="external-link" width="20" className="fill-current dark:text-substrateDark text-substrateWhite" />
+    <div className="h-[40px] w-full bg-substrateBlackish dark:bg-substrateDarkThemeLightGrey inline-block rounded-md hover:opacity-80">
+      <Link to={githubLink}>
+        <div className="items-center justify-center flex mx-auto w-full text-white dark:text-black px-5 py-1.5">
+          <Icon name="github" width="16" className="mr-2 fill-current" />
+          <span className="text-sm block hover:opacity-80">Submit an issue</span>
         </div>
-      </SecondaryButton>
+      </Link>
     </div>
   );
 }
