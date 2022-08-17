@@ -89,7 +89,7 @@ you to specify logic to run immediately _after_ a runtime upgrade but _before_ a
 ### Preparing for storage migration
 
 Preparing for a storage migration means understanding the changes that are defined by a runtime upgrade.
-The Substrate repository uses the [`E1-runtimemigration` label](https://github.com/paritytech/substrate/pulls?q=is%3Apr+label%3AE1-runtimemigration) label to designate such changes.
+The Substrate repository uses the [`E1-runtimemigration`](https://github.com/paritytech/substrate/pulls?q=is%3Apr+label%3AE1-runtimemigration) label to designate such changes.
 
 ### Writing a migration
 
