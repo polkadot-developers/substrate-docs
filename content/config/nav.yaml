@@ -130,18 +130,24 @@ test:
 #- title: Deploy
 #url: /deploy/
 # pages:
-#   - title: Migrations
-#     url: /docs/deploy/migrate/
-#   - title: Monitor
-#     url: /docs/deploy/metrics/
-#   - title: Operate
-#     url: /docs/deploy/operate/
-#   - title: Migrations
+#   - title: Deploy a solo chain
+#     url: /docs/deploy/deploy-a-solo-chain/
+#   - title: Deploy on a test network
+#     url: /docs/deploy/deploy-on-a-test-network/
+#   - title: Deploy a parathread
+#     url: /docs/deploy/deploy-a-parathread/
+#   - title: Deploy a parachain
+#     url: /docs/deploy/deploy-a-parachain/
 #- title: Maintain
 #url: /maintain/
 #pages:
-#- title: Upgrades
-#url: /maintain/upgrade/
+#   - title: Monitor
+#     url: /docs/main-docs/deploy/metrics/
+#   - title: Operate
+#     url: /docs/main-docs/deploy/operate/
+#   - title: Upgrades and migration
+#     url: /main-docs/maintain/upgrades-and-migration/
+
 tutorials:
   title: Tutorials
   url: /tutorials/
@@ -205,6 +211,7 @@ tutorials:
           url: /tutorials/integrate-with-tools/substrate-connect/
         - title: Access EVM accounts
           url: /tutorials/integrate-with-tools/access-evm-accounts/
+
 reference:
   title: Reference
   url: /reference/
@@ -241,7 +248,7 @@ reference:
       url: /reference/runtime-apis/
     - title: FRAME pallets
       url: /reference/frame-pallets/
-    - title: Frame macros
+    - title: FRAME macros
       url: /reference/frame-macros/
     - title: Account data structures
       url: /reference/account-data-structures/
@@ -253,6 +260,7 @@ reference:
       url: /reference/cryptography/
     - title: How-to reference guides
       url: /reference/how-to-guides/
+
 community:
   title: Community
   url: /community/
