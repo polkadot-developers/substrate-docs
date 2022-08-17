@@ -8,7 +8,11 @@ Substrate uses a lightweight and efficient encoding and decoding program to opti
 The program used to serialize and deserialize data is called the SCALE codec, with SCALE being an acronym for <u>s</u>imple <u>c</u>oncatenated <u>a</u>ggregate <u>l</u>ittle-<u>e</u>ndian.
 
 The SCALE codec is a critical component for communication between the runtime and the outer node.
+<<<<<<< HEAD
+It is designed for high-performance, copy-free encoding and decoding of data in resource-constrained execution environments like the Substrate [WebAssembly runtime](/main-docs/fundamentals/runtime-development//).
+=======
 It is designed for high-performance, copy-free encoding and decoding of data in resource-constrained execution environments like the Substrate [WebAssembly runtime](/fundamentals/runtime-intro//).
+>>>>>>> main
 The SCALE codec is not self-describing in any way.
 It assumes the decoding context has all type knowledge about the encoded data.
 Front-end libraries maintained by Parity use the [`parity-scale-codec`](https://github.com/paritytech/parity-scale-codec) crate—which is a Rust implementation of the SCALE codec—to encode and decode interactions between RPCs and the runtime.

@@ -32,6 +32,7 @@ Unlike other distributed ledger platforms, Substrate is:
 - [Open](#open)
 - [Interoperable](#interoperable)
 - [Future-proof](#future-proof)
+- [Where to go next](#where-to-go-next)
 
 ## Flexible
 
@@ -77,7 +78,7 @@ Depending on your background and interests, explore the following resources to l
 
 - [Blockchain basics](/fundamentals/blockchain-basics/)
 - [Architecture](/fundamentals/architecture/)
-- [Runtime development](/fundamentals/runtime-intro)
+- [Runtime development](/fundamentals/runtime-development)
 - [Networks and blockchains](/fundamentals/node-and-network-types/)
 - [Install](/install/)
 
