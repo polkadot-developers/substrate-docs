@@ -1,4 +1,4 @@
-import { Icon } from 'gatsby-plugin-substrate';
+import { Icon, Link } from 'gatsby-plugin-substrate';
 import React from 'react';
 
 export default function Feedback() {

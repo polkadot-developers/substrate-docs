@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import * as ReactDOM from 'react-dom';
 
 import useLunrIndex from '../../../hooks/use-lunr-index';
 import SearchInput from './SearchInput';
@@ -105,7 +106,7 @@ function SearchModal({ id, closeModal }) {
     console.log(filteredResults);
   }, [searchResults, section]);
 
-  return (
+  return ReactDOM.createPortal(
     <>
       <div
         id="content-container"
@@ -118,7 +119,7 @@ function SearchModal({ id, closeModal }) {
           aria-label="Search documentation"
         >
           <SearchInput query={query} setQuery={setQuery} closeModal={closeModal} />
-          <div className="grid grid-cols-3 gap-3 auto-cols-auto items-center h-20">
+          <div className="grid md:grid-cols-3 gap-3 md:mb-0 sm:mb-10 xs:mb-12 sm:grid-cols-2 xs:grid-cols-2 auto-cols-auto items-center h-20">
             {types.map((type, index) => (
               <div key={index} className="justify-items-start">
                 <SearchSectionLabel index={index} section={section} setSection={setSection}>
@@ -131,8 +132,9 @@ function SearchModal({ id, closeModal }) {
           <SearchResultsContainer results={displayedResults} query={query} setQuery={setQuery} />
         </div>
       </div>
-      <div id="modal-background" className="opacity-25 dark:opacity-90 fixed inset-0 z-40 bg-substrateDark"></div>
-    </>
+      <div id="modal-background" className="opacity-70 dark:opacity-90 fixed inset-0 z-40 bg-substrateDark"></div>
+    </>,
+    document.querySelector('#modal')
   );
 }
 

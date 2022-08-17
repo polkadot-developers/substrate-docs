@@ -12,18 +12,23 @@ const SubMenu = ({ pages, currentPath }) => {
         return page.url ? (
           <li
             key={index}
-            className={cx('m-0 pb-4 list-none font-medium cursor-pointer', {
+            className={cx('m-0 list-none font-medium', {
               'text-substrateDark dark:text-white': currentPath !== page.url,
               'text-substrateBlue': currentPath === page.url,
             })}
           >
             <span onClick={() => setIsOpen(!isOpen)}>
-              <Link to={page.url} className="w-full block">
-                {page.title}{' '}
+              <Link
+                to={page.url}
+                className={cx('w-full block cursor-pointer hover:opacity-100 opacity-80', {
+                  '!opacity-100 cursor-default': currentPath === page.url,
+                })}
+              >
+                <span className="py-2 inline-block">{page.title} </span>
                 {page.pages ? (
                   <svg
                     className={cx(
-                      'mt-1 fill-current text-substrateDark dark:text-white align-middle float-right inline cursor-pointer',
+                      'my-3 fill-current text-substrateDark dark:text-white align-middle float-right inline cursor-pointer',
                       {
                         'fill-substrateBlue': currentPath === page.url,
                         '-rotate-180': isOpen === true,

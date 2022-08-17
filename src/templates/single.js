@@ -23,6 +23,8 @@ export default function DocsSinglePage({ data, pageContext }) {
   function titleize(slug) {
     let words = slug.toLowerCase().replace(/-/g, ' ');
     words = words[0].toUpperCase() + words.substring(1);
+    words = words.replace(' substrate', ' Substrate');
+    words = words.replace(' rust', ' Rust');
     return words;
   }
 
@@ -57,7 +59,7 @@ export default function DocsSinglePage({ data, pageContext }) {
     <Layout>
       <SEO title={title} description={description} excerpt={excerpt} />
       <div className="flex flex-col lg:flex-row -mt-12">
-        <div className="z-30 flex-col pt-8 pl-5 pr-5 pb-2 sticky top-16 hidden lg:inline-block lg:flex-none lg:bg-substrateGray-light lg:dark:bg-substrateDark border-r border-gray-200 dark:border-gray-700 h-full">
+        <div className="z-20 flex-col pt-8 pl-5 pr-5 sticky top-16 hidden lg:inline-block lg:flex-none lg:bg-substrateGray-light lg:dark:bg-substrateDark border-r border-gray-200 dark:border-gray-700 h-full">
           <ModalButton />
           <Sidebar currentPath={pagePath}>
             <NavSidebar currentPath={pagePath} />
@@ -85,7 +87,7 @@ export default function DocsSinglePage({ data, pageContext }) {
                     </span>
                   ))}
                 </div>
-                <div className="flex sm:mb-0 xs:mb-5">
+                <div className="flex sm:mb-0 xs:mb-5 whitespace-nowrap">
                   <EditOnGithubButton
                     link={
                       'https://github.com/substrate-developer-hub/substrate-docs/blob/main/content/md/' +

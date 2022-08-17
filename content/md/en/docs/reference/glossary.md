@@ -42,7 +42,7 @@ With approval voting, it is worth noting the following:
 - Voting for all candidates is the same as voting for none.
 - It is possible to vote against a single candidate by voting for all other candidates.
 
-Approval voting is used by the [FRAME Elections Phragmen pallet](/reference/frame-pallets#elections-phragmén) as a governing [Council](#council) on a number of Substrate-based chains.
+Approval voting is used by the [FRAME Elections Phragmen pallet](/reference/frame-pallets#elections-phragmen) as a governing [Council](#council) on a number of Substrate-based chains.
 
 ## author
 

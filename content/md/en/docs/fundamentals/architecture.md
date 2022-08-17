@@ -37,7 +37,7 @@ Some of the most important activities that are handled by the outer node involve
 
 - [Remote procedure call (RPC) API](/build/custom-rpc): The outer node accepts inbound HTTP and WebSocket requests to allow blockchain users to interact with the network.
 
-- [Telemetry](): The outer node collects and provides access to node metrics through an embedded [Prometheus](https://prometheus.io/) server.
+- Telemetry: The outer node collects and provides access to node metrics through an embedded [Prometheus](https://prometheus.io/) server.
 
 - [Execution environment](/build/build-process/): The outer node is responsible for selecting the execution environment—WebAssembly or native Rust—for the runtime to use then dispatching calls to the runtime selected.
 

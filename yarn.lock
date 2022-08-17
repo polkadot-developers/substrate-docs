@@ -6263,7 +6263,7 @@ gatsby-plugin-sitemap@^3.3.0:
     pify "^3.0.0"
     sitemap "^1.13.0"
 
-"gatsby-plugin-substrate@file:.yalc/gatsby-plugin-substrate":
+gatsby-plugin-substrate@./plugins/gatsby-plugin-substrate:
   version "1.0.0"
 
 gatsby-plugin-typescript@^3.14.0:

@@ -78,7 +78,7 @@ By completing this tutorial, you will accomplish the following objectives:
 
 For testing and demonstration purposes, you should download the compiled `bin` programs for Prometheus and Grafana rather than building the tools yourself or using a Docker image.
 Use the following links to download the appropriate binaries for your architecture.
-This tutorials assumes you are using the compiled binaries in a working directory.
+This tutorial assumes you are using the compiled binaries in a working directory.
 
 To install the tools for this tutorial:
 
@@ -146,7 +146,7 @@ Presuming you downloaded the binary, `cd` into the working directory and run the
 ./prometheus --config.file prometheus.yml
 ```
 
-leave this process running.
+Leave this process running.
 
 ### Check all Prometheus metrics
 

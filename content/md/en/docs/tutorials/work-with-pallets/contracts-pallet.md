@@ -67,7 +67,13 @@ After you publish the pallet, other developers can import into their runtime by 
 
 ## Where to go next
 
+<<<<<<< HEAD
+
 - [Runtime development](/fundamentals/runtime-intro/)
 - [Custom pallets](/build/custom-pallets/)
 - [Use macros in a custom pallet](/tutorials/work-with-pallets/use-macros-in-a-custom-pallet/)
-- [How-to: Import a pallet](/reference/how-to-guides/basics/import-a-pallet/).
+- # [How-to: Import a pallet](/reference/how-to-guides/basics/import-a-pallet/).
+- [Custom RPCs](/build/custom-rpc/)
+- [Prepare your first contract](/tutorials/smart-contracts/prepare-your-first-contract/)
+- [Develop a smart contract](/tutorials/smart-contracts/develop-a-smart-contract/)
+  > > > > > > > main

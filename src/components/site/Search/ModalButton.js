@@ -7,10 +7,8 @@ import SearchModal from './SearchModal';
 function ModalButton() {
   const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false);
   useEffect(() => {
-    isComponentVisible ? (document.body.style.overflow = `hidden`) : (document.body.style.overflow = `unset`);
     isComponentVisible && analytics.track('open_search_modal');
-    const header = document.getElementById('header');
-    isComponentVisible ? (header.style.zIndex = -1) : (header.style.zIndex = 40);
+    isComponentVisible ? (document.body.style.overflow = `hidden`) : (document.body.style.overflow = `unset`);
   }, [isComponentVisible]);
   return (
     <>
