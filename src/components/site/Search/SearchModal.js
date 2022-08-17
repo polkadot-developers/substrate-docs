@@ -119,7 +119,7 @@ function SearchModal({ id, closeModal }) {
           aria-label="Search documentation"
         >
           <SearchInput query={query} setQuery={setQuery} closeModal={closeModal} />
-          <div className="grid grid-cols-3 gap-3 sm:grid-cols-2 xs:grid-cols-2 auto-cols-auto items-center h-20">
+          <div className="grid md:grid-cols-3 gap-3 md:mb-0 sm:mb-10 xs:mb-12 sm:grid-cols-2 xs:grid-cols-2 auto-cols-auto items-center h-20">
             {types.map((type, index) => (
               <div key={index} className="justify-items-start">
                 <SearchSectionLabel index={index} section={section} setSection={setSection}>
