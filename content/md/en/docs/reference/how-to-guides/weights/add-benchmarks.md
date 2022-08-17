@@ -1,96 +1,246 @@
 ---
-title: Calculate fees
-description:
+title: Add benchmarks
+description: Demonstrates how to use the benchmarking framework to estimate execution requirements for a pallet.
 keywords:
   - weights
-  - fees
+  - benchmarking
   - runtime
-  - FRAME v1
 ---
 
-This guides steps through the process of customizing `WeightToFee` for your runtime's implementation of `pallet_transaction_payment`.
-Fees are broken down into three components:
+This guide illustrates how to write a simple benchmark for a pallet, test the benchmark, and run [benchmarking](https://github.com/paritytech/substrate/tree/master/frame/benchmarking) commands to generate realistic estimates about the execution time required for the functions in a pallet.
+This guide does not cover how to use the benchmarking results to update transaction weights.
 
-- **Byte fee** - A fee proportional to the transaction's length in bytes.
-  The proportionality constant is a parameter in the Transaction Payment Pallet.
-- **Weight fee** - A fee calculated from the [transaction weight](/build/tx-weights-fees).
-  The conversion doesn't need to be linear, although it often is.
-  The same conversion function is applied across all transactions for all pallets in the runtime.
-- **Fee Multiplier** - A multiplier for the computed fee, that can change as the chain progresses.
+## Add benchmarking to the pallet
 
-FRAME provides the [Transaction Payment Pallet](https://paritytech.github.io/substrate/master/pallet_transaction_payment/index.html) for calculating and collecting fees for executing transactions.
-It can be useful to modify the way fees are calculated to more accurately charge fees.
+1. Open the [`Cargo.toml`](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/Cargo.toml) file for your pallet in a text editor.
+   
+2. Add the `frame-benchmarking` crate to the [dependencies] for the pallet using the same version and branch as the other dependencies in the pallet.
+   
+   For example:
 
-## Goal
+   ```toml
+   frame-benchmarking = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.25", optional = true }
+   ```
+1. Add `runtime-benchmarks` to the list of [features] for the pallet.
+   
+   For example:
 
-Customize `WeightToFee` to modify how fees are calculated for your runtime.
+   ```toml
+   [features]
+   runtime-benchmarks = ["frame-benchmarking/runtime-benchmarks"]
+   ```
 
-## Use Cases
+1. Add `frame-benchmarking/std` to the list of `std` features for the pallet.
+   
+   For example:
 
-Modify the way fees are calculated, instead of using [`IdentityFee`](https://paritytech.github.io/substrate/master/frame_support/weights/struct.IdentityFee.html) which maps one unit of fee to one unit of weight.
+   ```toml
+   std = [
+      ...
+      "frame-benchmarking/std",
+      ...
+   ]
+   ```
 
-## Steps
+## Add a benchmarking module
 
-### 1. Write the `LinearWeightToFee` struct
+1. Create a new text file—for example, `benchmarking.rs`—in the `src` folder for your pallet.
+   
+2. Open the `benchmarking.rs` file in a text editor and create a  Rust module that defines benchmarks for your pallet.
+   
+   You can use the `benchmarking.rs` for any prebuilt pallet as an example of what to include in the Rust module.
+   In general, the module should include code similar to the following:
 
-In `runtime/src/lib.rs`, create the struct called `LinearWeightToFee` that implements [`WeightToFeePolynomial`](https://paritytech.github.io/substrate/master/frame_support/weights/trait.WeightToFeePolynomial.html).
-It must returns a smallvec of `WeightToFeeCoefficient` integers.
+   ```rust
+   #![cfg(feature = "runtime-benchmarks")]
+   mod benchmarking;
 
-`runtime/src/lib.rs`
+   use crate::*;
+   use frame_benchmarking::{benchmarks, whitelisted_caller};
+   use frame_system::RawOrigin;
+   
+   benchmarks! {
+      // Add individual benchmarks here
+      benchmark_name {
+         /* code to set the initial state */
+      }: {
+         /* code to test the function benchmarked */
+      }
+      verify {
+         /* optional verification */
+      }
+   }
+   ```
 
-```rust
-pub struct LinearWeightToFee<C>(sp_std::marker::PhantomData<C>);
+3. Write individual benchmarks to test the most computationally expensive paths for the functions in the pallet.
+   
+   The `benchmarks!` macro automatically generates a test function for each benchmark you include in the benchmarking module.
+   For example, the macro creates test functions similar to the following:
+   
+   ```rust
+   fn test_benchmarking_[benchmark_name]<T>::() -> Result<(), &'static str>
+   ```
 
-impl<C> WeightToFeePolynomial for LinearWeightToFee<C>
-where
-	C: Get<Balance>,
-{
-	type Balance = Balance;
+   The benchmarking module for [pallet-example-basic](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/benchmarking.rs) provides a few simple sample benchmarks.
+   For example:
 
-	fn polynomial() -> WeightToFeeCoefficients<Self::Balance> {
-		let coefficient = WeightToFeeCoefficient {
-			coeff_integer: C::get(),
-			coeff_frac: Perbill::zero(),
-			negative: false,
-			degree: 1,
-		};
+   ```rust
+   benchmarks! {
+     set_dummy_benchmark {
+       // Benchmark setup phase
+       let b in 1 .. 1000;
+     }: set_dummy(RawOrigin::Root, b.into()) // Execution phase
+     verify {
+		   // Optional verification phase
+       assert_eq!(Pallet::<T>::dummy(), Some(b.into()))
+     }
+   }  
+   ```
 
-		smallvec!(coefficient)
-	}
-}
-```
+   In this sample code:
+   
+   - The name of the benchmark is `set_dummy`. 
+   - The variable `b` stores input that is used to test the execution time of the `set_dummy` function.
+   - The value of `b` varies between 1 to 1,000, so you can run the benchmark test repeatedly to measure the execution time using different input values.
 
-### 2. Configure `pallet_transaction_payment` in your runtime
+## Test the benchmarks
 
-Convert the dispatch weight
-`type WeightToFee` to the chargeable fee `LinearWeightToFee` (replacing `IdentityFee<Balance>;`):
+After you have added benchmarks to the `benchmarks!` macros in the benchmarking module for your pallet, you can use a mock runtime to do unit testing and ensure that the test functions for your benchmarks return `Ok(())` as a result.
 
-`runtime/src/lib.rs`
+1. Open the `benchmarking.rs` benchmarking module in a text editor.
 
-```rust
-parameter_types! {
-    // Used with LinearWeightToFee conversion.
-	pub const FeeWeightRatio: u128 = 1_000;
-	// Establish the byte-fee. It is used in all configurations.
-	pub const TransactionByteFee: u128 = 1;
-}
+2. Add the `impl_benchmark_test_suite!` macro to the bottom of your benchmarking module:
 
-impl pallet_transaction_payment::Config for Runtime {
-	type OnChargeTransaction = CurrencyAdapter<Balances, ()>;
-	type TransactionByteFee = TransactionByteFee;
+   ```rust
+   impl_benchmark_test_suite!(
+     MyPallet,
+     crate::mock::new_test_ext(),
+     crate::mock::Test,
+   );
+   ```
 
-	// Convert dispatch weight to a chargeable fee.
-	type WeightToFee = LinearWeightToFee<FeeWeightRatio>;
+   The `impl_benchmark_test_suite!` macro takes the following input: 
+   
+   - The Pallet struct generated by your pallet, in this example `MyPallet`.
+   - A function that generates a test genesis storage, `new_text_ext()`.
+   - The full mock runtime struct, `Test`. 
+   
+   This is the same information you use to set up a mock runtime for unit testing.
+   If all benchmark tests pass in the mock runtime test environment, it's likely that they will work when you run the benchmarks in the actual runtime.
 
-	type FeeMultiplierUpdate = ();
-}
-```
+3. Execute the benchmark unit tests generated for your pallet in a mock runtime by running a command similar to the following for a pallet named `pallet-mycustom`:
+   
+   ```bash
+   cargo test --package pallet-mycustom --features runtime-benchmarks
+   ```
 
-## Related material
+4.  Verify the test results.
+   
+   For example:
 
-- [Weights](/reference/glossary#weight)
-- [Add benchmarks](/reference/how-to-guides/weights/add-benchmarks/)
-- [Use custom weights](/reference/how-to-guides/weights/use-custom-weights)
-- [Transaction Weights and Fees](/build/tx-weights-fees)
-- [`WeightToFeeCoefficients`](https://paritytech.github.io/substrate/master/frame_support/weights/type.WeightToFeeCoefficients.html)
-- [`WeightToFeePolynomial`](https://paritytech.github.io/substrate/master/frame_support/weights/trait.WeightToFeePolynomial.html)
+   ```text
+   running 4 tests
+   test mock::__construct_runtime_integrity_test::runtime_integrity_tests ... ok
+   test tests::it_works_for_default_value ... ok
+   test tests::correct_error_for_none_value ... ok
+   test benchmarking::bench_do_something ... ok
+   
+   test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+   ```
+
+## Add benchmarking to the runtime
+
+After you have added benchmarking to your pallet, you must also update the runtime to include the pallet and the benchmarks for the pallet.
+
+1. Open the `Cargo.toml` file for your runtime in a text editor.
+
+2. Add your pallet to the list of `[dependencies]` for the runtime:
+   
+   ```toml
+   pallet-mycustom = { default-features = false, path = "../pallets/pallet-mycustom"}
+   ```
+
+3. Update the `[features]` for the runtime to include the `runtime-benchmarks` for your pallet:
+
+   ```toml
+   [features]
+   runtime-benchmarks = [
+     ...
+     'pallet-mycustom/runtime-benchmarks'
+     ...
+   ]
+   ```
+
+4. Update the `std` features for the runtime to include your pallet:
+
+   ```toml
+    std = [
+     # -- snip --
+     'pallet-mycustom/std'
+   ]
+   ```
+
+5. Add the configuration trait for your pallet to the runtime.
+   
+6. Add the pallet the the `construct_runtime!` macro.
+   
+   If you need more details about adding a pallet to the runtime, see [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet) or [Import a pallet](/reference/how-to-guides/basics/import-a-pallet).
+
+7. Add your pallet to the `define_benchmark!` macro in the `runtime-benchmarks` feature.
+   
+   ```rust
+   #[cfg(feature = "runtime-benchmarks")]
+   mod benches {
+       define_benchmarks!(
+         [frame_benchmarking, BaselineBench::<Runtime>]
+         [pallet_assets, Assets]
+         [pallet_babe, Babe]
+         ...
+         [pallet_mycustom, MyPallet]
+         ...
+       );
+   }
+   ```
+
+## Run your benchmarks
+
+After you update the runtime, you are ready to compile it with the `runtime-benchmarks` features enabled and start the benchmarking analysis for your pallet.
+   
+1. Build your project with the `runtime-benchmarks` feature enabled by running the following command:
+
+   ```bash
+   cargo build --package node-template --release --features runtime-benchmarks
+   ```
+
+2. Review the command-line options for the node `benchmark pallet` subcommand:
+
+   ```bash
+   ./target/release/node-template benchmark pallet --help
+   ```
+   
+   The `benchmark pallet` subcommand supports several command-line options that can help you automate your benchmarking.
+   For example, you can set the `--steps` and `--repeat` command-line options to execute function calls multiple times with different values.
+   
+3. Start benchmarking for your pallet by running a command similar to the following:
+   
+   ```bash
+   ./target/release/node-template benchmark pallet \
+    --chain dev \
+    --pallet pallet_mycustom \
+    --extrinsic '*' \
+    --steps 20 \
+    --repeat 10 \
+    --output pallets/pallet-mycustom/src/weights.rs
+   ```
+   
+   This command creates a `weights.rs` file in the specified directory.
+   For information about how to configure your pallet to use those weights, see [Use custom weights](/reference/how-to-guides/weights/use-custom-weights/).
+
+## Examples
+
+You can use the `benchmarking.rs` and `weights.rs` files for any prebuilt pallet to learn more about benchmarking different types of functions.
+
+- [Example pallet: Benchmarks](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/benchmarking.rs)
+- [Example pallet: Weights](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/weights.rs)
+- [Balances pallet: Benchmarks](https://github.com/paritytech/substrate/blob/master/frame/balances/src/benchmarking.rs)
+- [Balances pallet: Weights](https://github.com/paritytech/substrate/blob/master/frame/balances/src/weights.rs)

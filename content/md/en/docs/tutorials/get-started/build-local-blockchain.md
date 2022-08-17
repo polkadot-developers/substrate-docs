@@ -109,13 +109,13 @@ To start the local Substrate node:
    The terminal should display output similar to this:
 
    ```text
-   2022-08-16 13:43:58 Substrate Node
-   2022-08-16 13:43:58 ✌️  version 4.0.0-dev-de262935ede
-   2022-08-16 13:43:58 ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2022
+   2022-08-16 13:43:58 Substrate Node    
+   2022-08-16 13:43:58 ✌️  version 4.0.0-dev-de262935ede    
+   2022-08-16 13:43:58 ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2022    
    2022-08-16 13:43:58 📋 Chain specification: Development
-   2022-08-16 13:43:58 🏷  Node name: limping-oatmeal-7460
-   2022-08-16 13:43:58 👤 Role: AUTHORITY
-   2022-08-16 13:43:58 💾 Database: RocksDb at /var/folders/2_/g86ns85j5l7fdnl621ptzn500000gn/T/substrate95LPvM/chains/dev/db/full
+   2022-08-16 13:43:58 🏷  Node name: limping-oatmeal-7460    
+   2022-08-16 13:43:58 👤 Role: AUTHORITY    
+   2022-08-16 13:43:58 💾 Database: RocksDb at /var/folders/2_/g86ns85j5l7fdnl621ptzn500000gn/T/substrate95LPvM/chains/dev/db/full    
    2022-08-16 13:43:58 ⛓  Native runtime: node-template-100 (node-template-1.tx1.au1)
    2022-08-16 13:43:58 🔨 Initializing Genesis block/state (state: 0xf6f5…423f, header-hash: 0xc665…cf6a)
    2022-08-16 13:43:58 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
@@ -277,6 +277,7 @@ In this tutorial, you learned:
 
 The front-end template includes several additional components for you to experiment with while you're connected to a local development node.
 You can explore these components on your own or learn more in the following topics:
+
 
 If you experienced any issues with this tutorial, submit an issue, ask questions, or provide feedback.
 

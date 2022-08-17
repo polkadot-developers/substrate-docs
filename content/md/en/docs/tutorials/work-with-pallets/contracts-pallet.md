@@ -159,7 +159,7 @@ To implement the `Config` trait for the Contracts pallet in the runtime:
       pub DeletionWeightLimit: Weight = AVERAGE_ON_INITIALIZE_RATIO * BlockWeights::get().max_block;
       pub Schedule: pallet_contracts::Schedule<Runtime> = Default::default();
    }
-
+   
    impl pallet_contracts::Config for Runtime {
       type Time = Timestamp;
       type Randomness = RandomnessCollectiveFlip;
@@ -286,7 +286,7 @@ To expose the Contracts RPC API:
       ) -> pallet_contracts_primitives::ContractExecResult<Balance> {
          Contracts::bare_call(origin, dest, value, gas_limit, storage_deposit_limit, input_data, CONTRACTS_DEBUG_OUTPUT)
       }
-
+      
       fn instantiate(
          origin: AccountId,
          value: Balance,
@@ -298,7 +298,7 @@ To expose the Contracts RPC API:
       ) -> pallet_contracts_primitives::ContractInstantiateResult<AccountId, Balance> {
          Contracts::bare_instantiate(origin, value, gas_limit, storage_deposit_limit, code, data, salt, CONTRACTS_DEBUG_OUTPUT)
          }
-
+         
       fn upload_code(
          origin: AccountId,
          code: Vec<u8>,
@@ -306,7 +306,7 @@ To expose the Contracts RPC API:
       ) -> pallet_contracts_primitives::CodeUploadResult<Hash, Balance> {
          Contracts::bare_upload_code(origin, code, storage_deposit_limit)
       }
-
+      
       fn get_storage(
          address: AccountId,
          key: Vec<u8>,
@@ -314,7 +314,7 @@ To expose the Contracts RPC API:
          Contracts::get_storage(address, key)
          }
       }
-   ```
+      ```
 
 1. Save your changes and close the `runtime/src/lib.rs` file.
 
@@ -357,7 +357,7 @@ To add the RPC API extension to the outer node:
 1. Add `BlockNumber` and `Hash` to the existing `use node_template_runtime` declaration.
 
    ```rust
-   use node_template_runtime::{opaque::Block, AccountId, Balance, Index, BlockNumber, Hash};
+   use node_template_runtime::{opaque::Block, AccountId, Balance, Index, BlockNumber, Hash}; 
    ```
 
 1. Add `use pallet_contracts_rpc` to the file.
@@ -385,14 +385,12 @@ To add the RPC API extension to the outer node:
       C::Api: BlockBuilder<Block>,
       P: TransactionPool + 'static,
 
-   ```
-
 1. Add the extension for the Contracts RPC API.
 
    ```rust
-   module.merge(System::new(client.clone(), pool.clone(), deny_unsafe).into_rpc())?;
-   module.merge(TransactionPayment::new(client.clone()).into_rpc())?;
-   module.merge(Contracts::new(client.clone()).into_rpc())?; // Add this line
+ module.merge(System::new(client.clone(), pool.clone(), deny_unsafe).into_rpc())?;
+ module.merge(TransactionPayment::new(client.clone()).into_rpc())?;
+ module.merge(Contracts::new(client.clone()).into_rpc())?; // Add this line
    ```
 
 1. Save your changes and close the `node/src/rpc.rs` file.
