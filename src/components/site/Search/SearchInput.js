@@ -11,7 +11,7 @@ function SearchInput({ query, setQuery, closeModal }) {
           className="form-input w-full pl-4 text-lg md:text-2xl border-none dark:bg-gray-900 focus:ring-0 cursor-text"
           type="text"
           value={query}
-          placeholder="Search Documentation"
+          placeholder="Search documentation"
           onChange={e => setQuery(e.target.value)}
           autoFocus
         />
