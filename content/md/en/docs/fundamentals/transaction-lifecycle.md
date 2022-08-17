@@ -22,7 +22,7 @@ However, transaction fees and other elements of transaction processing depend on
 
 ## Where transactions are defined
 
-As discussed in [Runtime development](/fundamentals/runtime-devlopment/), the Substrate runtime contains the business logic that defines transaction properties, including:
+As discussed in [Runtime development](/fundamentals/runtime-development/), the Substrate runtime contains the business logic that defines transaction properties, including:
 
 - What constitutes a valid transaction.
 - Whether the transactions are sent as signed or unsigned.
