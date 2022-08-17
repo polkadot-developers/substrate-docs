@@ -26,6 +26,9 @@ export default function DocsSinglePage({ data, pageContext }) {
   function titleize(slug) {
     let words = slug.toLowerCase().replace(/-/g, ' ');
     words = words[0].toUpperCase() + words.substring(1);
+    console.log(words);
+    words = words.replace('substrate', 'Substrate');
+    words = words.replace('rust', 'Rust');
     return words;
   }
 
@@ -88,7 +91,7 @@ export default function DocsSinglePage({ data, pageContext }) {
                     </span>
                   ))}
                 </div>
-                <div className="flex sm:mb-0 xs:mb-5">
+                <div className="flex sm:mb-0 xs:mb-5 whitespace-nowrap">
                   <EditOnGithubButton
                     link={
                       'https://github.com/substrate-developer-hub/substrate-docs/blob/main/content/md/' +
