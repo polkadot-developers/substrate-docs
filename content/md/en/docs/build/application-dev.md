@@ -7,40 +7,46 @@ keywords:
   - dApp
 ---
 
-Most applications that run on a Substrate blockchain require some form of front-end or user-facing interface—such as a browser, desktop, mobile, or hardware client—that enables users or other programs to access and modify the data that the blockchain stores.
-For example, you might develop a browser-based application for interactive gaming or a hardware-specific application to implement a hardware wallet.
-Different libraries exist to build these types of applications, depending on your needs.
-This article explains the process of querying a Substrate node and using the metadata it exposes to help you understand how you can use the metadata when creating front-end client applications and using client-specific libraries.
+Most applications that run on a Substrate blockchain require some form of front-end or user-facing client to enables users or other programs to access and modify the data that the blockchain stores.
+For example, you might develop a browser-based, mobile, or desktop application that allows users to submit transactions, post articles, or view their previous activity.
+The backend for that application is configured in the runtime logic for your blockchain, but it's the front-end client that makes the runtime features accessible to your users.
 
-## Metadata system
+## Exposing runtime information as metadata
 
-Substrate nodes provide an RPC call, `state_getMetadata`, that returns a complete description of all the types in the current runtime.
-Client applications use the metadata to interact with the node, to parse responses, and to format message payloads sent to the node.
-This metadata includes information about a pallet's storage items, transactions, events, errors, and constants.
-The current metadata version (V14) differs significantly from its predecessors as it contains much richer type information.
-If a runtime includes a pallet with a custom type, the type information is included as part of the metadata returned.
-Polkadot uses V14 metadata starting from [runtime spec version 9110](https://polkascan.io/polkadot/runtime/9110) at [block number 7229126](https://polkadot.subscan.io/block/7229126) and Kusama from [runtime spec version 9111](https://polkascan.io/kusama/runtime/9111), at [block number 9625129](https://kusama.subscan.io/block/9625129).
-This is useful to know for developers who intend to interact with runtimes that use older metadata versions.
-Refer to [this document](https://gist.github.com/ascjones/0d81a4c44e84cacd9f714cd34a6de823) for a migration guide from V13 to V14.
+To interact with a Substrate node or the information stored in the blockchain, you need to know something about the features the runtime exposes to the outside world.
+As an application developer, you need to know a lot more about the runtime logic, including the following details:
 
-The current metadata schema uses the [`scale-info`](https://docs.rs/scale-info/latest/scale_info/) crate to get type information for the pallets in the runtime when you compile a node.
+- The version of the runtime that the application is connecting to.
+- The pallets that are implemented for that specific runtime version.
+- All of the functions and their type signatures that are defined in the pallets implemented for that specific runtime.
+- All of the custom types that are defined in the pallets implemented for that specific runtime.
+- The documentation that describes the parameters users can set.
 
-The current implementation of the metadata requires front-end APIs to use the [SCALE codec library](/reference/scale-codec/) to encode and decode RPC payloads to send and receive transactions.
-The following steps summarize how metadata is generated, exposed, and used to make and receive calls from the runtime:
+To capture all of this information, every Substrate runtime has a metadata schema.
+The metadata for a runtime describes all of the pallets and types that are defined for a specific version of the runtime.
+For every pallet, the metadata includes information about its storage items, functions, events, errors, and constants.
+The metadata also includes type definitions for custom types included in the runtime.
 
-- Callable pallet functions, as well as types, parameters and documentation are exposed by the runtime.
-- The `frame-metadata` crate describes the structure in which the information about how to communicate with the runtime will be provided.
-  The information takes the form of a type registry provided by `scale-info`, as well as information about things like which pallets exist (and what the relevant types in the registry are for each pallet).
-- The `scale-info` crate is used to annotate types across the runtime, and makes it possible to build a registry of runtime types. This type information is detailed enough that we can use it to find out how to correctly SCALE encode or decode some value for a given type.
-- The structure described in `frame-metadata` is populated with information from the runtime, and this is then SCALE encoded and made available via the `state_getMetadata` RPC call.
-- Custom RPC APIs use the metadata interface and provide methods to make calls into the runtime.
-  A SCALE codec library is required to encode and decode calls and data to and from the API.
+Because it provides a complete inventory of the runtime, the metadata is the key to enabling client applications to interact with the node, parse responses, and format message payloads.
 
-Every Substrate chain stores the version number of the metadata system they are using, which makes it useful for applications to know how to handle the metadata exposes by a certain block.
-As previously mentioned, the latest metadata version (V14) provides a major enhancement to the metadata that a chain is able to generate.
-But what if an application wants to interact with blocks that were created with an earlier version than V14?
-Well, it would require setting up a front-end interface that follows the older metadata system, whereby custom types would need to be identified and manually included as part of the front-end's code.
-Learn how to use the [`desub`](https://github.com/paritytech/desub) tool to accomplish this if you needed.
+## Generating metadata
+
+To minimize the bandwidth required to transmit data over the network, the metadata schema is encoded using the [SCALE codec library](/reference/scale-codec/).
+This encoding is done automatically for you when you compile a node by using the [`scale-info`](https://docs.rs/scale-info/latest/scale_info/) crate to get type information for the pallets in the runtime.
+
+At a high level, generating the metadata involves the following steps:
+
+- The runtime logic exposes all of the callable functions, types, parameters, and documentation that need to be encoded in the metadata.
+- The `scale-info` crate annotates types across the runtime to build a registry of runtime types.
+- The `frame-metadata` crate describes the structure of the runtime based on the type registry provided by `scale-info`.
+
+## Getting metadata for a runtime
+
+There are several ways you can get the metadata for a runtime.
+For example, you can do any of the following:
+
+- Call the `state_getMetadata` RPC method to return the metadata as a hex-encoded vector of SCALE-encoded bytes.
+- 
 
 Type information bundled in the metadata gives applications the ability to communicate with nodes across different chains, each of which may each expose different calls, events, types and storage.
 It also allows libraries to generate almost all of the code needed to communicate with a given Substrate node, giving the possibility for libraries like `subxt` to generate front-end interfaces that are specific to a target chain.
@@ -50,17 +56,17 @@ The metadata also exposes how a type is expected to be decoded, making it easier
 
 ## Metadata format
 
-Querying the `state_getMetadata` RPC function will return a vector of SCALE-encoded bytes which is decoded using the [`frame-metadata`](https://paritytech.github.io/substrate/master/frame_metadata/index.html) and [`parity-scale-codec`](https://paritytech.github.io/substrate/master/parity_scale_codec/index.html) libraries.
+Although the SCALE-encoded bytes can be decoded using the [`frame-metadata`](https://paritytech.github.io/substrate/master/frame_metadata/index.html) and [`parity-scale-codec`](https://github.com/paritytech/parity-scale-codec) libraries, there are other tools—such as `subxt` and the Polkadot-JS API—that can convert the raw data to human-readable JSON format.
 
-The hex blob returned by the `state_getMetadata` RPC depends on the metadata version, however will generally have the following structure:
+The types and type definitions included in the metadata returned by the `state_getMetadata` RPC call depend on the metadata version of the runtime.
+In general, the metadata includes the following information:
 
-- a hard-coded magic number, `0x6d657461`, which represents "meta" in plain text.
-- a 32 bit integer representing the version of the metadata format in use, for example `14` or `0x0e` in hex.
-- hex encoded type and metadata information.
-  In V14, this part would contain a registry of type information (generated by the `scale-info` crate).
-  In previous versions, this part contained the number of pallets followed by the metadata each pallet exposes.
+- A hex-encoded number—`0x6d657461`—that represents **meta** in plain text.
+- A hex-encoded 32-bit integer representing the version of the metadata format in use.
+  For example, if the metadata is version 15, the hex-encoded representation is `0x0f`.
+- Hex-encoded type definitions for all types used in the runtime generated by the `scale-info` crate.
 
-Here is a condensed version of decoded metadata for a runtime using the V14 metadata system (generated using [`subxt`](/reference/command-line-tools/subxt/)):
+The following example illustrates a section of metadata decoded and converted to JSON using [`subxt`](/reference/command-line-tools/subxt/):
 
 ```json
 [
@@ -190,11 +196,11 @@ For example one type we can encode is a `BitVec<Order, Store>` type: to decode i
 
 Substrate comes with the following APIs to interact with a node:
 
-- [`AuthorApi`](https://paritytech.github.io/substrate/master/sc_rpc/author/trait.AuthorApi.html): An API to make calls into a full node, including authoring extrinsics and verifying session keys.
-- [`ChainApi`](https://paritytech.github.io/substrate/master/sc_rpc/chain/trait.ChainApi.html): An API to retrieve block header and finality information.
-- [`OffchainApi`](https://paritytech.github.io/substrate/master/sc_rpc/offchain/trait.OffchainApi.html): An API for making RPC calls for offchain workers.
-- [`StateApi`](https://paritytech.github.io/substrate/master/sc_rpc/state/trait.StateApi.html): An API to query information about on-chain state such as runtime version, storage items and proofs.
-- [`SystemApi`](https://paritytech.github.io/substrate/master/sc_rpc/system/trait.SystemApi.html): An API to retrieve information about network state, such as connected peers and node roles.
+- [`AuthorApiClient`](https://paritytech.github.io/substrate/master/sc_rpc/author/trait.AuthorApiClient.html): An API to make calls into a full node, including authoring extrinsics and verifying session keys.
+- [`ChainApiClient`](hhttps://paritytech.github.io/substrate/master/sc_rpc/chain/trait.ChainApiClient.html): An API to retrieve block header and finality information.
+- [`OffchainApiClient`](https://paritytech.github.io/substrate/master/sc_rpc/offchain/trait.OffchainApiClient.html): An API for making RPC calls for offchain workers.
+- [`StateApiClient`](https://paritytech.github.io/substrate/master/sc_rpc/state/trait.StateApiClient.html): An API to query information about on-chain state such as runtime version, storage items and proofs.
+- [`SystemApiClient`](https://paritytech.github.io/substrate/master/sc_rpc/system/trait.SystemApiClient.html): An API to retrieve information about network state, such as connected peers and node roles.
 
 ## Connecting to a node
 
