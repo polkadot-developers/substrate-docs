@@ -270,7 +270,6 @@ To add the public function to the smart contract:
    #[ink(message)]
    pub fn get(&self) -> i32 {
        self.value
-       }
    }
    ```
 
