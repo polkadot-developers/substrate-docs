@@ -18,4 +18,4 @@ For additional information about installing and upgrading the Rust compiler and 
 
 - [Rust toolchain](/install/rust-toolchain/)
 - [Developer tools](/install/developer-tools/)
-- [Troubleshooting common issues](/install/troubleshooting/)
+- [Troubleshoot Rust issues](/install/troubleshoot-rust-issues/)
