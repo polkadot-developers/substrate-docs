@@ -108,4 +108,4 @@ std = [
 
 - [Timestamp Pallet associated types](https://paritytech.github.io/substrate/master/pallet_timestamp/index.html)
 - [FRAME `pallet-timestamp`](https://crates.io/crates/pallet-timestamp)
-- [Unit test](/main-docs/test/unit-testing)
+- [Unit test](/test/unit-testing)

@@ -16,7 +16,7 @@ export default function Home({ data }) {
       <Section className="text-center mt-12">
         <h1 className="mb-8 text-4xl lg:text-6xl md:text-6xl font-title font-extrabold">Substrate Documentation</h1>
         <div className="sm:max-w-lg mx-auto mb-10">
-          <p className="max-w-lg text-xl">
+          <p className="max-w-lg text-xl mx-auto">
             Substrate documentation includes conceptual, procedural, and reference information for blockchain builders
             and parachain project teams.
           </p>

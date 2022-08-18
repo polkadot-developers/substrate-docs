@@ -117,7 +117,7 @@ const NavMobile = ({ toggleMenu }) => {
   };
 
   return (
-    <div className="navMobile lg:hidden absolute inset-0 bg-substrateGray-light dark:bg-substrateDarkest z-90 animate-fade-in-right">
+    <div className="navMobile lg:hidden absolute inset-0 bg-substrateGray-light dark:bg-substrateDarkest z-50 animate-fade-in-right">
       <div className="h-16 px-6 flex items-center justify-between">
         <div className="w-32">
           <Link to="/">

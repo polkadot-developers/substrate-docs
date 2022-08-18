@@ -30,7 +30,7 @@ In order to set a unique protocol ID, change make sure you use some nonce or sal
 (for the [parachain node template](https://github.com/substrate-developer-hub/substrate-parachain-template/))
 as a CLI item in `/client/network/src/command.rs`, and passed to extend the `/client/network/src/chain_spec.rs`
 
-All [chain specification](/main-docs/build/chain-spec/) files include this item as a field.
+All [chain specification](/build/chain-spec/) files include this item as a field.
 For example, the primary [relay chain runtime](https://github.com/paritytech/polkadot/tree/master/node/service/chain-specs) chain specs have unique protocol IDs.
 For Polkadot:
 
@@ -82,7 +82,7 @@ constants: _Developers_ -> _ParachainsConfiguration_ -> _ActiveConfiguration_
 
 ## Use proper weights
 
-Use [runtime benchmarking](/main-docs/test/benchmark) to ensure that your runtime weights are
+Use [runtime benchmarking](/test/benchmark) to ensure that your runtime weights are
 actually indicative of the resources used by your runtime.
 
 ### Custom weights
@@ -140,7 +140,7 @@ See the [Prepare a local parachain testnet](/tutorials/connect-other-chains/loca
 
 ## Resources
 
-- [Reference documentation for runtime upgrades](/main-docs/build/upgrade)
+- [Reference documentation for runtime upgrades](/build/upgrade)
 - [A how-to guide to use benchmarked weights](/reference/how-to-guides/weights/add-benchmarks)
 - [Reference for `try-runtime` documentation](/reference/command-line-tools/try-runtime)
   - [`try-runtime` video workshop](https://www.crowdcast.io/e/substrate-seminar/41)

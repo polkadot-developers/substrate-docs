@@ -17,7 +17,7 @@ Before you begin, verify the following:
 
 - You are generally familiar with blockchains and smart contract platforms.
 
-- You have installed Rust and set up your development environment as described in [Install](/main-docs/install/).
+- You have installed Rust and set up your development environment as described in [Install](/install/).
 
 - You have completed [Prepare your first contract](/tutorials/smart-contracts/prepare-your-first-contract/) and have the Substrate contracts node installed locally.
 
@@ -270,7 +270,6 @@ To add the public function to the smart contract:
    #[ink(message)]
    pub fn get(&self) -> i32 {
        self.value
-       }
    }
    ```
 
@@ -311,7 +310,6 @@ To add a function for incrementing the stored value:
    #[ink(message)]
    pub fn inc(&mut self, by: i32) {
        self.value += by;
-       }
    }
    ```
 
