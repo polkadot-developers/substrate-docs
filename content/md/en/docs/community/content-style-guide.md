@@ -1,5 +1,5 @@
 ---
-title: Writing style guide
+title: Content style guide
 description:
 keywords:
   - contribute
@@ -112,6 +112,10 @@ All heading levels should use the following conventions:
 - Always contain content.
   A heading should never be immediately followed by another heading.
   As a best practice, avoid using headings strictly for navigation.
+
+- Avoid using code, proper names, product-specific jargon, and backticks in headings.
+
+- Keep headings as succinct as possible while providing meaningful clues about the content.
 
 ### Limit heading levels
 
