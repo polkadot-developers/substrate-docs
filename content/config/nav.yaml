@@ -265,8 +265,8 @@ community:
   title: Community
   url: /community/
   pages:
-    - title: Style guide
-      url: /community/style-guide/
+    - title: Content style guide
+      url: /community/content-style-guide/
     - title: Contributor guidelines
       url: /community/contributor-guidelines/
     - title: Template - How-to guide
