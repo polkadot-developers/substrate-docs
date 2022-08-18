@@ -4,7 +4,7 @@ description: Compile, launch, and interact with a single local blockchain node i
 keywords:
 ---
 
-As you learned in [Blockchain basics](/main-docs/fundamentals/blockchain-basics/), a blockchain consists of decentralized computers—called nodes—to form a network.
+As you learned in [Blockchain basics](/fundamentals/blockchain-basics/), a blockchain consists of decentralized computers—called nodes—to form a network.
 
 Substrate provides a flexible, open, and extensible development environment that allows you to design and build fully-customized blockchain nodes to suit your application or business model needs.
 
@@ -41,7 +41,7 @@ For this tutorial, you download and use working code. Before you begin, verify t
 
 - You are generally familiar with blockchains and smart contract platforms.
 
-- You have installed Rust and set up your development environment as described in [Install](/main-docs/install/).
+- You have installed Rust and set up your development environment as described in [Install](/install/).
 
 ## Tutorial objectives
 
@@ -108,26 +108,24 @@ To start the local Substrate node:
 
    The terminal should display output similar to this:
 
-   ```bash
-   2021-11-24 15:36:35 Running in --dev mode, RPC CORS has been disabled.
-   2021-11-24 15:36:35 Substrate Node
-   2021-11-24 15:36:35 ✌️  version 4.0.0-dev-82b7c2c-aarch64-macos
-   2021-11-24 15:36:35 ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2021
-   2021-11-24 15:36:35 📋 Chain specification: Development
-   2021-11-24 15:36:35 🏷 Node name: six-wash-9274
-   2021-11-24 15:36:35 👤 Role: AUTHORITY
-   2021-11-24 15:36:35 💾 Database: RocksDb at /tmp/substrateP1jD7H/chains/dev/db
-   2021-11-24 15:36:35 ⛓  Native runtime: node-template-100 (node-template-1.tx1.au1)
-   2021-11-24 15:36:35 🔨 Initializing Genesis block/state (state: 0xa59b…5331, header-hash: 0xc5d2…37f3)
-   2021-11-24 15:36:35 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
-   2021-11-24 15:36:35 ⏱  Loaded block-time = 6s from block 0xc5d2fdad35e14684753f087c1a20f022274e154d39add4f7efe34e95476a37f3
-   2021-11-24 15:36:35 Using default protocol ID "sup" because none is configured in the chain specs
-   2021-11-24 15:36:35 🏷 Local node identity is: 12D3KooWG5niQF5bjsFao3D8DZRpUUB6uWZC2pK8hCDZ94zsr8Sc
-   2021-11-24 15:36:35 📦 Highest known block at #0
+   ```text
+   2022-08-16 13:43:58 Substrate Node    
+   2022-08-16 13:43:58 ✌️  version 4.0.0-dev-de262935ede    
+   2022-08-16 13:43:58 ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2022    
+   2022-08-16 13:43:58 📋 Chain specification: Development
+   2022-08-16 13:43:58 🏷  Node name: limping-oatmeal-7460    
+   2022-08-16 13:43:58 👤 Role: AUTHORITY    
+   2022-08-16 13:43:58 💾 Database: RocksDb at /var/folders/2_/g86ns85j5l7fdnl621ptzn500000gn/T/substrate95LPvM/chains/dev/db/full    
+   2022-08-16 13:43:58 ⛓  Native runtime: node-template-100 (node-template-1.tx1.au1)
+   2022-08-16 13:43:58 🔨 Initializing Genesis block/state (state: 0xf6f5…423f, header-hash: 0xc665…cf6a)
+   2022-08-16 13:43:58 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
+   2022-08-16 13:43:59 Using default protocol ID "sup" because none is configured in the chain specs
+   2022-08-16 13:43:59 🏷  Local node identity is: 12D3KooWCu9uPCYZVsayaCKLdZLF8CmqiHkX2wHsAwSYVc2CxmiE
    ...
    ...
    ...
-   2021-11-24 15:36:40 💤 Idle (0 peers), best: #1 (0xd2b5…d03f), finalized #0 (0xc5d2…37f3), ⬇ 0 ⬆ 0
+   ...
+   2022-08-16 13:54:26 💤 Idle (0 peers), best: #3 (0xcdac…26e5), finalized #1 (0x107c…9bae), ⬇ 0 ⬆ 0
    ```
 
    If the number after `finalized` is increasing, your blockchain is producing new blocks and reaching consensus about the state they describe.
@@ -280,12 +278,13 @@ In this tutorial, you learned:
 The front-end template includes several additional components for you to experiment with while you're connected to a local development node.
 You can explore these components on your own or learn more in the following topics:
 
-- [Architecture](/main-docs/fundamentals/architecture/)
-- [Networks and blockchains](/main-docs/fundamentals/node-and-network-types/)
-- [Simulate a network](/tutorials/get-started/simulate-network/)
 
 If you experienced any issues with this tutorial, submit an issue, ask questions, or provide feedback.
 
 - [Submit an issue](https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose).
 
 - [Substrate Stack Exchange](https://substrate.stackexchange.com/).
+
+- [Architecture](/fundamentals/architecture/)
+- [Networks and blockchains](/fundamentals/node-and-network-types/)
+- [Simulate a network](/tutorials/get-started/simulate-network/)

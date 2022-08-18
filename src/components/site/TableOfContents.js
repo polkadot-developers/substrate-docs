@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import React from 'react';
 
 import useActiveId from '../../hooks/use-active-id';
@@ -19,20 +20,22 @@ export default function TableOfContents({ data, headings }) {
   const activeId = useActiveId(idList);
   return (
     <>
-      <div className="w-100 sticky top-20 max-h-[calc(100vh)] pb-32 ml-0 overflow-y-auto overscroll-contain">
+      <div className="w-100 ml-0 overflow-auto max-h-[calc(100vh-theme(space.20))] top-20 sticky">
         {data && (
           <div className="font-semibold mb-5 mr-1 pt-9 table-of-contents">
             <div className="mb-5">ON THIS PAGE</div>
             <div className="mt-5 text-left block">
               {headings.map(heading => (
-                <p
-                  key={heading.id}
-                  className={`mb-4 ml-0 text-sm hover:text-substrateBlue dark:hover:text-substrateBlue-light ${
-                    activeId === heading.id && 'text-substrateBlue dark:text-substrateBlue-light'
-                  }`}
-                >
-                  <a href={`#${heading.id}`}>{heading.value}</a>
-                </p>
+                <a href={`#${heading.id}`} key={heading.id}>
+                  <p
+                    className={cx('mb-4 ml-0 text-sm hover:opacity-100 opacity-80', {
+                      'text-substrateBlue dark:text-substrateBlue-light !opacity-100 cursor-default':
+                        activeId === heading.id,
+                    })}
+                  >
+                    {heading.value}
+                  </p>
+                </a>
               ))}
             </div>
           </div>

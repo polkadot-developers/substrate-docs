@@ -21,7 +21,7 @@ In this tutorial, you will configure a local relay chain and connect a parachain
 
 Before you begin, verify the following:
 
-- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/).
+- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
 - You have completed the [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) tutorial previously.
 
@@ -84,7 +84,7 @@ If the help page is printed, you have succeeded in building a Polkadot node.
 
 ## Relay chain specification
 
-You will need a [chain specification](/main-docs/build/chain-spec/) for your relay chain network.
+You will need a [chain specification](/build/chain-spec/) for your relay chain network.
 As we want to use a local testnet, a custom configuration may be needed to set development or custom keys for validators, boot node addresses, etc.
 
 **A relay chain _must_ have one more validator nodes running than the total of connected parachain collators.**

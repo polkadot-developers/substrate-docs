@@ -1,6 +1,6 @@
 ---
 title: Mint basic tokens
-description: Demonstrates how to create a simple token mint pallet.
+description: Demonstrates how to create a simple pallet to mint tokens.
 keywords:
   - basics
   - beginner
@@ -9,7 +9,7 @@ keywords:
 ---
 
 This guide demonstrates how you can mint a token by leveraging the primitive capabilities of a [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html).
-In this guide, the `StorageMap` primitive uses the [blake2_128_concat](/main-docs/build/runtime-storage#hashing-algorithms) `hasher` to map balances to account IDs.
+In this guide, the `StorageMap` primitive uses the [blake2_128_concat](/build/runtime-storage#hashing-algorithms) `hasher` to map balances to account IDs.
 This approach is similar to how the [Balances](https://paritytech.github.io/substrate/master/pallet_balances/index.html) pallet makes use of it to store to keep track of account balances.
 
 You should note that this guide is only intended to illustrate a simple approach to creating tokens in Substrate.
@@ -19,10 +19,10 @@ You should keep in mind the following limitations and assumptions used in this g
 - **Safety.** The `mint` function takes in an amount to mint which is _not good practice_ because it implies that users have unlimited access to writing to storage.
   Safer approaches include using a `GenesisConfig` or fixing a predetermined maximum value in runtime.
 - **Weights.** This guide uses an arbitrary weight of 10_000 in the code snippets.
-  Learn more about weight configuration in [Transactions, weights, and fees](/main-docs/build/tx-weights-fees).
+  Learn more about weight configuration in [Transactions, weights, and fees](/build/tx-weights-fees).
 - **Origins.** This guide assumes that the origin will always be the `sudo` user.
   Origins are a powerful capability in Substrate.
-  Learn more about how they work in [Privileged calls and origins](/main-docs/build/origins/).
+  Learn more about how they work in [Privileged calls and origins](/build/origins/).
 
 See the [Examples section](#examples) for practical implementations of this guide.
 
@@ -42,7 +42,7 @@ Give any account the ability to create a token supply in exchange for native tok
 
 ## Set up the Config trait
 
-Using the node template as a starting point, specify the types your pallet depends on and the [`Events`](/main-docs/build/events-errors/) it emits:
+Using the node template as a starting point, specify the types your pallet depends on and the [`Events`](/build/events-errors/) it emits:
 
 ```rust
 

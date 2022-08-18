@@ -419,6 +419,6 @@ Then register from a blank slate again.
 
 - Learn more about collators on the [Polkadot Wiki](https://wiki.polkadot.network/docs/learn-collator).
 - [Add more parachain nodes](/reference/how-to-guides/parachains/add-paranodes/) to your parachain network.
-- Very rigorously [Test](/main-docs/test/) your local parachain network.
+- Very rigorously [Test](/test/) your local parachain network.
 - Connect your parachain to rococo by getting a [Rococo testnet slot](/tutorials/connect-other-chains/rococo-slot/).
 - See the guide on [converting a solo chain to a parachain](/reference/how-to-guides/parachains/convert-a-solo-chain/) to convert your chain's logic-not state or running-chain migrations-to a parachain.
