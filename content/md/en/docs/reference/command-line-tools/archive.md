@@ -23,7 +23,7 @@ Before you use `archive` to create a database for a Substrate-based chain, you n
 - You must have RabbitMQ or Docker Compose installed on the computer where you have PostgreSQL installed.
 
   Depending on your platform, the instruction and system requirements for installing RabbitMQ or Docker can vary.
-  For information about using [RabbitMQ](https://www.rabbitmq.com/) or [Docker(docker.com)], see the [Setup](https://github.com/paritytech/substrate-archive/wiki/1-Setup) `substrate-archive` wiki page.
+  For information about using [RabbitMQ](https://www.rabbitmq.com/) or [Docker](docker.com), see the [Setup](https://github.com/paritytech/substrate-archive/wiki/1-Setup) `substrate-archive` wiki page.
 
 - Your Substrate chain must use RocksDB as its backend database.
 
@@ -75,72 +75,12 @@ To install the `substrate-archive-cli` program:
 1. Start up the `substrate-archive` node for your target chain:
    `cargo run --release -- -c archive-conf.toml --chain=polkadot`
 
-1. Go to PGAdmin URL: `localhost:15643/browser/#`.
+2. Open a web browser and log in to the Postgres administrative console.
+   
+   - Default URL:  localhost:16543
+   - Default user name: pgadmin4@pgadmin.org
+   - Default password: admin
 
-1. Look at the reference to start making your queries.
 
-## {additional context - optional}
+3. Look at the reference to start making your queries.
 
-## Basic command usage
-
-The basic syntax for running {`tool`} commands is:
-
-`tool [subcommand] [flag]`
-
-### Flags
-
-You can use the following optional flags with the {`tool`} command.
-
-### Subcommands
-
-You can use the following subcommands with the {`tool`} command.
-For reference information and examples that illustrate using {`tool`} subcommands, select an appropriate command.
-
-| Command | Description |
-| ------- | ----------- |
-|         |
-|         |
-
-### Output
-
-Depending on the subcommand you specify, the output from the {`tool`} program displays some or all of the following information:
-
-| This field | Contains |
-| ---------- | -------- |
-|            |
-|            |
-
-### Examples
-
-To {_describe some use_}, run the following command:
-
-`tool --use`
-
-## {specific subcommand}
-
-Use the {tool subcommand} command to {_what the subcommand does_}.
-
-#### Basic usage
-
-`tool subcommand [FLAGS] [OPTIONS] <signature> <uri>`
-
-#### Flags
-
-You can use the following optional flags with the {`tool subcommand`} command.
-
-| Flag | Description |
-| ---- | ----------- |
-|      |
-
-#### Options
-
-You can use the following command-line options with the {`tool subcommand`} command.
-
-| Option | Description |
-| ------ | ----------- |
-|        |
-|        |
-
-#### Examples
-
-{2-3 examples on ways to use this subcommand and any relevant explanations}
