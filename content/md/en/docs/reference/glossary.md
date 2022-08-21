@@ -329,7 +329,7 @@ A subsystem in Substrate for managing keys for the purpose of producing new bloc
 Kusama is a _[canary](https://en.wiktionary.org/wiki/canary_in_a_coal_mine) network_ and is referred to as [Polkadot's "wild cousin"](https://polkadot.network/kusama-polkadot-comparing-the-cousins/).
 As a canary network, Kusama is expected to be more stable than a test network like [Westend](#westend), but not as stable as a production network like [Polkadot](#polkadot).
 
-As a canary network, Kusama is [controlled by its network participants](/reference/frame-pallets#democracy) is intended to be stable enough to encourage meaningful experimentation.
+As a canary network, Kusama is [controlled by its network participants](/reference/frame-pallets#democracy) and is intended to be stable enough to encourage meaningful experimentation.
 
 ## libp2p
 
