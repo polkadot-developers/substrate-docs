@@ -302,7 +302,7 @@ synchronization of the chain.
 
 ## hybrid consensus
 
-A blockchain consensus protocol that consists of independent or loosely-coupled mechanisms for[block production](#author) and [finality](#finality).
+A blockchain consensus protocol that consists of independent or loosely-coupled mechanisms for [block production](#author) and [finality](#finality).
 Hybrid consensus allows the chain to grow as fast as probabilistic consensus protocols, such as [Aura](#aura-aka-authority-round), while maintaining the same level of security as [deterministic finality](#deterministic-finality) consensus protocols, such as [GRANDPA](#grandpa).
 In general, block production algorithms tend to be faster than finality mechanisms.
 Making block production separate from block finalization gives Substrate developers greater control of their chain's performance.
