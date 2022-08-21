@@ -134,7 +134,7 @@ See also [hybrid consensus](#hybrid-consensus).
 ## consensus algorithm
 
 An algorithm that ensures that a set of [actors](#authority)—who don't necessarily trust each other—can reach agreement about state as the result of some computation.
-Because most consensus algorithms assume that up to one-third of the actors or nodes can are [byzantine fault tolerant](#byzantine-fault-tolerance-bft).
+Most consensus algorithms assume that up to one-third of the actors or nodes can be [byzantine fault tolerant](#byzantine-fault-tolerance-bft).
 
 Consensus algorithms are generately concerned with ensuring two properties:
 
