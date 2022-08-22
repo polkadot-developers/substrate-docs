@@ -90,7 +90,7 @@ The `sufficients` reference counter indicates if an account is self-sufficient a
 For example, in the Assets pallet, an account can have sufficient number of certain assets but without owning any native account balance.
 
 Runtime developers can update these counters using the `inc_consumers()`, `dec_consumers()`, `inc_providers()`, `dec_providers()`, `inc_sufficients()`, and `dec_sufficients()` methods exposed by the `frame-system` pallet.
-Each increment call of a certain counter should e accompanied by a corresponding decrement call of the counter in an account life cycle.
+Each increment call of a certain counter should be accompanied by a corresponding decrement call of the counter in an account life cycle.
 
 There are also three query functions to ease usage on these counters:
 
@@ -104,7 +104,7 @@ See [`frame-system` API](https://paritytech.github.io/substrate/master/frame_sys
 ## AccountData trait and implementation
 
 The `AccountInfo` can be any struct as long as the struct satisfies the associated type `AccountData` trait bound defined in the [`frame-system::pallet::Config` trait](https://paritytech.github.io/substrate/master/frame_system/pallet/trait.Config.html#associatedtype.AccountData).
-By default, the Substrate runtime configures `AccountInfo` to beas defined in [`pallet-balances`](https://paritytech.github.io/substrate/master/pallet_balances/struct.AccountData.html).
+By default, the Substrate runtime configures `AccountInfo` to be as defined in [`pallet-balances`](https://paritytech.github.io/substrate/master/pallet_balances/struct.AccountData.html).
 
 ## Where to go next
 
