@@ -1,6 +1,6 @@
 import AOS from 'aos';
 import cx from 'classnames';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import Footer from '../site/Footer';
 import Header from '../site/Header';
@@ -8,6 +8,7 @@ import NavBreadcrumb from '../site/NavBreadcrumb';
 import NavSidebar from '../site/NavSidebar';
 import ArticleNav from './ArticleNav';
 import Banner from './Banner';
+import SkipNav from './SkipNav';
 
 function LayoutSidebar({ children, hasArticleNav, hasBreadcrumbs }) {
   return (
@@ -56,6 +57,8 @@ export default function Layout({
   hasArticleNav = false,
   hasBreadcrumbs = true,
 }) {
+  const main = useRef(null);
+
   useEffect(() => {
     AOS.init({
       disable: 'mobile',
@@ -65,9 +68,12 @@ export default function Layout({
 
   return (
     <>
+      <SkipNav main={main} />
       <Banner />
       <Header mode={mode} header={header} />
       <main
+        ref={main}
+        tabIndex={-1}
         className={cx('min-h-screen', {
           'mt-0': layout === 'default',
         })}
