@@ -9,7 +9,8 @@ keywords:
 ---
 
 This guide demonstrates how you can mint a token by leveraging the primitive capabilities of a [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html).
-In this guide, the `StorageMap` primitive uses the [blake2_128_concat](/build/runtime-storage#hashing-algorithms) `hasher` to map balances to account IDs.
+
+In this guide, the `StorageMap` primitive uses the [blake2\_128\_concat](/build/runtime-storage#hashing-algorithms) `hasher` to map balances to account IDs.
 This approach is similar to how the [Balances](https://paritytech.github.io/substrate/master/pallet_balances/index.html) pallet makes use of it to store and keep track of account balances.
 
 You should note that this guide is only intended to illustrate a simple approach to creating tokens in Substrate.
