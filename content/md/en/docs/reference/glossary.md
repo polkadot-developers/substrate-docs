@@ -344,7 +344,7 @@ A light client is capable of verifying [cryptographic primitives](#cryptographic
 ## macro
 
 A programming language feature that enables developers to write a sequence of instructions that can be named and executed together.
-The [FRAME](#frame)development environment provides several [macros](/reference/frame-macros) for [Rust](https://doc.rust-lang.org/1.7.0/book/macros.html) that you can use to compose a [runtime](#runtime).
+The [FRAME](#frame) development environment provides several [macros](/reference/frame-macros) for [Rust](https://doc.rust-lang.org/1.7.0/book/macros.html) that you can use to compose a [runtime](#runtime).
 
 ## metadata
 
@@ -486,7 +486,7 @@ The tagged transaction pool implementation is designed to be extensible and gene
 
 A data structure that is used to represent sets of key-value pairs.
 
-The Patricia Merkle trie data structure enables the items in the data set to be stores and retrieved using a cryptographic hash. Because incremental changes to the data set result in a new hash, retrieving data is efficient even if the data set is very large. With this data structure, you can also prove whether the data set includes any particular key-value pair without the access to the entire data set.
+The Patricia Merkle trie data structure enables the items in the data set to be stored and retrieved using a cryptographic hash. Because incremental changes to the data set result in a new hash, retrieving data is efficient even if the data set is very large. With this data structure, you can also prove whether the data set includes any particular key-value pair without the access to the entire data set.
 
 ## validator
 
