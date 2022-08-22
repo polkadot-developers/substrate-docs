@@ -1,18 +1,17 @@
 ---
 title: srtool
-description: Command-line reference information for the srtool program.
+description: Describes the Docker container and command-line interface for building the Substrate WebAssembly runtime.
 keywords:
 ---
 
 The Substrate runtime tool (`srtool`) is a Docker container that enables you to build the Substrate WebAssembly runtime in a deterministic way.
 This tool enables you to consistently reproduce an identical WebAssembly blob so that you can integrate building the WebAssembly runtime into your CI/CD pipeline.
-tools for runtime development.
 
 ## Get the Docker image
 
 If you have a Docker account, you can search for the `paritytech/srtool` container and tagged images on the Docker Hub.
 
-The `paritytech/srtool` Docker image names specify the version of the Rust compiler used to compile the code included in the image.
+The naming convention for `paritytech/srtool` Docker images specifies the version of the Rust compiler used to compile the code included in the image.
 For example, the image `paritytech/srtool:1.62.0` indicates that the tools included in the image were compiled with version `1.62.0` of the `rustc` compiler.
 In addition to the compiler version, some images specify the version of the build script used.
 For example, an image named `paritytech/srtool:1.62.0-0.9.19` was compiled with version `1.62.0` of the `rustc` compiler but using the version `0.9.19` of the build script.
@@ -21,7 +20,7 @@ The image that only specifies the compiler version always contains the latest ve
 
 1. Open a terminal shell on your local computer.
    
-2. Download and unpack the container by running a command similar to the following:
+2. Download and unpack the image by running a command similar to the following:
    
    ```bash
    docker pull paritytech/srtool:1.62.0
@@ -41,91 +40,238 @@ Instead, you can use the following programs to interact with the Docker image.
 
 - [subwasm](https://github.com/chevdor/subwasm) provides command-line options for working with the metadata and WebAssembly runtime built using `srtool`.
 
+## srtool-cli
 
+You can use the `srtool` command-line interface to build the WebAssembly runtime using the srtool Docker image.
+The `srtool` command-line interface enables the same source code to consistently produce the same WebAssembly binary.
 
-You can use the `srtool` command-line interface to build the WebAssembly runtime in a deterministic way.
-This tool allows you or your continuous integration (CI) system to consistently produce the same WebAssembly bytecode.
+### Basic command usage
 
-srtool is cli allowing to control the srtool docker image
+The basic syntax for running `srtool` commands is:
 
-USAGE:
-    srtool [OPTIONS] <SUBCOMMAND>
+```text
+srtool [options] [subcommand]
+```
 
-OPTIONS:
-    -h, --help             Print help information
-    -i, --image <IMAGE>    Choose an alternative image. Beware to choose an image that is compatible
-                           with the original srtool image. Using a random image, you take the risk
-                           to NOT produce exactly the same deterministic result as srtool [default:
-                           paritytech/srtool]
-    -j, --json             This option is DEPRECATED and has no effect
-    -n, --no-cache         Do not use the local cached tag value
-    -V, --version          Print version information
+### Options
 
-SUBCOMMANDS:
-build | Start a new srtool container to build your runtime
-help | Print this message or the help of the given subcommand(s)
-info | Provide information about the srtool container and your repo 
-pull | Simply pull the srtool image and do not run anything else
-version | Show the versions of the srtool container. Use --version if you want the version
-                   of this executable
+You can use the following command-line options with the `srtool` command.
+
+| Option | Description |
+| -------| ----------- |
+| `-h`, `--help`  | Displays usage information. |
+| `i`, `--image <image>` | Specifies an alternative image. Be sure to specify an image that is compatible with the default `paritytech/srtool` image. You should note that specifying an image other than the `paritytech/srtool` image might not produce the same deterministic result that the `paritytech/srtool` image produces. |
+| `-n`, `--no-cache` | Specifies that you don't want to use the tag value from the local cache. |
+| `-V`, `--version` | Displays version information.   |
+
+### Subcommands
+
+You can use the following subcommands with the `srtool` command.
+
+| Command | Description |
+| ------- | ----------- |
+| `build` | Starts a new `srtool` container to build your runtime. |
+| `help` | Displays usage information for `srtool` or for a specified subcommand. |
+| `info` | Displays information about the `srtool` container and your repository. | 
+| `pull` | Pulls the `srtool` image without running anything else. |
+| `version` | Displays version information for the `srtool` container. Use `--version` if you want version information for the `srtool-cli` executable.
+
+### Examples
+
+To get version information for the `srtool` Docker image, run the following command:
+
+```bash
+srtool version
+```
+
+The command displays output similar to the following:
+
+```text
+{
+  "name": "srtool",
+  "version": "0.9.21",
+  "rustc": "1.62.0",
+  "subwasm": "0.18.0",
+  "tera": "0.2.1",
+  "toml": "0.2.1"
+}
+```
+
+To get version information for the `srtool-cli` executable, run the following command:
+
+```bash
+srtool --version
+```
+
+The command displays output similar to the following:
+
+```text
+srtool-cli 0.8.0
+```
 
 ## srtool build
 
-Start a new srtool container to build your runtime
+Use the `srtool build` command to start a new `srtool` container to build the runtime for the package you specify.
+By default, the `srtool build` command assumes that the `Cargo.toml` file for the runtime is located in a [`runtime`](https://github.com/paritytech/polkadot/tree/master/runtime) subdirectory with the name of the chain.
+For example, the `srtool build` command use the following locations by default:
 
-USAGE:
-    srtool build [OPTIONS] --package <PACKAGE> [PATH]
+- runtime/kusama
+- runtime/polkadot
+- runtime/rococo
+- runtime/westend
+  
+If the `Cargo.toml` file for your runtime is in a different location, you can specify the path as a command-line option.
 
-ARGS:
-    <PATH>    By default, srtool will work in the current folder. If your project is located in
-              another location, you can pass it here [default: .]
+#### Basic usage
 
-OPTIONS:
-    -a, --app
-            Enable the "app" mode which is a mix of json output and outputting progress during the
-            build. This flag is recommended for CI. the json output will be provided as a single
-            line at the end in compact mode
+The basic syntax for running the `srtool build` command is:
 
-        --build-opts <BUILD_OPTS>
-            You may pass options to cargo directly here. WARNING, if you pass this value, the
-            automatic build options for Kusama and Polkadot will not be passed and you need to take
-            care of them manually. In general, you should never use this option unless you HAVE to
-            [env: BUILD_OPTS=]
+```text
+srtool build [options] --package <package> [--runtime-dir <path>] [<project-path>]
+```
 
-        --default-features <DEFAULT_FEATURES>
-            Passing this is less involved than passing BUILD_OPTS. It allows changing the list of
-            default features while keeping the automatic features detection. This value is useless
-            if BUILD_OPTS is set [env: DEFAULT_FEATURES=]
+#### Arguments
 
-    -h, --help
-            Print help information
+By default, the `srtool build` runs in the current working directory. If your project isn't located in the current working directory, you can specify the path to the project location.
 
-    -i, --image <IMAGE>
-            Choose an alternative image. Beware to choose an image that is compatible with the
-            original srtool image. Using a random image, you take the risk to NOT produce exactly
-            the same deterministic result as srtool [default: paritytech/srtool]
+| Argument | Description |
+| -------- | ----------- |
+| <project-path> | Specifies the path to the blockchain project you are building the runtime for. |
 
-    -j, --json
-            Enable json output, same than the global --json option
+#### Options
 
-        --no-cache
-            Passing this flag allows completely disabling caching. As a result, no cargo-home will
-            be mounted to the srtool image. There is no known issue with having the cache ON, this
-            is why it is the default
+You can use the following command-line options with the `srtool build` command.
 
-    -p, --package <PACKAGE>
-            Provide the runtime such as kusama-runtime, polkadot-runtime, etc... [env: PACKAGE=]
+| Option | Description |
+| ------ | ----------- | 
+| `-a`, `--app` | Enables a mix of standard output and JSON output during the build. This option is recommended for CI. The JSON output is provided as a single line at the end of the build. |
+| `--build-opts <BUILD_OPTS>` | Enables you to pass custom options directly to the `cargo` build process. If you specify  this command-line option, be aware that none of the automatic options for building Kusama or Polkadot are passed to the build process. You must explicitly set the build options you need when you use the `--build-opts` command-line option. In general, this option rarely required. This option is equivalent to setting the `BUILD_OPTS` environment variable. |
+| `--default-features <default-features>` | Enables you to change the list of default features for the runtime without disabling automatic feature detection. This option is equivalent to setting the `DEFAULT_FEATURES` environment variable. This command-line option has no effect if you set `BUILD_OPTS`. |
+| `-h`, `--help` | Displays usage information.
+| `i`, `--image <image>` | Specifies an alternative image. Be sure to specify an image that is compatible with the default `paritytech/srtool` image. You should note that specifying an image other than the `paritytech/srtool` image might not produce the same deterministic result that the `paritytech/srtool` image produces. |
+| `-j`, `--json` | Enables JSON output.
+| `--no-cache` | Disables all caching. If you specify this option, the `srtool` image won't access the Cargo home cache for build dependencies. In general, this option is rarely used because there are no known issues with using the cache. |
+| `-p`, `--package <package>` | Specifies the name of the runtime package you want to build. The name you specify should be the same as the name defined in the `Cargo.toml` file for the runtime,for example, kusama-runtime, polkadot-runtime, and so on. This option is equivalent to setting the `PACKAGE` environment variable. |
+| `--profile <profile>` | Specifies the profile to use for building the runtime, The default profile to build a runtime is always `release`. You can override the default with this command-line option. This option is equivalent to setting the `PROFILE` environment variable. |
+| `-r`, `--runtime-dir` <runtime> | Specifies the location of the `Cargo.toml` file for the runtime. If your runtime is not in the standard location, you can use this command-line option to specify the correct location. This option is equivalent to setting the `RUNTIME_DIR` environment variable. |
+| `-V`, `--version` | Displays version information. |
 
-        --profile <PROFILE>
-            The default profile to build runtimes is always `release`. You may override the default
-            with this flag [env: PROFILE=] [default: release]
+#### Examples
 
-    -r, --runtime-dir <RUNTIME_DIR>
-            If your runtime is not in the standard location runtime/<chain_name> you can pass this
-            args to help srtool find it [env: RUNTIME_DIR=]
+To build the Westmint runtime from the `cumulus` repository where the path to the `Cargo.toml` for the runtime is [parachains/runtimes/assets/westmint](https://github.com/paritytech/cumulus/tree/master/parachains/runtimes/assets/westmint), you would run the following command:
 
-    -V, --version
-            Print version information
+```bash
+srtool build --app --package westmint-runtime --runtime-dir parachains/runtimes/assets/westmint
+```
 
+The first time you run the `srtool build` command it takes some time to complete.
+As the runtime compiles, messages about its progress are displayed as standard output.
+Because this example uses the `--app` command-line option, JSON output is displayed in a single line at the end of the build similar to the following truncated output:
 
-[srtool](https://github.com/paritytech/srtool)
+```text
+...
+   Compiling cumulus-primitives-parachain-inherent v0.1.0 (/build/primitives/parachain-inherent)
+   Compiling cumulus-pallet-parachain-system v0.1.0 (/build/pallets/parachain-system)
+    Finished release [optimized] target(s) in 112m 11s
+✨ Your Substrate WASM Runtime is ready! ✨
+{"gen":"srtool v0.9.21","src":"git","version":"1.0.0","commit":"bd41e3f11887ea2f55fc37be71ff652923388e03","tag":"v0.9.220-rc2","branch":"master","rustc":"rustc 1.62.0 (a8314ef7d 2022-06-27)","pkg":"westmint-runtime","tmsp":"2022-08-22T21:12:18Z","size":"707937","prop":"0x6b8e93443b6660a16f67a6cd34d415af463e2285eda3fd02b9fe052c1ad2ceb9"
+... }}}}
+```
+
+## srtool help
+
+Use the `srtool help` command to display usage message for `srtool` or for a specified subcommand.
+
+#### Basic usage
+
+```text
+srtool help [subcommand]
+```
+
+#### Examples
+
+To display usage information for the build subcommand, run the following command:
+
+```bash
+subkey help build
+```
+
+## srtool info
+
+Use the `srtool info` command to display information about the `srtool` container and your repository.
+y default, the `srtool info` command assumes that the `Cargo.toml` file for the runtime is located in a [`runtime`](https://github.com/paritytech/polkadot/tree/master/runtime) subdirectory with the name of the chain.
+For example, the `srtool info` command use the following locations by default:
+
+- runtime/kusama
+- runtime/polkadot
+- runtime/rococo
+- runtime/westend
+  
+If the `Cargo.toml` file for your runtime is in a different location, you can specify the path as a command-line option.
+
+#### Basic usage
+
+The basic syntax for running the `srtool info` command is:
+
+```text
+srtool info [options] --package <package> [--runtime-dir <path>] [<project-path>]
+```
+
+#### Arguments
+
+By default, the `srtool info` runs in the current working directory. 
+If your project isn't located in the current working directory, you can specify the path to the project location.
+
+| Argument | Description |
+| -------- | ----------- |
+| <project-path> | Specifies the path to the blockchain project if the project isn't located in the current working directory. |
+
+#### Options
+
+You can use the following command-line options with the `srtool info` command.
+
+| Option | Description |
+| ------ | ----------- | 
+| `-h`, `--help` | Displays usage information.
+| `i`, `--image <image>` | Specifies an alternative image. Be sure to specify an image that is compatible with the default `paritytech/srtool` image. You should note that specifying an image other than the `paritytech/srtool` image might not produce the same deterministic result that the `paritytech/srtool` image produces. |
+| `-p`, `--package <package>` | Specifies the name of the runtime package you want to build. The name you specify should be the same as the name defined in the `Cargo.toml` file for the runtime,for example, kusama-runtime, polkadot-runtime, and so on. This option is equivalent to setting the `PACKAGE` environment variable. |
+| `-r`, `--runtime-dir` <runtime> | Specifies the location of the `Cargo.toml` file for the runtime. If your runtime is not in the standard location, you can use this command-line option to specify the correct location. This option is equivalent to setting the `RUNTIME_DIR` environment variable. |
+| `-V`, `--version` | Displays version information. |
+
+#### Examples
+
+To display information about the `srtool` container and the local node-template repository, you might run a command similar to the following:
+
+```bash
+srtool info --package node-template-runtime --runtime-dir runtime
+```
+
+This command displays output similar to the following:
+
+```text
+{
+  "generator": {
+    "name": "srtool",
+    "version": "0.9.21"
+  },
+  "src": "git",
+  "version": "4.0.0-dev",
+  "git": {
+    "commit": "6a8b2b12371395979099d2c79ccc1860531b0449",
+    "tag": "",
+    "branch": "my-branch-v0.9.28"
+  },
+  "rustc": "rustc 1.62.0 (a8314ef7d 2022-06-27)",
+  "pkg": "polkadot-runtime",
+  "profile": "release"
+}
+```
+
+## srtool pull
+
+Use the `srtool pull` command to 
+
+## srtool version
+
+Use the `srtool version` command to 
+
