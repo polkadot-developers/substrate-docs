@@ -71,7 +71,7 @@ The account reference counters track account dependencies in the runtime.
 For example, if you store data under a map controlled by an account, you wouldn't want to delete the account until the data stored under the map the account controls has been deleted.
 
 The `consumers` and `providers` reference counters are designed to be used together.
-For example, the `consumers` reference counter in the `Session` pallet is incremented when an account setS its session keys prior of becoming a validator.
+For example, the `consumers` reference counter in the `Session` pallet is incremented when an account sets its session keys prior of becoming a validator.
 The `providers` reference counter must be greater than zero before the `consumer`
 counter can be incremented.
 
