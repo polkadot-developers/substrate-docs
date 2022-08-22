@@ -147,7 +147,7 @@ You can use command-line options to generate keys with different signature schem
 #### Basic usage
 
 ```text
-subkey generate [FLAGS] [OPTIONS]
+subkey generate [flags] [options]
 ```
 
 #### Flags
@@ -241,7 +241,7 @@ In most cases, you run this command with a command-line option to save the priva
 #### Basic usage
 
 ```text
-subkey generate-node-key [FLAGS] [OPTIONS]
+subkey generate-node-key [flags] [options]
 ```
 
 #### Flags
@@ -301,7 +301,7 @@ Use the `subkey inspect` command to recalculate the public key and public addres
 #### Basic usage
 
 ```text
-subkey inspect [FLAGS] [OPTIONS] uri
+subkey inspect [flags] [options] uri
 ```
 
 #### Flags
@@ -456,7 +456,7 @@ Before using this command, you should have previously used the [`subkey generate
 #### Basic usage
 
 ```text
-subkey inspect-node-key [FLAGS] [OPTIONS] --file <file-name>
+subkey inspect-node-key [flags] [options] --file <file-name>
 ```
 
 #### Flags
@@ -492,7 +492,7 @@ You can sign messages using your secret seed or secret phrase.
 #### Basic usage
 
 ```text
-subkey sign [FLAGS] [OPTIONS]
+subkey sign [flags] [options]
 ```
 
 #### Flags
@@ -557,7 +557,7 @@ This command does not generate a secret phrase for the custom address.
 #### Basic usage
 
 ```text
-subkey vanity [FLAGS] [OPTIONS] --pattern <pattern>
+subkey vanity [flags] [options] --pattern <pattern>
 ```
 
 #### Flags
@@ -626,7 +626,7 @@ Use the `subkey verify` command to verify the signature for a message using a pu
 #### Basic syntax
 
 ```text
-subkey verify [FLAGS] [OPTIONS] <signature> <uri>
+subkey verify [flags] [options] <signature> <uri>
 ```
 
 #### Flags
