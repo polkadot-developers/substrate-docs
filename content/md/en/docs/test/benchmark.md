@@ -17,13 +17,14 @@ If you use benchmarking to assign accurate weights to function calls, you can pr
 
 It is important to understand the computational resources required to execute different functions—including runtime functions like `on_initialize` and `verify_unsigned`—to keep the runtime safe and to enable the runtime to include or exclude transactions based on the resources available.
 
-The ability to include or exclude transactions based on available resources ensures that the runtime can continue to produce and import block without service interruptions.
+The ability to include or exclude transactions based on available resources ensures that the runtime can continue to produce and import blocks without service interruptions.
 For example, if you have a function call that requires particularly intensive computation, executing the call might exceed the maximum time allowed for producing or importing a block, disrupting the block handling process or stopping blockchain progress altogether.
 Benchmarking helps you validate that the execution time required for different functions is within reasonable boundaries.
 
 Similarly, a malicious user might attempt to disrupt network service by repeatedly executing a function call that requires intensive computation or that doesn't accurately reflect the computation it requires.
 If the cost for executing a function call doesn't accurately reflect the computation involved, there's no incentive to deter a malicious user from attacking the network.
-Because benchmarking helps you evaluate the weight associated with executing transactions, it also helps you to determine transaction fees for calls that represent the resources consumed by executing a transaction on the blockchain.
+Because benchmarking helps you evaluate the weight associated with executing transactions, it also helps you to determine appropriate transaction fees.
+Based on your benchmarks, you can set fees that represent the resources consumed by executing specific calls on the blockchain.
 
 ## Developing a linear model
 
@@ -86,13 +87,12 @@ If a function executes different code paths depending on user input or other con
 To help you see where complexity in the code might become unmanageable, you should create a benchmark for each possible execution path.
 The benchmarks can help you identify places in the code where you might want to enforce boundaries—for example, by limiting the number of elements in a vector or limiting the number of iterations in a `for` loop—to control how users interact with your pallet.
 
-You can find examples of end-to-end benchmarks in the prebuilt FRAME pallets.
-You can also find details about using the `benchmarks!` macro in the [source code](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/src/lib.rs).
+You can find examples of end-to-end benchmarks in all of the prebuilt [FRAME pallets](https://github.com/paritytech/substrate/tree/master/frame).
 
 ## Testing benchmarks
 
-You can test your benchmarks using the same mock runtime that you created for your pallet's unit tests.
-If you use the `benchmarks!` macro to create your benchmarks, the macro automatically generates test functions for you.
+You can test benchmarks using the same mock runtime that you created for unit testing your pallet.
+The benchmarking macro you use in your `benchmarking.rs` module automatically generates test functions for you.
 For example:
 
 ```rust
@@ -109,10 +109,7 @@ The additional `verify` blocks don't affect the results of your final benchmarki
 
 ### Run the unit tests with benchmarks
 
-To run the tests, you need to enable the `runtime-benchmarks` feature flag.
-However, Substrate uses a virtual workspace that does not allow you to compile with feature flags.
-If you see an error that `--features is not allowed in the root of a virtual workspace`, you can navigate to the folder of the node (`cd bin/node/cli`) or pallet (`cd frame/pallet`) and run the `cargo test` command in that directory.
-
+To run the benchmarking tests, you need to specify the package to test and enable the `runtime-benchmarks` feature.
 For example, you can test the benchmarks for the Balances pallet by running the following command:
 
 ```bash
@@ -149,13 +146,12 @@ cargo build --profile=production --features runtime-benchmarks
 
 The `production` profile applies various compiler optimizations.  
 These optimizations slow down the compilation process _a lot_.  
-If you are just testing things out and don't need final numbers, use `--release` instead.
+If you are just testing things out and don't need final numbers, use the `--release` command-line option instead of the `production` profile.
 
 ## Running benchmarks
 
-After you have compiled a node binary with benchmarks enabled, you need to execute the
-benchmarks.
-If you used the `production` profile to compile the node, you can list the available benchmarks by running the following command i:
+After you have compiled a node binary with benchmarks enabled, you need to execute the benchmarks.
+If you used the `production` profile to compile the node, you can list the available benchmarks by running the following command:
 
 ```bash
 ./target/production/node-template benchmark pallet --list
