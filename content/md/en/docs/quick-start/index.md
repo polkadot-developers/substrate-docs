@@ -130,5 +130,5 @@ In this _Quick start_, you learned how to compile and run a single blockchain no
 To start learning how to customize its features, explore the following resources:
 
 - [Architecture](/fundamentals/architecture/)
-- [Runtime development](/fundamentals/runtime-intro/)
+- [Runtime development](/fundamentals/runtime-development/)
 - [Rust for Substrate](/fundamentals/rust-basics/)
