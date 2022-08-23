@@ -4,7 +4,7 @@ description: Explains how to emit events and errors from the runtime.
 keywords:
 ---
 
-A pallet can emit events when it wants to notify external entities about changes
+A pallet can emit events when it wants to notify about changes
 or conditions in the runtime to external entities like users, chain explorers, or dApps.
 
 You can define what events your pallet emits, what information is contained within those events, and

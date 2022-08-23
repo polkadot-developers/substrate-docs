@@ -1,6 +1,5 @@
+import { Link } from 'gatsby-plugin-substrate';
 import React from 'react';
-
-import { Link } from '../Link';
 
 function LinkResolver({ children, href, ...others }) {
   return (

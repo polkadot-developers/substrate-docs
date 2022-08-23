@@ -4,10 +4,8 @@ import './src/styles/custom-blocks.css';
 import './src/styles/language-tabs.css';
 import './src/styles/scss/styles.scss';
 
+import { DataProvider, ThemeProvider } from 'gatsby-plugin-substrate';
 import React from 'react';
-
-import { DataProvider } from './src/contexts/DataContext';
-import { ThemeProvider } from './src/contexts/ThemeContext';
 
 export const wrapRootElement = ({ element }) => <ThemeProvider>{element}</ThemeProvider>;
 

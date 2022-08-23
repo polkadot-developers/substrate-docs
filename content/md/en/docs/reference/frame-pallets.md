@@ -47,7 +47,7 @@ You should check the [Rust documentation](https://paritytech.github.io/substrate
 | [`pallet_elections_phragmen`](https://paritytech.github.io/substrate/master/pallet_elections_phragmen/index.html) | Provides an election module based on [sequential Phragmén](https://wiki.polkadot.network/docs/en/learn-phragmen).
 | [`pallet_example_basic`](https://paritytech.github.io/substrate/master/pallet_example_basic/index.html) | Demonstrates concepts, APIs, and structures that are applicable for most pallets.
 | [`pallet_example_offchain_worker`](https://paritytech.github.io/substrate/master/pallet_example_offchain_worker/index.html) | Demonstrates concepts, APIs, and structures that are applicable for most offchain workers.
-| [pallet_example_parallel](https://paritytech.github.io/substrate/master/pallet_example_parallel/index.html) | Demonstrates parallelizing validation of the enlisted participants.
+| [`pallet_example_parallel`](https://paritytech.github.io/substrate/master/pallet_example_parallel/index.html) | Demonstrates parallelizing validation of the enlisted participants.
 | [`pallet_grandpa`](https://paritytech.github.io/substrate/master/pallet_grandpa/index.html) | Extends the GRANDPA consensus by managing the GRANDPA authority set ready for the native code.
 | [`pallet_identity`](https://paritytech.github.io/substrate/master/pallet_identity/index.html) | Enables a federated naming system that allows multiple registrars to be added from a specified origin. Registrars can set a fee to provide identity-verification service.
 | [`pallet_im_online`](https://paritytech.github.io/substrate/master/pallet_im_online/index.html) | Allows validators to gossip a heartbeat transaction with each new session to signal that the node is online.

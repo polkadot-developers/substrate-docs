@@ -53,7 +53,7 @@ Thus it requires much more computation to retrieve information about some previo
 Full nodes allow you to read the current state of the chain and to submit and validate transactions directly on the network.
 By discarding state from older blocks, a full node requires much less disk space than an archive node.
 However, a full node requires far more computational resources to query and retrieve information about some previous state.
-If you need to query historical blocks, you should purge the full node then restart it as an archive mode.
+If you need to query historical blocks, you should purge the full node then restart it as an archive node.
 
 ### Archive nodes
 
