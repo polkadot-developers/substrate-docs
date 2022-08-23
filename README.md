@@ -70,6 +70,10 @@ nvm i
 yarn
 ```
 
+**gatsby-plugin-substrate submodule**
+
+This website uses a submodule for shared components. To set it up please refer to the [gatsby-plugin-substrate repository](https://github.com/paritytech/gatsby-plugin-substrate#troubleshooting).
+
 **Configure environment variables**
 
 Copy `example.env.development` into a new `.env.development` file.

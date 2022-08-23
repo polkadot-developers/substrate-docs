@@ -5,11 +5,7 @@ keywords:
 ---
 
 Substrate uses customized [Rust macros](https://doc.rust-lang.org/book/ch19-06-macros.html) to generate code and aggregate the logic from the pallets you implement for a runtime.
-<<<<<<< HEAD
-These runtime macros allow you to focus on your runtime logic rather than spending time on encoding and decoding on-chain variables or duplicating the code required for [basic blockchain development](/main-docs/fundamentals/runtime-development#core-primitives).
-=======
-These runtime macros allow you to focus on your runtime logic rather than spending time on encoding and decoding on-chain variables or duplicating the code required for [basic blockchain development](/fundamentals/runtime-intro#core-primitives).
->>>>>>> main
+These runtime macros allow you to focus on your runtime logic rather than spending time on encoding and decoding on-chain variables or duplicating the code required for [basic blockchain development](/fundamentals/runtime-development#core-primitives).
 
 This section provides an overview of the types of macros available in Rust and highlights how the specific FRAME macros are used in runtime development.
 
@@ -28,7 +24,7 @@ Declarative macros are widely-used in Rust programming.
 Unlike the pattern-matching done in declarative macros, procedural macros take code as input, perform some set of instructions on the input, and produce code as output.
 There are three types of procedural macros: 
 
-- [Custom `derive` macros](https://doc.rust-lang.org/book/ch19-06-macros.html#how-to-write-a-custom-derive-macro) enable you to define and reuse the implementation of a trait for a given type.
+- [Custom derive macros](https://doc.rust-lang.org/book/ch19-06-macros.html#how-to-write-a-custom-derive-macro) enable you to define and reuse the implementation of a trait for a given type.
   The `derive` macro is particularly useful for defining the implementation for custom runtime types that must satisfy specific traits.
   
 - [Attribute-like macros](https://doc.rust-lang.org/book/ch19-06-macros.html#attribute-like-macros) enable you to create new attributes to generate code.
@@ -109,11 +105,8 @@ You'll see these many of these crates listed as dependencies in the runtime and 
 
 ## Macros for composing pallets
 
-<<<<<<< HEAD
-As discussed in [Building custom pallets](/main-docs/fundamentals/runtime-development#building-custom-pallets), most FRAME pallets are composed using a common set of sections.
-=======
-As discussed in [Building custom pallets](/fundamentals/runtime-intro#building-custom-pallets), most FRAME pallets are composed using a common set of sections.
->>>>>>> main
+As discussed in [Building custom pallets](/fundamentals/runtime-development#building-custom-pallets), most FRAME pallets are composed using a common set of sections.
+
 Macros make building each of those sections more modular and extensible.
 This section describes the macros available and how to use them to build your custom runtime.
 
@@ -431,7 +424,7 @@ For more information, see the Rust documentation for [pallet::genesis_config](ht
 
 The [`#[pallet::inherent]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#inherent-palletinherent-optional) macro allows the pallet to provide data in an unsigned inherent transaction.
 
-The macos is defined as a trait implementation with bound <T: Config,> of trait ProvideInherent for type Pallet<T>.
+The macro is defined as a trait implementation with bound <T: Config,> of trait ProvideInherent for type Pallet<T>.
 
 For example:
 
@@ -448,7 +441,7 @@ For more information, see the Rust documentation for [pallet::inherent](https://
 
 The [`#[pallet::origin]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#origin-palletorigin-optional) macro allows you to define an origin for the pallet.
 
-The macro must be defined as a type alias, enumeration or a struct. 
+The macro must be defined as a type alias, enumeration, or struct. 
 The macro must be public.
 
 For example:
@@ -480,7 +473,7 @@ For more information, see the Rust documentation for [pallet::validate_unsigned]
 ## Runtime construction macros
 
 As an introduction to the use of macros, [Substrate runtime macros](#substrate-runtime-macros) highlighted several of the macros that are provided in the `frame_support` and `frame_system` crates.
-However, a few of those macros introduced in [Substrate runtime macros](#substrate-runtime-macros) warrant additional attention because because of the role they play in constructing the runtime logic.
+However, a few of those macros introduced in Substrate runtime macros warrant additional attention because because of the role they play in constructing the runtime logic.
 
 ### construct_runtime!
 
@@ -578,6 +571,31 @@ The macro declares the following struct types:
 In addition to the traits for these structs, the macro implements helper traits.
 
 For more information, see the Rust documentation for [app_crypto]](https://paritytech.github.io/substrate/master/sp_application_crypto/macro.app_crypto.html).
+
+## Benchmarking macros
+
+The FRAME benchmarking framework defines several macros for benchmarking pallets.
+The following macros are used for benchmarking:
+
+- `add_benchmark` to add pallet benchmarks to a `Vec<BenchmarkBatch>` object using the pallet crate name and generated module struct.
+  
+- `benchmarks` to construct the benchmark logic for testing the execution time for function calls.
+  
+- `benchmarks_instance` to provide the same functionality as the `benchmarks` macro for instantiable modules.
+  
+- `benchmarks_instance_pallet` to provide the same functionality as the `benchmarks` macro for instantiable pallets that are declared with the [`frame_support::pallet`] macro.
+  
+- `cb_add_benchmarks` to call `add_benchmark` as a callback for the `define_benchmarks` macro.
+  
+- `cb_list_benchmarks` to call `list_benchmark` as a callback for the `define_benchmarks` macro.
+
+- `define_benchmarks` to define all of the benchmarked pallets for the runtime.
+
+- `impl_benchmark_test_suite` to create a test suite that runs the benchmarks defined in the benchmarking module.
+
+- `list_benchmark` to generate a list of benchmarks for the pallets configured in the runtime.
+
+- `whitelist` to add accounts to an allow list for testing purposes.
 
 ## References
 

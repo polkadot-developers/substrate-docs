@@ -1,6 +1,5 @@
+import { Icon } from 'gatsby-plugin-substrate';
 import React from 'react';
-
-import Icon from '../default/Icon';
 
 const githubLink = 'https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose';
 

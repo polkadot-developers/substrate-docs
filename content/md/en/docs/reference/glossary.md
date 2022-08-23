@@ -134,7 +134,7 @@ See also [hybrid consensus](#hybrid-consensus).
 ## consensus algorithm
 
 An algorithm that ensures that a set of [actors](#authority)—who don't necessarily trust each other—can reach agreement about state as the result of some computation.
-Because most consensus algorithms assume that up to one-third of the actors or nodes can are [byzantine fault tolerant](#byzantine-fault-tolerance-bft).
+Most consensus algorithms assume that up to one-third of the actors or nodes can be [byzantine fault tolerant](#byzantine-fault-tolerance-bft).
 
 Consensus algorithms are generately concerned with ensuring two properties:
 
@@ -302,7 +302,7 @@ synchronization of the chain.
 
 ## hybrid consensus
 
-A blockchain consensus protocol that consists of independent or loosely-coupled mechanisms for[block production](#author) and [finality](#finality).
+A blockchain consensus protocol that consists of independent or loosely-coupled mechanisms for [block production](#author) and [finality](#finality).
 Hybrid consensus allows the chain to grow as fast as probabilistic consensus protocols, such as [Aura](#aura-aka-authority-round), while maintaining the same level of security as [deterministic finality](#deterministic-finality) consensus protocols, such as [GRANDPA](#grandpa).
 In general, block production algorithms tend to be faster than finality mechanisms.
 Making block production separate from block finalization gives Substrate developers greater control of their chain's performance.
@@ -326,10 +326,10 @@ A subsystem in Substrate for managing keys for the purpose of producing new bloc
 ## Kusama
 
 [Kusama](https://kusama.network/) is a Substrate-based [blockchain](#blockchain) that implements a design similar to the [Polkadot network](#polkadot-network).
-Kusama is a _[canary](https://en.wiktionary.org/wiki/canary_in_a_coal_mine) network_ and is referred to as [Polkadot's "wild cousin"](https://polkadot.network/kusama-polkadot-comparing-the-cousins/).
+Kusama is a [canary](https://en.wiktionary.org/wiki/canary_in_a_coal_mine) network and is referred to as [Polkadot's "wild cousin"](https://polkadot.network/kusama-polkadot-comparing-the-cousins/).
 As a canary network, Kusama is expected to be more stable than a test network like [Westend](#westend), but not as stable as a production network like [Polkadot](#polkadot).
 
-As a canary network, Kusama is [controlled by its network participants](/reference/frame-pallets#democracy) is intended to be stable enough to encourage meaningful experimentation.
+As a canary network, Kusama is [controlled by its network participants](/reference/frame-pallets#democracy) and is intended to be stable enough to encourage meaningful experimentation.
 
 ## libp2p
 
@@ -344,7 +344,7 @@ A light client is capable of verifying [cryptographic primitives](#cryptographic
 ## macro
 
 A programming language feature that enables developers to write a sequence of instructions that can be named and executed together.
-The [FRAME](#frame)development environment provides several [macros](/reference/frame-macros) for [Rust](https://doc.rust-lang.org/1.7.0/book/macros.html) that you can use to compose a [runtime](#runtime).
+The [FRAME](#frame) development environment provides several [macros](/reference/frame-macros) for [Rust](https://doc.rust-lang.org/1.7.0/book/macros.html) that you can use to compose a [runtime](#runtime).
 
 ## metadata
 
@@ -486,7 +486,7 @@ The tagged transaction pool implementation is designed to be extensible and gene
 
 A data structure that is used to represent sets of key-value pairs.
 
-The Patricia Merkle trie data structure enables the items in the data set to be stores and retrieved using a cryptographic hash. Because incremental changes to the data set result in a new hash, retrieving data is efficient even if the data set is very large. With this data structure, you can also prove whether the data set includes any particular key-value pair without the access to the entire data set.
+The Patricia Merkle trie data structure enables the items in the data set to be stored and retrieved using a cryptographic hash. Because incremental changes to the data set result in a new hash, retrieving data is efficient even if the data set is very large. With this data structure, you can also prove whether the data set includes any particular key-value pair without the access to the entire data set.
 
 ## validator
 
