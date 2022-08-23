@@ -8,7 +8,7 @@ Substrate uses customized [Rust macros](https://doc.rust-lang.org/book/ch19-06-m
 <<<<<<< HEAD
 These runtime macros allow you to focus on your runtime logic rather than spending time on encoding and decoding on-chain variables or duplicating the code required for [basic blockchain development](/main-docs/fundamentals/runtime-development#core-primitives).
 =======
-These runtime macros allow you to focus on your runtime logic rather than spending time on encoding and decoding on-chain variables or duplicating the code required for [basic blockchain development](/fundamentals/runtime-intro#core-primitives).
+These runtime macros allow you to focus on your runtime logic rather than spending time on encoding and decoding on-chain variables or duplicating the code required for [basic blockchain development](/fundamentals/runtime-development#core-primitives).
 
 This section provides an overview of the types of macros available in Rust and highlights how the specific FRAME macros are used in runtime development.
 
@@ -108,7 +108,7 @@ You'll see these many of these crates listed as dependencies in the runtime and 
 
 ## Macros for composing pallets
 
-As discussed in [Building custom pallets](/fundamentals/runtime-intro#building-custom-pallets), most FRAME pallets are composed using a common set of sections.
+As discussed in [Building custom pallets](/fundamentals/runtime-development#building-custom-pallets), most FRAME pallets are composed using a common set of sections.
 
 Macros make building each of those sections more modular and extensible.
 This section describes the macros available and how to use them to build your custom runtime.
