@@ -1,6 +1,6 @@
 ---
 title: Acquire a testnet slot
-description: Acquire a slot on Rococo - a public test network for parachains
+description: Acquire a slot on a public test network for parachains
 keywords:
   - rococo
   - testnet
@@ -8,13 +8,8 @@ keywords:
   - relay chain
 ---
 
-<!-- TODO NAV.YAML -->
-<!-- TODO migrate to HTG section once live! This isn't a really a "tutorial" worthy item. -->
-
-<!-- TODO Stand alone Rococo page instead of the wiki when ready. -->
-
-[Rococo](https://wiki.polkadot.network/docs/build-pdk#rococo-testnet) is Parity's public test network for parachains.
-This will guide you through how you can onboard your parachain to it.
+This tutorial demonstrates how you can deploy a parachain on a public test network, such as the [Rococo](https://wiki.polkadot.network/docs/build-pdk#rococo-testnet) test network.
+Public test networks have a higher bar to entry than a private network, but represent an important step in preparing a parachain project to move into a production network. 
 
 ## Before you begin
 
