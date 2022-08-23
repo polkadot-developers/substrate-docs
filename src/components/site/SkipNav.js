@@ -8,7 +8,7 @@ export default function SkipNav({ main }) {
         main.current.focus();
       }}
       href=""
-      className="fixed -top-20 left-4 z-50 focus:top-5 p-4 bg-substrateBlackish rounded"
+      className="fixed -top-20 left-4 xl:left-8 z-50 focus:top-5 py-3 px-6 bg-substrateBlackish rounded"
     >
       Skip navigation
     </a>
