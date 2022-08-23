@@ -1,6 +1,6 @@
 ---
 title: Prepare a local relay chain   
-description:
+description: Explains how to configure a local relay chain to set up a local test network for a parachain.
 keywords:
   - cumulus
   - relay chain
@@ -15,7 +15,7 @@ keywords:
   - local
 ---
 
-In this tutorial, you will configure a local relay chain and connect a parachain template for use in a local testing environment.
+This tutorial illustrates how to configure a local relay chain that you can use to connect a parachain template in a local testing environment.
 
 ## Before you begin
 
@@ -23,38 +23,28 @@ Before you begin, verify the following:
 
 - You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
-- You have completed the [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) tutorial previously.
+- You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and kow how to compile and run a Substrate node.
 
 - You know how to generate chain specifications for a private network of trusted validators as described in [Add trusted nodes](/tutorials/get-started/trusted-network/).
 
-- You are generally familiar with the [architecture of Polkadot](https://wiki.polkadot.network/docs/learn-architecture) and [parachains](https://wiki.polkadot.network/docs/learn-parachains).
+- You are generally familiar with Polkadot [architecture and terminology](https://wiki.polkadot.network/docs/learn-architecture).
+
+- You are aware that parachain versions and dependencies are tightly coupled with the version of the relay chain they connect to.
+
+  Your parachain must stay synchronized with relay chain upgrades to continue running successfully.
+  If you don't stay synchronized when newer versions of the relay chain are released, it's likely that your network will stop producing blocks.
+
+  Tutorials generally use the latest Polkadot branch to demonstrate features.
+  If a tutorial doesn't work as expected, you should check whether you have the latest Polkadot branch in your local environment and update your local software, if needed.
 
 ## Tutorial objectives
 
-By completing this tutorial, you will accomplish the following objectives:
+By completing this tutorial, you'll accomplish the following objectives:
 
 - Identify software requirements.
 - Set up your parachain build environment.
-- Prepare a relay chain specification.
+- Prepare a local relay chain specification.
 - Start a relay chain locally.
-
-## Matching versions are critical
-
-You **must** use the _exact_ versions set forth in this tutorial.
-Parachains are _very tightly coupled_ with the relay chain codebase that they connect to because they share so many common dependencies.
-Be sure to use the corresponding version of Polkadot with any other software when working on _any_ examples throughout the Substrate documentation.
-You must stay synchronized with relay chain upgrades for your parachain to continue running successfully.
-If you don't keep up with relay chain upgrades, it's likely that your network will stop producing blocks.
-
-### Documentation examples versioning
-
-**All tutorials in the docs** have been tested to work with:
-
-- [Polkadot `v0.9.26`](https://github.com/paritytech/polkadot/tree/release-v0.9.26)
-- [Substrate Parachain Template `polkadot-v0.9.26`](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.26)
-- [Polkadot-JS Apps `v0.116.2-34 `](https://github.com/polkadot-js/apps/commit/151c4cd75b6eb68ac275d90fd17f98b28b6e57a7).
-  It is generally expected that the [hosted Polkadot-JS Apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/explorer) should work.
-  If you have issues, build and run this UI yourself at this tagged version/commit.
 
 ## Build the relay chain node
 
