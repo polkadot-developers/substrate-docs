@@ -7,7 +7,7 @@ keywords:
   - full node
 ---
 
-As you learned in [Prepare a local parachain testnet](/tutorials/connect-other-chains/local-relay/), a parachain can work with a single collator.
+As you learned in [Prepare a local relay chain](/tutorials/connect-other-chains/local-relay/), a parachain can work with a single collator.
 
 ## Additional relay chain nodes
 
@@ -65,4 +65,4 @@ This command is nearly identical to the one we used to start the first collator,
 ## Related material
 
 - [Polkadot Wiki: Collator](https://wiki.polkadot.network/docs/learn-collator).
-- [Prepare a local parachain testnet](/tutorials/connect-other-chains/local-relay/) tutorial.
+- [Prepare a local relay chain](/tutorials/connect-other-chains/local-relay/) tutorial.

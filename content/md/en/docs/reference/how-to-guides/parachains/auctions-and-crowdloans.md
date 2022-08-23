@@ -29,10 +29,10 @@ You will need:
   This integer will be greater than `2000`, as `0-999` are reserved for [system parachains](https://wiki.polkadot.network/docs/learn-common-goods#system-level-chains) and `1000-1999` are reserved for [public utility parachains](https://wiki.polkadot.network/docs/learn-common-goods#public-utility-chains).
 
 - Your parachain genesis state.
-  Refer to the genesis state export process in the [Prepare a local parachain testnet](/tutorials/connect-other-chains/local-relay/).
+  Refer to the genesis state export process in the [Prepare a local relay chain](/tutorials/connect-other-chains/local-relay/).
 
 - Your parachain Wasm runtime.
-  Refer to the Wasm runtime export process in the [Prepare a local parachain testnet](/tutorials/connect-other-chains/local-relay/).
+  Refer to the Wasm runtime export process in the [Prepare a local relay chain](/tutorials/connect-other-chains/local-relay/).
 
 The procedure will be as followed:
 
