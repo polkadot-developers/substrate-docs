@@ -22,8 +22,8 @@ By completing this tutorial, you will accomplish the following objectives:
 
 Before you begin, verify the following:
 
-- You have competed the [Prepare a local relay chain](/tutorials/connect-other-chains/local-relay/) tutorial, and have a running local network with no les than two validators.
-- You have the specific software versions defined in the [Prepare a local relay chain](/tutorials/connect-other-chains/local-relay/#matching-versions-are-critical) incorporated into your parachain.
+- You have competed the [Prepare a local relay chain](/tutorials/connect-other-chains/prepare-a-local-relay-chain/) tutorial, and have a running local network with no les than two validators.
+- You have the specific software versions defined in the [Prepare a local relay chain](/tutorials/connect-other-chains/prepare-a-local-relay-chain/#matching-versions-are-critical) incorporated into your parachain.
   For example, if you are using [Polkadot `release-v0.9.26`](https://github.com/paritytech/polkadot/tree/release-v0.9.26), use the `polkadot-v0.9.26` version of the [parachain template](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.26).
 
 ## Build the parachain template
@@ -295,7 +295,7 @@ The collator should start producing parachain blocks (aka collating) once the re
 
 > This may take a while!
 > Be patient as you wait for the next epoch to start.
-> This is 10 blocks for the example [`rococo-custom-2-raw.json`](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json) included in the [Prepare a local relay chain](/tutorials/connect-other-chains/local-relay/) tutorial.
+> This is 10 blocks for the example [`rococo-custom-2-raw.json`](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-raw.json) included in the [Prepare a local relay chain](/tutorials/connect-other-chains/prepare-a-local-relay-chain/) tutorial.
 
 Finally, the collator should start producing log messages like the following:
 
@@ -420,5 +420,5 @@ Then register from a blank slate again.
 - Learn more about collators on the [Polkadot Wiki](https://wiki.polkadot.network/docs/learn-collator).
 - [Add more parachain nodes](/reference/how-to-guides/parachains/add-paranodes/) to your parachain network.
 - Very rigorously [Test](/test/) your local parachain network.
-- Connect your parachain to rococo by getting a [Rococo testnet slot](/tutorials/connect-other-chains/rococo-slot/).
+- Connect your parachain to rococo by getting a [Rococo testnet slot](/tutorials/connect-other-chains/acquire-a-testnet-slot/).
 - See the guide on [converting a solo chain to a parachain](/reference/how-to-guides/parachains/convert-a-solo-chain/) to convert your chain's logic-not state or running-chain migrations-to a parachain.

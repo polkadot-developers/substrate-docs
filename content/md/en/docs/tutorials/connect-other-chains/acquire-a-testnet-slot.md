@@ -1,5 +1,5 @@
 ---
-title: Rococo testnet slot acquisition
+title: Acquire a testnet slot
 description: Acquire a slot on Rococo - a public test network for parachains
 keywords:
   - rococo
@@ -23,7 +23,7 @@ Before you begin, verify the following:
 
 - You know how to generate and modify chain specification files as described in [Add trusted nodes](/tutorials/get-started/trusted-network/).
 - You know how to generate and store keys using one of the methods described in [Add trusted nodes](/tutorials/get-started/trusted-network/).
-- You have completed the [parachain tutorial](/tutorials/connect-other-chains/local-parachain/) and tested a parachain on your local computer.
+- You have completed the [parachain tutorial](/tutorials/connect-other-chains/connect-a-local-parachain/) and tested a parachain on your local computer.
 
 ## Set up a wallet
 
@@ -55,7 +55,7 @@ Only numbers `2000` and above that aren't already reserved can be used for commu
 ## Generate parachain genesis and Wasm files
 
 The files required to register a parachain must explicitly specify the correct relay chain and the right `ParaID`.
-In this tutorial, the relay chain is `rococo` instead of `rococo-local` used in the [Connect a local parachain](/tutorials/connect-other-chains/local-parachain/) tutorial.
+In this tutorial, the relay chain is `rococo` instead of `rococo-local` used in the [Connect a local parachain](/tutorials/connect-other-chains/connect-a-local-parachain/) tutorial.
 
 1. Configure your chain specification to use:
    - Your Rococo `ParaID`.
