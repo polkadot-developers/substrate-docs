@@ -9,7 +9,7 @@ keywords:
 ---
 
 The `try-runtime` tool is built to query a snapshot of runtime storage, using an [in-memory-externalities](https://paritytech.github.io/substrate/master/sp_state_machine/struct.TestExternalities.html) to store state.
-By using the in-memory storage, you can write tests for a specified runtime state that enables you ro test against real chain state _before_ going to production.
+By using the in-memory storage, you can write tests for a specified runtime state that enables you to test against real chain state _before_ going to production.
 With the `try-runtime` command-line interface, you can specify the block you want to query against.
 
 In its simplest form, `try-runtime` is a tool that enables you to:
