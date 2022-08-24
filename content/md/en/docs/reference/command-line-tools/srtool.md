@@ -122,7 +122,7 @@ For example, the `srtool build` command use the following locations by default:
   
 If the `Cargo.toml` file for your runtime is in a different location, you can specify the path as a command-line option.
 
-#### Basic usage
+### Basic usage
 
 The basic syntax for running the `srtool build` command is:
 
@@ -130,7 +130,7 @@ The basic syntax for running the `srtool build` command is:
 srtool build [options] --package <package> [--runtime-dir <path>] [<project-path>]
 ```
 
-#### Arguments
+### Arguments
 
 By default, the `srtool build` runs in the current working directory. If your project isn't located in the current working directory, you can specify the path to the project location.
 
@@ -138,7 +138,7 @@ By default, the `srtool build` runs in the current working directory. If your pr
 | -------- | ----------- |
 | <project-path> | Specifies the path to the blockchain project you are building the runtime for. |
 
-#### Options
+### Options
 
 You can use the following command-line options with the `srtool build` command.
 
@@ -156,7 +156,7 @@ You can use the following command-line options with the `srtool build` command.
 | `-r`, `--runtime-dir` <runtime> | Specifies the location of the `Cargo.toml` file for the runtime. If your runtime is not in the standard location, you can use this command-line option to specify the correct location. This option is equivalent to setting the `RUNTIME_DIR` environment variable. |
 | `-V`, `--version` | Displays version information. |
 
-#### Examples
+### Examples
 
 To build the Westmint runtime from the `cumulus` repository where the path to the `Cargo.toml` for the runtime is [parachains/runtimes/assets/westmint](https://github.com/paritytech/cumulus/tree/master/parachains/runtimes/assets/westmint), you would run the following command:
 
@@ -182,13 +182,13 @@ Because this example uses the `--app` command-line option, JSON output is displa
 
 Use the `srtool help` command to display usage message for `srtool` or for a specified subcommand.
 
-#### Basic usage
+### Basic usage
 
 ```text
 srtool help [subcommand]
 ```
 
-#### Examples
+### Examples
 
 To display usage information for the build subcommand, run the following command:
 
@@ -199,7 +199,7 @@ subkey help build
 ## srtool info
 
 Use the `srtool info` command to display information about the `srtool` container and your repository.
-y default, the `srtool info` command assumes that the `Cargo.toml` file for the runtime is located in a [`runtime`](https://github.com/paritytech/polkadot/tree/master/runtime) subdirectory with the name of the chain.
+By default, the `srtool info` command assumes that the `Cargo.toml` file for the runtime is located in a [`runtime`](https://github.com/paritytech/polkadot/tree/master/runtime) subdirectory with the name of the chain.
 For example, the `srtool info` command use the following locations by default:
 
 - runtime/kusama
@@ -209,7 +209,7 @@ For example, the `srtool info` command use the following locations by default:
   
 If the `Cargo.toml` file for your runtime is in a different location, you can specify the path as a command-line option.
 
-#### Basic usage
+### Basic usage
 
 The basic syntax for running the `srtool info` command is:
 
@@ -217,7 +217,7 @@ The basic syntax for running the `srtool info` command is:
 srtool info [options] --package <package> [--runtime-dir <path>] [<project-path>]
 ```
 
-#### Arguments
+### Arguments
 
 By default, the `srtool info` runs in the current working directory. 
 If your project isn't located in the current working directory, you can specify the path to the project location.
@@ -226,7 +226,7 @@ If your project isn't located in the current working directory, you can specify 
 | -------- | ----------- |
 | <project-path> | Specifies the path to the blockchain project if the project isn't located in the current working directory. |
 
-#### Options
+### Options
 
 You can use the following command-line options with the `srtool info` command.
 
@@ -238,7 +238,7 @@ You can use the following command-line options with the `srtool info` command.
 | `-r`, `--runtime-dir` <runtime> | Specifies the location of the `Cargo.toml` file for the runtime. If your runtime is not in the standard location, you can use this command-line option to specify the correct location. This option is equivalent to setting the `RUNTIME_DIR` environment variable. |
 | `-V`, `--version` | Displays version information. |
 
-#### Examples
+### Examples
 
 To display information about the `srtool` container and the local node-template repository, you might run a command similar to the following:
 
@@ -269,9 +269,119 @@ This command displays output similar to the following:
 
 ## srtool pull
 
-Use the `srtool pull` command to 
+Use the `srtool pull` command to check for and download the latest version of the `srtool` Docker image.
+
+### Basic usage
+
+The basic syntax for running the `srtool pull` command is:
+
+```text
+srtool pull [options]
+```
+
+### Options
+
+You can use the following command-line options with the `srtool pull` command.
+
+| Option | Description |
+| -------| ----------- |
+| `-h`, `--help`  | Displays usage information. |
+| `i`, `--image <image>` | Specifies an alternative image. Be sure to specify an image that is compatible with the default `paritytech/srtool` image. You should note that specifying an image other than the `paritytech/srtool` image might not produce the same deterministic result that the `paritytech/srtool` image produces. |
+| `-V`, `--version` | Displays version information.   |
+
+### Examples
+
+To check for a new version of the `srtool` container and Docker image, you might run a command similar to the following:
+
+```bash
+srtool pull
+```
+
+This command checks the Docker Hub for the latest version of the `paritytech/srtool` image and begins downloading and extracting the software.
+For example
+
+```text
+Found 1.62.0, we will be using paritytech/srtool:1.62.0 for the build
+1.62.0: Pulling from paritytech/srtool
+405f018f9d1d: Pull complete 
+c49473e7f7b3: Pull complete 
+7edf98d07029: Pull complete 
+85a50724a6fa: Pull complete 
+87fb1e3dee5b: Downloading   19.4MB/170.4MB
+469075c5d317: Download complete 
+533bfa44b64a: Download complete 
+...
+```
+
+When all tasks are complete, the command displays output similar to the following:
+
+```text
+Digest: sha256:d5353a63d8fccbef5666e28a8fa0b302d71d4f53cabeb760fe213f3d7df4b8b6
+Status: Downloaded newer image for paritytech/srtool:1.62.0
+docker.io/paritytech/srtool:1.62.0
+```
+
+If you already have the latest version installed locally, the command displays output similar to the following:
+
+```text
+Found 1.62.0, we will be using paritytech/srtool:1.62.0 for the build
+1.62.0: Pulling from paritytech/srtool
+Digest: sha256:d5353a63d8fccbef5666e28a8fa0b302d71d4f53cabeb760fe213f3d7df4b8b6
+Status: Image is up to date for paritytech/srtool:1.62.0
+docker.io/paritytech/srtool:1.62.0
+```
 
 ## srtool version
 
-Use the `srtool version` command to 
+Use the `srtool version` command display version information for the `srtool` container. Use --version if you want the version of this executable
 
+### Basic usage
+
+The basic syntax for running the `srtool version` command is:
+
+```text
+srtool version [options]
+```
+
+### Options
+
+You can use the following command-line options with the `srtool version` command.
+
+| Option | Description |
+| -------| ----------- |
+| `-h`, `--help`  | Displays usage information.|
+| `i`, `--image <image>` | Specifies an alternative image. Be sure to specify an image that is compatible with the default `paritytech/srtool` image. You should note that specifying an image other than the `paritytech/srtool` image might not produce the same deterministic result that the `paritytech/srtool` image produces.|
+| `-V`, `--version` | Displays version information.|
+
+### Examples
+
+To display information about the srtool container, run the following command:
+
+```bash
+srtool version       
+```
+
+The command displays output similar to the following:
+
+```text
+{
+  "name": "srtool",
+  "version": "0.9.21",
+  "rustc": "1.62.0",
+  "subwasm": "0.18.0",
+  "tera": "0.2.1",
+  "toml": "0.2.1"
+}
+```
+
+To display version information for the `srtool` command-line interface instead of the container, you can run the following command:
+
+```bash
+srtool version --version
+```
+
+The command displays output similar to the following:
+
+```text
+srtool-version 0.8.0
+```
