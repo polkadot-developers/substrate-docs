@@ -5,11 +5,15 @@ keywords:
 ---
 
 The Substrate runtime tool (`srtool`) is a Docker container that enables you to build the Substrate WebAssembly runtime in a deterministic way.
-This tool enables you to consistently reproduce an identical WebAssembly blob so that you can integrate building the WebAssembly runtime into your CI/CD pipeline.
+By using this tool, you can ensure that the same source code consistently reproduces an identical WebAssembly blob. 
+You can also use the tool to inspect and audit the runtime for any Substrate-based chain and to integrate building the WebAssembly runtime into your CI/CD pipeline.
 
 ## Get the Docker image
 
-If you have a Docker account, you can search for the `paritytech/srtool` container and tagged images on the Docker Hub.
+You must have a Docker account and Docker installed in your build environment to access the Substrate runtime tool container.
+If you sign in to the Docker Hub, you can search for the `paritytech/srtool` container and corresponding tagged images that are available there.
+
+### Image naming convention
 
 The naming convention for `paritytech/srtool` Docker images specifies the version of the Rust compiler used to compile the code included in the image.
 For example, the image `paritytech/srtool:1.62.0` indicates that the tools included in the image were compiled with version `1.62.0` of the `rustc` compiler.
@@ -18,13 +22,31 @@ For example, an image named `paritytech/srtool:1.62.0-0.9.19` was compiled with 
 
 The image that only specifies the compiler version always contains the latest version of the software.
 
-1. Open a terminal shell on your local computer.
+### Download an image from the Docker Hub
+
+You can pull a  `paritytech/srtool` container image directly from Docker Hub or install and use one of the [helper programs]() for working with the  `paritytech/srtool` container.
+
+To pull the image from the Docker Hub:
+
+1. Sign in to Docker Hub.
+
+2. Type `paritytech/srtool` in the Search field and press Enter.
+
+3. Click **paritytech/srtool**, then click **Tags**.
+
+4. Copy the command for the image you want to pull.
    
-2. Download and unpack the image by running a command similar to the following:
+5. Open a terminal shell on your local computer.
    
+6. Paste the command you copied from the Docker Hub.
+   
+   For example, you should run a command similar to the following:
+
    ```bash
    docker pull paritytech/srtool:1.62.0
    ```
+
+   The command downloads and unpacks the image.
 
 ## Get helper programs
 
