@@ -17,7 +17,7 @@ In its simplest form, `try-runtime` is a tool that enables you to:
 1. Connect to a remote node.
 2. Call into some runtime API.
 3. Retrieve state from a node at a given block.
-4. Write tests for the dat retrieved.
+4. Write tests for the data retrieved.
 
 ## Motivation
 
