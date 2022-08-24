@@ -7,7 +7,7 @@ import SubMenu from './SubMenu';
 const Menu = ({ page, currentPath }) => {
   const [isOpen, setIsOpen] = useState(currentPath.includes(page.url));
   return (
-    <nav className="min-h-[40px]">
+    <nav className="min-h-[40px] w-64">
       <ul className="p-0 m-0 list-outside">
         <li
           className={cx('p-0 m-0 list-none font-semibold min-h-max', {
