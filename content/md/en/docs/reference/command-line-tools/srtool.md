@@ -60,7 +60,7 @@ You can use the following command-line options with the `srtool` command.
 | Option                      | Description
 | :---------------------------| :---------------------
 | `-h`,&nbsp;`--help`           | Displays usage information.
-| `i`,&nbsp;`--image`&nbsp;`<image>` | Specifies an alternative image. Be sure to specify an image that is compatible with the default `paritytech/srtool` image. You should note that specifying an image other than the `paritytech/srtool` image might not produce the same deterministic result that the `paritytech/srtool` image produces.
+| `i`,&nbsp;`--image`&nbsp;`<image>` | Specifies an alternative image. Be sure to specify an image that is compatible with the default `paritytech/srtool` image. You should note that specifying a different image might not produce the same deterministic result that the `paritytech/srtool` image produces.
 | `-n`,&nbsp;`--no-cache`&nbsp; | Specifies that you don't want to use the tag value from the local cache. 
 | `-V`,&nbsp;`--version`&nbsp; | Displays version information.
 
@@ -148,7 +148,7 @@ You can use the following command-line options with the `srtool build` command.
 | `--build-opts`&nbsp;`<BUILD_OPTS>` | Enables you to pass custom options directly to the `cargo` build process. If you specify  this command-line option, be aware that none of the automatic options for building Kusama or Polkadot are passed to the build process. You must explicitly set the build options you need when you use the `--build-opts` command-line option. In general, this option rarely required. This option is equivalent to setting the `BUILD_OPTS` environment variable.
 | `--default-features`&nbsp;`<default-features>` | Enables you to change the list of default features for the runtime without disabling automatic feature detection. This option is equivalent to setting the `DEFAULT_FEATURES` environment variable. This command-line option has no effect if you set `BUILD_OPTS`.
 | `-h`,&nbsp;`--help` | Displays usage information.
-| `i`,&nbsp;`--image`&nbsp;`<image>` | Specifies an alternative image. Be sure to specify an image that is compatible with the default `paritytech/srtool` image. You should note that specifying an image other than the `paritytech/srtool` image might not produce the same deterministic result that the `paritytech/srtool` image produces.
+| `i`,&nbsp;`--image`&nbsp;`<image>` | Specifies an alternative image. Be sure to specify an image that is compatible with the default `paritytech/srtool` image. You should note that specifying a different image might not produce the same deterministic result that the `paritytech/srtool` image produces.
 | `-j`,&nbsp;`--json` | Enables JSON output.
 | `--no-cache` | Disables all caching. If you specify this option, the `srtool` image won't access the Cargo home cache for build dependencies. In general, this option is rarely used because there are no known issues with using the cache.
 | `-p`,&nbsp;`--package`&nbsp;`<package>` | Specifies the name of the runtime package you want to build. The name you specify should be the same as the name defined in the `Cargo.toml` file for the runtime,for example, kusama-runtime, polkadot-runtime, and so on. This option is equivalent to setting the `PACKAGE` environment variable.
@@ -233,7 +233,7 @@ You can use the following command-line options with the `srtool info` command.
 | Option                | Description
 | :-------------------- | -----------
 | `-h`,&nbsp;`--help` | Displays usage information.
-| `i`,&nbsp;`--image`&nbsp;`<image>` | Specifies an alternative image. Be sure to specify an image that is compatible with the default `paritytech/srtool` image. You should note that specifying an image other than the `paritytech/srtool` image might not produce the same deterministic result that the `paritytech/srtool` image produces.
+| `i`,&nbsp;`--image`&nbsp;`<image>` | Specifies an alternative image. Be sure to specify an image that is compatible with the default `paritytech/srtool` image. You should note that specifying a different image might not produce the same deterministic result that the `paritytech/srtool` image produces.
 | `-p`,&nbsp;`--package`&nbsp;`<package>` | Specifies the name of the runtime package you want to build. The name you specify should be the same as the name defined in the `Cargo.toml` file for the runtime,for example, kusama-runtime, polkadot-runtime, and so on. This option is equivalent to setting the `PACKAGE` environment variable.
 | `-r`,&nbsp;`--runtime-dir`&nbsp;`<runtime>` | Specifies the location of the `Cargo.toml` file for the runtime. If your runtime is not in the standard location, you can use this command-line option to specify the correct location. This option is equivalent to setting the `RUNTIME_DIR` environment variable.
 | `-V`,&nbsp;`--version` | Displays version information.
@@ -286,7 +286,7 @@ You can use the following command-line options with the `srtool pull` command.
 | Option              | Description
 | :-------------------| :-----------
 | `-h`,&nbsp;`--help`  | Displays usage information.
-| `i`,&nbsp;`--image`&nbsp;`<image>` | Specifies an alternative image. Be sure to specify an image that is compatible with the default `paritytech/srtool` image. You should note that specifying an image other than the `paritytech/srtool` image might not produce the same deterministic result that the `paritytech/srtool` image produces.
+| `i`,&nbsp;`--image`&nbsp;`<image>` | Specifies an alternative image. Be sure to specify an image that is compatible with the default `paritytech/srtool` image. You should note that specifying a different image might not produce the same deterministic result that the `paritytech/srtool` image produces.
 | `-V`,&nbsp;`--version` | Displays version information.
 
 ### Examples
@@ -350,7 +350,7 @@ You can use the following command-line options with the `srtool version` command
 | Option           | Description
 | :----------------| :-------------
 | `-h`,&nbsp;`--help` | Displays usage information.
-| `i`,&nbsp;`--image`&nbsp;`<image>` | Specifies an alternative image. Be sure to specify an image that is compatible with the default `paritytech/srtool` image. You should note that specifying an image other than the `paritytech/srtool` image might not produce the same deterministic result that the `paritytech/srtool` image produces.
+| `i`,&nbsp;`--image`&nbsp;`<image>` | Specifies an alternative image. Be sure to specify an image that is compatible with the default `paritytech/srtool` image. You should note that specifying a different image might not produce the same deterministic result that the `paritytech/srtool` image produces.
 | `-V`,&nbsp;`--version` | Displays version information.
 
 ### Examples
