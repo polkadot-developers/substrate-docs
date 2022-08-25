@@ -26,7 +26,7 @@ The name of the `srtool` Docker image specifies the version of the Rust compiler
 For example, the image `paritytech/srtool:1.62.0` indicates that the code in the image was compiled with version `1.62.0` of the `rustc` compiler.
 
 In addition to the compiler version, some images specify the version of the build script used.
-For example, an image named `paritytech/srtool:1.62.0-0.9.19` was compiled with version `1.62.0` of the `rustc` compiler but using the version `0.9.19` of the build script.
+For example, an image named `paritytech/srtool:1.62.0-0.9.19` was compiled with version `1.62.0` of the `rustc` compiler but using version `0.9.19` of the build script.
 
 The image that only specifies the compiler version always contains the latest version of the software.
 In most cases, that's the image you should use.
@@ -41,6 +41,10 @@ rustc --version
 Because `srtool` is a Docker container, you must have Docker available in your build environment to use it.
 However, you don't need to know anything about using Docker to build a Substrate-based chain using `srtool`.
 Instead, you can install command-line tools to work with the Docker image and build the runtime using the Docker container.
+
+The following tools are specifically designed for working with `srtool` images and the `srtool` Docker container:
+
+- [srtool-cli](https://github.com/chevdor/srtool-cli) provides a command-line interface to pull the `srtool` Docker image and build the runtime using the `srtool` Docker container.
 
 - [subwasm](https://github.com/chevdor/subwasm) provides command-line options for working with the metadata and WebAssembly runtime built using `srtool`.
 
@@ -103,9 +107,11 @@ To build the runtime:
    srtool build --app --package node-template-runtime --runtime-dir runtime
    ```
 
-   The name you specify for the `--package` should be the name defined in the `Cargo.toml` file for the runtime.
-   The path you specify for the `--runtime-dir` should be the path to the  `Cargo.toml` file for the runtime.
-   If the `Cargo.toml` file for the runtime is located in a `runtime` subdirectory—for example, runtime/kusama—you can omit the  `--runtime-dir` command-line option.
+   - The name you specify for the `--package` should be the name defined in the `Cargo.toml` file for the runtime.
+   
+   - The path you specify for the `--runtime-dir` should be the path to the  `Cargo.toml` file for the runtime.
+     
+       If the `Cargo.toml` file for the runtime is located in a `runtime` subdirectory—for example, runtime/kusama—you can omit the  `--runtime-dir` command-line option.
 
 ## Add a workflow for continuous integration
 
