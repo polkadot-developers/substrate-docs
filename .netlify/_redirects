@@ -53,7 +53,7 @@
 /main-docs/fundamentals/why-substrate/                                  /fundamentals/why-substrate/                     301!
 /main-docs/fundamentals/architecture/                                   /fundamentals/architecture/                      301!
 /main-docs/fundamentals/node-and-network-types/                         /fundamentals/node-and-network-types/            301!
-/main-docs/fundamentals/runtime-intro/                                  /fundamentals/runtime-intro/                     301!
+/main-docs/fundamentals/runtime-intro/                                  /fundamentals/runtime-development/                     301!
 /main-docs/fundamentals/consensus/                                      /fundamentals/consensus/                         301!
 /main-docs/fundamentals/transaction-types/                              /fundamentals/transaction-types/                 301!
 /main-docs/fundamentals/transaction-lifecycle/                          /fundamentals/transaction-lifecycle/             301!
@@ -75,7 +75,7 @@
 /main-docs/build/tx-weights-fees/                                       /build/tx-weights-fees/                          301!
 /main-docs/build/custom-pallets/                                        /build/custom-pallets/                           301!
 /main-docs/build/pallet-coupling/                                       /build/pallet-coupling/                          301!
-/main-docs/build/events-errors/                                         /build/events-errors/                            301!
+/main-docs/build/events-errors/                                         /build/events-and-errors/                            301!
 /main-docs/build/randomness/                                            /build/randomness/                               301!
 /main-docs/build/chain-spec/                                            /build/chain-spec/                               301!
 /main-docs/build/origins/                                               /build/origins/                                  301!

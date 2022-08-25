@@ -74,7 +74,7 @@ This guide does not cover how to use the benchmarking results to update transact
 
 3. Write individual benchmarks to test the most computationally expensive paths for the functions in the pallet.
    
-   The `benchmarks!` macro automatically generates a test function for each benchmark you include in the benchmarking module.
+   The benchmarking macro automatically generates a test function for each benchmark you include in the benchmarking module.
    For example, the macro creates test functions similar to the following:
    
    ```rust
@@ -99,7 +99,7 @@ This guide does not cover how to use the benchmarking results to update transact
 
    In this sample code:
    
-   - The name of the benchmark is `set_dummy`. 
+   - The name of the benchmark is `set_dummy_benchmark`. 
    - The variable `b` stores input that is used to test the execution time of the `set_dummy` function.
    - The value of `b` varies between 1 to 1,000, so you can run the benchmark test repeatedly to measure the execution time using different input values.
 

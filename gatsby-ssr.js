@@ -1,7 +1,5 @@
+import { DataProvider, ThemeProvider } from 'gatsby-plugin-substrate';
 import React from 'react';
-
-import { DataProvider } from './src/contexts/DataContext';
-import { ThemeProvider } from './src/contexts/ThemeContext';
 
 const MagicScriptTag = () => {
   const codeToRunOnClient = `

@@ -12,7 +12,7 @@ The topics in this section provide a more detailed exploration of the code used 
 - [Transactions, weights, and fees](/build/tx-weights-fees) explains the role of weights and fees in executing transactions and the mechanics of how fees are calculated and refunded.
 - [Custom pallets](/build/custom-pallets) exposes the macros and attributes that form the foundation for building custom pallets.
 - [Pallet coupling](/build/pallet-coupling) describes how pallets can be tightly or loosely coupled in a runtime.
-- [Events and errors](/build/events-errors) explains how to emit events and errors from the runtime.
+- [Events and errors](/build/events-and-errors) explains how to emit events and errors from the runtime.
 - [Randomness](/build/randomness) suggests ways you can include randomness in applications that run on a Substrate-based blockchain.
 - [Chain specification](/build/chain-spec) discusses the use of chain specifications, including what you can and can't modify, and how to distribute customized chain specifications.
 - [Privileged calls and origins](/build/origins) describes how you can use predefined or custom origins to identify the originator of a function call.

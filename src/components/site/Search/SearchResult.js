@@ -1,6 +1,5 @@
+import { Link } from 'gatsby-plugin-substrate';
 import React from 'react';
-
-import { Link } from '../../default/Link';
 
 function SearchResult({ slug, section, category, title, noLink, error }) {
   return (
