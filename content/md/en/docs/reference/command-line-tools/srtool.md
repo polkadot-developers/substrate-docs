@@ -24,7 +24,7 @@ The image that only specifies the compiler version always contains the latest ve
 
 ### Download an image from the Docker Hub
 
-You can pull a  `paritytech/srtool` container image directly from Docker Hub or install and use one of the [helper programs]() for working with the  `paritytech/srtool` container.
+You can pull a  `paritytech/srtool` container image directly from Docker Hub or install and use one of the [helper programs](#get-helper-programs) for working with the  `paritytech/srtool` container.
 
 To pull the image from the Docker Hub:
 
