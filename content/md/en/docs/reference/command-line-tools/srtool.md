@@ -15,12 +15,15 @@ If you sign in to the Docker Hub, you can search for the `paritytech/srtool` con
 
 ### Image naming convention
 
+
+IMPORTANT: Unlike many Docker image, `srtool` there is no `latest` tag for `srtool` and you must knowingly provide the compiler version as described below.
+
 The naming convention for `paritytech/srtool` Docker images specifies the version of the Rust compiler used to compile the code included in the image.
 For example, the image `paritytech/srtool:1.62.0` indicates that the tools included in the image were compiled with version `1.62.0` of the `rustc` compiler.
 In addition to the compiler version, some images specify the version of the build script used.
 For example, an image named `paritytech/srtool:1.62.0-0.9.19` was compiled with version `1.62.0` of the `rustc` compiler but using the version `0.9.19` of the build script.
 
-The image that only specifies the compiler version always contains the latest version of the software.
+NOTE: The image that only specifies the compiler version always contains the latest version of the software.
 
 ### Download an image from the Docker Hub
 
@@ -50,17 +53,17 @@ To pull the image from the Docker Hub:
 
 ## Get helper programs
 
-The Substrate runtime tool requires Docker.
+`srtool` requires Docker.
 However, you don't need to know anything about using Docker to build a chain using `srtool`.
 Instead, you can use the following programs to interact with the Docker image.
 
 - [srtool-cli](https://github.com/chevdor/srtool-cli) provides a command-line interface to build the runtime using the `srtool` Docker image.
 
-- [srtool-app](https://gitlab.com/chevdor/srtool-app) provides a simple graphical user interface for building the runtime using the `srtool` Docker image.
+- [subwasm](https://github.com/chevdor/subwasm) provides command-line options for working with the metadata and WebAssembly runtime built using `srtool`.
 
 - [srtool-actions](https://github.com/chevdor/srtool-actions) provides Github actions to integrate builds produced using the `srtool` image with your CI/CD pipeline.
 
-- [subwasm](https://github.com/chevdor/subwasm) provides command-line options for working with the metadata and WebAssembly runtime built using `srtool`.
+- [srtool-app](https://gitlab.com/chevdor/srtool-app) provides a simple graphical user interface for building the runtime using the `srtool` Docker image.
 
 ## srtool-cli
 
