@@ -291,7 +291,7 @@ impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
 }
 ```
 
-For more information about using hooks, see the Rust documentation for [pallet::hooks]](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html##hooks-pallethooks-optional) and [macro expansion](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#macro-expansion-2).
+For more information about using hooks, see the Rust documentation for [pallet::hooks](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html##hooks-pallethooks-optional) and [macro expansion](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#macro-expansion-2).
 
 ### #[pallet::call]
 
@@ -333,13 +333,13 @@ pub enum Error<T> {
 Any field type you specify for an enumeration variant must implement the `scale_info::TypeInfo` trait and its encoded size should be as small as possible.
 Field types in enum variants must also implement the [PalletError](https://paritytech.github.io/substrate/master/frame_support/traits/trait.PalletError.html) trait to compile. 
 
-For more information, see the Rust documentation for [pallet::error]](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#error-palleterror-optional).
+For more information, see the Rust documentation for [pallet::error](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#error-palleterror-optional).
 
 ### #[pallet::event]
 
 The [`#[pallet::event]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#event-palletevent-optional) macro allows you to define event types for a pallet.
 
-This macro is similar to the `pallet::errors` macro but it can hold more information. 
+This macro is similar to the `pallet::error` macro but it can hold more information. 
 The macro is defined as an enumeration named Event.
 
 For example:
@@ -354,7 +354,7 @@ pub enum Event<$some_generic> $optional_where_clause {
 }
 ```
 
-For more information, see the Rust documentation for [pallet::event]](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#event-palletevent-optional).
+For more information, see the Rust documentation for [pallet::event](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#event-palletevent-optional).
 
 ### #[pallet::storage]
 
@@ -384,7 +384,7 @@ The `#[pallet::type_value]` macro enables you to define a struct that implements
 fn MyDefault<T: Config>() -> T::Balance { 3.into() }
 ```
 
-For more information about using this macro, see the Rust documentation for [pallet::type_value]](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#type-value-pallettype_value-optional).
+For more information about using this macro, see the Rust documentation for [pallet::type_value](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#type-value-pallettype_value-optional).
 
 ### #[pallet::genesis_build]
 
@@ -405,7 +405,7 @@ For more information, see the Rust documentation for [pallet::genesis_build](htt
 
 ### #[pallet::genesis_config]
 
-The [`#[pallet::genesis_config`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional) macro allows you to define the genesis configuration of the pallet.
+The [`#[pallet::genesis_config]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional) macro allows you to define the genesis configuration of the pallet.
 
 The macro can be defined as an enumeration or a struct, but must be public and implement trait the GenesisBuild with the #[pallet::genesis_build] macro. 
 
@@ -473,7 +473,7 @@ For more information, see the Rust documentation for [pallet::validate_unsigned]
 ## Runtime construction macros
 
 As an introduction to the use of macros, [Substrate runtime macros](#substrate-runtime-macros) highlighted several of the macros that are provided in the `frame_support` and `frame_system` crates.
-However, a few of those macros introduced in Substrate runtime macros warrant additional attention because because of the role they play in constructing the runtime logic.
+However, a few of those macros introduced in Substrate runtime macros warrant additional attention because of the role they play in constructing the runtime logic.
 
 ### construct_runtime!
 
@@ -522,7 +522,7 @@ MyCustomPallet: pallet_my_custom_pallet use_parts = 8,
 However, you should also note that the order used for defining pallets in the construct_runtime! macro affects the genesis storage configuration.
 If you have one pallet that depends on another pallet, be sure the pallet that is depended upon comes before—that is, is listed before or has a lower index value—than the pallet that depends on it.
 
-For more information, see the Rust documentation for [construct_runtime]](https://paritytech.github.io/substrate/master/frame_support/macro.construct_runtime.html)
+For more information, see the Rust documentation for [construct_runtime](https://paritytech.github.io/substrate/master/frame_support/macro.construct_runtime.html)
 
 ### parameter_types!
 
@@ -531,9 +531,9 @@ The `parameter_types!` macro declares the parameter types that are to be assigne
 This macro converts each parameter specified into a struct type with a `get()` function that returns the specified type. 
 Each parameter struct type also implements a `frame_support::traits::Get<I>` trait to convert the type to its specified value.
 
-For more information, see the Rust documentation for [parameter_types]](https://paritytech.github.io/substrate/master/frame_support/macro.parameter_types.html).
+For more information, see the Rust documentation for [parameter_types](https://paritytech.github.io/substrate/master/frame_support/macro.parameter_types.html).
 
-### impl_runtime_apis!
+### impl\_runtime\_apis!
 
 The `impl_runtime_apis!` macro generates the runtime API for all of the traits that are implemented by the macro. 
 The traits implemented in this macro must first be declared in the `decl_runtime_apis` macro.
@@ -546,7 +546,7 @@ If you define additional interfaces for the runtime to expose in the `impl_runti
 The macro also generates the `RUNTIME_API_VERSIONS` constant to expose version information about all of the implemented `api` traits.
 This constant is used to instantiate the `apis` field of [`RuntimeVersion`](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html).
 
-For more information, see the Rust documentation for [impl_runtime_apis](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html).
+For more information, see the Rust documentation for [impl\_runtime\_apis](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html).
 
 ### app_crypto!
 
@@ -570,7 +570,7 @@ The macro declares the following struct types:
 
 In addition to the traits for these structs, the macro implements helper traits.
 
-For more information, see the Rust documentation for [app_crypto]](https://paritytech.github.io/substrate/master/sp_application_crypto/macro.app_crypto.html).
+For more information, see the Rust documentation for [app_crypto](https://paritytech.github.io/substrate/master/sp_application_crypto/macro.app_crypto.html).
 
 ## Benchmarking macros
 
