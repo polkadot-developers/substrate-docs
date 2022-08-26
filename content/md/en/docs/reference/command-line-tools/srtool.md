@@ -11,14 +11,15 @@ You can also use the tool to inspect and audit the runtime for any Substrate-bas
 ## Working with the Docker container
 
 Because `srtool` is a Docker container, you must have Docker available in your build environment to use it.
-However, you don't need to know anything about using Docker to build a chain using `srtool`.
-Instead, you can use the following programs to interact with the Docker image.
+However, you don't need to know anything about using Docker to build a chain using `srtool` thanks to the `srtool-cli`.
+`srtiool-cli` is a command-line utility written in Rust that will install a utility called `srtool` on your system. It greatly simplifies your interactions with the `srtool` Docker container.
+Overtime, several tools were extracted and/or joined the tooling options around `srtool` and it is worth mentioning the following tools and helpers:
 
-- [srtool-cli](https://github.com/chevdor/srtool-cli) provides a command-line interface to pull the `srtool` Docker image and build the runtime using the `srtool` Docker container.
+- [srtool-cli](https://github.com/chevdor/srtool-cli) provides a command-line interface to pull the `srtool` Docker image, build the runtime using the `srtool` Docker container and interact with it.
 
-- [subwasm](https://github.com/chevdor/subwasm) provides command-line options for working with the metadata and WebAssembly runtime built using `srtool`.
+- [subwasm](https://github.com/chevdor/subwasm) provides command-line options for working with the metadata and WebAssembly runtime built using `srtool`. `subwasm` is used internally as well in the `srtool` image.
 
-- [srtool-actions](https://github.com/chevdor/srtool-actions) provides Github actions to integrate builds produced using the `srtool` image with your CI/CD pipeline.
+- [srtool-actions](https://github.com/chevdor/srtool-actions) provides Github actions to integrate builds produced using the `srtool` image with your Github CI/CD pipelines.
   
 - [srtool-app](https://gitlab.com/chevdor/srtool-app) provides a simple graphical user interface for building the runtime using the `srtool` Docker image.
 
