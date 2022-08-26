@@ -12,12 +12,12 @@ This section provides an overview of the types of macros available in Rust and h
 ## Macro basics
 
 In computer programming, macros are lines of code that encapsulate a preset sequence of instructions to execute. 
-As code that writes code, macros enable you to abstract repetitive operations and simply the code you need to write.
+As code that writes code, macros enable you to abstract repetitive operations and simplify the code you need to write.
 With macros, you can declare complex data structures implicitly.
 
 In Rust, macros can be **declarative macros** or **procedural macros**.
 
-[Declarative macros](https://doc.rust-lang.org/book/ch19-06-macros.html#declarative-macros-with-macro_rules-for-general-metaprogramming) enable you to declare a pattern and compare the result of an expression to the pattern, then execute any additional lines code based on whether the pattern was matched..
+[Declarative macros](https://doc.rust-lang.org/book/ch19-06-macros.html#declarative-macros-with-macro_rules-for-general-metaprogramming) enable you to declare a pattern and compare the result of an expression to the pattern, then execute any additional lines of code based on whether the pattern was matched.
 Declarative macros are widely-used in Rust programming.
 
 [Procedural macros](https://doc.rust-lang.org/book/ch19-06-macros.html#procedural-macros-for-generating-code-from-attributes) are similar to functions.
@@ -245,7 +245,7 @@ pub struct Pallet<T>(_);
 
 For more information about working with storage and this macro, see the [macro expansion](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#macro-expansion-1) added to the `struct Pallet<T>` definition.
 
-### #[pallet::without_storage_info]
+### #[pallet::without\_storage\_info]
 
 The `#[pallet::without_storage_info]` macro enables you to define pallet storage items that don't have a fixed size.
 
