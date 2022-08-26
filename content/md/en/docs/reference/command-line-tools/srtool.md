@@ -13,13 +13,14 @@ You can also use the tool to inspect and audit the runtime for any Substrate-bas
 Because `srtool` is a Docker container, you must have Docker available in your build environment to use it.
 However, you don't need to know anything about using Docker to build a chain using `srtool` because you can use the `srtool-cli` command-line interface to work with Docker images.
 
-The `srtiool-cli` package is a command-line utility written in Rust that  installs an executable program called `srtool` on your computer. 
+The `srtiool-cli` package is a command-line utility written in Rust that installs an executable program called `srtool` on your computer. 
 This program simplifies your interactions with the `srtool` Docker container.
 Over time, the tooling around the `srtool` Docker image has expanded to include the following tools and helper programs:
 
 - [srtool-cli](https://github.com/chevdor/srtool-cli) provides a command-line interface to pull the `srtool` Docker image, get information about the image and tooling used to interact with it, and build the runtime using the `srtool` Docker container.
 
-- [subwasm](https://github.com/chevdor/subwasm) provides command-line options for working with the metadata and WebAssembly runtime built using `srtool`. `subwasm` is used internally as well in the `srtool` image.
+- [subwasm](https://github.com/chevdor/subwasm) provides command-line options for working with the metadata and WebAssembly runtime built using `srtool`. 
+  The `subwasm` program is also used internally to perform tasks in the `srtool` image.
 
 - [srtool-actions](https://github.com/chevdor/srtool-actions) provides Github actions to integrate builds produced using the `srtool` image with your GitHub CI/CD pipelines.
   
