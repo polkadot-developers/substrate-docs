@@ -103,8 +103,8 @@ In general, you would need to modify the chain specification and hard-code addit
 
 There are two formats for the sample chain specification—a JSON file in plain text format and a JSON file in SCALE-encoded raw format. 
 
-- [Plain sample relay chain spec](/assets/tutorials/relay-chain-specs/rococo-custom-2-plain.json)
-- [Raw sample relay chain spec](/assets/tutorials/relay-chain-specs/rococo-custom-2-raw.json)
+- [Plain sample relay chain spec](/assets/tutorials/relay-chain-specs/plain-local-chainspec.json)
+- [Raw sample relay chain spec](/assets/tutorials/relay-chain-specs/raw-local-chainspec.json)
 
 You can read and edit the plain text version of chain specification file.
 However, the chain specification file must be converted to the SCALE-encoded raw format before you can use it to start a node.
@@ -117,29 +117,29 @@ If you add other validators, add additional parachains to your relay chain, or w
 
 Before you can start block production for a parachains, you need to start a relay chain for them to connect to.
 
-To start the validator nodes using the [raw sample chain specification file](/assets/tutorials/relay-chain-specs/rococo-custom-2-raw.json):
+To start the validator nodes using the [raw sample chain specification file](/assets/tutorials/relay-chain-specs/raw-local-chainspec.json):
 
-1. Copy the raw chain specification file to a working directory on the local computer.
+1. Download the raw chain specification file to a working directory on the local computer.
    
-   For example, save the file as `raw-chain-spec.json` in the `/tmp` directory.
+   For example, save the file as `raw-local-chain-spec.json` in the `/tmp` directory.
    You'll need to specify the path to the file in the commands to start the nodes.
 
-2. Start the `alice` validator by running the following command:
+2. Start the first validator using the `alice` account by running the following command:
    
    ```bash
    ./target/release/polkadot \
    --alice \
    --validator \
    --base-path /tmp/relay/alice \
-   --chain /tmp/raw-chain-spec.json \
+   --chain /tmp/raw-local-chainspec.json \
    --port 30333 \
    --ws-port 9944
    ```
 
-   This command uses `/tmp/raw-chain-spec.json` as the location of the sample chain specification file. 
-   Be sure to replace the setting for the `--chain` command-line option with the path to the chain specification in your working environment.
+   This command uses `/tmp/raw-local-chainspec.json` as the location of the sample chain specification file. 
+   Be sure the `--chain` command-line specifies the path to the raw chain specification you downloaded into a local working directory.
    This command also uses the default values for the port (`port`) and WebSocket port (`ws-port`).
-   The values are included here as a reminder to always check these values.
+   The values are explicitly included here as a reminder to always check these settings.
    After the node starts, no other nodes on the same local machine can use these ports.
 
 3. Review log messages as the node starts and take note of the Local node identity.
@@ -150,41 +150,36 @@ To start the validator nodes using the [raw sample chain specification file](/as
    🏷 Local node identity is: 12D3KooWGjsmVmZCM1jPtVNp6hRbbkGBK3LADYNniJAKJ19NUYiq
    ```
 
-4. Start the `bob` validator by running the following command.
-
-The command to start the second node is similar to the command to start the first node with a few important differences.
-
-```bash
-./target/release/polkadot \
---bob \
---validator \
---base-path /tmp/relay-bob \
---chain <path to spec json> \
---bootnodes /ip4/<Alice IP>/tcp/30333/p2p/<Alice Peer ID> \
---port 30334 \
---ws-port 9945
-```
-
-Notice that this command uses a a different base path ( `/tmp/relay-bob`), validator key (`--bob`), and ports (`30334` and `9945`).
-
-The command to start the second node also includes the `--bootnodes` command-line option to specify the IP address and peer identifier of the first node.
-The `bootnodes` option is not strictly necessary if you are running the entire network on a single local machine, but it is necessary when using a connection to a non-local network without any specified bootnodes in the chain spec, as is the case with the [rococo-custom-2-plain.json](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/cumulus/chain-specs/rococo-custom-2-plain.json) example we are using. 
+4. Open a new terminal and start the second validator using the `bob` account.
+   
+   The command similar to the command used to start the first node with a few important differences.
+   
+   ```bash
+   ./target/release/polkadot \
+   --bob \
+   --validator \
+   --base-path /tmp/relay-bob \
+   --chain /tmp/raw-local-chainspec.json \
+   --port 30334 \
+   --ws-port 9945
+   ```
+   
+   Notice that this command uses a different base path ( `/tmp/relay-bob`), validator key (`--bob`), and ports (`30334` and `9945`).
+   
+   Because both validators are running on a single local computer it isn't necessary to specify the `--bootnodes` command-line option and the IP address and peer identifier of the first node.
+   The `bootnodes` option is necessary if you want to connect nodes that run outside of the local network or nodes that are not identified in the chain specification file.
 
 For this tutorial, your final chain spec filename **must** start with `rococo` or the node will not know what runtime logic to include.
 
-## Further resources
+## Where to go next
 
-Manually building and configuring a relay chain is a great exercise.
-However, after you have done it a few times, you likely want to automate the process.
-There are many ways to go about this, here are a few for reference:
+In this tutorial, you learned how to build and start a local relay chain.
+From here, you might want to learn how to connect a local parachain the the local relay chain or experiment with tools that help you automate setting up a test network.
 
-<!-- TODO NEW CONTENT add details about these in HTG pages and link here in stead on these https://github.com/substrate-developer-hub/substrate-docs/issues/1098 -->
-
-- [`parachain-launch`](https://github.com/open-web3-stack/parachain-launch) is a script that generates a docker compose file allowing you to launch a testnet of multiple blockchain nodes.
-- [`zombienet`](https://github.com/paritytech/zombienet) is a CLI tool that enables you to spawn ephemeral Polkadot/Substrate networks and perform tests against them.
-
-## Next steps
-
-With a running relay chain, naturally you will want to [connect a parachain](/tutorials/connect-other-chains/connect-a-local-parachain/) to it!
+- [Connect a local parachain](/tutorials/connect-other-chains/connect-a-local-parachain/)
+- [Launch a parachain test network](https://github.com/open-web3-stack/parachain-launch)
+- [Set up `zombienet`](https://github.com/paritytech/zombienet) is a CLI tool that enables you to spawn ephemeral Polkadot and Substrate networks and perform tests against them.
 
 <!-- TODO NEW CONTENT docker and using prebuilt bins suggested https://github.com/substrate-developer-hub/substrate-docs/issues/1073 -->
+
+<!-- TODO NEW CONTENT add details about these in HTG pages and link here in stead on these https://github.com/substrate-developer-hub/substrate-docs/issues/1098 -->
