@@ -2,6 +2,12 @@
 title: Substrate Connect
 description: Run Wasm Light Clients of any Substrate based chain directly in your browser
 keywords:
+  - Substrate Connect
+  - light client node
+  - Polkadot
+  - Kusama
+  - Westend
+  - Rococo
 ---
 Substrate is a modular framework for creating use-case optimized blockchains at a low cost by composing a runtime of custom or pre-built components. 
 
