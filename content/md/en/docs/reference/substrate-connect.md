@@ -34,7 +34,7 @@ This package contains the `substrate-connect` rpc provider that integrates and u
 ```bash
 yarn add @polkadot/rpc-provider
 ```
-*or*
+If you use npm as your package manaager, runn the following command:
 ```bash
 npm i @polkadot/rpc-provider
 ```
