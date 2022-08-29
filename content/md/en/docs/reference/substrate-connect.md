@@ -14,7 +14,6 @@ Substrate is a modular framework for creating use-case optimized blockchains at 
 
 Substrate-connect turns a browser into a node on a network allowing end-users of Web3 apps to interact with blockchains directly - without connecting to third-party remote nodes and other servers. Removing intermediary servers between network and its users improves security, simplifies infrastructure of a network and lowers its maintenance costs. Decentralized in-browser light clients are a unique feature of substrate-based networks.
 
-[What is a light client and why you should care? by Thibault Sardan](https://www.parity.io/what-is-a-light-client/)
 
 ## Well known Networks
 
