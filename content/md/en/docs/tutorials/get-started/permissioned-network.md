@@ -253,7 +253,8 @@ To configure genesis storage for authorized nodes:
 
    ```toml
    [dependencies]
-   bs58 = "0.4.0"
+   bs58 = { version = "0.4.0" }
+
    ```
 
 1. Save your changes and close the file.
