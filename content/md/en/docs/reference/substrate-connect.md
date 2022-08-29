@@ -3,7 +3,7 @@ title: Substrate Connect
 description: Run Wasm Light Clients of any Substrate based chain directly in your browser
 keywords:
 ---
-Substrate is a modular framework for creating use-case optimized blockchains at a low cost, by composing custom or pre-built components. Substrate is the backbone that powers Polkadot, a next-generation, heterogeneous, multi-chain network, and its ecosystem.
+Substrate is a modular framework for creating use-case optimized blockchains at a low cost by composing a runtime of custom or pre-built components. 
 
 ## Wasm Light Clients
 
