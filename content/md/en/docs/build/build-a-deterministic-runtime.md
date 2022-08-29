@@ -25,7 +25,6 @@ This container is executed as part of a Docker image.
 The name of the `srtool` Docker image specifies the version of the Rust compiler used to compile the code included in the image.
 For example, the image `paritytech/srtool:1.62.0` indicates that the code in the image was compiled with version `1.62.0` of the `rustc` compiler.
 
-
 ## Working with the Docker container
 
 Because `srtool` is a Docker container, you must have Docker available in your build environment to use it.
