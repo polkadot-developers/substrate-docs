@@ -125,7 +125,7 @@ If you use `npm` as your package manager, run the following command:
 npm i @substrate/connect
 ```
 
-*Connecting to a `WellKnownChain`*
+### Connect to a well-known chain
 
 ```js
 import { WellKnownChain, createScClient } from '@substrate/connect';
