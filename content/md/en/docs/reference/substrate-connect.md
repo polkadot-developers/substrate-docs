@@ -11,7 +11,6 @@ keywords:
 ---
 Substrate is a modular framework for creating use-case optimized blockchains at a low cost by composing a runtime of custom or pre-built components. 
 
-## Wasm Light Clients
 
 Substrate-connect turns a browser into a node on a network allowing end-users of Web3 apps to interact with blockchains directly - without connecting to third-party remote nodes and other servers. Removing intermediary servers between network and its users improves security, simplifies infrastructure of a network and lowers its maintenance costs. Decentralized in-browser light clients are a unique feature of substrate-based networks.
 
