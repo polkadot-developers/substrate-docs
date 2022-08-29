@@ -112,7 +112,9 @@ await api.disconnect();
 
 ## Advanced Usage
 
-At the section above, `@polkadot/rpc-provider/substrate-connect` was used, because this provider makes if straightforward to create applications that interact with the chain using the Polkadot-JS API. For more advanced application development that doesn't depend on the Polkadot-JS API, you can install and use @substrate-connect. For example, if you are building your own application library or programming interfaces, you should install the Substrate Connect dependencies by running the following command:
+The previous section demonstrated how to add the Substrate Connect provider to applications that use the Polkadot-JS API. 
+With this provider, you create applications that enable users to interact with the chain through the browser using calls to the Polkadot-JS API methods. 
+However, you can install and use @substrate-connect in applications that don't depend on the Polkadot-JS API. For example, if you are building your own application library or programming interfaces, you can install the Substrate Connect dependencies by running the appropriate command for the package manager you use.
    For example, if you use yarn, run the following command:
 
 
