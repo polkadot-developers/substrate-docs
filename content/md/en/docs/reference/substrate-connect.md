@@ -41,7 +41,6 @@ npm i @polkadot/rpc-provider
 
 #### **@polkadot/api**
 
-This library provides a clean wrapper around all the methods exposed by a Polkadot/Substrate network client. It is used with the outcome of rpc-provider above
 
 ```bash
 yarn add @polkadot/api
