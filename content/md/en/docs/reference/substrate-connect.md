@@ -142,7 +142,7 @@ chain.sendJsonRpc(
 );
 ```
 
-*Connecting to a parachain*
+### Connect to a parachain
 
 ```js
 import { WellKnownChain, createScClient } from '@substrate/connect';
