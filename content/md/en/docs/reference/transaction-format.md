@@ -80,7 +80,7 @@ where:
 - `[3]` if a signature is present, this field contains an account ID, an SR25519 signature and some extra data. If unsigned this field contains 0 bytes.
 - `[4]` is the encoded call data. This comprises of 1 byte denoting the pallet to call into, 1 byte denoting the call to make in that pallet, and then as many bytes as needed to encode the arguments expected by that call.
 
-The way applications know how to construct a transaction correctly is provided by the [metadata interface](/build/application-dev/#metadata-system).
+The way applications know how to construct a transaction correctly is provided by the [metadata interface](/build/application-development/#metadata-system).
 An application will know how to correctly encode a transaction by using the metadata types and transaction format.
 If a call doesn't need to be signed, then the first bit in `[2]` will be 0 and so an application will know not to try decoding a signature.
 
