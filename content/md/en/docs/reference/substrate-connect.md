@@ -118,7 +118,7 @@ At the section above, `@polkadot/rpc-provider/substrate-connect` was used, becau
 ```bash
 yarn add @substrate/connect
 ```
-or
+If you use `npm` as your package manager, run the following command:
 ```bash
 npm i @substrate/connect
 ```
