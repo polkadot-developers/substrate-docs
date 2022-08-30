@@ -22,10 +22,12 @@ By completing this tutorial, you will accomplish the following objectives:
 
 Before you begin, verify the following:
 
-- You have competed the [Prepare a local relay chain](/tutorials/connect-other-chains/prepare-a-local-relay-chain/) tutorial, and have a running local network with no less than two validators.
-- 
-- You are using the specific software versions identified in [Prepare a local relay chain](/tutorials/connect-other-chains/prepare-a-local-relay-chain/#matching-versions-are-critical) in your parachain.
-  For example, if you are using [Polkadot `release-v0.9.26`](https://github.com/paritytech/polkadot/tree/release-v0.9.26), use the `polkadot-v0.9.26` branch for the [substrate-parachain-template](https://github.com/substrate-developer-hub/substrate-parachain-template/tree/polkadot-v0.9.26).
+- You have configured a local relay chain with two validators as described in [Prepare a local relay chain](/tutorials/connect-other-chains/prepare-a-local-relay-chain/).
+
+- You are aware that parachain versions and dependencies are tightly coupled with the version of the relay chain they connect to and know the software version you used to configure the relay chain.
+  
+  Tutorials generally use the latest Polkadot branch to demonstrate features.
+  If a tutorial doesn't work as expected, you should check whether you have the latest Polkadot branch in your local environment and update your local software, if needed.
 
 ## Build the parachain template
 
@@ -37,18 +39,28 @@ To build the parachain template:
 
 1. Open a new terminal shell on your computer, if needed.
 
-1. Clone the parachain template repository by running the following command:
+2. Clone the branch of the `substrate-parachain-template` repository that matches the release branch you used to configure the relay chain.
+   
+   For example, if you used the `release-v0.9.28` Polkadot release branch to configure the local relay chain, use the `polkadot-v0.9.28` branch for the parachain template.
    
    ```bash
-   git clone --depth 1 --branch polkadot-v0.9.26 https://github.com/substrate-developer-hub/substrate-parachain-template
+   git clone --depth 1 --branch polkadot-v0.9.28 https://github.com/substrate-developer-hub/substrate-parachain-template.git
    ```
-2. Change to the root of the parachain template directory by running the following command:
+
+1. Change to the root of the parachain template directory by running the following command:
 
    ```bash
    cd substrate-parachain-template
    ```
 
-1. Build the parachain template collator by running the following command:
+   You now have a detached branch.
+   If you want to save your changes and make this branch easy to identify you can create a new branch by running a command similar to the following:
+
+   ```bash
+   git switch -c my-branch-v0.9.28
+   ```
+
+3. Build the parachain template collator by running the following command:
 
    ```bash
    cargo build --release
@@ -60,13 +72,30 @@ To build the parachain template:
 
 Every parachain must reserve a unique identifier—the `ParaID`—that enables it to connect to its specific relay chain.
 Each relay chain manages its own set of unique identifiers for the parachains that connect to it. 
-The identifier is referred to as a `ParaID` because the same identifier can be used to identify a slot occupied by a [parachain](https://wiki.polkadot.network/docs/learn-parachains) or to identify a a slot occupied by a [parathread](https://wiki.polkadot.network/docs/learn-parathreads).
+The identifier is referred to as a `ParaID` because the same identifier can be used to identify a slot occupied by a [parachain](https://wiki.polkadot.network/docs/learn-parachains) or to identify a slot occupied by a [parathread](https://wiki.polkadot.network/docs/learn-parathreads).
 
 You should note that you must have an account with sufficient funds to reserve a slot on a relay chain.
 You can determine the number of tokens a specific relay chain requires by checking the `ParaDeposit` configuration in the `paras_registrar` pallet for that relay chain.
-For example, Rococo requires [5 ROC](https://github.com/paritytech/polkadot/blob/release-v0.9.27/runtime/rococo/src/lib.rs#L649-L662) to reserve an identifier.
+For example, Rococo requires 5 ROC to reserve an identifier:
 
-Each relay chain allots its own identifier by incrementing the identifier starting at `2000` for all chains that are not [common good parachains](https://wiki.polkadot.network/docs/learn-common-goods).
+```rust
+parameter_types! {
+	pub const ParaDeposit: Balance = 5 * DOLLARS;
+	pub const DataDepositPerByte: Balance = deposit(0, 1);
+}
+
+impl paras_registrar::Config for Runtime {
+	type Event = Event;
+	type Origin = Origin;
+	type Currency = Balances;
+	type OnSwap = (Crowdloan, Slots);
+	type ParaDeposit = ParaDeposit;
+	type DataDepositPerByte = DataDepositPerByte;
+	type WeightInfo = weights::runtime_common_paras_registrar::WeightInfo<Runtime>;
+}
+```
+
+Each relay chain allots its own identifiers by incrementing the identifier starting at `2000` for all chains that are not [common good parachains](https://wiki.polkadot.network/docs/learn-common-goods).
 Common good chains use a different method to allocate slot identifiers.
 
 The following example illustrates how to reserve a `ParaID` using [Polkadot-JS Apps](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/parachains/parathreads) and connecting to a local relay chain.

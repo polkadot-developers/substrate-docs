@@ -62,7 +62,7 @@ Therefore, this tutorial uses code from the Polkadot repository to prepare the l
    git clone --depth 1 --branch release-v0.9.28 https://github.com/paritytech/polkadot.git
    ```
 
-2. Change to the root of the polkadot directory by running the following command:
+2. Change to the root of the `polkadot` directory by running the following command:
    
    ```bash
    cd polkadot
@@ -168,8 +168,6 @@ To start the validator nodes using the [raw sample chain specification file](/as
    
    Because both validators are running on a single local computer it isn't necessary to specify the `--bootnodes` command-line option and the IP address and peer identifier of the first node.
    The `bootnodes` option is necessary if you want to connect nodes that run outside of the local network or nodes that are not identified in the chain specification file.
-
-For this tutorial, your final chain spec filename **must** start with `rococo` or the node will not know what runtime logic to include.
 
 ## Where to go next
 
