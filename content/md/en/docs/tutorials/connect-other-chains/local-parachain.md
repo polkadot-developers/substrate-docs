@@ -77,7 +77,7 @@ We first generate a plain spec with:
 
 ```bash
 # Assumes that `rococo-local` is in `node/chan_spec.rs` as the relay you registered with
-./target/release/parachain-collator build-spec --disable-default-bootnode > rococo-local-parachain-plain.json
+./target/release/parachain-template-node build-spec --disable-default-bootnode > rococo-local-parachain-plain.json
 ```
 
 Default `ParaID` is `1000` from Cumulus, so you must correctly set it for your parachain based on **the reserved `ParaID` from above**.
@@ -96,7 +96,7 @@ Assuming your reserved `ParaID` is `2000`, you will open `rococo-local-parachain
 Then generate a raw chain spec derived **from your modified plain chain spec**:
 
 ```bash
-./target/release/parachain-collator build-spec --chain rococo-local-parachain-plain.json --raw --disable-default-bootnode > rococo-local-parachain-2000-raw.json
+./target/release/parachain-template-node build-spec --chain rococo-local-parachain-plain.json --raw --disable-default-bootnode > rococo-local-parachain-2000-raw.json
 ```
 
 ### Save and distribute your raw spec
@@ -121,7 +121,7 @@ The relay chain also needs the parachain-specific runtime validation logic to va
 The parachain collator node also has a command to produce this Wasm blob:
 
 ```bash
-./target/release/parachain-collator export-genesis-wasm --chain rococo-local-parachain-2000-raw.json > para-2000-wasm
+./target/release/parachain-template-node export-genesis-wasm --chain rococo-local-parachain-2000-raw.json > para-2000-wasm
 ```
 
 ### Generate a parachain genesis state
@@ -131,7 +131,7 @@ The collator node can export that state to a file.
 Go to your Parachain Template folder, the following command will create a file containing the parachain's entire genesis state, hex-encoded:
 
 ```bash
-./target/release/parachain-collator export-genesis-state --chain rococo-local-parachain-2000-raw.json > para-2000-genesis
+./target/release/parachain-template-node export-genesis-state --chain rococo-local-parachain-2000-raw.json > para-2000-genesis
 ```
 
 **No pre-genesis blocks allowed**
@@ -149,7 +149,7 @@ Notice that we need to supply the same relay chain chain spec we used for launch
 Start a collator with the following command:
 
 ```bash
-./target/release/parachain-collator \
+./target/release/parachain-template-node \
 --alice \
 --collator \
 --force-authoring \
@@ -405,7 +405,7 @@ You can purge all chain data for all chains by running the following commands:
 
 ```bash
 # Purge the collator(s)
-./target/release/parachain-collator purge-chain \
+./target/release/parachain-template-node purge-chain \
   --base-path <your collator DB path set above>
 
 # Purge the validator(s)
