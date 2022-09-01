@@ -9,14 +9,17 @@ keywords:
   - chain specification
 ---
 
-This tutorial illustrates how to connect a local parachain to a local relay chain.
+This tutorial illustrates how to reserve a parachain identifier with a local relay chain and how to connect a local parachain to that relay chain.
 
 ## Tutorial objectives
 
 By completing this tutorial, you will accomplish the following objectives:
 
-- Register a unique identifier—called the `ParaID`—for a parachain to enable a connection to the local relay chain.
-- Start block production for the parachain.
+- Compilee a local parachain node.
+- Reserve a unique identifier the local relay chain for the parachain to use.
+- Configure a chain specification for the parachain.
+- Export the runtime and genesis state for the parachain.
+- Start the local parachain and see that it connects to the local relay chain.
 
 ## Before you begin
 
@@ -108,15 +111,15 @@ To reserve a parachain identifier:
    
 4. Click **Network** and select **Parachains**.
    
-   ![Navigate to Parachains](/media/images/docs/tutorials/parachain/network-parachains.png)
+   ![Navigate to Parachains](/media/images/docs/tutorials/parachains/network-parachains.png)
 
 5. Click **Parathreads**, then click **ParaId**.
    
-   ![Reserve an identifier](/media/images/docs/tutorials/parachain/parathread-paraid.png)
+   ![Reserve an identifier](/media/images/docs/tutorials/parachains/parathread-paraid.png)
 
-6. Review the settings for the transaction to reserve a ParaId, then click **Submit**.
+6. Review the settings for the transaction to reserve the identifier, then click **Submit**.
    
-   The account used to reserve the identifier will be the account charged for the transaction and will the origin account for the parathread associated with the identifier.
+   The account used to reserve the identifier will be the account charged for the transaction and will be the origin account for the parathread associated with the identifier.
 
 7. Click **Sign and Submit** to authorize the transaction.
    
@@ -124,9 +127,9 @@ To reserve a parachain identifier:
    
 8. Check the list of recent events for successful `registrar.Reserved` and click the event to see details about the transaction.
    
-   ![View your reserved identifier](/media/images/docs/tutorials/parachain/paraid-registration-event.png)
+   ![View your reserved identifier](/media/images/docs/tutorials/parachains/paraid-registration-event.png)
    
-   You are now ready to generate the files required for your parachain using the reserved identifier (`paraId` `2000`).
+   You are now ready to prepare the chain specification and generate the files required for your parachain to connect to the relay chain lusing the reserved identifier (`paraId` `2000`).
 
 ## Modify the default chain specification
 
@@ -135,26 +138,10 @@ To register your parachain with the local relay chain, you must modify the defau
 1. Generate the plain text chain specification for the parachain template node by running the following command:
    
    ```bash
-   ./target/release/parachain-template-node build-spec > plain-parachain-chainspec.json
+   ./target/release/parachain-template-node build-spec --disable-default-bootnode > plain-parachain-chainspec.json
    ```
 
 1. Open the plain text chain specification for the parachain template node in a text editor.
-
-1. Set the `bootNodes` to use the local relay chain validator nodes.
-   
-   For example:
-
-   ```json
-   {
-    "name": "Local Parachain Testnet",
-    "id": "local_testnet",
-    "chainType": "Local",
-    "bootNodes": [
-       "/ip4/127.0.0.1/tcp/30333/p2p/12D3KooWKaWYB1xeCJFQdGSqsJPWkqUCJJXUYdKPwSY161GM8brY"
-    ],
-    ...
-   }
-   ```
 
 2. Set the `para_id` to the parachain identifier that you previously reserved.
    
@@ -241,7 +228,7 @@ To prepare the parachain collator to be registered:
    --ws-port 8844 \
    -- \
    --execution wasm \
-   --chain /tmp/raw-local-chainspec.json \
+   --chain ../polkadot/raw-local-chainspec.json \
    --port 30343 \
    --ws-port 9977
    ```
@@ -249,7 +236,7 @@ To prepare the parachain collator to be registered:
    In this command, the arguments passed before the lone `--` argument are for the parachain template collator.
    The arguments after the `--` are for the embedded relay chain node.
    Notice that this command specifies both the raw chain specification for the parachain and the raw chain specification for the relay chain.
-   In this example, the raw chain specification for the local relay chain is located in `/tmp/raw-local-chainspec.json`.
+   In this example, the raw chain specification for the local relay chain is `raw-local-chainspec.json` located in the `polkadot` directory.
    Be sure the second `--chain` command-line specifies the path to the raw chain specification for your local relay chain.
 
    If you start another node for the parachain, you would use the same relay chain specification file, but a different base path and port numbers.
@@ -284,7 +271,7 @@ To prepare the parachain collator to be registered:
 With the local relay chain and collator node running, you are ready to register the parachain on the local relay chain. 
 In a live public network, registration typically involves a [parachain auction](https://wiki.polkadot.network/docs/en/learn-auction).
 For this tutorial and local testing, you can use a Sudo transaction and the Polkadot/Substrate Portal.
-Using a Sudo transactin enable you to bypass the steps required to acquire a parachain or parathread slot.
+Using a Sudo transaction enables you to bypass the steps required to acquire a parachain or parathread slot.
 
 To register the parachain:
 
@@ -296,7 +283,7 @@ To register the parachain:
    
 4. Click **Developer** and select **Sudo**.
    
-   ![Select Sudo to register a parachain](/media/images/docs/tutorials/parachain/developer-sudo.png)
+   ![Select Sudo to register a parachain](/media/images/docs/tutorials/parachains/developer-sudo.png)
 
 5. Select **paraSudoWrapper**, then select **sudoScheduleParaInitialize(id, genesis)** to initialize the reserved paraID at the start of the next relay chain session.
 
@@ -313,7 +300,7 @@ To register the parachain:
      
    - `parachain`: Select **Yes**.
   
-   ![parachain-registration-sudo.png](/media/images/docs/tutorials/parachain/parachain-registration-sudo.png)  
+   ![parachain-registration-sudo.png](/media/images/docs/tutorials/parachains/parachain-registration-sudo.png)  
 
 6. Click **Submit Sudo**.
    
@@ -323,84 +310,114 @@ To register the parachain:
 
 8. Check the list of recent events for successful `sudo.Suid` and click the event to see details about the transaction.
    
-   ![View the Sudo registration](/media/images/docs/tutorials/parachain/sudo-registration-event.png)
+   ![View the Sudo registration](/media/images/docs/tutorials/parachains/sudo-registration-event.png)
 
    After the parachain is initialized, you can see it in the Polkadot/Substrate Portal byt clicking **Network**, then selecting **Parachains**.
 
-  ![View the parachain](/media/images/docs/tutorials/parachain/view-parachain.png)
+  ![View the parachain](/media/images/docs/tutorials/parachains/view-parachain.png)
 
-### Block finalization
+4. Click **Network** and select **Parachains** and wait for a new epic to start.
 
-The relay chain tracks the latest block (the head) of each parachain.
-When a relay chain block is finalized, every parachain blocks that have completed the [validation process](https://polkadot.network/the-path-of-a-parachain-block) are also finalized.
-This is how Polkadot achieves **pooled, shared security** for its parachains!
+   The relay chain tracks the latest block—the head—of each parachain.
+   When a relay chain block is finalized, the parachain blocks that have completed the [validation process](https://polkadot.network/the-path-of-a-parachain-block) are also finalized.
+   This is how Polkadot achieves **pooled, shared security** for its parachains.
 
-You can see the registered parachains and their latest data by clicking **Network** > **Parachains** in the Apps UI.
+   After the parachain connects to the relay chain in the next epoch and finalizes its first block you can see information about it in the Polkadot/Substrate Portal.
+   
+   ![Parachain information](/media/images/docs/tutorials/parachains/parachain-epoch.png)
 
-![parachain-summary-screenshot.png](/media/images/docs/tutorials/09-cumulus/parachain-summary-screenshot.png)
+   The terminal where the parachain is running also displays details similar to the following:
+   
+   ```text
+   2022-09-01 12:58:12 [Parachain] Starting collation. relay_parent=0x1ba093a16f8276459629b29b2bcee2b40e360a72a15a714cb208a5f6be576262 at=0x99951a12bbb25bad6e8878b517601a0fb65741189903d503789e12cd6d81810b
+   2022-09-01 12:58:16 [Relaychain] 💤 Idle (2 peers), best: #117 (0x1ba0…6262), finalized #113 (0x0798…07c2), ⬇ 0.6kiB/s ⬆ 0.4kiB/s    
+   2022-09-01 12:58:16 [Parachain] 💤 Idle (0 peers), best: #2 (0x9995…810b), finalized #1 (0x50e8…5acb), ⬇ 0 ⬆ 0    
+   ...
+   2022-09-01 12:58:24 [Parachain] 🙌 Starting consensus session on top of parent 0x99951a12bbb25bad6e8878b517601a0fb65741189903d503789e12cd6d81810b    
+   2022-09-01 12:58:24 [Parachain] 🎁 Prepared block for proposing at 3 (0 ms) [hash: 0x614a7f68290d68ec8b441886dbc6bda95593028c856cf32a46a64ca85af5b51f; parent_hash: 0x9995…810b; extrinsics (2): [0xe698…6c13, 0x5225…a083]]    
+   2022-09-01 12:58:24 [Parachain] 🔖 Pre-sealed block for proposal at 3. Hash now 0x7ea49c65781d6c9a04bd8ae4f89b0c7bd84c7b3302233024ffa54909dc977a32, previously 0x614a7f68290d68ec8b441886dbc6bda95593028c856cf32a46a64ca85af5b51f.    
+   2022-09-01 12:58:24 [Parachain] ✨ Imported #3 (0x7ea4…7a32)    
+   2022-09-01 12:58:24 [Parachain] PoV size { header: 0.1787109375kb, extrinsics: 2.7470703125kb, storage_proof: 2.6123046875kb }
+   2022-09-01 12:58:24 [Parachain] Compressed PoV size: 4.802734375kb
+   2022-09-01 12:58:24 [Parachain] Produced proof-of-validity candidate. block_hash=0x7ea49c65781d6c9a04bd8ae4f89b0c7bd84c7b3302233024ffa54909dc977a32
+   2022-09-01 12:58:26 [Relaychain] 💤 Idle (2 peers), best: #119 (0x20a1…5579), finalized #116 (0x0c12…2ba3), ⬇ 0.7kiB/s ⬆ 1.4kiB/s    
+   2022-09-01 12:58:26 [Parachain] 💤 Idle (0 peers), best: #2 (0x9995…810b), finalized #1 (0x50e8…5acb), ⬇ 0 ⬆ 0    
+   ...
+   2022-09-01 12:58:36 [Relaychain] 👶 New epoch 12 launching at block 0xa2a3…253c (block slot 277010386 >= start slot 277010386).    
+   2022-09-01 12:58:36 [Relaychain] 👶 Next epoch starts at slot 277010396    
+   2022-09-01 12:58:36 [Relaychain] ✨ Imported #121 (0xa2a3…253c)    
+   2022-09-01 12:58:36 [Relaychain] Advanced session window for approvals update=Advanced { prev_window_start: 6, prev_window_end: 11, new_window_start: 7, new_window_end: 12 }
+   2022-09-01 12:58:36 [Parachain] Starting collation. relay_parent=0xa2a3fabb974f673d49cc6b50605e6d90595234ce16fd7bd01bce808bbdf0253c at=0x7ea49c65781d6c9a04bd8ae4f89b0c7bd84c7b3302233024ffa54909dc977a32
+   2022-09-01 12:58:36 [Relaychain] 💤 Idle (2 peers), best: #121 (0xa2a3…253c), finalized #117 (0x1ba0…6262), ⬇ 1.0kiB/s ⬆ 0.6kiB/s    
+   2022-09-01 12:58:36 [Parachain] 💤 Idle (0 peers), best: #3 (0x7ea4…7a32), finalized #2 (0x9995…810b), ⬇ 0 ⬆ 0    
+   ...
+   ```
 
-## Interact with your parachain
+## Connect and submit transactions
 
-The entire point of launching and registering parachains is that we can submit transactions to the parachains and interact with them.
-We are finally ready to submit extrinsics on our parachains!
+Up to this point, you have used the Polkadot/Substrate Portal to connect to the local network and to submit transactions to the local relay chain.
+Now that you have a parachain running and connected to the relay chain, you can use the Polkadot/Substrate Portal to submit transactions to the parachain.
 
-### Connecting with the Apps UI
+To connect to the parachain and submit transactions:
 
-We've already connected the Apps UI to the relay chain node.
-Now we can also connect to the parachain collator.
-Open another instance of Apps UI in a new browser window, and connect it to the appropriate endpoint.
-If you have followed this tutorial so far, you can connect to the parachain node at:
+1. Open [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) in a new browser window or tab.
 
-https://polkadot.js.org/apps/?rpc=ws%3A%2F%2Flocalhost%3A8844#/
+2. Click the network selector in the top left of the application.
+   
+   ![Network selector](/media/images/docs/tutorials/parachains/network-selector.png)
 
-### Submit extrinsics
+   
+3. Change the custom endpoint to connect to the WebSocket port for the parachain. 
+   
+   If you followed the settings in this tutorial, connect to port 8844.
 
-You can make some simple token transfers to ensure that the parachain is operating normally.
-You can also make some on-chain remarks by going to the `Extrinsics` page, choosing `System` pallet and `remark` extrinsic.
+   ![Parachain WebSocket endpoint](/media/images/docs/tutorials/parachains/parachain-port.png)
 
-If the transaction go through as expected, you have a working parachain.
+1. Click **Account** and select **Transfer** to send funds from Alice to another account.
+   
+   - Select an account to send the funds to.
+   - Type an amount.
+   - Click **Make Transfer**.
+   - Review the transaction, then click **Sign and Submit** to authorize the transfer.
 
-**_Congratulations!_**
+1. Click **Accounts** to verify that the transfer completed and the parachain transaction was successful.
+   
+   If the transaction was successful, **congratulations**, you have a working parachain.
 
-Read on for more optional material.
+## Resetting the blockchain state
 
-#### Cross-chain Message Passing (XCMP)
+The parachain collator you connected to the relay chain in this tutorial contains all of the blockchain data for the parachain.
+There's only one node in this parachain network, so any transactions you submit are only stored on this node.
+Relay chains don't store any parachain state.
+The relay chain only stores header information for the parachains that connect to it.
 
-The defining feature of connecting parachains to a _common_ relay chain is the ability to communicate _between_ all connected chains.
-This area of functionality is at the cutting edge development and is not included in this tutorial.
+For testing purposes, you might want to periodically purge the blockchain state to start over.
+However, you should keep in mind that if you purge the chain state or manually delete the database, you wont be able to recover the data or restore the chain state. 
+If you have data you want to preserve, you should ensure you have a copy before you purge the  parachain state.
 
-To learn more about XCMP, refer to [Polkadot wiki on XCMP](https://wiki.polkadot.network/docs/en/learn-crosschain).
+If you want to start over with a clean environment for testing, you should completely remove the chain state for the local relay chain nodes and the parachain.
 
-<!-- TODO NAV.YML -->
-<!-- add info on and link to /tutorials/connect-other-chains/xcm/ page implemented and referenced here-->
+To reset the blockchain state:
 
-## Chain purging
+1. In the terminal where the parachain template node is running, press Control-c.
+   
+2. Purge the parachain collator state by running the following command:
+   
+   ```bash
+   rm -rf /tmp/parachain
+   ```
 
-Your sole collator is the **only home of the parachain blockchain data** as there is only one node on your entire parachain network.
-Relay chains only store parachains header information.
-**If the parachain data is lost, you will not be able to recover the chain.**
-In testing though, you may need to start things from scratch.
+1. In the terminal where either the `alice` validator node or the `bob` validator node is running, press Control-c.
 
-To purge your parachain chain data from the relay chain, you need to deregister and re-register the parachain collator.
-It may be easier in testing to instead just purge the relay and parachains and start again form genesis.
-You can purge all chain data for all chains by running the following commands:
+2. Purge the validator state by running the following command:
+   
+   ```bash
+   rm -rf /tm/relay
+   ```
 
-```bash
-# Purge the collator(s)
-./target/release/parachain-collator purge-chain \
-  --base-path <your collator DB path set above>
+## Where to go next 
 
-# Purge the validator(s)
-polkadot purge-chain \
-  --base-path <your relay chain DB path set above>
-```
-
-Then register from a blank slate again.
-
-## Next steps
-
-- Learn more about collators on the [Polkadot Wiki](https://wiki.polkadot.network/docs/learn-collator).
-- [Add more parachain nodes](/reference/how-to-guides/parachains/add-paranodes/) to your parachain network.
-- Very rigorously [Test](/test/) your local parachain network.
-- Connect your parachain to rococo by getting a [Rococo testnet slot](/tutorials/connect-other-chains/acquire-a-testnet-slot/).
-- See the guide on [converting a solo chain to a parachain](/reference/how-to-guides/parachains/convert-a-solo-chain/) to convert your chain's logic-not state or running-chain migrations-to a parachain.
+- [How-to: Add more parachain nodes](/reference/how-to-guides/parachains/add-paranodes/)
+- [How-to: Convert a solo chain](/reference/how-to-guides/parachains/convert-a-solo-chain/)
+- [Polkadot wiki](https://wiki.polkadot.network/docs/learn-collator)
+- [Acquire a testnet slot](/tutorials/connect-other-chains/acquire-a-testnet-slot/)
