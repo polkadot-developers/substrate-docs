@@ -312,9 +312,9 @@ To register the parachain:
    
    ![View the Sudo registration event](/media/images/docs/tutorials/parachains/sudo-registration-event.png)
 
-   After the parachain is initialized, you can see it in the Polkadot/Substrate Portal byt clicking **Network**, then selecting **Parachains**.
+   After the parachain is initialized, you can see it in the Polkadot/Substrate Portal by clicking **Network**, then selecting **Parachains**.
 
-  ![View the parachain](/media/images/docs/tutorials/parachains/view-parachain.png)
+   ![View the parachain](/media/images/docs/tutorials/parachains/view-parachain.png)
 
 4. Click **Network** and select **Parachains** and wait for a new epic to start.
 
@@ -381,7 +381,7 @@ To connect to the parachain and submit transactions:
 
 1. Click **Accounts** to verify that the transfer completed and the parachain transaction was successful.
    
-   If the transaction was successful, **congratulations**, you have a working parachain.
+   If the transaction was successful, you have a working parachain.
 
 ## Resetting the blockchain state
 
