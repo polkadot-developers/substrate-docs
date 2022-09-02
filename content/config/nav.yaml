@@ -109,9 +109,11 @@ build:
     - title: Remote procedure calls
       url: /build/custom-rpc/
     - title: Application development
-      url: /build/application-dev/
+      url: /build/application-development/
+    - title: Build a deterministic runtime
+      url: /build/build-a-deterministic-runtime/
     - title: Upgrade the runtime
-      url: /build/upgrade/
+      url: /build/upgrade-the-runtime/
     #- title: Best practices
     #url: /build/best-practices/
     #- title: Executor

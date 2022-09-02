@@ -8,7 +8,7 @@ keywords:
 ---
 
 We recommend you use the following template to structure articles that you want to submit as to “how-to” topics.
-You can download a copy of the Markdown template directly from [here](/assets/contrib-templates/how-to-template.md).
+You can download a copy of the Markdown how-to-template directly from [here](/assets/contribute-templates/how-to-template.md).
 After downloading the template, rename the file and replace the description of each section with the relevant content.
 
 ## Front matter
@@ -16,9 +16,15 @@ After downloading the template, rename the file and replace the description of e
 Your _How-to_ guide should start with a front matter section delineated by typing three dashes on the first line.
 The front matter consists of the following fields:
 
-`title:`
-`description:`
-`keywords:`
+`---`
+
+title: Keep titles short
+
+description: Write a descriptive sentence to summarize the content of the article.
+
+keywords:
+
+`---`
 
 Only the title field is required and you can specify additional metadata fields.
 You close the front matter section by typing three dashes on the line following the last front matter entry.
@@ -27,10 +33,7 @@ You close the front matter section by typing three dashes on the line following 
 
 The guide title should summarize the goal of the article. 
 For “how-to” guides, the title should complete the “How do I …?” sentence.
-For example, if the goal of the guide is to illustrate:
-How do I mint a token supply?
-
-You might set the title in the front matter like this:
+For example, if the goal of the guide is to illustrate "How do I mint a token supply?," you can set the title in the front matter like this:
 
 `title: Mint a token supply`
 
@@ -46,7 +49,7 @@ For example:
 ### [Guide keywords]
 
 Keyword are optional, but if you include them, indent two spaces, then use a dash and a single keyword per line.
-For an example, see the Markdown template.
+For an example, see the [how-to template](/assets/contribute-templates/how-to-template.md).
 
 ## Introductory paragraph
 

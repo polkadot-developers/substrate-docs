@@ -17,5 +17,5 @@ The topics in this section provide a more detailed exploration of the code used 
 - [Chain specification](/build/chain-spec) discusses the use of chain specifications, including what you can and can't modify, and how to distribute customized chain specifications.
 - [Privileged calls and origins](/build/origins) describes how you can use predefined or custom origins to identify the originator of a function call.
 - [Remote procedure calls](/build/custom-rpc) summarizes how you can use remote procedure calls and RPC methods to interact with a Substrate node.
-- [Application development](/build/application-dev/) introduces the role of metadata and front-end libraries as tools for building applications that run on the blockchain.
-- [Upgrade the runtime](/build/upgrade) explains how runtime versioning and storage migration support runtime upgrades, enabling your blockchain to evolve over time.
+- [Application development](/build/application-development/) introduces the role of metadata and front-end libraries as tools for building applications that run on the blockchain.
+- [Upgrade the runtime](/build/upgrade-the-runtime/) explains how runtime versioning and storage migration support runtime upgrades, enabling your blockchain to evolve over time.

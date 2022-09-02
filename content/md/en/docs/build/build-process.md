@@ -112,7 +112,7 @@ Block authoring nodes typically use the WebAssembly execution environment to hel
 
 Although the WebAssembly runtime is selected by default, it is possible for you to override the runtime selected for all or specific operations by specifying an **execution strategy** as a command-line option.
 
-If the native runtime and the WebAssembly runtime share the same [version](/build/upgrade/#runtime-versioning), you can selectively use the native runtime instead of the WebAssembly runtime, in addition to the WebAssembly runtime, or as a fallback if using the WebAssembly runtime fails.
+If the native runtime and the WebAssembly runtime share the same [version](/build/upgrade-the-runtime/#runtime-versioning), you can selectively use the native runtime instead of the WebAssembly runtime, in addition to the WebAssembly runtime, or as a fallback if using the WebAssembly runtime fails.
 In general, you would only choose to use the native runtime for performance reasons or because it's a less restrictive environment than the WebAssembly runtime.
 For example, you might want to use the native runtime for initial synchronization.
 To use the native runtime for this synchronizing blocks, you can start the node using `--execution-syncing native` or `--execution-syncing native-else-wasm` the command-line option.

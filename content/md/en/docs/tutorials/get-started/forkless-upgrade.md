@@ -298,7 +298,7 @@ You can then observe the specific changes that were made in the upgrade by using
 
 ## Where to go next
 
-- [Storage migrations](/build/upgrade/#storage-migration)
+- [Storage migrations](/build/upgrade-the-runtime/#storage-migration)
   <!-- TODO NAV.YAML -->
   <!-- add  back ABOVE -->
   <!-- - [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/) -->

@@ -9,7 +9,7 @@ keywords:
 ---
 
 The `try-runtime` tool is built to query a snapshot of runtime storage, using an [in-memory-externalities](https://paritytech.github.io/substrate/master/sp_state_machine/struct.TestExternalities.html) to store state.
-By using the in-memory storage, you can write tests for a specified runtime state that enables you ro test against real chain state _before_ going to production.
+By using the in-memory storage, you can write tests for a specified runtime state that enables you to test against real chain state _before_ going to production.
 With the `try-runtime` command-line interface, you can specify the block you want to query against.
 
 In its simplest form, `try-runtime` is a tool that enables you to:
@@ -17,7 +17,7 @@ In its simplest form, `try-runtime` is a tool that enables you to:
 1. Connect to a remote node.
 2. Call into some runtime API.
 3. Retrieve state from a node at a given block.
-4. Write tests for the dat retrieved.
+4. Write tests for the data retrieved.
 
 ## Motivation
 
@@ -68,8 +68,8 @@ Then, use `fork-off-substrate` if you want to check that block production contin
 ### Runtime upgrade hooks
 
 By default, runtime upgrade hooks—which can be defined inside of the runtime or inside pallets—specify what should happen when there's been a runtime upgrade.
-That is, the default `on_tuntime_upgrade` method only describes runtime state _after_ the upgrade.
-However, it is possible to use mthoods provided by `try-runtime` to inspect and compare the runtime state _before_ and _after_ a runtime upgrade for testing purposes. 
+That is, the default `on_runtime_upgrade` method only describes runtime state _after_ the upgrade.
+However, it is possible to use methods provided by `try-runtime` to inspect and compare the runtime state _before_ and _after_ a runtime upgrade for testing purposes. 
 
 If you enable the `try-runtime` feature for the runtime, you can define `pre-upgrade` and `post-upgrade` hooks for the runtime as follows:
 
@@ -139,7 +139,7 @@ You can use the following subcommands with `try-runtime`:
 - `follow-chain`: Follows a given chain's finalized blocks and applies to all its extrinsics. 
   This allows the behavior of a new runtime to be inspected over a long period of time, with real transactions coming as input.
 
-o view usage information for a specific `try-runtime` subcommand, specify the subcommand and the `--help` flag.
+To view usage information for a specific `try-runtime` subcommand, specify the subcommand and the `--help` flag.
 For example, to see usage information for `try-runtime on-runtime-upgrade`, you can run the following command:
 
 ```bash

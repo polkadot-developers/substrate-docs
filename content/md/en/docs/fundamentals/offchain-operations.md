@@ -74,7 +74,7 @@ Offchain indexing allows the runtime to write directly to the offchain storage w
 You can enable this functionality to persist data by starting a Substrate node with the `--enable-offchain-indexing` command-line option.
 
 Unlike offchain workers, offchain indexing populates the offchain storage every time a block is processed.
-By populating the data at every block, offline indexing ensures that the data is always consistent and is exactly the same for every node running with indexing enabled.
+By populating the data at every block, offchain indexing ensures that the data is always consistent and is exactly the same for every node running with indexing enabled.
 
 ## Where to go next
 
