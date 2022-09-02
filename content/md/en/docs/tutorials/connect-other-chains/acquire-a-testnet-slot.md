@@ -65,7 +65,7 @@ To reserve an identifier:
 
 1. Click **Network** and select **Parachains**. 
    
-   ![Select Parachains from the network menu](/media/images/docs/tutorials/parachains/rococo-network-parachains.png)
+   ![Select Parachains from the network menu](/media/images/docs/tutorials/parachains/rococo-select-parachains.png)
    
 2. Click **Parathreads**, then click **ParaId**.
 
@@ -208,10 +208,8 @@ To register as a parathread:
    ![Parathread onboarding](/media/images/docs/tutorials/parachains/rococo-onboarding.png)
 
    You can also verify your registration request by checking for a `registrar.Registered` event in the Network Explorer.
-   
-   ![Parathread registration event](/media/images/docs/tutorials/parachains/rococo-registered-parathread-event.png)
-   
-   After you submit the registration request, it takes two [sessions](https://wiki.polkadot.network/docs/glossary#session) for the parathread onboarding.
+      
+   After you submit the registration request, it takes two [sessions](https://wiki.polkadot.network/docs/glossary#session) for the parathread to finish onboarding.
 
 ## Request a parachain slot
 
@@ -268,9 +266,7 @@ To assign a temporary slot:
    
 9. Type your password to authenticate your identity, then click **Sign and Submit**.
    
-   In your account doesn't have sufficient privileges, the transaction will fail with a BadOrigin error.
-
-   ![Slot assignment error](/media/images/docs/tutorials/parachains/slot-assignment-error.png)
+   In your account doesn't have sufficient privileges, the transaction will fail with a `BadOrigin` error.
 
 ### Lease duration
 

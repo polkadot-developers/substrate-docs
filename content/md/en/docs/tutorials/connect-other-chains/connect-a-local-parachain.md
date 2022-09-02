@@ -15,7 +15,7 @@ This tutorial illustrates how to reserve a parachain identifier with a local rel
 
 By completing this tutorial, you will accomplish the following objectives:
 
-- Compilee a local parachain node.
+- Compile a local parachain node.
 - Reserve a unique identifier the local relay chain for the parachain to use.
 - Configure a chain specification for the parachain.
 - Export the runtime and genesis state for the parachain.
@@ -127,9 +127,9 @@ To reserve a parachain identifier:
    
 8. Check the list of recent events for successful `registrar.Reserved` and click the event to see details about the transaction.
    
-   ![View your reserved identifier](/media/images/docs/tutorials/parachains/paraid-registration-event.png)
+   ![View your reserved identifier](/media/images/docs/tutorials/parachains/reserve-paraid-event.png)
    
-   You are now ready to prepare the chain specification and generate the files required for your parachain to connect to the relay chain lusing the reserved identifier (`paraId` `2000`).
+   You are now ready to prepare the chain specification and generate the files required for your parachain to connect to the relay chain using the reserved identifier (`paraId` `2000`).
 
 ## Modify the default chain specification
 
@@ -203,7 +203,7 @@ To prepare the parachain collator to be registered:
 
 2. Generate a parachain genesis state.
    
-   To register a parachain, the relay chain needs to know the parachain's genesis state.
+   To register a parachain, the relay chain needs to know the genesis state of the parachain.
    You can export the entire genesis state—hex-encoded—to a file by running a command similar to the following:
    
    ```bash
@@ -213,7 +213,7 @@ To prepare the parachain collator to be registered:
    You should note that the runtime and state you export must be for the _genesis_ block.
    You can't connect a parachain with any previous state to a relay chain. 
    All parachains must start from block 0 on the relay chain.
-   See the guide on [converting a solo chain to a parachain](/reference/how-to-guides/parachains/convert-a-solo-chain/) for details on how the parachain template was created and how to convert your chain's logic—not its history or state migrations—to a parachain.
+   See [Convert a solo chain](/reference/how-to-guides/parachains/convert-a-solo-chain/) for details on how the parachain template was created and how to convert the chain logic—not its history or state migrations—to a parachain.
 
 3. Start a collator node with a command similar to the following:
    
@@ -243,7 +243,7 @@ To prepare the parachain collator to be registered:
    
    In the terminal where you started the parachain template node, you should see output similar to the following:
    
-   ```bash
+   ```text
    2022-08-30 13:49:17 Parachain Collator Template    
    2022-08-30 13:49:17 ✌️  version 0.1.0-fd9771eed9c    
    2022-08-30 13:49:17 ❤️  by Anonymous, 2020-2022    
@@ -300,7 +300,7 @@ To register the parachain:
      
    - `parachain`: Select **Yes**.
   
-   ![parachain-registration-sudo.png](/media/images/docs/tutorials/parachains/parachain-registration-sudo.png)  
+   ![Set parameters for registeration](/media/images/docs/tutorials/parachains/register-with-sudo.png)  
 
 6. Click **Submit Sudo**.
    
@@ -310,7 +310,7 @@ To register the parachain:
 
 8. Check the list of recent events for successful `sudo.Suid` and click the event to see details about the transaction.
    
-   ![View the Sudo registration](/media/images/docs/tutorials/parachains/sudo-registration-event.png)
+   ![View the Sudo registration event](/media/images/docs/tutorials/parachains/sudo-registration-event.png)
 
    After the parachain is initialized, you can see it in the Polkadot/Substrate Portal byt clicking **Network**, then selecting **Parachains**.
 
@@ -366,7 +366,6 @@ To connect to the parachain and submit transactions:
    
    ![Network selector](/media/images/docs/tutorials/parachains/network-selector.png)
 
-   
 3. Change the custom endpoint to connect to the WebSocket port for the parachain. 
    
    If you followed the settings in this tutorial, connect to port 8844.
