@@ -195,15 +195,15 @@ tutorials:
           url: /tutorials/smart-contracts/build-a-token-contract/
         - title: Troubleshoot smart contracts
           url: /tutorials/smart-contracts/troubleshoot-smart-contracts/
-    - title: Connect with other chains
+    - title: Connect to other chains
       url: /tutorials/connect-other-chains/
       pages:
-        - title: Start a local relay chain
-          url: /tutorials/connect-other-chains/local-relay/
+        - title: Prepare a local relay chain
+          url: /tutorials/connect-other-chains/prepare-a-local-relay-chain/
         - title: Connect a local parachain
-          url: /tutorials/connect-other-chains/local-parachain/
-        - title: Connect to Rococo testnet
-          url: /tutorials/connect-other-chains/rococo-slot/
+          url: /tutorials/connect-other-chains/connect-a-local-parachain/
+        - title: Acquire a testnet slot
+          url: /tutorials/connect-other-chains/acquire-a-testnet-slot/
         #- title: Send cross-consensus messages (XCM)
         #  url: /tutorials/connect-other-chains/xcm/
     - title: Integrate with tools
