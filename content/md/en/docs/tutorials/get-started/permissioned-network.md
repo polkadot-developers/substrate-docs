@@ -85,10 +85,10 @@ If you have completed previous tutorials, you should have the Substrate node tem
    cd substrate-node-template
    ```
 
-1. Switch to the version of the repository that has the `polkadot-v0.9.26` tag by running the following command:
+1. Switch to the version of the repository that has the `polkadot-v0.9.28` tag by running the following command:
 
    ```bash
-   git checkout polkadot-v0.9.26
+   git checkout polkadot-v0.9.28
    ```
 
    This command checks out the repository in a detached state.
@@ -129,7 +129,7 @@ To add the `node-authorization` pallet to the Substrate runtime:
 
    ```toml
    [dependencies]
-   pallet-node-authorization = { default-features = false, version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
+   pallet-node-authorization = { default-features = false, version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
    ```
 
    This line imports the `pallet-node-authorization` crate as a dependency and specifies the following configuration details for the crate:
