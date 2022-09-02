@@ -192,7 +192,7 @@ For example:
    - Sign the raw payload with the account public key.
    - Finally, bundle all data up and return a tuple of the call, the caller, its signature, and any signed extension data.
 
-   You can see a full example of the code in the [**Substrate** code base](https://github.com/paritytech/substrate/blob/polkadot-v0.9.26/bin/node/runtime/src/lib.rs).
+   You can see a full example of the code in the [**Substrate** code base](https://github.com/paritytech/substrate/blob/polkadot-v0.9.28/bin/node/runtime/src/lib.rs).
 
 1. Implement `SigningTypes` and `SendTransactionTypes` in the runtime to support submitting transactions, whether they are signed or unsigned.
 
@@ -211,7 +211,7 @@ For example:
    }
    ```
 
-   You can see an example of this implementation in the [**Substrate** code base](https://github.com/paritytech/substrate/blob/polkadot-v0.9.26/bin/node/runtime/src/lib.rs#L1103-L1114).
+   You can see an example of this implementation in the [**Substrate** code base](https://github.com/paritytech/substrate/blob/polkadot-v0.9.28/bin/node/runtime/src/lib.rs#L1103-L1114).
 
 1. Inject an account for this pallet to own.
    In a development environment (node running with `--dev` flag), this account key is inserted in the `node/src/service.rs` file as follows:
@@ -292,7 +292,7 @@ To enable Substrate to accept certain unsigned transactions, you must implement 
 
    In this example, users can call the on-chain `extrinsic1` function without a signature, but not any other extrinsics.
 
-   To see a full example of how `ValidateUnsigned` is implemented in a pallet, refer to [`pallet-example-offchain-worker` in **Substrate**](https://github.com/paritytech/substrate/blob/polkadot-v0.9.26/frame/examples/offchain-worker/src/lib.rs#L301-L329).
+   To see a full example of how `ValidateUnsigned` is implemented in a pallet, refer to [`pallet-example-offchain-worker` in **Substrate**](https://github.com/paritytech/substrate/blob/polkadot-v0.9.28/frame/examples/offchain-worker/src/lib.rs#L301-L329).
 
 1. In the offchain worker function, you can send unsigned transactions as follows:
 
@@ -336,7 +336,7 @@ To enable Substrate to accept certain unsigned transactions, you must implement 
 
 1. Implement the `SendTransactionTypes` trait for the runtime as described in [sending signed transactions](#sending-signed-transactions).
 
-   You can see a full example in [`pallet-example-offchain-worker` in **Substrate** code base](https://github.com/paritytech/substrate/blob/polkadot-v0.9.26/frame/examples/offchain-worker).
+   You can see a full example in [`pallet-example-offchain-worker` in **Substrate** code base](https://github.com/paritytech/substrate/blob/polkadot-v0.9.28/frame/examples/offchain-worker).
 
 ## Sending unsigned transactions with signed payloads
 
@@ -369,7 +369,7 @@ The differences between sending unsigned transactions and sending unsigned trans
    }
    ```
 
-   You can also see an example [here](https://github.com/paritytech/substrate/blob/polkadot-v0.9.26/frame/examples/offchain-worker/src/lib.rs#L348-L361).
+   You can also see an example [here](https://github.com/paritytech/substrate/blob/polkadot-v0.9.28/frame/examples/offchain-worker/src/lib.rs#L348-L361).
 
 1. In your pallet's `offchain_worker` function, call the signer, then the function to send the transaction:
 
@@ -447,7 +447,7 @@ The differences between sending unsigned transactions and sending unsigned trans
 
    This example uses [`SignedPayload`](https://paritytech.github.io/substrate/master/frame_system/offchain/trait.SignedPayload.html) to verify that the public key in the payload has the same signature as the one provided.
 
-Refer to the [offchain function call](https://github.com/paritytech/substrate/blob/polkadot-v0.9.26/frame/examples/offchain-worker/src/lib.rs#L508-L536) and [the implementation of `ValidateUnsigned`](https://github.com/paritytech/substrate/blob/polkadot-v0.9.26/frame/examples/offchain-worker/src/lib.rs#L305-L329) for a working example of the above.
+Refer to the [offchain function call](https://github.com/paritytech/substrate/blob/polkadot-v0.9.28/frame/examples/offchain-worker/src/lib.rs#L508-L536) and [the implementation of `ValidateUnsigned`](https://github.com/paritytech/substrate/blob/polkadot-v0.9.28/frame/examples/offchain-worker/src/lib.rs#L305-L329) for a working example of the above.
 
 You have now seen how you can use offchain workers to send data for on-chain storage using:
 
@@ -457,7 +457,7 @@ You have now seen how you can use offchain workers to send data for on-chain sto
 
 ## Examples
 
-- [Substrate Offchain Worker Example Pallet](https://github.com/paritytech/substrate/tree/polkadot-v0.9.26/frame/examples/offchain-worker)
+- [Substrate Offchain Worker Example Pallet](https://github.com/paritytech/substrate/tree/polkadot-v0.9.28/frame/examples/offchain-worker)
 - [OCW Pallet in Substrate Offchain Worker Demo](https://github.com/jimmychu0807/substrate-offchain-worker-demo/tree/v2.0.0/pallets/ocw)
 
 ## Related material
