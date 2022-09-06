@@ -34,7 +34,7 @@ Before you begin, verify the following:
    git clone https://github.com/substrate-developer-hub/substrate-node-template
    ```
 
-   In most cases, you can clone the `main` branch to get the latest code or specify the most recent release tag using the `--branch` command-line option and specifying the most recent Polkadot version.
+   In most cases, you can clone the `main` branch to get the latest code or use the `--branch` command-line option to specify the most recent Polkadot version.
    For example:
    
    ```sh
