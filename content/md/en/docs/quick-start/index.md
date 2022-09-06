@@ -83,7 +83,7 @@ Before you begin, verify the following:
 
    The command displays the following account information:
 
-   ```sh
+   ```text
    Secret Key URI `//Alice` is account:
    Network ID:        substrate 
    Secret seed:       0xe5be9a5092b81bca64be81d212e7f2f9eba183bb7a90954f7b76361f6edb5c0a
@@ -121,7 +121,7 @@ Before you begin, verify the following:
 
    This sample [index.html](/assets/quickstart/index.html) provides a simple example of how to use JavaScript, the Polkadot-JS API, and HTML to get an account balance.
 
-2. Copy and paste the `index.html` sample code into a new file in your text editor and save the file on your local computer.
+2. Copy and paste the [sample code](/assets/quickstart/quick-start-code.txt) for `index.html` into a new file in your text editor and save the file on your local computer.
 
 3. Open the `index.html` file in a web browser.
 
