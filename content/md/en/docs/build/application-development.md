@@ -7,10 +7,59 @@ keywords:
   - dApp
 ---
 
-Most applications that run on a Substrate blockchain require some form of front-end or user-facing interface—such as a browser, desktop, mobile, or hardware client—that enables users or other programs to access and modify the data that the blockchain stores.
-For example, you might develop a browser-based application for interactive gaming or a hardware-specific application to implement a hardware wallet.
-Different libraries exist to build these types of applications, depending on your needs.
-This article explains the process of querying a Substrate node and using the metadata it exposes to help you understand how you can use the metadata when creating front-end client applications and using client-specific libraries.
+As a blockchain developer, you might not be directly involved in building front-end applications.
+However, most applications that run on a blockchain require some form of front-end or user-facing client to enable users or other programs to access and modify the data that the blockchain stores.
+For example, you might develop a browser-based, mobile, or desktop application that allows users to submit transactions, post articles, view their assets, or track previous activity.
+The backend for that application is configured in the runtime logic for your blockchain, but it's the front-end client that makes the runtime features accessible to your users.
+
+For your custom chain to be useful to others, you'll need to provide some type of a client application that allows users to view, interact with, or update information that the blockchain keeps track of.
+In this article, you'll learn how you can expose information about your runtime so that client applications can use it, see examples of the information exposed, and explore tools and libraries that use this information.
+
+## Exposing runtime information as metadata
+
+To interact with a Substrate node or the information stored in the blockchain, you need to know how to connect to the chain and how to access the features the runtime exposes to the outside world.
+In general, this interaction involves a remote procedure call to request information you're interested in retrieving or updating.
+As an application developer, however, you typically need to know quite a bit more about the runtime logic, including the following details:
+
+- The version of the runtime that the application is connecting to.
+- The application programming interfaces that the runtime supports.
+- The pallets that are implemented for that specific runtime.
+- All of the functions and their type signatures that are defined for that specific runtime.
+- All of the custom types that are defined for that specific runtime.
+- All of the parameters that the runtime exposes for users to set.
+
+Because Substrate is modular and provides a composable framework for building a blockchain, there's no predefined schema of properties.
+Instead, every runtime is configured with its own set of properties and those properties—including functions and types—can change over time with upgrades.
+To capture all of the information that's unique to a runtime, Substrate enables you to generate the runtime **metadata** schema.
+The metadata for a runtime describes all of the pallets and types that are defined for a specific version of the runtime.
+For every pallet, the metadata includes information about its storage items, functions, events, errors, and constants.
+The metadata also includes type definitions for any custom types included in the runtime.
+
+Because it provides a complete inventory of the runtime, the metadata is the key to enabling client applications to interact with the node, parse responses, and format message payloads.
+
+## Generating metadata
+
+To minimize the bandwidth required to transmit data over the network, the metadata schema is encoded using the [SCALE codec library](/reference/scale-codec/).
+This encoding is done automatically for you when you compile a node by using the [`scale-info`](https://docs.rs/scale-info/latest/scale_info/) crate.
+
+At a high level, generating the metadata involves the following steps:
+
+- The runtime logic exposes all of the callable functions, types, parameters, and documentation that need to be encoded in the metadata.
+- The `scale-info` crate collects type information for the pallets in the runtime and builds a registry of runtime types.
+- The `frame-metadata` crate describes the structure of the runtime based on the type registry provided by `scale-info`.
+
+## Getting metadata for a runtime
+
+There are several ways you can get the metadata for a runtime.
+For example, you can do any of the following:
+
+- Call the `state_getMetadata` RPC method to return the metadata as a hex-encoded vector of SCALE-encoded bytes.
+- 
+
+Type information bundled in the metadata gives applications the ability to communicate with nodes across different chains, each of which may each expose different calls, events, types and storage.
+It also allows libraries to generate almost all of the code needed to communicate with a given Substrate node, giving the possibility for libraries like `subxt` to generate front-end interfaces that are specific to a target chain.
+
+
 
 ## Metadata system
 
