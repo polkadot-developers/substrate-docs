@@ -6,7 +6,7 @@ keywords:
 
 All of the Substrate tutorials and how-to guides require you to build and run a Substrate node in your development environment.
 To help you set up a working environment quickly, the [Substrate Developer Hub](https://github.com/substrate-developer-hub/) maintains several _templates_ for you to use.
-For example, the Developer Hub [substrate-node-template](https://github.com/substrate-developer-hub/substrate-node-template/tags/) is snapshot of the main Substrate `node-template` binarythat includes everything you need to get started with a functional node and a core set of features.
+For example, the Developer Hub [substrate-node-template](https://github.com/substrate-developer-hub/substrate-node-template/tags/) is snapshot of the main Substrate `node-template` binary that includes everything you need to get started with a functional node and a core set of features.
 
 This _Quick start_ assumes that you are setting up a development environment for the first time and want to try out running a single blockchain node on your local computer.
 To keep things simple, you'll connect to the local node using a web browser and look up a balance for a predefined sample account.
