@@ -121,7 +121,7 @@ Before you begin, verify the following:
 
    This sample [index.html](/assets/quickstart/index.html) provides a simple example of how to use JavaScript, the Polkadot-JS API, and HTML to get an account balance.
 
-2. Copy and paste the [sample code](/assets/quickstart/quick-start-code.txt) for `index.html` into a new file in your text editor and save the file on your local computer.
+2. Copy and paste the [sample code](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/quickstart/index.html) for the **Quick start: Get Balance** application into a new file in your text editor and save the file on your local computer.
 
 3. Open the `index.html` file in a web browser.
 
