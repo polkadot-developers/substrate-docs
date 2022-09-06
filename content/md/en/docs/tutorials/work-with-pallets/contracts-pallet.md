@@ -391,9 +391,9 @@ To add the RPC API extension to the outer node:
 1. Add the extension for the Contracts RPC API.
 
    ```rust
- module.merge(System::new(client.clone(), pool.clone(), deny_unsafe).into_rpc())?;
- module.merge(TransactionPayment::new(client.clone()).into_rpc())?;
- module.merge(Contracts::new(client.clone()).into_rpc())?; // Add this line
+   module.merge(System::new(client.clone(), pool.clone(), deny_unsafe).into_rpc())?;
+   module.merge(TransactionPayment::new(client.clone()).into_rpc())?;
+   module.merge(Contracts::new(client.clone()).into_rpc())?; // Add this line
    ```
 
 1. Save your changes and close the `node/src/rpc.rs` file.
@@ -403,10 +403,8 @@ To add the RPC API extension to the outer node:
    ```bash
    cargo check -p node-template
    ```
-
-If there are no errors, you are ready to compile.
-
-1. Compile the node in release mode by running the following command:
+   
+   If there are no errors, you are ready to compile by running the following command:
 
    ```bash
    cargo build --release
