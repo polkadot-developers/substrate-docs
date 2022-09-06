@@ -127,8 +127,6 @@ Before you begin, verify the following:
 
 4. Copy and paste the SS58 Address for the `Alice` account in the input field, then click **Get Balance**.
 
-<!--1. Open the [index.html](/examples/quickstart/index.html) file in a web browser.-->
-
 ## Stop the node
 
 1. Go to the terminal that displays blockchain operations.
