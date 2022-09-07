@@ -125,7 +125,7 @@ If you haven't already done so, see [Build a local blockchain](/tutorials/get-st
 
 1. Add an instance of `pallet_contracts` in the runtime.
 
-   Create an instance of the Contracts pallet in the `construct_macro!` inside `runtime/src/lib.rs`:
+   Create an instance of the Contracts pallet in the `construct_runtime!` macro inside `runtime/src/lib.rs`:
 
    ```rust
    /* --snip-- */
