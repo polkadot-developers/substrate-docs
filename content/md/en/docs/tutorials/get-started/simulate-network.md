@@ -16,7 +16,7 @@ In this simulated network, the two nodes are started using different accounts an
 
 Before you begin, verify the following:
 
-- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/).
+- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
 - You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and have the Substrate node template installed locally.
 
@@ -107,24 +107,26 @@ If the node starts successfully, the terminal displays messages describing netwo
 For example, you should see output similar to this:
 
 ```text
-2021-03-10 17:34:27  Substrate Node
-2021-03-10 17:34:27  ✌️  version 3.0.0-1c5b984-x86_64-linux-gnu
-2021-03-10 17:34:27  ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2021
-2021-03-10 17:34:27  📋 Chain specification: Local Testnet
-2021-03-10 17:34:27  🏷 Node name: Alice
-2021-03-10 17:34:27  👤 Role: AUTHORITY
-2021-03-10 17:34:27  💾 Database: RocksDb at /tmp/alice/chains/local_testnet/db
-2021-03-10 17:34:27  ⛓  Native runtime: node-template-100 (node-template-1.tx1.au1)
-2021-03-10 17:34:27  🔨 Initializing Genesis block/state (state: 0xea47…9ba8, header-hash: 0x9d07…7cce)
-2021-03-10 17:34:27  👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
-2021-03-10 17:34:27  ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
-2021-03-10 17:34:27  Using default protocol ID "sup" because none is configured in the chain specs
-2021-03-10 17:34:27  🏷 Local node identity is: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
-2021-03-10 17:34:27  📦 Highest known block at #0
-2021-03-10 17:34:27  〽️ Prometheus server started at 127.0.0.1:9615
-2021-03-10 17:34:27  Listening for new connections on 127.0.0.1:9945.
-2021-03-10 17:34:32  💤 Idle (0 peers), best: #0 (0x9d07…7cce), finalized #0 (0x9d07…7cce), ⬇ 0 ⬆ 0
-2021-03-10 17:34:37  💤 Idle (0 peers), best: #0 (0x9d07…7cce), finalized #0 (0x9d07…7cce), ⬇ 0 ⬆ 0
+2022-08-16 15:29:55 Substrate Node    
+2022-08-16 15:29:55 ✌️  version 4.0.0-dev-de262935ede    
+2022-08-16 15:29:55 ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2022    
+2022-08-16 15:29:55 📋 Chain specification: Local Testnet    
+2022-08-16 15:29:55 🏷  Node name: Alice    
+2022-08-16 15:29:55 👤 Role: AUTHORITY    
+2022-08-16 15:29:55 💾 Database: RocksDb at /tmp/alice/chains/local_testnet/db/full    
+2022-08-16 15:29:55 ⛓  Native runtime: node-template-100 (node-template-1.tx1.au1)    
+2022-08-16 15:29:55 🔨 Initializing Genesis block/state (state: 0x6894…033d, header-hash: 0x2cdc…a07f)    
+2022-08-16 15:29:55 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.    
+2022-08-16 15:29:56 Using default protocol ID "sup" because none is configured in the chain specs    
+2022-08-16 15:29:56 🏷  Local node identity is: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp    
+2022-08-16 15:29:56 💻 Operating system: macos    
+2022-08-16 15:29:56 💻 CPU architecture: x86_64    
+2022-08-16 15:29:56 📦 Highest known block at #0    
+2022-08-16 15:29:56 〽️ Prometheus exporter started at 127.0.0.1:9615    
+2022-08-16 15:29:56 Running JSON-RPC HTTP server: addr=127.0.0.1:9933, allowed origins=Some(["http://localhost:*", "http://127.0.0.1:*", "https://localhost:*", "https://127.0.0.1:*", "https://polkadot.js.org"])    
+2022-08-16 15:29:56 Running JSON-RPC WS server: addr=127.0.0.1:9945, allowed origins=Some(["http://localhost:*", "http://127.0.0.1:*", "https://localhost:*", "https://127.0.0.1:*", "https://polkadot.js.org"])    
+2022-08-16 15:29:56 creating instance on iface 192.168.1.125    
+2022-08-16 15:30:01 💤 Idle (0 peers), best: #0 (0x2cdc…a07f), finalized #0 (0x2cdc…a07f), ⬇ 0 ⬆ 0
 ...
 ```
 
@@ -204,39 +206,46 @@ To verify blocks are being finalized:
 1. Verify that you see lines similar to the following in the terminal where you started the first node:
 
    ```text
-   2021-03-10 17:47:32  🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
-   2021-03-10 17:47:32  🔍 Discovered new external address for our node: /ip4/<your-computer-LAN-IP>/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
-   2021-03-10 17:47:33  💤 Idle (1 peers), best: #0 (0x9d07…7cce), finalized #0 (0x9d07…7cce), ⬇ 1.0kiB/s ⬆ 1.0kiB/s
-   2021-03-10 17:47:36  🙌 Starting consensus session on top of parent 0x9d07d1757a9ca248e58141ce52a11fca37f71007dec16650b87a853f0d4c7cce
-   2021-03-10 17:47:36  🎁 Prepared block for proposing at 1 [hash: 0x727826a5e6fba9a13af11422d4677b5f0743cc733c382232328e69fd307d1d2f; parent_hash: 0x9d07…7cce; extrinsics (1): [0x768a…a9e2]]
-   2021-03-10 17:47:36  🔖 Pre-sealed block for proposal at 1. Hash now 0x4841d8b2e62483fa4702b3ddcd1b603803842374dcdc1e9533ad407708b33dd8, previously 0x727826a5e6fba9a13af11422d4677b5f0743cc733c382232328e69fd307d1d2f.
-   2021-03-10 17:47:36  ✨ Imported #1 (0x4841…3dd8)
-   2021-03-10 17:47:36  ✨ Imported #1 (0xb241…2ae8)
-   2021-03-10 17:47:38  💤 Idle (1 peers), best: #1 (0x4841…3dd8), finalized #0 (0x9d07…7cce), ⬇ 0.8kiB/s ⬆ 0.8kiB/s
-   2021-03-10 17:47:42  ♻️  Reorg on #1,0x4841…3dd8 to #2,0x8b6a…dce6, common ancestor #0,0x9d07…7cce
-   2021-03-10 17:47:42  ✨ Imported #2 (0x8b6a…dce6)
-   2021-03-10 17:47:43  💤 Idle (1 peers), best: #2 (0x8b6a…dce6), finalized #0 (0x9d07…7cce), ⬇ 0.8kiB/s ⬆ 0.7kiB/s
-   2021-03-10 17:47:48  🙌 Starting consensus session on top of parent 0x8b6a3ab2fe9891b1af008ea0d92dae9bc84cfa5578231e81066d47928822dce6
-   2021-03-10 17:47:48  🎁 Prepared block for proposing at 3 [hash: 0xb887aef2097eff5869e38ccec0302bce372ad05ac2cdf9cc4725c38ec071fb7a; parent_hash: 0x8b6a…dce6; extrinsics (1): [0x82ac…2f20]]
-   2021-03-10 17:47:48  🔖 Pre-sealed block for proposal at 3. Hash now 0x34d608dd8be6b82bef4a7aaae1ec80930a5c4b8cf9bdc99013410e91544f3a2a, previously 0xb887aef2097eff5869e38ccec0302bce372ad05ac2cdf9cc4725c38ec071fb7a.
-   2021-03-10 17:47:48  ✨ Imported #3 (0x34d6…3a2a)
-   2021-03-10 17:47:48  💤 Idle (1 peers), best: #3 (0x34d6…3a2a), finalized #0 (0x9d07…7cce), ⬇ 0.7kiB/s ⬆ 0.8kiB/s
-   2021-03-10 17:47:53  💤 Idle (1 peers), best: #3 (0x34d6…3a2a), finalized #1 (0xb241…2ae8), ⬇ 0.6kiB/s ⬆ 0.7kiB/s
-   2021-03-10 17:47:54  ✨ Imported #4 (0x2b8a…fdc4)
-   2021-03-10 17:47:58  💤 Idle (1 peers), best: #4 (0x2b8a…fdc4), finalized #2 (0x8b6a…dce6), ⬇ 0.7kiB/s ⬆ 0.6kiB/s
+   2022-08-16 15:32:33 discovered: 12D3KooWBCbmQovz78Hq7MzPxdx9d1gZzXMsn6HtWj29bW51YUKB /ip4/127.0.0.1/tcp/30334
+   2022-08-16 15:32:33 discovered: 12D3KooWBCbmQovz78Hq7MzPxdx9d1gZzXMsn6HtWj29bW51YUKB /ip6/::1/tcp/30334
+   2022-08-16 15:32:36 🙌 Starting consensus session on top of parent 0x2cdce15d31548063e89e10bd201faa63c623023bbc320346b9580ed3c40fa07f
+   2022-08-16 15:32:36 🎁 Prepared block for proposing at 1 (5 ms) [hash: 0x9ab34110e4617454da33a3616efc394eb1ce95ee4bf0daab69aa4cb392d4104b; parent_hash: 0x2cdc…a07f; extrinsics (1): [0x4634…cebf]] 
+   2022-08-16 15:32:36 🔖 Pre-sealed block for proposal at 1. Hash now 0xf0869a5cb8ebd0fcc5f2bc194ced84ca782d9749604e888c8b9b515517179847, previously 0x9ab34110e4617454da33a3616efc394eb1ce95ee4bf0daab69aa4cb392d4104b.
+   2022-08-16 15:32:36 ✨ Imported #1 (0xf086…9847)
+   2022-08-16 15:32:36 💤 Idle (1 peers), best: #1 (0xf086…9847), finalized #0 (0x2cdc…a07f), ⬇ 1.0kiB/s ⬆ 1.0kiB/s
+   2022-08-16 15:32:41 💤 Idle (1 peers), best: #1 (0xf086…9847), finalized #0 (0x2cdc…a07f), ⬇ 0.6kiB/s ⬆ 0.6kiB/s
+   2022-08-16 15:32:42 ✨ Imported #2 (0x0d5e…2a7f)
+   2022-08-16 15:32:46 💤 Idle (1 peers), best: #2 (0x0d5e…2a7f), finalized #0 (0x2cdc…a07f), ⬇ 0.6kiB/s ⬆ 0.6kiB/s
+   2022-08-16 15:32:48 🙌 Starting consensus session on top of parent 0x0d5ef31979c2aa17fb88497018206d3057151119337293fe85d9526ebd1e2a7f
+   2022-08-16 15:32:48 🎁 Prepared block for proposing at 3 (0 ms) [hash: 0xa307c0112bce39e0dc689132452154da2079a27375b44c4d94790b46a601346a; parent_hash: 0x0d5e…2a7f; extrinsics (1): [0x63cc…39a6]]    
+   2022-08-16 15:32:48 🔖 Pre-sealed block for proposal at 3. Hash now 0x0c55670e745dd12892c9e7d5205085a78ccea98df393a822fa9b3865cfb3d51b, previously 0xa307c0112bce39e0dc689132452154da2079a27375b44c4d94790b46a601346a.
+   2022-08-16 15:32:48 ✨ Imported #3 (0x0c55…d51b)
+   2022-08-16 15:32:51 💤 Idle (1 peers), best: #3 (0x0c55…d51b), finalized #1 (0xf086…9847), ⬇ 0.7kiB/s ⬆ 0.9kiB/s    
    ...
    ```
 
    In these lines, you can see the following information about your blockchain:
 
-   - The first node was started by `alice`.
+   - The second node identity was discovered on the network (`12D3KooWBCbmQovz78Hq7MzPxdx9d1gZzXMsn6HtWj29bW51YUKB`).
    - The node has a one peer (`1 peers`).
-   - The nodes have produced some blocks (`best: #4 (0x2b8a…fdc4)`).
-   - The blocks are being finalized (`finalized #2 (0x8b6a…dce6)`).
+   - The nodes have produced some blocks (`best: #3 (0x0c55…d51b)`).
+   - The blocks are being finalized (`finalized #1 (0xf086…9847)`).
 
 1. Verify that you see similar output in the terminal where you started the second node.
 
-1. Shut down both nodes by pressing Control-c in each terminal shell.
+1. Shut down one of the nodes by pressing Control-c in the terminal shell.
+   
+   After you shut down the node, you'll see that the remaining node now has zero peers and has stopped producing blocks.
+   For example:
+
+   ```text
+   2022-08-16 15:53:45 💤 Idle (1 peers), best: #143 (0x8f11…1684), finalized #141 (0x5fe3…5a25), ⬇ 0.8kiB/s ⬆ 0.7kiB/s
+   2022-08-16 15:53:50 💤 Idle (0 peers), best: #143 (0x8f11…1684), finalized #141 (0x5fe3…5a25), ⬇ 83 B/s ⬆ 83 B/s
+   ```  
+
+2. Shut down the second node by pressing Control-c in the terminal shell.
+   
+   Because you started the nodes in development mode—with the `--dev` command-line option—all state is cleared for both nodes.
 
 ## Next steps
 

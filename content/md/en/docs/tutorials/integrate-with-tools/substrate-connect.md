@@ -51,7 +51,7 @@ Although running Substrate Connect as a browser extension is optional, the exten
 
 Before you begin, verify the following:
 
-- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/).
+- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
 - You have downloaded and compiled the 
   [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template).
@@ -78,7 +78,7 @@ Because of the advantages that the Substrate Connect browser extension provides,
 ## Connect to a well-known chain
 
 Before the Substrate Connect light client can connect to a network, you must have a web application that specifies the network the light client should connect to, the nodes for it to communicate with, and the consensus-critical state it must have at genesis.
-This information is available in the [chain specification](https://docs.substrate.io/main-docs/build/chain-spec/) file for the network. 
+This information is available in the [chain specification](/build/chain-spec/) file for the network. 
 
 Substrate Connect is preconfigured to recognize several chains that are defined in the [WellKnownChain](https://paritytech.github.io/substrate-connect/api/enums/connect_src.WellKnownChain.html) enumeration list.
 These well-known chains are:

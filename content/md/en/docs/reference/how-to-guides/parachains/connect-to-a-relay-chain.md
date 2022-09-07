@@ -26,7 +26,7 @@ Launching a parachain requires a series of steps to ensure that the relay chain 
 In order to achieve this, you will need to have previously successfully generated a **`ParaID`, genesis state and Wasm runtime blob**.
 After successfully registering your parachain, you will be able to obtain a parachain slot (in testing though `sudo`, and in production via auctions and crowdloans) and start producing blocks.
 
-The [Prepare a local parachain testnet](/tutorials/connect-other-chains/local-relay/) is the best place to start if you are new to parachain development.
+The [Prepare a local relay chain](/tutorials/connect-other-chains/prepare-a-local-relay-chain/) is the best place to start if you are new to parachain development.
 This guide is a quick reference and leaves out important details to consider when performing these steps.
 
 ## Reserve a `ParaID`
@@ -108,7 +108,7 @@ The parachain collator node also has a command to produce this Wasm blob:
 
 ## Generate a parachain genesis state
 
-To register a parachain, the relay chain needs to know the parachain's [genesis state](/main-docs/build/chain-spec#the-genesis-state).
+To register a parachain, the relay chain needs to know the parachain's [genesis state](/build/chain-spec#the-genesis-state).
 The collator node can export that state to a file.
 Go to your Parachain Template folder, the following command will create a file containing the parachain's entire genesis state, hex-encoded:
 
@@ -207,4 +207,4 @@ You can keep track of what parachains are registered and what their latest head 
 
 ## Examples
 
-- [Prepare a local parachain testnet](/tutorials/connect-other-chains/relay-chain) tutorial
+- [Prepare a local relay chain](/tutorials/connect-other-chains/prepare-a-local-relay-chain) tutorial

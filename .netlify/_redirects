@@ -43,3 +43,46 @@
 /tools/                              /reference/command-line-tools/                   301!
 /runtime/upgrades/                   /main-docs/build/upgrade/                        301!
 /getting-started/architecture/       /main-docs/fundamentals/architecture/            301!
+
+# Main Docs Redirects
+
+/main-docs/                                                             /                                                301!
+/main-docs                                                              /                                                301!
+/main-docs/fundamentals/                                                /fundamentals/                                   301!
+/main-docs/fundamentals/blockchain-basics/                              /fundamentals/blockchain-basics/                 301!
+/main-docs/fundamentals/why-substrate/                                  /fundamentals/why-substrate/                     301!
+/main-docs/fundamentals/architecture/                                   /fundamentals/architecture/                      301!
+/main-docs/fundamentals/node-and-network-types/                         /fundamentals/node-and-network-types/            301!
+/main-docs/fundamentals/runtime-intro/                                  /fundamentals/runtime-development/                     301!
+/main-docs/fundamentals/consensus/                                      /fundamentals/consensus/                         301!
+/main-docs/fundamentals/transaction-types/                              /fundamentals/transaction-types/                 301!
+/main-docs/fundamentals/transaction-lifecycle/                          /fundamentals/transaction-lifecycle/             301!
+/main-docs/fundamentals/state-transitions-and-storage/                  /fundamentals/state-transitions-and-storage/     301!
+/main-docs/fundamentals/accounts-addresses-keys/                        /fundamentals/accounts-addresses-keys/           301!
+/main-docs/fundamentals/rust-basics/                                    /fundamentals/rust-basics/                       301!
+/main-docs/fundamentals/offchain-operations/                            /fundamentals/offchain-operations/               301!
+/main-docs/install/                                                     /install/                                        301!
+/main-docs/install/rust-builds/                                         /install/rust-builds/                            301!
+/main-docs/install/linux/                                               /install/linux/                                  301!
+/main-docs/install/macos/                                               /install/macos/                                  301!
+/main-docs/install/windows/                                             /install/windows/                                301!
+/main-docs/install/other-tools/                                         /install/other-tools/                            301!
+/main-docs/install/troubleshooting/                                     /install/troubleshooting/                        301!
+/main-docs/build/                                                       /build/                                          301!
+/main-docs/build/libraries/                                             /build/libraries/                                301!
+/main-docs/build/build-process/                                         /build/build-process/                            301!
+/main-docs/build/runtime-storage/                                       /build/runtime-storage/                          301!
+/main-docs/build/tx-weights-fees/                                       /build/tx-weights-fees/                          301!
+/main-docs/build/custom-pallets/                                        /build/custom-pallets/                           301!
+/main-docs/build/pallet-coupling/                                       /build/pallet-coupling/                          301!
+/main-docs/build/events-errors/                                         /build/events-and-errors/                            301!
+/main-docs/build/randomness/                                            /build/randomness/                               301!
+/main-docs/build/chain-spec/                                            /build/chain-spec/                               301!
+/main-docs/build/origins/                                               /build/origins/                                  301!
+/main-docs/build/custom-rpc/                                            /build/custom-rpc/                               301!
+/main-docs/build/application-dev/                                       /build/application-development/                          301!
+/main-docs/build/upgrade/                                               /build/upgrade-the-runtime/                                  301!
+/main-docs/test/                                                        /test/                                           301!
+/main-docs/test/unit-testing/                                           /test/unit-testing/                              301!
+/main-docs/test/debug/                                                  /test/debug/                                     301!
+/main-docs/test/benchmark/                                              /test/benchmark/                                 301!
