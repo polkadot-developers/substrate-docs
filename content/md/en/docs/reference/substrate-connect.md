@@ -1,5 +1,5 @@
 ---
-title: Substrate Connect
+title:  Light client integration using Substrate Connect
 description: Run Wasm Light Clients of any Substrate based chain directly in your browser
 keywords:
   - Substrate Connect
