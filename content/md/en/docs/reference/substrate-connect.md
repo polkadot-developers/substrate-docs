@@ -1,6 +1,6 @@
 ---
 title:  Light client integration using Substrate Connect
-description: Run Wasm Light Clients of any Substrate based chain directly in your browser
+description: Use a light client and add Substrate Connect to your applications to interact with any Substrate-based chain.
 keywords:
   - Substrate Connect
   - light client node
