@@ -212,7 +212,7 @@ tutorials:
       url: /tutorials/integrate-with-tools/
       pages:
         - title: Integrate a light client node
-          url: /tutorials/integrate-with-tools/substrate-connect/
+          url: /tutorials/integrate-with-tools/integrate-a-light-client-node/
         - title: Access EVM accounts
           url: /tutorials/integrate-with-tools/access-evm-accounts/
 
