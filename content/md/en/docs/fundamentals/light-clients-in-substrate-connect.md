@@ -1,9 +1,10 @@
 ---
-title:  Light clients and Substrate Connect
-description: Use a light client and Substrate Connect to enable your applications to interact with any Substrate-based chain.
+title:  Light clients in Substrate Connect
+description: Use Substrate Connect to integrate a light client into your applications and enable interaction with any Substrate-based chain.
 keywords:
   - Substrate Connect
   - light client node
+  - Smoldot light client
   - Polkadot
   - Kusama
   - Westend
@@ -26,7 +27,7 @@ After adding Substrate Connect to an application, the application can communicat
 
 ## Connect to the blockchain directly from a browser
 
-With Substrate Connect, you can turn a browser running locally into a node on the blockchain.
+With Substrate Connect, your applications can be configured to run a light client node inside a browser running locally on your computer.
 From the browser, application users can interact with blockchains directly—without connecting to any third-party  nodes or other servers.
 
 By eliminating the need for intermediary servers, Substrate Connect provides benefits to blockchain builders, application developers, and end users.
@@ -46,10 +47,10 @@ There are a few well-known chain names that are defned for the [`WellKnownChain`
 
 You can connect to the following public blockchain networks using the name listed:
 
-| To connect to this chain | Use this chain name
+| To connect to this chain | Use this chain identifier
 | :----------------------- | :------------------
 | [Polkadot](https://polkadot.network/) | `polkadot`
-| [Kusama](https://kusama.network/) | `ksmc33`
+| [Kusama](https://kusama.network/) | `ksmcc3`
 | [Westend](https://wiki.polkadot.network/docs/en/maintain-networks#westend-test-network) | `westend2`
 | [Rococo](https://polkadot.network/rococo-v1-a-holiday-gift-to-the-polkadot-community/) | `rococo_v2_2`
 
@@ -159,7 +160,7 @@ await api.disconnect();
 
 ## Use Substrate Connect with other libraries
 
-The previous section demonstrated how to add the Substrate Connect provider to applications that use the Polkadot-JS API. 
+The previous section demonstrated how to integrate the Substrate Connect provider into applications that use the Polkadot-JS API. 
 With this provider, you create applications that enable users to interact with the chain through the browser using calls to the Polkadot-JS API methods. 
 However, you can install and use @substrate-connect in applications that don't depend on the Polkadot-JS API. For example, if you are building your own application library or programming interfaces, you can install the Substrate Connect dependencies by running the appropriate command for the package manager you use.
 
@@ -228,7 +229,7 @@ For more information about the substrate-connect API, see [Substrate Connect](ht
 
 ## Browser extension
 
-Substrate Connect provides a browser extension for the @substrate/light client node that allows the light client to run inside the extension instead of within the context of every browser tab. 
+Substrate Connect provides a browser extension for the @substrate/light client node that allows the Smoldot light client to run inside the extension instead of within the context of every browser tab. 
 The extension also allows the light client node to keep synchronizing with the blockchain as long as the browser window stays open. 
 You can download the Chrome and Firefox extensions from [Substrate Connect](https://substrate.io/developers/substrate-connect/) or find more information on the [Github repo](https://github.com/paritytech/substrate-connect/tree/main/projects/extension).
 
@@ -245,10 +246,6 @@ You can download the Chrome and Firefox extensions from [Substrate Connect](http
   Simple demo that covers multichain and parachain examples.
   [Github](https://github.com/paritytech/substrate-connect/tree/main/projects/demo)
 
-* [Smol-ads](https://paritytech.github.io/smoldot-ads/) 
-  
-  Classified Ads demo.
-  [Github](https://github.com/paritytech/smoldot-ads/)
 
 ## Brave browser WebSocket issue
 
