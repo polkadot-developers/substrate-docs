@@ -53,6 +53,12 @@ Before you begin, verify the following:
    cd substrate-node-template
    ```
 
+   If you want to save your changes and make this branch easy to identify, you can create a new branch by running a command similar to the following:
+
+   ```bash
+   git switch -c my-branch-v0.9.28
+   ```
+
 3. Compile the node template:
 
    ```sh
