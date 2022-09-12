@@ -48,6 +48,8 @@ fundamentals:
       url: /fundamentals/rust-basics/
     - title: Offchain operations
       url: /fundamentals/offchain-operations/
+    - title: Light clients in Substrate Connect
+      url: /fundamentals/light-clients-in-substrate-connect/
 
 install:
   title: Install
