@@ -166,7 +166,7 @@ tutorials:
         - title: Add trusted nodes
           url: /tutorials/get-started/trusted-network/
         - title: Authorize specific nodes
-          url: /tutorials/get-started/permissioned-network/
+          url: /tutorials/get-started/authorize-specific-nodes/
         - title: Monitor node metrics
           url: /tutorials/get-started/node-metrics/
         - title: Upgrade a running network

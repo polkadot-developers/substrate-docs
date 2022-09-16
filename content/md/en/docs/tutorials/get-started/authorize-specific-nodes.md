@@ -37,10 +37,10 @@ There are two ways you can authorize a node to join the network:
   You must be approved by the governance or sudo pallet in the network to do this.
 
 - By asking for a _paired peer_ connection from a specific node.
-  This node can either be a predefined node `PeerId` or a normal one.
+  This node can either be a predefined node `PeerId` or the peer identifier generated from the public and private keys for the node.
 
 Note that _any_ user can claim to be the owner of a `PeerId`.
-To protect against false claims, you should claim the node _before_ you start the node.
+To protect against false claims, you should claim the node identifier _before_ you start the node.
 After you start the node, its `PeerID` is visible to the network and _anyone_ could subsequently claim it.
 
 As the owner of a node, you can add and remove connections for your node.
@@ -85,16 +85,13 @@ If you have completed previous tutorials, you should have the Substrate node tem
    cd substrate-node-template
    ```
 
-1. Switch to the version of the repository that has the `polkadot-v0.9.28` tag by running the following command:
+2. Switch to a working branch for the repository if you want to save your changes by running a command similar to the following:
 
    ```bash
-   git checkout polkadot-v0.9.28
+   git switch -c my-branch-v0.9.28
    ```
 
-   This command checks out the repository in a detached state.
-   If you want to save your changes, you can create a branch from this state.
-
-1. Compile the node template by running the following command:
+3. Compile the node template by running the following command:
 
    ```bash
    cargo build --release
@@ -112,7 +109,8 @@ Because the Substrate runtime compiles to both a native Rust binary that include
 
 - The pallets to be imported as dependencies for the runtime, including the location and version of the pallets to import.
 
-- The features in each pallet that should be enabled when compiling the native Rust binary. By enabling the standard (`std`) feature set from each pallet, you can compile the runtime to include functions, types, and primitives that would otherwise be missing when you build the WebAssembly binary.
+- The features in each pallet that should be enabled when compiling the native Rust binary. 
+  By enabling the standard (`std`) feature set from each pallet, you can compile the runtime to include functions, types, and primitives that would otherwise be missing when you build the WebAssembly binary.
 
 For general information about adding dependencies in `Cargo.toml` files, see [Dependencies](https://doc.rust-lang.org/cargo/guide/dependencies.html) in the Cargo documentation.
 For information about enabling and managing features from dependent packages, see [Features](https://doc.rust-lang.org/cargo/reference/features.html) in the Cargo documentation.
@@ -153,7 +151,7 @@ To add the `node-authorization` pallet to the Substrate runtime:
 
    This section specifies the default feature set to compile for this runtime is the `std` features set.
    When the runtime is compiled using the `std` feature set, the `std` features from all of the pallets listed as dependencies are enabled.
-   For more detailed information about how the runtime is compiled as a native Rust binary with the standard library and as a WebAssembly binary using the `no_std` attribute, see [Building the runtime](/build/build-process/).
+   For more detailed information about how the runtime is compiled as a native Rust binary with the standard library and as a WebAssembly binary using the `no_std` attribute, see [Build process](/build/build-process/).
 
    If you forget to update the `features` section in the `Cargo.toml` file, you might see `cannot find function` errors when you compile the runtime binary.
 
@@ -181,7 +179,7 @@ To enable the `EnsureRoot` rule in your runtime:
 
 ## Implement the Config trait for the pallet
 
-Every pallet has a [Rust **trait**](https://doc.rust-lang.org/book/ch10-02-traits.html) called `Config`.
+Every pallet has a [Rust trait](https://doc.rust-lang.org/book/ch10-02-traits.html) called `Config`.
 The `Config` trait is used to identify the parameters and types that the pallet needs.
 
 Most of the pallet-specific code required to add a pallet is implemented using the `Config` trait.
@@ -254,7 +252,6 @@ To configure genesis storage for authorized nodes:
    ```toml
    [dependencies]
    bs58 = { version = "0.4.0" }
-
    ```
 
 1. Save your changes and close the file.
@@ -264,8 +261,8 @@ To configure genesis storage for authorized nodes:
 1. Add genesis storage for nodes that are authorized to join the network using the following code:
 
    ```rust
-   use sp_core::OpaquePeerId; // A struct wraps Vec<u8>, represents as our `PeerId`.
-   use node_template_runtime::NodeAuthorizationConfig; // The genesis config that serves for our pallet.
+   use sp_core::OpaquePeerId; // A struct wraps Vec<u8> to represent the node `PeerId`.
+   use node_template_runtime::NodeAuthorizationConfig; // The genesis config that serves the pallet.
    ```
 
 1. Locate the `testnet_genesis` function that configures initial storage state for FRAME modules.
@@ -326,43 +323,71 @@ To compile the node:
    If there are no syntax errors, you are ready to proceed.
    If there are errors, follow the instructions in the compile output to fix them then rerun the `cargo build` command.
 
+## Identify the account keys to use
+
+You have already configured the nodes associated with the Alice and Bob accounts in genesis storage.
+You can use the [`subkey`](/reference/command-line-tools/subkey/) program to inspect the keys associated with predefined accounts and to generate and inspect your own keys.
+However, if you run the `subkey generate-node-key` command, your node key and peer identifier are randomly generated and won't match the keys used in the tutorial.
+Because this tutorial uses predefined accounts and well-known node keys, you can use the following keys for each account.
+
+### Alice
+
+| Key type | Key value |
+| :------- | :-------------------------------------------------------------|
+| Node key | c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a |
+| Peer&nbspidentifier&nbspgenerated from the node key | 12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2 |
+| Peer&nbspidentifier&nbspdecoded to hex | 0024080112201ce5f00ef6e89374afb625f1ae4c1546d31234e87e3c3f51a62b91dd6bfa57df |
+
+### Bob
+
+| Key type | Key value |
+| :------- | :-------------------------------------------------------------|
+| Node key | 6ce3be907dbcabf20a9a5a60a712b4256a54196000a8ed4050d352bc113f8c58 |
+| Peer&nbspidentifier&nbspgenerated from the node key | 12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust |
+| Peer&nbspidentifier&nbspdecoded to hex | 002408011220dacde7714d8551f674b8bb4b54239383c76a2b286fa436e93b2b7eb226bf4de7 |
+
+The two other development accounts—Charlie and Dave—don't have well-known node keys or peer identifiers defined in the genesis configuration.
+For demonstration purposes, you can use the following keys for these accounts.
+
+### Charlie
+
+| Key type | Key value |
+| :------- | :-------------------------------------------------------------|
+| Node key | 3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e |
+| Peer&nbspidentifier&nbspgenerated from the node key | 12D3KooWJvyP3VJYymTqG7eH4PM5rN4T2agk5cdNCfNymAqwqcvZ |
+| Peer&nbspidentifier&nbspdecoded to hex | 002408011220876a7b4984f98006dc8d666e28b60de307309835d775e7755cc770328cdacf2e |
+
+### Dave
+
+| Key type | Key value |
+| :------- | :-------------------------------------------------------------|
+| Node key | a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a |
+| Peer&nbspidentifier&nbspgenerated from the node key | 12D3KooWPHWFrfaJzxPnqnAYAoRUyAHHKqACmEycGTVmeVhQYuZN |
+| Peer&nbspidentifier&nbspdecoded to hex | 002408011220c81bc1d7057a1511eb9496f056f6f53cdfe0e14c8bd5ffca47c70a8d76c1326d |
+
+For this tutorial, you can copy the node key to a file, then use the `subkey inspect-node-key` to verify the peer identifiers for Charlie and Dave.
+For example, save the node key for Charlie to a file named `charlie-node-key`, then run the following command to verify the peer identifier:
+
+```bash
+./subkey inspect-node-key --file charlie-node-key
+```
+
+The command displays the peer identifier for the Charlie node:
+
+```text
+12D3KooWJvyP3VJYymTqG7eH4PM5rN4T2agk5cdNCfNymAqwqcvZ
+```
+
+If you generate node keys for your own account, save the peer identifier for the node to a file so you can pass it to `subkey inspect-node-key` or other commands when needed.
+
 ## Launch the permissioned network
 
 You can now use the node keys and peer identifiers for the predefined accounts to launch the permissioned network and authorize other nodes to join.
 
-For the purposes of this tutorial, yo are going to launch four nodes.
+For the purposes of this tutorial, you are going to launch four nodes.
 Three of the nodes are associated with predefined accounts and all three of those nodes are allowed to author and validate blocks.
 The fourth node is a **sub-node** that is only authorized to read data from a selected node with the approval of that node's owner.
 
-### Obtain node keys and peerIDs
-
-You have already configured the nodes associated with the Alice and Bob account in genesis storage.
-You can use the [`subkey`](/reference/command-line-tools/subkey/) program to inspect the keys associated with predefined accounts and to generate and inspect your own keys.
-However, if you run the `subkey generate-node-key` command, your node key and peer identifier are randomly generated and won't match the keys used in the tutorial.
-Because this tutorial uses predefined accounts and well-known node keys, the following table summarizes the keys for each account.
-
-| Account | Keys associated with the account                                                                    |
-| ------- | --------------------------------------------------------------------------------------------------- |
-| Alice   | Node key: c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a                          |
-|         | PeerID (generated from the node key): 12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2          |
-|         | Decoded PeerID in hex: 0024080112201ce5f00ef6e89374afb625f1ae4c1546d31234e87e3c3f51a62b91dd6bfa57df |
-|         |
-| Bob     | Node key: 6ce3be907dbcabf20a9a5a60a712b4256a54196000a8ed4050d352bc113f8c58                          |
-|         | PeerID (generated from the node key): 12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust          |
-|         | Decoded PeerID in hex: 002408011220dacde7714d8551f674b8bb4b54239383c76a2b286fa436e93b2b7eb226bf4de7 |
-
-The two other development accounts—Charlie and Dave—do not have well-known node keys or peer identifiers.
-For demonstration purposes, we'll use the following keys:
-
-| Account | Keys associated with the account                                                                    |
-| ------- | --------------------------------------------------------------------------------------------------- |
-| Charlie | Node key: 3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e                          |
-|         | PeerID (generated from the node key): 12D3KooWJvyP3VJYymTqG7eH4PM5rN4T2agk5cdNCfNymAqwqcvZ          |
-|         | Decoded PeerID in hex: 002408011220876a7b4984f98006dc8d666e28b60de307309835d775e7755cc770328cdacf2e |
-|         |
-| Dave    | Node key: a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a                          |
-|         | PeerID (generated from the node key): 12D3KooWPHWFrfaJzxPnqnAYAoRUyAHHKqACmEycGTVmeVhQYuZN          |
-|         | Decoded PeerID in hex: 002408011220c81bc1d7057a1511eb9496f056f6f53cdfe0e14c8bd5ffca47c70a8d76c1326d |
 
 ### Start the first node
 
@@ -414,17 +439,18 @@ To start the second node:
    --base-path /tmp/validator2 \
    --bob \
    --node-key=6ce3be907dbcabf20a9a5a60a712b4256a54196000a8ed4050d352bc113f8c58 \
+   --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2 \
    --port 30334 \
    --ws-port 9945
    ```
 
-   After both nodes are started, you should be able to see new blocks authored and finalized in both terminal logs.
+   After both nodes are started, you should start to see new blocks authored and finalized in both terminal logs.
 
 ### Add a third node to the list of well-known nodes
 
 You can start the third node with the `--name charlie` command.
 The `node-authorization` pallet uses an [offchain worker](/fundamentals/offchain-operations) to configure node connections.
-Because the third node is not a well-known node and it will have the fourth node in the network configured as a read-only sub-node, you must include the command line option to enable the offchain worker.
+Because the third node is not a well-known node and it will have the fourth node in the network configured as a read-only sub-node, you must include the command-line option to enable the offchain worker.
 
 To start the third node:
 
@@ -438,7 +464,7 @@ To start the third node:
    ./target/release/node-template \
    --chain=local \
    --base-path /tmp/validator3 \
-   --name charlie  \
+   --charlie  \
    --node-key=3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e \
    --port 30335 \
    --ws-port=9946 \
@@ -447,76 +473,149 @@ To start the third node:
 
    After you start this node, you should see there are **no connected peers** for the node.
    Because this is a permissioned network, the node must be explicitly authorized to connect.
-   The Alice and Bob nodes were configured in the genesis `chain_spec.rs`file.
+   The Alice and Bob nodes were configured in the genesis `chain_spec.rs` file.
    All other nodes mut be added manually using a call to the Sudo pallet.
 
 ### Authorize access for the third node
 
-This tutorial uses the `sudo` pallet for governance.
-Therefore, you can use the `sudo` pallet to call the `add_well_known_node` function provided by `node-authorization` pallet to add the third node.
+This tutorial uses the Sudo pallet for governance.
+Therefore, you can use the Sudo pallet to call the `addWellKnownNode` function provided by `node-authorization` pallet to add the third node.
+To keep things simple, you can use the Polkadot/Substrate Portal application to access the Sudo pallet.
 
-Go to **Developer** page, **Sudo** tab, in apps and submit the `nodeAuthorization` -
-`add_well_known_node` call with the peer id in hex of Charlie's node and the
-owner is Charlie, of course. Note Alice is the valid sudo origin for this call.
+1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) in a browser.
 
-![add_well_known_node](/media/images/docs/tutorials/permissioned-network/add_well_known_node.png)
+1. Click **Developer** and select **Sudo**.
 
-After the transaction is included in the block, you should see the `charlie` node is
-connected to the `alice` and `bob` nodes, and starts to sync blocks.
-The three nodes can find each other using the [mDNS](https://paritytech.github.io/substrate/master/sc_network/index.html) discovery mechanism that is enabled by default in a local network.
+1. Select **nodeAuthorization** and select **addWellKnownNode(node, owner)**.
 
-If your nodes are not on the same local network, you should use the command-line option `--no-mdns` to disable it.
+1. Copy and paste the hex-encoded peer identifier for the node owned by Charlie. 
 
-### Add a sub-node
+2. Select **Charlie** as the node owner.
+   
+3. Click **Submit Sudo**.
+   
+   ![Submit a Sudo transaction to add the third node](/media/images/docs/tutorials/permissioned-network/sudo-add-well-known-node.png)
 
-The fourth node in this network is not as a well-known node.
-This node is owned by the user `dave`, but is a sub-node of the `charlie` node.
-The sub-node can only access the network by connecting to the node owned by `charlie`.
-The parent node is responsible for any sub-node it authorizes to connect and controls access if the sub-node needs to be removed or audited.
+4. In Authorize transaction, note that the Alice development account is the default root administrative account and used as the `sudo` origin for this call, then click **Sign and Submit**.
+   
+   ![Verify and authorize the transaction](/media/images/docs/tutorials/permissioned-network/sudo-to-add-node.png)
+   
+5. Click **Network** and select **Explorer** to view the recent transactions.
+   
+   ![Verify the Sudo event](/media/images/docs/tutorials/permissioned-network/sudo-events-add-node.png)
 
-To start the fourth node:
+   After the transaction is included in the block, you should see the `charlie` node is connected to the `alice` and `bob` nodes, and starts to sync blocks.
+   The three nodes can find each other using the [mDNS](https://paritytech.github.io/substrate/master/sc_network/index.html) discovery mechanism that is enabled by default in a local network.
+   
+   If your nodes are not on the same local network, you should use the command-line option `--no-mdns` to disable it.
 
-```bash
-./target/release/node-template \
---chain=local \
---base-path /tmp/validator4 \
---name dave \
---node-key=a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a \
---port 30336 \
---ws-port 9947 \
---offchain-worker always
-```
+### Allow connections from a sub-node
 
-After it was started, there is no available connections. This is a _permissioned network_,
-so first, Charlie needs to configure his node to allow the connection from Dave's node.
+The fourth node in this network is not going to be used as a validator or added to the list of well-known nodes.
+This fourth node is owned by the `dave` user account, but is a sub-node of the `charlie` node.
+The sub-node can only access the network by connecting to the node owned by the `charlie` parent node.
+It's important to remember that the parent node is responsible for any sub-node it authorizes to connect to the network.
+The owner of the parent node is responsible for controlling access if the sub-node needs to be removed or audited.
 
-In the **Developer Extrinsics** page, get Charlie to submit an `addConnections` extrinsic.
-The first PeerId is the peer id in hex of Charlie's node. The connections is a list
-of allowed peer ids for Charlie's node, here we only add Dave's.
+Because this is a _permissioned network_, Charlie must configure his node to allow the connection from the node owned by Dave.
+You can use the Polkadot/Substrate Portal application to grant this permission.
 
-![charlie_add_connections](/media/images/docs/tutorials/permissioned-network/charlie_add_connections.png)
+To allow the sub-node to access the network:
 
-Then, Dave needs to configure his node to allow the connection from Charlie's node.
-But before he adds this, Dave needs to _claim_ his node, hopefully it's not too late!
+1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) in a browser.
 
-![dave_claim_node](/media/images/docs/tutorials/permissioned-network/dave_claim_node.png)
+2. Click **Developer** and select **Extrinsics**.
 
-Similarly, Dave can add connection from Charlie's node.
+3. Select **nodeAuthorization** and select **addConnections(node, connections)**.
 
-![dave_add_connections](/media/images/docs/tutorials/permissioned-network/dave_add_connections.png)
+4. Copy and paste the hex-encoded peer identifier for the node owned by Charlie. 
 
-You should now see Dave is catching up blocks and only has one peer which belongs to Charlie!
-Restart Dave's node in case it's not connecting with Charlie right away.
+5. For the connections parameter, copy and paste the hex-encoded peer identifier for the node owned by Dave, then click **Submit Transaction**.
+   
+6. Review the transaction details, then click **Sign and Submit**.
+   
+   ![charlie_add_connections](/media/images/docs/tutorials/permissioned-network/charlie_add_connections.png)
 
-Any node can issue _extrinsics_ that affect the behavior of other nodes, as long as it is _on chain data_ that is used for reference, and you have the _singing key_ in the keystore available for the account in question for the required origin.
-All nodes in this demonstration have access to the developer signing keys, thus we were able to issue commands that affected charlie's sub-nodes from _any_ connected node on our network on behalf of Charlie.
-In a real world application, node operators would _only_ have access to their node keys, and would be the only ones able to sign and submit extrinsics properly, very likely from their own node where they have control of the key's security.
+### Claim the sub-node
 
-**Congratulations!**
+Before starting the sub-node, the node owner should claim the peer identifier for his node.
+You can use the Polkadot/Substrate Portal application to submit a transaction to claim the node owned by the `dave` account.
 
-You have now learned how to build a network where some nodes have limited permissions and restricted access to network resources.
-To learn more about the topics introduced in this tutorial, see the following sections:
+1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) in a browser.
 
-- [Monitor node metrics](/tutorials/get-started/node-metrics/)
-- [Upgrade the runtime](/tutorials/get-started/forkless-upgrade/)
+1. Click **Developer** and select **Extrinsics**.
+
+2. Select **nodeAuthorization** and select **claimNode(node)**.
+
+3. Copy and paste the hex-encoded peer identifier for the node owned by Dave, then click **Submit Transaction**.
+   
+4. Review the transaction details, then click **Sign and Submit**.
+
+   ![dave_claim_node](/media/images/docs/tutorials/permissioned-network/dave_claim_node.png)
+
+### Start the sub-node and allow connections
+
+After claiming the node peer identifier, you are ready to start the sub-node.
+
+To start the sub-node:
+
+1. Open a **new** terminal shell on your computer.
+
+1. Change to the root directory where you compiled the Substrate node template.
+
+1. Start the sub-node by running the following command:
+   
+   ```bash
+   ./target/release/node-template \
+   --chain=local \
+   --base-path /tmp/validator4 \
+   --name dave \
+   --node-key=a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a \
+   --port 30336 \
+   --ws-port 9947 \
+   --offchain-worker always
+   ```
+
+You now have a network with four nodes.
+However, to allow the sub-node to participate, you must configure it to allow connections from the node owned by Charlie.
+The steps are similar to the ones you previously performed to allow connections to the node owned by Dave.
+
+1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) in a browser.
+
+2. Click **Developer** and select **Extrinsics**.
+
+3. Select **nodeAuthorization** and select **addConnections(node, connections)**.
+
+4. Copy and paste the hex-encoded peer identifier for the node owned by Dave. 
+
+5. For the connections parameter, copy and paste the hex-encoded peer identifier for the node owned by Charlie, then click **Submit Transaction**.
+   
+6. Review the transaction details, then click **Sign and Submit**.
+   
+   ![dave_add_connections](/media/images/docs/tutorials/permissioned-network/dave_add_connections.png)
+   
+   
+You should now see the sub-node has only one peer—the node that belongs to Charlie—and is synchronizing blocks from the chain. 
+If the sub-node doesn't connect to its peer node right away, try stopping and restarting the sub-node.
+
+## Signing and submitting transactions
+
+You should note that any account can be used to sign and submit transaction that affect the behavior of other nodes.
+However, to sign and submit a transaction that affects a node you don't own:
+
+- The transaction must reference _on chain data_.
+- You must have the _signing key_ for an account with the required origin available in the keystore.
+
+In this tutorial, all of the nodes have access to the development account signing keys.
+Therefore, you were able to sign and submit transactions that affected any connected node using account to act on behalf of Charlie or Dave.
+If you were building a permissioned network for a real world application, node operators would most likely only have access to their own node keys, and node owner accounts would be required to sign and submit transactions that affect the node where they have control of the signing key.
+
+## Where to go next
+
+YIn this tutorial, you learned the basics of how to build a network where some nodes have limited permissions and restricted access to network resources.
+To learn more about the topics introduced in this tutorial, see the following resources:
+
 - [Accounts, addresses, and keys](/fundamentals/accounts-addresses-keys)
+- [Node authorization pallet](https://paritytech.github.io/substrate/master/pallet_node_authorization/index.html#)
+- [Node authorization source code](https://github.com/paritytech/substrate/blob/master/frame/node-authorization/src/lib.rs)
+- [Monitor node metrics](/tutorials/get-started/node-metrics/)
