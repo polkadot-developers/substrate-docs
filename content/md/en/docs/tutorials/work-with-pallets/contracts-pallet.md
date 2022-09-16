@@ -276,9 +276,7 @@ To expose the Contracts RPC API:
 
    ```rust
    /*** Add this block ***/
-   impl pallet_contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, BlockNumber, Hash>
-     for Runtime
-     {
+   impl pallet_contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, BlockNumber, Hash> for Runtime {
       fn call(
          origin: AccountId,
          dest: AccountId,
@@ -300,7 +298,7 @@ To expose the Contracts RPC API:
          salt: Vec<u8>,
       ) -> pallet_contracts_primitives::ContractInstantiateResult<AccountId, Balance> {
          Contracts::bare_instantiate(origin, value, gas_limit, storage_deposit_limit, code, data, salt, CONTRACTS_DEBUG_OUTPUT)
-         }
+      }
          
       fn upload_code(
          origin: AccountId,
@@ -313,11 +311,11 @@ To expose the Contracts RPC API:
       fn get_storage(
          address: AccountId,
          key: Vec<u8>,
-         ) -> pallet_contracts_primitives::GetStorageResult {
+      ) -> pallet_contracts_primitives::GetStorageResult {
          Contracts::get_storage(address, key)
-         }
       }
-      ```
+   }
+   ```
 
 1. Save your changes and close the `runtime/src/lib.rs` file.
 
