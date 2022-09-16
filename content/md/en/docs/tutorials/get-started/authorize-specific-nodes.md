@@ -151,7 +151,7 @@ To add the `node-authorization` pallet to the Substrate runtime:
 
    This section specifies the default feature set to compile for this runtime is the `std` features set.
    When the runtime is compiled using the `std` feature set, the `std` features from all of the pallets listed as dependencies are enabled.
-   For more detailed information about how the runtime is compiled as a native Rust binary with the standard library and as a WebAssembly binary using the `no_std` attribute, see [Building the runtime](/build/build-process/).
+   For more detailed information about how the runtime is compiled as a native Rust binary with the standard library and as a WebAssembly binary using the `no_std` attribute, see [Build process](/build/build-process/).
 
    If you forget to update the `features` section in the `Cargo.toml` file, you might see `cannot find function` errors when you compile the runtime binary.
 
@@ -333,7 +333,7 @@ The fourth node is a **sub-node** that is only authorized to read data from a se
 
 ### Obtain node keys and peerIDs
 
-You have already configured the nodes associated with the Alice and Bob account in genesis storage.
+You have already configured the nodes associated with the Alice and Bob accounts in genesis storage.
 You can use the [`subkey`](/reference/command-line-tools/subkey/) program to inspect the keys associated with predefined accounts and to generate and inspect your own keys.
 However, if you run the `subkey generate-node-key` command, your node key and peer identifier are randomly generated and won't match the keys used in the tutorial.
 Because this tutorial uses predefined accounts and well-known node keys, the following table summarizes the keys for each account.
@@ -451,7 +451,7 @@ To start the third node:
    ./target/release/node-template \
    --chain=local \
    --base-path /tmp/validator3 \
-   --name charlie  \
+   --charlie  \
    --node-key=3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e \
    --port 30335 \
    --ws-port=9946 \
@@ -460,14 +460,14 @@ To start the third node:
 
    After you start this node, you should see there are **no connected peers** for the node.
    Because this is a permissioned network, the node must be explicitly authorized to connect.
-   The Alice and Bob nodes were configured in the genesis `chain_spec.rs`file.
+   The Alice and Bob nodes were configured in the genesis `chain_spec.rs` file.
    All other nodes mut be added manually using a call to the Sudo pallet.
 
 ### Authorize access for the third node
 
-This tutorial uses the `sudo` pallet for governance.
-Therefore, you can use the `sudo` pallet to call the `add_well_known_node` function provided by `node-authorization` pallet to add the third node.
-To keep things simple, you can use the Polkadot/Substrate Portal application to access the sudo pallet.
+This tutorial uses the Sudo pallet for governance.
+Therefore, you can use the Sudo pallet to call the `addWellKnownNode` function provided by `node-authorization` pallet to add the third node.
+To keep things simple, you can use the Polkadot/Substrate Portal application to access the Sudo pallet.
 
 1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) in a browser.
 
@@ -481,10 +481,16 @@ To keep things simple, you can use the Polkadot/Substrate Portal application to 
    
 3. Click **Submit Sudo**.
    
-4. In Authorize transaction, note that the Alice account is the valid sudo origin for this call, then click **Sign and Submit**.
+   ![Submit a Sudo transaction to add the third node](/media/images/docs/tutorials/permissioned-network/sudo-add-well-known-node.png)
+
+4. In Authorize transaction, note that the Alice account is the valid `sudo` origin for this call, then click **Sign and Submit**.
    
-   ![add_well_known_node](/media/images/docs/tutorials/permissioned-network/add_well_known_node.png)
+   ![Verify and authorize the transaction](/media/images/docs/tutorials/permissioned-network/sudo-to-add-node.png)
    
+5. Click **Network** and select **Explorer** to view the recent transactions.
+   
+   ![Verify the Sudo event](/media/images/docs/tutorials/permissioned-network/sudo-events-add-node.png)
+
    After the transaction is included in the block, you should see the `charlie` node is connected to the `alice` and `bob` nodes, and starts to sync blocks.
    The three nodes can find each other using the [mDNS](https://paritytech.github.io/substrate/master/sc_network/index.html) discovery mechanism that is enabled by default in a local network.
    
@@ -528,7 +534,7 @@ You can use the Polkadot/Substrate Portal application to grant this permission.
    
    ![charlie_add_connections](/media/images/docs/tutorials/permissioned-network/charlie_add_connections.png)
 
-### Claim the node 
+### Claim the node
 
 1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) in a browser.
 
@@ -564,9 +570,9 @@ The steps are similar to the ones you previously performed.
    You should now see Dave is catching up blocks and only has one peer which belongs to Charlie.
    You can restart the node owned by Dave if it's not connecting with Charlie right away.
 
-Any node can issue _extrinsics_ that affect the behavior of other nodes, as long as it is _on chain data_ that is used for reference, and you have the _singing key_ in the keystore available for the account in question for the required origin.
+Any node can issue _extrinsics_ that affect the behavior of other nodes, as long as it is _on chain data_ that is used for reference, and you have the _signing key_ in the keystore available for the account in question for the required origin.
 All nodes in this demonstration have access to the developer signing keys, thus we were able to issue commands that affected charlie's sub-nodes from _any_ connected node on our network on behalf of Charlie.
-In a real world application, node operators would _only_ have access to their node keys, and would be the only ones able to sign and submit extrinsics properly, very likely from their own node where they have control of the key's security.
+In a real world application, node operators would _only_ have access to their own node keys, and would be the only ones able to sign and submit extrinsics properly, very likely from their own node where they have control of the key's security.
 
 **Congratulations!**
 
