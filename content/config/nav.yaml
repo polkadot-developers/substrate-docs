@@ -170,7 +170,7 @@ tutorials:
         - title: Monitor node metrics
           url: /tutorials/get-started/node-metrics/
         - title: Upgrade a running network
-          url: /tutorials/get-started/forkless-upgrade/
+          url: /tutorials/get-started/upgrade-a-running-network/
     - title: Work with pallets
       url: /tutorials/work-with-pallets/
       pages:
