@@ -177,7 +177,7 @@ To enable the `EnsureRoot` rule in your runtime:
    use frame_system::EnsureRoot;
    ```
 
-## Implement the Config trait for the pallet
+## Implement the Config trait
 
 Every pallet has a [Rust trait](https://doc.rust-lang.org/book/ch10-02-traits.html) called `Config`.
 The `Config` trait is used to identify the parameters and types that the pallet needs.
@@ -323,7 +323,7 @@ To compile the node:
    If there are no syntax errors, you are ready to proceed.
    If there are errors, follow the instructions in the compile output to fix them then rerun the `cargo build` command.
 
-## Identify the account keys to use
+## Identify account keys to use
 
 You have already configured the nodes associated with the Alice and Bob accounts in genesis storage.
 You can use the [`subkey`](/reference/command-line-tools/subkey/) program to inspect the keys associated with predefined accounts and to generate and inspect your own keys.
@@ -380,14 +380,13 @@ The command displays the peer identifier for the Charlie node:
 
 If you generate node keys for your own account, save the peer identifier for the node to a file so you can pass it to `subkey inspect-node-key` or other commands when needed.
 
-## Launch the permissioned network
+## Launch network nodes
 
 You can now use the node keys and peer identifiers for the predefined accounts to launch the permissioned network and authorize other nodes to join.
 
 For the purposes of this tutorial, you are going to launch four nodes.
 Three of the nodes are associated with predefined accounts and all three of those nodes are allowed to author and validate blocks.
 The fourth node is a **sub-node** that is only authorized to read data from a selected node with the approval of that node's owner.
-
 
 ### Start the first node
 
@@ -464,7 +463,7 @@ To start the third node:
    ./target/release/node-template \
    --chain=local \
    --base-path /tmp/validator3 \
-   --charlie  \
+   --name charlie  \
    --node-key=3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e \
    --port 30335 \
    --ws-port=9946 \
@@ -553,7 +552,7 @@ You can use the Polkadot/Substrate Portal application to submit a transaction to
 
    ![dave_claim_node](/media/images/docs/tutorials/permissioned-network/dave_claim_node.png)
 
-### Start the sub-node and allow connections
+### Start the sub-node
 
 After claiming the node peer identifier, you are ready to start the sub-node.
 
@@ -576,9 +575,11 @@ To start the sub-node:
    --offchain-worker always
    ```
 
+### Allow connections to the sub-node
+
 You now have a network with four nodes.
-However, to allow the sub-node to participate, you must configure it to allow connections from the node owned by Charlie.
-The steps are similar to the ones you previously performed to allow connections to the node owned by Dave.
+However, to allow the sub-node to participate, you must configure it to allow connections from the parent node owned by Charlie.
+The steps are similar to the ones you previously performed to allow connections from the node owned by Dave.
 
 1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) in a browser.
 
@@ -594,11 +595,10 @@ The steps are similar to the ones you previously performed to allow connections 
    
    ![dave_add_connections](/media/images/docs/tutorials/permissioned-network/dave_add_connections.png)
    
-   
-You should now see the sub-node has only one peer—the node that belongs to Charlie—and is synchronizing blocks from the chain. 
-If the sub-node doesn't connect to its peer node right away, try stopping and restarting the sub-node.
+   You should now see the sub-node has only one peer—the node that belongs to Charlie—and is synchronizing blocks from the chain. 
+   If the sub-node doesn't connect to its peer node right away, try stopping and restarting the sub-node.
 
-## Signing and submitting transactions
+## Keys required to submit transactions
 
 You should note that any account can be used to sign and submit transaction that affect the behavior of other nodes.
 However, to sign and submit a transaction that affects a node you don't own:
