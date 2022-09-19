@@ -464,7 +464,7 @@ To start the third node:
    ./target/release/node-template \
    --chain=local \
    --base-path /tmp/validator3 \
-   --charlie  \
+   --name charlie  \
    --node-key=3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e \
    --port 30335 \
    --ws-port=9946 \
@@ -553,7 +553,7 @@ You can use the Polkadot/Substrate Portal application to submit a transaction to
 
    ![dave_claim_node](/media/images/docs/tutorials/permissioned-network/dave_claim_node.png)
 
-### Start the sub-node and allow connections
+### Start the sub-node
 
 After claiming the node peer identifier, you are ready to start the sub-node.
 
@@ -576,9 +576,11 @@ To start the sub-node:
    --offchain-worker always
    ```
 
+### Allow connections to the sub-node
+
 You now have a network with four nodes.
-However, to allow the sub-node to participate, you must configure it to allow connections from the node owned by Charlie.
-The steps are similar to the ones you previously performed to allow connections to the node owned by Dave.
+However, to allow the sub-node to participate, you must configure it to allow connections from the parent node owned by Charlie.
+The steps are similar to the ones you previously performed to allow connections from the node owned by Dave.
 
 1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) in a browser.
 
@@ -594,9 +596,8 @@ The steps are similar to the ones you previously performed to allow connections 
    
    ![dave_add_connections](/media/images/docs/tutorials/permissioned-network/dave_add_connections.png)
    
-   
-You should now see the sub-node has only one peer—the node that belongs to Charlie—and is synchronizing blocks from the chain. 
-If the sub-node doesn't connect to its peer node right away, try stopping and restarting the sub-node.
+   You should now see the sub-node has only one peer—the node that belongs to Charlie—and is synchronizing blocks from the chain. 
+   If the sub-node doesn't connect to its peer node right away, try stopping and restarting the sub-node.
 
 ## Signing and submitting transactions
 
