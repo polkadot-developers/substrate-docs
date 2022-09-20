@@ -194,4 +194,4 @@ Here are a few additional suggestions for where you can learn more.
 
 - [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
 - [Simulate a network](/tutorials/get-started/simulate-network/)
-- [Add trusted nodes](/tutorials/get-started/trusted-network/)
+- [Add trusted nodes](/tutorials/get-started/add-trusted-nodes/)

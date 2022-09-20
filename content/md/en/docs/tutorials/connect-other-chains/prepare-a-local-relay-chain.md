@@ -26,7 +26,7 @@ Before you begin, verify the following:
 
 - You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and know how to compile and run a Substrate node.
 
-- You know how to generate chain specifications for a private network of trusted validators as described in [Add trusted nodes](/tutorials/get-started/trusted-network/).
+- You know how to generate chain specifications for a private network of trusted validators as described in [Add trusted nodes](/tutorials/get-started/add-trusted-nodes/).
 
 - You are generally familiar with Polkadot [architecture and terminology](https://wiki.polkadot.network/docs/learn-architecture).
 

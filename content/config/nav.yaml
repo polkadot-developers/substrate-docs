@@ -164,7 +164,7 @@ tutorials:
         - title: Simulate a network
           url: /tutorials/get-started/simulate-network/
         - title: Add trusted nodes
-          url: /tutorials/get-started/trusted-network/
+          url: /tutorials/get-started/add-trusted-nodes/
         - title: Authorize specific nodes
           url: /tutorials/get-started/authorize-specific-nodes/
         - title: Monitor node metrics
