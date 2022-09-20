@@ -8,7 +8,7 @@ keywords:
   - restricted access
 ---
 
-In [Add trusted nodes](/tutorials/get-started/trusted-network/), you saw how to build a simple network with a known set of validator nodes.
+In [Add trusted nodes](/tutorials/get-started/add-trusted-nodes/), you saw how to build a simple network with a known set of validator nodes.
 That tutorial illustrated a simplified version of a **permissioned network**.
 In a permissioned network, only **authorized nodes** are allowed to perform specific network activities.
 For example, you might grant some nodes the permission to validate blocks and other nodes the permission to propagate transactions.
@@ -59,7 +59,7 @@ Before you begin, verify the following:
 
 - You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and have the Substrate node template installed locally.
 
-* You have completed the [Add trusted nodes](/tutorials/get-started/trusted-network/) tutorial.
+* You have completed the [Add trusted nodes](/tutorials/get-started/add-trusted-nodes/) tutorial.
 
 - You are generally familiar with [peer-to-peer networking](https://wiki.polkadot.network/docs/faq#networking) in Substrate.
 

@@ -107,6 +107,6 @@ You can explore the following resources to learn more.
 
 - [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
 - [Simulate a network](/tutorials/get-started/simulate-network/)
-- [Add trusted nodes](/tutorials/get-started/trusted-network/)
+- [Add trusted nodes](/tutorials/get-started/add-trusted-nodes/)
 
 If you prefer to explore code directly, you can start building in the [Substrate Playground](https://docs.substrate.io/playground/) or consult the API reference to get details about the Rust crates you use.

@@ -16,9 +16,9 @@ Public test networks have a higher bar to entry than a private network, but repr
 Because Rococo is a shared test network, this tutorial requires additional steps to prepare your environment that aren't required for local testing.
 Before you begin, verify the following:
 
-- You know how to generate and modify chain specification files as described in [Add trusted nodes](/tutorials/get-started/trusted-network/).
+- You know how to generate and modify chain specification files as described in [Add trusted nodes](/tutorials/get-started/add-trusted-nodes/).
   
-- You know how to generate and store keys as described in [Add trusted nodes](/tutorials/get-started/trusted-network/).
+- You know how to generate and store keys as described in [Add trusted nodes](/tutorials/get-started/add-trusted-nodes/).
   
 - You have completed the [Prepare a local relay chain](/tutorials/connect-other-chains/prepare-a-local-relay-chain/) and [Connect a local parachain](/tutorials/connect-other-chains/connect-a-local-parachain/) tutorials on your local computer.
 
