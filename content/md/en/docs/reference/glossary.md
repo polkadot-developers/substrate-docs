@@ -115,6 +115,10 @@ The loss of a network service due to node failures that exceed the proportion of
 An early approach to byzantine fault tolerance. pBFT systems tolerate byzantine behavior from up to one-third of participants.
 The communication overhead for such systems is `O(n²)`, where `n` is the number of nodes (participants) in the system.
 
+## call
+
+A `Call` is the strict name of a [dispatchable](#dispatch)data-structure in pallets (i.e. an enum).
+
 ## collator
 
 An [author](#author) of a [parachain](#parachain) network.
@@ -185,7 +189,7 @@ An extensible field of the [block header](#header) that encodes information need
 ## dispatch
 
 The execution of a function with a predefined set of arguments.
-In the context of [runtime](#runtime) development with [FRAME](#frame), a dispatch takes pure data—the type is known as `Call` by convention—and uses that data to call a published function in a runtime module ([pallet](#pallet)) with predefined arguments.
+In the context of [runtime](#runtime) development with [FRAME](#frame), a dispatch takes pure data—the [`Call`](#call) type—and uses that data to execute a published function in a runtime module ([pallet](#pallet)) with predefined arguments.
 The published functions take one additional parameter, known as [`origin`](#origin), that allows the function to securely determine the provenance of its execution.
 
 ## equivocating
@@ -217,9 +221,10 @@ There are two orchestration engines in Substrate, _WebAssembly_ and _native_.
 ## extrinsic
 
 Data that is external to the blockchain and included in a [block](#block).
+Typical Substrate chains have extrinsics which contain a [`Call`](#call) value.
 In general, there are two types of extrinsics:
 
-- signed or unsigned [transactions](/fundamentals/transaction-types).
+- signed or unsigned [transactions](#transaction).
 - inherent data that is inserted by a [block author](#author).
 
 ## existential deposit
@@ -468,7 +473,7 @@ maintained by [Parity Technologies](https://www.parity.io/).
 
 ## transaction
 
-A type of [extrinsic](#extrinsic) that can be safely gossiped between [nodes](#node) on the network because it can be verified through [signatures](/fundamentals/transaction-types) or [signed extensions](/reference/transaction-format#signed-extension).
+A type of [extrinsic](#extrinsic) that includes a [signature](/fundamentals/transaction-types) that can be used to verify the account authorizing it inherently or via [signed extensions](/reference/transaction-format#signed-extension).
 
 ## transaction era
 
