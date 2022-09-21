@@ -34,7 +34,7 @@ Each peer identifier is owned by **one and only one** account owner (`AccountId`
 There are two ways you can authorize a node to join the network:
 
 - By adding the peer identifier to the list of predefined nodes in the chain specification file as part of the genesis configuration for the chain.
-  You must be approved by the governance mechanism for the chain or by using the Sudo pallet in the network to do this.
+  You must be approved by the governance mechanism for the chain or have access to the root account for the Sudo pallet in the network to do this.
 
 - By asking for a _paired peer_ connection from a specific node.
   You can add connections between nodes by using predefined node peer identifiers or by using the peer identifiers generated from the public and private keys for each of the nodes.
