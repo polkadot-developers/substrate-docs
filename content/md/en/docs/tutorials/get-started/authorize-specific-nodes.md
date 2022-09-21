@@ -28,16 +28,20 @@ This tutorial illustrates how you can build a permissioned network with Substrat
 ## Node authorization and ownership
 
 The `node-authorization` pallet is a prebuilt FRAME pallet that enables you to manage a configurable set of nodes for a network.
-Each node is identified by a `PeerId`.
-Each `PeerId` is owned by **one and only one** `AccountId` that claims the node.
+Each node is identified by a peer identifier (`PeerId`).
+Each peer identifier is owned by **one and only one** account owner (`AccountId`) that claims the node.
 
 There are two ways you can authorize a node to join the network:
 
-- By adding the `PeerId` to the list of predefined nodes.
-  You must be approved by the governance or sudo pallet in the network to do this.
+- By adding the peer identifier to the list of predefined nodes in the chain specification file as part of the genesis configuration for the chain.
+  You must be approved by the governance mechanism for the chain or by using the Sudo pallet in the network to do this.
 
 - By asking for a _paired peer_ connection from a specific node.
-  This node can either be a predefined node `PeerId` or the peer identifier generated from the public and private keys for the node.
+  You can add connections between nodes by using predefined node peer identifiers or by using the peer identifiers generated from the public and private keys for each of the nodes.
+
+As the following diagram suggests, this tutorial illustrates both authorization methods, with the peer identifiers for Alice and Bob defined in the chain specification and the additional nodes added using the node authorization pallet.
+
+![Authorizing nodes using peer identifier](/media/images/docs/tutorials/permissioned-network/four-nodes.png)
 
 Note that _any_ user can claim to be the owner of a `PeerId`.
 To protect against false claims, you should claim the node identifier _before_ you start the node.
