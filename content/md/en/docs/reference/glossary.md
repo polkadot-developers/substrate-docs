@@ -117,7 +117,8 @@ The communication overhead for such systems is `O(n²)`, where `n` is the number
 
 ## call
 
-A `Call` is the strict name of a [dispatchable](#dispatch)data-structure in pallets (i.e. an enum).
+In a general context, a call describes the act of invoking a function to be executed.
+In the context of pallets that contain functions to be dispatched to the runtime, `Call` is an enumeration data type that describes the functions that can be dispatched with one variant per pallet. The object that a `Call` represents is a [dispatch](#dispatch) data structure or a dispatchable.
 
 ## collator
 
