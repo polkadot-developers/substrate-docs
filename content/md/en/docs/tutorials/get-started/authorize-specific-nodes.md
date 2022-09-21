@@ -618,4 +618,4 @@ To learn more about the topics introduced in this tutorial, see the following re
 - [Accounts, addresses, and keys](/fundamentals/accounts-addresses-keys)
 - [Node authorization pallet](https://paritytech.github.io/substrate/master/pallet_node_authorization/index.html#)
 - [Node authorization source code](https://github.com/paritytech/substrate/blob/master/frame/node-authorization/src/lib.rs)
-- [Monitor node metrics](/tutorials/get-started/node-metrics/)
+- [Monitor node metrics](/tutorials/get-started/monitor-node-metrics/)

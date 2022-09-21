@@ -168,7 +168,7 @@ tutorials:
         - title: Authorize specific nodes
           url: /tutorials/get-started/authorize-specific-nodes/
         - title: Monitor node metrics
-          url: /tutorials/get-started/node-metrics/
+          url: /tutorials/get-started/monitor-node-metrics/
         - title: Upgrade a running network
           url: /tutorials/get-started/upgrade-a-running-network/
     - title: Work with pallets
