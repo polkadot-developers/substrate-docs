@@ -162,7 +162,7 @@ To add the `node-authorization` pallet to the Substrate runtime:
 1. Check that the new dependencies resolve correctly by running the following command:
 
    ```bash
-   cargo check -p node-template-runtime
+   cargo check -p node-template-runtime --release
    ```
 
 ### Add an administrative rule
@@ -238,7 +238,7 @@ To implement the `node-authorization` pallet in your runtime:
 1. Check that the configuration can compile by running the following command:
 
    ```bash
-   cargo check -p node-template-runtime
+   cargo check -p node-template-runtime --release
    ```
 
 ### Add genesis storage for authorized nodes
