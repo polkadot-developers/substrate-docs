@@ -52,8 +52,8 @@ In a proof-of-work blockchain, these nodes are called _miners_.
 
 ## authority
 
-The [nodes](#node) that act as a collective to manage [consensus](#consensus) on a[blockchain](#blockchain) network.
-In a [proof-of-stake](#nominated-proof-of-stake-npos) blockchain—for example, a blockchain that us the [Staking pallet](/reference/frame-pallets#staking) from [FRAME](#frame)—authorities are determined through a token-weighted nomination and voting system.
+The [nodes](#node) that act as a collective to manage [consensus](#consensus) on a [blockchain](#blockchain) network.
+In a [proof-of-stake](#nominated-proof-of-stake-npos) blockchain—for example, a blockchain that uses the [Staking pallet](/reference/frame-pallets#staking) from [FRAME](#frame)—authorities are determined through a token-weighted nomination and voting system.
 
 The terms _authorities_ and _[validators](#validator)_ sometimes seem to refer the same thing.
 However, _validators_ is a broader term that can include other aspects of chain maintenance such as parachain validation.
