@@ -43,7 +43,6 @@ This API provides the following methods for authority-based round-robin scheduli
 - `authorities` to get the authorities set for Aura consensus.
 - `authorities_with_context` to get the authorities set for Aura consensus within a specified execution context.
 
-
 ## Benchmark
 
 Use the `Benchmark` API to provide the information required for [benchmarking](/test/benchmark/) function execution in a FRAME runtime.
@@ -160,3 +159,4 @@ This API provides the following methods:
 - [Runtime development](/fundamentals/runtime-development/)
 - [FRAME macros](/reference/frame-macros)
 - [impl_runtime_apis](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html)
+
