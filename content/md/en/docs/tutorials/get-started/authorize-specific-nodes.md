@@ -616,7 +616,7 @@ If you were building a permissioned network for a real world application, node o
 
 ## Where to go next
 
-YIn this tutorial, you learned the basics of how to build a network where some nodes have limited permissions and restricted access to network resources.
+In this tutorial, you learned the basics of how to build a network where some nodes have limited permissions and restricted access to network resources.
 To learn more about the topics introduced in this tutorial, see the following resources:
 
 - [Accounts, addresses, and keys](/fundamentals/accounts-addresses-keys)
