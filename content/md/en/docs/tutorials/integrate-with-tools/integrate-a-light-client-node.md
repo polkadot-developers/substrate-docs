@@ -4,15 +4,20 @@ description: Demonstrates how you can connect to Substrate-based blockchains usi
 keywords:
 ---
 
-This tutorial demonstrates how you can use a WebAssembly light client running in a browser to connect to a Substrate-based blockchain.
-In this tutorial, you'll use the Substrate Connect browser extension to interact with the blockchain without using an RPC server.
+As you learned in [Light clients in Substrate Connect](/fundamentals/light-clients-in-substrate-connect/), light client nodes provide secure and decentralized access to blockchain data with minimal hardware and software requirements.
 
-## What is Substrate Connect
+This tutorial demonstrates how you can use a WebAssembly light client node running in a browser to connect to a Substrate-based blockchain.
+In this tutorial, you'll use the Substrate Connect browser extension to interact with the blockchain directly without using an intermediary node or RPC server.
 
-Substrate Connect is a WebAssembly-based light client that can run directly in a browser.
-The core software component of the Substrate Connect light client is [smoldot](https://github.com/paritytech/smoldot/).
-This software requires fewer resources than a full node, so it can run in resource-constrained environments, including browsers, mobile endpoints, and IoT devices.
-Instead of running as a peer and connecting directly to the blockchain to author or import blocks, the light client can synchronize data from the chain by connecting to a full node.
+## Light clients and Substrate Connect
+
+For Substrate-based chains, the core component of the WebAssembly light client node is the [smoldot](https://github.com/paritytech/smoldot/) program.
+This program requires fewer resources than a full node, so it can run in resource-constrained environments, including browsers, mobile endpoints, and IoT devices.
+The `smoldot` light client doesn't author or import any blocks or participate in any consensus activity.
+Instead, the `smoldot` light client communicates with Substrate-based chains through JSON-RPC calls and synchronizes with data from the chain by connecting to a full node.
+
+Substrate Connect is a JavaScript implementation that's built on top of the `smoldot` source.
+Substrate Connect enables you to integrate the functionality provided by the `smoldot` light client into applications that are built using JavaScript or TypeScript.
 
 ### Secure synchronization
 
@@ -26,12 +31,12 @@ However, if you run the light client as a browser extension, you can run multipl
 
 Running a light client as a browser extension also eliminates the need for full nodes to use Transport Layer Security (TLS) and Secure Socket Layer (SSL) certificates.
 With Substrate Connect, synchronization occurs in the background without going through the WebSocket port that some browsers block as an unsecured connection.
-Running Substrate Connect as a browser extension also provides better application performance and more responsive user experience.
+Running Substrate Connect as a browser extension also provides better application performance and a more responsive user experience.
 
 ### Applications and user experience with Substrate Connect
 
 If you build an application with Substrate Connect, the `smoldot` client can detect whether the user has the browser extension and will automatically use the browser extension, if it's available.
-If the user doesn't have the browser extension installed, `smoldot` will automatically create a WebAssembly light client in the context of your web application.
+If the user doesn't have the browser extension installed, `smoldot` automatically creates a WebAssembly light client in the context of your web application.
 Although running Substrate Connect as a browser extension is optional, the extension provides the following advantages:
 
 - Better resource usage 
@@ -77,11 +82,12 @@ Because of the advantages that the Substrate Connect browser extension provides,
 
 ## Connect to a well-known chain
 
-Before the Substrate Connect light client can connect to a network, you must have a web application that specifies the network the light client should connect to, the nodes for it to communicate with, and the consensus-critical state it must have at genesis.
+Before the light client can connect to a network, you must have a web application that specifies the network the light client should connect to, the nodes for it to communicate with, and the consensus-critical state it must have at genesis.
 This information is available in the [chain specification](/build/chain-spec/) file for the network. 
 
 Substrate Connect is preconfigured to recognize several chains that are defined in the [WellKnownChain](https://paritytech.github.io/substrate-connect/api/enums/connect_src.WellKnownChain.html) enumeration list.
 These well-known chains are:
+
 - Polkadot identified as `polkadot`
 - Kusama identified as `ksmcc3`
 - Rococo identified as `rococo_v2_2`
@@ -91,25 +97,25 @@ To connect to one of these chains:
 
 1. Open a new terminal shell on your computer.
 
-2. Create a web application to use Substrate Connect by cloning the `empty-webapp` template by running the following command:
+2. Create a web application to use Substrate Connect by cloning the `empty-webapp` template with the following command:
    
    ```bash
    git clone https://github.com/bernardoaraujor/empty-webapp
    ```
 
-1. Change to the `empty-webapp` directory by running the following command:
+3. Change to the `empty-webapp` directory by running the following command:
  
    ```bash
    cd empty-webapp
    ```
 
-2. Install dependencies from the Polkadot-JS RPC provider by running the following command:
+4. Install dependencies from the Polkadot-JS RPC provider by running the following command:
    
    ```bash
    yarn add @polkadot/rpc-provider
    ```
 
-2. Install dependencies from the Polkadot-JS API by running the following command:
+5. Install dependencies from the Polkadot-JS API by running the following command:
    
    ```bash
    yarn add @polkadot/api
@@ -117,16 +123,13 @@ To connect to one of these chains:
 
    After you install these dependencies, you can use them in the sample application.
 
-3. Open the `empty-webapp/index.ts` file in a text editor.
+6. Open the `empty-webapp/index.ts` file in a text editor.
    
-4. Copy and paste the following application code to create a Substrate Connect instance with `substrate-connect` as the provider that connects to the Polkadot relay chain using the `polkadot` chain specification file.
+7. Copy and paste the following application code to create a Substrate Connect instance with `substrate-connect` as the provider that connects to the Polkadot relay chain using the `polkadot` chain specification file.
    
    ```typescript
-   import {
-      ScProvider,
-      WellKnownChain,
-    } from "@polkadot/rpc-provider/substrate-connect";
-    import { ApiPromise } from "@polkadot/api";
+   import { ScProvider, WellKnownChain } from "@polkadot/rpc-provider/substrate-connect";
+   import { ApiPromise } from "@polkadot/api";
     
     window.onload = () => {
       void (async () => {
@@ -149,7 +152,8 @@ To connect to one of these chains:
     };
    ```
    
-   In the Polkadot-JS API, you create an instance like this:
+   In this sample application code, creating a Substrate Connect instance is similar to how you create an instance for the Polkadot-JS API.
+   For Polkadot-JS API, you create an instance like this:
    
    ```javascript
    // Import
@@ -160,15 +164,15 @@ To connect to one of these chains:
    const api = await ApiPromise.create({ provider: wsProvider });
    ```
    
-   For Substrate Connect, you replace the WebSocket (`WsProvider`) provider with the Substrate Connect (`ScProvider`) and, instead of a WebSocket URL client address, you specify the chain specification for the Polkadot network (`WellKnownChain.polkadot`).
+   For Substrate Connect, you replace the WebSocket (`WsProvider`) provider with the Substrate Connect (`ScProvider`) provider, and, instead of a WebSocket URL client address, you specify the chain specification for the network to connect to (`WellKnownChain.polkadot`).
 
-1. Install any remaining dependencies by running the following command:
+8. Install any remaining dependencies by running the following command:
    
    ```bash
    yarn
    ```
 
-1. Start the web application by running the following command:
+9. Start the web application by running the following command:
    
    ```bash
    yarn dev
@@ -181,14 +185,14 @@ To connect to one of these chains:
    yarn add -D buffer
    ```
    
-2. Verify the browser opens the URL `http://localhost:3001/`. 
+10. Verify the browser opens the URL `http://localhost:3001/`. 
   
-3. Open the browser console for your browser. 
+11. Open the browser console for your browser. 
    
-   How you navigate to and open the browser console varies depending on the browser and operating systems you use.
-   For example, on Chrome, select More Tools, Developer Tools, then click Console.
+   How you navigate to and open the browser console varies depending on the browser and operating system you use.
+   For example, on Chrome, select **More Tools**, **Developer Tools**, then click **Console**.
    
-4. Verify the `smoldot` process is initialized, followed by the hashes of the incoming blocks from Polkadot.
+12. Verify the `smoldot` process is initialized, followed by the hashes of the incoming blocks from Polkadot.
    
    For example, the console should display log entries similar to the following:
    
@@ -204,7 +208,7 @@ To connect to one of these chains:
    The primary purpose of this application is to demonstrate connecting to the chain without using a centralized entry point to the network, such as the URL for a specific RPC node.
    However, you could extend this application to do a lot more, because—after you replace `WsProvider` with `ScProvider`—you can write code for your application simply by using the existing [Polkadot-JS API](https://polkadot.js.org/docs/).
 
-5. Stop the `smoldot` light client node by pressing Control-c.
+13. Stop the `smoldot` light client node by pressing Control-c.
 
 ## Connect to a custom chain specification 
 
@@ -253,20 +257,21 @@ To connect to this chain:
    
    - The `statemint.json` chain specification file is imported into the `jsonParachainSpec` object.
    - The chain specification is converted to a JSON-encoded string and stored in the `parachainSpec` variable, so that it can be exchanged with the web server.
-- The `ScProvider` provider is created for the `polkadot` relay chain but is used as a parameter for creating and connecting to the parachain provider.
+   - The `ScProvider` provider is created for the `polkadot` relay chain but is used as a parameter for creating and connecting to the parachain provider.
+  
   Substrate Connect requires this information to determine the relay chain that the parachain communicates with.
 
-1. Start the web application by running the following command:
+6. Start the web application by running the following command:
    
    ```bash
    yarn dev
    ```
 
-2. Verify the browser opens the URL `http://localhost:3001/`. 
+7. Verify the browser opens the URL `http://localhost:3001/`. 
   
-3. Open the browser console for your browser.
+8. Open the browser console for your browser.
 
-4. Verify the `smoldot` process is initialized, followed by the hashes of the incoming blocks from Polkadot.
+9. Verify the `smoldot` process is initialized, followed by the hashes of the incoming blocks from Polkadot.
    
    For example, the console should display log entries similar to the following:
    
@@ -280,7 +285,7 @@ To connect to this chain:
 ## Advanced application development
 
 The examples in this tutorial used `@polkadot/rpc-provider/substrate-connect` because this provider makes if straightforward to create applications that interact with the chain using the [Polkadot-JS API](https://polkadot.js.org/docs/).
-For more advanced application development that doesn't depend on the Polkadot-JS API, you install and use `@substrate-connect`.
+For more advanced application development that doesn't depend on the Polkadot-JS API, you can install and use the `@substrate-connect` package.
 For example, if you are building your own application library or programming interfaces, you should install the Substrate Connect dependencies by running the following command:
    
 ```bash

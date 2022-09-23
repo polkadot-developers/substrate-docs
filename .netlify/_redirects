@@ -39,7 +39,7 @@
 /runtime/frame/                      /reference/frame-pallets/                        301!
 /tutorials/add-a-pallet/             /tutorials/work-with-pallets/add-a-pallet/       301!
 /runtime/upgrades/                   /main-docs/build/upgrade/                        301!
-/tutorials/forkless-upgrades/        /tutorials/get-started/forkless-upgrade/         301!
+/tutorials/forkless-upgrade/        /tutorials/get-started/upgrade-a-running-network/         301!
 /tools/                              /reference/command-line-tools/                   301!
 /runtime/upgrades/                   /main-docs/build/upgrade/                        301!
 /getting-started/architecture/       /main-docs/fundamentals/architecture/            301!

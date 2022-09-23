@@ -176,7 +176,7 @@ For example, if you prefer to read source code and are familiar with Rust, you m
 
 - [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
 - [Simulate a network](/tutorials/get-started/simulate-network/)
-- [Add trusted nodes](/tutorials/get-started/trusted-network/)
+- [Add trusted nodes](/tutorials/get-started/add-trusted-nodes/)
 
 <!-- TODO NAV.YAML -->
 <!-- add these back -->
