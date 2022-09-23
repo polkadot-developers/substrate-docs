@@ -508,7 +508,7 @@ To keep things simple, you can use the Polkadot/Substrate Portal application to 
    ![Verify the Sudo event](/media/images/docs/tutorials/permissioned-network/sudo-events-add-node.png)
 
    After the transaction is included in the block, you should see the `charlie` node is connected to the `alice` and `bob` nodes, and starts to sync blocks.
-   The three nodes can find each other using the [mDNS](https://paritytech.github.io/substrate/master/sc_network/index.html) discovery mechanism that is enabled by default in a local network.
+   The three nodes can find each other using the [mDNS](https://paritytech.github.io/substrate/master/sc_network/index.html) discovery mechanism that is enabled by default in a local network. Also ensure any local firewall is configured to allow mDNS.
    
    If your nodes are not on the same local network, you should use the command-line option `--no-mdns` to disable it.
 
