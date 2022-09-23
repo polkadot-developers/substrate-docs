@@ -485,7 +485,7 @@ This tutorial uses the Sudo pallet for governance.
 Therefore, you can use the Sudo pallet to call the `addWellKnownNode` function provided by `node-authorization` pallet to add the third node.
 To keep things simple, you can use the Polkadot/Substrate Portal application to access the Sudo pallet.
 
-1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) in a browser.
+1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/explorer) in a browser.
 
 1. Click **Developer** and select **Sudo**.
 
