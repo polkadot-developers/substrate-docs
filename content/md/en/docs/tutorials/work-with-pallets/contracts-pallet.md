@@ -11,7 +11,7 @@ To see what that entails, this tutorial demonstrates adding a more complex palle
 In this tutorial, you'll add the [Contracts pallet](https://paritytech.github.io/substrate/master/pallet_contracts/) so that you can support smart contract development for your blockchain.
 
 If you completed the [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet/) tutorial, you'll notice some familiar patterns when adding the Contracts pallet.
-This tutorial focuses less on those common patterns and more on the the settings that are specifically required to add the Contracts pallet.
+This tutorial focuses less on those common patterns and more on the settings that are specifically required to add the Contracts pallet.
 
 ## Before you begin
 
@@ -20,7 +20,7 @@ Before starting this tutorial, verify the following:
 - You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
 - You have downloaded and compiled the 
-  [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template as described in
+  [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) as described in
   [Build a local blockchain](/tutorials/get-started/build-local-blockchain/).
 
 - You have downloaded and installed the
