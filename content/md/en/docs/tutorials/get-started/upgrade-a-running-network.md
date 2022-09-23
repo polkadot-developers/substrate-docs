@@ -44,7 +44,7 @@ By completing this tutorial, you will accomplish the following objectives:
 ## Authorize an upgrade using the Sudo pallet
 
 Typically, runtime upgrades are managed through governance with community members voting to approve or reject upgrade proposals.
-TInplace of governance, tis tutorial uses the Sudo pallet and the `Root` origin to identify the runtime administrator with permission to upgrade the runtime.
+In place of governance, this tutorial uses the Sudo pallet and the `Root` origin to identify the runtime administrator with permission to upgrade the runtime.
 Only this root-level administrator can update the runtime by calling the `set_code` function.
 The Sudo pallet enables you to invoke the `set_code` function using the `Root` origin by specifying the account that has root-level administrative permissions.
 
@@ -151,7 +151,7 @@ To add the Scheduler types and configuration trait:
    }
    ```
 
-4.  Add the implementation for the Config trait for the Scheduler pallet.
+4. Add the implementation for the Config trait for the Scheduler pallet.
 
    ```rust
    impl pallet_scheduler::Config for Runtime {
@@ -185,7 +185,7 @@ To add the Scheduler types and configuration trait:
    );
    ```
 
-1. Increment the [`spec_version`](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html#structfield.spec_version) in the `RuntimeVersion` struct](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html) to upgrade runtime version.
+1. Increment the [`spec_version`](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html#structfield.spec_version) in the [`RuntimeVersion` struct](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html) to upgrade runtime version.
 
    ```rust
    pub const VERSION: RuntimeVersion = RuntimeVersion {
@@ -257,7 +257,7 @@ To update the network with the upgraded runtime:
 
 5. Click **file upload**, then select or drag and drop the compact and compressed WebAssembly file—`node_template_runtime.compact.compressed.wasm`—that you generated for the runtime.
 
-   For example, navigate to the `target/release/wbuild/node-template-runtime` directlroy and select `node_template_runtime.compact.compressed.wasm` as the file to upload.
+   For example, navigate to the `target/release/wbuild/node-template-runtime` directory and select `node_template_runtime.compact.compressed.wasm` as the file to upload.
 
 6. Leave the **weight** parameter with the default of `0`.
 
@@ -334,7 +334,7 @@ To modify the value of the existential deposit for a runtime upgrade:
    cargo build --release -p node-template-runtime
    ```
    
-   This command generates a new set of build artifacts. overwriting the previous set of build artifacts.
+   This command generates a new set of build artifacts, overwriting the previous set of build artifacts.
    If you want to save the previous set of artifacts, copy them to another location before compiling the node template.
 
 1. Verify the WebAssembly build artifacts are in the `target/release/wbuild/node-template-runtime` directory.
