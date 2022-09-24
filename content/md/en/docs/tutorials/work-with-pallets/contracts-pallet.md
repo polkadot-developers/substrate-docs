@@ -82,7 +82,7 @@ To import the `pallet-contracts` crate:
 1. Check that your runtime compiles correctly by running the following command:
 
    ```bash
-   cargo check -p node-template-runtime
+   cargo check -p node-template-runtime --release
    ```
 
 ## Implement the Contracts configuration trait
@@ -220,7 +220,7 @@ To implement the `Config` trait for the Contracts pallet in the runtime:
 1. Check that your runtime compiles correctly by running the following command:
 
    ```bash
-   cargo check -p node-template-runtime
+   cargo check -p node-template-runtime --release
    ```
 
    Although the runtime should compile, you cannot yet compile the entire node.
@@ -322,7 +322,7 @@ To expose the Contracts RPC API:
 1. Check that your runtime compiles correctly by running the following command:
 
    ```bash
-   cargo check -p node-template-runtime
+   cargo check -p node-template-runtime --release
    ```
 
 ## Update the outer node
@@ -399,7 +399,7 @@ To add the RPC API extension to the outer node:
 1. Check that your runtime compiles correctly by running the following command:
 
    ```bash
-   cargo check -p node-template
+   cargo check -p node-template --release
    ```
    
    If there are no errors, you are ready to compile by running the following command:
