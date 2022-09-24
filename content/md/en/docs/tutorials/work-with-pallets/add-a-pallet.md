@@ -107,7 +107,7 @@ To add the dependencies for the Nicks pallet to the runtime:
 1. Check that the new dependencies resolve correctly by running the following command:
 
    ```bash
-   cargo check -p node-template-runtime
+   cargo check -p node-template-runtime --release
    ```
 
 ## Review the configuration for Balances
@@ -226,7 +226,7 @@ To implement the `nicks` pallet in your runtime:
 1. Check that the new dependencies resolve correctly by running the following command:
 
    ```bash
-   cargo check -p node-template-runtime
+   cargo check -p node-template-runtime --release
    ```
 
    If there are no errors, you are ready to compile.
