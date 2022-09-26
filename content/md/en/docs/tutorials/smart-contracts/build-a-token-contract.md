@@ -303,7 +303,7 @@ Events should be declared using the `#[ink(event)]` attribute.
 
 ### Add a transfer event
 
-For this tutorial, you'll declare a `Transfer` event to provide information about completed the transfer operations.
+For this tutorial, you'll declare a `Transfer` event to provide information about completed transfer operations.
 The `Transfer` event contains the following information:
 
 - A value of type `Balance`.
@@ -338,16 +338,16 @@ Now that you have declared the event and defined the information the event conta
 You do this by calling the `self.env().emit_event()` function with the event name as the sole argument to the call.
 
 In this ERC-20 contract, you want to emit a `Transfer` event every time that a transfer takes place.
-There are two places in the code where this occurs in two places:
+There are two places in the code where this occurs:
 
 - During the `new` call to initialize the contract.
 
 - Every time that `transfer_from_to` is called.
 
 The values for the `from` and `to` fields are `Option<AccountId>` data types.
-However, during the initial transfer of tokens the value set for the initial*supply*
+However, during the initial transfer of tokens the value set for the *initial supply*
 doesn't come from any other account.
-In the case, the Transfer event has a `from` value of `None`.
+In this case, the Transfer event has a `from` value of `None`.
 
 To emit the Transfer event:
 
@@ -364,8 +364,8 @@ To emit the Transfer event:
            from: None,
            to: Some(caller),
            value: initial_supply,
-         });
-       }
+       });
+   }
    ```
 
 1. Add the `Transfer` event to the `transfer_from_to()` function.
@@ -390,7 +390,7 @@ To emit the Transfer event:
    fn transfer_works() {
        let mut erc20 = Erc20::new(100);
        assert_eq!(erc20.balance_of(AccountId::from([0x0; 32])), 0);
-       assert_eq!(erc20.transfer((AccountId::from([0x0; 32])), 10), Ok(()));
+       assert_eq!(erc20.transfer(AccountId::from([0x0; 32]), 10), Ok(()));
        assert_eq!(erc20.balance_of(AccountId::from([0x0; 32])), 10);
    }
 
@@ -429,7 +429,7 @@ To ensure approvals and transfers can be done safely, the ERC-20 token contracts
 
 Approving another account to spend your tokens is the first step in the third party transfer process.
 As a token owner, you can specify any account and any number of tokens that the designated account can transfer on your behalf.
-You don't have approve all tokens in your account and you can specify an maximum number that an approved account is allowed to transfer.
+You don't have approve all tokens in your account and you can specify a maximum number that an approved account is allowed to transfer.
 
 When you call `approve` multiple times, you overwrite the previously-approved value with the new value.
 By default, the approved value between any two accounts is `0`.
@@ -642,7 +642,7 @@ For example, this tutorial illustrated:
 
 - How to enable third-party transfers.
 
-You can find an example of the code for this tutorial in the assets for [smart contracts](/assets/tutorials/smart-contracts/erc20-final.rs)
+You can find an example of the code for this tutorial in the assets for [smart contracts](/assets/tutorials/smart-contracts/erc20-final.rs).
 You can learn more about smart contract development in the following topics:
 
 - [Use maps for storing values](/tutorials/smart-contracts/use-maps-for-storing-values/)
