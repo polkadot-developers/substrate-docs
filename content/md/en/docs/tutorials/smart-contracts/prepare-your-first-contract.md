@@ -326,7 +326,7 @@ However, deploying a smart contract on Substrate is a little different than depl
 For most smart contract platforms, you must deploy a completely new blob of the smart contract source code each time you make a change.
 For example, the standard ERC20 token has been deployed to Ethereum thousands of times.
 Even if a change is minimal or only affects some initial configuration setting, each change requires a full redeployment of the code.
-Each smart contract instance consume blockchain resources equivalent to the full contract source code, even if no code was actually changed.
+Each smart contract instance consumes blockchain resources equivalent to the full contract source code, even if no code was actually changed.
 
 In Substrate, the contract deployment process is split into two steps:
 
