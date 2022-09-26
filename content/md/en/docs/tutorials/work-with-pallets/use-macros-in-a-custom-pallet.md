@@ -316,7 +316,7 @@ To implement this logic in the proof-of-existence pallet:
 1. Check that your code compiles by running the following command:
 
     ```bash
-    cargo check -p node-template-runtime
+    cargo check -p node-template-runtime --release
     ```
 
     You can refer to the node template [solution](https://github.com/substrate-developer-hub/substrate-node-template/blob/tutorials/solutions/proof-of-existence/pallets/template/src/lib.rs) if you get stuck.
