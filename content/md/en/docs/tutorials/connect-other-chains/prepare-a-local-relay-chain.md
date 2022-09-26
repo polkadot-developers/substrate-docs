@@ -172,7 +172,7 @@ To start the validator nodes using the [raw sample chain specification file](/as
 ## Where to go next
 
 In this tutorial, you learned how to build and start a local relay chain.
-From here, you might want to learn how to connect a local parachain the the local relay chain or experiment with tools that help you automate setting up a test network.
+From here, you might want to learn how to connect a local parachain to the local relay chain or experiment with tools that help you automate setting up a test network.
 
 - [Connect a local parachain](/tutorials/connect-other-chains/connect-a-local-parachain/)
 - [Launch a parachain test network](https://github.com/open-web3-stack/parachain-launch)
