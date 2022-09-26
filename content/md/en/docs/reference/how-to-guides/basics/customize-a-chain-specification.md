@@ -29,7 +29,7 @@ This guide illustrates:
 1. Modify the plain chain specification (optional):
 
    This optional step we can leverage an _existing_ plain chain specification for a network that otherwise would require modification of the _source_ of the node to run on a _new network_.
-   For example, this can be quite useful in the [Prepare a local relay chain](/tutorials/connect-other-chains/prepare-a-local-relay-chain/) where we want to create a custom _relay chain_ without customizing Polkadot's source.
+   For example, this can be quite useful in the [Prepare a local relay chain](/tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain/) where we want to create a custom _relay chain_ without customizing Polkadot's source.
 
    Here we use the _same_ chain spec, but pass a flag to disable bootnodes, as we want a _new_ network where these nodes will be different.
 
