@@ -345,7 +345,7 @@ There are two places in the code where this occurs:
 - Every time that `transfer_from_to` is called.
 
 The values for the `from` and `to` fields are `Option<AccountId>` data types.
-However, during the initial transfer of tokens the value set for the *initial supply*
+However, during the initial transfer of tokens, the value set for the *initial supply*
 doesn't come from any other account.
 In this case, the Transfer event has a `from` value of `None`.
 
