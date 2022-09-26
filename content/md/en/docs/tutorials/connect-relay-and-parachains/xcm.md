@@ -15,7 +15,7 @@ keywords:
 WIP
 
 <!-- TODO NAV.YAML -->
-<!-- content/md/en/docs/tutorials/connect-parachains-to-a-network/parachain.md in next steps once in nav -->
+<!-- content/md/en/docs/tutorials/connect-relay-and-parachains/parachain.md in next steps once in nav -->
 
 <!-- TODO
 

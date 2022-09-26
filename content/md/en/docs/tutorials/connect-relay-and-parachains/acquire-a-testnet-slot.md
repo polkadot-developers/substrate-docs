@@ -20,7 +20,7 @@ Before you begin, verify the following:
   
 - You know how to generate and store keys as described in [Add trusted nodes](/tutorials/get-started/add-trusted-nodes/).
   
-- You have completed the [Prepare a local relay chain](/tutorials/connect-parachains-to-a-network/prepare-a-local-relay-chain/) and [Connect a local parachain](/tutorials/connect-parachains-to-a-network/connect-a-local-parachain/) tutorials on your local computer.
+- You have completed the [Prepare a local relay chain](/tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain/) and [Connect a local parachain](/tutorials/connect-relay-and-parachains/connect-a-local-parachain/) tutorials on your local computer.
 
 ## Get started with an account and tokens
 
@@ -56,7 +56,7 @@ To prepare an account:
 ## Reserve a parachain identifier
 
 You must reserve a parachain identifier before you can register as a parathread on Rococo.
-The steps are similar to the ones you followed in [Connect a local parachain](/tutorials/connect-parachains-to-a-network/connect-a-local-parachain/) to reserve an identifier on the local relay chain.
+The steps are similar to the ones you followed in [Connect a local parachain](/tutorials/connect-relay-and-parachains/connect-a-local-parachain/) to reserve an identifier on the local relay chain.
 However, for the public testnet, you'll be assigned the next available identifier.
 
 To reserve an identifier:
@@ -83,7 +83,7 @@ To reserve an identifier:
 
 The files required to register a parachain must specify the correct relay chain to connect to and parachain identifier that you have been assigned.
 To make these changes, you must build and modify the chain specification file for your parachain.
-In this tutorial, the relay chain is `rococo` instead of `rococo-local` used in the [Connect a local parachain](/tutorials/connect-parachains-to-a-network/connect-a-local-parachain/) tutorial and the para identifier is `4105`.
+In this tutorial, the relay chain is `rococo` instead of `rococo-local` used in the [Connect a local parachain](/tutorials/connect-relay-and-parachains/connect-a-local-parachain/) tutorial and the para identifier is `4105`.
 
 To modify the chain specification:
 

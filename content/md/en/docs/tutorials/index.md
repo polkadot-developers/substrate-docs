@@ -43,9 +43,9 @@ You'll learn how to:
 - Use maps to store and retrieve values in a smart contract.
 - Build a smart contract for transferring ERC-20 tokens.
 
-## Connect with other chains
+## Connect relay and parachains
 
-The **Connect with other chains** tutorials delve into more advanced topics for moving beyond solo chain development, including how to connect your chain to other chains.
+The **Connect relay and parachains** tutorials delve into more advanced topics for moving beyond solo chain development, including how to connect your chain to other chains.
 You'll learn how to:
 
 - Turn a solo chain into a parachain.
