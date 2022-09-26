@@ -309,7 +309,7 @@ To start the preconfigured `contracts-node`:
 
 1. Select **Local Node**.
 
-   ![Connect to the local node](/media/images/tutorials/ink-workshop/connect-to-local-node.png)
+   ![Connect to the local node](/media/images/docs/tutorials/ink-workshop/connect-to-local-node.png)
 
 ## Deploy the contract
 
