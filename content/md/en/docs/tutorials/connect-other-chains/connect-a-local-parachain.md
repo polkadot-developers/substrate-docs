@@ -16,7 +16,7 @@ This tutorial illustrates how to reserve a parachain identifier with a local rel
 By completing this tutorial, you will accomplish the following objectives:
 
 - Compile a local parachain node.
-- Reserve a unique identifier the local relay chain for the parachain to use.
+- Reserve a unique identifier with the local relay chain for the parachain to use.
 - Configure a chain specification for the parachain.
 - Export the runtime and genesis state for the parachain.
 - Start the local parachain and see that it connects to the local relay chain.
@@ -316,7 +316,7 @@ To register the parachain:
 
    ![View the parachain](/media/images/docs/tutorials/parachains/view-parachain.png)
 
-4. Click **Network** and select **Parachains** and wait for a new epic to start.
+4. Click **Network** and select **Parachains** and wait for a new epoch to start.
 
    The relay chain tracks the latest block—the head—of each parachain.
    When a relay chain block is finalized, the parachain blocks that have completed the [validation process](https://polkadot.network/the-path-of-a-parachain-block) are also finalized.
