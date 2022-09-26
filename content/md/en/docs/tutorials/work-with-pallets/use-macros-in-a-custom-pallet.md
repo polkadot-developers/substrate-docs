@@ -198,7 +198,7 @@ The events you defined indicate when calls to the pallet have completed successf
 Errors indicate when a call has failed, and why it has failed.
 For this tutorial, you define the following error conditions:
 
-- An attempt to make a claim that has already exists.
+- An attempt to make a claim that already exists.
 
 - An attempt to revoke a claim that does not exist.
 
@@ -254,7 +254,7 @@ The proof-of-existence pallet exposes two callable functions to users:
 These functions use the `StorageMap` to implement the following logic:
 
 - If a claim is already in storage, then it already has an owner and cannot be claimed again.
-- If a claim does not in storage, then it is available to be claimed and written to storage.
+- If a claim does exist not in storage, then it is available to be claimed and written to storage.
 
 To implement this logic in the proof-of-existence pallet:
 
