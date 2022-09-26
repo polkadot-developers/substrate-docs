@@ -10,7 +10,7 @@ The **Integrate with tools** tutorials highlight tools and node extensions that 
 - [Access EVM accounts](/tutorials/integrate-with-tools/access-evm-accounts/) illustrates how you can use a customized Substrate node to access to Ethereum-based accounts and contracts.
 
 <!--
-- [Work with sidecar](/tutorials/integrate-with-tools/work-with-sidecar/) explores how you can interact with a Substrate-based chain using the sidecar RESTful API and endpoints.network.
+- [Work with sidecar](/tutorials/integrate-with-tools/work-with-sidecar/) explores how you can interact with a Substrate-based chain using the sidecar RESTful API and endpoints.
 
 - [Build with subxt](/tutorials/integrate-with-tools/build-with-subxt/)
 -->

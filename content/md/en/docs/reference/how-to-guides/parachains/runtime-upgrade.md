@@ -25,7 +25,7 @@ Because of this, and the very confined nature of state transition coordination b
 Please do the following:
 
 - Read the general [runtime upgrade docs](/build/upgrade).
-- Complete the [Prepare a local relay chain](/tutorials/connect-other-chains/prepare-a-local-relay-chain) tutorial, and learn the `polkadot-launch` tool for testing.
+- Complete the [Prepare a local relay chain](/tutorials/connect-parachains-to-a-network/prepare-a-local-relay-chain) tutorial, and learn the `polkadot-launch` tool for testing.
 
 ## Choose your upgrade approach
 

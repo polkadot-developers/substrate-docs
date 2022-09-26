@@ -198,16 +198,16 @@ tutorials:
         - title: Troubleshoot smart contracts
           url: /tutorials/smart-contracts/troubleshoot-smart-contracts/
     - title: Connect to other chains
-      url: /tutorials/connect-other-chains/
+      url: /tutorials/connect-parachains-to-a-network/
       pages:
         - title: Prepare a local relay chain
-          url: /tutorials/connect-other-chains/prepare-a-local-relay-chain/
+          url: /tutorials/connect-parachains-to-a-network/prepare-a-local-relay-chain/
         - title: Connect a local parachain
-          url: /tutorials/connect-other-chains/connect-a-local-parachain/
+          url: /tutorials/connect-parachains-to-a-network/connect-a-local-parachain/
         - title: Acquire a testnet slot
-          url: /tutorials/connect-other-chains/acquire-a-testnet-slot/
+          url: /tutorials/connect-parachains-to-a-network/acquire-a-testnet-slot/
         #- title: Send cross-consensus messages (XCM)
-        #  url: /tutorials/connect-other-chains/xcm/
+        #  url: /tutorials/connect-parachains-to-a-network/xcm/
     - title: Integrate with tools
       url: /tutorials/integrate-with-tools/
       pages:

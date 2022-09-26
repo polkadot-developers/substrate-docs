@@ -174,7 +174,7 @@ To start the validator nodes using the [raw sample chain specification file](/as
 In this tutorial, you learned how to build and start a local relay chain.
 From here, you might want to learn how to connect a local parachain to the local relay chain or experiment with tools that help you automate setting up a test network.
 
-- [Connect a local parachain](/tutorials/connect-other-chains/connect-a-local-parachain/)
+- [Connect a local parachain](/tutorials/connect-parachains-to-a-network/connect-a-local-parachain/)
 - [Launch a parachain test network](https://github.com/open-web3-stack/parachain-launch)
 - [Set up `zombienet`](https://github.com/paritytech/zombienet) is a CLI tool that enables you to spawn ephemeral Polkadot and Substrate networks and perform tests against them.
 
