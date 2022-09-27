@@ -229,7 +229,7 @@ After the parachain is active as a parathread, the related project team should [
 ### Submitting a slot request
   
 The Rococo runtime requires `sudo` access to assign slots.
-For example, the Rococo runtime specifies that the account used to assign slots Cmust have root level permissions:
+For example, the Rococo runtime specifies that the account used to assign slots must have root level permissions:
 
 ```text
 AssignSlotOrigin = EnsureRoot<Self::AccountId>;
@@ -272,8 +272,8 @@ To assign a temporary slot:
 
 The current lease duration and slot availability settings for assigned parachain slots on Rococo are currently:
 
-- **Permanent slot least duration**: 1 year (365 days)
-- **Temporary slot least duration**: 3 days
+- **Permanent slot lease duration**: 1 year (365 days)
+- **Temporary slot lease duration**: 3 days
 - **Maximum number of permanent slots**: up to 25 permanent slots
 - **Maximum number of temporary slots**: up to 20 temporary slots
 - **Maximum temporary slots allocated per leased period**: up to 5 temporary slots per 3-day temporary lease periods
@@ -288,4 +288,4 @@ Registered and approved slots are cycled through automatically in a round-robin 
 
 ## Next steps
 
-After rigorous testing and validation of the parachain on a test network like Rococo, you can consider joining a production such as [Kusama](https://kusama.network/) though a [slot auction](https://guide.kusama.network/docs/learn-auction/).
+After rigorous testing and validation of the parachain on a test network like Rococo, you can consider joining a production network such as [Kusama](https://kusama.network/) though a [slot auction](https://guide.kusama.network/docs/learn-auction/).
