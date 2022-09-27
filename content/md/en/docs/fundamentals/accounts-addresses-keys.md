@@ -65,6 +65,7 @@ For more information about working with generic types, see [Rust for Substrate](
 
 ## Specialized accounts
 
+Substrate itself doesn't require an specific type of account implementation beyond the SS58 address format that specifies the network that the address belongs to. 
 Although most accounts are used to represent a public/private key pair that controls funds or executes transactions, Substrate supports some specialized accounts to control how specific key pairs can be used.
 For example, you might have accounts that require custom cryptographic schemes, can only be used to perform specific functions, or can only access specific pallets.
 
@@ -78,7 +79,6 @@ To keep the balances in these accounts secure, the Staking pallet provides some 
 | ------------ | ----------------------- |
 | Stash account | The **stash account** represents the public/private key pair that defines a staking balance for validators. You should keep stash account keys offline and in cold storage for security. You should not use the stash account to make frequent transactions. because the keys for this account are kept offline, you can designate a **controller account** to make non-spending decisions or a **keyless proxy account** to vote in governance on its behalf. |
 | Controller account | The controller account represents the public/private key pair that signals your intent to validate or nominate, sets preferences like the rewards destination and, in the case of validators, sets the session keys. A controller account only needs to pay transaction fees, so it only needs minimal funds. It can never be used to spend funds from its stash account. Actions taken by the controller can result in slashing, so it should still be well secured. |
-| Session account | The session account represents the public/private key pair used by validators to sign consensus-related messages. The session account is not intended to control funds. These keys are also defined generically in the [Session pallet](https://paritytech.github.io/substrate/master/pallet_session/index.html) and made concrete in the runtime. To create the session account key pair, you must attest that the account acts on behalf of your stash account and nominators by signing a transaction with your controller key and publishing the session certificate on the chain. You can generate and register new session keys on chain using a [`session.setKeys`](https://paritytech.github.io/substrate/master/pallet_session/pallet/struct.Pallet.html#method.set_keys) transaction. You can change session keys using the [`author_rotateKeys`](https://paritytech.github.io/substrate/master/sc_rpc/author/trait.AuthorApiClient.html#tymethod.rotate_keys) RPC call. |
 
 ### Keyless proxy accounts
 
