@@ -50,7 +50,7 @@ Although running Substrate Connect as a browser extension is optional, the exten
 
 - Better connectivity
   
-  The browser extension can connect to nodes that don’t have a TLS/SSL certificates installed.
+  The browser extension can connect to nodes that don’t have TLS/SSL certificates installed.
 
 ## Before you begin
 
