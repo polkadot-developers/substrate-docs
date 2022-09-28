@@ -60,7 +60,7 @@ The most commonly-used consensus model is called the proof-of-work consensus mod
 With the proof-of-work consensus model, the node that completes a computational problem first has the right to submit a block to the chain.
 
 For a blockchain to be fault tolerant and provide a consistent view of state even if some nodes are compromised by malicious actors or network outages, some consensus models require at least two-thirds of the nodes to agree on state at all time.
-This two-thirds majority ensure that the network is fault tolerant and can withstand some network participants behaving badly, regardless of whether the behavior is intentional or accidental.
+This two-thirds majority ensures that the network is fault tolerant and can withstand some network participants behaving badly, regardless of whether the behavior is intentional or accidental.
 
 ## Blockchain economics
 
