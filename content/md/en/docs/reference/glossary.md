@@ -98,7 +98,7 @@ The block number for any particular block in a blockchain indicates how many blo
 
 ## blockchain
 
-Describes a distributed network of computers that uses [cryptography](#cryptographic-primitives) to allow a group of participants to trustlessly come to [consensus](#consensus) on the [state](#state) of a system as it evolves over time
+Describes a distributed network of computers that uses [cryptography](#cryptographic-primitives) to allow a group of participants to trustlessly come to [consensus](#consensus) on the [state](#state) of a system as it evolves over time.
 The computers that compose the blockchain network are called [nodes](#node).
 
 ## byzantine fault tolerance (BFT)
