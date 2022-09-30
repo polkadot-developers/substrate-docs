@@ -120,7 +120,7 @@ To modify the chain specification:
    ...
    ```
 
-1. Add the public key for your account to the session keys section.
+1. Add the public key for your account to the session keys section. Each configured session key will require a running collator.
 
    ```json
    ...
