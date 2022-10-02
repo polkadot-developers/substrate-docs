@@ -15,11 +15,11 @@ The following diagram illustrates how the libraries mirror the outer node and ru
 
 ## Core node libraries
 
-The libraries that enable a Substrate node to handle its network responsibilities,including consensus and block execution are Rust crates that use the `sc_` prefix in the crate name.
+The libraries that enable a Substrate node to handle its network responsibilities, including consensus and block execution are Rust crates that use the `sc_` prefix in the crate name.
 For example, the [`sc_service`](https://paritytech.github.io/substrate/master/sc_service/index.html) library is responsible for building the networking layer for Substrate blockchains, managing the communication between the network participants and the transaction pool.
 
 The libraries that provide the communication layer between the outer node and the runtime are Rust crates that use the `sp_` prefix in the crate name.
-These libraries orchestrate the activities that require outer node and runtime to interact.
+These libraries orchestrate the activities that require the outer node and runtime to interact.
 For example, the[`sp_std`](https://paritytech.github.io/substrate/master/sp_std/index.html) library takes useful primitives from Rust's standard library and makes them usable with any code that depends on the runtime.
 
 The libraries that enable you to build the runtime logic and to encode and decode the information passed into and out of the runtime are Rust crates that use the `frame_` prefix in the crate name.
