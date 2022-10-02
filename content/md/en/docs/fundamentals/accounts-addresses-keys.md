@@ -86,15 +86,29 @@ For example, you might implement specialized accounts if your application requir
 In most cases, specialized accounts are implemented in the context of a specific FRAME pallet, either in a prebuilt pallet like [Staking](https://paritytech.github.io/substrate/master/pallet_staking/index.html) or [Multisig](https://paritytech.github.io/substrate/master/pallet_multisig/index.html) or in custom pallets that you design.
 
 For example, the Staking pallet takes an originating FRAME system account that wants to put up a bond and generates the **stash** and **controller** account abstractions to identify the account required to perform specific operations.
+You can see the implementation of these account abstractions in the Polkadot ecosystem. However, you can use the same framework to implement different account rules or account types or as inspiration for a custom pallet with its own account abstractions. 
 
 ### Multi-signature accounts
 
-The Multisig pallet
+Typically, an account has one and only one owner and that owner holds the private key for signing transactions. 
+The Multisig pallet enables you to configure a specialized account for executing transactions that multiple account owners must approve.
+The multisig account is an address that has a public key, but no private key.
+The public address for the multisig account is derived from a deterministic list of the authorized account signatories and an associated transaction request block height and extrinsic index identifier.
 
-### Keyless proxy accounts
+The Multisig pallet enables multiple parties to share responsibility for executing certain transactions.
+Any account account holder can specify the account that are allowed to approve a multi-signature transaction and the minimum number of approvals required for a call to  be dispatched to the runtime.
 
-In some cases, you might want to create an account that is detached from any owner so that it can be used to perform autonomous transactions.
-For example, you might create an account, then delegate permissions to that account so that it can dispatch function calls without your intervention and without access to your keys.
+### Proxy and keyless accounts
+
+The Proxy pallet provides another way you can configure specialized accounts for a Substrate-based chain using FRAME.
+Proxy accounts enable an account owner to delegate the dispatch of certain transactions to another account.
+With proxy accounts, an account owner can:
+
+- Configure time delays for each proxy and set restrictions on the types of transactions that each proxy can issue. 
+- Announce the action a transaction to be executed before execution happens. 
+- Create anonymous accounts that have no private key and can act without account ownership through their own configured proxies.
+
+For example, you can create an anonymous proxy account and delegate permissions to that account so that it can dispatch function calls without your intervention and without access to your keys.
 After the new account with the delegated permissions is created, the account can be used as a recipient to burn funds or to hold tokens awaiting the execution or a transfer.
 
 You can use the Proxy pallet to create an account with permission to dispatch certain types of calls using the delegated account as the signed origin.
