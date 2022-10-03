@@ -166,20 +166,20 @@ pub const fn deposit(items: u32, bytes: u32) -> Balance {}
 
 This is located in the `runtime/<RELAY CHAIN>/src/constants.rs` files [in Polkadot](https://github.com/paritytech/polkadot/blob/master/runtime/).
 
-### Register Using `sudo`
+### Register using `sudo`
 
 We have our relay chain launched and our parachain collator ready to go. Now we have to register the parachain on the relay chain.
 In the a production network, this will typically be accomplished with on Polkadot and Kusama, but for this tutorial we will do it with `sudo` call.
 
 #### Option 1: `paraSudoWrapper.sudoScheduleParaInitialize`
 
-- Go to the [Polkadot Apps UI](https://polkadot.js.org/apps/#/explorer), connecting to your **relay chain**.
+- Go to the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer), connecting to your **relay chain**.
 
 - Execute a sudo extrinsic on the relay chain by going to `Developer` -> `sudo` page.
 
 - Pick `paraSudoWrapper` -> `sudoScheduleParaInitialize(id, genesis)` as the extrinsic type, shown below.
 
-![parachain-registration-sudo.png](/media/images/docs/tutorials/09-cumulus/parachain-registration-sudo.png)
+![parachain-registration-sudo.png](/media/images/docs/tutorials/parachains/parachain-registration-sudo.png)
 
 - In the extrinsics parameters, specify the correct `ParaID` and files to use.
 
@@ -187,13 +187,13 @@ This dispatch, if successful, will emit the `sudo.Sudid` event, viewable in the 
 
 #### Option 2: `slots.forceLease`
 
-- Go to the [Polkadot Apps UI](https://polkadot.js.org/apps/#/explorer), connecting to your **relay chain**.
+- Go to the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer), connecting to your **relay chain**.
 
 - Execute a sudo extrinsic on the relay chain by going to `Developer` -> `sudo` page.
 
 - Pick `slots`->`forceLease(para, leaser, amount, period_begin, period_end)` as the extrinsic type, shown below.
 
-![forceLease.png](/media/images/docs/tutorials/09-cumulus/forceLease.png)
+![forceLease.png](/media/images/docs/tutorials/parachains/forceLease.png)
 
 Be sure to set the `period_begin` to the slot you want to start with.
 For example, if you started from scratch in a test environment, the begin period is likely is to be the already active slot `0`.
@@ -201,7 +201,7 @@ In general, you should set the `period_end` to extend beyond the time you have s
 However, if you want to test onboarding and offboarding cycles, you should select slot leases that have gaps for a `ParaID`.
 After fully onboarded and after block production starts you should see:
 
-![parachain-active-lease.png](/media/images/docs/tutorials/09-cumulus/parachain-active-lease.png)
+![parachain-active-lease.png](/media/images/docs/tutorials/parachains/parachain-active-lease.png)
 
 ## Block production and finalization
 
@@ -211,7 +211,7 @@ The collator should start producing parachain blocks (aka collating) once the re
 
 You can keep track of what parachains are registered and what their latest head data is on the `Network > Parachains` tab in the Apps UI.
 
-![parachain-summary-screenshot.png](/media/images/docs/tutorials/09-cumulus/parachain-summary-screenshot.png)
+![parachain-summary-screenshot.png](/media/images/docs/tutorials/parachains/parachain-summary-screenshot.png)
 
 ## Examples
 
