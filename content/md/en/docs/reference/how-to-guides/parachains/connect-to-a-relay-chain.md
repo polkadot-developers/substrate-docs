@@ -29,26 +29,34 @@ After successfully registering your parachain, you will be able to obtain a para
 The [Prepare a local relay chain](/tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain/) is the best place to start if you are new to parachain development.
 This guide is a quick reference and leaves out important details to consider when performing these steps.
 
-## Reserve a `ParaID`
+## Reserve an identifier
 
-First, you need a `ParaID` to perform any operation referencing your parachain/parathread for a specific relay chain.
-For example, for providing the Wasm blob or genesis state, creating channels to other parachains for XCM, starting a crowdloan, etc.
+First, you need a unique identifier to perform any operation referencing your parachain or parathread for a specific relay chain.
+For example, you must have a `ParaID` to load the WebAssembly blob or genesis state, create channels to other parachains for messaging, or start a crowdloan.
 
-- Navigate to the `Network` -> `Parachains` section in the apps UI. If running a node with ws on port 9944, this
-  will be:
-  https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/parachains/parathreads
+To reserve an identifier:
 
-![Reserve a `ParaID`](/media/images/docs/tutorials/09-cumulus/paraid-reserve.png)
+1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/) in a web browser.
 
-- Go to the `Parathread` tab and click on `+ParaID` (a parachain always begins as a parathread with a `ParaID`)
+2. Click **Network** and select **Parachains**. 
+   
+   For example, if the WebSocket port for your node is port 9944, navigate to [Parathreads]
+  (https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/parachains/parathreads).
 
-- Reserve the `ParaID`. This operation requires a deposit that is relay chain specific.
 
-Make note of your `ParaID` and registering account.
-The `ParaID` is unique to the relay chain you are connecting to, along with the account that reserved it.
-This identifier is required in the following steps, and cannot generally be reused between different relay chains.
+3. Click **Parathreads**, then click **+ParaID**.
+   
+   ![Reserve a `ParaID`](/media/images/docs/tutorials/parachains/parathread-paraid.png)
 
-In the next steps it is assumed you use Cumulus, and thus have the proper commands for the `parachain-collator` binary that is produced for your collator nodes.
+
+1. Reserve the **ParaID**. 
+   
+   This operation requires a deposit that is relay-chain specific.
+      
+   The ParaID is unique to the relay chain you are connecting to, along with the account that reserved it.
+   This identifier is required in the following steps, and can't be used for different relay chains, so you take note of both the unique identifier and relay chain you are registering with.
+
+The next steps assume you use Cumulus, and have the proper commands for the `parachain-collator` binary that is produced for your collator nodes.
 
 ## Customize parachain specification
 
