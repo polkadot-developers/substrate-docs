@@ -34,19 +34,10 @@ Before you begin, verify the following:
    git clone https://github.com/substrate-developer-hub/substrate-node-template
    ```
 
-   In most cases, you can clone the `main` branch to get the latest code or use the `--branch` command-line option to specify the most recent Polkadot version.
-   For example:
+   In most cases, you can clone the `main` branch to get the latest code.
+   However, you can use the `--branch` command-line option to specify the Polkadot version you want to work with.
+   Click [Tags](https://github.com/substrate-developer-hub/substrate-node-template/tags) to see the list of Polkadot versions.
    
-   ```sh
-   git clone --branch polkadot-v0.9.28 https://github.com/substrate-developer-hub/substrate-node-template
-   ```
-
-   If you want to save your changes and make this branch easy to identify, you can create a new branch by running a command similar to the following:
-
-   ```bash
-   git switch -c my-branch-v0.9.28
-   ```
-
 2. Change to the root of the cloned directory:
 
    ```sh
@@ -56,7 +47,7 @@ Before you begin, verify the following:
    If you want to save your changes and make this branch easy to identify, you can create a new branch by running a command similar to the following:
 
    ```bash
-   git switch -c my-branch-v0.9.28
+   git switch -c my-branch-v0.9.29
    ```
 
 3. Compile the node template:

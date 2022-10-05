@@ -69,10 +69,20 @@ To compile the Substrate node template:
    git clone https://github.com/substrate-developer-hub/substrate-node-template
    ```
 
-1. Change to the root of the node template directory and checkout the `polkadot-v0.9.28` branch by running the following command:
+   In most cases, you can clone the `main` branch to get the latest code.
+   However, you can use the `--branch` command-line option to specify the Polkadot version you want to work with.
+   Click [Tags](https://github.com/substrate-developer-hub/substrate-node-template/tags) to see the list of Polkadot versions.
+
+1. Change to the root of the node template directory by running the following command:
 
    ```bash
-   cd substrate-node-template && git checkout polkadot-v0.9.28
+   cd substrate-node-template
+   ```
+
+   If you want to save your changes and make this branch easy to identify, you can create a new branch by running a command similar to the following:
+
+   ```bash
+   git switch -c my-branch-v0.9.29
    ```
 
 1. Compile the node template by running the following command:
@@ -100,7 +110,7 @@ To start the local Substrate node:
    ```
 
    The `node-template` command-line options specify how you want the running node to operate.
-   In this case, the `--dev` option specifies that the node runs in developer mode using the predefined `development` chain specification.
+   In this case, the `--dev` option specifies that the node runs in development mode using the predefined `development` chain specification.
    By default, this option also deletes all active data—such as keys, the blockchain database, and networking information when you stop the node by pressing Control-c.
    Using the `--dev` option ensures that you have a clean working state any time you stop and restart the node.
 
@@ -144,17 +154,18 @@ The front-end template requires [Yarn](https://yarnpkg.com/) and [Node.js](https
 
 To install the front-end template:
 
-1. Check whether `node` is installed on your local computer by running the following command:
+1. Open a new terminal window on your computer.
+   
+2. Check whether `node` is installed on your local computer by running the following command:
 
    ```bash
    node --version
    ```
 
-   If the command doesn’t return a version number, download and install `node` by following the
-   instructions for the operating system you use on the [Node.js](https://nodejs.org/) website.
+   If the command doesn’t return a version number, download and install `node` by following the instructions for the operating system you use on the [Node.js](https://nodejs.org/) website.
    The `node` version should be at least **v14** to run the front-end template.
 
-1. Check whether `yarn` is installed on your local computer by running the following command:
+3. Check whether `yarn` is installed on your local computer by running the following command:
 
    ```bash
    yarn --version
@@ -165,22 +176,22 @@ To install the front-end template:
    If the command doesn’t return a version number, download and install `yarn` by running the following command:
 
    ```bash
-   npm install -g yarn
+   npm install --global yarn
    ```
 
-1. Clone the front-end template repository by running the following command:
+4. Clone the front-end template repository by running the following command:
 
    ```bash
    git clone https://github.com/substrate-developer-hub/substrate-front-end-template
    ```
 
-1. Change to the root of the front-end template directory by running the following command:
+5. Change to the root of the front-end template directory by running the following command:
 
    ```bash
    cd substrate-front-end-template
    ```
 
-1. Install the dependencies for the front-end template by running the following command:
+6. Install the dependencies for the front-end template by running the following command:
 
    ```bash
    yarn install
@@ -192,7 +203,7 @@ The Substrate front-end template consists of user interface components to enable
 
 To use the front-end template:
 
-1. Open a new terminal shell on your computer, change to the root directory where you installed the front-end template.
+1. Verify that your current working directory is the root directory where you installed the front-end template.
 
 1. Start the front-end template by running the following command:
 
@@ -228,7 +239,7 @@ To transfer funds to an account:
    Under the Balances table, the front-end template also displays a **Transfer** component.
    You use this component to transfer funds from one account to another.
 
-1. Copy and paste the address for the **dave** account to specify the address to which you are transferring funds.
+1. Select **dave** from the list of available accounts to populate the address to which you are transferring funds.
 
 1. Specify at least **1000000000000** as the amount to transfer, then click **Submit**.
 
@@ -240,28 +251,27 @@ To transfer funds to an account:
 
 1. Check the **Events** component to see events related to the transfer you just completed.
 
-   The Substrate blockchain reports the result of asynchronous operations as events, so you can
-   use the Events components to see details about each operation performed as part of the transfer.
+   The Substrate blockchain reports the result of asynchronous operations as events, so you can use the Events components to see details about each operation performed as part of the transfer.
    For example:
 
    ![Events recorded as results from asynchronous operations](/media/images/docs/tutorials/build-local-blockchain/event-panel.png)
 
 1. When the transaction has been completed and included in a block, you see a confirmation message similar to the following:
 
-   😉 Finalized. Block hash: 0xda7e9e935abf5a3a2fdb0a27d67cd7a69e628165b5827255af2635ba226411a4
+   😉 Finalized. Block hash: 0xa50d3f99fcea8a1611806895aa3f4d4d55fdc4989fbb2148d4856a043d01f808
 
 ## Stop the local node
 
-After a successful transfer, you can continue to explore the front-end template components or stop the local Substrate node the state changes you made.
+After a successful transfer, you can continue to explore the front-end template components or stop the local Substrate node to erase any state changes you have made.
 Because you specified the `--dev` option when you started the node, stopping the local node stops the blockchain and purges all persistent block data so that you can start with a clean state next time you start the node.
 
 To stop the local Substrate node:
 
 1. Return to the terminal shell where the node output is displayed.
 
-1. Press Control-c to terminate the running process.
+2. Press Control-c to terminate the running process.
 
-1. Verify your terminal returns to the terminal prompt in the `substrate-node-template` directory.
+3. Verify your terminal returns to the terminal prompt in the `substrate-node-template` directory.
 
 ## Next steps
 
@@ -278,13 +288,8 @@ In this tutorial, you learned:
 The front-end template includes several additional components for you to experiment with while you're connected to a local development node.
 You can explore these components on your own or learn more in the following topics:
 
-
-If you experienced any issues with this tutorial, submit an issue, ask questions, or provide feedback.
-
-- [Submit an issue](https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose).
-
-- [Substrate Stack Exchange](https://substrate.stackexchange.com/).
-
 - [Architecture](/fundamentals/architecture/)
 - [Networks and blockchains](/fundamentals/node-and-network-types/)
 - [Simulate a network](/tutorials/get-started/simulate-network/)
+- [Submit an issue](https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose)
+- [Substrate Stack Exchange](https://substrate.stackexchange.com/)
