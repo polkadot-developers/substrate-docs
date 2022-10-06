@@ -258,6 +258,8 @@ reference:
       url: /reference/account-data-structures/
     - title: Type encoding (SCALE)
       url: /reference/scale-codec/
+    - title: Address formats
+      url: /reference/address-formats/
     - title: Transaction formats
       url: /reference/transaction-format/
     - title: Cryptography
