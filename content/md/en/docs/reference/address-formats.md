@@ -16,7 +16,7 @@ Because different chains can have different ways of identifying accounts, the SS
 
 ## Basic format
 
-You can find the implementaion for the SS58 address format in [Ss58Codec](https://paritytech.github.io/substrate/master/sp_core/crypto/trait.Ss58Codec.html).
+You can find the implementation for the SS58 address format in [Ss58Codec](https://paritytech.github.io/substrate/master/sp_core/crypto/trait.Ss58Codec.html).
 
 The basic format of the address can be described as:
 
@@ -35,34 +35,34 @@ The Base-58 alphabet eliminates characters that might look ambiguous when printe
 
 ## Address type
 
-The <address-type> in the SS58 address format is one or more bytes that describe the precise format of the address bytes that follow it.
+The `address-type` in the SS58 address format is one or more bytes that describe the precise format of the address bytes that follow it.
 
 Currently, the valid values are:
 
-- `00000000b..=00111111b` (0..=63 inclusive)
+- `00000000b..=00111111b` (0 to 63 inclusive)
   
   Simple account/address/network identifier. 
   The byte can be interpreted directly as such an identifier.
 
-- `01000000b..=01111111b` (64..=127 inclusive)
-- 
+- `01000000b..=01111111b` (64 to 127 inclusive)
+  
   Full address/address/network identifier. 
   The lower 6 bits of this byte should be treated as the upper 6 bits of a 14 bit identifier value, with the lower 8 bits defined by the following byte. 
   This works for all identifiers up to 2**14 (16,383).
 
-- `10000000b..=11111111b` (128..=255 inclusive): 
+- `10000000b..=11111111b` (128 to 255 inclusive)
   
   Reserved for future address format extensions.
   The latter (42) address that is intended to be valid on all Substrate networks that support fixed-length addresses. 
   For production networks, however, a network-specific version might be desirable to help avoid the key-reuse between networks and some of the problems that re-use can cause. By default, Substrate nodes print keys in address type 42
   However, Substrate-based chains with alternative node implementations—for example, nodes in the Polkadot ecosystem—can default to some other address type.
 
-## Address formats for Substrate
+## Address length in bytes
 
 There are 16 different address formats, identified by the length in bytes of the total payload including the checksum.
 
-| Total	| Type | Raw | Account | Checksum
-| ----- | ---- | --- | ------- | --------
+| Total	| Type | Raw account | Checksum
+| ----- | ---- | ----------- | --------
 | 3	| 1 |	1 |	1
 | 4	| 1	| 2	| 1
 | 5	| 1	| 2	| 2
