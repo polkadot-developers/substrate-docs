@@ -101,17 +101,40 @@ Any account account holder can specify the account that are allowed to approve a
 ### Proxy and keyless accounts
 
 The Proxy pallet provides another way you can configure specialized accounts for a Substrate-based chain using FRAME.
-Proxy accounts enable an account owner to delegate the dispatch of certain transactions to another account.
-With proxy accounts, an account owner can:
+With proxy accounts, primary account owners can designate one or more other accounts to act on their behalf.
+Proxy accounts can be used to add a layer of security by isolating primary account funds from accounts assigned to specific roles that can complete tasks on behalf of the primary account. 
 
-- Configure time delays for each proxy and set restrictions on the types of transactions that each proxy can issue. 
-- Announce the action a transaction to be executed before execution happens. 
-- Create anonymous accounts that have no private key and can act without account ownership through their own configured proxies.
+By configuring one or more proxy account, an account owner can do the following:
 
-For example, you can create an anonymous proxy account and delegate permissions to that account so that it can dispatch function calls without your intervention and without access to your keys.
-After the new account with the delegated permissions is created, the account can be used as a recipient to burn funds or to hold tokens awaiting the execution or a transfer.
+- Specify up to a maximum number of proxy accounts that are allowed to submit transactions on behalf of a primary account owner.
+- Configure time delays for transactions to be executed by each proxy.
+- Set restrictions on the types of transactions that each proxy can issue. 
+- Announce transactions that are to be executed by a proxy before the transactions are executed.
+- Cancel or reject announced transactions that are to be executed by a proxy. 
+- Create anonymous—pure proxy—accounts that have no private key and can act without account ownership through their own configured proxies.
 
-You can use the Proxy pallet to create an account with permission to dispatch certain types of calls using the delegated account as the signed origin.
+#### Runtime implementation
+
+Although the Proxy pallet provides this framework for configuring proxy accounts, the implementation details are up to you as a runtime developer.
+For example, the default Proxy pallet filters the calls a proxy account can dispatch based on the proxy type.
+However, the runtime implementation defines the proxy types and the transactions that each proxy type is allowed to execute.
+Polkadot enables you to restrict transactions for a proxy account using the following proxy types:
+
+- Any
+- NonTransfer
+- Governance
+- Staking
+- IdentityJudgement
+- CancelProxy
+- Auction
+
+The enumerated list of proxy types and the logic for matching proxy types to transaction is defined in the [Polkadot runtime](https://github.com/paritytech/polkadot/blob/master/runtime/polkadot/src/lib.rs).
+
+#### Anonymous proxy account
+
+The anonymous or pure proxy account is a special type of proxy account with a randomly-generated address and no corresponding private key.
+Typically, you create this type of proxy account if you want to delegate permissions to an account that can dispatch function calls without your intervention and without access to your keys.
+After the new account with the delegated permissions is created, the account can be used as a recipient to burn funds or to hold tokens awaiting the execution of a transfer.
 
 ## Where to go next
 
