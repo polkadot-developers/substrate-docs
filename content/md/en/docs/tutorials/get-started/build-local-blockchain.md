@@ -70,8 +70,8 @@ To compile the Substrate node template:
    ```
 
    In most cases, you can clone the `main` branch to get the latest code.
-   However, you can use the `--branch` command-line option to specify the Polkadot version you want to work with.
-   Click [Tags](https://github.com/substrate-developer-hub/substrate-node-template/tags) to see the list of Polkadot versions.
+   However, you can use the `--branch` command-line option if you want to work with a Substrate branch that is compatible with a specific Polkadot version.
+   Click [Tags](https://github.com/substrate-developer-hub/substrate-node-template/tags) to see the list of branches that are compatible with specific Polkadot versions.
 
 1. Change to the root of the node template directory by running the following command:
 
