@@ -172,7 +172,7 @@ To install the front-end template:
    ```
 
    The `yarn` version should be at least **v3** to run the front-end template.
-
+   You can use `yarn version` and specify a version number to update `yarn` if you have an older version installed.
    If the command doesn’t return a version number, download and install `yarn` by running the following command:
 
    ```bash
