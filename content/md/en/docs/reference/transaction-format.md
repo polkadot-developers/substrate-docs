@@ -80,7 +80,7 @@ where:
 - `[3]` if a signature is present, this field contains an account ID, an SR25519 signature and some extra data. If unsigned this field contains 0 bytes.
 - `[4]` is the encoded call data. This comprises of 1 byte denoting the pallet to call into, 1 byte denoting the call to make in that pallet, and then as many bytes as needed to encode the arguments expected by that call.
 
-The way applications know how to construct a transaction correctly is provided by the [metadata interface](/main-docs/build/application-dev/#metadata-system).
+The way applications know how to construct a transaction correctly is provided by the [metadata interface](/build/application-development/#metadata-system).
 An application will know how to correctly encode a transaction by using the metadata types and transaction format.
 If a call doesn't need to be signed, then the first bit in `[2]` will be 0 and so an application will know not to try decoding a signature.
 
@@ -92,7 +92,7 @@ Here we demonstrate a detailed, manual extrinsic construction and submission of 
 1. Navigate to <https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/extrinsics>
 1. Set `Bob` as sender and select `balances` pallet and the `transfer(dest, value)` call
 1. Set `MultiAddress` to `Id` and the `AccountID` to `Dave` for the `dest`
-1. Set `value` to `42000000000000` (this is `42 UNIT` as defined in the [chain spec](/main-docs/build/chain-spec/) of the node template)
+1. Set `value` to `42000000000000` (this is `42 UNIT` as defined in the [chain spec](/build/chain-spec/) of the node template)
 1. Click `Submit Transaction` button (lower right) and **un-check** _sign and submit_ to generate a signed transaction with the default `nonce = 0` and `Lifetime = 64` for inspection
 
 ![Bob to Dave `transfer` 42 unit](/media/images/docs/reference/apps-extrinsic-transfer-bob-to-dave-42.png)
@@ -252,7 +252,7 @@ The consequence of this is that _smaller_ transactions are preferred over _large
 
 Now that you have seen how transactions are constructed, you might want to review how they progress from the transaction pool to the runtime and get added to blocks or how to use tools that enable you to submit transactions offline or using a REST API.
 
-- [Transaction lifecycle](/main-docs/fundamentals/transaction-lifecycle/)
-- [Transactions, weights, and fees](/main-docs/build/tx-weights-fees/)
+- [Transaction lifecycle](/fundamentals/transaction-lifecycle/)
+- [Transactions, weights, and fees](/build/tx-weights-fees/)
 - [tx-wrapper](/reference/command-line-tools/tx-wrapper) for offline transactions
 - [sidecar](/reference/command-line-tools/sidecar) for REST-based transactions

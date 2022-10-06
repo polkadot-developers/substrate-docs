@@ -10,7 +10,7 @@ keywords:
   - configuration
 ---
 
-As you saw [Build a local blockchain](/tutorials/get-started/build-local-blockchain/), the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) provides a working **runtime** that includes some default FRAME development modules—**pallets**—to get you started building a custom blockchain.
+As you saw in [Build a local blockchain](/tutorials/get-started/build-local-blockchain/), the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) provides a working **runtime** that includes some default FRAME development modules—**pallets**—to get you started building a custom blockchain.
 
 This tutorial introduces the basic steps for adding a new pallet to the runtime for the node template.
 The steps are similar any time you want to add a new FRAME pallet to the runtime.
@@ -28,9 +28,9 @@ Note that this tutorial is a stepping stone to more advanced tutorials that illu
 
 Before you begin, verify the following:
 
-- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/rust-builds/).
+- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
-- You have completed the [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) tutorial and have the Substrate node template from the Developer Hub `polkadot-v26` branch installed locally.
+- You have completed the [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) tutorial and have the Substrate node template from the Developer Hub installed locally.
 
 - You are generally familiar with software development and using command-line interfaces.
 
@@ -72,7 +72,7 @@ To add the dependencies for the Nicks pallet to the runtime:
    For example, add a line similar to the following:
 
    ```toml
-   pallet-nicks = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v26" }
+   pallet-nicks = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
    ```
 
    This line imports the `pallet-nicks` crate as a dependency and specifies the following:
@@ -107,7 +107,7 @@ To add the dependencies for the Nicks pallet to the runtime:
 1. Check that the new dependencies resolve correctly by running the following command:
 
    ```bash
-   cargo check -p node-template-runtime
+   cargo check -p node-template-runtime --release
    ```
 
 ## Review the configuration for Balances
@@ -226,7 +226,7 @@ To implement the `nicks` pallet in your runtime:
 1. Check that the new dependencies resolve correctly by running the following command:
 
    ```bash
-   cargo check -p node-template-runtime
+   cargo check -p node-template-runtime --release
    ```
 
    If there are no errors, you are ready to compile.

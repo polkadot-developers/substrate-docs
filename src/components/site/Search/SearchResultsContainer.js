@@ -13,7 +13,7 @@ function SearchResultsContainer({ results, query, setQuery }) {
 
   return (
     <div className="h-full">
-      <div className={`${query.length === 0 ? 'invisible' : 'visible'} text-sm font-bold mb-3 animate-fade-in`}>
+      <div className={`${query.length === 0 ? 'invisible' : 'visible'} text-sm font-bold mb-3 mt-3 animate-fade-in`}>
         {results.length} RESULTS
       </div>
       <div className="overflow-y-auto overscroll-contain h-[400px]">

@@ -1,32 +1,28 @@
 import cx from 'classnames';
+import { Link } from 'gatsby-plugin-substrate';
 import React, { useState } from 'react';
 
-import snakecase from '../../../hooks/snakecase';
-import Icon from '../../default/Icon';
-import { Link } from '../../default/Link';
 import SubMenu from './SubMenu';
 
 const Menu = ({ page, currentPath }) => {
   const [isOpen, setIsOpen] = useState(currentPath.includes(page.url));
   return (
-    <nav role="navigation" className="min-h-[40px]">
+    <nav className="min-h-[40px]">
       <ul className="p-0 m-0 list-outside">
         <li
-          className={cx('p-0 m-0 list-none mt-3 font-semibold cursor-pointer min-h-max', {
+          className={cx('p-0 m-0 list-none font-semibold min-h-max', {
             'text-substrateBlue': currentPath === page.url,
           })}
         >
           <span className="inline-block collapse-button w-full" onClick={() => setIsOpen(!isOpen)}>
-            <Link className="w-full inline-block h-full" to={page.url}>
-              <span className="w-10 inline-block text-center">
-                <span title={page.title}>
-                  <Icon
-                    name={snakecase(page.title)}
-                    className={cx('p-0 mx-2 inline fill-current text-substrateDark dark:text-white', {
-                      'fill-substrateBlue': currentPath === page.url,
-                    })}
-                  />
-                </span>
+            <Link
+              className={cx('w-full inline-block h-full hover:opacity-100 opacity-80', {
+                '!opacity-100 cursor-default': currentPath === page.url,
+              })}
+              to={page.url}
+            >
+              <span className="w-full inline-block">
+                <span title={page.title} />
               </span>
               {page.title}
               {page.pages ? (
@@ -34,7 +30,7 @@ const Menu = ({ page, currentPath }) => {
                   className={cx(
                     'mt-1 fill-current text-substrateDark dark:text-white align-middle float-right inline-block cursor-pointer',
                     {
-                      'fill-substrateBlue': currentPath === page.url,
+                      'fill-substrateBlue !opacity-100': currentPath === page.url,
                       '-rotate-180': isOpen === true,
                     }
                   )}

@@ -10,6 +10,8 @@ This section contains links to the Rust API documentation and technical referenc
 
 - [Command-line tools](/reference/command-line-tools) provides reference information for the most commonly-used command-line interface (CLI) tools.
 
+- [Runtime APIs](/reference/runtime-apis/) highlights the application programming interfaces that the runtime provides to support communication with outer node services.
+
 - [FRAME pallets](/reference/frame-pallets) lists all of the pre-built pallets that you can include in your runtime.
 
 - [FRAME macros](/reference/frame-macros) describes the all of the FRAME macros you can use to build custom pallets.

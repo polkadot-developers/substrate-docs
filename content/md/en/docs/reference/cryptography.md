@@ -65,7 +65,7 @@ One sacrifice that is made when using Schnorr signatures over ECDSA is that both
 
 ## Where to go next
 
-- [Accounts, addresses, and keys](/main-docs/fundamentals/accounts-addresses-keys).
+- [Accounts, addresses, and keys](/fundamentals/accounts-addresses-keys).
 - [Web 3 research](https://research.web3.foundation).
 - [Polkadot claims module](https://github.com/paritytech/polkadot/blob/master/runtime/common/src/claims.rs) to see how you can verify Ethereum signatures in the Substrate runtime.
 - [`Hash`](https://paritytech.github.io/substrate/master/sp_runtime/traits/trait.Hash.html) trait for implementing new hashing algorithms.

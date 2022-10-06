@@ -1,22 +1,20 @@
+import { Link } from 'gatsby';
 import React from 'react';
-
-import PrimaryFixedButton from './PrimaryFixedButton';
-import SecondaryButton from './SecondaryButton';
 
 export default function PreviousNextButtons({ previous, next }) {
   return (
-    <div className="flex justify-between items-center relative">
+    <div className="flex justify-between items-center">
       {previous ? (
-        <SecondaryButton link={previous} className="justify-start">
-          Previous
-        </SecondaryButton>
+        <Link to={previous} className="hover:opacity-100 opacity-80">
+          &larr; Previous
+        </Link>
       ) : (
         ''
       )}
       {next ? (
-        <div className="absolute right-0">
-          <PrimaryFixedButton link={next}>Next</PrimaryFixedButton>
-        </div>
+        <Link to={next} className="ml-auto hover:opacity-100 opacity-80">
+          Next &rarr;
+        </Link>
       ) : (
         ''
       )}

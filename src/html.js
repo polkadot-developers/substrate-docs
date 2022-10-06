@@ -1,7 +1,6 @@
+import { TransparentPixel } from 'gatsby-plugin-substrate';
 import PropTypes from 'prop-types';
 import React from 'react';
-
-import TransparentPixel from './components/site/TransparentPixel';
 
 export default function HTML(props) {
   return (
@@ -17,6 +16,7 @@ export default function HTML(props) {
         <div key={`body`} id="___gatsby" dangerouslySetInnerHTML={{ __html: props.body }} />
         {props.postBodyComponents}
         <TransparentPixel />
+        <div id="modal"></div>
       </body>
     </html>
   );

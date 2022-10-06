@@ -33,15 +33,6 @@ You'll learn how to:
 - Create a custom pallet using macros.
 - Publish a custom pallet for others to use.
 
-## Connect with other chains
-
-The **Connect with other chains** tutorials delve into more advanced topics for moving beyond solo chain development, including how to connect your chain to other chains.
-You'll learn how to:
-
-- Turn a solo chain into a parachain.
-- Deploy a local test network and interact with multiple connected parachains.
-- Connect your parachain to a public test network.
-
 ## Develop smart contracts
 
 The **Develop smart contracts** tutorials guide you through how you can use the ink programming language to build smart contracts that run on a Substrate-based blockchain.
@@ -51,3 +42,20 @@ You'll learn how to:
 - Store, increment, and retrieve simple values using a smart contract.
 - Use maps to store and retrieve values in a smart contract.
 - Build a smart contract for transferring ERC-20 tokens.
+
+## Connect relay and parachains
+
+The **Connect relay and parachains** tutorials delve into more advanced topics for moving beyond solo chain development, including how to connect your chain to other chains.
+You'll learn how to:
+
+- Turn a solo chain into a parachain.
+- Deploy a local test network and interact with multiple connected parachains.
+- Connect your parachain to a public test network.
+
+## Integrate with tools
+
+The **Integrate with tools** tutorials highlight additional tools and node extensions that enable you to interact with Substrate nodes or the information in the blockchain in unique ways.
+You'll learn how to:
+
+- Integrate a light client node to connect to a Substrate chain.
+- Access EVM accounts and work with EVM-compatible applications.
