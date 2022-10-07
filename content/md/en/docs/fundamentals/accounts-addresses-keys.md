@@ -14,24 +14,30 @@ How you implement and use accounts is entirely up to you as a blockchain or para
 ## Public and private keys
 
 In general, every account has an owner who possesses a public and private key pair.
-The **private key** is a cryptographically-secure sequence of randomly-generated numbers. For human readability, the private key generates a random sequence of words called a **secret seed phrase** or **mnemonic**.
-This secret seed phrase can be used by an account owner to recover access to an account if the private key is lost.
+The **private key** is a cryptographically-secure sequence of randomly-generated numbers. 
+For human readability, the private key generates a random sequence of words called a **secret seed phrase** or **mnemonic**.
+The secret seed phrase is important because it can be used to recover access to an account if the private key is lost. 
 
-For most networks, the **public key** associated with an account is how that account is identified on the network and is used as the destination address for transactions.
+For most networks, the **public key** associated with an account is how that account is identified on the network and some form of it is used as the destination address for transactions.
 However, Substrate-based chains use the underlying public key to derive one or more **public addresses**.
 Instead of using the public key directly, Substrate allows you generate multiple addresses and address formats for an account.
 
 ## Address encoding and chain-specific addresses
 
-Substrate enables you to use a single public key to derive multiple addresses so you can interact with multiple chains without creating separate public and private key pairs for each network.
+By deriving multiple addresses from a single public key, you can interact with multiple chains without creating separate public and private key pairs for each network.
 By default, the addresses associated with the public key for an account use the Substrate [**SS58 address format**](/reference/glossary/#ss58-address-format).
-This address format is based on [base-58 encoding](https://datatracker.ietf.org/doc/html/draft-msporny-base58-01).
-In addition to allowing you to derive multiple addresses from the same public key, base-58 encoding has the following benefits:
+The SS58 address format is an enhanced version of [base-58 encoding](https://datatracker.ietf.org/doc/html/draft-msporny-base58-01).
+The important characteristics of the SS58 address format include:
 
-- Encoded addresses consist of 58 alphanumeric characters.
-- The alphanumeric string omits characters—such as `0`, `O`, `I`, and `l`—that can be difficult to distinguish from each other in a string.
-- Network information—for example, a network-specific prefix—can be encoded in the address.
-- Input errors can be detected using a checksum to ensure the address is entered correctly.
+- Encoded addresses consist of 58 alphanumeric characters, resulting in a shorter and more identifiable address than a hex-encoded address.
+- Addresses don't use characters that can be difficult to distinguish from each other in a string. 
+  For example, the characters `0`, `O`, `I`, and `l` aren't used in SS58 addresses.
+- Addresses can include a network-specific prefixes so you can use the same public key to derive addresses for different chains.
+- Addresses can use derivation paths to create multiple addresses from the same public key so you can use different addresses for different purposes.
+   For example, you can create sub-accounts for separating funds or executing specific types of transactions.
+- Addresses can be verified using a checksum to prevent input errors.
+
+### Inspecting network-specific addresses
 
 Because a single public key can be used to derive addresses for different Substrate chains, a single account can have multiple chain-specific addresses.
 For example, if you inspect the addresses for the `alice` account public key `0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d` depends on the chain-specific address type.
@@ -42,19 +48,22 @@ For example, if you inspect the addresses for the `alice` account public key `0x
 | Kusama (SS58) | HNZata7iMYWmk5RvZRTiAsSDhV8366zq2YGb3tLH5Upf74F  |
 | Generic Substrate chain (SS58) | 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY |
 
-Each Substrate blockchain can register a custom prefix to create a chain-specific address type.
-For example, all Polkadot addresses start with `1` and all Kusama addresses start with a capital letter.
+### Registering for a network-specific address
+
+Each Substrate-based blockchain can register a custom prefix to create a network-specific address type.
+For example, all Polkadot addresses start with `1`.
+All Kusama addresses start with a capital letter.
 All unregistered Substrate chains start with `5`.
 
-You can look up the chain-specific address for a public key using the `subkey inspect` command and `--network` option or by using [Subscan](https://polkadot.subscan.io/tools/format_transform).
+You can look up the network-specific address for a public key using the `subkey inspect` command and `--network` command-line option or by using [Subscan](https://polkadot.subscan.io/tools/format_transform).
 
 For information about generating public and private key pairs and inspecting addresses, see [subkey](/reference/command-line-tools/subkey).
-For information about chain-specific address, see the instructions in the [SS58 repository](https://github.com/paritytech/ss58-registry).
+For information about registering for a chain-specific address, see the instructions in the [SS58 repository](https://github.com/paritytech/ss58-registry).
 
 ## Account information in FRAME
 
 Conceptually, accounts represent identities that have a public/private key pair with one or more public addresses.
-However, in a runtime built with FRAME, an account is defined as a storage map with a 32-byte address identifier and corresponding account information, such as the number of transactions the account has made, the number of modules that depend on the account, and account balance.
+However, in a runtime built with FRAME, an account is defined as a storage map with a 32-byte address identifier and corresponding account information, such as the number of transactions the account has made, the number of modules that depend on the account, and the account balance.
 
 The account properties—such as the `AccountId`—can be defined generically in the `frame_system` module.
 The generic type is then resolved as a specific type in the runtime implementation, and eventually assigned a specific value.
@@ -65,28 +74,67 @@ For more information about working with generic types, see [Rust for Substrate](
 
 ## Specialized accounts
 
-Although most accounts are used to represent a public/private key pair that controls funds or executes transactions, Substrate supports some specialized accounts to control how specific key pairs can be used.
-For example, you might have accounts that require custom cryptographic schemes, can only be used to perform specific functions, or can only access specific pallets.
+As a flexible and module framework for blockchain development, Substrate itself doesn't require you define or use any specific type of accounts.
+However, different chains can implement different rules for how accounts and the keys that control them are used.
+For example, you might implement specialized accounts if your application requires:
 
-### Staking accounts and keys
+-  custom cryptographic schemes
+-  complex or multi-user signing rules
+-  restricted access to specific functions
+-  restricted access to specific pallets
 
-In most cases, specialized accounts are implemented in the context of a specific FRAME pallet.
-For example, nominated proof-of-stake (NPoS) can require node validators and nominators to hold a significant number of tokens.
-To keep the balances in these accounts secure, the Staking pallet provides some account abstractions that separate the key pairs required to perform specific operations.
+In most cases, specialized accounts are implemented in the context of a specific FRAME pallet, either in a prebuilt pallet like [Staking](https://paritytech.github.io/substrate/master/pallet_staking/index.html) or [Multisig](https://paritytech.github.io/substrate/master/pallet_multisig/index.html) or in custom pallets that you design.
 
-| Account type | How the account is used |
-| ------------ | ----------------------- |
-| Stash account | The **stash account** represents the public/private key pair that defines a staking balance for validators. You should keep stash account keys offline and in cold storage for security. You should not use the stash account to make frequent transactions. because the keys for this account are kept offline, you can designate a **controller account** to make non-spending decisions or a **keyless proxy account** to vote in governance on its behalf. |
-| Controller account | The controller account represents the public/private key pair that signals your intent to validate or nominate, sets preferences like the rewards destination and, in the case of validators, sets the session keys. A controller account only needs to pay transaction fees, so it only needs minimal funds. It can never be used to spend funds from its stash account. Actions taken by the controller can result in slashing, so it should still be well secured. |
-| Session account | The session account represents the public/private key pair used by validators to sign consensus-related messages. The session account is not intended to control funds. These keys are also defined generically in the [Session pallet](https://paritytech.github.io/substrate/master/pallet_session/index.html) and made concrete in the runtime. To create the session account key pair, you must attest that the account acts on behalf of your stash account and nominators by signing a transaction with your controller key and publishing the session certificate on the chain. You can generate and register new session keys on chain using a [`session.setKeys`](https://paritytech.github.io/substrate/master/pallet_session/pallet/struct.Pallet.html#method.set_keys) transaction. You can change session keys using the [`author_rotateKeys`](https://paritytech.github.io/substrate/master/sc_rpc/author/trait.AuthorApiClient.html#tymethod.rotate_keys) RPC call. |
+For example, the Staking pallet takes an originating FRAME system account that wants to put up a bond and generates the **stash** and **controller** account abstractions to identify the account required to perform specific operations.
+You can see the implementation of these account abstractions in the Polkadot ecosystem. However, you can use the same framework to implement different account rules or account types or as inspiration for a custom pallet with its own account abstractions. 
 
-### Keyless proxy accounts
+### Multi-signature accounts
 
-In some cases, you might want to create an account that is detached from any owner so that it can be used to perform autonomous transactions.
-For example, you might create an account, then delegate permissions to that account so that it can dispatch function calls without your intervention and without access to your keys.
-After the new account with the delegated permissions is created, the account can be used as a recipient to burn funds or to hold tokens awaiting the execution or a transfer.
+Typically, an account has one and only one owner and that owner holds the private key for signing transactions. 
+The Multisig pallet enables you to configure a specialized account for executing transactions that multiple account owners must approve.
+The multisig account is an address that has a public key, but no private key.
+The public address for the multisig account is derived from a deterministic list of the authorized account signatories and an associated transaction request block height and extrinsic index identifier.
 
-You can use the Proxy pallet to create an account with permission to dispatch certain types of calls using the delegated account as the signed origin.
+The Multisig pallet enables multiple parties to share responsibility for executing certain transactions.
+Any account account holder can specify the account that are allowed to approve a multi-signature transaction and the minimum number of approvals required for a call to  be dispatched to the runtime.
+
+### Proxy and keyless accounts
+
+The Proxy pallet provides another way you can configure specialized accounts for a Substrate-based chain using FRAME.
+With proxy accounts, primary account owners can designate one or more other accounts to act on their behalf.
+Proxy accounts can be used to add a layer of security by isolating primary account funds from accounts assigned to specific roles that can complete tasks on behalf of the primary account. 
+
+By configuring one or more proxy account, an account owner can do the following:
+
+- Specify up to a maximum number of proxy accounts that are allowed to submit transactions on behalf of a primary account owner.
+- Configure time delays for transactions to be executed by each proxy.
+- Set restrictions on the types of transactions that each proxy can issue. 
+- Announce transactions that are to be executed by a proxy before the transactions are executed.
+- Cancel or reject announced transactions that are to be executed by a proxy. 
+- Create anonymous—pure proxy—accounts that have no private key and can act without account ownership through their own configured proxies.
+
+#### Runtime implementation
+
+Although the Proxy pallet provides this framework for configuring proxy accounts, the implementation details are up to you as a runtime developer.
+For example, the default Proxy pallet filters the calls a proxy account can dispatch based on the proxy type.
+However, the runtime implementation defines the proxy types and the transactions that each proxy type is allowed to execute.
+Polkadot enables you to restrict transactions for a proxy account using the following proxy types:
+
+- Any
+- NonTransfer
+- Governance
+- Staking
+- IdentityJudgement
+- CancelProxy
+- Auction
+
+The enumerated list of proxy types and the logic for matching proxy types to transaction is defined in the [Polkadot runtime](https://github.com/paritytech/polkadot/blob/master/runtime/polkadot/src/lib.rs).
+
+#### Anonymous proxy account
+
+The anonymous or pure proxy account is a special type of proxy account with a randomly-generated address and no corresponding private key.
+Typically, you create this type of proxy account if you want to delegate permissions to an account that can dispatch function calls without your intervention and without access to your keys.
+After the new account with the delegated permissions is created, the account can be used as a recipient to burn funds or to hold tokens awaiting the execution of a transfer.
 
 ## Where to go next
 
