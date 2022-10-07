@@ -123,7 +123,7 @@ For this tutorial, you can see that the `Config` trait in the `nicks` pallet dec
 
 ```rust
 pub trait Config: Config {
-    type Event: From<Event<Self>> + IsType<<Self as Config>::Event>;
+    type RuntimeEvent: From<Event<Self>> + IsType<<Self as Config>::Event>;
     type Currency: ReservableCurrency<Self::AccountId>;
     type ReservationFee: Get<<<Self as Config>::Currency as Currency<<Self as Config>::AccountId>>::Balance>;
     type Slashed: OnUnbalanced<<<Self as Config>::Currency as Currency<<Self as Config>::AccountId>>::NegativeImbalance>;
@@ -143,6 +143,9 @@ To review the `Config` trait for the Balances pallet:
 1. Locate the `Balances` pallet and note that it consists of the following implementation (`impl`)code block:
 
    ```rust
+   /// Existential deposit.
+   pub const EXISTENTIAL_DEPOSIT: u128 = 500;
+   
    impl pallet_balances::Config for Runtime {
       type MaxLocks = ConstU32<50>;
       type MaxReserves = ();
@@ -150,11 +153,11 @@ To review the `Config` trait for the Balances pallet:
       /// The type for recording an account's balance.
       type Balance = Balance;
       /// The ubiquitous event type.
-      type Event = Event;
+      type RuntimeEvent = RuntimeEvent;
       /// The empty value, (), is used to specify a no-op callback function.
       type DustRemoval = ();
       /// Set the minimum balanced required for an account to exist on-chain
-      type ExistentialDeposit = ConstU128<500>;
+      type ExistentialDeposit = ConstU128<EXISTENTIAL_DEPOSIT>;
       /// The FRAME runtime system is used to track the accounts that hold balances.
       type AccountStore = System;
       /// Weight information is supplied to the Balances pallet by the node template runtime.
@@ -200,7 +203,7 @@ To implement the `nicks` pallet in your runtime:
     type MaxLength = ConstU32<32>;
 
     // The ubiquitous event type.
-    type Event = Event;
+    type RuntimeEvent = RuntimeEvent;
    }
 
 1. Add Nicks to the `construct_runtime!` macro.
