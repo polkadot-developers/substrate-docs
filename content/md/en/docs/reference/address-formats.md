@@ -96,23 +96,28 @@ The advantage of using more checksum bytes is simply that more bytes provide a g
 For the account ID format, this is insignificant and therefore no 1-byte alternative is provided. 
 For the shorter account-index formats, the extra byte represents a far greater portion of the final address, so it is left for further up the stack (though not necessarily the user themselves) to determine the best tradeoff for their purposes.
 
-## Simple/full address types and account/address/network identifiers
+## Address types and the network registry
 
-The registry expresses the status of the account/address/network identifiers.
+The [SS58 registry](https://github.com/paritytech/ss58-registry) is the canonical listing of all address type identifiers and how they map to Substrate-based networks.
 
-Identifiers up to value 64 may be expressed in a simple format address, in which the least significant byte (LSB) of the identifier value is expressed as the first byte of the encoded address.
+## Encoding address and network identifiers
 
-For identifiers of between 64 and 16,383, the full format address must be used.
+Identifiers up to value 64 can be expressed using a simple address format.
+For the simple address format, the least significant byte of the network identifier value is expressed as the first byte of the encoded address.
 
-This encoding is slightly fiddly since we encode as little endian (LE), yet the first two bits (which should encode 64s and 128s) are already used up with the necessary 01 prefix. 
-We treat the first two bytes as a 16 bit sequence, and we disregard the first two bits of that (since they're already fixed to be 01). 
-With the remaining 14 bits, we encode our identifier value as LE, with the assumption that the two missing higher order bits are zero. 
+For identifiers between 64 and 16,383, the full address format must be used.
+
+The full address encoding requires special handling because SCALE encoding as little endian requires the first two bits to be used for the 01 prefix.
+To encode the network identifier, the full address format treats the first two bytes as a 16-bit sequence, and disregards the first two bits of that sequence to account for the 01 prefix. 
+The remaining 14 bits encode the network identifier value as little endian, with the assumption that the two missing higher order bits are zero. 
 This effectively spreads the low-order byte across the boundary between the two bytes.
 
-Thus the 14-bit identifier 0b00HHHHHH_MMLLLLLL is expressed in the two bytes as:
+For example, the 14-bit identifier `0b00HHHHHH_MMLLLLLL` is expressed in two bytes as:
 
+```text
 0b01LLLLLL
 0bHHHHHHMM
+```
 
 Identifiers of 16384 and beyond are not currently supported.
 
@@ -122,14 +127,14 @@ You can verify that a value is a valid SS58 address by using the `subkey inspect
 
 ### Using subkey
 
-The basic syntax for the subkey inspect command is:
+The basic syntax for the `subkey inspect` command is:
 
 ```text
 subkey inspect [flags] [options] uri
 ```
 
 For the `uri` command-line argument, you can specify the secret seed phrase, a hex-encoded private key, or an SS58 address. 
-If the input is a valid address, the subkey program displays the corresponding hex-encoded public key, account identifier, and SS58 addresses.
+If the input is a valid address, the `subkey` program displays the corresponding hex-encoded public key, account identifier, and SS58 addresses.
 For example, to inspect the public keys derived from a secret seed phrase, you can run a command similar to the following::
 
 ```bash
