@@ -135,6 +135,36 @@ The `cargo-contract` package provides a command-line interface for working with 
    cargo contract --help
    ```
 
+### Rust compatibility issue
+
+The `cargo-contract` crate, version 1.5.0, requires a specific version of the Rust toolchain to compile smart contracts.
+You can check the version of `cargo-contract` you have installed by running the following command:
+
+```bash
+cargo contract --version
+```
+
+This command displays the version and target architecture for the package.
+For example, on macOS, the command displays output similar to the following:
+
+```text
+cargo-contract 1.5.0-unknown-x86_64-apple-darwin
+```
+
+If the command indicates you are using version 1.5.0, run the following commands to update Rust to use a compatible version of the toolchain:
+
+```bash
+rustup toolchain install nightly-2022-08-15
+rustup target add wasm32-unknown-unknown --toolchain nightly-2022-08-15
+rustup component add rust-src --toolchain nightly-2022-08-15
+```
+
+You can then compile contracts using this toolchain by running the following command:
+
+```bash
+cargo +nightly-2022-08-15 contract build
+```
+
 ## Create a new smart contract project
 
 You are now ready to start developing a new smart contract project.
@@ -246,6 +276,8 @@ To build the WebAssembly for this smart contract:
    ```bash
    cargo +nightly contract build
    ```
+
+   If you are using `cargo-contract`, version 1.5.0, use the `+nightly-2022-08-15` toolchain instead of the `+nightly` toolchain.
 
    This command builds a WebAssembly binary for the `flipper` project, a metadata file that contains the contract Application Binary Interface (ABI), and a `.contract` file that you use to deploy the contract.
    For example, you should see output similar to the following:
