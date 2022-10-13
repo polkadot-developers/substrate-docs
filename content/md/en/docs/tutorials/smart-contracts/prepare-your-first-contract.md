@@ -137,14 +137,14 @@ The `cargo-contract` package provides a command-line interface for working with 
 
 ### Rust compatibility issue
 
-The `cargo-contract` crate, version 1.5, requires a specific version of the Rust toolchain to compile smart contracts.
-You can check the version of cargo contract you have installed by running the following command:
+The `cargo-contract` crate, version 1.5.0, requires a specific version of the Rust toolchain to compile smart contracts.
+You can check the version of `cargo-contract` you have installed by running the following command:
 
 ```bash
 cargo contract --version
 ```
 
-This command displays the package version and target architecture for the package.
+This command displays the version and target architecture for the package.
 For example, on macOS, the command displays output similar to the following:
 
 ```text
