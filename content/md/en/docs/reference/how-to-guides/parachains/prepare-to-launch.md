@@ -17,7 +17,7 @@ You will learn how to make sure `protocolId` is set uniquely and that runtime we
 
 The runtime constraints on a parachain are much stricter than a solochain, as you must coordinate with the relay chain to finalize state transitions. When launching a parachain to production, it is critically important to make sure a chain's runtime is properly configured and tested.
 
-## Set a unique `protocolId`
+## Set a unique protocol identifier
 
 Network collisions can cause major headaches.
 _All_ chains should use a **unique** `protocolId` that no other network of any type—whether a test network, relay chain, or parachain—uses.
