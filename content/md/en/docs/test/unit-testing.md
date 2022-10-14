@@ -5,7 +5,7 @@ keywords:
 ---
 
 As you build the logic for your runtime, you'll want to routinely test that the logic works as expected.
-You can create a unit test for the runtime using the [unit testing framework](https://doc.rust-lang.org/rust-by-example/testing/unit_testing.html) provided by Rust.
+You can create unit tests for the runtime using the [unit testing framework](https://doc.rust-lang.org/rust-by-example/testing/unit_testing.html) provided by Rust.
 After you create one or more unit tests, you can use the `cargo test` command to execute the test.
 For example, you can run all of the tests you have created for a runtime by running the following command:
 
@@ -123,7 +123,7 @@ impl ExtBuilder {
 }
 ```
 
-In this example, acount 1 has balance 10, account 2 has balance 20, and so on.
+In this example, account 1 has a balance of 10, account 2 has a balance of 20, and so on.
 
 The exact structure used to define the genesis configuration of a pallet depends on the pallet `GenesisConfig` struct definition.
 For example, in the Balances pallet, it is defined as:
