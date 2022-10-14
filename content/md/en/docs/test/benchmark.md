@@ -76,7 +76,7 @@ If you want to run benchmarks, you need to compile a node with the `runtime-benc
 ## Writing benchmarks
 
 Writing a runtime benchmark is similar to writing a unit test for your pallet.
-Like unit tests, benchmarks must execute a specific logical paths in your code.
+Like unit tests, benchmarks must execute specific logical paths in your code.
 In unit tests, you check the code for specific success and failure results.
 For benchmarks, you want to execute the **most computationally intensive** path.
 
