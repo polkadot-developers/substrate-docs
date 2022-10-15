@@ -203,7 +203,7 @@ To implement the `nicks` pallet in your runtime:
     type MaxLength = ConstU32<32>;
 
     // The ubiquitous event type.
-    type RuntimeEvent = RuntimeEvent;
+    type Event = Event;
    }
 
 1. Add Nicks to the `construct_runtime!` macro.
