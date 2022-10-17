@@ -7,7 +7,7 @@ keywords:
 Runtime storage allows you to store data in your blockchain that is persisted between blocks and can be accessed from within your runtime logic.
 Storage should be one of the most critical concerns of a blockchain runtime developer.
 Well-designed storage systems reduce the load on nodes in the network, which
-ultimately lowers the overhead costs for participants in your blockchain
+ultimately lowers the overhead costs for participants in your blockchain.
 In other words, the fundamental principle of blockchain runtime storage is to minimize its use.
 
 Substrate exposes a set of layered, modular storage APIs that allow runtime developers to make the storage decisions that suit them best.
@@ -151,7 +151,7 @@ Blockchain storage is always publicly [visible from _outside_ of the runtime](#a
 The `#[pallet::getter(..)]` macro provides an optional `get` extension that can be used to implement a getter method for a storage item on the module that contains that storage item; the extension takes the desired name of the getter function as an argument.
 If you omit this optional extension, you will still be able to access the storage item's value, but you will not be able to do so by way of a getter method implemented on the module; instead, you will need to use [the storage item's `get` method](#methods).
 
-The optional `getter` extension only impact the way that a storage item can be accessed from _within_ Substrate code&mdash;you will always be able to [query the storage of your runtime](/build/runtime-storage#Querying-Storage) to get the value of a storage item.
+The optional `getter` extension only impacts the way that a storage item can be accessed from _within_ Substrate code&mdash;you will always be able to [query the storage of your runtime](/build/runtime-storage#Querying-Storage) to get the value of a storage item.
 
 Here is an example that implements a getter method named `some_value` for a Storage Value named `SomeValue`.
 This pallet would now have access to a `Self::some_value()` method in addition to the `SomeValue::get()` method:
@@ -260,8 +260,8 @@ In `my_pallet/src/lib.rs`:
 ```rust
 #[pallet::genesis_config]
 pub struct GenesisConfig<T: Config> {
-		pub init_val: u64,
-	}
+    pub init_val: u64,
+}
 ```
 
 In `chain_spec.rs`:
