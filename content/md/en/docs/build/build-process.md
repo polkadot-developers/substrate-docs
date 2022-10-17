@@ -115,9 +115,9 @@ Although the WebAssembly runtime is selected by default, it is possible for you 
 If the native runtime and the WebAssembly runtime share the same [version](/build/upgrade-the-runtime/#runtime-versioning), you can selectively use the native runtime instead of the WebAssembly runtime, in addition to the WebAssembly runtime, or as a fallback if using the WebAssembly runtime fails.
 In general, you would only choose to use the native runtime for performance reasons or because it's a less restrictive environment than the WebAssembly runtime.
 For example, you might want to use the native runtime for initial synchronization.
-To use the native runtime for this synchronizing blocks, you can start the node using `--execution-syncing native` or `--execution-syncing native-else-wasm` the command-line option.
+To use the native runtime for synchronizing blocks, you can start the node using the `--execution-syncing native` or `--execution-syncing native-else-wasm` command-line option.
 
-For information about using the command-line options to specify an execution strategy for all or specific operation, see [node-template](/reference/command-line-tools/node-template).
+For information about using the command-line options to specify an execution strategy for all or specific operations, see [node-template](/reference/command-line-tools/node-template).
 For information about the execution strategy variant, see [ExecutionStrategy](https://paritytech.github.io/substrate/master/sp_state_machine/enum.ExecutionStrategy.html)
 
 ## Building WebAssembly without a native runtime
