@@ -120,7 +120,7 @@ The `cargo-contract` package provides a command-line interface for working with 
 2. Install `cargo-dylint` to check ink! contracts and warn you about issues that might lead to security vulnerabilities.
 
    ```bash
-   cargo install cargo-dylint
+   cargo install cargo-dylint dylint-link
    ```
 
 3. Install `cargo-contract` by running the following command:
