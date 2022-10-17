@@ -92,7 +92,7 @@ If you have completed previous tutorials, you should have the Substrate node tem
 2. Switch to a working branch for the repository if you want to save your changes by running a command similar to the following:
 
    ```bash
-   git switch -c my-branch-v0.9.28
+   git switch -c my-wip-branch
    ```
 
 3. Compile the node template by running the following command:
@@ -137,11 +137,15 @@ To add the `node-authorization` pallet to the Substrate runtime:
    This line imports the `pallet-node-authorization` crate as a dependency and specifies the following configuration details for the crate:
 
    - The pallet features are not enabled by default when compiling the runtime.
-   - The repository location for retrieving the `pallet-node-authorization` crate.
-   - The commit tag for retrieving the crate.
    - The version identifier for the crate.
+   - The repository location for retrieving the `pallet-node-authorization` crate.
+   - The branch for retrieving the crate.
+   
+   Note that you should use the same branch and version information for all pallets to ensure that they are compatible with each other.
+   Using pallets from different branches can result in compiler errors.
+   This example illustrates adding pallets to the `Cargo.toml` file if the other pallets use `branch = "polkadot-v0.9.28"`.
 
-1. Add the `pallet-node-authorization/std` features to the list of `features` to enable when compiling the runtime.
+2. Add the `pallet-node-authorization/std` features to the list of `features` to enable when compiling the runtime.
 
    ```toml
    [features]
@@ -159,7 +163,7 @@ To add the `node-authorization` pallet to the Substrate runtime:
 
    If you forget to update the `features` section in the `Cargo.toml` file, you might see `cannot find function` errors when you compile the runtime binary.
 
-1. Check that the new dependencies resolve correctly by running the following command:
+3. Check that the new dependencies resolve correctly by running the following command:
 
    ```bash
    cargo check -p node-template-runtime --release
