@@ -491,7 +491,7 @@ To keep things simple, you can use the Polkadot/Substrate Portal application to 
 
 1. Select **nodeAuthorization** and select **addWellKnownNode(node, owner)**.
 
-1. Copy and paste the hex-encoded peer identifier for the node owned by Charlie. 
+1. Copy and paste the hex-encoded peer identifier for the node owned by Charlie after the required 0x prefix. 
 
 2. Select **Charlie** as the node owner.
    
@@ -531,9 +531,9 @@ To allow the sub-node to access the network:
 
 3. Select **nodeAuthorization** and select **addConnections(node, connections)**.
 
-4. Copy and paste the hex-encoded peer identifier for the node owned by Charlie. 
+4. Copy and paste the hex-encoded peer identifier for the node owned by Charlie after the required 0x prefix. 
 
-5. For the connections parameter, copy and paste the hex-encoded peer identifier for the node owned by Dave, then click **Submit Transaction**.
+5. For the connections parameter, copy and paste the hex-encoded peer identifier for the node owned by Dave after the required 0x prefix, then click **Submit Transaction**.
    
 6. Review the transaction details, then click **Sign and Submit**.
    
@@ -550,7 +550,7 @@ You can use the Polkadot/Substrate Portal application to submit a transaction to
 
 2. Select **nodeAuthorization** and select **claimNode(node)**.
 
-3. Copy and paste the hex-encoded peer identifier for the node owned by Dave, then click **Submit Transaction**.
+3. Copy and paste the hex-encoded peer identifier for the node owned by Dave after the required 0x prefix, then click **Submit Transaction**.
    
 4. Review the transaction details, then click **Sign and Submit**.
 
@@ -591,9 +591,9 @@ The steps are similar to the ones you previously performed to allow connections 
 
 3. Select **nodeAuthorization** and select **addConnections(node, connections)**.
 
-4. Copy and paste the hex-encoded peer identifier for the node owned by Dave. 
+4. Copy and paste the hex-encoded peer identifier for the node owned by Dave after the required 0x prefix. 
 
-5. For the connections parameter, copy and paste the hex-encoded peer identifier for the node owned by Charlie, then click **Submit Transaction**.
+5. For the connections parameter, copy and paste the hex-encoded peer identifier for the node owned by Charlie after the required 0x prefix, then click **Submit Transaction**.
    
 6. Review the transaction details, then click **Sign and Submit**.
    
