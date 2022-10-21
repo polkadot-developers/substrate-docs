@@ -375,8 +375,8 @@ To emit the Transfer event:
    let to_balance = self.balance_of_impl(to);
    self.balances.insert(to, &(to_balance + value));
    self.env().emit_event(Transfer {
-       from: Some(from),
-       to: Some(to),
+       from: Some(*from),
+       to: Some(*to),
        value,
    });
    ```
