@@ -17,13 +17,12 @@ This document is intended to provide information and best practices about Substr
 
 In Substrate, any pallet can introduce new storage items that will become part of your blockchain’s state. These storage items can be simple single value items, or more complex storage maps. The type of storage items you choose to implement depends entirely on their intended role within your runtime logic.
 
-FRAME's [`Storage` module](https://paritytech.github.io/substrate/master/frame_support/storage) gives runtime developers access to Substrate's flexible storage APIs, which can support any value that is encodable by [SCALE codec](/reference/scale-codec/). These include:
+The FRAME [`Storage` module](https://paritytech.github.io/substrate/master/frame_support/storage) gives runtime developers access to Substrate's flexible storage APIs, which can support any value that is encodable by [SCALE codec](/reference/scale-codec/). These include:
 
-- [Storage Value](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html) - used to store any single value, such as a `u64`.
-- [Storage Map](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html) - used to store a key-value mapping, such as account-to-balance.
-- [Storage Double Map](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageDoubleMap.html) - used as an implementation of a storage map with two keys to provide the ability to efficiently remove
-  all entries that have a common first key.
-- [Storage N Map](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageNMap.html) - used to store a mapping with any arbitrary number of keys, it can be used as a basis to build a Triple Storage Map, a Quadruple Storage Map and so on.
+- [Storage value](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html) - used to store any single value, such as a `u64`.
+- [Storage map](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html) - used to store a key-value mapping, such as account-to-balance.
+- [Storage double map](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageDoubleMap.html) - used as an implementation of a storage map with two keys to provide the ability to efficiently remove all entries that have a common first key.
+- [Storage N map](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageNMap.html) - used to store a mapping with any arbitrary number of keys, it can be used as a basis to build a Triple Storage Map, a Quadruple Storage Map and so on.
 
 ### Storage value
 
@@ -95,7 +94,8 @@ Substrate's Iterable Storage Map interfaces define the following methods:
 ## Declaring storage items
 
 Runtime storage items are created with [`#[pallet::storage]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#storage-palletstorage-optional)
-in any FRAME-based pallet. Here is an example of declaring the four different types of storage items:
+in any FRAME-based pallet. 
+Here is an example of declaring the four different types of storage items:
 
 ```rust
 #[pallet::storage]
@@ -132,13 +132,18 @@ pub(super) type SomeNMap<T: Config> = StorageNMap<
 Notice that the map's storage items specify [the hashing algorithm](#hashing-algorithms) that will
 be used.
 
-### QueryKindTrait
+### QueryKind
 
-The implementation of the [`QueryKindTrait`](https://paritytech.github.io/substrate/master/frame_support/storage/types/trait.QueryKindTrait.html) passed
-to the storage item determines how the storage should be handled when there is no value in storage.
-With [`OptionQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.OptionQuery.html), when no value is in storage
-the `get` method will return `None`. With [`ValueQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.ValueQuery.html),
-when no value is in storage the `get` method will return the value configured with the `OnEmpty` generic.
+determines how to handle a query for a storage item that refers to an optional value type.
+
+It is implemented by:
+
+- OptionQuery which converts an optional value to an optional value, used when querying storage returns an optional value.
+- ResultQuery which converts an optional value to a result value, used when querying storage returns a result value.
+- ValueQuery which converts an optional value to a value, used when querying storage returns a value
+The implementation of the [`QueryKind`](https://paritytech.github.io/substrate/master/frame_support/storage/types/trait.QueryKindTrait.html) trait for a storage item determines how the storage should be handled if there is no value in storage.
+With [`OptionQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.OptionQuery.html), when no value is in storage the `get` method will return `None`. 
+With [`ValueQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.ValueQuery.html), when no value is in storage the `get` method will return the value configured with the `OnEmpty` generic.
 For cases with a specific default value to configure, it is recommended to use `ValueQuery`.
 
 ### Visibility
