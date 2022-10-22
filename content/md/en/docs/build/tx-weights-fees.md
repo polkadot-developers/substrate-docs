@@ -346,7 +346,7 @@ type Balance = u64;
 
 // Assume we want all the weights to have a `100 + 2 * w` conversion to fees
 struct CustomWeightToFee;
-impl Convert<Weight, Balance> for CustomWeightToFee {
+impl WeightToFee<Weight, Balance> for CustomWeightToFee {
     fn convert(w: Weight) -> Balance {
         let a = Balance::from(100);
         let b = Balance::from(2);
@@ -374,7 +374,7 @@ impl transaction_payment::Config {
 }
 
 struct TargetedFeeAdjustment<T>(sp_std::marker::PhantomData<T>);
-impl<T: Get<Perquintill>> Convert<Fixed128, Fixed128> for TargetedFeeAdjustment<T> {
+impl<T: Get<Perquintill>> WeightToFee<Fixed128, Fixed128> for TargetedFeeAdjustment<T> {
     fn convert(multiplier: Fixed128) -> Fixed128 {
         // Don't change anything. Put any fee update info here.
         multiplier
