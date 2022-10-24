@@ -37,7 +37,7 @@ We'll use this as boilerplate which we'll customize for our `pallet-testing` pal
 
    ```rust
    /*--snip--*/
-   TestingPallet: pallet_testing::{Pallet, Call, Storage, Event<T>},
+   TestingPallet: pallet_testing::{Pallet, RuntimeCall, Storage, Event<T>},
    /*--snip--*/
    ```
 
@@ -49,7 +49,7 @@ We'll use this as boilerplate which we'll customize for our `pallet-testing` pal
    }
 
    impl pallet_testing::Config for Test {
-     type Event = Event;
+     type RuntimeEvent = RuntimeEvent;
      type MaxValue = MaxValue;
    }
    ```

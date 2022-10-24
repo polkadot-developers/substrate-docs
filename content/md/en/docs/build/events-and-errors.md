@@ -20,19 +20,19 @@ For example:
 ```rust
 #[pallet::event]
 #[pallet::metadata(u32 = "Metadata")]
-pub enum Event<T: Config> {
+pub enum RuntimeEvent<T: Config> {
 	/// Set a value.
 	ValueSet(u32, T::AccountId),
 }
 ```
 
-The `Event` enum needs to be declared in your runtime's configuration trait.
+The `RuntimeEvent` enum needs to be declared in your runtime's configuration trait.
 
 ```rust
 #[pallet::config]
 	pub trait Config: frame_system::Config {
 		/// The overarching event type.
-		type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+		type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_system::Config>::RuntimeEvent>;
 	}
 ```
 
@@ -44,15 +44,15 @@ To expose events to the runtime:
 
 1. Open the `/runtime/src/lib.rs`file in a text editor.
    
-1. Implement the `Event` type in the configuration trait for your pallet:
+1. Implement the `RuntimeEvent` type in the configuration trait for your pallet:
    
 	 ```rust
 	 impl template::Config for Runtime {
-		 type Event = Event;
+		 type RuntimeEvent = RuntimeEvent;
 	 }
 	 ```
 
-1. Add the `Event` type to the `construct_runtime!` macro:
+1. Add the `RuntimeEvent` type to the `construct_runtime!` macro:
    
 	 ```rust
 	 construct_runtime!(
@@ -62,7 +62,7 @@ To expose events to the runtime:
 		   UncheckedExtrinsic = UncheckedExtrinsic
 		 {
 	     // --snip--
-		   TemplateModule: template::{Pallet, Call, Storage, Event<T>},
+		   TemplateModule: template::{Pallet, RuntimeCall, Storage, RuntimeEvent<T>},
 		   //--add-this------------------------------------->
 			 }
 	 );

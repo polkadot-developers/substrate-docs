@@ -32,8 +32,8 @@ This guide illustrates:
    ```rust
    // Configure your pallet.
    impl pallet_something::Config for Runtime {
-   	type Event = Event;
-   	type Call = Call;
+   	type RuntimeEvent = RuntimeEvent;
+   	type RuntimeCall = RuntimeCall;
    }
    ```
 
@@ -48,7 +48,7 @@ This guide illustrates:
    	UncheckedExtrinsic = UncheckedExtrinsic
    	{
    		/* --snip-- */
-   		Something: pallet_something::{Pallet, Call, Storage, Event<T>},
+   		Something: pallet_something::{Pallet, RuntimeCall, Storage, Event<T>},
    		/* --snip-- */
    	}
    );

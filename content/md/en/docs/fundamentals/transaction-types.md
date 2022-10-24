@@ -30,7 +30,7 @@ In most cases, the account submitting the request also pays a transaction fee. H
 
 Signed transactions are the most common type of transaction.
 As an example, assume you have an account with some number of tokens.
-If you want to transfer tokens to Alice, you can call the `pallet_balances::Call::transfer` function in the Balances pallet.
+If you want to transfer tokens to Alice, you can call the `pallet_balances::RuntimeCall::transfer` function in the Balances pallet.
 Because your account is used to make this call, your account key is used to sign the transaction.
 As the requester, you would typically be responsible for paying a fee to have your request processed.
 Optionally, you could also tip the block author to give your transaction higher priority.
@@ -43,7 +43,7 @@ With an unsigned transaction, there's no economic deterrent to prevent spam or r
 You must define the conditions for validating unsigned transactions and the logic required to protect the network from misuse and attacks.
 Because unsigned transactions require custom validation, this transaction type consumes more resources than a signed transaction.
 
-The `pallet_im_online::Call::heartbeat` function uses unsigned transactions to enable validator nodes to send a signal to the network to indicate that the node is online.
+The `pallet_im_online::RuntimeCall::heartbeat` function uses unsigned transactions to enable validator nodes to send a signal to the network to indicate that the node is online.
 This function can only be called by a node that's registered as a validator in the network.
 The function includes internal logic to verify that the node is a validator, allowing the node to call the function using an unsigned transaction to avoid paying any fees.
 
@@ -58,8 +58,8 @@ The data inserted using an inherent transaction is assumed to be valid without r
 For example, if a block authoring node inserts a timestamp into a block, there is no way to prove that a timestamp is accurate.
 Instead, validators might accept or reject the block based on whether the timestamp it is within some acceptable range of their own system clocks.
 
-As an example, the `pallet_timestamp::Call::now` function enables a block authoring node to insert a current timestamp in each block the node produces.
-Similarly, the `paras_inherent::Call::enter` function enables a parachain collator node to send its relay chain the validation data the relay chain expects.
+As an example, the `pallet_timestamp::RuntimeCall::now` function enables a block authoring node to insert a current timestamp in each block the node produces.
+Similarly, the `paras_inherent::RuntimeCall::enter` function enables a parachain collator node to send its relay chain the validation data the relay chain expects.
 
 ## What is a block?
 
