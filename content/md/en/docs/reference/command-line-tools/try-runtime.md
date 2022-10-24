@@ -85,6 +85,9 @@ fn post_upgrade(_state: Vec<u8>) -> Result<(), &'static str> {
 }
 ```
 
+With these function, you can use the `pre_upgrade` hook to retrieve the runtime state and return it as a Vec<u8> result.
+You can the pass the Vec<u8> as input parameter to the `post_upgrade` hook.
+
 In addition to the `pre_upgrade` and `post_upgrade` methods, [`OnRuntimeUpgradeHelpersExt`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.OnRuntimeUpgradeHelpersExt.html) provides a set of helper functions to use with `try-runtime` for testing storage migrations.
 These helper functions include the following:
 
