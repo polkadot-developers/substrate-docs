@@ -156,7 +156,7 @@ To add the Scheduler types and configuration trait:
    ```rust
    impl pallet_scheduler::Config for Runtime {
      type RuntimeEvent = RuntimeEvent;
-     type Origin = Origin;
+     type RuntimeOrigin = RuntimeOrigin;
      type PalletsOrigin = OriginCaller;
      type RuntimeCall = RuntimeCall;
      type MaximumWeight = MaximumSchedulerWeight;
