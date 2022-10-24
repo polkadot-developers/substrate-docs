@@ -75,10 +75,14 @@ If you enable the `try-runtime` feature for the runtime, you can define `pre-upg
 
 ```rust
 #[cfg(feature = "try-runtime")]
-fn pre_upgrade() -> Result<(), &'static str> { Ok(()) }
+fn pre_upgrade() -> Result<Vec<u8>, &'static str> {
+		Ok(Vec::new())
+}
 
 #[cfg(feature = "try-runtime")]
-fn post_upgrade() -> Result<(), &'static str> { Ok(()) }
+fn post_upgrade(_state: Vec<u8>) -> Result<(), &'static str> {
+		Ok(())
+}
 ```
 
 In addition to the `pre_upgrade` and `post_upgrade` methods, [`OnRuntimeUpgradeHelpersExt`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.OnRuntimeUpgradeHelpersExt.html) provides a set of helper functions to use with `try-runtime` for testing storage migrations.
