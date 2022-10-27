@@ -4,9 +4,19 @@ description:
 keywords:
 ---
 
-The first block produced by any blockchain is typically referred to as the genesis block and the hash associated with this block is the top-level parent of all blocks produced after that first block.
-To initialize the storage items in the genesis block, Substrate provides specialized genesis configuration APIs.
-There are two FRAME attribute macros that are responsible for initializing storage in the genesis block:
+The first block produced by any blockchain is typically referred to as the genesis block.
+The hash associated with this block is the top-level parent of all blocks produced after that first block.
+
+The Substrate node template provides the genesis configuration—the initial state—for a subset of pallets by default.
+As you add custom logic to the runtime—for example, by adding predefined or custom pallets—you might find that you want to modify the genesis configuration to include other storage items or set different initial values. 
+
+As you learned in [Chain specification](/build/chain-spec/), the chain specification you use to start a node determines the genesis configuration for that node.
+However, the chain specification doesn't create the storage items that get initialized when you start a node.
+Instead, the storage items are defined in the pallets included in the runtime as described in [Runtime storage](/build/runtime-storage/).
+
+After you create storage items for the runtime, you can choose whether they should be set to some initial value as part of the genesis configuration and included in the genesis block.  
+To specify the storage items that you want to set an initial state for, Substrate provides two specialized FRAME attribute macros.
+The macros you can use to initialize storage items as part of the genesis configuration for a chain are:
 
 - The `#[pallet::genesis_config]`  macro defines the `GenesisConfig` data type and initializes storage items.
 - The `#[pallet::genesis_build]` macro builds the genesis configuration.
