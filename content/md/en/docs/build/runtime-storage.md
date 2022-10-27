@@ -15,30 +15,35 @@ This document is intended to provide information and best practices about Substr
 
 ## Storage items
 
-In Substrate, any pallet can introduce new storage items that will become part of your blockchain’s state. These storage items can be simple single value items, or more complex storage maps. The type of storage items you choose to implement depends entirely on their intended role within your runtime logic.
+In Substrate, any pallet can introduce new storage items that will become part of the blockchain state. 
+These storage items can be simple single values, or more complex storage maps. 
+The type of storage items you choose to implement depends entirely on their intended role within the runtime logic.
 
-The FRAME [`Storage` module](https://paritytech.github.io/substrate/master/frame_support/storage) gives runtime developers access to Substrate's flexible storage APIs, which can support any value that is encodable by [SCALE codec](/reference/scale-codec/). These include:
+The FRAME [`Storage` module](https://paritytech.github.io/substrate/master/frame_support/storage) provides access to the layered storage abstractions described in [State transitions and storage](/fundamentals/state-transitions-and-storage/) and can support any value that is encodable by [SCALE codec](/reference/scale-codec/). 
+The storage module provides the following types of storage structures:
 
-- [Storage value](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html) - used to store any single value, such as a `u64`.
-- [Storage map](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html) - used to store a key-value mapping, such as account-to-balance.
-- [Storage double map](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageDoubleMap.html) - used as an implementation of a storage map with two keys to provide the ability to efficiently remove all entries that have a common first key.
-- [Storage N map](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageNMap.html) - used to store a mapping with any arbitrary number of keys, it can be used as a basis to build a Triple Storage Map, a Quadruple Storage Map and so on.
+- [StorageValue](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html)to store any single value, such as a `u64`.
+- [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html) to store values with a single key-to-value mapping, such as account-to-balance.
+- [StorageDoubleMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageDoubleMap.html) to store values in a storage map with two keys as an optimization to efficiently remove all entries that have a common first key.
+- [StorageNMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageNMap.html) to store values in a map with any arbitrary number of keys.
 
 ### Storage value
 
-This type of storage item should be used for values that are viewed as a single unit by the runtime. 
-This could be a single primitive value, a single `struct`, or a single collection of related
-items. 
-If a storage item is used for storing lists of items, you should be conscious about the size of the lists you use.
-Large lists incur storage costs just like large `structs`.
-Furthermore, iterating over a large list in your runtime can result in exceeding the block production time. 
-If this occurs for sovereign chains, the blockchain will slow down.
-If this occurs for [parachains](/reference/glossary/#parachain), the blockchain will stop producing blocks and stop functioning.
+You can use `StorageValue` storage items for values that are viewed as a single unit by the runtime. 
+For example, you should use this type of storage for the following common use cases:
 
-Although wrapping related items in a shared `struct` is an excellent way to reduce the number of storage reads, at some point the size of the object will begin to incur costs that may outweigh the optimization in storage reads.
-Read about [benchmarking](/test/benchmark/) to learn how to optimize execution time.
+- Single primitive values
+- Single `struct` data type objects
+- Single collection of related items
+  
+If you use this type of storage for lists of items, you should be conscious about the size of the lists you store.
+Large lists and `structs` incur storage costs and iterating over a large list or `struct` in the runtime can affect network performance or stop block production entirely. 
+If iterating over storage exceeds the block production time and your project is a [parachain](/reference/glossary/#parachain), the blockchain to stop producing blocks and stop functioning.
 
-Refer to the Storage Value documentation for [a comprehensive list of the methods that Storage Value exposes](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html#required-methods).
+Although you can wrap related items in a shared `struct` to reduce the number of storage reads, at some point, the size of the object will begin to incur costs that may outweigh the optimization in storage reads.
+For more information about how to optimize execution time, see [Benchmark](/test/benchmark/).
+
+For a list of the methods that Storage Value exposes, see [Required methods](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html#required-methods).
 
 ### Storage map
 
