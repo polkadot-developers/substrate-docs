@@ -113,7 +113,7 @@ For example:
    	//	 - `Some((account, Ok(())))`: transaction is successfully sent
    	//	 - `Some((account, Err(())))`: error occurred when sending the transaction
    	let results = signer.send_signed_transaction(|_account| {
-   		RuntimeCall::on_chain_call { key: val }
+   		Call::on_chain_call { key: val }
    	});
 
    	// ...
@@ -329,7 +329,7 @@ To enable Substrate to accept certain unsigned transactions, you must implement 
    		UncheckedExtrinsic = UncheckedExtrinsic
    	{
    		// ...
-   		OcwPallet: pallet_ocw::{Pallet, RuntimeCall, Storage, Event<T>, ValidateUnsigned},
+   		OcwPallet: pallet_ocw::{Pallet, Call, Storage, Event<T>, ValidateUnsigned},
    	}
    );
    ```

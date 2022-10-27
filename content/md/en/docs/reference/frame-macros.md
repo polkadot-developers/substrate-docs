@@ -507,7 +507,7 @@ Similarly, you can override the default to explicitly include certain parts in t
 For example, if you only want the runtime to expose a subset of attributes for a specific pallet, you can explicitly include them in the `construct_runtime!` macro with an entry similar to the following:
 
 ```rust
-MyCustomPallet: pallet_my_custom_pallet use_parts { Pallet, RuntimeCall, Storage, RuntimeEvent, RuntimeOrigin, Config }
+MyCustomPallet: pallet_my_custom_pallet use_parts { Pallet, Call, Storage, RuntimeEvent, RuntimeOrigin, Config }
 ```
 
 You should note the the order in which pallets are listed in the `construct_runtime!` macro is significant.

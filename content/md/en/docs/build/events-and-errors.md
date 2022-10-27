@@ -14,19 +14,19 @@ In custom pallets, you can define:
 
 ## Declaring an event
 
-Runtime events are created using the `#[pallet::event]` macro.
+Events are created using the `#[pallet::event]` macro.
 For example:
 
 ```rust
 #[pallet::event]
-#[pallet::metadata(u32 = "Metadata")]
-pub enum RuntimeEvent<T: Config> {
+#[pallet::generate_deposit(pub(super) fn deposit_event)]
+pub enum Event<T: Config> {
 	/// Set a value.
-	ValueSet(u32, T::AccountId),
+	ValueSet { value: u32, who: T::AccountId },
 }
 ```
 
-The `RuntimeEvent` enum needs to be declared in your runtime's configuration trait.
+Then, the `RuntimeEvent` type is needed to aggregate them for the runtime.
 
 ```rust
 #[pallet::config]
@@ -62,7 +62,7 @@ To expose events to the runtime:
 		   UncheckedExtrinsic = UncheckedExtrinsic
 		 {
 	     // --snip--
-		   TemplateModule: template::{Pallet, RuntimeCall, Storage, RuntimeEvent<T>},
+		   TemplateModule: template::{Pallet, Call, Storage, Event<T>},
 		   //--add-this------------------------------------->
 			 }
 	 );

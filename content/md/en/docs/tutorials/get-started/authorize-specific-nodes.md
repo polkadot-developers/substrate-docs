@@ -232,7 +232,7 @@ To implement the `node-authorization` pallet in your runtime:
        UncheckedExtrinsic = UncheckedExtrinsic
      {
        /*** Add This Line ***/
-       NodeAuthorization: pallet_node_authorization::{Pallet, RuntimeCall, Storage, Event<T>, Config<T>},
+       NodeAuthorization: pallet_node_authorization::{Pallet, Call, Storage, Event<T>, Config<T>},
      }
    );
    ```
