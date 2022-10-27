@@ -7,12 +7,15 @@ keywords:
   - runtime
 ---
 
-Genesis configuration defines the initial state for things such as accounts, balances, genesis for custom pallets, and more.
+Genesis configuration defines the initial state for storage items such as accounts, balances, genesis for custom pallets, and more.
 This guide explains how to configure the genesis of a pallet with 2 simple storage items.
 
 ## Implement genesis inside your pallet
 
-For the sake of this guide, we'll assume you have a pallet `<SingleValue<T>>` and `<AccountMap<T>>`.
+For the sake of this guide, we'll assume you have a pallet with the following storage items:
+
+- `<SingleValue<T>>`
+- `<AccountMap<T>>`
 
 For example:
 
