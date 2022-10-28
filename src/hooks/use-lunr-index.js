@@ -1,10 +1,9 @@
-import { info } from 'autoprefixer';
 import { graphql, useStaticQuery } from 'gatsby';
 import { Index } from 'lunr';
 
 const useLunrIndex = () => {
   const { LunrIndex } = useStaticQuery(
-    graphql(info)`
+    graphql`
       {
         LunrIndex
       }
