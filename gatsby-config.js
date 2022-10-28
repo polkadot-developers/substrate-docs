@@ -156,12 +156,6 @@ module.exports = {
           using lazysizes package (loaded in gatsby-browser.js) */
           // `gatsby-remark-lazy-load`,
           {
-            resolve: `gatsby-remark-embed-snippet`,
-            options: {
-              directory: `${__dirname}/content/code-snippets/`,
-            },
-          },
-          {
             resolve: 'gatsby-remark-custom-blocks',
             options: {
               blocks: {
