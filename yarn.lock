@@ -8603,8 +8603,8 @@ __metadata:
 
 "gatsby-plugin-substrate@file:./plugins/gatsby-plugin-substrate::locator=substrate-docs%40workspace%3A.":
   version: 1.0.0
-  resolution: "gatsby-plugin-substrate@file:./plugins/gatsby-plugin-substrate#./plugins/gatsby-plugin-substrate::hash=1fa294&locator=substrate-docs%40workspace%3A."
-  checksum: 2a40d50a5de4f714a3e3e7bf3354bc3417730aae07ad062de0d3bab51add9fb4d65f79d67235e85b93ef52c96c0314ba36a1da1894ae89a21c3e2b702b494723
+  resolution: "gatsby-plugin-substrate@file:./plugins/gatsby-plugin-substrate#./plugins/gatsby-plugin-substrate::hash=53f8f8&locator=substrate-docs%40workspace%3A."
+  checksum: 6b1c38e1686fd6252cce4cee226e88b641b8635b894be1d8e1ff30b1a00bd8574a707600f110967aec9819a15c454dcde3a4b17c03e8fc0e622eb0ef656bd379
   languageName: node
   linkType: hard
 
