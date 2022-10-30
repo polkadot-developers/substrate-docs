@@ -101,5 +101,5 @@
 	"bugs": {
 		"url": "https://github.com/gatsbyjs/gatsby/issues"
 	},
-	"packageManager": "yarn@3.2.1"
+	"packageManager": "yarn@1.22.19"
 }
