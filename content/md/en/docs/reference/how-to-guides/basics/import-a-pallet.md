@@ -32,13 +32,12 @@ This guide illustrates:
    ```rust
    // Configure your pallet.
    impl pallet_something::Config for Runtime {
-   	type Event = Event;
-   	type Call = Call;
+   	type RuntimeEvent = RuntimeEvent;
+   	type RuntimeCall = RuntimeCall;
    }
    ```
 
-1. Declare your pallet and the items it exposes.
-   Include the additional `Pallet` and `Storage` types for the [runtime macro](/reference/frame-macros/#construct_runtime). In `construct_runtime!`, add the following:
+1. Declare your pallet for the [`construct_runtime` macro](/reference/frame-macros/#construct_runtime):
 
    ```rust
    construct_runtime!(
@@ -48,7 +47,7 @@ This guide illustrates:
    	UncheckedExtrinsic = UncheckedExtrinsic
    	{
    		/* --snip-- */
-   		Something: pallet_something::{Pallet, Call, Storage, Event<T>},
+   		Something: pallet_something,
    		/* --snip-- */
    	}
    );
