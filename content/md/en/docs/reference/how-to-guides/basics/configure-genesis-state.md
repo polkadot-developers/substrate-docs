@@ -7,29 +7,54 @@ keywords:
   - runtime
 ---
 
-Genesis configuration defines the initial state for things such as accounts, balances, genesis for custom pallets, and more.
-This guide explains how to configure the genesis of a pallet with 2 simple storage items.
+Genesis configuration defines the initial state for storage items such as accounts, balances, genesis for custom pallets, and more.
+This guide demonstrates how to configure the genesis state for a pallet with the following storage items:
 
-## Implement genesis inside your pallet
+- A `SingleValue<T>` type for a single `StorageValue` storage item.
+- An `AccountMap<T>` type for simple single key `StorageMap` storage item. 
 
-For the sake of this guide, we'll assume you have a pallet `<SingleValue<T>>` and `<AccountMap<T>>`.
+## Steps preview
 
-For example:
+1. Add the storage items in the pallet.
+2. Add the genesis configuration macros in the pallet.
+3. Set initial values in the chain specification.
 
-```rust
-#[pallet::storage]
-#[pallet::getter(fn something)]
-pub type SingleValue<T: Config> = StorageValue<_, T::Balance>;
+## Add storage items to the pallet
 
-// A map that has enumerable entries.
-#[pallet::storage]
-#[pallet::getter(fn accounts)]
-pub type AccountMap<T: Config> = StorageMap<_, Blake2_128Concat, T::AccountId, T::Balance>;
-```
+1. Open the `src//lib.rs` file for your pallet in a text editor.
+   
+1. Add the `StorageValue` storage item.
+   
+   For example:
+   
+   ```rust
+   #[pallet::storage]
+   #[pallet::getter(fn something)]
+   pub type SingleValue<T: Config> = StorageValue<
+      _, 
+      T::Balance
+   >;
+   
+1. Add the `StorageMap` storage item for a map that has enumerable entries.
+   
+      For example:
+   
+   ```rust
+   #[pallet::storage]
+   #[pallet::getter(fn accounts)]
+   pub type AccountMap<T: Config> = StorageMap<
+      _, 
+      Blake2_128Concat, 
+      T::AccountId, 
+      T::Balance
+   >;
+   ```
+
+## Add genesis configuration macros to the pallet
 
 The `GenesisConfig` code should go after your storage items.
 
-1. Using the `#[pallet::genesis_config]` attribute, write the `GenesisConfig` struct for your pallet.
+1. Add the `#[pallet::genesis_config]` attribute macro and define the `GenesisConfig` struct for the storage items to initialize.
 
    ```rust
    #[pallet::genesis_config]
@@ -39,7 +64,7 @@ The `GenesisConfig` code should go after your storage items.
    }
    ```
 
-1. Set the default value for the `GenesisConfig` struct.
+2. Set the default value for the `GenesisConfig` struct.
 
    ```rust
    #[cfg(feature = "std")]
@@ -50,7 +75,7 @@ The `GenesisConfig` code should go after your storage items.
    }
    ```
 
-1. Using the `#[pallet::genesis_build]` attribute, implement the [`GenesisBuild`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.GenesisBuild.html) trait.
+3. Add the `#[pallet::genesis_build]` attribute macro and implement the [`GenesisBuild`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.GenesisBuild.html) trait.
 
    ```rust
    #[pallet::genesis_build]
@@ -64,22 +89,37 @@ The `GenesisConfig` code should go after your storage items.
    }
    ```
 
-   This allows you to execute some logic to define how the `GenesisConfig` struct places something in storage.
+   The `#[pallet::genesis_build]` macro allows you to execute some logic to define how the `GenesisConfig` struct places something in storage.
 
-## Configure your node's chain spec
+## Set initial values in the chain specification
 
-All that's left to do is to specify what values we want to put in the genesis state of our chain.
-We'll assume our pallet is called `pallet_something`, declared as `PalletSomething` in our runtime's `construct_runtime!` macro.
+After you configure the storage items and genesis configuration in your pallet, you can specify the values you want to set for the storage items in the genesis state of the chain.
+In this example, assume that the `construct_runtime!` macro for runtime refers to `PalletSomething` as the pallet name and `pallet_something` as the path to the pallet.
 
-1. In `node/chain_spec.rs`, create a constant value of type `T::Balance` to be stored in `<SingleValue<T>>` (inside the `testnet_genesis` method).
+```rust
+construct_runtime!(
+   pub struct Runtime
+   where
+      Block = Block,
+      NodeBlock = opaque::Block,
+      UncheckedExtrinsic = UncheckedExtrinsic,
+   {
+      PalletSomething: pallet_something,
+   }
+)
+```
+
+1. Open the  `node/chain_spec.rs` file in a text editor.
+   
+2. Verify the `use node_template_runtime::BalanceConfig;` imported at the top of our `chain_spec.rs` file.
+
+3. Create a constant value of type `T::Balance` to be stored in `<SingleValue<T>>` (inside the `testnet_genesis` method).
 
    ```rust
    const VALUE: Balance = 235813;
    ```
 
-   Note that this step also implies that we have `use node_template_runtime::Balance;` imported at the top of our `chain_spec.rs` file.
-
-1. Create a vector of accounts to initialize `<AccountMap<T>>` with (also inside the `testnet_genesis` method).
+4. Create a vector of accounts to initialize `<AccountMap<T>>` with inside the `testnet_genesis` method.
 
    ```rust
    let accounts_to_map: Vec<AccountId> =
@@ -90,12 +130,12 @@ We'll assume our pallet is called `pallet_something`, declared as `PalletSomethi
    	];
    ```
 
-1. Complete the `GenesisConfig` clause in the `testnet_genesis` function.
+5. Add the pallet to the `GenesisConfig` clause in the `testnet_genesis` function.
 
    The convention is to use lowercase spelling of the name of your pallet in `runtime/src/lib.rs` inside `construct_runtime!`.
    For pallets declared as `CamelCase` for example, the convention is to refer to it as `camel_case` in the `testnet_genesis` function.
 
-   In our example, this looks like:
+   For this example pallet, the code looks like this:
 
    ```rust
    pallet_something: PalletSomethingConfig {
@@ -104,15 +144,10 @@ We'll assume our pallet is called `pallet_something`, declared as `PalletSomethi
    }
    ```
 
-   In the above code, we're mapping each account from `accounts_to_map` to an amount equal to `VALUE`.
-   This pattern is very similar to the Balances pallet's `GenesisConfig` implementation.
+   This sample code maps each account from `accounts_to_map` to an amount equal to `VALUE`.
+   This pattern is very similar to the `GenesisConfig` for the Balances pallet.
 
 ## Example
 
 - [Node template 'chain_spec.rs'](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs)
 - [Example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/lib.rs)
-
-## Related material
-
-- Learn how to customize a chain's genesis configuration for the [balances pallet](https://paritytech.github.io/substrate/master/pallet_balances/index.html).
-- [`BalancesConfig`](https://paritytech.github.io/substrate/master/node_template_runtime/type.BalancesConfig.html)
