@@ -50,7 +50,7 @@ This guide demonstrates how to configure the genesis state for a pallet with the
    >;
    ```
 
-## Add genesis configuration macros to the pallet
+## Add genesis configuration macros
 
 The `GenesisConfig` code should go after your storage items.
 
@@ -91,7 +91,7 @@ The `GenesisConfig` code should go after your storage items.
 
    The `#[pallet::genesis_build]` macro allows you to execute some logic to define how the `GenesisConfig` struct places something in storage.
 
-## Set initial values in the chain specification
+## Set initial values
 
 After you configure the storage items and genesis configuration in your pallet, you can specify the values you want to set for the storage items in the genesis state of the chain.
 In this example, assume that the `construct_runtime!` macro for runtime refers to `PalletSomething` as the pallet name and `pallet_something` as the path to the pallet.
