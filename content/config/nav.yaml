@@ -133,6 +133,8 @@ test:
       url: /test/debug/
     - title: Benchmark
       url: /test/benchmark/
+    - title: Simulate parachains
+      url: /test/simulate-parachains/
 #- title: Deploy
 #url: /deploy/
 # pages:
