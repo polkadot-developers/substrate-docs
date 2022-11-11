@@ -15,28 +15,35 @@ This document is intended to provide information and best practices about Substr
 
 ## Storage items
 
-In Substrate, any pallet can introduce new storage items that will become part of your blockchain’s state. These storage items can be simple single value items, or more complex storage maps. The type of storage items you choose to implement depends entirely on their intended role within your runtime logic.
+In Substrate, any pallet can introduce new storage items that will become part of the blockchain state. 
+These storage items can be simple single values, or more complex storage maps. 
+The type of storage items you choose to implement depends entirely on their intended role within the runtime logic.
 
-FRAME's [`Storage` module](https://paritytech.github.io/substrate/master/frame_support/storage) gives runtime developers access to Substrate's flexible storage APIs, which can support any value that is encodable by [SCALE codec](/reference/scale-codec/). These include:
+The FRAME [`Storage` module](https://paritytech.github.io/substrate/master/frame_support/storage) provides access to the layered storage abstractions described in [State transitions and storage](/fundamentals/state-transitions-and-storage/) and can support any value that is encodable by [SCALE codec](/reference/scale-codec/). 
+The storage module provides the following types of storage structures:
 
-- [Storage Value](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html) - used to store any single value, such as a `u64`.
-- [Storage Map](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html) - used to store a key-value mapping, such as account-to-balance.
-- [Storage Double Map](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageDoubleMap.html) - used as an implementation of a storage map with two keys to provide the ability to efficiently remove
-  all entries that have a common first key.
-- [Storage N Map](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageNMap.html) - used to store a mapping with any arbitrary number of keys, it can be used as a basis to build a Triple Storage Map, a Quadruple Storage Map and so on.
+- [StorageValue](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html)to store any single value, such as a `u64`.
+- [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html) to store values with a single key-to-value mapping, such as account-to-balance.
+- [StorageDoubleMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageDoubleMap.html) to store values in a storage map with two keys as an optimization to efficiently remove all entries that have a common first key.
+- [StorageNMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageNMap.html) to store values in a map with any arbitrary number of keys.
 
 ### Storage value
 
-This type of storage item should be used for values that are viewed as a single unit by the runtime. This could be a single primitive value, a single `struct`, or a single collection of related
-items. If a storage item is used for storing lists of items, runtime developers should be conscious about the size of the lists they use.
-Large lists incur storage costs just like large `structs`.
-Furthermore, iterating over a large list in your runtime may result in exceeding the block production time. If this occurs for sovereign chains, the blockchain will slow down.
-If this occurs for [parachains](/reference/glossary/#parachain), the blockchain will stop producing blocks and stop functioning.
+You can use `StorageValue` storage items for values that are viewed as a single unit by the runtime. 
+For example, you should use this type of storage for the following common use cases:
 
-Although wrapping related items in a shared `struct` is an excellent way to reduce the number of storage reads, at some point the size of the object will begin to incur costs that may outweigh the optimization in storage reads.
-Read about [benchmarking](/test/benchmark/) to learn how to optimize execution time.
+- Single primitive values
+- Single `struct` data type objects
+- Single collection of related items
+  
+If you use this type of storage for lists of items, you should be conscious about the size of the lists you store.
+Large lists and `structs` incur storage costs and iterating over a large list or `struct` in the runtime can affect network performance or stop block production entirely. 
+If iterating over storage exceeds the block production time and your project is a [parachain](/reference/glossary/#parachain), the blockchain to stop producing blocks and stop functioning.
 
-Refer to the Storage Value documentation for [a comprehensive list of the methods that Storage Value exposes](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html#required-methods).
+Although you can wrap related items in a shared `struct` to reduce the number of storage reads, at some point, the size of the object will begin to incur costs that may outweigh the optimization in storage reads.
+For more information about how to optimize execution time, see [Benchmark](/test/benchmark/).
+
+For a list of the methods that Storage Value exposes, see [Required methods](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html#required-methods).
 
 ### Storage map
 
@@ -95,7 +102,8 @@ Substrate's Iterable Storage Map interfaces define the following methods:
 ## Declaring storage items
 
 Runtime storage items are created with [`#[pallet::storage]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#storage-palletstorage-optional)
-in any FRAME-based pallet. Here is an example of declaring the four different types of storage items:
+in any FRAME-based pallet. 
+Here is an example of declaring the four different types of storage items:
 
 ```rust
 #[pallet::storage]
@@ -132,24 +140,29 @@ pub(super) type SomeNMap<T: Config> = StorageNMap<
 Notice that the map's storage items specify [the hashing algorithm](#hashing-algorithms) that will
 be used.
 
-### QueryKindTrait
+### Handling query return values
 
-The implementation of the [`QueryKindTrait`](https://paritytech.github.io/substrate/master/frame_support/storage/types/trait.QueryKindTrait.html) passed
-to the storage item determines how the storage should be handled when there is no value in storage.
-With [`OptionQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.OptionQuery.html), when no value is in storage
-the `get` method will return `None`. With [`ValueQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.ValueQuery.html),
-when no value is in storage the `get` method will return the value configured with the `OnEmpty` generic.
-For cases with a specific default value to configure, it is recommended to use `ValueQuery`.
+When you declare a storage item, you can specify how queries should handle the return value if there is no value in storage for the specified key.
+In the storage declaration, you specify the following:
+
+- [`OptionQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.OptionQuery.html) to query an optional value from storage and return `Some` if storage contains a value or `None` if there's no value is in storage.
+  
+- [`ResultQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.ResultQuery.html) to query a result value from storage and return an error if there's no value is in storage.
+
+- [`ValueQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.ValueQuery.html) to query a value from storage and return the value.
+  You can also use `ValueQuery` to return the default value if you have configured a specific default for a storage item or return the value configured with the `OnEmpty` generic.
 
 ### Visibility
 
 In the examples above, all the storage items except `SomePrivateValue` are made public by way of the `pub` keyword.
-Blockchain storage is always publicly [visible from _outside_ of the runtime](#accessing-storage-items); the visibility of Substrate storage items only impacts whether or not other pallets _within_ the runtime will be able to access a storage item.
+Blockchain storage is always publicly visible from _outside_ of the runtime.
+The visibility of Substrate storage items only impacts whether or not other pallets _within_ the runtime will be able to access a storage item.
 
 ### Getter methods
 
-The `#[pallet::getter(..)]` macro provides an optional `get` extension that can be used to implement a getter method for a storage item on the module that contains that storage item; the extension takes the desired name of the getter function as an argument.
-If you omit this optional extension, you will still be able to access the storage item's value, but you will not be able to do so by way of a getter method implemented on the module; instead, you will need to use [the storage item's `get` method](#methods).
+The `#[pallet::getter(..)]` macro provides an optional `get` extension that can be used to implement a getter method for a storage item on the module that contains that storage item.
+The extension takes the desired name of the getter function as an argument.
+If you omit this optional extension, you can access the storage item value, but you will not be able to do so by way of a getter method implemented on the module; instead, you will need to use [the storage item's `get` method](#methods).
 
 The optional `getter` extension only impacts the way that a storage item can be accessed from _within_ Substrate code&mdash;you will always be able to [query the storage of your runtime](/build/runtime-storage#Querying-Storage) to get the value of a storage item.
 
@@ -230,118 +243,6 @@ This table lists some common hashers used in Substrate and denotes those that ar
 The Identity hasher encapsulates a hashing algorithm that has an output equal to its input (the identity function).
 This type of hasher should only be used when the starting key is already a cryptographic hash.
 
-## Genesis configuration
-
-Substrate's runtime storage APIs include capabilities to initialize storage items in the genesis block of your blockchain.
-The genesis storage configuration APIs expose a number of mechanisms for initializing storage, all of which have entry points in `#[pallet::genesis_config]`.
-The `GenesisConfig` data type is defined under the attribute `#[pallet::genesis_config]` and the attribute `#[pallet::genesis_build]` is used to build the genesis configuration.
-
-To consume a pallet's genesis configuration capabilities, you must include the
-`Config` element when adding the pallet to your runtime.
-All the `GenesisConfig` types for the pallets that inform a runtime will be aggregated into a single `GenesisConfig` type for that runtime, which implements
-the [`BuildStorage` trait](https://paritytech.github.io/substrate/master/sp_runtime/trait.BuildStorage.html).
-For example, in the [`node_template_runtime::GenesisConfig`](https://paritytech.github.io/substrate/master/node_template_runtime/struct.GenesisConfig.html) struct, each attribute on this type corresponds to a `GenesisConfig` from the runtime's pallets that has a `Config` element.
-Ultimately, the runtime's `GenesisConfig` is exposed by way of the [`ChainSpec` trait](https://paritytech.github.io/substrate/master/sc_chain_spec/trait.ChainSpec.html).
-
-For a complete and concrete example of using Substrate's genesis storage configuration capabilities, refer to the genesis configuration for the Society pallet's storage in the [chain specification that ships with the Substrate code base](https://github.com/paritytech/substrate/blob/master/bin/node/cli/src/chain_spec.rs).
-Keep reading for a more detailed descriptions of these capabilities.
-
-### `genesis_config`
-
-The [`#[pallet::genesis_config]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional) macro provides an extension that will add an attribute to the pallet's `GenesisConfig` data type.
-The value of this attribute will be used as the initial value of the storage item in your chain's genesis block.
-The `config` extension takes a parameter that will determine the name of the attribute on the `GenesisConfig` data type&mdash;this parameter is optional if the[`get` extension](#getter-methods) is provided.
-
-Here is an example that demonstrates using the `config` extension with a Storage Value named `MyVal` to create an attribute named `init_val` on the `GenesisConfig` data type for the Storage Value's pallet.
-This attribute is then used in an example that demonstrates using the `GenesisConfig` types to set the Storage Value's initial value in your chain's genesis block.
-
-In `my_pallet/src/lib.rs`:
-
-```rust
-#[pallet::genesis_config]
-pub struct GenesisConfig<T: Config> {
-    pub init_val: u64,
-}
-```
-
-In `chain_spec.rs`:
-
-```rust
-GenesisConfig {
-    my_pallet: MyPalletConfig {
-        init_val: 221u64 + SOME_CONSTANT_VALUE,
-    },
-}
-```
-
-### `genesis_build`
-
-The [`#[pallet::genesis_build]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#genesis-build-palletgenesis_build-optional) attribute allows you to define how `genesis_configuration` is built within the pallet itself (this gives you access to the pallet's private functions).
-
-Here is an example that demonstrates using `#[pallet::genesis_config]` and `#[pallet::genesis_build]` to set the initial value of a storage item.
-In this case, the example involves two storage items: one that represents a list of member account IDs and another that designates a special member from the list (the prime member).
-
-In `my_pallet/src/lib.rs`:
-
-```rust
-#[pallet::genesis_config]
-struct GenesisConfig {
-    members: Vec<T::AccountId>,
-    prime: T::AccountId,
-}
-
-#[pallet::genesis_build]
-impl<T: Config> GenesisBuild<T> for GenesisConfig {
-    fn build(&self) {
-        Pallet::<T>::initialize_members(&self.members);
-        SomeStorageItem::<T>::put(self.prime);
-    }
-}
-```
-
-In `chain_spec.rs`:
-
-```rust
-GenesisConfig {
-    my_pallet: MyPalletConfig {
-        members: LIST_OF_IDS,
-        prime: ID,
-    },
-}
-```
-
-You can also use `genesis_build` to define a `GenesisConfig` attribute that is not bound to a particular storage item.
-This may be desireable if you wish to invoke a private helper function within your pallet that sets several storage items, or invoke a function defined in some other pallets included within your pallet.
-For example, using an imaginary private function called `intitialize_members`, this would look like:
-
-In `my_pallet/src/lib.rs`:
-
-```rust
-#[pallet::genesis_config]
-struct GenesisConfig {
-    members: Vec<T::AccountId>,
-    prime: T::AccountId,
-}
-
-#[pallet::genesis_build]
-impl<T: Config> GenesisBuild<T> for GenesisConfig {
-    fn build(&self) {
-        Pallet::<T>::initialize_members(&config.members);
-        SomeStorageItem::<T>::put(self.prime);
-    }
-}
-```
-
-In `chain_spec.rs`:
-
-```rust
-GenesisConfig {
-    my_pallet: MyPalletConfig {
-        members: LIST_OF_IDS,
-        prime: ID,
-    },
-}
-```
 
 ## Best practices
 

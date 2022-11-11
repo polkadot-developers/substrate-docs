@@ -8,9 +8,16 @@ This guide demonstrates how to reuse a function or type from one pallet in anoth
 
 Loose coupling enables you to reuse part of the logic defined in an external pallet inside your current pallet.
 This guide illustrates loose coupling by using the trait bounds in a pallet's configuration trait to reuse a type that's declared in an external pallet.
-In this example, the current pallet makes use of the `Currency` trait from the [`frame_support`](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html) pallet.
+In this example, the current pallet makes use of a method for the `Currency` trait from the [`frame_support`](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html) pallet.
 
-## Configure your workspace
+## Steps preview
+
+1. Configure your workspace manifest to include the external pallet.
+2. Import the trait you want to use.
+3. Add a type to the configuration trait.
+4. Provide the implementation in the runtime.
+
+## Configure your workspace manifest
 
 For the pallet in your working directory to reuse code from another pallet, the external pallet must be included in the list of package dependencies that are imported for your pallet.
 Therefore, the manifest in the `Cargo.toml` file for your project must specify the
@@ -32,7 +39,7 @@ To configure your workspace manifest:
    frame-support = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28"}
    ```
    
-   Note that you should use the same branch and version information for all of the pallet to ensure that the imported pallets are compatible with each other.
+   Note that you should use the same branch and version information for all of the pallets to ensure that the imported pallets are compatible with each other.
    Using pallets from different branches can result in compiler errors.
    This example illustrates adding the `frame-support` pallet to the `Cargo.toml` file if the other pallets use `branch = "polkadot-v0.9.28"`.
    
@@ -145,8 +152,7 @@ To update the runtime configuration for your pallet:
 ## Examples
 
 - [`EnsureOrigin`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.EnsureOrigin.html) trait in the [Democracy pallet](https://github.com/paritytech/substrate/blob/master/frame/democracy/src/lib.rs#L294-L352)
-- [Weighting methods](https://github.com/paritytech/substrate/blob/master/frame/identity/src/weights.rs#L46-L64) in the [Identity pallet](https://github.com/paritytech/substrate/blob/master/frame/identity/src/lib.rs#L149-L151).
-  
+- [Weighting methods](https://github.com/paritytech/substrate/blob/master/frame/identity/src/weights.rs#L46-L64) in the [Identity pallet](https://github.com/paritytech/substrate/blob/master/frame/identity/src/lib.rs#L149-L151).  
 -[`KeyOwnerProofSystem`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.KeyOwnerProofSystem.html) in [Grandpa pallet](https://github.com/paritytech/substrate/blob/master/frame/grandpa/src/lib.rs#L106).
 
 ## Resources

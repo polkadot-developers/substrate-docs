@@ -49,7 +49,7 @@ For example, you can customize the genesis portion of the chain specification to
 
 - The administrative account that controls the `sudo` key.
 
-Substrate nodes also include the compiled WebAssembly for the runtime logic on the chain, so the initial runtime must also be supplied in the chain spec.
+Substrate nodes also include the compiled WebAssembly for the runtime logic on the chain, so the initial runtime must also be supplied in the chain specification.
 
 ## Storing chain specification information
 
@@ -65,19 +65,20 @@ It is common to distribute a JSON-encoded chain specification with a node binary
 
 Each time you start a node, you provide the chain specification that the node should use.
 In the simplest case, the node uses a default chain specification that is hard-coded into the node binary.
-You can choose an alternative hard-coded chain spec by using the `--chain` command-line option when you start a node.
-For example, you can instruct the node to use the chain spec associated with the string "local" by specifying `--chain local` as a command-line option.
+You can choose an alternative hard-coded chain specification by using the `--chain` command-line option when you start a node.
+For example, you can instruct the node to use the chain specification associated with the string "local" by specifying `--chain local` as a command-line option.
 
 If you don't want to start a node with a hard-coded chain specification, you can provide it as a JSON file.
-For example, you can instruct the node to use the chain spec in the `someCustomSpec.json` file by specifying `--chain=someCustomSpec.json` as a command-line option.
+For example, you can instruct the node to use the chain specification in the `someCustomSpec.json` file by specifying `--chain=someCustomSpec.json` as a command-line option.
 If you specify a JSON file, the node attempts to de-serialize the provided JSON
-chain spec, and then use it.
+chain specification, and then use it.
 
 ## Declaring storage items for a runtime
 
-In most cases, a Substrate runtime will require storage items to be configured at genesis.
-For example, if you are developing the runtime with FRAME, any storage item that is declared with the `Config` trait requires configuration at genesis.
-These storage values are configured in the genesis portion of the chain spec.
+In most cases, a Substrate runtime requires some storage items to be configured at genesis.
+For example, if you are developing the runtime with FRAME, any storage item that is declared with the `Config` trait in the runtime requires configuration at genesis.
+These storage values are configured in the genesis portion of the chain specification.
+For information about how to set initial values for storage items in a pallet, see [Genesis configuration](/build/genesis-configuration/).
 
 ### Creating a custom chain specification
 
@@ -98,18 +99,12 @@ For example:
 substrate --chain=myCustomSpec.json
 ```
 
-<!-- TODO NAV.YAML -->
-<!-- add these back -->
-<!-- See the [custom chain spec how-to guide](/reference/how-to-guides/basics/custom-chain-spec) for a more concrete example. -->
-
 ## Raw chain specifications
 
 Substrate nodes support runtime upgrades.
-With runtime upgrades, the blockchain's runtime can be different than
-when the chain began.
-Chain specifications contain information structured in a way that
-can be understood by the node's runtime.
-For example, consider this excerpt from the default Substrate node's chain specification `.json` file:
+With runtime upgrades, the blockchain's runtime can be different than when the chain began.
+Chain specifications contain information structured in a way that can be understood by the node's runtime.
+For example, consider this excerpt from the default chain specification for the Substrate node template:
 
 ```json
 "sudo": {
@@ -117,14 +112,16 @@ For example, consider this excerpt from the default Substrate node's chain speci
 }
 ```
 
-Before this chain spec can be used to initialize a node's genesis storage, the human-readable keys must be transformed into actual storage keys for the [storage trie](/build/runtime-storage/).
-This transformation is straight-forward, but it requires that the node's runtime be able to understand the chain spec.
+In the JSON file, this key and its associated value are human-readable text.
+However, this information can't be stored in this format in the underlying storage structures that Substrate uses.
+Before you can use the chain specification to initialize the genesis storage for a node, the human-readable keys must be transformed into actual storage keys that allow the values to be stored in the [storage trie](/fundamentals/state-and-storage/).
+This transformation is straight-forward, but it requires that the chain specification to be encoded in a format that node runtime can read.
 
-If a node with an upgraded runtime attempts to synchronize a chain from genesis, it will not understand the information in this human-readable chain spec.
-For this reason, there is a second encoding of the chain spec.
-This second encoding creates a **raw** version of the chain spec.
+To enable a node with an upgraded runtime to synchronize with a chain from genesis, the human-readable chain specification is encoded in a **raw** format.
+The raw format enables you distribute chain specifications that all nodes can use to synchronize the chain even after runtime upgrades. 
 
-When distributing chain specs in JSON format, you should distribute them in the raw format to ensure that all nodes can sync the chain even after runtime upgrades. Substrate-based nodes support the `--raw` flag to produce the raw chain specs.
+Substrate-based nodes support the `--raw` command-line option to produce the raw chain specifications.
+For example, you can produce the raw chain specification for a human-readable `myCustomSpec.json` file by running the following command:
 
 ```bash
 substrate build-spec --chain=myCustomSpec.json --raw > customSpecRaw.json
