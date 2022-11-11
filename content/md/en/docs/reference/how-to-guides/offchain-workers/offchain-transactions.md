@@ -152,11 +152,11 @@ For example:
    	Call: From<LocalCall>,
    {
    	fn create_transaction<C: frame_system::offchain::AppCrypto<Self::Public, Self::Signature>>(
-   		call: Call,
+   		call: RuntimeCall,
    		public: <Signature as sp_runtime::traits::Verify>::Signer,
    		account: AccountId,
    		index: Index,
-   	) -> Option<(Call, <UncheckedExtrinsic as sp_runtime::traits::Extrinsic>::SignaturePayload)> {
+   	) -> Option<(RuntimeCall, <UncheckedExtrinsic as sp_runtime::traits::Extrinsic>::SignaturePayload)> {
    		let period = BlockHashCount::get() as u64;
    		let current_block = System::block_number()
    			.saturated_into::<u64>()
@@ -284,7 +284,7 @@ To enable Substrate to accept certain unsigned transactions, you must implement 
    fn validate_unsigned(source: TransactionSource, call: &Self::Call) -> TransactionValidity {
    	// ...
    	match call {
-   		Call::extrinsic1 { key: value } => valid_tx(b"extrinsic1".to_vec()),
+   		RuntimeCall::extrinsic1 { key: value } => valid_tx(b"extrinsic1".to_vec()),
    		_ => InvalidTransaction::Call.into(),
    	}
    }
@@ -303,7 +303,7 @@ To enable Substrate to accept certain unsigned transactions, you must implement 
    	fn offchain_worker(block_number: T::BlockNumber) {
    		let value: u64 = 10;
    		// This is your call to on-chain extrinsic together with any necessary parameters.
-   		let call = Call::unsigned_extrinsic1 { key: value };
+   		let call = RuntimeCall::unsigned_extrinsic1 { key: value };
 
    		// `submit_unsigned_transaction` returns a type of `Result<(), ()>`
    		//	 ref: https://paritytech.github.io/substrate/master/frame_system/offchain/struct.SubmitTransaction.html
@@ -391,7 +391,7 @@ The differences between sending unsigned transactions and sending unsigned trans
    		if let Some((_, res)) = signer.send_unsigned_transaction(
    			// this line is to prepare and return payload
    			|acct| Payload { number, public: acct.public.clone() },
-   			|payload, signature| Call::some_extrinsics { payload, signature },
+   			|payload, signature| RuntimeCall::some_extrinsics { payload, signature },
    		) {
    			match res {
    				Ok(()) => log::info!("unsigned tx with signed payload successfully sent.");
@@ -430,7 +430,7 @@ The differences between sending unsigned transactions and sending unsigned trans
    			.build();
 
    		match call {
-   			Call::unsigned_extrinsic_with_signed_payload {
+   			RuntimeCall::unsigned_extrinsic_with_signed_payload {
    			ref payload,
    			ref signature
    			} => {

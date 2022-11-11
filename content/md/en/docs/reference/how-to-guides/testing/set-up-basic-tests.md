@@ -49,7 +49,7 @@ We'll use this as boilerplate which we'll customize for our `pallet-testing` pal
    }
 
    impl pallet_testing::Config for Test {
-     type Event = Event;
+     type RuntimeEvent = RuntimeEvent;
      type MaxValue = MaxValue;
    }
    ```
@@ -71,7 +71,7 @@ use super::*;
    fn error_works(){
      new_test_ext().execute_with(|| {
        assert_err!(
-         TestingPallet::add_value(Origin::signed(1), 51),
+         TestingPallet::add_value(RuntimeOrigin::signed(1), 51),
          "value must be <= maximum add amount constant"
        );
      })
@@ -85,7 +85,7 @@ use super::*;
    fn test_should_work() {
      new_test_ext().execute_with(|| {
        assert_ok!(
-         TestingPallet::add_value(Origin::signed(1), 10)
+         TestingPallet::add_value(RuntimeOrigin::signed(1), 10)
        );
      })
    }
@@ -98,7 +98,7 @@ use super::*;
    fn test_should_fail() {
      new_test_ext().execute_with(|| {
        assert_ok!(
-         TestingPallet::add_value(Origin::signed(1), 100)
+         TestingPallet::add_value(RuntimeOrigin::signed(1), 100)
        );
      })
    }

@@ -65,7 +65,7 @@ If you haven't already done so, see [Build a local blockchain](/tutorials/get-st
     type Time = Timestamp;
     type Randomness = RandomnessCollectiveFlip;
     type Currency = Balances;
-    type Event = Event;
+    type RuntimeEvent = RuntimeEvent;
     /* --snip-- */
    ```
 

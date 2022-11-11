@@ -88,8 +88,8 @@ parameter_types! {
 }
 
 impl paras_registrar::Config for Runtime {
-	type Event = Event;
-	type Origin = Origin;
+	type RuntimeEvent = RuntimeEvent;
+	type RuntimeOrigin = RuntimeOrigin;
 	type Currency = Balances;
 	type OnSwap = (Crowdloan, Slots);
 	type ParaDeposit = ParaDeposit;
