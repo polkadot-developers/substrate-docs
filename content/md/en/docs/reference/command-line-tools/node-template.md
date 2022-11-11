@@ -207,6 +207,7 @@ For example, you can use the following options with the `node-template benchmark
 | `--header <header>` | Adds a header file to your benchmark output.
 | `--heap-pages <heap-pages>` | Sets the heap pages while running benchmarks. If not set, the default value from the node is used.
 | `--high <highest-range-values>...` | Indicates highest values for each of the component ranges.
+| `json-input <json-input-file>` | Specifies the path to a JSON file with previously-generated benchmark results. This option enables you to reuse the benchmarks raw results generated with the `--json-file` to rerun the benchmark analysis and to regenerate the weights for a pallet without actually rerunning the benchmarks tests.
 | `--list` | Lists all currently defined benchmarks without running them.
 | `--low <lowest-range-values>...` | Indicates lowest values for each of the component ranges.
 | `--no-median-slopes` | Disables the median-slopes linear regression analysis.
