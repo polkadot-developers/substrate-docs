@@ -353,6 +353,8 @@ To set up communication between the parachains in the test network:
 5. Click **Developer** and select **Extrinsics**.
 
 6. Select **polkadotXcm**, then select **sent(dest, message)** to craft the XCM messages you want to send.
-   <!--
-   For information about how to craft messages using XCM after you've opened HRMP channels, see [Constructing XCM messages]().
-   -->
+   
+   You should note that XCM messages are like other transactions and require the sender to pay for the execution of the operation.
+   All of the information required must be included in the message itself.
+   For information about how to craft messages using XCM after you've opened HRMP channels, see [Constructing XCM messages](/maintain/cfoss-consensus-messages/constructing-xcm-messages).
+   
