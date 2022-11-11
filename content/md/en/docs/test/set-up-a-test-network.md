@@ -1,13 +1,20 @@
 ---
 title: Set up a parachain test network
-description:
+description: Explains how you can set up a local test network to simulate a relay chain with validators and parachain collator nodes.
 keywords:
+  - parachain
+  - Polkadot
+  - testnet
+  - collator nodes
+  - validator nodes
+  - relay chain
+  - zombienet
 ---
 
 You can use the `zombienet` command-line tool to set up a local test network to simulate a relay chain with validators and parachain collator nodes. 
 You can configure the test network to include multiple validators and parachains with multiple collators.
 
-To see the full list of features Zombienet offers, see the [README]([:](https://github.com/paritytech/zombienet)).
+To see the full list of features Zombienet offers, see the [README](https://github.com/paritytech/zombienet).
 
 This tutorial illustrates how to set up a test network with the following configuration:
 
@@ -37,30 +44,24 @@ To prepare a working folder with the binaries for the test network:
    If you’re setting up the test network on Linux, you can download the Polkadot binary from [Releases](https://github.com/paritytech/polkadot/releases) into your working folder.
    If you’re setting up the test network on macOS or want to compile the binary yourself, continue to the next step.
 
-2. Clone the Polkadot repository by running the following command:
+2. Clone the Polkadot repository by running a command similar to the following:
    
    ```bash
-   git clone --depth 1 https://github.com/paritytech/polkadot.git
+   git clone --depth 1 --branch release-v0.9.30 https://github.com/paritytech/polkadot.git
    ```
+
+   Release branches use the naming convention `release-v<n.n.n>`.
+   For example, the release branch used in this tutorial is `release-v0.9.30`.
+   You can check out a more recent release branch instead of using `release-v0.9.30`.
+   You can find information about recent releases and what's included in each release on the [Releases](https://github.com/paritytech/polkadot/releases) tab.
 
 3. Change to the root of the `polkadot` directory by running the following command:
    
    ```bash
    cd polkadot
    ```
-
-4. Check out the latest release of Polkadot by running a command similar to the following:
    
-   ```bash
-   git checkout release-v0.9.30
-   ```
-   
-   Release branches use the naming convention `release-v<n..n.n>`.
-   For example, the release branch used in this tutorial is `release-v0.9.30`.
-   You can check out a more recent release branch instead of using `release-v0.9.30`.
-   You can find information about recent releases and what's included in each release on the [Releases](https://github.com/paritytech/polkadot/releases) tab.
-   
-3. Compile the relay chain node by running the following command:
+4. Compile the relay chain node by running the following command:
    
    ```bash
    cargo build --release
@@ -81,9 +82,9 @@ To prepare a working folder with the binaries for the test network:
 ### Add the first parachain binary
 
 Your working folder now has the binary for the relay chain, but you also need the binaries for the parachain collator nodes.
-You can add this binary to your working folder by cloning the  `substrate-parachain-template` repository.
-By default, compiling the substrate-parachain-template creates a parachain collator binary that is configured with paraId 1000.
-You can use this paraId for the fist parachain in the test network.
+You can add the parachain collator binary to your working folder by cloning the  `substrate-parachain-template` repository.
+By default, compiling the `substrate-parachain-template` creates a parachain collator binary that is configured with the `paraId` 1000.
+You can use this `paraId` for the first parachain in the test network.
 
 To add the first parachain binary to the working folder:
 
@@ -121,17 +122,19 @@ To add the first parachain binary to the working folder:
    cp ./target/release/parachain-template-node ../bin/parachain-template-node-v0.9.30-1000
    ```
    
-   As this example illustrates, it's generally a good practice to append the version and paraId to the binary name to keep the files in the `bin` folder organized.
+   As this example illustrates, it's generally a good practice to append the version and `paraId` to the binary name to keep the files in the `bin` folder organized.
 
 ### Add the second parachain binary
 
-Each parachain must have a unique identifier, so to create a second parachain for the test network you need to edit the default chain specification to specify a different paraId.
+Each parachain must have a unique identifier, so to create a second parachain for the test network you need to edit the default chain specification to specify a different `paraId`.
 
 To add the second parachain binary to the working folder:
 
 1. Open the `substrate-parachain-template/node/src/chain_spec.rs` file in a text editor.
    
-2. Modify the Local Testnet to use paraId `1001` instead of the default paraId `1000`:
+2. Modify the Local Testnet configuration to use the identifier `1001` instead of the default identifier `1000`.
+   
+   There are two instances to change in the `local_testnet_config` function:
    
    ```rust
    pub fn local_testnet_config() -> ChainSpec {
@@ -183,13 +186,15 @@ To add the second parachain binary to the working folder:
     )
    ```      
 
-1. Compile the node with the modified chain specification by running the following command:
+3. Save your changes and close the chain specification file.
+
+4. Compile the node with the modified chain specification by running the following command:
    
    ```bash
    cargo build -release
    ```
 
-2. Copy the new parachain collator binary into the working `bin` folder by running a command similar to the following:
+5. Copy the new parachain collator binary into the working `bin` folder by running a command similar to the following:
    
    ```bash:
    cp ./target/release/parachain-template-node ../bin/parachain-template-node-v0.9.30-1001
@@ -197,231 +202,157 @@ To add the second parachain binary to the working folder:
 
 ## Configure the test network settings
 
-Now that you have all of teh binaries you need in a working folder, you are ready to configure the settings for the test network that Zombienet will use.
+Now that you have all of the binaries you need in a working folder, you are ready to configure the settings for the test network that Zombienet will use.
 
-To configure Zombienet:
+To download and configure Zombienet:
 
 1. Download the appropriate [Zombienet executable](https://github.com/paritytech/zombienet/releases) for the Linux or macOS operating system.
    
    Depending on your security settings, you might need to explicitly allow access to the executable.
-Tip: If you want the executable to be available system-wide then you can follow these steps (otherwise just download the executable to your working directory):
+   
+   If you want the executable to be available system-wide, run commands similar to the following after downloading the executable:
+   
+   ```bash
+   chmod +x zombienet-macos
+   cp zombienet-macos /usr/local/bin
+   ```
 
-wget https://github.com/paritytech/zombienet/releases/download/v1.2.61/zombienet-macos
-chmod +x zombienet-macos 
-cp zombienet-macos /usr/local/bin
-Let’s make sure Zombienet CLI is installed correctly:
+2. Verify that Zombienet is installed correctly by running the following command:
+   
+   ```bash
+   ./zombienet-macos --help
+   ```
 
-./zombienet-macos --help
-You should see some similar output:
+   If command-line help is displayed, the Zombienet is ready to configure.
 
-Usage: zombienet [options] [command]
+3. Create a configuration file for Zombienet by running the following command:
+   
+   ```bash
+   touch config.toml
+   ```
 
-Options:
-  -c, --spawn-concurrency <concurrency>  Number of concurrent spawning process to launch, default is 1
-  -p, --provider <provider>              Override provider to use (choices: "podman", "kubernetes", "native")
-  -m, --monitor                          Start as monitor, do not auto cleanup network
-  -h, --help                             display help for command
+   You are going to use the configuration file to specify the following information:
+   
+   - Location of the binaries for the test network.
+   - The relay chain specification—`rococo-local`—to use.
+   - Information about the four relay chain validators.
+   - Identifiers for parachains included in the test network.
+   - Information about the collators for each parachains.
+   
+   For example:
+   
+   ```toml
+   [relaychain]
+   default_command = "./bin/polkadot-v0.9.30"
+   default_args = [ "-lparachain=debug" ]
+   
+   chain = "rococo-local"
+      
+      [[relaychain.nodes]]
+      name = "alice"
+      validator = true
+      
+      [[relaychain.nodes]]
+      name = "bob"
+      validator = true
+      
+      [[relaychain.nodes]]
+      name = "charlie"
+      validator = true
+      
+      [[relaychain.nodes]]
+      name = "dave"
+      validator = true
+    
+   [[parachains]]
+   id = 1000
+   cumulus_based = true
+      
+      [parachains.collator]
+      name = "parachain-A-1000-collator-01"
+      command = "./bin/parachain-template-node-v0.9.30-1000"
+   
+   [[parachains]]
+   id = 1001
+   cumulus_based = true
+      
+      [parachains.collator]
+      name = "parachain-B-1001-collator-01"
+      command = "../bin/parachain-template-node-v0.9.30-1001"
+   ```
 
-Commands:
-  spawn <networkConfig> [creds]          Spawn the network defined in the config
-  test <testFile> [runningNetworkSpec]   Run tests on the network defined
-  setup <binaries...>                    Setup is meant for downloading and making dev environment of Zombienet ready
-  version                                Prints zombienet version
-  help [command]                         display help for command
-Setting up our config
-Zombienet works with a config. The config is where you specify your test network’s configuration. The config is also where we specify our binaries.
+1. Save your changes and close the file.
+   
+2. Start the test network using this configuration file by running a command similar to the following:
+   
+   ```bash
+   ./zombienet-macos spawn config.toml -p native
+   ```
 
-Create a config file:
+   The command displays information about the test network nodes being started.
+   After all of the nodes are running, you can interact with your nodes by opening the [Polkadot/Substrate Portal](https://polkadot.js.org/apps) and connecting to any of the node endpoints.
 
-touch config.toml
-So we want to specify in our config that we want a Rococo relay chain with four validators and two parachains each with one collator:
+## Open a message passing channel
 
-[relaychain]
-default_command = "./bin/polkadot-v0.9.30"
-default_args = [ "-lparachain=debug" ]
+Now that you have your test network up, you can open horizontal relay message passing channels to enable communication between parachain A (1000) and parachain B (1001).
+Because channels are unidirectional, you need to 
 
-chain = "rococo-local"
+- Send a request to open channel from parachain A (1000) to parachain B (1001).
+- Accept the request on parachain B (1001).
+- Send a request to open channel from parachain B (1001) to parachain A (1000).
+- Accept the request on parachain A (1000).
 
-  [[relaychain.nodes]]
-  name = "alice"
-  validator = true
+Zombienet simplifies opening these channels by enabling you to include basic channel settings in the configuration file for testing purposes.
 
-  [[relaychain.nodes]]
-  name = "bob"
-  validator = true
+To set up communication between the parachains in the test network:
 
-  [[relaychain.nodes]]
-  name = "charlie"
-  validator = true
+1. Open the `config.toml` file in a text editor.
 
-  [[relaychain.nodes]]
-  name = "dave"
-  validator = true
+2. Add channel information similar to the following to the configuration file:
+   
+   ```toml
+   [[hrmpChannels]]
+   sender = 1000
+   recipient = 1001
+   maxCapacity = 8
+   maxMessageSize = 8000
+   
+   [[hrmpChannels]]
+   sender = 1001
+   recipient = 1000
+   maxCapacity = 8
+   maxMessageSize = 8000
+   ```
 
-[[parachains]]
-id = 1000
-cumulus_based = true
+   Note that the values you set for **maxCapacity** and **maxMessageSize** shouldn't exceed the values defined for the `hrmpChannelMaxCapacity` and `hrmpChannelMaxMessageSize` parameters for the relay chain.
 
-  [parachains.collator]
-  name = "parachain-A-1000-collator-01"
-  command = "./bin/parachain-template-node-v0.9.30-1000"
+   To check the configuration settings for the current relay chain using the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/):
 
-[[parachains]]
-id = 1001
-cumulus_based = true
+   - Click **Developer** and select **Chain State**.
+   - Select **configuration**, then select **activeConfig()**.
+   - Check the following parameter values:
+     
+      ```text
+      hrmpChannelMaxCapacity: 8
+      hrmpChannelMaxTotalSize: 8,192
+      hrmlChannelMaxMessageSize: 1,048,576
+      ```
 
-  [parachains.collator]
-  name = "parachain-B-1001-collator-01"
-  command = "../bin/parachain-template-node-v0.9.30-1001"
-Save the file and run the Zombienet CLI using this config:
+3. Save your changes and close the file.
+   
+4. Restart Zombienet by running the following command:
+   
+   ```bash
+   ./zombienet-macos spawn config.toml -p native
+   ```
+   
+   You now have a test network with a bidirectional HRMP channel open between the parachains A (1000) and parachain B (1001).
 
-./zombienet-macos spawn config.toml -p native
-You should see some nicely formatted output stating that the nodes are up and ready.
+   You can use the [Polkadot/Substrate Portal](https://polkadot.js.org/apps) to connect to the parachains and send messages.
 
-You can now interact with your nodes on polkadotJS apps!
+5. Click **Developer** and select **Extrinsics**.
 
-Opening HRMP Channels
-Background on HRMP (XCMP-Lite)
-
-While XCMP is still being implemented, a stop-gap
-protocol (see definition below) known as Horizontal Relay-routed
-Message Passing (HRMP) exists in its place. HRMP has the same
-interface and functionality as XCMP but is much more demanding on
-resources since it stores all messages in the Relay Chain storage.
-When XCMP has been implemented, HRMP is planned to be deprecated and
-phased out in favor of it.
-
-https://wiki.polkadot.network/docs/learn-xcm#hrmp-xcmp-lite
-This post will show how to open HRMP channels between two parachains: Parachain A and Parachain B.
-
-Channels are unidirectional
-
-The parachain that wants to open an HRMP channel must make a request to the parachain it wishes to have an open channel with. Once that is done, the other parachain needs to accept this request. This is what we mean by unidirectional flow. For bidirectional communication we need to open another channel in the opposite way.
-
-A channel can be opened only after the recipient confirms it and only on a session change.
-
-Initiate an open channel request from Parachain A to Parachain B
-We will have Parachain A initiate a request to open an HRMP channel with Parachain B.
-
-This is done on the relay chain.
-
-Open the relay chain’s polkadotJS apps and create the following extrinsic:
-
-hrmp.hrmpInitOpenChannel(
-    recipient: 2000                    // the other parachain you want to open the channel with
-    proposedMaxCapacity: 1000          // specifies how many messages can be in the channel at once
-    proposed_max_message_size: 102400  // specifies the maximum size of the messages
-)
-
-
-We will not submit this transaction. Instead, after setting the desired parameters, copy the encoded call data. We will need this later to craft our XCM message.
-
-Here is a past example of an encoded call data in Rococo: 0x1700b80b0000e803000000900100
-
-Note that proposedMaxCapacity and proposed_max_message_size numbers are subject to the relay chain’s configuration limits. The relay chain’s configuration can be found in configuration.activeConfig():
-
-
-
-The image above is an example of Rococo’s active configuration at the time of writing this article.
-
-The next step is done on parachain A.
-
-Connect to Parachain A on polkadotJS apps.
-
-Create a polkadotXcm extrinsic to notify the relay chain that we want to open a channel with parachain B (using the encoded call data from the previous step):
-
-polkadotXcm.send(
-    dest: V1
-        parents: 1
-        interior: Here
-    message: V2
-        XcmV2Instruction: WithdrawAsset
-            id: Concrete
-                parents: 0
-                interior: Here
-            fun: Fungible
-                Fungible: 1_000_000_000_000
-        XcmV2Instruction: BuyExecution
-            id: Concrete
-                parents: 0
-                interior: Here
-            fun: Fungible
-                Fungible: 1_000_000_000_000
-            weightLimit: Unlimited
-        XcmV2Instruction: Transact
-            originType: Native
-            requireWeightAtMost: 4_000_000_000
-                encoded: 0x1700b80b0000e803000000900100 // our hrmpInitOpenChannel encoded call data
-
-)
-Note: you should compose your message taking into account the active XCM configuration, this is just an example.
-
-Accept Parachain A’s open channel request on Parachain B
-So far Parachain A has done its part: it has requested to open an HRMP channel to Parachain B.
-
-Now this request has to be accepted by Parachain B.
-
-On the relay chain, create the following extrinsic:
-
-hrmp.hrmpAcceptOpenChannel(
-    sender: 2000
-)
-There is no need to submit the transaction. Instead copy the encoded call data.
-
-Here is an example of an encoded call data in Rococo: 0x1701d0070000
-
-Now on Parachain B we use polkadotXcm.send extrinsic to craft an XCM message (using the encoded call data from the previous step).
-
-polkadotXcm.send(
-    dest: V1
-        parents: 1
-        interior: Here
-    message: V2
-        XcmV2Instruction: WithdrawAsset
-            id: Concrete
-                parents: 0
-                interior: Here
-            fun: Fungible
-                Fungible: 1_000_000_000_000
-        XcmV2Instruction: BuyExecution
-            id: Concrete
-                parents: 0
-                interior: Here
-            fun: Fungible
-                Fungible: 1_000_000_000_000
-            weightLimit: Unlimited
-        XcmV2Instruction: Transact
-            originType: Native
-            requireWeightAtMost: 4_000_000_000
-                encoded: 0x1701d0070000 // our hrmpAcceptOpenChannel encoded call data
-
-)
-Note: you should compose your message taking into account the active XCM configuration, this is just an example.
-
-And that’s it — the channel has been accepted and it will remain open, such that communication from Parachain A to Parachain B can now flow.
-
-For making this a bidirectional channel you’ll need to open another channel, from Parachain B to Parachain A. You can do this by repeating the steps above (inversely).
-
-More info here:
-
-https://docs.substrate.io/reference/how-to-guides/parachains/add-hrmp-channels
-Zombienet HRMP Configuration
-Zombienet also has an HRMP configuration to quickly open HRMP channels.
-
-For testing purposes this can be useful.
-
-Simply add the following to your config:
-
-[[hrmpChannels]]
-sender = 1000
-recipient = 1001
-maxCapacity = 1000
-maxMessageSize = 102400
-
-[[hrmpChannels]]
-sender = 1001
-recipient = 1000
-maxCapacity = 1000
-maxMessageSize = 102400
-Restart Zombienet and you now have a bidirectional HRMP channel open between the two parachains!
-
+6. Select **polkadotXcm**, then select **sent(dest, message)** to craft the XCM messages you want to send.
+   <!--
+   For information about how to craft messages using XCM after you've opened HRMP channels, see [Constructing XCM messages]().
+   -->
