@@ -439,6 +439,30 @@ In Substrate, the runtime is stored as a [WebAssembly](#webassembly-wasm) binary
 A fixed, equal interval of time used by consensus engines such as [Aura](#aura-aka-authority-round) and [BABE](#blind-assignment-of-blockchain-extension-babe).
 In each slot, a subset of [authorities](#authority) is permitted—or obliged—to [author](#author) a [block](#block).
 
+## sovereign account
+
+The unique account identifier for each chain in the relay chain ecosystem.
+The sovereign account for each chain is a root-level that can only be accessed using the Sudo pallet or through governance. 
+The account identifier is calculated by concatenating the Blake2 hash of a specific text string and the registered parachain identifier.
+
+For the relay chain, the parachain account identifier is calculated as the concatenation of (blake2(para+ParachainID) with the hash truncated to the correct length.
+For example, the account identifier for the parachain with the parachain identifier of 1012 on the relay chain is:
+String to hex para: 0x70617261
+Encoded parachain identifier 1012: f4030000
+
+0x70617261f4030000000000000000000000000000000000000000000000000000
+ccount address: 5Ec4AhPc9b6e965pNRSsn8tjTzuKaKambivxcL7Gz9Gne9YB
+
+For other parachains, the parachain account identifier is calculated as the concatenation of (blake2(sibl+ParachainID) with the hash truncated to the correct length. 
+For example, the account identifier for the parachain with the parachain identifier of 1012 on the relay chain is:
+String to hex sibl: 0x7369626c
+Encoded parachain identifier 1012: f4030000
+
+0x7369626cf4030000000000000000000000000000000000000000000000000000
+Account address: 5Eg2fntREKHYGgoxvRPxtnEYiUadHjdsfNaPsHdmrsJMVugs
+
+The sovereign account is most often used to sign XCM messages that are sent to either the relay chain or other chains in the ecosystem.
+
 ## SS58 address format
 
 The SS58 address format is a public key address based on the Bitcoin [`Base-58-check`](https://en.bitcoin.it/wiki/Base58Check_encoding) encoding.
