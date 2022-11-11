@@ -4,7 +4,7 @@ description:
 keywords:
 ---
 
-The telemetry components in the Substrate outer node provide low-level information about the operation of the network. 
+By default, telemetry components in the Substrate outer node provide low-level information about the operation of the nodes in the network. 
 The information exposed can be sent to a backend telemetry server where it can be collected into a data series for display in a front-end dashboard or charts and graphs. 
 
 Substrate telemetry relies on the tracing library from the Tokio Rust crate to log and transmit information about node operations.
@@ -31,47 +31,6 @@ source
 pub fn handle(&self) -> TelemetryHandle
 Make a new cloneable handle to this Telemetry. This is used for reporting telemetries.
 
-ConnectionMessage
-
-name: String
-Node’s name.
-
-implementation: String
-Node’s implementation.
-
-version: String
-Node’s version.
-
-config: String
-Node’s configuration.
-
-chain: String
-Node’s chain.
-
-genesis_hash: String
-Node’s genesis hash.
-
-authority: bool
-Node is an authority.
-
-startup_time: String
-Node’s startup time.
-
-network_id: String
-Node’s network ID.
-
-target_os: String
-Node’s OS.
-
-target_arch: String
-Node’s ISA.
-
-target_env: String
-Node’s target platform ABI or libc.
-
-sysinfo: Option<SysInfo>
-Node’s software and hardware information.
-
 The telemetry information includes details about the hardware and software running on the node, including:
 
 - The exact CPU model.
@@ -92,7 +51,7 @@ Every task spawned using sc-service’s TaskManager automatically inherits this 
 
 By default, when you start a Substrate node, the node initializes a [Telemetry](https://paritytech.github.io/substrate/master/sc_telemetry/struct.Telemetry.html) data structure instance that can be used to send telemetry messages.
 The `Telemetry` instance connects to the remote endpoints the node should send data to and sets up a `TelemetryWorker` thread to run in the background. 
-The `TelemetryWorker` registers a new `TelemetryWorkerHandle` to use for asynchronous communication ng with the running TelemetryWorker dedicated to registration. 
+The `TelemetryWorker` registers a new `TelemetryWorkerHandle` to use for asynchronous communication with the running TelemetryWorker dedicated to registration. 
 Registering can happen at any point in time during the process execution.
 
 Metrics and dashboards
