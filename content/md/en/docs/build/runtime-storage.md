@@ -22,7 +22,7 @@ The type of storage items you choose to implement depends entirely on their inte
 The FRAME [`Storage` module](https://paritytech.github.io/substrate/master/frame_support/storage) provides access to the layered storage abstractions described in [State transitions and storage](/fundamentals/state-transitions-and-storage/) and can support any value that is encodable by [SCALE codec](/reference/scale-codec/). 
 The storage module provides the following types of storage structures:
 
-- [StorageValue](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html)to store any single value, such as a `u64`.
+- [StorageValue](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html) to store any single value, such as a `u64`.
 - [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html) to store values with a single key-to-value mapping, such as account-to-balance.
 - [StorageDoubleMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageDoubleMap.html) to store values in a storage map with two keys as an optimization to efficiently remove all entries that have a common first key.
 - [StorageNMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageNMap.html) to store values in a map with any arbitrary number of keys.
