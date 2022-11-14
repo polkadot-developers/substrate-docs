@@ -19,8 +19,7 @@ There are three main communication channels:
 ## About horizontal relay-routed message passing
 
 Horizontal relay-routed message passing (HRMP) is an interim version of cross-consensus message passing (XCMP). 
-This interim solution—also sometimes referred to as XCMP-Lite—provides the same functionality as XCMP.
-However, HRMP stores all of the messages passed between chains in the relay chain storage and is therefore more resource-intensive than XCMP.
+This interim solution—also sometimes referred to as XCMP-Lite—provides the same functionality as XCMP but stores all of the messages passed between chains in the relay chain storage.
 
 Although HRMP is intended to be phased out when XCMP is fully implemented, this tutorial uses HRMP to illustrate how you can open message passing channels to enable parachains to communicate with each other.
 
@@ -44,15 +43,22 @@ After parachain 1002 confirms that it will accept messages from parachain 1001, 
 In this tutorial, you'll open HRMP channels that enable a parachain with the unique identifier 1001 and a parachain with the unique identifier 1002 to exchange XCM messages.
 Before you begin, verify the following:
 
-- You have set up a [zombienet](https://substrate.stackexchange.com/questions/4692/how-do-i-spin-up-a-testnet-with-zombienet) test network or a local relay chain using the `rococo-local`  chain specification.
-- You have set up two local parachain for testing purposes.
-- You have the `sudo` pallet configured for both local parachains.
+- You have set up a [parachain test network](/test/simulate-parachains) using Zombienet or a local relay chain using the `rococo-local`  chain specification.
   
-  In a production environment, you would use governance instead of the `sudo` pallet for privileged transactions.
+- You have set up two local or virtual parachains for testing purposes.
+  
+  For the purposes of this tutorial:
+  
+  Parachain A has the unique identifier 1000.
+  Parachain B has the unique identifier 1001.
+
+- You have the `sudo` pallet available for both local parachains to use.
+  
+  In a production environment, you would use governance proposals and voting instead of the `sudo` pallet for privileged transactions.
 
 ## Prepare the channel request
 
-1. Open the Polkadot/Substrate Portal and connect to the test network.
+1. Open the [Polkadot/Substrate Portal]() and connect to the relay chain endpoint in your test network.
 2. Create an hrmpInitOpenChannel call. 
 Do not submit the call, instead copy the encoded call data for later use:
 
