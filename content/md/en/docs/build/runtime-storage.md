@@ -90,8 +90,7 @@ Calling this function doesn't spawn a transactional storage layer.
 However, if you use the `#[without_transactional]` macro, keep in mind that changes to storage will affect the values in the main in-memory storage overlay.
 If an error occurs after you have modified storage, those changes will persist, and potentially could result in your database being left in an inconsistent state.
 
-
-
+## FRAME storage module
 
 To help you make the most efficient use of runtime storage, FRAME provides a [`Storage`](https://paritytech.github.io/substrate/master/frame_support/storage) module with data structures that give you efficient access to the underlying Substrate storage architecture.
 
@@ -100,16 +99,17 @@ This document is intended to provide information and best practices about Substr
 
 ## Storage items
 
-In Substrate, any pallet can introduce new storage items that will become part of th blockchain state. 
+In Substrate, any pallet can introduce new storage items that will become part of the blockchain state. 
 These storage items can be simple single value items, or more complex storage maps. 
 The type of storage items you choose to implement depends entirely on their intended role within your runtime logic.
 
-FRAME storage items can support any value that is encodable by [SCALE codec](/reference/scale-codec/). These include:
+FRAME storage items can support any value that is encodable by [SCALE codec](/reference/scale-codec/). 
+The types of storage items that FRAME provides are:
 
-- [Storage value](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html) - used to store any single value, such as a `u64`.
-- [Storage map](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html) - used to store a key-value mapping, such as account-to-balance.
-- [Storage double map](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageDoubleMap.html) - used as an implementation of a storage map with two keys to provide the ability to efficiently remove all entries that have a common first key.
-- [Storage N map](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageNMap.html) - used to store a mapping with any arbitrary number of keys, it can be used as a basis to build a Triple Storage Map, a Quadruple Storage Map and so on.
+- [StorageValue](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html) to store any single value, such as a `u64`.
+- [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html) to store a single key to value mapping, such as a specific account key to a specific balance value.
+- [StorageDoubleMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageDoubleMap.html) to store values in a storage map with two keys as an optimization to efficiently remove all entries that have a common first key.
+- [StorageNMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageNMap.html) to store values in a map with any arbitrary number of keys.
 
 ## Simple storage values
 
