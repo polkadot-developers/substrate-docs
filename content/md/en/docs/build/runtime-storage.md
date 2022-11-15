@@ -17,33 +17,28 @@ The fundamental principle for blockchain runtime storage is to minimize both the
 For example, you should only store _consensus-critical_ information in the runtime.
 You shouldn't store intermediate or temporary data in the runtime or data that won't be needed if an operation fails.
 
-When possible, use techniques like hashing to reduce the amount of data you must store.
+## Use hashed data
+
+Whenever possible, use techniques like hashing to reduce the amount of data you must store.
 For example, many governance capabilities—such as the [`propose`](https://paritytech.github.io/substrate/master/pallet_democracy/pallet/enum.Call.html#variant.propose) function in the Democracy pallet—allow network participants to vote on the _hash_ of a dispatchable call instead of the call itself.
 The hash of the call is always bounded in size, whereas the call might be unbounded in length.
+
 Using the hash of a call is particularly important in the case of runtime upgrades where the dispatchable call takes an entire runtime Wasm blob as its parameter.
 Because these governance mechanisms are implemented _on-chain_, all the information that is needed to come to consensus on the state of a given proposal must also be stored on-chain - this includes _what_ is being voted on.
-However, by binding an on-chain proposal to its hash, Substrate's governance mechanisms allow this to be done in a way that defers bringing all the data associated
-with a proposal on-chain until _after_ it has been approved.
+However, by binding an on-chain proposal to its hash, Substrate's governance mechanisms allow this to be done in a way that defers bringing all the data associated with a proposal on-chain until _after_ it has been approved.
 This means that storage is not wasted on proposals that fail.
 
 Once a proposal has passed, someone can initiate the actual dispatchable call (including all its parameters), which will be hashed and compared to the hash in the proposal.
+
 Another common pattern for using hashes to minimize data that is stored on-chain is to store the pre-image associated with an object in [IPFS](https://docs.ipfs.io); this means that only the IPFS location (a hash that is bounded in size) needs to be stored on-chain.
 
-Hashes are only one mechanism that can be used to control the size of runtime storage.
-An example of another mechanism is [bounds](#create-bounds).
-
-## Verify first, write last
-
-Substrate does not cache state prior to extrinsic dispatch.
-Instead, it applies changes directly as they are invoked.
-If an extrinsic fails, any state changes will persist.
-Because of this, it is important not to make any storage mutations until it is certain that all preconditions have been met.
-
+### Avoid storing transient data
 
 Do not use runtime storage to store intermediate or transient data within the context of an operation that is logically atomic or data that will not be needed if the operation is to fail.
 This does not mean that runtime storage should not be used to track the state of actions that require multiple atomic operations, as in the case of [the multi-signature capabilities from the Utility pallet](https://paritytech.github.io/substrate/master/pallet_utility/pallet/enum.Call.html#variant.as_multi).
 In this case, runtime storage is used to track the signatories on a dispatchable call even though a given call may never receive enough signatures to actually be invoked.
-In this case, each signature is considered an atomic event in the ongoing multi-signature operation; the data needed to record a single signature is not stored until after all the preconditions associated with that signature have been met.
+In this case, each signature is considered an atomic event in the ongoing multi-signature operation.
+The data needed to record a single signature is not stored until after all the preconditions associated with that signature have been met.
 
 ### Create bounds
 
@@ -51,7 +46,51 @@ Creating bounds on the size of storage items is an extremely effective way to co
 In general, any storage item whose size is determined by user action should have a bound on it.
 The multi-signature capabilities from the [Multisig pallet](https://paritytech.github.io/substrate/master/pallet_multisig/pallet/trait.Config.html#associatedtype.MaxSignatories) that were described above are one such example.
 In this case, the list of signatories associated with a multi-signature operation is provided by the multi-signature participants.
-Because this signatory list is [necessary to come to consensus](#what-to-store) on the state of the multi-signature operation, it must be stored in the runtime. However, in order to give runtime developers control over how much space in storage these lists may occupy, the Utility pallet requires users to configure a bound on this number that will be included as a [precondition](#verify-first-write-last) before anything is written to storage.
+Because this signatory list is [necessary to come to consensus](#what-to-store) on the state of the multi-signature operation, it must be stored in the runtime. However, to control how much space signatory list can use, the Utility pallet requires users to configure a bound on this number to be included as a precondition before anything is written to storage.
+
+## Transactional storage
+
+As explained in [State and storage](), runtime storage involves an underlying key-value database and in-memory storage overlay abstractions that keep track of keys and state changes until the values are committed to the underlying database.
+By default, functions in the runtime write changes to a single in-memory **transactional storage layer** before committing them to the main storage overlay. 
+If an error prevents the transaction from being completed, the changes in the transactional storage layer are discarded instead of being passed on to the main storage overlay and state in the underlying database remains unchanged.
+
+### Adding transactional storage layers
+
+You can extend the transactional storage layer by using the `#[transactional]` macro to spawn additional in-memory storage overlays. 
+By spawning additional in-memory transactional storage overlays, you can choose whether you want to commit specific changes to the main storage overlay or not. 
+The additional transactional storage layers give you the flexibility to isolate changes to specific function calls and select at any point which changes to commit.
+
+You can also nest transactional storage layers up to a maximum of ten nested transactional layers. 
+With each nested transactional storage layer you create, you can choose whether you want to commit changes to the transactional layer below it, giving you a great deal of control over what is committed to the underlying database.
+Limiting the total number of nested transactional  storage layers limits the computational overhead in resolving the changes to be committed.
+
+### Dispatching transactional storage layer call 
+
+If you want to dispatch a function call within its own transactional layer, you can use the `dispatch_with_transactional(call)` function to explicitly spawn a new transactional layer for the call and use that transactional layer context to handle the result.
+
+### Committing changes without the transactional storage layer
+
+If you want to commit changes to the main storage overlay without using the default  transactional storage layer, you can use the `#[wihtout_transactional]` macro. 
+The `#[wihtout_transactional]` macro enables you to identify a function that is safe to be executed without its own transactional layer.
+
+For example, you might define a function like this:
+
+```rust
+/// This function is safe to execute without an additional transactional storage layer.
+#[without_transactional]
+fn set_value(x: u32) -> DispatchResult {
+    Self::check_value(x)?;
+    MyStorage::set(x);
+    Ok(())
+}
+```
+
+Calling this function doesn't spawn a transactional storage layer.
+
+However, if you use the `#[without_transactional]` macro, keep in mind that changes to storage will affect the values in the main in-memory storage overlay.
+If an error occurs after you have modified storage, those changes will persist, and potentially could result in your database being left in an inconsistent state.
+
+
 
 
 To help you make the most efficient use of runtime storage, FRAME provides a [`Storage`](https://paritytech.github.io/substrate/master/frame_support/storage) module with data structures that give you efficient access to the underlying Substrate storage architecture.
