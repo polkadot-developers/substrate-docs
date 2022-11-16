@@ -90,26 +90,20 @@ Calling this function doesn't spawn a transactional storage layer.
 However, if you use the `#[without_transactional]` macro, keep in mind that changes to storage will affect the values in the main in-memory storage overlay.
 If an error occurs after you have modified storage, those changes will persist, and potentially could result in your database being left in an inconsistent state.
 
-## FRAME storage module
+## Accessing runtime storage
 
-To help you make the most efficient use of runtime storage, FRAME provides a [`Storage`](https://paritytech.github.io/substrate/master/frame_support/storage) module with data structures that give you efficient access to the underlying Substrate storage architecture.
-
-Substrate exposes a set of layered, modular storage APIs that allow runtime developers to make the storage decisions that suit them best.
-This document is intended to provide information and best practices about Substrate's runtime storage interfaces.
-
-## Storage items
-
-In Substrate, any pallet can introduce new storage items that will become part of the blockchain state. 
-These storage items can be simple single value items, or more complex storage maps. 
-The type of storage items you choose to implement depends entirely on their intended role within your runtime logic.
-
-FRAME storage items can support any value that is encodable by [SCALE codec](/reference/scale-codec/). 
-The types of storage items that FRAME provides are:
+In [State transitions and storage](/fundamentals/state-transitions-and-storage/), you learned how Substrate uses storage abstractions to provide read and write access to the underlying key-value database.
+The FRAME [`Storage`](https://paritytech.github.io/substrate/master/frame_support/storage) module simplifies access to these layered storage abstractions. 
+You can use the FRAME storage data structures to read or write any value that can be encoded by the [SCALE codec](/reference/scale-codec/).
+The storage module provides the following types of storage structures:
 
 - [StorageValue](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html) to store any single value, such as a `u64`.
 - [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html) to store a single key to value mapping, such as a specific account key to a specific balance value.
 - [StorageDoubleMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageDoubleMap.html) to store values in a storage map with two keys as an optimization to efficiently remove all entries that have a common first key.
 - [StorageNMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageNMap.html) to store values in a map with any arbitrary number of keys.
+  
+You can include any of these storage structures in pallets to introduce new storage items that will become part of the blockchain state. 
+The type of storage items you choose to implement depends entirely on how you want to use the information in the context of the runtime logic.
 
 ## Simple storage values
 
@@ -122,29 +116,29 @@ If this occurs for [parachains](/reference/glossary/#parachain), the blockchain 
 Although wrapping related items in a shared `struct` is an excellent way to reduce the number of storage reads, at some point the size of the object will begin to incur costs that may outweigh the optimization in storage reads.
 Read about [benchmarking](/test/benchmark/) to learn how to optimize execution time.
 
-Refer to the Storage Value documentation for [a comprehensive list of the methods that Storage Value exposes](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html#required-methods).
+Refer to the [StorageValue](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html#required-methods) documentation for a comprehensive list of the methods that StorageValue exposes.
 
 ## Single key storage maps
 
-Map data structures are ideal for managing sets of items whose elements will be accessed randomly,
-as opposed to iterating over them sequentially in their entirety. Storage Maps in Substrate are
-implemented as key-value mappings that provide a similar interface as traditional [hash-maps](https://en.wikipedia.org/wiki/Hash_table)
-for enabling random lookups. In order to give runtime engineers increased control, Substrate allows developers to select
-which hashing algorithms suits their use case the best for generating a map's keys. This is covered in the section on [hashing algorithms](#hashing-algorithms).
+Map data structures are ideal for managing sets of items whose elements will be accessed randomly, as opposed to iterating over them sequentially in their entirety. 
+Single key storage maps in Substrate are similar to traditional [hash maps](https://en.wikipedia.org/wiki/Hash_table) with key-to-value mapping to perform random lookups. 
+To give you flexibility and control, Substrate allows you to select the hashing algorithm you want to use to generate the map keys.
+For example, if a map stores sensitive data you might want to generate keys using a hashing algorithm with stronger encryption over a hashing algorithm with better performance but weaker encryption properties.
+For more infomration about selecting a hashing algorithm for a map to use, see [Hashing algorithms](#hashing-algorithms).
 
-Refer to the Storage Map documentation for [a comprehensive list of the methods that Storage Map exposes](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html#required-methods).
+Refer to the [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html#required-methods) documentation for a comprehensive list of the methods that StorageMap exposes.
 
 ## Double key storage maps
 
-[Double Storage Maps](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageDoubleMap.html) are very similar to single Storage Maps except they contain two keys, which is useful for querying values with common keys.
+[DoubleStorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageDoubleMap.html) storage items are similar to single key storage maps except that they contain two keys.
+Using this type of storage structure is useful for querying values with common keys.
 
 ## Multi-key storage maps
 
-N Storage Maps are also very similar to its siblings, namely Storage Maps and Double Storage Maps, but with the ability to hold any arbitrary number of keys.
+The [StorageNMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageNMap.html) storage structure is also similar to single key and double key storage maps, but enable you to define any number of keys.
+To specify the keys in a [StorageNMap] structure, you must provide a tuple containing the `NMapKey` struct as a type to the Key type parameter while declaring the `StorageNMap`.
 
-To specify the keys in an N Storage Map in FRAMEv2, a tuple containing the special `NMapKey` struct must be provided as a type to the Key (i.e. second) type parameter while declaring the `StorageNMap`.
-
-Refer to the [N Storage Map documentation](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageNMap.html) for more details about the syntaxes in using a N Storage Map.
+Refer to the [StorageNMap documentation] for more details about the syntax to use in declaring this type of storage structure.
 
 ## Iterating over storage maps
 
