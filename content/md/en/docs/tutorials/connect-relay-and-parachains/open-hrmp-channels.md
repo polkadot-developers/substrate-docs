@@ -31,32 +31,30 @@ The XCM message format is designed to support communication between chains, but 
 ## Opening HRMP channels
 
 It is important to note that HRMP channels are unidirectional.
-If you want parachain 1002 to communicate with parachain 1001, you must first make a request to open an HRMP channel from parachain 1002 to parachain 1001.
-Parachain 1001 must then accept the request before parachain 1002 can pass messages to it.
-Because the channel is unidirectional, however, parachain 1002 can't receive messages from parachain 1001 over the channel.
+If you want parachain 1000 to communicate with parachain 1001, you must first make a request to open an HRMP channel from parachain 1000 to parachain 1001.
+Parachain 1001 must then accept the request before parachain 1000 can pass messages to it.
+Because the channel is unidirectional, however, parachain 1000 can't receive messages from parachain 1001 over the channel.
 
-For parachain 1002 to receive messages from parachain 1001, you must open another channel from parachain 1001 to parachain 1002. 
-After parachain 1002 confirms that it will accept messages from parachain 1001, the chains can exchange messages at the next session change.
+For parachain 1000 to receive messages from parachain 1001, you must open another channel from parachain 1001 to parachain 1000. 
+After parachain 1000 confirms that it will accept messages from parachain 1001, the chains can exchange messages at the next session change.
 
 ## Before you begin
 
-In this tutorial, you'll open HRMP channels that enable a parachain with the unique identifier 1001 and a parachain with the unique identifier 1002 to exchange XCM messages.
+In this tutorial, you'll open HRMP channels that enable a parachain with the unique identifier 1000 and a parachain with the unique identifier 1001 to exchange XCM messages.
 Before you begin, verify the following:
 
 - You have set up a [parachain test network](/test/simulate-parachains) using Zombienet or a local relay chain using the `rococo-local` chain specification.
   
 - You have set up two local or virtual parachains for testing purposes.
   
-  For the purposes of this tutorial:
-  
-  Parachain A has the unique identifier 1000.
-  Parachain B has the unique identifier 1001.
+  For the purposes of this tutorial, Parachain A has the unique identifier 1000 and Parachain B has the unique identifier 1001.
 
 - You have the Sudo pallet available for both local parachains to use.
   
   For this tutorial in a test environment, you can add the Sudo pallet to each collator node.
   The pallet is not included by default if you use the `substrate-parachain-template` to build your node.
   To add the Sudo pallet, update the `runtime/src/lib.rs` file and the `node/src/chain_spec.rs` files.
+  For an example of a chain specification with the Sudo pallet, see [parachain-template-1001.rs](/assets/tutorials/relay-chain-specs/parachain-template-1001.rs).
   In a production environment, you would use governance proposals and voting instead of the `sudo` pallet for privileged transactions.
 
 ## Add the sovereign account
