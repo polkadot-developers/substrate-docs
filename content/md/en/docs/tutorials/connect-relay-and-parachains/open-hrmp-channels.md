@@ -43,7 +43,7 @@ After parachain 1002 confirms that it will accept messages from parachain 1001, 
 In this tutorial, you'll open HRMP channels that enable a parachain with the unique identifier 1001 and a parachain with the unique identifier 1002 to exchange XCM messages.
 Before you begin, verify the following:
 
-- You have set up a [parachain test network](/test/simulate-parachains) using Zombienet or a local relay chain using the `rococo-local`  chain specification.
+- You have set up a [parachain test network](/test/simulate-parachains) using Zombienet or a local relay chain using the `rococo-local` chain specification.
   
 - You have set up two local or virtual parachains for testing purposes.
   
@@ -52,44 +52,175 @@ Before you begin, verify the following:
   Parachain A has the unique identifier 1000.
   Parachain B has the unique identifier 1001.
 
-- You have the `sudo` pallet available for both local parachains to use.
+- You have the Sudo pallet available for both local parachains to use.
   
+  For this tutorial in a test environment, you can add the Sudo pallet to each collator node.
+  The pallet is not included by default if you use the `substrate-parachain-template` to build your node.
+  To add the Sudo pallet, update the `runtime/src/lib.rs` file and the `node/src/chain_spec.rs` files.
   In a production environment, you would use governance proposals and voting instead of the `sudo` pallet for privileged transactions.
 
-## Prepare the channel request
+## Add the sovereign account
 
-1. Open the [Polkadot/Substrate Portal]() and connect to the relay chain endpoint in your test network.
-2. Create an hrmpInitOpenChannel call. 
-Do not submit the call, instead copy the encoded call data for later use:
+Before the parachain can exchange messages with another parachain, it must have an account on the relay chain that has funds available to pay XCM transaction fees.
 
-![]()
+1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps) and connect to a relay chain endpoint.
 
-proposed_max_capacity - specifies how many messages can be in the channel at once.
-proposed_max_message_size - specifies the maximum size of the messages.
+2. Calculate the parachain [sovereign account](https://substrate.stackexchange.com/questions/1200/how-to-calculate-sovereignaccount-for-parachain) on the relay chain.
+   
+   String to hex for `para`: 0x70617261
+   
+   1000: e8030000
+   - Hex for the account on the relay chain: 0x70617261e8030000000000000000000000000000000000000000000000000000
+   - Address: 5Ec4AhPZk8STuex8Wsi9TwDtJQxKqzPJRCH7348Xtcs9vZLJ
 
-These numbers are a subject to the relay chain’s configuration limits.
+   1001: e9030000
+   - Hex for the account on the relay chain: 0x70617261e9030000000000000000000000000000000000000000000000000000
+   - Address: 5Ec4AhPZwkVeRmswLWBsf7rxQ3cjzMKRWuVvffJ6Uuu89s1P
+  
+   Note that if the parachain identifier changes, the sovereign account and address will also change. 
 
-You can find this in the relay chain’s active configuration:
+3. Click **Accounts** and select **Address Book**.
 
-![]
+4. Click **Add contact**.
 
-## Fund the parachain’s sovereign account
+5. Add the address and a name for parachain A (1000), then click **Save**.
 
-The next step will be to create and submit an XCM on parachain 1001 with our encoded call data from above, but before we can do this we need to make sure parachain 1001’s sovereign account on the relay chain is funded so it can take care of any XCM transact fees.
+6. Click **Accounts** and transfer some tokens from Alice to the parachain A (1000) account.
+   
+   Repeat step 3 through step 6 for parachain B (1001).
 
-Let’s add parachain 1001’s sovereign account to our address book.
+## Prepare the encoded call for a channel request
 
-On the relay chain, open the address book and add the following contact:
+To set up communication between the parachains, you must first send a request to open a message passing channel.
+The request must take the form of an encoded call with parameters that specify the parachain to receive the request, the message capacity for the channel, and maximum message size. 
+You'll need to include the encoded version of this information in the message you create to make the request, but you can generate the encoded call without submitting the transaction to prepare the request.
 
+To prepare the encoded call to open a channel:
 
+1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps) and connect to a relay chain validator node such as the endpoint for the `alice` node.
 
-If you’re unsure as to how to calculate the parachain’s sovereign account checkout this post:
+2. Check the channel configuration limits for the relay chain, if needed.
+   
+   To check the configuration settings for the current relay chain:
 
-https://substrate.stackexchange.com/questions/1200/how-to-calculate-sovereignaccount-for-parachain
+   - Click **Developer** and select **Chain State**.
+   - Select **configuration**, then select **activeConfig()** and click **+**.
+   - Check the parameter values for `hrmpChannelMaxCapacity` and `hrmlChannelMaxMessageSize`.
+   
+   For example:
+     
+      ```text
+      hrmpChannelMaxCapacity: 8
+      hrmlChannelMaxMessageSize: 1,048,576
+      ```
 
-Note that if the parachain’s paraId changes, then sovereign account will also change. Therefore, as a rule-of-thumb, avoid hard coding the parachain’s sovereign account.
+3. Click **Developer** and select **Extrinsics**.
 
-We can now transfer some tokens from Alice to the sovereign account:
+4. Select **hrmp**, then select **hrmpInitOpenChannel(recipient, proposedMaxCapacity, proposedMaxMessageSize)** to initialize the request to open a new channel.
+   
+   For the transaction parameters, specify the following to prepare the call data:
+   
+   - recipient: Type the identifier for the parachain you want to open the channel with (1001).
+   - proposedMaxCapacity: Type the maximum number of messages that can be in the channel at once (8).
+   - proposedMaxMessageSize: Specify the maximum size of the messages (1048576).
+    
+   Note that the values you set for **proposedMaxCapacity** and **proposedMaxMessageSize** shouldn't exceeded the values defined for the `hrmpChannelMaxCapacity` and `hrmpChannelMaxMessageSize` parameters for the relay chain.
+
+5. Copy the **encoded call data**.
+   
+   ![Copy the encoded call data](/media/images/docs/tutorials/parachains/hrmp-encoded-call.png)
+   
+   You'll need this information to craft the XCM message.
+   The following is an example of encoded call data in Rococo:
+   0x3c00e90300000800000000001000
+   
+## Configure the request to open a channel
+
+Now that you have the encoded call, you can configure the request to open a channel from parachain A to parachain B through the relay chain.
+
+1. Connect to the endpoint for parachain A (1000) using the [Polkadot/Substrate Portal](https://polkadot.js.org/apps).
+
+2. Click **Developer** and select **Extrinsics**.
+
+3. Select **sudo**, then select **send(dest, message)** to notify the relay chain that you want to open a channel with parachain B (1001).
+
+3. Select **polkadotXcm**, then select **send(dest, message)** to notify the relay chain that you want to open a channel with parachain B (1001).
+   
+   ![Send message using the Sudo pallet](/media/images/docs/tutorials/parachains/hrmp-sudo-call.png)
+
+4. Specify the destination parameters to indicate the relative location for the message to be delivered.
+   
+   The destination parameters specify where the XCM should be executed. 
+   In this example, the parent of parachain 1000 is the relay chain and in the context of the parent the interior setting of Here means that the relay chain is going to execute the XCM. 
+   For more information about specifying relative locations for XCM, see [Universal Consensus Location Identifiers](https://github.com/paritytech/xcm-format#7-universal-consensus-location-identifiers).
+
+   ![Destination parameters](/media/images/docs/tutorials/parachains/hrmp-destination.png)
+   
+5. Specify the XCM version, then click **Add item** to construct the message to be executed.
+   
+   At a minimum, you'll need to add the following set of instructions for this message:
+   
+   - [WithdrawAsset](https://github.com/paritytech/xcm-format#withdrawasset) to move the specified on-chain assets into the virtual [holding register](https://polkadot.network/blog/xcm-the-cross-consensus-message-format/#-the-holding-register).
+   - 
+   - [BuyExecution](https://github.com/paritytech/xcm-format#buyexecution) to pay for the execution of the current message using the assets that were deposited in the virtual holding register using the WithdrawAsset instruction.
+
+     For more information about paying fees, see [Fee payment in XCM](https://polkadot.network/blog/xcm-the-cross-consensus-message-format/#-fee-payment-in-xcm).
+
+   - [Transact](https://github.com/paritytech/xcm-format#transact) to specify the encoded call that you prepared on the relay chain.  
+
+   Note that each instruction requires you to specify the location parameters to identify the message receipent that will be executing the XCM instruction.
+   Be sure that you construct the relative paths for each instruction from the point of view of the receiving system.For more information about specifying locations, see [Concrete identifiers](https://github.com/paritytech/xcm-format#concrete-identifiers).
+
+   In most cases, you might also want to include the following instructions:
+   
+   - [RefundSurplus](https://github.com/paritytech/xcm-format#refundsurplus) to move any overestimate of fees previously paid using the BuyExecution instruction into a second virtual register called the refunded weight register.
+  
+   - [DepositAsset](https://github.com/paritytech/xcm-format#depositasset) to subtract assets from the refunded weight register and deposit on-chain equivalent assets under the ownership of the beneficiary. 
+   
+     In most cases the beneficiary for the DepositAsset instruction is the sovereign account of the message sender.
+     In this case, you can specify parachain A (1000) as `parents: 0`, `interior: X1`, `Parachain: 1000` to use any surplus assets to open the new HRMP channel.
+     For more information about the RefundSurplus and DepositAsset instructions, see [Weight]9https://polkadot.network/blog/xcm-part-three-execution-and-error-management/#-weight).
+
+     With this set of instructions, you would withdraw assets from the parachain A sovereign account to the XCVM virtual holding register. 
+     Use the assets in the holding register to pay for the execution time the XCM instructions require. 
+     Execute the initialization request for an open channel on the relay chain. 
+     Refund any left over assets and deposit those assets in the account owned by the specified beneficiary.
+
+     For more information and answers to specific technical questions, try the following tags on [Substrate and Polkadot Stack Exchange](https://substrate.stackexchange.com/):
+     
+     - xcm
+     - hrmp 
+     - weight 
+     - cumulus
+
+    The followin example illustrates setting the parameters for this set of instructions:
+    
+    ```text
+    polkadotXcm.send(
+      dest: V1
+        parents: 1
+        interior: Here
+      message: V2
+
+        XcmV2Instruction: WithdrawAsset
+            id: Concrete
+                parents: 0
+                interior: Here
+            fun: Fungible
+                Fungible: 1_000_000_000_000
+        XcmV2Instruction: BuyExecution
+            id: Concrete
+                parents: 0
+                interior: Here
+            fun: Fungible
+                Fungible: 1_000_000_000_000
+            weightLimit: Unlimited
+        XcmV2Instruction: Transact
+            originType: Native
+            requireWeightAtMost: 4_000_000_000
+                encoded: 0x3c00e90300000800000000001000 //hrmpInitOpenChannel encoded call data
+        )
+   ```
 
 ## Where to go next
 
