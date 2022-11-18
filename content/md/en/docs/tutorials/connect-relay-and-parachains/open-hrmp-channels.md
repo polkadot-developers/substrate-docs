@@ -154,30 +154,29 @@ Now that you have the encoded call, you can configure the request to open a chan
    At a minimum, you'll need to add the following set of instructions for this message:
    
    - [WithdrawAsset](https://github.com/paritytech/xcm-format#withdrawasset) to move the specified on-chain assets into the virtual [holding register](https://polkadot.network/blog/xcm-the-cross-consensus-message-format/#-the-holding-register).
-   - 
+  
    - [BuyExecution](https://github.com/paritytech/xcm-format#buyexecution) to pay for the execution of the current message using the assets that were deposited in the virtual holding register using the WithdrawAsset instruction.
-
      For more information about paying fees, see [Fee payment in XCM](https://polkadot.network/blog/xcm-the-cross-consensus-message-format/#-fee-payment-in-xcm).
 
    - [Transact](https://github.com/paritytech/xcm-format#transact) to specify the encoded call that you prepared on the relay chain.  
 
    Note that each instruction requires you to specify the location parameters to identify the message receipent that will be executing the XCM instruction.
-   Be sure that you construct the relative paths for each instruction from the point of view of the receiving system.For more information about specifying locations, see [Concrete identifiers](https://github.com/paritytech/xcm-format#concrete-identifiers).
+   Be sure that you construct the relative paths for each instruction from the point of view of the receiving system. For more information about specifying locations, see [Concrete identifiers](https://github.com/paritytech/xcm-format#concrete-identifiers).
 
-   In most cases, you might also want to include the following instructions:
+   In most cases, you also want to include the following instructions:
    
    - [RefundSurplus](https://github.com/paritytech/xcm-format#refundsurplus) to move any overestimate of fees previously paid using the BuyExecution instruction into a second virtual register called the refunded weight register.
   
    - [DepositAsset](https://github.com/paritytech/xcm-format#depositasset) to subtract assets from the refunded weight register and deposit on-chain equivalent assets under the ownership of the beneficiary. 
    
-     In most cases the beneficiary for the DepositAsset instruction is the sovereign account of the message sender.
+     Typically, the beneficiary for the DepositAsset instruction is the sovereign account of the message sender.
      In this case, you can specify parachain A (1000) as `parents: 0`, `interior: X1`, `Parachain: 1000` to use any surplus assets to open the new HRMP channel.
      For more information about the RefundSurplus and DepositAsset instructions, see [Weight]9https://polkadot.network/blog/xcm-part-three-execution-and-error-management/#-weight).
 
      With this set of instructions, you would withdraw assets from the parachain A sovereign account to the XCVM virtual holding register. 
      Use the assets in the holding register to pay for the execution time the XCM instructions require. 
      Execute the initialization request for an open channel on the relay chain. 
-     Refund any left over assets and deposit those assets in the account owned by the specified beneficiary.
+     Refund any left over assets and deposit the refunded assets into the account owned by the specified beneficiary.
 
      For more information and answers to specific technical questions, try the following tags on [Substrate and Polkadot Stack Exchange](https://substrate.stackexchange.com/):
      
@@ -186,7 +185,7 @@ Now that you have the encoded call, you can configure the request to open a chan
      - weight 
      - cumulus
 
-    The followin example illustrates setting the parameters for this set of instructions:
+    The following example illustrates setting the parameters for this set of instructions:
     
     ```text
     polkadotXcm.send(
@@ -212,7 +211,17 @@ Now that you have the encoded call, you can configure the request to open a chan
             originType: Native
             requireWeightAtMost: 4_000_000_000
                 encoded: 0x3c00e90300000800000000001000 //hrmpInitOpenChannel encoded call data
-        )
+        XcmV2Instruction: RefundSurplus
+        XcmV2Instruction: DepositAsset
+            assets: Wild
+                Wild: All
+            maxAssets: 1
+            beneficiary:
+                parents: 0
+                interior: X1
+                   X1: Parachain
+                       Parachain: 1000
+   )
    ```
 
 ## Where to go next
