@@ -64,18 +64,13 @@ Before the parachain can exchange messages with another parachain, it must have 
 1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps) and connect to a relay chain endpoint.
 
 2. Calculate the parachain [sovereign account](https://substrate.stackexchange.com/questions/1200/how-to-calculate-sovereignaccount-for-parachain) on the relay chain.
-   
-   String to hex for `para`: 0x70617261
-   
-   1000: e8030000
-   - Hex for the account on the relay chain: 0x70617261e8030000000000000000000000000000000000000000000000000000
-   - Address: 5Ec4AhPZk8STuex8Wsi9TwDtJQxKqzPJRCH7348Xtcs9vZLJ
+      
+   Parachain A (1000) address: 5Ec4AhPZk8STuex8Wsi9TwDtJQxKqzPJRCH7348Xtcs9vZLJ
 
-   1001: e9030000
-   - Hex for the account on the relay chain: 0x70617261e9030000000000000000000000000000000000000000000000000000
-   - Address: 5Ec4AhPZwkVeRmswLWBsf7rxQ3cjzMKRWuVvffJ6Uuu89s1P
+   Parachain B (1001) address: 5Ec4AhPZwkVeRmswLWBsf7rxQ3cjzMKRWuVvffJ6Uuu89s1P
   
-   Note that if the parachain identifier changes, the sovereign account and address will also change. 
+   Note that if the parachain identifier registered for a parachain changes, the sovereign account and address will also change. 
+   You should also note that the account address used for a parachain on the relay chain is different from the address used for the parachain on another parachain. 
 
 3. Click **Accounts** and select **Address Book**.
 
