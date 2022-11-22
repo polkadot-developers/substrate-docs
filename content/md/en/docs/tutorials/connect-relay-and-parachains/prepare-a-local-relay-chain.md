@@ -2,6 +2,7 @@
 title: Prepare a local relay chain   
 description: Explains how to configure a local relay chain to set up a local test network for a parachain.
 keywords:
+  - polkadot
   - cumulus
   - relay chain
   - parachain
@@ -54,12 +55,12 @@ Therefore, this tutorial uses code from the Polkadot repository to prepare the l
 1. Clone the most recent release branch of the Polkadot repository to prepare a stable working environment.
    
    Release branches tend to be the most reliable and use the naming convention `release-v<n..n.n>`.
-   For example, the release branch used in this tutorial is `release-v0.9.28`.
-   Newer releases are likely to be available and, in most cases, you can substitute a more recent release branch instead of using the `release-v0.9.28` branch a long as you use the same branch for every module.
+   For example, the release branch used in this tutorial is `release-v0.9.32`.
+   Newer releases are likely to be available and, in most cases, you can substitute a more recent release branch instead of using the `release-v0.9.32` branch a long as you use the same branch for every module.
    You can find information about each release on the [Releases](https://github.com/paritytech/polkadot/releases) tab in GitHub.
    
    ```bash
-   git clone --depth 1 --branch release-v0.9.28 https://github.com/paritytech/polkadot.git
+   git clone --branch release-v0.9.32 https://github.com/paritytech/polkadot.git
    ```
 
 2. Change to the root of the `polkadot` directory by running the following command:
@@ -82,13 +83,13 @@ Therefore, this tutorial uses code from the Polkadot repository to prepare the l
    ./target/release/polkadot --help
    ```
 
-   If command-line help is displayed, you node is ready to configure.
+   If command-line help is displayed, the node is ready to configure.
 
 ## Relay chain specification
 
 Every Substrate-based chain requires a [chain specification](/build/chain-spec/).
 The chain specification for the relay chain network provides the same types of configuration settings that the chain specification does for other networks.
-Many of the settings in the chain specification file are critical for network operations. 
+Many of the settings in the chain specification file are critical for network operations.
 For example, the chain specification identifies peers that participate in the network, keys for validators, boot node addresses, and other information.
 
 ### Sample chain specification

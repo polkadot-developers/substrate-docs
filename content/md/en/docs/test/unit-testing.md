@@ -89,9 +89,33 @@ Custom implementations of [Externalities](https://paritytech.github.io/substrate
 Another example of this can be found in the [`offchain`](https://paritytech.github.io/substrate/master/sp_core/offchain/index.html) module.
 The `offchain` module maintains its own [Externalities](https://paritytech.github.io/substrate/master/sp_core/offchain/trait.Externalities.html) implementation.
 
+## Test events in a mock runtime
+
+It can also be important to test the events that are emitted from your chain, in addition to the storage.
+Assuming you use the default generation of `deposit_event` with the `generate_deposit` marco, all pallet events are stored under the `system` / `events` key with some extra information as an [`EventRecord`](https://paritytech.github.io/substrate/master/frame_system/struct.EventRecord.html).
+
+These event records can be directly accessed and iterated over with `System::events()`, but there are also some helper methods defined in the system pallet to be used in tests, [`assert_last_event`](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.assert_last_event) and [`assert_has_event`](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.assert_has_event).
+
+```rust
+fn fake_test_example() {
+ ExtBuilder::default().build_and_execute(|| {
+  System::set_block_number(1);
+  // ... test logic that emits FakeEvent1 and then FakeEvent2...
+  System::assert_has_event(Event::FakeEvent1{}.into())
+  System::assert_last_event(Event::FakeEvent2 { data: 7 }.into())
+  assert_eq!(System::events().len(), 2);
+ });
+}
+```
+
+Some things to note are:
+
+- Events are not emitted on the genesis block, and so the block number should be set in order for this test to pass.
+- You need to have a `.into()` after instantiating your pallet event, which turns it into a generic event.
+
 ## Genesis config
 
-In the previous example, the `ExtBuilder::build()` method used the default genesis configuration for building the mock runtime environment.
+In the previous examples, the `ExtBuilder::build()` method used the default genesis configuration for building the mock runtime environment.
 In many cases, it is convenient to set storage before testing.
 For example, you might want to pre-seed account balances before testing.
 
