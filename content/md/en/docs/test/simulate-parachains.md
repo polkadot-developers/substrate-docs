@@ -124,7 +124,7 @@ To add the first parachain binary to the working folder:
    ```bash
    cp ./target/release/parachain-template-node ../bin/parachain-template-node-v0.9.30-1000
    ```
-   
+   In this example, your working directory is` $HOME/bin` or `~/bin` so you must navigate up a directory level from your current substrate-parachain-template root directory.
    As this example illustrates, it's generally a good practice to append the version and `paraId` to the binary name to keep the files in the `bin` folder organized.
 
 ### Add the second parachain binary
@@ -194,8 +194,11 @@ To add the second parachain binary to the working folder:
 4. Compile the node with the modified chain specification by running the following command:
    
    ```bash
-   cargo build -release
+   cargo build --release
    ```
+
+   Running this command in the current directory overwrites your previous binary in the `./target/release` directory.
+   Typically, you can run the command in the current location because you have a cloned branch and can choose to save or discard your changes. 
 
 5. Copy the new parachain collator binary into the working `bin` folder by running a command similar to the following:
    
