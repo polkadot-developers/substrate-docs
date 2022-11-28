@@ -397,27 +397,10 @@ If you only want to send XCM instructions to parachain B (1001), your work is do
 However, if you want to enable two-way communication-where both chains can receive and execute instructions sent by the other chain, you need to follow the same steps for parachain B that you just completed for parachain A. After parachain A accepts the open channel requests, both chains can send, receive, and execute XCM instructions.
 
 Repeat all of the steps for preparing the encoded calls, sending the open channel request, and accepting the request to enable communication from parachain B (1001) to parachain A (1000).
-After you open the channel from parachain B to parachain A, the two parachains can send messages to each other routed through the relay chain.
+After you open the channel from parachain B to parachain A, the two parachains can send messages directly to each other or have messages routed through the relay chain.
 
-At this point, you can send XCM instructions between the parachains, but constructing messages for remote execution requires some different configuration steps.
-Future tutorials will provide examples of a few common scenarios for cross-consensus communication.
-
-<!--
-To illustrate the interaction between the two chains, in the following example, parachain B sends XCM instructions to deposit assets into an account on parachain A.
-
-1. Connect to the endpoint for parachain B (1001) using the [Polkadot/Substrate Portal](https://polkadot.js.org/apps).
-
-2. Click **Developer** and select **Extrinsics**.
-
-3. Select **sudo**, then select **sudo(call)** to use the Sudo pallet to execute privileged transactions.
-
-4. Select **polkadotXcm**, then select **send(dest, message)**.
-   
-5. Specify the destination parameters to indicate the relative location for the message to be delivered.
-      
-6. Specify the XCM version, then click **Add item** to construct the message to be executed.
-
--->
+Although you can send XCM instructions between the parachains at this point, constructing messages that can be executed successfully on a remote chain requires additional configuration to reach a shared understanding of assets that can be transferred.
+In future tutorials, you'll see examples of a few common scenarios for communication between parachains.
 
 ## Where to go next
 
