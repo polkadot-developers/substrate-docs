@@ -3,9 +3,7 @@ title: Send remote transfer messages
 description: Demonstrates how to use cross-consensus messages to execute a remote transfer to a parachain through the relay chain.
 keywords:
   - XCM
-  - XCMP
-  - HRMP
-  - VMP 
+  - parachain communication
   - messaging
   - cross chain 
   - cross consensus
@@ -44,7 +42,98 @@ To illustrate the interaction between the two chains, in the following example, 
 4. Select **polkadotXcm**, then select **send(dest, message)**.
    
 5. Specify the destination parameters to indicate the relative location for the message to be delivered.
+   
+   - The XCM version for specifying the location of the destination: V1
+   - The relay chain is the destination for the message, so the parent location: 1
+   - In the context of the parent, the interior setting: Here
       
-6. Specify the XCM version, then click **Add item** to construct the message to be executed.
+6. Specify the XCM version for the message (V2).
+   
+7. Click **Add item** to construct the message to be executed.
 
+## WithdrawAsset instruction
 
+To move assets into the virtual holding register:
+
+1. Select [WithdrawAsset](https://github.com/paritytech/xcm-format#withdrawasset) as the first instruction for this message.
+
+2. Click **Add item** to identify the on-chain assets to withdraw.
+
+3. Select **Concrete** to use the location of the asset to identify the asset to be withdrawn.
+
+4. Set **parents: 0** and **interior: Here** to withdraw assets from the parachain B sovereign account on the relay chain.
+
+5. Select **Fungible** to identify the asset as a fungible asset.
+
+6. Specify the total fungible assets to withdraw.
+
+   For example, this tutorial uses 12000000000000.
+   
+   ![WithdrawAsset instruction sent from parachain B](/media/images/docs/parachains/withdraw-asset-xcm-sent-event.png)
+
+## BuyExecution instruction
+
+To pay for execution from assets deposited in the holding register:
+
+1. Click **Add item** to select [BuyExecution](https://github.com/paritytech/xcm-format#buyexecution) as the second instruction for this message.
+
+2. Select **Concrete** to use the location of the asset to identify the asset to be used to pay for executing XCM instructions.
+
+3. Set **parents: 0** and **interior: Here** to use the assets withdrawn from the parachain B sovereign account on the relay chain.
+
+4. Select **Fungible** to identify the asset as a fungible asset.
+
+5. Specify the total fungible assets to use.
+   
+   For example, this tutorial uses 12000000000000.
+
+6. Select **Unlimited** to skip setting a weight limit for this instruction.
+   
+   ![BuyExecution instruction sent from parachain B](/media/images/docs/parachains/withdraw-asset-xcm-sent-event.png)
+
+## DepositAsset instruction
+
+To deposit assets after fees from the holding register into a specific account:
+
+1. Click **Add item** to select [DepositAsset](https://github.com/paritytech/xcm-format#buyexecution) as the third instruction for this message.
+
+1. Select **Wild** to allow an unspecified number of assets to be deposited.
+
+1. Select **All** to allow all of the remaining assets after fees are paid to be deposited.
+
+2. Set **1** as the maximum number of unique assets to remove from the holding register for the deposit.  
+
+   In this tutorial, there's only one asset instance available to be removed.
+
+1. Specify the beneficiary to receive the deposited assets.
+
+   You can deposit the assets remaining into the sovereign account for parachain A or into a specific account.
+   For this tutorial, the assets are deposited using a specified account address for the previously unfunded account KRIS-PUBS.
+
+   ![Specify an account as a beneficiary](/media/images/docs/tutorials/parachains/deposit-to-account.png)
+
+   After you configure all of the XCM instructions, you're ready to submit the transaction.
+
+## Submit the transaction
+
+To submit the transaction:
+
+1. Click **Submit Transaction**.
+
+1. Click **Sign and Submit**.
+
+1. Click **Network** and select **Explorer** to verify the message is sent.
+
+## Check events on the relay chain
+
+To check the result on the relay chain:
+
+1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps) and connect to the relay chain.
+
+2. Click **Network** and select **Explorer** to view the events for the XCM message.
+   
+   ![Relay chain events](/media/images/docs/tutorials/parachains/relay-chain-event-summary.png)
+
+1. Click the block number where the change was recorded to view details.
+   
+   ![Assets withdrawn and deposited are recorded on the relay chain](/media/images/docs/tutorials/parachains/relay-chain-block.png)
