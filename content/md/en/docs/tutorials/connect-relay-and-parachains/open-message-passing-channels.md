@@ -402,7 +402,7 @@ However, if you want to enable two-way communication-where both chains can recei
 Repeat all of the steps for preparing the encoded calls, sending the open channel request, and accepting the request to enable communication from parachain B (1001) to parachain A (1000).
 After you open the channel from parachain B to parachain A, the two parachains can send messages directly to each other or have messages routed through the relay chain.
 
-Although you can send XCM instructions between the parachains at this point, constructing messages that can be executed successfully on a remote chain requires additional configuration to reach a shared understanding of assets that can be transferred.
+Although you can send XCM instructions between the parachains at this point, constructing messages that can be executed successfully on a remote chain requires additional configuration to reach a shared understanding of assets that can be transferred or to define mutual trust relationships that allow assets to be moved from one chain to another.
 In future tutorials, you'll see examples of a few common scenarios for communication between parachains.
 
 ## Where to go next
