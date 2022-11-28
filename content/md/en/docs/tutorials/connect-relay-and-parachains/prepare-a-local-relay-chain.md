@@ -169,6 +169,7 @@ To start the validator nodes using the [raw sample chain specification file](/as
    
    Because both validators are running on a single local computer it isn't necessary to specify the `--bootnodes` command-line option and the IP address and peer identifier of the first node.
    The `bootnodes` option is necessary if you want to connect nodes that run outside of the local network or nodes that are not identified in the chain specification file.
+   If you don't see relaychain producing blocks, try disabling your firewall or adding the bootnodes parameter with the alice node's address.
 
 ## Where to go next
 
