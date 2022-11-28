@@ -230,7 +230,6 @@ To execute the encoded call that you prepared on the relay chain:
    For example, paste the encoded call for initiating an open channel request.
 
    ![Transact and settings](/media/images/docs/tutorials/parachains/transact-open-request.png)
-
    
 ### RefundSurplus and DepositAsset instructions
 
@@ -283,7 +282,11 @@ For more information and answers to specific technical questions, try the follow
 
 To submit the transaction:
 
-1.  Click **Submit Transaction**.
+1. Click **Submit Transaction**.
+
+1. Click **Sign and Submit**.
+
+1. Click **Network** and select **Explorer** to verify the message is sent.
 
 ## Verify the request
 
