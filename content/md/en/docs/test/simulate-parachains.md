@@ -244,6 +244,7 @@ To download and configure Zombienet:
    - Information about the four relay chain validators.
    - Identifiers for parachains included in the test network.
    - Information about the collators for each parachains.
+   - WebSocket endpoint ports to connect to the nodes.
    
    For example:
    
@@ -257,6 +258,7 @@ To download and configure Zombienet:
       [[relaychain.nodes]]
       name = "alice"
       validator = true
+      ws_port = 9900
       
       [[relaychain.nodes]]
       name = "bob"
@@ -277,7 +279,8 @@ To download and configure Zombienet:
       [parachains.collator]
       name = "parachain-A-1000-collator-01"
       command = "./bin/parachain-template-node-v0.9.30-1000"
-   
+      ws_port = 9910
+
    [[parachains]]
    id = 1001
    cumulus_based = true
@@ -285,6 +288,7 @@ To download and configure Zombienet:
       [parachains.collator]
       name = "parachain-B-1001-collator-01"
       command = "../bin/parachain-template-node-v0.9.30-1001"
+      ws_port = 9920
    ```
 
 1. Save your changes and close the file.
