@@ -1,5 +1,5 @@
 ---
-title: Send remote transfer messages
+title: Transfer assets with XCM
 description: Demonstrates how to use cross-consensus messages to execute a remote transfer to a parachain through the relay chain.
 keywords:
   - XCM
