@@ -21,10 +21,10 @@ This interim solution—also sometimes referred to as XCMP-Lite—provides the s
 
 Although HRMP is intended to be phased out when XCMP is fully implemented, this tutorial uses HRMP to illustrate how you can open message passing channels to enable parachains to communicate with each other.
 
-## About the XCM message format
+## About the XCM format
 
-The messages passed through the Polkadot communication channels use the [XCM message format](https://github.com/paritytech/xcm-format) to express what should be done by the message receiver.
-The XCM message format is designed to support communication between chains, but also messages from smart contracts and pallets, over bridges, and through other transport protocols.
+The messages passed through the Polkadot communication channels use the [XCM format](https://github.com/paritytech/xcm-format) to express what should be done by the message receiver.
+The XCM format is designed to support communication between chains, but also messages from smart contracts and pallets, over bridges, and through other transport protocols.
 
 ## Opening HRMP channels
 
@@ -38,7 +38,7 @@ After parachain 1000 confirms that it will accept messages from parachain 1001, 
 
 ## Before you begin
 
-In this tutorial, you'll open HRMP channels that enable a parachain with the unique identifier 1000 and a parachain with the unique identifier 1001 to exchange XCM messages.
+In this tutorial, you'll open HRMP channels that enable a parachain with the unique identifier 1000 and a parachain with the unique identifier 1001 to exchange messages.
 Before you begin, verify the following:
 
 - You have set up a [parachain test network](/test/simulate-parachains) using Zombienet or a local relay chain using the `rococo-local` chain specification.
@@ -80,7 +80,7 @@ To add sovereign account addresses to the relay chain:
 
 5. Add the address and a name for parachain A (1000), then click **Save**.
 
-6. Click **Accounts** and transfer some units from Alice to the parachain A (1000) account.
+6. Click **Accounts** and transfer some assets from Alice to the parachain A (1000) account.
    
    Repeat step 3 through step 6 for parachain B (1001).
 
@@ -125,7 +125,7 @@ To prepare the encoded call to open a channel:
    
    ![Copy the encoded call data](/media/images/docs/tutorials/parachains/hrmp-encoded-call.png)
    
-   You'll need this information to construct the XCM message.
+   You'll need this information to construct the XCM Transact instruction.
    The following is an example of the encoded call data in Rococo: `0x3c00e90300000800000000001000`
    
 ## Configure the open channel request
@@ -202,7 +202,7 @@ To pay for execution from assets deposited in the holding register:
     
 2. Select **Concrete** to use the location of the asset to identify the asset to be used to pay for executing XCM instructions.
 
-3. Set **parents: 0** and **interior: Here** to use the assets withdrawn from the sovereign account on the relay chain.
+3. Set **parents: 0** and **interior: Here** to indicate that you're using the local chain's native asset for execution payment.
 
 4. Select **Fungible** to identify the asset as a fungible asset.
 
@@ -250,7 +250,7 @@ To move any overestimate of fees:
 1. Specify the beneficiary to receive the deposited assets.
    
    Typically, the beneficiary for the DepositAsset instruction is the sovereign account of the message sender.
-   In this case, you can specify parachain A (1000) as **parents: 0**, **interior: X1**, **Parachain: 1000** so that any surplus assets are returned to the account and can be used to deliver other XCM messages or to open additional HRMP channels.
+   In this case, you can specify parachain A (1000) as **parents: 0**, **interior: X1**, **Parachain: 1000** so that any surplus assets are returned to the account and can be used to deliver other XCM instructions or to open additional HRMP channels.
    
    ![RefundSurplus and DepositAsset instructions and settings](/media/images/docs/tutorials/parachains/refund-and-deposit.png)
 
@@ -302,7 +302,7 @@ To verify the request:
    
    ![Events for XCM instructions on the parachain](/media/images/docs/tutorials/parachains/hrmp-parachain-events.png)
 
-   You can expand the **polkadotXcm.Sent** event to see details about the instructions included in the XCM message.
+   You can expand the **polkadotXcm.Sent** event to see details about the instructions included in the message that was sent.
 
 4. In the browser instance connecting to the relay chain, click **Network** then select **Explorer**.
 
@@ -335,13 +335,13 @@ To prepare the encoded call:
    
    ![Copy the encoded call data](/media/images/docs/tutorials/parachains/hrmp-relay-chain-accept-request.png)
    
-   You'll need this information to craft the XCM message.
+   You'll need this information to craft the XCM Transact instruction.
    The following is an example of encoded call data in Rococo:
    0x3c01e8030000
 
 ## Accept the open channel request
 
-Now that you have the encoded call, you can construct the XCM message to accept the open channel requested by parachain A.
+Now that you have the encoded call, you can construct the the set of XCM instructions to accept the open channel requested by parachain A.
 
 1. Connect to the endpoint for parachain B (1001) using the [Polkadot/Substrate Portal](https://polkadot.js.org/apps).
 
