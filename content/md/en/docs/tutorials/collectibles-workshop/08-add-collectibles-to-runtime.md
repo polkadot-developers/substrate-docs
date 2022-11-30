@@ -123,15 +123,24 @@ Now that you have a freshly compiled node, you can restart the blockchain and us
    ```
 
 2. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) and connect to your local **Development** node.
-
+   
+   ![Connect to the local nodet](/media/images/docs/tutorials/collectibles-workshop/connect-to-local-endpoint.png)
+)
 1. Click **Developer** and select **Extrinsics**.
 
-1. Select the **collectibles** pallet and view the list of callable functions.
+2. Select the **collectibles** pallet and view the list of callable functions.
    
    ![Callable functions in the collectibles pallet](/media/images/docs/tutorials/collectibles-workshop/collectibles-pallet.png)
 
-1. Select the **createCollectible** function, click **Submit Transaction**, then click **Sign and Submit**.
+3. Select the **createCollectible** function, click **Submit Transaction**, then click **Sign and Submit**.
 
-1. Click **Network** and select **Explorer** to see the event emitted for creating a new collectible.
+4. Click **Network** and select **Explorer** to see the event emitted for creating a new collectible.
    
    ![CollectibleCreated event](/media/images/docs/tutorials/collectibles-workshop/create-collectible-event.png)
+
+   You can use the Polkadot/Substrate Portal to test that functions, events, and errors work as expected.
+   However, for your application to draw users, you'll want to develop a custom interface that lets users browse and bid on collectibles that other users create and put up for sale. 
+   Building an inviting interface is an art unto itself, so for this workshop we'll keep things simple and not delve into what the application should look like or the user experience it should provide.
+   In most cases. you'll want to use TypeScript and a web development framework such as React, Vue, or Angular to build the front-end for the application that runs on your blockchain.
+
+   Instead of focusing on the front-end, the next part of the workshop highlights more complex logic, testing, and converting your single node solo chain into a parachain.
