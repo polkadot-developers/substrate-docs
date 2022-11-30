@@ -110,14 +110,14 @@ To add a `CollectibleCreated` event to the runtime:
    
    You can ignore the compiler warnings for now.
 
-##  Add internal functions
+##  Add internal and callable functions
 
 With errors and events out of the way, it's time to write the core logic for creating collectibles.
 
 1. Create an internal function that generates the `unique_id` for new collectibles.
    
 	 ```rust
-	 // Pallet internal functions.
+	 // Pallet internal functions
 	 impl<T: Config> Pallet<T> {
 		 // Generates and returns the unique_id and color
 		 fn gen_unique_id() -> ([u8; 16], Color) {
@@ -181,7 +181,7 @@ With errors and events out of the way, it's time to write the core logic for cre
 2. Create the callable function that uses the internal functions.
    
 	 ```rust
-	 // Pallet callable functions.
+	 // Pallet callable functions
 	 #[pallet::call]
 	 impl<T: Config> Pallet<T> {
 		 
@@ -212,4 +212,4 @@ With errors and events out of the way, it's time to write the core logic for cre
    cargo build --package collectibles
    ```
 
-	 Your code should compile without any warnings.
+	 Your code should now compile without any warnings.

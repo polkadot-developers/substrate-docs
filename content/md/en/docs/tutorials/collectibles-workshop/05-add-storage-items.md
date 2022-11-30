@@ -30,7 +30,7 @@ pub(super) type CollectiblesCount<T: Config> = StorageValue<_, u64, ValueQuery>;
 The `ValueQuery` in this declaration specifies what a query should return if there's no value in storage.
 There are three possible settings for handling what the query returns:
 `OptionQuery`, `ResultQuery`, or `ValueQuery`.
-We use ValueQuery here so that if there is no value in storage—for example at the start of the network—the query should return the value zero (0) rather than an `OptionQuery` value of `None` or a ResultQuery value of `Err`.
+We use `ValueQuery` here so that if there is no value in storage—for example when you first start the network—the query should return the value zero (0) rather than an `OptionQuery` value of `None` or a `ResultQuery` value of `Err`.
 
 ## Map collectibles to their properties
 
@@ -45,7 +45,7 @@ pub(super) type CollectibleMap<T: Config> = StorageMap<_, Twox64Concat, [u8; 16]
 ```
 
 The `Twox64Concat` in this declaration specifies the hashing algorithm to use to create this storage value.
-By allowing you to specify the hashing algorithm to use, storage maps allow you to contraol the level of security appropriate to the type of information being stored. 
+By allowing you to specify the hashing algorithm to use, storage maps allow you to control the level of security appropriate to the type of information being stored. 
 For example, you might choose a more performant but less secure hashing algorithm to store information about collectibles and a less performant but more secure hashing algorithm to store more sensitive information.
 For information about the hashing algorithms Substrate supports and the security they provide, see [Hashing algorithms](/build/runtime-storage/).
 
@@ -70,7 +70,7 @@ pub(super) type OwnerOfCollectibles<T: Config> = StorageMap<
 >;
 ```
 
-1. Verify that your program compiles by running the following command:
+After you've added the storage items, verify that your program compiles by running the following command:
    
    ```bash
    cargo build --package collectibles

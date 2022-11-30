@@ -67,7 +67,7 @@ To define these first properties, you'll add two custom types:
 The `Collectible` struct consists of the following:
 
 - `unique_id` is an unsigned integer of 16 bytes to ensure that each collectible is a unique entity in the blockchain.
-- `price` as an Option that returns `Some(value)` if a price is set or or `None` to indicate that the collectible isn't for sale.
+- `price` as an Option that returns `Some(value)` if a price is set or `None` to indicate that the collectible isn't for sale.
 - `color` for the variant of the custom Color type for the collectible.
 - `owner` to identify the account that owns the collectible.
 
@@ -111,5 +111,3 @@ Add the derive marco to each custom type:
 ```rust
 #[derive(Clone, Encode, Decode, PartialEq, Copy, RuntimeDebug, TypeInfo, MaxEncodedLen)]
 ```
-
-
