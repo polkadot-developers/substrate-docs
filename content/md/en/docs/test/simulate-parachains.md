@@ -50,13 +50,8 @@ To prepare a working folder with the binaries for the test network:
 2. Clone the Polkadot repository by running a command similar to the following:
    
    ```bash
-   git clone --depth 1 --branch release-v0.9.30 https://github.com/paritytech/polkadot.git
+   git clone https://github.com/paritytech/polkadot.git
    ```
-
-   Release branches use the naming convention `release-v<n.n.n>`.
-   For example, the release branch used in this tutorial is `release-v0.9.30`.
-   You can check out a more recent release branch instead of using `release-v0.9.30`.
-   You can find information about recent releases and what's included in each release on the [Releases](https://github.com/paritytech/polkadot/releases) tab.
 
 3. Change to the root of the `polkadot` directory by running the following command:
    
@@ -64,7 +59,20 @@ To prepare a working folder with the binaries for the test network:
    cd polkadot
    ```
    
-4. Compile the relay chain node by running the following command:
+4. Checkout the latest release of Polkadot.
+   
+   Release branches use the naming convention `release-v<n.n.n>`.
+   For example, the release branch used in this tutorial is `release-v0.9.32`.
+   You can check out a more recent release branch instead of using `release-v0.9.32`.
+   You can find information about recent releases and what's included in each release on the [Releases](https://github.com/paritytech/polkadot/releases) tab.
+   
+   For example:
+   
+   ```bash
+   git checkout release-v0.9.32
+   ```
+   
+1. Compile the relay chain node by running the following command:
    
    ```bash
    cargo build --release
@@ -72,15 +80,15 @@ To prepare a working folder with the binaries for the test network:
    
    Compiling the node can take 15 to 60 minuets to complete.
 
-5. Copy the Polkadot binary into your working `bin` folder by running a command similar to the following:
+1. Copy the Polkadot binary into your working `bin` folder by running a command similar to the following:
    
    ```bash
-   cp ./target/release/polkadot ../bin/polkadot-v0.9.30
+   cp ./target/release/polkadot ../bin/polkadot-v0.9.32
    ```
    
    As this example illustrates, it's generally a good practice to append the version of `polkadot` to the binary name to keep the files in the `bin` folder organized.
 
-6. Change to your home directory.
+2. Change to your home directory.
 
 ### Add the first parachain binary
 
@@ -108,7 +116,7 @@ To add the first parachain binary to the working folder:
    For example:
    
    ```bash
-   git checkout polkadot-v0.9.30
+   git checkout polkadot-v0.9.32
    ```
 
 3. Compile the parachain template collator by running the following command:
@@ -122,7 +130,7 @@ To add the first parachain binary to the working folder:
 4. Copy the parachain binary into your working `bin` folder by running a command similar to the following:
    
    ```bash
-   cp ./target/release/parachain-template-node ../bin/parachain-template-node-v0.9.30-1000
+   cp ./target/release/parachain-template-node ../bin/parachain-template-node-v0.9.32-1000
    ```
    In this example, your working directory is` $HOME/bin` or `~/bin` so you must navigate up a directory level from your current substrate-parachain-template root directory.
    As this example illustrates, it's generally a good practice to append the version and `paraId` to the binary name to keep the files in the `bin` folder organized.
@@ -362,5 +370,8 @@ To set up communication between the parachains in the test network:
    
    You should note that XCM messages are like other transactions and require the sender to pay for the execution of the operation.
    All of the information required must be included in the message itself.
-   For information about how to craft messages using XCM after you've opened HRMP channels, see [Constructing XCM messages](/maintain/cfoss-consensus-messages/constructing-xcm-messages).
+   For information about how to craft messages using XCM after you've opened HRMP channels, see [Cross-consensus communication](/maintain/xcm-communication) and [Transfer assets with XCM](transfer-assets-with-xcm).
    
+## Where to go next
+
+For a more complex preconfigured environment that uses Zombienet, download and explore the [Trappist playground](https://github.com/paritytech/trappist).
