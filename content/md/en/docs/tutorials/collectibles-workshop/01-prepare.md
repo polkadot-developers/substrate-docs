@@ -8,10 +8,11 @@ To get the most out of this workshop, you'll want to have a working development 
 To make sure you have everything you need, review this preflight checklist.
 If you discover something's missing, click the corresponding link.
 
-It's possible to complete this workshop without setting up a local development environment through the [Substrate Playground](https://substrate.io/developers/playground/).
+You can complete this workshop without setting up a local working environment if you use the [Substrate Playground](https://substrate.io/developers/playground/).
 However, if you use the Substrate Playground, the changes you make aren't saved when you end a session.
-The instructions in the workshop assume you are working in a local environment. 
 If you use Substrate Playground, you can skip this checklist and go directly to [Get oriented](/02-orientation/), but be sure to save copies of the files you edit!
+
+The instructions in the workshop assume you are working in a local environment. 
 
 ## Supported operating system
 
