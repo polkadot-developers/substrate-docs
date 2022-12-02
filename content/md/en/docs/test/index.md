@@ -22,3 +22,4 @@ The topics in this section highlight tools and techniques for testing your block
 - [Debug](/test/debug) describes how you can use the Rust logging functions to debug your runtime.
 - [Benchmark](/test/benchmark) explains the role of benchmarks, how you can use the benchmarking framework to evaluate the performance of the function calls in your code and to adjust transaction weight to accurately reflect execution time.
 - [Simulate parachains](/test/simulate-parachains) steps through how you can set up a local test network to simulate a relay chain network with validators, parachain collator nodes, and XCM messaging.
+- [Check runtime](/test/check-runtime/) explains how you can use the `try-runtime` command-line tool for testing runtime state against a production snapshot of the chain state.
