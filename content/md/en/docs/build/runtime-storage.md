@@ -107,14 +107,16 @@ The type of storage items you choose to implement depends entirely on how you wa
 
 ## Simple storage values
 
-This type of storage item should be used for values that are viewed as a single unit by the runtime. This could be a single primitive value, a single `struct`, or a single collection of related
-items. If a storage item is used for storing lists of items, runtime developers should be conscious about the size of the lists they use.
-Large lists incur storage costs just like large `structs`.
-Furthermore, iterating over a large list in your runtime may result in exceeding the block production time. If this occurs for sovereign chains, the blockchain will slow down.
-If this occurs for [parachains](/reference/glossary/#parachain), the blockchain will stop producing blocks and stop functioning.
+You can use `StorageValue` storage items for values that are viewed as a single unit by the runtime. 
+For example, you should use this type of storage for the following common use cases:
 
-Although wrapping related items in a shared `struct` is an excellent way to reduce the number of storage reads, at some point the size of the object will begin to incur costs that may outweigh the optimization in storage reads.
-Read about [benchmarking](/test/benchmark/) to learn how to optimize execution time.
+- Single primitive values
+- Single `struct` data type objects
+- Single collection of related items
+  
+If you use this type of storage for lists of items, you should be conscious about the size of the lists you store.
+Large lists and `structs` incur storage costs and iterating over a large list or `struct` in the runtime can affect network performance or stop block production entirely. 
+If iterating over storage exceeds the block production time and your project is a [parachain](/reference/glossary/#parachain), the blockchain to stop producing blocks and stop functioning.
 
 Refer to the [StorageValue](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html#required-methods) documentation for a comprehensive list of the methods that StorageValue exposes.
 
@@ -241,29 +243,29 @@ pub(super) type SomeNMap<T: Config> = StorageNMap<
 Notice that the map's storage items specify [the hashing algorithm](#hashing-algorithms) that will
 be used.
 
-### QueryKind
+### Handling query return values
 
-determines how to handle a query for a storage item that refers to an optional value type.
+When you declare a storage item, you can specify how queries should handle the return value if there is no value in storage for the specified key.
+In the storage declaration, you specify the following:
 
-It is implemented by:
+- [`OptionQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.OptionQuery.html) to query an optional value from storage and return `Some` if storage contains a value or `None` if there's no value is in storage.
+  
+- [`ResultQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.ResultQuery.html) to query a result value from storage and return an error if there's no value is in storage.
 
-- OptionQuery which converts an optional value to an optional value, used when querying storage returns an optional value.
-- ResultQuery which converts an optional value to a result value, used when querying storage returns a result value.
-- ValueQuery which converts an optional value to a value, used when querying storage returns a value
-The implementation of the [`QueryKind`](https://paritytech.github.io/substrate/master/frame_support/storage/types/trait.QueryKindTrait.html) trait for a storage item determines how the storage should be handled if there is no value in storage.
-With [`OptionQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.OptionQuery.html), when no value is in storage the `get` method will return `None`. 
-With [`ValueQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.ValueQuery.html), when no value is in storage the `get` method will return the value configured with the `OnEmpty` generic.
-For cases with a specific default value to configure, it is recommended to use `ValueQuery`.
+- [`ValueQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.ValueQuery.html) to query a value from storage and return the value.
+  You can also use `ValueQuery` to return the default value if you have configured a specific default for a storage item or return the value configured with the `OnEmpty` generic.
 
 ### Visibility
 
 In the examples above, all the storage items except `SomePrivateValue` are made public by way of the `pub` keyword.
-Blockchain storage is always publicly [visible from _outside_ of the runtime](#accessing-storage-items); the visibility of Substrate storage items only impacts whether or not other pallets _within_ the runtime will be able to access a storage item.
+Blockchain storage is always publicly visible from _outside_ of the runtime.
+The visibility of Substrate storage items only impacts whether or not other pallets _within_ the runtime will be able to access a storage item.
 
 ### Getter methods
 
-The `#[pallet::getter(..)]` macro provides an optional `get` extension that can be used to implement a getter method for a storage item on the module that contains that storage item; the extension takes the desired name of the getter function as an argument.
-If you omit this optional extension, you will still be able to access the storage item's value, but you will not be able to do so by way of a getter method implemented on the module; instead, you will need to use [the storage item's `get` method](#methods).
+The `#[pallet::getter(..)]` macro provides an optional `get` extension that can be used to implement a getter method for a storage item on the module that contains that storage item.
+The extension takes the desired name of the getter function as an argument.
+If you omit this optional extension, you can access the storage item value, but you will not be able to do so by way of a getter method implemented on the module; instead, you will need to use [the storage item's `get` method](#methods).
 
 The optional `getter` extension only impacts the way that a storage item can be accessed from _within_ Substrate code&mdash;you will always be able to [query the storage of your runtime](/build/runtime-storage#Querying-Storage) to get the value of a storage item.
 

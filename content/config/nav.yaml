@@ -104,14 +104,16 @@ build:
       url: /build/events-and-errors/
     - title: Randomness
       url: /build/randomness/
-    - title: Chain specification
-      url: /build/chain-spec/
     - title: Privileged calls and origins
       url: /build/origins/
     - title: Remote procedure calls
       url: /build/custom-rpc/
     - title: Application development
       url: /build/application-development/
+    - title: Chain specification
+      url: /build/chain-spec/
+    - title: Genesis configuration
+      url: /build/genesis-configuration/
     - title: Build a deterministic runtime
       url: /build/build-a-deterministic-runtime/
     - title: Upgrade the runtime
@@ -131,6 +133,8 @@ test:
       url: /test/debug/
     - title: Benchmark
       url: /test/benchmark/
+    - title: Simulate parachains
+      url: /test/simulate-parachains/
 #- title: Deploy
 #url: /deploy/
 # pages:
@@ -206,6 +210,8 @@ tutorials:
           url: /tutorials/connect-relay-and-parachains/connect-a-local-parachain/
         - title: Acquire a testnet slot
           url: /tutorials/connect-relay-and-parachains/acquire-a-testnet-slot/
+        - title: Open message passing channels
+          url: /tutorials/connect-relay-and-parachains/open-message-passing-channels/
         #- title: Send cross-consensus messages (XCM)
         #  url: /tutorials/connect-relay-and-parachains/xcm/
     - title: Integrate with tools

@@ -182,7 +182,7 @@ If a dispatch is not defined as `Operational` or `Mandatory` in the weight annot
 You can specify that the dispatchable uses another class like this:
 
 ```rust
-#[pallet::weight((100_000, DispatchClass::Operational))]fn my_dispatchable() {
+#[pallet::dispatch((DispatchClass::Operational))]fn my_dispatchable() {
     // ...
 }
 ```
@@ -191,7 +191,7 @@ This tuple notation also allows you to specify a final argument that determines 
 If you don't specify otherwise, `Pays::Yes` is assumed:
 
 ```rust
-#[pallet::weight(100_000, DispatchClass::Normal, Pays::No)]
+#[pallet::dispatch(DispatchClass::Normal, Pays::No)]
 fn my_dispatchable() {
     // ...
 }
@@ -231,11 +231,18 @@ In addition to purely fixed weights and constants, the weight calculation can co
 The weight should be trivially computable from the input arguments with some basic arithmetic:
 
 ```rust
+use frame_support:: {
+    dispatch:: {
+        DispatchClass::Normal,
+        Pays::Yes,
+    },
+   weights::Weight,
+
 #[pallet::weight(FunctionOf(
   |args: (&Vec<User>,)| args.0.len().saturating_mul(10_000),
-  DispatchClass::Normal,
-  Pays::Yes,
-))]
+  )
+]
+
 fn handle_users(origin, calls: Vec<User>) {
     // Do something per user
 }
@@ -272,7 +279,7 @@ The custom weight calculation type must implement the following traits:
 
 - `WeighData<T>` to determine the weight of the dispatch.
 - `ClassifyDispatch<T>` to determine the class of the dispatch.
-- `PaysFee<T>` to determine whether the sender of the dispatch pays fees.
+- `Pays<T>` to determine whether the sender of the dispatch pays fees.
 
 Substrate then bundles the output information of the three traits into the `DispatchInfo` struct and provides it by implementing the `GetDispatchInfo` for all `Call` variants and opaque extrinsic types.
 This is used internally by the System and Executive modules.
@@ -346,7 +353,7 @@ type Balance = u64;
 
 // Assume we want all the weights to have a `100 + 2 * w` conversion to fees
 struct CustomWeightToFee;
-impl Convert<Weight, Balance> for CustomWeightToFee {
+impl WeightToFee<Weight, Balance> for CustomWeightToFee {
     fn convert(w: Weight) -> Balance {
         let a = Balance::from(100);
         let b = Balance::from(2);
@@ -374,7 +381,7 @@ impl transaction_payment::Config {
 }
 
 struct TargetedFeeAdjustment<T>(sp_std::marker::PhantomData<T>);
-impl<T: Get<Perquintill>> Convert<Fixed128, Fixed128> for TargetedFeeAdjustment<T> {
+impl<T: Get<Perquintill>> WeightToFee<Fixed128, Fixed128> for TargetedFeeAdjustment<T> {
     fn convert(multiplier: Fixed128) -> Fixed128 {
         // Don't change anything. Put any fee update info here.
         multiplier

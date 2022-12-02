@@ -38,7 +38,7 @@ collator selection:
 	#[pallet::config]
 	pub trait Config: frame_system::Config {
         // --snip-- //
-        type MySpecialOrigin: EnsureOrigin<Self::Origin>;
+        type MySpecialOrigin: EnsureOrigin<Self::RuntimeOrigin>;
     }
     // --snip-- //
     #[pallet::call]

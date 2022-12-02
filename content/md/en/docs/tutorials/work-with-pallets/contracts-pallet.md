@@ -167,8 +167,8 @@ To implement the `Config` trait for the Contracts pallet in the runtime:
       type Time = Timestamp;
       type Randomness = RandomnessCollectiveFlip;
       type Currency = Balances;
-      type Event = Event;
-      type Call = Call;
+      type RuntimeEvent = RuntimeEvent;
+      type RuntimeCall = RuntimeCall;
       type CallFilter = frame_support::traits::Nothing;
       type WeightPrice = pallet_transaction_payment::Pallet<Self>;
       type WeightInfo = pallet_contracts::weights::SubstrateWeight<Self>;
