@@ -24,7 +24,7 @@ This tutorial illustrates how to set up a test network with the following config
 - Four validators
 - Two parachains
 - One collator per parachain
-- One HRMP channel that enables the parachains to exchange messages
+- One message passing channel that enables the parachains to exchange messages
 
 ## Prepare a working folder with the binaries
 
@@ -300,6 +300,19 @@ To download and configure Zombienet:
    ```
 
    The command displays information about the test network nodes being started.
+   Take note of the relay chain and parachain node endpoints.
+   For example, the direct link to the relay chain endpoints should look similar to the following:
+
+   - alice: https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:52190#/explorer 
+   - bob: https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:52194#/explorer
+   - charlie: https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:52198#/explorer
+   - dave: https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:52202#/explorer
+   
+   The direct link to the parachain collator endpoints should look similar to the following:
+   
+   - parachain-1000-collator: https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:52206#/explorer
+   - parachain-1001-collator: https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:52210#/explorer
+
    After all of the nodes are running, you can interact with your nodes by opening the [Polkadot/Substrate Portal](https://polkadot.js.org/apps) and connecting to any of the node endpoints.
 
 ## Open a message passing channel
