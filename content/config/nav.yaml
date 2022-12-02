@@ -135,6 +135,8 @@ test:
       url: /test/benchmark/
     - title: Simulate parachains
       url: /test/simulate-parachains/
+    - title: Check runtime
+      url: /test/check-runtime/
 #- title: Deploy
 #url: /deploy/
 # pages:
