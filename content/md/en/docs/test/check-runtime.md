@@ -1,22 +1,23 @@
 ---
-title: try-runtime
-description: Run tests for a specified runtime state against a production snapshot of chain state.
+title: Check runtime
+description: Describes the try-runtime command-line tool for testing a specified runtime state against a production snapshot of chain state.
 keywords:
   - testing
   - snapshot
   - integration testing
   - production
+  - runtime upgrades
+  - storage migration
 ---
 
-The `try-runtime` tool is built to query a snapshot of runtime storage, using an [in-memory-externalities](https://paritytech.github.io/substrate/master/sp_state_machine/struct.TestExternalities.html) to store state.
-By using the in-memory storage, you can write tests for a specified runtime state that enables you to test against real chain state _before_ going to production.
-With the `try-runtime` command-line interface, you can specify the block you want to query against.
+The `try-runtime` command-line tool enables you to query a snapshot of runtime storage using an [in-memory-externalities](https://paritytech.github.io/substrate/master/sp_state_machine/struct.TestExternalities.html) data structure to store state.
+By using the in-memory storage, you can write tests for a specified runtime state so that you can test against real chain state _before_ going to production.
 
-In its simplest form, `try-runtime` is a tool that enables you to:
+In its simplest form, you can use `try-runtime` to test the runtime state by doing the following:
 
 1. Connect to a remote node.
-2. Call into some runtime API.
-3. Retrieve state from a node at a given block.
+2. Call a specific runtime API.
+3. Retrieve state from the node at a specific block.
 4. Write tests for the data retrieved.
 
 ## Motivation
