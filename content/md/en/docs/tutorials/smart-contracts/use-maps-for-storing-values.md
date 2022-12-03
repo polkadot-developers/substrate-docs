@@ -318,7 +318,7 @@ For example, this tutorial illustrated:
 
 - How to add functions that enable users to insert and remove the values stored for them in a map using a smart contract.
 
-You can find an example of the final code for this tutorial in the assets for the [smart-contracts](/assets/tutorials/smart-contracts/incrementer-mapping.rs)
+You can find an example of the final code for this tutorial in the assets for the [smart-contracts](/assets/tutorials/smart-contracts/incrementer-mapping.rs).
 You can learn more about smart contract development in the following topics:
 
 - [Build an ERC20 token contract](/tutorials/smart-contracts/build-a-token-contract/)

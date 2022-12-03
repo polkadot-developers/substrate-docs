@@ -21,7 +21,7 @@ This value, we'll call `SingleValue`, can also be modified using a method called
    ```rust
    #[pallet::config]
    pub trait Config: frame_system::Config {
-   	type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+   	type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_system::Config>::RuntimeEvent>;
 
    	#[pallet::constant] // put the constant in metadata
    	/// Maximum amount added per invocation.
@@ -130,7 +130,7 @@ This value, we'll call `SingleValue`, can also be modified using a method called
    }
 
    impl constant_config::Config for Runtime {
-   	type Event = Event;
+   	type RuntimeEvent = RuntimeEvent;
    	type MaxAddend = MaxAddend;
    	type ClearFrequency = ClearFrequency;
    }
@@ -142,6 +142,6 @@ This value, we'll call `SingleValue`, can also be modified using a method called
 
 ## Resources
 
-- [Forkless upgrade](/tutorials/get-started/forkless-upgrade/)
+- [Upgrade a running network](/tutorials/get-started/upgrade-a-running-network/)
 - [Get trait](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Get.html)
 - [Extra_constants](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional)

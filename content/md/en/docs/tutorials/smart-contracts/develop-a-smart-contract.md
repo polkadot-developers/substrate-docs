@@ -17,7 +17,7 @@ Before you begin, verify the following:
 
 - You are generally familiar with blockchains and smart contract platforms.
 
-- You have installed Rust and set up your development environment as described in [Install](/main-docs/install/).
+- You have installed Rust and set up your development environment as described in [Install](/install/).
 
 - You have completed [Prepare your first contract](/tutorials/smart-contracts/prepare-your-first-contract/) and have the Substrate contracts node installed locally.
 
@@ -127,10 +127,10 @@ pub struct MyContract {
 
 ### Supported types
 
-Substrate smart contracts support most Rust common data types, including Booleans, unsigned and signed integers, strings, tuples, and arrays.
+Substrate smart contracts support most Rust common data types, including booleans, unsigned and signed integers, strings, tuples, and arrays.
 These data types are encoded and decoded using the [Parity scale codec](https://github.com/paritytech/parity-codec) for efficient transmission over the network.
 
-In addition to common Rust type that can be encoded and decoded using the scale codec, the ink! language supports Substrate-specific types—like `AccountId`, `Balance`, and `Hash`—as if they were primitive types.
+In addition to common Rust types that can be encoded and decoded using the scale codec, the ink! language supports Substrate-specific types—like `AccountId`, `Balance`, and `Hash`—as if they were primitive types.
 The following code illustrates how to store an `AccountId` and `Balance` for this contract:
 
 ```rust
@@ -270,7 +270,6 @@ To add the public function to the smart contract:
    #[ink(message)]
    pub fn get(&self) -> i32 {
        self.value
-       }
    }
    ```
 
@@ -311,7 +310,6 @@ To add a function for incrementing the stored value:
    #[ink(message)]
    pub fn inc(&mut self, by: i32) {
        self.value += by;
-       }
    }
    ```
 
@@ -414,7 +412,7 @@ For example, this tutorial illustrated:
 
 - How to upload and instantiate the contract using the Contracts UI.
 
-You can find an example of the final code for this tutorial in the assets for the [smart-contracts](/assets/tutorials/smart-contracts/incrementer-basics.rs)
+You can find an example of the final code for this tutorial in the assets for the [smart-contracts](/assets/tutorials/smart-contracts/incrementer-basics.rs).
 You can learn more about smart contract development in the following topics:
 
 - [Use maps for storing values](/tutorials/smart-contracts/use-maps-for-storing-values/)

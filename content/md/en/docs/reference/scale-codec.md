@@ -8,7 +8,9 @@ Substrate uses a lightweight and efficient encoding and decoding program to opti
 The program used to serialize and deserialize data is called the SCALE codec, with SCALE being an acronym for <u>s</u>imple <u>c</u>oncatenated <u>a</u>ggregate <u>l</u>ittle-<u>e</u>ndian.
 
 The SCALE codec is a critical component for communication between the runtime and the outer node.
-It is designed for high-performance, copy-free encoding and decoding of data in resource-constrained execution environments like the Substrate [WebAssembly runtime](/main-docs/fundamentals/runtime-intro//).
+
+It is designed for high-performance, copy-free encoding and decoding of data in resource-constrained execution environments like the Substrate [WebAssembly runtime](/fundamentals/runtime-development//).
+
 The SCALE codec is not self-describing in any way.
 It assumes the decoding context has all type knowledge about the encoded data.
 Front-end libraries maintained by Parity use the [`parity-scale-codec`](https://github.com/paritytech/parity-scale-codec) crate—which is a Rust implementation of the SCALE codec—to encode and decode interactions between RPCs and the runtime.
@@ -72,7 +74,7 @@ SCALE Codec has been implemented in other languages, including:
 - C: [`MatthewDarnell/cScale`](https://github.com/MatthewDarnell/cScale)
 - C++: [`soramitsu/scale-codec-cpp`](https://github.com/soramitsu/scale-codec-cpp)
 - JavaScript: [`polkadot-js/api`](https://github.com/polkadot-js/api)
-- TypeScript: [`scale-ts`](https://github.com/unstoppablejs/unstoppablejs/tree/main/packages/scale-ts#scale-ts)
+- TypeScript: [`parity-scale-codec-ts`](https://github.com/paritytech/parity-scale-codec-ts), [`scale-ts`](https://github.com/unstoppablejs/unstoppablejs/tree/main/packages/scale-ts#scale-ts)
 - AssemblyScript: [`LimeChain/as-scale-codec`](https://github.com/LimeChain/as-scale-codec)
 - Haskell: [`airalab/hs-web3`](https://github.com/airalab/hs-web3/tree/master/packages/scale)
 - Java: [`emeraldpay/polkaj`](https://github.com/emeraldpay/polkaj)

@@ -1,204 +1,246 @@
 ---
 title: Add benchmarks
-description:
+description: Demonstrates how to use the benchmarking framework to estimate execution requirements for a pallet.
 keywords:
   - weights
   - benchmarking
   - runtime
 ---
 
-This guide steps through the process of adding benchmarking to a pallet and runtime.
-In addition, it covers the steps of writing a simple benchmark for a pallet as well as testing and running the benchmarking tool.
-This guide does not cover updating weights with benchmarked values.
+This guide illustrates how to write a simple benchmark for a pallet, test the benchmark, and run [benchmarking](https://github.com/paritytech/substrate/tree/master/frame/benchmarking) commands to generate realistic estimates about the execution time required for the functions in a pallet.
+This guide does not cover how to use the benchmarking results to update transaction weights.
 
-## Goal
+## Add benchmarking to the pallet
 
-Add [FRAME's benchmarking tool](https://paritytech.github.io/substrate/master/frame_benchmarking/macro.benchmarks.html) to your pallet and write a simple benchmark.",
-
-## Use cases
-
-Setting up your pallet to be able to benchmark your extrinsics.`,
-
-## Steps
-
-### 1. Set-up benchmarking for your pallet
-
-1. In [the pallet's `Cargo.toml`](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/Cargo.toml), add the `frame-benchmarking` crate (with appropriate tag and version) and the `runtime-benchmarks` feature.
-
-   `pallets/example/Cargo.toml`
+1. Open the [`Cargo.toml`](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/Cargo.toml) file for your pallet in a text editor.
+   
+2. Add the `frame-benchmarking` crate to the [dependencies] for the pallet using the same version and branch as the other dependencies in the pallet.
+   
+   For example:
 
    ```toml
-   frame-benchmarking = { default-features = false, git = "https://github.com/paritytech/substrate.git", optional = true, branch = "<polkadot-vM.m.p>" }
+   frame-benchmarking = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.25", optional = true }
+   ```
+1. Add `runtime-benchmarks` to the list of [features] for the pallet.
+   
+   For example:
 
+   ```toml
    [features]
-   # -- snip --
-   runtime-benchmarks = ["frame-benchmarking"]
+   runtime-benchmarks = ["frame-benchmarking/runtime-benchmarks"]
+   ```
+
+1. Add `frame-benchmarking/std` to the list of `std` features for the pallet.
+   
+   For example:
+
+   ```toml
    std = [
-     # -- snip --
-     "frame-benchmarking/std",
+      ...
+      "frame-benchmarking/std",
+      ...
    ]
    ```
 
-1. Create a new Rust module for your benchmarks in your pallet's folder (an example of [`/pallets/template/src/benchmarking.rs`](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/benchmarking.rs)), and create the basic structure:
+## Add a benchmarking module
 
-   `pallets/example/src/benchmarking.rs`
-
-   ```rust
-    //! Benchmarks for Template Pallet
-    #![cfg(feature = "runtime-benchmarks")]
-
-    use crate::*;
-    use frame_benchmarking::{benchmarks, impl_benchmark_test_suite, whitelisted_caller};
-    use frame_system::RawOrigin;
-
-    benchmarks!{
-      // Individual benchmarks are placed here
-    }
-   ```
-
-1. Each benchmark case has up to three sections: a setup section, an execution section, and optionally a verification section at the end.
+1. Create a new text file—for example, `benchmarking.rs`—in the `src` folder for your pallet.
+   
+2. Open the `benchmarking.rs` file in a text editor and create a  Rust module that defines benchmarks for your pallet.
+   
+   You can use the `benchmarking.rs` for any prebuilt pallet as an example of what to include in the Rust module.
+   In general, the module should include code similar to the following:
 
    ```rust
-   benchmarks!{
-     benchmark_name {
-       /* setup initial state */
-     }: {
-       /* the code to be benchmarked */
-     }
-     verify {
-       /* verifying final state */
-     }
+   #![cfg(feature = "runtime-benchmarks")]
+   mod benchmarking;
+
+   use crate::*;
+   use frame_benchmarking::{benchmarks, whitelisted_caller};
+   use frame_system::RawOrigin;
+   
+   benchmarks! {
+      // Add individual benchmarks here
+      benchmark_name {
+         /* code to set the initial state */
+      }: {
+         /* code to test the function benchmarked */
+      }
+      verify {
+         /* optional verification */
+      }
    }
    ```
 
-   We'll refer to an extremely basic example of a benchmark from the [Example pallet](https://github.com/paritytech/substrate/tree/master/frame/examples/basic).
-   Take a look at the extrinsic we'll be benchmarking for:
-
+3. Write individual benchmarks to test the most computationally expensive paths for the functions in the pallet.
+   
+   The benchmarking macro automatically generates a test function for each benchmark you include in the benchmarking module.
+   For example, the macro creates test functions similar to the following:
+   
    ```rust
-   // This will measure the execution time of `set_dummy` for b in [1..1000] range.
-   set_dummy {
-     let b in 1 .. 1000;
-   }: set_dummy(RawOrigin::Root, b.into());
+   fn test_benchmarking_[benchmark_name]<T>::() -> Result<(), &'static str>
    ```
 
-   The name of the benchmark is `set_dummy`. Here `b` is a variable input that is passed into the extrinsic `set_dummy` which may affect the extrinsic execution time.
-   `b` will be varied between 1 to 1,000, where we will repeat and measure the benchmark at the different values.
+   The benchmarking module for [pallet-example-basic](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/benchmarking.rs) provides a few simple sample benchmarks.
+   For example:
 
-   In this example, the extrinsic `set_dummy` is called in the execution section, and we do not verify the result at the end.
+   ```rust
+   benchmarks! {
+     set_dummy_benchmark {
+       // Benchmark setup phase
+       let b in 1 .. 1000;
+     }: set_dummy(RawOrigin::Root, b.into()) // Execution phase
+     verify {
+		   // Optional verification phase
+       assert_eq!(Pallet::<T>::dummy(), Some(b.into()))
+     }
+   }  
+   ```
 
-1. Once you have written your benchmarks, you should make sure they execute properly by testing them.
-   Add this macro at the bottom of your benchmarking module:
+   In this sample code:
+   
+   - The name of the benchmark is `set_dummy_benchmark`. 
+   - The variable `b` stores input that is used to test the execution time of the `set_dummy` function.
+   - The value of `b` varies between 1 to 1,000, so you can run the benchmark test repeatedly to measure the execution time using different input values.
 
-   `pallets/example/src/benchmarking.rs`
+## Test the benchmarks
+
+After you have added benchmarks to the `benchmarks!` macros in the benchmarking module for your pallet, you can use a mock runtime to do unit testing and ensure that the test functions for your benchmarks return `Ok(())` as a result.
+
+1. Open the `benchmarking.rs` benchmarking module in a text editor.
+
+2. Add the `impl_benchmark_test_suite!` macro to the bottom of your benchmarking module:
 
    ```rust
    impl_benchmark_test_suite!(
-     YourPallet,
+     MyPallet,
      crate::mock::new_test_ext(),
      crate::mock::Test,
    );
    ```
 
-   The `impl_benchmark_test_suite!` macro takes three inputs: the Pallet struct generated by your pallet,
-   a function that generates a test genesis storage (i.e. `new_text_ext()`), and a full runtime
-   struct. These things you should get from your normal pallet unit tests.
+   The `impl_benchmark_test_suite!` macro takes the following input: 
+   
+   - The Pallet struct generated by your pallet, in this example `MyPallet`.
+   - A function that generates a test genesis storage, `new_text_ext()`.
+   - The full mock runtime struct, `Test`. 
+   
+   This is the same information you use to set up a mock runtime for unit testing.
+   If all benchmark tests pass in the mock runtime test environment, it's likely that they will work when you run the benchmarks in the actual runtime.
 
-   We will use your test environment and execute the benchmarks similar to how they would execute
-   when actually running the benchmarks. If all tests pass, then it's likely that things will
-   work when you actually run your benchmarks!
+3. Execute the benchmark unit tests generated for your pallet in a mock runtime by running a command similar to the following for a pallet named `pallet-mycustom`:
+   
+   ```bash
+   cargo test --package pallet-mycustom --features runtime-benchmarks
+   ```
 
-### 2. Add benchmarking to your runtime
+4.  Verify the test results.
+   
+   For example:
 
-With all the code completed on the pallet side, you need to also enable your full runtime to allow
-benchmarking.
+   ```text
+   running 4 tests
+   test mock::__construct_runtime_integrity_test::runtime_integrity_tests ... ok
+   test tests::it_works_for_default_value ... ok
+   test tests::correct_error_for_none_value ... ok
+   test benchmarking::bench_do_something ... ok
+   
+   test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+   ```
 
-1. Update your runtime's `Cargo.toml` file to include the `runtime-benchmarking` features:
+## Add benchmarking to the runtime
+
+After you have added benchmarking to your pallet, you must also update the runtime to include the pallet and the benchmarks for the pallet.
+
+1. Open the `Cargo.toml` file for your runtime in a text editor.
+
+2. Add your pallet to the list of `[dependencies]` for the runtime:
+   
+   ```toml
+   pallet-mycustom = { default-features = false, path = "../pallets/pallet-mycustom"}
+   ```
+
+3. Update the `[features]` for the runtime to include the `runtime-benchmarks` for your pallet:
 
    ```toml
-   pallet-you-created = { default-features = false, path = "../pallets/pallet-you-created"}
-
    [features]
    runtime-benchmarks = [
-     # -- snip --
-     'pallet-you-created/runtime-benchmarks'
+     ...
+     'pallet-mycustom/runtime-benchmarks'
+     ...
    ]
+   ```
+
+4. Update the `std` features for the runtime to include your pallet:
+
+   ```toml
     std = [
      # -- snip --
-     'pallet-you-created/std'
+     'pallet-mycustom/std'
    ]
    ```
 
-1. Add your new pallet to your runtime just as you would any other pallet.
-   If you need more details, check out the [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet) or [Import a pallet](/reference/how-to-guides/basics/import-a-pallet).
+5. Add the configuration trait for your pallet to the runtime.
+   
+6. Add the pallet the the `construct_runtime!` macro.
+   
+   If you need more details about adding a pallet to the runtime, see [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet) or [Import a pallet](/reference/how-to-guides/basics/import-a-pallet).
 
-1. Then, in addition to your normal runtime configuration, you also need to update the benchmarking section of your runtime.
-   To add our new benchmarks, we simply add a new line with the `add_benchmark!` macro:
-
+7. Add your pallet to the `define_benchmark!` macro in the `runtime-benchmarks` feature.
+   
    ```rust
    #[cfg(feature = "runtime-benchmarks")]
-   impl frame_benchmarking::Benchmark<Block> for Runtime {
-     fn dispatch_benchmark(
-       config: frame_benchmarking::BenchmarkConfig
-     ) -> Result<(
-       Vec<frame_benchmarking::BenchmarkBatch>,
-       Vec<StorageInfo>),
-       sp_runtime::RuntimeString,
-       > {
-         // -- snip --
-         let whitelist: Vec<TrackedStorageKey> = vec![
-           // You can whitelist any storage keys you do not want to track here
-           ];
-           let storage_info = AllPalletsWithSystem::storage_info();
-           let mut batches = Vec::<BenchmarkBatch>::new();
-           let params = (&config, &whitelist);
-
-           // Adding the pallet for which you will perform the benchmarking
-           add_benchmark!(params, batches, pallet_you_crated, YourPallet);
-
-           // -- snip --
-
-           if batches.is_empty() { return Err("Benchmark not found for this pallet.".into()) }
-           Ok(batches, storage_info)
-          }
-      }
+   mod benches {
+       define_benchmarks!(
+         [frame_benchmarking, BaselineBench::<Runtime>]
+         [pallet_assets, Assets]
+         [pallet_babe, Babe]
+         ...
+         [pallet_mycustom, MyPallet]
+         ...
+       );
+   }
    ```
 
-### 3. Run your benchmarks
+## Run your benchmarks
 
-1. Build your project with the benchmarks enabled:
+After you update the runtime, you are ready to compile it with the `runtime-benchmarks` features enabled and start the benchmarking analysis for your pallet.
+   
+1. Build your project with the `runtime-benchmarks` feature enabled by running the following command:
 
    ```bash
-   cargo build --release --features runtime-benchmarks
+   cargo build --package node-template --release --features runtime-benchmarks
    ```
 
-1. Once this is done, you should be able to run the `benchmark` subcommand from your project's top level directory to view all CLI options.
-   This will also ensure that benchmarking has been properly integrated:
+2. Review the command-line options for the node `benchmark pallet` subcommand:
 
    ```bash
-   ./target/release/node-template benchmark --help
+   ./target/release/node-template benchmark pallet --help
    ```
-
-The Benchmarking CLI has a lot of options which can help you automate your benchmarking.
-Execute the following command to run standard benchmarking for your `pallet_you_created`:
-
-```bash
-./target/release/node-template benchmark pallet \
+   
+   The `benchmark pallet` subcommand supports several command-line options that can help you automate your benchmarking.
+   For example, you can set the `--steps` and `--repeat` command-line options to execute function calls multiple times with different values.
+   
+3. Start benchmarking for your pallet by running a command similar to the following:
+   
+   ```bash
+   ./target/release/node-template benchmark pallet \
     --chain dev \
-    --execution wasm \
-    --wasm-execution compiled \
-    --pallet pallet_you_crated \
+    --pallet pallet_mycustom \
     --extrinsic '*' \
     --steps 20 \
     --repeat 10 \
-    --json-file=raw.json \
-    --output ./pallets/src/pallet-created/weights.rs
-```
-
-This will create a `weights.rs` file inside your pallet's directory.
-Refer to [Use custom weights from benchmarking](/reference/how-to-guides/weights/use-custom-weights/) to learn how to configure your pallet to use those weights.
+    --output pallets/pallet-mycustom/src/weights.rs
+   ```
+   
+   This command creates a `weights.rs` file in the specified directory.
+   For information about how to configure your pallet to use those weights, see [Use custom weights](/reference/how-to-guides/weights/use-custom-weights/).
 
 ## Examples
 
-- [Benchmarking](/main-docs/test/benchmark)
+You can use the `benchmarking.rs` and `weights.rs` files for any prebuilt pallet to learn more about benchmarking different types of functions.
+
 - [Example pallet: Benchmarks](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/benchmarking.rs)
 - [Example pallet: Weights](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/weights.rs)
+- [Balances pallet: Benchmarks](https://github.com/paritytech/substrate/blob/master/frame/balances/src/benchmarking.rs)
+- [Balances pallet: Weights](https://github.com/paritytech/substrate/blob/master/frame/balances/src/weights.rs)

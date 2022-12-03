@@ -1,7 +1,6 @@
 import cx from 'classnames';
+import { Link } from 'gatsby-plugin-substrate';
 import React from 'react';
-
-import { Link } from '../../default/Link';
 
 const ChildMenu = ({ pages, currentPath }) => {
   return (
@@ -10,10 +9,13 @@ const ChildMenu = ({ pages, currentPath }) => {
         return (
           <Link to={page.url} key={index}>
             <li
-              className={cx('h-8 w-full m-0 ml-2 text-sm font-medium cursor-pointer leading-3', {
-                'text-gray-500': currentPath !== page.url,
-                'text-substrateBlue': currentPath === page.url,
-              })}
+              className={cx(
+                'h-8 w-full m-0 ml-2 text-sm font-medium cursor-pointer leading-3 hover:opacity-100 opacity-80',
+                {
+                  'dark:text-gray-300 text-gray-700': currentPath !== page.url,
+                  'text-substrateBlue !cursor-default !opacity-100': currentPath === page.url,
+                }
+              )}
             >
               {page.url ? page.title : ''}
             </li>

@@ -27,7 +27,7 @@ To publish your pallet on GitHub:
 
 1. Add a LICENSE, CODE-OF-CONDUCT, CONTRIBUTING, or other files to the repository, as needed.
 
-After you publish the pallet, other developers can import into their runtime by including it the `Cargo.toml` file as follows:
+After you publish the pallet, other developers can import it into their runtime by including it in the `Cargo.toml` file as follows:
 
 1. Open a terminal shell and change to the root directory for the node template.
 
@@ -48,7 +48,7 @@ After you publish the pallet, other developers can import into their runtime by 
 The Rust community maintains the [crates.io](https://crates.io/) website to allow permissionless publishing of any Rust module.
 You could learn the procedure by following their guide on how to [publish on crates.io](https://doc.rust-lang.org/cargo/reference/publishing.html).
 
-After you publish the pallet, other developers can import into their runtime by including it the `Cargo.toml` file as follows:
+After you publish the pallet, other developers can import it into their runtime by including it in the `Cargo.toml` file as follows:
 
 1. Open a terminal shell and change to the root directory for the node template.
 
@@ -67,7 +67,7 @@ After you publish the pallet, other developers can import into their runtime by 
 
 ## Where to go next
 
-- [Runtime development](/main-docs/fundamentals/runtime-intro/)
-- [Custom pallets](/main-docs/build/custom-pallets/)
+- [Runtime development](/fundamentals/runtime-development/)
+- [Custom pallets](/build/custom-pallets/)
 - [Use macros in a custom pallet](/tutorials/work-with-pallets/use-macros-in-a-custom-pallet/)
 - [How-to: Import a pallet](/reference/how-to-guides/basics/import-a-pallet/).

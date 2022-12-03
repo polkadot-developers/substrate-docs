@@ -15,46 +15,35 @@ keywords:
   - convert
 ---
 
-This guide will show you how to add Cumulus to a solo chain and use a relay chain to provide finality.
+This guide illustrates how to add Cumulus to a solo chain and use a relay chain to provide finality.
 
 You will learn how to:
 
 - Bootstrap a solo-chain's security
-- Access XCMP with Parachains on a common relay chain
+- Access XCMP with parachains on a common relay chain
 
 The integration of Cumulus for any Substrate chain enables this chain to couple it's _finality_ with a
 relay chain, like Polkadot.
-This guide does _not_ inform on how to migrate a _running solo-chain_, only the steps required to convert the _codebase_ of a node to use Cumulus for consensus instead of something like GRANDPA that is common for other Substrate solo-chains.
+This guide does _not_ inform on how to migrate a _running solo chain_, only the steps required to convert the _codebase_ of a node to use Cumulus for consensus instead of something like GRANDPA that is common for other Substrate solo chains.
 
-<!-- FIXME TODO WORK IN PROGRESS - NOT COMPLETE! -->
+## Parachain and solo chain node templates
 
-This is an _overview_, not a proper how-to guide presently!
+The Substrate parachain template is similar to the Substrate node template.
+Both templates include the `node`, `runtime`, and `pallets` directories and many of the same predefined pallets and traits.
+You can follow most of the [tutorials](/tutorials/) using either template.
+However, there are a few important differences between the node and parachain templates that you should take note of at the outset.
 
-## Parachain node template overview
+### Parachain info pallet
 
-Substrate developers who are familiar with the Substrate node template will find the Substrate parachain template familiar.
-They have the same general structure featuring `node`, `runtime`, and `pallets` directories.
-Their runtimes are similar and feature many of the same pallets. Apart from a few new traits, the `pallet-template` itself is essentially identical.
-Many of the [tutorials](/tutorials/) can be used with few modifications on the parachain template.
+By default, the parachain template [runtime](https://github.com/substrate-developer-hub/substrate-parachain-template/blob/main/runtime/Cargo.toml) includes several parachain-specific pallets, including a [`parachain-info` pallet](https://paritytech.github.io/cumulus/parachain_info/pallet/index.html).
+This pallet is designed to inject the unique parachain identifier into the parachain runtime.
+This information allows the runtime to know which cross-chain messages are intended for it.
 
-The similarities between these two templates should give you confidence that if you've built a Substrate chain, you will have no problem building a parachain!
+### Validate block macro
 
-### Differences from the node template
-
-There are, however, a few important differences between the two templates that are worth observing at the outset.
-
-#### Parachain info pallet
-
-Parachain template runtime ([`runtime/Cargo.toml`](https://github.com/substrate-developer-hub/substrate-parachain-template/blob/polkadot-v0.9.26/runtime/Cargo.toml)) has integrated [`parachain-info` pallet](https://paritytech.github.io/cumulus/parachain_info/pallet/index.html) in.
-This pallet is designed to inject information about the parachain's registration into its own runtime.
-Currently it just injects the `ParaID` that the chain is registered at.
-This allows the runtime to know which cross-chain messages are intended for it.
-
-#### `register_validate_block!` macro
-
-Each parachain must supply a `validate_block` function, expressed as a Wasm blob, to the relay chain when registering.
-The node template does not provide this function, but the parachain template does,
-Thanks to cumulus, creating this function for a Substrate runtime is as simple as adding one line of code as shown [at the bottom of the runtime](https://github.com/substrate-developer-hub/substrate-parachain-template/blob/polkadot-v0.9.26/runtime/src/lib.rs#L648-L652):
+Each parachain must supply a `validate_block` function—in the form of a WebAssembly blob—to the relay chain when it registers with that relay chain.
+This function is only required for parachains, so it isn't included in the node template by default.
+However, the parachain template creates this function for a Substrate runtime by adding the following code to the bottom of the runtime logic:
 
 ```rust
 cumulus_pallet_parachain_system::register_validate_block!(
@@ -64,18 +53,15 @@ cumulus_pallet_parachain_system::register_validate_block!(
 );
 ```
 
-#### No `GRANDPA` pallet
+### Finality depends on the relay chain
 
-Many popular Substrate runtimes including the node template features a finality-related GRANDPA pallet and its associated `GrandpaApi`.
-These are both missing from the parachain template.
+The parachain template doesn't include any block finalization mechanism because parachains are intended to use the finality provided by the relay chain.
+Relay chain finalization is a fundamental concept in the architecture of Polkadot and other relay chains.
+In contrast, the Substrate node template and many other Substrate-based chains implement their own block finalization mechanism mechanism, typically using the GRANDPA pallet and associated API.
 
-This is because parachains follow the finality of the relay chain rather than running their own finality gadget.
-This is fundamental to Polkadot's architecture and will not change.
+### Collator service
 
-#### Service
+The collator service—[`node/src/service.rs`](https://github.com/substrate-developer-hub/substrate-parachain-template/blob/main/node/src/service.rs)—is entirely different in the parachain template from the similarly-named [`node/src/service.rs`](https://github.com/substrate-developer-hub/substrate-node-template/blob/main/node/src/service.rs) in the node template.
+The collator service is explicitly designed as a wrapper to provide parachain-specific operations that a standard Substrate node doesn't require.
 
-The collator service ([`node/src/service.rs`](https://github.com/substrate-developer-hub/substrate-parachain-template/blob/polkadot-v0.9.26/node/src/service.rs)) is entirely different from the one of Node template.
-While you can find similarities, the structure of the service is much different.
-This new service is the primary change that cumulus provides.
-
-When modifying an existing Substrate chain to use Cumulus, it is generally best to copy the service code from the parachain template.
+If you have an existing Substrate chain that you want to convert to a parachain, you should copy the [`node/src/service.rs`](https://github.com/substrate-developer-hub/substrate-parachain-template/blob/main/node/src/service.rs) from the parachain template as a starting point.

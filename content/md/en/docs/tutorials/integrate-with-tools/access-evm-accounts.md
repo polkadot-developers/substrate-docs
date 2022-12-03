@@ -194,7 +194,7 @@ You can also create an ERC-20 token contract using Polkadot JS SDK and [Typescri
 
 1. Select **evm**.
 
-1. Select a **create** function.
+1. Select the **create** function.
 
 1. Configure the parameters for the function.
 
@@ -302,7 +302,7 @@ The next step is to use the deployed contract to transfer tokens to another acco
 
 ## Verify the token transfer
 
-After you submit the transaction, the contract is deployed on the network and you can view information about it using the [Polkadot-JS application](https://polkadot.js.org/apps/#?rpc=ws://127.0.0.1:9944).
+After you submit the transaction, you can verify the token transfer using the [Polkadot-JS application](https://polkadot.js.org/apps/#?rpc=ws://127.0.0.1:9944).
 
 1. Verify that your node is still running and the [Polkadot-JS application](https://polkadot.js.org/apps/#?rpc=ws://127.0.0.1:9944) is connected to the node.
 
@@ -318,11 +318,15 @@ After you submit the transaction, the contract is deployed on the network and yo
 
 1. Check the storage for the contract address `0x8a50db1e0f9452cfd91be8dc004ceb11cb08832f` and storage slot `0x045c0350b9cf0df39c4b40400c965118df2dca5ce0fbcf0de4aafc099aea4a14`.
 
+   ```text
    0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff22
+   ```
   
    If you check the balance for the `alice` account after deploying the contract, you see that a fee was withdrawn from the account and the `getBalance(address, number)` call returns a value similar to the following:
   
+   ```text
    340,282,366,920,938,463,463,374,603,530,233,366,411
+   ```
 
 ## Where to go next
 

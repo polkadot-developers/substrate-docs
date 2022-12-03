@@ -1,8 +1,8 @@
 import cx from 'classnames';
+import { Icon } from 'gatsby-plugin-substrate';
 import React, { useState } from 'react';
 
 import configNav from '../../../../content/config/nav.yaml';
-import Icon from '../../default/Icon';
 import ModalButton from '../Search/ModalButton';
 import Menu from './Menu';
 
@@ -15,7 +15,7 @@ const MobileNavigation = ({ currentPath }) => {
         className="pt-4 flex content-center items-center justify-center w-full text-center mx-auto font-bold py-4 bg-substrateGray dark:bg-gray-700 cursor-pointer"
         onClick={() => setNav(!toggleNav)}
       >
-        <Icon name="docsNavIcon" className="fill-current text-black dark:text-white" />
+        <Icon name="docs" className="fill-current text-black dark:text-white" />
         &nbsp; Documentation
         <svg
           className={cx('ml-2 fill-current text-black dark:text-white transform', {

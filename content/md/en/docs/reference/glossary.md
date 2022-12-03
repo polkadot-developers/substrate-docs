@@ -42,7 +42,7 @@ With approval voting, it is worth noting the following:
 - Voting for all candidates is the same as voting for none.
 - It is possible to vote against a single candidate by voting for all other candidates.
 
-Approval voting is used by the [FRAME Elections Phragmen pallet](/reference/frame-pallets#elections-phragmén) as a governing [Council](#council) on a number of Substrate-based chains.
+Approval voting is used by the [FRAME Elections Phragmen pallet](/reference/frame-pallets#elections-phragmen) as a governing [Council](#council) on a number of Substrate-based chains.
 
 ## author
 
@@ -52,8 +52,8 @@ In a proof-of-work blockchain, these nodes are called _miners_.
 
 ## authority
 
-The [nodes](#node) that act as a collective to manage [consensus](#consensus) on a[blockchain](#blockchain) network.
-In a [proof-of-stake](#nominated-proof-of-stake-npos) blockchain—for example, a blockchain that us the [Staking pallet](/reference/frame-pallets#staking) from [FRAME](#frame)—authorities are determined through a token-weighted nomination and voting system.
+The [nodes](#node) that act as a collective to manage [consensus](#consensus) on a [blockchain](#blockchain) network.
+In a [proof-of-stake](#nominated-proof-of-stake-npos) blockchain—for example, a blockchain that uses the [Staking pallet](/reference/frame-pallets#staking) from [FRAME](#frame)—authorities are determined through a token-weighted nomination and voting system.
 
 The terms _authorities_ and _[validators](#validator)_ sometimes seem to refer the same thing.
 However, _validators_ is a broader term that can include other aspects of chain maintenance such as parachain validation.
@@ -82,7 +82,7 @@ A block is a single element of a blockchain that contains an ordered set of inst
 
 Each block is identified by a [cryptographic digest](#cryptographic-primitives)—a hash—and includes a pointer back to the hash of its parent block.
 Every block has a [header](#header) and a body that contains the executed instructions that made it into the block within certain parameters.
-Blocks are most often visualized as a vertical stack with each block referencing its parent block until there are conflicts that must be resolved using a [fork-choice rule](/main-docs/fundamentals/consensus#fork-choice-rules) and an optional [finality](#finality) mechanism.
+Blocks are most often visualized as a vertical stack with each block referencing its parent block until there are conflicts that must be resolved using a [fork-choice rule](/fundamentals/consensus#fork-choice-rules) and an optional [finality](#finality) mechanism.
 
 ## block height
 
@@ -98,7 +98,7 @@ The block number for any particular block in a blockchain indicates how many blo
 
 ## blockchain
 
-Describes a distributed network of computers that uses [cryptography](#cryptographic-primitives) to allow a group of participants to trustlessly come to [consensus](#consensus) on the [state](#state) of a system as it evolves over time
+Describes a distributed network of computers that uses [cryptography](#cryptographic-primitives) to allow a group of participants to trustlessly come to [consensus](#consensus) on the [state](#state) of a system as it evolves over time.
 The computers that compose the blockchain network are called [nodes](#node).
 
 ## byzantine fault tolerance (BFT)
@@ -115,6 +115,11 @@ The loss of a network service due to node failures that exceed the proportion of
 An early approach to byzantine fault tolerance. pBFT systems tolerate byzantine behavior from up to one-third of participants.
 The communication overhead for such systems is `O(n²)`, where `n` is the number of nodes (participants) in the system.
 
+## call
+
+In a general context, a call describes the act of invoking a function to be executed.
+In the context of pallets that contain functions to be dispatched to the runtime, `Call` is an enumeration data type that describes the functions that can be dispatched with one variant per pallet. The object that a `Call` represents is a [dispatch](#dispatch) data structure or a dispatchable.
+
 ## collator
 
 An [author](#author) of a [parachain](#parachain) network.
@@ -124,7 +129,7 @@ More details are found on the [Polkadot Wiki on collators](https://wiki.polkadot
 ## consensus
 
 In the context of a [blockchain](#blockchain), consensus is the process nodes use to agree on the canonical [fork](#fork) of a chain.
-Consensus is comprised of [authorship](#author), [finality](#finality), and [fork-choice rule](/main-docs/fundamentals/consensus#fork-choice-rules).
+Consensus is comprised of [authorship](#author), [finality](#finality), and [fork-choice rule](/fundamentals/consensus#fork-choice-rules).
 
 In the Substrate ecosystem, these three components are separated from one another, and the term consensus often refers specifically to authorship.
 In the context of a Substrate [node](#node), the term **consensus engine** describes the node subsystem that is responsible for consensus tasks.
@@ -134,7 +139,7 @@ See also [hybrid consensus](#hybrid-consensus).
 ## consensus algorithm
 
 An algorithm that ensures that a set of [actors](#authority)—who don't necessarily trust each other—can reach agreement about state as the result of some computation.
-Because most consensus algorithms assume that up to one-third of the actors or nodes can are [byzantine fault tolerant](#byzantine-fault-tolerance-bft).
+Most consensus algorithms assume that up to one-third of the actors or nodes can be [byzantine fault tolerant](#byzantine-fault-tolerance-bft).
 
 Consensus algorithms are generately concerned with ensuring two properties:
 
@@ -153,7 +158,7 @@ Cryptographic primitives are essential to many aspects of the Substrate ecosyste
 - Hashing algorithms produce [blocks](#block) of hashed data and each block uses the hash generated by the hashing algorithm to reference its parent block.
 - Hashing is used to encode [state](#state) as a [trie](#trie-patricia-merkle-tree) data structure to facilitate efficient verification.
 - Digital signature schemes are used to secure different [consensus](#consensus) models such as [authorities](#authority).
-- Cryptographic schemes identify and authenticate the [accounts](/main-docs/fundamentals/accounts-addresses-keys/) used to perform [transactions](#transaction) in the Substrate runtime.
+- Cryptographic schemes identify and authenticate the [accounts](/fundamentals/accounts-addresses-keys/) used to perform [transactions](#transaction) in the Substrate runtime.
 
 ## council
 
@@ -163,7 +168,7 @@ A council primarily serves to optimize and balance the more inclusive referendum
 ## database backend
 
 The means by which the [state](#state) of a [blockchain](#blockchain) network is persisted between invocations of the [blockchain node](#node) application.
-For information about how the database backend is implemented and used by Substrate-based chains, see [Runtime storage](/main-docs/build/runtime-storage).
+For information about how the database backend is implemented and used by Substrate-based chains, see [Runtime storage](/build/runtime-storage).
 
 ## dev phrase
 
@@ -185,7 +190,7 @@ An extensible field of the [block header](#header) that encodes information need
 ## dispatch
 
 The execution of a function with a predefined set of arguments.
-In the context of [runtime](#runtime) development with [FRAME](#frame), a dispatch takes pure data—the type is known as `Call` by convention—and uses that data to call a published function in a runtime module ([pallet](#pallet)) with predefined arguments.
+In the context of [runtime](#runtime) development with [FRAME](#frame), a dispatch takes pure data—the [`Call`](#call) type—and uses that data to execute a published function in a runtime module ([pallet](#pallet)) with predefined arguments.
 The published functions take one additional parameter, known as [`origin`](#origin), that allows the function to securely determine the provenance of its execution.
 
 ## equivocating
@@ -217,9 +222,10 @@ There are two orchestration engines in Substrate, _WebAssembly_ and _native_.
 ## extrinsic
 
 Data that is external to the blockchain and included in a [block](#block).
+Typical Substrate chains have extrinsics which contain a [`Call`](#call) value.
 In general, there are two types of extrinsics:
 
-- signed or unsigned [transactions](/main-docs/fundamentals/transaction-types).
+- signed or unsigned [transactions](#transaction).
 - inherent data that is inserted by a [block author](#author).
 
 ## existential deposit
@@ -285,7 +291,7 @@ Full nodes stand in contrast to [light clients](#light-client).
 
 A mechanism for specifying the initial [state](#state) of a [blockchain](#blockchain).
 By convention, this initial state or first block is commonly referred to as the genesis state or genesis block.
-The genesis configuration for Substrate-based chains is accomplished by way of a [chain specification](/main-docs/build/chain-spec/) file.
+The genesis configuration for Substrate-based chains is accomplished by way of a [chain specification](/build/chain-spec/) file.
 The chain specification file makes it easy to use a single Substrate codebase as the foundation for multiple independently-configured chains.
 
 ## GRANDPA
@@ -302,7 +308,7 @@ synchronization of the chain.
 
 ## hybrid consensus
 
-A blockchain consensus protocol that consists of independent or loosely-coupled mechanisms for[block production](#author) and [finality](#finality).
+A blockchain consensus protocol that consists of independent or loosely-coupled mechanisms for [block production](#author) and [finality](#finality).
 Hybrid consensus allows the chain to grow as fast as probabilistic consensus protocols, such as [Aura](#aura-aka-authority-round), while maintaining the same level of security as [deterministic finality](#deterministic-finality) consensus protocols, such as [GRANDPA](#grandpa).
 In general, block production algorithms tend to be faster than finality mechanisms.
 Making block production separate from block finalization gives Substrate developers greater control of their chain's performance.
@@ -326,10 +332,10 @@ A subsystem in Substrate for managing keys for the purpose of producing new bloc
 ## Kusama
 
 [Kusama](https://kusama.network/) is a Substrate-based [blockchain](#blockchain) that implements a design similar to the [Polkadot network](#polkadot-network).
-Kusama is a _[canary](https://en.wiktionary.org/wiki/canary_in_a_coal_mine) network_ and is referred to as [Polkadot's "wild cousin"](https://polkadot.network/kusama-polkadot-comparing-the-cousins/).
+Kusama is a [canary](https://en.wiktionary.org/wiki/canary_in_a_coal_mine) network and is referred to as [Polkadot's "wild cousin"](https://polkadot.network/kusama-polkadot-comparing-the-cousins/).
 As a canary network, Kusama is expected to be more stable than a test network like [Westend](#westend), but not as stable as a production network like [Polkadot](#polkadot).
 
-As a canary network, Kusama is [controlled by its network participants](/reference/frame-pallets#democracy) is intended to be stable enough to encourage meaningful experimentation.
+As a canary network, Kusama is [controlled by its network participants](/reference/frame-pallets#democracy) and is intended to be stable enough to encourage meaningful experimentation.
 
 ## libp2p
 
@@ -344,7 +350,7 @@ A light client is capable of verifying [cryptographic primitives](#cryptographic
 ## macro
 
 A programming language feature that enables developers to write a sequence of instructions that can be named and executed together.
-The [FRAME](#frame)development environment provides several [macros](/reference/frame-macros) for [Rust](https://doc.rust-lang.org/1.7.0/book/macros.html) that you can use to compose a [runtime](#runtime).
+The [FRAME](#frame) development environment provides several [macros](/reference/frame-macros) for [Rust](https://doc.rust-lang.org/1.7.0/book/macros.html) that you can use to compose a [runtime](#runtime).
 
 ## metadata
 
@@ -371,7 +377,7 @@ Oracles enable the blockchain to access and act upon information from existing d
 ## origin
 
 A [FRAME](#frame) primitive that identifies the source of a [dispatched](#dispatch) function call into the [runtime](#runtime).
-The FRAME `system` module defines three built-in [origins](/main-docs/build/origins#raw-origins).
+The FRAME `system` module defines three built-in [origins](/build/origins#raw-origins).
 As a [pallet](#pallet) developer, you can also define custom origins, such as those defined by the [Collective pallet](https://paritytech.github.io/substrate/master/pallet_collective/enum.RawOrigin.html).
 
 ## pallet
@@ -433,6 +439,30 @@ In Substrate, the runtime is stored as a [WebAssembly](#webassembly-wasm) binary
 A fixed, equal interval of time used by consensus engines such as [Aura](#aura-aka-authority-round) and [BABE](#blind-assignment-of-blockchain-extension-babe).
 In each slot, a subset of [authorities](#authority) is permitted—or obliged—to [author](#author) a [block](#block).
 
+## sovereign account
+
+The unique account identifier for each chain in the relay chain ecosystem.
+The sovereign account for each chain is a root-level that can only be accessed using the Sudo pallet or through governance. 
+The account identifier is calculated by concatenating the Blake2 hash of a specific text string and the registered parachain identifier.
+
+For the relay chain, the parachain account identifier is calculated as the concatenation of (blake2(para+ParachainID) with the hash truncated to the correct length.
+For example, the account identifier for the parachain with the parachain identifier of 1012 on the relay chain is:
+String to hex para: 0x70617261
+Encoded parachain identifier 1012: f4030000
+
+0x70617261f4030000000000000000000000000000000000000000000000000000
+ccount address: 5Ec4AhPc9b6e965pNRSsn8tjTzuKaKambivxcL7Gz9Gne9YB
+
+For other parachains, the parachain account identifier is calculated as the concatenation of (blake2(sibl+ParachainID) with the hash truncated to the correct length. 
+For example, the account identifier for the parachain with the parachain identifier of 1012 on the relay chain is:
+String to hex sibl: 0x7369626c
+Encoded parachain identifier 1012: f4030000
+
+0x7369626cf4030000000000000000000000000000000000000000000000000000
+Account address: 5Eg2fntREKHYGgoxvRPxtnEYiUadHjdsfNaPsHdmrsJMVugs
+
+The sovereign account is most often used to sign XCM messages that are sent to either the relay chain or other chains in the ecosystem.
+
 ## SS58 address format
 
 The SS58 address format is a public key address based on the Bitcoin [`Base-58-check`](https://en.bitcoin.it/wiki/Base58Check_encoding) encoding.
@@ -448,7 +478,7 @@ A democratic voting system that uses a one-vote-per-token method for tallying vo
 
 Cryptographically-secure data that persists between blocks and can be used to create new blocks as part of the state transition function.
 In Substrate-based blockchains, state is stored in a [trie](#trie-patricia-merkle-tree) data structure that supports the efficient creation of incremental digests.
-This trie is exposed to the [runtime](#runtime) as [a simple key/value map](/main-docs/fundamentals/state-transitions-and-storage) where both keys and values can be arbitrary byte arrays.
+This trie is exposed to the [runtime](#runtime) as [a simple key/value map](/fundamentals/state-transitions-and-storage) where both keys and values can be arbitrary byte arrays.
 
 ## state transition function (STF)
 
@@ -458,7 +488,7 @@ In Substrate, the state transition function is effectively equivalent to the [ru
 ## storage item
 
 [FRAME](#frame) primitives that provide type-safe data persistence capabilities to the [runtime](#runtime).
-Learn more about storage items in this article about [runtime storage](/main-docs/build/runtime-storage).
+Learn more about storage items in this article about [runtime storage](/build/runtime-storage).
 
 ## Substrate
 
@@ -468,7 +498,7 @@ maintained by [Parity Technologies](https://www.parity.io/).
 
 ## transaction
 
-A type of [extrinsic](#extrinsic) that can be safely gossiped between [nodes](#node) on the network because it can be verified through [signatures](/main-docs/fundamentals/transaction-types) or [signed extensions](/reference/transaction-format#signed-extension).
+A type of [extrinsic](#extrinsic) that includes a [signature](/fundamentals/transaction-types) that can be used to verify the account authorizing it inherently or via [signed extensions](/reference/transaction-format#signed-extension).
 
 ## transaction era
 
@@ -486,7 +516,7 @@ The tagged transaction pool implementation is designed to be extensible and gene
 
 A data structure that is used to represent sets of key-value pairs.
 
-The Patricia Merkle trie data structure enables the items in the data set to be stores and retrieved using a cryptographic hash. Because incremental changes to the data set result in a new hash, retrieving data is efficient even if the data set is very large. With this data structure, you can also prove whether the data set includes any particular key-value pair without the access to the entire data set.
+The Patricia Merkle trie data structure enables the items in the data set to be stored and retrieved using a cryptographic hash. Because incremental changes to the data set result in a new hash, retrieving data is efficient even if the data set is very large. With this data structure, you can also prove whether the data set includes any particular key-value pair without the access to the entire data set.
 
 ## validator
 

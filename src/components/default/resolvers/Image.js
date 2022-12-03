@@ -1,8 +1,8 @@
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { testExternalLink } from 'gatsby-plugin-substrate';
 import React from 'react';
 
 import { useImage } from '../../../hooks/use-image';
-import { testExternalLink } from '../../default/Link';
 
 function ImageResolver({ src: path, ...others }) {
   if (testExternalLink(path)) {
