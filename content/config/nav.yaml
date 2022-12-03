@@ -107,7 +107,7 @@ build:
     - title: Privileged calls and origins
       url: /build/origins/
     - title: Remote procedure calls
-      url: /build/custom-rpc/
+      url: /build/remote-procedure-calls/
     - title: Application development
       url: /build/application-development/
     - title: Chain specification
