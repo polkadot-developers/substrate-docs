@@ -17,7 +17,6 @@ The most convenient way to access the default [JSON-RPC methods](https://polkado
 It's important to be aware that RPC methods can provide access to core node operations, including consensus and storage, and can also be exposed as public interfaces to allow external users to submit transactions to or retrieve information from the blockchain.
 Therefore, for the security of the blockchain, it's important to consider what different RPC methods expose and whether they should be restricted to running on a local node or made publicly available.
 
-
 ### Public RPC interfaces
 
 Substrate nodes provide the following command-line options that allow you to expose the RPC interfaces publicly:

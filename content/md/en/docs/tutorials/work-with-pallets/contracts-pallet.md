@@ -458,10 +458,6 @@ In this tutorial, you learned:
 To begin using the Contracts pallet, you'll need to start writing some smart contracts to deploy.
 Explore the following topics and tutorials to learn more.
 
-<<<<<<< HEAD
-- [Custom RPCs](/main-docs/build/remote-procedure-calls/)
-=======
-- [Custom RPCs](/build/custom-rpc/)
->>>>>>> main
+- [Custom RPCs](/build/remote-procedure-calls/)
 - [Prepare your first contract](/tutorials/smart-contracts/prepare-your-first-contract/)
 - [Develop a smart contract](/tutorials/smart-contracts/develop-a-smart-contract/)
