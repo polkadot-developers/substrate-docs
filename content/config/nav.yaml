@@ -107,7 +107,7 @@ build:
     - title: Privileged calls and origins
       url: /build/origins/
     - title: Remote procedure calls
-      url: /build/custom-rpc/
+      url: /build/remote-procedure-calls/
     - title: Application development
       url: /build/application-development/
     - title: Chain specification
@@ -135,6 +135,8 @@ test:
       url: /test/benchmark/
     - title: Simulate parachains
       url: /test/simulate-parachains/
+    - title: Check runtime
+      url: /test/check-runtime/
 #- title: Deploy
 #url: /deploy/
 # pages:
@@ -212,8 +214,8 @@ tutorials:
           url: /tutorials/connect-relay-and-parachains/acquire-a-testnet-slot/
         - title: Open message passing channels
           url: /tutorials/connect-relay-and-parachains/open-message-passing-channels/
-        #- title: Send cross-consensus messages (XCM)
-        #  url: /tutorials/connect-relay-and-parachains/xcm/
+        - title: Transfer assets with XCM
+          url: /tutorials/connect-relay-and-parachains/transfer-assets-with-xcm/
     - title: Integrate with tools
       url: /tutorials/integrate-with-tools/
       pages:
