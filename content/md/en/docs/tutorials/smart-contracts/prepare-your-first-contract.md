@@ -354,7 +354,7 @@ For this tutorial, you use the Contracts UI front-end to deploy the `flipper` co
 
 To upload the smart contract source code:
 
-1. Open to the [Contracts UI](https://contracts-ui.substrate.io/?rpc=ws://127.0.0.1:9944) in a web browser.
+1. Open the [Contracts UI](https://contracts-ui.substrate.io/?rpc=ws://127.0.0.1:9944) in a web browser.
 
 1. Verify that you are connected to the **Local Node**.
 

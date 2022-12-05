@@ -1,11 +1,13 @@
 ---
 title: try-runtime
-description: Run tests for a specified runtime state against a production snapshot of chain state.
+description: Command-line reference for using try-runtime to test a specified runtime state against a production snapshot of chain state.
 keywords:
   - testing
   - snapshot
   - integration testing
   - production
+  - runtime upgrades
+  - storage migration
 ---
 
 The `try-runtime` command-line tool enables you to query a snapshot of runtime storage using an [in-memory-externalities](https://paritytech.github.io/substrate/master/sp_state_machine/struct.TestExternalities.html) data structure to store state.
@@ -84,7 +86,7 @@ cargo run --release --features=try-runtime try-runtime on-runtime-upgrade --help
 
 Typically, you use `try-runtime` to prepare for storage migration and runtime upgrades.
 However, RPC calls that query storage are computationally expensive.
-To prepare a node for testing with `try-runtime`, you should start the node with the following command-line  options:
+To prepare a node for testing with `try-runtime`, you should start the node with the following command-line options:
 
 - `--rpc-max-request-size <RPC_MAX_REQUEST_SIZE>` to set the maximum RPC request payload size—in megabytes—to ensure RPC calls that query storage aren't rejected. The default is 15MiB.
 
@@ -178,3 +180,4 @@ Notice that this command requires the `--no-spec-name-check` command-line option
 - [Storage keys](/build/runtime-storage#storage-value-keys)
 - [OnRuntimeUpgrade](https://paritytech.github.io/substrate/master/frame_support/traits/trait.OnRuntimeUpgrade.html) 
 - [try-runtime-upgrade](https://paritytech.github.io/substrate/master/frame_executive/struct.Executive.html#method.try_runtime_upgrade)
+  
