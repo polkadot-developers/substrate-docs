@@ -14,6 +14,7 @@ contributors to be aware of available in the [Builder notes](#builder-notes) sec
 
 If you can't find the answer to a style, voice, or terminology question in this guide, consult the following resources:
 
+- [Google developer documentation style guide](https://developers.google.com/style)
 - [Microsoft Style Guide](https://docs.microsoft.com/en-us/style-guide/welcome/)
 - [Chicago Manual of Style](https://www.chicagomanualofstyle.org/book/ed17/frontmatter/toc.html)
 - [Merriam-Webster Dictionary](https://www.merriam-webster.com/)
