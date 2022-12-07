@@ -50,6 +50,8 @@ fundamentals:
       url: /fundamentals/offchain-operations/
     - title: Light clients in Substrate Connect
       url: /fundamentals/light-clients-in-substrate-connect/
+    - title: Cross-consensus communication
+      url: /fundamentals/xcm-communication/
 
 install:
   title: Install
@@ -152,7 +154,7 @@ test:
 #url: /maintain/
 #pages:
 #   - title: Monitor
-#     url: /docs/main-docs/deploy/metrics/
+#     url: /docs/maintain/monitor/
 #   - title: Operate
 #     url: /docs/main-docs/deploy/operate/
 #   - title: Upgrades and migration

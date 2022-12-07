@@ -14,7 +14,7 @@ There are three main communication channels:
 
 - Upward message passing (UMP) to enable a parachain to pass messages up to its relay chain. 
 - Downward message passing (DMP) to enable the relay chain to pass messages down to a parachain. 
-- Cross-consensus messaging passing (XCMP) to enable parachains to send messages to each other.
+- Cross-consensus message passing (XCMP) to enable parachains to send messages to each other.
 
 Horizontal relay-routed message passing (HRMP) is an interim version of cross-consensus message passing (XCMP). 
 This interim solution—also sometimes referred to as XCMP-Lite—provides the same functionality as XCMP but stores all of the messages passed between chains in the relay chain storage.
