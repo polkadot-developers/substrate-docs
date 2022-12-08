@@ -50,7 +50,7 @@ Because this signatory list is [necessary to come to consensus](#what-to-store) 
 
 ## Transactional storage
 
-As explained in [State and storage](https://docs.substrate.io/fundamentals/state-transitions-and-storage/), runtime storage involves an underlying key-value database and in-memory storage overlay abstractions that keep track of keys and state changes until the values are committed to the underlying database.
+As explained in [State transitions and storage](/fundamentals/state-transitions-and-storage/), runtime storage involves an underlying key-value database and in-memory storage overlay abstractions that keep track of keys and state changes until the values are committed to the underlying database.
 By default, functions in the runtime write changes to a single in-memory **transactional storage layer** before committing them to the main storage overlay. 
 If an error prevents the transaction from being completed, the changes in the transactional storage layer are discarded instead of being passed on to the main storage overlay and state in the underlying database remains unchanged.
 
