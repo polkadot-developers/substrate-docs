@@ -5,7 +5,7 @@ keywords:
 ---
 
 As you develop runtime logic, you'll need to make important decisions about the information you store and how to make storing information as efficient as possible.
-As discussed in [State and storage](/fundamentals/state-transitions-and-storage/), reading and writing data to storage is expensive.
+As discussed in [State transitions and storage](/fundamentals/state-transitions-and-storage/), reading and writing data to storage is expensive.
 In addition, storing unnecessarily large data sets can slow your network and strain system resources.
 
 Substrate is designed to provide a flexible framework that allows you to build the blockchain that suits your needs.
