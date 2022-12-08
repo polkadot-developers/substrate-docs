@@ -5,7 +5,7 @@ keywords:
 ---
 
 As you develop runtime logic, you'll need to make important decisions about the information you store and how to make storing information as efficient as possible.
-As discussed in [State and storage](/fundamentals/state-and-storage), reading and writing data to storage is expensive.
+As discussed in [State transitions and storage](/fundamentals/state-transitions-and-storage/), reading and writing data to storage is expensive.
 In addition, storing unnecessarily large data sets can slow your network and strain system resources.
 
 Substrate is designed to provide a flexible framework that allows you to build the blockchain that suits your needs.
@@ -50,7 +50,7 @@ Because this signatory list is [necessary to come to consensus](#what-to-store) 
 
 ## Transactional storage
 
-As explained in [State and storage](), runtime storage involves an underlying key-value database and in-memory storage overlay abstractions that keep track of keys and state changes until the values are committed to the underlying database.
+As explained in [State transitions and storage](/fundamentals/state-transitions-and-storage/), runtime storage involves an underlying key-value database and in-memory storage overlay abstractions that keep track of keys and state changes until the values are committed to the underlying database.
 By default, functions in the runtime write changes to a single in-memory **transactional storage layer** before committing them to the main storage overlay. 
 If an error prevents the transaction from being completed, the changes in the transactional storage layer are discarded instead of being passed on to the main storage overlay and state in the underlying database remains unchanged.
 
@@ -70,8 +70,8 @@ If you want to dispatch a function call within its own transactional layer, you 
 
 ### Committing changes without the transactional storage layer
 
-If you want to commit changes to the main storage overlay without using the default  transactional storage layer, you can use the `#[wihtout_transactional]` macro. 
-The `#[wihtout_transactional]` macro enables you to identify a function that is safe to be executed without its own transactional layer.
+If you want to commit changes to the main storage overlay without using the default  transactional storage layer, you can use the `#[without_transactional]` macro. 
+The `#[without_transactional]` macro enables you to identify a function that is safe to be executed without its own transactional layer.
 
 For example, you might define a function like this:
 

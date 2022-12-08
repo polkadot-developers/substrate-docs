@@ -50,6 +50,8 @@ fundamentals:
       url: /fundamentals/offchain-operations/
     - title: Light clients in Substrate Connect
       url: /fundamentals/light-clients-in-substrate-connect/
+    - title: Cross-consensus communication
+      url: /fundamentals/xcm-communication/
 
 install:
   title: Install
@@ -107,7 +109,7 @@ build:
     - title: Privileged calls and origins
       url: /build/origins/
     - title: Remote procedure calls
-      url: /build/custom-rpc/
+      url: /build/remote-procedure-calls/
     - title: Application development
       url: /build/application-development/
     - title: Chain specification
@@ -156,7 +158,7 @@ deploy:
 #url: /maintain/
 #pages:
 #   - title: Monitor
-#     url: /docs/main-docs/deploy/metrics/
+#     url: /docs/maintain/monitor/
 #   - title: Operate
 #     url: /docs/main-docs/deploy/operate/
 #   - title: Upgrades and migration
