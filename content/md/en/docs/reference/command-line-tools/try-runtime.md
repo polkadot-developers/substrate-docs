@@ -154,9 +154,11 @@ RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
    cargo run try-runtime \
    --execution Native \
    --chain somechain-dev \
+   --no-spec-check-panic \ # no panic if local runtime spec name/version not equal to the uri source
    on-runtime-upgrade \
    live \
-   --uri wss://rpc.polkadot.io
+   --uri wss://rpc.polkadot.io \
+   --pallet NominationPools # upload only the state of the pallet, useful when the source state is too big 
 ```
 
 You can run `try-runtime` against the state for a specific block number with a command like this:
