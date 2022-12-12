@@ -154,11 +154,9 @@ RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
    cargo run try-runtime \
    --execution Native \
    --chain somechain-dev \
-   --no-spec-check-panic \ # no panic if local runtime spec name/version not equal to the uri source
    on-runtime-upgrade \
    live \
-   --uri wss://rpc.polkadot.io \
-   --pallet NominationPools # upload only the state of the pallet, useful when the source state is too big 
+   --uri wss://rpc.polkadot.io
 ```
 
 You can run `try-runtime` against the state for a specific block number with a command like this:
@@ -173,6 +171,20 @@ RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
    live \
    --uri wss://rpc.polkadot.io \
    --at <block-hash>
+```
+
+In case a state of a particular pallet is sufficient for your test (e.g. a storage migration), use `pallet` option of a `live` subcommand. Only the state/storages of a pallet will be uploaded. The option `--no-spec-check-panic` might be useful to not panic if local runtime spec name/version not equal to the uri source:
+
+```bash
+RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
+   cargo run try-runtime \
+   --execution Native \
+   --chain somechain-dev \
+   --no-spec-check-panic \
+   on-runtime-upgrade \
+   live \
+   --uri wss://rpc.polkadot.io \
+   --pallet NominationPools
 ```
 
 Notice that this command requires the `--no-spec-name-check` command-line option.
