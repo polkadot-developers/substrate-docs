@@ -26,6 +26,11 @@ You must specify the `fees` parameter to identify the asset to remove from the h
 You can also specify a `weight_limit` for the maximum fee to be purchased. 
 If the `weight_limit` you specify is lower than the estimated weight of the message, the XCM executor stops execution with the `TooExpensive` error.
 
+| Parameter | Description
+| :-------- | :----------
+| `fees` | Specifies the assets to be removed from the holding register to pay transaction fees.
+| `weight_limit` | Specifies the maximum weight to be purchased to pay execution fees. If you don't specify a limit, the weight is treated as unlimited up to the maximum you specify to be removed from the holding register.
+
 The following example illustrates the settings for a BuyExecution instruction:
 
 ```text
@@ -72,9 +77,15 @@ The asset you specify must match exactly with the assets available to be claimed
 You must specify the `ticket` using the `MultiLocation` type. 
 The claim ticket for the asset is an abstract identifier to help locate the asset to be claimed.
 
+| Parameter | Description
+| :-------- | :----------
+| `assets` | Specifies the assets to be claimed.
+| `ticket` | Specifies a location to help identify the asset to be claimed.
+
 ### ClearError
 
 Clears the error register.
+You can use this instruction to manually clear the last error from the error register.
 
 ### ClearOrigin
 
@@ -93,7 +104,6 @@ message.extend(xcm.0.into_iter());
 
 Subtracts the specified asset from the holding register and deposits on-chain equivalent assets under the ownership of the specified `beneficiary`. 
 You must specify the `assets` to remove using the `MultiAssetFilter` type.
-Because the holding register might have assets of different types—for example
 
 | Parameter | Description
 | :-------- | :----------
