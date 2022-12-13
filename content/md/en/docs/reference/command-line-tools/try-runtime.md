@@ -173,7 +173,7 @@ RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
    --at <block-hash>
 ```
 
-In case a state of a particular pallet is sufficient for your test (e.g. a storage migration), use `pallet` option of a `live` subcommand. Only the state/storages of a pallet will be uploaded. The option `--no-spec-check-panic` might be useful to not panic if local runtime spec name/version not equal to the uri source:
+If the state of a particular pallet is sufficient for your test (e.g. a storage migration), you can use the `pallet` option of the `live` subcommand. Only the state/storages of that pallet will be uploaded. The option `--no-spec-check-panic` might be useful to not panic if local runtime spec name/version is not equal to the uri source:
 
 ```bash
 RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
