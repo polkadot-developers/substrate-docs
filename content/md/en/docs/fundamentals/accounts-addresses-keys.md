@@ -96,7 +96,7 @@ The multisig account is an address that has a public key, but no private key.
 The public address for the multisig account is derived from a deterministic list of the authorized account signatories and an associated transaction request block height and extrinsic index identifier.
 
 The Multisig pallet enables multiple parties to share responsibility for executing certain transactions.
-Any account holder can specify the account that are allowed to approve a multi-signature transaction and the minimum number of approvals required for a call to  be dispatched to the runtime.
+Any account holder can specify the accounts that are allowed to approve a multi-signature transaction and the minimum number of approvals required for a call to be dispatched to the runtime.
 
 ### Proxy and keyless accounts
 
