@@ -274,6 +274,8 @@ reference:
       url: /reference/transaction-format/
     - title: Cryptography
       url: /reference/cryptography/
+    - title: XCM reference
+      url: /reference/xcm-reference/
     - title: How-to reference guides
       url: /reference/how-to-guides/
 
