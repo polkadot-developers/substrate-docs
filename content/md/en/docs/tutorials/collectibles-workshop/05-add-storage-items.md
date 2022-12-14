@@ -71,13 +71,15 @@ pub(super) type OwnerOfCollectibles<T: Config> = StorageMap<
 ```
 
 After you've added the storage items, verify that your program compiles by running the following command:
-   
-   ```bash
-   cargo build --package collectibles
-   ```
-   
-   You can ignore the compiler warnings for now.
 
+```bash
+cargo build --package collectibles
+```
+   
+You can ignore the compiler warnings for now.
+If the program fails because of the requirements for the implementation of `scale_info::TypeInfo` for `Collectible<T>`
+conflict with requirements for the implementation of `StorageEntryMetadataBuilder` for the `StorageMap`, add the following macro between the `#[derive]` and the `Collectible` data structure declaration:
 
-Need to explain more about the #derive and this macros:
+```rust
 #[scale_info(skip_type_params(T))]
+```
