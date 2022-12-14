@@ -24,3 +24,5 @@ This section contains links to the Rust API documentation and technical referenc
   The _How-to_ guides assume that you are already familiar with Substrate and programming in Rust.
 
 - [Cryptography](/reference/cryptography) provides a conceptual overview of the cryptography used in Substrate.
+
+- [XCM reference](/reference/xcm-reference) provides basic reference information for the cross-consensus message format, including descriptions of XCM instructions, registers, origins, and errors.
