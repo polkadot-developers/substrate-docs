@@ -105,11 +105,12 @@ You should see that the code compiles with warnings but without errors.
 However, if you try to use the custom types at this point, the compiler will complain.
 That's because the pallet doesn't yet implement all the traits expected from the custom types.
 
--------
+## Implement required traits
 
-You can use the #[derive] macro to implement all the traits the pallet expects from these custom types, just as we explained earlier. 
-If you don't include these, the Rust compiler will start yelling at you as soon as you try to use these custom types.
-Add the derive marco to each custom type:
+There are several traits that Substrate requires for every data type.
+For example, every data type must implement the `Encode` and `Decode` traits that enable data to be serialized and deserialized so that it can be efficiently transferred over the network. 
+Luckily, you can use the `#[derive]` macro to implement all the traits the pallet expects from your custom types. 
+Add the `#[derive]` marco and the following traits to each custom type:
 
 ```rust
 #[derive(Clone, Encode, Decode, PartialEq, Copy, RuntimeDebug, TypeInfo, MaxEncodedLen)]
