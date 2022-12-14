@@ -13,3 +13,5 @@ The runtime is where you define the application-specific logic for a blockchain,
 
 The application you'll build in this workshop is a blockchain that enables users to create and manage collectible digital assets.
 Because these assets will be managed on a blockchain network, users will be able to transfer and prove ownership of the assets they collect.
+
+NOTE: Currently, this workshop only compiles if you use `branch = "polkadot-v0.9.30"` of the Substrate node template. 

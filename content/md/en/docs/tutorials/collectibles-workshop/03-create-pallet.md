@@ -3,30 +3,6 @@ title: Create a new pallet
 tutorial: 1
 ---
 
-code: |
-pub use pallet::\*;
-
-#[frame_support::pallet]
-pub mod pallet {
-// IMPORT PRELUDE LIBRARIES
-
-// ADD PALLET AND STORAGE MACROS
-}
-
-answer: |
-pub use pallet::\*;
-
-#[frame_support::pallet]
-pub mod pallet {
-use frame*support::pallet_prelude::*;
-use frame*system::pallet_prelude::*;
-
-#[pallet::pallet] #[pallet::generate_store(pub(super) trait Store)]
-pub struct Pallet<T>(\_);
-}
-
----
-
 In this workshop, you'll learn how to create a custom Substrate module-called a pallet-that's going to contain the code for your application-specific blockchain.
 Pallets are built using FRAME libraries and the Rust programming language.
 FRAME includes a lot of specialized macros that make it easy to compose the application logic in a reusable container.

@@ -77,7 +77,7 @@ After you've added the storage items, verify that your program compiles by runni
    ```
    
    You can ignore the compiler warnings for now.
-------
+
 
 Need to explain more about the #derive and this macros:
 #[scale_info(skip_type_params(T))]

@@ -32,12 +32,11 @@ The Rust compiler minimizes the chances of errors getting into your code and pro
   If you aren't sure, open a terminal and run `rustup show`.
   If Rust isn't installed on your computer, follow the instructions in [Install](https://docs.substrate.io/install) for your operating system.
   The last step in the installation instructions is to verify that the default node template compiles.
-<!--If you're using the Substrate playground, open a terminal and run `rustup show`.-->
 
--[ ] Substrate node compiles locally or is available in the browser using the Substrate playground.
-<!-- Click **Start** to start the Substrate node in the terminal. -->
-<!-- If you're using the Substrate playground, the node starts automatically after logging in -->
-<!-- Maybe there’s a check and a “Yep, you’re set to go” notification -->
+- [ ] Substrate node compiles locally or is available in the browser using the Substrate playground.
+
+If you're new to Rust, keep in mind that this workshop isn’t about _learning_ Rust.
+However, for a brief introduction to a few important concepts, see [Detour: Learn Rust for Substrate](/tutorials/collectibles-workshop/detours/learn-rust/).
 
 ## Code editor
 
@@ -64,7 +63,7 @@ For the workshop, you can connect to the node from the [Polkadot/Substrate Porta
 If you use a more restrictive browser—such as Firefox—you might find that connections between the Polkadot/Substrate Portal and the node are blocked for security or privacy reasons.
 
 If your browser blocks connections, clone the [polkadot-js/apps](https://github.com/polkadot-js/apps) repository and run it locally.
-For help setting up the Polkadot/Substrate Portal to run locally, see [Detour: Set up Polkadot/Substrate Portal](/detours/set-up-app-locally/).
+For help setting up the Polkadot/Substrate Portal to run locally, see [Detour: Set up Polkadot/Substrate Portal](/tutorials/collectibles-workshop/detours/set-up-app-locally/).
 
 ## Front-end libraries
 
@@ -75,4 +74,4 @@ To make Substrate collectibles a user-facing application, you'll want tools for 
 - [ ] [TypeScript](https://www.typescriptlang.org/) 
 - [ ] Basic UI/UX framework, such as React, Vue, Bootstrap, or Angular.
 
-For help selecting front-end libraries see [Detour: Select front-end tools](/detours/select-ui-tools/).
+For help selecting front-end libraries see [Detour: Select front-end tools](/tutorials/collectibles-workshop/detours/select-ui-tools/).

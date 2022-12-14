@@ -47,8 +47,11 @@ To import and declare these interfaces:
 
 ## Add custom types
 
-Now that you have imported some external interfaces for the collectibles pallet to use, it's time to define a few custom properties the collectibles.
-To define these first properties, you'll add two custom types:
+Substrate supports all the primitive types available in Rust—for example, bool, u8, u32, and other common types.
+Substrate also provides several common custom types that are specific to Substrate—such as, AccountId, BlockNumber, and Hash—that are available for you to use through the imported `frame_system` and `frame_support` modules.
+You have already imported some external interfaces for the `collectibles` pallet to use.
+Now, you can define a few custom properties to describe the collectibles.
+To define these custom properties, you'll add two custom types:
 
 - An enumerated data type to list the possible variants for the `Color` property.
 - A structure (struct) data type to group the attributes of a `Collectible`.
