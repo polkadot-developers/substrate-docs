@@ -9,7 +9,7 @@ keywords:
   - cross consensus
 ---
 
-In [Open message passing channels](/tutorials/connect-relay-and-parachains/open-message-passing-channels.md), you saw how to open a two-way communication channel between chains be sending messages to the relay chain.
+In [Open message passing channels](/tutorials/connect-relay-and-parachains/open-message-passing-channels), you saw how to open a two-way communication channel between chains by sending messages to the relay chain.
 You can use a similar strategy to send messages that allow a local chain to manage an account on a remote chain.
 In this tutorial, parachain B transfers assets into the sovereign account on the relay chain for parachain A.
 
