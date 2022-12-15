@@ -18,11 +18,9 @@ Before you install Rust and set up your development environment on macOS, verify
 
 ### Support for Apple M1
 
-If you have a macOS computer with an Apple M1 ARM system on a chip, you must have Apple Rosetta installed to run the `protoc` tool during the Rust build process.
-The Rust toolchain and the target binaries remain native.
-You can install Rosetta on your macOS computer by opening the Terminal application and running the following command:
+Protobuf must be installed before the build process can begin. To install it, run the following command:
 
-`softwareupdate --install-rosetta`
+`brew install protobuf`
 
 ### Install Homebrew
 
@@ -53,7 +51,13 @@ To install Homebrew:
    Homebrew/homebrew-cask (git revision 66bab33b26; last commit 2021-10-30)
    ```
 
-## Install required packages and Rust
+## Installation
+
+### Option 1: using the binary
+
+The easiest way to install Substrate is via a distributon binary found on [the releases page](https://github.com/paritytech/substrate-contracts-node/releases). After downloading the file, simply execute `./substrate-contracts-node` in the directory.
+
+### Option 2: build locally
 
 Because the blockchain requires standard cryptography to support the generation of public/private key pairs and the validation of transaction signatures, you must also have a package that provides cryptography, such as `openssl`.
 
