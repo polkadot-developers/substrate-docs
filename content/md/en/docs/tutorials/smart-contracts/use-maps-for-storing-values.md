@@ -251,7 +251,7 @@ To add insert and remove functions to the contract:
    }
    ```
 
-1. Add a `remove_mine()` function that allows the contract caller to get the clear the `my_value` storage item from storage.
+1. Add a `remove_mine()` function that allows the contract caller to clear the `my_value` storage item from storage.
 
    ```rust
    #[ink(message)]
