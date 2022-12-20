@@ -53,7 +53,6 @@ To install Homebrew:
 
 ## Installation
 
-### Option 1: using the binary
 
 The easiest way to install Substrate is via a distributon binary found on [the releases page](https://github.com/paritytech/substrate-contracts-node/releases). After downloading the file, simply execute `./substrate-contracts-node` in the directory.
 
