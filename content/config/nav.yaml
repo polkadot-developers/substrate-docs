@@ -50,6 +50,8 @@ fundamentals:
       url: /fundamentals/offchain-operations/
     - title: Light clients in Substrate Connect
       url: /fundamentals/light-clients-in-substrate-connect/
+    - title: Cross-consensus communication
+      url: /fundamentals/xcm-communication/
 
 install:
   title: Install
@@ -107,7 +109,7 @@ build:
     - title: Privileged calls and origins
       url: /build/origins/
     - title: Remote procedure calls
-      url: /build/custom-rpc/
+      url: /build/remote-procedure-calls/
     - title: Application development
       url: /build/application-development/
     - title: Chain specification
@@ -135,11 +137,17 @@ test:
       url: /test/benchmark/
     - title: Simulate parachains
       url: /test/simulate-parachains/
-#- title: Deploy
-#url: /deploy/
-# pages:
-#   - title: Deploy a solo chain
-#     url: /docs/deploy/deploy-a-solo-chain/
+    - title: Check runtime
+      url: /test/check-runtime/
+      
+deploy:
+  title: Deploy
+  url: /deploy/
+  pages:
+    - title: Prepare to deploy
+      url: /deploy/prepare-to-deploy/
+    - title: Deployment options
+      url: /deploy/deployment-options/
 #   - title: Deploy on a test network
 #     url: /docs/deploy/deploy-on-a-test-network/
 #   - title: Deploy a parathread
@@ -150,7 +158,7 @@ test:
 #url: /maintain/
 #pages:
 #   - title: Monitor
-#     url: /docs/main-docs/deploy/metrics/
+#     url: /docs/maintain/monitor/
 #   - title: Operate
 #     url: /docs/main-docs/deploy/operate/
 #   - title: Upgrades and migration
@@ -188,6 +196,25 @@ tutorials:
           url: /tutorials/work-with-pallets/specify-the-origin-for-a-call/
         - title: Publish custom pallets
           url: /tutorials/work-with-pallets/publish-custom-pallets/
+    - title: Collectibles workshop
+      url: /tutorials/collectibles-workshop/00-intro-runtime-pallets/
+      pages:
+        - title: Prepare a working environment
+          url: /tutorials/collectibles-workshop/01-prepare/
+        - title: Get oriented
+          url: /tutorials/collectibles-workshop/02-orientation/
+        - title: Create a new pallet
+          url: /tutorials/collectibles-workshop/03-create-pallet/
+        - title: Shared and custom types
+          url: /tutorials/collectibles-workshop/04-import-traits/
+        - title: Add custom storage items
+          url: /tutorials/collectibles-workshop/05-add-storage-items/
+        - title: Create basic functions
+          url: /tutorials/collectibles-workshop/06-first-functions/
+        - title: More functions
+          url: /tutorials/collectibles-workshop/07-more-functions/
+        - title: Add collectibles to the runtime
+          url: /tutorials/collectibles-workshop/08-add-collectibles-to-runtime/
     - title: Develop smart contracts
       url: /tutorials/smart-contracts/
       pages:
@@ -212,8 +239,8 @@ tutorials:
           url: /tutorials/connect-relay-and-parachains/acquire-a-testnet-slot/
         - title: Open message passing channels
           url: /tutorials/connect-relay-and-parachains/open-message-passing-channels/
-        #- title: Send cross-consensus messages (XCM)
-        #  url: /tutorials/connect-relay-and-parachains/xcm/
+        - title: Transfer assets with XCM
+          url: /tutorials/connect-relay-and-parachains/transfer-assets-with-xcm/
     - title: Integrate with tools
       url: /tutorials/integrate-with-tools/
       pages:
@@ -270,6 +297,8 @@ reference:
       url: /reference/transaction-format/
     - title: Cryptography
       url: /reference/cryptography/
+    - title: XCM reference
+      url: /reference/xcm-reference/
     - title: How-to reference guides
       url: /reference/how-to-guides/
 

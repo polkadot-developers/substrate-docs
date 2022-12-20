@@ -29,11 +29,11 @@ The first step is to initialize the mapping between an `AccountId` and a stored 
 You must always initialize a mapping before you use it in your contract to avoid mapping errors and inconsistencies.
 To initialize a mapping, you need to do the following:
 
-- Add the [`SpreadAllocate`](https://paritytech.github.io/ink/ink_storage/traits/trait.SpreadAllocate.html) trait on the storage structure.
+- Add the [`SpreadAllocate`](https://docs.rs/ink_storage/latest/ink_storage/traits/trait.SpreadAllocate.html) trait on the storage structure.
 
 - Specify the mapping key and the value mapped to it.
 
-- Call the [`ink_lang::utils::initalize_contract`](https://paritytech.github.io/ink/ink_lang/utils/fn.initialize_contract.html) function to initialize the mapping for the contract.
+- Call the [`ink_lang::utils::initalize_contract`](https://docs.rs/ink_lang/latest/ink_lang/utils/fn.initialize_contract.html) function to initialize the mapping for the contract.
 
 The following example illustrates how to initialize a mapping and retrieve a value:
 
@@ -251,7 +251,7 @@ To add insert and remove functions to the contract:
    }
    ```
 
-1. Add a `remove_mine()` function that allows the contract caller to get the clear the `my_value` storage item from storage.
+1. Add a `remove_mine()` function that allows the contract caller to clear the `my_value` storage item from storage.
 
    ```rust
    #[ink(message)]
