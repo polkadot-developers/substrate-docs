@@ -33,7 +33,7 @@ To initialize a mapping, you need to do the following:
 
 - Specify the mapping key and the value mapped to it.
 
-- Call the [`ink_lang::utils::initalize_contract`](https://docs.rs/ink_lang/3.3.1/ink_lang/utils/fn.initialize_contract.html) function to initialize the mapping for the contract.
+- Call the [`ink_lang::utils::initalize_contract`](https://docs.rs/ink_lang/latest/ink_lang/utils/fn.initialize_contract.html) function to initialize the mapping for the contract.
 
 The following example illustrates how to initialize a mapping and retrieve a value:
 
