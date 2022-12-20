@@ -53,7 +53,6 @@ To install Homebrew:
 
 ## Installation
 
-
 Because the blockchain requires standard cryptography to support the generation of public/private key pairs and the validation of transaction signatures, you must also have a package that provides cryptography, such as `openssl`.
 
 To install `openssl` and the Rust toolchain on macOS:
