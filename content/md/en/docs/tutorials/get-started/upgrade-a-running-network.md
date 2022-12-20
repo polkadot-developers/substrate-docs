@@ -197,7 +197,7 @@ To add the Scheduler types and configuration trait:
      type MaxScheduledPerBlock = MaxScheduledPerBlock;
      type WeightInfo = pallet_scheduler::weights::SubstrateWeight<Runtime>;
      type OriginPrivilegeCmp = EqualPrivilegeOnly;
-     type Preimages = ();
+     type Preimages = Preimage;
    }
    ```
 
