@@ -1,13 +1,19 @@
 ---
 title: Cryptography
-description: Conceptual overview of the cryptography used in Substrate.
+description: Summarizes information about the hashing algorithms and encryption signature schemes used in Substrate.
 keywords:
-  - crypto
-  - hash
-  - keys
+  - cryptography
+  - hashing
+  - signatures
+  - ECDSA
+  - Ed25519
+  - SR25519
+  - hierarchical deterministic keys
+  - key derivations
 ---
 
-This document offers a conceptual overview of the cryptography used in Substrate.
+This section summarizes the hashing algorithms and encryption signature schemes that are used for cryptography in Substrate blockchains.
+It includes high level information about the differences between hashing algorithms and signature schemes.
 
 ## Hashing algorithms
 

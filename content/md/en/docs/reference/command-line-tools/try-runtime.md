@@ -173,6 +173,20 @@ RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
    --at <block-hash>
 ```
 
+If the state of a particular pallet is sufficient for your test (e.g. a storage migration), you can use the `pallet` option of the `live` subcommand. Only the state/storages of that pallet will be uploaded. The option `--no-spec-check-panic` might be useful to not panic if local runtime spec name/version is not equal to the uri source:
+
+```bash
+RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
+   cargo run try-runtime \
+   --execution Native \
+   --chain somechain-dev \
+   --no-spec-check-panic \
+   on-runtime-upgrade \
+   live \
+   --uri wss://rpc.polkadot.io \
+   --pallet NominationPools
+```
+
 Notice that this command requires the `--no-spec-name-check` command-line option.
 
 ## Where to go next
