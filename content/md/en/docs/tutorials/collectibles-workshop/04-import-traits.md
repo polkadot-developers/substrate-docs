@@ -9,8 +9,8 @@ Because FRAME is a modular and takes advantage of the flexibility that Rust trai
 
 ## Import and declare external interfaces
 
-For the `collectibles` pallet, you know you want a ledger of some kind to keep trap of who owns which collectibles and a means of transferring collectibles from one account to another.
-You also want to make the collectibles unique by incorporating a random value.Luckily, these are fairly common use cases with interfaces that are useful in many contexts, so they are already defined as traits in the `frame_support` library. 
+For the `collectibles` pallet, you know you want a ledger of some kind to keep track of who owns which collectibles and a means of transferring collectibles from one account to another.
+You also want to make the collectibles unique by incorporating a random value. Luckily, these are fairly common use cases with interfaces that are useful in many contexts, so they are already defined as traits in the `frame_support` library. 
 
 In `frame_support` the traits are:
 
