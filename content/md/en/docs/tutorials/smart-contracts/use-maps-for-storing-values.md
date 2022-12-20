@@ -29,7 +29,7 @@ The first step is to initialize the mapping between an `AccountId` and a stored 
 You must always initialize a mapping before you use it in your contract to avoid mapping errors and inconsistencies.
 To initialize a mapping, you need to do the following:
 
-- Add the [`SpreadAllocate`](https://docs.rs/ink_storage/3.3.1/ink_storage/traits/trait.SpreadAllocate.html) trait on the storage structure.
+- Add the [`SpreadAllocate`](https://docs.rs/ink_storage/latest/ink_storage/traits/trait.SpreadAllocate.html) trait on the storage structure.
 
 - Specify the mapping key and the value mapped to it.
 
