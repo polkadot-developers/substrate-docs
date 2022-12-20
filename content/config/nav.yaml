@@ -139,11 +139,15 @@ test:
       url: /test/simulate-parachains/
     - title: Check runtime
       url: /test/check-runtime/
-#- title: Deploy
-#url: /deploy/
-# pages:
-#   - title: Deploy a solo chain
-#     url: /docs/deploy/deploy-a-solo-chain/
+      
+deploy:
+  title: Deploy
+  url: /deploy/
+  pages:
+    - title: Prepare to deploy
+      url: /deploy/prepare-to-deploy/
+    - title: Deployment options
+      url: /deploy/deployment-options/
 #   - title: Deploy on a test network
 #     url: /docs/deploy/deploy-on-a-test-network/
 #   - title: Deploy a parathread
