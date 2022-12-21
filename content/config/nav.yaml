@@ -2,6 +2,7 @@ menu:
   - quick-start
   - fundamentals
   - install
+  - design
   - build
   - test
   - tutorials
@@ -69,10 +70,13 @@ install:
       url: /install/developer-tools/
     - title: Troubleshoot Rust issues
       url: /install/troubleshoot-rust-issues/
-  #- title: Design
-  #url: /design/
-  #pages:
-  #- title: Applications
+  
+design:
+  title: Design
+  url: /design/
+  pages:
+    - title: Substrate empowers builders
+      url: /design/substrate-empowers-builders/
   #url: /design/applications/
   #- title: Execution
   #url: /design/execution/
