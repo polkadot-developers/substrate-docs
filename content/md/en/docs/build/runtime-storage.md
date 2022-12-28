@@ -138,9 +138,9 @@ Using this type of storage structure is useful for querying values with common k
 ## Multi-key storage maps
 
 The [StorageNMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageNMap.html) storage structure is also similar to single key and double key storage maps, but enable you to define any number of keys.
-To specify the keys in a [StorageNMap] structure, you must provide a tuple containing the `NMapKey` struct as a type to the Key type parameter while declaring the `StorageNMap`.
+To specify the keys in a `StorageNMap` structure, you must provide a tuple containing the `NMapKey` struct as a type to the Key type parameter while declaring the `StorageNMap`.
 
-Refer to the [StorageNMap documentation] for more details about the syntax to use in declaring this type of storage structure.
+Refer to the [StorageNMap documentation](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageNMap.html#required-methods) for more details about the syntax to use in declaring this type of storage structure.
 
 ## Iterating over storage maps
 
