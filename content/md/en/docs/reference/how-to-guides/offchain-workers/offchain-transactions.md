@@ -151,13 +151,11 @@ For example:
 
 1. Make sure your pallet's `AuthorityId` is pointing to its `TestAuthId`:
    ```rust
-   impl pallet_x::Config for Runtime {
+   impl pallet_your_ocw_pallet::Config for Runtime {
 	   // ...
-	   type AuthorityId = pallet_x::crypto::TestAuthId;
+	   type AuthorityId = pallet_your_ocw_pallet::crypto::TestAuthId;
    }
    ```
-
-   where `pallet_x` represents the name of your pallet.
 
 1. Implement the `CreateSignedTransaction` trait in the runtime.
 
