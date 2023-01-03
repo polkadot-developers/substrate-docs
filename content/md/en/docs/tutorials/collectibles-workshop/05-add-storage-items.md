@@ -14,7 +14,7 @@ For the workshop, you'll create three custom storage items to track the state:
 
 The FRAME storage module provides traits that enable you to store single values and maps efficiently in the runtime and to read and write data using the layered storage abstractions of the Patricia-Merkle state trie.
 For now, you only need to be concerned with the traits for creating two simple types of storage—a `StorageValue` and a `StorageMap`.
-For a closer look at the storage architecture and abstractions that Substrate uses, see [State transitions and storage]().
+For a closer look at the storage architecture and abstractions that Substrate uses, see [State transitions and storage](/fundamentals/state-transitions-and-storage/).
 
 ## Store a single value
 
