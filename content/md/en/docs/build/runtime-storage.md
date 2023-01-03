@@ -144,35 +144,23 @@ Refer to the [StorageNMap documentation] for more details about the syntax to us
 
 ## Iterating over storage maps
 
-Substrate Storage Maps are iterable with respect to their keys and values. Because maps are often
-used to track unbounded sets of data (such as account balances), iterating over them without caution in the runtime may cause blocks not being able to produced in time.
-Furthermore, because accessing the elements of a map requires more database reads than accessing the
-elements of a native list, map iterations are significantly _more_ costly than list iterations in terms of execution time.
+You can iterate over Substrate storage maps using the map keys and values. 
+However, it's important to keep in mind that maps are often used to track unbounded or very large sets of data, such as accounts and balances.
+Iterating over a large data set can consume a lot of the limited resources you have available for producing blocks.
+For example, if the time it takes to iterate over a data set exceeds the maximum time allocated for producing blocks,  the runtime might stop producing new blocks, halting the progress of the chain.
+In addition, the database reads required to access the elements in a storage map far exceeds the database reads required to access the elements in a list.
+Therefore, it is significantly more costly—in terms of performance and execution time—to iterate over the elements in a storage map than to read the elements in a list.
 
-In general, Substrate focuses on programming according to principles and [best practices](#best-practices) as opposed to hard and fast rules of right and wrong.
-The information here aims to help you understand _all_ of Substrate's storage capabilities and how to use them in a way that respects the principles around which they were designed.
-For instance, iterating over storage maps in your runtime is neither right nor wrong&mdash;yet, avoiding it would be considered a better approach with respect to best practices.
+With the relative costs in mind, it's generally better to avoid iterating over storage maps in the runtime.
+However, there are no firm rules abut how you use Substrate storage capabilities, and, ultimately, it's up to you to decide the best way to access runtime storage for your application.
 
-Substrate's Iterable Storage Map interfaces define the following methods:
+Substrate provides the following methods to enable you to iterate over storage maps:
 
-- `iter()` - enumerate all elements in the map in no particular order. If you alter the map while doing this, you'll get undefined results. See:
-
-  - [`IterableStorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.iter)
-  - [`IterableStorageDoubleMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter)
-  - [`IterableStorageNMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageNMap.html#tymethod.iter).
-
-- `drain()` - remove all elements from the map and iterate through them in no particular order. If you add elements to the map while doing this, you'll get undefined results. See:
-
-  - [`IterableStorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain)
-  - [`IterableStorageDoubleMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain)
-  - [`IterableStorageNMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageNMap.html#tymethod.drain)
-
-- `translate()` - use the provided function to translate all elements of the map, in no particular order.
-  To remove an element from the map, return `None` from the translation function. See:
-
-  - [`IterableStorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate)
-  - [`IterableStorageDoubleMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.translate)
-  - [`IterableStorageNMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageNMap.html#tymethod.translate)
+| Method | Description
+| ------ | -----------
+| `iter()` | Enumerates all elements in the map in no particular order. If you alter the map while doing this, you'll get undefined results. For more information, see [`IterableStorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.iter), [`IterableStorageDoubleMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter), or [`IterableStorageNMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageNMap.html#tymethod.iter).
+| `drain()` | Removes all elements from the map and iterate through them in no particular order. If you add elements to the map while doing this, you'll get undefined results. For more information, see [`IterableStorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain), [`IterableStorageDoubleMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain), [`IterableStorageNMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageNMap.html#tymethod.drain).
+| `translate()` | Translates all elements of the map in no particular order. To remove an element from the map, return `None` from the translation function. For more information, see [`IterableStorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate), [`IterableStorageDoubleMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.translate), [`IterableStorageNMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageNMap.html#tymethod.translate).
 
 ## Declaring storage items
 
