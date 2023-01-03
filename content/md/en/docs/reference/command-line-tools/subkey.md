@@ -551,7 +551,7 @@ For example:
 
 ## subkey vanity
 
-Use the `subkey vanity` command to create an address that contains a specified string patter.
+Use the `subkey vanity` command to create an address that contains a specified string pattern.
 This command does not generate a secret phrase for the custom address.
 
 #### Basic usage
