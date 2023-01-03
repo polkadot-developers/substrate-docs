@@ -107,7 +107,7 @@ await provider.connect()
 // Create the PolkadotJS api instance
 const api = await ApiPromise.create({ provider });
 await api.rpc.chain.subscribeNewHeads((lastHeader) => {
-console.log(lastHeader.hash);
+  console.log(lastHeader.hash);
 });
 await api.disconnect();
 ```
@@ -128,7 +128,7 @@ await provider.connect()
 // Create the PolkadotJS api instance
 const api = await ApiPromise.create({ provider });
 await api.rpc.chain.subscribeNewHeads((lastHeader) => {
-console.log(lastHeader.hash);
+  console.log(lastHeader.hash);
 });
 await api.disconnect();
 ```
@@ -153,7 +153,7 @@ await provider.connect()
 // Create the PolkadotJS api instance
 const api = await ApiPromise.create({ provider });
 await api.rpc.chain.subscribeNewHeads((lastHeader) => {
-console.log(lastHeader.hash);
+  console.log(lastHeader.hash);
 });
 await api.disconnect();
 ```
@@ -212,14 +212,14 @@ await client.addWellKnownChain(WellKnownChain.westend2);
 // Create the parachain connection.
 const parachainSpec = JSON.stringify(jsonParachainSpec);
 const chain = await client.addChain(
-parachainSpec,
-function jsonRpcCallback(response) {
-console.log('response', response);
-}
+  parachainSpec,
+  function jsonRpcCallback(response) {
+    console.log('response', response);
+  }
 );
 // send a request
 chain.sendJsonRpc(
-'{"jsonrpc":"2.0","id":"1","method":"system_health","params":[]}'
+  '{"jsonrpc":"2.0","id":"1","method":"system_health","params":[]}'
 );
 ```
 
