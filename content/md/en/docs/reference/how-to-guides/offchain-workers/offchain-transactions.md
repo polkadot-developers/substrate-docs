@@ -52,6 +52,16 @@ For example:
    }
    ```
 
+1. Add an `AuthorityId` type to the pallet's `Config` trait:
+
+   ```rust
+   #[pallet::config]
+   pub trait Config: CreateSignedTransaction<Call<Self>> + frame_system::Config {
+   	// ...
+   type AuthorityId: AppCrypto<Self::Public, Self::Signature>;
+   }
+   ```
+
 1. Add a `crypto` module with an sr25519 signature key to ensure that your pallet owns an account that can be used for signing transactions.
 
    ```rust
@@ -139,6 +149,14 @@ For example:
 
 ## Give you pallet the ability to make transactions
 
+1. Make sure your pallet's `AuthorityId` is pointing to its `TestAuthId`:
+   ```rust
+   impl pallet_your_ocw_pallet::Config for Runtime {
+	   // ...
+	   type AuthorityId = pallet_your_ocw_pallet::crypto::TestAuthId;
+   }
+   ```
+
 1. Implement the `CreateSignedTransaction` trait in the runtime.
 
    Because you configured the `Config` trait for this pallet to implement the `CreateSignedTransaction` trait, you also need to implement that trait for the runtime.
@@ -147,41 +165,54 @@ For example:
    In `runtime/src/lib.rs`:
 
    ```rust
+   use codec::Encode;
+   use sp_runtime::{generic::Era, SaturatedConversion};
+ 
+   // ...
+
    impl<LocalCall> frame_system::offchain::CreateSignedTransaction<LocalCall> for Runtime
    where
-   	Call: From<LocalCall>,
+	RuntimeCall: From<LocalCall>,
    {
-   	fn create_transaction<C: frame_system::offchain::AppCrypto<Self::Public, Self::Signature>>(
-   		call: RuntimeCall,
-   		public: <Signature as sp_runtime::traits::Verify>::Signer,
-   		account: AccountId,
-   		index: Index,
-   	) -> Option<(RuntimeCall, <UncheckedExtrinsic as sp_runtime::traits::Extrinsic>::SignaturePayload)> {
-   		let period = BlockHashCount::get() as u64;
-   		let current_block = System::block_number()
-   			.saturated_into::<u64>()
-   			.saturating_sub(1);
-   		let tip = 0;
-   		let extra: SignedExtra = (
-   			frame_system::CheckSpecVersion::<Runtime>::new(),
-   			frame_system::CheckTxVersion::<Runtime>::new(),
-   			frame_system::CheckGenesis::<Runtime>::new(),
-   			frame_system::CheckEra::<Runtime>::from(generic::Era::mortal(period, current_block)),
-   			frame_system::CheckNonce::<Runtime>::from(index),
-   			frame_system::CheckWeight::<Runtime>::new(),
-   			pallet_transaction_payment::ChargeTransactionPayment::<Runtime>::from(tip),
-   		);
-
-   		let raw_payload = SignedPayload::new(call, extra)
-   			.map_err(|e| {
-   				log::warn!("Unable to create signed payload: {:?}", e);
-   			})
-   			.ok()?;
-   		let signature = raw_payload.using_encoded(|payload| C::sign(payload, public))?;
-   		let address = account;
-   		let (call, extra, _) = raw_payload.deconstruct();
-   		Some((call, (sp_runtime::MultiAddress::Id(address), signature.into(), extra)))
-   	}
+	   fn create_transaction<C: frame_system::offchain::AppCrypto<Self::Public, Self::Signature>>(
+   		   call: RuntimeCall,
+	       public: <Signature as Verify>::Signer,
+		   account: AccountId,
+		   nonce: Index,
+	   ) -> Option<(
+		   RuntimeCall,
+		   <UncheckedExtrinsic as sp_runtime::traits::Extrinsic>::SignaturePayload,
+	   )> {
+		   let tip = 0;
+		   // take the biggest period possible.
+		   let period =
+			   BlockHashCount::get().checked_next_power_of_two().map(|c| c / 2).unwrap_or(2) as u64;
+		   let current_block = System::block_number()
+			   .saturated_into::<u64>()
+			   // The `System::block_number` is initialized with `n+1`,
+			   // so the actual block number is `n`.
+			   .saturating_sub(1);
+		   let era = Era::mortal(period, current_block);
+		   let extra = (
+			   frame_system::CheckNonZeroSender::<Runtime>::new(),
+			   frame_system::CheckSpecVersion::<Runtime>::new(),
+			   frame_system::CheckTxVersion::<Runtime>::new(),
+			   frame_system::CheckGenesis::<Runtime>::new(),
+			   frame_system::CheckEra::<Runtime>::from(era),
+			   frame_system::CheckNonce::<Runtime>::from(nonce),
+			   frame_system::CheckWeight::<Runtime>::new(),
+			   pallet_transaction_payment::ChargeTransactionPayment::<Runtime>::from(tip),
+		   );
+		   let raw_payload = SignedPayload::new(call, extra)
+			   .map_err(|e| {
+				   log::warn!("Unable to create signed payload: {:?}", e);
+			   })
+			   .ok()?;
+		   let signature = raw_payload.using_encoded(|payload| C::sign(payload, public))?;
+		   let address = account;
+		   let (call, extra, _) = raw_payload.deconstruct();
+		   Some((call, (sp_runtime::MultiAddress::Id(address), signature, extra)))
+	   }
    }
    ```
 
@@ -192,26 +223,26 @@ For example:
    - Sign the raw payload with the account public key.
    - Finally, bundle all data up and return a tuple of the call, the caller, its signature, and any signed extension data.
 
-   You can see a full example of the code in the [**Substrate** code base](https://github.com/paritytech/substrate/blob/polkadot-v0.9.28/bin/node/runtime/src/lib.rs).
+   You can see a full example of the code in the [**Substrate** code base](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs).
 
 1. Implement `SigningTypes` and `SendTransactionTypes` in the runtime to support submitting transactions, whether they are signed or unsigned.
 
    ```rust
    impl frame_system::offchain::SigningTypes for Runtime {
-   	type Public = <Signature as sp_runtime::traits::Verify>::Signer;
-   	type Signature = Signature;
+        type Public = <Signature as traits::Verify>::Signer;
+        type Signature = Signature;
    }
 
    impl<C> frame_system::offchain::SendTransactionTypes<C> for Runtime
    where
-   	Call: From<C>,
+        RuntimeCall: From<C>,
    {
-   	type OverarchingCall = Call;
-   	type Extrinsic = UncheckedExtrinsic;
+        type Extrinsic = UncheckedExtrinsic;
+        type OverarchingCall = RuntimeCall;
    }
    ```
 
-   You can see an example of this implementation in the [**Substrate** code base](https://github.com/paritytech/substrate/blob/polkadot-v0.9.28/bin/node/runtime/src/lib.rs#L1103-L1114).
+   You can see an example of this implementation in the [**Substrate** code base](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs#L1281-L1292).
 
 1. Inject an account for this pallet to own.
    In a development environment (node running with `--dev` flag), this account key is inserted in the `node/src/service.rs` file as follows:
@@ -236,7 +267,20 @@ For example:
 
    Refer to [this file](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/v2.0.0/node/src/service.rs#L87-L105) for a working example.
    This example adds the key for the `Alice` account to the key store identified by the pallet-defined `KEY_TYPE`.
-   In production, one or more accounts are injected via chain spec configuration.
+   In production, one or more accounts can be injected via:
+   - chain spec configuration.
+   - an `author_insertKey` RPC call. For example:
+   ```
+   curl --location --request POST 'http://localhost:9933' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+       "jsonrpc": "2.0",
+       "method": "author_insertKey",
+       "params": ["demo","clip organ olive upper oak void inject side suit toilet stick narrow","0xb48004c6e1625282313b07d1c9950935e86894a2e4f21fb1ffee9854d180c781"],
+       "id": 1
+   }'
+   ```
+   Pay attention to the `demo` parameter, which matches the `KEY_TYPE` we declared in the OCW pallet.
 
 Now, your pallet is ready to send signed transactions on-chain from offchain workers.
 
@@ -292,7 +336,7 @@ To enable Substrate to accept certain unsigned transactions, you must implement 
 
    In this example, users can call the on-chain `extrinsic1` function without a signature, but not any other extrinsics.
 
-   To see a full example of how `ValidateUnsigned` is implemented in a pallet, refer to [`pallet-example-offchain-worker` in **Substrate**](https://github.com/paritytech/substrate/blob/polkadot-v0.9.28/frame/examples/offchain-worker/src/lib.rs#L301-L329).
+   To see a full example of how `ValidateUnsigned` is implemented in a pallet, refer to [`pallet-example-offchain-worker` in **Substrate**](https://github.com/paritytech/substrate/blob/master/frame/examples/offchain-worker/src/lib.rs#L301-L329).
 
 1. In the offchain worker function, you can send unsigned transactions as follows:
 
@@ -336,7 +380,7 @@ To enable Substrate to accept certain unsigned transactions, you must implement 
 
 1. Implement the `SendTransactionTypes` trait for the runtime as described in [sending signed transactions](#sending-signed-transactions).
 
-   You can see a full example in [`pallet-example-offchain-worker` in **Substrate** code base](https://github.com/paritytech/substrate/blob/polkadot-v0.9.28/frame/examples/offchain-worker).
+   You can see a full example in [`pallet-example-offchain-worker` in **Substrate** code base](https://github.com/paritytech/substrate/blob/master/frame/examples/offchain-worker).
 
 ## Sending unsigned transactions with signed payloads
 
@@ -369,7 +413,7 @@ The differences between sending unsigned transactions and sending unsigned trans
    }
    ```
 
-   You can also see an example [here](https://github.com/paritytech/substrate/blob/polkadot-v0.9.28/frame/examples/offchain-worker/src/lib.rs#L348-L361).
+   You can also see an example [here](https://github.com/paritytech/substrate/blob/master/frame/examples/offchain-worker/src/lib.rs#L348-L361).
 
 1. In your pallet's `offchain_worker` function, call the signer, then the function to send the transaction:
 
@@ -447,7 +491,7 @@ The differences between sending unsigned transactions and sending unsigned trans
 
    This example uses [`SignedPayload`](https://paritytech.github.io/substrate/master/frame_system/offchain/trait.SignedPayload.html) to verify that the public key in the payload has the same signature as the one provided.
 
-Refer to the [offchain function call](https://github.com/paritytech/substrate/blob/polkadot-v0.9.28/frame/examples/offchain-worker/src/lib.rs#L508-L536) and [the implementation of `ValidateUnsigned`](https://github.com/paritytech/substrate/blob/polkadot-v0.9.28/frame/examples/offchain-worker/src/lib.rs#L305-L329) for a working example of the above.
+Refer to the [offchain function call](https://github.com/paritytech/substrate/blob/master/frame/examples/offchain-worker/src/lib.rs#L508-L536) and [the implementation of `ValidateUnsigned`](https://github.com/paritytech/substrate/blob/master/frame/examples/offchain-worker/src/lib.rs#L305-L329) for a working example of the above.
 
 You have now seen how you can use offchain workers to send data for on-chain storage using:
 
@@ -457,7 +501,7 @@ You have now seen how you can use offchain workers to send data for on-chain sto
 
 ## Examples
 
-- [Substrate Offchain Worker Example Pallet](https://github.com/paritytech/substrate/tree/polkadot-v0.9.28/frame/examples/offchain-worker)
+- [Substrate Offchain Worker Example Pallet](https://github.com/paritytech/substrate/tree/master/frame/examples/offchain-worker)
 - [OCW Pallet in Substrate Offchain Worker Demo](https://github.com/jimmychu0807/substrate-offchain-worker-demo/tree/v2.0.0/pallets/ocw)
 
 ## Related material
