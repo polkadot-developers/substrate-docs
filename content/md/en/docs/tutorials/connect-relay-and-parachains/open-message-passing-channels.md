@@ -273,10 +273,10 @@ This set of XCM instructions:
 For an example that illustrates all of the settings for this set of instructions, see the sample [xcm-instructions](/assets/tutorials/relay-chain-specs/xcm-instructions.txt) file.
 For more information and answers to specific technical questions, try the following tags on [Substrate and Polkadot Stack Exchange](https://substrate.stackexchange.com/):
      
-     - xcm
-     - hrmp 
-     - weight 
-     - cumulus
+- xcm
+- hrmp 
+- weight 
+- cumulus
 
 ### Submit the transaction
 

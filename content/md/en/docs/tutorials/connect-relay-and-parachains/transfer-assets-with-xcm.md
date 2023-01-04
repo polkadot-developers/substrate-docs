@@ -9,7 +9,7 @@ keywords:
   - cross consensus
 ---
 
-In [Open message passing channels](/tutorials/connect-relay-and-parachains/open-message-passing-channels.md), you saw how to open a two-way communication channel between chains be sending messages to the relay chain.
+In [Open message passing channels](/tutorials/connect-relay-and-parachains/open-message-passing-channels), you saw how to open a two-way communication channel between chains by sending messages to the relay chain.
 You can use a similar strategy to send messages that allow a local chain to manage an account on a remote chain.
 In this tutorial, parachain B transfers assets into the sovereign account on the relay chain for parachain A.
 
@@ -69,7 +69,7 @@ To move assets into the virtual holding register:
 
    For example, this tutorial uses 12000000000000.
    
-   ![WithdrawAsset instruction sent from parachain B](/media/images/docs/parachains/withdraw-asset-xcm-sent-event.png)
+   ![WithdrawAsset instruction sent from parachain B](/media/images/docs/tutorials/parachains/transfer-withdraw-asset-instruction-ui.png)
 
 ## BuyExecution instruction
 
@@ -89,13 +89,13 @@ To pay for execution from assets deposited in the holding register:
 
 6. Select **Unlimited** to skip setting a weight limit for this instruction.
    
-   ![BuyExecution instruction sent from parachain B](/media/images/docs/parachains/withdraw-asset-xcm-sent-event.png)
+   ![BuyExecution instruction sent from parachain B](/media/images/docs/tutorials/parachains/transfer-buy-execution-instruction-ui.png)
 
 ## DepositAsset instruction
 
 To deposit assets after fees from the holding register into a specific account:
 
-1. Click **Add item** to select [DepositAsset](https://github.com/paritytech/xcm-format#buyexecution) as the third instruction for this message.
+1. Click **Add item** to select [DepositAsset](https://github.com/paritytech/xcm-format#depositasset) as the third instruction for this message.
 
 1. Select **Wild** to allow an unspecified number of assets to be deposited.
 
@@ -109,10 +109,18 @@ To deposit assets after fees from the holding register into a specific account:
 
    You can deposit the assets remaining into the sovereign account for parachain A or into a specific account.
    For this tutorial, the assets are deposited using a specified account address for the previously unfunded account KRIS-PUBS.
+   To select this beneficiary, the DepositAsset instruction looks like this:
 
-   ![Specify an account as a beneficiary](/media/images/docs/tutorials/parachains/deposit-to-account.png)
-
-   After you configure all of the XCM instructions, you're ready to submit the transaction.
+   ![Specify an account as a beneficiary](/media/images/docs/tutorials/parachains/transfer-deposit-asset-instruction-ui.png)
+   
+   If you want to deposit the assets into the sovereign account for parachain A, you could specify the beneficiary using the following settings:
+   
+   - parents: 0, 
+   - interior: X1, 
+   - X1 junction: Parachain
+   - Parachain index: 1000
+  
+   After you configure all of the XCM instructions to be executed, you're ready to submit the transaction.
 
 ## Submit the transaction
 
@@ -123,6 +131,9 @@ To submit the transaction:
 1. Click **Sign and Submit**.
 
 1. Click **Network** and select **Explorer** to verify the message is sent.
+   
+   If you expand the event, you can review the message instructions.
+   If you click the link to the block that includes the transaction, you can see additional details
 
 ## Check events on the relay chain
 
@@ -137,3 +148,17 @@ To check the result on the relay chain:
 1. Click the block number where the change was recorded to view details.
    
    ![Assets withdrawn and deposited are recorded on the relay chain](/media/images/docs/tutorials/parachains/relay-chain-block.png)
+
+## Check the assets deposited
+
+To verify the assets deposited into the account:
+
+1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps) and connect to the relay chain.
+
+2. Click **Accounts** and see the assets minus transaction fees have been deposited into the account.
+   
+   For example:
+
+   ![Assets have been deposited in the specified account](/media/images/docs/tutorials/parachains/transfer-account-funded.png)
+
+   If you had made the remote transfer to the parachain A (1000) sovereign account instead of the KRIS-PUBS account, you would click **Accounts**, then select **Address book** to see the assets withdrawn from the parachain B sovereign account deposited into the parachain A sovereign account.
