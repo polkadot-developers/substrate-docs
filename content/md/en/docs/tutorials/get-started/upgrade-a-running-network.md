@@ -284,7 +284,7 @@ To add the Scheduler types and configuration trait:
    node_template_runtime.wasm
    ```
 
-## Submit a transaction to upgrade the runtime
+## Execute a runtime upgrade
 
 You now have a WebAssembly artifact that describes the modified runtime logic.
 However, the running node isn't using the upgraded runtime yet.
@@ -428,6 +428,8 @@ To schedule the runtime upgrade:
    
 ## Where to go next
 
+- [Runtime version 101](/assets/tutorials/runtime-upgrade/lib-spec-version-101.rs)
+- [Runtime version 102](/assets/tutorials/runtime-upgrade/lib-spec-version-102.rs)
 - [Storage migrations](/build/upgrade-the-runtime/#storage-migration)
-  <!-- TODO NAV.YAML -->
-  <!-- - [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/) -->
+
+<!-- - [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/) -->
