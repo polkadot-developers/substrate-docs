@@ -72,32 +72,32 @@ The publicly callable function simply checks the origin of the caller and calls 
 		 to: T::AccountId,
 	 ) -> DispatchResult {
 		 // Get the collectible
-		 let mut collectible = CollectibleMap::<T>::get(&unique_id).ok_or(Error::<T>::NoCollectible)?;
+		 let mut collectible = CollectibleMap::<T>::get(&collectible_id).ok_or(Error::<T>::NoCollectible)?;
 		 let from = collectible.owner;
 		 
 		 ensure!(from != to, Error::<T>::TransferToSelf);
 		 let mut from_owned = OwnerOfCollectibles::<T>::get(&from);
 		 
 		 // Remove collectible from list of owned collectible.
-		 if let Some(ind) = from_owned.iter().position(|&id| id == unique_id) {
+		 if let Some(ind) = from_owned.iter().position(|&id| id == collectible_id) {
 			 from_owned.swap_remove(ind);
 			} else {
 			  return Err(Error::<T>::NoCollectible.into())
 			}
 				// Add collectible to the list of owned collectibles.
 				let mut to_owned = OwnerOfCollectibles::<T>::get(&to);
-				to_owned.try_push(unique_id).map_err(|()| Error::<T>::MaximumCollectiblesOwned)?;
+				to_owned.try_push(collectible_id).map_err(|()| Error::<T>::MaximumCollectiblesOwned)?;
 				
 				// Transfer succeeded, update the owner and reset the price to `None`.
 				collectible.owner = to.clone();
 				collectible.price = None;
 
 				// Write updates to storage
-				CollectibleMap::<T>::insert(&unique_id, collectible);
+				CollectibleMap::<T>::insert(&collectible_id, collectible);
 				OwnerOfCollectibles::<T>::insert(&to, to_owned);
 				OwnerOfCollectibles::<T>::insert(&from, from_owned);
 				
-				Self::deposit_event(Event::TransferSucceeded { from, to, collectible: unique_id });
+				Self::deposit_event(Event::TransferSucceeded { from, to, collectible: collectible_id });
 			Ok(())
 		}
 		```
@@ -162,28 +162,28 @@ If the checks pass, the function writes the new price to storage and emits a `Pr
 
 2. Add the callable function for setting a price.
    
-	 ```rust
-	 /// Update the collectible price and write to storage.
-	 #[pallet::weight(0)]
-	 pub fn set_price(
-		  origin: OriginFor<T>,
-			unique_id: [u8; 16],
-			new_price: Option<BalanceOf<T>>,
-	 ) -> DispatchResult {
-	    // Make sure the caller is from a signed origin
-	    let sender = ensure_signed(origin)?;0
-			// Ensure the collectible exists and is called by the owner
-			let mut collectible = CollectibleMap::<T>::get(&unique_id).ok_or(Error::<T>::NoCollectible)?;
-			ensure!(collectible.owner == sender, Error::<T>::NotOwner);
-			// Set the price in storage
-			collectible.price = new_price;
-			CollectibleMap::<T>::insert(&unique_id, collectible);
-			
-			// Deposit a "PriceSet" event.
-			Self::deposit_event(Event::PriceSet { collectible: unique_id, price: new_price });
-   Ok(())
-	 }
-	 ```
+    ```rust
+    /// Update the collectible price and write to storage.
+    #[pallet::weight(0)]
+    pub fn set_price(
+        origin: OriginFor<T>,
+        unique_id: [u8; 16],
+        new_price: Option<BalanceOf<T>>,
+    ) -> DispatchResult {
+        // Make sure the caller is from a signed origin
+        let sender = ensure_signed(origin)?;
+        // Ensure the collectible exists and is called by the owner
+        let mut collectible = CollectibleMap::<T>::get(&unique_id).ok_or(Error::<T>::NoCollectible)?;
+        ensure!(collectible.owner == sender, Error::<T>::NotOwner);
+        // Set the price in storage
+        collectible.price = new_price;
+        CollectibleMap::<T>::insert(&unique_id, collectible);
+
+        // Deposit a "PriceSet" event.
+        Self::deposit_event(Event::PriceSet { collectible: unique_id, price: new_price });
+        Ok(())
+    }
+    ```
 
 2. Verify that your program compiles without errors by running the following command:
    

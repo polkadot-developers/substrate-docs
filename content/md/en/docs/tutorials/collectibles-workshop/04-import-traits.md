@@ -9,8 +9,8 @@ Because FRAME is a modular and takes advantage of the flexibility that Rust trai
 
 ## Import and declare external interfaces
 
-For the `collectibles` pallet, you know you want a ledger of some kind to keep trap of who owns which collectibles and a means of transferring collectibles from one account to another.
-You also want to make the collectibles unique by incorporating a random value.Luckily, these are fairly common use cases with interfaces that are useful in many contexts, so they are already defined as traits in the `frame_support` library. 
+For the `collectibles` pallet, you know you want a ledger of some kind to keep track of who owns which collectibles and a means of transferring collectibles from one account to another.
+You also want to make the collectibles unique by incorporating a random value. Luckily, these are fairly common use cases with interfaces that are useful in many contexts, so they are already defined as traits in the `frame_support` library. 
 
 In `frame_support` the traits are:
 
@@ -36,6 +36,17 @@ To import and declare these interfaces:
 2. Import the `Currency` and `Randomness` traits from the `frame_support` module into your project.
 
 3. Update the collectibles `Config` trait to declare the `Currency`, `Randomness`, and `Get<u32>` traits.
+
+    ```rust
+    #[pallet::config]
+    pub trait Config: frame_system::Config {
+        type Currency: Currency<Self::AccountId>;
+        type CollectionRandomness: Randomness<Self::Hash, Self::BlockNumber>;
+
+        #[pallet::constant]
+        type MaximumOwned: Get<u32>;
+    }
+    ```
    
 4. Verify that your program compiles by running the following command:
    
@@ -87,7 +98,7 @@ After declaring the BalanceOf and AccountId types, we can include them in the Co
 ```rust
         pub struct Collectible<T: Config> {
             // Unsigned integers of 16 bytes to represent a unique identifier
-            pub uniqueId: [u8; 16],
+            pub unique_id: [u8; 16],
             // `None` assumes not for sale
             pub price: Option<BalanceOf<T>>,
             pub color: Color,

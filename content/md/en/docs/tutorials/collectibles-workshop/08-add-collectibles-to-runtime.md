@@ -6,7 +6,7 @@ tutorial:
 
 You now have a custom pallet with the basic functions for trading digital collectibles.
 The next step is to add this pallet to the runtime to expose its functionality on the blockchain.
-Before you do that, however, take a moment to verify that you included the collectibles pallet in the manifest for the node as instructed in [Add the pallet to the workspace](/03-create-pallet/).
+Before you do that, however, take a moment to verify that you included the collectibles pallet in the manifest for the node as instructed in [Add the pallet to the workspace](/tutorials/collectibles-workshop/03-create-pallet/#add-the-pallet-to-the-workspace).
 
 To check the manifest for the workspace:
 

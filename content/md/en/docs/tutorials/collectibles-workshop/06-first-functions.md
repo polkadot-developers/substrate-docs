@@ -165,10 +165,11 @@ With errors and events out of the way, it's time to write the core logic for cre
 			
 			// Append collectible to OwnerOfCollectibles map
 			OwnerOfCollectibles::<T>::try_append(&owner, collectible.unique_id)
-			.map_err(|_| Error::<T>::MaximumCollectiblesOwned)?;
+				.map_err(|_| Error::<T>::MaximumCollectiblesOwned)?;
 			
 			// Write new collectible to storage and update the count
-			Collectibles::<T>::insert(collectible.unique_id, collectible);CollectiblesCount::<T>::put(new_count);
+			CollectibleMap::<T>::insert(collectible.unique_id, collectible);
+			CollectiblesCount::<T>::put(new_count);
 			
 			// Deposit the "Collectiblereated" event.
 			Self::deposit_event(Event::CollectibleCreated { collectible: unique_id, owner: owner.clone() });
