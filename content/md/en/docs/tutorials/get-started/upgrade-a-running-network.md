@@ -188,16 +188,16 @@ To add the Scheduler types and configuration trait:
 
    ```rust
    impl pallet_scheduler::Config for Runtime {
-     type RuntimeEvent = RuntimeEvent;
-     type RuntimeOrigin = RuntimeOrigin;
-     type PalletsOrigin = OriginCaller;
-     type RuntimeCall = RuntimeCall;
-     type MaximumWeight = MaximumSchedulerWeight;
-     type ScheduleOrigin = frame_system::EnsureRoot<AccountId>;
-     type MaxScheduledPerBlock = MaxScheduledPerBlock;
-     type WeightInfo = pallet_scheduler::weights::SubstrateWeight<Runtime>;
-     type OriginPrivilegeCmp = EqualPrivilegeOnly;
-     type Preimages = Preimage;
+      type RuntimeEvent = RuntimeEvent;
+      type RuntimeOrigin = RuntimeOrigin;
+      type PalletsOrigin = OriginCaller;
+      type RuntimeCall = RuntimeCall;
+      type MaximumWeight = MaximumSchedulerWeight;
+      type ScheduleOrigin = frame_system::EnsureRoot<AccountId>;
+      type MaxScheduledPerBlock = MaxScheduledPerBlock;
+      type WeightInfo = ();
+      type OriginPrivilegeCmp = EqualPrivilegeOnly;
+      type Preimages = ();
    }
    ```
 
@@ -254,9 +254,10 @@ To add the Scheduler types and configuration trait:
    - `impl_version` specifies the version of the outer node client.
    - `apis` specifies the list of supported APIs.
    - `transaction_version` specifies the version of the [dispatchable function](/reference/glossary#dispatch) interface.
+   - `state_version` specifies the version of the key-value trie data structure that the runtime uses.
 
    To upgrade the runtime, you must _increase_ the `spec_version`.
-   For more information, see the [FRAME System](https://github.com/paritytech/substrate/tree/master/frame/system) module and [`can_set_code`](https://github.com/paritytech/substrate/blob/master/frame/system/src/lib.rs#L1566) function.
+   For more information, see the [FRAME System](https://github.com/paritytech/substrate/tree/master/frame/system/src/lib.rs) module and the `can_set_code` method.
 
 5.  Save your changes and close the `runtime/src/lib.rs` file.
 
@@ -301,11 +302,11 @@ To update the network with the upgraded runtime:
    
 4. Select **system** and **setCode(code)** as the call to make using the Alice account.
 
-5. Click **file upload**, then select or drag and drop the compact and compressed WebAssembly file—`node_template_runtime.compact.compressed.wasm`—that you generated for the runtime.
+5. Click **file upload**, then select or drag and drop the compact and compressed WebAssembly file—`node_template_runtime.compact.compressed.wasm`—that you generated for the updated runtime.
 
    For example, navigate to the `target/release/wbuild/node-template-runtime` directory and select `node_template_runtime.compact.compressed.wasm` as the file to upload.
 
-6. Leave both of the **weight** parameters with the default value of `0`.
+6. Leave both of the **weight** parameters set to the default value of `0`.
 
    ![Runtime upgrade settings](/media/images/docs/tutorials/forkless-upgrade/set-code-transaction.png)
 
@@ -359,6 +360,7 @@ To modify the value of the existential deposit for a runtime upgrade:
       impl_version: 1,
       apis: RUNTIME_API_VERSIONS,
       transaction_version: 1,
+      state_version: 1,
    };
 
 1. Update the value for the EXISTENTIAL_DEPOSIT for the Balances pallet.
@@ -377,7 +379,7 @@ To modify the value of the existential deposit for a runtime upgrade:
 1. Build the upgraded runtime by running the following command:
    
    ```bash
-   cargo build --release -p node-template-runtime
+   cargo build --release --package node-template-runtime
    ```
    
    This command generates a new set of build artifacts, overwriting the previous set of build artifacts.
@@ -399,22 +401,26 @@ To schedule the runtime upgrade:
 
 3. Select **scheduler** and **schedule(when, maybePeriodic, priority, call)**.
 
-   - Use the default values for the **maybePeriodic** (empty) and **priority** (0) parameters.
+   - Notice that the **when** parameter specifies a block number for performing the scheduled operation.
+   - The **maybePeriodic** parameter is optional, so you can use the default value (empty)
+   - Use the default value (0) for the **priority**  parameter.
    - Select **system** and **setCode(code)** as the call.
-   - Click **file upload** and select the compressed WebAssembly file you generated for the runtime.
+   - Click **file upload** and select the compressed WebAssembly file you generated for the updated runtime.
 
-1. Check the current block number and set the **when** parameter to a block number 10 to 20 blocks from the current block, then click **Submit Sudo**.
+4. Check the current block number and set the **when** parameter to a block number 10 to 20 blocks from the current block, then click **Submit Sudo**.
    
-   ![Settings to schedule a runtime upgrade](/media/images/docs/tutorials/forkless-upgrade/sudo-schedule-upgrade.png)
+   ![Settings to schedule a runtime upgrade](/media/images/docs/tutorials/forkless-upgrade/sudo-scheduler-upgrade.png)
 
-2. Review the authorization and click **Sign and Submit**.
+5. Review the authorization and click **Sign and Submit**.
 
-1. Monitor block production in the terminal or the [Network Explorer](https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944) to watch as this scheduled call takes place.
+6. Monitor block production in the terminal or the [Network Explorer](https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944) to watch as this scheduled call takes place.
    
    After the target block has been included in the chain, the node template version number indicates that the runtime version is now `102`.
 
-2. Verify the constant value by querying the chain state in the the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/chainstate/constants?rpc=ws://127.0.0.1:9944).
+7. Verify the constant value by querying the chain state in the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/chainstate/constants?rpc=ws://127.0.0.1:9944).
    
+   - Click **Developer** and select **Chain state**.
+   - Click **Constants**.
    - Select the **balances** pallet.
    - Select **existentialDeposit** as the constant value as the value to query.
 
@@ -424,5 +430,4 @@ To schedule the runtime upgrade:
 
 - [Storage migrations](/build/upgrade-the-runtime/#storage-migration)
   <!-- TODO NAV.YAML -->
-  <!-- add  back ABOVE -->
   <!-- - [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/) -->
