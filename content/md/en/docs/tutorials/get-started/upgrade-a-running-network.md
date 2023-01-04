@@ -126,7 +126,7 @@ To update the dependencies for the runtime to include the Scheduler pallet:
    ```
 1. Add the Scheduler pallet as a dependency.
    
-   For example, add a line with the following fields:
+   For example, add a single line with the following fields:
    
    ```toml
    pallet-scheduler = { 
@@ -137,7 +137,7 @@ To update the dependencies for the runtime to include the Scheduler pallet:
    }
    ```
 
-   Be sure to use the same version and branch information for the Scheduler pallet as you see used for the other pallets included in the runtime.
+   Be sure to use the same **version** and **branch** information for the Scheduler pallet as you see used for the other pallets included in the runtime.
    In this example, all of the pallets in the node template runtime use `version = "4.0.0-dev"` and `branch = "polkadot-v0.9.35"`.
 
 3. Locate the `[features]` section and the list of the default features for the standard binary.
