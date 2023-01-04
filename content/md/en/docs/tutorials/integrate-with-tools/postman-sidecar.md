@@ -4,49 +4,79 @@ description: Demonstrates how you can explore the Sidecar REST API using Postman
 keywords:
 ---
 
-Substrate's [Sidecar](https://github.com/paritytech/substrate-api-sidecar) provides a REST API for blockchain nodes built using Substrate's FRAME framework. The REST service exposes endpoints for a variety of operations across services such as accounts, transactions, parachains and other areas. 
+The Substrate [Sidecar](https://github.com/paritytech/substrate-api-sidecar) service provides a REST API for blockchain nodes built using  the Substrate FRAME framework. 
+The REST service exposes endpoints for interacting with accounts, transactions, parachains, and other components of the blockchain network. 
 
-In this tutorial, you will learn how to explore the Sidecar API REST service using Postman. You will learn how to import a Postman API collection, set up a working environment, make API requests to your Sidecar API and save the data for further use.
+In this tutorial, you'll learn how to explore the Sidecar API REST service using Postman, including how to:
+
+- Import a Postman API collection.
+- Set up a working environment.
+- Make API requests to the Sidecar API.
+- Save the data for further use.
 
 ## Why use Postman?
 
-Postman is a tool that helps you use and build with APIs. It enables collaboration and experimentation in a desktop interface that is accessible to both the newcomer and the experienced API developer. In this tutorial, you will be using a pre-defined API collection for Sidecar. A Postman API collection is a group of saved requests that are customizable by the user. API collections within Postman have great features such as in-line documentation, variables to be able to reuse data across requests, error detection in parameter formation, and more.
+Postman is a tool that helps you use and build with APIs. 
+It enables collaboration and experimentation in a desktop interface that is accessible to both the newcomer and the experienced API developer. 
+In this tutorial, you'll use a [predefined API collection](https://documenter.getpostman.com/view/24602305/2s8YsqWaj8#intro) for Sidecar. 
+This predefined API collection is a group of saved requests created in Postman that you can customize and reuse. 
+By using API collections that are created with Postman, you have access to features such as inline documentation, reusable variables to access data, error detection in parameter formation, and more.
 
-The Postman API collection for Sidecar we will be using can be found [here](https://documenter.getpostman.com/view/24602305/2s8YsqWaj8#intro). Once you have the link open in your browser, go ahead and click first on the button in the top-right corner of the page, `Run on Postman` then choose either to run the collection in the Postman for the web or in the desktop client. The desktop client is overall more stable and feature-rich and is recommended.
+To use the predefined API collection for Sidecar:
+1. Open [Substrate API Sidecar](https://documenter.getpostman.com/view/24602305/2s8YsqWaj8#intro) in a browser.
+1. Click **Run in Postman** in the top-right corner of the page. 
+1. Select to run the collection either using Postman for the web or in the Postman for Mac desktop client. 
+   In you are using a macOS computer, you should run the collection with the desktop client because the desktop client is generally more stable and supports more features.
+   If you don't have Postman for Mac installed on your local computer, click **Get the app** to download it.
 
 ![First steps with the Postman API collection](/media/images/docs/tutorials/postman-sidecar/first_step.png)
 
-Once you have done that, you are now ready to move on to the next step, which is defining your environment variables.
+After you open the Substrate API Sidecar collection in Postman, you are ready to start defining your environment variables.
 
-## Defining Environment Variables
+## Define environment variables
 
-The pre-defined Postman API Collection comes with a ready-built development environment named `Dev`. This environment lists all the variables you may need in the different API requests to Sidecar. They include:
+The predefined Postman API Collection comes with a built-in development environment named `Dev`. 
+This environment lists all the variables you need need in the different API requests to Sidecar. 
+They include:
 
-- `url` - The URL for your Sidecar REST API. The default local value to define is: http://127.0.0.1:8080
-- `account` - The account ID of a specific user on the blockchain
-- `number` - The number of a specific block from the blockchain
-- `extrensicIndex` - The index number of a specific extrensic on a block
-- `assetId` - The ID of an pallet asset
-- `storageItemId` - The ID of a pallet storage item
-- `paraId` - The ID of a specific parachain
+- `url` to specify the URL for your Sidecar REST API. The default local value to define is `http://127.0.0.1:8080`.
+- `account` to specify the account identifier of a specific user on the blockchain.
+- `number` to specify the number of a specific block from the blockchain.
+- `extrensicIndex` to specify the index number of a specific extrinsic in a block.
+- `assetId` to specify the identifier of a pallet asset.
+- `storageItemId` to specify the identifier of a pallet storage item.
+- `paraId` to specify the unique numeric identifier for a specific parachain.
 
-Different sets of requests will require different variables to be defined. At a minimum, you must have the `url` variable set. The environment comes with a default value of `http://127.0.0.1:8080`, which is the default REST API address created when booting up an instance of Sidecar. If you have set your Sidecar API to an external hosting location or changed the default local URL, you need to change the default value for the `url` variable accordingly.
+Different sets of requests require different variables to be defined. 
+At a minimum, you must set the `url` variable. 
+The environment comes with a default value of `http://127.0.0.1:8080`, which is the default REST API address created when booting up an instance of Sidecar. 
+If you have set the Sidecar API to use an external hosting location or changed the default local URL, you must change the default value for the `url` variable accordingly.
 
-In this tutorial, we will query for the list of endpoints, and we will also use the `account` variable to query for the balance of a specific account on the blockchain. Let's get started!
+In this tutorial, you'll query for the list of endpoints and use the `account` variable to query for the balance of a specific account on the blockchain. 
+Let's get started!
 
-## Getting List of Endpoints
+## Get a list of endpoints
 
-The first action we will perform using Postman is to send a `GET` request to Sidecar to return a list of all the active endpoints available for our API. This request requires only the `url` variable to be defined, and as stated earlier, unless you have changed the default value in your Sidecar initialization or are working outside of your development environment, the value has already been set for you.
+You can use Postman to send a `GET` request to Sidecar to return a list of all the active endpoints available for the API collection. 
+This request requires only the `url` variable to be defined.
+In most cases, you can use the default value for the local host IP address and port unless you are using Sidecar outside of the locl development environment.
 
 From within the Postman desktop environment navigate to the `GET List of API Endpoints` request and select it.
 
 ![Navigating to the correct endpoint](/media/images/docs/tutorials/postman-sidecar/second_step.png)
 
-Once you select that option, the main body of the client will change to show you the options available for this request. Since this action takes no parameters, and as such is a great first request to attempt, there is not much here to do. However, for future requests, you can experiment by providing different parameters and seeing the various responses provided by the API.
+   After you select the Get the List of API Endpoints request, Postman displays the options available for this request. 
+   Because this request only requires the URL and doesn't use any other parameters, there are no settings to configure here. 
+   However, for future requests, you can experiment by providing different parameters and seeing the various responses provided by the API.
 
 ![Options available for the request](/media/images/docs/tutorials/postman-sidecar/third_step.png)
 
-Go ahead and click on the `Send` button. Once you do, you should very shortly after see the response section of the Postman client become populated with data. It will present the data by default in JSON format, but you can change that to XML, HTML, or plain text. It should start with the following fields:
+1. Click **Send**. 
+
+   After you send the request, you should see the response section in Postman populated with data. 
+   By default, the data is displayed in JSON format, but you can change response to XML, HTML, or plain text. 
+   You should see information similar to the following fields:
+
 
 ```json
 {
@@ -57,19 +87,32 @@ Go ahead and click on the `Send` button. Once you do, you should very shortly af
 }
 ```
 
-At this point, you can save this response to an output file and use it to build against your own application needs. You can also save it as a Postman response example, which gets added as a sub-option underneath the `GET List of API Endpoints` selection in the left-hand menubar. This request is great for its simplicity, but what if you need to alter one of the values in the endpoint defined as a variable? That will be our next step.
+At this point, you can save this response to an output file and use it to build against your own application needs. 
+You can also save it as a Postman response example added underneath the GET List of API Endpoints menu option. 
+This request is great for its simplicity, but in many cases, you'll want to manipulate the values defined for variable to retrieve specific information. 
+That's the next step inthis tutorial.
 
-## Getting User Account Information
+## Get account information
 
-Now that you are familiar with making an uncomplicated request, let's perform another `GET` request this time modifying the value of one of the environment variables. In this request, you will request a specific account's balance on the chain. Using the [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template) as our working blockchain, we will query the account balance of the `Alice` user. To quickly get the account address for `Alice`, you can spin up the [Substrate Front End Template](https://github.com/substrate-developer-hub/substrate-front-end-template) and copy the account address seen in the browser.
+Now that you are familiar with making an uncomplicated request, let's perform another `GET` request but this time modifying the value of one of the environment variables. 
+In this request, you'll request the balance for a specific account on the chain. 
+Using the [substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) as the working blockchain, this request will query the account balance of the `Alice` user. 
+To get the account address for `Alice`, you can spin up the [Substrate Front End Template](https://github.com/substrate-developer-hub/substrate-front-end-template) and copy the account address seen in the browser.
 
 ![Copying Alice's Account Address](/media/images/docs/tutorials/postman-sidecar/fourth_step.png)
 
-Once you have the account address in your clipboard, return to the Postman client, select the `Environments` option from the far left-hand menubar, then select the `Dev` environment. This will bring up the list of environment variables and their values. For each variable you will see two fields: `initial value` and `current value`. The `initial value` is what the variable is loaded with when starting a fresh `Dev` environment, whereas the `current value` is for the current session. Additionally, `current value` is only saved locally and never sent back up to Postman to be shared with other team members using the same Postman API collection.
+After you have the account address in your clipboard, return to the Postman client and select **Environments**.
+Select the **Dev** environment to display the list of environment variables and their values. 
+For each variable, there's an initial value and a current value. 
+The `initial value` is what the variable is loaded with when starting a fresh `Dev` environment.
+The `current value` is the value for the current session. 
+The `current value` is only saved locally and never sent to Postman or shared with other team members using the same Postman API collection.
 
 ![Account variable in Postman environment options](/media/images/docs/tutorials/postman-sidecar/fifth_step.png)
 
-As you can see from the screenshot above, the `current value` has been modified with an account address for `Alice`. In your own Postman client, paste the address you copied from the front end template into the `current value` text box. Once you have done so, navigate back to `Collections` from the far left-hand menubar and then back to the `Substrate API Sidecar` collection. From within the collection, choose the `GET Account Balance Info` inside the `Accounts Folder`.
+Paste the account address for `Alice` into the `current value` text box. 
+Click **Collections** and open the **Substrate API Sidecar** collection. 
+Select the **Accounts** folder, then select **GET Account Balance Info**.
 
 ![Account Balance Info option](/media/images/docs/tutorials/postman-sidecar/sixth_step.png)
 
@@ -99,8 +142,19 @@ You have just defined the value for the `account` variable, so at this point you
 
 Similar to the previous example, you can save this as an example response within Postman or save it to an output file to assist in your test fixtures or other uses in your application building.
 
-## What's Next?
+## What's next?
 
-You have accomplished quite a lot in this tutorial! You have successfully imported an Postman API collection, defined environment variables, made API requests in Postman with custom variable definitions, and examined the responses from the API. You now have a good working basis from which to continue to build your experience using Sidecar within Postman. There are more areas for you to explore on your own including writing tests inside Postman for debugging purposes, setting up Postman flows that allow you to connect a series of API REST requests, and just trying out all the other endpoints made available to you.
+In this tutorial, you learned how to:
+
+- Import an Postman API collection.
+- Define environment variables to use in a collection.
+- Send API requests with custom variable definitions.
+- Inspect and save the responses from the API. 
+
+You now have a good working basis for using Sidecar within Postman and to continue building on this experience. There are more areas for you to explore on your own, including how to:
+-
+- Send requests using the other endpoints in the predefined collection.
+- Write tests in Postman for debugging purposes
+- Set up Postman flows that allow you to connect a series of API REST requests.
 
 While you are exploring, make sure to continue reading more on Sidecar on [GitHub](https://github.com/paritytech/substrate-api-sidecar) and checking out the full offerings of tutorials, guides and references on the [Substrate docs](https://docs.substrate.io/).
