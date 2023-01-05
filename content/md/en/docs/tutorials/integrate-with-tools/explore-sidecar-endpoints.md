@@ -139,7 +139,7 @@ In most cases, you can use the default value for the local host IP address and p
 To get a list of endpoints:
 
 1. In the Postman client, click **Collections** and open the **Substrate API Sidecar** collection.
-2. In the list of requests, select the **GET List of API Endpoints** request.
+2. From the list, select the **GET List of API Endpoints** request.
    
    ![Select the GET Endpoints request](/media/images/docs/tutorials/postman-sidecar/select-get-endpoints.png)
    
@@ -148,7 +148,7 @@ To get a list of endpoints:
    
    ![Set parameters for the request](/media/images/docs/tutorials/postman-sidecar/endpoint-parameters.png)
 
-   For other requests, additional parameters are often required and you can experiment by providing different parameters and seeing the various responses provided by the API.
+   If a request takes additional parameters, you can experiment by providing different values for the parameters and seeing how those values provide different responses from the API.
 
 3. Specify the URL to connect to using the predefined `url` variable by typing `{{url}}`.
 
@@ -158,7 +158,7 @@ To get a list of endpoints:
 
    After you send the request, you should see the response section in Postman populated with data. 
    By default, the data is displayed in JSON format, but you can change response to XML, HTML, or plain text. 
-   You should see information similar to the following fields:
+   You should see information similar to the following partial response:
    
    ```json
    {
