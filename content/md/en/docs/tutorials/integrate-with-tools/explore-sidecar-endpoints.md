@@ -224,7 +224,7 @@ To get account information:
 
 1. Paste the account address for `Alice` into the `current value` field. 
 
-   ![Account variable in Postman environment](/media/images/docs/tutorials/postman-sidecar/dev-variable.png)
+   ![Account variable in Postman environment](/media/images/docs/tutorials/postman-sidecar/dev-variables.png)
    
 1. Click **Collections** and open the **Substrate API Sidecar** collection. 
 
@@ -262,7 +262,7 @@ To get account information:
 
 In this tutorial, you learned how to:
 
-- Import an Postman API collection.
+- Import an API collection into Postman.
 - Define environment variables to use in a collection.
 - Send API requests with custom variable definitions.
 - Inspect and save the responses from the API. 
@@ -270,7 +270,5 @@ In this tutorial, you learned how to:
 You now have a good working basis for using `sidecar` within Postman and to continue building on this experience. There are more areas for you to explore on your own, including how to:
 
 - Send requests using the other endpoints in the predefined collection.
-- Write tests in Postman for debugging purposes
+- Write tests in Postman for debugging purposes.
 - Set up Postman flows that allow you to connect a series of API REST requests.
-
-While you are exploring, make sure to continue reading more on `sidecar` on [GitHub](https://github.com/paritytech/substrate-api-sidecar).

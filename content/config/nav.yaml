@@ -250,6 +250,8 @@ tutorials:
       pages:
         - title: Integrate a light client node
           url: /tutorials/integrate-with-tools/integrate-a-light-client-node/
+        - title: Explore sidecar endpoints
+          url: /tutorials/integrate-with-tools/explore-sidecar-endpoints/
         - title: Access EVM accounts
           url: /tutorials/integrate-with-tools/access-evm-accounts/
 
