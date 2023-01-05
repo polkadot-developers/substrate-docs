@@ -230,15 +230,16 @@ To get account information:
 
 1. Select the **Accounts** folder, then select **GET Account Balance Info**.
    
-   ![Account Balance Info request](/media/images/docs/tutorials/postman-sidecar/account-balance.png)
+   ![Select the Account Balance Info request](/media/images/docs/tutorials/postman-sidecar/account-balance.png)
    
-   This endpoint is defined with two variables:
+2. Configure the request using the `url` variable that you used previously and the `account` variable you set in Step 4:
    
-   ```
-   {{url}}/accounts/{{account}}/balance-info
-   ```
+   ![Specify the endpoint for the request](/media/images/docs/tutorials/postman-sidecar/account-request.png)
+
    
-   You have just defined the value for the `account` variable, so at this point you are ready to click the `Send` button and receive the response, which will look something like this:
+3. Click **Send**.
+   
+   You should receive a response that looks similar to the following in JSON format:
    
    ```json
    {
@@ -267,7 +268,8 @@ In this tutorial, you learned how to:
 - Send API requests with custom variable definitions.
 - Inspect and save the responses from the API. 
 
-You now have a good working basis for using `sidecar` within Postman and to continue building on this experience. There are more areas for you to explore on your own, including how to:
+You now have a good working basis for using `sidecar` endpoints within Postman and to begin building applications that use the `sidecar` API for your own purpose. 
+To explore more on your own, consider the following tasks:
 
 - Send requests using the other endpoints in the predefined collection.
 - Write tests in Postman for debugging purposes.
