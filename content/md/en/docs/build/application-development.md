@@ -7,7 +7,7 @@ keywords:
   - dApp
 ---
 
-Most applications that run on a Substrate blockchain require some form of front-end or user-facing client to enables users or other programs to access and modify the data that the blockchain stores.
+Most applications that run on a Substrate blockchain require some form of front-end or user-facing client to enable users or other programs to access and modify the data that the blockchain stores.
 For example, you might develop a browser-based, mobile, or desktop application that allows users to submit transactions, post articles, or view their previous activity.
 The backend for that application is configured in the runtime logic for your blockchain, but it's the front-end client that makes the runtime features accessible to your users.
 
@@ -32,7 +32,7 @@ Because it provides a complete inventory of the runtime, the metadata is the key
 ## Generating metadata
 
 To minimize the bandwidth required to transmit data over the network, the metadata schema is encoded using the [SCALE codec library](/reference/scale-codec/).
-This encoding is done automatically for you when you compile a node by using the [`scale-info`](https://docs.rs/scale-info/latest/scale_info/) crate to get type information for the pallets in the runtime.
+This encoding is done automatically for you when you compile a node by using the [`scale-info`](https://docs.rs/scale-info/latest/scale_info/) crate.
 
 At a high level, generating the metadata involves the following steps:
 
@@ -45,13 +45,15 @@ At a high level, generating the metadata involves the following steps:
 There are several ways you can get the metadata for a runtime.
 For example, you can do any of the following:
 
-- Call the `state_getMetadata` RPC method to return the metadata as a hex-encoded vector of SCALE-encoded bytes.
-- 
+- Use [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/rpc) to connect to a blockchain or node and select the **state** endpoint and the **getMetadata** method to return the metadata in JSON format.
+- Use the command-line `polkadot-js-api` to call the `state_getMetadata` RPC method to return the metadata as a hex-encoded vector of SCALE-encoded bytes.
+- Use the `subxt metadata` command to download the metadata in JSON, hex, or raw bytes.
+- Use the `sidecar` API and `/runtime/metadata` endpoint to connect to a node and retrieve the metadata in JSON format.
 
-Type information bundled in the metadata gives applications the ability to communicate with nodes across different chains, each of which may each expose different calls, events, types and storage.
-It also allows libraries to generate almost all of the code needed to communicate with a given Substrate node, giving the possibility for libraries like `subxt` to generate front-end interfaces that are specific to a target chain.
+The type information provided by the metadata enables applications to communicate with nodes with different versions of the runtime and across chains that expose different calls, events, types, and storage items.
+The metadata also allows libraries to generate almost all of the code needed to communicate with a given Substrate node, enabling libraries like `subxt` to generate front-end interfaces that are specific to a target chain.
 
-With this system, any runtime can be queried for its available runtime calls, types and parameters.  
+With this system, any runtime can be queried for its available runtime calls, types, and parameters.  
 The metadata also exposes how a type is expected to be decoded, making it easier for an external application to retrieve and process this information.
 
 ## Metadata format
