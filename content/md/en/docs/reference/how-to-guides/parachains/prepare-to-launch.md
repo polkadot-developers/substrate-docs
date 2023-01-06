@@ -17,7 +17,7 @@ You will learn how to make sure `protocolId` is set uniquely and that runtime we
 
 The runtime constraints on a parachain are much stricter than a solochain, as you must coordinate with the relay chain to finalize state transitions. When launching a parachain to production, it is critically important to make sure a chain's runtime is properly configured and tested.
 
-## Set a unique `protocolId`
+## Set a unique protocol identifier
 
 Network collisions can cause major headaches.
 _All_ chains should use a **unique** `protocolId` that no other network of any type—whether a test network, relay chain, or parachain—uses.
@@ -132,7 +132,7 @@ Before you try anything on a production testnet or mainnet, you should launch yo
 Testing in a confined network will help you prepare for potential failures in a real network with many collators and validators and constraints like bandwidth and latency.
 The more closely you can simulate a real network for testing, the more sure you can be that your runtime upgrades will succeeds.
 
-See the [Prepare a local parachain testnet](/tutorials/connect-other-chains/local-relay/) to for a selection of tools for automation of such testing.
+See the [Prepare a local relay chain](/tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain/) to for a selection of tools for automation of such testing.
 
 ## Examples
 

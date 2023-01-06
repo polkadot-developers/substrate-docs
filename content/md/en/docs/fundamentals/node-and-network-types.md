@@ -97,5 +97,5 @@ To take a deeper dive into networks and nodes types, explore the following topic
 
 - [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
 - [Simulate a network](/tutorials/get-started/simulate-network/)
-- [Add trusted nodes](/tutorials/get-started/trusted-network/)
-- [Authorize specific nodes](/tutorials/get-started/permissioned-network/)
+- [Add trusted nodes](/tutorials/get-started/add-trusted-nodes/)
+- [Authorize specific nodes](/tutorials/get-started/authorize-specific-nodes/)

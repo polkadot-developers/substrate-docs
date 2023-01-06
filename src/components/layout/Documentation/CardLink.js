@@ -1,8 +1,8 @@
+import { Link } from 'gatsby-plugin-substrate';
 import React from 'react';
 
 import analytics from '../../../analytics';
 import snakecase from '../../../hooks/snakecase';
-import { Link } from '../../default/Link';
 
 export default function CardLink({ link, children }) {
   return (

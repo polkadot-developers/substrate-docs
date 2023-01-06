@@ -5,7 +5,7 @@ keywords:
 ---
 
 As you build the logic for your runtime, you'll want to routinely test that the logic works as expected.
-You can create unit test for the runtime using the [unit testing framework](https://doc.rust-lang.org/rust-by-example/testing/unit_testing.html) provided by Rust.
+You can create unit tests for the runtime using the [unit testing framework](https://doc.rust-lang.org/rust-by-example/testing/unit_testing.html) provided by Rust.
 After you create one or more unit tests, you can use the `cargo test` command to execute the test.
 For example, you can run all of the tests you have created for a runtime by running the following command:
 
@@ -89,11 +89,35 @@ Custom implementations of [Externalities](https://paritytech.github.io/substrate
 Another example of this can be found in the [`offchain`](https://paritytech.github.io/substrate/master/sp_core/offchain/index.html) module.
 The `offchain` module maintains its own [Externalities](https://paritytech.github.io/substrate/master/sp_core/offchain/trait.Externalities.html) implementation.
 
+## Test events in a mock runtime
+
+It can also be important to test the events that are emitted from your chain, in addition to the storage.
+Assuming you use the default generation of `deposit_event` with the `generate_deposit` marco, all pallet events are stored under the `system` / `events` key with some extra information as an [`EventRecord`](https://paritytech.github.io/substrate/master/frame_system/struct.EventRecord.html).
+
+These event records can be directly accessed and iterated over with `System::events()`, but there are also some helper methods defined in the system pallet to be used in tests, [`assert_last_event`](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.assert_last_event) and [`assert_has_event`](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.assert_has_event).
+
+```rust
+fn fake_test_example() {
+ ExtBuilder::default().build_and_execute(|| {
+  System::set_block_number(1);
+  // ... test logic that emits FakeEvent1 and then FakeEvent2...
+  System::assert_has_event(Event::FakeEvent1{}.into())
+  System::assert_last_event(Event::FakeEvent2 { data: 7 }.into())
+  assert_eq!(System::events().len(), 2);
+ });
+}
+```
+
+Some things to note are:
+
+- Events are not emitted on the genesis block, and so the block number should be set in order for this test to pass.
+- You need to have a `.into()` after instantiating your pallet event, which turns it into a generic event.
+
 ## Genesis config
 
-In the previous example, the `ExtBuilder::build()` method used the default genesis configuration for building the mock runtime environment.
+In the previous examples, the `ExtBuilder::build()` method used the default genesis configuration for building the mock runtime environment.
 In many cases, it is convenient to set storage before testing.
-For example, you might want to pre-seeding account balances before testing.
+For example, you might want to pre-seed account balances before testing.
 
 In the implementation of `frame_system::Config`, `AccountId` and `Balance` are both set to `u64`.
 You can put `(u64, u64)` pairs in the `balances` vec to seed `(AccountId, Balance)` pairs as the account balances.
@@ -123,7 +147,7 @@ impl ExtBuilder {
 }
 ```
 
-AIn this example, acount 1 has balance 10, account 2 has balance 20, and so on.
+In this example, account 1 has a balance of 10, account 2 has a balance of 20, and so on.
 
 The exact structure used to define the genesis configuration of a pallet depends on the pallet `GenesisConfig` struct definition.
 For example, in the Balances pallet, it is defined as:

@@ -11,17 +11,20 @@ To see what that entails, this tutorial demonstrates adding a more complex palle
 In this tutorial, you'll add the [Contracts pallet](https://paritytech.github.io/substrate/master/pallet_contracts/) so that you can support smart contract development for your blockchain.
 
 If you completed the [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet/) tutorial, you'll notice some familiar patterns when adding the Contracts pallet.
-This tutorial focuses less on those common patterns and more on the the settings that are specifically required to add the Contracts pallet.
+This tutorial focuses less on those common patterns and more on the settings that are specifically required to add the Contracts pallet.
 
 ## Before you begin
 
 Before starting this tutorial, verify the following:
 
-- You have downloaded and compiled the `polkadot-v0.9.26` version of the
-  [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template/tree/polkadot-v0.9.26).
+- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
+
+- You have downloaded and compiled the 
+  [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) as described in
+  [Build a local blockchain](/tutorials/get-started/build-local-blockchain/).
 
 - You have downloaded and installed the
-  [Substrate front-end template](https://github.com/substrate-developer-hub/substrate-node-template/tree/polkadot-v0.9.26) as described in
+  [Substrate front-end template](https://github.com/substrate-developer-hub/substrate-front-end-template) as described in
   [Build a local blockchain](/tutorials/get-started/build-local-blockchain/).
 
 ## Add the pallet dependencies
@@ -42,7 +45,7 @@ To import the `pallet-contracts` crate:
    For example, add a line similar to the following:
 
    ```toml
-   pallet-contracts = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
+   pallet-contracts = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
    ```
 
 1. Import the `pallet-contracts-primitives` crate to make it available to the node template runtime by adding it to the list of dependencies.
@@ -52,7 +55,7 @@ To import the `pallet-contracts` crate:
    For example, if the compiler found version 6.0.0 for the `pallet-contracts-primitives` crate:
 
    ```toml
-   pallet-contracts-primitives = { version = "6.0.0", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
+   pallet-contracts-primitives = { version = "6.0.0", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
    ```
 
 1. Add the Contracts pallet to the list of `std` features so that its features are included when the runtime is built as a platform native binary.
@@ -79,7 +82,7 @@ To import the `pallet-contracts` crate:
 1. Check that your runtime compiles correctly by running the following command:
 
    ```bash
-   cargo check -p node-template-runtime
+   cargo check -p node-template-runtime --release
    ```
 
 ## Implement the Contracts configuration trait
@@ -164,8 +167,8 @@ To implement the `Config` trait for the Contracts pallet in the runtime:
       type Time = Timestamp;
       type Randomness = RandomnessCollectiveFlip;
       type Currency = Balances;
-      type Event = Event;
-      type Call = Call;
+      type RuntimeEvent = RuntimeEvent;
+      type RuntimeCall = RuntimeCall;
       type CallFilter = frame_support::traits::Nothing;
       type WeightPrice = pallet_transaction_payment::Pallet<Self>;
       type WeightInfo = pallet_contracts::weights::SubstrateWeight<Self>;
@@ -217,7 +220,7 @@ To implement the `Config` trait for the Contracts pallet in the runtime:
 1. Check that your runtime compiles correctly by running the following command:
 
    ```bash
-   cargo check -p node-template-runtime
+   cargo check -p node-template-runtime --release
    ```
 
    Although the runtime should compile, you cannot yet compile the entire node.
@@ -240,7 +243,7 @@ To expose the Contracts RPC API:
    For example:
 
    ```toml
-   pallet-contracts-rpc-runtime-api = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
+   pallet-contracts-rpc-runtime-api = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
    ```
 
 1. Add `pallet-contracts-rpc-runtime-api` to the list of `std` features so that its features are included when the runtime is built as a native binary.
@@ -273,9 +276,7 @@ To expose the Contracts RPC API:
 
    ```rust
    /*** Add this block ***/
-   impl pallet_contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, BlockNumber, Hash>
-     for Runtime
-     {
+   impl pallet_contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, BlockNumber, Hash> for Runtime {
       fn call(
          origin: AccountId,
          dest: AccountId,
@@ -297,7 +298,7 @@ To expose the Contracts RPC API:
          salt: Vec<u8>,
       ) -> pallet_contracts_primitives::ContractInstantiateResult<AccountId, Balance> {
          Contracts::bare_instantiate(origin, value, gas_limit, storage_deposit_limit, code, data, salt, CONTRACTS_DEBUG_OUTPUT)
-         }
+      }
          
       fn upload_code(
          origin: AccountId,
@@ -310,18 +311,18 @@ To expose the Contracts RPC API:
       fn get_storage(
          address: AccountId,
          key: Vec<u8>,
-         ) -> pallet_contracts_primitives::GetStorageResult {
+      ) -> pallet_contracts_primitives::GetStorageResult {
          Contracts::get_storage(address, key)
-         }
       }
-      ```
+   }
+   ```
 
 1. Save your changes and close the `runtime/src/lib.rs` file.
 
 1. Check that your runtime compiles correctly by running the following command:
 
    ```bash
-   cargo check -p node-template-runtime
+   cargo check -p node-template-runtime --release
    ```
 
 ## Update the outer node
@@ -340,8 +341,8 @@ To add the RPC API extension to the outer node:
    For example:
 
    ```toml
-   pallet-contracts = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
-   pallet-contracts-rpc = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
+   pallet-contracts = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+   pallet-contracts-rpc = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
    ```
 
    Because you have exposed the runtime API and are now working in code for the outer node, you don't need to use `no_std` configuration, so you don't have to maintain a dedicated `std` list of features.
@@ -388,9 +389,9 @@ To add the RPC API extension to the outer node:
 1. Add the extension for the Contracts RPC API.
 
    ```rust
- module.merge(System::new(client.clone(), pool.clone(), deny_unsafe).into_rpc())?;
- module.merge(TransactionPayment::new(client.clone()).into_rpc())?;
- module.merge(Contracts::new(client.clone()).into_rpc())?; // Add this line
+   module.merge(System::new(client.clone(), pool.clone(), deny_unsafe).into_rpc())?;
+   module.merge(TransactionPayment::new(client.clone()).into_rpc())?;
+   module.merge(Contracts::new(client.clone()).into_rpc())?; // Add this line
    ```
 
 1. Save your changes and close the `node/src/rpc.rs` file.
@@ -398,12 +399,10 @@ To add the RPC API extension to the outer node:
 1. Check that your runtime compiles correctly by running the following command:
 
    ```bash
-   cargo check -p node-template
+   cargo check -p node-template --release
    ```
-
-If there are no errors, you are ready to compile.
-
-1. Compile the node in release mode by running the following command:
+   
+   If there are no errors, you are ready to compile by running the following command:
 
    ```bash
    cargo build --release
@@ -459,6 +458,6 @@ In this tutorial, you learned:
 To begin using the Contracts pallet, you'll need to start writing some smart contracts to deploy.
 Explore the following topics and tutorials to learn more.
 
-- [Custom RPCs](/build/custom-rpc/)
+- [Custom RPCs](/build/remote-procedure-calls/)
 - [Prepare your first contract](/tutorials/smart-contracts/prepare-your-first-contract/)
 - [Develop a smart contract](/tutorials/smart-contracts/develop-a-smart-contract/)

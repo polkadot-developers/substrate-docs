@@ -2,6 +2,7 @@ menu:
   - quick-start
   - fundamentals
   - install
+  - design
   - build
   - test
   - tutorials
@@ -48,6 +49,10 @@ fundamentals:
       url: /fundamentals/rust-basics/
     - title: Offchain operations
       url: /fundamentals/offchain-operations/
+    - title: Light clients in Substrate Connect
+      url: /fundamentals/light-clients-in-substrate-connect/
+    - title: Cross-consensus communication
+      url: /fundamentals/xcm-communication/
 
 install:
   title: Install
@@ -65,10 +70,13 @@ install:
       url: /install/developer-tools/
     - title: Troubleshoot Rust issues
       url: /install/troubleshoot-rust-issues/
-  #- title: Design
-  #url: /design/
-  #pages:
-  #- title: Applications
+  
+design:
+  title: Design
+  url: /design/
+  pages:
+    - title: Substrate empowers builders
+      url: /design/substrate-empowers-builders/
   #url: /design/applications/
   #- title: Execution
   #url: /design/execution/
@@ -99,19 +107,23 @@ build:
     - title: Pallet coupling
       url: /build/pallet-coupling/
     - title: Events and errors
-      url: /build/events-errors/
+      url: /build/events-and-errors/
     - title: Randomness
       url: /build/randomness/
-    - title: Chain specification
-      url: /build/chain-spec/
     - title: Privileged calls and origins
       url: /build/origins/
     - title: Remote procedure calls
-      url: /build/custom-rpc/
+      url: /build/remote-procedure-calls/
     - title: Application development
-      url: /build/application-dev/
+      url: /build/application-development/
+    - title: Chain specification
+      url: /build/chain-spec/
+    - title: Genesis configuration
+      url: /build/genesis-configuration/
+    - title: Build a deterministic runtime
+      url: /build/build-a-deterministic-runtime/
     - title: Upgrade the runtime
-      url: /build/upgrade/
+      url: /build/upgrade-the-runtime/
     #- title: Best practices
     #url: /build/best-practices/
     #- title: Executor
@@ -127,11 +139,19 @@ test:
       url: /test/debug/
     - title: Benchmark
       url: /test/benchmark/
-#- title: Deploy
-#url: /deploy/
-# pages:
-#   - title: Deploy a solo chain
-#     url: /docs/deploy/deploy-a-solo-chain/
+    - title: Simulate parachains
+      url: /test/simulate-parachains/
+    - title: Check runtime
+      url: /test/check-runtime/
+      
+deploy:
+  title: Deploy
+  url: /deploy/
+  pages:
+    - title: Prepare to deploy
+      url: /deploy/prepare-to-deploy/
+    - title: Deployment options
+      url: /deploy/deployment-options/
 #   - title: Deploy on a test network
 #     url: /docs/deploy/deploy-on-a-test-network/
 #   - title: Deploy a parathread
@@ -142,7 +162,7 @@ test:
 #url: /maintain/
 #pages:
 #   - title: Monitor
-#     url: /docs/main-docs/deploy/metrics/
+#     url: /docs/maintain/monitor/
 #   - title: Operate
 #     url: /docs/main-docs/deploy/operate/
 #   - title: Upgrades and migration
@@ -160,13 +180,13 @@ tutorials:
         - title: Simulate a network
           url: /tutorials/get-started/simulate-network/
         - title: Add trusted nodes
-          url: /tutorials/get-started/trusted-network/
+          url: /tutorials/get-started/add-trusted-nodes/
         - title: Authorize specific nodes
-          url: /tutorials/get-started/permissioned-network/
+          url: /tutorials/get-started/authorize-specific-nodes/
         - title: Monitor node metrics
-          url: /tutorials/get-started/node-metrics/
+          url: /tutorials/get-started/monitor-node-metrics/
         - title: Upgrade a running network
-          url: /tutorials/get-started/forkless-upgrade/
+          url: /tutorials/get-started/upgrade-a-running-network/
     - title: Work with pallets
       url: /tutorials/work-with-pallets/
       pages:
@@ -180,6 +200,25 @@ tutorials:
           url: /tutorials/work-with-pallets/specify-the-origin-for-a-call/
         - title: Publish custom pallets
           url: /tutorials/work-with-pallets/publish-custom-pallets/
+    - title: Collectibles workshop
+      url: /tutorials/collectibles-workshop/00-intro-runtime-pallets/
+      pages:
+        - title: Prepare a working environment
+          url: /tutorials/collectibles-workshop/01-prepare/
+        - title: Get oriented
+          url: /tutorials/collectibles-workshop/02-orientation/
+        - title: Create a new pallet
+          url: /tutorials/collectibles-workshop/03-create-pallet/
+        - title: Shared and custom types
+          url: /tutorials/collectibles-workshop/04-import-traits/
+        - title: Add custom storage items
+          url: /tutorials/collectibles-workshop/05-add-storage-items/
+        - title: Create basic functions
+          url: /tutorials/collectibles-workshop/06-first-functions/
+        - title: More functions
+          url: /tutorials/collectibles-workshop/07-more-functions/
+        - title: Add collectibles to the runtime
+          url: /tutorials/collectibles-workshop/08-add-collectibles-to-runtime/
     - title: Develop smart contracts
       url: /tutorials/smart-contracts/
       pages:
@@ -193,22 +232,26 @@ tutorials:
           url: /tutorials/smart-contracts/build-a-token-contract/
         - title: Troubleshoot smart contracts
           url: /tutorials/smart-contracts/troubleshoot-smart-contracts/
-    - title: Connect with other chains
-      url: /tutorials/connect-other-chains/
+    - title: Connect relay and parachains
+      url: /tutorials/connect-relay-and-parachains/
       pages:
-        - title: Start a local relay chain
-          url: /tutorials/connect-other-chains/local-relay/
+        - title: Prepare a local relay chain
+          url: /tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain/
         - title: Connect a local parachain
-          url: /tutorials/connect-other-chains/local-parachain/
-        - title: Connect to Rococo testnet
-          url: /tutorials/connect-other-chains/rococo-slot/
-        #- title: Send cross-consensus messages (XCM)
-        #  url: /tutorials/connect-other-chains/xcm/
+          url: /tutorials/connect-relay-and-parachains/connect-a-local-parachain/
+        - title: Acquire a testnet slot
+          url: /tutorials/connect-relay-and-parachains/acquire-a-testnet-slot/
+        - title: Open message passing channels
+          url: /tutorials/connect-relay-and-parachains/open-message-passing-channels/
+        - title: Transfer assets with XCM
+          url: /tutorials/connect-relay-and-parachains/transfer-assets-with-xcm/
     - title: Integrate with tools
       url: /tutorials/integrate-with-tools/
       pages:
         - title: Integrate a light client node
-          url: /tutorials/integrate-with-tools/substrate-connect/
+          url: /tutorials/integrate-with-tools/integrate-a-light-client-node/
+        - title: Explore sidecar endpoints
+          url: /tutorials/integrate-with-tools/explore-sidecar-endpoints/
         - title: Access EVM accounts
           url: /tutorials/integrate-with-tools/access-evm-accounts/
 
@@ -254,10 +297,14 @@ reference:
       url: /reference/account-data-structures/
     - title: Type encoding (SCALE)
       url: /reference/scale-codec/
+    - title: Address formats
+      url: /reference/address-formats/
     - title: Transaction formats
       url: /reference/transaction-format/
     - title: Cryptography
       url: /reference/cryptography/
+    - title: XCM reference
+      url: /reference/xcm-reference/
     - title: How-to reference guides
       url: /reference/how-to-guides/
 

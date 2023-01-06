@@ -1,16 +1,13 @@
 import { graphql } from 'gatsby';
+import { Layout, Link, SEO } from 'gatsby-plugin-substrate';
 import React from 'react';
 
 import configNav from '../../content/config/nav.yaml';
-import { Link } from '../components/default/Link';
 import Markdown from '../components/default/Markdown';
 import Sidebar from '../components/layout/Sidebar';
-//import BottomButtons from '../components/site/BottomButtons';
-import Layout from '../components/site/Layout';
 import NavSidebar from '../components/site/NavSidebar';
 import MobileNavigation from '../components/site/NavSidebar/MobileNavigation';
 import ModalButton from '../components/site/Search/ModalButton';
-import SEO from '../components/site/SEO';
 import TableOfContents from '../components/site/TableOfContents';
 import EditOnGithubButton from '../components/ui/EditOnGithubButton';
 import PreviousNextButtons from '../components/ui/PreviousNextButtons';
@@ -59,9 +56,9 @@ export default function DocsSinglePage({ data, pageContext }) {
   const previousPage = nextPrevSlugs[index - 1];
 
   return (
-    <Layout>
+    <Layout showFooterNewsletter={false}>
       <SEO title={title} description={description} excerpt={excerpt} />
-      <div className="flex flex-col lg:flex-row">
+      <div className="flex flex-col lg:flex-row -mt-12">
         <div className="z-20 flex-col pt-8 pl-5 pr-5 sticky top-16 hidden lg:inline-block lg:flex-none lg:bg-substrateGray-light lg:dark:bg-substrateDark border-r border-gray-200 dark:border-gray-700 h-full">
           <ModalButton />
           <Sidebar currentPath={pagePath}>

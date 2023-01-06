@@ -1,9 +1,9 @@
 import cx from 'classnames';
+import { Link } from 'gatsby-plugin-substrate';
 import React from 'react';
 
 import analytics from '../../../analytics';
 import snakecase from '../../../hooks/snakecase';
-import { Link } from '../../default/Link';
 import { Image } from '../../default/resolvers/Image';
 import CardLink from './CardLink';
 

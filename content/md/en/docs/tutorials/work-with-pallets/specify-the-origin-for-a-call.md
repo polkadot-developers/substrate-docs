@@ -48,7 +48,7 @@ By completing this tutorial, you will accomplish the following objectives:
 
 As you saw in [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet), the `Config` trait for the `nicks` pallet declares several types.
 For this tutorial, the focus is on the `ForceOrigin` type.
-The `ForceOrigin` type is used to specify the account that can perform certain options.
+The `ForceOrigin` type is used to specify the account that can perform certain operations.
 For this pallet, the `ForceOrigin` type specifies that account that can set or remove a name for another account.
 Typically, only an account with administrative privileges—such as a root superuser account—can act on behalf of another account.
 In the case of the Nicks pallet, only the owner of an account or the Root account can set or remove a reserved nickname.
@@ -66,7 +66,7 @@ If you attempt to call the `kill_name` or `force_name` with an account other tha
 
 ## Set the name for an account
 
-To demonstrate on the origin for a call affects operations, let's set and try to forcibly remove the account name for another account.
+To demonstrate how the origin for a call affects operations, let's set and try to forcibly remove the account name for another account.
 For this demonstration, be sure you have:
 
 - The node template running in development mode: ./target/release/node-template --dev
@@ -196,5 +196,5 @@ There are several [tutorials](/tutorials/) that can serve as next steps for lear
 In addition to tutorials, you might want to explore the following resources to learn more.
 
 - [Privileged calls and origins](/build/origins) provides a closer look at the default raw origin types and how to create custom origins.
-- [Events and errors](/build/events-errors) explains how to emit events and errors from the runtime.
+- [Events and errors](/build/events-and-errors) explains how to emit events and errors from the runtime.
 - [FRAME pallets](/reference/frame-pallets/) offers an overview of the most commonly-used predefined FRAME pallets.

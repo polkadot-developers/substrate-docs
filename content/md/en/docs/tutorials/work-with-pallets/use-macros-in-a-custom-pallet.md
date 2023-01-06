@@ -65,12 +65,8 @@ The proof-of-existence application exposes the following callable functions:
 ## Build a custom pallet
 
 The Substrate node template has a FRAME-based runtime.
-<<<<<<< HEAD
-As you learned in [Runtime development](/main-docs/fundamentals/runtime-development), FRAME is a library of code that allows you to build a Substrate runtime by composing modules called pallets.
-=======
-As you learned in [Runtime development](/fundamentals/runtime-intro), FRAME is a library of code that allows you to build a Substrate runtime by composing modules called pallets.
->>>>>>> main
-You can think of the pallets as individual pieces of logic that define what your blockchain can do.
+As you learned in [Runtime development](/fundamentals/runtime-development), FRAME is a library of code that allows you to build a Substrate runtime by composing modules called pallets.
+You can think of the pallets as specialized logical units that define what your blockchain can do.
 Substrate provides you with a number of pre-built pallets for use in FRAME-based runtimes.
 
 ![Runtime composition](/media/images/docs/tutorials/custom-pallet/frame-runtime.png)
@@ -158,7 +154,7 @@ To define the `Config` trait for the proof-of-existence pallet:
     #[pallet::config]
     pub trait Config: frame_system::Config {
       /// Because this pallet emits events, it depends on the runtime's definition of an event.
-      type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+      type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_system::Config>::RuntimeEvent>;
     }
     ```
 
@@ -199,12 +195,12 @@ To implement the pallet events:
 ## Include pallet errors
 
 The events you defined indicate when calls to the pallet have completed successfully.
-Errors indicate when a call has failed, and why it has failed.
+Errors indicate that a call has failed, and why it has failed.
 For this tutorial, you define the following error conditions:
 
-- An attempt to make a claim that has already exists.
+- An attempt to make a claim when a claim already exists.
 
-- An attempt to revoke a claim that does not exist.
+- An attempt to revoke a claim that doesn't exist.
 
 - An attempt to revoke a claim that is owned by another account.
 
@@ -258,7 +254,7 @@ The proof-of-existence pallet exposes two callable functions to users:
 These functions use the `StorageMap` to implement the following logic:
 
 - If a claim is already in storage, then it already has an owner and cannot be claimed again.
-- If a claim does not in storage, then it is available to be claimed and written to storage.
+- If a claim doesn't exist in storage, then it is available to be claimed and written to storage.
 
 To implement this logic in the proof-of-existence pallet:
 
@@ -320,7 +316,7 @@ To implement this logic in the proof-of-existence pallet:
 1. Check that your code compiles by running the following command:
 
     ```bash
-    cargo check -p node-template-runtime
+    cargo check -p node-template-runtime --release
     ```
 
     You can refer to the node template [solution](https://github.com/substrate-developer-hub/substrate-node-template/blob/tutorials/solutions/proof-of-existence/pallets/template/src/lib.rs) if you get stuck.

@@ -9,8 +9,9 @@ keywords:
 ---
 
 This guide demonstrates how you can mint a token by leveraging the primitive capabilities of a [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html).
-In this guide, the `StorageMap` primitive uses the [blake2_128_concat](/build/runtime-storage#hashing-algorithms) `hasher` to map balances to account IDs.
-This approach is similar to how the [Balances](https://paritytech.github.io/substrate/master/pallet_balances/index.html) pallet makes use of it to store to keep track of account balances.
+
+In this guide, the `StorageMap` primitive uses the [blake2\_128\_concat](/build/runtime-storage#hashing-algorithms) `hasher` to map balances to account IDs.
+This approach is similar to how the [Balances](https://paritytech.github.io/substrate/master/pallet_balances/index.html) pallet makes use of it to store and keep track of account balances.
 
 You should note that this guide is only intended to illustrate a simple approach to creating tokens in Substrate.
 This approach _is not_ a recommended best practice.
@@ -42,7 +43,7 @@ Give any account the ability to create a token supply in exchange for native tok
 
 ## Set up the Config trait
 
-Using the node template as a starting point, specify the types your pallet depends on and the [`Events`](/build/events-errors/) it emits:
+Using the node template as a starting point, specify the types your pallet depends on and the [`Events`](/build/events-and-errors/) it emits:
 
 ```rust
 
@@ -88,9 +89,6 @@ Create the `mint()` function to issue a token supply from any origin.
 		) -> DispatchResultWithPostInfo {
 
 		let sender = ensure_signed(origin)?;
-
-		// Check if the kitty does not already exist in our storage map
-		 ensure!(Self::kitties(&kitty_id) == None, <Error<T>>::KittyExists);
 
 		// Update storage.
 		<BalanceToAccount<T>>::insert(&sender, amount);

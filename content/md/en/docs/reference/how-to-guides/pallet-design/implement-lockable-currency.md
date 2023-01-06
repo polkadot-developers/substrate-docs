@@ -67,7 +67,7 @@ Defining your custom configuration type will allow your pallet to inherit the me
 
    ```rust
    	impl pallet_template::Config for Runtime {
-   		type Event = Event;
+   		type RuntimeEvent = RuntimeEvent;
    		type StakeCurrency = Balances; // <- add this line
    	}
    ```

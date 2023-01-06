@@ -134,7 +134,7 @@ Instead, state changes are written directly to storage during execution.
 If a transaction were to fail mid-execution, any state changes that took place before the failure would not be reverted, leaving the block in an unrecoverable state.
 Before committing any state changes to storage, the runtime logic should perform all necessary checks to ensure the extrinsic will succeed.
 
-Note that [events](/build/events-errors/) are also written to storage.
+Note that [events](/build/events-and-errors/) are also written to storage.
 Therefore, the runtime logic should not emit an event before performing the complementary actions.
 If a transaction fails after an event is emitted, the event is not be reverted.
 
