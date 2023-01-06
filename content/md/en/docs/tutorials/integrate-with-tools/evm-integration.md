@@ -37,7 +37,7 @@ You can call into the runtime and retrieve that information using the node RPC s
 
 - [Moonbeam: Ethereum compatibility](https://docs.moonbeam.network/learn/features/eth-compatibility/)
 - [Ethereum virtual machine (EVM)](https://ethereum.org/en/developers/docs/evm/)
-- [Access EVM accounts](/tutorials/connect-other-chains/access-evm-accounts/)
+- [Access EVM accounts](/tutorials/integrate-with-tools/access-evm-accounts/)
 - [Substrate EVM utilities](https://github.com/paritytech/frontier/blob/master/template/utils/README.md#substrate-evm-utilities)
 - [Frontier rpc and rpc-core](https://github.com/paritytech/frontier/tree/master/client/)
 - [Frontier consensus](https://github.com/paritytech/frontier/tree/master/primitives/consensus)

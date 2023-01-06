@@ -1,4 +1,3 @@
-/* src/components/searchresults.js */
 import { Link } from 'gatsby';
 import React from 'react';
 

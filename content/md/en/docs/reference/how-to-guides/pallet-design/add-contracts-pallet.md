@@ -34,7 +34,7 @@ Broadly-speaking, there are two main reasons for adding the Contracts pallet to 
 
 ## Before you begin
 
-Make sure you have the latest version (`polkadot-v0.9.26`) of the Substrate node template compiled on your computer.
+Make sure you have the latest version of the Substrate node template compiled on your computer.
 If you haven't already done so, see [Build a local blockchain](/tutorials/get-started/build-local-blockchain/).
 
 ## Import the dependencies
@@ -65,7 +65,7 @@ If you haven't already done so, see [Build a local blockchain](/tutorials/get-st
     type Time = Timestamp;
     type Randomness = RandomnessCollectiveFlip;
     type Currency = Balances;
-    type Event = Event;
+    type RuntimeEvent = RuntimeEvent;
     /* --snip-- */
    ```
 
@@ -125,7 +125,7 @@ If you haven't already done so, see [Build a local blockchain](/tutorials/get-st
 
 1. Add an instance of `pallet_contracts` in the runtime.
 
-   Create an instance of the Contracts pallet in the `construct_macro!` inside `runtime/src/lib.rs`:
+   Create an instance of the Contracts pallet in the `construct_runtime!` macro inside `runtime/src/lib.rs`:
 
    ```rust
    /* --snip-- */

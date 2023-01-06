@@ -24,7 +24,7 @@ Before you start building, though, you want to make sure you are in the right pl
 
 - [Networks and blockchains](/fundamentals/node-and-network-types/) defines the network topology for different blockchain deployment scenarios and how they apply to Substrate-based blockchains.
 
-- [Runtime development](/fundamentals/runtime-intro) highlights the importance of the Substrate runtime and introduces the core application interfaces and primitives required for Substrate runtime development.
+- [Runtime development](/fundamentals/runtime-development/) highlights the importance of the Substrate runtime and introduces the core application interfaces and primitives required for Substrate runtime development.
 
 - [Consensus](/fundamentals/consensus/) describes the most common consensus models and the types of consensus you can implement for a Substrate blockchain.
 

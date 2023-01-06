@@ -25,7 +25,7 @@ However, Substrate might be the perfect choice if you want to build a blockchain
 - customizable with predefined composable modular components
 - able to evolve and change with upgrades over time
 
-Substrate is a Software Development Kit (SDK) specifically designed to provide you with all of the fundamental components s blockchain requires so you can focus on crafting the logic that makes your chain unique and innovative.
+Substrate is a Software Development Kit (SDK) specifically designed to provide you with all of the fundamental components a blockchain requires so you can focus on crafting the logic that makes your chain unique and innovative.
 Unlike other distributed ledger platforms, Substrate is:
 
 - [Flexible](#flexible)
@@ -77,7 +77,7 @@ Depending on your background and interests, explore the following resources to l
 
 - [Blockchain basics](/fundamentals/blockchain-basics/)
 - [Architecture](/fundamentals/architecture/)
-- [Runtime development](/fundamentals/runtime-intro)
+- [Runtime development](/fundamentals/runtime-development)
 - [Networks and blockchains](/fundamentals/node-and-network-types/)
 - [Install](/install/)
 
@@ -85,6 +85,6 @@ Depending on your background and interests, explore the following resources to l
 
 - [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
 - [Simulate a network](/tutorials/get-started/simulate-network/)
-- [Add trusted validators](/tutorials/get-started/trusted-network/)
+- [Add trusted validators](/tutorials/get-started/add-trusted-nodes/)
 
 If you prefer to explore code directly, you can start building in the [Substrate Playground](https://docs.substrate.io/playground/) and consult the [API reference (Rustdocs)](https://paritytech.github.io/substrate/master) to get details about the Rust crates within Substrate.

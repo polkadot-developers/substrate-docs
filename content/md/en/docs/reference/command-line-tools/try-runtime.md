@@ -1,167 +1,137 @@
 ---
 title: try-runtime
-description: Run tests for a specified runtime state against real, production, chain state
+description: Command-line reference for using try-runtime to test a specified runtime state against a production snapshot of chain state.
 keywords:
   - testing
   - snapshot
   - integration testing
   - production
+  - runtime upgrades
+  - storage migration
 ---
 
-The `try-runtime` tool is built to query a snapshot of runtime storage, using an [in-memory-externalities](https://paritytech.github.io/substrate/master/sp_state_machine/struct.TestExternalities.html) to store state.
-In this way, it enables runtime engineers to write tests for a specified runtime state, for testing against real chain state _before_ going to production.
-It is designed to be used as a command line interface to specify at which block to query state.
+The `try-runtime` command-line tool enables you to query a snapshot of runtime storage using an [in-memory-externalities](https://paritytech.github.io/substrate/master/sp_state_machine/struct.TestExternalities.html) data structure to store state.
+With this tool, you can write tests against a snapshot of the runtime state _before_ going to production.
 
-In its simplest form, `try-runtime` is a tool that enables:
+## Basic command usage
 
-1. Connecting to a remote node and calling into some runtime API.
-2. Scraping the specified state from a node at a given block.
-3. Writing tests for that data.
+The basic syntax for running `try-runtime` commands is:
 
-## Motivation
-
-The initial motivation for `try-runtime` came from the need to test runtime changes against state from a real chain.
-Prior [`TestExternalities`](https://paritytech.github.io/substrate/master/sp_state_machine/struct.TestExternalities.html) and [`BasicExternalities`](https://paritytech.github.io/substrate/master/sp_state_machine/struct.BasicExternalities.html) existed
-for writing unit and integrated tests with mock data, but lacked an avenue to test against a chain's actual state.
-`try-runtime` extends `TestExternalities` and `BasicExternalities` by scraping state (which is stored with key value pairs) via a node's RPC endpoints [`getStorage`](https://paritytech.github.io/substrate/master/remote_externalities/trait.RpcApiClient.html#method.get_storage) and [`getKeysPaged`](https://paritytech.github.io/substrate/master/remote_externalities/trait.RpcApiClient.html#method.get_keys_paged) and inserting them into `TestExternalities`.
-
-## How it works
-
-The `try-runtime` tool has its own implementation of externalities called [`remote_externalities`](https://paritytech.github.io/substrate/master/remote_externalities/index.html) which is just a builder wrapper around `TestExternalities` that uses a generic [key-value store](/fundamentals/state-transitions-and-storage) where data is [type encoded](/reference/scale-codec).
-
-The diagram below illustrates the way externalities sits outside a compiled runtime as a means to capture the storage of that runtime.
-
-### Storage externalities
-
-![Storage externalities](/media/images/docs/reference/try-runtime-ext-1.png)
-
-### Testing with externalities
-
-![Testing with externalities](/media/images/docs/reference/try-runtime-ext-2.png)
-
-With `remote_externalities`, developers can capture some chain state and run tests on it. Essentially, `RemoteExternalities` will populate a `TestExternalities` with a real chain's data.
-
-In order to query state, `try-runtime` makes use of Substrate's RPCs, namely [`StateApi`](https://paritytech.github.io/substrate/master/sc_rpc/state/trait.StateApi.html).
-In particular:
-
-- [`storage`](https://paritytech.github.io/substrate/master/sc_rpc/state/trait.StateApi.html#tymethod.storage): A method which returns a storage value under the given key.
-- [`storage_key_paged`](https://paritytech.github.io/substrate/master/sc_rpc/state/trait.StateApi.html#tymethod.storage_keys_paged): A method which returns the keys with prefix with pagination support.
-
-## Usage
-
-The most common use case for `try-runtime` is with storage migrations and runtime upgrades.
-
-There are a number of flags that need to be preferably set on a running node in order to work well with try-runtime’s expensive RPC queries, namely:
-
-- `set --rpc-max-payload 1000` to ensure large RPC queries can work.
-- `set --rpc-cors all` to ensure ws connections can come through.
-
-You can combine `try-runtime` with [`fork-off-substrate`](https://github.com/maxsam4/fork-off-substrate) to test your chain before production.
-Use `try-runtime` to test your chain's migration and its pre and post states.
-Then, use `fork-off-substrate` if you want to check that block production continues after the migration.
-
-### Calling into hooks from `OnRuntimeUpgrade`
-
-By default, there are two ways of defining a runtime upgrade in the runtime.
-The [`OnRuntimeUpgrade`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.OnRuntimeUpgrade.html) trait provides the different methods to achieve this.
-
-- **From inside a runtime**. For example:
-
-  ```rust
-  struct Custom;
-  	impl OnRuntimeUpgrade for Custom {
-  		fn on_runtime_upgrade() -> Weight {
-  		// -- snip --
-  	}
-  }
-  ```
-
-- **From inside a pallet**. For example:
-
-  ```rust
-  #[pallet::hooks]
-  impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
-  	fn on_runtime_upgrade() -> Weight {
-  	// -- snip --
-  	}
-  }
-  ```
-
-These hooks will specify _what should happen upon a runtime upgrade_. For testing purposes, we prefer having hooks that allow us to inspect the state _before_ and _after_ a runtime upgrade as well.
-
-These hooks are not available by default, and are only available under a specific feature flag, named `try-runtime`.
-
-The new hooks are as follows:
-
-```rust
-#[cfg(feature = "try-runtime")]
-fn pre_upgrade() -> Result<(), &'static str> { Ok(()) }
-
-#[cfg(feature = "try-runtime")]
-fn post_upgrade() -> Result<(), &'static str> { Ok(()) }
+```shell
+cargo run --release --features=try-runtime try-runtime [options] [subcommand]
 ```
 
-### Helper functions
+Depending on the subcommand you specify, additional arguments, options, and flags might apply or be required.
+To view usage information for a specific `try-runtime` subcommand, specify the subcommand and the `--help` flag.
+For example, to see usage information for `try-runtime on-runtime-upgrade`, you can run the following command:
 
-[`OnRuntimeUpgradeHelpersExt`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.OnRuntimeUpgradeHelpersExt.html) are a set of helper functions made available from [`frame_support::hooks`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Hooks.html) in order to use `try-runtime` for testing storage migrations.
-These include:
-
-- **`storage_key`**: Generates a storage key unique to this runtime upgrade. This can be used to communicate data from pre-upgrade to post-upgrade state and check them.
-- **`set_temp_storage`**: Writes some temporary data to a specific storage that can be read (potentially in the post-upgrade hook).
-- **`get_temp_storage`** : Gets temporary storage data written by `set_temp_storage`.
-
-Using the [`frame_executive::Executive`](https://paritytech.github.io/substrate/master/frame_executive/struct.Executive.html) struct, these helper functions in action would look like:
-
-```rust
-pub struct CheckTotalIssuance;
-impl OnRuntimeUpgrade for CheckTotalIssuance {
-	#[cfg(feature = "try-runtime")]
-	fn post_upgrade() {
-		// iterate over all accounts, sum their balance and ensure that sum is correct.
-	}
-}
-
-pub struct EnsureAccountsWontDie;
-impl OnRuntimeUpgrade for EnsureAccountsWontDie {
-	#[cfg(feature = "try-runtime")]
-	fn pre_upgrade() {
-		let account_count = frame_system::Accounts::<Runtime>::iter().count();
-		Self::set_temp_storage(account_count, "account_count");
-	}
-
-	#[cfg(feature = "try-runtime")]
-	fn post_upgrade() {
-		// ensure that this migration doesn't kill any account.
-		let post_migration = frame_system::Accounts::<Runtime>::iter().count();
-		let pre_migration = Self::get_temp_storage::<u32>("account_count");
-		ensure!(post_migration == pre_migration, "error ...");
-	}
-}
-
-pub type CheckerMigrations = (EnsureAccountsWontDie, CheckTotalIssuance);
-pub type Executive = Executive<_, _, _, _, (CheckerMigrations)>;
+```shell
+cargo run --release --features=try-runtime try-runtime on-runtime-upgrade --help
 ```
 
-### CLI interface
+## Subcommands
+
+You can use the following subcommands with the `try-runtime` command-line tool.
+For reference information and examples that illustrate using these subcommands, select an appropriate command.
+
+| Command | Description
+| ------- | -----------
+| `on-runtime-upgrade` | Executes the migrations of the local runtime.
+| `execute-block` | Executes the given block against some state.
+| `offchain-worker`| Executes *the offchain worker hooks* of a given block against some state.
+| `follow-chain` | Follows the given chain's finalized blocks and applies all of its extrinsics.
+| `help`| Displays usage information for try-runtime the specified subcommand.
+
+## Options
+
+You can use the following options with `try-runtime` commands.
+
+| Option | Description
+| ------ | -----------
+| `--chain <CHAIN_SPEC>` | Specifies the chain specification to use. You can use a predefined chain specification name, such as `dev`, `local`, or `staging` or the path to a file that contains the chain specification, for example, the chain specification generated by using the `build-spec` subcommand.
+| `--dev` | Starts the node in development mode in a fresh state. No state is persisted if you run the node using this flag. This option sets `--chain=dev`, `--force-authoring`, `--rpc-cors=all`, `--alice`, and `--tmp` flags, unless explicitly overridden.
+| `-d`, `--base-path <path>` | Specifies a custom base path.
+| `-l`, `--log <log-pattern>...` | Sets a custom logging filter. The syntax to use is `<log-target>=<level>`, for example `-lsync=debug`. The valid log levels from least to most verbose are `error`, `warn`, `info`, `debug`, and `trace`. By default, all targets log `info` level messages. You can set the global log level with `-l<level>`.
+| `--detailed-log-output` | Enables detailed log output, including the log target, log level and thread name. This option is automatically enabled when log level is higher than `info`.
+| `--disable-log-color` | Disables log color output.
+| `--enable-log-reloading` | Enables feature to dynamically update and reload the log filter. Be aware that enabling this feature can lead to a performance decrease up to factor six or more. Depending on the global logging level the performance decrease changes. The `system_addLogFilter` and `system_resetLogFilter` RPCs will have no effect with this option not being set.
+| `--tracing-targets <targets>` | Sets a custom profiling filter. Syntax is the same as for logging: <target>=<level>.
+| `--tracing-receiver <receiver>` | Specifies a receiver to process tracing messages.
+| `--execution <strategy>` | Determines the execution strategy used by all execution contexts. Valid values are `Native`, `Wasm`, `Both` or `NativeElseWasm`.
+| `--wasm-execution <method>` | Specifies the method for executing WebAssembly runtime code. Valid values are `interpreted`, or `compiled`. The default is `Compiled`.
+| `--wasm-instantiation-strategy <strategy>` | Specifies the WebAssembly instantiation method to use if `wasm-execution` is set to `compiled`. The default strategy is `pooling-copy-on-write`.
+| `--heap-pages <heap_pages>` | Specifies the number of 64KB pages to allocate for WebAssembly execution. The defaults is`sc_service::Configuration.default_heap_pages`.
+| `--no-spec-check-panic` | Allows the specification check to issue a warning rather than panic.
+| `--state-version <state_version>` | Specifies the state version that is used by the chain. The default is 1.
+| `-h, --help` | Displays usage information (use `-h` for a summary).
+| `-V, --version` | Displays version information.
+
+## Examples
 
 To use `try-runtime` from the command line, run your node with the `--features=try-runtime` flag.
+For example:
 
-The possible sub-commands include:
+```bash
+cargo run --release --features=try-runtime try-runtime
+```
 
-- **`on-runtime-upgrade`**: Executes "tryRuntime_on_runtime_upgrade" against the given runtime state.
-- **`offchain-worker`**: Executes "offchainWorkerApi_offchain_worker" against the given runtime state.
-- **`execute-block`**: Executes "core_execute_block" using the given block and the runtime state of the parent block.
-- **`follow-chain`**: Follows a given chain's finalized blocks and applies to all its extrinsics. This allows the behavior of a new runtime to be inspected over a long period of time, with real transactions coming as input.
+To view usage information for a specific `try-runtime` subcommand, specify the subcommand and the `--help` flag.
+For example:
 
-For example, running `try-runtime` with the "on-runtime-upgrade" subcommand on a chain running locally:
+```bash
+cargo run --release --features=try-runtime try-runtime on-runtime-upgrade --help
+```
+
+### Setting RPC command-line options
+
+Typically, you use `try-runtime` to prepare for storage migration and runtime upgrades.
+However, RPC calls that query storage are computationally expensive.
+To prepare a node for testing with `try-runtime`, you should start the node with the following command-line options:
+
+- `--rpc-max-request-size <RPC_MAX_REQUEST_SIZE>` to set the maximum RPC request payload size—in megabytes—to ensure RPC calls that query storage aren't rejected. The default is 15MiB.
+
+- `--rpc-max-response-size <RPC_MAX_RESPONSE_SIZE>` to set the maximum RPC response payload size—in megabytes—to ensure the data retrieved from RPC calls to storage can be returned. The default is 15MiB.
+
+- `--rpc-cors all` to ensure all WebSocket connections can come through.
+
+For example:
+
+```bash
+cargo run --release -- \
+  --rpc-max-request-size 1000 \
+  --rpc-max-response-size 1000 \
+  --rpc-cors all \
+  --dev
+```
+
+### Runtime upgrade
+
+You can use the `on-runtime-upgrade` subcommand to execute against the given runtime state.
+For example, you can run `try-runtime` with `on-runtime-upgrade` for a chain running locally with a command like this:
 
 ```bash
 cargo run --release --features=try-runtime try-runtime on-runtime-upgrade live ws://localhost:9944
 ```
 
-#### Other scenarios
+### Migration testing
 
-Using it to re-execute code from a `ElectionProviderMultiPhase` offchain worker on `localhost:9944`:
+You can combine `try-runtime` with [`fork-off-substrate`](https://github.com/maxsam4/fork-off-substrate) to test your chain before production.
+Use `try-runtime` to test your chain's migration and its pre and post states.
+Then, use `fork-off-substrate` if you want to check that block production continues after the migration.
+
+### Execute block
+
+The `execute-block` subcommand executes `core_execute_block` using the given block and the runtime state of the parent block.
+
+### Follow chain
+
+The `follow-chain` subcommand follows a given chain's finalized blocks and applies to all its extrinsics. 
+This subcommand allows you to inspect the behavior of a new runtime over a long period of time with real transactions coming as input.
+
+### Offchain worker
+
+The `offchain-worker` subcommand executes `offchainWorkerApi_offchain_worker` against the given runtime state.
+For example, you can use `try-runtime` to re-execute code from the `ElectionProviderMultiPhase` offchain worker on `localhost:9944` with a command like this:
 
 ```bash
 cargo run -- --release \
@@ -173,13 +143,11 @@ cargo run -- --release \
    --header-at 0x491d09f313c707b5096650d76600f063b09835fd820e2916d3f8b0f5b45bec30 \
    live \
    -b 0x491d09f313c707b5096650d76600f063b09835fd820e2916d3f8b0f5b45bec30 \
-   -m ElectionProviderMultiPhase
+   -m ElectionProviderMultiPhase \
    --uri wss://localhost:9944
 ```
 
-You can pass in the `--help` flag after each subcommand to see the command's different options.
-
-Run the migrations of the local runtime on the state of SomeChain, for example:
+You can run the migrations of the local runtime on the state of SomeChain with a command like this:
 
 ```bash
 RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
@@ -191,7 +159,7 @@ RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
    --uri wss://rpc.polkadot.io
 ```
 
-Running it at a specific block number's state:
+You can run `try-runtime` against the state for a specific block number with a command like this:
 
 ```bash
 RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
@@ -205,13 +173,25 @@ RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
    --at <block-hash>
 ```
 
-> Notice `--no-spec-name-check` in particular is needed.
+If the state of a particular pallet is sufficient for your test (e.g. a storage migration), you can use the `pallet` option of the `live` subcommand. Only the state/storages of that pallet will be uploaded. The option `--no-spec-check-panic` might be useful to not panic if local runtime spec name/version is not equal to the uri source:
+
+```bash
+RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
+   cargo run try-runtime \
+   --execution Native \
+   --chain somechain-dev \
+   --no-spec-check-panic \
+   on-runtime-upgrade \
+   live \
+   --uri wss://rpc.polkadot.io \
+   --pallet NominationPools
+```
+
+Notice that this command requires the `--no-spec-name-check` command-line option.
 
 ## Where to go next
 
 - [Storage keys](/build/runtime-storage#storage-value-keys)
-- [`OnRuntimeUpgrade`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.OnRuntimeUpgrade.html) FRAME trait
-- [`try-runtime-upgrade`](https://paritytech.github.io/substrate/master/frame_executive/struct.Executive.html#method.try_runtime_upgrade) from `frame_executive`
-- [`set_storage`](https://paritytech.github.io/substrate/master/sp_core/traits/trait.Externalities.html#method.set_storage) from `sp_core::traits::Externalities`
-- [`storage_keys_paged`](https://paritytech.github.io/substrate/master/sc_rpc/state/trait.StateApi.html#tymethod.storage_keys_paged) from `sc_rpc::state::StateApi`
-- `try-runtime` in [FRAME's Staking pallet](https://paritytech.github.io/substrate/master/pallet_staking/index.html)
+- [OnRuntimeUpgrade](https://paritytech.github.io/substrate/master/frame_support/traits/trait.OnRuntimeUpgrade.html) 
+- [try-runtime-upgrade](https://paritytech.github.io/substrate/master/frame_executive/struct.Executive.html#method.try_runtime_upgrade)
+  

@@ -28,9 +28,9 @@ Note that this tutorial is a stepping stone to more advanced tutorials that illu
 
 Before you begin, verify the following:
 
-- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/main-docs/install/rust-builds/).
+- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
-- You have completed the [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) tutorial and have the Substrate node template from the Developer Hub `polkadot-v0.9.26` branch installed locally.
+- You have completed the [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) tutorial and have the Substrate node template from the Developer Hub installed locally.
 
 - You are generally familiar with software development and using command-line interfaces.
 
@@ -72,7 +72,7 @@ To add the dependencies for the Nicks pallet to the runtime:
    For example, add a line similar to the following:
 
    ```toml
-   pallet-nicks = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.26" }
+   pallet-nicks = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.31" }
    ```
 
    This line imports the `pallet-nicks` crate as a dependency and specifies the following:
@@ -100,14 +100,14 @@ To add the dependencies for the Nicks pallet to the runtime:
 
    This section specifies the default feature set to compile for this runtime is the `std` features set.
    When the runtime is compiled using the `std` feature set, the `std` features from all of the pallets listed as dependencies are enabled.
-   For more detailed information about how the runtime is compiled as a platform-native binary with the standard Rust library and as a WebAssembly binary using the `no_std` attribute, see [Build process](/main-docs/build/build-process/).
+   For more detailed information about how the runtime is compiled as a platform-native binary with the standard Rust library and as a WebAssembly binary using the `no_std` attribute, see [Build process](/build/build-process/).
 
    If you forget to update the `features` section in the `Cargo.toml` file, you might see `cannot find function` errors when you compile the runtime binary.
 
-1. Check that the new dependencies resolve correctly by running the following command:
+2. Check that the new dependencies resolve correctly by running the following command:
 
    ```bash
-   cargo check -p node-template-runtime
+   cargo check -p node-template-runtime --release
    ```
 
 ## Review the configuration for Balances
@@ -123,11 +123,11 @@ For this tutorial, you can see that the `Config` trait in the `nicks` pallet dec
 
 ```rust
 pub trait Config: Config {
-    type Event: From<Event<Self>> + IsType<<Self as Config>::Event>;
+    type RuntimeEvent: From<Event<Self>> + IsType<<Self as Config>::RuntimeEvent>;
     type Currency: ReservableCurrency<Self::AccountId>;
     type ReservationFee: Get<<<Self as Config>::Currency as Currency<<Self as Config>::AccountId>>::Balance>;
     type Slashed: OnUnbalanced<<<Self as Config>::Currency as Currency<<Self as Config>::AccountId>>::NegativeImbalance>;
-    type ForceOrigin: EnsureOrigin<Self::Origin>;
+    type ForceOrigin: EnsureOrigin<Self::RuntimeOrigin>;
     type MinLength: Get<u32>;
     type MaxLength: Get<u32>;
 }
@@ -143,6 +143,9 @@ To review the `Config` trait for the Balances pallet:
 1. Locate the `Balances` pallet and note that it consists of the following implementation (`impl`)code block:
 
    ```rust
+   /// Existential deposit.
+   pub const EXISTENTIAL_DEPOSIT: u128 = 500;
+   
    impl pallet_balances::Config for Runtime {
       type MaxLocks = ConstU32<50>;
       type MaxReserves = ();
@@ -150,11 +153,11 @@ To review the `Config` trait for the Balances pallet:
       /// The type for recording an account's balance.
       type Balance = Balance;
       /// The ubiquitous event type.
-      type Event = Event;
+      type RuntimeEvent = RuntimeEvent;
       /// The empty value, (), is used to specify a no-op callback function.
       type DustRemoval = ();
       /// Set the minimum balanced required for an account to exist on-chain
-      type ExistentialDeposit = ConstU128<500>;
+      type ExistentialDeposit = ConstU128<EXISTENTIAL_DEPOSIT>;
       /// The FRAME runtime system is used to track the accounts that hold balances.
       type AccountStore = System;
       /// Weight information is supplied to the Balances pallet by the node template runtime.
@@ -200,7 +203,7 @@ To implement the `nicks` pallet in your runtime:
     type MaxLength = ConstU32<32>;
 
     // The ubiquitous event type.
-    type Event = Event;
+    type RuntimeEvent = RuntimeEvent;
    }
 
 1. Add Nicks to the `construct_runtime!` macro.
@@ -223,15 +226,17 @@ To implement the `nicks` pallet in your runtime:
    );
    ```
 
-1. Check that the new dependencies resolve correctly by running the following command:
+1. Save your changes and close the file.
+   
+2. Check that the new dependencies resolve correctly by running the following command:
 
    ```bash
-   cargo check -p node-template-runtime
+   cargo check -p node-template-runtime --release
    ```
 
    If there are no errors, you are ready to compile.
 
-1. Compile the node in release mode by running the following command:
+3. Compile the node in release mode by running the following command:
 
    ```bash
    cargo build --release
@@ -291,17 +296,17 @@ To set a nickname for an account:
 
 1. In the Pallet Interactor component, verify that **Extrinsic** is selected.
 
-1. Select `nicks` from the list of pallets available to call.
+2. Select **nicks** from the list of pallets available to call.
 
-1. Select [`setName`](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Call.html#variant.set_name) as the function to call from the `nicks` pallet.
+3. Select [**setName**](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Call.html#variant.set_name) as the function to call from the nicks pallet.
 
-1. Type a name that is longer than the `MinNickLength` (8 characters) and no longer than the `MaxNickLength` (32 characters).
+4. Type a **name** that is longer than the `MinNickLength` (8 characters) and no longer than the `MaxNickLength` (32 characters).
 
    ![Select the pallet and the function to call](/media/images/docs/tutorials/add-a-pallet/set-name-function.png)
 
-1. Click **Signed** to execute the function.
+5. Click **Signed** to execute the function.
 
-1. Observe the status of the call change from Ready to InBlock to Finalized and the note the [events](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Event.html) emitted by the Nicks pallet.
+6. Observe the status of the call change from Ready to InBlock to Finalized and the note the [events](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Event.html) emitted by the Nicks pallet.
 
    ![Successful update to the nickname for Alice](/media/images/docs/tutorials/add-a-pallet/set-name-result.png)
 
@@ -313,11 +318,11 @@ To return the information stored for Alice:
 
 1. In the Pallet Interactor component, select **Query** as the Interaction Type.
 
-1. Select `nicks` from the list of pallets available to query.
+1. Select **nicks** from the list of pallets available to query.
 
-1. Select [`nameOf`](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Call.html#variant.set_name) as the function to call.
+1. Select [**nameOf**](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Call.html#variant.set_name) as the function to call.
 
-1. Copy and paste the address for the `alice` account in the AccountId field, then click **Query**.
+1. Copy and paste the address for the **alice** account in the AccountId field, then click **Query**.
 
    ![Read a name](/media/images/docs/tutorials/add-a-pallet/Alice-query-result.png)
 
@@ -331,7 +336,7 @@ To return the information stored for Alice:
 
 ## Explore additional functions
 
-This tutorial illustrates how to add a simple pallet to the runtime and demonstrates how to interact with the new pallet using the front-end template.
+This tutorial illustrates how to add a simple pallet to the runtime and demonstrates how to interact with the new pallet using the predefined front-end template.
 In this case, you added the `nicks` pallet to the runtime and called the `set_name` and `nameOf` functions using the front-end template.
 The `nicks` pallet also provides two additional functions—the `clear_name` function and the `kill_name` function—that enable an account owner to remove the reserved name or a root-level user to forcibly remove an account name.
 You can learn about additional features—such as the use of the Sudo pallet and origin accounts—by exploring how these functions work.

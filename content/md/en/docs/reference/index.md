@@ -10,6 +10,8 @@ This section contains links to the Rust API documentation and technical referenc
 
 - [Command-line tools](/reference/command-line-tools) provides reference information for the most commonly-used command-line interface (CLI) tools.
 
+- [Runtime APIs](/reference/runtime-apis/) highlights the application programming interfaces that the runtime provides to support communication with outer node services.
+
 - [FRAME pallets](/reference/frame-pallets) lists all of the pre-built pallets that you can include in your runtime.
 
 - [FRAME macros](/reference/frame-macros) describes the all of the FRAME macros you can use to build custom pallets.
@@ -21,4 +23,6 @@ This section contains links to the Rust API documentation and technical referenc
 - [How-to reference guides](/reference/how-to-guides) lists the _How-to_ quick reference guides that provide abbreviated instructions for accomplishing specific tasks.
   The _How-to_ guides assume that you are already familiar with Substrate and programming in Rust.
 
-- [Cryptography](/reference/cryptography) provides a conceptual overview of the cryptography used in Substrate.
+- [Cryptography](/reference/cryptography) provides an overview of the hashing algorithms and signature schemes used for cryptography in Substrate.
+
+- [XCM reference](/reference/xcm-reference) provides basic reference information for the cross-consensus message format, including descriptions of XCM instructions, registers, origins, and errors.

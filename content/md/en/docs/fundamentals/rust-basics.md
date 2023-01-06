@@ -35,8 +35,8 @@ Substrate has a lot of its of own primitive types and associated traits that mak
 
 ## Macros
 
-When you learn about writing FRAME pallets, you will quickly come across a variety of different types of macros designed to abstract and enforce any runtime specific requirements.
-With them, you're able to focus on writing idiomatic Rust, minimizing the overhead of writing extra code that you would otherwise need to write code that correctly interacts with a runtime.
+As you learn how to use and write FRAME pallets, you'll see there are many macros available as reusable code to abstract common tasks or enforce runtime-specific requirements.
+These macros allow you to focus on writing idiomatic Rust and application-specific logic instead of the common code required to interact with a runtime.
 
 Rust macros are a powerful tool to help ensure certain requirements are met (without re-writing code) such as the logic to be formatted in a specific way, specific checks are made, or some logic consists of specific data structures.
 This is especially useful to help developers write code that can integrate with the complexity of a Substrate runtime.
@@ -49,9 +49,9 @@ Derive attributes are useful for custom runtime types that need to satisfy certa
 
 Other attribute like macros are also common throughout Substrate's codebase for:
 
-- Telling the compiler if code snippets are meant to compile to `no_std` or may access the `std` library or not.
-- Custom FRAME support macros for writing pallets.
-- Specifying the way the runtime in built.
+- Specifying whether a code snippet only compiles to `no_std` or can use the `std` library.
+- Building custom FRAME pallets.
+- Specifying the way the runtime is built.
 
 ## Generics and configuration traits
 

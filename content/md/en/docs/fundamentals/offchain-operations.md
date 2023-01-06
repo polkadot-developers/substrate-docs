@@ -16,6 +16,7 @@ To make the offchain data integration more secure and efficient, Substrate suppo
   - random number generation
   - CPU-intensive computations
   - enumeration or aggregation of on-chain data
+  
   Offchain workers enable you to move tasks that might require more time to execute than allowed out of the block processing pipeline.
   Any task that might take longer than the maximum block execution time allowed is a reasonable candidate for offchain processing.
 
@@ -74,7 +75,7 @@ Offchain indexing allows the runtime to write directly to the offchain storage w
 You can enable this functionality to persist data by starting a Substrate node with the `--enable-offchain-indexing` command-line option.
 
 Unlike offchain workers, offchain indexing populates the offchain storage every time a block is processed.
-By populating the data at every block, offline indexing ensures that the data is always consistent and is exactly the same for every node running with indexing enabled.
+By populating the data at every block, offchain indexing ensures that the data is always consistent and is exactly the same for every node running with indexing enabled.
 
 ## Where to go next
 

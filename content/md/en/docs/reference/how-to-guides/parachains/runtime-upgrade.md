@@ -24,8 +24,8 @@ Because of this, and the very confined nature of state transition coordination b
 
 Please do the following:
 
-- Read the general [runtime upgrade docs](/build/upgrade).
-- Complete the [Prepare a local parachain testnet](/tutorials/connect-other-chains/relay-chain) tutorial, and learn the `polkadot-launch` tool for testing.
+- Read the general [runtime upgrade docs](/build/upgrade-the-runtime).
+- Complete the [Prepare a local relay chain](/tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain) tutorial, and learn the `polkadot-launch` tool for testing.
 
 ## Choose your upgrade approach
 
@@ -67,7 +67,7 @@ With both these functions called, the relay chain will be notified that the new 
 
 ## Resources
 
-- [Runtime upgrade](/build/upgrade)
+- [Runtime upgrade](/build/upgrade-the-runtime)
 - [Fork off Substrate](https://github.com/maxsam4/fork-off-substrate)
 - [`try-runtime`](/reference/command-line-tools/try-runtime)
 - [`try-runtime` video workshop](https://www.crowdcast.io/e/substrate-seminar/41)
