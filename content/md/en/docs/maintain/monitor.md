@@ -4,101 +4,61 @@ description:
 keywords:
 ---
 
-The telemetry components in the Substrate outer node provide low-level information about the operation of the network. 
-The information exposed can be sent to a backend telemetry server where it can be collected into a data series for display in a front-end dashboard or charts and graphs. 
+In general, you should establish monitoring policies and practices for both **on-chain events** and individual **node operations**.
 
-Substrate telemetry relies on the tracing library from the Tokio Rust crate to log and transmit information about node operations.
-The `tokio` tracing layer sends the information it collects through an asynchronous channel to a background task called `TelemetryWorker`.
-The `TelemetryWorker` forwards the information to one or more remote telemetry servers.
-You can use the `--telemetry-url` command-line option when you start a node to specify to specify the telemetry server that you want to send telemetry data to.
+## On-chain activity
 
+You can monitor on-chain activity for specific events, such as transactions submitted from a certain address, a change to the current validator set.
+On-chain monitoring typically involves connecting to RPC nodes to check for specific values, identify processing delays, or track the timing of events. 
+In most cases, you only need two RPC instances to handle requests for all of your hosts. 
+However, it's recommended that you run your own RPC servers to service these requests in case there are issues with the public RPC nodes. 
+Some examples of applications that query onchain information are [polkabot](https://gitlab.com/Polkabot/polkabot) and [polkadot-basic-notification](https://github.com/paritytech/polkadot-basic-notification).
 
-impl Telemetry
-source
-pub fn start_telemetry(
-    &mut self,
-    connection_message: ConnectionMessage
-) -> Result<()>
-Initialize the telemetry with the endpoints provided in argument for the current substrate node.
+## Node operations
 
-This method must be called during the substrate node initialization.
+You should monitor each node that you run on the network for basic information about its operation such as the current block height, the number of peer-to-peer connections, CPU usage, and the available free memory.
+By default, Substrate exposes many useful metrics on the http://localhost:9615/metrics endpoint. 
+This endpoint is only be exposed on the local network interface by default, but you can expose it on all interfaces with the `--prometheus-external` command-line option.
 
-The endpoints argument is a collection of telemetry WebSocket servers with a corresponding verbosity level.
+This endpoint outputs in a simple key-value format. 
+For example:
 
-The connection_message argument is a JSON object that is sent every time the connection (re-)establishes.
+```text
+polkadot_database_cache_bytes 0
+```
 
-source
-pub fn handle(&self) -> TelemetryHandle
-Make a new cloneable handle to this Telemetry. This is used for reporting telemetries.
+However, you can also include tags within the key.
+For example:
 
-ConnectionMessage
+```text
+susbtrate_block_height{status="best"} 136
+susbtrate_block_height{status="finalized"} 133
+```
 
-name: String
-Node’s name.
+As the metrics provided by this endpoint don't include host metrics—such as CPU, memory, bandwidth usage—it's recommended to complement it by installing the Prometheus [node_exporter](https://github.com/prometheus/node_exporter) on each host.
 
-implementation: String
-Node’s implementation.
+## Open source monitoring stack
 
-version: String
-Node’s version.
+The following diagram illustrates an example of a common open source monitoring stack. 
 
-config: String
-Node’s configuration.
+![Monitoring stack layers](/media/images/docs/monitoring-stack.png)
 
-chain: String
-Node’s chain.
+There are various tools you can use for each layer of the stack.
+For example:
 
-genesis_hash: String
-Node’s genesis hash.
+- Prometheus is a monitoring engine that collects metrics from specified targets at specified intervals and evaluates the data collected using rules you define. Its time series database can hold large amounts of data that can be accessed very quickly.
+- Grafana is an observability platform that allows you to query, visualize, and analyze the data you collect through dashboards and graphs.
+- Node exporter is process that listens on a port and reports application-specific metrics to Prometheus.
+- Alertmanager is a tool that enables you to create and route alerts based on the rules you specify. Alertmanager allows you to configure how and where to send alert if something goes wrong. For example, you can send instant messages for warning alerts, but page an on-call technician for critical alerts
+- Loki is a scalable log aggregation system that allows you to view and search logs from all components in your infrastructure in one place.
+  
+For a simple example of using Prometheus, Grafana, and node exporter, see [Monitor node metrics](/tutorials/get-started/monitor-node-metrics/).
+For a simplified example of using Loki, see [Remote monitoring](/deploy/deployment-options/#remote-monitoring)
 
-authority: bool
-Node is an authority.
+## Telemetry
 
-startup_time: String
-Node’s startup time.
+The telemetry server is used for real time information from nodes, showing information about their name, location, current best & finalized blocks etc… 
+This gives you a useful dashboard to view the state of nodes.
 
-network_id: String
-Node’s network ID.
-
-target_os: String
-Node’s OS.
-
-target_arch: String
-Node’s ISA.
-
-target_env: String
-Node’s target platform ABI or libc.
-
-sysinfo: Option<SysInfo>
-Node’s software and hardware information.
-
-The telemetry information includes details about the hardware and software running on the node, including:
-
-- The exact CPU model.
-
-- The total amount of memory, in bytes.
-
-- The number of physical CPU cores.
-
-- The Linux kernel version.
-
-- The exact Linux distribution used.
-
-- Whether the node’s running under a virtual machine.
-
-
-If multiple Substrate nodes are running in the same process, the `TelemetryWorker` uses a tracing::Span trait to identify which Substrate node is reporting the data. 
-Every task spawned using sc-service’s TaskManager automatically inherits this span.
-
-By default, when you start a Substrate node, the node initializes a [Telemetry](https://paritytech.github.io/substrate/master/sc_telemetry/struct.Telemetry.html) data structure instance that can be used to send telemetry messages.
-The `Telemetry` instance connects to the remote endpoints the node should send data to and sets up a `TelemetryWorker` thread to run in the background. 
-The `TelemetryWorker` registers a new `TelemetryWorkerHandle` to use for asynchronous communication ng with the running TelemetryWorker dedicated to registration. 
-Registering can happen at any point in time during the process execution.
-
-Metrics and dashboards
-
-Block production
-Throughput
-Network activity and performance
-
-Alerting on bad behavior
+You can find the backend components for the telemetry server in [substrate-telemetry](https://github.com/paritytech/substrate-telemetry). 
+There's also a [helm chart](https://github.com/paritytech/helm-charts/tree/main/charts/substrate-telemetry) available to allow easy Kubernetes deployments.
