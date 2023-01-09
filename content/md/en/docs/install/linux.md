@@ -38,7 +38,7 @@ To install the Rust toolchain on Linux:
    For example, on Ubuntu Desktop or Ubuntu Server, you might run a command similar to the following:
 
    ```bash
-   sudo apt install --assume-yes git clang curl libssl-dev
+   sudo apt install --assume-yes git clang curl libssl-dev protobuf-compiler
    ```
 
    Click the tab titles to see examples for other Linux operating systems:
