@@ -170,6 +170,9 @@ To start the validator nodes using the [raw sample chain specification file](/as
    Because both validators are running on a single local computer it isn't necessary to specify the `--bootnodes` command-line option and the IP address and peer identifier of the first node.
    The `bootnodes` option is necessary if you want to connect nodes that run outside of the local network or nodes that are not identified in the chain specification file.
 
+   If you don't see the relay chain producing blocks, try disabling your firewall or adding the `bootnodes` command-line option with the address of the `alice` node to start the node.
+   Adding the `bootnodes` option looks like this (with the node identity from above): `--bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWGjsmVmZCM1jPtVNp6hRbbkGBK3LADYNniJAKJ19NUYiq`.
+
 ## Where to go next
 
 In this tutorial, you learned how to build and start a local relay chain.

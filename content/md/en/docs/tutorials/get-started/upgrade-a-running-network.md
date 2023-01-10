@@ -41,7 +41,7 @@ By completing this tutorial, you will accomplish the following objectives:
 
 - Use the Scheduler pallet to schedule an upgrade for a runtime.
 
-## Authorize an upgrade using the Sudo pallet
+## Authorize an upgrade with Sudo
 
 Typically, runtime upgrades are managed through governance with community members voting to approve or reject upgrade proposals.
 In place of governance, this tutorial uses the Sudo pallet and the `Root` origin to identify the runtime administrator with permission to upgrade the runtime.
@@ -73,14 +73,16 @@ This parameter enables you to work around resource accounting safeguards to spec
 This setting allows for a block to take _an indefinite time to compute_ to ensure that the runtime upgrade does not fail, no matter how complex the operation is.
 It can take all the time it needs to succeed or fail.
 
-## Add the Scheduler pallet to the runtime
+## Add Scheduler to the runtime
 
 By default, the node template doesn't include the [Scheduler pallet](https://paritytech.github.io/substrate/master/pallet_scheduler/index.html) in its runtime.
 To illustrate a runtime upgrade, you can add the Scheduler pallet to a running node.
 
 ### Start the local node
 
-To upgrade the runtime:
+This tutorial illustrates how to update a running node, so the first step is to start the local node with the current runtime.
+
+To start the node with the current runtime:
 
 1. Open a terminal shell on your computer.
 
@@ -95,6 +97,12 @@ To upgrade the runtime:
    Leave this node running.
    You can edit and re-compile to upgrade the runtime without stopping or restarting the running node.
 
+2. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/explorer) in a browser and connect to the local node.
+   
+   In the upper left, notice the node template version is the default version 100.
+
+   ![Node template version](/substrate-docs/content/media/images/docs/tutorials/upgrade/default-version.png)
+
 ### Add Scheduler to the runtime dependencies
 
 To update the dependencies for the runtime to include the Scheduler pallet:
@@ -105,32 +113,57 @@ To update the dependencies for the runtime to include the Scheduler pallet:
 
 2. Open the `runtime/Cargo.toml` file in a text editor.
 
-3. Add the Scheduler pallet as a dependency.
+3. Locate the `[dependencies]` section.
+   
+   For example:
 
-   ```toml
+   ```text
    [dependencies]
-   ...
-   pallet-scheduler = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
-   ...
+   codec = { package = "parity-scale-codec", version = "3.0.0", default-features = false, features = ["derive"] }
+   scale-info = { version = "2.1.1", default-features = false, features = ["derive"] }
+   
+   pallet-aura = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", " branch" = "polkadot-v0.9.35" }
+   ```
+1. Add the Scheduler pallet as a dependency.
+   
+   For example, add a single line with the following fields:
+   
+   ```toml
+   pallet-scheduler = { 
+      version = "4.0.0-dev", 
+      default-features = false, 
+      git = "https://github.com/paritytech/substrate.git", 
+      branch = "polkadot-v0.9.35" 
+   }
    ```
 
-   Be sure to use the same version and branch information for the Scheduler pallet as you see used for the other pallets included in the runtime.
-   In this example, all of the pallets in the node template runtime use `version = "4.0.0-dev"` and `branch = "polkadot-v0.9.28"`.
+   Be sure to use the same **version** and **branch** information for the Scheduler pallet as you see used for the other pallets included in the runtime.
+   In this example, all of the pallets in the node template runtime use `version = "4.0.0-dev"` and `branch = "polkadot-v0.9.35"`.
 
-4. Add the Scheduler pallet to the `features` list.
+3. Locate the `[features]` section and the list of the default features for the standard binary.
+   
+   For example:
 
-   ```toml
+   ```text
    [features]
    default = ["std"]
    std = [
-     ...
-     "pallet-scheduler/std",
-     ...
+      "frame-try-runtime?/std",
+      "frame-system-benchmarking?/std",
+      "frame-benchmarking?/std",
+      "codec/std",
+      "scale-info/std",
    ```
 
-5. Save your changes and close the `Cargo.toml` file.
+1. Add the Scheduler pallet to the list.
+   
+   ```toml
+   "pallet-scheduler/std",
+   ```
 
-### Add the Scheduler to the runtime
+4. Save your changes and close the `Cargo.toml` file.
+
+### Add the Scheduler configuration
 
 To add the Scheduler types and configuration trait:
 
@@ -146,8 +179,8 @@ To add the Scheduler types and configuration trait:
 
    ```rust
    parameter_types! {
-     pub MaximumSchedulerWeight: Weight = 10_000_000;
-     pub const MaxScheduledPerBlock: u32 = 50;
+      pub MaximumSchedulerWeight: Weight = Perbill::from_percent(80) * BlockWeights::get().max_block;
+      pub const MaxScheduledPerBlock: u32 = 50;
    }
    ```
 
@@ -155,23 +188,22 @@ To add the Scheduler types and configuration trait:
 
    ```rust
    impl pallet_scheduler::Config for Runtime {
-     type RuntimeEvent = RuntimeEvent;
-     type RuntimeOrigin = RuntimeOrigin;
-     type PalletsOrigin = OriginCaller;
-     type RuntimeCall = RuntimeCall;
-     type MaximumWeight = MaximumSchedulerWeight;
-     type ScheduleOrigin = frame_system::EnsureRoot<AccountId>;
-     type MaxScheduledPerBlock = MaxScheduledPerBlock;
-     type WeightInfo = ();
-     type OriginPrivilegeCmp = EqualPrivilegeOnly;
-     type PreimageProvider = ();
-     type NoPreimagePostponement = ();
+      type RuntimeEvent = RuntimeEvent;
+      type RuntimeOrigin = RuntimeOrigin;
+      type PalletsOrigin = OriginCaller;
+      type RuntimeCall = RuntimeCall;
+      type MaximumWeight = MaximumSchedulerWeight;
+      type ScheduleOrigin = frame_system::EnsureRoot<AccountId>;
+      type MaxScheduledPerBlock = MaxScheduledPerBlock;
+      type WeightInfo = ();
+      type OriginPrivilegeCmp = EqualPrivilegeOnly;
+      type Preimages = ();
    }
    ```
 
-1. Add the Scheduler pallet inside the `construct_runtime!` macro.
+1. Locate the `construct_runtime!` macro.
 
-   ```rust
+   ```text
    construct_runtime!(
      pub struct Runtime 
      where
@@ -179,27 +211,41 @@ To add the Scheduler types and configuration trait:
         NodeBlock = opaque::Block,
         UncheckedExtrinsic = UncheckedExtrinsic
      {
-        /*** snip ***/
-        Scheduler: pallet_scheduler,
-     }
-   );
+            System: frame_system,
+            RandomnessCollectiveFlip: pallet_randomness_collective_flip,
+            Timestamp: pallet_timestamp,
+            Aura: pallet_aura,
    ```
 
-1. Increment the [`spec_version`](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html#structfield.spec_version) in the [`RuntimeVersion` struct](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html) to upgrade runtime version.
+2. Add the Scheduler pallet inside the `construct_runtime!` macro.
 
    ```rust
+   Scheduler: pallet_scheduler,
+   ```
+
+3. Locate the `runtime_version` macro.
+
+   ```text
+   #[sp_version::runtime_version]
    pub const VERSION: RuntimeVersion = RuntimeVersion {
-     spec_name: create_runtime_str!("node-template"),
-     impl_name: create_runtime_str!("node-template"),
-     authoring_version: 1,
-     spec_version: 101,  // *Increment* this value, the template uses 100 as a base
-     impl_version: 1,
-     apis: RUNTIME_API_VERSIONS,
-     transaction_version: 1,
+        spec_name: create_runtime_str!("node-template"),
+        impl_name: create_runtime_str!("node-template"),
+        authoring_version: 1,
+        spec_version: 100,
+        impl_version: 1,
+        apis: RUNTIME_API_VERSIONS,
+        transaction_version: 1,
+        state_version: 1,
    };
    ```
 
-   Review the components of the `RuntimeVersion` struct:
+4. Increment the [`spec_version`](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html#structfield.spec_version) to specify the new runtime version.
+
+   ```rust
+   spec_version: 101,  // Change the spec_version from 100 to 101
+   ```
+
+   The fields for the `runtime_version` specify the following information:
 
    - `spec_name` specifies the name of the runtime.
    - `impl_name` specifies the name of the outer node client.
@@ -208,11 +254,12 @@ To add the Scheduler types and configuration trait:
    - `impl_version` specifies the version of the outer node client.
    - `apis` specifies the list of supported APIs.
    - `transaction_version` specifies the version of the [dispatchable function](/reference/glossary#dispatch) interface.
+   - `state_version` specifies the version of the key-value trie data structure that the runtime uses.
 
    To upgrade the runtime, you must _increase_ the `spec_version`.
-   For more information, see the [FRAME System](https://github.com/paritytech/substrate/tree/master/frame/system) module and [`can_set_code`](https://github.com/paritytech/substrate/blob/master/frame/system/src/lib.rs#L1566) function.
+   For more information, see the [FRAME System](https://github.com/paritytech/substrate/tree/master/frame/system/src/lib.rs) module and the `can_set_code` method.
 
-2.  Save your changes and close the `runtime/src/lib.rs` file.
+5.  Save your changes and close the `runtime/src/lib.rs` file.
 
 ### Recompile and connect to the local node
 
@@ -221,7 +268,7 @@ To add the Scheduler types and configuration trait:
 2. In the second terminal where you updated the runtime `Cargo.toml` and `lib.rs` files, recompile the runtime by running the following command
 
    ```shell
-   cargo build --release -p node-template-runtime
+   cargo build --release --package node-template-runtime
    ```
 
    The `--release` command-line option requires a longer compile time.
@@ -237,7 +284,7 @@ To add the Scheduler types and configuration trait:
    node_template_runtime.wasm
    ```
 
-## Submit a transaction to upgrade the runtime
+## Execute a runtime upgrade
 
 You now have a WebAssembly artifact that describes the modified runtime logic.
 However, the running node isn't using the upgraded runtime yet.
@@ -255,11 +302,11 @@ To update the network with the upgraded runtime:
    
 4. Select **system** and **setCode(code)** as the call to make using the Alice account.
 
-5. Click **file upload**, then select or drag and drop the compact and compressed WebAssembly file—`node_template_runtime.compact.compressed.wasm`—that you generated for the runtime.
+5. Click **file upload**, then select or drag and drop the compact and compressed WebAssembly file—`node_template_runtime.compact.compressed.wasm`—that you generated for the updated runtime.
 
    For example, navigate to the `target/release/wbuild/node-template-runtime` directory and select `node_template_runtime.compact.compressed.wasm` as the file to upload.
 
-6. Leave the **weight** parameter with the default of `0`.
+6. Leave both of the **weight** parameters set to the default value of `0`.
 
    ![Runtime upgrade settings](/media/images/docs/tutorials/forkless-upgrade/set-code-transaction.png)
 
@@ -267,7 +314,7 @@ To update the network with the upgraded runtime:
 
 8.  Review the authorization, then click **Sign and Submit**.
 
-9. Click **Network** and select **Explorer** to see that there has been a successful sudo.Sudid event.
+9. Click **Network** and select **Explorer** to see that there has been a successful `sudo.Sudid` event.
    
    ![Successful sudo event](/media/images/docs/tutorials/forkless-upgrade/set-code-sudo-event.png)   
 
@@ -313,6 +360,7 @@ To modify the value of the existential deposit for a runtime upgrade:
       impl_version: 1,
       apis: RUNTIME_API_VERSIONS,
       transaction_version: 1,
+      state_version: 1,
    };
 
 1. Update the value for the EXISTENTIAL_DEPOSIT for the Balances pallet.
@@ -331,7 +379,7 @@ To modify the value of the existential deposit for a runtime upgrade:
 1. Build the upgraded runtime by running the following command:
    
    ```bash
-   cargo build --release -p node-template-runtime
+   cargo build --release --package node-template-runtime
    ```
    
    This command generates a new set of build artifacts, overwriting the previous set of build artifacts.
@@ -353,22 +401,26 @@ To schedule the runtime upgrade:
 
 3. Select **scheduler** and **schedule(when, maybePeriodic, priority, call)**.
 
-   - Use the default values for the **maybePeriodic** (empty) and **priority** (0) parameters.
+   - Notice that the **when** parameter specifies a block number for performing the scheduled operation.
+   - The **maybePeriodic** parameter is optional, so you can use the default value (empty)
+   - Use the default value (0) for the **priority**  parameter.
    - Select **system** and **setCode(code)** as the call.
-   - Click **file upload** and select the compressed WebAssembly file you generated for the runtime.
+   - Click **file upload** and select the compressed WebAssembly file you generated for the updated runtime.
 
-1. Check the current block number and set the **when** parameter to a block number 10 to 20 blocks from the current block, then click **Submit Sudo**.
+4. Check the current block number and set the **when** parameter to a block number 10 to 20 blocks from the current block, then click **Submit Sudo**.
    
-   ![Settings to schedule a runtime upgrade](/media/images/docs/tutorials/forkless-upgrade/sudo-schedule-upgrade.png)
+   ![Settings to schedule a runtime upgrade](/media/images/docs/tutorials/forkless-upgrade/sudo-scheduler-upgrade.png)
 
-2. Review the authorization and click **Sign and Submit**.
+5. Review the authorization and click **Sign and Submit**.
 
-1. Monitor block production in the terminal or the [Network Explorer](https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944) to watch as this scheduled call takes place.
+6. Monitor block production in the terminal or the [Network Explorer](https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944) to watch as this scheduled call takes place.
    
    After the target block has been included in the chain, the node template version number indicates that the runtime version is now `102`.
 
-2. Verify the constant value by querying the chain state in the the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/chainstate/constants?rpc=ws://127.0.0.1:9944).
+7. Verify the constant value by querying the chain state in the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/chainstate/constants?rpc=ws://127.0.0.1:9944).
    
+   - Click **Developer** and select **Chain state**.
+   - Click **Constants**.
    - Select the **balances** pallet.
    - Select **existentialDeposit** as the constant value as the value to query.
 
@@ -376,7 +428,8 @@ To schedule the runtime upgrade:
    
 ## Where to go next
 
+- [Runtime version 101](/assets/tutorials/runtime-upgrade/lib-spec-version-101.rs)
+- [Runtime version 102](/assets/tutorials/runtime-upgrade/lib-spec-version-102.rs)
 - [Storage migrations](/build/upgrade-the-runtime/#storage-migration)
-  <!-- TODO NAV.YAML -->
-  <!-- add  back ABOVE -->
-  <!-- - [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/) -->
+
+<!-- - [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/) -->

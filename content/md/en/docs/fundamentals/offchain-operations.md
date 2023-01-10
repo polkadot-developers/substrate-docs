@@ -16,6 +16,7 @@ To make the offchain data integration more secure and efficient, Substrate suppo
   - random number generation
   - CPU-intensive computations
   - enumeration or aggregation of on-chain data
+  
   Offchain workers enable you to move tasks that might require more time to execute than allowed out of the block processing pipeline.
   Any task that might take longer than the maximum block execution time allowed is a reasonable candidate for offchain processing.
 
