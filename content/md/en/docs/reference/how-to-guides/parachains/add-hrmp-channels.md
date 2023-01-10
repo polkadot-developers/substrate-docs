@@ -40,7 +40,7 @@ For the purpose of this guide, we'll assume we have:
    Note that these numbers are subject to the relay chain's configuration limits.
 
    After setting the desired parameters, save the encoded call data.
-   For example, the encoded call data for this call in Rococo is: [`0x1700b80b0000e803000000900100`](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/extrinsics/decode/0x1700b80b0000e803000000900100).
+   For example, the encoded call data for this call in Rococo is: [`0x3c00b80b0000e803000000900100`](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/extrinsics/decode/0x3c00b80b0000e803000000900100).
 
 1. On the parachain now we have to compose an XCM message to notify the relay chain that we want to open a chanel with parachain B.
 
@@ -68,8 +68,13 @@ For the purpose of this guide, we'll assume we have:
            XcmV2Instruction: Transact
                originType: Native
                requireWeightAtMost: 4_000_000_000
-                   encoded: 0x1700b80b0000e803000000900100 // our hrmpInitOpenChannel encoded call data
-
+                   encoded: 0x3c00b80b0000e803000000900100 // our hrmpInitOpenChannel encoded call data
+           XcmV2Instruction: DepositAsset
+             assets: Wild::All
+             maxAssets: 1
+             beneficiary:
+               parents: 0
+               interior: Parachain(2000)           
    )
    ```
 
