@@ -4,73 +4,38 @@ description:
 keywords:
 ---
 
-The telemetry components in the Substrate outer node provide low-level information about the operation of the network. 
-The information exposed can be sent to a backend telemetry server where it can be collected into a data series for display in a front-end dashboard or charts and graphs. 
+Monitoring network operations and performance is an important part of maintaining a healthy, stable, and secure parachain ecosystem.
+By default, Substrate nodes provide low-level **telemetry** components to automatically collect and transmit detailed information about the operation of each node in the network.
+Telemetry is the underlying mechanism—sensors, probes, or instrumentation—for collecting and transmitting data points as they occur to an endpoint so that you can observe, monitor, and alert on system behavior.
+As a developer or node operator, there's rarely any need to know the implementation details of how these low-level telemetry components provide information about computer and network operations.
+At a high level, the information collected from each node is sent to a default telemetry server and aggregated for display in a front-end dashboard.
 
-Substrate telemetry relies on the tracing library from the Tokio Rust crate to log and transmit information about node operations.
-The `tokio` tracing layer sends the information it collects through an asynchronous channel to a background task called `TelemetryWorker`.
-The `TelemetryWorker` forwards the information to one or more remote telemetry servers.
-You can use the `--telemetry-url` command-line option when you start a node to specify to specify the telemetry server that you want to send telemetry data to.
+![Default telemetry for Substrate nodes](/media/images/docs/telemetry-overview.png)
+
+## Changing the telemetry server
+
+You can use the `--telemetry-url` command-line option when you start a node to specify the telemetry server that you want to send telemetry data to.
 
 
-impl Telemetry
-source
-pub fn start_telemetry(
-    &mut self,
-    connection_message: ConnectionMessage
-) -> Result<()>
-Initialize the telemetry with the endpoints provided in argument for the current substrate node.
 
-This method must be called during the substrate node initialization.
+Why it’s important 
 
-The endpoints argument is a collection of telemetry WebSocket servers with a corresponding verbosity level.
 
-The connection_message argument is a JSON object that is sent every time the connection (re-)establishes.
+What it reports
 
-source
-pub fn handle(&self) -> TelemetryHandle
-Make a new cloneable handle to this Telemetry. This is used for reporting telemetries.
 
-ConnectionMessage
+How it works diagram and description 
 
-name: String
-Node’s name.
 
-implementation: String
-Node’s implementation.
+Enabling the default backend and front end services for a node
 
-version: String
-Node’s version.
 
-config: String
-Node’s configuration.
+Viewing default metrics
 
-chain: String
-Node’s chain.
 
-genesis_hash: String
-Node’s genesis hash.
+Disabling telemetry 
 
-authority: bool
-Node is an authority.
 
-startup_time: String
-Node’s startup time.
-
-network_id: String
-Node’s network ID.
-
-target_os: String
-Node’s OS.
-
-target_arch: String
-Node’s ISA.
-
-target_env: String
-Node’s target platform ABI or libc.
-
-sysinfo: Option<SysInfo>
-Node’s software and hardware information.
 
 The telemetry information includes details about the hardware and software running on the node, including:
 
@@ -87,13 +52,6 @@ The telemetry information includes details about the hardware and software runni
 - Whether the node’s running under a virtual machine.
 
 
-If multiple Substrate nodes are running in the same process, the `TelemetryWorker` uses a tracing::Span trait to identify which Substrate node is reporting the data. 
-Every task spawned using sc-service’s TaskManager automatically inherits this span.
-
-By default, when you start a Substrate node, the node initializes a [Telemetry](https://paritytech.github.io/substrate/master/sc_telemetry/struct.Telemetry.html) data structure instance that can be used to send telemetry messages.
-The `Telemetry` instance connects to the remote endpoints the node should send data to and sets up a `TelemetryWorker` thread to run in the background. 
-The `TelemetryWorker` registers a new `TelemetryWorkerHandle` to use for asynchronous communication ng with the running TelemetryWorker dedicated to registration. 
-Registering can happen at any point in time during the process execution.
 
 Metrics and dashboards
 
