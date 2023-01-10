@@ -272,14 +272,6 @@ To convert a chain specification to use the raw format:
    ./target/release/node-template build-spec --chain=customSpec.json --raw --disable-default-bootnode > customSpecRaw.json
    ```
 
-## Share the chain specification with others
-
-If you are creating a private blockchain network to share with other participants, ensure that only one person creates the chain specification and shares the resulting raw version of that specification—for example, the `customSpecRaw.json` file—with all of the other validators in the network.
-
-Because the Rust compiler produces optimized WebAssembly binaries that aren't deterministically reproducible, each person who generates the Wasm runtime produces a slightly different Wasm blob.
-To ensure determinism, all participants in the blockchain network must use exactly the same raw chain specification file.
-For more information about this issue, see [Hunting down a non-determinism-bug in our Rust Wasm build](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1).
-
 ## Prepare to launch the private network
 
 After you distribute the custom chain specification to all network participants, you're ready to launch your own private blockchain.
