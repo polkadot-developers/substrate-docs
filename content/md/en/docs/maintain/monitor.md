@@ -91,12 +91,87 @@ To display information for other chains, click **More** and select a different c
 
 ![Select other chains](/media/images/docs/more-chains.png)
 
-## Change the telemetry server
+## Customize the monitoring stack
 
-You can use the `--telemetry-url` command-line option when you start a node to specify the telemetry server that you want to send telemetry data to.
-You can pass this option multiple times to specify multiple telemetry endpoints. Verbosity levels range from 0-9, with 0 denoting the least verbose. Use the following format to specify the URL followed the verbosity option is `--telemetry-url 'wss://foo/bar 0'`.
+The default telemetry dashboard provides visibility into node and chain operations without requiring you to host or configure any backend monitoring or front-end services.
+However, many projects choose to augment or replace the default telemetry server with their own backend server and front-end dashboards.
+
+In general, setting up your own telemetry server involves establishing monitoring and alerting policies for both **on-chain events** and individual **node operations**.
+
+### On-chain activity
+
+You can monitor on-chain activity for specific events, such as transactions submitted from a certain address, a change to the current validator set.
+On-chain monitoring typically involves connecting to RPC nodes to check for specific values, identify processing delays, or track the timing of events. 
+In most cases, you only need two RPC instances to handle requests for all of your hosts. 
+However, it's recommended that you run your own RPC servers to service these requests in case there are issues with the public RPC nodes. 
+Some examples of applications that query on-chain information are [polkabot](https://gitlab.com/Polkabot/polkabot) and [polkadot-basic-notification](https://github.com/paritytech/polkadot-basic-notification).
+
+### Node operations
+
+You should monitor each node that you run on the network for basic information about its operation such as the current block height, the number of peer-to-peer connections, CPU usage, and the available free memory.
+By default, Substrate exposes many useful metrics on the http://localhost:9615/metrics endpoint. 
+This endpoint outputs metrics using a simple key-value format. 
+For example:
+
+```text
+polkadot_database_cache_bytes 0
+```
+
+However, you can also include tags within the key.
+For example:
+
+```text
+susbtrate_block_height{status="best"} 136
+susbtrate_block_height{status="finalized"} 133
+```
+
+By default, the [metrics](http://localhost:9615/metrics) endpoint is only be exposed on the local network interface.
+However, you can expose it on all interfaces by using the `--prometheus-external` command-line option to start a node.
+
+### Configure monitoring tools
+
+To set up monitoring and alerting policies, you typically configure a set of tools to create your own monitoring stack.
+For example, the default `metrics` endpoint doesn't include host metrics—such as CPU, memory, bandwidth usage—so you can complement it by installing the Prometheus [node_exporter](https://github.com/prometheus/node_exporter) on each host.
+The following diagram illustrates an open source set of tools that are often used as a monitoring stack. 
+
+![Monitoring stack layers](/media/images/docs/monitoring-stack.png)
+
+As this diagram illustrates, there are different tools available for each layer of the stack.
+In this example, the following tools are configured for monitoring on-chain activity and node operations:
+
+- Prometheus is a monitoring engine that collects metrics from specified targets at specified intervals and evaluates the data collected using rules you define. Its time series database can hold large amounts of data that can be accessed very quickly.
+- Grafana is an observability platform that allows you to query, visualize, and analyze the data you collect through dashboards and graphs.
+- Node exporter is process that listens on a port and reports application-specific metrics to Prometheus.
+- Alertmanager is a tool that enables you to create and route alerts based on the rules you specify. Alertmanager allows you to configure how and where to send alert if something goes wrong. For example, you can send instant messages for warning alerts, but page an on-call technician for critical alerts
+- Loki is a scalable log aggregation system that allows you to view and search logs from all components in your infrastructure in one place.
+
+For a simple example of setting up node monitoring using Prometheus, Grafana, and node exporter, see [Monitor node metrics](/tutorials/get-started/monitor-node-metrics/).
+For a simplified example of using Loki, see [Remote monitoring](/deploy/deployment-options/#remote-monitoring).
+
+### Change the telemetry server
+
+After you have configured the backend monitoring rules for your nodes, you can use the `--telemetry-url` command-line option when you start a node to specify the telemetry server that you want to send telemetry data to.
+You can pass this option multiple times to specify multiple telemetry endpoints. 
+You can also specify how verbose metrics should be, with level 0 denoting the least verbose through level 9 denoting the most verbose. 
+
+For example, to specify your own telemetry server URL with a verbosity level of 5, you would run a command similar to the following:
+
+```bash
+./target/release/node-template --dev \
+  --telemetry-url "wss://192.168.48.1:9616 5" \
+  --prometheus-port 9616 \
+  --prometheus-external
+```
+
+For more information about the backend components for telemetry or configuring your own server, see [substrate-telemetry](https://github.com/paritytech/substrate-telemetry) or the [telemetry helm chart](https://github.com/paritytech/helm-charts/tree/main/charts/substrate-telemetry) for Kubernetes deployments.
 
 ## Disable telemetry 
 
 Telemetry is enabled for all global chain nodes by default.
 You can use the `--no-telemetry` command-line option to prevent a node from connecting to the Substrate telemetry server.
+For example, to prevent telemetry data from being send to the default telemetry server, you would run a command similar to the following:
+
+```bash
+./target/release/node-template --chain myCustomChain \
+  --no-telemetry
+```
