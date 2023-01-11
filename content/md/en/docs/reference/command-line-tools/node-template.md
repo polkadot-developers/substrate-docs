@@ -43,9 +43,8 @@ You can use the following optional flags with the `node-template` command.
 | `--ferdie` | Adds the session keys for the predefined `Ferdie` account to the local keystore. This flag is equivalent to running the node using `--name ferdie --validator` as command-line options.
 | `--force-authoring` | Enables block authoring even if the node is offline.
 | `-h`, `--help` | Displays usage information.
-| `--ipfs-server` | Joins the IPFS network and serve transactions over bitswap protocol
+| `--ipfs-server` | Joins the IPFS network and serve transactions over bitswap protocol.
 | `--kademlia-disjoint-query-paths` | Requires iterative Kademlia distributed hash table (DHT) queries to use disjointed paths. This option increases resiliency in the presence of potentially adversarial nodes. See the S/Kademlia paper for more information on the high level design as well as its security improvements.
-| `--light` | Runs the node in light client mode (experimental).
 | `--no-grandpa` | Disables the GRANDPA voter if the node is running as a validator mode.If the node is not running as a validator, the option disables the GRANDPA observer.
 | `--no-mdns` | Disables mDNS discovery. By default, the network uses mDNS to discover other nodes on the local network. This option disables discovery and is automatically applied if you start the node using the `--dev` option.
 | `--no-private-ipv4` | Prevents connecting to private IPv4 addresses, unless the address was passed with the `--reserved-nodes` or `--bootnodes` option. This setting is enabled by default for chains that are marked as "live" in their chain specifications.
@@ -55,7 +54,7 @@ You can use the following optional flags with the `node-template` command.
 | `--password-interactive` | Enables you to specify the password for connecting to the keystore interactively in the terminal shell.
 | `--prometheus-external` | Exposes the Prometheus exporter on all interfaces. The default is local.
 | `--reserved-only` | Specifies whether to only synchronize the chain with reserved nodes. This option also disables automatic peer discovery. TCP connections might still be established with non-reserved nodes. In particular, if you are a validator, your node might still connect to other validator nodes and collator nodes regardless of whether they are defined as reserved nodes.
-| `--rpc-external` | Listens to all RPC interfaces. Default is local. Note: not all RPC methods are safe to be exposed publicly. Use an RPC proxy server to filter out dangerous methods. More details: <https://github.com/paritytech/substrate/wiki/Public-RPC>. Use `--unsafe-rpc-external` to suppress the warning if you understand the risks.
+| `--rpc-external` | Listens to all RPC interfaces. Default is local. Note: not all RPC methods are safe to be exposed publicly. Use an RPC proxy server to filter out dangerous methods. More details: <https://docs.substrate.io/build/custom-rpc/#rpc-types>. Use `--unsafe-rpc-external` to suppress the warning if you understand the risks.
 | `--storage-chain` | Enables storage chain mode. If you set this option, each transaction is stored separately in the transaction database column and is only referenced by hash in the block body column.
 | `--tmp` | Runs a temporary node. This option creates a temporary directory to store the blockchain configuration, including the node database, node key, and the keystore.
 | `--two` | Provides a shortcut for specifying `--name Two --validator` to add session keys for `Two` to the keystore.
@@ -94,7 +93,7 @@ You can use the following options with the `node-template` command.
 | `-l`, `--log <log-pattern>...` | Sets a custom logging filter. The syntax to use is `<log-target>=<level>`, for example `-lsync=debug`. The valid log levels from least to most verbose are `error`, `warn`, `info`, `debug`, and `trace`. By default, all targets log `info` level messages. You can set the global log level with `-l<level>`.
 | `--max-parallel-downloads <count>` | Specifies the maximum number of peers from which to ask for the same blocks in parallel. This option allows nodes to download announced blocks from multiple peers. You can decrease the count to reduce traffic, but risk increasing latency. The default is 5 parallel downloads.
 | `--max-runtime-instances <max-runtime-instances>` | Specific the maximum size of the instances cache for each runtime. The default value is 8 and values higher than 256 are ignored.
-| `--name <name>` | Specifies the human-readable name for this node.The node name is reported to the telemetry server, if enabled.
+| `--name <name>` | Specifies the human-readable name for this node. The node name is reported to the telemetry server, if enabled.
 | `--node-key <key>` | Specifies the secret key to use for `libp2p` networking. The value is a string that is parsed based on the `--node-key-type`. For example, if the node key type is `ed25519`, the node key is parsed as a hex-encoded Ed25519 32-byte secret key (64 hex characters). The value of this option takes precedence over `--node-key-file`. Note that secrets provided as command-line arguments are easily exposed. You should only use this option for development and testing. To use an externally managed secret key, use the `--node-key-file` option.
 | `--node-key-file <file>` | Specifies the file that contains the secret key for a node to use for `libp2p` networking. The contents of the file are parsed based on the `--node-key-type`. For example, if the node key type is `ed25519`, the file must contain an unencoded 32-byte or hex-encoded Ed25519 secret key. If the file does not exist, it is created with a newly generated secret key of the type you specify using the `--node-key-type` option.
 | `--node-key-type <type>` | Specifies the type of secret key to use for peer-to-peer (`libp2p`) networking. You can specify the secret key on the command-line using the `--node-key` option, read the key from a file using the `--node-key-file` option, or read the key from a file specifies in the chain-specific `config` directory inside the base directory specified by the `--base-dir` option. If this file does not exist, it is created with a newly generated secret key of the chosen type. The node's secret key determines the public key—the peer identifier—that is used to communicate with the node using the `libp2p` library. The default type is Ed25519.
@@ -207,6 +206,7 @@ For example, you can use the following options with the `node-template benchmark
 | `--header <header>` | Adds a header file to your benchmark output.
 | `--heap-pages <heap-pages>` | Sets the heap pages while running benchmarks. If not set, the default value from the node is used.
 | `--high <highest-range-values>...` | Indicates highest values for each of the component ranges.
+| `json-input <json-input-file>` | Specifies the path to a JSON file with previously-generated benchmark results. This option enables you to reuse the benchmarks raw results generated with the `--json-file` to rerun the benchmark analysis and to regenerate the weights for a pallet without actually rerunning the benchmarks tests.
 | `--list` | Lists all currently defined benchmarks without running them.
 | `--low <lowest-range-values>...` | Indicates lowest values for each of the component ranges.
 | `--no-median-slopes` | Disables the median-slopes linear regression analysis.

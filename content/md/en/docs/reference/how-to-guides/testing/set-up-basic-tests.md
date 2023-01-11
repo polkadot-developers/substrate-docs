@@ -17,7 +17,7 @@ This pallet will contain a single function called `add_value`, that takes an ori
 
 Inside `pallet-testing/src`, the first thing we need to do is create two empty files: `mock.rs` and `tests.rs`.
 
-Paste in the contents from [`template/src/mock.rs`](https://github.com/substrate-developer-hub/substrate-node-template/blob/polkadot-v0.9.28/pallets/template/src/mock.rs).
+Paste in the contents from [`template/src/mock.rs`](https://github.com/substrate-developer-hub/substrate-node-template/blob/main/pallets/template/src/mock.rs).
 We'll use this as boilerplate which we'll customize for our `pallet-testing` pallet.
 
 ## Create a mock runtime to test your pallet
@@ -49,7 +49,7 @@ We'll use this as boilerplate which we'll customize for our `pallet-testing` pal
    }
 
    impl pallet_testing::Config for Test {
-     type Event = Event;
+     type RuntimeEvent = RuntimeEvent;
      type MaxValue = MaxValue;
    }
    ```
@@ -71,7 +71,7 @@ use super::*;
    fn error_works(){
      new_test_ext().execute_with(|| {
        assert_err!(
-         TestingPallet::add_value(Origin::signed(1), 51),
+         TestingPallet::add_value(RuntimeOrigin::signed(1), 51),
          "value must be <= maximum add amount constant"
        );
      })
@@ -85,7 +85,7 @@ use super::*;
    fn test_should_work() {
      new_test_ext().execute_with(|| {
        assert_ok!(
-         TestingPallet::add_value(Origin::signed(1), 10)
+         TestingPallet::add_value(RuntimeOrigin::signed(1), 10)
        );
      })
    }
@@ -98,7 +98,7 @@ use super::*;
    fn test_should_fail() {
      new_test_ext().execute_with(|| {
        assert_ok!(
-         TestingPallet::add_value(Origin::signed(1), 100)
+         TestingPallet::add_value(RuntimeOrigin::signed(1), 100)
        );
      })
    }

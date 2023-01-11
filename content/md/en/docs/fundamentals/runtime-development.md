@@ -109,7 +109,7 @@ The following diagram illustrates how you can select and combine FRAME pallets t
 
 ### Building custom pallets
 
-In addition to the library of pre-build FRAME pallets, you can use the FRAME libraries and services to build your own custom pallets.
+In addition to the library of pre-built FRAME pallets, you can use the FRAME libraries and services to build your own custom pallets.
 With custom pallets, you have the flexibility to define the runtime behavior that best suits your purposes.
 Because each pallet has its own discrete logic, you can combine pre-built and custom pallets to control the features and functionality your blockchain provides and achieve the results you want.
 
@@ -130,6 +130,7 @@ For example, if you wanted to define a custom pallet, you might start with a ske
 ```rust
 // Add required imports and dependencies
 pub use pallet::*;
+
 #[frame_support::pallet]
 pub mod pallet {
  use frame_support::pallet_prelude::*;
@@ -137,9 +138,9 @@ pub mod pallet {
 
  // Declare the pallet type
  // This is a placeholder to implement traits and methods.
-    #[pallet::pallet]
-    #[pallet::generate_store(pub(super) trait Store)]
-    pub struct Pallet<T>(_);
+ #[pallet::pallet]
+ #[pallet::generate_store(pub(super) trait Store)]
+ pub struct Pallet<T>(_);
 
  // Add the runtime configuration trait
  // All types and constants go here.
@@ -156,15 +157,14 @@ pub mod pallet {
  #[pallet::generate_deposit(pub(super) fn deposit_event)]
  pub enum Event<T: Config> { ... }
 
- //  Add hooks to define some logic that should be executed
- //  in a specific context, for example on_initialize.
+ // Add hooks to define some logic that should be executed
+ // in a specific context, for example on_initialize.
  #[pallet::hooks]
  impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> { ... }
 
  // Add functions that are callable from outside the runtime.
  #[pallet::call]
  impl<T:Config> Pallet<T> { ... }
-
 }
 ```
 

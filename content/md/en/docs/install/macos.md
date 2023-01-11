@@ -18,11 +18,9 @@ Before you install Rust and set up your development environment on macOS, verify
 
 ### Support for Apple M1
 
-If you have a macOS computer with an Apple M1 ARM system on a chip, you must have Apple Rosetta installed to run the `protoc` tool during the Rust build process.
-The Rust toolchain and the target binaries remain native.
-You can install Rosetta on your macOS computer by opening the Terminal application and running the following command:
+Protobuf must be installed before the build process can begin. To install it, run the following command:
 
-`softwareupdate --install-rosetta`
+`brew install protobuf`
 
 ### Install Homebrew
 
@@ -53,7 +51,7 @@ To install Homebrew:
    Homebrew/homebrew-cask (git revision 66bab33b26; last commit 2021-10-30)
    ```
 
-## Install required packages and Rust
+## Installation
 
 Because the blockchain requires standard cryptography to support the generation of public/private key pairs and the validation of transaction signatures, you must also have a package that provides cryptography, such as `openssl`.
 
@@ -153,13 +151,23 @@ To compile the Substrate node template:
 1. Clone the node template repository by running the following command:
 
    ```bash
-   git clone --branch polkadot-v0.9.25 https://github.com/substrate-developer-hub/substrate-node-template
+   git clone https://github.com/substrate-developer-hub/substrate-node-template
    ```
+
+   In most cases, you can clone the `main` branch to get the latest code.
+   However, you can use the `--branch` command-line option if you want to work with a Substrate branch that is compatible with a specific Polkadot version.
+   Click [Tags](https://github.com/substrate-developer-hub/substrate-node-template/tags) to see the list of branches that are compatible with specific Polkadot versions.
 
 1. Change to the root of the node template directory by running the following command:
 
    ```bash
    cd substrate-node-template
+   ```
+
+   If you want to save your changes and make this branch easy to identify, you can create a new branch by running a command similar to the following:
+
+   ```bash
+   git switch -c my-wip-branch
    ```
 
 1. Compile the node template by running the following command:
@@ -194,4 +202,4 @@ Here are a few additional suggestions for where you can learn more.
 
 - [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
 - [Simulate a network](/tutorials/get-started/simulate-network/)
-- [Add trusted nodes](/tutorials/get-started/trusted-network/)
+- [Add trusted nodes](/tutorials/get-started/add-trusted-nodes/)

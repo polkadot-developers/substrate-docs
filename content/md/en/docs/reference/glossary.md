@@ -52,8 +52,8 @@ In a proof-of-work blockchain, these nodes are called _miners_.
 
 ## authority
 
-The [nodes](#node) that act as a collective to manage [consensus](#consensus) on a[blockchain](#blockchain) network.
-In a [proof-of-stake](#nominated-proof-of-stake-npos) blockchain—for example, a blockchain that us the [Staking pallet](/reference/frame-pallets#staking) from [FRAME](#frame)—authorities are determined through a token-weighted nomination and voting system.
+The [nodes](#node) that act as a collective to manage [consensus](#consensus) on a [blockchain](#blockchain) network.
+In a [proof-of-stake](#nominated-proof-of-stake-npos) blockchain—for example, a blockchain that uses the [Staking pallet](/reference/frame-pallets#staking) from [FRAME](#frame)—authorities are determined through a token-weighted nomination and voting system.
 
 The terms _authorities_ and _[validators](#validator)_ sometimes seem to refer the same thing.
 However, _validators_ is a broader term that can include other aspects of chain maintenance such as parachain validation.
@@ -98,7 +98,7 @@ The block number for any particular block in a blockchain indicates how many blo
 
 ## blockchain
 
-Describes a distributed network of computers that uses [cryptography](#cryptographic-primitives) to allow a group of participants to trustlessly come to [consensus](#consensus) on the [state](#state) of a system as it evolves over time
+Describes a distributed network of computers that uses [cryptography](#cryptographic-primitives) to allow a group of participants to trustlessly come to [consensus](#consensus) on the [state](#state) of a system as it evolves over time.
 The computers that compose the blockchain network are called [nodes](#node).
 
 ## byzantine fault tolerance (BFT)
@@ -114,6 +114,11 @@ The loss of a network service due to node failures that exceed the proportion of
 
 An early approach to byzantine fault tolerance. pBFT systems tolerate byzantine behavior from up to one-third of participants.
 The communication overhead for such systems is `O(n²)`, where `n` is the number of nodes (participants) in the system.
+
+## call
+
+In a general context, a call describes the act of invoking a function to be executed.
+In the context of pallets that contain functions to be dispatched to the runtime, `Call` is an enumeration data type that describes the functions that can be dispatched with one variant per pallet. The object that a `Call` represents is a [dispatch](#dispatch) data structure or a dispatchable.
 
 ## collator
 
@@ -185,7 +190,7 @@ An extensible field of the [block header](#header) that encodes information need
 ## dispatch
 
 The execution of a function with a predefined set of arguments.
-In the context of [runtime](#runtime) development with [FRAME](#frame), a dispatch takes pure data—the type is known as `Call` by convention—and uses that data to call a published function in a runtime module ([pallet](#pallet)) with predefined arguments.
+In the context of [runtime](#runtime) development with [FRAME](#frame), a dispatch takes pure data—the [`Call`](#call) type—and uses that data to execute a published function in a runtime module ([pallet](#pallet)) with predefined arguments.
 The published functions take one additional parameter, known as [`origin`](#origin), that allows the function to securely determine the provenance of its execution.
 
 ## equivocating
@@ -217,9 +222,10 @@ There are two orchestration engines in Substrate, _WebAssembly_ and _native_.
 ## extrinsic
 
 Data that is external to the blockchain and included in a [block](#block).
+Typical Substrate chains have extrinsics which contain a [`Call`](#call) value.
 In general, there are two types of extrinsics:
 
-- signed or unsigned [transactions](/fundamentals/transaction-types).
+- signed or unsigned [transactions](#transaction).
 - inherent data that is inserted by a [block author](#author).
 
 ## existential deposit
@@ -433,6 +439,30 @@ In Substrate, the runtime is stored as a [WebAssembly](#webassembly-wasm) binary
 A fixed, equal interval of time used by consensus engines such as [Aura](#aura-aka-authority-round) and [BABE](#blind-assignment-of-blockchain-extension-babe).
 In each slot, a subset of [authorities](#authority) is permitted—or obliged—to [author](#author) a [block](#block).
 
+## sovereign account
+
+The unique account identifier for each chain in the relay chain ecosystem.
+The sovereign account for each chain is a root-level that can only be accessed using the Sudo pallet or through governance. 
+The account identifier is calculated by concatenating the Blake2 hash of a specific text string and the registered parachain identifier.
+
+For the relay chain, the parachain account identifier is calculated as the concatenation of (blake2(para+ParachainID) with the hash truncated to the correct length.
+For example, the account identifier for the parachain with the parachain identifier of 1012 on the relay chain is:
+String to hex para: 0x70617261
+Encoded parachain identifier 1012: f4030000
+
+0x70617261f4030000000000000000000000000000000000000000000000000000
+ccount address: 5Ec4AhPc9b6e965pNRSsn8tjTzuKaKambivxcL7Gz9Gne9YB
+
+For other parachains, the parachain account identifier is calculated as the concatenation of (blake2(sibl+ParachainID) with the hash truncated to the correct length. 
+For example, the account identifier for the parachain with the parachain identifier of 1012 on the relay chain is:
+String to hex sibl: 0x7369626c
+Encoded parachain identifier 1012: f4030000
+
+0x7369626cf4030000000000000000000000000000000000000000000000000000
+Account address: 5Eg2fntREKHYGgoxvRPxtnEYiUadHjdsfNaPsHdmrsJMVugs
+
+The sovereign account is most often used to sign XCM messages that are sent to either the relay chain or other chains in the ecosystem.
+
 ## SS58 address format
 
 The SS58 address format is a public key address based on the Bitcoin [`Base-58-check`](https://en.bitcoin.it/wiki/Base58Check_encoding) encoding.
@@ -468,7 +498,7 @@ maintained by [Parity Technologies](https://www.parity.io/).
 
 ## transaction
 
-A type of [extrinsic](#extrinsic) that can be safely gossiped between [nodes](#node) on the network because it can be verified through [signatures](/fundamentals/transaction-types) or [signed extensions](/reference/transaction-format#signed-extension).
+A type of [extrinsic](#extrinsic) that includes a [signature](/fundamentals/transaction-types) that can be used to verify the account authorizing it inherently or via [signed extensions](/reference/transaction-format#signed-extension).
 
 ## transaction era
 

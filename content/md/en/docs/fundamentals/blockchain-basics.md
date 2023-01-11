@@ -60,7 +60,7 @@ The most commonly-used consensus model is called the proof-of-work consensus mod
 With the proof-of-work consensus model, the node that completes a computational problem first has the right to submit a block to the chain.
 
 For a blockchain to be fault tolerant and provide a consistent view of state even if some nodes are compromised by malicious actors or network outages, some consensus models require at least two-thirds of the nodes to agree on state at all time.
-This two-thirds majority ensure that the network is fault tolerant and can withstand some network participants behaving badly, regardless of whether the behavior is intentional or accidental.
+This two-thirds majority ensures that the network is fault tolerant and can withstand some network participants behaving badly, regardless of whether the behavior is intentional or accidental.
 
 ## Blockchain economics
 
@@ -107,6 +107,6 @@ You can explore the following resources to learn more.
 
 - [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
 - [Simulate a network](/tutorials/get-started/simulate-network/)
-- [Add trusted nodes](/tutorials/get-started/trusted-network/)
+- [Add trusted nodes](/tutorials/get-started/add-trusted-nodes/)
 
 If you prefer to explore code directly, you can start building in the [Substrate Playground](https://docs.substrate.io/playground/) or consult the API reference to get details about the Rust crates you use.

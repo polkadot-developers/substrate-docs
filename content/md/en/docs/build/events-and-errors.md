@@ -14,25 +14,25 @@ In custom pallets, you can define:
 
 ## Declaring an event
 
-Runtime events are created using the `#[pallet::event]` macro.
+Events are created using the `#[pallet::event]` macro.
 For example:
 
 ```rust
 #[pallet::event]
-#[pallet::metadata(u32 = "Metadata")]
+#[pallet::generate_deposit(pub(super) fn deposit_event)]
 pub enum Event<T: Config> {
 	/// Set a value.
-	ValueSet(u32, T::AccountId),
+	ValueSet { value: u32, who: T::AccountId },
 }
 ```
 
-The `Event` enum needs to be declared in your runtime's configuration trait.
+Then, the `RuntimeEvent` type is needed to aggregate them for the runtime.
 
 ```rust
 #[pallet::config]
 	pub trait Config: frame_system::Config {
 		/// The overarching event type.
-		type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+		type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_system::Config>::RuntimeEvent>;
 	}
 ```
 
@@ -44,15 +44,15 @@ To expose events to the runtime:
 
 1. Open the `/runtime/src/lib.rs`file in a text editor.
    
-1. Implement the `Event` type in the configuration trait for your pallet:
+1. Implement the `RuntimeEvent` type in the configuration trait for your pallet:
    
 	 ```rust
 	 impl template::Config for Runtime {
-		 type Event = Event;
+		 type RuntimeEvent = RuntimeEvent;
 	 }
 	 ```
 
-1. Add the `Event` type to the `construct_runtime!` macro:
+1. Add the `RuntimeEvent` type to the `construct_runtime!` macro:
    
 	 ```rust
 	 construct_runtime!(

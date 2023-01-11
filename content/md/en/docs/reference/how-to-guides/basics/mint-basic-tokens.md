@@ -90,9 +90,6 @@ Create the `mint()` function to issue a token supply from any origin.
 
 		let sender = ensure_signed(origin)?;
 
-		// Check if the kitty does not already exist in our storage map
-		 ensure!(Self::kitties(&kitty_id) == None, <Error<T>>::KittyExists);
-
 		// Update storage.
 		<BalanceToAccount<T>>::insert(&sender, amount);
 

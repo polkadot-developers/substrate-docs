@@ -35,7 +35,7 @@ Some of the most important activities that are handled by the outer node involve
 
 - [Consensus](/fundamentals/consensus/): The outer node communicates with other network participants to ensure they agree on the state of the blockchain.
 
-- [Remote procedure call (RPC) API](/build/custom-rpc): The outer node accepts inbound HTTP and WebSocket requests to allow blockchain users to interact with the network.
+- [Remote procedure call (RPC) API](/build/remote-procedure-calls/): The outer node accepts inbound HTTP and WebSocket requests to allow blockchain users to interact with the network.
 
 - Telemetry: The outer node collects and provides access to node metrics through an embedded [Prometheus](https://prometheus.io/) server.
 

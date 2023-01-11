@@ -29,11 +29,11 @@ The first step is to initialize the mapping between an `AccountId` and a stored 
 You must always initialize a mapping before you use it in your contract to avoid mapping errors and inconsistencies.
 To initialize a mapping, you need to do the following:
 
-- Add the [`SpreadAllocate`](https://paritytech.github.io/ink/ink_storage/traits/trait.SpreadAllocate.html) trait on the storage structure.
+- Add the [`SpreadAllocate`](https://docs.rs/ink_storage/latest/ink_storage/traits/trait.SpreadAllocate.html) trait on the storage structure.
 
 - Specify the mapping key and the value mapped to it.
 
-- Call the [`ink_lang::utils::initalize_contract`](https://paritytech.github.io/ink/ink_lang/utils/fn.initialize_contract.html) function to initialize the mapping for the contract.
+- Call the [`ink_lang::utils::initalize_contract`](https://docs.rs/ink_lang/latest/ink_lang/utils/fn.initialize_contract.html) function to initialize the mapping for the contract.
 
 The following example illustrates how to initialize a mapping and retrieve a value:
 
@@ -251,7 +251,7 @@ To add insert and remove functions to the contract:
    }
    ```
 
-1. Add a `remove_mine()` function that allows the contract caller to get the clear the `my_value` storage item from storage.
+1. Add a `remove_mine()` function that allows the contract caller to clear the `my_value` storage item from storage.
 
    ```rust
    #[ink(message)]
@@ -318,7 +318,7 @@ For example, this tutorial illustrated:
 
 - How to add functions that enable users to insert and remove the values stored for them in a map using a smart contract.
 
-You can find an example of the final code for this tutorial in the assets for the [smart-contracts](/assets/tutorials/smart-contracts/incrementer-mapping.rs)
+You can find an example of the final code for this tutorial in the assets for the [smart-contracts](/assets/tutorials/smart-contracts/incrementer-mapping.rs).
 You can learn more about smart contract development in the following topics:
 
 - [Build an ERC20 token contract](/tutorials/smart-contracts/build-a-token-contract/)

@@ -38,7 +38,7 @@ However, some macros enforce particular requirements on function declarations.
 For example, the `Config` trait must be bound by `frame_system::Config` and the `#[pallet::pallet]` struct must be declared as `pub struct Pallet<T>(_);`.
 For an overview of the macros used in FRAME pallets, see [FRAME macros](/reference/frame-macros/).
 
-## Useful FRAME traits
+<!-- ## Useful FRAME traits
 
 - Pallet Origin
 - Origins: EnsureOrigin, EnsureOneOf
@@ -55,4 +55,4 @@ Your pallet's `Config` trait is what get's implemented for `Runtime` which is a 
 - Side chain architecture references
 - Api endpoints: on_initialize, off_chain workers ?
 
-Write content that links to basic and intermediate how-to guides.
+Write content that links to basic and intermediate how-to guides. -->

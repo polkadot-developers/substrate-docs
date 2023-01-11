@@ -29,7 +29,7 @@
 /en/community                         https://substrate.io/ecosystem/resources/community-resources/                         301!
 /community                            https://substrate.io/ecosystem/resources/community-resources/                         301!
 /newsletter	                          https://substrate.io/ecosystem/connect/newsletter/                                    301!
-/seminar	                            https://substrate.io/ecosystem/resources/seminar/                                     301!
+/seminar	                            https://substrate.io/ecosystem/resources/seminar/                                   301!
 /terms	                              https://www.parity.io/terms/                                                          301!
 /awesome-substrate                    https://github.com/substrate-developer-hub/awesome-substrate/blob/master/README.md    301!
 
@@ -39,7 +39,7 @@
 /runtime/frame/                      /reference/frame-pallets/                        301!
 /tutorials/add-a-pallet/             /tutorials/work-with-pallets/add-a-pallet/       301!
 /runtime/upgrades/                   /main-docs/build/upgrade/                        301!
-/tutorials/forkless-upgrades/        /tutorials/get-started/forkless-upgrade/         301!
+/tutorials/forkless-upgrade/        /tutorials/get-started/upgrade-a-running-network/ 301!
 /tools/                              /reference/command-line-tools/                   301!
 /runtime/upgrades/                   /main-docs/build/upgrade/                        301!
 /getting-started/architecture/       /main-docs/fundamentals/architecture/            301!
@@ -53,7 +53,7 @@
 /main-docs/fundamentals/why-substrate/                                  /fundamentals/why-substrate/                     301!
 /main-docs/fundamentals/architecture/                                   /fundamentals/architecture/                      301!
 /main-docs/fundamentals/node-and-network-types/                         /fundamentals/node-and-network-types/            301!
-/main-docs/fundamentals/runtime-intro/                                  /fundamentals/runtime-development/                     301!
+/main-docs/fundamentals/runtime-intro/                                  /fundamentals/runtime-development/               301!
 /main-docs/fundamentals/consensus/                                      /fundamentals/consensus/                         301!
 /main-docs/fundamentals/transaction-types/                              /fundamentals/transaction-types/                 301!
 /main-docs/fundamentals/transaction-lifecycle/                          /fundamentals/transaction-lifecycle/             301!
@@ -75,14 +75,21 @@
 /main-docs/build/tx-weights-fees/                                       /build/tx-weights-fees/                          301!
 /main-docs/build/custom-pallets/                                        /build/custom-pallets/                           301!
 /main-docs/build/pallet-coupling/                                       /build/pallet-coupling/                          301!
-/main-docs/build/events-errors/                                         /build/events-and-errors/                            301!
+/main-docs/build/events-errors/                                         /build/events-and-errors/                        301!
 /main-docs/build/randomness/                                            /build/randomness/                               301!
 /main-docs/build/chain-spec/                                            /build/chain-spec/                               301!
 /main-docs/build/origins/                                               /build/origins/                                  301!
 /main-docs/build/custom-rpc/                                            /build/custom-rpc/                               301!
-/main-docs/build/application-dev/                                       /build/application-development/                          301!
-/main-docs/build/upgrade/                                               /build/upgrade-the-runtime/                                  301!
+/main-docs/build/application-dev/                                       /build/application-development/                  301!
+/main-docs/build/upgrade/                                               /build/upgrade-the-runtime/                      301!
 /main-docs/test/                                                        /test/                                           301!
 /main-docs/test/unit-testing/                                           /test/unit-testing/                              301!
 /main-docs/test/debug/                                                  /test/debug/                                     301!
 /main-docs/test/benchmark/                                              /test/benchmark/                                 301!
+
+# Parachain Tutotial Redirects
+
+/tutorials/connect-other-chains/                                        /tutorials/connect-relay-and-parachains/                                     301!
+/tutorials/v3/cumulus/start-relay                                       /tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain/         301!
+/tutorials/connect-other-chains/prepare-a-local-relay-chain/            /connect-relay-and-parachains/prepare-a-local-relay-chain/                   301!
+/tutorials/connect-other-chains/connect-a-local-parachain/              /tutorials/connect-relay-and-parachains/connect-a-local-parachain/           301!

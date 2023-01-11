@@ -5,7 +5,7 @@ keywords:
 ---
 
 The Polkadot-JS Apps is a flexible UI for interacting with a Polkadot or Substrate based node.
-Go to [documentation](https://polkadot.js.org/apps).
+Go to [documentation](https://polkadot.js.org/docs).
 
 This is pre-built [user-facing application](https://github.com/polkadot-js/apps), allowing access to all features available on Substrate chains.
 

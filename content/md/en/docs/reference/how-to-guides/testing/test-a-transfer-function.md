@@ -52,9 +52,9 @@ fn transfer_works() {
 			burner: 1,
 		});
     // Mint 42 coins to account 2.
-    assert_ok!(RewardCoin::mint(Origin::signed(1), 2, 42));
+    assert_ok!(RewardCoin::mint(RuntimeOrigin::signed(1), 2, 42));
     // Send 50 coins to account 3.
-    asset_noop!(RewardCoin::transfer(Origin::signed(2), 3, 50), Error::<T>::InsufficientBalance);
+    asset_noop!(RewardCoin::transfer(RuntimeOrigin::signed(2), 3, 50), Error::<T>::InsufficientBalance);
 ```
 
 ### Configure error handling
@@ -77,7 +77,7 @@ Run `cargo test` from your pallet's directory.
 Inside your `transfer_works` function:
 
 ```rust
-assert_noop!(RewardCoin::transfer(Origin::signed(2), 3, 50), Error::<Test>::InsufficientBalance);
+assert_noop!(RewardCoin::transfer(RuntimeOrigin::signed(2), 3, 50), Error::<Test>::InsufficientBalance);
 ```
 
 ## Check that both tests work together

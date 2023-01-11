@@ -249,7 +249,7 @@ This command displays output similar to the following:
   "git": {
     "commit": "6a8b2b12371395979099d2c79ccc1860531b0449",
     "tag": "",
-    "branch": "my-branch-v0.9.28"
+    "branch": "my-release-branch"
   },
   "rustc": "rustc 1.62.0 (a8314ef7d 2022-06-27)",
   "pkg": "polkadot-runtime",
