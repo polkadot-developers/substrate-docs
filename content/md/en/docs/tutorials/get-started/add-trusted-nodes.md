@@ -449,8 +449,8 @@ To insert keys into the keystore:
    The command displays output similar to the following:
 
    ```text
-   617572611441ddcb22724420b87ee295c6d47c5adff0ce598c87d3c749b776ba9a647f04
-   6772616e1441ddcb22724420b87ee295c6d47c5adff0ce598c87d3c749b776ba9a647f04
+   617572617e016f19ab623ba5f487f540017c1edbab06c0b211a16d40531dbd62d94ceb24
+   6772616e4ac976937e53fd836512cfd288bb438584ba366cbf9be403a0acd82c1c7c0739
    ```
 
 After you have added your keys to the keystore for the first node under /tmp/node01, you can restart the node using the command you used previously in [Start the first node](#start-the-first-node).
@@ -536,8 +536,8 @@ To add a second validator to the private network:
    The command displays output similar to the following:
 
    ```text
-   617572611a4cc824f6585859851f818e71ac63cf6fdc81018189809814677b2a4699cf45
-   6772616e1a4cc824f6585859851f818e71ac63cf6fdc81018189809814677b2a4699cf45
+   617572610a6cadb3d6f55a121de4c89754dd835e634ae83249734dfad01c2fae7e9ac102
+   6772616e5f273f61a4910897cec969b598a70a832fb7894ad7c741e2a559617898426f20
    ```
 
    Substrate nodes require a restart after inserting a `grandpa` key, so you must shut down and restart nodes before you see blocks being finalized.
