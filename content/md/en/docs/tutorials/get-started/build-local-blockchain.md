@@ -71,9 +71,9 @@ To compile the Substrate node template:
 
    In most cases, you can clone the `main` branch to get the latest code.
    However, you can use the `--branch` command-line option if you want to work with a Substrate branch that is compatible with a specific Polkadot version.
-   Click [Tags](https://github.com/substrate-developer-hub/substrate-node-template/tags) to see the list of branches that are compatible with specific Polkadot versions.
+   Click [Releases](https://github.com/paritytech/polkadot/releases) or [Tags](https://github.com/paritytech/polkadot/tags) to see the latest and earlier Polkadot branches that you can use with the node template.
 
-1. Change to the root of the node template directory by running the following command:
+2. Change to the root of the node template directory by running the following command:
 
    ```bash
    cd substrate-node-template
@@ -82,10 +82,12 @@ To compile the Substrate node template:
    If you want to save your changes and make this branch easy to identify, you can create a new branch by running a command similar to the following:
 
    ```bash
-   git switch -c my-branch-v0.9.29
+   git switch -c my-working-branch-mm-yyyy
    ```
 
-1. Compile the node template by running the following command:
+   If you create a working branch for you node, replace `mm-yyyy` with identifying information, such as the current month and year or the version of Polkadot you are working with.
+
+3. Compile the node template by running the following command:
 
    ```bash
    cargo build --release
