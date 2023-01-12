@@ -316,7 +316,7 @@ To update the network with the upgraded runtime:
 
 1. Click **Developer** and select **Extrinsics** to submit a transaction for the runtime to use the new build artifact.
 
-2. Select the administrative  **Alice** account.
+2. Select the administrative **Alice** account.
 
 3. Select the **sudo** pallet and the **sudoUncheckedWeight(call, weight)** function.
    
