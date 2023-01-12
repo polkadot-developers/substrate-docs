@@ -6,6 +6,7 @@ menu:
   - build
   - test
   - deploy
+  - maintain
   - tutorials
   - reference
   - community
@@ -159,11 +160,12 @@ deploy:
 #     url: /docs/deploy/deploy-a-parathread/
 #   - title: Deploy a parachain
 #     url: /docs/deploy/deploy-a-parachain/
-#- title: Maintain
-#url: /maintain/
-#pages:
-#   - title: Monitor
-#     url: /docs/maintain/monitor/
+maintain:
+  title: Maintain
+  url: /maintain/
+  pages:
+    - title: Monitor
+      url: /docs/maintain/monitor/
 #   - title: Operate
 #     url: /docs/main-docs/deploy/operate/
 #   - title: Upgrades and migration
