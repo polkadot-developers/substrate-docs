@@ -101,7 +101,7 @@ To start the node with the current runtime:
    
    In the upper left, notice the node template version is the default version 100.
 
-   ![Node template version](/substrate-docs/content/media/images/docs/tutorials/upgrade/default-version.png)
+   ![Node template version](/media/images/docs/tutorials/forkless-upgrade/default-version.png)
 
 ### Add Scheduler to the runtime dependencies
 
@@ -122,7 +122,7 @@ To update the dependencies for the runtime to include the Scheduler pallet:
    codec = { package = "parity-scale-codec", version = "3.0.0", default-features = false, features = ["derive"] }
    scale-info = { version = "2.1.1", default-features = false, features = ["derive"] }
    
-   pallet-aura = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", " branch" = "polkadot-v0.9.35" }
+   pallet-aura = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.35" }
    ```
 1. Add the Scheduler pallet as a dependency.
    
