@@ -1,33 +1,111 @@
 ---
-title: Runtime storage
+title: Runtime storage structures
 description:
 keywords:
 ---
 
-Runtime storage allows you to store data in your blockchain that is persisted between blocks and can be accessed from within your runtime logic.
-Storage should be one of the most critical concerns of a blockchain runtime developer.
-Well-designed storage systems reduce the load on nodes in the network, which
-ultimately lowers the overhead costs for participants in your blockchain.
-In other words, the fundamental principle of blockchain runtime storage is to minimize its use.
+As you develop runtime logic, you'll need to make important decisions about the information you store and how to make storing information as efficient as possible.
+As discussed in [State transitions and storage](/fundamentals/state-transitions-and-storage/), reading and writing data to storage is expensive.
+In addition, storing unnecessarily large data sets can slow your network and strain system resources.
 
-Substrate exposes a set of layered, modular storage APIs that allow runtime developers to make the storage decisions that suit them best.
-This document is intended to provide information and best practices about Substrate's runtime storage interfaces.
+Substrate is designed to provide a flexible framework that allows you to build the blockchain that suits your needs.
+However, you should keep a few basic guidelines in mind when designing runtime storage to ensure that you build a blockchain that is secure, performant, and maintainable in the long-term.
 
-## Storage items
+## Deciding what to store
 
-In Substrate, any pallet can introduce new storage items that will become part of the blockchain state. 
-These storage items can be simple single values, or more complex storage maps. 
-The type of storage items you choose to implement depends entirely on their intended role within the runtime logic.
+The fundamental principle for blockchain runtime storage is to minimize both the number and size of the data items you store.
+For example, you should only store _consensus-critical_ information in the runtime.
+You shouldn't store intermediate or temporary data in the runtime or data that won't be needed if an operation fails.
 
-The FRAME [`Storage` module](https://paritytech.github.io/substrate/master/frame_support/storage) provides access to the layered storage abstractions described in [State transitions and storage](/fundamentals/state-transitions-and-storage/) and can support any value that is encodable by [SCALE codec](/reference/scale-codec/). 
+## Use hashed data
+
+Whenever possible, use techniques like hashing to reduce the amount of data you must store.
+For example, many governance capabilities—such as the [`propose`](https://paritytech.github.io/substrate/master/pallet_democracy/pallet/enum.Call.html#variant.propose) function in the Democracy pallet—allow network participants to vote on the _hash_ of a dispatchable call instead of the call itself.
+The hash of the call is always bounded in size, whereas the call might be unbounded in length.
+
+Using the hash of a call is particularly important in the case of runtime upgrades where the dispatchable call takes an entire runtime Wasm blob as its parameter.
+Because these governance mechanisms are implemented _on-chain_, all the information that is needed to come to consensus on the state of a given proposal must also be stored on-chain - this includes _what_ is being voted on.
+However, by binding an on-chain proposal to its hash, Substrate's governance mechanisms allow this to be done in a way that defers bringing all the data associated with a proposal on-chain until _after_ it has been approved.
+This means that storage is not wasted on proposals that fail.
+
+Once a proposal has passed, someone can initiate the actual dispatchable call (including all its parameters), which will be hashed and compared to the hash in the proposal.
+
+Another common pattern for using hashes to minimize data that is stored on-chain is to store the pre-image associated with an object in [IPFS](https://docs.ipfs.io); this means that only the IPFS location (a hash that is bounded in size) needs to be stored on-chain.
+
+### Avoid storing transient data
+
+Do not use runtime storage to store intermediate or transient data within the context of an operation that is logically atomic or data that will not be needed if the operation is to fail.
+This does not mean that runtime storage should not be used to track the state of actions that require multiple atomic operations, as in the case of [the multi-signature capabilities from the Utility pallet](https://paritytech.github.io/substrate/master/pallet_utility/pallet/enum.Call.html#variant.as_multi).
+In this case, runtime storage is used to track the signatories on a dispatchable call even though a given call may never receive enough signatures to actually be invoked.
+In this case, each signature is considered an atomic event in the ongoing multi-signature operation.
+The data needed to record a single signature is not stored until after all the preconditions associated with that signature have been met.
+
+### Create bounds
+
+Creating bounds on the size of storage items is an extremely effective way to control the use of runtime storage and one that is used repeatedly throughout the Substrate codebase.
+In general, any storage item whose size is determined by user action should have a bound on it.
+The multi-signature capabilities from the [Multisig pallet](https://paritytech.github.io/substrate/master/pallet_multisig/pallet/trait.Config.html#associatedtype.MaxSignatories) that were described above are one such example.
+In this case, the list of signatories associated with a multi-signature operation is provided by the multi-signature participants.
+Because this signatory list is [necessary to come to consensus](#what-to-store) on the state of the multi-signature operation, it must be stored in the runtime. However, to control how much space signatory list can use, the Utility pallet requires users to configure a bound on this number to be included as a precondition before anything is written to storage.
+
+## Transactional storage
+
+As explained in [State transitions and storage](/fundamentals/state-transitions-and-storage/), runtime storage involves an underlying key-value database and in-memory storage overlay abstractions that keep track of keys and state changes until the values are committed to the underlying database.
+By default, functions in the runtime write changes to a single in-memory **transactional storage layer** before committing them to the main storage overlay. 
+If an error prevents the transaction from being completed, the changes in the transactional storage layer are discarded instead of being passed on to the main storage overlay and state in the underlying database remains unchanged.
+
+### Adding transactional storage layers
+
+You can extend the transactional storage layer by using the `#[transactional]` macro to spawn additional in-memory storage overlays. 
+By spawning additional in-memory transactional storage overlays, you can choose whether you want to commit specific changes to the main storage overlay or not. 
+The additional transactional storage layers give you the flexibility to isolate changes to specific function calls and select at any point which changes to commit.
+
+You can also nest transactional storage layers up to a maximum of ten nested transactional layers. 
+With each nested transactional storage layer you create, you can choose whether you want to commit changes to the transactional layer below it, giving you a great deal of control over what is committed to the underlying database.
+Limiting the total number of nested transactional  storage layers limits the computational overhead in resolving the changes to be committed.
+
+### Dispatching transactional storage layer call 
+
+If you want to dispatch a function call within its own transactional layer, you can use the `dispatch_with_transactional(call)` function to explicitly spawn a new transactional layer for the call and use that transactional layer context to handle the result.
+
+### Committing changes without the transactional storage layer
+
+If you want to commit changes to the main storage overlay without using the default  transactional storage layer, you can use the `#[without_transactional]` macro. 
+The `#[without_transactional]` macro enables you to identify a function that is safe to be executed without its own transactional layer.
+
+For example, you might define a function like this:
+
+```rust
+/// This function is safe to execute without an additional transactional storage layer.
+#[without_transactional]
+fn set_value(x: u32) -> DispatchResult {
+    Self::check_value(x)?;
+    MyStorage::set(x);
+    Ok(())
+}
+```
+
+Calling this function doesn't spawn a transactional storage layer.
+
+However, if you use the `#[without_transactional]` macro, keep in mind that changes to storage will affect the values in the main in-memory storage overlay.
+If an error occurs after you have modified storage, those changes will persist, and potentially could result in your database being left in an inconsistent state.
+
+## Accessing runtime storage
+
+In [State transitions and storage](/fundamentals/state-transitions-and-storage/), you learned how Substrate uses storage abstractions to provide read and write access to the underlying key-value database.
+The FRAME [`Storage`](https://paritytech.github.io/substrate/master/frame_support/storage) module simplifies access to these layered storage abstractions. 
+You can use the FRAME storage data structures to read or write any value that can be encoded by the [SCALE codec](/reference/scale-codec/).
 The storage module provides the following types of storage structures:
 
-- [StorageValue](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html)to store any single value, such as a `u64`.
-- [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html) to store values with a single key-to-value mapping, such as account-to-balance.
+- [StorageValue](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html) to store any single value, such as a `u64`.
+- [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html) to store a single key to value mapping, such as a specific account key to a specific balance value.
 - [StorageDoubleMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageDoubleMap.html) to store values in a storage map with two keys as an optimization to efficiently remove all entries that have a common first key.
 - [StorageNMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageNMap.html) to store values in a map with any arbitrary number of keys.
+  
+You can include any of these storage structures in pallets to introduce new storage items that will become part of the blockchain state. 
+The type of storage items you choose to implement depends entirely on how you want to use the information in the context of the runtime logic.
 
-### Storage value
+## Simple storage values
 
 You can use `StorageValue` storage items for values that are viewed as a single unit by the runtime. 
 For example, you should use this type of storage for the following common use cases:
@@ -40,74 +118,64 @@ If you use this type of storage for lists of items, you should be conscious abou
 Large lists and `structs` incur storage costs and iterating over a large list or `struct` in the runtime can affect network performance or stop block production entirely. 
 If iterating over storage exceeds the block production time and your project is a [parachain](/reference/glossary/#parachain), the blockchain to stop producing blocks and stop functioning.
 
-Although you can wrap related items in a shared `struct` to reduce the number of storage reads, at some point, the size of the object will begin to incur costs that may outweigh the optimization in storage reads.
-For more information about how to optimize execution time, see [Benchmark](/test/benchmark/).
+Refer to the [StorageValue](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html#required-methods) documentation for a comprehensive list of the methods that StorageValue exposes.
 
-For a list of the methods that Storage Value exposes, see [Required methods](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html#required-methods).
+## Single key storage maps
 
-### Storage map
+Map data structures are ideal for managing sets of items whose elements will be accessed randomly, as opposed to iterating over them sequentially in their entirety. 
+Single key storage maps in Substrate are similar to traditional [hash maps](https://en.wikipedia.org/wiki/Hash_table) with key-to-value mapping to perform random lookups. 
+To give you flexibility and control, Substrate allows you to select the hashing algorithm you want to use to generate the map keys.
+For example, if a map stores sensitive data you might want to generate keys using a hashing algorithm with stronger encryption over a hashing algorithm with better performance but weaker encryption properties.
+For more infomration about selecting a hashing algorithm for a map to use, see [Hashing algorithms](#hashing-algorithms).
 
-Map data structures are ideal for managing sets of items whose elements will be accessed randomly,
-as opposed to iterating over them sequentially in their entirety. Storage Maps in Substrate are
-implemented as key-value mappings that provide a similar interface as traditional [hash-maps](https://en.wikipedia.org/wiki/Hash_table)
-for enabling random lookups. In order to give runtime engineers increased control, Substrate allows developers to select
-which hashing algorithms suits their use case the best for generating a map's keys. This is covered in the section on [hashing algorithms](#hashing-algorithms).
+Refer to the [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html#required-methods) documentation for a comprehensive list of the methods that StorageMap exposes.
 
-Refer to the Storage Map documentation for [a comprehensive list of the methods that Storage Map exposes](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html#required-methods).
+## Double key storage maps
 
-### Double storage map
+[DoubleStorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageDoubleMap.html) storage items are similar to single key storage maps except that they contain two keys.
+Using this type of storage structure is useful for querying values with common keys.
 
-[Double Storage Maps](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageDoubleMap.html) are very similar to single Storage Maps except they contain two keys, which is useful for querying values with common keys.
+## Multi-key storage maps
 
-### N storage map
+The [StorageNMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageNMap.html) storage structure is also similar to single key and double key storage maps, but enable you to define any number of keys.
+To specify the keys in a `StorageNMap` structure, you must provide a tuple containing the `NMapKey` struct as a type to the Key type parameter while declaring the `StorageNMap`.
 
-N Storage Maps are also very similar to its siblings, namely Storage Maps and Double Storage Maps, but with the ability to hold any arbitrary number of keys.
+Refer to the [StorageNMap documentation](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.StorageNMap.html) for more details about the syntax to use in declaring this type of storage structure.
 
-To specify the keys in an N Storage Map in FRAMEv2, a tuple containing the special `NMapKey` struct must be provided as a type to the Key (i.e. second) type parameter while declaring the `StorageNMap`.
+## Iterating over storage maps
 
-Refer to the [N Storage Map documentation](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageNMap.html) for more details about the syntaxes in using a N Storage Map.
+You can iterate over Substrate storage maps using the map keys and values. 
+However, it's important to keep in mind that maps are often used to track unbounded or very large sets of data, such as accounts and balances.
+Iterating over a large data set can consume a lot of the limited resources you have available for producing blocks.
+For example, if the time it takes to iterate over a data set exceeds the maximum time allocated for producing blocks,  the runtime might stop producing new blocks, halting the progress of the chain.
+In addition, the database reads required to access the elements in a storage map far exceeds the database reads required to access the elements in a list.
+Therefore, it is significantly more costly—in terms of performance and execution time—to iterate over the elements in a storage map than to read the elements in a list.
 
-### Iterating over Storage Maps
+With the relative costs in mind, it's generally better to avoid iterating over storage maps in the runtime.
+However, there are no firm rules abut how you use Substrate storage capabilities, and, ultimately, it's up to you to decide the best way to access runtime storage for your application.
 
-Substrate Storage Maps are iterable with respect to their keys and values. Because maps are often
-used to track unbounded sets of data (such as account balances), iterating over them without caution in the runtime may cause blocks not being able to produced in time.
-Furthermore, because accessing the elements of a map requires more database reads than accessing the
-elements of a native list, map iterations are significantly _more_ costly than list iterations in terms of execution time.
+Substrate provides the following methods to enable you to iterate over storage maps:
 
-In general, Substrate focuses on programming according to principles and [best practices](#best-practices) as opposed to hard and fast rules of right and wrong.
-The information here aims to help you understand _all_ of Substrate's storage capabilities and how to use them in a way that respects the principles around which they were designed.
-For instance, iterating over storage maps in your runtime is neither right nor wrong&mdash;yet, avoiding it would be considered a better approach with respect to best practices.
-
-Substrate's Iterable Storage Map interfaces define the following methods:
-
-- `iter()` - enumerate all elements in the map in no particular order. If you alter the map while doing this, you'll get undefined results. See:
-
-  - [`IterableStorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.iter)
-  - [`IterableStorageDoubleMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter)
-  - [`IterableStorageNMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageNMap.html#tymethod.iter).
-
-- `drain()` - remove all elements from the map and iterate through them in no particular order. If you add elements to the map while doing this, you'll get undefined results. See:
-
-  - [`IterableStorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain)
-  - [`IterableStorageDoubleMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain)
-  - [`IterableStorageNMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageNMap.html#tymethod.drain)
-
-- `translate()` - use the provided function to translate all elements of the map, in no particular order.
-  To remove an element from the map, return `None` from the translation function. See:
-
-  - [`IterableStorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate)
-  - [`IterableStorageDoubleMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.translate)
-  - [`IterableStorageNMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageNMap.html#tymethod.translate)
+| Method | Description
+| ------ | -----------
+| `iter()` | Enumerates all elements in the map in no particular order. If you alter the map while doing this, you'll get undefined results. For more information, see [`IterableStorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.iter), [`IterableStorageDoubleMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter), or [`IterableStorageNMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageNMap.html#tymethod.iter).
+| `drain()` | Removes all elements from the map and iterate through them in no particular order. If you add elements to the map while doing this, you'll get undefined results. For more information, see [`IterableStorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain), [`IterableStorageDoubleMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain), [`IterableStorageNMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageNMap.html#tymethod.drain).
+| `translate()` | Translates all elements of the map in no particular order. To remove an element from the map, return `None` from the translation function. For more information, see [`IterableStorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate), [`IterableStorageDoubleMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.translate), [`IterableStorageNMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageNMap.html#tymethod.translate).
 
 ## Declaring storage items
 
-Runtime storage items are created with [`#[pallet::storage]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#storage-palletstorage-optional)
-in any FRAME-based pallet. 
-Here is an example of declaring the four different types of storage items:
+You can create runtime storage items with the[`#[pallet::storage]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#storage-palletstorage-optional) attribute macro in any FRAME-based pallet. 
+The following examples illustrate how to declare different types of storage items.
+
+### Single storage value
 
 ```rust
 #[pallet::storage]
-type SomePrivateValue<T> = StorageValue<_, u32, ValueQuery>;
+type SomePrivateValue<T> = StorageValue<
+    _, 
+    u32, 
+    ValueQuery
+>;
 
 #[pallet::storage]
 #[pallet::getter(fn some_primitive_value)]
@@ -115,14 +183,37 @@ pub(super) type SomePrimitiveValue<T> = StorageValue<_, u32, ValueQuery>;
 
 #[pallet::storage]
 pub(super) type SomeComplexValue<T: Config> = StorageValue<_, T::AccountId, ValueQuery>;
+```
 
+### Single key storage map
+
+```rust
 #[pallet::storage]
 #[pallet::getter(fn some_map)]
-pub(super) type SomeMap<T: Config> = StorageMap<_, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
+pub(super) type SomeMap<T: Config> = StorageMap<
+    _, 
+    Blake2_128Concat, T::AccountId, 
+    u32, 
+    ValueQuery
+>;
+```
 
+### Double key storage map
+
+```rust
 #[pallet::storage]
-pub(super) type SomeDoubleMap<T: Config> = StorageDoubleMap<_, Blake2_128Concat, u32, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
+pub(super) type SomeDoubleMap<T: Config> = StorageDoubleMap<
+    _, 
+    Blake2_128Concat, u32, 
+    Blake2_128Concat, T::AccountId, 
+    u32, 
+    ValueQuery
+>;
+```
 
+### Multi-key storage map
+
+```rust
 #[pallet::storage]
 #[pallet::getter(fn some_nmap)]
 pub(super) type SomeNMap<T: Config> = StorageNMap<
@@ -242,62 +333,6 @@ This table lists some common hashers used in Substrate and denotes those that ar
 
 The Identity hasher encapsulates a hashing algorithm that has an output equal to its input (the identity function).
 This type of hasher should only be used when the starting key is already a cryptographic hash.
-
-
-## Best practices
-
-Substrate is designed to provide a flexible framework that allows you to build the blockchain that suits your needs.
-However, the Substrate codebase adheres to a number of best practices in order to promote the creation of blockchain networks that are secure, performant, and maintainable in the long-term.
-The following sections outline best practices for using Substrate storage and also describe the important first principles that motivated them.
-
-### What to store
-
-Remember, the fundamental principle of blockchain runtime storage is to minimize its use.
-Only _consensus-critical_ data should be stored in your runtime.
-When possible, use techniques like hashing to reduce the amount of data you must store.
-For example, many of Substrate's governance capabilities—such as the Democracy pallet's [`propose`](https://paritytech.github.io/substrate/master/pallet_democracy/pallet/enum.Call.html#variant.propose) function allow network participants to vote on the _hash_ of a dispatchable call, which is always bounded in size, as opposed to the call itself, which may be unbounded in length.
-This is especially true in the case of runtime upgrades where the dispatchable call takes an entire runtime Wasm blob as its parameter.
-Because these governance mechanisms are implemented _on-chain_, all the information that is needed to come to consensus on the state of a given proposal must also be stored on-chain - this includes _what_ is being voted on.
-However, by binding an on-chain proposal to its hash, Substrate's governance mechanisms allow this to be done in a way that defers bringing all the data associated
-with a proposal on-chain until _after_ it has been approved.
-This means that storage is not wasted on proposals that fail.
-
-Once a proposal has passed, someone can initiate the actual dispatchable call (including all its parameters), which will be hashed and compared to the hash in the proposal.
-Another common pattern for using hashes to minimize data that is stored on-chain is to store the pre-image associated with an object in [IPFS](https://docs.ipfs.io); this means that only the IPFS location (a hash that is bounded in size) needs to be stored on-chain.
-
-Hashes are only one mechanism that can be used to control the size of runtime storage.
-An example of another mechanism is [bounds](#create-bounds).
-
-### Verify first, write last
-
-Substrate does not cache state prior to extrinsic dispatch.
-Instead, it applies changes directly as they are invoked.
-If an extrinsic fails, any state changes will persist.
-Because of this, it is important not to make any storage mutations until it is certain that all preconditions have been met.
-In general, code blocks that may result in mutating storage should be structured as follows:
-
-```rust
-{
-  // all checks and throwing code go here
-
-  // ** no throwing code below this line **
-
-  // all event emissions & storage writes go here
-}
-```
-
-Do not use runtime storage to store intermediate or transient data within the context of an operation that is logically atomic or data that will not be needed if the operation is to fail.
-This does not mean that runtime storage should not be used to track the state of ongoing actions that require multiple atomic operations, as in the case of [the multi-signature capabilities from the Utility pallet](https://paritytech.github.io/substrate/master/pallet_utility/pallet/enum.Call.html#variant.as_multi).
-In this case, runtime storage is used to track the signatories on a dispatchable call even though a given call may never receive enough signatures to actually be invoked.
-In this case, each signature is considered an atomic event in the ongoing multi-signature operation; the data needed to record a single signature is not stored until after all the preconditions associated with that signature have been met.
-
-### Create bounds
-
-Creating bounds on the size of storage items is an extremely effective way to control the use of runtime storage and one that is used repeatedly throughout the Substrate codebase.
-In general, any storage item whose size is determined by user action should have a bound on it.
-The multi-signature capabilities from the [Multisig pallet](https://paritytech.github.io/substrate/master/pallet_multisig/pallet/trait.Config.html#associatedtype.MaxSignatories) that were described above are one such example.
-In this case, the list of signatories associated with a multi-signature operation is provided by the multi-signature participants.
-Because this signatory list is [necessary to come to consensus](#what-to-store) on the state of the multi-signature operation, it must be stored in the runtime. However, in order to give runtime developers control over how much space in storage these lists may occupy, the Utility pallet requires users to configure a bound on this number that will be included as a [precondition](#verify-first-write-last) before anything is written to storage.
 
 ## Where to go next
 

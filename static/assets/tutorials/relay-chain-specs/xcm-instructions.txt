@@ -1,0 +1,33 @@
+polkadotXcm.send(
+  dest: V1
+    parents: 1
+    interior: Here
+  message: V2
+    XcmV2Instruction: WithdrawAsset
+      id: Concrete
+          parents: 0
+          interior: Here
+      fun: Fungible
+          Fungible: 1000000000000
+    XcmV2Instruction: BuyExecution
+      id: Concrete
+          parents: 0
+          interior: Here
+      fun: Fungible
+          Fungible: 1_000_000_000_000
+      weightLimit: Unlimited
+    XcmV2Instruction: Transact
+      originType: Native
+      requireWeightAtMost: 4_000_000_000
+      call: 0x3c00e90300000800000000001000
+    XcmV2Instruction: RefundSurplus
+    XcmV2Instruction: DepositAsset
+      assets: Wild
+        Wild: All
+      maxAssets: 1
+      beneficiary:
+        parents: 0
+        interior: X1
+          X1: Parachain
+            Parachain: 1000
+)

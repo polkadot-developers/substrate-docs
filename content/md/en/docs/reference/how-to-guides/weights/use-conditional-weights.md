@@ -28,94 +28,89 @@ Here are the different traits we'll be implementing:
 - [\`PaysFee\`](https://paritytech.github.io/substrate/master/frame_support/weights/trait.PaysFee.html): Designate whether the dispatch pays a fee or not.
 - [\`ClassifyDispatch\`](https://paritytech.github.io/substrate/master/frame_support/weights/trait.ClassifyDispatch.html): A way to tell the runtime about the type of dispatch being made.
 
-## Steps
+## Write the Weight struct
 
-### 1. Write the `WeighData` struct
+1. Open `lib.rs` file for your pallet in a text editor.
 
-Import `DispatchClass`, `WeighData` and `PaysFee` by declaring `use frame_support::dispatch::{DispatchClass, PaysFee, WeighData}`
-at the top of your pallet.
+1. Import `DispatchClass` and `Pays` by declaring `use frame_support::dispatch::{DispatchClass, Pays}`.
 
-In your pallet's `lib.rs` file, declare a struct called `Conditional` and write an implementation
-of `WeighData` for `Conditional`, where the first parameter is the condition that evaluate to
-a boolean value. In the following example, if the condition is true, the weight will be linear to
-the input. Otherwise the weight will be a constant.
+1. Import `weights` primitives into the pallet.
+   
+   ```rust
+   use frame_support:: {
+    dispatch::{DispatchClass, Pays},
+   },
+   weights::Weight,
 
-`pallets/example/src/lib.rs`
+1. Declare a struct called `Conditional` and write an implementation of `WeighData` for `Conditional` where the first parameter is the condition that evaluates to a boolean value. 
+   
+   In the following example, if the condition is true, the weight will be linear to the input.
+   Otherwise the weight will be a constant.
 
-```rust
-use frame_support::dispatch::{DispatchClass, PaysFee, WeighData};
-
-// -- snip --
-
-pub struct Conditional(u32);
-
-impl WeighData<(&bool, &u32)> for Conditional {
-  fn weigh_data(&self, (switch, val): (&bool, &u32)) -> Weight {
-
-    // If the first parameter is true, then the weight is linear in the second parameter.
-    if *switch {
-      val.saturating_mul(self.0)
-      }
+   ```rust
+   pub struct Conditional(u32);
+   impl WeighData<(&bool, &u32)> for Conditional {
+      fn weigh_data(&self, (switch, val): (&bool, &u32)) -> Weight {
+        
+      // If the first parameter is true, then the weight is linear in the second parameter.
+         if *switch {
+            val.saturating_mul(self.0)
+         }
       // Otherwise the weight is constant.
-    else {
-      self.0
-    }
+         else {
+            self.0
+         }
+      }
+   }
+   ```
+
+## Classify dispatch calls
+
+Add `dispatch::{ClassifyDispatch, DispatchClass, Pays}` to your pallet's `frame_support` imports.
+Since this implementation requires a [`DispatchClass`](https://paritytech.github.io/substrate/master/frame_support/dispatch/enum.DispatchClass.html), use `default` to classify all calls as normal:
+
+1. Open `lib.rs` file for your pallet in a text editor.
+
+1. Import `DispatchClass` and `Pays` by declaring `use frame_support::dispatch::{DispatchClass, Pays}`.
+   
+   ```rust
+   use frame_support::dispatch::{ClassifyDispatch, DispatchClass, Pays};
+   // -- snip --
+   
+   // Implement ClassifyDispatch
+   impl<T> ClassifyDispatch<T> for Conditional {
+      fn classify_dispatch(&self, _: T) -> DispatchClass {
+         Default::default()
+      }
   }
-}
-```
+  ```
 
-### 2. Classify dispatch calls
+## Implement Pays
 
-Add `weights::{ClassifyDispatch, DispatchClass, Pays, Weight}` to your pallet's `frame_support` imports.
-Since this implementation of `WeighData` requires a [`DispatchClass`](https://paritytech.github.io/substrate/master/frame_support/weights/enum.DispatchClass.html), use `default`
-to classify all calls as normal:
+Specify how `Pays` is used for the custom `WeighData` struct. 
+Setting this to `true` require the caller of this dispatch to pay a fee:
 
-`pallets/example/src/lib.rs`
+1. Open `lib.rs` file for your pallet in a text editor.
 
-```rust
-use frame_support::weights::{ClassifyDispatch, DispatchClass, Pays, Weight};
+1. Implement `Pays` for the Conditional structure.
+   
+   ```rust
+   impl Pays for Conditional {
+      fn pays_fee(&self) -> bool {
+         true
+      }
+   }
+   ```
 
-// -- snip --
-
-// Implement ClassifyDispatch
-impl<T> ClassifyDispatch<T> for Conditional {
-  fn classify_dispatch(&self, _: T) -> DispatchClass {
-    Default::default()
-  }
-}
-```
-
-### 3. Implement `PaysFee`
-
-Specify how `PaysFee` is used for the custom `WeighData` struct. Setting this to `true` will require the
-caller of this dispatch to pay a fee:
-
-`pallets/example/src/lib.rs`
-
-```rust
-use frame_support::weights::PaysFee
-
-// -- snip --
-
-// Implement PaysFee
-impl PaysFee for Conditional {
-    fn pays_fee(&self) -> bool {
-      true
-    }
-}
-```
-
-### 4. Use the weighting struct for an extrinsic
+## Use the weighting struct for an extrinsic
 
 Use the conditional weighting struct on your pallet's extrinsics like this:
 
-`pallets/example/src/lib.rs`
-
 ```rust
-  #[pallet::weight(Conditional(200))]
-  fn example(origin: OriginFor<T>, add_flag: bool, val: u32>) -> DispatchResult {
-      //...
-  }
+#[pallet::weight(Conditional(200))]
+   fn example(origin: OriginFor<T>, add_flag: bool, val: u32>) -> DispatchResult {
+   //...
+   }
 ```
 
 ## Examples
