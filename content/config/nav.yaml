@@ -155,22 +155,25 @@ deploy:
     - title: Deployment options
       url: /deploy/deployment-options/
 #   - title: Deploy on a test network
-#     url: /docs/deploy/deploy-on-a-test-network/
+#     url: /deploy/deploy-a-test-network/
 #   - title: Deploy a parathread
-#     url: /docs/deploy/deploy-a-parathread/
+#     url: /deploy/deploy-a-parathread/
 #   - title: Deploy a parachain
-#     url: /docs/deploy/deploy-a-parachain/
+#     url: /deploy/deploy-a-parachain/
 maintain:
   title: Maintain
   url: /maintain/
   pages:
     - title: Monitor
-      url: /docs/maintain/monitor/
+      url: /maintain/monitor/
 #   - title: Operate
-#     url: /docs/main-docs/deploy/operate/
-#   - title: Upgrades and migration
-#     url: /main-docs/maintain/upgrades-and-migration/
-
+#     url: /maintain/operate/
+#   - title: Client upgrades
+#     url: /maintain/client-upgrades/
+#   - title: Network upgrades
+#     url: /maintain/network-upgrades/
+#   - title: Data migration
+#     url: /maintain/data-migration/
 tutorials:
   title: Tutorials
   url: /tutorials/
