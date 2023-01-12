@@ -33,6 +33,9 @@ You'll learn how to:
 - Create a custom pallet using macros.
 - Publish a custom pallet for others to use.
 
+For a deeper dive into how to create a custom pallet from start to finish, you might want to explore the first part of the [Collectibles workshop](/tutorials/collectibles-workshop/).
+Future iterations are intended to include an introduction to front-end development and how to convert an application from a solo chain to a parachain project.
+
 ## Develop smart contracts
 
 The **Develop smart contracts** tutorials guide you through how you can use the ink programming language to build smart contracts that run on a Substrate-based blockchain.
@@ -51,11 +54,13 @@ You'll learn how to:
 - Turn a solo chain into a parachain.
 - Deploy a local test network and interact with multiple connected parachains.
 - Connect your parachain to a public test network.
+- Work with the cross-consensus messaging format.
 
 ## Integrate with tools
 
 The **Integrate with tools** tutorials highlight additional tools and node extensions that enable you to interact with Substrate nodes or the information in the blockchain in unique ways.
 You'll learn how to:
 
-- Integrate a light client node to connect to a Substrate chain.
+- Integrate a light client node to connect to a Substrate-based chain.
+- Interact with a Substrate-based chain using the `sidecar` RESTful API and endpoints.
 - Access EVM accounts and work with EVM-compatible applications.
