@@ -148,7 +148,7 @@ In this example, the following tools are configured for monitoring on-chain acti
 - Loki is a scalable log aggregation system that allows you to view and search logs from all components in your infrastructure in one place.
 
 For a simple example of setting up node monitoring using Prometheus, Grafana, and node exporter, see [Monitor node metrics](/tutorials/get-started/monitor-node-metrics/).
-For a simplified example of using Loki, see [Remote monitoring](/deploy/deployment-options/#remote-monitoring).
+For a simplified example of using Loki, see [Remote logging](/deploy/deployment-options/#remote-logging).
 
 ### Change the telemetry server
 
