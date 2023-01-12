@@ -6,7 +6,7 @@ keywords:
 
 Monitoring network operations and performance is an important part of maintaining a healthy, stable, and secure ecosystem.
 By default, Substrate nodes provide low-level **telemetry** components to automatically collect and transmit detailed information about the operation of each node in the network.
-Telemetry is the underlying mechanism—sensors, probes, or instrumentation—for collecting and transmitting data points as they occur to an endpoint so that you can observe, monitor, and alert on system behavior.
+The backend telemetry information is streamed in real time—as it occurs—to an endpoint so that you can observe, monitor, and alert on system behavior.
 
 As a developer or node operator, there's rarely any need to know the implementation details of how these low-level telemetry components provide information about computer and network operations.
 At a high level, the information collected from each public node is sent to a default telemetry server and aggregated for display in a front-end dashboard.
@@ -55,6 +55,7 @@ For example, if you want to keep the information for two nodes visible while the
 
 As an alternative to the list of nodes, you can display nodes on a global map.
 The map provides a visual representation of where nodes are located, where blocks are being produced and imported in real time, and where there are higher concentrations of nodes geographically.
+Note that only nodes that have a known location are displayed in the map.
 
 To see represented on a map, click **Map**.
 
@@ -109,7 +110,8 @@ Some examples of applications that query on-chain information are [polkabot](htt
 ### Node operations
 
 You should monitor each node that you run on the network for basic information about its operation such as the current block height, the number of peer-to-peer connections, CPU usage, and the available free memory.
-By default, Substrate exposes many useful metrics on the http://localhost:9615/metrics endpoint. 
+By default, Substrate exposes many useful metrics on the `host:9615/metrics` endpoint. 
+For example, if Substrate is running locally, you can see the metrics on the http://localhost:9615/metrics endpoint. 
 This endpoint outputs metrics using a simple key-value format. 
 For example:
 
@@ -117,7 +119,7 @@ For example:
 polkadot_database_cache_bytes 0
 ```
 
-However, you can also include tags within the key.
+However, keys can also include descriptive tags.
 For example:
 
 ```text
@@ -152,7 +154,7 @@ For a simplified example of using Loki, see [Remote monitoring](/deploy/deployme
 
 After you have configured the backend monitoring rules for your nodes, you can use the `--telemetry-url` command-line option when you start a node to specify the telemetry server that you want to send telemetry data to.
 You can pass this option multiple times to specify multiple telemetry endpoints. 
-You can also specify how verbose metrics should be, with level 0 denoting the least verbose through level 9 denoting the most verbose. 
+If you specify the `--telemetry-url` command-line option, you must also specify how verbose metrics should be, with level 0 denoting the least verbose through level 9 denoting the most verbose. 
 
 For example, to specify your own telemetry server URL with a verbosity level of 5, you would run a command similar to the following:
 
