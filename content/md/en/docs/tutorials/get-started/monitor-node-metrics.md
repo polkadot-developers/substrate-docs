@@ -24,7 +24,7 @@ Before you begin, verify the following:
 
 - You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
-- You have completed at least some of the previous tutorials, including [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and [Simulte a network](/tutorials/get-started/simulate-network/).
+- You have completed at least some of the previous tutorials, including [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and [Simulate a network](/tutorials/get-started/simulate-network/).
 
 ## Tutorial objectives
 
