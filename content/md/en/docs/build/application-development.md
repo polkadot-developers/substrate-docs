@@ -68,7 +68,7 @@ For example, you can do any of the following:
 The type information provided by the metadata enables applications to communicate with nodes with different versions of the runtime and across chains that expose different calls, events, types, and storage items.
 The metadata also allows libraries to generate almost all of the code needed to communicate with a given Substrate node, enabling libraries like `subxt` to generate front-end interfaces that are specific to a target chain.
 
-## Metadata system
+## Client applications and metadata
 
 Client applications use the metadata to interact with the node, to parse responses, and to format message payloads sent to the node.
 To use the metadata, client application front-end APIs must use the [SCALE codec library](/reference/scale-codec/) to encode and decode RPC payloads to send and receive transactions.
