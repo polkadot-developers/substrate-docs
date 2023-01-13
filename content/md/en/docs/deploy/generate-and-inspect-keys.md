@@ -4,15 +4,31 @@ description:
 keywords:
 ---
 
-In [Accounts, addresses, and keys](/fundamentals/accounts-addresses-keys/), the use of public and private keys focused on identifying accounts and addresses associated with users interacting with different networks. 
+In [Accounts, addresses, and keys](/fundamentals/accounts-addresses-keys/), the discussion of public and private keys focused on identifying accounts and addresses associated with users interacting with different networks. 
 However, keys and different key signatures are also fundamental to deploying Substrate nodes and performing specific node operations.
 This section recaps the encryption schemes and where they are used by different node components.
 
-## Encryption schemes
+## Digital signature schemes
 
-ed25519	The vanilla ed25519 implementation using Schnorr signatures.
-sr25519	The Schnorrkel/Ristretto sr25519 variant using Schnorr signatures. (default)
-ecdsa	ECDSA signatures on secp256k1
+Most digital signature schemes provide the following features:
+
+- **Key generation**. The signature scheme must provide a method for generating a random private key from the set of all possible private keys and a corresponding public key that can be used to verify the authenticity of the private key.
+- **Message signing**. The signature scheme must provide a method that produces a signature for a given message and private key.
+- **Signature verification**. The signature scheme must provide a method to accept or reject the authenticity of a message based on the message, public key, and signature being evaluated.
+
+Different signature schemes use different algorithms to perform these operations.
+Regardless of the mathematics used, all signature schemes are designed to achieve two main outcomes:
+
+- Authenticity of the signature generated for a given message and private key is verified by using the corresponding public key. 
+- Integrity of the message can be reasonably assumed because generating a valid signature without the private key isn't computationally feasible.
+
+The following signature schemes are supported in Substrate-based chains:
+
+| Scheme | Description
+|:----- |:-----------
+| ed25519	| The Ed25519 signature scheme is based on the Edwards-curve Digital Signature Algorithm (EdDSA) signature scheme—a variant of Schnorr signatures—that uses SHA-512 and Curve25519. This signature scheme produces more secure signatures and is significantly faster at signing messages than the ECDSA signature scheme.
+| sr25519	| The Sr25519 signature scheme is the default signature scheme for Substrate. This signature scheme is based on the Schnorrkel variant that uses Schnorr signatures with Ristretto point compression. The Sr25519 signature scheme supports additional features—such as hierarchical deterministic key derivation, multi-signature signing, and a verifiable random function—that are particularly useful in a blockchain environment.
+| ecdsa	| The Elliptic Curve Digital Signature Algorithm (ECDSA) is a variant of the Digital Signature Algorithm (DSA) that uses the Secp256k1 elliptic curve cryptography. This signature scheme was used initially in Bitcoin and Ethereum because of the patent protecting Schnorr signatures. Using the ECDSA signature scheme complicates some advanced cryptographic techniques, such as threshold signatures.
 
 ## Session key types
 
