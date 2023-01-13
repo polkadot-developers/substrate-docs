@@ -44,11 +44,16 @@ This encoding is done automatically for you when you compile a node by using the
 
 At a high level, generating the metadata involves the following steps:
 
-- The runtime logic exposes all of the callable functions, types, parameters, and documentation that need to be encoded in the metadata.
+- The pallets in the runtime logic expose all of the callable functions, types, parameters, and documentation that need to be encoded in the metadata.
 
 - The `scale-info` crate collects type information for the pallets in the runtime and builds a registry of runtime types.
 
-- The `frame-metadata` crate describes the structure of the runtime based on the type registry provided by `scale-info`.
+- The `frame-metadata` crate describes the structure of the runtime based on the type registry provided by the `scale-info` crate.
+- Substrate nodes provide the RPC method `state_getMetadata` to returns a complete description of all the types in the current runtime as a hex-encoded vector of SCALE-encoded bytes.
+  
+The following diagram provides a simplified overview of how the metadata is generated when the runtime logic is compiled and accessed by connecting to the runtime with an RPC request.
+
+![Compiling the runtime generatesthe metadata](/media/images/docs/metadata.png)
 
 ## Getting metadata for a runtime
 
@@ -65,18 +70,8 @@ The metadata also allows libraries to generate almost all of the code needed to 
 
 ## Metadata system
 
-Substrate nodes provide an RPC call, `state_getMetadata`, that returns a complete description of all the types in the current runtime.
 Client applications use the metadata to interact with the node, to parse responses, and to format message payloads sent to the node.
-This metadata includes information about a pallet's storage items, transactions, events, errors, and constants.
-The current metadata version (V14) differs significantly from its predecessors as it contains much richer type information.
-If a runtime includes a pallet with a custom type, the type information is included as part of the metadata returned.
-Polkadot uses V14 metadata starting from [runtime spec version 9110](https://polkascan.io/polkadot/runtime/9110) at [block number 7229126](https://polkadot.subscan.io/block/7229126) and Kusama from [runtime spec version 9111](https://polkascan.io/kusama/runtime/9111), at [block number 9625129](https://kusama.subscan.io/block/9625129).
-This is useful to know for developers who intend to interact with runtimes that use older metadata versions.
-Refer to [this document](https://gist.github.com/ascjones/0d81a4c44e84cacd9f714cd34a6de823) for a migration guide from V13 to V14.
-
-The current metadata schema uses the [`scale-info`](https://docs.rs/scale-info/latest/scale_info/) crate to get type information for the pallets in the runtime when you compile a node.
-
-The current implementation of the metadata requires front-end APIs to use the [SCALE codec library](/reference/scale-codec/) to encode and decode RPC payloads to send and receive transactions.
+To use the metadata, client application front-end APIs must use the [SCALE codec library](/reference/scale-codec/) to encode and decode RPC payloads to send and receive transactions.
 The following steps summarize how metadata is generated, exposed, and used to make and receive calls from the runtime:
 
 - Callable pallet functions, as well as types, parameters and documentation are exposed by the runtime.
@@ -87,17 +82,7 @@ The following steps summarize how metadata is generated, exposed, and used to ma
 - Custom RPC APIs use the metadata interface and provide methods to make calls into the runtime.
   A SCALE codec library is required to encode and decode calls and data to and from the API.
 
-Every Substrate chain stores the version number of the metadata system they are using, which makes it useful for applications to know how to handle the metadata exposes by a certain block.
-As previously mentioned, the latest metadata version (V14) provides a major enhancement to the metadata that a chain is able to generate.
-But what if an application wants to interact with blocks that were created with an earlier version than V14?
-Well, it would require setting up a front-end interface that follows the older metadata system, whereby custom types would need to be identified and manually included as part of the front-end's code.
-Learn how to use the [`desub`](https://github.com/paritytech/desub) tool to accomplish this if you needed.
-
-Type information bundled in the metadata gives applications the ability to communicate with nodes across different chains, each of which may each expose different calls, events, types and storage.
-It also allows libraries to generate almost all of the code needed to communicate with a given Substrate node, giving the possibility for libraries like `subxt` to generate front-end interfaces that are specific to a target chain.
-
-With this system, any runtime can be queried for its available runtime calls, types and parameters.  
-The metadata also exposes how a type is expected to be decoded, making it easier for an external application to retrieve and process this information.
+Because the metadata exposes how a type is expected to be decoded, external application can retrieve and process the type information without manual decoding.
 
 ## Metadata format
 
