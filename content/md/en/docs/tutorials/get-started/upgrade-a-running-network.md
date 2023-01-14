@@ -97,7 +97,7 @@ To start the node with the current runtime:
    Leave this node running.
    You can edit and re-compile to upgrade the runtime without stopping or restarting the running node.
 
-2. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/explorer) in a browser and connect to the local node.
+2. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) in a browser and connect to the local node.
    
    In the upper left, notice the node template version is the default version 100.
 
