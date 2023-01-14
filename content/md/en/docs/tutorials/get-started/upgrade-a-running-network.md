@@ -101,7 +101,7 @@ To start the node with the current runtime:
    
    In the upper left, notice the node template version is the default version 100.
 
-   ![Node template version](/substrate-docs/content/media/images/docs/tutorials/upgrade/default-version.png)
+   ![Node template version](/media/images/docs/tutorials/forkless-upgrade/default-version.png)
 
 ### Add Scheduler to the runtime dependencies
 
@@ -122,7 +122,7 @@ To update the dependencies for the runtime to include the Scheduler pallet:
    codec = { package = "parity-scale-codec", version = "3.0.0", default-features = false, features = ["derive"] }
    scale-info = { version = "2.1.1", default-features = false, features = ["derive"] }
    
-   pallet-aura = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", " branch" = "polkadot-v0.9.35" }
+   pallet-aura = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.35" }
    ```
 1. Add the Scheduler pallet as a dependency.
    
@@ -184,7 +184,27 @@ To add the Scheduler types and configuration trait:
    }
    ```
 
-4. Add the implementation for the Config trait for the Scheduler pallet.
+   Note that this definition for `MaximumSchedulerWeight` is only an example that uses a ratio to specify the weight.
+   You could define the weight using specific values for execution time and storage.
+   For example:
+   
+   ```rust
+   pub MaximumSchedulerWeight: Weight = Weight::zero().set_ref_time(10).set_proof_size(10);
+   ```
+
+   or
+
+   ```rust
+   pub MaximumSchedulerWeight: Weight = Weight::from_parts(10, 10);
+   ```
+   
+   Alternatively, you could define only one dimension for weight, for example  using a specific value for execution time:
+   
+   ```rust
+   pub MaximumSchedulerWeight: Weight = Weight::from_ref_time(10_000_000);
+   ```
+s
+1. Add the implementation for the Config trait for the Scheduler pallet.
 
    ```rust
    impl pallet_scheduler::Config for Runtime {
@@ -201,7 +221,7 @@ To add the Scheduler types and configuration trait:
    }
    ```
 
-1. Locate the `construct_runtime!` macro.
+2. Locate the `construct_runtime!` macro.
 
    ```text
    construct_runtime!(
@@ -217,13 +237,13 @@ To add the Scheduler types and configuration trait:
             Aura: pallet_aura,
    ```
 
-2. Add the Scheduler pallet inside the `construct_runtime!` macro.
+3. Add the Scheduler pallet inside the `construct_runtime!` macro.
 
    ```rust
    Scheduler: pallet_scheduler,
    ```
 
-3. Locate the `runtime_version` macro.
+4. Locate the `runtime_version` macro.
 
    ```text
    #[sp_version::runtime_version]
@@ -239,7 +259,7 @@ To add the Scheduler types and configuration trait:
    };
    ```
 
-4. Increment the [`spec_version`](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html#structfield.spec_version) to specify the new runtime version.
+5. Increment the [`spec_version`](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html#structfield.spec_version) to specify the new runtime version.
 
    ```rust
    spec_version: 101,  // Change the spec_version from 100 to 101
@@ -259,7 +279,7 @@ To add the Scheduler types and configuration trait:
    To upgrade the runtime, you must _increase_ the `spec_version`.
    For more information, see the [FRAME System](https://github.com/paritytech/substrate/tree/master/frame/system/src/lib.rs) module and the `can_set_code` method.
 
-5.  Save your changes and close the `runtime/src/lib.rs` file.
+6.  Save your changes and close the `runtime/src/lib.rs` file.
 
 ### Recompile and connect to the local node
 
@@ -296,7 +316,7 @@ To update the network with the upgraded runtime:
 
 1. Click **Developer** and select **Extrinsics** to submit a transaction for the runtime to use the new build artifact.
 
-2. Select the administrative  **Alice** account.
+2. Select the administrative **Alice** account.
 
 3. Select the **sudo** pallet and the **sudoUncheckedWeight(call, weight)** function.
    
