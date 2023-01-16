@@ -209,6 +209,8 @@ tutorials:
     - title: Collectibles workshop
       url: /tutorials/collectibles-workshop/00-intro-runtime-pallets/
       pages:
+        -title: Pallet builder basics
+         url: /tutorials/collectibles-workshop/runtime-and-pallets/
         - title: Prepare a working environment
           url: /tutorials/collectibles-workshop/01-prepare/
         - title: Get oriented
