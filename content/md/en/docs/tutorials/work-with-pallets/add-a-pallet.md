@@ -80,7 +80,7 @@ To add the dependencies for the Nicks pallet to the runtime:
    - Version to identify which version of the crate you want to import.
    - The default behavior for including pallet features when compiling the runtime with the standard Rust libraries.
    - Repository location for retrieving the `pallet-nicks` crate.
-   - Branch to use for retrieving the crate.
+   - Branch to use for retrieving the crate. Be sure to use the same **version** and **branch** information for the Nicks pallet as you see used for the other pallets included in the runtime.
 
    These details should be the same for every pallet in any given version of the node template.
 
