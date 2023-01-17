@@ -47,7 +47,7 @@ You can use any structure nesting needed, there is no limit of depth.
 #### Navigation config
 
 - update `./content/config/nav.yaml` to add or amend items and linking to your content
-  - an exception being `./content/md/en/docs/reference/how-to-guides/...` files that should _only_ be listed on the main how-to guide page in the index page for these pages: `./content/md/en/docs/reference/how-to-guides/index.md`, not to be included in the side bar.
+  - an exception being `./content/md/en/docs/reference/how-to-guides/...` files that should _only_ be listed on the main how-to guide page in the index page for these pages: `./content/md/en/docs/reference/how-to-guides/index.md`, not to be included in the sidebar.
 
 This config file is used to generate sidebar menu where:
 
@@ -66,7 +66,7 @@ Navigate into your cloned local repo directory and install all dependencies.
 # switch to the correct version of node set in the .nvmrc file
 nvm i
 
-# Install dependancies
+# Install dependencies
 yarn
 ```
 
