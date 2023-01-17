@@ -12,7 +12,7 @@ The `try-runtime` tool enables you to run tests and verify operations in a simul
 This guide demonstrates the basic steps for integrating the `try-runtime` tool into a runtime so you can use it to test a storage migration.
 
 In general, adding the `try-runtime` tool to your runtime is similar to importing pallets.
-It involves adding the appropriate dependencies in the correct places and updating the runtime logic to to include the `try-runtime` features.
+It involves adding the appropriate dependencies in the correct places and updating the runtime logic to include the `try-runtime` features.
 As with pallets, be sure that you are using the appropriate tag or branch for the `try-runtime` tool when adding dependencies to the runtime.
 
 ## Add runtime dependencies

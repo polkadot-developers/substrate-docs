@@ -7,7 +7,7 @@ keywords:
   - runtime
 ---
 
-Teh [subwasm](https://github.com/chevdor/subwasm) tool provides a way to expose the features of the runtime for any Substrate chain.
+The [subwasm](https://github.com/chevdor/subwasm) tool provides a way to expose the features of the runtime for any Substrate chain.
 This guide shows you how to use Subwasm to do the following:
 
 - Get a snapshot of the modules in a runtime.
@@ -44,7 +44,7 @@ Make sure you have the following:
    subwasm get --chain local -o mychain.wasm
    ```
 
-   The `-o` flag will save the the Wasm file to `mychain.wasm`.
+   The `-o` flag will save the Wasm file to `mychain.wasm`.
 
 1. Run the following command to save your chain's metadata to a JSON file:
 
@@ -91,7 +91,7 @@ The following example compares the Polkadot runtime at block 500,000 with its la
 
 ## Examples
 
-There are many uses cases for `subwasm` as outlined above.
+There are many use cases for `subwasm` as outlined above.
 Some additional examples include:
 
 - Compressing and decompressing a Wasm file.

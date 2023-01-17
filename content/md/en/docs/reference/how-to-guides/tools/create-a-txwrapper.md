@@ -159,7 +159,7 @@ Create an end-to-end example so users have a clear understanding of the full flo
 
 ### 6. Publish your package
 
-Once you've made sure that versioning make sense and that the [package works locally](https://docs.npmjs.com/cli/v6/commands/npm-pack), refer to [this guide](https://docs.npmjs.com/cli/v6/commands/npm-publish) to learn how publish your package to `NPM`.
+Once you've made sure that versioning makes sense and that the [package works locally](https://docs.npmjs.com/cli/v6/commands/npm-pack), refer to [this guide](https://docs.npmjs.com/cli/v6/commands/npm-publish) to learn how to publish your package to `NPM`.
 
 ## Examples
 
