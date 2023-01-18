@@ -92,7 +92,7 @@ The `offchain` module maintains its own [Externalities](https://paritytech.githu
 ## Test events in a mock runtime
 
 It can also be important to test the events that are emitted from your chain, in addition to the storage.
-Assuming you use the default generation of `deposit_event` with the `generate_deposit` marco, all pallet events are stored under the `system` / `events` key with some extra information as an [`EventRecord`](https://paritytech.github.io/substrate/master/frame_system/struct.EventRecord.html).
+Assuming you use the default generation of `deposit_event` with the `generate_deposit` macro, all pallet events are stored under the `system` / `events` key with some extra information as an [`EventRecord`](https://paritytech.github.io/substrate/master/frame_system/struct.EventRecord.html).
 
 These event records can be directly accessed and iterated over with `System::events()`, but there are also some helper methods defined in the system pallet to be used in tests, [`assert_last_event`](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.assert_last_event) and [`assert_has_event`](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.assert_has_event).
 
