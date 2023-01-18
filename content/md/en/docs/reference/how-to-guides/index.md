@@ -16,15 +16,11 @@ See the following guides to learn common patterns in runtime development.
 - [Configure genesis state](/reference/how-to-guides/basics/configure-genesis-state)
 - [Customize a chain specification](/reference/how-to-guides/basics/customize-a-chain-specification)
 - [Use helper functions](/reference/how-to-guides/basics/use-helper-functions)
-- [Mint primitive tokens](/reference/how-to-guides/basics/mint-basic-tokens/)
-
-<!--- [Calculate weight](/reference/how-to-guides/basics/calc-weights/)-->
 
 ## Pallet design
 
 See the following guides for best practices on building pallets using FRAME.
 
-- [Add the contracts pallet](/reference/how-to-guides/pallet-design/add-contracts-pallet/)
 - [Implement lockable currency](/reference/how-to-guides/pallet-design/implement-lockable-currency/)
 - [Incorporate randomness](/reference/how-to-guides/pallet-design/incorporate-randomness/)
 - [Configure crowdfunding](/reference/how-to-guides/pallet-design/configure-crowdfunding/)
@@ -84,3 +80,9 @@ See the following guides for help working with offchain data.
 - [Make offchain HTTP requests](/reference/how-to-guides/offchain-workers/offchain-http-requests/)
 - [Offchain local storage](/reference/how-to-guides/offchain-workers/offchain-local-storage/)
 - [Offchain indexing](/reference/how-to-guides/offchain-workers/offchain-indexing/)
+
+<!--
+- [Calculate weight](/reference/how-to-guides/basics/calc-weights/)
+- [Mint primitive tokens](/reference/how-to-guides/basics/mint-basic-tokens/)
+- [Add the contracts pallet](/reference/how-to-guides/pallet-design/add-contracts-pallet/)
+-->
