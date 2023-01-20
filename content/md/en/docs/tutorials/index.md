@@ -29,8 +29,8 @@ The **Work with pallets** tutorials focus on how you can customize the runtime u
 You'll learn how to:
 
 - Add a simple predefined pallet to the runtime.
-- Configure a predefined pallet to work with smart contracts.
 - Create a custom pallet using macros.
+- Specify the account to use as the originator of a function call.
 - Publish a custom pallet for others to use.
 
 For a deeper dive into how to create a custom pallet from start to finish, you might want to explore the first part of the [Collectibles workshop](/tutorials/collectibles-workshop/).
