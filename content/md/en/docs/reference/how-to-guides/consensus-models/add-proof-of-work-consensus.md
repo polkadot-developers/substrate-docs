@@ -26,7 +26,7 @@ This guide introduces a few core principles for working with consensus engines.
 
 ## Define a full node using sc_consensus_pow and sc_service
 
-In `src/service.rs`, make a function called `new_full1` that defines [`PartialComponents`](https://paritytech.github.io/substrate/master/sc_service/struct.PartialComponents.html) and [`PowBlockImport`](https://paritytech.github.io/substrate/master/sc_consensus_pow/struct.PowBlockImport.html):
+In `src/service.rs`, make a function called `new_full` that defines [`PartialComponents`](https://paritytech.github.io/substrate/master/sc_service/struct.PartialComponents.html) and [`PowBlockImport`](https://paritytech.github.io/substrate/master/sc_consensus_pow/struct.PowBlockImport.html):
 
 ```rust
 let pow_block_import = sc_consensus_pow::PowBlockImport::new(
