@@ -260,7 +260,7 @@ To implement this logic in the proof-of-existence pallet:
 
 1. Open the `pallets/template/src/lib.rs` file in a text editor.
 
-1. Replace the `#[pallet::call]` line with the following code block:
+1. Replace the `#[pallet::call]` line with the following code block. You might try to implement the `revoke_claim` function yourself. Just copy the function signature and not the content. The `Claims::<T>::get` and `Claims::<T>::remove` should be used to get or remove a claim.
 
     ```rust
     // Dispatchable functions allow users to interact with the pallet and invoke state changes.
