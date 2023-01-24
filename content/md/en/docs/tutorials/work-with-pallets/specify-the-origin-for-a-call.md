@@ -49,7 +49,7 @@ By completing this tutorial, you will accomplish the following objectives:
 As you saw in [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet), the `Config` trait for the `nicks` pallet declares several types.
 For this tutorial, the focus is on the `ForceOrigin` type.
 The `ForceOrigin` type is used to specify the account that can perform certain operations.
-For this pallet, the `ForceOrigin` type specifies that account that can set or remove a name for another account.
+For this pallet, the `ForceOrigin` type specifies the account that can set or remove a name for another account.
 Typically, only an account with administrative privileges—such as a root superuser account—can act on behalf of another account.
 In the case of the Nicks pallet, only the owner of an account or the Root account can set or remove a reserved nickname.
 You configured this Root account in the implementation (`impl`) block when you identified the FRAME System [`Root` origin](https://paritytech.github.io/substrate/master/frame_system/enum.RawOrigin.html#variant.Root) as the `nicks` pallet administrator.
@@ -69,8 +69,8 @@ If you attempt to call the `kill_name` or `force_name` with an account other tha
 To demonstrate how the origin for a call affects operations, let's set and try to forcibly remove the account name for another account.
 For this demonstration, be sure you have:
 
-- The node template running in development mode: ./target/release/node-template --dev
-- The frontend template running and connecting to the local node: yarn start
+- The node template running in development mode: `./target/release/node-template --dev`
+- The frontend template running and connecting to the local node: `yarn start`
 - Your browser connected to the local web server: <http://localhost:8000/>
 
 1. Change the active account in the front-end template from Alice to Bob.
@@ -119,8 +119,8 @@ For this demonstration, be sure you have:
 
 For this demonstration, be sure you have:
 
-- The node template running in development mode: ./target/release/node-template --dev
-- The frontend template running and connecting to the local node: yarn start
+- The node template running in development mode: `./target/release/node-template --dev`
+- The frontend template running and connecting to the local node: `yarn start`
 - Your browser connected to the local web server: <http://localhost:8000/>
 
 1. Change the active account to Alice.
