@@ -54,11 +54,14 @@ In the GRANDPA protocol, the longest chain rule simply says that the best chain 
 Substrate provides this chain selection rule with the [`LongestChain`](https://paritytech.github.io/substrate/master/sc_consensus/struct.LongestChain.html) struct.
 GRANDPA uses the longest chain rule in its voting mechanism.
 
-![longest chain rule](/media/images/docs/consensus-longest-chain.png)
+![Longest chain rule](/media/images/docs/consensus-longest.png)
 
-The Greedy Heaviest Observed SubTree (GHOST) rule says that, starting at the genesis block, each fork is resolved by choosing the branch that has the most blocks built on it recursively.
+One disadvantage of the longest chain rule is that an attacker could create a chain of blocks that outpaces the network and effectively hijack the main chain.
+The Greedy Heaviest Observed SubTree (GHOST) rule says that, starting at the genesis block, each fork is resolved by choosing the heaviest branch that has the most blocks built on it.
 
 ![GHOST rule](/media/images/docs/consensus-ghost.png)
+
+In this diagram, the heaviest chain has accumulated more blocks built on top of it than the longest chain fork.
 
 ## Deterministic finality
 
