@@ -143,6 +143,10 @@ To review the `Config` trait for the Balances pallet:
 1. Locate the `Balances` pallet and note that it consists of the following implementation (`impl`)code block:
 
    ```rust
+   pub type Balance = u128;
+
+   // ...
+
    /// Existential deposit.
    pub const EXISTENTIAL_DEPOSIT: u128 = 500;
    
@@ -270,7 +274,7 @@ To start the local Substrate node:
 
 ## Start the front-end template
 
-Now that you have added a new pallet to your runtime, you can use the Substrate front-end template to interact with the node template and access the Nicks pallet.
+Now that you have added a new pallet to your runtime, you can use the [Substrate front-end template](https://docs.substrate.io/tutorials/get-started/build-local-blockchain/#install-the-front-end-template) to interact with the node template and access the Nicks pallet.
 
 To start the front-end template:
 
