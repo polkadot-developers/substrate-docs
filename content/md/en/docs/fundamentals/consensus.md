@@ -61,7 +61,8 @@ The Greedy Heaviest Observed SubTree (GHOST) rule says that, starting at the gen
 
 ![GHOST rule](/media/images/docs/consensus-ghost.png)
 
-In this diagram, the heaviest chain has accumulated more blocks built on top of it than the longest chain fork.
+In this diagram, the heaviest chain is the fork that has accumulated most blocks built on top of it.
+If you are using the GHOST rule for chain selection, this fork would be selected as the main chain even though it has fewer blocks than the longest chain fork.
 
 ## Deterministic finality
 
