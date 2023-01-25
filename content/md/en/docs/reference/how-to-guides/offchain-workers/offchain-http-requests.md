@@ -9,14 +9,14 @@ keywords:
   - requests
 ---
 
-Because blockchains typically can't access data that's hosted on servers outside of their own network, they typically use external third-party services—**oracles**—to pull information in from or push information out to locations that are outside of the network.
+Because most blockchains can't access data that's hosted on servers outside of their own network, they typically use external third-party services—**oracles**—to pull information in from or push information out to locations that are outside of the network.
 For Substrate-based blockchains, **offchain workers** (OCW) provide similar capabilities, but with the advantage of being able to access on-chain state.
 
 This guide illustrates how to use an offchain worker to make HTTP requests using GET or POST methods.
-In this example, you'll see how to retrieve the price of Bitcoin from the `cryptocompare` API and how to submit data using an offchain worker API.
+In the exampls in this guide, you'll see how to retrieve the price of Bitcoin from the `cryptocompare` API and how to submit data using an offchain worker API.
 
-You might know that Rust provides various libraries for issuing HTTP requests
-However, offchain workers run in their own WebAssembly execution environment—a [no-std](https://docs.rust-embedded.org/book/intro/no-std.html) environment—and, therefore don't have access to the standard Rust libraries.
+You might know that Rust provides its own libraries for issuing HTTP requests.
+However, offchain workers run in their own WebAssembly execution environment—a [no-std](https://docs.rust-embedded.org/book/intro/no-std.html) environment—and, therefore, don't have access to the standard Rust libraries.
 Instead, Substrate provides its own libraries that you can use to issue HTTP requests.
 
 The Substrate HTTP library supports the following methods:
@@ -32,7 +32,7 @@ The Substrate HTTP library supports the following methods:
 In most cases, you want to limit the time allowed for an offchain worker to execute its operations.
 For this example, you can set a hard-coded deadline of two seconds to complete the external call.
 You can also wait indefinitely for the response.
-However, waiting indefinitely might result in a timeout from the host machine.
+However, waiting indefinitely might result in a timeout from the external host machine.
 
 1. Create a deadline of 2 seconds.
 
