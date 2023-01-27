@@ -1,6 +1,6 @@
 ---
 title: Make offchain HTTP requests
-description:
+description: Illustrates how to use an offchain worker to make HTTP requests.
 keywords:
   - offchain worker
   - ocw
@@ -9,15 +9,15 @@ keywords:
   - requests
 ---
 
-This guide steps through making an HTTP request using an offchain worker, to GET or POST data offchain.
+Because most blockchains can't access data that's hosted on servers outside of their own network, they typically use external third-party services—**oracles**—to pull information in from or push information out to locations that are outside of the network.
+For Substrate-based blockchains, **offchain workers** (OCW) provide similar capabilities, but with the advantage of being able to access on-chain state.
 
-Off-chain workers (**OCW** for short) were introduced to extend oracle-like capabilities for Substrate blockchains.
-Because a blockchain does not have access to data outside its own network, oracles are a useful tool to enable interactions between on and offchain worlds.
+This guide illustrates how to use an offchain worker to make HTTP requests using GET or POST methods.
+In the exampls in this guide, you'll see how to retrieve the price of Bitcoin from the `cryptocompare` API and how to submit data using an offchain worker API.
 
-In this guide we will look through retrieving the price of bitcoin from the `cryptocompare` API as well as submitting data via an OCW API.
-
-Remember that although Rust provides various libraries for issuing HTTP requests, an OCW runs in an [no-std](https://docs.rust-embedded.org/book/intro/no-std.html) environment.
-Luckily, Substrate provides us with a few `no_std` libraries we can use to issue HTTP requests to an API.
+You might know that Rust provides its own libraries for issuing HTTP requests.
+However, offchain workers run in their own WebAssembly execution environment—a [no-std](https://docs.rust-embedded.org/book/intro/no-std.html) environment—and, therefore, don't have access to the standard Rust libraries.
+Instead, Substrate provides its own libraries that you can use to issue HTTP requests.
 
 The Substrate HTTP library supports the following methods:
 
@@ -29,10 +29,12 @@ The Substrate HTTP library supports the following methods:
 
 ## Set a deadline and instantiate an HTTP request
 
-1. Create a deadline of 2 seconds.
+In most cases, you want to limit the time allowed for an offchain worker to execute its operations.
+For this example, you can set a hard-coded deadline of two seconds to complete the external call.
+You can also wait indefinitely for the response.
+However, waiting indefinitely might result in a timeout from the external host machine.
 
-   We want to keep the offchain worker execution time reasonable, so we set a hard-coded deadline to 2s to complete the external call.
-   You can also wait indefinitely for the response, however you may still get a timeout coming from the host machine.
+1. Create a deadline of 2 seconds.
 
    ```rust
    let deadline = sp_io::offchain::timestamp().add(Duration::from_millis(2_000));
@@ -48,7 +50,7 @@ The Substrate HTTP library supports the following methods:
 
 ## Read and submit the response
 
-1. First, you must check the response.
+1. Check the response status code.
 
    ```rust
    // Let's check the status code before we proceed to reading the response.
@@ -69,7 +71,7 @@ The Substrate HTTP library supports the following methods:
    })?;
    ```
 
-1. Now, here's how you can submit data to an API via a POST request.
+1. Submit data to an API using a POST request.
 
    ```rust
     // Send a POST request

@@ -12,7 +12,7 @@ To make the offchain data integration more secure and efficient, Substrate suppo
 
 - **Offchain workers** are a subsystem of components that enable the execution of long-running and possibly non-deterministic tasks, such as:
   - website service requests
-  - encryption, decryption and signing of data
+  - encryption, decryption, and signing of data
   - random number generation
   - CPU-intensive computations
   - enumeration or aggregation of on-chain data
@@ -36,7 +36,7 @@ However, because offchain workers are declared in the same code as the runtime, 
 
 ![Offchain workers](/media/images/docs/off-chain-workers-v2.png)
 
-Off-chain workers have access to extended APIs for communicating with the external world:
+Offchain workers have access to extended APIs for communicating with the external world:
 
 - Ability to [submit transactions](https://paritytech.github.io/substrate/master/sp_runtime/offchain/trait.TransactionPool.html)—either signed or unsigned—to the chain to publish computation results.
 - A fully-featured HTTP client allowing the worker to access and fetch data from external services.
@@ -49,6 +49,10 @@ Off-chain workers have access to extended APIs for communicating with the extern
 Note that the results from offchain workers are not subject to regular transaction verification.
 Therefore, you should ensure the offchain operation includes a verification method to determine what information gets into the chain.
 For example, you might verify offchain transactions by implementing a mechanism for voting, averaging, or checking sender signatures.
+
+You should also note that offchain workers don't have any specific privileges or permissions by default and, therefore, represent a potential attack vector that a malicious user could exploit.
+In most cases, checking whether a transaction was submitted by an offchain worker before writing to storage isn't sufficient to protect the network.
+Instead of assuming that the offchain worker can be trusted without safeguards, you should intentionally set restrictive permissions that limit access to the process and what it can do.
 
 Offchain workers are spawned during each block import.
 However, they aren't executed during initial blockchain synchronization.
