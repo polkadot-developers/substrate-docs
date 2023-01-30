@@ -100,7 +100,7 @@ These event records can be directly accessed and iterated over with `System::eve
 fn fake_test_example() {
  ExtBuilder::default().build_and_execute(|| {
   System::set_block_number(1);
-  // ... test logic that emits FakeEvent1 and then FakeEvent2...
+  // ... test logic that emits FakeEvent1 and then FakeEvent2 ...
   System::assert_has_event(Event::FakeEvent1{}.into())
   System::assert_last_event(Event::FakeEvent2 { data: 7 }.into())
   assert_eq!(System::events().len(), 2);
@@ -112,6 +112,56 @@ Some things to note are:
 
 - Events are not emitted on the genesis block, and so the block number should be set in order for this test to pass.
 - You need to have a `.into()` after instantiating your pallet event, which turns it into a generic event.
+
+### Advanced Event Testing
+
+When testing events in a pallet, often you are only interested in the events that are emitted from your own pallet.
+A helper function like the one below will filter the events to only the ones emitted by your chain, and also convert them into your own event type. This is usually placed in the mock file, `mock.rs`.
+
+```rust
+fn only_example_events() -> Vec<super::Event<Runtime>> {
+ System::events()
+  .into_iter()
+  .map(|r| r.event)
+  .filter_map(|e| if let RuntimeEvent::TemplateModule(inner) = e { Some(inner) } else { None })
+  .collect::<Vec<_>>();
+}
+```
+
+Additionally, if your test performs multiple operations that emit events in sequence, it may be preferable to only see the events that have happened since the last check. The example below leverages the helper function above.
+
+```rust
+parameter_types! {
+ static ExamplePalletEvents: u32 = 0;
+}
+
+fn example_events_since_last_call() -> Vec<super::Event<Runtime>> {
+ let events = only_example_events();
+ let already_seen = ExamplePalletEvents::get();
+ ExamplePalletEvents::set(events.len() as u32);
+ events.into_iter().skip(already_seen as usize).collect()
+}
+```
+
+This type of event testing approaches can be seen in action in the tests for the [nomination pool](https://github.com/paritytech/substrate/blob/master/frame/nomination-pools/src/mock.rs) mocks or [staking](https://github.com/paritytech/substrate/blob/master/frame/staking/src/mock.rs). Rewriting our previous event testing with this new function, it looks like this.
+
+```rust
+fn fake_test_example() {
+ ExtBuilder::default().build_and_execute(|| {
+  System::set_block_number(1);
+  // ... test logic that emits FakeEvent1 ...
+  assert_eq!(
+   example_events_since_last_call(),
+   vec![Event::FakeEvent1{}]
+  );
+  // ... test logic that emits FakeEvent2 ...
+  assert_eq!(
+   example_events_since_last_call(),
+   vec![Event::FakeEvent2{}]
+  );
+ });
+}
+```
 
 ## Genesis config
 
