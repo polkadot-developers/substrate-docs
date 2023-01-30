@@ -281,7 +281,6 @@ it's time to start a local node.
    2023-01-30 23:08:58.644  INFO                 main sc_rpc_server: Running JSON-RPC WS server: addr=127.0.0.1:9944, allowed origins=None
    2023-01-30 23:09:03.645  INFO tokio-runtime-worker substrate: 💤 Idle (0 peers), best: #0 (0x6a05…1669), finalized #0 (0x6a05…1669), ⬇ 0 ⬆ 0
    2023-01-30 23:09:08.646  INFO tokio-runtime-worker substrate: 💤 Idle (0 peers), best: #0 (0x6a05…1669), finalized #0 (0x6a05…1669), ⬇ 0 ⬆ 0
-
    ```
 
    Note that no blocks will be produced until we send an extrinsic to the node. This is because the
@@ -313,111 +312,150 @@ With this pattern, you can store the code for a smart contract like the ERC20 st
 instantiate it any number of times. You don't need to reload the same source code repeatedly, so your smart contract
 doesn't consume unnecessary resources on the blockchain.
 
-### Upload the contract code
+### Uploading the ink! Contract Code
 
-For this tutorial, you use the Contracts UI front-end to deploy the `flipper` contract on the Substrate chain.
+For this tutorial, you use the `cargo-contract` CLI tool to `upload` and `instantiate` the `flipper` contract on a
+Substrate chain.
 
-To upload the smart contract source code:
+1. Start your node using `substrate-contracts-node --dev --log info,runtime::contracts=debug 2>&1`
 
-1. Open the [Contracts UI](https://contracts-ui.substrate.io/?rpc=ws://127.0.0.1:9944) in a web browser.
+1. Go to the `flipper` project folder.
 
-1. Verify that you are connected to the **Local Node**.
+1. Build the contract using `cargo contract build`.
 
-1. Click **Add New Contract**.
+1. Upload and instantiate your contract using:
 
-1. Click **Upload New Contract Code**.
+   ```bash
+   cargo contract instantiate --constructor new --args "false" --suri //Alice --salt $(date +%s)
+   ```
 
-1. Select an **Account** to use to create a contract instance.
+   Some notes about the command:
+   - The `instantiate` command will do both the `upload` and `instantiate` steps for you.
 
-   You can select any existing account, including a predefined account such as `alice`.
+   - We need to specify the contract constructor to use, which in this case is `new()`
 
-1. Type a descriptive **Name** for the smart contract, for example, Flipper Contract.
+   - We need to specify the argument to the constructor, which in this case is `false`
 
-1. Browse and select or drag and drop the `flipper.contract` file that contains the bundled Wasm blob and metadata into the upload section.
+   - We need to specify the account uploading and instantiating the contract, which in this case is the default
+     development account of `//Alice`
 
-   ![Upload the contract](/media/images/docs/tutorials/ink-workshop/upload-contract.png)
+   - During development we may want to upload the instantiate the same contract multiple times, so we specify a `salt`
+     using the current time. Note that this is optional.
 
-1. Click **Next** to continue.
+   After running the command confirming that we're happy with the gas estimatation we should see something like this:
 
-### Create an instance on the blockchain
+   ```text
+   Dry-running new (skip with --skip-dry-run)
+      Success! Gas required estimated at Weight(ref_time: 328660939, proof_size: 0)
+  Confirm transaction details: (skip with --skip-confirm)
+   Constructor new
+          Args false
+     Gas limit Weight(ref_time: 328660939, proof_size: 0)
+  Submit? (Y/n):
+        Events
+         Event Balances ➜ Withdraw
+           who: 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
+           amount: 98.986123μUNIT
+         Event System ➜ NewAccount
+           account: 5GRAVvuSXx8pCpRUDHzK6S1r2FjadahRQ6NEgAVooQ2bB8r5
+         ... snip ...
+         Event TransactionPayment ➜ TransactionFeePaid
+           who: 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
+           actual_fee: 98.986123μUNIT
+           tip: 0UNIT
+         Event System ➜ ExtrinsicSuccess
+           dispatch_info: DispatchInfo { weight: Weight { ref_time: 2827629132, proof_size: 0 }, class: Normal, pays_fee: Yes }
 
-Smart contracts exist as an extension of the account system on the Substrate blockchain.
-When you create an instance of this smart contract, Substrate creates a new `AccountId` to store any balance managed by the smart contract and to allow you to interact with the contract.
+      Contract 5GRAVvuSXx8pCpRUDHzK6S1r2FjadahRQ6NEgAVooQ2bB8r5
+   ```
 
-After you upload the smart contract and click **Next**, the Contracts UI displays information about the content of the smart contract.
+We will need the `Contract` address to `call` the contract, so make sure you don't lose it.
 
-To create the instance:
 
-1. Review and accept the default **Deployment Constructor** options for the initial version of the smart contract.
+## Calling the Deployed ink! Contract
 
-2. Review and accept the default **Max Gas Allowed**.
+We can not only `upload` and `instantiate` contracts using `cargo-contract`, we can also `call` them!
 
-   ![Create an instance of the smart contract](/media/images/docs/tutorials/ink-workshop/create-instance.png)
+### `get()` Message
 
-3. Click **Next**.
+When we initialized the contract we set the initial value of the `flipper` to `false`. We can confirm this by calling
+the `get()` message.
 
-   The transaction is now queued.
-   If you needed to make changes, you could click **Go Back** to modify the input.
+Since we are only reading from the blockchain state (we're not writing any new data) we can use the `--dry-run` flag to
+avoid submitting an extrinsic.
 
-   ![Complete instantiation](/media/images/docs/tutorials/ink-workshop/complete-upload.png)
+```bash
+cargo contract call --contract 5GRAVvuSXx8pCpRUDHzK6S1r2FjadahRQ6NEgAVooQ2bB8r5 --message get --suri //Alice --dry-run
+```
 
-4. Click **Upload and Instantiate**.
+Some notes about the command:
+  - The address of the contract we want to call had to be specified using the `--contract` flag
+    - This can be found in the output logs of the `cargo contract instantiate` command
 
-   Depending on the account you used, you might be prompted for the account password.
-   If you used a predefined account, you won't need to provide a password.
+   - We need to specify the contract message to use, which in this case is `get()`
 
-   ![Successfully deployed instance of the smart contract](/media/images/docs/tutorials/ink-workshop/first-contract.png)
+   - We need to specify the account callling the contract, which in this case is the default development account of
+     `//Alice` (TODO: We shouldn't need this)
 
-## Call the smart contract
+   - We specify `--dry-run` to avoid submitting an extrinsic on-chain
 
-Now that your contract has been deployed on the blockchain, you can interact with it.
-The default flipper smart contract has two functions—`flip()` and `get()`—and you can use the Contracts UI to try them out.
+After running the command should see something like this:
 
-### get() function
+```text
+Result Success!
+Reverted false
+    Data Tuple(Tuple { ident: Some("Ok"), values: [Bool(false)] })
+```
 
-You set the initial value of the `flipper` contract `value` to `false` when you instantiated the contract.
-You can use the `get()` function to verify the current value is `false`.
+We're interested in the `value` here, which is `false` as expected.
 
-To test the `get()` function:
+### `flip()` Message
 
-1. Select any account from the **Account** list.
+The `flip()` message changes the storage value from `false` to `true` and vice versa.
 
-   This contract doesn't place restrictions on who is allowed to send the `get()` request.
+To call the `flip()` message we will need to submit an extrinsic on-chain because we are altering the state of the
+blockchain.
 
-1. Select **get(): bool** from the **Message to Send** list.
+To do this we can use the following command:
 
-1. Click **Read**.
+```bash
+cargo contract call --contract 5GQwxP5VTVHwJaRpoQsK5Fzs5cERYBzYhgik8SX7VAnvvbZS --message flip --suri //Alice
+```
 
-1. Verify that the value `false` is returned in the Call Results.
+Notice that we changed the message to `flip` and removed the `--dry-run` flag.
 
-   ![Calling the get() function returns false](/media/images/docs/tutorials/ink-workshop/call-results-get.png)
+After running we expect to see something like:
 
-### flip() function
+```text
+Dry-running flip (skip with --skip-dry-run)
+    Success! Gas required estimated at Weight(ref_time: 8013742080, proof_size: 262144)
+Confirm transaction details: (skip with --skip-confirm)
+     Message flip
+        Args
+   Gas limit Weight(ref_time: 8013742080, proof_size: 262144)
+Submit? (Y/n):
+      Events
+       Event Balances ➜ Withdraw
+         who: 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
+         amount: 98.974156μUNIT
+       Event Contracts ➜ Called
+         caller: 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
+         contract: 5GQwxP5VTVHwJaRpoQsK5Fzs5cERYBzYhgik8SX7VAnvvbZS
+       Event TransactionPayment ➜ TransactionFeePaid
+         who: 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
+         actual_fee: 98.974156μUNIT
+         tip: 0UNIT
+       Event System ➜ ExtrinsicSuccess
+         dispatch_info: DispatchInfo { weight: Weight { ref_time: 1410915697, proof_size: 13868 }, class: Normal, pays_fee: Yes }
+```
 
-The `flip()` function changes the value from `false` to `true`.
+If we call the `get()` message again we can see that the storage value was indeed flipped!
 
-To test the `flip()` function:
-
-1. Select any predefined account from the **Account** list.
-
-   The `flip()` function is a transaction that changes the chain state and requires an account with funds to be used to execute the call.
-   Therefore, you should select an account that has a predefined account balance, such as the `alice` account.
-
-1. Select **flip()** from the **Message to Send** list.
-
-1. Click **Call**.
-
-1. Verify that the transaction is successful in the Call Results.
-
-   ![Successful transaction](/media/images/docs/tutorials/ink-workshop/successful-transaction.png)
-
-1. Select **get(): bool** from the **Message to Send** list.
-
-1. Click **Read**.
-
-1. Verify the new value is `true` in the Call Results.
-
-   ![The get() function displays the current value is true](/media/images/docs/tutorials/ink-workshop/flipped-true.png)
+```text
+Result Success!
+Reverted false
+    Data Tuple(Tuple { ident: Some("Ok"), values: [Bool(true)] })
+```
 
 ## Next steps
 
@@ -433,9 +471,10 @@ In this tutorial, you learned:
 
 - How to deploy a smart contract by connecting to a local node and uploading and instantiating the contract.
 
-- How to interact with a smart contract using the Contracts UI browser client.
+- How to interact with a smart contract using the `cargo-contract` CLI tool.
 
-Additional smart contract tutorials build on what you learned in this tutorial and lead you deeper into different stages of contract development.
+Additional smart contract tutorials build on what you learned in this tutorial and lead you deeper into different stages
+of contract development.
 
 You can learn more about smart contract development in the following topics:
 
