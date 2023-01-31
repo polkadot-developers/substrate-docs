@@ -213,12 +213,10 @@ To update the smart contract:
 
    ```rust
    impl Incrementer {
-     #[ink(constructor)]
-     pub fn new(init_value: i32) -> Self {
-           Self {
-             value: init_value,
-           }
-     }
+        #[ink(constructor)]
+        pub fn new(init_value: i32) -> Self {
+            Self { value: init_value }
+        }
    }
    ```
 
