@@ -113,10 +113,11 @@ Some things to note are:
 - Events are not emitted on the genesis block, and so the block number should be set in order for this test to pass.
 - You need to have a `.into()` after instantiating your pallet event, which turns it into a generic event.
 
-### Advanced Event Testing
+### Advanced event testing
 
 When testing events in a pallet, often you are only interested in the events that are emitted from your own pallet.
-A helper function like the one below will filter the events to only the ones emitted by your chain, and also convert them into your own event type. This is usually placed in the mock file, `mock.rs`.
+The following helper function filters events to include only events emitted by your pallet and converts them into a custom event type. 
+A helper function like this is usually placed in the `mock.rs` file for testing in a mock runtime.
 
 ```rust
 fn only_example_events() -> Vec<super::Event<Runtime>> {
@@ -128,7 +129,8 @@ fn only_example_events() -> Vec<super::Event<Runtime>> {
 }
 ```
 
-Additionally, if your test performs multiple operations that emit events in sequence, it may be preferable to only see the events that have happened since the last check. The example below leverages the helper function above.
+Additionally, if your test performs operations that emit events in a sequence, you might want to only see the events that have happened since the last check. 
+The following example leverages the preceding helper function.
 
 ```rust
 parameter_types! {
@@ -143,7 +145,8 @@ fn example_events_since_last_call() -> Vec<super::Event<Runtime>> {
 }
 ```
 
-This type of event testing approaches can be seen in action in the tests for the [nomination pool](https://github.com/paritytech/substrate/blob/master/frame/nomination-pools/src/mock.rs) mocks or [staking](https://github.com/paritytech/substrate/blob/master/frame/staking/src/mock.rs). Rewriting our previous event testing with this new function, it looks like this.
+You can find examples of this type of event testing in the tests for the [nomination pool](https://github.com/paritytech/substrate/blob/master/frame/nomination-pools/src/mock.rs) or [staking](https://github.com/paritytech/substrate/blob/master/frame/staking/src/mock.rs). 
+If you rewrite the previous event test with this new function, the resulting code looks like this:
 
 ```rust
 fn fake_test_example() {
