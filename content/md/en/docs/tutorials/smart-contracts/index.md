@@ -1,7 +1,6 @@
 ---
 title: Develop smart contracts
-description: Demonstrates using the ink! programming language to create and deploy smart contracts on a Substrate-based
-network.
+description: Demonstrates using the ink! programming language to create and deploy smart contracts on a Substrate-based network.
 keywords:
   - smart contracts
 ---
