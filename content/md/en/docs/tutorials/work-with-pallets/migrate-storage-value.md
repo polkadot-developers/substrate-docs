@@ -26,59 +26,104 @@ By completing this tutorial, you will accomplish the following objectives:
 
 - Modify the storage for a pallet to include a new item.
 - 
-## Update the Nicks pallet
 
-To add the storage item to the Nicks pallet:
+## Prepare your local environment
+
+For this tutorial, you are going to update a local copy of the `nicks` pallet folder, so the first step is to add the `nicks` folder to the `pallets` directory for the substrate-node-template and modify the runtime to use this local pallet.
+
+To prepare your environment:
+
+1. Download the [nicks](https://github.com/paritytech/substrate/tree/master/frame/nicks) pallet, if necessary.
+
+2. Open a terminal shell and change to the root directory for the node template.
+
+3. Move the local copy of the `nicks` pallet to the `pallets` directory.
+
+4. Open the `runtime/Cargo.toml` file in a text editor.
+   
+   If you are using the same runtime you used in [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet/), remove or comment out the remote dependency you previously added.
+
+5. Add the `nicks` pallet to the local dependencies for the runtime.
+   
+   ```toml
+   pallet-nicks = { version = "4.0.0-dev", default-features = false, path = "../pallets/nicks" }
+   ```
+
+6. Save your changes and close the file.
+
+7. Open the `pallets/nicks/Cargo.toml` file in a text editor.
+
+8. Update the dependencies to use the same pallet branch as the node template runtime.
+   
+   For example, if the runtime manifest uses `branch = "polkadot-v0.9.36"`, update the `Cargo.toml` file for the nicks pallet to use that branch.
+
+9. Save your changes and close the file.
+
+   If you are using the same runtime you used in [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet/), your `runtime/src/lib.rs` file already includes the configuration required for the Nicks pallet.
+   You can check that your code compiles by running the following command:
+
+   ```bash
+   cargo check --package node-template-runtime --release
+   ```
+
+## Update storage in the Nicks pallet
+
+By default, the Nicks pallet only stores a lookup table that maps a `NameOf` type to an `AccountId`.
+For example, the default storage definition looks like this:
+
+```text
+/// The lookup table for names.
+	#[pallet::storage]
+	pub(super) type NameOf<T: Config> =
+		StorageMap<_, Twox64Concat, T::AccountId, (BoundedVec<u8, T::MaxLength>, BalanceOf<T>)>;
+```
+
+For this tutorial, you're going to add a new storage structure—Nickname—to manage the previous storage item (`first`) and the new storage item (`last`).
+
+To add the storage structure to the Nicks pallet:
 
 1. Open a terminal shell and change to the root directory for the node template.
 
-2. Create a storage struct and utility type
+2. Open the `pallets/nicks/src/lib.rs` file in a text editor.
 
-Write a struct to manage the previous and new storage items, first and last:
+3. Add a structure to manage the previous and new storage items, first and last:
+   
+   ```rust
+   pub struct Nickname {
+       first: BoundedVec<u8>,
+       last: Option<BoundedVec<u8>>, // handles empty storage
+   }
+   ```
 
-```rust
-pub struct Nickname {
-    first: Vec<u8>,
-    last: Option<Vec<u8>>, // handles empty storage
-}
-```
+4. Add an enumerated type to keep track of the storage versions:
+   
+   ```rust
+   #[derive(codec::Encode, codec::Decode, Clone, frame_support::RuntimeDebug, PartialEq)]
+   pub enum StorageVersion {
+       V1Bytes,
+       V2Struct,
+   }
+   ```
 
-Write a utility type enum to keep track of the storage versions:
+5. Add the `Nickname` struct in the `NameOf` configuration and add a new storage value item—`PalletVersion`—to declare the current version in storage.
+   
+   For example:
+   
+   ```rust
 
-```rust
-#[derive(codec::Encode, codec::Decode, Clone, frame_support::RuntimeDebug, PartialEq)]
-pub enum StorageVersion {
-	V1Bytes,
-	V2Struct,
-}
-```
+   ```
 
-### 2. Update your storage items
+## Update functions
 
-The Nicks pallet only keeps track of a lookup table in storage, but we also need to add `PalletVersion` to
-declare the current version in storage. To update these items, use the `Nickname` struct in the `NameOf` item and add the new storage item `PalletVersion`:
-
-```rust
-decl_storage! {
-	trait Store for Module<T: Trait> as MyNicks {
-		/// The lookup table for names.
-		NameOf: map hasher(twox_64_concat) T::AccountId => Option<(Nickname, BalanceOf<T>)>;
-		/// The current version of the pallet.
-		PalletVersion: StorageVersion = StorageVersion::V1Bytes;
-	}
-}
-```
-
-### 3. Update all functions
-
-All of the Nicks pallet functions need to account for the new `last: Option<Vec<u8>>` storage item. Update each function by adding it as a parameter, for example:
+All of the Nicks pallet functions need to account for the new `last: Option<BoundedVec<u8>>` storage item. 
+Therefore, you must update each function to include the `last` parameter declaration, for example:
 
 ```rust
 //--snip
 fn force_name(origin,
     target: <T::Lookup as StaticLookup>::Source,
-    first: Vec<u8>,
-    last: Option<Vec<u8>>) {
+    first: BoundedVec<u8>,
+    last: Option<BoundedVec<u8>>) {
 //--snip
     }
 ```
