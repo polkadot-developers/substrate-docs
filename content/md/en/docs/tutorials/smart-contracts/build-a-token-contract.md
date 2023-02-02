@@ -9,9 +9,13 @@ keywords:
   - fungible
 ---
 
-This tutorial illustrates how you can build an ERC-20 token contract using the ink! language.
+This tutorial illustrates how you can build an [ERC-20 token](https://eips.ethereum.org/EIPS/eip-20) contract using the
+ink! language.
+
 The ERC-20 specification defines a common standard for fungible tokens.
-Having a standard for the properties that define a token enables developers who follow the specification to build applications that can interoperate with other products and services.
+
+Having a standard for the properties that define a token enables developers who follow the specification to build
+applications that can interoperate with other products and services.
 
 The ERC-20 token standard is not the only token standard, but it is one of the most commonly used.
 
@@ -25,7 +29,8 @@ Before you begin, verify the following:
 
 - You have completed [Prepare your first contract](/tutorials/smart-contracts/prepare-your-first-contract/) and have the Substrate contracts node installed locally.
 
-- You have completed [Develop a smart contract](/tutorials/smart-contracts/develop-a-smart-contract/) and are familiar with how ink! uses Rust attribute macros to build smart contracts.
+- You have completed [Develop a smart contract](/tutorials/smart-contracts/develop-a-smart-contract/) and are familiar
+  with how ink! uses Rust attribute macros to build smart contracts.
 
 ## Tutorial objectives
 
@@ -43,8 +48,11 @@ By completing this tutorial, you will accomplish the following objectives:
 
 ## Basics of the ERC-20 standard
 
-The [ERC-20 token standard](https://eips.ethereum.org/EIPS/eip-20) defines the interface for most of the smart contracts that run on the Ethereum blockchain.
-These standard interfaces allow individuals to deploy their own cryptocurrency on top of an existing smart contract platform.
+The [ERC-20 token standard](https://eips.ethereum.org/EIPS/eip-20) defines the interface for most of the smart contracts
+that run on the Ethereum blockchain.
+
+These standard interfaces allow individuals to deploy their own cryptocurrency on top of an existing smart contract
+platform.
 
 If you review the standard, you'll notice the following core functions are defined.
 
@@ -71,20 +79,30 @@ contract ERC20Interface {
 }
 ```
 
-Users balances are mapped to account addresses and the interfaces allow users to transfer tokens that they own or allow a third party to transfer tokens on their behalf.
-Most importantly, the smart contract logic must be implemented to ensure that funds are not unintentionally created or destroyed, and that a user's funds are protected from malicious actors.
+Users balances are mapped to account addresses and the interfaces allow users to transfer tokens that they own or allow
+a third party to transfer tokens on their behalf.
+
+Most importantly, the smart contract logic must be implemented to ensure that funds are not unintentionally created or
+destroyed, and that a user's funds are protected from malicious actors.
 
 Note that all of the public functions return a `bool` that only indicates whether the call was successful or not.
 In Rust, these functions would typically return a `Result`.
 
 ## Create the token supply
 
-A smart contract for handling ERC-20 tokens is similar to the Incrementer contract that used maps to store values in [Use maps for storing values](/tutorials/smart-contracts/use-maps-for-storing-values/).
-For this tutorial, the ERC-20 contract consists of a fixed supply of tokens that are all deposited into the account associated with the contract owner when the contract is deployed.
+A smart contract for handling ERC-20 tokens is similar to the Incrementer contract that used maps to store values in
+[Use maps for storing values](/tutorials/smart-contracts/use-maps-for-storing-values/).
+
+For this tutorial, the ERC-20 contract consists of a fixed supply of tokens that are all deposited into the account
+associated with the contract owner when the contract is deployed.
+
 The contract owner can then distribute the tokens to other users.
 
-The simple ERC-20 contract you create in this tutorial does not represent the only way you can mint and distribute tokens.
-However, this ERC-20 contract provides a good foundation for extending what you've learned in other tutorials and how to use the ink! language for building more robust smart contracts.
+The simple ERC-20 contract you create in this tutorial does not represent the only way you can mint and distribute
+tokens.
+
+However, this ERC-20 contract provides a good foundation for extending what you've learned in other tutorials and how to
+use the ink! language for building more robust smart contracts.
 
 For the ERC-20 token contract, the initial storage consists of:
 
@@ -111,7 +129,7 @@ To build an ERC-20 token smart contract:
 
 1. Open the `lib.rs` file in a text editor.
 
-2. Replace the default template source code with new [erc20](/assets/tutorials/smart-contracts/erc20-template.rs) source code.
+2. Replace the default template source code with new [erc20](/assets/tutorials/smart-contracts/erc20-template.rs) (TODO: link to GH) source code.
 
 3. Save the changes to the `lib.rs` file, then close the file.
 
@@ -507,7 +525,7 @@ To add the approval logic to the smart contract:
        self.allowance_impl(&owner, &spender)
    }
    ```
-   
+
    This code snippet uses the `allowance_impl()` function.
    The `allowance_impl()` function is the same as the `allowance` function except that it uses references to look up the token allowance in a more efficient way in WebAssembly.
    Add the following function to the smart contract to use this function:
