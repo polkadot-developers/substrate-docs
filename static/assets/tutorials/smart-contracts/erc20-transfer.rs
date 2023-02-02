@@ -1,29 +1,42 @@
 #![cfg_attr(not(feature = "std"), no_std)]
 
-use ink_lang as ink;
-
 #[ink::contract]
 mod erc20 {
-    use ink_storage::traits::SpreadAllocate;
+    use ink::storage::Mapping;
 
-    #[cfg(not(feature = "ink-as-dependency"))]
     #[ink(storage)]
-    #[derive(SpreadAllocate)]
     pub struct Erc20 {
         /// The total supply.
         total_supply: Balance,
         /// The balance of each user.
-        balances: ink_storage::Mapping<AccountId, Balance>,
+        balances: Mapping<AccountId, Balance>,
     }
 
+    /// Specify ERC-20 error type.
+    #[derive(Debug, PartialEq, Eq, scale::Encode, scale::Decode)]
+    #[cfg_attr(feature = "std", derive(scale_info::TypeInfo))]
+    pub enum Error {
+        /// Returned if not enough balance to fulfill a request is available.
+        InsufficientBalance,
+        /// Returned if not enough allowance to fulfill a request is available.
+        InsufficientAllowance,
+    }
+
+    /// Specify the ERC-20 result type.
+    pub type Result<T> = core::result::Result<T, Error>;
+
     impl Erc20 {
+        /// Create a new ERC-20 contract with an initial supply.
         #[ink(constructor)]
-        pub fn new(initial_supply: Balance) -> Self {
-            ink_lang::utils::initialize_contract(|contract: &mut Self| {
-                contract.total_supply = initial_supply;
-                let caller = Self::env().caller();
-                contract.balances.insert(&caller, &initial_supply);
-            })
+        pub fn new(total_supply: Balance) -> Self {
+            let mut balances = Mapping::default();
+            let caller = Self::env().caller();
+            balances.insert(caller, &total_supply);
+
+            Self {
+                total_supply,
+                balances,
+            }
         }
 
         #[ink(message)]
@@ -33,41 +46,44 @@ mod erc20 {
 
         #[ink(message)]
         pub fn balance_of(&self, owner: AccountId) -> Balance {
-            self.balances.get(&owner).unwrap_or_default()
+            self.balance_of_impl(&owner)
+        }
+
+        fn balance_of_impl(&self, owner: &AccountId) -> Balance {
+            self.balances.get(owner).unwrap_or_default()
         }
 
         #[ink(message)]
-        pub fn transfer(&mut self, to: AccountId, value: Balance) -> bool {
-            self.transfer_from_to(self.env().caller(), to, value)
+        pub fn transfer(&mut self, to: AccountId, value: Balance) -> Result<()> {
+            let from = self.env().caller();
+            self.transfer_from_to(&from, &to, value)
         }
 
         fn transfer_from_to(
             &mut self,
-            from: AccountId,
-            to: AccountId,
+            from: &AccountId,
+            to: &AccountId,
             value: Balance,
-        ) -> bool {
-            let from_balance = self.balance_of(from);
+        ) -> Result<()> {
+            let from_balance = self.balance_of_impl(from);
             if from_balance < value {
-                return false
+                return Err(Error::InsufficientBalance);
             }
 
             // Update the sender's balance.
             self.balances.insert(&from, &(from_balance - value));
 
             // Update the receiver's balance.
-            let to_balance = self.balance_of(to);
+            let to_balance = self.balance_of_impl(to);
             self.balances.insert(&to, &(to_balance + value));
 
-            true
+            Ok(())
         }
     }
 
     #[cfg(test)]
     mod tests {
         use super::*;
-
-        use ink_lang as ink;
 
         #[ink::test]
         fn new_works() {
@@ -87,9 +103,9 @@ mod erc20 {
         fn transfer_works() {
             let mut contract = Erc20::new(100);
             assert_eq!(contract.balance_of(AccountId::from([0x1; 32])), 100);
-            assert!(contract.transfer(AccountId::from([0x0; 32]), 10));
+            assert!(contract.transfer(AccountId::from([0x0; 32]), 10).is_ok());
             assert_eq!(contract.balance_of(AccountId::from([0x0; 32])), 10);
-            assert!(!contract.transfer(AccountId::from([0x0; 32]), 100));
+            assert!(contract.transfer(AccountId::from([0x0; 32]), 100).is_err());
         }
     }
 }
