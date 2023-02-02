@@ -48,6 +48,7 @@ mod erc20 {
     pub type Result<T> = core::result::Result<T, Error>;
 
     impl Erc20 {
+        /// Create a new ERC-20 contract with an initial supply.
         #[ink(constructor)]
         pub fn new(total_supply: Balance) -> Self {
             let mut balances = Mapping::default();
@@ -67,11 +68,13 @@ mod erc20 {
             }
         }
 
+        /// Returns the total token supply.
         #[ink(message)]
         pub fn total_supply(&self) -> Balance {
             self.total_supply
         }
 
+        /// Returns the account balance for the specified `owner`.
         #[ink(message)]
         pub fn balance_of(&self, owner: AccountId) -> Balance {
             self.balances.get(&owner).unwrap_or_default()
