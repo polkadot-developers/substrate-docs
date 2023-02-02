@@ -1,10 +1,8 @@
 #![cfg_attr(not(feature = "std"), no_std)]
 
-use ink_lang as ink;
-
 #[ink::contract]
 mod erc20 {
-    use ink_storage::traits::SpreadAllocate;
+    use ink::storage::Mapping;
 
     #[ink(event)]
     pub struct Transfer {
@@ -28,33 +26,31 @@ mod erc20 {
 
     #[cfg(not(feature = "ink-as-dependency"))]
     #[ink(storage)]
-    #[derive(SpreadAllocate)]
     pub struct Erc20 {
         /// The total supply.
         total_supply: Balance,
         /// The balance of each user.
-        balances: ink_storage::Mapping<AccountId, Balance>,
+        balances: Mapping<AccountId, Balance>,
         /// Approval spender on behalf of the message's sender.
-        allowances: ink_storage::Mapping<(AccountId, AccountId), Balance>,
+        allowances: Mapping<(AccountId, AccountId), Balance>,
     }
 
     impl Erc20 {
         #[ink(constructor)]
-        pub fn new(initial_supply: Balance) -> Self {
-            ink_lang::utils::initialize_contract(|contract: &mut Self| {
-                contract.total_supply = initial_supply;
-                let caller = Self::env().caller();
-                contract.balances.insert(&caller, &initial_supply);
-
-                // NOTE: `allowances` is default initialized by `initialize_contract`, so we don't
-                // need to do anything here
-
-                Self::env().emit_event(Transfer {
-                    from: None,
-                    to: Some(caller),
-                    value: initial_supply,
-                });
-            })
+        pub fn new(total_supply: Balance) -> Self {
+            let mut balances = Mapping::default();
+            let caller = Self::env().caller();
+            balances.insert(caller, &total_supply);
+            Self::env().emit_event(Transfer {
+                from: None,
+                to: Some(caller),
+                value: total_supply,
+            });
+            Self {
+                total_supply,
+                balances,
+                allowances: Default::default(),
+            }
         }
 
         #[ink(message)]
@@ -89,24 +85,19 @@ mod erc20 {
         }
 
         #[ink(message)]
-        pub fn transfer_from(
-            &mut self,
-            from: AccountId,
-            to: AccountId,
-            value: Balance,
-        ) -> bool {
+        pub fn transfer_from(&mut self, from: AccountId, to: AccountId, value: Balance) -> bool {
             // Ensure that a sufficient allowance exists.
             let caller = self.env().caller();
             let allowance = self.allowance_of_or_zero(&from, &caller);
             if allowance < value {
-                return false
+                return false;
             }
 
             let transfer_result = self.transfer_from_to(from, to, value);
             // Check `transfer_result` because `from` account may not have enough balance
             //   and return false.
             if !transfer_result {
-                return false
+                return false;
             }
 
             // Decrease the value of the allowance and transfer the tokens.
@@ -119,15 +110,10 @@ mod erc20 {
             self.transfer_from_to(self.env().caller(), to, value)
         }
 
-        fn transfer_from_to(
-            &mut self,
-            from: AccountId,
-            to: AccountId,
-            value: Balance,
-        ) -> bool {
+        fn transfer_from_to(&mut self, from: AccountId, to: AccountId, value: Balance) -> bool {
             let from_balance = self.balance_of(from);
             if from_balance < value {
-                return false
+                return false;
             }
 
             // Update the sender's balance.
@@ -146,28 +132,14 @@ mod erc20 {
             true
         }
 
-        fn allowance_of_or_zero(
-            &self,
-            owner: &AccountId,
-            spender: &AccountId,
-        ) -> Balance {
-            // If you are new to Rust, you may wonder what's the deal with all the asterisks and
-            // ampersends.
-            //
-            // In brief, using `&` if we want to get the address of a value (aka reference of the
-            // value), and using `*` if we have the reference of a value and want to get the value
-            // back (aka dereferencing).
-            //
-            // To read more: https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html
-            self.allowances.get(&(*owner, *spender)).unwrap_or_default()
+        fn allowance_of_or_zero(&self, owner: &AccountId, spender: &AccountId) -> Balance {
+            self.allowances.get((owner, spender)).unwrap_or_default()
         }
     }
 
     #[cfg(test)]
     mod tests {
         use super::*;
-
-        use ink_lang as ink;
 
         #[ink::test]
         fn new_works() {
@@ -197,11 +169,7 @@ mod erc20 {
             let mut contract = Erc20::new(100);
             assert_eq!(contract.balance_of(AccountId::from([0x1; 32])), 100);
             contract.approve(AccountId::from([0x1; 32]), 20);
-            contract.transfer_from(
-                AccountId::from([0x1; 32]),
-                AccountId::from([0x0; 32]),
-                10,
-            );
+            contract.transfer_from(AccountId::from([0x1; 32]), AccountId::from([0x0; 32]), 10);
             assert_eq!(contract.balance_of(AccountId::from([0x0; 32])), 10);
         }
 
@@ -211,8 +179,7 @@ mod erc20 {
             assert_eq!(contract.balance_of(AccountId::from([0x1; 32])), 100);
             contract.approve(AccountId::from([0x1; 32]), 200);
             assert_eq!(
-                contract
-                    .allowance(AccountId::from([0x1; 32]), AccountId::from([0x1; 32])),
+                contract.allowance(AccountId::from([0x1; 32]), AccountId::from([0x1; 32])),
                 200
             );
 
@@ -223,8 +190,7 @@ mod erc20 {
             ));
             assert_eq!(contract.balance_of(AccountId::from([0x0; 32])), 50);
             assert_eq!(
-                contract
-                    .allowance(AccountId::from([0x1; 32]), AccountId::from([0x1; 32])),
+                contract.allowance(AccountId::from([0x1; 32]), AccountId::from([0x1; 32])),
                 150
             );
 
@@ -235,8 +201,7 @@ mod erc20 {
             ));
             assert_eq!(contract.balance_of(AccountId::from([0x0; 32])), 50);
             assert_eq!(
-                contract
-                    .allowance(AccountId::from([0x1; 32]), AccountId::from([0x1; 32])),
+                contract.allowance(AccountId::from([0x1; 32]), AccountId::from([0x1; 32])),
                 150
             );
         }
