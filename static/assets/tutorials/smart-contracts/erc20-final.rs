@@ -53,11 +53,13 @@ mod erc20 {
             let mut balances = Mapping::default();
             let caller = Self::env().caller();
             balances.insert(caller, &total_supply);
+
             Self::env().emit_event(Transfer {
                 from: None,
                 to: Some(caller),
                 value: total_supply,
             });
+
             Self {
                 total_supply,
                 balances,
@@ -72,11 +74,7 @@ mod erc20 {
 
         #[ink(message)]
         pub fn balance_of(&self, owner: AccountId) -> Balance {
-            self.balance_of_impl(&owner)
-        }
-
-        fn balance_of_impl(&self, owner: &AccountId) -> Balance {
-            self.balances.get(owner).unwrap_or_default()
+            self.balances.get(&owner).unwrap_or_default()
         }
 
         #[ink(message)]
@@ -97,7 +95,7 @@ mod erc20 {
 
         #[ink(message)]
         pub fn allowance(&self, owner: AccountId, spender: AccountId) -> Balance {
-            self.allowance_of_or_zero(&owner, &spender)
+            self.allowances.get((owner, spender)).unwrap_or_default()
         }
 
         #[ink(message)]
@@ -112,7 +110,7 @@ mod erc20 {
             to: &AccountId,
             value: Balance,
         ) -> Result<()> {
-            let from_balance = self.balance_of_impl(from);
+            let from_balance = self.balance_of(*from);
             if from_balance < value {
                 return Err(Error::InsufficientBalance);
             }
@@ -121,7 +119,7 @@ mod erc20 {
             self.balances.insert(&from, &(from_balance - value));
 
             // Update the receiver's balance.
-            let to_balance = self.balance_of_impl(to);
+            let to_balance = self.balance_of(*to);
             self.balances.insert(&to, &(to_balance + value));
 
             self.env().emit_event(Transfer {
@@ -142,7 +140,7 @@ mod erc20 {
         ) -> Result<()> {
             // Ensure that a sufficient allowance exists.
             let caller = self.env().caller();
-            let allowance = self.allowance_of_or_zero(&from, &caller);
+            let allowance = self.allowance(from.clone(), caller.clone());
             if allowance < value {
                 return Err(Error::InsufficientAllowance);
             }
@@ -153,15 +151,24 @@ mod erc20 {
             self.allowances.insert((from, caller), &(allowance - value));
             Ok(())
         }
-
-        fn allowance_of_or_zero(&self, owner: &AccountId, spender: &AccountId) -> Balance {
-            self.allowances.get((owner, spender)).unwrap_or_default()
-        }
     }
 
     #[cfg(test)]
     mod tests {
         use super::*;
+
+        // We define some helper Accounts to make our tests more readable
+        fn default_accounts() -> ink::env::test::DefaultAccounts<Environment> {
+            ink::env::test::default_accounts::<Environment>()
+        }
+
+        fn alice() -> AccountId {
+            default_accounts().alice
+        }
+
+        fn bob() -> AccountId {
+            default_accounts().bob
+        }
 
         #[ink::test]
         fn new_works() {
@@ -173,56 +180,42 @@ mod erc20 {
         fn balance_works() {
             let contract = Erc20::new(100);
             assert_eq!(contract.total_supply(), 100);
-            assert_eq!(contract.balance_of(AccountId::from([0x1; 32])), 100);
-            assert_eq!(contract.balance_of(AccountId::from([0x0; 32])), 0);
+            assert_eq!(contract.balance_of(alice()), 100);
+            assert_eq!(contract.balance_of(bob()), 0);
         }
 
         #[ink::test]
         fn transfer_works() {
             let mut contract = Erc20::new(100);
-            assert_eq!(contract.balance_of(AccountId::from([0x1; 32])), 100);
-            assert!(contract.transfer(AccountId::from([0x0; 32]), 10).is_ok());
-            assert_eq!(contract.balance_of(AccountId::from([0x0; 32])), 10);
-            assert!(contract.transfer(AccountId::from([0x0; 32]), 100).is_err());
+            assert_eq!(contract.balance_of(alice()), 100);
+            assert!(contract.transfer(bob(), 10).is_ok());
+            assert_eq!(contract.balance_of(bob()), 10);
+            assert!(contract.transfer(bob(), 100).is_err());
         }
 
         #[ink::test]
         fn transfer_from_works() {
             let mut contract = Erc20::new(100);
-            assert_eq!(contract.balance_of(AccountId::from([0x1; 32])), 100);
-            let _ = contract.approve(AccountId::from([0x1; 32]), 20);
-            let _ =
-                contract.transfer_from(AccountId::from([0x1; 32]), AccountId::from([0x0; 32]), 10);
-            assert_eq!(contract.balance_of(AccountId::from([0x0; 32])), 10);
+            assert_eq!(contract.balance_of(alice()), 100);
+            let _ = contract.approve(alice(), 20);
+            let _ = contract.transfer_from(alice(), bob(), 10);
+            assert_eq!(contract.balance_of(bob()), 10);
         }
 
         #[ink::test]
         fn allowances_works() {
             let mut contract = Erc20::new(100);
-            assert_eq!(contract.balance_of(AccountId::from([0x1; 32])), 100);
-            let _ = contract.approve(AccountId::from([0x1; 32]), 200);
-            assert_eq!(
-                contract.allowance(AccountId::from([0x1; 32]), AccountId::from([0x1; 32])),
-                200
-            );
+            assert_eq!(contract.balance_of(alice()), 100);
+            let _ = contract.approve(alice(), 200);
+            assert_eq!(contract.allowance(alice(), alice()), 200);
 
-            assert!(contract
-                .transfer_from(AccountId::from([0x1; 32]), AccountId::from([0x0; 32]), 50)
-                .is_ok());
-            assert_eq!(contract.balance_of(AccountId::from([0x0; 32])), 50);
-            assert_eq!(
-                contract.allowance(AccountId::from([0x1; 32]), AccountId::from([0x1; 32])),
-                150
-            );
+            assert!(contract.transfer_from(alice(), bob(), 50).is_ok());
+            assert_eq!(contract.balance_of(bob()), 50);
+            assert_eq!(contract.allowance(alice(), alice()), 150);
 
-            assert!(contract
-                .transfer_from(AccountId::from([0x1; 32]), AccountId::from([0x0; 32]), 100)
-                .is_err());
-            assert_eq!(contract.balance_of(AccountId::from([0x0; 32])), 50);
-            assert_eq!(
-                contract.allowance(AccountId::from([0x1; 32]), AccountId::from([0x1; 32])),
-                150
-            );
+            assert!(contract.transfer_from(alice(), bob(), 100).is_err());
+            assert_eq!(contract.balance_of(bob()), 50);
+            assert_eq!(contract.allowance(alice(), alice()), 150);
         }
     }
 }
