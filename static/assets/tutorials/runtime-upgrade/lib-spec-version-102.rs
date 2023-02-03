@@ -275,7 +275,7 @@ impl pallet_transaction_payment::Config for Runtime {
 
 // SCHEDULER
 parameter_types! {
-	pub MaximumSchedulerWeight: Weight = Weight::zero().set_ref_time(10_000_000).set_proof_size(256);
+	pub MaximumSchedulerWeight: Weight = Perbill::from_percent(10) * BlockWeights::get().max_block;
 	pub const MaxScheduledPerBlock: u32 = 50;
  }
  impl pallet_scheduler::Config for Runtime {
