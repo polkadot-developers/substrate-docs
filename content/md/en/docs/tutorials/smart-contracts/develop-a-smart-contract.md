@@ -77,7 +77,8 @@ To create a new project for your smart contract:
    the `flipper` contract name renamed `incrementer`.
 
 1. Replace the default template source code with new
-   [incrementer](/assets/tutorials/smart-contracts/incrementer-template.rs) source code (TODO: link to GH).
+   [incrementer](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/smart-contracts/incrementer-template.rs)
+   source code
 
 1. Save the changes to the `lib.rs` file, then close the file.
 
@@ -472,8 +473,9 @@ attribute macros. For example, this tutorial illustrated:
 - How to upload and instantiate the contract using `cargo-contract`.
 
 You can find an example of the final code for this tutorial in the assets for the
-[smart-contracts](/assets/tutorials/smart-contracts/incrementer-basics.rs) (TODO: link to GH). You can learn more about
-smart contract development in the following topics:
+[smart-contracts](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/smart-contracts/incrementer-basics.rs).
+
+You can learn more about smart contract development in the following topics:
 
 - [Use maps for storing values](/tutorials/smart-contracts/use-maps-for-storing-values/)
 - [Build an ERC20 token contract](/tutorials/smart-contracts/build-a-token-contract/)

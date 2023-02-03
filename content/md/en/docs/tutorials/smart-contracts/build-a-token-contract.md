@@ -129,7 +129,8 @@ To build an ERC-20 token smart contract:
 
 1. Open the `lib.rs` file in a text editor.
 
-1. Replace the default template source code with new [erc20](/assets/tutorials/smart-contracts/erc20-template.rs) (TODO: link to GH) source code.
+1. Replace the default template source code with the following
+   [ERC-20 template](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/smart-contracts/erc20-template.rs)
 
 1. Save the changes to the `lib.rs` file, then close the file.
 
@@ -325,6 +326,9 @@ To add the transfer functions to the smart contract:
    test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
    ```
 
+If you'd like to see our solution, you can take a look
+[here](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/smart-contracts/erc20-transfer.rs).
+
 ## Create events
 
 The ERC-20 token standard specifies that contract calls cannot directly return a value when submitting a transaction.
@@ -446,6 +450,9 @@ To emit the Transfer event:
 
    test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
    ```
+
+If you'd like to see our solution, you can take a look
+[here](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/smart-contracts/erc20-event.rs).
 
 ## Enable third-party transfers
 
@@ -704,7 +711,7 @@ For example, this tutorial illustrated:
 - How to enable third-party transfers.
 
 You can find an example of the code for this tutorial in the assets for
-[smart contracts](/assets/tutorials/smart-contracts/erc20-final.rs) (TODO: GitHub link).
+[smart contracts](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/smart-contracts/erc20-final.rs).
 
 You can learn more about smart contract development in the following topics:
 
