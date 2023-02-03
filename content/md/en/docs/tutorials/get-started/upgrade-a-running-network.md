@@ -122,7 +122,7 @@ To update the dependencies for the runtime to include the Scheduler pallet:
    codec = { package = "parity-scale-codec", version = "3.0.0", default-features = false, features = ["derive"] }
    scale-info = { version = "2.1.1", default-features = false, features = ["derive"] }
    
-   pallet-aura = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.35" }
+   pallet-aura = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.36" }
    ```
 1. Add the Scheduler pallet as a dependency.
    
@@ -133,12 +133,12 @@ To update the dependencies for the runtime to include the Scheduler pallet:
       version = "4.0.0-dev", 
       default-features = false, 
       git = "https://github.com/paritytech/substrate.git", 
-      branch = "polkadot-v0.9.35" 
+      branch = "polkadot-v0.9.36" 
    }
    ```
 
    Be sure to use the same **version** and **branch** information for the Scheduler pallet as you see used for the other pallets included in the runtime.
-   In this example, all of the pallets in the node template runtime use `version = "4.0.0-dev"` and `branch = "polkadot-v0.9.35"`.
+   In this example, all of the pallets in the node template runtime use `version = "4.0.0-dev"` and `branch = "polkadot-v0.9.36"`.
 
 3. Locate the `[features]` section and the list of the default features for the standard binary.
    
@@ -179,7 +179,7 @@ To add the Scheduler types and configuration trait:
 
    ```rust
    parameter_types! {
-      pub MaximumSchedulerWeight: Weight = Perbill::from_percent(80) * BlockWeights::get().max_block;
+      pub MaximumSchedulerWeight: Weight = Perbill::from_percent(10) * BlockWeights::get().max_block;
       pub const MaxScheduledPerBlock: u32 = 50;
    }
    ```
@@ -203,7 +203,7 @@ To add the Scheduler types and configuration trait:
    ```rust
    pub MaximumSchedulerWeight: Weight = Weight::from_ref_time(10_000_000);
    ```
-s
+
 1. Add the implementation for the Config trait for the Scheduler pallet.
 
    ```rust
@@ -350,6 +350,11 @@ To update the network with the upgraded runtime:
 In the previous upgrade example, you used the `sudo_unchecked_weight` function to skip the accounting safeguards that limit block length and weight to allow the `set_code` function call to take as long as necessary to complete the runtime upgrade.
 Now that you have updated the node template to include the Scheduler pallet, however, you can perform a **scheduled** runtime upgrade. 
 A scheduled runtime upgrade ensures that the `set_code` function call is the only transaction included in a block.
+
+NOTE: The Scheduler pallet has been recently modified to meter its own weight consumption. 
+However, the `set_code` function as it is currently written is intended to consume a full block.
+Because the Scheduler now deducts its own weight from the full block, attempting to execute the scheduled upgrade as described in this part of the tutorial will fail with an `Exhausted` dispatch error because the block weight would exceed the weight allowed.
+Therefore, you can't currently upgrade the runtime as a scheduled task.
 
 ### Prepare an upgraded runtime
 
