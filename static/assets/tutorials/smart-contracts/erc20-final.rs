@@ -134,6 +134,7 @@ mod erc20 {
             Ok(())
         }
 
+        /// Transfers tokens on the behalf of the `from` account to the `to account
         #[ink(message)]
         pub fn transfer_from(
             &mut self,
@@ -152,6 +153,7 @@ mod erc20 {
 
             // Decrease the value of the allowance and transfer the tokens.
             self.allowances.insert((from, caller), &(allowance - value));
+
             Ok(())
         }
     }
