@@ -9,9 +9,12 @@ The **Develop smart contracts** tutorials guide you through how you can use
 [the ink! programming language](https://ink.substrate.io) to build smart contracts that run on a Substrate-based
 blockchain.
 
-The tutorials in this section use a preconfigured [`substrate-contracts-node`](https://github.com/paritytech/substrate-contracts-node).
-If you want to use the [standard node template](TODO), you need to add the [Contracts pallet](TODO) and a few other
-components to your development environment.
+The tutorials in this section use a preconfigured
+[`substrate-contracts-node`](https://github.com/paritytech/substrate-contracts-node).
+
+If you want to use the [standard node template](https://github.com/substrate-developer-hub/substrate-node-template),
+you need to add the [Contracts pallet](https://github.com/paritytech/substrate/tree/master/frame/contracts)
+and a few other components to your development environment.
 
 Preparing the node template for building smart contracts is covered in
 [Configure the contracts pallet](/tutorials/work-with-pallets/contracts-pallet).

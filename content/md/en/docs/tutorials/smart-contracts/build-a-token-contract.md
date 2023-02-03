@@ -186,14 +186,14 @@ To test the ERC-20 contract before adding new functions:
 
 1. Verify the amount of tokens Alice, the initial holder of all the tokens, has using `balance_of()`.
 
-
   ```bash
   cargo contract call --contract 5FV36V71PzWrWJ8p7cEdqkWPZ1fPFxsGRk6QtbH7L1PUtw2w \
       --message balance_of --args 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY \
       --suri //Alice --dry-run
   ```
 
-  TODO: We should allow well-known accounts in the `--args` field
+  Notice that we have to put the full address of Alice (`5Grw...utQY`) as an argument since `cargo-contract` doesn't
+  (yet) support well-known keys in that position.
 
   If you supply any other `AccountId` the balance should be zero because all of the tokens are owned by the contract
   owner.

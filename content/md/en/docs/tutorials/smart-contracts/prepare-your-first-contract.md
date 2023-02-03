@@ -251,7 +251,9 @@ To build the WebAssembly for this smart contract:
 
 ## Start the Substrate Contracts Node
 
-If you have [successfully installed the  `substrate-contracts-node`](TODO: previous section),
+/tutorials/work-with-pallets/contracts-pallet
+
+If you have [successfully installed the  `substrate-contracts-node`](tutorials/smart-contracts/prepare-your-first-contract/#install-the-substrate-contracts-node),
 it's time to start a local node.
 
 1. Start the contracts node in local development mode by running the following command:
@@ -283,8 +285,8 @@ it's time to start a local node.
    2023-01-30 23:09:08.646  INFO tokio-runtime-worker substrate: 💤 Idle (0 peers), best: #0 (0x6a05…1669), finalized #0 (0x6a05…1669), ⬇ 0 ⬆ 0
    ```
 
-   Note that no blocks will be produced until we send an extrinsic to the node. This is because the
-   `substrate-contracts-node` uses [Manual Seal](TODO) as its consensus engine.
+   Note that no blocks will be produced unless we send an extrinsic to the node. This is because the
+   `substrate-contracts-node` uses `Manual Seal` as its consensus engine.
 
 ## Deploy the contract
 
@@ -395,7 +397,7 @@ Some notes about the command:
    - We need to specify the contract message to use, which in this case is `get()`
 
    - We need to specify the account callling the contract, which in this case is the default development account of
-     `//Alice` (TODO: We shouldn't need this)
+     `//Alice`
 
    - We specify `--dry-run` to avoid submitting an extrinsic on-chain
 
