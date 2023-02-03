@@ -86,6 +86,7 @@ Most importantly, the smart contract logic must be implemented to ensure that fu
 destroyed, and that a user's funds are protected from malicious actors.
 
 Note that all of the public functions return a `bool` that only indicates whether the call was successful or not.
+
 In Rust, these functions would typically return a `Result`.
 
 ## Create the token supply
@@ -201,6 +202,7 @@ To test the ERC-20 contract before adding new functions:
 ## Transfer tokens
 
 At this point, the ERC-20 contract has one user account that owns the total_supply of the tokens for the contract.
+
 To make this contract useful, the contract owner must be able to transfer tokens to other accounts.
 
 For this simple ERC-20 contract, you are going to add a public `transfer` function that enables you — as the contract
@@ -385,8 +387,8 @@ There are two places in the code where this occurs:
 - Every time that `transfer_from_to` is called.
 
 The values for the `from` and `to` fields are `Option<AccountId>` data types.
-However, during the initial transfer of tokens, the value set for the *initial supply*
-doesn't come from any other account.
+However, during the initial transfer of tokens, the value set for the *initial supply* doesn't come from any other
+account.
 In this case, the Transfer event has a `from` value of `None`.
 
 To emit the Transfer event:

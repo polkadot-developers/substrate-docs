@@ -5,8 +5,12 @@ keywords:
 ---
 
 As you learned in [Blockchain basics](/main-docs/fundamentals/blockchain-basics/) decentralized applications are most often written as **smart contracts**.
+
 Although Substrate is primarily a framework and toolkit for building custom blockchains, it can also provide a platform
-for smart contracts. This tutorial demonstrates how to build a basic smart contract to run on a Substrate-based chain.
+for smart contracts.
+
+This tutorial demonstrates how to build a basic smart contract to run on a Substrate-based chain.
+
 In this tutorial, you'll explore using ink! as a programming language for writing Rust-based smart contracts.
 
 ## Before you begin
@@ -63,8 +67,9 @@ To update your development environment:
 
 `cargo-contract` is a command-line tool which you will use to build, deploy, and interact with your ink! contracts.
 
-Note that in addition to Rust, installing `cargo-contract` requires a C++ compiler that supports C++17. Modern releases
-of `gcc`, `clang`, as well as Visual Studio 2019+ should work.
+Note that in addition to Rust, installing `cargo-contract` requires a C++ compiler that supports C++17.
+
+Modern releases of `gcc`, `clang`, as well as Visual Studio 2019+ should work.
 
 1. Add the `rust-src` compiler compone
 
@@ -86,9 +91,10 @@ cargo install --force --locked cargo-contract --version 2.0.0-rc
 
 ## Install the Substrate Contracts Node
 
-To simplify this tutorial, you can [download](https://github.com/paritytech/substrate-contracts-node/releases)
-a precompiled Substrate node for Linux or macOS. The precompiled binary includes the FRAME pallet for smart contracts by
-default.
+To simplify this tutorial, you can [download](https://github.com/paritytech/substrate-contracts-node/releases) a
+precompiled Substrate node for Linux or macOS.
+
+The precompiled binary includes the FRAME pallet for smart contracts by default.
 
 To install the contracts node on macOS or Linux:
 
@@ -143,14 +149,17 @@ To generate the files for an ink! project:
    ```
 
 Like other Rust projects, the `Cargo.toml` file is used to provide package dependencies and configuration information.
+
 The `lib.rs` file is used for the smart contract business logic.
 
 ### Explore the default project files
 
-By default, creating a new ink! project generates some template source code for a very simple contract. This contract
-has one function — `flip()` — that changes a Boolean variable from true to false and a second function — `get()` — that
-gets the current value of the Boolean. The `lib.rs` file also contains two functions for testing that the contract works
-as expected.
+By default, creating a new ink! project generates some template source code for a very simple contract.
+
+This contract has one function — `flip()` — that changes a Boolean variable from true to false and a second function —
+`get()` — that gets the current value of the Boolean.
+
+The `lib.rs` file also contains two functions for testing that the contract works as expected.
 
 As you progress through the tutorial, you'll modify different parts of the starter code.
 By the end of the tutorial, you'll have a more advanced smart contract that looks like the
@@ -218,8 +227,9 @@ To build the WebAssembly for this smart contract:
    ```
 
    This command builds a WebAssembly binary for the `flipper` project, a metadata file that contains the contract
-   Application Binary Interface (ABI), and a `.contract` file that you use to deploy the contract. For example, you
-   should see output similar to the following:
+   Application Binary Interface (ABI), and a `.contract` file that you use to deploy the contract.
+
+   For example, you should see output similar to the following:
 
    ```text
    Original wasm size: 35.5K, Optimized: 11.9K
@@ -299,11 +309,18 @@ At this point, you have completed the following steps:
 The next step is to deploy the `flipper` contract on your Substrate chain.
 
 However, deploying a smart contract on Substrate is a little different than deploying on traditional smart contract
-platforms. For most smart contract platforms, you must deploy a completely new blob of the smart contract source code
-each time you make a change. For example, the standard ERC20 token has been deployed to Ethereum thousands of times.
+platforms.
+
+For most smart contract platforms, you must deploy a completely new blob of the smart contract source code each time you
+make a change.
+
+For example, the standard ERC20 token has been deployed to Ethereum thousands of times.
+
 Even if a change is minimal or only affects some initial configuration setting, each change requires a full redeployment
-of the code. Each smart contract instance consumes blockchain resources equivalent to the full contract source code,
-even if no code was actually changed.
+of the code.
+
+Each smart contract instance consumes blockchain resources equivalent to the full contract source code, even if no code
+was actually changed.
 
 In Substrate, the contract deployment process is split into two steps:
 
@@ -311,8 +328,10 @@ In Substrate, the contract deployment process is split into two steps:
 - Create an instance of the contract.
 
 With this pattern, you can store the code for a smart contract like the ERC20 standard on the blockchain once, then
-instantiate it any number of times. You don't need to reload the same source code repeatedly, so your smart contract
-doesn't consume unnecessary resources on the blockchain.
+instantiate it any number of times.
+
+You don't need to reload the same source code repeatedly, so your smart contract doesn't consume unnecessary resources
+on the blockchain.
 
 ### Uploading the ink! Contract Code
 
@@ -392,14 +411,15 @@ cargo contract call --contract 5GRAVvuSXx8pCpRUDHzK6S1r2FjadahRQ6NEgAVooQ2bB8r5 
 
 Some notes about the command:
   - The address of the contract we want to call had to be specified using the `--contract` flag
-    - This can be found in the output logs of the `cargo contract instantiate` command
 
-   - We need to specify the contract message to use, which in this case is `get()`
+  - This can be found in the output logs of the `cargo contract instantiate` command
 
-   - We need to specify the account callling the contract, which in this case is the default development account of
+  - We need to specify the contract message to use, which in this case is `get()`
+
+  - We need to specify the account callling the contract, which in this case is the default development account of
      `//Alice`
 
-   - We specify `--dry-run` to avoid submitting an extrinsic on-chain
+  - We specify `--dry-run` to avoid submitting an extrinsic on-chain
 
 After running the command should see something like this:
 

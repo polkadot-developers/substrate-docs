@@ -5,8 +5,10 @@ keywords:
 ---
 
 In [Prepare your first contract](/tutorials/smart-contracts/prepare-your-first-contract/), you learned the basic steps
-for building and deploying a smart contract on a Substrate-based blockchain using a default first project. For this
-tutorial, you'll develop a new smart contract that increments a counter value each time you execute a function call.
+for building and deploying a smart contract on a Substrate-based blockchain using a default first project.
+
+For this tutorial, you'll develop a new smart contract that increments a counter value each time you execute a function
+call.
 
 ## Before you begin
 
@@ -39,21 +41,27 @@ By completing this tutorial, you will accomplish the following objectives:
 
 In [Prepare your first contract](/tutorials/smart-contracts/prepare-your-first-contract/), you installed the
 `cargo-contract` package for command-line access to the ink! programming language.
+
 The ink! language is an [embedded domain specific language](https://wiki.haskell.org/Embedded_domain_specific_language).
+
 This language enables you to write WebAssembly-based smart contracts using the Rust programming language.
 
-The language uses standard Rust patterns with specialized `#[ink(...)]` attribute macros. These attribute macros
-describe what different parts of your smart contract represent so they can be transformed into Substrate-compatible
-WebAssembly bytecode.
+The language uses standard Rust patterns with specialized `#[ink(...)]` attribute macros.
+
+These attribute macros describe what different parts of your smart contract represent so they can be transformed into
+Substrate-compatible WebAssembly bytecode.
 
 ## Create a new smart contract project
 
 Smart contracts that run on Substrate start as projects.
 You create projects using `cargo contract` commands.
 
-For this tutorial, you'll create a new project for the `incrementer` smart contract. Creating a new project adds a new
-project directory and default starter files — also called **template files** — to the project directory. You will modify
-these starter template files to build the smart contract logic for the `incrementer` project.
+For this tutorial, you'll create a new project for the `incrementer` smart contract.
+
+Creating a new project adds a new project directory and default starter files — also called **template files** — to the
+project directory.
+
+You will modify these starter template files to build the smart contract logic for the `incrementer` project.
 
 To create a new project for your smart contract:
 
@@ -109,8 +117,11 @@ To create a new project for your smart contract:
 ## Storing Simple Values
 
 Now that you have some starter source code for the `incrementer` smart contract, you can introduce some new
-functionality. For example, this smart contract requires storage of simple values. The following code illustrates how to
-store simple values for this contract using the `#[ink(storage)]` attribute macro:
+functionality.
+
+For example, this smart contract requires storage of simple values.
+
+The following code illustrates how to store simple values for this contract using the `#[ink(storage)]` attribute macro:
 
 ```rust
 #[ink(storage)]
@@ -125,12 +136,15 @@ pub struct MyContract {
 ### Supported types
 
 ink! smart contracts support most Rust common data types, including booleans, unsigned and signed integers, strings,
-tuples, and arrays. These data types are encoded and decoded using the
-[Parity scale codec](https://github.com/paritytech/parity-codec) for efficient transmission over the network.
+tuples, and arrays.
+
+These data types are encoded and decoded using the [Parity scale codec](https://github.com/paritytech/parity-codec) for
+efficient transmission over the network.
 
 In addition to common Rust types that can be encoded and decoded using the scale codec, the ink! language supports
-Substrate-specific types — like `AccountId`, `Balance`, and `Hash` — as if they were primitive types. The following code
-illustrates how to store an `AccountId` and `Balance` for this contract:
+Substrate-specific types — like `AccountId`, `Balance`, and `Hash` — as if they were primitive types.
+
+The following code illustrates how to store an `AccountId` and `Balance` for this contract:
 
 ```rust
 #[ink::contract]
@@ -270,7 +284,9 @@ To add the public function to the smart contract:
    ```
 
    Because this function only _reads_ from the contract storage, it uses the `&self` parameter to access the contract
-   functions and storage items. This function does not allow changes to the state of the `value` storage item.
+   functions and storage items.
+
+   This function does not allow changes to the state of the `value` storage item.
 
    If the last expression in a function does not have a semicolon (;), Rust treats it as the return value.
 
@@ -373,8 +389,9 @@ To build the WebAssembly for this smart contract:
 ## Deploy and test the smart contract
 
 If you have the [`substrate-contracts-node`](https://github.com/paritytech/substrate-contracts-node) node installed
-locally, you can start a local blockchain node for your smart contract. Then you can use `cargo-contract` to deploy and
-test the smart contract.
+locally, you can start a local blockchain node for your smart contract.
+
+Then you can use `cargo-contract` to deploy and test the smart contract.
 
 To deploy on the local node:
 
@@ -462,7 +479,9 @@ To deploy on the local node:
 ## Next steps
 
 In this tutorial, you learned some basic techniques for creating smart contracts using the ink! programming language and
-attribute macros. For example, this tutorial illustrated:
+attribute macros.
+
+For example, this tutorial illustrated:
 
 - How to add storage items, specify data types, and implement constructors in a new smart contract project.
 

@@ -5,9 +5,10 @@ keywords:
 ---
 
 In [Develop a smart contract](/tutorials/smart-contracts/develop-a-smart-contract/), you developed a smart contract for
-storing and retrieving a single numeric value. This tutorial illustrates how you can extend the functionality of your
-smart contract to manage one number per user. To add this functionality, you'll use the
-[`Mapping`](https://docs.rs/ink/4.0.0-beta.1/ink/storage/struct.Mapping.html) type.
+storing and retrieving a single numeric value.
+
+This tutorial illustrates how you can extend the functionality of your smart contract to manage one number per user. To
+add this functionality, you'll use the [`Mapping`](https://docs.rs/ink/4.0.0-beta.1/ink/storage/struct.Mapping.html) type.
 
 The ink! language provides the Mapping type to enable you to store data as key-value pairs. For example, the following
 code illustrates mapping a user to a number:
@@ -23,9 +24,11 @@ pub struct MyContract {
 }
 ```
 
-With the `Mapping` data type, you can store a unique instance of the storage value for each key. For this tutorial, each
-`AccountId` represents a key that maps to one and only one stored numeric `my_map`. Each user can only store, increment,
-and retrieve the value associated with their own `AccountId`.
+With the `Mapping` data type, you can store a unique instance of the storage value for each key.
+
+For this tutorial, each `AccountId` represents a key that maps to one and only one stored numeric `my_map`.
+
+Each user can only store, increment, and retrieve the value associated with their own `AccountId`.
 
 ## Initialize a `Mapping`
 
@@ -70,16 +73,23 @@ mod mycontract {
 
 ### Identifying the contract caller
 
-In the preceding example, you might have noticed the `Self::env().caller()` function call. This function is available
-throughout the contract logic and always returns the **contract caller**. It is important to note that the contract
-caller is not the same as the **origin caller**. If a user accesses a contract that then calls a subsequent contract,
-the `Self::env().caller()` in the second contract is the address of the first contract, not the original user.
+In the preceding example, you might have noticed the `Self::env().caller()` function call.
+
+This function is available throughout the contract logic and always returns the **contract caller**.
+
+It is important to note that the contract caller is not the same as the **origin caller**.
+
+If a user accesses a contract that then calls a subsequent contract, the `Self::env().caller()` in the second contract
+is the address of the first contract, not the original user.
 
 ### Using the contract caller
 
 There are many scenarios where having the contract caller available is useful.
-For example, you can use `self.env().caller()` to create an access control layer that only allows users to access their own values.
-You can also use `self.env().caller()` to save the contract owner during contract deployment.
+
+For example, you can use `Self::env().caller()` to create an access control layer that only allows users to access their
+own values.
+
+You can also use `Self::env().caller()` to save the contract owner during contract deployment.
 
 For example:
 
@@ -199,12 +209,15 @@ To add a storage map to the `incrementer` contract:
 ## Insert, update, or remove values
 
 The final step in the `Incrementer` contract is to allow users to update their own values.
+
 You can use calls to the Mapping API to provide this functionality in the smart contract.
 
 The `Mapping` provides direct access to storage items.
 
 For example, you can replace a previous value held for a storage item by calling `Mapping::insert()` with an existing
-key. You can also update values by first reading them from storage using `Mapping::get()`, then update the value with
+key.
+
+You can also update values by first reading them from storage using `Mapping::get()`, then update the value with
 `Mapping::insert()`.
 
 If there is no existing value at a given key, `Mapping::get()` returns `None`.
