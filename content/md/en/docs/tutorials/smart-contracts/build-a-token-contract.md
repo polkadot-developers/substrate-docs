@@ -176,14 +176,14 @@ To test the ERC-20 contract before adding new functions:
   cargo contract instantiate --constructor new --args 1_000_000 --suri //Alice --salt $(date +%s)
   ```
 
-1. Verify the `total_supply` by calling the `total_supply()` message.
+1. Verify the `total_supply` by calling the `total_supply()` message. Don't forget to add the `--dry-run` flag since we
+   only want to read from the chain state.
 
   ```bash
   cargo contract call --contract 5FV36V71PzWrWJ8p7cEdqkWPZ1fPFxsGRk6QtbH7L1PUtw2w \
       --message total_supply --suri //Alice --dry-run
   ```
 
-  Don't forget to add the `--dry-run` flag since we only want to read from the chain state.
 
 1. Verify the amount of tokens Alice, the initial holder of all the tokens, has using `balance_of()`.
 

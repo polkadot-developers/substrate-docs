@@ -85,9 +85,9 @@ cargo install --force --locked cargo-contract --version 2.0.0-rc
 
 1. Verify the installation and explore the commands available by running the following command:
 
-   ```bash
-   cargo contract --help
-   ```
+```bash
+cargo contract --help
+```
 
 ## Install the Substrate Contracts Node
 

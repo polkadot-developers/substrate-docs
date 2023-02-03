@@ -409,8 +409,6 @@ To deploy on the local node:
    cargo contract instantiate --constructor default --suri //Alice --salt $(date +%s)
    ```
 
-  You should see something similar as your output:
-
    ```text
    Dry-running default (skip with --skip-dry-run)
        Success! Gas required estimated at Weight(ref_time: 321759143, proof_size: 0)
@@ -436,8 +434,6 @@ To deploy on the local node:
    ```bash
    cargo contract call --contract 5Cf6wFEyZnqvNJaKVxnWswefo7uT4jVsgzWKh8b78GLDV6kN --message inc --args 42 --suri //Alice
    ```
-
-  You should see something similar as your output:
 
   ```text
    Dry-running inc (skip with --skip-dry-run)
@@ -474,7 +470,7 @@ To deploy on the local node:
      Data Tuple(Tuple { ident: Some("Ok"), values: [Int(42)] })
    ```
 
-   As you can see the `value` being read from the contract is `42`, which matches our previous step!
+As you can see the `value` being read from the contract is `42`, which matches our previous step!
 
 ## Next steps
 
