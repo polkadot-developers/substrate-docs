@@ -81,27 +81,6 @@ mod erc20 {
         }
 
         #[ink(message)]
-        pub fn approve(&mut self, spender: AccountId, value: Balance) -> Result<()> {
-            // Record the new allowance.
-            let owner = self.env().caller();
-            self.allowances.insert(&(owner, spender), &value);
-
-            // Notify offchain users of the approval and report success.
-            self.env().emit_event(Approval {
-                owner,
-                spender,
-                value,
-            });
-
-            Ok(())
-        }
-
-        #[ink(message)]
-        pub fn allowance(&self, owner: AccountId, spender: AccountId) -> Balance {
-            self.allowances.get((owner, spender)).unwrap_or_default()
-        }
-
-        #[ink(message)]
         pub fn transfer(&mut self, to: AccountId, value: Balance) -> Result<()> {
             let from = self.env().caller();
             self.transfer_from_to(&from, &to, value)
@@ -155,6 +134,27 @@ mod erc20 {
             self.allowances.insert((from, caller), &(allowance - value));
 
             Ok(())
+        }
+
+        #[ink(message)]
+        pub fn approve(&mut self, spender: AccountId, value: Balance) -> Result<()> {
+            // Record the new allowance.
+            let owner = self.env().caller();
+            self.allowances.insert(&(owner, spender), &value);
+
+            // Notify offchain users of the approval and report success.
+            self.env().emit_event(Approval {
+                owner,
+                spender,
+                value,
+            });
+
+            Ok(())
+        }
+
+        #[ink(message)]
+        pub fn allowance(&self, owner: AccountId, spender: AccountId) -> Balance {
+            self.allowances.get((owner, spender)).unwrap_or_default()
         }
     }
 

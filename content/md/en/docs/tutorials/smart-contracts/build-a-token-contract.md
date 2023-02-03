@@ -295,6 +295,19 @@ To add the transfer functions to the smart contract:
    }
    ```
 
+1. Add a test that transfers tokens from one account to another.
+
+   ```rust
+   #[ink::test]
+   fn transfer_works() {
+       let mut contract = Erc20::new(100);
+       assert_eq!(contract.balance_of(alice()), 100);
+       assert!(contract.transfer(bob(), 10).is_ok());
+       assert_eq!(contract.balance_of(bob()), 10);
+       assert!(contract.transfer(bob(), 100).is_err());
+   }
+   ```
+
 1. Verify that the program compiles and passes the test cases by running the following command:
 
    ```bash
@@ -416,18 +429,6 @@ To emit the Transfer event:
 
    Notice that `value` does not need a `Some()` because the value is not stored in an `Option`.
 
-1. Add a test that transfers tokens from one account to another.
-
-   ```rust
-   #[ink::test]
-   fn transfer_works() {
-       let mut contract = Erc20::new(100);
-       assert_eq!(contract.balance_of(alice()), 100);
-       assert!(contract.transfer(bob(), 10).is_ok());
-       assert_eq!(contract.balance_of(bob()), 10);
-       assert!(contract.transfer(bob(), 100).is_err());
-   }
-   ```
 
 1. Verify that the program compiles and passes all tests by running the following command:
 
