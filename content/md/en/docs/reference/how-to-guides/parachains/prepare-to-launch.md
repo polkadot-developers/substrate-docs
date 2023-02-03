@@ -43,9 +43,7 @@ For Polkadot:
 }
 ```
 
-Keep an eye (subscribe)
-to [this issue](https://github.com/paritytech/substrate/issues/7746)
-that will address a better method to safely configure this constant in the future.
+Monitor [this issue](https://github.com/paritytech/substrate/issues/7746) for updates about a better way to safely configure this constant in the future.
 
 ## Memory profiling
 
@@ -68,7 +66,7 @@ the amount of resource consumption as much as possible for the relay chain.
 
 ## Critical parachain constraints
 
-You can check the maximum sizes [in the Polkadot repo](https://github.com/paritytech/polkadot/blob/master/primitives/src/v1/mod.rs#L247-L253) for all relay chains (these are common constants).
+You can check the maximum sizes [in the Polkadot repo](https://github.com/paritytech/polkadot/blob/f0e1ed0bab6d5cb542b84fa0ad464609198dd255/primitives/src/v2/mod.rs#L322-L348) for all relay chains (these are common constants).
 Make note of:
 
 - The runtime version of the relay chain you are targeting (these _may_ change)
