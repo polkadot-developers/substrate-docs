@@ -21,13 +21,15 @@ The local relay chain is required to set up a local testing environment that a t
 
 ## Before you begin
 
+Before you begin, consider the following:
+
+- Though it is not a strict prerequisite, it is recommended that you first learn how to generate chain specifications for a private network of trusted validators as described in [Add trusted nodes](/tutorials/get-started/add-trusted-nodes/). 
+
 Before you begin, verify the following:
 
 - You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
 - You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and know how to compile and run a Substrate node.
-
-- You know how to generate chain specifications for a private network of trusted validators as described in [Add trusted nodes](/tutorials/get-started/add-trusted-nodes/).
 
 - You are generally familiar with Polkadot [architecture and terminology](https://wiki.polkadot.network/docs/learn-architecture).
 
@@ -55,12 +57,12 @@ Therefore, this tutorial uses code from the Polkadot repository to prepare the l
 1. Clone the most recent release branch of the Polkadot repository to prepare a stable working environment.
    
    Release branches tend to be the most reliable and use the naming convention `release-v<n..n.n>`.
-   For example, the release branch used in this tutorial is `release-v0.9.32`.
-   Newer releases are likely to be available and, in most cases, you can substitute a more recent release branch instead of using the `release-v0.9.32` branch a long as you use the same branch for every module.
+   For example, the release branch used in this tutorial is `release-v0.9.37`.
+   Newer releases are likely to be available and, in most cases, you can substitute a more recent release branch instead of using the `release-v0.9.37` branch a long as you use the same branch for every module.
    You can find information about each release on the [Releases](https://github.com/paritytech/polkadot/releases) tab in GitHub.
    
    ```bash
-   git clone --branch release-v0.9.32 https://github.com/paritytech/polkadot.git
+   git clone --branch release-v0.9.37 https://github.com/paritytech/polkadot.git
    ```
 
 2. Change to the root of the `polkadot` directory by running the following command:
@@ -101,6 +103,12 @@ If you wanted to connect two parachains with a single collator each, you would n
 In general, you would need to modify the chain specification and hard-code additional validators to set up a local test network for two or more parachains.
 
 ### Plain and raw chain specification files
+
+If you are completing this tutorial at the same time as anyone on the same local network, then you must download and modify the Plain sample relay chain spec to prevent accidentally peering with their nodes. Find the following line in the plain chain spec and add characters to make your protocolId unique:
+
+```json
+   "protocolId": "dot"
+```
 
 There are two formats for the sample chain specification—a JSON file in plain text format and a JSON file in SCALE-encoded raw format. 
 
