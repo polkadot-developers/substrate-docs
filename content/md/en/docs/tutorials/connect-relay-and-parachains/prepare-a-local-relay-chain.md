@@ -104,12 +104,6 @@ In general, you would need to modify the chain specification and hard-code addit
 
 ### Plain and raw chain specification files
 
-If you are completing this tutorial at the same time as anyone on the same local network, then you must download and modify the Plain sample relay chain spec to prevent accidentally peering with their nodes. Find the following line in the plain chain spec and add characters to make your protocolId unique:
-
-```json
-   "protocolId": "dot"
-```
-
 There are two formats for the sample chain specification—a JSON file in plain text format and a JSON file in SCALE-encoded raw format. 
 
 - [Plain sample relay chain spec](/assets/tutorials/relay-chain-specs/plain-local-chainspec.json)
@@ -121,6 +115,12 @@ For information about converting a chain specification to use the raw format, se
 
 The sample chain specification is only valid for a single parachain with two validator nodes.
 If you add other validators, add additional parachains to your relay chain, or want to use custom account keys instead of the predefined account, you'll need to create a custom chain specification file.
+
+If you are completing this tutorial at the same time as anyone on the same local network, then you must download and modify the Plain sample relay chain spec to prevent accidentally peering with their nodes. Find the following line in the plain chain spec and add characters to make your protocolId unique:
+
+```json
+   "protocolId": "dot"
+```
 
 ## Start the relay chain node
 
