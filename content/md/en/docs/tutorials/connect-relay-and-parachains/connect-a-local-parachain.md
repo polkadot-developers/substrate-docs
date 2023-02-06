@@ -44,10 +44,10 @@ To build the parachain template:
 
 2. Clone the branch of the `substrate-parachain-template` repository that matches the release branch you used to configure the relay chain.
    
-   For example, if you used the `release-v0.9.28` Polkadot release branch to configure the local relay chain, use the `polkadot-v0.9.28` branch for the parachain template.
+   For example, if you used the `release-v0.9.37` Polkadot release branch to configure the local relay chain, use the `polkadot-v0.9.37` branch for the parachain template.
    
    ```bash
-   git clone --depth 1 --branch polkadot-v0.9.28 https://github.com/substrate-developer-hub/substrate-parachain-template.git
+   git clone --depth 1 --branch polkadot-v0.9.37 https://github.com/substrate-developer-hub/substrate-parachain-template.git
    ```
 
 1. Change to the root of the parachain template directory by running the following command:
@@ -60,7 +60,7 @@ To build the parachain template:
    If you want to save your changes and make this branch easy to identify you can create a new branch by running a command similar to the following:
 
    ```bash
-   git switch -c my-branch-v0.9.28
+   git switch -c my-branch-v0.9.37
    ```
 
 3. Build the parachain template collator by running the following command:
@@ -170,9 +170,15 @@ To register your parachain with the local relay chain, you must modify the defau
    ...
    ```
 
-4. Save your changes and close the plain text chain specification file.
+4. If you are completing this tutorial at the same time as anyone on the same local network, then an additional step is needed to prevent accidentally peering with their nodes. Find the following line and add characters to make your protocolId unique:
+
+```json
+   "protocolId": "template-local"
+```
+
+5. Save your changes and close the plain text chain specification file.
    
-5. Generate a raw chain specification file from the modified chain specification file by running the following command:
+6. Generate a raw chain specification file from the modified chain specification file by running the following command:
    
    ```bash
    ./target/release/parachain-template-node build-spec --chain plain-parachain-chainspec.json --disable-default-bootnode --raw > raw-parachain-chainspec.json
