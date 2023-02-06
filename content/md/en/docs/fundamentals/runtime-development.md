@@ -69,7 +69,7 @@ These core primitives are:
   relevant to a block. It includes the parent hash, the storage root and the extrinsics trie root,
   the digest and a block number.
 
-- `Block`: Essentially just a combination of `Header` and a series of `Extrinsic`s, together with a
+- `Block`: Essentially just a combination of `Header` and a series of `Extrinsics`, together with a
   specification of the hashing algorithm to be used.
 
 - `BlockNumber`: A type which encodes the total number of ancestors any valid block has. Typically a
