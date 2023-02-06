@@ -106,58 +106,38 @@ There are pallets that provide pluggable modules for many of these features.
 However, it is up to you as a runtime developer to decide which modules to use, how to modify them for your needs, and where custom modules are required.
 Because you control all of the underlying logic that each node in your network runs, there's a higher barrier to entry in terms of coding skill and experience than there is for writing a smart contract or an individual pallet. 
 
-The runtime is composed of pallets, and—as with individual pallets—there are no built-in safeguards to prevent bad actors or incorrect code from causing harm. 
+The runtime is composed of pallets, and—as with individual pallets—there are no built-in safeguards to prevent bad actors or incorrect code from causing harm.
+It is up to you to correctly assess and apply fees to the different parts of your runtime logic to protect the network and your user community.
 
-some of which can also be pallets that enable 
-You have full access to each and every storage item across all of your modules,
+Setting up your own blockchain on the other hand has the cost of building a community who find value in your service or establishing a trusted private network.
+Making the custom runtime accessible and secure for others to use involves acquiring physical or cloud computing resources and managing a network infrastructure.
+
+With smart contracts, your application runs on top of an existing execution model, limiting what your application can do.
+With a custom runtime, you can always extend the underlying execution logic to enable smart contract execution for other developers.
+Pallets in a custom runtime enable you to deliver more complex functionality and user interactions.
 
 ## Parachain
 
+A custom runtime can exist on its own as the business logic for a private network or a solo chain, but there are several advantages to deploying the business logic and state transition function as an application-specific parachain or parathread.
+Parachains and parathreads connect to a relay chain. 
+Efficient transaction processing
+They benefit from the pooled security, thought-through governance, and overall scalability of the heterogeneous sharding approach of the network. Creating a parachain can be seen as creating a Layer-1 blockchain, which has its own logic and runs in parallel within the Polkadot ecosystem.
+
+Developers can focus on creating state-of-the-art chains that take advantage of Polkadot's next-generation approach. Some examples of what a parachain could be are:
+
+DeFi (Decentralized Finance) Applications
+Digital Wallets
+IoT (Internet of Things) Applications
+Gaming
+Web 3.0 Infrastructure
+
+As a parachain or parathread, your project can taken advantage of the shared security and interoperability of the Polkadot ecosystem.
+Developing a parachain or a parathread is similar to A parachain or a parathread is a natural extension of a custom runtime when the application-specific blockchain logic is ready to reach a broader audience and 
 
 
-Pallets
-NOTE: Pallets use to be called Runtime Modules.
-
-Pallets on the other hand afford none of these protections or safe guards that Smart Contracts give you. As a runtime developer, the bar to entry on the code you produce jumps way up.
-
- which you can modify and control. You can even brick your chain with incorrect logic or poor error handling.
-
-Pallet development has the intention of producing lean, performant, and fast nodes. It affords none of the protections or overhead of transaction reverting, and does not implicitly introduce any fee system to the computation which nodes on your chain run. This means while you are developing runtime functions, it is up to you to correctly asses and apply fees to the different parts of your runtime logic such that it will not be abused by bad actors and hurt your network.
-
-In summary, Pallets:
-
-Provide low level access to your entire blockchain.
-Have removed the overhead of built-in safety for performance.
-Have a high bar to entry for developers.
-Not necessarily to write working code, but to avoid writing broken code.
-Has no inherent economic incentives to repel bad actors.
-
-The Right Tool For You
-
-Substrate Pallets and Substrate Smart Contracts are tools made available to you to solve problems.
-
-There is likely some amount of overlap in the kinds of problems each one can solve, but there is also a clear set of problems suited for only one of the two. Two give just one example in each category:
-
-Pallets: Building a privacy layer on top of transactions in your blockchain.
-Shared: Building a DApp like Cryptokitties which may need to build up a community of users (leaning toward Smart Contract), or may need to scale to millions of transactions a day (leaning toward Pallets).
-Smart Contract: Introducing 2nd layer tokens and custom assets to your network.
-In addition to everything written above, you also need to take into account the costs to set up a DApp using a certain tool. Deploying a contract is a relatively simple and easy process since you take advantage of the existing network. The only costs to you are those fees which you pay to deploy and maintain your contract.
-
-Setting up your own blockchain on the other hand has the cost of building a community who find value in your service or establishing a private network with the overhead of cloud computing system and general network maintenance.
-
-I think that now is really the first time it has been so easy and approachable to build runtime logic. In the past, everyone built their "decentralized application idea" using the tool available to them, Smart Contracts, even when that wasn't the best tool for the job.
-
-With the introduction of Substrate, there is a new tool available for building your decentralized applications; but again, it would be wrong to think that all of your ideas should be a Substrate Pallet.
-
-Instead, for the first time as a community, we have two tools, and we need to figure out together which one is best to use for each scenario. I don't think all the answers to this exist today, but we can learn and make some educated guesses along the way.
 
 
-Beyond the engineering tradeoffs correctly outlined above (tradeoffs of economic costs, responsibility and margin for error), there's a high level and fundamental difference between smart contracts and pallets this answer could benefit from outlining:
 
-The runtime of a Substrate chain is composed of pallets, some of which can also be pallets that enable smart contract execution. In this way, comparing the two is like comparing apples and oranges: a runtime engineer can extend the underlying execution logic and capabilities of a chain using pallets, whereas a smart contract engineer develops applications on-top of some existing execution model (for example, pallet-contract or pallet-evm).
-What a smart contract can provide in terms of user facing interactions is a subset of what a pallet can provide. Pallets can be used to write more complex functionality, for example modifying the fee system of the chain, adding a multi-asset payment system or giving a reward to certain users every n blocks.
-Smart contracts can be written by anyone, added and removed at any time, while pallets are part of the runtime and can only be added or modified using on-chain governance via a runtime upgrade.
-All in all, pallets are suited for developers building application-specific blockchains, whereas smart contracts are suited for developers building applications on-top of a blockchain specialized for executing smart contracts.
 
 
 Smart contracts must be manually added, upgraded, and removed by the contract developer through the mechanism provided by the underlying chain.
@@ -166,43 +146,8 @@ Smart contracts are deployed on a target chain with its own environment.
 However, since the parachains that connect to Polkadot can support arbitrary state transitions, they can support smart contracts.
 
 
-### Additional resources
+## Additional resources
 
-Here is the list of current resources available to developers who want to get started writing smart contracts to deploy on parachains based on Substrate.
-
-ink! - Parity's ink to write smart contracts.
-Substrate ink! Workshop - Walks you through the basics of writing and deploying an ERC-20 token using ink!.
-Contracts Pallet
-The experience of deploying to an EVM-based chain may be more familiar to developers that have written smart contracts before. However, the Contracts pallet makes some notable improvements to the design of the EVM:
-
-Wasm. The Contracts pallet uses WebAssembly as its compilation target. Any language that compiles to Wasm can potentially be used to write smart contracts. Nevertheless, it is better to have a dedicated domain-specific language, and for that reason Parity offers the ink! language.
-
-Deposit. Contracts must hold a deposit (named ContractDeposit ) suitably large enough in order to justify their existence on-chain. A deployer needs to deposit this into the new contract on top of the ExistentialDeposit.
-
-Caching. Contracts are cached by default and therefore means they only need to be deployed once and afterward be instantiated as many times as you want. This helps to keep the storage load on the chain down to the minimum. On top of this, when a contract is no longer being used and the existential deposit is drained, the code will be erased from storage (known as reaping).
-
-
-
-Polkadot Standards Proposals (PSPs)
-Web3 Foundation supports proposals for Polkadot that define a set standards to fit ecosystem needs. These standards go through several acceptance phases, where the engagement of the whole community is needed to build valuable and future-proof standards. All the teams who will benefit from a standard need to agree on its content.
-
-Some of these PSPs are targeting Substrate's contracts pallet:
-
-PSP22 - Fungible Token Standard Please visit Polkadot Standards Proposals (PSPs) Github for more information.
-Ink
-ink! is a domain specific language for writing smart contracts in Rust and compiles to Wasm code. As it states in its README, it is still in an experimental phase so brave developers should be aware that they might have a bumpy - but workable - development experience. There are some projects that have built projects in ink! with a decent level of complexity such as Plasm's Plasma contracts, so it is mature enough to start building interesting things.
-
-For interested developers, they can get started writing smart contracts using ink! by studying the examples that were already written. These can be used as guideposts to writing more complex logic that will be deployable on smart contract parachains.
-
-ink! has laid much of the groundwork for a new smart contract stack that is based on a Wasm virtual machine and compatible with Substrate chains.
-
-Libraries for Smart Contracts in ink!
-Collected below are some community examples of smart contracts in ink!. Are you working on a smart contract example? Ask us to add it to this page!
-
-OpenBrush: an ink! library providing standard contracts based on PSP with useful contracts and macros for building.
-Metis: a Wasm contract standard library, developed by Patract Labs.
-Smart Contract Environments are still Maturing
-It is still early for smart contracts on Polkadot and the development is only now stabilizing. We are actively producing content to help developers get up to speed and will maintain the Wiki with the latest resources.
 
 ---
 Parachain, contract or a pallet?
