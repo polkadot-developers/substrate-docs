@@ -79,7 +79,8 @@ design:
   pages:
     - title: Substrate empowers builders
       url: /design/substrate-empowers-builders/
-  #url: /design/applications/
+    - title: Decide what to build
+      url: /design/decide-what-to-build/
   #- title: Execution
   #url: /design/execution/
   #- title: Runtimes and clients
