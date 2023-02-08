@@ -269,7 +269,7 @@ it's time to start a local node.
 1. Start the contracts node in local development mode by running the following command:
 
    ```bash
-   substrate-contracts-node --dev --log info,runtime::contracts=debug 2>&1
+   substrate-contracts-node --log info,runtime::contracts=debug 2>&1
    ```
 
    The extra logging is useful for development.
@@ -338,7 +338,7 @@ on the blockchain.
 For this tutorial, you use the `cargo-contract` CLI tool to `upload` and `instantiate` the `flipper` contract on a
 Substrate chain.
 
-1. Start your node using `substrate-contracts-node --dev --log info,runtime::contracts=debug 2>&1`
+1. Start your node using `substrate-contracts-node --log info,runtime::contracts=debug 2>&1`
 
 1. Go to the `flipper` project folder.
 

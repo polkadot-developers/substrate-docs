@@ -19,7 +19,7 @@ ClientImport("Unexpected epoch change")
 If you see this error, restart your node with the following command:
 
 ```bash
- substrate-contracts-node --dev --log info,runtime::contracts=debug 2>&1
+ substrate-contracts-node --log info,runtime::contracts=debug 2>&1
 ```
 
 This command clears all of the running node state.

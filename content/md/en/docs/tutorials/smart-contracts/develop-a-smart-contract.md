@@ -400,7 +400,7 @@ To deploy on the local node:
 1. Start the contracts node in local development mode by running the following command:
 
    ```bash
-   substrate-contracts-node --dev --log info,runtime::contracts=debug 2>&1
+   substrate-contracts-node --log info,runtime::contracts=debug 2>&1
    ```
 
 1. Upload and instantiate the contract
