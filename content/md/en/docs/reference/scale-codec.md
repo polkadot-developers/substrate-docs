@@ -78,4 +78,4 @@ SCALE Codec has been implemented in other languages, including:
 - AssemblyScript: [`LimeChain/as-scale-codec`](https://github.com/LimeChain/as-scale-codec)
 - Haskell: [`airalab/hs-web3`](https://github.com/airalab/hs-web3/tree/master/packages/scale)
 - Java: [`emeraldpay/polkaj`](https://github.com/emeraldpay/polkaj)
-- Ruby: [`itering/scale.rb`](https://github.com/itering/scale.rb)
+- Ruby: [`wuminzhe/scale_rb`](https://github.com/wuminzhe/scale_rb)
