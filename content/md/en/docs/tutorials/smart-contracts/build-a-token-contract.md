@@ -170,13 +170,13 @@ To test the ERC-20 contract before adding new functions:
 
 1. Start the local contract node.
 
-1. Instantiate the contract using the `new()` constructor.
+2. Instantiate the contract using the `new()` constructor.
 
   ```bash
   cargo contract instantiate --constructor new --args 1_000_000 --suri //Alice --salt $(date +%s)
   ```
 
-1. Verify the `total_supply` by calling the `total_supply()` message. Don't forget to add the `--dry-run` flag since we
+3. Verify the `total_supply` by calling the `total_supply()` message. Don't forget to add the `--dry-run` flag since we
    only want to read from the chain state.
 
   ```bash
@@ -185,7 +185,7 @@ To test the ERC-20 contract before adding new functions:
   ```
 
 
-1. Verify the amount of tokens Alice, the initial holder of all the tokens, has using `balance_of()`.
+4. Verify the amount of tokens Alice, the initial holder of all the tokens, has using `balance_of()`.
 
   ```bash
   cargo contract call --contract 5FV36V71PzWrWJ8p7cEdqkWPZ1fPFxsGRk6QtbH7L1PUtw2w \

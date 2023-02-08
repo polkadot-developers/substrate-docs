@@ -77,13 +77,13 @@ Modern releases of `gcc`, `clang`, as well as Visual Studio 2019+ should work.
 rustup component add rust-src
 ```
 
-1. Install the latest version of `cargo-contract`
+2. Install the latest version of `cargo-contract`
 
 ```bash
 cargo install --force --locked cargo-contract --version 2.0.0-rc
 ```
 
-1. Verify the installation and explore the commands available by running the following command:
+3. Verify the installation and explore the commands available by running the following command:
 
 ```bash
 cargo contract --help
@@ -193,7 +193,7 @@ To test the contract:
 
 1. Verify that you are in the `flipper` project folder, if needed.
 
-2. Use the `test` subcommand to execute the default tests for the `flipper` contract by running the following command:
+1. Use the `test` subcommand to execute the default tests for the `flipper` contract by running the following command:
 
    ```bash
    cargo contract test

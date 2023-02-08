@@ -397,13 +397,13 @@ To deploy on the local node:
 
 1. Open a terminal shell on your computer, if needed.
 
-1. Start the contracts node in local development mode by running the following command:
+2. Start the contracts node in local development mode by running the following command:
 
    ```bash
    substrate-contracts-node --log info,runtime::contracts=debug 2>&1
    ```
 
-1. Upload and instantiate the contract
+3. Upload and instantiate the contract
 
    ```bash
    cargo contract instantiate --constructor default --suri //Alice --salt $(date +%s)
@@ -429,7 +429,7 @@ To deploy on the local node:
    Contract 5Cf6wFEyZnqvNJaKVxnWswefo7uT4jVsgzWKh8b78GLDV6kN
    ```
 
-1. Increment the value
+4. Increment the value
 
    ```bash
    cargo contract call --contract 5Cf6wFEyZnqvNJaKVxnWswefo7uT4jVsgzWKh8b78GLDV6kN --message inc --args 42 --suri //Alice
@@ -458,7 +458,7 @@ To deploy on the local node:
          dispatch_info: DispatchInfo { weight: Weight { ref_time: 1383927346, proof_size: 13255 }, class: Normal, pays_fee: Yes }
   ```
 
-1. Get the current value
+5. Get the current value
 
    ```bash
    cargo contract call --contract 5Cf6wFEyZnqvNJaKVxnWswefo7uT4jVsgzWKh8b78GLDV6kN --message inc --args 42 --suri //Alice
