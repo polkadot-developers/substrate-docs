@@ -127,8 +127,8 @@ build:
       url: /build/build-a-deterministic-runtime/
     - title: Upgrade the runtime
       url: /build/upgrade-the-runtime/
-    #- title: Best practices
-    #url: /build/best-practices/
+    - title: Troubleshoot your code
+      url: /build/troubleshoot-your-code/
     #- title: Executor
     #url: /build/executor/
 
