@@ -6,7 +6,7 @@ keywords:
 ---
 
 The **Develop smart contracts** tutorials guide you through how you can use
-[the ink! programming language](https://ink.substrate.io) to build smart contracts that run on a Substrate-based
+[the ink! programming language](https://use.ink) to build smart contracts that run on a Substrate-based
 blockchain.
 
 The tutorials in this section use a preconfigured
