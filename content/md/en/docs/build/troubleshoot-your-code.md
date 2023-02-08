@@ -97,37 +97,62 @@ In planning and reviewing your code for potential issues, keep the following gui
 As a general rule, it is better to have one larger data structure than many smaller data structures to reduce complexity and the number of read and write operations.
 However, this isn't always the case and you should use benchmarking to measure and optimize how you store data on a case-by-case basis.
 
-Documentation: State transitions and storage, Runtime storage
-How to guide and tutorials: Use maps for storing values
+Both lists and storage maps incur storage costs, so you should be conscious about how you use them. The more items you have in a list or a map, the more iterating over the items affects the performance in the runtime.
+Storage maps often store unbounded sets of data, and—because accessing the elements of a map requires more database reads than accessing the elements of a list—iterating when using storage maps can be significantly more costly.
 
-#5. Iterations
-Using lists and storage maps both incur storage costs so you should be conscious about how you use them. The greater their size the greater their affect on the performance when iterating over them in the runtime.
-Storage maps often store unbounded sets of data, and as accessing the elements of a map requires more database reads than accessing the elements of a list, iterating on maps can be significantly more costly.
-This is problematic for parachains because in case iterating over the storage exceeds the block production time, the blockchain will stop producing blocks and thus stop working.
-Although it is not necessarily wrong to iterate over storage maps as a general principle it is best to either avoid it or do it very consciously.
-Benchmarks can help you identify cases when it is best to enforce boundaries by limiting the number of elements in a list or the number of iterations in a loop.
-To understand this, you need to ensure that these benchmarks consider all specific conditions of the functions, including triggering a high number of iterations as well.
-Documentation: Iterating over storage maps
+Being conscious of the time required to iterate over items in a storage map is particularly important if your project is a parachain.
+If the time required to iterate over storage exceeds the maximum time allowed for block production, the blockchain will stop producing blocks and thus stop working.
 
-#6. Events
-Events are emitted to send notifications about changes or conditions in the runtime to external entities like users, chain explorers or dApps.
-In custom pallets you can define:
-the type of the event,
-the information contained within the event and
-the conditions for emitting the event.
-Generally the events should inform that a change has occured, but should not inform about all differences in state and should not contain huge amount of data. Adding more data to an event may look like a simplification but it also causes each event to incur more storage overhead and computational overhead during cleanup. In case some data is needed, it should be queried from the chain state.
-As events are a vector temporarily stored in the state of the chain, there should not be much difference between having fewer larger events versus more smaller events.
-Documentation: Events
-How to guide and tutorials: Declaring an event
+In general, you should avoid having unbounded data in storage maps and avoid iterating over storage maps that store a large data set.
+You should use benchmarks to test the performance of all functions in the runtime under different conditions, including iterating over a large number of items in a list or storage map. 
+By testing for specific conditions—for example, triggering a function to execute over a large data set with many iteractions—benchmarks can help you identify when it's best to enforce boundaries by limiting the number of elements in a list or the number of iterations in a loop.
 
-II. Security related issues
-#1. Error handling
-Runtime code should explicitly and gracefully handle all error cases. As a general rule panicking should not be used for error handling except in tests and benchmarks.
-Functions in the runtime should never cause panics and must be non-throwing. Panics should only signal bugs in the program.
-The common way of writing non-throwing functions is to use Result types which possesses an Err variant that allows the function to indicate failed execution without panicking.
-It is best to have many individual error messages, as the more specific these messages are, the easier it is to diagnose any problem.
-Using unwrap() in the runtime with Result types should be done very carefully as it can generate undefined behavior. Using ok_or, unwrap_or, ensure or returning Err in a matching pattern is recommended.
-Code example
+For more guidelines about storage and storage structures, see [State transitions and storage](/fundamentals/state-transitions-and-storage) and [Runtime storage](/build/runtime-storage/).
+For more information about iterating over storage, see [Iterating over storage maps](/build/runtime-storage/#iterating-over-storage-maps).
+
+### Events
+
+Pallets typically emit events to send notifications about changes to data or conditions in the runtime to receiving entities—like users or applications—that are outside of the runtime.
+
+In custom pallets, you can define the following event-related information:
+
+- The type of the event.
+- The information contained within the event.
+- The conditions for emitting the event.
+
+In general, events inform users or applications such as a block explorer that a change occurred.
+Events aren't intended to describe differences in state or to contain detailed information. 
+You should use caution in adding more information to an event than is needed because additional information increases storage and computational overhead involved in producing events. 
+If additional information about a change is needed, users can query the chain state.
+
+For information about adding events to a custom pallet, see [Declaring an event](/build/events-and-errors/#declaring-an-event).
+
+## Unsafe or insecure patterns
+
+Secure operations and coding principles are critical for ensuring data integrity and the viability of a blockchain. 
+There are several common unsafe or insecure coding practices that can introduce errors or make you chain vulnerable to attack if not handled correctly.
+As you are writing the logic for your chain, you should pay particular attention to the following potential trouble spots:
+
+- [Error handling](#error-handling)
+- [Unsafe math: floating point numbers](#unsafe-math-floating-point-numbers)
+- [Unsafe math: overflows](#unsafe-math-overflows)
+- [Unbounded Vec data types](#unbounded-vec-data-types)
+
+### Error handling
+
+Runtime code should explicitly and gracefully handle all error cases. 
+In general, you shouldn't use the `panic!` macro for error handling except in tests and benchmarks.
+Functions in the runtime should never generate a panic and must not throw errors. 
+Only bugs detected by the compiler should generate unrecoverable panic errors.
+
+In Rust, you should write functions that use the `Result` type to return errors with the `Err` variant. The `Result` type with the `Err` variant allows the function to indicate failed execution without panicking.
+As a best practice, you should have many individual and specific error messages to make it easier it to diagnose problems.
+
+You should also be aware that using `unwrap()` in the runtime with the `Result` type can generate undefined behavior. 
+Instead of using `unwrap()`, try using `ok_or`, `unwrap_or`, `ensure` or returning `Err` in a matching pattern.
+For example:
+
+```text
 let a = TryInto::<u128>::try_into(id.fee).ok().unwrap();
 let b = a.checked_mul(8).ok_or(Error::<T>::Overflow)?
          .checked_div(10).ok_or(Error::<T>::Overflow)?;
@@ -135,78 +160,141 @@ let b = a.checked_mul(8).ok_or(Error::<T>::Overflow)?
 let b = id.fee
     .checked_mul(&8u32.saturated_into()).ok_or(Error::<T>::Overflow)?
     .checked_div(&10u32.saturated_into()).ok_or(Error::<T>::Overflow)?;
+```
 
-Documentation: Error enum
-How to guide and tutorials: Errors
+For more information about error handling in pallets, see [Error pallet attribute](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#error-palleterror-optional) and [Errors](/build/events-and-errors/#errors).
 
-#2. Unsafe math: Floating point numbers
-Floating point numbers can lead to non-deterministic result, which is not fitting for bloackchains where many independent nodes have to reach consensus reliably.
-The solution is fixed point arithmetic, which is critical for determinism in the runtime. Substrate provides tools for this in the crate sp_arithmetic.
-You can use specific Per* methods to represent a part of a whole depending on the precision you need, e.g.:
-Percent: Parts per hundred - represents [0, 1] from [0, 100]
-Permill: Parts per million - represents [0, 1] from [0, 1_000_000]
-Perbill: Parts per billion - represents [0, 1] from [0, 1_000_000_000]
-Using higher resolution means more information which needs data types of higher sizes, so having more precision comes with a cost.
-Documentation: Fixed point arithmetic
-#3. Unsafe math: Overflows
-Overflows (and underflows) happen if the value of a certain data after computation exceeds the limits of its type.
-To deal with overflows you can either make use of saturating methods or handle the case of an invalid value using checked arithmetic operations.
-saturating_* methods: when saturating if the result of an operation would be too large for the type, saturation yields the max value of the type (e.g. 2^(n) -1 for unsigned or 2^(n-1) -1 for unsigned types), and if the result would be too small, saturation yields the min value of the type (e.g. 0 for unsigned or -2^(n-1) for signed types).
-checked_* methods: these methods perform the calculations in an isolated environment and based on the output results it will return Some or None .
-Documentation: Saturating_*, Checked_*
+### Unsafe math: Floating point numbers
 
-#4. Unbounded Vec
-The fundamental principle for runtime storage is to minimize the number and size of the data items you store to ensure the chain is both performant and secure.
-Having vecs without a check for size opens up the possibility for anyone to DOS attack the chain or add garbage to it with no restriction, which can lead to undefined behaviour of the runtime. In general, any storage item whose size is determined by user action should have a bound on it.
-Code example with Vec:
+Blockchains require deterministic operations to ensure that independent nodes can reach consensus reliably.
+Because floating point numbers can lead to non-deterministic results, you should avoid operations involving floating point numbers and always use fixed point arithmetic in the runtime. 
+Substrate provides primitives for use fixed point arithmetic in the [`sp_arithmetic`](https://paritytech.github.io/substrate/master/sp_arithmetic/index.html) crate.
+
+You can use specific **Per** methods to represent a part of a whole depending on the precision you need.
+For example:
+
+- Percent: Parts per hundred represents [0, 1] from [0, 100].
+- Permill: Parts per million represents [0, 1] from [0, 1_000_000].
+- Perbill: Parts per billion represents [0, 1] from [0, 1_000_000_000].
+
+Note that using higher resolution requires data types with higher sizes, so having more precision comes with a cost.
+
+### Unsafe math: Overflows
+
+Overflows happen if the computed value of data to be returned exceeds the limits of its defined data type.
+There are two ways you can handle data overflows: use of saturating methods or handle the case of an invalid value using checked arithmetic operations.
+
+- Use `saturating` methods. 
+  If the result of an operation would be too large for the type, `saturating` methods return the maximum value of the type.
+  If the result would be too small, `saturating` methods return the minimum value of the type.
+  For more information, see [Saturating](https://doc.rust-lang.org/std/num/struct.Saturating.html).
+
+- Use `checked_*` methods.
+  These methods perform the calculations in an isolated environment and, based on the result, return Some or None.
+  For more information, see [checked_add](https://doc.rust-lang.org/std/primitive.u32.html#method.checked_add).
+
+### Unbounded Vec data types
+
+As noted in [Runtime storage](/build/runtime-storage/) and [Storage](#storage), it's important to minimize the number and size of the data items you store to ensure the chain is performant and secure.
+Using Vec data types without setting bounds for size makes your chain vulnerable to both intentional and unintentional misuse of the limited resources available.
+For example, a malicious actor or an end-user acting without restrictions could add unlmited data and overwhelm your storage capacity, leading to undefined behavior in the runtime. 
+In general, any storage item with its size determined by user action should have a bound on it.
+
+The following code illustrates an unbounded `Vec` data type:
+
+```rust
 type Proposal<T: Config> = StorageMap<_, Blake2_128Concat, T::Hash, Vec<T::Hash>, ValueQuery>;
+```
 
-Code example with BoundedVec:
+For safer code, replace the `Vec` data type with the `BoundedVec` data type:
+
+```rust
 type Proposal<T: Config> = StorageMap<_, Blake2_128Concat, T::Hash, BoundedVec<T::Hash, ValueQuery>;
+```
 
-By default, all pallet storage items are limited by the bound defined in the pallet_prelude::MaxEncodedLen attribute. The #[pallet::without_storage_info] attribute macro allows you to override this default behavior if you require unbounded storage for an entire pallet.
+By default, all pallet storage items are limited by the bound defined in the `pallet_prelude::MaxEncodedLen` attribute. 
+The `#[pallet::without_storage_info]` attribute macro allows you to override this default behavior if you require unbounded storage for an entire pallet.
+For example:
+
+```text
 #[pallet::pallet]
 #[pallet::generate_store(pub(super) trait Store)]
 #[pallet::without_storage_info]
 pub struct Pallet<T>(_);
+```
 
-This macro applies to all storage items in your pallet, so you should only use it in a test or development environment but not in production. By removing this macro you can make sure your pallet follows the default behaviour. If necessary the #[pallet::unbounded] attribute macro enables you to declare only a specific storage item as unbounded.
-Documentation: Create bounds, Bounded Vec, Macros
+This macro applies to all storage items in your pallet, so you should only use it in a test or development environment.
+You should never use the `#[pallet::without_storage_info]` macro in production. 
+By removing this macro after testing, you can ensure that your pallet follows the default behavior. 
+If necessary, you can use the `#[pallet::unbounded]` attribute macro to declare a specific storage item as unbounded.
 
-#5. Using the appropriate hashing function
-Substrate provides two hash algorithms out of the box: xxHash & Blake2.
-xxHash is a fast hash function but it is not cryptographicly secure, which means it is possible to create hash collision, finding an input that hashes to the same output. Such functions should only be used in places that are not available for outside parties that could try and manipulate its input to attack the system.
-It is recommended to move away from using xxHash at least in the scenarios where security matters. The Blake2 hash function could be used in such situations but Substrate can support any hash algorithm which implements the Hasher trait.
-Documentation: Hashing algorithms
+For more information about limiting storage using `BoundedVec` data types, see [Create bounds](/build/runtime-storage/#create-bounds) and [BoundedVec](https://crates.parity.io/frame_support/storage/bounded_vec/struct.BoundedVec.html).
+For more information about pallet macros, see [FRAME macros](reference/frame-macros/).
 
-#6. Extrinsics with the same weights
-Every extrinsic must have a weight that represents the time it takes to execute the transaction in a block and thus it should depend on the hardware, the computational/storage complexity and the required database operation of the extrinsic.
-If the extrinsics are assigned the same weights then there is good chance that the weight does not reflect the actual time of execution.
-By modeling the expected weight of each runtime function, the blockchain is able to calculate how many transactions or system level calls it can execute within a certain period of time.
-With “underweighted” extrinsics an attacker or an unsuspecting user can create “overweighted” blocks that cause block production timeouts.
-Please make sure that all extrinsics have weights that are determined appropriately and proportional to the factors mentioned above.
-Documentation: Benchmarking and weight
-How to guide and tutorials: Weights
+### Secure hashing algorithms
 
-#7. Using insecure randomness
-Randomness is used in many different applications on blockchains. Substrate provides two implementations of Randomness.
-The Randomness Collective Flip Pallet is based on collective coin flipping and is very fast, but highly predictable and thus not very secure. This pallet should not be used in production as a true source of randomness, but only when testing randomness-consuming pallets.
-A more secure implementation of Randomness is the BABE pallet, which uses verifiable random functions. This pallet provides production-grade randomness, but it has its own limits for security, and cannot be used for every purpose e.g. for gambling.
-Another option to get a secure source of randomness is to use an oracle solution.
-Documentation: Randomness
-How to guide and tutorials: Incorporate randomness
+Substrate provides the following hashing algorithms by default:
+- `xxHash` is a fast hashing function, but it is not cryptographically secure.
+  With this hashing algorithm, hash collisions—in which different inputs hash to the same output—are possible. 
+  You should only use this hashing algorithm in functions that aren't available to outside entities that could try to manipulate the input and attack the system.
+- `Blake2` is a relatively fast cryptographic hashing function.
+  In most cases, you can use the Blake2 hashing algorithm in any situations where security matters. However, Substrate can support any hash algorithm that implements the `Hasher` trait.
 
-III. Antipatterns
-#1. Creating a dispatchable function to read item from storage
-Creating a dispatchable function to read item from storage is not considered as good practice in Substrate ecosystem. The correct way is either to define a getter on a storage item, or to create a custom RPC method.
-For example: If we have a storage map:
+For more information about hashing algorithms, see [Hashing algorithms](/reference/cryptography/#hashing-algorithms).
+
+### Inaccurate weight
+
+Weight is a Substrate construct that represents the resources consumed to execute a transaction in a block.
+The appropriate weight for executing a transaction depends on a number of factors, including the hardware, the computational complexity, the storage requirements, and the database operation performed.
+Every executable transaction should be assigned an appropriate weight.
+
+If you have multiple transactions assigned the same weights, it's likely that the weight assignment doesn't accurately reflect the actual time of execution.
+Benchmarking helps you evaluate and estimate the resources that each function in the runtime is likely to consume under different circumstances.
+Modeling the expected weight of each runtime function enables the blockchain to calculate how many transactions or system-level calls it can execute within a certain period of time.
+
+If you set the weight for a transaction too low, an attacker or an unsuspecting user can create blocks that are overweight and cause block production timeouts.
+You should run appropriate benchmark tests for all functions under different conditions to ensure that that all transaction have appropriate weights that take into account the factors that affect the resources consumed.
+
+For more information about using benchmarks and calculating weight, see [Benchmarking and weight](/test/benchmark/#benchmarking-and-weight) and [Weights](/reference/how-to-guides/weights/).
+
+### Insecure randomness
+
+Randomness is used in many different applications on blockchains. 
+Substrate provides two default implementations of randomness.
+
+- The [insecure randomness collective flip](https://paritytech.github.io/substrate/master/pallet_insecure_randomness_collective_flip/index.html) pallet generates random values based on the block hashes from the previous 81 blocks.  
+  This pallet can be useful when defending against weak adversaries or in low-security situations like testing.
+  For example, you can use this pallet when testing randomness-consuming pallets.
+  You should never use this pallet in production as a true source of randomness. 
+
+- The [BABE](https://paritytech.github.io/substrate/master/pallet_babe/index.html) pallet uses verifiable random functions (VRF) to implement a more secure version of randomness. 
+  This pallet provides production-grade randomness.
+  However, it isn't suite for every purpose. 
+  For example, the randomness provided by the BABE pallet isn't suitable for gambling applications.
+
+As alternative to these pallets, you can use an oracle as a secure source of randomness.
+
+For more information about using randomness, see [Randomness](build/randomness/) and [Incorporate randomness](/reference/how-to-guides/pallet-design/incorporate-randomness/).
+
+## Anti-patterns
+
+Anti-patterns are solutions meant to perform common tasks that introduce more problems than they solve.
+There are several coding patterns that you might be inclined to follow that fall into the category of anti-patterns you should avoid.
+
+### Don't dispatch a function to read from storage
+
+In Substrate, you shouldn't use a dispatchable function call to read an item from storage. 
+Instead, you should either define a `getter` macro for the storage item or to use an RPC method.
+For example, assume you have the following storage map:
+
 ```rust
 #[pallet::storage]
 #[pallet::getter(fn product_information)]
 pub type ProductInformation<T: Config> = StorageMap<_, Blake2_128Concat, T::Hash, Product<T::AccountId, T::Hash>>;
 ```
 
-We can read the item by calling Self::product_information(id) instead of writing a separate dispatchable function like this 👇
+You can read the item by calling `Self::product_information(id)` instead of writing a separate dispatchable function like this:
+
 ```rust
 // !!! Don't create a dispatchable function to read storage state !!!
 ~~~~#[pallet::weight(T::WeightInfo::get_product())]
@@ -228,11 +316,9 @@ match product {
         }
    Ok(())
 }
-~~~~
 ```
 
-For more details, please go through below links :
-How to declare storage items in Substrate
-If a storage getter method is not flexible enough for your specific requirements, you can create a custom RPC method (see doc).
-Remote procedure calls
-Add custom RPC to the node
+For more information about declaring storage and the `getter` macro, see [Declare storage items](/build/runtime-storage/#declaring-storage-items).
+
+If a storage `getter` macro is not flexible enough for your requirements, you can create a custom RPC method.
+For information about creating a custom RPC method, see [Add custom RPC to the node](https://hackmd.io/@d9WGfolYQmSRBmnxyOQmAg/BkEANECJs).
