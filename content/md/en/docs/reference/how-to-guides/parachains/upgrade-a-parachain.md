@@ -1,5 +1,5 @@
 ---
-title: Runtime upgrades for parachains
+title: Upgrade a parachain
 description:
 keywords:
   - collators
@@ -22,10 +22,11 @@ Because of this, and the very confined nature of state transition coordination b
 
 ## Before you continue
 
-Please do the following:
+Before you attempt to upgrade the runtime for your parachain, verify the following:
 
-- Read the general [runtime upgrade docs](/build/upgrade-the-runtime).
-- Complete the [Prepare a local relay chain](/tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain) tutorial, and learn the `polkadot-launch` tool for testing.
+- You are familiar with how to perform [Runtime upgrades](/maintain/runtime-upgrades) for Substrate nodes that don't connect to a relay chain.
+- You have followed the steps to [Prepare a local relay chain](/tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain) and are familiar with the interaction between the parachain collator nodes and the relay chain.
+- You have access to `polkadot-launch` for testing.
 
 ## Choose your upgrade approach
 
@@ -67,7 +68,7 @@ With both these functions called, the relay chain will be notified that the new 
 
 ## Resources
 
-- [Runtime upgrade](/build/upgrade-the-runtime)
+- [Runtime upgrade](/maintain/runtime-upgrades)
 - [Fork off Substrate](https://github.com/maxsam4/fork-off-substrate)
 - [`try-runtime`](/reference/command-line-tools/try-runtime)
 - [`try-runtime` video workshop](https://www.crowdcast.io/e/substrate-seminar/41)
