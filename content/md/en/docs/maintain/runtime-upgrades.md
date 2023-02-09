@@ -1,5 +1,5 @@
 ---
-title: Upgrade the runtime
+title: Runtime upgrades
 description: Explains how runtime versioning and storage migration support forkless upgrades for Substrate-based networks.
 keywords:
 ---
