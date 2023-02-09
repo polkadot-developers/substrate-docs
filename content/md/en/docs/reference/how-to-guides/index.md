@@ -59,7 +59,7 @@ See the following guides for help working with Substrate parachains.
 - [Connect to a relay chain](/reference/how-to-guides/parachains/connect-to-a-relay-chain/)
 - [Select collators](/reference/how-to-guides/parachains/select-collators/)
 - [Prepare to launch](/reference/how-to-guides/parachains/prepare-to-launch/)
-- [Runtime upgrades](/reference/how-to-guides/parachains/runtime-upgrade/)
+- [Runtime upgrades](/reference/how-to-guides/parachains/upgrade-a-parachain/)
 - [Auctions and crowdloans](/reference/how-to-guides/parachains/auctions-and-crowdloans/)
 - [Add HRMP channels](/reference/how-to-guides/parachains/add-hrmp-channels/)
 
