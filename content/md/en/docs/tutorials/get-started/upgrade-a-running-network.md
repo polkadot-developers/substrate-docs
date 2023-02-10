@@ -397,7 +397,7 @@ To modify the value of the existential deposit for a runtime upgrade:
    This change increases the minimum balance an account is required to have on deposit to be viewed as a valid active account.
    This change doesn't remove any accounts with balances between 500 and 1000.
    Removing accounts would require a storage migration.
-   For information about upgrading data storage, see [storage migration](/build/upgrade-the-runtime/#storage-migrations)
+   For information about upgrading data storage, see [storage migration](/maintain/runtime-upgrades/#storage-migrations)
 
 1. Save your changes and close the `runtime/src/lib.rs` file.
 
@@ -455,6 +455,6 @@ To schedule the runtime upgrade:
 
 - [Runtime version 101](/assets/tutorials/runtime-upgrade/lib-spec-version-101.rs)
 - [Runtime version 102](/assets/tutorials/runtime-upgrade/lib-spec-version-102.rs)
-- [Storage migrations](/build/upgrade-the-runtime/#storage-migration)
+- [Storage migrations](/maintain/runtime-upgrades/#storage-migration)
 
 <!-- - [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/) -->

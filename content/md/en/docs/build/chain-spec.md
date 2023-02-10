@@ -114,7 +114,7 @@ For example, consider this excerpt from the default chain specification for the 
 
 In the JSON file, this key and its associated value are human-readable text.
 However, this information can't be stored in this format in the underlying storage structures that Substrate uses.
-Before you can use the chain specification to initialize the genesis storage for a node, the human-readable keys must be transformed into actual storage keys that allow the values to be stored in the [storage trie](/fundamentals/state-and-storage/).
+Before you can use the chain specification to initialize the genesis storage for a node, the human-readable keys must be transformed into actual storage keys that allow the values to be stored in the [storage trie](/fundamentals/state-transitions-and-storage/).
 This transformation is straight-forward, but it requires that the chain specification to be encoded in a format that node runtime can read.
 
 To enable a node with an upgraded runtime to synchronize with a chain from genesis, the human-readable chain specification is encoded in a **raw** format.
