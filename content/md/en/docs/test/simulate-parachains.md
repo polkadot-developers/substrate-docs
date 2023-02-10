@@ -176,7 +176,8 @@ To download and configure Zombienet:
    
    ```toml
    [relaychain]
-   default_command = "./binaries/polkadot-v0.9.37"
+
+   default_command = "../binaries/polkadot-v0.9.37"
    default_args = [ "-lparachain=debug" ]
    
    chain = "rococo-local"
@@ -219,6 +220,7 @@ To download and configure Zombienet:
    ```
 
    The command displays information about the test network nodes being started.
+
    Take note of the relay chain and parachain node endpoints.
    For example, the direct link to the relay chain endpoints should look similar to the following:
 
@@ -294,11 +296,11 @@ To set up communication between the parachains in the test network:
 
 5. Click **Developer** and select **Extrinsics**.
 
-6. Select **polkadotXcm**, then select **sent(dest, message)** to craft the XCM messages you want to send.
+6. Select **polkadotXcm** or **xcmPallet**, then select **sent(dest, message)** to craft the XCM messages you want to send.
    
    You should note that XCM messages are like other transactions and require the sender to pay for the execution of the operation.
    All of the information required must be included in the message itself.
-   For information about how to craft messages using XCM after you've opened HRMP channels, see [Cross-consensus communication](/maintain/xcm-communication) and [Transfer assets with XCM](transfer-assets-with-xcm).
+   For information about how to craft messages using XCM after you've opened HRMP channels, see [Cross-consensus communication](/fundamentals/xcm-communication/) and [Transfer assets with XCM](/tutorials/connect-relay-and-parachains/transfer-assets-with-xcm/).
    
 ## Where to go next
 
