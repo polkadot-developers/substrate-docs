@@ -253,13 +253,13 @@ To set up communication between the parachains in the test network:
 2. Add channel information similar to the following to the configuration file:
    
    ```toml
-   [[hrmpChannels]]
+   [[hrmp_channels]]
    sender = 1000
    recipient = 1001
    max_capacity = 8
    max_message_size = 8000
    
-   [[hrmpChannels]]
+   [[hrmp_channels]]
    sender = 1001
    recipient = 1000
    max_capacity = 8
@@ -547,13 +547,13 @@ To set up communication between the parachains in the test network:
 2. Add channel information similar to the following to the configuration file:
    
    ```toml
-   [[hrmpChannels]]
+   [[hrmp_channels]]
    sender = 1000
    recipient = 1001
    max_capacity = 8
    max_message_size = 8000
    
-   [[hrmpChannels]]
+   [[hrmp_channels]]
    sender = 1001
    recipient = 1000
    max_capacity = 8
