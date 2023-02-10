@@ -7,7 +7,7 @@ code: |
 answer: |
 ---
 
-If you completed the checklist in [Prepare a working environment](01-prepare.md), you have successfully compiled a Substrate node.
+If you completed the checklist in [Prepare a working environment](/tutorials/collectibles-workshop/01-prepare/), you have successfully compiled a Substrate node.
 This particular node—the substrate-node-template—is preconfigured with a few common modules to provide a simple working environment to get you started.
 
 ## About the node template

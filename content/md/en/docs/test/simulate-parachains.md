@@ -22,7 +22,7 @@ This tutorial illustrates how to set up a basic test network with the following 
 - Four validators
 - Two parachains
 - One collator per parachain
-- One HRMP channel that enables the parachains to exchange messages
+- One message passing channel that enables the parachains to exchange messages
 
 ## Prepare a working folder with the binaries
 
@@ -176,6 +176,7 @@ To download and configure Zombienet:
    
    ```toml
    [relaychain]
+
    default_command = "../binaries/polkadot-v0.9.37"
    default_args = [ "-lparachain=debug" ]
    
@@ -183,7 +184,6 @@ To download and configure Zombienet:
       
       [[relaychain.nodes]]
       name = "alice"
-
       
       [[relaychain.nodes]]
       name = "bob"
@@ -220,6 +220,20 @@ To download and configure Zombienet:
    ```
 
    The command displays information about the test network nodes being started.
+
+   Take note of the relay chain and parachain node endpoints.
+   For example, the direct link to the relay chain endpoints should look similar to the following:
+
+   - alice: https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:52190#/explorer 
+   - bob: https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:52194#/explorer
+   - charlie: https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:52198#/explorer
+   - dave: https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:52202#/explorer
+   
+   The direct link to the parachain collator endpoints should look similar to the following:
+   
+   - parachain-1000-collator: https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:52206#/explorer
+   - parachain-1001-collator: https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:52210#/explorer
+
    After all of the nodes are running, you can interact with your nodes by opening the [Polkadot/Substrate Portal](https://polkadot.js.org/apps) and connecting to any of the node endpoints.
 
 ## Open a message passing channel
@@ -241,20 +255,20 @@ To set up communication between the parachains in the test network:
 2. Add channel information similar to the following to the configuration file:
    
    ```toml
-   [[hrmp_channel]]
+   [[hrmp_channels]]
    sender = 1000
    recipient = 1001
-   maxCapacity = 8
-   maxMessageSize = 8000
+   max_capacity = 8
+   max_message_size = 8000
    
-   [[hrmp_channel]]
+   [[hrmp_channels]]
    sender = 1001
    recipient = 1000
-   maxCapacity = 8
-   maxMessageSize = 8000
+   max_capacity = 8
+   max_message_size = 8000
    ```
 
-   Note that the values you set for **maxCapacity** and **maxMessageSize** shouldn't exceed the values defined for the `hrmpChannelMaxCapacity` and `hrmpChannelMaxMessageSize` parameters for the relay chain.
+   Note that the values you set for **max_capacity** and **max_message_size** shouldn't exceed the values defined for the `hrmpChannelMaxCapacity` and `hrmpChannelMaxMessageSize` parameters for the relay chain.
 
    To check the configuration settings for the current relay chain using the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/):
 
@@ -265,7 +279,7 @@ To set up communication between the parachains in the test network:
       ```text
       hrmpChannelMaxCapacity: 8
       hrmpChannelMaxTotalSize: 8,192
-      hrmpChannelMaxMessageSize: 1,048,576
+      hrmlChannelMaxMessageSize: 1,048,576
       ```
 
 3. Save your changes and close the file.
@@ -282,15 +296,13 @@ To set up communication between the parachains in the test network:
 
 5. Click **Developer** and select **Extrinsics**.
 
-6. Select **xcmPallet**, then select **sent(dest, message)** to craft the XCM messages you want to send.
+6. Select **polkadotXcm** or **xcmPallet**, then select **sent(dest, message)** to craft the XCM messages you want to send.
    
    You should note that XCM messages are like other transactions and require the sender to pay for the execution of the operation.
    All of the information required must be included in the message itself.
-
    For information about how to craft messages using XCM after you've opened HRMP channels, see [Cross-consensus communication](/fundamentals/xcm-communication/) and [Transfer assets with XCM](/tutorials/connect-relay-and-parachains/transfer-assets-with-xcm/).
    
 ## Where to go next
 
 For a more complex preconfigured environment that uses Zombienet, download and explore the [Trappist playground](https://github.com/paritytech/trappist).
-
 For more information about the properties you can set in the configuration file, see the [Network definition specification](https://paritytech.github.io/zombienet/network-definition-spec.html).
