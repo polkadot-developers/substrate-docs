@@ -204,3 +204,12 @@ console.log(isValid)
 ```
 
 If the function returns `true`, the address you specified is a valid address.
+
+### Other SS58 implementations
+
+Support for encoding and decoding Substrate SS58 addresses has been implemented in several other languages and libraries.
+
+- Crystal: [`wyhaines/base58.cr`](https://github.com/wyhaines/base58.cr)
+- Go: [`itering/subscan`](https://github.com/subscan-explorer/subscan-essentials/blob/master/util/ss58/ss58.go)
+- Python: [`polkascan/py-scale-codec`](https://github.com/polkascan/py-scale-codec/blob/master/scalecodec/utils/ss58.py)
+- Typescript: [`subsquid/squid-sdk`](https://github.com/subsquid/squid-sdk/tree/master/substrate/ss58-codec)
