@@ -352,5 +352,5 @@ If you want to explore additional features exposed through the Nicks and Sudo pa
 There are several [tutorials](/tutorials/) that can serve as next steps for learning more about Substrate development.
 
 - [Specify the origin for a call](/tutorials/work-with-pallets/specify-the-origin-for-a-call) explores calling functions using different originating accounts.
-- [Configure the contracts pallet](/tutorials/work-with-pallets/contracts-pallet) demonstrates more complex configuration requirements by adding the Contracts pallet to the runtime.
+- [Develop smart contracts](/tutorials/smart-contracts/) guide you through using ink! to build smart contracts.
 - [Use macros in a custom pallet](/tutorials/work-with-pallets/use-macros-in-a-custom-pallet) illustrates how you can use macros to create your own pallets.
