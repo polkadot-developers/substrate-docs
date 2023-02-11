@@ -46,14 +46,16 @@ At a high level, generating the metadata involves the following steps:
 
 - The pallets in the runtime logic expose all of the callable functions, types, parameters, and documentation that need to be encoded in the metadata.
 
-- The `scale-info` crate collects type information for the pallets in the runtime and builds a registry of runtime types.
+- The `scale-info` crate collects type information for the pallets in the runtime and builds a registry of the pallets that exist in a particular runtime and the relevant types for each pallet in the registry.
+   The type information is detailed enough to enable encoding and decoding for every type.
 
-- The `frame-metadata` crate describes the structure of the runtime based on the type registry provided by the `scale-info` crate.
-- Substrate nodes provide the RPC method `state_getMetadata` to returns a complete description of all the types in the current runtime as a hex-encoded vector of SCALE-encoded bytes.
+- The [`frame-metadata`](https://github.com/paritytech/frame-metadata) crate describes the structure of the runtime based on the registry provided by the `scale-info` crate.
+
+- Substrate nodes provide the RPC method `state_getMetadata` to return a complete description of all the types in the current runtime as a hex-encoded vector of SCALE-encoded bytes.
   
-The following diagram provides a simplified overview of how the metadata is generated when the runtime logic is compiled and accessed by connecting to the runtime with an RPC request.
+The following diagram provides a simplified overview of how the metadata is generated when the runtime logic is compiled and then accessed by connecting to the node with an RPC request.
 
-![Compiling the runtime generatesthe metadata](/media/images/docs/metadata.png)
+![Compiling the runtime generates the metadata](/media/images/docs/metadata.png)
 
 ## Getting metadata for a runtime
 
@@ -70,157 +72,242 @@ The metadata also allows libraries to generate almost all of the code needed to 
 
 ## Client applications and metadata
 
-Client applications use the metadata to interact with the node, to parse responses, and to format message payloads sent to the node.
-To use the metadata, client application front-end APIs must use the [SCALE codec library](/reference/scale-codec/) to encode and decode RPC payloads to send and receive transactions.
-The following steps summarize how metadata is generated, exposed, and used to make and receive calls from the runtime:
-
-- Callable pallet functions, as well as types, parameters and documentation are exposed by the runtime.
-- The `frame-metadata` crate describes the structure in which the information about how to communicate with the runtime will be provided.
-  The information takes the form of a type registry provided by `scale-info`, as well as information about things like which pallets exist (and what the relevant types in the registry are for each pallet).
-- The `scale-info` crate is used to annotate types across the runtime, and makes it possible to build a registry of runtime types. This type information is detailed enough that we can use it to find out how to correctly SCALE encode or decode some value for a given type.
-- The structure described in `frame-metadata` is populated with information from the runtime, and this is then SCALE encoded and made available via the `state_getMetadata` RPC call.
-- Custom RPC APIs use the metadata interface and provide methods to make calls into the runtime.
-  A SCALE codec library is required to encode and decode calls and data to and from the API.
-
-Because the metadata exposes how a type is expected to be decoded, external application can retrieve and process the type information without manual decoding.
+Client applications use the metadata to interact with the node, parse responses, and format message payloads sent to the node.
+To use the metadata, client applications must use the [SCALE codec library](/reference/scale-codec/) to encode and decode RPC payloads.
+Because the metadata exposes how every type is expected to be decoded, applications can send, retrieve, and process application information without manual encoding and decoding.
 
 ## Metadata format
 
-Although the SCALE-encoded bytes can be decoded using the [`frame-metadata`](https://paritytech.github.io/substrate/master/frame_metadata/index.html) and [`parity-scale-codec`](https://github.com/paritytech/parity-scale-codec) libraries, there are other tools—such as `subxt` and the Polkadot-JS API—that can convert the raw data to human-readable JSON format.
+Although the SCALE-encoded bytes can be decoded using the `frame-metadata` and [`parity-scale-codec`](https://github.com/paritytech/parity-scale-codec) libraries, there are other tools—such as `subxt` and the Polkadot-JS API—that can convert the raw data to human-readable JSON format.
 
 The types and type definitions included in the metadata returned by the `state_getMetadata` RPC call depend on the metadata version of the runtime.
 In general, the metadata includes the following information:
 
-- A hex-encoded number—`0x6d657461`—that represents **meta** in plain text.
-- A hex-encoded 32-bit integer representing the version of the metadata format in use.
-  For example, if the metadata is version 15, the hex-encoded representation is `0x0f`.
-- Hex-encoded type definitions for all types used in the runtime generated by the `scale-info` crate.
+- A constant that identifies the file as containing metadata.
+- The version of the metadata format used in the runtime.
+- Type definitions for all types used in the runtime and generated by the `scale-info` crate.
+- Pallet information for all of the pallets included in the runtime in the order that they are defined in the `construct_runtime` macro.
 
-The following example illustrates a section of metadata decoded and converted to JSON using [`subxt`](/reference/command-line-tools/subxt/):
+The following example illustrates a condensed and annotated section of metadata decoded and converted to JSON:
 
 ```json
 [
-  1635018093, // the magic number
+  1635018093,
   {
     "V14": {
-      // the metadata version
       "types": {
-        // type information
-        "types": []
+        "types": [
+          { 
+            // index of types
+          }
+        ]
       },
       "pallets": [
-        // metadata exposes by pallets
+        {
+           // index of pallets and within each pallet the metadata each pallet exposes  
+        }
+        
       ],
       "extrinsic": {
-        // the format of an extrinsic  and its signed extensions
-        "ty": 111,
+        "ty": 126,    // the type index identifier that defines the format of an extrinsic
         "version": 4, // the transaction version used to encode and decode an extrinsic
-        "signed_extensions": []
+        "signed_extensions": [
+          {
+            // index of signed extensions
+          }
+          
+        ]
       },
-      "ty": 125 // the type ID for the system pallet
+      "ty": 141 // the type ID for the system pallet
     }
   }
 ]
 ```
 
-As described above, the integer `1635018093` is a "magic number" that represents "meta" in plain text.
-The rest of the metadata has two sections: `pallets` and `extrinsic`.
-The `pallets` section contains information about the runtime's pallets, while the `extrinsic` section describes the version of extrinsics that the runtime is using.
-Different extrinsic versions may have different formats, especially when considering [signed transactions](/fundamentals/transaction-types).
+The constant `1635018093` is a magic number that identifies the file as a metadata file.
+The rest of the metadata has divided into the `types`, `pallets` and `extrinsic` sections.
+The `types` section contains an index of the types and for each type information about its type signature.
+The `pallets` section contains information about each of the pallets in the runtime.
+The `extrinsic` section describes the type identifier and transaction format version that the runtime is using.
+Different extrinsic versions can have different formats, especially when considering [signed transactions](/fundamentals/transaction-types).
 
 ### Pallets
 
-Here is a condensed example of a single element in the `pallets` array:
+The following is a condensed and annotated example of a single element in the `pallets` array:
 
 ```json
 {
-  "name": "System", // name of the pallet, the System pallet for example
-  "storage": {
-    // storage entries
+  "name": "Sudo",        // name of the pallet
+  "storage": {           // storage information for the pallet
+      "prefix": "Sudo",  // database prefix for the pallet storage items
+      "entries": [
+        {
+          "name": "Key",
+          "modifier": "Optional",
+          "ty": {
+             "Plain": 0
+          },
+          "default": [
+             0
+          ],
+          "docs": [
+             "The `AccountId` of the sudo key."
+          ]
+        }
+      ]
   },
-  "calls": [
-    // index for this pallet's call types
-  ],
-  "event": [
-    // index for this pallet's event types
-  ],
-  "constants": [
-    // pallet constants
-  ],
-  "error": [
-    // index for this pallet's error types
-  ],
-  "index": 0 // the index of the pallet in the runtime
-}
+  "calls": {       // pallet call types
+      "ty": 117    // type identifier in the types section
+  },
+  "event": {       // pallet event types
+      "ty": 42     // type identifier in the types section
+  },
+  "constants": [], // pallet constants
+  "error": {       // pallet error types
+      "ty": 124    // type identifier in the types section
+          },
+  "index": 8       // index identifier for the pallet in the runtime
+},
 ```
 
-Every element contains the name of the pallet that it represents, as well as a `storage` object, `calls` array, `event` array, and `error` array.
-If `calls` or `events` are empty, they will be represented as `null` and if `constants` or `errors` are empty, they will be represented as an empty array.
-
+Every element contains the name of the pallet that it represents and information about its storage, calls, events, and errors.
+You can look up details about the definition of the calls, events, and errors by viewing the type index identifier.
 Type indices for each item are just `u32` integers used to access the type information for that item.
-For example, the type ID for the `calls` in the System pallet is 145.
-Querying the type ID will give you information about the available calls of the system pallet including the documentation for each call.
-For each field, you can access type information and metadata for:
+For example, the type index identifier for calls in the Sudo pallet is 117.
+If you view information for that type identifier in the `types` section of the metadata, it provides information about the available calls including the documentation for each call.
 
-- [Storage metadata](https://docs.rs/frame-metadata/latest/frame_metadata/v14/struct.PalletStorageMetadata.html): provides blockchain clients with the information that is required to query [the storage RPC](https://paritytech.github.io/substrate/master/sc_rpc/state/trait.StateApiServer.html#tymethod.storage) to get information for a specific storage item.
-- [Call metadata](https://docs.rs/frame-metadata/latest/frame_metadata/v14/struct.PalletCallMetadata.html): includes information about the runtime calls defined by the `#[pallet]` macro including call names, arguments and documentation.
-- [Event metadata](https://docs.rs/frame-metadata/latest/frame_metadata/v14/struct.PalletEventMetadata.html): provides the metadata generated by the `#[pallet::event]` macro, including the name, arguments and documentation for a pallet's events
-- Constants metadata provides metadata generated by the `#[pallet::constant]` macro, including the name, type and hex encoded value of the constant.
-- [Error metadata](https://docs.rs/frame-metadata/latest/frame_metadata/v14/struct.PalletErrorMetadata.html): provides metadata generated by the `#[pallet::error]` macro, including the name and documentation for each error type in that pallet.
-
-Note that the IDs used aren't stable over time: they will likely change from one version jump to the next, meaning that developers should avoid relying on fixed type IDs to future proof their applications.
-
-### Extrinsic
-
-[Extrinsic metadata](https://docs.rs/frame-metadata/latest/frame_metadata/v14/struct.ExtrinsicMetadata.html) is generated by the runtime and provides useful information on how a transaction is formatted.
-The returned decoded metadata contains the transaction version and signed extensions, which looks like this:
+For example:
 
 ```json
-      "extrinsic": {
-        "ty": 111,
-        "version": 4,
-        "signed_extensions": [
+{
+  id: 117
+  type: {
+    path: [
+      pallet_sudo
+      pallet
+      Call
+    ]
+    params: z[
+      {
+        name: T
+        type: null
+      }
+    ]
+    def: {
+      Variant: {
+        variants: [
           {
-            "identifier": "CheckSpecVersion",
-            "ty": 117,
-            "additional_signed": 4
-          },
+            name: sudo
+            fields: [
+              {
+                name: call
+                type: 114
+                typeName: Box<<T as Config>::RuntimeCall>
+                docs: []
+              }
+            ]
+            index: 0
+            docs: [
+              Authenticates the sudo key and dispatches a function call with `Root` origin.
+            ]
+          }
           {
-            "identifier": "CheckTxVersion",
-            "ty": 118,
-            "additional_signed": 4
-          },
-          {
-            "identifier": "CheckGenesis",
-            "ty": 119,
-            "additional_signed": 9
-          },
-          {
-            "identifier": "CheckMortality",
-            "ty": 120,
-            "additional_signed": 9
-          },
-          {
-            "identifier": "CheckNonce",
-            "ty": 122,
-            "additional_signed": 34
-          },
-          {
-            "identifier": "CheckWeight",
-            "ty": 123,
-            "additional_signed": 34
-          },
-          {
-            "identifier": "ChargeTransactionPayment",
-            "ty": 124,
-            "additional_signed": 34
+            name: sudo_unchecked_weight
+            fields: [
+              {
+                name: call
+                type: 114
+                typeName: Box<<T as Config>::RuntimeCall>
+                docs: []
+              }
+              {
+                name: weight
+                type: 8
+                typeName: Weight
+                docs: []
+              }
+            ]
+            index: 1
+            docs: [
+              Authenticates the sudo key and dispatches a function call with `Root` origin.
+              This function does not check the weight of the call, and instead allows the
+              Sudo user to specify the weight of the call.
+            ]
           }
         ]
       }
+    }
+  }
+}
 ```
 
-The type system is composite, which means that each type ID contains a reference to some type or to another type ID that gives access to the associated primitive types.
-For example one type we can encode is a `BitVec<Order, Store>` type: to decode it properly we need to know what the `Order` and `Store` types used were, which can be accessed used the "path" in the decoded JSON for that type ID.
+For each field, you can access type information and metadata for:
+
+- Storage metadata provides blockchain clients with the information that is required to query the [storage](https://paritytech.github.io/substrate/master/sc_rpc/state/trait.StateApiServer.html#tymethod.storage) to get information for a specific storage item.
+- Call metadata includes information about the runtime calls defined by the `#[pallet]` macro including call names, arguments and documentation.
+- Event metadata provides the metadata generated by the `#[pallet::event]` macro, including the name, arguments and documentation for each pallet event.
+- Constants metadata provides metadata generated by the `#[pallet::constant]` macro, including the name, type and hex encoded value of the constant.
+- Error metadata provides metadata generated by the `#[pallet::error]` macro, including the name and documentation for each pallet error.
+
+You should note that type identifiers change from time to time.
+You should avoid relying type identifiers in your applications.
+
+### Extrinsic
+
+Extrinsic metadata is generated by the runtime and provides useful information about how transactions are formatted.
+The returned decoded metadata contains the transaction version and signed extensions, which looks like this:
+
+```json
+    extrinsic: {
+      type: 126
+      version: 4
+      signedExtensions: [
+        {
+          identifier: CheckNonZeroSender
+          type: 132
+          additionalSigned: 41
+        }
+        {
+          identifier: CheckSpecVersion
+          type: 133
+          additionalSigned: 4
+        }
+        {
+          identifier: CheckTxVersion
+          type: 134
+          additionalSigned: 4
+        }
+        {
+          identifier: CheckGenesis
+          type: 135
+          additionalSigned: 11
+        }
+        {
+          identifier: CheckMortality
+          type: 136
+          additionalSigned: 11
+        }
+        {
+          identifier: CheckNonce
+          type: 138
+          additionalSigned: 41
+        }
+        {
+          identifier: CheckWeight
+          type: 139
+          additionalSigned: 41
+        }
+        {
+          identifier: ChargeTransactionPayment
+          type: 140
+          additionalSigned: 41
+        }
+      ]
+    }
+```
+
+The type system is composite, which means that each type identifier contains a reference to some type or to another type identifier that gives access to the associated primitive types.
+For example, you can encode the `BitVec<Order, Store>` type, but to decode it properly you need to know what the `Order` and `Store` types used were, which can be accessed using the path in the decoded JSON for that type identifier.
 
 ## RPC APIs
 
@@ -236,15 +323,16 @@ Substrate comes with the following APIs to interact with a node:
 
 Querying a Substrate node can either be done by using a Hypertext Transfer Protocol (HTTP) or WebSocket (WS) based JSON-RPC client.
 The main advantage of WS (used in most applications) is that a single connection can be reused for many messages to and from a node, whereas a typical HTTP connection allows only for a single message from, and then response to the client at a time.
-For this reason, if you want to subscribe to some RPC endpoint that could lead to multiple messages being returned to the client, you must use a websocket connection and not an HTTP one.
+For this reason, if you want to subscribe to some RPC endpoint that could lead to multiple messages being returned to the client, you must use a WebSocket connection and not an HTTP one.
 Connecting via HTTP is commonly used for fetching data in offchain workers-learn more about that in [Offchain operations](/fundamentals/offchain-operations).
 
-An alternative (and still experimental) way to connect to a Substrate node is by using `Substrate Connect`, which allows applications to spawn their own light clients and connect directly to the exposed JSON-RPC end-point.
-These applications would rely on in-browser local memory to establish a connection with the light client.
+As an alternative to connecting using RPC, you can use the [Substrate Connect](https://substrate.io/developers/substrate-connect/) and a light client node to connect to Substrate-based blockchains.
+Substrate Connect runs in a browser and allows applications to create their own light client node and connect directly to the exposed JSON-RPC endpoint.
+Applications that integrate Substrate Connect rely on in-browser local memory to establish a connection with the light client node.
 
 ## Start building
 
-Parity maintains the following libraries built on top of the [JSON-RPC API](https://github.com/paritytech/jsonrpc) for interacting with a Substrate node:
+Parity maintains the following libraries built on top of the [JSON-RPC API](https://github.com/paritytech/jsonrpsee) for interacting with a Substrate node:
 
 - [subxt](https://github.com/paritytech/subxt) provides a way to create an interface for static front-ends built for specific chains.
 - [Polkadot JS API](https://polkadot.js.org/) provides a library to build dynamic interfaces for any Substrate built blockchain.
@@ -255,10 +343,10 @@ Parity maintains the following libraries built on top of the [JSON-RPC API](http
 
 | Name | Description | Language | Use case |
 | ---- | ----------- | -------- | -------- |
-| [Polkadot JS API](https://polkadot.js.org/docs/api) | A Javascript library for interacting with a Substrate chain. | Javascript | Applications that need to dynamically adapt to changes in a node, such as for block explorers or chain-agnostic interfaces. |
-| [Polkadot JS extension](https://polkadot.js.org/docs/extension/) | An API for interacting with a browser extension build with the Polkadot JS API. | Javascript | Browser extensions. |
+| [Polkadot JS API](https://polkadot.js.org/docs/api) | A Javascript library for interacting with a Substrate-based chain. | Javascript | Applications that need to dynamically adapt to changes in a node, such as block explorers or chain-agnostic interfaces. |
+| [Polkadot JS extension](https://polkadot.js.org/docs/extension/) | An API for interacting with a browser extension built with the Polkadot JS API. | Javascript | Browser extensions. |
 | [`Substrate Connect`](https://paritytech.github.io/substrate-connect/) | A library for developers to build applications that act as their own light client for their target chain. It also provides a browser extension designed to connect to multiple chains from a single application (web or desktop browser). | Javascript | Any browser application. |
-| [`subxt`](https://github.com/paritytech/subxt/) | Short for "submit extrinsics", `subxt` is a library that generates a statically typed Rust interface to interact with a node's RPC APIs based on a target chain's metadata. | Rust | Building lower level applications, such as non-browser graphic user interfaces, chain-specific CLIs or user facing applications that require type-safe communication between the node and the generated interface, preventing users from constructing transactions with bad inputs or submitting calls that don't exist. |
+| [`subxt`](https://github.com/paritytech/subxt/) | Short for "submit extrinsics", `subxt` is a library that generates a statically typed Rust interface to interact with a node's RPC APIs based on a target chain's metadata. | Rust | Building lower-level applications, such as non-browser graphic user interfaces, chain-specific CLIs or user-facing applications that require type-safe communication between the node and the generated interface, preventing users from constructing transactions with bad inputs or submitting calls that don't exist. |
 | [`txwrapper`](https://github.com/paritytech/txwrapper) | A Javascript library for offline generation of Substrate transactions. | Javascript | Write scripts to generate signed transactions to a node, useful for testing and decoding transactions. |
 
 ## Where to go next
