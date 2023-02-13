@@ -11,6 +11,6 @@ The _How-to_ guides in the _Parachains_ category illustrate the key steps to pre
 - [Connect to a relay chain](/reference/how-to-guides/parachains/connect-to-a-relay-chain/)
 - [Select collators](/reference/how-to-guides/parachains/select-collators/)
 - [Prepare to launch](/reference/how-to-guides/parachains/prepare-to-launch/)
-- [Runtime upgrades](/reference/how-to-guides/parachains/runtime-upgrade/)
+- [Upgrade a parachain](/reference/how-to-guides/parachains/upgrade-a-parachain/)
 - [Auctions and crowdloans](/reference/how-to-guides/parachains/auctions-and-crowdloans/)
 - [Add HRMP channels](/reference/how-to-guides/parachains/add-hrmp-channels/)
