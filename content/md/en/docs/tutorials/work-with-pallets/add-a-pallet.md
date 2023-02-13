@@ -142,15 +142,12 @@ To review the `Config` trait for the Balances pallet:
 
 1. Locate the `Balances` pallet and note that it consists of the following implementation (`impl`)code block:
 
-<<<<<<< HEAD
-   ```text
-=======
+
    ```rust
    pub type Balance = u128;
 
    // ...
 
->>>>>>> main
    /// Existential deposit.
    pub const EXISTENTIAL_DEPOSIT: u128 = 500;
    
