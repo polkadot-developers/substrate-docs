@@ -379,6 +379,8 @@ The following libraries use the [JSON-RPC API](https://github.com/paritytech/jso
 | [`subxt`](https://github.com/paritytech/subxt/) | Provides a Rust library that generates a statically-typed Rust interface to interact with a node's RPC APIs based on a target chain's metadata. The `subxt`—submit extrinsics—library enables you to build lower-level applications—such as non-browser graphical user interfaces, chain-specific CLIs, or user-facing applications that require type-safe communication between the node and the generated interface—that prevent users from constructing transactions with bad inputs or submitting calls that don't exist.| Rust |
 | [`txwrapper`](https://github.com/paritytech/txwrapper) | Provides a Javascript library for generating signed Substrate transactions offline. This library enables you to write scripts to generate signed transactions while offline that can later by submitted to a node. This functionality is especially useful for testing and decoding transactions. | Javascript |
 
+For more information about the JSON-RPC API and the latest interface specification, see the [JSON-RPC specification](https://paritytech.github.io/json-rpc-interface-spec/).
+
 ## Where to go next
 
 - [Substrate Connect](https://github.com/paritytech/substrate-connect)
