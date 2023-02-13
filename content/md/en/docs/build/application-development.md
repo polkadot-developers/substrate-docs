@@ -172,81 +172,109 @@ The following is a condensed and annotated example of a single element in the `p
 
 Every element contains the name of the pallet that it represents and information about its storage, calls, events, and errors.
 You can look up details about the definition of the calls, events, and errors by viewing the type index identifier.
-Type indices for each item are just `u32` integers used to access the type information for that item.
+The type index identifier for each item is the `u32` integer used to access the type information for that item.
 For example, the type index identifier for calls in the Sudo pallet is 117.
 If you view information for that type identifier in the `types` section of the metadata, it provides information about the available calls including the documentation for each call.
 
-For example:
+For example, the following is a condensed excerpt of the calls for the Sudo pallet:
 
 ```json
-{
-  id: 117
-  type: {
-    path: [
-      pallet_sudo
-      pallet
-      Call
-    ]
-    params: z[
-      {
-        name: T
-        type: null
-      }
-    ]
-    def: {
-      Variant: {
-        variants: [
-          {
-            name: sudo
-            fields: [
-              {
-                name: call
-                type: 114
-                typeName: Box<<T as Config>::RuntimeCall>
-                docs: []
-              }
-            ]
-            index: 0
-            docs: [
-              Authenticates the sudo key and dispatches a function call with `Root` origin.
-            ]
-          }
-          {
-            name: sudo_unchecked_weight
-            fields: [
-              {
-                name: call
-                type: 114
-                typeName: Box<<T as Config>::RuntimeCall>
-                docs: []
-              }
-              {
-                name: weight
-                type: 8
-                typeName: Weight
-                docs: []
-              }
-            ]
-            index: 1
-            docs: [
-              Authenticates the sudo key and dispatches a function call with `Root` origin.
-              This function does not check the weight of the call, and instead allows the
-              Sudo user to specify the weight of the call.
-            ]
-          }
-        ]
-      }
-    }
-  }
-}
+    {
+      "id": 117,
+      "type": {
+          "path": [
+              "pallet_sudo",
+              "pallet",
+              "Call"
+          ],
+          "params": [
+            {
+              "name": "T",
+              "type": null
+            }
+          ],
+          "def": {
+              "variant": {
+                  "variants": [
+                    {
+                      "name": "sudo",
+                      "fields": [
+                        {
+                          "name": "call",
+                          "type": 114,
+                          "typeName": "Box<<T as Config>::RuntimeCall>"
+                        }
+                  ],
+                      "index": 0,
+                      "docs": [
+                        "Authenticates the sudo key and dispatches a function call with `Root` origin.",
+                      ]
+                    },
+                    {
+                      "name": "sudo_unchecked_weight",
+                      "fields": [
+                        {
+                          "name": "call",
+                          "type": 114,
+                          "typeName": "Box<<T as Config>::RuntimeCall>"
+                        },
+                        {
+                          "name": "weight",
+                          "type": 8,
+                          "typeName": "Weight"
+                        }
+                      ],
+                      "index": 1,
+                      "docs": [
+                        "Authenticates the sudo key and dispatches a function call with `Root` origin.",
+                      ]
+                    },
+                    {
+                      "name": "set_key",
+                      "fields": [
+                        {
+                          "name": "new",
+                          "type": 103,
+                          "typeName": "AccountIdLookupOf<T>"
+                        }
+                      ],
+                      "index": 2,
+                      "docs": [
+                        "Authenticates the current sudo key and sets the given AccountId (`new`) as the new sudo",
+                      ]
+                    },
+                    {
+                      "name": "sudo_as",
+                      "fields": [
+                        {
+                          "name": "who",
+                          "type": 103,
+                          "typeName": "AccountIdLookupOf<T>"
+                        },
+                        {
+                          "name": "call",
+                          "type": 114,
+                          "typeName": "Box<<T as Config>::RuntimeCall>"
+                        }
+                      ],
+                      "index": 3,
+                      "docs": [
+                        "Authenticates the sudo key and dispatches a function call with `Signed` origin from",
+                        "a given account.",
+                      ]
+                    }
+                  ]
+                }
+              },
+            },
 ```
 
-For each field, you can access type information and metadata for:
+For each field, you can access type information and metadata for the following:
 
-- Storage metadata provides blockchain clients with the information that is required to query the [storage](https://paritytech.github.io/substrate/master/sc_rpc/state/trait.StateApiServer.html#tymethod.storage) to get information for a specific storage item.
+- Storage metadata provides the information that is required to enable applications to get information for specific storage items.
 - Call metadata includes information about the runtime calls defined by the `#[pallet]` macro including call names, arguments and documentation.
-- Event metadata provides the metadata generated by the `#[pallet::event]` macro, including the name, arguments and documentation for each pallet event.
-- Constants metadata provides metadata generated by the `#[pallet::constant]` macro, including the name, type and hex encoded value of the constant.
+- Event metadata provides the metadata generated by the `#[pallet::event]` macro, including the name, arguments, and documentation for each pallet event.
+- Constants metadata provides metadata generated by the `#[pallet::constant]` macro, including the name, type, and hex-encoded value of the constant.
 - Error metadata provides metadata generated by the `#[pallet::error]` macro, including the name and documentation for each pallet error.
 
 You should note that type identifiers change from time to time.
@@ -255,59 +283,66 @@ You should avoid relying type identifiers in your applications.
 ### Extrinsic
 
 Extrinsic metadata is generated by the runtime and provides useful information about how transactions are formatted.
-The returned decoded metadata contains the transaction version and signed extensions, which looks like this:
+When decoded, the metadata contains the transaction version and the list of signed extensions.
+For example:
 
 ```json
-    extrinsic: {
-      type: 126
-      version: 4
-      signedExtensions: [
-        {
-          identifier: CheckNonZeroSender
-          type: 132
-          additionalSigned: 41
-        }
-        {
-          identifier: CheckSpecVersion
-          type: 133
-          additionalSigned: 4
-        }
-        {
-          identifier: CheckTxVersion
-          type: 134
-          additionalSigned: 4
-        }
-        {
-          identifier: CheckGenesis
-          type: 135
-          additionalSigned: 11
-        }
-        {
-          identifier: CheckMortality
-          type: 136
-          additionalSigned: 11
-        }
-        {
-          identifier: CheckNonce
-          type: 138
-          additionalSigned: 41
-        }
-        {
-          identifier: CheckWeight
-          type: 139
-          additionalSigned: 41
-        }
-        {
-          identifier: ChargeTransactionPayment
-          type: 140
-          additionalSigned: 41
-        }
-      ]
+    "extrinsic": {
+        "ty": 126,
+        "version": 4,
+        "signed_extensions": [
+          {
+            "identifier": "CheckNonZeroSender",
+            "ty": 132,
+            "additional_signed": 41
+          },
+          {
+            "identifier": "CheckSpecVersion",
+            "ty": 133,
+            "additional_signed": 4
+          },
+          {
+            "identifier": "CheckTxVersion",
+            "ty": 134,
+            "additional_signed": 4
+          },
+          {
+            "identifier": "CheckGenesis",
+            "ty": 135,
+            "additional_signed": 11
+          },
+          {
+            "identifier": "CheckMortality",
+            "ty": 136,
+            "additional_signed": 11
+          },
+          {
+            "identifier": "CheckNonce",
+            "ty": 138,
+            "additional_signed": 41
+          },
+          {
+            "identifier": "CheckWeight",
+            "ty": 139,
+            "additional_signed": 41
+          },
+          {
+            "identifier": "ChargeTransactionPayment",
+            "ty": 140,
+            "additional_signed": 41
+          }
+        ]
+      },
+      "ty": 141
     }
+  }
+]
 ```
 
-The type system is composite, which means that each type identifier contains a reference to some type or to another type identifier that gives access to the associated primitive types.
-For example, you can encode the `BitVec<Order, Store>` type, but to decode it properly you need to know what the `Order` and `Store` types used were, which can be accessed using the path in the decoded JSON for that type identifier.
+The type system is composite.
+Each type identifier contains a reference to a specific type or to another type identifier that provides information about the associated primitive types.
+For example, you can encode the `BitVec<Order, Store>` type, but to decode it properly you must know the types used for the `Order` and `Store` types.
+To find type information for `Order` and `Store`, you can use the path in the decoded JSON to locate their type identifiers.
 
 ## RPC APIs
 
@@ -316,38 +351,33 @@ Substrate comes with the following APIs to interact with a node:
 - [`AuthorApiServer`](https://paritytech.github.io/substrate/master/sc_rpc/author/trait.AuthorApiServer.html): An API to make calls into a full node, including authoring extrinsics and verifying session keys.
 - [`ChainApiServer`](https://paritytech.github.io/substrate/master/sc_rpc/chain/trait.ChainApiServer.html): An API to retrieve block header and finality information.
 - [`OffchainApiServer`](https://paritytech.github.io/substrate/master/sc_rpc/offchain/trait.OffchainApiServer.html): An API for making RPC calls for offchain workers.
-- [`StateApiServer`](https://paritytech.github.io/substrate/master/sc_rpc/state/trait.StateApiServer.html): An API to query information about on-chain state such as runtime version, storage items and proofs.
+- [`StateApiServer`](https://paritytech.github.io/substrate/master/sc_rpc/state/trait.StateApiServer.html): An API to query information about on-chain state such as runtime version, storage items, and proofs.
 - [`SystemApiServer`](https://paritytech.github.io/substrate/master/sc_rpc/system/trait.SystemApiServer.html): An API to retrieve information about network state, such as connected peers and node roles.
 
 ## Connecting to a node
 
-Querying a Substrate node can either be done by using a Hypertext Transfer Protocol (HTTP) or WebSocket (WS) based JSON-RPC client.
-The main advantage of WS (used in most applications) is that a single connection can be reused for many messages to and from a node, whereas a typical HTTP connection allows only for a single message from, and then response to the client at a time.
-For this reason, if you want to subscribe to some RPC endpoint that could lead to multiple messages being returned to the client, you must use a WebSocket connection and not an HTTP one.
-Connecting via HTTP is commonly used for fetching data in offchain workers-learn more about that in [Offchain operations](/fundamentals/offchain-operations).
+Applications typically connect to Substrate nodes by using JSON-RPC methods through an open HTTP or WebSocket port.
+Most applications use a WebSocket port because a single connection can be used for multiple messages to and from a node. 
+With an HTTP connection, applications can only send and receive responses one message at a time.
+The most common reason you would use HTTP to connect to a node is if you want to fetch data using offchain workers.
+For more information about using offchain workers, see [Offchain operations](/fundamentals/offchain-operations).
 
 As an alternative to connecting using RPC, you can use the [Substrate Connect](https://substrate.io/developers/substrate-connect/) and a light client node to connect to Substrate-based blockchains.
 Substrate Connect runs in a browser and allows applications to create their own light client node and connect directly to the exposed JSON-RPC endpoint.
 Applications that integrate Substrate Connect rely on in-browser local memory to establish a connection with the light client node.
 
-## Start building
+## Building front-end applications
 
-Parity maintains the following libraries built on top of the [JSON-RPC API](https://github.com/paritytech/jsonrpsee) for interacting with a Substrate node:
+The following libraries use the [JSON-RPC API](https://github.com/paritytech/jsonrpsee) to enable applications to interact with Substrate nodes:
 
-- [subxt](https://github.com/paritytech/subxt) provides a way to create an interface for static front-ends built for specific chains.
-- [Polkadot JS API](https://polkadot.js.org/) provides a library to build dynamic interfaces for any Substrate built blockchain.
-- [Substrate Connect](https://github.com/paritytech/substrate-connect) provides a library and a browser extension to build applications that connect directly with an in-browser light client created for its target chain.
-  As a library that uses the Polkadot JS API, Connect is useful for applications that need to connect to multiple chains, providing end users with a single experience when interacting with multiple chains for the same app.
-
-## Front-end use cases
-
-| Name | Description | Language | Use case |
-| ---- | ----------- | -------- | -------- |
-| [Polkadot JS API](https://polkadot.js.org/docs/api) | A Javascript library for interacting with a Substrate-based chain. | Javascript | Applications that need to dynamically adapt to changes in a node, such as block explorers or chain-agnostic interfaces. |
-| [Polkadot JS extension](https://polkadot.js.org/docs/extension/) | An API for interacting with a browser extension built with the Polkadot JS API. | Javascript | Browser extensions. |
-| [`Substrate Connect`](https://paritytech.github.io/substrate-connect/) | A library for developers to build applications that act as their own light client for their target chain. It also provides a browser extension designed to connect to multiple chains from a single application (web or desktop browser). | Javascript | Any browser application. |
-| [`subxt`](https://github.com/paritytech/subxt/) | Short for "submit extrinsics", `subxt` is a library that generates a statically typed Rust interface to interact with a node's RPC APIs based on a target chain's metadata. | Rust | Building lower-level applications, such as non-browser graphic user interfaces, chain-specific CLIs or user-facing applications that require type-safe communication between the node and the generated interface, preventing users from constructing transactions with bad inputs or submitting calls that don't exist. |
-| [`txwrapper`](https://github.com/paritytech/txwrapper) | A Javascript library for offline generation of Substrate transactions. | Javascript | Write scripts to generate signed transactions to a node, useful for testing and decoding transactions. |
+| Name | Description | Language 
+| :---- | :----------- | :-------- |
+| [Chain API](https://github.com/paritytech/capi) | Provides a TypeScript toolkit for crafting interactions with Substrate-based chains. The toolkit includes FRAME utilities, a functional effect system, and a fluent API to facilitate multi-step, multi-chain interactions for end users without compromising performance or safety.
+| [Polkadot JS API](https://polkadot.js.org/docs/api) | Provides a Javascript library for building applications that can dynamically adapt to changes in a node—such as block explorers or chain-agnostic services—when interacting with Substrate-based chains. You can use this library in combination with popular front-end frameworks such as React. | Javascript | 
+| [Polkadot JS extension](https://polkadot.js.org/docs/extension/) | Provides an API for interacting with browser extensions and providers built with the Polkadot JS API. | Javascript |
+| [Substrate Connect](https://paritytech.github.io/substrate-connect/) | Provides a library and a browser extension to build applications that connect directly to Substrate-based chains using an in-browser light client node. Substrate Connect enables you to build applications that connect to multiple chains, providing end users with a single experience if they use your application to interact with multiple chains. | Javascript | 
+| [`subxt`](https://github.com/paritytech/subxt/) | Provides a Rust library that generates a statically-typed Rust interface to interact with a node's RPC APIs based on a target chain's metadata. The `subxt`—submit extrinsics—library enables you to build lower-level applications—such as non-browser graphical user interfaces, chain-specific CLIs, or user-facing applications that require type-safe communication between the node and the generated interface—that prevent users from constructing transactions with bad inputs or submitting calls that don't exist.| Rust |
+| [`txwrapper`](https://github.com/paritytech/txwrapper) | Provides a Javascript library for generating signed Substrate transactions offline. This library enables you to write scripts to generate signed transactions while offline that can later by submitted to a node. This functionality is especially useful for testing and decoding transactions. | Javascript |
 
 ## Where to go next
 
