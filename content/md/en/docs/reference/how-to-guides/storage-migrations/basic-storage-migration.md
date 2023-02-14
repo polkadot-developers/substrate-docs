@@ -12,8 +12,8 @@ In this tutorial, you'll modify a storage map to provide an optional field that 
 You can use this type of simple storage migration when changes are limited to specific pallets and individual storage items.
 You can follow similar steps for more complex data migration, but you'll need to write more complex migration functions and use additional tooling to test your migration than explained in this tutorial.
 
-
 ## Add the Nicks pallet locally
+
 We are going to make a change in the [FRAME's Nick's pallet](https://github.com/paritytech/substrate/tree/master/frame/nicks), in the tutorial [Add a pallet to the runtime](https://docs.substrate.io/tutorials/work-with-pallets/add-a-pallet/) we show how to add the Nicks pallet to the runtime for the node template.
 
 For this guide, because we are going to make changes in the code of the pallet we are going to take the code of the pallet and add it locally in out node template. You can check an example of how to add it locally [here] (https://github.com/substrate-developer-hub/substrate-node-template/commit/022b6da0d1d55f54de3568e97aa5fe45a7975fa5).
@@ -90,6 +90,7 @@ pub fn set_name(origin,
 Check an example of how to update the extrinsics [here] (https://github.com/substrate-developer-hub/substrate-node-template/commit/a9ee9b2b9096c2b85ecb4448366df2b8502e7aa7).
 
 ## Add the storage version
+
 The `pallet::pallet` macro implements `traits::GetStorageVersion` but the current storage version needs to be communicated to the macro. This can be done by using the `pallet::storage_version` macro.
 ```rust
     /// The current storage version, we set to 2 our new version.
@@ -179,6 +180,7 @@ space, split it at the `' '` and place anything after that into the new `last` s
 ```
 
 ### Update the storage version
+
 ```rust
     // Update storage version.
 	StorageVersion::new(2).put::<Pallet::<T>>();
