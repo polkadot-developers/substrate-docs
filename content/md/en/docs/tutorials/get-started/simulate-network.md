@@ -245,7 +245,8 @@ To verify blocks are being finalized:
 
 2. Shut down the second node by pressing Control-c in the terminal shell.
    
-   Because you started the nodes in development mode—with the `--dev` command-line option—all state is cleared for both nodes.
+   If you want to remove the chain state from the simulated network, use the `purge-chain` subcommand with the `--base-path` command-line options for the `/tmp/bob` and `/tmp/alice` directories.
+   ```
 
 ## Next steps
 
