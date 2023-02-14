@@ -1,5 +1,5 @@
 ---
-title: Trigger Migration
+title: Trigger migration
 desciption: Trigger a storage migration using Polkadot-JS Apps
 keywords:
   - storage migration
@@ -9,9 +9,8 @@ keywords:
 
 This simple guide presents the steps for triggering a runtime migration using [Polkadot-JS Apps](https://polkadot.js.org/apps/). It assumes that migration code is already written and that the new runtime has already been compiled.
 
-## Steps
 
-### 1. Add custom types
+## Add custom types
 Put the new storage types in a `types.json` which you will need to trigger the migration using a UI. Our new types in JSON are:
 
 ```rust
@@ -24,7 +23,7 @@ Put the new storage types in a `types.json` which you will need to trigger the m
 ```
 In the Polkadot-js apps UI, go to Settings > Developer to add your custom types from types.json. You can either upload the file directly or paste the types right into the UI. Save it to add them.
 
-### 2. Increment your spec_version
+## Increment the spec_version
 Increment the `spec_version` to specify the new runtime version.
 In the runtime/src/lib.rs locate the `runtime_version` macro.
 ```rust
@@ -40,7 +39,7 @@ Increment the spec_version to specify the new runtime version.
     spec_version: 101,
 ```
 
-### 3. Upload your runtime
+## Upload the runtime
 Recompile your runtime with `cargo build --release` this generates a smaller build artifact that is better suited for submitting to the blockchain network.
 The WebAssembly build artifacts are in the target/release/wbuild/node-template-runtime directory. For example, you should see the following WebAssembly artifacts:
 ```

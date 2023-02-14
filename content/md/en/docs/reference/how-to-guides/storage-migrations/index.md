@@ -1,5 +1,5 @@
 ---
-title: Storage Migration
+title: Storage migration
 description: Quick guide that illustrate a runtime storage migration.
 keywords:
 ---
