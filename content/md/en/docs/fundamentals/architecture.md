@@ -14,11 +14,11 @@ In a decentralized network, all nodes act as both clients that request data and 
 Conceptually and programmatically, the Substrate architecture divides operational responsibilities along similar lines.
 The following diagram illustrates this separation of responsibilities in simplified form to help you visualize the architecture and how Substrate provides a modular framework for building blockchains.
 
-![Substrate architecture](/media/images/docs/sub-arch-1.png)
+![Substrate architecture](/media/images/docs/simplified-architecture.png)
 
 At a high level, a Substrate node provides a layered environment with two main elements:
 
-- An **outer node** that handles network activity such as peer discovery, managing transaction requests, reaching consensus with peers, and responding to RPC calls.
+- A **client** with **outer node services** that handles network activity such as peer discovery, managing transaction requests, reaching consensus with peers, and responding to RPC calls.
 
 - A **runtime** that contains all of the business logic for executing the state transition function of the blockchain.
 
@@ -37,7 +37,7 @@ Some of the most important activities that are handled by the outer node involve
 
 - [Remote procedure call (RPC) API](/build/remote-procedure-calls/): The outer node accepts inbound HTTP and WebSocket requests to allow blockchain users to interact with the network.
 
-- Telemetry: The outer node collects and provides access to node metrics through an embedded [Prometheus](https://prometheus.io/) server.
+- [Telemetry](/maintain/monitor/): The outer node collects and provides access to node metrics through an embedded [Prometheus](https://prometheus.io/) server.
 
 - [Execution environment](/build/build-process/): The outer node is responsible for selecting the execution environment—WebAssembly or native Rust—for the runtime to use then dispatching calls to the runtime selected.
 

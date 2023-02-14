@@ -8,20 +8,26 @@ The Substrate framework empowers you to make many types of design decisions for 
 Substrate doesn't enforce any assumptions about the consensus model you want to use, the form of governance you might implement, or whether you'll charge transaction fees.
 With every design decision, you are free to choose between the complexity of technical innovation and the ease of development using predefined modules and feature-specific logic.
 
-The following diagram illustrates the nature of this flexibility.
+The following diagram illustrates how different approaches to building your project affect development time and complexity.
 
-![Technical freedom vs development ease](/media/images/docs/technical-freedom.png)
+![Balancing technical freedom and development ease](/media/images/docs/development-complexity.png)
 
-As this diagram suggests, Substrate provides a sliding scale between complete technical freedom and development ease.
-At one end of the spectrum, you can deploy predefined Substrate nodes with minimal configuration and launch a blockchain with virtually no development effort.
-At the other end of the spectrum, you can design and implement a Substrate-based blockchain from core primitives or from scratch—including outer node components, like consensus, networking, and storage—giving you the technical freedom to innovate.
+As this diagram suggests, Substrate provides predefined templates and tools to reduce complexity and development time.
+However, Substrate also exposes the low-level primitives that build the core features of the blockchain, so you have complete technical freedom to innovate at any point in the development stack.
+
+If you want to minimize development time and complexity, you can deploy predefined Substrate nodes with minimal configuration and launch a blockchain with virtually no development effort.
+If you want to modify lower-level components or operations—such as, consensus, networking, or storage—you can design and implement a Substrate-based blockchain from core primitives or build your own components from scratch.
 
 ## Using FRAME
 
-Naturally, the most common scenario falls between these two extremes.
-In the middle of the spectrum, you can use [FRAME](/reference/glossary/#frame)—an acronym for Framework for Runtime Aggregation of Modularized Entities—to create a customized Substrate **runtime**.
-With this approach, you can choose how much control you have over the blockchain logic by selecting and configuring the modules—called **pallets**—that you want to use from a library.
-If a pallet doesn't exist for the functionality you need, you can use FRAME to create your own custom pallet, then add it to your customized runtime.
+Naturally, the most common scenario falls between these two extremes and involves the use of predefined modules and libraries to simplify development.
+Collectively, the predefined modules and libraries form the [FRAME](/reference/glossary/#frame) development environment.
+FRAME is an acronym for Framework for Runtime Aggregation of Modularized Entities, and the main purpose of FRAME is to enable you to create a customized Substrate **runtime**.
+
+By using FRAME, you can select and configure the specific modules—called **pallets**—that you want to use.
+For example, if you know your application needs to manage account balances, you can simply include the Balances pallet in the configuration of your runtime logic. 
+You can then modify different aspects of the pallet in the context of your runtime to suit your application.
+If a pallet doesn't currently exist for the functionality you need, you can use FRAME to create your own custom pallet, then add that custom pallet to your customized runtime.
 
 ## Basic runtime design decisions
 
