@@ -291,7 +291,7 @@ To add the transfer functions to the smart contract:
         }
 
         self.balances.insert(&from, &(from_balance - value));
-        let to_balance = self.balance_of_impl(*to);
+        let to_balance = self.balance_of(*to);
         self.balances.insert(&to, &(to_balance + value));
 
         Ok(())
@@ -536,11 +536,28 @@ To add the approval logic to the smart contract:
    }
    ```
 
-1. Add an `allowances` `Mapping` to the storage delcaration for an owner and non-owner combination to an account
+1. Add an `allowances` `Mapping` to the storage declaration for an owner and non-owner combination to an account
    balance.
 
    ```rust
    allowances: Mapping<(AccountId, AccountId), Balance>,
+   ```
+
+1. Instantiate and add the `allowances` `Mapping` in the new() constructor.
+   
+   ```rust
+   #[ink(constructor)]
+   pub fn new(total_supply: Balance) -> Self {
+       // -- snip --
+       
+       let allowances = Mapping::default();
+   
+       Self {
+           total_supply,
+           balances,
+           allowances
+      }
+   }
    ```
 
 1. Add the `approve()` function to authorize a `spender` account to withdraw tokens from the caller's account up to a
