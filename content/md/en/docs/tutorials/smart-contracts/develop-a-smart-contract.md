@@ -461,7 +461,7 @@ To deploy on the local node:
 5. Get the current value
 
    ```bash
-   cargo contract call --contract 5Cf6wFEyZnqvNJaKVxnWswefo7uT4jVsgzWKh8b78GLDV6kN --message inc --args 42 --suri //Alice
+   cargo contract call --contract 5Cf6wFEyZnqvNJaKVxnWswefo7u.4jVsgzWKh8b78GLDV6kN --message get --suri //Alice --dry-run
    ```
 
    ```text
