@@ -155,6 +155,8 @@ deploy:
       url: /deploy/prepare-to-deploy/
     - title: Deployment options
       url: /deploy/deployment-options/
+    - title: Keys and network operations
+      url: /deploy/keys-and-network-operations/
 #   - title: Deploy on a test network
 #     url: /deploy/deploy-a-test-network/
 #   - title: Deploy a parathread
