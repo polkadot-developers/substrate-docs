@@ -97,11 +97,11 @@ To start the node with the current runtime:
    Leave this node running.
    You can edit and re-compile to upgrade the runtime without stopping or restarting the running node.
 
-2. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/explorer) in a browser and connect to the local node.
+2. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) in a browser and connect to the local node.
    
    In the upper left, notice the node template version is the default version 100.
 
-   ![Node template version](/substrate-docs/content/media/images/docs/tutorials/upgrade/default-version.png)
+   ![Node template version](/media/images/docs/tutorials/forkless-upgrade/default-version.png)
 
 ### Add Scheduler to the runtime dependencies
 
@@ -122,7 +122,7 @@ To update the dependencies for the runtime to include the Scheduler pallet:
    codec = { package = "parity-scale-codec", version = "3.0.0", default-features = false, features = ["derive"] }
    scale-info = { version = "2.1.1", default-features = false, features = ["derive"] }
    
-   pallet-aura = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", " branch" = "polkadot-v0.9.35" }
+   pallet-aura = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.36" }
    ```
 1. Add the Scheduler pallet as a dependency.
    
@@ -133,12 +133,12 @@ To update the dependencies for the runtime to include the Scheduler pallet:
       version = "4.0.0-dev", 
       default-features = false, 
       git = "https://github.com/paritytech/substrate.git", 
-      branch = "polkadot-v0.9.35" 
+      branch = "polkadot-v0.9.36" 
    }
    ```
 
    Be sure to use the same **version** and **branch** information for the Scheduler pallet as you see used for the other pallets included in the runtime.
-   In this example, all of the pallets in the node template runtime use `version = "4.0.0-dev"` and `branch = "polkadot-v0.9.35"`.
+   In this example, all of the pallets in the node template runtime use `version = "4.0.0-dev"` and `branch = "polkadot-v0.9.36"`.
 
 3. Locate the `[features]` section and the list of the default features for the standard binary.
    
@@ -179,12 +179,32 @@ To add the Scheduler types and configuration trait:
 
    ```rust
    parameter_types! {
-      pub MaximumSchedulerWeight: Weight = Perbill::from_percent(80) * BlockWeights::get().max_block;
+      pub MaximumSchedulerWeight: Weight = Perbill::from_percent(10) * BlockWeights::get().max_block;
       pub const MaxScheduledPerBlock: u32 = 50;
    }
    ```
 
-4. Add the implementation for the Config trait for the Scheduler pallet.
+   Note that this definition for `MaximumSchedulerWeight` is only an example that uses a ratio to specify the weight.
+   You could define the weight using specific values for execution time and storage.
+   For example:
+   
+   ```rust
+   pub MaximumSchedulerWeight: Weight = Weight::zero().set_ref_time(10).set_proof_size(10);
+   ```
+
+   or
+
+   ```rust
+   pub MaximumSchedulerWeight: Weight = Weight::from_parts(10, 10);
+   ```
+   
+   Alternatively, you could define only one dimension for weight, for example  using a specific value for execution time:
+   
+   ```rust
+   pub MaximumSchedulerWeight: Weight = Weight::from_ref_time(10_000_000);
+   ```
+
+1. Add the implementation for the Config trait for the Scheduler pallet.
 
    ```rust
    impl pallet_scheduler::Config for Runtime {
@@ -201,7 +221,7 @@ To add the Scheduler types and configuration trait:
    }
    ```
 
-1. Locate the `construct_runtime!` macro.
+2. Locate the `construct_runtime!` macro.
 
    ```text
    construct_runtime!(
@@ -217,13 +237,13 @@ To add the Scheduler types and configuration trait:
             Aura: pallet_aura,
    ```
 
-2. Add the Scheduler pallet inside the `construct_runtime!` macro.
+3. Add the Scheduler pallet inside the `construct_runtime!` macro.
 
    ```rust
    Scheduler: pallet_scheduler,
    ```
 
-3. Locate the `runtime_version` macro.
+4. Locate the `runtime_version` macro.
 
    ```text
    #[sp_version::runtime_version]
@@ -239,7 +259,7 @@ To add the Scheduler types and configuration trait:
    };
    ```
 
-4. Increment the [`spec_version`](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html#structfield.spec_version) to specify the new runtime version.
+5. Increment the [`spec_version`](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html#structfield.spec_version) to specify the new runtime version.
 
    ```rust
    spec_version: 101,  // Change the spec_version from 100 to 101
@@ -259,7 +279,7 @@ To add the Scheduler types and configuration trait:
    To upgrade the runtime, you must _increase_ the `spec_version`.
    For more information, see the [FRAME System](https://github.com/paritytech/substrate/tree/master/frame/system/src/lib.rs) module and the `can_set_code` method.
 
-5.  Save your changes and close the `runtime/src/lib.rs` file.
+6.  Save your changes and close the `runtime/src/lib.rs` file.
 
 ### Recompile and connect to the local node
 
@@ -296,7 +316,7 @@ To update the network with the upgraded runtime:
 
 1. Click **Developer** and select **Extrinsics** to submit a transaction for the runtime to use the new build artifact.
 
-2. Select the administrative  **Alice** account.
+2. Select the administrative **Alice** account.
 
 3. Select the **sudo** pallet and the **sudoUncheckedWeight(call, weight)** function.
    
@@ -330,6 +350,11 @@ To update the network with the upgraded runtime:
 In the previous upgrade example, you used the `sudo_unchecked_weight` function to skip the accounting safeguards that limit block length and weight to allow the `set_code` function call to take as long as necessary to complete the runtime upgrade.
 Now that you have updated the node template to include the Scheduler pallet, however, you can perform a **scheduled** runtime upgrade. 
 A scheduled runtime upgrade ensures that the `set_code` function call is the only transaction included in a block.
+
+NOTE: The Scheduler pallet has been recently modified to meter its own weight consumption. 
+However, the `set_code` function as it is currently written is intended to consume a full block.
+Because the Scheduler now deducts its own weight from the full block, attempting to execute the scheduled upgrade as described in this part of the tutorial will fail with an `Exhausted` dispatch error because the block weight would exceed the weight allowed.
+Therefore, you can't currently upgrade the runtime as a scheduled task.
 
 ### Prepare an upgraded runtime
 
@@ -372,7 +397,7 @@ To modify the value of the existential deposit for a runtime upgrade:
    This change increases the minimum balance an account is required to have on deposit to be viewed as a valid active account.
    This change doesn't remove any accounts with balances between 500 and 1000.
    Removing accounts would require a storage migration.
-   For information about upgrading data storage, see [storage migration](/build/upgrade-the-runtime/#storage-migrations)
+   For information about upgrading data storage, see [storage migration](/maintain/runtime-upgrades/#storage-migrations)
 
 1. Save your changes and close the `runtime/src/lib.rs` file.
 
@@ -430,6 +455,6 @@ To schedule the runtime upgrade:
 
 - [Runtime version 101](/assets/tutorials/runtime-upgrade/lib-spec-version-101.rs)
 - [Runtime version 102](/assets/tutorials/runtime-upgrade/lib-spec-version-102.rs)
-- [Storage migrations](/build/upgrade-the-runtime/#storage-migration)
+- [Storage migrations](/maintain/runtime-upgrades/#storage-migration)
 
 <!-- - [How-to: Storage migration](/reference/how-to-guides/basics/storage-migration/) -->

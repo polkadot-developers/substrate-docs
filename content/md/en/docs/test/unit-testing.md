@@ -92,7 +92,7 @@ The `offchain` module maintains its own [Externalities](https://paritytech.githu
 ## Test events in a mock runtime
 
 It can also be important to test the events that are emitted from your chain, in addition to the storage.
-Assuming you use the default generation of `deposit_event` with the `generate_deposit` marco, all pallet events are stored under the `system` / `events` key with some extra information as an [`EventRecord`](https://paritytech.github.io/substrate/master/frame_system/struct.EventRecord.html).
+Assuming you use the default generation of `deposit_event` with the `generate_deposit` macro, all pallet events are stored under the `system` / `events` key with some extra information as an [`EventRecord`](https://paritytech.github.io/substrate/master/frame_system/struct.EventRecord.html).
 
 These event records can be directly accessed and iterated over with `System::events()`, but there are also some helper methods defined in the system pallet to be used in tests, [`assert_last_event`](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.assert_last_event) and [`assert_has_event`](https://paritytech.github.io/substrate/master/frame_system/pallet/struct.Pallet.html#method.assert_has_event).
 
@@ -100,7 +100,7 @@ These event records can be directly accessed and iterated over with `System::eve
 fn fake_test_example() {
  ExtBuilder::default().build_and_execute(|| {
   System::set_block_number(1);
-  // ... test logic that emits FakeEvent1 and then FakeEvent2...
+  // ... test logic that emits FakeEvent1 and then FakeEvent2 ...
   System::assert_has_event(Event::FakeEvent1{}.into())
   System::assert_last_event(Event::FakeEvent2 { data: 7 }.into())
   assert_eq!(System::events().len(), 2);
@@ -112,6 +112,59 @@ Some things to note are:
 
 - Events are not emitted on the genesis block, and so the block number should be set in order for this test to pass.
 - You need to have a `.into()` after instantiating your pallet event, which turns it into a generic event.
+
+### Advanced event testing
+
+When testing events in a pallet, often you are only interested in the events that are emitted from your own pallet.
+The following helper function filters events to include only events emitted by your pallet and converts them into a custom event type. 
+A helper function like this is usually placed in the `mock.rs` file for testing in a mock runtime.
+
+```rust
+fn only_example_events() -> Vec<super::Event<Runtime>> {
+ System::events()
+  .into_iter()
+  .map(|r| r.event)
+  .filter_map(|e| if let RuntimeEvent::TemplateModule(inner) = e { Some(inner) } else { None })
+  .collect::<Vec<_>>();
+}
+```
+
+Additionally, if your test performs operations that emit events in a sequence, you might want to only see the events that have happened since the last check. 
+The following example leverages the preceding helper function.
+
+```rust
+parameter_types! {
+ static ExamplePalletEvents: u32 = 0;
+}
+
+fn example_events_since_last_call() -> Vec<super::Event<Runtime>> {
+ let events = only_example_events();
+ let already_seen = ExamplePalletEvents::get();
+ ExamplePalletEvents::set(events.len() as u32);
+ events.into_iter().skip(already_seen as usize).collect()
+}
+```
+
+You can find examples of this type of event testing in the tests for the [nomination pool](https://github.com/paritytech/substrate/blob/master/frame/nomination-pools/src/mock.rs) or [staking](https://github.com/paritytech/substrate/blob/master/frame/staking/src/mock.rs). 
+If you rewrite the previous event test with this new function, the resulting code looks like this:
+
+```rust
+fn fake_test_example() {
+ ExtBuilder::default().build_and_execute(|| {
+  System::set_block_number(1);
+  // ... test logic that emits FakeEvent1 ...
+  assert_eq!(
+   example_events_since_last_call(),
+   vec![Event::FakeEvent1{}]
+  );
+  // ... test logic that emits FakeEvent2 ...
+  assert_eq!(
+   example_events_since_last_call(),
+   vec![Event::FakeEvent2{}]
+  );
+ });
+}
+```
 
 ## Genesis config
 
@@ -168,10 +221,11 @@ Although it is important for runtime code to cache calls to storage or the syste
 ```rust
 fn run_to_block(n: u64) {
  while System::block_number() < n {
-  if System::block_number() > 1 {
+  if System::block_number() > 0 {
    ExamplePallet::on_finalize(System::block_number());
    System::on_finalize(System::block_number());
   }
+  System::reset_events();
   System::set_block_number(System::block_number() + 1);
   System::on_initialize(System::block_number());
   ExamplePallet::on_initialize(System::block_number());

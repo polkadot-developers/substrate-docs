@@ -61,7 +61,7 @@ Instead of using predefined keys or the more secure `subkey` program, this tutor
 As a best practice, you should use an air-gapped computer that has never been connected to the internet when you generate keys for a production blockchain.
 At a minimum, you should disconnect from the internet before you generate any keys you intend to use on a public or private blockchain that is not under your control.
 
-For this tutorial, however, you can use `node-template` command-line options to generate random keys locally and remain connected to the internet.
+However, for this tutorial, you can use the `node-template` command-line options to generate random keys locally, while remaining connected to the internet.
 
 To generate keys using the node template:
 
@@ -276,7 +276,7 @@ To convert a chain specification to use the raw format:
 
 After you distribute the custom chain specification to all network participants, you're ready to launch your own private blockchain.
 The steps are similar to the steps you followed in [Start the first blockchain node](/tutorials/get-started/simulate-network/#Start-the-first-blockchain-node).
-If you follow the steps in this tutorial, however, you can add multiple computers to your network.
+However, if you follow the steps in this tutorial, you'll be able to add multiple computers to your network.
 
 To continue, verify the following:
 

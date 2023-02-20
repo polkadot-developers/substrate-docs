@@ -81,7 +81,7 @@
 /main-docs/build/origins/                                               /build/origins/                                  301!
 /main-docs/build/custom-rpc/                                            /build/custom-rpc/                               301!
 /main-docs/build/application-dev/                                       /build/application-development/                  301!
-/main-docs/build/upgrade/                                               /build/upgrade-the-runtime/                      301!
+/main-docs/build/upgrade/                                               /maintain/runtime-upgrades/                      301!
 /main-docs/test/                                                        /test/                                           301!
 /main-docs/test/unit-testing/                                           /test/unit-testing/                              301!
 /main-docs/test/debug/                                                  /test/debug/                                     301!

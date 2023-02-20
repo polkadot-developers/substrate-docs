@@ -24,7 +24,7 @@ Before you begin, verify the following:
 
 - You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
-- You have completed at least some of the previous tutorials, including [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and [Simulte a network](/tutorials/get-started/simulate-network/).
+- You have completed at least some of the previous tutorials, including [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and [Simulate a network](/tutorials/get-started/simulate-network/).
 
 ## Tutorial objectives
 
@@ -110,14 +110,14 @@ To add the Substrate exposed endpoint to the list of Prometheus targets:
    scrape_configs:
      - job_name: "substrate_node"
 
-     scrape_interval: 5s
+       scrape_interval: 5s
 
-     static_configs:
-       - targets: ["localhost:9615"]
+       static_configs:
+         - targets: ["localhost:9615"]
    ```
 
     These settings override the global default values for scrape targets for the `substrate_node` job.
-    It's important to set the `scrape_interval` to a value that is less than the block time to to ensure that you have a data point for every block.
+    It's important to set the `scrape_interval` to a value that is less than the block time to ensure that you have a data point for every block.
     For example, the Polkadot block time is six seconds, so the `scrape_interval` is set to five seconds.
 
 1. Start a Prometheus instance with the modified `prometheus.yml` configuration file.

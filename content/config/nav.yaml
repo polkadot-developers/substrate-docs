@@ -6,6 +6,7 @@ menu:
   - build
   - test
   - deploy
+  - maintain
   - tutorials
   - reference
   - community
@@ -22,6 +23,8 @@ fundamentals:
       url: /fundamentals/blockchain-basics/
     - title: Why Substrate?
       url: /fundamentals/why-substrate/
+    - title: What is Substrate?
+      url: /fundamentals/what-is-substrate/
     - title: Architecture
       url: /fundamentals/architecture/
     - title: Networks and blockchains
@@ -52,7 +55,7 @@ fundamentals:
       url: /fundamentals/offchain-operations/
     - title: Light clients in Substrate Connect
       url: /fundamentals/light-clients-in-substrate-connect/
-    - title: Cross-consensus communication
+    - title: Cross-consensus messaging
       url: /fundamentals/xcm-communication/
 
 install:
@@ -78,7 +81,8 @@ design:
   pages:
     - title: Substrate empowers builders
       url: /design/substrate-empowers-builders/
-  #url: /design/applications/
+    - title: Decide what to build
+      url: /design/decide-what-to-build/
   #- title: Execution
   #url: /design/execution/
   #- title: Runtimes and clients
@@ -123,10 +127,8 @@ build:
       url: /build/genesis-configuration/
     - title: Build a deterministic runtime
       url: /build/build-a-deterministic-runtime/
-    - title: Upgrade the runtime
-      url: /build/upgrade-the-runtime/
-    #- title: Best practices
-    #url: /build/best-practices/
+    - title: Troubleshoot your code
+      url: /build/troubleshoot-your-code/
     #- title: Executor
     #url: /build/executor/
 
@@ -154,21 +156,27 @@ deploy:
     - title: Deployment options
       url: /deploy/deployment-options/
 #   - title: Deploy on a test network
-#     url: /docs/deploy/deploy-on-a-test-network/
+#     url: /deploy/deploy-a-test-network/
 #   - title: Deploy a parathread
-#     url: /docs/deploy/deploy-a-parathread/
-#   - title: Deploy a parachain
-#     url: /docs/deploy/deploy-a-parachain/
-#- title: Maintain
-#url: /maintain/
-#pages:
-#   - title: Monitor
-#     url: /docs/maintain/monitor/
+#     url: /deploy/deploy-a-parathread/
+#   - title: Launch a parachain
+#     url: /deploy/launch-a-parachain/
+maintain:
+  title: Maintain
+  url: /maintain/
+  pages:
+    - title: Monitor
+      url: /maintain/monitor/
+    - title: Runtime upgrades
+      url: /maintain/runtime-upgrades/
 #   - title: Operate
-#     url: /docs/main-docs/deploy/operate/
-#   - title: Upgrades and migration
-#     url: /main-docs/maintain/upgrades-and-migration/
-
+#     url: /maintain/operate/
+#   - title: Client upgrades
+#     url: /maintain/client-upgrades/
+#   - title: Network upgrades
+#     url: /maintain/network-upgrades/
+#   - title: Data migration
+#     url: /maintain/data-migration/
 tutorials:
   title: Tutorials
   url: /tutorials/
@@ -193,8 +201,8 @@ tutorials:
       pages:
         - title: Add a pallet to the runtime
           url: /tutorials/work-with-pallets/add-a-pallet/
-        - title: Configure the contracts pallet
-          url: /tutorials/work-with-pallets/contracts-pallet/
+        #- title: Configure the contracts pallet
+          #url: /tutorials/work-with-pallets/contracts-pallet/
         - title: Use macros in a custom pallet
           url: /tutorials/work-with-pallets/use-macros-in-a-custom-pallet/
         - title: Specify the origin for a call
@@ -202,8 +210,10 @@ tutorials:
         - title: Publish custom pallets
           url: /tutorials/work-with-pallets/publish-custom-pallets/
     - title: Collectibles workshop
-      url: /tutorials/collectibles-workshop/00-intro-runtime-pallets/
+      url: /tutorials/collectibles-workshop/
       pages:
+        - title: Pallet builder basics
+          url: /tutorials/collectibles-workshop/runtime-and-pallets/
         - title: Prepare a working environment
           url: /tutorials/collectibles-workshop/01-prepare/
         - title: Get oriented

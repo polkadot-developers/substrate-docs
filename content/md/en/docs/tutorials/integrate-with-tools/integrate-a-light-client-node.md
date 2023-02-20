@@ -108,14 +108,20 @@ To connect to one of these chains:
    ```bash
    cd empty-webapp
    ```
+   
+4. Install substrate connect
+   
+   ```bash
+   yarn add @substrate/connect
+   ```
 
-4. Install dependencies from the Polkadot-JS RPC provider by running the following command:
+5. Install dependencies from the Polkadot-JS RPC provider by running the following command:
    
    ```bash
    yarn add @polkadot/rpc-provider
    ```
 
-5. Install dependencies from the Polkadot-JS API by running the following command:
+6. Install dependencies from the Polkadot-JS API by running the following command:
    
    ```bash
    yarn add @polkadot/api
@@ -123,18 +129,19 @@ To connect to one of these chains:
 
    After you install these dependencies, you can use them in the sample application.
 
-6. Open the `empty-webapp/index.ts` file in a text editor.
+7. Open the `empty-webapp/index.ts` file in a text editor.
    
-7. Copy and paste the following application code to create a Substrate Connect instance with `substrate-connect` as the provider that connects to the Polkadot relay chain using the `polkadot` chain specification file.
+8. Copy and paste the following application code to create a Substrate Connect instance with `substrate-connect` as the provider that connects to the Polkadot relay chain using the `polkadot` chain specification file.
    
    ```typescript
-   import { ScProvider, WellKnownChain } from "@polkadot/rpc-provider/substrate-connect";
+   import { ScProvider } from "@polkadot/rpc-provider/substrate-connect";
+   import * as Sc from "@substrate/connect";
    import { ApiPromise } from "@polkadot/api";
     
     window.onload = () => {
       void (async () => {
         try {
-          const provider = new ScProvider(WellKnownChain.polkadot);
+          const provider = new ScProvider(Sc, Sc.WellKnownChain.polkadot);
           
           await provider.connect();
           const api = await ApiPromise.create({ provider });
@@ -166,13 +173,13 @@ To connect to one of these chains:
    
    For Substrate Connect, you replace the WebSocket (`WsProvider`) provider with the Substrate Connect (`ScProvider`) provider, and, instead of a WebSocket URL client address, you specify the chain specification for the network to connect to (`WellKnownChain.polkadot`).
 
-8. Install any remaining dependencies by running the following command:
+9. Install any remaining dependencies by running the following command:
    
    ```bash
    yarn
    ```
 
-9. Start the web application by running the following command:
+10. Start the web application by running the following command:
    
    ```bash
    yarn dev
@@ -185,14 +192,14 @@ To connect to one of these chains:
    yarn add -D buffer
    ```
    
-10. Verify the browser opens the URL `http://localhost:3001/`. 
+11. Verify the browser opens the URL `http://localhost:3001/`. 
   
-11. Open the browser console for your browser. 
+12. Open the browser console for your browser. 
    
    How you navigate to and open the browser console varies depending on the browser and operating system you use.
    For example, on Chrome, select **More Tools**, **Developer Tools**, then click **Console**.
    
-12. Verify the `smoldot` process is initialized, followed by the hashes of the incoming blocks from Polkadot.
+13. Verify the `smoldot` process is initialized, followed by the hashes of the incoming blocks from Polkadot.
    
    For example, the console should display log entries similar to the following:
    
@@ -208,7 +215,7 @@ To connect to one of these chains:
    The primary purpose of this application is to demonstrate connecting to the chain without using a centralized entry point to the network, such as the URL for a specific RPC node.
    However, you could extend this application to do a lot more, because—after you replace `WsProvider` with `ScProvider`—you can write code for your application simply by using the existing [Polkadot-JS API](https://polkadot.js.org/docs/).
 
-13. Stop the `smoldot` light client node by pressing Control-c.
+14. Stop the `smoldot` light client node by pressing Control-c.
 
 ## Connect to a custom chain specification 
 

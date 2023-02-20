@@ -7,7 +7,7 @@ code: |
 answer: |
 ---
 
-If you completed the checklist in [Prepare a working environment](01-prepare.md), you have successfully compiled a Substrate node.
+If you completed the checklist in [Prepare a working environment](/tutorials/collectibles-workshop/01-prepare/), you have successfully compiled a Substrate node.
 This particular node—the substrate-node-template—is preconfigured with a few common modules to provide a simple working environment to get you started.
 
 ## About the node template
@@ -27,7 +27,7 @@ A lot of what you'll be doing in this workshop is similar to what you see in the
 
 ## Rename your workspace
 
-To differentiate between the default Substrate node template and the workspace you'll be using to customize the node, you can rename the rename the working directory and create a separate branch for your changes.
+To differentiate between the default Substrate node template and the workspace you'll be using to customize the node, you can rename the working directory and create a separate branch for your changes.
 
 To prepare a custom workspace:
 
@@ -41,13 +41,13 @@ To prepare a custom workspace:
 
    In subsequent steps, the `workshop-node-template` directory is used to refer to the root directory for the node.
 
-1. Change to the root directory for the node by running the following command:
+3. Change to the root directory for the node by running the following command:
    
    ```bash
    cd workshop-node-template
    ```
 
-1. Create a custom branch for your workspace by running a command similar to the following:
+4. Create a custom branch for your workspace by running a command similar to the following:
    
    ```bash
    git switch -c build-substrate-workshop
@@ -110,3 +110,57 @@ To start the local Substrate node:
    - To restart the node, run `./target/release/node-template --dev`.
 
    The next step is to start customizing what this blockchain does.
+
+   As you learned in [Prepare a working environment](/tutorials/collectibles-workshop/01-prepare/), Substrate is built using the Rust programming language.
+   So, customizing what the blockchain does means working in Rust.
+   
+   If you're familiar with Rust, you can go right to [Create a new pallet](/tutorials/collectibles-workshop/03-create-pallet/) and start building.
+   If you're new to Rust, you might want to review the brief introduction that follows before you start writing code.
+
+## A brief introduction to Rust
+
+This workshop isn’t about learning Rust, but there are a few basic concepts that are unique to Rust and that you should be familiar with to ensure you’ll be successful in completing this workshop.
+
+### Ownership and borrowing
+
+Most languages use either garbage collection or manually encoded operations to allocate and free up memory. In Rust, ownership is what controls how programs manage memory. 
+At a high level, ownership consists of three simple rules that the compiler checks:
+
+Each value has an owner that’s identified by the variable that holds the value.
+A value can only have one owner at a time.
+If the owner goes out of scope, the value is dropped.
+
+To prevent a value from being dropped when you want to reuse it, you can borrow it.
+In Rust, you can add an ampersand (&) in front of a variable identifier to indicate that you want to borrow its value. By adding the ampersand, you can reuse the value multiple times throughout a function.
+
+### Traits
+
+Traits are similar to interfaces in Java and classes in C++.
+Traits enable you to define behavior for a type that can be shared with other types. 
+In Substrate, traits provide a flexible abstraction for defining shared behavior that types can have in common.
+
+### Functions that return errors
+
+In Rust, functions must return the Result type to handle errors. The returned Result is either Ok() for success or Err() for a failure.
+For example:
+
+match my_function() {
+    Ok(value) => value,
+    Err(msg) => return Err(msg),
+}
+
+### Macros
+
+Macros—code that writes code—aren’t unique to Rust, but they simplify code by abstracting code that would otherwise be duplicated.
+Substrate uses a lot of macros in both the core runtime logic and in the creation of the individual pallets.
+Macros simplify lots of common tasks like creating storage items and defining events and errors.
+You'll use a lot of them in the workshop.
+
+### Rust compiler errors
+
+One of the many advantages of using a strongly typed programming language like Rust is that the compiler can catch and describe many common programming errors and coding issues.
+In most cases, the warning and error messages even suggest how to fix the errors in your code. 
+For example, the compiler will identify mismatched types, unused variables, problems with the number or the type of arguments specified for a function.
+In many cases, the Rust compiler also suggests where you can find more information about the problems it has identified. 
+If, at any point, your program doesn’t compile, review the compiler messages carefully.
+You’ll learn a lot from these messages and often you’ll be able to resolve the issue without digging further.

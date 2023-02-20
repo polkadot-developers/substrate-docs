@@ -16,15 +16,11 @@ See the following guides to learn common patterns in runtime development.
 - [Configure genesis state](/reference/how-to-guides/basics/configure-genesis-state)
 - [Customize a chain specification](/reference/how-to-guides/basics/customize-a-chain-specification)
 - [Use helper functions](/reference/how-to-guides/basics/use-helper-functions)
-- [Mint primitive tokens](/reference/how-to-guides/basics/mint-basic-tokens/)
-
-<!--- [Calculate weight](/reference/how-to-guides/basics/calc-weights/)-->
 
 ## Pallet design
 
 See the following guides for best practices on building pallets using FRAME.
 
-- [Add the contracts pallet](/reference/how-to-guides/pallet-design/add-contracts-pallet/)
 - [Implement lockable currency](/reference/how-to-guides/pallet-design/implement-lockable-currency/)
 - [Incorporate randomness](/reference/how-to-guides/pallet-design/incorporate-randomness/)
 - [Configure crowdfunding](/reference/how-to-guides/pallet-design/configure-crowdfunding/)
@@ -48,6 +44,13 @@ See the following guides for help with testing pallets and runtime logic.
 - [Set up basic tests](/reference/how-to-guides/testing/set-up-basic-tests/)
 - [Test a transfer function](/reference/how-to-guides/testing/test-a-transfer-function/)
 
+## Storage migration
+
+See the following guides for help with a storage migration.
+
+- [Basic storage migration](/reference/how-to-guides/storage-migrations/basic-storage-migration/)
+- [Trigger migration](/reference/how-to-guides/storage-migrations/trigger-migration/)
+
 ## Consensus models
 
 See the following guides to implement consensus mechanisms in your runtimes.
@@ -63,7 +66,7 @@ See the following guides for help working with Substrate parachains.
 - [Connect to a relay chain](/reference/how-to-guides/parachains/connect-to-a-relay-chain/)
 - [Select collators](/reference/how-to-guides/parachains/select-collators/)
 - [Prepare to launch](/reference/how-to-guides/parachains/prepare-to-launch/)
-- [Runtime upgrades](/reference/how-to-guides/parachains/runtime-upgrade/)
+- [Upgrade a parachain](/reference/how-to-guides/parachains/upgrade-a-parachain/)
 - [Auctions and crowdloans](/reference/how-to-guides/parachains/auctions-and-crowdloans/)
 - [Add HRMP channels](/reference/how-to-guides/parachains/add-hrmp-channels/)
 
@@ -84,3 +87,9 @@ See the following guides for help working with offchain data.
 - [Make offchain HTTP requests](/reference/how-to-guides/offchain-workers/offchain-http-requests/)
 - [Offchain local storage](/reference/how-to-guides/offchain-workers/offchain-local-storage/)
 - [Offchain indexing](/reference/how-to-guides/offchain-workers/offchain-indexing/)
+
+<!--
+- [Calculate weight](/reference/how-to-guides/basics/calc-weights/)
+- [Mint primitive tokens](/reference/how-to-guides/basics/mint-basic-tokens/)
+- [Add the contracts pallet](/reference/how-to-guides/pallet-design/add-contracts-pallet/)
+-->

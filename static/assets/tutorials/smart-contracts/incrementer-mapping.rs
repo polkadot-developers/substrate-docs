@@ -1,38 +1,26 @@
-
 #![cfg_attr(not(feature = "std"), no_std)]
-
-use ink_lang as ink;
 
 #[ink::contract]
 mod incrementer {
-    use ink_storage::traits::SpreadAllocate;
+    use ink::storage::Mapping;
 
     #[ink(storage)]
-    #[derive(SpreadAllocate)]
     pub struct Incrementer {
         value: i32,
-        my_value: ink_storage::Mapping<AccountId, i32>,
+        my_map: Mapping<AccountId, i32>,
     }
 
     impl Incrementer {
         #[ink(constructor)]
         pub fn new(init_value: i32) -> Self {
-            // This call is required in order to correctly initialize the
-            // `Mapping`s of our contract.
-            ink_lang::utils::initialize_contract(|contract: &mut Self| {
-                contract.value = init_value;
-                let caller = Self::env().caller();
-                contract.my_value.insert(&caller, &0);
-            })
-        }
+            let mut my_map = Mapping::default();
+            let caller = Self::env().caller();
+            my_map.insert(&caller, &0);
 
-        #[ink(constructor)]
-        pub fn default() -> Self {
-            // Even though we're not explicitly initializing the `Mapping`,
-            // we still need to call this
-            ink_lang::utils::initialize_contract(|contract: &mut Self| {
-                contract.value = Default::default();
-            })
+            Self {
+                value: init_value,
+                my_map,
+            }
         }
 
         #[ink(message)]
@@ -47,33 +35,27 @@ mod incrementer {
 
         #[ink(message)]
         pub fn get_mine(&self) -> i32 {
-            self.my_value.get(&self.env().caller()).unwrap_or_default()
+            let caller = self.env().caller();
+            self.my_map.get(&caller).unwrap_or_default()
         }
 
         #[ink(message)]
         pub fn inc_mine(&mut self, by: i32) {
             let caller = self.env().caller();
             let my_value = self.get_mine();
-            self.my_value.insert(caller, &(my_value + by));
+            self.my_map.insert(caller, &(my_value + by));
         }
 
         #[ink(message)]
         pub fn remove_mine(&self) {
-            self.my_value.remove(&self.env().caller())
+            let caller = self.env().caller();
+            self.my_map.remove(&caller)
         }
     }
 
     #[cfg(test)]
     mod tests {
         use super::*;
-
-        use ink_lang as ink;
-
-        #[ink::test]
-        fn default_works() {
-            let contract = Incrementer::default();
-            assert_eq!(contract.get(), 0);
-        }
 
         #[ink::test]
         fn it_works() {
@@ -86,7 +68,7 @@ mod incrementer {
         }
 
         #[ink::test]
-        fn my_value_works() {
+        fn my_map_works() {
             let mut contract = Incrementer::new(11);
             assert_eq!(contract.get(), 11);
             assert_eq!(contract.get_mine(), 0);
