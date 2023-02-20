@@ -27,7 +27,7 @@ A lot of what you'll be doing in this workshop is similar to what you see in the
 
 ## Rename your workspace
 
-To differentiate between the default Substrate node template and the workspace you'll be using to customize the node, you can rename the rename the working directory and create a separate branch for your changes.
+To differentiate between the default Substrate node template and the workspace you'll be using to customize the node, you can rename the working directory and create a separate branch for your changes.
 
 To prepare a custom workspace:
 
