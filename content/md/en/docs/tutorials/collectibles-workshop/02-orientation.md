@@ -110,6 +110,7 @@ To start the local Substrate node:
    - To restart the node, run `./target/release/node-template --dev`.
 
    The next step is to start customizing what this blockchain does.
+
    As you learned in [Prepare a working environment](/tutorials/collectibles-workshop/01-prepare/), Substrate is built using the Rust programming language.
    So, customizing what the blockchain does means working in Rust.
    
