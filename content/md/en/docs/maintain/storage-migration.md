@@ -40,7 +40,16 @@ pub struct Foo(i32)
 pub struct Foo(u16, u16)
 ```
 
-The data still fits, but the interpretations is almost certainly different!
+In the following example, the data type and size remain the same for the variable `Foo`, but because the interpretation is different, a migration would be required.
+
+```rust 
+#[pallet::storage]
+pub type FooValue = StorageValue<_, Foo>;
+// old
+pub struct Foo(u32)
+// new
+pub struct Foo(u16, u16)
+```
 
 ### Changing the encoding or decoding
 
@@ -67,12 +76,16 @@ pub struct Foo { a: u32, b: u32, c: PhantomData<_> }
 ```
 
 When is a Migration Required?
+
+```rust
 #[pallet::storage]
 pub type FooValue = StorageValue<_, Foo>;
   // old
   pub enum Foo { A(u32), B(u32) }
   // new
   pub enum Foo { A(u32), B(u32), C(u128) }
+```
+
 Extending an enum is even more interesting, because if you add the variant to the end, no migration is needed.
 Assuming that no value is initialized with C, this is not a migration.
 ---v
