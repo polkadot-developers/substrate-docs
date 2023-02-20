@@ -298,8 +298,11 @@ Now, your pallet is ready to send signed transactions on-chain from offchain wor
 
 By default, all unsigned transactions are rejected in Substrate.
 To enable Substrate to accept certain unsigned transactions, you must implement the `ValidateUnsigned` trait for the pallet.
-Although you must implement the `ValidateUnsigned` trait to send unsigned transactions, this check doesn't guarantee that a transaction submitted by the offchain worker is a valid transaction or that the transaction hasn't been tampered with.
+Although you must implement the `ValidateUnsigned` trait to send unsigned transactions, this check doesn't guarantee that a transaction was submitted by the offchain worker, that the transaction is a valid transaction, or that the transaction hasn't been tampered with.
 Unsigned transactions always represent a potential attack vector that a malicious user could exploit and offchain workers can't be assumed to be a reliable source without additional safeguards.
+
+You should never assume that a transaction was submitted by an offchain worker. 
+You should always verify transactions—signed or unsigned—coming into the blockchain are from a legitimate source and haven't been tampered with.
 
 1. Open the `src/lib.rs` file for your pallet in a text editor.
 
@@ -348,7 +351,10 @@ Unsigned transactions always represent a potential attack vector that a maliciou
 
    In this example, users can call the on-chain `extrinsic1` function without a signature, but not any other extrinsic.
 
-   To see a full example of how `ValidateUnsigned` is implemented in a pallet, refer to [`pallet-example-offchain-worker` in **Substrate**](https://github.com/paritytech/substrate/blob/master/frame/examples/offchain-worker/src/lib.rs#L301-L329).
+   For an example of how `ValidateUnsigned` is implemented in a pallet, see the code for the [offchain-worker](https://github.com/paritytech/substrate/blob/master/frame/examples/offchain-worker/src/lib.rs#L301-L329).
+	 However, you should note that the code in the example only checks whether the provided `signature` is valid for the signed `payload` key. 
+	 This check doesn't validate whether the signer is an offchain worker or authorized to call the specified function.
+	 This simple check wouldn't prevent an unauthorized actor from using the signed payload to modify state.
 
 2. In the offchain worker function, you can send unsigned transactions as follows:
 
