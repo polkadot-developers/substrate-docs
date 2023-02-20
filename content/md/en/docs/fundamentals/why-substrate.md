@@ -1,6 +1,6 @@
 ---
 title: Why Substrate?
-description: docs
+description: Highlights the core benefits of the Substrate development environment that differentiate it from other blockchain and smart contract platforms.
 keywords:
   - vision
   - smart contracts
@@ -32,6 +32,7 @@ Unlike other distributed ledger platforms, Substrate is:
 - [Open](#open)
 - [Interoperable](#interoperable)
 - [Future-proof](#future-proof)
+- [Where to go next](#where-to-go-next)
 
 ## Flexible
 
