@@ -16,9 +16,11 @@ The topics in Fundamentals are intended to help you learn what's possible when y
 
 Before you start building, though, you want to make sure you are in the right place.
 
-- [Blockchain basics](/fundamentals/blockchain-basics/) provides context about the complexity associated with blockchain development and how Substrate simplifies the process by taking an approach that is modular, flexible, and interoperable.
+- [Blockchain basics](/fundamentals/blockchain-basics/) provides context about the complexity associated with blockchain development and introduces common blockchain concepts, components, and terminology.
 
-- [Why Substrate?](/fundamentals/why-substrate/) discusses how developing on a traditional smart contract platform differs from developing with Substrate and why Substrate might—or might not—suit your project requirements and goals.
+- [Why Substrate?](/fundamentals/why-substrate/) highlights the key benefits of developing with Substrate that most blockchain and smart contract platforms can't provide.
+
+- [What is Substrate?](/fundamentals/what-is-substrate/) explains the core principles behind the design of Substrate and how the design decisions informed the technologies used.
 
 - [Architecture](/fundamentals/architecture/) describes the key components of the Substrate node architecture and how these components relate to the design and architecture of your custom blockchain.
 
@@ -38,6 +40,10 @@ Before you start building, though, you want to make sure you are in the right pl
 
 - [Rust for Substrate](/fundamentals/rust-basics/) highlights the specific Rust features—including traits, generics, associated types, and macros—that you should be most familiar with to build a Substrate-based blockchain.
 
-- [Offchain operations](/fundamentals/offchain-operations/) explores reasons for handling some operations off the chain and alternatives for performing those offchain operations.
+- [Offchain operations](/fundamentals/offchain-operations/) explores reasons for handling some operations offchain and alternatives for performing those offchain operations.
+
+- [Light clients in Substrate Connect](/fundamentals/light-clients-in-substrate-connect/) describes how to use Substrate Connect to integrate a light client into your applications and enable interaction with any Substrate-based chain.
+
+- [Cross-consensus messaging](/fundamentals/xcm-communication/) provides an overview of cross-consensus communication and the cross-consensus messaging (XCM) format.
 
 After you digest the information in these introductory sections, you'll be ready to start designing, building, and testing your own custom blockchain solution.
