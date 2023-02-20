@@ -77,6 +77,13 @@ Substrate provides tools to support two types of smart contracts:
 - The `contracts` pallet in the FRAME library enables a Substrate-based chain to execute smart contracts compiled to WebAssembly regardless of the language used to write the smart contract.
 - The `evm` pallet in the Frontier project enables a Substrate-based chain to run Ethereum virtual machine (EVM) contracts written in Solidity.
 
+### Explore smart contracts
+
+If your project seems well-suited to be a smart contracts, you can see some simple examples to get you started in the following tutorials:
+
+- [Develop smart contracts](/tutorials/smart-contracts/)
+- [Access EVM accounts](/tutorials/integrate-with-tools/access-evm-accounts/)
+
 ## Individual pallets
 
 In some cases, you might want to implement application logic as a standalone pallet and make the functionality available to the community as a library rather than building your own custom runtime.
@@ -104,6 +111,14 @@ The main disadvantage of developing individual pallets is that you don't have co
 If you treat your pallet as isolated code, you might miss opportunities to enhance or improve it.
 In addition, changes to FRAME or Substrate can create maintenance issues for your individual pallets if you don't update your code to stay synchronized with those changes.
 
+### Explore building pallets
+
+If your project seems well-suited to be an individual pallet, you can see some simple examples to get you started in the following sections:
+
+- [Custom pallets](/build/custom-pallets/)
+- [Work with pallets](/tutorials/work-with-pallets/)
+- [Collectibles workshop](/tutorials/collectibles-workshop/)
+
 ## Custom runtime
 
 In most cases, deciding to build a custom runtime is the critical step toward building and deploying an application-specific parallel blockchain—a parachain—as part of the Polkadot ecosystem.
@@ -123,6 +138,18 @@ Making the custom runtime accessible and secure for others to use involves acqui
 With smart contracts, your application runs on top of an existing execution model, limiting what your application can do.
 With a custom runtime, you control that underlying execution model and can choose to extend it to support smart contract execution for other developers.
 With a custom runtime, you can also deliver more complex functionality and user interactions than smart contracts or individual pallets can provide.
+
+### Explore building a custom runtime
+
+If you want to build a more complete custom runtime rather than an individual pallet, you can start with some simple examples like the tutorials in [Work with pallets](/tutorials/work-with-pallets/) and the [Collectibles workshop](/tutorials/collectibles-workshop/).
+However, if you want to build a custom runtime as a proof-of-concept for a solo chain or a parachain, you'll want a broader and deeper understanding of runtime components and FRAME pallets.
+The most relevant topics are under [Build](/build/) and [Test](/test/) and in the following sections:
+
+- [Runtime storage structures](/build/runtime-storage/)
+- [Transactions, weights, and fees](build/tx-weights-fees/)
+- [Application development](/build/application-development/)
+- [FRAME pallets](/reference/frame-pallets/)
+- [FRAME macros](/reference/frame-macros/)
 
 ## Parachain
 
@@ -171,7 +198,15 @@ For example, building a parachain might be the best option for the following use
 - Gaming applications
 - Web 3.0 infrastructureM
 
-## Where to go next
+### Explore building a parachain
+
+If you have a custom runtime that you want to deploy as a parachain to take advantage of the security, governance, and interoperability of the relay chain and the Polkadot or Kusama ecosystem, you can start by building locally and setting up your own test network for initial testing.
+
+For some examples to get you started, see the following sections:
+
+- [Connect parachains to a network](/tutorials/connect-relay-and-parachains/)
+- [Simulate parachains in a test network](/test/simulate-parachains/)
+- [Parachains](/reference/how-to-guides/parachains/)
 
 To learn more about what you can build, explore the following resources:
 
