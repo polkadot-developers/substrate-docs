@@ -165,7 +165,7 @@ maintain:
   pages:
     - title: Monitor
       url: /maintain/monitor/
-    - title: Upgrade the runtime
+    - title: Runtime upgrades
       url: /maintain/runtime-upgrades/
 #   - title: Operate
 #     url: /maintain/operate/
