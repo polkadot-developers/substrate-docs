@@ -27,7 +27,7 @@ A lot of what you'll be doing in this workshop is similar to what you see in the
 
 ## Rename your workspace
 
-To differentiate between the default Substrate node template and the workspace you'll be using to customize the node, you can rename the rename the working directory and create a separate branch for your changes.
+To differentiate between the default Substrate node template and the workspace you'll be using to customize the node, you can rename the working directory and create a separate branch for your changes.
 
 To prepare a custom workspace:
 
@@ -41,13 +41,13 @@ To prepare a custom workspace:
 
    In subsequent steps, the `workshop-node-template` directory is used to refer to the root directory for the node.
 
-1. Change to the root directory for the node by running the following command:
+3. Change to the root directory for the node by running the following command:
    
    ```bash
    cd workshop-node-template
    ```
 
-1. Create a custom branch for your workspace by running a command similar to the following:
+4. Create a custom branch for your workspace by running a command similar to the following:
    
    ```bash
    git switch -c build-substrate-workshop
@@ -116,7 +116,6 @@ To start the local Substrate node:
    If you're familiar with Rust, you can go right to [Create a new pallet](/tutorials/collectibles-workshop/03-create-pallet/) and start building.
    If you're new to Rust, you might want to review the brief introduction that follows before you start writing code.
 
-   
 ## A brief introduction to Rust
 
 This workshop isn’t about learning Rust, but there are a few basic concepts that are unique to Rust and that you should be familiar with to ensure you’ll be successful in completing this workshop.
