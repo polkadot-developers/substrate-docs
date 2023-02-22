@@ -192,7 +192,7 @@ To add a storage map to the `incrementer` contract:
 1. Use the `test` subcommand and `nightly` toolchain to test your work by running the following command:
 
    ```bash
-   cargo contract test
+   cargo test
    ```
 
    The command should display output similar to the following to indicate successful test completion:
@@ -286,7 +286,7 @@ To add insert and remove functions to the contract:
 1. Check your work using the `test` subcommand:
 
    ```bash
-   cargo contract test
+   cargo test
    ```
 
    The command should display output similar to the following to indicate successful test completion:
