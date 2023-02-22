@@ -247,7 +247,7 @@ To build the WebAssembly for this smart contract:
    The `.contract` file includes both the business logic and metadata. This is the file that tooling (e.g UIs) expect
    when you want to deploy your contract on-chain.
 
-   The `metadata.json` file describes all the interfaces that you can use to interact with this contract. This file
+   The `.json` file describes all the interfaces that you can use to interact with this contract. This file
    contains several important sections:
 
    - The `spec` section includes information about the functions—like **constructors** and **messages**—that can be
