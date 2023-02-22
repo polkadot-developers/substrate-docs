@@ -241,7 +241,7 @@ To build the WebAssembly for this smart contract:
 
    - flipper.contract (code + metadata)
    - flipper.wasm (the contract's code)
-   - metadata.json (the contract's metadata)
+   - flipper.json (the contract's metadata)
    ```
 
    The `.contract` file includes both the business logic and metadata. This is the file that tooling (e.g UIs) expect
