@@ -93,7 +93,7 @@ To create a new project for your smart contract:
 1. Verify that the program compiles and passes the trivial test by running the following command:
 
    ```bash
-   cargo contract test
+   cargo test
    ```
 
    You can ignore any warnings because this template code is simply a skeleton.
@@ -251,7 +251,7 @@ To update the smart contract:
 1. Check your work using the `test` subcommand:
 
    ```bash
-   cargo contract test
+   cargo test
    ```
 
    The command should display output similar to the following to indicate successful test completion:
@@ -306,7 +306,7 @@ To add the public function to the smart contract:
 1. Check your work using the `test` subcommand:
 
    ```bash
-   cargo contract test
+   cargo test
    ```
 
 ## Add a function to modify the storage value
@@ -346,7 +346,7 @@ To add a function for incrementing the stored value:
 1. Check your work using the `test` subcommand:
 
    ```bash
-   cargo contract test
+   cargo test
    ```
 
    The command should display output similar to the following to indicate successful test completion:
