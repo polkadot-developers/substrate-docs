@@ -11,22 +11,24 @@ keywords:
   - signed payload
 ---
 
-If you use offchain workers to perform long-running computations or fetch data from offline sources, you might want to store the results of the offline operations on-chain.
+If you use offchain workers to perform long-running computations or fetch data from offline sources, it's likely that you'll want to store the results of those operations on-chain.
 However, offchain storage is separate from on-chain resources and you can't save data processed by offchain workers directly to on-chain storage.
-To store any data processed by offchain workers as part of the on-chain state, you must create transactions to send the data from the offchain worker storage to the on-chain storage database.
+To store any data processed by offchain workers as part of the on-chain state, you must create transactions to send the data from the offchain worker storage to the on-chain storage system.
 
-This guide illustrates how to create signed or unsigned transactions to store data collected by offchain workers.
+This tutorial illustrates how to create offchain workers with the ability to send signed or unsigned transactions to store offchain data on-chain.
 In general, signed transactions are more secure, but require the calling account to handle transaction fees.
 For example:
 
 - Use **signed transactions** if you want to record the associated transaction caller account and deduct the transaction fee from the caller account.
 - Use **unsigned transactions with signed payload** if you want to record the associated transaction caller, but do not want the caller be responsible for the transaction fee payment.
 
-It's also possible to submit **unsigned transactions** without a signed payload—for example, because you don't want to record the associated transaction caller at all
+## Working with unsigned transactions
+
+It's also possible to submit **unsigned transactions** without a signed payload—for example, because you don't want to record the associated transaction caller at all.
 However, there's significant risk in allowing unsigned transactions to modify the chain state.
 Unsigned transactions represent a potential attack vector that a malicious user could exploit.
 If you are going to allow offchain workers to send unsigned transactions, you should include logic that ensures the transaction is authorized.
-For an example of how unsigned transactions can be verified using on-chain state, see the ValidateUnsigned implementation in the [`enact_authorized_upgrade`](https://github.com/paritytech/cumulus/blob/445f9277ab55b4d930ced4fbbb38d27c617c6658/pallets/parachain-system/src/lib.rs#L694) call. 
+For an example of how unsigned transactions can be verified using on-chain state, see the `ValidateUnsigned` implementation in the [`enact_authorized_upgrade`](https://github.com/paritytech/cumulus/blob/445f9277ab55b4d930ced4fbbb38d27c617c6658/pallets/parachain-system/src/lib.rs#L694) call.
 In that example, the call validates the unsigned transaction by verifying that the given code hash was previously authorized.
 
 It is also important to consider that even an unsigned transaction with a signed payload could be exploited because offchain workers can't be assumed to be a reliable source unless you implement strict logic to check the validity of the transaction.
@@ -37,9 +39,18 @@ Remember that unsigned transactions are essentially an **open door** into your r
 You should only use them after careful consideration of the conditions under which they should be allowed to execute.
 Without safeguards, malicious actors could impersonate offchain workers and access runtime storage.
 
-## Send signed transactions
+## Before you begin
+
+## Tutorial objectives
+
+## Signed transactions
 
 To submit signed transactions, you must configure your pallet and the runtime to enable at least one account for offchain workers to use.
+At a high level, configuring a pallet to use an office chain worker and submit signed transactions involves the following steps:
+
+- [Configure the offchain worker in the pallet](#configure-the-offchain-worker-in-the-pallet).
+- [Implement the pallet and required traits in the runtime](#implement-the-pallet-in-the-runtime).
+- [Add an account for signing transactions](#add-an-account-for-signing-transactions).
 
 ### Configure the offchain worker in the pallet
 
@@ -335,7 +346,7 @@ Note that the keyType parameter `demo` in this example matches the `KEY_TYPE` de
 
 Now, your pallet is ready to send signed transactions on-chain from offchain workers.
 
-## Send unsigned transactions
+## Unsigned transactions
 
 By default, all unsigned transactions are rejected in Substrate.
 To enable Substrate to accept certain unsigned transactions, you must implement the `ValidateUnsigned` trait for the pallet.
@@ -344,7 +355,7 @@ Although you must implement the `ValidateUnsigned` trait to send unsigned transa
 You should always consider the consequences of malicious actors sending these transactions as an attempt to tamper with the state of your chain.
 Unsigned transactions always represent a potential attack vector that a malicious user could exploit and offchain workers can't be assumed to be a reliable source without additional safeguards.
 
-You should never assume that unsigned transactions are submitted by an offchain worker. 
+You should never assume that unsigned transactions can only be submitted by an offchain worker. 
 By definition, **anyone** can submit them.
 
 ### Configure the pallet
@@ -394,13 +405,14 @@ To enable offchain workers to send unsigned transactions:
    fn validate_unsigned(source: TransactionSource, call: &Self::Call) -> TransactionValidity {
    	// ...
    	match call {
-   		RuntimeCall::extrinsic1 { key: value } => valid_tx(b"extrinsic1".to_vec()),
+   		RuntimeCall::my_unsigned_tx { key: value } => valid_tx(b"my_unsigned_tx".to_vec()),
    		_ => InvalidTransaction::Call.into(),
    	}
    }
    ```
 
-   In this example, users can call the on-chain `extrinsic1` function without a signature, but not any other extrinsic.
+   In this example, users can only call the specific `my_unsigned_tx` function without a signature.
+	 If there are other functions, calling them would require a signed transaction.
 
 	 For an example of how `ValidateUnsigned` is implemented in a pallet, see the code for the [offchain-worker](https://github.com/paritytech/substrate/blob/master/frame/examples/offchain-worker/src/lib.rs#L301-L329).
 
@@ -450,7 +462,7 @@ To enable offchain workers to send unsigned transactions:
 
    For a full example, see the [offchain-worker](https://github.com/paritytech/substrate/blob/master/frame/examples/offchain-worker examples pallet.
 
-## Send unsigned transactions with signed payloads
+## Signed payloads
 
 Sending unsigned transactions with signed payloads is similar to sending unsigned transactions.
 You need to:
@@ -564,7 +576,7 @@ To make your data structure signable:
    ```
 
    This example uses [`SignedPayload`](https://paritytech.github.io/substrate/master/frame_system/offchain/trait.SignedPayload.html) to verify that the public key in the payload has the same signature as the one provided.
-	 However, you should note that the code in the example only checks whether the provided `signature` is valid for the  `public` key contained inside `payload`. 
+	 However, you should note that the code in the example only checks whether the provided `signature` is valid for the `public` key contained inside `payload`. 
 	 This check doesn't validate whether the signer is an offchain worker or authorized to call the specified function.
 	 This simple check wouldn't prevent an unauthorized actor from using the signed payload to modify state.
 	 
