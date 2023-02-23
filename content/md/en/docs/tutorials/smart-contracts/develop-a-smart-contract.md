@@ -383,7 +383,7 @@ To build the WebAssembly for this smart contract:
 
    - incrementer.contract (code + metadata)
    - incrementer.wasm (the contract's code)
-   - metadata.json (the contract's metadata)
+   - incrementer.json (the contract's metadata)
    ```
 
 ## Deploy and test the smart contract
