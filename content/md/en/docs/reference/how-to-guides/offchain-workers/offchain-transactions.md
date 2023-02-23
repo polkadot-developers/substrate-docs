@@ -351,7 +351,7 @@ Although you must implement the `ValidateUnsigned` trait to send unsigned transa
 You should always consider the consequences of malicious actors sending these transactions as an attempt to tamper with the state of your chain.
 Unsigned transactions always represent a potential attack vector that a malicious user could exploit and offchain workers can't be assumed to be a reliable source without additional safeguards.
 
-You should never assume that unsigned transactions are submitted by an offchain worker. 
+You should never assume that unsigned transactions can only be submitted by an offchain worker. 
 By definition, **anyone** can submit them.
 
 ### Configure the pallet
@@ -572,7 +572,7 @@ To make your data structure signable:
    ```
 
    This example uses [`SignedPayload`](https://paritytech.github.io/substrate/master/frame_system/offchain/trait.SignedPayload.html) to verify that the public key in the payload has the same signature as the one provided.
-	 However, you should note that the code in the example only checks whether the provided `signature` is valid for the  `public` key contained inside `payload`. 
+	 However, you should note that the code in the example only checks whether the provided `signature` is valid for the `public` key contained inside `payload`. 
 	 This check doesn't validate whether the signer is an offchain worker or authorized to call the specified function.
 	 This simple check wouldn't prevent an unauthorized actor from using the signed payload to modify state.
 	 
