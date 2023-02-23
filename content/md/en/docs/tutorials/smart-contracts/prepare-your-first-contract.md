@@ -196,7 +196,7 @@ To test the contract:
 1. Use the `test` subcommand to execute the default tests for the `flipper` contract by running the following command:
 
    ```bash
-   cargo contract test
+   cargo test
    ```
 
    The command should compile the program and display output similar to the following to indicate successful test
