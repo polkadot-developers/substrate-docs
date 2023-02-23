@@ -31,6 +31,7 @@ You'll learn how to:
 - Add a simple predefined pallet to the runtime.
 - Create a custom pallet using macros.
 - Specify the account to use as the originator of a function call.
+- Add an offchain worker and submit transactions using an offchain worker.
 - Publish a custom pallet for others to use.
 
 For a deeper dive into how to create a custom pallet from start to finish, you might want to explore the first part of the [Collectibles workshop](/tutorials/collectibles-workshop/).
