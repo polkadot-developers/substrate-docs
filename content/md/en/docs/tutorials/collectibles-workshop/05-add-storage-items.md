@@ -20,7 +20,7 @@ For a closer look at the storage architecture and abstractions that Substrate us
 
 The FRAME storage module provides a `StorageValue` trait to store single values in the runtime.
   
-In this workshop, you'll use a `StorageValue` for the `CollectiblesCount`—to keep track of the total number of collectibles in the pallet.the `StorageValue` keeps track of a 64-bit unsigned integer (u64) value that is incremented each time you generate a new collectible, up to maximum of 18_446_744_073_709_551_615 unique collectibles.
+In this workshop, you'll use a `StorageValue` for the `CollectiblesCount`—to keep track of the total number of collectibles in the pallet. The `StorageValue` keeps track of a 64-bit unsigned integer (u64) value that is incremented each time you generate a new collectible, up to maximum of 18_446_744_073_709_551_615 unique collectibles.
 
 ```rust
 #[pallet::storage]
