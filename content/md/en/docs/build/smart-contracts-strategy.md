@@ -1,5 +1,5 @@
 ---
-title: Smart contracts as a starting point
+title: Smart contracts
 description:
 keywords:
   - smart contract options
