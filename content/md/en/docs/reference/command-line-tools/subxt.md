@@ -38,7 +38,7 @@ You can use the following optional flags with the `subxt` command.
 
 | Flag | Description
 | ------- | -----------
-| -h, --help | Displays usage information. 
+| -h, --help | Displays usage information.
 | -V, --version | Displays version information.
 
 ### Subcommands
@@ -47,7 +47,7 @@ You can use the following subcommands with the `subxt` command-line interface.
 
 | Command | Description
 | ------- | -----------
-| `codegen` | Generates runtime API client code from metadata.  
+| `codegen` | Generates runtime API client code from metadata.
 | `metadata` | Downloads metadata from a Substrate node for use with `subxt` codegen.
 
 ### Output
@@ -141,7 +141,7 @@ To save the metadata from the local node encoded in bytes to a file, run the fol
 
 To save the metadata from the Rococo network to a JSON file, run the following command:
 
-`subxt metadata --url https://rococo-rpc.polkadot.io:443 > metadata.json`
+`subxt metadata --url https://rococo-rpc.polkadot.io:443 > <contract_name>.json`
 
 To query type `125` from the array of types in the metadata and output in JSON, run the following command:
 
