@@ -23,6 +23,8 @@ fundamentals:
       url: /fundamentals/blockchain-basics/
     - title: Why Substrate?
       url: /fundamentals/why-substrate/
+    - title: What is Substrate?
+      url: /fundamentals/what-is-substrate/
     - title: Architecture
       url: /fundamentals/architecture/
     - title: Networks and blockchains
@@ -53,7 +55,7 @@ fundamentals:
       url: /fundamentals/offchain-operations/
     - title: Light clients in Substrate Connect
       url: /fundamentals/light-clients-in-substrate-connect/
-    - title: Cross-consensus communication
+    - title: Cross-consensus messaging
       url: /fundamentals/xcm-communication/
 
 install:
@@ -153,6 +155,8 @@ deploy:
       url: /deploy/prepare-to-deploy/
     - title: Deployment options
       url: /deploy/deployment-options/
+    - title: Keys and network operations
+      url: /deploy/keys-and-network-operations/
 #   - title: Deploy on a test network
 #     url: /deploy/deploy-a-test-network/
 #   - title: Deploy a parathread

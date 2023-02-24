@@ -140,7 +140,7 @@ To build an ERC-20 token smart contract:
 1. Verify that the program compiles and passes the trivial test by running the following command
 
    ```bash
-   cargo contract test
+   cargo test
    ```
 
    The command should display output similar to the following to indicate successful test completion:
@@ -314,7 +314,7 @@ To add the transfer functions to the smart contract:
 1. Verify that the program compiles and passes the test cases by running the following command:
 
    ```bash
-   cargo contract test
+   cargo test
    ```
 
    The command should display output similar to the following to indicate successful test completion:
@@ -439,7 +439,7 @@ To emit the Transfer event:
 1. Verify that the program compiles and passes all tests by running the following command:
 
    ```bash
-   cargo contract test
+   cargo test
    ```
 
    The command should display output similar to the following to indicate successful test completion:
@@ -544,14 +544,14 @@ To add the approval logic to the smart contract:
    ```
 
 1. Instantiate and add the `allowances` `Mapping` in the new() constructor.
-   
+
    ```rust
    #[ink(constructor)]
    pub fn new(total_supply: Balance) -> Self {
        // -- snip --
-       
+
        let allowances = Mapping::default();
-   
+
        Self {
            total_supply,
            balances,
@@ -677,7 +677,7 @@ To add the `transfer_from` logic to the smart contract:
 1. Verify that the program compiles and passes all tests by running the following command:
 
    ```bash
-   cargo contract test
+   cargo test
    ```
 
    The command should display output similar to the following to indicate successful test completion:
