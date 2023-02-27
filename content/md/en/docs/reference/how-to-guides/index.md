@@ -83,7 +83,6 @@ See the following guides for add-on tools that help you manage Substrate chains 
 
 See the following guides for help working with offchain data.
 
-- [Make offchain transactions](/reference/how-to-guides/offchain-workers/offchain-transactions/)
 - [Make offchain HTTP requests](/reference/how-to-guides/offchain-workers/offchain-http-requests/)
 - [Offchain local storage](/reference/how-to-guides/offchain-workers/offchain-local-storage/)
 - [Offchain indexing](/reference/how-to-guides/offchain-workers/offchain-indexing/)

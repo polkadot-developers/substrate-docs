@@ -211,6 +211,8 @@ tutorials:
           url: /tutorials/work-with-pallets/use-macros-in-a-custom-pallet/
         - title: Specify the origin for a call
           url: /tutorials/work-with-pallets/specify-the-origin-for-a-call/
+        - title: Add offchain workers
+          url: /tutorials/work-with-pallets/add-offchain-workers/
         - title: Publish custom pallets
           url: /tutorials/work-with-pallets/publish-custom-pallets/
     - title: Collectibles workshop
