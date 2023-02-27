@@ -13,7 +13,7 @@ Because most blockchains can't access data that's hosted on servers outside of t
 For Substrate-based blockchains, **offchain workers** (OCW) provide similar capabilities, but with the advantage of being able to access on-chain state.
 
 This guide illustrates how to use an offchain worker to make HTTP requests using GET or POST methods.
-In the exampls in this guide, you'll see how to retrieve the price of Bitcoin from the `cryptocompare` API and how to submit data using an offchain worker API.
+In the example in this guide, you'll see how to retrieve the price of Bitcoin from the `cryptocompare` API and how to submit data using an offchain worker API.
 
 You might know that Rust provides its own libraries for issuing HTTP requests.
 However, offchain workers run in their own WebAssembly execution environment—a [no-std](https://docs.rust-embedded.org/book/intro/no-std.html) environment—and, therefore, don't have access to the standard Rust libraries.
