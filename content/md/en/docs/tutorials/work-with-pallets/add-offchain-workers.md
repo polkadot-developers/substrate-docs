@@ -1,6 +1,6 @@
 ---
-title: Store offchain data
-description: Illustrates how to create transactions that enable offchain workers to update on-chain state
+title: Add offchain workers
+description: Illustrates how to modify a pallet to include an offchain worker and how to submit transactions from an offchain worker to update the on-chain state.
 keywords:
   - offchain worker
   - ocw
@@ -11,11 +11,15 @@ keywords:
   - signed payload
 ---
 
+This tutorial illustrates how to modify a pallet to include an offchain worker and configure the pallet and runtime to enable the offchain worker to submit transactions that update the on-chain state.
+
+## Using offchain workers
+
 If you use offchain workers to perform long-running computations or fetch data from offline sources, it's likely that you'll want to store the results of those operations on-chain.
 However, offchain storage is separate from on-chain resources and you can't save data processed by offchain workers directly to on-chain storage.
 To store any data processed by offchain workers as part of the on-chain state, you must create transactions to send the data from the offchain worker storage to the on-chain storage system.
 
-This guide illustrates how to create signed or unsigned transactions to store data collected by offchain workers.
+This tutorial illustrates how to create offchain workers with the ability to send signed or unsigned transactions to store offchain data on-chain.
 In general, signed transactions are more secure, but require the calling account to handle transaction fees.
 For example:
 
@@ -38,6 +42,28 @@ Instead of assuming that the offchain worker can be trusted without safeguards, 
 Remember that unsigned transactions are essentially an **open door** into your runtime. 
 You should only use them after careful consideration of the conditions under which they should be allowed to execute.
 Without safeguards, malicious actors could impersonate offchain workers and access runtime storage.
+
+## Before you begin
+
+Before you begin, verify the following:
+
+- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
+
+- You have completed the [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) tutorial and have the Substrate node template from the Developer Hub installed locally.
+
+- You are familiar with how to use FRAME macros and edit the logic for a pallet.
+
+- You are familiar with how to modify the configuration trait for a pallet in the runtime.
+
+## Tutorial objectives
+
+By completing this tutorial, you will be able to:
+
+- Identify the risks involved in using unsigned transactions.
+- Add an offchain worker function to a pallet.
+- Configure the pallet and the runtime to enable the offchain worker to submit signed transactions.
+- Configure the pallet and the runtime to enable the offchain worker to submit unsigned transactions.
+- Configure the pallet and the runtime to enable the offchain worker to submit unsigned transactions with a signed payload.
 
 ## Signed transactions
 
@@ -580,9 +606,9 @@ To make your data structure signable:
 
 ## Where to go next
 
-This guide provides simple examples of how you can use offchain workers to send transactions for on-chain storage.
+This tutorial provides simple examples of how you can use offchain workers to send transactions for on-chain storage.
 To learn more, explore the following resources:
 
-- [Off-chain operations](/fundamentals/offchain-operations/)
-- [Substrate offchain worker example](https://github.com/paritytech/substrate/tree/master/frame/examples/offchain-worker)
-- [Substrate offchain worker demo](https://github.com/jimmychu0807/substrate-offchain-worker-demo/tree/v2.0.0/pallets/ocw)
+- [Offchain operations](/fundamentals/offchain-operations/)
+- [Offchain worker example](https://github.com/paritytech/substrate/tree/master/frame/examples/offchain-worker)
+- [Offchain worker demo](https://github.com/jimmychu0807/substrate-offchain-worker-demo/tree/v2.0.0/pallets/ocw)

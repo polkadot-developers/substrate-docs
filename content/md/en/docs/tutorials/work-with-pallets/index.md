@@ -10,7 +10,8 @@ You'll learn how to:
 - [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet/) introduces the common steps for adding a simple predefined pallet to the node template runtime.
 - [Use macros in a custom pallet](/tutorials/work-with-pallets/use-macros-in-a-custom-pallet) illustrates how to create a custom pallet using macros.
 - [Specify the origin for a call](/tutorials/work-with-pallets/specify-the-origin-for-a-call) demonstrates how you can specify the account to use as the originator of a function call.
-- [Publish custom pallets](/tutorials/work-with-pallets/publish-custom-pallets) illustrates how to publish custom pallets and crates so they are available to the community.
+- [Add offchain workers](/tutorials/work-with-pallets/add-offchain-workers/) illustrates how to modify a pallet to include an offchain worker and configure the pallet and runtime to enable the offchain worker to submit transactions that update the on-chain state.
+- [Publish custom pallets](/tutorials/work-with-pallets/publish-custom-pallets/) illustrates how to publish custom pallets and crates so they are available to the community.
 
 If you want to experiment with smart contract development for your blockchain, you should use the preconfigured [substrate-contracts-node](https://github.com/paritytech/substrate-contracts-node) instead of the standard node template.
 There are compatibility issues between the pallets that support smart contracts and the current node template. 
