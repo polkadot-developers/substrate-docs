@@ -57,7 +57,7 @@ cumulus_pallet_parachain_system::register_validate_block!(
 
 The parachain template doesn't include any block finalization mechanism because parachains are intended to use the finality provided by the relay chain.
 Relay chain finalization is a fundamental concept in the architecture of Polkadot and other relay chains.
-In contrast, the Substrate node template and many other Substrate-based chains implement their own block finalization mechanism mechanism, typically using the GRANDPA pallet and associated API.
+In contrast, the Substrate node template and many other Substrate-based chains implement their own block finalization mechanism, typically using the GRANDPA pallet and associated API.
 
 ### Collator service
 
