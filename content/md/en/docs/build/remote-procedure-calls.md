@@ -6,18 +6,29 @@ keywords:
   - frontend
 ---
 
-Remote procedure calls, or RPC methods, are a way for an external program—for example, a browser or front-end application—to communicate with a Substrate node.
-In general, these methods enable an RPC client to connect to an RPC server endpoint to request some type of service.
-For example, you might use an RPC method to read a stored value, submit a transaction, or request information about the chain a node is connected to.
+Remote procedure calls, or RPC methods, are a way for an external program—for example, a browser or front-end application—to communicate with a Substrate node. Substrate utilises JSON-RPC over similar protocols, due to it's comparative simplicity.
 
-The most convenient way to access the default [JSON-RPC methods](https://polkadot.js.org/docs/substrate/rpc/) for a Substrate node is through the [Polkadot-JS API](https://polkadot.js.org/docs/api/).
+Before implementing JSON-RPC functionality, it is important to understand security and integrity related fundamentals and the associated risks. These are discussed in the following sections and are followed up with usage instructions.
+
+## Common use-cases
+
+The most common application of the RPC interface is developers that administer front-end applications (such as wallets, oracles, bridges, dApps, etc.) that require data to be submitted to and retrieved from the blockchain. These applications perform JSON-RPC function calls either against a node run locally by the end-user, or against a trusted JSON-RPC server.
+
+Node operators also utilise the JSON-RPC interface to ensure that their nodes are configured properly and operating as expected, as well as making and monitoring configuration changes while the node is running.
+
+## Defining functions
+
+All JSON-RPC functions in this interface are put into related 'groups'. As the JSON-RPC is intended to be implemented in different capacities (ie, full node servers vs. lightweight clients), developers will likely want to limit what functions are available, such as in the case of a light client which will not require administrative functions for the node. 
+
+The group a particular JSON-RPC function belongs to is indicated by the ``prefix_`` in its name. This prefix now must also include a version number. For example, in ``foo_v1_bar``, the prefix is ``foo_v1``. 
+
+A group name must always include a version number. This version number is part of the group name itself, and consequently, ``foo_v1`` and ``foo_v2`` are recognised as two completely separate, unrelated, groups. Depending on the node implementation, only certain versions may be available to connecting clients.
+
+For a complete list of groups, their contained functions, as well as current version numbers, see the [API specification](https://paritytech.github.io/json-rpc-interface-spec/api.html).
 
 ## Safe and unsafe RPC methods
 
-It's important to be aware that RPC methods can provide access to core node operations, including consensus and storage, and can also be exposed as public interfaces to allow external users to submit transactions to or retrieve information from the blockchain.
-Therefore, for the security of the blockchain, it's important to consider what different RPC methods expose and whether they should be restricted to running on a local node or made publicly available.
-
-### Public RPC interfaces
+### Unsafe (public) RPC methods (TO BE REVISED / COMPLETED)
 
 Substrate nodes provide the following command-line options that allow you to expose the RPC interfaces publicly:
 
@@ -29,7 +40,7 @@ Substrate nodes provide the following command-line options that allow you to exp
 ```
 
 By default, the node will refuse to start if you try to expose an RPC interface and run a validator node at the same time.
-The `--unsafe-*` flags allow you to suppress this security measure.
+The ``--unsafe-*`` flags allow you to suppress this security measure.
 Exposing RPC interfaces can open up a huge surface of attacks and has to be carefully reviewed.
 
 There are quite a few RPC methods that you can use to control the node's behavior, but you should avoid exposing.
@@ -53,6 +64,12 @@ These RPCs are declared by using the `#[rpc(name = "rpc_method")]` macro, where 
 It's critical to filter out these kind of calls if the requests are coming from untrusted users.
 The way to do it is through a [JSON-RPC](/reference/glossary#json-rpc) proxy that is able to inspect calls and only pass an allowed set of API calls.
 
+### Secure (safe) RPC methods
+
+[TBD]
+
+#### --- BELOW CONTENT IS YET TO BE TESTED AND EDITED --
+
 ## RPCs for remote_externalities
 
 Substrate also provides some specialized RPC methods to call [`remote_externalities`](https://paritytech.github.io/substrate/master/remote_externalities/rpc_api/index.html) for a node.
@@ -66,13 +83,14 @@ When you start a Substrate node locally, there are two endpoints available by de
 - HTTP endpoint: `http://localhost:9933/`
 - WebSocket endpoint: `ws://localhost:9944/`
 
-Most of the Substrate front-end libraries and tools use the WebSocket endpoint to interact with the blockchain.
-For example, if you use the Polkadot-JS application to connect to a local node or a public chain, your are typically connecting to the WebSocket endpoint.
-WebSocket connections allow for bidirectional communication between the front-end application and the backend node responding to requests.
-However, you can also call RPC methods individually without keeping an open communication channel by connecting to the HTTP endpoint using `curl` commands.
-For example, you can use curl commands to get system information or subscribe to a chain to receive notification when there are specific types of changes to the block state.
+Most of the Substrate front-end libraries and tools use the WebSocket endpoint to interact with the blockchain. If you use the Polkadot-JS application to connect to a local node or a public chain, your are typically connecting to the WebSocket endpoint. Depending on your specific usecase however, HTTP may be a more secure option.
 
-To call RPC methods using the HTTP endpoint:
+WebSocket connections allow for bidirectional communication between the front-end application and the backend node responding to requests.
+However, you can also call RPC methods individually without keeping an open communication channel by connecting to the HTTP endpoint using ``curl`` commands. For example, you can use ``curl`` commands to get system information or subscribe to a chain to receive notification when there are specific types of changes to the block state.
+
+### Connecting to a HTTP endpoint
+
+In order to call RPC methods using the HTTP endpoint:
 
 1. Open a terminal shell and change to the root directory for the Substrate node template.
 
@@ -111,6 +129,10 @@ For more information about encoding and decoding information, see [Type encoding
 
 Each storage item has a relative storage key associated to it which is used to [query storage](/main-docs/build/runtime-storage#querying-storage).
 This is how RPC endpoints know where to look.
+
+### Connect to the WebSocket endpoint
+
+[TBC]
 
 ## Examples
 
