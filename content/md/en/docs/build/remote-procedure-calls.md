@@ -68,7 +68,7 @@ The way to do it is through a [JSON-RPC](/reference/glossary#json-rpc) proxy tha
 
 [TBD]
 
-#### --- BELOW CONTENT IS YET TO BE TESTED AND EDITED --
+### --- BELOW CONTENT IS YET TO BE TESTED AND EDITED --
 
 ## RPCs for remote_externalities
 
@@ -133,6 +133,11 @@ This is how RPC endpoints know where to look.
 ### Connect to the WebSocket endpoint
 
 [TBC]
+
+## Extend RPC methods with a custom module
+Do you need to write a custom RPC call or can you use state_call? 
+(See https://forum.parity.io/t/remove-rpcs-that-can-be-replaced-by-state-call/1070?)
+Use case examples for when to write a custom RPC method and when to use state_call?
 
 ## Examples
 
