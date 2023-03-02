@@ -126,9 +126,9 @@ This workshop isn’t about learning Rust, but there are a few basic concepts th
 Most languages use either garbage collection or manually encoded operations to allocate and free up memory. In Rust, ownership is what controls how programs manage memory. 
 At a high level, ownership consists of three simple rules that the compiler checks:
 
-Each value has an owner that’s identified by the variable that holds the value.
-A value can only have one owner at a time.
-If the owner goes out of scope, the value is dropped.
+- Each value has an owner that’s identified by the variable that holds the value.
+- A value can only have one owner at a time.
+- If the owner goes out of scope, the value is dropped.
 
 To prevent a value from being dropped when you want to reuse it, you can borrow it.
 In Rust, you can add an ampersand (&) in front of a variable identifier to indicate that you want to borrow its value. By adding the ampersand, you can reuse the value multiple times throughout a function.
@@ -141,13 +141,15 @@ In Substrate, traits provide a flexible abstraction for defining shared behavior
 
 ### Functions that return errors
 
-In Rust, functions must return the Result type to handle errors. The returned Result is either Ok() for success or Err() for a failure.
+In Rust, functions must return the `Result` type to handle errors. The returned Result is either `Ok()` for success or `Err()` for a failure.
 For example:
 
+```rust
 match my_function() {
     Ok(value) => value,
     Err(msg) => return Err(msg),
 }
+```
 
 ### Macros
 
