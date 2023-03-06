@@ -12,37 +12,56 @@ keywords:
   - key derivations
 ---
 
-This section summarizes the hashing algorithms and encryption signature schemes that are used for cryptography in Substrate blockchains.
-It includes high level information about the differences between hashing algorithms and signature schemes.
 
-## Hashing algorithms
+Cryptography is what provides the mathematical certainty behind consensus systems, data integrity, and user security. While understanding the fundamental overarching applications of cryptography as they relate to blockchain is essential for the average developer, the underlying mathematical processes themselves are not necessarily relevant. This page provides the base context for the various implementations of cryptography across Parity and the ecosystem more broadly.
 
-Hash functions are used in Substrate to map arbitrary sized data to fixed-sized values.
+## Hash functions
 
-Substrate provides two hash algorithms out of the box, but can support any hash algorithm which
-implements the [`Hasher` trait](https://paritytech.github.io/substrate/master/sp_core/trait.Hasher.html).
+**Hashing** is a mathematical process that creates a one-to-one mapping between any piece of data and a 32 byte reference, using 2 random and unique numerical inputs between zero and the 255 power. Using hash functions, any data, including simple text, images, or any other form of file is given a distinct and entirely unique identifier. Hashing is used for verifying data integrity, creating digital signatures, and providing a secure way to store passwords. This form of mapping is known as the 'pigeonhole principle', and it is primarily implemented to efficiently and verifiably identify data from large sets.
 
-### xxHash
+In blockchain, hash functions are also used to provide **collision resistance**. These are performed by an attacker that calculates or controls both numerical inputs, and is looking for two values that share the first few bits in order to gain access to an encrypted object.
 
-xxHash is a fast [non-cryptographic hash function](https://en.wikipedia.org/wiki/Hash_function), working at speeds close to RAM limits.
-Because xxHash is not cryptographically secure, it is possible that the output of the hash algorithm can be reasonably controlled by modifying the input.
-This can allow a user to attack this algorithm by creating key collisions, hash collisions, and imbalanced storage tries.
+Partial collision resistance is also used, which is computationally lighter weight, while also providing resistance against the possibility of finding two values that share the first few bits. This is a less-secure option when facing well resourced adversaries such as nation-states however, as it is significantly easier to brute-force past the first few digits with a significant amount of computational power. That said, it is acceptable with an average attack vector (i.e, rogue actors).
 
-xxHash is used in places where outside parties cannot manipulate the input of the hash function.
-For example, it is used to generate the key for runtime storage values, whose inputs are controlled by the runtime developer.
+These functions are **deterministic**, meaning that the same input will always produce the same output. This is important for ensuring that two different computers can agree on the same data. They can be designed to be fast or slow, depending on the purpose.
 
-Substrate uses the [`twox-hash`](https://github.com/shepmaster/twox-hash) implementation in Rust.
+Fast hash functions are used when speed is important, while slow hash functions are used when security is the priority. Slow hash functions are also used to mitigate the success of brute force attacks by increasing the amount of work required to find the data.
+
+When engineering a new blockchain protocol or ecosystem, it is important to consider the computational costs of the cryptography method being used. Prioritising efficiency and processor loads, Substrate utilises Blake2.
 
 ### Blake2
 
-[Blake2](<https://en.wikipedia.org/wiki/BLAKE_(hash_function)#BLAKE2>) is a cryptographic hash function.
-It is considered to be very fast and is also used in [Zcash](https://en.wikipedia.org/wiki/Zcash).
+Blake2 is a relatively recent hashing method that provides equal or greater security than SHA2, while also being significantly faster than other comparable algorithms. While determining the exact benchmark of it's speed improvements over other hashing methods is highly dependent on hardware specifications, the biggest positive implication for Substrate is how it heavily reduces the amount of time and resources a new node will need in order to sync with the chain, and to a lesser extent, lower required time for validating.
 
-Substrate uses the [`blake2`](https://docs.rs/blake2/) implementation in Rust.
+For a comprehensive view of Blake2, see their [official document](https://www.blake2.net/blake2.pdf).
 
-## Public-Key cryptography
+## Types of cryptography
 
-Public-key cryptography is used in Substrate to provide a robust authentication system.
+### Symmetric cryptography
+
+**Symmetric encryption** is a branch of cryptography that is not based on one-way functions, unlike asymmetric cryptography. It uses the same cryptographic key for both the encryption of plain text and the decryption of the resulting ciphertext.
+
+Symmetric cryptography is the type of encryption that has been used throughout history, such as the Enigma Cipher and the Caesar Cipher. It is still widely used today, and can be found in web2 and web3 applications alike. There is only one single key, and requires a recipient to also have access to it in order to access the contained information.
+
+### Asymmetric cryptography
+
+**Asymmetric encryption** is a type of cryptography which uses two different keys, known as a keypair: a public key, used to encrypt plain text, and a private counterpart, used to decrypt the cipher text.
+
+The public key is used to encrypt a fixed length message that can only be decrypted with the recipient's private key and, at times, a set password. The public key can be used to cryptographically verify that the corresponding private key was used to create a piece of data without compromising the private key itself, such as with **digital signatures**. This has obvious implications for identity, ownership and properties, and is used in many different protocols across both web2 and web3.
+
+#### Trade-offs and compromises
+
+Symmetric cryptography is faster and requires fewer bits in the key to achieve the same level of security that asymmetric cryptography provides. However, it requires a shared secret before communication can take place, which poses issues to it's integrity and a potential compromise point. Asymmetric cryptography, on the other hand, does not require the secret to be shared ahead of time, allowing for far better end-user security.
+
+Hybrid symmetric and asymmetric cryptography is often used to overcome the engineering issues of asymmetric cryptography, as it is slower and requires more bits in the key to achieve the same level of security. It is used to encrypt a key, and then use the comparatively lightweight symmetric cipher to do the 'heavy lifting' with the message.
+
+## Digital signatures
+
+Digital signatures are a way of verifying the authenticity of a document or message using asymmetric keypairs. They are used to ensure that a sender or signer's document or message has not been tampered with in transit, and for recipients to verify said data is accurate and from the expected sender.
+
+Signing digital signatures only requires a low level understanding of mathematics and cryptography. For a conceptual example -- when signing a check, it is expected that the check cannot be cashed multiple times. This is not a feature of the signature system, but rather the check serialization system. The bank will check that the serial number on the check has not already been used. Digital signatures essentially combines these two concepts, allowing the *signature itself* to provide the serialization via a unique cryptographic fingerprint that cannot be reproduced.
+
+Unlike with a pen and paper signatures, knowledge of the digital signature cannot be used to create other signatures. Digital signatures are often used in bureaucratic processes, as they are more secure than simply scanning in a signature and pasting it onto a document.
 
 Substrate provides multiple different cryptographic schemes and is generic such that it can support anything which implements the [`Pair` trait](https://paritytech.github.io/substrate/master/sp_core/crypto/trait.Pair.html).
 
