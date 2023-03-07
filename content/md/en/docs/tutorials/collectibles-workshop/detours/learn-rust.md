@@ -43,7 +43,7 @@ match my_function() {
 ## Macros
 
 Macros—code that writes code—aren’t unique to Rust, but they simplify code by abstracting code that would otherwise be duplicated.
-ubstrate uses a lot of macros in both the core runtime logic and in the creation of the individual pallets.
+Substrate uses a lot of macros in both the core runtime logic and in the creation of the individual pallets.
 Macros simplify lots of common tasks like creating storage items and defining events and errors.
 You'll use a lot of them in the workshop.
 
