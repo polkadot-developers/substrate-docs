@@ -274,7 +274,7 @@ With most of the work done by the internal function, the publicly exposed `buy_c
 		}
 	 // Add collectible to owned collectible.
 	 let mut to_owned = OwnerOfCollectibles::<T>::get(&to);
-	 to_owned.try_push(unique_id).map_err(|()| Error::<T>::MaximumCollectiblesOwned)?;
+	 to_owned.try_push(unique_id).map_err(|_id| Error::<T>::MaximumCollectiblesOwned)?;
 	 // Mutating state with a balance transfer, so nothing is allowed to fail after this.
 	 if let Some(price) = collectible.price {
 			ensure!(bid_price >= price, Error::<T>::BidPriceTooLow);
