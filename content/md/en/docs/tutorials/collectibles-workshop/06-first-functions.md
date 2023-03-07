@@ -74,14 +74,15 @@ Block explorers like [Subscan](https://www.subscan.io/) and the [Polkadot/Substr
 
 To add a `CollectibleCreated` event to the runtime:
 
-1. Open the `src/lib.rs` file for the `collectibles` pallet in a text editor.
+1. Open the `src/lib.rs` file for the `collectibles` pallet in your code editor.
 
 1. Add the `RuntimeEvent` from the `frame_system` configuration to the pallet configuration.
    
 	 ```rust
 	 #[pallet::config]
-   pub trait Config: frame_system::Config {
-		 type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_system::Config>::RuntimeEvent>;
+     pub trait Config: frame_system::Config {
+		type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_system::Config>::RuntimeEvent>;
+	}
 	 ```
 
 2. Add the `#[pallet::event]` macro after the error macro you previously defined.
@@ -95,12 +96,12 @@ To add a `CollectibleCreated` event to the runtime:
 	 ```rust
 	 #[pallet::generate_deposit(pub(super) fn deposit_event)]
 	 pub enum Event<T: Config> {
-		  /// A new collectible was successfully created.
-			CollectibleCreated { collectible: [u8; 16], owner: T::AccountId },
+		 /// A new collectible was successfully created
+		 CollectibleCreated { collectible: [u8; 16], owner: T::AccountId },
 	 }
 	 ```
 
-1. Save your changes and close the file.
+1. Save your changes.
 
 1. Verify that your program compiles by running the following command:
    
@@ -141,7 +142,8 @@ With errors and events out of the way, it's time to write the core logic for cre
 		} else {
 				(hash, Color::Yellow)
 			} 
-		 }
+		}
+	}
    ```
 
 1. Create an internal function that enables minting new collectibles.
@@ -205,12 +207,10 @@ With errors and events out of the way, it's time to write the core logic for cre
 	 }
    ```
 
-1. Save your changes and close the file.
-
-1. Verify that your program compiles by running the following command:
+1. Save your changes and verify that your program compiles by running the following command:
    
    ```bash
    cargo build --package collectibles
    ```
 
-	 Your code should now compile without any warnings.
+  Your code should now compile without any warnings.
