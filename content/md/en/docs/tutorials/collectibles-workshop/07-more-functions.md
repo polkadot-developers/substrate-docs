@@ -86,7 +86,7 @@ The publicly callable function simply checks the origin of the caller and calls 
 			}
 				// Add collectible to the list of owned collectibles.
 				let mut to_owned = OwnerOfCollectibles::<T>::get(&to);
-				to_owned.try_push(collectible_id).map_err(|()| Error::<T>::MaximumCollectiblesOwned)?;
+				to_owned.try_push(collectible_id).map_err(|_id| Error::<T>::MaximumCollectiblesOwned)?;
 				
 				// Transfer succeeded, update the owner and reset the price to `None`.
 				collectible.owner = to.clone();
@@ -100,7 +100,7 @@ The publicly callable function simply checks the origin of the caller and calls 
 				Self::deposit_event(Event::TransferSucceeded { from, to, collectible: collectible_id });
 			Ok(())
 		}
-		```
+	```
 
 1. Create the callable function.
    
@@ -123,7 +123,7 @@ The publicly callable function simply checks the origin of the caller and calls 
 	 }
    ```
 
-1. Save your changes and close the file.
+1. Save your changes.
 
 2. Verify that your program compiles without errors by running the following command:
    
@@ -151,13 +151,13 @@ If the checks pass, the function writes the new price to storage and emits a `Pr
 	 #[pallet::event]
 	 #[pallet::generate_deposit(pub(super) fn deposit_event)]
 	 pub enum Event<T: Config> {
-	   /// A new collectible was successfully created.
-     CollectibleCreated { collectible: [u8; 16], owner: T::AccountId },
-     /// A collectible was successfully transferred.
-     TransferSucceeded { from: T::AccountId, to: T::AccountId, collectible: [u8; 16] },
-		 /// The price of a collectible was successfully set.
-		 PriceSet { collectible: [u8; 16], price: Option<BalanceOf<T>> },
-	 }
+		/// A new collectible was successfully created.
+		CollectibleCreated { collectible: [u8; 16], owner: T::AccountId },
+     	/// A collectible was successfully transferred.
+     	TransferSucceeded { from: T::AccountId, to: T::AccountId, collectible: [u8; 16] },
+		/// The price of a collectible was successfully set.
+		PriceSet { collectible: [u8; 16], price: Option<BalanceOf<T>> },
+		}
 	 ```
 
 2. Add the callable function for setting a price.
