@@ -10,7 +10,7 @@ To keep the code modular and flexible, most of the logic is defined in internal 
 One advantage of using internal functions is that you don't need to do any kind of authentication or authorization for the operations performed because the internal functions are only accessible to you as the runtime developer.
 
 The only function you need to expose to users for this workshop is the `create_collectible` function.
-This function enables users to create new unique collectibles that are stored in the CollectibleMap and added to the OwnerOfCollectibles map.
+This function enables users to create new unique collectibles that are stored in the `CollectibleMap` and added to the `OwnerOfCollectibles` map.
 At a high level, you'll need to write functions to perform the following tasks:
 
 - Create a unique identifier for each collectible and not allow duplicates.
@@ -38,7 +38,7 @@ To add the error handling to the runtime:
 
 1. Open the `src/lib.rs` file for the `collectibles` pallet in a text editor.
 
-2. Add the #[pallet::error] macro after the storage macros you previously defined.
+2. Add the `#[pallet::error]` macro after the storage macros you previously defined.
    
 	 ```rust
 	 #[pallet::error]
