@@ -28,11 +28,11 @@ Errors and events are fairly straightforward, so let's start with those declarat
 
 ## Add custom errors
 
-You've identified the following potential errors that your function should address:
+Here are some potential errors that the `create_collectible` function should address:
 
-- DuplicateCollectible
-- MaximumCollectiblesOwned
-- BoundsOverflow
+- `DuplicateCollectible` - thrown when the collectible item trying to be created already exists.
+- `MaximumCollectiblesOwned`- thrown when an account exceeds the maximum amount of collectibles a single account can hold.
+- `BoundsOverflow` - thrown if the supply of collectibles exceeds the `u64` limit.
 
 To add the error handling to the runtime:
 
