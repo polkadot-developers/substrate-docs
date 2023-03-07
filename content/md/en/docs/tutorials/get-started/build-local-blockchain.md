@@ -172,7 +172,7 @@ To install the front-end template:
    node --version
    ```
 
-   If you have `node` installed, this command will return a version number like `v19.7.0`.
+   If you have `node` installed, this command returns a version number like `v19.7.0`.
 
    If the command doesn’t return a version number, download and install `node` by following the instructions for the operating system you use on the [Node.js](https://nodejs.org/) website, or by installing and using the [`nvm`](https://github.com/nvm-sh/nvm) node version manager.
 
