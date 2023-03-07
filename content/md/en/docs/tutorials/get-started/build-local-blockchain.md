@@ -98,7 +98,8 @@ To compile the Substrate node template:
    cargo build --release
    ```
 
-   You should always use the `--release` flag to build optimized artifacts. Be aware that the first time that you do this, it will take a while to complete. Go stretch your legs and get a cup of tea.
+   You should always use the `--release` flag to build optimized artifacts. 
+   The first time you compile this, it takes some time to complete.
 
    It should complete with a line something like this:
 
