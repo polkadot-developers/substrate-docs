@@ -229,7 +229,6 @@ With most of the work done by the internal function, the publicly exposed `buy_c
 		BidPriceTooLow,
 		/// The collectible is not for sale.
 		NotForSale,
-
       }
 
 2. Add the `Sold` event to your Pallet.
