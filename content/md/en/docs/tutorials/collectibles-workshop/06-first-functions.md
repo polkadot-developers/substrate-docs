@@ -36,7 +36,7 @@ Here are some potential errors that the `create_collectible` function should add
 
 To add the error handling to the runtime:
 
-1. Open the `src/lib.rs` file for the `collectibles` pallet in a text editor.
+1. Open the `src/lib.rs` file for the `collectibles` pallet in your code editor.
 
 2. Add the `#[pallet::error]` macro after the storage macros you previously defined.
    
@@ -57,7 +57,7 @@ To add the error handling to the runtime:
 	}
 	```
 
-1. Save your changes and close the file.
+1. Save your changes.
 
 1. Verify that your program compiles by running the following command:
    
@@ -69,7 +69,7 @@ To add the error handling to the runtime:
 
 ## Add an event
 
-The runtime can emit events to notify front-end applications—and through the front-end application interface, end-users—about the result of a transaction that executed successfully. 
+The runtime can emit events to notify front-end applications about the result of a transaction that executed successfully. 
 Block explorers like [Subscan](https://www.subscan.io/) and the [Polkadot/Substrate Portal Explorer](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frpc.polkadot.io#/explorer) also display events for completed transactions.
 
 To add a `CollectibleCreated` event to the runtime:
