@@ -118,28 +118,28 @@ With errors and events out of the way, it's time to write the core logic for cre
    
 	 ```rust
 	 // Pallet internal functions
-	 impl<T: Config> Pallet<T> {
-		 // Generates and returns the unique_id and color
-		 fn gen_unique_id() -> ([u8; 16], Color) {
-			 // Create randomness
-			 let random = T::CollectionRandomness::random(&b"unique_id"[..]).0;
-			 
-			 // Create randomness payload. Multiple collectibles can be generated in the same block,
-			 // retaining uniqueness.
-			 let unique_payload = (
-				 random,
-				 frame_system::Pallet::<T>::extrinsic_index().unwrap_or_default(),frame_system::Pallet::<T>::block_number(),
-			);
+	impl<T: Config> Pallet<T> {
+		// Generates and returns the unique_id and color
+		fn gen_unique_id() -> ([u8; 16], Color) {
+			// Create randomness
+			let random = T::CollectionRandomness::random(&b"unique_id"[..]).0;
 			
-			// Turns into a byte array
-			let encoded_payload = unique_payload.encode();
-			let hash = frame_support::Hashable::blake2_128(&encoded_payload);
-			
-			// Generate Color 
-			if hash[0] % 2 == 0 {
-				 (hash, Color::Red)
-			} else {
-				 (hash, Color::Yellow)
+			// Create randomness payload. Multiple collectibles can be generated in the same block,
+			// retaining uniqueness.
+			let unique_payload = (
+				random,
+				frame_system::Pallet::<T>::extrinsic_index().unwrap_or_default(),frame_system::Pallet::<T>::block_number(),
+		);
+		
+		// Turns into a byte array
+		let encoded_payload = unique_payload.encode();
+		let hash = frame_support::Hashable::blake2_128(&encoded_payload);
+		
+		// Generate Color 
+		if hash[0] % 2 == 0 {
+				(hash, Color::Red)
+		} else {
+				(hash, Color::Yellow)
 			} 
 		 }
    ```
@@ -171,7 +171,7 @@ With errors and events out of the way, it's time to write the core logic for cre
 			CollectibleMap::<T>::insert(collectible.unique_id, collectible);
 			CollectiblesCount::<T>::put(new_count);
 			
-			// Deposit the "Collectiblereated" event.
+			// Deposit the "CollectibleCreated" event.
 			Self::deposit_event(Event::CollectibleCreated { collectible: unique_id, owner: owner.clone() });
 			
 			// Returns the unique_id of the new collectible if this succeeds
