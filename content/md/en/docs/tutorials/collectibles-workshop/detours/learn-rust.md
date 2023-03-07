@@ -1,6 +1,6 @@
 ---
 title: Learn Rust for Substrate
-description:
+description: Provides a brief introduction to a few core features of Rust that are important for Substrate developers to be familiar with.
 keywords:
 ---
 
@@ -43,7 +43,9 @@ match my_function() {
 ## Macros
 
 Macros—code that writes code—aren’t unique to Rust, but they simplify code by abstracting code that would otherwise be duplicated.
-Substrate uses a lot of macros to support in both the runtime logic and in the creation of the business logic pallets. 
+Substrate uses a lot of macros in both the core runtime logic and in the creation of the individual pallets.
+Macros simplify lots of common tasks like creating storage items and defining events and errors.
+You'll use a lot of them in the workshop.
 
 ## Rust compiler output
 
