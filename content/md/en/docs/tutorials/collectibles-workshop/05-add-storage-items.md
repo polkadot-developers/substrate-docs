@@ -12,8 +12,6 @@ For the workshop, you'll create three custom storage items to track the state:
 - A simple map of key-value pairs—`CollectiblesMap`—to map the properties associated with each collectible to its unique identifier.
 - A simple map of key-value pairs—`OwnerOfCollectibles`—to map collectibles to the user account that owns them.
 
-The FRAME storage module provides traits that enable you to store single values and maps efficiently in the runtime and to read and write data using the layered storage abstractions of the Patricia-Merkle state trie.
-For now, you only need to be concerned with the traits for creating two simple types of storage—a `StorageValue` and a `StorageMap`.
 For a closer look at the storage architecture and abstractions that Substrate uses, see [State transitions and storage](/fundamentals/state-transitions-and-storage/).
 
 ## Store a single value
