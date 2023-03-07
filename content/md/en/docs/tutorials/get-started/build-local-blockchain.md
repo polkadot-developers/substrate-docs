@@ -69,7 +69,8 @@ To compile the Substrate node template:
    git clone https://github.com/substrate-developer-hub/substrate-node-template
    ```
 
-   This will put you into the `main` branch. If you are experienced with Polkadot, and want to work with a specific Polkadot version, you can use the `--branch` command-line option to select the Substrate branch that you want to work with.
+   This command clones the `main` branch. 
+   If you are familiar with Polkadot, and want to work with a specific Polkadot version, you can use the `--branch` command-line option to select the specific branch that you want to work with.
 
    Click [Releases](https://github.com/paritytech/polkadot/releases) or [Tags](https://github.com/paritytech/polkadot/tags) to see the latest and earlier Polkadot branches that you can use with the node template.
 
