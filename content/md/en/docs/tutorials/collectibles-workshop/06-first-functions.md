@@ -147,12 +147,12 @@ With errors and events out of the way, it's time to write the core logic for cre
 1. Create an internal function that enables minting new collectibles.
    
 	 ```rust
-	 // Function to mint a collectible
-	 pub fn mint(
-		 owner: &T::AccountId,
-		 unique_id: [u8; 16],
-		 color: Color,
-		 ) -> Result<[u8; 16], DispatchError> {
+	     // Function to mint a collectible
+		pub fn mint(
+			owner: &T::AccountId,
+			unique_id: [u8; 16],
+			color: Color,
+		) -> Result<[u8; 16], DispatchError> {
 			// Create a new object
 			let collectible = Collectible::<T> { unique_id, price: None, color, owner: owner.clone() };
 			
