@@ -220,7 +220,8 @@ To use the front-end template:
    yarn start
    ```
 
-1. Open `http://localhost:8000` in a browser to view the front-end template. This step may occur automatically when you run the `yarn start` command.
+   Typically, running the `yarn start` command opens `http://localhost:8000` in your default browser automatically.
+   If necessary, you can manually specify the `http://localhost:8000` URL to view the front-end template.
 
    The top section has an Account selection list for selecting the account to work with when you want to perform on-chain operations.
    The top section of the template also displays information about the chain to which you're connected.
