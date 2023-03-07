@@ -198,12 +198,12 @@ To enable users to buy collectibles, you need to expose another callable functio
 For this workshop, the internal function is `do_buy_collectible` and it does most of the heavy lifting to determine whether the attempt to purchase a collectible will succeed.
 For example, the `do_buy_collectible` internal function checks that:
 
-- The proposed buying price is greater than or equal to the price set for the collectible by its owner and return the `BidPriceTooLow` error if the proposed price is too low.
-- The collectible is for sale and return a `NotForSale` error if the collectible price is `None`.
+- The proposed buying price is greater than or equal to the price set for the collectible by its owner and returns the `BidPriceTooLow` error if the proposed price is too low.
+- The collectible is for sale and returns a `NotForSale` error if the collectible price is `None`.
 - The account for the buyer has a free balance available to cover the price set for the collectible.
 - The account for the buyer doesn't already own too many collectibles to receive another collectible.
 
-If all of the checks pass, the `do_buy_collectible` internal function updates account balances and transfers ownership of the collectible using `Currency` trait and its transfer method.
+If all of the checks pass, the `do_buy_collectible` internal function updates account balances and transfers ownership of the collectible using the `Currency` trait's transfer method.
 
 With most of the work done by the internal function, the publicly exposed `buy_collectible` function simply verifies the account of the function caller and calls the `do_buy_collectible` function.
 
@@ -225,10 +225,10 @@ With most of the work done by the internal function, the publicly exposed `buy_c
         NotOwner,
         /// Trying to transfer a collectible to yourself
         TransferToSelf,
-				/// The bid is lower than the asking price.
-				BidPriceTooLow,
-				/// The collectible is not for sale.
-				NotForSale,
+		/// The bid is lower than the asking price.
+		BidPriceTooLow,
+		/// The collectible is not for sale.
+		NotForSale,
 
       }
 
@@ -246,7 +246,7 @@ With most of the work done by the internal function, the publicly exposed `buy_c
         /// The price of a collectible was successfully set.
         PriceSet { collectible: [u8; 16], price: Option<BalanceOf<T>> },
         /// A collectible was successfully sold.
-				Sold { seller: T::AccountId, buyer: T::AccountId, collectible: [u8; 16], price: BalanceOf<T> },
+		Sold { seller: T::AccountId, buyer: T::AccountId, collectible: [u8; 16], price: BalanceOf<T> },
       }
 		```
 
