@@ -45,7 +45,7 @@ pub(super) type CollectibleMap<T: Config> = StorageMap<_, Twox64Concat, [u8; 16]
 The `Twox64Concat` in this declaration specifies the hashing algorithm to use to create this storage value.
 By allowing you to specify the hashing algorithm to use, storage maps allow you to control the level of security appropriate to the type of information being stored. 
 For example, you might choose a more performant but less secure hashing algorithm to store information about collectibles and a less performant but more secure hashing algorithm to store more sensitive information.
-For information about the hashing algorithms Substrate supports and the security they provide, see [Hashing algorithms](/build/runtime-storage/).
+For information about the hashing algorithms Substrate supports and the security they provide, see [Hashing algorithms](/build/runtime-storage/#hashing-algorithms ).
 
 ## Map owners to their collectibles
 
