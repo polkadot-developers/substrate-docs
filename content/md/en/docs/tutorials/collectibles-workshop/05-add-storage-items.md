@@ -52,7 +52,7 @@ For information about the hashing algorithms Substrate supports and the security
 A StorageMap named `OwnerOfCollectibles` maps user accounts to the collectibles they own.
 
 The key for this storage map is a user account: `T::AccountID`.
-The value for this storage map is a BoundedVec data type with the `unique_id` of each collectible that each user account owns. 
+The value for this storage map is a `BoundedVec` data type with the `unique_id` of each collectible that each user account owns. 
 This map makes it easy to look up each individual collectible for its information since the  `unique_id`  is used as the key for the `collectiblesMap` map.
 By using a BoundedVec, you can ensure that each storage item has a maximum length, which is important for managing limits within the runtime.
 
@@ -68,16 +68,16 @@ pub(super) type OwnerOfCollectibles<T: Config> = StorageMap<
 >;
 ```
 
-After you've added the storage items, verify that your program compiles by running the following command:
+In order for the code to compile, you'll need to annotate the `Collectible` data structure with this derive macro:
+
+```rust
+#[scale_info(skip_type_params(T))]
+```
+
+Verify that your program compiles by running the following command:
 
 ```bash
 cargo build --package collectibles
 ```
    
 You can ignore the compiler warnings for now.
-If the program fails because of the requirements for the implementation of `scale_info::TypeInfo` for `Collectible<T>`
-conflict with requirements for the implementation of `StorageEntryMetadataBuilder` for the `StorageMap`, add the following macro between the `#[derive]` and the `Collectible` data structure declaration:
-
-```rust
-#[scale_info(skip_type_params(T))]
-```
