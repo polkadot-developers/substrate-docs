@@ -65,20 +65,9 @@ Unlike with a pen and paper signatures, knowledge of the digital signature canno
 
 Substrate provides multiple different cryptographic schemes and is generic such that it can support anything which implements the [`Pair` trait](https://paritytech.github.io/substrate/master/sp_core/crypto/trait.Pair.html).
 
-### ECDSA
+## Elliptic Curve 
 
-Substrate provides an [ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) signature scheme using the [secp256k1](https://en.bitcoin.it/wiki/Secp256k1) curve.
-This is the same cryptographic algorithm used to secure [Bitcoin](https://en.wikipedia.org/wiki/Bitcoin) and [Ethereum](https://en.wikipedia.org/wiki/Ethereum).
-
-### Ed25519
-
-[Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519) is an EdDSA signature scheme using [Curve25519](https://en.wikipedia.org/wiki/Curve25519).
-It is carefully engineered at several levels of design and implementation to achieve very high speeds without compromising security.
-
-### SR25519
-
-[SR25519](https://research.web3.foundation/en/latest/polkadot/keys/1-accounts-more.html) is based on the same underlying curve as [Ed25519](#ed25519).
-However, it uses Schnorr signatures instead of the EdDSA scheme.
+Blockchain technology requires the ability to have multiple keys creating a signature for block proposal and validation. To this end, Elliptic Curve Digital Signature Algorithm (ECDSA) and Schnorr signatures are two of the most commonly used methods. While ECDSA are a far simpler implementation, Schnorr signatures are more efficient when it comes to multi-signatures. 
 
 Schnorr signatures bring some noticeable features over the [ECDSA](#ecdsa)/EdDSA schemes:
 
@@ -87,6 +76,24 @@ Schnorr signatures bring some noticeable features over the [ECDSA](#ecdsa)/EdDSA
 - It is generally more resistant to misuse.
 
 One sacrifice that is made when using Schnorr signatures over ECDSA is that both require 64 bytes, but only ECDSA signatures communicate their public key.
+
+### Various implementations 
+
+#### ECDSA
+
+Substrate provides an [ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) signature scheme using the [secp256k1](https://en.bitcoin.it/wiki/Secp256k1) curve.
+This is the same cryptographic algorithm used to secure [Bitcoin](https://en.wikipedia.org/wiki/Bitcoin) and [Ethereum](https://en.wikipedia.org/wiki/Ethereum).
+
+#### Ed25519
+
+[Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519) is an EdDSA signature scheme using [Curve25519](https://en.wikipedia.org/wiki/Curve25519).
+It is carefully engineered at several levels of design and implementation to achieve very high speeds without compromising security.
+
+#### SR25519
+
+[SR25519](https://research.web3.foundation/en/latest/polkadot/keys/1-accounts-more.html) is based on the same underlying curve as [Ed25519](#ed25519).
+However, it uses Schnorr signatures instead of the EdDSA scheme.
+
 
 ## Where to go next
 
