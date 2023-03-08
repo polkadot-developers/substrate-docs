@@ -121,7 +121,9 @@ functionality.
 
 For example, this smart contract requires storage of simple values.
 
-The following code illustrates how to store simple values for this contract using the `#[ink(storage)]` attribute macro:
+The following code in this section is intended to illustrate the functionality of the ink! language. The code you will be using in the rest of this tutorial begins in the next section, [Update your smart contract](#update-your-smart-contract).
+
+You can store simple values for a contract using the `#[ink(storage)]` attribute macro:
 
 ```rust
 #[ink(storage)]
@@ -432,7 +434,7 @@ To deploy on the local node:
 4. Increment the value
 
    ```bash
-   cargo contract call --contract 5Cf6wFEyZnqvNJaKVxnWswefo7uT4jVsgzWKh8b78GLDV6kN --message inc --args 42 --suri //Alice
+   cargo contract call --contract PUT_CONTRACT_ADDRESS_HERE --message inc --args 42 --suri //Alice
    ```
 
   ```text
