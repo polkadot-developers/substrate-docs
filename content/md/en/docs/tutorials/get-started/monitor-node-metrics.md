@@ -105,15 +105,14 @@ To add the Substrate exposed endpoint to the list of Prometheus targets:
    For example, add a section similar to the following:
 
    ```yml
-   ...
-   # A scrape configuration containing exactly one endpoint to scrape:
-   scrape_configs:
-     - job_name: "substrate_node"
+    # A scrape configuration containing exactly one endpoint to scrape:
+    scrape_configs:
+      - job_name: "substrate_node"
 
-       scrape_interval: 5s
+        scrape_interval: 5s
 
-       static_configs:
-         - targets: ["localhost:9615"]
+        static_configs:
+          - targets: ["localhost:9615"]
    ```
 
     These settings override the global default values for scrape targets for the `substrate_node` job.
