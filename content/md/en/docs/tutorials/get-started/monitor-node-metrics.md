@@ -179,7 +179,7 @@ To add the Substrate exposed endpoint to the list of Prometheus targets:
    ```
    
    Alternatively, you can open same endpoint in a browser to view all available metric data.
-   For example, if you are using the default Prometheus port, open `http://localhost:9615/metrics` in a browser. 
+   For example, if you are using the default Prometheus port, open [`http://localhost:9615/metrics`](http://localhost:9615/metrics) in a browser. 
 
 ## Configure the Grafana data source
 
@@ -201,7 +201,7 @@ After you start Grafana, you can navigate to it in a browser.
 
 2. Log in using the default `admin` user name and password `admin`, then click **Log in**.
    
-3. On the Welcome page, click **Data Sources**.
+3. On the Welcome page, under the **Configuration** menu, click **Data Sources**.
 
 1. Click **Prometheus** to configure the Prometheus endpoint as the data source for Substrate node metrics.
    
