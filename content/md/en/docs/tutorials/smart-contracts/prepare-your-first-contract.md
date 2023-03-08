@@ -71,13 +71,13 @@ Note that in addition to Rust, installing `cargo-contract` requires a C++ compil
 
 Modern releases of `gcc`, `clang`, as well as Visual Studio 2019+ should work.
 
-1. Add the `rust-src` compiler compone
+1. Add the `rust-src` compiler component:
 
 ```bash
 rustup component add rust-src
 ```
 
-2. Install the latest version of `cargo-contract`
+2. Install the latest version of `cargo-contract`:
 
 ```bash
 cargo install --force --locked cargo-contract --version 2.0.0-rc
@@ -104,7 +104,7 @@ To install the contracts node on macOS or Linux:
 
 1. Open the downloaded file and extract the contents to a working directory.
 
-If you can't download the precompiled node, you can compile it locally with a command similar to the following:
+If you can't download the precompiled node, you can compile it locally with a command similar to the following. You can find the latest tag on the [Releases](https://github.com/paritytech/substrate-contracts-node/releases) page:
 
 ```bash
 cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag <latest-tag> --force --locked
@@ -261,8 +261,6 @@ To build the WebAssembly for this smart contract:
 
 ## Start the Substrate Contracts Node
 
-/tutorials/work-with-pallets/contracts-pallet
-
 If you have [successfully installed the  `substrate-contracts-node`](tutorials/smart-contracts/prepare-your-first-contract/#install-the-substrate-contracts-node),
 it's time to start a local node.
 
@@ -406,7 +404,7 @@ Since we are only reading from the blockchain state (we're not writing any new d
 avoid submitting an extrinsic.
 
 ```bash
-cargo contract call --contract 5GRAVvuSXx8pCpRUDHzK6S1r2FjadahRQ6NEgAVooQ2bB8r5 --message get --suri //Alice --dry-run
+cargo contract call --contract PUT_CONTRACT_ADDRESS_HERE --message get --suri //Alice --dry-run
 ```
 
 Some notes about the command:
@@ -441,7 +439,7 @@ blockchain.
 To do this we can use the following command:
 
 ```bash
-cargo contract call --contract 5GQwxP5VTVHwJaRpoQsK5Fzs5cERYBzYhgik8SX7VAnvvbZS --message flip --suri //Alice
+cargo contract call --contract PUT_CONTRACT_ADDRESS_HERE --message flip --suri //Alice
 ```
 
 Notice that we changed the message to `flip` and removed the `--dry-run` flag.
