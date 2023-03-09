@@ -404,7 +404,7 @@ Since we are only reading from the blockchain state (we're not writing any new d
 avoid submitting an extrinsic.
 
 ```bash
-cargo contract call --contract PUT_CONTRACT_ADDRESS_HERE --message get --suri //Alice --dry-run
+cargo contract call --contract $INSTANTIATED_CONTRACT_ADDRESS --message get --suri //Alice --dry-run
 ```
 
 Some notes about the command:
