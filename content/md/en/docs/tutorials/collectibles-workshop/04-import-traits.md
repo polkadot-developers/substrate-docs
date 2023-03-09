@@ -5,7 +5,7 @@ tutorial: 1
 ---
 
 Now that you have the bare bones of the pallet in place, you’re ready to start customizing the code to implement the application-specific interfaces it requires. This is where application design comes into play.
-Because FRAME is a modular and takes advantage of the flexibility that Rust traits and generic types provide, often you can find the interfaces you need are already provided in `frame_system`, `frame_support`, or in other predefined pallets and you can import them directly into your pallet.
+Because FRAME is modular and takes advantage of the flexibility that Rust traits and generic types provide, often you can find the interfaces you need are already provided in `frame_system`, `frame_support`, or in other predefined pallets and you can import them directly into your pallet.
 
 ## Import and declare external interfaces
 
@@ -31,9 +31,13 @@ By including these external interfaces in the configuration of the `collectibles
 
 To import and declare these interfaces:
 
-1. Open the `src/lib.rs` file for the `collectibles` pallet in a text editor.
+1. Open the `src/lib.rs` file for the `collectibles` pallet in your code editor.
 
 2. Import the `Currency` and `Randomness` traits from the `frame_support` module into your project.
+
+    ```rust
+    use frame_support::traits::{Currency, Randomness};
+    ```
 
 3. Update the collectibles `Config` trait to declare the `Currency`, `Randomness`, and `Get<u32>` traits.
 
@@ -59,7 +63,7 @@ To import and declare these interfaces:
 ## Add custom types
 
 Substrate supports all the primitive types available in Rust—for example, bool, u8, u32, and other common types.
-Substrate also provides several common custom types that are specific to Substrate—such as, AccountId, BlockNumber, and Hash—that are available for you to use through the imported `frame_system` and `frame_support` modules.
+Substrate also provides several common custom types that are specific to Substrate—such as, `AccountId`, `BlockNumber`, and `Hash`—that are available for you to use through the imported `frame_system` and `frame_support` modules.
 You have already imported some external interfaces for the `collectibles` pallet to use.
 Now, you can define a few custom properties to describe the collectibles.
 To define these custom properties, you'll add two custom types:
@@ -81,19 +85,20 @@ To define these custom properties, you'll add two custom types:
 The `Collectible` struct consists of the following:
 
 - `unique_id` is an unsigned integer of 16 bytes to ensure that each collectible is a unique entity in the blockchain.
-- `price` as an Option that returns `Some(value)` if a price is set or `None` to indicate that the collectible isn't for sale.
-- `color` for the variant of the custom Color type for the collectible.
+- `price` as an `Option` that returns `Some(value)` if a price is set or `None` to indicate that the collectible isn't for sale.
+- `color` for the variant of the custom `Color` type for the collectible.
 - `owner` to identify the account that owns the collectible.
 
-Because we've imported the Currency trait, we can also use the `BalanceOf` and `AccountId` types from the Currency interface in the `collectibles` pallet.
-For example:
+Because we've imported the Currency trait, we can also use the `Balance` and `AccountId` types from the Currency interface in the `collectibles` pallet.
+
+Create a type alias for the `Balance` type called `BalanceOf`:
 
 ```rust
 type BalanceOf<T> =
 	<<T as Config>::Currency as Currency<<T as frame_system::Config>::AccountId>>::Balance;
 ```
 
-After declaring the BalanceOf and AccountId types, we can include them in the Collectible structure:
+Use `BalanceOf` and `AccountId` in the Collectible structure:
 
 ```rust
         pub struct Collectible<T: Config> {
