@@ -434,7 +434,7 @@ To deploy on the local node:
 4. Increment the value
 
    ```bash
-   cargo contract call --contract PUT_CONTRACT_ADDRESS_HERE --message inc --args 42 --suri //Alice
+   cargo contract call --contract $INSTANTIATED_CONTRACT_ADDRESS --message inc --args 42 --suri //Alice
    ```
 
   ```text
