@@ -314,7 +314,7 @@ To register the parachain:
    
    After you submit the transaction, click **Network** and select **Explorer**.
 
-8. Check the list of recent events for successful `sudo.Suid` and click the event to see details about the transaction.
+8. Check the list of recent events for successful `sudo.Sudid` and click the event to see details about the transaction.
    
    ![View the Sudo registration event](/media/images/docs/tutorials/parachains/sudo-registration-event.png)
 
