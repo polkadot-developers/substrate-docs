@@ -17,7 +17,7 @@ export default function DocsSinglePage({ data, pageContext }) {
   const { htmlAst, tableOfContents, frontmatter, headings, excerpt } = markdownRemark;
   const { title, description } = frontmatter;
   const { pagePath /*collection*/ } = pageContext;
-  // const { gitLogLatestDate } = data.markdownRemark.parent.fields != null ? data.markdownRemark.parent.fields : '';
+  const { gitLogLatestDate } = data.markdownRemark.parent.fields != null ? data.markdownRemark.parent.fields : '';
   //const pagePathNoSlash = pagePath.endsWith('/') ? pagePath.slice(0, -1) : pagePath;
   const relativeFilePath = data.markdownRemark.parent.relativePath;
   function titleize(slug) {
@@ -106,6 +106,9 @@ export default function DocsSinglePage({ data, pageContext }) {
                 </main>
               </div>
               <footer className="mt-10">
+                <p className="text-right opacity-80">
+                  <strong>Last edit:</strong> {gitLogLatestDate}
+                </p>
                 <PreviousNextButtons previous={previousPage} next={nextPage} />
               </footer>
             </div>
