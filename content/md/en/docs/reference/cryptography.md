@@ -37,6 +37,8 @@ For a comprehensive view of Blake2, see their [official document](https://www.bl
 
 ## Types of cryptography
 
+There are two different ways that cryptographic algorithms are implemented: **symmetric cryptography**, and **asymmetric cryptography**. 
+
 ### Symmetric cryptography
 
 **Symmetric encryption** is a branch of cryptography that is not based on one-way functions, unlike asymmetric cryptography. It uses the same cryptographic key for both the encryption of plain text and the decryption of the resulting ciphertext.
