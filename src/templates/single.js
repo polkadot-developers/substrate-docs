@@ -71,7 +71,7 @@ export default function DocsSinglePage({ data, pageContext }) {
           <article className="mb-20 grid grid-cols-12 gap-1 grid-rows-2">
             <div className="xl:col-start-2 xl:col-end-9 col-start-2 col-end-12">
               <div className="py-8 flex sm:justify-between items-center sm:flex-row xs:flex-col-reverse xs:justify-center">
-                <div className="text-sm font-medium text-substrateGreen dark:text-substrateBlue-light mdx-anchor">
+                <div className="text-sm font-medium text-substrateGreen dark:text-substrateBlue-light mdx-anchor pr-3">
                   {pageContext.breadcrumb.crumbs.map((index, i, crumbs) => (
                     <span key={index.pathname} className="breadcrumb text-substrateDark dark:text-white">
                       {i + 1 === crumbs.length ? (
