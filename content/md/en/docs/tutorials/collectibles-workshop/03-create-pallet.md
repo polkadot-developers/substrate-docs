@@ -10,8 +10,8 @@ Let's get started by creating a new project and preparing a basic skeleton for t
 
 ## Create a new project
 
-Because this workshop is all about demonstrating the full workflow for creating a new module—a new custom pallet—we won't start with the `pallet_template`.
-Instead, the first step is to create a new project for the collectibles pallet you'll be building.
+Because this workshop is all about demonstrating the full workflow for creating a new module—a new custom pallet—we won't start with the `pallet-template`.
+Instead, the first step is to create a new Rust package for the collectibles pallet you'll be building.
 
 To create a project:
 
@@ -65,7 +65,7 @@ To add the new pallet to the workspace:
 
 1. Change to the `workshop-node-template` directory in your workspace.
 
-1. Open the `Cargo.toml` file in a text editor.
+1. Open the `Cargo.toml` file in your code editor.
 
 1. Add the new `pallets/collectibles` pallet as a member of the workspace.
    
@@ -90,21 +90,22 @@ Defining package attributes and dependencies is particularly important when deve
 In this workshop, the `collectibles` module is going to be part of the Substrate runtime and its `Cargo.toml` file needs to define some modules it depends on.
 For example, two core packages the  `collectibles` module requires are the `frame_system` and `frame_support` modules:
 
-- [frame_system] provides core functionality for working with common data structures and primitives so they are available to all of the pallets that need them, enabling new pallets to be easily  integrated into a runtime and to interact with each other.
-- [frame_support] provides core support services for handling function calls that are dispatched to the runtime, defining storage structures, preparing events and errors and core utilities.
+- `frame_system` provides core functionality for working with common data structures and primitives so they are available to all of the pallets that need them, enabling new pallets to be easily  integrated into a runtime and to interact with each other.
+- `frame_support` provides core support services for handling function calls that are dispatched to the runtime, defining storage structures, preparing events and errors and core utilities.
 
 In addition to `frame_system` and `frame_support`, the `collectibles` module requires packages to support the type encoding and decoding required to minimize network traffic for the blockchain.
 To support encoding and decoding in the SCALE format, the `collectibles` module needs access to the `codec` and `scale-info` packages. 
 
 To update the manifest for the collectibles project:
 
-1. Open the default `Cargo.toml` file for the `collectibles` module in a text editor.
+1. Open the default `Cargo.toml` file for the `collectibles` module in your code editor.
 
 2. Add `frame-support` and `frame-system` to the dependencies.
    
    ```toml
    [dependencies]
-   frame-support = { default-features = false, version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.31"}frame-system = { default-features = false, version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.31" }
+   frame-support = { default-features = false, version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.31"}
+   frame-system = { default-features = false, version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.31" }
    ```
 
 3. Add `codec` and `scale-info` to the dependencies.
