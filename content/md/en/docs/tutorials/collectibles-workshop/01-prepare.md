@@ -75,3 +75,10 @@ To make Substrate collectibles a user-facing application, you'll want tools for 
 - [ ] Basic UI/UX framework, such as React, Vue, Bootstrap, or Angular.
 
 For help selecting front-end libraries see [Detour: Select front-end tools](/tutorials/collectibles-workshop/detours/select-ui-tools/).
+
+## Node template
+
+To complete the workshop, you must have access to a Substrate node.
+If you are setting up a local development environment, you can download and compile the Developer Hub [substrate-node-template](https://github.com/substrate-developer-hub/substrate-node-template/tags/) as described in the [Quick start](/quickstart/). 
+
+The `substrate-node-template` repository provides is a snapshot of the main Substrate `node-template` binary and includes everything you need to get started with a functional node and a core set of features.
