@@ -439,7 +439,7 @@ blockchain.
 To do this we can use the following command:
 
 ```bash
-cargo contract call --contract PUT_CONTRACT_ADDRESS_HERE --message flip --suri //Alice
+cargo contract call --contract $INSTANTIATED_CONTRACT_ADDRESS --message flip --suri //Alice
 ```
 
 Notice that we changed the message to `flip` and removed the `--dry-run` flag.
