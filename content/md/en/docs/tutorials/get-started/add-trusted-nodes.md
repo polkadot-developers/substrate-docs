@@ -311,7 +311,7 @@ To start the first node:
       --name MyNode01 \
       --password-interactive
    ```
-You will be asked for a keystore password, Type the password you used to generate the node01 keys.
+You will be asked for a keystore password, type the password you used to generate the node01 keys.
 
 Note the following command-line options you are using to start the node:
 
