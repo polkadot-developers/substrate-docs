@@ -269,6 +269,7 @@ To implement this logic in the proof-of-existence pallet:
     #[pallet::call]
     impl<T: Config> Pallet<T> {
       #[pallet::weight(0)]
+      #[pallet::call_index(1)]
       pub fn create_claim(origin: OriginFor<T>, claim: T::Hash) -> DispatchResult {
         // Check that the extrinsic was signed and get the signer.
         // This function will return an error if the extrinsic is not signed.
@@ -290,6 +291,7 @@ To implement this logic in the proof-of-existence pallet:
       }
 
       #[pallet::weight(0)]
+      #[pallet::call_index(2)]
       pub fn revoke_claim(origin: OriginFor<T>, claim: T::Hash) -> DispatchResult {
         // Check that the extrinsic was signed and get the signer.
         // This function will return an error if the extrinsic is not signed.

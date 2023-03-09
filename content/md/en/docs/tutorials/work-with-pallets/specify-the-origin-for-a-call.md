@@ -17,7 +17,7 @@ It implements the following functions:
 - The `kill_name` function to forcibly remove an account name for another party without returning the deposit.
 - The `force_name` function to set an account name for another party without requiring a deposit.
 
-This tutorial illustrates how you can call these functions using using different originating accounts and why calling the functions using different originating accounts matters.
+This tutorial illustrates how you can call these functions using different originating accounts and why calling the functions using different originating accounts matters.
 
 ## Before you begin
 
