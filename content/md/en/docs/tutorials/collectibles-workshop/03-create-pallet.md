@@ -145,7 +145,7 @@ The next step is to prepare a set of common macros to serve as scaffolding for y
    
    pub use pallet::*;
    
-   #[frame_support::pallet]
+   #[frame_support::pallet(dev_mode)]
    pub mod pallet {
         use frame_support::pallet_prelude::*;
         use frame_system::pallet_prelude::*;
