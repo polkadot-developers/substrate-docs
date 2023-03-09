@@ -13,7 +13,7 @@ keywords:
 ---
 
 
-Cryptography is what provides the mathematical certainty behind consensus systems, data integrity, and user security. While understanding the fundamental overarching applications of cryptography as they relate to blockchain is essential for the average developer, the underlying mathematical processes themselves are not necessarily relevant. This page provides the base context for the various implementations of cryptography across Parity and the ecosystem more broadly.
+Cryptography is what provides the mathematical verifiableness behind consensus systems, data integrity, and user security. While understanding the fundamental overarching applications of cryptography as they relate to blockchain is essential for the average developer, the underlying mathematical processes themselves are not necessarily relevant. This page provides the base context for the various implementations of cryptography across Parity and the ecosystem more broadly.
 
 ## Hash functions
 
