@@ -165,6 +165,18 @@ To add a storage map to the `incrementer` contract:
    }
    ```
 
+1. In the `default` constructor add a new default `Mapping` along with the already defined default `value`.
+
+    ```rust
+    #[ink(constructor)]
+    pub fn default() -> Self {
+    Self {
+            value: 0,
+            my_map: Mapping::default(),
+        }
+    }
+    ```
+
 1. Add a `get_mine()` function to read `my_map` using the Mapping API's `get()` method and return `my_map` for the
    contract caller.
 

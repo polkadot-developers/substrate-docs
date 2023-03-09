@@ -10,7 +10,7 @@ To keep the code modular and flexible, most of the logic is defined in internal 
 One advantage of using internal functions is that you don't need to do any kind of authentication or authorization for the operations performed because the internal functions are only accessible to you as the runtime developer.
 
 The only function you need to expose to users for this workshop is the `create_collectible` function.
-This function enables users to create new unique collectibles that are stored in the CollectibleMap and added to the OwnerOfCollectibles map.
+This function enables users to create new unique collectibles that are stored in the `CollectibleMap` and added to the `OwnerOfCollectibles` map.
 At a high level, you'll need to write functions to perform the following tasks:
 
 - Create a unique identifier for each collectible and not allow duplicates.
@@ -28,17 +28,17 @@ Errors and events are fairly straightforward, so let's start with those declarat
 
 ## Add custom errors
 
-You've identified the following potential errors that your function should address:
+Here are some potential errors that the `create_collectible` function should address:
 
-- DuplicateCollectible
-- MaximumCollectiblesOwned
-- BoundsOverflow
+- `DuplicateCollectible` - thrown when the collectible item trying to be created already exists.
+- `MaximumCollectiblesOwned`- thrown when an account exceeds the maximum amount of collectibles a single account can hold.
+- `BoundsOverflow` - thrown if the supply of collectibles exceeds the `u64` limit.
 
 To add the error handling to the runtime:
 
-1. Open the `src/lib.rs` file for the `collectibles` pallet in a text editor.
+1. Open the `src/lib.rs` file for the `collectibles` pallet in your code editor.
 
-2. Add the #[pallet::error] macro after the storage macros you previously defined.
+2. Add the `#[pallet::error]` macro after the storage macros you previously defined.
    
 	 ```rust
 	 #[pallet::error]
@@ -57,7 +57,7 @@ To add the error handling to the runtime:
 	}
 	```
 
-1. Save your changes and close the file.
+1. Save your changes.
 
 1. Verify that your program compiles by running the following command:
    
@@ -69,19 +69,20 @@ To add the error handling to the runtime:
 
 ## Add an event
 
-The runtime can emit events to notify front-end applications—and through the front-end application interface, end-users—about the result of a transaction that executed successfully. 
+The runtime can emit events to notify front-end applications about the result of a transaction that executed successfully. 
 Block explorers like [Subscan](https://www.subscan.io/) and the [Polkadot/Substrate Portal Explorer](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frpc.polkadot.io#/explorer) also display events for completed transactions.
 
 To add a `CollectibleCreated` event to the runtime:
 
-1. Open the `src/lib.rs` file for the `collectibles` pallet in a text editor.
+1. Open the `src/lib.rs` file for the `collectibles` pallet in your code editor.
 
 1. Add the `RuntimeEvent` from the `frame_system` configuration to the pallet configuration.
    
 	 ```rust
 	 #[pallet::config]
-   pub trait Config: frame_system::Config {
-		 type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_system::Config>::RuntimeEvent>;
+     pub trait Config: frame_system::Config {
+		type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_system::Config>::RuntimeEvent>;
+	}
 	 ```
 
 2. Add the `#[pallet::event]` macro after the error macro you previously defined.
@@ -95,12 +96,12 @@ To add a `CollectibleCreated` event to the runtime:
 	 ```rust
 	 #[pallet::generate_deposit(pub(super) fn deposit_event)]
 	 pub enum Event<T: Config> {
-		  /// A new collectible was successfully created.
-			CollectibleCreated { collectible: [u8; 16], owner: T::AccountId },
+		 /// A new collectible was successfully created
+		 CollectibleCreated { collectible: [u8; 16], owner: T::AccountId },
 	 }
 	 ```
 
-1. Save your changes and close the file.
+1. Save your changes.
 
 1. Verify that your program compiles by running the following command:
    
@@ -118,41 +119,42 @@ With errors and events out of the way, it's time to write the core logic for cre
    
 	 ```rust
 	 // Pallet internal functions
-	 impl<T: Config> Pallet<T> {
-		 // Generates and returns the unique_id and color
-		 fn gen_unique_id() -> ([u8; 16], Color) {
-			 // Create randomness
-			 let random = T::CollectionRandomness::random(&b"unique_id"[..]).0;
-			 
-			 // Create randomness payload. Multiple collectibles can be generated in the same block,
-			 // retaining uniqueness.
-			 let unique_payload = (
-				 random,
-				 frame_system::Pallet::<T>::extrinsic_index().unwrap_or_default(),frame_system::Pallet::<T>::block_number(),
-			);
+	impl<T: Config> Pallet<T> {
+		// Generates and returns the unique_id and color
+		fn gen_unique_id() -> ([u8; 16], Color) {
+			// Create randomness
+			let random = T::CollectionRandomness::random(&b"unique_id"[..]).0;
 			
-			// Turns into a byte array
-			let encoded_payload = unique_payload.encode();
-			let hash = frame_support::Hashable::blake2_128(&encoded_payload);
-			
-			// Generate Color 
-			if hash[0] % 2 == 0 {
-				 (hash, Color::Red)
-			} else {
-				 (hash, Color::Yellow)
+			// Create randomness payload. Multiple collectibles can be generated in the same block,
+			// retaining uniqueness.
+			let unique_payload = (
+				random,
+				frame_system::Pallet::<T>::extrinsic_index().unwrap_or_default(),frame_system::Pallet::<T>::block_number(),
+		);
+		
+		// Turns into a byte array
+		let encoded_payload = unique_payload.encode();
+		let hash = frame_support::Hashable::blake2_128(&encoded_payload);
+		
+		// Generate Color 
+		if hash[0] % 2 == 0 {
+				(hash, Color::Red)
+		} else {
+				(hash, Color::Yellow)
 			} 
-		 }
+		}
+	}
    ```
 
 1. Create an internal function that enables minting new collectibles.
    
 	 ```rust
-	 // Function to mint a collectible
-	 pub fn mint(
-		 owner: &T::AccountId,
-		 unique_id: [u8; 16],
-		 color: Color,
-		 ) -> Result<[u8; 16], DispatchError> {
+	     // Function to mint a collectible
+		pub fn mint(
+			owner: &T::AccountId,
+			unique_id: [u8; 16],
+			color: Color,
+		) -> Result<[u8; 16], DispatchError> {
 			// Create a new object
 			let collectible = Collectible::<T> { unique_id, price: None, color, owner: owner.clone() };
 			
@@ -171,7 +173,7 @@ With errors and events out of the way, it's time to write the core logic for cre
 			CollectibleMap::<T>::insert(collectible.unique_id, collectible);
 			CollectiblesCount::<T>::put(new_count);
 			
-			// Deposit the "Collectiblereated" event.
+			// Deposit the "CollectibleCreated" event.
 			Self::deposit_event(Event::CollectibleCreated { collectible: unique_id, owner: owner.clone() });
 			
 			// Returns the unique_id of the new collectible if this succeeds
@@ -205,12 +207,10 @@ With errors and events out of the way, it's time to write the core logic for cre
 	 }
    ```
 
-1. Save your changes and close the file.
-
-1. Verify that your program compiles by running the following command:
+1. Save your changes and verify that your program compiles by running the following command:
    
    ```bash
    cargo build --package collectibles
    ```
 
-	 Your code should now compile without any warnings.
+  Your code should now compile without any warnings.

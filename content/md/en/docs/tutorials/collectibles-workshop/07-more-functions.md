@@ -86,7 +86,7 @@ The publicly callable function simply checks the origin of the caller and calls 
 			}
 				// Add collectible to the list of owned collectibles.
 				let mut to_owned = OwnerOfCollectibles::<T>::get(&to);
-				to_owned.try_push(collectible_id).map_err(|()| Error::<T>::MaximumCollectiblesOwned)?;
+				to_owned.try_push(collectible_id).map_err(|_id| Error::<T>::MaximumCollectiblesOwned)?;
 				
 				// Transfer succeeded, update the owner and reset the price to `None`.
 				collectible.owner = to.clone();
@@ -100,7 +100,7 @@ The publicly callable function simply checks the origin of the caller and calls 
 				Self::deposit_event(Event::TransferSucceeded { from, to, collectible: collectible_id });
 			Ok(())
 		}
-		```
+	```
 
 1. Create the callable function.
    
@@ -123,7 +123,7 @@ The publicly callable function simply checks the origin of the caller and calls 
 	 }
    ```
 
-1. Save your changes and close the file.
+1. Save your changes.
 
 2. Verify that your program compiles without errors by running the following command:
    
@@ -151,13 +151,13 @@ If the checks pass, the function writes the new price to storage and emits a `Pr
 	 #[pallet::event]
 	 #[pallet::generate_deposit(pub(super) fn deposit_event)]
 	 pub enum Event<T: Config> {
-	   /// A new collectible was successfully created.
-     CollectibleCreated { collectible: [u8; 16], owner: T::AccountId },
-     /// A collectible was successfully transferred.
-     TransferSucceeded { from: T::AccountId, to: T::AccountId, collectible: [u8; 16] },
-		 /// The price of a collectible was successfully set.
-		 PriceSet { collectible: [u8; 16], price: Option<BalanceOf<T>> },
-	 }
+		/// A new collectible was successfully created.
+		CollectibleCreated { collectible: [u8; 16], owner: T::AccountId },
+     	/// A collectible was successfully transferred.
+     	TransferSucceeded { from: T::AccountId, to: T::AccountId, collectible: [u8; 16] },
+		/// The price of a collectible was successfully set.
+		PriceSet { collectible: [u8; 16], price: Option<BalanceOf<T>> },
+		}
 	 ```
 
 2. Add the callable function for setting a price.
@@ -198,12 +198,12 @@ To enable users to buy collectibles, you need to expose another callable functio
 For this workshop, the internal function is `do_buy_collectible` and it does most of the heavy lifting to determine whether the attempt to purchase a collectible will succeed.
 For example, the `do_buy_collectible` internal function checks that:
 
-- The proposed buying price is greater than or equal to the price set for the collectible by its owner and return the `BidPriceTooLow` error if the proposed price is too low.
-- The collectible is for sale and return a `NotForSale` error if the collectible price is `None`.
+- The proposed buying price is greater than or equal to the price set for the collectible by its owner and returns the `BidPriceTooLow` error if the proposed price is too low.
+- The collectible is for sale and returns a `NotForSale` error if the collectible price is `None`.
 - The account for the buyer has a free balance available to cover the price set for the collectible.
 - The account for the buyer doesn't already own too many collectibles to receive another collectible.
 
-If all of the checks pass, the `do_buy_collectible` internal function updates account balances and transfers ownership of the collectible using `Currency` trait and its transfer method.
+If all of the checks pass, the `do_buy_collectible` internal function updates account balances and transfers ownership of the collectible using the `Currency` trait's transfer method.
 
 With most of the work done by the internal function, the publicly exposed `buy_collectible` function simply verifies the account of the function caller and calls the `do_buy_collectible` function.
 
@@ -225,11 +225,10 @@ With most of the work done by the internal function, the publicly exposed `buy_c
         NotOwner,
         /// Trying to transfer a collectible to yourself
         TransferToSelf,
-				/// The bid is lower than the asking price.
-				BidPriceTooLow,
-				/// The collectible is not for sale.
-				NotForSale,
-
+		/// The bid is lower than the asking price.
+		BidPriceTooLow,
+		/// The collectible is not for sale.
+		NotForSale,
       }
 
 2. Add the `Sold` event to your Pallet.
@@ -246,7 +245,7 @@ With most of the work done by the internal function, the publicly exposed `buy_c
         /// The price of a collectible was successfully set.
         PriceSet { collectible: [u8; 16], price: Option<BalanceOf<T>> },
         /// A collectible was successfully sold.
-				Sold { seller: T::AccountId, buyer: T::AccountId, collectible: [u8; 16], price: BalanceOf<T> },
+		Sold { seller: T::AccountId, buyer: T::AccountId, collectible: [u8; 16], price: BalanceOf<T> },
       }
 		```
 
@@ -274,7 +273,7 @@ With most of the work done by the internal function, the publicly exposed `buy_c
 		}
 	 // Add collectible to owned collectible.
 	 let mut to_owned = OwnerOfCollectibles::<T>::get(&to);
-	 to_owned.try_push(unique_id).map_err(|()| Error::<T>::MaximumCollectiblesOwned)?;
+	 to_owned.try_push(unique_id).map_err(|_id| Error::<T>::MaximumCollectiblesOwned)?;
 	 // Mutating state with a balance transfer, so nothing is allowed to fail after this.
 	 if let Some(price) = collectible.price {
 			ensure!(bid_price >= price, Error::<T>::BidPriceTooLow);
