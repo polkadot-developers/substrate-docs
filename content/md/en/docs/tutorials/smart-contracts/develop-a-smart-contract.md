@@ -121,7 +121,8 @@ functionality.
 
 For example, this smart contract requires storage of simple values.
 
-The following code in this section is intended to illustrate the functionality of the ink! language. The code you will be using in the rest of this tutorial begins in the next section, [Update your smart contract](#update-your-smart-contract).
+The following code in this section is intended to illustrate the functionality of the ink! language.
+The code you will be using in the rest of this tutorial begins in the next section, [Update your smart contract](#update-your-smart-contract).
 
 You can store simple values for a contract using the `#[ink(storage)]` attribute macro:
 
