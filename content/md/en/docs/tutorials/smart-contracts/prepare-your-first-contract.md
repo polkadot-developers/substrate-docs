@@ -104,7 +104,8 @@ To install the contracts node on macOS or Linux:
 
 1. Open the downloaded file and extract the contents to a working directory.
 
-If you can't download the precompiled node, you can compile it locally with a command similar to the following. You can find the latest tag on the [Releases](https://github.com/paritytech/substrate-contracts-node/releases) page:
+If you can't download the precompiled node, you can compile it locally with a command similar to the following. 
+You can find the latest tag on the [Releases](https://github.com/paritytech/substrate-contracts-node/releases) page:
 
 ```bash
 cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag <latest-tag> --force --locked
