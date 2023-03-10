@@ -4,7 +4,7 @@ description: Introduces the core components of a Substrate node.
 keywords:
 ---
 
-As noted in [Blockchain basics](/fundamentals/blockchain-basics), a blockchain relies on a decentralized network of computers—called nodes—that communicate with each other.
+As noted in [Blockchain basics](/learn/blockchain-basics), a blockchain relies on a decentralized network of computers—called nodes—that communicate with each other.
 
 Because the node is a core component of any blockchain, it’s important to understand what makes a Substrate node unique, including the core services and libraries that are provided by default and how the node can be customized and extended to suit different project goals.
 
@@ -29,11 +29,11 @@ For example, the outer node is responsible for handling peer discovery, managing
 
 Some of the most important activities that are handled by the outer node involve the following components:
 
-- [Storage](/fundamentals/state-transitions-and-storage/): The outer node persists the evolving state of a Substrate blockchain using a simple and highly efficient key-value storage layer.
+- [Storage](/learn/state-transitions-and-storage/): The outer node persists the evolving state of a Substrate blockchain using a simple and highly efficient key-value storage layer.
 
-- [Peer-to-peer networking](/fundamentals/node-and-network-types/): The outer node uses the Rust implementation of the [`libp2p` network stack](https://libp2p.io/) to communicate with other network participants.
+- [Peer-to-peer networking](/learn/node-and-network-types/): The outer node uses the Rust implementation of the [`libp2p` network stack](https://libp2p.io/) to communicate with other network participants.
 
-- [Consensus](/fundamentals/consensus/): The outer node communicates with other network participants to ensure they agree on the state of the blockchain.
+- [Consensus](/learn/consensus/): The outer node communicates with other network participants to ensure they agree on the state of the blockchain.
 
 - [Remote procedure call (RPC) API](/build/remote-procedure-calls/): The outer node accepts inbound HTTP and WebSocket requests to allow blockchain users to interact with the network.
 
@@ -72,8 +72,8 @@ With a light client node, you can use RPC endpoints written in Rust, JavaScript,
 
 Now that you have an overview of the Substrate architecture and core node components, explore the following topics to learn more.
 
-- [Networks and blockchains](/fundamentals/node-and-network-types)
-- [Transactions and block basics](/fundamentals/transaction-types)
-- [Transaction lifecycle](/fundamentals/transaction-lifecycle/)
-- [State transitions and storage](/fundamentals/state-transitions-and-storage/)
+- [Networks and blockchains](/learn/node-and-network-types)
+- [Transactions and block basics](/learn/transaction-types)
+- [Transaction lifecycle](/learn/transaction-lifecycle/)
+- [State transitions and storage](/learn/state-transitions-and-storage/)
 - [Runtime APIs](/reference/runtime-apis/)

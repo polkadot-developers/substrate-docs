@@ -9,7 +9,7 @@ The program used to serialize and deserialize data is called the SCALE codec, wi
 
 The SCALE codec is a critical component for communication between the runtime and the outer node.
 
-It is designed for high-performance, copy-free encoding and decoding of data in resource-constrained execution environments like the Substrate [WebAssembly runtime](/fundamentals/runtime-development//).
+It is designed for high-performance, copy-free encoding and decoding of data in resource-constrained execution environments like the Substrate [WebAssembly runtime](/learn/runtime-development//).
 
 The SCALE codec is not self-describing in any way.
 It assumes the decoding context has all type knowledge about the encoded data.

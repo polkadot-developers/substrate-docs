@@ -4,15 +4,11 @@ description: Explains the core principles behind the design of Substrate and how
 keywords:
 ---
 
-[Why Substrate](/fundamentals/why-substrate/) introduced some of the core characteristics and benefits of the Substrate development environment.
-If those benefits—flexibility, open source, interoperability, and upgradeability—are important to you, you might want to dig deeper into what Substrate is and into why it's designed the way it is.
-With this in mind, let's look more closely at what Substrate is.
+Substrate is a Rust-based framework for building purpose-driven blockchains that can interoperate in a multi-chain network, much like the internet enables computers on diverse networks to interoperate.
 
-## Multi-chain vision
-
-Substrate is a Rust-based framework for building blockchain applications using modular and extensible components to support a multi-chain block space.
 An important part of learning how to use this framework is understanding that it envisions and embraces a multi-chain universe.
-Instead of a single chain with limited features and scalability, Substrate is designed to allow for specialization, optimization, and scalability.
+Instead of a single general-purpose chain with the limitations of the underlying environment, Substrate is designed to allow for specialization, optimization, and adaptability.
+
 In this vision of the future—a multi-chain future—blockchains are specialized for different purposes and built to address specific problems or use cases.
 Substrate is designed to make blockchains easy to customize and upgrade, so that projects can evolve over time and adapt to new opportunities. 
 Instead of a single dominant chain with an inflexible protocol, Substrate is designed to allow for experimentation, coordination, and collaboration across multiple chains.

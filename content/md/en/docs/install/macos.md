@@ -194,8 +194,8 @@ Here are a few additional suggestions for where you can learn more.
 
 #### Tell me
 
-- [Architecture](/fundamentals/architecture/)
-- [Networks and blockchains](/fundamentals/node-and-network-types/)
+- [Architecture](/learn/architecture/)
+- [Networks and blockchains](/learn/node-and-network-types/)
 - [Build process](/build/build-process)
 
 #### Guide me

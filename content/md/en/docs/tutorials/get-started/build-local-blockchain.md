@@ -4,7 +4,7 @@ description: Compile, launch, and interact with a single local blockchain node i
 keywords:
 ---
 
-As you learned in [Blockchain basics](/fundamentals/blockchain-basics/), a blockchain consists of decentralized computers—called nodes—to form a network.
+As you learned in [Blockchain basics](/learn/blockchain-basics/), a blockchain consists of decentralized computers—called nodes—to form a network.
 
 Substrate provides a flexible, open, and extensible development environment that allows you to design and build fully-customized blockchain nodes to suit your application or business model needs.
 
@@ -298,8 +298,8 @@ In this tutorial, you learned:
 The front-end template includes several additional components for you to experiment with while you're connected to a local development node.
 You can explore these components on your own or learn more in the following topics:
 
-- [Architecture](/fundamentals/architecture/)
-- [Networks and blockchains](/fundamentals/node-and-network-types/)
+- [Architecture](/learn/architecture/)
+- [Networks and blockchains](/learn/node-and-network-types/)
 - [Simulate a network](/tutorials/get-started/simulate-network/)
 - [Submit an issue](https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose)
 - [Substrate Stack Exchange](https://substrate.stackexchange.com/)

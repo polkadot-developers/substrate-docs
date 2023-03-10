@@ -22,7 +22,7 @@ However, transaction fees and other elements of transaction processing depend on
 
 ## Where transactions are defined
 
-As discussed in [Runtime development](/fundamentals/runtime-development/), the Substrate runtime contains the business logic that defines transaction properties, including:
+As discussed in [Runtime development](/learn/runtime-development/), the Substrate runtime contains the business logic that defines transaction properties, including:
 
 - What constitutes a valid transaction.
 - Whether the transactions are sent as signed or unsigned.
@@ -45,7 +45,7 @@ Any signed or unsigned transaction that's sent to a [non-authoring node]() is go
 
 ## Validating and queuing transactions
 
-As discussed in [Consensus](/fundamentals/consensus/), a majority of nodes in the network must agree on the order of transactions in a block to agree on the state of the blockchain and to continue securely adding blocks.
+As discussed in [Consensus](/learn/consensus/), a majority of nodes in the network must agree on the order of transactions in a block to agree on the state of the blockchain and to continue securely adding blocks.
 To reach consensus, two-thirds of the nodes must agree on the order of the transactions executed and the resulting state change.
 To prepare for consensus, transactions are first validated and queued on the local node in a **transaction pool**.
 
@@ -181,6 +181,6 @@ However, if you plan to write any custom consensus logic or want to know more ab
 <!-- add these back -->
 
 - [Seminar: Lifecycle of a transaction](https://www.youtube.com/watch?v=3pfM0GOp02c)
-- [Accounts, addresses, and keys](/fundamentals/accounts-addresses-keys/)
-<!-- * [Transaction formats](/fundamentals/transaction-format/
+- [Accounts, addresses, and keys](/learn/accounts-addresses-keys/)
+<!-- * [Transaction formats](/learn/transaction-format/
 ) -->

@@ -135,6 +135,6 @@ Before you begin, verify the following:
 In this _Quick start_, you learned how to compile and run a single blockchain node on your local computer.
 To start learning how to customize its features, explore the following resources:
 
-- [Architecture](/fundamentals/architecture/)
-- [Runtime development](/fundamentals/runtime-development/)
-- [Rust for Substrate](/fundamentals/rust-basics/)
+- [Architecture](/learn/architecture/)
+- [Runtime development](/learn/runtime-development/)
+- [Rust for Substrate](/learn/rust-basics/)

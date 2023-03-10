@@ -609,6 +609,6 @@ To make your data structure signable:
 This tutorial provides simple examples of how you can use offchain workers to send transactions for on-chain storage.
 To learn more, explore the following resources:
 
-- [Offchain operations](/fundamentals/offchain-operations/)
+- [Offchain operations](/learn/offchain-operations/)
 - [Offchain worker example](https://github.com/paritytech/substrate/tree/master/frame/examples/offchain-worker)
 - [Offchain worker demo](https://github.com/jimmychu0807/substrate-offchain-worker-demo/tree/v2.0.0/pallets/ocw)

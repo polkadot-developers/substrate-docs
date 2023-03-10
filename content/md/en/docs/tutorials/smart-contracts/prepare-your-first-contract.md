@@ -4,7 +4,7 @@ description: Build and test a simple smart contract using the ink! smart contrac
 keywords:
 ---
 
-As you learned in [Blockchain basics](/main-docs/fundamentals/blockchain-basics/) decentralized applications are most often written as **smart contracts**.
+As you learned in [Blockchain basics](/main-docs/learn/blockchain-basics/) decentralized applications are most often written as **smart contracts**.
 
 Although Substrate is primarily a framework and toolkit for building custom blockchains, it can also provide a platform
 for smart contracts.

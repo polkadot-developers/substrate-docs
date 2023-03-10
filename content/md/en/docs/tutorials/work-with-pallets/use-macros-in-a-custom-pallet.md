@@ -65,7 +65,7 @@ The proof-of-existence application exposes the following callable functions:
 ## Build a custom pallet
 
 The Substrate node template has a FRAME-based runtime.
-As you learned in [Runtime development](/fundamentals/runtime-development), FRAME is a library of code that allows you to build a Substrate runtime by composing modules called pallets.
+As you learned in [Runtime development](/learn/runtime-development), FRAME is a library of code that allows you to build a Substrate runtime by composing modules called pallets.
 You can think of the pallets as specialized logical units that define what your blockchain can do.
 Substrate provides you with a number of pre-built pallets for use in FRAME-based runtimes.
 

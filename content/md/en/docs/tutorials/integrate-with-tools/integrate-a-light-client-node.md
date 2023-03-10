@@ -4,7 +4,7 @@ description: Demonstrates how you can connect to Substrate-based blockchains usi
 keywords:
 ---
 
-As you learned in [Light clients in Substrate Connect](/fundamentals/light-clients-in-substrate-connect/), light client nodes provide secure and decentralized access to blockchain data with minimal hardware and software requirements.
+As you learned in [Light clients in Substrate Connect](/learn/light-clients-in-substrate-connect/), light client nodes provide secure and decentralized access to blockchain data with minimal hardware and software requirements.
 
 This tutorial demonstrates how you can use a WebAssembly light client node running in a browser to connect to a Substrate-based blockchain.
 In this tutorial, you'll use the Substrate Connect browser extension to interact with the blockchain directly without using an intermediary node or RPC server.

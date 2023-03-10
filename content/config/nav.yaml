@@ -16,49 +16,49 @@ quick-start:
   url: /quick-start/
 
 fundamentals:
-  title: Fundamentals
-  url: /fundamentals/
+  title: Learn
+  url: /learn/
   pages:
     - title: Blockchain basics
-      url: /fundamentals/blockchain-basics/
-    - title: Why Substrate?
-      url: /fundamentals/why-substrate/
+      url: /learn/blockchain-basics/
+    - title: Substrate at a glance
+      url: /learn/substrate-at-a-glance/
     - title: What is Substrate?
-      url: /fundamentals/what-is-substrate/
+      url: /learn/what-is-substrate/
     - title: Architecture
-      url: /fundamentals/architecture/
+      url: /learn/architecture/
     - title: Cryptography
       url: /reference/cryptography/
     - title: Networks and blockchains
-      url: /fundamentals/node-and-network-types/
+      url: /learn/node-and-network-types/
     - title: Runtime development
-      url: /fundamentals/runtime-development/
+      url: /learn/runtime-development/
     - title: Consensus
-      url: /fundamentals/consensus/
+      url: /learn/consensus/
     - title: Transactions and block basics
-      url: /fundamentals/transaction-types/
+      url: /learn/transaction-types/
     - title: Transaction lifecycle
-      url: /fundamentals/transaction-lifecycle/
+      url: /learn/transaction-lifecycle/
     # - title: Block import pipeline
-    # url: /fundamentals/block-import/
+    # url: /learn/block-import/
     # - title: Extrinsics
-    # url: /fundamentals/extrinsics/
+    # url: /learn/extrinsics/
     # - title: Execution
-    # url: /fundamentals/execution/
+    # url: /learn/execution/
     # - title: Runtimes and clients
-    # url: /fundamentals/runtimes-and-clients/
+    # url: /learn/runtimes-and-clients/
     - title: State transitions and storage
-      url: /fundamentals/state-transitions-and-storage/
+      url: /learn/state-transitions-and-storage/
     - title: Accounts, addresses, and keys
-      url: /fundamentals/accounts-addresses-keys/
+      url: /learn/accounts-addresses-keys/
     - title: Rust for Substrate
-      url: /fundamentals/rust-basics/
+      url: /learn/rust-basics/
     - title: Offchain operations
-      url: /fundamentals/offchain-operations/
+      url: /learn/offchain-operations/
     - title: Light clients in Substrate Connect
-      url: /fundamentals/light-clients-in-substrate-connect/
+      url: /learn/light-clients-in-substrate-connect/
     - title: Cross-consensus messaging
-      url: /fundamentals/xcm-communication/
+      url: /learn/xcm-communication/
 
 install:
   title: Install

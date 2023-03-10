@@ -98,10 +98,10 @@ You can explore the following resources to learn more.
 
 #### Tell me
 
-- [Fundamentals](/fundamentals/)
-- [Why Substrate?](/fundamentals/why-substrate/)
-- [Architecture](/fundamentals/architecture/)
-- [Networks and blockchains](/fundamentals/node-and-network-types/)
+- [Fundamentals](/learn/)
+- [Why Substrate?](/learn/why-substrate/)
+- [Architecture](/learn/architecture/)
+- [Networks and blockchains](/learn/node-and-network-types/)
 
 #### Guide me
 
