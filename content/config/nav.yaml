@@ -27,6 +27,8 @@ fundamentals:
       url: /fundamentals/what-is-substrate/
     - title: Architecture
       url: /fundamentals/architecture/
+    - title: Cryptography
+      url: /reference/cryptography/
     - title: Networks and blockchains
       url: /fundamentals/node-and-network-types/
     - title: Runtime development
@@ -318,8 +320,6 @@ reference:
       url: /reference/address-formats/
     - title: Transaction formats
       url: /reference/transaction-format/
-    - title: Cryptography
-      url: /reference/cryptography/
     - title: XCM reference
       url: /reference/xcm-reference/
     - title: How-to reference guides
