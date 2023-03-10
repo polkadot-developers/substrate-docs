@@ -69,8 +69,9 @@ To compile the Substrate node template:
    git clone https://github.com/substrate-developer-hub/substrate-node-template
    ```
 
-   In most cases, you can clone the `main` branch to get the latest code.
-   However, you can use the `--branch` command-line option if you want to work with a Substrate branch that is compatible with a specific Polkadot version.
+   This command clones the `main` branch. 
+   If you are familiar with Polkadot, and want to work with a specific Polkadot version, you can use the `--branch` command-line option to select the specific branch that you want to work with.
+
    Click [Releases](https://github.com/paritytech/polkadot/releases) or [Tags](https://github.com/paritytech/polkadot/tags) to see the latest and earlier Polkadot branches that you can use with the node template.
 
 2. Change to the root of the node template directory by running the following command:
@@ -79,13 +80,17 @@ To compile the Substrate node template:
    cd substrate-node-template
    ```
 
-   If you want to save your changes and make this branch easy to identify, you can create a new branch by running a command similar to the following:
+   Create a new branch to contain your work:
 
    ```bash
-   git switch -c my-working-branch-mm-yyyy
+   git switch -c my-learning-branch-yyyy-mm-dd
    ```
 
-   If you create a working branch for you node, replace `mm-yyyy` with identifying information, such as the current month and year or the version of Polkadot you are working with.
+   Replace `yyyy-mm-dd` with any identifying information that you desire, but we recommend a numerical year-month-day format. For example:
+
+   ```bash
+   git switch -c my-learning-branch-2023-03-01
+   ```
 
 3. Compile the node template by running the following command:
 
@@ -93,7 +98,14 @@ To compile the Substrate node template:
    cargo build --release
    ```
 
-   You should always use the `--release` flag to build optimized artifacts.
+   You should always use the `--release` flag to build optimized artifacts. 
+   The first time you compile this, it takes some time to complete.
+
+   It should complete with a line something like this:
+
+   ```bash
+   Finished release [optimized] target(s) in 11m 23s
+   ```
 
 ## Start the local node
 
@@ -101,11 +113,7 @@ After your node compiles, you are ready to start exploring what it does using th
 
 To start the local Substrate node:
 
-1. Open a terminal shell.
-
-1. Change to the root directory where you compiled the Substrate node template.
-
-1. Start the node in development mode by running the following command:
+1. In the same terminal where you compiled your node, you can now start the node in development mode by running the following command:
 
    ```bash
    ./target/release/node-template --dev
@@ -116,7 +124,7 @@ To start the local Substrate node:
    By default, this option also deletes all active data—such as keys, the blockchain database, and networking information when you stop the node by pressing Control-c.
    Using the `--dev` option ensures that you have a clean working state any time you stop and restart the node.
 
-1. Verify your node is up and running successfully by reviewing the output displayed in the terminal.
+2. Verify your node is up and running successfully by reviewing the output displayed in the terminal.
 
    The terminal should display output similar to this:
 
@@ -145,7 +153,7 @@ To start the local Substrate node:
    We'll explore the details of the log output in a later tutorial.
    For now, it's only important to know that your node is running and producing blocks.
 
-1. Keep the terminal that displays the node output open to continue.
+3. Keep the terminal that displays the node output open to continue.
 
 ## Install the front-end template
 
@@ -164,7 +172,10 @@ To install the front-end template:
    node --version
    ```
 
-   If the command doesn’t return a version number, download and install `node` by following the instructions for the operating system you use on the [Node.js](https://nodejs.org/) website.
+   If you have `node` installed, this command returns a version number like `v19.7.0`.
+
+   If the command doesn’t return a version number, download and install `node` by following the instructions for the operating system you use on the [Node.js](https://nodejs.org/) website, or by installing and using the [`nvm`](https://github.com/nvm-sh/nvm) node version manager.
+
    The `node` version should be at least **v14** to run the front-end template.
 
 3. Check whether `yarn` is installed on your local computer by running the following command:
@@ -175,11 +186,7 @@ To install the front-end template:
 
    The `yarn` version should be at least **v3** to run the front-end template.
    You can use `yarn version` and specify a version number to update `yarn` if you have an older version installed.
-   If the command doesn’t return a version number, download and install `yarn` by running the following command:
-
-   ```bash
-   npm install --global yarn
-   ```
+   If the command doesn’t return a version number, or if you have any questions about installing a particular `yarn` version, follow the instruction on the [Yarn](https://yarnpkg.com/getting-started/install) website to install `yarn`.
 
 4. Clone the front-end template repository by running the following command:
 
@@ -205,7 +212,7 @@ The Substrate front-end template consists of user interface components to enable
 
 To use the front-end template:
 
-1. Verify that your current working directory is the root directory where you installed the front-end template.
+1. Verify that your current working directory is the root directory where you installed the front-end template in the previous section.
 
 1. Start the front-end template by running the following command:
 
@@ -213,7 +220,8 @@ To use the front-end template:
    yarn start
    ```
 
-1. Open `http://localhost:8000` in a browser to view the front-end template.
+   Typically, running the `yarn start` command opens `http://localhost:8000` in your default browser automatically.
+   If necessary, you can manually specify the `http://localhost:8000` URL to view the front-end template.
 
    The top section has an Account selection list for selecting the account to work with when you want to perform on-chain operations.
    The top section of the template also displays information about the chain to which you're connected.
