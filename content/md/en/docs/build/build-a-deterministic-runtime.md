@@ -30,7 +30,7 @@ For example, the image `paritytech/srtool:1.62.0` indicates that the code in the
 Because `srtool` is a Docker container, you must have Docker available in your build environment to use it.
 However, you don't need to know anything about using Docker to build a Substrate-based chain using `srtool` because you can use the `srtool-cli` command-line interface to work with Docker images.
 
-The `srtiool-cli` package is a command-line utility written in Rust that installs an executable program called `srtool` on your computer. 
+The `srtool-cli` package is a command-line utility written in Rust that installs an executable program called `srtool` on your computer. 
 This program simplifies your interactions with the srtool Docker container. 
 Over time, the tooling around the `srtool` Docker image has expanded to include the following tools and helper programs:
 
@@ -46,7 +46,7 @@ Over time, the tooling around the `srtool` Docker image has expanded to include 
 
 To work with the Docker image that executes the code in the `srtool` Docker container, you must have a Docker account and Docker command-line or desktop tools available.
 You should also prepare your development environment with the specific command-line tools you want to use.
-At a minimum, you should install the `srtool-cli` program to enable you to work with the Docker mage using a simple command-line interface.
+At a minimum, you should install the `srtool-cli` program to enable you to work with the Docker image using a simple command-line interface.
 
 To prepare the environment:
 
