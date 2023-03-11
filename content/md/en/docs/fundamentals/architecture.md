@@ -39,7 +39,11 @@ Some of the most important activities that are handled by the outer node involve
 
 - [Execution environment](/build/build-process/): The outer node is responsible for selecting the execution environment—WebAssembly or native Rust—for the runtime to use then dispatching calls to the runtime selected.
 
-Performing these tasks often requires the outer node to query the runtime for information or to provide information to the runtime.
+Substrate provides default implementations for handling these activities through its core blockchain components.
+In principle, you can modify or replace the default implementation of any component with your own code.
+In practice, it's rare for an application to require changes to any of the underlying blockchain features, but Substrate allows you to make changes so you are free to innovate where you see fit.
+
+Performing these tasks often requires the client code to query the runtime for information or to provide information to the runtime.
 This communication is handled by calling specialized [runtime APIs](/reference/runtime-apis/).
 
 ## Runtime
