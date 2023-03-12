@@ -6,8 +6,9 @@ keywords:
 
 As you learned in [Light clients in Substrate Connect](/fundamentals/light-clients-in-substrate-connect/), light client nodes provide secure and decentralized access to blockchain data with minimal hardware and software requirements.
 
-This tutorial demonstrates how you can use a WebAssembly light client node running in a browser to connect to a Substrate-based blockchain.
-In this tutorial, you'll use the Substrate Connect browser extension to interact with the blockchain directly without using an intermediary node or RPC server.
+This tutorial demonstrates how you can connect to any Substrate-based blockchain using a light client.
+To illustrate this, you'll learn how to connect your application to the [Statemint parachain](https://wiki.polkadot.network/docs/learn-statemint).
+Statemint is a common good parachain that is connected to Polkadot and has a publicly-accessible chain specification file.
 
 ## Before you begin
 
@@ -179,10 +180,7 @@ To connect to one of these chains:
 Connecting to a custom chain specification or a publicly-accessible parachain is similar to connecting to one of the well-known chains.
 The primary difference in the code is that you must explicitly identify the chain specification for Substrate Connect to use.
 
-This tutorial illustrates how to connect to a custom chain specification by connecting to the Statemint parachain.
-Statemint is a common good parachain that is connected to Polkadot and has a publicly-accessible chain specification file.
-
-To connect to this chain:
+To connect to Statemint parachain:
 
 1. Download the custom chain specification file from the [cumulus repository](https://github.com/paritytech/cumulus/blob/master/parachains/chain-specs/statemint.json).
 
