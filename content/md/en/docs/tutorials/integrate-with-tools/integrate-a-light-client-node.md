@@ -9,49 +9,6 @@ As you learned in [Light clients in Substrate Connect](/fundamentals/light-clien
 This tutorial demonstrates how you can use a WebAssembly light client node running in a browser to connect to a Substrate-based blockchain.
 In this tutorial, you'll use the Substrate Connect browser extension to interact with the blockchain directly without using an intermediary node or RPC server.
 
-## Light clients and Substrate Connect
-
-For Substrate-based chains, the core component of the WebAssembly light client node is the [smoldot](https://github.com/paritytech/smoldot/) program.
-This program requires fewer resources than a full node, so it can run in resource-constrained environments, including browsers, mobile endpoints, and IoT devices.
-The `smoldot` light client doesn't author or import any blocks or participate in any consensus activity.
-Instead, the `smoldot` light client communicates with Substrate-based chains through JSON-RPC calls and synchronizes with data from the chain by connecting to a full node.
-
-Substrate Connect is a JavaScript implementation that's built on top of the `smoldot` source.
-Substrate Connect enables you to integrate the functionality provided by the `smoldot` light client into applications that are built using JavaScript or TypeScript.
-
-### Secure synchronization
-
-Unlike software wallets that allow users to interact with a blockchain by trusting an intermediary third-party node, light clients download block headers from full nodes so they can use the Merkle trie root from the block header to verify the information being synchronized hasn't been tampered with. 
-The Merkle trie root acts as cryptographic proof that the information hasn't been altered without requiring the light client to trust the full node.
-
-### Substrate Connect as a browser extension
-
-Because light clients don't participate in block authoring or consensus, they don't need to be online and in constant communication with the network.
-However, if you run the light client as a browser extension, you can run multiple light clients simultaneously and stay synchronized in browser sessions for as long as the browser stays open.
-
-Running a light client as a browser extension also eliminates the need for full nodes to use Transport Layer Security (TLS) and Secure Socket Layer (SSL) certificates.
-With Substrate Connect, synchronization occurs in the background without going through the WebSocket port that some browsers block as an unsecured connection.
-Running Substrate Connect as a browser extension also provides better application performance and a more responsive user experience.
-
-### Applications and user experience with Substrate Connect
-
-If you build an application with Substrate Connect, the `smoldot` client can detect whether the user has the browser extension and will automatically use the browser extension, if it's available.
-If the user doesn't have the browser extension installed, `smoldot` automatically creates a WebAssembly light client in the context of your web application.
-Although running Substrate Connect as a browser extension is optional, the extension provides the following advantages:
-
-- Better resource usage 
-  
-  Multiple browser tabs can share a single connection to the same chain, instead of each browser tab or window opening its own connection.
-
-- Better synchronization speed
-  
-  The browser extension automatically starts synchronizing with the chain as soon as a  browser tab is opened and maintains a cache so that the connection to the chain and synchronization is nearly instantaneous for each new tab or browser window the user opens.
-  Without the browser extension, synchronizing a chain can take from 10 to 30 seconds.
-
-- Better connectivity
-  
-  The browser extension can connect to nodes that don’t have TLS/SSL certificates installed.
-
 ## Before you begin
 
 Before you begin, verify the following:
