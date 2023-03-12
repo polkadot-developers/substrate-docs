@@ -15,28 +15,15 @@ Statemint is a common good parachain that is connected to Polkadot and has a pub
 Before you begin, verify the following:
 
 - You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
-
-- You have downloaded and compiled the 
-  [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template).
+- You need NPM etc.
 
 ## Tutorial objectives
 
 By completing this tutorial, you will accomplish the following objectives:
 
-- Download and install the Substrate Connect browser extension.
-- Connect to a relay chain using the Substrate Connect browser extension.
+- Connect to the Polkadot relay chain using the Substrate Connect Javascript library.
 - Learn how to specify a custom chain specification file for Substrate Connect to use.
-- Connect to a parachain associated with the custom chain specification from the browser extension.
-
-## Download Substrate Connect
-
-Because of the advantages that the Substrate Connect browser extension provides, the first step of the tutorial is to install the browser extension.
-
-1. Navigate to https://substrate.io/developers/substrate-connect/ using the Chrome or Firefox web browser.
-
-2. Click [Chrome](https://chrome.google.com/webstore/detail/substrate-connect-extensi/khccbhhbocaaklceanjginbdheafklai) or [Firefox](https://addons.mozilla.org/en-US/firefox/addon/substrate-connect/).
-
-3. Click **Add to Chrome** or **Add to Firefox**, then confirm that you want to add the extension to the browser. 
+- Connect to a parachain associated with the custom chain specification.
 
 ## Connect to a well-known chain
 
@@ -67,7 +54,7 @@ To connect to one of these chains:
    cd empty-webapp
    ```
    
-4. Install substrate connect
+4. Install Substrate Connect
    
    ```bash
    yarn add @substrate/connect
@@ -87,7 +74,7 @@ To connect to one of these chains:
 
    After you install these dependencies, you can use them in the sample application.
 
-7. Open the `empty-webapp/index.ts` file in a text editor.
+7. Open the `empty-webapp/index.ts` file in your preferred code editor.
    
 8. Copy and paste the following application code to create a Substrate Connect instance with `substrate-connect` as the provider that connects to the Polkadot relay chain using the `polkadot` chain specification file.
    
@@ -162,11 +149,12 @@ To connect to one of these chains:
    For example, the console should display log entries similar to the following:
    
    ```console
-   [smoldot] Smoldot v0.6.25
-   smoldot-light.js:41 [smoldot] Chain initialization complete for polkadot. Name: "Polkadot". Genesis hash: 0x91b1…90c3. State root hash: 0x29d0d972cd27cbc511e9589fcb7a4506d5eb6a9e8df205f00472e5ab354a4e17. Network identity: 12D3KooWRse9u6Z9ukP4C92YCCH2gXziNm8ThRch2owaaFh9H6D1. Chain specification or database starting at: 0xae3e…f81d (#11228238)
+   [substrate-connect-extension] [smoldot] Smoldot v0.7.7
+   [substrate-connect-extension] [smoldot] Chain initialization complete for polkadot. Name: "Polkadot". Genesis hash: 0x91b1…90c3. State root hash: 0x29d0d972cd27cbc511e9589fcb7a4506d5eb6a9e8df205f00472e5ab354a4e17. Network identity: 12D3KooWRse9u6Z9ukP4C92YCCH2gXziNm8ThRch2owaaFh9H6D1. Chain specification or database starting at: 0x7f52…8902 (#14614672)
    ...
-   New block #11322769 has hash 0x464c0199ede92a89920c54c21abc741ea47daca1d62d61d7b9af78062f04c7a3 index.ts:10 
-   New block #11322770 has hash 0xd66c61e5417249df228798f38535a6dd17b8b268c165e0a6b0e72ba74e954f9d index.ts:10
+   💡 New block #14614893 has hash ⚡️ 0x18f8086952aa5f8f1f8a36ea05af462f6bb26615b481145f7c5daa24ebc0c4cd
+   💡 New block #14614894 has hash ⚡️ 0x92ca6fd51bc7a2fc5991441e9736bcccf3be45cee6fc88d40d145fc4211ba477
+   💡 New block #14614894 has hash ⚡️ 0x2353ce49f06206c6dd9882200666fa7d51fc43c1cc6a61cca81ce9fa543409cb
    ```
    
    This simple web application only connects to Polkadot to retrieve block hashes.
@@ -191,30 +179,32 @@ To connect to Statemint:
 4. Replace the contents with the following code.
     
    ```typescript
-   import { ApiPromise } from "@polkadot/api"
-   import { ScProvider } from "@polkadot/rpc-provider/substrate-connect"
-   import * as Sc from "@substrate/connect"
-   import jsonParachainSpec from "./statemint.json";
+    import { ApiPromise } from "@polkadot/api";
+    import { ScProvider } from "@polkadot/rpc-provider/substrate-connect";
+    import * as Sc from "@substrate/connect";
+    import jsonParachainSpec from "./statemint.json";
 
-   window.onload = () => {
+    window.onload = () => {
+      void (async () => {
+        try {
+          const relayProvider = new ScProvider(Sc, Sc.WellKnownChain.polkadot);
+          const parachainSpec = JSON.stringify(jsonParachainSpec);
+          const provider = new ScProvider(Sc, parachainSpec, relayProvider);
 
-   void (async () => {
-     try {
-
-       const relayProvider = new ScProvider(Sc, Sc.WellKnownChain.polkadot);
-       const parachainSpec = JSON.stringify(jsonParachainSpec);
-       const provider = new ScProvider(Sc, parachainSpec, relayProvider);
-
-       await provider.connect();
-       const api = await ApiPromise.create({ provider });
-       await api.rpc.chain.subscribeNewHeads((lastHeader: { number: unknown; hash: unknown }) => {
-         console.log(`💡 New block #${lastHeader.number} has hash ⚡️ ${lastHeader.hash}`);
-       });
-     } catch (error) {
-       console.error(<Error>error);
-     }
-   })();
-   };
+          await provider.connect();
+          const api = await ApiPromise.create({ provider });
+          await api.rpc.chain.subscribeNewHeads(
+            (lastHeader: { number: unknown; hash: unknown }) => {
+              console.log(
+                `💡 New block #${lastHeader.number} has hash ⚡️ ${lastHeader.hash}`
+              );
+            }
+          );
+        } catch (error) {
+          console.error(<Error>error);
+        }
+      })();
+    };
    ```
    
    As you can see, this code has a few important differences.
@@ -240,10 +230,11 @@ To connect to Statemint:
    For example, the console should display log entries similar to the following:
    
    ```console
-   [smoldot] Parachain initialization complete for statemint. Name: "Statemint". Genesis hash: 0x68d5…de2f. State root hash: 0xc1ef26b567de07159e4ecd415fbbb0340c56a09c4d72c82516d0f3bc2b782c80. Network identity: 12D3KooWArq3iZHdK2jtRZSJzJkkWrKm17JTa9kjwjZkq9Htx5xR. Relay chain: polkadot (id: 1000 smoldot-light.js:41 
-   [smoldot] Smoldot v0.6.25. Current memory usage: 140 MiB. Average download: 35.4 kiB/s. Average upload: 423 B/s.
-   New block #1785421 has hash 0x88885ed331f94b4324c5f2eae8413cd36170808ef904b0ec0867646fa53770f7 index.ts:13 
-   New block #1785422 has hash 0x2ad4d96e061a681e27403694f1d870bb0c4e5c77b5be232a18c7a2e0b7fb2555 index.ts:13 
+   [substrate-connect-extension] [smoldot] Parachain initialization complete for statemint. Name: "Statemint". Genesis hash: 0x68d5…de2f. State root hash: 0xc1ef26b567de07159e4ecd415fbbb0340c56a09c4d72c82516d0f3bc2b782c80. Network identity: 12D3KooWNicu1ZCX6ZNUC96B4TQSiet2NkoQc7SfitxWWE4fQgpK. Relay chain: polkadot (id: 1000)
+   ...
+   💡 New block #3393027 has hash ⚡️ 0x2401313496be4b1792d704f83b684be6bd2188a618581d30b3addb3648c4ad3a
+   [substrate-connect-extension] [smoldot] Smoldot v0.7.7. Current memory usage: 222 MiB. Average download: 63.1 kiB/s. Average upload: 735 B/s.
+   💡 New block #3393028 has hash ⚡️ 0x512af8ad5577f509f3f5123916ff2da6ca0f86df8099eafbc0bc001febec62dd
    ```
 
 Congratulations, you've created a simple web application that connects to Statemint and Polkadot using an in-browser light client.
