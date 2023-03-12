@@ -14,8 +14,8 @@ Statemint is a common good parachain that is connected to Polkadot and has a pub
 
 Before you begin, verify the following:
 
-- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
-- You need NPM etc.
+- You have a code editor set up for working with Javascript and Typescript
+- You have the [`yarn` package manager](https://classic.yarnpkg.com/lang/en/docs/install/) installed
 
 ## Tutorial objectives
 
