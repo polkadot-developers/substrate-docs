@@ -106,7 +106,7 @@ To connect to one of these chains:
           await api.rpc.chain.subscribeNewHeads(
             (lastHeader: { number: unknown; hash: unknown }) => {
               console.log(
-                `New block #${lastHeader.number} has hash ${lastHeader.hash}`
+                `💡 New block #${lastHeader.number} has hash ⚡️ ${lastHeader.hash}`
               );
             }
           );
@@ -180,17 +180,15 @@ To connect to one of these chains:
 Connecting to a custom chain specification or a publicly-accessible parachain is similar to connecting to one of the well-known chains.
 The primary difference in the code is that you must explicitly identify the chain specification for Substrate Connect to use.
 
-To connect to Statemint parachain:
+To connect to Statemint:
 
 1. Download the custom chain specification file from the [cumulus repository](https://github.com/paritytech/cumulus/blob/master/parachains/chain-specs/statemint.json).
 
 2. Copy the downloaded chain specification to the `empty-webapp` directory you created in [Connect to a well-known chain](#connect-to-a-well-known-chain).
 
-3. Open the `index.ts` file in a text editor.
+3. Open the `index.ts` file in your code editor.
    
-4. Delete the current content.
-   
-5. Copy and paste the following application code.
+4. Replace the contents with the following code.
     
    ```typescript
    import { ApiPromise } from "@polkadot/api"
@@ -259,7 +257,6 @@ For example, if you are building your own application library or programming int
 yarn add @substrate/connect
 ```
 
-<!--
 To use `@substrate-connect`
 
 1. Open a terminal shell and create a new working directory. 
