@@ -246,6 +246,9 @@ To connect to Statemint:
    New block #1785422 has hash 0x2ad4d96e061a681e27403694f1d870bb0c4e5c77b5be232a18c7a2e0b7fb2555 index.ts:13 
    ```
 
+Congratulations, you've created a simple web application that connects to Statemint and Polkadot using an in-browser light client.
+Have a look at [this demo](https://github.com/paritytech/substrate-connect/tree/main/projects/demo) to learn how to add connections to more chains from the same application.
+
 <!--
 ## Advanced application development
 
