@@ -248,9 +248,10 @@ To connect to Statemint parachain:
    New block #1785422 has hash 0x2ad4d96e061a681e27403694f1d870bb0c4e5c77b5be232a18c7a2e0b7fb2555 index.ts:13 
    ```
 
+<!--
 ## Advanced application development
 
-The examples in this tutorial used `@polkadot/rpc-provider/substrate-connect` because this provider makes if straightforward to create applications that interact with the chain using the [Polkadot-JS API](https://polkadot.js.org/docs/).
+The examples in this tutorial used `@polkadot/rpc-provider/substrate-connect` because this provider makes it straightforward to create applications that interact with the chain using the [Polkadot-JS API](https://polkadot.js.org/docs/).
 For more advanced application development that doesn't depend on the Polkadot-JS API, you can install and use the `@substrate-connect` package.
 For example, if you are building your own application library or programming interfaces, you should install the Substrate Connect dependencies by running the following command:
    
