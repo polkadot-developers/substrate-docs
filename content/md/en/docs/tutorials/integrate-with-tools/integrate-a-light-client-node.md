@@ -193,25 +193,29 @@ To connect to Statemint parachain:
 5. Copy and paste the following application code.
     
    ```typescript
-   import { ScProvider, WellKnownChain } from "@polkadot/rpc-provider/substrate-connect";import { ApiPromise } from "@polkadot/api";
+   import { ApiPromise } from "@polkadot/api"
+   import { ScProvider } from "@polkadot/rpc-provider/substrate-connect"
+   import * as Sc from "@substrate/connect"
    import jsonParachainSpec from "./statemint.json";
-   
+
    window.onload = () => {
-    void (async () => {
-      try {
-        const relayProvider = new ScProvider(WellKnownChain.polkadot);
-        const parachainSpec = JSON.stringify(jsonParachainSpec);
-        const provider = new ScProvider(parachainSpec, relayProvider);
-        
-        await provider.connect();
-        const api = await ApiPromise.create({ provider });
-        await api.rpc.chain.subscribeNewHeads((lastHeader: { number: unknown; hash: unknown }) => {
-          console.log(`New block #${lastHeader.number} has hash ${lastHeader.hash}`);
-        });
-      } catch (error) {
-        console.error(<Error>error);
-      }
-    })();
+
+   void (async () => {
+     try {
+
+       const relayProvider = new ScProvider(Sc, Sc.WellKnownChain.polkadot);
+       const parachainSpec = JSON.stringify(jsonParachainSpec);
+       const provider = new ScProvider(Sc, parachainSpec, relayProvider);
+
+       await provider.connect();
+       const api = await ApiPromise.create({ provider });
+       await api.rpc.chain.subscribeNewHeads((lastHeader: { number: unknown; hash: unknown }) => {
+         console.log(`💡 New block #${lastHeader.number} has hash ⚡️ ${lastHeader.hash}`);
+       });
+     } catch (error) {
+       console.error(<Error>error);
+     }
+   })();
    };
    ```
    
