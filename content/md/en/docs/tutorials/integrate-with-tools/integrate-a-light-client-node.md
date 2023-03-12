@@ -117,7 +117,7 @@ To connect to one of these chains:
     };
    ```
    
-   In this sample application code, creating a Substrate Connect instance is similar to how you create a web socket instance using the Polkadot-JS API.
+   In this sample application code, creating a Substrate Connect instance is similar to how you create a WebSocket instance using the Polkadot-JS API.
    With the Polkadot-JS API only, you would create an instance like this:
    
    ```javascript
