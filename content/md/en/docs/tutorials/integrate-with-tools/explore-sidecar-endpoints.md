@@ -193,9 +193,8 @@ To get a list of endpoints:
 Now that you are familiar with making an uncomplicated request, let's perform another `GET` request but this time modifying the value of one of the environment variables.
 In this request, you'll request the balance for a specific account on the chain. 
 Using the [substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) as the working blockchain, this request queries the account balance of the `Alice` user. 
-To get the account address for `Alice`, you can connect to the running node using the [Substrate front-end template](https://github.com/substrate-developer-hub/substrate-front-end-template) or use the `node-template key inspect` command.
 
-To get account information:
+To get account information for the Alice address:
 
 1. Open a new terminal shell.
 2. Copy the account address for Alice.
