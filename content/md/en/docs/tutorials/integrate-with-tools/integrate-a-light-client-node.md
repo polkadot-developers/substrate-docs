@@ -14,7 +14,7 @@ Statemint is a system parachain that is connected to Polkadot and has a publicly
 
 Before you begin, verify the following:
 
-- You have a code editor set up for working with Javascript and Typescript
+- You have a code editor set up for working with Javascript and Typescript.
 - You have the [`yarn` package manager](https://classic.yarnpkg.com/lang/en/docs/install/) installed
 
 ## Tutorial objectives
