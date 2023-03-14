@@ -122,7 +122,7 @@ To start the node with the current runtime:
 
    ![Select network](/media/images/docs/tutorials/forkless-upgrade/polkadot-js-select-network.png)
 
-   Then scroll to the bottom of the list, click on `Development`, and select `Local Node`, then press the `Switch` button.
+1. Under **Development**, select **Local Node**, then click **Switch**.
 
    ![Select network](/media/images/docs/tutorials/forkless-upgrade/select-local-node.png)
    
