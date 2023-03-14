@@ -59,24 +59,6 @@ fundamentals:
       url: /fundamentals/light-clients-in-substrate-connect/
     - title: Cross-consensus messaging
       url: /fundamentals/xcm-communication/
-
-install:
-  title: Install
-  url: /install/
-  pages:
-    - title: Rust toolchain
-      url: /install/rust-toolchain/
-    - title: Linux
-      url: /install/linux/
-    - title: macOS
-      url: /install/macos/
-    - title: Windows
-      url: /install/windows/
-    - title: Developer tools
-      url: /install/developer-tools/
-    - title: Troubleshoot Rust issues
-      url: /install/troubleshoot-rust-issues/
-  
 design:
   title: Design
   url: /design/
@@ -97,60 +79,64 @@ design:
   #url: /design/storage-design/
   #- title: Economic models
   #url: /design/economic-models/
+  
+install:
+  title: Install
+  url: /install/
+  pages:
+    - title: Rust toolchain
+      url: /install/rust-toolchain/
+    - title: Linux
+      url: /install/linux/
+    - title: macOS
+      url: /install/macos/
+    - title: Windows
+      url: /install/windows/
+    - title: Developer tools
+      url: /install/developer-tools/
+    - title: Troubleshoot Rust issues
+      url: /install/troubleshoot-rust-issues/
+  
+
 build:
   title: Build
   url: /build/
   pages:
     - title: Smart contracts
       url: /build/smart-contracts-strategy/
-    - title: Custom pallets
-      url: /build/custom-pallets/
     - title: Runtime storage
       url: /build/runtime-storage/
     - title: Transactions, weights, and fees
       url: /build/tx-weights-fees/
+    - title: Chain specification
+      url: /build/chain-spec/
+    - title: Application development
+      url: /build/application-development/
+    - title: Build process
+      url: /build/build-process/
+    - title: Build a deterministic runtime
+      url: /build/build-a-deterministic-runtime/
+    - title: Genesis configuration
+      url: /build/genesis-configuration/
+    - title: Libraries
+      url: /build/libraries/
     - title: Pallet coupling
+    - title: Remote procedure calls
+      url: /build/remote-procedure-calls/
       url: /build/pallet-coupling/
+    - title: Custom pallets
+      url: /build/custom-pallets/
     - title: Events and errors
       url: /build/events-and-errors/
     - title: Randomness
       url: /build/randomness/
     - title: Privileged calls and origins
       url: /build/origins/
-    - title: Remote procedure calls
-      url: /build/remote-procedure-calls/
-    - title: Application development
-      url: /build/application-development/
-    - title: Chain specification
-      url: /build/chain-spec/
-    - title: Genesis configuration
-      url: /build/genesis-configuration/
-    - title: Libraries
-      url: /build/libraries/
-    - title: Build process
-      url: /build/build-process/
-    - title: Build a deterministic runtime
-      url: /build/build-a-deterministic-runtime/
     - title: Troubleshoot your code
       url: /build/troubleshoot-your-code/
     #- title: Executor
     #url: /build/executor/
 
-test:
-  title: Test
-  url: /test/
-  pages:
-    - title: Unit test
-      url: /test/unit-testing/
-    - title: Debug
-      url: /test/debug/
-    - title: Benchmark
-      url: /test/benchmark/
-    - title: Simulate parachains
-      url: /test/simulate-parachains/
-    - title: Check runtime
-      url: /test/check-runtime/
-      
 deploy:
   title: Deploy
   url: /deploy/
@@ -167,6 +153,7 @@ deploy:
 #     url: /deploy/deploy-a-parathread/
 #   - title: Launch a parachain
 #     url: /deploy/launch-a-parachain/
+
 maintain:
   title: Maintain
   url: /maintain/
@@ -183,6 +170,22 @@ maintain:
 #     url: /maintain/network-upgrades/
 #   - title: Data migration
 #     url: /maintain/data-migration/
+
+test:
+  title: Test
+  url: /test/
+  pages:
+    - title: Unit test
+      url: /test/unit-testing/
+    - title: Debug
+      url: /test/debug/
+    - title: Benchmark
+      url: /test/benchmark/
+    - title: Simulate parachains
+      url: /test/simulate-parachains/
+    - title: Check runtime
+      url: /test/check-runtime/
+      
 tutorials:
   title: Tutorials
   url: /tutorials/
