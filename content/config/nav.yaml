@@ -1,6 +1,6 @@
 menu:
   - quick-start
-  - fundamentals
+  - learn
   - install
   - design
   - build
@@ -15,7 +15,7 @@ quick-start:
   title: Quick start
   url: /quick-start/
 
-fundamentals:
+learn:
   title: Learn
   url: /learn/
   pages:
@@ -23,9 +23,7 @@ fundamentals:
       url: /learn/blockchain-basics/
     - title: Substrate at a glance
       url: /learn/substrate-at-a-glance/
-    - title: What is Substrate?
-      url: /learn/what-is-substrate/
-    - title: Architecture
+    - title: Architecture and Rust libraries
       url: /learn/architecture/
     - title: Cryptography
       url: /reference/cryptography/
