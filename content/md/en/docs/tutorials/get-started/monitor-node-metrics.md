@@ -105,15 +105,14 @@ To add the Substrate exposed endpoint to the list of Prometheus targets:
    For example, add a section similar to the following:
 
    ```yml
-   ...
-   # A scrape configuration containing exactly one endpoint to scrape:
-   scrape_configs:
-     - job_name: "substrate_node"
+    # A scrape configuration containing exactly one endpoint to scrape:
+    scrape_configs:
+      - job_name: "substrate_node"
 
-       scrape_interval: 5s
+        scrape_interval: 5s
 
-       static_configs:
-         - targets: ["localhost:9615"]
+        static_configs:
+          - targets: ["localhost:9615"]
    ```
 
     These settings override the global default values for scrape targets for the `substrate_node` job.
@@ -179,7 +178,7 @@ To add the Substrate exposed endpoint to the list of Prometheus targets:
    ```
    
    Alternatively, you can open same endpoint in a browser to view all available metric data.
-   For example, if you are using the default Prometheus port, open `http://localhost:9615/metrics` in a browser. 
+   For example, if you are using the default Prometheus port, open [`http://localhost:9615/metrics`](http://localhost:9615/metrics) in a browser. 
 
 ## Configure the Grafana data source
 
@@ -201,7 +200,7 @@ After you start Grafana, you can navigate to it in a browser.
 
 2. Log in using the default `admin` user name and password `admin`, then click **Log in**.
    
-3. On the Welcome page, click **Data Sources**.
+3. On the Welcome page, under the **Configuration** menu, click **Data Sources**.
 
 1. Click **Prometheus** to configure the Prometheus endpoint as the data source for Substrate node metrics.
    
