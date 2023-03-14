@@ -54,7 +54,7 @@ To connect to one of these chains:
    cd empty-webapp
    ```
    
-4. Install Substrate Connect
+4. Install Substrate Connect by running the following command:
    
    ```bash
    yarn add @substrate/connect
