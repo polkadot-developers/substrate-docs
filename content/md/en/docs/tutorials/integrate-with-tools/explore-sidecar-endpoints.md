@@ -4,14 +4,14 @@ description: Demonstrates how you can explore the Substrate REST service (sideca
 keywords:
 ---
 
-The Substrate [sidecar](https://github.com/paritytech/substrate-api-sidecar) service provides a REST API for interacting with blockchain nodes built using the Substrate FRAME framework. 
+The Substrate [sidecar](https://github.com/paritytech/substrate-api-sidecar) service provides a REST API for interacting with Substrate blockchain nodes built using FRAME. 
 The sidecar REST service exposes an extensive set of endpoints that enable you to interact with nodes, accounts, transactions, parachains, and many other components of a Substrate-based blockchain.
 
 For this tutorial, you'll use Postman to explore the `sidecar` service.
 Postman is a popular platform for inspecting, building, and testing application programming interfaces. 
-Postman provides an easy-to-use interface that enables both new amd experienced API developers to collaborate and experiment using either a browser-based or desktop client. 
+Postman provides an easy-to-use interface that enables both new and experienced API developers to collaborate and experiment using either a browser-based or desktop client. 
 
-In this tutorial, you'll use a [predefined API collection](https://documenter.getpostman.com/view/24602305/2s8YsqWaj8#intro) to explore the features `sidecar` provides through RESTful endpoints.
+You'll use a [predefined API collection](https://documenter.getpostman.com/view/24602305/2s8YsqWaj8#intro) to explore the features `sidecar` provides through RESTful endpoints.
 The predefined API collection provides a set of saved requests created using Postman that you can customize and reuse. 
 By using API collections that are created with Postman, you have access to features such as inline documentation, reusable variables to access data, error detection in parameter formation, and more.
 
@@ -19,8 +19,7 @@ By using API collections that are created with Postman, you have access to featu
 
 Before you begin, verify the following:
 
-- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
-- You have access to at least one Substrate node with the node template installed and running locally.
+- You've completed the [Quick Start](https://docs.substrate.io/quick-start/) and have the Substrate node template installed and running locally.
 - You have Node.js, version 14 or later, available on your local computer to download and install the `sidecar` package.
 - You have, or can create, a [Postman](https://www.postman.com/) account.
 - You have access to, or can install, the **Postman for Web** or **Postman for Mac** client.
@@ -104,7 +103,7 @@ To use the predefined API collection for `sidecar`:
    
    ![Run the API collection in Postman](/media/images/docs/tutorials/postman-sidecar/run-in-postman.png)
    
-1. Select a workspace in Postman, then click **Import** to add the predefined collection to your Postman workspace/
+1. Select a workspace in Postman, then click **Import** to add the predefined collection to your Postman workspace.
 
    After you open the Substrate API `sidecar` collection in Postman, you are ready to start defining your environment variables.
 
@@ -194,9 +193,8 @@ To get a list of endpoints:
 Now that you are familiar with making an uncomplicated request, let's perform another `GET` request but this time modifying the value of one of the environment variables.
 In this request, you'll request the balance for a specific account on the chain. 
 Using the [substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) as the working blockchain, this request queries the account balance of the `Alice` user. 
-To get the account address for `Alice`, you can connect to the running node using the [Substrate front-end template](https://github.com/substrate-developer-hub/substrate-front-end-template) or use the `node-template key inspect` command.
 
-To get account information:
+To get account information for the Alice address:
 
 1. Open a new terminal shell.
 2. Copy the account address for Alice.

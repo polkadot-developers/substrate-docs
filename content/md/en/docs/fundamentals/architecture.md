@@ -8,21 +8,19 @@ As noted in [Blockchain basics](/fundamentals/blockchain-basics), a blockchain r
 
 Because the node is a core component of any blockchain, it’s important to understand what makes a Substrate node unique, including the core services and libraries that are provided by default and how the node can be customized and extended to suit different project goals.
 
-## High level overview
+## Client and runtime
 
-In a decentralized network, all nodes act as both clients that request data and as servers that respond to requests for data.
-Conceptually and programmatically, the Substrate architecture divides operational responsibilities along similar lines.
-The following diagram illustrates this separation of responsibilities in simplified form to help you visualize the architecture and how Substrate provides a modular framework for building blockchains.
-
-![Substrate architecture](/media/images/docs/simplified-architecture.png)
-
-At a high level, a Substrate node provides a layered environment with two main elements:
+At a high level, a Substrate node consists of two main parts:
 
 - A **client** with **outer node services** that handles network activity such as peer discovery, managing transaction requests, reaching consensus with peers, and responding to RPC calls.
 
 - A **runtime** that contains all of the business logic for executing the state transition function of the blockchain.
 
-### Outer node
+The following diagram illustrates this separation of responsibilities in simplified form to help you visualize the architecture and how Substrate provides a modular framework for building blockchains.
+
+![Substrate architecture](/media/images/docs/simplified-architecture.png)
+
+## Client outer node services
 
 The outer node is responsible for activity that takes place outside of the runtime.
 For example, the outer node is responsible for handling peer discovery, managing the transaction pool, communicating with other nodes to reach consensus, and answering RPC calls or browser requests from the outside world.
@@ -41,12 +39,17 @@ Some of the most important activities that are handled by the outer node involve
 
 - [Execution environment](/build/build-process/): The outer node is responsible for selecting the execution environment—WebAssembly or native Rust—for the runtime to use then dispatching calls to the runtime selected.
 
-Performing these tasks often requires the outer node to query the runtime for information or to provide information to the runtime.
+Substrate provides default implementations for handling these activities through its core blockchain components.
+In principle, you can modify or replace the default implementation of any component with your own code.
+In practice, it's rare for an application to require changes to any of the underlying blockchain features, but Substrate allows you to make changes so you are free to innovate where you see fit.
+
+Performing these tasks often requires the client node services to communicate with the runtime.
 This communication is handled by calling specialized [runtime APIs](/reference/runtime-apis/).
 
-### Runtime
+## Runtime
 
-The runtime determines whether transactions are valid or invalid and is responsible for handling changes to the blockchain's state transition function.
+The runtime determines whether transactions are valid or invalid and is responsible for handling changes to the blockchain state.
+Requests coming from the outside come through the client into the runtime, and the runtime is responsible for the state transition functions and storing the resulting state.
 
 Because the runtime executes the functions it receives, it controls how transactions are included in blocks and how blocks are returned to the outer node for gossiping or importing to other nodes.
 In essence, the runtime is responsible for handling everything that happens on-chain.
