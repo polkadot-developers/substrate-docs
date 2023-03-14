@@ -124,6 +124,25 @@ pub mod pallet {
 }
 ```
 
+#### Development mode
+
+You can specify `dev_mode` as an argument on the `#[pallet]` or `#[frame_support::pallet]` attribute macro to enable development mode for a pallet.
+Development mode loosens some of the restrictions and requirements placed on production pallets to make it easier to iterate on your code during development and testing cycles. 
+For example, if you enable development mode for a pallet:
+
+- You don't need to specify a weight on every `#[pallet::call]` declaration. 
+  By default, development mode assigns a weight of zero (`0`) to calls that don't have a weight explicitly specified.
+
+- You don't need to implement `MaxEncodedLen` on storage types.
+  By default, development mode marks all storage items as unbounded.
+
+Note that you can only add the `dev_mode` argument to the `#[pallet]` or `#[frame_support::pallet]` attribute macro that encloses your pallet module. 
+You can't specify this argument for any of the `#[pallet::*]` attribute macros.
+
+You should never deploy pallets with development mode enabled in a production network. Before deploying a pallet in a production runtime, be sure to remove the `dev_mode` argument from the `#[pallet]` declaration, fix any compiler errors, and complete testing with the development mode disabled.
+
+#### Using the pallet module
+
 Inside the module, the macro parses items with the attribute `#[pallet::*]`.
 Some `#[pallet::*]` attributes are mandatory and some are optional.
 
