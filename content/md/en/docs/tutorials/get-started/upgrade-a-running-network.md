@@ -118,7 +118,7 @@ To start the node with the current runtime:
 
 1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) in a browser and connect to the local node.
 
-   To do this, click on the left-most dropdown menu to select the network.
+1. Click the left-most dropdown menu to select the network.
 
    ![Select network](/media/images/docs/tutorials/forkless-upgrade/polkadot-js-select-network.png)
 
