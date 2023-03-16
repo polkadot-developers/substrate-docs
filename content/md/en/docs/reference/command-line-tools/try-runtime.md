@@ -10,9 +10,73 @@ keywords:
   - storage migration
 ---
 
-The `try-runtime` command-line tool enables you to query a snapshot of runtime storage using an [in-memory-externalities](https://paritytech.github.io/substrate/master/sp_state_machine/struct.TestExternalities.html) data structure to store state.
-With this tool, you can write tests against a snapshot of the runtime state _before_ going to production.
+The `try-runtime` command-line tool is a verbose testing framework that provides users with the ability to finely tune excutables in a simulated environment before deploying to a live implementation. It takes a snapshot of runtime storage using an [in-memory-externalities](https://paritytech.github.io/substrate/master/sp_state_machine/struct.TestExternalities.html) data structure to store state, which can then be ran with the desired configuration changes offline. With this tool, you can write tests against a snapshot of the runtime state _before_ going to production.
 
+
+In general, adding the `try-runtime` tool to your runtime is similar to importing pallets.
+It involves adding the appropriate dependencies in the correct places and updating the runtime logic to include the `try-runtime` features.
+
+As with pallets, be sure that the appropriate tag or branch for the `try-runtime` tool is being used when adding dependencies to the runtime.
+
+
+
+## Add runtime dependencies
+
+1. Open a terminal shell and change to the root directory for the node template.
+
+1. Open the `runtime/Cargo.toml` configuration file in a text editor.
+
+1. Locate the [dependencies] section and note how other pallets are imported.
+
+1. Add the `frame-try-runtime` dependency:
+  
+   ```toml
+   [dependencies]
+	 frame-try-runtime = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28", optional = true }
+	 ```
+
+	 Note that you should use the same branch and version information for all of the pallets to ensure that the imported pallets are compatible with each other.
+   Using pallets from different branches can result in compiler errors.
+   This example illustrates adding the `frame-try-runtime` pallet to the `Cargo.toml` file if the other pallets use `branch = "polkadot-v0.9.28"`.
+
+1. Add the `try-runtime-cli` dependency:
+
+	 ```toml
+	 try-runtime-cli = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28", optional = true }
+	 ```
+
+1. Add `frame-try-runtime` to the list of standard features:
+
+    ```toml
+		[features]
+		default = ["std"]
+		std = [
+			"codec/std",
+			"scale-info/std",
+			"frame-try-runtime/std",
+			...
+		]
+		```
+
+1. Add or update `try-runtime` in the `[features]` section in include every pallet in your runtime.
+   
+	 ```toml
+	 try-runtime = [
+		 "frame-executive/try-runtime",
+		 "frame-try-runtime",
+		 "frame-system/try-runtime",
+		 "pallet-aura/try-runtime",
+		 "pallet-balances/try-runtime",
+		 "pallet-nicks/try-runtime",
+		 "pallet-grandpa/try-runtime",
+		 "pallet-randomness-collective-flip/try-runtime",
+		 "pallet-sudo/try-runtime",
+		 "pallet-template/try-runtime",
+		 "pallet-timestamp/try-runtime",
+		 "pallet-transaction-payment/try-runtime",
+		]
+	```
+  
 ## Basic command usage
 
 The basic syntax for running `try-runtime` commands is:
@@ -37,7 +101,7 @@ For reference information and examples that illustrate using these subcommands, 
 | Command | Description
 | ------- | -----------
 | `on-runtime-upgrade` | Executes the migrations of the local runtime.
-| `execute-block` | Executes the given block against some state.
+| `execute-block` | Executes the given block augainst some state.
 | `offchain-worker`| Executes *the offchain worker hooks* of a given block against some state.
 | `follow-chain` | Follows the given chain's finalized blocks and applies all of its extrinsics.
 | `help`| Displays usage information for try-runtime the specified subcommand.
@@ -114,10 +178,31 @@ cargo run --release --features=try-runtime try-runtime on-runtime-upgrade live w
 ```
 
 ### Migration testing
+  
+One of the gems that come only in the `try-runtime` feature flag is the `pre_upgrade` and
+`post_upgrade` hooks for `OnRuntimeUpgrade`. This trait is implemented either inside the pallet,
+ or manually in a runtime, to define a migration. In both cases, these functions can be added,
+ given the right flag:
+
+ ```ignore
+ 
+ #[cfg(feature = try-runtime)]
+ fn pre_upgrade() -> Result<Vec<u8>, &'static str> {}
+
+ #[cfg(feature = try-runtime)]
+ fn post_upgrade(state: Vec<u8>) -> Result<(), &'static str> {}
+ ```
+
+   These hooks allow for the execution of code within `on-runtime-upgrade` command, before
+ and after the migration. Moreover, `pre_upgrade` can return a `Vec<u8>` that contains arbitrary
+ encoded data (usually some pre-upgrade state), which will be passed to `post_upgrade` after
+ upgrading and used for post checking.
 
 You can combine `try-runtime` with [`fork-off-substrate`](https://github.com/maxsam4/fork-off-substrate) to test your chain before production.
 Use `try-runtime` to test your chain's migration and its pre and post states.
 Then, use `fork-off-substrate` if you want to check that block production continues after the migration.
+
+Always make sure that any migration code is guarded either by `StorageVersion`, or by some custom storage item, so that it is NEVER executed twice, even if the code lives in two consecutive runtimes.
 
 ### Execute block
 
