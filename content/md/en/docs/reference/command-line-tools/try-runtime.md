@@ -10,7 +10,7 @@ keywords:
   - storage migration
 ---
 
-The `try-runtime` command-line tool is a verbose testing framework that provides users with the ability to finely tune excutables in a simulated environment before deploying to a live implementation. It takes a snapshot of runtime storage using an [in-memory-externalities](https://paritytech.github.io/substrate/master/sp_state_machine/struct.TestExternalities.html) data structure to store state, which can then be ran with the desired configuration changes offline. With this tool, you can write tests against a snapshot of the runtime state _before_ going to production.
+The `try-runtime` command-line tool is a verbose testing framework that provides users with the ability to finely tune excutables in a simulated environment before deploying to a live implementation. It takes a snapshot of runtime storage using an [in-memory-externalities](https://paritytech.github.io/substrate/master/sp_state_machine/struct.TestExternalities.html) data structure to store state, which can then be ran with the desired configuration changes offline. With this tool, it is possible to write tests against a snapshot of the runtime state _before_ going to production.
 
 
 In general, adding the `try-runtime` tool to your runtime is similar to importing pallets.
