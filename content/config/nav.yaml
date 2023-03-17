@@ -14,6 +14,13 @@ menu:
 quick-start:
   title: Quick start
   url: /quick-start/
+  pages:
+    - title: Substrate at a glance
+      url: /quick-start/substrate-at-a-glance/
+    - title: Start a node
+      url: /quick-start/start-a-node/
+    - title: Explore the code
+      url: /quick-start/explore-the-code/
 
 learn:
   title: Learn
