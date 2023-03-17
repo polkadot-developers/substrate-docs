@@ -374,7 +374,13 @@ For demonstration purposes, you can use the following keys for these accounts.
 | Peer&nbspidentifier&nbspdecoded to hex | 0x002408011220c81bc1d7057a1511eb9496f056f6f53cdfe0e14c8bd5ffca47c70a8d76c1326d |
 
 For this tutorial, you can copy the node key to a file, then use the `subkey inspect-node-key` to verify the peer identifiers for Charlie and Dave.
-For example, save the node key for Charlie to a file named `charlie-node-key`, then run the following command to verify the peer identifier:
+For example, save the node key for Charlie to a file named `charlie-node-key` by using a command like the following:
+
+```bash
+echo -n "3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e" > charlie-node-key
+```
+
+You can then run the following command to verify the peer identifier:
 
 ```bash
 ./subkey inspect-node-key --file charlie-node-key

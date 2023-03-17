@@ -27,6 +27,8 @@ fundamentals:
       url: /fundamentals/what-is-substrate/
     - title: Architecture
       url: /fundamentals/architecture/
+    - title: Cryptography
+      url: /reference/cryptography/
     - title: Networks and blockchains
       url: /fundamentals/node-and-network-types/
     - title: Runtime development
@@ -99,16 +101,14 @@ build:
   title: Build
   url: /build/
   pages:
-    - title: Introduction to libraries
-      url: /build/libraries/
-    - title: Build process
-      url: /build/build-process/
+    - title: Smart contracts
+      url: /build/smart-contracts-strategy/
+    - title: Custom pallets
+      url: /build/custom-pallets/
     - title: Runtime storage
       url: /build/runtime-storage/
     - title: Transactions, weights, and fees
       url: /build/tx-weights-fees/
-    - title: Custom pallets
-      url: /build/custom-pallets/
     - title: Pallet coupling
       url: /build/pallet-coupling/
     - title: Events and errors
@@ -125,6 +125,10 @@ build:
       url: /build/chain-spec/
     - title: Genesis configuration
       url: /build/genesis-configuration/
+    - title: Libraries
+      url: /build/libraries/
+    - title: Build process
+      url: /build/build-process/
     - title: Build a deterministic runtime
       url: /build/build-a-deterministic-runtime/
     - title: Troubleshoot your code
@@ -316,8 +320,6 @@ reference:
       url: /reference/address-formats/
     - title: Transaction formats
       url: /reference/transaction-format/
-    - title: Cryptography
-      url: /reference/cryptography/
     - title: XCM reference
       url: /reference/xcm-reference/
     - title: How-to reference guides
