@@ -417,7 +417,7 @@ To reset the blockchain state:
 2. Purge the validator state by running the following command:
    
    ```bash
-   rm -rf /tm/relay
+   rm -rf /tmp/relay
    ```
 
 ## Where to go next 
