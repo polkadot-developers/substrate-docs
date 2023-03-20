@@ -93,7 +93,3 @@ There are some nuances that are covered in other parts of the documentation, but
 - Implements the interfaces that enable the core client to call into the runtime.
 
 You’ll learn more about constructing the runtime, defining benchmarks, and using runtime interfaces in topics in the [Build](/build/) and [Test](/test/) sections.
-
-## Modify the default runtime
-
-Now that you have a general idea of what the runtime source code looks like, let's look at a simple modification.

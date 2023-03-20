@@ -21,6 +21,8 @@ quick-start:
       url: /quick-start/start-a-node/
     - title: Explore the code
       url: /quick-start/explore-the-code/
+    - title: Modify the runtime
+      url: /quick-start/modiify-the-runtime/
 
 learn:
   title: Learn
