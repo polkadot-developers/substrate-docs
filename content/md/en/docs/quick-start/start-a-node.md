@@ -8,7 +8,7 @@ All of the Substrate tutorials and how-to guides require you to build and run a 
 To help you set up a working environment quickly, the [Substrate Developer Hub](https://github.com/substrate-developer-hub/) maintains _templates_ for you to use.
 For example, the [substrate-node-template](https://github.com/substrate-developer-hub/substrate-node-template/tags/) is a snapshot of the main Substrate `node-template` binary that includes a core set of features to get you started.
 
-After you start the node, you can connect to it using a web browser and a simple applications that allows to look up a balance for a predefined account.
+After you start the node, you can connect to it using a web browser and a simple application that allows you to look up a balance for a predefined account.
 
 ## Before you begin
 
@@ -48,14 +48,14 @@ Before you begin, verify the following:
    git switch -c my-learning-branch-yyyy-mm-dd
    ```
 
-   You can name the branch using any identifying information you choose, but we recommend a numerical year-month-day format. 
+   You can name the branch using any identifying information you choose, but the recommended practice is to include a numerical year-month-day in the name. 
    For example:
    
    ```bash
    git switch -c my-learning-branch-2023-03-31
    ```
 
-3. Compile the node template:
+2. Compile the node template:
 
    ```sh
    cargo build --package node-template --release
@@ -101,6 +101,10 @@ Before you begin, verify the following:
    SS58 Address:      5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
    ```
 
+   Predefined development accounts like  `Alice` and  `Bob` are configured in a **chain specification** file.
+   You'll learn more about node template files in [Explore the code](/quick-start/explore-the-code/) and more specifically about the chain specification file in [Chain specification](/build/chain-spec/).
+   For now, it's enough to be aware that development accounts exist to enable testing of simple transactions like balance transfers.
+
 ## Start the blockchain
 
 1. Start the node in development mode by running the following command:
@@ -141,4 +145,4 @@ Before you begin, verify the following:
 
 1. Go to the terminal that displays blockchain operations.
 
-1. Stop the local blockchain and clear all state by pressing `ctrl-c`.
+1. Stop the local blockchain and clear all state by pressing the `control-c` key combination.
