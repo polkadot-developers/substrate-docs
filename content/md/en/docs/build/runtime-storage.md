@@ -116,9 +116,9 @@ For example, you should use this type of storage for the following common use ca
   
 If you use this type of storage for lists of items, you should be conscious about the size of the lists you store.
 Large lists and `structs` incur storage costs and iterating over a large list or `struct` in the runtime can affect network performance or stop block production entirely. 
-If iterating over storage exceeds the block production time and your project is a [parachain](/reference/glossary/#parachain), the blockchain to stop producing blocks and stop functioning.
+If iterating over storage exceeds the block production time and your project is a [parachain](/reference/glossary/#parachain), the blockchain will stop producing blocks and functioning.
 
-Refer to the [StorageValue](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html#required-methods) documentation for a comprehensive list of the methods that StorageValue exposes.
+Refer to the [StorageValue](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html#required-methods) documentation for a comprehensive list of methods that StorageValue exposes.
 
 ## Single key storage maps
 
@@ -126,9 +126,9 @@ Map data structures are ideal for managing sets of items whose elements will be 
 Single key storage maps in Substrate are similar to traditional [hash maps](https://en.wikipedia.org/wiki/Hash_table) with key-to-value mapping to perform random lookups. 
 To give you flexibility and control, Substrate allows you to select the hashing algorithm you want to use to generate the map keys.
 For example, if a map stores sensitive data you might want to generate keys using a hashing algorithm with stronger encryption over a hashing algorithm with better performance but weaker encryption properties.
-For more infomration about selecting a hashing algorithm for a map to use, see [Hashing algorithms](#hashing-algorithms).
+For more information about selecting a hashing algorithm for a map to use, see [Hashing algorithms](#hashing-algorithms).
 
-Refer to the [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html#required-methods) documentation for a comprehensive list of the methods that StorageMap exposes.
+Refer to the [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html#required-methods) documentation for a comprehensive list of methods that StorageMap exposes.
 
 ## Double key storage maps
 
@@ -152,7 +152,7 @@ In addition, the database reads required to access the elements in a storage map
 Therefore, it is significantly more costly—in terms of performance and execution time—to iterate over the elements in a storage map than to read the elements in a list.
 
 With the relative costs in mind, it's generally better to avoid iterating over storage maps in the runtime.
-However, there are no firm rules abut how you use Substrate storage capabilities, and, ultimately, it's up to you to decide the best way to access runtime storage for your application.
+However, there are no firm rules about how you use Substrate storage capabilities, and, ultimately, it's up to you to decide the best way to access runtime storage for your application.
 
 Substrate provides the following methods to enable you to iterate over storage maps:
 
