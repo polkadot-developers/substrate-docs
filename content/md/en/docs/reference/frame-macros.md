@@ -127,6 +127,8 @@ pub mod pallet {
 #### Development mode
 
 You can specify `dev_mode` as an argument on the `#[pallet]` or `#[frame_support::pallet]` attribute macro to enable development mode for a pallet.
+For example, replace `#[pallet]` with `#[pallet(dev_mode)]` or `#[frame_support::pallet]` with `#[frame_support::pallet(dev_mode)]` to enable development mode for the pallet you're working on.
+
 Development mode loosens some of the restrictions and requirements placed on production pallets to make it easier to iterate on your code during development and testing cycles. 
 For example, if you enable development mode for a pallet:
 
