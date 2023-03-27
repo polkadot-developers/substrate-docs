@@ -229,7 +229,9 @@ For more information about the substrate-connect API, see [Substrate Connect](ht
 
 ## Browser extension
 
-The Substrate Connect Browser Extension is using Substrate Connect and Smoldot light client node modules and upon browser initiation updates and synchronizes in the well known substrate chain specs (Polkadot, Kusama, Rococo, Westend), keeping them to the latest state inside the extension, for faster chain sync. When a dApp that supports Substrate Connect (e.g. polkadotJS apps) starts in a browser's tab, then it receives the latest specs from the Extension instead of wrap-synching from the last imported inside the dApp; At the same time, the dApp will appear inside the Extension as "connected" - meaning that it is using the Extension's bootnodes and specs;
+The Substrate Connect Browser Extension is using [Substrate Connect](https://github.com/paritytech/substrate-connect) and [Smoldot light client](https://github.com/smol-dot/smoldot) node modules and upon browser initiation updates and synchronizes in the well known substrate chain specs (**Polkadot, Kusama, Rococo, Westend**), keeping them to the latest state inside the extension, for faster chain sync.
+
+When a dApp that integrates [Substrate Connect](https://github.com/paritytech/substrate-connect) (e.g. [polkadotJS/apps](https://polkadot.js.org/apps/?rpc=light%3A%2F%2Fsubstrate-connect%2Fpolkadot#/explorer)) starts in a browser's tab, then it receives the latest specs from the Extension instead of wrap-synching from the last imported inside the dApp; At the same time, the dApp will appear inside the Extension as "connected" - meaning that it is using the Extension's bootnodes and specs;
 
 You can download the Chrome and Firefox extensions from [Substrate Connect](https://substrate.io/developers/substrate-connect/) or find more information on the [Github repo](https://github.com/paritytech/substrate-connect/tree/main/projects/extension).
 
