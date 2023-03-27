@@ -7,7 +7,7 @@ keywords:
 The _Quick start_ assumes that you are a new developer without any prior experience working with Substrate or FRAME, but that you are aware that these tools exist.
 The _Quick start_ also assumes that you want a simplified entry point for setting up a development environment and starting a blockchain node on your local computer.
 
-In the _Quick start_, you'll get a brief overview of what Substrate is, learn how to compile and start node, and take a short tour through the node template code.
+In the _Quick start_, you'll get a brief overview of what Substrate is, learn how to compile and start a node, and take a short tour through the node template code.
 The following topics are intended to be read in order as a fast path to learning to build with Substrate:
 
 - [Substrate at a glance](/quick-start/substrate-at-a-glance/)
@@ -26,14 +26,14 @@ The **Developer journey** presents information in the form of a narrative arc:
 - [Learn](/learn/) covers core blockchain and Substrate concepts and operations.
 - [Install](/iinstall/) provides platorm-specific installation instructions and troubleshooting tips for installation-related issues.
 - [Build](/build/) exposes the tools and techniques for building custom blockchain applications.
-- [Test](/tests/) highlights approaches for unit testing and benchmarking code before deploying on a test network or production.
+- [Test](/tests/) highlights approaches for unit testing and benchmarking code before deploying on a test network or in a production environment.
 - [Deploy](/deploy/) describes different options for deploying nodes, how to prepare for deployment, and how to move from a test network to a production network.
-- [Maintain](/maintain/) provides general information about maintaining your network with with hardware and software upgrades, managing new releases, and maintaining your infrastructure.
+- [Maintain](/maintain/) provides general information about maintaining your network with hardware and software upgrades, managing new releases, and maintaining your infrastructure.
 
 The **Tutorials** provide hands-on learning experiences that cover different aspects of building and managing a Substrate-based blockchain:
 
-- [Build a blockchain](/tutorials/build-a-blockchain/) tutorials are focused on network basics from starting a single node to creating a private four node blockchain, monitoring node operations, and how to upgrade a running network.
-- [Build application logic](/tutorials/work-with-pallets/) tutorials are focused on how to implement application-specific logic.
+- [Build a blockchain](/tutorials/build-a-blockchain/) tutorials are focused on network basics from starting a single node to creating a private four node blockchain, monitoring node operations, and upgrading a running network.
+- [Build application logic](/tutorials/work-with-pallets/) tutorials are focused on how to implement application-specific logic working with existing and custom pallets.
 - [Build a parachian](/tutorials/connect-relay-and-parachains/) tutorials are focused on how to move from a standalone chain to a parachain, connect a parachain to a relay chain, and send messages between chains.
 
 The **API and reference** provides direct access to technical information such as the Rust API and help for command-line tools.

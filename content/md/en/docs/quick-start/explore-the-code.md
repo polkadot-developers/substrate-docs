@@ -80,7 +80,7 @@ If you create a custom chain, you use this file to identify the network that a n
 ## Default node template runtime
 
 Because Substrate provides a modular and flexible framework for building blockchains, you can make changes to any package in the workspace.
-However, most application development work is done in the runtime and in the modules—called pallets—used to construct the runtime.
+However, most application development work is done in the runtime and in the modules—the pallets—used to construct the runtime.
 Before you start to customize the runtime for your own project, you should spend a little time exploring what’s in the default node template.
 
 ### Default manifest
@@ -96,7 +96,7 @@ pallet-transaction-payment = { version = "4.0.0-dev", default-features = false, 
 ```
 
 There are also dependencies on core packages—such as `frame-system`, `frame-support`, and `frame-executive`. 
-You'll learn more about these core services in []().
+You'll learn more about these core services in [Core FRAME services](/learn/runtime-development/#core-frame-services).
 For now, just notice that these and other modules are required to compile the runtime for the node template.
 
 ### Default source code
@@ -106,13 +106,14 @@ If you open this file in your code editor, it might seen complicated at first.
 There are some nuances that are covered in other parts of the documentation, but in essence, the source code does the following:
 
 - Imports the frame_system and frame_support core services.
-- Specifies tge version information for the runtime.
+- Specifies version information for the runtime.
 - Declares the pallets to include.
 - Declares the types and parameters for each pallet included.
 - Sets constant and variable values for each pallet included.
 - Implements the `Config` trait for each pallet included.
 - Constructs the runtime from the pallets included.
-- Prepares the benchmarking framework for evaluating pallet performance..
+- Prepares the benchmarking framework for evaluating pallet performance.
 - Implements the interfaces that enable the core client to call into the runtime.
 
 You’ll learn more about constructing the runtime, defining benchmarks, and using runtime interfaces in topics in the [Build](/build/) and [Test](/test/) sections.
+For now, you only need to have a general sense of how the runtime is composed and how the default pallets are implemented using the `Config` trait.

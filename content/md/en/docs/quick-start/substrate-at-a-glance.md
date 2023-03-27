@@ -20,7 +20,7 @@ Substrate includes default implementations of the core components of the blockch
 
 FRAME provides the core modular and extensible components that make the Substrate software development kit flexible and adaptable to different use cases.
 FRAME include Rust-based programs and libraries that simplify and streamline the development of application-specific logic.
-Most of the functionality that FRAME provides takes the form of plug-in modules called pallets that you can add and configure to suit your requirements.
+Most of the functionality that FRAME provides takes the form of plug-in modules called **pallets** that you can add and configure to suit your requirements.
 
 ## Why use Substrate and FRAME?
 

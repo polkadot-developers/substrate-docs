@@ -19,8 +19,8 @@ You'll also see another application that uses the Polkadot-JS API and how you ca
 
 ## Add a pallet
 
-The most common way to start building with Substrate and FRAME involves adding pallets,either by importing one from the existing library or by creating your own.
-Creating your own pallet from scratch isn't difficult, but it requires more work designing the application logic, storage, requirements, error handling and so on.
+The most common way to start building with Substrate and FRAME involves adding pallets, either by importing one from the existing library or by creating your own.
+Creating your own pallet from scratch isn't difficult, but it requires more work designing the application logic, storage requirements, error handling, and so on.
 To keep things simple, let's add a pallet by importing one from the existing library.
 
 By default, the node template doesn't include the [Utility pallet](https://paritytech.github.io/substrate/master/pallet_utility/index.html).
@@ -154,13 +154,13 @@ To update the runtime version:
    };
    ```
 
-1. Update the [`spec_version`](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html#structfield.spec_version) to specify the new runtime version.
+3. Update the `spec_version` to specify the new runtime version.
 
    ```rust
    spec_version: 101,  // Change the spec_version from 100 to 101
    ```
 
-2.  Save your changes and close the `runtime/src/lib.rs` file.
+4.  Save your changes and close the `runtime/src/lib.rs` file.
 
 ### Restart the local node
 
@@ -179,8 +179,8 @@ To restart the node with the default runtime:
 ### Check the runtime version
 
 At this point, you've modified the runtime code and changed the version information.
-However, the running node is still using the previously compiled version of the runtime.
-To check the runtime version, let's use a browser-based application built with the Polkadot-JS API.
+However, the running node is still using the previously-compiled version of the runtime.
+To check the runtime version, you can use a browser-based application built with the Polkadot-JS API.
 
 To check the runtime version:
 
@@ -191,7 +191,7 @@ To check the runtime version:
 2. Connect to the Development network and the default local node endpoint `127.0.0.1:9944`, if necessary.
    
    In most cases, the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) initializes the connection to the running local node automatically.
-   If required, click Unknown to display the network selection menu, then select **Development** and **Local Node**, then click **Switch**.
+   If required, click **Unknown** to display the network selection menu, then select **Development** and **Local Node**, then click **Switch**.
 
 1. Notice that under Development, the node template version is the default version 100.
 
@@ -274,7 +274,7 @@ To verify your changes:
 
 3.  Click **Developer** and select **Extrinsics**. 
 
-4.  Click **submit the following extrinsic** and scroll to the bottom of the list to verify that the **utility** pallet is avaailable as an option.
+4.  Click **submit the following extrinsic** and scroll to the bottom of the list to verify that the **utility** pallet is available as an option.
 
 5. Click **Developer** and select **Chain state** in the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/chainstate/constants?rpc=ws://127.0.0.1:9944).
    
@@ -282,3 +282,6 @@ To verify your changes:
 
    ![Verify the constant value change](/media/images/docs/tutorials/forkless-upgrade/constant-value-lookup.png)
    
+   With these changes, you now have a customized version of the node template and have successfully upgraded your local node to use your modified runtime.
+   That's quite an achievement, but there's a lot more you can do. 
+   To dig deeper into concepts and core components, review topics in the [Learn](/learn/) section or start building on what you've learned so far by exploring topics in the [Build](/build/) section.
