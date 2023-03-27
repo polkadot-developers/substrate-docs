@@ -33,8 +33,9 @@ Before you begin, verify the following:
    git clone https://github.com/substrate-developer-hub/substrate-node-template
    ```
 
-   This command clones the main branch. 
-   If you are familiar with Polkadot, you can use the `--branch` command-line option and a [tag](https://github.com/substrate-developer-hub/substrate-node-template/tags) to specify the version of Polkadot you want to work with.
+   This command clones the `main` branch. 
+   
+   Optionally, you can use the `--branch` command-line option and a [tag](https://github.com/substrate-developer-hub/substrate-node-template/tags) to specify a version of Polkadot you want the node to be compatible with.
    
 2. Change to the root of the cloned directory:
 
@@ -42,28 +43,28 @@ Before you begin, verify the following:
    cd substrate-node-template
    ```
 
-1. Create a new branch to save your work by running a command similar to the following:
+3. Create a new branch to save your work by running a command similar to the following:
 
    ```bash
    git switch -c my-learning-branch-yyyy-mm-dd
    ```
 
-   You can name the branch using any identifying information you choose, but the recommended practice is to include a numerical year-month-day in the name. 
+   You can name the branch using any identifying information you choose.
+   In most cases, you should include information about the year-month-day you cloned the branch in the name.
    For example:
    
-   ```bash
+   ```text
    git switch -c my-learning-branch-2023-03-31
    ```
 
-2. Compile the node template:
+4. Compile the node template:
 
    ```sh
    cargo build --package node-template --release
    ```
 
-   Because of the number of packages involved, the first time you compile the node can take some time to complete.
-
-   It should complete with a line like this:
+   The first time you compile the node, it can take some time to complete.
+   When compiling is complete, you should see a line like this:
    
    ```bash
    Finished release [optimized] target(s) in 11m 23s
@@ -80,7 +81,7 @@ Before you begin, verify the following:
    The usage information displays the command-line options you can use to:
 
    - start the node
-   - work with accounts
+   - work with accounts and keys
    - modify node operations
 
 1. View account information for the predefined `Alice` development account by running the following command:
@@ -89,7 +90,7 @@ Before you begin, verify the following:
    ./target/release/node-template key inspect //Alice
    ```
 
-   The command displays the following account information:
+   The command displays the following account and address information:
 
    ```text
    Secret Key URI `//Alice` is account:
@@ -125,21 +126,22 @@ Before you begin, verify the following:
 
 ## Connect to the node
 
-1. Create a simple HTML file with JavaScript and the [Polkadot-JS API](https://polkadot.js.org/docs/) to interact with the blockchain.
+Now that your node is running, you can connect to it to check the balance of the predefined `Alice` account.
+For this simple application, you can create one `index.html` HTML file that uses JavaScript and the [Polkadot-JS API](https://polkadot.js.org/docs/api) to interact with the blockchain.
 
-   For example, create an `index.html` file that uses JavaScript and HTML to:
+For example, this sample [index.html](/assets/quickstart/index.html) demonstrates how to use JavaScript, the Polkadot-JS API, and HTML to do the following:
 
-   - take an account address as input
-   - look up the account balance using an `onClick` event
-   - display the balance for the account as output
+- Take an account address as input.
+- Look up the account balance using an `onClick` event.
+- Display the balance for the account as output.
 
-   This sample [index.html](/assets/quickstart/index.html) provides a simple example of how to use JavaScript, the Polkadot-JS API, and HTML to get an account balance.
+To connect to the node and check an account balance:
 
-2. Copy and paste the [sample code](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/quickstart/index.html) for the **Quick start: Get Balance** application into a new file in your text editor and save the file on your local computer.
+1. Copy and paste the [sample code](/assets/quickstart/index.html) for the **Quick start: Get Balance** application into a new file in your code editor and save the file on your local computer.
 
-3. Open the `index.html` file in a web browser.
+2. Open the `index.html` file in a web browser.
 
-4. Copy and paste the SS58 Address for the `Alice` account in the input field, then click **Get Balance**.
+3. Copy and paste the SS58 Address for the `Alice` account in the input field, then click **Get Balance**.
 
 ## Stop the node
 

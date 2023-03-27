@@ -17,6 +17,40 @@ For this simple demonstration, you are going to do the following:
 
 You'll also see another application that uses the Polkadot-JS API and how you can use the hosted version of that application to view the chain state and submit transactions.
 
+## Before you begin
+
+When you run a node in development mode using the `--dev` command-line option, it starts in a clean state with the first block. 
+To best illustrate how to modify and update the runtime, you should restart the default node template with its default runtime so that it starts producing blocks.
+
+To restart the node with the default runtime:
+
+1. Open a terminal shell on your computer.
+
+2. Change to the root directory where you compiled the Substrate node template.
+   
+3. Start the local node in development mode by running the following command:
+
+   ```bash
+   cargo run --release -- --dev
+   ```
+
+After you start the node, you can connect to it using a browser-based application built using the Polkadot-JS API.
+
+To connect to the running node:
+
+1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) in a Chrome or a Chromium-based browser.
+   
+   If you use a more restrictive browser—such as Firefox—you might find that connections between the Polkadot/Substrate Portal and the node are blocked.
+
+2. Connect to the Development network and the default local node endpoint `127.0.0.1:9944`, if necessary.
+   
+   In most cases, the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) initializes the connection to the running local node automatically.
+   If required, click **Unknown** to display the network selection menu, then select **Development** and **Local Node**, then click **Switch**.
+
+3. Notice that under Development, the node template version is the default version 100.
+   
+   ![Node template default version](/media/images/docs/quickstart-100.png)
+
 ## Add a pallet
 
 The most common way to start building with Substrate and FRAME involves adding pallets, either by importing one from the existing library or by creating your own.
@@ -28,20 +62,22 @@ If this pallet contains functions you want to use, you can add it to the default
 
 To add the Utility pallet:
 
-1. Open the runtime manifest—`runtime/Cargo.toml` in your code editor.
+1. Open a second terminal shell on your computer and change to the node template root directory.
+   
+2. Open the runtime manifest—`runtime/Cargo.toml` in your code editor.
 
-2. Locate the `[dependencies]` section and add the Utility pallet as a dependency.
+3. Locate the `[dependencies]` section and add the Utility pallet as a dependency.
    
    For example, you should add a single line similar to the following.
    
    ```toml
-   pallet-utility = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-n.n.n"
-   }
+   pallet-utility = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-n.n.n" }
    ```
+   Be sure to replace `branch = "polkadot-n.n.n"` with the Polkadot branch used for other pallets.
 
    You can copy any existing pallet dependency as a model to ensure that the branch setting for the `pallet-utility` dependency is the same as the branch setting for all other pallets. 
 
-3. Locate the `[features]` section and add the Utility pallet to the list of default features for the standard binary.
+4. Locate the `[features]` section and add the Utility pallet to the list of default features for the standard binary.
    
    For example:
 
@@ -57,11 +93,11 @@ To add the Utility pallet:
 
    You'll learn more about building features for the standard and WebAssembly binaries in [Rust and WebAssembly](/build/build-process).
 
-4. Save your changes and close the `Cargo.toml` file.
+5. Save your changes and close the `Cargo.toml` file.
 
-5. Open the `runtime/src/lib.rs` file in your code editor.
+6. Open the `runtime/src/lib.rs` file in your code editor.
 
-6. Add the implementation for the `Config` trait for the Utility pallet.
+7. Add the implementation for the `Config` trait for the Utility pallet.
    
    For example:
    
@@ -78,7 +114,7 @@ To add the Utility pallet:
    You can always look at the Rust documentation for a pallet to learn more about its configuration requirements.
    For example, you can view the Rust documentation for the [pallet-utility](https://paritytech.github.io/substrate/master/pallet_utility/index.html).
 
-7. Add the Utility pallet inside the `construct_runtime!` macro.
+8. Add the Utility pallet inside the `construct_runtime!` macro.
 
    For example:
    
@@ -95,7 +131,7 @@ To add the Utility pallet:
             Timestamp: pallet_timestamp,
             Aura: pallet_aura,
             ...
-            Utility: pallet_utility,
+            Utility: pallet_utility, // Add this line
             ...
      }
    ```
@@ -115,7 +151,7 @@ To update a constant value:
 
 2. Locate the `EXISTENTIAL_DEPOSIT` for the Balances pallet.
    
-   ```rust
+   ```text
    /// Existential deposit.
    pub const EXISTENTIAL_DEPOSIT: u128 = 500;
    ```
@@ -162,40 +198,11 @@ To update the runtime version:
 
 4.  Save your changes and close the `runtime/src/lib.rs` file.
 
-### Restart the local node
-
-To restart the node with the default runtime:
-
-1. Open a terminal shell on your computer.
-
-2. Change to the root directory where you compiled the Substrate node template.
-   
-3. Start the local node in development mode by running the following command:
-
-   ```bash
-   cargo run --release -- --dev
-   ```
-
-### Check the runtime version
-
 At this point, you've modified the runtime code and changed the version information.
 However, the running node is still using the previously-compiled version of the runtime.
-To check the runtime version, you can use a browser-based application built with the Polkadot-JS API.
+If you are still connected to the running node using the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer), you can see the node template version is still the default version 100 and the [chain state](https://polkadot.js.org/apps/#/chainstate/constants) for the balances constant existentialDeposit is still 500.
 
-To check the runtime version:
-
-1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) in a Chrome or a Chromium-based browser.
-   
-   If you use a more restrictive browser—such as Firefox—you might find that connections between the Polkadot/Substrate Portal and the node are blocked.
-
-2. Connect to the Development network and the default local node endpoint `127.0.0.1:9944`, if necessary.
-   
-   In most cases, the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) initializes the connection to the running local node automatically.
-   If required, click **Unknown** to display the network selection menu, then select **Development** and **Local Node**, then click **Switch**.
-
-1. Notice that under Development, the node template version is the default version 100.
-
-   ![Node template default version](/media/images/docs/tutorials/forkless-upgrade/default-version.png)
+![Chain state](/media/images/docs/quickstart-org-chainstate.png)
 
 ## Recompile the runtime
 
@@ -216,7 +223,7 @@ To recompile the runtime package:
    Storage optimization is _critical_ for any blockchain.
    With this command, the build artifacts are output to the `target/release` directory.
    The WebAssembly build artifacts are in the `target/release/wbuild/node-template-runtime` directory.
-   For example, you should see the following WebAssembly artifacts:
+   For example, if you list the contents of the `target/release` directory, you should see the following WebAssembly artifacts:
 
    ```text
    node_template_runtime.compact.compressed.wasm
@@ -232,27 +239,25 @@ To update the runtime stored on-chain, you must submit a transaction that change
 
 To update the runtime:
 
-1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) in a browser and connect to the local node.
+1. In the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer), click **Developer** and select **Extrinsics**.
 
-2. Click **Developer** and select **Extrinsics** to submit a transaction for the runtime to use the new build artifact.
+2. Select the administrative **Alice** account.
 
-3. Select the administrative **Alice** account.
-
-4. Select the **sudo** pallet and the **sudoUncheckedWeight(call, weight)** function.
+3. Select the **sudo** pallet and the **sudoUncheckedWeight(call, weight)** function.
    
-5. Select **system** and **setCode(code)** as the call to make using the Alice account.
+4. Select **system** and **setCode(code)** as the call to make using the Alice account.
 
-6. Click **file upload**, then select or drag and drop the compact and compressed WebAssembly file—`node_template_runtime.compact.compressed.wasm`—that you generated for the updated runtime.
+5. Click **file upload**, then select or drag and drop the compact and compressed WebAssembly file—`node_template_runtime.compact.compressed.wasm`—that you generated for the updated runtime.
 
    For example, navigate to the `target/release/wbuild/node-template-runtime` directory and select `node_template_runtime.compact.compressed.wasm` as the file to upload.
 
-7. Leave both of the **weight** parameters set to the default value of `0`.
+6. Leave both of the **weight** parameters set to the default value of `0`.
 
    ![Runtime upgrade settings](/media/images/docs/tutorials/forkless-upgrade/set-code-transaction.png)
 
-8. Click **Submit Transaction**.
+7. Click **Submit Transaction**.
 
-9. Review the authorization, then click **Sign and Submit**.
+8. Review the authorization, then click **Sign and Submit**.
 
 ## Verify the modified runtime
 
@@ -260,28 +265,31 @@ After the transaction is included in a block, you can verify that you're using t
 
 To verify your changes:
 
-1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps) in a browser and connect to the local node.
-
-1. Click **Network** and select **Explorer** to see that there has been a successful `sudo.Sudid` event.
+1. In the [Polkadot/Substrate Portal](https://polkadot.js.org/apps), click **Network** and select **Explorer** to see that there has been a successful `sudo.Sudid` event.
    
    ![Successful sudo event](/media/images/docs/tutorials/forkless-upgrade/set-code-sudo-event.png)   
 
 2. Check that the node template version is now `101`.
 
    For example:
-
-   ![Updated runtime version is 101](/media/images/docs/tutorials/forkless-upgrade/runtime-version-101.png)
-
-3.  Click **Developer** and select **Extrinsics**. 
-
-4.  Click **submit the following extrinsic** and scroll to the bottom of the list to verify that the **utility** pallet is available as an option.
-
-5. Click **Developer** and select **Chain state** in the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/chainstate/constants?rpc=ws://127.0.0.1:9944).
    
-1. Select the **balances** pallet, the select **existentialDeposit** as the constant value as the value to query.
+   ![Updated runtime version is 101](/media/images/docs/quickstart-101.png)
 
-   ![Verify the constant value change](/media/images/docs/tutorials/forkless-upgrade/constant-value-lookup.png)
+3. Click **Developer** and select **Extrinsics**. 
    
-   With these changes, you now have a customized version of the node template and have successfully upgraded your local node to use your modified runtime.
-   That's quite an achievement, but there's a lot more you can do. 
-   To dig deeper into concepts and core components, review topics in the [Learn](/learn/) section or start building on what you've learned so far by exploring topics in the [Build](/build/) section.
+4. Click **submit the following extrinsic** and scroll to the bottom of the list to verify that the **utility** pallet is available as an option.
+   
+   ![Utility pallet](/media/images/docs/quickstart-utility-pallet.png)
+
+5. Click **Developer** , select **Chain state**, then click [Constants](https://polkadot.js.org/apps/#/chainstate/constants?rpc=ws://127.0.0.1:9944).
+   
+6. Select the **balances** pallet, select **existentialDeposit**, then click **+** to query the constant value.
+   
+   ![Verify the constant value change](/media/images/docs/quickstart-chain-state.png)
+
+## Where to go next
+
+After verifying the changes, you know that you have a customized version of the node template running and have successfully upgraded your local node to use your modified runtime.
+
+That's quite an achievement, but there's a lot more you can do. 
+To dig deeper into concepts and core components, review topics in the [Learn](/learn/) section or start building on what you've learned so far by exploring topics in the [Build](/build/) section.
