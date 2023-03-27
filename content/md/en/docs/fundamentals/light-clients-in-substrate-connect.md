@@ -12,7 +12,7 @@ keywords:
 ---
 
 Typically, the nodes that provide peer-to-peer networking for a blockchain require significant resources, including powerful high-speed processors and high-capacity storage devices.
-By contrast, light client nodes can synchronize data from the blockchain while running in resource-constrained environments and embedded in applications. 
+By contrast, light client nodes can synchronize data from the blockchain while running in resource-constrained environments and embedded in applications.
 
 With a light client node, you can interact with a blockchain in a secure and decentralized way without investing in the high-powered hardware and network capacity that running a full node would require.
 
@@ -22,7 +22,7 @@ For Substrate-based chains, the light client node is implemented as a WebAssembl
 To make the `smoldot` WebAssembly light client easier to integrate with JavaScript and TypeScript applications, there's a JavaScript package that's built on top of the `smoldot` source called Substrate Connect.
 
 Substrate Connect is available as a Node.js package that can be installed with the `npm` package manager.
-The Substrate Connect package enables the light client node to be integrated with applications in the JavaScript ecosystem. 
+The Substrate Connect package enables the light client node to be integrated with applications in the JavaScript ecosystem.
 After adding Substrate Connect to an application, the application can communicate with the light client—and access blockchain data—through JSON-RPC messages.
 
 ## Connect to the blockchain directly from a browser
@@ -54,9 +54,9 @@ You can connect to the following public blockchain networks using the name liste
 | [Westend](https://wiki.polkadot.network/docs/en/maintain-networks#westend-test-network) | `westend2`
 | [Rococo](https://polkadot.network/rococo-v1-a-holiday-gift-to-the-polkadot-community/) | `rococo_v2_2`
 
-Note that you must use the chain identifier as it appears in the chain specification for a specific network rather than the more commonly-used network name. 
-For example, you must specify `ksmcc3` as the chain identifier to connect to Kusama. 
-Using the correct name is especially important for chains that have been forked. 
+Note that you must use the chain identifier as it appears in the chain specification for a specific network rather than the more commonly-used network name.
+For example, you must specify `ksmcc3` as the chain identifier to connect to Kusama.
+Using the correct name is especially important for chains that have been forked.
 For example, `rococo_v2` and `rococo_v2_2` are two different chains.
 
 ## Integrate in apps that use Polkadot-JS API
@@ -66,29 +66,29 @@ If you have built applications that use the existing Polkadot-JS API, the `@polk
 To add `substrate-connect` to your application:
 
 1. Install the `@polkadot/rpc-provider` package by running the appropriate command for the package manager you use.
-   
+
    For example, if you use `yarn`, run the following command:
-   
+
    ```bash
    yarn add @polkadot/rpc-provider
    ```
-   
+
    If you use `npm` as your package manager, run the following command:
-   
+
    ```bash
    npm i @polkadot/rpc-provider
    ```
 
 1. Install the `@polkadot/api` package by running the appropriate command for the package manager you use.
-   
+
    For example, if you use `yarn`, run the following command:
-   
+
    ```bash
    yarn add @polkadot/api
    ```
 
    If you use `npm` as your package manager, run the following command:
-   
+
    ```bash
    npm i @polkadot/api
    ```
@@ -160,8 +160,8 @@ await api.disconnect();
 
 ## Use Substrate Connect with other libraries
 
-The previous section demonstrated how to integrate the Substrate Connect provider into applications that use the Polkadot-JS API. 
-With this provider, you create applications that enable users to interact with the chain through the browser using calls to the Polkadot-JS API methods. 
+The previous section demonstrated how to integrate the Substrate Connect provider into applications that use the Polkadot-JS API.
+With this provider, you create applications that enable users to interact with the chain through the browser using calls to the Polkadot-JS API methods.
 However, you can install and use @substrate-connect in applications that don't depend on the Polkadot-JS API. For example, if you are building your own application library or programming interfaces, you can install the Substrate Connect dependencies by running the appropriate command for the package manager you use.
 
 For example, if you use `yarn`, run the following command:
@@ -229,20 +229,22 @@ For more information about the substrate-connect API, see [Substrate Connect](ht
 
 ## Browser extension
 
-Substrate Connect provides a browser extension for the @substrate/light client node that allows the Smoldot light client to run inside the extension instead of within the context of every browser tab. 
-The extension also allows the light client node to keep synchronizing with the blockchain as long as the browser window stays open. 
+The Substrate Connect Browser Extension is using [Substrate Connect](https://github.com/paritytech/substrate-connect) and [Smoldot light client](https://github.com/smol-dot/smoldot) node modules and upon browser initiation updates and synchronizes in the well known substrate chain specs (**Polkadot, Kusama, Rococo, Westend**), keeping them to the latest state inside the extension, for faster chain sync.
+
+When a dApp that integrates [Substrate Connect](https://github.com/paritytech/substrate-connect) (e.g. [polkadotJS/apps](https://polkadot.js.org/apps/?rpc=light%3A%2F%2Fsubstrate-connect%2Fpolkadot#/explorer)) starts in a browser's tab, then it receives the latest specs from the Extension instead of wrap-synching from the last imported inside the dApp; At the same time, the dApp will appear inside the Extension as "connected" - meaning that it is using the Extension's bootnodes and specs;
+
 You can download the Chrome and Firefox extensions from [Substrate Connect](https://substrate.io/developers/substrate-connect/) or find more information on the [Github repo](https://github.com/paritytech/substrate-connect/tree/main/projects/extension).
 
 ## Example projects
 
 * [Burnr](https://paritytech.github.io/substrate-connect/burnr/)
-  
-  Insecure redeemable wallet: A light-client-based, in-browser wallet for Substrate. 
-  It's meant to be quick and easy to use but less secure than other solutions. 
+
+  Insecure redeemable wallet: A light-client-based, in-browser wallet for Substrate.
+  It's meant to be quick and easy to use but less secure than other solutions.
   [Github](https://github.com/paritytech/substrate-connect/tree/main/projects/burnr)
 
-* [Multi-demo](https://paritytech.github.io/substrate-connect/demo/) 
-  
+* [Multi-demo](https://paritytech.github.io/substrate-connect/demo/)
+
   Simple demo that covers multichain and parachain examples.
   [Github](https://github.com/paritytech/substrate-connect/tree/main/projects/demo)
 
@@ -257,14 +259,14 @@ If you're using the Brave browser and are unable to connect because you've opene
 To disable the WebSocket limit:
 
 1. Open a new tab in the Brave browser.
-   
+
 2. Copy the URL [brave://flags/#restrict-websockets-pool](brave://flags/#restrict-websockets-pool).
 
 3. Paste the URL in the Address bar to select the **Restrict WebSockets pool** setting.
 
 4. Click the setting list and select **Disabled**.
-   
+
    ![Disable the Restrict WebSockets pool setting](/media/images/docs/brave-setting.png)
-   
+
 5. Relaunch the browser.
 
