@@ -23,13 +23,13 @@ The local relay chain is required to set up a local testing environment that a t
 
 Before you begin, consider the following:
 
-- Though it is not a strict prerequisite, it is recommended that you first learn how to generate chain specifications for a private network of trusted validators as described in [Add trusted nodes](/tutorials/get-started/add-trusted-nodes/). 
+- Though it is not a strict prerequisite, it is recommended that you first learn how to generate chain specifications for a private network of trusted validators as described in [Add trusted nodes](/tutorials/build-a-blockchain/add-trusted-nodes/). 
 
 Before you begin, verify the following:
 
 - You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
-- You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and know how to compile and run a Substrate node.
+- You have completed [Build a local blockchain](/tutorials/build-a-blockchain/build-local-blockchain/) and know how to compile and run a Substrate node.
 
 - You are generally familiar with Polkadot [architecture and terminology](https://wiki.polkadot.network/docs/learn-architecture).
 
@@ -186,7 +186,7 @@ To start the validator nodes using the [raw sample chain specification file](/as
 In this tutorial, you learned how to build and start a local relay chain.
 From here, you might want to learn how to connect a local parachain to the local relay chain or experiment with tools that help you automate setting up a test network.
 
-- [Connect a local parachain](/tutorials/connect-relay-and-parachains/connect-a-local-parachain/)
+- [Connect a local parachain](/tutorials/build-a-parachain/connect-a-local-parachain/)
 - [Launch a parachain test network](https://github.com/open-web3-stack/parachain-launch)
 - [Set up `zombienet`](https://github.com/paritytech/zombienet) is a CLI tool that enables you to spawn ephemeral Polkadot and Substrate networks and perform tests against them.
 

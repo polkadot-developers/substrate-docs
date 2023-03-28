@@ -384,6 +384,6 @@ For more information about the JSON-RPC API and the latest interface specificati
 ## Where to go next
 
 - [Substrate Connect](https://github.com/paritytech/substrate-connect)
-- [Install the front-end template](/tutorials/get-started/build-local-blockchain/#install-the-front-end-template)
+- [Install the front-end template](/tutorials/build-a-blockchain/build-local-blockchain/#install-the-front-end-template)
 - [Generate a metadata QR code](https://github.com/paritytech/metadata-portal)
 - [Get backwards-compatible metadata (desub)](https://github.com/paritytech/desub)

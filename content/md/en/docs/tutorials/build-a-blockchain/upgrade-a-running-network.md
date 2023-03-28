@@ -33,9 +33,9 @@ Before you begin, verify the following:
 
 - You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
-- You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and have the Substrate node template installed locally.
+- You have completed [Build a local blockchain](/tutorials/build-a-blockchain/build-local-blockchain/) and have the Substrate node template installed locally.
 
-* You have reviewed [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet) for an introduction to adding a new pallet to the runtime.
+* You have reviewed [Add a pallet to the runtime](/tutorials/build-application-logic/add-a-pallet) for an introduction to adding a new pallet to the runtime.
 
 ## Tutorial objectives
 

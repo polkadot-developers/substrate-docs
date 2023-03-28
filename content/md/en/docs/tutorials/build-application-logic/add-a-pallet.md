@@ -10,7 +10,7 @@ keywords:
   - configuration
 ---
 
-As you saw in [Build a local blockchain](/tutorials/get-started/build-local-blockchain/), the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) provides a working **runtime** that includes some default FRAME development modules—**pallets**—to get you started building a custom blockchain.
+As you saw in [Build a local blockchain](/tutorials/build-a-blockchain/build-local-blockchain/), the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) provides a working **runtime** that includes some default FRAME development modules—**pallets**—to get you started building a custom blockchain.
 
 This tutorial introduces the basic steps for adding a new pallet to the runtime for the node template.
 The steps are similar any time you want to add a new FRAME pallet to the runtime.
@@ -30,7 +30,7 @@ Before you begin, verify the following:
 
 - You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
-- You have completed the [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) tutorial and have the Substrate node template from the Developer Hub installed locally.
+- You have completed the [Build a local blockchain](/tutorials/build-a-blockchain/build-local-blockchain/) tutorial and have the Substrate node template from the Developer Hub installed locally.
 
 - You are generally familiar with software development and using command-line interfaces.
 
@@ -274,7 +274,7 @@ To start the local Substrate node:
 
 ## Start the front-end template
 
-Now that you have added a new pallet to your runtime, you can use the [Substrate front-end template](https://docs.substrate.io/tutorials/get-started/build-local-blockchain/#install-the-front-end-template) to interact with the node template and access the Nicks pallet.
+Now that you have added a new pallet to your runtime, you can use the [Substrate front-end template](https://docs.substrate.io/tutorials/build-a-blockchain/build-local-blockchain/#install-the-front-end-template) to interact with the node template and access the Nicks pallet.
 
 To start the front-end template:
 
@@ -345,12 +345,12 @@ In this case, you added the `nicks` pallet to the runtime and called the `set_na
 The `nicks` pallet also provides two additional functions—the `clear_name` function and the `kill_name` function—that enable an account owner to remove the reserved name or a root-level user to forcibly remove an account name.
 You can learn about additional features—such as the use of the Sudo pallet and origin accounts—by exploring how these functions work.
 However, these features are beyond the intended scope of this tutorial.
-If you want to explore additional features exposed through the Nicks and Sudo pallets, see [Next steps](#next-steps) and select [Specify the origin for a call](/tutorials/work-with-pallets/specify-the-origin-for-a-call).
+If you want to explore additional features exposed through the Nicks and Sudo pallets, see [Next steps](#next-steps) and select [Specify the origin for a call](/tutorials/build-application-logic/specify-the-origin-for-a-call).
 
 ## Next steps
 
 There are several [tutorials](/tutorials/) that can serve as next steps for learning more about Substrate development.
 
-- [Specify the origin for a call](/tutorials/work-with-pallets/specify-the-origin-for-a-call) explores calling functions using different originating accounts.
+- [Specify the origin for a call](/tutorials/build-application-logic/specify-the-origin-for-a-call) explores calling functions using different originating accounts.
 - [Develop smart contracts](/tutorials/smart-contracts/) guide you through using ink! to build smart contracts.
-- [Use macros in a custom pallet](/tutorials/work-with-pallets/use-macros-in-a-custom-pallet) illustrates how you can use macros to create your own pallets.
+- [Use macros in a custom pallet](/tutorials/build-application-logic/use-macros-in-a-custom-pallet) illustrates how you can use macros to create your own pallets.

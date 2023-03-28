@@ -95,7 +95,7 @@ You can use Substrate to build virtually any type of network—from a completely
 
 To take a deeper dive into networks and nodes types, explore the following topics.
 
-- [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
-- [Simulate a network](/tutorials/get-started/simulate-network/)
-- [Add trusted nodes](/tutorials/get-started/add-trusted-nodes/)
-- [Authorize specific nodes](/tutorials/get-started/authorize-specific-nodes/)
+- [Build a local blockchain](/tutorials/build-a-blockchain/build-local-blockchain/)
+- [Simulate a network](/tutorials/build-a-blockchain/simulate-network/)
+- [Add trusted nodes](/tutorials/build-a-blockchain/add-trusted-nodes/)
+- [Authorize specific nodes](/tutorials/build-a-blockchain/authorize-specific-nodes/)

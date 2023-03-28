@@ -36,9 +36,9 @@ For this tutorial, you download and use working code. Before you begin, verify t
 
 - You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
-- You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and have the Substrate node template installed locally.
+- You have completed [Build a local blockchain](/tutorials/build-a-blockchain/build-local-blockchain/) and have the Substrate node template installed locally.
 
-- You have used predefined accounts as described in [Simulate a network](/tutorials/get-started/simulate-network/) to start nodes on a single computer.
+- You have used predefined accounts as described in [Simulate a network](/tutorials/build-a-blockchain/simulate-network/) to start nodes on a single computer.
 
 - You are generally familiar with software development and use command-line interfaces.
 

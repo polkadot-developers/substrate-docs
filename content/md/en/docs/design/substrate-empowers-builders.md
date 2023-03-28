@@ -56,9 +56,9 @@ Explore the following resources to learn more.
 
 #### Guide me
 
-- [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
-- [Simulate a network](/tutorials/get-started/simulate-network/)
-- [Add trusted nodes](/tutorials/get-started/add-trusted-nodes/)
+- [Build a local blockchain](/tutorials/build-a-blockchain/build-local-blockchain/)
+- [Simulate a network](/tutorials/build-a-blockchain/simulate-network/)
+- [Add trusted nodes](/tutorials/build-a-blockchain/add-trusted-nodes/)
 
 <!--
 #### Show me (related video content)

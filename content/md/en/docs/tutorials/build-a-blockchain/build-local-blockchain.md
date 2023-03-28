@@ -300,6 +300,6 @@ You can explore these components on your own or learn more in the following topi
 
 - [Architecture](/learn/architecture/)
 - [Networks and blockchains](/learn/node-and-network-types/)
-- [Simulate a network](/tutorials/get-started/simulate-network/)
+- [Simulate a network](/tutorials/build-a-blockchain/simulate-network/)
 - [Submit an issue](https://github.com/substrate-developer-hub/substrate-docs/issues/new/choose)
 - [Substrate Stack Exchange](https://substrate.stackexchange.com/)

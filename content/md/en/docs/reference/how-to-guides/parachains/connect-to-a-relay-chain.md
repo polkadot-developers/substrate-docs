@@ -16,7 +16,7 @@ keywords:
 
 This guide summarizes how to connect a parachain to a relay chain.
 It is intended to be a quick reference for when you are ready to deploy a parachain on a test or production network and have already performed similar steps in a local testing environment.
-If you haven't previously set up a local relay chain and connected a parachain to it, you should follow the steps in [Prepare a local relay chain](/tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain/) and [Connect a local parachain](/tutorials/connect-relay-and-parachains/connect-a-local-parachain/) before using this guide.
+If you haven't previously set up a local relay chain and connected a parachain to it, you should follow the steps in [Prepare a local relay chain](/tutorials/build-a-parachain/prepare-a-local-relay-chain/) and [Connect a local parachain](/tutorials/build-a-parachain/connect-a-local-parachain/) before using this guide.
 
 The guide highlights the following topics:
 
@@ -246,6 +246,6 @@ You can keep track of the parachains that are registered and their latest head d
 
 ## Examples
 
-- [Prepare a local relay chain](/tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain)
-- [Connect a local parachain](/tutorials/connect-relay-and-parachains/connect-a-local-parachain/)
-- [Acquire a testnet slot](/tutorials/connect-relay-and-parachains/acquire-a-testnet-slot/)
+- [Prepare a local relay chain](/tutorials/build-a-parachain/prepare-a-local-relay-chain)
+- [Connect a local parachain](/tutorials/build-a-parachain/connect-a-local-parachain/)
+- [Acquire a testnet slot](/tutorials/build-a-parachain/acquire-a-testnet-slot/)

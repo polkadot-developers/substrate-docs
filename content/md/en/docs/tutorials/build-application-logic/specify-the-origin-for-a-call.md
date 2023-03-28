@@ -7,7 +7,7 @@ keywords:
   - origins
 ---
 
-In [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet), you added functions from `pallet_nicks` to the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) runtime.
+In [Add a pallet to the runtime](/tutorials/build-application-logic/add-a-pallet), you added functions from `pallet_nicks` to the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) runtime.
 
 The Nicks pallet allows blockchain users to pay a deposit to reserve a nickname for an account they control.
 It implements the following functions:
@@ -29,7 +29,7 @@ Before you begin, verify the following:
 
 - You have the Substrate front-end template installed locally.
 
-- You have completed the [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet) tutorial and successfully compiled the runtime that includes the `nicks` pallet.
+- You have completed the [Add a pallet to the runtime](/tutorials/build-application-logic/add-a-pallet) tutorial and successfully compiled the runtime that includes the `nicks` pallet.
 
 - You are generally familiar with software development and using command-line interfaces.
 
@@ -46,7 +46,7 @@ By completing this tutorial, you will accomplish the following objectives:
 
 ## Identify the administrative account
 
-As you saw in [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet), the `Config` trait for the `nicks` pallet declares several types.
+As you saw in [Add a pallet to the runtime](/tutorials/build-application-logic/add-a-pallet), the `Config` trait for the `nicks` pallet declares several types.
 For this tutorial, the focus is on the `ForceOrigin` type.
 The `ForceOrigin` type is used to specify the account that can perform certain operations.
 For this pallet, the `ForceOrigin` type specifies the account that can set or remove a name for another account.

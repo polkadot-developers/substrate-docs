@@ -49,7 +49,7 @@ Before you begin, verify the following:
 
 - You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
-- You have completed the [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) tutorial and have the Substrate node template from the Developer Hub installed locally.
+- You have completed the [Build a local blockchain](/tutorials/build-a-blockchain/build-local-blockchain/) tutorial and have the Substrate node template from the Developer Hub installed locally.
 
 - You are familiar with how to use FRAME macros and edit the logic for a pallet.
 

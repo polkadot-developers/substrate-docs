@@ -24,7 +24,7 @@ Before you begin, verify the following:
 
 - You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
-- You have completed at least some of the previous tutorials, including [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and [Simulate a network](/tutorials/get-started/simulate-network/).
+- You have completed at least some of the previous tutorials, including [Build a local blockchain](/tutorials/build-a-blockchain/build-local-blockchain/) and [Simulate a network](/tutorials/build-a-blockchain/simulate-network/).
 
 ## Tutorial objectives
 
@@ -244,7 +244,7 @@ To import the dashboard template:
 
 ## Where to go next
 
-- [Add trusted nodes](/tutorials/get-started/add-trusted-nodes)
+- [Add trusted nodes](/tutorials/build-a-blockchain/add-trusted-nodes)
 - [Monitor your node](https://wiki.polkadot.network/docs/en/maintain-guides-how-to-monitor-your-node)
 -  [Substrate Prometheus Exporter](https://github.com/paritytech/substrate/tree/master/utils/prometheus)
 - [Polkadot network dashboard](https://github.com/w3f/polkadot-dashboard)

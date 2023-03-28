@@ -24,9 +24,9 @@ Before you begin, verify the following:
 
 - You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
-- You have completed [Build a local blockchain](/tutorials/get-started/build-local-blockchain/) and have the Substrate node template installed locally.
+- You have completed [Build a local blockchain](/tutorials/build-a-blockchain/build-local-blockchain/) and have the Substrate node template installed locally.
 
-- You have used predefined accounts as described in [Simulate a network](/tutorials/get-started/simulate-network/) to start nodes on a single computer.
+- You have used predefined accounts as described in [Simulate a network](/tutorials/build-a-blockchain/simulate-network/) to start nodes on a single computer.
 
 - You are generally familiar with software development and using command-line interfaces.
 
@@ -44,7 +44,7 @@ By completing this tutorial, you will accomplish the following objectives:
 
 ## Generate your account and keys
 
-In [Simulate a network](/tutorials/get-started/simulate-network/), you started peer nodes using predefined accounts and keys.
+In [Simulate a network](/tutorials/build-a-blockchain/simulate-network/), you started peer nodes using predefined accounts and keys.
 For this tutorial, you generate your own secret keys for the validator nodes in the network.
 It's important to remember that each participant in the blockchain network is responsible for generating unique keys.
 
@@ -275,7 +275,7 @@ To convert a chain specification to use the raw format:
 ## Prepare to launch the private network
 
 After you distribute the custom chain specification to all network participants, you're ready to launch your own private blockchain.
-The steps are similar to the steps you followed in [Start the first blockchain node](/tutorials/get-started/simulate-network/#Start-the-first-blockchain-node).
+The steps are similar to the steps you followed in [Start the first blockchain node](/tutorials/build-a-blockchain/simulate-network/#Start-the-first-blockchain-node).
 However, if you follow the steps in this tutorial, you'll be able to add multiple computers to your network.
 
 To continue, verify the following:

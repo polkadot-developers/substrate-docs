@@ -135,7 +135,7 @@ After the conversion to the raw format, the `sudo key` snippet looks like this:
 
 ## Where to go next
 
-- [Add trusted nodes](/tutorials/get-started/add-trusted-nodes/)
+- [Add trusted nodes](/tutorials/build-a-blockchain/add-trusted-nodes/)
 - [How-to: Configure genesis state](/reference/how-to-guides/basics/configure-genesis-state/)
 - [How-to: Customize a chain specification](/reference/how-to-guides/basics/customize-a-chain-specification/)
 - [Node template chain specification](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs)

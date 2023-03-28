@@ -25,7 +25,7 @@ By completing this tutorial, you will accomplish the following objectives:
 
 Before you begin, verify the following:
 
-- You have configured a local relay chain with two validators as described in [Prepare a local relay chain](/tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain/).
+- You have configured a local relay chain with two validators as described in [Prepare a local relay chain](/tutorials/build-a-parachain/prepare-a-local-relay-chain/).
 
 - You are aware that parachain versions and dependencies are tightly coupled with the version of the relay chain they connect to and know the software version you used to configure the relay chain.
   
@@ -425,4 +425,4 @@ To reset the blockchain state:
 - [How-to: Add more parachain nodes](/reference/how-to-guides/parachains/add-paranodes/)
 - [How-to: Convert a solo chain](/reference/how-to-guides/parachains/convert-a-solo-chain/)
 - [Polkadot wiki](https://wiki.polkadot.network/docs/learn-collator)
-- [Acquire a testnet slot](/tutorials/connect-relay-and-parachains/acquire-a-testnet-slot/)
+- [Acquire a testnet slot](/tutorials/build-a-parachain/acquire-a-testnet-slot/)

@@ -176,7 +176,7 @@ As you start to design and build your custom runtime, you'll learn more about FR
 Now that you are familiar with the basics of Substrate runtime development and working with pallets, explore the following topics and tutorials to learn more.
 
 - [Frame pallets](/reference/frame-pallets/)
-- [Add a module to the runtime](/tutorials/work-with-pallets/add-a-pallet)
+- [Add a module to the runtime](/tutorials/build-application-logic/add-a-pallet)
 - [Rust for Substrate](/learn/rust-basics/)
 - [Macro reference](/reference/frame-macros/)
-- [Use macros in a custom pallet](/tutorials/work-with-pallets/use-macros-in-a-custom-pallet/)
+- [Use macros in a custom pallet](/tutorials/build-application-logic/use-macros-in-a-custom-pallet/)

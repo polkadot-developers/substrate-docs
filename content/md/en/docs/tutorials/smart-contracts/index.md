@@ -17,7 +17,7 @@ you need to add the [Contracts pallet](https://github.com/paritytech/substrate/t
 and a few other components to your development environment.
 
 Preparing the node template for building smart contracts is covered in
-[Configure the contracts pallet](/tutorials/work-with-pallets/contracts-pallet).
+[Configure the contracts pallet](/tutorials/build-application-logic/contracts-pallet).
 
 - [Prepare your first contract](/tutorials/smart-contracts/prepare-your-first-contract/) describes how to update your
   development environment and create a smart contract project using the ink! programming language.
