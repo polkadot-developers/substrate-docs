@@ -52,7 +52,7 @@ For example, you can manipulate the connection between a predefined node and you
 You can't change the connections for predefined nodes.
 They are always allowed to connect with each other.
 
-The `node-authorization` pallet uses an [offchain worker](/fundamentals/offchain-operations) to configure its node connections.
+The `node-authorization` pallet uses an [offchain worker](/learn/offchain-operations) to configure its node connections.
 Make sure to enable the offchain worker when you start the node because it is disabled by default for non-authority nodes.
 
 ## Before you begin
@@ -462,7 +462,7 @@ To start the second node:
 ### Add a third node to the list of well-known nodes
 
 You can start the third node with the `--name charlie` command.
-The `node-authorization` pallet uses an [offchain worker](/fundamentals/offchain-operations) to configure node connections.
+The `node-authorization` pallet uses an [offchain worker](/learn/offchain-operations) to configure node connections.
 Because the third node is not a well-known node and it will have the fourth node in the network configured as a read-only sub-node, you must include the command-line option to enable the offchain worker.
 
 To start the third node:
@@ -629,7 +629,7 @@ If you were building a permissioned network for a real world application, node o
 In this tutorial, you learned the basics of how to build a network where some nodes have limited permissions and restricted access to network resources.
 To learn more about the topics introduced in this tutorial, see the following resources:
 
-- [Accounts, addresses, and keys](/fundamentals/accounts-addresses-keys)
+- [Accounts, addresses, and keys](/learn/accounts-addresses-keys)
 - [Node authorization pallet](https://paritytech.github.io/substrate/master/pallet_node_authorization/index.html#)
 - [Node authorization source code](https://github.com/paritytech/substrate/blob/master/frame/node-authorization/src/lib.rs)
 - [Monitor node metrics](/tutorials/get-started/monitor-node-metrics/)

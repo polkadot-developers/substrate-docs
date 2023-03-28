@@ -1,6 +1,6 @@
 ---
-title: Networks and blockchains
-description: Describes network types and deployment scenarios.
+title: Networks and nodes
+description: Describes the different network types and node roles for Substrate-based chains.
 keywords:
 ---
 

@@ -4,7 +4,7 @@ description: Introduces the core programming interfaces, primitives, and modules
 keywords:
 ---
 
-As discussed in [Architecture](/fundamentals/architecture/), the **runtime** for a Substrate node contains all of the business logic for executing transactions, saving state transitions, and interacting with the outer node.
+As discussed in [Architecture](/learn/architecture/), the **runtime** for a Substrate node contains all of the business logic for executing transactions, saving state transitions, and interacting with the outer node.
 Substrate provides all of the tools required to build common blockchain components so you can focus on developing the runtime logic that defines the blockchain behavior.
 
 ## State transitions and the runtime
@@ -13,7 +13,7 @@ At the most basic level, every blockchain is essentially a ledger or record of e
 In Substrate-based chains, these changes to state are recorded in the runtime.
 Because the runtime handles this operation, the runtime is sometimes described as providing the [state transition function](/reference/glossary#state-transition-function-stf).
 
-Because state transitions occur in the runtime, the runtime is where you define the **storage items** that represent the blockchain [state](/reference/glossary#state) and the [transactions](/fundamentals/transaction-types) that allow blockchain users to make changes to this state.
+Because state transitions occur in the runtime, the runtime is where you define the **storage items** that represent the blockchain [state](/reference/glossary#state) and the [transactions](/learn/transaction-types) that allow blockchain users to make changes to this state.
 
 ![State and functions in the runtime](/media/images/docs/state-transition-function.png)
 
@@ -21,7 +21,7 @@ The Substrate runtime determines which transactions are valid and invalid and ho
 
 ## Runtime interfaces
 
-As you learned in [Architecture](/fundamentals/architecture/), the outer node is responsible for handling peer discovery, transaction pooling, block and transaction gossiping, consensus, and answering RPC calls from the outside world.
+As you learned in [Architecture](/learn/architecture/), the outer node is responsible for handling peer discovery, transaction pooling, block and transaction gossiping, consensus, and answering RPC calls from the outside world.
 These tasks frequently require the outer node to query the runtime for
 information or to provide information to the runtime.
 The runtime API facilitates this kind of communication between the outer node and the runtime.
@@ -177,6 +177,6 @@ Now that you are familiar with the basics of Substrate runtime development and w
 
 - [Frame pallets](/reference/frame-pallets/)
 - [Add a module to the runtime](/tutorials/work-with-pallets/add-a-pallet)
-- [Rust for Substrate](/fundamentals/rust-basics/)
+- [Rust for Substrate](/learn/rust-basics/)
 - [Macro reference](/reference/frame-macros/)
 - [Use macros in a custom pallet](/tutorials/work-with-pallets/use-macros-in-a-custom-pallet/)

@@ -70,7 +70,7 @@ The generic type is then resolved as a specific type in the runtime implementati
 For example, the `Account` type in FRAME relies on an associated `AccountId` type. The `AccountId` type remains a generic type until it is assigned a type in the runtime implementation for a pallet that needs this information.
 
 For more information about how accounts are defined in the `frame_system` pallet and the account properties in the `Account` storage map, see [Account data structures](/reference/account-data-structures/).
-For more information about working with generic types, see [Rust for Substrate](/fundamentals/rust-basics/#generic-types).
+For more information about working with generic types, see [Rust for Substrate](/learn/rust-basics/#generic-types).
 
 ## Specialized accounts
 

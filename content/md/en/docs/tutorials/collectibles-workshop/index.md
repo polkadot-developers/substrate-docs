@@ -22,9 +22,9 @@ Find the path that fits your passion.
 
 ### Custom pallets and runtime logic
 
-- [Architecture](/fundamentals/architecture/)
-- [Runtime development](/fundamentals/runtime-development/)
-- [Rust for Substrate](/fundamentals/rust-basics/)
+- [Architecture](/learn/architecture/)
+- [Runtime development](/learn/runtime-development/)
+- [Rust for Substrate](/learn/rust-basics/)
 - [Introduction to libraries](/build/libraries/)
 - [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
 - [Runtime and pallets](/tutorials/collectibles-workshop/runtime-and-pallets/)

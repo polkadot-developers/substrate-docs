@@ -49,10 +49,10 @@ Explore the following resources to learn more.
 
 #### Tell me more
 
-- [Blockchain basics](/main-docs/fundamentals/blockchain-basics/)
-- [Why substrate?](/main-docs/fundamentals/why-substrate)
-- [Architecture](/main-docs/fundamentals/architecture/)
-- [Runtime development](/main-docs/fundamentals/runtime-development/)
+- [Blockchain basics](/main-docs/learn/blockchain-basics/)
+- [Why substrate?](/main-docs/learn/why-substrate)
+- [Architecture](/main-docs/learn/architecture/)
+- [Runtime development](/main-docs/learn/runtime-development/)
 
 #### Guide me
 

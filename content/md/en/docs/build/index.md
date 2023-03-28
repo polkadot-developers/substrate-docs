@@ -6,7 +6,6 @@ keywords:
 
 The topics in this section provide a more detailed exploration of the code used to construct the runtime logic, including the libraries and tools available for building and interacting with the node and a closer look at how the logic is compiled to build a Substrate node.
 
-- [Introduction to libraries](/build/libraries) highlights the core node libraries and how they are structured to provide a modular framework for building Substrate nodes.
 - [Build process](/build/build-process) delves into the details of how the Rust code compiles to a Rust binary and a WebAssembly target and how these two targets are used to optimize node operations.
 - [Runtime storage](/build/runtime-storage) offers a closer look at storage structure and how to navigate to data stored in the runtime.
 - [Transactions, weights, and fees](/build/tx-weights-fees) explains the role of weights and fees in executing transactions and the mechanics of how fees are calculated and refunded.

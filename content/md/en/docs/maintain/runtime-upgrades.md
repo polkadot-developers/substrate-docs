@@ -84,7 +84,7 @@ If you don't make these kinds of changes to how data is stored when needed, the 
 
 FRAME storage migrations are implemented using the [`OnRuntimeUpgrade`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.OnRuntimeUpgrade.html) trait.
 The `OnRuntimeUpgrade` trait specifies a single function—`on_runtime_upgrade`—that allows
-you to specify logic to run immediately _after_ a runtime upgrade but _before_ any [`on_initialize`](/main-docs/fundamentals/transaction-lifecycle#initialize-a-block) functions or transactions are executed.
+you to specify logic to run immediately _after_ a runtime upgrade but _before_ any [`on_initialize`](/main-docs/learn/transaction-lifecycle#initialize-a-block) functions or transactions are executed.
 
 ### Preparing for storage migration
 

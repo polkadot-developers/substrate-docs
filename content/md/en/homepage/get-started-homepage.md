@@ -5,9 +5,9 @@ link: /quick-start/
 order: 1
 featured_image: /media/images/homepage/get-started.png
 bodyLinkOneTitle: Blockchain Basics
-bodyLinkOneURL: /fundamentals/blockchain-basics/
+bodyLinkOneURL: /learn/blockchain-basics/
 bodyLinkTwoTitle: Why Substrate?
-bodyLinkTwoURL: /fundamentals/why-substrate/
+bodyLinkTwoURL: /learn/why-substrate/
 bodyLinkThreeTitle: Architecture
-bodyLinkThreeURL: /fundamentals/architecture/
+bodyLinkThreeURL: /learn/architecture/
 ---

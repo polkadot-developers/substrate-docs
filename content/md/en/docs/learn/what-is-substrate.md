@@ -4,7 +4,7 @@ description: Explains the core principles behind the design of Substrate and how
 keywords:
 ---
 
-[Why Substrate](/fundamentals/why-substrate/) introduced some of the core characteristics and benefits of the Substrate development environment.
+[Why Substrate](/learn/why-substrate/) introduced some of the core characteristics and benefits of the Substrate development environment.
 If those benefits—flexibility, open source, interoperability, and upgradeability—are important to you, you might want to dig deeper into what Substrate is and into why it's designed the way it is.
 With this in mind, let's look more closely at what Substrate is.
 

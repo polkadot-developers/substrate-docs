@@ -41,7 +41,7 @@ Substrate provides a proof-of-work block production engine.
 
 ## Finalization and forks
 
-As a primitive, a block contains a header and [transactions](/fundamentals/transaction-types).
+As a primitive, a block contains a header and [transactions](/learn/transaction-types).
 Each block header contains a reference to its parent block, so you can trace the chain back to its genesis.
 Forks occur when two blocks reference the same parent.
 Block finalization is a mechanism that resolves forks such that only the canonical chain exists.
