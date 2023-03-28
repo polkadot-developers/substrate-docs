@@ -248,6 +248,7 @@ We have to update them to work with the new code we have added, for example:
 	}
 ```
 Check an example of the full test fixes [here](https://github.com/substrate-developer-hub/substrate-node-template/commit/fa021b11878e8621bb455d4638e1821b681c085e).
+
 ## Examples
 
 - [Migrating the Nicks pallet](https://github.com/substrate-developer-hub/substrate-node-template/tree/alexd10s/how-to-storage-migration-example)
