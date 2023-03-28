@@ -52,7 +52,7 @@ Contributions from the community enhance the capabilities available for you to i
 
 ## Interoperable
 
-Most blockchain platforms provided limited ability to interact with other blockchain networks.
+Most blockchain platforms provide limited ability to interact with other blockchain networks.
 All Substrate-based blockchains can interoperate with the other blockchains through [Cross-Consensus Messaging](https://wiki.polkadot.network/docs/learn-crosschain) (XCM).
 Substrate can be used to create chains as independent networks (solo chains), or tightly coupled to a [relay chain](https://wiki.polkadot.network/docs/learn-architecture#relay-chain) to share its security as a [parachain](https://wiki.polkadot.network/docs/learn-parachains).
 
