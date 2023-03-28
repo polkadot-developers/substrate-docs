@@ -25,7 +25,7 @@ fundamentals:
       url: /fundamentals/why-substrate/
     - title: What is Substrate?
       url: /fundamentals/what-is-substrate/
-    - title: Architecture
+    - title: Architecture and Rust libraries
       url: /fundamentals/architecture/
     - title: Cryptography
       url: /reference/cryptography/
@@ -125,8 +125,6 @@ build:
       url: /build/chain-spec/
     - title: Genesis configuration
       url: /build/genesis-configuration/
-    - title: Libraries
-      url: /build/libraries/
     - title: Build process
       url: /build/build-process/
     - title: Build a deterministic runtime
