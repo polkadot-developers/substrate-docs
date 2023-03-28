@@ -113,7 +113,7 @@ cargo install contracts-node --git https://github.com/paritytech/substrate-contr
 
 You can find the latest tag to use on the [Tags](https://github.com/paritytech/substrate-contracts-node/tags) page.
 
-You can verify the installation buy running `substrate-contracts-node --version`.
+You can verify the installation by running `substrate-contracts-node --version`.
 
 ## Create a new smart contract project
 
