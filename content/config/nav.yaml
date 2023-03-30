@@ -41,8 +41,6 @@ learn:
       url: /learn/networks-and-nodes/
     - title: Runtime development
       url: /learn/runtime-development/
-    - title: Consensus
-      url: /learn/consensus/
     - title: Transactions and block basics
       url: /learn/transaction-types/
     - title: Transaction lifecycle
@@ -65,6 +63,8 @@ learn:
       url: /learn/offchain-operations/
     - title: Light clients in Substrate Connect
       url: /learn/light-clients-in-substrate-connect/
+    - title: Consensus
+      url: /learn/consensus/
     - title: Cross-consensus messaging
       url: /learn/xcm-communication/
 
