@@ -266,6 +266,8 @@ reference:
   title: Reference
   url: /reference/
   pages:
+    - title: Rust API
+      url: /reference/rust-api/
     - title: Glossary
       url: /reference/glossary/
     - title: Command-line tools

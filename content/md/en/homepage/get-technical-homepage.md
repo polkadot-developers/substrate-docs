@@ -5,7 +5,7 @@ link: /reference/
 order: 3
 featured_image: /media/images/homepage/get-technical.png
 bodyLinkOneTitle: Rust API
-bodyLinkOneURL: https://paritytech.github.io/substrate/master/sc_service/
+bodyLinkOneURL: /reference/rust-api/
 bodyLinkTwoTitle: Rust for Substrate
 bodyLinkTwoURL:  /learn/rust-basics/
 bodyLinkThreeTitle: Command-line tools

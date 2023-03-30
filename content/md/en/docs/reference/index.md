@@ -6,6 +6,8 @@ keywords:
 
 This section contains links to the Rust API documentation and technical reference materials for Substrate and FRAME tools and libraries.
 
+- [Rust API](/reference/rust-api/) highlights entry points into the Rust API documentation that is generated directly from the Substrate source code.
+
 - [Glossary](/reference/glossary) defines and explains concepts and terminology that are specific to blockchain technology or the Substrate ecosystem.
 
 - [Command-line tools](/reference/command-line-tools) provides reference information for the most commonly-used command-line interface (CLI) tools.
