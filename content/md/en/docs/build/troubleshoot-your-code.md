@@ -240,7 +240,7 @@ Substrate provides the following hashing algorithms by default:
 - `Blake2` is a relatively fast cryptographic hashing function.
   In most cases, you can use the Blake2 hashing algorithm in any situations where security matters. However, Substrate can support any hash algorithm that implements the `Hasher` trait.
 
-For more information about hashing algorithms, see [Hashing algorithms](/reference/cryptography/#hashing-algorithms).
+For more information about hashing algorithms, see [Hashing algorithms](/learn/cryptography//#hashing-algorithms).
 
 ### Inaccurate weight
 

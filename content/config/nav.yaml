@@ -31,12 +31,12 @@ learn:
       url: /learn/welcome-to-substrate/
     - title: Blockchain basics
       url: /learn/blockchain-basics/
-    - title: What can you build
-      url: /learn/what-can-you-build/
     - title: Architecture and Rust libraries
       url: /learn/architecture/
     - title: Networks and nodes
       url: /learn/networks-and-nodes/
+    - title: What can you build
+      url: /learn/what-can-you-build/
     - title: Runtime development
       url: /learn/runtime-development/
     - title: Transactions and block basics
@@ -62,7 +62,7 @@ learn:
     - title: Light clients in Substrate Connect
       url: /learn/light-clients-in-substrate-connect/
     - title: Cryptography
-      url: /reference/cryptography/
+      url: /learn/cryptography/
     - title: Consensus
       url: /learn/consensus/
     - title: Cross-consensus messaging

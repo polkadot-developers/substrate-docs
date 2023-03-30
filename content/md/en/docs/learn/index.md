@@ -20,11 +20,11 @@ These topics are intended to help you learn what's possible when you build a Sub
 
 - [Architecture and Rust libraries](/learn/architecture/) describes the Substrate architecture and the relationship between the architecture and the core Rust libraries.
 
-- [Networks and nodes](/learn/networks-and-nodes/) defines the different types of network topologies that can be built with Substrate and the different roles that nodes ca fill.
+- [Networks and nodes](/learn/networks-and-nodes/) defines the different types of network topologies that can be built with Substrate and the different roles that nodes can fill.
+
+- [What can you build](/learn/what-can-you-build/) introduces the advantages and limitations of different development options and why you might select one approach over another.
 
 - [Runtime development](/learn/runtime-development/) highlights the importance of the Substrate runtime and introduces the core application interfaces and primitives required for Substrate runtime development.
-
-- [Consensus](/learn/consensus/) describes the most common consensus models and the types of consensus you can implement for a Substrate blockchain.
 
 - [Transactions and block basics](/learn/transaction-types/) introduces transaction types and the components that make up a block.
 
@@ -39,6 +39,10 @@ These topics are intended to help you learn what's possible when you build a Sub
 - [Offchain operations](/learn/offchain-operations/) explores reasons for handling some operations offchain and alternatives for performing those offchain operations.
 
 - [Light clients in Substrate Connect](/learn/light-clients-in-substrate-connect/) describes how to use Substrate Connect to integrate a light client into your applications and enable interaction with any Substrate-based chain.
+
+- [Cryptography](/learn/cryptography) provides an overview of the hashing algorithms and signature schemes used for cryptography in Substrate.
+
+- [Consensus](/learn/consensus/) describes the most common consensus models and the types of consensus you can implement for a Substrate blockchain.
 
 - [Cross-consensus messaging](/learn/xcm-communication/) provides an overview of cross-consensus communication and the cross-consensus messaging (XCM) format.
 

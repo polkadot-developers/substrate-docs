@@ -1,5 +1,5 @@
 ---
-title: API and Reference
+title: API Reference
 description: For a deeper dive into the source code and how a blockchain is built from core components written in Rust, explore the reference documentation.
 link: /reference/
 order: 3

@@ -251,7 +251,7 @@ To add validators:
 Be sure to use unique keys for each validator.
 If two validators have the same keys, they produce conflicting blocks.
 
-For additional information about working with key pairs and signatures, see [Public-Key cryptography](/reference/cryptography#public-key-cryptography).
+For additional information about working with key pairs and signatures, see [Public-Key cryptography](/learn/cryptography/#public-key-cryptography).
 
 ## Convert the chain specification to raw format
 
@@ -586,7 +586,7 @@ To learn more about the topics introduced in this tutorial, see the following se
 - [Accounts, addresses, and keys](/learn/accounts-addresses-keys)
 - [Chain specification](/build/chain-spec/)
 - [subkey](/reference/command-line-tools/subkey/)
-- [Cryptography](/reference/cryptography/)
+- [Cryptography](/learn/cryptography//)
 
 <!-- TODO link to the followup tutorial about starting a 3 node network using the demo substrate node
 Details in https://github.com/substrate-developer-hub/tutorials/issues/16 -->

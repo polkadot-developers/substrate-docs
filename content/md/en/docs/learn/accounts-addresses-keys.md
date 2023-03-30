@@ -151,4 +151,4 @@ For more information about working with accounts, addresses, and keys, see the f
 - [SS58 registry](https://github.com/paritytech/ss58-registry/)
 - [Command reference: subkey](/reference/command-line-tools/subkey/)
 - [Account data structures](/reference/account-data-structures/)
-- [Cryptography](/reference/cryptography/)
+- [Cryptography](/learn/cryptography//)
