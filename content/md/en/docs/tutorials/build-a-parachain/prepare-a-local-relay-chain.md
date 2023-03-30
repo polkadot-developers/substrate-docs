@@ -130,7 +130,7 @@ To start the validator nodes using the [raw sample chain specification file](/as
 
 1. Download the raw chain specification file to a working directory on the local computer.
    
-   For example, save the file as `raw-local-chain-spec.json` in the `/tmp` directory.
+   For example, save the file as `raw-local-chainspec.json` in the `/tmp` directory.
    You'll need to specify the path to the file in the commands to start the nodes.
 
 2. Start the first validator using the `alice` account by running the following command:
