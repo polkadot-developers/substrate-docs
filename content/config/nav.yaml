@@ -31,12 +31,10 @@ learn:
       url: /learn/welcome-to-substrate/
     - title: Blockchain basics
       url: /learn/blockchain-basics/
-    #- title: What is Substrate?
-      #url: /learn/what-is-substrate/
+    - title: What can you build
+      url: /learn/what-can-you-build/
     - title: Architecture and Rust libraries
       url: /learn/architecture/
-    - title: Cryptography
-      url: /reference/cryptography/
     - title: Networks and nodes
       url: /learn/networks-and-nodes/
     - title: Runtime development
@@ -63,6 +61,8 @@ learn:
       url: /learn/offchain-operations/
     - title: Light clients in Substrate Connect
       url: /learn/light-clients-in-substrate-connect/
+    - title: Cryptography
+      url: /reference/cryptography/
     - title: Consensus
       url: /learn/consensus/
     - title: Cross-consensus messaging
@@ -216,10 +216,10 @@ tutorials:
           url: /tutorials/build-application-logic/add-a-pallet/
         #- title: Configure the contracts pallet
           #url: /tutorials/build-application-logic/contracts-pallet/
-        - title: Use macros in a custom pallet
-          url: /tutorials/build-application-logic/use-macros-in-a-custom-pallet/
         - title: Specify the origin for a call
           url: /tutorials/build-application-logic/specify-the-origin-for-a-call/
+        - title: Use macros in a custom pallet
+          url: /tutorials/build-application-logic/use-macros-in-a-custom-pallet/
         - title: Add offchain workers
           url: /tutorials/build-application-logic/add-offchain-workers/
         - title: Publish custom pallets

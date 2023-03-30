@@ -93,3 +93,18 @@
 /tutorials/v3/cumulus/start-relay                                       /tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain/         301!
 /tutorials/connect-other-chains/prepare-a-local-relay-chain/            /connect-relay-and-parachains/prepare-a-local-relay-chain/                   301!
 /tutorials/connect-other-chains/connect-a-local-parachain/              /tutorials/connect-relay-and-parachains/connect-a-local-parachain/           301!
+
+# Redirects for fundamentals
+
+/fundamentals/blockchain-basics/         /learn/blockchain-basics/           301!
+/fundamentals/why-substrate/             /learn/welcome-to-substrate/        301!
+/fundamentals/architecture/              /learn/architecture/                301!
+/fundamentals/node-and-network-types/    /learn/networks-and-nodes/          301!
+/fundamentals/runtime-intro/             /learn/runtime-development/         301!
+/fundamentals/consensus/                 /learn/consensus/                   301!
+/fundamentals/transaction-types/         /learn/transaction-types/           301!
+/fundamentals/transaction-lifecycle/     /learn/transaction-lifecycle/       301!
+/fundamentals/state-transitions-and-storage/  /learn/state-transitions-and-storage/  301!
+/fundamentals/accounts-addresses-keys/    /learn/accounts-addresses-keys/    301!
+/fundamentals/rust-basics/                /learn/rust-basics/                301!
+/fundamentals/offchain-operations/        /learn/offchain-operations/        301!

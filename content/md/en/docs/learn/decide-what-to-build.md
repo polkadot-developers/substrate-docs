@@ -1,5 +1,5 @@
 ---
-title: Decide what to build
+title: What you can build
 description:
 keywords:
   - smart contract 
