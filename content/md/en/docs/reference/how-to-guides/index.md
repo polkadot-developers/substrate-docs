@@ -44,6 +44,13 @@ See the following guides for help with testing pallets and runtime logic.
 - [Set up basic tests](/reference/how-to-guides/testing/set-up-basic-tests/)
 - [Test a transfer function](/reference/how-to-guides/testing/test-a-transfer-function/)
 
+## Storage migration
+
+See the following guides for help with a storage migration.
+
+- [Basic storage migration](/reference/how-to-guides/storage-migrations/basic-storage-migration/)
+- [Trigger migration](/reference/how-to-guides/storage-migrations/trigger-migration/)
+
 ## Consensus models
 
 See the following guides to implement consensus mechanisms in your runtimes.
@@ -59,7 +66,7 @@ See the following guides for help working with Substrate parachains.
 - [Connect to a relay chain](/reference/how-to-guides/parachains/connect-to-a-relay-chain/)
 - [Select collators](/reference/how-to-guides/parachains/select-collators/)
 - [Prepare to launch](/reference/how-to-guides/parachains/prepare-to-launch/)
-- [Runtime upgrades](/reference/how-to-guides/parachains/runtime-upgrade/)
+- [Upgrade a parachain](/reference/how-to-guides/parachains/upgrade-a-parachain/)
 - [Auctions and crowdloans](/reference/how-to-guides/parachains/auctions-and-crowdloans/)
 - [Add HRMP channels](/reference/how-to-guides/parachains/add-hrmp-channels/)
 
@@ -76,7 +83,6 @@ See the following guides for add-on tools that help you manage Substrate chains 
 
 See the following guides for help working with offchain data.
 
-- [Make offchain transactions](/reference/how-to-guides/offchain-workers/offchain-transactions/)
 - [Make offchain HTTP requests](/reference/how-to-guides/offchain-workers/offchain-http-requests/)
 - [Offchain local storage](/reference/how-to-guides/offchain-workers/offchain-local-storage/)
 - [Offchain indexing](/reference/how-to-guides/offchain-workers/offchain-indexing/)

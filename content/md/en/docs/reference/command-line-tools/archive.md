@@ -23,7 +23,7 @@ Before you use `archive` to create a database for a Substrate-based chain, you n
 - You must have RabbitMQ or Docker Compose installed on the computer where you have PostgreSQL installed.
 
   Depending on your platform, the instruction and system requirements for installing RabbitMQ or Docker can vary.
-  For information about using [RabbitMQ](https://www.rabbitmq.com/) or [Docker](docker.com), see the [Setup](https://github.com/paritytech/substrate-archive/wiki/1-Setup) `substrate-archive` wiki page.
+  For information about using [RabbitMQ](https://www.rabbitmq.com/) or [Docker](https://www.docker.com/), see the [Setup](https://github.com/paritytech/substrate-archive/wiki/1-Setup) `substrate-archive` wiki page.
 
 - Your Substrate chain must use RocksDB as its backend database.
 

@@ -23,8 +23,12 @@ fundamentals:
       url: /fundamentals/blockchain-basics/
     - title: Why Substrate?
       url: /fundamentals/why-substrate/
+    - title: What is Substrate?
+      url: /fundamentals/what-is-substrate/
     - title: Architecture
       url: /fundamentals/architecture/
+    - title: Cryptography
+      url: /reference/cryptography/
     - title: Networks and blockchains
       url: /fundamentals/node-and-network-types/
     - title: Runtime development
@@ -53,7 +57,7 @@ fundamentals:
       url: /fundamentals/offchain-operations/
     - title: Light clients in Substrate Connect
       url: /fundamentals/light-clients-in-substrate-connect/
-    - title: Cross-consensus communication
+    - title: Cross-consensus messaging
       url: /fundamentals/xcm-communication/
 
 install:
@@ -79,7 +83,8 @@ design:
   pages:
     - title: Substrate empowers builders
       url: /design/substrate-empowers-builders/
-  #url: /design/applications/
+    - title: Decide what to build
+      url: /design/decide-what-to-build/
   #- title: Execution
   #url: /design/execution/
   #- title: Runtimes and clients
@@ -96,16 +101,14 @@ build:
   title: Build
   url: /build/
   pages:
-    - title: Introduction to libraries
-      url: /build/libraries/
-    - title: Build process
-      url: /build/build-process/
+    - title: Smart contracts
+      url: /build/smart-contracts-strategy/
+    - title: Custom pallets
+      url: /build/custom-pallets/
     - title: Runtime storage
       url: /build/runtime-storage/
     - title: Transactions, weights, and fees
       url: /build/tx-weights-fees/
-    - title: Custom pallets
-      url: /build/custom-pallets/
     - title: Pallet coupling
       url: /build/pallet-coupling/
     - title: Events and errors
@@ -122,12 +125,14 @@ build:
       url: /build/chain-spec/
     - title: Genesis configuration
       url: /build/genesis-configuration/
+    - title: Libraries
+      url: /build/libraries/
+    - title: Build process
+      url: /build/build-process/
     - title: Build a deterministic runtime
       url: /build/build-a-deterministic-runtime/
-    - title: Upgrade the runtime
-      url: /build/upgrade-the-runtime/
-    #- title: Best practices
-    #url: /build/best-practices/
+    - title: Troubleshoot your code
+      url: /build/troubleshoot-your-code/
     #- title: Executor
     #url: /build/executor/
 
@@ -154,18 +159,22 @@ deploy:
       url: /deploy/prepare-to-deploy/
     - title: Deployment options
       url: /deploy/deployment-options/
+    - title: Keys and network operations
+      url: /deploy/keys-and-network-operations/
 #   - title: Deploy on a test network
 #     url: /deploy/deploy-a-test-network/
 #   - title: Deploy a parathread
 #     url: /deploy/deploy-a-parathread/
-#   - title: Deploy a parachain
-#     url: /deploy/deploy-a-parachain/
+#   - title: Launch a parachain
+#     url: /deploy/launch-a-parachain/
 maintain:
   title: Maintain
   url: /maintain/
   pages:
     - title: Monitor
       url: /maintain/monitor/
+    - title: Runtime upgrades
+      url: /maintain/runtime-upgrades/
 #   - title: Operate
 #     url: /maintain/operate/
 #   - title: Client upgrades
@@ -204,6 +213,8 @@ tutorials:
           url: /tutorials/work-with-pallets/use-macros-in-a-custom-pallet/
         - title: Specify the origin for a call
           url: /tutorials/work-with-pallets/specify-the-origin-for-a-call/
+        - title: Add offchain workers
+          url: /tutorials/work-with-pallets/add-offchain-workers/
         - title: Publish custom pallets
           url: /tutorials/work-with-pallets/publish-custom-pallets/
     - title: Collectibles workshop
@@ -309,8 +320,6 @@ reference:
       url: /reference/address-formats/
     - title: Transaction formats
       url: /reference/transaction-format/
-    - title: Cryptography
-      url: /reference/cryptography/
     - title: XCM reference
       url: /reference/xcm-reference/
     - title: How-to reference guides

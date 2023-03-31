@@ -1,6 +1,6 @@
 ---
 title: Monitor
-description:
+description: Provides an overview of the default telemetry for Substrate nodes and the Polkadot ecosystem.
 keywords:
 ---
 

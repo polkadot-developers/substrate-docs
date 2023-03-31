@@ -7,7 +7,7 @@ code: |
 answer: |
 ---
 
-If you completed the checklist in [Prepare a working environment](01-prepare.md), you have successfully compiled a Substrate node.
+If you completed the checklist in [Prepare a working environment](/tutorials/collectibles-workshop/01-prepare/), you have successfully compiled a Substrate node.
 This particular node—the substrate-node-template—is preconfigured with a few common modules to provide a simple working environment to get you started.
 
 ## About the node template
@@ -27,7 +27,7 @@ A lot of what you'll be doing in this workshop is similar to what you see in the
 
 ## Rename your workspace
 
-To differentiate between the default Substrate node template and the workspace you'll be using to customize the node, you can rename the rename the working directory and create a separate branch for your changes.
+To differentiate between the default Substrate node template and the workspace you'll be using to customize the node, you can rename the working directory and create a separate branch for your changes.
 
 To prepare a custom workspace:
 
@@ -41,13 +41,13 @@ To prepare a custom workspace:
 
    In subsequent steps, the `workshop-node-template` directory is used to refer to the root directory for the node.
 
-1. Change to the root directory for the node by running the following command:
+3. Change to the root directory for the node by running the following command:
    
    ```bash
    cd workshop-node-template
    ```
 
-1. Create a custom branch for your workspace by running a command similar to the following:
+4. Create a custom branch for your workspace by running a command similar to the following:
    
    ```bash
    git switch -c build-substrate-workshop
@@ -110,3 +110,9 @@ To start the local Substrate node:
    - To restart the node, run `./target/release/node-template --dev`.
 
    The next step is to start customizing what this blockchain does.
+
+   As you learned in [Prepare a working environment](/tutorials/collectibles-workshop/01-prepare/), Substrate is built using the Rust programming language.
+   So, customizing what the blockchain does means working in Rust.
+   
+   If you're familiar with Rust, you can go right to [Create a new pallet](/tutorials/collectibles-workshop/03-create-pallet/) and start building.
+   If you're new to Rust, you might want to review the brief introduction in [Detour: Learn Rust for Substrate](/tutorials/collectibles-workshop/detours/learn-rust/) before you start writing code.

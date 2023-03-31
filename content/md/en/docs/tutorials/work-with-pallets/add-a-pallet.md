@@ -72,7 +72,7 @@ To add the dependencies for the Nicks pallet to the runtime:
    For example, add a line similar to the following:
 
    ```toml
-   pallet-nicks = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.35" }
+   pallet-nicks = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.37" }
    ```
 
    This line imports the `pallet-nicks` crate as a dependency and specifies the following:
@@ -270,7 +270,7 @@ To start the local Substrate node:
 
 ## Start the front-end template
 
-Now that you have added a new pallet to your runtime, you can use the Substrate front-end template to interact with the node template and access the Nicks pallet.
+Now that you have added a new pallet to your runtime, you can use the [Substrate front-end template](https://docs.substrate.io/tutorials/get-started/build-local-blockchain/#install-the-front-end-template) to interact with the node template and access the Nicks pallet.
 
 To start the front-end template:
 
@@ -329,7 +329,7 @@ To return the information stored for Alice:
    The return type is a tuple that contains two values:
 
    - The hex-encoded nickname for the Alice account `53756273747261746520737570657273746172202d20416c696365`.
-     If you convert the hex-encoded vale to a string, you'll see the name you specified for the `setName` function.
+      If you convert the hex-encoded value to a string, you'll see the name you specified for the `setName` function.
 
    - The amount that was reserved from Alice's account to secure the nickname (`100`).
 
@@ -349,5 +349,5 @@ If you want to explore additional features exposed through the Nicks and Sudo pa
 There are several [tutorials](/tutorials/) that can serve as next steps for learning more about Substrate development.
 
 - [Specify the origin for a call](/tutorials/work-with-pallets/specify-the-origin-for-a-call) explores calling functions using different originating accounts.
-- [Configure the contracts pallet](/tutorials/work-with-pallets/contracts-pallet) demonstrates more complex configuration requirements by adding the Contracts pallet to the runtime.
+- [Develop smart contracts](/tutorials/smart-contracts/) guide you through using ink! to build smart contracts.
 - [Use macros in a custom pallet](/tutorials/work-with-pallets/use-macros-in-a-custom-pallet) illustrates how you can use macros to create your own pallets.

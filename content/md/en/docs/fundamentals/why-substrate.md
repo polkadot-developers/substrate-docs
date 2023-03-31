@@ -1,6 +1,6 @@
 ---
 title: Why Substrate?
-description: docs
+description: Highlights the core benefits of the Substrate development environment that differentiate it from other blockchain and smart contract platforms.
 keywords:
   - vision
   - smart contracts
@@ -32,6 +32,7 @@ Unlike other distributed ledger platforms, Substrate is:
 - [Open](#open)
 - [Interoperable](#interoperable)
 - [Future-proof](#future-proof)
+- [Where to go next](#where-to-go-next)
 
 ## Flexible
 
@@ -51,7 +52,7 @@ Contributions from the community enhance the capabilities available for you to i
 
 ## Interoperable
 
-Most blockchain platforms provided limited ability to interact with other blockchain networks.
+Most blockchain platforms provide limited ability to interact with other blockchain networks.
 All Substrate-based blockchains can interoperate with the other blockchains through [Cross-Consensus Messaging](https://wiki.polkadot.network/docs/learn-crosschain) (XCM).
 Substrate can be used to create chains as independent networks (solo chains), or tightly coupled to a [relay chain](https://wiki.polkadot.network/docs/learn-architecture#relay-chain) to share its security as a [parachain](https://wiki.polkadot.network/docs/learn-parachains).
 

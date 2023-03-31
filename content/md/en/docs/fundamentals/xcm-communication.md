@@ -1,6 +1,6 @@
 ---
-title: Cross-consensus communication
-description:
+title: Cross-consensus messaging
+description: Provides an overview of cross-consensus communication and the cross-consensus messaging (XCM) format.
 keywords:
   - XCM
   - XCMP
