@@ -9,7 +9,7 @@ keywords:
 ---
 
 In [Runtime upgrades](/maintain/runtime-upgrades), you learned the basic relationship between performing runtime upgrades and handling storage migration as part of the upgrade process.
-This section provides examples to help you understand when a runtime upgrade will require storage migration, how you can prepare for and perform a runtime upgrade that includes data migration, and how to test runtime upgrades before executing on a network using the try-runtime and remote-externalities tools.
+This section provides examples to help you understand when a runtime upgrade will require storage migration, how you can prepare for and perform a runtime upgrade that includes data migration, and how to test runtime upgrades before executing on a network using the `try-runtime` and `remote-externalities` tools.
 
 ## Common migration scenarios
 
@@ -64,7 +64,7 @@ pub struct Foo { a: u32, b: u32 }
 pub struct Foo { a: u32, b: u32, c: u32 }
 ```
 
-If for whatever reason c has a type that its encoding is like (), then this would work.
+However, if the encoding for `c` has a type like the following example that could result in no value, the upgrade might not require a storage migration.
 
 ```rust
 #[pallet::storage]
@@ -75,7 +75,11 @@ pub struct Foo { a: u32, b: u32 }
 pub struct Foo { a: u32, b: u32, c: PhantomData<_> }
 ```
 
-When is a Migration Required?
+### Changing enumerated variants
+
+Extending an enumerated data type might—or might not—require a storage migration.
+In the following example, a new variant is added to the end of the list of variants for the data type. 
+If there's no value initialized with `C`, this change doesn't require a storage migration.
 
 ```rust
 #[pallet::storage]
@@ -86,97 +90,72 @@ pub type FooValue = StorageValue<_, Foo>;
   pub enum Foo { A(u32), B(u32), C(u128) }
 ```
 
-Extending an enum is even more interesting, because if you add the variant to the end, no migration is needed.
-Assuming that no value is initialized with C, this is not a migration.
----v
+However, if you insert the new variant with a different type and it displaces a previous variant as in the following example, the change would require a storage migration.
 
-When is a Migration Required?
+```rust
 #[pallet::storage]
 pub type FooValue = StorageValue<_, Foo>;
 // old
 pub enum Foo { A(u32), B(u32) }
 // new
 pub enum Foo { A(u32), C(u128), B(u32) }
-You probably never want to do this, but it is a migration.
----v
+```
 
-🦀 Rust Recall 🦀
-Enums are encoded as the variant enum, followed by the inner data:
+In Rust, remember that enumerated data types are encoded as the variant `enum`, followed by the inner data, so the order matters.
 
-The order matters! Both in struct and enum.
-Enums that implement Encode cannot have more than 255 variants.
----v
+### Changing keys
 
-When is a Migration Required?
+The previous examples illustrated changing the value format.
+However, changing a key definition would also require storage migration.
+
+```rust
 #[pallet::storage]
+// old
 pub type FooValue = StorageValue<_, u32>;
 // new
 #[pallet::storage]
 pub type BarValue = StorageValue<_, u32>;
-So far everything is changing the value format.
-The key changing is also a migration!
----v
+```
 
-When is a Migration Required?
+However, if you must rename the key for a storage type, you can use the `#[pallet::storage_prefix]` macro to avoid writing a storage migration as illustrated in the following example:
+
+```rust
 #[pallet::storage]
+//old
 pub type FooValue = StorageValue<_, u32>;
 // new
 #[pallet::storage_prefix = "FooValue"]
 #[pallet::storage]
-pub type I_can_NOW_BE_renamEd_hahAA = StorageValue<_, u32>;
-Handy macro if you must rename a storage type.
-This does not require a migration.
-Writing Runtime Migrations
-Now that we know how to detect if a storage change is a migration, let's see how we write one.
----v
+pub type Key_can_be_renamed = StorageValue<_, u32>;
+```
 
-Writing Runtime Migrations
-Once you upgrade a runtime, the code is expecting the data to be in a new format.
-Any on_initialize or transaction might fail decoding data, and potentially panic!
----v
+## Writing runtime migration code
 
-Writing Runtime Migrations
-We need a hook that is executed ONCE as a part of the new runtime...
-But before ANY other code (on_initialize, any transaction) with the new runtime is migrated.
-This is OnRuntimeUpgrade.
+Now that you know how the types of storage changes that require a migration, you're ready to see how to write one.
+After you upgrade the runtime, the code expects the data to use the new format.
+If your storage migration code doesn't properly convert data to the new format, the runtime might be unable to decode it and could potentially panic.
+To prevent this from happening, the `OnRuntimeUpgrade` hook is executed _once_ immediately after a runtime upgrade and _completes_ before any other code can be executed with the new runtime.
 
----v
+There are two ways that the `OnRuntimeUpgrade` hook can be called to perform a storage migration:
 
-Writing Runtime Migrations
-Optional activity: Go into executive and system, and find out how OnRuntimeUpgrade is called only when the code changes!
-Pallet Internal Migrations
----v
+- Calling the migration hook from within a pallet.
+- Using an external migration call.
 
-Pallet Internal Migrations
-One way to write a migration is to write it inside the pallet.
+### Pallet-based migration
 
+If a storage migration is relatively straight forward and the changes are confined to a single pallet, it's possible to write the storage migration inside the pallet code.
+You can see an example of how to do this in [Migrate a storage value](/tutorials/build-application-logic/migrate-storage-value).
+
+```rust
 #[pallet::hooks]
 impl<T: Config> Hooks<T::BlockNumber> for Pallet<T> {
   fn on_runtime_upgrade() -> Weight {
-    migrate_stuff_and_things_here_and_there<T>();
+    migrate_storage_from_here_to_there<T>();
   }
 }
-This approach is likely to be deprecated and is no longer practiced within Parity either.
+```
 
----v
-
-Pallet Internal Migrations
-#[pallet::hooks]
-impl<T: Config> Hooks<T::BlockNumber> for Pallet<T> {
-  fn on_runtime_upgrade() -> Weight {
-    if guard_that_stuff_has_not_been_migrated() {
-      migrate_stuff_and_things_here_and_there<T>();
-    } else {
-      // nada
-    }
-  }
-}
-If you execute migrate_stuff_and_things_here_and_there twice as well, then you are doomed 😫.
----v
-
-Pallet Internal Migrations
-Historically, something like this was used:
-
+```rust
 #[derive(Encode, Decode, ...)]
 enum StorageVersion {
   V1, V2, V3, // add a new variant with each version
@@ -196,10 +175,11 @@ impl<T: Config> Hooks<T::BlockNumber> for Pallet<T> {
     }
   }
 }
----v
+```
 
-Pallet Internal Migrations
 FRAME introduced macros to manage migrations: #[pallet::storage_version].
+
+```rust
 // your current storage version.
 const STORAGE_VERSION: StorageVersion = StorageVersion::new(2);
 
@@ -213,7 +193,6 @@ let current = Pallet::<T>::current_storage_version();
 Pallet::<T>::on_chain_storage_version();
 // synchronize the two.
 current.put::<Pallet<T>>();
----v
 
 Pallet Internal Migrations
 #[pallet::hooks]
@@ -229,10 +208,11 @@ impl<T: Config> Hooks<T::BlockNumber> for Pallet<T> {
     }
   }
 }
+```
+
 Stores the version as u16 in twox(pallet_name) ++ twox(:__STORAGE_VERSION__:).
 
-External Migrations
----v
+## External migrations
 
 External Migrations
 Managing migrations within a pallet could be hard.

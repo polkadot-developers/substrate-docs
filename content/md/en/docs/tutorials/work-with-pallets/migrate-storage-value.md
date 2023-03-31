@@ -24,12 +24,13 @@ Before you begin, verify the following:
 
 By completing this tutorial, you will accomplish the following objectives:
 
+- Add a pallet to your local development environment.
 - Modify the storage for a pallet to include a new item.
 - 
 
 ## Prepare your local environment
 
-For this tutorial, you are going to update a local copy of the `nicks` pallet folder, so the first step is to add the `nicks` folder to the `pallets` directory for the substrate-node-template and modify the runtime to use this local pallet.
+For this tutorial, you are going to update a local copy of the `nicks` pallet folder, so the first step is to add the `nicks` folder to the `pallets` directory for the `substrate-node-template` and modify the runtime to use this local pallet.
 
 To prepare your environment:
 
@@ -55,7 +56,7 @@ To prepare your environment:
 
 8. Update the dependencies to use the same pallet branch as the node template runtime.
    
-   For example, if the runtime manifest uses `branch = "polkadot-v0.9.36"`, update the `Cargo.toml` file for the nicks pallet to use that branch.
+   For example, if the runtime manifest uses `branch = "polkadot-v0.9.41"`, update the `Cargo.toml` file for the `nicks` pallet to use that branch.
 
 9. Save your changes and close the file.
 
