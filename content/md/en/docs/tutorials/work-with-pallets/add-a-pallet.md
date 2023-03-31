@@ -142,6 +142,7 @@ To review the `Config` trait for the Balances pallet:
 
 1. Locate the `Balances` pallet and note that it consists of the following implementation (`impl`)code block:
 
+
    ```rust
    pub type Balance = u128;
 
@@ -333,6 +334,7 @@ To return the information stored for Alice:
    The return type is a tuple that contains two values:
 
    - The hex-encoded nickname for the Alice account `53756273747261746520737570657273746172202d20416c696365`.
+     If you convert the hex-encoded value to a string, you'll see the name you specified for the `setName` function.
 
    - The amount that was reserved from Alice's account to secure the nickname (`100`).
 
