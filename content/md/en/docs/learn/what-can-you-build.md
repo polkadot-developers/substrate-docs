@@ -116,7 +116,7 @@ In addition, changes to FRAME or Substrate can create maintenance issues for you
 If your project seems well-suited to be an individual pallet, you can see some simple examples to get you started in the following sections:
 
 - [Custom pallets](/build/custom-pallets/)
-- [Work with pallets](/tutorials/build-application-logic/)
+- [Build application logic](/tutorials/build-application-logic/)
 - [Collectibles workshop](/tutorials/collectibles-workshop/)
 
 ## Custom runtime
@@ -141,7 +141,7 @@ With a custom runtime, you can also deliver more complex functionality and user 
 
 ### Explore building a custom runtime
 
-If you want to build a more complete custom runtime rather than an individual pallet, you can start with some simple examples like the tutorials in [Work with pallets](/tutorials/build-application-logic/) and the [Collectibles workshop](/tutorials/collectibles-workshop/).
+If you want to build a more complete custom runtime rather than an individual pallet, you can start with a simple example like the [Collectibles workshop](/tutorials/collectibles-workshop/).
 However, if you want to build a custom runtime as a proof-of-concept for a solo chain or a parachain, you'll want a broader and deeper understanding of runtime components and FRAME pallets.
 The most relevant topics are under [Build](/build/) and [Test](/test/) and in the following sections:
 
