@@ -28,7 +28,7 @@ For more information about the relationship between verifiable random functions 
 ## Generate and consume randomness
 
 Substrate provides a [`Randomness`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Randomness.html) trait called that defines the interface between the logic that **generates randomness** and the logic that **consumes randomness**.
-This trait allows yu to write the logic for generating randomness and consuming randomness independently of each other.
+This trait allows you to write the logic for generating randomness and consuming randomness independently of each other.
 
 ### Generating randomness
 
