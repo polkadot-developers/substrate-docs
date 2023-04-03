@@ -4,7 +4,7 @@ description:
 keywords:
 ---
 
-In [Accounts, addresses, and keys](/fundamentals/accounts-addresses-keys/), the discussion of public and private keys focused on identifying accounts and addresses associated with users interacting with different networks. 
+In [Accounts, addresses, and keys](/learn/accounts-addresses-keys/), the discussion of public and private keys focused on identifying accounts and addresses associated with users interacting with different networks. 
 However, keys and different key signatures are also fundamental to deploying Substrate nodes and performing specific node operations.
 This section recaps the encryption schemes and where they are used by different node components.
 

@@ -4,7 +4,7 @@ description: Demonstrates how you can connect to Substrate-based blockchains usi
 keywords:
 ---
 
-As you learned in [Light clients in Substrate Connect](/fundamentals/light-clients-in-substrate-connect/), light client nodes provide secure and decentralized access to blockchain data with minimal hardware and software requirements.
+As you learned in [Light clients in Substrate Connect](/learn/light-clients-in-substrate-connect/), light client nodes provide secure and decentralized access to blockchain data with minimal hardware and software requirements.
 
 This tutorial demonstrates how you can connect to any Substrate-based blockchain using a light client.
 To illustrate this, you'll learn how to connect your application to the [Statemint parachain](https://wiki.polkadot.network/docs/learn-statemint).

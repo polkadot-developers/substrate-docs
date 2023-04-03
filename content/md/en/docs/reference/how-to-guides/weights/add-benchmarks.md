@@ -184,7 +184,7 @@ After you have added benchmarking to your pallet, you must also update the runti
    
 6. Add the pallet the the `construct_runtime!` macro.
    
-   If you need more details about adding a pallet to the runtime, see [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet) or [Import a pallet](/reference/how-to-guides/basics/import-a-pallet).
+   If you need more details about adding a pallet to the runtime, see [Add a pallet to the runtime](/tutorials/build-application-logic/add-a-pallet) or [Import a pallet](/reference/how-to-guides/basics/import-a-pallet).
 
 7. Add your pallet to the `define_benchmark!` macro in the `runtime-benchmarks` feature.
    

@@ -14,7 +14,7 @@ You can follow similar steps for more complex data migration, but you'll need to
 
 ## Add the Nicks pallet locally
 
-We are going to make a change in the [FRAME's Nick's pallet](https://github.com/paritytech/substrate/tree/master/frame/nicks), in the tutorial [Add a pallet to the runtime](https://docs.substrate.io/tutorials/work-with-pallets/add-a-pallet/) we show how to add the Nicks pallet to the runtime for the node template.
+We are going to make a change in the [FRAME's Nick's pallet](https://github.com/paritytech/substrate/tree/master/frame/nicks), in the tutorial [Add a pallet to the runtime](https://docs.substrate.io/tutorials/build-application-logic/add-a-pallet/) we show how to add the Nicks pallet to the runtime for the node template.
 
 For this guide, because we are going to make changes in the code of the pallet we are going to take the code of the pallet and add it locally in our node template. You can check an example of how to add it locally [here](https://github.com/substrate-developer-hub/substrate-node-template/commit/022b6da0d1d55f54de3568e97aa5fe45a7975fa5).
 
