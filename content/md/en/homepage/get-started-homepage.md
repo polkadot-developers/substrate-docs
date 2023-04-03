@@ -1,5 +1,5 @@
 ---
-title: Learn
+title: Concepts
 description: Learn the fundamental concepts and terminology to start building your blockchain using the Substrate framework.
 link: /quick-start/
 order: 1
