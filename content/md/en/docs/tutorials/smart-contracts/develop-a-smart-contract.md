@@ -252,20 +252,7 @@ To update the smart contract:
 
 1. Save your changes and close the file.
 
-1. Check your work using the `test` subcommand:
-
-   ```bash
-   cargo test
-   ```
-
-   The command should display output similar to the following to indicate successful test completion:
-
-   ```text
-   running 1 test
-   test incrementer::tests::default_works ... ok
-
-   test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-   ```
+1. Try running the `test` subcommand again and you will see that the tests are now failing. This is because we need to update the `get` function and modify the tests to match the changes we implemented. We will do that in the next section.
 
 ## Add a function to get a storage value
 
@@ -307,7 +294,7 @@ To add the public function to the smart contract:
 
 1. Save your changes and close the file.
 
-1. Check your work using the `test` subcommand:
+1. Check your work using the `test` subcommand, and you will see that it is still failing, because we need to update the `it_works` test and add a new public function to increment the `value` storage item.
 
    ```bash
    cargo test
