@@ -36,4 +36,4 @@ The **Tutorials** provide hands-on learning experiences that cover different asp
 - [Build application logic](/tutorials/work-with-pallets/) tutorials are focused on how to implement application-specific logic working with existing and custom pallets.
 - [Build a parachian](/tutorials/connect-relay-and-parachains/) tutorials are focused on how to move from a standalone chain to a parachain, connect a parachain to a relay chain, and send messages between chains.
 
-The **API and reference** provides direct access to technical information such as the Rust API and help for command-line tools.
+The **Reference** provides direct access to technical information such as the Rust API and help for command-line tools.

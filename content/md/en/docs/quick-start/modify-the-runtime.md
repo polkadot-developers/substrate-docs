@@ -71,9 +71,9 @@ To add the Utility pallet:
    For example, you should add a single line similar to the following.
    
    ```toml
-   pallet-utility = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-n.n.n" }
+   pallet-utility = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-vX.Y.Z" }
    ```
-   Be sure to replace `branch = "polkadot-n.n.n"` with the Polkadot branch used for other pallets.
+   Be sure to replace `branch = "polkadot-vX.Y.Z"` with the Polkadot branch used for other pallets.
 
    You can copy any existing pallet dependency as a model to ensure that the branch setting for the `pallet-utility` dependency is the same as the branch setting for all other pallets. 
 
@@ -136,7 +136,7 @@ To add the Utility pallet:
      }
    ```
 
-   You can learn more about how the `construct_runtime` marco works in [FRAME macros](/reference/frame-macros/) and [Runtime construction macros](/reference/frame-macros/#runtime-construction-macros).
+   You can learn more about how the `construct_runtime` macro works in [FRAME macros](/reference/frame-macros/) and [Runtime construction macros](/reference/frame-macros/#runtime-construction-macros).
 
 ## Change constant values
 
