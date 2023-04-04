@@ -22,10 +22,10 @@ The following diagram illustrates this separation of responsibilities in simplif
 
 ## Client outer node services
 
-The outer node is responsible for activity that takes place outside of the runtime.
-For example, the outer node is responsible for handling peer discovery, managing the transaction pool, communicating with other nodes to reach consensus, and answering RPC calls or browser requests from the outside world.
+The core client includes several outer node services that are responsible for activity that takes place outside of the runtime.
+For example, the outer node service in the core client handle peer discovery, manage the transaction pool, communicate with other nodes to reach consensus, and respond to RPC requests from the outside world.
 
-Some of the most important activities that are handled by the outer node involve the following components:
+Some of the most important activities that are handled by core client services involve the following components:
 
 - [Storage](/learn/state-transitions-and-storage/): The outer node persists the evolving state of a Substrate blockchain using a simple and highly efficient key-value storage layer.
 
@@ -64,12 +64,6 @@ This design decision enables:
 - Validation proofs for relay chain consensus mechanisms.
 
 Similar to how the outer node has a way to provide information to the runtime, the runtime uses specialized [host functions](https://paritytech.github.io/substrate/master/sp_io/index.html) to communicate with the outer node or the outside world.
-
-## Light client nodes
-
-A light client or light node is a simplified version of a Substrate node that only provides the runtime and current state.
-Light nodes enable users to connect to a Substrate runtime directly using a browser, browser extension, mobile device, or desktop computer.
-With a light client node, you can use RPC endpoints written in Rust, JavaScript, or other languages to connect to the WebAssembly execution environment to read block headers, submit transactions, and view the results of transactions.
 
 ## Core libraries
 
