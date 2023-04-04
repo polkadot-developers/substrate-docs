@@ -129,7 +129,7 @@ The rest of the metadata has divided into the `types`, `pallets` and `extrinsic`
 The `types` section contains an index of the types and for each type information about its type signature.
 The `pallets` section contains information about each of the pallets in the runtime.
 The `extrinsic` section describes the type identifier and transaction format version that the runtime is using.
-Different extrinsic versions can have different formats, especially when considering [signed transactions](/fundamentals/transaction-types).
+Different extrinsic versions can have different formats, especially when considering [signed transactions](/learn/transaction-types).
 
 ### Pallets
 
@@ -360,7 +360,7 @@ Applications typically connect to Substrate nodes by using JSON-RPC methods thro
 Most applications use a WebSocket port because a single connection can be used for multiple messages to and from a node. 
 With an HTTP connection, applications can only send and receive responses one message at a time.
 The most common reason you would use HTTP to connect to a node is if you want to fetch data using offchain workers.
-For more information about using offchain workers, see [Offchain operations](/fundamentals/offchain-operations).
+For more information about using offchain workers, see [Offchain operations](/learn/offchain-operations).
 
 As an alternative to connecting using RPC, you can use the [Substrate Connect](https://substrate.io/developers/substrate-connect/) and a light client node to connect to Substrate-based blockchains.
 Substrate Connect runs in a browser and allows applications to create their own light client node and connect directly to the exposed JSON-RPC endpoint.
@@ -384,6 +384,6 @@ For more information about the JSON-RPC API and the latest interface specificati
 ## Where to go next
 
 - [Substrate Connect](https://github.com/paritytech/substrate-connect)
-- [Install the front-end template](/tutorials/get-started/build-local-blockchain/#install-the-front-end-template)
+- [Install the front-end template](/tutorials/build-a-blockchain/build-local-blockchain/#install-the-front-end-template)
 - [Generate a metadata QR code](https://github.com/paritytech/metadata-portal)
 - [Get backwards-compatible metadata (desub)](https://github.com/paritytech/desub)

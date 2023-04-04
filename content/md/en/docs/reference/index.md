@@ -6,6 +6,8 @@ keywords:
 
 This section contains links to the Rust API documentation and technical reference materials for Substrate and FRAME tools and libraries.
 
+- [Rust API](/reference/rust-api/) highlights entry points into the Rust API documentation that is generated directly from the Substrate source code.
+
 - [Glossary](/reference/glossary) defines and explains concepts and terminology that are specific to blockchain technology or the Substrate ecosystem.
 
 - [Command-line tools](/reference/command-line-tools) provides reference information for the most commonly-used command-line interface (CLI) tools.
@@ -22,7 +24,5 @@ This section contains links to the Rust API documentation and technical referenc
 
 - [How-to reference guides](/reference/how-to-guides) lists the _How-to_ quick reference guides that provide abbreviated instructions for accomplishing specific tasks.
   The _How-to_ guides assume that you are already familiar with Substrate and programming in Rust.
-
-- [Cryptography](/reference/cryptography) provides an overview of the hashing algorithms and signature schemes used for cryptography in Substrate.
 
 - [XCM reference](/reference/xcm-reference) provides basic reference information for the cross-consensus message format, including descriptions of XCM instructions, registers, origins, and errors.

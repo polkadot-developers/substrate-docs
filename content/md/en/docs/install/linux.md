@@ -178,15 +178,15 @@ For example, if you prefer to read source code and are familiar with Rust, you m
 
 #### Tell me
 
-- [Architecture](/fundamentals/architecture/)
-- [Networks and blockchains](/fundamentals/node-and-network-types/)
+- [Architecture](/learn/architecture/)
+- [Networks and blockchains](/learn/node-and-network-types/)
 - [Build process](/build/build-process)
 
 #### Guide me
 
-- [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
-- [Simulate a network](/tutorials/get-started/simulate-network/)
-- [Add trusted nodes](/tutorials/get-started/add-trusted-nodes/)
+- [Build a local blockchain](/tutorials/build-a-blockchain/build-local-blockchain/)
+- [Simulate a network](/tutorials/build-a-blockchain/simulate-network/)
+- [Add trusted nodes](/tutorials/build-a-blockchain/add-trusted-nodes/)
 
 <!-- TODO NAV.YAML -->
 <!-- add these back -->

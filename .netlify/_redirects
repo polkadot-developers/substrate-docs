@@ -37,9 +37,9 @@
 /vundefined/*                        /                                                301!
 /concepts/off-chain-features/        /main-docs/fundamentals/offchain-operations/     301!
 /runtime/frame/                      /reference/frame-pallets/                        301!
-/tutorials/add-a-pallet/             /tutorials/work-with-pallets/add-a-pallet/       301!
+/tutorials/add-a-pallet/             /tutorials/build-application-logic/add-a-pallet/       301!
 /runtime/upgrades/                   /main-docs/build/upgrade/                        301!
-/tutorials/forkless-upgrade/        /tutorials/get-started/upgrade-a-running-network/ 301!
+/tutorials/forkless-upgrade/        /tutorials/build-a-blockchain/upgrade-a-running-network/ 301!
 /tools/                              /reference/command-line-tools/                   301!
 /runtime/upgrades/                   /main-docs/build/upgrade/                        301!
 /getting-started/architecture/       /main-docs/fundamentals/architecture/            301!
@@ -93,3 +93,18 @@
 /tutorials/v3/cumulus/start-relay                                       /tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain/         301!
 /tutorials/connect-other-chains/prepare-a-local-relay-chain/            /connect-relay-and-parachains/prepare-a-local-relay-chain/                   301!
 /tutorials/connect-other-chains/connect-a-local-parachain/              /tutorials/connect-relay-and-parachains/connect-a-local-parachain/           301!
+
+# Redirects for fundamentals
+
+/fundamentals/blockchain-basics/         /learn/blockchain-basics/           301!
+/fundamentals/why-substrate/             /learn/welcome-to-substrate/        301!
+/fundamentals/architecture/              /learn/architecture/                301!
+/fundamentals/node-and-network-types/    /learn/networks-and-nodes/          301!
+/fundamentals/runtime-intro/             /learn/runtime-development/         301!
+/fundamentals/consensus/                 /learn/consensus/                   301!
+/fundamentals/transaction-types/         /learn/transaction-types/           301!
+/fundamentals/transaction-lifecycle/     /learn/transaction-lifecycle/       301!
+/fundamentals/state-transitions-and-storage/  /learn/state-transitions-and-storage/  301!
+/fundamentals/accounts-addresses-keys/    /learn/accounts-addresses-keys/    301!
+/fundamentals/rust-basics/                /learn/rust-basics/                301!
+/fundamentals/offchain-operations/        /learn/offchain-operations/        301!

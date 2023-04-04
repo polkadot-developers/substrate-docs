@@ -12,7 +12,7 @@ For the workshop, you'll create three custom storage items to track the state:
 - A simple map of key-value pairs—`CollectiblesMap`—to map the properties associated with each collectible to its unique identifier.
 - A simple map of key-value pairs—`OwnerOfCollectibles`—to map collectibles to the user account that owns them.
 
-For a closer look at the storage architecture and abstractions that Substrate uses, see [State transitions and storage](/fundamentals/state-transitions-and-storage/).
+For a closer look at the storage architecture and abstractions that Substrate uses, see [State transitions and storage](/learn/state-transitions-and-storage/).
 
 ## Store a single value
 

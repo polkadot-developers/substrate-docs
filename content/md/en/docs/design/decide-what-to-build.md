@@ -116,7 +116,7 @@ In addition, changes to FRAME or Substrate can create maintenance issues for you
 If your project seems well-suited to be an individual pallet, you can see some simple examples to get you started in the following sections:
 
 - [Custom pallets](/build/custom-pallets/)
-- [Work with pallets](/tutorials/work-with-pallets/)
+- [Work with pallets](/tutorials/build-application-logic/)
 - [Collectibles workshop](/tutorials/collectibles-workshop/)
 
 ## Custom runtime
@@ -141,7 +141,7 @@ With a custom runtime, you can also deliver more complex functionality and user 
 
 ### Explore building a custom runtime
 
-If you want to build a more complete custom runtime rather than an individual pallet, you can start with some simple examples like the tutorials in [Work with pallets](/tutorials/work-with-pallets/) and the [Collectibles workshop](/tutorials/collectibles-workshop/).
+If you want to build a more complete custom runtime rather than an individual pallet, you can start with some simple examples like the tutorials in [Work with pallets](/tutorials/build-application-logic/) and the [Collectibles workshop](/tutorials/collectibles-workshop/).
 However, if you want to build a custom runtime as a proof-of-concept for a solo chain or a parachain, you'll want a broader and deeper understanding of runtime components and FRAME pallets.
 The most relevant topics are under [Build](/build/) and [Test](/test/) and in the following sections:
 
@@ -204,7 +204,7 @@ If you have a custom runtime that you want to deploy as a parachain to take adva
 
 For some examples to get you started, see the following sections:
 
-- [Connect parachains to a network](/tutorials/connect-relay-and-parachains/)
+- [Connect parachains to a network](/tutorials/build-a-parachain/)
 - [Simulate parachains in a test network](/test/simulate-parachains/)
 - [Parachains](/reference/how-to-guides/parachains/)
 

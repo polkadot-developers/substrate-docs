@@ -23,12 +23,12 @@ A verifiable random function (VRF) is a mathematical operation that takes input 
 The proof can be verified by any challenger to ensure that the random number generation is valid.
 
 In the Polkadot ecosystem and Substrate-based chains, verifiable random functions are part of the consensus mechanism provided by the BABE pallet. 
-For more information about the relationship between verifiable random functions and consensus, see [Consensus](/fundamentals/consensus/)
+For more information about the relationship between verifiable random functions and consensus, see [Consensus](/learn/consensus/)
 
 ## Generate and consume randomness
 
 Substrate provides a [`Randomness`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Randomness.html) trait called that defines the interface between the logic that **generates randomness** and the logic that **consumes randomness**.
-This trait allows yu to write the logic for generating randomness and consuming randomness independently of each other.
+This trait allows you to write the logic for generating randomness and consuming randomness independently of each other.
 
 ### Generating randomness
 
