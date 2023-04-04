@@ -130,7 +130,7 @@ Before you try anything on a production testnet or mainnet, you should launch yo
 Testing in a confined network will help you prepare for potential failures in a real network with many collators and validators and constraints like bandwidth and latency.
 The more closely you can simulate a real network for testing, the more sure you can be that your runtime upgrades will succeeds.
 
-See the [Prepare a local relay chain](/tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain/) to for a selection of tools for automation of such testing.
+See the [Prepare a local relay chain](/tutorials/build-a-parachain/prepare-a-local-relay-chain/) to for a selection of tools for automation of such testing.
 
 ## Examples
 

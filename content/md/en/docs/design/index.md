@@ -10,7 +10,7 @@ keywords:
   - parathreads
 ---
 
-In [Runtime development](/fundamentals/runtime-development), you learned that Substrate provides a modular and flexible approach to blockchain development that enables you to focus on defining the **application** or **business logic** you want to implement.
+In [Runtime development](/learn/runtime-development), you learned that Substrate provides a modular and flexible approach to blockchain development that enables you to focus on defining the **application** or **business logic** you want to implement.
 With Substrate, you can reuse common components and compose an upgradeable runtime with prebuilt or customized modules.
 So, with all of this flexibility, one of the most daunting questions might be what to buiild. 
 
