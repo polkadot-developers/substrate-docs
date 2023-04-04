@@ -99,8 +99,7 @@ However, it uses Schnorr signatures instead of the EdDSA scheme.
 
 ## Where to go next
 
-- [Accounts, addresses, and keys](/learn/accounts-addresses-keys).
-- [Web 3 research](https://research.web3.foundation).
-- [Polkadot claims module](https://github.com/paritytech/polkadot/blob/master/runtime/common/src/claims.rs) to see how you can verify Ethereum signatures in the Substrate runtime.
+- [Cryptography on Polkadot](https://wiki.polkadot.network/docs/en/learn-cryptography).
+- [Research at W3F: Cryptography](https://research.web3.foundation/en/latest/crypto.html).
 - [`Hash`](https://paritytech.github.io/substrate/master/sp_runtime/traits/trait.Hash.html) trait for implementing new hashing algorithms.
 - [`Pair`](https://paritytech.github.io/substrate/master/sp_core/crypto/trait.Pair.html) trait for implementing new cryptographic schemes.
