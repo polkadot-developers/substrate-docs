@@ -41,5 +41,5 @@ As software, Substrate nodes consist of two main parts with separate responsibil
 The separation of responsibilities into client-driven activity and runtime-driven activity is a critical part of what makes Substrate nodes upgradeable.
 The application logic is what makes your chain unique and it's stored on-chain in the form of a WebAssembly binary.
 If you make changes to the application logic, you simply compile a new WebAssembly binary.
-You can then submit a transaction to update the WebAssembly binary cuurrently stored on-chain with your updated binary.
-Because the custom runtime self-contained object that's stored as part of the chain state, you can easily iterate on the application design and evolve your project as your community evolves.
+You can then submit a transaction to update the WebAssembly binary currently stored on-chain with your updated binary.
+Because the custom runtime is a self-contained object that's stored as part of the chain state, you can easily iterate on the application design and evolve your project as your community evolves.
