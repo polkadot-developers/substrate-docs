@@ -99,8 +99,8 @@ You can explore the following resources to learn more.
 #### Tell me
 
 - [Learn](/learn/)
-- [Why Substrate?](/learn/why-substrate/)
-- [Architecture](/learn/architecture/)
+- [Welcome to Substrate](/learn/welcome-to-substrate/)
+- [Architecture and Rust libraries](/learn/architecture/)
 - [Networks and blockchains](/learn/node-and-network-types/)
 
 #### Guide me
