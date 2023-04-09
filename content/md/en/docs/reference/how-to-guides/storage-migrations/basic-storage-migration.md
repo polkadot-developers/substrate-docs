@@ -25,11 +25,12 @@ For testing we can now start our node and set a nickname using the Nicks pallet 
 By default, the Nicks pallet uses a storage map to provide a lookup table with a `BoundedVec` to store the nickname.
 For example, the default storage definition looks like this:
 
-```text
+```rust
 /// The lookup table for names.
 	#[pallet::storage]
 	pub(super) type NameOf<T: Config> =
 		StorageMap<_, Twox64Concat, T::AccountId, (BoundedVec<u8, T::MaxLength>, BalanceOf<T>)>;
+```
 We want to update the storage to add an optional field that includes a last name too. 
 For that we create a new struct `Nickname` to manage the previous and new storage items, first name and last name:
 
