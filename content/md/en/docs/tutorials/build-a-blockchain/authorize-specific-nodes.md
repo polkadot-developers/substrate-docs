@@ -340,38 +340,38 @@ Because this tutorial uses predefined accounts and well-known node keys, you can
 
 ### Alice
 
-| Key type | Key value |
-| :------- | :-------------------------------------------------------------|
-| Node key | c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a |
-| Peer&nbspidentifier&nbspgenerated from the node key | 12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2 |
-| Peer&nbspidentifier&nbspdecoded to hex | 0x0024080112201ce5f00ef6e89374afb625f1ae4c1546d31234e87e3c3f51a62b91dd6bfa57df |
+| Key type                                            | Key value                                                                      |
+| :-------------------------------------------------- | :----------------------------------------------------------------------------- |
+| Node key                                            | c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a               |
+| Peer&nbspidentifier&nbspgenerated from the node key | 12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2                           |
+| Peer&nbspidentifier&nbspdecoded to hex              | 0x0024080112201ce5f00ef6e89374afb625f1ae4c1546d31234e87e3c3f51a62b91dd6bfa57df |
 
 ### Bob
 
-| Key type | Key value |
-| :------- | :-------------------------------------------------------------|
-| Node key | 6ce3be907dbcabf20a9a5a60a712b4256a54196000a8ed4050d352bc113f8c58 |
-| Peer&nbspidentifier&nbspgenerated from the node key | 12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust |
-| Peer&nbspidentifier&nbspdecoded to hex | 0x002408011220dacde7714d8551f674b8bb4b54239383c76a2b286fa436e93b2b7eb226bf4de7 |
+| Key type                                            | Key value                                                                      |
+| :-------------------------------------------------- | :----------------------------------------------------------------------------- |
+| Node key                                            | 6ce3be907dbcabf20a9a5a60a712b4256a54196000a8ed4050d352bc113f8c58               |
+| Peer&nbspidentifier&nbspgenerated from the node key | 12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust                           |
+| Peer&nbspidentifier&nbspdecoded to hex              | 0x002408011220dacde7714d8551f674b8bb4b54239383c76a2b286fa436e93b2b7eb226bf4de7 |
 
 The two other development accounts—Charlie and Dave—don't have well-known node keys or peer identifiers defined in the genesis configuration.
 For demonstration purposes, you can use the following keys for these accounts.
 
 ### Charlie
 
-| Key type | Key value |
-| :------- | :-------------------------------------------------------------|
-| Node key | 3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e |
-| Peer&nbspidentifier&nbspgenerated from the node key | 12D3KooWJvyP3VJYymTqG7eH4PM5rN4T2agk5cdNCfNymAqwqcvZ |
-| Peer&nbspidentifier&nbspdecoded to hex | 0x002408011220876a7b4984f98006dc8d666e28b60de307309835d775e7755cc770328cdacf2e |
+| Key type                                            | Key value                                                                      |
+| :-------------------------------------------------- | :----------------------------------------------------------------------------- |
+| Node key                                            | 3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e               |
+| Peer&nbspidentifier&nbspgenerated from the node key | 12D3KooWJvyP3VJYymTqG7eH4PM5rN4T2agk5cdNCfNymAqwqcvZ                           |
+| Peer&nbspidentifier&nbspdecoded to hex              | 0x002408011220876a7b4984f98006dc8d666e28b60de307309835d775e7755cc770328cdacf2e |
 
 ### Dave
 
-| Key type | Key value |
-| :------- | :-------------------------------------------------------------|
-| Node key | a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a |
-| Peer&nbspidentifier&nbspgenerated from the node key | 12D3KooWPHWFrfaJzxPnqnAYAoRUyAHHKqACmEycGTVmeVhQYuZN |
-| Peer&nbspidentifier&nbspdecoded to hex | 0x002408011220c81bc1d7057a1511eb9496f056f6f53cdfe0e14c8bd5ffca47c70a8d76c1326d |
+| Key type                                            | Key value                                                                      |
+| :-------------------------------------------------- | :----------------------------------------------------------------------------- |
+| Node key                                            | a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a               |
+| Peer&nbspidentifier&nbspgenerated from the node key | 12D3KooWPHWFrfaJzxPnqnAYAoRUyAHHKqACmEycGTVmeVhQYuZN                           |
+| Peer&nbspidentifier&nbspdecoded to hex              | 0x002408011220c81bc1d7057a1511eb9496f056f6f53cdfe0e14c8bd5ffca47c70a8d76c1326d |
 
 For this tutorial, you can copy the node key to a file, then use the `subkey inspect-node-key` to verify the peer identifiers for Charlie and Dave.
 For example, save the node key for Charlie to a file named `charlie-node-key` by using a command like the following:
@@ -487,7 +487,7 @@ To start the third node:
    After you start this node, you should see there are **no connected peers** for the node.
    Because this is a permissioned network, the node must be explicitly authorized to connect.
    The Alice and Bob nodes were configured in the genesis `chain_spec.rs` file.
-   All other nodes mut be added manually using a call to the Sudo pallet.
+   All other nodes must be added manually using a call to the Sudo pallet.
 
 ### Authorize access for the third node
 
