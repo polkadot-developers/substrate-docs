@@ -487,7 +487,7 @@ To start the third node:
    After you start this node, you should see there are **no connected peers** for the node.
    Because this is a permissioned network, the node must be explicitly authorized to connect.
    The Alice and Bob nodes were configured in the genesis `chain_spec.rs` file.
-   All other nodes mut be added manually using a call to the Sudo pallet.
+   All other nodes must be added manually using a call to the Sudo pallet.
 
 ### Authorize access for the third node
 
