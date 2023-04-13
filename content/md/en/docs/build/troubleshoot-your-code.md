@@ -264,8 +264,8 @@ Substrate provides two default implementations of randomness.
 
 - The [insecure randomness collective flip](https://paritytech.github.io/substrate/master/pallet_insecure_randomness_collective_flip/index.html) pallet generates random values based on the block hashes from the previous 81 blocks.  
   This pallet can be useful when defending against weak adversaries or in low-security situations like testing.
-  For example, you can use this pallet when testing randomness-consuming pallets.
-  You should never use this pallet in production as a true source of randomness. 
+  For example, you can use this pallet when testing pallets that require some source of randomness.
+  **You should _never_ use this pallet in production as a true source of randomness.** 
 
 - The [BABE](https://paritytech.github.io/substrate/master/pallet_babe/index.html) pallet uses verifiable random functions (VRF) to implement a more secure version of randomness. 
   This pallet provides production-grade randomness.
