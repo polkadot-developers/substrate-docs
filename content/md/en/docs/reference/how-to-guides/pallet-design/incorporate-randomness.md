@@ -1,5 +1,5 @@
 ---
-title: Incorporate randomness
+title: Incorporate pseudo-randomness (not secure)
 description: On-chain randomness techniques and tools detailed.
 keywords:
   - pallet design
@@ -15,7 +15,9 @@ This is particularly true in the context of a blockchain, when all the nodes in 
 FRAME provides runtime engineers with a source of [on-chain randomness](/build/randomness/), using the [Randomness trait](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Randomness.html).
 
 This guide explains how to make use of FRAME's Randomness trait by using the `random` method and a nonce as a subject.
-The guide also illustrates how to add entropy to the randomness value by assigning the `RandomCollectiveFlip` pallet to the configuration trait of a pallet that exposes a "random" type.
+The guide also illustrates how to add some entropy to the randomness value by assigning the `InsecureRandomCollectiveFlip` pallet to the configuration trait of a pallet that exposes a "random" type.
+
+**Note that the `InsecureRandomCollectiveFlip` is not a secure source of randomness, this guide is intended for educational purposes only.**
 
 ## Import `Randomness`
 
