@@ -289,7 +289,6 @@ To add the Utility types and configuration trait:
         UncheckedExtrinsic = UncheckedExtrinsic
      {
             System: frame_system,
-            RandomnessCollectiveFlip: pallet_randomness_collective_flip,
             Timestamp: pallet_timestamp,
             Aura: pallet_aura,
    ```

@@ -164,13 +164,12 @@ For this demonstration, be sure you have:
       NodeBlock = opaque::Block,
       UncheckedExtrinsic = UncheckedExtrinsic
     {
-      System: frame_system,                                        // index 0
-      RandomnessCollectiveFlip: pallet_randomness_collective_flip, // index 1
-      Timestamp: pallet_timestamp,                                 // index 2
-      Aura: pallet_aura,                                           // index 3
-      Grandpa: pallet_grandpa,                                     // index 4
-      Balances: pallet_balances,                                   // index 5
-      Nicks: pallet_nicks,                                         // index 6
+      System: frame_system,                                                 // index 0
+      Timestamp: pallet_timestamp,                                          // index 1
+      Aura: pallet_aura,                                                    // index 2
+      Grandpa: pallet_grandpa,                                              // index 3
+      Balances: pallet_balances,                                            // index 4
+      Nicks: pallet_nicks,                                                  // index 5
     }
    ```
 

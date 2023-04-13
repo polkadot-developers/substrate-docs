@@ -90,11 +90,11 @@ Use a nonce to serve as a subject for the `frame_support::traits::Randomness::ra
 1. Update your pallet's runtime implementation.
 
    Because you have added a type to your pallet's configuration trait, `Config` opens up the opportunity to further enhance the randomness derived by the `Randomness` trait.
-   This is accomplished by using the [Randomness Collective Flip pallet](https://paritytech.github.io/substrate/master/pallet_randomness_collective_flip/index.html).
+   This is accomplished by using the [Insecure Randomness Collective Flip pallet](https://paritytech.github.io/substrate/master/pallet_insecure_randomness_collective_flip/index.html).
 
    Using this pallet alongside the `Randomness` trait will significantly improve the entropy being processed by `random()`.
 
-   In `runtime/src/lib.rs`, assuming `pallet_random_collective_flip` is instantiated in `construct_runtime` as `RandomCollectiveFlip`, specify your exposed type in the following way:
+   In `runtime/src/lib.rs`, assuming `pallet_insecure_randomness_collective_flip` is instantiated in `construct_runtime` as `RandomCollectiveFlip`, specify your exposed type in the following way:
 
    ```rust
    impl my_pallet::Config for Runtime{

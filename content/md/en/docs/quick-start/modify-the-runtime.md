@@ -127,7 +127,6 @@ To add the Utility pallet:
         UncheckedExtrinsic = UncheckedExtrinsic
      {
             System: frame_system,
-            RandomnessCollectiveFlip: pallet_randomness_collective_flip,
             Timestamp: pallet_timestamp,
             Aura: pallet_aura,
             ...
