@@ -2,8 +2,7 @@
   "ignorePatterns": [
     {
       "pattern": [
-        "^(?!httpsn?).*$",
-        "^http*://crates.io*$"
+        "^(?!httpsn?).*$"
       ]
     },
     {

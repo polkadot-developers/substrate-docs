@@ -106,5 +106,5 @@ std = [
 ## Related material
 
 - [Timestamp Pallet associated types](https://paritytech.github.io/substrate/master/pallet_timestamp/index.html)
-- [FRAME `pallet-timestamp`](https://crates.io/crates/pallet-timestamp)
+- [FRAME `pallet-timestamp`](https://crates.io/crates/pallet-timestamp)<!-- markdown-link-check-disable-line -->
 - [Unit test](/test/unit-testing)
