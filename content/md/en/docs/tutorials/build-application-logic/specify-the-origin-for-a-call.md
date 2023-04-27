@@ -121,7 +121,7 @@ For this demonstration, be sure you have:
 
 - The node template running in development mode: `./target/release/node-template --dev`
 - The frontend template running and connecting to the local node: `yarn start`
-- Your browser connected to the local web server: <http://localhost:8000/>
+- Your browser connected to the local web server: <http://localhost:8000/><!-- markdown-link-check-disable-line -->
 
 1. Change the active account to Alice.
 

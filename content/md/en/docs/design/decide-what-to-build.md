@@ -2,7 +2,7 @@
 title: Decide what to build
 description:
 keywords:
-  - smart contract 
+  - smart contract
   - custom pallet
   - custom runtime
   - parachain
@@ -22,7 +22,7 @@ However, there are both benefits and drawbacks to consider in determining whethe
 ### Smart contracts must adhere to blockchain rules
 
 Smart contracts are instructions that are deployed on a specific chain and run on a specific chain address.
-Because smart contracts run on an underlying blockchain that they don't control, they must comply with any rules or limitations that the underlying chain imposes. 
+Because smart contracts run on an underlying blockchain that they don't control, they must comply with any rules or limitations that the underlying chain imposes.
 For example, the underlying blockchain might restrict access to storage or prevent certain types of transactions.
 
 In addition, blockchains that accept smart contracts typically treat the code as coming from an untrusted source—potentially a malicious actor or inexperienced developer.
@@ -33,7 +33,7 @@ The fees and rules for contract execution are at the discretion of the underlyin
 ### Smart contracts and state
 
 You can think of smart contracts as executing in a sandboxed environment.
-They don't modify the underlying blockchain storage or the storage of other contracts directly. 
+They don't modify the underlying blockchain storage or the storage of other contracts directly.
 In general, smart contracts only modify their own state and don't make calls to other contracts or to runtime functions.
 There's typically some additional overhead for running smart contracts to ensure that the underlying blockchain can revert transactions to prevent state from being updated if errors in a contract cause execution to fail.
 
@@ -43,7 +43,7 @@ Although there are limitations to smart contracts, there are scenarios where you
 For example, smart contracts have lower barrier to entry and can often be built and deployed in a short period of time.
 The reduced development time might give you an advantage in determining product-to-market fit and iterating quickly.
 
-Similarly, if you're familiar with building smart contracts using a language like Solidity, you can reduce the learning curve and time-to-market for your project. 
+Similarly, if you're familiar with building smart contracts using a language like Solidity, you can reduce the learning curve and time-to-market for your project.
 Because smart contracts adhere to the functionality of the chain where they are deployed, you can focus more narrowly on implementing the application logic of the contract without worrying about blockchain infrastructure or economics.
 
 If you are planning to build a parachain, you can also use smart contracts to prototype features or functionality in an isolated way that doesn't affect the underlying network before investing in a more full-scale solution.
@@ -64,11 +64,11 @@ The following examples illustrate use cases for smart contracts:
 - Implement a custom trading algorithm.
 - Define logic for a contract between specific parties.
 - Prototype and test an application before converting it to parachain.
-- Introduce layer-2 tokens and custom assets on an existing chain. 
+- Introduce layer-2 tokens and custom assets on an existing chain.
 
 ### Support for smart contracts
 
-The Polkadot relay chain doesn't support smart contracts. 
+The Polkadot relay chain doesn't support smart contracts.
 However, the parachains that connect to Polkadot can support arbitrary state transitions, so any parachain can be a potential platform for smart contract deployment.
 For example, there are several parachains in the current Polkadot ecosystem that support different types of smart contract deployment.
 If you plan to develop a smart contract for the Polkadot ecosystem, you must first decide on the type of smart contract you want to build and identify a parachain that supports that type of smart contract.
@@ -93,8 +93,8 @@ Individual pallets are typically easy to develop by using FRAME and easy for Sub
 ### Writing correct code
 
 It's worth noting that pallets don't inherently provide any of type of protection or safeguards that smart contracts provide.
-With pallets, you control the logic available for runtime developers to implement. 
-You provide the methods, storage items, events, and errors that your module requires. 
+With pallets, you control the logic available for runtime developers to implement.
+You provide the methods, storage items, events, and errors that your module requires.
 Pallets don't inherently introduce a fee or metering system.
 It is up to you to ensure that your pallet logic doesn't allow bad behavior or leave the network where your pallet is used vulnerable to attacks.
 This lack of built-in safeguards implies that you have a great deal of responsibility to write code that avoids mistakes.
@@ -127,7 +127,7 @@ With a custom runtime, you have complete control over all aspects of your applic
 
 There are pallets that provide pluggable modules for many of these features.
 However, it is up to you to decide which modules to use, how to modify them for your needs, and where custom modules are required.
-Because you control all of the underlying logic that each node in your network runs, there's a higher barrier to entry in terms of coding skill and experience than there is for writing a smart contract or an individual pallet. 
+Because you control all of the underlying logic that each node in your network runs, there's a higher barrier to entry in terms of coding skill and experience than there is for writing a smart contract or an individual pallet.
 
 As with individual pallets, a custom runtime doesn't provide any built-in safeguards to prevent bad actors or incorrect code from causing harm.
 It is up to you to correctly assess the resource consumption and how to apply transaction fees in the runtime logic to adequately protect the network and your user community.
@@ -146,7 +146,7 @@ However, if you want to build a custom runtime as a proof-of-concept for a solo 
 The most relevant topics are under [Build](/build/) and [Test](/test/) and in the following sections:
 
 - [Runtime storage structures](/build/runtime-storage/)
-- [Transactions, weights, and fees](build/tx-weights-fees/)
+- [Transactions, weights, and fees](/build/tx-weights-fees/)
 - [Application development](/build/application-development/)
 - [FRAME pallets](/reference/frame-pallets/)
 - [FRAME macros](/reference/frame-macros/)
@@ -155,14 +155,14 @@ The most relevant topics are under [Build](/build/) and [Test](/test/) and in th
 
 A custom runtime can exist on its own as the business logic for a private network or a solo chain, but if you want your project to be a viable production chain, there are several advantages to deploying the business logic and state transition function for your application as a parachain or parathread.
 
-Parachains and parathreads act as independent Layer-1 blockchains. 
-Each parachain has its own logic and runs in parallel with other chains in their ecosystem. 
+Parachains and parathreads act as independent Layer-1 blockchains.
+Each parachain has its own logic and runs in parallel with other chains in their ecosystem.
 All of the chains in the ecosystem benefit from the shared security, governance, scalability, and interoperability of the network.
 
 ### Parachains provide maximum flexibility
 
 By developing your project as a parachain, you have a great deal of freedom and flexibility in the design and functionality of the chain.
-What you decide to build is entirely up to you. 
+What you decide to build is entirely up to you.
 For example, you can define what data to store on-chain or off.
 You can define your own economic primitives, transaction requirements, fee policies, governance model, treasury accounts, and access control rules.
 Your parachain can have as little—or as much—overhead per transaction as you decide, and your parachain can evolve with upgrades and optimization over time.
@@ -174,22 +174,22 @@ As a parachain, your project can offer functionality to a broader community in a
 However, if you want to build a production-ready parachain, you should keep the following additional requirements in mind:
 
 - You'll need a development team with sufficient skills and experience, whether that means programming in Rust or a background in UX design.
-   
+
    Parachain development might require more resources than other options.
 
 - You'll need to build your community through marketing, outreach, or ecosystem development programs.
 
 - You'll need resources for your infrastructure and network maintenance.
-   
-   A parachain is a whole blockchain. 
+
+   A parachain is a whole blockchain.
    Although the relay chain provides security and consensus for your project, you must maintain your chain and network infrastructure.
    In addition to developer operations (DevOps), you need to secure a parachain slot, design a crowdloan or auction strategy, and accumulate enough resources to extend the slot.
-   
+
 - You'll need sufficient time for testing and validating your chain operations, in a sandbox or simulated network and on a fully-functioning test network.
 
 ### Parachain use cases
 
-In general rule, you should build your project as a parachain if it requires complex operations because parachains provide faster and more efficient execution of transactions. 
+In general rule, you should build your project as a parachain if it requires complex operations because parachains provide faster and more efficient execution of transactions.
 For example, building a parachain might be the best option for the following use cases:
 
 - Decentralized finance (DeFi) applications
