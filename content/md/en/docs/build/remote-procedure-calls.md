@@ -38,7 +38,7 @@ For example, you should not expose the following RPC methods:
 - [`submit_extrinsic`](https://paritytech.github.io/substrate/master/sc_rpc_api/author/trait.AuthorApiClient.html) - allows submitting transactions to local pool.
 - [`insert_key`](https://paritytech.github.io/substrate/master/sc_rpc_api/author/trait.AuthorApiClient.html) - allows inserting private keys to local keystore.
 - [`rotate_keys`](https://paritytech.github.io/substrate/master/sc_rpc_api/author/trait.AuthorApiClient.html) - session keys rotation.
-- [`remove_extrinsic`](https://paritytech.github.io/substrate/master/sc_rpc_api/author/trait.AuthorApi.html#tymethod.remove_extrinsic) - remove and ban extrinsic from the pool.
+- [`remove_extrinsic`](https://paritytech.github.io/substrate/master/substrate_rpc_client/trait.AuthorApi.html#method.remove_extrinsic) - remove and ban extrinsic from the pool.
 - [`add_reserved_peer`](https://paritytech.github.io/substrate/master/sc_rpc_api/system/trait.SystemApiClient.html) - add reserved node.
 - [`remove_reserved_peer`](https://paritytech.github.io/substrate/master/sc_rpc_api/system/trait.SystemApiClient.html) - removed reserved node.
 
@@ -77,13 +77,13 @@ To call RPC methods using the HTTP endpoint:
 1. Open a terminal shell and change to the root directory for the Substrate node template.
 
 2. Start the node locally in development mode by running the following command:
-   
+
    ```bash
    ./target/release/node-template --dev
    ```
 
 3. Connect to the local node and call the `rpc_methods` endpoint by running the following command:
-   
+
    ```bash
    curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "rpc_methods"}' http://localhost:9933/
    ```
@@ -91,13 +91,13 @@ To call RPC methods using the HTTP endpoint:
     This command returns a list of the JSON-RPC methods exposed for the local node.
 
 4. Call additional methods using the appropriate method name.
-   
+
    For example, you can run the following command to get version information about the local node:
 
    ```bash
    curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "system_version"}' http://localhost:9933/
    ```
-   
+
    In most cases, connecting to the RPC endpoint directly returns JSON-formatted results.
    For example:
 
@@ -105,7 +105,7 @@ To call RPC methods using the HTTP endpoint:
    {"jsonrpc":"2.0","result":"4.0.0-dev-de262935ede","id":1}
    ```
 
-   
+
 For the return value to be human-readable, you can decode it using SCALE codec.
 For more information about encoding and decoding information, see [Type encoding (SCALE)](/reference/scale-codec/).
 
@@ -122,7 +122,7 @@ To get metadata for a local node, you can run the following command:
 curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "state_getMetadata"}' http://localhost:9933/
 ```
 
-This command returns the metadata in hex-encoded bytes rather than a human-readable format. 
+This command returns the metadata in hex-encoded bytes rather than a human-readable format.
 The JavaScript for this RPC request looks like this:
 
 ```javascript
