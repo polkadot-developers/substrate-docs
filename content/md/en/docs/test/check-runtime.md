@@ -27,14 +27,14 @@ Prior [`TestExternalities`](https://paritytech.github.io/substrate/master/sp_sta
 for writing unit and integrated tests with mock data, but lacked the ability to test against a chain's actual state.
 The `try-runtime` tool extends `TestExternalities` and `BasicExternalities` by retrieving state using the following RPC endpoints for the node:
 
-- [`get_storage`](https://paritytech.github.io/substrate/master/remote_externalities/trait.RpcApiClient.html#method.get_storage)
-- [`get_keys_paged`](https://paritytech.github.io/substrate/master/remote_externalities/trait.RpcApiClient.html#method.get_keys_paged)
+- [`get_storage`](https://github.com/paritytech/substrate/blob/master/utils/frame/remote-externalities/src/lib.rs#L338)
+- [`get_keys_paged`](https://github.com/paritytech/substrate/blob/master/utils/frame/remote-externalities/src/lib.rs#L364)
 
 After using the key-value database to retrieve state, try-runtime inserts the data into `TestExternalities`.
 
 ## How it works
 
-The `try-runtime` tool has its own implementation of externalities called [`remote_externalities`](https://paritytech.github.io/substrate/master/remote_externalities/index.html) which is just a wrapper around `TestExternalities` that uses a generic [key-value store](/learn/state-transitions-and-storage) where data is [type encoded](/reference/scale-codec).
+The `try-runtime` tool has its own implementation of externalities called [`remote_externalities`](https://github.com/paritytech/substrate/blob/master/utils/frame/remote-externalities/src/lib.rs) which is just a wrapper around `TestExternalities` that uses a generic [key-value store](/learn/state-transitions-and-storage) where data is [type encoded](/reference/scale-codec).
 
 The diagram below illustrates the way externalities sits outside a compiled runtime as a means to capture the storage of that runtime.
 
