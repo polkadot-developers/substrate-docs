@@ -3,7 +3,7 @@
     {
       "pattern": [
         "^(?!httpsn?).*$",
-        "http*://crates.io*"
+        "^http*://crates.io*$"
       ]
     },
     {

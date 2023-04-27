@@ -261,7 +261,7 @@ To build the WebAssembly for this smart contract:
 
 ## Start the Substrate Contracts Node
 
-If you have [successfully installed the  `substrate-contracts-node`](tutorials/smart-contracts/prepare-your-first-contract/#install-the-substrate-contracts-node),
+If you have [successfully installed the  `substrate-contracts-node`](/tutorials/smart-contracts/prepare-your-first-contract/#install-the-substrate-contracts-node),
 it's time to start a local node.
 
 1. Start the contracts node in local development mode by running the following command:

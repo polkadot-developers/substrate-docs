@@ -46,7 +46,7 @@ In the meantime, you can use the following resources to learn more about paracha
 
 - [Simulate parachains in a test network](/test/simulate-parachains/)
 - [Substrate Cumulus parachain template](https://github.com/substrate-developer-hub/substrate-parachain-template)
-- [Connect parachains to a network](tutorials/build-a-parachain/)
+- [Connect parachains to a network](/tutorials/build-a-parachain/)
 
 ## Future workshops
 

@@ -36,7 +36,7 @@ This API provides the following methods:
 Use the `AuraApi` to manage block authoring with the slot-based consensus that uses a round-robin rotation of authorities.
 Although most consensus-related tasks are handled by outer node services, the runtime must provide this API for consensus-related tasks that are part of the state transition logic.
 
-This API provides the following methods for authority-based round-robin scheduling ([Aura](reference/glossary/#aura)):
+This API provides the following methods for authority-based round-robin scheduling ([Aura](/reference/glossary/#aura)):
 
 - `slot_duration` to get the slot duration for Aura consensus.
 - `slot_duration_with_context` to get the slot duration for Aura consensus within a specified execution context.
