@@ -65,7 +65,7 @@ Before submitting, verify your content meets the following requirements:
 
 1. Add the appropriate tags to describe your content [complexity] and [category].
 
-1. Create a branch in the [how-to-guides](https://github.com/substrate-developer-hub/substrate-docs/tree/main/v3/how-to-guides) repository.
+1. Create a branch in the [how-to-guides](https://github.com/substrate-developer-hub/substrate-docs/blob/main/content/md/en/docs/reference/how-to-guides/index.md) repository.
 
 1. Create a Pull Request (PR) for the article you want to contribute.
 
