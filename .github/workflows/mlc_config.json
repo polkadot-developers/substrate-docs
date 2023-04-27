@@ -1,7 +1,14 @@
 {
   "ignorePatterns": [
     {
-      "pattern": ["^(?!httpsn?).*$", "http*://crates.io*", "/*"]
+      "pattern": [
+        "^(?!httpsn?).*$",
+        "http*://crates.io*"
+      ]
+    },
+    {
+      "pattern": "^/",
+      "replacement": "{{BASEURL}}/"
     }
   ]
 }
