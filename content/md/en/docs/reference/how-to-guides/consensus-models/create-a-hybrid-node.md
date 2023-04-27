@@ -102,7 +102,7 @@ task_manager
 ## Spawn the Grandpa task
 
 Grandpa is _not_ CPU intensive, so we use a standard `async` worker to listen to and cast Grandpa votes.
-We begin by creating a Grandpa [`Config`](https://paritytech.github.io/substrate/master/sc_finality_grandpa/struct.Config.html):
+We begin by creating a Grandpa [`Config`](https://paritytech.github.io/substrate/master/sc_consensus_grandpa/struct.Config.html):
 
 ```rust
 let grandpa_config = sc_finality_grandpa::Config {
@@ -115,7 +115,7 @@ let grandpa_config = sc_finality_grandpa::Config {
 };
 ```
 
-We can then use this config to create an instance of [`GrandpaParams`](https://paritytech.github.io/substrate/master/sc_finality_grandpa/struct.GrandpaParams.html).
+We can then use this config to create an instance of [`GrandpaParams`](https://paritytech.github.io/substrate/master/sc_consensus_grandpa/struct.GrandpaParams.html).
 
 ```rust
 let grandpa_config = sc_finality_grandpa::GrandpaParams {

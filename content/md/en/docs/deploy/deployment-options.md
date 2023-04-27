@@ -10,7 +10,7 @@ This section describes some of the most common options and tools for deploying a
 
 ## Linux servers
 
-If you are deploying on physical or virtual machines that use a distribution of the Linux operating system, you typically use `systemd` to manage most services. 
+If you are deploying on physical or virtual machines that use a distribution of the Linux operating system, you typically use `systemd` to manage most services.
 You can use `systemd` to ensure processes are enabled and running, set policies for restarting services, specify the user account for hosts to run under, and configure system parameters to limit memory usage and other properties.
 
 The following example illustrates configuring the `systemd` file for a node running a local development chain using the account associated with Alice and the local user name `polkadot`:
@@ -74,7 +74,7 @@ You can use this technique with multiple variables to abstract the configuration
 ### Local logging
 
 By default, the `systemd` service writes output to the local `syslog` file, typically `/var/log/syslog` or `/var/log/messages`.
-You can also view this output using the `journalctl` command. 
+You can also view this output using the `journalctl` command.
 For example, to see the most recent output of the `polkadot` process, you can run the following command:
 
 ```bash
@@ -103,9 +103,9 @@ To log to a remote `loki` instance:
 
 1. Install the `promtail` server package on each server.
 2. Create the configuration file that specifies the server and client information to enable each server to send logs to a remote host.
-   
+
    For example:
-   
+
    ```yaml
    # promtail server config
    server:
@@ -151,7 +151,7 @@ To log to a remote Elasticsearch cluster:
 1. Install the `logstash` package.
 2. Create the configuration file that specifies the server and client information to enable each server to send logs to a remote host.
    An example configuration would look like this:
-   
+
    ```text
    nput {
      journald {
@@ -164,7 +164,7 @@ To log to a remote Elasticsearch cluster:
        type => "systemd"
      }
    }
-   
+
    filter {
      date {
        match => ["timestamp", "YYYY-mm-dd HH:MM:ss.SSS"]
@@ -191,8 +191,8 @@ To log to a remote Elasticsearch cluster:
 
 ### Logging command-line options
 
-When you start a node, you can use command-line options to specify the log level and target components you want to log activity for. 
-All target components are set to the `info` logging level by default. 
+When you start a node, you can use command-line options to specify the log level and target components you want to log activity for.
+All target components are set to the `info` logging level by default.
 You can adjust log levels for individual components using the `--log` or `-l` command-line option.
 For example, to change the logging level for the afg and sync components:
 
@@ -246,7 +246,7 @@ The following provider-specific tools are the most commonly-used for deploying o
 - [Azure Resource Manager](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview)
 - [Google Cloud Deployment Manager](https://cloud.google.com/deployment-manager/docs)
 
-These provider-specific deployment tools are easy to use and provide important resources, including sample code, documentation, and support. 
+These provider-specific deployment tools are easy to use and provide important resources, including sample code, documentation, and support.
 However, if you use more than one multiple provider—each with its own scripting format and configuration requirements—making even basic changes to your infrastructure can require changes to multiple sections of code for each provider to do the same thing.
 
 As an alternative to provider-specific tooling, [Terraform](https://www.terraform.io/) offers a more general solution to infrastructure provisioning.
@@ -254,7 +254,7 @@ With Terraform, you can specify a change once and apply the change across multip
 
 ### Terraform
 
-Terraform uses the [HashiCorp Configuration Language (HCL)](https://developer.hashicorp.com/terraform/language) to support more than 2000 different cloud resource [providers](https://registry.terraform.io/browse/providers), including the main three providers AWS, Azure, and GCP. 
+Terraform uses the [HashiCorp Configuration Language (HCL)](https://developer.hashicorp.com/terraform/language) to support more than 2000 different cloud resource [providers](https://registry.terraform.io/browse/providers), including the main three providers AWS, Azure, and GCP.
 
 The configuration language enables you to abstract configuration details and use the same code for development, test, and production environments regardless of the provider you use and manage all changes to your infrastructure through source code version control.
 Terraform also enables you to incorporate independent resources into your infrastructure using a common language.
@@ -305,21 +305,21 @@ The following example illustrates how to deploy a `rococo-local` test network ch
 
 To deploy the `rococo-local` chain using the helm chart:
 
-1. Verify you have access to a Kubernetes cluster and the Helm client installed. 
+1. Verify you have access to a Kubernetes cluster and the Helm client installed.
 2. Add the Parity chart repository to Helm by running the following command:
-   
+
    ```bash
    helm repo add parity https://paritytech.github.io/helm-charts/
    ```
 
 3. Install the node chart by running the following command:
-   
+
    ```bash
    helm install polkadot-node parity/node
    ```
 
 4. Deploy the validator node using the Alice account and a custom node key by running the following command:
-   
+
    ```bash
    helm install rococo-alice parity/node --set node.role="validator" \
       --set node.customNodeKey="91cb59d86820419075b08e3043cd802ba3506388d8b161d2d4acd203af5194c1" \
@@ -332,7 +332,7 @@ To deploy the `rococo-local` chain using the helm chart:
    This command deploys the node `alice` as a stateful service with an example custom node key and with a service to be used as a boot node for all other hosts.
 
 5. Deploy the validator node using the Bob account and `alice` as a boot node by running the following command:
-   
+
    ```bash
    helm install rococo-bob parity/node --set node.role="validator" \
       --set node.chain=rococo-local \
@@ -342,7 +342,7 @@ To deploy the `rococo-local` chain using the helm chart:
    After both validators are running, the chain should start producing blocks.
 
 6. Deploy two full nodes by running the following command:
-   
+
    ```bash
    helm install rococo-pool parity/node --set node.chain=rococo-local \
       --set node.replicas=2 \
@@ -361,13 +361,13 @@ The following tools—listed from simplest to most advanced are useful for manag
 ## Docker
 
 If you are deploying nodes as virtual machines in a network, you can use Docker images to prepare the node configuration for different types of nodes.
-For example, you can prepare Docker images for validator nodes and RPC provider nodes then deploy multiple nodes of each type without configuring a separate virtual machine for each node. 
+For example, you can prepare Docker images for validator nodes and RPC provider nodes then deploy multiple nodes of each type without configuring a separate virtual machine for each node.
 External node operators can then use the Docker images you provide to deploy new nodes whenever and wherever they are needed.
 
 ### Sample Dockerfile
 
-The following sample [Dockerfile](https://github.com/substrate-developer-hub/substrate-node-template/blob/main/Dockerfile) illustrates the best practices for building the Docker image in a secure way that minimizes the attack surface.
-This example is similar version to the Dockerfile used to create the official Polkadot images. 
+The following sample Dockerfile illustrates the best practices for building the Docker image in a secure way that minimizes the attack surface.
+This example is similar version to the Dockerfile used to create the official Polkadot images.
 You can also consult Docker documentation for additional information about [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/).
 
 ```dockerfile
@@ -413,7 +413,7 @@ ENTRYPOINT ["/usr/local/bin/node-template"]
 ### Automated build pipeline
 
 The following sample [GitHub action](https://github.com/substrate-developer-hub/substrate-node-template/blob/main/.github/workflows/build-publish-image.yml) builds and publishes a Docker image to DockerHub.
-In most cases, you trigger this action using a manual workflow or when a new release is published. 
+In most cases, you trigger this action using a manual workflow or when a new release is published.
 
 Note that you must add secrets to your GitHub repository or organization as described in [Encrypted secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) to publish images securely.
 You'll also need to save the credentials for your DockerHub account in your GitHub secrets.
@@ -436,7 +436,7 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-  
+
 # Set an environment variable (that can be overriden) for the Docker Repo
 env:
   DOCKER_REPO: parity/polkadot
@@ -452,14 +452,14 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Check out the repo
         uses: actions/checkout@v2.5.0
-      
+
       # Login to Docker hub using the credentials stored in the repository secrets
       - name: Log in to Docker Hub
         uses: docker/login-action@v2.1.0
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
-      
+
       # Get the commit short hash, to use as the rev
       - name: Calculate rev hash
         id: rev

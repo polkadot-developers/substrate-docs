@@ -51,7 +51,7 @@ let import_queue = sc_consensus_pow::import_queue(
 
 ## Create an import queue
 
-Define your node's inherents by using [`InherentDataProviders`](https://paritytech.github.io/substrate/master/sp_authorship/struct.InherentDataProvider.html) in a function that defines the providers of your POW system:
+Define your node's inherents by using [`InherentDataProviders`](https://paritytech.github.io/substrate/master/sc_consensus_aura/struct.InherentDataProvider.html) in a function that defines the providers of your POW system:
 
 ```rust
 pub fn build_inherent_data_providers() -> Result<InherentDataProviders, ServiceError> {
