@@ -20,7 +20,8 @@
 		"lint:eslint": "eslint . --ext js --ext jsx",
 		"lint:fix": "eslint --fix --ext js --ext jsx .",
 		"extract-locales": "yarn run babel --config-file ./babel-extract-locales.config.js -o tmp/chunk.js 'src/**/*.{js,jsx}' && rm -rf tmp",
-		"checklinks": "yarn blc --filter-level=3 -rof --requests=10 --exclude='/crates.io' --exclude='/localhost:8000' --exclude='/localhost:8100' --exclude='/localhost:8300' --exclude='/paritytech.github.io/' --exclude='undefined' http://localhost:9000/quick-start/ | tee checklinks.log"
+		"checklinks": "yarn blc --filter-level=3 -rof --requests=10 --exclude='/crates.io' --exclude='/localhost:8000' --exclude='/localhost:8100' --exclude='/localhost:8300' --exclude='/paritytech.github.io/' --exclude='undefined' http://localhost:9000/quick-start/ | tee checklinks.log",
+    "checklinks-external": "find content/md -name \\*.md -print0 | xargs -0 -n1 markdown-link-check -p -c .github/workflows/mlc_config.json"
 	},
 	"dependencies": {
 		"aos": "^2.3.4",
@@ -95,7 +96,8 @@
 		"postcss-import": "^14.0.2",
 		"prettier": "^2.2.1",
 		"sass": "^1.32.8",
-		"tailwindcss": "^2.2.7"
+		"tailwindcss": "^2.2.7",
+    "markdown-link-check": "^3.11.1"
 	},
 	"bugs": {
 		"url": "https://github.com/gatsbyjs/gatsby/issues"
