@@ -7,14 +7,14 @@ keywords:
   - upgrades
 ---
 
-This guide illustrates how to perform storage migration for a specific pallet by modifying the FRAME [Nicks pallet](https://github.com/paritytech/substrate/tree/master/frame/nicks). 
-In this tutorial, you'll modify a storage map to provide an optional field that includes a last name and write a migration function that can then be triggered with a runtime upgrade. 
+This guide illustrates how to perform storage migration for a specific pallet by modifying the FRAME [Nicks pallet](https://github.com/paritytech/substrate/tree/master/frame/nicks).
+In this tutorial, you'll modify a storage map to provide an optional field that includes a last name and write a migration function that can then be triggered with a runtime upgrade.
 You can use this type of simple storage migration when changes are limited to specific pallets and individual storage items.
 You can follow similar steps for more complex data migration, but you'll need to write more complex migration functions and use additional tooling to test your migration than explained in this tutorial.
 
 ## Add the Nicks pallet locally
 
-We are going to make a change in the [FRAME's Nick's pallet](https://github.com/paritytech/substrate/tree/master/frame/nicks), in the tutorial [Add a pallet to the runtime](https://docs.substrate.io/tutorials/build-application-logic/add-a-pallet/) we show how to add the Nicks pallet to the runtime for the node template.
+We are going to make a change in the [FRAME's Nick's pallet](https://github.com/paritytech/substrate/tree/master/frame/nicks), in the tutorial [Add a pallet to the runtime](/tutorials/build-application-logic/add-a-pallet/) we show how to add the Nicks pallet to the runtime for the node template.
 
 For this guide, because we are going to make changes in the code of the pallet we are going to take the code of the pallet and add it locally in our node template. You can check an example of how to add it locally [here](https://github.com/substrate-developer-hub/substrate-node-template/commit/022b6da0d1d55f54de3568e97aa5fe45a7975fa5).
 
@@ -31,7 +31,7 @@ For example, the default storage definition looks like this:
 	pub(super) type NameOf<T: Config> =
 		StorageMap<_, Twox64Concat, T::AccountId, (BoundedVec<u8, T::MaxLength>, BalanceOf<T>)>;
 ```
-We want to update the storage to add an optional field that includes a last name too. 
+We want to update the storage to add an optional field that includes a last name too.
 For that we create a new struct `Nickname` to manage the previous and new storage items, first name and last name:
 
 ```rust
@@ -81,7 +81,7 @@ pub fn set_name(origin,
     let mut bounded_last: BoundedVec<_, _> = Default::default();
     if let Some(last) = last {
         bounded_last= last.try_into().map_err(|_| Error::<T>::TooLong)?;
-        ensure!(bounded_last.len() >= T::MinLength::get() as usize, Error::<T>::TooShort);	
+        ensure!(bounded_last.len() >= T::MinLength::get() as usize, Error::<T>::TooShort);
     }
     let bounded_last: Option<BoundedVec<u8, T::MaxLength>> = Some(bounded_last);
 
@@ -227,7 +227,7 @@ For the Nicks pallet we have following tests:
 - `fn normal_operation_should_work()`
 - `fn error_catching_should_work()`
 
-We have to update them to work with the new code we have added, for example: 
+We have to update them to work with the new code we have added, for example:
 ```rust
     #[test]
 	fn normal_operation_should_work() {

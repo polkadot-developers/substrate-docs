@@ -30,7 +30,7 @@ The Rust compiler minimizes the chances of errors getting into your code and pro
 - [ ] Rust is installed locally or available in the browser using the Substrate playground.
 
   If you aren't sure, open a terminal and run `rustup show`.
-  If Rust isn't installed on your computer, follow the instructions in [Install](https://docs.substrate.io/install) for your operating system.
+  If Rust isn't installed on your computer, follow the instructions in [Install](/install) for your operating system.
   The last step in the installation instructions is to verify that the default node template compiles.
 
 - [ ] Substrate node compiles locally or is available in the browser using the Substrate playground.
