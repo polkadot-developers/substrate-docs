@@ -175,15 +175,15 @@ However, if you want to build a production-ready parachain, you should keep the 
 
 - You'll need a development team with sufficient skills and experience, whether that means programming in Rust or a background in UX design.
 
-   Parachain development might require more resources than other options.
+  Parachain development might require more resources than other options.
 
 - You'll need to build your community through marketing, outreach, or ecosystem development programs.
 
 - You'll need resources for your infrastructure and network maintenance.
 
-   A parachain is a whole blockchain.
-   Although the relay chain provides security and consensus for your project, you must maintain your chain and network infrastructure.
-   In addition to developer operations (DevOps), you need to secure a parachain slot, design a crowdloan or auction strategy, and accumulate enough resources to extend the slot.
+  A parachain is a whole blockchain.
+  Although the relay chain provides security and consensus for your project, you must maintain your chain and network infrastructure.
+  In addition to developer operations (DevOps), you need to secure a parachain slot, design a crowdloan or auction strategy, and accumulate enough resources to extend the slot.
 
 - You'll need sufficient time for testing and validating your chain operations, in a sandbox or simulated network and on a fully-functioning test network.
 

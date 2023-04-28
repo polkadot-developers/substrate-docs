@@ -24,11 +24,11 @@ Regardless of the mathematics used, all signature schemes are designed to achiev
 
 The following signature schemes are supported in Substrate-based chains:
 
-| Scheme | Description
-|:----- |:-----------
-| ed25519	| The Ed25519 signature scheme is based on the Edwards-curve Digital Signature Algorithm (EdDSA) signature scheme—a variant of Schnorr signatures—that uses SHA-512 and Curve25519. This signature scheme produces more secure signatures and is significantly faster at signing messages than the ECDSA signature scheme.
-| sr25519	| The Sr25519 signature scheme is the default signature scheme for Substrate. This signature scheme is based on the Schnorrkel variant that uses Schnorr signatures with Ristretto point compression. The Sr25519 signature scheme supports additional features—such as hierarchical deterministic key derivation, multi-signature signing, and a verifiable random function—that are particularly useful in a blockchain environment.
-| ecdsa	| The Elliptic Curve Digital Signature Algorithm (ECDSA) is a variant of the Digital Signature Algorithm (DSA) that uses the Secp256k1 elliptic curve cryptography. This signature scheme was used initially in Bitcoin and Ethereum because of the patent protecting Schnorr signatures. Using the ECDSA signature scheme complicates some advanced cryptographic techniques, such as threshold signatures.
+| Scheme  | Description                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| :------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ed25519 | The Ed25519 signature scheme is based on the Edwards-curve Digital Signature Algorithm (EdDSA) signature scheme—a variant of Schnorr signatures—that uses SHA-512 and Curve25519. This signature scheme produces more secure signatures and is significantly faster at signing messages than the ECDSA signature scheme.                                                                                                             |
+| sr25519 | The Sr25519 signature scheme is the default signature scheme for Substrate. This signature scheme is based on the Schnorrkel variant that uses Schnorr signatures with Ristretto point compression. The Sr25519 signature scheme supports additional features—such as hierarchical deterministic key derivation, multi-signature signing, and a verifiable random function—that are particularly useful in a blockchain environment. |
+| ecdsa   | The Elliptic Curve Digital Signature Algorithm (ECDSA) is a variant of the Digital Signature Algorithm (DSA) that uses the Secp256k1 elliptic curve cryptography. This signature scheme was used initially in Bitcoin and Ethereum because of the patent protecting Schnorr signatures. Using the ECDSA signature scheme complicates some advanced cryptographic techniques, such as threshold signatures.                           |
 
 ## Session keys and types
 
@@ -69,14 +69,14 @@ impl_opaque_keys! {
 
 Polkadot uses the following session keys:
 
-| Name | Type
-|:---- |:----
-| Authority discovery | sr25519
-| GRANDPA | ed25519
-| BABE | sr25519
-| I'm online | sr25519
-| Parachain assignment | sr25519
-| Parachain validator | ed25519
+| Name                 | Type    |
+| :------------------- | :------ |
+| Authority discovery  | sr25519 |
+| GRANDPA              | ed25519 |
+| BABE                 | sr25519 |
+| I'm online           | sr25519 |
+| Parachain assignment | sr25519 |
+| Parachain validator  | ed25519 |
 
 BABE requires keys suitable for use in a Verifiable Random Function as well as for digital signatures.
 Sr25519 keys have both capabilities and so are used for BABE.
@@ -87,8 +87,8 @@ You can use `polkadot keys` or the `subkey` command to generate and inspect keys
 
 Two important subcommands are:
 
-- `generate`  to create a new random account and print the private key to standard output or save the key to a file.
-- `inspect`  to view the account and address information for an account by passing a secret phrase or seed.
+- `generate` to create a new random account and print the private key to standard output or save the key to a file.
+- `inspect` to view the account and address information for an account by passing a secret phrase or seed.
 
 Some important options are:
 

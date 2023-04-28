@@ -1,9 +1,7 @@
 {
   "ignorePatterns": [
     {
-      "pattern": [
-        "^(?!httpsn?).*$"
-      ]
+      "pattern": ["^(?!httpsn?).*$"]
     },
     {
       "pattern": "^/",

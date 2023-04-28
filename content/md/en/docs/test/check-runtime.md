@@ -26,6 +26,7 @@ The initial motivation for `try-runtime` came from the need to test runtime chan
 Prior [`TestExternalities`](https://paritytech.github.io/substrate/master/sp_state_machine/struct.TestExternalities.html) and [`BasicExternalities`](https://paritytech.github.io/substrate/master/sp_state_machine/struct.BasicExternalities.html) existed
 for writing unit and integrated tests with mock data, but lacked the ability to test against a chain's actual state.
 The `try-runtime` tool extends `TestExternalities` and `BasicExternalities` by retrieving state using the following RPC endpoints for the node:
+
 - `rpc_get_storage`
 - `rpc_get_keys_paged`
 

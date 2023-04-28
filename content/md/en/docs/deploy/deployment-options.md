@@ -109,39 +109,39 @@ To log to a remote `loki` instance:
    ```yaml
    # promtail server config
    server:
-      http_listen_port: 9080
-      grpc_listen_port: 0
-      log_level: info
+     http_listen_port: 9080
+     grpc_listen_port: 0
+     log_level: info
    positions:
-      filename: /var/lib/promtail/positions.yaml
+     filename: /var/lib/promtail/positions.yaml
 
    # loki servers
    clients:
-      - url: http://myloki.mycompany.com/loki/api/v1/push
-        backoff_config:
-           min_period: 1m
-           max_period: 1h
-           max_retries: 10000
+     - url: http://myloki.mycompany.com/loki/api/v1/push
+       backoff_config:
+         min_period: 1m
+         max_period: 1h
+         max_retries: 10000
    scrape_configs:
-      - job_name: journald
-        journal:
-           max_age: 1m
-           path: /var/log/journal
-           labels:
-              job: journald
-        pipeline_stages:
-           - match:
-             selector: '{job="journald"}'
-             stages:
+     - job_name: journald
+       journal:
+         max_age: 1m
+         path: /var/log/journal
+         labels:
+           job: journald
+       pipeline_stages:
+         - match:
+           selector: '{job="journald"}'
+           stages:
              - multiline:
-                  firstline: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}'
-                  max_lines: 2500
+                 firstline: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}'
+                 max_lines: 2500
              - regex:
-                  expression: '(?P<date>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3})\s+(?P<level>(TRACE|DEBUG|INFO|WARN|ERROR))\s+(?P<worker>([^\s]+))\s+(?P<target>[\w-]+):?:?(?P<subtarget>[\w-]+)?:[\s]?(?P<chaintype>\[[\w-]+\]+)?[\s]?(?P<message>.+)'
+                 expression: '(?P<date>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3})\s+(?P<level>(TRACE|DEBUG|INFO|WARN|ERROR))\s+(?P<worker>([^\s]+))\s+(?P<target>[\w-]+):?:?(?P<subtarget>[\w-]+)?:[\s]?(?P<chaintype>\[[\w-]+\]+)?[\s]?(?P<message>.+)'
              - labels:
-                  level:
-                  target:
-                  subtarget:
+                 level:
+                 target:
+                 subtarget:
    ```
 
 #### Elasticsearch
@@ -188,6 +188,7 @@ To log to a remote Elasticsearch cluster:
         index => "logstash-polkadot-%{+YYYY.MM.dd}"
       }
    }
+   ```
 
 ### Logging command-line options
 
@@ -264,7 +265,6 @@ After you prepare a host for deployment, you can use Terraform to preconfigure t
 
 You can find examples of using Terraform with multiple providers in [polkadot-validator-setup](https://github.com/w3f/polkadot-validator-setup).
 
-
 ### Ansible
 
 After base hosts are deployed, they must be configured with the required software components, configuration files, and system settings.
@@ -292,12 +292,12 @@ All of the parameters for the chart are documented in the [node chart README.md]
 
 The most important parameters to be aware of are:
 
-| Option | Description
-|:-------|:-----------
-| node.chain | Network to connect to.
-| node.command | Binary to use.
-| node.flags	| Command-line options to use with the binary in the container.
-| node.customChainspecUrl | Custom chain specification URL.
+| Option                  | Description                                                   |
+| :---------------------- | :------------------------------------------------------------ |
+| node.chain              | Network to connect to.                                        |
+| node.command            | Binary to use.                                                |
+| node.flags              | Command-line options to use with the binary in the container. |
+| node.customChainspecUrl | Custom chain specification URL.                               |
 
 There’s also an example `values.yml` configuration file that you can start working from.
 
@@ -432,7 +432,7 @@ name: Build & Publish Docker Image
 on:
   # Triggers the workflow on push events but only for the main branch
   # push:
-    # branches: [ main ]
+  # branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:

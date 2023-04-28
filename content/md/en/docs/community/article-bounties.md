@@ -1,7 +1,7 @@
 ---
 title: Submitting articles to receive a bounty
 slug: /v3/contribute/bounties
-version: '3.0'
+version: "3.0"
 section: docs
 category: style guide
 keywords:
@@ -11,10 +11,9 @@ keywords:
 ---
 
 <Message
-  type="yellow"
-  title="Information"
-  text={`This section is still work in progress. There is no official Substrate Developer
-Hub bounty program although we plan to introduce one soon.`}
+type="yellow"
+title="Information"
+text={`This section is still work in progress. There is no official Substrate Developer Hub bounty program although we plan to introduce one soon.`}
 />
 
 To encourage community support and contributions to the developer ecosystem, we have established a bounty program.

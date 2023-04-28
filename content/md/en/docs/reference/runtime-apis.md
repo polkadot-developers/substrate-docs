@@ -54,7 +54,6 @@ This API provides the following methods:
 - `dispatch_benchmark` to dispatch the specified benchmark.
 - `dispatch_benchmark_with_context` to dispatch the specified benchmark within a specified execution context.
 
-
 ## BlockBuilder
 
 Use the `BlockBuilder` API to provide the functionality required for building and finalizing a block.
@@ -123,9 +122,9 @@ This API provides the following methods:
   The method returns the public keys as concatenated SCALE-encoded values.
 
 - `generate_session_keys_with_context` to generate a set of session keys within the specified execution context.
-    If you generate the keys using a specified seed, the seed must to be a valid `utf8` string.
-    You should store the generated keys in the keystore exposed by the runtime externalities.
-    The method returns the public keys as concatenated SCALE-encoded values.
+  If you generate the keys using a specified seed, the seed must to be a valid `utf8` string.
+  You should store the generated keys in the keystore exposed by the runtime externalities.
+  The method returns the public keys as concatenated SCALE-encoded values.
 
 - `decode_session_keys` to decode the specified public session keys.
   The method returns the list of raw public keys and the key type.
@@ -159,4 +158,3 @@ This API provides the following methods:
 - [Runtime development](/learn/runtime-development/)
 - [FRAME macros](/reference/frame-macros)
 - [impl_runtime_apis](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html)
-

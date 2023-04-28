@@ -88,7 +88,7 @@ To call RPC methods using the HTTP endpoint:
    curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "rpc_methods"}' http://localhost:9933/
    ```
 
-    This command returns a list of the JSON-RPC methods exposed for the local node.
+   This command returns a list of the JSON-RPC methods exposed for the local node.
 
 4. Call additional methods using the appropriate method name.
 
@@ -104,7 +104,6 @@ To call RPC methods using the HTTP endpoint:
    ```bash
    {"jsonrpc":"2.0","result":"4.0.0-dev-de262935ede","id":1}
    ```
-
 
 For the return value to be human-readable, you can decode it using SCALE codec.
 For more information about encoding and decoding information, see [Type encoding (SCALE)](/reference/scale-codec/).

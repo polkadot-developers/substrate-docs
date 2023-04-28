@@ -33,10 +33,10 @@ Before you begin, verify the following:
    git clone https://github.com/substrate-developer-hub/substrate-node-template
    ```
 
-   This command clones the `main` branch. 
-   
+   This command clones the `main` branch.
+
    Optionally, you can use the `--branch` command-line option and a [tag](https://github.com/substrate-developer-hub/substrate-node-template/tags) to specify a version of Polkadot you want the node to be compatible with.
-   
+
 2. Change to the root of the cloned directory:
 
    ```sh
@@ -52,7 +52,7 @@ Before you begin, verify the following:
    You can name the branch using any identifying information you choose.
    In most cases, you should include information about the year-month-day you cloned the branch in the name.
    For example:
-   
+
    ```text
    git switch -c my-learning-branch-2023-03-31
    ```
@@ -65,7 +65,7 @@ Before you begin, verify the following:
 
    The first time you compile the node, it can take some time to complete.
    When compiling is complete, you should see a line like this:
-   
+
    ```bash
    Finished release [optimized] target(s) in 11m 23s
    ```
@@ -94,7 +94,7 @@ Before you begin, verify the following:
 
    ```text
    Secret Key URI `//Alice` is account:
-   Network ID:        substrate 
+   Network ID:        substrate
    Secret seed:       0xe5be9a5092b81bca64be81d212e7f2f9eba183bb7a90954f7b76361f6edb5c0a
    Public key (hex):  0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d
    Account ID:        0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d
@@ -102,7 +102,7 @@ Before you begin, verify the following:
    SS58 Address:      5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
    ```
 
-   Predefined development accounts like  `Alice` and  `Bob` are configured in a **chain specification** file.
+   Predefined development accounts like `Alice` and `Bob` are configured in a **chain specification** file.
    You'll learn more about node template files in [Explore the code](/quick-start/explore-the-code/) and more specifically about the chain specification file in [Chain specification](/build/chain-spec/).
    For now, it's enough to be aware that development accounts exist to enable testing of simple transactions like balance transfers.
 

@@ -19,7 +19,7 @@ You'll also see another application that uses the Polkadot-JS API and how you ca
 
 ## Before you begin
 
-When you run a node in development mode using the `--dev` command-line option, it starts in a clean state with the first block. 
+When you run a node in development mode using the `--dev` command-line option, it starts in a clean state with the first block.
 To best illustrate how to modify and update the runtime, you should restart the default node template with its default runtime so that it starts producing blocks.
 
 To restart the node with the default runtime:
@@ -27,7 +27,6 @@ To restart the node with the default runtime:
 1. Open a terminal shell on your computer.
 
 2. Change to the root directory where you compiled the Substrate node template.
-   
 3. Start the local node in development mode by running the following command:
 
    ```bash
@@ -39,16 +38,16 @@ After you start the node, you can connect to it using a browser-based applicatio
 To connect to the running node:
 
 1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) in a Chrome or a Chromium-based browser.
-   
+
    If you use a more restrictive browser—such as Firefox—you might find that connections between the Polkadot/Substrate Portal and the node are blocked.
 
 2. Connect to the Development network and the default local node endpoint `127.0.0.1:9944`, if necessary.
-   
+
    In most cases, the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) initializes the connection to the running local node automatically.
    If required, click **Unknown** to display the network selection menu, then select **Development** and **Local Node**, then click **Switch**.
 
 3. Notice that under Development, the node template version is the default version 100.
-   
+
    ![Node template default version](/media/images/docs/quickstart-100.png)
 
 ## Add a pallet
@@ -63,22 +62,22 @@ If this pallet contains functions you want to use, you can add it to the default
 To add the Utility pallet:
 
 1. Open a second terminal shell on your computer and change to the node template root directory.
-   
 2. Open the runtime manifest—`runtime/Cargo.toml` in your code editor.
 
 3. Locate the `[dependencies]` section and add the Utility pallet as a dependency.
-   
+
    For example, you should add a single line similar to the following.
-   
+
    ```toml
    pallet-utility = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-vX.Y.Z" }
    ```
+
    Be sure to replace `branch = "polkadot-vX.Y.Z"` with the Polkadot branch used for other pallets.
 
-   You can copy any existing pallet dependency as a model to ensure that the branch setting for the `pallet-utility` dependency is the same as the branch setting for all other pallets. 
+   You can copy any existing pallet dependency as a model to ensure that the branch setting for the `pallet-utility` dependency is the same as the branch setting for all other pallets.
 
 4. Locate the `[features]` section and add the Utility pallet to the list of default features for the standard binary.
-   
+
    For example:
 
    ```toml
@@ -98,9 +97,9 @@ To add the Utility pallet:
 6. Open the `runtime/src/lib.rs` file in your code editor.
 
 7. Add the implementation for the `Config` trait for the Utility pallet.
-   
+
    For example:
-   
+
    ```rust
    impl pallet_utility::Config for Runtime {
       type RuntimeEvent = RuntimeEvent;
@@ -117,10 +116,10 @@ To add the Utility pallet:
 8. Add the Utility pallet inside the `construct_runtime!` macro.
 
    For example:
-   
+
    ```rust
    construct_runtime!(
-     pub struct Runtime 
+     pub struct Runtime
      where
         Block = Block,
         NodeBlock = opaque::Block,
@@ -150,14 +149,14 @@ To update a constant value:
 1. Open the `runtime/src/lib.rs` file in your code editor.
 
 2. Locate the `EXISTENTIAL_DEPOSIT` for the Balances pallet.
-   
+
    ```text
    /// Existential deposit.
    pub const EXISTENTIAL_DEPOSIT: u128 = 500;
    ```
 
 3. Update the value for the EXISTENTIAL_DEPOSIT.
-   
+
    ```rust
    pub const EXISTENTIAL_DEPOSIT: u128 = 1000 // Update this value.
    ```
@@ -165,7 +164,7 @@ To update a constant value:
 ## Update the runtime version
 
 By default, the node template identifies the default runtime version in the `VERSION` constant using the `spec_version` and a value of 100.
-To indicate that you've made changes to the default runtime, you're going to change the  `spec_version` from 100 to 101.
+To indicate that you've made changes to the default runtime, you're going to change the `spec_version` from 100 to 101.
 
 Note that updating the `spec_version` isn't strictly required for the changes you've made to the default runtime in the _Quick start_.
 However, by updating the version you can see the basic steps involved in performing a forkless upgrade.
@@ -173,7 +172,6 @@ However, by updating the version you can see the basic steps involved in perform
 To update the runtime version:
 
 1. Open the `runtime/src/lib.rs` file in your code editor.
-   
 2. Locate the `runtime_version` macro.
 
    ```text
@@ -196,7 +194,7 @@ To update the runtime version:
    spec_version: 101,  // Change the spec_version from 100 to 101
    ```
 
-4.  Save your changes and close the `runtime/src/lib.rs` file.
+4. Save your changes and close the `runtime/src/lib.rs` file.
 
 At this point, you've modified the runtime code and changed the version information.
 However, the running node is still using the previously-compiled version of the runtime.
@@ -211,7 +209,6 @@ Before you can update the node template to use your modified runtime, you must r
 To recompile the runtime package:
 
 1. Open a second terminal shell and change to the root directory where you compiled the node template.
-   
 2. Recompile the runtime by running the following command:
 
    ```shell
@@ -244,7 +241,6 @@ To update the runtime:
 2. Select the administrative **Alice** account.
 
 3. Select the **sudo** pallet and the **sudoUncheckedWeight(call, weight)** function.
-   
 4. Select **system** and **setCode(code)** as the call to make using the Alice account.
 
 5. Click **file upload**, then select or drag and drop the compact and compressed WebAssembly file—`node_template_runtime.compact.compressed.wasm`—that you generated for the updated runtime.
@@ -266,30 +262,28 @@ After the transaction is included in a block, you can verify that you're using t
 To verify your changes:
 
 1. In the [Polkadot/Substrate Portal](https://polkadot.js.org/apps), click **Network** and select **Explorer** to see that there has been a successful `sudo.Sudid` event.
-   
-   ![Successful sudo event](/media/images/docs/tutorials/forkless-upgrade/set-code-sudo-event.png)   
+
+   ![Successful sudo event](/media/images/docs/tutorials/forkless-upgrade/set-code-sudo-event.png)
 
 2. Check that the node template version is now `101`.
 
    For example:
-   
+
    ![Updated runtime version is 101](/media/images/docs/quickstart-101.png)
 
-3. Click **Developer** and select **Extrinsics**. 
-   
+3. Click **Developer** and select **Extrinsics**.
 4. Click **submit the following extrinsic** and scroll to the bottom of the list to verify that the **utility** pallet is available as an option.
-   
+
    ![Utility pallet](/media/images/docs/quickstart-utility-pallet.png)
 
 5. Click **Developer** , select **Chain state**, then click [Constants](https://polkadot.js.org/apps/#/chainstate/constants?rpc=ws://127.0.0.1:9944).
-   
 6. Select the **balances** pallet, select **existentialDeposit**, then click **+** to query the constant value.
-   
+
    ![Verify the constant value change](/media/images/docs/quickstart-chain-state.png)
 
 ## Where to go next
 
 After verifying the changes, you know that you have a customized version of the node template running and have successfully upgraded your local node to use your modified runtime.
 
-That's quite an achievement, but there's a lot more you can do. 
+That's quite an achievement, but there's a lot more you can do.
 To dig deeper into concepts and core components, review topics in the [Learn](/learn/) section or start building on what you've learned so far by exploring topics in the [Build](/build/) section.

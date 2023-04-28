@@ -442,7 +442,7 @@ In each slot, a subset of [authorities](#authority) is permitted—or obliged—
 ## sovereign account
 
 The unique account identifier for each chain in the relay chain ecosystem.
-The sovereign account for each chain is a root-level that can only be accessed using the Sudo pallet or through governance. 
+The sovereign account for each chain is a root-level that can only be accessed using the Sudo pallet or through governance.
 The account identifier is calculated by concatenating the Blake2 hash of a specific text string and the registered parachain identifier.
 
 For the relay chain, the parachain account identifier is calculated as the concatenation of (blake2(para+ParachainID) with the hash truncated to the correct length.
@@ -453,7 +453,7 @@ Encoded parachain identifier 1012: f4030000
 0x70617261f4030000000000000000000000000000000000000000000000000000
 ccount address: 5Ec4AhPc9b6e965pNRSsn8tjTzuKaKambivxcL7Gz9Gne9YB
 
-For other parachains, the parachain account identifier is calculated as the concatenation of (blake2(sibl+ParachainID) with the hash truncated to the correct length. 
+For other parachains, the parachain account identifier is calculated as the concatenation of (blake2(sibl+ParachainID) with the hash truncated to the correct length.
 For example, the account identifier for the parachain with the parachain identifier of 1012 on the relay chain is:
 String to hex sibl: 0x7369626c
 Encoded parachain identifier 1012: f4030000
@@ -468,7 +468,7 @@ The sovereign account is most often used to sign XCM messages that are sent to e
 The SS58 address format is a public key address based on the Bitcoin [`Base-58-check`](https://en.bitcoin.it/wiki/Base58Check_encoding) encoding.
 Each Substrate SS58 address uses a `base-58` encoded value to identify a specific account on a specific Substrate-based chain.
 These are represented by a `base-58` encoded value to identify a specific account on a specific Substrate chain.
-The [canonical `ss58-registry`](https://github.com/paritytech/ss58-registry) provide additional details about the address format used by different Substrate-based chains, including the network prefix and website used for different networks. 
+The [canonical `ss58-registry`](https://github.com/paritytech/ss58-registry) provide additional details about the address format used by different Substrate-based chains, including the network prefix and website used for different networks.
 
 ## stake-weighted voting
 

@@ -11,7 +11,7 @@ This section provides an overview of the types of macros available in Rust and h
 
 ## Macro basics
 
-In computer programming, macros are lines of code that encapsulate a preset sequence of instructions to execute. 
+In computer programming, macros are lines of code that encapsulate a preset sequence of instructions to execute.
 As code that writes code, macros enable you to abstract repetitive operations and simplify the code you need to write.
 With macros, you can declare complex data structures implicitly.
 
@@ -22,11 +22,10 @@ Declarative macros are widely-used in Rust programming.
 
 [Procedural macros](https://doc.rust-lang.org/book/ch19-06-macros.html#procedural-macros-for-generating-code-from-attributes) are similar to functions.
 Unlike the pattern-matching done in declarative macros, procedural macros take code as input, perform some set of instructions on the input, and produce code as output.
-There are three types of procedural macros: 
+There are three types of procedural macros:
 
 - [Custom derive macros](https://doc.rust-lang.org/book/ch19-06-macros.html#how-to-write-a-custom-derive-macro) enable you to define and reuse the implementation of a trait for a given type.
   The `derive` macro is particularly useful for defining the implementation for custom runtime types that must satisfy specific traits.
-  
 - [Attribute-like macros](https://doc.rust-lang.org/book/ch19-06-macros.html#attribute-like-macros) enable you to create new attributes to generate code.
 
 - [Function-like macros](https://doc.rust-lang.org/book/ch19-06-macros.html#function-like-macros) enable you to define macros that operate like function calls to generate code.
@@ -43,37 +42,37 @@ After you install cargo-expand, you can use the `cargo expand` command to displa
 Substrate primitives and FRAME both rely on a collection of different macros.
 This section provides an overview of the macros provided in the FRAME support and FRAME system libraries.
 In most cases, these macros provide the framework that other pallets depend on and you should be familiar with how and where they are used in the runtime logic.
-After the overview, this section describes the specific macros that you are most likely to use as a runtime developer. 
+After the overview, this section describes the specific macros that you are most likely to use as a runtime developer.
 
 ### FRAME support macros
 
 The `frame_support` crate provides many of the most important declarative, derive, attribute-like, and function-like macros used in the runtime.
 A few of the important macros that you should be familiar with from the `frame_support` crate include the following:
 
-- `construct_runtime`	used to construct runtime from the list of pallets you have implemented.
-- `match_types`	used to create a type that implements the `Contains` trait with syntax similar to `matches!`.
-- `parameter_types`	used to create new implementations of the `Get` trait.	
+- `construct_runtime` used to construct runtime from the list of pallets you have implemented.
+- `match_types` used to create a type that implements the `Contains` trait with syntax similar to `matches!`.
+- `parameter_types` used to create new implementations of the `Get` trait.
 
 For additional information about the macros in the `frame_support` crate, see the Rust documentation for [Macros](https://paritytech.github.io/substrate/master/frame_support/index.html#macros), [Derive macros](https://paritytech.github.io/substrate/master/frame_support/index.html#derives), and [Attribute macros](https://paritytech.github.io/substrate/master/frame_support/index.html#attributes).
 
 ### FRAME system macros
 
-The `frame_system` crate uses macros to define primitives that provide access to core data types and shared utilities. 
+The `frame_system` crate uses macros to define primitives that provide access to core data types and shared utilities.
 These primitives and associated macros form the foundation for many node operations both in the outer node and in the runtime and act as the base layer for other pallets to interact with the Substrate framework.
 
 A few of the important primitives and macros that you should be familiar with from the `frame_system` crate include the following:
 
 - [`sp_core`](https://paritytech.github.io/substrate/master/sp_core/index.html)
-  
-  - `map`	used to initialize a key-value collection from array.
+
+  - `map` used to initialize a key-value collection from array.
   - `RuntimeDebug` used to debug the runtime.
-  
+
   For more information about `sp_core` function-like macros, see [Macros](https://paritytech.github.io/substrate/master/sp_core/index.html#macros).
 
 - [`sp_runtime`](https://paritytech.github.io/substrate/master/sp_runtime/index.html)
 
-  - `bounded_btree_map`	used to build a bounded `btree-map` from given literals.
-  - `bounded_vec`	used to build a bounded `vec` from given literals.
+  - `bounded_btree_map` used to build a bounded `btree-map` from given literals.
+  - `bounded_vec` used to build a bounded `vec` from given literals.
   - `impl_opaque_keys` used to implement `OpaqueKeys` for a described data structure.
   - `parameter_types` used to create new implementations of the `Get` trait.
 
@@ -81,25 +80,25 @@ A few of the important primitives and macros that you should be familiar with fr
   For information about `sp_runtime` derive macros, see [Derive macros](https://paritytech.github.io/substrate/master/sp_runtime/index.html#derives).
 
 - [`sp_api`](https://paritytech.github.io/substrate/master/sp_api/index.html)
-  
-  - `decl_runtime_apis`	used to declare specified traits as runtime APIs.
-  - `impl_runtime_apis`	used to tag specified trait implementations as runtime APIs.
-  
+
+  - `decl_runtime_apis` used to declare specified traits as runtime APIs.
+  - `impl_runtime_apis` used to tag specified trait implementations as runtime APIs.
+
   For more information about `sp_api` function-like macros, see [Macros](https://paritytech.github.io/substrate/master/sp_api/index.html#macros).
 
 - [`sp_std`](https://paritytech.github.io/substrate/master/sp_std/index.html)
-  
-  - `if_std`	used to indicate code that should only be run when the `std` feature set is enabled.
-  - `map`	used to initialize a key-value collection from array.
-  - `vec`	used to create a vector containing the arguments.
-  
+
+  - `if_std` used to indicate code that should only be run when the `std` feature set is enabled.
+  - `map` used to initialize a key-value collection from array.
+  - `vec` used to create a vector containing the arguments.
+
   For more information about `sp_std` function-like macros, see [Macros](https://paritytech.github.io/substrate/master/sp_std/index.html#macros).
 
 - [`sp_version`](https://paritytech.github.io/substrate/master/sp_version/index.html)
-  
-  - `create_apis_vec`	used to create a vector of API declarations.
+
+  - `create_apis_vec` used to create a vector of API declarations.
   - `create_runtime_str` used to create a `RuntimeString` constant.
-  - `runtime_version`	used as an attribute that accepts the version declaration of a runtime and generates a custom WebAssembly section with the equivalent contents.
+  - `runtime_version` used as an attribute that accepts the version declaration of a runtime and generates a custom WebAssembly section with the equivalent contents.
 
 You'll see these many of these crates listed as dependencies in the runtime and node `Cargo.toml` file for the node template.
 
@@ -129,16 +128,16 @@ pub mod pallet {
 You can specify `dev_mode` as an argument on the `#[pallet]` or `#[frame_support::pallet]` attribute macro to enable development mode for a pallet.
 For example, replace `#[pallet]` with `#[pallet(dev_mode)]` or `#[frame_support::pallet]` with `#[frame_support::pallet(dev_mode)]` to enable development mode for the pallet you're working on.
 
-Development mode loosens some of the restrictions and requirements placed on production pallets to make it easier to iterate on your code during development and testing cycles. 
+Development mode loosens some of the restrictions and requirements placed on production pallets to make it easier to iterate on your code during development and testing cycles.
 For example, if you enable development mode for a pallet:
 
-- You don't need to specify a weight on every `#[pallet::call]` declaration. 
+- You don't need to specify a weight on every `#[pallet::call]` declaration.
   By default, development mode assigns a weight of zero (`0`) to calls that don't have a weight explicitly specified.
 
 - You don't need to implement `MaxEncodedLen` on storage types.
   By default, development mode marks all storage items as unbounded.
 
-Note that you can only add the `dev_mode` argument to the `#[pallet]` or `#[frame_support::pallet]` attribute macro that encloses your pallet module. 
+Note that you can only add the `dev_mode` argument to the `#[pallet]` or `#[frame_support::pallet]` attribute macro that encloses your pallet module.
 You can't specify this argument for any of the `#[pallet::*]` attribute macros.
 
 You should never deploy pallets with development mode enabled in a production network. Before deploying a pallet in a production runtime, be sure to remove the `dev_mode` argument from the `#[pallet]` declaration, fix any compiler errors, and complete testing with the development mode disabled.
@@ -161,21 +160,21 @@ pub mod pallet {
 ```
 
 The `#[pallet]` macro is similar to a derive macro in that it expands the pallet types and trait implementations by reading the input.
-In most cases, the macro doesn't modify any input. 
+In most cases, the macro doesn't modify any input.
 However, there are a few specific scenarios where—unlike a derive macro—this macro modifies its input.
 
 The macro will modify the input in the following circumstances:
 
 - If a **generic** is replaced with a **type**
-  
+
   For example, this can occur if the inner type of an item in `pub struct Pallet<..>(_)` is replaced in the `pallet::storage` macro with a type that implements the `StorageInstance` trait.
 
-- If a **function or data structure** is **changed** 
-  
+- If a **function or data structure** is **changed**
+
   For example, this can occur if the `pallet::type_value` macro changes a function item into a struct and trait implementation.
 
 - If **docs** are **not provided** by the user
-  
+
   For example, if no documentation is provided, the macro `pallet::pallet` modifies the input to add documentation above the `struct Pallet<T>(_);` item.
 
 ### #[pallet::config]
@@ -210,13 +209,13 @@ pub trait Config: pallet_timestamp::Config {}
 
 The `#[pallet::constant]` macro provides the `Config` trait—inside the [`#[pallet::config]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#config-trait-palletconfig-mandatory) macro—with the types and attributes it needs for the runtime and generates associated metadata.
 
-This macro adds information about the constants used in a pallet to the runtime metadata, including: 
+This macro adds information about the constants used in a pallet to the runtime metadata, including:
 
 - the constant name
 - the name of the associated types
 - the constant value
 - the value returned by `Get::get()` for the constant
-  
+
 For example, you can use `#[pallet::constant]` to add `type MyGetParam` to the metadata:
 
 ```rust
@@ -231,8 +230,8 @@ pub trait Config: frame_system::Config {
 
 The [`#[pallet::extra_constants]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional) macro enables you to add constants to the metadata.
 
-For example, you can declare a function that returns a generated value. 
-You can then use the  `#[pallet::extra_constants]` macro to add the information for the generated value to the metadata:
+For example, you can declare a function that returns a generated value.
+You can then use the `#[pallet::extra_constants]` macro to add the information for the generated value to the metadata:
 
 ```rust
 #[pallet::extra_constants]
@@ -254,7 +253,7 @@ For example:
 pub struct Pallet<T>(_);
 ```
 
-This macro can generate the `Store` trait to contain an associated type for each storage item if you provide the  `#[pallet::generate_store($vis trait Store)]` attribute macro.
+This macro can generate the `Store` trait to contain an associated type for each storage item if you provide the `#[pallet::generate_store($vis trait Store)]` attribute macro.
 
 For example:
 
@@ -352,7 +351,7 @@ pub enum Error<T> {
 ```
 
 Any field type you specify for an enumeration variant must implement the `scale_info::TypeInfo` trait and its encoded size should be as small as possible.
-Field types in enum variants must also implement the [PalletError](https://paritytech.github.io/substrate/master/frame_support/traits/trait.PalletError.html) trait to compile. 
+Field types in enum variants must also implement the [PalletError](https://paritytech.github.io/substrate/master/frame_support/traits/trait.PalletError.html) trait to compile.
 
 For more information, see the Rust documentation for [pallet::error](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#error-palleterror-optional).
 
@@ -360,7 +359,7 @@ For more information, see the Rust documentation for [pallet::error](https://par
 
 The [`#[pallet::event]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#event-palletevent-optional) macro allows you to define event types for a pallet.
 
-This macro is similar to the `pallet::error` macro but it can hold more information. 
+This macro is similar to the `pallet::error` macro but it can hold more information.
 The macro is defined as an enumeration named Event.
 
 For example:
@@ -392,6 +391,7 @@ $vis type $StorageName<$some_generic> $optional_where_clause
 ```
 
 For more information, see the Rust documentation for [pallet::storage](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#storage-palletstorage-optional) and the following storage data structures:
+
 - [StorageDoubleMap](https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/struct.StorageDoubleMap.html)
 - [StorageMap](https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/struct.StorageMap.html#implementations)
 - [StorageValue](https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/struct.StorageValue.html)
@@ -428,7 +428,7 @@ For more information, see the Rust documentation for [pallet::genesis_build](htt
 
 The [`#[pallet::genesis_config]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional) macro allows you to define the genesis configuration of the pallet.
 
-The macro can be defined as an enumeration or a struct, but must be public and implement trait the GenesisBuild with the #[pallet::genesis_build] macro. 
+The macro can be defined as an enumeration or a struct, but must be public and implement trait the GenesisBuild with the #[pallet::genesis_build] macro.
 
 For example:
 
@@ -462,7 +462,7 @@ For more information, see the Rust documentation for [pallet::inherent](https://
 
 The [`#[pallet::origin]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#origin-palletorigin-optional) macro allows you to define an origin for the pallet.
 
-The macro must be defined as a type alias, enumeration, or struct. 
+The macro must be defined as a type alias, enumeration, or struct.
 The macro must be public.
 
 For example:
@@ -506,11 +506,11 @@ For example, the `construct_runtime!` macro extrapolates information from the pa
 - Call enumeration variants and metadata for each pallet included in the runtime that has callable functions.
 - Event enumeration variants for each pallet included in the runtime that emits events.
 - Genesis configuration struct for building storage for each pallet included in the runtime that defines storage items.
-- Inherent data for pallets that support inherent transactions. 
+- Inherent data for pallets that support inherent transactions.
 - Origin enumeration variants for pallets that identify the function caller using the default origin definition or pallet-specific custom origins.
 - Validation for unsigned transactions for pallets that support unsigned transactions.
 
-The  `construct_runtime!` macro also implements helper traits for the data structures and types exposed, generates an index of the pallets listed in the runtime, and maps events, errors, and callable functions from the runtime back to the pallet they originate from.
+The `construct_runtime!` macro also implements helper traits for the data structures and types exposed, generates an index of the pallets listed in the runtime, and maps events, errors, and callable functions from the runtime back to the pallet they originate from.
 
 By default, the `construct_runtime!` macro includes all pallet attributes for all pallets listed in the macro definition.
 You can override the default behavior to exclude specific parts or to only include specific parts.
@@ -549,14 +549,14 @@ For more information, see the Rust documentation for [construct_runtime](https:/
 
 The `parameter_types!` macro declares the parameter types that are to be assigned to the configuration trait for each pallet during runtime construction.
 
-This macro converts each parameter specified into a struct type with a `get()` function that returns the specified type. 
+This macro converts each parameter specified into a struct type with a `get()` function that returns the specified type.
 Each parameter struct type also implements a `frame_support::traits::Get<I>` trait to convert the type to its specified value.
 
 For more information, see the Rust documentation for [parameter_types](https://paritytech.github.io/substrate/master/frame_support/macro.parameter_types.html).
 
-### impl\_runtime\_apis!
+### impl_runtime_apis!
 
-The `impl_runtime_apis!` macro generates the runtime API for all of the traits that are implemented by the macro. 
+The `impl_runtime_apis!` macro generates the runtime API for all of the traits that are implemented by the macro.
 The traits implemented in this macro must first be declared in the `decl_runtime_apis` macro.
 The macro generates the `RuntimeApi` and `RuntimeApiImpl` structs to expose these traits as [runtime APIs](/reference/runtime-apis/).
 The traits exposed by the macro enable outer node components to communicate with the runtime through the `RuntimeApi` type.
@@ -567,7 +567,7 @@ If you define additional interfaces for the runtime to expose in the `impl_runti
 The macro also generates the `RUNTIME_API_VERSIONS` constant to expose version information about all of the implemented `api` traits.
 This constant is used to instantiate the `apis` field of [`RuntimeVersion`](https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html).
 
-For more information, see the Rust documentation for [impl\_runtime\_apis](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html).
+For more information, see the Rust documentation for [impl_runtime_apis](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html).
 
 ### app_crypto!
 
@@ -576,17 +576,17 @@ The `app_crypto!` macro generates application-specific cryptographic key pairs u
 The macro declares the following struct types:
 
 - `Public`
-  
+
   For the `Public` type, the macro implements the `sp_application_crypto::AppKey` trait to define the public key type and the `sp_application_crypto::RuntimeAppPublic` trait enable generating key pairs, signing transactions, and verifying signatures.
 
 - `Signature`
-  
+
   For the `Signature` type, the macro implements the `core::hash::Hash` trait to specify the signature algorithm—for example, SR25519 or ED25519—used to hash the signature.
 
 - `Pair`
-  
+
   For the `Pair` type, the macro implements the
-  `sp_application_crypto::Pair` and `sp_application_crypto::AppKey` traits to 
+  `sp_application_crypto::Pair` and `sp_application_crypto::AppKey` traits to
   generate public-private key pairs from a secret phrase or seed.
 
 In addition to the traits for these structs, the macro implements helper traits.
@@ -599,15 +599,10 @@ The FRAME benchmarking framework defines several macros for benchmarking pallets
 The following macros are used for benchmarking:
 
 - `add_benchmark` to add pallet benchmarks to a `Vec<BenchmarkBatch>` object using the pallet crate name and generated module struct.
-  
 - `benchmarks` to construct the benchmark logic for testing the execution time for function calls.
-  
 - `benchmarks_instance` to provide the same functionality as the `benchmarks` macro for instantiable modules.
-  
 - `benchmarks_instance_pallet` to provide the same functionality as the `benchmarks` macro for instantiable pallets that are declared with the [`frame_support::pallet`] macro.
-  
 - `cb_add_benchmarks` to call `add_benchmark` as a callback for the `define_benchmarks` macro.
-  
 - `cb_list_benchmarks` to call `list_benchmark` as a callback for the `define_benchmarks` macro.
 
 - `define_benchmarks` to define all of the benchmarked pallets for the runtime.

@@ -67,7 +67,7 @@ Similar to how the outer node has a way to provide information to the runtime, t
 
 ## Core libraries
 
-To keep things simple in the node template, many aspects of the blockchain are configured with a default implementation. 
+To keep things simple in the node template, many aspects of the blockchain are configured with a default implementation.
 For example, there are default implementations of the networking layer, database, and consensus mechanism that you can use as-is to get your blockchain running without a lot of customization.
 However, the libraries underlying the basic architecture provide a great deal of flexibility for defining your own blockchain components.
 
@@ -102,8 +102,8 @@ However, the `frame_*` or `pallet_*` libraries provide the most efficient path t
 
 ### Primitive libraries
 
-At the lowest level of the Substrate architecture, there are primitive libraries that give you control over underlying operations and enable communication between the core client services and the runtime. 
-The primitive libraries are Rust crates that use the `sp_` prefix in the crate name. 
+At the lowest level of the Substrate architecture, there are primitive libraries that give you control over underlying operations and enable communication between the core client services and the runtime.
+The primitive libraries are Rust crates that use the `sp_` prefix in the crate name.
 
 The primitive libraries provide the lowest level of abstraction to expose interfaces that the core client or the runtime can use to perform operations or interact with each other.
 

@@ -234,6 +234,7 @@ For more information about pallet macros, see [FRAME macros](/reference/frame-ma
 ### Secure hashing algorithms
 
 Substrate provides the following hashing algorithms by default:
+
 - `xxHash` is a fast hashing function, but it is not cryptographically secure.
   With this hashing algorithm, hash collisions—in which different inputs hash to the same output—are possible.
   You should only use this hashing algorithm in functions that aren't available to outside entities that could try to manipulate the input and attack the system.

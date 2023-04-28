@@ -47,7 +47,7 @@ At a high level, generating the metadata involves the following steps:
 - The pallets in the runtime logic expose all of the callable functions, types, parameters, and documentation that need to be encoded in the metadata.
 
 - The `scale-info` crate collects type information for the pallets in the runtime and builds a registry of the pallets that exist in a particular runtime and the relevant types for each pallet in the registry.
-   The type information is detailed enough to enable encoding and decoding for every type.
+  The type information is detailed enough to enable encoding and decoding for every type.
 
 - The [`frame-metadata`](https://github.com/paritytech/frame-metadata) crate describes the structure of the runtime based on the registry provided by the `scale-info` crate.
 
@@ -104,18 +104,16 @@ The following example illustrates a condensed and annotated section of metadata 
       },
       "pallets": [
         {
-           // index of pallets and within each pallet the metadata each pallet exposes
+          // index of pallets and within each pallet the metadata each pallet exposes
         }
-
       ],
       "extrinsic": {
-        "ty": 126,    // the type index identifier that defines the format of an extrinsic
+        "ty": 126, // the type index identifier that defines the format of an extrinsic
         "version": 4, // the transaction version used to encode and decode an extrinsic
         "signed_extensions": [
           {
             // index of signed extensions
           }
-
         ]
       },
       "ty": 141 // the type ID for the system pallet
@@ -370,14 +368,14 @@ Applications that integrate Substrate Connect rely on in-browser local memory to
 
 The following libraries use the [JSON-RPC API](https://github.com/paritytech/jsonrpsee) to enable applications to interact with Substrate nodes:
 
-| Name | Description | Language
-| :---- | :----------- | :-------- |
-| [Chain API](https://github.com/paritytech/capi) | Provides a TypeScript toolkit for crafting interactions with Substrate-based chains. The toolkit includes FRAME utilities, a functional effect system, and a fluent API to facilitate multi-step, multi-chain interactions for end users without compromising performance or safety.
-| [Polkadot JS API](https://polkadot.js.org/docs/api) | Provides a Javascript library for building applications that can dynamically adapt to changes in a node—such as block explorers or chain-agnostic services—when interacting with Substrate-based chains. You can use this library in combination with popular front-end frameworks such as React. | Javascript |
-| [Polkadot JS extension](https://polkadot.js.org/docs/extension/) | Provides an API for interacting with browser extensions and providers built with the Polkadot JS API. | Javascript |
-| [Substrate Connect](/learn/light-clients-in-substrate-connect/) | Provides a library and a browser extension to build applications that connect directly to Substrate-based chains using an in-browser light client node. Substrate Connect enables you to build applications that connect to multiple chains, providing end users with a single experience if they use your application to interact with multiple chains. | Javascript |
-| [`subxt`](https://github.com/paritytech/subxt/) | Provides a Rust library that generates a statically-typed Rust interface to interact with a node's RPC APIs based on a target chain's metadata. The `subxt`—submit extrinsics—library enables you to build lower-level applications—such as non-browser graphical user interfaces, chain-specific CLIs, or user-facing applications that require type-safe communication between the node and the generated interface—that prevent users from constructing transactions with bad inputs or submitting calls that don't exist.| Rust |
-| [`txwrapper`](https://github.com/paritytech/txwrapper) | Provides a Javascript library for generating signed Substrate transactions offline. This library enables you to write scripts to generate signed transactions while offline that can later by submitted to a node. This functionality is especially useful for testing and decoding transactions. | Javascript |
+| Name                                                             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Language   |
+| :--------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------- |
+| [Chain API](https://github.com/paritytech/capi)                  | Provides a TypeScript toolkit for crafting interactions with Substrate-based chains. The toolkit includes FRAME utilities, a functional effect system, and a fluent API to facilitate multi-step, multi-chain interactions for end users without compromising performance or safety.                                                                                                                                                                                                                                          |
+| [Polkadot JS API](https://polkadot.js.org/docs/api)              | Provides a Javascript library for building applications that can dynamically adapt to changes in a node—such as block explorers or chain-agnostic services—when interacting with Substrate-based chains. You can use this library in combination with popular front-end frameworks such as React.                                                                                                                                                                                                                             | Javascript |
+| [Polkadot JS extension](https://polkadot.js.org/docs/extension/) | Provides an API for interacting with browser extensions and providers built with the Polkadot JS API.                                                                                                                                                                                                                                                                                                                                                                                                                         | Javascript |
+| [Substrate Connect](/learn/light-clients-in-substrate-connect/)  | Provides a library and a browser extension to build applications that connect directly to Substrate-based chains using an in-browser light client node. Substrate Connect enables you to build applications that connect to multiple chains, providing end users with a single experience if they use your application to interact with multiple chains.                                                                                                                                                                      | Javascript |
+| [`subxt`](https://github.com/paritytech/subxt/)                  | Provides a Rust library that generates a statically-typed Rust interface to interact with a node's RPC APIs based on a target chain's metadata. The `subxt`—submit extrinsics—library enables you to build lower-level applications—such as non-browser graphical user interfaces, chain-specific CLIs, or user-facing applications that require type-safe communication between the node and the generated interface—that prevent users from constructing transactions with bad inputs or submitting calls that don't exist. | Rust       |
+| [`txwrapper`](https://github.com/paritytech/txwrapper)           | Provides a Javascript library for generating signed Substrate transactions offline. This library enables you to write scripts to generate signed transactions while offline that can later by submitted to a node. This functionality is especially useful for testing and decoding transactions.                                                                                                                                                                                                                             | Javascript |
 
 For more information about the JSON-RPC API and the latest interface specification, see the [JSON-RPC specification](https://paritytech.github.io/json-rpc-interface-spec/).
 

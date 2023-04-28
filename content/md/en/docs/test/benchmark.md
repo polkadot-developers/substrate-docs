@@ -201,9 +201,9 @@ Within the template, you have access to all the data provided by the `TemplateDa
 
 There are some custom Handlebars helpers included with the output generation:
 
-- `underscore`: Add an underscore to every 3rd character from the right of a string. 
+- `underscore`: Add an underscore to every 3rd character from the right of a string.
   Primarily to be used for delimiting large numbers.
-- `join`: Join an array of strings into a space-separated string for the template. 
+- `join`: Join an array of strings into a space-separated string for the template.
   Primarily to be used for joining all the arguments passed to the CLI.
 
 To get a full list of `benchmark` subcommands, run:
