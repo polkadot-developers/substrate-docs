@@ -68,7 +68,7 @@ By completing this tutorial, you will be able to:
 ## Signed transactions
 
 To submit signed transactions, you must configure your pallet and the runtime to enable at least one account for offchain workers to use.
-At a high level, configuring a pallet to use an office chain worker and submit signed transactions involves the following steps:
+At a high level, configuring a pallet to use an offchain worker and submit signed transactions involves the following steps:
 
 - [Configure the offchain worker in the pallet](#configure-the-offchain-worker-in-the-pallet).
 - [Implement the pallet and required traits in the runtime](#implement-the-pallet-in-the-runtime).
