@@ -34,6 +34,6 @@ The **Tutorials** provide hands-on learning experiences that cover different asp
 
 - [Build a blockchain](/tutorials/build-a-blockchain/) tutorials are focused on network basics from starting a single node to creating a private four node blockchain, monitoring node operations, and upgrading a running network.
 - [Build application logic](/tutorials/work-with-pallets/) tutorials are focused on how to implement application-specific logic working with existing and custom pallets.
-- [Build a parachian](/tutorials/connect-relay-and-parachains/) tutorials are focused on how to move from a standalone chain to a parachain, connect a parachain to a relay chain, and send messages between chains.
+- [Build a parachain](/tutorials/connect-relay-and-parachains/) tutorials are focused on how to move from a standalone chain to a parachain, connect a parachain to a relay chain, and send messages between chains.
 
 The **Reference** provides direct access to technical information such as the Rust API and help for command-line tools.

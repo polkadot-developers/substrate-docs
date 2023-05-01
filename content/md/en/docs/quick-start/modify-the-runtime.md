@@ -4,7 +4,7 @@ description: Make simple changes to the default node template to create a custom
 keywords:
 ---
 
-In [Explore the code](/quick-start/explore the-code/), you learned about the manifest files and Rust modules that make up the default node template.
+In [Explore the code](/quick-start/explore-the-code/), you learned about the manifest files and Rust modules that make up the default node template.
 Now that you have a general idea of what the runtime source code looks like, let's look at how easy it is for you to make a few simple changes to customize the runtime.
 
 For this simple demonstration, you are going to do the following:
@@ -220,7 +220,7 @@ To recompile the runtime package:
    Storage optimization is _critical_ for any blockchain.
    With this command, the build artifacts are output to the `target/release` directory.
    The WebAssembly build artifacts are in the `target/release/wbuild/node-template-runtime` directory.
-   For example, if you list the contents of the `target/release` directory, you should see the following WebAssembly artifacts:
+   For example, if you list the contents of the `target/release/wbuild/node-template-runtime` directory, you should see the following WebAssembly artifacts:
 
    ```text
    node_template_runtime.compact.compressed.wasm
