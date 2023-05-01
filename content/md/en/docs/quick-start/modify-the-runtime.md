@@ -223,7 +223,7 @@ To recompile the runtime package:
    Storage optimization is _critical_ for any blockchain.
    With this command, the build artifacts are output to the `target/release` directory.
    The WebAssembly build artifacts are in the `target/release/wbuild/node-template-runtime` directory.
-   For example, if you list the contents of the `target/release` directory, you should see the following WebAssembly artifacts:
+   For example, if you list the contents of the `target/release/wbuild/node-template-runtime` directory, you should see the following WebAssembly artifacts:
 
    ```text
    node_template_runtime.compact.compressed.wasm
