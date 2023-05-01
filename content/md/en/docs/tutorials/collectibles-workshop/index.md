@@ -12,7 +12,7 @@ As you progress through the workshops, you’ll learn basic concepts, see exampl
 No coding experience is required (but it doesn’t hurt to have some).
 
 Workshops assume that you are familiar with a few basic Substrate concepts and terms.
-If you aren’t quite ready to try the workshops, explore the simpler hands-on [Get started](https://docs.substrate.io/tutorials/get-started/) tutorials for a more guided introduction to developing with Substrate.
+If you aren’t quite ready to try the workshops, explore the simpler [Build application logic](https://docs.substrate.io/tutorials/build-a-blockchain/) tutorials for a more guided introduction to developing with Substrate.
 
 ## Road map
 
@@ -22,11 +22,11 @@ Find the path that fits your passion.
 
 ### Custom pallets and runtime logic
 
-- [Architecture](/fundamentals/architecture/)
-- [Runtime development](/fundamentals/runtime-development/)
-- [Rust for Substrate](/fundamentals/rust-basics/)
+- [Architecture](/learn/architecture/)
+- [Runtime development](/learn/runtime-development/)
+- [Rust for Substrate](/learn/rust-basics/)
 - [Introduction to libraries](/build/libraries/)
-- [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
+- [Build a local blockchain](/tutorials/build-a-blockchain/build-local-blockchain/)
 - [Runtime and pallets](/tutorials/collectibles-workshop/runtime-and-pallets/)
 
 ### Smart contract development
@@ -46,7 +46,7 @@ In the meantime, you can use the following resources to learn more about paracha
 
 - [Simulate parachains in a test network](/test/simulate-parachains/)
 - [Substrate Cumulus parachain template](https://github.com/substrate-developer-hub/substrate-parachain-template)
-- [Connect parachains to a network](tutorials/connect-relay-and-parachains/)
+- [Connect parachains to a network](tutorials/build-a-parachain/)
 
 ## Future workshops
 

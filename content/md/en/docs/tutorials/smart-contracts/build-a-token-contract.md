@@ -135,8 +135,6 @@ To build an ERC-20 token smart contract:
 
 1. Save the changes to the `lib.rs` file, then close the file.
 
-1. Open the `Cargo.toml` file in a text editor and review the dependencies for the contract.
-
 1. Verify that the program compiles and passes the trivial test by running the following command
 
    ```bash
@@ -168,7 +166,7 @@ If you want to test what you have so far, you can upload the contract using the 
 
 To test the ERC-20 contract before adding new functions:
 
-1. Start the local contract node.
+1. Start the local contract node. You can refer back to the [Prepare your first contract](/tutorials/smart-contracts/prepare-your-first-contract/) tutorial for instructions if needed.
 
 2. Instantiate the contract using the `new()` constructor.
 
@@ -180,7 +178,7 @@ To test the ERC-20 contract before adding new functions:
    only want to read from the chain state.
 
   ```bash
-  cargo contract call --contract 5FV36V71PzWrWJ8p7cEdqkWPZ1fPFxsGRk6QtbH7L1PUtw2w \
+  cargo contract call --contract $INSTANTIATED_CONTRACT_ADDRESS \
       --message total_supply --suri //Alice --dry-run
   ```
 
@@ -188,7 +186,7 @@ To test the ERC-20 contract before adding new functions:
 4. Verify the amount of tokens Alice, the initial holder of all the tokens, has using `balance_of()`.
 
   ```bash
-  cargo contract call --contract 5FV36V71PzWrWJ8p7cEdqkWPZ1fPFxsGRk6QtbH7L1PUtw2w \
+  cargo contract call --contract $INSTANTIATED_CONTRACT_ADDRESS \
       --message balance_of --args 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY \
       --suri //Alice --dry-run
   ```
@@ -201,7 +199,7 @@ To test the ERC-20 contract before adding new functions:
 
 ## Transfer tokens
 
-At this point, the ERC-20 contract has one user account that owns the total_supply of the tokens for the contract.
+At this point, the ERC-20 contract has one user account that owns the `total_supply` of the tokens for the contract.
 
 To make this contract useful, the contract owner must be able to transfer tokens to other accounts.
 
@@ -567,7 +565,7 @@ To add the approval logic to the smart contract:
    #[ink(message)]
    pub fn approve(&mut self, spender: AccountId, value: Balance) -> Result<()> {
        let owner = self.env().caller();
-       self.allowances.insert(&(owner, spender), &value);
+       self.allowances.insert((owner, spender), &value);
 
        self.env().emit_event(Approval {
          owner,
@@ -628,7 +626,7 @@ To add the `transfer_from` logic to the smart contract:
        value: Balance,
    ) -> Result<()> {
        let caller = self.env().caller();
-       let allowance = self.allowance(from.clone(), caller.clone());
+       let allowance = self.allowance(from, caller);
        if allowance < value {
            return Err(Error::InsufficientAllowance);
        }

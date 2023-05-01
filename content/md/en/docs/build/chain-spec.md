@@ -114,7 +114,7 @@ For example, consider this excerpt from the default chain specification for the 
 
 In the JSON file, this key and its associated value are human-readable text.
 However, this information can't be stored in this format in the underlying storage structures that Substrate uses.
-Before you can use the chain specification to initialize the genesis storage for a node, the human-readable keys must be transformed into actual storage keys that allow the values to be stored in the [storage trie](/fundamentals/state-transitions-and-storage/).
+Before you can use the chain specification to initialize the genesis storage for a node, the human-readable keys must be transformed into actual storage keys that allow the values to be stored in the [storage trie](/learn/state-transitions-and-storage/).
 This transformation is straight-forward, but it requires that the chain specification to be encoded in a format that node runtime can read.
 
 To enable a node with an upgraded runtime to synchronize with a chain from genesis, the human-readable chain specification is encoded in a **raw** format.
@@ -135,7 +135,7 @@ After the conversion to the raw format, the `sudo key` snippet looks like this:
 
 ## Where to go next
 
-- [Add trusted nodes](/tutorials/get-started/add-trusted-nodes/)
+- [Add trusted nodes](/tutorials/build-a-blockchain/add-trusted-nodes/)
 - [How-to: Configure genesis state](/reference/how-to-guides/basics/configure-genesis-state/)
 - [How-to: Customize a chain specification](/reference/how-to-guides/basics/customize-a-chain-specification/)
 - [Node template chain specification](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs)

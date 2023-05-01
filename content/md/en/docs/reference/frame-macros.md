@@ -5,7 +5,7 @@ keywords:
 ---
 
 Substrate uses customized [Rust macros](https://doc.rust-lang.org/book/ch19-06-macros.html) to generate code and aggregate the logic from the pallets you implement for a runtime.
-These runtime macros allow you to focus on your runtime logic rather than spending time on encoding and decoding on-chain variables or duplicating the code required for [basic blockchain development](/fundamentals/runtime-development#core-primitives).
+These runtime macros allow you to focus on your runtime logic rather than spending time on encoding and decoding on-chain variables or duplicating the code required for [basic blockchain development](/learn/runtime-development#core-primitives).
 
 This section provides an overview of the types of macros available in Rust and highlights how the specific FRAME macros are used in runtime development.
 
@@ -105,7 +105,7 @@ You'll see these many of these crates listed as dependencies in the runtime and 
 
 ## Macros for composing pallets
 
-As discussed in [Building custom pallets](/fundamentals/runtime-development#building-custom-pallets), most FRAME pallets are composed using a common set of sections.
+As discussed in [Building custom pallets](/learn/runtime-development#building-custom-pallets), most FRAME pallets are composed using a common set of sections.
 
 Macros make building each of those sections more modular and extensible.
 This section describes the macros available and how to use them to build your custom runtime.
@@ -123,6 +123,27 @@ pub mod pallet {
 ...
 }
 ```
+
+#### Development mode
+
+You can specify `dev_mode` as an argument on the `#[pallet]` or `#[frame_support::pallet]` attribute macro to enable development mode for a pallet.
+For example, replace `#[pallet]` with `#[pallet(dev_mode)]` or `#[frame_support::pallet]` with `#[frame_support::pallet(dev_mode)]` to enable development mode for the pallet you're working on.
+
+Development mode loosens some of the restrictions and requirements placed on production pallets to make it easier to iterate on your code during development and testing cycles. 
+For example, if you enable development mode for a pallet:
+
+- You don't need to specify a weight on every `#[pallet::call]` declaration. 
+  By default, development mode assigns a weight of zero (`0`) to calls that don't have a weight explicitly specified.
+
+- You don't need to implement `MaxEncodedLen` on storage types.
+  By default, development mode marks all storage items as unbounded.
+
+Note that you can only add the `dev_mode` argument to the `#[pallet]` or `#[frame_support::pallet]` attribute macro that encloses your pallet module. 
+You can't specify this argument for any of the `#[pallet::*]` attribute macros.
+
+You should never deploy pallets with development mode enabled in a production network. Before deploying a pallet in a production runtime, be sure to remove the `dev_mode` argument from the `#[pallet]` declaration, fix any compiler errors, and complete testing with the development mode disabled.
+
+#### Using the pallet module
 
 Inside the module, the macro parses items with the attribute `#[pallet::*]`.
 Some `#[pallet::*]` attributes are mandatory and some are optional.

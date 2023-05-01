@@ -29,9 +29,9 @@ If you build your own node using from the [frontier](https://github.com/parityte
 
 You should have completed the following Substrate tutorials before attempting this tutorial:
 
-- [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
-- [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet/)
-- [Use macros in a custom pallet](/tutorials/work-with-pallets/use-macros-in-a-custom-pallet/)
+- [Build a local blockchain](/tutorials/build-a-blockchain/build-local-blockchain/)
+- [Add a pallet to the runtime](/tutorials/build-application-logic/add-a-pallet/)
+- [Use macros in a custom pallet](/tutorials/build-application-logic/use-macros-in-a-custom-pallet/)
 
 From the tutorials, you should be familiar with how to perform the following tasks:
 

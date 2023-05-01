@@ -8,7 +8,7 @@ keywords:
 ---
 
 This guide demonstrates how to quickly integrate both local and external pallets in a runtime.
-For more detailed step-by-step instructions, see [Add a pallet to the runtime](/tutorials/work-with-pallets/add-a-pallet).
+For more detailed step-by-step instructions, see [Add a pallet to the runtime](/tutorials/build-application-logic/add-a-pallet).
 
 This guide illustrates:
 

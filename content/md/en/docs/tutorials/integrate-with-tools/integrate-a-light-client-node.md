@@ -4,81 +4,26 @@ description: Demonstrates how you can connect to Substrate-based blockchains usi
 keywords:
 ---
 
-As you learned in [Light clients in Substrate Connect](/fundamentals/light-clients-in-substrate-connect/), light client nodes provide secure and decentralized access to blockchain data with minimal hardware and software requirements.
+As you learned in [Light clients in Substrate Connect](/learn/light-clients-in-substrate-connect/), light client nodes provide secure and decentralized access to blockchain data with minimal hardware and software requirements.
 
-This tutorial demonstrates how you can use a WebAssembly light client node running in a browser to connect to a Substrate-based blockchain.
-In this tutorial, you'll use the Substrate Connect browser extension to interact with the blockchain directly without using an intermediary node or RPC server.
-
-## Light clients and Substrate Connect
-
-For Substrate-based chains, the core component of the WebAssembly light client node is the [smoldot](https://github.com/paritytech/smoldot/) program.
-This program requires fewer resources than a full node, so it can run in resource-constrained environments, including browsers, mobile endpoints, and IoT devices.
-The `smoldot` light client doesn't author or import any blocks or participate in any consensus activity.
-Instead, the `smoldot` light client communicates with Substrate-based chains through JSON-RPC calls and synchronizes with data from the chain by connecting to a full node.
-
-Substrate Connect is a JavaScript implementation that's built on top of the `smoldot` source.
-Substrate Connect enables you to integrate the functionality provided by the `smoldot` light client into applications that are built using JavaScript or TypeScript.
-
-### Secure synchronization
-
-Unlike software wallets that allow users to interact with a blockchain by trusting an intermediary third-party node, light clients download block headers from full nodes so they can use the Merkle trie root from the block header to verify the information being synchronized hasn't been tampered with. 
-The Merkle trie root acts as cryptographic proof that the information hasn't been altered without requiring the light client to trust the full node.
-
-### Substrate Connect as a browser extension
-
-Because light clients don't participate in block authoring or consensus, they don't need to be online and in constant communication with the network.
-However, if you run the light client as a browser extension, you can run multiple light clients simultaneously and stay synchronized in browser sessions for as long as the browser stays open.
-
-Running a light client as a browser extension also eliminates the need for full nodes to use Transport Layer Security (TLS) and Secure Socket Layer (SSL) certificates.
-With Substrate Connect, synchronization occurs in the background without going through the WebSocket port that some browsers block as an unsecured connection.
-Running Substrate Connect as a browser extension also provides better application performance and a more responsive user experience.
-
-### Applications and user experience with Substrate Connect
-
-If you build an application with Substrate Connect, the `smoldot` client can detect whether the user has the browser extension and will automatically use the browser extension, if it's available.
-If the user doesn't have the browser extension installed, `smoldot` automatically creates a WebAssembly light client in the context of your web application.
-Although running Substrate Connect as a browser extension is optional, the extension provides the following advantages:
-
-- Better resource usage 
-  
-  Multiple browser tabs can share a single connection to the same chain, instead of each browser tab or window opening its own connection.
-
-- Better synchronization speed
-  
-  The browser extension automatically starts synchronizing with the chain as soon as a  browser tab is opened and maintains a cache so that the connection to the chain and synchronization is nearly instantaneous for each new tab or browser window the user opens.
-  Without the browser extension, synchronizing a chain can take from 10 to 30 seconds.
-
-- Better connectivity
-  
-  The browser extension can connect to nodes that don’t have TLS/SSL certificates installed.
+This tutorial demonstrates how you can connect to any Substrate-based blockchain using a light client.
+To illustrate this, you'll learn how to connect your application to the [Statemint parachain](https://wiki.polkadot.network/docs/learn-statemint).
+Statemint is a system parachain that is connected to Polkadot and has a publicly-accessible chain specification file.
 
 ## Before you begin
 
 Before you begin, verify the following:
 
-- You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
-
-- You have downloaded and compiled the 
-  [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template).
+- You have a code editor set up for working with Javascript and Typescript.
+- You have the [`yarn` package manager](https://classic.yarnpkg.com/lang/en/docs/install/) installed.
 
 ## Tutorial objectives
 
 By completing this tutorial, you will accomplish the following objectives:
 
-- Download and install the Substrate Connect browser extension.
-- Connect to a relay chain using the Substrate Connect browser extension.
+- Connect to the Polkadot relay chain using the Substrate Connect Javascript library.
 - Learn how to specify a custom chain specification file for Substrate Connect to use.
-- Connect to a parachain associated with the custom chain specification from the browser extension.
-
-## Download Substrate Connect
-
-Because of the advantages that the Substrate Connect browser extension provides, the first step of the tutorial is to install the browser extension.
-
-1. Navigate to https://substrate.io/developers/substrate-connect/ using the Chrome or Firefox web browser.
-
-2. Click [Chrome](https://chrome.google.com/webstore/detail/substrate-connect-extensi/khccbhhbocaaklceanjginbdheafklai) or [Firefox](https://addons.mozilla.org/en-US/firefox/addon/substrate-connect/).
-
-3. Click **Add to Chrome** or **Add to Firefox**, then confirm that you want to add the extension to the browser. 
+- Connect to a parachain associated with the custom chain specification.
 
 ## Connect to a well-known chain
 
@@ -109,7 +54,7 @@ To connect to one of these chains:
    cd empty-webapp
    ```
    
-4. Install substrate connect
+4. Install Substrate Connect by running the following command:
    
    ```bash
    yarn add @substrate/connect
@@ -129,7 +74,7 @@ To connect to one of these chains:
 
    After you install these dependencies, you can use them in the sample application.
 
-7. Open the `empty-webapp/index.ts` file in a text editor.
+7. Open the `empty-webapp/index.ts` file in your preferred code editor.
    
 8. Copy and paste the following application code to create a Substrate Connect instance with `substrate-connect` as the provider that connects to the Polkadot relay chain using the `polkadot` chain specification file.
    
@@ -148,7 +93,7 @@ To connect to one of these chains:
           await api.rpc.chain.subscribeNewHeads(
             (lastHeader: { number: unknown; hash: unknown }) => {
               console.log(
-                `New block #${lastHeader.number} has hash ${lastHeader.hash}`
+                `💡 New block #${lastHeader.number} has hash ⚡️ ${lastHeader.hash}`
               );
             }
           );
@@ -159,8 +104,8 @@ To connect to one of these chains:
     };
    ```
    
-   In this sample application code, creating a Substrate Connect instance is similar to how you create an instance for the Polkadot-JS API.
-   For Polkadot-JS API, you create an instance like this:
+   In this sample application code, creating a Substrate Connect instance is similar to how you create a WebSocket instance using the Polkadot-JS API.
+   With the Polkadot-JS API only, you would create an instance like this:
    
    ```javascript
    // Import
@@ -204,11 +149,12 @@ To connect to one of these chains:
    For example, the console should display log entries similar to the following:
    
    ```console
-   [smoldot] Smoldot v0.6.25
-   smoldot-light.js:41 [smoldot] Chain initialization complete for polkadot. Name: "Polkadot". Genesis hash: 0x91b1…90c3. State root hash: 0x29d0d972cd27cbc511e9589fcb7a4506d5eb6a9e8df205f00472e5ab354a4e17. Network identity: 12D3KooWRse9u6Z9ukP4C92YCCH2gXziNm8ThRch2owaaFh9H6D1. Chain specification or database starting at: 0xae3e…f81d (#11228238)
+   [substrate-connect-extension] [smoldot] Smoldot v0.7.7
+   [substrate-connect-extension] [smoldot] Chain initialization complete for polkadot. Name: "Polkadot". Genesis hash: 0x91b1…90c3. State root hash: 0x29d0d972cd27cbc511e9589fcb7a4506d5eb6a9e8df205f00472e5ab354a4e17. Network identity: 12D3KooWRse9u6Z9ukP4C92YCCH2gXziNm8ThRch2owaaFh9H6D1. Chain specification or database starting at: 0x7f52…8902 (#14614672)
    ...
-   New block #11322769 has hash 0x464c0199ede92a89920c54c21abc741ea47daca1d62d61d7b9af78062f04c7a3 index.ts:10 
-   New block #11322770 has hash 0xd66c61e5417249df228798f38535a6dd17b8b268c165e0a6b0e72ba74e954f9d index.ts:10
+   💡 New block #14614893 has hash ⚡️ 0x18f8086952aa5f8f1f8a36ea05af462f6bb26615b481145f7c5daa24ebc0c4cd
+   💡 New block #14614894 has hash ⚡️ 0x92ca6fd51bc7a2fc5991441e9736bcccf3be45cee6fc88d40d145fc4211ba477
+   💡 New block #14614894 has hash ⚡️ 0x2353ce49f06206c6dd9882200666fa7d51fc43c1cc6a61cca81ce9fa543409cb
    ```
    
    This simple web application only connects to Polkadot to retrieve block hashes.
@@ -222,42 +168,43 @@ To connect to one of these chains:
 Connecting to a custom chain specification or a publicly-accessible parachain is similar to connecting to one of the well-known chains.
 The primary difference in the code is that you must explicitly identify the chain specification for Substrate Connect to use.
 
-This tutorial illustrates how to connect to a custom chain specification by connecting to the Statemint parachain.
-Statemint is a common good parachain that is connected to Polkadot and has a publicly-accessible chain specification file.
-
-To connect to this chain:
+To connect to Statemint:
 
 1. Download the custom chain specification file from the [cumulus repository](https://github.com/paritytech/cumulus/blob/master/parachains/chain-specs/statemint.json).
 
 2. Copy the downloaded chain specification to the `empty-webapp` directory you created in [Connect to a well-known chain](#connect-to-a-well-known-chain).
 
-3. Open the `index.ts` file in a text editor.
+3. Open the `index.ts` file in your code editor.
    
-4. Delete the current content.
-   
-5. Copy and paste the following application code.
+4. Replace the contents with the following code.
     
    ```typescript
-   import { ScProvider, WellKnownChain } from "@polkadot/rpc-provider/substrate-connect";import { ApiPromise } from "@polkadot/api";
-   import jsonParachainSpec from "./statemint.json";
-   
-   window.onload = () => {
-    void (async () => {
-      try {
-        const relayProvider = new ScProvider(WellKnownChain.polkadot);
-        const parachainSpec = JSON.stringify(jsonParachainSpec);
-        const provider = new ScProvider(parachainSpec, relayProvider);
-        
-        await provider.connect();
-        const api = await ApiPromise.create({ provider });
-        await api.rpc.chain.subscribeNewHeads((lastHeader: { number: unknown; hash: unknown }) => {
-          console.log(`New block #${lastHeader.number} has hash ${lastHeader.hash}`);
-        });
-      } catch (error) {
-        console.error(<Error>error);
-      }
-    })();
-   };
+    import { ApiPromise } from "@polkadot/api";
+    import { ScProvider } from "@polkadot/rpc-provider/substrate-connect";
+    import * as Sc from "@substrate/connect";
+    import jsonParachainSpec from "./statemint.json";
+
+    window.onload = () => {
+      void (async () => {
+        try {
+          const relayProvider = new ScProvider(Sc, Sc.WellKnownChain.polkadot);
+          const parachainSpec = JSON.stringify(jsonParachainSpec);
+          const provider = new ScProvider(Sc, parachainSpec, relayProvider);
+
+          await provider.connect();
+          const api = await ApiPromise.create({ provider });
+          await api.rpc.chain.subscribeNewHeads(
+            (lastHeader: { number: unknown; hash: unknown }) => {
+              console.log(
+                `💡 New block #${lastHeader.number} has hash ⚡️ ${lastHeader.hash}`
+              );
+            }
+          );
+        } catch (error) {
+          console.error(<Error>error);
+        }
+      })();
+    };
    ```
    
    As you can see, this code has a few important differences.
@@ -283,15 +230,20 @@ To connect to this chain:
    For example, the console should display log entries similar to the following:
    
    ```console
-   [smoldot] Parachain initialization complete for statemint. Name: "Statemint". Genesis hash: 0x68d5…de2f. State root hash: 0xc1ef26b567de07159e4ecd415fbbb0340c56a09c4d72c82516d0f3bc2b782c80. Network identity: 12D3KooWArq3iZHdK2jtRZSJzJkkWrKm17JTa9kjwjZkq9Htx5xR. Relay chain: polkadot (id: 1000 smoldot-light.js:41 
-   [smoldot] Smoldot v0.6.25. Current memory usage: 140 MiB. Average download: 35.4 kiB/s. Average upload: 423 B/s.
-   New block #1785421 has hash 0x88885ed331f94b4324c5f2eae8413cd36170808ef904b0ec0867646fa53770f7 index.ts:13 
-   New block #1785422 has hash 0x2ad4d96e061a681e27403694f1d870bb0c4e5c77b5be232a18c7a2e0b7fb2555 index.ts:13 
+   [substrate-connect-extension] [smoldot] Parachain initialization complete for statemint. Name: "Statemint". Genesis hash: 0x68d5…de2f. State root hash: 0xc1ef26b567de07159e4ecd415fbbb0340c56a09c4d72c82516d0f3bc2b782c80. Network identity: 12D3KooWNicu1ZCX6ZNUC96B4TQSiet2NkoQc7SfitxWWE4fQgpK. Relay chain: polkadot (id: 1000)
+   ...
+   💡 New block #3393027 has hash ⚡️ 0x2401313496be4b1792d704f83b684be6bd2188a618581d30b3addb3648c4ad3a
+   [substrate-connect-extension] [smoldot] Smoldot v0.7.7. Current memory usage: 222 MiB. Average download: 63.1 kiB/s. Average upload: 735 B/s.
+   💡 New block #3393028 has hash ⚡️ 0x512af8ad5577f509f3f5123916ff2da6ca0f86df8099eafbc0bc001febec62dd
    ```
 
+Congratulations, you've created a simple web application that connects to Statemint and Polkadot using an in-browser light client.
+Have a look at [this demo](https://github.com/paritytech/substrate-connect/tree/main/projects/demo) to learn how to add connections to more chains from the same application.
+
+<!--
 ## Advanced application development
 
-The examples in this tutorial used `@polkadot/rpc-provider/substrate-connect` because this provider makes if straightforward to create applications that interact with the chain using the [Polkadot-JS API](https://polkadot.js.org/docs/).
+The examples in this tutorial used `@polkadot/rpc-provider/substrate-connect` because this provider makes it straightforward to create applications that interact with the chain using the [Polkadot-JS API](https://polkadot.js.org/docs/).
 For more advanced application development that doesn't depend on the Polkadot-JS API, you can install and use the `@substrate-connect` package.
 For example, if you are building your own application library or programming interfaces, you should install the Substrate Connect dependencies by running the following command:
    
@@ -299,7 +251,6 @@ For example, if you are building your own application library or programming int
 yarn add @substrate/connect
 ```
 
-<!--
 To use `@substrate-connect`
 
 1. Open a terminal shell and create a new working directory. 

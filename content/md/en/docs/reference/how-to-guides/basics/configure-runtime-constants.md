@@ -142,6 +142,6 @@ This value, we'll call `SingleValue`, can also be modified using a method called
 
 ## Resources
 
-- [Upgrade a running network](/tutorials/get-started/upgrade-a-running-network/)
+- [Upgrade a running network](/tutorials/build-a-blockchain/upgrade-a-running-network/)
 - [Get trait](https://paritytech.github.io/substrate/master/frame_support/traits/trait.Get.html)
 - [Extra_constants](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional)

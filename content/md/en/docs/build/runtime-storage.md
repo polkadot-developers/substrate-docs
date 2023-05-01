@@ -5,7 +5,7 @@ keywords:
 ---
 
 As you develop runtime logic, you'll need to make important decisions about the information you store and how to make storing information as efficient as possible.
-As discussed in [State transitions and storage](/fundamentals/state-transitions-and-storage/), reading and writing data to storage is expensive.
+As discussed in [State transitions and storage](/learn/state-transitions-and-storage/), reading and writing data to storage is expensive.
 In addition, storing unnecessarily large data sets can slow your network and strain system resources.
 
 Substrate is designed to provide a flexible framework that allows you to build the blockchain that suits your needs.
@@ -50,7 +50,7 @@ Because this signatory list is [necessary to come to consensus](#what-to-store) 
 
 ## Transactional storage
 
-As explained in [State transitions and storage](/fundamentals/state-transitions-and-storage/), runtime storage involves an underlying key-value database and in-memory storage overlay abstractions that keep track of keys and state changes until the values are committed to the underlying database.
+As explained in [State transitions and storage](/learn/state-transitions-and-storage/), runtime storage involves an underlying key-value database and in-memory storage overlay abstractions that keep track of keys and state changes until the values are committed to the underlying database.
 By default, functions in the runtime write changes to a single in-memory **transactional storage layer** before committing them to the main storage overlay. 
 If an error prevents the transaction from being completed, the changes in the transactional storage layer are discarded instead of being passed on to the main storage overlay and state in the underlying database remains unchanged.
 
@@ -92,7 +92,7 @@ If an error occurs after you have modified storage, those changes will persist, 
 
 ## Accessing runtime storage
 
-In [State transitions and storage](/fundamentals/state-transitions-and-storage/), you learned how Substrate uses storage abstractions to provide read and write access to the underlying key-value database.
+In [State transitions and storage](/learn/state-transitions-and-storage/), you learned how Substrate uses storage abstractions to provide read and write access to the underlying key-value database.
 The FRAME [`Storage`](https://paritytech.github.io/substrate/master/frame_support/storage) module simplifies access to these layered storage abstractions. 
 You can use the FRAME storage data structures to read or write any value that can be encoded by the [SCALE codec](/reference/scale-codec/).
 The storage module provides the following types of storage structures:
@@ -116,9 +116,9 @@ For example, you should use this type of storage for the following common use ca
   
 If you use this type of storage for lists of items, you should be conscious about the size of the lists you store.
 Large lists and `structs` incur storage costs and iterating over a large list or `struct` in the runtime can affect network performance or stop block production entirely. 
-If iterating over storage exceeds the block production time and your project is a [parachain](/reference/glossary/#parachain), the blockchain to stop producing blocks and stop functioning.
+If iterating over storage exceeds the block production time and your project is a [parachain](/reference/glossary/#parachain), the blockchain will stop producing blocks and functioning.
 
-Refer to the [StorageValue](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html#required-methods) documentation for a comprehensive list of the methods that StorageValue exposes.
+Refer to the [StorageValue](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html#required-methods) documentation for a comprehensive list of methods that StorageValue exposes.
 
 ## Single key storage maps
 
@@ -126,9 +126,9 @@ Map data structures are ideal for managing sets of items whose elements will be 
 Single key storage maps in Substrate are similar to traditional [hash maps](https://en.wikipedia.org/wiki/Hash_table) with key-to-value mapping to perform random lookups. 
 To give you flexibility and control, Substrate allows you to select the hashing algorithm you want to use to generate the map keys.
 For example, if a map stores sensitive data you might want to generate keys using a hashing algorithm with stronger encryption over a hashing algorithm with better performance but weaker encryption properties.
-For more infomration about selecting a hashing algorithm for a map to use, see [Hashing algorithms](#hashing-algorithms).
+For more information about selecting a hashing algorithm for a map to use, see [Hashing algorithms](#hashing-algorithms).
 
-Refer to the [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html#required-methods) documentation for a comprehensive list of the methods that StorageMap exposes.
+Refer to the [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html#required-methods) documentation for a comprehensive list of methods that StorageMap exposes.
 
 ## Double key storage maps
 
@@ -152,7 +152,7 @@ In addition, the database reads required to access the elements in a storage map
 Therefore, it is significantly more costly—in terms of performance and execution time—to iterate over the elements in a storage map than to read the elements in a list.
 
 With the relative costs in mind, it's generally better to avoid iterating over storage maps in the runtime.
-However, there are no firm rules abut how you use Substrate storage capabilities, and, ultimately, it's up to you to decide the best way to access runtime storage for your application.
+However, there are no firm rules about how you use Substrate storage capabilities, and, ultimately, it's up to you to decide the best way to access runtime storage for your application.
 
 Substrate provides the following methods to enable you to iterate over storage maps:
 

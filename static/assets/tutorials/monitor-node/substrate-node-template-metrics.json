@@ -48,7 +48,7 @@
       }
     ]
   },
-  "description": "Grafana dashboard for substrate template metrics. Instructions on use: https://docs.substrate.io//tutorials/get-started/monitor-node-metrics/",
+  "description": "Grafana dashboard for substrate template metrics. Instructions on use: https://docs.substrate.io//tutorials/build-a-blockchain/monitor-node-metrics/",
   "editable": true,
   "gnetId": 11784,
   "graphTooltip": 0,

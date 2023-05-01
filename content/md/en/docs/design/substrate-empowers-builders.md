@@ -49,16 +49,16 @@ Explore the following resources to learn more.
 
 #### Tell me more
 
-- [Blockchain basics](/main-docs/fundamentals/blockchain-basics/)
-- [Why substrate?](/main-docs/fundamentals/why-substrate)
-- [Architecture](/main-docs/fundamentals/architecture/)
-- [Runtime development](/main-docs/fundamentals/runtime-development/)
+- [Blockchain basics](/main-docs/learn/blockchain-basics/)
+- [Why substrate?](/main-docs/learn/why-substrate)
+- [Architecture](/main-docs/learn/architecture/)
+- [Runtime development](/main-docs/learn/runtime-development/)
 
 #### Guide me
 
-- [Build a local blockchain](/tutorials/get-started/build-local-blockchain/)
-- [Simulate a network](/tutorials/get-started/simulate-network/)
-- [Add trusted nodes](/tutorials/get-started/add-trusted-nodes/)
+- [Build a local blockchain](/tutorials/build-a-blockchain/build-local-blockchain/)
+- [Simulate a network](/tutorials/build-a-blockchain/simulate-network/)
+- [Add trusted nodes](/tutorials/build-a-blockchain/add-trusted-nodes/)
 
 <!--
 #### Show me (related video content)

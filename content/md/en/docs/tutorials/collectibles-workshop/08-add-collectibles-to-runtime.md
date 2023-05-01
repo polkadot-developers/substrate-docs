@@ -6,7 +6,7 @@ tutorial:
 
 You now have a custom pallet with the basic functions for trading digital collectibles.
 The next step is to add this pallet to the runtime to expose its functionality on the blockchain.
-Before you do that, however, take a moment to verify that you included the collectibles pallet in the manifest for the node as instructed in [Add the pallet to the workspace](/tutorials/collectibles-workshop/03-create-pallet/#add-the-pallet-to-the-workspace).
+Before you do that, however, take a moment to verify that you included the Collectibles pallet in the manifest for the node as instructed in [Add the pallet to the workspace](/tutorials/collectibles-workshop/03-create-pallet/#add-the-pallet-to-the-workspace).
 
 To check the manifest for the workspace:
 
@@ -20,7 +20,7 @@ To check the manifest for the workspace:
    more Cargo.toml
    ```
 
-   You should see the collectibles pallet listed as a member of the workspace.
+   You should see the Collectibles pallet listed as a member of the workspace.
    For example:
 
    ```toml
@@ -35,13 +35,13 @@ To check the manifest for the workspace:
    panic = "unwind"
    ```
 
-   If the collectibles pallet is included, you're ready to update the runtime and complete the first part of the workshop.
+   If the Collectibles pallet is included, you're ready to update the runtime.
 
 ## Update runtime files
 
 To add the collectibles pallet to the runtime:
 
-1. Open the `runtime/Cargo.toml` file in a text editor and add the collectibles pallet to the local dependencies and standard features for the runtime.
+1. Open the `runtime/Cargo.toml` file in your code editor and add the Collectibles pallet to the local dependencies and standard features for the runtime.
    
    For example:
 
@@ -58,14 +58,14 @@ To add the collectibles pallet to the runtime:
    ...
    ```
 
-1. Save your changes and close the file.
+1. Save your changes.
    
-1. Open the `runtime/src/lib.rs` file in a text editor.
+1. Open `runtime/src/lib.rs`.
 
-1. Import the collectibles pallet into the runtime.
+1. Import the Collectibles pallet into the runtime.
 
    ```rust
-   /// Import the collectibles pallet.
+   /// Import the Collectibles pallet.
    pub use collectibles;
    ```
 
@@ -112,7 +112,7 @@ To add the collectibles pallet to the runtime:
 
    After the node compiles, your custom pallet is ready for action.
 
-## Access the collectibles pallet
+## Access the Collectibles pallet
 
 Now that you have a freshly compiled node, you can restart the blockchain and use your new pallet.
 
@@ -124,13 +124,13 @@ Now that you have a freshly compiled node, you can restart the blockchain and us
 
 2. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer) and connect to your local **Development** node.
    
-   ![Connect to the local nodet](/media/images/docs/tutorials/collectibles-workshop/connect-to-local-endpoint.png)
-)
+   ![Connect to the local node](/media/images/docs/tutorials/collectibles-workshop/connect-to-local-endpoint.png)
+
 1. Click **Developer** and select **Extrinsics**.
 
-2. Select the **collectibles** pallet and view the list of callable functions.
+2. Select the **Collectibles** pallet and view the list of callable functions.
    
-   ![Callable functions in the collectibles pallet](/media/images/docs/tutorials/collectibles-workshop/collectibles-pallet.png)
+   ![Callable functions in the Collectibles pallet](/media/images/docs/tutorials/collectibles-workshop/collectibles-pallet.png)
 
 3. Select the **createCollectible** function, click **Submit Transaction**, then click **Sign and Submit**.
 
@@ -142,5 +142,3 @@ Now that you have a freshly compiled node, you can restart the blockchain and us
    However, for your application to draw users, you'll want to develop a custom interface that lets users browse and bid on collectibles that other users create and put up for sale. 
    Building an inviting interface is an art unto itself, so for this workshop we'll keep things simple and not delve into what the application should look like or the user experience it should provide.
    In most cases. you'll want to use TypeScript and a web development framework such as React, Vue, or Angular to build the front-end for the application that runs on your blockchain.
-
-   Instead of focusing on the front-end, the next part of the workshop highlights more complex logic, testing, and converting your single node solo chain into a parachain.

@@ -4,7 +4,7 @@ description: Highlights the runtime interfaces that enable communication with ou
 keywords:
 ---
 
-As discussed in [Architecture](/fundamentals/architecture), Substrate nodes consist of outer node services and a runtime and this separation of responsibilities is an important concept for designing Substrate-based chains and building upgradeable logic.
+As discussed in [Architecture](/learn/architecture), Substrate nodes consist of outer node services and a runtime and this separation of responsibilities is an important concept for designing Substrate-based chains and building upgradeable logic.
 However, the outer node services and the runtime must communicate with each other to complete many critical operations, including reading and writing data and performing state transitions.
 The outer node services communicate with the runtime by calling runtime application programming interfaces to perform specific tasks.
 By default, the Substrate runtime provides the following traits for outer node services to call:
@@ -103,7 +103,7 @@ This API provides the following methods:
 
 ## OffchainWorkerApi
 
-Use the `OffchainWorkerApi` to start [offchain worker operations](/fundamentals/offchain-operations/).
+Use the `OffchainWorkerApi` to start [offchain worker operations](/learn/offchain-operations/).
 
 This API provides the following methods:
 
@@ -112,7 +112,7 @@ This API provides the following methods:
 
 ## SessionKeys
 
-Use the `SessionKeys` API to generate and decode [session keys](/fundamentals/accounts-addresses-keys/)
+Use the `SessionKeys` API to generate and decode [session keys](/learn/accounts-addresses-keys/)
 (https://paritytech.github.io/substrate/master/sp_session/trait.SessionKeys.html)
 
 This API provides the following methods:
@@ -156,7 +156,7 @@ This API provides the following methods:
 
 ## Where to go next
 
-- [Runtime development](/fundamentals/runtime-development/)
+- [Runtime development](/learn/runtime-development/)
 - [FRAME macros](/reference/frame-macros)
 - [impl_runtime_apis](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html)
 

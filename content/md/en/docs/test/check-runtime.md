@@ -34,7 +34,7 @@ After using the key-value database to retrieve state, try-runtime inserts the da
 
 ## How it works
 
-The `try-runtime` tool has its own implementation of externalities called [`remote_externalities`](https://paritytech.github.io/substrate/master/remote_externalities/index.html) which is just a wrapper around `TestExternalities` that uses a generic [key-value store](/fundamentals/state-transitions-and-storage) where data is [type encoded](/reference/scale-codec).
+The `try-runtime` tool has its own implementation of externalities called [`remote_externalities`](https://paritytech.github.io/substrate/master/remote_externalities/index.html) which is just a wrapper around `TestExternalities` that uses a generic [key-value store](/learn/state-transitions-and-storage) where data is [type encoded](/reference/scale-codec).
 
 The diagram below illustrates the way externalities sits outside a compiled runtime as a means to capture the storage of that runtime.
 

@@ -12,7 +12,7 @@ This section provides reference information for the cross-consensus message (XCM
 
 ## Instructions
 
-As you learned in [Cross-consensus communication](/fundamentals/xcm-communication), the XCM executor is a program that executes an ordered set of instructions in a virtual machine running on the recipient consensus system.
+As you learned in [Cross-consensus communication](/learn/xcm-communication), the XCM executor is a program that executes an ordered set of instructions in a virtual machine running on the recipient consensus system.
 It's worth noting that some instructions are dependent on other instructions.
 The order in which instructions are listed in the `Instruction` enumeration reflects some of these dependencies. 
 For example, an asset must be added to the holding register before it can be deposited somewhere else.

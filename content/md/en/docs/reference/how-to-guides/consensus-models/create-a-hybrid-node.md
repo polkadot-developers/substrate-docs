@@ -7,7 +7,7 @@ keywords:
   - PoW
 ---
 
-This guide demonstrates how to create a Substrate-based node that employs hybrid consensus, using SHA3 proof of work to dictate block authoring and the [Grandpa](https://paritytech.github.io/substrate/master/sc_finality_grandpa/index.html) finality gadget to provide [deterministic finality](/fundamentals/consensus#finality).
+This guide demonstrates how to create a Substrate-based node that employs hybrid consensus, using SHA3 proof of work to dictate block authoring and the [Grandpa](https://paritytech.github.io/substrate/master/sc_finality_grandpa/index.html) finality gadget to provide [deterministic finality](/learn/consensus#finality).
 The minimal proof of work consensus lives entirely outside of the runtime.
 
 The Grandpa finality relies on getting its authority sets from the runtime using the [Grandpa API](https://paritytech.github.io/substrate/master/sp_finality_grandpa/trait.GrandpaApi.html).

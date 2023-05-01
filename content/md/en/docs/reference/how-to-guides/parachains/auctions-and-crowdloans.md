@@ -12,7 +12,7 @@ keywords:
 Ready to launch a parachain on a _production network_ like Polkadot or Kusama?
 You must to acquire a slot in a [parachain slot auction](https://wiki.polkadot.network/docs/learn-auction).
 
-> Please first try everything out on the [Rococo Testnet](/tutorials/connect-relay-and-parachains/acquire-a-testnet-slot/) before you attempt to go on a production network!
+> Please first try everything out on the [Rococo Testnet](/tutorials/build-a-parachain/acquire-a-testnet-slot/) before you attempt to go on a production network!
 
 As the total amount of DOT or KSM required to be locked for a slot is relatively large for most, [crowdloans](https://wiki.polkadot.network/docs/learn-crowdloans) are typically used to as the community to contribute to a pool used to participate in the auction.
 
@@ -29,10 +29,10 @@ You will need:
   This integer will be greater than `2000`, as `0-999` are reserved for [system parachains](https://wiki.polkadot.network/docs/learn-common-goods#system-level-chains) and `1000-1999` are reserved for [public utility parachains](https://wiki.polkadot.network/docs/learn-common-goods#public-utility-chains).
 
 - Your parachain genesis state.
-  Refer to the genesis state export process in the [Prepare a local relay chain](/tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain/).
+  Refer to the genesis state export process in the [Prepare a local relay chain](/tutorials/build-a-parachain/prepare-a-local-relay-chain/).
 
 - Your parachain Wasm runtime.
-  Refer to the Wasm runtime export process in the [Prepare a local relay chain](/tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain/).
+  Refer to the Wasm runtime export process in the [Prepare a local relay chain](/tutorials/build-a-parachain/prepare-a-local-relay-chain/).
 
 The procedure will be as followed:
 

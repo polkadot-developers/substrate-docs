@@ -11,7 +11,7 @@ This capability is made possible by including the definition of the runtime exec
 Because the runtime is part of the blockchain state, network maintainers can leverage the blockchain's capabilities for trustless, decentralized consensus to securely make enhancements to the runtime.
 
 In the FRAME system for runtime development, the system library defines [the `set_code` call](https://paritytech.github.io/substrate/master/frame_system/pallet/enum.Call.html#variant.set_code) that is used to update the definition of the runtime.
-The tutorial [Upgrade a running network](/tutorials/get-started/upgrade-a-running-network/) demonstrates two ways that you can upgrade a runtime without shutting down a node or interrupting operations.
+The tutorial [Upgrade a running network](/tutorials/build-a-blockchain/upgrade-a-running-network/) demonstrates two ways that you can upgrade a runtime without shutting down a node or interrupting operations.
 However, both of the upgrades in the tutorial illustrate adding functionality to the runtime as opposed to _updating_ the existing runtime state.
 If a runtime upgrade requires changes to the existing state, it is likely to require storage migration.
 
@@ -84,7 +84,7 @@ If you don't make these kinds of changes to how data is stored when needed, the 
 
 FRAME storage migrations are implemented using the [`OnRuntimeUpgrade`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.OnRuntimeUpgrade.html) trait.
 The `OnRuntimeUpgrade` trait specifies a single function—`on_runtime_upgrade`—that allows
-you to specify logic to run immediately _after_ a runtime upgrade but _before_ any [`on_initialize`](/main-docs/fundamentals/transaction-lifecycle#initialize-a-block) functions or transactions are executed.
+you to specify logic to run immediately _after_ a runtime upgrade but _before_ any [`on_initialize`](/main-docs/learn/transaction-lifecycle#initialize-a-block) functions or transactions are executed.
 
 ### Preparing for storage migration
 
@@ -124,5 +124,5 @@ A few of the tools available for you to test storage migration include the follo
 
 ## Where to go next
 
-- [Upgrade a running network](/tutorials/get-started/upgrade-a-running-network/)
+- [Upgrade a running network](/tutorials/build-a-blockchain/upgrade-a-running-network/)
 - [Substrate migrations](https://github.com/apopiak/substrate-migrations)

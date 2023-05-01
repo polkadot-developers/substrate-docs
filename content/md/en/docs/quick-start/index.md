@@ -4,137 +4,36 @@ description: Get started with Substrate.
 keywords:
 ---
 
-All of the Substrate tutorials and how-to guides require you to build and run a Substrate node in your development environment.
-To help you set up a working environment quickly, the [Substrate Developer Hub](https://github.com/substrate-developer-hub/) maintains several _templates_ for you to use.
-For example, the Developer Hub [substrate-node-template](https://github.com/substrate-developer-hub/substrate-node-template/tags/) is a snapshot of the main Substrate `node-template` binary that includes everything you need to get started with a functional node and a core set of features.
+The _Quick start_ assumes that you are a new developer without any prior experience working with Substrate or FRAME, but that you are aware that these tools exist.
+The _Quick start_ also assumes that you want a simplified entry point for setting up a development environment and starting a blockchain node on your local computer.
 
-This _Quick start_ assumes that you are setting up a development environment for the first time and want to try out running a single blockchain node on your local computer.
-To keep things simple, you'll connect to the local node using a web browser and look up a balance for a predefined sample account.
+In the _Quick start_, you'll get a brief overview of what Substrate is, learn how to compile and start a node, and take a short tour through the node template code.
+The following topics are intended to be read in order as a fast path to learning to build with Substrate:
 
-## Before you begin
+- [Substrate at a glance](/quick-start/substrate-at-a-glance/)
+- [Start a node](/quick-start/start-a-node/)
+- [Explore the code](/quick-start/explore-the-code/)
+- [Modify the runtime](quick-start/modify-the-runtime/)
 
-Before you begin, verify the following:
+If the _Quick start_ isn't your route of choice, there are other ways to approach the documentation for learning to build with Substrate.
+For example, you can dive directly into core concepts in the [Learn](/learn/) section or work through hands-on exercises in the [Tutorials](/tutorials/) section.
 
-- You have an internet connection and access to an interactive shell terminal on your local computer.
+To help you find your way, think of Substrate documentation as being divided into three parts: the developer journey, the tutorials, and an API and reference section.
+Although the parts are interrelated, each part presents information in a different way and with a different purpose:
 
-- You are generally familiar with software development and using command-line interfaces.
+The **Developer journey** presents information in the form of a narrative arc:
 
-- You have the Rust compiler and toolchain installed.
+- [Learn](/learn/) covers core blockchain and Substrate concepts and operations.
+- [Install](/iinstall/) provides platorm-specific installation instructions and troubleshooting tips for installation-related issues.
+- [Build](/build/) exposes the tools and techniques for building custom blockchain applications.
+- [Test](/tests/) highlights approaches for unit testing and benchmarking code before deploying on a test network or in a production environment.
+- [Deploy](/deploy/) describes different options for deploying nodes, how to prepare for deployment, and how to move from a test network to a production network.
+- [Maintain](/maintain/) provides general information about maintaining your network with hardware and software upgrades, managing new releases, and maintaining your infrastructure.
 
-  You can check whether you have Rust installed by running the `rustup show` command.
-  If Rust is installed, this command displays version information for the toolchain and compiler.
-  If Rust is not installed, the command doesn't return any output.
-  For information about installing Rust, see [Install](/install).
+The **Tutorials** provide hands-on learning experiences that cover different aspects of building and managing a Substrate-based blockchain:
 
-## Build the node template
+- [Build a blockchain](/tutorials/build-a-blockchain/) tutorials are focused on network basics from starting a single node to creating a private four node blockchain, monitoring node operations, and upgrading a running network.
+- [Build application logic](/tutorials/work-with-pallets/) tutorials are focused on how to implement application-specific logic working with existing and custom pallets.
+- [Build a parachain](/tutorials/connect-relay-and-parachains/) tutorials are focused on how to move from a standalone chain to a parachain, connect a parachain to a relay chain, and send messages between chains.
 
-1. Clone the node template repository by running the following command:
-
-   ```sh
-   git clone https://github.com/substrate-developer-hub/substrate-node-template
-   ```
-
-   In most cases, you can clone the `main` branch to get the latest code.
-   However, you can use the `--branch` command-line option if you want to work with a Substrate branch that is compatible with a specific Polkadot version.
-   Click [Tags](https://github.com/substrate-developer-hub/substrate-node-template/tags) to see the list of branches that are compatible with specific Polkadot versions.
-   
-2. Change to the root of the cloned directory:
-
-   ```sh
-   cd substrate-node-template
-   ```
-
-   If you want to save your changes and make this branch easy to identify, you can create a new branch by running a command similar to the following:
-
-   ```bash
-   git switch -c my-branch-v0.9.29
-   ```
-
-3. Compile the node template:
-
-   ```sh
-   cargo build --package node-template --release
-   ```
-
-   Because of the number of packages involved, compiling the node can take several minutes.
-
-## Start the node
-
-1. Verify that your node is ready to use and see information about the command-line options available by running the following command:
-
-   ```sh
-   ./target/release/node-template --help
-   ```
-
-   The usage information displays the command-line options you can use to:
-
-   - start the node
-   - work with accounts
-   - modify node operations
-
-1. View account information for the predefined `Alice` development account by running the following command:
-
-   ```sh
-   ./target/release/node-template key inspect //Alice
-   ```
-
-   The command displays the following account information:
-
-   ```text
-   Secret Key URI `//Alice` is account:
-   Network ID:        substrate 
-   Secret seed:       0xe5be9a5092b81bca64be81d212e7f2f9eba183bb7a90954f7b76361f6edb5c0a
-   Public key (hex):  0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d
-   Account ID:        0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d
-   Public key (SS58): 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
-   SS58 Address:      5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
-   ```
-
-1. Start the node in development mode by running the following command:
-
-   ```sh
-   ./target/release/node-template --dev
-   ```
-
-   In development mode, the chain doesn't require any peer computers to finalize blocks.
-   As the node starts, the terminal displays output about the operations performed.
-   If you see messages that blocks are being proposed and finalized, you have a running node.
-
-   ```text
-   ... Idle (0 peers), best: #3 (0xcc78…5cb1), finalized #1 ...
-   ... Starting consensus session on top of parent ...
-   ... Prepared block for proposing at 4 (0 ms) ...
-   ```
-
-## Connect to the node
-
-1. Create a simple HTML file with JavaScript and the [Polkadot-JS API](https://polkadot.js.org/docs/) to interact with the blockchain.
-
-   For example, create an `index.html` file that uses JavaScript and HTML to:
-
-   - take an account address as input
-   - look up the account balance using an onClick event
-   - display the balance for the account as output
-
-   This sample [index.html](/assets/quickstart/index.html) provides a simple example of how to use JavaScript, the Polkadot-JS API, and HTML to get an account balance.
-
-2. Copy and paste the [sample code](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/quickstart/index.html) for the **Quick start: Get Balance** application into a new file in your text editor and save the file on your local computer.
-
-3. Open the `index.html` file in a web browser.
-
-4. Copy and paste the SS58 Address for the `Alice` account in the input field, then click **Get Balance**.
-
-## Stop the node
-
-1. Go to the terminal that displays blockchain operations.
-
-1. Stop the local blockchain and clear all state by pressing `ctrl-c`.
-
-## Where to go next
-
-In this _Quick start_, you learned how to compile and run a single blockchain node on your local computer.
-To start learning how to customize its features, explore the following resources:
-
-- [Architecture](/fundamentals/architecture/)
-- [Runtime development](/fundamentals/runtime-development/)
-- [Rust for Substrate](/fundamentals/rust-basics/)
+The **Reference** provides direct access to technical information such as the Rust API and help for command-line tools.

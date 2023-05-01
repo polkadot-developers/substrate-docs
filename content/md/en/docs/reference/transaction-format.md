@@ -252,7 +252,7 @@ The consequence of this is that _smaller_ transactions are preferred over _large
 
 Now that you have seen how transactions are constructed, you might want to review how they progress from the transaction pool to the runtime and get added to blocks or how to use tools that enable you to submit transactions offline or using a REST API.
 
-- [Transaction lifecycle](/fundamentals/transaction-lifecycle/)
+- [Transaction lifecycle](/learn/transaction-lifecycle/)
 - [Transactions, weights, and fees](/build/tx-weights-fees/)
 - [tx-wrapper](/reference/command-line-tools/tx-wrapper) for offline transactions
 - [sidecar](/reference/command-line-tools/sidecar) for REST-based transactions

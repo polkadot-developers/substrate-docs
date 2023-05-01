@@ -29,7 +29,7 @@ This guide illustrates:
 1. Modify the plain chain specification (optional):
 
    This optional step we can leverage an _existing_ plain chain specification for a network that otherwise would require modification of the _source_ of the node to run on a _new network_.
-   For example, this can be quite useful in the [Prepare a local relay chain](/tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain/) where we want to create a custom _relay chain_ without customizing Polkadot's source.
+   For example, this can be quite useful in the [Prepare a local relay chain](/tutorials/build-a-parachain/prepare-a-local-relay-chain/) where we want to create a custom _relay chain_ without customizing Polkadot's source.
 
    Here we use the _same_ chain spec, but pass a flag to disable bootnodes, as we want a _new_ network where these nodes will be different.
 
@@ -57,7 +57,7 @@ Because Rust builds that target WebAssembly are optimized, the binaries aren't d
 If each network participant were to generate the plain and/or raw chain specification, the differences in the resulting Wasm blob would break consensus.
 
 It is _conventional_ to include the chain specification files for your node _within the source code itself_ so that anyone can build your node in the same way, whereby it becomes easy to check for non-determinism by comparing a genesis blob with another.
-Polkadot, Kusama, Rococo, and more network chain spec files are found [in the source here](https://github.com/paritytech/polkadot/tree/master/node/service/chain-specs) along with a `.gitignore` file to ensure that you don't accidentally change these `!/*.json` files as you build further on your node's software and do [runtime upgrades](/tutorials/get-started/upgrade-a-running-network/).
+Polkadot, Kusama, Rococo, and more network chain spec files are found [in the source here](https://github.com/paritytech/polkadot/tree/master/node/service/chain-specs) along with a `.gitignore` file to ensure that you don't accidentally change these `!/*.json` files as you build further on your node's software and do [runtime upgrades](/tutorials/build-a-blockchain/upgrade-a-running-network/).
 
 ## Start a new node
 
@@ -74,6 +74,6 @@ For reference, you can see how [Polkadot implements](https://github.com/parityte
 
 ## Examples
 
-- [Add trusted nodes](/tutorials/get-started/add-trusted-nodes#add-keys-to-keystore)
+- [Add trusted nodes](/tutorials/build-a-blockchain/add-trusted-nodes#add-keys-to-keystore)
 - [Polkadot-like network chain specs](https://github.com/paritytech/polkadot/tree/master/node/service/chain-specs)
 - [Polkadot commands for many networks](https://github.com/paritytech/polkadot/commits/master/cli/src/command.rs)

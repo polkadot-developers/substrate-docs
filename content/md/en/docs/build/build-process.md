@@ -4,7 +4,7 @@ description: Describes how a Substrate node is compiled into platform-native and
 keywords:
 ---
 
-In [Architecture](/fundamentals/architecture), you learned that a Substrate node consists of an outer node host and a runtime execution environment.
+In [Architecture](/learn/architecture), you learned that a Substrate node consists of an outer node host and a runtime execution environment.
 These node components communicate with each other through runtime API calls and host function calls.
 In this section, you'll learn more about how the Substrate runtime is compiled into a platform-native executable and into a WebAssembly (Wasm) binary that is stored on the blockchain.
 After you see the inner-working of how the binaries are compiled, you'll learn more about why there are two binaries, when they are used, and how you can change the execution strategies, if you need to.

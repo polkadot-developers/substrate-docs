@@ -78,7 +78,7 @@ If you plan to use offchain workers, you should consider the following:
 - By default, offchain workers are triggered for every block import even if the block isn't finalized.
 - Because offchain worker have full access to state, you can create conditions that trigger them to run only in some specific cases.
 
-For more information about offchain operations, see [Offchain operations](/fundamentals/offchain-operations/).
+For more information about offchain operations, see [Offchain operations](/learn/offchain-operations/).
 For examples of how to use offchain components, see [Offchain workers](/reference/how-to-guides/offchain-workers/).
 
 ### Storage
@@ -107,7 +107,7 @@ In general, you should avoid having unbounded data in storage maps and avoid ite
 You should use benchmarks to test the performance of all functions in the runtime under different conditions, including iterating over a large number of items in a list or storage map. 
 By testing for specific conditions—for example, triggering a function to execute over a large data set with many iteractions—benchmarks can help you identify when it's best to enforce boundaries by limiting the number of elements in a list or the number of iterations in a loop.
 
-For more guidelines about storage and storage structures, see [State transitions and storage](/fundamentals/state-transitions-and-storage) and [Runtime storage](/build/runtime-storage/).
+For more guidelines about storage and storage structures, see [State transitions and storage](/learn/state-transitions-and-storage) and [Runtime storage](/build/runtime-storage/).
 For more information about iterating over storage, see [Iterating over storage maps](/build/runtime-storage/#iterating-over-storage-maps).
 
 ### Events
@@ -240,7 +240,7 @@ Substrate provides the following hashing algorithms by default:
 - `Blake2` is a relatively fast cryptographic hashing function.
   In most cases, you can use the Blake2 hashing algorithm in any situations where security matters. However, Substrate can support any hash algorithm that implements the `Hasher` trait.
 
-For more information about hashing algorithms, see [Hashing algorithms](/reference/cryptography/#hashing-algorithms).
+For more information about hashing algorithms, see [Hashing algorithms](/learn/cryptography//#hashing-algorithms).
 
 ### Inaccurate weight
 

@@ -300,7 +300,7 @@ To set up communication between the parachains in the test network:
    
    You should note that XCM messages are like other transactions and require the sender to pay for the execution of the operation.
    All of the information required must be included in the message itself.
-   For information about how to craft messages using XCM after you've opened HRMP channels, see [Cross-consensus communication](/fundamentals/xcm-communication/) and [Transfer assets with XCM](/tutorials/connect-relay-and-parachains/transfer-assets-with-xcm/).
+   For information about how to craft messages using XCM after you've opened HRMP channels, see [Cross-consensus communication](/learn/xcm-communication/) and [Transfer assets with XCM](/tutorials/build-a-parachain/transfer-assets-with-xcm/).
    
 ## Where to go next
 

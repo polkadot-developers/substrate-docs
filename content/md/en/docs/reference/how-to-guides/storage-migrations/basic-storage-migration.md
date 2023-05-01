@@ -14,9 +14,9 @@ You can follow similar steps for more complex data migration, but you'll need to
 
 ## Add the Nicks pallet locally
 
-We are going to make a change in the [FRAME's Nick's pallet](https://github.com/paritytech/substrate/tree/master/frame/nicks), in the tutorial [Add a pallet to the runtime](https://docs.substrate.io/tutorials/work-with-pallets/add-a-pallet/) we show how to add the Nicks pallet to the runtime for the node template.
+We are going to make a change in the [FRAME's Nick's pallet](https://github.com/paritytech/substrate/tree/master/frame/nicks), in the tutorial [Add a pallet to the runtime](https://docs.substrate.io/tutorials/build-application-logic/add-a-pallet/) we show how to add the Nicks pallet to the runtime for the node template.
 
-For this guide, because we are going to make changes in the code of the pallet we are going to take the code of the pallet and add it locally in out node template. You can check an example of how to add it locally [here] (https://github.com/substrate-developer-hub/substrate-node-template/commit/022b6da0d1d55f54de3568e97aa5fe45a7975fa5).
+For this guide, because we are going to make changes in the code of the pallet we are going to take the code of the pallet and add it locally in our node template. You can check an example of how to add it locally [here](https://github.com/substrate-developer-hub/substrate-node-template/commit/022b6da0d1d55f54de3568e97aa5fe45a7975fa5).
 
 For testing we can now start our node and set a nickname using the Nicks pallet within the extrinsic `setName`.
 
@@ -25,12 +25,14 @@ For testing we can now start our node and set a nickname using the Nicks pallet 
 By default, the Nicks pallet uses a storage map to provide a lookup table with a `BoundedVec` to store the nickname.
 For example, the default storage definition looks like this:
 
-```text
+```rust
 /// The lookup table for names.
 	#[pallet::storage]
 	pub(super) type NameOf<T: Config> =
 		StorageMap<_, Twox64Concat, T::AccountId, (BoundedVec<u8, T::MaxLength>, BalanceOf<T>)>;
-We want to update the storage to add an optional field that includes a last name too. For that we create a new struct `Nickname` to manage the previous and new storage items, first name and last name:
+```
+We want to update the storage to add an optional field that includes a last name too. 
+For that we create a new struct `Nickname` to manage the previous and new storage items, first name and last name:
 
 ```rust
     #[derive(Encode, Decode, Default, TypeInfo, MaxEncodedLen, PartialEqNoBound, RuntimeDebug)]
@@ -87,7 +89,7 @@ pub fn set_name(origin,
     <NameOf<T>>::insert(&sender, (Nickname{first: bounded_first, last: bounded_last}, deposit));
     }
 ```
-Check an example of how to update the extrinsics [here] (https://github.com/substrate-developer-hub/substrate-node-template/commit/a9ee9b2b9096c2b85ecb4448366df2b8502e7aa7).
+Check an example of how to update the extrinsics [here](https://github.com/substrate-developer-hub/substrate-node-template/commit/a9ee9b2b9096c2b85ecb4448366df2b8502e7aa7).
 
 ## Add the storage version
 
@@ -246,7 +248,8 @@ We have to update them to work with the new code we have added, for example:
 		});
 	}
 ```
-Check an example of the full test fixes [here] (https://github.com/substrate-developer-hub/substrate-node-template/commit/fa021b11878e8621bb455d4638e1821b681c085e).
+Check an example of the full test fixes [here](https://github.com/substrate-developer-hub/substrate-node-template/commit/fa021b11878e8621bb455d4638e1821b681c085e).
+
 ## Examples
 
 - [Migrating the Nicks pallet](https://github.com/substrate-developer-hub/substrate-node-template/tree/alexd10s/how-to-storage-migration-example)

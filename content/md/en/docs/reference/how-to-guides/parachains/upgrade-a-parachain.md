@@ -25,7 +25,7 @@ Because of this, and the very confined nature of state transition coordination b
 Before you attempt to upgrade the runtime for your parachain, verify the following:
 
 - You are familiar with how to perform [Runtime upgrades](/maintain/runtime-upgrades) for Substrate nodes that don't connect to a relay chain.
-- You have followed the steps to [Prepare a local relay chain](/tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain) and are familiar with the interaction between the parachain collator nodes and the relay chain.
+- You have followed the steps to [Prepare a local relay chain](/tutorials/build-a-parachain/prepare-a-local-relay-chain) and are familiar with the interaction between the parachain collator nodes and the relay chain.
 - You have access to `polkadot-launch` for testing.
 
 ## Choose your upgrade approach

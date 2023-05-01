@@ -1,8 +1,7 @@
 menu:
   - quick-start
-  - fundamentals
+  - learn
   - install
-  - design
   - build
   - test
   - deploy
@@ -14,49 +13,60 @@ menu:
 quick-start:
   title: Quick start
   url: /quick-start/
-
-fundamentals:
-  title: Fundamentals
-  url: /fundamentals/
   pages:
+    - title: Substrate at a glance
+      url: /quick-start/substrate-at-a-glance/
+    - title: Start a node
+      url: /quick-start/start-a-node/
+    - title: Explore the code
+      url: /quick-start/explore-the-code/
+    - title: Modify the runtime
+      url: /quick-start/modify-the-runtime/
+
+learn:
+  title: Learn
+  url: /learn/
+  pages:
+    - title: Welcome to Substrate
+      url: /learn/welcome-to-substrate/
     - title: Blockchain basics
-      url: /fundamentals/blockchain-basics/
-    - title: Why Substrate?
-      url: /fundamentals/why-substrate/
-    - title: What is Substrate?
-      url: /fundamentals/what-is-substrate/
-    - title: Architecture
-      url: /fundamentals/architecture/
-    - title: Networks and blockchains
-      url: /fundamentals/node-and-network-types/
+      url: /learn/blockchain-basics/
+    - title: Architecture and Rust libraries
+      url: /learn/architecture/
+    - title: Networks and nodes
+      url: /learn/networks-and-nodes/
+    - title: What can you build
+      url: /learn/what-can-you-build/
     - title: Runtime development
-      url: /fundamentals/runtime-development/
-    - title: Consensus
-      url: /fundamentals/consensus/
+      url: /learn/runtime-development/
     - title: Transactions and block basics
-      url: /fundamentals/transaction-types/
+      url: /learn/transaction-types/
     - title: Transaction lifecycle
-      url: /fundamentals/transaction-lifecycle/
+      url: /learn/transaction-lifecycle/
     # - title: Block import pipeline
-    # url: /fundamentals/block-import/
+    # url: /learn/block-import/
     # - title: Extrinsics
-    # url: /fundamentals/extrinsics/
+    # url: /learn/extrinsics/
     # - title: Execution
-    # url: /fundamentals/execution/
+    # url: /learn/execution/
     # - title: Runtimes and clients
-    # url: /fundamentals/runtimes-and-clients/
+    # url: /learn/runtimes-and-clients/
     - title: State transitions and storage
-      url: /fundamentals/state-transitions-and-storage/
+      url: /learn/state-transitions-and-storage/
     - title: Accounts, addresses, and keys
-      url: /fundamentals/accounts-addresses-keys/
+      url: /learn/accounts-addresses-keys/
     - title: Rust for Substrate
-      url: /fundamentals/rust-basics/
+      url: /learn/rust-basics/
     - title: Offchain operations
-      url: /fundamentals/offchain-operations/
+      url: /learn/offchain-operations/
     - title: Light clients in Substrate Connect
-      url: /fundamentals/light-clients-in-substrate-connect/
+      url: /learn/light-clients-in-substrate-connect/
+    - title: Cryptography
+      url: /learn/cryptography/
+    - title: Consensus
+      url: /learn/consensus/
     - title: Cross-consensus messaging
-      url: /fundamentals/xcm-communication/
+      url: /learn/xcm-communication/
 
 install:
   title: Install
@@ -75,14 +85,14 @@ install:
     - title: Troubleshoot Rust issues
       url: /install/troubleshoot-rust-issues/
   
-design:
-  title: Design
-  url: /design/
-  pages:
-    - title: Substrate empowers builders
-      url: /design/substrate-empowers-builders/
-    - title: Decide what to build
-      url: /design/decide-what-to-build/
+#design:
+ # title: Design
+ # url: /design/
+ # pages:
+    #- title: Substrate empowers builders
+    #  url: /design/substrate-empowers-builders/
+    #- title: Decide what to build
+    #  url: /design/decide-what-to-build/
   #- title: Execution
   #url: /design/execution/
   #- title: Runtimes and clients
@@ -123,8 +133,6 @@ build:
       url: /build/chain-spec/
     - title: Genesis configuration
       url: /build/genesis-configuration/
-    - title: Libraries
-      url: /build/libraries/
     - title: Build process
       url: /build/build-process/
     - title: Build a deterministic runtime
@@ -181,101 +189,104 @@ maintain:
 #     url: /maintain/network-upgrades/
 #   - title: Data migration
 #     url: /maintain/data-migration/
+
 tutorials:
   title: Tutorials
   url: /tutorials/
   pages:
-    - title: Get started
-      url: /tutorials/get-started/
+    - title: Build a blockchain
+      url: /tutorials/build-a-blockchain/
       pages:
         - title: Build a local blockchain
-          url: /tutorials/get-started/build-local-blockchain/
+          url: /tutorials/build-a-blockchain/build-local-blockchain/
         - title: Simulate a network
-          url: /tutorials/get-started/simulate-network/
+          url: /tutorials/build-a-blockchain/simulate-network/
         - title: Add trusted nodes
-          url: /tutorials/get-started/add-trusted-nodes/
+          url: /tutorials/build-a-blockchain/add-trusted-nodes/
         - title: Authorize specific nodes
-          url: /tutorials/get-started/authorize-specific-nodes/
+          url: /tutorials/build-a-blockchain/authorize-specific-nodes/
         - title: Monitor node metrics
-          url: /tutorials/get-started/monitor-node-metrics/
+          url: /tutorials/build-a-blockchain/monitor-node-metrics/
         - title: Upgrade a running network
-          url: /tutorials/get-started/upgrade-a-running-network/
-    - title: Work with pallets
-      url: /tutorials/work-with-pallets/
+          url: /tutorials/build-a-blockchain/upgrade-a-running-network/
+    - title: Build application logic
+      url: /tutorials/build-application-logic/
       pages:
         - title: Add a pallet to the runtime
-          url: /tutorials/work-with-pallets/add-a-pallet/
+          url: /tutorials/build-application-logic/add-a-pallet/
         #- title: Configure the contracts pallet
-          #url: /tutorials/work-with-pallets/contracts-pallet/
-        - title: Use macros in a custom pallet
-          url: /tutorials/work-with-pallets/use-macros-in-a-custom-pallet/
+          #url: /tutorials/build-application-logic/contracts-pallet/
         - title: Specify the origin for a call
-          url: /tutorials/work-with-pallets/specify-the-origin-for-a-call/
+          url: /tutorials/build-application-logic/specify-the-origin-for-a-call/
+        - title: Use macros in a custom pallet
+          url: /tutorials/build-application-logic/use-macros-in-a-custom-pallet/
         - title: Add offchain workers
-          url: /tutorials/work-with-pallets/add-offchain-workers/
+          url: /tutorials/build-application-logic/add-offchain-workers/
         - title: Publish custom pallets
-          url: /tutorials/work-with-pallets/publish-custom-pallets/
-    - title: Collectibles workshop
-      url: /tutorials/collectibles-workshop/
-      pages:
-        - title: Pallet builder basics
-          url: /tutorials/collectibles-workshop/runtime-and-pallets/
-        - title: Prepare a working environment
-          url: /tutorials/collectibles-workshop/01-prepare/
-        - title: Get oriented
-          url: /tutorials/collectibles-workshop/02-orientation/
-        - title: Create a new pallet
-          url: /tutorials/collectibles-workshop/03-create-pallet/
-        - title: Shared and custom types
-          url: /tutorials/collectibles-workshop/04-import-traits/
-        - title: Add custom storage items
-          url: /tutorials/collectibles-workshop/05-add-storage-items/
-        - title: Create basic functions
-          url: /tutorials/collectibles-workshop/06-first-functions/
-        - title: More functions
-          url: /tutorials/collectibles-workshop/07-more-functions/
-        - title: Add collectibles to the runtime
-          url: /tutorials/collectibles-workshop/08-add-collectibles-to-runtime/
-    - title: Develop smart contracts
-      url: /tutorials/smart-contracts/
-      pages:
-        - title: Prepare your first contract
-          url: /tutorials/smart-contracts/prepare-your-first-contract/
-        - title: Develop a smart contract
-          url: /tutorials/smart-contracts/develop-a-smart-contract/
-        - title: Use maps for storing values
-          url: /tutorials/smart-contracts/use-maps-for-storing-values/
-        - title: Build a token contract
-          url: /tutorials/smart-contracts/build-a-token-contract/
-        - title: Troubleshoot smart contracts
-          url: /tutorials/smart-contracts/troubleshoot-smart-contracts/
-    - title: Connect relay and parachains
-      url: /tutorials/connect-relay-and-parachains/
+          url: /tutorials/build-application-logic/publish-custom-pallets/
+        - title: Collectibles workshop
+          url: /tutorials/collectibles-workshop/
+          pages:
+           - title: Pallet builder basics
+             url: /tutorials/collectibles-workshop/runtime-and-pallets/
+           - title: Prepare a working environment
+             url: /tutorials/collectibles-workshop/01-prepare/
+           - title: Get oriented
+             url: /tutorials/collectibles-workshop/02-orientation/
+           - title: Create a new pallet
+             url: /tutorials/collectibles-workshop/03-create-pallet/
+           - title: Shared and custom types
+             url: /tutorials/collectibles-workshop/04-import-traits/
+           - title: Add custom storage items
+             url: /tutorials/collectibles-workshop/05-add-storage-items/
+           - title: Create basic functions
+             url: /tutorials/collectibles-workshop/06-first-functions/
+           - title: More functions
+             url: /tutorials/collectibles-workshop/07-more-functions/
+           - title: Add collectibles to the runtime
+             url: /tutorials/collectibles-workshop/08-add-collectibles-to-runtime/
+#    - title: Develop smart contracts
+#     url: /tutorials/smart-contracts/
+#     pages:
+#       - title: Prepare your first contract
+#         url: /tutorials/smart-contracts/prepare-your-first-contract/
+#       - title: Develop a smart contract
+#         url: /tutorials/smart-contracts/develop-a-smart-contract/
+#       - title: Use maps for storing values
+#         url: /tutorials/smart-contracts/use-maps-for-storing-values/
+#       - title: Build a token contract
+#         url: /tutorials/smart-contracts/build-a-token-contract/
+#       - title: Troubleshoot smart contracts
+#         url: /tutorials/smart-contracts/troubleshoot-smart-contracts/
+    - title: Build a parachain
+      url: /tutorials/build-a-parachain/
       pages:
         - title: Prepare a local relay chain
-          url: /tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain/
+          url: /tutorials/build-a-parachain/prepare-a-local-relay-chain/
         - title: Connect a local parachain
-          url: /tutorials/connect-relay-and-parachains/connect-a-local-parachain/
+          url: /tutorials/build-a-parachain/connect-a-local-parachain/
         - title: Acquire a testnet slot
-          url: /tutorials/connect-relay-and-parachains/acquire-a-testnet-slot/
+          url: /tutorials/build-a-parachain/acquire-a-testnet-slot/
         - title: Open message passing channels
-          url: /tutorials/connect-relay-and-parachains/open-message-passing-channels/
+          url: /tutorials/build-a-parachain/open-message-passing-channels/
         - title: Transfer assets with XCM
-          url: /tutorials/connect-relay-and-parachains/transfer-assets-with-xcm/
-    - title: Integrate with tools
-      url: /tutorials/integrate-with-tools/
-      pages:
-        - title: Integrate a light client node
-          url: /tutorials/integrate-with-tools/integrate-a-light-client-node/
-        - title: Explore sidecar endpoints
-          url: /tutorials/integrate-with-tools/explore-sidecar-endpoints/
-        - title: Access EVM accounts
-          url: /tutorials/integrate-with-tools/access-evm-accounts/
+          url: /tutorials/build-a-parachain/transfer-assets-with-xcm/
+#   - title: Integrate with tools
+#     url: /tutorials/integrate-with-tools/
+#     pages:
+#       - title: Integrate a light client node
+#         url: /tutorials/integrate-with-tools/integrate-a-light-client-node/
+#       - title: Explore sidecar endpoints
+#         url: /tutorials/integrate-with-tools/explore-sidecar-endpoints/
+#       - title: Access EVM accounts
+#         url: /tutorials/integrate-with-tools/access-evm-accounts/
 
 reference:
   title: Reference
   url: /reference/
   pages:
+    - title: Rust API
+      url: /reference/rust-api/
     - title: Glossary
       url: /reference/glossary/
     - title: Command-line tools
@@ -318,8 +329,6 @@ reference:
       url: /reference/address-formats/
     - title: Transaction formats
       url: /reference/transaction-format/
-    - title: Cryptography
-      url: /reference/cryptography/
     - title: XCM reference
       url: /reference/xcm-reference/
     - title: How-to reference guides
