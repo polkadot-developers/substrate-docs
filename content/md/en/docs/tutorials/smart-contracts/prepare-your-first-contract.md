@@ -164,7 +164,7 @@ The `lib.rs` file also contains two functions for testing that the contract work
 
 As you progress through the tutorial, you'll modify different parts of the starter code.
 By the end of the tutorial, you'll have a more advanced smart contract that looks like the
-[Flipper example](https://github.com/paritytech/ink/blob/master/examples/flipper/lib.rs).
+[Flipper example](https://github.com/paritytech/ink-examples/blob/main/flipper/lib.rs).
 
 To explore the default project files:
 
