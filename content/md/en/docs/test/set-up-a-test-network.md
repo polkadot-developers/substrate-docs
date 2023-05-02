@@ -191,7 +191,7 @@ To add the second parachain binary to the working folder:
 4. Compile the node with the modified chain specification by running the following command:
    
    ```bash
-   cargo build -release
+   cargo build --release
    ```
 
 5. Copy the new parachain collator binary into the working `bin` folder by running a command similar to the following:
