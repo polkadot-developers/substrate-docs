@@ -2,9 +2,9 @@
 title: Substrate at a glance
 description: Offers a bare bones overview of the Substrate framework for building application-optimized blockchains.
 keywords:
-  -  Substrate overview
-  -  FRAME overview
-  -  FAQ
+  - Substrate overview
+  - FRAME overview
+  - FAQ
 ---
 
 This article offers a bare bones overview of the Substrate framework for building application-optimized blockchains.

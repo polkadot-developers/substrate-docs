@@ -16,9 +16,7 @@ This includes temporary data or intermediate calculations that can be discarded 
 
 In this guide, we will instruct offchain workers to write data to the local storage without passing the data among the whole blockchain network.
 The concept of a **Storage Lock** is introduced to have value accessible consistently among multiple OCWs.
-OCWs are asynchronously run at the end of each block production and they are not limited by how long they run, so at any point of time there could be multiple OCW instances being initiated as shown below.
-
-![Multiple OCW Instances](../../../../src/images/how-to-guides/ocw/local-storage/multiple-ocws.png)
+OCWs are asynchronously run at the end of each block production and they are not limited by how long they run, so at any point of time there could be multiple OCW instances being initiated.
 
 The local storage APIs are similar to their on-chain counterpart, using `get`, `set`, and `mutate` to access them.
 `mutate` is using a [**compare-and-set pattern**](https://en.wikipedia.org/wiki/Compare-and-swap)-it compares the content of a memory location with a given value and, only if they are the same, modifies the contents of that memory location to a new given value.

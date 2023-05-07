@@ -131,13 +131,12 @@ To install `openssl` and the Rust toolchain on macOS:
    nightly-x86_64-apple-darwin (overridden by +toolchain on the command line)
    rustc 1.63.0-nightly (e71440575 2022-06-02)
    ```
-   
+
    1. Install `cmake` using the following command:
 
    ```
    brew install cmake
    ```
-
 
 ## Compile a Substrate node
 

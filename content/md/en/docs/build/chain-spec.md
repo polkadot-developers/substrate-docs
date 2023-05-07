@@ -118,7 +118,7 @@ Before you can use the chain specification to initialize the genesis storage for
 This transformation is straight-forward, but it requires that the chain specification to be encoded in a format that node runtime can read.
 
 To enable a node with an upgraded runtime to synchronize with a chain from genesis, the human-readable chain specification is encoded in a **raw** format.
-The raw format enables you distribute chain specifications that all nodes can use to synchronize the chain even after runtime upgrades. 
+The raw format enables you distribute chain specifications that all nodes can use to synchronize the chain even after runtime upgrades.
 
 Substrate-based nodes support the `--raw` command-line option to produce the raw chain specifications.
 For example, you can produce the raw chain specification for a human-readable `myCustomSpec.json` file by running the following command:

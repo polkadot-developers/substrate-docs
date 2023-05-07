@@ -7,10 +7,10 @@ keywords:
   - PoW
 ---
 
-This guide demonstrates how to create a Substrate-based node that employs hybrid consensus, using SHA3 proof of work to dictate block authoring and the [Grandpa](https://paritytech.github.io/substrate/master/sc_finality_grandpa/index.html) finality gadget to provide [deterministic finality](/learn/consensus#finality).
+This guide demonstrates how to create a Substrate-based node that employs hybrid consensus, using SHA3 proof of work to dictate block authoring and the [Grandpa](https://paritytech.github.io/substrate/master/sc_consensus_grandpa/index.html) finality gadget to provide [deterministic finality](/learn/consensus#finality).
 The minimal proof of work consensus lives entirely outside of the runtime.
 
-The Grandpa finality relies on getting its authority sets from the runtime using the [Grandpa API](https://paritytech.github.io/substrate/master/sp_finality_grandpa/trait.GrandpaApi.html).
+The Grandpa finality relies on getting its authority sets from the runtime using the [Grandpa API](https://paritytech.github.io/substrate/master/sc_consensus_grandpa/trait.GrandpaApi.html.
 Therefore, you need a runtime that provides this API to successfully compile a node implementing this guide.
 
 ## Use cases
@@ -102,7 +102,7 @@ task_manager
 ## Spawn the Grandpa task
 
 Grandpa is _not_ CPU intensive, so we use a standard `async` worker to listen to and cast Grandpa votes.
-We begin by creating a Grandpa [`Config`](https://paritytech.github.io/substrate/master/sc_finality_grandpa/struct.Config.html):
+We begin by creating a Grandpa [`Config`](https://paritytech.github.io/substrate/master/sc_consensus_grandpa/struct.Config.html):
 
 ```rust
 let grandpa_config = sc_finality_grandpa::Config {
@@ -115,7 +115,7 @@ let grandpa_config = sc_finality_grandpa::Config {
 };
 ```
 
-We can then use this config to create an instance of [`GrandpaParams`](https://paritytech.github.io/substrate/master/sc_finality_grandpa/struct.GrandpaParams.html).
+We can then use this config to create an instance of [`GrandpaParams`](https://paritytech.github.io/substrate/master/sc_consensus_grandpa/struct.GrandpaParams.html).
 
 ```rust
 let grandpa_config = sc_finality_grandpa::GrandpaParams {

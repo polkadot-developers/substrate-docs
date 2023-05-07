@@ -116,7 +116,7 @@ The difficulty of this problem can be tuned to provide a statistical target bloc
 
 ### GRANDPA
 
-[GRANDPA](https://paritytech.github.io/substrate/master/sc_finality_grandpa/index.html) provides block finalization.
+[GRANDPA](https://paritytech.github.io/substrate/master/sc_consensus_grandpa/index.html) provides block finalization.
 It has a known weighted authority set like BABE.
 However, GRANDPA does not author blocks.
 It just listens to gossip about blocks that have been produced by block authoring nodes.

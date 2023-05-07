@@ -10,7 +10,7 @@ Debugging is a necessity in all walks of software development, and blockchain is
 
 You can use Rust's logging API to debug your runtimes. This comes with a number of macros, including [`debug`](https://docs.rs/log/0.4.14/log/macro.debug.html) and [`info`](https://docs.rs/log/0.4.14/log/macro.info.html).
 
-For example, after updating your pallet's `Cargo.toml` file with the [`log` crate](https://crates.io/crates/log) just use `log::info!` to log to your console:
+For example, after updating your pallet's `Cargo.toml` file with the [`log` crate](https://crates.io/crates/log) just use `log::info!` to log to your console:<!-- markdown-link-check-disable-line -->
 
 ```rust
 pub fn do_something(origin) -> DispatchResult {

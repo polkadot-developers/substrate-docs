@@ -116,7 +116,7 @@ Some things to note are:
 ### Advanced event testing
 
 When testing events in a pallet, often you are only interested in the events that are emitted from your own pallet.
-The following helper function filters events to include only events emitted by your pallet and converts them into a custom event type. 
+The following helper function filters events to include only events emitted by your pallet and converts them into a custom event type.
 A helper function like this is usually placed in the `mock.rs` file for testing in a mock runtime.
 
 ```rust
@@ -129,7 +129,7 @@ fn only_example_events() -> Vec<super::Event<Runtime>> {
 }
 ```
 
-Additionally, if your test performs operations that emit events in a sequence, you might want to only see the events that have happened since the last check. 
+Additionally, if your test performs operations that emit events in a sequence, you might want to only see the events that have happened since the last check.
 The following example leverages the preceding helper function.
 
 ```rust
@@ -145,7 +145,7 @@ fn example_events_since_last_call() -> Vec<super::Event<Runtime>> {
 }
 ```
 
-You can find examples of this type of event testing in the tests for the [nomination pool](https://github.com/paritytech/substrate/blob/master/frame/nomination-pools/src/mock.rs) or [staking](https://github.com/paritytech/substrate/blob/master/frame/staking/src/mock.rs). 
+You can find examples of this type of event testing in the tests for the [nomination pool](https://github.com/paritytech/substrate/blob/master/frame/nomination-pools/src/mock.rs) or [staking](https://github.com/paritytech/substrate/blob/master/frame/staking/src/mock.rs).
 If you rewrite the previous event test with this new function, the resulting code looks like this:
 
 ```rust

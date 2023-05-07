@@ -12,7 +12,6 @@ keywords:
   - key derivations
 ---
 
-
 Cryptography is what provides the mathematical verifiableness behind consensus systems, data integrity, and user security. While understanding the fundamental overarching applications of cryptography as they relate to blockchain is essential for the average developer, the underlying mathematical processes themselves are not necessarily relevant. This page provides the base context for the various implementations of cryptography across Parity and the ecosystem more broadly.
 
 ## Hash functions
@@ -23,7 +22,7 @@ These functions are **deterministic**, meaning that the same input will always p
 
 ### Collision resistance
 
-In blockchain, hash functions are also used to provide **collision resistance**. These are performed by an attacker that calculates or controls both numerical inputs, attempting to find two identical values in order to gain access to an encrypted object. With partial collisions, a similar method is applied, but is only attempting to find two values that share the first few bits instead of the entirety. 
+In blockchain, hash functions are also used to provide **collision resistance**. These are performed by an attacker that calculates or controls both numerical inputs, attempting to find two identical values in order to gain access to an encrypted object. With partial collisions, a similar method is applied, but is only attempting to find two values that share the first few bits instead of the entirety.
 
 While only implementing partial collision resistance is computationally lighter weight and provides fairly strong protections against the possibility of collisions, it is a less-secure option when facing well resourced adversaries such as nation-states, as it is significantly easier to brute-force past the first few digits with a significant amount of computational power. That said, it is acceptable with an average attack vector (i.e, rogue actors).
 
@@ -37,7 +36,7 @@ For a comprehensive view of Blake2, see their [official document](https://www.bl
 
 ## Types of cryptography
 
-There are two different ways that cryptographic algorithms are implemented: **symmetric cryptography**, and **asymmetric cryptography**. 
+There are two different ways that cryptographic algorithms are implemented: **symmetric cryptography**, and **asymmetric cryptography**.
 
 ### Symmetric cryptography
 
@@ -61,15 +60,15 @@ Hybrid symmetric and asymmetric cryptography is often used to overcome the engin
 
 Digital signatures are a way of verifying the authenticity of a document or message using asymmetric keypairs. They are used to ensure that a sender or signer's document or message has not been tampered with in transit, and for recipients to verify said data is accurate and from the expected sender.
 
-Signing digital signatures only requires a low level understanding of mathematics and cryptography. For a conceptual example -- when signing a check, it is expected that the check cannot be cashed multiple times. This is not a feature of the signature system, but rather the check serialization system. The bank will check that the serial number on the check has not already been used. Digital signatures essentially combines these two concepts, allowing the *signature itself* to provide the serialization via a unique cryptographic fingerprint that cannot be reproduced.
+Signing digital signatures only requires a low level understanding of mathematics and cryptography. For a conceptual example -- when signing a check, it is expected that the check cannot be cashed multiple times. This is not a feature of the signature system, but rather the check serialization system. The bank will check that the serial number on the check has not already been used. Digital signatures essentially combines these two concepts, allowing the _signature itself_ to provide the serialization via a unique cryptographic fingerprint that cannot be reproduced.
 
 Unlike with a pen and paper signatures, knowledge of the digital signature cannot be used to create other signatures. Digital signatures are often used in bureaucratic processes, as they are more secure than simply scanning in a signature and pasting it onto a document.
 
 Substrate provides multiple different cryptographic schemes and is generic such that it can support anything which implements the [`Pair` trait](https://paritytech.github.io/substrate/master/sp_core/crypto/trait.Pair.html).
 
-## Elliptic Curve 
+## Elliptic Curve
 
-Blockchain technology requires the ability to have multiple keys creating a signature for block proposal and validation. To this end, Elliptic Curve Digital Signature Algorithm (ECDSA) and Schnorr signatures are two of the most commonly used methods. While ECDSA are a far simpler implementation, Schnorr signatures are more efficient when it comes to multi-signatures. 
+Blockchain technology requires the ability to have multiple keys creating a signature for block proposal and validation. To this end, Elliptic Curve Digital Signature Algorithm (ECDSA) and Schnorr signatures are two of the most commonly used methods. While ECDSA are a far simpler implementation, Schnorr signatures are more efficient when it comes to multi-signatures.
 
 Schnorr signatures bring some noticeable features over the [ECDSA](#ecdsa)/EdDSA schemes:
 
@@ -79,7 +78,7 @@ Schnorr signatures bring some noticeable features over the [ECDSA](#ecdsa)/EdDSA
 
 One sacrifice that is made when using Schnorr signatures over ECDSA is that both require 64 bytes, but only ECDSA signatures communicate their public key.
 
-### Various implementations 
+### Various implementations
 
 #### ECDSA
 
@@ -95,7 +94,6 @@ It is carefully engineered at several levels of design and implementation to ach
 
 [SR25519](https://research.web3.foundation/en/latest/polkadot/keys/1-accounts-more.html) is based on the same underlying curve as [Ed25519](#ed25519).
 However, it uses Schnorr signatures instead of the EdDSA scheme.
-
 
 ## Where to go next
 

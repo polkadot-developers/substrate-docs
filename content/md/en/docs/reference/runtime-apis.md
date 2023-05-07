@@ -13,16 +13,16 @@ By default, the Substrate runtime provides the following traits for outer node s
 - [`AuraApi`](https://paritytech.github.io/substrate/master/sp_consensus_aura/trait.AuraApi.html)
 - [`Benchmark`](https://paritytech.github.io/substrate/master/frame_benchmarking/trait.Benchmark.html)
 - [`BlockBuilder`](https://paritytech.github.io/substrate/master/sp_block_builder/trait.BlockBuilder.html)
-- [`GrandpaApi`](https://paritytech.github.io/substrate/master/sp_finality_grandpa/trait.GrandpaApi.html)
+- [`GrandpaApi`](https://paritytech.github.io/substrate/master/sp_consensus_grandpa/trait.GrandpaApi.html)
 - [`NominationPoolsApi`](https://paritytech.github.io/substrate/master/pallet_nomination_pools_runtime_api/trait.NominationPoolsApi.html)
 - [`OffchainWorkerApi`](https://paritytech.github.io/substrate/master/sp_offchain/trait.OffchainWorkerApi.html)
 - [`SessionKeys`](https://paritytech.github.io/substrate/master/sp_session/trait.SessionKeys.html)
 - [`TaggedTransactionQueue`](https://paritytech.github.io/substrate/master/sp_transaction_pool/runtime_api/trait.TaggedTransactionQueue.html)
 - [`TransactionPaymentApi`](https://paritytech.github.io/substrate/master/pallet_transaction_payment_rpc_runtime_api/trait.TransactionPaymentApi.html)
-  
+
 ## AccountNonceApi
-  
-Use the `AccountNonceApi` to get the nonce for a specified account identifier. 
+
+Use the `AccountNonceApi` to get the nonce for a specified account identifier.
 The nonce for each account is incremented each time that account is used to complete a transaction.
 Therefore, the nonce is also sometimes referred to as a transaction index.
 
@@ -36,7 +36,7 @@ This API provides the following methods:
 Use the `AuraApi` to manage block authoring with the slot-based consensus that uses a round-robin rotation of authorities.
 Although most consensus-related tasks are handled by outer node services, the runtime must provide this API for consensus-related tasks that are part of the state transition logic.
 
-This API provides the following methods for authority-based round-robin scheduling ([Aura](reference/glossary/#aura)):
+This API provides the following methods for authority-based round-robin scheduling ([Aura](/reference/glossary/#aura)):
 
 - `slot_duration` to get the slot duration for Aura consensus.
 - `slot_duration_with_context` to get the slot duration for Aura consensus within a specified execution context.
@@ -54,7 +54,6 @@ This API provides the following methods:
 - `dispatch_benchmark` to dispatch the specified benchmark.
 - `dispatch_benchmark_with_context` to dispatch the specified benchmark within a specified execution context.
 
-
 ## BlockBuilder
 
 Use the `BlockBuilder` API to provide the functionality required for building and finalizing a block.
@@ -69,7 +68,7 @@ This API provides the following methods:
   The method also returns a result that indicates whether the transaction was included in the block or not.
 - `finalize_block` to finish construction of the current block.
 - `finalize_block_with_context` to finish construction of the current block within the specified execution context.
-- `inherent_extrinsics` to include inherent extrinsic transactions in the current block. 
+- `inherent_extrinsics` to include inherent extrinsic transactions in the current block.
   Inherent transaction types vary from chain to chain.
 - `inherent_extrinsics_with_context` to include inherent extrinsic transactions in the current block and specified execution context.
   Inherent transaction types vary from chain to chain.
@@ -78,7 +77,7 @@ This API provides the following methods:
 
 ## GrandpaApi
 
-Use the `GrandpaApi` to integrate authority-set changes from the GRANDPA finalization protocol into the runtime. 
+Use the `GrandpaApi` to integrate authority-set changes from the GRANDPA finalization protocol into the runtime.
 The GRANDPA finalization protocol signals changes to the authority sets by specifying a delay of some number of blocks.
 The changes ar then automatically applied in the runtime after the specified number of blocks have been finalized.
 
@@ -88,9 +87,9 @@ This API provides the following methods:
 - `grandpa_authorities_with_context` to get the current authorities and weights for GRANDPA finalization in the specified execution context.
 - `current_set_id` to get the current GRANDPA authority set identifier.
 - `current_set_id_with_context` to get the current GRANDPA authority set identifier in the specified execution context.
-  
-The `GrandpaApi` also provides methods for submitting transactions to report evidence of misbehavior and related proof of key ownership. 
-For information about these methods, see [`GrandpaApi`](https://paritytech.github.io/substrate/master/sp_finality_grandpa/trait.GrandpaApi.html).
+
+The `GrandpaApi` also provides methods for submitting transactions to report evidence of misbehavior and related proof of key ownership.
+For information about these methods, see [`GrandpaApi`](https://paritytech.github.io/substrate/master/sp_consensus_grandpa/trait.GrandpaApi.html).
 
 ## NominationPoolsApi
 
@@ -118,14 +117,14 @@ Use the `SessionKeys` API to generate and decode [session keys](/learn/accounts-
 This API provides the following methods:
 
 - `generate_session_keys` to generate a set of session keys.
-  If you generate the keys using a specified seed, the seed must to be a valid `utf8` string. 
+  If you generate the keys using a specified seed, the seed must to be a valid `utf8` string.
   You should store the generated keys in the keystore exposed by the runtime externalities.
   The method returns the public keys as concatenated SCALE-encoded values.
 
 - `generate_session_keys_with_context` to generate a set of session keys within the specified execution context.
-    If you generate the keys using a specified seed, the seed must to be a valid `utf8` string. 
-    You should store the generated keys in the keystore exposed by the runtime externalities.
-    The method returns the public keys as concatenated SCALE-encoded values.
+  If you generate the keys using a specified seed, the seed must to be a valid `utf8` string.
+  You should store the generated keys in the keystore exposed by the runtime externalities.
+  The method returns the public keys as concatenated SCALE-encoded values.
 
 - `decode_session_keys` to decode the specified public session keys.
   The method returns the list of raw public keys and the key type.
@@ -159,4 +158,3 @@ This API provides the following methods:
 - [Runtime development](/learn/runtime-development/)
 - [FRAME macros](/reference/frame-macros)
 - [impl_runtime_apis](https://paritytech.github.io/substrate/master/sp_api/macro.impl_runtime_apis.html)
-
