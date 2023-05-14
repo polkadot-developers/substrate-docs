@@ -79,7 +79,7 @@ The identifier is referred to as a `ParaID` because the same identifier can be u
 
 You should note that you must have an account with sufficient funds to reserve a slot on a relay chain.
 You can determine the number of tokens a specific relay chain requires by checking the `ParaDeposit` configuration in the `paras_registrar` pallet for that relay chain.
-For example, Rococo requires 5 ROC to reserve an identifier:
+For example, Rococo requires 40 ROC to reserve an identifier:
 
 ```rust
 parameter_types! {
