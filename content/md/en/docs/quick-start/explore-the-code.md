@@ -50,7 +50,7 @@ From this manifest, you see that the node template workspace includes three pack
 Each member package also has its own manifest—its own `Cargo.toml` file—that contains package-specific information, including dependencies and configuration settings, that are required to compile that member package.
 For example, the `Cargo.toml` file for the `node` member of the workspace specifies the name of the package is `node-template` and lists the core libraries and primitives that enable the node template to provide essential blockchain services.
 You'll learn more about libraries and primitives in [Architecture and Rust libraries](/learn/architecture).
-For now, it's enough to understand the importance of the manifest in describing dependencies and other critical information for each package.  
+For now, it's enough to understand the importance of the manifest in describing dependencies and other critical information for each package.
 
 If you open the `runtime/Cargo.toml` file and the `pallets/template/Cargo.toml`, you’ll see different libraries and primitives as dependencies, but you’ll get a general sense of what’s required to compile these packages.
 For example, the manifest for the runtime lists all of the pallets—including the `frame_system`, `frame_support` and previously-mentioned `pallet_balances`, `pallet_transaction_payment`, and `pallet_sudo` modules—that comprise the default runtime for the node template.
@@ -58,17 +58,17 @@ For example, the manifest for the runtime lists all of the pallets—including t
 ## Core client source code
 
 One of the most important aspects of Substrate is that nodes consist of two main parts: the **core client** and the **runtime**.
-The node template also consists of separate packages for core client services in the the `node/src` directory  and the runtime in the `runtime/src` directory.
+The node template also consists of separate packages for core client services in the the `node/src` directory and the runtime in the `runtime/src` directory.
 
 By default, the `node/src` directory includes the following Rust modules:
 
-- `benchmarking.rs` 
+- `benchmarking.rs`
 - `chain_spec.rs`
 - `cli.rs`
 - `command.rs`
 - `lib.rs`
 - `main.rs`
-- `rpc.rs` 
+- `rpc.rs`
 - `service.rs`
 
 Most core client service are encapsulated in the `node/src/service.rs` Rust module.
@@ -95,7 +95,7 @@ pallet-sudo = { version = "4.0.0-dev", default-features = false, git = "https://
 pallet-transaction-payment = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-vX.Y.Z" }
 ```
 
-There are also dependencies on core packages—such as `frame-system`, `frame-support`, and `frame-executive`. 
+There are also dependencies on core packages—such as `frame-system`, `frame-support`, and `frame-executive`.
 You'll learn more about these core services in [Core FRAME services](/learn/runtime-development/#core-frame-services).
 For now, just notice that these and other modules are required to compile the runtime for the node template.
 

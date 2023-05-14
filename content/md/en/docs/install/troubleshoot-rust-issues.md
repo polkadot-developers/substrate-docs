@@ -172,4 +172,3 @@ sudo make install
 
 export PATH=/opt/usr/local/bin:$PATH
 ```
-

@@ -27,14 +27,16 @@ Prior [`TestExternalities`](https://paritytech.github.io/substrate/master/sp_sta
 for writing unit and integrated tests with mock data, but lacked the ability to test against a chain's actual state.
 The `try-runtime` tool extends `TestExternalities` and `BasicExternalities` by retrieving state using the following RPC endpoints for the node:
 
-- [`get_storage`](https://paritytech.github.io/substrate/master/remote_externalities/trait.RpcApiClient.html#method.get_storage)
-- [`get_keys_paged`](https://paritytech.github.io/substrate/master/remote_externalities/trait.RpcApiClient.html#method.get_keys_paged)
+- `rpc_get_storage`
+- `rpc_get_keys_paged`
+
+(see [`remote externalities lib`](https://paritytech.github.io/substrate/master/src/frame_remote_externalities/lib.rs.html) for more details;)
 
 After using the key-value database to retrieve state, try-runtime inserts the data into `TestExternalities`.
 
 ## How it works
 
-The `try-runtime` tool has its own implementation of externalities called [`remote_externalities`](https://paritytech.github.io/substrate/master/remote_externalities/index.html) which is just a wrapper around `TestExternalities` that uses a generic [key-value store](/learn/state-transitions-and-storage) where data is [type encoded](/reference/scale-codec).
+The `try-runtime` tool has its own implementation of externalities called [`remote_externalities`](https://github.com/paritytech/substrate/blob/master/utils/frame/remote-externalities/src/lib.rs) which is just a wrapper around `TestExternalities` that uses a generic [key-value store](/learn/state-transitions-and-storage) where data is [type encoded](/reference/scale-codec).
 
 The diagram below illustrates the way externalities sits outside a compiled runtime as a means to capture the storage of that runtime.
 
@@ -70,7 +72,7 @@ Then, use `fork-off-substrate` if you want to check that block production contin
 
 By default, runtime upgrade hooks—which can be defined inside of the runtime or inside pallets—specify what should happen when there's been a runtime upgrade.
 That is, the default `on_runtime_upgrade` method only describes runtime state _after_ the upgrade.
-However, it is possible to use methods provided by `try-runtime` to inspect and compare the runtime state _before_ and _after_ a runtime upgrade for testing purposes. 
+However, it is possible to use methods provided by `try-runtime` to inspect and compare the runtime state _before_ and _after_ a runtime upgrade for testing purposes.
 
 If you enable the `try-runtime` feature for the runtime, you can define `pre-upgrade` and `post-upgrade` hooks for the runtime as follows:
 
@@ -89,47 +91,6 @@ fn post_upgrade(_state: Vec<u8>) -> Result<(), &'static str> {
 With these function, you can use the `pre_upgrade` hook to retrieve the runtime state and return it as a Vec<u8> result.
 You can the pass the Vec<u8> as input parameter to the `post_upgrade` hook.
 
-In addition to the `pre_upgrade` and `post_upgrade` methods, [`OnRuntimeUpgradeHelpersExt`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.OnRuntimeUpgradeHelpersExt.html) provides a set of helper functions to use with `try-runtime` for testing storage migrations.
-These helper functions include the following:
-
-- `storage_key`: Generates a storage key unique to this runtime upgrade. This can be used to communicate data from pre-upgrade to post-upgrade state and check them.
-
-- `set_temp_storage` Writes some temporary data to a specific storage that can be read (potentially in the post-upgrade hook).
-
-- `get_temp_storage`: Gets temporary storage data written by `set_temp_storage`.
-
-Using the [`frame_executive::Executive`](https://paritytech.github.io/substrate/master/frame_executive/struct.Executive.html) struct, these helper functions in action would look like:
-
-```rust
-pub struct CheckTotalIssuance;
-impl OnRuntimeUpgrade for CheckTotalIssuance {
-	#[cfg(feature = "try-runtime")]
-	fn post_upgrade() {
-		// iterate over all accounts, sum their balance and ensure that sum is correct.
-	}
-}
-
-pub struct EnsureAccountsWontDie;
-impl OnRuntimeUpgrade for EnsureAccountsWontDie {
-	#[cfg(feature = "try-runtime")]
-	fn pre_upgrade() {
-		let account_count = frame_system::Accounts::<Runtime>::iter().count();
-		Self::set_temp_storage(account_count, "account_count");
-	}
-
-	#[cfg(feature = "try-runtime")]
-	fn post_upgrade() {
-		// ensure that this migration doesn't kill any account.
-		let post_migration = frame_system::Accounts::<Runtime>::iter().count();
-		let pre_migration = Self::get_temp_storage::<u32>("account_count");
-		ensure!(post_migration == pre_migration, "error ...");
-	}
-}
-
-pub type CheckerMigrations = (EnsureAccountsWontDie, CheckTotalIssuance);
-pub type Executive = Executive<_, _, _, _, (CheckerMigrations)>;
-```
-
 ## Command-line examples
 
 To use `try-runtime` from the command line, run your node with the `--features=try-runtime` flag.
@@ -144,7 +105,7 @@ You can use the following subcommands with `try-runtime`:
 - `on-runtime-upgrade`: Executes `tryRuntime_on_runtime_upgrade` against the given runtime state.
 - `offchain-worker`: Executes `offchainWorkerApi_offchain_worker` against the given runtime state.
 - `execute-block`: Executes `core_execute_block` using the given block and the runtime state of the parent block.
-- `follow-chain`: Follows a given chain's finalized blocks and applies to all its extrinsics. 
+- `follow-chain`: Follows a given chain's finalized blocks and applies to all its extrinsics.
   This allows the behavior of a new runtime to be inspected over a long period of time, with real transactions coming as input.
 
 To view usage information for a specific `try-runtime` subcommand, specify the subcommand and the `--help` flag.
@@ -207,6 +168,6 @@ Notice that this command requires the `--no-spec-name-check` command-line option
 ## Where to go next
 
 - [Storage keys](/build/runtime-storage#storage-value-keys)
-- [`OnRuntimeUpgrade`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.OnRuntimeUpgrade.html) 
+- [`OnRuntimeUpgrade`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.OnRuntimeUpgrade.html)
 - [`try-runtime-upgrade`](https://paritytech.github.io/substrate/master/frame_executive/struct.Executive.html#method.try_runtime_upgrade)
 - [Staking pallet](https://paritytech.github.io/substrate/master/pallet_staking/index.html)

@@ -4,10 +4,10 @@ description: Explains how to use the Substrate runtime toolbox (srtool) and Dock
 keywords:
 ---
 
-By default, the Rust compiler produces optimized WebAssembly binaries. 
+By default, the Rust compiler produces optimized WebAssembly binaries.
 These binaries are fine for working in an isolated environment where you are doing local development.
 However, the WebAssembly binaries that the compiler builds by default aren't guaranteed to be deterministically reproducible.
-Each time the compiler generates the WebAssembly runtime, it might produce slightly different WebAssembly bytecode. 
+Each time the compiler generates the WebAssembly runtime, it might produce slightly different WebAssembly bytecode.
 This is problematic in a blockchain network where all nodes must use exactly the same raw chain specification file.
 
 Working with builds that aren't guaranteed to be deterministically reproducible can cause other problems, too.
@@ -30,8 +30,8 @@ For example, the image `paritytech/srtool:1.62.0` indicates that the code in the
 Because `srtool` is a Docker container, you must have Docker available in your build environment to use it.
 However, you don't need to know anything about using Docker to build a Substrate-based chain using `srtool` because you can use the `srtool-cli` command-line interface to work with Docker images.
 
-The `srtool-cli` package is a command-line utility written in Rust that installs an executable program called `srtool` on your computer. 
-This program simplifies your interactions with the srtool Docker container. 
+The `srtool-cli` package is a command-line utility written in Rust that installs an executable program called `srtool` on your computer.
+This program simplifies your interactions with the srtool Docker container.
 Over time, the tooling around the `srtool` Docker image has expanded to include the following tools and helper programs:
 
 - [srtool-cli](https://github.com/chevdor/srtool-cli) provides a command-line interface to pull the srtool Docker image, get information about the image and tooling used to interact with it, and build the runtime using the `srtool` Docker container.
@@ -39,7 +39,6 @@ Over time, the tooling around the `srtool` Docker image has expanded to include 
 - [subwasm](https://github.com/chevdor/subwasm) provides command-line options for working with the metadata and WebAssembly runtime built using srtool. The `subwasm` program is also used internally to perform tasks in the `srtool` image.
 
 - [srtool-actions](https://github.com/chevdor/srtool-actions) provides GitHub actions to integrate builds produced using the `srtool` image with your GitHub CI/CD pipelines.
-  
 - [srtool-app](https://gitlab.com/chevdor/srtool-app) provides a simple graphical user interface for building the runtime using the `srtool` Docker image.
 
 ## Prepare the environment
@@ -53,7 +52,7 @@ To prepare the environment:
 1. Open a terminal shell in your Substrate development environment.
 
 2. Verify that you have Docker installed by running the following command:
-   
+
    ```bash
    docker --version
    ```
@@ -66,19 +65,19 @@ To prepare the environment:
    ```
 
 3. Install the `srtool` command-line interface by running the following command:
-   
+
    ```bash
    cargo install --git https://github.com/chevdor/srtool-cli
    ```
 
 4. View usage information for the `srtool` command-line interface by running the following command:
-   
+
    ```bash
    srtool help
    ```
 
-4. Download the latest `srtool` Docker image by running the following command:
-   
+5. Download the latest `srtool` Docker image by running the following command:
+
    ```bash
    srtool pull
    ```
@@ -92,15 +91,15 @@ To build the runtime:
 1. Open a terminal shell in your Substrate development environment.
 
 2. Compile the runtime for a project by running a command similar to the following:
-   
+
    ```bash
    srtool build --app --package node-template-runtime --runtime-dir runtime
    ```
 
    - The name you specify for the `--package` should be the name defined in the `Cargo.toml` file for the runtime.
-   
-   - The path you specify for the `--runtime-dir` should be the path to the  `Cargo.toml` file for the runtime.
-     If the `Cargo.toml` file for the runtime is located in a `runtime` subdirectory—for example, runtime/kusama—you can omit the  `--runtime-dir` command-line option.
+
+   - The path you specify for the `--runtime-dir` should be the path to the `Cargo.toml` file for the runtime.
+     If the `Cargo.toml` file for the runtime is located in a `runtime` subdirectory—for example, runtime/kusama—you can omit the `--runtime-dir` command-line option.
 
 ## Add workflow actions
 
@@ -111,27 +110,26 @@ To add a workflow for building the runtime:
 1. Create a `.github/workflows` directory in your Substrate repository.
 
 1. In the `.github/workflows` directory, click **Add file**, then select **Create new file**.
-   
 1. Copy the sample GitHub action from `basic.yml` example in the [srtools-actions](https://github.com/chevdor/srtool-actions) repository and paste it into the file you created in the previous step.
 
 1. Modify the settings in the sample action to suit your chain.
-   
+
    For example, modify the following settings:
 
    - the name of the chain
    - the name of the runtime package
    - the location of the runtime
-   
-2. Type a name for the action file in your Substrate repository.
 
-3. Click **Commit new file**.
+1. Type a name for the action file in your Substrate repository.
+
+1. Click **Commit new file**.
 
 ## Downloading from Docker Hub
 
 You must have a Docker account and Docker installed in your build environment to use the Substrate runtime toolbox.
 If you sign in to Docker Hub, you can search for the `paritytech/srtool` container and find the corresponding images with tag names that identify the Rust compiler version and the build script version.
 
-If you don't want to use [`srtool-cli`](/reference/command-line-tools/srtool/#srtool-cli) or [`srtool-app`](https://gitlab.com/chevdor/srtool-app) to work with the  `paritytech/srtool` container, you can pull a `paritytech/srtool` container image directly from Docker Hub.
+If you don't want to use [`srtool-cli`](/reference/command-line-tools/srtool/#srtool-cli) or [`srtool-app`](https://gitlab.com/chevdor/srtool-app) to work with the `paritytech/srtool` container, you can pull a `paritytech/srtool` container image directly from Docker Hub.
 
 To pull the image from Docker Hub:
 
@@ -142,11 +140,9 @@ To pull the image from Docker Hub:
 3. Click **paritytech/srtool**, then click **Tags**.
 
 4. Copy the command for the image you want to pull.
-   
 5. Open a terminal shell on your local computer.
-   
 6. Paste the command you copied from the Docker Hub.
-   
+
    For example, you might run a command similar to the following:
 
    ```bash
@@ -158,7 +154,7 @@ To pull the image from Docker Hub:
 ### Naming convention for images
 
 Unlike many Docker images, there is no `latest` tag for the `srtool` image.
-If you are downloading an image directly from Docker Hub, you'll need to select the image that's compatible with the version of the Rust compiler you have installed. 
+If you are downloading an image directly from Docker Hub, you'll need to select the image that's compatible with the version of the Rust compiler you have installed.
 The naming convention for `paritytech/srtool` Docker images specifies the version of the Rust compiler used to compile the code included in the image.
 There are also images that specify both a compiler version and the version of the build script used.
 For example, an image named `paritytech/srtool:1.62.0-0.9.19` was compiled with version `1.62.0` of the `rustc` compiler but using the version `0.9.19` of the build script.

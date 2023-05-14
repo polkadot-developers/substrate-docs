@@ -13,7 +13,7 @@ The following topics are intended to be read in order as a fast path to learning
 - [Substrate at a glance](/quick-start/substrate-at-a-glance/)
 - [Start a node](/quick-start/start-a-node/)
 - [Explore the code](/quick-start/explore-the-code/)
-- [Modify the runtime](quick-start/modify-the-runtime/)
+- [Modify the runtime](/quick-start/modify-the-runtime/)
 
 If the _Quick start_ isn't your route of choice, there are other ways to approach the documentation for learning to build with Substrate.
 For example, you can dive directly into core concepts in the [Learn](/learn/) section or work through hands-on exercises in the [Tutorials](/tutorials/) section.

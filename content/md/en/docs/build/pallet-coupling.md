@@ -17,7 +17,7 @@ Both techniques achieve the same thing in different ways, each having certain tr
 
 ## Tightly coupled pallets
 
-Because tight coupling makes working with pallets less flexible and extensible, you would only use tight pallet coupling if a pallet requires inheriting its coupled counterpart *as a whole* rather than specific types or methods.
+Because tight coupling makes working with pallets less flexible and extensible, you would only use tight pallet coupling if a pallet requires inheriting its coupled counterpart _as a whole_ rather than specific types or methods.
 
 When writing a pallet that requires tight coupling, you explicitly specify the pallet's `Config` trait to be bound by the `Config` trait of the pallet to couple with.
 

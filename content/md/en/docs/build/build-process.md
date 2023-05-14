@@ -32,22 +32,22 @@ The runtime `build.rs` module then uses the `substrate-wasm-builder` crate to co
 
 #### Features included in WebAssembly
 
-By default, the `wasm-builder` enables all of the features defined for the project in both the WebAssembly binary and platform-native executable except for the `default` and `std` features that are only enabled for the native build. 
+By default, the `wasm-builder` enables all of the features defined for the project in both the WebAssembly binary and platform-native executable except for the `default` and `std` features that are only enabled for the native build.
 
 #### Environment variables to customize the build process
 
 You can use the following environment variables to customize how the WebAssembly binaries are built:
 
-| Use this variable | If you want to do this
-| ----------------- | ----------------------
-| `SKIP_WASM_BUILD` | Skip building the WebAssembly binary. This is useful when you only need to recompile the native binary. However, if the WebAssembly binary doesn't exist, no binaries are compiled. You can skip WebAssembly builds for individual projects by including the PROJECT_NAME in the environment variable. For example, to skip build the WebAssembly binary for the cargo project node-runtime, you can use the environment variable SKIP_NODE_RUNTIME_WASM_BUILD.
-| `WASM_BUILD_TYPE` | Specify whether the WebAssembly binary is a `release` build or a `debug` build. By default, the build type you specify for the `cargo` command is used.
-| `FORCE_WASM_BUILD` | Force a WebAssembly build. This environment variable is rarely required because the `wasm-builder` instructs `cargo` to check for file changes.
-| `WASM_BUILD_RUSTFLAGS` | Extend the `RUSTFLAGS` passed to the `cargo build` command while building the WebAssembly binary.
-| `WASM_BUILD_NO_COLOR` | Disable color output of the WebAssembly build.
-| `WASM_TARGET_DIRECTORY` | Copy the WebAssembly binary to the specified directory. The path needs to be absolute.
-| `WASM_BUILD_TOOLCHAIN` | Specify the toolchain to use to build the WebAssembly binaries. The format needs to be the same as used by `cargo`, for example, `nightly-2020-02-20`.
-| `CARGO_NET_OFFLINE` | Prevent network access for some or all processes launched to support offline environments.
+| Use this variable       | If you want to do this                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `SKIP_WASM_BUILD`       | Skip building the WebAssembly binary. This is useful when you only need to recompile the native binary. However, if the WebAssembly binary doesn't exist, no binaries are compiled. You can skip WebAssembly builds for individual projects by including the PROJECT_NAME in the environment variable. For example, to skip build the WebAssembly binary for the cargo project node-runtime, you can use the environment variable SKIP_NODE_RUNTIME_WASM_BUILD. |
+| `WASM_BUILD_TYPE`       | Specify whether the WebAssembly binary is a `release` build or a `debug` build. By default, the build type you specify for the `cargo` command is used.                                                                                                                                                                                                                                                                                                         |
+| `FORCE_WASM_BUILD`      | Force a WebAssembly build. This environment variable is rarely required because the `wasm-builder` instructs `cargo` to check for file changes.                                                                                                                                                                                                                                                                                                                 |
+| `WASM_BUILD_RUSTFLAGS`  | Extend the `RUSTFLAGS` passed to the `cargo build` command while building the WebAssembly binary.                                                                                                                                                                                                                                                                                                                                                               |
+| `WASM_BUILD_NO_COLOR`   | Disable color output of the WebAssembly build.                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `WASM_TARGET_DIRECTORY` | Copy the WebAssembly binary to the specified directory. The path needs to be absolute.                                                                                                                                                                                                                                                                                                                                                                          |
+| `WASM_BUILD_TOOLCHAIN`  | Specify the toolchain to use to build the WebAssembly binaries. The format needs to be the same as used by `cargo`, for example, `nightly-2020-02-20`.                                                                                                                                                                                                                                                                                                          |
+| `CARGO_NET_OFFLINE`     | Prevent network access for some or all processes launched to support offline environments.                                                                                                                                                                                                                                                                                                                                                                      |
 
 #### Compact and compress the WebAssembly binary
 
@@ -82,10 +82,10 @@ When you start the node, the node executable uses the command-line options you s
 As part of this process, the node adds the WebAssembly runtime as a storage item value and a corresponding `:code` key.
 
 After you start the node, the running node selects the runtime to use.
-By default, the node always uses the WebAssembly runtime for all operations, including: 
+By default, the node always uses the WebAssembly runtime for all operations, including:
 
 - Synchronization
-- Authoring new block 
+- Authoring new block
 - Importing blocks
 - Interacting with offchain workers
 
@@ -141,4 +141,3 @@ This option is primarily used for faster compile time when you don't need to upd
 - [Wasm-builder README](https://github.com/paritytech/substrate/blob/master/utils/wasm-builder/README.md)
 - [Rust compilation options](https://doc.rust-lang.org/cargo/commands/cargo-build.html#compilation-options)
 - [Discussion: Removing the native runtime](https://github.com/paritytech/substrate/issues/10579)
-

@@ -26,7 +26,7 @@ To see the list of columns and modify which columns are displayed, click **Setti
 
 The columns you can toggle on and off include:
 
-- **Validator** to display an indicator to differentiate validator nodes from other nodes. 
+- **Validator** to display an indicator to differentiate validator nodes from other nodes.
 - **Location** to display the location of a node.
 - **Implementation** to display the version of the software running on the node.
 - **Network ID** to display the public network identifier for the node.
@@ -88,7 +88,7 @@ The statistics available include details about the hardware and software running
 ### Filter by chain
 
 By default, the telemetry dashboard displays information about Polkadot and provides quick links to a subset of other chains.
-To display information for other chains, click **More** and select a different chain. 
+To display information for other chains, click **More** and select a different chain.
 
 ![Select other chains](/media/images/docs/more-chains.png)
 
@@ -102,17 +102,17 @@ In general, setting up your own telemetry server involves establishing monitorin
 ### On-chain activity
 
 You can monitor on-chain activity for specific events, such as transactions submitted from a certain address, a change to the current validator set.
-On-chain monitoring typically involves connecting to RPC nodes to check for specific values, identify processing delays, or track the timing of events. 
-In most cases, you only need two RPC instances to handle requests for all of your hosts. 
-However, it's recommended that you run your own RPC servers to service these requests in case there are issues with the public RPC nodes. 
+On-chain monitoring typically involves connecting to RPC nodes to check for specific values, identify processing delays, or track the timing of events.
+In most cases, you only need two RPC instances to handle requests for all of your hosts.
+However, it's recommended that you run your own RPC servers to service these requests in case there are issues with the public RPC nodes.
 Some examples of applications that query on-chain information are [polkabot](https://gitlab.com/Polkabot/polkabot) and [polkadot-basic-notification](https://github.com/paritytech/polkadot-basic-notification).
 
 ### Node operations
 
 You should monitor each node that you run on the network for basic information about its operation such as the current block height, the number of peer-to-peer connections, CPU usage, and the available free memory.
-By default, Substrate exposes many useful metrics on the `host:9615/metrics` endpoint. 
-For example, if Substrate is running locally, you can see the metrics on the http://localhost:9615/metrics endpoint. 
-This endpoint outputs metrics using a simple key-value format. 
+By default, Substrate exposes many useful metrics on the `host:9615/metrics` endpoint.
+For example, if Substrate is running locally, you can see the metrics on the http://localhost:9615/metrics endpoint.<!-- markdown-link-check-disable-line -->
+This endpoint outputs metrics using a simple key-value format.
 For example:
 
 ```text
@@ -127,14 +127,14 @@ susbtrate_block_height{status="best"} 136
 susbtrate_block_height{status="finalized"} 133
 ```
 
-By default, the [metrics](http://localhost:9615/metrics) endpoint is only be exposed on the local network interface.
+By default, the [metrics](http://localhost:9615/metrics) endpoint is only be exposed on the local network interface.<!-- markdown-link-check-disable-line -->
 However, you can expose it on all interfaces by using the `--prometheus-external` command-line option to start a node.
 
 ### Configure monitoring tools
 
 To set up monitoring and alerting policies, you typically configure a set of tools to create your own monitoring stack.
 For example, the default `metrics` endpoint doesn't include host metrics—such as CPU, memory, bandwidth usage—so you can complement it by installing the Prometheus [node_exporter](https://github.com/prometheus/node_exporter) on each host.
-The following diagram illustrates an open source set of tools that are often used as a monitoring stack. 
+The following diagram illustrates an open source set of tools that are often used as a monitoring stack.
 
 ![Monitoring stack layers](/media/images/docs/monitoring-stack.png)
 
@@ -153,8 +153,8 @@ For a simplified example of using Loki, see [Remote logging](/deploy/deployment-
 ### Change the telemetry server
 
 After you have configured the backend monitoring rules for your nodes, you can use the `--telemetry-url` command-line option when you start a node to specify the telemetry server that you want to send telemetry data to.
-You can pass this option multiple times to specify multiple telemetry endpoints. 
-If you specify the `--telemetry-url` command-line option, you must also specify how verbose metrics should be, with level 0 denoting the least verbose through level 9 denoting the most verbose. 
+You can pass this option multiple times to specify multiple telemetry endpoints.
+If you specify the `--telemetry-url` command-line option, you must also specify how verbose metrics should be, with level 0 denoting the least verbose through level 9 denoting the most verbose.
 
 For example, to specify your own telemetry server URL with a verbosity level of 5, you would run a command similar to the following:
 
@@ -167,7 +167,7 @@ For example, to specify your own telemetry server URL with a verbosity level of 
 
 For more information about the backend components for telemetry or configuring your own server, see [substrate-telemetry](https://github.com/paritytech/substrate-telemetry) or the [telemetry helm chart](https://github.com/paritytech/helm-charts/tree/main/charts/substrate-telemetry) for Kubernetes deployments.
 
-## Disable telemetry 
+## Disable telemetry
 
 Telemetry is enabled for all global chain nodes by default.
 You can use the `--no-telemetry` command-line option to prevent a node from connecting to the Substrate telemetry server.

@@ -25,23 +25,23 @@ To learn more about how to contribute, see the following topics:
 - [Before you contribute](#before-you-contribute)
 - [How to contribute](#how-to-contribute)
 - [What to contribute](#what-to-contribute)
-  
+
 ## Before you contribute
 
-Before contributing, please take a few minutes to review these contributor guidelines. 
+Before contributing, please take a few minutes to review these contributor guidelines.
 The contributor guidelines are intended to make the contribution process easy and effective for everyone involved in addressing your issue, assessing changes, and finalizing your pull requests.
 
 Before contributing, consider the following:
 
-* If you want to report an issue, click **Issues** and provide as much information about the problem as possible.
+- If you want to report an issue, click **Issues** and provide as much information about the problem as possible.
 
-* If you have a technical question or need help finding specific information, post your question on [Stack Exchange](https://substrate.stackexchange.com/).
- 
+- If you have a technical question or need help finding specific information, post your question on [Stack Exchange](https://substrate.stackexchange.com/).
+
 If you want to contribute directly to this repository, typical fixes might include any of the following:
 
-* Spelling, grammar, or typo fixes.
-* Code indentation, white space, or formatting changes.
-* Broken or missing links.
+- Spelling, grammar, or typo fixes.
+- Code indentation, white space, or formatting changes.
+- Broken or missing links.
 
 Note that any contribution to this repository must be submitted in the form of a **pull request**.
 Before you create a pull request, be sure that the pull request only implements one bug fix.
@@ -82,13 +82,13 @@ Here's a summary of what you need to do:
 4. Open the file you want to fix in a text editor and make the appropriate changes for the issue you are trying to address.
 
 5. Add the file contents of the changed files by running a command similar to the following:
-   
+
    ```text
    git add path-to-changed-file
    ```
 
 6. Commit your changes to store the contents you added along with a descriptive message by running a command similar to the following:
-   
+
    ```text
    git commit -m "Description of the fix being committed."
    ```
@@ -99,13 +99,13 @@ Here's a summary of what you need to do:
    git push origin my-initials/my-branch-name-here
    ```
 
-1. Click **Create pull request** to start a new pull request and provide any additional information about the changes you made.
-    
-    A maintainer will review your pull request and approve or request changes.
-    If no changes are required, the maintainer will merge your pull request.
-    If a maintainer requested changes or clarification, update your pull request and request another reviewer.
+8. Click **Create pull request** to start a new pull request and provide any additional information about the changes you made.
 
-1. When you see your changes have been merged, celebrate your success!
+   A maintainer will review your pull request and approve or request changes.
+   If no changes are required, the maintainer will merge your pull request.
+   If a maintainer requested changes or clarification, update your pull request and request another reviewer.
+
+9. When you see your changes have been merged, celebrate your success!
    🥂
 
 ## What to contribute
@@ -116,40 +116,40 @@ If you would like to contribute, you might be wondering “What is the differenc
 
 ### How-to guides
 
-A how-to guide describes how to achieve a goal or complete a task. 
-Only the information that is pertinent to achieving that goal or completing the task is included. 
+A how-to guide describes how to achieve a goal or complete a task.
+Only the information that is pertinent to achieving that goal or completing the task is included.
 With how-to guides, readers have enough information to know what they want to do—for example, open a bank account—but not necessarily enough information to know how to do it.
 For example, the how-to guide for opening a bank account wouldn't explain what a bank account is or why you might want to open one, but would focus on specific steps such as:
 
-1) Select an institution.
-2) Fill out an application.
-3) Deposit a minimum amount of currency.
- 
+1. Select an institution.
+2. Fill out an application.
+3. Deposit a minimum amount of currency.
+
 How-to guides often include links to additional information, but should not include explanations that take the focus away from what the reader wants to accomplish.
 For more information about writing _How-to_ guides, see the [Template - How-to guide](/community/template-how-to-guide) and the [Markdown template](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/contribute-templates/how-to-template.md).
 
 ### Tutorials
 
 A tutorial is a hands-on illustration or lesson that enables the reader to achieve a
-**highly-predictable** result. 
+**highly-predictable** result.
 Tutorials assume that readers have no prior knowledge on the subject being covered and that they require explicit guidance to complete each step to reach a **well-known** outcome.
 Typically, a tutorial is a guided tour that helps the reader complete one organic task from
-start to finish. 
+start to finish.
 There are no detours and the information should not be broken out into subtopics
 because the steps must be completed in order, not in a sequence of the reader’s choosing.
 
-The single most important aspect of a tutorial is that it should always result in a successful, expected outcome. 
-The successful outcome is what inspires confidence and delight in the reader. 
+The single most important aspect of a tutorial is that it should always result in a successful, expected outcome.
+The successful outcome is what inspires confidence and delight in the reader.
 The single most important distinction between a how-to guide and a tutorial is that, in a tutorial, the author decides what the goal should be and the author eliminates all distractions that would detract from the successful achievement of the goal.
 
 <!--
 ### Recommendations for writing how-to guides
 
-The Substrate Developer Hub is intended to provide a modular and extensible framework of resources for the Substrate developer community and broader ecosystem. 
-To achieve this goal, we want to make it easy for contributors to integrate new content that follows a few guiding principles and basic conventions for structure and style. 
+The Substrate Developer Hub is intended to provide a modular and extensible framework of resources for the Substrate developer community and broader ecosystem.
+To achieve this goal, we want to make it easy for contributors to integrate new content that follows a few guiding principles and basic conventions for structure and style.
 As a content creator, you should keep the following general principles in mind:
 
-- ◼️ Modularity. Each guide has a well-defined focus. 
+- ◼️ Modularity. Each guide has a well-defined focus.
   However, if information is useful in more than one guide, you can abstract it into a standalone topic and reuse it in multiple places.
 
 - 🔗 Linking. Guides should use links where they are useful—for example, to guide readers to
@@ -162,7 +162,7 @@ As a content creator, you should keep the following general principles in mind:
 ### Categories for how-to guides
 
 The How-to guides are grouped into categories to help keep them organized.
-The source files use tags to identify the categories that apply and the level of complexity for each guide. 
+The source files use tags to identify the categories that apply and the level of complexity for each guide.
 As a content contributor, you can also use tags to identify the level of complexity and the most appropriate category for your content.
 The current groupings reflect the different areas of development within Substrate:
 

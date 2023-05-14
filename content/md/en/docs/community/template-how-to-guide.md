@@ -31,7 +31,7 @@ You close the front matter section by typing three dashes on the line following 
 
 ### [Guide title]
 
-The guide title should summarize the goal of the article. 
+The guide title should summarize the goal of the article.
 For “how-to” guides, the title should complete the “How do I …?” sentence.
 For example, if the goal of the guide is to illustrate "How do I mint a token supply?," you can set the title in the front matter like this:
 
@@ -41,7 +41,7 @@ In general, you should keep titles short so they are easy to scan for keywords.
 
 ### [Guide description]
 
-The guide description is optional, but if you include it, use a single sentence to convey  any additional information about the content that the title doesn't convey.
+The guide description is optional, but if you include it, use a single sentence to convey any additional information about the content that the title doesn't convey.
 For example:
 
 `description: Illustrates how you can mint a token supply owned by a single account.`
@@ -132,5 +132,5 @@ For example, if you have a repository where you have tested the procedure you ar
 ## Related resources
 
 This section is optional.
-If you include it, add a bulleted list of links to similar guides, other Developer Hub resources, or related material. 
+If you include it, add a bulleted list of links to similar guides, other Developer Hub resources, or related material.
 For example, you might add links to other how-to guides, tutorials, or Rust docs.

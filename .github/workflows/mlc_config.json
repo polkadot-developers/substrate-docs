@@ -1,0 +1,11 @@
+{
+  "ignorePatterns": [
+    {
+      "pattern": ["^(?!httpsn?).*$"]
+    },
+    {
+      "pattern": "^/",
+      "replacement": "{{BASEURL}}/"
+    }
+  ]
+}

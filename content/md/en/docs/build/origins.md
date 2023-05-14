@@ -24,8 +24,8 @@ pub enum RawOrigin<AccountId> {
 - Signed: A transaction origin. This is signed by some on-chain account's private key and includes the account identifier of the signer. This allows the runtime to authenticate the source of a dispatch and subsequently charge transaction fees to the associated account.
 
 - None: A lack of origin. This needs to be agreed upon by the validators or validated by a module to
-  be included. 
-  This origin type is more complex because it is designed to bypass certain runtime mechanisms. 
+  be included.
+  This origin type is more complex because it is designed to bypass certain runtime mechanisms.
   For example, this origin type might be used to allow validators to insert data directly into a block.
 
 ## Origin call
