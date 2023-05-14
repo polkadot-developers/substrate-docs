@@ -14,9 +14,9 @@ How you implement and use accounts is entirely up to you as a blockchain or para
 ## Public and private keys
 
 In general, every account has an owner who possesses a public and private key pair.
-The **private key** is a cryptographically-secure sequence of randomly-generated numbers. 
+The **private key** is a cryptographically-secure sequence of randomly-generated numbers.
 For human readability, the private key generates a random sequence of words called a **secret seed phrase** or **mnemonic**.
-The secret seed phrase is important because it can be used to recover access to an account if the private key is lost. 
+The secret seed phrase is important because it can be used to recover access to an account if the private key is lost.
 
 For most networks, the **public key** associated with an account is how that account is identified on the network and some form of it is used as the destination address for transactions.
 However, Substrate-based chains use the underlying public key to derive one or more **public addresses**.
@@ -30,11 +30,11 @@ The SS58 address format is an enhanced version of [base-58 encoding](https://dat
 The important characteristics of the SS58 address format include:
 
 - Encoded addresses consist of 58 alphanumeric characters, resulting in a shorter and more identifiable address than a hex-encoded address.
-- Addresses don't use characters that can be difficult to distinguish from each other in a string. 
+- Addresses don't use characters that can be difficult to distinguish from each other in a string.
   For example, the characters `0`, `O`, `I`, and `l` aren't used in SS58 addresses.
 - Addresses can include a network-specific prefixes so you can use the same public key to derive addresses for different chains.
 - Addresses can use derivation paths to create multiple addresses from the same public key so you can use different addresses for different purposes.
-   For example, you can create sub-accounts for separating funds or executing specific types of transactions.
+  For example, you can create sub-accounts for separating funds or executing specific types of transactions.
 - Addresses can be verified using a checksum to prevent input errors.
 
 ### Inspecting network-specific addresses
@@ -42,10 +42,10 @@ The important characteristics of the SS58 address format include:
 Because a single public key can be used to derive addresses for different Substrate chains, a single account can have multiple chain-specific addresses.
 For example, if you inspect the addresses for the `alice` account public key `0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d` depends on the chain-specific address type.
 
-| Chain address type | Address |
-| ------------------ | ------- |
-| Polkadot (SS58) | 15oF4uVJwmo4TdGW7VfQxNLavjCXviqxT9S1MgbjMNHr6Sp5 |
-| Kusama (SS58) | HNZata7iMYWmk5RvZRTiAsSDhV8366zq2YGb3tLH5Upf74F  |
+| Chain address type             | Address                                          |
+| ------------------------------ | ------------------------------------------------ |
+| Polkadot (SS58)                | 15oF4uVJwmo4TdGW7VfQxNLavjCXviqxT9S1MgbjMNHr6Sp5 |
+| Kusama (SS58)                  | HNZata7iMYWmk5RvZRTiAsSDhV8366zq2YGb3tLH5Upf74F  |
 | Generic Substrate chain (SS58) | 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY |
 
 ### Registering for a network-specific address
@@ -78,19 +78,19 @@ As a flexible and module framework for blockchain development, Substrate itself 
 However, different chains can implement different rules for how accounts and the keys that control them are used.
 For example, you might implement specialized accounts if your application requires:
 
--  custom cryptographic schemes
--  complex or multi-user signing rules
--  restricted access to specific functions
--  restricted access to specific pallets
+- custom cryptographic schemes
+- complex or multi-user signing rules
+- restricted access to specific functions
+- restricted access to specific pallets
 
 In most cases, specialized accounts are implemented in the context of a specific FRAME pallet, either in a prebuilt pallet like [Staking](https://paritytech.github.io/substrate/master/pallet_staking/index.html) or [Multisig](https://paritytech.github.io/substrate/master/pallet_multisig/index.html) or in custom pallets that you design.
 
 For example, the Staking pallet takes an originating FRAME system account that wants to put up a bond and generates the **stash** and **controller** account abstractions to identify the account required to perform specific operations.
-You can see the implementation of these account abstractions in the Polkadot ecosystem. However, you can use the same framework to implement different account rules or account types or as inspiration for a custom pallet with its own account abstractions. 
+You can see the implementation of these account abstractions in the Polkadot ecosystem. However, you can use the same framework to implement different account rules or account types or as inspiration for a custom pallet with its own account abstractions.
 
 ### Multi-signature accounts
 
-Typically, an account has one and only one owner and that owner holds the private key for signing transactions. 
+Typically, an account has one and only one owner and that owner holds the private key for signing transactions.
 The Multisig pallet enables you to configure a specialized account for executing transactions that multiple account owners must approve.
 The multisig account is an address that has a public key, but no private key.
 The public address for the multisig account is derived from a deterministic list of the authorized account signatories and an associated transaction request block height and extrinsic index identifier.
@@ -102,15 +102,15 @@ Any account holder can specify the accounts that are allowed to approve a multi-
 
 The Proxy pallet provides another way you can configure specialized accounts for a Substrate-based chain using FRAME.
 With proxy accounts, primary account owners can designate one or more other accounts to act on their behalf.
-Proxy accounts can be used to add a layer of security by isolating primary account funds from accounts assigned to specific roles that can complete tasks on behalf of the primary account. 
+Proxy accounts can be used to add a layer of security by isolating primary account funds from accounts assigned to specific roles that can complete tasks on behalf of the primary account.
 
 By configuring one or more proxy account, an account owner can do the following:
 
 - Specify up to a maximum number of proxy accounts that are allowed to submit transactions on behalf of a primary account owner.
 - Configure time delays for transactions to be executed by each proxy.
-- Set restrictions on the types of transactions that each proxy can issue. 
+- Set restrictions on the types of transactions that each proxy can issue.
 - Announce transactions that are to be executed by a proxy before the transactions are executed.
-- Cancel or reject announced transactions that are to be executed by a proxy. 
+- Cancel or reject announced transactions that are to be executed by a proxy.
 - Create anonymous—pure proxy—accounts that have no private key and can act without account ownership through their own configured proxies.
 
 #### Runtime implementation

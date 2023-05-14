@@ -36,12 +36,12 @@ As you are writing the logic for your chain, you should pay particular attention
 - [Offchain workers](#offchain-workers)
 - [Storage](#storage)
 - [Events](#events)
-  
+
 ### Benchmarks
 
 The Substrate benchmarking system is designed to help you determine the appropriate weight to assign to the functions in your pallets.
 Setting an appropriate weight is a critical step to ensure that your blockchain is reliable and secure.
-Although you can skip benchmarking and setting weights for transactions in the early phases of development, you should be aware that using a weight of zero makes your code vulnerable to attack.  
+Although you can skip benchmarking and setting weights for transactions in the early phases of development, you should be aware that using a weight of zero makes your code vulnerable to attack.
 If there are no transaction fees associated with the execution of a function, a malicious actor could call the function repeatedly—essentially spamming the network with transactions—to halt the chain in a denial of service (DoS) attack.
 
 In general, you should ensure that all functions that can be executed in the runtime have a weight defined and subtract a corresponding fee from a calling account.
@@ -58,7 +58,7 @@ In Substrate, there are two ways that one pallet can call the functions in anoth
 - **Loose pallet coupling** is more flexible and most often used when one pallets depends on specific traits or function interfaces an interface that another pallet exposes.
 
 Tight pallet coupling requires both pallets to be installed in the runtime and the pallets can't be used independently.
-In addition, tightly-coupled pallets can be harder to maintain because changes in one pallet often require changes in the other pallet. 
+In addition, tightly-coupled pallets can be harder to maintain because changes in one pallet often require changes in the other pallet.
 In most cases, loose coupling is more flexible solution because you can reuse types and interfaces from another pallet without including that pallet in the runtime.
 
 For more information about tight and loose pallet coupling, see [Pallet coupling](/build/pallet-coupling/) and this [code example](https://substrate.stackexchange.com/questions/922/pallet-loose-couplingtight-coupling-and-missing-traits?rq=1).
@@ -104,7 +104,7 @@ Being conscious of the time required to iterate over items in a storage map is p
 If the time required to iterate over storage exceeds the maximum time allowed for block production, the blockchain will stop producing blocks and thus stop working.
 
 In general, you should avoid having unbounded data in storage maps and avoid iterating over storage maps that store a large data set.
-You should use benchmarks to test the performance of all functions in the runtime under different conditions, including iterating over a large number of items in a list or storage map. 
+You should use benchmarks to test the performance of all functions in the runtime under different conditions, including iterating over a large number of items in a list or storage map.
 By testing for specific conditions—for example, triggering a function to execute over a large data set with many iteractions—benchmarks can help you identify when it's best to enforce boundaries by limiting the number of elements in a list or the number of iterations in a loop.
 
 For more guidelines about storage and storage structures, see [State transitions and storage](/learn/state-transitions-and-storage) and [Runtime storage](/build/runtime-storage/).
@@ -121,15 +121,15 @@ In custom pallets, you can define the following event-related information:
 - The conditions for emitting the event.
 
 In general, events inform users or applications such as a block explorer that a change occurred.
-Events aren't intended to describe differences in state or to contain detailed information. 
-You should use caution in adding more information to an event than is needed because additional information increases storage and computational overhead involved in producing events. 
+Events aren't intended to describe differences in state or to contain detailed information.
+You should use caution in adding more information to an event than is needed because additional information increases storage and computational overhead involved in producing events.
 If additional information about a change is needed, users can query the chain state.
 
 For information about adding events to a custom pallet, see [Declaring an event](/build/events-and-errors/#declaring-an-event).
 
 ## Unsafe or insecure patterns
 
-Secure operations and coding principles are critical for ensuring data integrity and the viability of a blockchain. 
+Secure operations and coding principles are critical for ensuring data integrity and the viability of a blockchain.
 There are several common unsafe or insecure coding practices that can introduce errors or make you chain vulnerable to attack if not handled correctly.
 As you are writing the logic for your chain, you should pay particular attention to the following potential trouble spots:
 
@@ -140,15 +140,15 @@ As you are writing the logic for your chain, you should pay particular attention
 
 ### Error handling
 
-Runtime code should explicitly and gracefully handle all error cases. 
+Runtime code should explicitly and gracefully handle all error cases.
 In general, you shouldn't use the `panic!` macro for error handling except in tests and benchmarks.
-Functions in the runtime should never generate a panic and must not throw errors. 
+Functions in the runtime should never generate a panic and must not throw errors.
 Only bugs detected by the compiler should generate unrecoverable panic errors.
 
 In Rust, you should write functions that use the `Result` type to return errors with the `Err` variant. The `Result` type with the `Err` variant allows the function to indicate failed execution without panicking.
 As a best practice, you should have many individual and specific error messages to make it easier it to diagnose problems.
 
-You should also be aware that using `unwrap()` in the runtime with the `Result` type can generate undefined behavior. 
+You should also be aware that using `unwrap()` in the runtime with the `Result` type can generate undefined behavior.
 Instead of using `unwrap()`, try using `ok_or`, `unwrap_or`, `ensure` or returning `Err` in a matching pattern.
 For example:
 
@@ -167,7 +167,7 @@ For more information about error handling in pallets, see [Error pallet attribut
 ### Unsafe math: Floating point numbers
 
 Blockchains require deterministic operations to ensure that independent nodes can reach consensus reliably.
-Because floating point numbers can lead to non-deterministic results, you should avoid operations involving floating point numbers and always use fixed point arithmetic in the runtime. 
+Because floating point numbers can lead to non-deterministic results, you should avoid operations involving floating point numbers and always use fixed point arithmetic in the runtime.
 Substrate provides primitives for use fixed point arithmetic in the [`sp_arithmetic`](https://paritytech.github.io/substrate/master/sp_arithmetic/index.html) crate.
 
 You can use specific **Per** methods to represent a part of a whole depending on the precision you need.
@@ -184,7 +184,7 @@ Note that using higher resolution requires data types with higher sizes, so havi
 Overflows happen if the computed value of data to be returned exceeds the limits of its defined data type.
 There are two ways you can handle data overflows: use of saturating methods or handle the case of an invalid value using checked arithmetic operations.
 
-- Use `saturating` methods. 
+- Use `saturating` methods.
   If the result of an operation would be too large for the type, `saturating` methods return the maximum value of the type.
   If the result would be too small, `saturating` methods return the minimum value of the type.
   For more information, see [Saturating](https://doc.rust-lang.org/std/num/struct.Saturating.html).
@@ -197,7 +197,7 @@ There are two ways you can handle data overflows: use of saturating methods or h
 
 As noted in [Runtime storage](/build/runtime-storage/) and [Storage](#storage), it's important to minimize the number and size of the data items you store to ensure the chain is performant and secure.
 Using Vec data types without setting bounds for size makes your chain vulnerable to both intentional and unintentional misuse of the limited resources available.
-For example, a malicious actor or an end-user acting without restrictions could add unlmited data and overwhelm your storage capacity, leading to undefined behavior in the runtime. 
+For example, a malicious actor or an end-user acting without restrictions could add unlmited data and overwhelm your storage capacity, leading to undefined behavior in the runtime.
 In general, any storage item with its size determined by user action should have a bound on it.
 
 The following code illustrates an unbounded `Vec` data type:
@@ -212,7 +212,7 @@ For safer code, replace the `Vec` data type with the `BoundedVec` data type:
 type Proposal<T: Config> = StorageMap<_, Blake2_128Concat, T::Hash, BoundedVec<T::Hash, ValueQuery>;
 ```
 
-By default, all pallet storage items are limited by the bound defined in the `pallet_prelude::MaxEncodedLen` attribute. 
+By default, all pallet storage items are limited by the bound defined in the `pallet_prelude::MaxEncodedLen` attribute.
 The `#[pallet::without_storage_info]` attribute macro allows you to override this default behavior if you require unbounded storage for an entire pallet.
 For example:
 
@@ -224,18 +224,19 @@ pub struct Pallet<T>(_);
 ```
 
 This macro applies to all storage items in your pallet, so you should only use it in a test or development environment.
-You should never use the `#[pallet::without_storage_info]` macro in production. 
-By removing this macro after testing, you can ensure that your pallet follows the default behavior. 
+You should never use the `#[pallet::without_storage_info]` macro in production.
+By removing this macro after testing, you can ensure that your pallet follows the default behavior.
 If necessary, you can use the `#[pallet::unbounded]` attribute macro to declare a specific storage item as unbounded.
 
 For more information about limiting storage using `BoundedVec` data types, see [Create bounds](/build/runtime-storage/#create-bounds) and [BoundedVec](https://crates.parity.io/frame_support/storage/bounded_vec/struct.BoundedVec.html).
-For more information about pallet macros, see [FRAME macros](reference/frame-macros/).
+For more information about pallet macros, see [FRAME macros](/reference/frame-macros/).
 
 ### Secure hashing algorithms
 
 Substrate provides the following hashing algorithms by default:
+
 - `xxHash` is a fast hashing function, but it is not cryptographically secure.
-  With this hashing algorithm, hash collisions—in which different inputs hash to the same output—are possible. 
+  With this hashing algorithm, hash collisions—in which different inputs hash to the same output—are possible.
   You should only use this hashing algorithm in functions that aren't available to outside entities that could try to manipulate the input and attack the system.
 - `Blake2` is a relatively fast cryptographic hashing function.
   In most cases, you can use the Blake2 hashing algorithm in any situations where security matters. However, Substrate can support any hash algorithm that implements the `Hasher` trait.
@@ -259,22 +260,22 @@ For more information about using benchmarks and calculating weight, see [Benchma
 
 ### Insecure randomness
 
-Randomness is used in many different applications on blockchains. 
+Randomness is used in many different applications on blockchains.
 Substrate provides two default implementations of randomness.
 
-- The [insecure randomness collective flip](https://paritytech.github.io/substrate/master/pallet_insecure_randomness_collective_flip/index.html) pallet generates random values based on the block hashes from the previous 81 blocks.  
+- The [insecure randomness collective flip](https://paritytech.github.io/substrate/master/pallet_insecure_randomness_collective_flip/index.html) pallet generates random values based on the block hashes from the previous 81 blocks.
   This pallet can be useful when defending against weak adversaries or in low-security situations like testing.
   For example, you can use this pallet when testing randomness-consuming pallets.
-  You should never use this pallet in production as a true source of randomness. 
+  You should never use this pallet in production as a true source of randomness.
 
-- The [BABE](https://paritytech.github.io/substrate/master/pallet_babe/index.html) pallet uses verifiable random functions (VRF) to implement a more secure version of randomness. 
+- The [BABE](https://paritytech.github.io/substrate/master/pallet_babe/index.html) pallet uses verifiable random functions (VRF) to implement a more secure version of randomness.
   This pallet provides production-grade randomness.
-  However, it isn't suite for every purpose. 
+  However, it isn't suite for every purpose.
   For example, the randomness provided by the BABE pallet isn't suitable for gambling applications.
 
 As alternative to these pallets, you can use an oracle as a secure source of randomness.
 
-For more information about using randomness, see [Randomness](build/randomness/) and [Incorporate randomness](/reference/how-to-guides/pallet-design/incorporate-randomness/).
+For more information about using randomness, see [Randomness](/build/randomness/) and [Incorporate randomness](/reference/how-to-guides/pallet-design/incorporate-randomness/).
 
 ## Anti-patterns
 
@@ -283,7 +284,7 @@ There are several coding patterns that you might be inclined to follow that fall
 
 ### Don't dispatch a function to read from storage
 
-In Substrate, you shouldn't use a dispatchable function call to read an item from storage. 
+In Substrate, you shouldn't use a dispatchable function call to read an item from storage.
 Instead, you should either define a `getter` macro for the storage item or to use an RPC method.
 For example, assume you have the following storage map:
 

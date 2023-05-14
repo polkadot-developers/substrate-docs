@@ -149,7 +149,7 @@ To review the `Config` trait for the Balances pallet:
 
    /// Existential deposit.
    pub const EXISTENTIAL_DEPOSIT: u128 = 500;
-   
+
    impl pallet_balances::Config for Runtime {
       type MaxLocks = ConstU32<50>;
       type MaxReserves = ();
@@ -231,7 +231,7 @@ To implement the `nicks` pallet in your runtime:
    ```
 
 1. Save your changes and close the file.
-   
+
 2. Check that the new dependencies resolve correctly by running the following command:
 
    ```bash
@@ -274,7 +274,7 @@ To start the local Substrate node:
 
 ## Start the front-end template
 
-Now that you have added a new pallet to your runtime, you can use the [Substrate front-end template](https://docs.substrate.io/tutorials/build-a-blockchain/build-local-blockchain/#install-the-front-end-template) to interact with the node template and access the Nicks pallet.
+Now that you have added a new pallet to your runtime, you can use the [Substrate front-end template](/tutorials/build-a-blockchain/build-local-blockchain/#install-the-front-end-template) to interact with the node template and access the Nicks pallet.
 
 To start the front-end template:
 

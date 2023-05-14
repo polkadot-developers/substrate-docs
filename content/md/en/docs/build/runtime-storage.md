@@ -51,26 +51,26 @@ Because this signatory list is [necessary to come to consensus](#what-to-store) 
 ## Transactional storage
 
 As explained in [State transitions and storage](/learn/state-transitions-and-storage/), runtime storage involves an underlying key-value database and in-memory storage overlay abstractions that keep track of keys and state changes until the values are committed to the underlying database.
-By default, functions in the runtime write changes to a single in-memory **transactional storage layer** before committing them to the main storage overlay. 
+By default, functions in the runtime write changes to a single in-memory **transactional storage layer** before committing them to the main storage overlay.
 If an error prevents the transaction from being completed, the changes in the transactional storage layer are discarded instead of being passed on to the main storage overlay and state in the underlying database remains unchanged.
 
 ### Adding transactional storage layers
 
-You can extend the transactional storage layer by using the `#[transactional]` macro to spawn additional in-memory storage overlays. 
-By spawning additional in-memory transactional storage overlays, you can choose whether you want to commit specific changes to the main storage overlay or not. 
+You can extend the transactional storage layer by using the `#[transactional]` macro to spawn additional in-memory storage overlays.
+By spawning additional in-memory transactional storage overlays, you can choose whether you want to commit specific changes to the main storage overlay or not.
 The additional transactional storage layers give you the flexibility to isolate changes to specific function calls and select at any point which changes to commit.
 
-You can also nest transactional storage layers up to a maximum of ten nested transactional layers. 
+You can also nest transactional storage layers up to a maximum of ten nested transactional layers.
 With each nested transactional storage layer you create, you can choose whether you want to commit changes to the transactional layer below it, giving you a great deal of control over what is committed to the underlying database.
-Limiting the total number of nested transactional  storage layers limits the computational overhead in resolving the changes to be committed.
+Limiting the total number of nested transactional storage layers limits the computational overhead in resolving the changes to be committed.
 
-### Dispatching transactional storage layer call 
+### Dispatching transactional storage layer call
 
 If you want to dispatch a function call within its own transactional layer, you can use the `dispatch_with_transactional(call)` function to explicitly spawn a new transactional layer for the call and use that transactional layer context to handle the result.
 
 ### Committing changes without the transactional storage layer
 
-If you want to commit changes to the main storage overlay without using the default  transactional storage layer, you can use the `#[without_transactional]` macro. 
+If you want to commit changes to the main storage overlay without using the default transactional storage layer, you can use the `#[without_transactional]` macro.
 The `#[without_transactional]` macro enables you to identify a function that is safe to be executed without its own transactional layer.
 
 For example, you might define a function like this:
@@ -93,7 +93,7 @@ If an error occurs after you have modified storage, those changes will persist, 
 ## Accessing runtime storage
 
 In [State transitions and storage](/learn/state-transitions-and-storage/), you learned how Substrate uses storage abstractions to provide read and write access to the underlying key-value database.
-The FRAME [`Storage`](https://paritytech.github.io/substrate/master/frame_support/storage) module simplifies access to these layered storage abstractions. 
+The FRAME [`Storage`](https://paritytech.github.io/substrate/master/frame_support/storage) module simplifies access to these layered storage abstractions.
 You can use the FRAME storage data structures to read or write any value that can be encoded by the [SCALE codec](/reference/scale-codec/).
 The storage module provides the following types of storage structures:
 
@@ -101,29 +101,29 @@ The storage module provides the following types of storage structures:
 - [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html) to store a single key to value mapping, such as a specific account key to a specific balance value.
 - [StorageDoubleMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageDoubleMap.html) to store values in a storage map with two keys as an optimization to efficiently remove all entries that have a common first key.
 - [StorageNMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageNMap.html) to store values in a map with any arbitrary number of keys.
-  
-You can include any of these storage structures in pallets to introduce new storage items that will become part of the blockchain state. 
+
+You can include any of these storage structures in pallets to introduce new storage items that will become part of the blockchain state.
 The type of storage items you choose to implement depends entirely on how you want to use the information in the context of the runtime logic.
 
 ## Simple storage values
 
-You can use `StorageValue` storage items for values that are viewed as a single unit by the runtime. 
+You can use `StorageValue` storage items for values that are viewed as a single unit by the runtime.
 For example, you should use this type of storage for the following common use cases:
 
 - Single primitive values
 - Single `struct` data type objects
 - Single collection of related items
-  
+
 If you use this type of storage for lists of items, you should be conscious about the size of the lists you store.
-Large lists and `structs` incur storage costs and iterating over a large list or `struct` in the runtime can affect network performance or stop block production entirely. 
+Large lists and `structs` incur storage costs and iterating over a large list or `struct` in the runtime can affect network performance or stop block production entirely.
 If iterating over storage exceeds the block production time and your project is a [parachain](/reference/glossary/#parachain), the blockchain will stop producing blocks and functioning.
 
 Refer to the [StorageValue](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html#required-methods) documentation for a comprehensive list of methods that StorageValue exposes.
 
 ## Single key storage maps
 
-Map data structures are ideal for managing sets of items whose elements will be accessed randomly, as opposed to iterating over them sequentially in their entirety. 
-Single key storage maps in Substrate are similar to traditional [hash maps](https://en.wikipedia.org/wiki/Hash_table) with key-to-value mapping to perform random lookups. 
+Map data structures are ideal for managing sets of items whose elements will be accessed randomly, as opposed to iterating over them sequentially in their entirety.
+Single key storage maps in Substrate are similar to traditional [hash maps](https://en.wikipedia.org/wiki/Hash_table) with key-to-value mapping to perform random lookups.
 To give you flexibility and control, Substrate allows you to select the hashing algorithm you want to use to generate the map keys.
 For example, if a map stores sensitive data you might want to generate keys using a hashing algorithm with stronger encryption over a hashing algorithm with better performance but weaker encryption properties.
 For more information about selecting a hashing algorithm for a map to use, see [Hashing algorithms](#hashing-algorithms).
@@ -144,10 +144,10 @@ Refer to the [StorageNMap documentation](https://paritytech.github.io/substrate/
 
 ## Iterating over storage maps
 
-You can iterate over Substrate storage maps using the map keys and values. 
+You can iterate over Substrate storage maps using the map keys and values.
 However, it's important to keep in mind that maps are often used to track unbounded or very large sets of data, such as accounts and balances.
 Iterating over a large data set can consume a lot of the limited resources you have available for producing blocks.
-For example, if the time it takes to iterate over a data set exceeds the maximum time allocated for producing blocks,  the runtime might stop producing new blocks, halting the progress of the chain.
+For example, if the time it takes to iterate over a data set exceeds the maximum time allocated for producing blocks, the runtime might stop producing new blocks, halting the progress of the chain.
 In addition, the database reads required to access the elements in a storage map far exceeds the database reads required to access the elements in a list.
 Therefore, it is significantly more costly—in terms of performance and execution time—to iterate over the elements in a storage map than to read the elements in a list.
 
@@ -156,15 +156,15 @@ However, there are no firm rules about how you use Substrate storage capabilitie
 
 Substrate provides the following methods to enable you to iterate over storage maps:
 
-| Method | Description
-| ------ | -----------
-| `iter()` | Enumerates all elements in the map in no particular order. If you alter the map while doing this, you'll get undefined results. For more information, see [`IterableStorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.iter), [`IterableStorageDoubleMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter), or [`IterableStorageNMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageNMap.html#tymethod.iter).
-| `drain()` | Removes all elements from the map and iterate through them in no particular order. If you add elements to the map while doing this, you'll get undefined results. For more information, see [`IterableStorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain), [`IterableStorageDoubleMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain), [`IterableStorageNMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageNMap.html#tymethod.drain).
-| `translate()` | Translates all elements of the map in no particular order. To remove an element from the map, return `None` from the translation function. For more information, see [`IterableStorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate), [`IterableStorageDoubleMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.translate), [`IterableStorageNMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageNMap.html#tymethod.translate).
+| Method        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `iter()`      | Enumerates all elements in the map in no particular order. If you alter the map while doing this, you'll get undefined results. For more information, see [`IterableStorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.iter), [`IterableStorageDoubleMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter), or [`IterableStorageNMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageNMap.html#tymethod.iter).                                   |
+| `drain()`     | Removes all elements from the map and iterate through them in no particular order. If you add elements to the map while doing this, you'll get undefined results. For more information, see [`IterableStorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain), [`IterableStorageDoubleMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain), [`IterableStorageNMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageNMap.html#tymethod.drain). |
+| `translate()` | Translates all elements of the map in no particular order. To remove an element from the map, return `None` from the translation function. For more information, see [`IterableStorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate), [`IterableStorageDoubleMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.translate), [`IterableStorageNMap`](https://paritytech.github.io/substrate/master/frame_support/storage/trait.IterableStorageNMap.html#tymethod.translate).            |
 
 ## Declaring storage items
 
-You can create runtime storage items with the[`#[pallet::storage]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#storage-palletstorage-optional) attribute macro in any FRAME-based pallet. 
+You can create runtime storage items with the[`#[pallet::storage]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#storage-palletstorage-optional) attribute macro in any FRAME-based pallet.
 The following examples illustrate how to declare different types of storage items.
 
 ### Single storage value
@@ -172,8 +172,8 @@ The following examples illustrate how to declare different types of storage item
 ```rust
 #[pallet::storage]
 type SomePrivateValue<T> = StorageValue<
-    _, 
-    u32, 
+    _,
+    u32,
     ValueQuery
 >;
 
@@ -191,9 +191,9 @@ pub(super) type SomeComplexValue<T: Config> = StorageValue<_, T::AccountId, Valu
 #[pallet::storage]
 #[pallet::getter(fn some_map)]
 pub(super) type SomeMap<T: Config> = StorageMap<
-    _, 
-    Blake2_128Concat, T::AccountId, 
-    u32, 
+    _,
+    Blake2_128Concat, T::AccountId,
+    u32,
     ValueQuery
 >;
 ```
@@ -203,10 +203,10 @@ pub(super) type SomeMap<T: Config> = StorageMap<
 ```rust
 #[pallet::storage]
 pub(super) type SomeDoubleMap<T: Config> = StorageDoubleMap<
-    _, 
-    Blake2_128Concat, u32, 
-    Blake2_128Concat, T::AccountId, 
-    u32, 
+    _,
+    Blake2_128Concat, u32,
+    Blake2_128Concat, T::AccountId,
+    u32,
     ValueQuery
 >;
 ```
@@ -237,7 +237,6 @@ When you declare a storage item, you can specify how queries should handle the r
 In the storage declaration, you specify the following:
 
 - [`OptionQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.OptionQuery.html) to query an optional value from storage and return `Some` if storage contains a value or `None` if there's no value is in storage.
-  
 - [`ResultQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.ResultQuery.html) to query a result value from storage and return an error if there's no value is in storage.
 
 - [`ValueQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.ValueQuery.html) to query a value from storage and return the value.

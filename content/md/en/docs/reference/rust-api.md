@@ -65,8 +65,8 @@ Use the following links to explore Substrate primitive libraries (`sp_*`).
 
 Use the following links to explore other libraries.
 
+- [`kitchensink_runtime`](https://paritytech.github.io/substrate/master/kitchensink_runtime)
 - [`node_primitives`](https://paritytech.github.io/substrate/master/node_primitives/index.html)
 - [`node_rpc`](https://paritytech.github.io/substrate/master/node_rpc/index.html)
-- [`node_runtime`](https://paritytech.github.io/substrate/master/node_runtime/)
 - [`node_template`](https://paritytech.github.io/substrate/master/node_template/index.html)
 - [`node_template_runtime`](https://paritytech.github.io/substrate/master/node_template_runtime/index.html)

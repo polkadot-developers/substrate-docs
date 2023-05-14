@@ -104,7 +104,7 @@ To install the contracts node on macOS or Linux:
 
 1. Open the downloaded file and extract the contents to a working directory.
 
-If you can't download the precompiled node, you can compile it locally with a command similar to the following. 
+If you can't download the precompiled node, you can compile it locally with a command similar to the following.
 You can find the latest tag on the [Releases](https://github.com/paritytech/substrate-contracts-node/releases) page:
 
 ```bash
@@ -163,8 +163,7 @@ This contract has one function — `flip()` — that changes a Boolean variable 
 The `lib.rs` file also contains two functions for testing that the contract works as expected.
 
 As you progress through the tutorial, you'll modify different parts of the starter code.
-By the end of the tutorial, you'll have a more advanced smart contract that looks like the
-[Flipper example](https://github.com/paritytech/ink/blob/master/examples/flipper/lib.rs).
+By the end of the tutorial, you'll have a more advanced smart contract - See more examples [here](https://use.ink/examples/smart-contracts/).
 
 To explore the default project files:
 
@@ -262,7 +261,7 @@ To build the WebAssembly for this smart contract:
 
 ## Start the Substrate Contracts Node
 
-If you have [successfully installed the  `substrate-contracts-node`](tutorials/smart-contracts/prepare-your-first-contract/#install-the-substrate-contracts-node),
+If you have [successfully installed the  `substrate-contracts-node`](/tutorials/smart-contracts/prepare-your-first-contract/#install-the-substrate-contracts-node),
 it's time to start a local node.
 
 1. Start the contracts node in local development mode by running the following command:

@@ -9,7 +9,7 @@ keywords:
   - network operations
 ---
 
-Moving a project from a test network into production requires a clear view of your infrastructure and network operations. 
+Moving a project from a test network into production requires a clear view of your infrastructure and network operations.
 The topics in this section are intended to provide some guidance on how to deploy a parachain and how to prepare for network maintenance after you deploy.
 Before diving into specific deployments options and operations, however, there are a few important considerations that should act as the foundation for your deployment process.
 At a high level, you should apply the following general principles throughout all phases of your network deployment:
@@ -20,7 +20,7 @@ At a high level, you should apply the following general principles throughout al
 
 ## Build a code-driven infrastructure
 
-As a general rule, you should take an infrastructure-as-code approach to your deployment planning and preparation. 
+As a general rule, you should take an infrastructure-as-code approach to your deployment planning and preparation.
 All of the infrastructure components used to deploy the network should be written in code and managed through a version control system.
 
 Following an infrastructure-as-code process helps to ensure that:
@@ -44,7 +44,7 @@ Having strict access control rules and blocking any non-required communication i
 
 ## Build security into chain operations
 
-In addition to the infrastructure that your network relies on, it's important to keep on-chain operations as secure as possible. 
+In addition to the infrastructure that your network relies on, it's important to keep on-chain operations as secure as possible.
 For example, by setting up your chain to use cold, warm, and hot keys, you can limit the damage that the compromise of a session key could do.
 The following diagram illustrates using keys for different operations to help prevent funds from being stolen.
 

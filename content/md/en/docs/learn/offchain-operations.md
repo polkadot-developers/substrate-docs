@@ -11,19 +11,21 @@ Although using oracles is one approach to working with offchain data sources, th
 To make the offchain data integration more secure and efficient, Substrate supports offchain operations through the following features:
 
 - **Offchain workers** are a subsystem of components that enable the execution of long-running and possibly non-deterministic tasks, such as:
+
   - website service requests
   - encryption, decryption, and signing of data
   - random number generation
   - CPU-intensive computations
   - enumeration or aggregation of on-chain data
-  
+
   Offchain workers enable you to move tasks that might require more time to execute than allowed out of the block processing pipeline.
   Any task that might take longer than the maximum block execution time allowed is a reasonable candidate for offchain processing.
 
 - **Offchain storage** is storage that is local to a Substrate node and can be accessed by both offchain workers and on-chain logic:
+
   - Offchain workers have both read and write access to offchain storage.
   - On-chain logic has write access through offchain indexing but doesn't have read access.
-  The offchain storage allows different worker threads to communicate with each other and to store user-specific or node-specific data that does not require consensus over the whole network.
+    The offchain storage allows different worker threads to communicate with each other and to store user-specific or node-specific data that does not require consensus over the whole network.
 
 - **Offchain indexing** is an optional service that allows the runtime to write directly to the offchain storage independently from offchain workers.
   The offchain index provides temporary storage for on-chain logic and complements the on-chain state.
@@ -63,7 +65,7 @@ Offchain storage is always local to a Substrate node and is not shared on-chain 
 You can access the data stored in the offchain storage using offchain worker threads that have read and write access or through the on-chain logic using offchain indexing.
 
 Because an offchain worker thread is spawned during each block import, there can be multiple offchain worker threads running at any given time.
-As with any multi-threaded programming environment, there are  utilities to [mutex lock](<https://en.wikipedia.org/wiki/Lock_(computer_science)>) the offchain storage when offchain worker threads access it to ensure data consistency.
+As with any multi-threaded programming environment, there are utilities to [mutex lock](<https://en.wikipedia.org/wiki/Lock_(computer_science)>) the offchain storage when offchain worker threads access it to ensure data consistency.
 
 Offchain storage serves as a bridge for offchain worker threads to communicate to each other and for communication between offchain and on-chain logic.
 It can also be read using remote procedure calls (RPC) so it fits the use case of storing indefinitely growing data without over-consuming the on-chain storage.
@@ -74,7 +76,7 @@ In the context of a blockchain, storage is most often concerned with the on-chai
 However, on-chain state is expensive because it must be agreed upon and populated to multiple nodes in the network.
 Therefore, you shouldn't store historical or user-generated data—which grow indefinitely over time—using on-chain storage.
 
-To address the need to access historical or user-generated data, Substrate provides access to the offchain storage  using offchain indexing.
+To address the need to access historical or user-generated data, Substrate provides access to the offchain storage using offchain indexing.
 Offchain indexing allows the runtime to write directly to the offchain storage without using offchain worker threads.
 You can enable this functionality to persist data by starting a Substrate node with the `--enable-offchain-indexing` command-line option.
 

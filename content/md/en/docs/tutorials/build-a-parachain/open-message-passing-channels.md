@@ -12,11 +12,11 @@ keywords:
 In the Polkadot ecosystem, chains can communicate with each other by passing messages over secure channels.
 There are three main communication channels:
 
-- Upward message passing (UMP) to enable a parachain to pass messages up to its relay chain. 
-- Downward message passing (DMP) to enable the relay chain to pass messages down to a parachain. 
+- Upward message passing (UMP) to enable a parachain to pass messages up to its relay chain.
+- Downward message passing (DMP) to enable the relay chain to pass messages down to a parachain.
 - Cross-consensus message passing (XCMP) to enable parachains to send messages to each other.
 
-Horizontal relay-routed message passing (HRMP) is an interim version of cross-consensus message passing (XCMP). 
+Horizontal relay-routed message passing (HRMP) is an interim version of cross-consensus message passing (XCMP).
 This interim solution—also sometimes referred to as XCMP-Lite—provides the same functionality as XCMP but stores all of the messages passed between chains in the relay chain storage.
 
 Although HRMP is intended to be phased out when XCMP is fully implemented, this tutorial uses HRMP to illustrate how you can open message passing channels to enable parachains to communicate with each other.
@@ -33,7 +33,7 @@ If you want parachain 1000 to communicate with parachain 1001, you must first ma
 Parachain 1001 must then accept the request before parachain 1000 can pass messages to it.
 Because the channel is unidirectional, however, parachain 1000 can't receive messages from parachain 1001 over the channel.
 
-For parachain 1000 to receive messages from parachain 1001, you must open another channel from parachain 1001 to parachain 1000. 
+For parachain 1000 to receive messages from parachain 1001, you must open another channel from parachain 1001 to parachain 1000.
 After parachain 1000 confirms that it will accept messages from parachain 1001, the chains can exchange messages at the next session change.
 
 ## Before you begin
@@ -42,19 +42,19 @@ In this tutorial, you'll open HRMP channels that enable a parachain with the uni
 Before you begin, verify the following:
 
 - You have set up a [parachain test network](/test/simulate-parachains) using Zombienet or a local relay chain using the `rococo-local` chain specification.
-  
+
 - You have set up two local or virtual parachains for testing purposes.
-  
+
   For the purposes of this tutorial, parachain A has the unique identifier 1000 and parachain B has the unique identifier 1001.
 
 - You have the Sudo pallet available for both local parachains to use.
-  
+
   For this tutorial in a test environment, you can add the Sudo pallet to each collator node.
   The pallet is not included by default if you use the `substrate-parachain-template` to build your node.
   To add the Sudo pallet, you must update the `runtime/src/lib.rs` and `node/src/chain_spec.rs` files.
   For the runtime, you can implement the configuration trait and modify the construct_runtime macro, similar to how you would add any other pallet.
   For an example of a chain specification with the Sudo pallet, see [parachain-template-1001.rs](/assets/tutorials/relay-chain-specs/parachain-template-1001.rs).
-  
+
   In a production environment, you would use governance proposals and voting instead of the Sudo pallet for privileged transactions.
 
 ## Add the sovereign accounts
@@ -66,13 +66,13 @@ To add sovereign account addresses to the relay chain:
 1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps) and connect to a relay chain endpoint.
 
 2. Calculate the parachain [sovereign account address](https://substrate.stackexchange.com/questions/1200/how-to-calculate-sovereignaccount-for-parachain) to use on the relay chain.
-      
+
    Parachain A (1000) address: 5Ec4AhPZk8STuex8Wsi9TwDtJQxKqzPJRCH7348Xtcs9vZLJ
 
    Parachain B (1001) address: 5Ec4AhPZwkVeRmswLWBsf7rxQ3cjzMKRWuVvffJ6Uuu89s1P
-  
-   Note that if the parachain identifier registered for a parachain changes, the sovereign account and address will also change. 
-   You should also note that the account address used for a parachain on the relay chain is different from the address used for the parachain on another parachain. 
+
+   Note that if the parachain identifier registered for a parachain changes, the sovereign account and address will also change.
+   You should also note that the account address used for a parachain on the relay chain is different from the address used for the parachain on another parachain.
 
 3. Click **Accounts** and select **Address Book**.
 
@@ -81,13 +81,13 @@ To add sovereign account addresses to the relay chain:
 5. Add the address and a name for parachain A (1000), then click **Save**.
 
 6. Click **Accounts** and transfer some assets from Alice to the parachain A (1000) account.
-   
+
    Repeat step 3 through step 6 for parachain B (1001).
 
 ## Prepare the open channel encoded call
 
 To set up communication between the parachains, you must first send a request to open a message passing channel.
-The request must take the form of an encoded call with parameters that specify the parachain to receive the request, the message capacity for the channel, and maximum message size. 
+The request must take the form of an encoded call with parameters that specify the parachain to receive the request, the message capacity for the channel, and maximum message size.
 You'll need to include the encoded version of this information in the message you create to make the request, but you can generate the encoded call without submitting the transaction to prepare the request.
 
 To prepare the encoded call to open a channel:
@@ -95,15 +95,15 @@ To prepare the encoded call to open a channel:
 1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps) and connect to a relay chain endpoint.
 
 2. Check the channel configuration limits for the relay chain, if needed.
-   
+
    To check the configuration settings for the current relay chain:
 
    - Click **Developer** and select **Chain State**.
    - Select **configuration**, then select **activeConfig()** and click **+**.
    - Check the parameter values for `hrmpChannelMaxCapacity` and `hrmlChannelMaxMessageSize`.
-   
+
    For example:
-     
+
       ```text
       hrmpChannelMaxCapacity: 8
       hrmlChannelMaxMessageSize: 1,048,576
@@ -112,22 +112,22 @@ To prepare the encoded call to open a channel:
 3. Click **Developer** and select **Extrinsics**.
 
 4. Select **hrmp**, then select **hrmpInitOpenChannel(recipient, proposedMaxCapacity, proposedMaxMessageSize)** to initialize the request to open a new channel.
-   
+
    For the transaction parameters, specify the following to prepare the call data:
-   
+
    - recipient: Type the identifier for the parachain you want to open the channel with (1001).
    - proposedMaxCapacity: Type the maximum number of messages that can be in the channel at once (8).
    - proposedMaxMessageSize: Specify the maximum size of the messages (1048576).
-    
+
    Note that the values you set for **proposedMaxCapacity** and **proposedMaxMessageSize** shouldn't exceeded the values defined for the `hrmpChannelMaxCapacity` and `hrmpChannelMaxMessageSize` parameters for the relay chain.
 
 5. Copy the **encoded call data**.
-   
+
    ![Copy the encoded call data](/media/images/docs/tutorials/parachains/hrmp-encoded-call.png)
-   
+
    You'll need this information to construct the XCM Transact instruction.
    The following is an example of the encoded call data in Rococo: `0x3c00e90300000800000000001000`
-   
+
 ## Configure the open channel request
 
 Now that you have the encoded call, you can configure the request to open a channel from parachain A to parachain B through the relay chain.
@@ -139,34 +139,34 @@ Now that you have the encoded call, you can configure the request to open a chan
 3. Select **sudo**, then select **sudo(call)** to use the Sudo pallet to execute privileged transactions.
 
 3. Select **polkadotXcm**, then select **send(dest, message)** to notify the relay chain that you want to open a channel with parachain B (1001).
-   
+
    ![Send message using the Sudo pallet](/media/images/docs/tutorials/parachains/hrmp-sudo-call.png)
 
 4. Specify the destination parameters to indicate the relative location for the message to be delivered.
-   
-   The destination parameters specify where the XCM should be executed. 
-   In this example, the parent of parachain 1000 is the relay chain, and in the context of the parent the interior setting of Here means that the relay chain is going to execute the XCM. 
+
+   The destination parameters specify where the XCM should be executed.
+   In this example, the parent of parachain 1000 is the relay chain, and in the context of the parent the interior setting of Here means that the relay chain is going to execute the XCM.
    For more information about specifying relative locations for XCM, see [Universal Consensus Location Identifiers](https://github.com/paritytech/xcm-format#7-universal-consensus-location-identifiers).
 
    ![Destination parameters](/media/images/docs/tutorials/parachains/hrmp-destination.png)
-   
+
 5. Specify the XCM version, then click **Add item** to construct the message to be executed.
-   
+
    At a minimum, you need to add the following set of instructions for this message:
 
    - [WithdrawAsset](https://github.com/paritytech/xcm-format#withdrawasset) to move the specified on-chain assets into the virtual [holding register](https://polkadot.network/blog/xcm-the-cross-consensus-message-format/#-the-holding-register).
-  
+
    - [BuyExecution](https://github.com/paritytech/xcm-format#buyexecution) to pay for the execution of the current message using the assets that were deposited in the virtual holding register using the WithdrawAsset instruction.
      For more information about paying fees, see [Fee payment in XCM](https://polkadot.network/blog/xcm-the-cross-consensus-message-format/#-fee-payment-in-xcm).
 
-   - [Transact](https://github.com/paritytech/xcm-format#transact) to specify the encoded call that you prepared on the relay chain.  
-   
+   - [Transact](https://github.com/paritytech/xcm-format#transact) to specify the encoded call that you prepared on the relay chain.
+
    In most cases, you also want to include the following instructions:
-   
+
    - [RefundSurplus](https://github.com/paritytech/xcm-format#refundsurplus) to move any overestimate of fees previously paid using the BuyExecution instruction into a second virtual register called the refunded weight register.
-  
+
    - [DepositAsset](https://github.com/paritytech/xcm-format#depositasset) to subtract assets from the refunded weight register and deposit on-chain equivalent assets under the ownership of the beneficiary.
-   
+
    Note that each instruction requires you to specify additional information to enable the message recipient to execute the intended XCM instructions.
    Be sure that you construct the information for each instruction from the point of view of the receiving system.
 
@@ -177,21 +177,21 @@ Now that you have the encoded call, you can configure the request to open a chan
 To move assets into the virtual holding register:
 
 1. Select [WithdrawAsset](https://github.com/paritytech/xcm-format#withdrawasset) as the first instruction for this message.
-   
+
 2. Click **Add item** to identify the on-chain assets to withdraw.
-   
-   ![Add instructions or add information about the instruction](substrate-docs/content/media/images/docs/tutorials/parachains/construction-xcm-instruction.png)
+
+   ![Add instructions or add information about the instruction](/substrate-docs/content/media/images/docs/tutorials/parachains/construction-xcm-instruction.png)
 
 3. Select **Concrete** to use the location of the asset to identify the asset to be withdrawn.
 
-     For more information about specifying asset locations, see [Concrete identifiers](https://github.com/paritytech/xcm-format#concrete-identifiers).  
+     For more information about specifying asset locations, see [Concrete identifiers](https://github.com/paritytech/xcm-format#concrete-identifiers).
 
 4. Set **parents: 0** and **interior: Here** to withdraw assets from the sovereign account on the relay chain.
 
 5. Select **Fungible** to identify the asset as a fungible asset.
 
 6. Specify the total fungible assets to withdraw.
-  
+
    ![WithdrawAsset and settings](/media/images/docs/tutorials/parachains/withdraw-asset-instruction-settings.png)
 
 ### BuyExecution instruction
@@ -199,7 +199,7 @@ To move assets into the virtual holding register:
 To pay for execution from assets deposited in the holding register:
 
 1. Click **Add item** to select [BuyExecution](https://github.com/paritytech/xcm-format#buyexecution) as the second instruction for this message.
-    
+
 2. Select **Concrete** to use the location of the asset to identify the asset to be used to pay for executing XCM instructions.
 
 3. Set **parents: 0** and **interior: Here** to indicate that you're using the local chain's native asset for execution payment.
@@ -207,7 +207,7 @@ To pay for execution from assets deposited in the holding register:
 4. Select **Fungible** to identify the asset as a fungible asset.
 
 5. Specify the total fungible assets to use.
-     
+
 6. Select **Unlimited** to skip setting a weight limit for this instruction.
 
    ![BuyExecution and settings](/media/images/docs/tutorials/parachains/buy-execution-open.png)
@@ -220,9 +220,9 @@ To execute the encoded call that you prepared on the relay chain:
 
 2. Select **Native** as the message origin for executing the instruction.
 
-3. Set **requireWeightAtMost**  to specify the maximum amount of weight to use in dispatching the XCM call. 
-   
-   If the XCM dispatch requires more weight than specified, the transaction fails. 
+3. Set **requireWeightAtMost**  to specify the maximum amount of weight to use in dispatching the XCM call.
+
+   If the XCM dispatch requires more weight than specified, the transaction fails.
    If the XCM dispatch requires less weight than specified, the difference can be added to the surplus weight register.
 
 1. Specify the encoded call data for transaction you want to be executed by the Transact instruction.
@@ -230,7 +230,7 @@ To execute the encoded call that you prepared on the relay chain:
    For example, paste the encoded call for initiating an open channel request.
 
    ![Transact and settings](/media/images/docs/tutorials/parachains/transact-open-request.png)
-   
+
 ### RefundSurplus and DepositAsset instructions
 
 To move any overestimate of fees:
@@ -242,16 +242,16 @@ To move any overestimate of fees:
 1. Select **Wild** to allow an unspecified number of assets to be deposited.
 
 1. Select **All** to allow all of the refunded assets to be deposited.
-   
-2. Set **1** as the maximum number of unique assets to remove from the holding register for the deposit.  
-   
+
+2. Set **1** as the maximum number of unique assets to remove from the holding register for the deposit.
+
    In this tutorial, there's only one asset instance available to be removed.
 
 1. Specify the beneficiary to receive the deposited assets.
-   
+
    Typically, the beneficiary for the DepositAsset instruction is the sovereign account of the message sender.
    In this case, you can specify parachain A (1000) as **parents: 0**, **interior: X1**, **Parachain: 1000** so that any surplus assets are returned to the account and can be used to deliver other XCM instructions or to open additional HRMP channels.
-   
+
    ![RefundSurplus and DepositAsset instructions and settings](/media/images/docs/tutorials/parachains/refund-and-deposit.png)
 
    Alternatively, you can specify the beneficiary as **parents: 0**, **interior: X1**, **AccountId** and identify a network and account address to receive the assets.
@@ -261,7 +261,7 @@ To move any overestimate of fees:
 ### Review the full set of instructions
 
 This set of XCM instructions:
-     
+
 - Withdraw assets from the parachain A sovereign account to the virtual holding register.
 
 - Uses the assets in the holding register to pay for the execution time the XCM instructions require.
@@ -272,10 +272,10 @@ This set of XCM instructions:
 
 For an example that illustrates all of the settings for this set of instructions, see the sample [xcm-instructions](/assets/tutorials/relay-chain-specs/xcm-instructions.txt) file.
 For more information and answers to specific technical questions, try the following tags on [Substrate and Polkadot Stack Exchange](https://substrate.stackexchange.com/):
-     
+
 - xcm
-- hrmp 
-- weight 
+- hrmp
+- weight
 - cumulus
 
 ### Submit the transaction
@@ -295,11 +295,11 @@ After you submit the transaction, you should verify that the message was receive
 To verify the request:
 
 1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps) in two separate browser tabs or windows with one instance connecting to the relay chain and one instance connecting to the parachain endpoint.
-   
+
 2. In the browser instance connecting to the parachain, click **Network** then select **Explorer**.
 
 3. Check the list of recent events and verify that there is a **sudo.Sudid** event and a **polkadotXcm.Sent** event.
-   
+
    ![Events for XCM instructions on the parachain](/media/images/docs/tutorials/parachains/hrmp-parachain-events.png)
 
    You can expand the **polkadotXcm.Sent** event to see details about the instructions included in the message that was sent.
@@ -307,13 +307,13 @@ To verify the request:
 4. In the browser instance connecting to the relay chain, click **Network** then select **Explorer**.
 
 3. Check the list of recent events and verify that the **ump.UpwardMessagesReceived**, **hrmp.OpenChannelRequested**, and **ump.ExecutedUpward** events are displayed.
-   
+
    ![Events for XCM instructions on the relay chain](/media/images/docs/tutorials/parachains/hrmp-relay-chain-request-complete.png)
-      
+
    You can expand these events to see details about the instructions that were executed.
 
 4. Check the sovereign account balance for parachain A (1000).
-   
+
    ![Account balance after message execution](/media/images/docs/tutorials/parachains/hrmp-after-msg-execution-balance.png)
 
 ## Prepare the acceptance encoded call
@@ -332,9 +332,9 @@ To prepare the encoded call:
 3. Select **hrmp**, then select **hrmpAcceptOpenChannel(sender)** and specify the **sender**, in this case, parachain A (1000).
 
 4. Copy the **encoded call data**.
-   
+
    ![Copy the encoded call data](/media/images/docs/tutorials/parachains/hrmp-relay-chain-accept-request.png)
-   
+
    You'll need this information to craft the XCM Transact instruction.
    The following is an example of encoded call data in Rococo:
    0x3c01e8030000
@@ -350,25 +350,25 @@ Now that you have the encoded call, you can construct the the set of XCM instruc
 3. Select **sudo**, then select **sudo(call)** to use the Sudo pallet to execute privileged transactions.
 
 4. Select **polkadotXcm**, then select **send(dest, message)** to notify the relay chain that you want to open a channel with parachain B (1001).
-   
+
 5. Specify the destination parameters to indicate the relative location for the message to be delivered.
-      
+
 6. Specify the XCM version, then click **Add item** to construct the message to be executed.
-   
+
    You can use a similar set of instructions for this message:
-   
+
    - [WithdrawAsset](https://github.com/paritytech/xcm-format#withdrawasset) to move the specified on-chain assets into the virtual holding register.
-  
+
    - [BuyExecution](https://github.com/paritytech/xcm-format#buyexecution) to pay for the execution of the current message using the assets that were deposited in the virtual holding register.
 
-   - [Transact](https://github.com/paritytech/xcm-format#transact) to specify the encoded call—for example, 0x3c01e8030000—that you prepared on the relay chain.  
+   - [Transact](https://github.com/paritytech/xcm-format#transact) to specify the encoded call—for example, 0x3c01e8030000—that you prepared on the relay chain.
 
    - [RefundSurplus](https://github.com/paritytech/xcm-format#refundsurplus) to move any overestimate of fee into the refunded weight register.
-  
-   - [DepositAsset](https://github.com/paritytech/xcm-format#depositasset) to subtract assets from the refunded weight register and deposit on-chain equivalent assets under the ownership of the beneficiary. 
+
+   - [DepositAsset](https://github.com/paritytech/xcm-format#depositasset) to subtract assets from the refunded weight register and deposit on-chain equivalent assets under the ownership of the beneficiary.
 
 7. Click **Submit Transaction**.
-   
+
    After you submit the transaction, you must wait for the next epoch to see the change reflected in the chain state.
 
 ## Verify the open channel
@@ -378,19 +378,19 @@ After you submit the transaction, you can verify that the message was received a
 To verify the request:
 
 1. Open the [Polkadot/Substrate Portal](https://polkadot.js.org/apps) in two separate browser tabs or windows with one instance connecting to the relay chain and one instance connecting to the parachain endpoint.
-   
+
 2. In the browser instance connecting to the parachain, click **Network** then select **Explorer**.
 
 3. Check the list of recent events and verify that there is a **sudo.Sudid** event and a **polkadotXcm.Sent** event.
-   
+
 4. In the browser instance connecting to the relay chain, click **Network** then select **Explorer**.
 
 5. Check the list of recent events and verify that the **hrmp.OpenChannelAccepted** and **ump.ExecutedUpward** events are displayed.
-   
+
    ![Events for XCM instructions on the relay chain](/media/images/docs/tutorials/parachains/hrmp-relay-chain-request-accepted.png)
 
    After the start of the next epoch, you can also query the chain state for **hrmpChannels** to verify that you've opened a channel from parachain A (1000) to parachain B (1001).
-   
+
    ![Query HRMP channels](/media/images/docs/tutorials/parachains/hrmp-verify-channel.png)
 
 ## Open a second channel

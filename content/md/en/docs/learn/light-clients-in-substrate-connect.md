@@ -1,5 +1,5 @@
 ---
-title:  Light clients in Substrate Connect
+title: Light clients in Substrate Connect
 description: Use Substrate Connect to integrate a light client into your applications and enable interaction with any Substrate-based chain.
 keywords:
   - Substrate Connect
@@ -28,7 +28,7 @@ After adding Substrate Connect to an application, the application can communicat
 ## Connect to the blockchain directly from a browser
 
 With Substrate Connect, your applications can be configured to run a light client node inside a browser running locally on your computer.
-From the browser, application users can interact with blockchains directly—without connecting to any third-party  nodes or other servers.
+From the browser, application users can interact with blockchains directly—without connecting to any third-party nodes or other servers.
 
 By eliminating the need for intermediary servers, Substrate Connect provides benefits to blockchain builders, application developers, and end users.
 A few of the key benefits include:
@@ -47,12 +47,12 @@ There are a few well-known chain names that are defined for the [`WellKnownChain
 
 You can connect to the following public blockchain networks using the name listed:
 
-| To connect to this chain | Use this chain identifier
-| :----------------------- | :------------------
-| [Polkadot](https://polkadot.network/) | `polkadot`
-| [Kusama](https://kusama.network/) | `ksmcc3`
-| [Westend](https://wiki.polkadot.network/docs/en/maintain-networks#westend-test-network) | `westend2`
-| [Rococo](https://polkadot.network/rococo-v1-a-holiday-gift-to-the-polkadot-community/) | `rococo_v2_2`
+| To connect to this chain                                                                | Use this chain identifier |
+| :-------------------------------------------------------------------------------------- | :------------------------ |
+| [Polkadot](https://polkadot.network/)                                                   | `polkadot`                |
+| [Kusama](https://kusama.network/)                                                       | `ksmcc3`                  |
+| [Westend](https://wiki.polkadot.network/docs/en/maintain-networks#westend-test-network) | `westend2`                |
+| [Rococo](https://polkadot.network/rococo-v1-a-holiday-gift-to-the-polkadot-community/)  | `rococo_v2_2`             |
 
 Note that you must use the chain identifier as it appears in the chain specification for a specific network rather than the more commonly-used network name.
 For example, you must specify `ksmcc3` as the chain identifier to connect to Kusama.
@@ -95,18 +95,18 @@ To add `substrate-connect` to your application:
 
 ### Use the RPC provider to connect to a well-known network
 
-The following example illustrates how you can use the `rpc-provider` to connect to a well-known network such as  Polkadot, Kusama, Westend, or Rococo.
+The following example illustrates how you can use the `rpc-provider` to connect to a well-known network such as Polkadot, Kusama, Westend, or Rococo.
 
 ```js
-import { ScProvider, WellKnownChain } from '@polkadot/rpc-provider/substrate-connect';
-import { ApiPromise } from '@polkadot/api';
+import { ScProvider, WellKnownChain } from "@polkadot/rpc-provider/substrate-connect";
+import { ApiPromise } from "@polkadot/api";
 // Create the provider for a known chain
 const provider = new ScProvider(WellKnownChain.westend2);
 // Stablish the connection (and catch possible errors)
-await provider.connect()
+await provider.connect();
 // Create the PolkadotJS api instance
 const api = await ApiPromise.create({ provider });
-await api.rpc.chain.subscribeNewHeads((lastHeader) => {
+await api.rpc.chain.subscribeNewHeads(lastHeader => {
   console.log(lastHeader.hash);
 });
 await api.disconnect();
@@ -117,17 +117,17 @@ await api.disconnect();
 The following example illustrates how you can use the `rpc-provider` to connect to a custom network by specifying its chain specification.
 
 ```js
-import { ScProvider } from '@polkadot/rpc-provider/substrate-connect';
-import { ApiPromise } from '@polkadot/api';
-import jsonCustomSpec from './jsonCustomSpec.json';
+import { ScProvider } from "@polkadot/rpc-provider/substrate-connect";
+import { ApiPromise } from "@polkadot/api";
+import jsonCustomSpec from "./jsonCustomSpec.json";
 // Create the provider for the custom chain
 const customSpec = JSON.stringify(jsonCustomSpec);
 const provider = new ScProvider(customSpec);
 // Stablish the connection (and catch possible errors)
-await provider.connect()
+await provider.connect();
 // Create the PolkadotJS api instance
 const api = await ApiPromise.create({ provider });
-await api.rpc.chain.subscribeNewHeads((lastHeader) => {
+await api.rpc.chain.subscribeNewHeads(lastHeader => {
   console.log(lastHeader.hash);
 });
 await api.disconnect();
@@ -138,9 +138,9 @@ await api.disconnect();
 The following example illustrates how you can use the `rpc-provider` to connect to a parachain by specifying its chain specification.
 
 ```js
-import { ScProvider, WellKnownChain } from '@polkadot/rpc-provider/substrate-connect';
-import { ApiPromise } from '@polkadot/api';
-import jsonParachainSpec from './jsonParachainSpec.json';
+import { ScProvider, WellKnownChain } from "@polkadot/rpc-provider/substrate-connect";
+import { ApiPromise } from "@polkadot/api";
+import jsonParachainSpec from "./jsonParachainSpec.json";
 // Create the provider for the relay chain
 const relayProvider = new ScProvider(WellKnownChain.westend2);
 // Create the provider for the parachain. Notice that
@@ -149,10 +149,10 @@ const relayProvider = new ScProvider(WellKnownChain.westend2);
 const parachainSpec = JSON.stringify(jsonParachainSpec);
 const provider = new ScProvider(parachainSpec, relayProvider);
 // Stablish the connection (and catch possible errors)
-await provider.connect()
+await provider.connect();
 // Create the PolkadotJS api instance
 const api = await ApiPromise.create({ provider });
-await api.rpc.chain.subscribeNewHeads((lastHeader) => {
+await api.rpc.chain.subscribeNewHeads(lastHeader => {
   console.log(lastHeader.hash);
 });
 await api.disconnect();
@@ -171,29 +171,25 @@ yarn add @substrate/connect
 ```
 
 If you use `npm` as your package manager, run the following command:
+
 ```bash
 npm i @substrate/connect
 ```
 
 ### Connect to a well-known chain
 
-The following example illustrates how you can use Substrate Connect to connect to a well-known network such as  Polkadot, Kusama, Westend, or Rococo.
+The following example illustrates how you can use Substrate Connect to connect to a well-known network such as Polkadot, Kusama, Westend, or Rococo.
 
 ```js
-import { WellKnownChain, createScClient } from '@substrate/connect';
+import { WellKnownChain, createScClient } from "@substrate/connect";
 // Create the client
 const client = createScClient();
 // Create the chain connection, while passing the `jsonRpcCallback` function.
-const chain = await client.addWellKnownChain(
-WellKnownChain.polkadot,
-function jsonRpcCallback(response) {
-console.log('response', response);
-}
-);
+const chain = await client.addWellKnownChain(WellKnownChain.polkadot, function jsonRpcCallback(response) {
+  console.log("response", response);
+});
 // send a RpcRequest
-chain.sendJsonRpc(
-'{"jsonrpc":"2.0","id":"1","method":"system_health","params":[]}'
-);
+chain.sendJsonRpc('{"jsonrpc":"2.0","id":"1","method":"system_health","params":[]}');
 ```
 
 ### Connect to a parachain
@@ -201,8 +197,8 @@ chain.sendJsonRpc(
 The following example illustrates how you can use Substrate Connect to connect to a parachain.
 
 ```js
-import { WellKnownChain, createScClient } from '@substrate/connect';
-import jsonParachainSpec from './jsonParachainSpec.json';
+import { WellKnownChain, createScClient } from "@substrate/connect";
+import jsonParachainSpec from "./jsonParachainSpec.json";
 // Create the client
 const client = createScClient();
 // Create the relay chain connection. There is no need to pass a callback
@@ -211,16 +207,11 @@ const client = createScClient();
 await client.addWellKnownChain(WellKnownChain.westend2);
 // Create the parachain connection.
 const parachainSpec = JSON.stringify(jsonParachainSpec);
-const chain = await client.addChain(
-  parachainSpec,
-  function jsonRpcCallback(response) {
-    console.log('response', response);
-  }
-);
+const chain = await client.addChain(parachainSpec, function jsonRpcCallback(response) {
+  console.log("response", response);
+});
 // send a request
-chain.sendJsonRpc(
-  '{"jsonrpc":"2.0","id":"1","method":"system_health","params":[]}'
-);
+chain.sendJsonRpc('{"jsonrpc":"2.0","id":"1","method":"system_health","params":[]}');
 ```
 
 ## API Documentation
@@ -237,17 +228,16 @@ You can download the Chrome and Firefox extensions from [Substrate Connect](http
 
 ## Example projects
 
-* [Burnr](https://paritytech.github.io/substrate-connect/burnr/)
+- [Burnr](https://paritytech.github.io/substrate-connect/burnr/)
 
   Insecure redeemable wallet: A light-client-based, in-browser wallet for Substrate.
   It's meant to be quick and easy to use but less secure than other solutions.
   [Github](https://github.com/paritytech/substrate-connect/tree/main/projects/burnr)
 
-* [Multi-demo](https://paritytech.github.io/substrate-connect/demo/)
+- [Multi-demo](https://paritytech.github.io/substrate-connect/demo/)
 
   Simple demo that covers multichain and parachain examples.
   [Github](https://github.com/paritytech/substrate-connect/tree/main/projects/demo)
-
 
 ## Brave browser WebSocket issue
 
@@ -269,4 +259,3 @@ To disable the WebSocket limit:
    ![Disable the Restrict WebSockets pool setting](/media/images/docs/brave-setting.png)
 
 5. Relaunch the browser.
-

@@ -25,7 +25,7 @@ Collectively, the predefined modules and libraries form the [FRAME](/reference/g
 FRAME is an acronym for Framework for Runtime Aggregation of Modularized Entities, and the main purpose of FRAME is to enable you to create a customized Substrate **runtime**.
 
 By using FRAME, you can select and configure the specific modules—called **pallets**—that you want to use.
-For example, if you know your application needs to manage account balances, you can simply include the Balances pallet in the configuration of your runtime logic. 
+For example, if you know your application needs to manage account balances, you can simply include the Balances pallet in the configuration of your runtime logic.
 You can then modify different aspects of the pallet in the context of your runtime to suit your application.
 If a pallet doesn't currently exist for the functionality you need, you can use FRAME to create your own custom pallet, then add that custom pallet to your customized runtime.
 

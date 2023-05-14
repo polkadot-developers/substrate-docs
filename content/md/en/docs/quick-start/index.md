@@ -13,7 +13,7 @@ The following topics are intended to be read in order as a fast path to learning
 - [Substrate at a glance](/quick-start/substrate-at-a-glance/)
 - [Start a node](/quick-start/start-a-node/)
 - [Explore the code](/quick-start/explore-the-code/)
-- [Modify the runtime](quick-start/modify-the-runtime/)
+- [Modify the runtime](/quick-start/modify-the-runtime/)
 
 If the _Quick start_ isn't your route of choice, there are other ways to approach the documentation for learning to build with Substrate.
 For example, you can dive directly into core concepts in the [Learn](/learn/) section or work through hands-on exercises in the [Tutorials](/tutorials/) section.
@@ -34,6 +34,6 @@ The **Tutorials** provide hands-on learning experiences that cover different asp
 
 - [Build a blockchain](/tutorials/build-a-blockchain/) tutorials are focused on network basics from starting a single node to creating a private four node blockchain, monitoring node operations, and upgrading a running network.
 - [Build application logic](/tutorials/work-with-pallets/) tutorials are focused on how to implement application-specific logic working with existing and custom pallets.
-- [Build a parachian](/tutorials/connect-relay-and-parachains/) tutorials are focused on how to move from a standalone chain to a parachain, connect a parachain to a relay chain, and send messages between chains.
+- [Build a parachain](/tutorials/connect-relay-and-parachains/) tutorials are focused on how to move from a standalone chain to a parachain, connect a parachain to a relay chain, and send messages between chains.
 
 The **Reference** provides direct access to technical information such as the Rust API and help for command-line tools.

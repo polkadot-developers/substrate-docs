@@ -47,7 +47,7 @@ To install the tools for this tutorial:
 1. Download the appropriate precompiled binary for Prometheus from [prometheus download](https://prometheus.io/download/).
 
 2. Open a terminal shell on your computer and navigate to your Downloads folder, then run the appropriate command to extract the contents from the file you downloaded.
-   
+
    For example, on macOS, you can run a command similar to the following:
 
    ```text
@@ -59,7 +59,7 @@ To install the tools for this tutorial:
 4. Select the appropriate precompiled binary for your architecture.
 
 5. Open a terminal shell on your computer and run the appropriate commands to install on your architecture.
-   
+
    For example, on macOS with Homebrew installed, you can run the following commands:
 
    ```text
@@ -82,7 +82,7 @@ For simplicity, this tutorial assumes the Substrate node, Prometheus instance, a
    ```
 
 3. Start the node template in development mode by running the following command:
-   
+
    ```bash
    ./target/release/node-template --dev
    ```
@@ -101,7 +101,7 @@ To add the Substrate exposed endpoint to the list of Prometheus targets:
 1. Open the `prometheus.yml` configuration file in a text editor.
 
 1. Add `substrate_node` as a `scrape_config` endpoint.
-   
+
    For example, add a section similar to the following:
 
    ```yml
@@ -120,21 +120,21 @@ To add the Substrate exposed endpoint to the list of Prometheus targets:
     For example, the Polkadot block time is six seconds, so the `scrape_interval` is set to five seconds.
 
 1. Start a Prometheus instance with the modified `prometheus.yml` configuration file.
-   
+
    For example, if you are currently in the Prometheus working directory and using the default configuration file name, start Prometheus by running the following command:
-   
+
    ```bash
    ./prometheus --config.file prometheus.yml
    ```
-   
+
    Leave this process running.
 
 2. Open a new terminal shell and check the metrics retrieved for the Substrate node by running the following command:
-   
+
    ```bash
    curl localhost:9615/metrics
    ```
-   
+
    This command returns output similar to the following truncated example:
 
    ```text
@@ -176,9 +176,9 @@ To add the Substrate exposed endpoint to the list of Prometheus targets:
    substrate_finality_grandpa_round{chain="dev"} 76
    ...
    ```
-   
+
    Alternatively, you can open same endpoint in a browser to view all available metric data.
-   For example, if you are using the default Prometheus port, open [`http://localhost:9615/metrics`](http://localhost:9615/metrics) in a browser. 
+   For example, if you are using the default Prometheus port, open [`http://localhost:9615/metrics`](http://localhost:9615/metrics) in a browser. <!-- markdown-link-check-disable-line -->
 
 ## Configure the Grafana data source
 
@@ -195,22 +195,22 @@ For information about starting Grafana on different operating systems, see the a
 After you start Grafana, you can navigate to it in a browser.
 
 1. Open a browser and navigate to the port Grafana uses.
-   
-   By default, Grafana uses http://localhost:3000 unless you have configured a different host or port.
+
+   By default, Grafana uses http://localhost:3000 unless you have configured a different host or port.<!-- markdown-link-check-disable-line -->
 
 2. Log in using the default `admin` user name and password `admin`, then click **Log in**.
-   
+
 3. On the Welcome page, under the **Configuration** menu, click **Data Sources**.
 
 1. Click **Prometheus** to configure the Prometheus endpoint as the data source for Substrate node metrics.
-   
+
    With both the Substrate node and Prometheus instance running, configure Grafana to look for Prometheus on its default port `http://localhost:9090` or the port you configured Grafana to use if you customized the port information.
-   
+
    You shouldn't specify the Prometheus port you set in the `prometheus.yml` file.
    That port is where your node is publishing its data.
 
 2. Click **Save & Test** to ensure that you have the data source set correctly.
-   
+
    If the data source is working, you are ready to configure a dashboard to display node metrics.
 
 ## Import a template dashboard
@@ -222,7 +222,7 @@ To import the dashboard template:
 1. On the Grafana Welcome page, click **Dashboards**.
 
 1. In the left navigation, click **Dashboards** and select **Browse**.
-   
+
 2. For the Search options, click New and select **Import**.
 
 3. Copy the [Substrate dashboard template](https://github.com/substrate-developer-hub/substrate-docs/blob/main/static/assets/tutorials/monitor-node/substrate-node-template-metrics.json) and paste it into the **Import via panel json** text box.
@@ -230,13 +230,13 @@ To import the dashboard template:
 4. Click **Load**.
 
 5. Review and modify, if necessary, the name, folder, and unique identifier for the dashboard.
-   
-6. Select **Prometheus (default)**, then click **Import**. 
-   
+
+6. Select **Prometheus (default)**, then click **Import**.
+
    ![Substrate dashboard template](/media/images/docs/tutorials/monitor-node-metrics/grafana-template-dashboard.png)
 
    The [Substrate dashboard template](https://grafana.com/grafana/dashboards/13759/) can be used with any Substrate-based chain and is also available for download from the Grafana Labs dashboard gallery.
-   
+
    If you want to create your own dashboards, see the [Prometheus docs for Grafana](https://prometheus.io/docs/visualization/grafana/).
 
    If you create a custom dashboard, consider uploading it to the [Grafana dashboards](https://grafana.com/grafana/dashboards).
