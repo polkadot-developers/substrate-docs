@@ -96,6 +96,7 @@ To install `openssl` and the Rust toolchain on macOS:
    ```bash
    rustup default stable
    rustup update
+   rustup target add wasm32-unknown-unknown
    ```
 
 1. Add the `nightly` release and the `nightly` WebAssembly (wasm) targets to your development environment by running the following commands:
