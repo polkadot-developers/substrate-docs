@@ -16,7 +16,7 @@ Before you install Rust and set up your development environment on macOS, verify
 - Storage of at 10 GB available space.
 - Broadband Internet connection.
 
-### Support for Apple M1
+### Support for Apple Silicon
 
 Protobuf must be installed before the build process can begin. To install it, run the following command:
 
