@@ -40,7 +40,7 @@
 		"gatsby-plugin-remove-serviceworker": "^1.0.0",
 		"gatsby-plugin-robots-txt": "^1.7.1",
 		"gatsby-plugin-sass": "^4.2.0",
-		"gatsby-plugin-sharp": "^3.10.2",
+		"gatsby-plugin-sharp": "^4.25.1",
 		"gatsby-plugin-simple-analytics": "^1.0.4",
 		"gatsby-plugin-sitemap": "^3.3.0",
 		"gatsby-plugin-substrate": "./plugins/gatsby-plugin-substrate",
