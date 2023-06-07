@@ -16,12 +16,6 @@ Before you install Rust and set up your development environment on macOS, verify
 - Storage of at 10 GB available space.
 - Broadband Internet connection.
 
-### Support for Apple Silicon
-
-Protobuf must be installed before the build process can begin. To install it, run the following command:
-
-`brew install protobuf`
-
 ### Install Homebrew
 
 In most cases, you should use Homebrew to install and manage packages on macOS computers.
@@ -69,6 +63,12 @@ To install `openssl` and the Rust toolchain on macOS:
 
    ```bash
    brew install openssl
+   ```
+   
+1. Install the `protoc` package by running the following command:
+
+   ```bash
+   brew install protobuf
    ```
 
 1. Download the `rustup` installation program and use it to install Rust by running the following command:
