@@ -24,9 +24,9 @@ Although the parts are interrelated, each part presents information in a differe
 The **Developer journey** presents information in the form of a narrative arc:
 
 - [Learn](/learn/) covers core blockchain and Substrate concepts and operations.
-- [Install](/iinstall/) provides platorm-specific installation instructions and troubleshooting tips for installation-related issues.
+- [Install](/install/) provides platorm-specific installation instructions and troubleshooting tips for installation-related issues.
 - [Build](/build/) exposes the tools and techniques for building custom blockchain applications.
-- [Test](/tests/) highlights approaches for unit testing and benchmarking code before deploying on a test network or in a production environment.
+- [Test](/test/) highlights approaches for unit testing and benchmarking code before deploying on a test network or in a production environment.
 - [Deploy](/deploy/) describes different options for deploying nodes, how to prepare for deployment, and how to move from a test network to a production network.
 - [Maintain](/maintain/) provides general information about maintaining your network with hardware and software upgrades, managing new releases, and maintaining your infrastructure.
 
