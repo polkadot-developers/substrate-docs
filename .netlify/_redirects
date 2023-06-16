@@ -93,9 +93,13 @@
 /tutorials/v3/cumulus/start-relay                                       /tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain/         301!
 /tutorials/connect-other-chains/prepare-a-local-relay-chain/            /connect-relay-and-parachains/prepare-a-local-relay-chain/                   301!
 /tutorials/connect-other-chains/connect-a-local-parachain/              /tutorials/connect-relay-and-parachains/connect-a-local-parachain/           301!
+/tutorials/work-with-pallets/custom-pallet/                             /build/custom-pallets/                                                       301!
+/tutorials/get-started/monitor-node-metrics/                            /tutorials/build-a-blockchain/monitor-node-metrics/                          301!
+/tutorials/work-with-pallets/add-a-pallet/                              /tutorials/build-application-logic/add-a-pallet/                             301!
 
 # Redirects for fundamentals
 
+/fundamentals/                           /learn/                             301!
 /fundamentals/blockchain-basics/         /learn/blockchain-basics/           301!
 /fundamentals/why-substrate/             /learn/welcome-to-substrate/        301!
 /fundamentals/architecture/              /learn/architecture/                301!
