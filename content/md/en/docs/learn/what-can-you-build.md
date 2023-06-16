@@ -101,7 +101,7 @@ This lack of built-in safeguards implies that you have a great deal of responsib
 
 ### Pallets outside of runtime development
 
-Often, writing a pallet is the gateway to runtime development, giving you the opportunity to experiment with existing pallets and coding patterns without building a compete blockchain application.
+Often, writing a pallet is the gateway to runtime development, giving you the opportunity to experiment with existing pallets and coding patterns without building a complete blockchain application.
 Individual pallets also provide an alternative way you can contribute to a project without writing your own application.
 
 Although writing and testing pallets is typically a stepping stone to building larger scale application, there are many examples of the value individual pallets can have to the ecosystem as a whole.
