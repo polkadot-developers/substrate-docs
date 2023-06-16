@@ -177,7 +177,7 @@ For example, the node template runtime builds storage items for the following pa
 	}
 ```
 
-Because these pallets include the #[pallet::genesis_config] macro with a `RuntimeGenesisConfig` and have the `Config` trait defined in the runtime, they are aggregated into [`node_template_runtime::RuntimeGenesisConfig`](https://paritytech.github.io/substrate/master/node_template_runtime/struct.RuntimeGenesisConfig.html) struct for the runtime:
+Because these pallets include the #[pallet::genesis_config] macro with a `GenesisConfig` and have the `Config` trait defined in the runtime, they are aggregated into [`node_template_runtime::RuntimeGenesisConfig`](https://paritytech.github.io/substrate/master/node_template_runtime/struct.RuntimeGenesisConfig.html) struct for the runtime:
 
 ```rust
 pub struct RuntimeGenesisConfig {
