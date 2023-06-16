@@ -135,7 +135,7 @@ To add a storage map to the `incrementer` contract:
 1. Import the `Mapping` type.
 
    ```rust
-   #[ink::contract
+   #[ink::contract]
    mod incrementer {
        use ink::storage::Mapping;
    ```
