@@ -87,12 +87,15 @@
 /main-docs/test/debug/                                                  /test/debug/                                     301!
 /main-docs/test/benchmark/                                              /test/benchmark/                                 301!
 
-# Parachain Tutotial Redirects
+# Parachain Tutorial Redirects
 
 /tutorials/connect-other-chains/                                        /tutorials/connect-relay-and-parachains/                                     301!
 /tutorials/v3/cumulus/start-relay                                       /tutorials/connect-relay-and-parachains/prepare-a-local-relay-chain/         301!
 /tutorials/connect-other-chains/prepare-a-local-relay-chain/            /connect-relay-and-parachains/prepare-a-local-relay-chain/                   301!
 /tutorials/connect-other-chains/connect-a-local-parachain/              /tutorials/connect-relay-and-parachains/connect-a-local-parachain/           301!
+/tutorials/connect-relay-and-parachains/acquire-a-testnet-slot/         /tutorials/build-a-parachain/acquire-a-testnet-slot/                         301!
+/tutorials/connect-relay-and-parachains/open-message-passing-channels/  /tutorials/build-a-parachain/open-message-passing-channels/                  301!
+/tutorials/connect-relay-and-parachains/transfer-assets-with-xcm/       /tutorials/build-a-parachain/transfer-assets-with-xcm/                       301!
 
 # Redirects for fundamentals
 
@@ -108,3 +111,5 @@
 /fundamentals/accounts-addresses-keys/    /learn/accounts-addresses-keys/    301!
 /fundamentals/rust-basics/                /learn/rust-basics/                301!
 /fundamentals/offchain-operations/        /learn/offchain-operations/        301!
+/fundamentals/xcm-communication/          /learn/xcm-communication/          301!
+
