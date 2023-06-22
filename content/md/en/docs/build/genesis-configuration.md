@@ -4,7 +4,7 @@ description:
 keywords:
 ---
 
-The first block produced by any blockchain is typically referred to as the genesis block.
+The first block produced by any blockchain is referred to as the genesis block.
 The hash associated with this block is the top-level parent of all blocks produced after that first block.
 
 The Substrate node template provides the genesis configuration—the initial state—for a subset of pallets by default.
@@ -16,6 +16,7 @@ Instead, the storage items are defined in the pallets included in the runtime as
 
 After you create storage items for the runtime, you can choose whether they should be set to some initial value as part of the genesis configuration and included in the genesis block.  
 To specify the storage items that you want to set an initial state for, Substrate provides two specialized FRAME attribute macros.
+
 The macros you can use to initialize storage items as part of the genesis configuration for a chain are:
 
 - The `#[pallet::genesis_config]` macro defines the `GenesisConfig` data type and initializes storage items.
