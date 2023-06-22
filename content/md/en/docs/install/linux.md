@@ -179,7 +179,7 @@ For example, if you prefer to read source code and are familiar with Rust, you m
 #### Tell me
 
 - [Architecture](/learn/architecture/)
-- [Networks and blockchains](/learn/node-and-network-types/)
+- [Networks and blockchains](/learn/networks-and-nodes/)
 - [Build process](/build/build-process)
 
 #### Guide me
