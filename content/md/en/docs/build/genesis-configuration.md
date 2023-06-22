@@ -109,7 +109,7 @@ Now that you have configured the pallet to initialize a storage value in the gen
 
 After you use the [`#[pallet::genesis_config]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional) macro to add the `GenesisConfig` to each pallet where it's needed, you must include the `Config` trait for each pallet in the runtime to enable the runtime to initialize storage items in the genesis block.
 
-All of the `RuntimeGenesisConfig` types for the pallets that included in the construction of the runtime are then aggregated into a single `RuntimeGenesisConfig` type for that runtime.
+All of the `GenesisConfig` types for the pallets that included in the construction of the runtime are then aggregated into a single `RuntimeGenesisConfig` type for that runtime.
 
 The aggregated `RuntimeGenesisConfig` implements the [`BuildStorage`](https://paritytech.github.io/substrate/master/sp_runtime/trait.BuildStorage.html) trait to build all of the initial storage items for the runtime.
 For example, the node template runtime builds storage items for the following pallets that have a `RuntimeGenesisConfig` specified by default:
