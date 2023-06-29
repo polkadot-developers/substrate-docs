@@ -96,6 +96,7 @@
 /tutorials/connect-relay-and-parachains/acquire-a-testnet-slot/         /tutorials/build-a-parachain/acquire-a-testnet-slot/                         301!
 /tutorials/get-started/build-local-blockchain/                          /tutorials/build-a-blockchain/build-local-blockchain/                        301!
 /tutorials/connect-relay-and-parachains/connect-a-local-parachain/      /tutorials/build-a-parachain/connect-a-local-parachain/                      301!
+/tutorials/work-with-pallets/custom-pallet/                             /build/custom-pallets/                                                       301!
 
 
 # Redirects for fundamentals
