@@ -163,4 +163,4 @@ The required methods are:
 
 - [Currency trait](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html)
 - [LockableCurrency](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.LockableCurrency.html)
-- [LockIdentifier](https://paritytech.github.io/substrate/master/frame_support/traits/type.LockIdentifier.html)
+- [LockIdentifier](https://paritytech.github.io/substrate/master/frame_support/traits/index.html#reexport.LockIdentifier)
