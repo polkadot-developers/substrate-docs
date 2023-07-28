@@ -245,19 +245,19 @@ tutorials:
              url: /tutorials/collectibles-workshop/07-more-functions/
            - title: Add collectibles to the runtime
              url: /tutorials/collectibles-workshop/08-add-collectibles-to-runtime/
-#    - title: Develop smart contracts
-#     url: /tutorials/smart-contracts/
-#     pages:
-#       - title: Prepare your first contract
-#         url: /tutorials/smart-contracts/prepare-your-first-contract/
-#       - title: Develop a smart contract
-#         url: /tutorials/smart-contracts/develop-a-smart-contract/
-#       - title: Use maps for storing values
-#         url: /tutorials/smart-contracts/use-maps-for-storing-values/
-#       - title: Build a token contract
-#         url: /tutorials/smart-contracts/build-a-token-contract/
-#       - title: Troubleshoot smart contracts
-#         url: /tutorials/smart-contracts/troubleshoot-smart-contracts/
+   - title: Develop smart contracts
+    url: /tutorials/smart-contracts/
+    pages:
+      - title: Prepare your first contract
+        url: /tutorials/smart-contracts/prepare-your-first-contract/
+      - title: Develop a smart contract
+        url: /tutorials/smart-contracts/develop-a-smart-contract/
+      - title: Use maps for storing values
+        url: /tutorials/smart-contracts/use-maps-for-storing-values/
+      - title: Build a token contract
+        url: /tutorials/smart-contracts/build-a-token-contract/
+      - title: Troubleshoot smart contracts
+        url: /tutorials/smart-contracts/troubleshoot-smart-contracts/
     - title: Build a parachain
       url: /tutorials/build-a-parachain/
       pages:
