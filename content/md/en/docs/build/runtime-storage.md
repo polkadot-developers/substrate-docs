@@ -132,7 +132,7 @@ Refer to the [StorageMap](https://paritytech.github.io/substrate/master/frame_su
 
 ## Double key storage maps
 
-[DoubleStorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageDoubleMap.html) storage items are similar to single key storage maps except that they contain two keys.
+[StorageDoubleMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageDoubleMap.html) storage items are similar to single key storage maps except that they contain two keys.
 Using this type of storage structure is useful for querying values with common keys.
 
 ## Multi-key storage maps
