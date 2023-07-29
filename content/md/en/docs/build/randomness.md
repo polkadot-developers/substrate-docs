@@ -41,7 +41,7 @@ Substrate includes two examples of how to implement the `Randomness` trait in pa
   You should only use this pallet in applications with low security requirements or when testing randomness-consuming applications.
   You shouldn't use this pallet in a production environment.
 
-= The [BABE pallet](https://paritytech.github.io/substrate/master/pallet_babe/index.html) provides randomness by using verifiable random functions.
+- The [BABE pallet](https://paritytech.github.io/substrate/master/pallet_babe/index.html) provides randomness by using verifiable random functions.
 
 This pallet provides production-grade randomness, and is used in Polkadot.
 If you select this pallet as the source of randomness your blockchain must use the blind assignment of blockchain extension ([BABE](/reference/glossary/#blind-assignment-of-blockchain-extension-babe)) slot-based consensus for producing blocks.
