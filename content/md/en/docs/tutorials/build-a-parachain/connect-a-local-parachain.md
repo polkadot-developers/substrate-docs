@@ -44,10 +44,10 @@ To build the parachain template:
 
 2. Clone the branch of the `substrate-parachain-template` repository that matches the release branch you used to configure the relay chain.
    
-   For example, if you used the `release-v0.9.37` Polkadot release branch to configure the local relay chain, use the `polkadot-v0.9.37` branch for the parachain template.
+   For example, if you used the `release-v1.0.0-cumulus`Polkadot release branch to configure the local relay chain, use the `parachains-v10000-rc5` branch for the parachain template.
    
    ```bash
-   git clone --depth 1 --branch polkadot-v0.9.37 https://github.com/substrate-developer-hub/substrate-parachain-template.git
+   git clone --depth 1 --branch parachains-v10000-rc5 https://github.com/substrate-developer-hub/substrate-parachain-template.git
    ```
 
 1. Change to the root of the parachain template directory by running the following command:
@@ -231,12 +231,12 @@ To prepare the parachain collator to be registered:
    --chain raw-parachain-chainspec.json \
    --base-path /tmp/parachain/alice \
    --port 40333 \
-   --ws-port 8844 \
+   --rpc-port 8844 \
    -- \
    --execution wasm \
    --chain ../polkadot/raw-local-chainspec.json \
    --port 30343 \
-   --ws-port 9977
+   --rpc-port 9977
    ```
    
    In this command, the arguments passed before the lone `--` argument are for the parachain template collator.
@@ -304,9 +304,9 @@ To register the parachain:
    - `validationCode`: Click **file upload** and upload the WebAssembly runtime you exported for the parachain
      For this tutorial, select the `para-2000-wasm` file.
      
-   - `parachain`: Select **Yes**.
+   - `paraKind`: Select **Yes**.
   
-   ![Set parameters for registeration](/media/images/docs/tutorials/parachains/register-with-sudo.png)  
+   ![Set parameters for registration](/media/images/docs/tutorials/parachains/register-with-sudo.png)  
 
 6. Click **Submit Sudo**.
    
@@ -314,7 +314,7 @@ To register the parachain:
    
    After you submit the transaction, click **Network** and select **Explorer**.
 
-8. Check the list of recent events for successful `sudo.Sudid` and click the event to see details about the transaction.
+8. Check the list of recent events for successful `sudo.Sudid`  _and_ `paras.PvfCheckAccepted` and click the event to see details about the transaction.
    
    ![View the Sudo registration event](/media/images/docs/tutorials/parachains/sudo-registration-event.png)
 
