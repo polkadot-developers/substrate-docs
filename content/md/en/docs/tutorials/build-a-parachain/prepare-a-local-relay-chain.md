@@ -57,12 +57,12 @@ Therefore, this tutorial uses code from the Polkadot repository to prepare the l
 1. Clone the most recent release branch of the Polkadot repository to prepare a stable working environment.
    
    Release branches tend to be the most reliable and use the naming convention `release-v<n..n.n>`.
-   For example, the release branch used in this tutorial is `release-v0.9.37`.
-   Newer releases are likely to be available and, in most cases, you can substitute a more recent release branch instead of using the `release-v0.9.37` branch a long as you use the same branch for every module.
+   For example, the release branch used in this tutorial is `release-v1.0.0`.
+   Newer releases are likely to be available and, in most cases, you can substitute a more recent release branch instead of using the `release-v1.0.0` branch a long as you use the same branch for every module.
    You can find information about each release on the [Releases](https://github.com/paritytech/polkadot/releases) tab in GitHub.
    
    ```bash
-   git clone --branch release-v0.9.37 https://github.com/paritytech/polkadot.git
+   git clone --branch release-v1.0.0 https://github.com/paritytech/polkadot.git
    ```
 
 2. Change to the root of the `polkadot` directory by running the following command:
