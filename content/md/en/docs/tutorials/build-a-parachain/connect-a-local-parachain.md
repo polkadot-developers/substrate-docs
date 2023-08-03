@@ -112,7 +112,7 @@ To reserve a parachain identifier:
 
 5. Click **Parathreads**, then click **ParaId**.
 
-   ![Reserve an identifier](/media/images/docs/tutorials/parachains/parathread-paraid.png)
+   ![Reserve an identifier](/media/images/docs/tutorials/parachains/paraid-reserve.png)
 
 6. Review the settings for the transaction to reserve the identifier, then click **Submit**.
 
@@ -124,9 +124,7 @@ To reserve a parachain identifier:
 
 8. Check the list of recent events for successful `registrar.Reserved` and click the event to see details about the transaction.
 
-   ![View your reserved identifier](/media/images/docs/tutorials/parachains/reserve-paraid-event.png)
-
-   You are now ready to prepare the chain specification and generate the files required for your parachain to connect to the relay chain using the reserved identifier (`paraId` `2000`).
+You are now ready to prepare the chain specification and generate the files required for your parachain to connect to the relay chain using the reserved identifier (`paraId` `2000`).
 
 ## Modify the default chain specification
 
@@ -246,19 +244,31 @@ To prepare the parachain collator to be registered:
    In the terminal where you started the parachain template node, you should see output similar to the following:
 
    ```text
-   2022-08-30 13:49:17 Parachain Collator Template
-   2022-08-30 13:49:17 ✌️  version 0.1.0-fd9771eed9c
-   2022-08-30 13:49:17 ❤️  by Anonymous, 2020-2022
-   2022-08-30 13:49:17 📋 Chain specification: Local Parachain Testnet
-   2022-08-30 13:49:17 🏷  Node name: Alice
-   2022-08-30 13:49:17 👤 Role: AUTHORITY
-   2022-08-30 13:49:17 💾 Database: RocksDb at /tmp/parachain/alice/chains/local_testnet/db/full
-   2022-08-30 13:49:17 ⛓  Native runtime: template-parachain-1 (template-parachain-0.tx1.au1)
-   2022-08-30 13:51:58 Parachain id: Id(2000)
-   2022-08-30 13:51:58 Parachain Account: 5Ec4AhPUwPeyTFyuhGuBbD224mY85LKLMSqSSo33JYWCazU4
-   2022-08-30 13:51:58 Parachain genesis state: 0x0000000000000000000000000000000000000000000000000000000000000000003c28ac319eab2cac949139fd0376f16bc97f698d1cde1bc3f46c2ec0edd1b9fb03170a2e7597b7b7e3d84c05391d139a62b157e78786d8c082f29dcf4c11131400
-   2022-08-30 13:51:58 Is collating: yes
-   2022-08-30 13:52:00 [Relaychain] 🏷  Local node identity is: 12D3KooWNNP9Z1D86KKgrzht6Pvd3WjKqxQaNkC6HpW5wVTUEEKR
+   Parachain Collator Template
+   ✌️  version 0.1.0-336530d3bdd
+   ❤️  by Anonymous, 2020-2023
+   📋 Chain specification: Local Testnet
+   🏷  Node name: Alice
+   👤 Role: AUTHORITY
+   💾 Database: RocksDb at /tmp/parachain/alice/chains/local_testnet/db/full
+   no effect anymore and will be removed in the future!
+   Parachain Account: 5Ec4AhPUwPeyTFyuhGuBbD224mY85LKLMSqSSo33JYWCazU4
+   Is collating: yes
+   [Relaychain] 🏷  Local node identity is: 12D3KooWR8wJbGWrjzKTpuXQvbuM1rE2GAE9JVEFEwAyNX6LV9nN
+   [Relaychain] 💻 Operating system: ...
+   ......
+   [Relaychain] 📦 Highest known block at #95
+   [Relaychain] Running JSON-RPC server: addr=127.0.0.1:9977, allowed origins=["http://localhost:*", "http://127.0.0.1:*", "https://localhost:*", "https://127.0.0.1:*", "https://polkadot.js.org"]
+   [Relaychain] 〽️ Prometheus exporter started at 127.0.0.1:9616
+   [Parachain] 🏷  Local node identity is: 12D3KooWF464pkLaHbsfc4DzDkYuhdVE4zSqBHR1gPapLvwsfZtg
+   [Relaychain] discovered: 12D3KooWCq8n5PzroHvxEyCbHigb5ZWc6q8WL7E25iuWYbJod9D2 /ip4/10.105.172.196/tcp/30334
+   [Relaychain] discovered: 12D3KooWCzfdGstKxFiZ5QdKQVmQVgcBgE8r7FfBrG8bCRsia6Bo /ip4/10.105.172.196/tcp/30333
+   [Relaychain] discovered: 12D3KooWCzfdGstKxFiZ5QdKQVmQVgcBgE8r7FfBrG8bCRsia6Bo /ip4/10.96.0.2/tcp/30333
+   [Relaychain] discovered: 12D3KooWCq8n5PzroHvxEyCbHigb5ZWc6q8WL7E25iuWYbJod9D2 /ip4/10.96.0.2/tcp/30334
+   [Parachain] 💻 Operating system: ...
+   ......
+   [Parachain] 📦 Highest known block at #0
+   [Parachain] Running JSON-RPC server: addr=127.0.0.1:8844, allowed origins=["http://localhost:*", "http://127.0.0.1:*", "https://localhost:*", "https://127.0.0.1:*", "https://polkadot.js.org"]
    ...
    ```
 
@@ -311,8 +321,6 @@ To register the parachain:
 
    After the parachain is initialized, you can see it in the Polkadot/Substrate Portal by clicking **Network**, then selecting **Parachains**.
 
-   ![View the parachain](/media/images/docs/tutorials/parachains/view-parachain.png)
-
 9. Click **Network** and select **Parachains** and wait for a new epoch to start.
 
    The relay chain tracks the latest block—the head—of each parachain.
@@ -321,32 +329,41 @@ To register the parachain:
 
    After the parachain connects to the relay chain in the next epoch and finalizes its first block you can see information about it in the Polkadot/Substrate Portal.
 
-   ![Parachain information](/media/images/docs/tutorials/parachains/parachain-epoch.png)
-
    The terminal where the parachain is running also displays details similar to the following:
 
    ```text
-   2022-09-01 12:58:12 [Parachain] Starting collation. relay_parent=0x1ba093a16f8276459629b29b2bcee2b40e360a72a15a714cb208a5f6be576262 at=0x99951a12bbb25bad6e8878b517601a0fb65741189903d503789e12cd6d81810b
-   2022-09-01 12:58:16 [Relaychain] 💤 Idle (2 peers), best: #117 (0x1ba0…6262), finalized #113 (0x0798…07c2), ⬇ 0.6kiB/s ⬆ 0.4kiB/s
-   2022-09-01 12:58:16 [Parachain] 💤 Idle (0 peers), best: #2 (0x9995…810b), finalized #1 (0x50e8…5acb), ⬇ 0 ⬆ 0
-   ...
-   2022-09-01 12:58:24 [Parachain] 🙌 Starting consensus session on top of parent 0x99951a12bbb25bad6e8878b517601a0fb65741189903d503789e12cd6d81810b
-   2022-09-01 12:58:24 [Parachain] 🎁 Prepared block for proposing at 3 (0 ms) [hash: 0x614a7f68290d68ec8b441886dbc6bda95593028c856cf32a46a64ca85af5b51f; parent_hash: 0x9995…810b; extrinsics (2): [0xe698…6c13, 0x5225…a083]]
-   2022-09-01 12:58:24 [Parachain] 🔖 Pre-sealed block for proposal at 3. Hash now 0x7ea49c65781d6c9a04bd8ae4f89b0c7bd84c7b3302233024ffa54909dc977a32, previously 0x614a7f68290d68ec8b441886dbc6bda95593028c856cf32a46a64ca85af5b51f.
-   2022-09-01 12:58:24 [Parachain] ✨ Imported #3 (0x7ea4…7a32)
-   2022-09-01 12:58:24 [Parachain] PoV size { header: 0.1787109375kb, extrinsics: 2.7470703125kb, storage_proof: 2.6123046875kb }
-   2022-09-01 12:58:24 [Parachain] Compressed PoV size: 4.802734375kb
-   2022-09-01 12:58:24 [Parachain] Produced proof-of-validity candidate. block_hash=0x7ea49c65781d6c9a04bd8ae4f89b0c7bd84c7b3302233024ffa54909dc977a32
-   2022-09-01 12:58:26 [Relaychain] 💤 Idle (2 peers), best: #119 (0x20a1…5579), finalized #116 (0x0c12…2ba3), ⬇ 0.7kiB/s ⬆ 1.4kiB/s
-   2022-09-01 12:58:26 [Parachain] 💤 Idle (0 peers), best: #2 (0x9995…810b), finalized #1 (0x50e8…5acb), ⬇ 0 ⬆ 0
-   ...
-   2022-09-01 12:58:36 [Relaychain] 👶 New epoch 12 launching at block 0xa2a3…253c (block slot 277010386 >= start slot 277010386).
-   2022-09-01 12:58:36 [Relaychain] 👶 Next epoch starts at slot 277010396
-   2022-09-01 12:58:36 [Relaychain] ✨ Imported #121 (0xa2a3…253c)
-   2022-09-01 12:58:36 [Relaychain] Advanced session window for approvals update=Advanced { prev_window_start: 6, prev_window_end: 11, new_window_start: 7, new_window_end: 12 }
-   2022-09-01 12:58:36 [Parachain] Starting collation. relay_parent=0xa2a3fabb974f673d49cc6b50605e6d90595234ce16fd7bd01bce808bbdf0253c at=0x7ea49c65781d6c9a04bd8ae4f89b0c7bd84c7b3302233024ffa54909dc977a32
-   2022-09-01 12:58:36 [Relaychain] 💤 Idle (2 peers), best: #121 (0xa2a3…253c), finalized #117 (0x1ba0…6262), ⬇ 1.0kiB/s ⬆ 0.6kiB/s
-   2022-09-01 12:58:36 [Parachain] 💤 Idle (0 peers), best: #3 (0x7ea4…7a32), finalized #2 (0x9995…810b), ⬇ 0 ⬆ 0
+   [Relaychain] 💤 Idle (2 peers), best: #90 (0x5f73…1ccf), finalized #87 (0xeb50…68ea), ⬇ 1.4kiB/s ⬆ 1.1kiB/s
+   [Parachain] 💤 Idle (0 peers), best: #0 (0x3626…fef3), finalized #0 (0x3626…fef3), ⬇ 1.2kiB/s ⬆ 0.7kiB/s
+   [Relaychain] 💤 Idle (2 peers), best: #90 (0x5f73…1ccf), finalized #88 (0xd43c…c3e6), ⬇ 0.7kiB/s ⬆ 0.5kiB/s
+   [Parachain] 💤 Idle (0 peers), best: #0 (0x3626…fef3), finalized #0 (0x3626…fef3), ⬇ 1.0kiB/s ⬆ 0.6kiB/s
+   [Relaychain] 👶 New epoch 9 launching at block 0x1c93…4aa9 (block slot 281848325 >= start slot 281848325).
+   [Relaychain] 👶 Next epoch starts at slot 281848335
+   [Relaychain] ✨ Imported #91 (0x1c93…4aa9)
+   [Parachain] Starting collation. relay_parent=0x1c936289cfe15fabaa369f7ae5d73050581cb12b75209c11976afcf07f6a4aa9 at=0x36261113c31019d4b2a1e27d062e186f46da0e8f6786177dc7b35959688ffef3
+   [Relaychain] 💤 Idle (2 peers), best: #91 (0x1c93…4aa9), finalized #88 (0xd43c…c3e6), ⬇ 1.2kiB/s ⬆ 0.7kiB/s
+   [Parachain] 💤 Idle (0 peers), best: #0 (0x3626…fef3), finalized #0 (0x3626…fef3), ⬇ 0.2kiB/s ⬆ 37 B/s
+   [Relaychain] ✨ Imported #92 (0x557c…9f73)
+   [Parachain] Starting collation. relay_parent=0x557c8c611fdcb6aa86161df3ca71cad71ea159e7213ca36f1ed6b82393b19f73 at=0x36261113c31019d4b2a1e27d062e186f46da0e8f6786177dc7b35959688ffef3
+   [Parachain] 🙌 Starting consensus session on top of parent 0x36261113c31019d4b2a1e27d062e186f46da0e8f6786177dc7b35959688ffef3
+   [Parachain] 🎁 Prepared block for proposing at 1 (0 ms) [hash: 0x55f3ff62e12bd14385fcb4d386df5469d7360401a3f93ddb944aa0a023f9854a; parent_hash: 0x3626…fef3; extrinsics (2): [0x3e2c…53d1, 0x9080…1966]
+   [Parachain] 🔖 Pre-sealed block for proposal at 1. Hash now 0xc905d5b68c052c996d9a4d4863329d24fb6c5f0372f52469ccb909c886025df2, previously 0x55f3ff62e12bd14385fcb4d386df5469d7360401a3f93ddb944aa0a023f9854a.
+   [Parachain] ✨ Imported #1 (0xc905…5df2)
+   [Parachain] PoV size { header: 0.2177734375kb, extrinsics: 2.8740234375kb, storage_proof: 1.7783203125kb }
+   [Parachain] Compressed PoV size: 4.279296875kb
+   [Parachain] Produced proof-of-validity candidate. block_hash=0xc905d5b68c052c996d9a4d4863329d24fb6c5f0372f52469ccb909c886025df2
+   [Relaychain] 💤 Idle (2 peers), best: #92 (0x557c…9f73), finalized #89 (0x37ea…8ef3), ⬇ 1.4kiB/s ⬆ 1.7kiB/s
+   [Parachain] 💤 Idle (0 peers), best: #0 (0x3626…fef3), finalized #0 (0x3626…fef3), ⬇ 0.2kiB/s ⬆ 0.2kiB/s
+   [Relaychain] ✨ Imported #93 (0xed3c…0ba3)
+   [Relaychain] ✨ Imported #93 (0x2bf8…02c4)
+   [Relaychain] 💤 Idle (2 peers), best: #93 (0xed3c…0ba3), finalized #90 (0x5f73…1ccf), ⬇ 1.7kiB/s ⬆ 0.9kiB/s
+   [Parachain] 💤 Idle (0 peers), best: #0 (0x3626…fef3), finalized #0 (0x3626…fef3), ⬇ 0.2kiB/s ⬆ 0.1kiB/s
+   [Relaychain] 👴 Applying authority set change scheduled at block #91
+   [Relaychain] 👴 Applying GRANDPA set change to new set [(Public(88dc3417d5058ec4b4503e0c12ea1a0a89be200fe98922423d4334014fa6b0ee (5FA9nQDV...)), 1), (Public(d17c2d7823ebf260fd138f2d7e27d114c0145d968b5ff5006125f2414fadae69 (5GoNkf6W...)), 1)]
+   [Relaychain] ✨ Imported #94 (0xc141…1732)
+   [Parachain] Starting collation. relay_parent=0xc141dbb2f9f5108e0cfe4c4c08ced2c48e718c94dc58127e07428b42a80b1732 at=0xc905d5b68c052c996d9a4d4863329d24fb6c5f0372f52469ccb909c886025df2
+   [Relaychain] Trying to remove unknown reserved node 12D3KooWCzfdGstKxFiZ5QdKQVmQVgcBgE8r7FfBrG8bCRsia6Bo from SetId(3).
+   [Relaychain] 💤 Idle (2 peers), best: #94 (0xc141…1732), finalized #91 (0x1c93…4aa9), ⬇ 0.7kiB/s ⬆ 0.5kiB/s
+   [Parachain] 💤 Idle (0 peers), best: #1 (0xc905…5df2), finalized #0 (0x3626…fef3), ⬇ 0.2kiB/s ⬆ 0.1kiB/s
    ...
    ```
 
@@ -361,13 +378,9 @@ To connect to the parachain and submit transactions:
 
 2. Click the network selector in the top left of the application.
 
-   ![Network selector](/media/images/docs/tutorials/parachains/network-selector.png)
-
 3. Change the custom endpoint to connect to the WebSocket port for the parachain.
 
-   If you followed the settings in this tutorial, connect to port 8844.
-
-   ![Parachain WebSocket endpoint](/media/images/docs/tutorials/parachains/parachain-port.png)
+   If you followed the settings in this tutorial, connect to port `8844``.
 
 4. Click **Account** and select **Transfer** to send funds from Alice to another account.
 

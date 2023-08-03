@@ -50,7 +50,7 @@ To reserve an identifier:
 
 3. Click **Parathreads**, then click **+ParaID**.
    
-   ![Reserve a `ParaID`](/media/images/docs/tutorials/parachains/parathread-paraid.png)
+   ![Reserve a `ParaID`](/media/images/docs/tutorials/parachains/paraid-reserve.png)
 
 4. Submit a transaction to reserve the **ParaID** for the relay chain that you want to connect to. 
    

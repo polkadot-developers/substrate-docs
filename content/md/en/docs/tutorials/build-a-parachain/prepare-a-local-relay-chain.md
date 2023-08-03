@@ -167,13 +167,13 @@ To start the validator nodes using the [raw sample chain specification file](/as
    ./target/release/polkadot \
    --bob \
    --validator \
-   --base-path /tmp/relay-bob \
+   --base-path /tmp/relay/bob \
    --chain /tmp/raw-local-chainspec.json \
    --port 30334 \
    --rpc-port 9945
    ```
    
-   Notice that this command uses a different base path ( `/tmp/relay-bob`), validator key (`--bob`), and ports (`30334` and `9945`).
+   Notice that this command uses a different base path ( `/tmp/relay/bob`), validator key (`--bob`), and ports (`30334` and `9945`).
    
    Because both validators are running on a single local computer it isn't necessary to specify the `--bootnodes` command-line option and the IP address and peer identifier of the first node.
    The `bootnodes` option is necessary if you want to connect nodes that run outside of the local network or nodes that are not identified in the chain specification file.
