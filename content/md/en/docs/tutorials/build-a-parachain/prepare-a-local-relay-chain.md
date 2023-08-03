@@ -57,12 +57,12 @@ Therefore, this tutorial uses code from the Polkadot repository to prepare the l
 1. Clone the most recent release branch of the Polkadot repository to prepare a stable working environment.
    
    Release branches tend to be the most reliable and use the naming convention `release-v<n..n.n>`.
-   For example, the release branch used in this tutorial is `release-v0.9.37`.
-   Newer releases are likely to be available and, in most cases, you can substitute a more recent release branch instead of using the `release-v0.9.37` branch a long as you use the same branch for every module.
+   For example, the release branch used in this tutorial is `release-v1.0.0`.
+   Newer releases are likely to be available and, in most cases, you can substitute a more recent release branch instead of using the `release-v1.0.0` branch a long as you use the same branch for every module.
    You can find information about each release on the [Releases](https://github.com/paritytech/polkadot/releases) tab in GitHub.
    
    ```bash
-   git clone --branch release-v0.9.37 https://github.com/paritytech/polkadot.git
+   git clone --branch release-v1.0.0 https://github.com/paritytech/polkadot.git
    ```
 
 2. Change to the root of the `polkadot` directory by running the following command:
@@ -142,7 +142,7 @@ To start the validator nodes using the [raw sample chain specification file](/as
    --base-path /tmp/relay/alice \
    --chain /tmp/raw-local-chainspec.json \
    --port 30333 \
-   --ws-port 9944
+   --rpc-port 9944
    ```
 
    This command uses `/tmp/raw-local-chainspec.json` as the location of the sample chain specification file. 
@@ -167,13 +167,13 @@ To start the validator nodes using the [raw sample chain specification file](/as
    ./target/release/polkadot \
    --bob \
    --validator \
-   --base-path /tmp/relay-bob \
+   --base-path /tmp/relay/bob \
    --chain /tmp/raw-local-chainspec.json \
    --port 30334 \
-   --ws-port 9945
+   --rpc-port 9945
    ```
    
-   Notice that this command uses a different base path ( `/tmp/relay-bob`), validator key (`--bob`), and ports (`30334` and `9945`).
+   Notice that this command uses a different base path ( `/tmp/relay/bob`), validator key (`--bob`), and ports (`30334` and `9945`).
    
    Because both validators are running on a single local computer it isn't necessary to specify the `--bootnodes` command-line option and the IP address and peer identifier of the first node.
    The `bootnodes` option is necessary if you want to connect nodes that run outside of the local network or nodes that are not identified in the chain specification file.

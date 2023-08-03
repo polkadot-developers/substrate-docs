@@ -50,7 +50,7 @@ To reserve an identifier:
 
 3. Click **Parathreads**, then click **+ParaID**.
    
-   ![Reserve a `ParaID`](/media/images/docs/tutorials/parachains/parathread-paraid.png)
+   ![Reserve a `ParaID`](/media/images/docs/tutorials/parachains/paraid-reserve.png)
 
 4. Submit a transaction to reserve the **ParaID** for the relay chain that you want to connect to. 
    
@@ -73,7 +73,7 @@ To create the custom chain specification:
 1. Generate the plain chain specification by running a command similar to the following:
    
    ```text
-   ./target/release/parachain-collator build-spec --disable-default-bootnode > rococo-local-parachain-plain.json
+   ./target/release/parachain-template-node build-spec --disable-default-bootnode > rococo-local-parachain-plain.json
    ```
 
    The command in this example assumes that `rococo-local` is the relay chain you have registered with in the  `node/chan_spec.rs` file.
@@ -95,7 +95,7 @@ To create the custom chain specification:
 3. Generate the raw chain specification from your modified chain specification file by running a command similar to the following:
    
    ```text
-   ./target/release/parachain-collator build-spec \
+   ./target/release/parachain-template-node build-spec \
      --chain rococo-local-parachain-plain.json \
      --raw \
      --disable-default-bootnode > rococo-local-parachain-raw.json
@@ -121,7 +121,7 @@ You can run the `export-genesis-wasm` command on a parachain collator node to pr
 For example:
 
 ```bash
-./target/release/parachain-collator export-genesis-wasm --chain rococo-local-parachain-raw.json > para-wasm
+./target/release/parachain-template-node export-genesis-wasm --chain rococo-local-parachain-raw.json > para-wasm
 ```
 
 ## Generate a parachain genesis state
@@ -131,7 +131,7 @@ You can run the `export-genesis-state` command on a parachain collator node to p
 For example:
 
 ```bash
-./target/release/parachain-collator export-genesis-state --chain parachain-raw.json > para-genesis
+./target/release/parachain-template-node export-genesis-state --chain parachain-raw.json > para-genesis
 ```
 
 ## Start the collators
@@ -146,12 +146,12 @@ parachain-collator \
 --chain parachain-raw.json \
 --base-path /tmp/parachain/alice \
 --port 40333 \
---ws-port 8844 \
+--rpc-port 8844 \
 -- \
 --execution wasm \
 --chain <relay-chain-spec-json> \
 --port 30343 \
---ws-port 9977
+--rpc-port 9977
 ```
 
 In this command, the arguments passed before the lone `--` argument are for the parachain collator.
@@ -205,11 +205,11 @@ To register the parachain on the relay chain using a `sudo` call.
    - `validationCode`: Click **file upload** and upload the WebAssembly runtime you exported for the parachain
      For this tutorial, select the `para-2000-wasm` file.
      
-   - `parachain`: Select **Yes**.
+   - `paraKind`: Select **Yes**.
   
-   ![Set parameters for registeration](/media/images/docs/tutorials/parachains/register-with-sudo.png)
+   ![Set parameters for registration](/media/images/docs/tutorials/parachains/register-with-sudo.png)
 
-1. Verify the transaction is successful by clicking **Network** and selecting **Explorer** to view the `sudo.Sudid` event in the list of recent events.
+1. Verify the transaction is successful by clicking **Network** and selecting **Explorer** to view the `sudo.Sudid` _and_ `paras.PvfCheckAccepted` events in the list of recent events.
 
 ### Registering using a slot lease
 

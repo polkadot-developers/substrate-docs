@@ -74,7 +74,7 @@ To start the blockchain:
    --chain local \
    --alice \
    --port 30333 \
-   --ws-port 9945 \
+   --rpc-port 9945 \
    --rpc-port 9933 \
    --node-key 0000000000000000000000000000000000000000000000000000000000000001 \
    --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
@@ -91,7 +91,7 @@ Before moving on, have a look at how the following options are used to start the
 | `--chain local`                                             | Specifies the chain specification to use. Valid predefined chain specifications include `local`, `development`, and `staging`.                                                                                                             |
 | `--alice`                                                   | Adds the predefined keys for the `alice` account to the node's keystore. With this setting, the `alice` account is used for block production and finalization.                                                                             |
 | `--port 30333`                                              | Specifies the port to listen on for peer-to-peer (`p2p`) traffic. Because this tutorial uses two nodes running on the same physical computer to simulate a network, you must explicitly specify a different port for at least one account. |
-| `--ws-port 9945`                                            | Specifies the port to listen on for incoming WebSocket traffic. The default port is `9944`. This tutorial uses a custom web socket port number (`9945`).                                                                                   |
+| `--rpc-port 9945`                                            | Specifies the port to listen on for incoming WebSocket traffic. The default port is `9944`. This tutorial uses a custom web socket port number (`9945`).                                                                                   |
 | `--rpc-port 9933`                                           | Specifies the port to listen on for incoming RPC traffic. The default port is `9933`.                                                                                                                                                      |
 | `--node-key <key>`                                          | Specifies the Ed25519 secret key to use for `libp2p` networking. You should only use this option for development and testing.                                                                                                              |
 | `--telemetry-url`                                           | Specifies where to send telemetry data. For this tutorial, you can send telemetry data to a server hosted by Parity that is available for anyone to use.                                                                                   |
@@ -169,7 +169,7 @@ To add a node to the running blockchain:
    --chain local \
    --bob \
    --port 30334 \
-   --ws-port 9946 \
+   --rpc-port 9946 \
    --rpc-port 9934 \
    --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
    --validator \
@@ -178,7 +178,7 @@ To add a node to the running blockchain:
 
    Note the following differences between this command and the previous one:
 
-   - Because the two nodes are running on the same physical computer, you must specify different values for the `--base-path`, `--port`, `--ws-port`, and `--rpc-port` options.
+   - Because the two nodes are running on the same physical computer, you must specify different values for the `--base-path`, `--port`, `--rpc-port`, and `--rpc-port` options.
 
    - This command includes the `--bootnodes` option and specifies a single boot node, the node started by `alice`.
 
