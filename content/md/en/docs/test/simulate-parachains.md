@@ -126,7 +126,7 @@ To add the parachain collator binary to the working folder:
 5. Copy the parachain binary into your working `binaries` folder by running a command similar to the following:
 
    ```bash
-   cp ./target/release/parachain-template-node ../binaries/parachain-template-node-v0.9.37
+   cp ./target/release/parachain-template-node ../binaries/parachain-template-node-v1.0.0
    ```
 
    In this example, your working directory is` $HOME/binaries` or `~/binaries` so you must navigate up a directory level from your current `substrate-parachain-template` root directory.
@@ -200,7 +200,7 @@ To download and configure Zombienet:
 
       [parachains.collator]
       name = "parachain-A-1000-collator01"
-      command = "../binaries/parachain-template-node-v0.9.37"
+      command = "../binaries/parachain-template-node-v1.0.0"
 
    [[parachains]]
    id = 1001
@@ -208,7 +208,7 @@ To download and configure Zombienet:
 
       [parachains.collator]
       name = "parachain-B-1001-collator01"
-      command = "../binaries/parachain-template-node-v0.9.37"
+      command = "../binaries/parachain-template-node-v1.0.0"
    ```
 
 4. Save your changes and close the file.

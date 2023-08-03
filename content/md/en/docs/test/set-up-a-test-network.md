@@ -119,7 +119,7 @@ To add the first parachain binary to the working folder:
 1. Copy the parachain binary into your working `bin` folder by running a command similar to the following:
 
    ```bash
-   cp ./target/release/parachain-template-node ../bin/parachain-template-node-v0.9.30-1000
+   cp ./target/release/parachain-template-node ../bin/parachain-template-node-v1.0.0-1000
    ```
 
    As this example illustrates, it's generally a good practice to append the version and `paraId` to the binary name to keep the files in the `bin` folder organized.
@@ -196,7 +196,7 @@ To add the second parachain binary to the working folder:
 5. Copy the new parachain collator binary into the working `bin` folder by running a command similar to the following:
 
    ```bash:
-   cp ./target/release/parachain-template-node ../bin/parachain-template-node-v0.9.30-1001
+   cp ./target/release/parachain-template-node ../bin/parachain-template-node-v1.0.0-1001
    ```
 
 ## Configure the test network settings
@@ -269,7 +269,7 @@ To download and configure Zombienet:
 
       [parachains.collator]
       name = "parachain-A-1000-collator-01"
-      command = "./bin/parachain-template-node-v0.9.30-1000"
+      command = "./bin/parachain-template-node-v1.0.0-1000"
 
    [[parachains]]
    id = 1001
@@ -277,7 +277,7 @@ To download and configure Zombienet:
 
       [parachains.collator]
       name = "parachain-B-1001-collator-01"
-      command = "../bin/parachain-template-node-v0.9.30-1001"
+      command = "../bin/parachain-template-node-v1.0.0-1001"
    ```
 
 4. Save your changes and close the file.

@@ -60,7 +60,7 @@ To build the parachain template:
    If you want to save your changes and make this branch easy to identify you can create a new branch by running a command similar to the following:
 
    ```bash
-   git switch -c my-branch-v0.9.37
+   git switch -c my-branch-v1.0.0
    ```
 
 4. Build the parachain template collator by running the following command:
