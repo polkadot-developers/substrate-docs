@@ -208,12 +208,12 @@ To update the dependencies for the runtime to include the Utility pallet:
       version = "4.0.0-dev", 
       default-features = false, 
       git = "https://github.com/paritytech/substrate.git", 
-      branch = "polkadot-v0.9.36" 
+      branch = "polkadot-v1.0.0" 
    }
    ```
 
    Be sure to use the same **version** and **branch** information for the Scheduler pallet as you see used for the other pallets included in the runtime.
-   In this example, all of the pallets in the node template runtime use `version = "4.0.0-dev"` and `branch = "polkadot-v0.9.36"`.
+   In this example, all of the pallets in the node template runtime use `version = "4.0.0-dev"` and `branch = "polkadot-v1.0.0"`.
 -->
 
 ### Add the Utility pallet configuration

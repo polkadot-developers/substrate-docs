@@ -27,17 +27,17 @@ As with pallets, be sure that you are using the appropriate tag or branch for th
   
    ```toml
    [dependencies]
-	 frame-try-runtime = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28", optional = true }
+	 frame-try-runtime = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v1.0.0", optional = true }
 	 ```
 
 	 Note that you should use the same branch and version information for all of the pallets to ensure that the imported pallets are compatible with each other.
    Using pallets from different branches can result in compiler errors.
-   This example illustrates adding the `frame-try-runtime` pallet to the `Cargo.toml` file if the other pallets use `branch = "polkadot-v0.9.28"`.
+   This example illustrates adding the `frame-try-runtime` pallet to the `Cargo.toml` file if the other pallets use `branch = "polkadot-v1.0.0"`.
 
 1. Add the `try-runtime-cli` dependency:
 
 	 ```toml
-	 try-runtime-cli = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28", optional = true }
+	 try-runtime-cli = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v1.0.0", optional = true }
 	 ```
 
 1. Add `frame-try-runtime` to the list of standard features:
@@ -109,12 +109,12 @@ As with pallets, be sure that you are using the appropriate tag or branch for th
 1. Add the `frame-try-runtime` dependency:
    
 	 ```toml
-	 frame-try-runtime = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28", optional = true }
+	 frame-try-runtime = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v1.0.0", optional = true }
 	 ```
 1. Add the `try-runtime-cli` dependency:
    
 	 ```toml
-	 try-runtime-cli = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28", optional = true }
+	 try-runtime-cli = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v1.0.0", optional = true }
 	 ```
 
 1. Add or update `cli` and `try-runtime` in the `[features]` section.

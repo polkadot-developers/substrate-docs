@@ -47,12 +47,12 @@ To prepare a working folder with the binaries for the test network:
 1. Clone the Polkadot repository by running a command similar to the following:
 
    ```bash
-   git clone --depth 1 --branch release-v0.9.30 https://github.com/paritytech/polkadot.git
+   git clone --depth 1 --branch release-v1.0.0 https://github.com/paritytech/polkadot.git
    ```
 
    Release branches use the naming convention `release-v<n.n.n>`.
-   For example, the release branch used in this tutorial is `release-v0.9.30`.
-   You can check out a more recent release branch instead of using `release-v0.9.30`.
+   For example, the release branch used in this tutorial is `release-v1.0.0`.
+   You can check out a more recent release branch instead of using `release-v1.0.0`.
    You can find information about recent releases and what's included in each release on the [Releases](https://github.com/paritytech/polkadot/releases) tab.
 
 1. Change to the root of the `polkadot` directory by running the following command:
@@ -72,7 +72,7 @@ To prepare a working folder with the binaries for the test network:
 1. Copy the Polkadot binary into your working `bin` folder by running a command similar to the following:
 
    ```bash
-   cp ./target/release/polkadot ../bin/polkadot-v0.9.30
+   cp ./target/release/polkadot ../bin/polkadot-v1.0.0
    ```
 
    As this example illustrates, it's generally a good practice to append the version of `polkadot` to the binary name to keep the files in the `bin` folder organized.
@@ -105,7 +105,7 @@ To add the first parachain binary to the working folder:
    For example:
 
    ```bash
-   git checkout polkadot-v0.9.30
+   git checkout polkadot-v1.0.0
    ```
 
 1. Compile the parachain template collator by running the following command:
@@ -242,7 +242,7 @@ To download and configure Zombienet:
 
    ```toml
    [relaychain]
-   default_command = "./bin/polkadot-v0.9.30"
+   default_command = "./bin/polkadot-v1.0.0"
    default_args = [ "-lparachain=debug" ]
 
    chain = "rococo-local"
