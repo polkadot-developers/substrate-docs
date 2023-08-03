@@ -31,12 +31,12 @@ Notice that we need to supply the same relay chain chain spec we used for launch
 --chain rococo-local-parachain-2000-raw.json \
 --base-path /tmp/parachain/alice \
 --port 40333 \
---ws-port 8844 \
+--rpc-port 8844 \
 -- \
 --execution wasm \
 --chain <relay chain raw chain spec> \
 --port 30343 \
---ws-port 9977
+--rpc-port 9977
 ```
 
 ### Start a second collator
@@ -53,12 +53,12 @@ This command is nearly identical to the one we used to start the first collator,
 --base-path /tmp/parachain/bob \
 --bootnodes <a running collator node> \
 --port 40334 \
---ws-port 9946 \
+--rpc-port 9946 \
 -- \
 --execution wasm \
 --chain <relay chain chain spec> \
 --port 30344 \
---ws-port 9978
+--rpc-port 9978
 --bootnodes <other relay chain node>
 ```
 

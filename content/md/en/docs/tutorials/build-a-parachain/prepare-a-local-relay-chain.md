@@ -142,7 +142,7 @@ To start the validator nodes using the [raw sample chain specification file](/as
    --base-path /tmp/relay/alice \
    --chain /tmp/raw-local-chainspec.json \
    --port 30333 \
-   --ws-port 9944
+   --rpc-port 9944
    ```
 
    This command uses `/tmp/raw-local-chainspec.json` as the location of the sample chain specification file. 
@@ -170,7 +170,7 @@ To start the validator nodes using the [raw sample chain specification file](/as
    --base-path /tmp/relay-bob \
    --chain /tmp/raw-local-chainspec.json \
    --port 30334 \
-   --ws-port 9945
+   --rpc-port 9945
    ```
    
    Notice that this command uses a different base path ( `/tmp/relay-bob`), validator key (`--bob`), and ports (`30334` and `9945`).

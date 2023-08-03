@@ -303,7 +303,7 @@ To start the first node:
       --base-path /tmp/node01 \
       --chain ./customSpecRaw.json \
       --port 30333 \
-      --ws-port 9945 \
+      --rpc-port 9945 \
       --rpc-port 9933 \
       --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
       --validator \
@@ -473,7 +473,7 @@ To add a second validator to the private network:
       --base-path /tmp/node02 \
       --chain ./customSpecRaw.json \
       --port 30334 \
-      --ws-port 9946 \
+      --rpc-port 9946 \
       --rpc-port 9934 \
       --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
       --validator \
@@ -552,7 +552,7 @@ To add a second validator to the private network:
       --base-path /tmp/node02 \
       --chain ./customSpecRaw.json \
       --port 30334 \
-      --ws-port 9946 \
+      --rpc-port 9946 \
       --rpc-port 9934 \
       --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
       --validator \
