@@ -19,7 +19,7 @@ This guide does not cover how to use the benchmarking results to update transact
    For example:
 
    ```toml
-   frame-benchmarking = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.25", optional = true }
+   frame-benchmarking = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v1.0.0", optional = true }
    ```
 1. Add `runtime-benchmarks` to the list of [features] for the pallet.
    
