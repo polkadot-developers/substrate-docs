@@ -196,7 +196,7 @@ For example, building a parachain might be the best option for the following use
 - Digital wallets
 - Internet of things (IOT) applications
 - Gaming applications
-- Web 3.0 infrastructureM
+- Web 3.0 infrastructure
 
 ### Explore building a parachain
 
