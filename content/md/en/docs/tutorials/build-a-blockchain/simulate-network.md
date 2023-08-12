@@ -74,7 +74,7 @@ To start the blockchain:
    --chain local \
    --alice \
    --port 30333 \
-   --rpc-port 9945 \
+   --rpc-port 9945 && \
    --rpc-port 9933 \
    --node-key 0000000000000000000000000000000000000000000000000000000000000001 \
    --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
@@ -169,7 +169,7 @@ To add a node to the running blockchain:
    --chain local \
    --bob \
    --port 30334 \
-   --rpc-port 9946 \
+   --rpc-port 9946 && \
    --rpc-port 9934 \
    --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
    --validator \
