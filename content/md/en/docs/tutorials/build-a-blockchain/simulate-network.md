@@ -121,8 +121,7 @@ For example, you should see output similar to this:
 2022-08-16 15:29:56 💻 CPU architecture: x86_64    
 2022-08-16 15:29:56 📦 Highest known block at #0    
 2022-08-16 15:29:56 〽️ Prometheus exporter started at 127.0.0.1:9615    
-2022-08-16 15:29:56 Running JSON-RPC HTTP server: addr=127.0.0.1:9933, allowed origins=Some(["http://localhost:*", "http://127.0.0.1:*", "https://localhost:*", "https://127.0.0.1:*", "https://polkadot.js.org"])    
-2022-08-16 15:29:56 Running JSON-RPC WS server: addr=127.0.0.1:9945, allowed origins=Some(["http://localhost:*",    
+2022-08-16 15:29:56 Running JSON-RPC HTTP server: addr=127.0.0.1:9933, allowed origins=Some(["http://localhost:*", "http://127.0.0.1:*", "https://localhost:*", "https://127.0.0.1:*", "https://polkadot.js.org"])      
 2022-08-16 15:29:56 creating instance on iface 192.168.1.125    
 2022-08-16 15:30:01 💤 Idle (0 peers), best: #0 (0x2cdc…a07f), finalized #0 (0x2cdc…a07f), ⬇ 0 ⬆ 0
 ...
@@ -175,7 +174,7 @@ To add a node to the running blockchain:
 
    Note the following differences between this command and the previous one:
 
-   - Because the two nodes are running on the same physical computer, you must specify different values for the `--base-path`, `--port`, and `--rpc-port` options.
+   - Because the two nodes are running on the same physical computer, you must specify different values for the `--base-path`, `--port` and `--rpc-port` options.
 
    - This command includes the `--bootnodes` option and specifies a single boot node, the node started by `alice`.
 
