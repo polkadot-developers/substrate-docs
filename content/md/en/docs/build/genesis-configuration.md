@@ -4,7 +4,7 @@ description:
 keywords:
 ---
 
-The first block produced by any blockchain is typically referred to as the genesis block.
+The first block produced by any blockchain is referred to as the genesis block.
 The hash associated with this block is the top-level parent of all blocks produced after that first block.
 
 The Substrate node template provides the genesis configuration—the initial state—for a subset of pallets by default.
@@ -16,6 +16,7 @@ Instead, the storage items are defined in the pallets included in the runtime as
 
 After you create storage items for the runtime, you can choose whether they should be set to some initial value as part of the genesis configuration and included in the genesis block.  
 To specify the storage items that you want to set an initial state for, Substrate provides two specialized FRAME attribute macros.
+
 The macros you can use to initialize storage items as part of the genesis configuration for a chain are:
 
 - The `#[pallet::genesis_config]` macro defines the `GenesisConfig` data type and initializes storage items.
@@ -80,7 +81,7 @@ Now that you have configured the pallet to initialize a storage value in the gen
 
    ```rust
    use node_template_runtime::{
-      AccountId, AuraConfig, BalancesConfig, GenesisConfig, GrandpaConfig, Signature, SudoConfig, SystemConfig, TemplateModuleConfig, WASM_BINARY,
+      AccountId, AuraConfig, BalancesConfig, RuntimeGenesisConfig, GrandpaConfig, Signature, SudoConfig, SystemConfig, TemplateModuleConfig, WASM_BINARY,
    };
    ```
 
@@ -109,10 +110,10 @@ Now that you have configured the pallet to initialize a storage value in the gen
 
 After you use the [`#[pallet::genesis_config]`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional) macro to add the `GenesisConfig` to each pallet where it's needed, you must include the `Config` trait for each pallet in the runtime to enable the runtime to initialize storage items in the genesis block.
 
-All of the `GenesisConfig` types for the pallets that included in the construction of the runtime are then aggregated into a single `GenesisConfig` type for that runtime.
+All of the `GenesisConfig` types for the pallets that included in the construction of the runtime are then aggregated into a single `RuntimeGenesisConfig` type for that runtime.
 
-The aggregated `GenesisConfig` implements the [`BuildStorage`](https://paritytech.github.io/substrate/master/sp_runtime/trait.BuildStorage.html) trait to build all of the initial storage items for the runtime.
-For example, the node template runtime builds storage items for the following pallets that have a `GenesisConfig` specified by default:
+The aggregated `RuntimeGenesisConfig` implements the [`BuildStorage`](https://paritytech.github.io/substrate/master/sp_runtime/trait.BuildStorage.html) trait to build all of the initial storage items for the runtime.
+For example, the node template runtime builds storage items for the following pallets that have a `RuntimeGenesisConfig` specified by default:
 
 - [System pallet](#system-pallet)
 - [Aura pallet](#aura-pallet)
@@ -177,10 +178,10 @@ For example, the node template runtime builds storage items for the following pa
 	}
 ```
 
-Because these pallets include the #[pallet::genesis_config] macro with a `GenesisConfig` and have the `Config` trait defined in the runtime, they are aggregated into [`node_template_runtime::GenesisConfig`](https://paritytech.github.io/substrate/master/node_template_runtime/struct.GenesisConfig.html) struct for the runtime:
+Because these pallets include the #[pallet::genesis_config] macro with a `GenesisConfig` and have the `Config` trait defined in the runtime, they are aggregated into [`node_template_runtime::RuntimeGenesisConfig`](https://paritytech.github.io/substrate/master/node_template_runtime/struct.RuntimeGenesisConfig.html) struct for the runtime:
 
 ```rust
-pub struct GenesisConfig {
+pub struct RuntimeGenesisConfig {
     pub system: SystemConfig,
     pub aura: AuraConfig,
     pub grandpa: GrandpaConfig,
@@ -190,7 +191,7 @@ pub struct GenesisConfig {
 }
 ```
 
-Ultimately, the runtime `GenesisConfig` is exposed by way of the [`ChainSpec`](https://paritytech.github.io/substrate/master/sc_chain_spec/trait.ChainSpec.html) trait.
+Ultimately, the `RuntimeGenesisConfig` is exposed by way of the [`ChainSpec`](https://paritytech.github.io/substrate/master/sc_chain_spec/trait.ChainSpec.html) trait.
 
 For a more complete example of genesis storage configuration for Substrate, see the [chain specification that ships with the Substrate code base](https://github.com/paritytech/substrate/blob/master/bin/node/cli/src/chain_spec.rs).
 
@@ -236,7 +237,7 @@ GenesisConfig {
 
 You can also use the `genesis_build` macro to define a `GenesisConfig` attribute that is not bound to a particular storage item.
 This can be useful if you want to invoke a private helper function within your pallet that sets several storage items, or to invoke a function defined in some other pallets included within your pallet.
-For example, using an imaginary private function called `intitialize_members`, thie code might look like this:
+For example, using an imaginary private function called `intitialize_members`, the code might look like this:
 
 In `my_pallet/src/lib.rs`:
 

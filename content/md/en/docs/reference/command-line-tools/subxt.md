@@ -8,8 +8,8 @@ The [`subxt`](https://github.com/paritytech/subxt) library enables you to submit
 Before you use the `subxt` library, you can use the standalone `subxt` command-line interface to download the metadata for the Substrate node you want to use as the target for submitting transactions.
 The `subxt-cli` tool enables you to perform two key tasks that are critical to using the `subxt` library:
 
-* You can use the `subxt-cli` tool to download the metadata from any target Substrate node.
-* You can use the `subxt-cli` tool to generate the runtime API code from the metadata from any target Substrate node.
+- You can use the `subxt-cli` tool to download the metadata from any target Substrate node.
+- You can use the `subxt-cli` tool to generate the runtime API code from the metadata from any target Substrate node.
 
 You can use the `subxt` library and `subxt-cli` tool for any node that uses metadata v14 and later.
 For examples of how to use the `subxt` library, see the [examples](https://github.com/paritytech/subxt/tree/master/examples/examples) folder.
@@ -21,7 +21,7 @@ To install `subxt-cli`:
 1. Open a terminal shell, if necessary.
 1. Verify that you have the Rust compiler and toolchain, if necessary.
 1. Download the required packages with the following command:
-    `cargo install subxt-cli`
+   `cargo install subxt-cli`
 
 ## Basic command usage
 
@@ -36,28 +36,28 @@ If the metadata is already provided, it is possible to use the `codegen` subcomm
 
 You can use the following optional flags with the `subxt` command.
 
-| Flag | Description
-| ------- | -----------
-| -h, --help | Displays usage information.
-| -V, --version | Displays version information.
+| Flag          | Description                   |
+| ------------- | ----------------------------- |
+| -h, --help    | Displays usage information.   |
+| -V, --version | Displays version information. |
 
 ### Subcommands
 
 You can use the following subcommands with the `subxt` command-line interface.
 
-| Command | Description
-| ------- | -----------
-| `codegen` | Generates runtime API client code from metadata.
-| `metadata` | Downloads metadata from a Substrate node for use with `subxt` codegen.
+| Command    | Description                                                            |
+| ---------- | ---------------------------------------------------------------------- |
+| `codegen`  | Generates runtime API client code from metadata.                       |
+| `metadata` | Downloads metadata from a Substrate node for use with `subxt` codegen. |
 
 ### Output
 
 Depending on how you specify the subcommand, the output from `subxt` displays some or all of the following information:
 
-| This field | Contains
-| ---------- | ----------
-| Metadata | A file with the metadata of a target chain.
-| API | A file with the API of the target chain.
+| This field | Contains                                    |
+| ---------- | ------------------------------------------- |
+| Metadata   | A file with the metadata of a target chain. |
+| API        | A file with the API of the target chain.    |
 
 ### Examples
 
@@ -83,19 +83,19 @@ This could be useful for debugging or modifying a node's API to meet certain har
 
 You can use the following optional flags with the `subxt codegen` command.
 
-| Flag   | Description
-| ------ | -----------
-| `-h, --help`  | Displays usage information.
-| `-V, --version` | Prints version information.
+| Flag            | Description                 |
+| --------------- | --------------------------- |
+| `-h, --help`    | Displays usage information. |
+| `-V, --version` | Prints version information. |
 
 #### Options
 
 You can use the following command-line options with the `subxt codegen` command.
 
-| Option   | Description
-| -------- | -----------
-| `-f, --file <file>` | Specifies the path to the encoded metadata file.
-| `--url <url>` | Specifies the URL of the Substrate node to query for metadata for codegen.
+| Option              | Description                                                                |
+| ------------------- | -------------------------------------------------------------------------- |
+| `-f, --file <file>` | Specifies the path to the encoded metadata file.                           |
+| `--url <url>`       | Specifies the URL of the Substrate node to query for metadata for codegen. |
 
 #### Examples
 
@@ -119,19 +119,19 @@ Use the `subxt metadata` command to get the metadata of the target Substrate nod
 
 You can use the following optional flags with the `subxt metadata` command.
 
-| Flag   | Description
-| ------ | -----------
-| `-h, --help`  | Displays usage information.
-| `-V, --version` | Prints version information.
+| Flag            | Description                 |
+| --------------- | --------------------------- |
+| `-h, --help`    | Displays usage information. |
+| `-V, --version` | Prints version information. |
 
 #### Options
 
 You can use the following command-line options with the `subxt metadata` command.
 
-| Option   | Description
-| -------- | -----------
-| `-f, --format <format>` | Specifies the format of the metadata to display. Valid formats are `json`, `hex` or `bytes`. The default format is `json`.
-| `--url <url>` | Specifies the URL of the Substrate node to query for metadata. The default URL is `http://localhost:9933`.
+| Option                  | Description                                                                                                                |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `-f, --format <format>` | Specifies the format of the metadata to display. Valid formats are `json`, `hex` or `bytes`. The default format is `json`. |
+| `--url <url>`           | Specifies the URL of the Substrate node to query for metadata. The default URL is `http://localhost:9933`.                 |
 
 #### Examples
 

@@ -7,7 +7,7 @@ keywords:
 The most common approach to building a custom runtime is to start with [existing pallets](/reference/frame-pallets/).
 For example, you might start building an application-specific staking pallet that uses the types exposed in existing Collective and Balances pallets, but includes custom runtime logic required by your application and its staking rules.
 
-Although [FRAME pallets](/reference/frame-pallets) provides an overview of the most common pallets, the best place to find current information about existing pallets is the [Rust API](/reference/rust-api/) documentation for crates tht use the naming convention `pallet_*`.
+Although [FRAME pallets](/reference/frame-pallets) provides an overview of the most common pallets, the best place to find current information about existing pallets is the [Rust API](/reference/rust-api/) documentation for crates that use the naming convention `pallet_*`.
 
 If you don't find a pallet that meets your needs, you can use FRAME macros to build the scaffolding for a custom pallet.
 
