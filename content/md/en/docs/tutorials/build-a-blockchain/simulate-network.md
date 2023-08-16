@@ -122,7 +122,7 @@ For example, you should see output similar to this:
 2022-08-16 15:29:56 📦 Highest known block at #0    
 2022-08-16 15:29:56 〽️ Prometheus exporter started at 127.0.0.1:9615    
 2022-08-16 15:29:56 Running JSON-RPC HTTP server: addr=127.0.0.1:9933, allowed origins=Some(["http://localhost:*", "http://127.0.0.1:*", "https://localhost:*", "https://127.0.0.1:*", "https://polkadot.js.org"])    
-2022-08-16 15:29:56 Running JSON-RPC WS server: addr=127.0.0.1:9945, allowed origins=Some(["http://localhost:*", "http://127.0.0.1:*", "https://localhost:*", "https://127.0.0.1:*", "https://polkadot.js.org"])    
+2022-08-16 15:29:56 Running JSON-RPC WS server: addr=127.0.0.1:9945, allowed origins=Some(["http://localhost:*",    
 2022-08-16 15:29:56 creating instance on iface 192.168.1.125    
 2022-08-16 15:30:01 💤 Idle (0 peers), best: #0 (0x2cdc…a07f), finalized #0 (0x2cdc…a07f), ⬇ 0 ⬆ 0
 ...
