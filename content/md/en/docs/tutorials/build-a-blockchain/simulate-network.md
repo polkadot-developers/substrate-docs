@@ -174,7 +174,7 @@ To add a node to the running blockchain:
 
    Note the following differences between this command and the previous one:
 
-   - Because the two nodes are running on the same physical computer, you must specify different values for the `--base-path`, `--port`, and `--rpc-port` options.
+   - Because the two nodes are running on the same physical computer, you must specify different values for the `--base-path`, `--port` and `--rpc-port` options.
 
    - This command includes the `--bootnodes` option and specifies a single boot node, the node started by `alice`.
 
