@@ -10,4 +10,4 @@ keywords:
   - storage migration
 ---
 
-`try-runtime` documentation has been moved [here](https://paritytech.github.io/try-runtime-cli/try_runtime).
+The `try-runtime` documentation has been moved [here](https://paritytech.github.io/try-runtime-cli/try_runtime).
