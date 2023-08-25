@@ -238,7 +238,7 @@ To implement storage for the proof-of-existence pallet:
 
    ```rust
    #[pallet::storage]
-   pub(super) type Claims<T: Config> = StorageMap<_, Blake2_128Concat, T::Hash, (T::AccountId, T::BlockNumber)>;
+   pub(super) type Claims<T: Config> = StorageMap<_, Blake2_128Concat, T::Hash, (T::AccountId, BlockNumberFor<T>)>;
    ```
 
 1. Save your changes.
