@@ -109,8 +109,8 @@ For inforamtion about how to build a deterministic runtime, see [Build a determi
 By convention, chain specifications are in a `/chain-specs` folder that is published in the codebase fot your node.
 For example:
 
-- Polkadot includes these **relay chain** chain specifications under [node/service/chain-specs](https://github.com/paritytech/polkadot/tree/master/node/service/chain-specs)
-- Cumulus includes these **parachain** chain specifications under [chain-specs](https://github.com/paritytech/cumulus/tree/master/polkadot-parachains/chain-specs).
+- Polkadot includes these **relay chain** chain specifications under [node/service/chain-specs](https://github.com/paritytech/polkadot-sdk/tree/master/polkadot/node/service/chain-specs)
+- Cumulus includes these **parachain** chain specifications under [chain-specs](https://github.com/paritytech/polkadot-sdk/tree/master/cumulus/polkadot-parachain/src/chain_spec).
 
 It is good practice to commit the raw chain specification into your source before proceeding.
 
@@ -180,10 +180,10 @@ pub const fn deposit(items: u32, bytes: u32) -> Balance {}
 You can find this function for each relay chain in the Polkadot repository.
 For example:
 
-- [Kusama](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/constants/src/lib.rs)
-- [Polkadot](https://github.com/paritytech/polkadot/blob/master/runtime/polkadot/constants/src/lib.rs)
-- [Rococo](https://github.com/paritytech/polkadot/blob/master/runtime/rococo/constants/src/lib.rs)
-- [Westend](https://github.com/paritytech/polkadot/blob/master/runtime/westend/constants/src/lib.rs)
+- [Kusama](https://github.com/paritytech/polkadot-sdk/blob/master/polkadot/runtime/kusama/constants/src/lib.rs)
+- [Polkadot](https://github.com/paritytech/polkadot/blob/master/rhuntime/polkadot/constants/src/lib.rs)
+- [Rococo](https://github.com/paritytech/polkadot-sdk/blob/master/polkadot/runtime/rococo/constants/src/lib.rs)
+- [Westend](https://github.com/paritytech/polkadot-sdk/blob/master/polkadot/runtime/westend/constants/src/lib.rs)
 
 ### Register using sudo
 
