@@ -55,7 +55,7 @@ The way to do it is through a [JSON-RPC](/reference/glossary#json-rpc) proxy tha
 
 ## RPCs for remote_externalities
 
-Substrate also provides some specialized RPC methods to call [`remote_externalities`](https://github.com/paritytech/substrate/blob/master/utils/frame/remote-externalities/src/lib.rs#L320-#L764) for a node.
+Substrate also provides some specialized RPC methods to call [`remote_externalities`](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/utils/frame/remote-externalities/src/lib.rs#L320-#L764) for a node.
 These specialized methods for remote externalities enable you to make one-off RPC calls to a Substrate node to get information about blocks and headers.
 The information returned by these calls can be useful for testing purposes with tools like [`try-runtime`](/reference/command-line-tools/try-runtime/).
 

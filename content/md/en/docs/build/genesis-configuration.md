@@ -193,7 +193,7 @@ pub struct RuntimeGenesisConfig {
 
 Ultimately, the `RuntimeGenesisConfig` is exposed by way of the [`ChainSpec`](https://paritytech.github.io/substrate/master/sc_chain_spec/trait.ChainSpec.html) trait.
 
-For a more complete example of genesis storage configuration for Substrate, see the [chain specification that ships with the Substrate code base](https://github.com/paritytech/substrate/blob/master/bin/node/cli/src/chain_spec.rs).
+For a more complete example of genesis storage configuration for Substrate, see the [chain specification that ships with the Substrate code base](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/bin/node/cli/src/chain_spec.rs).
 
 ## Initialize storage items within a pallet
 
