@@ -17,7 +17,7 @@ In this guide, we will implement the `set_lock`, `extend_lock` and `remove_lock`
 ## Before you begin
 
 You will need to have a pallet already integrated in a runtime to follow this guide.
-This guide assumes you are using a runtime that contains the [Balances pallet](https://github.com/paritytech/substrate/tree/master/frame/balances) to handle the accounts and balances for your chain.
+This guide assumes you are using a runtime that contains the [Balances pallet](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame/balances) to handle the accounts and balances for your chain.
 You can use the template pallet in the [node template](https://github.com/substrate-developer-hub/substrate-node-template) to follow.
 
 ## Declare the necessary dependencies

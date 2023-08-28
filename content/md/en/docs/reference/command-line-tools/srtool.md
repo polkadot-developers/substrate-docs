@@ -102,7 +102,7 @@ srtool-cli 0.8.0
 ## srtool build
 
 Use the `srtool build` command to start a new `srtool` container to build the runtime for the package you specify.
-By default, the `srtool build` command assumes that the `Cargo.toml` file for the runtime is located in a [`runtime`](https://github.com/paritytech/polkadot/tree/master/runtime) subdirectory with the name of the chain.
+By default, the `srtool build` command assumes that the `Cargo.toml` file for the runtime is located in a [`runtime`](https://github.com/paritytech/polkadot-sdk/tree/master/polkadot/runtime) subdirectory with the name of the chain.
 For example, the `srtool build` command use the following locations by default:
 
 - runtime/kusama
@@ -148,7 +148,7 @@ You can use the following command-line options with the `srtool build` command.
 
 ### Examples
 
-To build the Westmint runtime from the `cumulus` repository where the path to the `Cargo.toml` for the runtime is [parachains/runtimes/assets/westmint](https://github.com/paritytech/cumulus/tree/master/parachains/runtimes/assets/westmint), you would run the following command:
+To build the Westmint runtime from the `cumulus` repository where the path to the `Cargo.toml` for the runtime is [parachains/runtimes/assets/westmint](https://github.com/paritytech/cumulus/tree/master/parachains/runtimes/assets), you would run the following command:
 
 ```bash
 srtool build --app --package westmint-runtime --runtime-dir parachains/runtimes/assets/westmint
@@ -189,7 +189,7 @@ subkey help build
 ## srtool info
 
 Use the `srtool info` command to display information about the `srtool` container and your repository.
-By default, the `srtool info` command assumes that the `Cargo.toml` file for the runtime is located in a [`runtime`](https://github.com/paritytech/polkadot/tree/master/runtime) subdirectory with the name of the chain.
+By default, the `srtool info` command assumes that the `Cargo.toml` file for the runtime is located in a [`runtime`](https://github.com/paritytech/polkadot-sdk/tree/master/polkadot/runtime) subdirectory with the name of the chain.
 For example, the `srtool info` command use the following locations by default:
 
 - runtime/kusama

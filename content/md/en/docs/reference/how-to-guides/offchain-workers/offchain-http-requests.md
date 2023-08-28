@@ -94,6 +94,6 @@ However, waiting indefinitely might result in a timeout from the external host m
 
 ## Examples
 
-- [Example pallet: Offchain worker](https://github.com/paritytech/substrate/blob/master/frame/examples/offchain-worker/src/lib.rs)
+- [Example pallet: Offchain worker](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/examples/offchain-worker/src/lib.rs)
 - [Demo: OCW pallet](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/master/pallets/ocw/src/lib.rs#L363-#L401)
-- [Source: Substrate core primitives](https://github.com/paritytech/substrate/blob/master/primitives/runtime/src/offchain/http.rs#L63-L76)
+- [Source: Substrate core primitives](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/primitives/runtime/src/offchain/http.rs#L63-L76)

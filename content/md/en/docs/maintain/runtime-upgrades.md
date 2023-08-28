@@ -100,7 +100,7 @@ However, you can use the following recommended practices to guide you when you n
 - Include logging in migrations to assist in debugging.
 - Remember that migrations are executed within the context of the _upgraded_ runtime.
   The migration code might need to include deprecated types, as in [this example](https://github.com/hicommonwealth/substrate/blob/5f3933f5735a75d2d438341ec6842f269b886aaa/frame/indices/src/migration.rs#L5-L22).
-- Use storage versions to make migrations safer by making them more declarative, as in [this example](https://github.com/paritytech/substrate/blob/c79b522a11bbc7b3cf2f4a9c0a6627797993cb79/frame/elections-phragmen/src/lib.rs#L119-L157).
+- Use storage versions to make migrations safer by making them more declarative, as in [this example](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/elections-phragmen/src/lib.rs#L119-L157).
 
 ### Ordering migrations
 
