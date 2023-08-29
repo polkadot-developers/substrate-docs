@@ -88,11 +88,11 @@ Before you start to customize the runtime for your own project, you should spend
 You've already seen how the default manifest for the runtime lists the default dependencies and features for the runtime in lines similar to the following:
 
 ```rust
-pallet-balances = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/polkadot-sdk/tree/master/substrate.git", branch = "polkadot-vX.Y.Z" }
+pallet-balances = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", branch = "polkadot-vX.Y.Z" }
 
-pallet-sudo = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/polkadot-sdk/tree/master/substrate.git", branch = "polkadot-vX.Y.Z" }
+pallet-sudo = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", branch = "polkadot-vX.Y.Z" }
 
-pallet-transaction-payment = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/polkadot-sdk/tree/master/substrate.git", branch = "polkadot-vX.Y.Z" }
+pallet-transaction-payment = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", branch = "polkadot-vX.Y.Z" }
 ```
 
 There are also dependencies on core packages—such as `frame-system`, `frame-support`, and `frame-executive`.

@@ -74,7 +74,7 @@ A [block authoring](#author) protocol similar to [Aura](#aura).
 However, with the blind assignment of blockchain extension (BABE) protocol, [authorities](#authority) win [slots](#slot) based on a verifiable random function (VRF) as opposed to the round-robin selection method.
 The winning authority can select a chain and submit a new block for it.
 
-Learn more about BABE by referring to its [official Web3 Foundation research document](https://research.web3.foundation/en/latest/polkadot/block-production/Babe.html).
+Learn more about BABE by referring to its [official Web3 Foundation research document](https://research.web3.foundation/Polkadot/protocols/block-production).
 
 ## block
 
@@ -278,7 +278,7 @@ Runtime developers interact with FRAME using [macros](#macro) such as the follow
 The macros make it easy to define custom pallets and compose pallets to create a working runtime using the [`construct_runtime!`](/reference/frame-macros#construct_runtime)
 macro to deploy a Substrate-based blockchain.
 
-The convention used in [the Substrate codebase](https://github.com/paritytech/substrate/tree/master/frame) is to preface core FRAME modules with `frame_` and the optional pallets with `pallet_*`.
+The convention used in [the Substrate codebase](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame) is to preface core FRAME modules with `frame_` and the optional pallets with `pallet_*`.
 For example, the preceding macros are all defined in the [`frame_support`](/reference/frame-pallets#support-library) module and all FRAME-based runtimes _must_ include the [`frame_system`](/reference/frame-pallets#system-library) module.
 After the `frame_support::construct_runtime` macro has been used to create a runtime that includes the `frame_system` module, optional pallets such as the [Balances](/reference/frame-pallets#balances) pallet can be used to extend the core capabilities of the runtime.
 
