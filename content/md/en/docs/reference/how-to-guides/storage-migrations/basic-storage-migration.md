@@ -100,7 +100,6 @@ The `pallet::pallet` macro implements `traits::GetStorageVersion` but the curren
 
 
     #[pallet::pallet]
-	#[pallet::generate_store(pub(super) trait Store)]
 	#[pallet::storage_version(STORAGE_VERSION)]
 	pub struct Pallet<T>(_);
 ```
