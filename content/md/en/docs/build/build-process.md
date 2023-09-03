@@ -118,7 +118,7 @@ For example, you might want to use the native runtime for initial synchronizatio
 To use the native runtime for synchronizing blocks, you can start the node using the `--execution-syncing native` or `--execution-syncing native-else-wasm` command-line option.
 
 For information about using the command-line options to specify an execution strategy for all or specific operations, see [node-template](/reference/command-line-tools/node-template).
-For information about the execution strategy variant, see [ExecutionStrategy](https://paritytech.github.io/substrate/master/sp_state_machine/enum.ExecutionStrategy.html)
+For information about the execution strategy variant, see [ExecutionStrategy](https://paritytech.github.io/substrate/master/sc_cli/arg_enums/enum.ExecutionStrategy.html)
 
 ## Building WebAssembly without a native runtime
 

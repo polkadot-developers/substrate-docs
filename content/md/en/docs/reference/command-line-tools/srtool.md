@@ -148,7 +148,7 @@ You can use the following command-line options with the `srtool build` command.
 
 ### Examples
 
-To build the Westmint runtime from the `cumulus` repository where the path to the `Cargo.toml` for the runtime is [parachains/runtimes/assets/westmint](https://github.com/paritytech/cumulus/tree/master/parachains/runtimes/assets/westmint), you would run the following command:
+To build the Westmint runtime from the `cumulus` repository where the path to the `Cargo.toml` for the runtime is [parachains/runtimes/assets/westmint](https://github.com/paritytech/cumulus/tree/master/parachains/runtimes/assets/asset-hub-westend), you would run the following command:
 
 ```bash
 srtool build --app --package westmint-runtime --runtime-dir parachains/runtimes/assets/westmint

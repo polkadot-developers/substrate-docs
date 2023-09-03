@@ -228,7 +228,7 @@ To implement the errors for the proof-of-existence pallet:
 
 To add a new claim to the blockchain, the proof-of-existence pallet requires a storage mechanism.
 To address this requirement, you can create a key-value map, where each claim points to the owner and the block number when the claim was made.
-To create this key-value map, you can use the FRAME [`StorageMap`](https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/struct.StorageMap.html).
+To create this key-value map, you can use the FRAME [`StorageMap`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.StorageMap.html).
 
 To implement storage for the proof-of-existence pallet:
 

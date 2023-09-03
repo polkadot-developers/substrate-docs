@@ -9,7 +9,7 @@ keywords:
 ---
 
 This guide shows you how to write a pallet that allows users to lock funds for staking and voting.
-The [`LockableCurrency`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.LockableCurrency.html) trait is useful in the context of economic systems that enforce accountability by collateralizing fungible resources.
+The [`LockableCurrency`](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.LockableCurrency.html) trait is useful in the context of economic systems that enforce accountability by collateralizing fungible resources.
 You can use the Substrate [staking pallet](https://paritytech.github.io/substrate/master/pallet_staking/index.html) to manage locked funds in time-based increments.
 
 In this guide, we will implement the `set_lock`, `extend_lock` and `remove_lock` methods in our own custom pallet.
@@ -22,7 +22,7 @@ You can use the template pallet in the [node template](https://github.com/substr
 
 ## Declare the necessary dependencies
 
-The methods from [`LockableCurrency`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.LockableCurrency.html) require us to import a few traits from `frame_support`.
+The methods from [`LockableCurrency`](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.LockableCurrency.html) require us to import a few traits from `frame_support`.
 
 1. Ensure you have the following traits imported in the top section of your pallet:
 
@@ -162,5 +162,5 @@ The required methods are:
 ## Related material
 
 - [Currency trait](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.Currency.html)
-- [LockableCurrency](https://paritytech.github.io/substrate/master/frame_support/traits/trait.LockableCurrency.html)
-- [LockIdentifier](https://paritytech.github.io/substrate/master/frame_support/traits/type.LockIdentifier.html)
+- [LockableCurrency](https://paritytech.github.io/substrate/master/frame_support/traits/tokens/currency/trait.LockableCurrency.html)
+- [LockIdentifier](https://paritytech.github.io/substrate/master/frame_support/traits/index.html#reexport.LockIdentifier)
