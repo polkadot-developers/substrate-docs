@@ -104,7 +104,7 @@ Use a nonce to serve as a subject for the `frame_support::traits::Randomness::ra
 ## Examples
 
 - [Randomness used in BABE](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/babe/src/randomness.rs)
-- [FRAME's Lottery pallet](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/lottery/src/lib.rs#L471)
+- [FRAME's Lottery pallet](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/lottery/src/lib.rs#L120)
 
 ## Related material
 
