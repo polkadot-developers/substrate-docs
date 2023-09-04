@@ -74,7 +74,7 @@ A [block authoring](#author) protocol similar to [Aura](#aura).
 However, with the blind assignment of blockchain extension (BABE) protocol, [authorities](#authority) win [slots](#slot) based on a verifiable random function (VRF) as opposed to the round-robin selection method.
 The winning authority can select a chain and submit a new block for it.
 
-Learn more about BABE by referring to its [official Web3 Foundation research document](https://research.web3.foundation/Polkadot/protocols/block-production).
+Learn more about BABE by referring to its [official Web3 Foundation research document](https://research.web3.foundation/Polkadot/protocols/block-production/Babe).
 
 ## block
 
