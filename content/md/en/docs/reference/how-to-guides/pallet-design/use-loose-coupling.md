@@ -151,7 +151,7 @@ To update the runtime configuration for your pallet:
 
 ## Examples
 
-- [`EnsureOrigin`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.EnsureOrigin.html) trait in the [Democracy pallet](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/democracy/src/lib.rs#L294-L352)
+- [`EnsureOrigin`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.EnsureOrigin.html) trait in the [Democracy pallet](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/democracy/src/lib.rs#L298-L335)
 - [Weighting methods](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/identity/src/weights.rs#L46-L64) in the [Identity pallet](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/identity/src/lib.rs#L149-L151).  
 -[`KeyOwnerProofSystem`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.KeyOwnerProofSystem.html) in [Grandpa pallet](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/grandpa/src/lib.rs#L106).
 
