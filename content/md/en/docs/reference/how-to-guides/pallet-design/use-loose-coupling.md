@@ -36,12 +36,12 @@ To configure your workspace manifest:
    
    ```text
    [dependencies]
-   frame-support = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28"}
+   frame-support = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v1.0.0"}
    ```
    
    Note that you should use the same branch and version information for all of the pallets to ensure that the imported pallets are compatible with each other.
    Using pallets from different branches can result in compiler errors.
-   This example illustrates adding the `frame-support` pallet to the `Cargo.toml` file if the other pallets use `branch = "polkadot-v0.9.28"`.
+   This example illustrates adding the `frame-support` pallet to the `Cargo.toml` file if the other pallets use `branch = "polkadot-v1.0.0"`.
    
    Because the build process compiles both a standard binary and the WebAssembly target, you must also include  `frame-support/std` in the features for your pallet.
 

@@ -61,18 +61,17 @@ The information returned by these calls can be useful for testing purposes with 
 
 ## Endpoints
 
-When you start a Substrate node locally, there are two endpoints available by default:
+When you start a Substrate node locally, there is one endpoint available by default:
 
-- HTTP endpoint: `http://localhost:9933/`
-- WebSocket endpoint: `ws://localhost:9944/`
+- HTTP & WebSocket endpoint: `ws://localhost:9944/`
 
-Most of the Substrate front-end libraries and tools use the WebSocket endpoint to interact with the blockchain.
-For example, if you use the Polkadot-JS application to connect to a local node or a public chain, your are typically connecting to the WebSocket endpoint.
+Most of the Substrate front-end libraries and tools use the endpoint to interact with the blockchain.
+For example, if you use the Polkadot-JS application to connect to a local node or a public chain, your are typically connecting to the HTTP & WebSocket endpoint.
 WebSocket connections allow for bidirectional communication between the front-end application and the backend node responding to requests.
-However, you can also call RPC methods individually without keeping an open communication channel by connecting to the HTTP endpoint using `curl` commands.
+However, you can also call RPC methods individually without keeping an open communication channel by connecting to the endpoint using `curl` commands.
 For example, you can use curl commands to get system information or subscribe to a chain to receive notification when there are specific types of changes to the block state.
 
-To call RPC methods using the HTTP endpoint:
+To call RPC methods using the endpoint:
 
 1. Open a terminal shell and change to the root directory for the Substrate node template.
 
@@ -85,7 +84,7 @@ To call RPC methods using the HTTP endpoint:
 3. Connect to the local node and call the `rpc_methods` endpoint by running the following command:
 
    ```bash
-   curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "rpc_methods"}' http://localhost:9933/
+   curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "rpc_methods"}' http://localhost:9944/
    ```
 
    This command returns a list of the JSON-RPC methods exposed for the local node.
@@ -95,7 +94,7 @@ To call RPC methods using the HTTP endpoint:
    For example, you can run the following command to get version information about the local node:
 
    ```bash
-   curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "system_version"}' http://localhost:9933/
+   curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "system_version"}' http://localhost:9944/
    ```
 
    In most cases, connecting to the RPC endpoint directly returns JSON-formatted results.
@@ -118,7 +117,7 @@ This is how RPC endpoints know where to look.
 To get metadata for a local node, you can run the following command:
 
 ```bash
-curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "state_getMetadata"}' http://localhost:9933/
+curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "state_getMetadata"}' http://localhost:9944/
 ```
 
 This command returns the metadata in hex-encoded bytes rather than a human-readable format.
