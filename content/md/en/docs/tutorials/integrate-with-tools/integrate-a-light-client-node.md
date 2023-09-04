@@ -165,7 +165,7 @@ The primary difference in the code is that you must explicitly identify the chai
 
 To connect to Statemint:
 
-1. Download the custom chain specification file from the [cumulus repository](https://github.com/paritytech/cumulus/blob/master/parachains/chain-specs/statemint.json).
+1. Download the custom chain specification file from the [cumulus repository](https://github.com/paritytech/cumulus/blob/445f9277ab55b4d930ced4fbbb38d27c617c6658/parachains/chain-specs/statemint.json).
 
 2. Copy the downloaded chain specification to the `empty-webapp` directory you created in [Connect to a well-known chain](#connect-to-a-well-known-chain).
 

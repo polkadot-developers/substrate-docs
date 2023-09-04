@@ -92,12 +92,12 @@ It is carefully engineered at several levels of design and implementation to ach
 
 #### SR25519
 
-[SR25519](https://research.web3.foundation/en/latest/polkadot/keys/1-accounts-more.html) is based on the same underlying curve as [Ed25519](#ed25519).
+[SR25519](https://research.web3.foundation/Polkadot/security/keys/accounts-more) is based on the same underlying curve as [Ed25519](#ed25519).
 However, it uses Schnorr signatures instead of the EdDSA scheme.
 
 ## Where to go next
 
 - [Cryptography on Polkadot](https://wiki.polkadot.network/docs/en/learn-cryptography).
-- [Research at W3F: Cryptography](https://research.web3.foundation/en/latest/crypto.html).
+- [Research at W3F: Cryptography](https://research.web3.foundation/crypto).
 - [`Hash`](https://paritytech.github.io/substrate/master/sp_runtime/traits/trait.Hash.html) trait for implementing new hashing algorithms.
 - [`Pair`](https://paritytech.github.io/substrate/master/sp_core/crypto/trait.Pair.html) trait for implementing new cryptographic schemes.

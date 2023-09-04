@@ -33,7 +33,7 @@ Before you attempt to upgrade the runtime for your parachain, verify the followi
 If your existing Substrate chain has a very large state which you are migrating between different storage formats, it might not be possible to run all of the runtime migrations within one block.
 There are a handful of strategies you can use to remedy this problem:
 
-1. If the amount of storage items to be migrated can feasibly be processed within two or three blocks you can run the migrations using the [Scheduler pallet](https://github.com/paritytech/substrate/tree/master/frame/scheduler) to ensure they get executed regardless of block producer.
+1. If the amount of storage items to be migrated can feasibly be processed within two or three blocks you can run the migrations using the [Scheduler pallet](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame/scheduler) to ensure they get executed regardless of block producer.
 
 1. Use versioned storage and only execute migrations when storage values that haven't yet been upgraded are accessed.
    This can cause variance in transaction fees between users and could potentially result in more complex runtime code.
@@ -54,7 +54,7 @@ The more closely you can simulate a real network for testing, the more sure you 
 ## Authorize -> enact an upgrade flow
 
 When finally ready to upgrade a parachain, the relay chain needs to be informed about the runtime upgrade of your chain before it happens.
-The [Cumulus](https://github.com/paritytech/cumulus#cumulus-cloud) library provides functionality to help you notify the relay chain about the upcoming upgrade by:
+The [Cumulus](https://github.com/paritytech/polkadot-sdk/tree/master/cumulus) library provides functionality to help you notify the relay chain about the upcoming upgrade by:
 
 1. **Using [`authorize_upgrade`](https://paritytech.github.io/cumulus/cumulus_pallet_parachain_system/pallet/struct.Pallet.html#method.authorize_upgrade)** to provide the hash of your upgrade and authorize it.
 1. **Using [`enact_authorized_upgrade`](https://paritytech.github.io/cumulus/cumulus_pallet_parachain_system/pallet/struct.Pallet.html#method.enact_authorized_upgrade)** to provide the actual code for the upgrade.

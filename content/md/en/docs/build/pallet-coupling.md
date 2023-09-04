@@ -104,10 +104,10 @@ In general, loose coupling provides more flexibility than tight coupling and is 
 It guarantees better maintainability, reusability, and extensibility of your code.
 However, tight coupling can be useful for pallets that are less complex or that have more overlap in methods and types than differences.
 
-In FRAME, there are two pallets that are tightly coupled to [`pallet_treasury`](https://github.com/paritytech/substrate/tree/master/frame/treasury):
+In FRAME, there are two pallets that are tightly coupled to [`pallet_treasury`](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame/treasury):
 
-- [Bounties pallet](https://github.com/paritytech/substrate/tree/master/frame/bounties)
-- [Tipping pallet](https://github.com/paritytech/substrate/tree/master/frame/tips)
+- [Bounties pallet](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame/bounties)
+- [Tipping pallet](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame/tips)
 
 As a general rule, the more complex a pallet is, the less desirable it is to tightly couple it.
 This evokes a concept in computer science called [cohesion](<https://en.wikipedia.org/wiki/Cohesion_(computer_science)>), a metric used to examine the overall quality of a software system.
