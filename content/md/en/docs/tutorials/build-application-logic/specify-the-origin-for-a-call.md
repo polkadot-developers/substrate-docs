@@ -150,12 +150,12 @@ For this demonstration, be sure you have:
 
    This dispatch error includes two pieces of metadata:
 
-   - an `index` number that indicates the pallet from which the error originated.
+   - an `nonce` number that indicates the pallet from which the error originated.
    - an `error` number that indicates the error emitted from that pallet's `Error` enum.
 
-   The `index` number corresponds with the position of the pallet within the `construct_runtime!` macro, with the _first_ pallet in the `construct_runtime!` macro having an index number of zero (0).
+   The `nonce` number corresponds with the position of the pallet within the `construct_runtime!` macro, with the _first_ pallet in the `construct_runtime!` macro having an nonce number of zero (0).
 
-   In this example, the `index` is `6` (the _seventh_ pallet) and the `error` is `2` (the _third_ error).
+   In this example, the `nonce` is `6` (the _seventh_ pallet) and the `error` is `2` (the _third_ error).
 
    ```rust
    construct_runtime!(
@@ -164,17 +164,17 @@ For this demonstration, be sure you have:
       NodeBlock = opaque::Block,
       UncheckedExtrinsic = UncheckedExtrinsic
     {
-      System: frame_system,                                        // index 0
-      RandomnessCollectiveFlip: pallet_randomness_collective_flip, // index 1
-      Timestamp: pallet_timestamp,                                 // index 2
-      Aura: pallet_aura,                                           // index 3
-      Grandpa: pallet_grandpa,                                     // index 4
-      Balances: pallet_balances,                                   // index 5
-      Nicks: pallet_nicks,                                         // index 6
+      System: frame_system,                                        // nonce 0
+      RandomnessCollectiveFlip: pallet_randomness_collective_flip, // nonce 1
+      Timestamp: pallet_timestamp,                                 // nonce 2
+      Aura: pallet_aura,                                           // nonce 3
+      Grandpa: pallet_grandpa,                                     // nonce 4
+      Balances: pallet_balances,                                   // nonce 5
+      Nicks: pallet_nicks,                                         // nonce 6
     }
    ```
 
-   Regardless of the value of `index`, the `error` value `2` corresponds to the [`Unnamed` error](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Error.html) in the Nicks pallet.
+   Regardless of the value of `nonce`, the `error` value `2` corresponds to the [`Unnamed` error](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Error.html) in the Nicks pallet.
    This is the error you would expect if Bob has not reserved a nickname or has previously cleared the name reservation.
 
    You can confirm that Alice can use SUDO to invoke the `killName` function to remove the nickname reserved for any account that has currently has a name reserved.
