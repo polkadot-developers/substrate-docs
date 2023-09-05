@@ -20,7 +20,7 @@ pub type Account<T: Config> = StorageMap<
   _,
   Blake2_128Concat,
   T::AccountId,
-  AccountInfo<T::Index, T::AccountData>,
+  AccountInfo<T::Nonce, T::AccountData>,
   ValueQuery,
 >;
 ```
@@ -29,7 +29,7 @@ The `StorageMap` for an `Account` consists of the following parameters:
 
 - The first parameter (\_) is used in macro expansion.
 - `Blake2_128Concat` specifies the hashing algorithm to use.
-- `T::AccountId` is used as the key for over the `AccountInfo<T::Index, T::AccountData>` struct.
+- `T::AccountId` is used as the key for over the `AccountInfo<T::Nonce, T::AccountData>` struct.
 
 See [`StorageMap` API](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.StorageMap.html#impl) for details.
 
@@ -39,9 +39,9 @@ The `AccountInfo` for an account is defined in the [`frame_system` pallet](https
 
 ```rust
 #[derive(Clone, Eq, PartialEq, Default, RuntimeDebug, Encode, Decode)]
-pub struct AccountInfo<Index, AccountData> {
+pub struct AccountInfo<Nonce, AccountData> {
   /// The number of transactions this account has sent.
-  pub nonce: Index,
+  pub nonce: Nonce,
   /// The number of other modules that currently depend on this account's existence. The account
   /// cannot be reaped until this is zero.
   pub consumers: RefCount,
