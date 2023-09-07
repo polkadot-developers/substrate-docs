@@ -243,7 +243,7 @@ To enable offchain workers to send signed transactions:
    		   call: RuntimeCall,
 	       public: <Signature as Verify>::Signer,
 		     account: AccountId,
-		     nonce: Index,
+		     nonce: Nonce,
 	     ) -> Option<(RuntimeCall, <UncheckedExtrinsic as traits::Extrinsic>::SignaturePayload)> {
 		     let tip = 0;
 		     // take the biggest period possible.
