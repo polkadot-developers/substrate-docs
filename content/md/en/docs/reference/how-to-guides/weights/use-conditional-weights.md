@@ -115,7 +115,7 @@ Use the conditional weighting struct on your pallet's extrinsics like this:
 
 ## Examples
 
-- [Custom `WeightForSetDummy` struct in the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/lib.rs)
+- [Custom `WeightForSetDummy` struct in the Example pallet](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/examples/basic/src/lib.rs#L305-L350)
 
 ## Related material
 

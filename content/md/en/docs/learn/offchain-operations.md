@@ -87,7 +87,7 @@ By populating the data at every block, offchain indexing ensures that the data i
 
 Now that you are familiar with how offchain workers, offchain storage, and offchain indexing enable you to work with data not stored on-chain, you might want to explore the following examples of offchain workers and how to use them in runtime development:
 
-- [Example: Offchain worker](https://github.com/paritytech/substrate/tree/master/frame/examples/offchain-worker)
+- [Example: Offchain worker](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame/examples/offchain-worker)
 - [Example: Submit transactions](https://github.com/JoshOrndorff/recipes/blob/master/text/off-chain-workers/transactions.md)
 - [Example: Use HTTP requests to fetch data](https://github.com/JoshOrndorff/recipes/blob/master/text/off-chain-workers/http-json.md)
 - [Example: Offchain storage](https://github.com/JoshOrndorff/recipes/blob/master/text/off-chain-workers/storage.md)

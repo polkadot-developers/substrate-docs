@@ -75,7 +75,7 @@ Common goods chains can bypass auctions and become parachains through on-chain g
 
 Note that transitions of a parachain/Parathread into a different state will take at least 2 sessions, including on-boarding, off-boarding, upgrading, downgrading, etc.
 
-Find these settings on the [Polkadot wiki](https://wiki.polkadot.network/docs/learn-crowdloans#starting-a-crowdloan-campaign) and the [source of the runtime](https://github.com/paritytech/polkadot/tree/master/runtime) presently running on your target relay chain.
+Find these settings on the [Polkadot wiki](https://wiki.polkadot.network/docs/learn-crowdloans#starting-a-crowdloan-campaign) and the [source of the runtime](https://github.com/paritytech/polkadot-sdk/tree/master/polkadot/runtime) presently running on your target relay chain.
 It is _absolutely essential_ that you understand these parameters before you commit to them.
 
 #### Bidding

@@ -446,7 +446,7 @@ Transact {
 },
 ```
 
-For additional examples of converting origins, see the [prigin_conversion](https://github.com/paritytech/polkadot/blob/master/xcm/xcm-builder/src/origin_conversion.rs) module.
+For additional examples of converting origins, see the [origin_conversion](https://github.com/paritytech/polkadot-sdk/blob/master/polkadot/xcm/xcm-builder/src/origin_conversion.rs) module.
 
 ## Errors
 

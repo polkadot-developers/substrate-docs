@@ -47,7 +47,7 @@ To prepare a working folder with the binaries for the test network:
 1. Clone the Polkadot repository by running a command similar to the following:
 
    ```bash
-   git clone --depth 1 --branch release-v1.0.0 https://github.com/paritytech/polkadot.git
+   git clone --depth 1 --branch release-v1.0.0 https://github.com/paritytech/polkadot-sdk.git
    ```
 
    Release branches use the naming convention `release-v<n.n.n>`.

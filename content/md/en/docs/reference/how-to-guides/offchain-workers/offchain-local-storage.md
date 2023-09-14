@@ -153,5 +153,5 @@ If the cached value is found, offchain worker returns; else it will try to acqui
 
 ## Examples
 
-- [**Off-chain worker example pallet** in Substrate](https://github.com/paritytech/substrate/blob/polkadot-v1.0.0/frame/examples/offchain-worker/src/lib.rs#L372-L441)
+- [**Off-chain worker example pallet** in Substrate](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/examples/offchain-worker/src/lib.rs#L372-L441)
 - [**OCW pallet** demo](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/master/pallets/ocw/src/lib.rs#L299-L342)

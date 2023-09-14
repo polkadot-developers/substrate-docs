@@ -48,8 +48,8 @@ Use the [template pallet](https://github.com/substrate-developer-hub/substrate-n
 
 ## Examples
 
-- FRAME's [Bounties](https://github.com/paritytech/substrate/tree/master/frame/bounties)
-  and [Tipping](https://github.com/paritytech/substrate/tree/master/frame/tips) pallets with the Treasury pallet
+- FRAME's [Bounties](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/bounties)
+  and [Tipping](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/tips) pallets with the Treasury pallet
 
 ## Resources
 

@@ -10,7 +10,7 @@ The **Develop smart contracts** tutorials guide you through how you can use [the
 The tutorials in this section use a preconfigured
 [`substrate-contracts-node`](https://github.com/paritytech/substrate-contracts-node) to keep your work focused on the basics of writing smart contracts.
 
-If you use the [standard node template](https://github.com/substrate-developer-hub/substrate-node-template), you must manually add the [Contracts pallet](https://github.com/paritytech/substrate/tree/master/frame/contracts) and make other changes to your development environment.
+If you use the [standard node template](https://github.com/substrate-developer-hub/substrate-node-template), you must manually add the [Contracts pallet](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame/contracts) and make other changes to your development environment.
 You can compare the runtime code for the two nodes to see additional information about the differences between them.
 
 - [Prepare your first contract](/tutorials/smart-contracts/prepare-your-first-contract/) describes how to update your
