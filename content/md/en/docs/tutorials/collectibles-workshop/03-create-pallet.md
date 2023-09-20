@@ -43,7 +43,7 @@ To create a project:
    ```
    
    In Rust, the `Cargo.toml` file for each package is called the package manifest and it defines configuration settings and dependencies that the package requires.
-   The `Cargo.toml` file in the `workspace-node-template/pallets/collectibles` folder defines the dependencies for the `collectibles` package you are building.
+   The `Cargo.toml` file in the `workshop-node-template/pallets/collectibles` folder defines the dependencies for the `collectibles` package you are building.
 
    By convention, the source code for Rust projects in Substrate—including pallet modules—is typically in the `src/lib.rs` file.
    By default, Cargo creates a template `src/main.rs` file for new projects.
