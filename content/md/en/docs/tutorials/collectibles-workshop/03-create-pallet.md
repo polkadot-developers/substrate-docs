@@ -16,11 +16,11 @@ Instead, the first step is to create a new Rust package for the collectibles pal
 To create a project:
 
 1. Open a new terminal, if needed.
-   
+
 2. Change to the `workshop-node-template/pallets` directory in your workspace.
-   
+
 3. Create a new Rust project for the `collectibles` pallet by running the following command:
-   
+
    ```bash
    cargo new collectibles
    ```
@@ -29,28 +29,28 @@ To create a project:
    For now, you can ignore the warning and continue preparing the new project.
 
 4. Change to the `collectibles` directory by running the following command:
-   
+
    ```bash
    cd collectibles
    ```
 
 5. View the contents of the `collectibles` directory and and notice that it provides a default `Cargo.toml` and `src/main.rs` program:
-   
+
    ```text
    ├── Cargo.toml
    └── src
     └── main.rs
    ```
-   
+
    In Rust, the `Cargo.toml` file for each package is called the package manifest and it defines configuration settings and dependencies that the package requires.
    The `Cargo.toml` file in the `workspace-node-template/pallets/collectibles` folder defines the dependencies for the `collectibles` package you are building.
 
    By convention, the source code for Rust projects in Substrate—including pallet modules—is typically in the `src/lib.rs` file.
    By default, Cargo creates a template `src/main.rs` file for new projects.
-   For clarity in the workshop, let's rename the main source file for the new module. 
-  
+   For clarity in the workshop, let's rename the main source file for the new module.
+
 6. Rename `src/main.rs` source file by running the following command:
-   
+
    ```bash
    mv src/main.rs src/lib.rs
    ```
@@ -68,7 +68,7 @@ To add the new pallet to the workspace:
 1. Open the `Cargo.toml` file in your code editor.
 
 1. Add the new `pallets/collectibles` pallet as a member of the workspace.
-   
+
    ```toml
    [workspace]
    members = [
@@ -94,14 +94,14 @@ For example, two core packages the  `collectibles` module requires are the `fram
 - `frame_support` provides core support services for handling function calls that are dispatched to the runtime, defining storage structures, preparing events and errors and core utilities.
 
 In addition to `frame_system` and `frame_support`, the `collectibles` module requires packages to support the type encoding and decoding required to minimize network traffic for the blockchain.
-To support encoding and decoding in the SCALE format, the `collectibles` module needs access to the `codec` and `scale-info` packages. 
+To support encoding and decoding in the SCALE format, the `collectibles` module needs access to the `codec` and `scale-info` packages.
 
 To update the manifest for the collectibles project:
 
 1. Open the default `Cargo.toml` file for the `collectibles` module in your code editor.
 
 2. Add `frame-support` and `frame-system` to the dependencies.
-   
+
    ```toml
    [dependencies]
    frame-support = { default-features = false, version = "4.0.0-dev", git = "https://github.com/paritytech/polkadot-sdk.git", branch = "polkadot-v1.0.0"}
@@ -109,14 +109,14 @@ To update the manifest for the collectibles project:
    ```
 
 3. Add `codec` and `scale-info` to the dependencies.
-   
+
    ```toml
    codec = { package = "parity-scale-codec", version = "3.0.0", default-features = false, features = ["derive",] }
    scale-info = { version = "2.1.1", default-features = false, features = ["derive"] }
    ```
 
 1. Add the standard features for these packages to the `Cargo.toml` file to support the native binary target for the runtime.
-   
+
    ```toml
    [features]
    default = ["std"]
@@ -136,23 +136,25 @@ You now have the bare minimum of package dependencies that your pallet requires 
 The next step is to prepare a set of common macros to serve as scaffolding for your new pallet.
 
 1. Open `src/lib.rs` in a text editor and delete the template `main()` function.
-   
+
    You now have a clean slate for creating the Substrate collectibles pallet.
 
 2. Prepare the scaffolding for the Substrate collectibles pallet by adding the following common set of marco declarations to the `src/lib.rs`  file:
-   
+
    ```rust
    #![cfg_attr(not(feature = "std"), no_std)]
-   
+
    pub use pallet::*;
-   
+
    #[frame_support::pallet(dev_mode)]
    pub mod pallet {
         use frame_support::pallet_prelude::*;
         use frame_system::pallet_prelude::*;
 
+        const STORAGE_VERSION: StorageVersion = StorageVersion::new(1);
+
         #[pallet::pallet]
-        #[pallet::generate_store(pub(super) trait Store)]
+        #[pallet::storage_version(STORAGE_VERSION)]
         pub struct Pallet<T>(_);
 
         #[pallet::config]
@@ -164,9 +166,9 @@ The next step is to prepare a set of common macros to serve as scaffolding for y
 3. Save your changes and close the file.
 
 1. Verify that your program compiles by running the following command:
-   
+
    ```bash
    cargo build --package collectibles
    ```
-   
+
    You can ignore the compiler warnings about unused code for now.
