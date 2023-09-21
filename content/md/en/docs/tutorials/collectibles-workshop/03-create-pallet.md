@@ -139,7 +139,7 @@ The next step is to prepare a set of common macros to serve as scaffolding for y
    
    You now have a clean slate for creating the Substrate collectibles pallet.
 
-2. Prepare the scaffolding for the Substrate collectibles pallet by adding the following common set of marco declarations to the `src/lib.rs`  file:
+2. Prepare the scaffolding for the Substrate collectibles pallet by adding the following common set of macro declarations to the `src/lib.rs`  file:
    
    ```rust
    #![cfg_attr(not(feature = "std"), no_std)]
