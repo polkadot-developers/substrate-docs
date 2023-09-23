@@ -309,20 +309,20 @@ To set up communication between the parachains in the test network:
 2. Add channel information similar to the following to the configuration file:
 
    ```toml
-   [[hrmpChannels]]
-   sender = 1000
-   recipient = 1001
-   maxCapacity = 8
-   maxMessageSize = 8000
-
-   [[hrmpChannels]]
-   sender = 1001
-   recipient = 1000
-   maxCapacity = 8
-   maxMessageSize = 8000
+    [[hrmp_channels]]
+    sender = 1000
+    recipient = 1001
+    max_capacity = 8
+    max_message_size = 8000
+    
+    [[hrmp_channels]]
+    sender = 1001
+    recipient = 1000
+    max_capacity = 8
+    max_message_size = 8000
    ```
 
-   Note that the values you set for **maxCapacity** and **maxMessageSize** shouldn't exceed the values defined for the `hrmpChannelMaxCapacity` and `hrmpChannelMaxMessageSize` parameters for the relay chain.
+   Note that the values you set for **max_capacity** and **max_message_size** shouldn't exceed the values defined for the `hrmpChannelMaxCapacity` and `hrmpChannelMaxMessageSize` parameters for the relay chain.
 
    To check the configuration settings for the current relay chain using the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/):
 
