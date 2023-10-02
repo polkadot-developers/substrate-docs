@@ -104,6 +104,20 @@ You'll see these many of these crates listed as dependencies in the runtime and 
 
 ## Macros for composing pallets
 
+<div class="warning">
+  <strong>⚠️ WARNING:</strong> This section contains outdated information. Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/frame_support/attr.pallet.html">Rust docs</a> for the most up-to-date documentation on this topic.
+</div>
+
+<style>
+.warning {
+  border: 2px solid #ff0000;
+  background-color: #F08080;
+  padding: 10px;
+  border-radius: 5px;
+}
+</style>
+
+
 As discussed in [Building custom pallets](/learn/runtime-development#building-custom-pallets), most FRAME pallets are composed using a common set of sections.
 
 Macros make building each of those sections more modular and extensible.
