@@ -405,9 +405,9 @@ $vis type $StorageName<$some_generic> $optional_where_clause
 
 For more information, see the Rust documentation for [pallet::storage](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#storage-palletstorage-optional) and the following storage data structures:
 
-- [StorageDoubleMap](https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/struct.StorageDoubleMap.html)
-- [StorageMap](https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/struct.StorageMap.html#implementations)
-- [StorageValue](https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/struct.StorageValue.html)
+- [StorageDoubleMap](https://paritytech.github.io/polkadot-sdk/master/frame_support/storage/types/struct.StorageDoubleMap.html)
+- [StorageMap](https://paritytech.github.io/polkadot-sdk/master/frame_support/storage/types/struct.StorageMap.html)
+- [StorageValue](https://paritytech.github.io/polkadot-sdk/master/frame_support/storage/types/struct.StorageValue.html)
 
 ### #[pallet::type_value]
 
