@@ -3,6 +3,9 @@ title: FRAME macros
 description:
 keywords:
 ---
+<div class="warning">
+  <strong>⚠️ WARNING:</strong> This section contains outdated information. Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/frame_support/attr.pallet.html">Rust docs</a> for the most up-to-date documentation on this topic.
+</div>
 
 Substrate uses customized [Rust macros](https://doc.rust-lang.org/book/ch19-06-macros.html) to generate code and aggregate the logic from the pallets you implement for a runtime.
 These runtime macros allow you to focus on your runtime logic rather than spending time on encoding and decoding on-chain variables or duplicating the code required for [basic blockchain development](/learn/runtime-development#core-primitives).
@@ -103,20 +106,6 @@ A few of the important primitives and macros that you should be familiar with fr
 You'll see these many of these crates listed as dependencies in the runtime and node `Cargo.toml` file for the node template.
 
 ## Macros for composing pallets
-
-<div class="warning">
-  <strong>⚠️ WARNING:</strong> This section contains outdated information. Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/frame_support/attr.pallet.html">Rust docs</a> for the most up-to-date documentation on this topic.
-</div>
-
-<style>
-.warning {
-  border: 2px solid #ff0000;
-  background-color: #F08080;
-  padding: 10px;
-  border-radius: 5px;
-}
-</style>
-
 
 As discussed in [Building custom pallets](/learn/runtime-development#building-custom-pallets), most FRAME pallets are composed using a common set of sections.
 

@@ -8,14 +8,6 @@ keywords:
   <strong>⚠️ WARNING:</strong> This page contains outdated information. Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/frame_support/pallet_macros/attr.genesis_build.html">Rust docs</a> for the most up-to-date documentation on this topic.
 </div>
 
-<style>
-.warning {
-  border: 2px solid #ff0000;
-  background-color: #F08080;
-  padding: 10px;
-  border-radius: 5px;
-}
-</style>
 
 The first block produced by any blockchain is referred to as the genesis block.
 The hash associated with this block is the top-level parent of all blocks produced after that first block.
