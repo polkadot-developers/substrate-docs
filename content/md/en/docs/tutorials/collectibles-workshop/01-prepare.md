@@ -58,7 +58,7 @@ If you don't have a preferred IDE, Visual Studio Code is a good choice.
 To interact with the blockchain and test your work as you build the Substrate collectibles application, you'll need a browser-based application that can connect to the Substrate node.
 For the workshop, you can connect to the node from the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/) if you have Chrome or a Chromium-based browser.
 
-- [ ] [Google Chrome](https://www.google.com/chrome/) or a Chromium-based browser, such as [Brave](https://brave.com/download/), [Microsoft Edge](https://www.microsoft.com/en-us/edge?form=MA13FJ&exp=e00), [Opera](https://www.opera.com/download), or [Vivaldi](https://vivaldi.com/download/).
+- [ ] [Google Chrome](https://www.google.com/chrome/) or a Chromium-based browser, such as [Brave](https://brave.com/download/), [Microsoft Edge](https://www.microsoft.com/en-us/edge?ep=79&form=MA13KE&es=23), [Opera](https://www.opera.com/download), or [Vivaldi](https://vivaldi.com/download/).
 
 If you use a more restrictive browser—such as Firefox—you might find that connections between the Polkadot/Substrate Portal and the node are blocked for security or privacy reasons.
 
