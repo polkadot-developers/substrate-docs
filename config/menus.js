@@ -63,10 +63,6 @@ const developers = [
     id: 'developers.marketplace',
   },
   {
-    url: WEBSITE_URL + '/developers/playground/',
-    id: 'developers.playground',
-  },
-  {
     url: WEBSITE_URL + '/developers/smart-contracts/',
     id: 'developers.smart-contracts',
   },
