@@ -74,7 +74,7 @@ SCALE Codec has been implemented in other languages, including:
 
 - C: [`MatthewDarnell/cScale`](https://github.com/MatthewDarnell/cScale)
 - C++: [`soramitsu/scale-codec-cpp`](https://github.com/soramitsu/scale-codec-cpp)
-- Flutter: [`leonardocustodio/polkadart`](https://github.com/leonardocustodio/polkadart)
+- Dart: [`leonardocustodio/polkadart`](https://github.com/leonardocustodio/polkadart)
 - Haskell: [`airalab/hs-web3`](https://github.com/airalab/hs-web3/tree/master/packages/scale)
 - Golang: [`itering/scale.go`](https://github.com/itering/scale.go)
 - Java: [`emeraldpay/polkaj`](https://github.com/emeraldpay/polkaj)
