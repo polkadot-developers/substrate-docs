@@ -35,7 +35,7 @@ To install and compile the `subkey` program:
 
 1. Verify that you have the Rust compiler and toolchain, if necessary.
 
-1. Clone the Substrate repository, if necessary, by running the following command:
+1. Clone the Polkadot SDK repository, if necessary, by running the following command:
 
    ```bash
    git clone https://github.com/paritytech/polkadot-sdk.git
@@ -54,6 +54,12 @@ To install and compile the `subkey` program:
    ```
 
    Because of the number of packages involved, compiling the program can take several minutes.
+
+1. Change back to the root directory of the Polkadot SDK repository by running the following command:
+
+   ```bash
+   cd ..
+   ```
 
 1. Verify that the `subkey` program is ready to use and view information about the options available by running the following command:
 
