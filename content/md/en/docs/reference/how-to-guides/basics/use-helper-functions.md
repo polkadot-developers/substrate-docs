@@ -67,7 +67,7 @@ impl<T: Config> Pallet<T> {
 
 ## Examples
 
-- [example-offchain-worker](https://github.com/paritytech/substrate/blob/master/frame/examples/offchain-worker/src/lib.rs): the `add_price` helper function used in this pallet's dispatchable.
+- [example-offchain-worker](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/examples/offchain-worker/src/lib.rs): the `add_price` helper function used in this pallet's dispatchable.
 
 ## Resources
 

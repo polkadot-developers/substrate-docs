@@ -173,17 +173,17 @@ For example, you can start the collator with a command  similar to the following
   --chain raw-parachain-chainspec.json \
   --base-path /tmp/parachain/pubs-demo \
   --port 50333 \
-  --ws-port 8855 \
+  --rpc-port 8855 \
   -- \
   --execution wasm \
   --chain rococo \
   --port 50343 \
-  --ws-port 9988
+  --rpc-port 9988
   ```
 
 In this example, the first `--port` setting specifies the port for the collator node and the second `--port` specifies the port for the embedded relay chain node.
-The first `--ws-port` setting specifies the port you can use to connect to collator using Polkadot-JS API calls or the Polkadot/Substrate Portal application.
-The second `--ws-port` specifies the port for connecting to the embedded relay chain using the Polkadot-JS API or the Polkadot/Substrate Portal application.
+The first `--rpc-port` setting specifies the port you can use to connect to collator using Polkadot-JS API calls or the Polkadot/Substrate Portal application.
+The second `--rpc-port` specifies the port for connecting to the embedded relay chain using the Polkadot-JS API or the Polkadot/Substrate Portal application.
 
 ## Register as a parathread
 

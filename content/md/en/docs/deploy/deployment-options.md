@@ -412,7 +412,7 @@ ENTRYPOINT ["/usr/local/bin/node-template"]
 
 ### Automated build pipeline
 
-The following sample [GitHub action](https://github.com/substrate-developer-hub/substrate-node-template/blob/main/.github/workflows/build-publish-image.yml) builds and publishes a Docker image to DockerHub.
+The following sample [GitHub action](https://github.com/substrate-developer-hub/substrate-node-template/blob/main/.github/workflows/release.yml) builds and publishes a Docker image to DockerHub.
 In most cases, you trigger this action using a manual workflow or when a new release is published.
 
 Note that you must add secrets to your GitHub repository or organization as described in [Encrypted secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) to publish images securely.

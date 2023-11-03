@@ -25,7 +25,7 @@ In both cases, create a pallet to implement the logic that best fits your needs.
 
 ### Stake voting
 
-The Cumulus [`collator-selection` pallet](https://github.com/paritytech/cumulus/blob/master/pallets/collator-selection/src/lib.rs) is a practical example on implementing stake voting to select collators.
+The Cumulus [`collator-selection` pallet](https://github.com/paritytech/polkadot-sdk/blob/master/cumulus/pallets/collator-selection/src/lib.rs) is a practical example on implementing stake voting to select collators.
 
 ### Using on-chain governance
 
@@ -56,7 +56,7 @@ Take a look at [this example](https://github.com/PureStake/moonbeam/blob/master/
 
 ## Examples
 
-- [Cumulus implementation](https://github.com/paritytech/cumulus/blob/master/pallets/collator-selection/src/lib.rs)
+- [Cumulus implementation](https://github.com/paritytech/polkadot-sdk/blob/master/cumulus/pallets/collator-selection/src/lib.rs)
   of collator selection with incentives using transaction fees.
 - [Moonbeam implementation](https://github.com/PureStake/moonbeam/blob/master/pallets/parachain-staking/src/lib.rs)
   of collator selection using an inflationary monetary policy staking scheme.

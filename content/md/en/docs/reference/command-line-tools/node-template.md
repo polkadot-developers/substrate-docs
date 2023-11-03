@@ -120,7 +120,7 @@ You can use the following options with the `node-template` command.
 | `--wasm-execution <method>` | Specifies the method for executing Wasm runtime code. Valid values are `interpreted`, or `compiled`. The default is `Compiled`.
 | `--wasm-runtime-overrides <path>` | Specifies the path where local WASM runtimes are stored. These runtimes override on-chain runtimes when the version matches.
 | `--ws-max-connections <count>` | Specifies the maximum number of WS RPC server connections.
-| `--ws-port <port>` | Specifies the TCP port to use for the WebSockets RPC server.
+| `--rpc-port <port>` | Specifies the TCP port to use for the WebSockets RPC server.
 
 ### Subcommands
 
@@ -382,7 +382,7 @@ Writing weights to "rocksdb_weights.rs"
 
 To get benchmarking information for the `paritydb` database instead of the default `rocksdb` database, use the `--db paritydb` command-line option.
 TO get storage benchmarking information for Polkadot or any other real chain snapshot, use the command-line option `--state-version 0`. 
-For more information about using the benchmark storage subcommand, see [benchmark storage command](https://github.com/paritytech/substrate/tree/master/utils/frame/benchmarking-cli/src/storage#the-benchmark-storage-command).
+For more information about using the benchmark storage subcommand, see [benchmark storage command](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/utils/frame/benchmarking-cli/src/storage).
 
 For more information about how to add benchmarking to the runtime, see [Benchmark](/test/benchmark/) and [Add benchmarks](/reference/how-to-guides/weights/add-benchmarks/).
 

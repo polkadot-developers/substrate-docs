@@ -36,12 +36,12 @@ To configure your workspace manifest:
    
    ```text
    [dependencies]
-   frame-support = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28"}
+   frame-support = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v1.0.0"}
    ```
    
    Note that you should use the same branch and version information for all of the pallets to ensure that the imported pallets are compatible with each other.
    Using pallets from different branches can result in compiler errors.
-   This example illustrates adding the `frame-support` pallet to the `Cargo.toml` file if the other pallets use `branch = "polkadot-v0.9.28"`.
+   This example illustrates adding the `frame-support` pallet to the `Cargo.toml` file if the other pallets use `branch = "polkadot-v1.0.0"`.
    
    Because the build process compiles both a standard binary and the WebAssembly target, you must also include  `frame-support/std` in the features for your pallet.
 
@@ -151,9 +151,9 @@ To update the runtime configuration for your pallet:
 
 ## Examples
 
-- [`EnsureOrigin`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.EnsureOrigin.html) trait in the [Democracy pallet](https://github.com/paritytech/substrate/blob/master/frame/democracy/src/lib.rs#L294-L352)
-- [Weighting methods](https://github.com/paritytech/substrate/blob/master/frame/identity/src/weights.rs#L46-L64) in the [Identity pallet](https://github.com/paritytech/substrate/blob/master/frame/identity/src/lib.rs#L149-L151).  
--[`KeyOwnerProofSystem`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.KeyOwnerProofSystem.html) in [Grandpa pallet](https://github.com/paritytech/substrate/blob/master/frame/grandpa/src/lib.rs#L106).
+- [`EnsureOrigin`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.EnsureOrigin.html) trait in the [Democracy pallet](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/democracy/src/lib.rs#L298-L335)
+- [Weighting methods](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/identity/src/weights.rs#L46-L64) in the [Identity pallet](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/identity/src/lib.rs#L149-L151).  
+-[`KeyOwnerProofSystem`](https://paritytech.github.io/substrate/master/frame_support/traits/trait.KeyOwnerProofSystem.html) in [Grandpa pallet](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/grandpa/src/lib.rs#L106).
 
 ## Resources
 

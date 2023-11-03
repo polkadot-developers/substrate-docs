@@ -29,7 +29,7 @@ Customize the consensus mechanisms of a Substrate chain.
 We begin by creating the block import for Grandpa.
 In addition to the block import itself, we get back a `grandpa_link`.
 This link is a channel over which the block import can communicate with the background task that actually casts Grandpa votes.
-The [details of the Grandpa protocol](https://research.web3.foundation/en/latest/polkadot/finality.html) are beyond the scope of this guide.
+The [details of the Grandpa protocol](https://research.web3.foundation/Polkadot/protocols/finality) are beyond the scope of this guide.
 
 In `node/src/service.rs`, create the Grandpa block import:
 

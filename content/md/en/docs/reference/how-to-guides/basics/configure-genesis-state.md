@@ -150,4 +150,4 @@ construct_runtime!(
 ## Example
 
 - [Node template 'chain_spec.rs'](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs)
-- [Example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/lib.rs)
+- [Example pallet](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/examples/basic/src/lib.rs)
