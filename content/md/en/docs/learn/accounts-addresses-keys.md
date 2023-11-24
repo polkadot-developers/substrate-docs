@@ -128,7 +128,7 @@ Polkadot enables you to restrict transactions for a proxy account using the foll
 - CancelProxy
 - Auction
 
-The enumerated list of proxy types and the logic for matching proxy types to transaction is defined in the [Polkadot runtime](https://github.com/paritytech/polkadot/blob/master/runtime/polkadot/src/lib.rs).
+The enumerated list of proxy types and the logic for matching proxy types to transaction is defined in the [Polkadot runtime](https://github.com/polkadot-fellows/runtimes/blob/main/relay/polkadot/src/lib.rs).
 
 #### Anonymous proxy account
 

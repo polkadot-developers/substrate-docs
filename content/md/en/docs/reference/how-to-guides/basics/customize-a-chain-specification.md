@@ -57,7 +57,7 @@ Because Rust builds that target WebAssembly are optimized, the binaries aren't d
 If each network participant were to generate the plain and/or raw chain specification, the differences in the resulting Wasm blob would break consensus.
 
 It is _conventional_ to include the chain specification files for your node _within the source code itself_ so that anyone can build your node in the same way, whereby it becomes easy to check for non-determinism by comparing a genesis blob with another.
-Polkadot, Kusama, Rococo, and more network chain spec files are found [in the source here](https://github.com/paritytech/polkadot/tree/master/node/service/chain-specs) along with a `.gitignore` file to ensure that you don't accidentally change these `!/*.json` files as you build further on your node's software and do [runtime upgrades](/tutorials/build-a-blockchain/upgrade-a-running-network/).
+Polkadot, Kusama, Rococo, and more network chain spec files are found [in the source here](https://github.com/paritytech/polkadot-sdk/tree/master/polkadot/node/service/chain-specs) along with a `.gitignore` file to ensure that you don't accidentally change these `!/*.json` files as you build further on your node's software and do [runtime upgrades](/tutorials/build-a-blockchain/upgrade-a-running-network/).
 
 ## Start a new node
 
@@ -70,10 +70,10 @@ node-template --chain chain-spec.json
 ```
 
 This can also simply be configured to be the _default_ network.
-For reference, you can see how [Polkadot implements](https://github.com/paritytech/polkadot/commits/master/cli/src/command.rs) a default command that uses the chain specs for various networks [in the source here](https://github.com/paritytech/polkadot/tree/master/node/service/chain-specs).
+For reference, you can see how [Polkadot implements](https://github.com/paritytech/polkadot/commits/master/cli/src/command.rs) a default command that uses the chain specs for various networks [in the source here](https://github.com/paritytech/polkadot-sdk/tree/master/polkadot/node/service/chain-specs).
 
 ## Examples
 
 - [Add trusted nodes](/tutorials/build-a-blockchain/add-trusted-nodes#add-keys-to-keystore)
-- [Polkadot-like network chain specs](https://github.com/paritytech/polkadot/tree/master/node/service/chain-specs)
+- [Polkadot-like network chain specs](https://github.com/paritytech/polkadot-sdk/tree/master/polkadot/node/service/chain-specs)
 - [Polkadot commands for many networks](https://github.com/paritytech/polkadot/commits/master/cli/src/command.rs)

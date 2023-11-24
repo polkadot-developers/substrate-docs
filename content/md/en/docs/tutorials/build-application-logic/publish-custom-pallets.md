@@ -5,7 +5,7 @@ keywords:
 ---
 
 As a blockchain builder or parachain developer, you have access to a large library of specialized pallets that you can assemble to customize your runtime to suite your specific project goals.
-To get a general sense of the number of the predefined pallets currently available, explore the Substrate [FRAME repository](https://github.com/paritytech/substrate/tree/master/frame).
+To get a general sense of the number of the predefined pallets currently available, explore the Substrate [FRAME repository](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame).
 The selection of pallets available and the use cases they address is continuously evolving, including with many contributions from community members.
 
 As you begin writing your own custom pallets to execute application-specific logic, you might find that your custom logic would benefit other teams or the broader ecosystem as a whole.

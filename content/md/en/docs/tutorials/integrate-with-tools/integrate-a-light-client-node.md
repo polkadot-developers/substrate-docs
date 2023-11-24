@@ -30,7 +30,7 @@ By completing this tutorial, you will accomplish the following objectives:
 Before the light client can connect to a network, you must have a web application that specifies the network the light client should connect to, the nodes for it to communicate with, and the consensus-critical state it must have at genesis.
 This information is available in the [chain specification](/build/chain-spec/) file for the network.
 
-Substrate Connect is preconfigured to recognize several chains that are defined in the [WellKnownChain](https://paritytech.github.io/substrate-connect/api/enums/connect_src.WellKnownChain.html) enumeration list.
+Substrate Connect is preconfigured to recognize several chains that are defined in the [WellKnownChain](https://paritytech.github.io/substrate-connect/api/enums/_substrate_connect.WellKnownChain.html) enumeration list.
 These well-known chains are:
 
 - Polkadot identified as `polkadot`
@@ -165,7 +165,7 @@ The primary difference in the code is that you must explicitly identify the chai
 
 To connect to Statemint:
 
-1. Download the custom chain specification file from the [cumulus repository](https://github.com/paritytech/cumulus/blob/master/parachains/chain-specs/statemint.json).
+1. Download the custom chain specification file from the [cumulus repository](https://github.com/paritytech/cumulus/blob/445f9277ab55b4d930ced4fbbb38d27c617c6658/parachains/chain-specs/statemint.json).
 
 2. Copy the downloaded chain specification to the `empty-webapp` directory you created in [Connect to a well-known chain](#connect-to-a-well-known-chain).
 

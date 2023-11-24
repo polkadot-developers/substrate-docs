@@ -131,7 +131,7 @@ To add the `node-authorization` pallet to the Substrate runtime:
 
    ```toml
    [dependencies]
-   pallet-node-authorization = { default-features = false, version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v1.0.0" }
+   pallet-node-authorization = { default-features = false, version = "4.0.0-dev", git = "https://github.com/paritytech/polkadot-sdk.git", branch = "polkadot-v1.0.0" }
    ```
 
    This line imports the `pallet-node-authorization` crate as a dependency and specifies the following configuration details for the crate:
@@ -631,5 +631,5 @@ To learn more about the topics introduced in this tutorial, see the following re
 
 - [Accounts, addresses, and keys](/learn/accounts-addresses-keys)
 - [Node authorization pallet](https://paritytech.github.io/substrate/master/pallet_node_authorization/index.html#)
-- [Node authorization source code](https://github.com/paritytech/substrate/blob/master/frame/node-authorization/src/lib.rs)
+- [Node authorization source code](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/node-authorization/src/lib.rs)
 - [Monitor node metrics](/tutorials/build-a-blockchain/monitor-node-metrics/)

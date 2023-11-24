@@ -47,7 +47,7 @@ To prepare a working folder with the binaries for the test network:
 1. Clone the Polkadot repository by running a command similar to the following:
 
    ```bash
-   git clone --depth 1 --branch release-v1.0.0 https://github.com/paritytech/polkadot.git
+   git clone --depth 1 --branch release-v1.0.0 https://github.com/paritytech/polkadot-sdk.git
    ```
 
    Release branches use the naming convention `release-v<n.n.n>`.
@@ -312,14 +312,14 @@ To set up communication between the parachains in the test network:
    [[hrmpChannels]]
    sender = 1000
    recipient = 1001
-   maxCapacity = 8
-   maxMessageSize = 8000
+   max_capacity = 8
+   max_message_size = 8000
 
    [[hrmpChannels]]
    sender = 1001
    recipient = 1000
-   maxCapacity = 8
-   maxMessageSize = 8000
+   max_capacity = 8
+   max_message_size = 8000
    ```
 
    Note that the values you set for **maxCapacity** and **maxMessageSize** shouldn't exceed the values defined for the `hrmpChannelMaxCapacity` and `hrmpChannelMaxMessageSize` parameters for the relay chain.
