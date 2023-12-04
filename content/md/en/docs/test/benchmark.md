@@ -140,7 +140,7 @@ After you have added your pallet, compile your node binary with the `runtime-ben
 For example:
 
 ```bash
-cd bin/node/cli
+cd substrate/bin/node/cli
 cargo build --profile=production --features runtime-benchmarks
 ```
 
