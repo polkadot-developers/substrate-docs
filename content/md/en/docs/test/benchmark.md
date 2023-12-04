@@ -154,7 +154,7 @@ After you have compiled a node binary with benchmarks enabled, you need to execu
 If you used the `production` profile to compile the node, you can list the available benchmarks by running the following command:
 
 ```bash
-./target/production/node-template benchmark pallet --list
+./target/production/substrate-node benchmark pallet --list
 ```
 
 ### Benchmark all functions in all pallets
@@ -162,7 +162,7 @@ If you used the `production` profile to compile the node, you can list the avail
 To execute all benchmarks for the runtime, you can run a command similar to the following:
 
 ```bash
-./target/production/node-template benchmark pallet \
+./target/production/substrate-node benchmark pallet \
     --chain dev \
     --execution=wasm \
     --wasm-execution=compiled \
@@ -180,7 +180,7 @@ This command creates an output file—in this case, a file named `all-weight.rs`
 To execute the benchmark for a specific function in a specific pallet, you can run a command similar to the following:
 
 ```bash
-./target/production/node-template benchmark pallet \
+./target/production/substrate-node benchmark pallet \
     --chain dev \
     --execution=wasm \
     --wasm-execution=compiled \
@@ -209,13 +209,13 @@ There are some custom Handlebars helpers included with the output generation:
 To get a full list of `benchmark` subcommands, run:
 
 ```bash
-./target/production/node-template benchmark --help
+./target/production/substrate-node benchmark --help
 ```
 
 To get a full list of available options for the `benchmark pallet` subcommand, run:
 
 ```bash
-./target/production/node-template benchmark pallet --help
+./target/production/substrate-node benchmark pallet --help
 ```
 
 ## Where to go next
@@ -223,4 +223,4 @@ To get a full list of available options for the `benchmark pallet` subcommand, r
 - [frame-benchmarking README](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/benchmarking/README.md)
 - [Substrate Seminar: Benchmarking Your Substrate Pallet](https://www.youtube.com/watch?v=Qa6sTyUqgek)
 - [How-to: Add benchmarks](/reference/how-to-guides/weights/add-benchmarks)
-- [Command reference: node-template benchmark](/reference/command-line-tools/node-template/#benchmark)
+- [Command reference: substrate-node benchmark](/reference/command-line-tools/node-template/#benchmark)
