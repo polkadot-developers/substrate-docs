@@ -44,7 +44,7 @@ To build the parachain template:
 
 2. Clone the branch of the `substrate-parachain-template` repository that matches the release branch you used to configure the relay chain.
 
-   For example, if you used the `release-v1.0.0`Polkadot release branch to configure the local relay chain, use the `polkadot-v1.0.0` branch for the parachain template.
+   For example, if you used the `v1.0.0` Polkadot release branch to configure the local relay chain, use the `polkadot-v1.0.0` branch for the parachain template.
 
    ```bash
    git clone --depth 1 --branch polkadot-v1.0.0 https://github.com/substrate-developer-hub/substrate-parachain-template.git
