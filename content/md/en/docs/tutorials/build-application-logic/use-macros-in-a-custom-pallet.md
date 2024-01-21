@@ -119,9 +119,17 @@ Therefore, the first step is to remove some files and content from the files in 
      #[pallet::storage] // <-- Step 5. code block will replace this.
      #[pallet::call]    // <-- Step 6. code block will replace this.
    }
+
+   pub mod weights {
+      // Placeholder struct for the pallet weights
+      pub struct SubstrateWeight<T>(core::marker::PhantomData<T>);
+   }
    ```
 
    You now have a framework that includes placeholders for _events_, _errors_, _storage_, and _callable functions_.
+
+   > NOTE: Pallet weights are outside the scope of this tutorial. If you want to learn more about weights, you can read our documentation [here](/reference/how-to-guides/weights/).
+
 
 1. Save your changes.
 
@@ -143,6 +151,9 @@ To define the `Config` trait for the proof-of-existence pallet:
    pub trait Config: frame_system::Config {
      /// Because this pallet emits events, it depends on the runtime's definition of an event.
      type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_system::Config>::RuntimeEvent>;
+      /// Pallets use weights to measure the complexity of the callable functions.
+      /// Configuring weights is outside the scope of this tutorial, so we will leave it empty for now.
+      type WeightInfo;
    }
    ```
 
@@ -302,7 +313,7 @@ To implement this logic in the proof-of-existence pallet:
 
 1. Save your changes and close the file.
 
-1. Check that your code compiles by running the following command:
+1. Check that your pallet compiles by running the following command:
 
    ```bash
    cargo check -p pallet-template
