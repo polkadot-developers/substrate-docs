@@ -255,8 +255,8 @@ To implement this logic in the proof-of-existence pallet:
    // Dispatchable functions must be annotated with a weight and must return a DispatchResult.
    #[pallet::call]
    impl<T: Config> Pallet<T> {
-     #[pallet::weight(0)]
-     #[pallet::call_index(1)]
+     #[pallet::weight(Weight::default())]
+     #[pallet::call_index(0)]
      pub fn create_claim(origin: OriginFor<T>, claim: T::Hash) -> DispatchResult {
        // Check that the extrinsic was signed and get the signer.
        // This function will return an error if the extrinsic is not signed.
@@ -277,8 +277,8 @@ To implement this logic in the proof-of-existence pallet:
        Ok(())
      }
 
-     #[pallet::weight(0)]
-     #[pallet::call_index(2)]
+     #[pallet::weight(Weight::default())]
+     #[pallet::call_index(1)]
      pub fn revoke_claim(origin: OriginFor<T>, claim: T::Hash) -> DispatchResult {
        // Check that the extrinsic was signed and get the signer.
        // This function will return an error if the extrinsic is not signed.
