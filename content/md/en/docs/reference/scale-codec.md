@@ -75,8 +75,6 @@ SCALE Codec has been implemented in other languages, including:
 - C: [`MatthewDarnell/cScale`](https://github.com/MatthewDarnell/cScale)
 - C++: [`soramitsu/scale-codec-cpp`](https://github.com/soramitsu/scale-codec-cpp)
 - JavaScript: [`polkadot-js/api`](https://github.com/polkadot-js/api)
-- TypeScript: [`parity-scale-codec-ts`](https://github.com/paritytech/parity-scale-codec-ts), [`scale-ts`](https://github.com/unstoppablejs/unstoppablejs/tree/main/packages/scale-ts#scale-ts), [`soramitsu/scale-codec-js-library`](https://github.com/soramitsu/scale-codec-js-library), [`subsquid/scale-codec`](https://github.com/subsquid/squid-sdk/tree/master/substrate/scale-codec)
-- AssemblyScript: [`LimeChain/as-scale-codec`](https://github.com/LimeChain/as-scale-codec)
 - Dart: [`leonardocustodio/polkadart`](https://github.com/leonardocustodio/polkadart)
 - Haskell: [`airalab/hs-web3`](https://github.com/airalab/hs-web3/tree/master/packages/scale)
 - Golang: [`itering/scale.go`](https://github.com/itering/scale.go)
@@ -84,7 +82,7 @@ SCALE Codec has been implemented in other languages, including:
 - JavaScript: [`polkadot-js/api`](https://github.com/polkadot-js/api)
 - Python: [`polkascan/py-scale-codec`](https://github.com/polkascan/py-scale-codec)
 - Ruby: [`wuminzhe/scale_rb`](https://github.com/wuminzhe/scale_rb)
-- TypeScript: [`parity-scale-codec-ts`](https://github.com/paritytech/parity-scale-codec-ts), [`scale-ts`](https://github.com/unstoppablejs/unstoppablejs/tree/main/packages/scale-ts#scale-ts), [`soramitsu/scale-codec-js-library`](https://github.com/soramitsu/scale-codec-js-library)
+- TypeScript: [`parity-scale-codec-ts`](https://github.com/paritytech/parity-scale-codec-ts), [`scale-ts`](https://github.com/unstoppablejs/unstoppablejs/tree/main/packages/scale-ts#scale-ts), [`soramitsu/scale-codec-js-library`](https://github.com/soramitsu/scale-codec-js-library), [`subsquid/scale-codec`](https://github.com/subsquid/squid-sdk/tree/master/substrate/scale-codec)
 
 
 
