@@ -46,6 +46,9 @@ To add the collectibles pallet to the runtime:
    For example:
 
    ```toml
+   ...
+   pallet-insecure-randomness-collective-flip = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v1.0.0" }
+   ...
    # Local Dependencies
    pallet-template = { version = "4.0.0-dev", default-features = false, path = "../pallets/template" }
    collectibles = { default-features = false, path = "../pallets/collectibles" }
@@ -54,33 +57,36 @@ To add the collectibles pallet to the runtime:
    default = ["std"]
    std = [
    ...
-        "collectibles/std",
+         "collectibles/std",
+         "pallet-insecure-randomness-collective-flip/std",
    ...
    ```
-
+Note we've also included the insecure-randomness-collective-flip pallet. We'll use this pallet to generate the random values needed for the CollectionRandomness type of the collectibles pallet. It's discouraged to use this pallet in a production environment, though we can include it in this workshop for learning purposes.
 1. Save your changes.
    
 1. Open `runtime/src/lib.rs`.
 
-1. Import the Collectibles pallet into the runtime.
+1. Import the pallets into the runtime.
 
    ```rust
+   pub use pallet_insecure_randomness_collective_flip;
    /// Import the Collectibles pallet.
    pub use collectibles;
    ```
 
-1. Implement the configuration trait for the collectibles pallet.
+1. Implement the configuration trait for the collectibles pallet and the insecure_randomness_collective_flip pallet.
    
    ```rust
+   impl pallet_insecure_randomness_collective_flip::Config for Runtime{}
    impl collectibles::Config for Runtime {
         type RuntimeEvent = RuntimeEvent;
         type Currency = Balances;
-        type CollectionRandomness = RandomnessCollectiveFlip;
+        type CollectionRandomness = InsecureRandomnessCollectiveFlip;
         type MaximumOwned = frame_support::pallet_prelude::ConstU32<100>;
    }
    ```
 
-1. Add the pallet to the `construct_runtime!` macro.
+1. Add the pallets to the `construct_runtime!` macro.
    
    ```rust
    construct_runtime!(
@@ -91,7 +97,7 @@ To add the collectibles pallet to the runtime:
             UncheckedExtrinsic = UncheckedExtrinsic,
         {
             System: frame_system,
-            RandomnessCollectiveFlip: pallet_randomness_collective_flip,
+            InsecureRandomnessCollectiveFlip: pallet_insecure_randomness_collective_flip,
             Timestamp: pallet_timestamp,
             Aura: pallet_aura,
             Grandpa: pallet_grandpa,
