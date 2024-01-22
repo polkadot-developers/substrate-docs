@@ -30,7 +30,7 @@ The guide also illustrates how to add entropy to the randomness value by assigni
    ```rust
    #[pallet::config]
    pub trait frame_system::Config {
-   	type MyRandomness: Randomness<Self::Hash, Self::BlockNumber>;
+   	type MyRandomness: Randomness<Self::Hash, BlockNumberFor<Self>>;
    }
    ```
 
