@@ -74,7 +74,7 @@ For more information about working with generic types, see [Rust for Substrate](
 
 ## Specialized accounts
 
-As a flexible and module framework for blockchain development, Substrate itself doesn't require you define or use any specific type of accounts.
+As a flexible and module framework for blockchain development, Substrate itself doesn't require you to define or use any specific type of accounts.
 However, different chains can implement different rules for how accounts and the keys that control them are used.
 For example, you might implement specialized accounts if your application requires:
 
