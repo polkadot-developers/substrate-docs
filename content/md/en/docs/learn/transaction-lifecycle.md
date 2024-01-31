@@ -136,7 +136,7 @@ Before committing any state changes to storage, the runtime logic should perform
 
 Note that [events](/build/events-and-errors/) are also written to storage.
 Therefore, the runtime logic should not emit an event before performing the complementary actions.
-If a transaction fails after an event is emitted, the event is not be reverted.
+If a transaction fails after an event is emitted, the event is not reverted.
 
 ### Finalizing a block
 
