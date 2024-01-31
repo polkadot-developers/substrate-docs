@@ -20,7 +20,7 @@ The secret seed phrase is important because it can be used to recover access to 
 
 For most networks, the **public key** associated with an account is how that account is identified on the network and some form of it is used as the destination address for transactions.
 However, Substrate-based chains use the underlying public key to derive one or more **public addresses**.
-Instead of using the public key directly, Substrate allows you generate multiple addresses and address formats for an account.
+Instead of using the public key directly, Substrate allows you to generate multiple addresses and address formats for an account.
 
 ## Address encoding and chain-specific addresses
 
