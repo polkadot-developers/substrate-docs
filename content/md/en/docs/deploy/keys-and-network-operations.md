@@ -37,7 +37,7 @@ Session keys must be available online to enable the validator to perform certain
 
 These keys aren't used to control funds and they should only be used for their intended purpose.
 They can be changed regularly
-To create session keys, a validator node operator must use a controller account too generate a certificate signed with the session's public key.
+To create session keys, a validator node operator must use a controller account to generate a certificate signed with the session's public key.
 The certificate attests that the key acts on behalf of the validator's staking account and nominators.
 After creating the session key, the validator node operator informs the chain that this key represents the controller key by
 publishing the session certificate in a transaction on the chain.
