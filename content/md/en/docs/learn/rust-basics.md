@@ -17,7 +17,7 @@ Being the language of choice for Substrate, Rust is a highly performant programm
 
 ## Rust in Substrate
 
-In the [Architecture]() section, you will learn that Substrate is made of two distinct architectural components: the outer node and the runtime.
+In the [Architecture](/learn/architecture/) section, you will learn that Substrate is made of two distinct architectural components: the outer node and the runtime.
 While more complex features in Rust such as multithreading and asynchronous Rust are used in the outer node code, they aren't directly exposed to runtime engineers, making it easier for runtime engineers to focus on the business logic of their node.
 
 Generally, depending on their focus, developers should expect to know:
