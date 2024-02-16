@@ -20,7 +20,7 @@ The secret seed phrase is important because it can be used to recover access to 
 
 For most networks, the **public key** associated with an account is how that account is identified on the network and some form of it is used as the destination address for transactions.
 However, Substrate-based chains use the underlying public key to derive one or more **public addresses**.
-Instead of using the public key directly, Substrate allows you generate multiple addresses and address formats for an account.
+Instead of using the public key directly, Substrate allows you to generate multiple addresses and address formats for an account.
 
 ## Address encoding and chain-specific addresses
 
@@ -74,7 +74,7 @@ For more information about working with generic types, see [Rust for Substrate](
 
 ## Specialized accounts
 
-As a flexible and module framework for blockchain development, Substrate itself doesn't require you define or use any specific type of accounts.
+As a flexible and module framework for blockchain development, Substrate itself doesn't require you to define or use any specific type of accounts.
 However, different chains can implement different rules for how accounts and the keys that control them are used.
 For example, you might implement specialized accounts if your application requires:
 
