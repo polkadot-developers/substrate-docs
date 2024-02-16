@@ -41,7 +41,7 @@ To create session keys, a validator node operator must use a controller account 
 The certificate attests that the key acts on behalf of the validator's staking account and nominators.
 After creating the session key, the validator node operator informs the chain that this key represents the controller key by
 publishing the session certificate in a transaction on the chain.
-In most cases, node operators use the [Session](https://paritytech.github.io/substrate/master/pallet_session/index.html)) pallet to manage their session keys.
+In most cases, node operators use the [Session](https://paritytech.github.io/substrate/master/pallet_session/index.html) pallet to manage their session keys.
 
 The [`SessionKeys`](https://paritytech.github.io/substrate/master/sp_session/index.html)
 trait is a generic, indexable type and you can declare any number of session keys in the runtime.
