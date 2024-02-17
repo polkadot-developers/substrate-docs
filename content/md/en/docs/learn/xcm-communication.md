@@ -83,7 +83,7 @@ There are several other registers in the XCVM to handle specific tasks.
 For example, there's a surplus weight register to store any overestimation of fees and a refunded weight register to store the portion of surplus weight that has been refunded.
 In general, you can't modify the values stored in the registers directly.
 Instead, values are set when the XCM executor program starts and are manipulated by specific instructions, under certain circumstances, or according to certain rules.
-FOr more information about what's contained in each register, see [XCM reference](/reference/xcm-reference/).
+For more information about what's contained in each register, see [XCM reference](/reference/xcm-reference/).
 
 ### Configuration
 
