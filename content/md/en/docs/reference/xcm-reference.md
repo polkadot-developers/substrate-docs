@@ -8,6 +8,10 @@ keywords:
   - errors
 ---
 
+<div class="warning">
+  <strong>⚠️ WARNING:</strong> This page contains outdated information. Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/polkadot_sdk/xcm/index.html">Rust docs</a> for the most up-to-date documentation on this topic.
+</div>
+
 This section provides reference information for the cross-consensus message (XCM) format.
 
 ## Instructions
