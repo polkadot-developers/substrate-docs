@@ -45,13 +45,10 @@ To prepare an account:
 
 1. Click **Save**.
 
-2. Join the [Rococo Element channel](https://matrix.to/#/#rococo-faucet:matrix.org) and send a message with`!drip` and the public address for your Rococo to get 100 ROC in your wallet.
+2. Go to https://paritytech.github.io/polkadot-testnet-faucet/, provide your public address in the form input and submit to get 100 ROC tokens in your wallet.
 
-   For example, send a message similar to the following:
-
-   ```text
-   !drip 5CVYesFxbDBU5rkZXYTAA6BnADbCoSpQkvexBQZvbtvyGTP1
-   ```
+   > Alternatively you can join the [Rococo Element channel](https://matrix.to/#/#rococo-faucet:matrix.org) and send a message with`!drip` and the public address for your Rococo to get 100 ROC in your wallet.
+   > For example, send a message similar to the following: `!drip 5CVYesFxbDBU5rkZXYTAA6BnADbCoSpQkvexBQZvbtvyGTP1`
 
 ## Reserve a parachain identifier
 
