@@ -57,7 +57,7 @@ Calling a smart contract function can result in:
 
 - Changing the storage associated wih the smart contract account.
 - Changing the storage associated wih a non-contract account.
-- instantiating a new smart contract.
+- Instantiating a new smart contract.
 - Calling another smart contract account.
 
 If a smart contract account is depleted, its associated code and storage is also be deleted.
