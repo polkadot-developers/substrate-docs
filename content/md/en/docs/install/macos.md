@@ -4,7 +4,7 @@ description: Set up a local development environment for Substrate on macOS.
 keywords:
 ---
 
-You can install Rust and set up a Substrate development environment on Apple macOS computers with either Intel or an Apple M1 processors.
+You can install Rust and set up a Substrate development environment on Apple macOS computers with either Intel or Apple M-series processors.
 
 ## Before you begin
 
@@ -13,7 +13,7 @@ Before you install Rust and set up your development environment on macOS, verify
 - Operating system version is 10.7 Lion, or later.
 - Processor speed of at least 2Ghz, 3Ghz recommended.
 - Memory of at least 8 GB RAM, 16 GB recommended.
-- Storage of at 10 GB available space.
+- Storage of 10 GB available space.
 - Broadband Internet connection.
 
 ### Support for Apple Silicon
@@ -144,7 +144,7 @@ To install `openssl` and the Rust toolchain on macOS:
 Now that you have Rust installed and the Rust toolchains configured for Substrate development, you are ready to finish setting up your development environment by cloning the Substrate **node template** files and compiling a Substrate node.
 
 The node template provides a working environment that includes all of the most common features you need to build a blockchain without any extraneous modules or tools.
-To ensure that the node template offers a relatively stable working environment for you to experiment with, the recommended best practice is to clone Substrate node template from the Substrate Developer Hub repository, rather than from the core Substrate repository.
+To ensure that the node template offers a relatively stable working environment for you to experiment with, the recommended best practice is to clone the Substrate node template from the Substrate Developer Hub repository, rather than from the core Substrate repository.
 
 To compile the Substrate node template:
 
@@ -178,7 +178,7 @@ To compile the Substrate node template:
 
    Because of the number of packages required, compiling the node can take several minutes.
 
-After the build completes successfully, your local computer is ready for Substrate development activity.
+After the build is completed successfully, your local computer is ready for Substrate development activity.
 
 ## Where to go next
 
