@@ -1,4 +1,4 @@
-const { MARKETPLACE_URL, WEBSITE_URL, CAREERS_URL } = require('./webConsts.js');
+const { WEBSITE_URL, CAREERS_URL } = require('./webConsts.js');
 
 /* the main menu, ids of items must match
    the submenu's key of this js object */
@@ -57,10 +57,6 @@ const developers = [
   {
     url: 'https://paritytech.github.io/substrate/master/sc_service/',
     id: 'developers.rustdocs',
-  },
-  {
-    url: MARKETPLACE_URL,
-    id: 'developers.marketplace',
   },
   {
     url: WEBSITE_URL + '/developers/smart-contracts/',
