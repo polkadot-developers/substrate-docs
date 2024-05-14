@@ -29,7 +29,7 @@ For example, Substrate blockchains are used to build the following network types
 
 Blockchains require network nodes to be synchronised to present a consistent and up-to-date view of the blockchain state.
 Each synchronised node stores a copy of the blockchain and keeps track of incoming transactions.
-However, keeping a full copy of an entire blockchain requires a lot of storage and computing resources and downloading all of the blocks from genesis to the most recent isn’t practical for most use cases.
+However, keeping a full copy of an entire blockchain requires a lot of storage and downloading all of the blocks from genesis to the most recent isn’t practical for most use cases.
 To make it easier to maintain the security and integrity of the chain but reduce the resource requirements for clients wanting access to blockchain data, there are different types of nodes that can interact with the chain:
 
 - [Full nodes](#full-nodes)
@@ -39,16 +39,16 @@ To make it easier to maintain the security and integrity of the chain but reduce
 ### Full nodes
 
 Full nodes are a critical part of the blockchain network infrastructure and are the most common node type.
-Full nodes store blockchain data and, typically, participate in common blockchain operations, such as authoring and validating blocks, receiving and verifying transactions, and serving data in response to user requests.
+Full nodes store blockchain data and, typically, participate in common blockchain operations, such as validating blocks, receiving and verifying transactions, and serving data in response to user requests.
 
 ![Full node](/media/images/docs/full-node.png)
 
-By default, full nodes are configured to store only the most recent 256 blocks and to discard state older than that—with the exception of the genesis block—to prevent the full node from growing indefinitely and consuming all available disk space.
-You can configure the number of blocks a full node retains.
+By default, full nodes are configured to store all the blocks but only the most recent 256 states. They discard states older than that&nbsp;—&nbsp;with the exception of the genesis block&nbsp;—&nbsp;to prevent the full node from consuming too much disk space.
+You can configure the number of blocks a full node retains (see `--{state,blocks}-pruning` options).
 
-Although older blocks are discarded, full nodes retain all of the [block headers](/reference/glossary/#header) from the genesis block to the most recent block to validate that the state is correct.
-Because the full node has access to all of the block headers, it can be used to rebuild the state of the entire blockchain by executing all of the blocks from the genesis block.
-Thus it requires much more computation to retrieve information about some previous state, and an archive should generally be used instead.
+Although older states are discarded, full nodes retain all the blocks from genesis to the head, allowing to rebuild all the intermediate states.
+It is achieved by taking the genesis state as initial state and executing all the blocks successively on top of if.
+Retrieving information about some previous state thus requires an expensive computation which can be avoided by using an archive node, which does not discard the states.
 
 Full nodes allow you to read the current state of the chain and to submit and validate transactions directly on the network.
 By discarding state from older blocks, a full node requires much less disk space than an archive node.
@@ -57,8 +57,8 @@ If you need to query historical blocks, you should purge the full node then rest
 
 ### Archive nodes
 
-Archive nodes are similar to full nodes except that they store all past blocks with complete state available for every block.
-Archive nodes are most often used by utilities—such as block explorers, wallets, discussion forums, and similar applications—that need access to historical information.
+Archive nodes are similar to full nodes except that they do not discard old states. As a result, they have complete state for every block available without computation.
+For this reason, archive nodes are often used by utilities&nbsp;—&nbsp;such as block explorers, wallets, discussion forums, and similar applications&nbsp;—&nbsp;that need access to historical information.
 
 ![Archive nodes](/media/images/docs/archive-node.png)
 
