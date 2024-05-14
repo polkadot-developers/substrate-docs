@@ -1,4 +1,4 @@
-const { WEBSITE_URL, CAREERS_URL } = require('./webConsts.js');
+const { WEBSITE_URL } = require('./webConsts.js');
 
 /* the main menu, ids of items must match
    the submenu's key of this js object */
@@ -123,10 +123,6 @@ const opportunities = [
   {
     url: WEBSITE_URL + '/ecosystem/opportunities/grants',
     id: 'ecosystem.opportunities.grants',
-  },
-  {
-    url: CAREERS_URL,
-    id: 'ecosystem.opportunities.careers',
   },
 ];
 
