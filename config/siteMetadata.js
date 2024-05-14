@@ -1,5 +1,5 @@
 const menus = require('./menus.js');
-const { WEBSITE_URL, DOCS_URL, CAREERS_URL } = require('./webConsts.js');
+const { WEBSITE_URL, DOCS_URL } = require('./webConsts.js');
 
 module.exports = {
   menus,
@@ -10,7 +10,6 @@ module.exports = {
   siteUrl: DOCS_URL,
   websiteUrl: WEBSITE_URL,
   docsUrl: DOCS_URL,
-  careersUrl: CAREERS_URL,
   author: 'Parity WebDev/W3F WebOps',
   pressEmail: 'press@parity.io',
   email: 'info@parity.io',
