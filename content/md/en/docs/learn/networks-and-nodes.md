@@ -47,7 +47,7 @@ By default, full nodes are configured to store all the blocks but only the most 
 You can configure the number of blocks a full node retains (see `--state-pruning` and `--blocks-pruning` options).
 
 Although older states are discarded, full nodes retain all the blocks from genesis to the head, allowing them to rebuild all the intermediate states.
-It is achieved by taking the genesis state as initial state and executing all the blocks successively on top of if.
+This is achieved by taking the genesis state as initial state and executing all the blocks successively on top of if.
 Retrieving information about some previous state thus requires an expensive computation which can be avoided by using an archive node, which does not discard the states.
 
 Full nodes allow you to read the current state of the chain and to submit and validate transactions directly on the network.
