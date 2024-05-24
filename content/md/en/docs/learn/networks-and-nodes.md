@@ -44,7 +44,7 @@ Full nodes store blockchain data and, typically, participate in common blockchai
 ![Full node](/media/images/docs/full-node.png)
 
 By default, full nodes are configured to store all the blocks but only the most recent 256 states. They discard states older than that&nbsp;—&nbsp;with the exception of the genesis block&nbsp;—&nbsp;to prevent the full node from consuming too much disk space.
-You can configure the number of blocks a full node retains (see `--{state,blocks}-pruning` options).
+You can configure the number of blocks a full node retains (see `--state-pruning` and `--blocks-pruning` options).
 
 Although older states are discarded, full nodes retain all the blocks from genesis to the head, allowing to rebuild all the intermediate states.
 It is achieved by taking the genesis state as initial state and executing all the blocks successively on top of if.
