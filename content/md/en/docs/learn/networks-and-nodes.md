@@ -58,7 +58,7 @@ If you need to query historical blocks, you should purge the full node then rest
 ### Archive nodes
 
 Archive nodes are similar to full nodes except that they do not discard old states. As a result, they have complete state for every block available without computation.
-For this reason, archive nodes are often used by utilities&nbsp;—&nbsp;such as block explorers, wallets, discussion forums, and similar applications&nbsp;—&nbsp;that need access to historical information.
+For this reason, archive nodes are often used by utilities — such as block explorers, wallets, discussion forums, and similar applications — that need access to historical information.
 
 ![Archive nodes](/media/images/docs/archive-node.png)
 
