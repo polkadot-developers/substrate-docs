@@ -94,7 +94,7 @@ To download and install `sidecar`:
 
 To use the predefined API collection for `sidecar`:
 
-1. Open the predefined [Substrate API Sidecar](https://documenter.getpostman.com/view/24602305/2s8YsqWaj8#intro) API collection in a browser.
+1. Open the predefined [Substrate API Sidecar](https://documenter.getpostman.com/view/21393319/2sA3Qs9C9M#intro) API collection in a browser.
 2. Click **Run in Postman** in the top-right corner of the page.
 3. Select to run the collection either using Postman for Web or in the Postman for Mac desktop client.
 
