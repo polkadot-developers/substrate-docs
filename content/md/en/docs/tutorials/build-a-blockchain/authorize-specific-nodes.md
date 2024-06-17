@@ -131,7 +131,7 @@ To add the `node-authorization` pallet to the Substrate runtime:
 
    ```toml
    [dependencies]
-   pallet-node-authorization = { default-features = false, version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v1.0.0" }
+   pallet-node-authorization = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0", default-features = false }
    ```
 
    This line imports the `pallet-node-authorization` crate as a dependency and specifies the following configuration details for the crate:
@@ -225,16 +225,31 @@ To implement the `node-authorization` pallet in your runtime:
 1. Add the pallet to the `construct_runtime` macro with the following line of code:
 
    ```rust
-   construct_runtime!(
-   pub enum Runtime where
-       Block = Block,
-       NodeBlock = opaque::Block,
-       UncheckedExtrinsic = UncheckedExtrinsic
-     {
-       /*** Add This Line ***/
-       NodeAuthorization: pallet_node_authorization::{Pallet, Call, Storage, Event<T>, Config<T>},
-     }
-   );
+  #[frame_support::runtime]
+  mod runtime {
+      #[runtime::runtime]
+      #[runtime::derive(
+          RuntimeCall,
+          RuntimeEvent,
+          RuntimeError,
+          RuntimeOrigin,
+          RuntimeFreezeReason,
+          RuntimeHoldReason,
+          RuntimeSlashReason,
+          RuntimeLockId,
+          RuntimeTask
+      )]
+      pub struct Runtime;
+      
+      #[runtime::pallet_index(0)]
+      pub type System = frame_system;
+
+      --snip--
+
+      /*** Add This Line ***/
+      #[runtime::pallet_index(8)]
+      pub type NodeAuthorization: pallet_node_authorization;
+}
    ```
 
 1. Save your changes and close the file.
