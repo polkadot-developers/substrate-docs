@@ -225,31 +225,29 @@ To implement the `node-authorization` pallet in your runtime:
 1. Add the pallet to the `construct_runtime` macro with the following line of code:
 
    ```rust
-  #[frame_support::runtime]
-  mod runtime {
-      #[runtime::runtime]
-      #[runtime::derive(
-          RuntimeCall,
-          RuntimeEvent,
-          RuntimeError,
-          RuntimeOrigin,
-          RuntimeFreezeReason,
-          RuntimeHoldReason,
-          RuntimeSlashReason,
-          RuntimeLockId,
-          RuntimeTask
-      )]
-      pub struct Runtime;
+     #[frame_support::runtime]
+     mod runtime {
+         #[runtime::runtime]
+         #[runtime::derive(
+             RuntimeCall,
+             RuntimeEvent,
+             RuntimeError,
+             RuntimeOrigin,
+             RuntimeFreezeReason,
+             RuntimeHoldReason,
+             RuntimeSlashReason,
+             RuntimeLockId,
+             RuntimeTask
+         )]
+         pub struct Runtime;
       
-      #[runtime::pallet_index(0)]
-      pub type System = frame_system;
+         #[runtime::pallet_index(0)]
+         pub type System = frame_system;
 
-      --snip--
-
-      /*** Add This Line ***/
-      #[runtime::pallet_index(8)]
-      pub type NodeAuthorization: pallet_node_authorization;
-}
+         //*** Add This Line ***//
+         #[runtime::pallet_index(8)]
+         pub type NodeAuthorization: pallet_node_authorization;
+     }
    ```
 
 1. Save your changes and close the file.
