@@ -288,7 +288,6 @@ To configure genesis storage for authorized nodes:
 
    ```rust
    use sp_core::OpaquePeerId; // A struct wraps Vec<u8> to represent the node `PeerId`.
-   use node_template_runtime::NodeAuthorizationConfig; // The genesis config that serves the pallet.
    ```
 
 1. Locate the `testnet_genesis` function that configures initial storage state for FRAME modules.
@@ -296,32 +295,30 @@ To configure genesis storage for authorized nodes:
    For example:
 
    ```rust
-   /// Configure initial storage state for FRAME modules.
-   fn testnet_genesis(
-     wasm_binary: &[u8],
-     initial_authorities: Vec<(AuraId, GrandpaId)>,
-     root_key: AccountId,
-     endowed_accounts: Vec<AccountId>,
-     _enable_println: bool,
-     ) -> GenesisConfig {
-
+     /// Configure initial storage state for FRAME modules.
+     fn testnet_genesis(
+         initial_authorities: Vec<(AuraId, GrandpaId)>,
+         root_key: AccountId,
+         endowed_accounts: Vec<AccountId>,
+         _enable_println: bool,
+     ) -> serde_json::Value {
    ```
 
 1. Within the `GenesisConfig` declaration, add the following code block:
 
    ```rust
-     node_authorization: NodeAuthorizationConfig {
-       nodes: vec![
-         (
-           OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
-           endowed_accounts[0].clone()
-         ),
-         (
-           OpaquePeerId(bs58::decode("12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust").into_vec().unwrap()),
-           endowed_accounts[1].clone()
-         ),
-       ],
-     },
+         "node_authorization": {
+             "nodes": vec![
+              (
+                 OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
+                 endowed_accounts[0].clone()
+              ),
+              (
+                OpaquePeerId(bs58::decode("12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust").into_vec().unwrap()),
+                endowed_accounts[1].clone()
+              ),
+             ],
+         },
    ```
 
    In this code, `NodeAuthorizationConfig` contains a `nodes` property, which is a vector with a tuple of two elements.
