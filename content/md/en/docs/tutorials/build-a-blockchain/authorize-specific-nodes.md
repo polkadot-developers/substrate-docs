@@ -244,9 +244,14 @@ To implement the `node-authorization` pallet in your runtime:
          #[runtime::pallet_index(0)]
          pub type System = frame_system;
 
+         //*** snip ***//
+
+         #[runtime::pallet_index(7)]
+         pub type TemplateModule = pallet_template;
+
          //*** Add This Line ***//
          #[runtime::pallet_index(8)]
-         pub type NodeAuthorization: pallet_node_authorization;
+         pub type NodeAuthorization = pallet_node_authorization;
      }
    ```
 
