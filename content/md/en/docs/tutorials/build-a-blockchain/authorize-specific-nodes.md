@@ -222,7 +222,7 @@ To implement the `node-authorization` pallet in your runtime:
    }
    ```
 
-1. Add the pallet to the `construct_runtime` macro with the following line of code:
+1. Locate the `construct_runtime` macro:
 
    ```rust
      #[frame_support::runtime]
@@ -243,14 +243,12 @@ To implement the `node-authorization` pallet in your runtime:
       
          #[runtime::pallet_index(0)]
          pub type System = frame_system;
+   ```
 
-         //*** snip ***//
+1. Add the Node Authorization pallet inside the `construct_runtime!` macro with the following code:
 
-         #[runtime::pallet_index(7)]
-         pub type TemplateModule = pallet_template;
-
-         //*** Add This Line ***//
-         #[runtime::pallet_index(8)]
+    ```rust
+         #[runtime::pallet_index(x)]
          pub type NodeAuthorization = pallet_node_authorization;
      }
    ```
@@ -304,7 +302,7 @@ To configure genesis storage for authorized nodes:
      ) -> serde_json::Value {
    ```
 
-1. Within the `GenesisConfig` declaration, add the following code block:
+1. Within the `serde_json::Value` declaration, add the following code block:
 
    ```rust
          "node_authorization": {
