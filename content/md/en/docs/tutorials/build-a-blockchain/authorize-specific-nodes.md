@@ -248,9 +248,8 @@ To implement the `node-authorization` pallet in your runtime:
 1. Add the Node Authorization pallet inside the `construct_runtime!` macro with the following code:
 
     ```rust
-         #[runtime::pallet_index(x)]
+         #[runtime::pallet_index(x)] //*** Change pallet index ***//
          pub type NodeAuthorization = pallet_node_authorization;
-     }
    ```
 
 1. Save your changes and close the file.
@@ -305,7 +304,7 @@ To configure genesis storage for authorized nodes:
 1. Within the `serde_json::Value` declaration, add the following code block:
 
    ```rust
-         "node_authorization": {
+         "nodeAuthorization": {
              "nodes": vec![
               (
                  OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
