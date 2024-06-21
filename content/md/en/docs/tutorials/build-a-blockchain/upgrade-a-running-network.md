@@ -144,7 +144,7 @@ To update the dependencies for the runtime to include the Utility pallet:
    
    For example:
 
-   ```text
+   ```rust
    [dependencies]
    codec = { package = "parity-scale-codec", version = "3.6.1", default-features = false, features = ["derive"] }
    scale-info = { version = "2.10.0", default-features = false, features = ["derive"] }
@@ -156,18 +156,15 @@ To update the dependencies for the runtime to include the Utility pallet:
    
    For example, add a single line with the following fields:
    
-   ```toml
-      git = "https://github.com/paritytech/polkadot-sdk.git",
-      tag = "polkadot-v1.9.0",
-      default-features = false,
-   }
+   ```rust
+   pallet-utility = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0", default-features = false }
    ```
 
 1. Locate the `[features]` section and the list of the default features for the standard binary.
    
    For example:
 
-   ```text
+   ```rust
    [features]
    default = ["std"]
    std = [
@@ -180,7 +177,7 @@ To update the dependencies for the runtime to include the Utility pallet:
 
 1. Add the Utility pallet to the list.
    
-   ```toml
+   ```rust
    "pallet-utility/std",
    ```
 
@@ -302,8 +299,8 @@ To add the Utility types and configuration trait:
 1. Add the Utility pallet inside the `construct_runtime!` macro.
 
    ```rust
-      #[runtime::pallet_index(//*** Choose appropriate Index ***//)
-      pub type Utility: pallet_utility,
+        #[runtime::pallet_index(x)] //*** Change Pallet Index ***//
+        pub type Utility = pallet_utility;
    ```
 
 1. Locate the `runtime_version` macro.
