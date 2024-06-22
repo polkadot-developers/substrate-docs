@@ -15,12 +15,8 @@ As you saw in [Build a local blockchain](/tutorials/build-a-blockchain/build-loc
 This tutorial introduces the basic steps for adding a new pallet to the runtime for the node template.
 The steps are similar any time you want to add a new FRAME pallet to the runtime.
 However, each pallet requires specific configuration settings—for example, the specific parameters and types required to perform the functions that the pallet implements.
-For this tutorial, you'll add the [Nicks pallet](https://paritytech.github.io/substrate/master/pallet_nicks/index.html) to the runtime for the node template, so you'll see how to configure the settings that are specific to the Nicks pallet.
-The Nicks pallet allows blockchain users to pay a deposit to reserve a nickname for an account they control. It implements the following functions:
-
-- The `set_name` function to collect a deposit and set the name of an account if the name is not already taken.
-- The `clear_name` function to remove the name associated with an account and return the deposit.
-- The `kill_name` function to forcibly remove an account name without returning the deposit.
+For this tutorial, you'll add the [Lottery pallet](https://paritytech.github.io/polkadot-sdk/master/pallet_lottery/) to the runtime for the node template, so you'll see how to configure the settings that are specific to the Lottery pallet.
+The Lottery pallet allows blockchain users, just like a normal lottery system, to "buy a ticket", which is used to fund the pot. Then, is reallocated to a single user. 
 
 Note that this tutorial is a stepping stone to more advanced tutorials that illustrate how to add pallets with more complex configuration settings, how to create custom pallets, and how to publish pallets.
 
@@ -46,7 +42,7 @@ By completing this tutorial, you will use the Nicks pallet to accomplish the fol
 
 - See changes to the runtime by interacting with the new pallet using the front-end template.
 
-## Add the Nicks pallet dependencies
+## Add the Lottery pallet dependencies
 
 Before you can use a new pallet, you must add some information about it to the configuration file that the compiler uses to build the runtime binary.
 
@@ -59,7 +55,7 @@ Because the Substrate runtime compiles to both a native platform binary that inc
 For information about adding dependencies in `Cargo.toml` files, see [Dependencies](https://doc.rust-lang.org/cargo/guide/dependencies.html) in the Cargo documentation.
 For information about enabling and managing features from dependent packages, see [Features](https://doc.rust-lang.org/cargo/reference/features.html) in the Cargo documentation.
 
-To add the dependencies for the Nicks pallet to the runtime:
+To add the dependencies for the Lottery pallet to the runtime:
 
 1. Open a terminal shell and change to the root directory for the node template.
 
@@ -67,24 +63,24 @@ To add the dependencies for the Nicks pallet to the runtime:
 
 1. Locate the [dependencies] section and note how other pallets are imported.
 
-1. Copy an existing pallet dependency description and replace the pallet name with `pallet-nicks` to make the pallet available to the node template runtime.
+1. Copy an existing pallet dependency description and replace the pallet name with `pallet-lottery` to make the pallet available to the node template runtime.
 
    For example, add a line similar to the following:
 
    ```toml
-   pallet-nicks = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", branch = "polkadot-v1.0.0" }
+   pallet-lottery = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0", default-features = false }
    ```
 
-   This line imports the `pallet-nicks` crate as a dependency and specifies the following:
+   This line imports the `pallet-lottery` crate as a dependency and specifies the following:
 
    - Version to identify which version of the crate you want to import.
    - The default behavior for including pallet features when compiling the runtime with the standard Rust libraries.
-   - Repository location for retrieving the `pallet-nicks` crate.
-   - Branch to use for retrieving the crate. Be sure to use the same **version** and **branch** information for the Nicks pallet as you see used for the other pallets included in the runtime.
+   - Repository location for retrieving the `pallet-lottery` crate.
+   - Tag to use for retrieving the crate. Be sure to use the same **version** and **tag** information for the Nicks pallet as you see used for the other pallets included in the runtime.
 
    These details should be the same for every pallet in any given version of the node template.
 
-1. Add the `pallet-nicks/std` features to the list of `features` to enable when compiling the runtime.
+1. Add the `pallet-lottery/std` features to the list of `features` to enable when compiling the runtime.
 
    ```toml
    [features]
@@ -93,7 +89,7 @@ To add the dependencies for the Nicks pallet to the runtime:
       ...
       "pallet-aura/std",
       "pallet-balances/std",
-      "pallet-nicks/std",
+      "pallet-lottery/std",
       ...
    ]
    ```
@@ -117,19 +113,25 @@ The `Config` trait is used to identify the parameters and types that the pallet 
 
 Most of the pallet-specific code required to add a pallet is implemented using the `Config` trait.
 You can review what you to need to implement for any pallet by referring to its Rust documentation or the source code for the pallet.
-For example, to see what you need to implement for the `nicks` pallet, you can refer to the Rust documentation for [`pallet_nicks::Config`](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/trait.Config.html) or the trait definition in the [Nicks pallet source code](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/nicks/src/lib.rs).
+For example, to see what you need to implement for the `Lottery` pallet, you can refer to the trait definition in the [Lottery pallet source code](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/lottery/src/lib.rs).
 
-For this tutorial, you can see that the `Config` trait in the `nicks` pallet declares the following types:
+For this tutorial, you can see that the `Config` trait in the `lottery` pallet declares the following types:
 
 ```rust
-pub trait Config: Config {
-    type RuntimeEvent: From<Event<Self>> + IsType<<Self as Config>::RuntimeEvent>;
-    type Currency: ReservableCurrency<Self::AccountId>;
-    type ReservationFee: Get<<<Self as Config>::Currency as Currency<<Self as Config>::AccountId>>::Balance>;
-    type Slashed: OnUnbalanced<<<Self as Config>::Currency as Currency<<Self as Config>::AccountId>>::NegativeImbalance>;
-    type ForceOrigin: EnsureOrigin<Self::RuntimeOrigin>;
-    type MinLength: Get<u32>;
-    type MaxLength: Get<u32>;
+pub trait Config: frame_system::Config {
+   type PalletId: Get<PalletId>;
+   type RuntimeCall: Parameter
+      + Dispatchable<RuntimeOrigin = Self::RuntimeOrigin>
+      + GetDispatchInfo
+      + From<frame_system::Call<Self>>;
+   type Currency: ReservableCurrency<Self::AccountId>;
+   type Randomness: Randomness<Self::Hash, BlockNumberFor<Self>>;
+   type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_system::Config>::RuntimeEvent>;
+   type ManagerOrigin: EnsureOrigin<Self::RuntimeOrigin>;
+   type MaxCalls: Get<u32>;
+   type ValidateCall: ValidateCall<Self>;
+   type MaxGenerateRandom: Get<u32>;
+   type WeightInfo: WeightInfo;
 }
 ```
 
@@ -172,62 +174,72 @@ To review the `Config` trait for the Balances pallet:
    As you can see in this example, the `impl pallet_balances::Config` block allows you to configure the types and parameters that are specified by the Balances pallet `Config` trait.
    For example, this `impl` block configures the Balances pallet to use the `u128` type to track balances.
 
-## Implement the configuration for Nicks
+## Implement the configuration for Lottery
 
 Now that you have seen an example of how the `Config` trait is implemented for the Balances pallet, you're ready to implement the `Config` trait for the Nicks pallet.
 
-To implement the `nicks` pallet in your runtime:
+To implement the `lottery` pallet in your runtime:
 
 1. Open the `runtime/src/lib.rs` file in a text editor.
 
 1. Locate the last line of the Balances code block.
 
-1. Add the following code block for the Nicks pallet:
+1. Before adding Lottery pallet's config, `pallet_random_collective_flip` is instantiated as `RandomnessCollectiveFlip`. For more information, you can see [Incorporate randomness](https://docs.substrate.io/reference/how-to-guides/pallet-design/incorporate-randomness/). Note that add `pallet_random_collective_flip` in `runtime/Cargo.toml` as above.
 
    ```rust
-   impl pallet_nicks::Config for Runtime {
-    // The Balances pallet implements the ReservableCurrency trait.
-    // `Balances` is defined in `construct_runtime!` macro.
-    type Currency = Balances;
+   impl pallet_insecure_randomness_collective_flip::Config for Runtime {}
+   ```
 
-    // Set ReservationFee to a value.
-    type ReservationFee = ConstU128<100>;
+1. Add the following code block for the Lottery pallet:
 
-    // No action is taken when deposits are forfeited.
-    type Slashed = ();
-
-    // Configure the FRAME System Root origin as the Nick pallet admin.
-    // https://paritytech.github.io/substrate/master/frame_system/enum.RawOrigin.html#variant.Root
-    type ForceOrigin = frame_system::EnsureRoot<AccountId>;
-
-    // Set MinLength of nick name to a desired value.
-    type MinLength = ConstU32<8>;
-
-    // Set MaxLength of nick name to a desired value.
-    type MaxLength = ConstU32<32>;
-
-    // The ubiquitous event type.
-    type RuntimeEvent = RuntimeEvent;
+   ```rust
+   parameter_types! {
+      pub const LotteryPalletId: PalletId = PalletId(*b"py/lotto");
+      pub const MaxCalls: u32 = 10;
+      pub const MaxGenerateRandom: u32 = 10;
    }
 
-1. Add Nicks to the `construct_runtime!` macro.
+   impl pallet_lottery::Config for Runtime {
+      type PalletId = LotteryPalletId;
+      type RuntimeCall = RuntimeCall;
+      type Currency = Balances;
+      type Randomness = RandomnessCollectiveFlip;
+      type RuntimeEvent = RuntimeEvent;
+      type ManagerOrigin = EnsureRoot<AccountId>;
+      type MaxCalls = MaxCalls;
+      type ValidateCall = Lottery;
+      type MaxGenerateRandom = MaxGenerateRandom;
+      type WeightInfo = pallet_lottery::weights::SubstrateWeight<Runtime>;
+   }
+   ```
+
+1. Add Lottery to the `runtime` module.
 
    For example:
 
    ```rust
-   construct_runtime!(
-   pub enum Runtime where
-       Block = Block,
-       NodeBlock = opaque::Block,
-       UncheckedExtrinsic = UncheckedExtrinsic
-     {
-       /* --snip-- */
-       Balances: pallet_balances,
+   #[frame_support::runtime]
+   mod runtime {
+      #[runtime::runtime]
+      #[runtime::derive(
+         RuntimeCall,
+         RuntimeEvent,
+         RuntimeError,
+         RuntimeOrigin,
+         RuntimeFreezeReason,
+         RuntimeHoldReason,
+         RuntimeSlashReason,
+         RuntimeLockId,
+         RuntimeTask
+      )]
+      ...
 
-       /*** Add This Line ***/
-       Nicks: pallet_nicks,
-     }
-   );
+      #[runtime::pallet_index(8)]
+      pub type Lottery = pallet_lottery;
+
+      #[runtime::pallet_index(9)]
+      pub type RandomnessCollectiveFlip = pallet_insecure_randomness_collective_flip;
+   }
    ```
 
 1. Save your changes and close the file.
@@ -248,7 +260,7 @@ To implement the `nicks` pallet in your runtime:
 
 ## Start the blockchain node
 
-After your node compiles, you are ready to start the node that has been enhanced with nickname capabilities from the [Nicks pallet](https://paritytech.github.io/substrate/master/pallet_nicks/index.html) and interact with it using the front-end template.
+After your node compiles, you are ready to start the node that has been enhanced with lanch a lottery from the [Lottery pallet](https://paritytech.github.io/polkadot-sdk/master/pallet_lottery/) and interact with it using the front-end template.
 
 To start the local Substrate node:
 
