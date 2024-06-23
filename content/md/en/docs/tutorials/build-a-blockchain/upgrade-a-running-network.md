@@ -322,7 +322,7 @@ To add the Utility types and configuration trait:
 1. Update the value for the EXISTENTIAL_DEPOSIT for the Balances pallet.
    
    ```rust
-   pub const EXISTENTIAL_DEPOSIT: u128 = 1000 // Update this value.
+   pub const EXISTENTIAL_DEPOSIT: u128 = 1000; // Update this value.
    ```
    
    This change increases the minimum balance an account is required to have on deposit to be viewed as a valid active account.
