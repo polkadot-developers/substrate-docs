@@ -286,7 +286,7 @@ To start the local Substrate node:
 
 ## Start the front-end template
 
-Now that you have added a new pallet to your runtime, you can use the [Substrate front-end template](/tutorials/build-a-blockchain/build-local-blockchain/#install-the-front-end-template) to interact with the node template and access the Nicks pallet.
+Now that you have added a new pallet to your runtime, you can use the [Substrate front-end template](/tutorials/build-a-blockchain/build-local-blockchain/#install-the-front-end-template) or [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/explorer?rpc=ws://localhost:9944) (used in this tutorial) to interact with the node template and access the Lottery pallet.
 
 To start the front-end template:
 
@@ -302,62 +302,41 @@ To start the front-end template:
 
 1. Open `http://localhost:8000/` in a browser to view the front-end template.
 
-## Set a nickname using the Nicks pallet
+## Launch a lottery using the Lottery pallet
 
-After you start the front-end template, you can use it to interact with the Nicks pallet you just added to the runtime.
+After you start the front-end template, you can use it to interact with the Lottery pallet you just added to the runtime.
 
-To set a nickname for an account:
+To set startLottery's parameters:
 
-1. Check the account selection list to verify that the Alice account is currently selected.
+1. According to our configuration, we need to have administrative privileges. In the `Developer` menu, verify that **Sudo** is selected.
 
-1. In the Pallet Interactor component, verify that **Extrinsic** is selected.
+2. Select **lottery** from the list of pallets available to call.
 
-2. Select **nicks** from the list of pallets available to call.
+3. Select **startLottery** as the function to call from the lottery pallet.
 
-3. Select [**setName**](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Call.html#variant.set_name) as the function to call from the nicks pallet.
+4. Set up a new lottery by filling up the 4 parameters:
 
-4. Type a **name** that is longer than the `MinNickLength` (8 characters) and no longer than the `MaxNickLength` (32 characters).
+   - `price`: The cost of a single ticket.
+   - `length`: How long the lottery should run for starting at the current block.
+   - `delay`: How long after the lottery end we should wait before picking a winner.
+   - `repeat`: If the lottery should repeat when completed.
 
-   ![Select the pallet and the function to call](/media/images/docs/tutorials/add-a-pallet/set-name-function.png)
+   ![Select the pallet and the function to call](/media/images/docs/tutorials/add-a-pallet/start-lottery-function.png)
 
-5. Click **Signed** to execute the function.
+5. Click **Submit Sudo** to execute the function.
 
-6. Observe the status of the call change from Ready to InBlock to Finalized and the note the [events](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Event.html) emitted by the Nicks pallet.
+6. Observe the status of the call change from Ready to InBlock to Finalized and the note the events emitted by the Lottery pallet.
 
-   ![Successful update to the nickname for Alice](/media/images/docs/tutorials/add-a-pallet/set-name-result.png)
-
-## Query information for an account using the Nicks pallet
-
-Next, you can use Query capability to read the value of Alice's nickname from the runtime storage for the Nicks pallet.
-
-To return the information stored for Alice:
-
-1. In the Pallet Interactor component, select **Query** as the Interaction Type.
-
-1. Select **nicks** from the list of pallets available to query.
-
-1. Select [**nameOf**](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/enum.Call.html#variant.set_name) as the function to call.
-
-1. Copy and paste the address for the **alice** account in the AccountId field, then click **Query**.
-
-   ![Read a name](/media/images/docs/tutorials/add-a-pallet/Alice-query-result.png)
-
-   The return type is a tuple that contains two values:
-
-   - The hex-encoded nickname for the Alice account `53756273747261746520737570657273746172202d20416c696365`.
-    If you convert the hex-encoded value to a string, you'll see the name you specified for the `setName` function.
-   - The amount that was reserved from Alice's account to secure the nickname (`100`).
-
-   If you were to query the Nicks pallet for the `nameOf` for Bob's account, you would see the value `None` returned because Bob has not invoked the `setName` function to reserve a nickname.
+   ![Successfully select winner](/media/images/docs/tutorials/add-a-pallet/start-lottery-result.png)
 
 ## Explore additional functions
 
 This tutorial illustrates how to add a simple pallet to the runtime and demonstrates how to interact with the new pallet using the predefined front-end template.
-In this case, you added the `nicks` pallet to the runtime and called the `set_name` and `nameOf` functions using the front-end template.
-The `nicks` pallet also provides two additional functions—the `clear_name` function and the `kill_name` function—that enable an account owner to remove the reserved name or a root-level user to forcibly remove an account name.
-You can learn about additional features—such as the use of the Sudo pallet and origin accounts—by exploring how these functions work.
+In this case, you added the `lottery` pallet to the runtime and called the `start_lottery` functions using the front-end template.
+The `lottery` pallet also provides other functions like the `stop_repeat` function. 
+You can learn about additional features—such as giving Alice account the Sudo privileges.
 However, these features are beyond the intended scope of this tutorial.
-If you want to explore additional features exposed through the Nicks and Sudo pallets, see [Next steps](#next-steps) and select [Specify the origin for a call](/tutorials/build-application-logic/specify-the-origin-for-a-call).
+If you want to explore additional features exposed through the Lottery and Sudo pallets, see [Next steps](#next-steps) and select [Specify the origin for a call](/tutorials/build-application-logic/specify-the-origin-for-a-call).
 
 ## Next steps
 
