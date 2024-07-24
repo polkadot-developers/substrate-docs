@@ -9,7 +9,7 @@ keywords:
 	<strong>⚠️ WARNING:</strong> This page contains potentially outdated information. Reading it might still be useful, yet we suggest taking it with a grain of salt.
 	</p>
 	<p>
-	 Please refer to the <a href="https://paritytech.github.io/substrate-api-sidecar/dist/">Sidecar docs</a> for the most up-to-date documentation on this topic.
+	 Please refer to the <a href="https://paritytech.github.io/substrate-api-sidecar/dist/">Sidecar docs</a>, the <a href="https://github.com/paritytech/substrate-api-sidecar?tab=readme-ov-file#note">README</a> and the <a href="https://github.com/paritytech/substrate-api-sidecar/tree/master/guides">guides folder</a> for the most up-to-date documentation on this topic.
 	</p>
 </div>
 
