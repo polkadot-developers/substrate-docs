@@ -256,15 +256,6 @@ For example:
 pub struct Pallet<T>(_);
 ```
 
-This macro can generate the `Store` trait to contain an associated type for each storage item if you provide the `#[pallet::generate_store($vis trait Store)]` attribute macro.
-
-For example:
-
-```rust
-#[pallet::pallet]
-pub struct Pallet<T>(_);
-```
-
 For more information about working with storage and this macro, see the [macro expansion](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#macro-expansion-1) added to the `struct Pallet<T>` definition.
 
 ### #[pallet::without\_storage\_info]
@@ -279,7 +270,6 @@ To use it, add the `#[pallet::without_storage_info]` attribute to the pallet str
 
 ```rust
 #[pallet::pallet]
-#[pallet::generate_store(pub(super) trait Store)]
 #[pallet::without_storage_info]
 pub struct Pallet<T>(_);
 ```
