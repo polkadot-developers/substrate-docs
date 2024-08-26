@@ -7,6 +7,13 @@ keywords:
   - node operations
 ---
 
+<div class="warning">
+	<p>
+	<strong>⚠️ WARNING:</strong> This page contains potentially outdated information 
+  and instructions. Reading it might still be useful, yet we suggest taking it with a grain of salt. When the new <a href="https://forum.polkadot.network/t/decentralized-futures-ecosystem-devrel-team-for-polkadot-by-papermoon/5811">Polkadot developer documentation</a> is published, the content on this page will be updated. Thanks for your patience!
+	</p>
+</div>
+
 Substrate exposes metrics about the operation of your network.
 For example, you can collect information about how many peers your node is connected to, how much memory your node is using, and the number of blocks being produced.
 To capture and visualize the metrics that Substrate nodes expose, you can configure and use tools like [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/).

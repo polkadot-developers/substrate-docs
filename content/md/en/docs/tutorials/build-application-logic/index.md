@@ -4,6 +4,14 @@ description: Demonstrates how you can add pallets to customize the Substrate run
 keywords:
 ---
 
+<div class="warning">
+	<p>
+	<strong>⚠️ WARNING:</strong> This page contains a list of tutorials with potentially outdated information 
+  and instructions. When the new <a href="https://forum.polkadot.network/t/decentralized-futures-ecosystem-devrel-team-for-polkadot-by-papermoon/5811">Polkadot developer documentation</a> is published, the content and 
+  links on this page will be updated. Thanks for your patience!
+	</p>
+</div>
+
 The **Build application logic** tutorials focus on how you can customize the runtime using pallets, including how to add simple and complex pallets to the runtime and how to use pallets in combination with smart contracts.
 You'll learn how to:
 

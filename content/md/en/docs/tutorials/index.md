@@ -4,6 +4,14 @@ description:
 keywords:
 ---
 
+<div class="warning">
+	<p>
+	<strong>⚠️ WARNING:</strong> This page contains a list of tutorials with potentially outdated information 
+  and instructions. When the new <a href="https://forum.polkadot.network/t/decentralized-futures-ecosystem-devrel-team-for-polkadot-by-papermoon/5811">Polkadot developer documentation</a> is published, the content and 
+  links on this page will be updated. Thanks for your patience!
+	</p>
+</div>
+
 If you are someone who likes to learn by doing, the Substrate tutorials are a great place to start your journey.
 Tutorials don't provide much background about _why_ you are performing certain steps or explain the coding details.
 Instead, the tutorials give you hands-on experience performing the tasks essential to building your own blockchain and focus on ensuring a successful result.

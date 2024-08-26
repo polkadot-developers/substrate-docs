@@ -4,6 +4,13 @@ description: Start a private blockchain network using predefined accounts as aut
 keywords:
 ---
 
+<div class="warning">
+	<p>
+	<strong>⚠️ WARNING:</strong> This page contains potentially outdated information 
+  and instructions. Reading it might still be useful, yet we suggest taking it with a grain of salt. When the new <a href="https://forum.polkadot.network/t/decentralized-futures-ecosystem-devrel-team-for-polkadot-by-papermoon/5811">Polkadot developer documentation</a> is published, the content on this page will be updated. Thanks for your patience!
+	</p>
+</div>
+
 This tutorial provides a basic introduction to how you can start a private blockchain network with an **authority set** of private **validators**.
 
 The Substrate node template uses an authority consensus model that limits block production to a rotating list of authorized accounts.

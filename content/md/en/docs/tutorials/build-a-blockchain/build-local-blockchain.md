@@ -4,6 +4,15 @@ description: Compile, launch, and interact with a single local blockchain node i
 keywords:
 ---
 
+<div class="warning">
+	<p>
+	<strong>⚠️ WARNING:</strong> This page contains potentially outdated information and instructions. New Polkadot developer documentation is in the works!
+	</p>
+	<p>
+	 Meanwhile, please refer to the instructions on <a href="https://github.com/paritytech/polkadot-sdk-minimal-template">`minimal-template`</a> and <a href="https://github.com/paritytech/polkadot-sdk-solochain-template">`solochain-template` repositories</a> for the latest documentation and working code for this tutorial.
+	</p>
+</div>
+
 As you learned in [Blockchain basics](/learn/blockchain-basics/), a blockchain consists of decentralized computers—called nodes—to form a network.
 
 Substrate provides a flexible, open, and extensible development environment that allows you to design and build fully-customized blockchain nodes to suit your application or business model needs.

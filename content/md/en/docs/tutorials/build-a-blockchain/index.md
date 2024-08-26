@@ -10,6 +10,14 @@ keywords:
   - generate keys
 ---
 
+<div class="warning">
+	<p>
+	<strong>⚠️ WARNING:</strong> This page contains a list of tutorials with potentially outdated information 
+  and instructions. When the new <a href="https://forum.polkadot.network/t/decentralized-futures-ecosystem-devrel-team-for-polkadot-by-papermoon/5811">Polkadot developer documentation</a> is published, the content and 
+  links on this page will be updated. Thanks for your patience!
+	</p>
+</div>
+
 The **Build a blockchain** tutorials illustrate the basics for working with Substrate-based blockchain nodes, including how to make nodes communicate with each other in a network of peers and how to collect metrics about node operations.
 In general, you should complete the tutorials in the order listed because they lay the foundation for trying later tutorials or performing more complex tasks.
 Later tutorials reinforce or expand on the basic topics you learn in the Get started tutorials.

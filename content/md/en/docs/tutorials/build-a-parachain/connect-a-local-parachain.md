@@ -9,6 +9,13 @@ keywords:
   - chain specification
 ---
 
+<div class="warning">
+	<p>
+	<strong>⚠️ WARNING:</strong> This page contains potentially outdated information 
+  and instructions. Reading it might still be useful, yet we suggest taking it with a grain of salt. When the new <a href="https://forum.polkadot.network/t/decentralized-futures-ecosystem-devrel-team-for-polkadot-by-papermoon/5811">Polkadot developer documentation</a> is published, the content on this page will be updated. Thanks for your patience!
+	</p>
+</div>
+
 This tutorial illustrates how to reserve a parachain identifier with a local relay chain and how to connect a local parachain to that relay chain.
 
 ## Tutorial objectives

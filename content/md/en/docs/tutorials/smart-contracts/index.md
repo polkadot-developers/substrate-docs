@@ -5,6 +5,14 @@ keywords:
   - smart contracts
 ---
 
+<div class="warning">
+	<p>
+	<strong>⚠️ WARNING:</strong> This page contains a list of tutorials with potentially outdated information 
+  and instructions. When the new <a href="https://forum.polkadot.network/t/decentralized-futures-ecosystem-devrel-team-for-polkadot-by-papermoon/5811">Polkadot developer documentation</a> is published, the content and 
+  links on this page will be updated. Thanks for your patience!
+	</p>
+</div>
+
 The **Develop smart contracts** tutorials guide you through how you can use [the ink! programming language](https://use.ink) to build smart contracts that run on a Substrate-based blockchain.
 
 The tutorials in this section use a preconfigured

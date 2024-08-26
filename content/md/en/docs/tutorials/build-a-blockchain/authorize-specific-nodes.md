@@ -8,6 +8,13 @@ keywords:
   - restricted access
 ---
 
+<div class="warning">
+	<p>
+	<strong>⚠️ WARNING:</strong> This page contains potentially outdated information 
+  and instructions. Reading it might still be useful, yet we suggest taking it with a grain of salt. When the new <a href="https://forum.polkadot.network/t/decentralized-futures-ecosystem-devrel-team-for-polkadot-by-papermoon/5811">Polkadot developer documentation</a> is published, the content on this page will be updated. Thanks for your patience!
+	</p>
+</div>
+
 In [Add trusted nodes](/tutorials/build-a-blockchain/add-trusted-nodes/), you saw how to build a simple network with a known set of validator nodes.
 That tutorial illustrated a simplified version of a **permissioned network**.
 In a permissioned network, only **authorized nodes** are allowed to perform specific network activities.
