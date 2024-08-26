@@ -4,6 +4,15 @@ description: Demonstrates how you can explore the Substrate REST service (sideca
 keywords:
 ---
 
+<div class="warning">
+	<p>
+	<strong>⚠️ WARNING:</strong> This page contains potentially outdated information. Reading it might still be useful, yet we suggest taking it with a grain of salt.
+	</p>
+	<p>
+	 Please refer to the <a href="https://paritytech.github.io/substrate-api-sidecar/dist/">Sidecar docs</a>, the <a href="https://github.com/paritytech/substrate-api-sidecar?tab=readme-ov-file#note">README</a> and the <a href="https://github.com/paritytech/substrate-api-sidecar/tree/master/guides">guides folder</a> for the most up-to-date documentation on this topic.
+	</p>
+</div>
+
 The Substrate [sidecar](https://github.com/paritytech/substrate-api-sidecar) service provides a REST API for interacting with Substrate blockchain nodes built using FRAME.
 The sidecar REST service exposes an extensive set of endpoints that enable you to interact with nodes, accounts, transactions, parachains, and many other components of a Substrate-based blockchain.
 
