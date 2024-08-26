@@ -4,6 +4,13 @@ description: Suggests how you can publish custom pallets and crates to make them
 keywords:
 ---
 
+<div class="warning">
+	<p>
+	<strong>⚠️ WARNING:</strong> This page contains potentially outdated information 
+  and instructions. Reading it might still be useful, yet we suggest taking it with a grain of salt. When the new [Polkadot developer documentation](https://forum.polkadot.network/t/decentralized-futures-ecosystem-devrel-team-for-polkadot-by-papermoon/5811) is published, the content on this page will be updated. Thanks for your patience!
+	</p>
+</div>
+
 As a blockchain builder or parachain developer, you have access to a large library of specialized pallets that you can assemble to customize your runtime to suite your specific project goals.
 To get a general sense of the number of the predefined pallets currently available, explore the Substrate [FRAME repository](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame).
 The selection of pallets available and the use cases they address is continuously evolving, including with many contributions from community members.

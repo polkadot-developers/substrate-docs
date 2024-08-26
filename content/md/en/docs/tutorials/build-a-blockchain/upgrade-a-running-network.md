@@ -6,6 +6,13 @@ keywords:
   - runtime upgrade
 ---
 
+<div class="warning">
+	<p>
+	<strong>⚠️ WARNING:</strong> This page contains potentially outdated information 
+  and instructions. Reading it might still be useful, yet we suggest taking it with a grain of salt. When the new [Polkadot developer documentation](https://forum.polkadot.network/t/decentralized-futures-ecosystem-devrel-team-for-polkadot-by-papermoon/5811) is published, the content on this page will be updated. Thanks for your patience!
+	</p>
+</div>
+
 Unlike many blockchains, the Substrate development framework supports **forkless upgrades** to the runtime that is the core of the blockchain.
 Most blockchain projects require a [hard fork](/reference/glossary/#fork) of the code base to support ongoing development of new features or enhancements to existing features.
 With Substrate, you can deploy enhanced runtime capabilities—including breaking changes—without a hard fork.

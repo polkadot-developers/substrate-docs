@@ -3,6 +3,12 @@ title: Use macros in a custom pallet
 description: Create a custom pallet for a Substrate runtime using a skeleton of FRAME macros.
 keywords:
 ---
+<div class="warning">
+	<p>
+	<strong>⚠️ WARNING:</strong> This page contains potentially outdated information 
+  and instructions. Reading it might still be useful, yet we suggest taking it with a grain of salt. When the new [Polkadot developer documentation](https://forum.polkadot.network/t/decentralized-futures-ecosystem-devrel-team-for-polkadot-by-papermoon/5811) is published, the content on this page will be updated. Thanks for your patience!
+	</p>
+</div>
 
 This tutorial illustrates how to create a custom pallet for a Substrate
 runtime using **macros** that are part of the [FRAME](/reference/frame-macros/) development environment.

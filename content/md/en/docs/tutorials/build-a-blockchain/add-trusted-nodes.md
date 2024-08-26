@@ -7,6 +7,13 @@ keywords:
   - permission
 ---
 
+<div class="warning">
+	<p>
+	<strong>⚠️ WARNING:</strong> This page contains potentially outdated information 
+  and instructions. Reading it might still be useful, yet we suggest taking it with a grain of salt. When the new [Polkadot developer documentation](https://forum.polkadot.network/t/decentralized-futures-ecosystem-devrel-team-for-polkadot-by-papermoon/5811) is published, the content on this page will be updated. Thanks for your patience!
+	</p>
+</div>
+
 This tutorial illustrates how you can start a small, standalone blockchain network with an **authority set** of private **validators**.
 
 As you learned in [Blockchain basics](/learn/blockchain-basics/), all blockchains require the nodes in the network to agree on the state of data at any specific point in time and this agreement about the state is called **consensus**.

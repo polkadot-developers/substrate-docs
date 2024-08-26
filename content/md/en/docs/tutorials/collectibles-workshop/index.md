@@ -6,6 +6,14 @@ keywords:
   - runtime
 ---
 
+<div class="warning">
+	<p>
+	<strong>⚠️ WARNING:</strong> This page contains a list of tutorials with potentially outdated information 
+  and instructions. When the new [Polkadot developer documentation](https://forum.polkadot.network/t/decentralized-futures-ecosystem-devrel-team-for-polkadot-by-papermoon/5811) is published, the content and 
+  links on this page will be updated. Thanks for your patience!
+	</p>
+</div>
+
 The Substrate Developer Hub provides self-paced workshops with content and coding challenges to help you learn about building blockchains and decentralized applications using Substrate, Rust, and related tools.
 
 As you progress through the workshops, you’ll learn basic concepts, see examples of what to do, and test your knowledge by converting what you’ve learned into working code.

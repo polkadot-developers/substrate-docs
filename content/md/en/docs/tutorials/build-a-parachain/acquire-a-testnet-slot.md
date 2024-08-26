@@ -8,6 +8,13 @@ keywords:
   - relay chain
 ---
 
+<div class="warning">
+	<p>
+	<strong>⚠️ WARNING:</strong> This page contains potentially outdated information 
+  and instructions. Reading it might still be useful, yet we suggest taking it with a grain of salt. When the new [Polkadot developer documentation](https://forum.polkadot.network/t/decentralized-futures-ecosystem-devrel-team-for-polkadot-by-papermoon/5811) is published, the content on this page will be updated. Thanks for your patience!
+	</p>
+</div>
+
 This tutorial demonstrates how you can deploy a parachain on a public test network, such as the [Rococo](https://wiki.polkadot.network/docs/build-pdk#rococo-testnet) test network.
 Public test networks have a higher bar to entry than a private network, but represent an important step in preparing a parachain project to move into a production network. 
 

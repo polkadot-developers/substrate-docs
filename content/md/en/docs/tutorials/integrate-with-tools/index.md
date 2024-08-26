@@ -4,6 +4,14 @@ description: Demonstrates use cases for tools that enable you to connect to and 
 keywords:
 ---
 
+<div class="warning">
+	<p>
+	<strong>⚠️ WARNING:</strong> This page contains a list of tutorials with potentially outdated information 
+  and instructions. When the new [Polkadot developer documentation](https://forum.polkadot.network/t/decentralized-futures-ecosystem-devrel-team-for-polkadot-by-papermoon/5811) is published, the content and 
+  links on this page will be updated. Thanks for your patience!
+	</p>
+</div>
+
 The **Integrate with tools** tutorials highlight tools and node extensions that enable you to deploy nodes that can integrate with other systems and how to use additional ecosystem tools that allow you to access, synchronize, and interact with information your own or other blockchains.
 
 - [Integrate a light client node](/tutorials/integrate-with-tools/integrate-a-light-client-node/) describes how you can use the Substrate Connect light client node to synchronize and interact with a Substrate chain from a browser.

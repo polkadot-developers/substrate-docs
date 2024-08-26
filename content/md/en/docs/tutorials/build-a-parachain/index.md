@@ -9,6 +9,14 @@ keywords:
   - Polkadot
 ---
 
+<div class="warning">
+	<p>
+	<strong>⚠️ WARNING:</strong> This page contains a list of tutorials with potentially outdated information 
+  and instructions. When the new [Polkadot developer documentation](https://forum.polkadot.network/t/decentralized-futures-ecosystem-devrel-team-for-polkadot-by-papermoon/5811) is published, the content and 
+  links on this page will be updated. Thanks for your patience!
+	</p>
+</div>
+
 The **Build a parachain** tutorials delve into more advanced topics for moving beyond solo chain development, including how to connect your chain to other chains.
 
 - [Prepare a local relay chain](/tutorials/build-a-parachain/prepare-a-local-relay-chain/) helps you prepare a local relay chain to use in testing a local parachain.

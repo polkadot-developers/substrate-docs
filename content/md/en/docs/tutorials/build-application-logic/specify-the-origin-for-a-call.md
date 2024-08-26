@@ -7,6 +7,13 @@ keywords:
   - origins
 ---
 
+<div class="warning">
+	<p>
+	<strong>⚠️ WARNING:</strong> This page contains potentially outdated information 
+  and instructions. Reading it might still be useful, yet we suggest taking it with a grain of salt. When the new [Polkadot developer documentation](https://forum.polkadot.network/t/decentralized-futures-ecosystem-devrel-team-for-polkadot-by-papermoon/5811) is published, the content on this page will be updated. Thanks for your patience!
+	</p>
+</div>
+
 In [Add a pallet to the runtime](/tutorials/build-application-logic/add-a-pallet), you added functions from `pallet_nicks` to the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) runtime.
 
 The Nicks pallet allows blockchain users to pay a deposit to reserve a nickname for an account they control.
