@@ -10,7 +10,7 @@ keywords:
 
 In [May
 2023](https://forum.polkadot.network/t/psa-parity-is-currently-working-on-merging-the-polkadot-stack-repositories-into-one-single-repository/2883),
-Parity Technologies started moving 3 repositories of
+Parity Technologies started moving the three repositories that contained
 [`substrate`](https://github.com/paritytech/substrate),
 [`polkadot`](https://github.com/paritytech/polkadot), and
 [`cumulus`](https://github.com/paritytech/cumulus), formerly independent in development and
