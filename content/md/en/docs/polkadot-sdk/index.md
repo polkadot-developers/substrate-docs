@@ -26,7 +26,7 @@ new home. Consider the [resources below](#alternative-resources) as primary sour
 
 > You may still access the old content of this website in the navbar, but be aware of the fact that some content might not be up to date.
 
-Note that **this does not impact the development of Substrate as a framework**. Substrate, as a framework, is still being maintained with full steam as a part of polkadot-sdk, and retains its full ability to be used to build both [standalone blockchains](https://github.com/paritytech/polkadot-sdk-solochain-template), or [Polkadot powered parachains](https://github.com/paritytech/polkadot-sdk-parachain-template).
+Note that **this does not impact the development of Substrate as a framework**. Substrate, as a framework, is still being maintained with full steam as a part of `polkadot-sdk`, and retains its full ability to be used to build both [standalone blockchains](https://github.com/paritytech/polkadot-sdk-solochain-template), or [Polkadot powered parachains](https://github.com/paritytech/polkadot-sdk-parachain-template).
 
 ## Alternative Resources
 
