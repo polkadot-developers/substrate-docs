@@ -4,6 +4,15 @@ description:
 keywords:
 ---
 
+<div class="warning">
+	<p>
+	<strong>⚠️ WARNING:</strong> This page contains potentially outdated information. Reading it might still be useful, yet we suggest taking it with a grain of salt.
+	</p>
+	<p>
+	 Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/reference_docs/frame_pallet_coupling/index.html">`polkadot-sdk-docs` crate</a> for the most up-to-date documentation on this topic.
+	</p>
+</div>
+
 Tight coupling two pallets is a technique to write pallets that re-use types and methods from an existing pallet.
 
 It is useful for breaking up some runtime logic into separate pallets that need access to common type and methods.

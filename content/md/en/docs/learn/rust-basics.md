@@ -17,7 +17,7 @@ Being the language of choice for Substrate, Rust is a highly performant programm
 
 ## Rust in Substrate
 
-In the [Architecture]() section, you will learn that Substrate is made of two distinct architectural components: the outer node and the runtime.
+In the [Architecture](/learn/architecture/) section, you will learn that Substrate is made of two distinct architectural components: the outer node and the runtime.
 While more complex features in Rust such as multithreading and asynchronous Rust are used in the outer node code, they aren't directly exposed to runtime engineers, making it easier for runtime engineers to focus on the business logic of their node.
 
 Generally, depending on their focus, developers should expect to know:
@@ -40,7 +40,7 @@ These macros allow you to focus on writing idiomatic Rust and application-specif
 
 Rust macros are a powerful tool to help ensure certain requirements are met (without re-writing code) such as the logic to be formatted in a specific way, specific checks are made, or some logic consists of specific data structures.
 This is especially useful to help developers write code that can integrate with the complexity of a Substrate runtime.
-For example, the `#[frame_system::pallet]` macro is required in all FRAME pallets to help you correctly implement certain required attributes-such as storage items or externally callable functions-and make it compatible with the build process in `construct_runtime`.
+For example, the `#[frame_support::pallet]` macro is required in all FRAME pallets to help you correctly implement certain required attributes-such as storage items or externally callable functions-and make it compatible with the build process in `construct_runtime`.
 
 Developing Substrate runtimes involves heavy use of Rust's attribute macros, which come in two flavors: derive attributes and custom attributes.
 When you're getting started with Substrate, it isn't so important to know exactly how they work, but rather to know that they exist that they empower you to write correct runtime code.
