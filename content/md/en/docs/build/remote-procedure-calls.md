@@ -6,6 +6,10 @@ keywords:
   - frontend
 ---
 
+<div class="warning">
+  <strong>⚠️ WARNING:</strong> This page may contain outdated information. Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/reference_docs/custom_runtime_api_rpc/index.html">Rust docs</a> for the most up-to-date documentation on this topic.
+</div>
+
 Remote procedure calls, or RPC methods, are a way for an external program—for example, a browser or front-end application—to communicate with a Substrate node.
 In general, these methods enable an RPC client to connect to an RPC server endpoint to request some type of service.
 For example, you might use an RPC method to read a stored value, submit a transaction, or request information about the chain a node is connected to.
