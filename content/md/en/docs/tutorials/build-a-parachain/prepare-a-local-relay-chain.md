@@ -62,7 +62,7 @@ Therefore, this tutorial uses code from the Polkadot repository to prepare the l
    You can find information about each release on the [Releases](https://github.com/paritytech/polkadot/releases) tab in GitHub.
    
    ```bash
-   git clone --branch release-v1.0.0 https://github.com/paritytech/polkadot.git
+   git clone --branch release-v1.0.0 https://github.com/paritytech/polkadot-sdk.git
    ```
 
 2. Change to the root of the `polkadot` directory by running the following command:

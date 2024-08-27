@@ -85,7 +85,7 @@ The following is an example of how you would add an external pallet to the `/run
 
 ```toml
 [dependencies]
-pallet-external = {default-features = false, git = "https://github.com/paritytech/substrate.git", version = "4.0.0-dev"}
+pallet-external = {default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", version = "4.0.0-dev"}
 
 # --snip--
 runtime-benchmarks = [
