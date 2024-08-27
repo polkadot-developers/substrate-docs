@@ -22,7 +22,9 @@ This transition gave birth to a new vision in which these tools are seen from le
 
 Most impacted in this transition is **Substrate**, and part of this impact is gradual deprecation of
 this website. The content in this website is no longer maintained, and will be gradually moved to a
-new home. Consider the following resources as primary sources of information.
+new home. Consider the [resources below](#alternative-resources) as primary sources of information.
+
+> You may still access the old content of this website in the navbar, but be aware of the fact that some content might not be up to date.
 
 Note that **this does not impact the development of Substrate as a framework**. Substrate, as a framework, is still being maintained with full steam as a part of polkadot-sdk, and retains its full ability to be used to build both [standalone blockchains](https://github.com/paritytech/polkadot-sdk-solochain-template), or [Polkadot powered parachains](https://github.com/paritytech/polkadot-sdk-parachain-template).
 
