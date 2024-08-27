@@ -92,7 +92,7 @@ Individual pallets are typically easy to develop by using FRAME and easy for Sub
 
 ### Writing correct code
 
-It's worth noting that pallets don't inherently provide any of type of protection or safeguards that smart contracts provide.
+It's worth noting that pallets don't inherently provide any type of protection or safeguards that smart contracts provide.
 With pallets, you control the logic available for runtime developers to implement.
 You provide the methods, storage items, events, and errors that your module requires.
 Pallets don't inherently introduce a fee or metering system.
@@ -101,7 +101,7 @@ This lack of built-in safeguards implies that you have a great deal of responsib
 
 ### Pallets outside of runtime development
 
-Often, writing a pallet is the gateway to runtime development, giving you the opportunity to experiment with existing pallets and coding patterns without building a compete blockchain application.
+Often, writing a pallet is the gateway to runtime development, giving you the opportunity to experiment with existing pallets and coding patterns without building a complete blockchain application.
 Individual pallets also provide an alternative way you can contribute to a project without writing your own application.
 
 Although writing and testing pallets is typically a stepping stone to building larger scale application, there are many examples of the value individual pallets can have to the ecosystem as a whole.
@@ -170,7 +170,7 @@ The only requirement is that your parachain or parathread must be compatible wit
 
 ### Planning parachain resource requirements
 
-As a parachain, your project can offer functionality to a broader community in a more secure way that a private chain or a solo chain.
+As a parachain, your project can offer functionality to a broader community in a more secure way than a private chain or a solo chain.
 However, if you want to build a production-ready parachain, you should keep the following additional requirements in mind:
 
 - You'll need a development team with sufficient skills and experience, whether that means programming in Rust or a background in UX design.

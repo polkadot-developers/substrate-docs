@@ -41,7 +41,7 @@ For example, you can build a Substrate runtime:
 - Using smart contracts and predefined FRAME pallets.
 - With a combination of predefined and custom pallets and smart contracts.
 
-As part of your design process, you can explore the predefined [FRAME pallets](https://github.com/paritytech/substrate/tree/master/frame) to see if they provide features that you want to use or customize and identify any custom pallets you might need.
+As part of your design process, you can explore the predefined [FRAME pallets](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame) to see if they provide features that you want to use or customize and identify any custom pallets you might need.
 
 ## Where to go next
 

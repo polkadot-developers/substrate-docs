@@ -12,7 +12,7 @@ The `subxt-cli` tool enables you to perform two key tasks that are critical to u
 - You can use the `subxt-cli` tool to generate the runtime API code from the metadata from any target Substrate node.
 
 You can use the `subxt` library and `subxt-cli` tool for any node that uses metadata v14 and later.
-For examples of how to use the `subxt` library, see the [examples](https://github.com/paritytech/subxt/tree/master/examples/examples) folder.
+For examples of how to use the `subxt` library, see the [examples](https://github.com/paritytech/subxt/tree/master/examples) folder.
 
 ## Installation
 

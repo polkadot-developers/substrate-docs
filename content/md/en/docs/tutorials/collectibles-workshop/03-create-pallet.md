@@ -3,6 +3,8 @@ title: Create a new pallet
 tutorial: 1
 ---
 
+> ⚠️ This tutorial is out-of-date any may not work as intended. Please refer to [`Polkadot SDK Docs`](https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/guides/your_first_pallet/index.html) for up-to-date information.
+
 In this workshop, you'll learn how to create a custom Substrate module-called a pallet-that's going to contain the code for your application-specific blockchain.
 Pallets are built using FRAME libraries and the Rust programming language.
 FRAME includes a lot of specialized macros that make it easy to compose the application logic in a reusable container.
@@ -104,14 +106,14 @@ To update the manifest for the collectibles project:
    
    ```toml
    [dependencies]
-   frame-support = { default-features = false, version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v1.0.0"}
-   frame-system = { default-features = false, version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v1.0.0" }
+   frame-support = { default-features = false, version = "36.0.0" }
+   frame-system = { default-features = false, version = "36.0.0" }
    ```
 
 3. Add `codec` and `scale-info` to the dependencies.
    
    ```toml
-   codec = { package = "parity-scale-codec", version = "3.0.0", default-features = false, features = ["derive",] }
+   codec = { package = "parity-scale-codec", version = "3.0.0", default-features = false, features = ["derive"] }
    scale-info = { version = "2.1.1", default-features = false, features = ["derive"] }
    ```
 
@@ -139,7 +141,7 @@ The next step is to prepare a set of common macros to serve as scaffolding for y
    
    You now have a clean slate for creating the Substrate collectibles pallet.
 
-2. Prepare the scaffolding for the Substrate collectibles pallet by adding the following common set of marco declarations to the `src/lib.rs`  file:
+2. Prepare the scaffolding for the Substrate collectibles pallet by adding the following common set of macro declarations to the `src/lib.rs`  file:
    
    ```rust
    #![cfg_attr(not(feature = "std"), no_std)]
@@ -152,7 +154,6 @@ The next step is to prepare a set of common macros to serve as scaffolding for y
         use frame_system::pallet_prelude::*;
 
         #[pallet::pallet]
-        #[pallet::generate_store(pub(super) trait Store)]
         pub struct Pallet<T>(_);
 
         #[pallet::config]

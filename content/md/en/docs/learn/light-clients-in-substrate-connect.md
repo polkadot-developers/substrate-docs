@@ -43,7 +43,7 @@ A few of the key benefits include:
 
 You can use Substrate Connect to connect to any Substrate-based blockchain.
 However, you must specify the correct name of the chain that you want to connect to.
-There are a few well-known chain names that are defined for the [`WellKnownChain`](https://paritytech.github.io/substrate-connect/api/enums/connect_src.WellKnownChain.html) enumeration type.
+There are a few well-known chain names that are defined for the [`WellKnownChain`](https://paritytech.github.io/substrate-connect/api/enums/_substrate_connect.WellKnownChain.html) enumeration type.
 
 You can connect to the following public blockchain networks using the name listed:
 

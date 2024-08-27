@@ -113,7 +113,7 @@ In addition to the library of pre-built FRAME pallets, you can use the FRAME lib
 With custom pallets, you have the flexibility to define the runtime behavior that best suits your purposes.
 Because each pallet has its own discrete logic, you can combine pre-built and custom pallets to control the features and functionality your blockchain provides and achieve the results you want.
 
-For example, you might include the [Balances pallet](https://github.com/paritytech/substrate/tree/master/frame/balances) in your runtime to use its cryptocurrency-related storage items and functions for managing tokens, but add custom logic to call a pallet you write when an account balance changes.
+For example, you might include the [Balances pallet](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame/balances) in your runtime to use its cryptocurrency-related storage items and functions for managing tokens, but add custom logic to call a pallet you write when an account balance changes.
 
 Most pallets are composed with some combination of the following sections:
 
@@ -139,7 +139,6 @@ pub mod pallet {
  // Declare the pallet type
  // This is a placeholder to implement traits and methods.
  #[pallet::pallet]
- #[pallet::generate_store(pub(super) trait Store)]
  pub struct Pallet<T>(_);
 
  // Add the runtime configuration trait

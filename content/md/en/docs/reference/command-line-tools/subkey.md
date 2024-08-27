@@ -38,7 +38,7 @@ To install and compile the `subkey` program:
 1. Clone the Substrate repository, if necessary, by running the following command:
 
    ```bash
-   git clone https://github.com/paritytech/substrate.git
+   git clone https://github.com/paritytech/polkadot-sdk.git
    ```
 
 1. Change to the root directory of the Substrate repository by running the following command:
@@ -894,6 +894,6 @@ Secret Key URI `bottom drive obey lake curtain smoke basket hold race lonely fit
 
 ## Further resources
 
-- [Subkey README](https://github.com/paritytech/substrate/tree/master/bin/utils/subkey).
+- [Subkey README](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/bin/utils/subkey).
 - [PolkadotJS Apps UI](https://polkadot.js.org/apps/).
 - [Cryptography explainer](https://wiki.polkadot.network/docs/en/learn-cryptography).

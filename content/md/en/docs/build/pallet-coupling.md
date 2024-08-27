@@ -6,6 +6,15 @@ keywords:
   - pallet design
 ---
 
+<div class="warning">
+	<p>
+	<strong>⚠️ WARNING:</strong> This page contains potentially outdated information. Reading it might still be useful, yet we suggest taking it with a grain of salt.
+	</p>
+	<p>
+	 Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/reference_docs/frame_pallet_coupling/index.html">`polkadot-sdk-docs` crate</a> for the most up-to-date documentation on this topic.
+	</p>
+</div>
+
 The term **coupling** is often used to describe the degree to which two software modules depend on each other.
 For example, in object-oriented programming tight coupling and loose coupling are used to describe the relationship between objects classes:
 
@@ -104,10 +113,10 @@ In general, loose coupling provides more flexibility than tight coupling and is 
 It guarantees better maintainability, reusability, and extensibility of your code.
 However, tight coupling can be useful for pallets that are less complex or that have more overlap in methods and types than differences.
 
-In FRAME, there are two pallets that are tightly coupled to [`pallet_treasury`](https://github.com/paritytech/substrate/tree/master/frame/treasury):
+In FRAME, there are two pallets that are tightly coupled to [`pallet_treasury`](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame/treasury):
 
-- [Bounties pallet](https://github.com/paritytech/substrate/tree/master/frame/bounties)
-- [Tipping pallet](https://github.com/paritytech/substrate/tree/master/frame/tips)
+- [Bounties pallet](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame/bounties)
+- [Tipping pallet](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame/tips)
 
 As a general rule, the more complex a pallet is, the less desirable it is to tightly couple it.
 This evokes a concept in computer science called [cohesion](<https://en.wikipedia.org/wiki/Cohesion_(computer_science)>), a metric used to examine the overall quality of a software system.
